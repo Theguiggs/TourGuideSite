@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de confidentialité — TourGuide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #f9f9f7;
+    }
+    header {
+      background: #0D4F4F;
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    header p  { font-size: 15px; opacity: 0.8; }
+    main {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 0 24px 80px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0D4F4F;
+      margin: 40px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #e0eded;
+    }
+    h3 { font-size: 16px; font-weight: 600; margin: 20px 0 8px; color: #1a1a1a; }
+    p, li { margin-bottom: 10px; color: #333; }
+    ul { padding-left: 20px; }
+    ul li { list-style: disc; }
+    a { color: #0D4F4F; text-decoration: underline; }
+    .card {
+      background: white;
+      border: 1px solid #e0eded;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+    .badge {
+      display: inline-block;
+      background: #e8f4f4;
+      color: #0D4F4F;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .highlight {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+    }
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: #666;
+      font-size: 14px;
+      border-top: 1px solid #e0eded;
+      margin-top: 40px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+    th { background: #f0f7f7; color: #0D4F4F; font-weight: 600; text-align: left; padding: 10px 12px; }
+    td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Politique de confidentialité</h1>
+  <p>TourGuide — Application de visites audio guidées<br>Dernière mise à jour : 4 mars 2026</p>
+</header>
+
+<main>
+
+  <div class="highlight">
+    <strong>En résumé :</strong> TourGuide collecte uniquement les données nécessaires à son fonctionnement (localisation GPS pour les visites, microphone pour les guides créateurs). Nous ne vendons jamais vos données. Vous pouvez demander leur suppression à tout moment.
+  </div>
+
+  <!-- 1. Responsable -->
+  <h2>1. Responsable du traitement</h2>
+  <div class="card">
+    <p><strong>TourGuide</strong><br>
+    Application mobile Android<br>
+    Contact : <a href="mailto:privacy@tourguide.app">privacy@tourguide.app</a></p>
+  </div>
+
+  <!-- 2. Données collectées -->
+  <h2>2. Données collectées et finalités</h2>
+
+  <h3>2.1 Localisation GPS</h3>
+  <div class="card">
+    <span class="badge">android.permission.ACCESS_FINE_LOCATION</span>
+    <p>Utilisée exclusivement pendant une visite active pour détecter votre proximité aux points d'intérêt et déclencher la narration audio au bon moment.</p>
+    <table>
+      <tr><th>Donnée</th><th>Finalité</th><th>Conservation</th></tr>
+      <tr><td>Position GPS en temps réel</td><td>Navigation de visite</td><td>Non conservée — traitée en mémoire uniquement</td></tr>
+    </table>
+    <p>La localisation n'est <strong>jamais active en arrière-plan</strong> hors d'une visite en cours.</p>
+  </div>
+
+  <h3>2.2 Microphone (guides créateurs uniquement)</h3>
+  <div class="card">
+    <span class="badge">android.permission.RECORD_AUDIO</span>
+    <p>Le microphone est utilisé uniquement par les <strong>guides créateurs de contenu</strong> (fonctionnalité SceneBuilder) pour enregistrer les narrations audio de leurs visites.</p>
+    <table>
+      <tr><th>Donnée</th><th>Finalité</th><th>Conservation</th></tr>
+      <tr><td>Enregistrements audio</td><td>Création de contenu de visite</td><td>Stockés sur votre appareil puis transmis à nos serveurs sur votre demande explicite</td></tr>
+    </table>
+    <p>Les visiteurs (utilisateurs de visites) n'ont <strong>jamais besoin du microphone</strong>. L'autorisation n'est demandée que si vous accédez aux fonctionnalités de création.</p>
+  </div>
+
+  <h3>2.3 Compte utilisateur</h3>
+  <div class="card">
+    <p>Si vous créez un compte, nous collectons :</p>
+    <ul>
+      <li>Adresse email (identifiant de connexion)</li>
+      <li>Identifiant utilisateur pseudonymisé</li>
+      <li>Progression dans les visites (POIs visités, temps écoulé)</li>
+    </ul>
+    <p>Fournisseur d'authentification : <strong>AWS Cognito</strong> (données hébergées dans l'Union Européenne, région eu-west-1).</p>
+  </div>
+
+  <h3>2.4 Achats in-app</h3>
+  <div class="card">
+    <p>Les achats et abonnements sont gérés par <strong>RevenueCat</strong> et <strong>Google Play</strong>. Nous ne stockons jamais vos données de paiement (numéro de carte, etc.).</p>
+    <p>RevenueCat reçoit un identifiant anonyme associé à vos achats. Politique de confidentialité RevenueCat : <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></p>
+  </div>
+
+  <h3>2.5 Données analytiques</h3>
+  <div class="card">
+    <p>Nous utilisons une analytics interne minimale pour améliorer l'application :</p>
+    <ul>
+      <li>Événements d'usage anonymisés (visite démarrée, POI atteint, durée de session)</li>
+      <li>Type d'appareil et version Android</li>
+      <li>Domaine email uniquement (ex : "gmail.com") — jamais l'adresse complète</li>
+    </ul>
+    <p>Aucun profilage publicitaire. Aucune revente à des tiers.</p>
+  </div>
+
+  <!-- 3. Permissions -->
+  <h2>3. Permissions Android</h2>
+  <table>
+    <tr>
+      <th>Permission</th>
+      <th>Utilisée par</th>
+      <th>Obligatoire</th>
+    </tr>
+    <tr>
+      <td>ACCESS_FINE_LOCATION</td>
+      <td>Navigation GPS pendant les visites</td>
+      <td>Oui (fonctionnalité principale)</td>
+    </tr>
+    <tr>
+      <td>RECORD_AUDIO</td>
+      <td>Enregistrement narration (guides créateurs)</td>
+      <td>Non (guides uniquement)</td>
+    </tr>
+    <tr>
+      <td>INTERNET</td>
+      <td>Chargement audio, synchronisation</td>
+      <td>Oui</td>
+    </tr>
+    <tr>
+      <td>RECEIVE_BOOT_COMPLETED</td>
+      <td>Reprise des téléchargements après redémarrage</td>
+      <td>Non</td>
+    </tr>
+    <tr>
+      <td>FOREGROUND_SERVICE</td>
+      <td>Lecture audio en arrière-plan pendant une visite</td>
+      <td>Oui (lecture audio continue)</td>
+    </tr>
+    <tr>
+      <td>POST_NOTIFICATIONS</td>
+      <td>Rappels de visite (opt-in)</td>
+      <td>Non</td>
+    </tr>
+  </table>
+
+  <!-- 4. Bases légales RGPD -->
+  <h2>4. Bases légales (RGPD)</h2>
+  <table>
+    <tr><th>Traitement</th><th>Base légale</th></tr>
+    <tr><td>Localisation GPS pendant visite</td><td>Exécution du contrat (service de visite)</td></tr>
+    <tr><td>Enregistrement audio (guide)</td><td>Consentement explicite + exécution du contrat</td></tr>
+    <tr><td>Compte utilisateur</td><td>Exécution du contrat</td></tr>
+    <tr><td>Achats / abonnements</td><td>Exécution du contrat</td></tr>
+    <tr><td>Analytics anonymisées</td><td>Intérêt légitime (amélioration du service)</td></tr>
+  </table>
+
+  <!-- 5. Hébergement -->
+  <h2>5. Hébergement et transfert de données</h2>
+  <div class="card">
+    <p>Toutes les données sont hébergées dans l'<strong>Union Européenne</strong> :</p>
+    <ul>
+      <li>Serveurs applicatifs : AWS eu-west-1 (Irlande)</li>
+      <li>Stockage fichiers audio : AWS S3 eu-west-1</li>
+      <li>Base de données : AWS AppSync / DynamoDB eu-west-1</li>
+    </ul>
+    <p>Aucun transfert de données hors UE sans garanties adéquates (clauses contractuelles types).</p>
+  </div>
+
+  <!-- 6. Durée conservation -->
+  <h2>6. Durée de conservation</h2>
+  <table>
+    <tr><th>Donnée</th><th>Durée</th></tr>
+    <tr><td>Position GPS</td><td>Non conservée (traitement en mémoire)</td></tr>
+    <tr><td>Données de compte</td><td>Durée d'utilisation + 30 jours après suppression</td></tr>
+    <tr><td>Enregistrements audio (guide)</td><td>Jusqu'à suppression par le guide</td></tr>
+    <tr><td>Données d'achat</td><td>10 ans (obligation légale comptable)</td></tr>
+    <tr><td>Analytics anonymisées</td><td>24 mois</td></tr>
+  </table>
+
+  <!-- 7. Vos droits -->
+  <h2>7. Vos droits</h2>
+  <p>Conformément au RGPD (articles 15 à 22), vous disposez des droits suivants :</p>
+  <ul>
+    <li><strong>Accès</strong> — obtenir une copie de vos données personnelles</li>
+    <li><strong>Rectification</strong> — corriger des données inexactes</li>
+    <li><strong>Effacement</strong> — supprimer votre compte et vos données ("droit à l'oubli")</li>
+    <li><strong>Portabilité</strong> — recevoir vos données dans un format structuré</li>
+    <li><strong>Opposition</strong> — vous opposer à certains traitements</li>
+    <li><strong>Limitation</strong> — limiter le traitement de vos données</li>
+  </ul>
+  <div class="highlight">
+    Pour exercer vos droits : <a href="mailto:privacy@tourguide.app">privacy@tourguide.app</a><br>
+    Délai de réponse : 30 jours maximum.<br>
+    Vous pouvez également déposer une réclamation auprès de la <a href="https://www.cnil.fr" target="_blank">CNIL</a>.
+  </div>
+
+  <!-- 8. Suppression de compte -->
+  <h2>8. Suppression de compte</h2>
+  <p>Vous pouvez supprimer votre compte directement depuis l'application :</p>
+  <p><strong>Paramètres → Compte → Supprimer mon compte</strong></p>
+  <p>Ou en envoyant une demande à <a href="mailto:privacy@tourguide.app">privacy@tourguide.app</a>. Toutes vos données personnelles seront supprimées dans un délai de 30 jours.</p>
+
+  <!-- 9. Mineurs -->
+  <h2>9. Mineurs</h2>
+  <p>TourGuide n'est pas destiné aux enfants de moins de 13 ans. Nous ne collectons pas sciemment de données personnelles d'enfants de moins de 13 ans. Si vous pensez qu'un enfant nous a fourni des données, contactez-nous à <a href="mailto:privacy@tourguide.app">privacy@tourguide.app</a>.</p>
+
+  <!-- 10. Modifications -->
+  <h2>10. Modifications de cette politique</h2>
+  <p>Toute modification significative de cette politique sera notifiée dans l'application au moins 30 jours avant son entrée en vigueur. La date de dernière mise à jour figure en haut de cette page.</p>
+
+  <!-- 11. Contact -->
+  <h2>11. Contact</h2>
+  <div class="card">
+    <p><strong>TourGuide — Responsable de la protection des données</strong><br>
+    Email : <a href="mailto:privacy@tourguide.app">privacy@tourguide.app</a><br>
+    Objet du message : "Demande RGPD — [votre demande]"</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>TourGuide &copy; 2026 — Politique de confidentialité</p>
+  <p style="margin-top: 8px"><a href="mailto:privacy@tourguide.app">privacy@tourguide.app</a></p>
+</footer>
+
+</body>
+</html>
