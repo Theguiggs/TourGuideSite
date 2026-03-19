@@ -52,7 +52,15 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
         const appsync = await import('@/lib/api/appsync-client');
         // Find ModerationItem for this tour
         const items = await appsync.listModerationItems();
-        const item = items.find((i) => (i as Record<string, unknown>).tourId === tourId);
+        // Find the most recent ModerationItem for this tour (by reviewDate or createdAt)
+        const matching = items
+          .filter((i) => (i as Record<string, unknown>).tourId === tourId)
+          .sort((a, b) => {
+            const aDate = (a as Record<string, unknown>).reviewDate as number ?? (a as Record<string, unknown>).submissionDate as number ?? 0;
+            const bDate = (b as Record<string, unknown>).reviewDate as number ?? (b as Record<string, unknown>).submissionDate as number ?? 0;
+            return bDate - aDate;
+          });
+        const item = matching[0];
         if (!item || cancelled) {
           setIsLoading(false);
           return;
