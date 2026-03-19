@@ -147,22 +147,26 @@ export async function submitForReview(
     }
 
     // Create ModerationItem so admin sees it in the moderation queue
-    const tour = await appsync.getGuideTourById(tourId);
-    if (tour) {
-      const profile = await appsync.getGuideProfileById(tour.guideId, 'userPool');
-      const modResult = await appsync.createModerationItemMutation({
-        tourId,
-        guideId: tour.guideId,
-        guideName: profile?.displayName ?? 'Guide',
-        tourTitle: tour.title,
-        city: tour.city,
-        submissionDate: Date.now(),
-      });
-      if (!modResult.ok) {
-        logger.error(SERVICE_NAME, 'ModerationItem creation failed (non-blocking)', { tourId, error: modResult.error });
+    try {
+      const tour = await appsync.getGuideTourById(tourId);
+      logger.info(SERVICE_NAME, 'ModerationItem: tour loaded', { tourId, found: !!tour, guideId: tour?.guideId });
+      if (tour) {
+        const profile = await appsync.getGuideProfileById(tour.guideId, 'userPool');
+        logger.info(SERVICE_NAME, 'ModerationItem: profile loaded', { guideId: tour.guideId, found: !!profile, name: profile?.displayName });
+        const modResult = await appsync.createModerationItemMutation({
+          tourId,
+          guideId: tour.guideId,
+          guideName: profile?.displayName ?? 'Guide',
+          tourTitle: tour.title,
+          city: tour.city,
+          submissionDate: Date.now(),
+        });
+        logger.info(SERVICE_NAME, 'ModerationItem: creation result', { ok: modResult.ok, error: !modResult.ok ? modResult.error : undefined });
+      } else {
+        logger.warn(SERVICE_NAME, 'Tour not found for ModerationItem creation', { tourId });
       }
-    } else {
-      logger.warn(SERVICE_NAME, 'Tour not found for ModerationItem creation', { tourId });
+    } catch (modErr) {
+      logger.error(SERVICE_NAME, 'ModerationItem creation exception', { tourId, error: String(modErr) });
     }
 
     logger.info(SERVICE_NAME, 'Submitted for review (AppSync)', { sessionId, tourId });

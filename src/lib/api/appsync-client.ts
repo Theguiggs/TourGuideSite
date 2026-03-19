@@ -282,6 +282,7 @@ export async function listModerationItems(filters?: { status?: string }) {
     const client = getClient();
     const result = await client.models.ModerationItem.list({
       filter: filters?.status ? { status: { eq: filters.status as 'pending' } } : undefined,
+      authMode: 'userPool',
     });
     return result.data ?? [];
   } catch (error) {
@@ -293,7 +294,7 @@ export async function listModerationItems(filters?: { status?: string }) {
 export async function getModerationItemById(id: string) {
   try {
     const client = getClient();
-    const result = await client.models.ModerationItem.get({ id });
+    const result = await client.models.ModerationItem.get({ id }, { authMode: 'userPool' });
     return result.data ?? null;
   } catch (error) {
     logger.error(SERVICE_NAME, 'getModerationItemById failed', { error: String(error) });
@@ -307,7 +308,7 @@ export async function updateModerationItemMutation(
 ) {
   try {
     const client = getClient();
-    const result = await client.models.ModerationItem.update({ id, ...updates });
+    const result = await client.models.ModerationItem.update({ id, ...updates }, { authMode: 'userPool' });
     return { ok: true as const, data: result.data };
   } catch (error) {
     logger.error(SERVICE_NAME, 'updateModerationItem failed', { error: String(error) });
