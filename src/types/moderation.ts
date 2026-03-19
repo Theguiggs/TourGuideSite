@@ -92,6 +92,10 @@ export interface ModerationScene {
   audioRef: string;
   photosRefs: string[];
   durationSeconds: number;
+  latitude: number | null;
+  longitude: number | null;
+  poiDescription: string | null;
+  transcriptText: string | null;
 }
 
 export interface ModerationAdminComment {

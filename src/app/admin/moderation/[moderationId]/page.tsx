@@ -3,7 +3,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { S3Image } from '@/components/studio/s3-image';
+
+const PreviewMap = dynamic(() => import('@/components/studio/preview-map').then((m) => ({ default: m.PreviewMap })), {
+  ssr: false,
+  loading: () => <div className="bg-gray-100 rounded-lg h-48 animate-pulse" />,
+});
 import {
   getModerationDetail,
   approveTour,
@@ -348,7 +354,7 @@ export default function ModerationReviewPage() {
                     : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
-                {tab === 'overview' ? 'Description' : tab === 'scenes' ? `Scenes (${detail.scenes.length})` : `POIs (${detail.pois.length})`}
+                {tab === 'overview' ? 'Général' : tab === 'scenes' ? `Scènes (${detail.scenes.length})` : `POIs (${detail.scenes.filter((s) => s.latitude).length}/${detail.scenes.length})`}
               </button>
             ))}
           </div>
@@ -374,8 +380,34 @@ export default function ModerationReviewPage() {
                 <span>&middot;</span>
                 <span>{detail.distance} km</span>
                 <span>&middot;</span>
-                <span>Difficulte: {detail.difficulty}</span>
+                <span>Difficulté: {detail.difficulty}</span>
+                <span>&middot;</span>
+                <span>Langue: {LANG_FLAGS[detail.languePrincipale] ?? detail.languePrincipale}</span>
               </div>
+
+              {/* Themes/Tags */}
+              {detail.themes.length > 0 && (
+                <div className="flex gap-2 flex-wrap">
+                  {detail.themes.map((theme) => (
+                    <span key={theme} className="text-xs font-medium bg-teal-50 text-teal-700 px-2.5 py-1 rounded-full border border-teal-200">
+                      {theme}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* Map */}
+              {detail.scenes.some((s) => s.latitude && s.longitude) && (
+                <div className="rounded-lg overflow-hidden border border-gray-200">
+                  <PreviewMap scenes={detail.scenes.map((s) => ({
+                    id: s.id,
+                    latitude: s.latitude,
+                    longitude: s.longitude,
+                    title: s.title,
+                    sceneIndex: s.order - 1,
+                  } as import('@/types/studio').StudioScene))} />
+                </div>
+              )}
             </div>
           )}
 
@@ -449,36 +481,54 @@ export default function ModerationReviewPage() {
           {/* POIs tab */}
           {activeContentTab === 'pois' && (
             <div className="bg-white rounded-xl border border-gray-200 p-4">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Points d&apos;interet — Textes FR / EN</h2>
-              <div className="space-y-6">
-                {detail.pois.map((poi) => (
-                  <div key={poi.id} className="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">Points d&apos;intérêt</h2>
+
+              {/* Map */}
+              {detail.scenes.some((s) => s.latitude && s.longitude) && (
+                <div className="rounded-lg overflow-hidden border border-gray-200 mb-4">
+                  <PreviewMap scenes={detail.scenes.map((s) => ({
+                    id: s.id,
+                    latitude: s.latitude,
+                    longitude: s.longitude,
+                    title: s.title,
+                    sceneIndex: s.order - 1,
+                  } as import('@/types/studio').StudioScene))} />
+                </div>
+              )}
+
+              <div className="space-y-4">
+                {detail.scenes.map((scene) => (
+                  <div key={scene.id} className="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="w-6 h-6 bg-red-100 text-red-700 rounded-full flex items-center justify-center text-xs font-bold">
-                        {poi.order}
+                        {scene.order}
                       </span>
-                      <h3 className="font-medium text-gray-900">{poi.title}</h3>
-                      <span className="text-xs text-gray-400 ml-auto">
-                        Audio: {poi.audioDuration}s
-                      </span>
+                      <h3 className="font-medium text-gray-900">{scene.title}</h3>
+                      {scene.latitude && scene.longitude && (
+                        <span className="text-xs text-gray-400 ml-auto">
+                          📍 {scene.latitude.toFixed(4)}, {scene.longitude.toFixed(4)}
+                        </span>
+                      )}
+                      {!scene.latitude && (
+                        <span className="text-xs text-amber-500 ml-auto">⚠ Pas de GPS</span>
+                      )}
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-xs font-medium text-gray-400 mb-1">
-                          Francais ({poi.wordCountFr} mots)
-                        </p>
-                        <p className="text-sm text-gray-700 bg-gray-50 rounded p-2">{poi.descriptionFr}</p>
+                    {scene.poiDescription && (
+                      <p className="text-sm text-gray-600 mb-2">{scene.poiDescription}</p>
+                    )}
+                    {scene.transcriptText && (
+                      <div className="bg-gray-50 rounded p-2 mb-2">
+                        <p className="text-xs font-medium text-gray-400 mb-1">Texte transcrit</p>
+                        <p className="text-sm text-gray-700 line-clamp-3">{scene.transcriptText}</p>
                       </div>
-                      <div>
-                        <p className="text-xs font-medium text-gray-400 mb-1">
-                          English ({poi.wordCountEn} words)
-                        </p>
-                        <p className="text-sm text-gray-700 bg-gray-50 rounded p-2">{poi.descriptionEn}</p>
+                    )}
+                    {scene.photosRefs.length > 0 && (
+                      <div className="flex gap-2">
+                        {scene.photosRefs.map((ref, i) => (
+                          <S3Image key={i} s3Key={ref} alt={`Photo ${i + 1}`} className="w-16 h-16 rounded" fallback={`📷 ${i + 1}`} />
+                        ))}
                       </div>
-                    </div>
-                    <p className="text-xs text-gray-400 mt-1">
-                      GPS: {poi.latitude.toFixed(4)}, {poi.longitude.toFixed(4)}
-                    </p>
+                    )}
                   </div>
                 ))}
               </div>

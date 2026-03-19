@@ -40,9 +40,9 @@ const MOCK_QUEUE: ModerationItem[] = [
 ];
 
 const MOCK_SCENES: ModerationScene[] = [
-  { id: 'scene-1', title: 'Place aux Aires', order: 1, audioRef: 'tours/grasse/scene_1.aac', photosRefs: ['tours/grasse/photo_1.jpg', 'tours/grasse/photo_2.jpg'], durationSeconds: 180 },
-  { id: 'scene-2', title: 'Parfumerie Fragonard', order: 2, audioRef: 'tours/grasse/scene_2.aac', photosRefs: ['tours/grasse/photo_3.jpg'], durationSeconds: 240 },
-  { id: 'scene-3', title: 'Musee de la Parfumerie', order: 3, audioRef: 'tours/grasse/scene_3.aac', photosRefs: [], durationSeconds: 200 },
+  { id: 'scene-1', title: 'Place aux Aires', order: 1, audioRef: 'tours/grasse/scene_1.aac', photosRefs: ['tours/grasse/photo_1.jpg', 'tours/grasse/photo_2.jpg'], durationSeconds: 180, latitude: 43.6591, longitude: 6.9243, poiDescription: 'Point de départ, ancien marché aux herbes', transcriptText: 'Bienvenue sur la place aux Aires...' },
+  { id: 'scene-2', title: 'Parfumerie Fragonard', order: 2, audioRef: 'tours/grasse/scene_2.aac', photosRefs: ['tours/grasse/photo_3.jpg'], durationSeconds: 240, latitude: 43.6587, longitude: 6.9221, poiDescription: 'Maison de parfum historique', transcriptText: null },
+  { id: 'scene-3', title: 'Musee de la Parfumerie', order: 3, audioRef: 'tours/grasse/scene_3.aac', photosRefs: [], durationSeconds: 200, latitude: 43.6583, longitude: 6.9215, poiDescription: null, transcriptText: null },
 ];
 
 const MOCK_ADMIN_COMMENTS: ModerationAdminComment[] = [
@@ -206,11 +206,18 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
         audioRef: (raw.studioAudioKey as string) || (raw.originalAudioKey as string) || '',
         photosRefs: (raw.photosRefs as string[]) ?? [],
         durationSeconds: 0,
+        latitude: (raw.latitude as number) ?? null,
+        longitude: (raw.longitude as number) ?? null,
+        poiDescription: (raw.poiDescription as string) ?? null,
+        transcriptText: (raw.transcriptText as string) ?? null,
       };
     });
   } else if (t) {
     // Fallback: try legacy scenesJson on GuideTour
-    try { scenes = JSON.parse((t.scenesJson as string) ?? '[]'); } catch { /* empty */ }
+    try {
+      const legacy = JSON.parse((t.scenesJson as string) ?? '[]') as ModerationScene[];
+      scenes = legacy.map((s) => ({ ...s, latitude: s.latitude ?? null, longitude: s.longitude ?? null, poiDescription: s.poiDescription ?? null, transcriptText: s.transcriptText ?? null }));
+    } catch { /* empty */ }
   }
 
   let adminComments: ModerationAdminComment[] = [];
