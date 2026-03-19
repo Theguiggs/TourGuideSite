@@ -201,7 +201,7 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
               Commentaires ({reviewData.adminComments.length})
             </p>
             <div className="space-y-2">
-              {reviewData.adminComments.map((c) => (
+              {[...reviewData.adminComments].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((c) => (
                 <div key={c.id} className="text-sm bg-white rounded-lg p-2.5 border border-gray-200">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-medium text-gray-800">{c.reviewerName}</span>
