@@ -184,17 +184,37 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
   const item = await appsync.getModerationItemById(moderationId);
   if (!item) return null;
 
-  // Load enriched tour data and guide profile in parallel
-  const [tourData, guideProfile] = await Promise.all([
-    appsync.getGuideTourById(item.tourId),
-    appsync.getGuideProfileById(item.guideId, 'userPool'),
-  ]);
+  // Load tour, guide profile, and studio scenes in parallel
+  const tourData = await appsync.getGuideTourById(item.tourId);
   const t = tourData as Record<string, unknown> | null;
+  const sessionId = (t?.sessionId as string) ?? null;
 
+  const [guideProfile, studioScenesResult] = await Promise.all([
+    appsync.getGuideProfileById(item.guideId, 'userPool'),
+    sessionId ? appsync.listStudioScenesBySession(sessionId) : Promise.resolve({ ok: false as const, data: [], error: 'no session' }),
+  ]);
+
+  // Map StudioScenes to ModerationScene format
   let scenes: ModerationScene[] = [];
+  if (studioScenesResult.ok && studioScenesResult.data.length > 0) {
+    scenes = studioScenesResult.data.map((s) => {
+      const raw = s as Record<string, unknown>;
+      return {
+        id: raw.id as string,
+        title: (raw.title as string) || `Scène ${((raw.sceneIndex as number) ?? 0) + 1}`,
+        order: ((raw.sceneIndex as number) ?? 0) + 1,
+        audioRef: (raw.studioAudioKey as string) || (raw.originalAudioKey as string) || '',
+        photosRefs: (raw.photosRefs as string[]) ?? [],
+        durationSeconds: 0,
+      };
+    });
+  } else if (t) {
+    // Fallback: try legacy scenesJson on GuideTour
+    try { scenes = JSON.parse((t.scenesJson as string) ?? '[]'); } catch { /* empty */ }
+  }
+
   let adminComments: ModerationAdminComment[] = [];
   if (t) {
-    try { scenes = JSON.parse((t.scenesJson as string) ?? '[]'); } catch { /* empty */ }
     try { adminComments = JSON.parse((t.adminComments as string) ?? '[]'); } catch { /* empty */ }
   }
 
@@ -204,7 +224,7 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
     city: item.city, submissionDate: new Date(item.submissionDate).toISOString(),
     status: item.status as ModerationDetail['status'],
     isResubmission: item.status === 'resubmitted',
-    poiCount: tourData?.poiCount ?? 0, duration: tourData?.duration ?? 0, distance: tourData?.distance ?? 0,
+    poiCount: scenes.length, duration: tourData?.duration ?? 0, distance: tourData?.distance ?? 0,
     description: tourData?.description ?? '',
     descriptionLongue: (t?.descriptionLongue as string) ?? '',
     pois: [],
