@@ -400,6 +400,29 @@ export async function sendBackForRevision(
   ]);
   if (!modResult.ok) return { ok: false, error: modResult.error };
   if (!tourResult.ok) return { ok: false, error: tourResult.error };
+
+  // Also update StudioSession status so guide sees revision_requested
+  const tour = await appsync.getGuideTourById(item.tourId);
+  if (tour) {
+    const sessionId = (tour as Record<string, unknown>).sessionId as string | undefined;
+    if (sessionId) {
+      await appsync.updateStudioSessionMutation(sessionId, { status: 'revision_requested' });
+      // Propagate feedback to all scenes so guide sees the feedback in Studio
+      const scenesResult = await appsync.listStudioScenesBySession(sessionId);
+      if (scenesResult.ok) {
+        for (const scene of scenesResult.data) {
+          const sceneId = (scene as Record<string, unknown>).id as string;
+          const existing = (scene as Record<string, unknown>).moderationFeedback as string | null;
+          if (!existing) {
+            await appsync.updateStudioSceneMutation(sceneId, {
+              moderationFeedback: feedback,
+            });
+          }
+        }
+      }
+    }
+  }
+
   return { ok: true };
 }
 
@@ -413,15 +436,27 @@ export async function validateTour(
   return approveTour(moderationId, checklist, notes);
 }
 
-/** Admin: add a comment on a tour under review. */
+/** Admin: add a comment on a tour under review. Also persists to StudioScene if sceneId provided. */
 export async function addReviewComment(
   tourId: string,
   comment: { sceneId?: string; comment: string; reviewerId: string; reviewerName: string },
 ): Promise<{ ok: boolean; error?: string }> {
-  return addAdminCommentToTour(tourId, {
+  // Save to GuideTour.adminComments (legacy)
+  const result = await addAdminCommentToTour(tourId, {
     ...comment,
     date: new Date().toISOString(),
   });
+  // Also persist to StudioScene.moderationFeedback so the guide sees it
+  if (result.ok && comment.sceneId && !shouldUseStubs()) {
+    try {
+      await appsync.updateStudioSceneMutation(comment.sceneId, {
+        moderationFeedback: `${comment.reviewerName}: ${comment.comment}`,
+      });
+    } catch (e) {
+      // Non-blocking — guide will still see GuideTour comments
+    }
+  }
+  return result;
 }
 
 /** Admin: create a ModerationItem for a tour already in pending_moderation (manual sync). */
