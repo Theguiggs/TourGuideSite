@@ -12,6 +12,7 @@ import { shouldUseStubs } from '@/config/api-mode';
 import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
 import { S3Image } from '@/components/studio/s3-image';
 import { ScenePhotos } from '@/components/studio/scene-photos';
+import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
 import dynamic from 'next/dynamic';
 import type { StudioSession, StudioScene } from '@/types/studio';
 
@@ -359,16 +360,9 @@ export default function PreviewPage() {
         })}
       </div>
 
-      {/* Revision feedback banner */}
-      {hasRevisionFeedback && (
-        <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg" role="alert" data-testid="revision-banner">
-          <p className="font-medium text-amber-800 mb-1">
-            {session.status === 'rejected' ? 'Tour rejeté' : 'Révision demandée'}
-          </p>
-          <p className="text-sm text-amber-700">
-            Consultez le feedback par scène ci-dessus, corrigez les problèmes, puis resoumettez.
-          </p>
-        </div>
+      {/* Review feedback panel — full admin review sheet */}
+      {session.tourId && (
+        <ReviewFeedbackPanel tourId={session.tourId} sessionStatus={session.status} />
       )}
 
       {/* Actions */}
