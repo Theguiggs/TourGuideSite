@@ -149,8 +149,8 @@ export async function submitForReview(
     // Create ModerationItem so admin sees it in the moderation queue
     const tour = await appsync.getGuideTourById(tourId);
     if (tour) {
-      const profile = await appsync.getGuideProfileByUserId(tour.guideId, 'userPool');
-      await appsync.createModerationItemMutation({
+      const profile = await appsync.getGuideProfileById(tour.guideId, 'userPool');
+      const modResult = await appsync.createModerationItemMutation({
         tourId,
         guideId: tour.guideId,
         guideName: profile?.displayName ?? 'Guide',
@@ -158,6 +158,11 @@ export async function submitForReview(
         city: tour.city,
         submissionDate: Date.now(),
       });
+      if (!modResult.ok) {
+        logger.error(SERVICE_NAME, 'ModerationItem creation failed (non-blocking)', { tourId, error: modResult.error });
+      }
+    } else {
+      logger.warn(SERVICE_NAME, 'Tour not found for ModerationItem creation', { tourId });
     }
 
     logger.info(SERVICE_NAME, 'Submitted for review (AppSync)', { sessionId, tourId });

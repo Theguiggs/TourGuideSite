@@ -127,6 +127,14 @@ export default function AdminToursPage() {
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">
+                        {tour.status === 'review' && (
+                          <Link
+                            href="/admin/moderation"
+                            className="text-xs text-yellow-700 font-medium hover:underline"
+                          >
+                            File modération
+                          </Link>
+                        )}
                         {tour.status === 'pending_moderation' && (
                           <>
                             <Link
