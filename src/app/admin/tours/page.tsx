@@ -5,11 +5,15 @@ import Link from 'next/link';
 import { getAllAdminTours, adminSetTourStatus, adminSyncTourToQueue } from '@/lib/api/moderation';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  draft:              { label: 'Brouillon',       className: 'bg-gray-100 text-gray-600' },
-  pending_moderation: { label: 'En moderation',   className: 'bg-yellow-100 text-yellow-700' },
-  published:          { label: 'Publie',           className: 'bg-green-100 text-green-700' },
-  rejected:           { label: 'Refuse',           className: 'bg-red-100 text-red-700' },
-  archived:           { label: 'Archive/Suspendu', className: 'bg-gray-200 text-gray-500' },
+  draft:              { label: 'Brouillon',         className: 'bg-gray-100 text-gray-600' },
+  synced:             { label: 'Transféré',         className: 'bg-indigo-100 text-indigo-700' },
+  editing:            { label: 'En édition',        className: 'bg-blue-100 text-blue-700' },
+  review:             { label: 'En revue',          className: 'bg-yellow-100 text-yellow-700' },
+  pending_moderation: { label: 'En modération',     className: 'bg-orange-100 text-orange-700' },
+  published:          { label: 'Publié',            className: 'bg-green-100 text-green-700' },
+  revision_requested: { label: 'Révision demandée', className: 'bg-amber-100 text-amber-700' },
+  rejected:           { label: 'Refusé',            className: 'bg-red-100 text-red-700' },
+  archived:           { label: 'Archivé/Suspendu',  className: 'bg-gray-200 text-gray-500' },
 };
 
 type AdminTour = { id: string; title: string; city: string; status: string; guideId: string };
