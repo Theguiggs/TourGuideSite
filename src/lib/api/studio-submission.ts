@@ -133,7 +133,7 @@ export async function submitForReview(
     logger.info(SERVICE_NAME, 'Submitted for review (stub)', { sessionId, tourId });
     return { ok: true };
   }
-  // Real mode: update session then tour status via AppSync (sequential with rollback)
+  // Real mode: update session + tour status + create ModerationItem
   try {
     const appsync = await import('./appsync-client');
     const sessionResult = await appsync.updateStudioSessionMutation(sessionId, { status: 'submitted' });
@@ -141,10 +141,23 @@ export async function submitForReview(
 
     const tourResult = await appsync.updateGuideTourMutation(tourId, { status: 'review' });
     if (!tourResult.ok) {
-      // Rollback session to previous status
       logger.error(SERVICE_NAME, 'Tour update failed, rolling back session', { tourId, error: tourResult.error });
       await appsync.updateStudioSessionMutation(sessionId, { status: 'editing' });
       return { ok: false, error: tourResult.error };
+    }
+
+    // Create ModerationItem so admin sees it in the moderation queue
+    const tour = await appsync.getGuideTourById(tourId);
+    if (tour) {
+      const profile = await appsync.getGuideProfileByUserId(tour.guideId, 'userPool');
+      await appsync.createModerationItemMutation({
+        tourId,
+        guideId: tour.guideId,
+        guideName: profile?.displayName ?? 'Guide',
+        tourTitle: tour.title,
+        city: tour.city,
+        submissionDate: Date.now(),
+      });
     }
 
     logger.info(SERVICE_NAME, 'Submitted for review (AppSync)', { sessionId, tourId });
