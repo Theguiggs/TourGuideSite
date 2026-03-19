@@ -10,6 +10,11 @@ const PreviewMap = dynamic(() => import('@/components/studio/preview-map').then(
   ssr: false,
   loading: () => <div className="bg-gray-100 rounded-lg h-48 animate-pulse" />,
 });
+
+const TourMap = dynamic(() => import('@/components/map/TourMap'), {
+  ssr: false,
+  loading: () => <div className="bg-gray-100 rounded-lg h-64 animate-pulse" />,
+});
 import {
   getModerationDetail,
   approveTour,
@@ -66,7 +71,7 @@ export default function ModerationReviewPage() {
   const [queueIds, setQueueIds] = useState<string[]>([]);
   const [reviewStartTime] = useState(Date.now());
   const [playingSceneId, setPlayingSceneId] = useState<string | null>(null);
-  const [activeContentTab, setActiveContentTab] = useState<'overview' | 'scenes' | 'pois'>('overview');
+  const [activeContentTab, setActiveContentTab] = useState<'overview' | 'scenes' | 'pois' | 'tourist'>('overview');
 
   useEffect(() => {
     Promise.all([
@@ -343,8 +348,8 @@ export default function ModerationReviewPage() {
           )}
 
           {/* Content tabs */}
-          <div className="flex gap-1 bg-gray-100 rounded-lg p-1 w-fit">
-            {(['overview', 'scenes', 'pois'] as const).map((tab) => (
+          <div className="flex gap-1 bg-gray-100 rounded-lg p-1 w-fit flex-wrap">
+            {(['tourist', 'overview', 'scenes', 'pois'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveContentTab(tab)}
@@ -354,10 +359,142 @@ export default function ModerationReviewPage() {
                     : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
-                {tab === 'overview' ? 'Général' : tab === 'scenes' ? `Scènes (${detail.scenes.length})` : `POIs (${detail.scenes.filter((s) => s.latitude).length}/${detail.scenes.length})`}
+                {tab === 'tourist' ? '👁 Aperçu touriste' : tab === 'overview' ? 'Général' : tab === 'scenes' ? `Scènes (${detail.scenes.length})` : `POIs (${detail.scenes.filter((s) => s.latitude).length}/${detail.scenes.length})`}
               </button>
             ))}
           </div>
+
+          {/* Tourist preview tab — mirrors catalogue experience */}
+          {activeContentTab === 'tourist' && (
+            <div className="space-y-6">
+              {/* Hero + Title — like catalogue tour detail */}
+              <div className="bg-gradient-to-r from-teal-700 to-teal-900 rounded-xl p-6 text-white">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="bg-green-400 text-green-900 text-xs font-bold px-2 py-0.5 rounded">GRATUIT</span>
+                  {detail.themes.map((t) => (
+                    <span key={t} className="bg-white/20 text-white text-xs px-2 py-0.5 rounded">{t}</span>
+                  ))}
+                </div>
+                <h2 className="text-2xl font-bold mb-1">{detail.tourTitle}</h2>
+                <p className="text-teal-200 text-sm">
+                  {detail.city} &middot; {detail.duration} min &middot; {detail.distance} km &middot; {detail.poiCount} points d&apos;intérêt
+                  &middot; Difficulté : {detail.difficulty} &middot; {LANG_FLAGS[detail.languePrincipale] ?? detail.languePrincipale}
+                </p>
+              </div>
+
+              {/* Guide card — like catalogue */}
+              <div className="bg-white rounded-xl border border-gray-200 p-4 flex items-center gap-4">
+                <div className="w-14 h-14 bg-teal-200 rounded-full flex items-center justify-center text-teal-800 font-bold text-xl flex-shrink-0">
+                  {detail.guideName.charAt(0)}
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">{detail.guideName}</p>
+                  <p className="text-sm text-gray-500">Guide local &middot; {detail.city}</p>
+                  {detail.guideBio && <p className="text-xs text-gray-400 mt-1 line-clamp-2">{detail.guideBio}</p>}
+                  {detail.guideLanguages.length > 0 && (
+                    <p className="text-xs text-gray-400 mt-0.5">Langues : {detail.guideLanguages.join(', ')}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Description — like catalogue */}
+              {(detail.descriptionLongue || detail.description) && (
+                <div className="bg-white rounded-xl border border-gray-200 p-5">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">À propos de cette visite</h3>
+                  <p className="text-gray-700 leading-relaxed">{detail.descriptionLongue || detail.description}</p>
+                </div>
+              )}
+
+              {/* Interactive map — like catalogue TourMap */}
+              {detail.scenes.some((s) => s.latitude && s.longitude) && (
+                <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                  <h3 className="text-lg font-semibold text-gray-900 p-4 pb-0">Itinéraire</h3>
+                  <div className="h-80">
+                    <TourMap
+                      pois={detail.scenes
+                        .filter((s) => s.latitude && s.longitude)
+                        .map((s) => ({
+                          id: s.id,
+                          order: s.order,
+                          title: s.title,
+                          latitude: s.latitude!,
+                          longitude: s.longitude!,
+                        }))}
+                      selectedPoiId={null}
+                      onPoiSelect={() => {}}
+                      className="h-full w-full"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* POIs list — like catalogue */}
+              <div className="bg-white rounded-xl border border-gray-200 p-5">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Points d&apos;intérêt</h3>
+                <div className="space-y-4">
+                  {detail.scenes.map((scene) => (
+                    <div key={scene.id} className="flex gap-4">
+                      <div className="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
+                        {scene.order}
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-medium text-gray-900">{scene.title}</p>
+                        {scene.poiDescription && (
+                          <p className="text-sm text-gray-600 mt-0.5">{scene.poiDescription}</p>
+                        )}
+                        {scene.transcriptText && (
+                          <p className="text-sm text-gray-500 mt-1 italic line-clamp-3">&ldquo;{scene.transcriptText}&rdquo;</p>
+                        )}
+                        {/* Photos */}
+                        {scene.photosRefs.length > 0 && (
+                          <div className="flex gap-2 mt-2">
+                            {scene.photosRefs.map((ref, i) => (
+                              <S3Image key={i} s3Key={ref} alt={`${scene.title} photo ${i + 1}`} className="w-24 h-20 rounded-lg" fallback={`📷 ${i + 1}`} />
+                            ))}
+                          </div>
+                        )}
+                        {/* Audio indicator */}
+                        {scene.audioRef && (
+                          <p className="text-xs text-teal-600 mt-1">🎵 Audio disponible</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Sidebar preview — like catalogue CTA card */}
+              <div className="bg-teal-50 border border-teal-200 rounded-xl p-5">
+                <h3 className="text-lg font-bold text-teal-900 mb-3">Vivez cette visite</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                  <div>
+                    <p className="text-2xl font-bold text-teal-700">{detail.duration}</p>
+                    <p className="text-xs text-teal-600">minutes</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-teal-700">{detail.distance}</p>
+                    <p className="text-xs text-teal-600">km</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-teal-700">{detail.poiCount}</p>
+                    <p className="text-xs text-teal-600">points d&apos;intérêt</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-teal-700">{detail.difficulty}</p>
+                    <p className="text-xs text-teal-600">difficulté</p>
+                  </div>
+                </div>
+                <div className="mt-4 flex gap-2">
+                  <div className="flex-1 bg-gray-900 text-white text-center py-2.5 rounded-lg text-sm font-medium opacity-50">
+                    Android (preview)
+                  </div>
+                  <div className="flex-1 bg-gray-900 text-white text-center py-2.5 rounded-lg text-sm font-medium opacity-50">
+                    iOS (preview)
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Overview tab */}
           {activeContentTab === 'overview' && (
