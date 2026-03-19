@@ -48,6 +48,7 @@ export default function ScenesPage() {
   const [uploadProgress, setUploadProgress] = useState<{ loaded: number; total: number } | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const failedBlobRef = useRef<{ blob: Blob; sceneId: string; sceneIndex: number } | null>(null);
+  const [pendingReplace, setPendingReplace] = useState<{ sceneId: string; sceneIndex: number; blob: Blob } | null>(null);
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
@@ -139,6 +140,40 @@ export default function ScenesPage() {
   });
 
   useEffect(() => { resetBaseline(); }, [activeSceneId, resetBaseline]);
+
+  // Upload audio blob to S3 and persist to AppSync
+  const doUploadAudio = useCallback(async (blob: Blob, sceneId: string, sceneIndex: number) => {
+    if (shouldUseStubs()) {
+      await updateSceneAudio(sceneId, `studio-audio/${sessionId}/${sceneId}.webm`);
+    } else {
+      setIsUploading(true);
+      setUploadError(null);
+      setUploadProgress(null);
+      const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
+      const unsub = studioUploadService.onProgress(uploadId, (p) => setUploadProgress(p));
+      try {
+        const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex);
+        unsub();
+        if (result.ok) {
+          await updateSceneAudio(sceneId, result.s3Key);
+          failedBlobRef.current = null;
+        } else {
+          setUploadError(result.error);
+          failedBlobRef.current = { blob, sceneId, sceneIndex };
+        }
+      } catch (e) {
+        unsub();
+        logger.error(SERVICE_NAME, 'Audio upload exception', { error: String(e) });
+        setUploadError('Upload échoué.');
+        failedBlobRef.current = { blob, sceneId, sceneIndex };
+      } finally {
+        setIsUploading(false);
+        setUploadProgress(null);
+      }
+    }
+    const refreshed = await listStudioScenes(sessionId);
+    setScenes(refreshed);
+  }, [sessionId]);
 
   // Warn before leaving if upload in progress
   useEffect(() => {
@@ -336,56 +371,21 @@ export default function ScenesPage() {
               </h3>
               <AudioRecorder sceneId={activeScene.id}
                 onRecordingComplete={async (sceneId) => {
-                  logger.info(SERVICE_NAME, 'Audio upload Recording done', { sceneId });
-                  // Get blob from recording store
                   const takes = useRecordingStore.getState().getSceneTakes(sceneId);
-                  logger.info(SERVICE_NAME, 'Audio upload Takes count', { sceneId, count: takes.length });
                   const latestTake = takes[takes.length - 1];
                   if (!latestTake?.blob) {
                     logger.warn(SERVICE_NAME, 'No blob found for take', { sceneId });
                     return;
                   }
-                  logger.info(SERVICE_NAME, 'Audio upload Blob info', { sceneId, type: latestTake.blob.type, size: latestTake.blob.size });
                   const scene = visibleScenes.find((s) => s.id === sceneId);
                   const sceneIndex = scene?.sceneIndex ?? 0;
-                  logger.info(SERVICE_NAME, 'Audio upload Mode', { stubs: shouldUseStubs(), sceneIndex });
 
-                  if (shouldUseStubs()) {
-                    // Stub mode: use placeholder key
-                    await updateSceneAudio(sceneId, `studio-audio/${sessionId}/${sceneId}.webm`);
-                  } else {
-                    // Real mode: upload to S3
-                    setIsUploading(true);
-                    setUploadError(null);
-                    setUploadProgress(null);
-                    const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
-                    const unsub = studioUploadService.onProgress(uploadId, (p) => setUploadProgress(p));
-                    try {
-                      logger.info(SERVICE_NAME, 'Audio upload Starting S3 upload...');
-                      const result = await studioUploadService.uploadAudio(latestTake.blob, sessionId, sceneIndex);
-                      unsub();
-                      logger.info(SERVICE_NAME, 'Audio upload Upload result', { ok: result.ok, s3Key: result.ok ? result.s3Key : undefined, error: !result.ok ? result.error : undefined });
-                      if (result.ok) {
-                        logger.info(SERVICE_NAME, 'Audio upload Calling updateSceneAudio...', { sceneId, s3Key: result.s3Key });
-                        await updateSceneAudio(sceneId, result.s3Key);
-                        logger.info(SERVICE_NAME, 'Audio upload updateSceneAudio done');
-                        failedBlobRef.current = null;
-                      } else {
-                        setUploadError(result.error);
-                        failedBlobRef.current = { blob: latestTake.blob, sceneId, sceneIndex };
-                      }
-                    } catch (e) {
-                      unsub();
-                      logger.error(SERVICE_NAME, 'Audio upload exception', { error: String(e) });
-                      setUploadError('Upload échoué.');
-                      failedBlobRef.current = { blob: latestTake.blob, sceneId, sceneIndex };
-                    } finally {
-                      setIsUploading(false);
-                      setUploadProgress(null);
-                    }
+                  // If audio already exists, ask before replacing
+                  if (scene?.studioAudioKey) {
+                    setPendingReplace({ sceneId, sceneIndex, blob: latestTake.blob });
+                    return;
                   }
-                  const refreshed = await listStudioScenes(sessionId);
-                  setScenes(refreshed);
+                  await doUploadAudio(latestTake.blob, sceneId, sceneIndex);
                 }} />
               {/* Upload progress */}
               {isUploading && uploadProgress && (
@@ -440,6 +440,34 @@ export default function ScenesPage() {
               <TakesList sceneId={activeScene.id} />
               <FileImport sceneId={activeScene.id} />
             </div>
+
+            {/* Replace audio confirmation dialog */}
+            {pendingReplace && (
+              <div className="mt-3 p-4 bg-amber-50 border border-amber-200 rounded-lg" data-testid="replace-audio-dialog">
+                <p className="text-sm font-medium text-amber-800 mb-2">Un audio existe déjà pour cette scène.</p>
+                <p className="text-xs text-amber-600 mb-3">Voulez-vous remplacer l'audio existant par le nouvel enregistrement ?</p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={async () => {
+                      const { blob, sceneId, sceneIndex } = pendingReplace;
+                      setPendingReplace(null);
+                      await doUploadAudio(blob, sceneId, sceneIndex);
+                    }}
+                    className="bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium py-1.5 px-4 rounded-lg transition-colors"
+                    data-testid="confirm-replace-audio"
+                  >
+                    Remplacer
+                  </button>
+                  <button
+                    onClick={() => setPendingReplace(null)}
+                    className="border border-gray-300 text-gray-600 hover:bg-gray-50 text-xs font-medium py-1.5 px-4 rounded-lg transition-colors"
+                    data-testid="cancel-replace-audio"
+                  >
+                    Garder l&apos;ancien
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Quality feedback */}
             {activeScene.qualityScore && (
