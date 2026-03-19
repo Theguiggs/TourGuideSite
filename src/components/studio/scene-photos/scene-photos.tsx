@@ -6,6 +6,7 @@ import { MAX_PHOTOS_PER_SCENE } from '@/types/studio';
 import { logger } from '@/lib/logger';
 import { shouldUseStubs } from '@/config/api-mode';
 import * as studioUploadService from '@/lib/studio/studio-upload-service';
+import { S3Image } from '@/components/studio/s3-image';
 
 const SERVICE_NAME = 'ScenePhotos';
 const MAX_PHOTO_SIZE_MB = 5;
@@ -90,12 +91,7 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
       <div className="flex gap-2 flex-wrap">
         {photos.map((url, index) => (
           <div key={`${url}-${index}`} className="relative w-24 h-24 rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
-            <div
-              className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400 text-xs"
-              title={url}
-            >
-              📷 {index + 1}
-            </div>
+            <S3Image s3Key={url} alt={`Photo ${index + 1}`} className="w-full h-full" fallback={`📷 ${index + 1}`} />
             {editable && (
               <button
                 onClick={() => handleRemove(index)}

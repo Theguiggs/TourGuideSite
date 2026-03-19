@@ -10,6 +10,7 @@ import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { shouldUseStubs } from '@/config/api-mode';
 import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
+import { S3Image } from '@/components/studio/s3-image';
 import { ScenePhotos } from '@/components/studio/scene-photos';
 import dynamic from 'next/dynamic';
 import type { StudioSession, StudioScene } from '@/types/studio';
@@ -325,9 +326,7 @@ export default function PreviewPage() {
                   {scene.photosRefs.length > 0 && (
                     <div className="flex gap-2 mb-2">
                       {scene.photosRefs.map((url, pi) => (
-                        <div key={pi} className="w-20 h-16 rounded bg-gray-200 flex items-center justify-center text-gray-400 text-xs border">
-                          📷 {pi + 1}
-                        </div>
+                        <S3Image key={pi} s3Key={url} alt={`Photo ${pi + 1}`} className="w-20 h-16 rounded border" fallback={`📷 ${pi + 1}`} />
                       ))}
                     </div>
                   )}

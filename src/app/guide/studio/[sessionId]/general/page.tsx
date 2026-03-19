@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
 import { getStudioSession, listStudioScenes } from '@/lib/api/studio';
+import { shouldUseStubs } from '@/config/api-mode';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import type { StudioSession } from '@/types/studio';
 
@@ -89,12 +90,32 @@ export default function GeneralPage() {
     );
   }, []);
 
-  // TODO: Persist to AppSync — currently only updates local state (pre-existing limitation)
-  const handleSave = useCallback(() => {
-    logger.info(SERVICE_NAME, 'Saved general info', { sessionId, title, city, language, difficulty });
+  const handleSave = useCallback(async () => {
+    if (!shouldUseStubs() && session) {
+      try {
+        const appsync = await import('@/lib/api/appsync-client');
+        // Persist session fields (title, language)
+        await appsync.updateStudioSessionMutation(sessionId, { title, language });
+        // Persist tour fields (city, description, themes, etc.) if tour exists
+        if (session.tourId) {
+          await appsync.updateGuideTourMutation(session.tourId, {
+            title,
+            city,
+            description,
+            duration,
+            distance,
+          });
+        }
+        logger.info(SERVICE_NAME, 'Saved general info (AppSync)', { sessionId, title, city });
+      } catch (e) {
+        logger.error(SERVICE_NAME, 'Save failed', { error: String(e) });
+      }
+    } else {
+      logger.info(SERVICE_NAME, 'Saved general info (stub)', { sessionId, title, city });
+    }
     setIsSaved(true);
     setTimeout(() => setIsSaved(false), 3000);
-  }, [sessionId, title, city, language, difficulty]);
+  }, [sessionId, session, title, city, description, language, difficulty, duration, distance]);
 
   if (isLoading) {
     return <div className="p-6" aria-busy="true"><div className="bg-gray-100 rounded-lg h-96 animate-pulse" /></div>;

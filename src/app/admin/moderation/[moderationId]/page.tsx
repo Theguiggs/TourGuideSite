@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
+import { S3Image } from '@/components/studio/s3-image';
 import {
   getModerationDetail,
   approveTour,
@@ -422,9 +423,7 @@ export default function ModerationReviewPage() {
                       {scene.photosRefs.length > 0 && (
                         <div className="flex gap-2 mb-3 overflow-x-auto">
                           {scene.photosRefs.map((ref, i) => (
-                            <div key={i} className="w-20 h-20 bg-gray-200 rounded-lg flex-shrink-0 flex items-center justify-center text-xs text-gray-500">
-                              img {i + 1}
-                            </div>
+                            <S3Image key={i} s3Key={ref} alt={`Photo ${i + 1}`} className="w-20 h-20 rounded-lg flex-shrink-0" fallback={`img ${i + 1}`} />
                           ))}
                         </div>
                       )}
