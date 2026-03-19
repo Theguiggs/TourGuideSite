@@ -29,6 +29,14 @@ describe('uploadAudio', () => {
     expect(mockUploadData).toHaveBeenCalledTimes(1);
   });
 
+  it('accepts MIME with codec suffix (audio/webm;codecs=opus)', async () => {
+    const blob = new Blob(['audio'], { type: 'audio/webm;codecs=opus' });
+    mockUploadData.mockReturnValue({ result: Promise.resolve({ path: 'guide-studio/sub/s1/audio/scene_0.webm' }) });
+    const result = await uploadAudio(blob, 'session-1', 0);
+    expect(result.ok).toBe(true);
+    expect(mockUploadData).toHaveBeenCalledTimes(1);
+  });
+
   it('rejects unsupported MIME type without calling uploadData', async () => {
     const blob = new Blob(['text'], { type: 'text/plain' });
     const result = await uploadAudio(blob, 'session-1', 0);

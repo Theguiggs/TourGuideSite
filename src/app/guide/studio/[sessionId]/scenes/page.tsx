@@ -22,6 +22,7 @@ import { useTranscriptionStore, selectQuota } from '@/lib/stores/transcription-s
 import { useRecordingStore } from '@/lib/stores/recording-store';
 import { shouldUseStubs } from '@/config/api-mode';
 import * as studioUploadService from '@/lib/studio/studio-upload-service';
+import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import type { StudioSession, StudioScene } from '@/types/studio';
 
 const SERVICE_NAME = 'ScenesPage';
@@ -297,21 +298,57 @@ export default function ScenesPage() {
               </div>
             )}
 
+            {/* Existing audio from S3 */}
+            {activeScene.studioAudioKey && (
+              <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-600 text-lg">🎵</span>
+                    <div>
+                      <p className="text-sm font-medium text-green-800">Audio enregistré</p>
+                      <p className="text-xs text-green-600 truncate max-w-xs">{activeScene.studioAudioKey.split('/').pop()}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={async () => {
+                      try {
+                        const url = shouldUseStubs()
+                          ? activeScene.studioAudioKey!
+                          : await studioUploadService.getPlayableUrl(activeScene.studioAudioKey!);
+                        audioPlayerService.play(url);
+                      } catch (e) {
+                        logger.error(SERVICE_NAME, 'Failed to play persisted audio', { error: String(e) });
+                      }
+                    }}
+                    className="bg-green-600 hover:bg-green-700 text-white text-xs font-medium py-1.5 px-4 rounded-lg transition-colors"
+                    data-testid="play-persisted-audio"
+                  >
+                    ▶ Écouter
+                  </button>
+                </div>
+              </div>
+            )}
+
             {/* Enregistrement */}
             <div>
-              <h3 className="text-sm font-medium text-gray-700 mb-2">Enregistrement</h3>
+              <h3 className="text-sm font-medium text-gray-700 mb-2">
+                {activeScene.studioAudioKey ? 'Nouvelle prise (remplace l\'audio existant)' : 'Enregistrement'}
+              </h3>
               <AudioRecorder sceneId={activeScene.id}
                 onRecordingComplete={async (sceneId) => {
-                  logger.info(SERVICE_NAME, 'Recording done', { sceneId });
+                  logger.info(SERVICE_NAME, 'Audio upload Recording done', { sceneId });
                   // Get blob from recording store
                   const takes = useRecordingStore.getState().getSceneTakes(sceneId);
+                  logger.info(SERVICE_NAME, 'Audio upload Takes count', { sceneId, count: takes.length });
                   const latestTake = takes[takes.length - 1];
                   if (!latestTake?.blob) {
                     logger.warn(SERVICE_NAME, 'No blob found for take', { sceneId });
                     return;
                   }
+                  logger.info(SERVICE_NAME, 'Audio upload Blob info', { sceneId, type: latestTake.blob.type, size: latestTake.blob.size });
                   const scene = visibleScenes.find((s) => s.id === sceneId);
                   const sceneIndex = scene?.sceneIndex ?? 0;
+                  logger.info(SERVICE_NAME, 'Audio upload Mode', { stubs: shouldUseStubs(), sceneIndex });
 
                   if (shouldUseStubs()) {
                     // Stub mode: use placeholder key
@@ -324,10 +361,14 @@ export default function ScenesPage() {
                     const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
                     const unsub = studioUploadService.onProgress(uploadId, (p) => setUploadProgress(p));
                     try {
+                      logger.info(SERVICE_NAME, 'Audio upload Starting S3 upload...');
                       const result = await studioUploadService.uploadAudio(latestTake.blob, sessionId, sceneIndex);
                       unsub();
+                      logger.info(SERVICE_NAME, 'Audio upload Upload result', { ok: result.ok, s3Key: result.ok ? result.s3Key : undefined, error: !result.ok ? result.error : undefined });
                       if (result.ok) {
+                        logger.info(SERVICE_NAME, 'Audio upload Calling updateSceneAudio...', { sceneId, s3Key: result.s3Key });
                         await updateSceneAudio(sceneId, result.s3Key);
+                        logger.info(SERVICE_NAME, 'Audio upload updateSceneAudio done');
                         failedBlobRef.current = null;
                       } else {
                         setUploadError(result.error);
@@ -335,6 +376,7 @@ export default function ScenesPage() {
                       }
                     } catch (e) {
                       unsub();
+                      logger.error(SERVICE_NAME, 'Audio upload exception', { error: String(e) });
                       setUploadError('Upload échoué.');
                       failedBlobRef.current = { blob: latestTake.blob, sceneId, sceneIndex };
                     } finally {

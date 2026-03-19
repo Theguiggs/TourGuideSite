@@ -9,8 +9,14 @@ const SERVICE_NAME = 'StudioUploadService';
 
 // --- Validation ---
 
-const AUDIO_MIMES = new Set(['audio/webm', 'audio/mp4', 'audio/ogg', 'audio/x-aac']);
+const AUDIO_MIME_PREFIXES = ['audio/webm', 'audio/mp4', 'audio/ogg', 'audio/x-aac', 'audio/aac'];
 const PHOTO_MIMES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+
+/** Check audio MIME with prefix match (handles codecs suffix like "audio/webm;codecs=opus") */
+function isValidAudioMime(mime: string): boolean {
+  const base = mime.split(';')[0].trim();
+  return AUDIO_MIME_PREFIXES.includes(base);
+}
 const MAX_AUDIO_SIZE = 50 * 1024 * 1024; // 50MB
 const MAX_PHOTO_SIZE = 5 * 1024 * 1024;  // 5MB
 
@@ -66,16 +72,18 @@ async function withRetry<T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> {
 // --- Extension helper ---
 
 function getExtFromMime(mime: string): string {
+  const base = mime.split(';')[0].trim();
   const map: Record<string, string> = {
     'audio/webm': 'webm',
     'audio/mp4': 'm4a',
     'audio/ogg': 'ogg',
     'audio/x-aac': 'aac',
+    'audio/aac': 'aac',
     'image/jpeg': 'jpg',
     'image/png': 'png',
     'image/webp': 'webp',
   };
-  return map[mime] ?? 'bin';
+  return map[base] ?? 'bin';
 }
 
 // --- Public API ---
@@ -85,7 +93,7 @@ export async function uploadAudio(
   sessionId: string,
   sceneIndex: number,
 ): Promise<{ ok: true; s3Key: string } | { ok: false; error: string }> {
-  if (!AUDIO_MIMES.has(blob.type)) {
+  if (!isValidAudioMime(blob.type)) {
     return { ok: false, error: `Type audio non supporté : ${blob.type}` };
   }
   if (blob.size > MAX_AUDIO_SIZE) {

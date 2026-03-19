@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import { logger } from '@/lib/logger';
 import { getStudioSession, listStudioScenes, getSceneStatusConfig, createScene } from '@/lib/api/studio';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
+import { shouldUseStubs } from '@/config/api-mode';
 import type { StudioSession, StudioScene } from '@/types/studio';
 import type { Waypoint } from '@/components/studio/editable-map';
 
@@ -57,6 +58,16 @@ export default function ItineraryPage() {
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
+
+  /** Persist scene field updates to AppSync (fire-and-forget in real mode) */
+  const persistSceneUpdate = useCallback((sceneId: string, updates: Record<string, unknown>) => {
+    if (shouldUseStubs()) return;
+    import('@/lib/api/appsync-client').then(({ updateStudioSceneMutation }) => {
+      updateStudioSceneMutation(sceneId, updates).catch((err) => {
+        logger.error(SERVICE_NAME, 'Failed to persist scene update', { sceneId, error: String(err) });
+      });
+    });
+  }, []);
 
   useEffect(() => {
     if (!sessionId) return;
@@ -122,13 +133,20 @@ export default function ItineraryPage() {
       if (editForm && editForm.id === sceneId) {
         setEditForm((prev) => prev ? { ...prev, latitude: lat.toFixed(6), longitude: lng.toFixed(6) } : prev);
       }
+      persistSceneUpdate(sceneId, { latitude: lat, longitude: lng });
       setClickToPlaceId(null);
       logger.info(SERVICE_NAME, 'POI placed via map click', { sceneId, lat: lat.toFixed(4), lng: lng.toFixed(4) });
     }
-  }, [clickToPlaceId, editForm]);
+  }, [clickToPlaceId, editForm, persistSceneUpdate]);
 
   const saveEdit = useCallback(() => {
     if (!editForm) return;
+    const updates: Record<string, unknown> = {};
+    if (editForm.title) updates.title = editForm.title;
+    if (editForm.description) updates.poiDescription = editForm.description;
+    if (editForm.latitude) updates.latitude = parseFloat(editForm.latitude);
+    if (editForm.longitude) updates.longitude = parseFloat(editForm.longitude);
+
     setScenes((prev) => prev.map((s) => {
       if (s.id !== editForm.id) return s;
       return {
@@ -139,10 +157,11 @@ export default function ItineraryPage() {
         longitude: editForm.longitude ? parseFloat(editForm.longitude) : s.longitude,
       };
     }));
+    persistSceneUpdate(editForm.id, updates);
     setEditingId(null);
     setEditForm(null);
     logger.info(SERVICE_NAME, 'POI updated', { id: editForm.id });
-  }, [editForm]);
+  }, [editForm, persistSceneUpdate]);
 
   const cancelEdit = useCallback(() => {
     setEditingId(null);
@@ -163,20 +182,23 @@ export default function ItineraryPage() {
   const archivePoi = useCallback((sceneId: string) => {
     setScenes((prev) => prev.map((s) => s.id === sceneId ? { ...s, archived: true } : s));
     setValidatedPois((prev) => { const next = new Set(prev); next.delete(sceneId); return next; });
+    persistSceneUpdate(sceneId, { archived: true });
     logger.info(SERVICE_NAME, 'POI archived', { sceneId });
-  }, []);
+  }, [persistSceneUpdate]);
 
   // Restore archived POI
   const restorePoi = useCallback((sceneId: string) => {
     setScenes((prev) => prev.map((s) => s.id === sceneId ? { ...s, archived: false } : s));
+    persistSceneUpdate(sceneId, { archived: false });
     logger.info(SERVICE_NAME, 'POI restored', { sceneId });
-  }, []);
+  }, [persistSceneUpdate]);
 
   // Map: drag POI
   const handlePoiDrag = useCallback((sceneId: string, lat: number, lng: number) => {
     setScenes((prev) => prev.map((s) => s.id === sceneId ? { ...s, latitude: lat, longitude: lng } : s));
+    persistSceneUpdate(sceneId, { latitude: lat, longitude: lng });
     logger.info(SERVICE_NAME, 'POI moved on map', { sceneId, lat: lat.toFixed(4), lng: lng.toFixed(4) });
-  }, []);
+  }, [persistSceneUpdate]);
 
   // Map: waypoints
   const handleWaypointAdd = useCallback((afterPoiIndex: number, lat: number, lng: number) => {
