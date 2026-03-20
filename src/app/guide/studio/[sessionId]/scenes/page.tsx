@@ -42,8 +42,17 @@ export default function ScenesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [editorText, setEditorText] = useState('');
-  const [activeTab, setActiveTab] = useState<'photos' | 'text' | 'audio'>('photos');
+  const [activeTab, setActiveTab] = useState<'poi' | 'photos' | 'text' | 'audio'>('poi');
   const [syncError, setSyncError] = useState<string | null>(null);
+  // POI editing state
+  const [poiTitle, setPoiTitle] = useState('');
+  const [poiDescription, setPoiDescription] = useState('');
+  const [poiLat, setPoiLat] = useState('');
+  const [poiLng, setPoiLng] = useState('');
+  const [addressSearch, setAddressSearch] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchResult, setSearchResult] = useState<string | null>(null);
+  const [poiSaved, setPoiSaved] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<{ loaded: number; total: number } | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -184,6 +193,78 @@ export default function ScenesPage() {
     return () => window.removeEventListener('beforeunload', handler);
   }, [isUploading]);
 
+  // Sync POI form when active scene changes
+  useEffect(() => {
+    if (!activeScene) return;
+    setPoiTitle(activeScene.title ?? '');
+    setPoiDescription(activeScene.poiDescription ?? '');
+    setPoiLat(activeScene.latitude?.toString() ?? '');
+    setPoiLng(activeScene.longitude?.toString() ?? '');
+    setPoiSaved(false);
+    setSearchResult(null);
+    setAddressSearch('');
+  }, [activeSceneId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Geocode address
+  const handleAddressSearch = useCallback(async () => {
+    if (!addressSearch.trim()) return;
+    setIsSearching(true);
+    setSearchResult(null);
+    try {
+      const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(addressSearch)}&format=json&limit=1`;
+      const res = await fetch(url, { headers: { 'Accept-Language': 'fr' } });
+      if (res.ok) {
+        const data = await res.json() as Array<{ lat: string; lon: string; display_name: string }>;
+        if (data.length > 0) {
+          setPoiLat(parseFloat(data[0].lat).toFixed(6));
+          setPoiLng(parseFloat(data[0].lon).toFixed(6));
+          setSearchResult(`📍 ${data[0].display_name}`);
+        } else {
+          setSearchResult('Adresse non trouvée');
+        }
+      }
+    } catch {
+      setSearchResult('Erreur de recherche');
+    } finally {
+      setIsSearching(false);
+    }
+  }, [addressSearch]);
+
+  // Save POI data
+  const handleSavePoi = useCallback(async () => {
+    if (!activeScene) return;
+    const updates: Record<string, unknown> = {};
+    if (poiTitle) updates.title = poiTitle;
+    if (poiDescription) updates.poiDescription = poiDescription;
+    if (poiLat) updates.latitude = parseFloat(poiLat);
+    if (poiLng) updates.longitude = parseFloat(poiLng);
+
+    // Update local state
+    setScenes((prev) => prev.map((s) => {
+      if (s.id !== activeScene.id) return s;
+      return {
+        ...s,
+        title: poiTitle || s.title,
+        poiDescription: poiDescription || s.poiDescription,
+        latitude: poiLat ? parseFloat(poiLat) : s.latitude,
+        longitude: poiLng ? parseFloat(poiLng) : s.longitude,
+      };
+    }));
+
+    // Persist to AppSync
+    if (!shouldUseStubs()) {
+      try {
+        const { updateStudioSceneMutation } = await import('@/lib/api/appsync-client');
+        await updateStudioSceneMutation(activeScene.id, updates);
+      } catch (e) {
+        logger.error(SERVICE_NAME, 'Failed to save POI', { sceneId: activeScene.id, error: String(e) });
+      }
+    }
+    setPoiSaved(true);
+    setTimeout(() => setPoiSaved(false), 3000);
+    logger.info(SERVICE_NAME, 'POI saved', { sceneId: activeScene.id });
+  }, [activeScene, poiTitle, poiDescription, poiLat, poiLng]);
+
   // Photos change
   const handlePhotosChange = useCallback((sceneId: string, photos: string[]) => {
     setScenes((prev) => prev.map((s) => s.id === sceneId ? { ...s, photosRefs: photos } : s));
@@ -229,6 +310,7 @@ export default function ScenesPage() {
   }
 
   const tabs = [
+    { key: 'poi' as const, label: '📍 POI' },
     { key: 'photos' as const, label: '📷 Photos', count: activeScene?.photosRefs.length },
     { key: 'text' as const, label: '📝 Texte' },
     { key: 'audio' as const, label: '🎙️ Audio' },
@@ -270,6 +352,111 @@ export default function ScenesPage() {
         </div>
 
         {/* Tab content */}
+        {activeScene && activeTab === 'poi' && (
+          <div className="space-y-4">
+            {/* Scene title */}
+            <div>
+              <label htmlFor="poi-title" className="text-sm font-medium text-gray-700 block mb-1">Titre de la scène</label>
+              <input
+                id="poi-title"
+                type="text"
+                value={poiTitle}
+                onChange={(e) => setPoiTitle(e.target.value)}
+                placeholder="Ex: Place aux Aires"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
+                data-testid="poi-title-input"
+              />
+            </div>
+
+            {/* POI description */}
+            <div>
+              <label htmlFor="poi-desc" className="text-sm font-medium text-gray-700 block mb-1">Description du point d&apos;intérêt</label>
+              <textarea
+                id="poi-desc"
+                value={poiDescription}
+                onChange={(e) => setPoiDescription(e.target.value)}
+                placeholder="Aide au touriste — ce qu'il verra à cet endroit"
+                rows={3}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-teal-400"
+              />
+            </div>
+
+            {/* Address search */}
+            <div>
+              <label className="text-sm font-medium text-gray-700 block mb-1">Localisation GPS</label>
+              <div className="flex gap-2 mb-2">
+                <input
+                  type="text"
+                  value={addressSearch}
+                  onChange={(e) => setAddressSearch(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddressSearch(); } }}
+                  placeholder="Rechercher une adresse..."
+                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
+                  data-testid="poi-address-search"
+                />
+                <button
+                  onClick={handleAddressSearch}
+                  disabled={isSearching}
+                  className="bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 text-white text-sm px-4 py-2 rounded-lg transition-colors"
+                >
+                  {isSearching ? '...' : '🔍 Chercher'}
+                </button>
+              </div>
+              {searchResult && (
+                <p className={`text-xs mb-2 ${searchResult.startsWith('📍') ? 'text-green-600' : 'text-red-500'}`}>
+                  {searchResult}
+                </p>
+              )}
+
+              {/* Manual coordinates */}
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label htmlFor="poi-lat" className="text-xs text-gray-500 block mb-0.5">Latitude</label>
+                  <input
+                    id="poi-lat"
+                    type="text"
+                    value={poiLat}
+                    onChange={(e) => setPoiLat(e.target.value)}
+                    placeholder="43.6591"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="poi-lng" className="text-xs text-gray-500 block mb-0.5">Longitude</label>
+                  <input
+                    id="poi-lng"
+                    type="text"
+                    value={poiLng}
+                    onChange={(e) => setPoiLng(e.target.value)}
+                    placeholder="6.9243"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
+                  />
+                </div>
+              </div>
+
+              {/* GPS status */}
+              {poiLat && poiLng && (
+                <p className="text-xs text-green-600 mt-1">📍 {parseFloat(poiLat).toFixed(4)}, {parseFloat(poiLng).toFixed(4)}</p>
+              )}
+              {!poiLat && !poiLng && (
+                <p className="text-xs text-amber-500 mt-1">⚠ Pas de coordonnées GPS — recherchez une adresse ou saisissez les coordonnées</p>
+              )}
+            </div>
+
+            {/* Save button */}
+            <div className="flex items-center gap-3 pt-2">
+              <button
+                onClick={handleSavePoi}
+                className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-5 rounded-lg text-sm transition-colors"
+                data-testid="save-poi-btn"
+              >
+                💾 Enregistrer le POI
+              </button>
+              {poiSaved && <span className="text-sm text-green-600">✓ Enregistré</span>}
+            </div>
+          </div>
+        )}
+
         {activeScene && activeTab === 'photos' && (
           <div>
             {activeScene.poiDescription && <p className="text-sm text-gray-500 mb-3">{activeScene.poiDescription}</p>}
