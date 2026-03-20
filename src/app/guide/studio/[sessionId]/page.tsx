@@ -246,7 +246,14 @@ export default function SessionDetailPage() {
           className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm"
           data-testid="preview-link-top"
         >
-          📷 Photos
+          👁 Preview
+        </Link>
+        <Link
+          href={`/guide/studio/${sessionId}/submission`}
+          className="inline-flex items-center gap-1.5 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm"
+          data-testid="submission-link"
+        >
+          📤 Soumission
         </Link>
       </div>
 
