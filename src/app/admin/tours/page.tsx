@@ -127,6 +127,12 @@ export default function AdminToursPage() {
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">
+                        <Link
+                          href={`/admin/tours/${tour.id}`}
+                          className="text-xs text-teal-600 font-medium hover:underline"
+                        >
+                          Voir
+                        </Link>
                         {tour.status === 'review' && (
                           <Link
                             href="/admin/moderation"
