@@ -26,6 +26,8 @@ function deriveStep(status: StudioSessionStatus): StudioWorkflowStep {
     case 'revision_requested':
     case 'rejected':
       return 'scenes';
+    case 'archived':
+      return 'submission';
   }
 }
 

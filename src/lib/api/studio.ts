@@ -152,6 +152,7 @@ const STATUS_CONFIG: Record<StudioSessionStatus, { label: string; color: string 
   published: { label: 'Publié', color: 'bg-green-200 text-green-800' },
   revision_requested: { label: 'Révision demandée', color: 'bg-red-100 text-red-700' },
   rejected: { label: 'Rejeté', color: 'bg-red-200 text-red-800' },
+  archived: { label: 'Archivé', color: 'bg-gray-200 text-gray-500' },
 };
 
 export function getSessionStatusConfig(status: StudioSessionStatus) {

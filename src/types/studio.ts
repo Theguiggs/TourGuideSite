@@ -11,7 +11,8 @@ export type StudioSessionStatus =
   | 'submitted'
   | 'published'
   | 'revision_requested'
-  | 'rejected';
+  | 'rejected'
+  | 'archived';
 
 export type SceneStatus =
   | 'empty'

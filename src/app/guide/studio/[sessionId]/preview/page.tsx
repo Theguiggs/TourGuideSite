@@ -254,6 +254,11 @@ export default function PreviewPage() {
 
   const hasRevisionFeedback = session.status === 'revision_requested' || session.status === 'rejected';
   const canSubmit = ['draft', 'editing', 'recording', 'ready', 'revision_requested', 'rejected'].includes(session.status);
+  const isPublished = session.status === 'published';
+  const isArchived = session.status === 'archived';
+  const isInReview = session.status === 'submitted';
+  const canArchive = isPublished;
+  const canSuspend = ['draft', 'editing', 'recording', 'ready', 'revision_requested', 'rejected'].includes(session.status);
 
   return (
     <div className="p-6 max-w-3xl">
@@ -367,7 +372,8 @@ export default function PreviewPage() {
 
       {/* Actions */}
       <div className="flex flex-wrap gap-3 items-center">
-        {canSubmit && session.tourId ? (
+        {/* Submit / Resubmit */}
+        {canSubmit && session.tourId && (
           <button
             onClick={handleSubmitForReview}
             disabled={isSubmitting}
@@ -376,7 +382,8 @@ export default function PreviewPage() {
           >
             {isSubmitting ? 'Soumission...' : hasRevisionFeedback ? '📤 Resoumettre en revue' : '📋 Soumettre en revue'}
           </button>
-        ) : canSubmit && !session.tourId ? (
+        )}
+        {canSubmit && !session.tourId && (
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
@@ -385,7 +392,10 @@ export default function PreviewPage() {
           >
             {isSubmitting ? 'Soumission...' : hasRevisionFeedback ? '📤 Resoumettre' : '📤 Soumettre pour modération'}
           </button>
-        ) : session.status === 'submitted' && session.tourId ? (
+        )}
+
+        {/* Retract — only when submitted, not yet reviewed */}
+        {session.status === 'submitted' && session.tourId && (
           <button
             onClick={handleRetract}
             disabled={isRetracting}
@@ -394,19 +404,97 @@ export default function PreviewPage() {
           >
             {isRetracting ? 'Retrait...' : '↩ Retirer la soumission'}
           </button>
-        ) : (
+        )}
+
+        {/* Suspend — back to draft (only editable statuses) */}
+        {canSuspend && (
+          <button
+            onClick={async () => {
+              setIsSubmitting(true);
+              setSubmitMessage(null);
+              try {
+                const { updateSessionStatus } = await import('@/lib/api/studio-submission');
+                await updateSessionStatus(sessionId, 'draft');
+                if (session.tourId) {
+                  const { updateGuideTourMutation } = await import('@/lib/api/appsync-client');
+                  await updateGuideTourMutation(session.tourId, { status: 'draft' });
+                }
+                setIsSubmitSuccess(true);
+                setSubmitMessage('Parcours suspendu.');
+                const sess = await getStudioSession(sessionId);
+                if (sess) { setSession(sess); setActiveSession(sess); }
+              } catch (e) {
+                setSubmitMessage('Erreur.');
+              } finally {
+                setIsSubmitting(false);
+              }
+            }}
+            disabled={isSubmitting}
+            className="border border-gray-400 text-gray-600 hover:bg-gray-50 disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition-colors text-sm"
+            data-testid="suspend-btn"
+          >
+            ⏸ Suspendre
+          </button>
+        )}
+
+        {/* Archive — only when published */}
+        {canArchive && (
+          <button
+            onClick={async () => {
+              setIsSubmitting(true);
+              setSubmitMessage(null);
+              try {
+                const { updateSessionStatus } = await import('@/lib/api/studio-submission');
+                await updateSessionStatus(sessionId, 'archived');
+                if (session.tourId) {
+                  const { updateGuideTourMutation } = await import('@/lib/api/appsync-client');
+                  await updateGuideTourMutation(session.tourId, { status: 'archived' });
+                }
+                setIsSubmitSuccess(true);
+                setSubmitMessage('Parcours archivé.');
+                const sess = await getStudioSession(sessionId);
+                if (sess) { setSession(sess); setActiveSession(sess); }
+              } catch (e) {
+                setSubmitMessage('Erreur.');
+              } finally {
+                setIsSubmitting(false);
+              }
+            }}
+            disabled={isSubmitting}
+            className="border border-amber-500 text-amber-700 hover:bg-amber-50 disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition-colors text-sm"
+            data-testid="archive-btn"
+          >
+            📦 Archiver
+          </button>
+        )}
+
+        {/* Status messages for non-actionable states */}
+        {isInReview && !canSubmit && (
           <span className="text-sm text-gray-500">
-            {session.status === 'submitted' ? 'En attente de modération' : session.status === 'published' ? 'Déjà publié' : `Statut : ${session.status}`}
+            ⏳ En attente de la modération
+          </span>
+        )}
+        {isArchived && (
+          <span className="text-sm text-gray-500">
+            📦 Parcours archivé
+          </span>
+        )}
+        {isPublished && (
+          <span className="text-sm text-green-600 font-medium">
+            ✅ Parcours publié
           </span>
         )}
 
-        <button
-          onClick={() => setShowDeleteConfirm(true)}
-          className="text-sm text-gray-500 hover:text-red-600 transition-colors"
-          data-testid="delete-btn"
-        >
-          🗑️ Supprimer cette session
-        </button>
+        {/* Delete — not when published or archived */}
+        {!isPublished && !isArchived && (
+          <button
+            onClick={() => setShowDeleteConfirm(true)}
+            className="text-sm text-gray-500 hover:text-red-600 transition-colors"
+            data-testid="delete-btn"
+          >
+            🗑️ Supprimer
+          </button>
+        )}
 
         {submitMessage && (
           <span className={`text-sm ${isSubmitSuccess ? 'text-green-600' : 'text-red-600'}`} role="status">
