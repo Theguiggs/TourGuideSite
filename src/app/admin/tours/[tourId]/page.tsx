@@ -117,7 +117,7 @@ export default function AdminTourDetailPage() {
         }
 
         if (scenesResult.ok) {
-          setScenes(scenesResult.data.map((s) => {
+          setScenes(scenesResult.data.map((s: Record<string, unknown>) => {
             const raw = s as Record<string, unknown>;
             return {
               id: raw.id as string,

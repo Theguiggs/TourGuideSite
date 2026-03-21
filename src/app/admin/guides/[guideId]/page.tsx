@@ -73,7 +73,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
           verified: p.verified ?? false,
           profileStatus: p.profileStatus ?? 'pending_moderation',
         });
-        setTours(allTours.filter((t) => t.guideId === guideId).map((t) => ({
+        setTours(allTours.filter((t: Record<string, unknown>) => t.guideId === guideId).map((t: Record<string, unknown>) => ({
           id: t.id,
           title: t.title,
           city: t.city,

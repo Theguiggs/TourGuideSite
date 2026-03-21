@@ -197,7 +197,7 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
   // Map StudioScenes to ModerationScene format
   let scenes: ModerationScene[] = [];
   if (studioScenesResult.ok && studioScenesResult.data.length > 0) {
-    scenes = studioScenesResult.data.map((s) => {
+    scenes = studioScenesResult.data.map((s: Record<string, unknown>) => {
       const raw = s as Record<string, unknown>;
       return {
         id: raw.id as string,
