@@ -45,6 +45,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
   const [profile, setProfile]   = useState<GuideProfile | null>(null);
   const [tours, setTours]       = useState<GuideTour[]>([]);
+  const [guideEmail, setGuideEmail] = useState<string | null>(null);
   const [loading, setLoading]   = useState(true);
   const [error, setError]       = useState<string | null>(null);
   const [saving, setSaving]     = useState(false);
@@ -82,7 +83,17 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
       })
       .catch(() => setError('Erreur lors du chargement'))
       .finally(() => setLoading(false));
+
   }, [guideId]);
+
+  // Fetch guide email from Cognito once profile is loaded
+  useEffect(() => {
+    if (!profile?.userId) return;
+    fetch(`/api/admin/cognito-user?userId=${profile.userId}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data?.email) setGuideEmail(data.email); })
+      .catch(() => {});
+  }, [profile?.userId]);
 
   const setStatus = async (status: 'active' | 'suspended' | 'rejected') => {
     if (!profile) return;
@@ -140,7 +151,15 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
           </div>
 
           {/* Action buttons */}
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
+            {/* View as user — opens guide's published tours in catalogue */}
+            <Link
+              href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
+              target="_blank"
+              className="border border-teal-300 text-teal-700 text-sm font-medium px-4 py-2 rounded-lg hover:bg-teal-50 flex items-center gap-1"
+            >
+              Voir catalogue {profile.city}
+            </Link>
             {profile.profileStatus !== 'active' && (
               <button
                 onClick={() => setStatus('active')}
@@ -170,6 +189,14 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
             )}
           </div>
         </div>
+
+        {/* Email */}
+        {guideEmail && (
+          <div className="flex items-center gap-2 mb-4 p-3 bg-blue-50 rounded-lg">
+            <span className="text-sm text-blue-700 font-medium">Email :</span>
+            <a href={`mailto:${guideEmail}`} className="text-sm text-blue-800 font-mono hover:underline">{guideEmail}</a>
+          </div>
+        )}
 
         {/* Info grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -238,9 +265,26 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
                     <p className="text-sm font-medium text-gray-900">{tour.title || <em className="text-gray-400">Sans titre</em>}</p>
                     <p className="text-xs text-gray-400 font-mono mt-0.5">{tour.id}</p>
                   </div>
-                  <span className={`text-xs font-medium px-2 py-1 rounded-full ${badge.className}`}>
-                    {badge.label}
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${badge.className}`}>
+                      {badge.label}
+                    </span>
+                    {tour.status === 'published' && (
+                      <Link
+                        href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/${tour.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
+                        target="_blank"
+                        className="text-xs text-teal-600 hover:underline"
+                      >
+                        Voir
+                      </Link>
+                    )}
+                    <Link
+                      href={`/admin/tours/${tour.id}`}
+                      className="text-xs text-gray-500 hover:underline"
+                    >
+                      Admin
+                    </Link>
+                  </div>
                 </div>
               );
             })}
