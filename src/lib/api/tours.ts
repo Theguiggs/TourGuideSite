@@ -287,7 +287,7 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     isFree: false, // isFree not in schema — requires future field addition
     status: (tour.status || 'draft') as Tour['status'],
     pois: [], // POIs stored in offline content packages, not in DynamoDB
-    reviews: reviews.map((r) => ({
+    reviews: reviews.map((r: { id: string; userId: string; rating: number; comment?: string | null; visitedAt?: number | null; language?: string | null; createdAt: string }) => ({
       id: r.id,
       userId: r.userId,
       rating: r.rating,
