@@ -74,10 +74,10 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
           profileStatus: p.profileStatus ?? 'pending_moderation',
         });
         setTours(allTours.filter((t: Record<string, unknown>) => t.guideId === guideId).map((t: Record<string, unknown>) => ({
-          id: t.id,
-          title: t.title,
-          city: t.city,
-          status: t.status ?? 'draft',
+          id: String(t.id ?? ''),
+          title: String(t.title ?? ''),
+          city: String(t.city ?? ''),
+          status: String(t.status ?? 'draft'),
         })));
       })
       .catch(() => setError('Erreur lors du chargement'))
