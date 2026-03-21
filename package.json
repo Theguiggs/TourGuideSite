@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@aws-amplify/adapter-nextjs": "^1.7.2",
+    "@aws-amplify/data-schema-types": "^1.2.1",
     "aws-amplify": "^6.16.2",
     "leaflet": "^1.9.4",
     "next": "16.1.6",
