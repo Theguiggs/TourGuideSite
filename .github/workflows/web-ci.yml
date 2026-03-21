@@ -111,7 +111,7 @@ jobs:
         env:
           AMPLIFY_B64: ${{ secrets.AMPLIFY_OUTPUTS_B64 }}
         run: |
-          printf '%s' "$AMPLIFY_B64" | base64 -d > TourGuideWeb/amplify_outputs.json
+          printf '%s' "$AMPLIFY_B64" | base64 -d | gunzip > TourGuideWeb/amplify_outputs.json
           echo "amplify_outputs.json size: $(wc -c < TourGuideWeb/amplify_outputs.json) bytes"
       - run: cd TourGuideWeb && npx playwright install chromium --with-deps
       - name: Clean Next.js build cache
