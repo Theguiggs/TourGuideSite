@@ -48,6 +48,8 @@ jobs:
       - run: cd TourGuideWeb && npm ci
       - name: Install TourGuide amplify types
         run: cd TourGuide && npm install --no-save @aws-amplify/backend
+      - name: Stub amplify_outputs.json for typecheck
+        run: echo '{"auth":{"user_pool_id":"x","user_pool_client_id":"x","aws_region":"us-east-1"},"data":{"url":"https://x","aws_region":"us-east-1","default_authorization_type":"AWS_IAM","model_introspection":{}}}' > TourGuideWeb/amplify_outputs.json
       - run: cd TourGuideWeb && npm run typecheck
 
   unit-tests:
@@ -69,6 +71,8 @@ jobs:
           cache: npm
           cache-dependency-path: TourGuideWeb/package-lock.json
       - run: cd TourGuideWeb && npm ci
+      - name: Stub amplify_outputs.json
+        run: echo '{"auth":{"user_pool_id":"x","user_pool_client_id":"x","aws_region":"us-east-1"},"data":{"url":"https://x","aws_region":"us-east-1","default_authorization_type":"AWS_IAM","model_introspection":{}}}' > TourGuideWeb/amplify_outputs.json
       - run: cd TourGuideWeb && npm test -- --coverage
 
   e2e-tests:
@@ -142,4 +146,6 @@ jobs:
           cache: npm
           cache-dependency-path: TourGuideWeb/package-lock.json
       - run: cd TourGuideWeb && npm ci
+      - name: Stub amplify_outputs.json
+        run: echo '{"auth":{"user_pool_id":"x","user_pool_client_id":"x","aws_region":"us-east-1"},"data":{"url":"https://x","aws_region":"us-east-1","default_authorization_type":"AWS_IAM","model_introspection":{}}}' > TourGuideWeb/amplify_outputs.json
       - run: cd TourGuideWeb && npm run build
