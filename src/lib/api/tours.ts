@@ -264,12 +264,29 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
   const tour = tours.find((t) => generateSlug(t.city) === citySlug && generateSlug(t.title) === tourSlug);
   if (!tour) return null;
 
-  const [reviews, stats] = await Promise.all([
+  // Fetch scenes as POIs + reviews + stats in parallel
+  const sessionId = tour.sessionId;
+  const [reviews, stats, scenesResult] = await Promise.all([
     appsync.listTourReviews(tour.id),
     appsync.getTourStats(tour.id),
+    sessionId ? appsync.listPublicScenesBySession(sessionId) : Promise.resolve({ ok: false as const, data: [] }),
   ]);
 
   const guideName = await resolveGuideName(tour.guideId);
+
+  // Map StudioScenes to POIs for the catalogue detail page
+  const scenes = scenesResult.ok ? scenesResult.data : [];
+  const pois = scenes
+    .filter((s: Record<string, unknown>) => s.title && !s.archived)
+    .sort((a: Record<string, unknown>, b: Record<string, unknown>) => ((a.sceneIndex as number) ?? 0) - ((b.sceneIndex as number) ?? 0))
+    .map((s: Record<string, unknown>, i: number) => ({
+      id: String(s.id ?? ''),
+      title: String(s.title ?? `Point ${i + 1}`),
+      description: String(s.poiDescription ?? s.transcriptText ?? '').substring(0, 200),
+      latitude: (s.latitude as number) ?? 0,
+      longitude: (s.longitude as number) ?? 0,
+      order: i + 1,
+    }));
 
   return {
     id: tour.id,
@@ -284,9 +301,9 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     duration: tour.duration || 0,
     distance: tour.distance || 0,
     poiCount: tour.poiCount || 0,
-    isFree: false, // isFree not in schema — requires future field addition
+    isFree: false,
     status: (tour.status || 'draft') as Tour['status'],
-    pois: [], // POIs stored in offline content packages, not in DynamoDB
+    pois,
     reviews: reviews.map((r: { id: string; userId: string; rating: number; comment?: string | null; visitedAt?: number | null; language?: string | null; createdAt: string }) => ({
       id: r.id,
       userId: r.userId,

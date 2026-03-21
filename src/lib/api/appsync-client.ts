@@ -488,6 +488,21 @@ export async function deleteStudioSessionMutation(id: string) {
   }
 }
 
+/** Public: list scenes for a published tour's session (guest auth for catalogue pages). */
+export async function listPublicScenesBySession(sessionId: string) {
+  try {
+    const client = getClient();
+    const result = await client.models.StudioScene.listStudioSceneBySessionId(
+      { sessionId },
+    );
+    const sorted = (result.data ?? []).sort((a, b) => (a.sceneIndex ?? 0) - (b.sceneIndex ?? 0));
+    return { ok: true as const, data: sorted };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'listPublicScenesBySession failed', { error: String(error) });
+    return { ok: false as const, data: [] };
+  }
+}
+
 export async function deleteStudioSceneMutation(id: string) {
   try {
     const client = getClient();
