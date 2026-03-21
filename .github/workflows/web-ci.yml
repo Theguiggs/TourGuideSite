@@ -107,6 +107,8 @@ jobs:
           cache: npm
           cache-dependency-path: TourGuideWeb/package-lock.json
       - run: cd TourGuideWeb && npm ci
+      - name: Install TourGuide amplify types
+        run: cd TourGuide && npm install --no-save @aws-amplify/backend
       - name: Write amplify_outputs.json
         env:
           AMPLIFY_B64: ${{ secrets.AMPLIFY_OUTPUTS_B64 }}
