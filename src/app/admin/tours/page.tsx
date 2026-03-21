@@ -16,7 +16,7 @@ const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   archived:           { label: 'Archivé/Suspendu',  className: 'bg-gray-200 text-gray-500' },
 };
 
-type AdminTour = { id: string; title: string; city: string; status: string; guideId: string };
+type AdminTour = { id: string; title: string; city: string; status: string; guideId: string; poiCount: number; duration: number; distance: number; sessionId: string | null; guideName: string };
 
 export default function AdminToursPage() {
   const [tours, setTours] = useState<AdminTour[]>([]);
@@ -106,6 +106,9 @@ export default function AdminToursPage() {
               <tr>
                 <th className="text-left px-4 py-3 font-medium text-gray-500">Parcours</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-500 hidden sm:table-cell">Ville</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500 hidden md:table-cell">Guide</th>
+                <th className="text-right px-4 py-3 font-medium text-gray-500 hidden lg:table-cell">POIs</th>
+                <th className="text-right px-4 py-3 font-medium text-gray-500 hidden lg:table-cell">Durée</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-500">Statut</th>
                 <th className="text-right px-4 py-3 font-medium text-gray-500">Actions</th>
               </tr>
@@ -118,8 +121,12 @@ export default function AdminToursPage() {
                   <tr key={tour.id} className="hover:bg-gray-50">
                     <td className="px-4 py-3">
                       <p className="font-medium text-gray-900">{tour.title}</p>
+                      <p className="text-xs text-gray-400 hidden sm:hidden">{tour.guideName} &middot; {tour.poiCount} POIs &middot; {tour.duration} min</p>
                     </td>
                     <td className="px-4 py-3 text-gray-500 hidden sm:table-cell">{tour.city}</td>
+                    <td className="px-4 py-3 text-gray-600 text-sm hidden md:table-cell">{tour.guideName}</td>
+                    <td className="px-4 py-3 text-right text-gray-700 hidden lg:table-cell">{tour.poiCount}</td>
+                    <td className="px-4 py-3 text-right text-gray-700 hidden lg:table-cell">{tour.duration} min</td>
                     <td className="px-4 py-3">
                       <span className={`text-xs font-medium px-2 py-1 rounded-full ${badge.className}`}>
                         {badge.label}

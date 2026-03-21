@@ -339,18 +339,33 @@ export async function adminSetTourStatus(
   return result.ok ? { ok: true } : { ok: false, error: result.error };
 }
 
-export async function getAllAdminTours(): Promise<Array<{ id: string; title: string; city: string; status: string; guideId: string }>> {
+export async function getAllAdminTours(): Promise<Array<{ id: string; title: string; city: string; status: string; guideId: string; poiCount: number; duration: number; distance: number; sessionId: string | null; guideName: string }>> {
   if (shouldUseStubs()) {
     return [
-      { id: 'grasse-ame-parfumeurs', title: "L'Ame des Parfumeurs", city: 'Grasse', status: 'published', guideId: 'guide-1' },
-      { id: 'grasse-vieille-ville', title: 'La Vieille Ville de Grasse', city: 'Grasse', status: 'draft', guideId: 'guide-1' },
-      { id: 'grasse-parfums-modernes', title: 'Les Parfums Modernes', city: 'Grasse', status: 'pending_moderation', guideId: 'guide-1' },
-      { id: 'nice-promenade-anglais', title: 'La Promenade des Anglais', city: 'Nice', status: 'published', guideId: 'guide-5' },
-      { id: 'cannes-croisette', title: 'La Croisette et le Vieux Cannes', city: 'Cannes', status: 'rejected', guideId: 'guide-6' },
+      { id: 'grasse-ame-parfumeurs', title: "L'Ame des Parfumeurs", city: 'Grasse', status: 'published', guideId: 'guide-1', poiCount: 6, duration: 45, distance: 2.1, sessionId: null, guideName: 'Marie Dupont' },
+      { id: 'grasse-vieille-ville', title: 'La Vieille Ville de Grasse', city: 'Grasse', status: 'draft', guideId: 'guide-1', poiCount: 5, duration: 35, distance: 1.5, sessionId: null, guideName: 'Marie Dupont' },
+      { id: 'grasse-parfums-modernes', title: 'Les Parfums Modernes', city: 'Grasse', status: 'pending_moderation', guideId: 'guide-1', poiCount: 4, duration: 30, distance: 1.8, sessionId: null, guideName: 'Marie Dupont' },
+      { id: 'nice-promenade-anglais', title: 'La Promenade des Anglais', city: 'Nice', status: 'published', guideId: 'guide-5', poiCount: 6, duration: 40, distance: 4.2, sessionId: null, guideName: 'Isabelle Moretti' },
+      { id: 'cannes-croisette', title: 'La Croisette et le Vieux Cannes', city: 'Cannes', status: 'rejected', guideId: 'guide-6', poiCount: 7, duration: 50, distance: 3.1, sessionId: null, guideName: 'Thomas Bellini' },
     ];
   }
-  const tours = await appsync.listAllGuideTours();
-  return tours.map((t) => ({ id: t.id, title: t.title, city: t.city, status: t.status ?? 'draft', guideId: t.guideId }));
+  const [tours, profiles] = await Promise.all([
+    appsync.listAllGuideTours(),
+    appsync.listAllGuideProfilesAdmin(),
+  ]);
+  const guideNames = new Map(profiles.map((p) => [p.id, p.displayName]));
+  return tours.map((t) => {
+    const raw = t as Record<string, unknown>;
+    return {
+      id: t.id, title: t.title, city: t.city,
+      status: t.status ?? 'draft', guideId: t.guideId,
+      poiCount: t.poiCount ?? 0,
+      duration: t.duration ?? 0,
+      distance: t.distance ?? 0,
+      sessionId: (raw.sessionId as string) ?? null,
+      guideName: guideNames.get(t.guideId) ?? '',
+    };
+  });
 }
 
 export async function getAllAdminGuides(): Promise<Array<{ id: string; displayName: string; city: string; profileStatus: string; tourCount: number; rating: number | null }>> {
