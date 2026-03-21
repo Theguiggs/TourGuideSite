@@ -632,7 +632,7 @@ export default function ScenesPage() {
             {pendingReplace && (
               <div className="mt-3 p-4 bg-amber-50 border border-amber-200 rounded-lg" data-testid="replace-audio-dialog">
                 <p className="text-sm font-medium text-amber-800 mb-2">Un audio existe déjà pour cette scène.</p>
-                <p className="text-xs text-amber-600 mb-3">Voulez-vous remplacer l'audio existant par le nouvel enregistrement ?</p>
+                <p className="text-xs text-amber-600 mb-3">Voulez-vous remplacer l&apos;audio existant par le nouvel enregistrement ?</p>
                 <div className="flex gap-2">
                   <button
                     onClick={async () => {

@@ -69,7 +69,8 @@ export default function ModerationReviewPage() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [queueIds, setQueueIds] = useState<string[]>([]);
-  const [reviewStartTime] = useState(Date.now());
+  const [reviewStartTime] = useState(() => Date.now());
+  const [elapsedMinutes, setElapsedMinutes] = useState(0);
   const [playingSceneId, setPlayingSceneId] = useState<string | null>(null);
   const [activeContentTab, setActiveContentTab] = useState<'overview' | 'scenes' | 'pois' | 'tourist'>('overview');
 
@@ -92,6 +93,11 @@ export default function ModerationReviewPage() {
     });
     trackEvent(AdminAnalyticsEvents.ADMIN_MODERATION_REVIEW_START, { moderation_id: moderationId });
   }, [moderationId]);
+
+  useEffect(() => {
+    const interval = setInterval(() => setElapsedMinutes(Math.round((Date.now() - reviewStartTime) / 60000)), 60000);
+    return () => clearInterval(interval);
+  }, [reviewStartTime]);
 
   const allChecked = checklist.every((item) => item.checked);
   const currentIndex = queueIds.indexOf(moderationId);
@@ -262,7 +268,6 @@ export default function ModerationReviewPage() {
     );
   }
 
-  const elapsedMinutes = Math.round((Date.now() - reviewStartTime) / 60000);
   const sortedScenes = [...detail.scenes].sort((a, b) => a.order - b.order);
   const globalComments = localComments.filter((c) => !c.sceneId);
   const getSceneComments = (sceneId: string) => localComments.filter((c) => c.sceneId === sceneId);
@@ -629,7 +634,8 @@ export default function ModerationReviewPage() {
                     longitude: s.longitude,
                     title: s.title,
                     sceneIndex: s.order - 1,
-                  } as import('@/types/studio').StudioScene))} />
+                    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+                  } as import("@/types/studio").StudioScene))} />
                 </div>
               )}
 

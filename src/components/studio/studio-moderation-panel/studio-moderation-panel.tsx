@@ -47,7 +47,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
     setIsProcessing(false);
     if (result.ok) onStatusChange?.();
     logger.info(SERVICE_NAME, 'Approved', { sessionId });
-  }, [sessionId, onStatusChange]);
+  }, [sessionId, onStatusChange, canModerate]);
 
   const handleReject = useCallback(async () => {
     if (!canModerate) return;

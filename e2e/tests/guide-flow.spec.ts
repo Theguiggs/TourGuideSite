@@ -10,17 +10,13 @@ import {
   isTokenValid,
   authenticateCognito,
   createStorageState,
-  getAccessTokenFromStorageState,
 } from '../fixtures/auth.fixture';
-import { queryModerationByTourId } from '../helpers/appsync-direct';
 import { cleanupByPrefix } from '../fixtures/seed.fixture';
-import { pollUntil } from '../helpers/wait-helpers';
 
 const prefix = e2ePrefix('guide');
 
 test.describe.serial('Guide Flow', () => {
   let guidePath: string;
-  let token: string;
 
   test.beforeAll(async () => {
     guidePath = getGuideStorageStatePath();
@@ -28,7 +24,6 @@ test.describe.serial('Guide Flow', () => {
       const tokens = await authenticateCognito(E2E_GUIDE_EMAIL, E2E_GUIDE_PASSWORD);
       createStorageState(tokens, E2E_GUIDE_EMAIL, guidePath);
     }
-    token = getAccessTokenFromStorageState(guidePath);
   });
 
   test.afterAll(async () => {

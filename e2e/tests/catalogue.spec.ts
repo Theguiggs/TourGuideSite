@@ -27,7 +27,7 @@ test.describe('Catalogue', () => {
     }
     const token = getAccessTokenFromStorageState(guidePath);
 
-    const published = await seedPublishedTour(prefix, token);
+    await seedPublishedTour(prefix, token);
     publishedTitle = `${prefix} Tour Publié`;
 
     await seedDraftTour(prefix, token);

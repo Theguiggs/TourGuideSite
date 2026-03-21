@@ -15,7 +15,7 @@ import {
   getAccessTokenFromStorageState,
 } from '../fixtures/auth.fixture';
 import { seedSubmittedTour, cleanupByPrefix } from '../fixtures/seed.fixture';
-import { queryTourById, querySessionByTourId } from '../helpers/appsync-direct';
+import { queryTourById } from '../helpers/appsync-direct';
 import { pollUntil } from '../helpers/wait-helpers';
 
 const prefix = e2ePrefix('admin');
@@ -114,9 +114,7 @@ test.describe('Admin Flow', () => {
 
     await page.goto(`/admin/moderation/${freshSeeded.moderationItemId}`);
 
-    // Check all checklist items by clicking their parent label containers
-    const checkboxLabels = page.locator('[cursor=pointer]:has(input[type="checkbox"])');
-    // Fallback: click directly on each checkbox's clickable container
+    // Check all checklist items
     const checkboxes = page.getByRole('checkbox');
     const count = await checkboxes.count();
     for (let i = 0; i < count; i++) {

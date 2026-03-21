@@ -21,18 +21,18 @@ export function S3Image({ s3Key, alt, className = '', fallback = '📷' }: S3Ima
 
   useEffect(() => {
     if (!s3Key) return;
+    let cancelled = false;
     // blob: or http URLs can be used directly
     if (s3Key.startsWith('blob:') || s3Key.startsWith('http')) {
-      setUrl(s3Key);
-      return;
+      Promise.resolve().then(() => { if (!cancelled) setUrl(s3Key); });
+      return () => { cancelled = true; };
     }
     // Stub mode: can't resolve S3 URLs
     if (shouldUseStubs()) {
-      setUrl(null);
-      return;
+      Promise.resolve().then(() => { if (!cancelled) setUrl(null); });
+      return () => { cancelled = true; };
     }
     // Real mode: resolve signed URL
-    let cancelled = false;
     getPlayableUrl(s3Key)
       .then((resolved) => { if (!cancelled) setUrl(resolved); })
       .catch(() => { if (!cancelled) setError(true); });

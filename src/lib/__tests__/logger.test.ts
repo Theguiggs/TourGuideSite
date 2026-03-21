@@ -20,6 +20,7 @@ describe('logger', () => {
 
   function loadLogger() {
     // Re-import to pick up new NODE_ENV value
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     return (require('../logger') as typeof import('../logger')).logger;
   }
 

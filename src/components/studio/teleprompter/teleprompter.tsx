@@ -29,7 +29,7 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
 
   const words = useMemo(() => text.split(/\s+/).filter(Boolean), [text]);
   const onCompleteRef = useRef(onComplete);
-  onCompleteRef.current = onComplete;
+  useEffect(() => { onCompleteRef.current = onComplete; }, [onComplete]);
 
   // Initialize engine — stable deps only (no onComplete in deps)
   useEffect(() => {

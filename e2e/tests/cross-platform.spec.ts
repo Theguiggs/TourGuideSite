@@ -16,14 +16,12 @@ import {
   seedPublishedTour,
   cleanupByPrefix,
 } from '../fixtures/seed.fixture';
-import type { SeededTour } from '../fixtures/seed.fixture';
 
 const prefix = e2ePrefix('xplat');
 
 test.describe('Cross-platform', () => {
   let guidePath: string;
   let token: string;
-  let mobileSeeded: SeededTour;
 
   test.beforeAll(async () => {
     guidePath = getGuideStorageStatePath();
@@ -34,7 +32,7 @@ test.describe('Cross-platform', () => {
     token = getAccessTokenFromStorageState(guidePath);
 
     // Seed a session simulating mobile upload
-    mobileSeeded = await seedMobileSession(prefix, token);
+    await seedMobileSession(prefix, token);
   });
 
   test.afterAll(async () => {

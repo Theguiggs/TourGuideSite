@@ -30,7 +30,7 @@ test.describe('Smoke Tests', () => {
     await expect(page).toHaveURL(/\/guide\/dashboard/, { timeout: 15_000 });
   });
 
-  test('smoke-crud: create tour via API, verify, cleanup', async ({ browser }) => {
+  test('smoke-crud: create tour via API, verify, cleanup', async () => {
     const guidePath = getGuideStorageStatePath();
 
     // Re-auth if token expired
@@ -52,7 +52,7 @@ test.describe('Smoke Tests', () => {
     // Verify via AppSync query
     const found = await queryTourByTitle(prefix, token);
     expect(found.length).toBeGreaterThanOrEqual(1);
-    expect(found.some(t => t.title?.includes(prefix))).toBe(true);
+    expect(found.some(t => String(t.title ?? '').includes(prefix))).toBe(true);
 
     // Cleanup
     const deleted = await deleteItemsByPrefix(prefix);
@@ -60,7 +60,7 @@ test.describe('Smoke Tests', () => {
 
     // Verify cleanup worked
     const afterCleanup = await queryTourByTitle(prefix, token);
-    const stillExists = afterCleanup.some(t => t.title?.includes(prefix));
+    const stillExists = afterCleanup.some(t => String(t.title ?? '').includes(prefix));
     expect(stillExists).toBe(false);
   });
 });

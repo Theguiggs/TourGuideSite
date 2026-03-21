@@ -9,7 +9,6 @@
 
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, ScanCommand, BatchWriteCommand } from '@aws-sdk/lib-dynamodb';
-import { readFileSync } from 'fs';
 
 // F1 fix: derive APP_ID from amplify_outputs.json or env var
 const APP_ID = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
