@@ -56,6 +56,7 @@ export default async function CityPage({ params }: CityPageProps) {
             <Link
               key={tour.id}
               href={`/catalogue/${citySlug}/${tour.slug}`}
+              data-testid={`tour-card-${tour.id}`}
               className="block rounded-xl border border-gray-200 hover:shadow-md transition-shadow overflow-hidden"
             >
               <div className="flex flex-col sm:flex-row">

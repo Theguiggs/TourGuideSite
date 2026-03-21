@@ -120,7 +120,7 @@ export default function ModerationQueuePage() {
               {filteredQueue.map((item) => {
                 const badge = STATUS_BADGES[item.status] || STATUS_BADGES.pending;
                 return (
-                  <tr key={item.id} className={item.isResubmission ? 'bg-orange-50' : ''}>
+                  <tr key={item.id} data-testid={`moderation-item-${item.id}`} className={item.isResubmission ? 'bg-orange-50' : ''}>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-teal-200 rounded-full flex items-center justify-center text-teal-700 font-bold text-sm flex-shrink-0">

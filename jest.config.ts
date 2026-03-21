@@ -12,6 +12,14 @@ const config: Config = {
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts", "<rootDir>/src/__mocks__/appsync-client-mock.ts"],
   testMatch: ['<rootDir>/src/**/*.test.{ts,tsx}'],
+  coverageThreshold: {
+    global: {
+      branches: 37,
+      functions: 63,
+      lines: 60,
+      statements: 58,
+    },
+  },
 };
 
 export default config;

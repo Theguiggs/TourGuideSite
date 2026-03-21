@@ -1,0 +1,143 @@
+name: Web CI
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: web-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+
+  typecheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          path: TourGuideWeb
+      - uses: actions/checkout@v4
+        with:
+          repository: Theguiggs/TourGuide
+          path: TourGuide
+          token: ${{ secrets.TOURGUIDE_REPO_PAT }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: TourGuideWeb/package-lock.json
+      - run: cd TourGuideWeb && npm ci
+      - run: cd TourGuideWeb && npm run typecheck
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          path: TourGuideWeb
+      - uses: actions/checkout@v4
+        with:
+          repository: Theguiggs/TourGuide
+          path: TourGuide
+          token: ${{ secrets.TOURGUIDE_REPO_PAT }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: TourGuideWeb/package-lock.json
+      - run: cd TourGuideWeb && npm ci
+      - run: cd TourGuideWeb && npm test -- --coverage
+
+  e2e-tests:
+    # Red Team hardening: skip E2E on fork PRs (secrets not available)
+    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [lint, typecheck, unit-tests]
+    env:
+      NEXT_PUBLIC_USE_STUBS: 'false'
+      FORCE_REAL_API: 'true'
+      E2E_GUIDE_EMAIL: ${{ secrets.E2E_GUIDE_EMAIL }}
+      E2E_GUIDE_PASSWORD: ${{ secrets.E2E_GUIDE_PASSWORD }}
+      E2E_ADMIN_EMAIL: ${{ secrets.E2E_ADMIN_EMAIL }}
+      E2E_ADMIN_PASSWORD: ${{ secrets.E2E_ADMIN_PASSWORD }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: us-east-1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          path: TourGuideWeb
+      - uses: actions/checkout@v4
+        with:
+          repository: Theguiggs/TourGuide
+          path: TourGuide
+          token: ${{ secrets.TOURGUIDE_REPO_PAT }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: TourGuideWeb/package-lock.json
+      - run: cd TourGuideWeb && npm ci
+      - name: Write amplify_outputs.json
+        run: echo "${{ secrets.AMPLIFY_OUTPUTS_B64 }}" | base64 -d > TourGuideWeb/amplify_outputs.json
+      - run: cd TourGuideWeb && npx playwright install chromium --with-deps
+      - name: Clean Next.js build cache
+        run: rm -rf TourGuideWeb/.next
+      - name: Health check AppSync endpoint
+        run: |
+          ENDPOINT=$(cat TourGuideWeb/amplify_outputs.json | python3 -c "import sys,json; print(json.load(sys.stdin)['data']['url'])")
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$ENDPOINT" -H "Content-Type: application/json" -d '{"query":"{ __typename }"}')
+          if [ "$STATUS" = "000" ]; then echo "::error::AppSync endpoint unreachable — sandbox down?"; exit 1; fi
+          echo "AppSync health check: HTTP $STATUS"
+      - run: cd TourGuideWeb && npm run e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: TourGuideWeb/playwright-report/
+          retention-days: 3
+
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [unit-tests]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          path: TourGuideWeb
+      - uses: actions/checkout@v4
+        with:
+          repository: Theguiggs/TourGuide
+          path: TourGuide
+          token: ${{ secrets.TOURGUIDE_REPO_PAT }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: TourGuideWeb/package-lock.json
+      - run: cd TourGuideWeb && npm ci
+      - run: cd TourGuideWeb && npm run build

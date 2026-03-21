@@ -74,6 +74,7 @@ export default function GuideToursPage() {
         </div>
         <button
           onClick={() => setShowNewForm(true)}
+          data-testid="create-tour-btn"
           className="bg-teal-700 text-white font-bold px-4 py-2 rounded-xl hover:bg-teal-800 text-sm"
         >
           + Nouveau parcours
@@ -151,7 +152,7 @@ export default function GuideToursPage() {
             const canView = tour.sessionId && (tour.status === 'review' || tour.status === 'pending_moderation');
             const isPublishedWithSession = tour.sessionId && tour.status === 'published';
             return (
-              <div key={tour.id} className="bg-white border border-gray-200 rounded-xl p-5">
+              <div key={tour.id} data-testid={`tour-card-${tour.id}`} className="bg-white border border-gray-200 rounded-xl p-5">
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-1">

@@ -730,6 +730,7 @@ export default function ModerationReviewPage() {
               <button
                 onClick={handleApprove}
                 disabled={!allChecked || submitting}
+                data-testid="approve-btn"
                 className="w-full bg-green-600 text-white font-bold py-3 rounded-xl hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {submitting ? 'En cours...' : 'Valider et publier'}
@@ -753,6 +754,7 @@ export default function ModerationReviewPage() {
               <button
                 onClick={() => { setShowRevisionForm(!showRevisionForm); setShowCommentForm(false); setShowRejectForm(false); }}
                 disabled={submitting}
+                data-testid="revision-btn"
                 className="w-full border border-orange-300 text-orange-700 font-bold py-3 rounded-xl hover:bg-orange-50 disabled:opacity-50"
               >
                 Renvoyer au guide
@@ -813,6 +815,7 @@ export default function ModerationReviewPage() {
                     value={revisionFeedback}
                     onChange={(e) => setRevisionFeedback(e.target.value)}
                     rows={4}
+                    data-testid="feedback-input"
                     className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 text-gray-700"
                     placeholder="Preciser les corrections attendues (min. 10 caracteres)..."
                   />

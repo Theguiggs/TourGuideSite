@@ -202,6 +202,13 @@ const CITY_DESCRIPTIONS: Record<string, string> = {
   grasse: 'Capitale mondiale du parfum, perchee dans les collines de la Cote d\'Azur.',
   paris: 'La Ville Lumiere et ses quartiers historiques.',
   lyon: 'Capitale de la gastronomie, entre Rhone et Saone.',
+  nice: 'Reine de la Cote d\'Azur, entre Promenade des Anglais et Vieux-Nice baroque.',
+  cannes: 'Glamour et cinema sur la Croisette, entre palaces et vieille ville du Suquet.',
+  antibes: 'Cite des remparts et de Picasso, entre port antique et Cap d\'Antibes sauvage.',
+  menton: 'Perle de la France aux portes de l\'Italie, jardins exotiques et citrons dores.',
+  'saint-paul-de-vence': 'Village medieval perche, galeries d\'art et panoramas sur la Mediterranee.',
+  mougins: 'Village d\'art et de gastronomie niché dans les collines au-dessus de Cannes.',
+  vence: 'Cite episcopale millenaire, chapelle Matisse et ruelles provencales.',
 };
 
 async function getRealCities(): Promise<City[]> {

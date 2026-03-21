@@ -42,3 +42,9 @@ next-env.d.ts
 
 # Amplify backend outputs (generated — copy from ../TourGuide/amplify_outputs.json)
 amplify_outputs.json
+
+# Playwright
+e2e/.auth/
+playwright-report/
+test-results/
+.env.e2e

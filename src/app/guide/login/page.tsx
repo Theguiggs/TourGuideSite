@@ -59,6 +59,7 @@ function GuideLoginContent() {
             </label>
             <input
               id="email"
+              data-testid="login-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -75,6 +76,7 @@ function GuideLoginContent() {
             </label>
             <input
               id="password"
+              data-testid="login-password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -87,6 +89,7 @@ function GuideLoginContent() {
 
           <button
             type="submit"
+            data-testid="login-submit"
             disabled={loading}
             className="w-full bg-teal-700 text-white font-bold py-3 rounded-xl hover:bg-teal-800 disabled:opacity-50 disabled:cursor-not-allowed"
           >
