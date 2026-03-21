@@ -60,7 +60,14 @@ export default async function CityPage({ params }: CityPageProps) {
               className="block rounded-xl border border-gray-200 hover:shadow-md transition-shadow overflow-hidden"
             >
               <div className="flex flex-col sm:flex-row">
-                <div className="sm:w-64 h-48 sm:h-auto bg-gradient-to-br from-teal-600 to-teal-800 flex-shrink-0" />
+                <div className="relative sm:w-64 h-48 sm:h-auto bg-gradient-to-br from-teal-600 to-teal-800 flex-shrink-0 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={tour.imageUrl || `/images/tours/${tour.slug}.jpg`}
+                    alt={tour.title}
+                    className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
                 <div className="p-6 flex-1">
                   <div className="flex items-start justify-between gap-4">
                     <div>

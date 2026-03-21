@@ -31,8 +31,15 @@ export default async function CataloguePage() {
             href={`/catalogue/${city.slug}`}
             className="group block rounded-2xl overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow"
           >
-            <div className="h-40 bg-gradient-to-br from-teal-600 to-teal-800 flex items-end p-5">
-              <div>
+            <div className="relative h-40 bg-gradient-to-br from-teal-600 to-teal-800 flex items-end p-5 overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`/images/cities/${city.slug}.jpg`}
+                alt={city.name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="relative z-10">
                 <h2 className="text-xl font-bold text-white">{city.name}</h2>
                 <p className="text-teal-100 text-sm mt-1">
                   {city.tourCount} visite{city.tourCount > 1 ? 's' : ''}
