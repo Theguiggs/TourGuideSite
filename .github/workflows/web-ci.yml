@@ -73,7 +73,15 @@ jobs:
       - run: cd TourGuideWeb && npm ci
       - name: Stub amplify_outputs.json
         run: echo '{"auth":{"user_pool_id":"x","user_pool_client_id":"x","aws_region":"us-east-1"},"data":{"url":"https://x","aws_region":"us-east-1","default_authorization_type":"AWS_IAM","model_introspection":{}}}' > TourGuideWeb/amplify_outputs.json
-      - run: cd TourGuideWeb && npm test -- --coverage
+      - name: Run unit tests with coverage
+        run: cd TourGuideWeb && npm test -- --coverage --coverageReporters=text --coverageReporters=json-summary 2>&1 | tee test-output.txt
+      - name: Unit test summary
+        if: always()
+        run: |
+          echo "## Unit Test Results" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          grep -E "Tests:|Test Suites:|Statements|Branches|Functions|Lines" TourGuideWeb/test-output.txt >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "See logs" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
   e2e-tests:
     # Red Team hardening: skip E2E on fork PRs (secrets not available)
@@ -124,13 +132,58 @@ jobs:
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$ENDPOINT" -H "Content-Type: application/json" -d '{"query":"{ __typename }"}')
           if [ "$STATUS" = "000" ]; then echo "::error::AppSync endpoint unreachable — sandbox down?"; exit 1; fi
           echo "AppSync health check: HTTP $STATUS"
-      - run: cd TourGuideWeb && npm run e2e
-      - uses: actions/upload-artifact@v4
+      - name: Run E2E tests
+        run: cd TourGuideWeb && npm run e2e
+      - name: Generate test summary
+        if: always()
+        run: |
+          echo "## E2E Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f TourGuideWeb/test-results/e2e-results.json ]; then
+            PASSED=$(cat TourGuideWeb/test-results/e2e-results.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(sum(1 for s in d['suites'] for t in s.get('suites',[]) for sp in t.get('specs',[]) if sp['ok']))" 2>/dev/null || echo "?")
+            FAILED=$(cat TourGuideWeb/test-results/e2e-results.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(sum(1 for s in d['suites'] for t in s.get('suites',[]) for sp in t.get('specs',[]) if not sp['ok']))" 2>/dev/null || echo "?")
+            SKIPPED=$(cat TourGuideWeb/test-results/e2e-results.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(sum(1 for s in d['suites'] for t in s.get('suites',[]) for sp in t.get('specs',[]) if sp.get('tests',[{}])[0].get('status')=='skipped'))" 2>/dev/null || echo "?")
+            DURATION=$(cat TourGuideWeb/test-results/e2e-results.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(f\"{d['stats']['duration']/1000:.1f}s\")" 2>/dev/null || echo "?")
+            echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| ✅ Passed | $PASSED |" >> $GITHUB_STEP_SUMMARY
+            echo "| ❌ Failed | $FAILED |" >> $GITHUB_STEP_SUMMARY
+            echo "| ⏭ Skipped | $SKIPPED |" >> $GITHUB_STEP_SUMMARY
+            echo "| ⏱ Duration | $DURATION |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            # List test details
+            echo "### Test Details" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat TourGuideWeb/test-results/e2e-results.json | python3 -c "
+          import sys,json
+          d=json.load(sys.stdin)
+          for suite in d['suites']:
+            for sub in suite.get('suites',[]):
+              name = sub.get('title','')
+              for spec in sub.get('specs',[]):
+                status = spec.get('tests',[{}])[0].get('status','unknown')
+                icon = '✅' if spec['ok'] else '⏭' if status=='skipped' else '❌'
+                print(f\"{icon} {name} > {spec['title']}\")
+          " 2>/dev/null || echo "Could not parse results"
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ No test results found" >> $GITHUB_STEP_SUMMARY
+          fi
+      - name: Upload Playwright HTML report
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
           path: TourGuideWeb/playwright-report/
-          retention-days: 3
+          retention-days: 7
+      - name: Upload test results (JUnit + JSON + screenshots + traces)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-test-results
+          path: |
+            TourGuideWeb/test-results/
+          retention-days: 7
 
   build:
     runs-on: ubuntu-latest

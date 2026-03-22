@@ -8,7 +8,14 @@ export default defineConfig({
   fullyParallel: false,
   retries: process.env.CI ? 1 : 0,
   workers: 1,
-  reporter: [['html', { open: 'never' }], ['list']],
+  reporter: process.env.CI
+    ? [
+        ['html', { open: 'never' }],
+        ['junit', { outputFile: 'test-results/e2e-results.xml' }],
+        ['json', { outputFile: 'test-results/e2e-results.json' }],
+        ['list'],
+      ]
+    : [['html', { open: 'never' }], ['list']],
   globalSetup: './e2e/fixtures/global-setup.ts',
   globalTeardown: './e2e/fixtures/global-teardown.ts',
   use: {
