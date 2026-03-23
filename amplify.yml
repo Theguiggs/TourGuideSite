@@ -3,22 +3,21 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "=== Cloning TourGuide for schema types ==="
-        - git clone --depth 1 https://${GITHUB_PAT}@github.com/Theguiggs/TourGuide.git ../TourGuide
-        - cd ../TourGuide && npm install --no-save @aws-amplify/backend 2>/dev/null || true
-        - cd $CODEBUILD_SRC_DIR
-        - echo "=== Writing amplify_outputs.json ==="
-        - printf '%s' "$AMPLIFY_OUTPUTS_B64" | base64 -d | gunzip > amplify_outputs.json
-        - echo "amplify_outputs.json size: $(wc -c < amplify_outputs.json) bytes"
+        - "echo === Cloning TourGuide for schema types ==="
+        - "git clone --depth 1 https://${GITHUB_PAT}@github.com/Theguiggs/TourGuide.git ../TourGuide"
+        - "cd ../TourGuide && npm install --no-save @aws-amplify/backend 2>/dev/null || true"
+        - "cd $CODEBUILD_SRC_DIR"
+        - "echo === Writing amplify_outputs.json ==="
+        - "printf '%s' \"$AMPLIFY_OUTPUTS_B64\" | base64 -d | gunzip > amplify_outputs.json"
+        - "echo amplify_outputs.json written"
         - npm ci
     build:
       commands:
-        - echo "=== Building Next.js ==="
-        - NEXT_PUBLIC_USE_STUBS=false npm run build
+        - "NEXT_PUBLIC_USE_STUBS=false npm run build"
   artifacts:
     baseDirectory: .next
     files:
-      - '**/*'
+      - "**/*"
   cache:
     paths:
       - node_modules/**/*
