@@ -3,14 +3,17 @@ frontend:
   phases:
     preBuild:
       commands:
+        - "echo === Working directory ==="
+        - "pwd"
+        - "ls -la"
         - "echo === Cloning TourGuide for schema types ==="
-        - "git clone --depth 1 https://${GITHUB_PAT}@github.com/Theguiggs/TourGuide.git ../TourGuide"
-        - "cd ../TourGuide && npm install --no-save @aws-amplify/backend 2>/dev/null || true"
-        - "cd $CODEBUILD_SRC_DIR"
+        - "git clone --depth 1 https://${GITHUB_PAT}@github.com/Theguiggs/TourGuide.git /tmp/TourGuide"
+        - "cd /tmp/TourGuide && npm install --no-save @aws-amplify/backend 2>/dev/null || true"
+        - "ln -sf /tmp/TourGuide ../TourGuide"
         - "echo === Writing amplify_outputs.json ==="
         - "printf '%s' \"$AMPLIFY_OUTPUTS_B64\" | base64 -d | gunzip > amplify_outputs.json"
         - "echo amplify_outputs.json written"
-        - npm install
+        - "npm install"
     build:
       commands:
         - "NEXT_PUBLIC_USE_STUBS=false npm run build"
