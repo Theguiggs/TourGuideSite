@@ -109,8 +109,25 @@ export async function triggerTranscription(
     await new Promise((r) => setTimeout(r, 500));
     return stubTrigger(sceneId, audioDurationMin);
   }
-  logger.warn(SERVICE_NAME, 'Real API not yet implemented');
-  return { ok: false, error: 'API réelle non disponible.' };
+
+  // Real mode: call AppSync custom mutation
+  try {
+    const { getClient } = await import('@/lib/api/appsync-client');
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).mutations.triggerTranscription(
+      { sceneId, audioKey: `guide-studio/${sceneId}/audio/scene_0.aac`, languageCode: 'fr-FR' },
+      { authMode: 'userPool' },
+    );
+    const data = result?.data;
+    if (data?.ok) {
+      return { ok: true, jobId: data.jobId!, estimatedMinutes: data.estimatedMinutes ?? 2 };
+    }
+    return { ok: false, error: data?.error ?? 'Erreur inconnue', code: data?.code ?? undefined };
+  } catch (err) {
+    logger.error(SERVICE_NAME, 'triggerTranscription real API failed', { error: String(err) });
+    return { ok: false, error: 'Erreur réseau lors de la transcription.' };
+  }
 }
 
 export async function getTranscriptionStatus(
@@ -119,8 +136,28 @@ export async function getTranscriptionStatus(
   if (shouldUseStubs()) {
     return stubCheckStatus(jobId);
   }
-  logger.warn(SERVICE_NAME, 'Real API not yet implemented');
-  return null;
+
+  // Real mode: call AppSync custom query
+  try {
+    const { getClient } = await import('@/lib/api/appsync-client');
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).queries.checkTranscription(
+      { jobId, sceneId: '' },
+      { authMode: 'userPool' },
+    );
+    const data = result?.data;
+    if (!data) return null;
+    return {
+      sceneId: data.sceneId,
+      status: data.status as TranscriptionStatus,
+      transcriptText: data.transcriptText ?? null,
+      jobId: data.jobId,
+    };
+  } catch (err) {
+    logger.error(SERVICE_NAME, 'checkTranscription real API failed', { error: String(err) });
+    return null;
+  }
 }
 
 export async function getTranscriptionQuota(
