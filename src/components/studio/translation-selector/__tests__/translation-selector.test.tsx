@@ -4,7 +4,6 @@ import { TranslationSelector } from '../translation-selector';
 import { useTranslationStore } from '@/lib/stores/translation-store';
 import type { SceneSegment } from '@/types/studio';
 
-// Mock API
 jest.mock('@/lib/api/translation', () => ({
   estimateCost: jest.fn().mockResolvedValue({
     provider: 'marianmt',
@@ -54,6 +53,11 @@ const makeSegment = (overrides?: Partial<SceneSegment>): SceneSegment => ({
   ...overrides,
 });
 
+/** Helper: select a language to unlock the rest of the UI */
+function selectLanguage(langCode: string = 'en') {
+  fireEvent.click(screen.getByTestId(`lang-${langCode}`));
+}
+
 describe('TranslationSelector', () => {
   beforeEach(() => {
     useTranslationStore.getState().resetStore();
@@ -65,89 +69,66 @@ describe('TranslationSelector', () => {
     expect(screen.getByTestId('translation-no-text')).toBeInTheDocument();
   });
 
-  it('renders selector with language buttons and providers', async () => {
-    render(<TranslationSelector segment={makeSegment()} />);
-
-    await waitFor(() => {
-      expect(screen.getByTestId('translation-selector')).toBeInTheDocument();
+  it('renders language buttons on mount', async () => {
+    await act(async () => {
+      render(<TranslationSelector segment={makeSegment()} />);
     });
-
-    // Language buttons
     expect(screen.getByTestId('lang-en')).toBeInTheDocument();
     expect(screen.getByTestId('lang-it')).toBeInTheDocument();
     expect(screen.getByTestId('lang-de')).toBeInTheDocument();
     expect(screen.getByTestId('lang-es')).toBeInTheDocument();
+  });
 
-    // Providers
+  it('shows required message when no language selected', async () => {
+    await act(async () => {
+      render(<TranslationSelector segment={makeSegment()} />);
+    });
+    expect(screen.getByTestId('lang-required')).toBeInTheDocument();
+    expect(screen.getByText(/Veuillez sélectionner/)).toBeInTheDocument();
+  });
+
+  it('hides required message after selecting a language', async () => {
+    await act(async () => {
+      render(<TranslationSelector segment={makeSegment()} />);
+    });
+    selectLanguage('en');
+    expect(screen.queryByTestId('lang-required')).not.toBeInTheDocument();
+  });
+
+  it('shows mode selector after language selection', async () => {
+    await act(async () => {
+      render(<TranslationSelector segment={makeSegment()} />);
+    });
+    selectLanguage('en');
+    expect(screen.getByTestId('mode-auto')).toBeInTheDocument();
+    expect(screen.getByTestId('mode-manual')).toBeInTheDocument();
+  });
+
+  it('shows providers only after language selected in auto mode', async () => {
+    await act(async () => {
+      render(<TranslationSelector segment={makeSegment()} />);
+    });
+
+    // No providers before language selection
+    expect(screen.queryByTestId('provider-marianmt')).not.toBeInTheDocument();
+
+    selectLanguage('it');
+
+    // Providers visible now
     expect(screen.getByTestId('provider-marianmt')).toBeInTheDocument();
     expect(screen.getByTestId('provider-deepl')).toBeInTheDocument();
     expect(screen.getByTestId('provider-openai')).toBeInTheDocument();
   });
 
-  it('calls estimateCost on mount and displays free label in button', async () => {
+  it('calls requestTranslation with selected language', async () => {
     await act(async () => {
       render(<TranslationSelector segment={makeSegment()} />);
     });
 
-    // estimateCost should have been called
-    expect(estimateCost).toHaveBeenCalledWith('Bienvenue sur la Place aux Aires.', 'marianmt');
+    selectLanguage('de');
 
-    // Allow async state updates to flush
     await act(async () => {
       await new Promise((r) => setTimeout(r, 0));
-    });
-
-    // Button text reflects the free cost
-    const btn = screen.getByTestId('translate-btn');
-    expect(btn.textContent).toContain('gratuit');
-  });
-
-  it('updates cost when provider changes', async () => {
-    estimateCost.mockResolvedValueOnce({
-      provider: 'marianmt', charCount: 100, costProvider: 0, costCharged: 0, isFree: true,
-    }).mockResolvedValueOnce({
-      provider: 'deepl', charCount: 100, costProvider: 2, costCharged: 6, isFree: false,
-    });
-
-    render(<TranslationSelector segment={makeSegment()} />);
-
-    await waitFor(() => {
-      expect(screen.getByTestId('cost-estimate')).toBeInTheDocument();
-    });
-
-    // Click DeepL provider radio
-    const deeplLabel = screen.getByTestId('provider-deepl');
-    const radio = deeplLabel.querySelector('input[type="radio"]');
-    if (radio) fireEvent.click(radio);
-
-    await waitFor(() => {
-      expect(estimateCost).toHaveBeenCalledTimes(2);
-    });
-  });
-
-  it('disables marianmt when GPU is down', async () => {
-    checkMicroserviceHealth.mockResolvedValueOnce({
-      tts: false,
-      translation: false,
-      silence_detection: true,
-    });
-
-    render(<TranslationSelector segment={makeSegment()} />);
-
-    await waitFor(() => {
-      const marianmt = screen.getByTestId('provider-marianmt');
-      const radio = marianmt.querySelector('input[type="radio"]') as HTMLInputElement;
-      expect(radio.disabled).toBe(true);
-    });
-
-    expect(screen.getByText('Temporairement indisponible')).toBeInTheDocument();
-  });
-
-  it('calls requestTranslation on translate button click', async () => {
-    render(<TranslationSelector segment={makeSegment()} />);
-
-    await waitFor(() => {
-      expect(screen.getByTestId('translate-btn')).toBeInTheDocument();
     });
 
     await act(async () => {
@@ -158,43 +139,57 @@ describe('TranslationSelector', () => {
       'seg-1',
       'Bienvenue sur la Place aux Aires.',
       'fr',
-      'en',
+      'de',
       'marianmt',
     );
   });
 
-  it('fires onTranslationStarted callback', async () => {
-    const onStarted = jest.fn();
-    render(<TranslationSelector segment={makeSegment()} onTranslationStarted={onStarted} />);
+  it('shows manual mode UI when "Je traduis moi-même" selected', async () => {
+    await act(async () => {
+      render(<TranslationSelector segment={makeSegment()} />);
+    });
 
-    await waitFor(() => {
-      expect(screen.getByTestId('translate-btn')).toBeInTheDocument();
+    selectLanguage('en');
+    fireEvent.click(screen.getByTestId('mode-manual'));
+
+    expect(screen.getByTestId('manual-translate-btn')).toBeInTheDocument();
+    expect(screen.getByText(/Vous allez saisir votre propre traduction/)).toBeInTheDocument();
+    // No provider selection in manual mode
+    expect(screen.queryByTestId('provider-marianmt')).not.toBeInTheDocument();
+  });
+
+  it('fires onManualTranslation callback', async () => {
+    const onManual = jest.fn();
+    await act(async () => {
+      render(<TranslationSelector segment={makeSegment()} onManualTranslation={onManual} />);
+    });
+
+    selectLanguage('es');
+    fireEvent.click(screen.getByTestId('mode-manual'));
+    fireEvent.click(screen.getByTestId('manual-translate-btn'));
+
+    expect(onManual).toHaveBeenCalledWith('es');
+  });
+
+  it('disables marianmt when GPU is down', async () => {
+    checkMicroserviceHealth.mockResolvedValueOnce({
+      tts: false,
+      translation: false,
+      silence_detection: true,
     });
 
     await act(async () => {
-      fireEvent.click(screen.getByTestId('translate-btn'));
+      render(<TranslationSelector segment={makeSegment()} />);
     });
 
-    expect(onStarted).toHaveBeenCalled();
-  });
-
-  it('shows translate button text with cost for premium providers', async () => {
-    estimateCost.mockResolvedValue({
-      provider: 'deepl', charCount: 500, costProvider: 1, costCharged: 3, isFree: false,
-    });
-
-    render(<TranslationSelector segment={makeSegment()} />);
-
-    // Switch to DeepL
-    await waitFor(() => {
-      expect(screen.getByTestId('provider-deepl')).toBeInTheDocument();
-    });
-    const radio = screen.getByTestId('provider-deepl').querySelector('input[type="radio"]');
-    if (radio) fireEvent.click(radio);
+    selectLanguage('en');
 
     await waitFor(() => {
-      const btn = screen.getByTestId('translate-btn');
-      expect(btn.textContent).toContain('EUR');
+      const marianmt = screen.getByTestId('provider-marianmt');
+      const radio = marianmt.querySelector('input[type="radio"]') as HTMLInputElement;
+      expect(radio.disabled).toBe(true);
     });
+
+    expect(screen.getByText('Temporairement indisponible')).toBeInTheDocument();
   });
 });

@@ -531,6 +531,7 @@ export default function ScenesPage() {
             <TranslationSelector
               segment={activeSegment}
               onTranslationStarted={() => logger.info(SERVICE_NAME, 'Translation started', { segmentId: activeSegment.id })}
+              onManualTranslation={(lang) => logger.info(SERVICE_NAME, 'Manual translation started', { segmentId: activeSegment.id, lang })}
             />
             <TranslationEditor
               segment={activeSegment}

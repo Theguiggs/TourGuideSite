@@ -9,6 +9,10 @@ import type { SceneSegment } from '@/types/studio';
 
 const SERVICE_NAME = 'TranslationEditor';
 
+const LANG_FLAGS: Record<string, string> = {
+  fr: '🇫🇷', en: '🇬🇧', it: '🇮🇹', de: '🇩🇪', es: '🇪🇸',
+};
+
 interface TranslationEditorProps {
   segment: SceneSegment;
   sessionId: string;
@@ -81,7 +85,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
         {/* Source text (read-only) */}
         <div>
           <label className="text-sm font-medium text-gray-700 block mb-1">
-            Texte source ({segment.language.toUpperCase()})
+            {LANG_FLAGS[segment.language] ?? ''} Texte source ({segment.language.toUpperCase()})
           </label>
           <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 min-h-[200px] max-h-[400px] overflow-y-auto">
             {segment.transcriptText || 'Aucun texte source'}
@@ -92,7 +96,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
         <div>
           <div className="flex items-center justify-between mb-1">
             <label htmlFor="translated-text" className="text-sm font-medium text-gray-700">
-              Traduction
+              {translationState?.targetLang ? `${LANG_FLAGS[translationState.targetLang] ?? ''} ` : ''}Traduction
               {translationState?.provider && (
                 <span className={`ml-2 text-xs px-1.5 py-0.5 rounded ${
                   translationState.provider === 'marianmt'

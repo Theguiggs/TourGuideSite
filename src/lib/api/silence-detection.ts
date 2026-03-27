@@ -53,10 +53,10 @@ export async function detectSilences(audioKey: string): Promise<SilenceDetection
     const { getPlayableUrl } = await import('@/lib/studio/studio-upload-service');
     const presignedUrl = await getPlayableUrl(audioKey);
 
-    const url = process.env.NEXT_PUBLIC_MICROSERVICE_URL ?? 'http://localhost:8000';
-    const response = await fetch(`${url}/v1/silence-detect`, {
+    const { getMicroserviceUrl, getMicroserviceHeaders } = await import('./microservice-config');
+    const response = await fetch(`${getMicroserviceUrl()}/v1/silence-detect`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getMicroserviceHeaders(),
       body: JSON.stringify({ audio_url: presignedUrl }),
     });
     const data = await response.json();

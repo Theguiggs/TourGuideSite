@@ -157,7 +157,7 @@ export async function requestTranslation(
     if (provider === 'marianmt') {
       const response = await fetch(`${getMicroserviceUrl()}/v1/translate/marianmt`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: getMicroserviceHeaders(),
         body: JSON.stringify({ text, source_lang: sourceLang, target_lang: targetLang }),
       });
       const data = await response.json();
@@ -253,16 +253,17 @@ export async function checkMicroserviceHealth(): Promise<MicroserviceHealth> {
   }
 
   try {
-    const response = await fetch(`${getMicroserviceUrl()}/health`, { signal: AbortSignal.timeout(5000) });
+    const response = await fetch(`${getMicroserviceUrl()}/health`, {
+      signal: AbortSignal.timeout(5000),
+    });
     return await response.json();
   } catch {
     return { tts: false, translation: false, silence_detection: false };
   }
 }
 
-function getMicroserviceUrl(): string {
-  return process.env.NEXT_PUBLIC_MICROSERVICE_URL ?? 'http://localhost:8000';
-}
+// Re-export from shared config
+import { getMicroserviceUrl, getMicroserviceHeaders } from './microservice-config';
 
 /** Test-only: reset stub state */
 export function __resetTranslationStubs(): void {

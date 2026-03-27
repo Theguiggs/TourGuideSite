@@ -100,7 +100,7 @@ describe('TranslationEditor', () => {
     });
 
     render(<TranslationEditor segment={makeSegment()} sessionId="session-1" />);
-    expect(screen.getByText('Texte source (FR)')).toBeInTheDocument();
+    expect(screen.getByText(/Texte source \(FR\)/)).toBeInTheDocument();
   });
 
   it('shows provider badge', () => {

@@ -92,7 +92,7 @@ export async function requestTTS(
     const url = getMicroserviceUrl();
     const response = await fetch(`${url}/v1/tts/generate`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getMicroserviceHeaders(),
       body: JSON.stringify({ text, language }),
     });
     const data = await response.json();
@@ -166,9 +166,7 @@ export async function getTTSStatus(jobId: string): Promise<TTSResult | null> {
   }
 }
 
-function getMicroserviceUrl(): string {
-  return process.env.NEXT_PUBLIC_MICROSERVICE_URL ?? 'http://localhost:8000';
-}
+import { getMicroserviceUrl, getMicroserviceHeaders } from './microservice-config';
 
 /** Test-only: reset stub state */
 export function __resetTTSStubs(): void {
