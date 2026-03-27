@@ -136,3 +136,105 @@ export const STUDIO_WORKFLOW_STEPS = [
 ] as const;
 
 export type StudioWorkflowStep = (typeof STUDIO_WORKFLOW_STEPS)[number]['key'];
+
+// --- SceneSegment (multi-segment per scene) ---
+
+export type SegmentStatus =
+  | 'empty'
+  | 'transcribed'
+  | 'translated'
+  | 'tts_generated'
+  | 'finalized';
+
+export type TranslationProvider = 'marianmt' | 'deepl' | 'openai';
+
+export type TranslationJobStatus =
+  | 'pending'
+  | 'processing'
+  | 'completed'
+  | 'failed';
+
+export type TTSJobStatus =
+  | 'pending'
+  | 'processing'
+  | 'completed'
+  | 'failed';
+
+export interface SceneSegment {
+  id: string;
+  sceneId: string;
+  segmentIndex: number;
+  audioKey: string | null;
+  transcriptText: string | null;
+  startTimeMs: number | null;
+  endTimeMs: number | null;
+  language: string;
+  sourceSegmentId: string | null;
+  ttsGenerated: boolean;
+  translationProvider: TranslationProvider | null;
+  costProvider: number | null;   // centimes, real API cost
+  costCharged: number | null;    // centimes, with margin applied
+  status: SegmentStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// --- Error codes 24xx (Translation) ---
+
+export const TranslationErrorCode = {
+  TRANSLATION_TRIGGER_FAILED: 2401,
+  TRANSLATION_POLLING_FAILED: 2402,
+  TRANSLATION_TEXT_EMPTY: 2403,
+  TRANSLATION_PROVIDER_UNAVAILABLE: 2404,
+  TRANSLATION_COST_ESTIMATION_FAILED: 2405,
+  TRANSLATION_LANGUAGE_UNSUPPORTED: 2406,
+  TRANSLATION_SAVE_FAILED: 2407,
+} as const;
+
+export type TranslationErrorCodeValue = (typeof TranslationErrorCode)[keyof typeof TranslationErrorCode];
+
+// --- Error codes 25xx (TTS) ---
+
+export const TTSErrorCode = {
+  TTS_TRIGGER_FAILED: 2501,
+  TTS_POLLING_FAILED: 2502,
+  TTS_TEXT_EMPTY: 2503,
+  TTS_GPU_UNAVAILABLE: 2504,
+  TTS_AUDIO_GENERATION_FAILED: 2505,
+  TTS_LANGUAGE_UNSUPPORTED: 2506,
+  TTS_UPLOAD_FAILED: 2507,
+} as const;
+
+export type TTSErrorCodeValue = (typeof TTSErrorCode)[keyof typeof TTSErrorCode];
+
+// Union of all studio error code values
+export type AllStudioErrorCodeValue = StudioErrorCodeValue | TranslationErrorCodeValue | TTSErrorCodeValue;
+
+// --- Helper: get segments with legacy compat ---
+
+/** Returns segments for a scene. If no segments exist, creates an implicit one from scene data. */
+export function getSceneSegments(scene: StudioScene, segments: SceneSegment[]): SceneSegment[] {
+  if (segments.length > 0) {
+    return [...segments].sort((a, b) => a.segmentIndex - b.segmentIndex);
+  }
+
+  // Legacy compat: create implicit single segment from scene data
+  return [{
+    id: `implicit-${scene.id}`,
+    sceneId: scene.id,
+    segmentIndex: 0,
+    audioKey: scene.studioAudioKey ?? scene.originalAudioKey ?? null,
+    transcriptText: scene.transcriptText ?? null,
+    startTimeMs: null,
+    endTimeMs: null,
+    language: 'fr',
+    sourceSegmentId: null,
+    ttsGenerated: false,
+    translationProvider: null,
+    costProvider: null,
+    costCharged: null,
+    status: scene.transcriptText ? 'transcribed' : 'empty',
+    createdAt: scene.createdAt,
+    updatedAt: scene.updatedAt,
+  }];
+}

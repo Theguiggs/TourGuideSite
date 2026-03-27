@@ -194,6 +194,49 @@ export function onProgress(uploadId: string, callback: ProgressCallback): () => 
   };
 }
 
+export async function uploadTTSAudio(
+  blob: Blob,
+  sessionId: string,
+  sceneIndex: number,
+  segmentIndex: number,
+  language: string,
+): Promise<{ ok: true; s3Key: string } | { ok: false; error: string }> {
+  // Validate MIME — TTS generates WAV audio
+  const baseMime = blob.type.split(';')[0].trim();
+  if (baseMime && !baseMime.startsWith('audio/')) {
+    return { ok: false, error: `Type non supporté pour audio TTS : ${blob.type}` };
+  }
+  if (blob.size > MAX_AUDIO_SIZE) {
+    return { ok: false, error: `Audio TTS trop volumineux (${Math.round(blob.size / 1024 / 1024)}MB > 50MB)` };
+  }
+
+  const uploadId = `${sessionId}-scene-${sceneIndex}-seg-${segmentIndex}-${language}-tts`;
+
+  try {
+    const result = await withRetry(() =>
+      uploadData({
+        path: ({ identityId }) =>
+          `guide-studio/${identityId}/${sessionId}/audio/scene_${sceneIndex}_seg_${segmentIndex}_${language}.wav`,
+        data: blob,
+        options: {
+          onProgress: (event) => {
+            notifyProgress(uploadId, event.transferredBytes, event.totalBytes ?? blob.size);
+          },
+        },
+      }).result,
+    );
+
+    const s3Key = result.path;
+    logger.info(SERVICE_NAME, 'TTS audio uploaded', { sessionId, sceneIndex, segmentIndex, language, s3Key });
+    return { ok: true, s3Key };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'TTS audio upload failed after retries', {
+      sessionId, sceneIndex, segmentIndex, language, error: String(error),
+    });
+    return { ok: false, error: 'Upload audio TTS échoué après 3 tentatives.' };
+  }
+}
+
 export function clearCache(): void {
   urlCache.clear();
 }

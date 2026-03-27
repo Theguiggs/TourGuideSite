@@ -1,10 +1,55 @@
 import type { StudioScene } from '@/types/studio';
 import { getSceneStatusConfig } from '@/lib/api/studio';
+import { useTranslationStore } from '@/lib/stores/translation-store';
+import { useTTSStore } from '@/lib/stores/tts-store';
 
 interface SceneSidebarProps {
   scenes: StudioScene[];
   activeSceneId: string | null;
   onSceneSelect: (sceneId: string) => void;
+}
+
+function SegmentBadges({ sceneId }: { sceneId: string }) {
+  // Check both implicit (legacy) and any real segment keyed by sceneId
+  const translationState = useTranslationStore((s) => {
+    const implicit = s.segments[`implicit-${sceneId}`];
+    if (implicit) return implicit;
+    // Find any segment for this scene
+    const key = Object.keys(s.segments).find((k) => k.includes(sceneId));
+    return key ? s.segments[key] : null;
+  });
+  const ttsState = useTTSStore((s) => {
+    const implicit = s.segments[`implicit-${sceneId}`];
+    if (implicit) return implicit;
+    const key = Object.keys(s.segments).find((k) => k.includes(sceneId));
+    return key ? s.segments[key] : null;
+  });
+
+  const badges: { label: string; color: string }[] = [];
+
+  if (translationState?.status === 'completed') {
+    badges.push({ label: 'Traduit', color: 'bg-blue-100 text-blue-700' });
+  } else if (translationState?.status === 'processing') {
+    badges.push({ label: 'Trad...', color: 'bg-blue-50 text-blue-500' });
+  }
+
+  if (ttsState?.status === 'completed') {
+    badges.push({ label: 'TTS', color: 'bg-purple-100 text-purple-700' });
+  } else if (ttsState?.status === 'processing') {
+    badges.push({ label: 'TTS...', color: 'bg-purple-50 text-purple-500' });
+  }
+
+  if (badges.length === 0) return null;
+
+  return (
+    <span className="flex gap-1 ml-7 mt-0.5">
+      {badges.map((b, i) => (
+        <span key={i} className={`inline-flex px-1 py-0 rounded text-[9px] font-medium ${b.color}`}>
+          {b.label}
+        </span>
+      ))}
+    </span>
+  );
 }
 
 export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSidebarProps) {
@@ -39,6 +84,7 @@ export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSide
                   <span className={`inline-flex ml-7 mt-0.5 px-1.5 py-0 rounded text-[10px] font-medium ${statusConfig.color}`}>
                     {statusConfig.label}
                   </span>
+                  <SegmentBadges sceneId={scene.id} />
                 </button>
               </li>
             );

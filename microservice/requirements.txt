@@ -1,0 +1,10 @@
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+torch>=2.1.0
+transformers>=4.45.0
+qwen-tts>=0.2.0
+soundfile>=0.12.1
+pydub>=0.25.1
+boto3>=1.35.0
+python-dotenv>=1.0.0
+requests>=2.31.0

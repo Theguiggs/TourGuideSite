@@ -23,7 +23,14 @@ import { useRecordingStore } from '@/lib/stores/recording-store';
 import { shouldUseStubs } from '@/config/api-mode';
 import * as studioUploadService from '@/lib/studio/studio-upload-service';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
-import type { StudioSession, StudioScene } from '@/types/studio';
+import { TranslationSelector } from '@/components/studio/translation-selector';
+import { TranslationEditor } from '@/components/studio/translation-editor';
+import { TTSControls } from '@/components/studio/tts-controls';
+import { useTranslationStore, selectSegmentTranslation } from '@/lib/stores/translation-store';
+import { useTTSStore } from '@/lib/stores/tts-store';
+import { checkMicroserviceHealth } from '@/lib/api/translation';
+import type { StudioSession, StudioScene, SceneSegment } from '@/types/studio';
+import { getSceneSegments } from '@/types/studio';
 
 const SERVICE_NAME = 'ScenesPage';
 
@@ -42,7 +49,8 @@ export default function ScenesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [editorText, setEditorText] = useState('');
-  const [activeTab, setActiveTab] = useState<'poi' | 'photos' | 'text' | 'audio'>('poi');
+  const [activeTab, setActiveTab] = useState<'poi' | 'photos' | 'text' | 'audio' | 'translation' | 'tts'>('poi');
+  const [gpuAvailable, setGpuAvailable] = useState(true);
   const [syncError, setSyncError] = useState<string | null>(null);
   // POI editing state
   const [poiTitle, setPoiTitle] = useState('');
@@ -102,6 +110,8 @@ export default function ScenesPage() {
           const q = await getTranscriptionQuota(guideId);
           setQuota(q);
         }
+        // Check microservice health for TTS/translation
+        checkMicroserviceHealth().then((h) => setGpuAvailable(h.tts)).catch(() => setGpuAvailable(false));
         logger.info(SERVICE_NAME, 'Scenes page loaded', { sessionId });
       } catch (e) {
         if (!cancelled) { setError('Impossible de charger.'); }
@@ -118,6 +128,9 @@ export default function ScenesPage() {
         updateSceneText(activeSceneIdRef.current, editorTextRef.current);
       }
       stopAllPolling();
+      // Cleanup translation/TTS polling timers
+      useTranslationStore.getState().stopAllPolling();
+      useTTSStore.getState().stopAllPolling();
       clearSession();
     };
   }, [sessionId, setActiveSession, clearSession, guideId, setQuota, stopAllPolling]);
@@ -296,6 +309,13 @@ export default function ScenesPage() {
     }
   }, [quota, guideId, setSceneStatus, startPolling, setQuota]);
 
+  // Build implicit segments for active scene (legacy compat)
+  const activeSegments: SceneSegment[] = activeScene ? getSceneSegments(activeScene, []) : [];
+  const activeSegment = activeSegments[0] ?? null;
+
+  // Hook must be called unconditionally (Rules of Hooks)
+  const translationState = useTranslationStore(selectSegmentTranslation(activeSegment?.id ?? ''));
+
   if (isLoading) {
     return <div className="p-6" aria-busy="true"><div className="bg-gray-100 rounded-lg h-96 animate-pulse" /></div>;
   }
@@ -313,6 +333,8 @@ export default function ScenesPage() {
     { key: 'poi' as const, label: '📍 POI' },
     { key: 'photos' as const, label: '📷 Photos', count: activeScene?.photosRefs.length },
     { key: 'text' as const, label: '📝 Texte' },
+    { key: 'translation' as const, label: '🌍 Traduction' },
+    { key: 'tts' as const, label: '🔊 Audio TTS' },
     { key: 'audio' as const, label: '🎙️ Audio' },
   ];
 
@@ -501,6 +523,31 @@ export default function ScenesPage() {
               maxLength={50000} rows={10}
               className="w-full mt-1 p-3 border border-gray-200 rounded-lg text-gray-800 text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-teal-400"
               data-testid="scene-editor" />
+          </div>
+        )}
+
+        {activeScene && activeSegment && activeTab === 'translation' && (
+          <div className="space-y-4">
+            <TranslationSelector
+              segment={activeSegment}
+              onTranslationStarted={() => logger.info(SERVICE_NAME, 'Translation started', { segmentId: activeSegment.id })}
+            />
+            <TranslationEditor
+              segment={activeSegment}
+              sessionId={sessionId}
+              onGenerateTTS={() => setActiveTab('tts')}
+            />
+          </div>
+        )}
+
+        {activeScene && activeSegment && activeTab === 'tts' && (
+          <div className="space-y-4">
+            <TTSControls
+              segment={activeSegment}
+              text={translationState?.translatedText ?? activeSegment.transcriptText ?? ''}
+              language={translationState?.targetLang ?? activeSegment.language}
+              gpuAvailable={gpuAvailable}
+            />
           </div>
         )}
 

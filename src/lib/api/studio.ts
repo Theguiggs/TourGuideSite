@@ -493,12 +493,166 @@ export function getStubScenesCount(sessionId: string): number {
   return mockScenes.length + created.length;
 }
 
+// --- SceneSegment CRUD ---
+
+import type { SceneSegment, SegmentStatus, TranslationProvider } from '@/types/studio';
+
+const stubSegments: SceneSegment[] = [];
+
+export interface CreateSegmentInput {
+  sceneId: string;
+  segmentIndex: number;
+  audioKey?: string;
+  transcriptText?: string;
+  startTimeMs?: number;
+  endTimeMs?: number;
+  language?: string;
+  sourceSegmentId?: string;
+  status?: SegmentStatus;
+}
+
+export async function createSceneSegment(
+  input: CreateSegmentInput,
+): Promise<{ ok: true; segment: SceneSegment } | { ok: false; error: string }> {
+  if (shouldUseStubs()) {
+    const segment: SceneSegment = {
+      id: `seg-${Date.now()}-${input.segmentIndex}`,
+      sceneId: input.sceneId,
+      segmentIndex: input.segmentIndex,
+      audioKey: input.audioKey ?? null,
+      transcriptText: input.transcriptText ?? null,
+      startTimeMs: input.startTimeMs ?? null,
+      endTimeMs: input.endTimeMs ?? null,
+      language: input.language ?? 'fr',
+      sourceSegmentId: input.sourceSegmentId ?? null,
+      ttsGenerated: false,
+      translationProvider: null,
+      costProvider: null,
+      costCharged: null,
+      status: input.status ?? 'empty',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    stubSegments.push(segment);
+    logger.info(SERVICE_NAME, 'Segment created (stub)', { segmentId: segment.id, sceneId: input.sceneId });
+    return { ok: true, segment };
+  }
+
+  try {
+    const { getClient } = await import('./appsync-client');
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).models.SceneSegment.create(input, { authMode: 'userPool' });
+    if (!result?.data) return { ok: false, error: 'Création segment échouée.' };
+    return { ok: true, segment: result.data as SceneSegment };
+  } catch (e) {
+    logger.error(SERVICE_NAME, 'createSceneSegment real failed', { error: String(e) });
+    return { ok: false, error: 'Erreur lors de la création du segment.' };
+  }
+}
+
+export async function updateSceneSegment(
+  segmentId: string,
+  updates: Partial<Pick<SceneSegment, 'transcriptText' | 'audioKey' | 'status' | 'translationProvider' | 'costProvider' | 'costCharged' | 'ttsGenerated' | 'language'>>,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (shouldUseStubs()) {
+    const seg = stubSegments.find((s) => s.id === segmentId);
+    if (seg) {
+      Object.assign(seg, updates, { updatedAt: new Date().toISOString() });
+    }
+    logger.info(SERVICE_NAME, 'Segment updated (stub)', { segmentId });
+    return { ok: true };
+  }
+
+  try {
+    const { getClient } = await import('./appsync-client');
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (client as any).models.SceneSegment.update({ id: segmentId, ...updates }, { authMode: 'userPool' });
+    return { ok: true };
+  } catch (e) {
+    logger.error(SERVICE_NAME, 'updateSceneSegment real failed', { error: String(e) });
+    return { ok: false, error: 'Erreur lors de la mise à jour du segment.' };
+  }
+}
+
+export async function deleteSceneSegment(
+  segmentId: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (shouldUseStubs()) {
+    const idx = stubSegments.findIndex((s) => s.id === segmentId);
+    if (idx >= 0) stubSegments.splice(idx, 1);
+    logger.info(SERVICE_NAME, 'Segment deleted (stub)', { segmentId });
+    return { ok: true };
+  }
+
+  try {
+    const { getClient } = await import('./appsync-client');
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (client as any).models.SceneSegment.delete({ id: segmentId }, { authMode: 'userPool' });
+    return { ok: true };
+  } catch (e) {
+    logger.error(SERVICE_NAME, 'deleteSceneSegment real failed', { error: String(e) });
+    return { ok: false, error: 'Erreur lors de la suppression du segment.' };
+  }
+}
+
+export async function listSegmentsByScene(
+  sceneId: string,
+): Promise<SceneSegment[]> {
+  if (shouldUseStubs()) {
+    return stubSegments
+      .filter((s) => s.sceneId === sceneId)
+      .sort((a, b) => a.segmentIndex - b.segmentIndex);
+  }
+
+  try {
+    const { getClient } = await import('./appsync-client');
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).models.SceneSegment.list(
+      { filter: { sceneId: { eq: sceneId } } },
+      { authMode: 'userPool' },
+    );
+    return ((result?.data as SceneSegment[]) ?? []).sort((a, b) => a.segmentIndex - b.segmentIndex);
+  } catch (e) {
+    logger.error(SERVICE_NAME, 'listSegmentsByScene real failed', { error: String(e) });
+    return [];
+  }
+}
+
+export async function batchCreateSegments(
+  inputs: CreateSegmentInput[],
+): Promise<{ ok: true; segments: SceneSegment[] } | { ok: false; error: string; created: SceneSegment[] }> {
+  const results = await Promise.allSettled(
+    inputs.map((input) => createSceneSegment(input)),
+  );
+
+  const segments: SceneSegment[] = [];
+  for (const result of results) {
+    if (result.status === 'fulfilled' && result.value.ok) {
+      segments.push(result.value.segment);
+    } else {
+      const error = result.status === 'rejected'
+        ? String(result.reason)
+        : (!result.value.ok ? result.value.error : 'Unknown error');
+      logger.error(SERVICE_NAME, 'batchCreateSegments partial failure', {
+        created: segments.length, total: inputs.length, error,
+      });
+      return { ok: false, error, created: segments };
+    }
+  }
+  return { ok: true, segments };
+}
+
 // --- Test-only exports ---
 
 /** Test-only: reset in-memory stub store */
 export function __resetStubStore(): void {
   createdStudioSessions.length = 0;
   createdStubScenes.length = 0;
+  stubSegments.length = 0;
 }
 
 /** Update a stub session's status in-memory. Used by studio-submission stubs. */
