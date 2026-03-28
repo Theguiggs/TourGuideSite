@@ -53,6 +53,8 @@ class AudioPlayerServiceImpl {
     }
   }
 
+  private _blobUrl: string | null = null;
+
   private cleanupAudio() {
     if (this.audio) {
       if (this.onEnded) this.audio.removeEventListener('ended', this.onEnded);
@@ -62,9 +64,30 @@ class AudioPlayerServiceImpl {
       this.audio.load();
       this.audio = null;
     }
+    if (this._blobUrl) {
+      URL.revokeObjectURL(this._blobUrl);
+      this._blobUrl = null;
+    }
     this.onEnded = null;
     this.onError = null;
     this._currentUrl = null;
+  }
+
+  /** Convert data: URL to blob URL for reliable playback of large audio */
+  private toPlayableUrl(url: string): string {
+    if (!url.startsWith('data:')) return url;
+    try {
+      const [header, b64] = url.split(',');
+      const mime = header.split(':')[1].split(';')[0];
+      const binary = atob(b64);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      const blob = new Blob([bytes], { type: mime });
+      this._blobUrl = URL.createObjectURL(blob);
+      return this._blobUrl;
+    } catch {
+      return url;
+    }
   }
 
   async play(url: string): Promise<boolean> {
@@ -89,7 +112,8 @@ class AudioPlayerServiceImpl {
 
     // New URL — stop current and start new
     this.stop();
-    this.audio = new Audio(url);
+    const playableUrl = this.toPlayableUrl(url);
+    this.audio = new Audio(playableUrl);
     this._currentUrl = url;
 
     this.onEnded = () => {
