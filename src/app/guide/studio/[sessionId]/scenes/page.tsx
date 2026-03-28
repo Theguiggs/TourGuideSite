@@ -100,6 +100,7 @@ export default function ScenesPage() {
   const [activeTab, setActiveTab] = useState<'poi' | 'photos' | 'text' | 'audio' | 'translation'>('poi');
   const [gpuAvailable, setGpuAvailable] = useState(true);
   const [showTTSGenerator, setShowTTSGenerator] = useState(false);
+  const [audioSaveToast, setAudioSaveToast] = useState<string | null>(null);
   const [syncError, setSyncError] = useState<string | null>(null);
   // POI editing state
   const [poiTitle, setPoiTitle] = useState('');
@@ -357,6 +358,17 @@ export default function ScenesPage() {
       setSceneStatus(sceneId, { status: 'failed', error: 'Erreur inattendue.' });
     }
   }, [quota, guideId, setSceneStatus, startPolling, setQuota]);
+
+  // Helper: select an audio source for the POI with visual feedback
+  const selectAudioSource = useCallback((sceneId: string, audioKey: string, sourceLabel: string) => {
+    setScenes((prev) => prev.map((s) =>
+      s.id === sceneId ? { ...s, studioAudioKey: audioKey, status: 'recorded' as const, updatedAt: new Date().toISOString() } : s
+    ));
+    updateSceneAudio(sceneId, audioKey);
+    setAudioSaveToast(sourceLabel);
+    setTimeout(() => setAudioSaveToast(null), 3000);
+    logger.info(SERVICE_NAME, 'Audio source selected', { sceneId, source: sourceLabel });
+  }, []);
 
   // Build implicit segments for active scene (legacy compat)
   const activeSegments: SceneSegment[] = activeScene ? getSceneSegments(activeScene, []) : [];
@@ -652,12 +664,7 @@ export default function ScenesPage() {
                       audioPlayerService.play(url);
 
                     }}
-                    onSelect={async () => {
-                      setScenes((prev) => prev.map((s) =>
-                        s.id === activeScene.id ? { ...s, studioAudioKey: activeScene.originalAudioKey!, updatedAt: new Date().toISOString() } : s
-                      ));
-                      updateSceneAudio(activeScene.id, activeScene.originalAudioKey!);
-                    }}
+                    onSelect={() => selectAudioSource(activeScene.id, activeScene.originalAudioKey!, 'Enregistrement terrain')}
                   />
                 )}
 
@@ -690,14 +697,9 @@ export default function ScenesPage() {
                     isSelected={!!ttsState.audioKey && activeScene.studioAudioKey === ttsState.audioKey}
                     isPlaying={false}
                     onPlay={() => { if (ttsState.audioKey) audioPlayerService.play(ttsState.audioKey); }}
-                    onSelect={async () => {
+                    onSelect={() => {
                       if (!ttsState.audioKey) return;
-                      // Update local state immediately
-                      setScenes((prev) => prev.map((s) =>
-                        s.id === activeScene.id ? { ...s, studioAudioKey: ttsState.audioKey!, status: 'recorded' as const, updatedAt: new Date().toISOString() } : s
-                      ));
-                      // Persist (fire-and-forget)
-                      updateSceneAudio(activeScene.id, ttsState.audioKey);
+                      selectAudioSource(activeScene.id, ttsState.audioKey, 'Audio TTS');
                     }}
                   />
                 )}
@@ -718,6 +720,13 @@ export default function ScenesPage() {
                 )}
               </div>
             </div>
+
+            {/* ── Toast confirmation ── */}
+            {audioSaveToast && (
+              <div className="p-2 bg-green-100 border border-green-300 rounded-lg text-center text-sm text-green-800 font-medium" data-testid="audio-save-toast">
+                {audioSaveToast} selectionne comme audio du POI
+              </div>
+            )}
 
             {/* ── Player (full controls when listening to any source) ── */}
             <AudioPlayerBar label="Lecture audio" />
@@ -765,12 +774,8 @@ export default function ScenesPage() {
                   text={translationState?.translatedText ?? activeSegment.transcriptText ?? ''}
                   language={translationState?.targetLang ?? activeSegment.language}
                   gpuAvailable={gpuAvailable}
-                  onSaveAsSceneAudio={async (audioDataUrl, lang) => {
-                    setScenes((prev) => prev.map((s) =>
-                      s.id === activeScene.id ? { ...s, studioAudioKey: audioDataUrl, status: 'recorded' as const, updatedAt: new Date().toISOString() } : s
-                    ));
-                    updateSceneAudio(activeScene.id, audioDataUrl);
-                    logger.info(SERVICE_NAME, 'TTS audio saved as scene audio', { sceneId: activeScene.id, language: lang });
+                  onSaveAsSceneAudio={(audioDataUrl, lang) => {
+                    selectAudioSource(activeScene.id, audioDataUrl, `Audio TTS ${(lang ?? '').toUpperCase()}`);
                   }}
                 />
               </div>
