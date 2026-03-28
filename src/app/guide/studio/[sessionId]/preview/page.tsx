@@ -14,6 +14,7 @@ import { S3Image } from '@/components/studio/s3-image';
 import { ScenePhotos } from '@/components/studio/scene-photos';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
 import dynamic from 'next/dynamic';
+import { AudioPlayerBar } from '@/components/studio/audio-player';
 import type { StudioSession, StudioScene } from '@/types/studio';
 
 // Dynamic import for Leaflet map (no SSR — browser-only)
@@ -41,6 +42,7 @@ export default function PreviewPage() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isRetracting, setIsRetracting] = useState(false);
+  const [viewMode, setViewMode] = useState<'studio' | 'catalogue'>('studio');
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
@@ -269,29 +271,124 @@ export default function PreviewPage() {
       </Link>
 
       <h1 className="text-2xl font-bold text-gray-900 mb-2">Preview — {session.title || 'Session'}</h1>
-      <p className="text-sm text-gray-500 mb-4">Aperçu tel que le touriste le verra dans l&apos;application.</p>
 
-      {/* Map — consumer view */}
-      {scenes.some((s) => s.latitude && s.longitude) && (
-        <div className="mb-6 rounded-lg overflow-hidden border border-gray-200" data-testid="preview-map">
-          <PreviewMap scenes={scenes} />
+      {/* View mode toggle */}
+      <div className="flex gap-2 mb-4">
+        <button
+          onClick={() => setViewMode('studio')}
+          className={`py-1.5 px-4 rounded-lg text-sm font-medium transition-colors ${
+            viewMode === 'studio' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+          }`}
+        >
+          Vue Studio
+        </button>
+        <button
+          onClick={() => setViewMode('catalogue')}
+          className={`py-1.5 px-4 rounded-lg text-sm font-medium transition-colors ${
+            viewMode === 'catalogue' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+          }`}
+        >
+          Vue Catalogue (touriste)
+        </button>
+      </div>
+
+      {/* ═══ VUE CATALOGUE ═══ */}
+      {viewMode === 'catalogue' && (
+        <div className="bg-gray-900 text-white rounded-2xl overflow-hidden mb-6 max-w-sm mx-auto" data-testid="catalogue-view">
+          {/* Tour card header */}
+          <div className="relative h-48 bg-gradient-to-br from-teal-600 to-teal-800 flex items-end p-4">
+            <div>
+              <p className="text-teal-200 text-xs font-medium uppercase tracking-wider">{session.language?.toUpperCase() ?? 'FR'}</p>
+              <h2 className="text-xl font-bold">{session.title || 'Mon tour'}</h2>
+              <div className="flex items-center gap-3 mt-1 text-sm text-teal-100">
+                <span>{scenes.length} etapes</span>
+                <span>~{scenes.length * 3} min</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Mini player */}
+          <div className="p-4">
+            <button
+              onClick={handlePlayAll}
+              className={`w-full py-3 rounded-xl text-sm font-semibold transition-colors ${
+                isPlayingAll ? 'bg-amber-500 text-white' : 'bg-teal-500 text-white'
+              }`}
+              data-testid="play-all-btn"
+            >
+              {isPlayingAll ? 'Arreter' : 'Ecouter la visite'}
+            </button>
+            <AudioPlayerBar compact />
+          </div>
+
+          {/* Scenes list (mobile style) */}
+          <div className="px-4 pb-4 space-y-2">
+            {scenes.map((scene, index) => {
+              const isActive = playingIndex === index;
+              const hasAudio = !!(scene.studioAudioKey || scene.originalAudioKey);
+              return (
+                <div
+                  key={scene.id}
+                  onClick={() => hasAudio && handlePlayScene(index)}
+                  className={`flex items-center gap-3 p-3 rounded-xl transition-colors cursor-pointer ${
+                    isActive ? 'bg-teal-800' : 'bg-gray-800 hover:bg-gray-700'
+                  }`}
+                >
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                    isActive ? 'bg-teal-500 text-white' : 'bg-gray-700 text-gray-400'
+                  }`}>
+                    {isActive ? '||' : index + 1}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className={`text-sm font-medium truncate ${isActive ? 'text-white' : 'text-gray-200'}`}>
+                      {scene.title || `Etape ${index + 1}`}
+                    </p>
+                    {scene.poiDescription && (
+                      <p className="text-xs text-gray-400 truncate">{scene.poiDescription}</p>
+                    )}
+                  </div>
+                  {hasAudio && !isActive && (
+                    <span className="text-gray-500 text-xs">{'>'}</span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
 
-      {/* Playlist controls */}
-      <div className="flex gap-3 mb-6">
-        <button
-          onClick={handlePlayAll}
-          className={`font-medium py-2 px-5 rounded-lg text-sm transition-colors ${
-            isPlayingAll
-              ? 'bg-amber-500 hover:bg-amber-600 text-white'
-              : 'bg-teal-600 hover:bg-teal-700 text-white'
-          }`}
-          data-testid="play-all-btn"
-        >
-          {isPlayingAll ? '⏹ Arrêter' : '▶ Écouter tout'}
-        </button>
-      </div>
+      {/* ═══ VUE STUDIO ═══ */}
+      {viewMode === 'studio' && (
+        <>
+          {/* Map — consumer view */}
+          {scenes.some((s) => s.latitude && s.longitude) && (
+            <div className="mb-6 rounded-lg overflow-hidden border border-gray-200" data-testid="preview-map">
+              <PreviewMap scenes={scenes} />
+            </div>
+          )}
+
+          {/* Playlist controls + player */}
+          <div className="mb-4 p-3 bg-gray-900 rounded-xl">
+            <div className="flex items-center justify-between mb-2">
+              <button
+                onClick={handlePlayAll}
+                className={`font-medium py-2 px-5 rounded-lg text-sm transition-colors ${
+                  isPlayingAll
+                    ? 'bg-amber-500 hover:bg-amber-600 text-white'
+                    : 'bg-teal-500 hover:bg-teal-400 text-white'
+                }`}
+                data-testid="play-all-btn"
+              >
+                {isPlayingAll ? 'Arreter' : 'Ecouter tout'}
+              </button>
+              {isPlayingAll && playingIndex !== null && (
+                <p className="text-xs text-gray-400">
+                  Scene {playingIndex + 1}/{scenes.length} — {scenes[playingIndex]?.title || `Scene ${playingIndex + 1}`}
+                </p>
+              )}
+            </div>
+            <AudioPlayerBar compact />
+          </div>
 
       {/* Scenes list */}
       <div className="space-y-2 mb-6" data-testid="preview-scenes">
@@ -366,6 +463,9 @@ export default function PreviewPage() {
           );
         })}
       </div>
+
+        </>
+      )}
 
       {/* Review feedback panel — full admin review sheet */}
       {session.tourId && (
