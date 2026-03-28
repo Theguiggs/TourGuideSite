@@ -119,12 +119,21 @@ async def health():
 async def generate_tts(req: TTSRequest):
     try:
         voice = req.voice_id or EDGE_VOICES.get(req.language, "fr-FR-HenriNeural")
-        sanitized = re.sub(r"<\|[^|]*\|>", "", req.text)
+        text = req.text
 
-        logger.info(f"TTS: voice={voice}, text={sanitized[:80]}...")
+        # Detect if text contains SSML tags
+        has_ssml = bool(re.search(r'<(break|prosody|emphasis|say-as|phoneme|sub)\b', text))
+
+        if has_ssml:
+            # Wrap in <speak> if not already wrapped
+            if not text.strip().startswith('<speak'):
+                text = f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="{req.language}">{text}</speak>'
+            logger.info(f"TTS (SSML): voice={voice}, len={len(text)}")
+        else:
+            logger.info(f"TTS: voice={voice}, text={text[:80]}...")
 
         tmp_path = tempfile.mktemp(suffix=".mp3")
-        communicate = edge_tts.Communicate(sanitized, voice)
+        communicate = edge_tts.Communicate(text, voice)
         await communicate.save(tmp_path)
 
         # Read and convert to WAV

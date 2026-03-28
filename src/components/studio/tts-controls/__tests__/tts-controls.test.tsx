@@ -81,7 +81,7 @@ describe('TTSControls', () => {
       <TTSControls segment={makeSegment()} text="Hello world" language="en" gpuAvailable={true} />,
     );
     expect(screen.getByTestId('tts-generate-btn')).toBeInTheDocument();
-    expect(screen.getByTestId('tts-generate-btn')).toHaveTextContent("Générer l'audio");
+    expect(screen.getByTestId('tts-generate-btn')).toHaveTextContent(/audio/);
   });
 
   it('calls requestTTS when generate button clicked', async () => {

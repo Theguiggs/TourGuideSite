@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { logger } from '@/lib/logger';
 import { requestTTS } from '@/lib/api/tts';
 import { useTTSStore, selectSegmentTTS } from '@/lib/stores/tts-store';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { shouldUseStubs } from '@/config/api-mode';
 import * as studioUploadService from '@/lib/studio/studio-upload-service';
+import { SSMLToolbar } from '@/components/studio/ssml-toolbar';
 import type { SceneSegment } from '@/types/studio';
 
 const SERVICE_NAME = 'TTSControls';
@@ -28,11 +29,18 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
   const [isTriggering, setIsTriggering] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [editableText, setEditableText] = useState(text);
+  const [showEditor, setShowEditor] = useState(false);
+  const ttsTextareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Sync editable text when prop changes
+  useEffect(() => { setEditableText(text); }, [text]);
 
   const isProcessing = ttsState?.status === 'processing';
   const isCompleted = ttsState?.status === 'completed';
   const isFailed = ttsState?.status === 'failed';
-  const hasText = text.length > 0;
+  const hasText = editableText.length > 0;
+  const hasSSML = /&lt;(break|prosody|emphasis)/.test(editableText) || /<(break|prosody|emphasis)/.test(editableText);
 
   const handleGenerate = useCallback(async () => {
     if (!hasText || isTriggering) return;
@@ -41,7 +49,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
     try {
       setSegmentStatus(segment.id, { status: 'processing', language });
 
-      const result = await requestTTS(segment.id, text, language);
+      const result = await requestTTS(segment.id, editableText, language);
 
       if (result.status === 'completed') {
         setSegmentStatus(segment.id, {
@@ -66,7 +74,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
     } finally {
       setIsTriggering(false);
     }
-  }, [hasText, isTriggering, segment.id, text, language, setSegmentStatus, startPolling]);
+  }, [hasText, isTriggering, segment.id, editableText, language, setSegmentStatus, startPolling]);
 
   const handlePlay = useCallback(async () => {
     if (!ttsState?.audioKey) return;
@@ -144,15 +152,52 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
         </div>
       )}
 
+      {/* Text editor with SSML toolbar */}
+      {!isProcessing && (
+        <div className="space-y-1">
+          <div className="flex items-center justify-between">
+            <button
+              onClick={() => setShowEditor(!showEditor)}
+              className="text-xs text-indigo-600 hover:text-indigo-800 font-medium"
+              data-testid="toggle-ssml-editor"
+            >
+              {showEditor ? 'Masquer editeur' : 'Editer le texte / ajouter effets'}
+            </button>
+            {hasSSML && (
+              <span className="text-[10px] bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded font-medium">SSML</span>
+            )}
+          </div>
+
+          {showEditor && (
+            <div className="space-y-1">
+              <SSMLToolbar
+                textareaRef={ttsTextareaRef}
+                value={editableText}
+                onChange={setEditableText}
+              />
+              <textarea
+                ref={ttsTextareaRef}
+                value={editableText}
+                onChange={(e) => setEditableText(e.target.value)}
+                rows={6}
+                className="w-full p-2 border border-gray-200 rounded-lg text-sm text-gray-800 leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-indigo-400 font-mono"
+                placeholder="Texte pour la synthese vocale..."
+                data-testid="tts-text-editor"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Generate button */}
       {!isProcessing && !isCompleted && (
         <button
           onClick={handleGenerate}
-          disabled={isTriggering}
+          disabled={isTriggering || !hasText}
           className="w-full bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
           data-testid="tts-generate-btn"
         >
-          {isTriggering ? 'Lancement...' : 'Générer l\'audio'}
+          {isTriggering ? 'Lancement...' : hasSSML ? 'Generer l\'audio (avec effets)' : 'Generer l\'audio'}
         </button>
       )}
 
