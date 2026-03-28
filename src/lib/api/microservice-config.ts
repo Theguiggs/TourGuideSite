@@ -7,6 +7,8 @@ export function getMicroserviceUrl(): string {
 export function getMicroserviceHeaders(): Record<string, string> {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
+    // Skip ngrok free tier interstitial page
+    'ngrok-skip-browser-warning': 'true',
   };
   const apiKey = process.env.NEXT_PUBLIC_MICROSERVICE_API_KEY;
   if (apiKey) {

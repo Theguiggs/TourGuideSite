@@ -33,6 +33,7 @@ import type { StudioSession, StudioScene, SceneSegment } from '@/types/studio';
 import { getSceneSegments } from '@/types/studio';
 
 const SERVICE_NAME = 'ScenesPage';
+const LANG_FLAGS: Record<string, string> = { fr: '🇫🇷', en: '🇬🇧', it: '🇮🇹', de: '🇩🇪', es: '🇪🇸' };
 
 const Teleprompter = dynamic(
   () => import('@/components/studio/teleprompter').then((m) => ({ default: m.Teleprompter })),
@@ -543,6 +544,29 @@ export default function ScenesPage() {
 
         {activeScene && activeSegment && activeTab === 'tts' && (
           <div className="space-y-4">
+            {/* Source + translated text context */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p className="text-sm font-medium text-gray-700 mb-1">
+                  {LANG_FLAGS[activeSegment.language] ?? ''} Texte original ({activeSegment.language.toUpperCase()})
+                </p>
+                <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-600 max-h-40 overflow-y-auto">
+                  {activeSegment.transcriptText || <span className="italic text-gray-400">Aucun texte source</span>}
+                </div>
+              </div>
+              {translationState?.translatedText && (
+                <div>
+                  <p className="text-sm font-medium text-gray-700 mb-1">
+                    {LANG_FLAGS[translationState.targetLang ?? ''] ?? ''} Traduction ({(translationState.targetLang ?? '').toUpperCase()})
+                  </p>
+                  <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800 max-h-40 overflow-y-auto">
+                    {translationState.translatedText}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* TTS generation controls */}
             <TTSControls
               segment={activeSegment}
               text={translationState?.translatedText ?? activeSegment.transcriptText ?? ''}
