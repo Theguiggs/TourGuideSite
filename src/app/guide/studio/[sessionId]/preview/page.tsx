@@ -79,12 +79,14 @@ export default function PreviewPage() {
     };
   }, [sessionId, setActiveSession, clearSession]);
 
-  const resolveAudioUrl = useCallback(async (s3Key: string): Promise<string> => {
-    if (shouldUseStubs()) return s3Key;
+  const resolveAudioUrl = useCallback(async (key: string): Promise<string> => {
+    // Data URLs (TTS audio) are playable directly
+    if (key.startsWith('data:')) return key;
+    if (shouldUseStubs()) return key;
     try {
-      return await getPlayableUrl(s3Key);
+      return await getPlayableUrl(key);
     } catch {
-      return s3Key;
+      return key;
     }
   }, []);
 
