@@ -677,37 +677,38 @@ export default function ScenesPage() {
                   />
                 )}
 
-                {/* Audio TTS genere */}
-                {ttsState?.status === 'completed' && ttsState.audioKey && (
+                {/* Audio TTS genere ou en cours */}
+                {ttsState && (ttsState.status === 'completed' || ttsState.status === 'processing') && (
                   <AudioSourceCard
                     icon="🔊"
-                    label="Audio TTS (voix synthetique)"
-                    sublabel={`${LANG_FLAGS[ttsState.language ?? ''] ?? ''} ${(ttsState.language ?? '').toUpperCase()} — edge-tts${ttsState.durationMs ? ` — ${Math.round(ttsState.durationMs / 1000)}s` : ''}`}
-                    isSelected={activeScene.studioAudioKey === ttsState.audioKey}
+                    label={ttsState.status === 'processing' ? 'Audio TTS (generation en cours...)' : 'Audio TTS (voix synthetique)'}
+                    sublabel={ttsState.status === 'processing'
+                      ? `${LANG_FLAGS[ttsState.language ?? ''] ?? ''} ${(ttsState.language ?? '').toUpperCase()} — Generation en cours...`
+                      : `${LANG_FLAGS[ttsState.language ?? ''] ?? ''} ${(ttsState.language ?? '').toUpperCase()} — edge-tts${ttsState.durationMs ? ` — ${Math.round(ttsState.durationMs / 1000)}s` : ''}`
+                    }
+                    isSelected={!!ttsState.audioKey && activeScene.studioAudioKey === ttsState.audioKey}
                     isPlaying={false}
-                    onPlay={() => {
-                      audioPlayerService.play(ttsState.audioKey!);
-                    }}
+                    onPlay={() => { if (ttsState.audioKey) audioPlayerService.play(ttsState.audioKey); }}
                     onSelect={async () => {
-                      await updateSceneAudio(activeScene.id, ttsState.audioKey!);
+                      if (!ttsState.audioKey) return;
+                      await updateSceneAudio(activeScene.id, ttsState.audioKey);
                       const refreshed = await listStudioScenes(sessionId);
                       setScenes(refreshed);
-                      logger.info(SERVICE_NAME, 'TTS audio selected as scene audio', { sceneId: activeScene.id });
                     }}
                   />
                 )}
 
-                {/* Audio TTS selectionne comme source (data: URL dans studioAudioKey mais pas dans ttsState) */}
-                {activeScene.studioAudioKey?.startsWith('data:') && (!ttsState?.audioKey || activeScene.studioAudioKey !== ttsState.audioKey) && (
+                {/* Audio TTS deja sauvegarde comme scene audio (data: URL) mais pas dans ttsState */}
+                {activeScene.studioAudioKey?.startsWith('data:')
+                  && !(ttsState?.status === 'completed' && ttsState.audioKey === activeScene.studioAudioKey)
+                  && (
                   <AudioSourceCard
                     icon="🔊"
-                    label="Audio TTS (precedemment genere)"
-                    sublabel="Voix synthetique — selectionne comme audio du POI"
+                    label="Audio TTS (sauvegarde)"
+                    sublabel="Voix synthetique — precedemment genere"
                     isSelected={true}
                     isPlaying={false}
-                    onPlay={() => {
-                      audioPlayerService.play(activeScene.studioAudioKey!);
-                    }}
+                    onPlay={() => audioPlayerService.play(activeScene.studioAudioKey!)}
                     onSelect={() => {}}
                   />
                 )}
