@@ -98,32 +98,15 @@ export async function requestTTS(
     const data = await response.json();
 
     if (data.ok && data.audio_base64) {
-      // Decode base64 and upload to S3 via studioUploadService
-      try {
-        const binaryString = atob(data.audio_base64);
-        const bytes = new Uint8Array(binaryString.length);
-        for (let i = 0; i < binaryString.length; i++) {
-          bytes[i] = binaryString.charCodeAt(i);
-        }
-        const blob = new Blob([bytes], { type: 'audio/wav' });
-
-        const { uploadTTSAudio } = await import('@/lib/studio/studio-upload-service');
-        // Extract sessionId and sceneIndex from segmentId pattern or use defaults
-        const uploadResult = await uploadTTSAudio(blob, 'tts-session', 0, 0, language);
-        if (uploadResult.ok) {
-          return {
-            jobId: `tts-${Date.now()}-${segmentId}`,
-            status: 'completed',
-            audioKey: uploadResult.s3Key,
-            language,
-            durationMs: data.duration_ms ?? null,
-          };
-        }
-        logger.error(SERVICE_NAME, 'TTS S3 upload failed', { error: uploadResult.error });
-      } catch (uploadErr) {
-        logger.error(SERVICE_NAME, 'TTS base64 decode/upload failed', { error: String(uploadErr) });
-      }
-      return { jobId: '', status: 'failed', audioKey: null, language, durationMs: null };
+      // Return audio as data URL — playable directly in the browser
+      const audioKey = `data:audio/wav;base64,${data.audio_base64}`;
+      return {
+        jobId: `tts-${Date.now()}-${segmentId}`,
+        status: 'completed',
+        audioKey,
+        language,
+        durationMs: data.duration_ms ?? null,
+      };
     }
 
     return {

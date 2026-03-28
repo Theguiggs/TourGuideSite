@@ -16,14 +16,18 @@ interface TTSControlsProps {
   text: string;
   language: string;
   gpuAvailable: boolean;
+  /** Called when the guide wants to save the TTS audio as the scene's audio */
+  onSaveAsSceneAudio?: (audioDataUrl: string, language: string) => void;
 }
 
-export function TTSControls({ segment, text, language, gpuAvailable }: TTSControlsProps) {
+export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSceneAudio }: TTSControlsProps) {
   const ttsState = useTTSStore(selectSegmentTTS(segment.id));
   const setSegmentStatus = useTTSStore((s) => s.setSegmentStatus);
   const startPolling = useTTSStore((s) => s.startPolling);
 
   const [isTriggering, setIsTriggering] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   const isProcessing = ttsState?.status === 'processing';
   const isCompleted = ttsState?.status === 'completed';
@@ -67,9 +71,12 @@ export function TTSControls({ segment, text, language, gpuAvailable }: TTSContro
   const handlePlay = useCallback(async () => {
     if (!ttsState?.audioKey) return;
     try {
-      const url = shouldUseStubs()
+      // Data URLs (from microservice) are playable directly, S3 keys need signed URL
+      const url = ttsState.audioKey.startsWith('data:')
         ? ttsState.audioKey
-        : await studioUploadService.getPlayableUrl(ttsState.audioKey);
+        : shouldUseStubs()
+          ? ttsState.audioKey
+          : await studioUploadService.getPlayableUrl(ttsState.audioKey);
       audioPlayerService.play(url);
     } catch (err) {
       logger.error(SERVICE_NAME, 'Failed to play TTS audio', { error: String(err) });
@@ -149,6 +156,35 @@ export function TTSControls({ segment, text, language, gpuAvailable }: TTSContro
         </button>
       )}
 
+      {/* Save as scene audio */}
+      {isCompleted && ttsState?.audioKey && onSaveAsSceneAudio && (
+        <div className="flex gap-2">
+          <button
+            onClick={async () => {
+              if (!ttsState.audioKey) return;
+              setIsSaving(true);
+              setSaved(false);
+              try {
+                onSaveAsSceneAudio(ttsState.audioKey, ttsState.language ?? language);
+                setSaved(true);
+                setTimeout(() => setSaved(false), 3000);
+                logger.info(SERVICE_NAME, 'Audio saved as scene audio', { segmentId: segment.id, language: ttsState.language });
+              } finally {
+                setIsSaving(false);
+              }
+            }}
+            disabled={isSaving || saved}
+            className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-300 text-white font-medium py-2 rounded-lg text-sm transition-colors"
+            data-testid="tts-save-scene-btn"
+          >
+            {isSaving ? 'Sauvegarde...' : saved ? 'Sauvegarde !' : 'Utiliser comme audio de la scene'}
+          </button>
+        </div>
+      )}
+      {saved && (
+        <p className="text-xs text-green-600 text-center">Audio TTS enregistre comme audio de cette scene</p>
+      )}
+
       {/* Re-generate if already completed */}
       {isCompleted && (
         <button
@@ -157,7 +193,7 @@ export function TTSControls({ segment, text, language, gpuAvailable }: TTSContro
           className="w-full border border-teal-300 text-teal-700 hover:bg-teal-50 font-medium py-2 rounded-lg text-sm transition-colors"
           data-testid="tts-regenerate-btn"
         >
-          Regénérer l&apos;audio
+          Regenerer l&apos;audio
         </button>
       )}
     </div>

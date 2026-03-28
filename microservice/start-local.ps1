@@ -19,9 +19,12 @@ if (-not (Test-Path ".\\.venv")) {
 # Activate venv
 & .\.venv\Scripts\Activate.ps1
 
-# Install deps
-Write-Host "[...] Installation des dependances..." -ForegroundColor Yellow
-pip install -q fastapi uvicorn[standard] edge-tts soundfile pydub requests transformers sentencepiece torch --index-url https://download.pytorch.org/whl/cpu
+# Install deps in two steps (torch CPU index breaks other packages)
+Write-Host "[...] Installation de torch (CPU)..." -ForegroundColor Yellow
+pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+
+Write-Host "[...] Installation des autres dependances..." -ForegroundColor Yellow
+pip install -q fastapi "uvicorn[standard]" edge-tts soundfile pydub requests transformers sentencepiece
 
 # Set API key
 $env:MICROSERVICE_API_KEY = "tourguide-tts-2026"
