@@ -353,14 +353,32 @@ export async function createTourWithSession(
 
 // --- Public API: Scenes ---
 
+// In-memory local overrides (survives navigation within the same session)
+const localSceneOverrides = new Map<string, Partial<StudioScene>>();
+
+/** Register a local override for a scene field (used by updateSceneAudio etc.) */
+export function __setLocalSceneOverride(sceneId: string, overrides: Partial<StudioScene>): void {
+  const existing = localSceneOverrides.get(sceneId) ?? {};
+  localSceneOverrides.set(sceneId, { ...existing, ...overrides });
+}
+
+/** Apply local overrides to a list of scenes */
+function applyLocalOverrides(scenes: StudioScene[]): StudioScene[] {
+  if (localSceneOverrides.size === 0) return scenes;
+  return scenes.map((s) => {
+    const overrides = localSceneOverrides.get(s.id);
+    return overrides ? { ...s, ...overrides } : s;
+  });
+}
+
 export async function listStudioScenes(sessionId: string): Promise<StudioScene[]> {
   if (shouldUseStubs()) {
     const mockScenes = MOCK_SCENES[sessionId] ?? [];
     const created = createdStubScenes.filter((s) => s.sessionId === sessionId);
     logger.info(SERVICE_NAME, 'Listing scenes (stub)', { sessionId });
-    return [...mockScenes, ...created];
+    return applyLocalOverrides([...mockScenes, ...created]);
   }
-  // Real mode: query AppSync
+  // Real mode: query AppSync, then apply local overrides
   try {
     const { listStudioScenesBySession } = await import('./appsync-client');
     const result = await listStudioScenesBySession(sessionId);
@@ -368,10 +386,14 @@ export async function listStudioScenes(sessionId: string): Promise<StudioScene[]
       logger.error(SERVICE_NAME, 'listStudioScenes failed', { error: result.error });
       return [];
     }
-    return result.data.map((s) => mapAppSyncScene(s as unknown as Record<string, unknown>));
+    const scenes = result.data.map((s) => mapAppSyncScene(s as unknown as Record<string, unknown>));
+    return applyLocalOverrides(scenes);
   } catch (e) {
     logger.error(SERVICE_NAME, 'listStudioScenes exception', { error: String(e) });
-    return [];
+    // Fallback: return stub data with overrides if AppSync fails
+    const mockScenes = MOCK_SCENES[sessionId] ?? [];
+    const created = createdStubScenes.filter((s) => s.sessionId === sessionId);
+    return applyLocalOverrides([...mockScenes, ...created]);
   }
 }
 
@@ -461,7 +483,13 @@ export async function updateSceneAudio(
   sceneId: string,
   audioUrl: string,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
-  // Always update local stub store (acts as in-memory cache for Preview page)
+  // Always update local cache (survives navigation to Preview page)
+  __setLocalSceneOverride(sceneId, {
+    studioAudioKey: audioUrl,
+    status: 'recorded',
+    updatedAt: new Date().toISOString(),
+  });
+  // Also update stub store
   const scene = findStubScene(sceneId);
   if (scene) {
     scene.studioAudioKey = audioUrl;
