@@ -101,7 +101,7 @@ export default function ScenesPage() {
   const [editorText, setEditorText] = useState('');
   const [activeTab, setActiveTab] = useState<'poi' | 'photos' | 'text' | 'audio' | 'translation'>('poi');
   const [gpuAvailable, setGpuAvailable] = useState(true);
-  const [showTTSGenerator, setShowTTSGenerator] = useState(false);
+  const [openTool, setOpenTool] = useState<'none' | 'tts' | 'record' | 'mixer'>('none');
   const [audioSaveToast, setAudioSaveToast] = useState<string | null>(null);
   const [sceneMixes, setSceneMixes] = useState<Record<string, SceneAudioMix>>({});
   const [syncError, setSyncError] = useState<string | null>(null);
@@ -600,297 +600,249 @@ export default function ScenesPage() {
             <TranslationEditor
               segment={activeSegment}
               sessionId={sessionId}
-              onGenerateTTS={() => { setActiveTab('audio'); setShowTTSGenerator(true); }}
+              onGenerateTTS={() => { setActiveTab('audio'); setOpenTool('tts'); }}
             />
           </div>
         )}
 
         {activeScene && activeSegment && activeTab === 'audio' && (
           <div className="space-y-4">
-            {/* ── Preview audio selectionne ── */}
-            <div className={`p-4 rounded-lg border-2 ${activeScene.studioAudioKey ? 'bg-teal-50 border-teal-300' : 'bg-gray-50 border-gray-200'}`}>
-              <div className="flex items-center justify-between mb-2">
+
+            {/* ════ SECTION 1 : Audio du POI + Player unique ════ */}
+            <div className="p-4 bg-gray-900 rounded-xl text-white">
+              <div className="flex items-center justify-between mb-3">
                 <div>
-                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Audio du POI (publie)</p>
-                  {activeScene.studioAudioKey ? (
-                    <p className="text-sm font-medium text-teal-800 mt-1">
-                      {activeScene.studioAudioKey.startsWith('data:') ? '🔊 Audio TTS' : '🎙️ Enregistrement studio'}
-                      {' — '}
-                      {activeScene.studioAudioKey.startsWith('data:')
-                        ? `${LANG_FLAGS[ttsState?.language ?? ''] ?? ''} ${(ttsState?.language ?? '').toUpperCase()}`
-                        : `${LANG_FLAGS[activeSegment.language] ?? ''} ${activeSegment.language.toUpperCase()}`
-                      }
-                    </p>
-                  ) : (
-                    <p className="text-sm text-gray-500 italic mt-1">Aucun audio — selectionnez une source ci-dessous</p>
-                  )}
+                  <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest">Audio du POI</p>
+                  <p className="text-sm font-medium mt-0.5">
+                    {!activeScene.studioAudioKey
+                      ? 'Aucun audio selectionne'
+                      : activeScene.studioAudioKey.startsWith('data:')
+                        ? `🔊 TTS — ${LANG_FLAGS[ttsState?.language ?? ''] ?? ''} ${(ttsState?.language ?? activeSegment.language).toUpperCase()}`
+                        : `🎙️ Enregistrement — ${LANG_FLAGS[activeSegment.language] ?? ''} ${activeSegment.language.toUpperCase()}`
+                    }
+                  </p>
                 </div>
                 {activeScene.studioAudioKey && (
                   <button
                     onClick={async () => {
-                      try {
-                        const key = activeScene.studioAudioKey!;
-                        const url = key.startsWith('data:') ? key : shouldUseStubs() ? key : await studioUploadService.getPlayableUrl(key);
-                        audioPlayerService.play(url);
-                      } catch (e) {
-                        logger.error(SERVICE_NAME, 'Failed to play scene audio', { error: String(e) });
-                      }
+                      const key = activeScene.studioAudioKey!;
+                      const url = key.startsWith('data:') ? key : shouldUseStubs() ? key : await studioUploadService.getPlayableUrl(key);
+                      audioPlayerService.play(url);
                     }}
-                    className="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium py-2 px-5 rounded-lg transition-colors"
+                    className="bg-teal-500 hover:bg-teal-400 text-white text-sm font-medium py-2 px-5 rounded-lg transition-colors"
                     data-testid="play-selected-audio"
                   >
-                    Ecouter le POI
+                    Ecouter
                   </button>
                 )}
               </div>
-              {/* Player bar — appears when audio is playing/paused */}
               <AudioPlayerBar compact />
             </div>
 
-            {/* ── Sources disponibles ── */}
-            <div>
-              <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
-                Choisir la source audio
-              </h3>
-              <div className="space-y-2" role="radiogroup" aria-label="Source audio">
-                {/* Audio terrain original */}
-                {activeScene.originalAudioKey && (
-                  <AudioSourceCard
-                    icon="🌍"
-                    label="Enregistrement terrain (original)"
-                    sublabel={`${LANG_FLAGS[activeSegment.language] ?? ''} ${activeSegment.language.toUpperCase()} — Audio capture sur le terrain`}
-                    isSelected={activeScene.studioAudioKey === activeScene.originalAudioKey}
-                    isPlaying={false}
-                    onPlay={async () => {
-
-                      const url = shouldUseStubs() ? activeScene.originalAudioKey! : await studioUploadService.getPlayableUrl(activeScene.originalAudioKey!);
-                      audioPlayerService.play(url);
-
-                    }}
-                    onSelect={() => selectAudioSource(activeScene.id, activeScene.originalAudioKey!, 'Enregistrement terrain')}
-                  />
-                )}
-
-                {/* Audio studio enregistre (seulement si different du terrain et pas un data URL TTS) */}
-                {activeScene.studioAudioKey && !activeScene.studioAudioKey.startsWith('data:') && activeScene.studioAudioKey !== activeScene.originalAudioKey && (
-                  <AudioSourceCard
-                    icon="🎙️"
-                    label="Enregistrement studio"
-                    sublabel={`${LANG_FLAGS[activeSegment.language] ?? ''} ${activeSegment.language.toUpperCase()} — Enregistre dans le Studio Web`}
-                    isSelected={true}
-                    isPlaying={false}
-                    onPlay={async () => {
-                      const url = shouldUseStubs() ? activeScene.studioAudioKey! : await studioUploadService.getPlayableUrl(activeScene.studioAudioKey!);
-                      audioPlayerService.play(url);
-
-                    }}
-                    onSelect={() => {}}
-                  />
-                )}
-
-                {/* Audio TTS genere ou en cours */}
-                {ttsState && (ttsState.status === 'completed' || ttsState.status === 'processing') && (
-                  <AudioSourceCard
-                    icon="🔊"
-                    label={ttsState.status === 'processing' ? 'Audio TTS (generation en cours...)' : 'Audio TTS (voix synthetique)'}
-                    sublabel={ttsState.status === 'processing'
-                      ? `${LANG_FLAGS[ttsState.language ?? ''] ?? ''} ${(ttsState.language ?? '').toUpperCase()} — Generation en cours...`
-                      : `${LANG_FLAGS[ttsState.language ?? ''] ?? ''} ${(ttsState.language ?? '').toUpperCase()} — edge-tts${ttsState.durationMs ? ` — ${Math.round(ttsState.durationMs / 1000)}s` : ''}`
-                    }
-                    isSelected={!!ttsState.audioKey && activeScene.studioAudioKey === ttsState.audioKey}
-                    isPlaying={false}
-                    onPlay={() => { if (ttsState.audioKey) audioPlayerService.play(ttsState.audioKey); }}
-                    onSelect={() => {
-                      if (!ttsState.audioKey) return;
-                      selectAudioSource(activeScene.id, ttsState.audioKey, 'Audio TTS');
-                    }}
-                  />
-                )}
-
-                {/* Audio TTS deja sauvegarde comme scene audio (data: URL) mais pas dans ttsState */}
-                {activeScene.studioAudioKey?.startsWith('data:')
-                  && !(ttsState?.status === 'completed' && ttsState.audioKey === activeScene.studioAudioKey)
-                  && (
-                  <AudioSourceCard
-                    icon="🔊"
-                    label="Audio TTS (sauvegarde)"
-                    sublabel="Voix synthetique — precedemment genere"
-                    isSelected={true}
-                    isPlaying={false}
-                    onPlay={() => audioPlayerService.play(activeScene.studioAudioKey!)}
-                    onSelect={() => {}}
-                  />
-                )}
-              </div>
-            </div>
-
-            {/* ── Toast confirmation ── */}
+            {/* Toast */}
             {audioSaveToast && (
-              <div className="p-2 bg-green-100 border border-green-300 rounded-lg text-center text-sm text-green-800 font-medium" data-testid="audio-save-toast">
+              <div className="p-2 bg-green-100 border border-green-300 rounded-lg text-center text-xs text-green-800 font-medium" data-testid="audio-save-toast">
                 {audioSaveToast} selectionne comme audio du POI
               </div>
             )}
 
-            {/* ── Player (full controls when listening to any source) ── */}
-            <AudioPlayerBar label="Lecture audio" />
+            {/* ════ SECTION 2 : Choisir la source ════ */}
+            <div>
+              <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Choisir la source</p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2" role="radiogroup" aria-label="Source audio">
+                {/* Terrain */}
+                {activeScene.originalAudioKey && (() => {
+                  const sel = activeScene.studioAudioKey === activeScene.originalAudioKey;
+                  return (
+                    <button onClick={() => selectAudioSource(activeScene.id, activeScene.originalAudioKey!, 'Terrain')}
+                      className={`p-3 rounded-lg border-2 text-left transition-all ${sel ? 'border-teal-500 bg-teal-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                      <p className="text-lg mb-1">🌍</p>
+                      <p className={`text-xs font-medium ${sel ? 'text-teal-800' : 'text-gray-800'}`}>Terrain</p>
+                      <p className="text-[10px] text-gray-500">{LANG_FLAGS[activeSegment.language]} {activeSegment.language.toUpperCase()}</p>
+                      {sel && <p className="text-[9px] text-teal-600 font-semibold mt-1">ACTIF</p>}
+                    </button>
+                  );
+                })()}
 
-            {/* ── Mixer audio ── */}
-            {activeScene.studioAudioKey && (
-              <AudioMixer
-                speechUrl={activeScene.studioAudioKey}
-                mix={sceneMixes[activeScene.id] ?? DEFAULT_MIX}
-                onMixChange={(newMix) => setSceneMixes((prev) => ({ ...prev, [activeScene.id]: newMix }))}
-              />
-            )}
+                {/* Studio */}
+                {activeScene.studioAudioKey && !activeScene.studioAudioKey.startsWith('data:') && activeScene.studioAudioKey !== activeScene.originalAudioKey && (
+                  <button className="p-3 rounded-lg border-2 border-teal-500 bg-teal-50 text-left">
+                    <p className="text-lg mb-1">🎙️</p>
+                    <p className="text-xs font-medium text-teal-800">Studio</p>
+                    <p className="text-[10px] text-gray-500">{LANG_FLAGS[activeSegment.language]} {activeSegment.language.toUpperCase()}</p>
+                    <p className="text-[9px] text-teal-600 font-semibold mt-1">ACTIF</p>
+                  </button>
+                )}
 
-            {/* ── Actions ── */}
-            <div className="flex gap-2">
-              <button
-                onClick={() => setShowTTSGenerator(!showTTSGenerator)}
-                className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  showTTSGenerator ? 'bg-indigo-100 text-indigo-700 border border-indigo-300' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-                data-testid="toggle-tts-generator"
-              >
-                {showTTSGenerator ? 'Masquer TTS' : '+ Generer un audio TTS'}
-              </button>
+                {/* TTS */}
+                {ttsState && (ttsState.status === 'completed' || ttsState.status === 'processing') && (() => {
+                  const sel = !!ttsState.audioKey && activeScene.studioAudioKey === ttsState.audioKey;
+                  return (
+                    <button
+                      onClick={() => { if (ttsState.audioKey) selectAudioSource(activeScene.id, ttsState.audioKey, 'Audio TTS'); }}
+                      disabled={ttsState.status === 'processing'}
+                      className={`p-3 rounded-lg border-2 text-left transition-all ${
+                        ttsState.status === 'processing' ? 'border-indigo-300 bg-indigo-50 animate-pulse'
+                        : sel ? 'border-teal-500 bg-teal-50' : 'border-gray-200 hover:border-gray-300'
+                      }`}>
+                      <p className="text-lg mb-1">🔊</p>
+                      <p className={`text-xs font-medium ${sel ? 'text-teal-800' : 'text-gray-800'}`}>
+                        {ttsState.status === 'processing' ? 'TTS...' : 'TTS'}
+                      </p>
+                      <p className="text-[10px] text-gray-500">
+                        {LANG_FLAGS[ttsState.language ?? ''] ?? ''} {(ttsState.language ?? '').toUpperCase()}
+                        {ttsState.durationMs ? ` ${Math.round(ttsState.durationMs / 1000)}s` : ''}
+                      </p>
+                      {sel && <p className="text-[9px] text-teal-600 font-semibold mt-1">ACTIF</p>}
+                    </button>
+                  );
+                })()}
+
+                {/* TTS saved (data: URL not in store) */}
+                {activeScene.studioAudioKey?.startsWith('data:')
+                  && !(ttsState?.status === 'completed' && ttsState.audioKey === activeScene.studioAudioKey) && (
+                  <button className="p-3 rounded-lg border-2 border-teal-500 bg-teal-50 text-left">
+                    <p className="text-lg mb-1">🔊</p>
+                    <p className="text-xs font-medium text-teal-800">TTS</p>
+                    <p className="text-[10px] text-gray-500">Precedemment genere</p>
+                    <p className="text-[9px] text-teal-600 font-semibold mt-1">ACTIF</p>
+                  </button>
+                )}
+              </div>
             </div>
 
-            {/* ── TTS Generator (inline) ── */}
-            {showTTSGenerator && (
-              <div className="p-4 bg-indigo-50 border border-indigo-200 rounded-lg space-y-3">
-                <h3 className="text-sm font-semibold text-indigo-800">Generation audio TTS</h3>
-                {/* Texte source + traduit */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <div>
-                    <p className="text-xs font-medium text-gray-500 mb-1">
-                      {LANG_FLAGS[activeSegment.language] ?? ''} Original ({activeSegment.language.toUpperCase()})
-                    </p>
-                    <div className="p-2 bg-white border border-gray-200 rounded text-xs text-gray-600 max-h-24 overflow-y-auto">
-                      {activeSegment.transcriptText || <span className="italic text-gray-400">Aucun texte</span>}
-                    </div>
-                  </div>
-                  {translationState?.translatedText && (
+            {/* ════ SECTION 3 : Outils (collapsibles) ════ */}
+            <div>
+              <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Outils</p>
+              <div className="flex gap-2 mb-2">
+                {[
+                  { key: 'tts' as const, label: '🔊 Generer TTS', color: 'indigo' },
+                  { key: 'record' as const, label: '🎙️ Enregistrer', color: 'teal' },
+                  { key: 'mixer' as const, label: '🎛️ Mixer', color: 'purple' },
+                ].map((tool) => (
+                  <button
+                    key={tool.key}
+                    onClick={() => setOpenTool(openTool === tool.key ? 'none' : tool.key)}
+                    className={`flex-1 py-2 rounded-lg text-xs font-medium transition-colors ${
+                      openTool === tool.key
+                        ? `bg-${tool.color}-100 text-${tool.color}-700 border border-${tool.color}-300`
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                    data-testid={`tool-${tool.key}`}
+                  >
+                    {tool.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* ── Outil : TTS ── */}
+              {openTool === 'tts' && (
+                <div className="p-4 bg-indigo-50 border border-indigo-200 rounded-lg space-y-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                      <p className="text-xs font-medium text-gray-500 mb-1">
-                        {LANG_FLAGS[translationState.targetLang ?? ''] ?? ''} Traduction ({(translationState.targetLang ?? '').toUpperCase()})
-                      </p>
-                      <div className="p-2 bg-blue-50 border border-blue-200 rounded text-xs text-blue-700 max-h-24 overflow-y-auto">
-                        {translationState.translatedText}
+                      <p className="text-xs font-medium text-gray-500 mb-1">{LANG_FLAGS[activeSegment.language]} Original</p>
+                      <div className="p-2 bg-white border border-gray-200 rounded text-xs text-gray-600 max-h-20 overflow-y-auto">
+                        {activeSegment.transcriptText || <span className="italic text-gray-400">Aucun texte</span>}
+                      </div>
+                    </div>
+                    {translationState?.translatedText && (
+                      <div>
+                        <p className="text-xs font-medium text-gray-500 mb-1">{LANG_FLAGS[translationState.targetLang ?? '']} Traduction</p>
+                        <div className="p-2 bg-blue-50 border border-blue-200 rounded text-xs text-blue-700 max-h-20 overflow-y-auto">
+                          {translationState.translatedText}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <TTSControls
+                    segment={activeSegment}
+                    text={translationState?.translatedText ?? activeSegment.transcriptText ?? ''}
+                    language={translationState?.targetLang ?? activeSegment.language}
+                    gpuAvailable={gpuAvailable}
+                    onSaveAsSceneAudio={(audioDataUrl, lang) => selectAudioSource(activeScene.id, audioDataUrl, `TTS ${(lang ?? '').toUpperCase()}`)}
+                  />
+                </div>
+              )}
+
+              {/* ── Outil : Enregistrer ── */}
+              {openTool === 'record' && (
+                <div className="p-4 bg-teal-50 border border-teal-200 rounded-lg space-y-3">
+                  {editorText && (
+                    <div>
+                      <p className="text-xs font-medium text-gray-600 mb-1">Prompteur</p>
+                      <div className="h-48">
+                        <Teleprompter text={editorText} onComplete={() => logger.info(SERVICE_NAME, 'Prompter done')} />
                       </div>
                     </div>
                   )}
-                </div>
-                <TTSControls
-                  segment={activeSegment}
-                  text={translationState?.translatedText ?? activeSegment.transcriptText ?? ''}
-                  language={translationState?.targetLang ?? activeSegment.language}
-                  gpuAvailable={gpuAvailable}
-                  onSaveAsSceneAudio={(audioDataUrl, lang) => {
-                    selectAudioSource(activeScene.id, audioDataUrl, `Audio TTS ${(lang ?? '').toUpperCase()}`);
-                  }}
-                />
-              </div>
-            )}
-
-            {/* ── Prompteur ── */}
-            {editorText ? (
-              <div>
-                <h3 className="text-sm font-medium text-gray-700 mb-2">Prompteur</h3>
-                <div className="h-64">
-                  <Teleprompter text={editorText} onComplete={() => logger.info(SERVICE_NAME, 'Prompter done')} />
-                </div>
-              </div>
-            ) : (
-              <div className="bg-gray-50 rounded-lg p-4 text-center text-gray-500 text-sm">
-                Pas de texte — allez dans l&apos;onglet Texte pour transcrire ou saisir le texte de cette scene.
-              </div>
-            )}
-
-            {/* ── Enregistrement ── */}
-            <div>
-              <h3 className="text-sm font-medium text-gray-700 mb-2">
-                {activeScene.studioAudioKey ? 'Nouvelle prise (remplace l\'audio existant)' : 'Enregistrement'}
-              </h3>
-              <AudioRecorder sceneId={activeScene.id}
-                onRecordingComplete={async (sceneId) => {
-                  const takes = useRecordingStore.getState().getSceneTakes(sceneId);
-                  const latestTake = takes[takes.length - 1];
-                  if (!latestTake?.blob) {
-                    logger.warn(SERVICE_NAME, 'No blob found for take', { sceneId });
-                    return;
-                  }
-                  const scene = visibleScenes.find((s) => s.id === sceneId);
-                  const sceneIndex = scene?.sceneIndex ?? 0;
-
-                  if (scene?.studioAudioKey) {
-                    setPendingReplace({ sceneId, sceneIndex, blob: latestTake.blob });
-                    return;
-                  }
-                  await doUploadAudio(latestTake.blob, sceneId, sceneIndex);
-                }} />
-              {isUploading && uploadProgress && (
-                <div className="mt-2 bg-blue-50 border border-blue-200 rounded-lg p-3">
-                  <p className="text-sm text-blue-700 mb-1">Upload en cours...</p>
-                  <div className="w-full bg-blue-100 rounded-full h-2">
-                    <div className="bg-blue-600 h-2 rounded-full transition-all"
-                      style={{ width: `${uploadProgress.total > 0 ? Math.round((uploadProgress.loaded / uploadProgress.total) * 100) : 0}%` }} />
-                  </div>
+                  <AudioRecorder sceneId={activeScene.id}
+                    onRecordingComplete={async (sceneId) => {
+                      const takes = useRecordingStore.getState().getSceneTakes(sceneId);
+                      const latestTake = takes[takes.length - 1];
+                      if (!latestTake?.blob) return;
+                      const scene = visibleScenes.find((s) => s.id === sceneId);
+                      const sceneIndex = scene?.sceneIndex ?? 0;
+                      if (scene?.studioAudioKey) { setPendingReplace({ sceneId, sceneIndex, blob: latestTake.blob }); return; }
+                      await doUploadAudio(latestTake.blob, sceneId, sceneIndex);
+                    }} />
+                  {isUploading && uploadProgress && (
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
+                      <div className="w-full bg-blue-100 rounded-full h-1.5">
+                        <div className="bg-blue-600 h-1.5 rounded-full transition-all" style={{ width: `${uploadProgress.total > 0 ? Math.round((uploadProgress.loaded / uploadProgress.total) * 100) : 0}%` }} />
+                      </div>
+                    </div>
+                  )}
+                  {uploadError && (
+                    <div className="bg-red-50 border border-red-200 rounded p-2">
+                      <p className="text-xs text-red-700">{uploadError} <button onClick={async () => {
+                        if (!failedBlobRef.current) return;
+                        const { blob, sceneId, sceneIndex } = failedBlobRef.current;
+                        setIsUploading(true); setUploadError(null);
+                        const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
+                        const unsub = studioUploadService.onProgress(uploadId, (p) => setUploadProgress(p));
+                        try { const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex); unsub();
+                          if (result.ok) { await updateSceneAudio(sceneId, result.s3Key); failedBlobRef.current = null; const refreshed = await listStudioScenes(sessionId); setScenes(refreshed); }
+                          else { setUploadError(result.error); }
+                        } catch { unsub(); setUploadError('Upload echoue.'); }
+                        finally { setIsUploading(false); setUploadProgress(null); }
+                      }} className="underline font-medium" data-testid="retry-upload-btn">Reessayer</button></p>
+                    </div>
+                  )}
+                  <TakesList sceneId={activeScene.id} />
+                  <FileImport sceneId={activeScene.id} />
                 </div>
               )}
-              {uploadError && (
-                <div className="mt-2 bg-red-50 border border-red-200 rounded-lg p-3">
-                  <p className="text-sm text-red-700">{uploadError}</p>
-                  <button
-                    onClick={async () => {
-                      if (!failedBlobRef.current) return;
-                      const { blob, sceneId, sceneIndex } = failedBlobRef.current;
-                      setIsUploading(true);
-                      setUploadError(null);
-                      const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
-                      const unsub = studioUploadService.onProgress(uploadId, (p) => setUploadProgress(p));
-                      try {
-                        const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex);
-                        unsub();
-                        if (result.ok) {
-                          await updateSceneAudio(sceneId, result.s3Key);
-                          failedBlobRef.current = null;
-                          const refreshed = await listStudioScenes(sessionId);
-                          setScenes(refreshed);
-                        } else { setUploadError(result.error); }
-                      } catch { unsub(); setUploadError('Upload echoue.'); }
-                      finally { setIsUploading(false); setUploadProgress(null); }
-                    }}
-                    className="mt-2 text-sm font-medium text-red-800 underline hover:text-red-900"
-                    data-testid="retry-upload-btn"
-                  >
-                    Reessayer
-                  </button>
+
+              {/* ── Outil : Mixer ── */}
+              {openTool === 'mixer' && activeScene.studioAudioKey && (
+                <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+                  <AudioMixer
+                    speechUrl={activeScene.studioAudioKey}
+                    mix={sceneMixes[activeScene.id] ?? DEFAULT_MIX}
+                    onMixChange={(newMix) => setSceneMixes((prev) => ({ ...prev, [activeScene.id]: newMix }))}
+                  />
                 </div>
               )}
-              <TakesList sceneId={activeScene.id} />
-              <FileImport sceneId={activeScene.id} />
+              {openTool === 'mixer' && !activeScene.studioAudioKey && (
+                <div className="p-4 bg-gray-50 rounded-lg text-center text-sm text-gray-500">
+                  Selectionnez d&apos;abord un audio pour utiliser le mixer.
+                </div>
+              )}
             </div>
 
             {/* Replace audio confirmation */}
             {pendingReplace && (
-              <div className="mt-3 p-4 bg-amber-50 border border-amber-200 rounded-lg" data-testid="replace-audio-dialog">
-                <p className="text-sm font-medium text-amber-800 mb-2">Un audio existe deja pour cette scene.</p>
-                <p className="text-xs text-amber-600 mb-3">Voulez-vous remplacer l&apos;audio existant ?</p>
+              <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg" data-testid="replace-audio-dialog">
+                <p className="text-sm font-medium text-amber-800 mb-2">Remplacer l&apos;audio existant ?</p>
                 <div className="flex gap-2">
                   <button onClick={async () => { const { blob, sceneId, sceneIndex } = pendingReplace; setPendingReplace(null); await doUploadAudio(blob, sceneId, sceneIndex); }}
-                    className="bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium py-1.5 px-4 rounded-lg transition-colors" data-testid="confirm-replace-audio">
-                    Remplacer
-                  </button>
+                    className="bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium py-1.5 px-4 rounded-lg" data-testid="confirm-replace-audio">Remplacer</button>
                   <button onClick={() => setPendingReplace(null)}
-                    className="border border-gray-300 text-gray-600 hover:bg-gray-50 text-xs font-medium py-1.5 px-4 rounded-lg transition-colors" data-testid="cancel-replace-audio">
-                    Garder l&apos;ancien
-                  </button>
+                    className="border border-gray-300 text-gray-600 text-xs font-medium py-1.5 px-4 rounded-lg" data-testid="cancel-replace-audio">Garder</button>
                 </div>
               </div>
             )}
 
-            {/* Quality feedback */}
             {activeScene.qualityScore && (
               <QualityFeedback result={{ overall: activeScene.qualityScore, details: { averageVolume: -15, peakClipping: false, silenceRatio: 10 }, message: activeScene.qualityScore === 'good' ? 'Bonne qualite' : 'A ameliorer' }} />
             )}
