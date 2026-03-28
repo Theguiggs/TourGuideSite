@@ -26,6 +26,7 @@ import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { TranslationSelector } from '@/components/studio/translation-selector';
 import { TranslationEditor } from '@/components/studio/translation-editor';
 import { TTSControls } from '@/components/studio/tts-controls';
+import { AudioPlayerBar } from '@/components/studio/audio-player';
 import { useTranslationStore, selectSegmentTranslation } from '@/lib/stores/translation-store';
 import { useTTSStore, selectSegmentTTS } from '@/lib/stores/tts-store';
 import { checkMicroserviceHealth } from '@/lib/api/translation';
@@ -99,7 +100,6 @@ export default function ScenesPage() {
   const [activeTab, setActiveTab] = useState<'poi' | 'photos' | 'text' | 'audio' | 'translation'>('poi');
   const [gpuAvailable, setGpuAvailable] = useState(true);
   const [showTTSGenerator, setShowTTSGenerator] = useState(false);
-  const [playingAudioKey, setPlayingAudioKey] = useState<string | null>(null);
   const [syncError, setSyncError] = useState<string | null>(null);
   // POI editing state
   const [poiTitle, setPoiTitle] = useState('');
@@ -594,7 +594,7 @@ export default function ScenesPage() {
           <div className="space-y-4">
             {/* ── Preview audio selectionne ── */}
             <div className={`p-4 rounded-lg border-2 ${activeScene.studioAudioKey ? 'bg-teal-50 border-teal-300' : 'bg-gray-50 border-gray-200'}`}>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mb-2">
                 <div>
                   <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Audio du POI (publie)</p>
                   {activeScene.studioAudioKey ? (
@@ -614,27 +614,22 @@ export default function ScenesPage() {
                   <button
                     onClick={async () => {
                       try {
-                        setPlayingAudioKey('selected');
                         const key = activeScene.studioAudioKey!;
                         const url = key.startsWith('data:') ? key : shouldUseStubs() ? key : await studioUploadService.getPlayableUrl(key);
                         audioPlayerService.play(url);
-                        setTimeout(() => setPlayingAudioKey(null), 3000);
                       } catch (e) {
-                        setPlayingAudioKey(null);
                         logger.error(SERVICE_NAME, 'Failed to play scene audio', { error: String(e) });
                       }
                     }}
-                    className={`text-sm font-medium py-2 px-5 rounded-lg transition-colors ${
-                      playingAudioKey === 'selected'
-                        ? 'bg-teal-700 text-white animate-pulse'
-                        : 'bg-teal-600 hover:bg-teal-700 text-white'
-                    }`}
+                    className="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium py-2 px-5 rounded-lg transition-colors"
                     data-testid="play-selected-audio"
                   >
-                    {playingAudioKey === 'selected' ? '... Lecture en cours' : 'Ecouter le POI'}
+                    Ecouter le POI
                   </button>
                 )}
               </div>
+              {/* Player bar — appears when audio is playing/paused */}
+              <AudioPlayerBar compact />
             </div>
 
             {/* ── Sources disponibles ── */}
@@ -650,12 +645,12 @@ export default function ScenesPage() {
                     label="Enregistrement terrain (original)"
                     sublabel={`${LANG_FLAGS[activeSegment.language] ?? ''} ${activeSegment.language.toUpperCase()} — Audio capture sur le terrain`}
                     isSelected={activeScene.studioAudioKey === activeScene.originalAudioKey}
-                    isPlaying={playingAudioKey === 'original'}
+                    isPlaying={false}
                     onPlay={async () => {
-                      setPlayingAudioKey('original');
+
                       const url = shouldUseStubs() ? activeScene.originalAudioKey! : await studioUploadService.getPlayableUrl(activeScene.originalAudioKey!);
                       audioPlayerService.play(url);
-                      setTimeout(() => setPlayingAudioKey(null), 3000);
+
                     }}
                     onSelect={async () => {
                       await updateSceneAudio(activeScene.id, activeScene.originalAudioKey!);
@@ -672,12 +667,11 @@ export default function ScenesPage() {
                     label="Enregistrement studio"
                     sublabel={`${LANG_FLAGS[activeSegment.language] ?? ''} ${activeSegment.language.toUpperCase()} — Enregistre dans le Studio Web`}
                     isSelected={true}
-                    isPlaying={playingAudioKey === 'studio'}
+                    isPlaying={false}
                     onPlay={async () => {
-                      setPlayingAudioKey('studio');
                       const url = shouldUseStubs() ? activeScene.studioAudioKey! : await studioUploadService.getPlayableUrl(activeScene.studioAudioKey!);
                       audioPlayerService.play(url);
-                      setTimeout(() => setPlayingAudioKey(null), 3000);
+
                     }}
                     onSelect={() => {}}
                   />
@@ -690,11 +684,9 @@ export default function ScenesPage() {
                     label="Audio TTS (voix synthetique)"
                     sublabel={`${LANG_FLAGS[ttsState.language ?? ''] ?? ''} ${(ttsState.language ?? '').toUpperCase()} — edge-tts${ttsState.durationMs ? ` — ${Math.round(ttsState.durationMs / 1000)}s` : ''}`}
                     isSelected={activeScene.studioAudioKey === ttsState.audioKey}
-                    isPlaying={playingAudioKey === 'tts'}
+                    isPlaying={false}
                     onPlay={() => {
-                      setPlayingAudioKey('tts');
                       audioPlayerService.play(ttsState.audioKey!);
-                      setTimeout(() => setPlayingAudioKey(null), 3000);
                     }}
                     onSelect={async () => {
                       await updateSceneAudio(activeScene.id, ttsState.audioKey!);
@@ -712,17 +704,18 @@ export default function ScenesPage() {
                     label="Audio TTS (precedemment genere)"
                     sublabel="Voix synthetique — selectionne comme audio du POI"
                     isSelected={true}
-                    isPlaying={playingAudioKey === 'tts-saved'}
+                    isPlaying={false}
                     onPlay={() => {
-                      setPlayingAudioKey('tts-saved');
                       audioPlayerService.play(activeScene.studioAudioKey!);
-                      setTimeout(() => setPlayingAudioKey(null), 3000);
                     }}
                     onSelect={() => {}}
                   />
                 )}
               </div>
             </div>
+
+            {/* ── Player (full controls when listening to any source) ── */}
+            <AudioPlayerBar label="Lecture audio" />
 
             {/* ── Actions ── */}
             <div className="flex gap-2">
