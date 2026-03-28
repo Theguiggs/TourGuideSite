@@ -653,9 +653,10 @@ export default function ScenesPage() {
 
                     }}
                     onSelect={async () => {
-                      await updateSceneAudio(activeScene.id, activeScene.originalAudioKey!);
-                      const refreshed = await listStudioScenes(sessionId);
-                      setScenes(refreshed);
+                      setScenes((prev) => prev.map((s) =>
+                        s.id === activeScene.id ? { ...s, studioAudioKey: activeScene.originalAudioKey!, updatedAt: new Date().toISOString() } : s
+                      ));
+                      updateSceneAudio(activeScene.id, activeScene.originalAudioKey!);
                     }}
                   />
                 )}
@@ -691,9 +692,12 @@ export default function ScenesPage() {
                     onPlay={() => { if (ttsState.audioKey) audioPlayerService.play(ttsState.audioKey); }}
                     onSelect={async () => {
                       if (!ttsState.audioKey) return;
-                      await updateSceneAudio(activeScene.id, ttsState.audioKey);
-                      const refreshed = await listStudioScenes(sessionId);
-                      setScenes(refreshed);
+                      // Update local state immediately
+                      setScenes((prev) => prev.map((s) =>
+                        s.id === activeScene.id ? { ...s, studioAudioKey: ttsState.audioKey!, status: 'recorded' as const, updatedAt: new Date().toISOString() } : s
+                      ));
+                      // Persist (fire-and-forget)
+                      updateSceneAudio(activeScene.id, ttsState.audioKey);
                     }}
                   />
                 )}
@@ -762,9 +766,10 @@ export default function ScenesPage() {
                   language={translationState?.targetLang ?? activeSegment.language}
                   gpuAvailable={gpuAvailable}
                   onSaveAsSceneAudio={async (audioDataUrl, lang) => {
-                    await updateSceneAudio(activeScene.id, audioDataUrl);
-                    const refreshed = await listStudioScenes(sessionId);
-                    setScenes(refreshed);
+                    setScenes((prev) => prev.map((s) =>
+                      s.id === activeScene.id ? { ...s, studioAudioKey: audioDataUrl, status: 'recorded' as const, updatedAt: new Date().toISOString() } : s
+                    ));
+                    updateSceneAudio(activeScene.id, audioDataUrl);
                     logger.info(SERVICE_NAME, 'TTS audio saved as scene audio', { sceneId: activeScene.id, language: lang });
                   }}
                 />
