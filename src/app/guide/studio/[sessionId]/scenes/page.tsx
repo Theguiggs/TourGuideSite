@@ -27,6 +27,8 @@ import { TranslationSelector } from '@/components/studio/translation-selector';
 import { TranslationEditor } from '@/components/studio/translation-editor';
 import { TTSControls } from '@/components/studio/tts-controls';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
+import { AudioMixer } from '@/components/studio/audio-mixer';
+import { type SceneAudioMix, DEFAULT_MIX } from '@/lib/studio/ambiance-catalog';
 import { useTranslationStore, selectSegmentTranslation } from '@/lib/stores/translation-store';
 import { useTTSStore, selectSegmentTTS } from '@/lib/stores/tts-store';
 import { checkMicroserviceHealth } from '@/lib/api/translation';
@@ -101,6 +103,7 @@ export default function ScenesPage() {
   const [gpuAvailable, setGpuAvailable] = useState(true);
   const [showTTSGenerator, setShowTTSGenerator] = useState(false);
   const [audioSaveToast, setAudioSaveToast] = useState<string | null>(null);
+  const [sceneMixes, setSceneMixes] = useState<Record<string, SceneAudioMix>>({});
   const [syncError, setSyncError] = useState<string | null>(null);
   // POI editing state
   const [poiTitle, setPoiTitle] = useState('');
@@ -730,6 +733,15 @@ export default function ScenesPage() {
 
             {/* ── Player (full controls when listening to any source) ── */}
             <AudioPlayerBar label="Lecture audio" />
+
+            {/* ── Mixer audio ── */}
+            {activeScene.studioAudioKey && (
+              <AudioMixer
+                speechUrl={activeScene.studioAudioKey}
+                mix={sceneMixes[activeScene.id] ?? DEFAULT_MIX}
+                onMixChange={(newMix) => setSceneMixes((prev) => ({ ...prev, [activeScene.id]: newMix }))}
+              />
+            )}
 
             {/* ── Actions ── */}
             <div className="flex gap-2">
