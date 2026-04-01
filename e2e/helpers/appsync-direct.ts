@@ -22,6 +22,8 @@ const TABLES_TO_CLEAN = [
   'StudioScene',
   'ModerationItem',
   'GuideDashboardStats',
+  'TourLanguagePurchase',
+  'SceneSegment',
 ];
 
 // --- GraphQL HTTP helper ---
@@ -61,11 +63,11 @@ interface CreatedItem {
 export async function seedTour(
   prefix: string,
   token: string,
-  overrides?: Partial<{ title: string; city: string; description: string; status: string }>,
+  overrides?: Partial<{ title: string; city: string; description: string; status: string; guideId: string }>,
 ): Promise<CreatedItem> {
   validateE2ePrefix(prefix);
   const input = {
-    guideId: `${prefix}-guide`,
+    guideId: overrides?.guideId ?? `${prefix}-guide`,
     title: overrides?.title ?? `${prefix} Tour Test`,
     city: overrides?.city ?? 'Grasse',
     status: overrides?.status ?? 'draft',
@@ -89,11 +91,11 @@ export async function seedSession(
   prefix: string,
   tourId: string,
   token: string,
-  overrides?: Partial<{ sourceSessionId: string; status: string; title: string }>,
+  overrides?: Partial<{ sourceSessionId: string; status: string; title: string; guideId: string }>,
 ): Promise<CreatedItem> {
   validateE2ePrefix(prefix);
   const input = {
-    guideId: `${prefix}-guide`,
+    guideId: overrides?.guideId ?? `${prefix}-guide`,
     tourId,
     title: overrides?.title ?? `${prefix} Session`,
     status: overrides?.status ?? 'draft',
@@ -162,6 +164,87 @@ export async function seedModerationItem(
     token,
   );
   return data.createModerationItem;
+}
+
+export async function seedLanguagePurchase(
+  sessionId: string,
+  language: string,
+  token: string,
+  overrides?: Partial<{ guideId: string; qualityTier: string; purchaseType: string; amountCents: number; moderationStatus: string; status: string }>,
+): Promise<CreatedItem> {
+  const input = {
+    guideId: overrides?.guideId ?? 'e2e-guide',
+    sessionId,
+    language,
+    qualityTier: overrides?.qualityTier ?? 'manual',
+    purchaseType: overrides?.purchaseType ?? 'manual',
+    amountCents: overrides?.amountCents ?? 0,
+    moderationStatus: overrides?.moderationStatus ?? 'draft',
+    status: overrides?.status ?? 'active',
+  };
+  const data = await graphql<{ createTourLanguagePurchase: CreatedItem }>(
+    `mutation($input: CreateTourLanguagePurchaseInput!) {
+      createTourLanguagePurchase(input: $input) { id sessionId language qualityTier status }
+    }`,
+    { input },
+    token,
+  );
+  return data.createTourLanguagePurchase;
+}
+
+export async function seedSceneSegment(
+  sceneId: string,
+  segmentIndex: number,
+  token: string,
+  overrides?: Partial<{ language: string; transcriptText: string; status: string; sourceSegmentId: string; manuallyEdited: boolean }>,
+): Promise<CreatedItem> {
+  const input = {
+    sceneId,
+    segmentIndex,
+    language: overrides?.language ?? 'fr',
+    transcriptText: overrides?.transcriptText ?? `Segment ${segmentIndex} text`,
+    status: overrides?.status ?? 'transcribed',
+    sourceSegmentId: overrides?.sourceSegmentId ?? null,
+    manuallyEdited: overrides?.manuallyEdited ?? false,
+  };
+  const data = await graphql<{ createSceneSegment: CreatedItem }>(
+    `mutation($input: CreateSceneSegmentInput!) {
+      createSceneSegment(input: $input) { id sceneId segmentIndex language status transcriptText }
+    }`,
+    { input },
+    token,
+  );
+  return data.createSceneSegment;
+}
+
+// --- GuideProfile Resolution ---
+
+/**
+ * Resolve the GuideProfile.id for the authenticated user.
+ * Decodes the Cognito sub from the access token, then queries
+ * GuideProfile by userId.
+ */
+export async function resolveGuideId(token: string): Promise<string> {
+  // Decode the JWT to get the Cognito sub
+  const parts = token.split('.');
+  if (parts.length !== 3) throw new Error('Invalid JWT token');
+  const payload = JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf-8'));
+  const userId = payload.sub;
+  if (!userId) throw new Error('No sub claim in token');
+
+  const data = await graphql<{ listGuideProfiles: { items: Array<{ id: string; userId: string }> } }>(
+    `query ListProfiles($filter: ModelGuideProfileFilterInput) {
+      listGuideProfiles(filter: $filter) { items { id userId } }
+    }`,
+    { filter: { userId: { eq: userId } } },
+    token,
+  );
+
+  const profile = data.listGuideProfiles.items[0];
+  if (!profile) {
+    throw new Error(`No GuideProfile found for userId=${userId}. Create one for the E2E guide user.`);
+  }
+  return profile.id;
 }
 
 // --- Assertion Functions (via GraphQL HTTP) ---
@@ -309,11 +392,13 @@ export async function deleteItemsByPrefix(prefix: string): Promise<number> {
       } while (key);
     };
 
-    if (table === 'GuideTour') await scanByField('title');
+    if (['GuideTour', 'StudioSession', 'StudioScene'].includes(table)) await scanByField('title');
     if (table === 'ModerationItem') await scanByField('tourTitle');
     if (['GuideTour', 'StudioSession', 'GuideDashboardStats'].includes(table)) {
       await scanByField('guideId');
     }
+    // SceneSegment and TourLanguagePurchase items without prefix fields
+    // are cleaned via deleteItemsById() in test afterAll hooks
 
     if (idsToDelete.length > 0) {
       totalDeleted += await batchDeleteWithRetry(dynamo, fullTableName, idsToDelete);
@@ -321,6 +406,18 @@ export async function deleteItemsByPrefix(prefix: string): Promise<number> {
   }
 
   return totalDeleted;
+}
+
+// --- Direct ID Cleanup (for items without prefix-scannable fields) ---
+
+export async function deleteItemsById(
+  table: string,
+  ids: string[],
+): Promise<number> {
+  if (ids.length === 0) return 0;
+  const dynamo = getDynamoClient();
+  const fullTableName = `${table}-${APP_ID}-${ENV}`;
+  return batchDeleteWithRetry(dynamo, fullTableName, ids);
 }
 
 // --- Validation ---

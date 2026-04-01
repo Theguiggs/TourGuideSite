@@ -15,7 +15,9 @@ import { ScenePhotos } from '@/components/studio/scene-photos';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
 import dynamic from 'next/dynamic';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
-import type { StudioSession, StudioScene } from '@/types/studio';
+import { LanguagePreviewPlayer } from '@/components/studio/language-preview';
+import { listSegmentsByScene } from '@/lib/api/studio';
+import type { StudioSession, StudioScene, SceneSegment } from '@/types/studio';
 
 // Dynamic import for Leaflet map (no SSR — browser-only)
 const PreviewMap = dynamic(() => import('@/components/studio/preview-map').then((m) => ({ default: m.PreviewMap })), {
@@ -43,6 +45,8 @@ export default function PreviewPage() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isRetracting, setIsRetracting] = useState(false);
   const [viewMode, setViewMode] = useState<'studio' | 'catalogue'>('studio');
+  const [allSegments, setAllSegments] = useState<SceneSegment[]>([]);
+  const [previewLang, setPreviewLang] = useState<string>('fr');
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
@@ -59,8 +63,23 @@ export default function PreviewPage() {
         ]);
         if (!cancelled) {
           setSession(sess);
-          setScenes(scns.filter((s) => !s.archived));
-          if (sess) setActiveSession(sess);
+          const activeScenes = scns.filter((s) => !s.archived);
+          setScenes(activeScenes);
+          if (sess) {
+            setActiveSession(sess);
+            setPreviewLang(sess.language || 'fr');
+          }
+          // Load segments for all scenes (for multilang preview)
+          try {
+            const segResults = await Promise.all(
+              activeScenes.map((s) => listSegmentsByScene(s.id)),
+            );
+            if (!cancelled) {
+              setAllSegments(segResults.flat());
+            }
+          } catch {
+            // Non-blocking — segments are optional for preview
+          }
           logger.info(SERVICE_NAME, 'Preview loaded', { sessionId, scenesCount: scns.length });
         }
       } catch (e) {
@@ -82,13 +101,16 @@ export default function PreviewPage() {
   }, [sessionId, setActiveSession, clearSession]);
 
   const resolveAudioUrl = useCallback(async (key: string): Promise<string> => {
-    // Data URLs (TTS audio) are playable directly
+    if (!key) return '';
+    // Data URLs are playable directly
     if (key.startsWith('data:')) return key;
+    // TTS markers are not playable (audio needs to be regenerated)
+    if (key.startsWith('tts-')) return '';
     if (shouldUseStubs()) return key;
     try {
       return await getPlayableUrl(key);
     } catch {
-      return key;
+      return '';
     }
   }, []);
 
@@ -122,6 +144,10 @@ export default function PreviewPage() {
       setIsPlayingAll(false);
     } else {
       const url = await resolveAudioUrl(key);
+      if (!url) {
+        logger.warn('PreviewPage', 'No playable audio for scene', { index, key });
+        return;
+      }
       audioPlayerService.play(url);
       setPlayingIndex(index);
     }
@@ -270,7 +296,12 @@ export default function PreviewPage() {
         &larr; Retour à la session
       </Link>
 
-      <h1 className="text-2xl font-bold text-gray-900 mb-2">Preview — {session.title || 'Session'}</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-1">Preview — {session.title || 'Session'}</h1>
+      {session.availableLanguages && session.availableLanguages.length > 1 && (
+        <p className="text-sm text-gray-500 mb-2" data-testid="preview-lang-indicator">
+          Langue affichee : <span className="font-medium text-gray-700">{previewLang.toUpperCase()}</span>
+        </p>
+      )}
 
       {/* View mode toggle */}
       <div className="flex gap-2 mb-4">
@@ -326,30 +357,49 @@ export default function PreviewPage() {
             {scenes.map((scene, index) => {
               const isActive = playingIndex === index;
               const hasAudio = !!(scene.studioAudioKey || scene.originalAudioKey);
+              const hasPhotos = scene.photosRefs.length > 0;
               return (
                 <div
                   key={scene.id}
-                  onClick={() => hasAudio && handlePlayScene(index)}
-                  className={`flex items-center gap-3 p-3 rounded-xl transition-colors cursor-pointer ${
+                  className={`rounded-xl overflow-hidden transition-colors ${
                     isActive ? 'bg-teal-800' : 'bg-gray-800 hover:bg-gray-700'
                   }`}
                 >
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
-                    isActive ? 'bg-teal-500 text-white' : 'bg-gray-700 text-gray-400'
-                  }`}>
-                    {isActive ? '||' : index + 1}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className={`text-sm font-medium truncate ${isActive ? 'text-white' : 'text-gray-200'}`}>
-                      {scene.title || `Etape ${index + 1}`}
-                    </p>
-                    {scene.poiDescription && (
-                      <p className="text-xs text-gray-400 truncate">{scene.poiDescription}</p>
+                  {/* Photo carousel */}
+                  {hasPhotos && (
+                    <div className="flex gap-0.5 h-20 overflow-x-auto">
+                      {scene.photosRefs.map((url, pi) => (
+                        <S3Image
+                          key={pi}
+                          s3Key={url}
+                          alt={`${scene.title || `Etape ${index + 1}`} — photo ${pi + 1}`}
+                          className={`h-full object-cover flex-shrink-0 ${scene.photosRefs.length === 1 ? 'w-full' : 'w-28'}`}
+                          fallback={`Photo ${pi + 1}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  <div
+                    onClick={() => hasAudio && handlePlayScene(index)}
+                    className="flex items-center gap-3 p-3 cursor-pointer"
+                  >
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                      isActive ? 'bg-teal-500 text-white' : 'bg-gray-700 text-gray-400'
+                    }`}>
+                      {isActive ? '||' : index + 1}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className={`text-sm font-medium truncate ${isActive ? 'text-white' : 'text-gray-200'}`}>
+                        {scene.title || `Etape ${index + 1}`}
+                      </p>
+                      {scene.poiDescription && (
+                        <p className="text-xs text-gray-400 truncate">{scene.poiDescription}</p>
+                      )}
+                    </div>
+                    {hasAudio && !isActive && (
+                      <span className="text-gray-500 text-xs">{'>'}</span>
                     )}
                   </div>
-                  {hasAudio && !isActive && (
-                    <span className="text-gray-500 text-xs">{'>'}</span>
-                  )}
                 </div>
               );
             })}
@@ -389,6 +439,37 @@ export default function PreviewPage() {
             </div>
             <AudioPlayerBar compact />
           </div>
+
+      {/* Language preview selector */}
+      {session.availableLanguages && session.availableLanguages.length > 1 && (
+        <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200" data-testid="language-preview-section">
+          <div className="flex items-center gap-3 mb-2">
+            <label htmlFor="preview-lang-select" className="text-sm font-medium text-gray-700">
+              Langue du preview :
+            </label>
+            <select
+              id="preview-lang-select"
+              value={previewLang}
+              onChange={(e) => setPreviewLang(e.target.value)}
+              className="border border-gray-300 rounded-lg px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-400"
+              data-testid="preview-lang-select"
+            >
+              {[session.language || 'fr', ...session.availableLanguages.filter(
+                (l) => l !== (session.language || 'fr'),
+              )].map((lang) => (
+                <option key={lang} value={lang}>
+                  {lang.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </div>
+          <LanguagePreviewPlayer
+            scenes={scenes}
+            segments={allSegments}
+            language={previewLang}
+          />
+        </div>
+      )}
 
       {/* Scenes list */}
       <div className="space-y-2 mb-6" data-testid="preview-scenes">

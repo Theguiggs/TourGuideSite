@@ -48,6 +48,9 @@ const makeSegment = (overrides?: Partial<SceneSegment>): SceneSegment => ({
   costProvider: null,
   costCharged: null,
   status: 'transcribed',
+  manuallyEdited: false,
+  translatedTitle: null,
+  sourceUpdatedAt: null,
   createdAt: '',
   updatedAt: '',
   ...overrides,
@@ -140,7 +143,7 @@ describe('TranslationSelector', () => {
       'Bienvenue sur la Place aux Aires.',
       'fr',
       'de',
-      'marianmt',
+      'standard',
     );
   });
 

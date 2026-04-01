@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 import type {
   ModerationItem,
   ModerationDetail,
@@ -20,19 +21,19 @@ import * as appsync from './appsync-client';
 
 const MOCK_QUEUE: ModerationItem[] = [
   {
-    id: 'mod-1', tourId: 'grasse-parfums-modernes', tourTitle: 'Les Parfums Modernes',
+    id: 'mod-1', tourId: 'grasse-parfums-modernes', sessionId: 'session-grasse-1', tourTitle: 'Les Parfums Modernes',
     guideId: 'guide-1', guideName: 'Marie Dupont', guidePhotoUrl: '/images/guides/marie.jpg',
     city: 'Grasse', submissionDate: '2026-03-05T14:30:00.000Z', status: 'pending',
     isResubmission: false, poiCount: 5, duration: 40, distance: 1.8,
   },
   {
-    id: 'mod-2', tourId: 'nice-promenade-anglais', tourTitle: 'La Promenade des Anglais',
+    id: 'mod-2', tourId: 'nice-promenade-anglais', sessionId: 'session-nice-1', tourTitle: 'La Promenade des Anglais',
     guideId: 'guide-5', guideName: 'Claire Moreau', guidePhotoUrl: null,
     city: 'Nice', submissionDate: '2026-03-04T10:15:00.000Z', status: 'resubmitted',
     isResubmission: true, poiCount: 7, duration: 55, distance: 3.2,
   },
   {
-    id: 'mod-3', tourId: 'cannes-croisette', tourTitle: 'La Croisette et le Vieux Cannes',
+    id: 'mod-3', tourId: 'cannes-croisette', sessionId: 'session-cannes-1', tourTitle: 'La Croisette et le Vieux Cannes',
     guideId: 'guide-6', guideName: 'Thomas Leroy', guidePhotoUrl: null,
     city: 'Cannes', submissionDate: '2026-03-06T09:00:00.000Z', status: 'pending',
     isResubmission: false, poiCount: 6, duration: 45, distance: 2.4,
@@ -137,12 +138,14 @@ async function getRealQueue(): Promise<ModerationItem[]> {
   const items = [...pending, ...resubmitted];
   return items
     .map((i) => ({
-      id: i.id, tourId: i.tourId, tourTitle: i.tourTitle,
+      id: i.id, tourId: i.tourId, sessionId: (i as Record<string, unknown>).sessionId as string ?? '', tourTitle: i.tourTitle,
       guideId: i.guideId, guideName: i.guideName, guidePhotoUrl: null,
       city: i.city, submissionDate: new Date(i.submissionDate).toISOString(),
       status: i.status as ModerationItem['status'],
       isResubmission: i.status === 'resubmitted',
-      poiCount: 0, duration: 0, distance: 0,
+      poiCount: (i as Record<string, unknown>).poiCount as number ?? 0,
+      duration: (i as Record<string, unknown>).duration as number ?? 0,
+      distance: (i as Record<string, unknown>).distance as number ?? 0,
     }))
     .sort((a, b) => {
       if (a.isResubmission !== b.isResubmission) return a.isResubmission ? -1 : 1;
@@ -187,12 +190,29 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
   // Load tour, guide profile, and studio scenes in parallel
   const tourData = await appsync.getGuideTourById(item.tourId);
   const t = tourData as Record<string, unknown> | null;
-  const sessionId = (t?.sessionId as string) ?? null;
+  // sessionId can be on ModerationItem (new) or GuideTour (legacy)
+  const sessionId = (item as Record<string, unknown>).sessionId as string
+    ?? (t?.sessionId as string)
+    ?? null;
+
+  logger.info('ModerationAPI', 'getModerationDetail: loading data', {
+    moderationId,
+    tourId: item.tourId,
+    sessionId,
+    guideId: item.guideId,
+    hasTour: !!tourData,
+  });
 
   const [guideProfile, studioScenesResult] = await Promise.all([
     appsync.getGuideProfileById(item.guideId, 'userPool'),
     sessionId ? appsync.listStudioScenesBySession(sessionId) : Promise.resolve({ ok: false as const, data: [], error: 'no session' }),
   ]);
+
+  logger.info('ModerationAPI', 'getModerationDetail: scenes loaded', {
+    scenesOk: studioScenesResult.ok,
+    scenesCount: studioScenesResult.ok ? studioScenesResult.data.length : 0,
+    guideProfileFound: !!guideProfile,
+  });
 
   // Map StudioScenes to ModerationScene format
   let scenes: ModerationScene[] = [];
@@ -226,7 +246,7 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
   }
 
   return {
-    id: item.id, tourId: item.tourId, tourTitle: item.tourTitle,
+    id: item.id, tourId: item.tourId, sessionId: (item as Record<string, unknown>).sessionId as string ?? '', tourTitle: item.tourTitle,
     guideId: item.guideId, guideName: item.guideName, guidePhotoUrl: null,
     city: item.city, submissionDate: new Date(item.submissionDate).toISOString(),
     status: item.status as ModerationDetail['status'],

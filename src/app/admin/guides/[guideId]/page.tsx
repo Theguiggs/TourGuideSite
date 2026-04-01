@@ -13,11 +13,16 @@ const STATUS_BADGES: Record<string, { label: string; className: string }> = {
 };
 
 const TOUR_STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  draft:              { label: 'Brouillon',    className: 'bg-gray-100 text-gray-600' },
-  pending_moderation: { label: 'En modération', className: 'bg-yellow-100 text-yellow-700' },
-  published:          { label: 'Publié',       className: 'bg-green-100 text-green-700' },
-  rejected:           { label: 'Refusé',       className: 'bg-red-100 text-red-700' },
-  archived:           { label: 'Archivé',      className: 'bg-gray-200 text-gray-500' },
+  draft:              { label: 'Brouillon',           className: 'bg-gray-100 text-gray-700' },
+  editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-blue-100 text-blue-700' },
+  recording:          { label: 'Enregistrement',     className: 'bg-blue-100 text-blue-700' },
+  ready:              { label: 'Pr\u00eat',                className: 'bg-green-100 text-green-700' },
+  submitted:          { label: 'Soumis',             className: 'bg-yellow-100 text-yellow-700' },
+  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-yellow-100 text-yellow-700' },
+  published:          { label: 'Publi\u00e9',             className: 'bg-green-200 text-green-800' },
+  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-orange-100 text-orange-700' },
+  rejected:           { label: 'Rejet\u00e9',             className: 'bg-red-100 text-red-700' },
+  archived:           { label: 'Archiv\u00e9',            className: 'bg-gray-200 text-gray-500' },
 };
 
 type GuideProfile = {

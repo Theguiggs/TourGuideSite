@@ -12,8 +12,14 @@ jest.mock('@/lib/api/appsync-client', () => ({
   updateGuideTourMutation: jest.fn(() => Promise.resolve({ ok: true, data: {} })),
   listModerationItems: jest.fn(() => Promise.resolve([])),
   getModerationItemById: jest.fn(() => Promise.resolve(null)),
+  createModerationItemMutation: jest.fn(() => Promise.resolve({ ok: true, data: {} })),
   updateModerationItemMutation: jest.fn(() => Promise.resolve({ ok: true, data: {} })),
+  deleteModerationItemMutation: jest.fn(() => Promise.resolve({ ok: true })),
   getGuideDashboardStatsById: jest.fn(() => Promise.resolve(null)),
+  createLanguagePurchaseMutation: jest.fn(() => Promise.resolve({ ok: true, data: {} })),
+  updateLanguagePurchaseMutation: jest.fn(() => Promise.resolve({ ok: true, data: {} })),
+  listLanguagePurchasesBySession: jest.fn(() => Promise.resolve({ ok: true, data: [] })),
+  getLanguagePurchase: jest.fn(() => Promise.resolve({ ok: true, data: null })),
 }));
 
 // Force stub mode for all tests

@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { logger } from '@/lib/logger';
-import { getStudioSession, listStudioScenes, updateSceneText, updateSceneAudio, getSceneStatusConfig } from '@/lib/api/studio';
+import { getStudioSession, listStudioScenes, updateSceneText, updateSceneAudio, getSceneStatusConfig, listSegmentsByScene, updateSceneSegment } from '@/lib/api/studio';
 import { triggerTranscription, getTranscriptionQuota } from '@/lib/api/transcription';
+import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import { SceneSidebar } from '@/components/studio/scene-sidebar';
 import { ScenePhotos } from '@/components/studio/scene-photos';
 import { QuotaDisplay } from '@/components/studio/quota-display';
@@ -25,6 +26,11 @@ import * as studioUploadService from '@/lib/studio/studio-upload-service';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { TranslationSelector } from '@/components/studio/translation-selector';
 import { TranslationEditor } from '@/components/studio/translation-editor';
+import { LanguageTabs } from '@/components/studio/language-tabs';
+import type { LanguageTabItem } from '@/components/studio/language-tabs';
+import { useLanguagePurchaseStore } from '@/lib/stores/language-purchase-store';
+import { useLanguageBatchStore, selectBatchProgress } from '@/lib/stores/language-batch-store';
+import { LANG_TO_COUNTRY, LANGUAGE_CONFIG } from '@/components/studio/language-checkout/language-checkbox-card';
 import { TTSControls } from '@/components/studio/tts-controls';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
 import { AudioMixer } from '@/components/studio/audio-mixer';
@@ -34,6 +40,12 @@ import { useTTSStore, selectSegmentTTS } from '@/lib/stores/tts-store';
 import { checkMicroserviceHealth } from '@/lib/api/translation';
 import type { StudioSession, StudioScene, SceneSegment } from '@/types/studio';
 import { getSceneSegments } from '@/types/studio';
+import { LanguageSceneList, TourInfoTranslation } from '@/components/studio/language-scene-list';
+import { StalenessAlert } from '@/components/studio/staleness-alert/staleness-alert';
+import { getStaleSegments } from '@/lib/multilang/staleness-detector';
+import { SplitEditor } from '@/components/studio/split-editor';
+import { LanguageAudioSection } from '@/components/studio/language-audio-section';
+import { requestTTS, getTTSStatus } from '@/lib/api/tts';
 
 const SERVICE_NAME = 'ScenesPage';
 const LANG_FLAGS: Record<string, string> = { fr: '🇫🇷', en: '🇬🇧', it: '🇮🇹', de: '🇩🇪', es: '🇪🇸' };
@@ -99,7 +111,7 @@ export default function ScenesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [editorText, setEditorText] = useState('');
-  const [activeTab, setActiveTab] = useState<'poi' | 'photos' | 'text' | 'audio' | 'translation'>('poi');
+  const [activeTab, setActiveTab] = useState<'poi' | 'photos' | 'text' | 'audio'>('poi');
   const [gpuAvailable, setGpuAvailable] = useState(true);
   const [openTool, setOpenTool] = useState<'none' | 'tts' | 'record' | 'mixer'>('none');
   const [audioSaveToast, setAudioSaveToast] = useState<string | null>(null);
@@ -119,6 +131,13 @@ export default function ScenesPage() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const failedBlobRef = useRef<{ blob: Blob; sceneId: string; sceneIndex: number } | null>(null);
   const [pendingReplace, setPendingReplace] = useState<{ sceneId: string; sceneIndex: number; blob: Blob } | null>(null);
+  const [activeLanguageTab, setActiveLanguageTab] = useState<string | null>(null);
+  const [langSegments, setLangSegments] = useState<SceneSegment[]>([]);
+  const [langCompletedSceneIds, setLangCompletedSceneIds] = useState<string[]>([]);
+  // Cache completed counts per language (survives tab switches)
+  const completedCountCache = useRef<Record<string, number>>({});
+  const [batchMessage, setBatchMessage] = useState<string | null>(null);
+  // selectedLangSceneId removed — V2: all scenes shown inline
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
@@ -128,6 +147,192 @@ export default function ScenesPage() {
   const startPolling = useTranscriptionStore((s) => s.startPolling);
   const stopAllPolling = useTranscriptionStore((s) => s.stopAllPolling);
 
+  // Language purchases for this session — use useMemo to avoid infinite loop (array selector)
+  const allPurchases = useLanguagePurchaseStore((s) => s.purchases);
+  const purchases = useMemo(() => {
+    const prefix = `${sessionId}_`;
+    return Object.entries(allPurchases)
+      .filter(([key]) => key.startsWith(prefix))
+      .map(([, value]) => value);
+  }, [allPurchases, sessionId]);
+  const activePurchases = useMemo(
+    () => purchases.filter((p) => p.status === 'active'),
+    [purchases],
+  );
+
+  // Hydrate language purchases from AppSync on mount (survives page refresh)
+  const setPurchases = useLanguagePurchaseStore((s) => s.setPurchases);
+  useEffect(() => {
+    if (!session) return;
+    // Only hydrate if the store is empty for this session
+    const prefix = `${sessionId}_`;
+    const hasStoreData = Object.keys(allPurchases).some((k) => k.startsWith(prefix));
+    if (hasStoreData) return;
+
+    listLanguagePurchases(sessionId).then((result) => {
+      if (result.ok && result.value.length > 0) {
+        setPurchases(result.value);
+        logger.info(SERVICE_NAME, 'Hydrated language purchases from AppSync', { count: result.value.length });
+      }
+    });
+  }, [session, sessionId, allPurchases, setPurchases]);
+
+  // Set default language tab to session base language once loaded
+  useEffect(() => {
+    if (session && activeLanguageTab === null) {
+      setActiveLanguageTab(session.language);
+    }
+  }, [session, activeLanguageTab]);
+
+  // Reusable function to reload segments for the active language tab
+  const refreshLangSegments = useCallback(async () => {
+    if (!session || !activeLanguageTab || activeLanguageTab === session.language) {
+      // Don't flash to empty — keep existing data until new data loads
+      if (activeLanguageTab === session?.language) {
+        setLangSegments([]);
+        setLangCompletedSceneIds([]);
+      }
+      return;
+    }
+    const activeScenes = scenes.filter((s) => !s.archived);
+    const allSegments: SceneSegment[] = [];
+    const completed: string[] = [];
+    for (const scene of activeScenes) {
+      const segs = await listSegmentsByScene(scene.id);
+      const langSeg = segs.find((s) => s.language === activeLanguageTab);
+      if (langSeg) {
+        allSegments.push(langSeg);
+        if (langSeg.transcriptText && langSeg.audioKey && !langSeg.audioKey.startsWith('tts-')) {
+          completed.push(scene.id);
+        }
+      }
+    }
+    setLangSegments(allSegments);
+    setLangCompletedSceneIds(completed);
+    // Cache the count for this language
+    if (activeLanguageTab) {
+      completedCountCache.current[activeLanguageTab] = completed.length;
+    }
+  }, [session, activeLanguageTab, scenes]);
+
+  // Track which languages have had batch auto-triggered (avoid re-triggering)
+  const batchTriggeredRef = useRef<Set<string>>(new Set());
+
+  // Fetch segments for non-base language tab + auto-trigger batch if needed
+  useEffect(() => {
+    let cancelled = false;
+    refreshLangSegments()
+      .then(async () => {
+        if (cancelled || !activeLanguageTab || !session || activeLanguageTab === session.language) return;
+
+        // Check if this is a Standard/Pro purchase with no translated segments yet
+        const purchase = purchases.find((p) => p.language === activeLanguageTab && p.status === 'active');
+        if (!purchase || purchase.purchaseType === 'manual' || purchase.qualityTier === 'manual') return;
+        if (batchTriggeredRef.current.has(activeLanguageTab)) return;
+
+        // Check if segments already have translated content (query fresh, don't use stale state)
+        const activeScenes = scenes.filter((s) => !s.archived);
+        let translatedCount = 0;
+        for (const scene of activeScenes) {
+          const segs = await listSegmentsByScene(scene.id);
+          if (segs.some((s) => s.language === activeLanguageTab && s.transcriptText)) {
+            translatedCount++;
+          }
+        }
+        if (translatedCount >= activeScenes.length) return; // Already translated
+
+        // Auto-trigger batch translation
+        batchTriggeredRef.current.add(activeLanguageTab);
+        setBatchMessage(`Traduction automatique en cours (${activeLanguageTab.toUpperCase()})...`);
+        logger.info(SERVICE_NAME, 'Auto-triggering batch translation', { lang: activeLanguageTab, tier: purchase.qualityTier });
+
+        try {
+          const { executeBatch } = await import('@/lib/multilang/batch-translation-service');
+          const { getGuideTourById } = await import('@/lib/api/appsync-client');
+          const langConfigs = [{ code: activeLanguageTab, label: activeLanguageTab.toUpperCase() }];
+          let completedCount = 0;
+
+          // Load tour description for translation
+          let tourDescription = '';
+          if (session.tourId) {
+            const tour = await getGuideTourById(session.tourId);
+            tourDescription = (tour as Record<string, unknown>)?.description as string ?? '';
+          }
+
+          const result = await executeBatch(
+            sessionId,
+            activeScenes,
+            langConfigs,
+            purchase.qualityTier as 'standard' | 'pro',
+            (lang, sceneId, step) => {
+              if (step === 'tts_completed') completedCount++;
+              setBatchMessage(`Traduction ${lang.toUpperCase()} : ${completedCount}/${activeScenes.length} scenes...`);
+              logger.info(SERVICE_NAME, 'Batch progress', { lang, sceneId, step });
+            },
+            session.title ?? '',
+            tourDescription,
+            session.language,
+          );
+
+          if (result.ok) {
+            setBatchMessage(`Traduction terminee ! ${result.value.completedScenes} scenes traduites.`);
+            setTimeout(() => setBatchMessage(null), 5000);
+            logger.info(SERVICE_NAME, 'Batch completed', { completed: result.value.completedScenes });
+            await refreshLangSegments();
+          } else {
+            setBatchMessage('Erreur lors de la traduction automatique.');
+            setTimeout(() => setBatchMessage(null), 5000);
+          }
+        } catch (err) {
+          logger.error(SERVICE_NAME, 'Batch translation failed', { error: String(err) });
+        }
+      })
+      .catch((e) => {
+        if (!cancelled) {
+          logger.error(SERVICE_NAME, 'Failed to fetch lang segments', { error: String(e) });
+        }
+      });
+    return () => { cancelled = true; };
+  }, [refreshLangSegments]);
+
+  // Build language tab items
+  const languageTabItems: LanguageTabItem[] = (() => {
+    if (!session) return [];
+    const baseLanguage = session.language;
+    const sceneCount = scenes.filter((s) => !s.archived).length;
+
+    const baseLangConfig = LANGUAGE_CONFIG.find((c) => c.code === baseLanguage);
+    const baseTab: LanguageTabItem = {
+      code: baseLanguage,
+      label: baseLangConfig?.label ?? baseLanguage.toUpperCase(),
+      countryCode: LANG_TO_COUNTRY[baseLanguage] ?? baseLanguage,
+      isBase: true,
+      progress: { completed: sceneCount, total: sceneCount },
+    };
+
+    // Include both active and refunded purchases in tabs
+    const visiblePurchases = purchases.filter((p) => p.status === 'active' || p.status === 'refunded');
+    const purchaseTabs: LanguageTabItem[] = visiblePurchases.map((p) => {
+      const langConfig = LANGUAGE_CONFIG.find((c) => c.code === p.language);
+      const batchProgress = useLanguageBatchStore.getState().progress[p.language];
+      // Always use cache for stable display (updated after every refresh/save)
+      const completedFromCache = completedCountCache.current[p.language] ?? 0;
+      const completedFromBatch = batchProgress?.completed ?? 0;
+      return {
+        code: p.language,
+        label: langConfig?.label ?? p.language.toUpperCase(),
+        countryCode: LANG_TO_COUNTRY[p.language] ?? p.language,
+        isBase: false,
+        progress: {
+          completed: Math.max(completedFromCache, completedFromBatch),
+          total: sceneCount,
+        },
+      };
+    });
+
+    return [baseTab, ...purchaseTabs];
+  })();
+
   const visibleScenes = scenes.filter((s) => !s.archived);
   const archivedCount = scenes.filter((s) => s.archived).length;
   const activeScene = visibleScenes.find((s) => s.id === activeSceneId) ?? null;
@@ -136,7 +341,7 @@ export default function ScenesPage() {
   const activeSceneIdRef = useRef(activeSceneId);
   activeSceneIdRef.current = activeSceneId;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const guideId = shouldUseStubs() ? 'guide-1' : null;
+  const guideId = session?.guideId ?? null;
 
   // Load session + scenes
   useEffect(() => {
@@ -269,7 +474,7 @@ export default function ScenesPage() {
     setPoiSaved(false);
     setSearchResult(null);
     setAddressSearch('');
-  }, [activeSceneId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeSceneId, activeScene?.latitude, activeScene?.longitude, activeScene?.title, activeScene?.poiDescription]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Geocode address
   const handleAddressSearch = useCallback(async () => {
@@ -299,32 +504,35 @@ export default function ScenesPage() {
   // Save POI data
   const handleSavePoi = useCallback(async () => {
     if (!activeScene) return;
-    const updates: Record<string, unknown> = {};
-    if (poiTitle) updates.title = poiTitle;
-    if (poiDescription) updates.poiDescription = poiDescription;
-    if (poiLat) updates.latitude = parseFloat(poiLat);
-    if (poiLng) updates.longitude = parseFloat(poiLng);
 
-    // Update local state
+    // Always include all POI fields in the update — empty string → null
+    const parsedLat = poiLat ? parseFloat(poiLat) : null;
+    const parsedLng = poiLng ? parseFloat(poiLng) : null;
+    const updates: Record<string, unknown> = {
+      title: poiTitle || null,
+      poiDescription: poiDescription || null,
+      latitude: (parsedLat !== null && !isNaN(parsedLat)) ? parsedLat : null,
+      longitude: (parsedLng !== null && !isNaN(parsedLng)) ? parsedLng : null,
+    };
+
+    // Update local state with current form values
     setScenes((prev) => prev.map((s) => {
       if (s.id !== activeScene.id) return s;
       return {
         ...s,
         title: poiTitle || s.title,
         poiDescription: poiDescription || s.poiDescription,
-        latitude: poiLat ? parseFloat(poiLat) : s.latitude,
-        longitude: poiLng ? parseFloat(poiLng) : s.longitude,
+        latitude: updates.latitude as number | null,
+        longitude: updates.longitude as number | null,
       };
     }));
 
-    // Persist to AppSync
-    if (!shouldUseStubs()) {
-      try {
-        const { updateStudioSceneMutation } = await import('@/lib/api/appsync-client');
-        await updateStudioSceneMutation(activeScene.id, updates);
-      } catch (e) {
-        logger.error(SERVICE_NAME, 'Failed to save POI', { sceneId: activeScene.id, error: String(e) });
-      }
+    // Persist to backend (works in both stub and real mode)
+    try {
+      const { updateSceneData } = await import('@/lib/api/studio');
+      await updateSceneData(activeScene.id, updates);
+    } catch (e) {
+      logger.error(SERVICE_NAME, 'Failed to save POI', { sceneId: activeScene.id, error: String(e) });
     }
     setPoiSaved(true);
     setTimeout(() => setPoiSaved(false), 3000);
@@ -367,7 +575,7 @@ export default function ScenesPage() {
     setScenes((prev) => prev.map((s) =>
       s.id === sceneId ? { ...s, studioAudioKey: audioKey, status: 'recorded' as const, updatedAt: new Date().toISOString() } : s
     ));
-    updateSceneAudio(sceneId, audioKey);
+    updateSceneAudio(sceneId, audioKey, sessionId);
     setAudioSaveToast(sourceLabel);
     setTimeout(() => setAudioSaveToast(null), 3000);
     logger.info(SERVICE_NAME, 'Audio source selected', { sceneId, source: sourceLabel });
@@ -394,19 +602,229 @@ export default function ScenesPage() {
     );
   }
 
+  const isLocked = ['submitted', 'published', 'revision_requested'].includes(session.status);
+  const isBaseLangLocked = isLocked && (activeLanguageTab === session.language || !activeLanguageTab || languageTabItems.length <= 1);
+
+  // Translation tab removed — translation is now handled via language tabs (ML-4 refonte)
   const tabs = [
     { key: 'poi' as const, label: '📍 POI' },
     { key: 'photos' as const, label: '📷 Photos', count: activeScene?.photosRefs.length },
     { key: 'text' as const, label: '📝 Texte' },
-    { key: 'translation' as const, label: '🌍 Traduction' },
     { key: 'audio' as const, label: '🎙️ Audio' },
   ];
 
   return (
     <div className="flex flex-col lg:flex-row min-h-[60vh]">
+      {/* DEBUG: Remove after testing */}
+      <div className="fixed bottom-2 right-2 z-50 text-xs px-2 py-1 rounded" style={{ background: shouldUseStubs() ? '#ef4444' : '#22c55e', color: 'white' }}>
+        {shouldUseStubs() ? '⚠️ STUBS' : '✅ REAL'}
+      </div>
       <SceneSidebar scenes={visibleScenes} activeSceneId={activeSceneId} onSceneSelect={isUploading ? () => {} : handleSceneSelect} />
 
       <div className="flex-1 p-4 lg:p-6">
+        {/* Batch translation progress banner */}
+        {batchMessage && (
+          <div className="mb-3 rounded-lg bg-indigo-50 border border-indigo-200 px-4 py-3 text-sm text-indigo-700 flex items-center gap-2" role="status" aria-live="polite">
+            <svg className="h-4 w-4 animate-spin text-indigo-500" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
+            {batchMessage}
+          </div>
+        )}
+
+        {/* Language tabs — only visible when purchased languages exist */}
+        {languageTabItems.length > 1 && (
+          <LanguageTabs
+            languages={languageTabItems}
+            activeLanguage={activeLanguageTab ?? session.language}
+            onLanguageChange={(lang) => { setActiveLanguageTab(lang); }}
+          />
+        )}
+
+        {/* Read-only banner for base language */}
+        {isBaseLangLocked && (
+          <div className="mb-3 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800" role="status" data-testid="readonly-banner">
+            Contenu soumis &mdash; modification non disponible. Vous pouvez travailler sur les langues traduites.
+          </div>
+        )}
+
+        {/* Non-base language: Refunded banner */}
+        {activeLanguageTab && activeLanguageTab !== session.language && languageTabItems.length > 1 &&
+          purchases.some((p) => p.language === activeLanguageTab && p.status === 'refunded') && (
+          <div
+            className="rounded-lg border border-purple-300 bg-purple-50 p-6 text-center space-y-2"
+            data-testid="language-refunded-banner"
+          >
+            <p className="text-lg font-semibold text-purple-800">Langue non disponible</p>
+            <p className="text-sm text-purple-600">
+              Cette langue a ete remboursee. Les segments traduits sont conserves mais ne peuvent plus etre edites.
+            </p>
+            <p className="text-xs text-purple-400">
+              Vous pouvez re-acheter cette langue depuis le menu multilangue.
+            </p>
+          </div>
+        )}
+
+        {/* Non-base language: TourInfoTranslation + all scenes inline */}
+        {activeLanguageTab && activeLanguageTab !== session.language && languageTabItems.length > 1 &&
+          !purchases.some((p) => p.language === activeLanguageTab && p.status === 'refunded') && (<>
+          <TourInfoTranslation
+            sessionId={sessionId}
+            language={activeLanguageTab}
+            sourceTitle={session.title ?? ''}
+            sourceDescription={''}
+            translatedTitle={session.translatedTitles?.[activeLanguageTab] ?? ''}
+            translatedDescription={session.translatedDescriptions?.[activeLanguageTab] ?? ''}
+            readOnly
+            onTitleChange={async (lang, title) => {
+              const updated = { ...(session.translatedTitles ?? {}), [lang]: title };
+              setSession((prev) => prev ? { ...prev, translatedTitles: updated } : prev);
+              const { updateStudioSessionMutation } = await import('@/lib/api/appsync-client');
+              const result = await updateStudioSessionMutation(sessionId, { translatedTitles: updated });
+              if (!result.ok) logger.error(SERVICE_NAME, 'Failed to save translated title', { lang, error: result.error });
+            }}
+            onDescriptionChange={async (lang, desc) => {
+              const updated = { ...(session.translatedDescriptions ?? {}), [lang]: desc };
+              setSession((prev) => prev ? { ...prev, translatedDescriptions: updated } : prev);
+              const { updateStudioSessionMutation } = await import('@/lib/api/appsync-client');
+              const result = await updateStudioSessionMutation(sessionId, { translatedDescriptions: updated });
+              if (!result.ok) logger.error(SERVICE_NAME, 'Failed to save translated description', { lang, error: result.error });
+            }}
+          />
+          {/* Staleness alert — shows when source text changed after translation */}
+          {(() => {
+            const activeScenes = scenes.filter((s) => !s.archived);
+            const staleInfos = getStaleSegments(langSegments, activeScenes);
+            return (
+              <StalenessAlert
+                staleCount={staleInfos.length}
+                staleSegmentIds={staleInfos.map((s) => s.segmentId)}
+                segments={langSegments}
+                scenes={activeScenes}
+                onRetranslate={(ids) => {
+                  logger.info(SERVICE_NAME, 'Retranslate stale from alert', { lang: activeLanguageTab, segmentIds: ids });
+                }}
+              />
+            );
+          })()}
+          <LanguageSceneList
+            scenes={scenes.filter((s) => !s.archived)}
+            lang={activeLanguageTab}
+            completedSceneIds={langCompletedSceneIds}
+            segments={langSegments}
+            sessionId={sessionId}
+            onRetryScene={(sceneId) => logger.info(SERVICE_NAME, 'Retry scene', { sceneId, lang: activeLanguageTab })}
+            onResumeBatch={() => logger.info(SERVICE_NAME, 'Resume batch', { lang: activeLanguageTab })}
+            hasMissingScenes={langSegments.length < scenes.filter((s) => !s.archived).length}
+            onSceneClick={(sceneId) => { logger.info(SERVICE_NAME, 'Scene click', { sceneId, lang: activeLanguageTab }); }}
+            onRetranslateStale={(sceneIds) => logger.info(SERVICE_NAME, 'Retranslate stale', { lang: activeLanguageTab, sceneIds })}
+            onGenerateMissingAudio={async () => {
+              logger.info(SERVICE_NAME, 'Generate missing audio', { lang: activeLanguageTab });
+              const activeScenes = scenes.filter((s) => !s.archived);
+              for (const scene of activeScenes) {
+                const seg = langSegments.find((s) => s.sceneId === scene.id && s.language === activeLanguageTab);
+                if (seg && seg.transcriptText && !seg.audioKey) {
+                  logger.info(SERVICE_NAME, 'Generating TTS for scene', { sceneId: scene.id, segmentId: seg.id });
+                  const ttsResult = await requestTTS(seg.id, seg.transcriptText, activeLanguageTab);
+                  if (ttsResult.status === 'completed' && ttsResult.audioKey) {
+                    await updateSceneSegment(seg.id, { audioKey: ttsResult.audioKey, audioSource: 'tts' });
+                  } else if (ttsResult.status === 'processing' && ttsResult.jobId) {
+                    // Poll for completion (stub: 5s delay)
+                    const poll = async () => {
+                      for (let i = 0; i < 20; i++) {
+                        await new Promise((r) => setTimeout(r, 1000));
+                        const status = await getTTSStatus(ttsResult.jobId);
+                        if (status && status.status === 'completed' && status.audioKey) {
+                          await updateSceneSegment(seg.id, { audioKey: status.audioKey, audioSource: 'tts' });
+                          return;
+                        }
+                        if (status && status.status === 'failed') return;
+                      }
+                    };
+                    await poll();
+                  }
+                }
+              }
+              await refreshLangSegments();
+            }}
+            onListenPreview={() => { alert('Fonctionnalite a venir'); }}
+            onFullPreview={() => { alert('Fonctionnalite a venir'); }}
+            onSubmitLanguage={() => logger.info(SERVICE_NAME, 'Submit language', { lang: activeLanguageTab })}
+          />
+
+          {/* All scenes inline: SplitEditor + LanguageAudioSection per scene */}
+          <div className="mt-4 space-y-6" data-testid="language-scenes-inline">
+            {scenes.filter((s) => !s.archived).map((sceneItem) => {
+              const langSegment = langSegments.find((s) => s.sceneId === sceneItem.id && s.language === activeLanguageTab);
+              const segment = langSegment ?? {
+                id: `pending-${sceneItem.id}-${activeLanguageTab}`,
+                sceneId: sceneItem.id,
+                segmentIndex: 0,
+                audioKey: null,
+                transcriptText: null,
+                startTimeMs: null,
+                endTimeMs: null,
+                language: activeLanguageTab,
+                sourceSegmentId: null,
+                ttsGenerated: false,
+                translationProvider: null,
+                costProvider: null,
+                costCharged: null,
+                status: 'empty' as const,
+                manuallyEdited: false,
+                translatedTitle: null,
+                sourceUpdatedAt: null,
+                audioSource: undefined,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+              };
+              const sourceText = sceneItem.transcriptText ?? '';
+              return (
+                <div key={sceneItem.id} className="space-y-3" data-testid={`language-scene-detail-${sceneItem.id}`}>
+                  <h3 className="text-md font-semibold text-gray-900">
+                    {segment.translatedTitle || sceneItem.title || `Scene ${sceneItem.sceneIndex + 1}`}
+                  </h3>
+                  <SplitEditor
+                    segment={segment}
+                    sourceText={sourceText}
+                    sourceTitle={sceneItem.title ?? ''}
+                    sourceLang={session.language}
+                    targetLang={activeLanguageTab}
+                    sessionId={sessionId}
+                    readOnly
+                    onSaved={() => {
+                      // Refresh from AppSync to get real values
+                      refreshLangSegments().catch((e) => logger.error(SERVICE_NAME, 'Refresh after save failed', { error: String(e) }));
+                    }}
+                    onSegmentCreated={(realSeg) => {
+                      // Replace the pending placeholder with the real segment in langSegments
+                      setLangSegments((prev) => {
+                        const filtered = prev.filter((s) => !(s.sceneId === sceneItem.id && s.language === activeLanguageTab));
+                        return [...filtered, realSeg];
+                      });
+                      logger.info(SERVICE_NAME, 'Segment created from SplitEditor', { sceneId: sceneItem.id, realId: realSeg.id });
+                      // Also refresh to ensure badges update
+                      refreshLangSegments().catch((e) => logger.error(SERVICE_NAME, 'Refresh after create failed', { error: String(e) }));
+                    }}
+                  />
+                  <LanguageAudioSection
+                    segment={segment}
+                    sessionId={sessionId}
+                    targetLanguage={activeLanguageTab}
+                    translatedText={segment.transcriptText ?? ''}
+                    gpuAvailable={gpuAvailable}
+                    onAudioSaved={() => {
+                      // Refresh from AppSync to get real audioKey values
+                      refreshLangSegments().catch((e) => logger.error(SERVICE_NAME, 'Refresh after audio saved failed', { error: String(e) }));
+                    }}
+                  />
+                  <hr className="border-gray-200" />
+                </div>
+              );
+            })}
+          </div>
+        </>)}
+
+        {/* Base language: existing scenes flow */}
+        {(!activeLanguageTab || activeLanguageTab === session.language || languageTabItems.length <= 1) && (<>
         <div className="flex items-center justify-between mb-3">
           <div>
             <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 text-sm mb-1 inline-block">&larr; Retour</Link>
@@ -449,7 +867,8 @@ export default function ScenesPage() {
                 value={poiTitle}
                 onChange={(e) => setPoiTitle(e.target.value)}
                 placeholder="Ex: Place aux Aires"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
+                disabled={isBaseLangLocked}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500"
                 data-testid="poi-title-input"
               />
             </div>
@@ -463,7 +882,8 @@ export default function ScenesPage() {
                 onChange={(e) => setPoiDescription(e.target.value)}
                 placeholder="Aide au touriste — ce qu'il verra à cet endroit"
                 rows={3}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-teal-400"
+                disabled={isBaseLangLocked}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
 
@@ -477,12 +897,13 @@ export default function ScenesPage() {
                   onChange={(e) => setAddressSearch(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddressSearch(); } }}
                   placeholder="Rechercher une adresse..."
-                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
+                  disabled={isBaseLangLocked}
+                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500"
                   data-testid="poi-address-search"
                 />
                 <button
                   onClick={handleAddressSearch}
-                  disabled={isSearching}
+                  disabled={isSearching || isBaseLangLocked}
                   className="bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 text-white text-sm px-4 py-2 rounded-lg transition-colors"
                 >
                   {isSearching ? '...' : '🔍 Chercher'}
@@ -504,7 +925,8 @@ export default function ScenesPage() {
                     value={poiLat}
                     onChange={(e) => setPoiLat(e.target.value)}
                     placeholder="43.6591"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
+                    disabled={isBaseLangLocked}
+                    className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500"
                   />
                 </div>
                 <div>
@@ -515,7 +937,8 @@ export default function ScenesPage() {
                     value={poiLng}
                     onChange={(e) => setPoiLng(e.target.value)}
                     placeholder="6.9243"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
+                    disabled={isBaseLangLocked}
+                    className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500"
                   />
                 </div>
               </div>
@@ -530,16 +953,18 @@ export default function ScenesPage() {
             </div>
 
             {/* Save button */}
-            <div className="flex items-center gap-3 pt-2">
-              <button
-                onClick={handleSavePoi}
-                className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-5 rounded-lg text-sm transition-colors"
-                data-testid="save-poi-btn"
-              >
-                💾 Enregistrer le POI
-              </button>
-              {poiSaved && <span className="text-sm text-green-600">✓ Enregistré</span>}
-            </div>
+            {!isBaseLangLocked && (
+              <div className="flex items-center gap-3 pt-2">
+                <button
+                  onClick={handleSavePoi}
+                  className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-5 rounded-lg text-sm transition-colors"
+                  data-testid="save-poi-btn"
+                >
+                  💾 Enregistrer le POI
+                </button>
+                {poiSaved && <span className="text-sm text-green-600">✓ Enregistré</span>}
+              </div>
+            )}
           </div>
         )}
 
@@ -555,7 +980,7 @@ export default function ScenesPage() {
           <div>
             <QuotaDisplay quota={quota} />
 
-            {activeScene.originalAudioKey && (
+            {activeScene.originalAudioKey && !isBaseLangLocked && (
               <div className="mt-3">
                 <TranscriptionControls
                   sceneId={activeScene.id}
@@ -584,26 +1009,13 @@ export default function ScenesPage() {
             </div>
             <textarea ref={textareaRef} id="scene-text" value={editorText} onChange={(e) => setEditorText(e.target.value)}
               placeholder="Saisissez ou modifiez le texte de cette scène..."
-              maxLength={50000} rows={10}
-              className="w-full mt-1 p-3 border border-gray-200 rounded-lg text-gray-800 text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-teal-400"
+              maxLength={50000} rows={10} readOnly={isBaseLangLocked}
+              className={`w-full mt-1 p-3 border border-gray-200 rounded-lg text-gray-800 text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-teal-400 ${isBaseLangLocked ? 'bg-gray-50 text-gray-500 cursor-not-allowed' : ''}`}
               data-testid="scene-editor" />
           </div>
         )}
 
-        {activeScene && activeSegment && activeTab === 'translation' && (
-          <div className="space-y-4">
-            <TranslationSelector
-              segment={activeSegment}
-              onTranslationStarted={() => logger.info(SERVICE_NAME, 'Translation started', { segmentId: activeSegment.id })}
-              onManualTranslation={(lang) => logger.info(SERVICE_NAME, 'Manual translation started', { segmentId: activeSegment.id, lang })}
-            />
-            <TranslationEditor
-              segment={activeSegment}
-              sessionId={sessionId}
-              onGenerateTTS={() => { setActiveTab('audio'); setOpenTool('tts'); }}
-            />
-          </div>
-        )}
+        {/* Translation tab removed — translation is handled via language tabs (ML-4 refonte multilangue) */}
 
         {activeScene && activeSegment && activeTab === 'audio' && (
           <div className="space-y-4">
@@ -647,7 +1059,7 @@ export default function ScenesPage() {
             )}
 
             {/* ════ SECTION 2 : Choisir la source ════ */}
-            <div>
+            {!isBaseLangLocked && (<div>
               <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Choisir la source</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2" role="radiogroup" aria-label="Source audio">
                 {/* Terrain */}
@@ -709,10 +1121,10 @@ export default function ScenesPage() {
                   </button>
                 )}
               </div>
-            </div>
+            </div>)}
 
             {/* ════ SECTION 3 : Outils (collapsibles) ════ */}
-            <div>
+            {!isBaseLangLocked && (<div>
               <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Outils</p>
               <div className="flex gap-2 mb-2">
                 {[
@@ -828,7 +1240,7 @@ export default function ScenesPage() {
                   Selectionnez d&apos;abord un audio pour utiliser le mixer.
                 </div>
               )}
-            </div>
+            </div>)}
 
             {/* Replace audio confirmation */}
             {pendingReplace && (
@@ -854,6 +1266,7 @@ export default function ScenesPage() {
             📦 {archivedCount} scène{archivedCount > 1 ? 's' : ''} archivée{archivedCount > 1 ? 's' : ''} (gérées dans l&apos;onglet Itinéraire)
           </p>
         )}
+        </>)}
 
         {/* Navigation */}
         <div className="flex justify-between mt-6 pt-4 border-t border-gray-100">

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { S3Image } from '@/components/studio/s3-image';
@@ -23,6 +23,13 @@ import {
   addReviewComment,
   getQueueItemIds,
 } from '@/lib/api/moderation';
+import { listLanguagePurchases } from '@/lib/api/language-purchase';
+import { listSegmentsByScene } from '@/lib/api/studio';
+import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
+import { audioPlayerService } from '@/lib/studio/audio-player-service';
+import { AudioPlayerBar } from '@/components/studio/audio-player';
+import { shouldUseStubs } from '@/config/api-mode';
+import type { TourLanguagePurchase, SceneSegment } from '@/types/studio';
 import { trackEvent, AdminAnalyticsEvents } from '@/lib/analytics';
 import { sendGuideNotification } from '@/lib/api/guide-notifications';
 import {
@@ -41,6 +48,7 @@ const LANG_FLAGS: Record<string, string> = {
 };
 
 function formatDuration(seconds: number): string {
+  if (!seconds || seconds <= 0) return '';
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   return `${m}:${s.toString().padStart(2, '0')}`;
@@ -49,7 +57,9 @@ function formatDuration(seconds: number): string {
 export default function ModerationReviewPage() {
   const router = useRouter();
   const params = useParams();
+  const searchParams = useSearchParams();
   const moderationId = params.moderationId as string;
+  const initialTab = searchParams.get('tab') as 'overview' | 'scenes' | 'pois' | 'tourist' | null;
 
   const [detail, setDetail] = useState<ModerationDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -72,7 +82,14 @@ export default function ModerationReviewPage() {
   const [reviewStartTime] = useState(() => Date.now());
   const [elapsedMinutes, setElapsedMinutes] = useState(0);
   const [playingSceneId, setPlayingSceneId] = useState<string | null>(null);
-  const [activeContentTab, setActiveContentTab] = useState<'overview' | 'scenes' | 'pois' | 'tourist'>('overview');
+  const [activeContentTab, setActiveContentTab] = useState<'overview' | 'scenes' | 'pois' | 'tourist'>(
+    initialTab === 'tourist' || initialTab === 'overview' || initialTab === 'scenes' || initialTab === 'pois' ? initialTab : 'overview',
+  );
+  // Language purchases and translated segments for preview
+  const [languagePurchases, setLanguagePurchases] = useState<TourLanguagePurchase[]>([]);
+  const [segmentsByScene, setSegmentsByScene] = useState<Record<string, SceneSegment[]>>({});
+  const [activePreviewLang, setActivePreviewLang] = useState<string>('fr');
+  const [loadingSegments, setLoadingSegments] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -90,6 +107,33 @@ export default function ModerationReviewPage() {
         })),
       );
       setLoading(false);
+
+      // Load language purchases and segments for the tour preview
+      if (d?.sessionId) {
+        listLanguagePurchases(d.sessionId).then((result) => {
+          if (result.ok) {
+            setLanguagePurchases(result.value);
+          }
+        });
+
+        // Load segments for all scenes (for translated content)
+        if (d.scenes.length > 0) {
+          setLoadingSegments(true);
+          Promise.all(
+            d.scenes.map(async (scene) => {
+              const segments = await listSegmentsByScene(scene.id);
+              return { sceneId: scene.id, segments };
+            }),
+          ).then((results) => {
+            const map: Record<string, SceneSegment[]> = {};
+            for (const r of results) {
+              map[r.sceneId] = r.segments;
+            }
+            setSegmentsByScene(map);
+            setLoadingSegments(false);
+          });
+        }
+      }
     });
     trackEvent(AdminAnalyticsEvents.ADMIN_MODERATION_REVIEW_START, { moderation_id: moderationId });
   }, [moderationId]);
@@ -237,6 +281,46 @@ export default function ModerationReviewPage() {
     );
   };
 
+  /** Play audio for a scene (resolves S3 URL, then uses audioPlayerService) */
+  const handlePlayAudio = useCallback(async (sceneId: string, audioRef: string) => {
+    if (playingSceneId === sceneId) {
+      audioPlayerService.stop();
+      setPlayingSceneId(null);
+      return;
+    }
+    try {
+      let url: string;
+      if (audioRef.startsWith('blob:') || audioRef.startsWith('http')) {
+        url = audioRef;
+      } else if (shouldUseStubs()) {
+        // In stub mode, no real S3 — just toggle the visual indicator
+        setPlayingSceneId(sceneId);
+        return;
+      } else {
+        url = await getPlayableUrl(audioRef);
+      }
+      audioPlayerService.play(url);
+      setPlayingSceneId(sceneId);
+    } catch {
+      setPlayingSceneId(null);
+    }
+  }, [playingSceneId]);
+
+  /** Get available translation languages from segments */
+  const availableLanguages = (() => {
+    const langs = new Set<string>();
+    for (const segments of Object.values(segmentsByScene)) {
+      for (const seg of segments) {
+        if (seg.language) langs.add(seg.language);
+      }
+    }
+    // Also add languages from purchases
+    for (const p of languagePurchases) {
+      langs.add(p.language);
+    }
+    return Array.from(langs).sort();
+  })();
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -372,19 +456,27 @@ export default function ModerationReviewPage() {
           {/* Tourist preview tab — mirrors catalogue experience */}
           {activeContentTab === 'tourist' && (
             <div className="space-y-6">
-              {/* Hero + Title — like catalogue tour detail */}
-              <div className="bg-gradient-to-r from-teal-700 to-teal-900 rounded-xl p-6 text-white">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="bg-green-400 text-green-900 text-xs font-bold px-2 py-0.5 rounded">GRATUIT</span>
-                  {detail.themes.map((t) => (
-                    <span key={t} className="bg-white/20 text-white text-xs px-2 py-0.5 rounded">{t}</span>
-                  ))}
+              {/* Hero + Cover Photo + Title — like catalogue tour detail */}
+              <div className="bg-gradient-to-r from-teal-700 to-teal-900 rounded-xl overflow-hidden text-white">
+                {detail.heroImageUrl && (
+                  <div className="relative h-48 w-full">
+                    <S3Image s3Key={detail.heroImageUrl} alt={`Couverture: ${detail.tourTitle}`} className="w-full h-full object-cover" fallback="" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 to-transparent" />
+                  </div>
+                )}
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="bg-green-400 text-green-900 text-xs font-bold px-2 py-0.5 rounded">GRATUIT</span>
+                    {detail.themes.map((t) => (
+                      <span key={t} className="bg-white/20 text-white text-xs px-2 py-0.5 rounded">{t}</span>
+                    ))}
+                  </div>
+                  <h2 className="text-2xl font-bold mb-1">{detail.tourTitle}</h2>
+                  <p className="text-teal-200 text-sm">
+                    {detail.city} &middot; {detail.duration} min &middot; {detail.distance} km &middot; {detail.poiCount} points d&apos;interet
+                    &middot; Difficulte : {detail.difficulty} &middot; {LANG_FLAGS[detail.languePrincipale] ?? detail.languePrincipale}
+                  </p>
                 </div>
-                <h2 className="text-2xl font-bold mb-1">{detail.tourTitle}</h2>
-                <p className="text-teal-200 text-sm">
-                  {detail.city} &middot; {detail.duration} min &middot; {detail.distance} km &middot; {detail.poiCount} points d&apos;intérêt
-                  &middot; Difficulté : {detail.difficulty} &middot; {LANG_FLAGS[detail.languePrincipale] ?? detail.languePrincipale}
-                </p>
               </div>
 
               {/* Guide card — like catalogue */}
@@ -433,39 +525,137 @@ export default function ModerationReviewPage() {
                 </div>
               )}
 
-              {/* POIs list — like catalogue */}
+              {/* Language tabs for translated content */}
+              {availableLanguages.length > 1 && (
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Contenu par langue</h3>
+                  <div className="flex gap-1 bg-gray-100 rounded-lg p-1 w-fit mb-4">
+                    {availableLanguages.map((lang) => {
+                      const purchase = languagePurchases.find((p) => p.language === lang);
+                      return (
+                        <button
+                          key={lang}
+                          onClick={() => setActivePreviewLang(lang)}
+                          className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                            activePreviewLang === lang
+                              ? 'bg-white text-teal-700 shadow-sm'
+                              : 'text-gray-500 hover:text-gray-700'
+                          }`}
+                          data-testid={`lang-tab-${lang}`}
+                        >
+                          {LANG_FLAGS[lang] ?? lang.toUpperCase()}
+                          {purchase && (
+                            <span className={`ml-1 text-[10px] ${
+                              purchase.moderationStatus === 'approved' ? 'text-green-600' :
+                              purchase.moderationStatus === 'rejected' ? 'text-red-600' :
+                              'text-gray-400'
+                            }`}>
+                              ({purchase.moderationStatus})
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {loadingSegments ? (
+                    <p className="text-sm text-gray-400">Chargement des segments traduits...</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {detail.scenes.map((scene) => {
+                        const sceneSegments = (segmentsByScene[scene.id] ?? []).filter(
+                          (seg) => seg.language === activePreviewLang,
+                        );
+                        if (sceneSegments.length === 0 && activePreviewLang !== detail.languePrincipale) return null;
+                        return (
+                          <div key={scene.id} className="border border-gray-100 rounded-lg p-3">
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className="w-6 h-6 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xs font-bold">{scene.order}</span>
+                              <p className="font-medium text-gray-900 text-sm">{scene.title}</p>
+                            </div>
+                            {activePreviewLang === detail.languePrincipale ? (
+                              <p className="text-sm text-gray-700">{scene.transcriptText ?? 'Aucun texte'}</p>
+                            ) : sceneSegments.length > 0 ? (
+                              <div className="space-y-1">
+                                {sceneSegments.map((seg) => (
+                                  <p key={seg.id} className="text-sm text-gray-700">
+                                    {seg.transcriptText ?? <span className="text-gray-400 italic">Traduction en attente</span>}
+                                  </p>
+                                ))}
+                              </div>
+                            ) : (
+                              <p className="text-sm text-gray-400 italic">Pas de contenu dans cette langue</p>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* POIs list — like catalogue with audio playback */}
               <div className="bg-white rounded-xl border border-gray-200 p-5">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Points d&apos;intérêt</h3>
-                <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Points d&apos;interet ({detail.scenes.length})</h3>
+                <div className="space-y-6">
                   {detail.scenes.map((scene) => (
-                    <div key={scene.id} className="flex gap-4">
+                    <div key={scene.id} className="flex gap-4" data-testid={`tourist-scene-${scene.id}`}>
                       <div className="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
                         {scene.order}
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 space-y-2">
                         <p className="font-medium text-gray-900">{scene.title}</p>
                         {scene.poiDescription && (
-                          <p className="text-sm text-gray-600 mt-0.5">{scene.poiDescription}</p>
+                          <p className="text-sm text-gray-600">{scene.poiDescription}</p>
                         )}
+                        {/* Full narration text — no truncation for admin preview */}
                         {scene.transcriptText && (
-                          <p className="text-sm text-gray-500 mt-1 italic line-clamp-3">&ldquo;{scene.transcriptText}&rdquo;</p>
+                          <div className="bg-gray-50 rounded-lg p-3">
+                            <p className="text-xs font-medium text-gray-400 mb-1">Narration</p>
+                            <p className="text-sm text-gray-700 whitespace-pre-wrap">{scene.transcriptText}</p>
+                          </div>
                         )}
                         {/* Photos */}
                         {scene.photosRefs.length > 0 && (
-                          <div className="flex gap-2 mt-2">
+                          <div className="flex gap-2 overflow-x-auto">
                             {scene.photosRefs.map((ref, i) => (
-                              <S3Image key={i} s3Key={ref} alt={`${scene.title} photo ${i + 1}`} className="w-24 h-20 rounded-lg" fallback={`📷 ${i + 1}`} />
+                              <S3Image key={i} s3Key={ref} alt={`${scene.title} photo ${i + 1}`} className="w-28 h-24 rounded-lg flex-shrink-0" />
                             ))}
                           </div>
                         )}
-                        {/* Audio indicator */}
+                        {/* Audio player */}
                         {scene.audioRef && (
-                          <p className="text-xs text-teal-600 mt-1">🎵 Audio disponible</p>
+                          <div className="bg-gray-50 rounded-lg p-2">
+                            <div className="flex items-center gap-3">
+                              <button
+                                onClick={() => handlePlayAudio(scene.id, scene.audioRef)}
+                                className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
+                                  playingSceneId === scene.id
+                                    ? 'bg-red-600 text-white hover:bg-red-700'
+                                    : 'bg-teal-600 text-white hover:bg-teal-700'
+                                }`}
+                                data-testid={`play-audio-${scene.id}`}
+                              >
+                                {playingSceneId === scene.id ? '\u23F8' : '\u25B6'}
+                              </button>
+                              <div className="flex-1">
+                                <p className="text-xs text-gray-500">Audio{formatDuration(scene.durationSeconds) ? ` \u00b7 ${formatDuration(scene.durationSeconds)}` : ''}</p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        {/* GPS coords */}
+                        {scene.latitude && scene.longitude && (
+                          <p className="text-xs text-gray-400">GPS: {scene.latitude.toFixed(4)}, {scene.longitude.toFixed(4)}</p>
                         )}
                       </div>
                     </div>
                   ))}
                 </div>
+              </div>
+
+              {/* Global audio player bar */}
+              <div className="sticky bottom-0" data-testid="tourist-audio-player">
+                <AudioPlayerBar label="Lecture audio" />
               </div>
 
               {/* Sidebar preview — like catalogue CTA card */}
@@ -572,7 +762,9 @@ export default function ModerationReviewPage() {
                         <div>
                           <h3 className="font-semibold text-gray-900">{scene.title}</h3>
                           <p className="text-xs text-gray-500">
-                            {formatDuration(scene.durationSeconds)} &middot; {scene.photosRefs.length} photo{scene.photosRefs.length !== 1 ? 's' : ''}
+                            {scene.audioRef ? (formatDuration(scene.durationSeconds) || 'Audio') : 'Pas d\'audio'}
+                            {' \u00b7 '}
+                            {scene.photosRefs.length} photo{scene.photosRefs.length !== 1 ? 's' : ''}
                           </p>
                         </div>
                       </div>
@@ -581,15 +773,23 @@ export default function ModerationReviewPage() {
                       <div className="bg-gray-50 rounded-lg p-3 mb-3">
                         <div className="flex items-center gap-3">
                           <button
-                            onClick={() => setPlayingSceneId(playingSceneId === scene.id ? null : scene.id)}
-                            className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm hover:bg-red-700"
+                            onClick={() => {
+                              if (playingSceneId === scene.id) {
+                                audioPlayerService.pause();
+                                setPlayingSceneId(null);
+                              } else if (scene.audioRef) {
+                                handlePlayAudio(scene.id, scene.audioRef);
+                              }
+                            }}
+                            disabled={!scene.audioRef}
+                            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${scene.audioRef ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
                           >
                             {playingSceneId === scene.id ? '⏸' : '▶'}
                           </button>
                           <div className="flex-1 bg-gray-200 rounded-full h-2">
                             <div className="bg-red-500 h-2 rounded-full" style={{ width: playingSceneId === scene.id ? '45%' : '0%' }} />
                           </div>
-                          <span className="text-xs text-gray-500">{formatDuration(scene.durationSeconds)}</span>
+                          {formatDuration(scene.durationSeconds) && <span className="text-xs text-gray-500">{formatDuration(scene.durationSeconds)}</span>}
                         </div>
                       </div>
 

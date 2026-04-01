@@ -36,6 +36,18 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
   // Sync editable text when prop changes
   useEffect(() => { setEditableText(text); }, [text]);
 
+  // Auto-save when TTS completes via polling (not just immediate completion)
+  const autoSavedRef = useRef(false);
+  useEffect(() => {
+    if (ttsState?.status === 'completed' && ttsState.audioKey && onSaveAsSceneAudio && !autoSavedRef.current) {
+      autoSavedRef.current = true;
+      onSaveAsSceneAudio(ttsState.audioKey, ttsState.language ?? language);
+    }
+    if (ttsState?.status !== 'completed') {
+      autoSavedRef.current = false;
+    }
+  }, [ttsState?.status, ttsState?.audioKey, ttsState?.language, language, onSaveAsSceneAudio]);
+
   const isProcessing = ttsState?.status === 'processing';
   const isCompleted = ttsState?.status === 'completed';
   const isFailed = ttsState?.status === 'failed';
@@ -58,6 +70,10 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
           language: result.language,
           durationMs: result.durationMs,
         });
+        // Auto-save audio to segment (no need for manual "Utiliser" button click)
+        if (result.audioKey && onSaveAsSceneAudio) {
+          onSaveAsSceneAudio(result.audioKey, result.language ?? language);
+        }
         logger.info(SERVICE_NAME, 'TTS completed immediately', { segmentId: segment.id });
       } else if (result.status === 'processing' && result.jobId) {
         setSegmentStatus(segment.id, { jobId: result.jobId });

@@ -119,6 +119,7 @@ const MOCK_PROFILE: GuideProfile = {
   rating: 4.7,
   tourCount: 2,
   verified: true,
+  freeLanguageUsed: false,
 };
 
 // --- Real API helpers ---
@@ -236,12 +237,13 @@ export async function getGuideProfile(guideId: string): Promise<GuideProfile | n
     rating: profile.rating ?? null,
     tourCount: profile.tourCount ?? null,
     verified: profile.verified ?? false,
+    freeLanguageUsed: ((profile as Record<string, unknown>).freeLanguageUsed as boolean | undefined) ?? false,
   };
 }
 
 export async function updateGuideProfile(
   guideId: string,
-  updates: Partial<Pick<GuideProfile, 'displayName' | 'bio' | 'city' | 'specialties' | 'languages'>>,
+  updates: Partial<Pick<GuideProfile, 'displayName' | 'bio' | 'city' | 'specialties' | 'languages' | 'freeLanguageUsed'>>,
 ): Promise<{ ok: boolean; error?: string }> {
   if (updates.displayName && (updates.displayName.length < 2 || updates.displayName.length > 50)) {
     return { ok: false, error: 'Le nom doit contenir entre 2 et 50 caracteres' };

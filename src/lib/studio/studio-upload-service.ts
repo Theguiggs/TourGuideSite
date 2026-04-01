@@ -9,7 +9,7 @@ const SERVICE_NAME = 'StudioUploadService';
 
 // --- Validation ---
 
-const AUDIO_MIME_PREFIXES = ['audio/webm', 'audio/mp4', 'audio/ogg', 'audio/x-aac', 'audio/aac'];
+const AUDIO_MIME_PREFIXES = ['audio/webm', 'audio/mp4', 'audio/ogg', 'audio/x-aac', 'audio/aac', 'audio/wav', 'audio/wave', 'audio/x-wav'];
 const PHOTO_MIMES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
 /** Check audio MIME with prefix match (handles codecs suffix like "audio/webm;codecs=opus") */
@@ -160,6 +160,42 @@ export async function uploadPhoto(
   } catch (error) {
     logger.error(SERVICE_NAME, 'Photo upload failed after retries', { sessionId, sceneIndex, photoIndex, error: String(error) });
     return { ok: false, error: 'Upload photo échoué après 3 tentatives.' };
+  }
+}
+
+export async function uploadCoverPhoto(
+  file: File,
+  sessionId: string,
+): Promise<{ ok: true; s3Key: string } | { ok: false; error: string }> {
+  if (!PHOTO_MIMES.has(file.type)) {
+    return { ok: false, error: `Type photo non supporté : ${file.type}` };
+  }
+  if (file.size > MAX_PHOTO_SIZE) {
+    return { ok: false, error: `Photo trop volumineuse (${Math.round(file.size / 1024 / 1024)}MB > 5MB)` };
+  }
+
+  const ext = getExtFromMime(file.type);
+  const uploadId = `${sessionId}-cover`;
+
+  try {
+    const result = await withRetry(() =>
+      uploadData({
+        path: ({ identityId }) => `guide-studio/${identityId}/${sessionId}/cover.${ext}`,
+        data: file,
+        options: {
+          onProgress: (event) => {
+            notifyProgress(uploadId, event.transferredBytes, event.totalBytes ?? file.size);
+          },
+        },
+      }).result,
+    );
+
+    const s3Key = result.path;
+    logger.info(SERVICE_NAME, 'Cover photo uploaded', { sessionId, s3Key });
+    return { ok: true, s3Key };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'Cover photo upload failed after retries', { sessionId, error: String(error) });
+    return { ok: false, error: 'Upload photo de couverture échoué après 3 tentatives.' };
   }
 }
 

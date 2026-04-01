@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { logger } from '@/lib/logger';
-import { getStudioSession, listStudioScenes } from '@/lib/api/studio';
+import { getStudioSession, listStudioScenes, listSegmentsByScene } from '@/lib/api/studio';
 import { SceneSidebar } from '@/components/studio/scene-sidebar';
 import { AudioRecorder } from '@/components/studio/audio-recorder';
 import { TakesList } from '@/components/studio/takes-list';
@@ -25,19 +25,28 @@ const Teleprompter = dynamic(
 
 export default function RecordPage() {
   const params = useParams<{ sessionId: string }>();
+  const searchParams = useSearchParams();
   const sessionId = params.sessionId;
+  const querySceneId = searchParams.get('sceneId');
+  const queryLang = searchParams.get('lang');
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenes, setScenes] = useState<StudioScene[]>([]);
   const [activeSceneId, setActiveSceneId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [translatedText, setTranslatedText] = useState<string | null>(null);
+  const [translatedTextLoaded, setTranslatedTextLoaded] = useState(false);
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
 
   const activeScene = scenes.find((s) => s.id === activeSceneId) ?? null;
-  const sceneText = activeScene?.transcriptText ?? '';
+  // Use translated text if recording in another language
+  // If translated text is loaded but empty, show a placeholder message instead of source text
+  const sceneText = queryLang && translatedTextLoaded
+    ? (translatedText || `[Aucun texte ${queryLang.toUpperCase()} pour cette scene. Redigez le texte dans l'onglet de la langue avant d'enregistrer.]`)
+    : (activeScene?.transcriptText ?? '');
 
   useEffect(() => {
     if (!sessionId) return;
@@ -53,8 +62,24 @@ export default function RecordPage() {
         setSession(sess);
         setScenes(scns);
         if (sess) setActiveSession(sess);
-        if (scns.length > 0) setActiveSceneId(scns[0].id);
-        logger.info(SERVICE_NAME, 'Record page loaded', { sessionId, scenesCount: scns.length });
+        // If sceneId from query param, use it; otherwise default to first scene
+        const initialSceneId = querySceneId && scns.some((s) => s.id === querySceneId)
+          ? querySceneId
+          : scns[0]?.id ?? null;
+        if (initialSceneId) setActiveSceneId(initialSceneId);
+
+        // If recording in another language, load the translated text
+        if (queryLang && initialSceneId) {
+          try {
+            const segments = await listSegmentsByScene(initialSceneId);
+            const langSegment = segments.find((s) => s.language === queryLang);
+            setTranslatedText(langSegment?.transcriptText ?? null);
+          } catch (segErr) {
+            logger.warn(SERVICE_NAME, 'Could not load translated segment', { error: String(segErr) });
+          }
+          setTranslatedTextLoaded(true);
+        }
+        logger.info(SERVICE_NAME, 'Record page loaded', { sessionId, scenesCount: scns.length, lang: queryLang, sceneId: initialSceneId });
       } catch (e) {
         if (!cancelled) {
           setError('Impossible de charger la session.');
@@ -100,7 +125,21 @@ export default function RecordPage() {
       <SceneSidebar
         scenes={scenes}
         activeSceneId={activeSceneId}
-        onSceneSelect={setActiveSceneId}
+        onSceneSelect={async (sceneId: string) => {
+          setActiveSceneId(sceneId);
+          // Load translated text for new scene if recording in another language
+          if (queryLang) {
+            try {
+              const segments = await listSegmentsByScene(sceneId);
+              const langSeg = segments.find((s) => s.language === queryLang);
+              setTranslatedText(langSeg?.transcriptText ?? null);
+              setTranslatedTextLoaded(true);
+            } catch {
+              setTranslatedText(null);
+              setTranslatedTextLoaded(true);
+            }
+          }
+        }}
       />
 
       <div className="flex-1 p-4 lg:p-6 flex flex-col">
@@ -111,6 +150,11 @@ export default function RecordPage() {
             </Link>
             <h2 className="text-lg font-semibold text-gray-900">
               Prompteur — {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
+              {queryLang && (
+                <span className="ml-2 text-sm font-normal text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">
+                  {queryLang.toUpperCase()}
+                </span>
+              )}
             </h2>
           </div>
           <p className="text-xs text-gray-400">Espace = pause/reprendre · Échap = stop</p>

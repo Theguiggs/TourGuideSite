@@ -18,9 +18,9 @@ interface TourFilterBarProps {
 
 const STATUS_OPTIONS = [
   { value: 'review', label: 'En revue' },
-  { value: 'revision_requested', label: 'Corrections demandées' },
-  { value: 'published', label: 'Validée' },
-  { value: 'rejected', label: 'Rejetée' },
+  { value: 'revision_requested', label: 'R\u00e9vision demand\u00e9e' },
+  { value: 'published', label: 'Publi\u00e9' },
+  { value: 'rejected', label: 'Rejet\u00e9' },
 ];
 
 export default function TourFilterBar({ filters, onChange, showStatusFilter, cities = [] }: TourFilterBarProps) {

@@ -4,11 +4,13 @@ import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
-import { getStudioSession, getSessionStatusConfig } from '@/lib/api/studio';
+import { getStudioSession, getSessionStatusConfig, listStudioScenes, listSegmentsByScene } from '@/lib/api/studio';
 import { submitForReview, retractSubmission, updateSessionStatus } from '@/lib/api/studio-submission';
+import { listLanguagePurchases, checkLanguageReadiness, submitLanguageForModeration } from '@/lib/api/language-purchase';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
-import type { StudioSession } from '@/types/studio';
+import { LANGUAGE_CONFIG } from '@/components/studio/language-checkout/language-checkbox-card';
+import type { StudioSession, TourLanguagePurchase, StudioScene, SceneSegment } from '@/types/studio';
 
 const SERVICE_NAME = 'SubmissionPage';
 
@@ -17,8 +19,12 @@ export default function SubmissionPage() {
   const sessionId = params.sessionId;
 
   const [session, setSession] = useState<StudioSession | null>(null);
+  const [purchases, setPurchases] = useState<TourLanguagePurchase[]>([]);
+  const [scenes, setScenes] = useState<StudioScene[]>([]);
+  const [segments, setSegments] = useState<SceneSegment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isActioning, setIsActioning] = useState(false);
+  const [langActioning, setLangActioning] = useState<string | null>(null);
   const [message, setMessage] = useState<{ text: string; success: boolean } | null>(null);
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
@@ -27,6 +33,9 @@ export default function SubmissionPage() {
   const reload = useCallback(async () => {
     const sess = await getStudioSession(sessionId);
     if (sess) { setSession(sess); setActiveSession(sess); }
+    // Reload language purchases
+    const purchaseResult = await listLanguagePurchases(sessionId);
+    if (purchaseResult.ok) setPurchases(purchaseResult.value.filter((p) => p.status === 'active'));
   }, [sessionId, setActiveSession]);
 
   useEffect(() => {
@@ -34,10 +43,27 @@ export default function SubmissionPage() {
     let cancelled = false;
     async function load() {
       try {
-        const sess = await getStudioSession(sessionId);
+        const [sess, scns] = await Promise.all([
+          getStudioSession(sessionId),
+          listStudioScenes(sessionId),
+        ]);
         if (!cancelled) {
           setSession(sess);
           if (sess) setActiveSession(sess);
+          const activeScenes = scns.filter((s) => !s.archived);
+          setScenes(activeScenes);
+          // Load purchases
+          const purchaseResult = await listLanguagePurchases(sessionId);
+          if (!cancelled && purchaseResult.ok) {
+            setPurchases(purchaseResult.value.filter((p) => p.status === 'active'));
+          }
+          // Load segments for readiness checks
+          try {
+            const segResults = await Promise.all(activeScenes.map((s) => listSegmentsByScene(s.id)));
+            if (!cancelled) setSegments(segResults.flat());
+          } catch {
+            // Non-blocking
+          }
         }
       } catch {
         /* ignore */
@@ -132,6 +158,85 @@ export default function SubmissionPage() {
       {/* Review feedback panel — full admin review */}
       {session.tourId && (
         <ReviewFeedbackPanel tourId={session.tourId} sessionStatus={session.status} />
+      )}
+
+      {/* Per-language moderation status */}
+      {purchases.length > 0 && (
+        <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6" data-testid="language-submissions-section">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Langues</h2>
+
+          {/* Base language */}
+          <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 mb-2 bg-gray-50">
+            <div>
+              <span className="text-sm font-medium text-gray-900">
+                Langue principale ({(session.language || 'fr').toUpperCase()})
+              </span>
+            </div>
+            <span className="inline-flex px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+              {statusConfig.label}
+            </span>
+          </div>
+
+          {/* Purchased languages */}
+          {purchases.map((purchase) => {
+            const langConfig = LANGUAGE_CONFIG.find((c) => c.code === purchase.language);
+            const langLabel = langConfig?.label ?? purchase.language.toUpperCase();
+            const langCode = purchase.language.toUpperCase();
+            const readiness = checkLanguageReadiness(scenes, segments, purchase.language);
+
+            const moderationBadge: Record<string, { label: string; className: string }> = {
+              draft: { label: 'Brouillon', className: 'bg-gray-100 text-gray-600' },
+              submitted: { label: 'Soumis', className: 'bg-yellow-100 text-yellow-700' },
+              approved: { label: 'Approuve', className: 'bg-green-100 text-green-700' },
+              rejected: { label: 'Refuse', className: 'bg-red-100 text-red-700' },
+              revision_requested: { label: 'Revision demandee', className: 'bg-orange-100 text-orange-700' },
+            };
+
+            const badge = moderationBadge[purchase.moderationStatus] ?? moderationBadge.draft;
+            const canSubmitLang = purchase.moderationStatus === 'draft' || purchase.moderationStatus === 'revision_requested' || purchase.moderationStatus === 'rejected';
+
+            return (
+              <div key={purchase.id} className="flex items-center justify-between rounded-lg border border-gray-200 p-3 mb-2" data-testid={`lang-submission-${purchase.language}`}>
+                <div className="flex-1 min-w-0">
+                  <span className="text-sm font-medium text-gray-900">
+                    {langLabel} ({langCode})
+                  </span>
+                  <span className="text-xs text-gray-500 ml-2">
+                    {readiness.complete}/{readiness.total} scenes
+                    {readiness.ready ? ' — Texte et audio complets' : ` — ${readiness.total - readiness.complete} scene(s) incomplete(s)`}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${badge.className}`}>
+                    {badge.label}
+                  </span>
+                  {canSubmitLang && readiness.ready && (
+                    <button
+                      onClick={() => doAction(
+                        `Version ${langLabel} soumise !`,
+                        async () => {
+                          setLangActioning(purchase.language);
+                          const result = await submitLanguageForModeration(sessionId, purchase.language, scenes, segments);
+                          setLangActioning(null);
+                          if (result.ok) return { ok: true };
+                          return { ok: false, error: result.error.message };
+                        },
+                      )}
+                      disabled={isActioning || langActioning === purchase.language}
+                      className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors"
+                      data-testid={`submit-lang-${purchase.language}`}
+                    >
+                      {langActioning === purchase.language ? 'En cours...' : 'Soumettre'}
+                    </button>
+                  )}
+                  {canSubmitLang && !readiness.ready && (
+                    <span className="text-xs text-amber-600 font-medium">Incomplet</span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       )}
 
       {/* Actions */}

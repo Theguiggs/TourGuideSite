@@ -1,5 +1,6 @@
-import type { TranslationProvider, TranslationJobStatus } from '@/types/studio';
+import type { TranslationProvider, TranslationJobStatus, QualityTier } from '@/types/studio';
 import { shouldUseStubs } from '@/config/api-mode';
+import { getProviderForTier, isLanguagePremium } from '@/lib/multilang/provider-router';
 import { logger } from '@/lib/logger';
 
 const SERVICE_NAME = 'TranslationAPI';
@@ -13,6 +14,7 @@ export interface TranslationResult {
   provider: TranslationProvider;
   costProvider: number | null;   // centimes
   costCharged: number | null;    // centimes
+  errorCode?: number;
 }
 
 export interface CostEstimate {
@@ -56,6 +58,7 @@ const STUB_TRANSLATIONS: Record<string, Record<string, string>> = {
 };
 
 let stubHealthGpuDown = false;
+const stubProviderDown = new Map<TranslationProvider, boolean>();
 
 // --- Stub API ---
 
@@ -66,6 +69,20 @@ function stubRequestTranslation(
   targetLang: string,
   provider: TranslationProvider,
 ): TranslationResult {
+  // Simulate provider unavailable
+  if (stubProviderDown.get(provider)) {
+    logger.error(SERVICE_NAME, 'Stub provider unavailable', { provider, segmentId });
+    return {
+      jobId: '',
+      status: 'failed',
+      translatedText: null,
+      provider,
+      costProvider: null,
+      costCharged: null,
+      errorCode: 2609,
+    };
+  }
+
   const jobId = `trans-${Date.now()}-${segmentId}`;
   stubJobs.set(jobId, {
     segmentId,
@@ -145,8 +162,17 @@ export async function requestTranslation(
   text: string,
   sourceLang: string,
   targetLang: string,
-  provider: TranslationProvider,
+  qualityTier: QualityTier,
 ): Promise<TranslationResult> {
+  // Derive provider from tier
+  let provider = getProviderForTier(qualityTier);
+
+  // Premium languages force deepl even if standard tier
+  if (isLanguagePremium(targetLang) && provider === 'marianmt') {
+    logger.warn(SERVICE_NAME, 'Premium language override: forcing deepl', { targetLang, qualityTier });
+    provider = 'deepl';
+  }
+
   if (shouldUseStubs()) {
     await new Promise((r) => setTimeout(r, 300));
     return stubRequestTranslation(segmentId, text, sourceLang, targetLang, provider);
@@ -160,7 +186,37 @@ export async function requestTranslation(
         headers: getMicroserviceHeaders(),
         body: JSON.stringify({ text, source_lang: sourceLang, target_lang: targetLang }),
       });
+
+      // Provider unavailable (HTTP 503)
+      if (response.status === 503) {
+        logger.error(SERVICE_NAME, 'Provider unavailable (503)', { provider });
+        return {
+          jobId: '',
+          status: 'failed',
+          translatedText: null,
+          provider,
+          costProvider: null,
+          costCharged: null,
+          errorCode: 2609,
+        };
+      }
+
       const data = await response.json();
+
+      // Provider unavailable via response body
+      if (!data.ok && data.error === 'provider_unavailable') {
+        logger.error(SERVICE_NAME, 'Provider unavailable (response)', { provider });
+        return {
+          jobId: '',
+          status: 'failed',
+          translatedText: null,
+          provider,
+          costProvider: null,
+          costCharged: null,
+          errorCode: 2609,
+        };
+      }
+
       if (data.ok) {
         return {
           jobId: `trans-${Date.now()}-${segmentId}`,
@@ -254,12 +310,39 @@ export async function checkMicroserviceHealth(): Promise<MicroserviceHealth> {
 
   try {
     const response = await fetch(`${getMicroserviceUrl()}/health`, {
+      headers: { 'ngrok-skip-browser-warning': 'true' },
       signal: AbortSignal.timeout(5000),
     });
     return await response.json();
   } catch {
     return { tts: false, translation: false, silence_detection: false };
   }
+}
+
+/**
+ * Trigger batch translation for all scenes in a session across multiple target languages.
+ * This kicks off the translation pipeline — results will be polled via getTranslationStatus.
+ */
+export async function triggerBatchTranslation(
+  sessionId: string,
+  sourceLang: string,
+  targetLangs: string[],
+): Promise<void> {
+  if (shouldUseStubs()) {
+    await new Promise((r) => setTimeout(r, 1000));
+    logger.info('TranslationAPI', 'Batch translation triggered (stub)', { sessionId, sourceLang, targetLangs });
+    return;
+  }
+
+  const response = await fetch(`${getMicroserviceUrl()}/v1/translate/batch`, {
+    method: 'POST',
+    headers: getMicroserviceHeaders(),
+    body: JSON.stringify({ session_id: sessionId, source_lang: sourceLang, target_langs: targetLangs }),
+  });
+  if (!response.ok) {
+    throw new Error(`Batch translation request failed: ${response.status}`);
+  }
+  logger.info('TranslationAPI', 'Batch translation triggered', { sessionId, sourceLang, targetLangs });
 }
 
 // Re-export from shared config
@@ -269,9 +352,15 @@ import { getMicroserviceUrl, getMicroserviceHeaders } from './microservice-confi
 export function __resetTranslationStubs(): void {
   stubJobs.clear();
   stubHealthGpuDown = false;
+  stubProviderDown.clear();
 }
 
 /** Test-only: simulate GPU down */
 export function __setStubGpuDown(down: boolean): void {
   stubHealthGpuDown = down;
+}
+
+/** Test-only: simulate a specific provider being unavailable */
+export function __setStubProviderDown(provider: TranslationProvider, down: boolean): void {
+  stubProviderDown.set(provider, down);
 }

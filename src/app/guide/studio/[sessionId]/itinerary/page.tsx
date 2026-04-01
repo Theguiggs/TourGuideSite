@@ -259,6 +259,7 @@ export default function ItineraryPage() {
     );
   }
 
+  const isLocked = ['submitted', 'published', 'revision_requested'].includes(session?.status ?? '');
   const activeScenes = scenes.filter((s) => !s.archived);
   const archivedScenes = scenes.filter((s) => s.archived);
   const geoScenes = activeScenes.filter((s) => s.latitude && s.longitude);
@@ -283,8 +284,14 @@ export default function ItineraryPage() {
         {archivedScenes.length > 0 && ` · ${archivedScenes.length} archivé${archivedScenes.length > 1 ? 's' : ''}`}
       </p>
 
+      {isLocked && (
+        <div className="mb-4 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800" role="status" data-testid="readonly-banner">
+          Contenu soumis &mdash; l&apos;itin&eacute;raire est en lecture seule.
+        </div>
+      )}
+
       {/* Placement mode banner */}
-      {clickToPlaceId && (
+      {!isLocked && clickToPlaceId && (
         <div className="mb-2 p-2 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-700 flex items-center gap-2" role="status">
           <span className="animate-pulse">📍</span>
           Cliquez sur la carte pour positionner le POI. <button onClick={() => setClickToPlaceId(null)} className="underline ml-1">Annuler</button>
@@ -297,11 +304,11 @@ export default function ItineraryPage() {
           <EditableMap
             scenes={scenes}
             waypoints={waypoints}
-            onPoiDrag={handlePoiDrag}
-            onWaypointDrag={handleWaypointDrag}
-            onWaypointAdd={handleWaypointAdd}
-            onWaypointDelete={handleWaypointDelete}
-            onMapClick={clickToPlaceId ? (lat, lng) => handleMapClickForPoi(clickToPlaceId, lat, lng) : undefined}
+            onPoiDrag={isLocked ? () => {} : handlePoiDrag}
+            onWaypointDrag={isLocked ? () => {} : handleWaypointDrag}
+            onWaypointAdd={isLocked ? () => {} : handleWaypointAdd}
+            onWaypointDelete={isLocked ? () => {} : handleWaypointDelete}
+            onMapClick={!isLocked && clickToPlaceId ? (lat, lng) => handleMapClickForPoi(clickToPlaceId, lat, lng) : undefined}
           />
         </div>
       )}
@@ -323,7 +330,7 @@ export default function ItineraryPage() {
             <div key={scene.id} className={`p-3 border rounded-lg transition-colors ${isValidated ? 'border-green-300 bg-green-50/50' : 'border-gray-200'}`}
               data-testid={`poi-${scene.id}`}>
 
-              {isEditing && editForm ? (
+              {!isLocked && isEditing && editForm ? (
                 /* Edit mode */
                 <div className="space-y-2">
                   <input type="text" value={editForm.title} onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
@@ -392,13 +399,17 @@ export default function ItineraryPage() {
                 <div className="flex items-start gap-3">
                   {/* Reorder */}
                   <div className="flex flex-col gap-0.5 flex-shrink-0">
-                    <button onClick={() => moveScene(scene.id, 'up')} disabled={index === 0}
-                      className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-xs" aria-label="Monter">▲</button>
+                    {!isLocked && (
+                      <button onClick={() => moveScene(scene.id, 'up')} disabled={index === 0}
+                        className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-xs" aria-label="Monter">▲</button>
+                    )}
                     <span className="w-7 h-7 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center text-xs font-bold">
                       {index + 1}
                     </span>
-                    <button onClick={() => moveScene(scene.id, 'down')} disabled={index === activeScenes.length - 1}
-                      className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-xs" aria-label="Descendre">▼</button>
+                    {!isLocked && (
+                      <button onClick={() => moveScene(scene.id, 'down')} disabled={index === activeScenes.length - 1}
+                        className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-xs" aria-label="Descendre">▼</button>
+                    )}
                   </div>
 
                   {/* Content */}
@@ -421,21 +432,23 @@ export default function ItineraryPage() {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex flex-col gap-1 flex-shrink-0">
-                    <button onClick={() => startEdit(scene)} className="text-xs text-teal-600 hover:text-teal-700 px-2 py-0.5 rounded hover:bg-teal-50"
-                      data-testid={`edit-poi-${scene.id}`}>✏️ Éditer</button>
-                    <button onClick={() => toggleValidation(scene.id)}
-                      className={`text-xs px-2 py-0.5 rounded ${isValidated ? 'text-green-600 hover:bg-green-50' : 'text-gray-500 hover:bg-gray-50'}`}
-                      data-testid={`validate-poi-${scene.id}`}>
-                      {isValidated ? '✓ Validé' : '○ Valider'}
-                    </button>
-                    <button onClick={() => archivePoi(scene.id)}
-                      className="text-xs text-amber-600 hover:text-amber-700 px-2 py-0.5 rounded hover:bg-amber-50"
-                      title={hasContent ? 'Archiver — le contenu (audio, photos, texte) sera conservé' : 'Archiver'}
-                      data-testid={`archive-poi-${scene.id}`}>
-                      📦 Archiver
-                    </button>
-                  </div>
+                  {!isLocked && (
+                    <div className="flex flex-col gap-1 flex-shrink-0">
+                      <button onClick={() => startEdit(scene)} className="text-xs text-teal-600 hover:text-teal-700 px-2 py-0.5 rounded hover:bg-teal-50"
+                        data-testid={`edit-poi-${scene.id}`}>✏️ Éditer</button>
+                      <button onClick={() => toggleValidation(scene.id)}
+                        className={`text-xs px-2 py-0.5 rounded ${isValidated ? 'text-green-600 hover:bg-green-50' : 'text-gray-500 hover:bg-gray-50'}`}
+                        data-testid={`validate-poi-${scene.id}`}>
+                        {isValidated ? '✓ Validé' : '○ Valider'}
+                      </button>
+                      <button onClick={() => archivePoi(scene.id)}
+                        className="text-xs text-amber-600 hover:text-amber-700 px-2 py-0.5 rounded hover:bg-amber-50"
+                        title={hasContent ? 'Archiver — le contenu (audio, photos, texte) sera conservé' : 'Archiver'}
+                        data-testid={`archive-poi-${scene.id}`}>
+                        📦 Archiver
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -444,14 +457,16 @@ export default function ItineraryPage() {
       </div>
 
       {/* Add POI button */}
-      <button
-        onClick={handleAddPoi}
-        disabled={isAddingPoi}
-        className="w-full border-2 border-dashed border-gray-300 hover:border-teal-400 text-gray-500 hover:text-teal-600 rounded-lg py-3 text-sm font-medium transition-colors disabled:opacity-50 mb-6"
-        data-testid="add-poi-btn"
-      >
-        {isAddingPoi ? 'Ajout...' : '+ Ajouter un POI'}
-      </button>
+      {!isLocked && (
+        <button
+          onClick={handleAddPoi}
+          disabled={isAddingPoi}
+          className="w-full border-2 border-dashed border-gray-300 hover:border-teal-400 text-gray-500 hover:text-teal-600 rounded-lg py-3 text-sm font-medium transition-colors disabled:opacity-50 mb-6"
+          data-testid="add-poi-btn"
+        >
+          {isAddingPoi ? 'Ajout...' : '+ Ajouter un POI'}
+        </button>
+      )}
 
       {activeScenes.length === 0 && (
         <div className="bg-gray-50 rounded-lg p-8 text-center text-gray-500 mb-6">
@@ -480,11 +495,13 @@ export default function ItineraryPage() {
                     {scene.originalAudioKey && <span>🎵 Audio</span>}
                   </div>
                 </div>
-                <button onClick={() => restorePoi(scene.id)}
-                  className="text-xs text-teal-600 hover:text-teal-700 px-2 py-1 rounded hover:bg-teal-50"
-                  data-testid={`restore-poi-${scene.id}`}>
-                  ↩ Restaurer
-                </button>
+                {!isLocked && (
+                  <button onClick={() => restorePoi(scene.id)}
+                    className="text-xs text-teal-600 hover:text-teal-700 px-2 py-1 rounded hover:bg-teal-50"
+                    data-testid={`restore-poi-${scene.id}`}>
+                    ↩ Restaurer
+                  </button>
+                )}
               </div>
             ))}
           </div>

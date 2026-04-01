@@ -17,6 +17,8 @@ const ENV    = 'NONE';
 const REGION = 'us-east-1';
 
 const TABLES = [
+  'StudioScene',
+  'StudioSession',
   'ModerationItem',
   'GuideTour',
   'GuideProfile',
@@ -24,6 +26,7 @@ const TABLES = [
   'TourReview',
   'TourStats',
   'TourHistory',
+  'UserProfile',
 ];
 
 const args = process.argv.slice(2);

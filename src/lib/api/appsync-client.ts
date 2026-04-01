@@ -368,8 +368,20 @@ export async function listStudioSessionsByGuide(guideId: string) {
     );
     return { ok: true as const, data: result.data ?? [] };
   } catch (error) {
-    logger.error(SERVICE_NAME, 'listStudioSessionsByGuide failed', { error: String(error) });
-    return { ok: false as const, error: 'Erreur lors du chargement des sessions' };
+    const msg = error instanceof Error ? `${error.name}: ${error.message}` : JSON.stringify(error);
+    logger.error(SERVICE_NAME, 'listStudioSessionsByGuide failed', { error: msg, guideId });
+    // Fallback: try list with filter instead of GSI
+    try {
+      const client = getClient();
+      const result = await client.models.StudioSession.list(
+        { filter: { guideId: { eq: guideId } }, authMode: 'userPool' } as Parameters<typeof client.models.StudioSession.list>[0],
+      );
+      logger.info(SERVICE_NAME, 'listStudioSessionsByGuide fallback succeeded', { count: result.data?.length });
+      return { ok: true as const, data: result.data ?? [] };
+    } catch (fallbackError) {
+      logger.error(SERVICE_NAME, 'listStudioSessionsByGuide fallback also failed', { error: String(fallbackError) });
+      return { ok: false as const, error: 'Erreur lors du chargement des sessions' };
+    }
   }
 }
 
@@ -503,6 +515,85 @@ export async function listPublicScenesBySession(sessionId: string) {
   }
 }
 
+// --- TourLanguagePurchase Queries & Mutations ---
+
+export async function createLanguagePurchaseMutation(data: {
+  guideId: string;
+  sessionId: string;
+  language: string;
+  qualityTier: 'standard' | 'pro';
+  provider?: 'marianmt' | 'deepl';
+  purchaseType: 'single' | 'pack_3' | 'pack_all' | 'free_first';
+  amountCents: number;
+  stripePaymentIntentId?: string;
+}) {
+  try {
+    const client = getClient();
+    const result = await client.models.TourLanguagePurchase.create(
+      {
+        ...data,
+        moderationStatus: 'draft' as const,
+        status: 'active' as const,
+      } as Parameters<typeof client.models.TourLanguagePurchase.create>[0],
+      { authMode: 'userPool' },
+    );
+    if (!result.data) {
+      const errMsg = result.errors?.map((e) => e.message).join(', ') ?? 'données nulles';
+      return { ok: false as const, error: errMsg };
+    }
+    return { ok: true as const, data: result.data };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'createLanguagePurchase failed', { error: String(error) });
+    return { ok: false as const, error: 'Erreur lors de la création de l\'achat de langue' };
+  }
+}
+
+export async function updateLanguagePurchaseMutation(
+  id: string,
+  updates: Record<string, unknown>,
+) {
+  try {
+    const client = getClient();
+    const result = await client.models.TourLanguagePurchase.update(
+      { id, ...updates } as Parameters<typeof client.models.TourLanguagePurchase.update>[0],
+      { authMode: 'userPool' },
+    );
+    return { ok: true as const, data: result.data };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'updateLanguagePurchase failed', { error: String(error) });
+    return { ok: false as const, error: 'Erreur lors de la mise à jour de l\'achat de langue' };
+  }
+}
+
+export async function listLanguagePurchasesBySession(sessionId: string) {
+  try {
+    const client = getClient();
+    const result = await client.models.TourLanguagePurchase.listTourLanguagePurchaseBySessionId(
+      { sessionId },
+      { authMode: 'userPool' },
+    );
+    return { ok: true as const, data: result.data ?? [] };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'listLanguagePurchasesBySession failed', { error: String(error) });
+    return { ok: false as const, error: 'Erreur lors du chargement des achats de langue' };
+  }
+}
+
+export async function getLanguagePurchase(sessionId: string, language: string) {
+  try {
+    const client = getClient();
+    const result = await client.models.TourLanguagePurchase.listTourLanguagePurchaseBySessionId(
+      { sessionId },
+      { authMode: 'userPool' },
+    );
+    const match = (result.data ?? []).find((p) => p.language === language);
+    return { ok: true as const, data: match ?? null };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'getLanguagePurchase failed', { error: String(error) });
+    return { ok: false as const, error: 'Erreur lors du chargement de l\'achat de langue' };
+  }
+}
+
 export async function deleteStudioSceneMutation(id: string) {
   try {
     const client = getClient();
@@ -511,5 +602,18 @@ export async function deleteStudioSceneMutation(id: string) {
   } catch (error) {
     logger.error(SERVICE_NAME, 'deleteStudioScene failed', { error: String(error) });
     return { ok: false as const, error: 'Erreur lors de la suppression de la scène' };
+  }
+}
+
+// --- ModerationItem delete (not in original CRUD) ---
+
+export async function deleteModerationItemMutation(id: string) {
+  try {
+    const client = getClient();
+    await client.models.ModerationItem.delete({ id }, { authMode: 'userPool' });
+    return { ok: true as const };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'deleteModerationItem failed', { error: String(error) });
+    return { ok: false as const, error: String(error) };
   }
 }

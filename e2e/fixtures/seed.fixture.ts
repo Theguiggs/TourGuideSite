@@ -9,7 +9,10 @@ import {
   seedSession,
   seedScene,
   seedModerationItem,
+  seedLanguagePurchase,
+  seedSceneSegment,
   deleteItemsByPrefix,
+  resolveGuideId,
 } from '../helpers/appsync-direct';
 
 function validatePrefix(prefix: string): void {
@@ -176,6 +179,53 @@ export async function seedMobileSession(
     sceneIds: [scene1.id, scene2.id],
   };
 }
+
+export async function seedMultilangReadyTour(
+  prefix: string,
+  token: string,
+): Promise<SeededTour & { guideId: string }> {
+  validatePrefix(prefix);
+
+  // Resolve the real GuideProfile.id for the authenticated user
+  const guideId = await resolveGuideId(token);
+
+  const tour = await seedTour(prefix, token, {
+    title: `${prefix} Grasse Vieille Ville`,
+    city: 'Grasse',
+    status: 'published',
+    guideId,
+  });
+
+  const session = await seedSession(prefix, tour.id, token, {
+    title: `${prefix} Visite Grasse`,
+    status: 'submitted',
+    guideId,
+  });
+
+  const scenes = [];
+  const sceneData = [
+    { title: 'Place aux Aires', text: 'Bienvenue sur la place aux Aires, coeur historique de Grasse. Cette place medievale accueille un marche provencal chaque matin.' },
+    { title: 'Cathedrale Notre-Dame du Puy', text: 'La cathedrale domine la vieille ville depuis le douzieme siecle. Elle abrite des oeuvres de Rubens et de Fragonard.' },
+    { title: 'Parfumerie Fragonard', text: 'Fragonard fondee en 1926 est la plus ancienne parfumerie de Grasse. Decouvrez les secrets de la fabrication du parfum.' },
+  ];
+
+  for (let i = 0; i < sceneData.length; i++) {
+    const scene = await seedScene(session.id, i, token, {
+      title: `${prefix} ${sceneData[i].title}`,
+      status: 'transcribed',
+    });
+    scenes.push(scene);
+  }
+
+  return {
+    tourId: tour.id,
+    sessionId: session.id,
+    sceneIds: scenes.map(s => s.id),
+    guideId,
+  };
+}
+
+export { seedLanguagePurchase, seedSceneSegment };
 
 export async function cleanupByPrefix(prefix: string): Promise<number> {
   validatePrefix(prefix);

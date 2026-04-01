@@ -146,27 +146,47 @@ export async function submitForReview(
       return { ok: false, error: tourResult.error };
     }
 
-    // Create ModerationItem so admin sees it in the moderation queue
+    // Create or update ModerationItem so admin sees it in the moderation queue
     try {
       const tour = await appsync.getGuideTourById(tourId);
-      logger.info(SERVICE_NAME, 'ModerationItem: tour loaded', { tourId, found: !!tour, guideId: tour?.guideId });
       if (tour) {
         const profile = await appsync.getGuideProfileById(tour.guideId, 'userPool');
-        logger.info(SERVICE_NAME, 'ModerationItem: profile loaded', { guideId: tour.guideId, found: !!profile, name: profile?.displayName });
-        const modResult = await appsync.createModerationItemMutation({
-          tourId,
-          guideId: tour.guideId,
-          guideName: profile?.displayName ?? 'Guide',
-          tourTitle: tour.title,
-          city: tour.city,
-          submissionDate: Date.now(),
-        });
-        logger.info(SERVICE_NAME, 'ModerationItem: creation result', { ok: modResult.ok, error: !modResult.ok ? modResult.error : undefined });
-      } else {
-        logger.warn(SERVICE_NAME, 'Tour not found for ModerationItem creation', { tourId });
+        // Check if a ModerationItem already exists for this tour (avoid duplicates)
+        const existingItems = await appsync.listModerationItems?.() ?? [];
+        const existing = (existingItems as unknown as { id: string; tourId: string; status: string }[])
+          .find((item) => item.tourId === tourId);
+
+        if (existing) {
+          // Update existing item (resubmission)
+          await appsync.updateModerationItemMutation(existing.id, {
+            status: 'resubmitted',
+            submissionDate: Date.now(),
+            isResubmission: true,
+            sessionId,
+            poiCount: tour.poiCount ?? 0,
+            duration: tour.duration ?? 0,
+            distance: tour.distance ?? 0,
+          });
+          logger.info(SERVICE_NAME, 'ModerationItem updated (resubmission)', { id: existing.id });
+        } else {
+          // Create new item
+          await appsync.createModerationItemMutation({
+            tourId,
+            guideId: tour.guideId,
+            guideName: profile?.displayName ?? 'Guide',
+            tourTitle: tour.title,
+            city: tour.city,
+            submissionDate: Date.now(),
+            sessionId,
+            poiCount: tour.poiCount ?? 0,
+            duration: tour.duration ?? 0,
+            distance: tour.distance ?? 0,
+          });
+          logger.info(SERVICE_NAME, 'ModerationItem created', { tourId });
+        }
       }
     } catch (modErr) {
-      logger.error(SERVICE_NAME, 'ModerationItem creation exception', { tourId, error: String(modErr) });
+      logger.error(SERVICE_NAME, 'ModerationItem creation/update failed', { tourId, error: String(modErr) });
     }
 
     logger.info(SERVICE_NAME, 'Submitted for review (AppSync)', { sessionId, tourId });
@@ -199,6 +219,21 @@ export async function retractSubmission(
       logger.error(SERVICE_NAME, 'Tour update failed, rolling back session', { tourId, error: tourResult.error });
       await appsync.updateStudioSessionMutation(sessionId, { status: 'submitted' });
       return { ok: false, error: tourResult.error };
+    }
+
+    // Remove or mark ModerationItem as retracted
+    try {
+      const appsyncMod = await import('./appsync-client');
+      const existingItems = await appsyncMod.listModerationItems?.() ?? [];
+      const existing = (existingItems as unknown as { id: string; tourId: string }[])
+        .find((item) => item.tourId === tourId);
+      if (existing) {
+        // Delete the moderation item from the queue
+        await appsyncMod.deleteModerationItemMutation?.(existing.id);
+        logger.info(SERVICE_NAME, 'ModerationItem deleted on retraction', { id: existing.id });
+      }
+    } catch (modErr) {
+      logger.warn(SERVICE_NAME, 'Failed to remove ModerationItem on retraction', { error: String(modErr) });
     }
 
     logger.info(SERVICE_NAME, 'Submission retracted (AppSync)', { sessionId, tourId });

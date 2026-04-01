@@ -30,7 +30,7 @@ describe('TranslationAPI', () => {
   describe('requestTranslation', () => {
     it('returns processing status for marianmt', async () => {
       jest.useRealTimers();
-      const result = await requestTranslation('seg-1', 'Bonjour le monde', 'fr', 'en', 'marianmt');
+      const result = await requestTranslation('seg-1', 'Bonjour le monde', 'fr', 'en', 'standard');
       expect(result.status).toBe('processing');
       expect(result.jobId).toMatch(/^trans-/);
       expect(result.provider).toBe('marianmt');
@@ -38,7 +38,7 @@ describe('TranslationAPI', () => {
 
     it('returns processing status for deepl', async () => {
       jest.useRealTimers();
-      const result = await requestTranslation('seg-2', 'Bonjour', 'fr', 'en', 'deepl');
+      const result = await requestTranslation('seg-2', 'Bonjour', 'fr', 'en', 'pro');
       expect(result.status).toBe('processing');
       expect(result.provider).toBe('deepl');
     });
@@ -53,7 +53,7 @@ describe('TranslationAPI', () => {
 
     it('returns completed after delay', async () => {
       jest.useRealTimers();
-      const req = await requestTranslation('seg-1', 'Texte de test', 'fr', 'en', 'marianmt');
+      const req = await requestTranslation('seg-1', 'Texte de test', 'fr', 'en', 'standard');
 
       // Wait for stub processing time (3s for marianmt)
       await new Promise((r) => setTimeout(r, 3200));

@@ -47,6 +47,10 @@ export interface StudioSession {
   status: StudioSessionStatus;
   language: string;
   transcriptionQuotaUsed: number | null;
+  coverPhotoKey: string | null;
+  availableLanguages: string[];
+  translatedTitles: Record<string, string> | null;        // { en: "Walking Tour", es: "..." }
+  translatedDescriptions: Record<string, string> | null;  // { en: "A lovely walk...", es: "..." }
   consentRGPD: boolean;
   createdAt: string;
   updatedAt: string;
@@ -160,6 +164,8 @@ export type TTSJobStatus =
   | 'completed'
   | 'failed';
 
+export type AudioSource = 'tts' | 'recording';
+
 export interface SceneSegment {
   id: string;
   sceneId: string;
@@ -175,6 +181,37 @@ export interface SceneSegment {
   costProvider: number | null;   // centimes, real API cost
   costCharged: number | null;    // centimes, with margin applied
   status: SegmentStatus;
+  manuallyEdited: boolean;
+  audioSource?: AudioSource;     // 'tts' | 'recording' — source of the current audioKey
+  translatedTitle: string | null; // translated POI/scene title for this language
+  sourceUpdatedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// --- Multilang Purchase Types ---
+
+export type QualityTier = 'standard' | 'pro' | 'manual';
+
+export type PurchaseType = 'single' | 'pack_3' | 'pack_all' | 'free_first' | 'manual';
+
+export type PurchaseStatus = 'active' | 'refunded';
+
+export type PurchaseModerationStatus = 'draft' | 'submitted' | 'approved' | 'rejected' | 'revision_requested';
+
+export interface TourLanguagePurchase {
+  id: string;
+  guideId: string;
+  sessionId: string;
+  language: string;
+  qualityTier: QualityTier;
+  provider: 'marianmt' | 'deepl' | null;
+  purchaseType: PurchaseType;
+  amountCents: number;
+  stripePaymentIntentId: string | null;
+  moderationStatus: PurchaseModerationStatus;
+  status: PurchaseStatus;
+  refundedAt: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -207,8 +244,21 @@ export const TTSErrorCode = {
 
 export type TTSErrorCodeValue = (typeof TTSErrorCode)[keyof typeof TTSErrorCode];
 
+// --- Error codes 26xx (Multilang Purchase) ---
+
+export const MultilangErrorCode = {
+  PAYMENT_FAILED: 2601,
+  PAYMENT_INTENT_CREATION_FAILED: 2602,
+  LANGUAGE_ALREADY_PURCHASED: 2603,
+  PURCHASE_NOT_FOUND: 2604,
+  REFUND_FAILED: 2605,
+  FREE_LANGUAGE_ALREADY_USED: 2606,
+} as const;
+
+export type MultilangErrorCodeValue = (typeof MultilangErrorCode)[keyof typeof MultilangErrorCode];
+
 // Union of all studio error code values
-export type AllStudioErrorCodeValue = StudioErrorCodeValue | TranslationErrorCodeValue | TTSErrorCodeValue;
+export type AllStudioErrorCodeValue = StudioErrorCodeValue | TranslationErrorCodeValue | TTSErrorCodeValue | MultilangErrorCodeValue;
 
 // --- Helper: get segments with legacy compat ---
 
@@ -234,6 +284,9 @@ export function getSceneSegments(scene: StudioScene, segments: SceneSegment[]): 
     costProvider: null,
     costCharged: null,
     status: scene.transcriptText ? 'transcribed' : 'empty',
+    manuallyEdited: false,
+    translatedTitle: null,
+    sourceUpdatedAt: null,
     createdAt: scene.createdAt,
     updatedAt: scene.updatedAt,
   }];

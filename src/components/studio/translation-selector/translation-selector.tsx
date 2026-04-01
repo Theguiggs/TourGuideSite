@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { logger } from '@/lib/logger';
 import { estimateCost, checkMicroserviceHealth, requestTranslation } from '@/lib/api/translation';
 import { useTranslationStore } from '@/lib/stores/translation-store';
-import type { TranslationProvider, SceneSegment } from '@/types/studio';
+import type { TranslationProvider, SceneSegment, QualityTier } from '@/types/studio';
 import type { CostEstimate, MicroserviceHealth } from '@/lib/api/translation';
 
 const SERVICE_NAME = 'TranslationSelector';
@@ -26,11 +26,16 @@ const TARGET_LANGUAGES = [
   { code: 'es', label: 'Espagnol', flag: '🇪🇸' },
 ] as const;
 
-const PROVIDERS: { value: TranslationProvider; label: string; badge: string; tier: string }[] = [
-  { value: 'marianmt', label: 'Standard', badge: 'Gratuit', tier: 'free' },
-  { value: 'deepl', label: 'DeepL', badge: 'Premium', tier: 'premium' },
-  { value: 'openai', label: 'GPT', badge: 'Premium+', tier: 'premium' },
+const PROVIDERS: { value: TranslationProvider; label: string; badge: string; tier: string; qualityTier: QualityTier }[] = [
+  { value: 'marianmt', label: 'Standard', badge: 'Gratuit', tier: 'free', qualityTier: 'standard' },
+  { value: 'deepl', label: 'DeepL', badge: 'Premium', tier: 'premium', qualityTier: 'pro' },
+  { value: 'openai', label: 'GPT', badge: 'Premium+', tier: 'premium', qualityTier: 'pro' },
 ];
+
+/** Map a TranslationProvider to its QualityTier */
+function getQualityTierForProvider(provider: TranslationProvider): QualityTier {
+  return provider === 'marianmt' ? 'standard' : 'pro';
+}
 
 export function TranslationSelector({ segment, translatedLanguages = [], onTranslationStarted, onManualTranslation }: TranslationSelectorProps) {
   const [targetLang, setTargetLang] = useState<string | null>(null);
@@ -75,7 +80,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
         segment.transcriptText,
         segment.language,
         targetLang,
-        provider,
+        getQualityTierForProvider(provider),
       );
 
       if (result.status === 'completed') {

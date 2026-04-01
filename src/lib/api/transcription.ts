@@ -167,8 +167,31 @@ export async function getTranscriptionQuota(
     logger.info(SERVICE_NAME, 'Getting quota (stub)', { guideId });
     return stubGetQuota();
   }
-  logger.warn(SERVICE_NAME, 'Real API not yet implemented');
-  return { usedMinutes: 0, limitMinutes: 120, remainingMinutes: 120, isWarning: false, isExceeded: false };
+
+  // Real mode: sum transcriptionQuotaUsed across all guide sessions
+  try {
+    const { listStudioSessions } = await import('@/lib/api/studio');
+    const sessions = await listStudioSessions(guideId);
+    const usedMinutes = sessions.reduce(
+      (sum, s) => sum + (s.transcriptionQuotaUsed ?? 0),
+      0,
+    );
+    const limitMinutes = 120;
+    const remainingMinutes = Math.max(0, limitMinutes - usedMinutes);
+    const rounded = Math.round(usedMinutes * 10) / 10;
+    const remainRounded = Math.round(remainingMinutes * 10) / 10;
+    logger.info(SERVICE_NAME, 'Getting quota (real)', { guideId, usedMinutes: rounded });
+    return {
+      usedMinutes: rounded,
+      limitMinutes,
+      remainingMinutes: remainRounded,
+      isWarning: usedMinutes > 100,
+      isExceeded: usedMinutes >= 120,
+    };
+  } catch (err) {
+    logger.error(SERVICE_NAME, 'getTranscriptionQuota failed', { guideId, error: String(err) });
+    return { usedMinutes: 0, limitMinutes: 120, remainingMinutes: 120, isWarning: false, isExceeded: false };
+  }
 }
 
 /** Test-only: reset stub state */

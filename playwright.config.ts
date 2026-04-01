@@ -33,6 +33,9 @@ export default defineConfig({
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: process.env.CI ? 300_000 : 30_000,
-    env: { NEXT_PUBLIC_USE_STUBS: 'false', FORCE_REAL_API: 'true' },
+    env: {
+      NEXT_PUBLIC_USE_STUBS: process.env.NEXT_PUBLIC_USE_STUBS ?? 'false',
+      FORCE_REAL_API: process.env.NEXT_PUBLIC_USE_STUBS === 'true' ? 'false' : 'true',
+    },
   },
 });

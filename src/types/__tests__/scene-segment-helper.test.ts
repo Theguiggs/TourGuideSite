@@ -35,14 +35,16 @@ describe('getSceneSegments', () => {
         transcriptText: 'Segment 2', startTimeMs: 60000, endTimeMs: 120000,
         language: 'fr', sourceSegmentId: null, ttsGenerated: false,
         translationProvider: null, costProvider: null, costCharged: null,
-        status: 'transcribed', createdAt: '', updatedAt: '',
+        status: 'transcribed', manuallyEdited: false, translatedTitle: null, sourceUpdatedAt: null,
+        createdAt: '', updatedAt: '',
       },
       {
         id: 'seg-1', sceneId: 'scene-1', segmentIndex: 0, audioKey: null,
         transcriptText: 'Segment 1', startTimeMs: 0, endTimeMs: 60000,
         language: 'fr', sourceSegmentId: null, ttsGenerated: false,
         translationProvider: null, costProvider: null, costCharged: null,
-        status: 'transcribed', createdAt: '', updatedAt: '',
+        status: 'transcribed', manuallyEdited: false, translatedTitle: null, sourceUpdatedAt: null,
+        createdAt: '', updatedAt: '',
       },
     ];
 

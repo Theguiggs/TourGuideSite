@@ -5,6 +5,7 @@ export type ModerationStatus = 'pending' | 'resubmitted' | 'in_review' | 'approv
 export interface ModerationItem {
   id: string;
   tourId: string;
+  sessionId: string;
   tourTitle: string;
   guideId: string;
   guideName: string;

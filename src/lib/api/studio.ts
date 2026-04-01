@@ -22,6 +22,10 @@ const MOCK_SESSIONS: StudioSession[] = [
     status: 'draft',
     language: 'fr',
     transcriptionQuotaUsed: null,
+    coverPhotoKey: null,
+    availableLanguages: ['fr'],
+    translatedTitles: null,
+    translatedDescriptions: null,
     consentRGPD: true,
     createdAt: '2026-03-10T14:30:00.000Z',
     updatedAt: '2026-03-10T14:30:00.000Z',
@@ -32,9 +36,13 @@ const MOCK_SESSIONS: StudioSession[] = [
     sourceSessionId: 'mobile-session-002',
     tourId: 'grasse-vieille-ville',
     title: 'Grasse — Vieille Ville',
-    status: 'editing',
+    status: 'ready',
     language: 'fr',
     transcriptionQuotaUsed: 12.5,
+    coverPhotoKey: null,
+    availableLanguages: ['fr', 'en'],
+    translatedTitles: null,
+    translatedDescriptions: null,
     consentRGPD: true,
     createdAt: '2026-03-08T09:15:00.000Z',
     updatedAt: '2026-03-12T16:45:00.000Z',
@@ -48,6 +56,10 @@ const MOCK_SESSIONS: StudioSession[] = [
     status: 'published',
     language: 'fr',
     transcriptionQuotaUsed: 22.0,
+    coverPhotoKey: '/images/mock/nice-promenade-cover.jpg',
+    availableLanguages: ['fr', 'en', 'it'],
+    translatedTitles: null,
+    translatedDescriptions: null,
     consentRGPD: true,
     createdAt: '2026-02-20T11:00:00.000Z',
     updatedAt: '2026-03-05T10:00:00.000Z',
@@ -106,6 +118,10 @@ function mapAppSyncSession(raw: Record<string, unknown>): StudioSession {
     status: (raw.status as StudioSessionStatus) ?? 'draft',
     language: (raw.language as string) ?? 'fr',
     transcriptionQuotaUsed: (raw.transcriptionQuotaUsed as number) ?? null,
+    coverPhotoKey: (raw.coverPhotoKey as string) ?? null,
+    availableLanguages: (raw.availableLanguages as string[]) ?? [],
+    translatedTitles: (raw.translatedTitles as Record<string, string>) ?? null,
+    translatedDescriptions: (raw.translatedDescriptions as Record<string, string>) ?? null,
     consentRGPD: (raw.consentRGPD as boolean) ?? true,
     createdAt: (raw.createdAt as string) ?? new Date().toISOString(),
     updatedAt: (raw.updatedAt as string) ?? new Date().toISOString(),
@@ -145,13 +161,13 @@ function mapAppSyncScene(raw: Record<string, unknown>): StudioScene {
 const STATUS_CONFIG: Record<StudioSessionStatus, { label: string; color: string }> = {
   draft: { label: 'Brouillon', color: 'bg-gray-100 text-gray-700' },
   transcribing: { label: 'Transcription...', color: 'bg-blue-100 text-blue-700' },
-  editing: { label: 'En édition', color: 'bg-yellow-100 text-yellow-700' },
-  recording: { label: 'Enregistrement', color: 'bg-orange-100 text-orange-700' },
-  ready: { label: 'Prêt', color: 'bg-green-100 text-green-700' },
-  submitted: { label: 'Soumis', color: 'bg-indigo-100 text-indigo-700' },
-  published: { label: 'Publié', color: 'bg-green-200 text-green-800' },
-  revision_requested: { label: 'Révision demandée', color: 'bg-red-100 text-red-700' },
-  rejected: { label: 'Rejeté', color: 'bg-red-200 text-red-800' },
+  editing: { label: 'En cours d\u2019\u00e9dition', color: 'bg-blue-100 text-blue-700' },
+  recording: { label: 'Enregistrement', color: 'bg-blue-100 text-blue-700' },
+  ready: { label: 'Pr\u00eat', color: 'bg-green-100 text-green-700' },
+  submitted: { label: 'Soumis', color: 'bg-yellow-100 text-yellow-700' },
+  published: { label: 'Publi\u00e9', color: 'bg-green-200 text-green-800' },
+  revision_requested: { label: 'R\u00e9vision demand\u00e9e', color: 'bg-orange-100 text-orange-700' },
+  rejected: { label: 'Rejet\u00e9', color: 'bg-red-100 text-red-700' },
   archived: { label: 'Archivé', color: 'bg-gray-200 text-gray-500' },
 };
 
@@ -214,6 +230,31 @@ export async function getStudioSession(sessionId: string): Promise<StudioSession
   }
 }
 
+export async function updateStudioSession(
+  sessionId: string,
+  updates: Partial<Pick<StudioSession, 'translatedTitles' | 'translatedDescriptions'>>,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (shouldUseStubs()) {
+    const session = getAllStubSessions().find((s) => s.id === sessionId);
+    if (session) {
+      Object.assign(session, updates, { updatedAt: new Date().toISOString() });
+    }
+    logger.info(SERVICE_NAME, 'Session updated (stub)', { sessionId });
+    return { ok: true };
+  }
+
+  try {
+    const { updateStudioSessionMutation } = await import('./appsync-client');
+    const result = await updateStudioSessionMutation(sessionId, updates as Record<string, unknown>);
+    if (!result.ok) return { ok: false, error: result.error };
+    logger.info(SERVICE_NAME, 'Session updated (AppSync)', { sessionId });
+    return { ok: true };
+  } catch (e) {
+    logger.error(SERVICE_NAME, 'updateStudioSession failed', { error: String(e) });
+    return { ok: false, error: 'Erreur lors de la mise à jour de la session.' };
+  }
+}
+
 export async function createStudioSession(
   sourceSessionId: string,
   guideId: string,
@@ -237,6 +278,10 @@ export async function createStudioSession(
       status: 'draft',
       language: source?.language ?? 'fr',
       transcriptionQuotaUsed: null,
+      coverPhotoKey: null,
+      availableLanguages: [source?.language ?? 'fr'],
+      translatedTitles: null,
+      translatedDescriptions: null,
       consentRGPD: true,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -286,6 +331,10 @@ export async function createTourWithSession(
       status: 'draft',
       language: 'fr',
       transcriptionQuotaUsed: null,
+      coverPhotoKey: null,
+      availableLanguages: ['fr'],
+      translatedTitles: null,
+      translatedDescriptions: null,
       consentRGPD: true,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -479,13 +528,59 @@ export async function updateSceneText(
   }
 }
 
+/** Generic scene field update — works in both stub and real mode */
+export async function updateSceneData(
+  sceneId: string,
+  updates: Record<string, unknown>,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (shouldUseStubs()) {
+    const scene = findStubScene(sceneId);
+    if (scene) {
+      Object.assign(scene, updates, { updatedAt: new Date().toISOString() });
+    }
+    logger.info(SERVICE_NAME, 'Scene data updated (stub)', { sceneId, fields: Object.keys(updates) });
+    return { ok: true };
+  }
+  try {
+    const { updateStudioSceneMutation } = await import('./appsync-client');
+    const result = await updateStudioSceneMutation(sceneId, updates);
+    if (!result.ok) return { ok: false, error: result.error };
+    logger.info(SERVICE_NAME, 'Scene data updated (AppSync)', { sceneId, fields: Object.keys(updates) });
+    return { ok: true };
+  } catch (e) {
+    logger.error(SERVICE_NAME, 'updateSceneData real failed', { error: String(e) });
+    return { ok: false, error: 'Erreur lors de la mise à jour de la scène.' };
+  }
+}
+
 export async function updateSceneAudio(
   sceneId: string,
   audioUrl: string,
+  sessionId?: string,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
-  // Always update local cache (survives navigation to Preview page)
+  // If data URL, upload to S3 first (base64 too large for DynamoDB)
+  let audioKeyToStore = audioUrl;
+  if (audioUrl.startsWith('data:') && !shouldUseStubs()) {
+    try {
+      const { uploadAudio } = await import('@/lib/studio/studio-upload-service');
+      const response = await fetch(audioUrl);
+      const blob = new Blob([await response.blob()], { type: 'audio/wav' });
+      const uploadResult = await uploadAudio(blob, sessionId ?? 'unknown', 0);
+      if (uploadResult.ok) {
+        audioKeyToStore = uploadResult.s3Key;
+        logger.info(SERVICE_NAME, 'Audio uploaded to S3', { sceneId, s3Key: audioKeyToStore });
+      } else {
+        logger.error(SERVICE_NAME, 'S3 upload failed for scene audio', { sceneId, error: uploadResult.error });
+        // Keep data URL in local cache for playback, but don't persist to AppSync
+      }
+    } catch (uploadErr) {
+      logger.error(SERVICE_NAME, 'S3 upload exception for scene audio', { sceneId, error: String(uploadErr) });
+    }
+  }
+
+  // Always update local cache with the original data URL (for immediate playback)
   __setLocalSceneOverride(sceneId, {
-    studioAudioKey: audioUrl,
+    studioAudioKey: audioUrl, // Keep data URL locally for playback
     status: 'recorded',
     updatedAt: new Date().toISOString(),
   });
@@ -501,19 +596,20 @@ export async function updateSceneAudio(
     logger.info(SERVICE_NAME, 'Scene audio updated (stub)', { sceneId });
     return { ok: true };
   }
-  // Real mode: also persist to AppSync
+  // Real mode: persist the S3 key (not the data URL) to AppSync
   try {
     const { updateStudioSceneMutation } = await import('./appsync-client');
-    const result = await updateStudioSceneMutation(sceneId, { studioAudioKey: audioUrl, status: 'recorded' });
+    const keyToSave = audioKeyToStore.startsWith('data:') ? `tts-fr-${sceneId}` : audioKeyToStore;
+    const result = await updateStudioSceneMutation(sceneId, { studioAudioKey: keyToSave, status: 'recorded' });
     if (!result.ok) {
       logger.warn(SERVICE_NAME, 'AppSync persist failed, local cache updated', { sceneId });
-      return { ok: true }; // Local cache is updated, don't block the UI
+      return { ok: true };
     }
-    logger.info(SERVICE_NAME, 'Scene audio updated (AppSync)', { sceneId });
+    logger.info(SERVICE_NAME, 'Scene audio updated (AppSync)', { sceneId, keyLength: keyToSave.length });
     return { ok: true };
   } catch (e) {
     logger.warn(SERVICE_NAME, 'updateSceneAudio AppSync failed, local cache OK', { error: String(e) });
-    return { ok: true }; // Local cache is updated
+    return { ok: true };
   }
 }
 
@@ -537,6 +633,7 @@ export interface CreateSegmentInput {
   segmentIndex: number;
   audioKey?: string;
   transcriptText?: string;
+  translatedTitle?: string;
   startTimeMs?: number;
   endTimeMs?: number;
   language?: string;
@@ -563,6 +660,9 @@ export async function createSceneSegment(
       costProvider: null,
       costCharged: null,
       status: input.status ?? 'empty',
+      manuallyEdited: false,
+      translatedTitle: input.translatedTitle ?? null,
+      sourceUpdatedAt: null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
@@ -586,14 +686,43 @@ export async function createSceneSegment(
 
 export async function updateSceneSegment(
   segmentId: string,
-  updates: Partial<Pick<SceneSegment, 'transcriptText' | 'audioKey' | 'status' | 'translationProvider' | 'costProvider' | 'costCharged' | 'ttsGenerated' | 'language'>>,
+  updates: Partial<Pick<SceneSegment, 'transcriptText' | 'translatedTitle' | 'audioKey' | 'status' | 'translationProvider' | 'costProvider' | 'costCharged' | 'ttsGenerated' | 'language' | 'sourceUpdatedAt' | 'manuallyEdited' | 'audioSource'>>,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   if (shouldUseStubs()) {
-    const seg = stubSegments.find((s) => s.id === segmentId);
+    let seg = stubSegments.find((s) => s.id === segmentId);
     if (seg) {
       Object.assign(seg, updates, { updatedAt: new Date().toISOString() });
+    } else {
+      // Upsert: create segment if it doesn't exist (e.g., placeholder segments from language tabs)
+      const now = new Date().toISOString();
+      const parts = segmentId.replace('pending-', '').split('-');
+      const lang = parts.pop() ?? '';
+      const sceneId = parts.join('-') || segmentId;
+      seg = {
+        id: segmentId,
+        sceneId,
+        segmentIndex: 0,
+        audioKey: null,
+        transcriptText: null,
+        startTimeMs: null,
+        endTimeMs: null,
+        language: lang || updates.language || 'en',
+        sourceSegmentId: null,
+        ttsGenerated: false,
+        translationProvider: null,
+        costProvider: null,
+        costCharged: null,
+        status: 'empty',
+        manuallyEdited: false,
+        translatedTitle: null,
+        sourceUpdatedAt: null,
+        createdAt: now,
+        updatedAt: now,
+        ...updates,
+      };
+      stubSegments.push(seg);
     }
-    logger.info(SERVICE_NAME, 'Segment updated (stub)', { segmentId });
+    logger.info(SERVICE_NAME, 'Segment updated (stub)', { segmentId, created: !stubSegments.includes(seg) });
     return { ok: true };
   }
 
@@ -643,11 +772,21 @@ export async function listSegmentsByScene(
   try {
     const { getClient } = await import('./appsync-client');
     const client = getClient();
+    // Use secondary index (GSI) on sceneId for efficient query
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const result = await (client as any).models.SceneSegment.list(
-      { filter: { sceneId: { eq: sceneId } } },
-      { authMode: 'userPool' },
-    );
+    let result: { data?: SceneSegment[] };
+    try {
+      result = await (client as any).models.SceneSegment.listSceneSegmentBySceneId(
+        { sceneId },
+        { authMode: 'userPool' },
+      );
+    } catch {
+      // Fallback to filter scan if GSI method doesn't exist
+      result = await (client as any).models.SceneSegment.list(
+        { filter: { sceneId: { eq: sceneId } } },
+        { authMode: 'userPool' },
+      );
+    }
     return ((result?.data as SceneSegment[]) ?? []).sort((a, b) => a.segmentIndex - b.segmentIndex);
   } catch (e) {
     logger.error(SERVICE_NAME, 'listSegmentsByScene real failed', { error: String(e) });
@@ -680,6 +819,41 @@ export async function batchCreateSegments(
 }
 
 // --- Test-only exports ---
+
+/** Create empty stub segments for a language across all scenes of a session.
+ * Called when a language is added (manually or via purchase) in stub mode. */
+export function __createStubSegmentsForLanguage(sessionId: string, language: string): void {
+  // Find all scenes for this session from the stub data
+  const sessionScenes = MOCK_SCENES[sessionId] ?? createdStubScenes.filter((s) => s.sessionId === sessionId);
+  for (const scene of sessionScenes) {
+    // Don't duplicate if segment already exists
+    const exists = stubSegments.some((s) => s.sceneId === scene.id && s.language === language);
+    if (exists) continue;
+
+    const now = new Date().toISOString();
+    stubSegments.push({
+      id: `seg-${scene.id}-${language}`,
+      sceneId: scene.id,
+      segmentIndex: 0,
+      audioKey: null,
+      transcriptText: null,
+      startTimeMs: null,
+      endTimeMs: null,
+      language,
+      sourceSegmentId: null,
+      ttsGenerated: false,
+      translationProvider: null,
+      costProvider: null,
+      costCharged: null,
+      status: 'empty',
+      manuallyEdited: false,
+      translatedTitle: null,
+      sourceUpdatedAt: scene.updatedAt,
+      createdAt: now,
+      updatedAt: now,
+    });
+  }
+}
 
 /** Test-only: reset in-memory stub store */
 export function __resetStubStore(): void {

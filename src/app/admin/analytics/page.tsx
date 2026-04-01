@@ -8,21 +8,23 @@ const SERVICE_NAME = 'AdminAnalyticsPage';
 
 const STATUS_LABELS: Record<string, string> = {
   draft: 'Brouillon',
-  editing: 'En édition',
+  editing: 'En cours d\u2019\u00e9dition',
   recording: 'Enregistrement',
+  ready: 'Pr\u00eat',
   submitted: 'Soumis',
-  published: 'Publié',
-  revision_requested: 'Révision',
-  rejected: 'Rejeté',
+  published: 'Publi\u00e9',
+  revision_requested: 'R\u00e9vision demand\u00e9e',
+  rejected: 'Rejet\u00e9',
 };
 
 const STATUS_COLORS: Record<string, string> = {
   draft: 'bg-gray-200',
-  editing: 'bg-yellow-400',
-  recording: 'bg-orange-400',
-  submitted: 'bg-indigo-400',
-  published: 'bg-green-400',
-  revision_requested: 'bg-red-300',
+  editing: 'bg-blue-400',
+  recording: 'bg-blue-300',
+  ready: 'bg-green-300',
+  submitted: 'bg-yellow-400',
+  published: 'bg-green-500',
+  revision_requested: 'bg-orange-400',
   rejected: 'bg-red-500',
 };
 

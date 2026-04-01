@@ -69,4 +69,5 @@ export interface GuideProfile {
   rating: number | null;
   tourCount: number | null;
   verified: boolean;
+  freeLanguageUsed: boolean;
 }

@@ -14,7 +14,7 @@ const STEP_ROUTES: Record<StudioWorkflowStep, string> = {
   itinerary: 'itinerary',
   scenes: 'scenes',
   preview: 'preview',
-  submission: 'preview', // submission is on the preview page
+  submission: 'submission',
 };
 
 const ROUTE_TO_STEP: Record<string, StudioWorkflowStep> = {
@@ -25,6 +25,7 @@ const ROUTE_TO_STEP: Record<string, StudioWorkflowStep> = {
   record: 'scenes',     // legacy route → scenes
   photos: 'scenes',     // legacy route → scenes
   preview: 'preview',
+  submission: 'submission',
 };
 
 export function StudioProgressBar({ currentStep, completedSteps = [] }: ProgressBarProps) {

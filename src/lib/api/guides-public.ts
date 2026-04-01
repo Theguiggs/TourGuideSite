@@ -36,6 +36,7 @@ const MOCK_PUBLIC_GUIDES: (GuideProfile & { totalListens: number })[] = [
     rating: 4.7,
     tourCount: 1,
     verified: true,
+    freeLanguageUsed: false,
     totalListens: 289,
   },
   {
@@ -52,6 +53,7 @@ const MOCK_PUBLIC_GUIDES: (GuideProfile & { totalListens: number })[] = [
     rating: 4.0,
     tourCount: 1,
     verified: true,
+    freeLanguageUsed: false,
     totalListens: 58,
   },
   {
@@ -68,6 +70,7 @@ const MOCK_PUBLIC_GUIDES: (GuideProfile & { totalListens: number })[] = [
     rating: 5.0,
     tourCount: 1,
     verified: true,
+    freeLanguageUsed: false,
     totalListens: 104,
   },
   {
@@ -84,6 +87,7 @@ const MOCK_PUBLIC_GUIDES: (GuideProfile & { totalListens: number })[] = [
     rating: 4.0,
     tourCount: 1,
     verified: true,
+    freeLanguageUsed: false,
     totalListens: 45,
   },
 ];
@@ -154,6 +158,7 @@ async function getRealAllPublicGuides(): Promise<PublicGuideProfile[]> {
     rating: p.rating ?? null,
     tourCount: p.tourCount ?? null,
     verified: p.verified ?? false,
+    freeLanguageUsed: ((p as Record<string, unknown>).freeLanguageUsed as boolean | undefined) ?? false,
     slug: generateGuideSlug(p.displayName, p.city),
     totalListens: 0,
   }));
