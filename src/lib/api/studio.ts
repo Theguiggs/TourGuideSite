@@ -871,12 +871,14 @@ export async function listSegmentsByScene(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let result: { data?: SceneSegment[] };
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       result = await (client as any).models.SceneSegment.listSceneSegmentBySceneId(
         { sceneId },
         { authMode: 'userPool' },
       );
     } catch {
       // Fallback to filter scan if GSI method doesn't exist
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       result = await (client as any).models.SceneSegment.list(
         { filter: { sceneId: { eq: sceneId } } },
         { authMode: 'userPool' },

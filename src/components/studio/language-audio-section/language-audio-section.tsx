@@ -66,7 +66,7 @@ export function LanguageAudioSection({
   }, [segment.id]);
 
   const handleTTSSave = useCallback(async (audioDataUrl: string, language: string) => {
-    let segmentId = realSegmentIdRef.current;
+    const segmentId = realSegmentIdRef.current;
     logger.info(SERVICE_NAME, 'Saving TTS audio to segment', { segmentId, language, isPending: segmentId.startsWith('pending-') });
 
     // Upload base64 data URL to S3 — never store raw base64 in AppSync (too large for DynamoDB)

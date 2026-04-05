@@ -17,6 +17,8 @@ const eslintConfig = defineConfig([
     "scripts/**",
     "playwright.config.ts",
     "coverage/**",
+    // Python microservice (venv contains JS files that aren't ours)
+    "microservice/**",
   ]),
 ]);
 

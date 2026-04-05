@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { audioMixerService, type MixerState } from '@/lib/studio/audio-mixer-service';
-import { getAmbianceById, getAmbianceUrl, type SceneAudioMix, DEFAULT_MIX } from '@/lib/studio/ambiance-catalog';
+import { getAmbianceById, getAmbianceUrl, type SceneAudioMix } from '@/lib/studio/ambiance-catalog';
 import { AmbiancePicker } from './ambiance-picker';
 import type { AmbianceSound } from '@/lib/studio/ambiance-catalog';
 
@@ -38,8 +38,12 @@ export function AudioMixer({ speechUrl, mix, onMixChange }: AudioMixerProps) {
   // Load speech when URL changes
   useEffect(() => {
     if (!speechUrl) return;
-    setIsLoading(true);
-    audioMixerService.loadSpeech(speechUrl).finally(() => setIsLoading(false));
+    let cancelled = false;
+    setIsLoading(true); // eslint-disable-line react-hooks/set-state-in-effect -- loading flag for async fetch
+    audioMixerService.loadSpeech(speechUrl).finally(() => {
+      if (!cancelled) setIsLoading(false);
+    });
+    return () => { cancelled = true; };
   }, [speechUrl]);
 
   // Load ambiance when selected

@@ -29,7 +29,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
   // Sync edited text when translation completes
   useEffect(() => {
     if (translationState?.translatedText) {
-      setEditedText(translationState.translatedText);
+      setEditedText(translationState.translatedText); // eslint-disable-line react-hooks/set-state-in-effect -- sync from external translation state
     }
   }, [translationState?.translatedText]);
 

@@ -85,6 +85,7 @@ describe('SplitEditor — Responsive', () => {
 
   it('LanguageTabs container has overflow-x-auto for scrollable tabs', () => {
     // Import LanguageTabs directly for this test
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { LanguageTabs } = require('../../language-tabs/language-tabs');
     const langs = [
       { code: 'fr', label: 'Français', countryCode: 'fr', isBase: true, progress: { completed: 12, total: 12 } },

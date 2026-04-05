@@ -137,6 +137,7 @@ describe('ML-5.5 Refund Admin', () => {
     expect(purchase).toBeDefined();
 
     // Simulate 100% batch failure in the store
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { useLanguageBatchStore } = require('@/lib/stores/language-batch-store');
 
     act(() => {

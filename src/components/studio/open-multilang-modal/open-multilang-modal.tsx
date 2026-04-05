@@ -207,7 +207,7 @@ export function OpenMultilangModal({
     }
 
     setIsLoading(false);
-  }, [sessionId, selectedLanguages, mode, qualityTier, order.totalCents, setPurchases, onLanguagesChanged, onClose]);
+  }, [sessionId, selectedLanguages, mode, qualityTier, order.totalCents, setPurchases, onLanguagesChanged, onClose, onBatchTranslationNeeded]);
 
   // Handle backdrop click
   const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {

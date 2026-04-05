@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import {
   AMBIANCE_CATEGORIES,
-  AMBIANCE_SOUNDS,
   getAmbiancesByCategory,
   getAmbianceUrl,
   type AmbianceCategory,
@@ -17,21 +16,21 @@ interface AmbiancePickerProps {
 
 export function AmbiancePicker({ onSelect, onClose }: AmbiancePickerProps) {
   const [category, setCategory] = useState<AmbianceCategory>('water');
-  const [previewAudio, setPreviewAudio] = useState<HTMLAudioElement | null>(null);
+  const previewAudioRef = useRef<HTMLAudioElement | null>(null);
   const [previewingId, setPreviewingId] = useState<string | null>(null);
 
   const sounds = getAmbiancesByCategory(category);
 
   const handlePreview = useCallback((sound: AmbianceSound) => {
     // Stop current preview
-    if (previewAudio) {
-      previewAudio.pause();
-      previewAudio.currentTime = 0;
+    if (previewAudioRef.current) {
+      previewAudioRef.current.pause();
+      previewAudioRef.current.currentTime = 0;
     }
 
     if (previewingId === sound.id) {
       setPreviewingId(null);
-      setPreviewAudio(null);
+      previewAudioRef.current = null;
       return;
     }
 
@@ -40,23 +39,23 @@ export function AmbiancePicker({ onSelect, onClose }: AmbiancePickerProps) {
     audio.volume = 0.5;
     audio.play();
     audio.onended = () => setPreviewingId(null);
-    setPreviewAudio(audio);
+    previewAudioRef.current = audio;
     setPreviewingId(sound.id);
-  }, [previewAudio, previewingId]);
+  }, [previewingId]);
 
   const handleSelect = useCallback((sound: AmbianceSound) => {
-    if (previewAudio) {
-      previewAudio.pause();
+    if (previewAudioRef.current) {
+      previewAudioRef.current.pause();
     }
     onSelect(sound);
-  }, [previewAudio, onSelect]);
+  }, [onSelect]);
 
   const handleClose = useCallback(() => {
-    if (previewAudio) {
-      previewAudio.pause();
+    if (previewAudioRef.current) {
+      previewAudioRef.current.pause();
     }
     onClose();
-  }, [previewAudio, onClose]);
+  }, [onClose]);
 
   return (
     <div className="bg-white border-2 border-indigo-200 rounded-lg shadow-lg p-4 space-y-3" data-testid="ambiance-picker">

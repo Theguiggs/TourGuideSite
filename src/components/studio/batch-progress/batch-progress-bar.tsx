@@ -51,7 +51,7 @@ export function BatchProgressBar({ totalLangs }: BatchProgressBarProps) {
         clearTimeout(stickyTimerRef.current);
         stickyTimerRef.current = null;
       }
-      setIsSticky(false);
+      setIsSticky(false); // eslint-disable-line react-hooks/set-state-in-effect -- cleanup on stop
       wasRunningRef.current = false;
     }
 
