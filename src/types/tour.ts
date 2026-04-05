@@ -26,6 +26,9 @@ export interface Tour {
   imageUrl?: string;
   isFree: boolean;
   status: 'draft' | 'pending_moderation' | 'published' | 'rejected' | 'archived';
+  availableLanguages?: string[];
+  createdAt?: string;
+  languageAudioTypes?: Record<string, 'tts' | 'recording' | 'mixed'>;
 }
 
 export interface POI {

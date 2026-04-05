@@ -418,6 +418,8 @@ export async function createStudioSessionMutation(data: {
   title?: string;
   status?: string;
   language?: string;
+  version?: number;
+  consentRGPD?: boolean;
 }) {
   try {
     const client = getClient();
@@ -456,6 +458,14 @@ export async function createStudioSceneMutation(data: {
   sceneIndex: number;
   title?: string;
   status?: string;
+  studioAudioKey?: string;
+  originalAudioKey?: string;
+  transcriptText?: string;
+  poiDescription?: string;
+  photosRefs?: string[];
+  latitude?: number;
+  longitude?: number;
+  archived?: boolean;
 }) {
   try {
     const client = getClient();
@@ -615,5 +625,22 @@ export async function deleteModerationItemMutation(id: string) {
   } catch (error) {
     logger.error(SERVICE_NAME, 'deleteModerationItem failed', { error: String(error) });
     return { ok: false as const, error: String(error) };
+  }
+}
+
+/**
+ * Generic delete for any model by name and ID. Admin auth.
+ */
+export async function deleteItem(
+  modelName: 'GuideTour' | 'StudioSession' | 'StudioScene' | 'SceneSegment' | 'TourLanguagePurchase' | 'ModerationItem',
+  id: string,
+): Promise<void> {
+  try {
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (client.models as any)[modelName].delete({ id }, { authMode: 'userPool' });
+  } catch (error) {
+    logger.error(SERVICE_NAME, `deleteItem(${modelName}) failed`, { id, error: String(error) });
+    throw error;
   }
 }

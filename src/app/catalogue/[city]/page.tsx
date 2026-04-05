@@ -3,6 +3,11 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getCityBySlug, getToursByCity, getCities } from '@/lib/api/tours';
 import { getGuidesByCity } from '@/lib/api/guides-public';
+import { S3Image } from '@/components/studio/s3-image';
+
+const LANG_FLAGS: Record<string, string> = {
+  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪',
+};
 
 export const revalidate = 300; // ISR: 5 minutes
 
@@ -61,12 +66,16 @@ export default async function CityPage({ params }: CityPageProps) {
             >
               <div className="flex flex-col sm:flex-row">
                 <div className="relative sm:w-64 h-48 sm:h-auto bg-gradient-to-br from-teal-600 to-teal-800 flex-shrink-0 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={tour.imageUrl || `/images/tours/${tour.slug}.jpg`}
-                    alt={tour.title}
-                    className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
+                  {tour.imageUrl && tour.imageUrl.startsWith('guide-') ? (
+                    <S3Image s3Key={tour.imageUrl} alt={tour.title} className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  ) : (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={tour.imageUrl || `/images/tours/${tour.slug}.jpg`}
+                      alt={tour.title}
+                      className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    />
+                  )}
                 </div>
                 <div className="p-6 flex-1">
                   <div className="flex items-start justify-between gap-4">
@@ -79,10 +88,25 @@ export default async function CityPage({ params }: CityPageProps) {
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-gray-500 mb-3">
+                      <p className="text-sm text-gray-500 mb-2">
                         Par {tour.guideName} &middot; {tour.duration} min &middot; {tour.distance} km
                         &middot; {tour.poiCount} points
                       </p>
+                      {tour.availableLanguages && tour.availableLanguages.length > 0 && (
+                        <div className="inline-flex gap-1.5 text-sm mb-2" data-testid={`lang-flags-${tour.id}`}>
+                          {tour.availableLanguages.slice(0, 5).map((lang) => {
+                            const audioType = tour.languageAudioTypes?.[lang];
+                            return (
+                              <span key={lang} title={`${lang.toUpperCase()} — ${audioType === 'tts' ? 'Synthèse vocale' : audioType === 'recording' ? 'Voix humaine' : 'Audio'}`}>
+                                {LANG_FLAGS[lang] ?? lang}{audioType === 'recording' ? '🎤' : audioType === 'tts' ? '🤖' : ''}
+                              </span>
+                            );
+                          })}
+                          {tour.availableLanguages.length > 5 && (
+                            <span className="text-xs text-gray-400">+{tour.availableLanguages.length - 5}</span>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <p className="text-gray-600 line-clamp-2">{tour.shortDescription}</p>

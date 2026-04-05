@@ -101,6 +101,7 @@ async function translateSessionInfo(
   targetLang: string,
   qualityTier: QualityTier,
   sourceLang: string,
+  tourId?: string,
 ): Promise<void> {
   logger.info(SERVICE_NAME, 'Translating session info', { sessionId, targetLang });
 
@@ -166,6 +167,20 @@ async function translateSessionInfo(
     logger.warn(SERVICE_NAME, 'Session info save failed (non-fatal)', { sessionId, targetLang });
   }
 
+  // Also sync translated descriptions to GuideTour for catalogue/moderation access
+  if (tourId && translatedDescription !== null) {
+    try {
+      const { updateGuideTourMutation, getGuideTourById } = await import('@/lib/api/appsync-client');
+      const tour = await getGuideTourById(tourId);
+      const existingTourDescs = (tour as Record<string, unknown>)?.translatedDescriptions ?? {};
+      const mergedDescs = { ...(typeof existingTourDescs === 'object' ? existingTourDescs : {}), [targetLang]: translatedDescription };
+      await updateGuideTourMutation(tourId, { translatedDescriptions: mergedDescs });
+      logger.info(SERVICE_NAME, 'GuideTour translatedDescriptions synced', { tourId, targetLang });
+    } catch (err) {
+      logger.warn(SERVICE_NAME, 'GuideTour description sync failed (non-fatal)', { tourId, targetLang, error: String(err) });
+    }
+  }
+
   logger.info(SERVICE_NAME, 'Session info translated', { sessionId, targetLang });
 }
 
@@ -180,6 +195,7 @@ export async function executeBatch(
   sessionTitle?: string,
   sessionDescription?: string,
   sourceLang: string = 'fr',
+  tourId?: string,
 ): Promise<{ ok: true; value: BatchResult } | { ok: false; error: BatchError }> {
   const provider: TranslationProvider = getProviderForTier(qualityTier);
   const totalScenes = targetLangs.length * scenes.length;
@@ -204,6 +220,7 @@ export async function executeBatch(
           lang.code,
           qualityTier,
           sourceLang,
+          tourId,
         );
         onProgress?.(lang.code, sessionId, 'session_info_translated');
       } catch (err) {
@@ -222,8 +239,9 @@ export async function executeBatch(
       const segmentId = existingSeg?.id ?? `${scene.id}-${lang.code}`;
       const sourceText = scene.transcriptText ?? '';
 
-      // Capture sourceUpdatedAt before translation
-      const sourceUpdatedAt = new Date().toISOString();
+      // Capture the source scene's actual updatedAt — not Date.now() —
+      // so staleness detection compares apples to apples
+      const sourceUpdatedAt = scene.updatedAt ?? new Date().toISOString();
 
       // --- Translation ---
       let translationResult: TranslationResult;
@@ -453,7 +471,7 @@ export async function retryScene(
   const existingSeg = existingSegs.find((s) => s.language === lang);
   const segmentId = existingSeg?.id ?? `${scene.id}-${lang}`;
   const sourceText = scene.transcriptText ?? '';
-  const sourceUpdatedAt = new Date().toISOString();
+  const sourceUpdatedAt = scene.updatedAt ?? new Date().toISOString();
 
   logger.info(SERVICE_NAME, 'Retry scene started', { sceneId: scene.id, lang, provider });
 

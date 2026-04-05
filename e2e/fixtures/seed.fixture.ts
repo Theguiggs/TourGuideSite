@@ -13,6 +13,7 @@ import {
   seedSceneSegment,
   deleteItemsByPrefix,
   resolveGuideId,
+  updateTourSessionId,
 } from '../helpers/appsync-direct';
 
 function validatePrefix(prefix: string): void {
@@ -78,6 +79,9 @@ export async function seedSubmittedTour(
     title: `${prefix} Session Soumise`,
     status: 'submitted',
   });
+
+  // Link session to tour (needed for getModerationDetail fallback)
+  await updateTourSessionId(tour.id, session.id, token);
 
   const scene1 = await seedScene(session.id, 0, token, {
     title: `${prefix} Scene 1`,
@@ -201,6 +205,9 @@ export async function seedMultilangReadyTour(
     status: 'submitted',
     guideId,
   });
+
+  // Link session back to tour (so getModerationDetail fallback can find scenes)
+  await updateTourSessionId(tour.id, session.id, token);
 
   const scenes = [];
   const sceneData = [

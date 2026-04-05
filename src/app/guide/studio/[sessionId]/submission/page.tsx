@@ -1,21 +1,27 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
-import { getStudioSession, getSessionStatusConfig, listStudioScenes, listSegmentsByScene } from '@/lib/api/studio';
+import { getStudioSession, getSessionStatusConfig, listStudioScenes, listSegmentsByScene, cloneSessionAsV2 } from '@/lib/api/studio';
 import { submitForReview, retractSubmission, updateSessionStatus } from '@/lib/api/studio-submission';
-import { listLanguagePurchases, checkLanguageReadiness, submitLanguageForModeration } from '@/lib/api/language-purchase';
+import { listLanguagePurchases, checkLanguageReadiness, submitLanguageForModeration, retractLanguageSubmission } from '@/lib/api/language-purchase';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
+import { TourCommentThread } from '@/components/studio/tour-comment-thread';
 import { LANGUAGE_CONFIG } from '@/components/studio/language-checkout/language-checkbox-card';
 import type { StudioSession, TourLanguagePurchase, StudioScene, SceneSegment } from '@/types/studio';
 
 const SERVICE_NAME = 'SubmissionPage';
 
+const LANG_FLAGS: Record<string, string> = {
+  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪', ja: '🇯🇵', zh: '🇨🇳', pt: '🇵🇹',
+};
+
 export default function SubmissionPage() {
   const params = useParams<{ sessionId: string }>();
+  const router = useRouter();
   const sessionId = params.sessionId;
 
   const [session, setSession] = useState<StudioSession | null>(null);
@@ -155,89 +161,184 @@ export default function SubmissionPage() {
         )}
       </div>
 
-      {/* Review feedback panel — full admin review */}
+      {/* Review feedback panel — legacy (shown when rejected/revision) */}
       {session.tourId && (
         <ReviewFeedbackPanel tourId={session.tourId} sessionStatus={session.status} />
       )}
 
-      {/* Per-language moderation status */}
-      {purchases.length > 0 && (
-        <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6" data-testid="language-submissions-section">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Langues</h2>
-
-          {/* Base language */}
-          <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 mb-2 bg-gray-50">
-            <div>
-              <span className="text-sm font-medium text-gray-900">
-                Langue principale ({(session.language || 'fr').toUpperCase()})
-              </span>
-            </div>
-            <span className="inline-flex px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
-              {statusConfig.label}
-            </span>
-          </div>
-
-          {/* Purchased languages */}
-          {purchases.map((purchase) => {
-            const langConfig = LANGUAGE_CONFIG.find((c) => c.code === purchase.language);
-            const langLabel = langConfig?.label ?? purchase.language.toUpperCase();
-            const langCode = purchase.language.toUpperCase();
-            const readiness = checkLanguageReadiness(scenes, segments, purchase.language);
-
-            const moderationBadge: Record<string, { label: string; className: string }> = {
-              draft: { label: 'Brouillon', className: 'bg-gray-100 text-gray-600' },
-              submitted: { label: 'Soumis', className: 'bg-yellow-100 text-yellow-700' },
-              approved: { label: 'Approuve', className: 'bg-green-100 text-green-700' },
-              rejected: { label: 'Refuse', className: 'bg-red-100 text-red-700' },
-              revision_requested: { label: 'Revision demandee', className: 'bg-orange-100 text-orange-700' },
-            };
-
-            const badge = moderationBadge[purchase.moderationStatus] ?? moderationBadge.draft;
-            const canSubmitLang = purchase.moderationStatus === 'draft' || purchase.moderationStatus === 'revision_requested' || purchase.moderationStatus === 'rejected';
-
-            return (
-              <div key={purchase.id} className="flex items-center justify-between rounded-lg border border-gray-200 p-3 mb-2" data-testid={`lang-submission-${purchase.language}`}>
-                <div className="flex-1 min-w-0">
-                  <span className="text-sm font-medium text-gray-900">
-                    {langLabel} ({langCode})
-                  </span>
-                  <span className="text-xs text-gray-500 ml-2">
-                    {readiness.complete}/{readiness.total} scenes
-                    {readiness.ready ? ' — Texte et audio complets' : ` — ${readiness.total - readiness.complete} scene(s) incomplete(s)`}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${badge.className}`}>
-                    {badge.label}
-                  </span>
-                  {canSubmitLang && readiness.ready && (
-                    <button
-                      onClick={() => doAction(
-                        `Version ${langLabel} soumise !`,
-                        async () => {
-                          setLangActioning(purchase.language);
-                          const result = await submitLanguageForModeration(sessionId, purchase.language, scenes, segments);
-                          setLangActioning(null);
-                          if (result.ok) return { ok: true };
-                          return { ok: false, error: result.error.message };
-                        },
-                      )}
-                      disabled={isActioning || langActioning === purchase.language}
-                      className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors"
-                      data-testid={`submit-lang-${purchase.language}`}
-                    >
-                      {langActioning === purchase.language ? 'En cours...' : 'Soumettre'}
-                    </button>
-                  )}
-                  {canSubmitLang && !readiness.ready && (
-                    <span className="text-xs text-amber-600 font-medium">Incomplet</span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+      {/* Comment thread — always visible */}
+      {session.tourId && (
+        <div className="mb-6">
+          <TourCommentThread tourId={session.tourId} role="guide" authorName="Guide" sessionId={sessionId} />
         </div>
       )}
+
+      {/* Language summary table */}
+      <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6" data-testid="language-submissions-section">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Langues</h2>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th className="text-left px-3 py-2 font-medium text-gray-500">Langue</th>
+                <th className="text-left px-3 py-2 font-medium text-gray-500">Version</th>
+                <th className="text-left px-3 py-2 font-medium text-gray-500">Statut</th>
+                <th className="text-center px-3 py-2 font-medium text-gray-500">Scenes</th>
+                <th className="text-center px-3 py-2 font-medium text-gray-500">Audio</th>
+                <th className="text-right px-3 py-2 font-medium text-gray-500">Mots</th>
+                <th className="text-right px-3 py-2 font-medium text-gray-500">Cout</th>
+                <th className="text-right px-3 py-2 font-medium text-gray-500">Soumis le</th>
+                <th className="text-right px-3 py-2 font-medium text-gray-500"></th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {/* Base language row */}
+              {(() => {
+                const baseLang = session.language || 'fr';
+                const baseFlag = LANG_FLAGS[baseLang] ?? '';
+                const baseSceneCount = scenes.length;
+                const baseAudioCount = scenes.filter((s) => s.studioAudioKey).length;
+                const baseWordCount = scenes.reduce((sum, s) => sum + (s.transcriptText ?? '').split(/\s+/).filter(Boolean).length, 0);
+                const version = (session as unknown as Record<string, unknown>).version as number ?? 1;
+                return (
+                  <tr className="bg-gray-50">
+                    <td className="px-3 py-2.5 font-medium text-gray-900">
+                      {baseFlag} {baseLang.toUpperCase()} <span className="text-xs text-gray-400">(source)</span>
+                    </td>
+                    <td className="px-3 py-2.5 text-gray-700">V{version}</td>
+                    <td className="px-3 py-2.5">
+                      <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${statusConfig.color}`}>
+                        {statusConfig.label}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2.5 text-center text-gray-700">{baseSceneCount}/{baseSceneCount}</td>
+                    <td className="px-3 py-2.5 text-center text-gray-700">{baseAudioCount}/{baseSceneCount}</td>
+                    <td className="px-3 py-2.5 text-right text-gray-700">{baseWordCount.toLocaleString()}</td>
+                    <td className="px-3 py-2.5 text-right text-gray-400">—</td>
+                    <td className="px-3 py-2.5 text-right text-gray-400">—</td>
+                    <td className="px-3 py-2.5"></td>
+                  </tr>
+                );
+              })()}
+
+              {/* Purchased language rows */}
+              {purchases.map((purchase) => {
+                const langConfig = LANGUAGE_CONFIG.find((c) => c.code === purchase.language);
+                const langFlag = LANG_FLAGS[purchase.language] ?? '';
+                const langLabel = purchase.language.toUpperCase();
+                const readiness = checkLanguageReadiness(scenes, segments, purchase.language);
+                const langSegments = segments.filter((s) => s.language === purchase.language);
+                const audioCount = langSegments.filter((s) => s.audioKey && !s.audioKey.startsWith('tts-')).length;
+                const wordCount = langSegments.reduce((sum, s) => sum + (s.transcriptText ?? '').split(/\s+/).filter(Boolean).length, 0);
+                const cost = purchase.amountCents > 0 ? `${(purchase.amountCents / 100).toFixed(2)}€` : 'Gratuit';
+                const submittedDate = purchase.moderationStatus === 'submitted' || purchase.moderationStatus === 'approved'
+                  ? new Date(purchase.updatedAt).toLocaleDateString('fr-FR')
+                  : '—';
+                const version = (session as unknown as Record<string, unknown>).version as number ?? 1;
+
+                const moderationBadge: Record<string, { label: string; className: string }> = {
+                  draft: { label: 'Brouillon', className: 'bg-gray-100 text-gray-600' },
+                  submitted: { label: 'Soumis', className: 'bg-yellow-100 text-yellow-700' },
+                  approved: { label: 'Approuve', className: 'bg-green-100 text-green-700' },
+                  rejected: { label: 'Refuse', className: 'bg-red-100 text-red-700' },
+                  revision_requested: { label: 'Revision', className: 'bg-orange-100 text-orange-700' },
+                };
+                const badge = moderationBadge[purchase.moderationStatus] ?? moderationBadge.draft;
+                const canSubmitLang = purchase.moderationStatus === 'draft' || purchase.moderationStatus === 'revision_requested' || purchase.moderationStatus === 'rejected';
+
+                return (
+                  <tr key={purchase.id} data-testid={`lang-submission-${purchase.language}`}>
+                    <td className="px-3 py-2.5 font-medium text-gray-900">{langFlag} {langLabel}</td>
+                    <td className="px-3 py-2.5 text-gray-700">V{version}</td>
+                    <td className="px-3 py-2.5">
+                      <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${badge.className}`}>
+                        {badge.label}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2.5 text-center">
+                      <span className={readiness.ready ? 'text-green-700' : 'text-amber-600'}>
+                        {readiness.complete}/{readiness.total}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2.5 text-center">
+                      <span className={audioCount >= scenes.length ? 'text-green-700' : 'text-amber-600'}>
+                        {audioCount}/{scenes.length}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2.5 text-right text-gray-700">{wordCount.toLocaleString()}</td>
+                    <td className="px-3 py-2.5 text-right text-gray-700">{cost}</td>
+                    <td className="px-3 py-2.5 text-right text-gray-500">{submittedDate}</td>
+                    <td className="px-3 py-2.5 text-right space-x-1">
+                      {/* Soumettre — when draft/revision/rejected + ready */}
+                      {canSubmitLang && readiness.ready && (
+                        <button
+                          onClick={() => doAction(
+                            `${langLabel} soumis !`,
+                            async () => {
+                              setLangActioning(purchase.language);
+                              const result = await submitLanguageForModeration(sessionId, purchase.language, scenes, segments);
+                              setLangActioning(null);
+                              if (result.ok) return { ok: true };
+                              return { ok: false, error: result.error.message };
+                            },
+                          )}
+                          disabled={isActioning || langActioning === purchase.language}
+                          className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white text-xs font-medium py-1 px-2.5 rounded transition-colors"
+                          data-testid={`submit-lang-${purchase.language}`}
+                        >
+                          {langActioning === purchase.language ? '...' : 'Soumettre'}
+                        </button>
+                      )}
+                      {canSubmitLang && !readiness.ready && (
+                        <span className="text-xs text-amber-600">Incomplet</span>
+                      )}
+                      {/* Retirer — when submitted (retract from moderation queue) */}
+                      {purchase.moderationStatus === 'submitted' && (
+                        <button
+                          onClick={() => doAction(
+                            `Soumission ${langLabel} retirée`,
+                            async () => {
+                              setLangActioning(purchase.language);
+                              const result = await retractLanguageSubmission(sessionId, purchase.language);
+                              setLangActioning(null);
+                              return result.ok ? { ok: true } : { ok: false, error: result.error.message };
+                            },
+                          )}
+                          disabled={isActioning || langActioning === purchase.language}
+                          className="bg-amber-500 hover:bg-amber-600 disabled:bg-gray-400 text-white text-xs font-medium py-1 px-2.5 rounded transition-colors"
+                          data-testid={`retract-lang-${purchase.language}`}
+                        >
+                          {langActioning === purchase.language ? '...' : 'Retirer'}
+                        </button>
+                      )}
+                      {/* Dépublier — when approved (unpublish this language) */}
+                      {purchase.moderationStatus === 'approved' && (
+                        <button
+                          onClick={() => doAction(
+                            `${langLabel} dépublié`,
+                            async () => {
+                              setLangActioning(purchase.language);
+                              const result = await retractLanguageSubmission(sessionId, purchase.language);
+                              setLangActioning(null);
+                              return result.ok ? { ok: true } : { ok: false, error: result.error.message };
+                            },
+                          )}
+                          disabled={isActioning || langActioning === purchase.language}
+                          className="bg-red-500 hover:bg-red-600 disabled:bg-gray-400 text-white text-xs font-medium py-1 px-2.5 rounded transition-colors"
+                          data-testid={`unpublish-lang-${purchase.language}`}
+                        >
+                          {langActioning === purchase.language ? '...' : 'Dépublier'}
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {/* Actions */}
       <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
@@ -305,9 +406,29 @@ export default function SubmissionPage() {
             </button>
           )}
 
-          {/* Published — no actions except archive */}
+          {/* Published — create V2 */}
           {isPublished && (
-            <span className="text-sm text-green-600 font-medium self-center">✅ Parcours publié</span>
+            <>
+              <span className="text-sm text-green-600 font-medium self-center">✅ Parcours publié (V{(session as unknown as Record<string, unknown>).version as number ?? 1})</span>
+              <button
+                onClick={async () => {
+                  setIsActioning(true);
+                  setMessage(null);
+                  const result = await cloneSessionAsV2(sessionId);
+                  if (result.ok) {
+                    setMessage({ text: `V${result.version} créée ! Redirection...`, success: true });
+                    setTimeout(() => router.push(`/guide/studio/${result.sessionId}/scenes`), 1500);
+                  } else {
+                    setMessage({ text: result.error, success: false });
+                  }
+                  setIsActioning(false);
+                }}
+                disabled={isActioning}
+                className="bg-amber-600 hover:bg-amber-700 disabled:bg-gray-400 text-white font-medium py-2.5 px-6 rounded-lg transition-colors"
+              >
+                ✨ Créer V{((session as unknown as Record<string, unknown>).version as number ?? 1) + 1}
+              </button>
+            </>
           )}
 
           {/* Archived — no actions */}

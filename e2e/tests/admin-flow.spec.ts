@@ -14,7 +14,8 @@ import {
   createStorageState,
   getAccessTokenFromStorageState,
 } from '../fixtures/auth.fixture';
-import { seedSubmittedTour, cleanupByPrefix } from '../fixtures/seed.fixture';
+import { seedSubmittedTour, seedLanguagePurchase, cleanupByPrefix } from '../fixtures/seed.fixture';
+import { resolveGuideId, deleteItemsById } from '../helpers/appsync-direct';
 import { queryTourById } from '../helpers/appsync-direct';
 import { pollUntil } from '../helpers/wait-helpers';
 
@@ -25,6 +26,7 @@ test.describe('Admin Flow', () => {
   let guidePath: string;
   let guideToken: string;
   let seeded: Awaited<ReturnType<typeof seedSubmittedTour>>;
+  let purchaseId: string;
 
   test.beforeAll(async () => {
     adminPath = getAdminStorageStatePath();
@@ -44,9 +46,19 @@ test.describe('Admin Flow', () => {
 
     // Seed a submitted tour for moderation
     seeded = await seedSubmittedTour(prefix, guideToken);
+
+    // Seed a language purchase with 'submitted' status so it appears in the language queue
+    const guideId = await resolveGuideId(guideToken);
+    const purchase = await seedLanguagePurchase(seeded.sessionId, 'en', guideToken, {
+      guideId,
+      moderationStatus: 'submitted',
+      status: 'active',
+    });
+    purchaseId = purchase.id;
   });
 
   test.afterAll(async () => {
+    if (purchaseId) await deleteItemsById('TourLanguagePurchase', [purchaseId]).catch(() => {});
     await cleanupByPrefix(prefix);
   });
 
@@ -65,8 +77,8 @@ test.describe('Admin Flow', () => {
     const page = await context.newPage();
 
     await page.goto('/admin/moderation');
-    // Click "Examiner" link for our seeded tour
-    const row = page.getByTestId(`moderation-item-${seeded.moderationItemId}`);
+    // Find the row containing our tour prefix and click Examiner
+    const row = page.locator('tr', { hasText: prefix }).first();
     await expect(row).toBeVisible({ timeout: 10_000 });
     await row.getByText('Examiner').click();
 
@@ -74,7 +86,7 @@ test.describe('Admin Flow', () => {
     await expect(page).toHaveURL(/\/admin\/moderation\//, { timeout: 10_000 });
 
     // Tour title should be visible
-    await expect(page.getByText(`${prefix} Tour Soumis`, { exact: false })).toBeVisible();
+    await expect(page.getByText(`${prefix} Tour Soumis`, { exact: false }).first()).toBeVisible();
 
     await context.close();
   });

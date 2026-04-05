@@ -63,7 +63,7 @@ interface CreatedItem {
 export async function seedTour(
   prefix: string,
   token: string,
-  overrides?: Partial<{ title: string; city: string; description: string; status: string; guideId: string }>,
+  overrides?: Partial<{ title: string; city: string; description: string; status: string; guideId: string; sessionId: string }>,
 ): Promise<CreatedItem> {
   validateE2ePrefix(prefix);
   const input = {
@@ -75,6 +75,7 @@ export async function seedTour(
     duration: 45,
     distance: 2.5,
     poiCount: 2,
+    ...(overrides?.sessionId ? { sessionId: overrides.sessionId } : {}),
   };
 
   const data = await graphql<{ createGuideTour: CreatedItem }>(
@@ -85,6 +86,35 @@ export async function seedTour(
     token,
   );
   return data.createGuideTour;
+}
+
+export async function updateTourSessionId(
+  tourId: string,
+  sessionId: string,
+  token: string,
+): Promise<void> {
+  await graphql(
+    `mutation UpdateGuideTour($input: UpdateGuideTourInput!) {
+      updateGuideTour(input: $input) { id sessionId }
+    }`,
+    { input: { id: tourId, sessionId } },
+    token,
+  );
+}
+
+export async function updateSessionTranslations(
+  sessionId: string,
+  translatedTitles: Record<string, string>,
+  translatedDescriptions: Record<string, string>,
+  token: string,
+): Promise<void> {
+  await graphql(
+    `mutation UpdateStudioSession($input: UpdateStudioSessionInput!) {
+      updateStudioSession(input: $input) { id }
+    }`,
+    { input: { id: sessionId, translatedTitles: JSON.stringify(translatedTitles), translatedDescriptions: JSON.stringify(translatedDescriptions) } },
+    token,
+  );
 }
 
 export async function seedSession(
@@ -196,7 +226,7 @@ export async function seedSceneSegment(
   sceneId: string,
   segmentIndex: number,
   token: string,
-  overrides?: Partial<{ language: string; transcriptText: string; status: string; sourceSegmentId: string; manuallyEdited: boolean }>,
+  overrides?: Partial<{ language: string; transcriptText: string; translatedTitle: string; audioKey: string; status: string; sourceSegmentId: string; manuallyEdited: boolean }>,
 ): Promise<CreatedItem> {
   const input = {
     sceneId,
@@ -206,6 +236,8 @@ export async function seedSceneSegment(
     status: overrides?.status ?? 'transcribed',
     sourceSegmentId: overrides?.sourceSegmentId ?? null,
     manuallyEdited: overrides?.manuallyEdited ?? false,
+    ...(overrides?.translatedTitle ? { translatedTitle: overrides.translatedTitle } : {}),
+    ...(overrides?.audioKey ? { audioKey: overrides.audioKey } : {}),
   };
   const data = await graphql<{ createSceneSegment: CreatedItem }>(
     `mutation($input: CreateSceneSegmentInput!) {
@@ -215,6 +247,51 @@ export async function seedSceneSegment(
     token,
   );
   return data.createSceneSegment;
+}
+
+// --- Admin actions (approve/reject via API) ---
+
+export async function updateModerationItemStatus(
+  id: string,
+  status: string,
+  feedbackJson: string | null,
+  token: string,
+): Promise<void> {
+  await graphql(
+    `mutation UpdateModerationItem($input: UpdateModerationItemInput!) {
+      updateModerationItem(input: $input) { id status }
+    }`,
+    { input: { id, status, ...(feedbackJson ? { feedbackJson } : {}), reviewDate: Date.now() } },
+    token,
+  );
+}
+
+export async function updateLanguagePurchaseStatus(
+  id: string,
+  moderationStatus: string,
+  token: string,
+): Promise<void> {
+  await graphql(
+    `mutation UpdateTourLanguagePurchase($input: UpdateTourLanguagePurchaseInput!) {
+      updateTourLanguagePurchase(input: $input) { id moderationStatus }
+    }`,
+    { input: { id, moderationStatus } },
+    token,
+  );
+}
+
+export async function updateSessionStatus(
+  id: string,
+  status: string,
+  token: string,
+): Promise<void> {
+  await graphql(
+    `mutation UpdateStudioSession($input: UpdateStudioSessionInput!) {
+      updateStudioSession(input: $input) { id status }
+    }`,
+    { input: { id, status } },
+    token,
+  );
 }
 
 // --- GuideProfile Resolution ---

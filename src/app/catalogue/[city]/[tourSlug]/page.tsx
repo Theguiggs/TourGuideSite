@@ -7,6 +7,32 @@ import TrackPageView from '@/components/TrackPageView';
 import SmartAppLink from '@/components/SmartAppLink';
 import { AnalyticsEvents } from '@/lib/analytics';
 
+const LANG_FLAGS: Record<string, string> = {
+  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪',
+};
+
+const LANG_NAMES: Record<string, string> = {
+  fr: 'Français', en: 'English', es: 'Español', it: 'Italiano', de: 'Deutsch',
+};
+
+const AUDIO_TYPE_LABELS: Record<string, { icon: string; label: string }> = {
+  recording: { icon: '🎤', label: 'Voix humaine' },
+  tts: { icon: '🤖', label: 'Synthèse vocale' },
+  mixed: { icon: '🔀', label: 'Mixte' },
+};
+
+function formatRelativeDate(dateStr: string): string {
+  if (!dateStr) return '';
+  const date = new Date(dateStr);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  if (diffDays < 1) return 'Publié aujourd\'hui';
+  if (diffDays < 30) return `Publié il y a ${diffDays} jour${diffDays > 1 ? 's' : ''}`;
+  const month = date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+  return `Publié en ${month}`;
+}
+
 export const revalidate = 300; // ISR: 5 minutes
 
 interface TourPageProps {
@@ -104,7 +130,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
             )}
           </div>
 
-          <div className="flex items-center gap-4 text-gray-500 text-sm mb-6">
+          <div className="flex items-center gap-4 text-gray-500 text-sm mb-3">
             <span>{tour.city}</span>
             <span>&middot;</span>
             <span>{tour.duration} min</span>
@@ -112,6 +138,22 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
             <span>{tour.distance} km</span>
             <span>&middot;</span>
             <span>{tour.poiCount} points d&apos;interet</span>
+          </div>
+
+          <div className="flex items-center gap-3 text-sm text-gray-500 mb-6">
+            {tour.availableLanguages && tour.availableLanguages.length > 0 && (
+              <div className="inline-flex gap-1" data-testid="tour-detail-lang-flags">
+                {tour.availableLanguages.slice(0, 5).map((lang) => (
+                  <span key={lang} title={lang.toUpperCase()}>{LANG_FLAGS[lang] ?? lang}</span>
+                ))}
+                {tour.availableLanguages.length > 5 && (
+                  <span className="text-xs text-gray-400">+{tour.availableLanguages.length - 5}</span>
+                )}
+              </div>
+            )}
+            {tour.createdAt && (
+              <span data-testid="tour-detail-date">{formatRelativeDate(tour.createdAt)}</span>
+            )}
           </div>
 
           {/* Guide info */}
@@ -145,6 +187,28 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
             <h2 className="text-xl font-semibold text-gray-900 mb-3">Description</h2>
             <p className="text-gray-700 leading-relaxed">{tour.description}</p>
           </div>
+
+          {/* Audio par langue */}
+          {tour.languageAudioTypes && Object.keys(tour.languageAudioTypes).length > 0 && (
+            <div className="mb-10">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Audio par langue</h2>
+              <div className="space-y-2">
+                {Object.entries(tour.languageAudioTypes).map(([lang, type]) => {
+                  const info = AUDIO_TYPE_LABELS[type] ?? AUDIO_TYPE_LABELS.mixed;
+                  return (
+                    <div key={lang} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <span className="font-medium text-gray-900">
+                        {LANG_FLAGS[lang] ?? ''} {LANG_NAMES[lang] ?? lang.toUpperCase()}
+                      </span>
+                      <span className={`text-sm ${type === 'recording' ? 'text-blue-600' : type === 'tts' ? 'text-purple-600' : 'text-gray-500'}`}>
+                        {info.icon} {info.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* POI List */}
           {tour.pois.length > 0 && (

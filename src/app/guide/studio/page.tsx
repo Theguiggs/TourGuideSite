@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import { logger } from '@/lib/logger';
 import { trackEvent, StudioAnalyticsEvents } from '@/lib/analytics';
 import { listStudioSessions, getStubScenesCount, listStudioScenes } from '@/lib/api/studio';
+import { listLanguagePurchases } from '@/lib/api/language-purchase';
+import { listTourComments } from '@/lib/api/tour-comments';
+import type { TourLanguagePurchase } from '@/types/studio';
 import { SessionCard } from '@/components/studio/session-card';
 import { useAuth } from '@/lib/auth/auth-context';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
@@ -18,6 +21,8 @@ export default function StudioHomePage() {
   const router = useRouter();
   const [sessions, setSessions] = useState<StudioSession[]>([]);
   const [sceneCounts, setSceneCounts] = useState<Record<string, number>>({});
+  const [purchasesBySession, setPurchasesBySession] = useState<Record<string, TourLanguagePurchase[]>>({});
+  const [hasAdminFeedback, setHasAdminFeedback] = useState<Record<string, boolean>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastSessionId, setLastSessionId] = useState<string | null>(null);
@@ -44,6 +49,32 @@ export default function StudioHomePage() {
         });
         setSceneCounts(counts);
       }
+
+      // Load language purchases per session
+      const purchaseResults = await Promise.all(
+        result.map(async (s) => {
+          const r = await listLanguagePurchases(s.id);
+          return { sessionId: s.id, purchases: r.ok ? r.value.filter((p) => p.status === 'active') : [] };
+        }),
+      );
+      const pMap: Record<string, TourLanguagePurchase[]> = {};
+      for (const r of purchaseResults) pMap[r.sessionId] = r.purchases;
+      setPurchasesBySession(pMap);
+
+      // Check for admin feedback (comments with author='admin') per tour
+      const feedbackMap: Record<string, boolean> = {};
+      for (const s of result) {
+        if (s.tourId && ['revision_requested', 'rejected'].includes(s.status)) {
+          feedbackMap[s.id] = true;
+        } else if (s.tourId) {
+          try {
+            const comments = await listTourComments(s.tourId);
+            const lastAdminComment = [...comments].reverse().find((c) => c.author === 'admin');
+            feedbackMap[s.id] = !!lastAdminComment;
+          } catch { feedbackMap[s.id] = false; }
+        }
+      }
+      setHasAdminFeedback(feedbackMap);
 
       logger.info(SERVICE_NAME, 'Tours loaded', { count: result.length });
       trackEvent(StudioAnalyticsEvents.STUDIO_SESSIONS_VIEW, { count: result.length });
@@ -155,6 +186,8 @@ export default function StudioHomePage() {
               key={session.id}
               session={session}
               scenesCount={sceneCounts[session.id] ?? 0}
+              purchases={purchasesBySession[session.id] ?? []}
+              hasAdminFeedback={hasAdminFeedback[session.id] ?? false}
               onClick={(id) => {
                 logger.info(SERVICE_NAME, 'Tour clicked', { sessionId: id });
                 router.push(`/guide/studio/${id}`);

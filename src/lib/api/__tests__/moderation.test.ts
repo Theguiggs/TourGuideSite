@@ -8,6 +8,7 @@ import {
   sendBackForRevision,
   addReviewComment,
   getQueueItemIds,
+  getLanguageModerationQueue,
 } from '../moderation';
 
 describe('moderation API', () => {
@@ -188,6 +189,44 @@ describe('moderation API', () => {
     it('should return error for unknown ID', async () => {
       const result = await sendBackForRevision('nonexistent', 'Feedback');
       expect(result.ok).toBe(false);
+    });
+  });
+
+  describe('getLanguageModerationQueue', () => {
+    it('should return non-empty array of LanguageModerationItem', async () => {
+      const queue = await getLanguageModerationQueue();
+      expect(queue.length).toBeGreaterThan(0);
+    });
+
+    it('should have required fields on each item', async () => {
+      const queue = await getLanguageModerationQueue();
+      queue.forEach((item) => {
+        expect(item.language).toBeTruthy();
+        expect(item.tourTitle).toBeTruthy();
+        expect(item.guideName).toBeTruthy();
+        expect(item.city).toBeTruthy();
+        expect(item.purchaseId).toBeTruthy();
+        expect(item.submissionDate).toBeTruthy();
+      });
+    });
+
+    it('should return multiple items for a tour with multiple languages submitted', async () => {
+      const queue = await getLanguageModerationQueue();
+      const grasseItems = queue.filter((item) => item.tourId === 'grasse-parfums-modernes');
+      expect(grasseItems.length).toBe(2); // EN and ES
+    });
+
+    it('should be sorted by submission date ascending', async () => {
+      const queue = await getLanguageModerationQueue();
+      for (let i = 1; i < queue.length; i++) {
+        expect(new Date(queue[i - 1].submissionDate).getTime())
+          .toBeLessThanOrEqual(new Date(queue[i].submissionDate).getTime());
+      }
+    });
+
+    it('should have 4 items in stub mode', async () => {
+      const queue = await getLanguageModerationQueue();
+      expect(queue.length).toBe(4);
     });
   });
 

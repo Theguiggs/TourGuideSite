@@ -5,6 +5,19 @@ import { logger } from '@/lib/logger';
 
 const SERVICE_NAME = 'TranslationAPI';
 
+/**
+ * Split text into sentences for sentence-level translation models (MarianMT).
+ * Splits on sentence-ending punctuation (.!?) followed by a space or end of string.
+ * Preserves the punctuation with each sentence.
+ */
+function splitIntoSentences(text: string): string[] {
+  if (text.length < 150) return [text]; // Short text: translate as-is
+  // Split on . ! ? followed by space (keep delimiter with the sentence)
+  const parts = text.match(/[^.!?]*[.!?]+(?:\s|$)|[^.!?]+$/g);
+  if (!parts || parts.length <= 1) return [text];
+  return parts.map((s) => s.trim()).filter(Boolean);
+}
+
 // --- Types ---
 
 export interface TranslationResult {
@@ -181,59 +194,73 @@ export async function requestTranslation(
   // Real mode: route to microservice or Lambda based on provider
   try {
     if (provider === 'marianmt') {
-      const response = await fetch(`${getMicroserviceUrl()}/v1/translate/marianmt`, {
-        method: 'POST',
-        headers: getMicroserviceHeaders(),
-        body: JSON.stringify({ text, source_lang: sourceLang, target_lang: targetLang }),
-      });
+      // MarianMT works best sentence-by-sentence; split long text to preserve quality
+      const sentences = splitIntoSentences(text);
+      const translatedParts: string[] = [];
 
-      // Provider unavailable (HTTP 503)
-      if (response.status === 503) {
-        logger.error(SERVICE_NAME, 'Provider unavailable (503)', { provider });
-        return {
-          jobId: '',
-          status: 'failed',
-          translatedText: null,
-          provider,
-          costProvider: null,
-          costCharged: null,
-          errorCode: 2609,
-        };
+      for (const sentence of sentences) {
+        if (!sentence.trim()) {
+          translatedParts.push(sentence);
+          continue;
+        }
+
+        const response = await fetch(`${getMicroserviceUrl()}/v1/translate/marianmt`, {
+          method: 'POST',
+          headers: getMicroserviceHeaders(),
+          body: JSON.stringify({ text: sentence, source_lang: sourceLang, target_lang: targetLang }),
+        });
+
+        // Provider unavailable (HTTP 503)
+        if (response.status === 503) {
+          logger.error(SERVICE_NAME, 'Provider unavailable (503)', { provider });
+          return {
+            jobId: '',
+            status: 'failed',
+            translatedText: null,
+            provider,
+            costProvider: null,
+            costCharged: null,
+            errorCode: 2609,
+          };
+        }
+
+        const data = await response.json();
+
+        if (!data.ok && data.error === 'provider_unavailable') {
+          logger.error(SERVICE_NAME, 'Provider unavailable (response)', { provider });
+          return {
+            jobId: '',
+            status: 'failed',
+            translatedText: null,
+            provider,
+            costProvider: null,
+            costCharged: null,
+            errorCode: 2609,
+          };
+        }
+
+        if (data.ok) {
+          translatedParts.push(data.translated_text);
+        } else {
+          // If one sentence fails, abort
+          return {
+            jobId: '',
+            status: 'failed',
+            translatedText: null,
+            provider,
+            costProvider: null,
+            costCharged: null,
+          };
+        }
       }
 
-      const data = await response.json();
-
-      // Provider unavailable via response body
-      if (!data.ok && data.error === 'provider_unavailable') {
-        logger.error(SERVICE_NAME, 'Provider unavailable (response)', { provider });
-        return {
-          jobId: '',
-          status: 'failed',
-          translatedText: null,
-          provider,
-          costProvider: null,
-          costCharged: null,
-          errorCode: 2609,
-        };
-      }
-
-      if (data.ok) {
-        return {
-          jobId: `trans-${Date.now()}-${segmentId}`,
-          status: 'completed',
-          translatedText: data.translated_text,
-          provider,
-          costProvider: 0,
-          costCharged: 0,
-        };
-      }
       return {
-        jobId: '',
-        status: 'failed',
-        translatedText: null,
+        jobId: `trans-${Date.now()}-${segmentId}`,
+        status: 'completed',
+        translatedText: translatedParts.join(' '),
         provider,
-        costProvider: null,
-        costCharged: null,
+        costProvider: 0,
+        costCharged: 0,
       };
     }
 

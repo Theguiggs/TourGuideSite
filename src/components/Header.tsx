@@ -6,7 +6,7 @@ import { useAuth } from '@/lib/auth/auth-context';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { isAuthenticated, user, signOut } = useAuth();
+  const { isAuthenticated, isAdmin, user, signOut } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
@@ -24,7 +24,7 @@ export default function Header() {
             </Link>
             {isAuthenticated ? (
               <>
-                <Link href="/guide/dashboard" className="text-gray-600 hover:text-teal-700 font-medium">
+                <Link href={isAdmin ? '/admin/moderation' : '/guide/dashboard'} className="text-gray-600 hover:text-teal-700 font-medium">
                   {user?.displayName}
                 </Link>
                 <button
@@ -78,7 +78,7 @@ export default function Header() {
             {isAuthenticated ? (
               <>
                 <Link
-                  href="/guide/dashboard"
+                  href={isAdmin ? '/admin/moderation' : '/guide/dashboard'}
                   className="block py-3 text-teal-700 font-medium"
                   onClick={() => setMenuOpen(false)}
                 >

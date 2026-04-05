@@ -108,6 +108,22 @@ export interface ModerationAdminComment {
   reviewerName: string;
 }
 
+export interface LanguageModerationItem {
+  id: string;
+  tourId: string;
+  sessionId: string;
+  moderationItemId: string; // Original ModerationItem.id for detail page link
+  tourTitle: string;
+  guideName: string;
+  guidePhotoUrl: string | null;
+  city: string;
+  language: string;
+  qualityTier: string;
+  submissionDate: string; // ISO date from purchase createdAt
+  moderationStatus: ModerationStatus;
+  purchaseId: string;
+}
+
 export interface ModerationHistoryItem {
   id: string;
   tourTitle: string;

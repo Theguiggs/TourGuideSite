@@ -26,6 +26,7 @@ const MOCK_SESSIONS: StudioSession[] = [
     availableLanguages: ['fr'],
     translatedTitles: null,
     translatedDescriptions: null,
+    version: 1,
     consentRGPD: true,
     createdAt: '2026-03-10T14:30:00.000Z',
     updatedAt: '2026-03-10T14:30:00.000Z',
@@ -43,6 +44,7 @@ const MOCK_SESSIONS: StudioSession[] = [
     availableLanguages: ['fr', 'en'],
     translatedTitles: null,
     translatedDescriptions: null,
+    version: 1,
     consentRGPD: true,
     createdAt: '2026-03-08T09:15:00.000Z',
     updatedAt: '2026-03-12T16:45:00.000Z',
@@ -60,6 +62,7 @@ const MOCK_SESSIONS: StudioSession[] = [
     availableLanguages: ['fr', 'en', 'it'],
     translatedTitles: null,
     translatedDescriptions: null,
+    version: 1,
     consentRGPD: true,
     createdAt: '2026-02-20T11:00:00.000Z',
     updatedAt: '2026-03-05T10:00:00.000Z',
@@ -108,6 +111,16 @@ function findStubScene(sceneId: string): StudioScene | undefined {
 
 // --- AppSync mapper helpers ---
 
+/** Parse a JSON field that might be a string (DynamoDB direct write) or already an object (Amplify client) */
+function parseJsonField(val: unknown): Record<string, string> | null {
+  if (val == null) return null;
+  if (typeof val === 'object') return val as Record<string, string>;
+  if (typeof val === 'string') {
+    try { return JSON.parse(val); } catch { return null; }
+  }
+  return null;
+}
+
 function mapAppSyncSession(raw: Record<string, unknown>): StudioSession {
   return {
     id: raw.id as string,
@@ -120,8 +133,9 @@ function mapAppSyncSession(raw: Record<string, unknown>): StudioSession {
     transcriptionQuotaUsed: (raw.transcriptionQuotaUsed as number) ?? null,
     coverPhotoKey: (raw.coverPhotoKey as string) ?? null,
     availableLanguages: (raw.availableLanguages as string[]) ?? [],
-    translatedTitles: (raw.translatedTitles as Record<string, string>) ?? null,
-    translatedDescriptions: (raw.translatedDescriptions as Record<string, string>) ?? null,
+    translatedTitles: parseJsonField(raw.translatedTitles) as Record<string, string> | null,
+    translatedDescriptions: parseJsonField(raw.translatedDescriptions) as Record<string, string> | null,
+    version: (raw.version as number) ?? 1,
     consentRGPD: (raw.consentRGPD as boolean) ?? true,
     createdAt: (raw.createdAt as string) ?? new Date().toISOString(),
     updatedAt: (raw.updatedAt as string) ?? new Date().toISOString(),
@@ -282,6 +296,7 @@ export async function createStudioSession(
       availableLanguages: [source?.language ?? 'fr'],
       translatedTitles: null,
       translatedDescriptions: null,
+      version: 1,
       consentRGPD: true,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -311,6 +326,85 @@ export async function createStudioSession(
   }
 }
 
+/**
+ * Clone a published session as V2 draft. Copies all scenes (text, audio, photos, GPS).
+ * Does NOT clone translated segments — V2 starts in source language only.
+ */
+export async function cloneSessionAsV2(
+  parentSessionId: string,
+): Promise<{ ok: true; sessionId: string; version: number } | { ok: false; error: string }> {
+  const parentSession = await getStudioSession(parentSessionId);
+  if (!parentSession) return { ok: false, error: 'Session introuvable' };
+  if (!parentSession.tourId) return { ok: false, error: 'Session non liée à un tour' };
+
+  const parentScenes = await listStudioScenes(parentSessionId);
+  const newVersion = (parentSession.version ?? 1) + 1;
+
+  if (shouldUseStubs()) {
+    const newId = `v${newVersion}-${parentSessionId}`;
+    createdStudioSessions.push({
+      ...parentSession,
+      id: newId,
+      status: 'draft',
+      version: newVersion,
+      sourceSessionId: parentSessionId,
+      translatedTitles: null,
+      translatedDescriptions: null,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    });
+    return { ok: true, sessionId: newId, version: newVersion };
+  }
+
+  try {
+    const { createStudioSessionMutation, createStudioSceneMutation, updateGuideTourMutation } = await import('./appsync-client');
+
+    // Create new session
+    const sessResult = await createStudioSessionMutation({
+      guideId: parentSession.guideId,
+      tourId: parentSession.tourId,
+      title: parentSession.title ?? '',
+      status: 'draft',
+      language: parentSession.language,
+      sourceSessionId: parentSessionId,
+      version: newVersion,
+      consentRGPD: true,
+    });
+    if (!sessResult.ok) return { ok: false, error: sessResult.error };
+    const newSessionId = sessResult.data.id;
+
+    // Clone scenes
+    for (const scene of parentScenes.sort((a, b) => a.sceneIndex - b.sceneIndex)) {
+      await createStudioSceneMutation({
+        sessionId: newSessionId,
+        sceneIndex: scene.sceneIndex,
+        title: scene.title ?? '',
+        status: 'finalized',
+        studioAudioKey: scene.studioAudioKey ?? undefined,
+        originalAudioKey: scene.originalAudioKey ?? undefined,
+        transcriptText: scene.transcriptText ?? undefined,
+        poiDescription: scene.poiDescription ?? undefined,
+        photosRefs: scene.photosRefs ?? [],
+        latitude: scene.latitude ?? undefined,
+        longitude: scene.longitude ?? undefined,
+        archived: false,
+      });
+    }
+
+    // Link draft session to tour
+    await updateGuideTourMutation(parentSession.tourId, { draftSessionId: newSessionId });
+
+    logger.info('StudioAPI', 'Session cloned as V2', {
+      parentSessionId, newSessionId, version: newVersion, scenes: parentScenes.length,
+    });
+
+    return { ok: true, sessionId: newSessionId, version: newVersion };
+  } catch (e) {
+    logger.error('StudioAPI', 'cloneSessionAsV2 failed', { error: String(e) });
+    return { ok: false, error: `Clone failed: ${String(e)}` };
+  }
+}
+
 export async function createTourWithSession(
   guideId: string,
   title: string,
@@ -335,6 +429,7 @@ export async function createTourWithSession(
       availableLanguages: ['fr'],
       translatedTitles: null,
       translatedDescriptions: null,
+      version: 1,
       consentRGPD: true,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),

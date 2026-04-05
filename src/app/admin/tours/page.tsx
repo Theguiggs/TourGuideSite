@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getAllAdminTours, adminSetTourStatus, adminSyncTourToQueue } from '@/lib/api/moderation';
+import { getAllAdminTours, adminSetTourStatus, adminSyncTourToQueue, adminDeleteTour } from '@/lib/api/moderation';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   draft:              { label: 'Brouillon',          className: 'bg-gray-100 text-gray-700' },
@@ -29,6 +29,8 @@ export default function AdminToursPage() {
   const [actioning, setActioning]     = useState<string | null>(null);
   const [confirmTour, setConfirmTour] = useState<AdminTour | null>(null);
   const [pendingStatus, setPendingStatus] = useState<'published' | 'archived' | null>(null);
+  const [deleteConfirm, setDeleteConfirm] = useState<AdminTour | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     getAllAdminTours()
@@ -183,13 +185,23 @@ export default function AdminToursPage() {
                           </button>
                         )}
                         {tour.status === 'archived' && (
-                          <button
-                            onClick={() => askAction(tour, 'published')}
-                            disabled={isActioning}
-                            className="text-xs text-green-600 font-medium hover:underline disabled:opacity-50"
-                          >
-                            Réactiver
-                          </button>
+                          <>
+                            <button
+                              onClick={() => askAction(tour, 'published')}
+                              disabled={isActioning}
+                              className="text-xs text-green-600 font-medium hover:underline disabled:opacity-50"
+                            >
+                              Réactiver
+                            </button>
+                            <button
+                              onClick={() => setDeleteConfirm(tour)}
+                              disabled={isActioning || isDeleting}
+                              className="text-xs text-red-600 font-medium hover:underline disabled:opacity-50"
+                              data-testid={`delete-tour-${tour.id}`}
+                            >
+                              Supprimer
+                            </button>
+                          </>
                         )}
                       </div>
                     </td>
@@ -230,6 +242,42 @@ export default function AdminToursPage() {
                 }`}
               >
                 Confirmer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Delete confirmation dialog */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 max-w-sm w-full">
+            <h2 className="text-lg font-bold text-red-800 mb-3">Supprimer définitivement ?</h2>
+            <p className="text-sm text-gray-600 mb-2 font-medium">{deleteConfirm.title}</p>
+            <p className="text-sm text-red-600 mb-4">
+              Cette action est irréversible. Le tour, ses scènes, segments traduits, achats de langue et éléments de modération seront supprimés.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setDeleteConfirm(null)}
+                className="flex-1 bg-gray-100 text-gray-700 font-medium py-2 rounded-lg hover:bg-gray-200"
+              >
+                Annuler
+              </button>
+              <button
+                onClick={async () => {
+                  setIsDeleting(true);
+                  const result = await adminDeleteTour(deleteConfirm.id);
+                  if (result.ok) {
+                    setTours((prev) => prev.filter((t) => t.id !== deleteConfirm.id));
+                  }
+                  setDeleteConfirm(null);
+                  setIsDeleting(false);
+                }}
+                disabled={isDeleting}
+                className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white font-bold py-2 rounded-lg"
+                data-testid="confirm-delete-tour"
+              >
+                {isDeleting ? 'Suppression...' : 'Supprimer'}
               </button>
             </div>
           </div>

@@ -2,15 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getModerationQueue, getModerationMetrics } from '@/lib/api/moderation';
-import { listLanguagePurchases, updateModerationStatusByLang, refundLanguagePurchase } from '@/lib/api/language-purchase';
+import { getModerationMetrics, getLanguageModerationQueue } from '@/lib/api/moderation';
+import { updateModerationStatusByLang } from '@/lib/api/language-purchase';
 import type { ModerationStatusUpdate } from '@/lib/api/language-purchase';
-import { LanguageModerationBadges } from '@/components/studio/language-moderation';
 import { ModerationFeedbackForm } from '@/components/studio/language-moderation';
 import { trackEvent, AdminAnalyticsEvents } from '@/lib/analytics';
 import { logger } from '@/lib/logger';
-import type { ModerationItem, ModerationMetrics } from '@/types/moderation';
-import type { TourLanguagePurchase } from '@/types/studio';
+import type { LanguageModerationItem, ModerationMetrics } from '@/types/moderation';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   pending: { label: 'En attente', className: 'bg-yellow-100 text-yellow-700' },
@@ -20,40 +18,38 @@ const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   rejected: { label: 'Refuse', className: 'bg-red-100 text-red-700' },
 };
 
+const LANG_FLAGS: Record<string, string> = {
+  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪',
+};
+
 const SERVICE_NAME = 'ModerationQueuePage';
 
 export default function ModerationQueuePage() {
-  const [queue, setQueue] = useState<ModerationItem[]>([]);
+  const [langQueue, setLangQueue] = useState<LanguageModerationItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const [metrics, setMetrics] = useState<ModerationMetrics | null>(null);
   const [filterCity, setFilterCity] = useState<string>('');
   const [filterStatus, setFilterStatus] = useState<string>('');
-  const [purchasesBySession, setPurchasesBySession] = useState<Record<string, TourLanguagePurchase[]>>({});
+  const [filterLanguage, setFilterLanguage] = useState<string>('');
   const [feedbackTarget, setFeedbackTarget] = useState<{ sessionId: string; language: string } | null>(null);
-  const [refundTarget, setRefundTarget] = useState<{ sessionId: string; purchase: TourLanguagePurchase } | null>(null);
   const [actionProcessing, setActionProcessing] = useState(false);
 
-  useEffect(() => {
-    Promise.all([getModerationQueue(), getModerationMetrics()]).then(
+  const loadQueue = () => {
+    setLoading(true);
+    Promise.all([getLanguageModerationQueue(), getModerationMetrics()]).then(
       ([q, m]) => {
-        setQueue(q);
+        setLangQueue(q);
         setMetrics(m);
-
-        // Load language purchases for each moderation item
-        const sessionIds = [...new Set(q.map((item) => item.sessionId).filter(Boolean))];
-        Promise.all(
-          sessionIds.map(async (sid) => {
-            const result = await listLanguagePurchases(sid);
-            return { sessionId: sid, purchases: result.ok ? result.value : [] };
-          }),
-        ).then((results) => {
-          const map: Record<string, TourLanguagePurchase[]> = {};
-          for (const r of results) {
-            map[r.sessionId] = r.purchases;
-          }
-          setPurchasesBySession(map);
-        });
       },
-    );
+    ).catch((err) => {
+      logger.error(SERVICE_NAME, 'Failed to load moderation queue', { error: String(err) });
+    }).finally(() => {
+      setLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    loadQueue();
     trackEvent(AdminAnalyticsEvents.ADMIN_MODERATION_QUEUE_VIEW);
   }, []);
 
@@ -66,11 +62,7 @@ export default function ModerationQueuePage() {
     setActionProcessing(true);
     const result = await updateModerationStatusByLang(sessionId, language, status, feedback);
     if (result.ok) {
-      // Refresh purchases for this session
-      const refreshed = await listLanguagePurchases(sessionId);
-      if (refreshed.ok) {
-        setPurchasesBySession((prev) => ({ ...prev, [sessionId]: refreshed.value }));
-      }
+      loadQueue(); // Refresh the full queue
       setFeedbackTarget(null);
       logger.info(SERVICE_NAME, 'Language moderation updated', { sessionId, language, status });
     } else {
@@ -87,35 +79,13 @@ export default function ModerationQueuePage() {
     setFeedbackTarget({ sessionId, language });
   };
 
-  const handleRefundConfirm = async () => {
-    if (!refundTarget) return;
-    setActionProcessing(true);
-    const result = await refundLanguagePurchase(refundTarget.purchase.id);
-    if (result.ok) {
-      const refreshed = await listLanguagePurchases(refundTarget.sessionId);
-      if (refreshed.ok) {
-        setPurchasesBySession((prev) => ({ ...prev, [refundTarget.sessionId]: refreshed.value }));
-      }
-      logger.info(SERVICE_NAME, 'Language refunded', {
-        sessionId: refundTarget.sessionId,
-        language: refundTarget.purchase.language,
-        purchaseId: refundTarget.purchase.id,
-      });
-    } else {
-      logger.error(SERVICE_NAME, 'Language refund failed', {
-        purchaseId: refundTarget.purchase.id,
-        error: result.error.message,
-      });
-    }
-    setRefundTarget(null);
-    setActionProcessing(false);
-  };
+  const cities = [...new Set(langQueue.map((item) => item.city))];
+  const languages = [...new Set(langQueue.map((item) => item.language))];
 
-  const cities = [...new Set(queue.map((item) => item.city))];
-
-  const filteredQueue = queue.filter((item) => {
+  const filteredQueue = langQueue.filter((item) => {
     if (filterCity && item.city !== filterCity) return false;
-    if (filterStatus && item.status !== filterStatus) return false;
+    if (filterStatus && item.moderationStatus !== filterStatus) return false;
+    if (filterLanguage && item.language !== filterLanguage) return false;
     return true;
   });
 
@@ -159,6 +129,18 @@ export default function ModerationQueuePage() {
         </select>
 
         <select
+          value={filterLanguage}
+          onChange={(e) => setFilterLanguage(e.target.value)}
+          className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
+          data-testid="filter-language"
+        >
+          <option value="">Toutes les langues</option>
+          {languages.map((lang) => (
+            <option key={lang} value={lang}>{LANG_FLAGS[lang] ?? ''} {lang.toUpperCase()}</option>
+          ))}
+        </select>
+
+        <select
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
           className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
@@ -168,9 +150,9 @@ export default function ModerationQueuePage() {
           <option value="resubmitted">Resoumis</option>
         </select>
 
-        {(filterCity || filterStatus) && (
+        {(filterCity || filterStatus || filterLanguage) && (
           <button
-            onClick={() => { setFilterCity(''); setFilterStatus(''); }}
+            onClick={() => { setFilterCity(''); setFilterStatus(''); setFilterLanguage(''); }}
             className="text-sm text-red-600 hover:underline px-2"
           >
             Effacer les filtres
@@ -179,7 +161,11 @@ export default function ModerationQueuePage() {
       </div>
 
       {/* Queue Table */}
-      {filteredQueue.length === 0 ? (
+      {loading ? (
+        <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
+          <p className="text-gray-500">Chargement...</p>
+        </div>
+      ) : filteredQueue.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
           <p className="text-gray-500 text-lg">Aucun parcours en attente de moderation.</p>
           <p className="text-gray-400 text-sm mt-1">Les nouvelles soumissions apparaitront ici.</p>
@@ -191,7 +177,7 @@ export default function ModerationQueuePage() {
               <tr>
                 <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">Guide</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">Parcours</th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">Langues</th>
+                <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">Langue</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-gray-500 hidden sm:table-cell">Ville</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-gray-500 hidden md:table-cell">Soumis le</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">Statut</th>
@@ -200,9 +186,9 @@ export default function ModerationQueuePage() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {filteredQueue.map((item) => {
-                const badge = STATUS_BADGES[item.status] || STATUS_BADGES.pending;
+                const badge = STATUS_BADGES[item.moderationStatus] || STATUS_BADGES.pending;
                 return (
-                  <tr key={item.id} data-testid={`moderation-item-${item.id}`} className={item.isResubmission ? 'bg-orange-50' : ''}>
+                  <tr key={item.id} data-testid={`moderation-item-${item.id}`} className={item.moderationStatus === 'resubmitted' ? 'bg-orange-50' : ''}>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-teal-200 rounded-full flex items-center justify-center text-teal-700 font-bold text-sm flex-shrink-0">
@@ -212,67 +198,12 @@ export default function ModerationQueuePage() {
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
-                        <p className="text-sm font-medium text-gray-900">{item.tourTitle}</p>
-                        {item.isResubmission && (
-                          <span className="bg-orange-100 text-orange-700 text-xs font-medium px-2 py-0.5 rounded-full">Re-soumis</span>
-                        )}
-                      </div>
-                      <p className="text-xs text-gray-400">{item.poiCount ?? '—'} POIs &middot; {item.duration ?? '—'} min</p>
+                      <p className="text-sm font-medium text-gray-900">{item.tourTitle}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <LanguageModerationBadges
-                        purchases={purchasesBySession[item.sessionId] ?? []}
-                        onLanguageClick={(lang) => handleRejectLanguage(item.sessionId, lang)}
-                      />
-                      {/* Per-language action buttons for submitted languages */}
-                      {(purchasesBySession[item.sessionId] ?? [])
-                        .filter((p) => p.moderationStatus === 'submitted')
-                        .map((p) => (
-                          <div key={p.id} className="flex gap-1 mt-1" data-testid={`lang-actions-${p.language}`}>
-                            <button
-                              onClick={() => handleApproveLanguage(item.sessionId, p.language)}
-                              disabled={actionProcessing}
-                              className="text-[10px] bg-green-100 text-green-700 hover:bg-green-200 px-1.5 py-0.5 rounded"
-                              data-testid={`approve-lang-${p.language}`}
-                            >
-                              Approuver {p.language.toUpperCase()}
-                            </button>
-                            <button
-                              onClick={() => handleRejectLanguage(item.sessionId, p.language)}
-                              disabled={actionProcessing}
-                              className="text-[10px] bg-red-100 text-red-700 hover:bg-red-200 px-1.5 py-0.5 rounded"
-                              data-testid={`reject-lang-${p.language}`}
-                            >
-                              Rejeter {p.language.toUpperCase()}
-                            </button>
-                          </div>
-                        ))}
-                      {/* Per-language refund buttons for active purchases */}
-                      {(purchasesBySession[item.sessionId] ?? [])
-                        .filter((p) => p.status === 'active')
-                        .map((p) => (
-                          <div key={`refund-${p.id}`} className="mt-1" data-testid={`refund-action-${p.language}`}>
-                            <button
-                              onClick={() => setRefundTarget({ sessionId: item.sessionId, purchase: p })}
-                              disabled={actionProcessing}
-                              className="text-[10px] bg-purple-100 text-purple-700 hover:bg-purple-200 px-1.5 py-0.5 rounded"
-                              data-testid={`refund-lang-${p.language}`}
-                            >
-                              Rembourser {p.language.toUpperCase()}
-                            </button>
-                          </div>
-                        ))}
-                      {/* Refunded label for already refunded purchases */}
-                      {(purchasesBySession[item.sessionId] ?? [])
-                        .filter((p) => p.status === 'refunded')
-                        .map((p) => (
-                          <div key={`refunded-${p.id}`} className="mt-1" data-testid={`refunded-label-${p.language}`}>
-                            <span className="text-[10px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded">
-                              Rembourse {p.language.toUpperCase()}
-                            </span>
-                          </div>
-                        ))}
+                      <span className="text-sm" data-testid={`lang-badge-${item.language}`}>
+                        {LANG_FLAGS[item.language] ?? ''} {item.language.toUpperCase()}
+                      </span>
                     </td>
                     <td className="px-4 py-3 hidden sm:table-cell text-sm text-gray-600">{item.city}</td>
                     <td className="px-4 py-3 hidden md:table-cell text-sm text-gray-500">
@@ -284,16 +215,26 @@ export default function ModerationQueuePage() {
                       </span>
                     </td>
                     <td className="px-4 py-3 text-right space-x-2 whitespace-nowrap">
-                      <Link
-                        href={`/admin/moderation/${item.id}?tab=tourist`}
-                        className="text-sm font-medium text-teal-600 hover:text-teal-800"
-                        data-testid={`preview-btn-${item.id}`}
+                      <button
+                        onClick={() => handleApproveLanguage(item.sessionId, item.language)}
+                        disabled={actionProcessing}
+                        className="text-sm font-medium text-green-600 hover:text-green-800"
+                        data-testid={`approve-lang-${item.language}`}
                       >
-                        Voir le contenu
-                      </Link>
-                      <Link
-                        href={`/admin/moderation/${item.id}`}
+                        Approuver
+                      </button>
+                      <button
+                        onClick={() => handleRejectLanguage(item.sessionId, item.language)}
+                        disabled={actionProcessing}
                         className="text-sm font-medium text-red-600 hover:text-red-800"
+                        data-testid={`reject-lang-${item.language}`}
+                      >
+                        Rejeter
+                      </button>
+                      <Link
+                        href={`/admin/moderation/${item.moderationItemId}?lang=${item.language}`}
+                        className="text-sm font-medium text-teal-600 hover:text-teal-800"
+                        data-testid={`examine-btn-${item.id}`}
                       >
                         Examiner
                       </Link>
@@ -303,40 +244,6 @@ export default function ModerationQueuePage() {
               })}
             </tbody>
           </table>
-        </div>
-      )}
-
-      {/* Refund confirmation modal */}
-      {refundTarget && (
-        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50" data-testid="refund-confirm-overlay">
-          <div className="max-w-sm w-full mx-4 bg-white rounded-xl shadow-xl p-6 space-y-4">
-            <h3 className="text-lg font-bold text-gray-900">Confirmer le remboursement</h3>
-            <p className="text-sm text-gray-600">
-              Rembourser {(refundTarget.purchase.amountCents / 100).toFixed(2)}&euro; pour la langue{' '}
-              <strong>{refundTarget.purchase.language.toUpperCase()}</strong> ?
-            </p>
-            <p className="text-xs text-gray-400">
-              Les segments traduits seront conserves mais la langue sera marquee comme non disponible.
-            </p>
-            <div className="flex gap-3 justify-end">
-              <button
-                onClick={() => setRefundTarget(null)}
-                disabled={actionProcessing}
-                className="text-sm text-gray-600 hover:text-gray-800 px-3 py-1.5 rounded border border-gray-300"
-                data-testid="refund-cancel-btn"
-              >
-                Annuler
-              </button>
-              <button
-                onClick={handleRefundConfirm}
-                disabled={actionProcessing}
-                className="text-sm bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 text-white font-medium px-4 py-1.5 rounded transition-colors"
-                data-testid="refund-confirm-btn"
-              >
-                {actionProcessing ? 'Traitement...' : 'Confirmer le remboursement'}
-              </button>
-            </div>
-          </div>
         </div>
       )}
 

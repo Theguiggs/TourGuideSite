@@ -94,16 +94,16 @@ const MOCK_PUBLIC_GUIDES: (GuideProfile & { totalListens: number })[] = [
 
 const MOCK_GUIDE_TOURS: Record<string, Tour[]> = {
   'guide-1': [
-    { id: 'grasse-ame-parfumeurs', title: "L'Ame des Parfumeurs", slug: 'ame-des-parfumeurs', city: 'Grasse', citySlug: 'grasse', guideId: 'guide-1', guideName: 'Marie Dupont', guidePhotoUrl: '/images/guides/marie.jpg', description: 'Plongez dans l\'histoire de Grasse, capitale mondiale du parfum.', shortDescription: 'Decouvrez Grasse, capitale mondiale du parfum.', duration: 45, distance: 2.1, poiCount: 6, imageUrl: '/images/tours/grasse-parfumeurs.jpg', isFree: true, status: 'published' },
+    { id: 'grasse-ame-parfumeurs', title: "L'Ame des Parfumeurs", slug: 'ame-des-parfumeurs', city: 'Grasse', citySlug: 'grasse', guideId: 'guide-1', guideName: 'Marie Dupont', guidePhotoUrl: '/images/guides/marie.jpg', description: 'Plongez dans l\'histoire de Grasse, capitale mondiale du parfum.', shortDescription: 'Decouvrez Grasse, capitale mondiale du parfum.', duration: 45, distance: 2.1, poiCount: 6, imageUrl: '/images/tours/grasse-parfumeurs.jpg', isFree: true, status: 'published', availableLanguages: ['fr', 'en'], createdAt: '2026-01-15T10:00:00.000Z' },
   ],
   'guide-2': [
-    { id: 'grasse-vieille-ville', title: 'La Vieille Ville de Grasse', slug: 'vieille-ville', city: 'Grasse', citySlug: 'grasse', guideId: 'guide-2', guideName: 'Pierre Martin', description: 'Parcourez les ruelles medievales de la vieille ville de Grasse.', shortDescription: 'Les ruelles medievales et panoramas de la vieille ville.', duration: 35, distance: 1.5, poiCount: 5, isFree: false, status: 'published' },
+    { id: 'grasse-vieille-ville', title: 'La Vieille Ville de Grasse', slug: 'vieille-ville', city: 'Grasse', citySlug: 'grasse', guideId: 'guide-2', guideName: 'Pierre Martin', description: 'Parcourez les ruelles medievales de la vieille ville de Grasse.', shortDescription: 'Les ruelles medievales et panoramas de la vieille ville.', duration: 35, distance: 1.5, poiCount: 5, isFree: false, status: 'published', availableLanguages: ['fr'], createdAt: '2026-02-10T09:00:00.000Z' },
   ],
   'guide-3': [
-    { id: 'paris-montmartre', title: 'Secrets de Montmartre', slug: 'secrets-de-montmartre', city: 'Paris', citySlug: 'paris', guideId: 'guide-3', guideName: 'Sophie Bernard', guidePhotoUrl: '/images/guides/sophie.jpg', description: 'De la Place du Tertre au Sacre-Coeur, decouvrez les histoires cachees de la butte Montmartre.', shortDescription: 'Les histoires cachees de la butte Montmartre.', duration: 60, distance: 3.0, poiCount: 8, imageUrl: '/images/tours/paris-montmartre.jpg', isFree: false, status: 'published' },
+    { id: 'paris-montmartre', title: 'Secrets de Montmartre', slug: 'secrets-de-montmartre', city: 'Paris', citySlug: 'paris', guideId: 'guide-3', guideName: 'Sophie Bernard', guidePhotoUrl: '/images/guides/sophie.jpg', description: 'De la Place du Tertre au Sacre-Coeur, decouvrez les histoires cachees de la butte Montmartre.', shortDescription: 'Les histoires cachees de la butte Montmartre.', duration: 60, distance: 3.0, poiCount: 8, imageUrl: '/images/tours/paris-montmartre.jpg', isFree: false, status: 'published', availableLanguages: ['fr', 'en', 'es'], createdAt: '2026-01-20T14:00:00.000Z' },
   ],
   'guide-4': [
-    { id: 'lyon-vieux-lyon', title: 'Traboules du Vieux Lyon', slug: 'traboules-vieux-lyon', city: 'Lyon', citySlug: 'lyon', guideId: 'guide-4', guideName: 'Antoine Rossi', description: 'Explorez les traboules secretes du Vieux Lyon, classees au patrimoine mondial de l\'UNESCO.', shortDescription: 'Les traboules secretes du Vieux Lyon UNESCO.', duration: 50, distance: 2.5, poiCount: 7, isFree: false, status: 'published' },
+    { id: 'lyon-vieux-lyon', title: 'Traboules du Vieux Lyon', slug: 'traboules-vieux-lyon', city: 'Lyon', citySlug: 'lyon', guideId: 'guide-4', guideName: 'Antoine Rossi', description: 'Explorez les traboules secretes du Vieux Lyon, classees au patrimoine mondial de l\'UNESCO.', shortDescription: 'Les traboules secretes du Vieux Lyon UNESCO.', duration: 50, distance: 2.5, poiCount: 7, isFree: false, status: 'published', availableLanguages: ['fr', 'it'], createdAt: '2026-01-25T16:00:00.000Z' },
   ],
 };
 
@@ -192,6 +192,8 @@ export async function getGuidePublicTours(guideId: string): Promise<Tour[]> {
       poiCount: t.poiCount || 0,
       isFree: false,
       status: (t.status || 'draft') as Tour['status'],
+      availableLanguages: Array.isArray((t as Record<string, unknown>).availableLanguages) ? (t as Record<string, unknown>).availableLanguages as string[] : ['fr'],
+      createdAt: ((t as Record<string, unknown>).createdAt as string) ?? '',
     }));
 }
 

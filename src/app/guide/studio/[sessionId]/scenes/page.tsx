@@ -132,6 +132,7 @@ export default function ScenesPage() {
   const failedBlobRef = useRef<{ blob: Blob; sceneId: string; sceneIndex: number } | null>(null);
   const [pendingReplace, setPendingReplace] = useState<{ sceneId: string; sceneIndex: number; blob: Blob } | null>(null);
   const [activeLanguageTab, setActiveLanguageTab] = useState<string | null>(null);
+  const [tourDescription, setTourDescription] = useState<string>('');
   const [langSegments, setLangSegments] = useState<SceneSegment[]>([]);
   const [langCompletedSceneIds, setLangCompletedSceneIds] = useState<string[]>([]);
   // Cache completed counts per language (survives tab switches)
@@ -228,6 +229,8 @@ export default function ScenesPage() {
         // Check if this is a Standard/Pro purchase with no translated segments yet
         const purchase = purchases.find((p) => p.language === activeLanguageTab && p.status === 'active');
         if (!purchase || purchase.purchaseType === 'manual' || purchase.qualityTier === 'manual') return;
+        // Don't auto-translate if language is submitted or approved (locked)
+        if (['submitted', 'approved'].includes(purchase.moderationStatus)) return;
         if (batchTriggeredRef.current.has(activeLanguageTab)) return;
 
         // Check if segments already have translated content (query fresh, don't use stale state)
@@ -239,25 +242,59 @@ export default function ScenesPage() {
             translatedCount++;
           }
         }
-        if (translatedCount >= activeScenes.length) return; // Already translated
+        const scenesAlreadyTranslated = translatedCount >= activeScenes.length;
+        const sessionInfoMissing = !session.translatedDescriptions?.[activeLanguageTab] || !session.translatedTitles?.[activeLanguageTab];
 
-        // Auto-trigger batch translation
+        // If scenes already translated AND session info already translated, nothing to do
+        if (scenesAlreadyTranslated && !sessionInfoMissing) return;
+
         batchTriggeredRef.current.add(activeLanguageTab);
-        setBatchMessage(`Traduction automatique en cours (${activeLanguageTab.toUpperCase()})...`);
-        logger.info(SERVICE_NAME, 'Auto-triggering batch translation', { lang: activeLanguageTab, tier: purchase.qualityTier });
 
         try {
           const { executeBatch } = await import('@/lib/multilang/batch-translation-service');
           const { getGuideTourById } = await import('@/lib/api/appsync-client');
-          const langConfigs = [{ code: activeLanguageTab, label: activeLanguageTab.toUpperCase() }];
-          let completedCount = 0;
 
           // Load tour description for translation
-          let tourDescription = '';
+          let tourDescriptionForBatch = '';
           if (session.tourId) {
             const tour = await getGuideTourById(session.tourId);
-            tourDescription = (tour as Record<string, unknown>)?.description as string ?? '';
+            tourDescriptionForBatch = (tour as Record<string, unknown>)?.description as string ?? '';
           }
+
+          // If only session info is missing (scenes done), translate just title/description
+          if (scenesAlreadyTranslated && sessionInfoMissing) {
+            setBatchMessage(`Traduction titre/description en cours (${activeLanguageTab.toUpperCase()})...`);
+            logger.info(SERVICE_NAME, 'Translating session info only (scenes already done)', { lang: activeLanguageTab });
+
+            // Call executeBatch with empty scenes — it will only run translateSessionInfo
+            const result = await executeBatch(
+              sessionId,
+              [],
+              [{ code: activeLanguageTab, label: activeLanguageTab.toUpperCase() }],
+              purchase.qualityTier as 'standard' | 'pro',
+              undefined,
+              session.title ?? '',
+              tourDescriptionForBatch,
+              session.language,
+              session.tourId ?? undefined,
+            );
+
+            if (result.ok) {
+              setBatchMessage('Titre et description traduits !');
+              setTimeout(() => setBatchMessage(null), 5000);
+            }
+
+            // Reload session to get updated translatedTitles/translatedDescriptions
+            const refreshedSession = await getStudioSession(sessionId);
+            if (refreshedSession) setSession(refreshedSession);
+            return;
+          }
+
+          // Full batch: scenes + session info
+          const langConfigs = [{ code: activeLanguageTab, label: activeLanguageTab.toUpperCase() }];
+          let completedCount = 0;
+          setBatchMessage(`Traduction automatique en cours (${activeLanguageTab.toUpperCase()})...`);
+          logger.info(SERVICE_NAME, 'Auto-triggering batch translation', { lang: activeLanguageTab, tier: purchase.qualityTier });
 
           const result = await executeBatch(
             sessionId,
@@ -270,8 +307,9 @@ export default function ScenesPage() {
               logger.info(SERVICE_NAME, 'Batch progress', { lang, sceneId, step });
             },
             session.title ?? '',
-            tourDescription,
+            tourDescriptionForBatch,
             session.language,
+            session.tourId ?? undefined,
           );
 
           if (result.ok) {
@@ -279,6 +317,9 @@ export default function ScenesPage() {
             setTimeout(() => setBatchMessage(null), 5000);
             logger.info(SERVICE_NAME, 'Batch completed', { completed: result.value.completedScenes });
             await refreshLangSegments();
+            // Reload session to get updated translatedTitles/translatedDescriptions
+            const refreshedSession = await getStudioSession(sessionId);
+            if (refreshedSession) setSession(refreshedSession);
           } else {
             setBatchMessage('Erreur lors de la traduction automatique.');
             setTimeout(() => setBatchMessage(null), 5000);
@@ -358,6 +399,14 @@ export default function ScenesPage() {
         setSession(sess);
         setScenes(scns);
         if (sess) setActiveSession(sess);
+        // Load tour description for TourInfoTranslation display
+        if (sess?.tourId) {
+          import('@/lib/api/appsync-client').then(({ getGuideTourById }) => {
+            getGuideTourById(sess.tourId!).then((tour) => {
+              setTourDescription((tour as Record<string, unknown>)?.description as string ?? '');
+            });
+          });
+        }
         const visible = scns.filter((s) => !s.archived);
         if (visible.length > 0) {
           setActiveSceneId(visible[0].id);
@@ -368,6 +417,20 @@ export default function ScenesPage() {
           const q = await getTranscriptionQuota(guideId);
           setQuota(q);
         }
+        // Pre-compute completed counts for all purchased languages (so tabs show correct 6/6)
+        if (visible.length > 0) {
+          const allSegs = (await Promise.all(visible.map((s) => listSegmentsByScene(s.id)))).flat();
+          const langSet = new Set(allSegs.map((s) => s.language));
+          for (const lang of langSet) {
+            if (lang === sess?.language) continue;
+            const count = visible.filter((scene) => {
+              const seg = allSegs.find((s) => s.sceneId === scene.id && s.language === lang);
+              return seg?.transcriptText && seg?.audioKey && !seg.audioKey.startsWith('tts-');
+            }).length;
+            completedCountCache.current[lang] = count;
+          }
+        }
+
         // Check microservice health for TTS/translation
         checkMicroserviceHealth().then((h) => setGpuAvailable(h.tts)).catch(() => setGpuAvailable(false));
         logger.info(SERVICE_NAME, 'Scenes page loaded', { sessionId });
@@ -605,6 +668,10 @@ export default function ScenesPage() {
   const isLocked = ['submitted', 'published', 'revision_requested'].includes(session.status);
   const isBaseLangLocked = isLocked && (activeLanguageTab === session.language || !activeLanguageTab || languageTabItems.length <= 1);
 
+  // Lock translated language tab when submitted or approved
+  const activePurchase = purchases.find((p) => p.language === activeLanguageTab && p.status === 'active');
+  const isActiveLangLocked = !!(activePurchase && ['submitted', 'approved'].includes(activePurchase.moderationStatus));
+
   // Translation tab removed — translation is now handled via language tabs (ML-4 refonte)
   const tabs = [
     { key: 'poi' as const, label: '📍 POI' },
@@ -663,6 +730,14 @@ export default function ScenesPage() {
           </div>
         )}
 
+        {/* Non-base language: locked banner when submitted/approved */}
+        {isActiveLangLocked && (
+          <div className="mb-3 rounded-lg border border-teal-300 bg-teal-50 px-4 py-3 text-sm text-teal-800" role="status" data-testid="lang-locked-banner">
+            Langue {activeLanguageTab?.toUpperCase()} soumise pour modération — modification non disponible.
+            {activePurchase?.moderationStatus === 'approved' && ' Cette langue a été approuvée.'}
+          </div>
+        )}
+
         {/* Non-base language: TourInfoTranslation + all scenes inline */}
         {activeLanguageTab && activeLanguageTab !== session.language && languageTabItems.length > 1 &&
           !purchases.some((p) => p.language === activeLanguageTab && p.status === 'refunded') && (<>
@@ -670,27 +745,99 @@ export default function ScenesPage() {
             sessionId={sessionId}
             language={activeLanguageTab}
             sourceTitle={session.title ?? ''}
-            sourceDescription={''}
+            sourceDescription={tourDescription}
             translatedTitle={session.translatedTitles?.[activeLanguageTab] ?? ''}
             translatedDescription={session.translatedDescriptions?.[activeLanguageTab] ?? ''}
             readOnly
-            onTitleChange={async (lang, title) => {
+            onTitleChange={isActiveLangLocked ? undefined : async (lang, title) => {
               const updated = { ...(session.translatedTitles ?? {}), [lang]: title };
               setSession((prev) => prev ? { ...prev, translatedTitles: updated } : prev);
               const { updateStudioSessionMutation } = await import('@/lib/api/appsync-client');
               const result = await updateStudioSessionMutation(sessionId, { translatedTitles: updated });
               if (!result.ok) logger.error(SERVICE_NAME, 'Failed to save translated title', { lang, error: result.error });
             }}
-            onDescriptionChange={async (lang, desc) => {
+            onDescriptionChange={isActiveLangLocked ? undefined : async (lang, desc) => {
               const updated = { ...(session.translatedDescriptions ?? {}), [lang]: desc };
               setSession((prev) => prev ? { ...prev, translatedDescriptions: updated } : prev);
               const { updateStudioSessionMutation } = await import('@/lib/api/appsync-client');
               const result = await updateStudioSessionMutation(sessionId, { translatedDescriptions: updated });
               if (!result.ok) logger.error(SERVICE_NAME, 'Failed to save translated description', { lang, error: result.error });
             }}
+            onRequestTranslation={isActiveLangLocked ? undefined : async () => {
+              const lang = activeLanguageTab;
+              const purchase = purchases.find((p) => p.language === lang && p.status === 'active');
+              const tier = (purchase?.qualityTier as 'standard' | 'pro') ?? 'standard';
+              const { requestTranslation, getTranslationStatus } = await import('@/lib/api/translation');
+
+              console.log('[TourInfoTranslation] Starting translation', { lang, tier, title: session.title, descLength: tourDescription.length });
+
+              // Helper: translate one text, handle polling if needed
+              const translateText = async (id: string, text: string): Promise<string | null> => {
+                if (!text) return null;
+                try {
+                  let result = await requestTranslation(id, text, session.language ?? 'fr', lang, tier);
+                  console.log('[TourInfoTranslation] requestTranslation result', { id, status: result.status, hasText: !!result.translatedText });
+                  // Poll if still processing (stub mode)
+                  let attempts = 0;
+                  while ((result.status === 'processing' || result.status === 'pending') && attempts < 30) {
+                    await new Promise((r) => setTimeout(r, 1000));
+                    const check = await getTranslationStatus(result.jobId);
+                    if (check) result = check;
+                    attempts++;
+                  }
+                  if (result.status !== 'completed') {
+                    console.error('[TourInfoTranslation] Translation failed', { id, status: result.status });
+                  }
+                  return result.status === 'completed' ? result.translatedText : null;
+                } catch (err) {
+                  console.error('[TourInfoTranslation] Translation threw', { id, error: String(err) });
+                  return null;
+                }
+              };
+
+              // Translate title + description in parallel
+              const [newTitle, newDesc] = await Promise.all([
+                translateText(`session-title-${sessionId}-${lang}`, session.title ?? ''),
+                translateText(`session-desc-${sessionId}-${lang}`, tourDescription),
+              ]);
+
+              console.log('[TourInfoTranslation] Translation results', { lang, newTitle: newTitle?.substring(0, 50), newDesc: newDesc?.substring(0, 50) });
+
+              if (!newTitle && !newDesc) {
+                throw new Error('Traduction echouee — verifiez que le microservice tourne sur localhost:8000');
+              }
+
+              // Save to StudioSession
+              const updatedTitles = { ...(session.translatedTitles ?? {}), ...(newTitle ? { [lang]: newTitle } : {}) };
+              const updatedDescs = { ...(session.translatedDescriptions ?? {}), ...(newDesc ? { [lang]: newDesc } : {}) };
+              const { updateStudioSessionMutation, getGuideTourById, updateGuideTourMutation } = await import('@/lib/api/appsync-client');
+              const saveResult = await updateStudioSessionMutation(sessionId, {
+                translatedTitles: updatedTitles,
+                translatedDescriptions: updatedDescs,
+              });
+              console.log('[TourInfoTranslation] Save result', { ok: saveResult.ok });
+
+              // Also sync to GuideTour
+              if (session.tourId && newDesc) {
+                try {
+                  const tour = await getGuideTourById(session.tourId);
+                  const existing = (tour as Record<string, unknown>)?.translatedDescriptions ?? {};
+                  await updateGuideTourMutation(session.tourId, {
+                    translatedDescriptions: { ...(typeof existing === 'object' ? existing : {}), [lang]: newDesc },
+                  });
+                } catch { /* non-fatal */ }
+              }
+
+              // Update local React state so UI refreshes immediately
+              setSession((prev) => prev ? {
+                ...prev,
+                translatedTitles: updatedTitles,
+                translatedDescriptions: updatedDescs,
+              } : prev);
+            }}
           />
-          {/* Staleness alert — shows when source text changed after translation */}
-          {(() => {
+          {/* Staleness alert — hidden when language is locked (submitted/approved) */}
+          {!isActiveLangLocked && (() => {
             const activeScenes = scenes.filter((s) => !s.archived);
             const staleInfos = getStaleSegments(langSegments, activeScenes);
             return (
@@ -699,8 +846,58 @@ export default function ScenesPage() {
                 staleSegmentIds={staleInfos.map((s) => s.segmentId)}
                 segments={langSegments}
                 scenes={activeScenes}
-                onRetranslate={(ids) => {
+                onRetranslate={async (ids) => {
                   logger.info(SERVICE_NAME, 'Retranslate stale from alert', { lang: activeLanguageTab, segmentIds: ids });
+                  if (!session || !activeLanguageTab) return;
+                  const purchase = purchases.find((p) => p.language === activeLanguageTab && p.status === 'active');
+                  if (!purchase) return;
+                  const staleSceneIds = new Set(
+                    langSegments.filter((s) => ids.includes(s.id)).map((s) => s.sceneId),
+                  );
+                  const scenesToRetranslate = scenes.filter((s) => !s.archived && staleSceneIds.has(s.id));
+                  if (scenesToRetranslate.length === 0) return;
+                  setBatchMessage(`Retraduction en cours (${activeLanguageTab.toUpperCase()})...`);
+                  try {
+                    const { executeBatch } = await import('@/lib/multilang/batch-translation-service');
+                    const { getGuideTourById } = await import('@/lib/api/appsync-client');
+                    const langConfigs = [{ code: activeLanguageTab, label: activeLanguageTab.toUpperCase() }];
+                    let completedCount = 0;
+                    // Load tour description for retranslation
+                    let retranslateDesc = '';
+                    if (session.tourId) {
+                      const tour = await getGuideTourById(session.tourId);
+                      retranslateDesc = (tour as Record<string, unknown>)?.description as string ?? '';
+                    }
+                    const result = await executeBatch(
+                      sessionId,
+                      scenesToRetranslate,
+                      langConfigs,
+                      (purchase.qualityTier as 'standard' | 'pro') ?? 'standard',
+                      (lang, sceneId, step) => {
+                        if (step === 'tts_completed') completedCount++;
+                        setBatchMessage(`Retraduction ${lang.toUpperCase()} : ${completedCount}/${scenesToRetranslate.length} scenes...`);
+                      },
+                      session.title ?? '',
+                      retranslateDesc,
+                      session.language,
+                      session.tourId ?? undefined,
+                    );
+                    if (result.ok) {
+                      setBatchMessage(`Retraduction terminee ! ${result.value.completedScenes} scenes mises a jour.`);
+                      setTimeout(() => setBatchMessage(null), 5000);
+                      await refreshLangSegments();
+                      // Reload session to get updated translatedDescriptions
+                      const refreshedSess = await getStudioSession(sessionId);
+                      if (refreshedSess) setSession(refreshedSess);
+                    } else {
+                      setBatchMessage('Erreur lors de la retraduction.');
+                      setTimeout(() => setBatchMessage(null), 5000);
+                    }
+                  } catch (err) {
+                    logger.error(SERVICE_NAME, 'Retranslate stale failed', { error: String(err) });
+                    setBatchMessage('Erreur lors de la retraduction.');
+                    setTimeout(() => setBatchMessage(null), 5000);
+                  }
                 }}
               />
             );
@@ -711,12 +908,12 @@ export default function ScenesPage() {
             completedSceneIds={langCompletedSceneIds}
             segments={langSegments}
             sessionId={sessionId}
-            onRetryScene={(sceneId) => logger.info(SERVICE_NAME, 'Retry scene', { sceneId, lang: activeLanguageTab })}
-            onResumeBatch={() => logger.info(SERVICE_NAME, 'Resume batch', { lang: activeLanguageTab })}
+            onRetryScene={isActiveLangLocked ? undefined : (sceneId) => logger.info(SERVICE_NAME, 'Retry scene', { sceneId, lang: activeLanguageTab })}
+            onResumeBatch={isActiveLangLocked ? undefined : () => logger.info(SERVICE_NAME, 'Resume batch', { lang: activeLanguageTab })}
             hasMissingScenes={langSegments.length < scenes.filter((s) => !s.archived).length}
             onSceneClick={(sceneId) => { logger.info(SERVICE_NAME, 'Scene click', { sceneId, lang: activeLanguageTab }); }}
-            onRetranslateStale={(sceneIds) => logger.info(SERVICE_NAME, 'Retranslate stale', { lang: activeLanguageTab, sceneIds })}
-            onGenerateMissingAudio={async () => {
+            onRetranslateStale={isActiveLangLocked ? undefined : (sceneIds) => logger.info(SERVICE_NAME, 'Retranslate stale', { lang: activeLanguageTab, sceneIds })}
+            onGenerateMissingAudio={isActiveLangLocked ? undefined : async () => {
               logger.info(SERVICE_NAME, 'Generate missing audio', { lang: activeLanguageTab });
               const activeScenes = scenes.filter((s) => !s.archived);
               for (const scene of activeScenes) {

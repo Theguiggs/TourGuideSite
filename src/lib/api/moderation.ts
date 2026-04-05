@@ -7,10 +7,12 @@ import type {
   ModerationScene,
   ModerationAdminComment,
   RejectionCategory,
+  LanguageModerationItem,
 } from '@/types/moderation';
 import { addAdminComment as addAdminCommentToTour } from './guide';
 import { shouldUseStubs } from '@/config/api-mode';
 import * as appsync from './appsync-client';
+import { addTourComment } from './tour-comments';
 
 /**
  * Moderation data access layer.
@@ -170,6 +172,35 @@ async function getRealHistory(): Promise<ModerationHistoryItem[]> {
     .sort((a, b) => new Date(b.reviewDate).getTime() - new Date(a.reviewDate).getTime());
 }
 
+// --- Language Moderation Queue Mock Data ---
+
+const MOCK_LANGUAGE_QUEUE: LanguageModerationItem[] = [
+  {
+    id: 'lmod-1', tourId: 'grasse-parfums-modernes', sessionId: 'session-grasse-1', moderationItemId: 'mod-1',
+    tourTitle: 'Les Parfums Modernes', guideName: 'Marie Dupont', guidePhotoUrl: '/images/guides/marie.jpg',
+    city: 'Grasse', language: 'en', qualityTier: 'standard',
+    submissionDate: '2026-03-05T14:30:00.000Z', moderationStatus: 'pending', purchaseId: 'purchase-grasse-1-en',
+  },
+  {
+    id: 'lmod-2', tourId: 'grasse-parfums-modernes', sessionId: 'session-grasse-1', moderationItemId: 'mod-1',
+    tourTitle: 'Les Parfums Modernes', guideName: 'Marie Dupont', guidePhotoUrl: '/images/guides/marie.jpg',
+    city: 'Grasse', language: 'es', qualityTier: 'premium',
+    submissionDate: '2026-03-05T15:00:00.000Z', moderationStatus: 'pending', purchaseId: 'purchase-grasse-1-es',
+  },
+  {
+    id: 'lmod-3', tourId: 'nice-promenade-anglais', sessionId: 'session-nice-1', moderationItemId: 'mod-2',
+    tourTitle: 'La Promenade des Anglais', guideName: 'Claire Moreau', guidePhotoUrl: null,
+    city: 'Nice', language: 'it', qualityTier: 'standard',
+    submissionDate: '2026-03-04T10:15:00.000Z', moderationStatus: 'resubmitted', purchaseId: 'purchase-nice-1-it',
+  },
+  {
+    id: 'lmod-4', tourId: 'cannes-croisette', sessionId: 'session-cannes-1', moderationItemId: 'mod-3',
+    tourTitle: 'La Croisette et le Vieux Cannes', guideName: 'Thomas Leroy', guidePhotoUrl: null,
+    city: 'Cannes', language: 'de', qualityTier: 'standard',
+    submissionDate: '2026-03-06T09:00:00.000Z', moderationStatus: 'pending', purchaseId: 'purchase-cannes-1-de',
+  },
+];
+
 // --- Public API ---
 
 export async function getModerationQueue(): Promise<ModerationItem[]> {
@@ -182,9 +213,97 @@ export async function getModerationQueue(): Promise<ModerationItem[]> {
   return getRealQueue();
 }
 
+export async function getLanguageModerationQueue(): Promise<LanguageModerationItem[]> {
+  if (shouldUseStubs()) {
+    return [...MOCK_LANGUAGE_QUEUE].sort(
+      (a, b) => new Date(a.submissionDate).getTime() - new Date(b.submissionDate).getTime(),
+    );
+  }
+
+  // Real mode: scan ALL tours with sessions, find purchases with moderationStatus 'submitted'
+  // This is independent of ModerationItem status (the tour source may already be approved)
+  const { listLanguagePurchases } = await import('./language-purchase');
+  const allTours = await appsync.listAllGuideTours();
+  const profiles = await appsync.listAllGuideProfilesAdmin();
+  const guideNames = new Map(profiles.map((p) => [p.id, p.displayName]));
+
+  // Find ModerationItem IDs for linking (best-effort)
+  const [pendingItems, resubmittedItems, approvedItems] = await Promise.all([
+    appsync.listModerationItems({ status: 'pending' }),
+    appsync.listModerationItems({ status: 'resubmitted' }),
+    appsync.listModerationItems({ status: 'approved' }),
+  ]);
+  const allModItems = [...pendingItems, ...resubmittedItems, ...approvedItems];
+  const modItemByTourId = new Map(allModItems.map((m) => [m.tourId, m.id]));
+
+  // Filter tours that have a sessionId (needed for purchase lookup)
+  const toursWithSessions = allTours.filter((t) => (t as Record<string, unknown>).sessionId);
+
+  const purchaseResults = await Promise.all(
+    toursWithSessions.map(async (tour) => {
+      const sessionId = (tour as Record<string, unknown>).sessionId as string;
+      const result = await listLanguagePurchases(sessionId);
+      return { tour, sessionId, purchases: result };
+    }),
+  );
+
+  const allLangItems: LanguageModerationItem[] = [];
+  for (const { tour, sessionId, purchases: purchasesResult } of purchaseResults) {
+    if (!purchasesResult.ok) continue;
+
+    const submitted = purchasesResult.value.filter(
+      (p) => p.moderationStatus === 'submitted',
+    );
+
+    for (const purchase of submitted) {
+      allLangItems.push({
+        id: `lmod-${tour.id}-${purchase.language}`,
+        tourId: tour.id,
+        sessionId,
+        moderationItemId: modItemByTourId.get(tour.id) ?? tour.id,
+        tourTitle: tour.title,
+        guideName: guideNames.get(tour.guideId) ?? '',
+        guidePhotoUrl: null,
+        city: tour.city,
+        language: purchase.language,
+        qualityTier: purchase.qualityTier,
+        submissionDate: purchase.createdAt ?? new Date().toISOString(),
+        moderationStatus: purchase.moderationStatus as LanguageModerationItem['moderationStatus'],
+        purchaseId: purchase.id,
+      });
+    }
+  }
+
+  return allLangItems.sort(
+    (a, b) => new Date(a.submissionDate).getTime() - new Date(b.submissionDate).getTime(),
+  );
+}
+
 export async function getModerationDetail(moderationId: string): Promise<ModerationDetail | null> {
   if (shouldUseStubs()) return MOCK_DETAIL[moderationId] ?? null;
-  const item = await appsync.getModerationItemById(moderationId);
+  let item = await appsync.getModerationItemById(moderationId);
+
+  // Fallback: moderationId might be a tourId (language queue items for already-approved tours)
+  if (!item) {
+    const fallbackTour = await appsync.getGuideTourById(moderationId);
+    if (!fallbackTour) return null;
+    const fallbackProfile = await appsync.getGuideProfileById(fallbackTour.guideId, 'userPool');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    item = {
+      id: moderationId,
+      tourId: fallbackTour.id,
+      guideId: fallbackTour.guideId,
+      guideName: fallbackProfile?.displayName ?? '',
+      tourTitle: fallbackTour.title,
+      city: fallbackTour.city,
+      submissionDate: Date.now(),
+      status: fallbackTour.status ?? 'published',
+      sessionId: (fallbackTour as Record<string, unknown>).sessionId as string ?? null,
+      poiCount: fallbackTour.poiCount ?? 0,
+      duration: fallbackTour.duration ?? 0,
+      distance: fallbackTour.distance ?? 0,
+    } as any;
+  }
   if (!item) return null;
 
   // Load tour, guide profile, and studio scenes in parallel
@@ -294,6 +413,44 @@ export async function getModerationHistory(): Promise<ModerationHistoryItem[]> {
   return getRealHistory();
 }
 
+/**
+ * Resolve a ModerationItem by ID or tourId fallback.
+ * The admin queue may pass a tourId instead of a moderationItemId for tours
+ * that were already approved (no pending ModerationItem).
+ */
+async function resolveModerationItem(idOrTourId: string) {
+  // Try direct lookup by ID first
+  const item = await appsync.getModerationItemById(idOrTourId);
+  if (item) return item;
+
+  // Fallback: search by tourId in existing items
+  const allItems = await appsync.listModerationItems();
+  const byTour = allItems.find((i) => (i as Record<string, unknown>).tourId === idOrTourId);
+  if (byTour) return byTour;
+
+  // Last resort: create a ModerationItem from the GuideTour (for tours without one)
+  const tour = await appsync.getGuideTourById(idOrTourId);
+  if (!tour) return null;
+  const profile = await appsync.getGuideProfileById(tour.guideId, 'userPool');
+  try {
+    const created = await appsync.createModerationItemMutation({
+      tourId: idOrTourId,
+      guideId: tour.guideId,
+      guideName: profile?.displayName ?? 'Guide',
+      tourTitle: tour.title,
+      city: tour.city,
+      submissionDate: Date.now(),
+    });
+    if (created.ok) {
+      logger.info('ModerationAPI', 'Auto-created ModerationItem for tour', { tourId: idOrTourId });
+      return await appsync.getModerationItemById(created.data.id);
+    }
+  } catch (e) {
+    logger.error('ModerationAPI', 'Failed to auto-create ModerationItem', { tourId: idOrTourId, error: String(e) });
+  }
+  return null;
+}
+
 export async function approveTour(
   moderationId: string,
   checklist: Record<string, { checked: boolean; note: string }>,
@@ -304,11 +461,11 @@ export async function approveTour(
     return { ok: true };
   }
   // Get the tourId to also update GuideTour status
-  const item = await appsync.getModerationItemById(moderationId);
+  const item = await resolveModerationItem(moderationId);
   if (!item) return { ok: false, error: 'Item de moderation introuvable' };
 
   const [modResult, tourResult] = await Promise.all([
-    appsync.updateModerationItemMutation(moderationId, {
+    appsync.updateModerationItemMutation(item.id, {
       status: 'approved',
       reviewDate: Date.now(),
       checklistJson: JSON.stringify(checklist),
@@ -318,6 +475,8 @@ export async function approveTour(
   ]);
   if (!modResult.ok) return { ok: false, error: modResult.error };
   if (!tourResult.ok) return { ok: false, error: tourResult.error };
+  // Auto-log to comment thread
+  addTourComment(item.tourId, { message: notes || 'Tour approuvé', author: 'admin', authorName: 'Admin', action: 'approved' }).catch(() => {});
   return { ok: true };
 }
 
@@ -334,11 +493,11 @@ export async function rejectTour(
   }
   if (feedback.length < 20) return { ok: false, error: 'Le feedback doit contenir au moins 20 caracteres' };
 
-  const item = await appsync.getModerationItemById(moderationId);
+  const item = await resolveModerationItem(moderationId);
   if (!item) return { ok: false, error: 'Item de moderation introuvable' };
 
   const [modResult, tourResult] = await Promise.all([
-    appsync.updateModerationItemMutation(moderationId, {
+    appsync.updateModerationItemMutation(item.id, {
       status: 'rejected',
       reviewDate: Date.now(),
       feedbackJson: JSON.stringify({ category, feedback, poiIds }),
@@ -347,7 +506,82 @@ export async function rejectTour(
   ]);
   if (!modResult.ok) return { ok: false, error: modResult.error };
   if (!tourResult.ok) return { ok: false, error: tourResult.error };
+  addTourComment(item.tourId, { message: feedback, author: 'admin', authorName: 'Admin', action: 'rejected' }).catch(() => {});
   return { ok: true };
+}
+
+/**
+ * Delete a tour and all related data (session, scenes, segments, purchases, moderation items).
+ * Only allowed for archived tours. Admin group required.
+ */
+export async function adminDeleteTour(
+  tourId: string,
+): Promise<{ ok: boolean; error?: string; deletedCount?: number }> {
+  if (shouldUseStubs()) return { ok: true, deletedCount: 0 };
+
+  try {
+    const tour = await appsync.getGuideTourById(tourId);
+    if (!tour) return { ok: false, error: 'Tour introuvable' };
+    if (tour.status !== 'archived') return { ok: false, error: 'Le tour doit être archivé avant suppression' };
+
+    const sessionId = (tour as Record<string, unknown>).sessionId as string | null;
+    let deletedCount = 0;
+
+    // Delete related data if session exists
+    if (sessionId) {
+      // Delete scene segments
+      const scenesResult = await appsync.listStudioScenesBySession(sessionId);
+      if (scenesResult.ok) {
+        for (const scene of scenesResult.data) {
+          const sceneId = (scene as Record<string, unknown>).id as string;
+          try {
+            const { listSegmentsByScene } = await import('./studio');
+            const segments = await listSegmentsByScene(sceneId);
+            for (const seg of segments) {
+              await appsync.deleteItem('SceneSegment', seg.id);
+              deletedCount++;
+            }
+            // Delete scene
+            await appsync.deleteItem('StudioScene', sceneId);
+            deletedCount++;
+          } catch { /* continue */ }
+        }
+      }
+
+      // Delete language purchases
+      const { listLanguagePurchases } = await import('./language-purchase');
+      const purchasesResult = await listLanguagePurchases(sessionId);
+      if (purchasesResult.ok) {
+        for (const p of purchasesResult.value) {
+          await appsync.deleteItem('TourLanguagePurchase', p.id);
+          deletedCount++;
+        }
+      }
+
+      // Delete session
+      await appsync.deleteItem('StudioSession', sessionId);
+      deletedCount++;
+    }
+
+    // Delete moderation items for this tour
+    const allModItems = await appsync.listModerationItems();
+    for (const item of allModItems) {
+      if ((item as Record<string, unknown>).tourId === tourId) {
+        await appsync.deleteItem('ModerationItem', item.id);
+        deletedCount++;
+      }
+    }
+
+    // Delete the tour itself
+    await appsync.deleteItem('GuideTour', tourId);
+    deletedCount++;
+
+    logger.info('ModerationAPI', 'Tour deleted', { tourId, deletedCount });
+    return { ok: true, deletedCount };
+  } catch (e) {
+    logger.error('ModerationAPI', 'adminDeleteTour failed', { tourId, error: String(e) });
+    return { ok: false, error: String(e) };
+  }
 }
 
 export async function adminSetTourStatus(
@@ -422,11 +656,11 @@ export async function sendBackForRevision(
     await new Promise((r) => setTimeout(r, 500));
     return { ok: true };
   }
-  const item = await appsync.getModerationItemById(moderationId);
+  const item = await resolveModerationItem(moderationId);
   if (!item) return { ok: false, error: 'Item de moderation introuvable' };
 
   const [modResult, tourResult] = await Promise.all([
-    appsync.updateModerationItemMutation(moderationId, {
+    appsync.updateModerationItemMutation(item.id, {
       status: 'rejected', // moderation item marked as actioned
       reviewDate: Date.now(),
       feedbackJson: JSON.stringify({ feedback, action: 'revision' }),
@@ -458,6 +692,7 @@ export async function sendBackForRevision(
     }
   }
 
+  addTourComment(item.tourId, { message: feedback, author: 'admin', authorName: 'Admin', action: 'revision' }).catch(() => {});
   return { ok: true };
 }
 

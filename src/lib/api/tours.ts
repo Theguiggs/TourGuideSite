@@ -60,6 +60,8 @@ const MOCK_TOURS: Tour[] = [
     imageUrl: '/images/tours/grasse-parfumeurs.jpg',
     isFree: true,
     status: 'published',
+    availableLanguages: ['fr', 'en'],
+    createdAt: '2026-01-15T10:00:00.000Z',
   },
   {
     id: 'grasse-vieille-ville',
@@ -78,6 +80,8 @@ const MOCK_TOURS: Tour[] = [
     poiCount: 5,
     isFree: false,
     status: 'published',
+    availableLanguages: ['fr'],
+    createdAt: '2026-02-10T09:00:00.000Z',
   },
   {
     id: 'paris-montmartre',
@@ -98,6 +102,8 @@ const MOCK_TOURS: Tour[] = [
     imageUrl: '/images/tours/paris-montmartre.jpg',
     isFree: false,
     status: 'published',
+    availableLanguages: ['fr', 'en', 'es'],
+    createdAt: '2026-01-20T14:00:00.000Z',
   },
   {
     id: 'lyon-vieux-lyon',
@@ -116,6 +122,8 @@ const MOCK_TOURS: Tour[] = [
     poiCount: 7,
     isFree: false,
     status: 'published',
+    availableLanguages: ['fr', 'it'],
+    createdAt: '2026-01-25T16:00:00.000Z',
   },
 ];
 
@@ -186,6 +194,49 @@ function generateSlug(text: string): string {
   return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+/**
+ * Determine audio type per language for a session.
+ * Fetches all segments, groups by language, checks audioSource field.
+ */
+async function getLanguageAudioTypes(sessionId: string): Promise<Record<string, 'tts' | 'recording' | 'mixed'>> {
+  try {
+    const scenesResult = await appsync.listPublicScenesBySession(sessionId);
+    if (!scenesResult.ok || scenesResult.data.length === 0) return {};
+
+    // FR source: check if scenes have studioAudioKey (recording) or TTS
+    const frSources = new Set<string>();
+    for (const scene of scenesResult.data) {
+      const raw = scene as Record<string, unknown>;
+      const key = (raw.studioAudioKey as string) || (raw.originalAudioKey as string) || '';
+      frSources.add(key.includes('tts') ? 'tts' : 'recording');
+    }
+    const result: Record<string, 'tts' | 'recording' | 'mixed'> = {
+      fr: frSources.size === 1 ? (Array.from(frSources)[0] as 'tts' | 'recording') : 'mixed',
+    };
+
+    // Translated languages: check SceneSegment.audioSource
+    const { listSegmentsByScene } = await import('./studio');
+    const allSegments = (await Promise.all(
+      scenesResult.data.map((s) => listSegmentsByScene((s as Record<string, unknown>).id as string)),
+    )).flat();
+
+    const byLang = new Map<string, Set<string>>();
+    for (const seg of allSegments) {
+      if (seg.language === 'fr') continue;
+      const source = seg.audioSource || (seg.ttsGenerated ? 'tts' : 'recording');
+      if (!byLang.has(seg.language)) byLang.set(seg.language, new Set());
+      byLang.get(seg.language)!.add(source);
+    }
+
+    for (const [lang, sources] of byLang) {
+      result[lang] = sources.size === 1 ? (Array.from(sources)[0] as 'tts' | 'recording') : 'mixed';
+    }
+    return result;
+  } catch {
+    return {};
+  }
+}
+
 // Cache guide names to avoid repeated lookups within a single request
 let _guideNameCache: Map<string, string> | null = null;
 
@@ -239,22 +290,43 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
   const tours = await appsync.listGuideTours({ status: 'published' });
   const filtered = tours.filter((t) => generateSlug(t.city) === citySlug);
   const mapped = await Promise.all(
-    filtered.map(async (t) => ({
-      id: t.id,
-      title: t.title,
-      slug: generateSlug(t.title),
-      city: t.city,
-      citySlug: generateSlug(t.city),
-      guideId: t.guideId,
-      guideName: await resolveGuideName(t.guideId),
-      description: t.description || '',
-      shortDescription: (t.description || '').substring(0, 100),
-      duration: t.duration || 0,
-      distance: t.distance || 0,
-      poiCount: t.poiCount || 0,
-      isFree: false, // isFree not in schema — requires future field addition
-      status: (t.status || 'draft') as Tour['status'],
-    })),
+    filtered.map(async (t) => {
+      // Resolve cover image: heroImageUrl > first scene photo > undefined
+      let imageUrl: string | undefined;
+      const raw = t as Record<string, unknown>;
+      if (raw.heroImageUrl) {
+        imageUrl = raw.heroImageUrl as string;
+      } else if (raw.sessionId) {
+        try {
+          const scenesResult = await appsync.listPublicScenesBySession(raw.sessionId as string);
+          if (scenesResult.ok && scenesResult.data.length > 0) {
+            const firstScene = scenesResult.data
+              .sort((a: Record<string, unknown>, b: Record<string, unknown>) => ((a.sceneIndex as number) ?? 0) - ((b.sceneIndex as number) ?? 0))[0] as Record<string, unknown>;
+            const photos = firstScene.photosRefs as string[] | undefined;
+            if (photos?.[0]) imageUrl = photos[0];
+          }
+        } catch { /* non-blocking */ }
+      }
+      return {
+        id: t.id,
+        title: t.title,
+        slug: generateSlug(t.title),
+        city: t.city,
+        citySlug: generateSlug(t.city),
+        guideId: t.guideId,
+        guideName: await resolveGuideName(t.guideId),
+        description: t.description || '',
+        shortDescription: (t.description || '').substring(0, 100),
+        duration: t.duration || 0,
+        distance: t.distance || 0,
+        poiCount: t.poiCount || 0,
+        isFree: false,
+        status: (t.status || 'draft') as Tour['status'],
+        availableLanguages: Array.isArray((t as Record<string, unknown>).availableLanguages) ? (t as Record<string, unknown>).availableLanguages as string[] : [(t as Record<string, unknown>).language as string ?? 'fr'],
+        createdAt: ((t as Record<string, unknown>).createdAt as string) ?? '',
+        imageUrl,
+      };
+    }),
   );
   return mapped.sort((a, b) => a.title.localeCompare(b.title));
 }
@@ -303,6 +375,9 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     poiCount: tour.poiCount || 0,
     isFree: false,
     status: (tour.status || 'draft') as Tour['status'],
+    availableLanguages: Array.isArray((tour as Record<string, unknown>).availableLanguages) ? (tour as Record<string, unknown>).availableLanguages as string[] : [(tour as Record<string, unknown>).language as string ?? 'fr'],
+    createdAt: ((tour as Record<string, unknown>).createdAt as string) ?? '',
+    languageAudioTypes: tour.sessionId ? await getLanguageAudioTypes(tour.sessionId) : {},
     pois,
     reviews: reviews.map((r: { id: string; userId: string; rating: number; comment?: string | null; visitedAt?: number | null; language?: string | null; createdAt: string }) => ({
       id: r.id,
@@ -364,6 +439,8 @@ export async function getAllTours(): Promise<Tour[]> {
       poiCount: t.poiCount || 0,
       isFree: false, // isFree not in schema — requires future field addition
       status: (t.status || 'draft') as Tour['status'],
+      availableLanguages: Array.isArray((t as Record<string, unknown>).availableLanguages) ? (t as Record<string, unknown>).availableLanguages as string[] : [(t as Record<string, unknown>).language as string ?? 'fr'],
+      createdAt: ((t as Record<string, unknown>).createdAt as string) ?? '',
     })),
   );
 }

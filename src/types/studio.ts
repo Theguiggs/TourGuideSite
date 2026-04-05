@@ -51,6 +51,7 @@ export interface StudioSession {
   availableLanguages: string[];
   translatedTitles: Record<string, string> | null;        // { en: "Walking Tour", es: "..." }
   translatedDescriptions: Record<string, string> | null;  // { en: "A lovely walk...", es: "..." }
+  version: number;
   consentRGPD: boolean;
   createdAt: string;
   updatedAt: string;

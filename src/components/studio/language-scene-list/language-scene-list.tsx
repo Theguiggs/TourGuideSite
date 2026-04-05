@@ -29,8 +29,8 @@ export interface LanguageSceneListProps {
   completedSceneIds: string[];
   segments: SceneSegment[];
   sessionId?: string;
-  onRetryScene: (sceneId: string) => void;
-  onResumeBatch: () => void;
+  onRetryScene?: (sceneId: string) => void;
+  onResumeBatch?: () => void;
   hasMissingScenes: boolean;
   onSceneClick: (sceneId: string) => void;
   onRetranslateStale?: (sceneIds: string[]) => void;
@@ -293,6 +293,7 @@ export function LanguageSceneList({
           <p className="text-sm text-amber-800">
             Certaines scenes n&apos;ont pas encore ete traduites.
           </p>
+          {onResumeBatch && (
           <button
             data-testid="resume-batch-button"
             type="button"
@@ -301,6 +302,7 @@ export function LanguageSceneList({
           >
             Reprendre la traduction
           </button>
+          )}
         </div>
       )}
 
@@ -323,7 +325,7 @@ export function LanguageSceneList({
                 errorCode={failedEntry.errorCode}
                 errorMessage={failedEntry.message}
                 isRetrying={retryingScenes.includes(scene.id)}
-                onRetry={onRetryScene}
+                onRetry={onRetryScene ?? (() => {})}
               />
             </div>
           );

@@ -24,10 +24,12 @@ import {
   getQueueItemIds,
 } from '@/lib/api/moderation';
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
-import { listSegmentsByScene } from '@/lib/api/studio';
+import { listSegmentsByScene, getStudioSession } from '@/lib/api/studio';
 import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
+import { TourCommentThread } from '@/components/studio/tour-comment-thread';
+import { addTourComment } from '@/lib/api/tour-comments';
 import { shouldUseStubs } from '@/config/api-mode';
 import type { TourLanguagePurchase, SceneSegment } from '@/types/studio';
 import { trackEvent, AdminAnalyticsEvents } from '@/lib/analytics';
@@ -47,6 +49,96 @@ const LANG_FLAGS: Record<string, string> = {
   fr: 'FR', en: 'EN', es: 'ES', it: 'IT', de: 'DE',
 };
 
+function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; photosRefs: string[]; order: number }> }) {
+  const [lightbox, setLightbox] = useState<{ s3Key: string; title: string } | null>(null);
+  const allPhotos = scenes.flatMap((s) =>
+    s.photosRefs.map((ref, i) => ({ s3Key: ref, title: `${s.title} — Photo ${i + 1}`, sceneOrder: s.order })),
+  );
+  if (allPhotos.length === 0) return null;
+
+  return (
+    <>
+      <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <h3 className="text-sm font-semibold text-gray-900 mb-3">Photos ({allPhotos.length})</h3>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+          {allPhotos.map((photo, i) => (
+            <button
+              key={`${photo.s3Key}-${i}`}
+              type="button"
+              onClick={() => setLightbox(photo)}
+              className="relative group aspect-square rounded-lg overflow-hidden border border-gray-200 hover:border-teal-400 transition-colors cursor-zoom-in"
+            >
+              <S3Image s3Key={photo.s3Key} alt={photo.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <span className="opacity-0 group-hover:opacity-100 text-white text-lg transition-opacity">🔍</span>
+              </div>
+              <span className="absolute bottom-0.5 left-0.5 bg-black/60 text-white text-[9px] px-1 rounded">
+                {photo.sceneOrder}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Lightbox overlay */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center cursor-zoom-out"
+          onClick={() => setLightbox(null)}
+          data-testid="photo-lightbox"
+        >
+          <button
+            onClick={() => setLightbox(null)}
+            className="absolute top-4 right-4 text-white text-3xl hover:text-gray-300 z-10"
+            aria-label="Fermer"
+          >
+            ✕
+          </button>
+          <p className="absolute top-4 left-4 text-white text-sm bg-black/50 px-3 py-1 rounded">
+            {lightbox.title}
+          </p>
+          <div className="max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+            <S3Image
+              s3Key={lightbox.s3Key}
+              alt={lightbox.title}
+              className="max-w-full max-h-[85vh] object-contain rounded-lg"
+            />
+          </div>
+          {/* Navigation arrows */}
+          {allPhotos.length > 1 && (() => {
+            const idx = allPhotos.findIndex((p) => p.s3Key === lightbox.s3Key);
+            return (
+              <>
+                {idx > 0 && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setLightbox(allPhotos[idx - 1]); }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-gray-300 bg-black/40 rounded-full w-12 h-12 flex items-center justify-center"
+                    aria-label="Précédente"
+                  >
+                    ‹
+                  </button>
+                )}
+                {idx < allPhotos.length - 1 && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setLightbox(allPhotos[idx + 1]); }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-gray-300 bg-black/40 rounded-full w-12 h-12 flex items-center justify-center"
+                    aria-label="Suivante"
+                  >
+                    ›
+                  </button>
+                )}
+                <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 px-3 py-1 rounded">
+                  {idx + 1} / {allPhotos.length}
+                </p>
+              </>
+            );
+          })()}
+        </div>
+      )}
+    </>
+  );
+}
+
 function formatDuration(seconds: number): string {
   if (!seconds || seconds <= 0) return '';
   const m = Math.floor(seconds / 60);
@@ -60,6 +152,7 @@ export default function ModerationReviewPage() {
   const searchParams = useSearchParams();
   const moderationId = params.moderationId as string;
   const initialTab = searchParams.get('tab') as 'overview' | 'scenes' | 'pois' | 'tourist' | null;
+  const initialLang = searchParams.get('lang');
 
   const [detail, setDetail] = useState<ModerationDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -83,13 +176,18 @@ export default function ModerationReviewPage() {
   const [elapsedMinutes, setElapsedMinutes] = useState(0);
   const [playingSceneId, setPlayingSceneId] = useState<string | null>(null);
   const [activeContentTab, setActiveContentTab] = useState<'overview' | 'scenes' | 'pois' | 'tourist'>(
-    initialTab === 'tourist' || initialTab === 'overview' || initialTab === 'scenes' || initialTab === 'pois' ? initialTab : 'overview',
+    initialTab === 'tourist' || initialTab === 'overview' || initialTab === 'scenes' || initialTab === 'pois'
+      ? initialTab
+      : initialLang ? 'tourist' : 'overview',
   );
   // Language purchases and translated segments for preview
   const [languagePurchases, setLanguagePurchases] = useState<TourLanguagePurchase[]>([]);
   const [segmentsByScene, setSegmentsByScene] = useState<Record<string, SceneSegment[]>>({});
-  const [activePreviewLang, setActivePreviewLang] = useState<string>('fr');
+  // Fixed to the language from ?lang= param — no toggle, one language at a time
+  const activePreviewLang = initialLang || 'fr';
   const [loadingSegments, setLoadingSegments] = useState(false);
+  const [translatedDescriptions, setTranslatedDescriptions] = useState<Record<string, string>>({});
+  const [translatedTitles, setTranslatedTitles] = useState<Record<string, string>>({});
 
   useEffect(() => {
     Promise.all([
@@ -108,6 +206,33 @@ export default function ModerationReviewPage() {
       );
       setLoading(false);
 
+      // Load translated descriptions from StudioSession + GuideTour (merge both sources)
+      if (d?.sessionId) {
+        getStudioSession(d.sessionId).then((sess) => {
+          let sessDescs = sess?.translatedDescriptions;
+          if (typeof sessDescs === 'string') { try { sessDescs = JSON.parse(sessDescs); } catch { sessDescs = null; } }
+          if (sessDescs && typeof sessDescs === 'object') {
+            setTranslatedDescriptions((prev) => ({ ...prev, ...sessDescs as Record<string, string> }));
+          }
+          let sessTitles = sess?.translatedTitles;
+          if (typeof sessTitles === 'string') { try { sessTitles = JSON.parse(sessTitles); } catch { sessTitles = null; } }
+          if (sessTitles && typeof sessTitles === 'object') {
+            setTranslatedTitles((prev) => ({ ...prev, ...sessTitles as Record<string, string> }));
+          }
+        });
+      }
+      if (d?.tourId) {
+        import('@/lib/api/appsync-client').then(({ getGuideTourById }) => {
+          getGuideTourById(d.tourId).then((tour) => {
+            let descs = (tour as Record<string, unknown>)?.translatedDescriptions;
+            if (typeof descs === 'string') { try { descs = JSON.parse(descs); } catch { descs = null; } }
+            if (descs && typeof descs === 'object') {
+              setTranslatedDescriptions((prev) => ({ ...prev, ...descs as Record<string, string> }));
+            }
+          });
+        });
+      }
+
       // Load language purchases and segments for the tour preview
       if (d?.sessionId) {
         listLanguagePurchases(d.sessionId).then((result) => {
@@ -117,18 +242,34 @@ export default function ModerationReviewPage() {
         });
 
         // Load segments for all scenes (for translated content)
+        console.log('[ModerationDetail] Loading segments for', d.scenes.length, 'scenes, sessionId:', d.sessionId, 'activePreviewLang:', initialLang);
         if (d.scenes.length > 0) {
           setLoadingSegments(true);
           Promise.all(
             d.scenes.map(async (scene) => {
-              const segments = await listSegmentsByScene(scene.id);
-              return { sceneId: scene.id, segments };
+              try {
+                const segments = await listSegmentsByScene(scene.id);
+                console.log('[ModerationDetail] Scene', scene.id, '→', segments.length, 'segments', segments.map((s) => s.language));
+                return { sceneId: scene.id, segments };
+              } catch (err) {
+                console.error('[ModerationDetail] Failed to load segments for', scene.id, err);
+                return { sceneId: scene.id, segments: [] };
+              }
             }),
           ).then((results) => {
             const map: Record<string, SceneSegment[]> = {};
             for (const r of results) {
               map[r.sceneId] = r.segments;
             }
+            // Debug: log loaded segments
+            const totalSegs = Object.values(map).flat();
+            const langs = [...new Set(totalSegs.map((s) => s.language))];
+            console.log('[ModerationDetail] Segments loaded:', {
+              scenes: Object.keys(map).length,
+              totalSegments: totalSegs.length,
+              languages: langs,
+              sample: totalSegs[0] ? { id: totalSegs[0].id, lang: totalSegs[0].language, hasText: !!totalSegs[0].transcriptText, hasAudio: !!totalSegs[0].audioKey } : 'none',
+            });
             setSegmentsByScene(map);
             setLoadingSegments(false);
           });
@@ -169,6 +310,24 @@ export default function ModerationReviewPage() {
     setSubmitting(true);
     setErrorMessage(null);
 
+    // If examining a specific language, approve the language purchase
+    if (activePreviewLang !== detail.languePrincipale) {
+      const { updateModerationStatusByLang } = await import('@/lib/api/language-purchase');
+      const langResult = await updateModerationStatusByLang(
+        detail.sessionId, activePreviewLang, 'approved',
+      );
+      if (langResult.ok) {
+        addTourComment(detail.tourId, { message: overallNotes || `Langue ${activePreviewLang.toUpperCase()} approuvée`, author: 'admin', authorName: 'Admin', action: 'approved', language: activePreviewLang }).catch(() => {});
+        setSubmitting(false);
+        setSuccessMessage(`Langue ${activePreviewLang.toUpperCase()} approuvée !`);
+        setTimeout(() => router.push('/admin/moderation'), 2000);
+        return;
+      }
+      setSubmitting(false);
+      setErrorMessage(langResult.error?.message || 'Erreur');
+      return;
+    }
+
     const checklistData: Record<string, { checked: boolean; note: string }> = {};
     checklist.forEach((item) => {
       checklistData[item.id] = { checked: item.checked, note: item.note };
@@ -201,6 +360,25 @@ export default function ModerationReviewPage() {
     setSubmitting(true);
     setErrorMessage(null);
 
+    // If examining a specific language, reject the language purchase instead of the whole tour
+    if (activePreviewLang !== detail.languePrincipale) {
+      const { updateModerationStatusByLang } = await import('@/lib/api/language-purchase');
+      const langResult = await updateModerationStatusByLang(
+        detail.sessionId, activePreviewLang, 'rejected',
+        { global: rejectFeedback },
+      );
+      if (langResult.ok) {
+        addTourComment(detail.tourId, { message: rejectFeedback, author: 'admin', authorName: 'Admin', action: 'rejected', language: activePreviewLang }).catch(() => {});
+        setSubmitting(false);
+        setSuccessMessage(`Langue ${activePreviewLang.toUpperCase()} refusée.`);
+        setTimeout(() => router.push('/admin/moderation'), 2000);
+        return;
+      }
+      setSubmitting(false);
+      setErrorMessage(langResult.error?.message || 'Erreur');
+      return;
+    }
+
     const result = await rejectTour(moderationId, rejectCategory, rejectFeedback, rejectPoiIds);
     setSubmitting(false);
 
@@ -224,6 +402,25 @@ export default function ModerationReviewPage() {
     if (!detail || revisionFeedback.length < 10) return;
     setSubmitting(true);
     setErrorMessage(null);
+
+    // If examining a specific language, send revision for that language only
+    if (activePreviewLang !== detail.languePrincipale) {
+      const { updateModerationStatusByLang } = await import('@/lib/api/language-purchase');
+      const langResult = await updateModerationStatusByLang(
+        detail.sessionId, activePreviewLang, 'revision_requested',
+        { global: revisionFeedback },
+      );
+      if (langResult.ok) {
+        addTourComment(detail.tourId, { message: revisionFeedback, author: 'admin', authorName: 'Admin', action: 'revision', language: activePreviewLang }).catch(() => {});
+        setSubmitting(false);
+        setSuccessMessage(`Révision demandée pour ${activePreviewLang.toUpperCase()}.`);
+        setTimeout(() => router.push('/admin/moderation'), 2000);
+        return;
+      }
+      setSubmitting(false);
+      setErrorMessage(langResult.error?.message || 'Erreur');
+      return;
+    }
 
     const result = await sendBackForRevision(moderationId, revisionFeedback);
     setSubmitting(false);
@@ -365,7 +562,9 @@ export default function ModerationReviewPage() {
             ← Retour a la file d&apos;attente
           </Link>
           <div className="flex items-center gap-3 mt-1">
-            <h1 className="text-xl font-bold text-gray-900">{detail.tourTitle}</h1>
+            <h1 className="text-xl font-bold text-gray-900">
+              {(activePreviewLang !== detail.languePrincipale && translatedTitles[activePreviewLang]) ? translatedTitles[activePreviewLang] : detail.tourTitle}
+            </h1>
             {detail.languePrincipale && (
               <span className="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-0.5 rounded">
                 {LANG_FLAGS[detail.languePrincipale] ?? detail.languePrincipale}
@@ -423,7 +622,7 @@ export default function ModerationReviewPage() {
             </div>
           </div>
 
-          {/* Existing admin comments */}
+          {/* Legacy admin comments */}
           {globalComments.length > 0 && (
             <div className="bg-orange-50 border border-orange-200 rounded-xl px-4 py-3">
               <p className="text-sm font-semibold text-orange-800 mb-2">Commentaires admin existants</p>
@@ -436,7 +635,114 @@ export default function ModerationReviewPage() {
             </div>
           )}
 
-          {/* Content tabs */}
+          {/* Comment thread */}
+          <TourCommentThread tourId={detail.tourId} role="admin" authorName="Admin" sessionId={detail.sessionId} />
+
+          {/* When examining a translated language: side-by-side comparison view */}
+          {activePreviewLang !== detail.languePrincipale ? (
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-lg px-4 py-2">
+                <span className="text-lg">{LANG_FLAGS[activePreviewLang] ?? ''}</span>
+                <span className="text-sm font-medium text-teal-800">
+                  Comparaison {detail.languePrincipale.toUpperCase()} / {activePreviewLang.toUpperCase()}
+                </span>
+              </div>
+
+              {/* Description: FR vs translated */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="bg-white rounded-xl border border-gray-200 p-4">
+                  <h3 className="text-sm font-semibold text-gray-400 mb-2">Description ({detail.languePrincipale.toUpperCase()})</h3>
+                  <p className="text-sm text-gray-600">{detail.descriptionLongue || detail.description}</p>
+                </div>
+                <div className="bg-white rounded-xl border border-teal-200 p-4">
+                  <h3 className="text-sm font-semibold text-teal-700 mb-2">Description ({activePreviewLang.toUpperCase()})</h3>
+                  <p className="text-sm text-gray-800">
+                    {translatedDescriptions[activePreviewLang] || <span className="italic text-orange-500">Non traduite</span>}
+                  </p>
+                </div>
+              </div>
+
+              {/* Scenes: FR left / translated right — stacked per scene */}
+              <h3 className="text-lg font-semibold text-gray-900">Scènes ({detail.scenes.length})</h3>
+              {loadingSegments ? (
+                <p className="text-sm text-gray-400 animate-pulse">Chargement...</p>
+              ) : (
+              <div className="space-y-4">
+                {detail.scenes.map((scene) => {
+                  const langSegs = (segmentsByScene[scene.id] ?? []).filter((s) => s.language === activePreviewLang);
+                  const seg = langSegs[0];
+                  const displayTitle = seg?.translatedTitle || scene.title;
+                  const displayText = seg?.transcriptText ?? null;
+                  const displayAudio = seg?.audioKey || null;
+
+                  return (
+                    <div key={scene.id} className="grid grid-cols-1 lg:grid-cols-2 gap-3 border border-gray-200 rounded-xl overflow-hidden" data-testid={`tourist-scene-${scene.id}`}>
+                      {/* FR source (left) */}
+                      <div className="p-4 bg-gray-50">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="w-6 h-6 bg-gray-400 text-white rounded-full flex items-center justify-center text-xs font-bold">{scene.order}</span>
+                          <p className="font-medium text-gray-600 text-sm">{scene.title}</p>
+                          <span className="text-[10px] text-gray-400 ml-auto">{detail.languePrincipale.toUpperCase()}</span>
+                        </div>
+                        {scene.audioRef && (
+                          <div className="flex items-center gap-2 mb-2">
+                            <button
+                              onClick={() => handlePlayAudio(`${scene.id}-fr`, scene.audioRef)}
+                              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${playingSceneId === `${scene.id}-fr` ? 'bg-red-600 text-white' : 'bg-gray-400 text-white hover:bg-gray-500'}`}
+                            >
+                              {playingSceneId === `${scene.id}-fr` ? '\u23F8' : '\u25B6'}
+                            </button>
+                            <span className="text-[10px] text-gray-400">{detail.languePrincipale.toUpperCase()}</span>
+                          </div>
+                        )}
+                        <p className="text-xs text-gray-500 leading-relaxed whitespace-pre-wrap">{scene.transcriptText ?? 'Aucun texte'}</p>
+                      </div>
+                      {/* Translated (right) */}
+                      <div className="p-4 bg-white">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center text-xs font-bold">{scene.order}</span>
+                          <p className="font-medium text-gray-900 text-sm">{displayTitle}</p>
+                          <span className={`text-[10px] ml-auto px-1.5 py-0.5 rounded ${seg ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-600'}`}>
+                            {seg ? `${activePreviewLang.toUpperCase()} OK` : `${activePreviewLang.toUpperCase()} manquant`}
+                          </span>
+                        </div>
+                        {displayAudio && (
+                          <div className="flex items-center gap-2 mb-2">
+                            <button
+                              onClick={() => handlePlayAudio(scene.id, displayAudio)}
+                              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${playingSceneId === scene.id ? 'bg-red-600 text-white' : 'bg-teal-600 text-white hover:bg-teal-700'}`}
+                              data-testid={`play-audio-${scene.id}`}
+                            >
+                              {playingSceneId === scene.id ? '\u23F8' : '\u25B6'}
+                            </button>
+                            <span className="text-[10px] text-teal-600">{activePreviewLang.toUpperCase()}</span>
+                          </div>
+                        )}
+                        {displayText ? (
+                          <p className="text-xs text-gray-800 leading-relaxed">{displayText}</p>
+                        ) : (
+                          <p className="text-xs text-orange-500 italic">Traduction non disponible</p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              )}
+
+              {/* Photos with lightbox zoom */}
+              {detail.scenes.some((s) => s.photosRefs.length > 0) && (
+                <PhotoGallery scenes={detail.scenes} />
+              )}
+
+              {/* Audio player bar */}
+              <div className="sticky bottom-0" data-testid="tourist-audio-player">
+                <AudioPlayerBar label="Lecture audio" />
+              </div>
+            </div>
+          ) : (
+          <>
+          {/* Standard tabs for FR review (no ?lang= param) */}
           <div className="flex gap-1 bg-gray-100 rounded-lg p-1 w-fit flex-wrap">
             {(['tourist', 'overview', 'scenes', 'pois'] as const).map((tab) => (
               <button
@@ -452,6 +758,8 @@ export default function ModerationReviewPage() {
               </button>
             ))}
           </div>
+          </>
+          )}
 
           {/* Tourist preview tab — mirrors catalogue experience */}
           {activeContentTab === 'tourist' && (
@@ -467,14 +775,19 @@ export default function ModerationReviewPage() {
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="bg-green-400 text-green-900 text-xs font-bold px-2 py-0.5 rounded">GRATUIT</span>
+                    <span className="bg-white/30 text-white text-xs font-bold px-2 py-0.5 rounded">
+                      {LANG_FLAGS[activePreviewLang] ?? ''} {activePreviewLang.toUpperCase()}
+                    </span>
                     {detail.themes.map((t) => (
                       <span key={t} className="bg-white/20 text-white text-xs px-2 py-0.5 rounded">{t}</span>
                     ))}
                   </div>
-                  <h2 className="text-2xl font-bold mb-1">{detail.tourTitle}</h2>
+                  <h2 className="text-2xl font-bold mb-1">
+                    {(activePreviewLang !== detail.languePrincipale && translatedTitles[activePreviewLang]) ? translatedTitles[activePreviewLang] : detail.tourTitle}
+                  </h2>
                   <p className="text-teal-200 text-sm">
                     {detail.city} &middot; {detail.duration} min &middot; {detail.distance} km &middot; {detail.poiCount} points d&apos;interet
-                    &middot; Difficulte : {detail.difficulty} &middot; {LANG_FLAGS[detail.languePrincipale] ?? detail.languePrincipale}
+                    &middot; Difficulte : {detail.difficulty}
                   </p>
                 </div>
               </div>
@@ -494,11 +807,28 @@ export default function ModerationReviewPage() {
                 </div>
               </div>
 
-              {/* Description — like catalogue */}
+              {/* Description — shows translated version when available */}
               {(detail.descriptionLongue || detail.description) && (
                 <div className="bg-white rounded-xl border border-gray-200 p-5">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">À propos de cette visite</h3>
-                  <p className="text-gray-700 leading-relaxed">{detail.descriptionLongue || detail.description}</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    À propos de cette visite ({activePreviewLang.toUpperCase()})
+                  </h3>
+                  {activePreviewLang !== detail.languePrincipale && translatedDescriptions[activePreviewLang] ? (
+                    <>
+                      <p className="text-gray-700 leading-relaxed">{translatedDescriptions[activePreviewLang]}</p>
+                      <details className="mt-2">
+                        <summary className="text-xs text-gray-400 cursor-pointer">Voir original (FR)</summary>
+                        <p className="text-sm text-gray-400 mt-1 italic">{detail.descriptionLongue || detail.description}</p>
+                      </details>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-gray-700 leading-relaxed">{detail.descriptionLongue || detail.description}</p>
+                      {activePreviewLang !== detail.languePrincipale && (
+                        <p className="text-xs text-orange-500 mt-2">Description non traduite en {activePreviewLang.toUpperCase()} — affichage de l&apos;original</p>
+                      )}
+                    </>
+                  )}
                 </div>
               )}
 
@@ -525,110 +855,86 @@ export default function ModerationReviewPage() {
                 </div>
               )}
 
-              {/* Language tabs for translated content */}
-              {availableLanguages.length > 1 && (
-                <div className="bg-white rounded-xl border border-gray-200 p-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Contenu par langue</h3>
-                  <div className="flex gap-1 bg-gray-100 rounded-lg p-1 w-fit mb-4">
-                    {availableLanguages.map((lang) => {
-                      const purchase = languagePurchases.find((p) => p.language === lang);
-                      return (
-                        <button
-                          key={lang}
-                          onClick={() => setActivePreviewLang(lang)}
-                          className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                            activePreviewLang === lang
-                              ? 'bg-white text-teal-700 shadow-sm'
-                              : 'text-gray-500 hover:text-gray-700'
-                          }`}
-                          data-testid={`lang-tab-${lang}`}
-                        >
-                          {LANG_FLAGS[lang] ?? lang.toUpperCase()}
-                          {purchase && (
-                            <span className={`ml-1 text-[10px] ${
-                              purchase.moderationStatus === 'approved' ? 'text-green-600' :
-                              purchase.moderationStatus === 'rejected' ? 'text-red-600' :
-                              'text-gray-400'
-                            }`}>
-                              ({purchase.moderationStatus})
-                            </span>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {loadingSegments ? (
-                    <p className="text-sm text-gray-400">Chargement des segments traduits...</p>
-                  ) : (
-                    <div className="space-y-3">
-                      {detail.scenes.map((scene) => {
-                        const sceneSegments = (segmentsByScene[scene.id] ?? []).filter(
-                          (seg) => seg.language === activePreviewLang,
-                        );
-                        if (sceneSegments.length === 0 && activePreviewLang !== detail.languePrincipale) return null;
-                        return (
-                          <div key={scene.id} className="border border-gray-100 rounded-lg p-3">
-                            <div className="flex items-center gap-2 mb-2">
-                              <span className="w-6 h-6 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xs font-bold">{scene.order}</span>
-                              <p className="font-medium text-gray-900 text-sm">{scene.title}</p>
-                            </div>
-                            {activePreviewLang === detail.languePrincipale ? (
-                              <p className="text-sm text-gray-700">{scene.transcriptText ?? 'Aucun texte'}</p>
-                            ) : sceneSegments.length > 0 ? (
-                              <div className="space-y-1">
-                                {sceneSegments.map((seg) => (
-                                  <p key={seg.id} className="text-sm text-gray-700">
-                                    {seg.transcriptText ?? <span className="text-gray-400 italic">Traduction en attente</span>}
-                                  </p>
-                                ))}
-                              </div>
-                            ) : (
-                              <p className="text-sm text-gray-400 italic">Pas de contenu dans cette langue</p>
+              {/* Unified scene review — one card per scene with text + audio + photos */}
+              <div className="bg-white rounded-xl border border-gray-200 p-5">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  Scenes ({detail.scenes.length}) — {activePreviewLang.toUpperCase()}
+                </h3>
+                {/* Diagnostic — shows segment state per scene */}
+                <details className="text-[10px] text-gray-400 mb-2 border border-dashed border-gray-200 rounded p-2">
+                  <summary>Diagnostic segments ({activePreviewLang.toUpperCase()})</summary>
+                  <pre className="mt-1 whitespace-pre-wrap">{JSON.stringify(
+                    detail.scenes.map((sc) => {
+                      const segs = (segmentsByScene[sc.id] ?? []);
+                      const langSeg = segs.find((s) => s.language === activePreviewLang);
+                      return {
+                        scene: sc.order,
+                        sceneId: sc.id,
+                        totalSegs: segs.length,
+                        segsLangs: segs.map((s) => s.language),
+                        hasLangSeg: !!langSeg,
+                        segLang: langSeg?.language,
+                        hasText: !!langSeg?.transcriptText,
+                        hasAudio: !!langSeg?.audioKey,
+                        audioKey: langSeg?.audioKey?.substring(0, 40),
+                      };
+                    }),
+                    null, 1,
+                  )}</pre>
+                </details>
+                {loadingSegments ? (
+                  <p className="text-sm text-gray-400 animate-pulse">Chargement des segments...</p>
+                ) : (
+                <div className="space-y-4">
+                  {detail.scenes.map((scene) => {
+                    const isSourceLang = activePreviewLang === detail.languePrincipale;
+                    const allSegsForScene = segmentsByScene[scene.id] ?? [];
+                    const langSegs = allSegsForScene.filter((s) => s.language === activePreviewLang);
+                    const seg = langSegs[0];
+
+                    // Resolve content for active language
+                    const displayTitle = isSourceLang ? scene.title : (seg?.translatedTitle || scene.title);
+                    const displayText = isSourceLang ? (scene.transcriptText ?? null) : (seg?.transcriptText ?? null);
+                    const displayAudio = isSourceLang ? scene.audioRef : (seg?.audioKey || null);
+                    const hasTranslation = !isSourceLang && seg != null;
+
+                    // --- Temporary debug per scene ---
+                    if (typeof window !== 'undefined') {
+                      console.log(`[Scene ${scene.order}] id=${scene.id}, allSegs=${allSegsForScene.length}, langSegs(${activePreviewLang})=${langSegs.length}, seg?.lang=${seg?.language}, hasText=${!!seg?.transcriptText}, hasAudio=${!!seg?.audioKey}`);
+                    }
+
+                    return (
+                      <div
+                        key={scene.id}
+                        className={`border rounded-xl p-4 ${!isSourceLang && !hasTranslation ? 'border-orange-200 bg-orange-50' : 'border-gray-200'}`}
+                        data-testid={`tourist-scene-${scene.id}`}
+                      >
+                        {/* Header: number + title + language badge */}
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                            {scene.order}
+                          </span>
+                          <div className="flex-1">
+                            <p className="font-semibold text-gray-900">{displayTitle}</p>
+                            {!isSourceLang && scene.title !== displayTitle && (
+                              <p className="text-xs text-gray-400 italic">FR: {scene.title}</p>
                             )}
                           </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              )}
+                          {!isSourceLang && (
+                            <span className={`text-xs px-2 py-0.5 rounded-full ${hasTranslation ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-600'}`}>
+                              {hasTranslation ? `${activePreviewLang.toUpperCase()} OK` : `${activePreviewLang.toUpperCase()} manquant`}
+                            </span>
+                          )}
+                        </div>
 
-              {/* POIs list — like catalogue with audio playback */}
-              <div className="bg-white rounded-xl border border-gray-200 p-5">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Points d&apos;interet ({detail.scenes.length})</h3>
-                <div className="space-y-6">
-                  {detail.scenes.map((scene) => (
-                    <div key={scene.id} className="flex gap-4" data-testid={`tourist-scene-${scene.id}`}>
-                      <div className="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
-                        {scene.order}
-                      </div>
-                      <div className="flex-1 space-y-2">
-                        <p className="font-medium text-gray-900">{scene.title}</p>
-                        {scene.poiDescription && (
-                          <p className="text-sm text-gray-600">{scene.poiDescription}</p>
-                        )}
-                        {/* Full narration text — no truncation for admin preview */}
-                        {scene.transcriptText && (
-                          <div className="bg-gray-50 rounded-lg p-3">
-                            <p className="text-xs font-medium text-gray-400 mb-1">Narration</p>
-                            <p className="text-sm text-gray-700 whitespace-pre-wrap">{scene.transcriptText}</p>
-                          </div>
-                        )}
-                        {/* Photos */}
-                        {scene.photosRefs.length > 0 && (
-                          <div className="flex gap-2 overflow-x-auto">
-                            {scene.photosRefs.map((ref, i) => (
-                              <S3Image key={i} s3Key={ref} alt={`${scene.title} photo ${i + 1}`} className="w-28 h-24 rounded-lg flex-shrink-0" />
-                            ))}
-                          </div>
-                        )}
-                        {/* Audio player */}
-                        {scene.audioRef && (
-                          <div className="bg-gray-50 rounded-lg p-2">
-                            <div className="flex items-center gap-3">
+                        {/* Audio + Narration side by side on desktop */}
+                        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-3 mb-3">
+                          {/* Audio player */}
+                          <div className="flex items-start gap-2">
+                            {displayAudio ? (
                               <button
-                                onClick={() => handlePlayAudio(scene.id, scene.audioRef)}
-                                className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
+                                onClick={() => handlePlayAudio(scene.id, displayAudio)}
+                                className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors flex-shrink-0 ${
                                   playingSceneId === scene.id
                                     ? 'bg-red-600 text-white hover:bg-red-700'
                                     : 'bg-teal-600 text-white hover:bg-teal-700'
@@ -637,20 +943,44 @@ export default function ModerationReviewPage() {
                               >
                                 {playingSceneId === scene.id ? '\u23F8' : '\u25B6'}
                               </button>
-                              <div className="flex-1">
-                                <p className="text-xs text-gray-500">Audio{formatDuration(scene.durationSeconds) ? ` \u00b7 ${formatDuration(scene.durationSeconds)}` : ''}</p>
+                            ) : (
+                              <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 text-xs flex-shrink-0">
+                                —
                               </div>
-                            </div>
+                            )}
+                            {displayAudio && (
+                              <p className="text-[10px] text-gray-400 mt-2.5">
+                                {activePreviewLang.toUpperCase()}
+                                {formatDuration(scene.durationSeconds) ? ` ${formatDuration(scene.durationSeconds)}` : ''}
+                              </p>
+                            )}
+                          </div>
+
+                          {/* Narration text */}
+                          <div className="bg-gray-50 rounded-lg p-3 min-h-[60px]">
+                            {displayText ? (
+                              <p className="text-sm text-gray-700 whitespace-pre-wrap">{displayText}</p>
+                            ) : !isSourceLang ? (
+                              <p className="text-sm text-orange-500 italic">Traduction non disponible</p>
+                            ) : (
+                              <p className="text-sm text-gray-400 italic">Aucun texte</p>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Photos row */}
+                        {scene.photosRefs.length > 0 && (
+                          <div className="flex gap-2 overflow-x-auto">
+                            {scene.photosRefs.map((ref, i) => (
+                              <S3Image key={i} s3Key={ref} alt={`${scene.title} photo ${i + 1}`} className="w-24 h-20 rounded-lg flex-shrink-0" />
+                            ))}
                           </div>
                         )}
-                        {/* GPS coords */}
-                        {scene.latitude && scene.longitude && (
-                          <p className="text-xs text-gray-400">GPS: {scene.latitude.toFixed(4)}, {scene.longitude.toFixed(4)}</p>
-                        )}
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
+                )}
               </div>
 
               {/* Global audio player bar */}
@@ -696,8 +1026,15 @@ export default function ModerationReviewPage() {
             <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-4">
               {detail.descriptionLongue ? (
                 <>
-                  <h2 className="text-lg font-semibold text-gray-900">Description longue</h2>
-                  <p className="text-gray-700">{detail.descriptionLongue}</p>
+                  <h2 className="text-lg font-semibold text-gray-900">Description ({activePreviewLang.toUpperCase()})</h2>
+                  <p className="text-gray-700">
+                    {(activePreviewLang !== detail.languePrincipale && translatedDescriptions[activePreviewLang])
+                      ? translatedDescriptions[activePreviewLang]
+                      : detail.descriptionLongue}
+                  </p>
+                  {activePreviewLang !== detail.languePrincipale && !translatedDescriptions[activePreviewLang] && (
+                    <p className="text-xs text-orange-500 mt-1">Non traduite en {activePreviewLang.toUpperCase()}</p>
+                  )}
                 </>
               ) : (
                 <>
@@ -753,6 +1090,12 @@ export default function ModerationReviewPage() {
               ) : (
                 sortedScenes.map((scene) => {
                   const sceneComments = getSceneComments(scene.id);
+                  // Resolve content for active language
+                  const isSourceLang = activePreviewLang === detail.languePrincipale;
+                  const sceneLangSegs = (segmentsByScene[scene.id] ?? []).filter((s) => s.language === activePreviewLang);
+                  const sceneSeg = sceneLangSegs[0];
+                  const sceneDisplayTitle = isSourceLang ? scene.title : (sceneSeg?.translatedTitle ?? scene.title);
+                  const sceneDisplayAudio = isSourceLang ? scene.audioRef : (sceneSeg?.audioKey ?? scene.audioRef);
                   return (
                     <div key={scene.id} className="bg-white border border-gray-200 rounded-xl p-5">
                       <div className="flex items-center gap-3 mb-3">
@@ -760,16 +1103,17 @@ export default function ModerationReviewPage() {
                           {scene.order}
                         </span>
                         <div>
-                          <h3 className="font-semibold text-gray-900">{scene.title}</h3>
+                          <h3 className="font-semibold text-gray-900">{sceneDisplayTitle}</h3>
                           <p className="text-xs text-gray-500">
-                            {scene.audioRef ? (formatDuration(scene.durationSeconds) || 'Audio') : 'Pas d\'audio'}
+                            {sceneDisplayAudio ? (formatDuration(scene.durationSeconds) || 'Audio') : 'Pas d\'audio'}
                             {' \u00b7 '}
                             {scene.photosRefs.length} photo{scene.photosRefs.length !== 1 ? 's' : ''}
+                            {!isSourceLang && <span className="ml-1 text-teal-600">({activePreviewLang.toUpperCase()})</span>}
                           </p>
                         </div>
                       </div>
 
-                      {/* Audio player */}
+                      {/* Audio player — uses translated audio when available */}
                       <div className="bg-gray-50 rounded-lg p-3 mb-3">
                         <div className="flex items-center gap-3">
                           <button
@@ -777,12 +1121,12 @@ export default function ModerationReviewPage() {
                               if (playingSceneId === scene.id) {
                                 audioPlayerService.pause();
                                 setPlayingSceneId(null);
-                              } else if (scene.audioRef) {
-                                handlePlayAudio(scene.id, scene.audioRef);
+                              } else if (sceneDisplayAudio) {
+                                handlePlayAudio(scene.id, sceneDisplayAudio);
                               }
                             }}
-                            disabled={!scene.audioRef}
-                            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${scene.audioRef ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
+                            disabled={!sceneDisplayAudio}
+                            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${sceneDisplayAudio ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
                           >
                             {playingSceneId === scene.id ? '⏸' : '▶'}
                           </button>

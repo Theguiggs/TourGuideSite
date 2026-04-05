@@ -383,6 +383,32 @@ export async function updateModerationStatusByLang(
       }
     }
 
+    // When approving, update GuideTour.availableLanguages
+    if (status === 'approved') {
+      try {
+        const { updateGuideTourMutation } = await import('@/lib/api/appsync-client');
+        // Recalculate availableLanguages from all approved purchases + source language
+        const approvedLangs = items
+          .filter((p: TourLanguagePurchase) => p.language === language ? true : p.moderationStatus === 'approved')
+          .map((p: TourLanguagePurchase) => p.language);
+        // Find the GuideTour to get source language
+        const { getGuideTourById } = await import('@/lib/api/appsync-client');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const sessionData = await (client as any).models.StudioSession?.get({ id: sessionId }, { authMode: 'userPool' });
+        const tourId = sessionData?.data?.tourId as string | undefined;
+        if (tourId) {
+          const tour = await getGuideTourById(tourId);
+          const sourceLang = (tour as Record<string, unknown>)?.languePrincipale as string ?? 'fr';
+          const allLangs = Array.from(new Set([sourceLang, ...approvedLangs]));
+          await updateGuideTourMutation(tourId, { availableLanguages: allLangs });
+          logger.info(SERVICE_NAME, 'Updated GuideTour.availableLanguages', { tourId, languages: allLangs });
+        }
+      } catch (langErr) {
+        // Non-blocking: log but don't fail the approval
+        logger.warn(SERVICE_NAME, 'Failed to update availableLanguages (non-blocking)', { error: String(langErr) });
+      }
+    }
+
     return { ok: true, value: updateResult?.data as TourLanguagePurchase };
   } catch (err) {
     logger.error(SERVICE_NAME, 'updateModerationStatusByLang failed', { error: String(err) });
@@ -539,6 +565,52 @@ export async function submitLanguageForModeration(
   } catch (err) {
     logger.error(SERVICE_NAME, 'submitLanguageForModeration failed', { error: String(err) });
     return { ok: false, error: { code: 2614, message: `Submission failed: ${String(err)}` } };
+  }
+}
+
+/**
+ * Retract a language submission (submitted → draft) or unpublish (approved → draft).
+ * Used by the guide to manage per-language publication state.
+ */
+export async function retractLanguageSubmission(
+  sessionId: string,
+  language: string,
+): Promise<Result<TourLanguagePurchase>> {
+  if (shouldUseStubs()) {
+    const key = `${sessionId}_${language}`;
+    const existing = stubPurchases.get(key);
+    if (existing) {
+      const updated: TourLanguagePurchase = { ...existing, moderationStatus: 'draft', updatedAt: new Date().toISOString() };
+      stubPurchases.set(key, updated);
+      return { ok: true, value: updated };
+    }
+    return { ok: false, error: { code: 2604, message: 'Purchase not found' } };
+  }
+
+  try {
+    const { getClient } = await import('@/lib/api/appsync-client');
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const listResult = await (client as any).models.TourLanguagePurchase.listTourLanguagePurchaseBySessionId(
+      { sessionId },
+      { authMode: 'userPool' },
+    );
+    const items = (listResult?.data ?? []) as TourLanguagePurchase[];
+    const match = items.find((p: TourLanguagePurchase) => p.language === language);
+    if (!match) {
+      return { ok: false, error: { code: 2604, message: `No purchase found for ${language}` } };
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const updateResult = await (client as any).models.TourLanguagePurchase.update(
+      { id: match.id, moderationStatus: 'draft' },
+      { authMode: 'userPool' },
+    );
+    logger.info(SERVICE_NAME, 'Language submission retracted', { sessionId, language });
+    return { ok: true, value: updateResult?.data as TourLanguagePurchase };
+  } catch (err) {
+    logger.error(SERVICE_NAME, 'retractLanguageSubmission failed', { error: String(err) });
+    return { ok: false, error: { code: 2608, message: `Retract failed: ${String(err)}` } };
   }
 }
 
