@@ -173,6 +173,10 @@ export async function createModerationItemMutation(data: {
   tourTitle: string;
   city: string;
   submissionDate: number;
+  sessionId?: string;
+  poiCount?: number;
+  duration?: number;
+  distance?: number;
 }) {
   try {
     const client = getClient();
@@ -304,7 +308,7 @@ export async function getModerationItemById(id: string) {
 
 export async function updateModerationItemMutation(
   id: string,
-  updates: { status: 'pending' | 'resubmitted' | 'in_review' | 'approved' | 'rejected'; reviewerId?: string; reviewDate?: number; feedbackJson?: string; checklistJson?: string },
+  updates: { status: 'pending' | 'resubmitted' | 'in_review' | 'approved' | 'rejected'; reviewerId?: string; reviewDate?: number; feedbackJson?: string; checklistJson?: string; submissionDate?: number; isResubmission?: boolean; sessionId?: string; poiCount?: number; duration?: number; distance?: number },
 ) {
   try {
     const client = getClient();

@@ -14,6 +14,7 @@ const mockSession = (status: StudioSession['status']): StudioSession => ({
   availableLanguages: ['fr'],
   translatedTitles: null,
   translatedDescriptions: null,
+  version: 1,
   consentRGPD: true,
   createdAt: '2026-03-10T14:30:00.000Z',
   updatedAt: '2026-03-10T14:30:00.000Z',
