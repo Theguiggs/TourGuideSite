@@ -49,7 +49,10 @@ export default function ModerationQueuePage() {
   };
 
   useEffect(() => {
-    loadQueue();
+    const init = async () => {
+      await loadQueue();
+    };
+    init();
     trackEvent(AdminAnalyticsEvents.ADMIN_MODERATION_QUEUE_VIEW);
   }, []);
 

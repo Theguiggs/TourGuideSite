@@ -302,7 +302,7 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
       poiCount: fallbackTour.poiCount ?? 0,
       duration: fallbackTour.duration ?? 0,
       distance: fallbackTour.distance ?? 0,
-    } as any;
+    } as unknown as NonNullable<typeof item>;
   }
   if (!item) return null;
 
