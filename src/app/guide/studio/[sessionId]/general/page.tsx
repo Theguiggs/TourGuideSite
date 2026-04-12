@@ -118,7 +118,7 @@ export default function GeneralPage() {
           setCoverPhotoKey(sess.coverPhotoKey);
           setSelectedLanguages(sess.availableLanguages.length > 0 ? sess.availableLanguages : [sess.language || 'fr']);
 
-          // Load tour data (city, description, duration, distance) from GuideTour if available
+          // Load tour data from GuideTour if available
           if (sess.tourId) {
             try {
               const { getGuideTourById } = await import('@/lib/api/appsync-client');
@@ -132,7 +132,6 @@ export default function GeneralPage() {
               }
             } catch (e) {
               logger.warn(SERVICE_NAME, 'Failed to load tour data', { tourId: sess.tourId, error: String(e) });
-              // Fallback defaults
               setCity('');
               setDescription('');
               setDuration(0);
@@ -143,6 +142,18 @@ export default function GeneralPage() {
             setDescription('');
             setDuration(0);
             setDistance(0);
+          }
+
+          // Load difficulty + themes from localStorage (not yet deployed on AppSync)
+          try {
+            const stored = localStorage.getItem(`tour-meta-${sess.tourId ?? sessionId}`);
+            if (stored) {
+              const meta = JSON.parse(stored) as { difficulty?: string; themes?: string[] };
+              if (meta.difficulty) setDifficulty(meta.difficulty);
+              if (meta.themes) setSelectedThemes(meta.themes);
+            }
+          } catch {
+            // ignore parse errors
           }
         }
         logger.info(SERVICE_NAME, 'General page loaded', { sessionId });
@@ -196,8 +207,15 @@ export default function GeneralPage() {
     try {
       const result = await studioUploadService.uploadCoverPhoto(file, sessionId);
       if (result.ok) {
+        // Invalidate the signed URL cache for the old key (same path = stale cache)
+        if (coverPhotoKey) {
+          studioUploadService.clearCacheEntry(coverPhotoKey);
+        }
+        studioUploadService.clearCacheEntry(result.s3Key);
         setCoverPhotoKey(result.s3Key);
-        setCoverPreviewUrl(null); // will use S3Image
+        // Use local blob URL as preview so the new image is visible immediately
+        // (S3Image would show the cached/stale signed URL otherwise)
+        setCoverPreviewUrl(URL.createObjectURL(file));
         logger.info(SERVICE_NAME, 'Cover photo uploaded', { sessionId, s3Key: result.s3Key });
       } else {
         setCoverError(result.error);
@@ -230,7 +248,7 @@ export default function GeneralPage() {
         coverPhotoKey,
         availableLanguages: selectedLanguages,
       });
-      // Persist tour fields (city, description, themes, etc.) if tour exists
+      // Persist tour fields if tour exists
       if (session.tourId) {
         await appsync.updateGuideTourMutation(session.tourId, {
           title,
@@ -238,15 +256,21 @@ export default function GeneralPage() {
           description,
           duration,
           distance,
+          poiCount: scenesCount,
         });
       }
-      logger.info(SERVICE_NAME, 'Saved general info', { sessionId, title, city, description: description.substring(0, 50) });
+      // Persist fields not yet deployed on AppSync in localStorage
+      localStorage.setItem(`tour-meta-${session.tourId ?? sessionId}`, JSON.stringify({
+        difficulty,
+        themes: selectedThemes,
+      }));
+      logger.info(SERVICE_NAME, 'Saved general info', { sessionId, title, city, themes: selectedThemes, difficulty });
     } catch (e) {
       logger.error(SERVICE_NAME, 'Save failed', { error: String(e) });
     }
     setIsSaved(true);
     setTimeout(() => setIsSaved(false), 3000);
-  }, [sessionId, session, title, city, description, language, difficulty, duration, distance, coverPhotoKey, selectedLanguages]);
+  }, [sessionId, session, title, city, description, language, difficulty, duration, distance, coverPhotoKey, selectedLanguages, selectedThemes, scenesCount]);
 
   if (isLoading) {
     return <div className="p-6" aria-busy="true"><div className="bg-gray-100 rounded-lg h-96 animate-pulse" /></div>;

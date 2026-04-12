@@ -4,8 +4,21 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { getGuideDashboardStats, getGuideTours, getGuideRevenueSummary } from '@/lib/api/guide';
+import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import { trackEvent, GuideAnalyticsEvents } from '@/lib/analytics';
 import type { GuideDashboardStats, GuideTourSummary, GuideRevenueSummary } from '@/types/guide';
+import type { TourLanguagePurchase } from '@/types/studio';
+
+const LANG_FLAGS: Record<string, string> = {
+  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
+};
+const MOD_COLORS: Record<string, string> = {
+  draft: 'bg-gray-100 text-gray-500',
+  submitted: 'bg-yellow-100 text-yellow-700',
+  approved: 'bg-green-100 text-green-700',
+  rejected: 'bg-red-100 text-red-600',
+  revision_requested: 'bg-orange-100 text-orange-600',
+};
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   published: { label: 'Publie', className: 'bg-green-100 text-green-700' },
@@ -24,6 +37,7 @@ export default function GuideDashboardPage() {
   const [stats, setStats] = useState<GuideDashboardStats>(EMPTY_STATS);
   const [tours, setTours] = useState<GuideTourSummary[]>([]);
   const [revenue, setRevenue] = useState<GuideRevenueSummary>(EMPTY_REVENUE);
+  const [purchasesByTour, setPurchasesByTour] = useState<Record<string, TourLanguagePurchase[]>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,10 +48,17 @@ export default function GuideDashboardPage() {
       getGuideTours(user.guideId),
       getGuideRevenueSummary(user.guideId),
     ])
-      .then(([s, t, r]) => {
+      .then(async ([s, t, r]) => {
         setStats(s);
         setTours(t);
         setRevenue(r);
+        // Load language purchases per tour
+        const pMap: Record<string, TourLanguagePurchase[]> = {};
+        await Promise.all(t.filter((tour) => tour.sessionId).map(async (tour) => {
+          const result = await listLanguagePurchases(tour.sessionId!);
+          if (result.ok) pMap[tour.id] = result.value.filter((p) => p.status === 'active');
+        }));
+        setPurchasesByTour(pMap);
       })
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -86,6 +107,7 @@ export default function GuideDashboardPage() {
                 <tr>
                   <th className="text-left px-4 py-3 font-medium">Titre</th>
                   <th className="text-left px-4 py-3 font-medium hidden sm:table-cell">Ville</th>
+                  <th className="text-left px-4 py-3 font-medium">Langues</th>
                   <th className="text-right px-4 py-3 font-medium">Ecoutes</th>
                   <th className="text-right px-4 py-3 font-medium hidden md:table-cell">Completion</th>
                   <th className="text-right px-4 py-3 font-medium hidden md:table-cell">Note</th>
@@ -96,6 +118,16 @@ export default function GuideDashboardPage() {
                   <tr key={tour.id}>
                     <td className="px-4 py-3 font-medium text-gray-900">{tour.title}</td>
                     <td className="px-4 py-3 text-gray-500 hidden sm:table-cell">{tour.city}</td>
+                    <td className="px-4 py-3">
+                      <div className="flex flex-wrap gap-1">
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700 font-medium">🇫🇷 FR</span>
+                        {(purchasesByTour[tour.id] ?? []).map((p) => (
+                          <span key={p.id} className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${MOD_COLORS[p.moderationStatus] ?? MOD_COLORS.draft}`}>
+                            {LANG_FLAGS[p.language] ?? ''} {p.language.toUpperCase()}
+                          </span>
+                        ))}
+                      </div>
+                    </td>
                     <td className="px-4 py-3 text-right text-gray-900">{tour.listens}</td>
                     <td className="px-4 py-3 text-right text-gray-500 hidden md:table-cell">{tour.completionRate}%</td>
                     <td className="px-4 py-3 text-right text-amber-600 hidden md:table-cell">{tour.rating > 0 ? `${tour.rating} ★` : '-'}</td>
@@ -119,6 +151,15 @@ export default function GuideDashboardPage() {
                   <div>
                     <p className="font-medium text-gray-900">{tour.title}</p>
                     <p className="text-sm text-gray-500">{tour.city}</p>
+                    {(purchasesByTour[tour.id] ?? []).length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {(purchasesByTour[tour.id] ?? []).map((p) => (
+                          <span key={p.id} className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${MOD_COLORS[p.moderationStatus] ?? MOD_COLORS.draft}`}>
+                            {LANG_FLAGS[p.language] ?? ''} {p.language.toUpperCase()}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-center gap-3">
                     <span className={`text-xs font-bold px-2 py-1 rounded-full ${badge.className}`}>

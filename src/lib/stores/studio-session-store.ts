@@ -22,6 +22,7 @@ function deriveStep(status: StudioSessionStatus): StudioWorkflowStep {
     case 'ready': return 'preview';
     case 'submitted':
     case 'published':
+    case 'paused':
       return 'submission';
     case 'revision_requested':
     case 'rejected':

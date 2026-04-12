@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Polyline, useMap } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import { useCallback, useRef, useEffect, useMemo } from 'react';
+import { GoogleMap, useJsApiLoader, MarkerF, PolylineF } from '@react-google-maps/api';
+import { useWalkingRoute } from '@/lib/hooks/use-walking-route';
+
+const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? '';
 
 export interface MapPOI {
   id: string;
@@ -22,90 +23,6 @@ interface TourMapProps {
   className?: string;
 }
 
-const iconCache = new Map<string, L.DivIcon>();
-
-function createNumberedIcon(order: number, isSelected: boolean): L.DivIcon {
-  const key = `${order}:${isSelected}`;
-  const cached = iconCache.get(key);
-  if (cached) return cached;
-
-  const icon = L.divIcon({
-    className: 'poi-marker',
-    html: `<div style="
-      width: ${isSelected ? 36 : 28}px;
-      height: ${isSelected ? 36 : 28}px;
-      border-radius: 50%;
-      background: ${isSelected ? '#0d9488' : '#ffffff'};
-      color: ${isSelected ? '#ffffff' : '#0d9488'};
-      border: 3px solid ${isSelected ? '#0d9488' : '#9ca3af'};
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: ${isSelected ? 16 : 13}px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      transition: all 0.2s ease;
-    ">${order}</div>`,
-    iconSize: [isSelected ? 36 : 28, isSelected ? 36 : 28],
-    iconAnchor: [isSelected ? 18 : 14, isSelected ? 18 : 14],
-  });
-  iconCache.set(key, icon);
-  return icon;
-}
-
-function MapEvents({ onMapClick, editGpsMode }: { onMapClick?: (lat: number, lng: number) => void; editGpsMode?: boolean }) {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!editGpsMode || !onMapClick) return;
-
-    const handler = (e: L.LeafletMouseEvent) => {
-      onMapClick(e.latlng.lat, e.latlng.lng);
-    };
-    map.on('click', handler);
-    return () => {
-      map.off('click', handler);
-    };
-  }, [map, onMapClick, editGpsMode]);
-
-  return null;
-}
-
-function FitBounds({ pois, editGpsMode }: { pois: MapPOI[]; editGpsMode?: boolean }) {
-  const map = useMap();
-  const prevPoisRef = useRef<string>('');
-
-  useEffect(() => {
-    if (pois.length === 0) return;
-    if (editGpsMode) return;
-    const key = pois.map((p) => `${p.id}:${p.latitude}:${p.longitude}`).join(',');
-    if (key === prevPoisRef.current) return;
-    prevPoisRef.current = key;
-
-    if (pois.length === 1) {
-      map.setView([pois[0].latitude, pois[0].longitude], 15, { animate: true });
-    } else {
-      const bounds = L.latLngBounds(pois.map((p) => [p.latitude, p.longitude]));
-      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 16 });
-    }
-  }, [pois, map, editGpsMode]);
-
-  return null;
-}
-
-function CenterOnSelected({ pois, selectedPoiId }: { pois: MapPOI[]; selectedPoiId: string | null }) {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!selectedPoiId) return;
-    const poi = pois.find((p) => p.id === selectedPoiId);
-    if (!poi) return;
-    map.setView([poi.latitude, poi.longitude], map.getZoom(), { animate: true });
-  }, [selectedPoiId, pois, map]);
-
-  return null;
-}
-
 export default function TourMap({
   pois,
   selectedPoiId,
@@ -114,6 +31,45 @@ export default function TourMap({
   editGpsMode,
   className,
 }: TourMapProps) {
+  const mapRef = useRef<google.maps.Map | null>(null);
+  const { isLoaded } = useJsApiLoader({ googleMapsApiKey: GOOGLE_MAPS_KEY });
+
+  const sortedPois = [...pois].sort((a, b) => a.order - b.order);
+
+  const onLoad = useCallback((map: google.maps.Map) => {
+    mapRef.current = map;
+    if (sortedPois.length > 1) {
+      const bounds = new google.maps.LatLngBounds();
+      sortedPois.forEach((p) => bounds.extend({ lat: p.latitude, lng: p.longitude }));
+      map.fitBounds(bounds, 40);
+    } else if (sortedPois.length === 1) {
+      map.setCenter({ lat: sortedPois[0].latitude, lng: sortedPois[0].longitude });
+      map.setZoom(15);
+    }
+  }, [sortedPois]);
+
+  // Center on selected POI
+  useEffect(() => {
+    if (!selectedPoiId || !mapRef.current) return;
+    const poi = sortedPois.find((p) => p.id === selectedPoiId);
+    if (poi) {
+      mapRef.current.panTo({ lat: poi.latitude, lng: poi.longitude });
+    }
+  }, [selectedPoiId, sortedPois]);
+
+  const handleClick = useCallback((e: google.maps.MapMouseEvent) => {
+    if (editGpsMode && onMapClick && e.latLng) {
+      onMapClick(e.latLng.lat(), e.latLng.lng());
+    }
+  }, [editGpsMode, onMapClick]);
+
+  const routePoints = useMemo(
+    () => sortedPois.map((p) => ({ lat: p.latitude, lng: p.longitude })),
+    [sortedPois],
+  );
+
+  const { path: walkingPath, isLoading } = useWalkingRoute(routePoints);
+
   if (pois.length === 0) {
     return (
       <div className={`flex items-center justify-center bg-gray-100 rounded-xl ${className || 'h-[400px]'}`}>
@@ -122,44 +78,59 @@ export default function TourMap({
     );
   }
 
-  const sortedPois = [...pois].sort((a, b) => a.order - b.order);
-  const center: [number, number] = [sortedPois[0].latitude, sortedPois[0].longitude];
-  const routePositions: [number, number][] = sortedPois.map((p) => [p.latitude, p.longitude]);
+  if (!GOOGLE_MAPS_KEY || !isLoaded) {
+    return <div className={`bg-gray-100 animate-pulse rounded-xl ${className || 'h-[400px]'}`} />;
+  }
+
+  const center = { lat: sortedPois[0].latitude, lng: sortedPois[0].longitude };
 
   return (
     <div className={`rounded-xl overflow-hidden border border-gray-200 ${className || 'h-[400px]'}`}>
-      <MapContainer
+      <GoogleMap
+        mapContainerClassName="h-full w-full"
         center={center}
         zoom={15}
-        className="h-full w-full"
-        style={{ cursor: editGpsMode ? 'crosshair' : 'grab' }}
+        onLoad={onLoad}
+        onClick={handleClick}
+        options={{
+          disableDefaultUI: true,
+          zoomControl: true,
+          mapTypeControl: false,
+          streetViewControl: false,
+          draggableCursor: editGpsMode ? 'crosshair' : undefined,
+        }}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <FitBounds pois={sortedPois} editGpsMode={editGpsMode} />
-        <CenterOnSelected pois={sortedPois} selectedPoiId={selectedPoiId} />
-        <MapEvents onMapClick={onMapClick} editGpsMode={editGpsMode} />
-
-        {/* Route polyline */}
-        <Polyline
-          positions={routePositions}
-          pathOptions={{ color: '#0d9488', weight: 3, dashArray: '8 6', opacity: 0.7 }}
+        <PolylineF
+          path={walkingPath}
+          options={{
+            strokeColor: '#0d9488',
+            strokeWeight: 4,
+            strokeOpacity: isLoading ? 0.4 : 0.7,
+          }}
         />
 
-        {/* POI markers */}
-        {sortedPois.map((poi) => (
-          <Marker
-            key={poi.id}
-            position={[poi.latitude, poi.longitude]}
-            icon={createNumberedIcon(poi.order, poi.id === selectedPoiId)}
-            eventHandlers={{
-              click: () => onPoiSelect(poi.id),
-            }}
-          />
-        ))}
-      </MapContainer>
+        {sortedPois.map((poi) => {
+          const isSelected = poi.id === selectedPoiId;
+          return (
+            <MarkerF
+              key={poi.id}
+              position={{ lat: poi.latitude, lng: poi.longitude }}
+              onClick={() => onPoiSelect(poi.id)}
+              label={{ text: `${poi.order}`, color: isSelected ? 'white' : '#0d9488', fontSize: isSelected ? '14px' : '12px', fontWeight: 'bold' }}
+              icon={{
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: isSelected ? 18 : 14,
+                fillColor: isSelected ? '#0d9488' : '#ffffff',
+                fillOpacity: 1,
+                strokeColor: isSelected ? '#0d9488' : '#9ca3af',
+                strokeWeight: isSelected ? 3 : 2,
+              }}
+              title={`${poi.order}. ${poi.title}`}
+              zIndex={isSelected ? 100 : poi.order}
+            />
+          );
+        })}
+      </GoogleMap>
     </div>
   );
 }

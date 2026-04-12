@@ -17,6 +17,7 @@
   "dependencies": {
     "@aws-amplify/adapter-nextjs": "^1.7.2",
     "@aws-amplify/data-schema-types": "^1.2.1",
+    "@react-google-maps/api": "^2.20.8",
     "@stripe/react-stripe-js": "^6.0.0",
     "@stripe/stripe-js": "^9.0.0",
     "aws-amplify": "^6.16.2",

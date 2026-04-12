@@ -225,7 +225,7 @@ export default function PreviewPage() {
       const result = await retractSubmission(sessionId, session.tourId);
       if (result.ok) {
         setIsSubmitSuccess(true);
-        setSubmitMessage('Soumission retirée.');
+        setSubmitMessage('Publication retirée.');
         logger.info(SERVICE_NAME, 'Submission retracted', { sessionId, tourId: session.tourId });
         const sess = await getStudioSession(sessionId);
         if (sess) { setSession(sess); setActiveSession(sess); }
@@ -563,7 +563,7 @@ export default function PreviewPage() {
             className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-medium py-2.5 px-6 rounded-lg transition-colors"
             data-testid="submit-review-btn"
           >
-            {isSubmitting ? 'Soumission...' : hasRevisionFeedback ? '📤 Resoumettre en revue' : '📋 Soumettre en revue'}
+            {isSubmitting ? 'Publication...' : hasRevisionFeedback ? '📤 Republier' : '📋 Publier'}
           </button>
         )}
         {canSubmit && !session.tourId && (
@@ -573,7 +573,7 @@ export default function PreviewPage() {
             className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-medium py-2.5 px-6 rounded-lg transition-colors"
             data-testid="submit-btn"
           >
-            {isSubmitting ? 'Soumission...' : hasRevisionFeedback ? '📤 Resoumettre' : '📤 Soumettre pour modération'}
+            {isSubmitting ? 'Publication...' : hasRevisionFeedback ? '📤 Republier' : '📤 Publier'}
           </button>
         )}
 
@@ -585,7 +585,7 @@ export default function PreviewPage() {
             className="border border-orange-500 text-orange-700 hover:bg-orange-50 disabled:opacity-50 font-medium py-2.5 px-6 rounded-lg transition-colors"
             data-testid="retract-btn"
           >
-            {isRetracting ? 'Retrait...' : '↩ Retirer la soumission'}
+            {isRetracting ? 'Retrait...' : '↩ Retirer la publication'}
           </button>
         )}
 

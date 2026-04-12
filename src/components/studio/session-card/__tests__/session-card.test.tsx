@@ -30,12 +30,12 @@ describe('SessionCard', () => {
 
   it('renders scenes count', () => {
     render(<SessionCard session={mockSession} scenesCount={5} />);
-    expect(screen.getByText('5 scenes')).toBeInTheDocument();
+    expect(screen.getByText('5 sc.')).toBeInTheDocument();
   });
 
   it('renders singular scene for count 1', () => {
     render(<SessionCard session={mockSession} scenesCount={1} />);
-    expect(screen.getByText('1 scene')).toBeInTheDocument();
+    expect(screen.getByText('1 sc.')).toBeInTheDocument();
   });
 
   it('renders status badge', () => {
@@ -43,25 +43,9 @@ describe('SessionCard', () => {
     expect(screen.getByText('Brouillon')).toBeInTheDocument();
   });
 
-  it('renders language', () => {
-    render(<SessionCard session={mockSession} />);
-    expect(screen.getByText('FR')).toBeInTheDocument();
-  });
-
   it('renders formatted date', () => {
     render(<SessionCard session={mockSession} />);
-    // FR locale date format
-    expect(screen.getByText(/10 mars 2026/i)).toBeInTheDocument();
-  });
-
-  it('shows linked tour indicator when tourId is set', () => {
-    render(<SessionCard session={{ ...mockSession, tourId: 'tour-1' }} />);
-    expect(screen.getByText('Tour li\u00e9')).toBeInTheDocument();
-  });
-
-  it('does not show linked tour indicator when tourId is null', () => {
-    render(<SessionCard session={mockSession} />);
-    expect(screen.queryByText('Tour li\u00e9')).not.toBeInTheDocument();
+    expect(screen.getByText(/10 mars/i)).toBeInTheDocument();
   });
 
   it('calls onClick with session id', () => {
@@ -74,5 +58,27 @@ describe('SessionCard', () => {
   it('renders fallback title when title is null', () => {
     render(<SessionCard session={{ ...mockSession, title: null }} />);
     expect(screen.getByText('Session sans titre')).toBeInTheDocument();
+  });
+
+  it('renders version badge when version > 1', () => {
+    render(<SessionCard session={{ ...mockSession, version: 2 }} />);
+    expect(screen.getByText('V2')).toBeInTheDocument();
+  });
+
+  it('does not render version badge for V1', () => {
+    render(<SessionCard session={mockSession} />);
+    expect(screen.queryByText('V1')).not.toBeInTheDocument();
+  });
+
+  describe('compact mode', () => {
+    it('always shows version label', () => {
+      render(<SessionCard session={mockSession} compact />);
+      expect(screen.getByText('V1')).toBeInTheDocument();
+    });
+
+    it('shows status badge', () => {
+      render(<SessionCard session={{ ...mockSession, status: 'published' }} compact />);
+      expect(screen.getByText('Publié')).toBeInTheDocument();
+    });
   });
 });

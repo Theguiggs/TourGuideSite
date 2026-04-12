@@ -3,6 +3,22 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getAllAdminTours, adminSetTourStatus, adminSyncTourToQueue, adminDeleteTour } from '@/lib/api/moderation';
+import { listLanguagePurchases } from '@/lib/api/language-purchase';
+import type { TourLanguagePurchase } from '@/types/studio';
+
+const LANG_FLAGS: Record<string, string> = {
+  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
+};
+const MOD_COLORS: Record<string, string> = {
+  draft: 'bg-gray-100 text-gray-500',
+  submitted: 'bg-yellow-100 text-yellow-700',
+  approved: 'bg-green-100 text-green-700',
+  rejected: 'bg-red-100 text-red-600',
+  revision_requested: 'bg-orange-100 text-orange-600',
+};
+const MOD_LABELS: Record<string, string> = {
+  draft: 'Brouillon', submitted: 'Soumis', approved: 'OK', rejected: 'Refusé', revision_requested: 'Révision',
+};
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   draft:              { label: 'Brouillon',          className: 'bg-gray-100 text-gray-700' },
@@ -31,10 +47,22 @@ export default function AdminToursPage() {
   const [pendingStatus, setPendingStatus] = useState<'published' | 'archived' | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<AdminTour | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [purchasesByTour, setPurchasesByTour] = useState<Record<string, TourLanguagePurchase[]>>({});
 
   useEffect(() => {
     getAllAdminTours()
-      .then(setTours)
+      .then(async (t) => {
+        setTours(t);
+        // Load language purchases per tour
+        const pMap: Record<string, TourLanguagePurchase[]> = {};
+        await Promise.all(t.filter((tour) => tour.sessionId).map(async (tour) => {
+          try {
+            const result = await listLanguagePurchases(tour.sessionId!);
+            if (result.ok) pMap[tour.id] = result.value.filter((p) => p.status === 'active');
+          } catch { /* non-blocking */ }
+        }));
+        setPurchasesByTour(pMap);
+      })
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
@@ -114,6 +142,7 @@ export default function AdminToursPage() {
                 <th className="text-left px-4 py-3 font-medium text-gray-500 hidden md:table-cell">Guide</th>
                 <th className="text-right px-4 py-3 font-medium text-gray-500 hidden lg:table-cell">POIs</th>
                 <th className="text-right px-4 py-3 font-medium text-gray-500 hidden lg:table-cell">Durée</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">Langues</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-500">Statut</th>
                 <th className="text-right px-4 py-3 font-medium text-gray-500">Actions</th>
               </tr>
@@ -126,12 +155,30 @@ export default function AdminToursPage() {
                   <tr key={tour.id} className="hover:bg-gray-50">
                     <td className="px-4 py-3">
                       <p className="font-medium text-gray-900">{tour.title}</p>
-                      <p className="text-xs text-gray-400 hidden sm:hidden">{tour.guideName} &middot; {tour.poiCount} POIs &middot; {tour.duration} min</p>
+                      {tour.status === 'published' && (
+                        <Link href={`/catalogue/${tour.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-')}`} className="text-[10px] text-teal-600 hover:underline">
+                          Voir dans le catalogue →
+                        </Link>
+                      )}
                     </td>
                     <td className="px-4 py-3 text-gray-500 hidden sm:table-cell">{tour.city}</td>
                     <td className="px-4 py-3 text-gray-600 text-sm hidden md:table-cell">{tour.guideName}</td>
                     <td className="px-4 py-3 text-right text-gray-700 hidden lg:table-cell">{tour.poiCount}</td>
                     <td className="px-4 py-3 text-right text-gray-700 hidden lg:table-cell">{tour.duration} min</td>
+                    <td className="px-4 py-3">
+                      <div className="flex flex-wrap gap-1">
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700 font-medium" title="Langue source">🇫🇷 FR</span>
+                        {(purchasesByTour[tour.id] ?? []).map((p) => (
+                          <span
+                            key={p.id}
+                            className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${MOD_COLORS[p.moderationStatus] ?? MOD_COLORS.draft}`}
+                            title={`${p.language.toUpperCase()} — ${MOD_LABELS[p.moderationStatus] ?? p.moderationStatus}`}
+                          >
+                            {LANG_FLAGS[p.language] ?? ''} {p.language.toUpperCase()}
+                          </span>
+                        ))}
+                      </div>
+                    </td>
                     <td className="px-4 py-3">
                       <span className={`text-xs font-medium px-2 py-1 rounded-full ${badge.className}`}>
                         {badge.label}

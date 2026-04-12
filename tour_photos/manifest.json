@@ -1,0 +1,225 @@
+{
+  "tour01": {
+    "title": "Trésors cachés du Vieux-Nice",
+    "city": "Nice",
+    "photos": [
+      "tour01_Nice_Tresors_Vieux_Nice\\poi_01_Cathedrale_Sainte_Reparate.jpg",
+      "tour01_Nice_Tresors_Vieux_Nice\\poi_02_Chapelle_Misericorde.jpg",
+      "tour01_Nice_Tresors_Vieux_Nice\\poi_03_Palais_Lascaris.jpg",
+      "tour01_Nice_Tresors_Vieux_Nice\\poi_04_Place_Rossetti.jpg",
+      "tour01_Nice_Tresors_Vieux_Nice\\poi_05_Cours_Saleya.jpg",
+      "tour01_Nice_Tresors_Vieux_Nice\\poi_06_Colline_du_Chateau.jpg",
+      "tour01_Nice_Tresors_Vieux_Nice\\poi_07_Opera_de_Nice.jpg",
+      "tour01_Nice_Tresors_Vieux_Nice\\poi_08_Place_Saint_Francois.jpg"
+    ],
+    "count": 8,
+    "expected": 8
+  },
+  "tour02": {
+    "title": "Promenade des Anglais — Épopée Bleu Azur",
+    "city": "Nice",
+    "photos": [
+      "tour02_Nice_Promenade_des_Anglais\\poi_01_Promenade_Chaises_Bleues.jpg",
+      "tour02_Nice_Promenade_des_Anglais\\poi_02_Hotel_Negresco.jpg",
+      "tour02_Nice_Promenade_des_Anglais\\poi_03_Palais_Mediterranee.jpg",
+      "tour02_Nice_Promenade_des_Anglais\\poi_04_Musee_Massena.jpg",
+      "tour02_Nice_Promenade_des_Anglais\\poi_05_Jardin_Albert_Premier.jpg",
+      "tour02_Nice_Promenade_des_Anglais\\poi_06_Monument_Centenaire.jpg"
+    ],
+    "count": 6,
+    "expected": 6
+  },
+  "tour03": {
+    "title": "Cimiez — De la Rome antique à Matisse",
+    "city": "Nice",
+    "photos": [
+      "tour03_Nice_Cimiez_Rome_Matisse\\poi_01_Arenes_Cimiez.jpg",
+      "tour03_Nice_Cimiez_Rome_Matisse\\poi_02_Musee_Matisse.jpg",
+      "tour03_Nice_Cimiez_Rome_Matisse\\poi_03_Monastere_Cimiez.jpg",
+      "tour03_Nice_Cimiez_Rome_Matisse\\poi_04_Thermes_Romains.jpg",
+      "tour03_Nice_Cimiez_Rome_Matisse\\poi_05_Musee_Archeologique.jpg",
+      "tour03_Nice_Cimiez_Rome_Matisse\\poi_06_Jardin_Arenes.jpg",
+      "tour03_Nice_Cimiez_Rome_Matisse\\poi_07_Regina_Palace.jpg"
+    ],
+    "count": 7,
+    "expected": 7
+  },
+  "tour04": {
+    "title": "Du Suquet à la Croisette",
+    "city": "Cannes",
+    "photos": [
+      "tour04_Cannes_Suquet_Croisette\\poi_01_Le_Suquet.jpg",
+      "tour04_Cannes_Suquet_Croisette\\poi_02_Tour_Suquet_Castre.jpg",
+      "tour04_Cannes_Suquet_Croisette\\poi_03_Eglise_Notre_Dame_Esperance.jpg",
+      "tour04_Cannes_Suquet_Croisette\\poi_04_Marche_Forville.jpg",
+      "tour04_Cannes_Suquet_Croisette\\poi_05_Palais_des_Festivals.jpg",
+      "tour04_Cannes_Suquet_Croisette\\poi_06_La_Croisette.jpg"
+    ],
+    "count": 6,
+    "expected": 6
+  },
+  "tour05": {
+    "title": "Îles de Lérins — Masque de Fer",
+    "city": "Cannes",
+    "photos": [
+      "tour05_Cannes_Iles_Lerins\\poi_01_Ile_Sainte_Marguerite.jpg",
+      "tour05_Cannes_Iles_Lerins\\poi_02_Fort_Royal.jpg",
+      "tour05_Cannes_Iles_Lerins\\poi_03_Cellule_Masque_de_Fer.jpg",
+      "tour05_Cannes_Iles_Lerins\\poi_04_Ile_Saint_Honorat.jpg",
+      "tour05_Cannes_Iles_Lerins\\poi_05_Abbaye_Lerins.jpg"
+    ],
+    "count": 5,
+    "expected": 5
+  },
+  "tour06": {
+    "title": "Remparts, Picasso et Bord de Mer",
+    "city": "Antibes",
+    "photos": [
+      "tour06_Antibes_Remparts_Picasso\\poi_01_Musee_Picasso_Grimaldi.jpg",
+      "tour06_Antibes_Remparts_Picasso\\poi_02_Remparts_Antibes.jpg",
+      "tour06_Antibes_Remparts_Picasso\\poi_03_Port_Vauban.jpg",
+      "tour06_Antibes_Remparts_Picasso\\poi_04_Marche_Provencal.jpg",
+      "tour06_Antibes_Remparts_Picasso\\poi_05_Cathedrale_Antibes.jpg",
+      "tour06_Antibes_Remparts_Picasso\\poi_06_Fort_Carre.jpg",
+      "tour06_Antibes_Remparts_Picasso\\poi_07_Cap_Antibes_Sentier.jpg",
+      "tour06_Antibes_Remparts_Picasso\\poi_08_Place_Nationale.jpg"
+    ],
+    "count": 8,
+    "expected": 8
+  },
+  "tour07": {
+    "title": "Jardins d'Éden entre France et Italie",
+    "city": "Menton",
+    "photos": [
+      "tour07_Menton_Jardins_Eden\\poi_01_Jardin_Serre_Madone.jpg",
+      "tour07_Menton_Jardins_Eden\\poi_02_Jardin_Val_Rahmeh.jpg",
+      "tour07_Menton_Jardins_Eden\\poi_03_Jardin_Fontana_Rosa.jpg",
+      "tour07_Menton_Jardins_Eden\\poi_04_Basilique_Saint_Michel.jpg",
+      "tour07_Menton_Jardins_Eden\\poi_05_Vieille_Ville_Facades.jpg",
+      "tour07_Menton_Jardins_Eden\\poi_06_Musee_Cocteau.jpg",
+      "tour07_Menton_Jardins_Eden\\poi_07_Jardin_Maria_Serena.jpg",
+      "tour07_Menton_Jardins_Eden\\poi_08_Promenade_Soleil.jpg"
+    ],
+    "count": 8,
+    "expected": 8
+  },
+  "tour08": {
+    "title": "Village des Artistes",
+    "city": "Saint_Paul",
+    "photos": [
+      "tour08_Saint_Paul_Village_Artistes\\poi_01_Fondation_Maeght.jpg",
+      "tour08_Saint_Paul_Village_Artistes\\poi_02_Remparts_Village.jpg",
+      "tour08_Saint_Paul_Village_Artistes\\poi_03_Porte_de_Vence.jpg",
+      "tour08_Saint_Paul_Village_Artistes\\poi_04_Grande_Fontaine.jpg",
+      "tour08_Saint_Paul_Village_Artistes\\poi_05_Eglise_Collegiale.jpg",
+      "tour08_Saint_Paul_Village_Artistes\\poi_06_Cimetiere_Chagall.jpg",
+      "tour08_Saint_Paul_Village_Artistes\\poi_07_Colombe_dOr.jpg"
+    ],
+    "count": 7,
+    "expected": 7
+  },
+  "tour09": {
+    "title": "Le Nid d'Aigle entre Ciel et Mer",
+    "city": "Eze",
+    "photos": [
+      "tour09_Eze_Nid_Aigle\\poi_01_Jardin_Exotique.jpg",
+      "tour09_Eze_Nid_Aigle\\poi_02_Eglise_Assomption.jpg",
+      "tour09_Eze_Nid_Aigle\\poi_03_Ruines_Chateau.jpg",
+      "tour09_Eze_Nid_Aigle\\poi_04_Sentier_Nietzsche.jpg",
+      "tour09_Eze_Nid_Aigle\\poi_05_Fragonard_Eze.jpg",
+      "tour09_Eze_Nid_Aigle\\poi_06_Porte_des_Maures.jpg",
+      "tour09_Eze_Nid_Aigle\\poi_07_Panorama_Mer.jpg"
+    ],
+    "count": 7,
+    "expected": 7
+  },
+  "tour10": {
+    "title": "Chapelle Matisse et Cité Épiscopale",
+    "city": "Vence",
+    "photos": [
+      "tour10_Vence_Chapelle_Matisse\\poi_01_Chapelle_Rosaire_Matisse.jpg",
+      "tour10_Vence_Chapelle_Matisse\\poi_02_Cathedrale_Nativite.jpg",
+      "tour10_Vence_Chapelle_Matisse\\poi_03_Place_du_Peyra.jpg",
+      "tour10_Vence_Chapelle_Matisse\\poi_04_Chateau_Villeneuve.jpg",
+      "tour10_Vence_Chapelle_Matisse\\poi_05_Fontaine_Peyra.jpg",
+      "tour10_Vence_Chapelle_Matisse\\poi_06_Remparts_Vence.jpg"
+    ],
+    "count": 6,
+    "expected": 6
+  },
+  "tour11": {
+    "title": "Les Routes du Parfum",
+    "city": "Grasse",
+    "photos": [
+      "tour11_Grasse_Routes_Parfum\\poi_01_Fragonard_Usine.jpg",
+      "tour11_Grasse_Routes_Parfum\\poi_02_MIP_Musee_Parfumerie.jpg",
+      "tour11_Grasse_Routes_Parfum\\poi_03_Molinard.jpg",
+      "tour11_Grasse_Routes_Parfum\\poi_04_Galimard.jpg",
+      "tour11_Grasse_Routes_Parfum\\poi_05_Cathedrale_Grasse.jpg",
+      "tour11_Grasse_Routes_Parfum\\poi_06_Place_aux_Aires.jpg",
+      "tour11_Grasse_Routes_Parfum\\poi_07_Jardins_MIP.jpg"
+    ],
+    "count": 7,
+    "expected": 7
+  },
+  "tour12": {
+    "title": "La Rade Dorée",
+    "city": "Villefranche",
+    "photos": [
+      "tour12_Villefranche_Rade_Doree\\poi_01_Chapelle_Cocteau.jpg",
+      "tour12_Villefranche_Rade_Doree\\poi_02_Citadelle.jpg",
+      "tour12_Villefranche_Rade_Doree\\poi_03_Rue_Obscure.jpg",
+      "tour12_Villefranche_Rade_Doree\\poi_04_Port_Darse.jpg",
+      "tour12_Villefranche_Rade_Doree\\poi_05_Eglise_Saint_Michel.jpg",
+      "tour12_Villefranche_Rade_Doree\\poi_06_Rade_Panorama.jpg"
+    ],
+    "count": 6,
+    "expected": 6
+  },
+  "tour13": {
+    "title": "Street Food et Aventure Culinaire",
+    "city": "Nice",
+    "photos": [
+      "tour13_Nice_Street_Food\\poi_01_Socca_Nice.jpg",
+      "tour13_Nice_Street_Food\\poi_02_Marche_Cours_Saleya.jpg",
+      "tour13_Nice_Street_Food\\poi_03_Chez_Pipo.jpg",
+      "tour13_Nice_Street_Food\\poi_04_Lou_Pilha_Leva.jpg",
+      "tour13_Nice_Street_Food\\poi_06_Marche_Liberation.jpg",
+      "tour13_Nice_Street_Food\\poi_07_Chez_Theresa.jpg",
+      "tour13_Nice_Street_Food\\poi_08_Pan_Bagnat.jpg"
+    ],
+    "count": 7,
+    "expected": 8
+  },
+  "tour14": {
+    "title": "Scandales, Braquages et Glamour",
+    "city": "Nice",
+    "photos": [
+      "tour14_Nice_Scandales_Glamour\\poi_01_Negresco_Histoire.jpg",
+      "tour14_Nice_Scandales_Glamour\\poi_02_Casino_Ruhl.jpg",
+      "tour14_Nice_Scandales_Glamour\\poi_03_Palais_Justice.jpg",
+      "tour14_Nice_Scandales_Glamour\\poi_04_Promenade_Anglais_Nuit.jpg",
+      "tour14_Nice_Scandales_Glamour\\poi_05_Aeroport_Nice.jpg",
+      "tour14_Nice_Scandales_Glamour\\poi_06_Musee_Beaux_Arts.jpg",
+      "tour14_Nice_Scandales_Glamour\\poi_07_Opera_Nice.jpg"
+    ],
+    "count": 7,
+    "expected": 7
+  },
+  "tour15": {
+    "title": "Légendes, Fantômes et Passages Secrets",
+    "city": "Nice",
+    "photos": [
+      "tour15_Nice_Legendes_Fantomes\\poi_01_Colline_Chateau_Ruines.jpg",
+      "tour15_Nice_Legendes_Fantomes\\poi_02_Eglise_Gesu.jpg",
+      "tour15_Nice_Legendes_Fantomes\\poi_03_Ruelles_Voutees.jpg",
+      "tour15_Nice_Legendes_Fantomes\\poi_04_Tour_Bellanda.jpg",
+      "tour15_Nice_Legendes_Fantomes\\poi_05_Cimetiere_Chateau.jpg",
+      "tour15_Nice_Legendes_Fantomes\\poi_06_Place_Garibaldi.jpg",
+      "tour15_Nice_Legendes_Fantomes\\poi_07_Cathedrale_Russe.jpg",
+      "tour15_Nice_Legendes_Fantomes\\poi_08_Crypte_Nice.jpg"
+    ],
+    "count": 8,
+    "expected": 8
+  }
+}

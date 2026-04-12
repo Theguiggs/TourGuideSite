@@ -1,32 +1,17 @@
 'use client';
 
-import { useCallback, useState, useMemo, useRef, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMapEvents } from 'react-leaflet';
+import { useCallback, useRef, useMemo, useState } from 'react';
+import { GoogleMap, useJsApiLoader, MarkerF, PolylineF, InfoWindowF } from '@react-google-maps/api';
 import type { StudioScene } from '@/types/studio';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import { useWalkingRoute, invalidatePoint } from '@/lib/hooks/use-walking-route';
 
-// POI marker (teal)
-const poiIcon = (index: number) => L.divIcon({
-  className: '',
-  html: `<div style="background:#0d9488;color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:12px;border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3)">${index + 1}</div>`,
-  iconSize: [28, 28],
-  iconAnchor: [14, 14],
-});
-
-// Waypoint marker (small gray)
-const waypointIcon = L.divIcon({
-  className: '',
-  html: '<div style="background:#9ca3af;width:12px;height:12px;border-radius:50%;border:2px solid white;box-shadow:0 1px 2px rgba(0,0,0,0.3);cursor:grab"></div>',
-  iconSize: [12, 12],
-  iconAnchor: [6, 6],
-});
+const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? '';
 
 export interface Waypoint {
   id: string;
   lat: number;
   lng: number;
-  afterPoiIndex: number; // waypoint sits between POI[afterPoiIndex] and POI[afterPoiIndex+1]
+  afterPoiIndex: number;
 }
 
 interface EditableMapProps {
@@ -37,167 +22,260 @@ interface EditableMapProps {
   onWaypointAdd: (afterPoiIndex: number, lat: number, lng: number) => void;
   onWaypointDelete: (waypointId: string) => void;
   onMapClick?: (lat: number, lng: number) => void;
+  /** Called when route distance/duration is computed */
+  onRouteInfo?: (distanceMeters: number, durationSeconds: number) => void;
+  /** Map container height — defaults to '350px', use '100%' for fullscreen */
+  height?: string;
 }
 
-function MapClickHandler({ scenes, onWaypointAdd, onMapClick }: { scenes: StudioScene[]; onWaypointAdd: (afterPoiIndex: number, lat: number, lng: number) => void; onMapClick?: (lat: number, lng: number) => void }) {
-  useMapEvents({
-    click(e) {
-      // Single click: place POI mode
-      if (onMapClick) {
-        onMapClick(e.latlng.lat, e.latlng.lng);
-      }
-    },
-    dblclick(e) {
-      // Find nearest segment to insert waypoint
-      const geoScenes = scenes.filter((s) => s.latitude && s.longitude);
-      if (geoScenes.length < 2) return;
-
-      let bestIndex = 0;
-      let bestDist = Infinity;
-
-      for (let i = 0; i < geoScenes.length - 1; i++) {
-        const a = L.latLng(geoScenes[i].latitude!, geoScenes[i].longitude!);
-        const b = L.latLng(geoScenes[i + 1].latitude!, geoScenes[i + 1].longitude!);
-        const dist = distToSegment(e.latlng, a, b);
-        if (dist < bestDist) {
-          bestDist = dist;
-          bestIndex = i;
-        }
-      }
-
-      onWaypointAdd(bestIndex, e.latlng.lat, e.latlng.lng);
-    },
-  });
-  return null;
-}
-
-function distToSegment(p: L.LatLng, a: L.LatLng, b: L.LatLng): number {
-  const dx = b.lng - a.lng;
-  const dy = b.lat - a.lat;
-  if (dx === 0 && dy === 0) return p.distanceTo(a);
-  let t = ((p.lng - a.lng) * dx + (p.lat - a.lat) * dy) / (dx * dx + dy * dy);
-  t = Math.max(0, Math.min(1, t));
-  const proj = L.latLng(a.lat + t * dy, a.lng + t * dx);
-  return p.distanceTo(proj);
-}
-
-export function EditableMap({ scenes, waypoints, onPoiDrag, onWaypointDrag, onWaypointAdd, onWaypointDelete, onMapClick }: EditableMapProps) {
+export function EditableMap({ scenes, waypoints, onPoiDrag, onWaypointDrag, onWaypointAdd, onWaypointDelete, onMapClick, onRouteInfo, height = '350px' }: EditableMapProps) {
   const geoScenes = scenes.filter((s) => s.latitude !== null && s.longitude !== null);
+  const mapRef = useRef<google.maps.Map | null>(null);
+  const [selectedWp, setSelectedWp] = useState<string | null>(null);
+  const [selectedPoi, setSelectedPoi] = useState<string | null>(null);
 
-  if (geoScenes.length === 0) return null;
+  const { isLoaded } = useJsApiLoader({ googleMapsApiKey: GOOGLE_MAPS_KEY });
 
-  const center: [number, number] = [
-    geoScenes.reduce((sum, s) => sum + s.latitude!, 0) / geoScenes.length,
-    geoScenes.reduce((sum, s) => sum + s.longitude!, 0) / geoScenes.length,
-  ];
-
-  // Build route: POIs + waypoints in order
-  const routePoints: [number, number][] = [];
-  for (let i = 0; i < geoScenes.length; i++) {
-    routePoints.push([geoScenes[i].latitude!, geoScenes[i].longitude!]);
-    // Insert waypoints after this POI
-    const wps = waypoints.filter((w) => w.afterPoiIndex === i).sort((a, b) => a.id.localeCompare(b.id));
-    for (const wp of wps) {
-      routePoints.push([wp.lat, wp.lng]);
+  const onLoad = useCallback((map: google.maps.Map) => {
+    mapRef.current = map;
+    if (geoScenes.length > 1) {
+      const bounds = new google.maps.LatLngBounds();
+      geoScenes.forEach((s) => bounds.extend({ lat: s.latitude!, lng: s.longitude! }));
+      map.fitBounds(bounds, 40);
+    } else if (geoScenes.length === 1) {
+      map.setCenter({ lat: geoScenes[0].latitude!, lng: geoScenes[0].longitude! });
+      map.setZoom(16);
     }
-  }
+  }, [geoScenes]);
+
+  const handleMapClick = useCallback((e: google.maps.MapMouseEvent) => {
+    // Close any open popups
+    setSelectedWp(null);
+    setSelectedPoi(null);
+    if (!e.latLng || !onMapClick) return;
+    onMapClick(e.latLng.lat(), e.latLng.lng());
+  }, [onMapClick]);
+
+  // Click on route polyline → add waypoint at that position
+  const handlePolylineClick = useCallback((e: google.maps.MapMouseEvent) => {
+    if (!e.latLng || geoScenes.length < 2) return;
+    const clickLat = e.latLng.lat();
+    const clickLng = e.latLng.lng();
+    // Find nearest segment between POIs
+    let bestIndex = 0;
+    let bestDist = Infinity;
+    for (let i = 0; i < geoScenes.length - 1; i++) {
+      const dist = distToSegment(
+        clickLat, clickLng,
+        geoScenes[i].latitude!, geoScenes[i].longitude!,
+        geoScenes[i + 1].latitude!, geoScenes[i + 1].longitude!,
+      );
+      if (dist < bestDist) { bestDist = dist; bestIndex = i; }
+    }
+    onWaypointAdd(bestIndex, clickLat, clickLng);
+  }, [geoScenes, onWaypointAdd]);
+
+  const handlePoiDrag = useCallback((sceneId: string, lat: number, lng: number) => {
+    const scene = geoScenes.find((s) => s.id === sceneId);
+    if (scene?.latitude && scene?.longitude) {
+      invalidatePoint(scene.latitude, scene.longitude);
+    }
+    onPoiDrag(sceneId, lat, lng);
+  }, [geoScenes, onPoiDrag]);
+
+  const handleWaypointDrag = useCallback((wpId: string, lat: number, lng: number) => {
+    const wp = waypoints.find((w) => w.id === wpId);
+    if (wp) invalidatePoint(wp.lat, wp.lng);
+    onWaypointDrag(wpId, lat, lng);
+    setSelectedWp(null);
+  }, [waypoints, onWaypointDrag]);
+
+  const handleDeleteWaypoint = useCallback((wpId: string) => {
+    setSelectedWp(null);
+    onWaypointDelete(wpId);
+  }, [onWaypointDelete]);
+
+  // Build ordered list of all points (POIs + waypoints)
+  const routePoints = useMemo(() => {
+    const pts: { lat: number; lng: number }[] = [];
+    for (let i = 0; i < geoScenes.length; i++) {
+      pts.push({ lat: geoScenes[i].latitude!, lng: geoScenes[i].longitude! });
+      const wps = waypoints.filter((w) => w.afterPoiIndex === i).sort((a, b) => a.id.localeCompare(b.id));
+      for (const wp of wps) pts.push({ lat: wp.lat, lng: wp.lng });
+    }
+    return pts;
+  }, [geoScenes, waypoints]);
+
+  const { path: walkingPath, isLoading: routeLoading, totalDistanceMeters, totalDurationSeconds } = useWalkingRoute(routePoints);
+
+  const onRouteInfoRef = useRef(onRouteInfo);
+  onRouteInfoRef.current = onRouteInfo;
+  useMemo(() => {
+    if (!routeLoading && totalDistanceMeters > 0 && onRouteInfoRef.current) {
+      onRouteInfoRef.current(totalDistanceMeters, totalDurationSeconds);
+    }
+  }, [routeLoading, totalDistanceMeters, totalDurationSeconds]);
+
+  if (geoScenes.length === 0 || !GOOGLE_MAPS_KEY) return null;
+  if (!isLoaded) return <div style={{ height }} className="w-full bg-gray-100 animate-pulse rounded-lg" />;
+
+  const isFullscreen = height === '100%';
 
   return (
-    <MapContainer center={center} zoom={16} style={{ height: '350px', width: '100%' }} scrollWheelZoom={true}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-
-      <MapClickHandler scenes={scenes} onWaypointAdd={onWaypointAdd} onMapClick={onMapClick} />
-
-      {/* Route polyline */}
-      {routePoints.length > 1 && (
-        <Polyline positions={routePoints} color="#0d9488" weight={3} opacity={0.8} dashArray="6 4" />
+    <GoogleMap
+      mapContainerStyle={{ height, width: '100%', borderRadius: isFullscreen ? '0' : '8px', cursor: onMapClick ? 'crosshair' : 'grab' }}
+      onLoad={onLoad}
+      onClick={handleMapClick}
+      options={{
+        disableDefaultUI: true,
+        zoomControl: true,
+        mapTypeControl: false,
+        streetViewControl: false,
+        gestureHandling: isFullscreen ? 'greedy' : 'cooperative',
+      }}
+    >
+      {/* Walking route polyline — clickable to add waypoints */}
+      {walkingPath.length > 1 && (
+        <PolylineF
+          path={walkingPath}
+          options={{
+            strokeColor: '#0d9488',
+            strokeWeight: 5,
+            strokeOpacity: routeLoading ? 0.4 : 0.85,
+            clickable: true,
+          }}
+          onClick={handlePolylineClick}
+        />
       )}
 
-      {/* POI markers — draggable */}
+      {/* Invisible wider polyline for easier click target */}
+      {walkingPath.length > 1 && (
+        <PolylineF
+          path={walkingPath}
+          options={{
+            strokeColor: '#0d9488',
+            strokeWeight: 20,
+            strokeOpacity: 0,
+            clickable: true,
+          }}
+          onClick={handlePolylineClick}
+        />
+      )}
+
+      {/* POI markers — draggable, clickable */}
       {geoScenes.map((scene, index) => (
-        <DraggablePOIMarker
+        <MarkerF
           key={scene.id}
-          scene={scene}
-          index={index}
-          onDrag={onPoiDrag}
+          position={{ lat: scene.latitude!, lng: scene.longitude! }}
+          draggable
+          onDragEnd={(e) => {
+            if (e.latLng) handlePoiDrag(scene.id, e.latLng.lat(), e.latLng.lng());
+          }}
+          onClick={() => { setSelectedPoi(selectedPoi === scene.id ? null : scene.id); setSelectedWp(null); }}
+          label={{ text: `${index + 1}`, color: 'white', fontSize: '12px', fontWeight: 'bold' }}
+          icon={{
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 14,
+            fillColor: selectedPoi === scene.id ? '#0f766e' : '#0d9488',
+            fillOpacity: 1,
+            strokeColor: 'white',
+            strokeWeight: selectedPoi === scene.id ? 3 : 2,
+          }}
+          title={`${index + 1}. ${scene.title ?? 'Scene'}`}
         />
       ))}
 
-      {/* Waypoint markers — draggable */}
+      {/* POI info popup */}
+      {selectedPoi && (() => {
+        const scene = geoScenes.find((s) => s.id === selectedPoi);
+        if (!scene?.latitude || !scene?.longitude) return null;
+        const lat = scene.latitude;
+        const lng = scene.longitude;
+        const osmUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=18/${lat}/${lng}`;
+        const gmapsUrl = `https://www.google.com/maps/@${lat},${lng},18z`;
+        const streetViewUrl = `https://www.google.com/maps?layer=c&cbll=${lat},${lng}`;
+        return (
+          <InfoWindowF
+            position={{ lat, lng }}
+            onCloseClick={() => setSelectedPoi(null)}
+            options={{ pixelOffset: new google.maps.Size(0, -18) }}
+          >
+            <div style={{ minWidth: '160px', padding: '2px 0' }}>
+              <p style={{ fontWeight: 600, fontSize: '13px', marginBottom: '4px', color: '#111' }}>
+                {scene.title ?? 'POI'}
+              </p>
+              <p style={{ fontSize: '11px', color: '#888', marginBottom: '8px' }}>
+                {lat.toFixed(5)}, {lng.toFixed(5)}
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <a href={osmUrl} target="_blank" rel="noopener noreferrer"
+                  style={{ fontSize: '12px', color: '#0d9488', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <span style={{ fontSize: '14px' }}>&#x1F5FA;&#xFE0F;</span> Voir sur OpenStreetMap
+                </a>
+                <a href={streetViewUrl} target="_blank" rel="noopener noreferrer"
+                  style={{ fontSize: '12px', color: '#0d9488', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <span style={{ fontSize: '14px' }}>&#x1F6B6;</span> Street View
+                </a>
+                <a href={gmapsUrl} target="_blank" rel="noopener noreferrer"
+                  style={{ fontSize: '12px', color: '#0d9488', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <span style={{ fontSize: '14px' }}>&#x1F4CD;</span> Google Maps
+                </a>
+              </div>
+            </div>
+          </InfoWindowF>
+        );
+      })()}
+
+      {/* Waypoint markers — draggable, click to select, shows delete popup */}
       {waypoints.map((wp) => (
-        <DraggableWaypointMarker
+        <MarkerF
           key={wp.id}
-          waypoint={wp}
-          onDrag={onWaypointDrag}
-          onDelete={onWaypointDelete}
+          position={{ lat: wp.lat, lng: wp.lng }}
+          draggable
+          onDragEnd={(e) => {
+            if (e.latLng) handleWaypointDrag(wp.id, e.latLng.lat(), e.latLng.lng());
+          }}
+          onClick={() => setSelectedWp(selectedWp === wp.id ? null : wp.id)}
+          icon={{
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 7,
+            fillColor: selectedWp === wp.id ? '#ef4444' : '#6b7280',
+            fillOpacity: 1,
+            strokeColor: 'white',
+            strokeWeight: 2,
+          }}
+          title="Point de passage"
         />
       ))}
-    </MapContainer>
+
+      {/* Delete popup for selected waypoint */}
+      {selectedWp && (() => {
+        const wp = waypoints.find((w) => w.id === selectedWp);
+        if (!wp) return null;
+        return (
+          <InfoWindowF
+            position={{ lat: wp.lat, lng: wp.lng }}
+            onCloseClick={() => setSelectedWp(null)}
+            options={{ pixelOffset: new google.maps.Size(0, -12) }}
+          >
+            <button
+              onClick={() => handleDeleteWaypoint(wp.id)}
+              style={{ padding: '4px 12px', fontSize: '12px', color: '#dc2626', fontWeight: 600, border: 'none', background: 'none', cursor: 'pointer' }}
+            >
+              Supprimer ce point
+            </button>
+          </InfoWindowF>
+        );
+      })()}
+    </GoogleMap>
   );
 }
 
-function DraggablePOIMarker({ scene, index, onDrag }: { scene: StudioScene; index: number; onDrag: (sceneId: string, lat: number, lng: number) => void }) {
-  const markerRef = useRef<L.Marker>(null);
-
-  const eventHandlers = useMemo(() => ({
-    dragend() {
-      const marker = markerRef.current;
-      if (marker) {
-        const pos = marker.getLatLng();
-        onDrag(scene.id, pos.lat, pos.lng);
-      }
-    },
-  }), [scene.id, onDrag]);
-
-  return (
-    <Marker
-      ref={markerRef}
-      position={[scene.latitude!, scene.longitude!]}
-      icon={poiIcon(index)}
-      draggable={true}
-      eventHandlers={eventHandlers}
-    >
-      <Popup>
-        <div className="text-sm">
-          <strong>{index + 1}. {scene.title || `Scène ${index + 1}`}</strong>
-          {scene.poiDescription && <p className="text-xs text-gray-500 mt-1">{scene.poiDescription}</p>}
-          <p className="text-xs text-gray-400 mt-1">Glissez pour repositionner</p>
-        </div>
-      </Popup>
-    </Marker>
-  );
-}
-
-function DraggableWaypointMarker({ waypoint, onDrag, onDelete }: { waypoint: Waypoint; onDrag: (id: string, lat: number, lng: number) => void; onDelete: (id: string) => void }) {
-  const markerRef = useRef<L.Marker>(null);
-
-  const eventHandlers = useMemo(() => ({
-    dragend() {
-      const marker = markerRef.current;
-      if (marker) {
-        const pos = marker.getLatLng();
-        onDrag(waypoint.id, pos.lat, pos.lng);
-      }
-    },
-  }), [waypoint.id, onDrag]);
-
-  return (
-    <Marker
-      ref={markerRef}
-      position={[waypoint.lat, waypoint.lng]}
-      icon={waypointIcon}
-      draggable={true}
-      eventHandlers={eventHandlers}
-    >
-      <Popup>
-        <div className="text-xs">
-          <p>Point de passage</p>
-          <button onClick={() => onDelete(waypoint.id)} className="text-red-600 underline mt-1">Supprimer</button>
-        </div>
-      </Popup>
-    </Marker>
-  );
+function distToSegment(px: number, py: number, ax: number, ay: number, bx: number, by: number): number {
+  const dx = bx - ax;
+  const dy = by - ay;
+  if (dx === 0 && dy === 0) return Math.sqrt((px - ax) ** 2 + (py - ay) ** 2);
+  let t = ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy);
+  t = Math.max(0, Math.min(1, t));
+  return Math.sqrt((px - (ax + t * dx)) ** 2 + (py - (ay + t * dy)) ** 2);
 }

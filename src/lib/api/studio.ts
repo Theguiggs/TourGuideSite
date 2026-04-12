@@ -180,9 +180,10 @@ const STATUS_CONFIG: Record<StudioSessionStatus, { label: string; color: string 
   ready: { label: 'Pr\u00eat', color: 'bg-green-100 text-green-700' },
   submitted: { label: 'Soumis', color: 'bg-yellow-100 text-yellow-700' },
   published: { label: 'Publi\u00e9', color: 'bg-green-200 text-green-800' },
+  paused: { label: 'En pause', color: 'bg-amber-100 text-amber-700' },
   revision_requested: { label: 'R\u00e9vision demand\u00e9e', color: 'bg-orange-100 text-orange-700' },
   rejected: { label: 'Rejet\u00e9', color: 'bg-red-100 text-red-700' },
-  archived: { label: 'Archivé', color: 'bg-gray-200 text-gray-500' },
+  archived: { label: 'Archiv\u00e9', color: 'bg-gray-200 text-gray-500' },
 };
 
 export function getSessionStatusConfig(status: StudioSessionStatus) {
@@ -202,6 +203,32 @@ export function getSceneStatusConfig(status: SceneStatus) {
   return SCENE_STATUS_CONFIG[status];
 }
 
+/**
+ * When the 'version' field is not deployed on AppSync, deduce version numbers
+ * from sessions sharing the same tourId, ordered by createdAt.
+ * Mutates the sessions array in place.
+ */
+function inferVersionsFromTourGroups(sessions: StudioSession[]): void {
+  const byTour = new Map<string, StudioSession[]>();
+  for (const s of sessions) {
+    if (!s.tourId) continue;
+    const group = byTour.get(s.tourId) ?? [];
+    group.push(s);
+    byTour.set(s.tourId, group);
+  }
+  for (const group of byTour.values()) {
+    if (group.length <= 1) continue;
+    // Sort by createdAt ascending — earliest is V1
+    group.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+    group.forEach((s, i) => {
+      // Only override if version is the default (1) — don't overwrite a real value
+      if (s.version <= 1) {
+        s.version = i + 1;
+      }
+    });
+  }
+}
+
 // --- Public API: Sessions ---
 
 export async function listStudioSessions(guideId: string): Promise<StudioSession[]> {
@@ -217,7 +244,10 @@ export async function listStudioSessions(guideId: string): Promise<StudioSession
       logger.error(SERVICE_NAME, 'listStudioSessions failed', { error: result.error });
       return [];
     }
-    return result.data.map((s) => mapAppSyncSession(s as unknown as Record<string, unknown>));
+    const mapped = result.data.map((s) => mapAppSyncSession(s as unknown as Record<string, unknown>));
+    // Deduce version from sibling sessions when 'version' field is not deployed
+    inferVersionsFromTourGroups(mapped);
+    return mapped;
   } catch (e) {
     logger.error(SERVICE_NAME, 'listStudioSessions exception', { error: String(e) });
     return [];
@@ -237,7 +267,25 @@ export async function getStudioSession(sessionId: string): Promise<StudioSession
       logger.warn(SERVICE_NAME, 'Session not found', { sessionId });
       return null;
     }
-    return mapAppSyncSession(result.data as unknown as Record<string, unknown>);
+    const session = mapAppSyncSession(result.data as unknown as Record<string, unknown>);
+    // Deduce version from siblings when 'version' field is not deployed
+    if (session.version <= 1 && session.tourId && session.guideId) {
+      try {
+        const { listStudioSessionsByGuide } = await import('./appsync-client');
+        const siblings = await listStudioSessionsByGuide(session.guideId);
+        if (siblings.ok) {
+          const sameTour = siblings.data
+            .map((s) => mapAppSyncSession(s as unknown as Record<string, unknown>))
+            .filter((s) => s.tourId === session.tourId);
+          inferVersionsFromTourGroups(sameTour);
+          const match = sameTour.find((s) => s.id === session.id);
+          if (match) session.version = match.version;
+        }
+      } catch {
+        // Non-blocking — version stays at 1
+      }
+    }
+    return session;
   } catch (e) {
     logger.error(SERVICE_NAME, 'getStudioSession exception', { error: String(e) });
     return null;

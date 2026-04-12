@@ -16,8 +16,8 @@ const LANG_NAMES: Record<string, string> = {
 };
 
 const AUDIO_TYPE_LABELS: Record<string, { icon: string; label: string }> = {
-  recording: { icon: '🎤', label: 'Voix humaine' },
-  tts: { icon: '🤖', label: 'Synthèse vocale' },
+  recording: { icon: '🎤', label: 'Voix du guide' },
+  tts: { icon: '🤖', label: 'Voix de synthèse' },
   mixed: { icon: '🔀', label: 'Mixte' },
 };
 

@@ -1,5 +1,6 @@
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
+import { getClient } from './appsync-client';
 
 const SERVICE_NAME = 'TourCommentsAPI';
 
@@ -29,27 +30,21 @@ export async function listTourComments(tourId: string): Promise<TourComment[]> {
   }
 
   try {
-    const { getClient } = await import('./appsync-client');
     const client = getClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let result: { data?: TourComment[] };
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      result = await (client as any).models.TourComment.listTourCommentByTourId(
-        { tourId },
-        { authMode: 'userPool' },
-      );
-    } catch {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      result = await (client as any).models.TourComment.list(
-        { filter: { tourId: { eq: tourId } } },
-        { authMode: 'userPool' },
-      );
+    // TourComment model may not be deployed yet — check before calling
+    if (!client.models.TourComment) {
+      logger.warn(SERVICE_NAME, 'TourComment model not available on AppSync client — skipping');
+      return [];
     }
+    const result = await client.models.TourComment.listTourCommentByTourId(
+      { tourId },
+      { authMode: 'userPool' },
+    );
     return ((result?.data ?? []) as TourComment[])
       .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
   } catch (e) {
-    logger.error(SERVICE_NAME, 'listTourComments failed', { tourId, error: String(e) });
+    const errMsg = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+    logger.error(SERVICE_NAME, 'listTourComments failed', { tourId, error: errMsg });
     return [];
   }
 }
@@ -85,10 +80,12 @@ export async function addTourComment(
   }
 
   try {
-    const { getClient } = await import('./appsync-client');
     const client = getClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const result = await (client as any).models.TourComment.create(
+    if (!client.models.TourComment) {
+      logger.warn(SERVICE_NAME, 'TourComment model not available on AppSync client — skipping');
+      return { ok: false, error: 'TourComment model not deployed' };
+    }
+    const result = await client.models.TourComment.create(
       {
         tourId,
         sessionId: data.sessionId,
@@ -96,7 +93,7 @@ export async function addTourComment(
         author: data.author,
         authorName: data.authorName,
         message: data.message,
-        action: data.action ?? 'comment',
+        action: (data.action ?? 'comment') as 'comment',
         language: data.language,
       },
       { authMode: 'userPool' },
@@ -104,7 +101,8 @@ export async function addTourComment(
     logger.info(SERVICE_NAME, 'Comment added', { tourId, action: data.action, author: data.author });
     return { ok: true, comment: result.data as TourComment };
   } catch (e) {
-    logger.error(SERVICE_NAME, 'addTourComment failed', { tourId, error: String(e) });
-    return { ok: false, error: String(e) };
+    const errMsg = e instanceof Error ? `${e.name}: ${e.message}` : JSON.stringify(e);
+    logger.error(SERVICE_NAME, 'addTourComment failed', { tourId, error: errMsg });
+    return { ok: false, error: errMsg };
   }
 }

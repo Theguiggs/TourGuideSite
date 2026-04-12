@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
 import { trackEvent, StudioAnalyticsEvents } from '@/lib/analytics';
-import { getStudioSession, listStudioScenes, getSessionStatusConfig, createStudioSession } from '@/lib/api/studio';
+import { getStudioSession, listStudioScenes, createStudioSession } from '@/lib/api/studio';
 import { triggerTranscription, getTranscriptionQuota } from '@/lib/api/transcription';
 import { useAuth } from '@/lib/auth/auth-context';
 import { shouldUseStubs } from '@/config/api-mode';
@@ -13,6 +13,7 @@ import { SceneListItem } from '@/components/studio/scene-list-item';
 import { QuotaDisplay } from '@/components/studio/quota-display';
 import { StudioToast } from '@/components/studio/toast';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
+import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { useTranscriptionStore, selectQuota } from '@/lib/stores/transcription-store';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
@@ -124,10 +125,16 @@ export default function SessionDetailPage() {
       audioPlayerService.pause();
       setPlayingSceneId(null);
     } else {
-      const url = scene.originalAudioKey || '';
-      const success = await audioPlayerService.play(url);
-      if (success) {
-        setPlayingSceneId(scene.id);
+      const key = scene.studioAudioKey || scene.originalAudioKey || '';
+      if (!key) return;
+      try {
+        const url = key.startsWith('data:') ? key : shouldUseStubs() ? key : await getPlayableUrl(key);
+        const success = await audioPlayerService.play(url);
+        if (success) {
+          setPlayingSceneId(scene.id);
+        }
+      } catch (e) {
+        logger.error('StudioSessionPage', 'Failed to get playable URL', { key, error: String(e) });
       }
     }
   }, [playingSceneId]);
@@ -186,9 +193,6 @@ export default function SessionDetailPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href="/guide/studio" className="text-teal-600 hover:text-teal-700 text-sm mb-4 inline-block">
-          &larr; Retour aux sessions
-        </Link>
         <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700" role="alert">
           {error || 'Session introuvable.'}
         </div>
@@ -196,65 +200,12 @@ export default function SessionDetailPage() {
     );
   }
 
-  const statusConfig = getSessionStatusConfig(session.status);
-
   return (
     <div className="p-6">
-      <Link href="/guide/studio" className="text-teal-600 hover:text-teal-700 text-sm mb-4 inline-block">
-        &larr; Retour aux sessions
-      </Link>
-
-      <div className="mb-6">
-        <div className="flex items-center gap-3 mb-2">
-          <h1 className="text-2xl font-bold text-gray-900">
-            {session.title || 'Session sans titre'}
-          </h1>
-          <span className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium ${statusConfig.color}`}>
-            {statusConfig.label}
-          </span>
-        </div>
+      <div className="mb-4">
         <p className="text-sm text-gray-500">
-          {scenes.length} {scenes.length > 1 ? 'scènes' : 'scène'} &middot; {session.language.toUpperCase()}
+          {scenes.length} {scenes.length > 1 ? 'scènes' : 'scène'}
         </p>
-      </div>
-
-      {/* Workflow steps — ordered like the progress bar */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        <Link
-          href={`/guide/studio/${sessionId}/general`}
-          className="inline-flex items-center gap-1.5 bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm"
-          data-testid="general-link"
-        >
-          📋 Général
-        </Link>
-        <Link
-          href={`/guide/studio/${sessionId}/itinerary`}
-          className="inline-flex items-center gap-1.5 bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm"
-          data-testid="itinerary-link"
-        >
-          🗺️ Itinéraire
-        </Link>
-        <Link
-          href={`/guide/studio/${sessionId}/scenes`}
-          className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm"
-          data-testid="scenes-link"
-        >
-          🎬 Scènes
-        </Link>
-        <Link
-          href={`/guide/studio/${sessionId}/preview`}
-          className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm"
-          data-testid="preview-link-top"
-        >
-          👁 Preview
-        </Link>
-        <Link
-          href={`/guide/studio/${sessionId}/submission`}
-          className="inline-flex items-center gap-1.5 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm"
-          data-testid="submission-link"
-        >
-          📤 Soumission
-        </Link>
       </div>
 
       {/* Link to Mes Parcours if tour is linked */}

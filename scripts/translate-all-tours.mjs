@@ -244,6 +244,21 @@ async function run() {
     }
   }
 
+  // Update availableLanguages on GuideTours
+  console.log('\nUpdating availableLanguages on tours...');
+  const allTours = (await dynamo.send(new ScanCommand({ TableName: table('GuideTour') }))).Items || [];
+  const allPurchasesNow = (await dynamo.send(new ScanCommand({ TableName: table('TourLanguagePurchase') }))).Items || [];
+  for (const tour of allTours.filter(t => t.owner?.includes(OWNER_SUB))) {
+    const sessionIdT = tour.sessionId;
+    const sourceLang = allSessions.find(s => s.id === sessionIdT)?.language ?? 'fr';
+    const tourPurchases = allPurchasesNow.filter(p => p.sessionId === sessionIdT && p.status === 'active');
+    const langs = [...new Set([sourceLang, ...tourPurchases.map(p => p.language)])];
+    await dynamo.send(new UpdateCommand({
+      TableName: table('GuideTour'), Key: { id: tour.id },
+      UpdateExpression: 'SET availableLanguages = :l', ExpressionAttributeValues: { ':l': langs },
+    }));
+  }
+
   console.log(`\n=== Done ===`);
   console.log(`Segments: ${segCreated} created, ${segSkipped} skipped`);
   console.log(`TTS audio: ${ttsCreated} generated`);

@@ -10,6 +10,7 @@ export type StudioSessionStatus =
   | 'ready'
   | 'submitted'
   | 'published'
+  | 'paused'
   | 'revision_requested'
   | 'rejected'
   | 'archived';
@@ -137,7 +138,7 @@ export const STUDIO_WORKFLOW_STEPS = [
   { key: 'itinerary', label: 'Itinéraire', icon: '🗺️' },
   { key: 'scenes', label: 'Scènes', icon: '🎬' },
   { key: 'preview', label: 'Preview', icon: '👁️' },
-  { key: 'submission', label: 'Soumission', icon: '📤' },
+  { key: 'submission', label: 'Publication', icon: '📤' },
 ] as const;
 
 export type StudioWorkflowStep = (typeof STUDIO_WORKFLOW_STEPS)[number]['key'];

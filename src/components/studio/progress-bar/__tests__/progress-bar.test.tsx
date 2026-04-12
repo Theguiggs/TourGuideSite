@@ -9,7 +9,7 @@ describe('StudioProgressBar', () => {
     expect(screen.getByText('Itinéraire')).toBeInTheDocument();
     expect(screen.getByText('Scènes')).toBeInTheDocument();
     expect(screen.getByText('Preview')).toBeInTheDocument();
-    expect(screen.getByText('Soumission')).toBeInTheDocument();
+    expect(screen.getByText('Publication')).toBeInTheDocument();
   });
 
   it('highlights current step with aria-current', () => {

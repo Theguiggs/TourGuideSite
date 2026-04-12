@@ -29,6 +29,8 @@ export interface Tour {
   availableLanguages?: string[];
   createdAt?: string;
   languageAudioTypes?: Record<string, 'tts' | 'recording' | 'mixed'>;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface POI {

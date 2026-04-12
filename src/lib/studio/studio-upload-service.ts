@@ -277,5 +277,10 @@ export function clearCache(): void {
   urlCache.clear();
 }
 
+/** Remove a single entry from the signed URL cache (e.g. after re-uploading the same key). */
+export function clearCacheEntry(s3Key: string): void {
+  urlCache.delete(s3Key);
+}
+
 // Exported for testing
 export const _testExports = { urlCache, URL_CACHE_TTL_MS, withRetry };

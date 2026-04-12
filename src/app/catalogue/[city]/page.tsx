@@ -3,11 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getCityBySlug, getToursByCity, getCities } from '@/lib/api/tours';
 import { getGuidesByCity } from '@/lib/api/guides-public';
-import { S3Image } from '@/components/studio/s3-image';
-
-const LANG_FLAGS: Record<string, string> = {
-  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪',
-};
+import { TourListWithFilter } from './tour-list-filter';
 
 export const revalidate = 300; // ISR: 5 minutes
 
@@ -53,69 +49,7 @@ export default async function CityPage({ params }: CityPageProps) {
       <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">{city.name}</h1>
       <p className="text-gray-600 mb-10">{city.description}</p>
 
-      {tours.length === 0 ? (
-        <p className="text-gray-500">Aucune visite disponible pour le moment.</p>
-      ) : (
-        <div className="space-y-6">
-          {tours.map((tour) => (
-            <Link
-              key={tour.id}
-              href={`/catalogue/${citySlug}/${tour.slug}`}
-              data-testid={`tour-card-${tour.id}`}
-              className="block rounded-xl border border-gray-200 hover:shadow-md transition-shadow overflow-hidden"
-            >
-              <div className="flex flex-col sm:flex-row">
-                <div className="relative sm:w-64 h-48 sm:h-auto bg-gradient-to-br from-teal-600 to-teal-800 flex-shrink-0 overflow-hidden">
-                  {tour.imageUrl && tour.imageUrl.startsWith('guide-') ? (
-                    <S3Image s3Key={tour.imageUrl} alt={tour.title} className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-                  ) : (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img
-                      src={tour.imageUrl || `/images/tours/${tour.slug}.jpg`}
-                      alt={tour.title}
-                      className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    />
-                  )}
-                </div>
-                <div className="p-6 flex-1">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <h2 className="text-xl font-semibold text-gray-900">{tour.title}</h2>
-                        {tour.isFree && (
-                          <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full">
-                            GRATUIT
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-sm text-gray-500 mb-2">
-                        Par {tour.guideName} &middot; {tour.duration} min &middot; {tour.distance} km
-                        &middot; {tour.poiCount} points
-                      </p>
-                      {tour.availableLanguages && tour.availableLanguages.length > 0 && (
-                        <div className="inline-flex gap-1.5 text-sm mb-2" data-testid={`lang-flags-${tour.id}`}>
-                          {tour.availableLanguages.slice(0, 5).map((lang) => {
-                            const audioType = tour.languageAudioTypes?.[lang];
-                            return (
-                              <span key={lang} title={`${lang.toUpperCase()} — ${audioType === 'tts' ? 'Synthèse vocale' : audioType === 'recording' ? 'Voix humaine' : 'Audio'}`}>
-                                {LANG_FLAGS[lang] ?? lang}{audioType === 'recording' ? '🎤' : audioType === 'tts' ? '🤖' : ''}
-                              </span>
-                            );
-                          })}
-                          {tour.availableLanguages.length > 5 && (
-                            <span className="text-xs text-gray-400">+{tour.availableLanguages.length - 5}</span>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <p className="text-gray-600 line-clamp-2">{tour.shortDescription}</p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
+      <TourListWithFilter tours={tours} citySlug={citySlug} />
 
       {/* Guides locaux */}
       {guides.length > 0 && (

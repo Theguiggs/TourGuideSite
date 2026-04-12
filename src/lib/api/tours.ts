@@ -200,32 +200,53 @@ function generateSlug(text: string): string {
  */
 async function getLanguageAudioTypes(sessionId: string): Promise<Record<string, 'tts' | 'recording' | 'mixed'>> {
   try {
-    const scenesResult = await appsync.listPublicScenesBySession(sessionId);
-    if (!scenesResult.ok || scenesResult.data.length === 0) return {};
+    const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
+    const { DynamoDBDocumentClient, ScanCommand } = await import('@aws-sdk/lib-dynamodb');
+    const appId = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
+    const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
 
-    // FR source: check if scenes have studioAudioKey (recording) or TTS
+    // Get scenes for this session
+    const sceneScan = await dynamo.send(new ScanCommand({
+      TableName: `StudioScene-${appId}-NONE`,
+      FilterExpression: 'sessionId = :sid',
+      ExpressionAttributeValues: { ':sid': sessionId },
+    }));
+    const scenes = sceneScan.Items ?? [];
+    if (scenes.length === 0) return {};
+
+    // FR source: check studioAudioKey
     const frSources = new Set<string>();
-    for (const scene of scenesResult.data) {
-      const raw = scene as Record<string, unknown>;
-      const key = (raw.studioAudioKey as string) || (raw.originalAudioKey as string) || '';
+    for (const sc of scenes) {
+      const key = (sc.studioAudioKey as string) || (sc.originalAudioKey as string) || '';
       frSources.add(key.includes('tts') ? 'tts' : 'recording');
     }
     const result: Record<string, 'tts' | 'recording' | 'mixed'> = {
       fr: frSources.size === 1 ? (Array.from(frSources)[0] as 'tts' | 'recording') : 'mixed',
     };
 
-    // Translated languages: check SceneSegment.audioSource
-    const { listSegmentsByScene } = await import('./studio');
-    const allSegments = (await Promise.all(
-      scenesResult.data.map((s) => listSegmentsByScene((s as Record<string, unknown>).id as string)),
-    )).flat();
+    // Only include languages that are approved
+    const purchaseScan = await dynamo.send(new ScanCommand({
+      TableName: `TourLanguagePurchase-${appId}-NONE`,
+      FilterExpression: 'sessionId = :sid AND #s = :active AND moderationStatus = :approved',
+      ExpressionAttributeNames: { '#s': 'status' },
+      ExpressionAttributeValues: { ':sid': sessionId, ':active': 'active', ':approved': 'approved' },
+    }));
+    const approvedLangs = new Set((purchaseScan.Items ?? []).map((p) => p.language as string));
+
+    // Get segments for all scenes of this session
+    const sceneIds = scenes.map((s) => s.id as string);
+    const segScan = await dynamo.send(new ScanCommand({
+      TableName: `SceneSegment-${appId}-NONE`,
+    }));
+    const allSegs = (segScan.Items ?? []).filter((s) => sceneIds.includes(s.sceneId as string));
 
     const byLang = new Map<string, Set<string>>();
-    for (const seg of allSegments) {
-      if (seg.language === 'fr') continue;
-      const source = seg.audioSource || (seg.ttsGenerated ? 'tts' : 'recording');
-      if (!byLang.has(seg.language)) byLang.set(seg.language, new Set());
-      byLang.get(seg.language)!.add(source);
+    for (const seg of allSegs) {
+      const lang = seg.language as string;
+      if (lang === 'fr' || !approvedLangs.has(lang)) continue;
+      const source = (seg.audioSource as string) || (seg.ttsGenerated ? 'tts' : 'recording');
+      if (!byLang.has(lang)) byLang.set(lang, new Set());
+      byLang.get(lang)!.add(source);
     }
 
     for (const [lang, sources] of byLang) {
@@ -235,6 +256,46 @@ async function getLanguageAudioTypes(sessionId: string): Promise<Record<string, 
   } catch {
     return {};
   }
+}
+
+/**
+ * Resolve availableLanguages for a tour.
+ * First tries the field on the tour object (if schema is deployed).
+ * Fallback: derive from TourLanguagePurchases (active).
+ */
+// Cache for available languages (avoid repeated lookups per request)
+let _availableLangsCache: Map<string, string[]> | null = null;
+
+async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise<string[]> {
+  const tourId = tour.id as string;
+  const sessionId = tour.sessionId as string | undefined;
+  const sourceLang = (tour.language as string) ?? 'fr';
+
+  if (_availableLangsCache?.has(tourId)) {
+    return _availableLangsCache.get(tourId)!;
+  }
+
+  // Only show source language + languages with moderationStatus 'approved'
+  if (!sessionId) return [sourceLang];
+  try {
+    const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
+    const { DynamoDBDocumentClient, ScanCommand } = await import('@aws-sdk/lib-dynamodb');
+    const appId = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
+    const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
+    const result = await dynamo.send(new ScanCommand({
+      TableName: `TourLanguagePurchase-${appId}-NONE`,
+      FilterExpression: 'sessionId = :sid AND #s = :active AND moderationStatus = :approved',
+      ExpressionAttributeNames: { '#s': 'status' },
+      ExpressionAttributeValues: { ':sid': sessionId, ':active': 'active', ':approved': 'approved' },
+    }));
+    const approvedLangs = (result.Items ?? []).map((p) => p.language as string);
+    const langs = [...new Set([sourceLang, ...approvedLangs])];
+    if (!_availableLangsCache) _availableLangsCache = new Map();
+    _availableLangsCache.set(tourId, langs);
+    return langs;
+  } catch { /* fallback */ }
+
+  return [sourceLang];
 }
 
 // Cache guide names to avoid repeated lookups within a single request
@@ -322,8 +383,9 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
         poiCount: t.poiCount || 0,
         isFree: false,
         status: (t.status || 'draft') as Tour['status'],
-        availableLanguages: Array.isArray((t as Record<string, unknown>).availableLanguages) ? (t as Record<string, unknown>).availableLanguages as string[] : [(t as Record<string, unknown>).language as string ?? 'fr'],
+        availableLanguages: await resolveAvailableLanguages(t),
         createdAt: ((t as Record<string, unknown>).createdAt as string) ?? '',
+        languageAudioTypes: (t as Record<string, unknown>).sessionId ? await getLanguageAudioTypes((t as Record<string, unknown>).sessionId as string) : {},
         imageUrl,
       };
     }),
@@ -375,7 +437,7 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     poiCount: tour.poiCount || 0,
     isFree: false,
     status: (tour.status || 'draft') as Tour['status'],
-    availableLanguages: Array.isArray((tour as Record<string, unknown>).availableLanguages) ? (tour as Record<string, unknown>).availableLanguages as string[] : [(tour as Record<string, unknown>).language as string ?? 'fr'],
+    availableLanguages: await resolveAvailableLanguages(tour),
     createdAt: ((tour as Record<string, unknown>).createdAt as string) ?? '',
     languageAudioTypes: tour.sessionId ? await getLanguageAudioTypes(tour.sessionId) : {},
     pois,
@@ -439,8 +501,92 @@ export async function getAllTours(): Promise<Tour[]> {
       poiCount: t.poiCount || 0,
       isFree: false, // isFree not in schema — requires future field addition
       status: (t.status || 'draft') as Tour['status'],
-      availableLanguages: Array.isArray((t as Record<string, unknown>).availableLanguages) ? (t as Record<string, unknown>).availableLanguages as string[] : [(t as Record<string, unknown>).language as string ?? 'fr'],
+      availableLanguages: await resolveAvailableLanguages(t),
       createdAt: ((t as Record<string, unknown>).createdAt as string) ?? '',
+      languageAudioTypes: (t as Record<string, unknown>).sessionId ? await getLanguageAudioTypes((t as Record<string, unknown>).sessionId as string) : {},
     })),
   );
+}
+
+/**
+ * Get all published tours with GPS coordinates (for map catalogue).
+ * Derives lat/lng from first scene of each tour via DynamoDB.
+ */
+export async function getAllToursWithCoords(): Promise<Tour[]> {
+  const baseTours = shouldUseStubs() ? getStubAllTours() : await (async () => {
+    const tours = await appsync.listGuideTours({ status: 'published' });
+    return Promise.all(
+      tours.map(async (t) => ({
+        id: t.id,
+        title: t.title,
+        slug: generateSlug(t.title),
+        city: t.city,
+        citySlug: generateSlug(t.city),
+        guideId: t.guideId,
+        guideName: await resolveGuideName(t.guideId),
+        description: t.description || '',
+        shortDescription: (t.description || '').substring(0, 100),
+        duration: t.duration || 0,
+        distance: t.distance || 0,
+        poiCount: t.poiCount || 0,
+        isFree: false,
+        status: (t.status || 'draft') as Tour['status'],
+        availableLanguages: await resolveAvailableLanguages(t as Record<string, unknown>),
+        createdAt: ((t as Record<string, unknown>).createdAt as string) ?? '',
+        languageAudioTypes: (t as Record<string, unknown>).sessionId ? await getLanguageAudioTypes((t as Record<string, unknown>).sessionId as string) : {},
+      })),
+    );
+  })();
+
+  // Enrich with GPS coords from first scene
+  try {
+    const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
+    const { DynamoDBDocumentClient, ScanCommand } = await import('@aws-sdk/lib-dynamodb');
+    const appId = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
+    const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
+
+    // Load all scenes at once (more efficient than per-tour queries)
+    const sceneScan = await dynamo.send(new ScanCommand({
+      TableName: `StudioScene-${appId}-NONE`,
+      ProjectionExpression: 'sessionId, sceneIndex, latitude, longitude, photosRefs',
+    }));
+    const scenes = sceneScan.Items ?? [];
+
+    // Load session→tour mapping
+    const tourScan = await dynamo.send(new ScanCommand({
+      TableName: `GuideTour-${appId}-NONE`,
+      ProjectionExpression: 'id, sessionId',
+    }));
+    const tourSessionMap = new Map<string, string>();
+    for (const t of tourScan.Items ?? []) {
+      if (t.sessionId) tourSessionMap.set(t.id as string, t.sessionId as string);
+    }
+
+    // Find first scene per session (coords + photo)
+    const firstSceneBySession = new Map<string, { lat: number; lng: number; photo?: string; idx: number }>();
+    for (const sc of scenes) {
+      const sid = sc.sessionId as string;
+      const idx = (sc.sceneIndex as number) ?? 99;
+      const lat = sc.latitude as number | undefined;
+      const lng = sc.longitude as number | undefined;
+      const photos = sc.photosRefs as string[] | undefined;
+      const existing = firstSceneBySession.get(sid);
+      if (lat && lng && (!existing || idx < existing.idx)) {
+        firstSceneBySession.set(sid, { lat, lng, photo: photos?.[0], idx });
+      }
+    }
+
+    return baseTours.map((tour) => {
+      const sessionId = tourSessionMap.get(tour.id);
+      const first = sessionId ? firstSceneBySession.get(sessionId) : undefined;
+      return {
+        ...tour,
+        latitude: first?.lat,
+        longitude: first?.lng,
+        imageUrl: first?.photo,
+      };
+    });
+  } catch {
+    return baseTours;
+  }
 }

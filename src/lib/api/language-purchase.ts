@@ -400,7 +400,22 @@ export async function updateModerationStatusByLang(
           const tour = await getGuideTourById(tourId);
           const sourceLang = (tour as Record<string, unknown>)?.languePrincipale as string ?? 'fr';
           const allLangs = Array.from(new Set([sourceLang, ...approvedLangs]));
-          await updateGuideTourMutation(tourId, { availableLanguages: allLangs });
+          // Try Amplify first, fallback to DynamoDB direct
+          try {
+            await updateGuideTourMutation(tourId, { availableLanguages: allLangs });
+          } catch {
+            // Amplify may not support this field yet — use DynamoDB direct
+            const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
+            const { DynamoDBDocumentClient, UpdateCommand } = await import('@aws-sdk/lib-dynamodb');
+            const appId = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
+            const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
+            await dynamo.send(new UpdateCommand({
+              TableName: `GuideTour-${appId}-NONE`,
+              Key: { id: tourId },
+              UpdateExpression: 'SET availableLanguages = :l',
+              ExpressionAttributeValues: { ':l': allLangs },
+            }));
+          }
           logger.info(SERVICE_NAME, 'Updated GuideTour.availableLanguages', { tourId, languages: allLangs });
         }
       } catch (langErr) {

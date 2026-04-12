@@ -1,19 +1,11 @@
 'use client';
 
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import { useCallback, useRef, useMemo } from 'react';
+import { GoogleMap, useJsApiLoader, MarkerF, PolylineF } from '@react-google-maps/api';
 import type { StudioScene } from '@/types/studio';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import { useWalkingRoute } from '@/lib/hooks/use-walking-route';
 
-// Fix Leaflet default marker icon (broken in Next.js/Webpack)
-const defaultIcon = L.icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-});
+const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? '';
 
 interface PreviewMapProps {
   scenes: StudioScene[];
@@ -21,48 +13,68 @@ interface PreviewMapProps {
 
 export function PreviewMap({ scenes }: PreviewMapProps) {
   const geoScenes = scenes.filter((s) => s.latitude !== null && s.longitude !== null);
+  const mapRef = useRef<google.maps.Map | null>(null);
 
-  if (geoScenes.length === 0) return null;
+  const { isLoaded } = useJsApiLoader({ googleMapsApiKey: GOOGLE_MAPS_KEY });
 
-  const center: [number, number] = [
-    geoScenes.reduce((sum, s) => sum + s.latitude!, 0) / geoScenes.length,
-    geoScenes.reduce((sum, s) => sum + s.longitude!, 0) / geoScenes.length,
-  ];
+  const onLoad = useCallback((map: google.maps.Map) => {
+    mapRef.current = map;
+    if (geoScenes.length > 1) {
+      const bounds = new google.maps.LatLngBounds();
+      geoScenes.forEach((s) => bounds.extend({ lat: s.latitude!, lng: s.longitude! }));
+      map.fitBounds(bounds, 40);
+    } else if (geoScenes.length === 1) {
+      map.setCenter({ lat: geoScenes[0].latitude!, lng: geoScenes[0].longitude! });
+      map.setZoom(16);
+    }
+  }, [geoScenes]);
 
-  const polyline: [number, number][] = geoScenes.map((s) => [s.latitude!, s.longitude!]);
+  const points = useMemo(
+    () => geoScenes.map((s) => ({ lat: s.latitude!, lng: s.longitude! })),
+    [geoScenes],
+  );
+
+  const { path: walkingPath, isLoading } = useWalkingRoute(points);
+
+  if (geoScenes.length === 0 || !GOOGLE_MAPS_KEY) return null;
+  if (!isLoaded) return <div className="h-[280px] w-full bg-gray-100 animate-pulse rounded-lg" />;
+
+  const center = { lat: geoScenes[0].latitude!, lng: geoScenes[0].longitude! };
 
   return (
-    <MapContainer
+    <GoogleMap
+      mapContainerStyle={{ height: '280px', width: '100%', borderRadius: '8px' }}
       center={center}
       zoom={16}
-      style={{ height: '280px', width: '100%' }}
-      scrollWheelZoom={false}
+      onLoad={onLoad}
+      options={{ disableDefaultUI: true, zoomControl: true, mapTypeControl: false, streetViewControl: false }}
     >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-
-      {/* Route polyline */}
-      {polyline.length > 1 && (
-        <Polyline positions={polyline} color="#0d9488" weight={3} opacity={0.7} dashArray="8 4" />
+      {walkingPath.length > 1 && (
+        <PolylineF
+          path={walkingPath}
+          options={{
+            strokeColor: '#0d9488',
+            strokeWeight: 4,
+            strokeOpacity: isLoading ? 0.4 : 0.7,
+          }}
+        />
       )}
-
-      {/* POI markers */}
       {geoScenes.map((scene, index) => (
-        <Marker
+        <MarkerF
           key={scene.id}
-          position={[scene.latitude!, scene.longitude!]}
-          icon={defaultIcon}
-        >
-          <Popup>
-            <div className="text-sm">
-              <strong>{index + 1}. {scene.title || `Scène ${index + 1}`}</strong>
-              {scene.poiDescription && <p className="text-xs text-gray-500 mt-1">{scene.poiDescription}</p>}
-            </div>
-          </Popup>
-        </Marker>
+          position={{ lat: scene.latitude!, lng: scene.longitude! }}
+          label={{ text: `${index + 1}`, color: 'white', fontSize: '12px', fontWeight: 'bold' }}
+          icon={{
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 14,
+            fillColor: '#0d9488',
+            fillOpacity: 1,
+            strokeColor: 'white',
+            strokeWeight: 2,
+          }}
+          title={scene.title ?? `Scene ${index + 1}`}
+        />
       ))}
-    </MapContainer>
+    </GoogleMap>
   );
 }

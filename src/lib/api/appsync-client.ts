@@ -136,11 +136,27 @@ export async function getGuideProfileByUserId(userId: string, authMode?: 'userPo
 export async function listTourReviews(tourId: string) {
   try {
     const client = getClient();
-    const result = await client.models.TourReview.list({
+    // Try userPool first (guides viewing their own tour's reviews), fall back to default
+    let result = await client.models.TourReview.list({
       filter: {
         tourId: { eq: tourId },
         status: { eq: 'visible' },
       },
+      authMode: 'userPool',
+    });
+    if ((result.data?.length ?? 0) === 0 && !result.errors) {
+      // Retry with default auth (e.g. guest/identity pool)
+      result = await client.models.TourReview.list({
+        filter: {
+          tourId: { eq: tourId },
+          status: { eq: 'visible' },
+        },
+      });
+    }
+    logger.info(SERVICE_NAME, 'listTourReviews', {
+      tourId,
+      count: result.data?.length ?? 0,
+      hasErrors: !!result.errors,
     });
     return (result.data ?? []).sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -427,8 +443,12 @@ export async function createStudioSessionMutation(data: {
 }) {
   try {
     const client = getClient();
+    // 'version' is not yet deployed on AppSync — omit it to avoid
+    // "field not defined for input object type" GraphQL errors.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { version: _version, ...safeData } = data;
     const result = await client.models.StudioSession.create(
-      { ...data, status: (data.status ?? 'draft') as 'draft', consentRGPD: true } as Parameters<typeof client.models.StudioSession.create>[0],
+      { ...safeData, status: (safeData.status ?? 'draft') as 'draft', consentRGPD: true } as Parameters<typeof client.models.StudioSession.create>[0],
       { authMode: 'userPool' },
     );
     if (!result.data) {
