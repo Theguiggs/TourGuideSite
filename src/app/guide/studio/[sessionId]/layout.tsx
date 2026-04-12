@@ -7,12 +7,12 @@ import { useStudioSessionStore, selectActiveSession, selectSetActiveSession } fr
 import { getStudioSession, getSessionStatusConfig } from '@/lib/api/studio';
 
 const TABS = [
-  { key: '', label: 'Accueil' },
-  { key: 'general', label: 'Général' },
-  { key: 'itinerary', label: 'Itinéraire' },
-  { key: 'scenes', label: 'Scènes' },
-  { key: 'preview', label: 'Preview' },
-  { key: 'submission', label: 'Publication' },
+  { key: '', label: 'Accueil', testId: 'accueil-link' },
+  { key: 'general', label: 'Général', testId: 'general-link' },
+  { key: 'itinerary', label: 'Itinéraire', testId: 'itinerary-link' },
+  { key: 'scenes', label: 'Scènes', testId: 'scenes-link' },
+  { key: 'preview', label: 'Preview', testId: 'preview-link-top' },
+  { key: 'submission', label: 'Publication', testId: 'submission-link' },
 ] as const;
 
 export default function SessionLayout({ children }: { children: React.ReactNode }) {
@@ -94,6 +94,7 @@ export default function SessionLayout({ children }: { children: React.ReactNode 
               <Link
                 key={tab.key}
                 href={href}
+                data-testid={tab.testId}
                 className={`whitespace-nowrap px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                   isActive
                     ? 'border-teal-600 text-teal-700'

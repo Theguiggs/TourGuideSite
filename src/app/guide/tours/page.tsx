@@ -140,7 +140,7 @@ export default function GuideToursPage() {
                   type="text"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  placeholder="Ex : L'Ame des Parfumeurs"
+                  placeholder="Ex : L'Âme des Parfumeurs"
                   className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-900 focus:ring-2 focus:ring-teal-500"
                   autoFocus
                 />
@@ -168,7 +168,7 @@ export default function GuideToursPage() {
                 disabled={creating || !newTitle.trim() || !newCity.trim()}
                 className="flex-1 bg-teal-700 text-white font-bold py-2 rounded-lg hover:bg-teal-800 disabled:opacity-50"
               >
-                {creating ? 'Creation...' : 'Creer et editer'}
+                {creating ? 'Création...' : 'Créer et éditer'}
               </button>
             </div>
           </div>

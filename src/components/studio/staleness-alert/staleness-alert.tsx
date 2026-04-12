@@ -20,6 +20,8 @@ export interface StalenessAlertProps {
   staleCount: number;
   staleSegmentIds: string[];
   onRetranslate: (segmentIds: string[]) => void;
+  /** Called to dismiss the alert without retranslating — marks segments as up-to-date */
+  onDismiss?: (segmentIds: string[]) => void;
   /** Segments and scenes needed for manuallyEdited filtering */
   segments?: SceneSegment[];
   scenes?: StudioScene[];
@@ -64,6 +66,7 @@ export function StalenessAlert({
   staleCount,
   staleSegmentIds,
   onRetranslate,
+  onDismiss,
   segments,
   scenes,
 }: StalenessAlertProps) {
@@ -141,22 +144,39 @@ export function StalenessAlert({
       <div
         data-testid="staleness-alert"
         role="alert"
-        className="flex items-center justify-between gap-4 rounded-lg border border-orange-300 bg-orange-50 p-4"
+        className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-orange-300 bg-orange-50 p-4"
       >
-        <div className="flex items-center gap-2">
-          <span className="text-lg" aria-hidden="true">&#9888;&#65039;</span>
-          <p className="text-sm font-medium text-orange-800">
-            {staleCount} {staleCount === 1 ? 'scene modifiee' : 'scenes modifiees'} depuis la derniere traduction
-          </p>
+        <div className="flex items-start gap-2 flex-1 min-w-0">
+          <span className="text-lg shrink-0" aria-hidden="true">&#9888;&#65039;</span>
+          <div>
+            <p className="text-sm font-medium text-orange-800">
+              {staleCount} {staleCount === 1 ? 'scene modifiee' : 'scenes modifiees'} depuis la derniere traduction
+            </p>
+            <p className="text-xs text-orange-600 mt-0.5">
+              Retraduire si le texte source a change, ou ignorer si c&apos;est une modification non-traduisible (GPS, photos, audio).
+            </p>
+          </div>
         </div>
-        <button
-          data-testid="staleness-retranslate-button"
-          type="button"
-          onClick={handleRetranslateClick}
-          className="inline-flex items-center whitespace-nowrap rounded-md bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-700"
-        >
-          Mettre a jour {staleCount} {staleCount === 1 ? 'traduction' : 'traductions'}
-        </button>
+        <div className="flex items-center gap-2 shrink-0">
+          {onDismiss && (
+            <button
+              data-testid="staleness-dismiss-button"
+              type="button"
+              onClick={() => onDismiss(staleSegmentIds)}
+              className="inline-flex items-center whitespace-nowrap rounded-md border border-orange-400 px-3 py-2 text-sm font-medium text-orange-700 hover:bg-orange-100"
+            >
+              Ignorer
+            </button>
+          )}
+          <button
+            data-testid="staleness-retranslate-button"
+            type="button"
+            onClick={handleRetranslateClick}
+            className="inline-flex items-center whitespace-nowrap rounded-md bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-700"
+          >
+            Retraduire {staleCount}
+          </button>
+        </div>
       </div>
 
       {currentManualItem && (

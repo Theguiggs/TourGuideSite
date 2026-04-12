@@ -899,6 +899,16 @@ export default function ScenesPage() {
                     setTimeout(() => setBatchMessage(null), 5000);
                   }
                 }}
+                onDismiss={async (ids) => {
+                  // Mark segments as up-to-date without re-translating.
+                  // Useful when the scene was modified for non-translatable reasons (GPS, photos, audio).
+                  logger.info(SERVICE_NAME, 'Dismiss staleness', { lang: activeLanguageTab, count: ids.length });
+                  const now = new Date().toISOString();
+                  await Promise.all(ids.map((id) => updateSceneSegment(id, { sourceUpdatedAt: now })));
+                  await refreshLangSegments();
+                  setBatchMessage('Alerte ignoree. Traductions marquees a jour.');
+                  setTimeout(() => setBatchMessage(null), 3000);
+                }}
               />
             );
           })()}

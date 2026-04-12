@@ -481,6 +481,7 @@ export default function PublicationPage() {
                     <td className="px-3 py-2 text-right space-x-1">
                       {canSubmitLang && readiness.ready && (
                         <button
+                          data-testid={`submit-lang-${purchase.language}`}
                           onClick={() => doAction(`${langLabel} soumis !`, async () => {
                             setLangActioning(purchase.language);
                             const result = await submitLanguageForModeration(sessionId, purchase.language, scenes, segments);
@@ -496,6 +497,7 @@ export default function PublicationPage() {
                       {canSubmitLang && !readiness.ready && <span className="text-xs text-amber-600">Incomplet</span>}
                       {purchase.moderationStatus === 'submitted' && (
                         <button
+                          data-testid={`retract-lang-${purchase.language}`}
                           onClick={() => doAction(`${langLabel} retire`, async () => {
                             setLangActioning(purchase.language);
                             const result = await retractLanguageSubmission(sessionId, purchase.language);
@@ -510,6 +512,7 @@ export default function PublicationPage() {
                       )}
                       {purchase.moderationStatus === 'approved' && (
                         <button
+                          data-testid={`unpublish-lang-${purchase.language}`}
                           onClick={() => doAction(`${langLabel} depublie`, async () => {
                             setLangActioning(purchase.language);
                             const result = await retractLanguageSubmission(sessionId, purchase.language);

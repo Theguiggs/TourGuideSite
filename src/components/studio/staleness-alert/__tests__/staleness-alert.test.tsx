@@ -56,7 +56,7 @@ describe('StalenessAlert', () => {
     );
 
     expect(screen.getByText(/1 scene modifiee depuis la derniere traduction/)).toBeInTheDocument();
-    expect(screen.getByText(/Mettre a jour 1 traduction/)).toBeInTheDocument();
+    expect(screen.getByText(/Retraduire 1/)).toBeInTheDocument();
   });
 
   it('has role=alert for accessibility', () => {

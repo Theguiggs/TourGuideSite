@@ -201,18 +201,14 @@ describe('BatchTranslationService', () => {
     }));
   });
 
-  it('6.4 - sourceUpdatedAt is set to ISO timestamp on each segment save', async () => {
+  it('6.4 - sourceUpdatedAt is set to the source scene updatedAt (not Date.now) for apples-to-apples staleness', async () => {
     setupSuccessMocks();
     const scenes = [makeScene('s1', 'Hello')];
-    const before = new Date().toISOString();
 
     await executeBatch('sess-1', scenes, [{ code: 'en', label: 'English' }], 'standard');
 
-    const after = new Date().toISOString();
     const savedUpdates = mockUpdateSegment.mock.calls[0][1];
-    expect(savedUpdates.sourceUpdatedAt).toBeDefined();
-    expect(savedUpdates.sourceUpdatedAt >= before).toBe(true);
-    expect(savedUpdates.sourceUpdatedAt <= after).toBe(true);
+    expect(savedUpdates.sourceUpdatedAt).toBe(scenes[0].updatedAt);
   });
 
   it('6.5 - provider resolution: standard -> marianmt, pro -> deepl', async () => {
