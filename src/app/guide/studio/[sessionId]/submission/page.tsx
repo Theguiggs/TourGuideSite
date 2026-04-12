@@ -2,19 +2,15 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { logger } from '@/lib/logger';
 import { getStudioSession, getSessionStatusConfig, listStudioScenes, listSegmentsByScene, cloneSessionAsV2, listStudioSessions } from '@/lib/api/studio';
 import { submitForReview, retractSubmission, updateSessionStatus } from '@/lib/api/studio-submission';
 import { listLanguagePurchases, checkLanguageReadiness, submitLanguageForModeration, retractLanguageSubmission } from '@/lib/api/language-purchase';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
 import { TourCommentThread } from '@/components/studio/tour-comment-thread';
-import { LANGUAGE_CONFIG } from '@/components/studio/language-checkout/language-checkbox-card';
 import { shouldUseStubs } from '@/config/api-mode';
 import { useAuth } from '@/lib/auth/auth-context';
 import type { StudioSession, StudioSessionStatus, TourLanguagePurchase, StudioScene, SceneSegment } from '@/types/studio';
-
-const SERVICE_NAME = 'PublicationPage';
 
 const LANG_FLAGS: Record<string, string> = {
   fr: '\u{1F1EB}\u{1F1F7}', en: '\u{1F1EC}\u{1F1E7}', es: '\u{1F1EA}\u{1F1F8}', it: '\u{1F1EE}\u{1F1F9}', de: '\u{1F1E9}\u{1F1EA}', ja: '\u{1F1EF}\u{1F1F5}', zh: '\u{1F1E8}\u{1F1F3}', pt: '\u{1F1F5}\u{1F1F9}',
@@ -182,7 +178,7 @@ export default function PublicationPage() {
         {/* Warning: nothing published */}
         {!hasAnyPublished && !['draft', 'editing', 'recording', 'ready', 'submitted'].includes(session.status) && (
           <div className="mt-3 p-2 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-700">
-            Aucune version de ce parcours n'est visible par les touristes.
+            Aucune version de ce parcours n&apos;est visible par les touristes.
           </div>
         )}
       </div>
@@ -348,7 +344,7 @@ export default function PublicationPage() {
               <span className="text-xl shrink-0">&#x1F4DD;</span>
               <div>
                 <p className="text-sm font-medium text-gray-700">Revenir en brouillon</p>
-                <p className="text-xs text-gray-500">Reprendre l'edition depuis le debut</p>
+                <p className="text-xs text-gray-500">Reprendre l&apos;edition depuis le debut</p>
               </div>
             </button>
           )}

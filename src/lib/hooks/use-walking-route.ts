@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { getFullWalkingRoute, invalidatePoint, type RouteSegment } from '@/lib/routing';
 
 interface WalkingRouteResult {
@@ -12,6 +13,12 @@ interface WalkingRouteResult {
   isLoading: boolean;
 }
 
+const EMPTY_RESULT: Omit<WalkingRouteResult, 'path'> = {
+  totalDistanceMeters: 0,
+  totalDurationSeconds: 0,
+  isLoading: false,
+};
+
 /**
  * Hook that fetches walking routes between ordered points via OSRM.
  * Returns a combined path for rendering on a map.
@@ -20,18 +27,13 @@ interface WalkingRouteResult {
 export function useWalkingRoute(
   points: { lat: number; lng: number }[],
 ): WalkingRouteResult {
-  const [result, setResult] = useState<WalkingRouteResult>({
-    path: points,
-    totalDistanceMeters: 0,
-    totalDurationSeconds: 0,
-    isLoading: false,
-  });
+  const [fetchedResult, setFetchedResult] = useState<WalkingRouteResult | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const prevPointsRef = useRef<string>('');
 
   useEffect(() => {
     if (points.length < 2) {
-      setResult({ path: points, totalDistanceMeters: 0, totalDurationSeconds: 0, isLoading: false });
+      // No route to fetch — the derived return value below will use the points directly
       return;
     }
 
@@ -40,41 +42,42 @@ export function useWalkingRoute(
     if (serialized === prevPointsRef.current) return;
     prevPointsRef.current = serialized;
 
-    // Show straight lines immediately while loading
-    setResult((prev) => ({ ...prev, path: points, isLoading: true }));
-
     // Debounce to avoid spamming during drag
     if (debounceRef.current) clearTimeout(debounceRef.current);
+    let cancelled = false;
     debounceRef.current = setTimeout(() => {
-      let cancelled = false;
-
       getFullWalkingRoute(points).then(({ segments, totalDistanceMeters, totalDurationSeconds }) => {
         if (cancelled) return;
         // Combine all segment paths, avoiding duplicate points at junctions
         const combined: { lat: number; lng: number }[] = [];
         for (const seg of segments) {
-          const startIdx = combined.length > 0 ? 1 : 0; // skip first point (duplicate of prev segment end)
+          const startIdx = combined.length > 0 ? 1 : 0;
           for (let i = startIdx; i < seg.path.length; i++) {
             combined.push(seg.path[i]);
           }
         }
-        setResult({
+        setFetchedResult({
           path: combined.length > 0 ? combined : points,
           totalDistanceMeters,
           totalDurationSeconds,
           isLoading: false,
         });
       });
-
-      return () => { cancelled = true; };
     }, 400);
 
     return () => {
+      cancelled = true;
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
   }, [points]);
 
-  return result;
+  // Derive return value: use fetched result if available and still matches current points,
+  // otherwise fall back to straight lines (points themselves)
+  if (points.length < 2) {
+    return { ...EMPTY_RESULT, path: points };
+  }
+  if (fetchedResult) return fetchedResult;
+  return { ...EMPTY_RESULT, path: points, isLoading: true };
 }
 
 /** Helper to call when a point was dragged (invalidates route cache for that point) */

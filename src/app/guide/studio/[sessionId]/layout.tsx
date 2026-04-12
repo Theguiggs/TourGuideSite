@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useStudioSessionStore, selectActiveSession, selectSetActiveSession } from '@/lib/stores/studio-session-store';
@@ -22,17 +22,21 @@ export default function SessionLayout({ children }: { children: React.ReactNode 
 
   const session = useStudioSessionStore(selectActiveSession);
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
-  const [headerLoading, setHeaderLoading] = useState(!session);
+  const [fetchDone, setFetchDone] = useState(false);
+  const fetchStartedRef = useRef(false);
 
-  // If the store doesn't have the session yet (direct navigation), load it
+  // Header loading is derived: no session yet AND fetch hasn't completed
+  const headerLoading = !session && !fetchDone;
+
+  // Load session from API if not already in store
   useEffect(() => {
-    if (session) { setHeaderLoading(false); return; }
+    if (session || fetchStartedRef.current) return;
+    fetchStartedRef.current = true;
     let cancelled = false;
     getStudioSession(sessionId).then((sess) => {
-      if (!cancelled && sess) {
-        setActiveSession(sess);
-      }
-      if (!cancelled) setHeaderLoading(false);
+      if (cancelled) return;
+      if (sess) setActiveSession(sess);
+      setFetchDone(true);
     });
     return () => { cancelled = true; };
   }, [sessionId, session, setActiveSession]);
