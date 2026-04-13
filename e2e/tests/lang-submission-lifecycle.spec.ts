@@ -48,7 +48,8 @@ async function gPage(browser: Browser, path: string) {
   await page.waitForLoadState('domcontentloaded', { timeout: 15_000 });
   const btn = page.locator('button:has-text("Accepter")');
   if (await btn.isVisible({ timeout: 1_500 }).catch(() => false)) { await btn.click(); await page.waitForTimeout(500); }
-  await page.waitForTimeout(1_500);
+  // Allow AppSync hydration — CI prod is slower than local dev
+  await page.waitForTimeout(4_000);
   return { context, page };
 }
 async function aPage(browser: Browser, path: string) {
@@ -57,7 +58,8 @@ async function aPage(browser: Browser, path: string) {
   await page.goto('/'); await injectConsent(page);
   await page.goto(path);
   await page.waitForLoadState('domcontentloaded', { timeout: 15_000 });
-  await page.waitForTimeout(1_500);
+  // Allow AppSync hydration — CI prod is slower than local dev
+  await page.waitForTimeout(4_000);
   return { context, page };
 }
 

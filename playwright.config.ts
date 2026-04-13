@@ -18,12 +18,15 @@ export default defineConfig({
     : [['html', { open: 'never' }], ['list']],
   globalSetup: './e2e/fixtures/global-setup.ts',
   globalTeardown: './e2e/fixtures/global-teardown.ts',
+  // CI prod build is slower than dev; bump default expect timeout from 5s to 15s
+  // so that `expect(page.locator(...)).toBeVisible()` waits long enough for AppSync data to arrive
+  expect: { timeout: 15_000 },
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    actionTimeout: 10_000,
+    actionTimeout: 15_000,
   },
   projects: [
     { name: 'chromium', use: { browserName: 'chromium' } },
