@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getCityBySlug, getToursByCity, getCities } from '@/lib/api/tours';
+import { getCityBySlug, getToursByCity, getCities } from '@/lib/api/tours-server';
 import { getGuidesByCity } from '@/lib/api/guides-public';
 import { TourListWithFilter } from './tour-list-filter';
 

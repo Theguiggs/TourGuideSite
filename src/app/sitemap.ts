@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { getCities, getAllTours } from '@/lib/api/tours';
+import { getCities, getAllTours } from '@/lib/api/tours-server';
 import { getAllPublicGuides } from '@/lib/api/guides-public';
 
 const BASE_URL = 'https://tourguide.app';

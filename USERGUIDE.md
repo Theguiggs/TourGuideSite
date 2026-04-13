@@ -1,6 +1,6 @@
 # TourGuideWeb — User Guide & Protocole de test
 
-> Dernière mise à jour : 2026-03-08
+> Dernière mise à jour : 2026-04-12
 
 ---
 
@@ -56,10 +56,13 @@ npm run dev
 | `npm run dev` | Serveur de développement avec hot reload |
 | `npm run build` | Build de production |
 | `npm run start` | Démarrer le build de production |
-| `npm run test` | Lancer les tests Jest |
+| `npm run test` | Lancer les tests Jest (~399 tests, 50 suites) |
 | `npm run typecheck` | Vérification TypeScript (sans compilation) |
 | `npm run lint` | Vérification ESLint |
 | `npm run seed` | Initialiser la base de données (via ts-node) |
+| `npm run e2e` | Tests Playwright |
+| `npm run e2e:ui` | Playwright en mode UI interactif |
+| `npm run e2e:report` | Voir le rapport de tests E2E |
 
 ---
 
@@ -84,14 +87,48 @@ Tous ces scripts doivent passer sans erreur avant de continuer.
 
 ### 3.2 Pages à vérifier manuellement
 
+#### Pages publiques
+
 | URL | Ce qu'on vérifie |
 |---|---|
 | `http://localhost:3000` | Page d'accueil — affichage général |
-| `http://localhost:3000/guides` | Liste des guides |
-| `http://localhost:3000/guide/[id]` | Détail d'un guide |
-| `http://localhost:3000/catalogue` | Catalogue |
-| `http://localhost:3000/admin` | Interface d'administration |
-| `http://localhost:3000/privacy-policy` | Page politique de confidentialité |
+| `http://localhost:3000/catalogue` | Catalogue des tours |
+| `http://localhost:3000/catalogue/[city]` | Tours d'une ville |
+| `http://localhost:3000/catalogue/[city]/[tourSlug]` | Détail d'un tour |
+| `http://localhost:3000/guides/[guideSlug]` | Page publique d'un guide |
+
+#### Espace Guide
+
+| URL | Ce qu'on vérifie |
+|---|---|
+| `http://localhost:3000/guide/login` | Connexion guide |
+| `http://localhost:3000/guide/signup` | Inscription guide |
+| `http://localhost:3000/guide/profile` | Profil guide |
+| `http://localhost:3000/guide/dashboard` | Tableau de bord guide |
+| `http://localhost:3000/guide/revenue` | Revenus guide |
+| `http://localhost:3000/guide/studio` | Liste des sessions studio |
+| `http://localhost:3000/guide/studio/[sessionId]` | Détail d'une session |
+| `http://localhost:3000/guide/studio/[sessionId]/edit` | Éditeur de texte |
+| `http://localhost:3000/guide/studio/[sessionId]/general` | Informations générales |
+| `http://localhost:3000/guide/studio/[sessionId]/itinerary` | Éditeur d'itinéraire |
+| `http://localhost:3000/guide/studio/[sessionId]/photos` | Gestion des photos |
+| `http://localhost:3000/guide/studio/[sessionId]/preview` | Prévisualisation |
+| `http://localhost:3000/guide/studio/[sessionId]/record` | Enregistrement audio |
+| `http://localhost:3000/guide/studio/[sessionId]/scenes` | Gestion des scènes |
+| `http://localhost:3000/guide/studio/[sessionId]/submission` | Soumission pour modération |
+
+#### Administration
+
+| URL | Ce qu'on vérifie |
+|---|---|
+| `http://localhost:3000/admin/analytics` | Analytics et funnel |
+| `http://localhost:3000/admin/guides` | Liste des guides |
+| `http://localhost:3000/admin/guides/[guideId]` | Détail d'un guide |
+| `http://localhost:3000/admin/moderation` | File de modération |
+| `http://localhost:3000/admin/moderation/[moderationId]` | Détail modération |
+| `http://localhost:3000/admin/moderation/history` | Historique modération |
+| `http://localhost:3000/admin/tours` | Gestion des tours |
+| `http://localhost:3000/admin/tours/[tourId]` | Détail d'un tour |
 
 ---
 
@@ -118,7 +155,7 @@ Tous ces scripts doivent passer sans erreur avant de continuer.
 
 ---
 
-## 4. Stack technique (rappel)
+## 4. Stack technique
 
 | Technologie | Version |
 |---|---|
@@ -126,9 +163,12 @@ Tous ces scripts doivent passer sans erreur avant de continuer.
 | React | 19.x |
 | TypeScript | 5.x |
 | Tailwind CSS | 4.x |
-| AWS Amplify | 6.x |
+| AWS Amplify | 6.16.x |
+| Zustand | 5.x |
 | Leaflet / React-Leaflet | 1.9.x / 5.x |
+| Stripe | latest |
 | Jest | 30.x |
+| Playwright | 1.58.x |
 
 ---
 
@@ -136,17 +176,47 @@ Tous ces scripts doivent passer sans erreur avant de continuer.
 
 ```
 src/
-├── app/           # Pages Next.js (App Router)
-│   ├── admin/     # Interface d'administration
-│   ├── catalogue/ # Catalogue des guides
-│   ├── guide/     # Détail d'un guide
-│   ├── guides/    # Liste des guides
-│   └── privacy-policy/
-├── components/    # Composants React réutilisables
-├── config/        # Configuration (api-mode.ts)
+├── app/                  # Pages Next.js (App Router)
+│   ├── catalogue/        # Catalogue public (villes, tours)
+│   ├── guide/            # Espace guide
+│   │   ├── studio/       # Studio d'enregistrement (11 sous-pages)
+│   │   ├── login/        # Connexion
+│   │   ├── signup/       # Inscription
+│   │   ├── profile/      # Profil
+│   │   ├── dashboard/    # Tableau de bord
+│   │   └── revenue/      # Revenus
+│   ├── admin/            # Interface d'administration
+│   │   ├── analytics/    # Funnel et coûts
+│   │   ├── guides/       # Gestion guides
+│   │   ├── moderation/   # Modération contenu
+│   │   └── tours/        # Gestion tours
+│   └── guides/           # Pages publiques des guides
+├── components/           # Composants React partagés
+├── config/               # Configuration (api-mode.ts)
+├── hooks/                # use-auto-save, use-auto-refund
 ├── lib/
-│   ├── amplify/   # Config AWS Amplify + utils SSR
-│   ├── api/       # Couche d'accès aux données
-│   └── auth/      # Authentification
-└── types/         # Types TypeScript partagés
+│   ├── amplify/          # Config AWS Amplify + utils SSR
+│   ├── api/              # Couche d'accès aux données (16 modules)
+│   ├── auth/             # Contexte authentification
+│   ├── stores/           # 9 stores Zustand
+│   ├── studio/           # Services studio (recorder, player, prompter, mixer…)
+│   └── multilang/        # Traduction batch, i18n, staleness
+└── types/                # Types TypeScript partagés
 ```
+
+---
+
+## 6. Microservice Python
+
+Le dossier `microservice/` contient un serveur Python pour les traitements audio :
+
+```bash
+cd microservice
+pip install -r requirements.txt
+python local_server.py
+```
+
+Services disponibles :
+- **TTS** : Synthèse vocale (text-to-speech)
+- **Traduction** : Traduction multilingue batch
+- **Détection de silence** : Analyse audio automatique

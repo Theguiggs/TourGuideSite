@@ -166,17 +166,17 @@ const MOCK_POIS: Record<string, { id: string; title: string; description: string
   ],
 };
 
-// --- Stub API functions ---
+// --- Stub API functions (exported for reuse by tours-server.ts) ---
 
-function getStubCities(): City[] { return MOCK_CITIES; }
-function getStubCityBySlug(slug: string): City | null { return MOCK_CITIES.find((c) => c.slug === slug) ?? null; }
-function getStubToursByCity(citySlug: string): Tour[] {
+export function getStubCities(): City[] { return MOCK_CITIES; }
+export function getStubCityBySlug(slug: string): City | null { return MOCK_CITIES.find((c) => c.slug === slug) ?? null; }
+export function getStubToursByCity(citySlug: string): Tour[] {
   return MOCK_TOURS.filter((t) => t.citySlug === citySlug && t.status === 'published').sort((a, b) => {
     if (a.isFree !== b.isFree) return a.isFree ? -1 : 1;
     return a.title.localeCompare(b.title);
   });
 }
-function getStubTourBySlug(citySlug: string, tourSlug: string): TourDetail | null {
+export function getStubTourBySlug(citySlug: string, tourSlug: string): TourDetail | null {
   const tour = MOCK_TOURS.find((t) => t.citySlug === citySlug && t.slug === tourSlug);
   if (!tour) return null;
   const pois = MOCK_POIS[tour.id] || [];
@@ -186,11 +186,11 @@ function getStubTourBySlug(citySlug: string, tourSlug: string): TourDetail | nul
     : 0;
   return { ...tour, pois, reviews, averageRating, reviewCount: reviews.length, completionCount: 42 };
 }
-function getStubAllTours(): Tour[] { return MOCK_TOURS.filter((t) => t.status === 'published'); }
+export function getStubAllTours(): Tour[] { return MOCK_TOURS.filter((t) => t.status === 'published'); }
 
 // --- Real API helpers ---
 
-function generateSlug(text: string): string {
+export function generateSlug(text: string): string {
   return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
@@ -310,7 +310,7 @@ async function resolveGuideName(guideId: string): Promise<string> {
 }
 
 // City descriptions — static for known cities, empty for unknown
-const CITY_DESCRIPTIONS: Record<string, string> = {
+export const CITY_DESCRIPTIONS: Record<string, string> = {
   grasse: 'Capitale mondiale du parfum, perchee dans les collines de la Cote d\'Azur.',
   paris: 'La Ville Lumiere et ses quartiers historiques.',
   lyon: 'Capitale de la gastronomie, entre Rhone et Saone.',

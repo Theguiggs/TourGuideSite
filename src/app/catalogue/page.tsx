@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getAllToursWithCoords } from '@/lib/api/tours';
+import { getAllToursWithCoords } from '@/lib/api/tours-server';
 import TrackPageView from '@/components/TrackPageView';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { CatalogueView } from './catalogue-view';
