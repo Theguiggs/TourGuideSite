@@ -24,6 +24,7 @@ import {
   cleanupByPrefix,
   type SeededTour,
 } from '../fixtures/seed.fixture';
+import { updateSessionStatus } from '../helpers/appsync-direct';
 
 const STUDIO_BASE = '/guide/studio';
 const PREFIX = e2ePrefix('creation');
@@ -44,6 +45,7 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
   let guidePath: string;
   let seeded: SeededTour;
   let sessionUrl: string;
+  let token: string;
 
   test.beforeAll(async () => {
     guidePath = getGuideStorageStatePath();
@@ -52,8 +54,10 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
       createStorageState(tokens, E2E_GUIDE_EMAIL, guidePath);
     }
 
-    const token = getAccessTokenFromStorageState(guidePath);
-    seeded = await seedMultilangReadyTour(PREFIX, token);
+    token = getAccessTokenFromStorageState(guidePath);
+    // Seed in 'editing' so tests 1.2 and 1.4 can edit fields.
+    // Test 1.10 will switch to 'submitted' when it needs to see the multilang section.
+    seeded = await seedMultilangReadyTour(PREFIX, token, { sessionStatus: 'editing' });
     sessionUrl = `${STUDIO_BASE}/${seeded.sessionId}`;
 
     console.log(`[studio-tour-creation] Seeded tour=${seeded.tourId}, session=${seeded.sessionId}, scenes=${seeded.sceneIds.length}`);
@@ -395,6 +399,9 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
   // 'published', or 'revision_requested'. NOT on 'ready', 'draft', or 'editing'.
   // ---------------------------------------------------------------------------
   test('1.10 - Session status is "Soumis" and multilang button visible', async ({ browser }) => {
+    // Switch to 'submitted' so the multilang section is visible
+    await updateSessionStatus(seeded.sessionId, 'submitted', token);
+
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
 

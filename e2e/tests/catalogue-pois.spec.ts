@@ -39,67 +39,54 @@ test.describe('Catalogue POIs', () => {
     await cleanupByPrefix(prefix);
   });
 
-  test('catalogue main page lists cities with photos', async ({ page }) => {
+  test('catalogue main page lists tour cards', async ({ page }) => {
     await page.goto('/catalogue');
-    // Cities should have images
-    const cityCards = page.locator('[class*="rounded-2xl"]');
-    await expect(cityCards.first()).toBeVisible({ timeout: 10_000 });
-    const count = await cityCards.count();
+    // New catalogue UI: tour cards with data-testid="tour-card-{id}"
+    const tourCards = page.locator('[data-testid^="tour-card-"]');
+    await expect(tourCards.first()).toBeVisible({ timeout: 10_000 });
+    const count = await tourCards.count();
     expect(count).toBeGreaterThanOrEqual(1);
   });
 
   test('tour detail shows description and metadata', async ({ page }) => {
-    // Navigate to a known seeded tour if it exists, otherwise any tour
     await page.goto('/catalogue');
-    await page.locator('a[class*="rounded-2xl"], [class*="rounded-2xl"] a').first().click();
-    await expect(page).toHaveURL(/\/catalogue\//, { timeout: 10_000 });
+    // Click the first tour card (new UI navigates directly to tour detail)
+    await page.locator('[data-testid^="tour-card-"]').first().click();
+    await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
 
-    // Click first tour
-    const tourCard = page.locator('a[class*="rounded-xl"]').first();
-    if (await tourCard.isVisible({ timeout: 5_000 }).catch(() => false)) {
-      await tourCard.click();
-      await expect(page).toHaveURL(/\/catalogue\/.*\//, { timeout: 10_000 });
+    // Description section
+    await expect(page.getByText('Description')).toBeVisible({ timeout: 5_000 });
 
-      // Description section
-      await expect(page.getByText('Description')).toBeVisible({ timeout: 5_000 });
+    // Metadata — duration, distance
+    await expect(page.getByText('min').first()).toBeVisible();
+    await expect(page.getByText('km').first()).toBeVisible();
 
-      // Metadata sidebar — duration, distance, POIs
-      await expect(page.getByText('min').first()).toBeVisible();
-      await expect(page.getByText('km').first()).toBeVisible();
-
-      // Download CTA
-      await expect(page.getByText(/Telecharger/i).first()).toBeVisible();
-    }
+    // Download CTA
+    await expect(page.getByText(/Telecharger/i).first()).toBeVisible();
   });
 
   test('tour detail shows reviews with ratings', async ({ page }) => {
     await page.goto('/catalogue');
-    await page.locator('a[class*="rounded-2xl"], [class*="rounded-2xl"] a').first().click();
-    await expect(page).toHaveURL(/\/catalogue\//, { timeout: 10_000 });
+    await page.locator('[data-testid^="tour-card-"]').first().click();
+    await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
 
-    const tourCard = page.locator('a[class*="rounded-xl"]').first();
-    if (await tourCard.isVisible({ timeout: 5_000 }).catch(() => false)) {
-      await tourCard.click();
+    // Avis section should exist
+    await expect(page.getByText('Avis').first()).toBeVisible({ timeout: 5_000 });
 
-      // Avis section should exist
-      await expect(page.getByText('Avis').first()).toBeVisible({ timeout: 5_000 });
-
-      // Star ratings
-      await expect(page.locator('[aria-label*="etoiles"]').first()).toBeVisible();
+    // Star ratings (if reviews exist)
+    const stars = page.locator('[aria-label*="etoiles"]');
+    const starCount = await stars.count();
+    if (starCount > 0) {
+      await expect(stars.first()).toBeVisible();
     }
   });
 
   test('tour detail shows guide info', async ({ page }) => {
     await page.goto('/catalogue');
-    await page.locator('a[class*="rounded-2xl"], [class*="rounded-2xl"] a').first().click();
-    await expect(page).toHaveURL(/\/catalogue\//, { timeout: 10_000 });
+    await page.locator('[data-testid^="tour-card-"]').first().click();
+    await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
 
-    const tourCard = page.locator('a[class*="rounded-xl"]').first();
-    if (await tourCard.isVisible({ timeout: 5_000 }).catch(() => false)) {
-      await tourCard.click();
-
-      // Guide name should be visible
-      await expect(page.getByText('Guide local').first()).toBeVisible({ timeout: 5_000 });
-    }
+    // Guide name should be visible
+    await expect(page.getByText('Guide local').first()).toBeVisible({ timeout: 5_000 });
   });
 });

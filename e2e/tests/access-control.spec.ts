@@ -42,23 +42,17 @@ test.describe('Access Control', () => {
   test('guest can browse catalogue cities', async ({ page }) => {
     await page.goto('/catalogue');
     await expect(page.locator('h1')).toContainText('Catalogue');
-    // At least one city should be visible
-    await expect(page.locator('[class*="rounded-2xl"]').first()).toBeVisible({ timeout: 10_000 });
+    // At least one tour card should be visible in the new map-based catalogue
+    await expect(page.locator('[data-testid^="tour-card-"]').first()).toBeVisible({ timeout: 10_000 });
   });
 
   test('guest can view tour detail page', async ({ page }) => {
     await page.goto('/catalogue');
-    // Click first city
-    await page.locator('[class*="rounded-2xl"] a, a[class*="rounded-2xl"]').first().click();
-    await expect(page).toHaveURL(/\/catalogue\//, { timeout: 10_000 });
-    // Click first tour
-    const tourLink = page.locator('a[class*="rounded-xl"]').first();
-    if (await tourLink.isVisible({ timeout: 5_000 }).catch(() => false)) {
-      await tourLink.click();
-      await expect(page).toHaveURL(/\/catalogue\/.*\//, { timeout: 10_000 });
-      // Tour title should be visible
-      await expect(page.locator('h1').first()).toBeVisible();
-    }
+    // Click first tour card (new UI navigates directly to tour detail)
+    await page.locator('[data-testid^="tour-card-"]').first().click();
+    await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
+    // Tour title should be visible
+    await expect(page.locator('h1').first()).toBeVisible();
   });
 
   test('authenticated user can access guide dashboard', async ({ browser }) => {

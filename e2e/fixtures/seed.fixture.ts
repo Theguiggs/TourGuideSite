@@ -187,6 +187,7 @@ export async function seedMobileSession(
 export async function seedMultilangReadyTour(
   prefix: string,
   token: string,
+  options?: { sessionStatus?: 'draft' | 'editing' | 'recording' | 'ready' | 'submitted' | 'published' },
 ): Promise<SeededTour & { guideId: string }> {
   validatePrefix(prefix);
 
@@ -202,7 +203,7 @@ export async function seedMultilangReadyTour(
 
   const session = await seedSession(prefix, tour.id, token, {
     title: `${prefix} Visite Grasse`,
-    status: 'submitted',
+    status: options?.sessionStatus ?? 'submitted',
     guideId,
   });
 

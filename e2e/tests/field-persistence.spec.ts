@@ -60,7 +60,8 @@ test.describe.serial('Field Persistence', () => {
     }
 
     token = getAccessTokenFromStorageState(guidePath);
-    seeded = await seedMultilangReadyTour(PREFIX, token);
+    // Use 'editing' so title/description fields are editable (not locked)
+    seeded = await seedMultilangReadyTour(PREFIX, token, { sessionStatus: 'editing' });
     sessionUrl = `${STUDIO_BASE}/${seeded.sessionId}`;
 
     // Seed a language purchase for English
@@ -404,11 +405,11 @@ test.describe.serial('Field Persistence', () => {
     await page.goto(`${sessionUrl}/scenes`);
     await page.waitForTimeout(3_000);
 
-    // Click on Text tab
+    // Click on Text tab (wait for it to be ready)
     const textTab = page.getByTestId('tab-text');
-    if (await textTab.isVisible().catch(() => false)) {
-      await textTab.click();
-    }
+    await expect(textTab).toBeVisible({ timeout: 10_000 });
+    await textTab.click();
+    await page.waitForTimeout(500);
 
     // Edit text
     const sceneEditor = page.getByTestId('scene-editor');
@@ -449,11 +450,11 @@ test.describe.serial('Field Persistence', () => {
     await page.goto(`${sessionUrl}/scenes`);
     await page.waitForTimeout(3_000);
 
-    // Click Text tab
+    // Click Text tab (wait until ready)
     const textTab = page.getByTestId('tab-text');
-    if (await textTab.isVisible().catch(() => false)) {
-      await textTab.click();
-    }
+    await expect(textTab).toBeVisible({ timeout: 10_000 });
+    await textTab.click();
+    await page.waitForTimeout(500);
 
     // Edit text
     const sceneEditor = page.getByTestId('scene-editor');
@@ -476,11 +477,12 @@ test.describe.serial('Field Persistence', () => {
 
     // Go to Text tab
     const textTab2 = page.getByTestId('tab-text');
-    if (await textTab2.isVisible().catch(() => false)) {
-      await textTab2.click();
-    }
+    await expect(textTab2).toBeVisible({ timeout: 10_000 });
+    await textTab2.click();
+    await page.waitForTimeout(500);
 
     // Verify text persisted
+    await expect(page.getByTestId('scene-editor')).toBeVisible({ timeout: 10_000 });
     const currentText = await page.getByTestId('scene-editor').inputValue();
     expect(currentText).toBe(newText);
 
