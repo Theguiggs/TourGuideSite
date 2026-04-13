@@ -97,3 +97,14 @@ export async function getGuideTourByIdServer(id: string) {
     return null;
   }
 }
+
+export async function getGuideProfileByIdServer(id: string) {
+  try {
+    const client = getServerClient();
+    const result = await client.models.GuideProfile.get({ id });
+    return result.data ?? null;
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'getGuideProfileByIdServer failed', { error: String(error) });
+    return null;
+  }
+}

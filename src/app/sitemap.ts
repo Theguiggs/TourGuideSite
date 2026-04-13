@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { getCities, getAllTours } from '@/lib/api/tours-server';
-import { getAllPublicGuides } from '@/lib/api/guides-public';
+import { getAllPublicGuides } from '@/lib/api/guides-public-server';
+
+// Force dynamic rendering: server AppSync client reads cookies, incompatible with static generation.
+export const dynamic = 'force-dynamic';
 
 const BASE_URL = 'https://tourguide.app';
 

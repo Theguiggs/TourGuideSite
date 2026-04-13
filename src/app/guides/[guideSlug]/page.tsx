@@ -4,20 +4,15 @@ import { notFound } from 'next/navigation';
 import {
   getGuideBySlug,
   getGuidePublicTours,
-  getAllPublicGuides,
-} from '@/lib/api/guides-public';
+} from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
 import { AnalyticsEvents } from '@/lib/analytics';
 
-export const revalidate = 300; // ISR: 5 minutes
+// Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
+export const dynamic = 'force-dynamic';
 
 interface GuidePageProps {
   params: Promise<{ guideSlug: string }>;
-}
-
-export async function generateStaticParams() {
-  const guides = await getAllPublicGuides();
-  return guides.map((g) => ({ guideSlug: g.slug }));
 }
 
 export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getTourBySlug, getCityBySlug, getAllTours } from '@/lib/api/tours-server';
-import { getGuideSlugByGuideId } from '@/lib/api/guides-public';
+import { getTourBySlug, getCityBySlug } from '@/lib/api/tours-server';
+import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
 import SmartAppLink from '@/components/SmartAppLink';
 import { AnalyticsEvents } from '@/lib/analytics';
@@ -33,19 +33,12 @@ function formatRelativeDate(dateStr: string): string {
   return `Publié en ${month}`;
 }
 
-export const revalidate = 300; // ISR: 5 minutes
+// Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
+export const dynamic = 'force-dynamic';
 
 interface TourPageProps {
   params: Promise<{ city: string; tourSlug: string }>;
   searchParams: Promise<{ source?: string; office?: string }>;
-}
-
-export async function generateStaticParams() {
-  const tours = await getAllTours();
-  return tours.map((tour) => ({
-    city: tour.citySlug,
-    tourSlug: tour.slug,
-  }));
 }
 
 export async function generateMetadata({ params }: TourPageProps): Promise<Metadata> {

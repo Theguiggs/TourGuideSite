@@ -1,19 +1,15 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getCityBySlug, getToursByCity, getCities } from '@/lib/api/tours-server';
-import { getGuidesByCity } from '@/lib/api/guides-public';
+import { getCityBySlug, getToursByCity } from '@/lib/api/tours-server';
+import { getGuidesByCity } from '@/lib/api/guides-public-server';
 import { TourListWithFilter } from './tour-list-filter';
 
-export const revalidate = 300; // ISR: 5 minutes
+// Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
+export const dynamic = 'force-dynamic';
 
 interface CityPageProps {
   params: Promise<{ city: string }>;
-}
-
-export async function generateStaticParams() {
-  const cities = await getCities();
-  return cities.map((city) => ({ city: city.slug }));
 }
 
 export async function generateMetadata({ params }: CityPageProps): Promise<Metadata> {
