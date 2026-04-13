@@ -67,7 +67,8 @@ test.describe('Admin Flow', () => {
     const page = await context.newPage();
 
     await page.goto('/admin/moderation');
-    await expect(page.getByText(prefix, { exact: false }).first()).toBeVisible({ timeout: 10_000 });
+    // CI: DynamoDB + AppSync scan can be slow for newly seeded items; allow extra time
+    await expect(page.getByText(prefix, { exact: false }).first()).toBeVisible({ timeout: 30_000 });
 
     await context.close();
   });
@@ -79,7 +80,7 @@ test.describe('Admin Flow', () => {
     await page.goto('/admin/moderation');
     // Find the row containing our tour prefix and click Examiner
     const row = page.locator('tr', { hasText: prefix }).first();
-    await expect(row).toBeVisible({ timeout: 10_000 });
+    await expect(row).toBeVisible({ timeout: 30_000 });
     await row.getByText('Examiner').click();
 
     // Should navigate to moderation detail page

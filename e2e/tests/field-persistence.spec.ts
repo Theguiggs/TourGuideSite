@@ -229,16 +229,13 @@ test.describe.serial('Field Persistence', () => {
       buffer,
     });
 
-    // Wait for upload to complete (stub mode is instant)
-    await page.waitForTimeout(3_000);
-
-    // Verify photo appears (either preview URL or S3Image)
-    const coverArea = page.locator('img[alt="Couverture"]');
-    const hasCover = await coverArea.isVisible().catch(() => false);
+    // Wait for upload to complete (real S3 upload in CI can take several seconds)
+    // Wait for the button text to change to "Changer la photo" (indicates upload done)
+    await expect(page.getByTestId('cover-photo-btn')).toContainText('Changer', { timeout: 15_000 });
 
     // Save
     await page.getByTestId('save-general-btn').click();
-    await expect(page.locator('[role="status"]', { hasText: /Enregistr/i })).toBeVisible({ timeout: 5_000 });
+    await expect(page.locator('[role="status"]', { hasText: /Enregistr/i })).toBeVisible({ timeout: 10_000 });
 
     // Navigate away
     await page.goto(`${sessionUrl}/scenes`);
