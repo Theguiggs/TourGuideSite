@@ -117,6 +117,10 @@ test.describe('Full Multilang Cycle', () => {
     moderationItemId = mod.id;
 
     console.log(`[Setup] Tour:${tourId} Ses:${sessionId} EN:${enPurchaseId} ES:${esPurchaseId} IT:${itPurchaseId} Mod:${moderationItemId} Segs:${segmentIds.length}`);
+
+    // Give AppSync GSI (TourLanguagePurchaseBySessionId) time to propagate the new purchases.
+    // Local sandbox is fast (~1s), GitHub CI runners need more (5s observed).
+    await new Promise((r) => setTimeout(r, 5_000));
   });
 
   test.afterAll(async () => {

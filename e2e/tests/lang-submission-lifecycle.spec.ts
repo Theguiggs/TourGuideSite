@@ -88,6 +88,9 @@ test.describe('Language Submission Lifecycle', () => {
 
     const mod = await seedModerationItem(tourId, guideId, guideToken, { tourTitle: `${PREFIX} Grasse`, city: 'Grasse', status: 'pending' });
     moderationItemId = mod.id;
+
+    // Give AppSync GSI (TourLanguagePurchaseBySessionId) time to propagate in CI
+    await new Promise((r) => setTimeout(r, 5_000));
   });
 
   test.afterAll(async () => {

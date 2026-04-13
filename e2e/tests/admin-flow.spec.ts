@@ -55,6 +55,9 @@ test.describe('Admin Flow', () => {
       status: 'active',
     });
     purchaseId = purchase.id;
+
+    // Give AppSync GSIs (sessionId scan, listAllGuideTours) time to include the new seeds in CI
+    await new Promise((r) => setTimeout(r, 5_000));
   });
 
   test.afterAll(async () => {
