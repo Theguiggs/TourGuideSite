@@ -202,7 +202,7 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
     await page.goto(`${sessionUrl}/scenes`);
 
     // Wait for AppSync hydration (network call + Zustand re-render)
-    await page.waitForLoadState('networkidle', { timeout: 20_000 }).catch(() => {});
+    await page.waitForLoadState('domcontentloaded', { timeout: 20_000 }).catch(() => {});
     await page.waitForTimeout(2_000);
 
     // Language tablist should be present from seeded purchases
@@ -235,7 +235,7 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
     const { context, page } = await createGuideContext(browser, guidePath);
 
     await page.goto(`${sessionUrl}/scenes`);
-    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+    await page.waitForLoadState('domcontentloaded', { timeout: 15_000 }).catch(() => {});
 
     // Navigate to EN language tab
     const langTablist = page.locator('[role="tablist"][aria-label="Langues de la visite"]');
@@ -292,7 +292,7 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
     const page = await context.newPage();
 
     await page.goto('/admin/moderation');
-    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+    await page.waitForLoadState('domcontentloaded', { timeout: 15_000 }).catch(() => {});
 
     // Moderation page should load
     await expect(page).toHaveURL(/\/admin\/moderation/);
@@ -326,7 +326,7 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
     const { context, page } = await createGuideContext(browser, guidePath);
 
     await page.goto(`${sessionUrl}/scenes`);
-    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+    await page.waitForLoadState('domcontentloaded', { timeout: 15_000 }).catch(() => {});
 
     const langTablist = page.locator('[role="tablist"][aria-label="Langues de la visite"]');
     await expect(langTablist).toBeVisible({ timeout: 10_000 });
@@ -381,7 +381,7 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
 
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto(`${sessionUrl}/scenes`);
-    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+    await page.waitForLoadState('domcontentloaded', { timeout: 15_000 }).catch(() => {});
 
     const tablist = page.locator('[role="tablist"]');
     const hasTablist = await tablist.first().isVisible().catch(() => false);
@@ -409,7 +409,7 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
 
     await page.setViewportSize({ width: 768, height: 1024 });
     await page.goto(`${sessionUrl}/scenes`);
-    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+    await page.waitForLoadState('domcontentloaded', { timeout: 15_000 }).catch(() => {});
 
     const tablist = page.locator('[role="tablist"]');
     const hasTablist = await tablist.first().isVisible().catch(() => false);
@@ -449,7 +449,7 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
 
     // Navigate to scenes for tabs accessibility
     await page.goto(`${sessionUrl}/scenes`);
-    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+    await page.waitForLoadState('domcontentloaded', { timeout: 15_000 }).catch(() => {});
 
     // Language tablist should exist from seeded purchases
     const langTablist = page.locator('[role="tablist"][aria-label="Langues de la visite"]');

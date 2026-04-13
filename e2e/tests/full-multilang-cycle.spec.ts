@@ -41,7 +41,7 @@ async function guidePage(browser: Browser, path: string): Promise<{ ctx: Browser
   const page = await ctx.newPage();
   await page.goto('/'); await injectConsent(page);
   await page.goto(path);
-  await page.waitForLoadState('networkidle', { timeout: 15_000 });
+  await page.waitForLoadState('domcontentloaded', { timeout: 15_000 });
   const btn = page.locator('button:has-text("Accepter")');
   if (await btn.isVisible({ timeout: 1_500 }).catch(() => false)) { await btn.click(); await page.waitForTimeout(500); }
   await page.waitForTimeout(1_500);
@@ -52,7 +52,7 @@ async function adminPage(browser: Browser, path: string): Promise<{ ctx: Browser
   const page = await ctx.newPage();
   await page.goto('/'); await injectConsent(page);
   await page.goto(path);
-  await page.waitForLoadState('networkidle', { timeout: 15_000 });
+  await page.waitForLoadState('domcontentloaded', { timeout: 15_000 });
   await page.waitForTimeout(1_500);
   return { ctx, page };
 }
