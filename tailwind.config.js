@@ -7,6 +7,7 @@
  *
  * Cf. Story 1.3 (preset DS + polices Google Fonts).
  */
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const tgPreset = require('@tourguide/design-system/tailwind');
 
 /** @type {import('tailwindcss').Config} */

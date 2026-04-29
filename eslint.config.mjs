@@ -19,6 +19,13 @@ const eslintConfig = defineConfig([
     "coverage/**",
     // Python microservice (venv contains JS files that aren't ours)
     "microservice/**",
+    // Design source files copied from canvas — use globals (TGEyebrow,
+    // WizardShell, etc.) that don't exist as imports. Reference material only.
+    "docs/design/**",
+    // Visual regression baseline tests + utility scripts
+    "tests/**",
+    // Newdesign source (raw user input, not real code)
+    "newdesign/**",
   ]),
 ]);
 

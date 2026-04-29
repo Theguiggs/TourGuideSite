@@ -44,13 +44,23 @@ export function Collapsible({
   const [open, setOpen] = useState(defaultOpen);
   const [hydrated, setHydrated] = useState(false);
 
-  // Hydrate from localStorage on mount
+  // Hydrate from localStorage on mount.
+  // setState calls below are intentional one-shot hydration — disabled the
+  // set-state-in-effect rule per call (it doesn't apply to mount-only side effects).
   useEffect(() => {
-    if (!storageKey) { setHydrated(true); return; }
+    if (!storageKey) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setHydrated(true);
+      return;
+    }
     try {
       const stored = localStorage.getItem(`collapsible:${storageKey}`);
-      if (stored !== null) setOpen(stored === 'true');
+      if (stored !== null) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setOpen(stored === 'true');
+      }
     } catch { /* ignore */ }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHydrated(true);
   }, [storageKey]);
 
