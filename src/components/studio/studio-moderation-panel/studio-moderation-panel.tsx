@@ -76,7 +76,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
 
   return (
     <div data-testid="studio-moderation-panel">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Scènes du tour</h3>
+      <h3 className="text-lg font-semibold text-ink mb-4">Scènes du tour</h3>
 
       <div className="space-y-3 mb-6">
         {scenes.map((scene, index) => {
@@ -85,18 +85,18 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
           const isPlayingStudio = playingId === scene.id && playingType === 'studio';
 
           return (
-            <div key={scene.id} className="p-4 border border-gray-200 rounded-lg" data-testid={`mod-scene-${scene.id}`}>
+            <div key={scene.id} className="p-4 border border-line rounded-lg" data-testid={`mod-scene-${scene.id}`}>
               <div className="flex items-center gap-3 mb-2">
-                <span className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold">
+                <span className="w-6 h-6 rounded-full bg-paper-deep flex items-center justify-center text-xs font-bold">
                   {index + 1}
                 </span>
-                <span className="font-medium text-gray-900">{scene.title || `Scène ${index + 1}`}</span>
+                <span className="font-medium text-ink">{scene.title || `Scène ${index + 1}`}</span>
                 <span className={`px-1.5 py-0 rounded text-[10px] font-medium ${statusConfig.color}`}>
                   {statusConfig.label}
                 </span>
                 {scene.qualityScore && (
                   <span className={`px-1.5 py-0 rounded text-[10px] font-medium ${
-                    scene.qualityScore === 'good' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                    scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre'
                   }`}>
                     {scene.qualityScore === 'good' ? '✓ Bonne' : '⚠ À améliorer'}
                   </span>
@@ -108,8 +108,8 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                 {scene.originalAudioKey && (
                   <button
                     onClick={() => handlePlay(scene.id, 'original', scene.originalAudioKey!)}
-                    className={`text-xs px-2 py-1 rounded transition-colors ${
-                      isPlayingOriginal ? 'bg-blue-600 text-white' : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                    className={`text-xs px-2 py-1 rounded transition ${
+                      isPlayingOriginal ? 'bg-mer text-white' : 'bg-mer-soft text-mer hover:opacity-90'
                     }`}
                     data-testid={`play-original-${scene.id}`}
                   >
@@ -119,8 +119,8 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                 {scene.studioAudioKey && (
                   <button
                     onClick={() => handlePlay(scene.id, 'studio', scene.studioAudioKey!)}
-                    className={`text-xs px-2 py-1 rounded transition-colors ${
-                      isPlayingStudio ? 'bg-teal-600 text-white' : 'bg-teal-100 text-teal-700 hover:bg-teal-200'
+                    className={`text-xs px-2 py-1 rounded transition ${
+                      isPlayingStudio ? 'bg-grenadine text-white' : 'bg-grenadine-soft text-grenadine hover:opacity-90'
                     }`}
                     data-testid={`play-studio-${scene.id}`}
                   >
@@ -131,12 +131,12 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
 
               {/* Transcribed text */}
               {scene.transcriptText && (
-                <p className="text-sm text-gray-600 mb-2 line-clamp-3">{scene.transcriptText}</p>
+                <p className="text-sm text-ink-80 mb-2 line-clamp-3">{scene.transcriptText}</p>
               )}
 
               {/* Existing feedback */}
               {scene.moderationFeedback && (
-                <p className="text-xs text-red-600 mb-2">💬 Feedback : {scene.moderationFeedback}</p>
+                <p className="text-xs text-danger mb-2">💬 Feedback : {scene.moderationFeedback}</p>
               )}
 
               {/* Admin feedback input */}
@@ -145,7 +145,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                   value={feedbackText[scene.id] ?? ''}
                   onChange={(e) => setFeedbackText((prev) => ({ ...prev, [scene.id]: e.target.value }))}
                   placeholder="Feedback pour cette scène (optionnel)..."
-                  className="w-full text-xs border border-gray-200 rounded p-2 resize-none h-16"
+                  className="w-full text-xs border border-line rounded p-2 resize-none h-16"
                   data-testid={`feedback-input-${scene.id}`}
                 />
               )}
@@ -160,7 +160,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
           <button
             onClick={handleApprove}
             disabled={isProcessing}
-            className="bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white font-medium py-2 px-5 rounded-lg text-sm transition-colors"
+            className="bg-success hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-5 rounded-lg text-sm transition"
             data-testid="approve-btn"
           >
             ✓ Approuver
@@ -168,13 +168,13 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
           <button
             onClick={handleReject}
             disabled={isProcessing}
-            className="bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white font-medium py-2 px-5 rounded-lg text-sm transition-colors"
+            className="bg-danger hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-5 rounded-lg text-sm transition"
             data-testid="reject-btn"
           >
             ✗ Révision demandée
           </button>
           {message && (
-            <span className={`text-sm ${message.includes('approuvé') ? 'text-green-600' : 'text-amber-600'}`} role="status">
+            <span className={`text-sm ${message.includes('approuvé') ? 'text-success' : 'text-ocre'}`} role="status">
               {message}
             </span>
           )}

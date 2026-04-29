@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useMemo } from 'react';
 import { GoogleMap, useJsApiLoader, MarkerF, PolylineF } from '@react-google-maps/api';
+import { tg } from '@tourguide/design-system';
 import type { StudioScene } from '@/types/studio';
 import { useWalkingRoute } from '@/lib/hooks/use-walking-route';
 
@@ -37,13 +38,13 @@ export function PreviewMap({ scenes }: PreviewMapProps) {
   const { path: walkingPath, isLoading } = useWalkingRoute(points);
 
   if (geoScenes.length === 0 || !GOOGLE_MAPS_KEY) return null;
-  if (!isLoaded) return <div className="h-[280px] w-full bg-gray-100 animate-pulse rounded-lg" />;
+  if (!isLoaded) return <div className="h-[280px] w-full bg-paper-soft animate-pulse rounded-lg" />;
 
   const center = { lat: geoScenes[0].latitude!, lng: geoScenes[0].longitude! };
 
   return (
     <GoogleMap
-      mapContainerStyle={{ height: '280px', width: '100%', borderRadius: '8px' }}
+      mapContainerStyle={{ height: '280px', width: '100%', borderRadius: `${tg.radius.sm}px` }}
       center={center}
       zoom={16}
       onLoad={onLoad}
@@ -53,7 +54,7 @@ export function PreviewMap({ scenes }: PreviewMapProps) {
         <PolylineF
           path={walkingPath}
           options={{
-            strokeColor: '#0d9488',
+            strokeColor: tg.colors.mer,
             strokeWeight: 4,
             strokeOpacity: isLoading ? 0.4 : 0.7,
           }}
@@ -67,7 +68,7 @@ export function PreviewMap({ scenes }: PreviewMapProps) {
           icon={{
             path: google.maps.SymbolPath.CIRCLE,
             scale: 14,
-            fillColor: '#0d9488',
+            fillColor: tg.colors.mer,
             fillOpacity: 1,
             strokeColor: 'white',
             strokeWeight: 2,

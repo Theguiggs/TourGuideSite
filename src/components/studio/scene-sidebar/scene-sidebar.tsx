@@ -28,15 +28,15 @@ function SegmentBadges({ sceneId }: { sceneId: string }) {
   const badges: { label: string; color: string }[] = [];
 
   if (translationState?.status === 'completed') {
-    badges.push({ label: 'Traduit', color: 'bg-blue-100 text-blue-700' });
+    badges.push({ label: 'Traduit', color: 'bg-mer-soft text-mer' });
   } else if (translationState?.status === 'processing') {
-    badges.push({ label: 'Trad...', color: 'bg-blue-50 text-blue-500' });
+    badges.push({ label: 'Trad...', color: 'bg-mer-soft text-mer' });
   }
 
   if (ttsState?.status === 'completed') {
-    badges.push({ label: 'TTS', color: 'bg-purple-100 text-purple-700' });
+    badges.push({ label: 'TTS', color: 'bg-grenadine-soft text-grenadine' });
   } else if (ttsState?.status === 'processing') {
-    badges.push({ label: 'TTS...', color: 'bg-purple-50 text-purple-500' });
+    badges.push({ label: 'TTS...', color: 'bg-grenadine-soft text-grenadine' });
   }
 
   if (badges.length === 0) return null;
@@ -54,9 +54,9 @@ function SegmentBadges({ sceneId }: { sceneId: string }) {
 
 export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSidebarProps) {
   return (
-    <nav aria-label="Scenes" className="w-full lg:w-56 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-gray-200 bg-gray-50">
+    <nav aria-label="Scenes" className="w-full lg:w-56 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-line bg-paper-soft">
       <div className="p-3">
-        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 px-2">
+        <h3 className="text-xs font-semibold text-ink-40 uppercase tracking-wider mb-2 px-2">
           Scènes
         </h3>
         <ol className="space-y-1">
@@ -67,16 +67,16 @@ export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSide
               <li key={scene.id}>
                 <button
                   onClick={() => onSceneSelect(scene.id)}
-                  className={`w-full text-left px-2 py-1.5 rounded text-sm transition-colors ${
+                  className={`w-full text-left px-2 py-1.5 rounded text-sm transition ${
                     isActive
-                      ? 'bg-teal-100 text-teal-800 font-medium'
-                      : 'text-gray-700 hover:bg-gray-100'
+                      ? 'bg-grenadine-soft text-grenadine font-medium'
+                      : 'text-ink-80 hover:bg-paper-soft'
                   }`}
                   aria-current={isActive ? 'true' : undefined}
                   data-testid={`sidebar-scene-${scene.id}`}
                 >
                   <span className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-500 flex-shrink-0">
+                    <span className="w-5 h-5 rounded-full bg-paper-deep flex items-center justify-center text-xs font-bold text-ink-60 flex-shrink-0">
                       {scene.sceneIndex + 1}
                     </span>
                     <span className="truncate">{scene.title || `Scène ${scene.sceneIndex + 1}`}</span>

@@ -131,6 +131,53 @@ pip install -r requirements.txt
 python local_server.py
 ```
 
+## PWA & Favicons
+
+Le portail web TourGuide expose un `manifest.json` PWA et 5 assets favicons (SVG + 3 PNG + apple-touch-icon + ICO legacy). La source de vérité visuelle est le composant `<PinNegatif>` du package `@tourguide/design-system` (Story 2.4).
+
+### Source des assets
+
+Les binaires `public/favicon.svg`, `public/favicon-32.png`, `public/favicon-192.png`, `public/favicon-512.png`, `public/apple-touch-icon-180.png` et `public/favicon.ico` sont **produits par le pipeline Story 3.1** (`design-system/scripts/export-pinnegatif.ts`). Aucun de ces fichiers ne doit être modifié à la main — toute modification graphique passe par `<PinNegatif>` + re-run du pipeline.
+
+### Procédure de re-export après modif `<PinNegatif>`
+
+```bash
+# 1. Régénérer les binaires depuis le composant DS
+cd design-system
+npm run tg:export-icons -- --variant light --output-dir ../assets/icons
+
+# 2. Copier vers TourGuideWeb/public/ (voir docs/favicon-setup.md pour la liste)
+# 3. Convertir favicon-32.png → favicon.ico
+npx png-to-ico assets/icons/favicon-32.png > TourGuideWeb/public/favicon.ico
+```
+
+Détails complets : [`docs/favicon-setup.md`](../docs/favicon-setup.md).
+
+### Pourquoi 5 fichiers ?
+
+| Fichier | Pourquoi |
+|---------|----------|
+| `favicon.svg` | Vectoriel moderne — Chrome/Firefox/Safari récents, scaling parfait |
+| `favicon-32.png` | Fallback PNG petite taille pour onglets navigateur |
+| `favicon.ico` | Legacy IE/anciens navigateurs + safety net |
+| `favicon-192.png` / `favicon-512.png` | Icônes PWA Android (manifest.json) — 512 utilisée pour adaptive icon maskable |
+| `apple-touch-icon-180.png` | "Add to Home Screen" iOS Safari (PNG opaque sans alpha) |
+
+### Fichiers à NE PAS toucher manuellement
+
+- `public/favicon.svg`, `public/favicon-32.png`, `public/favicon-192.png`, `public/favicon-512.png`, `public/apple-touch-icon-180.png`, `public/favicon.ico`
+- Les balises `<link rel="icon">` dans `<head>` — gérées automatiquement par Next.js Metadata API via `src/app/layout.tsx` (`metadata.icons` + `viewport.themeColor`)
+
+### Manifest PWA
+
+`public/manifest.json` déclare TourGuide comme app installable :
+- `theme_color: #C1262A` (grenadine, alignée sur `tg.colors.grenadine`)
+- `background_color: #F4ECDD` (paper)
+- `display: standalone` (masque la barre URL en mode app)
+- `start_url: /` (requis Lighthouse PWA)
+
+Score Lighthouse PWA cible : **≥ 90** (sans service worker, qui est out-of-scope V1.0 — Phase B).
+
 ## Lien avec TourGuide Mobile
 
 Ce projet est le portail web compagnon de [TourGuide](https://github.com/Theguiggs/TourGuide) (React Native). Les deux partagent le même backend AWS Amplify (Cognito, AppSync, S3).

@@ -20,7 +20,7 @@ const SERVICE_NAME = 'RecordPage';
 // Code splitting: Teleprompter uses rAF — no SSR (NFR1, architecture spec)
 const Teleprompter = dynamic(
   () => import('@/components/studio/teleprompter').then((m) => ({ default: m.Teleprompter })),
-  { ssr: false, loading: () => <div className="bg-gray-900 rounded-lg h-96 animate-pulse" /> },
+  { ssr: false, loading: () => <div className="bg-ink rounded-lg h-96 animate-pulse" /> },
 );
 
 export default function RecordPage() {
@@ -102,7 +102,7 @@ export default function RecordPage() {
     return (
       <div className="p-6" aria-busy="true">
         <span className="sr-only">Chargement du prompteur...</span>
-        <div className="bg-gray-900 rounded-lg h-96 animate-pulse" />
+        <div className="bg-ink rounded-lg h-96 animate-pulse" />
       </div>
     );
   }
@@ -110,10 +110,10 @@ export default function RecordPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 hover:text-teal-700 text-sm mb-4 inline-block">
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
           &larr; Retour à la session
         </Link>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700" role="alert">
+        <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">
           {error || 'Session introuvable.'}
         </div>
       </div>
@@ -145,19 +145,19 @@ export default function RecordPage() {
       <div className="flex-1 p-4 lg:p-6 flex flex-col">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 hover:text-teal-700 text-sm mb-1 inline-block">
+            <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-1 inline-block">
               &larr; Retour à la session
             </Link>
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-ink">
               Prompteur — {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
               {queryLang && (
-                <span className="ml-2 text-sm font-normal text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">
+                <span className="ml-2 text-sm font-normal text-mer bg-mer-soft px-2 py-0.5 rounded">
                   {queryLang.toUpperCase()}
                 </span>
               )}
             </h2>
           </div>
-          <p className="text-xs text-gray-400">Espace = pause/reprendre · Échap = stop</p>
+          <p className="text-xs text-ink-40">Espace = pause/reprendre · Échap = stop</p>
         </div>
 
         {sceneText ? (
@@ -168,13 +168,13 @@ export default function RecordPage() {
             />
           </div>
         ) : (
-          <div className="flex-1 flex items-center justify-center bg-gray-100 rounded-lg mb-4" data-testid="no-text">
-            <div className="text-center text-gray-500 p-6">
+          <div className="flex-1 flex items-center justify-center bg-paper-soft rounded-lg mb-4" data-testid="no-text">
+            <div className="text-center text-ink-60 p-6">
               <p className="text-lg font-medium mb-2">Pas de texte pour cette scène</p>
               <p className="text-sm">Transcrivez ou saisissez le texte dans l&apos;éditeur avant d&apos;utiliser le prompteur.</p>
               <Link
                 href={`/guide/studio/${sessionId}/edit`}
-                className="inline-block mt-3 text-teal-600 hover:text-teal-700 font-medium text-sm"
+                className="inline-block mt-3 text-grenadine hover:opacity-80 font-medium text-sm"
               >
                 Ouvrir l&apos;éditeur
               </Link>

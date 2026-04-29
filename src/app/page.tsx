@@ -1,133 +1,200 @@
-import Link from 'next/link';
+import type { Metadata } from 'next';
 import TrackPageView from '@/components/TrackPageView';
 import CitiesSection from '@/components/CitiesSection';
+import HeroCta from './_components/HeroCta';
 import { AnalyticsEvents } from '@/lib/analytics';
+import { tg } from '@tourguide/design-system/tokens';
+import { editorial } from '@tourguide/design-system/editorial';
+import {
+  Button,
+  Card,
+  Eyebrow,
+  PullQuote,
+  NumberMark,
+} from '@tourguide/design-system/web';
+
+// Story 4.2 (T7) — Override léger du title pour la home (les autres metadata
+// héritent de `layout.tsx` Story 3.5, dont l'OG image `/og-default.png`).
+export const metadata: Metadata = {
+  title: 'TourGuide — Le monde a une voix.',
+  description: 'Là où les villes se racontent, à voix basse.',
+};
+
+const VALUE_PROPS = [
+  {
+    n: 1,
+    title: "Audio d'abord",
+    body: 'Levez les yeux. Le tour vous suit, au creux de l’oreille.',
+  },
+  {
+    n: 2,
+    title: 'Voix locales',
+    body: 'Chaque guide raconte sa ville comme un ami partage un secret.',
+  },
+  {
+    n: 3,
+    title: 'Hors-ligne',
+    body: 'Téléchargez avant le départ. Profitez sans réseau, où que vous soyez.',
+  },
+] as const;
+
+const STATS = [
+  { value: '10+', label: 'Tours disponibles' },
+  { value: '5+', label: 'Villes' },
+  { value: '4.7', label: 'Note moyenne' },
+] as const;
 
 export default function LandingPage() {
   return (
     <>
       <TrackPageView event={AnalyticsEvents.WEB_LANDING_VISIT} />
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-700 via-teal-800 to-teal-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+
+      {/* ─── Hero éditorial (AC 1, 2) ─────────────────────────────────────── */}
+      <section className="bg-paper">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
           <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-              Decouvrez les villes
-              <span className="text-amber-400"> autrement</span>
+            <Eyebrow color={tg.colors.grenadine}>Audio guide</Eyebrow>
+            <h1
+              className="font-display text-h3 md:text-h2 lg:text-h1 mt-4"
+              style={{ color: tg.colors.ink }}
+            >
+              Le monde a une voix.
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-teal-100 leading-relaxed">
-              Visites guidees audio immersives, creees par des guides locaux passionnes.
-              Mettez vos ecouteurs, rangez votre telephone et laissez-vous guider.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <a
-                href={process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#'}
-                className="inline-flex items-center justify-center bg-amber-500 text-gray-900 font-bold px-8 py-4 rounded-xl hover:bg-amber-400 text-lg"
-              >
-                Telecharger sur Android
-              </a>
-              <a
-                href={process.env.NEXT_PUBLIC_APP_STORE_IOS || '#'}
-                className="inline-flex items-center justify-center bg-white/10 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/20 border border-white/20 text-lg"
-              >
-                Telecharger sur iOS
-              </a>
+            <PullQuote size="md" style={{ marginTop: tg.space[4] }}>
+              Là où les villes se racontent, à voix basse.
+            </PullQuote>
+            <div className="mt-10">
+              <HeroCta label={`${editorial.cta.listen} un tour gratuit`} href="/catalogue" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Value Proposition */}
-      <section className="py-20 bg-white">
+      {/* ─── Value Proposition (AC 3) ────────────────────────────────────── */}
+      <section className="bg-paper-soft py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-16">
+          <h2
+            className="font-display text-h4 md:text-h3 lg:text-h2 text-center mb-16"
+            style={{ color: tg.colors.ink }}
+          >
             Pourquoi TourGuide ?
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Audio-First</h3>
-              <p className="text-gray-600">
-                Naviguez les yeux leves, telephone en poche. Le guidage audio spatial
-                vous dirige naturellement vers chaque point d&apos;interet.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Guides Locaux</h3>
-              <p className="text-gray-600">
-                Chaque visite est creee par un guide local passionne qui connait
-                les secrets et anecdotes de sa ville.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Disponible Hors-ligne</h3>
-              <p className="text-gray-600">
-                Telechargez vos visites a l&apos;avance et profitez-en meme sans
-                connexion internet. Ideal en voyage.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {VALUE_PROPS.map((item) => (
+              <Card key={item.n} variant="flat">
+                <Card.Header style={{ borderBottom: 'none', paddingBottom: 0 }}>
+                  <NumberMark n={item.n} color={tg.colors.grenadine} />
+                </Card.Header>
+                <Card.Body>
+                  <h3
+                    className="font-display"
+                    style={{
+                      color: tg.colors.ink,
+                      fontSize: tg.fontSize.h5,
+                      lineHeight: 1.2,
+                      marginTop: 0,
+                      marginBottom: tg.space[3],
+                    }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    className="font-sans"
+                    style={{
+                      color: tg.colors.ink80,
+                      fontSize: tg.fontSize.bodyLg,
+                      lineHeight: 1.55,
+                      margin: 0,
+                    }}
+                  >
+                    {item.body}
+                  </p>
+                </Card.Body>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="py-16 bg-gray-50">
+      {/* ─── Social Proof (AC 4) ─────────────────────────────────────────── */}
+      <section className="bg-paper-soft py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-teal-700">10+</div>
-              <div className="text-gray-600 mt-1">Visites disponibles</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-teal-700">5+</div>
-              <div className="text-gray-600 mt-1">Villes</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-teal-700">4.7</div>
-              <div className="text-gray-600 mt-1">Note moyenne</div>
-            </div>
+          <div className="text-center mb-10">
+            <Eyebrow color={tg.colors.ink60} style={{ display: 'inline-block' }}>
+              En chiffres
+            </Eyebrow>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            {STATS.map((stat) => (
+              <div key={stat.label}>
+                <div
+                  className="font-display"
+                  style={{
+                    color: tg.colors.grenadine,
+                    fontSize: tg.fontSize.h2,
+                    lineHeight: 1,
+                    letterSpacing: tg.tracking.display,
+                  }}
+                >
+                  {stat.value}
+                </div>
+                <div
+                  className="font-sans mt-2"
+                  style={{
+                    color: tg.colors.ink60,
+                    fontSize: tg.fontSize.body,
+                  }}
+                >
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Cities Preview */}
+      {/* ─── Cities Preview (hors scope 4.2 — Story 4.3 owns) ─────────────── */}
       <CitiesSection />
 
-      {/* Final CTA */}
-      <section className="py-20 bg-teal-700 text-white text-center">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">Pret a explorer ?</h2>
-          <p className="text-teal-100 text-lg mb-10">
-            Telechargez TourGuide gratuitement et commencez votre premiere visite audio.
+      {/* ─── Final CTA color-block grenadine (AC 5) ───────────────────────── */}
+      <section
+        className="bg-grenadine py-20 text-center"
+        style={{ color: tg.colors.paper }}
+      >
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2
+            className="font-display text-h4 md:text-h3 lg:text-h2 mb-6"
+            style={{ color: tg.colors.paper }}
+          >
+            Prêt à écouter ?
+          </h2>
+          <p
+            className="font-editorial italic mb-10"
+            style={{
+              color: tg.colors.paper,
+              fontSize: tg.fontSize.h6,
+              lineHeight: 1.4,
+            }}
+          >
+            Une ville, un casque, et plus rien d&apos;autre.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#'}
-              className="inline-flex items-center justify-center bg-amber-500 text-gray-900 font-bold px-8 py-4 rounded-xl hover:bg-amber-400 text-lg"
-            >
-              Google Play
-            </a>
-            <a
+            <Button
               href={process.env.NEXT_PUBLIC_APP_STORE_IOS || '#'}
-              className="inline-flex items-center justify-center bg-white/10 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/20 border border-white/20 text-lg"
+              variant="primary"
+              size="lg"
+              accessibilityLabel="Télécharger sur l’App Store"
             >
               App Store
-            </a>
+            </Button>
+            <Button
+              href={process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#'}
+              variant="primary"
+              size="lg"
+              accessibilityLabel="Télécharger sur Google Play"
+            >
+              Google Play
+            </Button>
           </div>
         </div>
       </section>

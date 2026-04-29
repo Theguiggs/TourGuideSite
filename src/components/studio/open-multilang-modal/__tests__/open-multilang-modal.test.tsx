@@ -255,7 +255,7 @@ describe('OpenMultilangModal', () => {
     // Step 1: only first indicator active
     const s1 = screen.getByTestId('step-indicator-1');
     const s2 = screen.getByTestId('step-indicator-2');
-    expect(s1.className).toContain('bg-teal-500');
-    expect(s2.className).toContain('bg-gray-200');
+    expect(s1.className).toContain('bg-grenadine');
+    expect(s2.className).toContain('bg-paper-deep');
   });
 });

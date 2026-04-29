@@ -12,7 +12,7 @@ export function QualityFeedback({ result }: QualityFeedbackProps) {
   return (
     <div
       className={`flex items-center gap-2 p-2 rounded text-sm ${
-        isGood ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'
+        isGood ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre'
       }`}
       role="status"
       data-testid="quality-feedback"

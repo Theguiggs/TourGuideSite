@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>TourGuide — Charte complète</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  html, body { margin: 0; background: #E8E2D5; font-family: Manrope, system-ui, sans-serif; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="ds/tokens.jsx"></script>
+<script type="text/babel" src="ds/icons.jsx"></script>
+<script type="text/babel" src="ds/imagery.jsx"></script>
+<script type="text/babel" src="ds/app-icons.jsx"></script>
+<script type="text/babel" src="ds/app-icon-final.jsx"></script>
+<script type="text/babel" src="ds/handoff-page.jsx"></script>
+<script type="text/babel" src="ds/murmure-icons.jsx"></script>
+<script type="text/babel" src="ds/murmure-icon-final.jsx"></script>
+<script type="text/babel" src="ds/city-color-system.jsx"></script>
+<script type="text/babel" src="ds/tokens-page.jsx"></script>
+<script type="text/babel" src="ds/app-screens.jsx"></script>
+<script type="text/babel" src="ds/app-screens-v2.jsx"></script>
+<script type="text/babel" src="ds/web-screens.jsx"></script>
+<script type="text/babel" src="ds/studio-shared.jsx"></script>
+<script type="text/babel" src="ds/studio-dashboard.jsx"></script>
+<script type="text/babel" src="ds/studio-tours.jsx"></script>
+<script type="text/babel" src="ds/studio-profile.jsx"></script>
+<script type="text/babel" src="ds/studio-revenus.jsx"></script>
+<script type="text/babel" src="ds/studio-editor.jsx"></script>
+<script type="text/babel" src="ds/studio-dashboard-variants.jsx"></script>
+<script type="text/babel" src="ds/wizard-shared.jsx"></script>
+<script type="text/babel" src="ds/wizard-1-accueil.jsx"></script>
+<script type="text/babel" src="ds/wizard-2-general.jsx"></script>
+<script type="text/babel" src="ds/wizard-3-itineraire.jsx"></script>
+<script type="text/babel" src="ds/wizard-4-scenes.jsx"></script>
+<script type="text/babel" src="ds/wizard-5-preview.jsx"></script>
+<script type="text/babel" src="ds/wizard-6-publication.jsx"></script>
+<script type="text/babel" src="ds/ios-frame.jsx"></script>
+<script type="text/babel" src="ds/design-canvas.jsx"></script>
+
+<script type="text/babel">
+const { DesignCanvas, DCSection, DCArtboard } = window;
+
+// iPhone chrome — height auto-expands to fit content, so the design canvas shows everything.
+function Phone({ children, bg, height }) {
+  const W = 390;
+  return (
+    <div style={{
+      width: W, minHeight: height || 'auto',
+      borderRadius: 48, overflow: 'hidden', position: 'relative',
+      background: bg || TG.color.paper,
+      boxShadow: '0 40px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.12)',
+      fontFamily: '-apple-system, system-ui, sans-serif',
+    }}>
+      {/* dynamic island */}
+      <div style={{
+        position: 'absolute', top: 11, left: '50%', transform: 'translateX(-50%)',
+        width: 126, height: 37, borderRadius: 24, background: '#000', zIndex: 50,
+      }}/>
+      {/* status bar */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 }}>
+        <IOSStatusBar dark={false}/>
+      </div>
+      {/* content area — starts below status bar, ends above home indicator */}
+      <div style={{ paddingTop: 54, paddingBottom: 34, position: 'relative', minHeight: height ? height - 88 : 'auto' }}>
+        {children}
+      </div>
+      {/* home indicator */}
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 60,
+        height: 34, display: 'flex', justifyContent: 'center', alignItems: 'flex-end',
+        paddingBottom: 8, pointerEvents: 'none',
+      }}>
+        <div style={{ width: 139, height: 5, borderRadius: 100, background: 'rgba(0,0,0,0.25)' }}/>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <DesignCanvas title="TourGuide · Charte complète" subtitle="Cartographic color-block + voix éditoriale · v1">
+      <DCSection id="found" title="01 · Fondations" subtitle="Tokens, couleurs, typo, composants">
+        <DCArtboard id="tokens" label="Design tokens" width={1040} height={1180}>
+          <TokensPage/>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="studio" title="02 bis · Studio web · refonte" subtitle="Le back-office du guide-auteur — vivant, lisible, motivant">
+        <DCArtboard id="studio-dashboard" label="Dashboard · accueil après login" width={1280} height={1180}>
+          <StudioDashboard/>
+        </DCArtboard>
+        <DCArtboard id="studio-tours" label="Mes tours · liste fusionnée Studio + Parcours" width={1280} height={1180}>
+          <StudioTours/>
+        </DCArtboard>
+        <DCArtboard id="studio-revenus" label="Revenus · vraiment vivant" width={1280} height={1380}>
+          <StudioRevenus/>
+        </DCArtboard>
+        <DCArtboard id="studio-profile" label="Mon Profil · avec preview live" width={1280} height={1280}>
+          <StudioProfile/>
+        </DCArtboard>
+        <DCArtboard id="studio-editor" label="Édition d'un tour · /scenes (timeline éditoriale)" width={1440} height={1280}>
+          <StudioEditor/>
+        </DCArtboard>
+        <DCArtboard id="studio-dashboard-dense" label="Variante · Dashboard dense (Linear-style)" width={1280} height={900}>
+          <StudioDashboardDense/>
+        </DCArtboard>
+        <DCArtboard id="studio-dashboard-depouille" label="Variante · Dashboard dépouillé (atelier)" width={1280} height={1100}>
+          <StudioDashboardDepouille/>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="wizard" title="02 ter · Création d'un tour · wizard 6 étapes" subtitle="Refonte du parcours Accueil → Général → Itinéraire → Scènes → Preview → Publication">
+        <DCArtboard id="wiz-1" label="01 · Accueil — vue d'ensemble + quota transcription" width={1280} height={1300}>
+          <WizardAccueil/>
+        </DCArtboard>
+        <DCArtboard id="wiz-2" label="02 · Général — méta du tour" width={1280} height={1320}>
+          <WizardGeneral/>
+        </DCArtboard>
+        <DCArtboard id="wiz-3" label="03 · Itinéraire — carte + POIs" width={1280} height={1280}>
+          <WizardItineraire/>
+        </DCArtboard>
+        <DCArtboard id="wiz-4" label="04 · Scènes — éditeur de scène (POI / Photos / Texte / Audio)" width={1280} height={1180}>
+          <WizardScenes/>
+        </DCArtboard>
+        <DCArtboard id="wiz-5" label="05 · Preview — vue Studio / Catalogue" width={1280} height={1340}>
+          <WizardPreview/>
+        </DCArtboard>
+        <DCArtboard id="wiz-6" label="06 · Publication — actions, journal, langues" width={1280} height={1280}>
+          <WizardPublication/>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="web" title="02 · Web · Landing" subtitle="Voix éditoriale, carte héroïque, trois parcours à l'affiche">
+        <DCArtboard id="web-landing" label="Landing — desktop" width={1280} height={1460}>
+          <WebLanding/>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="app-flow" title="03 · App · Parcours principal" subtitle="Onboarding → Accueil → Catalogue → Fiche → Player">
+        <DCArtboard id="onboarding" label="Onboarding" width={390} height={844}>
+          <Phone height={844}><AppOnboarding/></Phone>
+        </DCArtboard>
+        <DCArtboard id="home" label="Accueil" width={390} height={1060}>
+          <Phone><AppHome/></Phone>
+        </DCArtboard>
+        <DCArtboard id="catalogue" label="Catalogue / Carte" width={390} height={1120}>
+          <Phone><AppCatalogue/></Phone>
+        </DCArtboard>
+        <DCArtboard id="detail" label="Fiche tour" width={390} height={900}>
+          <Phone><AppTourDetail/></Phone>
+        </DCArtboard>
+        <DCArtboard id="player" label="Player — en écoute" width={390} height={820}>
+          <Phone><AppPlayer/></Phone>
+        </DCArtboard>
+        <DCArtboard id="profil" label="Compte" width={390} height={900}>
+          <Phone><AppProfil/></Phone>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="app-flow-2" title="04 · App · Couverture étendue" subtitle="Recherche, Offline, Création, Paramètres, États vides, Onboarding 2/3">
+        <DCArtboard id="search" label="Recherche" width={390} height={920}>
+          <Phone><AppSearch/></Phone>
+        </DCArtboard>
+        <DCArtboard id="offline" label="Hors-ligne" width={390} height={1020}>
+          <Phone><AppOffline/></Phone>
+        </DCArtboard>
+        <DCArtboard id="create" label="Création — étape 1" width={390} height={1000}>
+          <Phone><AppCreate/></Phone>
+        </DCArtboard>
+        <DCArtboard id="settings" label="Paramètres" width={390} height={1100}>
+          <Phone><AppSettings/></Phone>
+        </DCArtboard>
+        <DCArtboard id="empty-net" label="État · pas de réseau" width={390} height={844}>
+          <Phone height={844}><AppEmptyOffline/></Phone>
+        </DCArtboard>
+        <DCArtboard id="empty-gps" label="État · GPS off" width={390} height={844}>
+          <Phone height={844}><AppEmptyGPS/></Phone>
+        </DCArtboard>
+        <DCArtboard id="ob-2" label="Onboarding · 2/3" width={390} height={844}>
+          <Phone height={844}><AppOnboarding2/></Phone>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="icons" title="05 · Iconographie" subtitle="Set d'icônes cohérent avec l'épingle (ADN)">
+        <DCArtboard id="icons-page" label="Set d'icônes v1" width={1040} height={1240}>
+          <IconsPage/>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="city-colors" title="05 bis · Couleurs ville" subtitle="Comment on attribue une couleur à une ville">
+        <DCArtboard id="city-color-rule" label="Règle d'attribution · 4 familles" width={1280} height={1380}>
+          <CityColorRulePage/>
+        </DCArtboard>
+        <DCArtboard id="city-picker" label="Studio · Picker ville (interactif)" width={1280} height={840}>
+          <CityPickerStudio/>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="imagery" title="06 · Imagerie" subtitle="Trois pistes, à trancher">
+        <DCArtboard id="imagery-page" label="A · B · C" width={1040} height={760}>
+          <ImageryPage/>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="app-icon" title="07 · App icon" subtitle="L'icône qu'on tape tous les matins">
+        <DCArtboard id="murmure-final" label="✓ Murmure · Final · № 06" width={1280} height={1900}>
+          <MurmureIconFinalPage/>
+        </DCArtboard>
+        <DCArtboard id="murmure-icons" label="Murmure · 6 pistes" width={1280} height={1320}>
+          <MurmureIconGrid/>
+        </DCArtboard>
+        <DCArtboard id="app-icon-grid" label="Archive · Pin négatif (TourGuide)" width={1280} height={1240}>
+          <AppIconGrid/>
+        </DCArtboard>
+        <DCArtboard id="app-icon-final" label="Archive · Pin négatif final" width={1280} height={1820}>
+          <AppIconFinalPage/>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="handoff" title="08 · Handoff dev" subtitle="Le package que vos équipes reçoivent">
+        <DCArtboard id="handoff-page" label="@tourguide/design-system v1.1 · + brief Studio" width={1280} height={2400}>
+          <HandoffPage/>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="notes" title="09 · Notes de charte" subtitle="Pourquoi ces choix">
+        <DCArtboard id="why" label="Principes" width={720} height={560}>
+          <div style={{ background: TG.color.paper, padding: 40, color: TG.color.ink, fontFamily: TG.font.sans, height: '100%', boxSizing: 'border-box' }}>
+            <TGEyebrow color={TG.color.grenadine}>Principes</TGEyebrow>
+            <h1 style={{ fontFamily: TG.font.display, fontSize: 36, fontWeight: 400, margin: '6px 0 18px', letterSpacing: '-0.02em', lineHeight: 1.05 }}>
+              Carte d'abord,<br/>voix ensuite.
+            </h1>
+            <ol style={{ paddingLeft: 0, listStyle: 'none', margin: 0 }}>
+              {[
+                ['Chaque ville a une couleur.', 'Grasse ocre, Nice mer, Paris ardoise. La carte devient immédiatement lisible, le catalogue aussi.'],
+                ['Le papier, pas l\'écran.', 'Fond crème #FBF7F1 plutôt que blanc pur. On donne envie d\'ouvrir un carnet, pas un dashboard.'],
+                ['Le serif raconte, la sans conduit.', 'DM Serif pour les titres, Fraunces italic pour les citations de guides, Manrope pour l\'UI.'],
+                ['L\'épingle est le logo.', 'Reprise sur le marqueur de carte, le player, les boutons de tour. Un seul symbole mémorable.'],
+                ['L\'audio est visible.', 'Waveform pleine largeur dans le player, mini-player permanent. L\'app ne cache pas son médium.'],
+              ].map(([t, d], i) => (
+                <li key={i} style={{ display: 'flex', gap: 14, padding: '12px 0', borderTop: i ? `1px solid ${TG.color.line}` : 'none' }}>
+                  <div style={{ fontFamily: TG.font.editorial, fontStyle: 'italic', color: TG.color.grenadine, fontSize: 15, minWidth: 34 }}>№ 0{i+1}</div>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 14 }}>{t}</div>
+                    <div style={{ fontSize: 13, color: TG.color.ink60, marginTop: 2, lineHeight: 1.5 }}>{d}</div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

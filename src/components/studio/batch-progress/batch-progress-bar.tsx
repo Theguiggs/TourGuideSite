@@ -78,16 +78,16 @@ export function BatchProgressBar({ totalLangs }: BatchProgressBarProps) {
 
   return (
     <div
-      className={`p-4 rounded-lg border border-gray-200 ${stickyClasses}`}
+      className={`p-4 rounded-lg border border-line ${stickyClasses}`}
       role="status"
       aria-label="Progression de la traduction"
       data-testid="batch-progress-bar"
     >
       {/* Progress bar */}
       <div className="flex items-center gap-3 mb-2">
-        <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
+        <div className="flex-1 h-3 bg-paper-deep rounded-full overflow-hidden">
           <div
-            className="h-full bg-teal-600 rounded-full batch-progress-transition"
+            className="h-full bg-grenadine rounded-full batch-progress-transition"
             style={{ width: `${percentage}%` }}
             role="progressbar"
             aria-valuenow={percentage}
@@ -97,19 +97,19 @@ export function BatchProgressBar({ totalLangs }: BatchProgressBarProps) {
             data-testid="batch-progress-fill"
           />
         </div>
-        <span className="text-sm font-medium text-gray-700 min-w-[3rem] text-right" data-testid="batch-progress-percentage">
+        <span className="text-sm font-medium text-ink-80 min-w-[3rem] text-right" data-testid="batch-progress-percentage">
           {percentage}%
         </span>
       </div>
 
       {/* Scene counter + lang counter */}
-      <div className="flex justify-between items-center text-xs text-gray-500" aria-live="polite">
+      <div className="flex justify-between items-center text-xs text-ink-60" aria-live="polite">
         <span>
           {completedScenes}/{totalScenes} scenes
           {totalLangCount > 1 && ` — en (${completedLangs}/${totalLangCount} langues)`}
         </span>
         {currentScene && (
-          <span className="truncate ml-2 text-gray-600" data-testid="batch-current-scene">
+          <span className="truncate ml-2 text-ink-80" data-testid="batch-current-scene">
             {currentScene}
           </span>
         )}

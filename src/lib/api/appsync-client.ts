@@ -260,7 +260,15 @@ export async function adminUpdateGuideProfileStatus(id: string, profileStatus: '
 
 export async function updateGuideProfileMutation(
   id: string,
-  updates: Partial<{ displayName: string; bio: string; city: string; specialties: string[]; languages: string[] }>,
+  updates: Partial<{
+    displayName: string;
+    bio: string;
+    city: string;
+    specialties: string[];
+    languages: string[];
+    yearsExperience: number | null;
+    photoUrl: string | null;
+  }>,
 ) {
   try {
     const client = getClient();
@@ -531,6 +539,53 @@ export async function deleteStudioSessionMutation(id: string) {
   } catch (error) {
     logger.error(SERVICE_NAME, 'deleteStudioSession failed', { error: String(error) });
     return { ok: false as const, error: 'Erreur lors de la suppression de la session' };
+  }
+}
+
+// --- WalkSegment Queries & Mutations ---
+
+export async function listWalkSegmentsBySession(sessionId: string) {
+  try {
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const anyModels = client.models as any;
+    // Prefer GSI (index on sessionId). Fallback to filter when GSI method not generated yet.
+    let result: { data?: unknown[] };
+    try {
+      result = await anyModels.WalkSegment.listWalkSegmentBySessionId(
+        { sessionId },
+        { authMode: 'userPool' },
+      );
+    } catch {
+      result = await anyModels.WalkSegment.list(
+        { filter: { sessionId: { eq: sessionId } } },
+        { authMode: 'userPool' },
+      );
+    }
+    const sorted = ((result?.data as Array<Record<string, unknown>>) ?? []).sort(
+      (a, b) => ((a.order as number) ?? 0) - ((b.order as number) ?? 0),
+    );
+    return { ok: true as const, data: sorted };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'listWalkSegmentsBySession failed', { error: String(error) });
+    return { ok: false as const, error: 'Erreur lors du chargement des segments de marche' };
+  }
+}
+
+/** @param updates Unvalidated — callers must ensure keys match schema fields */
+export async function updateWalkSegmentMutation(id: string, updates: Record<string, unknown>) {
+  try {
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const anyModels = client.models as any;
+    const result = await anyModels.WalkSegment.update(
+      { id, ...updates },
+      { authMode: 'userPool' },
+    );
+    return { ok: true as const, data: result?.data };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'updateWalkSegment failed', { error: String(error) });
+    return { ok: false as const, error: 'Erreur lors de la mise à jour du segment de marche' };
   }
 }
 

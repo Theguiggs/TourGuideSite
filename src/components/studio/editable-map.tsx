@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useMemo, useState } from 'react';
 import { GoogleMap, useJsApiLoader, MarkerF, PolylineF, InfoWindowF } from '@react-google-maps/api';
+import { tg } from '@tourguide/design-system';
 import type { StudioScene } from '@/types/studio';
 import { useWalkingRoute, invalidatePoint } from '@/lib/hooks/use-walking-route';
 
@@ -45,6 +46,11 @@ export function EditableMap({ scenes, waypoints, onPoiDrag, onWaypointDrag, onWa
     } else if (geoScenes.length === 1) {
       map.setCenter({ lat: geoScenes[0].latitude!, lng: geoScenes[0].longitude! });
       map.setZoom(16);
+    } else {
+      // No geolocated POI yet — center on a default (Paris) at city zoom so the
+      // user can still pan and click to place the first point.
+      map.setCenter({ lat: 48.8566, lng: 2.3522 });
+      map.setZoom(12);
     }
   }, [geoScenes]);
 
@@ -116,8 +122,18 @@ export function EditableMap({ scenes, waypoints, onPoiDrag, onWaypointDrag, onWa
     }
   }, [routeLoading, totalDistanceMeters, totalDurationSeconds]);
 
-  if (geoScenes.length === 0 || !GOOGLE_MAPS_KEY) return null;
-  if (!isLoaded) return <div style={{ height }} className="w-full bg-gray-100 animate-pulse rounded-lg" />;
+  if (!GOOGLE_MAPS_KEY) {
+    return (
+      <div
+        style={{ height }}
+        className="w-full bg-ocre-soft border border-ocre-soft rounded-lg flex items-center justify-center p-4 text-center text-sm text-ocre"
+        data-testid="editable-map-no-key"
+      >
+        Carte indisponible : <code className="mx-1 font-mono text-xs">NEXT_PUBLIC_GOOGLE_MAPS_KEY</code> manquante dans <code className="ml-1 font-mono text-xs">.env.local</code>.
+      </div>
+    );
+  }
+  if (!isLoaded) return <div style={{ height }} className="w-full bg-paper-soft animate-pulse rounded-lg" />;
 
   const isFullscreen = height === '100%';
 
@@ -139,7 +155,7 @@ export function EditableMap({ scenes, waypoints, onPoiDrag, onWaypointDrag, onWa
         <PolylineF
           path={walkingPath}
           options={{
-            strokeColor: '#0d9488',
+            strokeColor: tg.colors.mer,
             strokeWeight: 5,
             strokeOpacity: routeLoading ? 0.4 : 0.85,
             clickable: true,
@@ -153,7 +169,7 @@ export function EditableMap({ scenes, waypoints, onPoiDrag, onWaypointDrag, onWa
         <PolylineF
           path={walkingPath}
           options={{
-            strokeColor: '#0d9488',
+            strokeColor: tg.colors.mer,
             strokeWeight: 20,
             strokeOpacity: 0,
             clickable: true,
@@ -176,7 +192,7 @@ export function EditableMap({ scenes, waypoints, onPoiDrag, onWaypointDrag, onWa
           icon={{
             path: google.maps.SymbolPath.CIRCLE,
             scale: 14,
-            fillColor: selectedPoi === scene.id ? '#0f766e' : '#0d9488',
+            fillColor: selectedPoi === scene.id ? tg.colors.ardoise : tg.colors.mer,
             fillOpacity: 1,
             strokeColor: 'white',
             strokeWeight: selectedPoi === scene.id ? 3 : 2,
@@ -201,23 +217,23 @@ export function EditableMap({ scenes, waypoints, onPoiDrag, onWaypointDrag, onWa
             options={{ pixelOffset: new google.maps.Size(0, -18) }}
           >
             <div style={{ minWidth: '160px', padding: '2px 0' }}>
-              <p style={{ fontWeight: 600, fontSize: '13px', marginBottom: '4px', color: '#111' }}>
+              <p style={{ fontWeight: 600, fontSize: '13px', marginBottom: '4px', color: tg.colors.ink }}>
                 {scene.title ?? 'POI'}
               </p>
-              <p style={{ fontSize: '11px', color: '#888', marginBottom: '8px' }}>
+              <p style={{ fontSize: '11px', color: tg.colors.ink60, marginBottom: '8px' }}>
                 {lat.toFixed(5)}, {lng.toFixed(5)}
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 <a href={osmUrl} target="_blank" rel="noopener noreferrer"
-                  style={{ fontSize: '12px', color: '#0d9488', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  style={{ fontSize: '12px', color: tg.colors.mer, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <span style={{ fontSize: '14px' }}>&#x1F5FA;&#xFE0F;</span> Voir sur OpenStreetMap
                 </a>
                 <a href={streetViewUrl} target="_blank" rel="noopener noreferrer"
-                  style={{ fontSize: '12px', color: '#0d9488', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  style={{ fontSize: '12px', color: tg.colors.mer, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <span style={{ fontSize: '14px' }}>&#x1F6B6;</span> Street View
                 </a>
                 <a href={gmapsUrl} target="_blank" rel="noopener noreferrer"
-                  style={{ fontSize: '12px', color: '#0d9488', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  style={{ fontSize: '12px', color: tg.colors.mer, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <span style={{ fontSize: '14px' }}>&#x1F4CD;</span> Google Maps
                 </a>
               </div>
@@ -239,7 +255,7 @@ export function EditableMap({ scenes, waypoints, onPoiDrag, onWaypointDrag, onWa
           icon={{
             path: google.maps.SymbolPath.CIRCLE,
             scale: 7,
-            fillColor: selectedWp === wp.id ? '#ef4444' : '#6b7280',
+            fillColor: selectedWp === wp.id ? tg.colors.danger : tg.colors.ink60,
             fillOpacity: 1,
             strokeColor: 'white',
             strokeWeight: 2,
@@ -260,7 +276,7 @@ export function EditableMap({ scenes, waypoints, onPoiDrag, onWaypointDrag, onWa
           >
             <button
               onClick={() => handleDeleteWaypoint(wp.id)}
-              style={{ padding: '4px 12px', fontSize: '12px', color: '#dc2626', fontWeight: 600, border: 'none', background: 'none', cursor: 'pointer' }}
+              style={{ padding: '4px 12px', fontSize: '12px', color: tg.colors.danger, fontWeight: 600, border: 'none', background: 'none', cursor: 'pointer' }}
             >
               Supprimer ce point
             </button>

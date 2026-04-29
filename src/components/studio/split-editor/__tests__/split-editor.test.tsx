@@ -155,7 +155,7 @@ describe('SplitEditor', () => {
       render(<SplitEditor {...defaultProps} />);
 
       const readOnlyDiv = screen.getByTestId('translated-text-readonly');
-      expect(readOnlyDiv.className).toContain('bg-gray-50');
+      expect(readOnlyDiv.className).toContain('bg-paper-soft');
     });
   });
 

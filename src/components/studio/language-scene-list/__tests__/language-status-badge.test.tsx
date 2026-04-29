@@ -118,22 +118,22 @@ describe('LanguageStatusBadge', () => {
     render(<LanguageStatusBadge status="ok" />);
     const badge = screen.getByTestId('language-status-badge-ok');
     expect(badge).toHaveTextContent('Pret');
-    expect(badge.className).toContain('bg-green-100');
-    expect(badge.className).toContain('text-green-700');
+    expect(badge.className).toContain('bg-olive-soft');
+    expect(badge.className).toContain('text-success');
   });
 
   it('renders stale badge with "Modifie" label and orange styling', () => {
     render(<LanguageStatusBadge status="stale" />);
     const badge = screen.getByTestId('language-status-badge-stale');
     expect(badge).toHaveTextContent('Modifie');
-    expect(badge.className).toContain('bg-orange-100');
+    expect(badge.className).toContain('bg-ocre-soft');
   });
 
   it('renders processing badge with animated dot', () => {
     render(<LanguageStatusBadge status="processing" />);
     const badge = screen.getByTestId('language-status-badge-processing');
     expect(badge).toHaveTextContent('En cours');
-    expect(badge.className).toContain('bg-blue-100');
+    expect(badge.className).toContain('bg-mer-soft');
     const dot = badge.querySelector('span[aria-hidden="true"]');
     expect(dot?.className).toContain('animate-pulse');
   });
@@ -142,15 +142,15 @@ describe('LanguageStatusBadge', () => {
     render(<LanguageStatusBadge status="pending" />);
     const badge = screen.getByTestId('language-status-badge-pending');
     expect(badge).toHaveTextContent('En attente');
-    expect(badge.className).toContain('bg-gray-100');
+    expect(badge.className).toContain('bg-paper-soft');
   });
 
   it('renders failed badge with red styling', () => {
     render(<LanguageStatusBadge status="failed" />);
     const badge = screen.getByTestId('language-status-badge-failed');
     expect(badge).toHaveTextContent('Echoue');
-    expect(badge.className).toContain('bg-red-100');
-    expect(badge.className).toContain('text-red-700');
+    expect(badge.className).toContain('bg-grenadine-soft');
+    expect(badge.className).toContain('text-danger');
   });
 });
 

@@ -177,7 +177,7 @@ export function LanguageAudioSection({
       return (
         <span
           data-testid="audio-source-badge"
-          className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-800"
+          className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-grenadine-soft text-grenadine"
         >
           TTS automatique
         </span>
@@ -187,7 +187,7 @@ export function LanguageAudioSection({
     return (
       <span
         data-testid="audio-source-badge"
-        className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800"
+        className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-mer-soft text-mer"
       >
         Enregistrement personnel
       </span>
@@ -198,7 +198,7 @@ export function LanguageAudioSection({
     <div className="space-y-3 mt-4" data-testid="language-audio-section">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-gray-900">Audio</h3>
+        <h3 className="text-sm font-semibold text-ink">Audio</h3>
         {renderSourceBadge()}
       </div>
 
@@ -209,7 +209,7 @@ export function LanguageAudioSection({
             <>
               <button
                 onClick={handlePlay}
-                className="mb-2 text-sm font-medium text-teal-700 hover:text-teal-900"
+                className="mb-2 text-sm font-medium text-grenadine hover:opacity-80"
                 data-testid="play-audio-btn"
               >
                 ▶ Ecouter
@@ -217,14 +217,14 @@ export function LanguageAudioSection({
               <AudioPlayerBar compact label={`Audio ${targetLanguage.toUpperCase()}`} />
             </>
           ) : (
-            <p className="text-sm text-teal-600">Audio genere ✅ (chargement...)</p>
+            <p className="text-sm text-grenadine">Audio genere ✅ (chargement...)</p>
           )}
         </div>
       )}
 
       {/* No audio message */}
       {!audioKey && !playableUrl && (
-        <p className="text-sm text-gray-500" data-testid="no-audio-message">
+        <p className="text-sm text-ink-60" data-testid="no-audio-message">
           Aucun audio pour cette scene
         </p>
       )}
@@ -232,7 +232,7 @@ export function LanguageAudioSection({
       {/* Primary action: record with prompter */}
       <Link
         href={`/guide/studio/${sessionId}/record?sceneId=${segment.sceneId}&lang=${targetLanguage}`}
-        className="flex items-center justify-center gap-2 w-full text-sm font-medium py-2.5 px-4 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+        className="flex items-center justify-center gap-2 w-full text-sm font-medium py-2.5 px-4 rounded-lg bg-mer text-white hover:opacity-90 transition"
         data-testid="record-with-prompter-btn"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -245,10 +245,10 @@ export function LanguageAudioSection({
       <div className="flex gap-2">
         <button
           onClick={() => setActiveTool(activeTool === 'tts' ? null : 'tts')}
-          className={`flex-1 text-sm font-medium py-2 px-4 rounded-lg transition-colors ${
+          className={`flex-1 text-sm font-medium py-2 px-4 rounded-lg transition ${
             activeTool === 'tts'
-              ? 'bg-teal-700 text-white'
-              : 'border border-teal-500 text-teal-700 hover:bg-teal-50'
+              ? 'bg-grenadine text-white'
+              : 'border border-grenadine text-grenadine hover:bg-grenadine-soft'
           }`}
           data-testid="toggle-tts-btn"
         >
@@ -256,10 +256,10 @@ export function LanguageAudioSection({
         </button>
         <button
           onClick={() => setActiveTool(activeTool === 'recorder' ? null : 'recorder')}
-          className={`flex-1 text-sm font-medium py-2 px-4 rounded-lg transition-colors ${
+          className={`flex-1 text-sm font-medium py-2 px-4 rounded-lg transition ${
             activeTool === 'recorder'
-              ? 'bg-gray-600 text-white'
-              : 'border border-gray-400 text-gray-600 hover:bg-gray-50'
+              ? 'bg-ink-80 text-white'
+              : 'border border-ink-40 text-ink-80 hover:bg-paper-soft'
           }`}
           data-testid="toggle-recorder-btn"
         >

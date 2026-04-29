@@ -78,8 +78,8 @@ export function SubmissionChecklist({
         data-testid="submission-summary"
         className={`rounded-lg border p-3 text-sm font-medium ${
           readiness.ready
-            ? 'border-green-300 bg-green-50 text-green-800'
-            : 'border-amber-300 bg-amber-50 text-amber-800'
+            ? 'border-olive-soft bg-olive-soft text-success'
+            : 'border-ocre-soft bg-ocre-soft text-ocre'
         }`}
       >
         {readiness.ready
@@ -93,9 +93,9 @@ export function SubmissionChecklist({
           <li
             key={scene.sceneId}
             data-testid={`checklist-scene-${scene.sceneId}`}
-            className="flex items-center justify-between rounded border border-gray-200 px-3 py-2 text-sm"
+            className="flex items-center justify-between rounded border border-line px-3 py-2 text-sm"
           >
-            <span className="text-gray-700">{scene.sceneTitle}</span>
+            <span className="text-ink-80">{scene.sceneTitle}</span>
             <span className="flex gap-2 text-xs">
               <span data-testid={`text-status-${scene.sceneId}`}>
                 Texte {scene.hasText ? '\u2705' : '\u274C'}
@@ -110,7 +110,7 @@ export function SubmissionChecklist({
 
       {/* Error message */}
       {error && (
-        <div data-testid="submission-error" className="rounded border border-red-300 bg-red-50 p-2 text-sm text-red-700">
+        <div data-testid="submission-error" className="rounded border border-grenadine-soft bg-grenadine-soft p-2 text-sm text-danger">
           {error}
         </div>
       )}
@@ -121,7 +121,7 @@ export function SubmissionChecklist({
         type="button"
         disabled={!readiness.ready || submitting}
         onClick={handleSubmit}
-        className="w-full rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full rounded-md bg-mer px-4 py-2 text-sm font-medium text-white hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {submitting ? 'Soumission en cours...' : `Soumettre la version ${language}`}
       </button>

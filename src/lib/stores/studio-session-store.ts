@@ -29,6 +29,8 @@ function deriveStep(status: StudioSessionStatus): StudioWorkflowStep {
       return 'scenes';
     case 'archived':
       return 'submission';
+    case 'ready_for_cleanup':
+      return 'general';
   }
 }
 

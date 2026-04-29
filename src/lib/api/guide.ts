@@ -243,7 +243,7 @@ export async function getGuideProfile(guideId: string): Promise<GuideProfile | n
 
 export async function updateGuideProfile(
   guideId: string,
-  updates: Partial<Pick<GuideProfile, 'displayName' | 'bio' | 'city' | 'specialties' | 'languages' | 'freeLanguageUsed'>>,
+  updates: Partial<Pick<GuideProfile, 'displayName' | 'bio' | 'city' | 'specialties' | 'languages' | 'freeLanguageUsed' | 'yearsExperience' | 'photoUrl'>>,
 ): Promise<{ ok: boolean; error?: string }> {
   if (updates.displayName && (updates.displayName.length < 2 || updates.displayName.length > 50)) {
     return { ok: false, error: 'Le nom doit contenir entre 2 et 50 caracteres' };

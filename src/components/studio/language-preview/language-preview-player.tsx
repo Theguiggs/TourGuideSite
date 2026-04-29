@@ -200,7 +200,7 @@ export function LanguagePreviewPlayer({
       {/* Alert for missing audio */}
       {alertMessage && (
         <div
-          className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-2 text-sm text-amber-700"
+          className="bg-ocre-soft border border-ocre-soft rounded-lg px-4 py-2 text-sm text-ocre"
           role="alert"
           data-testid="preview-alert"
         >
@@ -212,10 +212,10 @@ export function LanguagePreviewPlayer({
       <div className="flex items-center gap-3">
         <button
           onClick={handleTeaser}
-          className={`py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
+          className={`py-2 px-4 rounded-lg text-sm font-medium transition ${
             mode === 'teaser'
-              ? 'bg-amber-500 hover:bg-amber-600 text-white'
-              : 'bg-teal-500 hover:bg-teal-600 text-white'
+              ? 'bg-ocre hover:opacity-90 text-white'
+              : 'bg-grenadine hover:opacity-90 text-white'
           }`}
           data-testid="teaser-btn"
         >
@@ -224,10 +224,10 @@ export function LanguagePreviewPlayer({
 
         <button
           onClick={handleFullPreview}
-          className={`py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
+          className={`py-2 px-4 rounded-lg text-sm font-medium transition ${
             mode === 'full'
-              ? 'bg-amber-500 hover:bg-amber-600 text-white'
-              : 'bg-indigo-500 hover:bg-indigo-600 text-white'
+              ? 'bg-ocre hover:opacity-90 text-white'
+              : 'bg-mer hover:opacity-90 text-white'
           }`}
           data-testid="full-preview-btn"
         >
@@ -235,7 +235,7 @@ export function LanguagePreviewPlayer({
         </button>
 
         {currentSceneIndex !== null && (
-          <span className="text-xs text-gray-500" data-testid="current-scene-info">
+          <span className="text-xs text-ink-60" data-testid="current-scene-info">
             Scene {currentSceneIndex + 1}/{scenes.length}
             {scenes[currentSceneIndex]?.title
               ? ` — ${scenes[currentSceneIndex].title}`

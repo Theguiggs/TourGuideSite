@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import dynamic from 'next/dynamic';
+import { tg } from '@tourguide/design-system';
 import { logger } from '@/lib/logger';
 import { detectSilences, type DetectedSegment } from '@/lib/api/silence-detection';
 import type { SceneSegment } from '@/types/studio';
@@ -46,9 +47,9 @@ export function AdvancedEditor({ audioKey, audioUrl, segments, onSegmentsChange 
 
       ws = WaveSurfer.default.create({
         container: waveformRef.current,
-        waveColor: '#94a3b8',
-        progressColor: '#0d9488',
-        cursorColor: '#0f766e',
+        waveColor: tg.colors.ink40,
+        progressColor: tg.colors.mer,
+        cursorColor: tg.colors.ardoise,
         height: 128,
         barWidth: 2,
         barGap: 1,
@@ -71,53 +72,53 @@ export function AdvancedEditor({ audioKey, audioUrl, segments, onSegmentsChange 
   return (
     <div className="space-y-4" data-testid="advanced-editor">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-gray-800">Mode avancé</h3>
-        <span className="text-xs text-gray-400">{detectedSegments.length} segments détectés</span>
+        <h3 className="text-sm font-semibold text-ink">Mode avancé</h3>
+        <span className="text-xs text-ink-40">{detectedSegments.length} segments détectés</span>
       </div>
 
       {/* Waveform */}
       {audioUrl ? (
-        <div className="bg-gray-900 rounded-lg p-2">
+        <div className="bg-ink rounded-lg p-2">
           <div ref={waveformRef} data-testid="waveform-container" />
           {!waveformReady && (
-            <div className="h-32 flex items-center justify-center text-gray-400 text-sm">
+            <div className="h-32 flex items-center justify-center text-ink-40 text-sm">
               Chargement du waveform...
             </div>
           )}
         </div>
       ) : (
-        <div className="bg-gray-100 rounded-lg h-32 flex items-center justify-center text-gray-400 text-sm">
+        <div className="bg-paper-soft rounded-lg h-32 flex items-center justify-center text-ink-40 text-sm">
           Aucun audio disponible
         </div>
       )}
 
       {/* Segment markers */}
       {isDetecting && (
-        <div className="p-3 bg-blue-50 rounded-lg animate-pulse text-sm text-blue-700">
+        <div className="p-3 bg-mer-soft rounded-lg animate-pulse text-sm text-mer">
           Détection des silences en cours...
         </div>
       )}
 
       {detectedSegments.length > 0 && (
         <div className="space-y-1">
-          <h4 className="text-xs font-medium text-gray-500 uppercase">Segments</h4>
+          <h4 className="text-xs font-medium text-ink-60 uppercase">Segments</h4>
           {detectedSegments.map((seg, i) => (
             <div
               key={i}
-              className="flex items-center gap-3 p-2 bg-gray-50 rounded text-sm"
+              className="flex items-center gap-3 p-2 bg-paper-soft rounded text-sm"
               data-testid={`segment-marker-${i}`}
             >
-              <span className="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center text-xs font-bold">
+              <span className="w-6 h-6 rounded-full bg-grenadine-soft text-grenadine flex items-center justify-center text-xs font-bold">
                 {i + 1}
               </span>
-              <span className="text-gray-600">
+              <span className="text-ink-80">
                 {formatTime(seg.startMs)} — {formatTime(seg.endMs)}
               </span>
-              <span className="text-gray-400 text-xs">
+              <span className="text-ink-40 text-xs">
                 ({Math.round((seg.endMs - seg.startMs) / 1000)}s)
               </span>
               {seg.suggestedTitle && (
-                <span className="text-xs text-gray-500 ml-auto">{seg.suggestedTitle}</span>
+                <span className="text-xs text-ink-60 ml-auto">{seg.suggestedTitle}</span>
               )}
             </div>
           ))}

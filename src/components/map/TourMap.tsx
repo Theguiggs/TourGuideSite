@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useEffect, useMemo } from 'react';
 import { GoogleMap, useJsApiLoader, MarkerF, PolylineF } from '@react-google-maps/api';
+import { tg } from '@tourguide/design-system';
 import { useWalkingRoute } from '@/lib/hooks/use-walking-route';
 
 const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? '';
@@ -103,7 +104,7 @@ export default function TourMap({
         <PolylineF
           path={walkingPath}
           options={{
-            strokeColor: '#0d9488',
+            strokeColor: tg.colors.mer,
             strokeWeight: 4,
             strokeOpacity: isLoading ? 0.4 : 0.7,
           }}
@@ -116,13 +117,13 @@ export default function TourMap({
               key={poi.id}
               position={{ lat: poi.latitude, lng: poi.longitude }}
               onClick={() => onPoiSelect(poi.id)}
-              label={{ text: `${poi.order}`, color: isSelected ? 'white' : '#0d9488', fontSize: isSelected ? '14px' : '12px', fontWeight: 'bold' }}
+              label={{ text: `${poi.order}`, color: isSelected ? 'white' : tg.colors.mer, fontSize: isSelected ? '14px' : '12px', fontWeight: 'bold' }}
               icon={{
                 path: google.maps.SymbolPath.CIRCLE,
                 scale: isSelected ? 18 : 14,
-                fillColor: isSelected ? '#0d9488' : '#ffffff',
+                fillColor: isSelected ? tg.colors.mer : tg.colors.card,
                 fillOpacity: 1,
-                strokeColor: isSelected ? '#0d9488' : '#9ca3af',
+                strokeColor: isSelected ? tg.colors.mer : tg.colors.ink40,
                 strokeWeight: isSelected ? 3 : 2,
               }}
               title={`${poi.order}. ${poi.title}`}

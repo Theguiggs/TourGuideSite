@@ -13,7 +13,10 @@ export type StudioSessionStatus =
   | 'paused'
   | 'revision_requested'
   | 'rejected'
-  | 'archived';
+  | 'archived'
+  | 'ready_for_cleanup';
+
+export type CaptureMode = 'scene_builder' | 'phased_capture';
 
 export type SceneStatus =
   | 'empty'
@@ -54,9 +57,31 @@ export interface StudioSession {
   translatedDescriptions: Record<string, string> | null;  // { en: "A lovely walk...", es: "..." }
   version: number;
   consentRGPD: boolean;
+  captureMode?: CaptureMode | null;
+  captureSessionRef?: string | null;
+  // GCI-4.2: global tour metadata captured during /cleanup
+  description?: string | null;
+  themes?: string[] | null;
+  durationMinutes?: number | null;
+  cleanedAt?: string | null;
   createdAt: string;
   updatedAt: string;
 }
+
+/** Theme enum for tours (GCI-4.2) */
+export const TOUR_THEMES = [
+  'histoire',
+  'gastronomie',
+  'art',
+  'nature',
+  'architecture',
+  'legendes',
+] as const;
+export type TourTheme = (typeof TOUR_THEMES)[number];
+
+/** Supported languages for tour content */
+export const TOUR_LANGUAGES = ['fr', 'en', 'es', 'de', 'it', 'ja'] as const;
+export type TourLanguage = (typeof TOUR_LANGUAGES)[number];
 
 export interface StudioScene {
   id: string;
@@ -79,7 +104,26 @@ export interface StudioScene {
   latitude: number | null;       // POI GPS
   longitude: number | null;
   poiDescription: string | null; // aide touriste
+  heroPhotoRef?: string | null;   // selected hero photo among photosRefs
+  trimStart?: number | null;      // audio trim start (seconds)
+  trimEnd?: number | null;        // audio trim end (seconds)
   archived: boolean;             // archived = hidden from scenes & preview, data preserved
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface WalkSegment {
+  id: string;
+  sessionId: string;
+  order: number;
+  startedAt: string | null;
+  endedAt: string | null;
+  durationMs: number | null;
+  distanceM: number | null;
+  gpsTrackJson: string | null;
+  audioRefs: string[];
+  photoRefs: string[];
+  deleted: boolean;
   createdAt: string;
   updatedAt: string;
 }

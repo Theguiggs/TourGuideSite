@@ -103,7 +103,7 @@ export function LanguageTabs({ languages, activeLanguage, onLanguageChange }: La
   return (
     <div className="mb-4">
       <div
-        className="flex items-center border-b border-gray-200 overflow-x-auto scrollbar-thin"
+        className="flex items-center border-b border-line overflow-x-auto scrollbar-thin"
         role="tablist"
         aria-label="Langues de la visite"
       >
@@ -119,10 +119,10 @@ export function LanguageTabs({ languages, activeLanguage, onLanguageChange }: La
               aria-label={`${tab.label}, ${tab.progress.completed} sur ${tab.progress.total} scenes traduites`}
               onClick={() => handleTabClick(tab.code)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium border-b-2 transition whitespace-nowrap ${
                 isActive
-                  ? 'border-teal-500 text-teal-700 font-semibold'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-grenadine text-grenadine font-semibold'
+                  : 'border-transparent text-ink-60 hover:text-ink-80 hover:border-line'
               }`}
               data-testid={`lang-tab-${tab.code}`}
             >
@@ -136,7 +136,7 @@ export function LanguageTabs({ languages, activeLanguage, onLanguageChange }: La
                 className="shrink-0"
               />
               <span>{tab.label}</span>
-              <span className="text-xs text-gray-400 ml-1">
+              <span className="text-xs text-ink-40 ml-1">
                 {tab.progress.completed}/{tab.progress.total}
               </span>
             </button>
@@ -148,7 +148,7 @@ export function LanguageTabs({ languages, activeLanguage, onLanguageChange }: La
             <button
               onClick={() => setOverflowOpen((prev) => !prev)}
               onKeyDown={handleOverflowKeyDown}
-              className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent"
+              className="px-3 py-2 text-sm font-medium text-ink-60 hover:text-ink-80 border-b-2 border-transparent"
               aria-haspopup="true"
               aria-expanded={overflowOpen}
               data-testid="lang-tab-overflow"
@@ -159,7 +159,7 @@ export function LanguageTabs({ languages, activeLanguage, onLanguageChange }: La
             {overflowOpen && (
               <div
                 role="menu"
-                className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 min-w-[180px]"
+                className="absolute right-0 top-full mt-1 bg-white border border-line rounded-lg shadow-lg z-10 min-w-[180px]"
                 onKeyDown={handleOverflowKeyDown}
               >
                 {overflowTabs.map((tab) => (
@@ -167,8 +167,8 @@ export function LanguageTabs({ languages, activeLanguage, onLanguageChange }: La
                     key={tab.code}
                     role="menuitem"
                     onClick={() => handleOverflowItemClick(tab.code)}
-                    className={`flex items-center gap-2 w-full px-4 py-2 text-sm text-left hover:bg-gray-50 ${
-                      tab.code === activeLanguage ? 'text-teal-700 font-semibold bg-teal-50' : 'text-gray-700'
+                    className={`flex items-center gap-2 w-full px-4 py-2 text-sm text-left hover:bg-paper-soft ${
+                      tab.code === activeLanguage ? 'text-grenadine font-semibold bg-grenadine-soft' : 'text-ink-80'
                     }`}
                     data-testid={`lang-overflow-${tab.code}`}
                   >
@@ -182,7 +182,7 @@ export function LanguageTabs({ languages, activeLanguage, onLanguageChange }: La
                       className="shrink-0"
                     />
                     <span>{tab.label}</span>
-                    <span className="text-xs text-gray-400 ml-auto">
+                    <span className="text-xs text-ink-40 ml-auto">
                       {tab.progress.completed}/{tab.progress.total}
                     </span>
                   </button>

@@ -63,14 +63,14 @@ export default function PhotosPage() {
   }, []);
 
   if (isLoading) {
-    return <div className="p-6" aria-busy="true"><div className="bg-gray-100 rounded-lg h-64 animate-pulse" /></div>;
+    return <div className="p-6" aria-busy="true"><div className="bg-paper-soft rounded-lg h-64 animate-pulse" /></div>;
   }
 
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 hover:text-teal-700 text-sm mb-4 inline-block">&larr; Retour</Link>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700" role="alert">{error || 'Session introuvable.'}</div>
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">&larr; Retour</Link>
+        <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">{error || 'Session introuvable.'}</div>
       </div>
     );
   }
@@ -80,20 +80,20 @@ export default function PhotosPage() {
       <SceneSidebar scenes={scenes} activeSceneId={activeSceneId} onSceneSelect={setActiveSceneId} />
 
       <div className="flex-1 p-4 lg:p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 hover:text-teal-700 text-sm mb-1 inline-block">
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-1 inline-block">
           &larr; Retour à la session
         </Link>
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">
+        <h2 className="text-lg font-semibold text-ink mb-4">
           Photos — {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
         </h2>
 
         {activeScene && (
           <div>
             {activeScene.poiDescription && (
-              <p className="text-sm text-gray-600 mb-3">{activeScene.poiDescription}</p>
+              <p className="text-sm text-ink-80 mb-3">{activeScene.poiDescription}</p>
             )}
             {activeScene.latitude && activeScene.longitude && (
-              <p className="text-xs text-gray-400 mb-3">
+              <p className="text-xs text-ink-40 mb-3">
                 📍 {activeScene.latitude.toFixed(4)}, {activeScene.longitude.toFixed(4)}
               </p>
             )}

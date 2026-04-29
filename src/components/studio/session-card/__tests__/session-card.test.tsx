@@ -51,7 +51,10 @@ describe('SessionCard', () => {
   it('calls onClick with session id', () => {
     const handleClick = jest.fn();
     render(<SessionCard session={mockSession} onClick={handleClick} />);
-    fireEvent.click(screen.getByTestId('session-card-test-session-1'));
+    // Wrapper is a div (the inner button carries onClick — sibling delete button forbids button-in-button nesting)
+    const card = screen.getByTestId('session-card-test-session-1');
+    const navButton = card.querySelector('button');
+    fireEvent.click(navButton!);
     expect(handleClick).toHaveBeenCalledWith('test-session-1');
   });
 

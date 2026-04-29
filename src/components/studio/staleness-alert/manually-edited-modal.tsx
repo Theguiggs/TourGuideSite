@@ -49,25 +49,25 @@ export function ManuallyEditedModal({
       <div className="mx-4 w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
         <h2
           id="manually-edited-modal-title"
-          className="text-lg font-semibold text-gray-900"
+          className="text-lg font-semibold text-ink"
           data-testid="modal-scene-name"
         >
           {sceneName}
         </h2>
 
-        <p className="mt-3 text-sm text-gray-700" data-testid="modal-warning-message">
+        <p className="mt-3 text-sm text-ink-80" data-testid="modal-warning-message">
           Vous avez corrige cette traduction a la main. Mettre a jour ecrasera vos corrections. Continuer ?
         </p>
 
-        <div className="mt-3 rounded-lg border border-gray-200 bg-gray-50 p-3">
-          <p className="text-xs font-medium text-gray-500 mb-1">
+        <div className="mt-3 rounded-lg border border-line bg-paper-soft p-3">
+          <p className="text-xs font-medium text-ink-60 mb-1">
             Traduction actuelle ({language.toUpperCase()})
           </p>
           <p
-            className="text-sm text-gray-700 italic"
+            className="text-sm text-ink-80 italic"
             data-testid="modal-text-preview"
           >
-            {preview || <span className="text-gray-400">Aucun texte</span>}
+            {preview || <span className="text-ink-40">Aucun texte</span>}
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export function ManuallyEditedModal({
               logger.info(SERVICE_NAME, 'User chose to keep manual edit', { sceneName, language });
               onKeep();
             }}
-            className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="rounded-md border border-line px-4 py-2 text-sm font-medium text-ink-80 hover:bg-paper-soft"
           >
             Conserver ma version
           </button>
@@ -90,7 +90,7 @@ export function ManuallyEditedModal({
               logger.info(SERVICE_NAME, 'User chose to update translation', { sceneName, language });
               onUpdate();
             }}
-            className="rounded-md bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-700"
+            className="rounded-md bg-ocre px-4 py-2 text-sm font-medium text-white hover:bg-ocre"
           >
             Mettre a jour
           </button>

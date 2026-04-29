@@ -100,10 +100,10 @@ export function TourInfoTranslation({
   return (
     <div
       data-testid="tour-info-translation"
-      className="rounded-lg border border-gray-200 bg-white p-4 mb-4"
+      className="rounded-lg border border-line bg-white p-4 mb-4"
     >
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-gray-800">
+        <h3 className="text-sm font-semibold text-ink">
           Titre et description de la visite
         </h3>
         {onRequestTranslation && (!translatedTitle || !translatedDescription) && (
@@ -111,7 +111,7 @@ export function TourInfoTranslation({
             type="button"
             onClick={handleManualTranslate}
             disabled={translating}
-            className="text-xs font-medium text-teal-600 hover:text-teal-700 disabled:text-gray-400 px-2 py-1 border border-teal-200 rounded-md hover:bg-teal-50 disabled:border-gray-200"
+            className="text-xs font-medium text-grenadine hover:opacity-80 disabled:text-ink-40 px-2 py-1 border border-grenadine-soft rounded-md hover:bg-grenadine-soft disabled:border-line"
             data-testid="translate-info-button"
           >
             {translating ? 'Traduction...' : 'Traduire'}
@@ -120,33 +120,33 @@ export function TourInfoTranslation({
       </div>
 
       {translateError && (
-        <p className="text-xs text-red-500 mb-2">{translateError}</p>
+        <p className="text-xs text-danger mb-2">{translateError}</p>
       )}
 
       {translating && (
-        <p className="text-xs text-teal-600 mb-2 animate-pulse">Traduction en cours...</p>
+        <p className="text-xs text-grenadine mb-2 animate-pulse">Traduction en cours...</p>
       )}
 
       {/* Title: source (left) / translation (right) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         {/* Source title */}
         <div>
-          <label className="block text-xs text-gray-400 mb-1">Titre (FR)</label>
-          <div className="px-3 py-2 bg-gray-100 border border-gray-200 rounded-lg text-sm text-gray-500" data-testid="source-title">
+          <label className="block text-xs text-ink-40 mb-1">Titre (FR)</label>
+          <div className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-sm text-ink-60" data-testid="source-title">
             {sourceTitle || <span className="italic">Aucun titre</span>}
           </div>
         </div>
         {/* Translated title */}
         <div>
           <div className="flex items-center justify-between mb-1">
-            <label htmlFor={`tour-title-${language}`} className="block text-xs text-gray-500">
+            <label htmlFor={`tour-title-${language}`} className="block text-xs text-ink-60">
               Titre ({langLabel})
             </label>
             {!titleEditing && onTitleChange && (
               <button
                 type="button"
                 onClick={() => setTitleEditing(true)}
-                className="text-xs font-medium text-teal-600 hover:text-teal-700"
+                className="text-xs font-medium text-grenadine hover:opacity-80"
                 data-testid="edit-title-button"
               >
                 Editer
@@ -163,20 +163,20 @@ export function TourInfoTranslation({
                 onChange={(e) => setTitle(e.target.value)}
                 onBlur={handleTitleBlur}
                 placeholder={`Titre traduit en ${langLabel}...`}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                className="w-full border border-line rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-grenadine"
               />
               {titleSaved && (
-                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-green-600" data-testid="title-saved-indicator">
+                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-success" data-testid="title-saved-indicator">
                   Sauvegarde
                 </span>
               )}
             </div>
           ) : (
             <div
-              className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700"
+              className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-sm text-ink-80"
               data-testid="translated-title-readonly"
             >
-              {title || <span className="italic text-gray-400">Titre traduit en {langLabel}...</span>}
+              {title || <span className="italic text-ink-40">Titre traduit en {langLabel}...</span>}
             </div>
           )}
         </div>
@@ -186,22 +186,22 @@ export function TourInfoTranslation({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Source description */}
         <div>
-          <label className="block text-xs text-gray-400 mb-1">Description (FR)</label>
-          <div className="px-3 py-2 bg-gray-100 border border-gray-200 rounded-lg text-sm text-gray-500 min-h-[80px] whitespace-pre-wrap" data-testid="source-description">
+          <label className="block text-xs text-ink-40 mb-1">Description (FR)</label>
+          <div className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-sm text-ink-60 min-h-[80px] whitespace-pre-wrap" data-testid="source-description">
             {sourceDescription || <span className="italic">Aucune description</span>}
           </div>
         </div>
         {/* Translated description */}
         <div>
           <div className="flex items-center justify-between mb-1">
-            <label htmlFor={`tour-desc-${language}`} className="block text-xs text-gray-500">
+            <label htmlFor={`tour-desc-${language}`} className="block text-xs text-ink-60">
               Description ({langLabel})
             </label>
             {!descEditing && onDescriptionChange && (
               <button
                 type="button"
                 onClick={() => setDescEditing(true)}
-                className="text-xs font-medium text-teal-600 hover:text-teal-700"
+                className="text-xs font-medium text-grenadine hover:opacity-80"
                 data-testid="edit-description-button"
               >
                 Editer
@@ -218,20 +218,20 @@ export function TourInfoTranslation({
                 onBlur={handleDescBlur}
                 placeholder={`Description traduite en ${langLabel}...`}
                 rows={3}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-400 resize-y min-h-[80px]"
+                className="w-full border border-line rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-grenadine resize-y min-h-[80px]"
               />
               {descSaved && (
-                <span className="absolute right-2 bottom-2 text-xs text-green-600" data-testid="desc-saved-indicator">
+                <span className="absolute right-2 bottom-2 text-xs text-success" data-testid="desc-saved-indicator">
                   Sauvegarde
                 </span>
               )}
             </div>
           ) : (
             <div
-              className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 min-h-[80px] whitespace-pre-wrap"
+              className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-sm text-ink-80 min-h-[80px] whitespace-pre-wrap"
               data-testid="translated-description-readonly"
             >
-              {description || <span className="italic text-gray-400">Description traduite en {langLabel}...</span>}
+              {description || <span className="italic text-ink-40">Description traduite en {langLabel}...</span>}
             </div>
           )}
         </div>

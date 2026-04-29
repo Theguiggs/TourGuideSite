@@ -6,22 +6,45 @@ import Link from 'next/link';
 import { logger } from '@/lib/logger';
 import { getStudioSession, listStudioScenes } from '@/lib/api/studio';
 import { shouldUseStubs } from '@/config/api-mode';
-import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
+import {
+  useStudioSessionStore,
+  selectSetActiveSession,
+  selectClearSession,
+} from '@/lib/stores/studio-session-store';
 import { S3Image } from '@/components/studio/s3-image';
 import * as studioUploadService from '@/lib/studio/studio-upload-service';
-import type { StudioSession } from '@/types/studio';
 import { OpenMultilangModal } from '@/components/studio/open-multilang-modal';
 import { LANGUAGE_CONFIG } from '@/components/studio/language-checkout/language-checkbox-card';
 import { useLanguagePurchaseStore } from '@/lib/stores/language-purchase-store';
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
-import { getSessionStatusConfig } from '@/lib/api/studio';
+import { Collapsible } from '@/components/ui/collapsible';
+import {
+  StepNav,
+  WizField,
+  WizInput,
+  WizTextarea,
+  WizSelect,
+} from '@/components/studio/wizard';
+import {
+  ThemeChips,
+  CityFamilyBadge,
+  SessionTerrainCard,
+} from '@/components/studio/wizard-general';
+import type { StudioSession } from '@/types/studio';
 
 const SERVICE_NAME = 'GeneralPage';
 
-const TOUR_THEMES = [
-  'histoire', 'gastronomie', 'art', 'nature',
-  'architecture', 'culture', 'insolite', 'romantique',
-  'famille', 'sportif',
+const TOUR_THEMES_OPTIONS = [
+  { value: 'histoire', label: 'Histoire' },
+  { value: 'gastronomie', label: 'Gastronomie' },
+  { value: 'art', label: 'Art' },
+  { value: 'nature', label: 'Nature' },
+  { value: 'architecture', label: 'Architecture' },
+  { value: 'culture', label: 'Culture' },
+  { value: 'insolite', label: 'Insolite' },
+  { value: 'romantique', label: 'Romantique' },
+  { value: 'famille', label: 'Famille' },
+  { value: 'sportif', label: 'Sportif' },
 ] as const;
 
 const DIFFICULTY_OPTIONS = [
@@ -31,11 +54,11 @@ const DIFFICULTY_OPTIONS = [
 ];
 
 const AVAILABLE_LANGUAGES = [
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
-  { code: 'en', label: 'English', flag: '🇬🇧' },
-  { code: 'es', label: 'Español', flag: '🇪🇸' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-  { code: 'it', label: 'Italiano', flag: '🇮🇹' },
+  { value: 'fr', label: 'Français' },
+  { value: 'en', label: 'Anglais' },
+  { value: 'es', label: 'Espagnol' },
+  { value: 'de', label: 'Allemand' },
+  { value: 'it', label: 'Italien' },
 ];
 
 export default function GeneralPage() {
@@ -65,11 +88,10 @@ export default function GeneralPage() {
   const [coverError, setCoverError] = useState<string | null>(null);
   const coverInputRef = useRef<HTMLInputElement>(null);
 
-  // Multilang state
+  // Multilang
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>(['fr']);
   const [isMultilangModalOpen, setIsMultilangModalOpen] = useState(false);
 
-  // Purchased languages from store
   const allPurchases = useLanguagePurchaseStore((s) => s.purchases);
   const setPurchases = useLanguagePurchaseStore((s) => s.setPurchases);
   const purchasedLanguages = useMemo(() => {
@@ -80,7 +102,6 @@ export default function GeneralPage() {
       .filter((p) => p.status === 'active');
   }, [allPurchases, sessionId]);
 
-  // Hydrate language purchases from AppSync on mount (survives page refresh)
   useEffect(() => {
     if (!session) return;
     const prefix = `${sessionId}_`;
@@ -90,7 +111,6 @@ export default function GeneralPage() {
     listLanguagePurchases(sessionId).then((result) => {
       if (result.ok && result.value.length > 0) {
         setPurchases(result.value);
-        logger.info(SERVICE_NAME, 'Hydrated language purchases from AppSync', { count: result.value.length });
       }
     });
   }, [session, sessionId, allPurchases, setPurchases]);
@@ -116,35 +136,31 @@ export default function GeneralPage() {
           setTitle(sess.title || '');
           setLanguage(sess.language || 'fr');
           setCoverPhotoKey(sess.coverPhotoKey);
-          setSelectedLanguages(sess.availableLanguages.length > 0 ? sess.availableLanguages : [sess.language || 'fr']);
+          setSelectedLanguages(
+            sess.availableLanguages.length > 0
+              ? sess.availableLanguages
+              : [sess.language || 'fr'],
+          );
 
-          // Load tour data from GuideTour if available
           if (sess.tourId) {
             try {
               const { getGuideTourById } = await import('@/lib/api/appsync-client');
               const tourResult = await getGuideTourById(sess.tourId);
               if (tourResult) {
-                const tour = tourResult as Record<string, unknown>;
+                const tour = tourResult as unknown as Record<string, unknown>;
                 setCity((tour.city as string) || '');
                 setDescription((tour.description as string) || '');
                 setDuration((tour.duration as number) || 0);
                 setDistance((tour.distance as number) || 0);
               }
             } catch (e) {
-              logger.warn(SERVICE_NAME, 'Failed to load tour data', { tourId: sess.tourId, error: String(e) });
-              setCity('');
-              setDescription('');
-              setDuration(0);
-              setDistance(0);
+              logger.warn(SERVICE_NAME, 'Failed to load tour data', {
+                tourId: sess.tourId,
+                error: String(e),
+              });
             }
-          } else {
-            setCity('');
-            setDescription('');
-            setDuration(0);
-            setDistance(0);
           }
 
-          // Load difficulty + themes from localStorage (not yet deployed on AppSync)
           try {
             const stored = localStorage.getItem(`tour-meta-${sess.tourId ?? sessionId}`);
             if (stored) {
@@ -153,7 +169,7 @@ export default function GeneralPage() {
               if (meta.themes) setSelectedThemes(meta.themes);
             }
           } catch {
-            // ignore parse errors
+            // ignore
           }
         }
         logger.info(SERVICE_NAME, 'General page loaded', { sessionId });
@@ -168,68 +184,58 @@ export default function GeneralPage() {
     }
 
     load();
-    return () => { cancelled = true; clearSession(); };
+    return () => {
+      cancelled = true;
+      clearSession();
+    };
   }, [sessionId, setActiveSession, clearSession]);
 
-  const toggleTheme = useCallback((theme: string) => {
-    setSelectedThemes((prev) =>
-      prev.includes(theme) ? prev.filter((t) => t !== theme) : [...prev, theme],
-    );
-  }, []);
+  const handleCoverUpload = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
 
-  const handleCoverUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Validate
-    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-      setCoverError('Format non supporté. Utilisez JPEG, PNG ou WebP.');
-      return;
-    }
-    if (file.size > 5 * 1024 * 1024) {
-      setCoverError('Photo trop volumineuse (max 5 MB).');
-      return;
-    }
-
-    setCoverError(null);
-    setIsUploadingCover(true);
-
-    if (shouldUseStubs()) {
-      // Stub: use local object URL
-      const url = URL.createObjectURL(file);
-      setCoverPreviewUrl(url);
-      setCoverPhotoKey(`cover-stub-${Date.now()}`);
-      setIsUploadingCover(false);
-      logger.info(SERVICE_NAME, 'Cover photo set (stub)', { sessionId });
-      return;
-    }
-
-    try {
-      const result = await studioUploadService.uploadCoverPhoto(file, sessionId);
-      if (result.ok) {
-        // Invalidate the signed URL cache for the old key (same path = stale cache)
-        if (coverPhotoKey) {
-          studioUploadService.clearCacheEntry(coverPhotoKey);
-        }
-        studioUploadService.clearCacheEntry(result.s3Key);
-        setCoverPhotoKey(result.s3Key);
-        // Use local blob URL as preview so the new image is visible immediately
-        // (S3Image would show the cached/stale signed URL otherwise)
-        setCoverPreviewUrl(URL.createObjectURL(file));
-        logger.info(SERVICE_NAME, 'Cover photo uploaded', { sessionId, s3Key: result.s3Key });
-      } else {
-        setCoverError(result.error);
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+        setCoverError('Format non supporté. Utilisez JPEG, PNG ou WebP.');
+        return;
       }
-    } catch (err) {
-      setCoverError('Erreur inattendue.');
-      logger.error(SERVICE_NAME, 'Cover upload failed', { error: String(err) });
-    } finally {
-      setIsUploadingCover(false);
-    }
+      if (file.size > 5 * 1024 * 1024) {
+        setCoverError('Photo trop volumineuse (max 5 MB).');
+        return;
+      }
 
-    // Reset input so same file can be re-selected
-    if (coverInputRef.current) coverInputRef.current.value = '';
-  }, [sessionId]);
+      setCoverError(null);
+      setIsUploadingCover(true);
+
+      if (shouldUseStubs()) {
+        const url = URL.createObjectURL(file);
+        setCoverPreviewUrl(url);
+        setCoverPhotoKey(`cover-stub-${Date.now()}`);
+        setIsUploadingCover(false);
+        return;
+      }
+
+      try {
+        const result = await studioUploadService.uploadCoverPhoto(file, sessionId);
+        if (result.ok) {
+          if (coverPhotoKey) studioUploadService.clearCacheEntry(coverPhotoKey);
+          studioUploadService.clearCacheEntry(result.s3Key);
+          setCoverPhotoKey(result.s3Key);
+          setCoverPreviewUrl(URL.createObjectURL(file));
+        } else {
+          setCoverError(result.error);
+        }
+      } catch (err) {
+        setCoverError('Erreur inattendue.');
+        logger.error(SERVICE_NAME, 'Cover upload failed', { error: String(err) });
+      } finally {
+        setIsUploadingCover(false);
+      }
+
+      if (coverInputRef.current) coverInputRef.current.value = '';
+    },
+    [sessionId, coverPhotoKey],
+  );
 
   const handleRemoveCover = useCallback(() => {
     setCoverPhotoKey(null);
@@ -241,14 +247,12 @@ export default function GeneralPage() {
     if (!session) return;
     try {
       const appsync = await import('@/lib/api/appsync-client');
-      // Persist session fields (title, language, cover, languages)
       await appsync.updateStudioSessionMutation(sessionId, {
         title,
         language,
         coverPhotoKey,
         availableLanguages: selectedLanguages,
       });
-      // Persist tour fields if tour exists
       if (session.tourId) {
         await appsync.updateGuideTourMutation(session.tourId, {
           title,
@@ -259,28 +263,55 @@ export default function GeneralPage() {
           poiCount: scenesCount,
         });
       }
-      // Persist fields not yet deployed on AppSync in localStorage
-      localStorage.setItem(`tour-meta-${session.tourId ?? sessionId}`, JSON.stringify({
-        difficulty,
-        themes: selectedThemes,
-      }));
-      logger.info(SERVICE_NAME, 'Saved general info', { sessionId, title, city, themes: selectedThemes, difficulty });
+      localStorage.setItem(
+        `tour-meta-${session.tourId ?? sessionId}`,
+        JSON.stringify({ difficulty, themes: selectedThemes }),
+      );
+      logger.info(SERVICE_NAME, 'Saved general info', { sessionId });
     } catch (e) {
       logger.error(SERVICE_NAME, 'Save failed', { error: String(e) });
     }
     setIsSaved(true);
     setTimeout(() => setIsSaved(false), 3000);
-  }, [sessionId, session, title, city, description, language, difficulty, duration, distance, coverPhotoKey, selectedLanguages, selectedThemes, scenesCount]);
+  }, [
+    sessionId,
+    session,
+    title,
+    city,
+    description,
+    language,
+    difficulty,
+    duration,
+    distance,
+    coverPhotoKey,
+    selectedLanguages,
+    selectedThemes,
+    scenesCount,
+  ]);
 
   if (isLoading) {
-    return <div className="p-6" aria-busy="true"><div className="bg-gray-100 rounded-lg h-96 animate-pulse" /></div>;
+    return (
+      <div className="p-6 lg:p-8 max-w-3xl mx-auto" aria-busy="true">
+        <div className="bg-paper-deep rounded-md h-96 animate-pulse" />
+      </div>
+    );
   }
 
   if (error || !session) {
     return (
-      <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 hover:text-teal-700 text-sm mb-4 inline-block">&larr; Retour</Link>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700" role="alert">{error || 'Session introuvable.'}</div>
+      <div className="p-6 lg:p-8 max-w-3xl mx-auto">
+        <Link
+          href={`/guide/studio/${sessionId}`}
+          className="text-grenadine text-caption font-semibold no-underline hover:opacity-80 mb-3 inline-block"
+        >
+          ← Retour
+        </Link>
+        <div
+          className="bg-grenadine-soft border border-grenadine rounded-md p-4 text-danger"
+          role="alert"
+        >
+          {error || 'Session introuvable.'}
+        </div>
       </div>
     );
   }
@@ -288,175 +319,253 @@ export default function GeneralPage() {
   const isLocked = ['submitted', 'published', 'revision_requested'].includes(session.status);
 
   return (
-    <div className="p-6 max-w-2xl">
-      <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 hover:text-teal-700 text-sm mb-4 inline-block">
-        &larr; Retour au tour
-      </Link>
-
-      {/* Status badge */}
-      {(() => {
-        const statusConfig = getSessionStatusConfig(session.status);
-        return (
-          <span
-            className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold mb-4 ${statusConfig.color}`}
-            data-testid="session-status-badge"
-          >
-            {statusConfig.label}
-          </span>
-        );
-      })()}
-
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Informations g&eacute;n&eacute;rales</h1>
-
+    <div className="p-6 lg:p-8 max-w-3xl mx-auto">
       {isLocked && (
-        <div className="mb-4 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800" role="status" data-testid="readonly-banner">
-          Visite soumise &mdash; les informations sont en lecture seule. Vous pouvez ajouter des langues.
+        <div
+          className="mb-4 rounded-md border border-ocre bg-ocre-soft px-4 py-2.5 text-meta text-ocre"
+          role="status"
+          data-testid="readonly-banner"
+        >
+          Visite soumise — les informations sont en lecture seule. Vous pouvez ajouter des langues.
         </div>
       )}
 
-      <div className="space-y-6">
-        {/* Cover Photo */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Photo de couverture</label>
-          <div className="flex items-start gap-4">
-            <div className="w-48 h-32 rounded-lg border-2 border-dashed border-gray-300 overflow-hidden flex items-center justify-center bg-gray-50 flex-shrink-0">
-              {coverPreviewUrl ? (
-                <img src={coverPreviewUrl} alt="Couverture" className="w-full h-full object-cover" />
-              ) : coverPhotoKey ? (
-                <S3Image s3Key={coverPhotoKey} alt="Couverture" className="w-full h-full object-cover" fallback="Photo de couverture" />
-              ) : (
-                <span className="text-gray-400 text-sm text-center px-2">Aucune photo</span>
-              )}
+      {/* ───── Photo de couverture ───── */}
+      <WizField label="Photo de couverture">
+        <div className="flex flex-wrap gap-4 items-start">
+          <div className="w-[200px] h-[132px] rounded-md overflow-hidden border border-line bg-paper-soft flex items-center justify-center">
+            {coverPreviewUrl ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={coverPreviewUrl}
+                alt="Couverture"
+                className="w-full h-full object-cover"
+              />
+            ) : coverPhotoKey ? (
+              <S3Image
+                s3Key={coverPhotoKey}
+                alt="Couverture"
+                className="w-full h-full object-cover"
+                fallback="Photo de couverture"
+              />
+            ) : (
+              <span className="text-meta text-ink-40 text-center px-2">
+                Aucune photo
+              </span>
+            )}
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <input
+              ref={coverInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              onChange={handleCoverUpload}
+              className="hidden"
+              data-testid="cover-photo-input"
+              disabled={isLocked}
+            />
+            <button
+              type="button"
+              onClick={() => coverInputRef.current?.click()}
+              disabled={isUploadingCover || isLocked}
+              data-testid="cover-photo-btn"
+              className="text-meta text-grenadine font-semibold underline underline-offset-2 hover:opacity-80 transition disabled:opacity-50 text-left"
+            >
+              {isUploadingCover ? 'Envoi…' : coverPhotoKey ? 'Changer' : 'Ajouter'}
+            </button>
+            {coverPhotoKey && !isLocked && (
+              <button
+                type="button"
+                onClick={handleRemoveCover}
+                data-testid="remove-cover-btn"
+                className="text-meta text-danger font-semibold underline underline-offset-2 hover:opacity-80 transition text-left"
+              >
+                Supprimer
+              </button>
+            )}
+            <div className="text-meta text-ink-60 italic mt-1 max-w-[200px]">
+              JPG, PNG ou WebP · 1200 × 800 minimum · 5 Mo max.
             </div>
-            {!isLocked && (
-              <div className="flex flex-col gap-2">
-                <input
-                  ref={coverInputRef}
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp"
-                  onChange={handleCoverUpload}
-                  className="hidden"
-                  data-testid="cover-photo-input"
-                />
-                <button
-                  onClick={() => coverInputRef.current?.click()}
-                  disabled={isUploadingCover}
-                  className="bg-gray-100 hover:bg-gray-200 disabled:bg-gray-50 text-gray-700 text-sm font-medium py-2 px-4 rounded-lg transition-colors"
-                  data-testid="cover-photo-btn"
-                >
-                  {isUploadingCover ? 'Envoi...' : coverPhotoKey ? 'Changer la photo' : 'Ajouter une photo'}
-                </button>
-                {coverPhotoKey && (
-                  <button
-                    onClick={handleRemoveCover}
-                    className="text-red-500 hover:text-red-700 text-xs"
-                    data-testid="remove-cover-btn"
-                  >
-                    Supprimer
-                  </button>
-                )}
-                {coverError && <p className="text-xs text-red-600">{coverError}</p>}
-                <p className="text-xs text-gray-400">JPEG, PNG ou WebP. Max 5 MB.</p>
-              </div>
+            {coverError && (
+              <div className="text-meta text-danger mt-1">{coverError}</div>
             )}
           </div>
         </div>
+      </WizField>
 
-        {/* Title */}
-        <div>
-          <label htmlFor="tour-title" className="block text-sm font-medium text-gray-700 mb-1">Titre du tour *</label>
-          <input id="tour-title" type="text" value={title} onChange={(e) => setTitle(e.target.value)}
-            placeholder="Ex: L'Âme des Parfumeurs de Grasse" maxLength={100} disabled={isLocked}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500" data-testid="title-input" />
-          <p className="text-xs text-gray-400 mt-1">{title.length}/100</p>
-        </div>
-
-        {/* City */}
-        <div>
-          <label htmlFor="tour-city" className="block text-sm font-medium text-gray-700 mb-1">Ville *</label>
-          <input id="tour-city" type="text" value={city} onChange={(e) => setCity(e.target.value)}
-            placeholder="Ex: Grasse" maxLength={50} disabled={isLocked}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500" data-testid="city-input" />
-        </div>
-
-        {/* Description */}
-        <div>
-          <label htmlFor="tour-description" className="block text-sm font-medium text-gray-700 mb-1">Description longue</label>
-          <textarea id="tour-description" value={description} onChange={(e) => setDescription(e.target.value)}
-            placeholder="Décrivez votre tour tel qu'il apparaîtra dans le catalogue..."
-            rows={4} maxLength={2000} disabled={isLocked}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-400 resize-y disabled:bg-gray-100 disabled:text-gray-500" data-testid="description-input" />
-          <p className="text-xs text-gray-400 mt-1">{description.length}/2000</p>
-        </div>
-
-        {/* Primary Language + Difficulty row */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="tour-language" className="block text-sm font-medium text-gray-700 mb-1">Langue principale</label>
-            <select id="tour-language" value={language} onChange={(e) => setLanguage(e.target.value)} disabled={isLocked}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500" data-testid="language-select">
-              {AVAILABLE_LANGUAGES.map((l) => (
-                <option key={l.code} value={l.code}>{l.flag} {l.label}</option>
-              ))}
-            </select>
+      {/* ───── Titre + Ville ───── */}
+      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4">
+        <WizField label="Titre du tour" required htmlFor="tour-title">
+          <WizInput
+            id="tour-title"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            maxLength={100}
+            disabled={isLocked}
+            data-testid="title-input"
+            placeholder="Ex : Vence — Chapelle Matisse et Cité Épiscopale"
+          />
+        </WizField>
+        <WizField
+          label="Ville"
+          required
+          htmlFor="tour-city"
+          helper="Couleur attribuée automatiquement selon la ville."
+        >
+          <div className="relative">
+            <WizInput
+              id="tour-city"
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              maxLength={50}
+              disabled={isLocked}
+              data-testid="city-input"
+              placeholder="Ex : Vence"
+            />
+            <CityFamilyBadge city={city} />
           </div>
-          <div>
-            <label htmlFor="tour-difficulty" className="block text-sm font-medium text-gray-700 mb-1">Difficulté</label>
-            <select id="tour-difficulty" value={difficulty} onChange={(e) => setDifficulty(e.target.value)} disabled={isLocked}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500" data-testid="difficulty-select">
-              {DIFFICULTY_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
-              ))}
-            </select>
-          </div>
-        </div>
+        </WizField>
+      </div>
 
-        {/* Multilang — Open button + purchased languages list */}
-        {(session?.status === 'submitted' || session?.status === 'published' || session?.status === 'revision_requested') && (
-          <div className="space-y-4" data-testid="multilang-section">
+      {/* ───── Description ───── */}
+      <WizField
+        label="Description longue"
+        hint={`${description.length} / 2000`}
+        htmlFor="tour-description"
+      >
+        <WizTextarea
+          id="tour-description"
+          rows={4}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          maxLength={2000}
+          disabled={isLocked}
+          data-testid="description-input"
+          placeholder="Décrivez votre tour tel qu'il apparaîtra dans le catalogue…"
+        />
+      </WizField>
+
+      {/* ───── Langue / Difficulté / Durée / Distance ───── */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <WizField label="Langue" htmlFor="tour-language">
+          <WizSelect
+            id="tour-language"
+            options={AVAILABLE_LANGUAGES}
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            disabled={isLocked}
+            data-testid="language-select"
+          />
+        </WizField>
+        <WizField label="Difficulté" htmlFor="tour-difficulty">
+          <WizSelect
+            id="tour-difficulty"
+            options={DIFFICULTY_OPTIONS}
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+            disabled={isLocked}
+            data-testid="difficulty-select"
+          />
+        </WizField>
+        <WizField label="Durée (min)" htmlFor="tour-duration">
+          <WizInput
+            id="tour-duration"
+            type="number"
+            min={0}
+            max={300}
+            value={duration}
+            onChange={(e) => setDuration(Number(e.target.value))}
+            disabled={isLocked}
+            data-testid="duration-input"
+          />
+        </WizField>
+        <WizField label="Distance (km)" htmlFor="tour-distance">
+          <WizInput
+            id="tour-distance"
+            type="number"
+            min={0}
+            max={50}
+            step={0.1}
+            value={distance}
+            onChange={(e) => setDistance(Number(e.target.value))}
+            disabled={isLocked}
+            data-testid="distance-input"
+          />
+        </WizField>
+      </div>
+
+      {/* ───── Thèmes ───── */}
+      <WizField
+        label="Thèmes"
+        helper="Maximum 3 thèmes. Ils servent à la recherche dans le catalogue."
+      >
+        <ThemeChips
+          options={TOUR_THEMES_OPTIONS}
+          value={selectedThemes}
+          onChange={setSelectedThemes}
+          max={3}
+        />
+      </WizField>
+
+      {/* ───── Multilang (visible quand soumis/publié) ───── */}
+      {(session.status === 'submitted' ||
+        session.status === 'published' ||
+        session.status === 'revision_requested') && (
+        <div className="mb-5">
+          <Collapsible
+            storageKey={`general-multilang-${sessionId}`}
+            defaultOpen={purchasedLanguages.length > 0}
+            icon={<span aria-hidden="true">✦</span>}
+            title="Langues additionnelles"
+            subtitle={
+              purchasedLanguages.length > 0
+                ? `${purchasedLanguages.length} langue${purchasedLanguages.length > 1 ? 's' : ''} ajoutée${purchasedLanguages.length > 1 ? 's' : ''}`
+                : 'Aucune'
+            }
+            compact
+            testId="multilang-section"
+          >
             <button
               type="button"
               onClick={() => setIsMultilangModalOpen(true)}
-              className="w-full rounded-lg border-2 border-dashed border-teal-300 bg-teal-50 px-4 py-5 text-center hover:bg-teal-100 transition-colors"
+              className="w-full rounded-md border-2 border-dashed border-grenadine bg-grenadine-soft px-3 py-3 text-center hover:opacity-90 transition mb-2"
               data-testid="open-multilang-btn"
             >
-              <span className="block text-sm font-semibold text-teal-700">
+              <span className="block text-caption font-bold text-grenadine">
                 Ouvrir le multilangue
               </span>
-              <span className="block text-xs text-teal-600 mt-1">
-                Proposez votre visite dans d&apos;autres langues. Vous pouvez traduire vous-m&ecirc;me ou utiliser la traduction automatique.
+              <span className="block text-meta text-grenadine mt-0.5">
+                Traduisez vous-même ou utilisez la traduction automatique.
               </span>
             </button>
 
-            {/* Already purchased languages */}
             {purchasedLanguages.length > 0 && (
-              <div data-testid="purchased-languages-list">
-                <h4 className="text-sm font-medium text-gray-700 mb-2">Langues ajout&eacute;es</h4>
-                <ul className="space-y-1">
-                  {purchasedLanguages.map((p) => {
-                    const langConfig = LANGUAGE_CONFIG.find((l) => l.code === p.language);
-                    return (
-                      <li
-                        key={p.language}
-                        className="flex items-center gap-2 text-sm text-gray-700"
-                        data-testid={`purchased-lang-${p.language}`}
-                      >
-                        <img
-                          src={`https://flagcdn.com/w40/${langConfig?.countryCode ?? p.language}.png`}
-                          width="16"
-                          height="12"
-                          alt=""
-                          aria-hidden="true"
-                        />
-                        <span>{langConfig?.label ?? p.language}</span>
-                        <span className="text-xs text-gray-400 ml-auto capitalize">
-                          {p.purchaseType === 'manual' ? 'Manuel' : p.qualityTier === 'pro' ? 'Pro' : 'Standard'}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
+              <ul className="space-y-1" data-testid="purchased-languages-list">
+                {purchasedLanguages.map((p) => {
+                  const langConfig = LANGUAGE_CONFIG.find((l) => l.code === p.language);
+                  return (
+                    <li
+                      key={p.language}
+                      className="flex items-center gap-2 text-caption text-ink-80"
+                      data-testid={`purchased-lang-${p.language}`}
+                    >
+                      <span className="text-meta font-bold tracking-wider text-ink-60">
+                        {p.language.toUpperCase()}
+                      </span>
+                      <span>{langConfig?.label ?? p.language}</span>
+                      <span className="text-meta text-ink-40 ml-auto capitalize">
+                        {p.purchaseType === 'manual'
+                          ? 'Manuel'
+                          : p.qualityTier === 'pro'
+                            ? 'Pro'
+                            : 'Standard'}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
             )}
 
             <OpenMultilangModal
@@ -465,77 +574,52 @@ export default function GeneralPage() {
               isOpen={isMultilangModalOpen}
               onClose={() => setIsMultilangModalOpen(false)}
               onBatchTranslationNeeded={(languages, qualityTier) => {
-                // Don't run batch from General — the guide should go to Scenes to see progress
-                // The batch will auto-trigger when the guide opens the language tab in Scenes
-                logger.info(SERVICE_NAME, 'Batch will auto-run when guide opens language tab in Scenes', { languages, qualityTier });
+                logger.info(SERVICE_NAME, 'Batch will auto-run on Scenes tab', {
+                  languages,
+                  qualityTier,
+                });
               }}
             />
-          </div>
-        )}
-
-        {/* Duration + Distance row */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="tour-duration" className="block text-sm font-medium text-gray-700 mb-1">Durée (minutes)</label>
-            <input id="tour-duration" type="number" value={duration} onChange={(e) => setDuration(Number(e.target.value))}
-              min={0} max={300} disabled={isLocked}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500" data-testid="duration-input" />
-          </div>
-          <div>
-            <label htmlFor="tour-distance" className="block text-sm font-medium text-gray-700 mb-1">Distance (km)</label>
-            <input id="tour-distance" type="number" value={distance} onChange={(e) => setDistance(Number(e.target.value))}
-              min={0} max={50} step={0.1} disabled={isLocked}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500" data-testid="distance-input" />
-          </div>
+          </Collapsible>
         </div>
+      )}
 
-        {/* Themes */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Thèmes</label>
-          <div className="flex flex-wrap gap-2">
-            {TOUR_THEMES.map((theme) => {
-              const isSelected = selectedThemes.includes(theme);
-              return (
-                <button key={theme} onClick={() => toggleTheme(theme)} disabled={isLocked}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                    isSelected ? 'bg-teal-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  } ${isLocked ? 'opacity-60 cursor-not-allowed' : ''}`} data-testid={`theme-${theme}`}>
-                  {theme.charAt(0).toUpperCase() + theme.slice(1)}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Session info */}
-        <div className="bg-gray-50 rounded-lg p-4">
-          <h3 className="text-sm font-medium text-gray-700 mb-2">Session terrain</h3>
-          <dl className="grid grid-cols-2 gap-2 text-sm">
-            <dt className="text-gray-500">Scènes</dt>
-            <dd className="text-gray-900">{scenesCount}</dd>
-            <dt className="text-gray-500">Statut</dt>
-            <dd className="text-gray-900 capitalize">{session.status}</dd>
-            <dt className="text-gray-500">Créée le</dt>
-            <dd className="text-gray-900">{new Date(session.createdAt).toLocaleDateString('fr-FR')}</dd>
-          </dl>
-        </div>
-
-        {/* Save */}
-        <div className="flex items-center gap-3 pt-2">
-          {!isLocked && (
-            <button onClick={handleSave}
-              className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-2.5 px-6 rounded-lg transition-colors"
-              data-testid="save-general-btn">
-              Enregistrer
-            </button>
-          )}
-          <Link href={`/guide/studio/${sessionId}/itinerary`}
-            className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2.5 px-6 rounded-lg transition-colors">
-            Étape suivante : Itinéraire →
-          </Link>
-          {isSaved && <span className="text-sm text-green-600" role="status">✓ Enregistré</span>}
-        </div>
+      {/* ───── Session terrain ───── */}
+      <div className="mb-5">
+        <SessionTerrainCard
+          scenesCount={scenesCount}
+          capturedAt={session.createdAt}
+          status={session.status}
+          defaultCollapsed
+        />
       </div>
+
+      {/* ───── Save bar ───── */}
+      <div className="flex items-center gap-3 flex-wrap mt-2 mb-2">
+        {!isLocked && (
+          <button
+            type="button"
+            onClick={handleSave}
+            data-testid="save-general-btn"
+            className="bg-ink text-paper border-none px-5 py-2.5 rounded-pill text-caption font-bold cursor-pointer hover:opacity-90 transition"
+          >
+            Enregistrer
+          </button>
+        )}
+        {isSaved && (
+          <span className="text-caption text-success font-semibold" role="status">
+            ✓ Enregistré
+          </span>
+        )}
+      </div>
+
+      {/* ───── Step nav ───── */}
+      <StepNav
+        prevHref={`/guide/studio/${sessionId}`}
+        prevLabel="Accueil"
+        nextHref={`/guide/studio/${sessionId}/itinerary`}
+        nextLabel="Itinéraire"
+      />
     </div>
   );
 }

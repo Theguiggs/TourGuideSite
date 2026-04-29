@@ -157,7 +157,7 @@ export default function EditPage() {
     return (
       <div className="p-6" aria-busy="true">
         <span className="sr-only">Chargement de l&apos;éditeur...</span>
-        <div className="bg-gray-100 rounded-lg h-64 animate-pulse" />
+        <div className="bg-paper-soft rounded-lg h-64 animate-pulse" />
       </div>
     );
   }
@@ -165,10 +165,10 @@ export default function EditPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 hover:text-teal-700 text-sm mb-4 inline-block">
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
           &larr; Retour a la session
         </Link>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700" role="alert">
+        <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">
           {error || 'Session introuvable.'}
         </div>
       </div>
@@ -186,25 +186,25 @@ export default function EditPage() {
       <div className="flex-1 p-4 lg:p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 hover:text-teal-700 text-sm mb-1 inline-block">
+            <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-1 inline-block">
               &larr; Retour a la session
             </Link>
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-ink">
               {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
             </h2>
           </div>
 
-          <div className="text-xs text-gray-400 text-right">
-            {isSaving && <span className="text-blue-500">Sauvegarde...</span>}
+          <div className="text-xs text-ink-40 text-right">
+            {isSaving && <span className="text-mer">Sauvegarde...</span>}
             {!isSaving && isDirty && <span>Modifications non sauvegardées</span>}
             {!isSaving && !isDirty && lastSavedAt && (
-              <span className="text-green-500">Sauvegardé</span>
+              <span className="text-success">Sauvegardé</span>
             )}
           </div>
         </div>
 
         {syncError && (
-          <div className="mb-3 p-2 bg-amber-50 border border-amber-200 rounded text-sm text-amber-700" role="alert">
+          <div className="mb-3 p-2 bg-ocre-soft border border-ocre-soft rounded text-sm text-ocre" role="alert">
             {syncError}
           </div>
         )}
@@ -215,12 +215,12 @@ export default function EditPage() {
           onChange={(e) => setEditorText(e.target.value)}
           placeholder="Saisissez ou modifiez le texte de cette scène..."
           maxLength={50000}
-          className="w-full min-h-[300px] p-4 border border-gray-200 rounded-lg text-gray-800 text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent"
+          className="w-full min-h-[300px] p-4 border border-line rounded-lg text-ink text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine focus:border-transparent"
           data-testid="scene-editor"
           aria-label={`Texte de la scène ${activeScene?.title || ''}`}
         />
 
-        <p className="mt-2 text-xs text-gray-400">
+        <p className="mt-2 text-xs text-ink-40">
           Sauvegarde automatique toutes les 30 secondes et a la perte de focus.
         </p>
       </div>

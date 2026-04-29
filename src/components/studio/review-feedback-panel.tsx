@@ -96,14 +96,14 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
   }, [tourId, showPanel]);
 
   if (!showPanel) return null;
-  if (isLoading) return <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 animate-pulse h-24" />;
+  if (isLoading) return <div className="bg-ocre-soft border border-ocre-soft rounded-lg p-4 animate-pulse h-24" />;
   if (!reviewData) {
     return (
-      <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg" role="alert">
-        <p className="font-medium text-amber-800">
+      <div className="mb-6 p-4 bg-ocre-soft border border-ocre-soft rounded-lg" role="alert">
+        <p className="font-medium text-ocre">
           {sessionStatus === 'rejected' ? 'Tour rejeté' : 'Révision demandée'}
         </p>
-        <p className="text-sm text-amber-700">
+        <p className="text-sm text-ocre">
           Consultez le feedback par scène ci-dessous, corrigez les problèmes, puis resoumettez.
         </p>
       </div>
@@ -123,15 +123,15 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
   const isRejected = sessionStatus === 'rejected';
 
   return (
-    <div className="mb-6 bg-amber-50 border border-amber-300 rounded-xl overflow-hidden" role="alert" data-testid="review-feedback-panel">
+    <div className="mb-6 bg-ocre-soft border border-ocre-soft rounded-xl overflow-hidden" role="alert" data-testid="review-feedback-panel">
       {/* Header */}
-      <div className={`px-4 py-3 ${isRejected ? 'bg-red-100' : 'bg-amber-100'}`}>
+      <div className={`px-4 py-3 ${isRejected ? 'bg-grenadine-soft' : 'bg-ocre-soft'}`}>
         <div className="flex items-center justify-between">
-          <p className={`font-semibold ${isRejected ? 'text-red-800' : 'text-amber-800'}`}>
+          <p className={`font-semibold ${isRejected ? 'text-danger' : 'text-ocre'}`}>
             {isRejected ? 'Tour rejeté par la modération' : 'Révision demandée par la modération'}
           </p>
           {reviewData.reviewDate && (
-            <p className="text-xs text-amber-600">
+            <p className="text-xs text-ocre">
               {new Date(reviewData.reviewDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
           )}
@@ -142,8 +142,8 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
         {/* Main feedback */}
         {feedback.feedback && (
           <div>
-            <p className="text-sm font-medium text-gray-700 mb-1">Commentaire du modérateur</p>
-            <p className="text-sm text-gray-800 bg-white rounded-lg p-3 border border-amber-200">
+            <p className="text-sm font-medium text-ink-80 mb-1">Commentaire du modérateur</p>
+            <p className="text-sm text-ink bg-white rounded-lg p-3 border border-ocre-soft">
               {feedback.feedback}
             </p>
           </div>
@@ -152,7 +152,7 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
         {/* Rejection category */}
         {feedback.category && (
           <div className="flex items-center gap-2">
-            <span className="text-xs font-medium text-red-700 bg-red-100 px-2.5 py-1 rounded-full">
+            <span className="text-xs font-medium text-danger bg-grenadine-soft px-2.5 py-1 rounded-full">
               {feedback.category === 'audio_quality' ? 'Qualité audio' :
                feedback.category === 'content_accuracy' ? 'Contenu inexact' :
                feedback.category === 'inappropriate' ? 'Contenu inapproprié' :
@@ -165,19 +165,19 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
         {/* Checklist results */}
         {hasChecklist && (
           <div>
-            <p className="text-sm font-medium text-gray-700 mb-2">Grille de validation</p>
+            <p className="text-sm font-medium text-ink-80 mb-2">Grille de validation</p>
             <div className="space-y-1">
               {checklistItems.map((item) => (
                 <div key={item.id} className="flex items-start gap-2 text-sm">
-                  <span className={`mt-0.5 ${item.checked ? 'text-green-600' : 'text-red-500'}`}>
+                  <span className={`mt-0.5 ${item.checked ? 'text-success' : 'text-danger'}`}>
                     {item.checked ? '✓' : '✗'}
                   </span>
                   <div className="flex-1">
-                    <span className={item.checked ? 'text-gray-600' : 'text-red-700 font-medium'}>
+                    <span className={item.checked ? 'text-ink-80' : 'text-danger font-medium'}>
                       {item.label}
                     </span>
                     {item.note && (
-                      <p className="text-xs text-gray-500 mt-0.5">{item.note}</p>
+                      <p className="text-xs text-ink-60 mt-0.5">{item.note}</p>
                     )}
                   </div>
                 </div>
@@ -189,26 +189,26 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
         {/* Overall notes */}
         {feedback.notes && (
           <div>
-            <p className="text-sm font-medium text-gray-700 mb-1">Notes complémentaires</p>
-            <p className="text-sm text-gray-600 italic">{feedback.notes}</p>
+            <p className="text-sm font-medium text-ink-80 mb-1">Notes complémentaires</p>
+            <p className="text-sm text-ink-80 italic">{feedback.notes}</p>
           </div>
         )}
 
         {/* Admin comments */}
         {reviewData.adminComments.length > 0 && (
           <div>
-            <p className="text-sm font-medium text-gray-700 mb-2">
+            <p className="text-sm font-medium text-ink-80 mb-2">
               Commentaires ({reviewData.adminComments.length})
             </p>
             <div className="space-y-2">
               {[...reviewData.adminComments].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((c) => (
-                <div key={c.id} className="text-sm bg-white rounded-lg p-2.5 border border-gray-200">
+                <div key={c.id} className="text-sm bg-white rounded-lg p-2.5 border border-line">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="font-medium text-gray-800">{c.reviewerName}</span>
-                    <span className="text-xs text-gray-400">{new Date(c.date).toLocaleDateString('fr-FR')}</span>
-                    {c.sceneId && <span className="text-xs text-blue-500 bg-blue-50 px-1.5 py-0.5 rounded">Scène</span>}
+                    <span className="font-medium text-ink">{c.reviewerName}</span>
+                    <span className="text-xs text-ink-40">{new Date(c.date).toLocaleDateString('fr-FR')}</span>
+                    {c.sceneId && <span className="text-xs text-mer bg-mer-soft px-1.5 py-0.5 rounded">Scène</span>}
                   </div>
-                  <p className="text-gray-600">{c.comment}</p>
+                  <p className="text-ink-80">{c.comment}</p>
                 </div>
               ))}
             </div>
@@ -216,7 +216,7 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
         )}
 
         {/* Call to action */}
-        <p className="text-sm text-amber-700 pt-2 border-t border-amber-200">
+        <p className="text-sm text-ocre pt-2 border-t border-ocre-soft">
           Corrigez les points signalés ci-dessus, puis resoumettez votre tour.
         </p>
       </div>

@@ -1,29 +1,59 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
 import { trackEvent, StudioAnalyticsEvents } from '@/lib/analytics';
-import { getStudioSession, listStudioScenes, createStudioSession } from '@/lib/api/studio';
-import { triggerTranscription, getTranscriptionQuota } from '@/lib/api/transcription';
+import {
+  getStudioSession,
+  listStudioScenes,
+  createStudioSession,
+} from '@/lib/api/studio';
+import { getTranscriptionQuota } from '@/lib/api/transcription';
 import { useAuth } from '@/lib/auth/auth-context';
 import { shouldUseStubs } from '@/config/api-mode';
-import { SceneListItem } from '@/components/studio/scene-list-item';
-import { QuotaDisplay } from '@/components/studio/quota-display';
 import { StudioToast } from '@/components/studio/toast';
+import { StepNav } from '@/components/studio/wizard';
+import {
+  QuotaTranscriptionCard,
+  SceneOverviewCard,
+} from '@/components/studio/wizard-accueil';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
-import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
-import { useTranscriptionStore, selectQuota } from '@/lib/stores/transcription-store';
+import {
+  useStudioSessionStore,
+  selectSetActiveSession,
+  selectClearSession,
+} from '@/lib/stores/studio-session-store';
+import {
+  useTranscriptionStore,
+  selectQuota,
+} from '@/lib/stores/transcription-store';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
 import type { StudioSession, StudioScene } from '@/types/studio';
 
 const SERVICE_NAME = 'SessionDetailPage';
 
+const MONTH_LABEL_FR = [
+  'janvier',
+  'février',
+  'mars',
+  'avril',
+  'mai',
+  'juin',
+  'juillet',
+  'août',
+  'septembre',
+  'octobre',
+  'novembre',
+  'décembre',
+];
+
 export default function SessionDetailPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
+  const router = useRouter();
   const { user } = useAuth();
 
   const [session, setSession] = useState<StudioSession | null>(null);
@@ -33,12 +63,11 @@ export default function SessionDetailPage() {
   const [playingSceneId, setPlayingSceneId] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [createMessage, setCreateMessage] = useState<string | null>(null);
+
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
   const quota = useTranscriptionStore(selectQuota);
   const setQuota = useTranscriptionStore((s) => s.setQuota);
-  const setSceneStatus = useTranscriptionStore((s) => s.setSceneStatus);
-  const startPolling = useTranscriptionStore((s) => s.startPolling);
   const stopAllPolling = useTranscriptionStore((s) => s.stopAllPolling);
 
   const guideId = user?.guideId || (shouldUseStubs() ? 'guide-1' : null);
@@ -47,6 +76,7 @@ export default function SessionDetailPage() {
   useEffect(() => {
     if (!sessionId) return;
     let cancelled = false;
+    let redirecting = false;
 
     async function load() {
       try {
@@ -55,16 +85,28 @@ export default function SessionDetailPage() {
           listStudioScenes(sessionId),
         ]);
         if (!cancelled) {
+          if (
+            sess &&
+            sess.captureMode === 'phased_capture' &&
+            sess.status === 'ready_for_cleanup'
+          ) {
+            logger.info(SERVICE_NAME, 'Redirecting to cleanup workspace', { sessionId });
+            redirecting = true;
+            router.replace(`/guide/studio/${sessionId}/cleanup`);
+            return;
+          }
           setSession(sess);
           setScenes(scns);
           if (sess) {
             setActiveSession(sess);
             studioPersistenceService.saveLastSessionId(sess.id);
           }
-          logger.info(SERVICE_NAME, 'Session detail loaded', { sessionId, scenesCount: scns.length });
+          logger.info(SERVICE_NAME, 'Session detail loaded', {
+            sessionId,
+            scenesCount: scns.length,
+          });
           trackEvent(StudioAnalyticsEvents.STUDIO_SESSION_OPENED, { sessionId });
         }
-        // Load quota
         if (guideId && !cancelled) {
           const q = await getTranscriptionQuota(guideId);
           setQuota(q);
@@ -75,7 +117,7 @@ export default function SessionDetailPage() {
           logger.error(SERVICE_NAME, 'Failed to load session', { error: String(e) });
         }
       } finally {
-        if (!cancelled) setIsLoading(false);
+        if (!cancelled && !redirecting) setIsLoading(false);
       }
     }
 
@@ -86,7 +128,7 @@ export default function SessionDetailPage() {
       stopAllPolling();
       clearSession();
     };
-  }, [sessionId, setActiveSession, clearSession, guideId, setQuota, stopAllPolling]);
+  }, [sessionId, setActiveSession, clearSession, guideId, setQuota, stopAllPolling, router]);
 
   // Sync playingSceneId when audio ends naturally
   useEffect(() => {
@@ -108,9 +150,13 @@ export default function SessionDetailPage() {
       if (result.ok) {
         setCreateMessage('Session studio créée !');
         logger.info(SERVICE_NAME, 'Studio session created', { sessionId: result.session.id });
-        trackEvent(StudioAnalyticsEvents.STUDIO_SESSION_CREATED, { sessionId: result.session.id });
+        trackEvent(StudioAnalyticsEvents.STUDIO_SESSION_CREATED, {
+          sessionId: result.session.id,
+        });
       } else {
-        setCreateMessage(result.existingSessionId ? 'Session déjà existante.' : result.error);
+        setCreateMessage(
+          result.existingSessionId ? 'Session déjà existante.' : result.error,
+        );
       }
     } catch (e) {
       setCreateMessage('Erreur inattendue.');
@@ -120,122 +166,113 @@ export default function SessionDetailPage() {
     }
   }, [session, guideId]);
 
-  const handlePlayToggle = useCallback(async (scene: StudioScene) => {
-    if (playingSceneId === scene.id) {
-      audioPlayerService.pause();
-      setPlayingSceneId(null);
-    } else {
-      const key = scene.studioAudioKey || scene.originalAudioKey || '';
-      if (!key) return;
-      try {
-        const url = key.startsWith('data:') ? key : shouldUseStubs() ? key : await getPlayableUrl(key);
-        const success = await audioPlayerService.play(url);
-        if (success) {
-          setPlayingSceneId(scene.id);
-        }
-      } catch (e) {
-        logger.error('StudioSessionPage', 'Failed to get playable URL', { key, error: String(e) });
-      }
-    }
-  }, [playingSceneId]);
-
-  const handleTriggerTranscription = useCallback(async (sceneId: string) => {
-    if (quota?.isExceeded) return;
-
-    setSceneStatus(sceneId, { status: 'processing', error: null });
-
-    try {
-      const result = await triggerTranscription(sceneId, 3); // ~3 min per scene estimate
-      if (result.ok) {
-        setSceneStatus(sceneId, { status: 'processing', jobId: result.jobId });
-        startPolling(sceneId, result.jobId);
-        logger.info(SERVICE_NAME, 'Transcription triggered', { sceneId, jobId: result.jobId });
-        trackEvent(StudioAnalyticsEvents.STUDIO_TRANSCRIPTION_TRIGGERED, { sceneId });
-        // Refresh quota
-        if (guideId) {
-          const q = await getTranscriptionQuota(guideId);
-          setQuota(q);
-        }
+  const handlePlayToggle = useCallback(
+    async (scene: StudioScene) => {
+      if (playingSceneId === scene.id) {
+        audioPlayerService.pause();
+        setPlayingSceneId(null);
       } else {
-        setSceneStatus(sceneId, { status: 'failed', error: result.error });
-        if (result.code === 2307) {
-          logger.warn(SERVICE_NAME, 'Quota exceeded', { sceneId });
-          trackEvent(StudioAnalyticsEvents.STUDIO_QUOTA_EXCEEDED, { sceneId });
+        const key = scene.studioAudioKey || scene.originalAudioKey || '';
+        if (!key) return;
+        try {
+          const url = key.startsWith('data:')
+            ? key
+            : shouldUseStubs()
+              ? key
+              : await getPlayableUrl(key);
+          const success = await audioPlayerService.play(url);
+          if (success) {
+            setPlayingSceneId(scene.id);
+          }
+        } catch (e) {
+          logger.error(SERVICE_NAME, 'Failed to get playable URL', { key, error: String(e) });
         }
-        trackEvent(StudioAnalyticsEvents.STUDIO_TRANSCRIPTION_FAILED, { sceneId });
       }
-    } catch (e) {
-      setSceneStatus(sceneId, { status: 'failed', error: 'Erreur inattendue.' });
-      logger.error(SERVICE_NAME, 'Trigger transcription failed', { sceneId, error: String(e) });
-    }
-  }, [quota, guideId, setSceneStatus, startPolling, setQuota]);
-
-  const handleRetryTranscription = useCallback(async (sceneId: string) => {
-    logger.info(SERVICE_NAME, 'Retrying transcription', { sceneId });
-    trackEvent(StudioAnalyticsEvents.STUDIO_TRANSCRIPTION_RETRIED, { sceneId });
-    await handleTriggerTranscription(sceneId);
-  }, [handleTriggerTranscription]);
+    },
+    [playingSceneId],
+  );
 
   if (isLoading) {
     return (
-      <div className="p-6">
-        <div className="space-y-3" aria-busy="true">
-          <span className="sr-only">Chargement de la session...</span>
-          <div className="bg-gray-100 rounded-lg h-16 animate-pulse" />
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-gray-100 rounded-lg h-16 animate-pulse" />
-          ))}
-        </div>
+      <div className="p-6 lg:p-8 max-w-5xl mx-auto" aria-busy="true">
+        <span className="sr-only">Chargement de la session…</span>
+        <div className="h-8 w-48 bg-paper-deep rounded animate-pulse mb-3" />
+        <div className="h-16 bg-card border border-line rounded-md animate-pulse mb-4" />
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className="h-24 bg-card border border-line rounded-md animate-pulse mb-2.5"
+          />
+        ))}
       </div>
     );
   }
 
   if (error || !session) {
     return (
-      <div className="p-6">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700" role="alert">
+      <div className="p-6 lg:p-8 max-w-5xl mx-auto">
+        <div
+          className="bg-grenadine-soft border border-grenadine rounded-md p-4 text-danger"
+          role="alert"
+        >
           {error || 'Session introuvable.'}
         </div>
       </div>
     );
   }
 
-  return (
-    <div className="p-6">
-      <div className="mb-4">
-        <p className="text-sm text-gray-500">
-          {scenes.length} {scenes.length > 1 ? 'scènes' : 'scène'}
-        </p>
-      </div>
+  const monthLabel = MONTH_LABEL_FR[new Date().getMonth()];
 
-      {/* Link to Mes Parcours if tour is linked */}
-      {session.tourId && (
-        <div className="mb-4">
+  return (
+    <div className="p-6 lg:p-8 max-w-5xl mx-auto">
+      {/* ───── Header ───── */}
+      <div className="flex items-baseline gap-3.5 mb-1.5 flex-wrap">
+        <h1 className="font-display text-h5 text-ink leading-none">
+          {scenes.length} {scenes.length > 1 ? 'scènes' : 'scène'}
+        </h1>
+        {session.tourId && (
           <Link
-            href="/guide/tours"
-            className="text-sm text-teal-600 hover:text-teal-700 underline"
+            href="/guide/studio/tours"
+            className="text-meta text-grenadine font-semibold underline underline-offset-2 hover:opacity-80 transition"
             data-testid="tour-link"
           >
-            🔗 Voir dans Mes Parcours
+            ↗ Voir dans Mes tours
           </Link>
+        )}
+      </div>
+      <p className="font-editorial italic text-caption text-ink-60 mb-5">
+        Vue d&apos;ensemble du tour. Cliquez sur une scène pour la lire ou allez à
+        l&apos;onglet <strong className="not-italic font-semibold">Scènes</strong> pour le mode édition.
+      </p>
+
+      {/* ───── Quota transcription ───── */}
+      {quota && (
+        <div className="mb-5">
+          <QuotaTranscriptionCard
+            usedMin={quota.usedMinutes}
+            totalMin={quota.limitMinutes}
+            monthLabel={monthLabel}
+          />
         </div>
       )}
 
-      <QuotaDisplay quota={quota} />
-
+      {/* ───── Bouton créer studio session (cas legacy draft sans tourId) ───── */}
       {session.status === 'draft' && !session.tourId && (
-        <div className="my-4 flex items-center gap-3">
+        <div className="mb-5 flex items-center gap-3 flex-wrap">
           <button
+            type="button"
             onClick={handleCreateStudioSession}
             disabled={isCreating}
-            className="bg-teal-600 hover:bg-teal-700 disabled:bg-gray-400 text-white font-medium py-2 px-4 rounded-lg transition-colors"
             data-testid="create-studio-btn"
+            className="bg-grenadine text-paper border-none px-4 py-2 rounded-md text-caption font-bold cursor-pointer hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
-            {isCreating ? 'Création...' : 'Créer une session studio'}
+            {isCreating ? 'Création…' : 'Créer une session studio'}
           </button>
           {createMessage && (
             <span
-              className={`text-sm ${createMessage.includes('créée') ? 'text-green-600' : 'text-red-600'}`}
+              className={`text-meta ${
+                createMessage.includes('créée') ? 'text-success' : 'text-danger'
+              }`}
               role={createMessage.includes('créée') ? 'status' : 'alert'}
             >
               {createMessage}
@@ -244,46 +281,41 @@ export default function SessionDetailPage() {
         </div>
       )}
 
-      <div className="space-y-2 mt-4" data-testid="scenes-list">
-        {scenes.map((scene) => (
-          <SceneListItemWithTranscription
-            key={scene.id}
-            scene={scene}
-            isPlaying={playingSceneId === scene.id}
-            onPlayToggle={handlePlayToggle}
-            isQuotaExceeded={quota?.isExceeded ?? false}
-            onTriggerTranscription={handleTriggerTranscription}
-            onRetryTranscription={handleRetryTranscription}
-          />
-        ))}
-      </div>
-
-      {scenes.length === 0 && (
-        <div className="bg-gray-50 rounded-lg p-6 text-center text-gray-500" data-testid="no-scenes">
-          Aucune sc&egrave;ne dans cette session.
+      {/* ───── Liste scènes ───── */}
+      {scenes.length === 0 ? (
+        <div
+          className="bg-paper-soft rounded-md p-6 text-center text-caption text-ink-60"
+          data-testid="no-scenes"
+        >
+          Aucune scène dans cette session.
+        </div>
+      ) : (
+        <div className="flex flex-col gap-2.5" data-testid="scenes-list">
+          {scenes.map((scene, i) => {
+            const audioAvailable = !!(scene.studioAudioKey || scene.originalAudioKey);
+            return (
+              <SceneOverviewCard
+                key={scene.id}
+                index={i + 1}
+                scene={scene}
+                isPlaying={playingSceneId === scene.id}
+                onPlayToggle={handlePlayToggle}
+                audioAvailable={audioAvailable}
+              />
+            );
+          })}
         </div>
       )}
 
+      {/* ───── Step navigation ───── */}
+      <StepNav
+        prevHref="/guide/studio/tours"
+        prevLabel="Mes tours"
+        nextHref={`/guide/studio/${sessionId}/general`}
+        nextLabel="Général"
+      />
+
       <StudioToast />
     </div>
-  );
-}
-
-/** Wrapper that connects each scene to the transcription store */
-function SceneListItemWithTranscription(props: {
-  scene: StudioScene;
-  isPlaying: boolean;
-  onPlayToggle: (scene: StudioScene) => void;
-  isQuotaExceeded: boolean;
-  onTriggerTranscription: (sceneId: string) => void;
-  onRetryTranscription: (sceneId: string) => void;
-}) {
-  // Inline selector returns stable reference (same object) when unchanged — Zustand optimizes via Object.is
-  const transcription = useTranscriptionStore((s) => s.scenes[props.scene.id] ?? null);
-  return (
-    <SceneListItem
-      {...props}
-      transcription={transcription}
-    />
   );
 }

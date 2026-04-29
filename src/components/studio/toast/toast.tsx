@@ -9,7 +9,7 @@ export function StudioToast() {
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-40 bg-teal-700 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3"
+      className="fixed bottom-6 right-6 z-40 bg-grenadine text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3"
       role="status"
       aria-live="polite"
       data-testid="studio-toast"
@@ -17,7 +17,7 @@ export function StudioToast() {
       <span className="text-sm">{message}</span>
       <button
         onClick={() => useTranscriptionStore.getState().clearToast()}
-        className="text-teal-200 hover:text-white text-lg leading-none"
+        className="text-grenadine hover:text-white text-lg leading-none"
         aria-label="Fermer"
       >
         &times;

@@ -25,7 +25,7 @@ describe('listStudioSessions', () => {
   });
 
   it('sessions have valid status values', async () => {
-    const validStatuses = ['draft', 'transcribing', 'editing', 'recording', 'ready', 'submitted', 'published', 'revision_requested', 'rejected'];
+    const validStatuses = ['draft', 'transcribing', 'editing', 'recording', 'ready', 'submitted', 'published', 'revision_requested', 'rejected', 'ready_for_cleanup'];
     const sessions = await listStudioSessions('guide-1');
     for (const s of sessions) {
       expect(validStatuses).toContain(s.status);

@@ -207,11 +207,11 @@ export function SplitEditor({
       {sourceTitle && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2" data-testid="title-translation-row">
           <div>
-            <label className="text-sm font-medium text-gray-700 mb-1 block">
+            <label className="text-sm font-medium text-ink-80 mb-1 block">
               Titre source
             </label>
             <div
-              className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700"
+              className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-sm text-ink-80"
               data-testid="source-title"
             >
               {sourceTitle}
@@ -220,7 +220,7 @@ export function SplitEditor({
           <div>
             <label
               htmlFor={`split-editor-title-${segment.id}`}
-              className="text-sm font-medium text-gray-700 mb-1 block"
+              className="text-sm font-medium text-ink-80 mb-1 block"
             >
               Titre traduit
             </label>
@@ -232,7 +232,7 @@ export function SplitEditor({
                 onChange={handleTitleChange}
                 placeholder="Titre traduit..."
                 maxLength={200}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                className="w-full px-3 py-2 border border-line rounded-lg text-sm text-ink focus:outline-none focus:ring-2 focus:ring-grenadine"
                 data-testid="translated-title-input"
                 onBlur={() => {
                   // Trigger save when title input loses focus (auto-save only watches textarea)
@@ -243,10 +243,10 @@ export function SplitEditor({
               />
             ) : (
               <div
-                className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700"
+                className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-sm text-ink-80"
                 data-testid="translated-title-readonly"
               >
-                {editedTitle || <span className="italic text-gray-400">Titre traduit...</span>}
+                {editedTitle || <span className="italic text-ink-40">Titre traduit...</span>}
               </div>
             )}
           </div>
@@ -256,7 +256,7 @@ export function SplitEditor({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Source text (read-only) */}
         <div>
-          <label className="text-sm font-medium text-gray-700 flex items-center gap-2 mb-1">
+          <label className="text-sm font-medium text-ink-80 flex items-center gap-2 mb-1">
             <img
               src={getFlagUrl(sourceLang)}
               alt={sourceLang.toUpperCase()}
@@ -265,7 +265,7 @@ export function SplitEditor({
             Texte source ({sourceLang.toUpperCase()})
           </label>
           <div
-            className="p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 min-h-[200px] max-h-[400px] overflow-y-auto whitespace-pre-wrap"
+            className="p-3 bg-paper-soft border border-line rounded-lg text-sm text-ink-80 min-h-[200px] max-h-[400px] overflow-y-auto whitespace-pre-wrap"
             data-testid="source-text"
           >
             {sourceText || 'Aucun texte source'}
@@ -277,7 +277,7 @@ export function SplitEditor({
           <div className="flex items-center justify-between mb-1">
             <label
               htmlFor={`split-editor-textarea-${segment.id}`}
-              className="text-sm font-medium text-gray-700 flex items-center gap-2"
+              className="text-sm font-medium text-ink-80 flex items-center gap-2"
             >
               <img
                 src={getFlagUrl(targetLang)}
@@ -291,17 +291,17 @@ export function SplitEditor({
                 <button
                   type="button"
                   onClick={() => setIsEditing(true)}
-                  className="text-sm font-medium text-teal-600 hover:text-teal-700"
+                  className="text-sm font-medium text-grenadine hover:opacity-80"
                   data-testid="edit-button"
                 >
                   Editer
                 </button>
               )}
               {isEditing && (
-                <div className="text-xs text-gray-400" data-testid="save-indicator">
-                  {isSaving && <span className="text-blue-500">Sauvegarde...</span>}
+                <div className="text-xs text-ink-40" data-testid="save-indicator">
+                  {isSaving && <span className="text-mer">Sauvegarde...</span>}
                   {!isSaving && isDirty && <span>Non sauvegarde</span>}
-                  {!isSaving && !isDirty && editedText && <span className="text-green-500">Sauvegarde</span>}
+                  {!isSaving && !isDirty && editedText && <span className="text-success">Sauvegarde</span>}
                 </div>
               )}
             </div>
@@ -314,15 +314,15 @@ export function SplitEditor({
               onChange={handleChange}
               placeholder="Le texte traduit apparaitra ici..."
               rows={10}
-              className="w-full p-3 border border-gray-200 rounded-lg text-gray-800 text-sm leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-teal-400 min-h-[200px]"
+              className="w-full p-3 border border-line rounded-lg text-ink text-sm leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine min-h-[200px]"
               data-testid="translated-textarea"
             />
           ) : (
             <div
-              className="p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 min-h-[200px] max-h-[400px] overflow-y-auto whitespace-pre-wrap"
+              className="p-3 bg-paper-soft border border-line rounded-lg text-sm text-ink-80 min-h-[200px] max-h-[400px] overflow-y-auto whitespace-pre-wrap"
               data-testid="translated-text-readonly"
             >
-              {editedText || <span className="italic text-gray-400">Le texte traduit apparaitra ici...</span>}
+              {editedText || <span className="italic text-ink-40">Le texte traduit apparaitra ici...</span>}
             </div>
           )}
         </div>

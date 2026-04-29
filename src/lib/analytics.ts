@@ -46,6 +46,7 @@ export const StudioAnalyticsEvents = {
   STUDIO_QUOTA_EXCEEDED: 'studio_quota_exceeded',
   STUDIO_SATISFACTION_SUBMITTED: 'studio_satisfaction_submitted',
   STUDIO_ONBOARDING_DISMISSED: 'studio_onboarding_dismissed',
+  CLEANUP_COMPLETED: 'cleanup_completed',
 } as const;
 
 export const FilterAnalyticsEvents = {

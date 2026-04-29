@@ -273,6 +273,54 @@ export async function uploadTTSAudio(
   }
 }
 
+/**
+ * Upload a custom ambiance sound to the guide's personal sound bank.
+ * Accepts mp3, m4a, wav, ogg, webm (recorded via MediaRecorder).
+ */
+export async function uploadCustomAmbiance(
+  blob: Blob,
+  guideId: string,
+  soundId: string,
+): Promise<{ ok: true; s3Key: string } | { ok: false; error: string }> {
+  const base = blob.type.split(';')[0].trim();
+  const acceptableAudio = base === '' || base.startsWith('audio/') || base.startsWith('video/webm');
+  if (!acceptableAudio) {
+    return { ok: false, error: `Type audio non supporte : ${blob.type}` };
+  }
+  if (blob.size > MAX_AUDIO_SIZE) {
+    return { ok: false, error: `Fichier trop volumineux (${Math.round(blob.size / 1024 / 1024)}MB > 50MB)` };
+  }
+
+  // Preserve extension when possible (browser MediaRecorder → webm, phone uploads → m4a/mp3)
+  const extMap: Record<string, string> = {
+    'audio/mpeg': 'mp3',
+    'audio/mp3': 'mp3',
+    'audio/mp4': 'm4a',
+    'audio/x-m4a': 'm4a',
+    'audio/wav': 'wav',
+    'audio/x-wav': 'wav',
+    'audio/ogg': 'ogg',
+    'audio/webm': 'webm',
+    'video/webm': 'webm',
+  };
+  const ext = extMap[base] ?? 'bin';
+
+  try {
+    const result = await withRetry(() =>
+      uploadData({
+        path: ({ identityId }) => `guide-studio/${identityId}/ambiance/${soundId}.${ext}`,
+        data: blob,
+      }).result,
+    );
+    const s3Key = result.path;
+    logger.info(SERVICE_NAME, 'Custom ambiance uploaded', { guideId, soundId, s3Key });
+    return { ok: true, s3Key };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'Custom ambiance upload failed', { guideId, soundId, error: String(error) });
+    return { ok: false, error: 'Upload echoue apres 3 tentatives.' };
+  }
+}
+
 export function clearCache(): void {
   urlCache.clear();
 }

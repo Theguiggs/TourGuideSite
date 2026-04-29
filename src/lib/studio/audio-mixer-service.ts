@@ -77,12 +77,14 @@ class AudioMixerServiceImpl {
         audioData = bytes.buffer;
       } else {
         const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText} for ${url.slice(0, 80)}`);
         audioData = await response.arrayBuffer();
       }
       this.speechBuffer = await ctx.decodeAudioData(audioData);
       logger.info(SERVICE_NAME, 'Speech loaded', { duration: this.speechBuffer.duration });
     } catch (e) {
-      logger.error(SERVICE_NAME, 'Failed to load speech', { error: String(e) });
+      const msg = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+      logger.error(SERVICE_NAME, 'Failed to load speech', { error: msg, url: url.slice(0, 120) });
     }
   }
 
@@ -90,11 +92,13 @@ class AudioMixerServiceImpl {
     const ctx = this.ensureContext();
     try {
       const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText} for ${url.slice(0, 80)}`);
       const audioData = await response.arrayBuffer();
       this.ambianceBuffer = await ctx.decodeAudioData(audioData);
       logger.info(SERVICE_NAME, 'Ambiance loaded', { duration: this.ambianceBuffer.duration });
     } catch (e) {
-      logger.error(SERVICE_NAME, 'Failed to load ambiance', { error: String(e) });
+      const msg = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+      logger.error(SERVICE_NAME, 'Failed to load ambiance', { error: msg, url: url.slice(0, 120) });
     }
   }
 

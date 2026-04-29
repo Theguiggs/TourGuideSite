@@ -235,7 +235,7 @@ export function OpenMultilangModal({
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl leading-none z-10"
+          className="absolute top-3 right-3 text-ink-40 hover:text-ink-80 text-xl leading-none z-10"
           aria-label="Fermer"
           data-testid="modal-close-btn"
         >
@@ -248,8 +248,8 @@ export function OpenMultilangModal({
             {[1, 2, 3].map((step) => (
               <div
                 key={step}
-                className={`h-1.5 flex-1 rounded-full transition-colors ${
-                  step <= currentStep ? 'bg-teal-500' : 'bg-gray-200'
+                className={`h-1.5 flex-1 rounded-full transition ${
+                  step <= currentStep ? 'bg-grenadine' : 'bg-paper-deep'
                 }`}
                 data-testid={`step-indicator-${step}`}
               />
@@ -261,10 +261,10 @@ export function OpenMultilangModal({
           {/* === STEP 1: Languages === */}
           {currentStep === 1 && (
             <div data-testid="step-1">
-              <h2 className="text-lg font-bold text-gray-900 mb-1">
+              <h2 className="text-lg font-bold text-ink mb-1">
                 Quelles langues souhaitez-vous ajouter ?
               </h2>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-ink-60 mb-4">
                 S\u00e9lectionnez les langues dans lesquelles proposer votre visite.
               </p>
 
@@ -291,10 +291,10 @@ export function OpenMultilangModal({
                 type="button"
                 onClick={handleNext}
                 disabled={!canGoToStep2}
-                className={`w-full rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
+                className={`w-full rounded-lg px-4 py-3 text-sm font-semibold transition ${
                   canGoToStep2
-                    ? 'bg-teal-600 text-white hover:bg-teal-700'
-                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    ? 'bg-grenadine text-white hover:opacity-90'
+                    : 'bg-paper-deep text-ink-40 cursor-not-allowed'
                 }`}
                 data-testid="step1-next-btn"
               >
@@ -306,10 +306,10 @@ export function OpenMultilangModal({
           {/* === STEP 2: Mode === */}
           {currentStep === 2 && (
             <div data-testid="step-2">
-              <h2 className="text-lg font-bold text-gray-900 mb-1">
+              <h2 className="text-lg font-bold text-ink mb-1">
                 Comment souhaitez-vous traduire ?
               </h2>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-ink-60 mb-4">
                 Choisissez votre mode de traduction.
               </p>
 
@@ -323,10 +323,10 @@ export function OpenMultilangModal({
                       key={opt.value}
                       className={`flex items-start gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
                         isDisabledPremium
-                          ? 'border-gray-200 opacity-50 cursor-not-allowed'
+                          ? 'border-line opacity-50 cursor-not-allowed'
                           : mode === opt.value
-                            ? 'border-teal-400 ring-1 ring-teal-400 bg-teal-50'
-                            : 'border-gray-200 hover:border-teal-300'
+                            ? 'border-grenadine ring-1 ring-grenadine bg-grenadine-soft'
+                            : 'border-line hover:border-grenadine-soft'
                       }`}
                       data-testid={`mode-option-${opt.value}`}
                     >
@@ -339,23 +339,23 @@ export function OpenMultilangModal({
                           if (!isDisabledPremium) setMode(opt.value);
                         }}
                         disabled={isDisabledPremium}
-                        className="mt-1 accent-teal-600"
+                        className="mt-1 accent-grenadine"
                         data-testid={`mode-radio-${opt.value}`}
                       />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-baseline justify-between gap-2">
-                          <span className="text-sm font-semibold text-gray-900">
+                          <span className="text-sm font-semibold text-ink">
                             {opt.label}
                           </span>
-                          <span className="text-xs text-gray-500 shrink-0">
+                          <span className="text-xs text-ink-60 shrink-0">
                             {opt.priceLabel}
                           </span>
                         </div>
-                        <p className="text-xs text-gray-500 mt-0.5">
+                        <p className="text-xs text-ink-60 mt-0.5">
                           {opt.description}
                         </p>
                         {isDisabledPremium && (
-                          <p className="text-xs text-amber-600 mt-1">
+                          <p className="text-xs text-ocre mt-1">
                             Non disponible avec des langues premium. Choisissez Pro ou Manuel.
                           </p>
                         )}
@@ -368,7 +368,7 @@ export function OpenMultilangModal({
               {/* Free first language note */}
               {!freeLanguageUsed && mode === 'standard' && !hasPremiumSelected && (
                 <p
-                  className="text-xs text-teal-600 mb-4"
+                  className="text-xs text-grenadine mb-4"
                   data-testid="free-first-note"
                 >
                   Votre premi\u00e8re langue Standard EU est offerte !
@@ -379,7 +379,7 @@ export function OpenMultilangModal({
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="flex-1 rounded-lg px-4 py-3 text-sm font-semibold border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+                  className="flex-1 rounded-lg px-4 py-3 text-sm font-semibold border border-line text-ink-80 hover:bg-paper-soft transition"
                   data-testid="step2-back-btn"
                 >
                   Retour
@@ -388,10 +388,10 @@ export function OpenMultilangModal({
                   type="button"
                   onClick={handleNext}
                   disabled={isStandardDisabledForPremium}
-                  className={`flex-1 rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
+                  className={`flex-1 rounded-lg px-4 py-3 text-sm font-semibold transition ${
                     isStandardDisabledForPremium
-                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                      : 'bg-teal-600 text-white hover:bg-teal-700'
+                      ? 'bg-paper-deep text-ink-40 cursor-not-allowed'
+                      : 'bg-grenadine text-white hover:opacity-90'
                   }`}
                   data-testid="step2-next-btn"
                 >
@@ -404,10 +404,10 @@ export function OpenMultilangModal({
           {/* === STEP 3: Confirmation / Payment === */}
           {currentStep === 3 && (
             <div data-testid="step-3">
-              <h2 className="text-lg font-bold text-gray-900 mb-1">
+              <h2 className="text-lg font-bold text-ink mb-1">
                 R\u00e9capitulatif
               </h2>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-ink-60 mb-4">
                 {mode === 'manual'
                   ? 'Vous traduirez vous-m\u00eame.'
                   : `Mode ${mode === 'standard' ? 'Standard' : 'Pro'} — traduction automatique.`}
@@ -421,14 +421,14 @@ export function OpenMultilangModal({
                     className="flex items-center justify-between text-sm"
                     data-testid={`recap-line-${line.language}`}
                   >
-                    <span className="text-gray-700">{line.label}</span>
-                    <span className="font-medium text-gray-900">
+                    <span className="text-ink-80">{line.label}</span>
+                    <span className="font-medium text-ink">
                       {line.purchaseType === 'free_first' ? (
-                        <span className="text-teal-600">
+                        <span className="text-grenadine">
                           gratuit (1re langue offerte)
                         </span>
                       ) : line.priceCents === 0 ? (
-                        <span className="text-teal-600">gratuit</span>
+                        <span className="text-grenadine">gratuit</span>
                       ) : (
                         formatPrice(line.priceCents)
                       )}
@@ -439,11 +439,11 @@ export function OpenMultilangModal({
 
               {/* Total */}
               <div
-                className="flex items-center justify-between border-t border-gray-100 pt-3 mb-6"
+                className="flex items-center justify-between border-t border-line pt-3 mb-6"
                 data-testid="recap-total"
               >
-                <span className="text-sm font-semibold text-gray-900">Total</span>
-                <span className="text-lg font-bold text-gray-900">
+                <span className="text-sm font-semibold text-ink">Total</span>
+                <span className="text-lg font-bold text-ink">
                   {order.totalCents === 0 ? 'Gratuit' : formatPrice(order.totalCents)}
                 </span>
               </div>
@@ -451,7 +451,7 @@ export function OpenMultilangModal({
               {/* Error banner */}
               {errorMessage && (
                 <div
-                  className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700 mb-4"
+                  className="rounded-lg bg-grenadine-soft border border-grenadine-soft px-4 py-3 text-sm text-danger mb-4"
                   role="alert"
                   data-testid="modal-error-banner"
                 >
@@ -465,7 +465,7 @@ export function OpenMultilangModal({
                   type="button"
                   onClick={handleBack}
                   disabled={isLoading}
-                  className="flex-1 rounded-lg px-4 py-3 text-sm font-semibold border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50"
+                  className="flex-1 rounded-lg px-4 py-3 text-sm font-semibold border border-line text-ink-80 hover:bg-paper-soft transition disabled:opacity-50"
                   data-testid="step3-back-btn"
                 >
                   Retour
@@ -474,10 +474,10 @@ export function OpenMultilangModal({
                   type="button"
                   onClick={handleConfirm}
                   disabled={isLoading}
-                  className={`flex-1 rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
+                  className={`flex-1 rounded-lg px-4 py-3 text-sm font-semibold transition ${
                     isLoading
-                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                      : 'bg-teal-600 text-white hover:bg-teal-700'
+                      ? 'bg-paper-deep text-ink-40 cursor-not-allowed'
+                      : 'bg-grenadine text-white hover:opacity-90'
                   }`}
                   data-testid="confirm-btn"
                 >

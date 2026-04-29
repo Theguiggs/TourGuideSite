@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
 import { getStudioSession, listStudioScenes, getSceneStatusConfig } from '@/lib/api/studio';
+import { StepNav } from '@/components/studio/wizard';
 import { submitSessionForModeration, submitForReview, retractSubmission, deleteSession } from '@/lib/api/studio-submission';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
@@ -22,7 +23,7 @@ import type { StudioSession, StudioScene, SceneSegment } from '@/types/studio';
 // Dynamic import for Leaflet map (no SSR — browser-only)
 const PreviewMap = dynamic(() => import('@/components/studio/preview-map').then((m) => ({ default: m.PreviewMap })), {
   ssr: false,
-  loading: () => <div className="bg-gray-100 rounded-lg h-64 animate-pulse" />,
+  loading: () => <div className="bg-paper-soft rounded-lg h-64 animate-pulse" />,
 });
 
 const SERVICE_NAME = 'PreviewPage';
@@ -263,7 +264,7 @@ export default function PreviewPage() {
       <div className="p-6" aria-busy="true">
         <span className="sr-only">Chargement du preview...</span>
         <div className="space-y-3">
-          {[1, 2, 3].map((i) => <div key={i} className="bg-gray-100 rounded-lg h-16 animate-pulse" />)}
+          {[1, 2, 3].map((i) => <div key={i} className="bg-paper-soft rounded-lg h-16 animate-pulse" />)}
         </div>
       </div>
     );
@@ -272,10 +273,10 @@ export default function PreviewPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 hover:text-teal-700 text-sm mb-4 inline-block">
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
           &larr; Retour à la session
         </Link>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700" role="alert">
+        <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">
           {error || 'Session introuvable.'}
         </div>
       </div>
@@ -292,14 +293,14 @@ export default function PreviewPage() {
 
   return (
     <div className="p-6 max-w-3xl">
-      <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 hover:text-teal-700 text-sm mb-4 inline-block">
+      <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
         &larr; Retour à la session
       </Link>
 
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">Preview — {session.title || 'Session'}</h1>
+      <h1 className="text-2xl font-bold text-ink mb-1">Preview — {session.title || 'Session'}</h1>
       {session.availableLanguages && session.availableLanguages.length > 1 && (
-        <p className="text-sm text-gray-500 mb-2" data-testid="preview-lang-indicator">
-          Langue affichee : <span className="font-medium text-gray-700">{previewLang.toUpperCase()}</span>
+        <p className="text-sm text-ink-60 mb-2" data-testid="preview-lang-indicator">
+          Langue affichee : <span className="font-medium text-ink-80">{previewLang.toUpperCase()}</span>
         </p>
       )}
 
@@ -307,16 +308,16 @@ export default function PreviewPage() {
       <div className="flex gap-2 mb-4">
         <button
           onClick={() => setViewMode('studio')}
-          className={`py-1.5 px-4 rounded-lg text-sm font-medium transition-colors ${
-            viewMode === 'studio' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+          className={`py-1.5 px-4 rounded-lg text-sm font-medium transition ${
+            viewMode === 'studio' ? 'bg-ink text-white' : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
           }`}
         >
           Vue Studio
         </button>
         <button
           onClick={() => setViewMode('catalogue')}
-          className={`py-1.5 px-4 rounded-lg text-sm font-medium transition-colors ${
-            viewMode === 'catalogue' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+          className={`py-1.5 px-4 rounded-lg text-sm font-medium transition ${
+            viewMode === 'catalogue' ? 'bg-ink text-white' : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
           }`}
         >
           Vue Catalogue (touriste)
@@ -325,13 +326,13 @@ export default function PreviewPage() {
 
       {/* ═══ VUE CATALOGUE ═══ */}
       {viewMode === 'catalogue' && (
-        <div className="bg-gray-900 text-white rounded-2xl overflow-hidden mb-6 max-w-sm mx-auto" data-testid="catalogue-view">
+        <div className="bg-ink text-white rounded-2xl overflow-hidden mb-6 max-w-sm mx-auto" data-testid="catalogue-view">
           {/* Tour card header */}
-          <div className="relative h-48 bg-gradient-to-br from-teal-600 to-teal-800 flex items-end p-4">
+          <div className="relative h-48 bg-gradient-to-br from-grenadine to-ink flex items-end p-4">
             <div>
-              <p className="text-teal-200 text-xs font-medium uppercase tracking-wider">{session.language?.toUpperCase() ?? 'FR'}</p>
+              <p className="text-paper text-xs font-medium uppercase tracking-wider">{session.language?.toUpperCase() ?? 'FR'}</p>
               <h2 className="text-xl font-bold">{session.title || 'Mon tour'}</h2>
-              <div className="flex items-center gap-3 mt-1 text-sm text-teal-100">
+              <div className="flex items-center gap-3 mt-1 text-sm text-paper-soft">
                 <span>{scenes.length} etapes</span>
                 <span>~{scenes.length * 3} min</span>
               </div>
@@ -342,8 +343,8 @@ export default function PreviewPage() {
           <div className="p-4">
             <button
               onClick={handlePlayAll}
-              className={`w-full py-3 rounded-xl text-sm font-semibold transition-colors ${
-                isPlayingAll ? 'bg-amber-500 text-white' : 'bg-teal-500 text-white'
+              className={`w-full py-3 rounded-xl text-sm font-semibold transition ${
+                isPlayingAll ? 'bg-ocre text-white' : 'bg-grenadine text-white'
               }`}
               data-testid="play-all-btn"
             >
@@ -361,8 +362,8 @@ export default function PreviewPage() {
               return (
                 <div
                   key={scene.id}
-                  className={`rounded-xl overflow-hidden transition-colors ${
-                    isActive ? 'bg-teal-800' : 'bg-gray-800 hover:bg-gray-700'
+                  className={`rounded-xl overflow-hidden transition ${
+                    isActive ? 'bg-grenadine' : 'bg-ink hover:opacity-90'
                   }`}
                 >
                   {/* Photo carousel */}
@@ -384,20 +385,20 @@ export default function PreviewPage() {
                     className="flex items-center gap-3 p-3 cursor-pointer"
                   >
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
-                      isActive ? 'bg-teal-500 text-white' : 'bg-gray-700 text-gray-400'
+                      isActive ? 'bg-grenadine text-white' : 'bg-ink-80 text-ink-40'
                     }`}>
                       {isActive ? '||' : index + 1}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className={`text-sm font-medium truncate ${isActive ? 'text-white' : 'text-gray-200'}`}>
+                      <p className={`text-sm font-medium truncate ${isActive ? 'text-white' : 'text-paper'}`}>
                         {scene.title || `Etape ${index + 1}`}
                       </p>
                       {scene.poiDescription && (
-                        <p className="text-xs text-gray-400 truncate">{scene.poiDescription}</p>
+                        <p className="text-xs text-ink-40 truncate">{scene.poiDescription}</p>
                       )}
                     </div>
                     {hasAudio && !isActive && (
-                      <span className="text-gray-500 text-xs">{'>'}</span>
+                      <span className="text-ink-60 text-xs">{'>'}</span>
                     )}
                   </div>
                 </div>
@@ -412,27 +413,27 @@ export default function PreviewPage() {
         <>
           {/* Map — consumer view */}
           {scenes.some((s) => s.latitude && s.longitude) && (
-            <div className="mb-6 rounded-lg overflow-hidden border border-gray-200" data-testid="preview-map">
+            <div className="mb-6 rounded-lg overflow-hidden border border-line" data-testid="preview-map">
               <PreviewMap scenes={scenes} />
             </div>
           )}
 
           {/* Playlist controls + player */}
-          <div className="mb-4 p-3 bg-gray-900 rounded-xl">
+          <div className="mb-4 p-3 bg-ink rounded-xl">
             <div className="flex items-center justify-between mb-2">
               <button
                 onClick={handlePlayAll}
-                className={`font-medium py-2 px-5 rounded-lg text-sm transition-colors ${
+                className={`font-medium py-2 px-5 rounded-lg text-sm transition ${
                   isPlayingAll
-                    ? 'bg-amber-500 hover:bg-amber-600 text-white'
-                    : 'bg-teal-500 hover:bg-teal-400 text-white'
+                    ? 'bg-ocre hover:opacity-90 text-white'
+                    : 'bg-grenadine hover:opacity-90 text-white'
                 }`}
                 data-testid="play-all-btn"
               >
                 {isPlayingAll ? 'Arreter' : 'Ecouter tout'}
               </button>
               {isPlayingAll && playingIndex !== null && (
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-ink-40">
                   Scene {playingIndex + 1}/{scenes.length} — {scenes[playingIndex]?.title || `Scene ${playingIndex + 1}`}
                 </p>
               )}
@@ -442,16 +443,16 @@ export default function PreviewPage() {
 
       {/* Language preview selector */}
       {session.availableLanguages && session.availableLanguages.length > 1 && (
-        <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200" data-testid="language-preview-section">
+        <div className="mb-4 p-3 bg-paper-soft rounded-lg border border-line" data-testid="language-preview-section">
           <div className="flex items-center gap-3 mb-2">
-            <label htmlFor="preview-lang-select" className="text-sm font-medium text-gray-700">
+            <label htmlFor="preview-lang-select" className="text-sm font-medium text-ink-80">
               Langue du preview :
             </label>
             <select
               id="preview-lang-select"
               value={previewLang}
               onChange={(e) => setPreviewLang(e.target.value)}
-              className="border border-gray-300 rounded-lg px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-400"
+              className="border border-line rounded-lg px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-grenadine"
               data-testid="preview-lang-select"
             >
               {[session.language || 'fr', ...session.availableLanguages.filter(
@@ -481,23 +482,23 @@ export default function PreviewPage() {
           return (
             <div
               key={scene.id}
-              className={`p-4 rounded-lg border transition-colors ${
-                isActive ? 'border-teal-400 bg-teal-50' : 'border-gray-200'
+              className={`p-4 rounded-lg border transition ${
+                isActive ? 'border-grenadine bg-grenadine-soft' : 'border-line'
               }`}
               data-testid={`preview-scene-${scene.id}`}
             >
               <div className="flex items-start gap-3">
-                <span className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-600 flex-shrink-0 mt-0.5">
+                <span className="w-7 h-7 rounded-full bg-paper-deep flex items-center justify-center text-xs font-bold text-ink-80 flex-shrink-0 mt-0.5">
                   {index + 1}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <p className="font-medium text-gray-900">
+                    <p className="font-medium text-ink">
                       {scene.title || `Scène ${index + 1}`}
                     </p>
                     {scene.qualityScore && (
                       <span className={`inline-flex px-1.5 py-0 rounded text-[10px] font-medium ${
-                        scene.qualityScore === 'good' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                        scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre'
                       }`}>
                         {scene.qualityScore === 'good' ? '✓ Bonne' : '⚠ À améliorer'}
                       </span>
@@ -505,7 +506,7 @@ export default function PreviewPage() {
                   </div>
 
                   {scene.poiDescription && (
-                    <p className="text-sm text-gray-500 mb-2">{scene.poiDescription}</p>
+                    <p className="text-sm text-ink-60 mb-2">{scene.poiDescription}</p>
                   )}
 
                   {/* Photos carousel */}
@@ -519,20 +520,20 @@ export default function PreviewPage() {
 
                   {/* Transcribed text preview */}
                   {scene.transcriptText && (
-                    <p className="text-sm text-gray-600 line-clamp-2 mb-2 italic">
+                    <p className="text-sm text-ink-80 line-clamp-2 mb-2 italic">
                       &ldquo;{scene.transcriptText}&rdquo;
                     </p>
                   )}
 
                   {scene.moderationFeedback && (
-                    <p className="text-xs text-red-600 mt-1">💬 {scene.moderationFeedback}</p>
+                    <p className="text-xs text-danger mt-1">💬 {scene.moderationFeedback}</p>
                   )}
                 </div>
                 {hasAudio && (
                 <button
                   onClick={() => handlePlayScene(index)}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
-                    isActive ? 'bg-teal-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-teal-100'
+                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition ${
+                    isActive ? 'bg-grenadine text-white' : 'bg-paper-soft text-ink-80 hover:bg-grenadine-soft'
                   }`}
                   aria-label={isActive ? `Pause scène ${index + 1}` : `Écouter scène ${index + 1}`}
                 >
@@ -560,7 +561,7 @@ export default function PreviewPage() {
           <button
             onClick={handleSubmitForReview}
             disabled={isSubmitting}
-            className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-medium py-2.5 px-6 rounded-lg transition-colors"
+            className="bg-mer hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2.5 px-6 rounded-lg transition"
             data-testid="submit-review-btn"
           >
             {isSubmitting ? 'Publication...' : hasRevisionFeedback ? '📤 Republier' : '📋 Publier'}
@@ -570,7 +571,7 @@ export default function PreviewPage() {
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-medium py-2.5 px-6 rounded-lg transition-colors"
+            className="bg-mer hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2.5 px-6 rounded-lg transition"
             data-testid="submit-btn"
           >
             {isSubmitting ? 'Publication...' : hasRevisionFeedback ? '📤 Republier' : '📤 Publier'}
@@ -582,7 +583,7 @@ export default function PreviewPage() {
           <button
             onClick={handleRetract}
             disabled={isRetracting}
-            className="border border-orange-500 text-orange-700 hover:bg-orange-50 disabled:opacity-50 font-medium py-2.5 px-6 rounded-lg transition-colors"
+            className="border border-ocre text-ocre hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-6 rounded-lg transition"
             data-testid="retract-btn"
           >
             {isRetracting ? 'Retrait...' : '↩ Retirer la publication'}
@@ -613,7 +614,7 @@ export default function PreviewPage() {
               }
             }}
             disabled={isSubmitting}
-            className="border border-gray-400 text-gray-600 hover:bg-gray-50 disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition-colors text-sm"
+            className="border border-ink-40 text-ink-80 hover:bg-paper-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-sm"
             data-testid="suspend-btn"
           >
             ⏸ Suspendre
@@ -644,7 +645,7 @@ export default function PreviewPage() {
               }
             }}
             disabled={isSubmitting}
-            className="border border-amber-500 text-amber-700 hover:bg-amber-50 disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition-colors text-sm"
+            className="border border-ocre text-ocre hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-sm"
             data-testid="archive-btn"
           >
             📦 Archiver
@@ -653,17 +654,17 @@ export default function PreviewPage() {
 
         {/* Status messages for non-actionable states */}
         {isInReview && !canSubmit && (
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-ink-60">
             ⏳ En attente de la modération
           </span>
         )}
         {isArchived && (
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-ink-60">
             📦 Parcours archivé
           </span>
         )}
         {isPublished && (
-          <span className="text-sm text-green-600 font-medium">
+          <span className="text-sm text-success font-medium">
             ✅ Parcours publié
           </span>
         )}
@@ -672,7 +673,7 @@ export default function PreviewPage() {
         {!isPublished && !isArchived && (
           <button
             onClick={() => setShowDeleteConfirm(true)}
-            className="text-sm text-gray-500 hover:text-red-600 transition-colors"
+            className="text-sm text-ink-60 hover:text-danger transition"
             data-testid="delete-btn"
           >
             🗑️ Supprimer
@@ -680,32 +681,39 @@ export default function PreviewPage() {
         )}
 
         {submitMessage && (
-          <span className={`text-sm ${isSubmitSuccess ? 'text-green-600' : 'text-red-600'}`} role="status">
+          <span className={`text-sm ${isSubmitSuccess ? 'text-success' : 'text-danger'}`} role="status">
             {submitMessage}
           </span>
         )}
       </div>
 
+      <StepNav
+        prevHref={`/guide/studio/${sessionId}/scenes`}
+        prevLabel="Scènes"
+        nextHref={`/guide/studio/${sessionId}/submission`}
+        nextLabel="Publication"
+      />
+
       {/* Delete confirmation dialog */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" role="dialog" aria-modal="true">
           <div className="bg-white rounded-xl shadow-2xl max-w-sm w-full mx-4 p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-3">Supprimer cette session ?</h3>
-            <p className="text-sm text-gray-600 mb-5">
+            <h3 className="text-lg font-bold text-ink mb-3">Supprimer cette session ?</h3>
+            <p className="text-sm text-ink-80 mb-5">
               Tous les fichiers audio, textes et métadonnées seront supprimés définitivement. Cette action est irréversible.
             </p>
             <div className="flex gap-3">
               <button
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                className="flex-1 bg-danger hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-4 rounded-lg transition"
                 data-testid="confirm-delete-btn"
               >
                 {isDeleting ? 'Suppression...' : 'Supprimer'}
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="flex-1 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-colors"
+                className="flex-1 border border-line text-ink-80 hover:bg-paper-soft font-medium py-2 px-4 rounded-lg transition"
               >
                 Annuler
               </button>

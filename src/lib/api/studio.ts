@@ -1,4 +1,4 @@
-import type { StudioSession, StudioSessionStatus, StudioScene, SceneStatus } from '@/types/studio';
+import type { StudioSession, StudioSessionStatus, StudioScene, SceneStatus, WalkSegment } from '@/types/studio';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
 import { __addStubTour } from './guide';
@@ -50,6 +50,26 @@ const MOCK_SESSIONS: StudioSession[] = [
     updatedAt: '2026-03-12T16:45:00.000Z',
   },
   {
+    id: 'session-phased-demo',
+    guideId: 'guide-1',
+    sourceSessionId: 'mobile-phased-001',
+    tourId: null,
+    title: 'Balade phased - demo nettoyage',
+    status: 'ready_for_cleanup',
+    language: 'fr',
+    transcriptionQuotaUsed: null,
+    coverPhotoKey: null,
+    availableLanguages: ['fr'],
+    translatedTitles: null,
+    translatedDescriptions: null,
+    version: 1,
+    consentRGPD: true,
+    captureMode: 'phased_capture',
+    captureSessionRef: 'mobile-phased-001',
+    createdAt: '2026-04-01T10:00:00.000Z',
+    updatedAt: '2026-04-01T10:00:00.000Z',
+  },
+  {
     id: 'session-nice-promenade',
     guideId: 'guide-1',
     sourceSessionId: 'mobile-session-003',
@@ -79,6 +99,10 @@ const MOCK_SCENES: Record<string, StudioScene[]> = {
     { id: 'scene-4', sessionId: 'session-grasse-parfums', sceneIndex: 3, title: null, originalAudioKey: 'guide-studio/guide-1/session-grasse-parfums/original/scene_3.aac', studioAudioKey: null, transcriptText: null, transcriptionJobId: null, transcriptionStatus: null, qualityScore: null, qualityDetailsJson: null, codecStatus: null, status: 'has_original', takesCount: null, selectedTakeIndex: null, moderationFeedback: null, photosRefs: [], latitude: null, longitude: null, poiDescription: null, archived: false, createdAt: '2026-03-10T14:33:00.000Z', updatedAt: '2026-03-10T14:33:00.000Z' },
     { id: 'scene-5', sessionId: 'session-grasse-parfums', sceneIndex: 4, title: 'Jardin du MIP', originalAudioKey: 'guide-studio/guide-1/session-grasse-parfums/original/scene_4.aac', studioAudioKey: null, transcriptText: null, transcriptionJobId: null, transcriptionStatus: null, qualityScore: null, qualityDetailsJson: null, codecStatus: null, status: 'has_original', takesCount: null, selectedTakeIndex: null, moderationFeedback: null, photosRefs: [], latitude: null, longitude: null, poiDescription: null, archived: false, createdAt: '2026-03-10T14:34:00.000Z', updatedAt: '2026-03-10T14:34:00.000Z' },
     { id: 'scene-6', sessionId: 'session-grasse-parfums', sceneIndex: 5, title: 'Panorama final', originalAudioKey: 'guide-studio/guide-1/session-grasse-parfums/original/scene_5.aac', studioAudioKey: null, transcriptText: null, transcriptionJobId: null, transcriptionStatus: null, qualityScore: null, qualityDetailsJson: null, codecStatus: null, status: 'has_original', takesCount: null, selectedTakeIndex: null, moderationFeedback: null, photosRefs: [], latitude: null, longitude: null, poiDescription: null, archived: false, createdAt: '2026-03-10T14:35:00.000Z', updatedAt: '2026-03-10T14:35:00.000Z' },
+  ],
+  'session-phased-demo': [
+    { id: 'phased-scene-1', sessionId: 'session-phased-demo', sceneIndex: 0, title: 'Place centrale', originalAudioKey: 'guide-studio/guide-1/session-phased-demo/original/scene_0.aac', studioAudioKey: null, transcriptText: null, transcriptionJobId: null, transcriptionStatus: null, qualityScore: null, qualityDetailsJson: null, codecStatus: null, status: 'has_original', takesCount: null, selectedTakeIndex: null, moderationFeedback: null, photosRefs: ['/images/mock/grasse-place-aires-1.jpg', '/images/mock/grasse-place-aires-2.jpg'], latitude: 43.6591, longitude: 6.9243, poiDescription: 'Ancien forum', archived: false, heroPhotoRef: '/images/mock/grasse-place-aires-1.jpg', trimStart: null, trimEnd: null, createdAt: '2026-04-01T10:00:00.000Z', updatedAt: '2026-04-01T10:00:00.000Z' },
+    { id: 'phased-scene-2', sessionId: 'session-phased-demo', sceneIndex: 2, title: 'Musee', originalAudioKey: 'guide-studio/guide-1/session-phased-demo/original/scene_1.aac', studioAudioKey: null, transcriptText: null, transcriptionJobId: null, transcriptionStatus: null, qualityScore: null, qualityDetailsJson: null, codecStatus: null, status: 'has_original', takesCount: null, selectedTakeIndex: null, moderationFeedback: null, photosRefs: ['/images/mock/musee-mip-1.jpg'], latitude: 43.6583, longitude: 6.9215, poiDescription: null, archived: false, heroPhotoRef: null, trimStart: null, trimEnd: null, createdAt: '2026-04-01T10:00:00.000Z', updatedAt: '2026-04-01T10:00:00.000Z' },
   ],
   'session-grasse-vieille-ville': [
     { id: 'scene-vv-1', sessionId: 'session-grasse-vieille-ville', sceneIndex: 0, title: 'Cathédrale Notre-Dame', originalAudioKey: 'guide-studio/guide-1/session-grasse-vieille-ville/original/scene_0.aac', studioAudioKey: null, transcriptText: 'Bienvenue devant la cathédrale...', transcriptionJobId: 'job-001', transcriptionStatus: 'completed', qualityScore: null, qualityDetailsJson: null, codecStatus: null, status: 'transcribed', takesCount: null, selectedTakeIndex: null, moderationFeedback: null, photosRefs: ['/images/mock/cathedrale-1.jpg'], latitude: 43.6593, longitude: 6.9218, poiDescription: 'Cathédrale du XIIe siècle', archived: false, createdAt: '2026-03-08T09:15:00.000Z', updatedAt: '2026-03-12T10:00:00.000Z' },
@@ -137,6 +161,12 @@ function mapAppSyncSession(raw: Record<string, unknown>): StudioSession {
     translatedDescriptions: parseJsonField(raw.translatedDescriptions) as Record<string, string> | null,
     version: (raw.version as number) ?? 1,
     consentRGPD: (raw.consentRGPD as boolean) ?? true,
+    captureMode: (raw.captureMode as StudioSession['captureMode']) ?? null,
+    captureSessionRef: (raw.captureSessionRef as string) ?? null,
+    description: (raw.description as string) ?? null,
+    themes: (raw.themes as string[]) ?? null,
+    durationMinutes: (raw.durationMinutes as number) ?? null,
+    cleanedAt: (raw.cleanedAt as string) ?? null,
     createdAt: (raw.createdAt as string) ?? new Date().toISOString(),
     updatedAt: (raw.updatedAt as string) ?? new Date().toISOString(),
   };
@@ -164,6 +194,9 @@ function mapAppSyncScene(raw: Record<string, unknown>): StudioScene {
     latitude: (raw.latitude as number) ?? null,
     longitude: (raw.longitude as number) ?? null,
     poiDescription: (raw.poiDescription as string) ?? null,
+    heroPhotoRef: (raw.heroPhotoRef as string) ?? null,
+    trimStart: (raw.trimStart as number) ?? null,
+    trimEnd: (raw.trimEnd as number) ?? null,
     archived: (raw.archived as boolean) ?? false,
     createdAt: (raw.createdAt as string) ?? new Date().toISOString(),
     updatedAt: (raw.updatedAt as string) ?? new Date().toISOString(),
@@ -173,17 +206,18 @@ function mapAppSyncScene(raw: Record<string, unknown>): StudioScene {
 // --- Status helpers ---
 
 const STATUS_CONFIG: Record<StudioSessionStatus, { label: string; color: string }> = {
-  draft: { label: 'Brouillon', color: 'bg-gray-100 text-gray-700' },
-  transcribing: { label: 'Transcription...', color: 'bg-blue-100 text-blue-700' },
-  editing: { label: 'En cours d\u2019\u00e9dition', color: 'bg-blue-100 text-blue-700' },
-  recording: { label: 'Enregistrement', color: 'bg-blue-100 text-blue-700' },
-  ready: { label: 'Pr\u00eat', color: 'bg-green-100 text-green-700' },
-  submitted: { label: 'Soumis', color: 'bg-yellow-100 text-yellow-700' },
-  published: { label: 'Publi\u00e9', color: 'bg-green-200 text-green-800' },
-  paused: { label: 'En pause', color: 'bg-amber-100 text-amber-700' },
-  revision_requested: { label: 'R\u00e9vision demand\u00e9e', color: 'bg-orange-100 text-orange-700' },
-  rejected: { label: 'Rejet\u00e9', color: 'bg-red-100 text-red-700' },
-  archived: { label: 'Archiv\u00e9', color: 'bg-gray-200 text-gray-500' },
+  draft: { label: 'Brouillon', color: 'bg-paper-soft text-ink-80' },
+  transcribing: { label: 'Transcription...', color: 'bg-mer-soft text-mer' },
+  editing: { label: 'En cours d\u2019\u00e9dition', color: 'bg-mer-soft text-mer' },
+  recording: { label: 'Enregistrement', color: 'bg-mer-soft text-mer' },
+  ready: { label: 'Pr\u00eat', color: 'bg-olive-soft text-success' },
+  submitted: { label: 'Soumis', color: 'bg-ocre-soft text-ocre' },
+  published: { label: 'Publi\u00e9', color: 'bg-olive-soft text-success' },
+  paused: { label: 'En pause', color: 'bg-ocre-soft text-ocre' },
+  revision_requested: { label: 'R\u00e9vision demand\u00e9e', color: 'bg-ocre-soft text-ocre' },
+  rejected: { label: 'Rejet\u00e9', color: 'bg-grenadine-soft text-danger' },
+  archived: { label: 'Archiv\u00e9', color: 'bg-paper-deep text-ink-60' },
+  ready_for_cleanup: { label: 'Nettoyage requis', color: 'bg-ocre-soft text-ocre' },
 };
 
 export function getSessionStatusConfig(status: StudioSessionStatus) {
@@ -191,12 +225,12 @@ export function getSessionStatusConfig(status: StudioSessionStatus) {
 }
 
 const SCENE_STATUS_CONFIG: Record<SceneStatus, { label: string; color: string }> = {
-  empty: { label: 'Vide', color: 'bg-gray-100 text-gray-500' },
-  has_original: { label: 'Audio terrain', color: 'bg-blue-100 text-blue-700' },
-  transcribed: { label: 'Transcrit', color: 'bg-purple-100 text-purple-700' },
-  edited: { label: 'Édité', color: 'bg-yellow-100 text-yellow-700' },
-  recorded: { label: 'Enregistré', color: 'bg-orange-100 text-orange-700' },
-  finalized: { label: 'Finalisé', color: 'bg-green-100 text-green-700' },
+  empty: { label: 'Vide', color: 'bg-paper-soft text-ink-60' },
+  has_original: { label: 'Audio terrain', color: 'bg-mer-soft text-mer' },
+  transcribed: { label: 'Transcrit', color: 'bg-grenadine-soft text-grenadine' },
+  edited: { label: 'Édité', color: 'bg-ocre-soft text-ocre' },
+  recorded: { label: 'Enregistré', color: 'bg-ocre-soft text-ocre' },
+  finalized: { label: 'Finalisé', color: 'bg-olive-soft text-success' },
 };
 
 export function getSceneStatusConfig(status: SceneStatus) {
@@ -294,7 +328,17 @@ export async function getStudioSession(sessionId: string): Promise<StudioSession
 
 export async function updateStudioSession(
   sessionId: string,
-  updates: Partial<Pick<StudioSession, 'translatedTitles' | 'translatedDescriptions'>>,
+  updates: Partial<Pick<StudioSession,
+    | 'translatedTitles'
+    | 'translatedDescriptions'
+    | 'title'
+    | 'description'
+    | 'themes'
+    | 'language'
+    | 'durationMinutes'
+    | 'status'
+    | 'cleanedAt'
+  >>,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   if (shouldUseStubs()) {
     const session = getAllStubSessions().find((s) => s.id === sessionId);
@@ -753,6 +797,245 @@ export async function updateSceneAudio(
   } catch (e) {
     logger.warn(SERVICE_NAME, 'updateSceneAudio AppSync failed, local cache OK', { error: String(e) });
     return { ok: true };
+  }
+}
+
+// --- GCI-4.2: Reorder scenes (batch update sceneIndex) ---
+
+/**
+ * Reorder scenes in a session. `orderedSceneIds` is the new full ordered list.
+ * Each scene receives its new `sceneIndex` = position in the array.
+ *
+ * Stub mode: mutates in-memory scene objects directly.
+ * Real mode: iterates updateStudioSceneMutation — not atomic, callers should
+ * block concurrent reorders and tolerate partial failure.
+ */
+export async function reorderScenes(
+  sessionId: string,
+  orderedSceneIds: string[],
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (shouldUseStubs()) {
+    const mockScenes = MOCK_SCENES[sessionId] ?? [];
+    const created = createdStubScenes.filter((s) => s.sessionId === sessionId);
+    const all = [...mockScenes, ...created];
+    for (let i = 0; i < orderedSceneIds.length; i++) {
+      const scene = all.find((s) => s.id === orderedSceneIds[i]);
+      if (scene) {
+        scene.sceneIndex = i;
+        scene.updatedAt = new Date().toISOString();
+      }
+      // Also record local override so listStudioScenes reflects the new index
+      __setLocalSceneOverride(orderedSceneIds[i], { sceneIndex: i });
+    }
+    logger.info(SERVICE_NAME, 'Scenes reordered (stub)', { sessionId, count: orderedSceneIds.length });
+    return { ok: true };
+  }
+  // Real mode: iterate updates. If any write fails after earlier writes succeeded,
+  // attempt a best-effort rollback of the already-mutated scenes to their prior
+  // sceneIndex, so we don't leave a corrupt order (e.g. duplicates) in the backend.
+  // Callers must ALSO guard against concurrent calls — this function assumes no
+  // other writer is racing on the same session.
+  try {
+    const { updateStudioSceneMutation, listStudioScenesBySession } = await import('./appsync-client');
+    // Capture prior indices BEFORE mutating so we can revert on partial failure.
+    const priorIndices = new Map<string, number>();
+    try {
+      const existing = await listStudioScenesBySession(sessionId);
+      if (existing.ok) {
+        for (const s of existing.data as Array<Record<string, unknown>>) {
+          priorIndices.set(s.id as string, (s.sceneIndex as number) ?? 0);
+        }
+      }
+    } catch {
+      // If we can't read prior state, proceed without rollback capability.
+    }
+
+    for (let i = 0; i < orderedSceneIds.length; i++) {
+      const result = await updateStudioSceneMutation(orderedSceneIds[i], { sceneIndex: i });
+      if (!result.ok) {
+        logger.error(SERVICE_NAME, 'reorderScenes partial failure — attempting rollback', {
+          sessionId, failedSceneId: orderedSceneIds[i], at: i, error: result.error,
+        });
+        // Roll back the writes that succeeded (indices 0..i-1)
+        for (let j = 0; j < i; j++) {
+          const prior = priorIndices.get(orderedSceneIds[j]);
+          if (prior !== undefined) {
+            try {
+              await updateStudioSceneMutation(orderedSceneIds[j], { sceneIndex: prior });
+            } catch (rollbackErr) {
+              logger.error(SERVICE_NAME, 'reorderScenes rollback step failed', {
+                sessionId, sceneId: orderedSceneIds[j], error: String(rollbackErr),
+              });
+            }
+          }
+        }
+        return {
+          ok: false,
+          error: `Reorder échoué à l'index ${i} : ${result.error} (rollback tenté)`,
+        };
+      }
+    }
+    logger.info(SERVICE_NAME, 'Scenes reordered (AppSync)', { sessionId, count: orderedSceneIds.length });
+    return { ok: true };
+  } catch (e) {
+    logger.error(SERVICE_NAME, 'reorderScenes exception', { error: String(e) });
+    return { ok: false, error: 'Erreur lors de la réorganisation des scènes.' };
+  }
+}
+
+// --- WalkSegment stub data + API ---
+
+function makeGpsTrack(points: Array<[number, number]>): string {
+  return JSON.stringify(points.map(([lat, lng], i) => ({ lat, lng, t: i * 1000 })));
+}
+
+const MOCK_WALK_SEGMENTS: Record<string, WalkSegment[]> = {
+  'session-phased-demo': [
+    {
+      id: 'phased-walk-1',
+      sessionId: 'session-phased-demo',
+      order: 1,
+      startedAt: '2026-04-01T10:05:00.000Z',
+      endedAt: '2026-04-01T10:07:30.000Z',
+      durationMs: 150_000,
+      distanceM: 185,
+      gpsTrackJson: makeGpsTrack([
+        [43.6591, 6.9243],
+        [43.659, 6.924],
+        [43.6588, 6.9235],
+        [43.6587, 6.9221],
+        [43.6583, 6.9215],
+      ]),
+      audioRefs: [],
+      photoRefs: ['/images/mock/grasse-walk-1.jpg'],
+      deleted: false,
+      createdAt: '2026-04-01T10:05:00.000Z',
+      updatedAt: '2026-04-01T10:05:00.000Z',
+    },
+  ],
+  'session-grasse-parfums': [
+    {
+      id: 'walk-1',
+      sessionId: 'session-grasse-parfums',
+      order: 1,
+      startedAt: '2026-03-10T14:30:30.000Z',
+      endedAt: '2026-03-10T14:33:00.000Z',
+      durationMs: 150_000,
+      distanceM: 185,
+      gpsTrackJson: makeGpsTrack([
+        [43.6591, 6.9243],
+        [43.659, 6.924],
+        [43.6588, 6.9235],
+        [43.6587, 6.9221],
+      ]),
+      audioRefs: [],
+      photoRefs: ['/images/mock/grasse-walk-1.jpg'],
+      deleted: false,
+      createdAt: '2026-03-10T14:30:30.000Z',
+      updatedAt: '2026-03-10T14:30:30.000Z',
+    },
+    {
+      id: 'walk-2',
+      sessionId: 'session-grasse-parfums',
+      order: 3,
+      startedAt: '2026-03-10T14:35:00.000Z',
+      endedAt: '2026-03-10T14:36:00.000Z',
+      durationMs: 60_000,
+      distanceM: 60,
+      gpsTrackJson: makeGpsTrack([
+        [43.6587, 6.9221],
+        [43.6585, 6.9218],
+        [43.6583, 6.9215],
+      ]),
+      audioRefs: [],
+      photoRefs: [],
+      deleted: false,
+      createdAt: '2026-03-10T14:35:00.000Z',
+      updatedAt: '2026-03-10T14:35:00.000Z',
+    },
+  ],
+};
+
+const createdStubWalks: WalkSegment[] = [];
+const localWalkOverrides = new Map<string, Partial<WalkSegment>>();
+
+function mapAppSyncWalk(raw: Record<string, unknown>): WalkSegment {
+  return {
+    id: raw.id as string,
+    sessionId: raw.sessionId as string,
+    order: (raw.order as number) ?? 0,
+    startedAt: (raw.startedAt as string) ?? null,
+    endedAt: (raw.endedAt as string) ?? null,
+    durationMs: (raw.durationMs as number) ?? null,
+    distanceM: (raw.distanceM as number) ?? null,
+    gpsTrackJson: (raw.gpsTrackJson as string) ?? null,
+    audioRefs: (raw.audioRefs as string[]) ?? [],
+    photoRefs: (raw.photoRefs as string[]) ?? [],
+    deleted: (raw.deleted as boolean) ?? false,
+    createdAt: (raw.createdAt as string) ?? new Date().toISOString(),
+    updatedAt: (raw.updatedAt as string) ?? new Date().toISOString(),
+  };
+}
+
+function applyWalkOverrides(walks: WalkSegment[]): WalkSegment[] {
+  if (localWalkOverrides.size === 0) return walks;
+  return walks.map((w) => {
+    const o = localWalkOverrides.get(w.id);
+    return o ? { ...w, ...o } : w;
+  });
+}
+
+export async function listWalkSegments(sessionId: string): Promise<WalkSegment[]> {
+  if (shouldUseStubs()) {
+    const base = MOCK_WALK_SEGMENTS[sessionId] ?? [];
+    const created = createdStubWalks.filter((w) => w.sessionId === sessionId);
+    logger.info(SERVICE_NAME, 'Listing walk segments (stub)', { sessionId });
+    return applyWalkOverrides([...base, ...created]).sort((a, b) => a.order - b.order);
+  }
+  try {
+    const { listWalkSegmentsBySession } = await import('./appsync-client');
+    const result = await listWalkSegmentsBySession(sessionId);
+    if (!result.ok) {
+      logger.warn(SERVICE_NAME, 'listWalkSegments returned error', { error: result.error });
+      return [];
+    }
+    return applyWalkOverrides(
+      result.data.map((w) => mapAppSyncWalk(w as Record<string, unknown>)),
+    ).sort((a, b) => a.order - b.order);
+  } catch (e) {
+    logger.error(SERVICE_NAME, 'listWalkSegments exception', { error: String(e) });
+    return [];
+  }
+}
+
+export async function updateWalkSegment(
+  walkId: string,
+  updates: Partial<Pick<WalkSegment, 'deleted'>>,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const existing = localWalkOverrides.get(walkId) ?? {};
+  localWalkOverrides.set(walkId, { ...existing, ...updates, updatedAt: new Date().toISOString() });
+
+  // Also apply to stub base + created arrays
+  for (const arr of [...Object.values(MOCK_WALK_SEGMENTS), createdStubWalks]) {
+    const walk = arr.find((w) => w.id === walkId);
+    if (walk) {
+      Object.assign(walk, updates, { updatedAt: new Date().toISOString() });
+    }
+  }
+
+  if (shouldUseStubs()) {
+    logger.info(SERVICE_NAME, 'Walk segment updated (stub)', { walkId, fields: Object.keys(updates) });
+    return { ok: true };
+  }
+  try {
+    const { updateWalkSegmentMutation } = await import('./appsync-client');
+    const result = await updateWalkSegmentMutation(walkId, updates as Record<string, unknown>);
+    if (!result.ok) return { ok: false, error: result.error };
+    logger.info(SERVICE_NAME, 'Walk segment updated (AppSync)', { walkId, fields: Object.keys(updates) });
+    return { ok: true };
+  } catch (e) {
+    logger.error(SERVICE_NAME, 'updateWalkSegment real failed', { error: String(e) });
+    return { ok: false, error: 'Erreur lors de la mise à jour du segment.' };
   }
 }
 

@@ -44,7 +44,7 @@ export function TakesList({ sceneId }: TakesListProps) {
 
   return (
     <div className="mt-3" data-testid="takes-list">
-      <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+      <h4 className="text-xs font-semibold text-ink-40 uppercase tracking-wider mb-2">
         Prises ({takes.length})
       </h4>
       <div className="space-y-1">
@@ -54,16 +54,16 @@ export function TakesList({ sceneId }: TakesListProps) {
             <div
               key={take.id}
               className={`flex items-center gap-2 p-2 rounded text-sm ${
-                isSelected ? 'bg-teal-50 border border-teal-200' : 'bg-gray-50 border border-gray-100'
+                isSelected ? 'bg-grenadine-soft border border-grenadine-soft' : 'bg-paper-soft border border-line'
               }`}
               data-testid={`take-${take.id}`}
             >
-              <span className="text-gray-500 w-6 text-center">{index + 1}</span>
-              <span className="flex-1 text-gray-700">{formatDuration(take.durationMs)}</span>
+              <span className="text-ink-60 w-6 text-center">{index + 1}</span>
+              <span className="flex-1 text-ink-80">{formatDuration(take.durationMs)}</span>
 
               <button
                 onClick={() => handlePlay(take)}
-                className="text-teal-600 hover:text-teal-700 text-xs font-medium"
+                className="text-grenadine hover:opacity-80 text-xs font-medium"
                 data-testid={`play-take-${take.id}`}
               >
                 ▶ Écouter
@@ -72,7 +72,7 @@ export function TakesList({ sceneId }: TakesListProps) {
               {!isSelected && (
                 <button
                   onClick={() => selectTake(sceneId, take.id)}
-                  className="text-blue-600 hover:text-blue-700 text-xs font-medium"
+                  className="text-mer hover:opacity-80 text-xs font-medium"
                   data-testid={`select-take-${take.id}`}
                 >
                   Sélectionner
@@ -80,13 +80,13 @@ export function TakesList({ sceneId }: TakesListProps) {
               )}
 
               {isSelected && (
-                <span className="text-xs text-teal-600 font-medium">✓ Sélectionnée</span>
+                <span className="text-xs text-grenadine font-medium">✓ Sélectionnée</span>
               )}
 
               {takes.length > 1 && (
                 <button
                   onClick={() => deleteTake(sceneId, take.id)}
-                  className="text-gray-400 hover:text-red-500 text-xs"
+                  className="text-ink-40 hover:text-danger text-xs"
                   aria-label={`Supprimer prise ${index + 1}`}
                   data-testid={`delete-take-${take.id}`}
                 >

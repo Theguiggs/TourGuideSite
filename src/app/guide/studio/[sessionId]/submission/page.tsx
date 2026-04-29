@@ -2,12 +2,14 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import { StepNav } from '@/components/studio/wizard';
 import { getStudioSession, getSessionStatusConfig, listStudioScenes, listSegmentsByScene, cloneSessionAsV2, listStudioSessions } from '@/lib/api/studio';
 import { submitForReview, retractSubmission, updateSessionStatus } from '@/lib/api/studio-submission';
 import { listLanguagePurchases, checkLanguageReadiness, submitLanguageForModeration, retractLanguageSubmission } from '@/lib/api/language-purchase';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
 import { TourCommentThread } from '@/components/studio/tour-comment-thread';
+import { Collapsible } from '@/components/ui/collapsible';
 import { shouldUseStubs } from '@/config/api-mode';
 import { useAuth } from '@/lib/auth/auth-context';
 import type { StudioSession, StudioSessionStatus, TourLanguagePurchase, StudioScene, SceneSegment } from '@/types/studio';
@@ -101,8 +103,8 @@ export default function PublicationPage() {
     await doAction(confirmAction.label, confirmAction.fn);
   }, [confirmAction, doAction]);
 
-  if (isLoading) return <div className="p-6"><div className="bg-gray-100 rounded-lg h-64 animate-pulse" /></div>;
-  if (!session) return <div className="p-6"><div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">Session introuvable.</div></div>;
+  if (isLoading) return <div className="p-6"><div className="bg-paper-soft rounded-lg h-64 animate-pulse" /></div>;
+  if (!session) return <div className="p-6"><div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger">Session introuvable.</div></div>;
 
   const statusConfig = getSessionStatusConfig(session.status);
   const version = session.version ?? 1;
@@ -144,50 +146,46 @@ export default function PublicationPage() {
   };
 
   return (
-    <div className="p-6 max-w-3xl">
+    <div className="p-4 max-w-4xl">
 
       {/* Confirm dialog */}
       {confirmAction && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl">
-            <p className="text-sm text-gray-700 mb-4">{confirmAction.warning}</p>
+            <p className="text-sm text-ink-80 mb-4">{confirmAction.warning}</p>
             <div className="flex gap-3">
-              <button onClick={() => setConfirmAction(null)} className="flex-1 bg-gray-100 text-gray-700 font-medium py-2 rounded-lg hover:bg-gray-200">Annuler</button>
-              <button onClick={executeConfirm} className="flex-1 bg-red-600 text-white font-medium py-2 rounded-lg hover:bg-red-700">{confirmAction.label}</button>
+              <button onClick={() => setConfirmAction(null)} className="flex-1 bg-paper-soft text-ink-80 font-medium py-2 rounded-lg hover:bg-paper-deep">Annuler</button>
+              <button onClick={executeConfirm} className="flex-1 bg-danger text-white font-medium py-2 rounded-lg hover:opacity-90">{confirmAction.label}</button>
             </div>
           </div>
         </div>
       )}
 
-      {/* === STATUS CARD === */}
-      <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
-        <div className="flex items-center gap-3 mb-3">
-          <span className={`inline-flex px-3 py-1 rounded-full text-sm font-medium ${statusConfig.color}`}>{statusConfig.label}</span>
-          <span className="text-xs text-gray-400">V{version}</span>
-        </div>
-        <p className="text-sm text-gray-600">{statusMessages[session.status] ?? ''}</p>
-
-        {/* Sibling version info */}
-        {publishedSibling && !isPublished && (
-          <div className="mt-3 p-2 bg-green-50 border border-green-200 rounded-lg text-xs text-green-700">
-            V{publishedSibling.version ?? 1} est actuellement publiee.
-            {(session.status === 'draft' || session.status === 'editing') && ' Quand cette version sera approuvee, elle remplacera automatiquement V' + (publishedSibling.version ?? 1) + '.'}
-          </div>
-        )}
-
-        {/* Warning: nothing published */}
-        {!hasAnyPublished && !['draft', 'editing', 'recording', 'ready', 'submitted'].includes(session.status) && (
-          <div className="mt-3 p-2 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-700">
-            Aucune version de ce parcours n&apos;est visible par les touristes.
-          </div>
-        )}
+      {/* === STATUS BAR (compact) === */}
+      <div className="bg-white rounded-lg border border-line p-3 mb-3 flex items-center gap-3 flex-wrap">
+        <span className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium ${statusConfig.color}`}>{statusConfig.label}</span>
+        <span className="text-xs text-ink-40">V{version}</span>
+        <span className="text-xs text-ink-80 flex-1 min-w-0">{statusMessages[session.status] ?? ''}</span>
       </div>
 
-      {/* === ACTIONS CARD === */}
-      <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
-        <h2 className="text-base font-semibold text-gray-900 mb-4">Actions</h2>
+      {/* Inline alerts (only when relevant) */}
+      {publishedSibling && !isPublished && (
+        <div className="mb-3 p-2 bg-olive-soft border border-olive-soft rounded-lg text-xs text-success">
+          V{publishedSibling.version ?? 1} est actuellement publiee.
+          {(session.status === 'draft' || session.status === 'editing') && ' Quand cette version sera approuvee, elle remplacera V' + (publishedSibling.version ?? 1) + '.'}
+        </div>
+      )}
+      {!hasAnyPublished && !['draft', 'editing', 'recording', 'ready', 'submitted'].includes(session.status) && (
+        <div className="mb-3 p-2 bg-ocre-soft border border-ocre-soft rounded-lg text-xs text-ocre">
+          Aucune version de ce parcours n&apos;est visible par les touristes.
+        </div>
+      )}
 
-        <div className="grid gap-2">
+      {/* === ACTIONS CARD === */}
+      <div className="bg-white rounded-lg border border-line p-3 mb-3">
+        <h2 className="text-sm font-semibold text-ink mb-2">Actions</h2>
+
+        <div className="grid gap-1.5">
 
           {/* --- SUBMIT / RESUBMIT --- */}
           {canSubmit && session.tourId && (
@@ -197,12 +195,12 @@ export default function PublicationPage() {
                 () => submitForReview(sessionId, session.tourId!),
               )}
               disabled={isActioning}
-              className="w-full flex items-center gap-3 p-3 rounded-lg border border-indigo-200 bg-indigo-50 hover:bg-indigo-100 transition-colors text-left disabled:opacity-50"
+              className="w-full flex items-center gap-2 p-2 rounded-lg border border-mer-soft bg-mer-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
-              <span className="text-xl shrink-0">&#x1F4E4;</span>
+              <span className="text-base shrink-0">&#x1F4E4;</span>
               <div>
-                <p className="text-sm font-medium text-indigo-800">{hasRevisionFeedback ? 'Republier' : 'Publier'}</p>
-                <p className="text-xs text-indigo-600">Envoyer a la moderation pour publication</p>
+                <p className="text-sm font-medium text-mer">{hasRevisionFeedback ? 'Republier' : 'Publier'}</p>
+                <p className="text-xs text-mer">Envoyer a la moderation pour publication</p>
               </div>
             </button>
           )}
@@ -212,12 +210,12 @@ export default function PublicationPage() {
             <button
               onClick={() => doAction('Publication retiree.', () => retractSubmission(sessionId, session.tourId!))}
               disabled={isActioning}
-              className="w-full flex items-center gap-3 p-3 rounded-lg border border-orange-200 bg-orange-50 hover:bg-orange-100 transition-colors text-left disabled:opacity-50"
+              className="w-full flex items-center gap-2 p-2 rounded-lg border border-ocre-soft bg-ocre-soft hover:bg-ocre-soft transition text-left disabled:opacity-50"
             >
-              <span className="text-xl shrink-0">&#x21A9;</span>
+              <span className="text-base shrink-0">&#x21A9;</span>
               <div>
-                <p className="text-sm font-medium text-orange-800">Retirer la publication</p>
-                <p className="text-xs text-orange-600">Revenir en brouillon pour modifier</p>
+                <p className="text-sm font-medium text-ocre">Retirer la publication</p>
+                <p className="text-xs text-ocre">Revenir en brouillon pour modifier</p>
               </div>
             </button>
           )}
@@ -227,12 +225,12 @@ export default function PublicationPage() {
             <button
               onClick={() => doAction('Parcours mis en pause.', () => updateStatus('paused'))}
               disabled={isActioning}
-              className="w-full flex items-center gap-3 p-3 rounded-lg border border-amber-200 bg-amber-50 hover:bg-amber-100 transition-colors text-left disabled:opacity-50"
+              className="w-full flex items-center gap-2 p-2 rounded-lg border border-ocre-soft bg-ocre-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
-              <span className="text-xl shrink-0">&#x23F8;&#xFE0F;</span>
+              <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-amber-800">Mettre en pause</p>
-                <p className="text-xs text-amber-600">Masquer temporairement du catalogue. Reprise sans remoderation.</p>
+                <p className="text-sm font-medium text-ocre">Mettre en pause</p>
+                <p className="text-xs text-ocre">Masquer temporairement du catalogue. Reprise sans remoderation.</p>
               </div>
             </button>
           )}
@@ -242,12 +240,12 @@ export default function PublicationPage() {
             <button
               onClick={() => doAction('Parcours republier !', () => updateStatus('published'))}
               disabled={isActioning}
-              className="w-full flex items-center gap-3 p-3 rounded-lg border border-green-200 bg-green-50 hover:bg-green-100 transition-colors text-left disabled:opacity-50"
+              className="w-full flex items-center gap-2 p-2 rounded-lg border border-olive-soft bg-olive-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
-              <span className="text-xl shrink-0">&#x25B6;&#xFE0F;</span>
+              <span className="text-base shrink-0">&#x25B6;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-green-800">Republier le parcours</p>
-                <p className="text-xs text-green-600">Remettre le parcours visible dans le catalogue, sans remoderation</p>
+                <p className="text-sm font-medium text-success">Republier le parcours</p>
+                <p className="text-xs text-success">Remettre le parcours visible dans le catalogue, sans remoderation</p>
               </div>
             </button>
           )}
@@ -268,12 +266,12 @@ export default function PublicationPage() {
                 setIsActioning(false);
               }}
               disabled={isActioning}
-              className="w-full flex items-center gap-3 p-3 rounded-lg border border-teal-200 bg-teal-50 hover:bg-teal-100 transition-colors text-left disabled:opacity-50"
+              className="w-full flex items-center gap-2 p-2 rounded-lg border border-grenadine-soft bg-grenadine-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
-              <span className="text-xl shrink-0">&#x2728;</span>
+              <span className="text-base shrink-0">&#x2728;</span>
               <div>
-                <p className="text-sm font-medium text-teal-800">Creer V{version + 1}</p>
-                <p className="text-xs text-teal-600">Nouvelle version a partir du contenu actuel. {isPublished ? 'V' + version + ' reste publiee pendant le travail.' : 'Rien ne sera visible tant que V' + (version + 1) + ' n\'est pas publiee.'}</p>
+                <p className="text-sm font-medium text-grenadine">Creer V{version + 1}</p>
+                <p className="text-xs text-grenadine">Nouvelle version a partir du contenu actuel. {isPublished ? 'V' + version + ' reste publiee pendant le travail.' : 'Rien ne sera visible tant que V' + (version + 1) + ' n\'est pas publiee.'}</p>
               </div>
             </button>
           )}
@@ -288,12 +286,12 @@ export default function PublicationPage() {
                 doWithConfirm('Archiver', warning, () => updateStatus('archived'));
               }}
               disabled={isActioning}
-              className="w-full flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-left disabled:opacity-50"
+              className="w-full flex items-center gap-2 p-2 rounded-lg border border-line hover:bg-paper-soft transition text-left disabled:opacity-50"
             >
-              <span className="text-xl shrink-0">&#x1F4E6;</span>
+              <span className="text-base shrink-0">&#x1F4E6;</span>
               <div>
-                <p className="text-sm font-medium text-gray-700">Archiver</p>
-                <p className="text-xs text-gray-500">Retirer definitivement du catalogue</p>
+                <p className="text-sm font-medium text-ink-80">Archiver</p>
+                <p className="text-xs text-ink-60">Retirer definitivement du catalogue</p>
               </div>
             </button>
           )}
@@ -324,12 +322,12 @@ export default function PublicationPage() {
                 },
               )}
               disabled={isActioning}
-              className="w-full flex items-center gap-3 p-3 rounded-lg border border-red-200 hover:bg-red-50 transition-colors text-left disabled:opacity-50"
+              className="w-full flex items-center gap-2 p-2 rounded-lg border border-grenadine-soft hover:bg-grenadine-soft transition text-left disabled:opacity-50"
             >
-              <span className="text-xl shrink-0">&#x1F5D1;&#xFE0F;</span>
+              <span className="text-base shrink-0">&#x1F5D1;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-red-700">Supprimer ce brouillon</p>
-                <p className="text-xs text-red-500">Supprime definitivement cette session et tout son contenu</p>
+                <p className="text-sm font-medium text-danger">Supprimer ce brouillon</p>
+                <p className="text-xs text-danger">Supprime definitivement cette session et tout son contenu</p>
               </div>
             </button>
           )}
@@ -339,12 +337,12 @@ export default function PublicationPage() {
             <button
               onClick={() => doAction('Revenu en brouillon.', () => updateStatus('draft'))}
               disabled={isActioning}
-              className="w-full flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-left disabled:opacity-50"
+              className="w-full flex items-center gap-2 p-2 rounded-lg border border-line hover:bg-paper-soft transition text-left disabled:opacity-50"
             >
-              <span className="text-xl shrink-0">&#x1F4DD;</span>
+              <span className="text-base shrink-0">&#x1F4DD;</span>
               <div>
-                <p className="text-sm font-medium text-gray-700">Revenir en brouillon</p>
-                <p className="text-xs text-gray-500">Reprendre l&apos;edition depuis le debut</p>
+                <p className="text-sm font-medium text-ink-80">Revenir en brouillon</p>
+                <p className="text-xs text-ink-60">Reprendre l&apos;edition depuis le debut</p>
               </div>
             </button>
           )}
@@ -355,23 +353,23 @@ export default function PublicationPage() {
               <button
                 onClick={() => doAction('Parcours remis en brouillon.', () => updateStatus('draft'))}
                 disabled={isActioning}
-                className="w-full flex items-center gap-3 p-3 rounded-lg border border-teal-200 bg-teal-50 hover:bg-teal-100 transition-colors text-left disabled:opacity-50"
+                className="w-full flex items-center gap-2 p-2 rounded-lg border border-grenadine-soft bg-grenadine-soft hover:opacity-90 transition text-left disabled:opacity-50"
               >
-                <span className="text-xl shrink-0">&#x1F4DD;</span>
+                <span className="text-base shrink-0">&#x1F4DD;</span>
                 <div>
-                  <p className="text-sm font-medium text-teal-800">Remettre en brouillon</p>
-                  <p className="text-xs text-teal-600">Reprendre le travail sur ce parcours. Il faudra le republier.</p>
+                  <p className="text-sm font-medium text-grenadine">Remettre en brouillon</p>
+                  <p className="text-xs text-grenadine">Reprendre le travail sur ce parcours. Il faudra le republier.</p>
                 </div>
               </button>
               <button
                 onClick={() => doAction('Parcours remis en pause.', () => updateStatus('paused'))}
                 disabled={isActioning}
-                className="w-full flex items-center gap-3 p-3 rounded-lg border border-amber-200 bg-amber-50 hover:bg-amber-100 transition-colors text-left disabled:opacity-50"
+                className="w-full flex items-center gap-2 p-2 rounded-lg border border-ocre-soft bg-ocre-soft hover:opacity-90 transition text-left disabled:opacity-50"
               >
-                <span className="text-xl shrink-0">&#x23F8;&#xFE0F;</span>
+                <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
                 <div>
-                  <p className="text-sm font-medium text-amber-800">Desarchiver (en pause)</p>
-                  <p className="text-xs text-amber-600">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>
+                  <p className="text-sm font-medium text-ocre">Desarchiver (en pause)</p>
+                  <p className="text-xs text-ocre">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>
                 </div>
               </button>
             </>
@@ -380,60 +378,86 @@ export default function PublicationPage() {
         </div>
 
         {message && (
-          <p className={`mt-3 text-sm ${message.success ? 'text-green-600' : 'text-red-600'}`} role="status">{message.text}</p>
+          <p className={`mt-3 text-sm ${message.success ? 'text-success' : 'text-danger'}`} role="status">{message.text}</p>
         )}
       </div>
 
-      {/* === SIBLING VERSIONS === */}
+      {/* === SIBLING VERSIONS (collapsible) === */}
       {siblingVersions.length > 0 && (
-        <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
-          <h2 className="text-base font-semibold text-gray-900 mb-3">Autres versions</h2>
-          <div className="space-y-2">
+        <Collapsible
+          storageKey={`submission-siblings-${sessionId}`}
+          defaultOpen={false}
+          icon={<span>📚</span>}
+          title="Autres versions"
+          subtitle={`${siblingVersions.length} version${siblingVersions.length > 1 ? 's' : ''}`}
+          compact
+          className="mb-3"
+        >
+          <div className="space-y-1">
             {siblingVersions.map((s) => {
               const sc = getSessionStatusConfig(s.status);
               return (
                 <button
                   key={s.id}
                   onClick={() => router.push(`/guide/studio/${s.id}/submission`)}
-                  className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors text-left"
+                  className="w-full flex items-center gap-2 p-1.5 rounded-lg hover:bg-paper-soft transition text-left"
                 >
-                  <span className="text-xs font-semibold text-gray-500 w-6">V{s.version ?? 1}</span>
-                  <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium ${sc.color}`}>{sc.label}</span>
-                  <span className="flex-1 text-sm text-gray-700 truncate">{s.title}</span>
-                  <span className="text-xs text-gray-400">&rsaquo;</span>
+                  <span className="text-xs font-semibold text-ink-60 w-6">V{s.version ?? 1}</span>
+                  <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-medium ${sc.color}`}>{sc.label}</span>
+                  <span className="flex-1 text-sm text-ink-80 truncate">{s.title}</span>
+                  <span className="text-xs text-ink-40">&rsaquo;</span>
                 </button>
               );
             })}
           </div>
-        </div>
+        </Collapsible>
       )}
 
-      {/* === FEEDBACK === */}
+      {/* === FEEDBACK (kept inline, shows only when relevant) === */}
       {session.tourId && (
         <ReviewFeedbackPanel tourId={session.tourId} sessionStatus={session.status} />
       )}
+
+      {/* === COMMENT THREAD (collapsible) === */}
       {session.tourId && (
-        <div className="mb-6">
-          <TourCommentThread tourId={session.tourId} role="guide" authorName="Guide" sessionId={sessionId} />
+        <div className="mb-3">
+          <Collapsible
+            storageKey={`submission-comments-${sessionId}`}
+            defaultOpen={false}
+            icon={<span>💬</span>}
+            title="Journal d'échanges"
+            subtitle="Messages avec la moderation"
+            compact
+          >
+            <TourCommentThread tourId={session.tourId} role="guide" authorName="Guide" sessionId={sessionId} />
+          </Collapsible>
         </div>
       )}
 
-      {/* === LANGUAGE TABLE === */}
-      <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6" data-testid="language-submissions-section">
-        <h2 className="text-base font-semibold text-gray-900 mb-4">Langues</h2>
+      {/* === LANGUAGE TABLE (collapsible — open by default if has purchases) === */}
+      <Collapsible
+        storageKey={`submission-langtable-${sessionId}`}
+        defaultOpen={purchases.length > 0}
+        icon={<span>🌍</span>}
+        title="Langues"
+        subtitle={purchases.length > 0 ? `${purchases.length + 1} langue${purchases.length > 0 ? 's' : ''} (FR + ${purchases.length})` : 'FR uniquement'}
+        compact
+        className="mb-3"
+        testId="language-submissions-section"
+      >
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-paper-soft border-b border-line">
               <tr>
-                <th className="text-left px-3 py-2 font-medium text-gray-500">Langue</th>
-                <th className="text-left px-3 py-2 font-medium text-gray-500">Statut</th>
-                <th className="text-center px-3 py-2 font-medium text-gray-500">Scenes</th>
-                <th className="text-center px-3 py-2 font-medium text-gray-500">Audio</th>
-                <th className="text-right px-3 py-2 font-medium text-gray-500">Mots</th>
-                <th className="text-right px-3 py-2 font-medium text-gray-500"></th>
+                <th className="text-left px-3 py-2 font-medium text-ink-60">Langue</th>
+                <th className="text-left px-3 py-2 font-medium text-ink-60">Statut</th>
+                <th className="text-center px-3 py-2 font-medium text-ink-60">Scenes</th>
+                <th className="text-center px-3 py-2 font-medium text-ink-60">Audio</th>
+                <th className="text-right px-3 py-2 font-medium text-ink-60">Mots</th>
+                <th className="text-right px-3 py-2 font-medium text-ink-60"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-line">
               {/* Base language */}
               {(() => {
                 const baseLang = session.language || 'fr';
@@ -442,12 +466,12 @@ export default function PublicationPage() {
                 const audio = scenes.filter((s) => s.studioAudioKey).length;
                 const words = scenes.reduce((sum, s) => sum + (s.transcriptText ?? '').split(/\s+/).filter(Boolean).length, 0);
                 return (
-                  <tr className="bg-gray-50">
-                    <td className="px-3 py-2 font-medium text-gray-900">{baseFlag} {baseLang.toUpperCase()} <span className="text-xs text-gray-400">(source)</span></td>
+                  <tr className="bg-paper-soft">
+                    <td className="px-3 py-2 font-medium text-ink">{baseFlag} {baseLang.toUpperCase()} <span className="text-xs text-ink-40">(source)</span></td>
                     <td className="px-3 py-2"><span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${statusConfig.color}`}>{statusConfig.label}</span></td>
-                    <td className="px-3 py-2 text-center text-gray-700">{ct}/{ct}</td>
-                    <td className="px-3 py-2 text-center text-gray-700">{audio}/{ct}</td>
-                    <td className="px-3 py-2 text-right text-gray-700">{words.toLocaleString()}</td>
+                    <td className="px-3 py-2 text-center text-ink-80">{ct}/{ct}</td>
+                    <td className="px-3 py-2 text-center text-ink-80">{audio}/{ct}</td>
+                    <td className="px-3 py-2 text-right text-ink-80">{words.toLocaleString()}</td>
                     <td className="px-3 py-2"></td>
                   </tr>
                 );
@@ -462,22 +486,22 @@ export default function PublicationPage() {
                 const audioCount = langSegments.filter((s) => s.audioKey && !s.audioKey.startsWith('tts-')).length;
                 const wordCount = langSegments.reduce((sum, s) => sum + (s.transcriptText ?? '').split(/\s+/).filter(Boolean).length, 0);
                 const moderationBadge: Record<string, { label: string; className: string }> = {
-                  draft: { label: 'Brouillon', className: 'bg-gray-100 text-gray-600' },
-                  submitted: { label: 'Soumis', className: 'bg-yellow-100 text-yellow-700' },
-                  approved: { label: 'Approuve', className: 'bg-green-100 text-green-700' },
-                  rejected: { label: 'Refuse', className: 'bg-red-100 text-red-700' },
-                  revision_requested: { label: 'Revision', className: 'bg-orange-100 text-orange-700' },
+                  draft: { label: 'Brouillon', className: 'bg-paper-soft text-ink-80' },
+                  submitted: { label: 'Soumis', className: 'bg-ocre-soft text-ocre' },
+                  approved: { label: 'Approuve', className: 'bg-olive-soft text-success' },
+                  rejected: { label: 'Refuse', className: 'bg-grenadine-soft text-danger' },
+                  revision_requested: { label: 'Revision', className: 'bg-ocre-soft text-ocre' },
                 };
                 const badge = moderationBadge[purchase.moderationStatus] ?? moderationBadge.draft;
                 const canSubmitLang = purchase.moderationStatus === 'draft' || purchase.moderationStatus === 'revision_requested' || purchase.moderationStatus === 'rejected';
 
                 return (
                   <tr key={purchase.id} data-testid={`lang-submission-${purchase.language}`}>
-                    <td className="px-3 py-2 font-medium text-gray-900">{langFlag} {langLabel}</td>
+                    <td className="px-3 py-2 font-medium text-ink">{langFlag} {langLabel}</td>
                     <td className="px-3 py-2"><span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${badge.className}`}>{badge.label}</span></td>
-                    <td className="px-3 py-2 text-center"><span className={readiness.ready ? 'text-green-700' : 'text-amber-600'}>{readiness.complete}/{readiness.total}</span></td>
-                    <td className="px-3 py-2 text-center"><span className={audioCount >= scenes.length ? 'text-green-700' : 'text-amber-600'}>{audioCount}/{scenes.length}</span></td>
-                    <td className="px-3 py-2 text-right text-gray-700">{wordCount.toLocaleString()}</td>
+                    <td className="px-3 py-2 text-center"><span className={readiness.ready ? 'text-success' : 'text-ocre'}>{readiness.complete}/{readiness.total}</span></td>
+                    <td className="px-3 py-2 text-center"><span className={audioCount >= scenes.length ? 'text-success' : 'text-ocre'}>{audioCount}/{scenes.length}</span></td>
+                    <td className="px-3 py-2 text-right text-ink-80">{wordCount.toLocaleString()}</td>
                     <td className="px-3 py-2 text-right space-x-1">
                       {canSubmitLang && readiness.ready && (
                         <button
@@ -489,12 +513,12 @@ export default function PublicationPage() {
                             return result.ok ? { ok: true } : { ok: false, error: result.error.message };
                           })}
                           disabled={isActioning || langActioning === purchase.language}
-                          className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white text-xs font-medium py-1 px-2.5 rounded transition-colors"
+                          className="bg-mer hover:opacity-90 disabled:bg-ink-40 text-white text-xs font-medium py-1 px-2.5 rounded transition"
                         >
                           {langActioning === purchase.language ? '...' : 'Publier'}
                         </button>
                       )}
-                      {canSubmitLang && !readiness.ready && <span className="text-xs text-amber-600">Incomplet</span>}
+                      {canSubmitLang && !readiness.ready && <span className="text-xs text-ocre">Incomplet</span>}
                       {purchase.moderationStatus === 'submitted' && (
                         <button
                           data-testid={`retract-lang-${purchase.language}`}
@@ -505,7 +529,7 @@ export default function PublicationPage() {
                             return result.ok ? { ok: true } : { ok: false, error: result.error.message };
                           })}
                           disabled={isActioning || langActioning === purchase.language}
-                          className="bg-amber-500 hover:bg-amber-600 disabled:bg-gray-400 text-white text-xs font-medium py-1 px-2.5 rounded transition-colors"
+                          className="bg-ocre hover:opacity-90 disabled:bg-ink-40 text-white text-xs font-medium py-1 px-2.5 rounded transition"
                         >
                           {langActioning === purchase.language ? '...' : 'Retirer'}
                         </button>
@@ -520,7 +544,7 @@ export default function PublicationPage() {
                             return result.ok ? { ok: true } : { ok: false, error: result.error.message };
                           })}
                           disabled={isActioning || langActioning === purchase.language}
-                          className="bg-red-500 hover:bg-red-600 disabled:bg-gray-400 text-white text-xs font-medium py-1 px-2.5 rounded transition-colors"
+                          className="bg-danger hover:opacity-90 disabled:bg-ink-40 text-white text-xs font-medium py-1 px-2.5 rounded transition"
                         >
                           {langActioning === purchase.language ? '...' : 'Depublier'}
                         </button>
@@ -532,8 +556,12 @@ export default function PublicationPage() {
             </tbody>
           </table>
         </div>
-      </div>
+      </Collapsible>
 
+      <StepNav
+        prevHref={`/guide/studio/${sessionId}/preview`}
+        prevLabel="Preview"
+      />
     </div>
   );
 }

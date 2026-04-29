@@ -1,0 +1,30 @@
+{
+  "name": "TourGuide",
+  "short_name": "TourGuide",
+  "description": "Le monde a une voix. Audio guides éditoriaux pour explorer les villes autrement.",
+  "theme_color": "#C1262A",
+  "background_color": "#F4ECDD",
+  "display": "standalone",
+  "start_url": "/",
+  "lang": "fr-FR",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

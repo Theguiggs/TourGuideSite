@@ -3,14 +3,14 @@
 import type { TourLanguagePurchase, PurchaseModerationStatus } from '@/types/studio';
 
 const STATUS_CONFIG: Record<PurchaseModerationStatus, { label: string; icon: string; className: string }> = {
-  draft: { label: 'brouillon', icon: '', className: 'bg-gray-100 text-gray-600' },
-  submitted: { label: 'en moderation', icon: '', className: 'bg-yellow-100 text-yellow-700' },
-  approved: { label: 'publie', icon: '', className: 'bg-green-100 text-green-700' },
-  rejected: { label: 'refuse', icon: '', className: 'bg-red-100 text-red-700' },
-  revision_requested: { label: 'revision', icon: '', className: 'bg-orange-100 text-orange-700' },
+  draft: { label: 'brouillon', icon: '', className: 'bg-paper-soft text-ink-80' },
+  submitted: { label: 'en moderation', icon: '', className: 'bg-ocre-soft text-ocre' },
+  approved: { label: 'publie', icon: '', className: 'bg-olive-soft text-success' },
+  rejected: { label: 'refuse', icon: '', className: 'bg-grenadine-soft text-danger' },
+  revision_requested: { label: 'revision', icon: '', className: 'bg-ocre-soft text-ocre' },
 };
 
-const REFUNDED_CONFIG = { label: 'rembourse', icon: '', className: 'bg-purple-100 text-purple-700' };
+const REFUNDED_CONFIG = { label: 'rembourse', icon: '', className: 'bg-grenadine-soft text-grenadine' };
 
 const LANG_LABELS: Record<string, string> = {
   fr: 'FR',
@@ -32,7 +32,7 @@ interface LanguageModerationBadgesProps {
 export function LanguageModerationBadges({ purchases, onLanguageClick }: LanguageModerationBadgesProps) {
   if (purchases.length === 0) {
     return (
-      <span className="text-xs text-gray-400" data-testid="no-languages">
+      <span className="text-xs text-ink-40" data-testid="no-languages">
         Aucune langue
       </span>
     );

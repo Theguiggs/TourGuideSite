@@ -64,6 +64,6 @@ describe('Teleprompter', () => {
     render(<Teleprompter text={SAMPLE_TEXT} />);
     const container = screen.getByTestId('teleprompter');
     expect(container).toBeInTheDocument();
-    // The bg-gray-900 class provides >4.5:1 contrast with text-gray-100
+    // The bg-ink class provides >4.5:1 contrast with text-gray-100
   });
 });

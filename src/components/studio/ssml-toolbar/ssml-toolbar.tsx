@@ -109,15 +109,15 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
   return (
     <div className="space-y-1" data-testid="ssml-toolbar">
       {/* Main toolbar */}
-      <div className="flex items-center gap-1 flex-wrap p-1.5 bg-gray-100 rounded-lg border border-gray-200">
+      <div className="flex items-center gap-1 flex-wrap p-1.5 bg-paper-soft rounded-lg border border-line">
         {/* Pause button group */}
         <div className="flex items-center gap-0.5 mr-1">
-          <span className="text-xs text-gray-400 mr-0.5">Pause:</span>
+          <span className="text-xs text-ink-40 mr-0.5">Pause:</span>
           {PAUSE_PRESETS.map((p) => (
             <button
               key={p.value}
               onClick={() => handlePauseInsert(p.value)}
-              className="px-1.5 py-0.5 text-[10px] font-medium bg-amber-100 text-amber-700 hover:bg-amber-200 rounded transition-colors"
+              className="px-1.5 py-0.5 text-[10px] font-medium bg-ocre-soft text-ocre hover:opacity-90 rounded transition"
               title={`Inserer une pause de ${p.label}`}
             >
               {p.label}
@@ -125,8 +125,8 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
           ))}
           <button
             onClick={() => setShowPauseInput(!showPauseInput)}
-            className={`px-1.5 py-0.5 text-[10px] font-medium rounded transition-colors ${
-              showPauseInput ? 'bg-amber-600 text-white' : 'bg-amber-50 text-amber-600 hover:bg-amber-100'
+            className={`px-1.5 py-0.5 text-[10px] font-medium rounded transition ${
+              showPauseInput ? 'bg-ocre text-white' : 'bg-ocre-soft text-ocre hover:opacity-90'
             }`}
             title="Pause personnalisee"
           >
@@ -134,14 +134,14 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
           </button>
         </div>
 
-        <div className="w-px h-5 bg-gray-300 mx-1" />
+        <div className="w-px h-5 bg-paper-deep mx-1" />
 
         {/* Wrap buttons (need selection) */}
         {TOOL_BUTTONS.map((tool) => (
           <button
             key={tool.id}
             onClick={() => handleToolClick(tool)}
-            className="px-1.5 py-0.5 text-[10px] font-medium bg-white text-gray-700 hover:bg-gray-200 rounded border border-gray-200 transition-colors"
+            className="px-1.5 py-0.5 text-[10px] font-medium bg-white text-ink-80 hover:bg-paper-deep rounded border border-line transition"
             title={`${tool.label} (selectionnez du texte d'abord)`}
             data-testid={`ssml-btn-${tool.id}`}
           >
@@ -152,8 +152,8 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
 
       {/* Custom pause input */}
       {showPauseInput && (
-        <div className="flex items-center gap-2 p-2 bg-amber-50 border border-amber-200 rounded-lg">
-          <span className="text-xs text-amber-700">Pause de</span>
+        <div className="flex items-center gap-2 p-2 bg-ocre-soft border border-ocre-soft rounded-lg">
+          <span className="text-xs text-ocre">Pause de</span>
           <input
             type="number"
             min={0.1}
@@ -161,13 +161,13 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
             step={0.1}
             value={customPause}
             onChange={(e) => setCustomPause(e.target.value)}
-            className="w-16 px-2 py-0.5 text-xs border border-amber-300 rounded text-center focus:outline-none focus:ring-1 focus:ring-amber-400"
+            className="w-16 px-2 py-0.5 text-xs border border-ocre-soft rounded text-center focus:outline-none focus:ring-1 focus:ring-ocre"
             data-testid="custom-pause-input"
           />
-          <span className="text-xs text-amber-700">secondes</span>
+          <span className="text-xs text-ocre">secondes</span>
           <button
             onClick={handleCustomPause}
-            className="px-2 py-0.5 text-xs font-medium bg-amber-600 text-white rounded hover:bg-amber-700 transition-colors"
+            className="px-2 py-0.5 text-xs font-medium bg-ocre text-white rounded hover:opacity-90 transition"
             data-testid="custom-pause-insert"
           >
             Inserer
@@ -176,7 +176,7 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
       )}
 
       {/* Help text */}
-      <p className="text-[10px] text-gray-400 px-1">
+      <p className="text-[10px] text-ink-40 px-1">
         Cliquez sur un bouton pause pour inserer. Pour lent/rapide/fort/doux : selectionnez du texte puis cliquez.
       </p>
     </div>

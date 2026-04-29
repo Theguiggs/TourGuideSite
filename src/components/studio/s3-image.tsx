@@ -41,7 +41,7 @@ export function S3Image({ s3Key, alt, className = '', fallback = '📷' }: S3Ima
 
   if (error || (!url && shouldUseStubs())) {
     return (
-      <div className={`bg-gray-200 flex items-center justify-center text-gray-400 text-xs ${className}`}>
+      <div className={`bg-paper-deep flex items-center justify-center text-ink-40 text-xs ${className}`}>
         {fallback}
       </div>
     );
@@ -49,7 +49,7 @@ export function S3Image({ s3Key, alt, className = '', fallback = '📷' }: S3Ima
 
   if (!url) {
     return (
-      <div className={`bg-gray-100 animate-pulse ${className}`} />
+      <div className={`bg-paper-soft animate-pulse ${className}`} />
     );
   }
 

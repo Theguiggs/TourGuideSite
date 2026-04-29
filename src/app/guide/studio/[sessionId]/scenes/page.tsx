@@ -10,6 +10,7 @@ import { triggerTranscription, getTranscriptionQuota } from '@/lib/api/transcrip
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import { SceneSidebar } from '@/components/studio/scene-sidebar';
 import { ScenePhotos } from '@/components/studio/scene-photos';
+import { StepNav } from '@/components/studio/wizard';
 import { QuotaDisplay } from '@/components/studio/quota-display';
 import { TranscriptionControls } from '@/components/studio/transcription-controls';
 import { AudioRecorder } from '@/components/studio/audio-recorder';
@@ -30,6 +31,7 @@ import { LanguageTabs } from '@/components/studio/language-tabs';
 import type { LanguageTabItem } from '@/components/studio/language-tabs';
 import { useLanguagePurchaseStore } from '@/lib/stores/language-purchase-store';
 import { useLanguageBatchStore, selectBatchProgress } from '@/lib/stores/language-batch-store';
+import { tg } from '@tourguide/design-system';
 import { LANG_TO_COUNTRY, LANGUAGE_CONFIG } from '@/components/studio/language-checkout/language-checkbox-card';
 import { TTSControls } from '@/components/studio/tts-controls';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
@@ -52,7 +54,7 @@ const LANG_FLAGS: Record<string, string> = { fr: '🇫🇷', en: '🇬🇧', it:
 
 const Teleprompter = dynamic(
   () => import('@/components/studio/teleprompter').then((m) => ({ default: m.Teleprompter })),
-  { ssr: false, loading: () => <div className="bg-gray-900 rounded-lg h-48 animate-pulse" /> },
+  { ssr: false, loading: () => <div className="bg-ink rounded-lg h-48 animate-pulse" /> },
 );
 
 function AudioSourceCard({ icon, label, sublabel, isSelected, isPlaying, onPlay, onSelect }: {
@@ -69,30 +71,30 @@ function AudioSourceCard({ icon, label, sublabel, isSelected, isPlaying, onPlay,
       onClick={onSelect}
       className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all cursor-pointer ${
         isSelected
-          ? 'border-teal-500 bg-teal-50 shadow-sm'
-          : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+          ? 'border-grenadine bg-grenadine-soft shadow-sm'
+          : 'border-line hover:border-line hover:bg-paper-soft'
       }`}
       role="radio"
       aria-checked={isSelected}
     >
       <div className={`w-8 h-8 rounded-full flex items-center justify-center text-lg flex-shrink-0 ${
-        isSelected ? 'bg-teal-600 text-white' : 'bg-gray-100'
+        isSelected ? 'bg-grenadine text-white' : 'bg-paper-soft'
       }`}>
         {isSelected ? '\u2713' : icon}
       </div>
       <div className="flex-1 min-w-0">
-        <p className={`text-sm font-medium ${isSelected ? 'text-teal-800' : 'text-gray-800'}`}>
+        <p className={`text-sm font-medium ${isSelected ? 'text-grenadine' : 'text-ink'}`}>
           {label}
-          {isSelected && <span className="ml-2 text-xs bg-teal-600 text-white px-1.5 py-0.5 rounded">Selectionne</span>}
+          {isSelected && <span className="ml-2 text-xs bg-grenadine text-white px-1.5 py-0.5 rounded">Selectionne</span>}
         </p>
-        <p className="text-xs text-gray-500">{sublabel}</p>
+        <p className="text-xs text-ink-60">{sublabel}</p>
       </div>
       <button
         onClick={(e) => { e.stopPropagation(); onPlay(); }}
-        className={`text-xs font-medium py-1.5 px-4 rounded-lg transition-colors flex-shrink-0 ${
+        className={`text-xs font-medium py-1.5 px-4 rounded-lg transition flex-shrink-0 ${
           isPlaying
-            ? 'bg-teal-700 text-white animate-pulse'
-            : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+            ? 'bg-grenadine text-white animate-pulse'
+            : 'bg-paper-soft hover:bg-paper-deep text-ink-80'
         }`}
       >
         {isPlaying ? '... Lecture' : 'Ecouter'}
@@ -653,14 +655,14 @@ export default function ScenesPage() {
   const ttsState = useTTSStore(selectSegmentTTS(activeSegment?.id ?? ''));
 
   if (isLoading) {
-    return <div className="p-6" aria-busy="true"><div className="bg-gray-100 rounded-lg h-96 animate-pulse" /></div>;
+    return <div className="p-6" aria-busy="true"><div className="bg-paper-soft rounded-lg h-96 animate-pulse" /></div>;
   }
 
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 text-sm mb-4 inline-block">&larr; Retour</Link>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700" role="alert">{error || 'Introuvable.'}</div>
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine text-sm mb-4 inline-block">&larr; Retour</Link>
+        <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">{error || 'Introuvable.'}</div>
       </div>
     );
   }
@@ -683,7 +685,7 @@ export default function ScenesPage() {
   return (
     <div className="flex flex-col lg:flex-row min-h-[60vh]">
       {/* DEBUG: Remove after testing */}
-      <div className="fixed bottom-2 right-2 z-50 text-xs px-2 py-1 rounded" style={{ background: shouldUseStubs() ? '#ef4444' : '#22c55e', color: 'white' }}>
+      <div className="fixed bottom-2 right-2 z-50 text-xs px-2 py-1 rounded" style={{ background: shouldUseStubs() ? tg.colors.danger : tg.colors.success, color: 'white' }}>
         {shouldUseStubs() ? '⚠️ STUBS' : '✅ REAL'}
       </div>
       <SceneSidebar scenes={visibleScenes} activeSceneId={activeSceneId} onSceneSelect={isUploading ? () => {} : handleSceneSelect} />
@@ -691,8 +693,8 @@ export default function ScenesPage() {
       <div className="flex-1 p-4 lg:p-6">
         {/* Batch translation progress banner */}
         {batchMessage && (
-          <div className="mb-3 rounded-lg bg-indigo-50 border border-indigo-200 px-4 py-3 text-sm text-indigo-700 flex items-center gap-2" role="status" aria-live="polite">
-            <svg className="h-4 w-4 animate-spin text-indigo-500" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
+          <div className="mb-3 rounded-lg bg-mer-soft border border-mer-soft px-4 py-3 text-sm text-mer flex items-center gap-2" role="status" aria-live="polite">
+            <svg className="h-4 w-4 animate-spin text-mer" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
             {batchMessage}
           </div>
         )}
@@ -708,7 +710,7 @@ export default function ScenesPage() {
 
         {/* Read-only banner for base language */}
         {isBaseLangLocked && (
-          <div className="mb-3 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800" role="status" data-testid="readonly-banner">
+          <div className="mb-3 rounded-lg border border-ocre-soft bg-ocre-soft px-4 py-3 text-sm text-ocre" role="status" data-testid="readonly-banner">
             Contenu soumis &mdash; modification non disponible. Vous pouvez travailler sur les langues traduites.
           </div>
         )}
@@ -717,14 +719,14 @@ export default function ScenesPage() {
         {activeLanguageTab && activeLanguageTab !== session.language && languageTabItems.length > 1 &&
           purchases.some((p) => p.language === activeLanguageTab && p.status === 'refunded') && (
           <div
-            className="rounded-lg border border-purple-300 bg-purple-50 p-6 text-center space-y-2"
+            className="rounded-lg border border-grenadine-soft bg-grenadine-soft p-6 text-center space-y-2"
             data-testid="language-refunded-banner"
           >
-            <p className="text-lg font-semibold text-purple-800">Langue non disponible</p>
-            <p className="text-sm text-purple-600">
+            <p className="text-lg font-semibold text-grenadine">Langue non disponible</p>
+            <p className="text-sm text-grenadine">
               Cette langue a ete remboursee. Les segments traduits sont conserves mais ne peuvent plus etre edites.
             </p>
-            <p className="text-xs text-purple-400">
+            <p className="text-xs text-grenadine">
               Vous pouvez re-acheter cette langue depuis le menu multilangue.
             </p>
           </div>
@@ -732,7 +734,7 @@ export default function ScenesPage() {
 
         {/* Non-base language: locked banner when submitted/approved */}
         {isActiveLangLocked && (
-          <div className="mb-3 rounded-lg border border-teal-300 bg-teal-50 px-4 py-3 text-sm text-teal-800" role="status" data-testid="lang-locked-banner">
+          <div className="mb-3 rounded-lg border border-grenadine-soft bg-grenadine-soft px-4 py-3 text-sm text-grenadine" role="status" data-testid="lang-locked-banner">
             Langue {activeLanguageTab?.toUpperCase()} soumise pour modération — modification non disponible.
             {activePurchase?.moderationStatus === 'approved' && ' Cette langue a été approuvée.'}
           </div>
@@ -986,7 +988,7 @@ export default function ScenesPage() {
               const sourceText = sceneItem.transcriptText ?? '';
               return (
                 <div key={sceneItem.id} className="space-y-3" data-testid={`language-scene-detail-${sceneItem.id}`}>
-                  <h3 className="text-md font-semibold text-gray-900">
+                  <h3 className="text-md font-semibold text-ink">
                     {segment.translatedTitle || sceneItem.title || `Scene ${sceneItem.sceneIndex + 1}`}
                   </h3>
                   <SplitEditor
@@ -1023,7 +1025,7 @@ export default function ScenesPage() {
                       refreshLangSegments().catch((e) => logger.error(SERVICE_NAME, 'Refresh after audio saved failed', { error: String(e) }));
                     }}
                   />
-                  <hr className="border-gray-200" />
+                  <hr className="border-line" />
                 </div>
               );
             })}
@@ -1034,8 +1036,8 @@ export default function ScenesPage() {
         {(!activeLanguageTab || activeLanguageTab === session.language || languageTabItems.length <= 1) && (<>
         <div className="flex items-center justify-between mb-3">
           <div>
-            <Link href={`/guide/studio/${sessionId}`} className="text-teal-600 text-sm mb-1 inline-block">&larr; Retour</Link>
-            <h2 className="text-lg font-semibold text-gray-900">
+            <Link href={`/guide/studio/${sessionId}`} className="text-grenadine text-sm mb-1 inline-block">&larr; Retour</Link>
+            <h2 className="text-lg font-semibold text-ink">
               {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
             </h2>
             {activeScene && (
@@ -1047,14 +1049,14 @@ export default function ScenesPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-gray-200 mb-4" role="tablist">
+        <div className="flex border-b border-line mb-4" role="tablist">
           {tabs.map((tab) => (
             <button key={tab.key} onClick={() => !isUploading && setActiveTab(tab.key)} role="tab" disabled={isUploading}
               aria-selected={activeTab === tab.key}
-              className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-4 py-2 text-sm font-medium border-b-2 transition ${
                 activeTab === tab.key
-                  ? 'border-teal-600 text-teal-700'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                  ? 'border-grenadine text-grenadine'
+                  : 'border-transparent text-ink-60 hover:text-ink-80'
               }`}
               data-testid={`tab-${tab.key}`}>
               {tab.label} {tab.count !== undefined && tab.count > 0 ? `(${tab.count})` : ''}
@@ -1067,7 +1069,7 @@ export default function ScenesPage() {
           <div className="space-y-4">
             {/* Scene title */}
             <div>
-              <label htmlFor="poi-title" className="text-sm font-medium text-gray-700 block mb-1">Titre de la scène</label>
+              <label htmlFor="poi-title" className="text-sm font-medium text-ink-80 block mb-1">Titre de la scène</label>
               <input
                 id="poi-title"
                 type="text"
@@ -1075,14 +1077,14 @@ export default function ScenesPage() {
                 onChange={(e) => setPoiTitle(e.target.value)}
                 placeholder="Ex: Place aux Aires"
                 disabled={isBaseLangLocked}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine disabled:bg-paper-soft disabled:text-ink-60"
                 data-testid="poi-title-input"
               />
             </div>
 
             {/* POI description */}
             <div>
-              <label htmlFor="poi-desc" className="text-sm font-medium text-gray-700 block mb-1">Description du point d&apos;intérêt</label>
+              <label htmlFor="poi-desc" className="text-sm font-medium text-ink-80 block mb-1">Description du point d&apos;intérêt</label>
               <textarea
                 id="poi-desc"
                 value={poiDescription}
@@ -1090,13 +1092,13 @@ export default function ScenesPage() {
                 placeholder="Aide au touriste — ce qu'il verra à cet endroit"
                 rows={3}
                 disabled={isBaseLangLocked}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full border border-line rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-grenadine disabled:bg-paper-soft disabled:text-ink-60"
               />
             </div>
 
             {/* Address search */}
             <div>
-              <label className="text-sm font-medium text-gray-700 block mb-1">Localisation GPS</label>
+              <label className="text-sm font-medium text-ink-80 block mb-1">Localisation GPS</label>
               <div className="flex gap-2 mb-2">
                 <input
                   type="text"
@@ -1105,19 +1107,19 @@ export default function ScenesPage() {
                   onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddressSearch(); } }}
                   placeholder="Rechercher une adresse..."
                   disabled={isBaseLangLocked}
-                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500"
+                  className="flex-1 border border-line rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine disabled:bg-paper-soft disabled:text-ink-60"
                   data-testid="poi-address-search"
                 />
                 <button
                   onClick={handleAddressSearch}
                   disabled={isSearching || isBaseLangLocked}
-                  className="bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 text-white text-sm px-4 py-2 rounded-lg transition-colors"
+                  className="bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white text-sm px-4 py-2 rounded-lg transition"
                 >
                   {isSearching ? '...' : '🔍 Chercher'}
                 </button>
               </div>
               {searchResult && (
-                <p className={`text-xs mb-2 ${searchResult.startsWith('📍') ? 'text-green-600' : 'text-red-500'}`}>
+                <p className={`text-xs mb-2 ${searchResult.startsWith('📍') ? 'text-success' : 'text-danger'}`}>
                   {searchResult}
                 </p>
               )}
@@ -1125,7 +1127,7 @@ export default function ScenesPage() {
               {/* Manual coordinates */}
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label htmlFor="poi-lat" className="text-xs text-gray-500 block mb-0.5">Latitude</label>
+                  <label htmlFor="poi-lat" className="text-xs text-ink-60 block mb-0.5">Latitude</label>
                   <input
                     id="poi-lat"
                     type="text"
@@ -1133,11 +1135,11 @@ export default function ScenesPage() {
                     onChange={(e) => setPoiLat(e.target.value)}
                     placeholder="43.6591"
                     disabled={isBaseLangLocked}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500"
+                    className="w-full border border-line rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine disabled:bg-paper-soft disabled:text-ink-60"
                   />
                 </div>
                 <div>
-                  <label htmlFor="poi-lng" className="text-xs text-gray-500 block mb-0.5">Longitude</label>
+                  <label htmlFor="poi-lng" className="text-xs text-ink-60 block mb-0.5">Longitude</label>
                   <input
                     id="poi-lng"
                     type="text"
@@ -1145,17 +1147,17 @@ export default function ScenesPage() {
                     onChange={(e) => setPoiLng(e.target.value)}
                     placeholder="6.9243"
                     disabled={isBaseLangLocked}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:bg-gray-100 disabled:text-gray-500"
+                    className="w-full border border-line rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine disabled:bg-paper-soft disabled:text-ink-60"
                   />
                 </div>
               </div>
 
               {/* GPS status */}
               {poiLat && poiLng && (
-                <p className="text-xs text-green-600 mt-1">📍 {parseFloat(poiLat).toFixed(4)}, {parseFloat(poiLng).toFixed(4)}</p>
+                <p className="text-xs text-success mt-1">📍 {parseFloat(poiLat).toFixed(4)}, {parseFloat(poiLng).toFixed(4)}</p>
               )}
               {!poiLat && !poiLng && (
-                <p className="text-xs text-amber-500 mt-1">⚠ Pas de coordonnées GPS — recherchez une adresse ou saisissez les coordonnées</p>
+                <p className="text-xs text-ocre mt-1">⚠ Pas de coordonnées GPS — recherchez une adresse ou saisissez les coordonnées</p>
               )}
             </div>
 
@@ -1164,12 +1166,12 @@ export default function ScenesPage() {
               <div className="flex items-center gap-3 pt-2">
                 <button
                   onClick={handleSavePoi}
-                  className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-5 rounded-lg text-sm transition-colors"
+                  className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg text-sm transition"
                   data-testid="save-poi-btn"
                 >
                   💾 Enregistrer le POI
                 </button>
-                {poiSaved && <span className="text-sm text-green-600">✓ Enregistré</span>}
+                {poiSaved && <span className="text-sm text-success">✓ Enregistré</span>}
               </div>
             )}
           </div>
@@ -1177,8 +1179,8 @@ export default function ScenesPage() {
 
         {activeScene && activeTab === 'photos' && (
           <div>
-            {activeScene.poiDescription && <p className="text-sm text-gray-500 mb-3">{activeScene.poiDescription}</p>}
-            {activeScene.latitude && <p className="text-xs text-gray-400 mb-3">📍 {activeScene.latitude.toFixed(4)}, {activeScene.longitude?.toFixed(4)}</p>}
+            {activeScene.poiDescription && <p className="text-sm text-ink-60 mb-3">{activeScene.poiDescription}</p>}
+            {activeScene.latitude && <p className="text-xs text-ink-40 mb-3">📍 {activeScene.latitude.toFixed(4)}, {activeScene.longitude?.toFixed(4)}</p>}
             <ScenePhotos scene={activeScene} sessionId={sessionId} onPhotosChange={handlePhotosChange} />
           </div>
         )}
@@ -1203,21 +1205,21 @@ export default function ScenesPage() {
             )}
 
             {syncError && (
-              <div className="mt-3 p-2 bg-amber-50 border border-amber-200 rounded text-sm text-amber-700" role="alert">{syncError}</div>
+              <div className="mt-3 p-2 bg-ocre-soft border border-ocre-soft rounded text-sm text-ocre" role="alert">{syncError}</div>
             )}
 
             <div className="mt-3 flex items-center justify-between">
-              <label htmlFor="scene-text" className="text-sm font-medium text-gray-700">Texte de la scène</label>
-              <div className="text-xs text-gray-400">
-                {isSaving && <span className="text-blue-500">Sauvegarde...</span>}
+              <label htmlFor="scene-text" className="text-sm font-medium text-ink-80">Texte de la scène</label>
+              <div className="text-xs text-ink-40">
+                {isSaving && <span className="text-mer">Sauvegarde...</span>}
                 {!isSaving && isDirty && <span>Non sauvegardé</span>}
-                {!isSaving && !isDirty && editorText && <span className="text-green-500">Sauvegardé</span>}
+                {!isSaving && !isDirty && editorText && <span className="text-success">Sauvegardé</span>}
               </div>
             </div>
             <textarea ref={textareaRef} id="scene-text" value={editorText} onChange={(e) => setEditorText(e.target.value)}
               placeholder="Saisissez ou modifiez le texte de cette scène..."
               maxLength={50000} rows={10} readOnly={isBaseLangLocked}
-              className={`w-full mt-1 p-3 border border-gray-200 rounded-lg text-gray-800 text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-teal-400 ${isBaseLangLocked ? 'bg-gray-50 text-gray-500 cursor-not-allowed' : ''}`}
+              className={`w-full mt-1 p-3 border border-line rounded-lg text-ink text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine ${isBaseLangLocked ? 'bg-paper-soft text-ink-60 cursor-not-allowed' : ''}`}
               data-testid="scene-editor" />
           </div>
         )}
@@ -1228,10 +1230,10 @@ export default function ScenesPage() {
           <div className="space-y-4">
 
             {/* ════ SECTION 1 : Audio du POI + Player unique ════ */}
-            <div className="p-4 bg-gray-900 rounded-xl text-white">
+            <div className="p-4 bg-ink rounded-xl text-white">
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest">Audio du POI</p>
+                  <p className="text-[10px] font-semibold text-ink-40 uppercase tracking-widest">Audio du POI</p>
                   <p className="text-sm font-medium mt-0.5">
                     {!activeScene.studioAudioKey
                       ? 'Aucun audio selectionne'
@@ -1248,7 +1250,7 @@ export default function ScenesPage() {
                       const url = key.startsWith('data:') ? key : shouldUseStubs() ? key : await studioUploadService.getPlayableUrl(key);
                       audioPlayerService.play(url);
                     }}
-                    className="bg-teal-500 hover:bg-teal-400 text-white text-sm font-medium py-2 px-5 rounded-lg transition-colors"
+                    className="bg-grenadine hover:opacity-90 text-white text-sm font-medium py-2 px-5 rounded-lg transition"
                     data-testid="play-selected-audio"
                   >
                     Ecouter
@@ -1260,36 +1262,36 @@ export default function ScenesPage() {
 
             {/* Toast */}
             {audioSaveToast && (
-              <div className="p-2 bg-green-100 border border-green-300 rounded-lg text-center text-xs text-green-800 font-medium" data-testid="audio-save-toast">
+              <div className="p-2 bg-olive-soft border border-olive-soft rounded-lg text-center text-xs text-success font-medium" data-testid="audio-save-toast">
                 {audioSaveToast} selectionne comme audio du POI
               </div>
             )}
 
             {/* ════ SECTION 2 : Choisir la source ════ */}
             {!isBaseLangLocked && (<div>
-              <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Choisir la source</p>
+              <p className="text-[10px] font-semibold text-ink-40 uppercase tracking-widest mb-2">Choisir la source</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2" role="radiogroup" aria-label="Source audio">
                 {/* Terrain */}
                 {activeScene.originalAudioKey && (() => {
                   const sel = activeScene.studioAudioKey === activeScene.originalAudioKey;
                   return (
                     <button onClick={() => selectAudioSource(activeScene.id, activeScene.originalAudioKey!, 'Terrain')}
-                      className={`p-3 rounded-lg border-2 text-left transition-all ${sel ? 'border-teal-500 bg-teal-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                      className={`p-3 rounded-lg border-2 text-left transition-all ${sel ? 'border-grenadine bg-grenadine-soft' : 'border-line hover:border-line'}`}>
                       <p className="text-lg mb-1">🌍</p>
-                      <p className={`text-xs font-medium ${sel ? 'text-teal-800' : 'text-gray-800'}`}>Terrain</p>
-                      <p className="text-[10px] text-gray-500">{LANG_FLAGS[activeSegment.language]} {activeSegment.language.toUpperCase()}</p>
-                      {sel && <p className="text-[9px] text-teal-600 font-semibold mt-1">ACTIF</p>}
+                      <p className={`text-xs font-medium ${sel ? 'text-grenadine' : 'text-ink'}`}>Terrain</p>
+                      <p className="text-[10px] text-ink-60">{LANG_FLAGS[activeSegment.language]} {activeSegment.language.toUpperCase()}</p>
+                      {sel && <p className="text-[9px] text-grenadine font-semibold mt-1">ACTIF</p>}
                     </button>
                   );
                 })()}
 
                 {/* Studio */}
                 {activeScene.studioAudioKey && !activeScene.studioAudioKey.startsWith('data:') && activeScene.studioAudioKey !== activeScene.originalAudioKey && (
-                  <button className="p-3 rounded-lg border-2 border-teal-500 bg-teal-50 text-left">
+                  <button className="p-3 rounded-lg border-2 border-grenadine bg-grenadine-soft text-left">
                     <p className="text-lg mb-1">🎙️</p>
-                    <p className="text-xs font-medium text-teal-800">Studio</p>
-                    <p className="text-[10px] text-gray-500">{LANG_FLAGS[activeSegment.language]} {activeSegment.language.toUpperCase()}</p>
-                    <p className="text-[9px] text-teal-600 font-semibold mt-1">ACTIF</p>
+                    <p className="text-xs font-medium text-grenadine">Studio</p>
+                    <p className="text-[10px] text-ink-60">{LANG_FLAGS[activeSegment.language]} {activeSegment.language.toUpperCase()}</p>
+                    <p className="text-[9px] text-grenadine font-semibold mt-1">ACTIF</p>
                   </button>
                 )}
 
@@ -1301,18 +1303,18 @@ export default function ScenesPage() {
                       onClick={() => { if (ttsState.audioKey) selectAudioSource(activeScene.id, ttsState.audioKey, 'Audio TTS'); }}
                       disabled={ttsState.status === 'processing'}
                       className={`p-3 rounded-lg border-2 text-left transition-all ${
-                        ttsState.status === 'processing' ? 'border-indigo-300 bg-indigo-50 animate-pulse'
-                        : sel ? 'border-teal-500 bg-teal-50' : 'border-gray-200 hover:border-gray-300'
+                        ttsState.status === 'processing' ? 'border-mer-soft bg-mer-soft animate-pulse'
+                        : sel ? 'border-grenadine bg-grenadine-soft' : 'border-line hover:border-line'
                       }`}>
                       <p className="text-lg mb-1">🔊</p>
-                      <p className={`text-xs font-medium ${sel ? 'text-teal-800' : 'text-gray-800'}`}>
+                      <p className={`text-xs font-medium ${sel ? 'text-grenadine' : 'text-ink'}`}>
                         {ttsState.status === 'processing' ? 'TTS...' : 'TTS'}
                       </p>
-                      <p className="text-[10px] text-gray-500">
+                      <p className="text-[10px] text-ink-60">
                         {LANG_FLAGS[ttsState.language ?? ''] ?? ''} {(ttsState.language ?? '').toUpperCase()}
                         {ttsState.durationMs ? ` ${Math.round(ttsState.durationMs / 1000)}s` : ''}
                       </p>
-                      {sel && <p className="text-[9px] text-teal-600 font-semibold mt-1">ACTIF</p>}
+                      {sel && <p className="text-[9px] text-grenadine font-semibold mt-1">ACTIF</p>}
                     </button>
                   );
                 })()}
@@ -1320,11 +1322,11 @@ export default function ScenesPage() {
                 {/* TTS saved (data: URL not in store) */}
                 {activeScene.studioAudioKey?.startsWith('data:')
                   && !(ttsState?.status === 'completed' && ttsState.audioKey === activeScene.studioAudioKey) && (
-                  <button className="p-3 rounded-lg border-2 border-teal-500 bg-teal-50 text-left">
+                  <button className="p-3 rounded-lg border-2 border-grenadine bg-grenadine-soft text-left">
                     <p className="text-lg mb-1">🔊</p>
-                    <p className="text-xs font-medium text-teal-800">TTS</p>
-                    <p className="text-[10px] text-gray-500">Precedemment genere</p>
-                    <p className="text-[9px] text-teal-600 font-semibold mt-1">ACTIF</p>
+                    <p className="text-xs font-medium text-grenadine">TTS</p>
+                    <p className="text-[10px] text-ink-60">Precedemment genere</p>
+                    <p className="text-[9px] text-grenadine font-semibold mt-1">ACTIF</p>
                   </button>
                 )}
               </div>
@@ -1332,7 +1334,7 @@ export default function ScenesPage() {
 
             {/* ════ SECTION 3 : Outils (collapsibles) ════ */}
             {!isBaseLangLocked && (<div>
-              <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Outils</p>
+              <p className="text-[10px] font-semibold text-ink-40 uppercase tracking-widest mb-2">Outils</p>
               <div className="flex gap-2 mb-2">
                 {[
                   { key: 'tts' as const, label: '🔊 Generer TTS', color: 'indigo' },
@@ -1342,10 +1344,10 @@ export default function ScenesPage() {
                   <button
                     key={tool.key}
                     onClick={() => setOpenTool(openTool === tool.key ? 'none' : tool.key)}
-                    className={`flex-1 py-2 rounded-lg text-xs font-medium transition-colors ${
+                    className={`flex-1 py-2 rounded-lg text-xs font-medium transition ${
                       openTool === tool.key
                         ? `bg-${tool.color}-100 text-${tool.color}-700 border border-${tool.color}-300`
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
                     }`}
                     data-testid={`tool-${tool.key}`}
                   >
@@ -1356,18 +1358,18 @@ export default function ScenesPage() {
 
               {/* ── Outil : TTS ── */}
               {openTool === 'tts' && (
-                <div className="p-4 bg-indigo-50 border border-indigo-200 rounded-lg space-y-3">
+                <div className="p-4 bg-mer-soft border border-mer-soft rounded-lg space-y-3">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                      <p className="text-xs font-medium text-gray-500 mb-1">{LANG_FLAGS[activeSegment.language]} Original</p>
-                      <div className="p-2 bg-white border border-gray-200 rounded text-xs text-gray-600 max-h-20 overflow-y-auto">
-                        {activeSegment.transcriptText || <span className="italic text-gray-400">Aucun texte</span>}
+                      <p className="text-xs font-medium text-ink-60 mb-1">{LANG_FLAGS[activeSegment.language]} Original</p>
+                      <div className="p-2 bg-white border border-line rounded text-xs text-ink-80 max-h-20 overflow-y-auto">
+                        {activeSegment.transcriptText || <span className="italic text-ink-40">Aucun texte</span>}
                       </div>
                     </div>
                     {translationState?.translatedText && (
                       <div>
-                        <p className="text-xs font-medium text-gray-500 mb-1">{LANG_FLAGS[translationState.targetLang ?? '']} Traduction</p>
-                        <div className="p-2 bg-blue-50 border border-blue-200 rounded text-xs text-blue-700 max-h-20 overflow-y-auto">
+                        <p className="text-xs font-medium text-ink-60 mb-1">{LANG_FLAGS[translationState.targetLang ?? '']} Traduction</p>
+                        <div className="p-2 bg-mer-soft border border-mer-soft rounded text-xs text-mer max-h-20 overflow-y-auto">
                           {translationState.translatedText}
                         </div>
                       </div>
@@ -1385,10 +1387,10 @@ export default function ScenesPage() {
 
               {/* ── Outil : Enregistrer ── */}
               {openTool === 'record' && (
-                <div className="p-4 bg-teal-50 border border-teal-200 rounded-lg space-y-3">
+                <div className="p-4 bg-grenadine-soft border border-grenadine-soft rounded-lg space-y-3">
                   {editorText && (
                     <div>
-                      <p className="text-xs font-medium text-gray-600 mb-1">Prompteur</p>
+                      <p className="text-xs font-medium text-ink-80 mb-1">Prompteur</p>
                       <div className="h-48">
                         <Teleprompter text={editorText} onComplete={() => logger.info(SERVICE_NAME, 'Prompter done')} />
                       </div>
@@ -1405,15 +1407,15 @@ export default function ScenesPage() {
                       await doUploadAudio(latestTake.blob, sceneId, sceneIndex);
                     }} />
                   {isUploading && uploadProgress && (
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
-                      <div className="w-full bg-blue-100 rounded-full h-1.5">
-                        <div className="bg-blue-600 h-1.5 rounded-full transition-all" style={{ width: `${uploadProgress.total > 0 ? Math.round((uploadProgress.loaded / uploadProgress.total) * 100) : 0}%` }} />
+                    <div className="bg-mer-soft border border-mer-soft rounded-lg p-2">
+                      <div className="w-full bg-mer-soft rounded-full h-1.5">
+                        <div className="bg-mer h-1.5 rounded-full transition-all" style={{ width: `${uploadProgress.total > 0 ? Math.round((uploadProgress.loaded / uploadProgress.total) * 100) : 0}%` }} />
                       </div>
                     </div>
                   )}
                   {uploadError && (
-                    <div className="bg-red-50 border border-red-200 rounded p-2">
-                      <p className="text-xs text-red-700">{uploadError} <button onClick={async () => {
+                    <div className="bg-grenadine-soft border border-grenadine-soft rounded p-2">
+                      <p className="text-xs text-danger">{uploadError} <button onClick={async () => {
                         if (!failedBlobRef.current) return;
                         const { blob, sceneId, sceneIndex } = failedBlobRef.current;
                         setIsUploading(true); setUploadError(null);
@@ -1434,16 +1436,17 @@ export default function ScenesPage() {
 
               {/* ── Outil : Mixer ── */}
               {openTool === 'mixer' && activeScene.studioAudioKey && (
-                <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+                <div className="p-4 bg-grenadine-soft border border-grenadine-soft rounded-lg">
                   <AudioMixer
                     speechUrl={activeScene.studioAudioKey}
                     mix={sceneMixes[activeScene.id] ?? DEFAULT_MIX}
                     onMixChange={(newMix) => setSceneMixes((prev) => ({ ...prev, [activeScene.id]: newMix }))}
+                    guideId={guideId ?? ''}
                   />
                 </div>
               )}
               {openTool === 'mixer' && !activeScene.studioAudioKey && (
-                <div className="p-4 bg-gray-50 rounded-lg text-center text-sm text-gray-500">
+                <div className="p-4 bg-paper-soft rounded-lg text-center text-sm text-ink-60">
                   Selectionnez d&apos;abord un audio pour utiliser le mixer.
                 </div>
               )}
@@ -1451,13 +1454,13 @@ export default function ScenesPage() {
 
             {/* Replace audio confirmation */}
             {pendingReplace && (
-              <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg" data-testid="replace-audio-dialog">
-                <p className="text-sm font-medium text-amber-800 mb-2">Remplacer l&apos;audio existant ?</p>
+              <div className="p-3 bg-ocre-soft border border-ocre-soft rounded-lg" data-testid="replace-audio-dialog">
+                <p className="text-sm font-medium text-ocre mb-2">Remplacer l&apos;audio existant ?</p>
                 <div className="flex gap-2">
                   <button onClick={async () => { const { blob, sceneId, sceneIndex } = pendingReplace; setPendingReplace(null); await doUploadAudio(blob, sceneId, sceneIndex); }}
-                    className="bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium py-1.5 px-4 rounded-lg" data-testid="confirm-replace-audio">Remplacer</button>
+                    className="bg-ocre hover:opacity-90 text-white text-xs font-medium py-1.5 px-4 rounded-lg" data-testid="confirm-replace-audio">Remplacer</button>
                   <button onClick={() => setPendingReplace(null)}
-                    className="border border-gray-300 text-gray-600 text-xs font-medium py-1.5 px-4 rounded-lg" data-testid="cancel-replace-audio">Garder</button>
+                    className="border border-line text-ink-80 text-xs font-medium py-1.5 px-4 rounded-lg" data-testid="cancel-replace-audio">Garder</button>
                 </div>
               </div>
             )}
@@ -1469,21 +1472,19 @@ export default function ScenesPage() {
         )}
 
         {archivedCount > 0 && (
-          <p className="mt-4 text-xs text-gray-400">
+          <p className="mt-4 text-xs text-ink-40">
             📦 {archivedCount} scène{archivedCount > 1 ? 's' : ''} archivée{archivedCount > 1 ? 's' : ''} (gérées dans l&apos;onglet Itinéraire)
           </p>
         )}
         </>)}
 
         {/* Navigation */}
-        <div className="flex justify-between mt-6 pt-4 border-t border-gray-100">
-          <Link href={`/guide/studio/${sessionId}/itinerary`} className="text-sm text-gray-500 hover:text-teal-600">
-            ← Itinéraire
-          </Link>
-          <Link href={`/guide/studio/${sessionId}/preview`} className="text-sm text-teal-600 hover:text-teal-700 font-medium">
-            Preview →
-          </Link>
-        </div>
+        <StepNav
+          prevHref={`/guide/studio/${sessionId}/itinerary`}
+          prevLabel="Itinéraire"
+          nextHref={`/guide/studio/${sessionId}/preview`}
+          nextLabel="Preview"
+        />
       </div>
     </div>
   );

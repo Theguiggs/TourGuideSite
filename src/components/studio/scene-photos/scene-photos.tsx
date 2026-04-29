@@ -90,12 +90,12 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
     <div data-testid={`scene-photos-${scene.id}`}>
       <div className="flex gap-2 flex-wrap">
         {photos.map((url, index) => (
-          <div key={`${url}-${index}`} className="relative w-24 h-24 rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
+          <div key={`${url}-${index}`} className="relative w-24 h-24 rounded-lg overflow-hidden border border-line bg-paper-soft">
             <S3Image s3Key={url} alt={`Photo ${index + 1}`} className="w-full h-full" fallback={`📷 ${index + 1}`} />
             {editable && (
               <button
                 onClick={() => handleRemove(index)}
-                className="absolute top-0.5 right-0.5 w-5 h-5 bg-red-500 text-white rounded-full text-xs flex items-center justify-center hover:bg-red-600"
+                className="absolute top-0.5 right-0.5 w-5 h-5 bg-danger text-white rounded-full text-xs flex items-center justify-center hover:opacity-90"
                 aria-label={`Supprimer photo ${index + 1}`}
                 data-testid={`remove-photo-${scene.id}-${index}`}
               >
@@ -118,7 +118,7 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
             />
             <button
               onClick={() => inputRef.current?.click()}
-              className="w-24 h-24 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center text-gray-400 hover:border-teal-400 hover:text-teal-500 transition-colors"
+              className="w-24 h-24 rounded-lg border-2 border-dashed border-line flex items-center justify-center text-ink-40 hover:border-grenadine hover:text-grenadine transition"
               data-testid={`add-photo-btn-${scene.id}`}
               aria-label={`Ajouter photo (${photos.length}/${MAX_PHOTOS_PER_SCENE})`}
             >
@@ -129,14 +129,14 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
       </div>
 
       {!editable && photos.length === 0 && (
-        <p className="text-xs text-gray-400">Aucune photo</p>
+        <p className="text-xs text-ink-40">Aucune photo</p>
       )}
 
       {error && (
-        <p className="mt-1 text-xs text-red-600" role="alert">{error}</p>
+        <p className="mt-1 text-xs text-danger" role="alert">{error}</p>
       )}
 
-      <p className="mt-1 text-xs text-gray-400">
+      <p className="mt-1 text-xs text-ink-40">
         {photos.length}/{MAX_PHOTOS_PER_SCENE} photos
       </p>
     </div>

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { getAllToursWithCoords } from '@/lib/api/tours-server';
+import { getCities, getAllTours } from '@/lib/api/tours-server';
 import TrackPageView from '@/components/TrackPageView';
 import { AnalyticsEvents } from '@/lib/analytics';
-import { CatalogueView } from './catalogue-view';
+import { CatalogueViewCities } from './catalogue-view-cities';
 
 // Force dynamic rendering: server AppSync client reads cookies (generateServerClientUsingCookies),
 // which is incompatible with static ISR. Switch to force-dynamic so Next.js doesn't attempt to
@@ -10,19 +10,19 @@ import { CatalogueView } from './catalogue-view';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Catalogue des visites guidees audio — TourGuide',
+  title: 'Catalogue des villes — TourGuide',
   description:
-    'Explorez les visites guidees audio sur la Cote d\'Azur. ' +
-    'Nice, Cannes, Grasse, Menton, Antibes et plus encore.',
+    'Explorez les villes proposées en visite audio. ' +
+    'Chaque ville révèle ses propres histoires.',
 };
 
 export default async function CataloguePage() {
-  const tours = await getAllToursWithCoords();
+  const [cities, tours] = await Promise.all([getCities(), getAllTours()]);
 
   return (
     <>
       <TrackPageView event={AnalyticsEvents.WEB_CATALOGUE_BROWSE} />
-      <CatalogueView tours={tours} />
+      <CatalogueViewCities cities={cities} tours={tours} />
     </>
   );
 }

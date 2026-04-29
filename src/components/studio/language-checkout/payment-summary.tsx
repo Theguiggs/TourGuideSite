@@ -195,10 +195,10 @@ export function PaymentSummary({
         : `Payer ${formatPrice(order.totalCents)} et lancer la traduction`;
 
   return (
-    <div data-testid="payment-summary" className="rounded-lg border border-gray-200 bg-white p-4 space-y-4">
+    <div data-testid="payment-summary" className="rounded-lg border border-line bg-white p-4 space-y-4">
       {/* Subtitle */}
       {hasLanguages && (
-        <p className="text-sm text-gray-600" data-testid="payment-subtitle">
+        <p className="text-sm text-ink-80" data-testid="payment-subtitle">
           Vos {sceneCount} sc&egrave;nes seront traduites et l&apos;audio g&eacute;n&eacute;r&eacute;
           automatiquement (~2 min par langue)
         </p>
@@ -213,14 +213,14 @@ export function PaymentSummary({
               className="flex items-center justify-between text-sm"
               data-testid={`payment-line-${line.language}`}
             >
-              <span className="text-gray-700">{line.label}</span>
-              <span className="font-medium text-gray-900">
+              <span className="text-ink-80">{line.label}</span>
+              <span className="font-medium text-ink">
                 {line.purchaseType === 'free_first' ? (
-                  <span className="text-teal-600" data-testid="free-first-badge">
+                  <span className="text-grenadine" data-testid="free-first-badge">
                     Gratuit &mdash; premi&egrave;re langue offerte !
                   </span>
                 ) : line.purchaseType === 'pack_3' ? (
-                  <span className="text-teal-600">Pack</span>
+                  <span className="text-grenadine">Pack</span>
                 ) : (
                   formatPrice(line.priceCents)
                 )}
@@ -232,12 +232,12 @@ export function PaymentSummary({
 
       {/* Total */}
       <div
-        className="flex items-center justify-between border-t border-gray-100 pt-3"
+        className="flex items-center justify-between border-t border-line pt-3"
         aria-live="polite"
         data-testid="payment-total"
       >
-        <span className="text-sm font-semibold text-gray-900">Total</span>
-        <span className="text-lg font-bold text-gray-900">
+        <span className="text-sm font-semibold text-ink">Total</span>
+        <span className="text-lg font-bold text-ink">
           {hasLanguages ? formatPrice(order.totalCents) : '\u2014'}
         </span>
       </div>
@@ -249,10 +249,10 @@ export function PaymentSummary({
         disabled={!hasLanguages || isLoading}
         aria-disabled={!hasLanguages || isLoading || undefined}
         aria-label={buttonAriaLabel}
-        className={`w-full rounded-lg px-4 py-3 text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${
+        className={`w-full rounded-lg px-4 py-3 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-grenadine focus-visible:ring-offset-2 ${
           !hasLanguages || isLoading
-            ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-            : 'bg-teal-600 text-white hover:bg-teal-700 active:bg-teal-800'
+            ? 'bg-paper-deep text-ink-40 cursor-not-allowed'
+            : 'bg-grenadine text-white hover:opacity-90 active:bg-grenadine'
         }`}
         data-testid="pay-button"
       >

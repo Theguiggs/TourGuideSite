@@ -109,16 +109,16 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
 
   if (!gpuAvailable) {
     return (
-      <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg" data-testid="tts-gpu-unavailable">
-        <p className="text-sm text-amber-700">Génération audio temporairement indisponible</p>
-        <p className="text-xs text-amber-500 mt-1">Le service TTS nécessite un GPU — réessayez plus tard.</p>
+      <div className="p-4 bg-ocre-soft border border-ocre-soft rounded-lg" data-testid="tts-gpu-unavailable">
+        <p className="text-sm text-ocre">Génération audio temporairement indisponible</p>
+        <p className="text-xs text-ocre mt-1">Le service TTS nécessite un GPU — réessayez plus tard.</p>
       </div>
     );
   }
 
   if (!hasText) {
     return (
-      <div className="p-4 bg-gray-50 rounded-lg text-sm text-gray-500 text-center" data-testid="tts-no-text">
+      <div className="p-4 bg-paper-soft rounded-lg text-sm text-ink-60 text-center" data-testid="tts-no-text">
         Pas de texte disponible pour la génération audio.
       </div>
     );
@@ -128,18 +128,18 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
     <div className="space-y-3" data-testid="tts-controls">
       {/* Status indicator */}
       {isProcessing && (
-        <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg animate-pulse" data-testid="tts-processing">
-          <p className="text-sm text-blue-700">Génération audio en cours...</p>
-          <p className="text-xs text-blue-500 mt-1">Langue : {language.toUpperCase()}</p>
+        <div className="p-3 bg-mer-soft border border-mer-soft rounded-lg animate-pulse" data-testid="tts-processing">
+          <p className="text-sm text-mer">Génération audio en cours...</p>
+          <p className="text-xs text-mer mt-1">Langue : {language.toUpperCase()}</p>
         </div>
       )}
 
       {isFailed && (
-        <div className="p-3 bg-red-50 border border-red-200 rounded-lg" data-testid="tts-failed">
-          <p className="text-sm text-red-700">{ttsState?.error ?? 'Échec de la génération.'}</p>
+        <div className="p-3 bg-grenadine-soft border border-grenadine-soft rounded-lg" data-testid="tts-failed">
+          <p className="text-sm text-danger">{ttsState?.error ?? 'Échec de la génération.'}</p>
           <button
             onClick={handleGenerate}
-            className="mt-2 text-sm font-medium text-red-800 underline hover:text-red-900"
+            className="mt-2 text-sm font-medium text-danger underline hover:opacity-80"
             data-testid="tts-retry-btn"
           >
             Réessayer
@@ -148,18 +148,18 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
       )}
 
       {isCompleted && ttsState?.audioKey && (
-        <div className="p-3 bg-green-50 border border-green-200 rounded-lg" data-testid="tts-completed">
+        <div className="p-3 bg-olive-soft border border-olive-soft rounded-lg" data-testid="tts-completed">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-green-800">Audio TTS généré</p>
-              <p className="text-xs text-green-600 mt-0.5">
+              <p className="text-sm font-medium text-success">Audio TTS généré</p>
+              <p className="text-xs text-success mt-0.5">
                 Langue : {(ttsState.language ?? language).toUpperCase()}
                 {ttsState.durationMs && ` | Durée : ${Math.round(ttsState.durationMs / 1000)}s`}
               </p>
             </div>
             <button
               onClick={handlePlay}
-              className="bg-green-600 hover:bg-green-700 text-white text-xs font-medium py-1.5 px-4 rounded-lg transition-colors"
+              className="bg-success hover:opacity-90 text-white text-xs font-medium py-1.5 px-4 rounded-lg transition"
               data-testid="tts-play-btn"
             >
               Écouter
@@ -174,13 +174,13 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
           <div className="flex items-center justify-between">
             <button
               onClick={() => setShowEditor(!showEditor)}
-              className="text-xs text-indigo-600 hover:text-indigo-800 font-medium"
+              className="text-xs text-mer hover:opacity-80 font-medium"
               data-testid="toggle-ssml-editor"
             >
               {showEditor ? 'Masquer editeur' : 'Editer le texte / ajouter effets'}
             </button>
             {hasSSML && (
-              <span className="text-[10px] bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded font-medium">SSML</span>
+              <span className="text-[10px] bg-mer-soft text-mer px-1.5 py-0.5 rounded font-medium">SSML</span>
             )}
           </div>
 
@@ -196,7 +196,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
                 value={editableText}
                 onChange={(e) => setEditableText(e.target.value)}
                 rows={6}
-                className="w-full p-2 border border-gray-200 rounded-lg text-sm text-gray-800 leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-indigo-400 font-mono"
+                className="w-full p-2 border border-line rounded-lg text-sm text-ink leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-mer font-mono"
                 placeholder="Texte pour la synthese vocale..."
                 data-testid="tts-text-editor"
               />
@@ -210,7 +210,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
         <button
           onClick={handleGenerate}
           disabled={isTriggering || !hasText}
-          className="w-full bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
+          className="w-full bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white font-medium py-2.5 rounded-lg text-sm transition"
           data-testid="tts-generate-btn"
         >
           {isTriggering ? 'Lancement...' : hasSSML ? 'Generer l\'audio (avec effets)' : 'Generer l\'audio'}
@@ -235,7 +235,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
               }
             }}
             disabled={isSaving || saved}
-            className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-300 text-white font-medium py-2 rounded-lg text-sm transition-colors"
+            className="flex-1 bg-mer hover:opacity-90 disabled:bg-paper-deep text-white font-medium py-2 rounded-lg text-sm transition"
             data-testid="tts-save-scene-btn"
           >
             {isSaving ? 'Sauvegarde...' : saved ? 'Sauvegarde !' : 'Utiliser comme audio de la scene'}
@@ -243,7 +243,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
         </div>
       )}
       {saved && (
-        <p className="text-xs text-green-600 text-center">Audio TTS enregistre comme audio de cette scene</p>
+        <p className="text-xs text-success text-center">Audio TTS enregistre comme audio de cette scene</p>
       )}
 
       {/* Re-generate if already completed */}
@@ -251,7 +251,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
         <button
           onClick={handleGenerate}
           disabled={isTriggering}
-          className="w-full border border-teal-300 text-teal-700 hover:bg-teal-50 font-medium py-2 rounded-lg text-sm transition-colors"
+          className="w-full border border-grenadine-soft text-grenadine hover:bg-grenadine-soft font-medium py-2 rounded-lg text-sm transition"
           data-testid="tts-regenerate-btn"
         >
           Regenerer l&apos;audio

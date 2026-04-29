@@ -56,11 +56,11 @@ export function RgpdConsentBanner() {
       ref={dialogRef}
     >
       <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full mx-4 p-6">
-        <h2 id="rgpd-title" className="text-xl font-bold text-gray-900 mb-4">
+        <h2 id="rgpd-title" className="text-xl font-bold text-ink mb-4">
           Consentement RGPD — Audio Studio
         </h2>
 
-        <div className="text-sm text-gray-700 space-y-3 mb-6">
+        <div className="text-sm text-ink-80 space-y-3 mb-6">
           <p>
             En utilisant le Studio Audio, vous autorisez TourGuide a :
           </p>
@@ -73,7 +73,7 @@ export function RgpdConsentBanner() {
             Vos donnees vocales ne sont transmises a aucun tiers en dehors d&apos;AWS Transcribe.
             Vous pouvez supprimer vos tours et toutes les donnees associees a tout moment.
           </p>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-ink-60">
             En cliquant &quot;Accepter&quot;, vous consentez au traitement de vos donnees vocales
             conformement a notre politique de confidentialite.
           </p>
@@ -83,14 +83,14 @@ export function RgpdConsentBanner() {
           <button
             ref={acceptBtnRef}
             onClick={acceptConsent}
-            className="flex-1 bg-teal-600 hover:bg-teal-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors"
+            className="flex-1 bg-grenadine hover:opacity-90 text-white font-medium py-2.5 px-4 rounded-lg transition"
             data-testid="rgpd-accept"
           >
             Accepter
           </button>
           <a
             href="/guide/dashboard"
-            className="flex-1 text-center border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2.5 px-4 rounded-lg transition-colors"
+            className="flex-1 text-center border border-line text-ink-80 hover:bg-paper-soft font-medium py-2.5 px-4 rounded-lg transition"
             data-testid="rgpd-decline"
           >
             Refuser

@@ -98,7 +98,7 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
       {/* Teleprompter display */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-hidden bg-gray-900 rounded-lg p-8 relative"
+        className="flex-1 overflow-hidden bg-ink rounded-lg p-8 relative"
         style={{ willChange: 'scroll-position' }}
       >
         <div className="max-w-2xl mx-auto leading-[2.5] text-2xl lg:text-3xl font-medium">
@@ -107,10 +107,10 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
               key={i}
               className={`inline-block mr-2 transition-all duration-150 ${
                 i === state.currentWordIndex
-                  ? 'text-amber-400 scale-105'
+                  ? 'text-ocre scale-105'
                   : i < state.currentWordIndex
-                    ? 'text-gray-400'
-                    : 'text-gray-100'
+                    ? 'text-ink-40'
+                    : 'text-paper'
               }`}
               data-word-index={i}
             >
@@ -121,12 +121,12 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
       </div>
 
       {/* Controls bar */}
-      <div className="flex items-center gap-4 p-4 bg-gray-800 rounded-b-lg" data-testid="prompter-controls">
+      <div className="flex items-center gap-4 p-4 bg-ink rounded-b-lg" data-testid="prompter-controls">
         {/* Play/Pause/Resume */}
         {!isActive ? (
           <button
             onClick={handleStartResume}
-            className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-5 rounded-lg transition-colors"
+            className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg transition"
             data-testid="prompter-start"
           >
             ▶ Démarrer
@@ -134,7 +134,7 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
         ) : state.isPaused ? (
           <button
             onClick={handleStartResume}
-            className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-5 rounded-lg transition-colors"
+            className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg transition"
             data-testid="prompter-resume"
           >
             ▶ Reprendre
@@ -142,7 +142,7 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
         ) : (
           <button
             onClick={handlePause}
-            className="bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-5 rounded-lg transition-colors"
+            className="bg-ocre hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg transition"
             data-testid="prompter-pause"
           >
             ⏸ Pause
@@ -152,7 +152,7 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
         {isActive && (
           <button
             onClick={handleStop}
-            className="bg-gray-600 hover:bg-gray-500 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+            className="bg-ink-80 hover:bg-ink-60 text-white font-medium py-2 px-4 rounded-lg transition"
             data-testid="prompter-stop"
           >
             ⏹ Stop
@@ -161,7 +161,7 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
 
         {/* Speed control */}
         <div className="flex items-center gap-2 ml-auto">
-          <label htmlFor="speed-slider" className="text-xs text-gray-400">
+          <label htmlFor="speed-slider" className="text-xs text-ink-40">
             Vitesse
           </label>
           <input
@@ -171,14 +171,14 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
             max={10}
             value={state.speed}
             onChange={handleSpeedChange}
-            className="w-24 accent-teal-500"
+            className="w-24 accent-grenadine"
             data-testid="speed-slider"
           />
-          <span className="text-xs text-gray-300 w-4 text-center">{state.speed}</span>
+          <span className="text-xs text-ink-20 w-4 text-center">{state.speed}</span>
         </div>
 
         {/* Chronomètre */}
-        <div className="text-lg font-mono text-gray-200 tabular-nums" role="timer" aria-live="off" data-testid="chronometre">
+        <div className="text-lg font-mono text-paper-soft tabular-nums" role="timer" aria-live="off" data-testid="chronometre">
           {formatElapsed(state.elapsedMs)}
         </div>
       </div>

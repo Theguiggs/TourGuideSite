@@ -1,28 +1,25 @@
 @import "tailwindcss";
+@config "../../tailwind.config.js";
+@import "@tourguide/design-system/css";
 
+/* Story 1.2 — Phase 0 Q5 : light forcé en V1.0.
+ * Le DS expose des variantes dark via `@media (prefers-color-scheme: dark)`,
+ * mais on les neutralise ici en déclarant `color-scheme: light` au scope racine.
+ * Aucun écran TourGuideWeb n'a été designé en dark — décision migration future.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Story 1.3 — body fond papier + encre + Manrope (var injectée par next/font).
+ * Le bloc `body { font-family: Arial }` initial Next a été supprimé.
+ * Le bloc `@theme inline { --font-geist-* }` a aussi été supprimé (Geist remplacé
+ * par les 4 familles DS chargées via `next/font/google` dans `layout.tsx`).
+ */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--tg-color-paper);
+  color: var(--tg-color-ink);
+  font-family: var(--tg-font-sans);
 }
 
 /* ML-6.4: Accessibility — prefers-reduced-motion */

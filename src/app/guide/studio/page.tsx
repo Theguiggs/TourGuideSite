@@ -1,150 +1,122 @@
 'use client';
 
-import { useEffect, useState, useCallback, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useMemo, useState, useCallback } from 'react';
+import Link from 'next/link';
+import { useAuth } from '@/lib/auth/auth-context';
+import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
 import { trackEvent, StudioAnalyticsEvents } from '@/lib/analytics';
-import { listStudioSessions, getStubScenesCount, listStudioScenes } from '@/lib/api/studio';
+import { listStudioSessions, listStudioScenes } from '@/lib/api/studio';
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
-import { listTourComments } from '@/lib/api/tour-comments';
-import type { TourLanguagePurchase } from '@/types/studio';
-import { SessionCard } from '@/components/studio/session-card';
-import { useAuth } from '@/lib/auth/auth-context';
+import { listTourComments, type TourComment } from '@/lib/api/tour-comments';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
-import { shouldUseStubs } from '@/config/api-mode';
-import type { StudioSession } from '@/types/studio';
+import {
+  selectResumableSession,
+  selectTopTours,
+  selectRecentReviews,
+  selectSuggestion,
+  type DashboardReview,
+  type DashboardSuggestion,
+} from '@/lib/studio/dashboard-helpers';
+import {
+  KpiCard,
+  ResumeHero,
+  TopTourRow,
+  ReviewItem,
+  SuggestionCard,
+} from '@/components/studio/dashboard';
+import type { StudioSession, TourLanguagePurchase } from '@/types/studio';
 
-const SERVICE_NAME = 'StudioHomePage';
+const SERVICE_NAME = 'StudioDashboardPage';
 
-/** Group sessions that share the same tourId. Orphan sessions (no tourId) are standalone. */
-interface TourGroup {
-  tourId: string | null;
-  title: string;
-  sessions: StudioSession[]; // sorted by version desc
-  publishedVersion: number | null;
-  latestVersion: number;
+interface DashboardData {
+  sessions: StudioSession[];
+  scenesPerSession: Record<string, { total: number; done: number }>;
+  purchasesBySession: Record<string, TourLanguagePurchase[]>;
+  recentReviews: DashboardReview[];
+  suggestion: DashboardSuggestion | null;
+  resumable: StudioSession | null;
 }
 
-function groupSessionsByTour(
-  sessions: StudioSession[],
-): TourGroup[] {
-  const byTour = new Map<string, StudioSession[]>();
-  const orphans: StudioSession[] = [];
-
-  for (const s of sessions) {
-    if (s.tourId) {
-      const existing = byTour.get(s.tourId) ?? [];
-      existing.push(s);
-      byTour.set(s.tourId, existing);
-    } else {
-      orphans.push(s);
-    }
-  }
-
-  const groups: TourGroup[] = [];
-
-  for (const [tourId, tourSessions] of byTour) {
-    // Sort by version desc so latest is first
-    const sorted = [...tourSessions].sort((a, b) => (b.version ?? 1) - (a.version ?? 1));
-    const published = sorted.find((s) => s.status === 'published');
-    groups.push({
-      tourId,
-      title: sorted[0].title || 'Tour sans titre',
-      sessions: sorted,
-      publishedVersion: published ? (published.version ?? 1) : null,
-      latestVersion: sorted[0].version ?? 1,
-    });
-  }
-
-  // Orphans as individual groups
-  for (const s of orphans) {
-    groups.push({
-      tourId: null,
-      title: s.title || 'Session sans titre',
-      sessions: [s],
-      publishedVersion: null,
-      latestVersion: s.version ?? 1,
-    });
-  }
-
-  // Sort groups: needs attention first, then by latest update
-  groups.sort((a, b) => {
-    const aAttention = a.sessions.some((s) => ['revision_requested', 'rejected'].includes(s.status)) ? 1 : 0;
-    const bAttention = b.sessions.some((s) => ['revision_requested', 'rejected'].includes(s.status)) ? 1 : 0;
-    if (aAttention !== bAttention) return bAttention - aAttention;
-    const aDate = new Date(a.sessions[0].updatedAt).getTime();
-    const bDate = new Date(b.sessions[0].updatedAt).getTime();
-    return bDate - aDate;
-  });
-
-  return groups;
+function formatRelative(iso: string, now: Date = new Date()): string {
+  const date = new Date(iso);
+  const diffMs = now.getTime() - date.getTime();
+  const minutes = Math.floor(diffMs / (60 * 1000));
+  if (minutes < 60) return minutes <= 1 ? "à l'instant" : `il y a ${minutes} min`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `il y a ${hours} h`;
+  const days = Math.floor(hours / 24);
+  if (days === 1) return 'hier';
+  if (days < 7) return `il y a ${days} j.`;
+  return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
 }
 
-export default function StudioHomePage() {
+export default function StudioDashboardPage() {
   const { user } = useAuth();
-  const router = useRouter();
-  const [sessions, setSessions] = useState<StudioSession[]>([]);
-  const [sceneCounts, setSceneCounts] = useState<Record<string, number>>({});
-  const [purchasesBySession, setPurchasesBySession] = useState<Record<string, TourLanguagePurchase[]>>({});
-  const [hasAdminFeedback, setHasAdminFeedback] = useState<Record<string, boolean>>({});
+  const [data, setData] = useState<DashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [lastSessionId, setLastSessionId] = useState<string | null>(null);
 
-  const loadSessions = useCallback(async (guideId: string) => {
+  const loadDashboard = useCallback(async (guideId: string) => {
     setIsLoading(true);
     setError(null);
     try {
-      const result = await listStudioSessions(guideId);
-      setSessions(result);
+      const sessions = await listStudioSessions(guideId);
 
-      // Compute scene counts: stub mode uses in-memory, real mode queries AppSync
-      if (shouldUseStubs()) {
-        const counts: Record<string, number> = {};
-        for (const s of result) {
-          counts[s.id] = getStubScenesCount(s.id);
-        }
-        setSceneCounts(counts);
-      } else {
-        const sceneLists = await Promise.all(result.map((s) => listStudioScenes(s.id)));
-        const counts: Record<string, number> = {};
-        result.forEach((s, i) => {
-          counts[s.id] = sceneLists[i].length;
-        });
-        setSceneCounts(counts);
-      }
+      // Scenes per session — for resume hero progression bar
+      const scenesPerSession: Record<string, { total: number; done: number }> = {};
+      const sceneLists = await Promise.all(sessions.map((s) => listStudioScenes(s.id)));
+      sessions.forEach((s, i) => {
+        const list = sceneLists[i];
+        scenesPerSession[s.id] = {
+          total: list.length,
+          done: list.filter((sc) => sc.status === 'finalized').length,
+        };
+      });
 
-      // Load language purchases per session
+      // Language purchases per session — for suggestion engine
       const purchaseResults = await Promise.all(
-        result.map(async (s) => {
+        sessions.map(async (s) => {
           const r = await listLanguagePurchases(s.id);
-          return { sessionId: s.id, purchases: r.ok ? r.value.filter((p) => p.status === 'active') : [] };
+          return {
+            sessionId: s.id,
+            purchases: r.ok ? r.value.filter((p) => p.status === 'active') : [],
+          };
         }),
       );
-      const pMap: Record<string, TourLanguagePurchase[]> = {};
-      for (const r of purchaseResults) pMap[r.sessionId] = r.purchases;
-      setPurchasesBySession(pMap);
+      const purchasesBySession: Record<string, TourLanguagePurchase[]> = {};
+      for (const r of purchaseResults) purchasesBySession[r.sessionId] = r.purchases;
 
-      // Check for admin feedback (comments with author='admin') per tour
-      const feedbackMap: Record<string, boolean> = {};
-      for (const s of result) {
-        if (s.tourId && ['revision_requested', 'rejected'].includes(s.status)) {
-          feedbackMap[s.id] = true;
-        } else if (s.tourId) {
-          try {
-            const comments = await listTourComments(s.tourId);
-            const lastAdminComment = [...comments].reverse().find((c) => c.author === 'admin');
-            feedbackMap[s.id] = !!lastAdminComment;
-          } catch { feedbackMap[s.id] = false; }
+      // Comments per session (admin/guide) — for recent reviews block
+      const commentsBySession: Record<string, TourComment[]> = {};
+      for (const s of sessions) {
+        if (!s.tourId) continue;
+        try {
+          const comments = await listTourComments(s.tourId);
+          commentsBySession[s.id] = comments;
+        } catch {
+          commentsBySession[s.id] = [];
         }
       }
-      setHasAdminFeedback(feedbackMap);
 
-      logger.info(SERVICE_NAME, 'Tours loaded', { count: result.length });
-      trackEvent(StudioAnalyticsEvents.STUDIO_SESSIONS_VIEW, { count: result.length });
+      const lastSessionId = studioPersistenceService.getLastSessionId();
+      const resumable = selectResumableSession(sessions, lastSessionId);
+      const recentReviews = selectRecentReviews(sessions, commentsBySession);
+      const suggestion = selectSuggestion(sessions, purchasesBySession);
+
+      setData({
+        sessions,
+        scenesPerSession,
+        purchasesBySession,
+        recentReviews,
+        suggestion,
+        resumable,
+      });
+      logger.info(SERVICE_NAME, 'Dashboard loaded', { sessions: sessions.length });
+      trackEvent(StudioAnalyticsEvents.STUDIO_SESSIONS_VIEW, { count: sessions.length });
     } catch (e) {
-      setError('Impossible de charger vos tours.');
-      logger.error(SERVICE_NAME, 'Failed to load tours', { error: String(e) });
+      setError('Impossible de charger le tableau de bord.');
+      logger.error(SERVICE_NAME, 'Failed to load dashboard', { error: String(e) });
     } finally {
       setIsLoading(false);
     }
@@ -156,178 +128,210 @@ export default function StudioHomePage() {
       setIsLoading(false);
       return;
     }
-    loadSessions(guideId);
-    setLastSessionId(studioPersistenceService.getLastSessionId());
-  }, [user, loadSessions]);
+    loadDashboard(guideId);
+  }, [user, loadDashboard]);
 
-  const tourGroups = useMemo(() => groupSessionsByTour(sessions), [sessions]);
+  const greetingName = useMemo(() => {
+    if (!user?.displayName) return undefined;
+    return user.displayName.split(/\s+/)[0];
+  }, [user?.displayName]);
 
+  // ─── Loading state ───
   if (isLoading) {
     return (
-      <div className="p-6">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Mon Studio</h1>
-        </div>
-        <div className="space-y-3" aria-busy="true">
-          <span className="sr-only">Chargement des tours...</span>
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-gray-100 rounded-lg h-14 animate-pulse" />
+      <div className="p-8 max-w-7xl mx-auto" aria-busy="true">
+        <span className="sr-only">Chargement du tableau de bord…</span>
+        <div className="h-40 bg-paper-deep rounded-xl animate-pulse mb-7" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-8">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="h-32 bg-card border border-line rounded-lg animate-pulse" />
           ))}
         </div>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-5">
+          <div className="h-64 bg-card border border-line rounded-lg animate-pulse" />
+          <div className="h-64 bg-card border border-line rounded-lg animate-pulse" />
+        </div>
       </div>
     );
   }
 
+  // ─── No guide profile (real mode only) ───
   if (!user?.guideId && !shouldUseStubs()) {
     return (
-      <div className="p-6">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Mon Studio</h1>
-        </div>
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-700" role="alert">
-          Le Studio est reserve aux guides. Creez un profil guide pour commencer.
+      <div className="p-8 max-w-7xl mx-auto">
+        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 text-ocre" role="alert">
+          Le Studio est réservé aux guides. Créez un profil guide pour commencer.
         </div>
       </div>
     );
   }
 
+  // ─── Error ───
   if (error) {
     return (
-      <div className="p-6">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Mon Studio</h1>
-        </div>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700" role="alert">
-          <p>{error}</p>
+      <div className="p-8 max-w-7xl mx-auto">
+        <div className="bg-grenadine-soft border border-grenadine rounded-lg p-4" role="alert">
+          <p className="text-danger">{error}</p>
           <button
-            onClick={() => loadSessions(user?.guideId || 'guide-1')}
-            className="mt-2 text-sm font-medium text-red-800 underline hover:text-red-900"
+            type="button"
+            onClick={() => loadDashboard(user?.guideId || 'guide-1')}
+            className="mt-2 text-caption font-medium text-danger underline hover:opacity-80"
           >
-            Reessayer
+            Réessayer
           </button>
         </div>
       </div>
     );
   }
 
-  const handleClick = (id: string) => {
-    logger.info(SERVICE_NAME, 'Tour clicked', { sessionId: id });
-    router.push(`/guide/studio/${id}`);
-  };
+  if (!data) return null;
 
-  return (
-    <div className="p-6">
-      <div className="mb-5">
-        <h1 className="text-2xl font-bold text-gray-900">Mon Studio</h1>
-        <p className="text-gray-500 text-sm mt-1">
-          Creez et gerez vos tours audio — du terrain a la publication.
-        </p>
-      </div>
+  const { sessions, scenesPerSession, recentReviews, suggestion, resumable } = data;
 
-      {lastSessionId && sessions.some((s) => s.id === lastSessionId) && (
-        <button
-          onClick={() => router.push(`/guide/studio/${lastSessionId}`)}
-          className="w-full mb-4 flex items-center gap-3 px-4 py-2.5 bg-teal-50 border border-teal-200 rounded-lg text-left hover:bg-teal-100 transition-colors"
-          data-testid="resume-session"
-        >
-          <span className="text-lg" aria-hidden="true">&#x23EF;&#xFE0F;</span>
-          <p className="text-sm font-medium text-teal-800">
-            Reprendre : <span className="text-teal-600">{sessions.find((s) => s.id === lastSessionId)?.title || 'Tour en cours'}</span>
-          </p>
-        </button>
-      )}
-
-      {tourGroups.length === 0 ? (
-        <div className="bg-white rounded-xl border border-gray-200 p-8 text-center" data-testid="empty-state">
-          <div className="text-4xl mb-3" aria-hidden="true">&#x1F399;&#xFE0F;</div>
-          <h2 className="text-lg font-semibold text-gray-900 mb-2">
-            Aucun tour en cours
-          </h2>
-          <p className="text-gray-500 max-w-md mx-auto text-sm">
-            Enregistrez un tour sur le terrain avec l&apos;app mobile TourGuide, puis revenez ici pour le transformer en tour audio.
-          </p>
-        </div>
-      ) : (
-        <div className="space-y-2" data-testid="sessions-list">
-          {tourGroups.map((group) => (
-            <TourGroupCard
-              key={group.tourId ?? group.sessions[0].id}
-              group={group}
-              sceneCounts={sceneCounts}
-              purchasesBySession={purchasesBySession}
-              hasAdminFeedback={hasAdminFeedback}
-              onClick={handleClick}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function TourGroupCard({
-  group,
-  sceneCounts,
-  purchasesBySession,
-  hasAdminFeedback,
-  onClick,
-}: {
-  group: TourGroup;
-  sceneCounts: Record<string, number>;
-  purchasesBySession: Record<string, TourLanguagePurchase[]>;
-  hasAdminFeedback: Record<string, boolean>;
-  onClick: (id: string) => void;
-}) {
-  // Single session, not grouped — use standalone card
-  if (group.sessions.length === 1) {
-    const s = group.sessions[0];
+  // ─── Empty state (no sessions yet) ───
+  if (sessions.length === 0) {
     return (
-      <SessionCard
-        session={s}
-        scenesCount={sceneCounts[s.id] ?? 0}
-        purchases={purchasesBySession[s.id] ?? []}
-        hasAdminFeedback={hasAdminFeedback[s.id] ?? false}
-        onClick={onClick}
-      />
+      <div className="p-8 max-w-7xl mx-auto">
+        <div
+          className="bg-card border border-line rounded-xl p-12 text-center"
+          data-testid="dashboard-empty"
+        >
+          <div className="font-display text-h5 text-ink mb-2">
+            Bienvenue dans votre Studio
+          </div>
+          <p className="text-caption text-ink-60 max-w-md mx-auto mb-6">
+            Vous n&apos;avez pas encore créé de tour. Lancez-vous : enregistrez un parcours sur le terrain avec l&apos;app mobile, puis revenez ici pour le transformer en tour audio.
+          </p>
+          <Link
+            href="/guide/studio/nouveau"
+            className="inline-flex items-center gap-2 bg-grenadine text-paper px-6 py-3 rounded-pill text-caption font-bold no-underline hover:opacity-90 transition"
+          >
+            ＋ Créer un nouveau tour
+          </Link>
+        </div>
+      </div>
     );
   }
 
-  // Multiple versions — grouped card
-  const needsAttention = group.sessions.some((s) => ['revision_requested', 'rejected'].includes(s.status));
+  const topTours = selectTopTours(sessions);
+
+  // KPIs : valeurs réelles si dispo, sinon "—" (pas de mock).
+  const publishedCount = sessions.filter((s) => s.status === 'published').length;
+  const reviewsThisMonth = recentReviews.length;
 
   return (
-    <div
-      className={`bg-white rounded-lg border overflow-hidden ${
-        needsAttention ? 'border-red-300' : 'border-gray-200'
-      }`}
-      data-testid={`tour-group-${group.tourId}`}
-    >
-      {/* Group header */}
-      <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-50 border-b border-gray-100">
-        <h3 className="font-semibold text-gray-900 truncate text-sm">{group.title}</h3>
-        <span className="flex-1" />
-        {group.publishedVersion !== null && (
-          <span className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium bg-green-100 text-green-700 shrink-0">
-            V{group.publishedVersion} publiee
-          </span>
-        )}
-        <span className="text-xs text-gray-400 shrink-0">{group.sessions.length} versions</span>
-      </div>
-
-      {/* Version rows */}
-      <div className="divide-y divide-gray-50">
-        {group.sessions.map((s) => (
-          <SessionCard
-            key={s.id}
-            session={s}
-            scenesCount={sceneCounts[s.id] ?? 0}
-            purchases={purchasesBySession[s.id] ?? []}
-            hasAdminFeedback={hasAdminFeedback[s.id] ?? false}
-            onClick={onClick}
-            compact
+    <div className="p-6 lg:p-8 max-w-7xl mx-auto">
+      {/* ───── Hero "Reprendre" ───── */}
+      {resumable && (
+        <section className="mb-8">
+          <ResumeHero
+            session={resumable}
+            scenesTotal={scenesPerSession[resumable.id]?.total ?? 0}
+            scenesDone={scenesPerSession[resumable.id]?.done ?? 0}
+            guideName={greetingName}
           />
-        ))}
-      </div>
+        </section>
+      )}
+
+      {/* ───── KPIs ───── */}
+      <section className="mb-10">
+        <div className="flex items-baseline justify-between flex-wrap gap-2 mb-4">
+          <div>
+            <div className="tg-eyebrow text-ink-60">Le mois en bref</div>
+            <h2 className="font-display text-h5 text-ink mt-1">Vos chiffres.</h2>
+          </div>
+          <Link
+            href="/guide/studio/revenus"
+            className="text-meta text-ink-60 hover:text-ink no-underline transition"
+          >
+            Voir tous les revenus →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+          <KpiCard
+            label="Tours publiés"
+            value={String(publishedCount)}
+            color="mer"
+            icon="◉"
+          />
+          <KpiCard label="Revenus nets" value="—" sub="ce mois" color="olive" icon="€" />
+          <KpiCard label="Note moyenne" value="—" sub="/ 5" color="ocre" icon="★" />
+          <KpiCard
+            label="Avis récents"
+            value={String(reviewsThisMonth)}
+            color="grenadine"
+            icon="✎"
+          />
+        </div>
+      </section>
+
+      {/* ───── Top tours + Avis récents ───── */}
+      <section className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-5 mb-10">
+        <div>
+          <div className="tg-eyebrow text-mer mb-3">Tours qui marchent</div>
+          {topTours.length === 0 ? (
+            <div className="bg-card border border-line rounded-lg p-6 text-caption text-ink-60">
+              Aucun tour publié pour le moment.
+            </div>
+          ) : (
+            <div className="bg-card border border-line rounded-lg overflow-hidden">
+              {topTours.map((s, i) => {
+                const cityFromTitle = (s.title ?? '').split(/[—\-,]/)[0]?.trim() || 'Tour';
+                return (
+                  <TopTourRow
+                    key={s.id}
+                    href={`/guide/studio/${s.id}`}
+                    city={cityFromTitle}
+                    title={s.title || 'Tour sans titre'}
+                    plays={null}
+                    rating={null}
+                    isLast={i === topTours.length - 1}
+                  />
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        <div>
+          <div className="tg-eyebrow text-grenadine mb-3">
+            {recentReviews.length} avis récent{recentReviews.length > 1 ? 's' : ''}
+          </div>
+          {recentReviews.length === 0 ? (
+            <div className="bg-card border border-line rounded-lg p-6 text-caption text-ink-60">
+              Aucun avis pour le moment.
+            </div>
+          ) : (
+            <div className="flex flex-col gap-3">
+              {recentReviews.map((r) => (
+                <ReviewItem
+                  key={r.id}
+                  author={r.author}
+                  when={formatRelative(r.createdAt)}
+                  tourTitle={r.tourTitle}
+                  quote={r.message}
+                  rating={r.rating}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ───── Suggestion contextuelle ───── */}
+      {suggestion && (
+        <section>
+          <SuggestionCard
+            eyebrow={suggestion.eyebrow}
+            title={suggestion.title}
+            body={suggestion.body}
+            ctaLabel={suggestion.ctaLabel}
+            ctaHref={suggestion.ctaHref}
+            color={suggestion.color}
+            icon="✦"
+          />
+        </section>
+      )}
     </div>
   );
 }

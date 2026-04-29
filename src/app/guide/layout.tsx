@@ -67,9 +67,16 @@ function GuideNav() {
 export default function GuideLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isPublicPage = pathname === '/guide/login' || pathname === '/guide/signup';
+  const isStudioPage = pathname.startsWith('/guide/studio');
 
   if (isPublicPage) {
     return <>{children}</>;
+  }
+
+  // Studio routes ship their own Murmure shell (StudioHeader + StudioSidebar)
+  // and bypass the legacy GuideNav — the studio/layout.tsx renders both.
+  if (isStudioPage) {
+    return <AuthGuard>{children}</AuthGuard>;
   }
 
   return (

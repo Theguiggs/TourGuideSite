@@ -172,7 +172,7 @@ describe('LanguageAudioSection', () => {
 
     const badge = screen.getByTestId('audio-source-badge');
     expect(badge).toHaveTextContent('TTS automatique');
-    expect(badge.className).toContain('teal');
+    expect(badge.className).toContain('grenadine');
   });
 
   it('shows "Enregistrement personnel" badge when audioSource is recording', () => {
@@ -187,7 +187,7 @@ describe('LanguageAudioSection', () => {
 
     const badge = screen.getByTestId('audio-source-badge');
     expect(badge).toHaveTextContent('Enregistrement personnel');
-    expect(badge.className).toContain('indigo');
+    expect(badge.className).toContain('mer');
   });
 
   it('shows no badge when audioSource is undefined', () => {

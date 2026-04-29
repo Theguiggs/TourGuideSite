@@ -144,15 +144,15 @@ export function StalenessAlert({
       <div
         data-testid="staleness-alert"
         role="alert"
-        className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-orange-300 bg-orange-50 p-4"
+        className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-ocre-soft bg-ocre-soft p-4"
       >
         <div className="flex items-start gap-2 flex-1 min-w-0">
           <span className="text-lg shrink-0" aria-hidden="true">&#9888;&#65039;</span>
           <div>
-            <p className="text-sm font-medium text-orange-800">
+            <p className="text-sm font-medium text-ocre">
               {staleCount} {staleCount === 1 ? 'scene modifiee' : 'scenes modifiees'} depuis la derniere traduction
             </p>
-            <p className="text-xs text-orange-600 mt-0.5">
+            <p className="text-xs text-ocre mt-0.5">
               Retraduire si le texte source a change, ou ignorer si c&apos;est une modification non-traduisible (GPS, photos, audio).
             </p>
           </div>
@@ -163,7 +163,7 @@ export function StalenessAlert({
               data-testid="staleness-dismiss-button"
               type="button"
               onClick={() => onDismiss(staleSegmentIds)}
-              className="inline-flex items-center whitespace-nowrap rounded-md border border-orange-400 px-3 py-2 text-sm font-medium text-orange-700 hover:bg-orange-100"
+              className="inline-flex items-center whitespace-nowrap rounded-md border border-ocre px-3 py-2 text-sm font-medium text-ocre hover:bg-ocre-soft"
             >
               Ignorer
             </button>
@@ -172,7 +172,7 @@ export function StalenessAlert({
             data-testid="staleness-retranslate-button"
             type="button"
             onClick={handleRetranslateClick}
-            className="inline-flex items-center whitespace-nowrap rounded-md bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-700"
+            className="inline-flex items-center whitespace-nowrap rounded-md bg-ocre px-4 py-2 text-sm font-medium text-white hover:bg-ocre"
           >
             Retraduire {staleCount}
           </button>

@@ -27,7 +27,7 @@ describe('StudioProgressBar', () => {
   it('applies completed styles to completed steps', () => {
     render(<StudioProgressBar currentStep="scenes" completedSteps={['general', 'itinerary']} />);
     const generalStep = screen.getByText('Général').closest('div');
-    expect(generalStep?.className).toContain('teal');
+    expect(generalStep?.className).toContain('grenadine');
   });
 
   it('has accessible navigation role', () => {

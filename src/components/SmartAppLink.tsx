@@ -3,6 +3,8 @@
 interface SmartAppLinkProps {
   tourId: string;
   className?: string;
+  style?: React.CSSProperties;
+  'aria-label'?: string;
   children: React.ReactNode;
 }
 
@@ -11,7 +13,13 @@ interface SmartAppLinkProps {
  * On iOS Safari, the deep link either opens the app or silently fails.
  * After a short timeout, we redirect to the store.
  */
-export default function SmartAppLink({ tourId, className, children }: SmartAppLinkProps) {
+export default function SmartAppLink({
+  tourId,
+  className,
+  style,
+  'aria-label': ariaLabel,
+  children,
+}: SmartAppLinkProps) {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     const deepLink = `tourguide://tour/${tourId}`;
@@ -29,7 +37,7 @@ export default function SmartAppLink({ tourId, className, children }: SmartAppLi
   };
 
   return (
-    <a href="#" onClick={handleClick} className={className}>
+    <a href="#" onClick={handleClick} className={className} style={style} aria-label={ariaLabel}>
       {children}
     </a>
   );
