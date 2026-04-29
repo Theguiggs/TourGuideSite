@@ -26,6 +26,8 @@ const eslintConfig = defineConfig([
     "tests/**",
     // Newdesign source (raw user input, not real code)
     "newdesign/**",
+    // Vendored Design System package (own lint rules upstream)
+    "packages/**",
   ]),
 ]);
 

@@ -24,14 +24,14 @@
     "@react-google-maps/api": "^2.20.8",
     "@stripe/react-stripe-js": "^6.0.0",
     "@stripe/stripe-js": "^9.0.0",
+    "@tourguide/design-system": "file:./packages/design-system",
     "aws-amplify": "^6.16.2",
     "leaflet": "^1.9.4",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-leaflet": "^5.0.0",
-    "zustand": "^5.0.11",
-    "@tourguide/design-system": "file:../design-system"
+    "zustand": "^5.0.11"
   },
   "devDependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.1014.0",

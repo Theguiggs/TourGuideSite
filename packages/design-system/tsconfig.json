@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": false
+  },
+  "include": [
+    "index.ts",
+    "tokens.ts",
+    "editorial.ts",
+    "feature-flag.ts",
+    "use-ds-version.ts",
+    "motion.ts",
+    "sound.ts",
+    "use-motion.ts",
+    "Tokens.stories.tsx",
+    ".storybook/**/*",
+    "components/**/*",
+    "components-rn/**/*",
+    "icons/**/*",
+    "icons-rn/**/*",
+    "illustrations/**/*",
+    "illustrations-rn/**/*",
+    "scripts/**/*",
+    "web/**/*",
+    "rn/**/*"
+  ],
+  "exclude": ["node_modules", "storybook-static"]
+}

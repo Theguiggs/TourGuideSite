@@ -1,0 +1,199 @@
+/**
+ * TourGuide Design System — Tokens
+ * Source unique de vérité pour les couleurs, typo, espacements, rayons, ombres, durées.
+ * Ce fichier est généré depuis ds/tokens.jsx — ne pas éditer directement les valeurs en dur ailleurs.
+ */
+
+:root {
+  /* ─────────────────── Couleurs · core ─────────────────── */
+  --tg-color-paper:        #F4ECDD;  /* fond principal — papier crème */
+  --tg-color-paper-soft:   #EFE4D0;  /* fond secondaire */
+  --tg-color-paper-deep:   #E8DCC4;  /* fond tertiaire / cartes */
+  --tg-color-card:         #FFFFFF;  /* surface élevée */
+
+  --tg-color-ink:          #102A43;  /* texte principal — bleu encre */
+  --tg-color-ink-80:       rgba(16, 42, 67, 0.8);
+  --tg-color-ink-60:       rgba(16, 42, 67, 0.6);
+  --tg-color-ink-40:       rgba(16, 42, 67, 0.4);
+  --tg-color-ink-20:       rgba(16, 42, 67, 0.2);
+
+  --tg-color-line:         rgba(16, 42, 67, 0.10);
+  --tg-color-ardoise:      #2C3E50;
+
+  /* ─────────────────── Couleurs · accents ─────────────────── */
+  --tg-color-grenadine:    #C1262A;  /* CTA, accent principal */
+  --tg-color-grenadine-soft:#FBE5E2;  /* fond accent doux */
+
+  --tg-color-ocre:         #C68B3E;  /* arrière-pays, Provence */
+  --tg-color-ocre-soft:    #F5E4C7;
+
+  --tg-color-mer:          #2B6E8A;  /* côte, Méditerranée */
+  --tg-color-mer-soft:     #D7E5EC;
+
+  --tg-color-olive:        #6B7A45;  /* nature, sentiers */
+  --tg-color-olive-soft:   #E2E5D2;
+
+  /* ─────────────────── États ─────────────────── */
+  --tg-color-success:      #4F7942;
+  --tg-color-warning:      #C68B3E;
+  --tg-color-danger:       #C1262A;
+  --tg-color-info:         #2B6E8A;
+
+  /* ─────────────────── Typographie ─────────────────── */
+  --tg-font-sans:      "Manrope", "Inter", system-ui, sans-serif;
+  --tg-font-display:   "DM Serif Display", "Playfair Display", Georgia, serif;
+  --tg-font-editorial: "DM Serif Text", Georgia, serif;          /* italique */
+  --tg-font-mono:      "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+  /* Échelle (tracking & line-height inclus) — exprimée en rem pour le Web */
+  --tg-text-eyebrow:    0.6875rem;     /* 11px · letter-spacing 0.18em · 700 */
+  --tg-text-meta:       0.75rem;       /* 12px */
+  --tg-text-caption:    0.8125rem;     /* 13px */
+  --tg-text-body:       0.875rem;      /* 14px */
+  --tg-text-body-lg:    1rem;          /* 16px */
+  --tg-text-h6:         1.125rem;      /* 18px */
+  --tg-text-h5:         1.375rem;      /* 22px */
+  --tg-text-h4:         1.875rem;      /* 30px */
+  --tg-text-h3:         2.5rem;        /* 40px */
+  --tg-text-h2:         3.5rem;        /* 56px */
+  --tg-text-h1:         4.5rem;        /* 72px */
+
+  /* Échelle (alias en px) — miroir strict de `tgFontSize` côté TS (Story 1.2) */
+  --tg-font-size-eyebrow: 11px;
+  --tg-font-size-meta:    12px;
+  --tg-font-size-caption: 13px;
+  --tg-font-size-body:    14px;
+  --tg-font-size-body-lg: 16px;
+  --tg-font-size-h6:      18px;
+  --tg-font-size-h5:      22px;
+  --tg-font-size-h4:      30px;
+  --tg-font-size-h3:      40px;
+  --tg-font-size-h2:      56px;
+  --tg-font-size-h1:      72px;
+
+  /* Letter-spacing pour les display */
+  --tg-tracking-display: -0.025em;
+  --tg-tracking-eyebrow: 0.18em;
+
+  /* ─────────────────── Espacements (4 pt grid) ─────────────────── */
+  --tg-space-1:   4px;
+  --tg-space-2:   8px;
+  --tg-space-3:  12px;
+  --tg-space-4:  16px;
+  --tg-space-5:  20px;
+  --tg-space-6:  24px;
+  --tg-space-8:  32px;
+  --tg-space-10: 40px;
+  --tg-space-12: 48px;
+  --tg-space-16: 64px;
+  --tg-space-20: 80px;
+
+  /* ─────────────────── Rayons ─────────────────── */
+  --tg-radius-sm:  6px;
+  --tg-radius-md: 12px;
+  --tg-radius-lg: 18px;
+  --tg-radius-xl: 28px;
+  --tg-radius-pill: 999px;
+
+  /* ─────────────────── Ombres ─────────────────── */
+  --tg-shadow-sm:  0 1px 2px rgba(16, 42, 67, 0.06);
+  --tg-shadow-md:  0 4px 12px rgba(16, 42, 67, 0.08);
+  --tg-shadow-lg:  0 12px 28px rgba(16, 42, 67, 0.14);
+  --tg-shadow-xl:  0 24px 60px rgba(16, 42, 67, 0.18);
+  --tg-shadow-accent: 0 12px 28px rgba(193, 38, 42, 0.22);
+
+  /* ─────────────────── Durées / easings ─────────────────── */
+  --tg-duration-fast:    120ms;
+  --tg-duration-base:    200ms;
+  --tg-duration-slow:    320ms;
+  --tg-ease-out:         cubic-bezier(0.2, 0.8, 0.2, 1);
+  --tg-ease-in-out:      cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ─────────────────── Z-index ─────────────────── */
+  --tg-z-base:       1;
+  --tg-z-elevated:   10;
+  --tg-z-sticky:     50;
+  --tg-z-overlay:    100;
+  --tg-z-modal:      200;
+  --tg-z-toast:      300;
+}
+
+/* ─────────────────── Dark mode (si activé via [data-theme="dark"]) ─────────────────── */
+[data-theme="dark"] {
+  --tg-color-paper:        #1A1612;
+  --tg-color-paper-soft:   #221C16;
+  --tg-color-paper-deep:   #2A221A;
+  --tg-color-card:         #2A221A;
+
+  --tg-color-ink:          #F4ECDD;
+  --tg-color-ink-80:       rgba(244, 236, 221, 0.8);
+  --tg-color-ink-60:       rgba(244, 236, 221, 0.6);
+  --tg-color-ink-40:       rgba(244, 236, 221, 0.4);
+  --tg-color-ink-20:       rgba(244, 236, 221, 0.2);
+
+  --tg-color-line:         rgba(244, 236, 221, 0.12);
+  --tg-color-grenadine:    #E8423F;
+  --tg-color-grenadine-soft: rgba(232, 66, 63, 0.18);
+}
+
+/* ─────────────────── Dark variants (Story 1.2) ───────────────────
+ * Préparées via `prefers-color-scheme: dark` mais désactivables côté
+ * consumer (TourGuideWeb force `color-scheme: light` en V1.0 — décision
+ * Phase 0 Q5). Le sélecteur `:not([data-theme="light"])` permet à un
+ * consumer d'opt-in dark via `[data-theme="light"]` retiré, ou de forcer
+ * light via la déclaration `color-scheme` dans `:root`.
+ * ───────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tg-color-paper:        #1A1612;
+    --tg-color-paper-soft:   #221C16;
+    --tg-color-paper-deep:   #2A221A;
+    --tg-color-card:         #2A221A;
+
+    --tg-color-ink:          #F4ECDD;
+    --tg-color-ink-80:       rgba(244, 236, 221, 0.8);
+    --tg-color-ink-60:       rgba(244, 236, 221, 0.6);
+    --tg-color-ink-40:       rgba(244, 236, 221, 0.4);
+    --tg-color-ink-20:       rgba(244, 236, 221, 0.2);
+
+    --tg-color-line:         rgba(244, 236, 221, 0.12);
+    --tg-color-grenadine:    #E8423F;
+    --tg-color-grenadine-soft: rgba(232, 66, 63, 0.18);
+  }
+}
+
+/* ─────────────────── Reset typo de base ─────────────────── */
+.tg-body {
+  font-family: var(--tg-font-sans);
+  color: var(--tg-color-ink);
+  background: var(--tg-color-paper);
+  font-size: var(--tg-text-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tg-display {
+  font-family: var(--tg-font-display);
+  font-weight: 400;
+  letter-spacing: var(--tg-tracking-display);
+  line-height: 1.05;
+}
+
+.tg-editorial {
+  font-family: var(--tg-font-editorial);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.tg-eyebrow {
+  font-size: var(--tg-text-eyebrow);
+  letter-spacing: var(--tg-tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--tg-color-ink);
+}
+
+.tg-mono {
+  font-family: var(--tg-font-mono);
+}

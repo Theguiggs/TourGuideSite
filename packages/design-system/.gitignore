@@ -1,0 +1,11 @@
+# Story 2.7 — Storybook build output (gitignored, déploiement via CI ou local)
+storybook-static/
+
+# Node modules (Storybook devDeps installés sur demande, ~200 MB)
+node_modules/
+
+# Story 3.1 — App icons générés via `tg:export-icons` (binaires, hors VCS).
+# Output Guillaume : `assets/icons/` à la racine du repo (et non dans le DS),
+# mais on couvre aussi un éventuel run avec `--output-dir ./assets/icons`.
+assets/icons/
+*.png
