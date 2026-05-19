@@ -177,6 +177,11 @@ export function EditableMap({
   const [selectedWp, setSelectedWp] = useState<string | null>(null);
   const [selectedPoi, setSelectedPoi] = useState<string | null>(null);
   const hasOverride = !!(pathOverride && pathOverride.length > 1);
+  // Belt-and-suspenders guard: Leaflet popups sometimes leak click events to the
+  // map when a button inside is clicked, which in manual mode would re-add a
+  // waypoint at the deleted point's location. We mark the last popup-action
+  // timestamp and ignore map clicks within 250ms.
+  const lastPopupActionRef = useRef(0);
 
   // ── Anchors & routing ──────────────────────────────────────────────────
   const anchors = useMemo(() => {
@@ -291,6 +296,9 @@ export function EditableMap({
 
   // ── Click / dblclick handlers (added as waypoint or POI placement) ────
   const handleMapClick = useCallback((lat: number, lng: number) => {
+    // Ignore clicks that immediately follow a popup button press (waypoint delete,
+    // POI link, etc.) — Leaflet popups occasionally let the click bubble through.
+    if (Date.now() - lastPopupActionRef.current < 250) return;
     setSelectedWp(null);
     setSelectedPoi(null);
     if (freehandMode || hasOverride) return;
@@ -329,6 +337,7 @@ export function EditableMap({
   }, [geoScenes, onWaypointAdd, hasOverride, freehandMode]);
 
   const handlePolylineClick = useCallback((e: L.LeafletMouseEvent) => {
+    if (Date.now() - lastPopupActionRef.current < 250) return;
     if (geoScenes.length < 2 || hasOverride || freehandMode) return;
     const { lat, lng } = e.latlng;
     let bestIndex = 0;
@@ -360,6 +369,7 @@ export function EditableMap({
   }, [waypoints, onWaypointDrag]);
 
   const handleDeleteWaypoint = useCallback((wpId: string) => {
+    lastPopupActionRef.current = Date.now();
     setSelectedWp(null);
     onWaypointDelete(wpId);
   }, [onWaypointDelete]);
@@ -572,7 +582,11 @@ export function EditableMap({
                   Glissez le point sur la carte pour le déplacer.
                 </p>
                 <button
-                  onClick={() => handleDeleteWaypoint(wp.id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    handleDeleteWaypoint(wp.id);
+                  }}
                   style={{ padding: '6px 12px', fontSize: '12px', color: 'white', fontWeight: 600, border: 'none', background: tg.colors.danger, borderRadius: '4px', cursor: 'pointer', width: '100%' }}
                 >
                   Supprimer
