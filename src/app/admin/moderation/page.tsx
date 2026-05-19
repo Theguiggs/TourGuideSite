@@ -11,11 +11,11 @@ import { logger } from '@/lib/logger';
 import type { LanguageModerationItem, ModerationMetrics } from '@/types/moderation';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  pending: { label: 'En attente', className: 'bg-yellow-100 text-yellow-700' },
-  resubmitted: { label: 'Resoumis', className: 'bg-orange-100 text-orange-700' },
-  in_review: { label: 'En revue', className: 'bg-blue-100 text-blue-700' },
-  approved: { label: 'Approuve', className: 'bg-green-100 text-green-700' },
-  rejected: { label: 'Refuse', className: 'bg-red-100 text-red-700' },
+  pending: { label: 'En attente', className: 'bg-ocre-soft text-ocre' },
+  resubmitted: { label: 'Resoumis', className: 'bg-ocre-soft text-ocre' },
+  in_review: { label: 'En revue', className: 'bg-mer-soft text-mer' },
+  approved: { label: 'Approuve', className: 'bg-olive-soft text-olive' },
+  rejected: { label: 'Refuse', className: 'bg-grenadine-soft text-danger' },
 };
 
 const LANG_FLAGS: Record<string, string> = {
@@ -94,26 +94,26 @@ export default function ModerationQueuePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">File d&apos;attente de moderation</h1>
+      <h1 className="text-2xl font-bold text-ink mb-6">File d&apos;attente de moderation</h1>
 
       {/* Metrics Cards */}
       {metrics && (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-xl p-4 border border-gray-200">
-            <p className="text-3xl font-bold text-red-600">{metrics.pendingCount}</p>
-            <p className="text-sm text-gray-500">En attente</p>
+          <div className="bg-card rounded-md p-4 border border-line">
+            <p className="text-3xl font-bold text-danger">{metrics.pendingCount}</p>
+            <p className="text-sm text-ink-60">En attente</p>
           </div>
-          <div className="bg-white rounded-xl p-4 border border-gray-200">
-            <p className="text-3xl font-bold text-gray-900">{metrics.avgReviewTimeMinutes} min</p>
-            <p className="text-sm text-gray-500">Temps moyen de revue</p>
+          <div className="bg-card rounded-md p-4 border border-line">
+            <p className="text-3xl font-bold text-ink">{metrics.avgReviewTimeMinutes} min</p>
+            <p className="text-sm text-ink-60">Temps moyen de revue</p>
           </div>
-          <div className="bg-white rounded-xl p-4 border border-gray-200">
-            <p className="text-3xl font-bold text-green-600">{metrics.approvalRate}%</p>
-            <p className="text-sm text-gray-500">Taux d&apos;approbation</p>
+          <div className="bg-card rounded-md p-4 border border-line">
+            <p className="text-3xl font-bold text-olive">{metrics.approvalRate}%</p>
+            <p className="text-sm text-ink-60">Taux d&apos;approbation</p>
           </div>
-          <div className="bg-white rounded-xl p-4 border border-gray-200">
-            <p className="text-3xl font-bold text-gray-900">{metrics.reviewedThisMonth}</p>
-            <p className="text-sm text-gray-500">Revues ce mois</p>
+          <div className="bg-card rounded-md p-4 border border-line">
+            <p className="text-3xl font-bold text-ink">{metrics.reviewedThisMonth}</p>
+            <p className="text-sm text-ink-60">Revues ce mois</p>
           </div>
         </div>
       )}
@@ -123,7 +123,7 @@ export default function ModerationQueuePage() {
         <select
           value={filterCity}
           onChange={(e) => setFilterCity(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
+          className="border border-line rounded-lg px-3 py-2 text-sm text-ink-80"
         >
           <option value="">Toutes les villes</option>
           {cities.map((city) => (
@@ -134,7 +134,7 @@ export default function ModerationQueuePage() {
         <select
           value={filterLanguage}
           onChange={(e) => setFilterLanguage(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
+          className="border border-line rounded-lg px-3 py-2 text-sm text-ink-80"
           data-testid="filter-language"
         >
           <option value="">Toutes les langues</option>
@@ -146,7 +146,7 @@ export default function ModerationQueuePage() {
         <select
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
+          className="border border-line rounded-lg px-3 py-2 text-sm text-ink-80"
         >
           <option value="">Tous les statuts</option>
           <option value="pending">En attente</option>
@@ -156,7 +156,7 @@ export default function ModerationQueuePage() {
         {(filterCity || filterStatus || filterLanguage) && (
           <button
             onClick={() => { setFilterCity(''); setFilterStatus(''); setFilterLanguage(''); }}
-            className="text-sm text-red-600 hover:underline px-2"
+            className="text-sm text-danger hover:underline px-2"
           >
             Effacer les filtres
           </button>
@@ -165,51 +165,56 @@ export default function ModerationQueuePage() {
 
       {/* Queue Table */}
       {loading ? (
-        <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
-          <p className="text-gray-500">Chargement...</p>
+        <div className="text-center py-12 bg-card rounded-md border border-line">
+          <p className="text-ink-60">Chargement...</p>
         </div>
       ) : filteredQueue.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
-          <p className="text-gray-500 text-lg">Aucun parcours en attente de moderation.</p>
-          <p className="text-gray-400 text-sm mt-1">Les nouvelles soumissions apparaitront ici.</p>
+        <div className="text-center py-12 bg-card rounded-md border border-line">
+          <p className="text-ink-60 text-lg">Aucun parcours en attente de moderation.</p>
+          <p className="text-ink-40 text-sm mt-1">Les nouvelles soumissions apparaitront ici.</p>
         </div>
       ) : (
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div className="bg-card rounded-md border border-line overflow-hidden">
           <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-paper-soft border-b border-line">
               <tr>
-                <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">Guide</th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">Parcours</th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">Langue</th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-gray-500 hidden sm:table-cell">Ville</th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-gray-500 hidden md:table-cell">Soumis le</th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-gray-500">Statut</th>
-                <th className="text-right px-4 py-3 text-sm font-medium text-gray-500">Action</th>
+                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Guide</th>
+                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Parcours</th>
+                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Langue</th>
+                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60 hidden sm:table-cell">Ville</th>
+                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60 hidden md:table-cell">Soumis le</th>
+                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Statut</th>
+                <th className="text-right px-4 py-3 text-sm font-medium text-ink-60">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-line">
               {filteredQueue.map((item) => {
                 const badge = STATUS_BADGES[item.moderationStatus] || STATUS_BADGES.pending;
                 return (
-                  <tr key={item.id} data-testid={`moderation-item-${item.id}`} className={item.moderationStatus === 'resubmitted' ? 'bg-orange-50' : ''}>
+                  <tr key={item.id} data-testid={`moderation-item-${item.id}`} className={item.moderationStatus === 'resubmitted' ? 'bg-ocre-soft' : ''}>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-teal-200 rounded-full flex items-center justify-center text-teal-700 font-bold text-sm flex-shrink-0">
+                        <div className="w-8 h-8 bg-grenadine-soft rounded-full flex items-center justify-center text-grenadine font-bold text-sm flex-shrink-0">
                           {item.guideName.charAt(0)}
                         </div>
-                        <span className="text-sm text-gray-900 truncate max-w-[120px]">{item.guideName}</span>
+                        <span className="text-sm text-ink truncate max-w-[120px]">{item.guideName}</span>
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-sm font-medium text-gray-900">{item.tourTitle}</p>
+                      <p className="text-sm font-medium text-ink">{item.tourTitle}</p>
                     </td>
                     <td className="px-4 py-3">
                       <span className="text-sm" data-testid={`lang-badge-${item.language}`}>
                         {LANG_FLAGS[item.language] ?? ''} {item.language.toUpperCase()}
                       </span>
+                      {item.isSourceLanguage && (
+                        <span className="ml-1 inline-flex px-1.5 py-0.5 rounded text-[10px] font-medium bg-mer-soft text-mer" data-testid="source-lang-badge">
+                          Source
+                        </span>
+                      )}
                     </td>
-                    <td className="px-4 py-3 hidden sm:table-cell text-sm text-gray-600">{item.city}</td>
-                    <td className="px-4 py-3 hidden md:table-cell text-sm text-gray-500">
+                    <td className="px-4 py-3 hidden sm:table-cell text-sm text-ink-60">{item.city}</td>
+                    <td className="px-4 py-3 hidden md:table-cell text-sm text-ink-60">
                       {new Date(item.submissionDate).toLocaleDateString('fr-FR')}
                     </td>
                     <td className="px-4 py-3">
@@ -218,25 +223,29 @@ export default function ModerationQueuePage() {
                       </span>
                     </td>
                     <td className="px-4 py-3 text-right space-x-2 whitespace-nowrap">
-                      <button
-                        onClick={() => handleApproveLanguage(item.sessionId, item.language)}
-                        disabled={actionProcessing}
-                        className="text-sm font-medium text-green-600 hover:text-green-800"
-                        data-testid={`approve-lang-${item.language}`}
-                      >
-                        Approuver
-                      </button>
-                      <button
-                        onClick={() => handleRejectLanguage(item.sessionId, item.language)}
-                        disabled={actionProcessing}
-                        className="text-sm font-medium text-red-600 hover:text-red-800"
-                        data-testid={`reject-lang-${item.language}`}
-                      >
-                        Rejeter
-                      </button>
+                      {!item.isSourceLanguage && (
+                        <>
+                          <button
+                            onClick={() => handleApproveLanguage(item.sessionId, item.language)}
+                            disabled={actionProcessing}
+                            className="text-sm font-medium text-olive hover:text-olive"
+                            data-testid={`approve-lang-${item.language}`}
+                          >
+                            Approuver
+                          </button>
+                          <button
+                            onClick={() => handleRejectLanguage(item.sessionId, item.language)}
+                            disabled={actionProcessing}
+                            className="text-sm font-medium text-danger hover:text-danger"
+                            data-testid={`reject-lang-${item.language}`}
+                          >
+                            Rejeter
+                          </button>
+                        </>
+                      )}
                       <Link
-                        href={`/admin/moderation/${item.moderationItemId}?lang=${item.language}`}
-                        className="text-sm font-medium text-teal-600 hover:text-teal-800"
+                        href={`/admin/moderation/${item.moderationItemId}${item.isSourceLanguage ? '' : `?lang=${item.language}`}`}
+                        className="text-sm font-medium text-grenadine hover:text-grenadine"
                         data-testid={`examine-btn-${item.id}`}
                       >
                         Examiner

@@ -215,7 +215,27 @@ export async function getModerationQueue(): Promise<ModerationItem[]> {
 
 export async function getLanguageModerationQueue(): Promise<LanguageModerationItem[]> {
   if (shouldUseStubs()) {
-    return [...MOCK_LANGUAGE_QUEUE].sort(
+    // Synthesize source-language rows for pending/resubmitted MOCK_QUEUE items
+    const sourceRows: LanguageModerationItem[] = MOCK_QUEUE
+      .filter((m) => m.status === 'pending' || m.status === 'resubmitted')
+      .filter((m) => !MOCK_LANGUAGE_QUEUE.some((l) => l.tourId === m.tourId && l.language === 'fr'))
+      .map((m) => ({
+        id: `source-${m.id}`,
+        tourId: m.tourId,
+        sessionId: m.sessionId,
+        moderationItemId: m.id,
+        tourTitle: m.tourTitle,
+        guideName: m.guideName,
+        guidePhotoUrl: m.guidePhotoUrl,
+        city: m.city,
+        language: 'fr',
+        qualityTier: 'source',
+        submissionDate: m.submissionDate,
+        moderationStatus: m.status,
+        purchaseId: '',
+        isSourceLanguage: true,
+      }));
+    return [...sourceRows, ...MOCK_LANGUAGE_QUEUE].sort(
       (a, b) => new Date(a.submissionDate).getTime() - new Date(b.submissionDate).getTime(),
     );
   }
@@ -272,6 +292,41 @@ export async function getLanguageModerationQueue(): Promise<LanguageModerationIt
         purchaseId: purchase.id,
       });
     }
+  }
+
+  // Synthesize source-language rows for tour-level submissions (FR base or whatever languePrincipale).
+  // These appear whenever a ModerationItem is pending/resubmitted, even with no language purchase.
+  const tourById = new Map(allTours.map((t) => [t.id, t]));
+  const purchaseKeys = new Set(allLangItems.map((item) => `${item.tourId}:${item.language}`));
+  const sourceModItems = [...pendingItems, ...resubmittedItems];
+  for (const modItem of sourceModItems) {
+    const tour = tourById.get(modItem.tourId);
+    if (!tour) continue;
+    const tourRaw = tour as Record<string, unknown>;
+    const sourceLang = (tourRaw.languePrincipale as string) ?? 'fr';
+    const key = `${tour.id}:${sourceLang}`;
+    if (purchaseKeys.has(key)) continue; // Already covered by a purchase row for that language
+
+    const sessionId = (modItem as Record<string, unknown>).sessionId as string
+      ?? (tourRaw.sessionId as string)
+      ?? '';
+
+    allLangItems.push({
+      id: `source-${modItem.id}`,
+      tourId: tour.id,
+      sessionId,
+      moderationItemId: modItem.id,
+      tourTitle: tour.title,
+      guideName: guideNames.get(tour.guideId) ?? '',
+      guidePhotoUrl: null,
+      city: tour.city,
+      language: sourceLang,
+      qualityTier: 'source',
+      submissionDate: new Date(modItem.submissionDate).toISOString(),
+      moderationStatus: modItem.status as LanguageModerationItem['moderationStatus'],
+      purchaseId: '',
+      isSourceLanguage: true,
+    });
   }
 
   return allLangItems.sort(

@@ -122,6 +122,7 @@ export interface LanguageModerationItem {
   submissionDate: string; // ISO date from purchase createdAt
   moderationStatus: ModerationStatus;
   purchaseId: string;
+  isSourceLanguage?: boolean; // true for tour-level rows synthesized from ModerationItem (no purchase)
 }
 
 export interface ModerationHistoryItem {

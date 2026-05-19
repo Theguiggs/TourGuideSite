@@ -205,7 +205,8 @@ describe('moderation API', () => {
         expect(item.tourTitle).toBeTruthy();
         expect(item.guideName).toBeTruthy();
         expect(item.city).toBeTruthy();
-        expect(item.purchaseId).toBeTruthy();
+        // purchaseId is empty for synthesized source-language rows; non-empty for purchases
+        if (!item.isSourceLanguage) expect(item.purchaseId).toBeTruthy();
         expect(item.submissionDate).toBeTruthy();
       });
     });
@@ -213,7 +214,7 @@ describe('moderation API', () => {
     it('should return multiple items for a tour with multiple languages submitted', async () => {
       const queue = await getLanguageModerationQueue();
       const grasseItems = queue.filter((item) => item.tourId === 'grasse-parfums-modernes');
-      expect(grasseItems.length).toBe(2); // EN and ES
+      expect(grasseItems.length).toBe(3); // FR (source) + EN + ES
     });
 
     it('should be sorted by submission date ascending', async () => {
@@ -224,9 +225,21 @@ describe('moderation API', () => {
       }
     });
 
-    it('should have 4 items in stub mode', async () => {
+    it('should include source-language rows for tour-level pending/resubmitted items', async () => {
       const queue = await getLanguageModerationQueue();
-      expect(queue.length).toBe(4);
+      // 3 MOCK_QUEUE items (all pending/resubmitted) → 3 source rows
+      const sourceRows = queue.filter((item) => item.isSourceLanguage);
+      expect(sourceRows.length).toBe(3);
+      sourceRows.forEach((item) => {
+        expect(item.language).toBe('fr');
+        expect(item.purchaseId).toBe('');
+        expect(item.moderationItemId).toBeTruthy();
+      });
+    });
+
+    it('should have 7 items in stub mode (4 lang purchases + 3 source)', async () => {
+      const queue = await getLanguageModerationQueue();
+      expect(queue.length).toBe(7);
     });
   });
 
