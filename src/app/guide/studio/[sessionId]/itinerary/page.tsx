@@ -101,6 +101,8 @@ export default function ItineraryPage() {
   const [computedPath, setComputedPath] = useState<LatLng[] | null>(null);
   const gpxInputRef = useRef<HTMLInputElement | null>(null);
   const backendLoadedRef = useRef(false);
+  // Save status feedback. 'idle' | 'saving' | 'saved' | { error: string }.
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | { error: string }>('idle');
 
   // Undo stack for waypoint mutations. Kept in a ref to avoid re-rendering on
   // every push; `undoCount` is a tiny state mirror that drives the button.
@@ -204,7 +206,7 @@ export default function ItineraryPage() {
   useEffect(() => {
     if (isLoading || !sessionId || shouldUseStubs()) return;
     if (!computedPath) return;
-    const handle = setTimeout(() => {
+    const handle = setTimeout(async () => {
       const payload: RoutePath = {
         waypoints,
         manualMode,
@@ -214,11 +216,24 @@ export default function ItineraryPage() {
         durationSeconds: routeInfo?.durationSeconds ?? null,
         updatedAt: Date.now(),
       };
-      import('@/lib/api/appsync-client').then(({ updateStudioSessionMutation }) => {
-        updateStudioSessionMutation(sessionId, { routePathJson: payload }).catch((err) => {
-          logger.error(SERVICE_NAME, 'Failed to persist routePath', { error: String(err) });
-        });
-      });
+      setSaveStatus('saving');
+      try {
+        const { updateStudioSessionMutation } = await import('@/lib/api/appsync-client');
+        const result = await updateStudioSessionMutation(sessionId, { routePathJson: payload });
+        if (result.ok) {
+          logger.info(SERVICE_NAME, 'routePath persisted', { sessionId, waypoints: waypoints.length, pathPoints: computedPath.length });
+          setSaveStatus('saved');
+          // Clear the "saved" badge after a couple of seconds.
+          setTimeout(() => setSaveStatus((s) => (s === 'saved' ? 'idle' : s)), 2000);
+        } else {
+          logger.error(SERVICE_NAME, 'Failed to persist routePath', { error: result.error });
+          setSaveStatus({ error: result.error });
+        }
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        logger.error(SERVICE_NAME, 'Exception persisting routePath', { error: msg });
+        setSaveStatus({ error: msg });
+      }
     }, 800);
     return () => clearTimeout(handle);
   }, [waypoints, manualMode, pathOverride, computedPath, routeInfo, sessionId, isLoading]);
@@ -841,6 +856,30 @@ export default function ItineraryPage() {
     />
   );
 
+  // ─── Save status badge (shared between normal + map mode) ───
+  const saveBadge = (() => {
+    if (saveStatus === 'idle') return null;
+    if (saveStatus === 'saving') return (
+      <span className="text-meta text-ink-60 inline-flex items-center gap-1" data-testid="save-status-saving">
+        <span className="animate-pulse">●</span> Sauvegarde…
+      </span>
+    );
+    if (saveStatus === 'saved') return (
+      <span className="text-meta text-success inline-flex items-center gap-1" data-testid="save-status-saved">
+        ✓ Sauvegardé
+      </span>
+    );
+    return (
+      <span
+        className="text-meta text-danger inline-flex items-center gap-1 max-w-xs truncate"
+        data-testid="save-status-error"
+        title={saveStatus.error}
+      >
+        ⚠ Échec sauvegarde : {saveStatus.error.slice(0, 60)}{saveStatus.error.length > 60 ? '…' : ''}
+      </span>
+    );
+  })();
+
   // ─── Map mode (fullscreen) ───
   if (mapMode) {
     return (
@@ -909,6 +948,7 @@ export default function ItineraryPage() {
                 ? 'Tracé GPX actif · ✕ pour revenir au tracé auto'
                 : 'Tirez • pour ajouter · Glissez pour déplacer · Esc = quitter'}
             </p>
+            {saveBadge}
             {tracerControls}
             {!hasOverride && (
               <button
@@ -946,6 +986,7 @@ export default function ItineraryPage() {
       <div className="flex items-center justify-between gap-3 flex-wrap mb-1">
         <h1 className="font-display text-h5 text-ink leading-none">Itinéraire</h1>
         <div className="flex items-center gap-2 flex-wrap">
+          {saveBadge}
           {tracerControls}
           {!hasOverride && (
             <button

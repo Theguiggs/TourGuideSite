@@ -502,10 +502,19 @@ export async function updateStudioSessionMutation(id: string, updates: Record<st
       { id, ...updates } as Parameters<typeof client.models.StudioSession.update>[0],
       { authMode: 'userPool' },
     );
+    // Amplify returns ok=true but populates result.errors when the server
+    // rejected the mutation (e.g. unknown field, auth failure). Surface them.
+    const errs = (result as unknown as { errors?: Array<{ message: string }> }).errors;
+    if (errs && errs.length > 0) {
+      const msg = errs.map((e) => e.message).join('; ');
+      logger.error(SERVICE_NAME, 'updateStudioSession returned errors', { id, fields: Object.keys(updates), errors: msg });
+      return { ok: false as const, error: msg };
+    }
     return { ok: true as const, data: result.data };
   } catch (error) {
-    logger.error(SERVICE_NAME, 'updateStudioSession failed', { error: String(error) });
-    return { ok: false as const, error: 'Erreur lors de la mise à jour de la session' };
+    const msg = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
+    logger.error(SERVICE_NAME, 'updateStudioSession threw', { id, fields: Object.keys(updates), error: msg });
+    return { ok: false as const, error: msg };
   }
 }
 
