@@ -145,6 +145,55 @@ function parseJsonField(val: unknown): Record<string, string> | null {
   return null;
 }
 
+/** Parses StudioSession.routePathJson defensively. AppSync may return:
+ *  - a JSON string (typical AWSJSON)
+ *  - a plain JS object (Amplify auto-deserialized)
+ *  - a DynamoDB-shaped Map ({M: {field: {S|N|L|M: …}}}) if the resolver didn't unwrap it
+ *  This function handles all three so the moderation map can render the route. */
+function parseRoutePathField(val: unknown): import('@/types/studio').RoutePath | null {
+  if (val == null) return null;
+  let obj: unknown = val;
+  if (typeof obj === 'string') {
+    try { obj = JSON.parse(obj); } catch { return null; }
+  }
+  if (typeof obj !== 'object' || obj === null) return null;
+
+  // Heuristic: if the object has a top-level "M" with nested DynamoDB type keys,
+  // it's an unwrapped Map. Unwrap it.
+  const looksLikeDdbMap = (v: unknown): boolean =>
+    !!v && typeof v === 'object' && !Array.isArray(v) &&
+    Object.values(v as Record<string, unknown>).every(
+      (x) => !!x && typeof x === 'object' && !Array.isArray(x) &&
+        Object.keys(x as Record<string, unknown>).some((k) => 'SNBLMNULL'.includes(k.toUpperCase()) && k.length <= 4),
+    );
+  if (looksLikeDdbMap(obj)) {
+    obj = unwrapDdb(obj);
+  }
+  return obj as import('@/types/studio').RoutePath;
+}
+
+/** Recursively unwrap a DynamoDB-typed value to a plain JS value. */
+function unwrapDdb(v: unknown): unknown {
+  if (v == null) return null;
+  if (typeof v !== 'object') return v;
+  const o = v as Record<string, unknown>;
+  // DynamoDB type wrappers
+  if ('S' in o) return o.S;
+  if ('N' in o) return Number(o.N);
+  if ('BOOL' in o) return !!o.BOOL;
+  if ('NULL' in o) return null;
+  if ('L' in o) return (o.L as unknown[]).map(unwrapDdb);
+  if ('M' in o) {
+    const out: Record<string, unknown> = {};
+    for (const [k, vv] of Object.entries(o.M as Record<string, unknown>)) out[k] = unwrapDdb(vv);
+    return out;
+  }
+  // Plain object (already unwrapped) — recurse on values
+  const out: Record<string, unknown> = {};
+  for (const [k, vv] of Object.entries(o)) out[k] = unwrapDdb(vv);
+  return out;
+}
+
 function mapAppSyncSession(raw: Record<string, unknown>): StudioSession {
   return {
     id: raw.id as string,
@@ -167,7 +216,7 @@ function mapAppSyncSession(raw: Record<string, unknown>): StudioSession {
     themes: (raw.themes as string[]) ?? null,
     durationMinutes: (raw.durationMinutes as number) ?? null,
     cleanedAt: (raw.cleanedAt as string) ?? null,
-    routePath: parseJsonField(raw.routePathJson) as StudioSession['routePath'],
+    routePath: parseRoutePathField(raw.routePathJson),
     createdAt: (raw.createdAt as string) ?? new Date().toISOString(),
     updatedAt: (raw.updatedAt as string) ?? new Date().toISOString(),
   };
