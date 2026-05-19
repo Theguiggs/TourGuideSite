@@ -427,6 +427,12 @@ export function OpenMultilangModal({
                         <span className="text-grenadine">
                           gratuit (1re langue offerte)
                         </span>
+                      ) : line.purchaseType === 'pack_all' ? (
+                        <span className="text-grenadine">
+                          {line.priceCents > 0 ? `Pack Toutes — ${formatPrice(line.priceCents)}` : 'incl. Pack Toutes'}
+                        </span>
+                      ) : line.purchaseType === 'pack_3' ? (
+                        <span className="text-grenadine">incl. Pack 3</span>
                       ) : line.priceCents === 0 ? (
                         <span className="text-grenadine">gratuit</span>
                       ) : (

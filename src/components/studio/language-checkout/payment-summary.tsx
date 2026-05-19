@@ -32,6 +32,11 @@ export function isFreeFirstEligible(freeLanguageUsed: boolean, qualityTier: Qual
 
 // --- Compute order total ---
 
+/** EU languages purchasable (excludes 'fr' which is the source / base lang). */
+const PURCHASABLE_EU_COUNT = 4; // en + es + de + it
+/** Premium languages purchasable in LANGUAGE_CONFIG. */
+const PURCHASABLE_PREMIUM_COUNT = 3; // ja + zh + pt
+
 export function computeOrderTotal(
   selectedLanguages: string[],
   qualityTier: QualityTier,
@@ -50,14 +55,39 @@ export function computeOrderTotal(
     return { lines, totalCents: 0 };
   }
 
-  const lines: OrderLine[] = [];
-  let freeApplied = freeLanguageUsed;
-
   // Separate EU and premium languages
   const euLangs = selectedLanguages.filter((l) =>
     (EU_LANGUAGES as readonly string[]).includes(l),
   );
   const premiumLangs = selectedLanguages.filter((l) => isLanguagePremium(l));
+
+  // ─── Pack All detection ───
+  // Pack All: all 4 EU + all 3 premium selected → 12,99€ flat (multi-tier).
+  // Cheaper than the unit total (5×1,99 + 3×4,99 = 24,90€) → big incentive.
+  // (Pack All EU-only is not offered: at 7,99€ it would be worse than pack_3 + 1 single.)
+  const isPackAll =
+    euLangs.length === PURCHASABLE_EU_COUNT &&
+    premiumLangs.length === PURCHASABLE_PREMIUM_COUNT;
+
+  if (isPackAll) {
+    const packEntry = PRICING_TABLE.find(
+      (p) => p.purchaseType === 'pack_all' && p.qualityTier === 'pro',
+    );
+    const packPrice = packEntry?.amountCents ?? 0;
+    const lines: OrderLine[] = selectedLanguages.map((lang, idx) => {
+      const config = LANGUAGE_CONFIG.find((c) => c.code === lang);
+      return {
+        language: lang,
+        label: config?.label ?? lang,
+        priceCents: idx === 0 ? packPrice : 0,
+        purchaseType: 'pack_all',
+      };
+    });
+    return { lines, totalCents: packPrice };
+  }
+
+  const lines: OrderLine[] = [];
+  let freeApplied = freeLanguageUsed;
 
   // Count how many EU languages will actually be paid (exclude free first)
   // Free first only applies in Standard tier for EU languages
@@ -220,7 +250,11 @@ export function PaymentSummary({
                     Gratuit &mdash; premi&egrave;re langue offerte !
                   </span>
                 ) : line.purchaseType === 'pack_3' ? (
-                  <span className="text-grenadine">Pack</span>
+                  <span className="text-grenadine">Pack 3</span>
+                ) : line.purchaseType === 'pack_all' ? (
+                  <span className="text-grenadine">
+                    {line.priceCents > 0 ? `Pack Toutes — ${formatPrice(line.priceCents)}` : 'Pack Toutes (inclus)'}
+                  </span>
                 ) : (
                   formatPrice(line.priceCents)
                 )}

@@ -182,21 +182,60 @@ export async function confirmLanguagePurchase(
 
   try {
     const { getClient } = await import('@/lib/api/appsync-client');
+    const { isLanguagePremium, EU_LANGUAGES, PRICING_TABLE } = await import('@/lib/multilang/provider-router');
     const client = getClient();
     const purchases: TourLanguagePurchase[] = [];
-    for (const lang of languages) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+    // Pack detection (mirrors computeOrderTotal). When the selection covers all
+    // purchasable EU langs (and optionally all premium), bill as a pack instead
+    // of N×single. Pack All is multi-tier: EU=standard, premium=pro.
+    const PURCHASABLE_EU_COUNT = 4; // en + es + de + it (fr is the base lang)
+    const PURCHASABLE_PREMIUM_COUNT = 3; // ja + zh + pt
+    const euSelected = languages
+      .filter((l) => (EU_LANGUAGES as readonly string[]).includes(l))
+      .filter((l) => l !== 'fr');
+    const premiumSelected = languages.filter((l) => isLanguagePremium(l));
+    // Pack All: all EU + all premium (single multi-tier purchase, 12,99€).
+    const isPack =
+      euSelected.length === PURCHASABLE_EU_COUNT &&
+      premiumSelected.length === PURCHASABLE_PREMIUM_COUNT;
+    const packTotal = isPack
+      ? (PRICING_TABLE.find((p) => p.purchaseType === 'pack_all' && p.qualityTier === 'pro')?.amountCents ?? 0)
+      : 0;
+
+    for (let i = 0; i < languages.length; i++) {
+      const lang = languages[i];
       const isManual = qualityTier === 'manual';
-      const provider = isManual ? undefined : (qualityTier === 'standard' ? 'marianmt' : 'deepl');
+      const premium = isLanguagePremium(lang);
+
+      // Per-language tier resolution (pack_all forces pro on premium langs).
+      const effectiveTier = isPack && premium ? 'pro' : qualityTier;
+      const provider = isManual ? undefined : (effectiveTier === 'standard' ? 'marianmt' : 'deepl');
+
+      // Per-language amount: pack price on the first purchase, 0 on the rest.
+      // For single mode: standard EU = 199, pro EU = 299, premium pro = 499.
+      let amountCents = 0;
+      if (isManual) {
+        amountCents = 0;
+      } else if (isPack) {
+        amountCents = i === 0 ? packTotal : 0;
+      } else if (effectiveTier === 'pro' && premium) {
+        amountCents = 499;
+      } else if (effectiveTier === 'standard') {
+        amountCents = 199;
+      } else {
+        amountCents = 299;
+      }
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const result = await (client as any).models.TourLanguagePurchase.create(
         {
           guideId: 'auto', // AppSync owner-auth overrides with Cognito sub
           sessionId,
           language: lang,
-          qualityTier,
-          purchaseType: isManual ? 'manual' : 'single',
-          amountCents: isManual ? 0 : (qualityTier === 'standard' ? 199 : 299),
+          qualityTier: effectiveTier,
+          purchaseType: isManual ? 'manual' : (isPack ? 'pack_all' : 'single'),
+          amountCents,
           provider,
           stripePaymentIntentId: paymentIntentId || undefined,
           moderationStatus: 'draft',

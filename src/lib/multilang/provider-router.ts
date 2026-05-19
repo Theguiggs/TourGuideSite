@@ -17,6 +17,9 @@ export const PRICING_TABLE: readonly LanguagePricing[] = [
   { purchaseType: 'single', qualityTier: 'pro', amountCents: 299 },
   { purchaseType: 'pack_3', qualityTier: 'standard', amountCents: 499 },
   { purchaseType: 'pack_3', qualityTier: 'pro', amountCents: 699 },
+  /** pack_all = all EU + all premium (4+3=7 langues). 12,99€. Multi-tier:
+   *  EU langs are billed as Standard (MarianMT), premium as Pro (Deepl). */
+  { purchaseType: 'pack_all', qualityTier: 'pro', amountCents: 1299 },
   { purchaseType: 'free_first', qualityTier: 'standard', amountCents: 0 },
   { purchaseType: 'free_first', qualityTier: 'pro', amountCents: 0 },
 ] as const;
