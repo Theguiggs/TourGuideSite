@@ -64,8 +64,27 @@ export interface StudioSession {
   themes?: string[] | null;
   durationMinutes?: number | null;
   cleanedAt?: string | null;
+  // Itinerary tracer state — see RoutePath below
+  routePath?: RoutePath | null;
   createdAt: string;
   updatedAt: string;
+}
+
+/** Persisted itinerary tracer state. Stored as JSON in StudioSession.routePathJson. */
+export interface RoutePath {
+  waypoints: Array<{ id: string; lat: number; lng: number; afterPoiIndex: number; order: number }>;
+  manualMode: boolean;
+  pathOverride: {
+    source: 'gpx';
+    path: Array<{ lat: number; lng: number }>;
+    distanceMeters: number;
+    capturedAt: number;
+  } | null;
+  /** Final polyline (lat/lng) to render on read-only views (catalogue, moderation). */
+  computedPath: Array<{ lat: number; lng: number }> | null;
+  distanceMeters: number | null;
+  durationSeconds: number | null;
+  updatedAt: number;
 }
 
 /** Theme enum for tours (GCI-4.2) */

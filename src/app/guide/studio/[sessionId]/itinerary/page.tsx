@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { logger } from '@/lib/logger';
@@ -20,8 +20,16 @@ import {
   PoiOverviewCard,
   MapStatsHeader,
 } from '@/components/studio/wizard-itinerary';
-import type { StudioSession, StudioScene } from '@/types/studio';
+import type { StudioSession, StudioScene, RoutePath } from '@/types/studio';
 import type { Waypoint } from '@/components/studio/editable-map';
+import { parseGpx, simplifyPath, pathDistanceMeters, type LatLng } from '@/lib/path-utils';
+
+interface PathOverride {
+  source: 'gpx';
+  path: { lat: number; lng: number }[];
+  distanceMeters: number;
+  capturedAt: number;
+}
 
 const SERVICE_NAME = 'ItineraryPage';
 
@@ -87,6 +95,21 @@ export default function ItineraryPage() {
   const [mapMode, setMapMode] = useState(false);
   const [panelOpen, setPanelOpen] = useState(true);
   const [isAddingPoi, setIsAddingPoi] = useState(false);
+  const [manualMode, setManualMode] = useState(false);
+  const [pathOverride, setPathOverride] = useState<PathOverride | null>(null);
+  // Final polyline emitted by EditableMap — what catalogue/moderation will render.
+  const [computedPath, setComputedPath] = useState<LatLng[] | null>(null);
+  const gpxInputRef = useRef<HTMLInputElement | null>(null);
+  const backendLoadedRef = useRef(false);
+
+  // Undo stack for waypoint mutations. Kept in a ref to avoid re-rendering on
+  // every push; `undoCount` is a tiny state mirror that drives the button.
+  const undoStackRef = useRef<Waypoint[][]>([]);
+  const [undoCount, setUndoCount] = useState(0);
+  const pushUndo = useCallback((snapshot: Waypoint[]) => {
+    undoStackRef.current = [...undoStackRef.current, snapshot].slice(-10);
+    setUndoCount(undoStackRef.current.length);
+  }, []);
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
@@ -119,6 +142,47 @@ export default function ItineraryPage() {
         setSession(sess);
         setScenes(scns);
         if (sess) setActiveSession(sess);
+
+        // Prefer backend routePath. Fall back to legacy localStorage if the
+        // backend is empty (one-shot migration: the next save will persist it).
+        const backendRoute = sess?.routePath ?? null;
+        if (backendRoute) {
+          if (Array.isArray(backendRoute.waypoints)) setWaypoints(backendRoute.waypoints);
+          setManualMode(!!backendRoute.manualMode);
+          setPathOverride(backendRoute.pathOverride ?? null);
+          if (Array.isArray(backendRoute.computedPath)) setComputedPath(backendRoute.computedPath);
+          backendLoadedRef.current = true;
+          return;
+        }
+
+        // Legacy localStorage migration (only when no backend state yet)
+        try {
+          const saved = localStorage.getItem(`waypoints-${sessionId}`);
+          if (saved) {
+            const parsed = JSON.parse(saved) as Waypoint[];
+            const groups: Record<number, Waypoint[]> = {};
+            for (const w of parsed) {
+              if (typeof w.order !== 'number') (groups[w.afterPoiIndex] ??= []).push(w);
+            }
+            for (const group of Object.values(groups)) {
+              group.forEach((w, i) => { w.order = i; });
+            }
+            if (!cancelled) setWaypoints(parsed);
+          }
+        } catch { /* ignore */ }
+        try {
+          const m = localStorage.getItem(`manualMode-${sessionId}`);
+          if (m === 'true' && !cancelled) setManualMode(true);
+        } catch { /* ignore */ }
+        try {
+          const raw = localStorage.getItem(`pathOverride-${sessionId}`);
+          if (raw) {
+            const parsed = JSON.parse(raw) as PathOverride;
+            if (parsed && Array.isArray(parsed.path) && parsed.path.length >= 2 && !cancelled) {
+              setPathOverride(parsed);
+            }
+          }
+        } catch { /* ignore */ }
       } catch {
         if (!cancelled) setError('Impossible de charger.');
       } finally {
@@ -126,19 +190,85 @@ export default function ItineraryPage() {
       }
     }
     load();
-    try {
-      const saved = localStorage.getItem(`waypoints-${sessionId}`);
-      if (saved) setWaypoints(JSON.parse(saved));
-    } catch {
-      // ignore
-    }
     return () => {
       cancelled = true;
       clearSession();
     };
   }, [sessionId, setActiveSession, clearSession]);
 
-  // Escape key exits map mode
+  // Debounced backend persistence of the route. We wait 800ms after the last
+  // change so dragging a waypoint or moving a POI doesn't spam AppSync.
+  // Skipped until initial load completes, and during the brief window before
+  // the first computedPath emission (otherwise we'd clobber the saved path
+  // with null at mount).
+  useEffect(() => {
+    if (isLoading || !sessionId || shouldUseStubs()) return;
+    if (!computedPath) return;
+    const handle = setTimeout(() => {
+      const payload: RoutePath = {
+        waypoints,
+        manualMode,
+        pathOverride,
+        computedPath,
+        distanceMeters: routeInfo?.distanceMeters ?? null,
+        durationSeconds: routeInfo?.durationSeconds ?? null,
+        updatedAt: Date.now(),
+      };
+      import('@/lib/api/appsync-client').then(({ updateStudioSessionMutation }) => {
+        updateStudioSessionMutation(sessionId, { routePathJson: payload }).catch((err) => {
+          logger.error(SERVICE_NAME, 'Failed to persist routePath', { error: String(err) });
+        });
+      });
+    }, 800);
+    return () => clearTimeout(handle);
+  }, [waypoints, manualMode, pathOverride, computedPath, routeInfo, sessionId, isLoading]);
+
+  const persistOverride = useCallback(
+    (ov: PathOverride | null) => {
+      try {
+        if (ov) localStorage.setItem(`pathOverride-${sessionId}`, JSON.stringify(ov));
+        else localStorage.removeItem(`pathOverride-${sessionId}`);
+      } catch {
+        // ignore
+      }
+    },
+    [sessionId],
+  );
+
+  const handleClearOverride = useCallback(() => {
+    setPathOverride(null);
+    persistOverride(null);
+  }, [persistOverride]);
+
+  const handleGpxFile = useCallback(
+    async (file: File) => {
+      try {
+        const text = await file.text();
+        const raw = parseGpx(text);
+        if (raw.length < 2) {
+          window.alert('Fichier GPX invalide ou sans tracé exploitable.');
+          return;
+        }
+        // GPX traces are often very dense (1 point/sec from a GPS) — simplify
+        // aggressively so the rendered polyline stays smooth.
+        const path = raw.length > 200 ? simplifyPath(raw, 0.00002) : raw;
+        const ov: PathOverride = {
+          source: 'gpx',
+          path,
+          distanceMeters: pathDistanceMeters(path),
+          capturedAt: Date.now(),
+        };
+        setPathOverride(ov);
+        persistOverride(ov);
+      } catch (err) {
+        logger.error(SERVICE_NAME, 'Failed to read GPX file', { error: String(err) });
+        window.alert("Impossible de lire ce fichier GPX.");
+      }
+    },
+    [persistOverride],
+  );
+
+  // Escape key exits fullscreen map mode.
   useEffect(() => {
     if (!mapMode) return;
     const handler = (e: KeyboardEvent) => {
@@ -287,42 +417,99 @@ export default function ItineraryPage() {
 
   const handleWaypointAdd = useCallback(
     (afterPoiIndex: number, lat: number, lng: number) => {
-      const wp: Waypoint = {
-        id: `wp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-        lat,
-        lng,
-        afterPoiIndex,
-      };
       setWaypoints((prev) => {
+        pushUndo(prev);
+        // Append to the end of the bucket → order = max(existing) + 1
+        const siblings = prev.filter((w) => w.afterPoiIndex === afterPoiIndex);
+        const maxOrder = siblings.length ? Math.max(...siblings.map((w) => w.order)) : -1;
+        const wp: Waypoint = {
+          id: `wp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+          lat,
+          lng,
+          afterPoiIndex,
+          order: maxOrder + 1,
+        };
         const next = [...prev, wp];
         persistWaypoints(next);
         return next;
       });
     },
-    [persistWaypoints],
+    [persistWaypoints, pushUndo],
+  );
+
+  /** Insert a waypoint between two siblings — used by midpoint-dot drags so the
+   *  new point lands exactly where the user dropped it in the visual order. */
+  const handleWaypointInsert = useCallback(
+    (afterPoiIndex: number, beforeOrder: number | null, afterOrder: number | null, lat: number, lng: number) => {
+      setWaypoints((prev) => {
+        pushUndo(prev);
+        let order: number;
+        if (beforeOrder !== null && afterOrder !== null) order = (beforeOrder + afterOrder) / 2;
+        else if (beforeOrder !== null) order = beforeOrder + 1;
+        else if (afterOrder !== null) order = afterOrder - 1;
+        else order = 0;
+        const wp: Waypoint = {
+          id: `wp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+          lat,
+          lng,
+          afterPoiIndex,
+          order,
+        };
+        const next = [...prev, wp];
+        persistWaypoints(next);
+        return next;
+      });
+    },
+    [persistWaypoints, pushUndo],
   );
 
   const handleWaypointDrag = useCallback(
     (id: string, lat: number, lng: number) => {
       setWaypoints((prev) => {
+        pushUndo(prev);
         const next = prev.map((w) => (w.id === id ? { ...w, lat, lng } : w));
         persistWaypoints(next);
         return next;
       });
     },
-    [persistWaypoints],
+    [persistWaypoints, pushUndo],
   );
 
   const handleWaypointDelete = useCallback(
     (id: string) => {
       setWaypoints((prev) => {
+        pushUndo(prev);
         const next = prev.filter((w) => w.id !== id);
         persistWaypoints(next);
         return next;
       });
     },
-    [persistWaypoints],
+    [persistWaypoints, pushUndo],
   );
+
+  const undo = useCallback(() => {
+    const stack = undoStackRef.current;
+    if (stack.length === 0) return;
+    const last = stack[stack.length - 1];
+    undoStackRef.current = stack.slice(0, -1);
+    setUndoCount(undoStackRef.current.length);
+    setWaypoints(last);
+    persistWaypoints(last);
+  }, [persistWaypoints]);
+
+  // Ctrl+Z / Cmd+Z global undo, except when typing into a form field.
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (!(e.ctrlKey || e.metaKey) || e.shiftKey) return;
+      if (e.key !== 'z' && e.key !== 'Z') return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      e.preventDefault();
+      undo();
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [undo]);
 
   const moveScene = useCallback((sceneId: string, direction: 'up' | 'down') => {
     setScenes((prev) => {
@@ -333,9 +520,17 @@ export default function ItineraryPage() {
       const target = direction === 'up' ? idx - 1 : idx + 1;
       if (target < 0 || target >= active.length) return prev;
       [active[idx], active[target]] = [active[target], active[idx]];
-      return [...active.map((s, i) => ({ ...s, sceneIndex: i })), ...archived];
+      const reindexed = active.map((s, i) => ({ ...s, sceneIndex: i }));
+      // Persist new index for every scene whose position actually changed
+      for (let i = 0; i < reindexed.length; i++) {
+        const before = prev.find((s) => s.id === reindexed[i].id);
+        if (before && before.sceneIndex !== i) {
+          persistSceneUpdate(reindexed[i].id, { sceneIndex: i });
+        }
+      }
+      return [...reindexed, ...archived];
     });
-  }, []);
+  }, [persistSceneUpdate]);
 
   const handleAddPoi = useCallback(async () => {
     if (!sessionId) return;
@@ -385,14 +580,80 @@ export default function ItineraryPage() {
       onPoiDrag={isLocked ? () => {} : handlePoiDrag}
       onWaypointDrag={isLocked ? () => {} : handleWaypointDrag}
       onWaypointAdd={isLocked ? () => {} : handleWaypointAdd}
+      onWaypointInsert={isLocked ? undefined : handleWaypointInsert}
       onWaypointDelete={isLocked ? () => {} : handleWaypointDelete}
       onMapClick={
         !isLocked && clickToPlaceId
           ? (lat, lng) => handleMapClickForPoi(clickToPlaceId, lat, lng)
           : undefined
       }
-      onRouteInfo={(d, t) => setRouteInfo({ distanceMeters: d, durationSeconds: t })}
+      onRouteInfo={(d, t, path) => {
+        setRouteInfo({ distanceMeters: d, durationSeconds: t });
+        setComputedPath(path);
+      }}
+      manualMode={manualMode}
+      pathOverride={pathOverride?.path ?? null}
     />
+  );
+
+  const toggleManualMode = () => {
+    setManualMode((prev) => {
+      const next = !prev;
+      try { localStorage.setItem(`manualMode-${sessionId}`, String(next)); } catch { /* ignore */ }
+      return next;
+    });
+  };
+
+  const triggerGpxPicker = () => {
+    gpxInputRef.current?.click();
+  };
+
+  const hasOverride = !!pathOverride;
+
+  /** Toolbar of tracer controls — shared by both the inline header and the fullscreen header. */
+  const tracerControls = (
+    <>
+      {!isLocked && undoCount > 0 && (
+        <button
+          type="button"
+          onClick={undo}
+          data-testid="undo-waypoint"
+          title="Annuler la dernière action sur les points de passage (Ctrl+Z)"
+          className="border bg-paper-soft text-ink-80 border-line hover:bg-paper-deep px-3 py-1.5 rounded-md text-meta font-semibold cursor-pointer transition inline-flex items-center gap-1.5"
+        >
+          <span aria-hidden="true">↶</span> Annuler
+        </button>
+      )}
+      {hasOverride && (
+        <span
+          className="inline-flex items-center gap-1.5 bg-grenadine-soft border border-grenadine text-grenadine px-2.5 py-1 rounded-pill text-meta"
+          data-testid="path-override-chip"
+        >
+          <span aria-hidden="true">🖊️</span>
+          Tracé GPX importé
+          <button
+            type="button"
+            onClick={handleClearOverride}
+            className="ml-1 text-grenadine font-bold hover:opacity-70 cursor-pointer"
+            aria-label="Effacer le tracé importé"
+            title="Revenir au tracé auto"
+          >
+            ✕
+          </button>
+        </span>
+      )}
+      {!isLocked && (
+        <button
+          type="button"
+          onClick={triggerGpxPicker}
+          data-testid="import-gpx"
+          title="Importer une trace GPX (Komoot, Strava, Garmin…)"
+          className="border bg-paper-soft text-ink-80 border-line hover:bg-paper-deep px-3 py-1.5 rounded-md text-meta font-semibold cursor-pointer transition inline-flex items-center gap-1.5"
+        >
+          <span aria-hidden="true">📁</span> GPX
+        </button>
+      )}
+    </>
   );
 
   const routeBar = routeInfo && routeInfo.distanceMeters > 0 && (
@@ -406,7 +667,7 @@ export default function ItineraryPage() {
         ~{Math.max(1, Math.round(routeInfo.durationSeconds / 60))} min
       </span>
       <span className="text-grenadine">{activeScenes.length} POIs</span>
-      {waypoints.length > 0 && (
+      {waypoints.length > 0 && !hasOverride && (
         <span className="text-grenadine">{waypoints.length} pts passage</span>
       )}
     </div>
@@ -565,9 +826,26 @@ export default function ItineraryPage() {
     </div>
   );
 
+  const hiddenGpxInput = (
+    <input
+      ref={gpxInputRef}
+      type="file"
+      accept=".gpx,application/gpx+xml,application/xml,text/xml"
+      style={{ display: 'none' }}
+      onChange={(e) => {
+        const f = e.target.files?.[0];
+        if (f) handleGpxFile(f);
+        e.target.value = '';
+      }}
+      data-testid="gpx-file-input"
+    />
+  );
+
   // ─── Map mode (fullscreen) ───
   if (mapMode) {
     return (
+      <>
+      {hiddenGpxInput}
       <div className="fixed inset-0 z-50 flex bg-paper">
         <div
           className={`${panelOpen ? 'w-80' : 'w-0'} transition-all duration-200 overflow-hidden flex flex-col border-r border-line bg-paper shrink-0`}
@@ -626,9 +904,26 @@ export default function ItineraryPage() {
               </span>
             )}
             <span className="flex-1" />
-            <p className="text-meta text-ink-40">
-              Double-clic = point de passage · Esc = quitter
+            <p className="text-meta text-ink-40 hidden lg:block">
+              {hasOverride
+                ? 'Tracé GPX actif · ✕ pour revenir au tracé auto'
+                : 'Tirez • pour ajouter · Glissez pour déplacer · Esc = quitter'}
             </p>
+            {tracerControls}
+            {!hasOverride && (
+              <button
+                type="button"
+                onClick={toggleManualMode}
+                data-testid="toggle-manual-mode-fullscreen"
+                className={`border px-3 py-1.5 rounded-md text-meta font-semibold cursor-pointer transition inline-flex items-center gap-1.5 ${
+                  manualMode
+                    ? 'bg-grenadine text-paper border-grenadine hover:opacity-90'
+                    : 'bg-paper-soft text-ink-80 border-line hover:bg-paper-deep'
+                }`}
+              >
+                <span aria-hidden="true">✏️</span> {manualMode ? 'Tracé manuel' : 'Tracé auto'}
+              </button>
+            )}
             <button
               type="button"
               onClick={() => setMapMode(false)}
@@ -640,22 +935,42 @@ export default function ItineraryPage() {
           <div className="flex-1 relative">{renderMap('100%')}</div>
         </div>
       </div>
+      </>
     );
   }
 
   // ─── Normal mode ───
   return (
     <div className="p-6 lg:p-8 max-w-4xl mx-auto">
+      {hiddenGpxInput}
       <div className="flex items-center justify-between gap-3 flex-wrap mb-1">
         <h1 className="font-display text-h5 text-ink leading-none">Itinéraire</h1>
-        <button
-          type="button"
-          onClick={() => setMapMode(true)}
-          data-testid="open-map-mode"
-          className="bg-grenadine text-paper border-none px-4 py-2.5 rounded-pill text-meta font-bold cursor-pointer hover:opacity-90 transition inline-flex items-center gap-2"
-        >
-          <span aria-hidden="true">◉</span> Ouvrir en mode carte
-        </button>
+        <div className="flex items-center gap-2 flex-wrap">
+          {tracerControls}
+          {!hasOverride && (
+            <button
+              type="button"
+              onClick={toggleManualMode}
+              data-testid="toggle-manual-mode"
+              title={manualMode ? 'Le tracé suit ce que tu places' : 'Le tracé suit ORS (foot-hiking)'}
+              className={`border px-3 py-2 rounded-pill text-meta font-semibold cursor-pointer transition inline-flex items-center gap-1.5 ${
+                manualMode
+                  ? 'bg-grenadine text-paper border-grenadine hover:opacity-90'
+                  : 'bg-paper-soft text-ink-80 border-line hover:bg-paper-deep'
+              }`}
+            >
+              <span aria-hidden="true">✏️</span> {manualMode ? 'Tracé manuel' : 'Tracé auto'}
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={() => setMapMode(true)}
+            data-testid="open-map-mode"
+            className="bg-grenadine text-paper border-none px-4 py-2.5 rounded-pill text-meta font-bold cursor-pointer hover:opacity-90 transition inline-flex items-center gap-2"
+          >
+            <span aria-hidden="true">◉</span> Ouvrir en mode carte
+          </button>
+        </div>
       </div>
       <div className="mb-5">
         <MapStatsHeader
@@ -698,7 +1013,9 @@ export default function ItineraryPage() {
       <p className="text-meta text-ink-40 mt-1.5 mb-5 italic">
         {geoScenes.length === 0
           ? 'Aucun POI géolocalisé — cliquez « Placer sur la carte » sur un POI pour commencer.'
-          : 'Double-clic = ajouter un point de passage · Glissez pour repositionner'}
+          : hasOverride
+          ? 'Tracé GPX actif — cliquez ✕ pour revenir au tracé auto'
+          : 'Tirez les pastilles • du tracé pour ajouter un point · Glissez les points pour les déplacer · Cliquez pour les supprimer'}
       </p>
 
       <h2 className="font-display text-h6 text-ink mb-3">Points d&apos;intérêt</h2>

@@ -1,11 +1,14 @@
 'use client';
 
-import { useCallback, useRef, useEffect, useMemo } from 'react';
-import { GoogleMap, useJsApiLoader, MarkerF, PolylineF } from '@react-google-maps/api';
-import { tg } from '@tourguide/design-system';
+import { useEffect, useMemo } from 'react';
+import { MapContainer, TileLayer, Polyline, Marker, useMap, useMapEvents } from 'react-leaflet';
+import type L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { tg } from '@murmure/design-system';
 import { useWalkingRoute } from '@/lib/hooks/use-walking-route';
-
-const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? '';
+import { TILE_URL, TILE_ATTRIBUTION } from '@/lib/maps/tile-config';
+import { createNumberedIcon } from '@/lib/maps/marker-icons';
+import { FitToPoints } from '@/components/map/FitToPoints';
 
 export interface MapPOI {
   id: string;
@@ -22,6 +25,23 @@ interface TourMapProps {
   onMapClick?: (lat: number, lng: number) => void;
   editGpsMode?: boolean;
   className?: string;
+  /** Pre-computed polyline drawn by the guide (skips the auto-routing fallback). */
+  customPath?: Array<{ lat: number; lng: number }> | null;
+}
+
+function PanToSelected({ position }: { position: L.LatLngTuple | null }) {
+  const map = useMap();
+  useEffect(() => {
+    if (position) map.panTo(position);
+  }, [map, position]);
+  return null;
+}
+
+function MapClickHandler({ onClick }: { onClick: (lat: number, lng: number) => void }) {
+  useMapEvents({
+    click: (e) => onClick(e.latlng.lat, e.latlng.lng),
+  });
+  return null;
 }
 
 export default function TourMap({
@@ -31,45 +51,36 @@ export default function TourMap({
   onMapClick,
   editGpsMode,
   className,
+  customPath = null,
 }: TourMapProps) {
-  const mapRef = useRef<google.maps.Map | null>(null);
-  const { isLoaded } = useJsApiLoader({ googleMapsApiKey: GOOGLE_MAPS_KEY });
+  const sortedPois = useMemo(() => [...pois].sort((a, b) => a.order - b.order), [pois]);
 
-  const sortedPois = [...pois].sort((a, b) => a.order - b.order);
-
-  const onLoad = useCallback((map: google.maps.Map) => {
-    mapRef.current = map;
-    if (sortedPois.length > 1) {
-      const bounds = new google.maps.LatLngBounds();
-      sortedPois.forEach((p) => bounds.extend({ lat: p.latitude, lng: p.longitude }));
-      map.fitBounds(bounds, 40);
-    } else if (sortedPois.length === 1) {
-      map.setCenter({ lat: sortedPois[0].latitude, lng: sortedPois[0].longitude });
-      map.setZoom(15);
-    }
-  }, [sortedPois]);
-
-  // Center on selected POI
-  useEffect(() => {
-    if (!selectedPoiId || !mapRef.current) return;
-    const poi = sortedPois.find((p) => p.id === selectedPoiId);
-    if (poi) {
-      mapRef.current.panTo({ lat: poi.latitude, lng: poi.longitude });
-    }
-  }, [selectedPoiId, sortedPois]);
-
-  const handleClick = useCallback((e: google.maps.MapMouseEvent) => {
-    if (editGpsMode && onMapClick && e.latLng) {
-      onMapClick(e.latLng.lat(), e.latLng.lng());
-    }
-  }, [editGpsMode, onMapClick]);
-
-  const routePoints = useMemo(
-    () => sortedPois.map((p) => ({ lat: p.latitude, lng: p.longitude })),
+  const points = useMemo<L.LatLngTuple[]>(
+    () => sortedPois.map((p) => [p.latitude, p.longitude]),
     [sortedPois],
   );
 
-  const { path: walkingPath, isLoading } = useWalkingRoute(routePoints);
+  const hasCustomPath = !!(customPath && customPath.length > 1);
+
+  // Skip the ORS auto-route when the guide has persisted their own polyline.
+  const routePoints = useMemo(
+    () => (hasCustomPath ? [] : sortedPois.map((p) => ({ lat: p.latitude, lng: p.longitude }))),
+    [sortedPois, hasCustomPath],
+  );
+
+  const { path: autoWalkingPath, isLoading: autoLoading } = useWalkingRoute(routePoints);
+  const walkingPath = hasCustomPath ? customPath! : autoWalkingPath;
+  const isLoading = hasCustomPath ? false : autoLoading;
+  const walkingPositions = useMemo<L.LatLngTuple[]>(
+    () => walkingPath.map((p) => [p.lat, p.lng]),
+    [walkingPath],
+  );
+
+  const selectedPosition = useMemo<L.LatLngTuple | null>(() => {
+    if (!selectedPoiId) return null;
+    const poi = sortedPois.find((p) => p.id === selectedPoiId);
+    return poi ? [poi.latitude, poi.longitude] : null;
+  }, [selectedPoiId, sortedPois]);
 
   if (pois.length === 0) {
     return (
@@ -79,59 +90,57 @@ export default function TourMap({
     );
   }
 
-  if (!GOOGLE_MAPS_KEY || !isLoaded) {
-    return <div className={`bg-gray-100 animate-pulse rounded-xl ${className || 'h-[400px]'}`} />;
-  }
-
-  const center = { lat: sortedPois[0].latitude, lng: sortedPois[0].longitude };
+  const center: L.LatLngTuple = [sortedPois[0].latitude, sortedPois[0].longitude];
+  const cursorClass = editGpsMode ? 'tg-map-cursor-crosshair' : '';
 
   return (
-    <div className={`rounded-xl overflow-hidden border border-gray-200 ${className || 'h-[400px]'}`}>
-      <GoogleMap
-        mapContainerClassName="h-full w-full"
+    <div className={`rounded-xl overflow-hidden border border-gray-200 ${className || 'h-[400px]'} ${cursorClass}`}>
+      <MapContainer
         center={center}
         zoom={15}
-        onLoad={onLoad}
-        onClick={handleClick}
-        options={{
-          disableDefaultUI: true,
-          zoomControl: true,
-          mapTypeControl: false,
-          streetViewControl: false,
-          draggableCursor: editGpsMode ? 'crosshair' : undefined,
-        }}
+        style={{ height: '100%', width: '100%' }}
+        zoomControl
+        attributionControl
       >
-        <PolylineF
-          path={walkingPath}
-          options={{
-            strokeColor: tg.colors.mer,
-            strokeWeight: 4,
-            strokeOpacity: isLoading ? 0.4 : 0.7,
-          }}
-        />
+        <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} />
+        <FitToPoints points={points} singleZoom={15} />
+        <PanToSelected position={selectedPosition} />
+        {onMapClick && editGpsMode && <MapClickHandler onClick={onMapClick} />}
+
+        {walkingPositions.length > 1 && (
+          <Polyline
+            positions={walkingPositions}
+            pathOptions={{
+              color: tg.colors.mer,
+              weight: 4,
+              opacity: isLoading ? 0.4 : 0.7,
+            }}
+          />
+        )}
 
         {sortedPois.map((poi) => {
           const isSelected = poi.id === selectedPoiId;
+          const icon = createNumberedIcon({
+            number: poi.order,
+            size: isSelected ? 36 : 28,
+            fontSize: isSelected ? 14 : 12,
+            fillColor: isSelected ? tg.colors.mer : tg.colors.card,
+            textColor: isSelected ? '#ffffff' : tg.colors.mer,
+            borderColor: isSelected ? tg.colors.mer : tg.colors.ink40,
+            borderWidth: isSelected ? 3 : 2,
+          });
           return (
-            <MarkerF
+            <Marker
               key={poi.id}
-              position={{ lat: poi.latitude, lng: poi.longitude }}
-              onClick={() => onPoiSelect(poi.id)}
-              label={{ text: `${poi.order}`, color: isSelected ? 'white' : tg.colors.mer, fontSize: isSelected ? '14px' : '12px', fontWeight: 'bold' }}
-              icon={{
-                path: google.maps.SymbolPath.CIRCLE,
-                scale: isSelected ? 18 : 14,
-                fillColor: isSelected ? tg.colors.mer : tg.colors.card,
-                fillOpacity: 1,
-                strokeColor: isSelected ? tg.colors.mer : tg.colors.ink40,
-                strokeWeight: isSelected ? 3 : 2,
-              }}
+              position={[poi.latitude, poi.longitude]}
+              icon={icon}
               title={`${poi.order}. ${poi.title}`}
-              zIndex={isSelected ? 100 : poi.order}
+              zIndexOffset={isSelected ? 1000 : poi.order}
+              eventHandlers={{ click: () => onPoiSelect(poi.id) }}
             />
           );
         })}
-      </GoogleMap>
+      </MapContainer>
     </div>
   );
 }

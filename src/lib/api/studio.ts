@@ -167,6 +167,7 @@ function mapAppSyncSession(raw: Record<string, unknown>): StudioSession {
     themes: (raw.themes as string[]) ?? null,
     durationMinutes: (raw.durationMinutes as number) ?? null,
     cleanedAt: (raw.cleanedAt as string) ?? null,
+    routePath: parseJsonField(raw.routePathJson) as StudioSession['routePath'],
     createdAt: (raw.createdAt as string) ?? new Date().toISOString(),
     updatedAt: (raw.updatedAt as string) ?? new Date().toISOString(),
   };
@@ -449,7 +450,7 @@ export async function cloneSessionAsV2(
   }
 
   try {
-    const { createStudioSessionMutation, createStudioSceneMutation, updateGuideTourMutation } = await import('./appsync-client');
+    const { createStudioSessionMutation, createStudioSceneMutation, updateGuideTourMutation, updateStudioSessionMutation } = await import('./appsync-client');
 
     // Create new session
     const sessResult = await createStudioSessionMutation({
@@ -464,6 +465,11 @@ export async function cloneSessionAsV2(
     });
     if (!sessResult.ok) return { ok: false, error: sessResult.error };
     const newSessionId = sessResult.data.id;
+
+    // Carry the itinerary tracer over to V2 so the guide doesn't redraw it.
+    if (parentSession.routePath) {
+      await updateStudioSessionMutation(newSessionId, { routePathJson: parentSession.routePath });
+    }
 
     // Clone scenes
     for (const scene of parentScenes.sort((a, b) => a.sceneIndex - b.sceneIndex)) {
@@ -607,12 +613,16 @@ function applyLocalOverrides(scenes: StudioScene[]): StudioScene[] {
   });
 }
 
+function sortBySceneIndex(scenes: StudioScene[]): StudioScene[] {
+  return [...scenes].sort((a, b) => (a.sceneIndex ?? 0) - (b.sceneIndex ?? 0));
+}
+
 export async function listStudioScenes(sessionId: string): Promise<StudioScene[]> {
   if (shouldUseStubs()) {
     const mockScenes = MOCK_SCENES[sessionId] ?? [];
     const created = createdStubScenes.filter((s) => s.sessionId === sessionId);
     logger.info(SERVICE_NAME, 'Listing scenes (stub)', { sessionId });
-    return applyLocalOverrides([...mockScenes, ...created]);
+    return sortBySceneIndex(applyLocalOverrides([...mockScenes, ...created]));
   }
   // Real mode: query AppSync, then apply local overrides
   try {
@@ -623,13 +633,13 @@ export async function listStudioScenes(sessionId: string): Promise<StudioScene[]
       return [];
     }
     const scenes = result.data.map((s) => mapAppSyncScene(s as unknown as Record<string, unknown>));
-    return applyLocalOverrides(scenes);
+    return sortBySceneIndex(applyLocalOverrides(scenes));
   } catch (e) {
     logger.error(SERVICE_NAME, 'listStudioScenes exception', { error: String(e) });
     // Fallback: return stub data with overrides if AppSync fails
     const mockScenes = MOCK_SCENES[sessionId] ?? [];
     const created = createdStubScenes.filter((s) => s.sessionId === sessionId);
-    return applyLocalOverrides([...mockScenes, ...created]);
+    return sortBySceneIndex(applyLocalOverrides([...mockScenes, ...created]));
   }
 }
 
@@ -744,6 +754,7 @@ export async function updateSceneAudio(
   sceneId: string,
   audioUrl: string,
   sessionId?: string,
+  sceneIndex?: number,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   // If data URL, upload to S3 first (base64 too large for DynamoDB)
   let audioKeyToStore = audioUrl;
@@ -752,7 +763,13 @@ export async function updateSceneAudio(
       const { uploadAudio } = await import('@/lib/studio/studio-upload-service');
       const response = await fetch(audioUrl);
       const blob = new Blob([await response.blob()], { type: 'audio/wav' });
-      const uploadResult = await uploadAudio(blob, sessionId ?? 'unknown', 0);
+      // sceneIndex MUST be passed — the S3 path encodes it as `scene_${i}.wav`.
+      // If callers forget, all uploads collide on `scene_0.wav` and every
+      // scene ends up pointing to the same audio file.
+      if (sceneIndex === undefined) {
+        logger.warn(SERVICE_NAME, 'updateSceneAudio called without sceneIndex — TTS uploads may collide', { sceneId });
+      }
+      const uploadResult = await uploadAudio(blob, sessionId ?? 'unknown', sceneIndex ?? 0);
       if (uploadResult.ok) {
         audioKeyToStore = uploadResult.s3Key;
         logger.info(SERVICE_NAME, 'Audio uploaded to S3', { sceneId, s3Key: audioKeyToStore });
