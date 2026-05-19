@@ -1,9 +1,9 @@
 {
   "auth": {
-    "user_pool_id": "us-east-1_XuXa68i24",
+    "user_pool_id": "us-east-1_AbgsYCrsv",
     "aws_region": "us-east-1",
-    "user_pool_client_id": "6qd743bgnv45p0veq5nosr8brb",
-    "identity_pool_id": "us-east-1:df9a70dd-c5b8-4c81-a064-08eb927cf062",
+    "user_pool_client_id": "642km9jkdicm34qs25pmdgqtl",
+    "identity_pool_id": "us-east-1:c54ba4a1-b86c-4d0b-8979-b04e5e3bb274",
     "mfa_methods": [],
     "standard_required_attributes": [
       "email"
@@ -26,7 +26,7 @@
     "unauthenticated_identities_enabled": true
   },
   "data": {
-    "url": "https://j5ergthsrre53glks3ec44kbpy.appsync-api.us-east-1.amazonaws.com/graphql",
+    "url": "https://gh4srboqrzhklloscjikd6yqoy.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_region": "us-east-1",
     "default_authorization_type": "AWS_IAM",
     "authorization_types": [
@@ -581,6 +581,13 @@
               "name": "consentRGPD",
               "isArray": false,
               "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "routePathJson": {
+              "name": "routePathJson",
+              "isArray": false,
+              "type": "AWSJSON",
               "isRequired": false,
               "attributes": []
             },
@@ -2827,6 +2834,86 @@
               "attributes": []
             }
           }
+        },
+        "ExportUserDataReturnType": {
+          "name": "ExportUserDataReturnType",
+          "fields": {
+            "ok": {
+              "name": "ok",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "exportId": {
+              "name": "exportId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "recordCount": {
+              "name": "recordCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "DeleteUserAccountReturnType": {
+          "name": "DeleteUserAccountReturnType",
+          "fields": {
+            "ok": {
+              "name": "ok",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "deletedRecords": {
+              "name": "deletedRecords",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "deletedAssets": {
+              "name": "deletedAssets",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
         }
       },
       "queries": {
@@ -2910,17 +2997,33 @@
               "isRequired": false
             }
           }
+        },
+        "exportUserData": {
+          "name": "exportUserData",
+          "isArray": false,
+          "type": {
+            "nonModel": "ExportUserDataReturnType"
+          },
+          "isRequired": false
+        },
+        "deleteUserAccount": {
+          "name": "deleteUserAccount",
+          "isArray": false,
+          "type": {
+            "nonModel": "DeleteUserAccountReturnType"
+          },
+          "isRequired": false
         }
       }
     }
   },
   "storage": {
     "aws_region": "us-east-1",
-    "bucket_name": "amplify-tourguide-steff-s-tourguideassetsbucket8b8-zj0ssbc9viom",
+    "bucket_name": "amplify-tourguideapp-stef-tourguideassetsbucket8b8-nwmcsixu8au1",
     "buckets": [
       {
         "name": "tourguideAssets",
-        "bucket_name": "amplify-tourguide-steff-s-tourguideassetsbucket8b8-zj0ssbc9viom",
+        "bucket_name": "amplify-tourguideapp-stef-tourguideassetsbucket8b8-nwmcsixu8au1",
         "aws_region": "us-east-1",
         "paths": {
           "guide-photos/${cognito-identity.amazonaws.com:sub}/*": {
