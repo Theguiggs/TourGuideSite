@@ -1081,13 +1081,16 @@ export default function ModerationReviewPage() {
               {/* Map */}
               {detail.scenes.some((s) => s.latitude && s.longitude) && (
                 <div className="rounded-lg overflow-hidden border border-line">
-                  <PreviewMap scenes={detail.scenes.map((s) => ({
-                    id: s.id,
-                    latitude: s.latitude,
-                    longitude: s.longitude,
-                    title: s.title,
-                    sceneIndex: s.order - 1,
-                  } as import('@/types/studio').StudioScene))} />
+                  <PreviewMap
+                    scenes={detail.scenes.map((s) => ({
+                      id: s.id,
+                      latitude: s.latitude,
+                      longitude: s.longitude,
+                      title: s.title,
+                      sceneIndex: s.order - 1,
+                    } as import('@/types/studio').StudioScene))}
+                    customPath={guideRoutePath}
+                  />
                 </div>
               )}
             </div>

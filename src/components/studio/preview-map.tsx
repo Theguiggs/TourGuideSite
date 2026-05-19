@@ -1,81 +1,114 @@
 'use client';
 
-import { useCallback, useRef, useMemo } from 'react';
-import { GoogleMap, useJsApiLoader, MarkerF, PolylineF } from '@react-google-maps/api';
-import { tg } from '@tourguide/design-system';
+import { useMemo } from 'react';
+import { MapContainer, TileLayer, Polyline, Marker } from 'react-leaflet';
+import type L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { tg } from '@murmure/design-system';
 import type { StudioScene } from '@/types/studio';
 import { useWalkingRoute } from '@/lib/hooks/use-walking-route';
-
-const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? '';
+import type { LatLng } from '@/lib/path-utils';
+import type { Waypoint } from '@/components/studio/editable-map';
+import { TILE_URL, TILE_ATTRIBUTION } from '@/lib/maps/tile-config';
+import { createNumberedIcon } from '@/lib/maps/marker-icons';
+import { FitToPoints } from '@/components/map/FitToPoints';
 
 interface PreviewMapProps {
   scenes: StudioScene[];
+  /** Optional waypoints saved by the itinerary editor (localStorage on guide side). */
+  waypoints?: Waypoint[];
+  /** When true, route is drawn as straight lines through POIs + waypoints (no ORS). */
+  manualMode?: boolean;
+  /** When provided, this exact path overrides auto/manual routing (e.g. GPX import). */
+  pathOverride?: LatLng[] | null;
+  /** Pre-computed polyline (guide's persisted route) — takes precedence over everything. */
+  customPath?: LatLng[] | null;
 }
 
-export function PreviewMap({ scenes }: PreviewMapProps) {
-  const geoScenes = scenes.filter((s) => s.latitude !== null && s.longitude !== null);
-  const mapRef = useRef<google.maps.Map | null>(null);
+export function PreviewMap({
+  scenes,
+  waypoints = [],
+  manualMode = false,
+  pathOverride = null,
+  customPath = null,
+}: PreviewMapProps) {
+  const geoScenes = useMemo(
+    () => scenes.filter((s) => s.latitude !== null && s.longitude !== null),
+    [scenes],
+  );
 
-  const { isLoaded } = useJsApiLoader({ googleMapsApiKey: GOOGLE_MAPS_KEY });
+  const hasCustomPath = !!(customPath && customPath.length > 1);
+  const hasOverride = !!(pathOverride && pathOverride.length > 1);
 
-  const onLoad = useCallback((map: google.maps.Map) => {
-    mapRef.current = map;
-    if (geoScenes.length > 1) {
-      const bounds = new google.maps.LatLngBounds();
-      geoScenes.forEach((s) => bounds.extend({ lat: s.latitude!, lng: s.longitude! }));
-      map.fitBounds(bounds, 40);
-    } else if (geoScenes.length === 1) {
-      map.setCenter({ lat: geoScenes[0].latitude!, lng: geoScenes[0].longitude! });
-      map.setZoom(16);
+  // Build ordered anchors (POIs + waypoints) — same logic as EditableMap.
+  const anchors = useMemo(() => {
+    const out: LatLng[] = [];
+    for (let i = 0; i < geoScenes.length; i++) {
+      out.push({ lat: geoScenes[i].latitude!, lng: geoScenes[i].longitude! });
+      const wps = waypoints
+        .filter((w) => w.afterPoiIndex === i)
+        .sort((a, b) => a.order - b.order);
+      for (const wp of wps) {
+        out.push({ lat: wp.lat, lng: wp.lng });
+      }
     }
-  }, [geoScenes]);
+    return out;
+  }, [geoScenes, waypoints]);
 
-  const points = useMemo(
-    () => geoScenes.map((s) => ({ lat: s.latitude!, lng: s.longitude! })),
+  // Only call useWalkingRoute when needed (skip for custom/manual/override modes).
+  const autoRoute = useWalkingRoute(hasCustomPath || manualMode || hasOverride ? [] : anchors);
+
+  const walkingPath = hasCustomPath
+    ? customPath!
+    : hasOverride
+      ? pathOverride!
+      : manualMode
+        ? anchors
+        : autoRoute.path;
+  const isLoading = hasCustomPath || hasOverride ? false : manualMode ? false : autoRoute.isLoading;
+
+  const walkingPositions = useMemo<L.LatLngTuple[]>(
+    () => walkingPath.map((p) => [p.lat, p.lng]),
+    [walkingPath],
+  );
+
+  const points = useMemo<L.LatLngTuple[]>(
+    () => geoScenes.map((s) => [s.latitude!, s.longitude!]),
     [geoScenes],
   );
 
-  const { path: walkingPath, isLoading } = useWalkingRoute(points);
+  if (geoScenes.length === 0) return null;
 
-  if (geoScenes.length === 0 || !GOOGLE_MAPS_KEY) return null;
-  if (!isLoaded) return <div className="h-[280px] w-full bg-paper-soft animate-pulse rounded-lg" />;
-
-  const center = { lat: geoScenes[0].latitude!, lng: geoScenes[0].longitude! };
+  const center: L.LatLngTuple = [geoScenes[0].latitude!, geoScenes[0].longitude!];
+  const routeColor = hasCustomPath || hasOverride || manualMode ? tg.colors.grenadine : tg.colors.mer;
 
   return (
-    <GoogleMap
-      mapContainerStyle={{ height: '280px', width: '100%', borderRadius: `${tg.radius.sm}px` }}
+    <MapContainer
       center={center}
       zoom={16}
-      onLoad={onLoad}
-      options={{ disableDefaultUI: true, zoomControl: true, mapTypeControl: false, streetViewControl: false }}
+      style={{ height: '280px', width: '100%', borderRadius: `${tg.radius.sm}px` }}
+      scrollWheelZoom={false}
     >
-      {walkingPath.length > 1 && (
-        <PolylineF
-          path={walkingPath}
-          options={{
-            strokeColor: tg.colors.mer,
-            strokeWeight: 4,
-            strokeOpacity: isLoading ? 0.4 : 0.7,
+      <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} />
+      <FitToPoints points={points} />
+      {walkingPositions.length > 1 && (
+        <Polyline
+          positions={walkingPositions}
+          pathOptions={{
+            color: routeColor,
+            weight: 4,
+            opacity: isLoading ? 0.4 : 0.7,
           }}
         />
       )}
       {geoScenes.map((scene, index) => (
-        <MarkerF
+        <Marker
           key={scene.id}
-          position={{ lat: scene.latitude!, lng: scene.longitude! }}
-          label={{ text: `${index + 1}`, color: 'white', fontSize: '12px', fontWeight: 'bold' }}
-          icon={{
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 14,
-            fillColor: tg.colors.mer,
-            fillOpacity: 1,
-            strokeColor: 'white',
-            strokeWeight: 2,
-          }}
+          position={[scene.latitude!, scene.longitude!]}
+          icon={createNumberedIcon({ number: index + 1, fillColor: tg.colors.mer })}
           title={scene.title ?? `Scene ${index + 1}`}
         />
       ))}
-    </GoogleMap>
+    </MapContainer>
   );
 }
