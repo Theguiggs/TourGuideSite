@@ -413,6 +413,30 @@ export async function listStudioSessionsByGuide(guideId: string) {
   }
 }
 
+/** Admin-only: list all StudioSession items (paginated). */
+export async function listAllStudioSessions() {
+  try {
+    const client = getClient();
+    const result = await client.models.StudioSession.list({ authMode: 'userPool' });
+    return result.data ?? [];
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'listAllStudioSessions failed', { error: String(error) });
+    return [];
+  }
+}
+
+/** Admin-only: list all StudioScene items (paginated). */
+export async function listAllStudioScenes() {
+  try {
+    const client = getClient();
+    const result = await client.models.StudioScene.list({ authMode: 'userPool' });
+    return result.data ?? [];
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'listAllStudioScenes failed', { error: String(error) });
+    return [];
+  }
+}
+
 export async function getStudioSessionById(id: string) {
   try {
     const client = getClient();
