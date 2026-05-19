@@ -467,8 +467,9 @@ export async function cloneSessionAsV2(
     const newSessionId = sessResult.data.id;
 
     // Carry the itinerary tracer over to V2 so the guide doesn't redraw it.
+    // AWSJSON wants a string on the wire.
     if (parentSession.routePath) {
-      await updateStudioSessionMutation(newSessionId, { routePathJson: parentSession.routePath });
+      await updateStudioSessionMutation(newSessionId, { routePathJson: JSON.stringify(parentSession.routePath) });
     }
 
     // Clone scenes

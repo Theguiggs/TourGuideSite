@@ -219,7 +219,9 @@ export default function ItineraryPage() {
       setSaveStatus('saving');
       try {
         const { updateStudioSessionMutation } = await import('@/lib/api/appsync-client');
-        const result = await updateStudioSessionMutation(sessionId, { routePathJson: payload });
+        // AWSJSON requires a stringified JSON value on the wire — the Amplify
+        // client doesn't auto-serialize when the field type is loosely typed.
+        const result = await updateStudioSessionMutation(sessionId, { routePathJson: JSON.stringify(payload) });
         if (result.ok) {
           logger.info(SERVICE_NAME, 'routePath persisted', { sessionId, waypoints: waypoints.length, pathPoints: computedPath.length });
           setSaveStatus('saved');
