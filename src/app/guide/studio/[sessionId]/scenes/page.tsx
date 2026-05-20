@@ -792,26 +792,34 @@ export default function ScenesPage() {
 
   // Targeted auto-translation of a single scene (translate + TTS + save).
   const [translatingSceneIds, setTranslatingSceneIds] = useState<string[]>([]);
-  const handleTranslateScene = useCallback(async (sceneId: string) => {
+  const handleTranslateScene = useCallback(async (sceneId: string, opts?: { silent?: boolean }) => {
     const lang = activeLanguageTab;
-    if (!session || !lang || lang === session.language) return;
+    if (!session || !lang || lang === session.language) return false;
     const scene = scenes.find((s) => s.id === sceneId);
-    if (!scene) return;
+    if (!scene) return false;
     const purchase = purchases.find((p) => p.language === lang && p.status === 'active');
     const tier = (purchase?.qualityTier as 'standard' | 'pro') ?? 'standard';
     setTranslatingSceneIds((prev) => [...prev, sceneId]);
+    if (!opts?.silent) setBatchMessage(`Traduction de « ${scene.title ?? 'scène'} » en cours (${lang.toUpperCase()})… (~2 min)`);
+    let ok = false;
     try {
       const { retryScene } = await import('@/lib/multilang/batch-translation-service');
       const result = await retryScene(scene, lang, tier, session.language ?? 'fr');
+      ok = result.ok;
       if (!result.ok) {
         logger.error(SERVICE_NAME, 'Scene translation failed', { sceneId, lang, code: result.errorCode });
+        if (!opts?.silent) { setBatchMessage('Échec de la traduction de la scène.'); setTimeout(() => setBatchMessage(null), 5000); }
+      } else if (!opts?.silent) {
+        setBatchMessage('Scène traduite !'); setTimeout(() => setBatchMessage(null), 4000);
       }
       await refreshLangSegments();
     } catch (err) {
       logger.error(SERVICE_NAME, 'handleTranslateScene threw', { sceneId, error: String(err) });
+      if (!opts?.silent) { setBatchMessage('Erreur lors de la traduction.'); setTimeout(() => setBatchMessage(null), 5000); }
     } finally {
       setTranslatingSceneIds((prev) => prev.filter((id) => id !== sceneId));
     }
+    return ok;
   }, [activeLanguageTab, session, scenes, purchases, refreshLangSegments]);
 
   if (isLoading) {
@@ -1019,14 +1027,28 @@ export default function ScenesPage() {
                 const seg = langSegments.find((x) => x.sceneId === s.id && x.language === activeLanguageTab);
                 return !seg || !seg.transcriptText;
               });
-              for (const s of missing) await handleTranslateScene(s.id);
+              let done = 0;
+              for (const s of missing) {
+                setBatchMessage(`Traduction ${activeLanguageTab?.toUpperCase()} : ${done}/${missing.length} scènes… (~2 min/scène)`);
+                await handleTranslateScene(s.id, { silent: true });
+                done++;
+              }
+              setBatchMessage(`Traduction terminée ! ${done} scènes traduites.`);
+              setTimeout(() => setBatchMessage(null), 5000);
             }}
             hasMissingScenes={langSegments.length < scenes.filter((s) => !s.archived).length}
             onSceneClick={(sceneId) => { logger.info(SERVICE_NAME, 'Scene click', { sceneId, lang: activeLanguageTab }); }}
             onRetranslateStale={isActiveLangLocked ? undefined : async (sceneIds) => {
               // Retranslate each flagged scene (translate + TTS + save). Reuses
               // the per-scene handler so the spinner + hash refresh apply.
-              for (const id of sceneIds) await handleTranslateScene(id);
+              let done = 0;
+              for (const id of sceneIds) {
+                setBatchMessage(`Re-traduction ${activeLanguageTab?.toUpperCase()} : ${done}/${sceneIds.length} scènes… (~2 min/scène)`);
+                await handleTranslateScene(id, { silent: true });
+                done++;
+              }
+              setBatchMessage(`Re-traduction terminée ! ${done} scènes.`);
+              setTimeout(() => setBatchMessage(null), 5000);
             }}
             onGenerateMissingAudio={isActiveLangLocked ? undefined : async () => {
               logger.info(SERVICE_NAME, 'Generate missing audio', { lang: activeLanguageTab });
