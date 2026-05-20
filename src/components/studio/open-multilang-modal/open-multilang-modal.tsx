@@ -6,6 +6,8 @@ import { logger } from '@/lib/logger';
 import {
   confirmLanguagePurchaseMixed,
   createPaymentIntentMixed,
+  upgradeLanguagesToAuto,
+  languagesWithManualContent,
 } from '@/lib/api/language-purchase';
 import {
   LANGUAGE_CONFIG,
@@ -60,9 +62,21 @@ export function OpenMultilangModal({
     [purchases],
   );
 
-  const isLanguagePurchased = useCallback(
-    (lang: string) => purchases.some((p) => p.language === lang && p.status === 'active'),
+  /** Active purchase for a language (or undefined). */
+  const purchaseFor = useCallback(
+    (lang: string) => purchases.find((p) => p.language === lang && p.status === 'active'),
     [purchases],
+  );
+  const purchasedManual = useCallback(
+    (lang: string) => purchaseFor(lang)?.purchaseType === 'manual',
+    [purchaseFor],
+  );
+  const purchasedAuto = useCallback(
+    (lang: string) => {
+      const p = purchaseFor(lang);
+      return !!p && p.purchaseType !== 'manual';
+    },
+    [purchaseFor],
   );
 
   const availableLanguages = useMemo(
@@ -70,7 +84,19 @@ export function OpenMultilangModal({
     [baseLanguage],
   );
 
-  const order = useMemo(() => computeMixedOrder(selections, freeLanguageUsed), [selections, freeLanguageUsed]);
+  // Charges only apply to NEW languages and to UPGRADES (manual → auto).
+  // An already-manual language left on 'manual' is a no-op and excluded.
+  const chargeableSelections = useMemo<LangSelections>(() => {
+    const out: LangSelections = {};
+    for (const [lang, mode] of Object.entries(selections)) {
+      if (purchasedAuto(lang)) continue; // locked, can't change
+      if (purchasedManual(lang) && mode === 'manual') continue; // unchanged manual
+      out[lang] = mode;
+    }
+    return out;
+  }, [selections, purchasedManual, purchasedAuto]);
+
+  const order = useMemo(() => computeMixedOrder(chargeableSelections, freeLanguageUsed), [chargeableSelections, freeLanguageUsed]);
   const lineByLang = useMemo(() => {
     const m = new Map<string, (typeof order.lines)[number]>();
     for (const l of order.lines) m.set(l.language, l);
@@ -87,19 +113,68 @@ export function OpenMultilangModal({
     setErrorMessage(null);
   }, []);
 
-  const selectedCount = Object.keys(selections).length;
-  const autoLangs = Object.keys(selections).filter((l) => selections[l] !== 'manual');
+  // New languages (not yet purchased) vs upgrades (manual → auto).
+  const newSelections = useMemo<LangSelections>(() => {
+    const out: LangSelections = {};
+    for (const [lang, mode] of Object.entries(chargeableSelections)) {
+      if (!purchaseFor(lang)) out[lang] = mode;
+    }
+    return out;
+  }, [chargeableSelections, purchaseFor]);
+  const upgradeSelections = useMemo<Record<string, 'standard' | 'pro'>>(() => {
+    const out: Record<string, 'standard' | 'pro'> = {};
+    for (const [lang, mode] of Object.entries(chargeableSelections)) {
+      if (purchasedManual(lang) && mode !== 'manual') out[lang] = mode as 'standard' | 'pro';
+    }
+    return out;
+  }, [chargeableSelections, purchasedManual]);
+
+  const chargeableCount = Object.keys(chargeableSelections).length;
+  const autoLangs = Object.keys(chargeableSelections).filter((l) => chargeableSelections[l] !== 'manual');
+
+  // Overwrite/keep prompt state for upgrades that have existing manual content.
+  const [pendingOverwrite, setPendingOverwrite] = useState<{ langs: string[]; paymentIntentId: string } | null>(null);
+
+  /** Runs the actual purchase/upgrade once any overwrite decision is resolved. */
+  const runConfirm = useCallback(async (paymentIntentId: string, overwriteContent: boolean) => {
+    try {
+      const collected: typeof purchases = [];
+      if (Object.keys(newSelections).length > 0) {
+        const result = await confirmLanguagePurchaseMixed(sessionId, newSelections, paymentIntentId);
+        if (!result.ok) { setErrorMessage('Erreur serveur. Réessayez.'); setIsLoading(false); return; }
+        collected.push(...result.value);
+      }
+      if (Object.keys(upgradeSelections).length > 0) {
+        const up = await upgradeLanguagesToAuto(sessionId, upgradeSelections, paymentIntentId, overwriteContent);
+        if (!up.ok) { setErrorMessage('Erreur lors de l\'upgrade. Réessayez.'); setIsLoading(false); return; }
+        collected.push(...up.value);
+      }
+      if (collected.length > 0) setPurchases(collected);
+      onLanguagesChanged?.();
+      if (autoLangs.length > 0 && onBatchTranslationNeeded) {
+        const hasPro = autoLangs.some((l) => chargeableSelections[l] === 'pro' || isLanguagePremium(l));
+        onBatchTranslationNeeded(autoLangs, hasPro ? 'pro' : 'standard');
+      }
+      onClose();
+      setSelections({});
+      setPendingOverwrite(null);
+    } catch (err) {
+      setErrorMessage('Erreur inattendue. Réessayez.');
+      logger.error(SERVICE_NAME, 'runConfirm failed', { error: String(err) });
+    }
+    setIsLoading(false);
+  }, [sessionId, newSelections, upgradeSelections, autoLangs, chargeableSelections, setPurchases, onLanguagesChanged, onClose, onBatchTranslationNeeded, purchases]);
 
   const handleConfirm = useCallback(async () => {
-    if (selectedCount === 0) return;
+    if (chargeableCount === 0) return;
     setIsLoading(true);
     setErrorMessage(null);
-    logger.info(SERVICE_NAME, 'Confirming mixed multilang', { sessionId, selections });
+    logger.info(SERVICE_NAME, 'Confirming mixed multilang', { sessionId, chargeableSelections });
 
     try {
       let paymentIntentId = '';
       if (order.totalCents > 0) {
-        const piResult = await createPaymentIntentMixed(sessionId, selections);
+        const piResult = await createPaymentIntentMixed(sessionId, chargeableSelections);
         if (!piResult.ok) {
           setErrorMessage('Erreur de paiement. Réessayez.');
           logger.error(SERVICE_NAME, 'Payment intent failed', { code: piResult.error.code });
@@ -109,28 +184,23 @@ export function OpenMultilangModal({
         paymentIntentId = piResult.value.paymentIntentId;
       }
 
-      const result = await confirmLanguagePurchaseMixed(sessionId, selections, paymentIntentId);
-      if (result.ok) {
-        setPurchases(result.value);
-        logger.info(SERVICE_NAME, 'Languages added', { count: result.value.length });
-        onLanguagesChanged?.();
-        // Trigger batch translation for the auto languages (group by representative tier).
-        if (autoLangs.length > 0 && onBatchTranslationNeeded) {
-          const hasPro = autoLangs.some((l) => selections[l] === 'pro' || isLanguagePremium(l));
-          onBatchTranslationNeeded(autoLangs, hasPro ? 'pro' : 'standard');
+      // If we're upgrading manual languages that already have content, ask first.
+      const upgradeLangs = Object.keys(upgradeSelections);
+      if (upgradeLangs.length > 0) {
+        const withContent = await languagesWithManualContent(sessionId, upgradeLangs);
+        if (withContent.length > 0) {
+          setPendingOverwrite({ langs: withContent, paymentIntentId });
+          setIsLoading(false);
+          return; // wait for the user's overwrite/keep choice
         }
-        onClose();
-        setSelections({});
-      } else {
-        setErrorMessage('Erreur serveur. Réessayez.');
-        logger.error(SERVICE_NAME, 'Confirm failed', { code: result.error.code });
       }
+      await runConfirm(paymentIntentId, true);
     } catch (err) {
       setErrorMessage('Erreur inattendue. Réessayez.');
       logger.error(SERVICE_NAME, 'Unexpected error', { error: String(err) });
+      setIsLoading(false);
     }
-    setIsLoading(false);
-  }, [sessionId, selections, order.totalCents, selectedCount, autoLangs, setPurchases, onLanguagesChanged, onClose, onBatchTranslationNeeded]);
+  }, [sessionId, chargeableSelections, order.totalCents, chargeableCount, upgradeSelections, runConfirm]);
 
   const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) onClose();
@@ -139,7 +209,7 @@ export function OpenMultilangModal({
   if (!isOpen) return null;
 
   const payLabel =
-    selectedCount === 0
+    chargeableCount === 0
       ? 'Sélectionnez une langue'
       : order.totalCents === 0
         ? 'Ajouter les langues (gratuit)'
@@ -187,10 +257,13 @@ export function OpenMultilangModal({
                 </thead>
                 <tbody>
                   {availableLanguages.map((lang) => {
-                    const purchased = isLanguagePurchased(lang.code);
                     const premium = isLanguagePremium(lang.code);
-                    const mode = selections[lang.code] ?? 'none';
+                    const isAuto = purchasedAuto(lang.code);
+                    const isManualOwned = purchasedManual(lang.code);
+                    // Manual-owned languages default the dropdown to 'manual' (upgradable).
+                    const mode = selections[lang.code] ?? (isManualOwned ? 'manual' : 'none');
                     const line = lineByLang.get(lang.code);
+                    const isUpgrade = isManualOwned && mode !== 'manual';
                     return (
                       <tr key={lang.code} className="border-b border-line/50" data-testid={`lang-row-${lang.code}`}>
                         <td className="py-2">
@@ -204,8 +277,8 @@ export function OpenMultilangModal({
                           </span>
                         </td>
                         <td className="py-2 px-2">
-                          {purchased ? (
-                            <span className="text-xs text-success">Déjà ajoutée</span>
+                          {isAuto ? (
+                            <span className="text-xs text-success" data-testid={`locked-auto-${lang.code}`}>Déjà ajoutée (Auto)</span>
                           ) : (
                             <select
                               value={mode}
@@ -214,16 +287,19 @@ export function OpenMultilangModal({
                               data-testid={`mode-select-${lang.code}`}
                               className="border border-line rounded-md px-2 py-1 text-sm text-ink-80 bg-white w-full"
                             >
-                              <option value="none">{MODE_LABELS.none}</option>
-                              <option value="manual">{MODE_LABELS.manual}</option>
+                              {/* Manual-owned languages can't be set back to 'none' (already owned). */}
+                              {!isManualOwned && <option value="none">{MODE_LABELS.none}</option>}
+                              <option value="manual">{isManualOwned ? 'Manuel (actuel)' : MODE_LABELS.manual}</option>
                               {!premium && <option value="standard">{MODE_LABELS.standard}</option>}
                               <option value="pro">{MODE_LABELS.pro}</option>
                             </select>
                           )}
                         </td>
                         <td className="py-2 text-right whitespace-nowrap">
-                          {purchased ? (
+                          {isAuto ? (
                             <span className="text-xs text-ink-40">—</span>
+                          ) : isManualOwned && mode === 'manual' ? (
+                            <span className="text-xs text-ink-40">déjà en manuel</span>
                           ) : !line ? (
                             <span className="text-ink-40">—</span>
                           ) : line.billing === 'manual' ? (
@@ -233,7 +309,9 @@ export function OpenMultilangModal({
                           ) : line.billing === 'pack_3' || line.billing === 'pack_all' ? (
                             <span className="text-grenadine">{line.billing === 'pack_all' ? 'Pack' : 'Pack 3'}</span>
                           ) : (
-                            <span className="text-ink-80 font-medium">{formatPrice(line.priceCents)}</span>
+                            <span className="text-ink-80 font-medium">
+                              {formatPrice(line.priceCents)}{isUpgrade && <span className="text-[10px] text-mer ml-1">upgrade</span>}
+                            </span>
                           )}
                         </td>
                       </tr>
@@ -280,7 +358,7 @@ export function OpenMultilangModal({
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-sm font-semibold text-ink">Total</span>
                   <span className="text-lg font-bold text-ink" data-testid="recap-total">
-                    {selectedCount === 0 ? '—' : order.totalCents === 0 ? 'Gratuit' : formatPrice(order.totalCents)}
+                    {chargeableCount === 0 ? '—' : order.totalCents === 0 ? 'Gratuit' : formatPrice(order.totalCents)}
                   </span>
                 </div>
 
@@ -293,9 +371,9 @@ export function OpenMultilangModal({
                 <button
                   type="button"
                   onClick={handleConfirm}
-                  disabled={selectedCount === 0 || isLoading}
+                  disabled={chargeableCount === 0 || isLoading}
                   className={`w-full rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
-                    selectedCount === 0 || isLoading
+                    chargeableCount === 0 || isLoading
                       ? 'bg-paper-deep text-ink-40 cursor-not-allowed'
                       : 'bg-grenadine text-white hover:opacity-90'
                   }`}
@@ -307,6 +385,49 @@ export function OpenMultilangModal({
             </aside>
           </div>
         </div>
+
+        {/* Overwrite / keep dialog for manual → auto upgrades with existing content */}
+        {pendingOverwrite && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 rounded-xl p-4" data-testid="overwrite-dialog">
+            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full p-5">
+              <h3 className="text-sm font-bold text-ink mb-2">Contenu manuel existant</h3>
+              <p className="text-sm text-ink-80 mb-1">
+                {pendingOverwrite.langs.map((l) => l.toUpperCase()).join(', ')} contien
+                {pendingOverwrite.langs.length > 1 ? 'nent' : 't'} déjà du texte traduit manuellement.
+              </p>
+              <p className="text-sm text-ink-60 mb-4">
+                Voulez-vous écraser ce contenu par la traduction automatique, ou le conserver
+                (l&apos;auto ne remplira que les scènes vides) ?
+              </p>
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => { setIsLoading(true); runConfirm(pendingOverwrite.paymentIntentId, true); }}
+                  className="w-full rounded-lg px-4 py-2 text-sm font-semibold bg-grenadine text-white hover:opacity-90"
+                  data-testid="overwrite-confirm"
+                >
+                  Écraser par la traduction auto
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setIsLoading(true); runConfirm(pendingOverwrite.paymentIntentId, false); }}
+                  className="w-full rounded-lg px-4 py-2 text-sm font-semibold border border-line text-ink-80 hover:bg-paper-soft"
+                  data-testid="overwrite-keep"
+                >
+                  Conserver mon contenu manuel
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPendingOverwrite(null)}
+                  className="w-full rounded-lg px-4 py-2 text-xs text-ink-40 hover:text-ink-60"
+                  data-testid="overwrite-cancel"
+                >
+                  Annuler
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

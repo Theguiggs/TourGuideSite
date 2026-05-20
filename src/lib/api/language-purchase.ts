@@ -410,6 +410,122 @@ export async function confirmLanguagePurchaseMixed(
   }
 }
 
+/** Upgrade one or more already-purchased MANUAL languages to auto (standard/pro).
+ *  Updates the existing TourLanguagePurchase in place (tier/provider/amount),
+ *  and — when overwriteContent is true — clears the language's segment text so
+ *  the batch translator regenerates everything. When false, existing manual
+ *  segments are preserved and the batch only fills empty scenes. */
+export async function upgradeLanguagesToAuto(
+  sessionId: string,
+  upgrades: Record<string, 'standard' | 'pro'>,
+  paymentIntentId: string,
+  overwriteContent: boolean,
+): Promise<Result<TourLanguagePurchase[]>> {
+  const { computeMixedOrder, effectiveTierFor } = await import('@/lib/multilang/language-pricing');
+  const langs = Object.keys(upgrades);
+  if (langs.length === 0) return { ok: true, value: [] };
+
+  // Price the upgrade as if buying these languages fresh in auto (manual was free).
+  const order = computeMixedOrder(upgrades, true);
+  const amountByLang = new Map(order.lines.map((l) => [l.language, l.priceCents]));
+
+  if (shouldUseStubs()) {
+    await new Promise((r) => setTimeout(r, 300));
+    const updated: TourLanguagePurchase[] = [];
+    for (const lang of langs) {
+      const key = `${sessionId}_${lang}`;
+      const existing = stubPurchases.get(key);
+      const tier = effectiveTierFor(lang, upgrades[lang]) as 'standard' | 'pro';
+      const next: TourLanguagePurchase = {
+        ...(existing ?? makeStubPurchase(sessionId, lang, tier)),
+        qualityTier: tier,
+        provider: tier === 'standard' ? 'marianmt' : 'deepl',
+        purchaseType: 'single',
+        amountCents: amountByLang.get(lang) ?? 0,
+        stripePaymentIntentId: paymentIntentId || null,
+        updatedAt: new Date().toISOString(),
+      };
+      stubPurchases.set(key, next);
+      updated.push(next);
+    }
+    return { ok: true, value: updated };
+  }
+
+  try {
+    const appsync = await import('@/lib/api/appsync-client');
+    const listResult = await appsync.listLanguagePurchasesBySession(sessionId);
+    const existing = listResult.ok ? (listResult.data as unknown as TourLanguagePurchase[]) : [];
+    const updated: TourLanguagePurchase[] = [];
+
+    for (const lang of langs) {
+      const purchase = existing.find((p) => p.language === lang && p.status === 'active');
+      if (!purchase) {
+        logger.warn(SERVICE_NAME, 'Upgrade target purchase not found', { lang });
+        continue;
+      }
+      const tier = effectiveTierFor(lang, upgrades[lang]) as 'standard' | 'pro';
+      const result = await appsync.updateLanguagePurchaseMutation(purchase.id, {
+        qualityTier: tier,
+        provider: tier === 'standard' ? 'marianmt' : 'deepl',
+        purchaseType: 'single',
+        amountCents: amountByLang.get(lang) ?? 0,
+        stripePaymentIntentId: paymentIntentId || undefined,
+      });
+      if (result.ok && result.data) updated.push(result.data as unknown as TourLanguagePurchase);
+    }
+
+    // Overwrite: clear existing segment text so the batch regenerates from scratch.
+    if (overwriteContent) {
+      try {
+        const { listStudioScenes, listSegmentsByScene, updateSceneSegment } = await import('./studio');
+        const scenes = await listStudioScenes(sessionId);
+        for (const scene of scenes) {
+          const segs = await listSegmentsByScene(scene.id);
+          for (const seg of segs) {
+            if (langs.includes(seg.language) && seg.transcriptText) {
+              await updateSceneSegment(seg.id, { transcriptText: null, audioKey: null, status: 'empty' });
+            }
+          }
+        }
+      } catch (clearErr) {
+        logger.warn(SERVICE_NAME, 'Failed to clear manual segments on upgrade (non-blocking)', { error: String(clearErr) });
+      }
+    }
+
+    return { ok: true, value: updated };
+  } catch (err) {
+    logger.error(SERVICE_NAME, 'upgradeLanguagesToAuto failed', { error: String(err) });
+    return { ok: false, error: { code: 2608, message: `Upgrade failed: ${String(err)}` } };
+  }
+}
+
+/** Returns the set of languages (among the given list) that have any
+ *  non-empty manual segment content in this session. Used to decide whether
+ *  to prompt overwrite/keep before an upgrade. */
+export async function languagesWithManualContent(
+  sessionId: string,
+  languages: string[],
+): Promise<string[]> {
+  if (languages.length === 0) return [];
+  if (shouldUseStubs()) return [];
+  try {
+    const { listStudioScenes, listSegmentsByScene } = await import('./studio');
+    const scenes = await listStudioScenes(sessionId);
+    const withContent = new Set<string>();
+    for (const scene of scenes) {
+      const segs = await listSegmentsByScene(scene.id);
+      for (const seg of segs) {
+        if (languages.includes(seg.language) && seg.transcriptText && seg.transcriptText.trim().length > 0) {
+          withContent.add(seg.language);
+        }
+      }
+    }
+    return [...withContent];
+  } catch {
+    return [];
+  }
+}
+
 export async function listLanguagePurchases(
   sessionId: string,
 ): Promise<Result<TourLanguagePurchase[]>> {
