@@ -729,28 +729,10 @@ export default function ScenesPage() {
   const translationState = useTranslationStore(selectSegmentTranslation(activeSegment?.id ?? ''));
   const ttsState = useTTSStore(selectSegmentTTS(activeSegment?.id ?? ''));
 
-  if (isLoading) {
-    return <div className="p-6" aria-busy="true"><div className="bg-paper-soft rounded-lg h-96 animate-pulse" /></div>;
-  }
-
-  if (error || !session) {
-    return (
-      <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine text-sm mb-4 inline-block">&larr; Retour</Link>
-        <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">{error || 'Introuvable.'}</div>
-      </div>
-    );
-  }
-
-  const isLocked = ['submitted', 'published', 'revision_requested'].includes(session.status);
-  const isBaseLangLocked = isLocked && (activeLanguageTab === session.language || !activeLanguageTab || languageTabItems.length <= 1);
-
-  // Lock translated language tab when submitted or approved
-  const activePurchase = purchases.find((p) => p.language === activeLanguageTab && p.status === 'active');
-  const isActiveLangLocked = !!(activePurchase && ['submitted', 'approved'].includes(activePurchase.moderationStatus));
-
   // Targeted auto-translation of the tour title and/or description for the
   // active language. `which` selects which field(s) to translate.
+  // NOTE: declared BEFORE the early returns below — Rules of Hooks require an
+  // unconditional, stable hook order across renders.
   const translateInfo = useCallback(async (which: 'title' | 'description' | 'both') => {
     const lang = activeLanguageTab;
     if (!session || !lang || lang === session.language) return;
@@ -831,6 +813,26 @@ export default function ScenesPage() {
       setTranslatingSceneIds((prev) => prev.filter((id) => id !== sceneId));
     }
   }, [activeLanguageTab, session, scenes, purchases, refreshLangSegments]);
+
+  if (isLoading) {
+    return <div className="p-6" aria-busy="true"><div className="bg-paper-soft rounded-lg h-96 animate-pulse" /></div>;
+  }
+
+  if (error || !session) {
+    return (
+      <div className="p-6">
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine text-sm mb-4 inline-block">&larr; Retour</Link>
+        <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">{error || 'Introuvable.'}</div>
+      </div>
+    );
+  }
+
+  const isLocked = ['submitted', 'published', 'revision_requested'].includes(session.status);
+  const isBaseLangLocked = isLocked && (activeLanguageTab === session.language || !activeLanguageTab || languageTabItems.length <= 1);
+
+  // Lock translated language tab when submitted or approved
+  const activePurchase = purchases.find((p) => p.language === activeLanguageTab && p.status === 'active');
+  const isActiveLangLocked = !!(activePurchase && ['submitted', 'approved'].includes(activePurchase.moderationStatus));
 
   // Translation tab removed — translation is now handled via language tabs (ML-4 refonte)
   const tabs = [
