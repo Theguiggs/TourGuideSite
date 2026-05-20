@@ -1,13 +1,16 @@
 /**
  * Staleness Detection — pure functions for detecting stale translations.
  *
- * A segment is "stale" when the source scene was modified after the segment
- * was last translated (i.e. sourceScene.updatedAt > segment.sourceUpdatedAt).
+ * A segment is "stale" when the source scene's TEXT changed after the segment
+ * was last translated, detected by comparing source-text hashes. A scene's
+ * updatedAt also bumps on non-text edits (GPS, photos, audio), so the old
+ * date comparison produced false positives and has been removed.
  *
  * All functions are pure — no side effects, no backend calls.
  */
 
 import type { SceneSegment, StudioScene } from '@/types/studio';
+import { hashSourceText } from '@/types/studio';
 
 // --- Types ---
 
@@ -22,12 +25,14 @@ export interface StaleSegmentInfo {
 /**
  * Returns true if the segment's translation is stale relative to the source scene.
  *
- * - If `segment.sourceUpdatedAt` is null, the segment was never translated → not stale.
- * - Otherwise, stale when the source scene was updated after the translation snapshot.
+ * Content-based: stale only when the source TEXT hash differs from the one
+ * captured at translation time. When `sourceTextHash` is absent (legacy segment
+ * or field not loaded by an out-of-date client), the segment is treated as NOT
+ * stale rather than guessed from dates.
  */
 export function isSegmentStale(segment: SceneSegment, sourceScene: StudioScene): boolean {
-  if (!segment.sourceUpdatedAt) return false;
-  return new Date(sourceScene.updatedAt) > new Date(segment.sourceUpdatedAt);
+  if (segment.sourceTextHash == null) return false;
+  return segment.sourceTextHash !== hashSourceText(sourceScene.transcriptText, sourceScene.title);
 }
 
 /**
