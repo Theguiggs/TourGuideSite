@@ -1011,11 +1011,23 @@ export default function ScenesPage() {
             completedSceneIds={langCompletedSceneIds}
             segments={langSegments}
             sessionId={sessionId}
-            onRetryScene={isActiveLangLocked ? undefined : (sceneId) => logger.info(SERVICE_NAME, 'Retry scene', { sceneId, lang: activeLanguageTab })}
-            onResumeBatch={isActiveLangLocked ? undefined : () => logger.info(SERVICE_NAME, 'Resume batch', { lang: activeLanguageTab })}
+            onRetryScene={isActiveLangLocked ? undefined : handleTranslateScene}
+            onResumeBatch={isActiveLangLocked ? undefined : async () => {
+              // Translate every scene that has no segment text yet for this language.
+              const active = scenes.filter((s) => !s.archived);
+              const missing = active.filter((s) => {
+                const seg = langSegments.find((x) => x.sceneId === s.id && x.language === activeLanguageTab);
+                return !seg || !seg.transcriptText;
+              });
+              for (const s of missing) await handleTranslateScene(s.id);
+            }}
             hasMissingScenes={langSegments.length < scenes.filter((s) => !s.archived).length}
             onSceneClick={(sceneId) => { logger.info(SERVICE_NAME, 'Scene click', { sceneId, lang: activeLanguageTab }); }}
-            onRetranslateStale={isActiveLangLocked ? undefined : (sceneIds) => logger.info(SERVICE_NAME, 'Retranslate stale', { lang: activeLanguageTab, sceneIds })}
+            onRetranslateStale={isActiveLangLocked ? undefined : async (sceneIds) => {
+              // Retranslate each flagged scene (translate + TTS + save). Reuses
+              // the per-scene handler so the spinner + hash refresh apply.
+              for (const id of sceneIds) await handleTranslateScene(id);
+            }}
             onGenerateMissingAudio={isActiveLangLocked ? undefined : async () => {
               logger.info(SERVICE_NAME, 'Generate missing audio', { lang: activeLanguageTab });
               const activeScenes = scenes.filter((s) => !s.archived);
