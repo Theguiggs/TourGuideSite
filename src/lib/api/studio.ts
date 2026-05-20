@@ -1179,7 +1179,7 @@ export async function createSceneSegment(
 
 export async function updateSceneSegment(
   segmentId: string,
-  updates: Partial<Pick<SceneSegment, 'transcriptText' | 'translatedTitle' | 'audioKey' | 'status' | 'translationProvider' | 'costProvider' | 'costCharged' | 'ttsGenerated' | 'language' | 'sourceUpdatedAt' | 'manuallyEdited' | 'audioSource'>>,
+  updates: Partial<Pick<SceneSegment, 'transcriptText' | 'translatedTitle' | 'audioKey' | 'status' | 'translationProvider' | 'costProvider' | 'costCharged' | 'ttsGenerated' | 'language' | 'sourceUpdatedAt' | 'sourceTextHash' | 'manuallyEdited' | 'audioSource'>>,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   if (shouldUseStubs()) {
     let seg = stubSegments.find((s) => s.id === segmentId);

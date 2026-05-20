@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useCallback } from 'react';
 import type { StudioScene, SceneSegment } from '@/types/studio';
+import { hashSourceText } from '@/types/studio';
 import { useLanguageBatchStore } from '@/lib/stores/language-batch-store';
 import type { FailedSceneEntry, BatchProgress } from '@/lib/stores/language-batch-store';
 import { SceneRetryCard } from './scene-retry-card';
@@ -49,6 +50,14 @@ export interface LanguageSceneListProps {
 // --- Staleness detection ---
 
 export function isSegmentStale(segment: SceneSegment, sourceScene: StudioScene): boolean {
+  // Content-based detection (preferred): the translation is stale only when the
+  // SOURCE TEXT changed — not when the scene's updatedAt bumped for a GPS/photo
+  // edit. Compare the stored source-text hash to the current one.
+  if (segment.sourceTextHash != null) {
+    return segment.sourceTextHash !== hashSourceText(sourceScene.transcriptText, sourceScene.title);
+  }
+  // Legacy fallback (segments translated before sourceTextHash existed):
+  // coarse date comparison.
   if (!segment.sourceUpdatedAt) return false;
   return new Date(sourceScene.updatedAt) > new Date(segment.sourceUpdatedAt);
 }

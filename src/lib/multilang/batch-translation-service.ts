@@ -1,4 +1,5 @@
 import type { StudioScene, QualityTier, TranslationProvider, SceneSegment } from '@/types/studio';
+import { hashSourceText } from '@/types/studio';
 import { requestTranslation, getTranslationStatus } from '@/lib/api/translation';
 import type { TranslationResult } from '@/lib/api/translation';
 import { requestTTS, getTTSStatus } from '@/lib/api/tts';
@@ -394,6 +395,7 @@ export async function executeBatch(
           transcriptText: translatedText,
           audioKey: audioKeyToStore,
           sourceUpdatedAt,
+          sourceTextHash: hashSourceText(scene.transcriptText, scene.title),
           language: lang.code,
           translationProvider: translationResult.provider,
           status: 'tts_generated',
@@ -525,6 +527,7 @@ export async function retryScene(
       transcriptText: translatedText,
       audioKey: ttsResult.audioKey,
       sourceUpdatedAt,
+      sourceTextHash: hashSourceText(scene.transcriptText, scene.title),
       language: lang,
       translationProvider: translationResult.provider,
       status: 'tts_generated',

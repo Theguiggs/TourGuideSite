@@ -1294,6 +1294,13 @@
               "isRequired": false,
               "attributes": []
             },
+            "sourceTextHash": {
+              "name": "sourceTextHash",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
             "scene": {
               "name": "scene",
               "isArray": false,
