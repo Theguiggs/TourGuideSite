@@ -18,6 +18,26 @@ function splitIntoSentences(text: string): string[] {
   return parts.map((s) => s.trim()).filter(Boolean);
 }
 
+// SSML <break .../> tags are markup, not translatable content — MarianMT would
+// drop them. We split the source on break tags, translate only the text blocks,
+// then reassemble with the tags preserved at their original positions.
+const BREAK_TAG_RE = /<break\b[^>]*?\/?>/gi;
+
+interface TextToken { type: 'text' | 'break'; content: string }
+
+function tokenizeWithBreaks(text: string): TextToken[] {
+  const tokens: TextToken[] = [];
+  let last = 0;
+  for (const m of text.matchAll(BREAK_TAG_RE)) {
+    const idx = m.index ?? 0;
+    if (idx > last) tokens.push({ type: 'text', content: text.slice(last, idx) });
+    tokens.push({ type: 'break', content: m[0] });
+    last = idx + m[0].length;
+  }
+  if (last < text.length) tokens.push({ type: 'text', content: text.slice(last) });
+  return tokens;
+}
+
 // --- Types ---
 
 export interface TranslationResult {
@@ -194,15 +214,24 @@ export async function requestTranslation(
   // Real mode: route to microservice or Lambda based on provider
   try {
     if (provider === 'marianmt') {
-      // MarianMT works best sentence-by-sentence (quality), but calling the
-      // microservice once per sentence is painfully slow on CPU (~16s each).
-      // Send all sentences in ONE batched request — one tokenization + one
-      // model.generate over the batch — which is ~8x faster.
-      const sentences = splitIntoSentences(text);
+      // Preserve SSML <break/> tags: translate only text blocks, keep tags in place.
+      // All sentences across all text blocks go in ONE batched request (~8x faster
+      // than one call per sentence on CPU).
+      const tokens = tokenizeWithBreaks(text);
+      const sentencesPerToken: string[][] = tokens.map((tok) =>
+        tok.type === 'break' ? [] : splitIntoSentences(tok.content.trim()).filter(Boolean),
+      );
+      const flat: string[] = sentencesPerToken.flat();
+
+      // No translatable text (e.g. only break tags) → return source unchanged.
+      if (flat.length === 0) {
+        return { jobId: `trans-${Date.now()}-${segmentId}`, status: 'completed', translatedText: text, provider, costProvider: 0, costCharged: 0 };
+      }
+
       const response = await fetch(`${getMicroserviceUrl()}/v1/translate/batch`, {
         method: 'POST',
         headers: getMicroserviceHeaders(),
-        body: JSON.stringify({ texts: sentences, source_lang: sourceLang, target_lang: targetLang }),
+        body: JSON.stringify({ texts: flat, source_lang: sourceLang, target_lang: targetLang }),
       });
 
       if (response.status === 503) {
@@ -221,10 +250,25 @@ export async function requestTranslation(
         };
       }
 
+      // Re-interleave translated text blocks with the preserved break tags.
+      const translations = data.translations as string[];
+      let cursor = 0;
+      const pieces: string[] = [];
+      tokens.forEach((tok, i) => {
+        if (tok.type === 'break') {
+          pieces.push(tok.content);
+          return;
+        }
+        const n = sentencesPerToken[i].length;
+        const joined = translations.slice(cursor, cursor + n).join(' ').trim();
+        cursor += n;
+        if (joined) pieces.push(joined);
+      });
+
       return {
         jobId: `trans-${Date.now()}-${segmentId}`,
         status: 'completed',
-        translatedText: (data.translations as string[]).join(' '),
+        translatedText: pieces.join('\n\n'),
         provider,
         costProvider: 0,
         costCharged: 0,
