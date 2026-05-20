@@ -50,16 +50,17 @@ export interface LanguageSceneListProps {
 // --- Staleness detection ---
 
 export function isSegmentStale(segment: SceneSegment, sourceScene: StudioScene): boolean {
-  // Content-based detection (preferred): the translation is stale only when the
-  // SOURCE TEXT changed — not when the scene's updatedAt bumped for a GPS/photo
-  // edit. Compare the stored source-text hash to the current one.
-  if (segment.sourceTextHash != null) {
-    return segment.sourceTextHash !== hashSourceText(sourceScene.transcriptText, sourceScene.title);
-  }
-  // Legacy fallback (segments translated before sourceTextHash existed):
-  // coarse date comparison.
-  if (!segment.sourceUpdatedAt) return false;
-  return new Date(sourceScene.updatedAt) > new Date(segment.sourceUpdatedAt);
+  // Content-based detection only: the translation is stale solely when the
+  // SOURCE TEXT changed. A scene's updatedAt also bumps on non-text edits
+  // (GPS move, photo, audio), so the old date comparison produced false
+  // positives — it has been removed entirely.
+  //
+  // When sourceTextHash is absent (legacy segment, or the field isn't loaded
+  // by an out-of-date client bundle), we treat the segment as NOT stale rather
+  // than guessing from dates. The guide can still retranslate manually, and a
+  // fresh translation backfills the hash.
+  if (segment.sourceTextHash == null) return false;
+  return segment.sourceTextHash !== hashSourceText(sourceScene.transcriptText, sourceScene.title);
 }
 
 // --- Compute scene language status ---

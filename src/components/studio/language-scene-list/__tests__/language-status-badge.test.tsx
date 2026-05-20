@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { LanguageStatusBadge, type SceneLanguageStatus } from '../language-status-badge';
 import { LanguageSceneList, computeSceneLanguageStatus, sortScenesByStatus } from '../language-scene-list';
 import type { StudioScene, SceneSegment } from '@/types/studio';
+import { hashSourceText } from '@/types/studio';
 import type { BatchProgress, FailedSceneEntry } from '@/lib/stores/language-batch-store';
 
 // --- Mock the batch store ---
@@ -184,10 +185,22 @@ describe('computeSceneLanguageStatus', () => {
     expect(computeSceneLanguageStatus(scene, segment, null)).toBe('pending');
   });
 
-  it('returns stale when source was updated after segment', () => {
-    const scene = makeScene({ updatedAt: '2026-02-01T00:00:00Z' });
-    const segment = makeSegment({ sourceUpdatedAt: '2026-01-15T00:00:00Z' });
+  it('returns stale when the source TEXT changed (hash mismatch)', () => {
+    // Stored hash no longer matches the current source text → stale.
+    const scene = makeScene({ transcriptText: 'Texte source modifié' });
+    const segment = makeSegment({ sourceTextHash: 'staleHash000', transcriptText: 'old' });
     expect(computeSceneLanguageStatus(scene, segment, null)).toBe('stale');
+  });
+
+  it('returns NOT stale on a non-text edit when hash still matches', () => {
+    // updatedAt bumped (e.g. GPS move) but source text unchanged → not stale.
+    const scene = makeScene({ transcriptText: 'Texte', updatedAt: '2026-12-01T00:00:00Z' });
+    const segment = makeSegment({
+      sourceTextHash: hashSourceText(scene.transcriptText, scene.title),
+      audioKey: 'guide-studio/test/audio.mp3',
+      transcriptText: 'trad',
+    });
+    expect(computeSceneLanguageStatus(scene, segment, null)).toBe('ok');
   });
 
   it('returns ok when segment has text and audio', () => {
@@ -285,8 +298,8 @@ describe('LanguageSceneList', () => {
       makeScene({ id: 's2', updatedAt: '2026-03-01T00:00:00Z' }),
     ];
     const segments = [
-      makeSegment({ id: 'seg-s1', sceneId: 's1', language: 'en', sourceUpdatedAt: '2026-01-01T00:00:00Z', transcriptText: 'old' }),
-      makeSegment({ id: 'seg-s2', sceneId: 's2', language: 'en', sourceUpdatedAt: '2026-01-01T00:00:00Z', transcriptText: 'old' }),
+      makeSegment({ id: 'seg-s1', sceneId: 's1', language: 'en', sourceTextHash: 'staleHash1', transcriptText: 'old' }),
+      makeSegment({ id: 'seg-s2', sceneId: 's2', language: 'en', sourceTextHash: 'staleHash2', transcriptText: 'old' }),
     ];
 
     render(<LanguageSceneList {...defaultProps} scenes={scenes} segments={segments} />);
