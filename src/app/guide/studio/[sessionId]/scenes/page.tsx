@@ -1036,7 +1036,12 @@ export default function ScenesPage() {
               setBatchMessage(`Traduction terminée ! ${done} scènes traduites.`);
               setTimeout(() => setBatchMessage(null), 5000);
             }}
-            hasMissingScenes={langSegments.length < scenes.filter((s) => !s.archived).length}
+            hasMissingScenes={scenes.filter((s) => !s.archived).some((s) => {
+              // "Missing" means no TRANSLATED TEXT yet — empty placeholder segments
+              // still count as missing (they exist but have no transcriptText).
+              const seg = langSegments.find((x) => x.sceneId === s.id && x.language === activeLanguageTab);
+              return !seg || !seg.transcriptText;
+            })}
             onSceneClick={(sceneId) => { logger.info(SERVICE_NAME, 'Scene click', { sceneId, lang: activeLanguageTab }); }}
             onRetranslateStale={isActiveLangLocked ? undefined : async (sceneIds) => {
               // Retranslate each flagged scene (translate + TTS + save). Reuses
