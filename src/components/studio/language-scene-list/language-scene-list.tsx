@@ -39,6 +39,10 @@ export interface LanguageSceneListProps {
   onFullPreview?: () => void;
   onSubmitLanguage?: () => void;
   onRequestAutoTranslation?: (lang: string) => void;
+  /** Targeted auto-translation of a single scene (translate + TTS). */
+  onTranslateScene?: (sceneId: string) => void;
+  /** Scene IDs currently being translated (for per-scene spinner). */
+  translatingSceneIds?: string[];
   isAutoTranslated?: boolean;
 }
 
@@ -159,6 +163,8 @@ export function LanguageSceneList({
   onFullPreview,
   onSubmitLanguage,
   onRequestAutoTranslation,
+  onTranslateScene,
+  translatingSceneIds = [],
   isAutoTranslated = false,
 }: LanguageSceneListProps) {
   // Use primitive state + useMemo to avoid infinite loop (array selectors)
@@ -378,7 +384,20 @@ export function LanguageSceneList({
                 })()}
               </span>
             </div>
-            <LanguageStatusBadge status={languageStatus} />
+            <div className="flex items-center gap-2 shrink-0">
+              {onTranslateScene && languageStatus !== 'ok' && languageStatus !== 'processing' && (
+                <button
+                  type="button"
+                  data-testid={`translate-scene-${scene.id}`}
+                  onClick={(e) => { e.stopPropagation(); onTranslateScene(scene.id); }}
+                  disabled={translatingSceneIds.includes(scene.id)}
+                  className="text-xs font-medium text-mer hover:opacity-80 disabled:text-ink-40 px-2 py-1 border border-mer-soft rounded-md hover:bg-mer-soft disabled:border-line"
+                >
+                  {translatingSceneIds.includes(scene.id) ? 'Traduction...' : '⇄ Traduire'}
+                </button>
+              )}
+              <LanguageStatusBadge status={languageStatus} />
+            </div>
           </div>
         );
       })}

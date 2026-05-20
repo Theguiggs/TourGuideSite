@@ -292,8 +292,10 @@ export async function updateGuideTourMutation(
     const client = getClient();
     // Cast to allow enriched fields (descriptionLongue, themes, etc.) that will be
     // added to the Amplify schema in a future deployment. In stub mode this is unused.
+    // translatedDescriptions is AWSJSON → must be a JSON string on the wire.
+    const safeUpdates = serializeJsonFields(updates, ['translatedDescriptions']);
     const result = await client.models.GuideTour.update(
-      { id, ...updates } as Parameters<typeof client.models.GuideTour.update>[0],
+      { id, ...safeUpdates } as Parameters<typeof client.models.GuideTour.update>[0],
       { authMode: 'userPool' },
     );
     return { ok: true as const, data: result.data };
@@ -494,12 +496,28 @@ export async function createStudioSessionMutation(data: {
   }
 }
 
+/** AWSJSON (a.json()) fields must be sent as a JSON *string* on the wire — the
+ *  Amplify client does not auto-serialize nested objects, and AppSync rejects
+ *  them with "Variable has an invalid value". Stringify defensively if a caller
+ *  passed an object. Idempotent: strings/null pass through untouched. */
+const STUDIO_SESSION_JSON_FIELDS = ['translatedTitles', 'translatedDescriptions', 'routePathJson'];
+function serializeJsonFields(updates: Record<string, unknown>, fields: string[]): Record<string, unknown> {
+  const out = { ...updates };
+  for (const f of fields) {
+    if (f in out && out[f] != null && typeof out[f] !== 'string') {
+      out[f] = JSON.stringify(out[f]);
+    }
+  }
+  return out;
+}
+
 /** @param updates Unvalidated — callers must ensure keys match schema fields */
 export async function updateStudioSessionMutation(id: string, updates: Record<string, unknown>) {
   try {
     const client = getClient();
+    const safeUpdates = serializeJsonFields(updates, STUDIO_SESSION_JSON_FIELDS);
     const result = await client.models.StudioSession.update(
-      { id, ...updates } as Parameters<typeof client.models.StudioSession.update>[0],
+      { id, ...safeUpdates } as Parameters<typeof client.models.StudioSession.update>[0],
       { authMode: 'userPool' },
     );
     // Amplify returns ok=true but populates result.errors when the server

@@ -31,7 +31,7 @@ import { LanguageTabs } from '@/components/studio/language-tabs';
 import type { LanguageTabItem } from '@/components/studio/language-tabs';
 import { useLanguagePurchaseStore } from '@/lib/stores/language-purchase-store';
 import { useLanguageBatchStore, selectBatchProgress } from '@/lib/stores/language-batch-store';
-import { tg } from '@tourguide/design-system';
+import { tg } from '@murmure/design-system';
 import { LANG_TO_COUNTRY, LANGUAGE_CONFIG } from '@/components/studio/language-checkout/language-checkbox-card';
 import { TTSControls } from '@/components/studio/tts-controls';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
@@ -140,6 +140,7 @@ export default function ScenesPage() {
   // Cache completed counts per language (survives tab switches)
   const completedCountCache = useRef<Record<string, number>>({});
   const [batchMessage, setBatchMessage] = useState<string | null>(null);
+  const [bulkTTSProgress, setBulkTTSProgress] = useState<{ current: number; total: number } | null>(null);
   // selectedLangSceneId removed — V2: all scenes shown inline
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
@@ -636,15 +637,89 @@ export default function ScenesPage() {
   }, [quota, guideId, setSceneStatus, startPolling, setQuota]);
 
   // Helper: select an audio source for the POI with visual feedback
-  const selectAudioSource = useCallback((sceneId: string, audioKey: string, sourceLabel: string) => {
+  const selectAudioSource = useCallback((
+    sceneId: string,
+    audioKey: string,
+    sourceLabel: string,
+    sceneIndex: number,
+  ) => {
     setScenes((prev) => prev.map((s) =>
-      s.id === sceneId ? { ...s, studioAudioKey: audioKey, status: 'recorded' as const, updatedAt: new Date().toISOString() } : s
+      s.id === sceneId ? { ...s, studioAudioKey: audioKey, status: 'recorded' as const, updatedAt: new Date().toISOString() } : s,
     ));
-    updateSceneAudio(sceneId, audioKey, sessionId);
+    updateSceneAudio(sceneId, audioKey, sessionId, sceneIndex);
     setAudioSaveToast(sourceLabel);
     setTimeout(() => setAudioSaveToast(null), 3000);
-    logger.info(SERVICE_NAME, 'Audio source selected', { sceneId, source: sourceLabel });
-  }, []);
+    logger.info(SERVICE_NAME, 'Audio source selected', { sceneId, source: sourceLabel, sceneIndex });
+  }, [sessionId]);
+
+  // All non-archived scenes that have a transcript — candidates for bulk TTS.
+  // Includes scenes that already have audio (V2 workflow: regenerate after text edits).
+  const scenesPendingTTS = useMemo(
+    () => scenes
+      .filter((s) => !s.archived)
+      .filter((s) => (s.transcriptText ?? '').trim().length > 0),
+    [scenes],
+  );
+
+  // Split for clearer messaging.
+  const scenesWithoutAudio = useMemo(
+    () => scenesPendingTTS.filter((s) => !s.studioAudioKey),
+    [scenesPendingTTS],
+  );
+  const scenesToOverwrite = scenesPendingTTS.length - scenesWithoutAudio.length;
+
+  const handleBulkGenerateTTS = useCallback(async () => {
+    if (!session || bulkTTSProgress || scenesPendingTTS.length === 0) return;
+    const newCount = scenesWithoutAudio.length;
+    const overwriteCount = scenesPendingTTS.length - newCount;
+    const parts: string[] = [];
+    if (newCount > 0) parts.push(`${newCount} sans audio`);
+    if (overwriteCount > 0) parts.push(`${overwriteCount} à écraser`);
+    const confirmed = window.confirm(
+      `Générer le TTS pour ${scenesPendingTTS.length} scène${scenesPendingTTS.length > 1 ? 's' : ''} (${parts.join(' + ')}) ?\n\n` +
+      (overwriteCount > 0 ? `⚠️ L'audio existant de ${overwriteCount} scène${overwriteCount > 1 ? 's' : ''} sera remplacé.\n\n` : '') +
+      'Cela peut prendre quelques minutes.',
+    );
+    if (!confirmed) return;
+
+    setBulkTTSProgress({ current: 0, total: scenesPendingTTS.length });
+    let failures = 0;
+    for (let i = 0; i < scenesPendingTTS.length; i++) {
+      const scene = scenesPendingTTS[i];
+      setBulkTTSProgress({ current: i + 1, total: scenesPendingTTS.length });
+      try {
+        const segmentId = `implicit-${scene.id}`;
+        const text = scene.transcriptText ?? '';
+        const result = await requestTTS(segmentId, text, session.language);
+        let audioKey: string | null = null;
+        if (result.status === 'completed') {
+          audioKey = result.audioKey ?? null;
+        } else if (result.status === 'processing' && result.jobId) {
+          for (let j = 0; j < 30; j++) {
+            await new Promise((r) => setTimeout(r, 1000));
+            const status = await getTTSStatus(result.jobId);
+            if (status?.status === 'completed' && status.audioKey) {
+              audioKey = status.audioKey;
+              break;
+            }
+            if (status?.status === 'failed') break;
+          }
+        }
+        if (audioKey) {
+          selectAudioSource(scene.id, audioKey, `TTS ${session.language.toUpperCase()}`, scene.sceneIndex);
+        } else {
+          failures++;
+        }
+      } catch (e) {
+        logger.error(SERVICE_NAME, 'Bulk TTS failed for scene', { sceneId: scene.id, error: String(e) });
+        failures++;
+      }
+    }
+    setBulkTTSProgress(null);
+    const success = scenesPendingTTS.length - failures;
+    setBatchMessage(`Génération TTS terminée — ${success} réussie${success > 1 ? 's' : ''}${failures > 0 ? `, ${failures} échec${failures > 1 ? 's' : ''}` : ''}.`);
+    setTimeout(() => setBatchMessage(null), 5000);
+  }, [scenesPendingTTS, scenesWithoutAudio, session, bulkTTSProgress, selectAudioSource]);
 
   // Build implicit segments for active scene (legacy compat)
   const activeSegments: SceneSegment[] = activeScene ? getSceneSegments(activeScene, []) : [];
@@ -673,6 +748,89 @@ export default function ScenesPage() {
   // Lock translated language tab when submitted or approved
   const activePurchase = purchases.find((p) => p.language === activeLanguageTab && p.status === 'active');
   const isActiveLangLocked = !!(activePurchase && ['submitted', 'approved'].includes(activePurchase.moderationStatus));
+
+  // Targeted auto-translation of the tour title and/or description for the
+  // active language. `which` selects which field(s) to translate.
+  const translateInfo = useCallback(async (which: 'title' | 'description' | 'both') => {
+    const lang = activeLanguageTab;
+    if (!session || !lang || lang === session.language) return;
+    const purchase = purchases.find((p) => p.language === lang && p.status === 'active');
+    const tier = (purchase?.qualityTier as 'standard' | 'pro') ?? 'standard';
+    const { requestTranslation, getTranslationStatus } = await import('@/lib/api/translation');
+
+    const translateText = async (id: string, text: string): Promise<string | null> => {
+      if (!text) return null;
+      try {
+        let result = await requestTranslation(id, text, session.language ?? 'fr', lang, tier);
+        let attempts = 0;
+        while ((result.status === 'processing' || result.status === 'pending') && attempts < 60) {
+          await new Promise((r) => setTimeout(r, 1000));
+          const check = await getTranslationStatus(result.jobId);
+          if (check) result = check;
+          attempts++;
+        }
+        return result.status === 'completed' ? result.translatedText : null;
+      } catch (err) {
+        logger.error(SERVICE_NAME, 'translateInfo text failed', { id, error: String(err) });
+        return null;
+      }
+    };
+
+    const doTitle = which === 'title' || which === 'both';
+    const doDesc = which === 'description' || which === 'both';
+    const [newTitle, newDesc] = await Promise.all([
+      doTitle ? translateText(`session-title-${sessionId}-${lang}`, session.title ?? '') : Promise.resolve(null),
+      doDesc ? translateText(`session-desc-${sessionId}-${lang}`, tourDescription) : Promise.resolve(null),
+    ]);
+
+    if (doTitle && !newTitle && doDesc && !newDesc) {
+      throw new Error('Traduction echouee — verifiez que le microservice tourne sur localhost:8000');
+    }
+    if (which === 'title' && !newTitle) throw new Error('Traduction du titre echouee');
+    if (which === 'description' && !newDesc) throw new Error('Traduction de la description echouee');
+
+    const updatedTitles = { ...(session.translatedTitles ?? {}), ...(newTitle ? { [lang]: newTitle } : {}) };
+    const updatedDescs = { ...(session.translatedDescriptions ?? {}), ...(newDesc ? { [lang]: newDesc } : {}) };
+    const { updateStudioSessionMutation, getGuideTourById, updateGuideTourMutation } = await import('@/lib/api/appsync-client');
+    await updateStudioSessionMutation(sessionId, {
+      translatedTitles: updatedTitles,
+      translatedDescriptions: updatedDescs,
+    });
+    if (session.tourId && newDesc) {
+      try {
+        const tour = await getGuideTourById(session.tourId);
+        const existing = (tour as unknown as Record<string, unknown>)?.translatedDescriptions ?? {};
+        await updateGuideTourMutation(session.tourId, {
+          translatedDescriptions: { ...(typeof existing === 'object' ? existing : {}), [lang]: newDesc },
+        });
+      } catch { /* non-fatal */ }
+    }
+    setSession((prev) => prev ? { ...prev, translatedTitles: updatedTitles, translatedDescriptions: updatedDescs } : prev);
+  }, [activeLanguageTab, session, purchases, tourDescription, sessionId]);
+
+  // Targeted auto-translation of a single scene (translate + TTS + save).
+  const [translatingSceneIds, setTranslatingSceneIds] = useState<string[]>([]);
+  const handleTranslateScene = useCallback(async (sceneId: string) => {
+    const lang = activeLanguageTab;
+    if (!session || !lang || lang === session.language) return;
+    const scene = scenes.find((s) => s.id === sceneId);
+    if (!scene) return;
+    const purchase = purchases.find((p) => p.language === lang && p.status === 'active');
+    const tier = (purchase?.qualityTier as 'standard' | 'pro') ?? 'standard';
+    setTranslatingSceneIds((prev) => [...prev, sceneId]);
+    try {
+      const { retryScene } = await import('@/lib/multilang/batch-translation-service');
+      const result = await retryScene(scene, lang, tier, session.language ?? 'fr');
+      if (!result.ok) {
+        logger.error(SERVICE_NAME, 'Scene translation failed', { sceneId, lang, code: result.errorCode });
+      }
+      await refreshLangSegments();
+    } catch (err) {
+      logger.error(SERVICE_NAME, 'handleTranslateScene threw', { sceneId, error: String(err) });
+    } finally {
+      setTranslatingSceneIds((prev) => prev.filter((id) => id !== sceneId));
+    }
+  }, [activeLanguageTab, session, scenes, purchases, refreshLangSegments]);
 
   // Translation tab removed — translation is now handled via language tabs (ML-4 refonte)
   const tabs = [
@@ -765,78 +923,9 @@ export default function ScenesPage() {
               const result = await updateStudioSessionMutation(sessionId, { translatedDescriptions: updated });
               if (!result.ok) logger.error(SERVICE_NAME, 'Failed to save translated description', { lang, error: result.error });
             }}
-            onRequestTranslation={isActiveLangLocked ? undefined : async () => {
-              const lang = activeLanguageTab;
-              const purchase = purchases.find((p) => p.language === lang && p.status === 'active');
-              const tier = (purchase?.qualityTier as 'standard' | 'pro') ?? 'standard';
-              const { requestTranslation, getTranslationStatus } = await import('@/lib/api/translation');
-
-              console.log('[TourInfoTranslation] Starting translation', { lang, tier, title: session.title, descLength: tourDescription.length });
-
-              // Helper: translate one text, handle polling if needed
-              const translateText = async (id: string, text: string): Promise<string | null> => {
-                if (!text) return null;
-                try {
-                  let result = await requestTranslation(id, text, session.language ?? 'fr', lang, tier);
-                  console.log('[TourInfoTranslation] requestTranslation result', { id, status: result.status, hasText: !!result.translatedText });
-                  // Poll if still processing (stub mode)
-                  let attempts = 0;
-                  while ((result.status === 'processing' || result.status === 'pending') && attempts < 30) {
-                    await new Promise((r) => setTimeout(r, 1000));
-                    const check = await getTranslationStatus(result.jobId);
-                    if (check) result = check;
-                    attempts++;
-                  }
-                  if (result.status !== 'completed') {
-                    console.error('[TourInfoTranslation] Translation failed', { id, status: result.status });
-                  }
-                  return result.status === 'completed' ? result.translatedText : null;
-                } catch (err) {
-                  console.error('[TourInfoTranslation] Translation threw', { id, error: String(err) });
-                  return null;
-                }
-              };
-
-              // Translate title + description in parallel
-              const [newTitle, newDesc] = await Promise.all([
-                translateText(`session-title-${sessionId}-${lang}`, session.title ?? ''),
-                translateText(`session-desc-${sessionId}-${lang}`, tourDescription),
-              ]);
-
-              console.log('[TourInfoTranslation] Translation results', { lang, newTitle: newTitle?.substring(0, 50), newDesc: newDesc?.substring(0, 50) });
-
-              if (!newTitle && !newDesc) {
-                throw new Error('Traduction echouee — verifiez que le microservice tourne sur localhost:8000');
-              }
-
-              // Save to StudioSession
-              const updatedTitles = { ...(session.translatedTitles ?? {}), ...(newTitle ? { [lang]: newTitle } : {}) };
-              const updatedDescs = { ...(session.translatedDescriptions ?? {}), ...(newDesc ? { [lang]: newDesc } : {}) };
-              const { updateStudioSessionMutation, getGuideTourById, updateGuideTourMutation } = await import('@/lib/api/appsync-client');
-              const saveResult = await updateStudioSessionMutation(sessionId, {
-                translatedTitles: updatedTitles,
-                translatedDescriptions: updatedDescs,
-              });
-              console.log('[TourInfoTranslation] Save result', { ok: saveResult.ok });
-
-              // Also sync to GuideTour
-              if (session.tourId && newDesc) {
-                try {
-                  const tour = await getGuideTourById(session.tourId);
-                  const existing = (tour as Record<string, unknown>)?.translatedDescriptions ?? {};
-                  await updateGuideTourMutation(session.tourId, {
-                    translatedDescriptions: { ...(typeof existing === 'object' ? existing : {}), [lang]: newDesc },
-                  });
-                } catch { /* non-fatal */ }
-              }
-
-              // Update local React state so UI refreshes immediately
-              setSession((prev) => prev ? {
-                ...prev,
-                translatedTitles: updatedTitles,
-                translatedDescriptions: updatedDescs,
-              } : prev);
-            }}
+            onRequestTranslation={isActiveLangLocked ? undefined : () => translateInfo('both')}
+            onTranslateTitle={isActiveLangLocked ? undefined : () => translateInfo('title')}
+            onTranslateDescription={isActiveLangLocked ? undefined : () => translateInfo('description')}
           />
           {/* Staleness alert — hidden when language is locked (submitted/approved) */}
           {!isActiveLangLocked && (() => {
@@ -957,6 +1046,8 @@ export default function ScenesPage() {
             onListenPreview={() => { alert('Fonctionnalite a venir'); }}
             onFullPreview={() => { alert('Fonctionnalite a venir'); }}
             onSubmitLanguage={() => logger.info(SERVICE_NAME, 'Submit language', { lang: activeLanguageTab })}
+            onTranslateScene={isActiveLangLocked ? undefined : handleTranslateScene}
+            translatingSceneIds={translatingSceneIds}
           />
 
           {/* All scenes inline: SplitEditor + LanguageAudioSection per scene */}
@@ -1047,6 +1138,42 @@ export default function ScenesPage() {
             )}
           </div>
         </div>
+
+        {/* Bulk TTS generation — only in base language, when scenes have text. */}
+        {!isBaseLangLocked && (scenesPendingTTS.length > 0 || bulkTTSProgress) && (
+          <div
+            className="mb-4 flex items-center gap-3 p-3 bg-mer-soft border border-mer-soft rounded-lg"
+            data-testid="bulk-tts-banner"
+          >
+            <div className="flex-1 text-sm text-mer">
+              {bulkTTSProgress ? (
+                <span className="inline-flex items-center gap-2">
+                  <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                  </svg>
+                  Génération TTS — {bulkTTSProgress.current} / {bulkTTSProgress.total}
+                </span>
+              ) : (
+                <>
+                  <strong>{scenesPendingTTS.length}</strong> scène{scenesPendingTTS.length > 1 ? 's' : ''} avec texte
+                  {scenesToOverwrite > 0 && (
+                    <span className="text-ocre"> · dont {scenesToOverwrite} avec audio existant (sera écrasé)</span>
+                  )}
+                </>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={handleBulkGenerateTTS}
+              disabled={!!bulkTTSProgress || scenesPendingTTS.length === 0}
+              className="bg-mer text-paper px-4 py-1.5 rounded-full text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition cursor-pointer"
+              data-testid="bulk-tts-btn"
+            >
+              {bulkTTSProgress ? 'En cours…' : scenesToOverwrite === scenesPendingTTS.length ? 'Régénérer tout le TTS' : 'Générer TTS pour toutes'}
+            </button>
+          </div>
+        )}
 
         {/* Tabs */}
         <div className="flex border-b border-line mb-4" role="tablist">
@@ -1275,7 +1402,7 @@ export default function ScenesPage() {
                 {activeScene.originalAudioKey && (() => {
                   const sel = activeScene.studioAudioKey === activeScene.originalAudioKey;
                   return (
-                    <button onClick={() => selectAudioSource(activeScene.id, activeScene.originalAudioKey!, 'Terrain')}
+                    <button onClick={() => selectAudioSource(activeScene.id, activeScene.originalAudioKey!, 'Terrain', activeScene.sceneIndex)}
                       className={`p-3 rounded-lg border-2 text-left transition-all ${sel ? 'border-grenadine bg-grenadine-soft' : 'border-line hover:border-line'}`}>
                       <p className="text-lg mb-1">🌍</p>
                       <p className={`text-xs font-medium ${sel ? 'text-grenadine' : 'text-ink'}`}>Terrain</p>
@@ -1300,7 +1427,7 @@ export default function ScenesPage() {
                   const sel = !!ttsState.audioKey && activeScene.studioAudioKey === ttsState.audioKey;
                   return (
                     <button
-                      onClick={() => { if (ttsState.audioKey) selectAudioSource(activeScene.id, ttsState.audioKey, 'Audio TTS'); }}
+                      onClick={() => { if (ttsState.audioKey) selectAudioSource(activeScene.id, ttsState.audioKey, 'Audio TTS', activeScene.sceneIndex); }}
                       disabled={ttsState.status === 'processing'}
                       className={`p-3 rounded-lg border-2 text-left transition-all ${
                         ttsState.status === 'processing' ? 'border-mer-soft bg-mer-soft animate-pulse'
@@ -1380,7 +1507,7 @@ export default function ScenesPage() {
                     text={translationState?.translatedText ?? activeSegment.transcriptText ?? ''}
                     language={translationState?.targetLang ?? activeSegment.language}
                     gpuAvailable={gpuAvailable}
-                    onSaveAsSceneAudio={(audioDataUrl, lang) => selectAudioSource(activeScene.id, audioDataUrl, `TTS ${(lang ?? '').toUpperCase()}`)}
+                    onSaveAsSceneAudio={(audioDataUrl, lang) => selectAudioSource(activeScene.id, audioDataUrl, `TTS ${(lang ?? '').toUpperCase()}`, activeScene.sceneIndex)}
                   />
                 </div>
               )}

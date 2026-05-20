@@ -14,8 +14,12 @@ export interface TourInfoTranslationProps {
   translatedDescription: string;
   onTitleChange?: (lang: string, title: string) => void;
   onDescriptionChange?: (lang: string, description: string) => void;
-  /** Callback to request auto-translation of title + description */
+  /** Callback to request auto-translation of title + description (combined). */
   onRequestTranslation?: () => Promise<void>;
+  /** Targeted auto-translation of the title only. */
+  onTranslateTitle?: () => Promise<void>;
+  /** Targeted auto-translation of the description only. */
+  onTranslateDescription?: () => Promise<void>;
   /** When true (default), fields shown as plain text with "Editer" buttons */
   readOnly?: boolean;
 }
@@ -30,6 +34,8 @@ export function TourInfoTranslation({
   onTitleChange,
   onDescriptionChange,
   onRequestTranslation,
+  onTranslateTitle,
+  onTranslateDescription,
   readOnly = true,
 }: TourInfoTranslationProps) {
   const [title, setTitle] = useState(translatedTitle);
@@ -39,6 +45,8 @@ export function TourInfoTranslation({
   const [titleEditing, setTitleEditing] = useState(!readOnly);
   const [descEditing, setDescEditing] = useState(!readOnly);
   const [translating, setTranslating] = useState(false);
+  const [translatingTitle, setTranslatingTitle] = useState(false);
+  const [translatingDesc, setTranslatingDesc] = useState(false);
   const [translateError, setTranslateError] = useState<string | null>(null);
   const titleRef = useRef(translatedTitle);
   const descRef = useRef(translatedDescription);
@@ -72,6 +80,32 @@ export function TourInfoTranslation({
       setTranslating(false);
     }
   }, [onRequestTranslation]);
+
+  const handleTranslateTitle = useCallback(async () => {
+    if (!onTranslateTitle) return;
+    setTranslatingTitle(true);
+    setTranslateError(null);
+    try {
+      await onTranslateTitle();
+    } catch {
+      setTranslateError('Echec de la traduction du titre');
+    } finally {
+      setTranslatingTitle(false);
+    }
+  }, [onTranslateTitle]);
+
+  const handleTranslateDescription = useCallback(async () => {
+    if (!onTranslateDescription) return;
+    setTranslatingDesc(true);
+    setTranslateError(null);
+    try {
+      await onTranslateDescription();
+    } catch {
+      setTranslateError('Echec de la traduction de la description');
+    } finally {
+      setTranslatingDesc(false);
+    }
+  }, [onTranslateDescription]);
 
   const handleTitleBlur = useCallback(() => {
     const trimmed = title.trim();
@@ -142,16 +176,29 @@ export function TourInfoTranslation({
             <label htmlFor={`tour-title-${language}`} className="block text-xs text-ink-60">
               Titre ({langLabel})
             </label>
-            {!titleEditing && onTitleChange && (
-              <button
-                type="button"
-                onClick={() => setTitleEditing(true)}
-                className="text-xs font-medium text-grenadine hover:opacity-80"
-                data-testid="edit-title-button"
-              >
-                Editer
-              </button>
-            )}
+            <div className="flex items-center gap-2">
+              {onTranslateTitle && (
+                <button
+                  type="button"
+                  onClick={handleTranslateTitle}
+                  disabled={translatingTitle}
+                  className="text-xs font-medium text-mer hover:opacity-80 disabled:text-ink-40"
+                  data-testid="translate-title-button"
+                >
+                  {translatingTitle ? 'Traduction...' : '⇄ Traduire'}
+                </button>
+              )}
+              {!titleEditing && onTitleChange && (
+                <button
+                  type="button"
+                  onClick={() => setTitleEditing(true)}
+                  className="text-xs font-medium text-grenadine hover:opacity-80"
+                  data-testid="edit-title-button"
+                >
+                  Editer
+                </button>
+              )}
+            </div>
           </div>
           {titleEditing ? (
             <div className="relative">
@@ -197,16 +244,29 @@ export function TourInfoTranslation({
             <label htmlFor={`tour-desc-${language}`} className="block text-xs text-ink-60">
               Description ({langLabel})
             </label>
-            {!descEditing && onDescriptionChange && (
-              <button
-                type="button"
-                onClick={() => setDescEditing(true)}
-                className="text-xs font-medium text-grenadine hover:opacity-80"
-                data-testid="edit-description-button"
-              >
-                Editer
-              </button>
-            )}
+            <div className="flex items-center gap-2">
+              {onTranslateDescription && (
+                <button
+                  type="button"
+                  onClick={handleTranslateDescription}
+                  disabled={translatingDesc}
+                  className="text-xs font-medium text-mer hover:opacity-80 disabled:text-ink-40"
+                  data-testid="translate-description-button"
+                >
+                  {translatingDesc ? 'Traduction...' : '⇄ Traduire'}
+                </button>
+              )}
+              {!descEditing && onDescriptionChange && (
+                <button
+                  type="button"
+                  onClick={() => setDescEditing(true)}
+                  className="text-xs font-medium text-grenadine hover:opacity-80"
+                  data-testid="edit-description-button"
+                >
+                  Editer
+                </button>
+              )}
+            </div>
           </div>
           {descEditing ? (
             <div className="relative">
