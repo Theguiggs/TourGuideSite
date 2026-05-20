@@ -2995,6 +2995,12 @@
                 "enum": "CreatePaymentIntentQualityTier"
               },
               "isRequired": false
+            },
+            "modesJson": {
+              "name": "modesJson",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
             }
           }
         },

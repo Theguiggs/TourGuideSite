@@ -281,6 +281,135 @@ export async function confirmLanguagePurchase(
   }
 }
 
+// ─── Mixed per-language purchase flow ───
+// The guide picks a mode per language (manual / standard / pro). These two
+// helpers replace the single-tier createPaymentIntent / confirmLanguagePurchase
+// for the new checkout UI.
+
+/** Create a Stripe PaymentIntent for a mixed-mode selection. */
+export async function createPaymentIntentMixed(
+  sessionId: string,
+  selections: import('@/lib/multilang/language-pricing').LangSelections,
+): Promise<Result<PaymentIntentResult>> {
+  if (shouldUseStubs()) {
+    await new Promise((r) => setTimeout(r, 300));
+    return { ok: true, value: { clientSecret: `pi_stub_secret_${Date.now()}`, paymentIntentId: `pi_stub_${Date.now()}` } };
+  }
+  try {
+    const { getClient } = await import('@/lib/api/appsync-client');
+    const client = getClient();
+    // Auto languages only need a payment intent; manual ones are free.
+    const autoLangs = Object.keys(selections).filter((l) => selections[l] !== 'manual');
+    // Representative tier kept for backward-compat with the Lambda signature;
+    // the authoritative per-language modes travel in modesJson.
+    const hasPro = autoLangs.some((l) => selections[l] === 'pro');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).mutations.createPaymentIntent(
+      {
+        sessionId,
+        languages: autoLangs,
+        qualityTier: hasPro ? 'pro' : 'standard',
+        modesJson: JSON.stringify(selections),
+      },
+      { authMode: 'userPool' },
+    );
+    const data = result?.data;
+    return { ok: true, value: { clientSecret: data?.clientSecret ?? '', paymentIntentId: data?.paymentIntentId ?? '' } };
+  } catch (err) {
+    logger.error(SERVICE_NAME, 'createPaymentIntentMixed failed', { error: String(err) });
+    return { ok: false, error: { code: 2602, message: `Payment intent failed: ${String(err)}` } };
+  }
+}
+
+/** Confirm a mixed-mode purchase: one TourLanguagePurchase per language with
+ *  its own tier/provider/amount, plus empty SceneSegments for the auto langs. */
+export async function confirmLanguagePurchaseMixed(
+  sessionId: string,
+  selections: import('@/lib/multilang/language-pricing').LangSelections,
+  paymentIntentId: string,
+): Promise<Result<TourLanguagePurchase[]>> {
+  const { computeMixedOrder, effectiveTierFor } = await import('@/lib/multilang/language-pricing');
+  const order = computeMixedOrder(selections, false);
+  const amountByLang = new Map(order.lines.map((l) => [l.language, l.priceCents]));
+  const langs = Object.keys(selections);
+
+  if (shouldUseStubs()) {
+    await new Promise((r) => setTimeout(r, 300));
+    const now = new Date().toISOString();
+    const purchases: TourLanguagePurchase[] = langs.map((lang) => {
+      const mode = selections[lang];
+      const tier = effectiveTierFor(lang, mode);
+      const isManual = mode === 'manual';
+      const p: TourLanguagePurchase = {
+        id: `purchase-${sessionId}-${lang}`,
+        guideId: 'guide-stub-1',
+        sessionId,
+        language: lang,
+        qualityTier: (isManual ? 'manual' : tier) as TourLanguagePurchase['qualityTier'],
+        provider: isManual ? null : (tier === 'standard' ? 'marianmt' : 'deepl'),
+        purchaseType: isManual ? 'manual' : (order.packAllApplied ? 'pack_all' : 'single'),
+        amountCents: amountByLang.get(lang) ?? 0,
+        stripePaymentIntentId: paymentIntentId || null,
+        moderationStatus: 'draft',
+        status: 'active',
+        refundedAt: null,
+        createdAt: now,
+        updatedAt: now,
+      };
+      stubPurchases.set(`${sessionId}_${lang}`, p);
+      if (!isManual) __createStubSegmentsForLanguage(sessionId, lang);
+      return p;
+    });
+    return { ok: true, value: purchases };
+  }
+
+  try {
+    const { getClient } = await import('@/lib/api/appsync-client');
+    const client = getClient();
+    const purchases: TourLanguagePurchase[] = [];
+    for (const lang of langs) {
+      const mode = selections[lang];
+      const isManual = mode === 'manual';
+      const tier = effectiveTierFor(lang, mode);
+      const provider = isManual ? undefined : (tier === 'standard' ? 'marianmt' : 'deepl');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = await (client as any).models.TourLanguagePurchase.create(
+        {
+          guideId: 'auto',
+          sessionId,
+          language: lang,
+          qualityTier: isManual ? 'manual' : tier,
+          purchaseType: isManual ? 'manual' : (order.packAllApplied ? 'pack_all' : 'single'),
+          amountCents: amountByLang.get(lang) ?? 0,
+          provider,
+          stripePaymentIntentId: paymentIntentId || undefined,
+          moderationStatus: 'draft',
+          status: 'active',
+        },
+        { authMode: 'userPool' },
+      );
+      if (result?.data) purchases.push(result.data as TourLanguagePurchase);
+    }
+    // Create empty SceneSegments for auto languages only (manual langs are filled by the guide).
+    try {
+      const { listStudioScenes, batchCreateSegments } = await import('./studio');
+      const scenes = await listStudioScenes(sessionId);
+      const autoLangs = langs.filter((l) => selections[l] !== 'manual');
+      if (scenes.length > 0) {
+        for (const lang of autoLangs) {
+          await batchCreateSegments(scenes.map((scene) => ({ sceneId: scene.id, segmentIndex: 0, language: lang, status: 'empty' as const })));
+        }
+      }
+    } catch (segErr) {
+      logger.warn(SERVICE_NAME, 'Segment creation after mixed purchase failed (non-blocking)', { error: String(segErr) });
+    }
+    return { ok: true, value: purchases };
+  } catch (err) {
+    logger.error(SERVICE_NAME, 'confirmLanguagePurchaseMixed failed', { error: String(err) });
+    return { ok: false, error: { code: 2601, message: `Mixed purchase failed: ${String(err)}` } };
+  }
+}
+
 export async function listLanguagePurchases(
   sessionId: string,
 ): Promise<Result<TourLanguagePurchase[]>> {
