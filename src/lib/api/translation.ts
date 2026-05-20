@@ -194,70 +194,37 @@ export async function requestTranslation(
   // Real mode: route to microservice or Lambda based on provider
   try {
     if (provider === 'marianmt') {
-      // MarianMT works best sentence-by-sentence; split long text to preserve quality
+      // MarianMT works best sentence-by-sentence (quality), but calling the
+      // microservice once per sentence is painfully slow on CPU (~16s each).
+      // Send all sentences in ONE batched request — one tokenization + one
+      // model.generate over the batch — which is ~8x faster.
       const sentences = splitIntoSentences(text);
-      const translatedParts: string[] = [];
+      const response = await fetch(`${getMicroserviceUrl()}/v1/translate/batch`, {
+        method: 'POST',
+        headers: getMicroserviceHeaders(),
+        body: JSON.stringify({ texts: sentences, source_lang: sourceLang, target_lang: targetLang }),
+      });
 
-      for (const sentence of sentences) {
-        if (!sentence.trim()) {
-          translatedParts.push(sentence);
-          continue;
-        }
+      if (response.status === 503) {
+        logger.error(SERVICE_NAME, 'Provider unavailable (503)', { provider });
+        return { jobId: '', status: 'failed', translatedText: null, provider, costProvider: null, costCharged: null, errorCode: 2609 };
+      }
 
-        const response = await fetch(`${getMicroserviceUrl()}/v1/translate/marianmt`, {
-          method: 'POST',
-          headers: getMicroserviceHeaders(),
-          body: JSON.stringify({ text: sentence, source_lang: sourceLang, target_lang: targetLang }),
-        });
-
-        // Provider unavailable (HTTP 503)
-        if (response.status === 503) {
-          logger.error(SERVICE_NAME, 'Provider unavailable (503)', { provider });
-          return {
-            jobId: '',
-            status: 'failed',
-            translatedText: null,
-            provider,
-            costProvider: null,
-            costCharged: null,
-            errorCode: 2609,
-          };
-        }
-
-        const data = await response.json();
-
-        if (!data.ok && data.error === 'provider_unavailable') {
-          logger.error(SERVICE_NAME, 'Provider unavailable (response)', { provider });
-          return {
-            jobId: '',
-            status: 'failed',
-            translatedText: null,
-            provider,
-            costProvider: null,
-            costCharged: null,
-            errorCode: 2609,
-          };
-        }
-
-        if (data.ok) {
-          translatedParts.push(data.translated_text);
-        } else {
-          // If one sentence fails, abort
-          return {
-            jobId: '',
-            status: 'failed',
-            translatedText: null,
-            provider,
-            costProvider: null,
-            costCharged: null,
-          };
-        }
+      const data = await response.json();
+      if (!data.ok || !Array.isArray(data.translations)) {
+        const unavailable = data.error === 'provider_unavailable';
+        logger.error(SERVICE_NAME, 'Batch translation failed', { provider, error: data.error });
+        return {
+          jobId: '', status: 'failed', translatedText: null, provider,
+          costProvider: null, costCharged: null,
+          ...(unavailable ? { errorCode: 2609 } : {}),
+        };
       }
 
       return {
         jobId: `trans-${Date.now()}-${segmentId}`,
         status: 'completed',
-        translatedText: translatedParts.join(' '),
+        translatedText: (data.translations as string[]).join(' '),
         provider,
         costProvider: 0,
         costCharged: 0,
