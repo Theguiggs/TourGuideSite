@@ -691,7 +691,7 @@ export async function updateModerationStatusByLang(
             // Amplify may not support this field yet — use DynamoDB direct
             const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
             const { DynamoDBDocumentClient, UpdateCommand } = await import('@aws-sdk/lib-dynamodb');
-            const appId = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
+            const appId = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
             const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
             await dynamo.send(new UpdateCommand({
               TableName: `GuideTour-${appId}-NONE`,

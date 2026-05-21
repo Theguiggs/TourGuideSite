@@ -53,7 +53,7 @@ async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise
   try {
     const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
     const { DynamoDBDocumentClient, ScanCommand } = await import('@aws-sdk/lib-dynamodb');
-    const appId = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
+    const appId = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
     const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
     const result = await dynamo.send(new ScanCommand({
       TableName: `TourLanguagePurchase-${appId}-NONE`,
@@ -75,7 +75,7 @@ async function getLanguageAudioTypes(sessionId: string): Promise<Record<string, 
   try {
     const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
     const { DynamoDBDocumentClient, ScanCommand } = await import('@aws-sdk/lib-dynamodb');
-    const appId = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
+    const appId = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
     const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
 
     const sceneScan = await dynamo.send(new ScanCommand({
@@ -276,7 +276,7 @@ export async function getAllToursWithCoords(): Promise<Tour[]> {
   try {
     const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
     const { DynamoDBDocumentClient, ScanCommand } = await import('@aws-sdk/lib-dynamodb');
-    const appId = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
+    const appId = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
     const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
 
     const sceneScan = await dynamo.send(new ScanCommand({
