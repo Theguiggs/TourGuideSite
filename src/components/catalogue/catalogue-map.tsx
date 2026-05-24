@@ -1,28 +1,54 @@
 'use client';
 
-import { useCallback, useState, useRef } from 'react';
-import { GoogleMap, useJsApiLoader, OverlayViewF, OverlayView, InfoWindowF } from '@react-google-maps/api';
+import { useMemo, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import type { Tour } from '@/types/tour';
-
-const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? '';
+import { TILE_URL, TILE_ATTRIBUTION } from '@/lib/maps/tile-config';
+import { FitToPoints } from '@/components/map/FitToPoints';
 
 const LANG_FLAGS: Record<string, string> = {
   fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪',
 };
 
-const MAP_OPTIONS: google.maps.MapOptions = {
-  disableDefaultUI: false,
-  zoomControl: true,
-  mapTypeControl: false,
-  streetViewControl: false,
-  fullscreenControl: false,
-  styles: [
-    { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
-  ],
-};
-
-const DEFAULT_CENTER = { lat: 43.7, lng: 7.25 }; // Côte d'Azur
+const DEFAULT_CENTER: L.LatLngTuple = [43.7, 7.25]; // Côte d'Azur
 const DEFAULT_ZOOM = 10;
+
+function tourPinIcon(durationMinutes: number, highlighted: boolean): L.DivIcon {
+  const bg = highlighted ? '#0f766e' : '#ffffff'; // teal-700 vs white
+  const fg = highlighted ? '#ffffff' : '#111827'; // white vs gray-900
+  const border = highlighted ? '#0f766e' : '#d1d5db'; // gray-300
+  const arrowColor = highlighted ? '#0f766e' : '#ffffff';
+  const scale = highlighted ? 1.25 : 1;
+  const html = `
+    <div style="transform:translate(-50%,-100%) scale(${scale});transform-origin:50% 100%;">
+      <div style="
+        display:inline-flex;align-items:center;gap:4px;
+        padding:6px 10px;border-radius:9999px;
+        background:${bg};color:${fg};
+        border:1px solid ${border};
+        font-size:12px;font-weight:700;white-space:nowrap;
+        box-shadow:0 4px 10px rgba(0,0,0,.15);
+        font-family:inherit;
+      ">
+        <span style="font-size:14px;">📍</span>
+        <span>${durationMinutes} min</span>
+      </div>
+      <div style="
+        width:0;height:0;margin:0 auto;
+        border-left:6px solid transparent;border-right:6px solid transparent;
+        border-top:6px solid ${arrowColor};
+      "></div>
+    </div>
+  `;
+  return L.divIcon({
+    className: 'tg-tour-pin',
+    html,
+    iconSize: [0, 0], // sized by HTML content
+    iconAnchor: [0, 0],
+  });
+}
 
 interface CatalogueMapProps {
   tours: Tour[];
@@ -31,96 +57,71 @@ interface CatalogueMapProps {
   onTourHover: (tourId: string | null) => void;
 }
 
+function BoundsWatcher({
+  tours,
+  onBoundsChange,
+}: {
+  tours: Tour[];
+  onBoundsChange: (ids: string[]) => void;
+}) {
+  const map = useMapEvents({
+    moveend: () => {
+      const bounds = map.getBounds();
+      const visible = tours
+        .filter((t) => t.latitude != null && t.longitude != null)
+        .filter((t) => bounds.contains([t.latitude!, t.longitude!]));
+      onBoundsChange(visible.map((t) => t.id));
+    },
+  });
+  return null;
+}
+
 export function CatalogueMap({ tours, highlightedTourId, onBoundsChange, onTourHover }: CatalogueMapProps) {
   const [infoTour, setInfoTour] = useState<Tour | null>(null);
-  const mapRef = useRef<google.maps.Map | null>(null);
 
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: GOOGLE_MAPS_KEY,
-  });
+  const toursWithCoords = useMemo(
+    () => tours.filter((t) => t.latitude != null && t.longitude != null),
+    [tours],
+  );
 
-  const toursWithCoords = tours.filter((t) => t.latitude && t.longitude);
-
-  const handleBoundsChanged = useCallback(() => {
-    if (!mapRef.current) return;
-    const bounds = mapRef.current.getBounds();
-    if (!bounds) return;
-    const visible = toursWithCoords.filter((t) =>
-      bounds.contains({ lat: t.latitude!, lng: t.longitude! }),
-    );
-    onBoundsChange(visible.map((t) => t.id));
-  }, [toursWithCoords, onBoundsChange]);
-
-  const onLoad = useCallback((map: google.maps.Map) => {
-    mapRef.current = map;
-    // Fit bounds to all tours
-    if (toursWithCoords.length > 0) {
-      const bounds = new google.maps.LatLngBounds();
-      toursWithCoords.forEach((t) => bounds.extend({ lat: t.latitude!, lng: t.longitude! }));
-      map.fitBounds(bounds, 50);
-    }
-  }, [toursWithCoords]);
-
-  if (!GOOGLE_MAPS_KEY) {
-    return (
-      <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-500">
-        <p className="text-sm">Carte non disponible (clé Google Maps manquante)</p>
-      </div>
-    );
-  }
-
-  if (!isLoaded) {
-    return <div className="w-full h-full bg-gray-100 animate-pulse" />;
-  }
+  const points = useMemo<L.LatLngTuple[]>(
+    () => toursWithCoords.map((t) => [t.latitude!, t.longitude!]),
+    [toursWithCoords],
+  );
 
   return (
-    <GoogleMap
-      mapContainerStyle={{ width: '100%', height: '100%' }}
+    <MapContainer
       center={DEFAULT_CENTER}
       zoom={DEFAULT_ZOOM}
-      options={MAP_OPTIONS}
-      onLoad={onLoad}
-      onBoundsChanged={handleBoundsChanged}
+      style={{ width: '100%', height: '100%' }}
+      scrollWheelZoom
+      zoomControl
     >
+      <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} />
+      <FitToPoints points={points} padding={50} singleZoom={DEFAULT_ZOOM} />
+      <BoundsWatcher tours={toursWithCoords} onBoundsChange={onBoundsChange} />
+
       {toursWithCoords.map((tour) => {
         const isHighlighted = tour.id === highlightedTourId;
         return (
-          <OverlayViewF
+          <Marker
             key={tour.id}
-            position={{ lat: tour.latitude!, lng: tour.longitude! }}
-            mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-          >
-            <div
-              onClick={() => setInfoTour(tour)}
-              onMouseEnter={() => onTourHover(tour.id)}
-              onMouseLeave={() => onTourHover(null)}
-              className="cursor-pointer"
-              style={{ transform: 'translate(-50%, -100%)' }}
-            >
-              {/* Pin shape */}
-              <div className={`relative transition-transform ${isHighlighted ? 'scale-125 z-20' : 'z-10'}`}>
-                <div className={`px-2.5 py-1.5 rounded-full text-xs font-bold shadow-lg whitespace-nowrap flex items-center gap-1 ${
-                  isHighlighted
-                    ? 'bg-teal-700 text-white'
-                    : 'bg-white text-gray-900 border border-gray-300'
-                }`}>
-                  <span className="text-sm">📍</span>
-                  <span>{tour.duration} min</span>
-                </div>
-                {/* Arrow pointer */}
-                <div className={`w-0 h-0 mx-auto border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent ${
-                  isHighlighted ? 'border-t-teal-700' : 'border-t-white'
-                }`} />
-              </div>
-            </div>
-          </OverlayViewF>
+            position={[tour.latitude!, tour.longitude!]}
+            icon={tourPinIcon(tour.duration, isHighlighted)}
+            zIndexOffset={isHighlighted ? 1000 : 0}
+            eventHandlers={{
+              click: () => setInfoTour(tour),
+              mouseover: () => onTourHover(tour.id),
+              mouseout: () => onTourHover(null),
+            }}
+          />
         );
       })}
 
-      {infoTour && infoTour.latitude && infoTour.longitude && (
-        <InfoWindowF
-          position={{ lat: infoTour.latitude, lng: infoTour.longitude }}
-          onCloseClick={() => setInfoTour(null)}
+      {infoTour && infoTour.latitude != null && infoTour.longitude != null && (
+        <Popup
+          position={[infoTour.latitude, infoTour.longitude]}
+          eventHandlers={{ remove: () => setInfoTour(null) }}
         >
           <div className="p-1 max-w-[220px]">
             <p className="font-semibold text-gray-900 text-sm mb-1">{infoTour.title}</p>
@@ -144,8 +145,8 @@ export function CatalogueMap({ tours, highlightedTourId, onBoundsChange, onTourH
               Voir la visite →
             </a>
           </div>
-        </InfoWindowF>
+        </Popup>
       )}
-    </GoogleMap>
+    </MapContainer>
   );
 }

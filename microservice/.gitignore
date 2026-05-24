@@ -1,0 +1,3 @@
+# local microservice run logs
+microservice.out.log
+microservice.err.log

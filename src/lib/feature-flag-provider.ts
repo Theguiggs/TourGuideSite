@@ -24,7 +24,7 @@ import {
   isValidDsVersion,
   type DsVersion,
   type FeatureFlagProvider,
-} from '@tourguide/design-system';
+} from '@murmure/design-system';
 
 const CACHE_KEY = 'tg_feature_flag_ds_v2_enabled';
 const FLAG_NAME = 'ds_v2_enabled';

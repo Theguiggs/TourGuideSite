@@ -26,12 +26,12 @@ export default function GuideRevenuePage() {
     });
   }, [user?.guideId]);
 
-  if (!summary) return <div className="text-gray-500">Chargement des revenus...</div>;
+  if (!summary) return <div className="text-caption text-ink-40">Chargement des revenus…</div>;
 
   const maxRevenue = Math.max(...months.map((m) => m.guideShare), 1);
 
   const handleExport = () => {
-    const header = 'Mois,Ecoutes,Revenu brut,Part guide (70%),Part TourGuide (30%)';
+    const header = 'Mois,Ecoutes,Revenu brut,Part guide (70%),Part Murmure (30%)';
     const rows = months.map(
       (m) => `${m.month},${m.listens},${m.grossRevenue.toFixed(2)},${m.guideShare.toFixed(2)},${m.tourguideShare.toFixed(2)}`,
     );
@@ -40,7 +40,7 @@ export default function GuideRevenuePage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `revenus-tourguide-${new Date().toISOString().slice(0, 7)}.csv`;
+    a.download = `revenus-murmure-${new Date().toISOString().slice(0, 7)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -48,63 +48,63 @@ export default function GuideRevenuePage() {
   return (
     <div className="max-w-3xl">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Revenus</h1>
+        <h1 className="font-display text-h4 text-ink leading-none">Revenus</h1>
         <button
           onClick={handleExport}
-          className="text-sm text-teal-700 font-medium hover:underline"
+          className="text-caption text-grenadine font-medium hover:underline underline-offset-2"
         >
-          Telecharger le releve (CSV)
+          Télécharger le relevé (CSV) →
         </button>
       </div>
 
       {/* Summary Cards */}
       <div className="grid grid-cols-2 gap-4 mb-8">
-        <div className="bg-white border border-gray-200 rounded-xl p-4">
-          <p className="text-sm text-gray-500">Ce mois</p>
-          <p className="text-2xl font-bold text-teal-700">{summary.thisMonth.toFixed(2)} &euro;</p>
+        <div className="bg-card border border-line rounded-md p-4">
+          <p className="text-meta text-ink-60">Ce mois</p>
+          <p className="font-display text-h4 text-grenadine mt-1 leading-none">{summary.thisMonth.toFixed(2)} €</p>
         </div>
-        <div className="bg-white border border-gray-200 rounded-xl p-4">
-          <p className="text-sm text-gray-500">Total cumule</p>
-          <p className="text-2xl font-bold text-gray-900">{summary.total.toFixed(2)} &euro;</p>
+        <div className="bg-card border border-line rounded-md p-4">
+          <p className="text-meta text-ink-60">Total cumulé</p>
+          <p className="font-display text-h4 text-ink mt-1 leading-none">{summary.total.toFixed(2)} €</p>
         </div>
       </div>
 
-      {/* Revenue Chart (CSS bars) */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6 mb-8">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Revenus mensuels (votre part 70%)</h2>
+      {/* Revenue Chart */}
+      <div className="bg-card border border-line rounded-md p-6 mb-8">
+        <h2 className="font-display text-h6 text-ink mb-4">Revenus mensuels (votre part 70%)</h2>
         <div className="flex items-end gap-2 h-40">
           {months.slice().reverse().map((m) => (
             <div key={m.month} className="flex-1 flex flex-col items-center gap-1">
               <div
-                className="w-full bg-teal-600 rounded-t-sm"
+                className="w-full bg-grenadine rounded-t-sm transition-all hover:opacity-80"
                 style={{ height: `${(m.guideShare / maxRevenue) * 100}%`, minHeight: 4 }}
                 title={`${m.guideShare.toFixed(2)} EUR`}
               />
-              <span className="text-xs text-gray-500">{m.month.slice(5)}</span>
+              <span className="text-meta text-ink-60">{m.month.slice(5)}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Revenue per Tour */}
-      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden mb-8">
-        <h2 className="text-lg font-semibold text-gray-900 p-4 pb-0">Par parcours</h2>
-        <table className="w-full text-sm">
-          <thead className="bg-gray-50 text-gray-500">
+      <div className="bg-card border border-line rounded-md overflow-hidden mb-8">
+        <h2 className="font-display text-h6 text-ink p-4 pb-0">Par parcours</h2>
+        <table className="w-full text-caption">
+          <thead className="bg-paper-soft text-ink-60">
             <tr>
-              <th className="text-left px-4 py-3 font-medium">Parcours</th>
-              <th className="text-right px-4 py-3 font-medium">Ecoutes</th>
-              <th className="text-right px-4 py-3 font-medium">Revenus</th>
-              <th className="text-right px-4 py-3 font-medium">%</th>
+              <th className="text-left px-4 py-3 font-semibold tg-eyebrow">Parcours</th>
+              <th className="text-right px-4 py-3 font-semibold tg-eyebrow">Écoutes</th>
+              <th className="text-right px-4 py-3 font-semibold tg-eyebrow">Revenus</th>
+              <th className="text-right px-4 py-3 font-semibold tg-eyebrow">%</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-line">
             {tourRevenue.map((t) => (
-              <tr key={t.tourId}>
-                <td className="px-4 py-3 font-medium text-gray-900">{t.tourTitle}</td>
-                <td className="px-4 py-3 text-right text-gray-500">{t.listens}</td>
-                <td className="px-4 py-3 text-right text-gray-900">{t.revenue.toFixed(2)} &euro;</td>
-                <td className="px-4 py-3 text-right text-gray-500">{t.percentage.toFixed(1)}%</td>
+              <tr key={t.tourId} className="hover:bg-paper-soft transition">
+                <td className="px-4 py-3 font-medium text-ink">{t.tourTitle}</td>
+                <td className="px-4 py-3 text-right text-ink-60">{t.listens}</td>
+                <td className="px-4 py-3 text-right text-ink">{t.revenue.toFixed(2)} €</td>
+                <td className="px-4 py-3 text-right text-ink-60">{t.percentage.toFixed(1)}%</td>
               </tr>
             ))}
           </tbody>
@@ -112,10 +112,9 @@ export default function GuideRevenuePage() {
       </div>
 
       {/* Split info */}
-      <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm text-gray-600">
+      <div className="bg-paper-soft border border-line rounded-md p-4 text-caption text-ink-80">
         <p>
-          <strong>Repartition:</strong> Votre part (70%) | TourGuide (30%) — calcule sur le revenu brut
-          par ecoute completee.
+          <strong>Répartition :</strong> Votre part (70%) | Murmure (30%) — calculé sur le revenu brut par écoute complétée.
         </p>
       </div>
     </div>

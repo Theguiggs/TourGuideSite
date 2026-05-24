@@ -16,7 +16,7 @@
  * - `actions.*` : Actions secondaires (carte, téléchargement, partage)
  *
  * Usage :
- *   import { editorial } from '@tourguide/design-system';
+ *   import { editorial } from '@murmure/design-system';
  *   <Button title={editorial.cta.listen} />
  */
 export const editorial = {

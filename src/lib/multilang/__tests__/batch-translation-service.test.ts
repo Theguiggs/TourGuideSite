@@ -279,6 +279,34 @@ describe('BatchTranslationService', () => {
     expect(mockRequestTTS).toHaveBeenCalledTimes(1);
   });
 
+  it('6.6b - "completed" translation with empty text is treated as failure (no TTS, no destructive save)', async () => {
+    setupSuccessMocks();
+    const scenes = [makeScene('s1', 'Bonjour le monde')];
+
+    // Translation reports completed but returns blank text — must NOT overwrite
+    // the existing translation with "" nor mark the scene tts_generated.
+    mockRequestTranslation.mockResolvedValue({
+      jobId: 'tj-empty',
+      status: 'completed',
+      translatedText: '   ',
+      provider: 'marianmt',
+      costProvider: 0,
+      costCharged: 0,
+    });
+
+    const result = await executeBatch('sess-1', scenes, [{ code: 'de', label: 'German' }], 'standard');
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.value.completedScenes).toBe(0);
+    expect(result.value.failedScenes).toHaveLength(1);
+    expect(result.value.failedScenes[0].errorCode).toBe(BATCH_TRANSLATION_FAILED);
+    expect(result.value.failedScenes[0].sceneId).toBe('s1');
+    // No TTS and no segment write for an empty translation.
+    expect(mockRequestTTS).not.toHaveBeenCalled();
+    expect(mockUpdateSegment).not.toHaveBeenCalled();
+  });
+
   it('6.7 - TTS failure: scene marked failed with 2605, batch continues', async () => {
     setupSuccessMocks();
     const scenes = [makeScene('s1', 'A'), makeScene('s2', 'B')];

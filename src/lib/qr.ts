@@ -1,4 +1,4 @@
-const BASE_URL = 'https://tourguide.app';
+const BASE_URL = 'https://murmure.app';
 
 /**
  * Generate QR code URL for a tour.
@@ -14,5 +14,5 @@ export function getQrCodeUrl(tourSlug: string, citySlug: string, officeId?: stri
  * Generate the deep link for opening a tour in the app.
  */
 export function getDeepLink(tourId: string): string {
-  return `tourguide://tour/${tourId}`;
+  return `murmure://tour/${tourId}`;
 }

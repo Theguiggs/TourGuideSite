@@ -39,6 +39,17 @@ export function LanguageAudioSection({
   const [audioKey, setAudioKey] = useState<string | null>(segment.audioKey);
   const [playableUrl, setPlayableUrl] = useState<string | null>(null);
 
+  // The player bar reflects a GLOBAL singleton shared by every scene's section.
+  // Track which URL is currently loaded so this section only renders the bar
+  // when ITS audio is the one playing — otherwise every scene shows the same
+  // (e.g. scene 1's) player even though you want to listen to scene 2.
+  const [playerUrl, setPlayerUrl] = useState<string | null>(null);
+  useEffect(() => {
+    setPlayerUrl(audioPlayerService.getState().currentUrl);
+    return audioPlayerService.subscribe((s) => setPlayerUrl(s.currentUrl));
+  }, []);
+  const isLoadedInPlayer = !!playableUrl && playerUrl === playableUrl;
+
   // Resolve S3 key to playable signed URL when segment changes
   useEffect(() => {
     const key = audioKey ?? segment.audioKey;
@@ -78,8 +89,9 @@ export function LanguageAudioSection({
         const response = await fetch(audioDataUrl);
         const blob = new Blob([await response.blob()], { type: 'audio/wav' });
         const sceneIndex = segment.segmentIndex ?? 0;
-        // Use uploadAudio which handles auth + S3 path correctly
-        const uploadResult = await uploadAudio(blob, sessionId, sceneIndex);
+        // Use uploadAudio which handles auth + S3 path correctly. The S3 object is
+        // keyed by the immutable sceneId so per-language takes never collide.
+        const uploadResult = await uploadAudio(blob, sessionId, sceneIndex, segment.sceneId);
         if (uploadResult.ok) {
           audioKeyToStore = uploadResult.s3Key;
           logger.info(SERVICE_NAME, 'TTS audio uploaded to S3', { s3Key: audioKeyToStore });
@@ -214,7 +226,7 @@ export function LanguageAudioSection({
               >
                 ▶ Ecouter
               </button>
-              <AudioPlayerBar compact label={`Audio ${targetLanguage.toUpperCase()}`} />
+              {isLoadedInPlayer && <AudioPlayerBar compact label={`Audio ${targetLanguage.toUpperCase()}`} />}
             </>
           ) : (
             <p className="text-sm text-grenadine">Audio genere ✅ (chargement...)</p>

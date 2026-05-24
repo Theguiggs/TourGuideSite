@@ -3,18 +3,18 @@
  *
  * Cet entry point exporte UNIQUEMENT les tokens et types — sûr en Web ET en
  * React Native. Les composants Web (qui utilisent `<button>`, `<div>`, etc.)
- * vivent sous le sub-export `@tourguide/design-system/web`. Les composants RN
- * miroir (Story 2.x, Pressable, View) vivront sous `@tourguide/design-system/rn`.
+ * vivent sous le sub-export `@murmure/design-system/web`. Les composants RN
+ * miroir (Story 2.x, Pressable, View) vivront sous `@murmure/design-system/rn`.
  *
  * Usage tokens (Web + RN) :
- *   import { tg } from '@tourguide/design-system';
- *   import { tg } from '@tourguide/design-system/tokens'; // équivalent
+ *   import { tg } from '@murmure/design-system';
+ *   import { tg } from '@murmure/design-system/tokens'; // équivalent
  *
  * Usage composants Web :
- *   import { Button, Card, Pin } from '@tourguide/design-system/web';
+ *   import { Button, Card, Pin } from '@murmure/design-system/web';
  *
  * Usage composants RN (Story 2.x) :
- *   import { Button, Card, Pin } from '@tourguide/design-system/rn';
+ *   import { Button, Card, Pin } from '@murmure/design-system/rn';
  *
  * Découverte API (Story 2.7) :
  *   cd design-system && npm install && npm run storybook

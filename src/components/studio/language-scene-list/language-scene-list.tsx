@@ -36,6 +36,9 @@ export interface LanguageSceneListProps {
   onSceneClick: (sceneId: string) => void;
   onRetranslateStale?: (sceneIds: string[]) => void;
   onGenerateMissingAudio?: () => void;
+  /** Force-regenerate TTS audio for EVERY translated scene of this language
+   *  (overwrites existing audio — fixes scenes whose stored key is orphaned). */
+  onRegenerateAllTts?: () => void;
   onListenPreview?: () => void;
   onFullPreview?: () => void;
   onSubmitLanguage?: () => void;
@@ -169,6 +172,7 @@ export function LanguageSceneList({
   onSceneClick,
   onRetranslateStale,
   onGenerateMissingAudio,
+  onRegenerateAllTts,
   onListenPreview,
   onFullPreview,
   onSubmitLanguage,
@@ -197,6 +201,11 @@ export function LanguageSceneList({
   const missingAudioCount = sortedScenes.filter((s) => {
     const segment = segments.find((seg) => seg.sceneId === s.scene.id && seg.language === lang);
     return segment && segment.transcriptText && !segment.audioKey;
+  }).length;
+  // Scenes that have translated text — eligible for a full TTS (re)generation.
+  const translatedSceneCount = sortedScenes.filter((s) => {
+    const segment = segments.find((seg) => seg.sceneId === s.scene.id && seg.language === lang);
+    return !!(segment && segment.transcriptText);
   }).length;
 
   const hasFailedOrProcessing = sortedScenes.some(
@@ -395,7 +404,7 @@ export function LanguageSceneList({
               </span>
             </div>
             <div className="flex items-center gap-2 shrink-0">
-              {onTranslateScene && languageStatus !== 'ok' && languageStatus !== 'processing' && (
+              {onTranslateScene && languageStatus !== 'processing' && (
                 <button
                   type="button"
                   data-testid={`translate-scene-${scene.id}`}
@@ -403,7 +412,9 @@ export function LanguageSceneList({
                   disabled={translatingSceneIds.includes(scene.id)}
                   className="text-xs font-medium text-mer hover:opacity-80 disabled:text-ink-40 px-2 py-1 border border-mer-soft rounded-md hover:bg-mer-soft disabled:border-line"
                 >
-                  {translatingSceneIds.includes(scene.id) ? 'Traduction...' : '⇄ Traduire'}
+                  {translatingSceneIds.includes(scene.id)
+                    ? 'Traduction...'
+                    : languageStatus === 'ok' ? '⇄ Re-traduire' : '⇄ Traduire'}
                 </button>
               )}
               <LanguageStatusBadge status={languageStatus} />
@@ -449,6 +460,16 @@ export function LanguageSceneList({
       <div className="space-y-2" data-testid="main-actions-section">
         <p className="text-sm font-medium text-ink-80">Actions</p>
         <div className="flex flex-wrap gap-2">
+          {onRegenerateAllTts && translatedSceneCount > 0 && (
+            <button
+              data-testid="regenerate-all-tts-button"
+              type="button"
+              onClick={onRegenerateAllTts}
+              className="inline-flex items-center rounded-md border border-grenadine px-4 py-2 text-sm font-medium text-grenadine hover:bg-grenadine-soft"
+            >
+              🔊 Régénérer tous les TTS ({translatedSceneCount})
+            </button>
+          )}
           {onListenPreview && (
             <button
               data-testid="listen-preview-button"

@@ -1,4 +1,4 @@
-/** Story 1.4 — Jest config minimal pour @tourguide/design-system. */
+/** Story 1.4 — Jest config minimal pour @murmure/design-system. */
 /** @type {import('jest').Config} */
 module.exports = {
   testEnvironment: 'node',

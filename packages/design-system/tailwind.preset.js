@@ -2,7 +2,7 @@
  * TourGuide Design System — Tailwind config
  * À étendre dans le tailwind.config.{js,ts} de chaque app (Web, Mobile-RN).
  *
- * Usage : import tgPreset from '@tourguide/design-system/tailwind';
+ * Usage : import tgPreset from '@murmure/design-system/tailwind';
  *         export default { presets: [tgPreset], content: [...] };
  */
 

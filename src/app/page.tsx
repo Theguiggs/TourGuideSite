@@ -3,20 +3,20 @@ import TrackPageView from '@/components/TrackPageView';
 import CitiesSection from '@/components/CitiesSection';
 import HeroCta from './_components/HeroCta';
 import { AnalyticsEvents } from '@/lib/analytics';
-import { tg } from '@tourguide/design-system/tokens';
-import { editorial } from '@tourguide/design-system/editorial';
+import { tg } from '@murmure/design-system/tokens';
+import { editorial } from '@murmure/design-system/editorial';
 import {
   Button,
   Card,
   Eyebrow,
   PullQuote,
   NumberMark,
-} from '@tourguide/design-system/web';
+} from '@murmure/design-system/web';
 
 // Story 4.2 (T7) — Override léger du title pour la home (les autres metadata
 // héritent de `layout.tsx` Story 3.5, dont l'OG image `/og-default.png`).
 export const metadata: Metadata = {
-  title: 'TourGuide — Le monde a une voix.',
+  title: 'Murmure — Le monde a une voix.',
   description: 'Là où les villes se racontent, à voix basse.',
 };
 
@@ -77,7 +77,7 @@ export default function LandingPage() {
             className="font-display text-h4 md:text-h3 lg:text-h2 text-center mb-16"
             style={{ color: tg.colors.ink }}
           >
-            Pourquoi TourGuide ?
+            Pourquoi Murmure ?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {VALUE_PROPS.map((item) => (

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { tg } from '@tourguide/design-system/tokens';
+import { tg } from '@murmure/design-system/tokens';
 
 // Story 4.2 (T6) — Footer migré : tokens DS + lexique strict (Hors-ligne, Tour),
 // accents FR préservés (Télécharger, confidentialité, réservés).
@@ -21,7 +21,7 @@ export default function Footer() {
                 lineHeight: 1.2,
               }}
             >
-              TourGuide
+              Murmure
             </h3>
             <p
               className="font-sans"
@@ -106,7 +106,7 @@ export default function Footer() {
             fontSize: tg.fontSize.body,
           }}
         >
-          &copy; {year} TourGuide. Tous droits réservés.
+          &copy; {year} Murmure. Tous droits réservés.
         </div>
       </div>
     </footer>

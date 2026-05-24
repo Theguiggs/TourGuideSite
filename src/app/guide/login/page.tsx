@@ -33,28 +33,31 @@ function GuideLoginContent() {
     }
   };
 
+  const inputClass = "w-full bg-paper border border-line rounded-md px-4 py-3 text-caption text-ink focus:outline-none focus:border-grenadine focus:ring-2 focus:ring-grenadine-soft transition";
+  const labelClass = "block text-meta font-semibold text-ink-80 mb-1.5";
+
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4">
+    <div className="min-h-[80vh] flex items-center justify-center px-4 bg-paper">
       <div className="w-full max-w-md">
-        <h1 className="text-3xl font-bold text-gray-900 text-center mb-2">Espace Guide</h1>
-        <p className="text-gray-600 text-center mb-8">
+        <h1 className="font-display text-h3 text-ink text-center mb-2 leading-none">Espace Guide</h1>
+        <p className="font-editorial italic text-body-lg text-ink-60 text-center mb-8">
           Connectez-vous pour gérer vos parcours et votre profil.
         </p>
 
-        <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+        <form onSubmit={handleSubmit} className="bg-card border border-line rounded-md p-8 shadow-sm">
           {justRegistered && (
-            <div className="bg-teal-50 text-teal-700 rounded-lg p-3 mb-6 text-sm">
+            <div className="bg-olive-soft border border-olive/30 text-olive rounded-md p-3 mb-6 text-caption">
               Compte créé ! Connectez-vous pour accéder à votre tableau de bord.
             </div>
           )}
           {error && (
-            <div className="bg-red-50 text-red-700 rounded-lg p-3 mb-6 text-sm" role="alert">
+            <div className="bg-grenadine-soft border border-grenadine/30 text-danger rounded-md p-3 mb-6 text-caption" role="alert">
               {error}
             </div>
           )}
 
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className={labelClass}>
               Email
             </label>
             <input
@@ -65,13 +68,13 @@ function GuideLoginContent() {
               onChange={(e) => setEmail(e.target.value)}
               required
               autoComplete="email"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-              placeholder="guide@tourguide.app"
+              className={inputClass}
+              placeholder="guide@murmure.app"
             />
           </div>
 
           <div className="mb-6">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className={labelClass}>
               Mot de passe
             </label>
             <input
@@ -82,7 +85,7 @@ function GuideLoginContent() {
               onChange={(e) => setPassword(e.target.value)}
               required
               autoComplete="current-password"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+              className={inputClass}
               placeholder="••••••••"
             />
           </div>
@@ -91,22 +94,21 @@ function GuideLoginContent() {
             type="submit"
             data-testid="login-submit"
             disabled={loading}
-            className="w-full bg-teal-700 text-white font-bold py-3 rounded-xl hover:bg-teal-800 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-grenadine text-paper font-bold py-3 rounded-pill hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-caption"
           >
-            {loading ? 'Connexion...' : 'Se connecter'}
+            {loading ? 'Connexion…' : 'Se connecter'}
           </button>
 
-          <p className="text-center text-sm text-gray-500 mt-4">
-            <a href="#" className="text-teal-700 hover:underline">
+          <p className="text-center text-meta text-ink-60 mt-4">
+            <a href="#" className="text-grenadine hover:underline underline-offset-2">
               Mot de passe oublié ?
             </a>
           </p>
-
         </form>
 
-        <p className="text-center text-sm text-gray-500 mt-6">
+        <p className="text-center text-caption text-ink-60 mt-6">
           Pas encore de compte ?{' '}
-          <Link href="/guide/signup" className="text-teal-700 hover:underline font-medium">
+          <Link href="/guide/signup" className="text-grenadine hover:underline underline-offset-2 font-medium no-underline">
             Devenir guide
           </Link>
         </p>

@@ -2,7 +2,7 @@
  * Story 2.3 — Constantes RN extraites du composant `Card.tsx` RN miroir.
  *
  * Vit dans un fichier `.ts` pur (pas d'import `react-native`) afin que la suite
- * Jest du package `@tourguide/design-system` (testEnvironment: 'node') puisse
+ * Jest du package `@murmure/design-system` (testEnvironment: 'node') puisse
  * importer et tester les maps sans avoir à charger un runtime RN.
  *
  * Source ACs : Story 2.3, AC 7 (RN miroir) + AC 8 (tests no-drift).

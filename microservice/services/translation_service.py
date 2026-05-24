@@ -1,9 +1,14 @@
 """
 Translation Service — MarianMT (Helsinki-NLP) integration.
 Lazy-loads models per language pair on first request to save RAM.
+
+Source normalization + output cleaning live in services/text_sanitize.py and
+are shared with local_server.py so the two entrypoints can never diverge.
 """
 
 import logging
+
+from services.text_sanitize import normalize_source, postclean_translation
 
 logger = logging.getLogger("tourguide-microservice.translation")
 
@@ -33,7 +38,7 @@ class TranslationService:
 
         model_name = MARIAN_MODELS.get(pair)
         if not model_name:
-            logger.warning("No MarianMT model for pair %s→%s", source, target)
+            logger.warning("No MarianMT model for pair %s->%s", source, target)
             return False
 
         try:
@@ -64,8 +69,12 @@ class TranslationService:
             tokenizer = self._tokenizers[pair]
             model = self._models[pair]
 
+            # Normalize typographic punctuation BEFORE the model sees it, so a
+            # narrative em-dash can't trigger garbage output / repetition loops.
+            normalized = normalize_source(text)
+
             # Split long text into chunks (MarianMT has 512 token limit)
-            sentences = text.replace("\n", " \n ").split(". ")
+            sentences = normalized.replace("\n", " \n ").split(". ")
             translated_parts = []
 
             for sentence in sentences:
@@ -76,15 +85,24 @@ class TranslationService:
                 inputs = tokenizer(sentence, return_tensors="pt", padding=True, truncation=True, max_length=512)
 
                 with torch.no_grad():
-                    translated_tokens = model.generate(**inputs)
+                    # no_repeat_ngram_size + repetition_penalty are guard rails:
+                    # without them MarianMT can fall into a degenerate loop and
+                    # emit a token hundreds of times (the "^ ^ ^ ..." bug).
+                    translated_tokens = model.generate(
+                        **inputs,
+                        max_length=512,
+                        num_beams=4,
+                        no_repeat_ngram_size=3,
+                        repetition_penalty=1.3,
+                    )
 
                 result = tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
                 translated_parts.append(result)
 
-            return ". ".join(translated_parts)
+            return postclean_translation(". ".join(translated_parts))
 
         except Exception as e:
-            logger.error("Translation failed for %s→%s: %s", source_lang, target_lang, e)
+            logger.error("Translation failed for %s->%s: %s", source_lang, target_lang, e)
             return None
 
     def get_supported_pairs(self) -> list[tuple[str, str]]:

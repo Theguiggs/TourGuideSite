@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { tgColors } from '@tourguide/design-system';
+import { tgColors } from '@murmure/design-system';
 import { cityFamily, FAMILY_META, type CityFamily } from '@/components/studio/shell';
 
 interface TopTourRowProps {

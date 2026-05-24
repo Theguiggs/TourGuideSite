@@ -1,7 +1,7 @@
 {
-  "name": "@tourguide/design-system",
+  "name": "@murmure/design-system",
   "version": "1.0.0",
-  "description": "TourGuide — Design System officiel. Tokens, composants React, Tailwind preset.",
+  "description": "Murmure — Design System officiel. Tokens, composants React, Tailwind preset.",
   "main": "index.ts",
   "types": "index.ts",
   "scripts": {

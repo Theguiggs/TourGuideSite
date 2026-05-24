@@ -30,7 +30,7 @@ export function getNotificationContent(
     case 'revision':
       return {
         subject: GENERIC_SUBJECT,
-        body: `L'equipe TourGuide demande des corrections sur votre visite «${tourTitle}».${comments ? `\n\nCommentaires :\n${comments}` : ''}\n\nConnectez-vous a votre espace guide pour apporter les modifications.`,
+        body: `L'equipe Murmure demande des corrections sur votre visite «${tourTitle}».${comments ? `\n\nCommentaires :\n${comments}` : ''}\n\nConnectez-vous a votre espace guide pour apporter les modifications.`,
         pushTitle: 'Corrections demandees',
         pushBody: `L'admin demande des corrections sur «${tourTitle}»`,
       };

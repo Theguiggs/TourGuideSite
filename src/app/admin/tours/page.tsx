@@ -10,29 +10,29 @@ const LANG_FLAGS: Record<string, string> = {
   fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
 };
 const MOD_COLORS: Record<string, string> = {
-  draft: 'bg-gray-100 text-gray-500',
-  submitted: 'bg-yellow-100 text-yellow-700',
-  approved: 'bg-green-100 text-green-700',
-  rejected: 'bg-red-100 text-red-600',
-  revision_requested: 'bg-orange-100 text-orange-600',
+  draft: 'bg-paper-deep text-ink-60',
+  submitted: 'bg-ocre-soft text-ocre',
+  approved: 'bg-olive-soft text-olive',
+  rejected: 'bg-grenadine-soft text-danger',
+  revision_requested: 'bg-ocre-soft text-ocre',
 };
 const MOD_LABELS: Record<string, string> = {
   draft: 'Brouillon', submitted: 'Soumis', approved: 'OK', rejected: 'Refusé', revision_requested: 'Révision',
 };
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  draft:              { label: 'Brouillon',          className: 'bg-gray-100 text-gray-700' },
-  synced:             { label: 'Transf\u00e9r\u00e9',          className: 'bg-indigo-100 text-indigo-700' },
-  editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-blue-100 text-blue-700' },
-  recording:          { label: 'Enregistrement',     className: 'bg-blue-100 text-blue-700' },
-  ready:              { label: 'Pr\u00eat',                className: 'bg-green-100 text-green-700' },
-  submitted:          { label: 'Soumis',             className: 'bg-yellow-100 text-yellow-700' },
-  review:             { label: 'En revue',           className: 'bg-yellow-100 text-yellow-700' },
-  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-yellow-100 text-yellow-700' },
-  published:          { label: 'Publi\u00e9',             className: 'bg-green-200 text-green-800' },
-  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-orange-100 text-orange-700' },
-  rejected:           { label: 'Rejet\u00e9',             className: 'bg-red-100 text-red-700' },
-  archived:           { label: 'Archiv\u00e9',            className: 'bg-gray-200 text-gray-500' },
+  draft:              { label: 'Brouillon',          className: 'bg-paper-deep text-ink-80' },
+  synced:             { label: 'Transf\u00e9r\u00e9',          className: 'bg-mer-soft text-mer' },
+  editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-mer-soft text-mer' },
+  recording:          { label: 'Enregistrement',     className: 'bg-mer-soft text-mer' },
+  ready:              { label: 'Pr\u00eat',                className: 'bg-olive-soft text-olive' },
+  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre' },
+  review:             { label: 'En revue',           className: 'bg-ocre-soft text-ocre' },
+  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre' },
+  published:          { label: 'Publi\u00e9',             className: 'bg-olive-soft text-olive' },
+  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre' },
+  rejected:           { label: 'Rejet\u00e9',             className: 'bg-grenadine-soft text-danger' },
+  archived:           { label: 'Archiv\u00e9',            className: 'bg-paper-deep text-ink-60' },
 };
 
 type AdminTour = { id: string; title: string; city: string; status: string; guideId: string; poiCount: number; duration: number; distance: number; sessionId: string | null; guideName: string };
@@ -93,14 +93,14 @@ export default function AdminToursPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Tous les parcours</h1>
+      <h1 className="text-2xl font-bold text-ink mb-6">Tous les parcours</h1>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-6">
         <select
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
+          className="border border-line rounded-lg px-3 py-2 text-sm text-ink-80"
         >
           <option value="">Tous les statuts</option>
           {Object.entries(STATUS_BADGES).map(([v, { label }]) => (
@@ -110,7 +110,7 @@ export default function AdminToursPage() {
         <select
           value={filterCity}
           onChange={(e) => setFilterCity(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
+          className="border border-line rounded-lg px-3 py-2 text-sm text-ink-80"
         >
           <option value="">Toutes les villes</option>
           {cities.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -118,56 +118,56 @@ export default function AdminToursPage() {
         {(filterStatus || filterCity) && (
           <button
             onClick={() => { setFilterStatus(''); setFilterCity(''); }}
-            className="text-sm text-red-600 hover:underline px-2"
+            className="text-sm text-danger hover:underline px-2"
           >
             Effacer
           </button>
         )}
-        <span className="ml-auto text-sm text-gray-400 self-center">{filtered.length} parcours</span>
+        <span className="ml-auto text-sm text-ink-40 self-center">{filtered.length} parcours</span>
       </div>
 
       {loading ? (
-        <p className="text-gray-500 text-sm">Chargement...</p>
+        <p className="text-ink-60 text-sm">Chargement...</p>
       ) : filtered.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
-          <p className="text-gray-500">Aucun parcours trouvé.</p>
+        <div className="text-center py-12 bg-card rounded-md border border-line">
+          <p className="text-ink-60">Aucun parcours trouvé.</p>
         </div>
       ) : (
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div className="bg-card rounded-md border border-line overflow-hidden">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-paper-soft border-b border-line">
               <tr>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Parcours</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500 hidden sm:table-cell">Ville</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500 hidden md:table-cell">Guide</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-500 hidden lg:table-cell">POIs</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-500 hidden lg:table-cell">Durée</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Langues</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Statut</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-500">Actions</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60">Parcours</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60 hidden sm:table-cell">Ville</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60 hidden md:table-cell">Guide</th>
+                <th className="text-right px-4 py-3 font-medium text-ink-60 hidden lg:table-cell">POIs</th>
+                <th className="text-right px-4 py-3 font-medium text-ink-60 hidden lg:table-cell">Durée</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60">Langues</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60">Statut</th>
+                <th className="text-right px-4 py-3 font-medium text-ink-60">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-line">
               {filtered.map((tour) => {
                 const badge = STATUS_BADGES[tour.status] ?? STATUS_BADGES.draft;
                 const isActioning = actioning === tour.id;
                 return (
-                  <tr key={tour.id} className="hover:bg-gray-50">
+                  <tr key={tour.id} className="hover:bg-paper-soft">
                     <td className="px-4 py-3">
-                      <p className="font-medium text-gray-900">{tour.title}</p>
+                      <p className="font-medium text-ink">{tour.title}</p>
                       {tour.status === 'published' && (
-                        <Link href={`/catalogue/${tour.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-')}`} className="text-[10px] text-teal-600 hover:underline">
+                        <Link href={`/catalogue/${tour.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-')}`} className="text-[10px] text-grenadine hover:underline">
                           Voir dans le catalogue →
                         </Link>
                       )}
                     </td>
-                    <td className="px-4 py-3 text-gray-500 hidden sm:table-cell">{tour.city}</td>
-                    <td className="px-4 py-3 text-gray-600 text-sm hidden md:table-cell">{tour.guideName}</td>
-                    <td className="px-4 py-3 text-right text-gray-700 hidden lg:table-cell">{tour.poiCount}</td>
-                    <td className="px-4 py-3 text-right text-gray-700 hidden lg:table-cell">{tour.duration} min</td>
+                    <td className="px-4 py-3 text-ink-60 hidden sm:table-cell">{tour.city}</td>
+                    <td className="px-4 py-3 text-ink-60 text-sm hidden md:table-cell">{tour.guideName}</td>
+                    <td className="px-4 py-3 text-right text-ink-80 hidden lg:table-cell">{tour.poiCount}</td>
+                    <td className="px-4 py-3 text-right text-ink-80 hidden lg:table-cell">{tour.duration} min</td>
                     <td className="px-4 py-3">
                       <div className="flex flex-wrap gap-1">
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700 font-medium" title="Langue source">🇫🇷 FR</span>
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-mer-soft text-mer font-medium" title="Langue source">🇫🇷 FR</span>
                         {(purchasesByTour[tour.id] ?? []).map((p) => (
                           <span
                             key={p.id}
@@ -188,14 +188,14 @@ export default function AdminToursPage() {
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           href={`/admin/tours/${tour.id}`}
-                          className="text-xs text-teal-600 font-medium hover:underline"
+                          className="text-xs text-grenadine font-medium hover:underline"
                         >
                           Voir
                         </Link>
                         {tour.status === 'review' && (
                           <Link
                             href="/admin/moderation"
-                            className="text-xs text-yellow-700 font-medium hover:underline"
+                            className="text-xs text-ocre font-medium hover:underline"
                           >
                             File modération
                           </Link>
@@ -204,7 +204,7 @@ export default function AdminToursPage() {
                           <>
                             <Link
                               href="/admin/moderation"
-                              className="text-xs text-yellow-700 font-medium hover:underline"
+                              className="text-xs text-ocre font-medium hover:underline"
                             >
                               File modération
                             </Link>
@@ -215,7 +215,7 @@ export default function AdminToursPage() {
                                 setActioning(null);
                               }}
                               disabled={isActioning}
-                              className="text-xs text-blue-600 font-medium hover:underline disabled:opacity-50"
+                              className="text-xs text-mer font-medium hover:underline disabled:opacity-50"
                               title="Crée un ModerationItem si manquant"
                             >
                               Sync file
@@ -226,7 +226,7 @@ export default function AdminToursPage() {
                           <button
                             onClick={() => askAction(tour, 'archived')}
                             disabled={isActioning}
-                            className="text-xs text-orange-600 font-medium hover:underline disabled:opacity-50"
+                            className="text-xs text-ocre font-medium hover:underline disabled:opacity-50"
                           >
                             Suspendre
                           </button>
@@ -236,14 +236,14 @@ export default function AdminToursPage() {
                             <button
                               onClick={() => askAction(tour, 'published')}
                               disabled={isActioning}
-                              className="text-xs text-green-600 font-medium hover:underline disabled:opacity-50"
+                              className="text-xs text-olive font-medium hover:underline disabled:opacity-50"
                             >
                               Réactiver
                             </button>
                             <button
                               onClick={() => setDeleteConfirm(tour)}
                               disabled={isActioning || isDeleting}
-                              className="text-xs text-red-600 font-medium hover:underline disabled:opacity-50"
+                              className="text-xs text-danger font-medium hover:underline disabled:opacity-50"
                               data-testid={`delete-tour-${tour.id}`}
                             >
                               Supprimer
@@ -263,12 +263,12 @@ export default function AdminToursPage() {
       {/* Confirmation dialog */}
       {confirmTour && pendingStatus && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-6 max-w-sm w-full">
-            <h2 className="text-lg font-bold text-gray-900 mb-3">
+          <div className="bg-card rounded-md p-6 max-w-sm w-full">
+            <h2 className="text-lg font-bold text-ink mb-3">
               {pendingStatus === 'archived' ? 'Suspendre ce parcours ?' : 'Réactiver ce parcours ?'}
             </h2>
-            <p className="text-sm text-gray-600 mb-2 font-medium">{confirmTour.title}</p>
-            <p className="text-sm text-gray-500 mb-6">
+            <p className="text-sm text-ink-60 mb-2 font-medium">{confirmTour.title}</p>
+            <p className="text-sm text-ink-60 mb-6">
               {pendingStatus === 'archived'
                 ? 'Le parcours sera retiré de la plateforme et invisible aux utilisateurs.'
                 : 'Le parcours sera à nouveau visible et accessible aux utilisateurs.'}
@@ -276,7 +276,7 @@ export default function AdminToursPage() {
             <div className="flex gap-3">
               <button
                 onClick={() => { setConfirmTour(null); setPendingStatus(null); }}
-                className="flex-1 bg-gray-100 text-gray-700 font-medium py-2 rounded-lg hover:bg-gray-200"
+                className="flex-1 bg-paper-deep text-ink-80 font-medium py-2 rounded-lg hover:bg-paper-deep"
               >
                 Annuler
               </button>
@@ -284,8 +284,8 @@ export default function AdminToursPage() {
                 onClick={confirmAction}
                 className={`flex-1 text-white font-bold py-2 rounded-lg ${
                   pendingStatus === 'archived'
-                    ? 'bg-orange-600 hover:bg-orange-700'
-                    : 'bg-green-600 hover:bg-green-700'
+                    ? 'bg-ocre hover:bg-ocre'
+                    : 'bg-olive hover:bg-olive'
                 }`}
               >
                 Confirmer
@@ -297,16 +297,16 @@ export default function AdminToursPage() {
       {/* Delete confirmation dialog */}
       {deleteConfirm && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-6 max-w-sm w-full">
-            <h2 className="text-lg font-bold text-red-800 mb-3">Supprimer définitivement ?</h2>
-            <p className="text-sm text-gray-600 mb-2 font-medium">{deleteConfirm.title}</p>
-            <p className="text-sm text-red-600 mb-4">
+          <div className="bg-card rounded-md p-6 max-w-sm w-full">
+            <h2 className="text-lg font-bold text-danger mb-3">Supprimer définitivement ?</h2>
+            <p className="text-sm text-ink-60 mb-2 font-medium">{deleteConfirm.title}</p>
+            <p className="text-sm text-danger mb-4">
               Cette action est irréversible. Le tour, ses scènes, segments traduits, achats de langue et éléments de modération seront supprimés.
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setDeleteConfirm(null)}
-                className="flex-1 bg-gray-100 text-gray-700 font-medium py-2 rounded-lg hover:bg-gray-200"
+                className="flex-1 bg-paper-deep text-ink-80 font-medium py-2 rounded-lg hover:bg-paper-deep"
               >
                 Annuler
               </button>
@@ -321,7 +321,7 @@ export default function AdminToursPage() {
                   setIsDeleting(false);
                 }}
                 disabled={isDeleting}
-                className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white font-bold py-2 rounded-lg"
+                className="flex-1 bg-grenadine hover:bg-grenadine disabled:bg-paper-deep text-white font-bold py-2 rounded-lg"
                 data-testid="confirm-delete-tour"
               >
                 {isDeleting ? 'Suppression...' : 'Supprimer'}

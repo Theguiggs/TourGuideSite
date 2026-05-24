@@ -2,7 +2,7 @@
 /**
  * DS class migration codemod.
  *
- * Le preset DS (`@tourguide/design-system/tailwind`) REMPLACE la palette
+ * Le preset DS (`@murmure/design-system/tailwind`) REMPLACE la palette
  * Tailwind par défaut. Les classes `gray-*`, `red-*`, `teal-*`, etc. ne
  * génèrent aucun CSS — d'où la perte de lisibilité du studio.
  *

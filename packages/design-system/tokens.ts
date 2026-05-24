@@ -72,7 +72,7 @@ export const tgFonts = {
  * weight -> PostScript name.
  *
  * Usage (RN only) :
- *   import { tgFontsRn } from '@tourguide/design-system/tokens';
+ *   import { tgFontsRn } from '@murmure/design-system/tokens';
  *   <Text style={{ fontFamily: tgFontsRn.display, fontSize: 32 }}>...</Text>
  *
  * Web continues to use the existing `tgFonts` constant via `tokens.css` /

@@ -2,7 +2,7 @@
  * Story 2.3 — Constantes Card Web (extraites du composant `Card.tsx`).
  *
  * Vit dans un fichier `.ts` pur (pas de JSX, pas d'import `react/jsx-runtime`)
- * afin que la suite Jest du package `@tourguide/design-system` puisse importer
+ * afin que la suite Jest du package `@murmure/design-system` puisse importer
  * et tester les maps sans avoir à charger un runtime React (le package n'a
  * pas `react` en devDeps — c'est une peer-dep consumer).
  *

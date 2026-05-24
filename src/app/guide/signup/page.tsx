@@ -205,14 +205,17 @@ export default function GuideSignupPage() {
 
   // ---- Render ----
 
+  const inputBase = "w-full bg-paper border rounded-md px-4 py-3 text-caption text-ink focus:outline-none focus:border-grenadine focus:ring-2 focus:ring-grenadine-soft transition";
+  const labelClass = "block text-meta font-semibold text-ink-80 mb-1.5";
+
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
+    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 bg-paper">
       <div className="w-full max-w-md">
 
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Devenir Guide</h1>
-          <p className="text-gray-600">
+          <h1 className="font-display text-h3 text-ink mb-2 leading-none">Devenir Guide</h1>
+          <p className="font-editorial italic text-body-lg text-ink-60">
             {step === 'register'
               ? 'Créez votre espace guide pour publier vos parcours.'
               : `Code de confirmation envoyé à ${email}`}
@@ -221,17 +224,17 @@ export default function GuideSignupPage() {
 
         {/* Progress indicator */}
         <div className="flex items-center justify-center mb-8 gap-2">
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold
-            ${step === 'register' ? 'bg-teal-700 text-white' : 'bg-teal-100 text-teal-700'}`}>1</div>
-          <div className="w-12 h-0.5 bg-gray-200" />
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold
-            ${step === 'confirm' ? 'bg-teal-700 text-white' : 'bg-gray-100 text-gray-400'}`}>2</div>
+          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-meta font-bold transition
+            ${step === 'register' ? 'bg-grenadine text-paper' : 'bg-grenadine-soft text-grenadine'}`}>1</div>
+          <div className="w-12 h-0.5 bg-line" />
+          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-meta font-bold transition
+            ${step === 'confirm' ? 'bg-grenadine text-paper' : 'bg-paper-deep text-ink-40'}`}>2</div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+        <div className="bg-card border border-line rounded-md p-8 shadow-sm">
 
           {errors.global && (
-            <div className="bg-red-50 text-red-700 rounded-lg p-3 mb-6 text-sm" role="alert">
+            <div className="bg-grenadine-soft border border-grenadine/30 text-danger rounded-md p-3 mb-6 text-caption" role="alert">
               {errors.global}
             </div>
           )}
@@ -242,8 +245,8 @@ export default function GuideSignupPage() {
               <div className="space-y-4">
 
                 <div>
-                  <label htmlFor="displayName" className="block text-sm font-medium text-gray-700 mb-1">
-                    Nom complet <span className="text-red-500">*</span>
+                  <label htmlFor="displayName" className={labelClass}>
+                    Nom complet <span className="text-danger">*</span>
                   </label>
                   <input
                     id="displayName"
@@ -252,15 +255,14 @@ export default function GuideSignupPage() {
                     onChange={(e) => setDisplayName(e.target.value)}
                     placeholder="Marie Dupont"
                     required
-                    className={`w-full border rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-teal-500 focus:border-transparent
-                      ${errors.displayName ? 'border-red-400' : 'border-gray-300'}`}
+                    className={`${inputBase} ${errors.displayName ? 'border-grenadine' : 'border-line'}`}
                   />
-                  {errors.displayName && <p className="text-red-600 text-xs mt-1">{errors.displayName}</p>}
+                  {errors.displayName && <p className="text-danger text-meta mt-1">{errors.displayName}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email <span className="text-red-500">*</span>
+                  <label htmlFor="email" className={labelClass}>
+                    Email <span className="text-danger">*</span>
                   </label>
                   <input
                     id="email"
@@ -270,15 +272,14 @@ export default function GuideSignupPage() {
                     placeholder="guide@exemple.com"
                     required
                     autoComplete="email"
-                    className={`w-full border rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-teal-500 focus:border-transparent
-                      ${errors.email ? 'border-red-400' : 'border-gray-300'}`}
+                    className={`${inputBase} ${errors.email ? 'border-grenadine' : 'border-line'}`}
                   />
-                  {errors.email && <p className="text-red-600 text-xs mt-1">{errors.email}</p>}
+                  {errors.email && <p className="text-danger text-meta mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                    Mot de passe <span className="text-red-500">*</span>
+                  <label htmlFor="password" className={labelClass}>
+                    Mot de passe <span className="text-danger">*</span>
                   </label>
                   <input
                     id="password"
@@ -288,30 +289,28 @@ export default function GuideSignupPage() {
                     placeholder="Min. 8 caractères, 1 majuscule, 1 chiffre"
                     required
                     autoComplete="new-password"
-                    className={`w-full border rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-teal-500 focus:border-transparent
-                      ${errors.password ? 'border-red-400' : 'border-gray-300'}`}
+                    className={`${inputBase} ${errors.password ? 'border-grenadine' : 'border-line'}`}
                   />
-                  {errors.password && <p className="text-red-600 text-xs mt-1">{errors.password}</p>}
+                  {errors.password && <p className="text-danger text-meta mt-1">{errors.password}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
-                    Ville principale <span className="text-red-500">*</span>
+                  <label htmlFor="city" className={labelClass}>
+                    Ville principale <span className="text-danger">*</span>
                   </label>
                   <select
                     id="city"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     required
-                    className={`w-full border rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white
-                      ${errors.city ? 'border-red-400' : 'border-gray-300'}`}
+                    className={`${inputBase} ${errors.city ? 'border-grenadine' : 'border-line'}`}
                   >
                     <option value="">Sélectionnez une ville…</option>
                     {CITIES.map((c) => (
                       <option key={c} value={c}>{c}</option>
                     ))}
                   </select>
-                  {errors.city && <p className="text-red-600 text-xs mt-1">{errors.city}</p>}
+                  {errors.city && <p className="text-danger text-meta mt-1">{errors.city}</p>}
                 </div>
 
               </div>
@@ -319,14 +318,14 @@ export default function GuideSignupPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="mt-6 w-full bg-teal-700 text-white font-bold py-3 rounded-xl hover:bg-teal-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="mt-6 w-full bg-grenadine text-paper font-bold py-3 rounded-pill hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-caption"
               >
                 {loading ? 'Création du compte…' : 'Créer mon compte'}
               </button>
 
-              <p className="text-center text-sm text-gray-500 mt-4">
+              <p className="text-center text-caption text-ink-60 mt-4">
                 Déjà un compte ?{' '}
-                <Link href="/guide/login" className="text-teal-700 hover:underline font-medium">
+                <Link href="/guide/login" className="text-grenadine hover:underline underline-offset-2 font-medium no-underline">
                   Se connecter
                 </Link>
               </p>
@@ -337,10 +336,10 @@ export default function GuideSignupPage() {
           {step === 'confirm' && (
             <form onSubmit={handleConfirm} noValidate>
               <div className="mb-2">
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-caption text-ink-60 mb-4">
                   Vérifiez votre boite mail et saisissez le code à 6 chiffres.
                 </p>
-                <label htmlFor="code" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="code" className={labelClass}>
                   Code de confirmation
                 </label>
                 <input
@@ -352,16 +351,15 @@ export default function GuideSignupPage() {
                   onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
                   placeholder="123456"
                   autoComplete="one-time-code"
-                  className={`w-full border rounded-lg px-4 py-3 text-gray-900 text-center text-2xl tracking-widest font-mono focus:ring-2 focus:ring-teal-500 focus:border-transparent
-                    ${errors.code ? 'border-red-400' : 'border-gray-300'}`}
+                  className={`${inputBase} text-center text-h5 tracking-widest font-mono ${errors.code ? 'border-grenadine' : 'border-line'}`}
                 />
-                {errors.code && <p className="text-red-600 text-xs mt-1">{errors.code}</p>}
+                {errors.code && <p className="text-danger text-meta mt-1">{errors.code}</p>}
               </div>
 
               <button
                 type="submit"
                 disabled={loading || code.length !== 6}
-                className="mt-6 w-full bg-teal-700 text-white font-bold py-3 rounded-xl hover:bg-teal-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="mt-6 w-full bg-grenadine text-paper font-bold py-3 rounded-pill hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-caption"
               >
                 {loading ? 'Vérification…' : 'Confirmer et accéder au tableau de bord'}
               </button>
@@ -371,7 +369,7 @@ export default function GuideSignupPage() {
                   type="button"
                   onClick={handleResend}
                   disabled={resendCooldown > 0 || loading}
-                  className="text-sm text-teal-700 hover:underline disabled:text-gray-400 disabled:no-underline"
+                  className="text-caption text-grenadine hover:underline underline-offset-2 disabled:text-ink-40 disabled:no-underline"
                 >
                   {resendCooldown > 0
                     ? `Renvoyer le code (${resendCooldown}s)`
@@ -382,7 +380,7 @@ export default function GuideSignupPage() {
               <button
                 type="button"
                 onClick={() => { setStep('register'); setCode(''); setErrors({}); }}
-                className="mt-3 w-full text-sm text-gray-500 hover:text-gray-700"
+                className="mt-3 w-full text-caption text-ink-40 hover:text-ink transition"
               >
                 ← Modifier mes informations
               </button>
@@ -392,9 +390,9 @@ export default function GuideSignupPage() {
         </div>
 
         {/* Info block */}
-        <div className="mt-6 bg-teal-50 border border-teal-100 rounded-xl p-4 text-sm text-teal-800">
-          <p className="font-semibold mb-1">Après votre inscription</p>
-          <ul className="space-y-1 text-teal-700">
+        <div className="mt-6 bg-mer-soft border border-mer/30 rounded-md p-4 text-caption text-mer">
+          <p className="font-semibold mb-1.5">Après votre inscription</p>
+          <ul className="space-y-1">
             <li>✓ Votre profil sera soumis à validation</li>
             <li>✓ Vous pouvez commencer à créer vos parcours</li>
             <li>✓ Chaque parcours passe par une modération avant publication</li>

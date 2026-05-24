@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 import {
   FeatureFlagReactProvider,
   useDsVersion,
-} from '@tourguide/design-system';
+} from '@murmure/design-system';
 import { webFeatureFlagProvider } from '@/lib/feature-flag-provider';
 
 function DsVersionEffect(): null {

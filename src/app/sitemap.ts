@@ -5,7 +5,7 @@ import { getAllPublicGuides } from '@/lib/api/guides-public-server';
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static generation.
 export const dynamic = 'force-dynamic';
 
-const BASE_URL = 'https://tourguide.app';
+const BASE_URL = 'https://murmure.app';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [cities, tours, guides] = await Promise.all([

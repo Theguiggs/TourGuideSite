@@ -17,7 +17,7 @@ const meta: Meta<React.FC> = {
     docs: {
       description: {
         component:
-          'Pack illustrations empty-states — viewBox 200×200, stroke 1.5, currentColor pour les lignes principales, accent grenadine fixe (signature DS, Brief §6). Min usage 120px, optimal 160-240px, max 320px. Importer depuis `@tourguide/design-system/illustrations`.',
+          'Pack illustrations empty-states — viewBox 200×200, stroke 1.5, currentColor pour les lignes principales, accent grenadine fixe (signature DS, Brief §6). Min usage 120px, optimal 160-240px, max 320px. Importer depuis `@murmure/design-system/illustrations`.',
       },
     },
   },

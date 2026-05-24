@@ -10,7 +10,7 @@ import { CatalogueViewCities } from './catalogue-view-cities';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Catalogue des villes — TourGuide',
+  title: 'Catalogue des villes — Murmure',
   description:
     'Explorez les villes proposées en visite audio. ' +
     'Chaque ville révèle ses propres histoires.',

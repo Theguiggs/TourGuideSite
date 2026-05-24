@@ -3,6 +3,7 @@ import { LanguageAudioSection } from '../language-audio-section';
 import { TTSControls } from '@/components/studio/tts-controls';
 import { AudioRecorder } from '@/components/studio/audio-recorder';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
+import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import type { SceneSegment } from '@/types/studio';
 
 // --- Mocks ---
@@ -131,8 +132,13 @@ describe('LanguageAudioSection', () => {
     expect(lastCall.onRecordingComplete).toBeInstanceOf(Function);
   });
 
-  it('renders AudioPlayerBar when segment has an audioKey', () => {
-    const segmentWithAudio = makeSegment({ audioKey: 'data:audio/wav;base64,abc123' });
+  it('renders AudioPlayerBar only when THIS scene\'s audio is loaded in the player', () => {
+    const audioUrl = 'data:audio/wav;base64,abc123';
+    const segmentWithAudio = makeSegment({ audioKey: audioUrl });
+    // Player has this scene's audio loaded → bar should show under this section.
+    (audioPlayerService.getState as jest.Mock).mockReturnValue({
+      isPlaying: false, currentTime: 0, duration: 0, currentUrl: audioUrl,
+    });
 
     render(
       <LanguageAudioSection
@@ -151,6 +157,26 @@ describe('LanguageAudioSection', () => {
 
     // No "no audio" message
     expect(screen.queryByTestId('no-audio-message')).not.toBeInTheDocument();
+  });
+
+  it('does NOT render the player bar when a different scene is loaded in the player', () => {
+    const segmentWithAudio = makeSegment({ audioKey: 'data:audio/wav;base64,scene-2' });
+    // Player currently holds a DIFFERENT scene's audio (e.g. scene 1).
+    (audioPlayerService.getState as jest.Mock).mockReturnValue({
+      isPlaying: true, currentTime: 0, duration: 0, currentUrl: 'data:audio/wav;base64,scene-1',
+    });
+
+    render(
+      <LanguageAudioSection
+        {...defaultProps}
+        segment={segmentWithAudio}
+      />,
+    );
+
+    // The shared singleton bar must NOT appear under this scene — only its own
+    // "Ecouter" button, so the guide isn't shown scene 1 while at scene 2.
+    expect(screen.queryByTestId('mock-audio-player')).not.toBeInTheDocument();
+    expect(screen.getByTestId('play-audio-btn')).toBeInTheDocument();
   });
 
   it('shows "no audio" message when segment has no audioKey', () => {

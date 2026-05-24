@@ -60,12 +60,12 @@ const baseProps = {
 };
 
 describe('Player — exports & wiring', () => {
-  it('Player is exported from @tourguide/design-system/web', () => {
+  it('Player is exported from @murmure/design-system/web', () => {
     expect(Player).toBeDefined();
     expect(typeof Player).toBe('function');
   });
 
-  it('Player RN miroir wired in @tourguide/design-system/rn (Story 2.6)', () => {
+  it('Player RN miroir wired in @murmure/design-system/rn (Story 2.6)', () => {
     const rnIndex = fs.readFileSync(
       path.join(__dirname, '..', 'rn', 'index.ts'),
       'utf8',

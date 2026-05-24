@@ -62,7 +62,7 @@ export function RgpdConsentBanner() {
 
         <div className="text-sm text-ink-80 space-y-3 mb-6">
           <p>
-            En utilisant le Studio Audio, vous autorisez TourGuide a :
+            En utilisant le Studio Audio, vous autorisez Murmure a :
           </p>
           <ul className="list-disc list-inside space-y-1">
             <li>Stocker vos enregistrements audio sur nos serveurs securises (AWS S3)</li>

@@ -22,7 +22,7 @@ export default function SmartAppLink({
 }: SmartAppLinkProps) {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const deepLink = `tourguide://tour/${tourId}`;
+    const deepLink = `murmure://tour/${tourId}`;
     const storeUrl = process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#';
 
     // Try deep link

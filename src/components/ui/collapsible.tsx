@@ -79,21 +79,21 @@ export function Collapsible({
 
   return (
     <div
-      className={`rounded-lg border border-gray-200 bg-white ${className ?? ''}`}
+      className={`rounded-lg border border-line bg-card ${className ?? ''}`}
       data-testid={testId}
     >
       <button
         type="button"
         onClick={toggle}
-        className={`w-full flex items-center gap-2 ${padHeader} text-left hover:bg-gray-50 rounded-lg transition-colors`}
+        className={`w-full flex items-center gap-2 ${padHeader} text-left hover:bg-paper-soft rounded-lg transition-colors`}
         aria-expanded={open}
       >
         {icon && <span className="shrink-0">{icon}</span>}
         <span className="flex-1 min-w-0">
-          <span className="text-sm font-semibold text-gray-800">{title}</span>
-          {subtitle && <span className="ml-2 text-xs text-gray-500">{subtitle}</span>}
+          <span className="text-sm font-semibold text-ink">{title}</span>
+          {subtitle && <span className="ml-2 text-xs text-ink-60">{subtitle}</span>}
         </span>
-        <span className={`text-gray-400 text-xs transition-transform ${open ? 'rotate-90' : ''}`}>
+        <span className={`text-ink-40 text-xs transition-transform ${open ? 'rotate-90' : ''}`}>
           &#x25B6;
         </span>
       </button>

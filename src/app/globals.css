@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @config "../../tailwind.config.js";
-@import "@tourguide/design-system/css";
+@import "@murmure/design-system/css";
 
 /* Story 1.2 — Phase 0 Q5 : light forcé en V1.0.
  * Le DS expose des variantes dark via `@media (prefers-color-scheme: dark)`,
@@ -57,6 +57,12 @@ textarea:focus-visible,
 /* ML-6.3: Scrollbar thin for language tabs */
 .scrollbar-thin {
   scrollbar-width: thin;
+}
+
+/* Leaflet — crosshair cursor when the map is in edit-GPS mode. */
+.tg-map-cursor-crosshair .leaflet-container,
+.tg-map-cursor-crosshair .leaflet-grab {
+  cursor: crosshair !important;
 }
 .scrollbar-thin::-webkit-scrollbar {
   height: 4px;

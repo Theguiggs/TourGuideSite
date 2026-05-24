@@ -20,6 +20,11 @@ export interface StaleSegmentInfo {
   language: string;
 }
 
+export interface SourceHashUpdate {
+  segmentId: string;
+  sourceTextHash: string;
+}
+
 // --- Pure functions ---
 
 /**
@@ -62,6 +67,39 @@ export function getStaleSegments(
     }
   }
   return stale;
+}
+
+/**
+ * Computes the source-text-hash updates needed to "dismiss" staleness without
+ * re-translating — i.e. mark each segment as up-to-date relative to its CURRENT
+ * source scene. Because staleness is detected by hash comparison, clearing the
+ * flag means rewriting `sourceTextHash` to the present source hash. (Bumping
+ * `sourceUpdatedAt` alone is a no-op under hash-based detection.)
+ *
+ * Segments whose source scene is not found are skipped.
+ */
+export function getSourceHashUpdates(
+  staleSegmentIds: string[],
+  segments: SceneSegment[],
+  scenes: StudioScene[],
+): SourceHashUpdate[] {
+  const sceneMap = new Map<string, StudioScene>();
+  for (const scene of scenes) {
+    sceneMap.set(scene.id, scene);
+  }
+
+  const updates: SourceHashUpdate[] = [];
+  for (const id of staleSegmentIds) {
+    const segment = segments.find((s) => s.id === id);
+    if (!segment) continue;
+    const scene = sceneMap.get(segment.sceneId);
+    if (!scene) continue;
+    updates.push({
+      segmentId: id,
+      sourceTextHash: hashSourceText(scene.transcriptText, scene.title),
+    });
+  }
+  return updates;
 }
 
 /**

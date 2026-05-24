@@ -6,23 +6,23 @@ import Link from 'next/link';
 import { getGuideProfileById, listAllGuideTours, adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  pending_moderation: { label: 'En attente',  className: 'bg-yellow-100 text-yellow-700' },
-  active:             { label: 'Actif',        className: 'bg-green-100 text-green-700' },
-  suspended:          { label: 'Suspendu',     className: 'bg-orange-100 text-orange-700' },
-  rejected:           { label: 'Rejeté',       className: 'bg-red-100 text-red-700' },
+  pending_moderation: { label: 'En attente',  className: 'bg-ocre-soft text-ocre' },
+  active:             { label: 'Actif',        className: 'bg-olive-soft text-olive' },
+  suspended:          { label: 'Suspendu',     className: 'bg-ocre-soft text-ocre' },
+  rejected:           { label: 'Rejeté',       className: 'bg-grenadine-soft text-danger' },
 };
 
 const TOUR_STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  draft:              { label: 'Brouillon',           className: 'bg-gray-100 text-gray-700' },
-  editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-blue-100 text-blue-700' },
-  recording:          { label: 'Enregistrement',     className: 'bg-blue-100 text-blue-700' },
-  ready:              { label: 'Pr\u00eat',                className: 'bg-green-100 text-green-700' },
-  submitted:          { label: 'Soumis',             className: 'bg-yellow-100 text-yellow-700' },
-  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-yellow-100 text-yellow-700' },
-  published:          { label: 'Publi\u00e9',             className: 'bg-green-200 text-green-800' },
-  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-orange-100 text-orange-700' },
-  rejected:           { label: 'Rejet\u00e9',             className: 'bg-red-100 text-red-700' },
-  archived:           { label: 'Archiv\u00e9',            className: 'bg-gray-200 text-gray-500' },
+  draft:              { label: 'Brouillon',           className: 'bg-paper-deep text-ink-80' },
+  editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-mer-soft text-mer' },
+  recording:          { label: 'Enregistrement',     className: 'bg-mer-soft text-mer' },
+  ready:              { label: 'Pr\u00eat',                className: 'bg-olive-soft text-olive' },
+  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre' },
+  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre' },
+  published:          { label: 'Publi\u00e9',             className: 'bg-olive-soft text-olive' },
+  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre' },
+  rejected:           { label: 'Rejet\u00e9',             className: 'bg-grenadine-soft text-danger' },
+  archived:           { label: 'Archiv\u00e9',            className: 'bg-paper-deep text-ink-60' },
 };
 
 type GuideProfile = {
@@ -114,11 +114,11 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
     setTimeout(() => setFeedback(null), 3000);
   };
 
-  if (loading) return <p className="text-gray-500 text-sm p-6">Chargement...</p>;
+  if (loading) return <p className="text-ink-60 text-sm p-6">Chargement...</p>;
   if (error || !profile) return (
     <div className="p-6">
-      <p className="text-red-600 text-sm mb-4">{error ?? 'Profil introuvable'}</p>
-      <Link href="/admin/guides" className="text-teal-700 text-sm hover:underline">← Retour</Link>
+      <p className="text-danger text-sm mb-4">{error ?? 'Profil introuvable'}</p>
+      <Link href="/admin/guides" className="text-grenadine text-sm hover:underline">← Retour</Link>
     </div>
   );
 
@@ -128,27 +128,27 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
     <div className="max-w-3xl">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <Link href="/admin/guides" className="text-gray-400 hover:text-gray-600 text-sm">
+        <Link href="/admin/guides" className="text-ink-40 hover:text-ink-60 text-sm">
           ← Tous les guides
         </Link>
       </div>
 
       {feedback && (
-        <div className={`rounded-lg p-3 mb-4 text-sm ${feedback.ok ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+        <div className={`rounded-lg p-3 mb-4 text-sm ${feedback.ok ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
           {feedback.msg}
         </div>
       )}
 
       {/* Profile card */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+      <div className="bg-card rounded-md border border-line p-6 mb-6">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-teal-200 rounded-full flex items-center justify-center text-teal-700 font-bold text-2xl">
+            <div className="w-14 h-14 bg-grenadine-soft rounded-full flex items-center justify-center text-grenadine font-bold text-2xl">
               {profile.displayName.charAt(0)}
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">{profile.displayName}</h1>
-              <p className="text-sm text-gray-500">{profile.city}</p>
+              <h1 className="text-xl font-bold text-ink">{profile.displayName}</h1>
+              <p className="text-sm text-ink-60">{profile.city}</p>
               <span className={`text-xs font-medium px-2 py-0.5 rounded-full mt-1 inline-block ${statusBadge.className}`}>
                 {statusBadge.label}
               </span>
@@ -161,7 +161,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
             <Link
               href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
               target="_blank"
-              className="border border-teal-300 text-teal-700 text-sm font-medium px-4 py-2 rounded-lg hover:bg-teal-50 flex items-center gap-1"
+              className="border border-grenadine text-grenadine text-sm font-medium px-4 py-2 rounded-lg hover:bg-grenadine-soft flex items-center gap-1"
             >
               Voir catalogue {profile.city}
             </Link>
@@ -169,7 +169,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               <button
                 onClick={() => setStatus('active')}
                 disabled={saving}
-                className="bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-green-700 disabled:opacity-50"
+                className="bg-olive text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-olive disabled:opacity-50"
               >
                 Activer le compte
               </button>
@@ -178,7 +178,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               <button
                 onClick={() => setStatus('suspended')}
                 disabled={saving}
-                className="bg-orange-500 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-orange-600 disabled:opacity-50"
+                className="bg-ocre text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-ocre disabled:opacity-50"
               >
                 Suspendre
               </button>
@@ -187,7 +187,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               <button
                 onClick={() => setStatus('rejected')}
                 disabled={saving}
-                className="bg-red-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-red-700 disabled:opacity-50"
+                className="bg-grenadine text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-grenadine disabled:opacity-50"
               >
                 Rejeter
               </button>
@@ -197,9 +197,9 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
         {/* Email */}
         {guideEmail && (
-          <div className="flex items-center gap-2 mb-4 p-3 bg-blue-50 rounded-lg">
-            <span className="text-sm text-blue-700 font-medium">Email :</span>
-            <a href={`mailto:${guideEmail}`} className="text-sm text-blue-800 font-mono hover:underline">{guideEmail}</a>
+          <div className="flex items-center gap-2 mb-4 p-3 bg-mer-soft rounded-lg">
+            <span className="text-sm text-mer font-medium">Email :</span>
+            <a href={`mailto:${guideEmail}`} className="text-sm text-mer font-mono hover:underline">{guideEmail}</a>
           </div>
         )}
 
@@ -224,29 +224,29 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
         </div>
 
         {profile.bio && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <p className="text-xs font-medium text-gray-500 mb-1">Bio</p>
-            <p className="text-sm text-gray-700 whitespace-pre-wrap">{profile.bio}</p>
+          <div className="mt-4 pt-4 border-t border-line">
+            <p className="text-xs font-medium text-ink-60 mb-1">Bio</p>
+            <p className="text-sm text-ink-80 whitespace-pre-wrap">{profile.bio}</p>
           </div>
         )}
 
         {profile.specialties && profile.specialties.length > 0 && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <p className="text-xs font-medium text-gray-500 mb-2">Spécialités</p>
+          <div className="mt-4 pt-4 border-t border-line">
+            <p className="text-xs font-medium text-ink-60 mb-2">Spécialités</p>
             <div className="flex flex-wrap gap-2">
               {profile.specialties.map((s) => (
-                <span key={s} className="text-xs bg-teal-50 text-teal-700 px-2 py-1 rounded-full">{s}</span>
+                <span key={s} className="text-xs bg-grenadine-soft text-grenadine px-2 py-1 rounded-full">{s}</span>
               ))}
             </div>
           </div>
         )}
 
         {profile.languages && profile.languages.length > 0 && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <p className="text-xs font-medium text-gray-500 mb-2">Langues</p>
+          <div className="mt-4 pt-4 border-t border-line">
+            <p className="text-xs font-medium text-ink-60 mb-2">Langues</p>
             <div className="flex flex-wrap gap-2">
               {profile.languages.map((l) => (
-                <span key={l} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full">{l}</span>
+                <span key={l} className="text-xs bg-mer-soft text-mer px-2 py-1 rounded-full">{l}</span>
               ))}
             </div>
           </div>
@@ -254,21 +254,21 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
       </div>
 
       {/* Tours */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h2 className="text-base font-semibold text-gray-900 mb-4">
+      <div className="bg-card rounded-md border border-line p-6">
+        <h2 className="text-base font-semibold text-ink mb-4">
           Parcours ({tours.length})
         </h2>
         {tours.length === 0 ? (
-          <p className="text-sm text-gray-400">Aucun parcours créé.</p>
+          <p className="text-sm text-ink-40">Aucun parcours créé.</p>
         ) : (
-          <div className="divide-y divide-gray-100">
+          <div className="divide-y divide-line">
             {tours.map((tour) => {
               const badge = TOUR_STATUS_BADGES[tour.status] ?? TOUR_STATUS_BADGES.draft;
               return (
                 <div key={tour.id} className="py-3 flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{tour.title || <em className="text-gray-400">Sans titre</em>}</p>
-                    <p className="text-xs text-gray-400 font-mono mt-0.5">{tour.id}</p>
+                    <p className="text-sm font-medium text-ink">{tour.title || <em className="text-ink-40">Sans titre</em>}</p>
+                    <p className="text-xs text-ink-40 font-mono mt-0.5">{tour.id}</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className={`text-xs font-medium px-2 py-1 rounded-full ${badge.className}`}>
@@ -278,14 +278,14 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
                       <Link
                         href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/${tour.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
                         target="_blank"
-                        className="text-xs text-teal-600 hover:underline"
+                        className="text-xs text-grenadine hover:underline"
                       >
                         Voir
                       </Link>
                     )}
                     <Link
                       href={`/admin/tours/${tour.id}`}
-                      className="text-xs text-gray-500 hover:underline"
+                      className="text-xs text-ink-60 hover:underline"
                     >
                       Admin
                     </Link>
@@ -303,8 +303,8 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 function InfoRow({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
     <div>
-      <p className="text-xs font-medium text-gray-500 mb-0.5">{label}</p>
-      <p className={`text-sm text-gray-800 ${mono ? 'font-mono text-xs break-all' : ''}`}>{value}</p>
+      <p className="text-xs font-medium text-ink-60 mb-0.5">{label}</p>
+      <p className={`text-sm text-ink ${mono ? 'font-mono text-xs break-all' : ''}`}>{value}</p>
     </div>
   );
 }

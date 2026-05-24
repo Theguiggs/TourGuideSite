@@ -1241,7 +1241,11 @@ export default function ModerationReviewPage() {
 
         {/* Right: Checklist + Actions */}
         <div className="lg:col-span-1">
-          <div className="sticky top-24 space-y-4">
+          {/* On large screens this panel scrolls independently (its own
+              scrollbar, capped to the viewport height) so the moderator can
+              reach the checklist + Valider/Rejeter actions without scrolling
+              the long left column of translations and audio players. */}
+          <div className="sticky top-24 space-y-4 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pr-1">
             {/* Quality Checklist */}
             <div className="bg-card rounded-md border border-line p-4">
               <h2 className="text-lg font-semibold text-ink mb-4">Checklist qualite</h2>

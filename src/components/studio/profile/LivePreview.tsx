@@ -1,7 +1,7 @@
 'use client';
 
-import { Pin } from '@tourguide/design-system/web';
-import { tgColors } from '@tourguide/design-system';
+import { Pin } from '@murmure/design-system/web';
+import { tgColors } from '@murmure/design-system';
 import { cityFamily, FAMILY_META } from '@/components/studio/shell';
 import type { GuideProfileDraft } from '@/lib/studio/profile-helpers';
 

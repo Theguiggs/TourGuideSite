@@ -5,11 +5,11 @@
 // Ajout d'un 3ᵉ bloc qui démontre les classes Tailwind (preset DS via `@config`).
 //
 // Démontre les TROIS surfaces :
-//   1) `@tourguide/design-system`         → tokens-only (sûr Web + RN)
-//   2) `@tourguide/design-system/web`     → composants React DOM
+//   1) `@murmure/design-system`         → tokens-only (sûr Web + RN)
+//   2) `@murmure/design-system/web`     → composants React DOM
 //   3) Tailwind preset                    → classes utilitaires (`bg-paper`, …)
-import { tg } from '@tourguide/design-system';
-import { Button, Card, Eyebrow } from '@tourguide/design-system/web';
+import { tg } from '@murmure/design-system';
+import { Button, Card, Eyebrow } from '@murmure/design-system/web';
 
 export default function TestDsPage() {
   return (

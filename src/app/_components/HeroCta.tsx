@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Button } from '@tourguide/design-system/web';
+import { Button } from '@murmure/design-system/web';
 
 /**
  * HeroCta — wrapper client component pour le CTA primary du hero landing.

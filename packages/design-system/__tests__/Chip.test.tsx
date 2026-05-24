@@ -58,12 +58,12 @@ const COLOR_BY_COLOR: Record<ChipColor, string> = {
 };
 
 describe('Chip — exports', () => {
-  it('is exported from @tourguide/design-system/web', () => {
+  it('is exported from @murmure/design-system/web', () => {
     expect(ChipWeb).toBeDefined();
     expect(typeof ChipWeb).toBe('function');
   });
 
-  it('is wired in @tourguide/design-system/rn sub-export (Story 2.2)', () => {
+  it('is wired in @murmure/design-system/rn sub-export (Story 2.2)', () => {
     // On NE peut PAS importer `../rn` ici (Jest node env sans preset RN —
     // `react-native` ships Flow syntax non parsable par ts-jest).
     const rnIndex = fs.readFileSync(

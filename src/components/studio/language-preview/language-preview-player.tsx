@@ -2,11 +2,27 @@
 
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
+import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
+import { shouldUseStubs } from '@/config/api-mode';
 import { getTransitionMessage } from '@/lib/multilang/i18n-transitions';
 import { logger } from '@/lib/logger';
 import type { StudioScene, SceneSegment } from '@/types/studio';
 
 const SERVICE_NAME = 'LanguagePreviewPlayer';
+
+/** Resolve a stored audio reference to something the player can load: data URLs
+ *  and absolute URLs pass through; S3 keys are signed via getPlayableUrl. Never
+ *  throws — falls back to the raw key so play() surfaces any error. */
+async function resolvePlayableUrl(key: string): Promise<string> {
+  if (key.startsWith('data:') || key.startsWith('http')) return key;
+  if (shouldUseStubs()) return key;
+  try {
+    return await getPlayableUrl(key);
+  } catch (e) {
+    logger.error(SERVICE_NAME, 'Failed to resolve audio URL', { error: String(e) });
+    return key;
+  }
+}
 
 // --- Types ---
 
@@ -99,7 +115,7 @@ export function LanguagePreviewPlayer({
           const transitionMsg = getTransitionMessage(language, nextTitle);
           logger.info(SERVICE_NAME, 'Transition', { message: transitionMsg, sceneIndex: nextIndex });
 
-          audioPlayerService.play(key);
+          resolvePlayableUrl(key).then((url) => audioPlayerService.play(url));
         } else {
           // Playlist finished
           setMode('idle');
@@ -149,7 +165,7 @@ export function LanguagePreviewPlayer({
     setCurrentSceneIndex(firstIndex);
 
     logger.info(SERVICE_NAME, 'Starting teaser', { language, sceneIndex: firstIndex });
-    await audioPlayerService.play(key);
+    await audioPlayerService.play(await resolvePlayableUrl(key));
 
     // Stop after 10s
     teaserTimeoutRef.current = setTimeout(() => {
@@ -192,7 +208,7 @@ export function LanguagePreviewPlayer({
     setCurrentSceneIndex(firstIndex);
 
     logger.info(SERVICE_NAME, 'Starting full preview', { language, sceneIndex: firstIndex });
-    await audioPlayerService.play(key);
+    await audioPlayerService.play(await resolvePlayableUrl(key));
   }, [mode, scenes, segments, language, missingCount]);
 
   return (

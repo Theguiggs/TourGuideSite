@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { PinNegatif } from '@murmure/design-system/web';
 import { useAuth } from '@/lib/auth/auth-context';
 
 export default function Header() {
@@ -9,41 +10,56 @@ export default function Header() {
   const { isAuthenticated, isAdmin, user, signOut } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+    <header className="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-line">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-teal-700">TourGuide</span>
+          {/* Logo Murmure : PinNegatif grenadine + wordmark DM Serif Display */}
+          <Link href="/" className="flex items-center gap-2.5 no-underline">
+            <PinNegatif size={26} bg="grenadine" fg="paper" />
+            <span
+              className="font-display text-ink leading-none"
+              style={{ fontSize: '1.375rem', letterSpacing: '-0.01em' }}
+            >
+              Murmure
+            </span>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/catalogue" className="text-gray-600 hover:text-teal-700 font-medium">
+          <div className="hidden md:flex items-center gap-6">
+            <Link
+              href="/catalogue"
+              className="text-caption text-ink-60 hover:text-ink font-medium no-underline transition"
+            >
               Catalogue
             </Link>
             {isAuthenticated ? (
               <>
-                <Link href={isAdmin ? '/admin/moderation' : '/guide/dashboard'} className="text-gray-600 hover:text-teal-700 font-medium">
+                <Link
+                  href={isAdmin ? '/admin/moderation' : '/guide/dashboard'}
+                  className="text-caption text-ink-60 hover:text-ink font-medium no-underline transition"
+                >
                   {user?.displayName}
                 </Link>
                 <button
                   onClick={signOut}
-                  className="text-gray-500 hover:text-red-600 font-medium text-sm"
+                  className="text-meta text-ink-40 hover:text-grenadine font-medium transition"
                 >
-                  Deconnexion
+                  Déconnexion
                 </button>
               </>
             ) : (
               <>
-                <Link href="/guide/login" className="text-gray-600 hover:text-teal-700 font-medium">
+                <Link
+                  href="/guide/login"
+                  className="text-caption text-ink-60 hover:text-ink font-medium no-underline transition"
+                >
                   Espace Guide
                 </Link>
                 <Link
                   href={process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#'}
-                  className="bg-teal-700 text-white px-4 py-2 rounded-lg hover:bg-teal-800 font-medium"
+                  className="bg-grenadine text-paper text-caption font-bold px-4 py-2 rounded-pill hover:opacity-90 transition no-underline"
                 >
-                  Telecharger l&apos;app
+                  Télécharger l&apos;app
                 </Link>
               </>
             )}
@@ -51,7 +67,7 @@ export default function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-ink-60 hover:text-ink"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
           >
@@ -67,10 +83,10 @@ export default function Header() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden pb-4 border-t border-gray-100">
+          <div className="md:hidden pb-4 border-t border-line">
             <Link
               href="/catalogue"
-              className="block py-3 text-gray-600 hover:text-teal-700 font-medium"
+              className="block py-3 text-caption text-ink-60 hover:text-ink font-medium no-underline"
               onClick={() => setMenuOpen(false)}
             >
               Catalogue
@@ -79,33 +95,33 @@ export default function Header() {
               <>
                 <Link
                   href={isAdmin ? '/admin/moderation' : '/guide/dashboard'}
-                  className="block py-3 text-teal-700 font-medium"
+                  className="block py-3 text-caption text-grenadine font-medium no-underline"
                   onClick={() => setMenuOpen(false)}
                 >
                   Dashboard
                 </Link>
                 <button
                   onClick={() => { signOut(); setMenuOpen(false); }}
-                  className="block py-3 text-gray-500 hover:text-red-600 font-medium"
+                  className="block py-3 text-caption text-ink-40 hover:text-grenadine font-medium"
                 >
-                  Deconnexion
+                  Déconnexion
                 </button>
               </>
             ) : (
               <>
                 <Link
                   href="/guide/login"
-                  className="block py-3 text-gray-600 hover:text-teal-700 font-medium"
+                  className="block py-3 text-caption text-ink-60 hover:text-ink font-medium no-underline"
                   onClick={() => setMenuOpen(false)}
                 >
                   Espace Guide
                 </Link>
                 <Link
                   href={process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#'}
-                  className="block py-3 text-teal-700 font-medium"
+                  className="block py-3 text-caption text-grenadine font-medium no-underline"
                   onClick={() => setMenuOpen(false)}
                 >
-                  Telecharger l&apos;app
+                  Télécharger l&apos;app
                 </Link>
               </>
             )}

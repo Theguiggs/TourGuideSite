@@ -5,13 +5,13 @@
  * À remplir en **Story 2.x** (composants RN miroir des composants Web).
  *
  * Pour l'instant, ce sub-export ne fournit que les tokens (équivalent au sub-export
- * `@tourguide/design-system/tokens`) afin qu'un import depuis `/rn` ne casse pas.
+ * `@murmure/design-system/tokens`) afin qu'un import depuis `/rn` ne casse pas.
  *
  * Usage tokens (déjà disponible aujourd'hui) :
- *   import { tg } from '@tourguide/design-system/rn';
+ *   import { tg } from '@murmure/design-system/rn';
  *
  * Usage composants RN (Story 2.x — pas encore implémenté) :
- *   import { Button, Card, Pin } from '@tourguide/design-system/rn';
+ *   import { Button, Card, Pin } from '@murmure/design-system/rn';
  */
 
 // ─── Tokens re-exportés (sûr en RN)

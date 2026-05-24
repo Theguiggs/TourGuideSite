@@ -19,7 +19,7 @@ export function TourCardCompact({ tour, isHighlighted, onHover }: TourCardCompac
     <Link
       href={`/catalogue/${tour.citySlug}/${tour.slug}`}
       className={`block rounded-lg border p-3 transition-all hover:shadow-md ${
-        isHighlighted ? 'border-teal-400 bg-teal-50 shadow-md' : 'border-gray-200 bg-white'
+        isHighlighted ? 'border-teal-400 bg-grenadine-soft shadow-md' : 'border-line bg-card'
       }`}
       onMouseEnter={() => onHover(tour.id)}
       onMouseLeave={() => onHover(null)}
@@ -38,14 +38,14 @@ export function TourCardCompact({ tour, isHighlighted, onHover }: TourCardCompac
 
         {/* Info */}
         <div className="flex-1 min-w-0">
-          <p className="font-semibold text-gray-900 text-sm truncate">{tour.title}</p>
-          <p className="text-xs text-gray-500 mt-0.5">
+          <p className="font-semibold text-ink text-sm truncate">{tour.title}</p>
+          <p className="text-xs text-ink-60 mt-0.5">
             {tour.city} &middot; {tour.duration} min &middot; {tour.distance} km
           </p>
           {tour.availableLanguages && tour.availableLanguages.length > 0 && (
             <div className="flex gap-1 mt-1 flex-wrap">
               {tour.availableLanguages.map((lang) => (
-                <span key={lang} className="text-[10px] bg-gray-100 text-gray-600 px-1 py-0.5 rounded">
+                <span key={lang} className="text-[10px] bg-paper-deep text-ink-60 px-1 py-0.5 rounded">
                   {LANG_FLAGS[lang] ?? lang}
                   {tour.languageAudioTypes?.[lang] === 'recording' ? '🎤' : tour.languageAudioTypes?.[lang] === 'tts' ? '🤖' : ''}
                 </span>

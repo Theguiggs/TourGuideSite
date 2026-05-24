@@ -813,13 +813,9 @@ export async function updateSceneAudio(
       const { uploadAudio } = await import('@/lib/studio/studio-upload-service');
       const response = await fetch(audioUrl);
       const blob = new Blob([await response.blob()], { type: 'audio/wav' });
-      // sceneIndex MUST be passed — the S3 path encodes it as `scene_${i}.wav`.
-      // If callers forget, all uploads collide on `scene_0.wav` and every
-      // scene ends up pointing to the same audio file.
-      if (sceneIndex === undefined) {
-        logger.warn(SERVICE_NAME, 'updateSceneAudio called without sceneIndex — TTS uploads may collide', { sceneId });
-      }
-      const uploadResult = await uploadAudio(blob, sessionId ?? 'unknown', sceneIndex ?? 0);
+      // The S3 object is keyed by the immutable sceneId (+ version timestamp), so
+      // uploads no longer collide even when sceneIndex is missing or duplicated.
+      const uploadResult = await uploadAudio(blob, sessionId ?? 'unknown', sceneIndex ?? 0, sceneId);
       if (uploadResult.ok) {
         audioKeyToStore = uploadResult.s3Key;
         logger.info(SERVICE_NAME, 'Audio uploaded to S3', { sceneId, s3Key: audioKeyToStore });
@@ -1223,7 +1219,40 @@ export async function updateSceneSegment(
     const { getClient } = await import('./appsync-client');
     const client = getClient();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (client as any).models.SceneSegment.update({ id: segmentId, ...updates }, { authMode: 'userPool' });
+    const res = await (client as any).models.SceneSegment.update({ id: segmentId, ...updates }, { authMode: 'userPool' });
+    // AppSync update on a non-existent record returns no data (no throw) —
+    // upsert by creating it. This happens for a language's first-ever segment
+    // (e.g. fresh Italian translation) where the batch fabricates the id.
+    if (!res?.data) {
+      if (res?.errors?.length) {
+        logger.warn(SERVICE_NAME, 'updateSceneSegment update returned errors, attempting create', { segmentId, errors: res.errors });
+      }
+      const cleanId = segmentId.replace(/^pending-/, '');
+      let lang = updates.language;
+      let sceneId: string;
+      if (lang && cleanId.endsWith(`-${lang}`)) {
+        sceneId = cleanId.slice(0, cleanId.length - lang.length - 1);
+      } else {
+        const parts = cleanId.split('-');
+        lang = lang || parts.pop() || '';
+        sceneId = parts.join('-');
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const created = await (client as any).models.SceneSegment.create(
+        { id: segmentId, sceneId, segmentIndex: 0, ...updates, language: lang },
+        { authMode: 'userPool' },
+      );
+      if (!created?.data) {
+        logger.error(SERVICE_NAME, 'updateSceneSegment upsert create returned no data', {
+          segmentId,
+          sceneId,
+          lang,
+          createErrors: created?.errors ?? null,
+          updateErrors: res?.errors ?? null,
+        });
+        return { ok: false, error: 'Erreur lors de la création du segment.' };
+      }
+    }
     return { ok: true };
   } catch (e) {
     logger.error(SERVICE_NAME, 'updateSceneSegment real failed', { error: String(e) });

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
@@ -18,6 +18,7 @@ import dynamic from 'next/dynamic';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
 import { LanguagePreviewPlayer } from '@/components/studio/language-preview';
 import { listSegmentsByScene } from '@/lib/api/studio';
+import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import type { StudioSession, StudioScene, SceneSegment } from '@/types/studio';
 
 // Dynamic import for Leaflet map (no SSR — browser-only)
@@ -47,7 +48,22 @@ export default function PreviewPage() {
   const [isRetracting, setIsRetracting] = useState(false);
   const [viewMode, setViewMode] = useState<'studio' | 'catalogue'>('studio');
   const [allSegments, setAllSegments] = useState<SceneSegment[]>([]);
+  const [purchasedLangs, setPurchasedLangs] = useState<string[]>([]);
   const [previewLang, setPreviewLang] = useState<string>('fr');
+  // Refs mirror the playlist state so the audio-service subscriber reads the
+  // latest values (not stale closures) when it fires synchronously inside play().
+  const isPlayingAllRef = useRef(false);
+  const playingIndexRef = useRef<number | null>(null);
+  // Itinerary overrides — read from the same localStorage keys the Itinerary
+  // editor writes to, so the preview shows the manual route, waypoints, and
+  // any imported GPX path.
+  const [itineraryWaypoints, setItineraryWaypoints] = useState<
+    { id: string; lat: number; lng: number; afterPoiIndex: number; order: number }[]
+  >([]);
+  const [itineraryManualMode, setItineraryManualMode] = useState(false);
+  const [itineraryPathOverride, setItineraryPathOverride] = useState<
+    { lat: number; lng: number }[] | null
+  >(null);
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
@@ -81,6 +97,18 @@ export default function PreviewPage() {
           } catch {
             // Non-blocking — segments are optional for preview
           }
+          // Purchased languages — so the preview selector lists every language
+          // the guide bought, even one not yet translated (parity with Scenes).
+          try {
+            const purchaseResult = await listLanguagePurchases(sessionId);
+            if (!cancelled && purchaseResult.ok) {
+              setPurchasedLangs(
+                purchaseResult.value.filter((p) => p.status === 'active').map((p) => p.language),
+              );
+            }
+          } catch {
+            // Non-blocking — purchases are optional for preview
+          }
           logger.info(SERVICE_NAME, 'Preview loaded', { sessionId, scenesCount: scns.length });
         }
       } catch (e) {
@@ -94,6 +122,26 @@ export default function PreviewPage() {
     }
 
     load();
+
+    // Itinerary overrides from localStorage (same keys as itinerary/page.tsx).
+    try {
+      const savedWp = localStorage.getItem(`waypoints-${sessionId}`);
+      if (savedWp) setItineraryWaypoints(JSON.parse(savedWp));
+    } catch { /* ignore */ }
+    try {
+      const savedManual = localStorage.getItem(`manualMode-${sessionId}`);
+      if (savedManual === 'true') setItineraryManualMode(true);
+    } catch { /* ignore */ }
+    try {
+      const savedOverride = localStorage.getItem(`pathOverride-${sessionId}`);
+      if (savedOverride) {
+        const parsed = JSON.parse(savedOverride);
+        // Itinerary stores { path: LatLng[], ... }; tolerate both shapes.
+        const path = Array.isArray(parsed) ? parsed : parsed?.path;
+        if (Array.isArray(path) && path.length > 1) setItineraryPathOverride(path);
+      }
+    } catch { /* ignore */ }
+
     return () => {
       cancelled = true;
       audioPlayerService.stop();
@@ -115,35 +163,108 @@ export default function PreviewPage() {
     }
   }, []);
 
-  // Listen for audio end to advance playlist
+  // --- Multilang preview resolution ---
+  // The whole preview follows `previewLang`: title, scene titles/text and the
+  // played audio. When a scene has no usable translated audio yet, we fall back
+  // to the base-language scene audio so playback still works.
+  const segForScene = useCallback(
+    (sceneId: string): SceneSegment | null =>
+      allSegments.find((s) => s.sceneId === sceneId && s.language === previewLang) ?? null,
+    [allSegments, previewLang],
+  );
+
+  const getSceneAudioKey = useCallback((scene: StudioScene): string => {
+    const baseKey = scene.studioAudioKey || scene.originalAudioKey || '';
+    const baseLang = session?.language || 'fr';
+    if (previewLang === baseLang) return baseKey;
+    const langKey = segForScene(scene.id)?.audioKey ?? '';
+    // Only use the translated key if it's a real playable ref (not a tts- marker).
+    return langKey && !langKey.startsWith('tts-') ? langKey : baseKey;
+  }, [segForScene, previewLang, session]);
+
+  const getSceneTitle = useCallback((scene: StudioScene): string | null => {
+    if (previewLang !== (session?.language || 'fr')) {
+      const t = segForScene(scene.id)?.translatedTitle;
+      if (t) return t;
+    }
+    return scene.title ?? null;
+  }, [segForScene, previewLang, session]);
+
+  const getSceneTranscript = useCallback((scene: StudioScene): string | null => {
+    if (previewLang !== (session?.language || 'fr')) {
+      const seg = segForScene(scene.id);
+      if (seg?.transcriptText) return seg.transcriptText;
+    }
+    return scene.transcriptText ?? null;
+  }, [segForScene, previewLang, session]);
+
+  // Find the next scene with a playable audio URL, starting at `fromIndex`.
+  // Skips scenes whose audio key resolves to an empty string (e.g. unresolved
+  // TTS markers, missing S3 keys, or scenes with no audio at all).
+  const findNextPlayable = useCallback(
+    async (fromIndex: number): Promise<{ index: number; url: string } | null> => {
+      for (let i = fromIndex; i < scenes.length; i++) {
+        const key = getSceneAudioKey(scenes[i]);
+        if (!key) continue;
+        const url = await resolveAudioUrl(key);
+        if (url) return { index: i, url };
+      }
+      return null;
+    },
+    [scenes, resolveAudioUrl, getSceneAudioKey],
+  );
+
+  // Listen for audio end to advance playlist. Uses refs (not state) to read the
+  // latest playlist mode, because audio-service notifications fire synchronously
+  // inside `play()` — before React has applied any setState scheduled by the
+  // caller. Reading state here would race with the user's individual-scene click.
   useEffect(() => {
     const unsub = audioPlayerService.subscribe((state) => {
-      if (!state.isPlaying && isPlayingAll && playingIndex !== null) {
-        const nextIndex = playingIndex + 1;
-        if (nextIndex < scenes.length && (scenes[nextIndex].studioAudioKey || scenes[nextIndex].originalAudioKey)) {
-          setPlayingIndex(nextIndex);
-          const key = scenes[nextIndex].studioAudioKey || scenes[nextIndex].originalAudioKey || '';
-          resolveAudioUrl(key).then((url) => audioPlayerService.play(url));
-        } else {
-          setIsPlayingAll(false);
-          setPlayingIndex(null);
-          logger.info(SERVICE_NAME, 'Playlist complete');
-        }
+      // Only auto-advance when audio ENDED NATURALLY, not when stop() was
+      // called internally by play() (which fires notify with currentUrl=null).
+      // Natural end: audio reached its duration → isPlaying=false but
+      // currentUrl is still set, and currentTime is at/near duration.
+      const endedNaturally =
+        !state.isPlaying &&
+        state.currentUrl !== null &&
+        state.duration > 0 &&
+        state.currentTime >= state.duration - 0.5;
+      if (endedNaturally && isPlayingAllRef.current && playingIndexRef.current !== null) {
+        findNextPlayable(playingIndexRef.current + 1).then((next) => {
+          if (next) {
+            playingIndexRef.current = next.index;
+            setPlayingIndex(next.index);
+            audioPlayerService.play(next.url);
+          } else {
+            isPlayingAllRef.current = false;
+            playingIndexRef.current = null;
+            setIsPlayingAll(false);
+            setPlayingIndex(null);
+            logger.info(SERVICE_NAME, 'Playlist complete');
+          }
+        });
       }
     });
     return unsub;
-  }, [isPlayingAll, playingIndex, scenes, resolveAudioUrl]);
+  }, [findNextPlayable]);
 
   const handlePlayScene = useCallback(async (index: number) => {
     const scene = scenes[index];
-    const key = scene.studioAudioKey || scene.originalAudioKey || '';
+    const key = getSceneAudioKey(scene);
     if (!key) return;
 
     if (playingIndex === index) {
       audioPlayerService.pause();
+      isPlayingAllRef.current = false;
+      playingIndexRef.current = null;
       setPlayingIndex(null);
       setIsPlayingAll(false);
     } else {
+      // Exit playlist mode synchronously so the auto-advance subscriber
+      // doesn't race against our play() call below.
+      isPlayingAllRef.current = false;
+      playingIndexRef.current = index;
+      setIsPlayingAll(false);
       const url = await resolveAudioUrl(key);
       if (!url) {
         logger.warn('PreviewPage', 'No playable audio for scene', { index, key });
@@ -152,24 +273,28 @@ export default function PreviewPage() {
       audioPlayerService.play(url);
       setPlayingIndex(index);
     }
-  }, [scenes, playingIndex, resolveAudioUrl]);
+  }, [scenes, playingIndex, resolveAudioUrl, getSceneAudioKey]);
 
   const handlePlayAll = useCallback(async () => {
     if (isPlayingAll) {
       audioPlayerService.stop();
+      isPlayingAllRef.current = false;
+      playingIndexRef.current = null;
       setIsPlayingAll(false);
       setPlayingIndex(null);
       return;
     }
-    const firstWithAudio = scenes.findIndex((s) => s.studioAudioKey || s.originalAudioKey);
-    if (firstWithAudio >= 0) {
-      setIsPlayingAll(true);
-      setPlayingIndex(firstWithAudio);
-      const key = scenes[firstWithAudio].studioAudioKey || scenes[firstWithAudio].originalAudioKey || '';
-      const url = await resolveAudioUrl(key);
-      audioPlayerService.play(url);
+    const first = await findNextPlayable(0);
+    if (!first) {
+      logger.warn(SERVICE_NAME, 'No playable scene found for playlist');
+      return;
     }
-  }, [isPlayingAll, scenes, resolveAudioUrl]);
+    isPlayingAllRef.current = true;
+    playingIndexRef.current = first.index;
+    setIsPlayingAll(true);
+    setPlayingIndex(first.index);
+    audioPlayerService.play(first.url);
+  }, [isPlayingAll, findNextPlayable]);
 
   const handleSubmit = useCallback(async () => {
     setIsSubmitting(true);
@@ -291,6 +416,25 @@ export default function PreviewPage() {
   const canArchive = isPublished;
   const canSuspend = ['draft', 'editing', 'recording', 'ready', 'revision_requested', 'rejected'].includes(session.status);
 
+  // Tour title in the active preview language (falls back to the base title).
+  const displayTitle =
+    (previewLang !== (session.language || 'fr') && session.translatedTitles?.[previewLang]) ||
+    session.title || 'Mon tour';
+
+  // Languages offered in the preview selector. Auto-detected (not just the
+  // General-page `availableLanguages`, which is easily out of sync): union of
+  // the base language, the declared availableLanguages, and any language that
+  // actually has translated content in the segments. This keeps the preview in
+  // step with the Scenes tabs so e.g. a translated German never goes missing.
+  const baseLanguage = session.language || 'fr';
+  const previewLanguages = (() => {
+    const set = new Set<string>([baseLanguage, ...(session.availableLanguages ?? []), ...purchasedLangs]);
+    for (const seg of allSegments) {
+      if (seg.language && (seg.transcriptText || seg.audioKey)) set.add(seg.language);
+    }
+    return [baseLanguage, ...[...set].filter((l) => l !== baseLanguage)];
+  })();
+
   return (
     <div className="p-6 max-w-3xl">
       <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
@@ -298,7 +442,7 @@ export default function PreviewPage() {
       </Link>
 
       <h1 className="text-2xl font-bold text-ink mb-1">Preview — {session.title || 'Session'}</h1>
-      {session.availableLanguages && session.availableLanguages.length > 1 && (
+      {previewLanguages.length > 1 && (
         <p className="text-sm text-ink-60 mb-2" data-testid="preview-lang-indicator">
           Langue affichee : <span className="font-medium text-ink-80">{previewLang.toUpperCase()}</span>
         </p>
@@ -324,14 +468,40 @@ export default function PreviewPage() {
         </button>
       </div>
 
+      {/* Cover photo (from Général) — Studio view only (catalogue view shows it
+          as the card-header background instead). */}
+      {viewMode === 'studio' && session.coverPhotoKey && (
+        <div className="mb-4 rounded-xl overflow-hidden max-w-sm" data-testid="preview-cover">
+          <S3Image
+            s3Key={session.coverPhotoKey}
+            alt="Photo de couverture du parcours"
+            className="w-full h-48 object-cover"
+            fallback=""
+          />
+        </div>
+      )}
+
       {/* ═══ VUE CATALOGUE ═══ */}
       {viewMode === 'catalogue' && (
         <div className="bg-ink text-white rounded-2xl overflow-hidden mb-6 max-w-sm mx-auto" data-testid="catalogue-view">
-          {/* Tour card header */}
-          <div className="relative h-48 bg-gradient-to-br from-grenadine to-ink flex items-end p-4">
-            <div>
-              <p className="text-paper text-xs font-medium uppercase tracking-wider">{session.language?.toUpperCase() ?? 'FR'}</p>
-              <h2 className="text-xl font-bold">{session.title || 'Mon tour'}</h2>
+          {/* Tour card header — cover photo (from Général) as background */}
+          <div className="relative h-48 flex items-end p-4 overflow-hidden">
+            {session.coverPhotoKey ? (
+              <>
+                <S3Image
+                  s3Key={session.coverPhotoKey}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                  fallback=""
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
+              </>
+            ) : (
+              <div className="absolute inset-0 bg-gradient-to-br from-grenadine to-ink" />
+            )}
+            <div className="relative">
+              <p className="text-paper text-xs font-medium uppercase tracking-wider">{previewLang.toUpperCase()}</p>
+              <h2 className="text-xl font-bold">{displayTitle}</h2>
               <div className="flex items-center gap-3 mt-1 text-sm text-paper-soft">
                 <span>{scenes.length} etapes</span>
                 <span>~{scenes.length * 3} min</span>
@@ -357,7 +527,7 @@ export default function PreviewPage() {
           <div className="px-4 pb-4 space-y-2">
             {scenes.map((scene, index) => {
               const isActive = playingIndex === index;
-              const hasAudio = !!(scene.studioAudioKey || scene.originalAudioKey);
+              const hasAudio = !!getSceneAudioKey(scene);
               const hasPhotos = scene.photosRefs.length > 0;
               return (
                 <div
@@ -391,7 +561,7 @@ export default function PreviewPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className={`text-sm font-medium truncate ${isActive ? 'text-white' : 'text-paper'}`}>
-                        {scene.title || `Etape ${index + 1}`}
+                        {getSceneTitle(scene) || `Etape ${index + 1}`}
                       </p>
                       {scene.poiDescription && (
                         <p className="text-xs text-ink-40 truncate">{scene.poiDescription}</p>
@@ -414,7 +584,12 @@ export default function PreviewPage() {
           {/* Map — consumer view */}
           {scenes.some((s) => s.latitude && s.longitude) && (
             <div className="mb-6 rounded-lg overflow-hidden border border-line" data-testid="preview-map">
-              <PreviewMap scenes={scenes} />
+              <PreviewMap
+                scenes={scenes}
+                waypoints={itineraryWaypoints}
+                manualMode={itineraryManualMode}
+                pathOverride={itineraryPathOverride}
+              />
             </div>
           )}
 
@@ -442,7 +617,7 @@ export default function PreviewPage() {
           </div>
 
       {/* Language preview selector */}
-      {session.availableLanguages && session.availableLanguages.length > 1 && (
+      {previewLanguages.length > 1 && (
         <div className="mb-4 p-3 bg-paper-soft rounded-lg border border-line" data-testid="language-preview-section">
           <div className="flex items-center gap-3 mb-2">
             <label htmlFor="preview-lang-select" className="text-sm font-medium text-ink-80">
@@ -455,9 +630,7 @@ export default function PreviewPage() {
               className="border border-line rounded-lg px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-grenadine"
               data-testid="preview-lang-select"
             >
-              {[session.language || 'fr', ...session.availableLanguages.filter(
-                (l) => l !== (session.language || 'fr'),
-              )].map((lang) => (
+              {previewLanguages.map((lang) => (
                 <option key={lang} value={lang}>
                   {lang.toUpperCase()}
                 </option>
@@ -477,7 +650,8 @@ export default function PreviewPage() {
         {scenes.map((scene, index) => {
           const statusConfig = getSceneStatusConfig(scene.status);
           const isActive = playingIndex === index;
-          const hasAudio = !!(scene.studioAudioKey || scene.originalAudioKey);
+          const hasAudio = !!getSceneAudioKey(scene);
+          const sceneTranscript = getSceneTranscript(scene);
 
           return (
             <div
@@ -494,7 +668,7 @@ export default function PreviewPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <p className="font-medium text-ink">
-                      {scene.title || `Scène ${index + 1}`}
+                      {getSceneTitle(scene) || `Scène ${index + 1}`}
                     </p>
                     {scene.qualityScore && (
                       <span className={`inline-flex px-1.5 py-0 rounded text-[10px] font-medium ${
@@ -518,10 +692,10 @@ export default function PreviewPage() {
                     </div>
                   )}
 
-                  {/* Transcribed text preview */}
-                  {scene.transcriptText && (
+                  {/* Transcribed text preview (translated when previewing a non-base language) */}
+                  {sceneTranscript && (
                     <p className="text-sm text-ink-80 line-clamp-2 mb-2 italic">
-                      &ldquo;{scene.transcriptText}&rdquo;
+                      &ldquo;{sceneTranscript}&rdquo;
                     </p>
                   )}
 

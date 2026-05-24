@@ -39,7 +39,7 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
   }, [tours, filterLang]);
 
   if (tours.length === 0) {
-    return <p className="text-gray-500">Aucune visite disponible pour le moment.</p>;
+    return <p className="text-ink-60">Aucune visite disponible pour le moment.</p>;
   }
 
   return (
@@ -47,11 +47,11 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
       {/* Language filter */}
       {allLanguages.length > 1 && (
         <div className="flex flex-wrap items-center gap-2 mb-6">
-          <span className="text-sm text-gray-500">Filtrer par langue :</span>
+          <span className="text-sm text-ink-60">Filtrer par langue :</span>
           <button
             onClick={() => setFilterLang('')}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-              !filterLang ? 'bg-teal-700 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              !filterLang ? 'bg-grenadine text-white' : 'bg-paper-deep text-ink-60 hover:bg-paper-deep'
             }`}
           >
             Toutes ({tours.length})
@@ -63,7 +63,7 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
                 key={lang}
                 onClick={() => setFilterLang(filterLang === lang ? '' : lang)}
                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                  filterLang === lang ? 'bg-teal-700 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  filterLang === lang ? 'bg-grenadine text-white' : 'bg-paper-deep text-ink-60 hover:bg-paper-deep'
                 }`}
               >
                 {LANG_FLAGS[lang] ?? ''} {LANG_NAMES[lang] ?? lang.toUpperCase()} ({count})
@@ -75,7 +75,7 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
 
       {/* Tour cards */}
       {filteredTours.length === 0 ? (
-        <p className="text-gray-500">Aucune visite disponible dans cette langue.</p>
+        <p className="text-ink-60">Aucune visite disponible dans cette langue.</p>
       ) : (
         <div className="space-y-6">
           {filteredTours.map((tour) => (
@@ -83,10 +83,10 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
               key={tour.id}
               href={`/catalogue/${citySlug}/${tour.slug}`}
               data-testid={`tour-card-${tour.id}`}
-              className="block rounded-xl border border-gray-200 hover:shadow-md transition-shadow overflow-hidden"
+              className="block rounded-xl border border-line hover:shadow-md transition-shadow overflow-hidden"
             >
               <div className="flex flex-col sm:flex-row">
-                <div className="relative sm:w-64 h-48 sm:h-auto bg-gradient-to-br from-teal-600 to-teal-800 flex-shrink-0 overflow-hidden">
+                <div className="relative sm:w-64 h-48 sm:h-auto bg-grenadine-soft flex-shrink-0 overflow-hidden">
                   {tour.imageUrl && tour.imageUrl.startsWith('guide-') ? (
                     <S3Image s3Key={tour.imageUrl} alt={tour.title} className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                   ) : tour.imageUrl ? (
@@ -102,9 +102,9 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <h2 className="text-xl font-semibold text-gray-900">{tour.title}</h2>
+                        <h2 className="text-xl font-semibold text-ink">{tour.title}</h2>
                         {tour.isFree && (
-                          <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full">
+                          <span className="bg-olive-soft text-olive text-xs font-bold px-2 py-0.5 rounded-full">
                             GRATUIT
                           </span>
                         )}
@@ -115,7 +115,7 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
                               return (
                                 <span
                                   key={lang}
-                                  className="inline-flex items-center gap-0.5 bg-gray-100 text-gray-700 text-xs px-1.5 py-0.5 rounded-full"
+                                  className="inline-flex items-center gap-0.5 bg-paper-deep text-ink-80 text-xs px-1.5 py-0.5 rounded-full"
                                   title={`${LANG_NAMES[lang] ?? lang.toUpperCase()} — ${audioType === 'tts' ? 'Voix de synthèse' : audioType === 'recording' ? 'Voix du guide' : 'Audio'}`}
                                 >
                                   {LANG_FLAGS[lang] ?? lang}
@@ -125,18 +125,18 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
                               );
                             })}
                             {tour.availableLanguages.length > 5 && (
-                              <span className="text-xs text-gray-400">+{tour.availableLanguages.length - 5}</span>
+                              <span className="text-xs text-ink-40">+{tour.availableLanguages.length - 5}</span>
                             )}
                           </div>
                         )}
                       </div>
-                      <p className="text-sm text-gray-500 mb-2">
+                      <p className="text-sm text-ink-60 mb-2">
                         Par {tour.guideName} &middot; {tour.duration} min &middot; {tour.distance} km
                         &middot; {tour.poiCount} points
                       </p>
                     </div>
                   </div>
-                  <p className="text-gray-600 line-clamp-2">{tour.shortDescription}</p>
+                  <p className="text-ink-60 line-clamp-2">{tour.shortDescription}</p>
                 </div>
               </div>
             </Link>

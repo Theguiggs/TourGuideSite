@@ -1,0 +1,21 @@
+# CPU-only deployment (App Runner / Fly / Railway / local dev)
+# Use with Dockerfile.cpu and local_server:app
+
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+pydantic>=2.0.0
+
+# TTS — Edge TTS via Microsoft Azure free endpoint
+edge-tts>=6.1.10
+
+# Audio
+pydub>=0.25.1
+soundfile>=0.12.1
+
+# Translation — MarianMT (Helsinki-NLP) via HuggingFace
+# Torch CPU is installed separately in the Dockerfile to use the CPU index
+transformers>=4.45.0
+sentencepiece>=0.2.0
+
+# Silence detection helpers
+requests>=2.31.0

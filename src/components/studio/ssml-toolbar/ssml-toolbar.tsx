@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback } from 'react';
 
 interface SSMLToolbarProps {
   textareaRef: React.RefObject<HTMLTextAreaElement | null>;
@@ -20,71 +20,34 @@ const PAUSE_PRESETS: PauseOption[] = [
   { label: '3s', value: '3s' },
 ];
 
-interface ToolButton {
-  id: string;
-  icon: string;
-  label: string;
-  type: 'insert' | 'wrap';
-  tag?: string;
-}
-
-const TOOL_BUTTONS: ToolButton[] = [
-  { id: 'slow', icon: '🐢', label: 'Lent', type: 'wrap', tag: 'prosody rate="slow"' },
-  { id: 'fast', icon: '🐇', label: 'Rapide', type: 'wrap', tag: 'prosody rate="fast"' },
-  { id: 'loud', icon: '📢', label: 'Fort', type: 'wrap', tag: 'prosody volume="loud"' },
-  { id: 'soft', icon: '🤫', label: 'Doux', type: 'wrap', tag: 'prosody volume="soft"' },
-  { id: 'high', icon: '⬆', label: 'Aigu', type: 'wrap', tag: 'prosody pitch="high"' },
-  { id: 'low', icon: '⬇', label: 'Grave', type: 'wrap', tag: 'prosody pitch="low"' },
-  { id: 'emphasis', icon: '💪', label: 'Emphase', type: 'wrap', tag: 'emphasis level="strong"' },
-];
+// Décision audio 2026-05-18 :
+// Les autres effets SSML (prosody / emphasis / say-as) sonnent mal sur edge-tts
+// gratuit (rendu saccadé/robotique). On les a désactivés de la toolbar en
+// attendant éventuellement un switch vers Azure Neural payant.
+// La constante TOOL_BUTTONS + les helpers wrapSelection / handleToolClick ont
+// été retirés. Les pauses (`<break>`) restent — elles sont fiables sur edge-tts.
 
 export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) {
   const [showPauseInput, setShowPauseInput] = useState(false);
   const [customPause, setCustomPause] = useState('1.5');
 
-  const getSelection = useCallback((): { start: number; end: number; selected: string } => {
-    const el = textareaRef.current;
-    if (!el) return { start: 0, end: 0, selected: '' };
-    return {
-      start: el.selectionStart,
-      end: el.selectionEnd,
-      selected: value.substring(el.selectionStart, el.selectionEnd),
-    };
-  }, [textareaRef, value]);
-
   const insertAtCursor = useCallback((insertion: string) => {
-    const { start, end } = getSelection();
+    const el = textareaRef.current;
+    const scrollTop = el?.scrollTop ?? 0;
+    const start = el?.selectionStart ?? 0;
+    const end = el?.selectionEnd ?? 0;
     const newValue = value.substring(0, start) + insertion + value.substring(end);
     onChange(newValue);
-    // Restore cursor position after insertion
-    setTimeout(() => {
-      const el = textareaRef.current;
-      if (el) {
-        const pos = start + insertion.length;
-        el.focus();
-        el.setSelectionRange(pos, pos);
-      }
-    }, 0);
-  }, [value, onChange, getSelection, textareaRef]);
-
-  const wrapSelection = useCallback((openTag: string) => {
-    const { start, end, selected } = getSelection();
-    if (!selected) return; // Nothing selected
-
-    // Extract tag name for closing tag (e.g. "prosody rate='slow'" -> "prosody")
-    const tagName = openTag.split(' ')[0];
-    const wrapped = `<${openTag}>${selected}</${tagName}>`;
-    const newValue = value.substring(0, start) + wrapped + value.substring(end);
-    onChange(newValue);
-
-    setTimeout(() => {
-      const el = textareaRef.current;
-      if (el) {
-        el.focus();
-        el.setSelectionRange(start, start + wrapped.length);
-      }
-    }, 0);
-  }, [value, onChange, getSelection, textareaRef]);
+    // Restore cursor + scroll position after the re-render
+    requestAnimationFrame(() => {
+      const cur = textareaRef.current;
+      if (!cur) return;
+      const pos = start + insertion.length;
+      cur.focus();
+      cur.setSelectionRange(pos, pos);
+      cur.scrollTop = scrollTop;
+    });
+  }, [value, onChange, textareaRef]);
 
   const handlePauseInsert = useCallback((duration: string) => {
     insertAtCursor(` <break time="${duration}"/> `);
@@ -98,27 +61,19 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
     handlePauseInsert(duration);
   }, [customPause, handlePauseInsert]);
 
-  const handleToolClick = useCallback((tool: ToolButton) => {
-    if (tool.type === 'insert' && tool.tag) {
-      insertAtCursor(tool.tag);
-    } else if (tool.type === 'wrap' && tool.tag) {
-      wrapSelection(tool.tag);
-    }
-  }, [insertAtCursor, wrapSelection]);
-
   return (
     <div className="space-y-1" data-testid="ssml-toolbar">
-      {/* Main toolbar */}
+      {/* Main toolbar — pauses only */}
       <div className="flex items-center gap-1 flex-wrap p-1.5 bg-paper-soft rounded-lg border border-line">
-        {/* Pause button group */}
-        <div className="flex items-center gap-0.5 mr-1">
-          <span className="text-xs text-ink-40 mr-0.5">Pause:</span>
+        <div className="flex items-center gap-0.5">
+          <span className="text-xs text-ink-40 mr-0.5">Pause :</span>
           {PAUSE_PRESETS.map((p) => (
             <button
               key={p.value}
               onClick={() => handlePauseInsert(p.value)}
               className="px-1.5 py-0.5 text-[10px] font-medium bg-ocre-soft text-ocre hover:opacity-90 rounded transition"
-              title={`Inserer une pause de ${p.label}`}
+              title={`Insérer une pause de ${p.label}`}
+              data-testid={`ssml-pause-${p.value}`}
             >
               {p.label}
             </button>
@@ -128,26 +83,12 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
             className={`px-1.5 py-0.5 text-[10px] font-medium rounded transition ${
               showPauseInput ? 'bg-ocre text-white' : 'bg-ocre-soft text-ocre hover:opacity-90'
             }`}
-            title="Pause personnalisee"
+            title="Pause personnalisée"
+            data-testid="ssml-pause-custom-toggle"
           >
-            ...
+            …
           </button>
         </div>
-
-        <div className="w-px h-5 bg-paper-deep mx-1" />
-
-        {/* Wrap buttons (need selection) */}
-        {TOOL_BUTTONS.map((tool) => (
-          <button
-            key={tool.id}
-            onClick={() => handleToolClick(tool)}
-            className="px-1.5 py-0.5 text-[10px] font-medium bg-white text-ink-80 hover:bg-paper-deep rounded border border-line transition"
-            title={`${tool.label} (selectionnez du texte d'abord)`}
-            data-testid={`ssml-btn-${tool.id}`}
-          >
-            {tool.icon} {tool.label}
-          </button>
-        ))}
       </div>
 
       {/* Custom pause input */}
@@ -164,20 +105,20 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
             className="w-16 px-2 py-0.5 text-xs border border-ocre-soft rounded text-center focus:outline-none focus:ring-1 focus:ring-ocre"
             data-testid="custom-pause-input"
           />
-          <span className="text-xs text-ocre">secondes</span>
+          <span className="text-xs text-ocre">secondes (0,1 à 10)</span>
           <button
             onClick={handleCustomPause}
             className="px-2 py-0.5 text-xs font-medium bg-ocre text-white rounded hover:opacity-90 transition"
             data-testid="custom-pause-insert"
           >
-            Inserer
+            Insérer
           </button>
         </div>
       )}
 
       {/* Help text */}
       <p className="text-[10px] text-ink-40 px-1">
-        Cliquez sur un bouton pause pour inserer. Pour lent/rapide/fort/doux : selectionnez du texte puis cliquez.
+        Clic sur une durée = insertion d&apos;une pause au curseur. Les autres effets (prosody / emphasis) sont désactivés — ils sonnent trop saccadés sur edge-tts.
       </p>
     </div>
   );

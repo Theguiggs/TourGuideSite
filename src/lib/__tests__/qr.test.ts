@@ -22,6 +22,6 @@ describe('QR utilities', () => {
 
   it('should generate deep link with tour ID', () => {
     const link = getDeepLink('grasse-ame-parfumeurs');
-    expect(link).toBe('tourguide://tour/grasse-ame-parfumeurs');
+    expect(link).toBe('murmure://tour/grasse-ame-parfumeurs');
   });
 });

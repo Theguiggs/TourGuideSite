@@ -33,8 +33,14 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
   const [showEditor, setShowEditor] = useState(false);
   const ttsTextareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Sync editable text when prop changes
-  useEffect(() => { setEditableText(text); }, [text]);
+  // Resync editable text when the segment changes OR when the source text
+  // itself changes (e.g. the guide edited the scene script elsewhere).
+  // Without `text` in the deps, modifications to the scene script never make
+  // it into the TTS editor and the next "Generer" still uses the stale text.
+  // Inline SSML edits typed directly in the TTS textarea are preserved because
+  // the parent doesn't observe them — `text` only changes when the source of
+  // truth (scene transcript) changes upstream.
+  useEffect(() => { setEditableText(text); }, [text, segment.id]);
 
   // Auto-save when TTS completes via polling (not just immediate completion)
   const autoSavedRef = useRef(false);

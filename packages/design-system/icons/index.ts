@@ -1,14 +1,14 @@
 /**
- * Story 3.6 — Set 23 icônes Web (sub-export `@tourguide/design-system/icons`).
+ * Story 3.6 — Set 23 icônes Web (sub-export `@murmure/design-system/icons`).
  *
  * IMPORTANT : ce barrel n'est volontairement **pas** re-exporté depuis le
  * default `index.ts` du package, pour préserver le tree-shaking et éviter
  * d'embarquer la résolution de `react-native-svg` côté Web (cf. NFR perf).
  *
  * Pattern d'import consumer Web :
- *   import { IconHome, IconPlay } from '@tourguide/design-system/icons';
+ *   import { IconHome, IconPlay } from '@murmure/design-system/icons';
  *
- * Pour le miroir RN, utiliser `@tourguide/design-system/icons-rn`.
+ * Pour le miroir RN, utiliser `@murmure/design-system/icons-rn`.
  */
 
 // Navigation (7)

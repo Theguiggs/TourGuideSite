@@ -14,8 +14,8 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { tg } from '@tourguide/design-system';
-import { Chip, Eyebrow, PullQuote } from '@tourguide/design-system/web';
+import { tg } from '@murmure/design-system';
+import { Chip, Eyebrow, PullQuote } from '@murmure/design-system/web';
 import type { City, Tour } from '@/types/tour';
 import {
   ACCENT_LABELS,

@@ -1,4 +1,4 @@
-import { isSegmentStale, getStaleSegments, getStaleCountByLanguage } from '../staleness-detector';
+import { isSegmentStale, getStaleSegments, getStaleCountByLanguage, getSourceHashUpdates } from '../staleness-detector';
 import type { SceneSegment, StudioScene } from '@/types/studio';
 import { hashSourceText } from '@/types/studio';
 
@@ -156,6 +156,47 @@ describe('staleness-detector', () => {
       const segments = [makeSegment({ id: 'seg-1', sceneId: 'scene-1', sourceTextHash: FRESH_HASH })];
 
       expect(getStaleCountByLanguage(segments, scenes)).toEqual({});
+    });
+  });
+
+  describe('getSourceHashUpdates (dismiss / mark up-to-date)', () => {
+    it('rewrites the hash to the CURRENT source so the segment is no longer stale', () => {
+      const scene = makeScene({ id: 'scene-1' }); // source = ('Bonjour', 'Scene 1')
+      const staleSegment = makeSegment({ id: 'seg-1', sceneId: 'scene-1', sourceTextHash: STALE_HASH });
+
+      // Precondition: it IS stale before dismissing.
+      expect(isSegmentStale(staleSegment, scene)).toBe(true);
+
+      const updates = getSourceHashUpdates(['seg-1'], [staleSegment], [scene]);
+
+      expect(updates).toEqual([{ segmentId: 'seg-1', sourceTextHash: FRESH_HASH }]);
+      // Applying the update clears staleness — the whole point of "Ignorer".
+      const dismissed = { ...staleSegment, sourceTextHash: updates[0].sourceTextHash };
+      expect(isSegmentStale(dismissed, scene)).toBe(false);
+    });
+
+    it('only returns updates for the requested segment ids', () => {
+      const scene = makeScene({ id: 'scene-1' });
+      const segments = [
+        makeSegment({ id: 'seg-1', sceneId: 'scene-1', sourceTextHash: STALE_HASH }),
+        makeSegment({ id: 'seg-2', sceneId: 'scene-1', language: 'es', sourceTextHash: STALE_HASH }),
+      ];
+
+      const updates = getSourceHashUpdates(['seg-1'], segments, [scene]);
+
+      expect(updates.map((u) => u.segmentId)).toEqual(['seg-1']);
+    });
+
+    it('skips ids whose segment or source scene is missing', () => {
+      const scene = makeScene({ id: 'scene-1' });
+      const segments = [
+        makeSegment({ id: 'seg-1', sceneId: 'scene-1', sourceTextHash: STALE_HASH }),
+        makeSegment({ id: 'seg-orphan', sceneId: 'scene-unknown', sourceTextHash: STALE_HASH }),
+      ];
+
+      const updates = getSourceHashUpdates(['seg-1', 'seg-orphan', 'seg-missing'], segments, [scene]);
+
+      expect(updates).toEqual([{ segmentId: 'seg-1', sourceTextHash: FRESH_HASH }]);
     });
   });
 });

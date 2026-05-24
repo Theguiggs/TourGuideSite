@@ -54,27 +54,32 @@ export default function GuideProfilePage() {
 
     setSaving(false);
     if (result.ok) {
-      setMessage({ type: 'success', text: 'Profil sauvegarde !' });
+      setMessage({ type: 'success', text: 'Profil sauvegardé !' });
     } else {
       setMessage({ type: 'error', text: result.error || 'Erreur lors de la sauvegarde' });
     }
   };
 
-  if (loading) return <div className="text-gray-500 text-sm">Chargement du profil...</div>;
+  if (loading) return <div className="text-caption text-ink-40">Chargement du profil…</div>;
   if (loadError || !profile) return (
-    <div className="bg-red-50 text-red-700 rounded-xl p-6 text-sm">
+    <div className="bg-grenadine-soft border border-grenadine text-danger rounded-md p-6 text-caption">
       Impossible de charger le profil. Vérifiez votre connexion et rechargez la page.
     </div>
   );
 
+  const inputClass = "w-full bg-paper border border-line rounded-md px-4 py-2 text-caption text-ink focus:outline-none focus:border-grenadine focus:ring-2 focus:ring-grenadine-soft transition";
+  const labelClass = "block text-meta font-semibold text-ink-80 mb-1.5";
+
   return (
     <div className="max-w-2xl">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Mon Profil</h1>
+      <h1 className="font-display text-h4 text-ink mb-6 leading-none">Mon Profil</h1>
 
       {message && (
         <div
-          className={`rounded-lg p-3 mb-6 text-sm ${
-            message.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'
+          className={`rounded-md p-3 mb-6 text-caption border ${
+            message.type === 'success'
+              ? 'bg-olive-soft text-olive border-olive/30'
+              : 'bg-grenadine-soft text-danger border-grenadine/30'
           }`}
           role="alert"
         >
@@ -82,10 +87,10 @@ export default function GuideProfilePage() {
         </div>
       )}
 
-      <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-5">
+      <div className="bg-card border border-line rounded-md p-6 space-y-5">
         <div>
-          <label htmlFor="displayName" className="block text-sm font-medium text-gray-700 mb-1">
-            Nom d&apos;affichage (2-50 caracteres)
+          <label htmlFor="displayName" className={labelClass}>
+            Nom d&apos;affichage (2-50 caractères)
           </label>
           <input
             id="displayName"
@@ -93,14 +98,14 @@ export default function GuideProfilePage() {
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
             maxLength={50}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-900 focus:ring-2 focus:ring-teal-500"
+            className={inputClass}
           />
-          <p className="text-xs text-gray-400 mt-1">{displayName.length}/50</p>
+          <p className="text-meta text-ink-40 mt-1">{displayName.length}/50</p>
         </div>
 
         <div>
-          <label htmlFor="bio" className="block text-sm font-medium text-gray-700 mb-1">
-            Bio (max 500 caracteres)
+          <label htmlFor="bio" className={labelClass}>
+            Bio (max 500 caractères)
           </label>
           <textarea
             id="bio"
@@ -108,29 +113,27 @@ export default function GuideProfilePage() {
             onChange={(e) => setBio(e.target.value)}
             maxLength={500}
             rows={4}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-900 focus:ring-2 focus:ring-teal-500"
+            className={inputClass}
           />
-          <p className={`text-xs mt-1 ${bio.length > 450 ? 'text-amber-600' : 'text-gray-400'}`}>
+          <p className={`text-meta mt-1 ${bio.length > 450 ? 'text-ocre' : 'text-ink-40'}`}>
             {bio.length}/500
           </p>
         </div>
 
         <div>
-          <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
-            Ville
-          </label>
+          <label htmlFor="city" className={labelClass}>Ville</label>
           <input
             id="city"
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-900 focus:ring-2 focus:ring-teal-500"
+            className={inputClass}
           />
         </div>
 
         <div>
-          <label htmlFor="specialties" className="block text-sm font-medium text-gray-700 mb-1">
-            Specialites (separees par des virgules)
+          <label htmlFor="specialties" className={labelClass}>
+            Spécialités (séparées par des virgules)
           </label>
           <input
             id="specialties"
@@ -138,51 +141,54 @@ export default function GuideProfilePage() {
             value={specialties}
             onChange={(e) => setSpecialties(e.target.value)}
             placeholder="Parfumerie, Histoire locale, Architecture"
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-900 focus:ring-2 focus:ring-teal-500"
+            className={inputClass}
           />
         </div>
 
         <div>
-          <label htmlFor="languages" className="block text-sm font-medium text-gray-700 mb-1">
-            Langues (separees par des virgules)
+          <label htmlFor="languages" className={labelClass}>
+            Langues (séparées par des virgules)
           </label>
           <input
             id="languages"
             type="text"
             value={languages}
             onChange={(e) => setLanguages(e.target.value)}
-            placeholder="Francais, Anglais, Italien"
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-900 focus:ring-2 focus:ring-teal-500"
+            placeholder="Français, Anglais, Italien"
+            className={inputClass}
           />
         </div>
 
         <button
           onClick={handleSave}
           disabled={saving || displayName.length < 2}
-          className="bg-teal-700 text-white font-bold py-3 px-6 rounded-xl hover:bg-teal-800 disabled:opacity-50"
+          className="bg-grenadine text-paper font-bold py-3 px-6 rounded-pill hover:opacity-90 disabled:opacity-50 transition text-caption"
         >
-          {saving ? 'Sauvegarde...' : 'Sauvegarder'}
+          {saving ? 'Sauvegarde…' : 'Sauvegarder'}
         </button>
       </div>
 
       {/* Public Profile Preview */}
       <div className="mt-8">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Apercu du profil public</h2>
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
+        <h2 className="font-display text-h6 text-ink mb-4">Aperçu du profil public</h2>
+        <div className="bg-paper-soft border border-line rounded-md p-6">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 bg-teal-200 rounded-full flex items-center justify-center text-teal-700 font-bold text-2xl">
+            <div className="w-16 h-16 bg-grenadine rounded-full flex items-center justify-center text-paper font-bold text-h5">
               {displayName.charAt(0)}
             </div>
             <div>
-              <p className="text-xl font-bold text-gray-900">{displayName}</p>
-              <p className="text-gray-500">{city} {profile.verified && '✓ Verifie'}</p>
+              <p className="font-display text-h5 text-ink leading-none">{displayName}</p>
+              <p className="text-caption text-ink-60 mt-1">
+                {city}
+                {profile.verified && <span className="text-olive ml-2">✓ Vérifié</span>}
+              </p>
             </div>
           </div>
-          {bio && <p className="text-gray-700 mb-3">{bio}</p>}
+          {bio && <p className="text-caption text-ink-80 mb-3 leading-relaxed">{bio}</p>}
           {specialties && (
             <div className="flex flex-wrap gap-2">
               {specialties.split(',').map((s) => s.trim()).filter(Boolean).map((s) => (
-                <span key={s} className="bg-teal-100 text-teal-700 text-xs font-medium px-2 py-1 rounded-full">
+                <span key={s} className="bg-grenadine-soft text-grenadine text-meta font-medium px-2 py-1 rounded-pill">
                   {s}
                 </span>
               ))}

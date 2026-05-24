@@ -1,7 +1,7 @@
 'use client';
 
 import { MapContainer, TileLayer, Polyline, CircleMarker } from 'react-leaflet';
-import { tg } from '@tourguide/design-system';
+import { tg } from '@murmure/design-system';
 import 'leaflet/dist/leaflet.css';
 
 interface WalkMapProps {

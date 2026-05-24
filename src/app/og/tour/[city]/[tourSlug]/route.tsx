@@ -154,7 +154,7 @@ export async function GET(
                 fontFamily: 'sans-serif',
               }}
             >
-              TourGuide
+              Murmure
             </span>
           </div>
         </div>
@@ -171,6 +171,6 @@ export async function GET(
     // Fallback robuste : redirect 302 vers static og-default.png plutôt que 500 visible côté crawler.
     // Edge runtime : `console.error` accepté (logger app non importable en Edge).
     console.error('[og-tour] render failed', err);
-    return Response.redirect(new URL('/og-default.png', 'https://tourguide.app'), 302);
+    return Response.redirect(new URL('/og-default.png', 'https://murmure.app'), 302);
   }
 }

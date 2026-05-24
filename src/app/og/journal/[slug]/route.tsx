@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 // Story 3.5 — Route Edge OG dynamique pour articles Journal (Phase B).
 // Stub minimal : Phase A (V1.0) n'a pas encore d'API journal — on rend un layout
-// paper avec un fallback `Journal TourGuide` + slug humanisé.
+// paper avec un fallback `Journal Murmure` + slug humanisé.
 //
 // TODO Story 6.6 (Phase B) : remplacer le stub par fetch via `getArticleBySlug(slug)`
 // (à créer côté `src/lib/api/journal-server.ts`). Composer eyebrow `${article.author} · ${article.publishDate}`,
@@ -42,7 +42,7 @@ export async function GET(
     // Stub Phase A — pas d'API journal encore.
     const article = {
       title: humanize(slug),
-      eyebrow: 'Journal TourGuide',
+      eyebrow: 'Journal Murmure',
       excerpt: 'Récits, portraits et coulisses des audio guides.',
     };
 
@@ -121,7 +121,7 @@ export async function GET(
                 fontFamily: 'sans-serif',
               }}
             >
-              TourGuide · Journal
+              Murmure · Journal
             </span>
           </div>
         </div>
@@ -136,6 +136,6 @@ export async function GET(
     );
   } catch (err) {
     console.error('[og-journal] render failed', err);
-    return Response.redirect(new URL('/og-default.png', 'https://tourguide.app'), 302);
+    return Response.redirect(new URL('/og-default.png', 'https://murmure.app'), 302);
   }
 }

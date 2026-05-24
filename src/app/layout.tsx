@@ -48,31 +48,31 @@ const jetBrainsMono = JetBrains_Mono({
 // Les pages tour étendent ces metadata via `generateMetadata` pour pointer vers la route
 // Edge dynamique `/og/tour/[city]/[tourSlug]`.
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tourguide.app'),
+  metadataBase: new URL('https://murmure.app'),
   title: {
-    default: 'TourGuide — Visites guidees audio immersives',
-    template: '%s | TourGuide',
+    default: 'Murmure — Visites guidees audio immersives',
+    template: '%s | Murmure',
   },
   description:
-    "Decouvrez les villes autrement avec TourGuide. Visites guidees audio immersives, " +
+    "Decouvrez les villes autrement avec Murmure. Visites guidees audio immersives, " +
     "creees par des guides locaux passionnes. Telecharger l'app gratuite.",
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    siteName: 'TourGuide',
-    url: 'https://tourguide.app',
+    siteName: 'Murmure',
+    url: 'https://murmure.app',
     images: [
       {
         url: '/og-default.png',
         width: 1200,
         height: 630,
-        alt: 'TourGuide — Le monde a une voix.',
+        alt: 'Murmure — Le monde a une voix.',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TourGuide — Le monde a une voix.',
+    title: 'Murmure — Le monde a une voix.',
     description:
       "Audio guides editoriaux pour explorer les villes autrement. " +
       "Telecharger l'app gratuite.",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
         url: '/og-default.png',
         width: 1200,
         height: 630,
-        alt: 'TourGuide',
+        alt: 'Murmure',
       },
     ],
   },
@@ -108,7 +108,7 @@ export const metadata: Metadata = {
 
 // Story 3.4 — Next.js 14+ a déplacé `themeColor` de `metadata` vers `viewport`.
 // Cette valeur doit rester strictement alignée avec `tg.colors.grenadine` du
-// package `@tourguide/design-system/tokens` (`#C1262A`). Si Story 5.1 modifie
+// package `@murmure/design-system/tokens` (`#C1262A`). Si Story 5.1 modifie
 // la palette, rouvrir Story 3.4 pour aligner.
 export const viewport: Viewport = {
   themeColor: '#C1262A',

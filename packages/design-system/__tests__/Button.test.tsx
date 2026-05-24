@@ -48,13 +48,13 @@ const VARIANTS: ButtonVariant[] = ['primary', 'accent', 'ghost'];
 const SIZES: ButtonSize[] = ['sm', 'md', 'lg'];
 
 describe('Button (Web) — exports', () => {
-  it('is exported from @tourguide/design-system/web', () => {
+  it('is exported from @murmure/design-system/web', () => {
     expect(ButtonWeb).toBeDefined();
     // forwardRef returns an object with $$typeof — not a plain function.
     expect(['function', 'object']).toContain(typeof ButtonWeb);
   });
 
-  it('is wired in @tourguide/design-system/rn sub-export (Story 2.1)', () => {
+  it('is wired in @murmure/design-system/rn sub-export (Story 2.1)', () => {
     // On NE peut PAS importer `../rn` ici (Jest node env sans preset RN —
     // `react-native` n'est pas chargeable). On valide donc le câblage en
     // lisant le fichier source.

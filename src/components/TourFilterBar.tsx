@@ -51,12 +51,12 @@ export default function TourFilterBar({ filters, onChange, showStatusFilter, cit
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4 mb-6">
+    <div className="bg-card border border-line rounded-xl p-4 mb-6">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-gray-700">Filtres</span>
+          <span className="text-sm font-semibold text-ink-80">Filtres</span>
           {activeCount > 0 && (
-            <span className="bg-teal-100 text-teal-700 text-xs font-bold px-2 py-0.5 rounded-full">
+            <span className="bg-grenadine-soft text-grenadine text-xs font-bold px-2 py-0.5 rounded-full">
               {activeCount}
             </span>
           )}
@@ -71,7 +71,7 @@ export default function TourFilterBar({ filters, onChange, showStatusFilter, cit
       <div className="flex flex-wrap gap-3">
         {/* Langue chips */}
         <div>
-          <p className="text-xs text-gray-500 mb-1">Langue</p>
+          <p className="text-xs text-ink-60 mb-1">Langue</p>
           <div className="flex flex-wrap gap-1">
             {AVAILABLE_LANGUES.map((l) => (
               <button
@@ -79,8 +79,8 @@ export default function TourFilterBar({ filters, onChange, showStatusFilter, cit
                 onClick={() => toggleLangue(l.code)}
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                   filters.langues.includes(l.code)
-                    ? 'bg-teal-100 text-teal-700 border border-teal-300'
-                    : 'bg-gray-100 text-gray-600 border border-gray-200 hover:bg-gray-200'
+                    ? 'bg-grenadine-soft text-grenadine border border-teal-300'
+                    : 'bg-paper-deep text-ink-60 border border-line hover:bg-paper-deep'
                 }`}
               >
                 {l.flag}
@@ -91,7 +91,7 @@ export default function TourFilterBar({ filters, onChange, showStatusFilter, cit
 
         {/* Duration range */}
         <div>
-          <p className="text-xs text-gray-500 mb-1">Durée</p>
+          <p className="text-xs text-ink-60 mb-1">Durée</p>
           <div className="flex items-center gap-1">
             <select
               value={filters.dureeMin}
@@ -100,14 +100,14 @@ export default function TourFilterBar({ filters, onChange, showStatusFilter, cit
                 onChange({ ...filters, dureeMin: v });
                 fireAnalytics('duree_min', String(v));
               }}
-              className="text-xs border border-gray-200 rounded px-2 py-1 text-gray-700"
+              className="text-xs border border-line rounded px-2 py-1 text-ink-80"
             >
               <option value={0}>Min</option>
               {[15, 30, 45, 60, 90, 120].map((v) => (
                 <option key={v} value={v}>{v} min</option>
               ))}
             </select>
-            <span className="text-gray-400 text-xs">—</span>
+            <span className="text-ink-40 text-xs">—</span>
             <select
               value={filters.dureeMax}
               onChange={(e) => {
@@ -115,7 +115,7 @@ export default function TourFilterBar({ filters, onChange, showStatusFilter, cit
                 onChange({ ...filters, dureeMax: v });
                 fireAnalytics('duree_max', String(v));
               }}
-              className="text-xs border border-gray-200 rounded px-2 py-1 text-gray-700"
+              className="text-xs border border-line rounded px-2 py-1 text-ink-80"
             >
               {[30, 45, 60, 90, 120, 150, 180].map((v) => (
                 <option key={v} value={v}>{v} min</option>
@@ -128,14 +128,14 @@ export default function TourFilterBar({ filters, onChange, showStatusFilter, cit
         {/* City */}
         {cities.length > 0 && (
           <div>
-            <p className="text-xs text-gray-500 mb-1">Ville</p>
+            <p className="text-xs text-ink-60 mb-1">Ville</p>
             <select
               value={filters.ville}
               onChange={(e) => {
                 onChange({ ...filters, ville: e.target.value });
                 fireAnalytics('ville', e.target.value);
               }}
-              className="text-xs border border-gray-200 rounded px-2 py-1 text-gray-700"
+              className="text-xs border border-line rounded px-2 py-1 text-ink-80"
             >
               <option value="">Toutes</option>
               {cities.map((c) => (
@@ -147,7 +147,7 @@ export default function TourFilterBar({ filters, onChange, showStatusFilter, cit
 
         {/* Themes */}
         <div>
-          <p className="text-xs text-gray-500 mb-1">Thèmes</p>
+          <p className="text-xs text-ink-60 mb-1">Thèmes</p>
           <div className="flex flex-wrap gap-1">
             {AVAILABLE_THEMES.map((theme) => (
               <button
@@ -155,8 +155,8 @@ export default function TourFilterBar({ filters, onChange, showStatusFilter, cit
                 onClick={() => toggleTheme(theme)}
                 className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${
                   filters.themes.includes(theme)
-                    ? 'bg-teal-100 text-teal-700 border border-teal-300'
-                    : 'bg-gray-100 text-gray-600 border border-gray-200 hover:bg-gray-200'
+                    ? 'bg-grenadine-soft text-grenadine border border-teal-300'
+                    : 'bg-paper-deep text-ink-60 border border-line hover:bg-paper-deep'
                 }`}
               >
                 {theme}
@@ -168,14 +168,14 @@ export default function TourFilterBar({ filters, onChange, showStatusFilter, cit
         {/* Status (admin only) */}
         {showStatusFilter && (
           <div>
-            <p className="text-xs text-gray-500 mb-1">Statut</p>
+            <p className="text-xs text-ink-60 mb-1">Statut</p>
             <select
               value={filters.status ?? ''}
               onChange={(e) => {
                 onChange({ ...filters, status: e.target.value || undefined });
                 fireAnalytics('status', e.target.value);
               }}
-              className="text-xs border border-gray-200 rounded px-2 py-1 text-gray-700"
+              className="text-xs border border-line rounded px-2 py-1 text-ink-80"
             >
               <option value="">Tous</option>
               {STATUS_OPTIONS.map((opt) => (

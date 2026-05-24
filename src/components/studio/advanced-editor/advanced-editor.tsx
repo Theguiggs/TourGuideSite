@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { tg } from '@tourguide/design-system';
+import { tg } from '@murmure/design-system';
 import { logger } from '@/lib/logger';
 import { detectSilences, type DetectedSegment } from '@/lib/api/silence-detection';
 import type { SceneSegment } from '@/types/studio';

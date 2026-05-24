@@ -45,13 +45,13 @@ function renderToJSON(element: React.ReactElement): RenderedNode {
 }
 
 describe('Typography — exports & wiring', () => {
-  it('Eyebrow / PullQuote / NumberMark are exported from @tourguide/design-system/web', () => {
+  it('Eyebrow / PullQuote / NumberMark are exported from @murmure/design-system/web', () => {
     expect(EyebrowWeb).toBeDefined();
     expect(PullQuoteWeb).toBeDefined();
     expect(NumberMarkWeb).toBeDefined();
   });
 
-  it('RN miroir wired in @tourguide/design-system/rn (Story 2.5)', () => {
+  it('RN miroir wired in @murmure/design-system/rn (Story 2.5)', () => {
     const rnIndex = fs.readFileSync(
       path.join(__dirname, '..', 'rn', 'index.ts'),
       'utf8',

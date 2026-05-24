@@ -650,12 +650,30 @@ export async function updateModerationStatusByLang(
       { authMode: 'userPool' },
     );
 
-    // If feedback provided, save per-scene feedback via StudioScene.moderationFeedback
+    // Surface write failures instead of silently returning ok (e.g. an admin
+    // without update permission would otherwise see "success" while nothing
+    // changed in the backend — exactly the "reject did nothing" symptom).
+    if (updateResult?.errors?.length || !updateResult?.data) {
+      logger.error(SERVICE_NAME, 'TourLanguagePurchase.update returned errors', {
+        sessionId, language, status, errors: updateResult?.errors,
+      });
+      return { ok: false, error: { code: 2608, message: 'Moderation status update was rejected by the backend (permissions or validation).' } };
+    }
+
+    // If feedback provided, save per-scene feedback via StudioScene.moderationFeedback.
+    // Feedback is keyed by sceneId; the admin UI may pass a synthetic "global"
+    // key for a whole-language note (already saved as a tour comment) — that has
+    // no matching scene, so skip any key that isn't a real, existing scene
+    // rather than writing to a phantom StudioScene "global".
     if (feedback) {
       for (const [sceneId, feedbackText] of Object.entries(feedback)) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const scene = await (client as any).models.StudioScene.get({ id: sceneId }, { authMode: 'userPool' });
-        const existingFeedback = scene?.data?.moderationFeedback
+        if (!scene?.data) {
+          logger.info(SERVICE_NAME, 'Skipping feedback for non-scene key', { sceneId, language });
+          continue;
+        }
+        const existingFeedback = scene.data.moderationFeedback
           ? JSON.parse(scene.data.moderationFeedback as string) as Record<string, string>
           : {};
         existingFeedback[language] = feedbackText;
@@ -667,7 +685,11 @@ export async function updateModerationStatusByLang(
       }
     }
 
-    // When approving, update GuideTour.availableLanguages
+    // When approving, expose the language to the consumer app on GuideTour:
+    //  - availableLanguages: [source, ...approved] (drives the app's selector)
+    //  - translatedAudioKeys: { lang: { sceneId: audioKey } } so the tourist app
+    //    can play approved translations WITHOUT reading the owner/admin-only
+    //    SceneSegment model.
     if (status === 'approved') {
       try {
         const { updateGuideTourMutation } = await import('@/lib/api/appsync-client');
@@ -675,20 +697,43 @@ export async function updateModerationStatusByLang(
         const approvedLangs = items
           .filter((p: TourLanguagePurchase) => p.language === language ? true : p.moderationStatus === 'approved')
           .map((p: TourLanguagePurchase) => p.language);
-        // Find the GuideTour to get source language
-        const { getGuideTourById } = await import('@/lib/api/appsync-client');
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const sessionData = await (client as any).models.StudioSession?.get({ id: sessionId }, { authMode: 'userPool' });
         const tourId = sessionData?.data?.tourId as string | undefined;
+        const sourceLang = (sessionData?.data?.language as string) ?? 'fr';
         if (tourId) {
-          const tour = await getGuideTourById(tourId);
-          const sourceLang = (tour as Record<string, unknown>)?.languePrincipale as string ?? 'fr';
           const allLangs = Array.from(new Set([sourceLang, ...approvedLangs]));
+
+          // Build the per-language audio key map for the approved (non-source)
+          // languages from their SceneSegments (admin can read these).
+          const translatedAudioKeys: Record<string, Record<string, string>> = {};
+          try {
+            const { listStudioScenes, listSegmentsByScene } = await import('@/lib/api/studio');
+            const scenes = (await listStudioScenes(sessionId)).filter(s => !s.archived);
+            for (const lang of allLangs.filter(l => l !== sourceLang)) {
+              const map: Record<string, string> = {};
+              for (const sc of scenes) {
+                const segs = await listSegmentsByScene(sc.id);
+                const seg = segs.find(
+                  s =>
+                    s.language === lang &&
+                    !!s.audioKey &&
+                    !s.audioKey.startsWith('tts-') &&
+                    !s.audioKey.endsWith('.bin'),
+                );
+                if (seg?.audioKey) map[sc.id] = seg.audioKey;
+              }
+              if (Object.keys(map).length > 0) translatedAudioKeys[lang] = map;
+            }
+          } catch (segErr) {
+            logger.warn(SERVICE_NAME, 'Failed to build translatedAudioKeys (non-blocking)', { error: String(segErr) });
+          }
+
           // Try Amplify first, fallback to DynamoDB direct
           try {
-            await updateGuideTourMutation(tourId, { availableLanguages: allLangs });
+            await updateGuideTourMutation(tourId, { availableLanguages: allLangs, translatedAudioKeys });
           } catch {
-            // Amplify may not support this field yet — use DynamoDB direct
+            // Amplify may not support these fields yet — use DynamoDB direct
             const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
             const { DynamoDBDocumentClient, UpdateCommand } = await import('@aws-sdk/lib-dynamodb');
             const appId = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
@@ -696,11 +741,15 @@ export async function updateModerationStatusByLang(
             await dynamo.send(new UpdateCommand({
               TableName: `GuideTour-${appId}-NONE`,
               Key: { id: tourId },
-              UpdateExpression: 'SET availableLanguages = :l',
-              ExpressionAttributeValues: { ':l': allLangs },
+              UpdateExpression: 'SET availableLanguages = :l, translatedAudioKeys = :t',
+              ExpressionAttributeValues: { ':l': allLangs, ':t': translatedAudioKeys },
             }));
           }
-          logger.info(SERVICE_NAME, 'Updated GuideTour.availableLanguages', { tourId, languages: allLangs });
+          logger.info(SERVICE_NAME, 'Updated GuideTour multilang surface', {
+            tourId,
+            languages: allLangs,
+            translatedLangs: Object.keys(translatedAudioKeys),
+          });
         }
       } catch (langErr) {
         // Non-blocking: log but don't fail the approval

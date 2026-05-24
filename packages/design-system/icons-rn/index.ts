@@ -1,5 +1,5 @@
 /**
- * Story 3.6 — Set 23 icônes RN (sub-export `@tourguide/design-system/icons-rn`).
+ * Story 3.6 — Set 23 icônes RN (sub-export `@murmure/design-system/icons-rn`).
  *
  * Miroir natif via `react-native-svg` du barrel `./icons` Web.
  * `currentColor` n'étant pas supporté nativement par `react-native-svg`,
@@ -7,7 +7,7 @@
  * explicite n'est passée.
  *
  * Pattern d'import consumer RN :
- *   import { IconHome, IconPlay } from '@tourguide/design-system/icons-rn';
+ *   import { IconHome, IconPlay } from '@murmure/design-system/icons-rn';
  */
 
 // Navigation (7)

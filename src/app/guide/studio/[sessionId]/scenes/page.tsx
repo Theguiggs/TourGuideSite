@@ -44,7 +44,7 @@ import type { StudioSession, StudioScene, SceneSegment } from '@/types/studio';
 import { getSceneSegments } from '@/types/studio';
 import { LanguageSceneList, TourInfoTranslation } from '@/components/studio/language-scene-list';
 import { StalenessAlert } from '@/components/studio/staleness-alert/staleness-alert';
-import { getStaleSegments } from '@/lib/multilang/staleness-detector';
+import { getStaleSegments, getSourceHashUpdates } from '@/lib/multilang/staleness-detector';
 import { SplitEditor } from '@/components/studio/split-editor';
 import { LanguageAudioSection } from '@/components/studio/language-audio-section';
 import { requestTTS, getTTSStatus } from '@/lib/api/tts';
@@ -232,8 +232,13 @@ export default function ScenesPage() {
         // Check if this is a Standard/Pro purchase with no translated segments yet
         const purchase = purchases.find((p) => p.language === activeLanguageTab && p.status === 'active');
         if (!purchase || purchase.purchaseType === 'manual' || purchase.qualityTier === 'manual') return;
-        // Don't auto-translate if language is submitted or approved (locked)
-        if (['submitted', 'approved'].includes(purchase.moderationStatus)) return;
+        // Auto-translation is only for a brand-new (draft) language with no content
+        // yet. Once a language has been through moderation in ANY way — submitted,
+        // approved, rejected or revision_requested — the guide manages it manually
+        // (fixing flagged scenes, resubmitting). Auto-firing here would silently
+        // re-translate (and overwrite + re-bill) an already-finished language —
+        // e.g. opening a freshly REJECTED tab kicked off a full DE re-translation.
+        if (purchase.moderationStatus !== 'draft') return;
         if (batchTriggeredRef.current.has(activeLanguageTab)) return;
 
         // Check if segments already have translated content (query fresh, don't use stale state)
@@ -498,7 +503,7 @@ export default function ScenesPage() {
       const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
       const unsub = studioUploadService.onProgress(uploadId, (p) => setUploadProgress(p));
       try {
-        const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex);
+        const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex, sceneId);
         unsub();
         if (result.ok) {
           await updateSceneAudio(sceneId, result.s3Key);
@@ -541,6 +546,42 @@ export default function ScenesPage() {
     setSearchResult(null);
     setAddressSearch('');
   }, [activeSceneId, activeScene?.latitude, activeScene?.longitude, activeScene?.title, activeScene?.poiDescription]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Keep the player bar in sync with the active scene's BASE-language audio. The
+  // bar reflects a global singleton, so without this it would keep showing the
+  // previously selected scene's audio when you switch scenes (or after a
+  // regenerate). Loads paused — the user presses play (here or via "Ecouter").
+  //
+  // IMPORTANT: only manage the player on the base-language tab. On a translated
+  // tab each LanguageAudioSection drives playback for its own scene/language;
+  // loading the base (e.g. FR) audio into the shared singleton here would make
+  // the player play French while the guide works in Spanish. So on translated
+  // tabs we clear the player instead and let per-scene playback own it.
+  const baseLanguage = session?.language;
+  useEffect(() => {
+    if (!baseLanguage) return;
+    const isBaseTab = !activeLanguageTab || activeLanguageTab === baseLanguage;
+    if (!isBaseTab) {
+      audioPlayerService.stop();
+      return;
+    }
+    let cancelled = false;
+    const key = activeScene?.studioAudioKey;
+    if (!key) { audioPlayerService.stop(); return; }
+    (async () => {
+      try {
+        const url = key.startsWith('data:')
+          ? key
+          : shouldUseStubs()
+            ? key
+            : await studioUploadService.getPlayableUrl(key);
+        if (!cancelled) audioPlayerService.load(url);
+      } catch (e) {
+        logger.error(SERVICE_NAME, 'Failed to load scene audio into player', { error: String(e) });
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [activeSceneId, activeScene?.studioAudioKey, activeLanguageTab, baseLanguage]);
 
   // Geocode address
   const handleAddressSearch = useCallback(async () => {
@@ -650,6 +691,39 @@ export default function ScenesPage() {
     setAudioSaveToast(sourceLabel);
     setTimeout(() => setAudioSaveToast(null), 3000);
     logger.info(SERVICE_NAME, 'Audio source selected', { sceneId, source: sourceLabel, sceneIndex });
+  }, [sessionId]);
+
+  // Persist a translated-segment's TTS audio. In real mode requestTTS returns a
+  // base64 data URL — it MUST be uploaded to S3 first; storing the raw data URL
+  // in AppSync overflows DynamoDB (~400KB/item) so larger scenes get truncated
+  // and then fail to play. Returns true on success.
+  const saveSegmentTtsAudio = useCallback(async (
+    segmentId: string,
+    scene: StudioScene,
+    rawAudioKey: string,
+    language: string,
+  ): Promise<boolean> => {
+    let keyToStore = rawAudioKey;
+    if (rawAudioKey.startsWith('data:') && !shouldUseStubs()) {
+      try {
+        const response = await fetch(rawAudioKey);
+        const blob = new Blob([await response.blob()], { type: 'audio/wav' });
+        const uploadResult = await studioUploadService.uploadAudio(blob, sessionId, scene.sceneIndex ?? 0, scene.id);
+        if (!uploadResult.ok) {
+          logger.error(SERVICE_NAME, 'Segment TTS S3 upload failed', { sceneId: scene.id, error: uploadResult.error });
+          return false;
+        }
+        keyToStore = uploadResult.s3Key;
+      } catch (e) {
+        logger.error(SERVICE_NAME, 'Segment TTS S3 upload exception', { sceneId: scene.id, error: String(e) });
+        return false;
+      }
+    }
+    // Pass language so updateSceneSegment's upsert path can resolve sceneId/lang
+    // when the segment id is a fabricated `{sceneId}-{lang}` (first-ever audio).
+    const res = await updateSceneSegment(segmentId, { audioKey: keyToStore, audioSource: 'tts', language });
+    if (!res.ok) logger.error(SERVICE_NAME, 'Failed to persist segment audio', { segmentId, error: res.error });
+    return res.ok;
   }, [sessionId]);
 
   // All non-archived scenes that have a transcript — candidates for bulk TTS.
@@ -900,11 +974,15 @@ export default function ScenesPage() {
           </div>
         )}
 
-        {/* Non-base language: locked banner when submitted/approved */}
+        {/* Non-base language: locked banner when submitted/approved.
+            isActiveLangLocked is only true for these two statuses, so the text
+            must reflect which one — not hardcode "soumise" (which made an
+            approved language read as still submitted). */}
         {isActiveLangLocked && (
           <div className="mb-3 rounded-lg border border-grenadine-soft bg-grenadine-soft px-4 py-3 text-sm text-grenadine" role="status" data-testid="lang-locked-banner">
-            Langue {activeLanguageTab?.toUpperCase()} soumise pour modération — modification non disponible.
-            {activePurchase?.moderationStatus === 'approved' && ' Cette langue a été approuvée.'}
+            {activePurchase?.moderationStatus === 'approved'
+              ? `Langue ${activeLanguageTab?.toUpperCase()} approuvée et publiée — modification non disponible.`
+              : `Langue ${activeLanguageTab?.toUpperCase()} soumise pour modération — modification non disponible.`}
           </div>
         )}
 
@@ -1001,13 +1079,42 @@ export default function ScenesPage() {
                   }
                 }}
                 onDismiss={async (ids) => {
-                  // Mark segments as up-to-date without re-translating.
-                  // Useful when the scene was modified for non-translatable reasons (GPS, photos, audio).
+                  // Mark segments as up-to-date WITHOUT re-translating — used when the
+                  // scene was modified for non-translatable reasons (GPS, photos, audio).
+                  // Staleness is detected by comparing sourceTextHash to the CURRENT
+                  // source-text hash, so to clear the flag we must rewrite each segment's
+                  // hash to match the current source. Updating sourceUpdatedAt alone is a
+                  // no-op under hash-based detection (that was the lingering bug).
                   logger.info(SERVICE_NAME, 'Dismiss staleness', { lang: activeLanguageTab, count: ids.length });
                   const now = new Date().toISOString();
-                  await Promise.all(ids.map((id) => updateSceneSegment(id, { sourceUpdatedAt: now })));
-                  await refreshLangSegments();
-                  setBatchMessage('Alerte ignoree. Traductions marquees a jour.');
+                  const dismissScenes = scenes.filter((s) => !s.archived);
+                  const updates = getSourceHashUpdates(ids, langSegments, dismissScenes);
+                  const succeeded = new Set<string>();
+                  await Promise.all(updates.map(async (u) => {
+                    const res = await updateSceneSegment(u.segmentId, {
+                      sourceTextHash: u.sourceTextHash,
+                      sourceUpdatedAt: now,
+                    });
+                    if (res.ok) succeeded.add(u.segmentId);
+                    else logger.error(SERVICE_NAME, 'Dismiss update failed', { segmentId: u.segmentId, error: res.error });
+                  }));
+                  // Optimistically clear staleness in local state. We do NOT re-read
+                  // via refreshLangSegments here: that query hits the eventually
+                  // consistent `sceneId` GSI, which can still return the old hash
+                  // immediately after the write and make the alert flicker back —
+                  // the exact "Ignorer does nothing" symptom. Local state is
+                  // authoritative because we know exactly what we persisted.
+                  const hashById = new Map(updates.map((u) => [u.segmentId, u.sourceTextHash]));
+                  setLangSegments((prev) => prev.map((s) =>
+                    succeeded.has(s.id)
+                      ? { ...s, sourceTextHash: hashById.get(s.id) ?? s.sourceTextHash, sourceUpdatedAt: now }
+                      : s,
+                  ));
+                  setBatchMessage(
+                    succeeded.size === updates.length
+                      ? 'Alerte ignoree. Traductions marquees a jour.'
+                      : 'Certaines scenes n\'ont pas pu etre marquees a jour.',
+                  );
                   setTimeout(() => setBatchMessage(null), 3000);
                 }}
               />
@@ -1064,7 +1171,7 @@ export default function ScenesPage() {
                   logger.info(SERVICE_NAME, 'Generating TTS for scene', { sceneId: scene.id, segmentId: seg.id });
                   const ttsResult = await requestTTS(seg.id, seg.transcriptText, activeLanguageTab);
                   if (ttsResult.status === 'completed' && ttsResult.audioKey) {
-                    await updateSceneSegment(seg.id, { audioKey: ttsResult.audioKey, audioSource: 'tts' });
+                    await saveSegmentTtsAudio(seg.id, scene, ttsResult.audioKey, activeLanguageTab);
                   } else if (ttsResult.status === 'processing' && ttsResult.jobId) {
                     // Poll for completion (stub: 5s delay)
                     const poll = async () => {
@@ -1072,7 +1179,7 @@ export default function ScenesPage() {
                         await new Promise((r) => setTimeout(r, 1000));
                         const status = await getTTSStatus(ttsResult.jobId);
                         if (status && status.status === 'completed' && status.audioKey) {
-                          await updateSceneSegment(seg.id, { audioKey: status.audioKey, audioSource: 'tts' });
+                          await saveSegmentTtsAudio(seg.id, scene, status.audioKey, activeLanguageTab);
                           return;
                         }
                         if (status && status.status === 'failed') return;
@@ -1083,6 +1190,54 @@ export default function ScenesPage() {
                 }
               }
               await refreshLangSegments();
+            }}
+            onRegenerateAllTts={isActiveLangLocked ? undefined : async () => {
+              if (!activeLanguageTab) return;
+              const activeScenes = scenes.filter((s) => !s.archived);
+              const targets = activeScenes.filter((scene) => {
+                const seg = langSegments.find((s) => s.sceneId === scene.id && s.language === activeLanguageTab);
+                return seg && seg.transcriptText;
+              });
+              if (targets.length === 0) return;
+              const confirmed = window.confirm(
+                `Régénérer l'audio TTS de ${targets.length} scène${targets.length > 1 ? 's' : ''} en ${activeLanguageTab.toUpperCase()} ?\n\n` +
+                "L'audio existant sera remplacé. Cela peut prendre une minute.",
+              );
+              if (!confirmed) return;
+              logger.info(SERVICE_NAME, 'Regenerate all TTS', { lang: activeLanguageTab, count: targets.length });
+              let done = 0;
+              let failures = 0;
+              for (const scene of targets) {
+                const seg = langSegments.find((s) => s.sceneId === scene.id && s.language === activeLanguageTab);
+                if (!seg || !seg.transcriptText) continue;
+                setBatchMessage(`Génération TTS ${activeLanguageTab.toUpperCase()} : ${done}/${targets.length} scènes…`);
+                try {
+                  const ttsResult = await requestTTS(seg.id, seg.transcriptText, activeLanguageTab);
+                  let ok = false;
+                  if (ttsResult.status === 'completed' && ttsResult.audioKey) {
+                    ok = await saveSegmentTtsAudio(seg.id, scene, ttsResult.audioKey, activeLanguageTab);
+                  } else if (ttsResult.status === 'processing' && ttsResult.jobId) {
+                    for (let i = 0; i < 30; i++) {
+                      await new Promise((r) => setTimeout(r, 1000));
+                      const status = await getTTSStatus(ttsResult.jobId);
+                      if (status?.status === 'completed' && status.audioKey) {
+                        ok = await saveSegmentTtsAudio(seg.id, scene, status.audioKey, activeLanguageTab);
+                        break;
+                      }
+                      if (status?.status === 'failed') break;
+                    }
+                  }
+                  if (!ok) failures++;
+                } catch (e) {
+                  logger.error(SERVICE_NAME, 'Regenerate all TTS failed for scene', { sceneId: scene.id, error: String(e) });
+                  failures++;
+                }
+                done++;
+              }
+              await refreshLangSegments();
+              const success = targets.length - failures;
+              setBatchMessage(`Génération TTS terminée — ${success} réussie${success > 1 ? 's' : ''}${failures > 0 ? `, ${failures} échec${failures > 1 ? 's' : ''}` : ''}.`);
+              setTimeout(() => setBatchMessage(null), 6000);
             }}
             onListenPreview={() => { alert('Fonctionnalite a venir'); }}
             onFullPreview={() => { alert('Fonctionnalite a venir'); }}
@@ -1589,7 +1744,7 @@ export default function ScenesPage() {
                         setIsUploading(true); setUploadError(null);
                         const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
                         const unsub = studioUploadService.onProgress(uploadId, (p) => setUploadProgress(p));
-                        try { const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex); unsub();
+                        try { const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex, sceneId); unsub();
                           if (result.ok) { await updateSceneAudio(sceneId, result.s3Key); failedBlobRef.current = null; const refreshed = await listStudioScenes(sessionId); setScenes(refreshed); }
                           else { setUploadError(result.error); }
                         } catch { unsub(); setUploadError('Upload echoue.'); }

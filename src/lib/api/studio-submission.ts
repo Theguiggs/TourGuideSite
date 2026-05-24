@@ -139,7 +139,22 @@ export async function submitForReview(
     const sessionResult = await appsync.updateStudioSessionMutation(sessionId, { status: 'submitted' });
     if (!sessionResult.ok) return { ok: false, error: sessionResult.error };
 
-    const tourResult = await appsync.updateGuideTourMutation(tourId, { status: 'review' });
+    // Mirror the tour cover (StudioSession.coverPhotoKey — owner/admin-only) onto
+    // GuideTour so the consumer app can display it. Non-fatal if it fails.
+    let coverPhotoKey: string | undefined;
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const client = appsync.getClient() as any;
+      const sess = await client.models.StudioSession.get({ id: sessionId }, { authMode: 'userPool' });
+      coverPhotoKey = (sess?.data?.coverPhotoKey as string | undefined) ?? undefined;
+    } catch (e) {
+      logger.warn(SERVICE_NAME, 'Could not read coverPhotoKey for tour mirror', { error: String(e) });
+    }
+
+    const tourResult = await appsync.updateGuideTourMutation(
+      tourId,
+      coverPhotoKey ? { status: 'review', coverPhotoKey } : { status: 'review' },
+    );
     if (!tourResult.ok) {
       logger.error(SERVICE_NAME, 'Tour update failed, rolling back session', { tourId, error: tourResult.error });
       await appsync.updateStudioSessionMutation(sessionId, { status: 'editing' });

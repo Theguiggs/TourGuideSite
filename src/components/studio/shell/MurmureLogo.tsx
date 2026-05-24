@@ -1,6 +1,6 @@
 'use client';
 
-import { PinNegatif } from '@tourguide/design-system/web';
+import { PinNegatif } from '@murmure/design-system/web';
 
 interface MurmureLogoProps {
   /** Taille du logo en pixels (défaut 26 — header). */

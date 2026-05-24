@@ -2,6 +2,33 @@ import { logger } from '@/lib/logger';
 
 const SERVICE_NAME = 'AudioPlayerService';
 
+/** Human-readable label for an HTMLMediaElement MediaError code. */
+function describeMediaError(code?: number): string {
+  switch (code) {
+    case 1: return 'aborted';
+    case 2: return 'network (fetch failed — often a 404/expired URL)';
+    case 3: return 'decode (corrupt or empty audio)';
+    case 4: return 'src-not-supported (missing object, bad format, or CORS)';
+    default: return 'unknown';
+  }
+}
+
+/** Short, secret-free summary of an audio URL for logging (signed URLs carry
+ *  credentials in the query string; data URLs are huge). */
+function summarizeUrl(url: string | null): string {
+  if (!url) return '(none)';
+  if (url.startsWith('data:')) {
+    const comma = url.indexOf(',');
+    return `${url.slice(0, comma > 0 ? comma : 16)} (${url.length} chars)`;
+  }
+  try {
+    const u = new URL(url);
+    return `${u.origin}${u.pathname}`;
+  } catch {
+    return url.slice(0, 80);
+  }
+}
+
 export interface AudioPlayerState {
   isPlaying: boolean;
   currentTime: number;
@@ -18,6 +45,7 @@ class AudioPlayerServiceImpl {
   private updateInterval: ReturnType<typeof setInterval> | null = null;
   private onEnded: (() => void) | null = null;
   private onError: (() => void) | null = null;
+  private onLoaded: (() => void) | null = null;
 
   getState(): AudioPlayerState {
     if (!this.audio) {
@@ -59,6 +87,7 @@ class AudioPlayerServiceImpl {
     if (this.audio) {
       if (this.onEnded) this.audio.removeEventListener('ended', this.onEnded);
       if (this.onError) this.audio.removeEventListener('error', this.onError);
+      if (this.onLoaded) this.audio.removeEventListener('loadedmetadata', this.onLoaded);
       this.audio.pause();
       this.audio.removeAttribute('src');
       this.audio.load();
@@ -70,6 +99,7 @@ class AudioPlayerServiceImpl {
     }
     this.onEnded = null;
     this.onError = null;
+    this.onLoaded = null;
     this._currentUrl = null;
   }
 
@@ -88,6 +118,51 @@ class AudioPlayerServiceImpl {
     } catch {
       return url;
     }
+  }
+
+  /**
+   * Prepare an audio source without auto-playing, so the player bar reflects the
+   * active scene immediately. Used when switching scenes / after (re)generating
+   * TTS: the bar shows the new track (paused, correct duration once metadata
+   * loads) instead of keeping the previously played one. No-op if the same URL
+   * is already loaded so it never interrupts ongoing playback of that track.
+   */
+  load(url: string): void {
+    if (!url) {
+      this.stop();
+      return;
+    }
+    if (this._currentUrl === url) return;
+
+    this.stop();
+    const playableUrl = this.toPlayableUrl(url);
+    this.audio = new Audio(playableUrl);
+    this._currentUrl = url;
+
+    this.onEnded = () => {
+      this.stopUpdates();
+      this.notify();
+    };
+    this.onError = () => {
+      this.stopUpdates();
+      this.notify();
+      const code = this.audio?.error?.code;
+      logger.error(SERVICE_NAME, 'Audio load error', {
+        code: code ?? null,
+        detail: describeMediaError(code),
+        url: summarizeUrl(url),
+      });
+    };
+    // Duration is unknown until metadata loads; notify so the bar refreshes
+    // without needing playback to start the update interval.
+    this.onLoaded = () => this.notify();
+
+    this.audio.addEventListener('ended', this.onEnded);
+    this.audio.addEventListener('error', this.onError);
+    this.audio.addEventListener('loadedmetadata', this.onLoaded);
+    this.audio.load();
+    this.notify();
+    logger.info(SERVICE_NAME, 'Loaded audio (paused)', { url });
   }
 
   async play(url: string): Promise<boolean> {
@@ -125,7 +200,12 @@ class AudioPlayerServiceImpl {
     this.onError = () => {
       this.stopUpdates();
       this.notify();
-      logger.error(SERVICE_NAME, 'Playback error', { url });
+      const code = this.audio?.error?.code;
+      logger.error(SERVICE_NAME, 'Playback error', {
+        code: code ?? null,
+        detail: describeMediaError(code),
+        url: summarizeUrl(url),
+      });
     };
 
     this.audio.addEventListener('ended', this.onEnded);
@@ -138,7 +218,17 @@ class AudioPlayerServiceImpl {
       logger.info(SERVICE_NAME, 'Started playback', { url });
       return true;
     } catch (e) {
-      logger.error(SERVICE_NAME, 'Failed to start playback', { error: String(e) });
+      const err = e as Error;
+      // AbortError is benign — fires when a new play() call interrupts
+      // the previous one (legitimate during fast scene switching).
+      if (err?.name === 'AbortError') {
+        logger.info(SERVICE_NAME, 'Playback aborted (interrupted by newer play call)');
+      } else {
+        logger.error(SERVICE_NAME, 'Failed to start playback', {
+          errorName: err?.name,
+          errorMessage: err?.message,
+        });
+      }
       this.cleanupAudio();
       this.notify();
       return false;

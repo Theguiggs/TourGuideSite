@@ -1,31 +1,23 @@
 /**
- * TourMap component tests — Google Maps version.
+ * TourMap component tests — react-leaflet version.
  */
 
-// Mock @react-google-maps/api
-jest.mock('@react-google-maps/api', () => ({
-  GoogleMap: ({ children, onClick }: { children?: React.ReactNode; onClick?: (e: unknown) => void }) => (
-    <div data-testid="map-container" onClick={() => onClick?.({ latLng: { lat: () => 0, lng: () => 0 } })}>{children}</div>
+jest.mock('react-leaflet', () => ({
+  MapContainer: ({ children }: { children?: React.ReactNode }) => (
+    <div data-testid="map-container">{children}</div>
   ),
-  useJsApiLoader: () => ({ isLoaded: true }),
-  MarkerF: ({ onClick, title }: { onClick?: () => void; title?: string }) => (
-    <div data-testid="marker" onClick={onClick} title={title} />
+  TileLayer: () => null,
+  Marker: ({ eventHandlers, title }: { eventHandlers?: { click?: () => void }; title?: string }) => (
+    <div data-testid="marker" onClick={eventHandlers?.click} title={title} />
   ),
-  PolylineF: () => <div data-testid="polyline" />,
+  Polyline: () => <div data-testid="polyline" />,
+  useMap: () => ({ panTo: jest.fn(), fitBounds: jest.fn(), setView: jest.fn() }),
+  useMapEvents: () => null,
 }));
 
-// Set env var so component renders (not loading state)
-process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY = 'test-key';
-
-// Mock google.maps globals
-Object.defineProperty(global, 'google', {
-  value: {
-    maps: {
-      LatLngBounds: class { extend() {} },
-      SymbolPath: { CIRCLE: 0 },
-    },
-  },
-});
+jest.mock('@/components/map/FitToPoints', () => ({
+  FitToPoints: () => null,
+}));
 
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';

@@ -2,7 +2,6 @@
 
 import { useEffect, useState, use } from 'react';
 import Link from 'next/link';
-import { useAuth } from '@/lib/auth/auth-context';
 import { listTourReviews, getGuideTourById } from '@/lib/api/appsync-client';
 import { logger } from '@/lib/logger';
 
@@ -22,10 +21,10 @@ interface Review {
 
 function StarDisplay({ rating }: { rating: number }) {
   return (
-    <div className="flex gap-0.5 text-amber-400">
+    <div className="flex gap-0.5">
       {[1, 2, 3, 4, 5].map((i) => (
-        <span key={i} className={i <= rating ? 'text-amber-400' : 'text-gray-300'}>
-          {i <= rating ? '\u2605' : '\u2606'}
+        <span key={i} className={i <= rating ? 'text-ocre' : 'text-ink-20'}>
+          {i <= rating ? '★' : '☆'}
         </span>
       ))}
     </div>
@@ -34,7 +33,6 @@ function StarDisplay({ rating }: { rating: number }) {
 
 export default function TourReviewsPage({ params }: { params: Promise<{ tourId: string }> }) {
   const { tourId } = use(params);
-  const { user } = useAuth();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [tourTitle, setTourTitle] = useState<string>('');
   const [loading, setLoading] = useState(true);
@@ -70,7 +68,7 @@ export default function TourReviewsPage({ params }: { params: Promise<{ tourId: 
   if (loading) {
     return (
       <div className="p-8">
-        <div className="text-gray-500">Chargement des avis...</div>
+        <div className="text-caption text-ink-40">Chargement des avis…</div>
       </div>
     );
   }
@@ -78,23 +76,28 @@ export default function TourReviewsPage({ params }: { params: Promise<{ tourId: 
   return (
     <div className="max-w-4xl mx-auto p-6">
       <div className="mb-6">
-        <Link href="/guide/tours" className="text-teal-700 hover:underline text-sm">
+        <Link
+          href="/guide/tours"
+          className="text-caption text-grenadine hover:underline underline-offset-2 no-underline"
+        >
           ← Retour aux parcours
         </Link>
       </div>
 
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Avis des visiteurs</h1>
-      <p className="text-lg text-gray-600 mb-8">{tourTitle}</p>
+      <h1 className="font-display text-h4 text-ink mb-2 leading-none">Avis des visiteurs</h1>
+      <p className="font-editorial italic text-body-lg text-ink-60 mb-8">{tourTitle}</p>
 
       {/* Summary */}
-      <div className="bg-white rounded-xl shadow-sm border p-6 mb-8">
+      <div className="bg-card rounded-md shadow-sm border border-line p-6 mb-8">
         <div className="flex items-center gap-6">
-          <div className="text-center">
-            <div className="text-5xl font-bold text-gray-900">
+          <div className="text-center shrink-0">
+            <div className="font-display text-h2 text-ink leading-none">
               {averageRating.toFixed(1)}
             </div>
-            <StarDisplay rating={Math.round(averageRating)} />
-            <div className="text-sm text-gray-500 mt-1">
+            <div className="mt-2 flex justify-center">
+              <StarDisplay rating={Math.round(averageRating)} />
+            </div>
+            <div className="text-meta text-ink-60 mt-1">
               {reviews.length} avis
             </div>
           </div>
@@ -102,15 +105,15 @@ export default function TourReviewsPage({ params }: { params: Promise<{ tourId: 
             {ratingDistribution.map(({ stars, count }) => {
               const percent = reviews.length > 0 ? (count / reviews.length) * 100 : 0;
               return (
-                <div key={stars} className="flex items-center gap-2 text-sm">
-                  <span className="w-6 text-gray-600">{stars}★</span>
-                  <div className="flex-1 bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div key={stars} className="flex items-center gap-2 text-caption">
+                  <span className="w-6 text-ink-60">{stars}★</span>
+                  <div className="flex-1 bg-paper-deep rounded-pill h-2 overflow-hidden">
                     <div
-                      className="bg-amber-400 h-full"
+                      className="bg-ocre h-full transition-all"
                       style={{ width: `${percent}%` }}
                     />
                   </div>
-                  <span className="w-8 text-right text-gray-500">{count}</span>
+                  <span className="w-8 text-right text-ink-60">{count}</span>
                 </div>
               );
             })}
@@ -120,7 +123,7 @@ export default function TourReviewsPage({ params }: { params: Promise<{ tourId: 
 
       {/* Reviews list */}
       {reviews.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-caption text-ink-40 italic">
           <p>Pas encore d&apos;avis sur ce parcours.</p>
         </div>
       ) : (
@@ -128,10 +131,11 @@ export default function TourReviewsPage({ params }: { params: Promise<{ tourId: 
           {reviews.map((review) => (
             <div
               key={review.id}
-              className="bg-white rounded-xl shadow-sm border p-5">
+              className="bg-card rounded-md shadow-sm border border-line p-5"
+            >
               <div className="flex items-start justify-between mb-3">
                 <StarDisplay rating={review.rating} />
-                <span className="text-xs text-gray-400">
+                <span className="text-meta text-ink-40">
                   {new Date(review.createdAt).toLocaleDateString('fr-FR', {
                     year: 'numeric',
                     month: 'long',
@@ -140,10 +144,10 @@ export default function TourReviewsPage({ params }: { params: Promise<{ tourId: 
                 </span>
               </div>
               {review.comment && (
-                <p className="text-gray-700 leading-relaxed">{review.comment}</p>
+                <p className="text-caption text-ink-80 leading-relaxed">{review.comment}</p>
               )}
               {!review.comment && (
-                <p className="text-gray-400 italic text-sm">
+                <p className="text-meta text-ink-40 italic">
                   Note sans commentaire
                 </p>
               )}

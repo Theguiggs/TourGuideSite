@@ -1,6 +1,6 @@
 /**
  * Story 5.10.5 — Illustrations empty-states Web (sub-export
- * `@tourguide/design-system/illustrations`).
+ * `@murmure/design-system/illustrations`).
  *
  * IMPORTANT : ce barrel n'est volontairement **pas** re-exporté depuis le
  * default `index.ts` du package, pour préserver le tree-shaking et éviter
@@ -8,9 +8,9 @@
  * cohérent avec Story 3.6 icons).
  *
  * Pattern d'import consumer Web :
- *   import { EmptyOffline, EmptyGps } from '@tourguide/design-system/illustrations';
+ *   import { EmptyOffline, EmptyGps } from '@murmure/design-system/illustrations';
  *
- * Pour le miroir RN, utiliser `@tourguide/design-system/illustrations-rn`.
+ * Pour le miroir RN, utiliser `@murmure/design-system/illustrations-rn`.
  */
 
 export { EmptyOffline } from './EmptyOffline';

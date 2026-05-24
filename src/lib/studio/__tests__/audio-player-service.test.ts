@@ -109,4 +109,34 @@ describe('AudioPlayerService', () => {
     audioPlayerService.seek(-5);
     expect(audioPlayerService.getState().currentTime).toBe(0);
   });
+
+  it('load() prepares a URL without auto-playing', () => {
+    audioPlayerService.load('https://example.com/scene-a.wav');
+    const state = audioPlayerService.getState();
+    expect(state.currentUrl).toBe('https://example.com/scene-a.wav');
+    expect(state.isPlaying).toBe(false);
+    expect(mockPlay).not.toHaveBeenCalled();
+  });
+
+  it('load() switches the loaded track when the URL changes', () => {
+    audioPlayerService.load('https://example.com/scene-a.wav');
+    audioPlayerService.load('https://example.com/scene-b.wav');
+    expect(audioPlayerService.getState().currentUrl).toBe('https://example.com/scene-b.wav');
+  });
+
+  it('load() of the same URL does not interrupt ongoing playback', async () => {
+    await audioPlayerService.play('https://example.com/scene-a.wav');
+    expect(audioPlayerService.getState().isPlaying).toBe(true);
+    audioPlayerService.load('https://example.com/scene-a.wav');
+    // Same URL → no-op, still playing the same track
+    expect(audioPlayerService.getState().isPlaying).toBe(true);
+    expect(audioPlayerService.getState().currentUrl).toBe('https://example.com/scene-a.wav');
+  });
+
+  it('load() with empty URL stops the player', async () => {
+    await audioPlayerService.play('https://example.com/scene-a.wav');
+    audioPlayerService.load('');
+    expect(audioPlayerService.getState().currentUrl).toBeNull();
+    expect(audioPlayerService.getState().isPlaying).toBe(false);
+  });
 });

@@ -25,7 +25,7 @@ export default function AuthGuard({ children, requireAdmin = false }: AuthGuardP
   if (isLoading) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center">
-        <div className="text-gray-500">Chargement...</div>
+        <div className="text-ink-60">Chargement...</div>
       </div>
     );
   }

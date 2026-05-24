@@ -296,6 +296,25 @@ export async function executeBatch(
         continue;
       }
 
+      // A "completed" translation with empty text is a failure in disguise:
+      // proceeding would overwrite the existing translation with "" and mark the
+      // scene tts_generated with silent audio (the empty-DE-segments bug). Treat
+      // it as a failure so the scene stays flagged and nothing destructive is saved.
+      if (!translationResult.translatedText || !translationResult.translatedText.trim()) {
+        logger.error(SERVICE_NAME, 'Translation completed but text is empty', {
+          sceneId: scene.id,
+          lang: lang.code,
+        });
+        failedScenes.push({
+          sceneId: scene.id,
+          lang: lang.code,
+          errorCode: BATCH_TRANSLATION_FAILED,
+          message: `Translation returned empty text for scene ${scene.id} lang ${lang.code}`,
+        });
+        onProgress?.(lang.code, scene.id, 'failed');
+        continue;
+      }
+
       onProgress?.(lang.code, scene.id, 'translated');
 
       // --- Scene title translation (short text, no TTS) ---
@@ -377,7 +396,7 @@ export async function executeBatch(
             const { uploadAudio } = await import('@/lib/studio/studio-upload-service');
             const audioResponse = await fetch(audioKeyToStore);
             const audioBlob = new Blob([await audioResponse.blob()], { type: 'audio/wav' });
-            const uploadResult = await uploadAudio(audioBlob, sessionId, scene.sceneIndex ?? 0);
+            const uploadResult = await uploadAudio(audioBlob, sessionId, scene.sceneIndex ?? 0, scene.id);
             if (uploadResult.ok) {
               audioKeyToStore = uploadResult.s3Key;
               logger.info(SERVICE_NAME, 'Batch TTS audio uploaded to S3', { sceneId: scene.id, s3Key: audioKeyToStore });
@@ -500,6 +519,18 @@ export async function retryScene(
       message: errorCode === PROVIDER_UNAVAILABLE
         ? `Provider unavailable for scene ${scene.id} lang ${lang}`
         : `Translation returned status failed for scene ${scene.id} lang ${lang}`,
+    };
+  }
+
+  // A "completed" translation with empty text would overwrite the existing
+  // translation with "" and still mark the scene tts_generated (the empty-DE-
+  // segments bug). Treat it as a failure — save nothing, keep the scene flagged.
+  if (!translationResult.translatedText || !translationResult.translatedText.trim()) {
+    logger.error(SERVICE_NAME, 'Retry translation completed but text is empty', { sceneId: scene.id, lang });
+    return {
+      ok: false,
+      errorCode: BATCH_TRANSLATION_FAILED,
+      message: `Translation returned empty text for scene ${scene.id} lang ${lang}`,
     };
   }
 

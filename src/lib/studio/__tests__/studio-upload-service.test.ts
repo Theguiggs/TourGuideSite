@@ -23,7 +23,7 @@ describe('uploadAudio', () => {
     const blob = new Blob(['audio'], { type: 'audio/webm' });
     mockUploadData.mockReturnValue({ result: Promise.resolve({ path: 'guide-studio/sub/s1/audio/scene_0.webm' }) });
 
-    const result = await uploadAudio(blob, 'session-1', 0);
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.s3Key).toBe('guide-studio/sub/s1/audio/scene_0.webm');
     expect(mockUploadData).toHaveBeenCalledTimes(1);
@@ -32,14 +32,14 @@ describe('uploadAudio', () => {
   it('accepts MIME with codec suffix (audio/webm;codecs=opus)', async () => {
     const blob = new Blob(['audio'], { type: 'audio/webm;codecs=opus' });
     mockUploadData.mockReturnValue({ result: Promise.resolve({ path: 'guide-studio/sub/s1/audio/scene_0.webm' }) });
-    const result = await uploadAudio(blob, 'session-1', 0);
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
     expect(result.ok).toBe(true);
     expect(mockUploadData).toHaveBeenCalledTimes(1);
   });
 
   it('rejects unsupported MIME type without calling uploadData', async () => {
     const blob = new Blob(['text'], { type: 'text/plain' });
-    const result = await uploadAudio(blob, 'session-1', 0);
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
     expect(result.ok).toBe(false);
     expect(mockUploadData).not.toHaveBeenCalled();
   });
@@ -55,7 +55,7 @@ describe('uploadAudio', () => {
       return { result: Promise.resolve({ path: 'guide-studio/sub/s1/audio/scene_0.webm' }) };
     });
 
-    const result = await uploadAudio(blob, 'session-1', 0);
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
     expect(result.ok).toBe(true);
     expect(callCount).toBe(3);
   });
@@ -66,9 +66,29 @@ describe('uploadAudio', () => {
       result: Promise.reject(new Error('Network error')),
     }));
 
-    const result = await uploadAudio(blob, 'session-1', 0);
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error).toContain('3 tentatives');
+  });
+
+  it('keys the S3 path by the immutable sceneId, not sceneIndex', async () => {
+    const blob = new Blob(['audio'], { type: 'audio/wav' });
+    mockUploadData.mockReturnValue({ result: Promise.resolve({ path: 'guide-studio/sub/s1/audio/scene-abc_123.wav' }) });
+
+    // Two scenes that happen to share sceneIndex 0 must NOT produce the same path.
+    await uploadAudio(blob, 'session-1', 0, 'scene-abc');
+    await uploadAudio(blob, 'session-1', 0, 'scene-xyz');
+
+    const resolvePath = (call: number) =>
+      (mockUploadData.mock.calls[call][0].path as (a: { identityId: string }) => string)({ identityId: 'sub' });
+
+    const path1 = resolvePath(0);
+    const path2 = resolvePath(1);
+    expect(path1).toContain('/audio/scene-abc_');
+    expect(path2).toContain('/audio/scene-xyz_');
+    expect(path1).not.toBe(path2);
+    // Old collision-prone scheme must be gone.
+    expect(path1).not.toContain('scene_0.');
   });
 });
 

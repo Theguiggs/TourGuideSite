@@ -11,6 +11,7 @@ import os
 import re
 import tempfile
 import xml.etree.ElementTree as ET
+from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlparse
 
 import edge_tts
@@ -20,6 +21,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+
+from services.text_sanitize import normalize_source, postclean_translation
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("tourguide-local")
@@ -32,9 +35,15 @@ translation_tokenizers = {}
 
 MARIAN_MODELS = {
     ("fr", "en"): "Helsinki-NLP/opus-mt-fr-en",
-    ("fr", "it"): "Helsinki-NLP/opus-mt-fr-it",
     ("fr", "de"): "Helsinki-NLP/opus-mt-fr-de",
     ("fr", "es"): "Helsinki-NLP/opus-mt-fr-es",
+    # No direct fr->it model exists on Helsinki-NLP; we pivot via English.
+    ("en", "it"): "Helsinki-NLP/opus-mt-en-it",
+}
+
+# Pairs without a direct model translate through an intermediate language.
+PIVOT_VIA = {
+    ("fr", "it"): "en",  # fr -> en -> it
 }
 
 
@@ -45,13 +54,79 @@ def load_translation_pair(src, tgt):
     model_name = MARIAN_MODELS.get(pair)
     if not model_name:
         return False
-    logger.info(f"Loading MarianMT {src} -> {tgt}...")
+    logger.info(f"Loading MarianMT {src} -> {tgt} ({model_name})...")
     from transformers import MarianMTModel, MarianTokenizer
-    import torch
+    import torch  # noqa: F401
     translation_tokenizers[pair] = MarianTokenizer.from_pretrained(model_name)
     translation_models[pair] = MarianMTModel.from_pretrained(model_name)
     logger.info(f"MarianMT {src} -> {tgt} loaded")
     return True
+
+
+def _translate_list_direct(pair, texts):
+    """Translate a list of texts with a directly-loaded model pair (sub-batched)."""
+    import torch
+    tokenizer = translation_tokenizers[pair]
+    model = translation_models[pair]
+    out = []
+    SUB = 16
+    for start in range(0, len(texts), SUB):
+        # Normalize punctuation (em-dashes etc.) the model chokes on BEFORE it
+        # reaches the tokenizer — prevents garbage output and repetition loops.
+        chunk = [normalize_source(t) for t in texts[start:start + SUB]]
+        inputs = tokenizer(chunk, return_tensors="pt", padding=True, truncation=True, max_length=512)
+        with torch.no_grad():
+            # Greedy decoding (num_beams=1) for CPU speed. no_repeat_ngram_size +
+            # repetition_penalty are guard rails: without them greedy decoding can
+            # fall into a degenerate loop and emit one token hundreds of times
+            # (the "^ ^ ^ …" bug). They cost nothing and work with greedy.
+            generated = model.generate(
+                **inputs,
+                num_beams=1,
+                max_new_tokens=512,
+                no_repeat_ngram_size=3,
+                repetition_penalty=1.3,
+            )
+        decoded = tokenizer.batch_decode(generated, skip_special_tokens=True)
+        out.extend(postclean_translation(t) for t in decoded)
+    return out
+
+
+def translate_texts(src, tgt, texts):
+    """Translate a list of non-empty texts from src to tgt, using a direct model
+    when available, otherwise pivoting through an intermediate language.
+    Raises ValueError if the pair is unsupported."""
+    if (src, tgt) in MARIAN_MODELS:
+        if not load_translation_pair(src, tgt):
+            raise ValueError(f"Paire non supportee: {(src, tgt)}")
+        return _translate_list_direct((src, tgt), texts)
+    via = PIVOT_VIA.get((src, tgt))
+    if via:
+        mid = translate_texts(src, via, texts)
+        return translate_texts(via, tgt, mid)
+    raise ValueError(f"Paire non supportee: {(src, tgt)}")
+
+
+async def _run_blocking(fn, *args):
+    """Run a short blocking call (e.g. pydub/ffmpeg decode) in the default thread
+    pool so it does not freeze the asyncio event loop."""
+    loop = asyncio.get_running_loop()
+    return await loop.run_in_executor(None, fn, *args)
+
+
+# All MarianMT inference runs on ONE dedicated thread. This is deliberate:
+#  - PyTorch CPU inference is GIL-bound, so N concurrent generate() calls don't
+#    run faster — they thrash, starve the event loop (even /health stalls), and
+#    every request blows past the proxy's timeout (502).
+#  - A shared model/tokenizer is not safe to call from multiple threads at once
+#    (intermittent 500s). Serializing on a single worker removes both problems:
+#    requests queue and each completes at full speed, well under the timeout.
+_INFERENCE_EXECUTOR = ThreadPoolExecutor(max_workers=1, thread_name_prefix="marianmt")
+
+
+async def _run_inference(fn, *args):
+    loop = asyncio.get_running_loop()
+    return await loop.run_in_executor(_INFERENCE_EXECUTOR, fn, *args)
 
 
 # -- Edge-TTS voices --
@@ -158,6 +233,11 @@ _EMPHASIS_VOLUME = {"reduced": "-20%", "moderate": "+15%", "strong": "+30%"}
 MAX_RUN_CHARS = 2000
 RETRY_ATTEMPTS = 3
 RETRY_BASE_DELAY_S = 0.8
+# edge-tts talks to Azure over a WebSocket with no built-in timeout. If Azure
+# stalls, communicate.save() hangs forever — the Next.js proxy then aborts at
+# 60s and the whole TTS step fails silently. Bound each attempt so a stall
+# becomes a retryable error instead of an indefinite hang.
+TTS_CHUNK_TIMEOUT_S = 25
 
 
 def _map_prosody(attr: str, value: str) -> str:
@@ -240,8 +320,8 @@ async def _synth_chunk(text: str, voice: str, params: dict | None):
         tmp_path = tempfile.mktemp(suffix=".mp3")
         try:
             communicate = edge_tts.Communicate(text, **kwargs)
-            await communicate.save(tmp_path)
-            seg = AudioSegment.from_file(tmp_path)
+            await asyncio.wait_for(communicate.save(tmp_path), timeout=TTS_CHUNK_TIMEOUT_S)
+            seg = await _run_blocking(AudioSegment.from_file, tmp_path)
             return seg
         except Exception as e:
             last_err = e
@@ -363,8 +443,8 @@ async def generate_tts(req: TTSRequest):
             logger.info(f"TTS: voice={voice}, text={text[:80]}...")
             tmp_path = tempfile.mktemp(suffix=".mp3")
             communicate = edge_tts.Communicate(text, voice)
-            await communicate.save(tmp_path)
-            audio_seg = AudioSegment.from_file(tmp_path)
+            await asyncio.wait_for(communicate.save(tmp_path), timeout=TTS_CHUNK_TIMEOUT_S)
+            audio_seg = await _run_blocking(AudioSegment.from_file, tmp_path)
             os.unlink(tmp_path)
 
         buf = io.BytesIO()
@@ -384,18 +464,11 @@ async def generate_tts(req: TTSRequest):
 async def translate(req: TranslateRequest):
     if req.source_lang == req.target_lang:
         return {"ok": True, "translated_text": req.text}
-    pair = (req.source_lang, req.target_lang)
-    if not load_translation_pair(*pair):
-        return {"ok": False, "error": f"Paire non supportee: {pair}"}
     try:
-        import torch
-        tokenizer = translation_tokenizers[pair]
-        model = translation_models[pair]
-        inputs = tokenizer(req.text, return_tensors="pt", padding=True, truncation=True, max_length=512)
-        with torch.no_grad():
-            translated = model.generate(**inputs)
-        result = tokenizer.decode(translated[0], skip_special_tokens=True)
-        return {"ok": True, "translated_text": result}
+        result = await _run_inference(translate_texts, req.source_lang, req.target_lang, [req.text])
+        return {"ok": True, "translated_text": result[0]}
+    except ValueError as e:
+        return {"ok": False, "error": str(e)}
     except Exception as e:
         logger.error(f"Translation error: {e}")
         return {"ok": False, "error": str(e)}
@@ -404,32 +477,22 @@ async def translate(req: TranslateRequest):
 @app.post("/v1/translate/batch")
 async def translate_batch(req: BatchTranslateRequest):
     """Translate a list of sentences in a single batched forward pass.
-    Far faster than calling /marianmt once per sentence (one tokenization +
-    one model.generate over the whole batch instead of N sequential calls)."""
+    Far faster than calling /marianmt once per sentence. Pairs without a direct
+    MarianMT model (e.g. fr->it) are pivoted through English."""
     if req.source_lang == req.target_lang:
         return {"ok": True, "translations": list(req.texts)}
-    pair = (req.source_lang, req.target_lang)
-    if not load_translation_pair(*pair):
-        return {"ok": False, "error": f"Paire non supportee: {pair}"}
     try:
-        import torch
-        tokenizer = translation_tokenizers[pair]
-        model = translation_models[pair]
         # Preserve empty/whitespace entries (don't feed them to the model).
         idx_nonempty = [i for i, t in enumerate(req.texts) if t and t.strip()]
         nonempty = [req.texts[i] for i in idx_nonempty]
         out = list(req.texts)  # default: echo originals (covers empties)
-        # Process in sub-batches to bound memory on CPU.
-        SUB = 16
-        for start in range(0, len(nonempty), SUB):
-            chunk = nonempty[start:start + SUB]
-            inputs = tokenizer(chunk, return_tensors="pt", padding=True, truncation=True, max_length=512)
-            with torch.no_grad():
-                generated = model.generate(**inputs)
-            decoded = tokenizer.batch_decode(generated, skip_special_tokens=True)
-            for j, text in enumerate(decoded):
-                out[idx_nonempty[start + j]] = text
+        if nonempty:
+            translated = await _run_inference(translate_texts, req.source_lang, req.target_lang, nonempty)
+            for j, text in enumerate(translated):
+                out[idx_nonempty[j]] = text
         return {"ok": True, "translations": out}
+    except ValueError as e:
+        return {"ok": False, "error": str(e)}
     except Exception as e:
         logger.error(f"Batch translation error: {e}")
         return {"ok": False, "error": str(e)}

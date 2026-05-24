@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/guide/', '/admin/'],
     },
-    sitemap: 'https://tourguide.app/sitemap.xml',
+    sitemap: 'https://murmure.app/sitemap.xml',
   };
 }

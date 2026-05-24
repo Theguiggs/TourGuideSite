@@ -1,18 +1,16 @@
-/** Shared config for microservice API calls (TTS, translation, silence detection). */
+/** Shared config for microservice API calls (TTS, translation, silence detection).
+ *
+ * The browser ALWAYS talks to /api/microservice/* (Next.js server-side proxy).
+ * The proxy injects the real API key from a server-only env var. This keeps the
+ * shared secret out of the bundled JS.
+ */
 
 export function getMicroserviceUrl(): string {
-  return process.env.NEXT_PUBLIC_MICROSERVICE_URL ?? 'http://localhost:8000';
+  return '/api/microservice';
 }
 
 export function getMicroserviceHeaders(): Record<string, string> {
-  const headers: Record<string, string> = {
+  return {
     'Content-Type': 'application/json',
-    // Skip ngrok free tier interstitial page
-    'ngrok-skip-browser-warning': 'true',
   };
-  const apiKey = process.env.NEXT_PUBLIC_MICROSERVICE_API_KEY;
-  if (apiKey) {
-    headers['X-API-Key'] = apiKey;
-  }
-  return headers;
 }

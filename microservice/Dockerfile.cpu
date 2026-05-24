@@ -1,0 +1,35 @@
+# CPU-only image for App Runner / Fly / Railway
+# Build: docker build -f Dockerfile.cpu -t tourguide-microservice:cpu .
+# Run  : docker run -p 8000:8000 -e MICROSERVICE_API_KEY=xxx tourguide-microservice:cpu
+
+FROM python:3.11-slim
+
+# ffmpeg is required by pydub for mp3 -> wav conversion
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        ffmpeg \
+        ca-certificates \
+        curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create the non-root user up front so we can use COPY --chown and avoid
+# a final RUN chown -R that doubles disk usage during build.
+RUN useradd --create-home --shell /bin/bash appuser
+WORKDIR /app
+ENV HF_HOME=/app/.cache/huggingface
+RUN mkdir -p $HF_HOME && chown -R appuser:appuser /app
+
+# Install Torch CPU first (separate index avoids pulling GPU wheels)
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+
+# Then the rest of the deps
+COPY --chown=appuser:appuser requirements-local.txt .
+RUN pip install --no-cache-dir -r requirements-local.txt
+
+COPY --chown=appuser:appuser . .
+
+USER appuser
+
+EXPOSE 8000
+
+# Health probe target: GET /health (no auth required)
+CMD ["uvicorn", "local_server:app", "--host", "0.0.0.0", "--port", "8000"]

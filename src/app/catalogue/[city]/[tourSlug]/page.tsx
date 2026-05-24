@@ -9,8 +9,8 @@ import {
   NumberMark,
   PullQuote,
   tg,
-} from '@tourguide/design-system/web';
-import { editorial } from '@tourguide/design-system';
+} from '@murmure/design-system/web';
+import { editorial } from '@murmure/design-system';
 import { getCityAccent, type CityAccent } from '@/lib/cities/accent-map';
 import { getTourBySlug, getCityBySlug } from '@/lib/api/tours-server';
 import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
@@ -83,10 +83,10 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
     (tour.description ? tour.description.slice(0, 160) : 'Une visite à découvrir.');
 
   return {
-    title: `${tour.title} · TourGuide`,
+    title: `${tour.title} · Murmure`,
     description,
     openGraph: {
-      title: `${tour.title} · TourGuide`,
+      title: `${tour.title} · Murmure`,
       description,
       type: 'article',
       images: [
@@ -100,7 +100,7 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${tour.title} · TourGuide`,
+      title: `${tour.title} · Murmure`,
       description,
     },
   };
@@ -158,7 +158,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
             style={{ background: tg.colors.ink, color: tg.colors.paper }}
           >
             <div>
-              <p style={{ fontFamily: tg.fonts.sans, fontWeight: 700 }}>Ouvrir dans TourGuide</p>
+              <p style={{ fontFamily: tg.fonts.sans, fontWeight: 700 }}>Ouvrir dans Murmure</p>
               <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.caption, color: tg.colors.paperDeep }}>
                 Pour la meilleure expérience audio immersive
               </p>
@@ -582,7 +582,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                       marginBottom: tg.space[5],
                     }}
                   >
-                    Téléchargez TourGuide pour profiter de l&apos;expérience audio immersive complète.
+                    Téléchargez Murmure pour profiter de l&apos;expérience audio immersive complète.
                   </p>
 
                   <SmartAppLink

@@ -79,6 +79,9 @@ function getExtFromMime(mime: string): string {
     'audio/ogg': 'ogg',
     'audio/x-aac': 'aac',
     'audio/aac': 'aac',
+    'audio/wav': 'wav',
+    'audio/wave': 'wav',
+    'audio/x-wav': 'wav',
     'image/jpeg': 'jpg',
     'image/png': 'png',
     'image/webp': 'webp',
@@ -92,6 +95,7 @@ export async function uploadAudio(
   blob: Blob,
   sessionId: string,
   sceneIndex: number,
+  sceneId: string,
 ): Promise<{ ok: true; s3Key: string } | { ok: false; error: string }> {
   if (!isValidAudioMime(blob.type)) {
     return { ok: false, error: `Type audio non supporté : ${blob.type}` };
@@ -102,11 +106,21 @@ export async function uploadAudio(
 
   const ext = getExtFromMime(blob.type);
   const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
+  // Object name keyed by the IMMUTABLE sceneId (not the mutable, collision-prone
+  // sceneIndex) plus a version token. Two reasons:
+  //  1. Scenes that share a sceneIndex (e.g. via the `?? 0` fallbacks) used to
+  //     overwrite each other on `scene_0.wav`, so every scene resolved to the
+  //     same S3 object — and thus the same signed URL and the same audio.
+  //  2. The timestamp makes every (re)generation a distinct object, so a fresh
+  //     signed URL is issued and neither the URL cache nor the browser serves
+  //     the previous take after "Régénérer".
+  const safeSceneId = sceneId.replace(/[^a-zA-Z0-9_-]/g, '') || `scene-${sceneIndex}`;
+  const objectName = `${safeSceneId}_${Date.now()}.${ext}`;
 
   try {
     const result = await withRetry(() =>
       uploadData({
-        path: ({ identityId }) => `guide-studio/${identityId}/${sessionId}/audio/scene_${sceneIndex}.${ext}`,
+        path: ({ identityId }) => `guide-studio/${identityId}/${sessionId}/audio/${objectName}`,
         data: blob,
         options: {
           onProgress: (event) => {
@@ -117,10 +131,10 @@ export async function uploadAudio(
     );
 
     const s3Key = result.path;
-    logger.info(SERVICE_NAME, 'Audio uploaded', { sessionId, sceneIndex, s3Key });
+    logger.info(SERVICE_NAME, 'Audio uploaded', { sessionId, sceneId, sceneIndex, s3Key });
     return { ok: true, s3Key };
   } catch (error) {
-    logger.error(SERVICE_NAME, 'Audio upload failed after retries', { sessionId, sceneIndex, error: String(error) });
+    logger.error(SERVICE_NAME, 'Audio upload failed after retries', { sessionId, sceneId, sceneIndex, error: String(error) });
     return { ok: false, error: 'Upload audio échoué après 3 tentatives.' };
   }
 }

@@ -19,8 +19,12 @@ interface SiteChromeProps {
 export function SiteChrome({ children }: SiteChromeProps) {
   const pathname = usePathname() ?? '';
   const isStudio = pathname.startsWith('/guide/studio');
+  // Pages legacy /guide/{dashboard,tours,profile,revenue} embarquent désormais
+  // le même shell que le Studio (StudioHeader + sidebar Murmure). On supprime
+  // donc la chrome publique sur ces routes pour éviter la double barre haute.
+  const isGuideShell = /^\/guide\/(dashboard|tours|profile|revenue)(\/|$)/.test(pathname);
 
-  if (isStudio) {
+  if (isStudio || isGuideShell) {
     return <main className="min-h-screen">{children}</main>;
   }
 
