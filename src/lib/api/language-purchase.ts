@@ -707,11 +707,32 @@ export async function updateModerationStatusByLang(
           // Build the per-language audio key map for the approved (non-source)
           // languages from their SceneSegments (admin can read these).
           const translatedAudioKeys: Record<string, Record<string, string>> = {};
+          // Per-language audio source for the honesty disclosure ("Voix de
+          // synthèse"): base lang from the reliable StudioScene.baseAudioSource
+          // marker (fallback: filename heuristic), translated langs from each
+          // SceneSegment's audioSource.
+          const languageAudioTypes: Record<string, 'tts' | 'recording' | 'mixed'> = {};
           try {
             const { listStudioScenes, listSegmentsByScene } = await import('@/lib/api/studio');
             const scenes = (await listStudioScenes(sessionId)).filter(s => !s.archived);
+
+            // Base language audio source.
+            const baseSources = new Set<string>();
+            for (const sc of scenes) {
+              if (sc.baseAudioSource === 'tts' || sc.baseAudioSource === 'recording') {
+                baseSources.add(sc.baseAudioSource);
+              } else {
+                const k = sc.studioAudioKey ?? sc.originalAudioKey ?? '';
+                if (k) baseSources.add(k.includes('tts') ? 'tts' : 'recording');
+              }
+            }
+            languageAudioTypes[sourceLang] = baseSources.size === 1
+              ? (Array.from(baseSources)[0] as 'tts' | 'recording')
+              : (baseSources.size ? 'mixed' : 'recording');
+
             for (const lang of allLangs.filter(l => l !== sourceLang)) {
               const map: Record<string, string> = {};
+              const langSources = new Set<string>();
               for (const sc of scenes) {
                 const segs = await listSegmentsByScene(sc.id);
                 const seg = segs.find(
@@ -721,9 +742,17 @@ export async function updateModerationStatusByLang(
                     !s.audioKey.startsWith('tts-') &&
                     !s.audioKey.endsWith('.bin'),
                 );
-                if (seg?.audioKey) map[sc.id] = seg.audioKey;
+                if (seg?.audioKey) {
+                  map[sc.id] = seg.audioKey;
+                  langSources.add(seg.audioSource ?? (seg.ttsGenerated ? 'tts' : 'recording'));
+                }
               }
               if (Object.keys(map).length > 0) translatedAudioKeys[lang] = map;
+              if (langSources.size > 0) {
+                languageAudioTypes[lang] = langSources.size === 1
+                  ? (Array.from(langSources)[0] as 'tts' | 'recording')
+                  : 'mixed';
+              }
             }
           } catch (segErr) {
             logger.warn(SERVICE_NAME, 'Failed to build translatedAudioKeys (non-blocking)', { error: String(segErr) });
@@ -731,7 +760,7 @@ export async function updateModerationStatusByLang(
 
           // Try Amplify first, fallback to DynamoDB direct
           try {
-            await updateGuideTourMutation(tourId, { availableLanguages: allLangs, translatedAudioKeys });
+            await updateGuideTourMutation(tourId, { availableLanguages: allLangs, translatedAudioKeys, languageAudioTypes });
           } catch {
             // Amplify may not support these fields yet — use DynamoDB direct
             const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
@@ -741,14 +770,15 @@ export async function updateModerationStatusByLang(
             await dynamo.send(new UpdateCommand({
               TableName: `GuideTour-${appId}-NONE`,
               Key: { id: tourId },
-              UpdateExpression: 'SET availableLanguages = :l, translatedAudioKeys = :t',
-              ExpressionAttributeValues: { ':l': allLangs, ':t': translatedAudioKeys },
+              UpdateExpression: 'SET availableLanguages = :l, translatedAudioKeys = :t, languageAudioTypes = :a',
+              ExpressionAttributeValues: { ':l': allLangs, ':t': translatedAudioKeys, ':a': languageAudioTypes },
             }));
           }
           logger.info(SERVICE_NAME, 'Updated GuideTour multilang surface', {
             tourId,
             languages: allLangs,
             translatedLangs: Object.keys(translatedAudioKeys),
+            audioTypes: languageAudioTypes,
           });
         }
       } catch (langErr) {

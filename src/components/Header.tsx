@@ -32,6 +32,12 @@ export default function Header() {
             >
               Catalogue
             </Link>
+            <Link
+              href="/aide"
+              className="text-caption text-ink-60 hover:text-ink font-medium no-underline transition"
+            >
+              Aide
+            </Link>
             {isAuthenticated ? (
               <>
                 <Link
@@ -90,6 +96,13 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
             >
               Catalogue
+            </Link>
+            <Link
+              href="/aide"
+              className="block py-3 text-caption text-ink-60 hover:text-ink font-medium no-underline"
+              onClick={() => setMenuOpen(false)}
+            >
+              Aide
             </Link>
             {isAuthenticated ? (
               <>

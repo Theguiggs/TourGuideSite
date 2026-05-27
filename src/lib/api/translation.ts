@@ -93,6 +93,38 @@ const STUB_TRANSLATIONS: Record<string, Record<string, string>> = {
 let stubHealthGpuDown = false;
 const stubProviderDown = new Map<TranslationProvider, boolean>();
 
+// --- Real-mode microservice jobs (marianmt) ---
+// The microservice translate endpoint is async: submit → job_id → poll. We keep
+// the SSML token template here, keyed by job_id, so getTranslationStatus can
+// re-interleave the <break/> tags once the batch job completes.
+interface MicroserviceTranslationJob {
+  tokens: TextToken[];
+  sentencesPerToken: string[][];
+  provider: TranslationProvider;
+}
+const microserviceTranslationJobs = new Map<string, MicroserviceTranslationJob>();
+
+/** Re-interleave translated text blocks with the preserved SSML break tags. */
+function reassembleBreaks(
+  tokens: TextToken[],
+  sentencesPerToken: string[][],
+  translations: string[],
+): string {
+  let cursor = 0;
+  const pieces: string[] = [];
+  tokens.forEach((tok, i) => {
+    if (tok.type === 'break') {
+      pieces.push(tok.content);
+      return;
+    }
+    const n = sentencesPerToken[i].length;
+    const joined = translations.slice(cursor, cursor + n).join(' ').trim();
+    cursor += n;
+    if (joined) pieces.push(joined);
+  });
+  return pieces.join('\n\n');
+}
+
 // --- Stub API ---
 
 function stubRequestTranslation(
@@ -228,21 +260,26 @@ export async function requestTranslation(
         return { jobId: `trans-${Date.now()}-${segmentId}`, status: 'completed', translatedText: text, provider, costProvider: 0, costCharged: 0 };
       }
 
-      const response = await fetch(`${getMicroserviceUrl()}/v1/translate/batch`, {
-        method: 'POST',
-        headers: getMicroserviceHeaders(),
-        body: JSON.stringify({ texts: flat, source_lang: sourceLang, target_lang: targetLang }),
+      // Async: submit the batch and return a job id. The microservice queues the
+      // work (serialized inference) and we poll GET /v1/jobs/{id} via
+      // getTranslationStatus, which re-interleaves the break tags on completion.
+      const response = await submitMicroserviceJob('/v1/translate/batch', {
+        texts: flat,
+        source_lang: sourceLang,
+        target_lang: targetLang,
       });
 
-      if (response.status === 503) {
-        logger.error(SERVICE_NAME, 'Provider unavailable (503)', { provider });
+      // 429 = backpressure exhausted after retries; 503 = provider down. Both are
+      // transient — surface 2609 so the scene stays flagged and can be retried.
+      if (response.status === 429 || response.status === 503) {
+        logger.error(SERVICE_NAME, 'Translation submit unavailable', { provider, status: response.status });
         return { jobId: '', status: 'failed', translatedText: null, provider, costProvider: null, costCharged: null, errorCode: 2609 };
       }
 
       const data = await response.json();
-      if (!data.ok || !Array.isArray(data.translations)) {
+      if (!data.ok || !data.job_id) {
         const unavailable = data.error === 'provider_unavailable';
-        logger.error(SERVICE_NAME, 'Batch translation failed', { provider, error: data.error });
+        logger.error(SERVICE_NAME, 'Translation submit failed', { provider, error: data.error });
         return {
           jobId: '', status: 'failed', translatedText: null, provider,
           costProvider: null, costCharged: null,
@@ -250,25 +287,13 @@ export async function requestTranslation(
         };
       }
 
-      // Re-interleave translated text blocks with the preserved break tags.
-      const translations = data.translations as string[];
-      let cursor = 0;
-      const pieces: string[] = [];
-      tokens.forEach((tok, i) => {
-        if (tok.type === 'break') {
-          pieces.push(tok.content);
-          return;
-        }
-        const n = sentencesPerToken[i].length;
-        const joined = translations.slice(cursor, cursor + n).join(' ').trim();
-        cursor += n;
-        if (joined) pieces.push(joined);
-      });
-
+      // Stash the reassembly template so getTranslationStatus can rebuild the
+      // text (with break tags) once the job finishes.
+      microserviceTranslationJobs.set(data.job_id, { tokens, sentencesPerToken, provider });
       return {
-        jobId: `trans-${Date.now()}-${segmentId}`,
-        status: 'completed',
-        translatedText: pieces.join('\n\n'),
+        jobId: data.job_id,
+        status: 'processing',
+        translatedText: null,
         provider,
         costProvider: 0,
         costCharged: 0,
@@ -310,6 +335,40 @@ export async function getTranslationStatus(jobId: string): Promise<TranslationRe
     return stubGetStatus(jobId);
   }
 
+  // marianmt jobs run on the microservice: poll /v1/jobs/{id} and reassemble.
+  const tracked = microserviceTranslationJobs.get(jobId);
+  if (tracked) {
+    const body = await pollMicroserviceJob(jobId);
+    // Transient network error → keep the caller polling.
+    if (!body) {
+      return { jobId, status: 'processing', translatedText: null, provider: tracked.provider, costProvider: null, costCharged: null };
+    }
+    if (body.status === 'completed') {
+      microserviceTranslationJobs.delete(jobId);
+      const translations = Array.isArray(body.translations) ? (body.translations as string[]) : [];
+      return {
+        jobId,
+        status: 'completed',
+        translatedText: reassembleBreaks(tracked.tokens, tracked.sentencesPerToken, translations),
+        provider: tracked.provider,
+        costProvider: 0,
+        costCharged: 0,
+      };
+    }
+    if (body.status === 'failed') {
+      microserviceTranslationJobs.delete(jobId);
+      const unavailable = body.error === 'provider_unavailable' || body.error === 'busy';
+      return {
+        jobId, status: 'failed', translatedText: null, provider: tracked.provider,
+        costProvider: null, costCharged: null,
+        ...(unavailable ? { errorCode: 2609 } : {}),
+      };
+    }
+    // queued | processing
+    return { jobId, status: 'processing', translatedText: null, provider: tracked.provider, costProvider: null, costCharged: null };
+  }
+
+  // Premium providers (deepl/openai) are tracked by the AppSync Lambda.
   try {
     const { getClient } = await import('@/lib/api/appsync-client');
     const client = getClient();
@@ -384,11 +443,17 @@ export async function triggerBatchTranslation(
 }
 
 // Re-export from shared config
-import { getMicroserviceUrl, getMicroserviceHeaders } from './microservice-config';
+import {
+  getMicroserviceUrl,
+  getMicroserviceHeaders,
+  submitMicroserviceJob,
+  pollMicroserviceJob,
+} from './microservice-config';
 
 /** Test-only: reset stub state */
 export function __resetTranslationStubs(): void {
   stubJobs.clear();
+  microserviceTranslationJobs.clear();
   stubHealthGpuDown = false;
   stubProviderDown.clear();
 }

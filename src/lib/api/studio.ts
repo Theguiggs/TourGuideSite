@@ -230,6 +230,7 @@ function mapAppSyncScene(raw: Record<string, unknown>): StudioScene {
     title: (raw.title as string) ?? null,
     originalAudioKey: (raw.originalAudioKey as string) ?? null,
     studioAudioKey: (raw.studioAudioKey as string) ?? null,
+    baseAudioSource: (raw.baseAudioSource as StudioScene['baseAudioSource']) ?? null,
     transcriptText: (raw.transcriptText as string) ?? null,
     transcriptionJobId: (raw.transcriptionJobId as string) ?? null,
     transcriptionStatus: (raw.transcriptionStatus as StudioScene['transcriptionStatus']) ?? null,
@@ -805,6 +806,7 @@ export async function updateSceneAudio(
   audioUrl: string,
   sessionId?: string,
   sceneIndex?: number,
+  baseAudioSource?: 'tts' | 'recording',
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   // If data URL, upload to S3 first (base64 too large for DynamoDB)
   let audioKeyToStore = audioUrl;
@@ -828,10 +830,13 @@ export async function updateSceneAudio(
     }
   }
 
+  // data-URL fallbacks are always TTS; otherwise trust the caller's hint.
+  const localSource = audioUrl.startsWith('data:') ? 'tts' : baseAudioSource;
   // Always update local cache with the original data URL (for immediate playback)
   __setLocalSceneOverride(sceneId, {
     studioAudioKey: audioUrl, // Keep data URL locally for playback
     status: 'recorded',
+    ...(localSource ? { baseAudioSource: localSource } : {}),
     updatedAt: new Date().toISOString(),
   });
   // Also update stub store
@@ -839,6 +844,7 @@ export async function updateSceneAudio(
   if (scene) {
     scene.studioAudioKey = audioUrl;
     scene.status = 'recorded';
+    if (localSource) scene.baseAudioSource = localSource;
     scene.updatedAt = new Date().toISOString();
   }
 
@@ -850,7 +856,14 @@ export async function updateSceneAudio(
   try {
     const { updateStudioSceneMutation } = await import('./appsync-client');
     const keyToSave = audioKeyToStore.startsWith('data:') ? `tts-fr-${sceneId}` : audioKeyToStore;
-    const result = await updateStudioSceneMutation(sceneId, { studioAudioKey: keyToSave, status: 'recorded' });
+    // Persist the honesty marker when the caller knows the audio's origin. A
+    // data-URL fallback key (`tts-…`) is always TTS regardless of the hint.
+    const resolvedSource = audioKeyToStore.startsWith('data:') ? 'tts' : baseAudioSource;
+    const result = await updateStudioSceneMutation(sceneId, {
+      studioAudioKey: keyToSave,
+      status: 'recorded',
+      ...(resolvedSource ? { baseAudioSource: resolvedSource } : {}),
+    });
     if (!result.ok) {
       logger.warn(SERVICE_NAME, 'AppSync persist failed, local cache updated', { sceneId });
       return { ok: true };

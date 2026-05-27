@@ -41,7 +41,9 @@ test.describe('Catalogue POIs', () => {
 
   test('catalogue main page lists tour cards', async ({ page }) => {
     await page.goto('/catalogue');
-    // New catalogue UI: tour cards with data-testid="tour-card-{id}"
+    // New UX: tour cards live on the city page. Open the seeded city (Grasse).
+    await page.getByRole('link', { name: /Grasse/i }).first().click();
+    // City page tour cards: data-testid="tour-card-{id}"
     const tourCards = page.locator('[data-testid^="tour-card-"]');
     await expect(tourCards.first()).toBeVisible({ timeout: 10_000 });
     const count = await tourCards.count();
@@ -50,7 +52,8 @@ test.describe('Catalogue POIs', () => {
 
   test('tour detail shows description and metadata', async ({ page }) => {
     await page.goto('/catalogue');
-    // Click the first tour card (new UI navigates directly to tour detail)
+    // New UX: catalogue (cities) → city page → tour card → detail.
+    await page.getByRole('link', { name: /Grasse/i }).first().click();
     await page.locator('[data-testid^="tour-card-"]').first().click();
     await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
 
@@ -61,12 +64,13 @@ test.describe('Catalogue POIs', () => {
     await expect(page.getByText('min').first()).toBeVisible();
     await expect(page.getByText('km').first()).toBeVisible();
 
-    // Download CTA
-    await expect(page.getByText(/Telecharger/i).first()).toBeVisible();
+    // App CTA — detail page links into the Murmure app ("Ouvrir dans Murmure")
+    await expect(page.getByText(/Ouvrir dans Murmure/i).first()).toBeVisible();
   });
 
   test('tour detail shows reviews with ratings', async ({ page }) => {
     await page.goto('/catalogue');
+    await page.getByRole('link', { name: /Grasse/i }).first().click();
     await page.locator('[data-testid^="tour-card-"]').first().click();
     await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
 
@@ -83,10 +87,11 @@ test.describe('Catalogue POIs', () => {
 
   test('tour detail shows guide info', async ({ page }) => {
     await page.goto('/catalogue');
+    await page.getByRole('link', { name: /Grasse/i }).first().click();
     await page.locator('[data-testid^="tour-card-"]').first().click();
     await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
 
-    // Guide name should be visible
-    await expect(page.getByText('Guide local').first()).toBeVisible({ timeout: 5_000 });
+    // Guide showcase card — labelled "Votre guide"
+    await expect(page.getByText('Votre guide').first()).toBeVisible({ timeout: 5_000 });
   });
 });

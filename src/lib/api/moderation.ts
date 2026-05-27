@@ -530,6 +530,21 @@ export async function approveTour(
   ]);
   if (!modResult.ok) return { ok: false, error: modResult.error };
   if (!tourResult.ok) return { ok: false, error: tourResult.error };
+
+  // Sync the StudioSession to 'published' too. The GuideTour publish above does
+  // NOT touch it (unlike sendBackForRevision, which syncs the session) — that gap
+  // left guide-side lists/KPIs showing approved tours as still "in review".
+  // Best-effort: the tour is already live, so don't fail approval if this hiccups.
+  try {
+    const tour = await appsync.getGuideTourById(item.tourId);
+    const sessionId = (tour as Record<string, unknown> | null)?.sessionId as string | undefined;
+    if (sessionId) {
+      await appsync.updateStudioSessionMutation(sessionId, { status: 'published' });
+    }
+  } catch (e) {
+    logger.warn('ModerationAPI', 'approveTour: StudioSession publish sync failed (non-fatal)', { tourId: item.tourId, error: String(e) });
+  }
+
   // Auto-log to comment thread
   addTourComment(item.tourId, { message: notes || 'Tour approuvé', author: 'admin', authorName: 'Admin', action: 'approved' }).catch(() => {});
   return { ok: true };

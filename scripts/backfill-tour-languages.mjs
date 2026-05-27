@@ -71,16 +71,43 @@ async function main() {
 
     const availableLanguages = [baseLang, ...[...langSet].filter(l => l !== baseLang)];
 
+    // Per-language audio source for the honesty disclosure (mirrors the web's
+    // getLanguageAudioTypes): base from the studio/original key heuristic,
+    // translated langs from each SceneSegment's audioSource.
+    const languageAudioTypes = {};
+    const baseSources = new Set();
+    for (const sc of scenes) {
+      // Prefer the reliable StudioScene.baseAudioSource marker; fall back to the
+      // ambiguous filename heuristic only for legacy scenes that lack it.
+      if (sc.baseAudioSource === 'tts' || sc.baseAudioSource === 'recording') {
+        baseSources.add(sc.baseAudioSource);
+      } else {
+        const k = (sc.studioAudioKey ?? sc.originalAudioKey ?? '');
+        if (k) baseSources.add(k.includes('tts') ? 'tts' : 'recording');
+      }
+    }
+    languageAudioTypes[baseLang] = baseSources.size === 1 ? [...baseSources][0] : (baseSources.size ? 'mixed' : 'recording');
+    for (const lang of langSet) {
+      if (lang === baseLang) continue;
+      const srcs = new Set();
+      for (const sc of scenes) {
+        const seg = allSegments.find(s => s.sceneId === sc.id && s.language === lang && isRealAudio(s.audioKey));
+        if (seg) srcs.add((seg.audioSource ?? (seg.ttsGenerated ? 'tts' : 'recording')));
+      }
+      if (srcs.size > 0) languageAudioTypes[lang] = srcs.size === 1 ? [...srcs][0] : 'mixed';
+    }
+
     await ddb.send(new UpdateCommand({
       TableName: T('GuideTour'),
       Key: { id: sess.tourId },
-      UpdateExpression: 'SET availableLanguages = :l, translatedAudioKeys = :t',
-      ExpressionAttributeValues: { ':l': availableLanguages, ':t': translatedAudioKeys },
+      UpdateExpression: 'SET availableLanguages = :l, translatedAudioKeys = :t, languageAudioTypes = :a',
+      ExpressionAttributeValues: { ':l': availableLanguages, ':t': translatedAudioKeys, ':a': languageAudioTypes },
     }));
 
     console.log(
       `backfilled tour ${sess.tourId}: langs=[${availableLanguages.join(',')}] ` +
-      `translatedAudio=${Object.entries(translatedAudioKeys).map(([l, m]) => `${l}:${Object.keys(m).length}`).join(' ') || 'none'}`,
+      `translatedAudio=${Object.entries(translatedAudioKeys).map(([l, m]) => `${l}:${Object.keys(m).length}`).join(' ') || 'none'} ` +
+      `audioTypes=${JSON.stringify(languageAudioTypes)}`,
     );
   }
   console.log('Done.');

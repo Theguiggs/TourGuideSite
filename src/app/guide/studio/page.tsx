@@ -10,6 +10,7 @@ import { listStudioSessions, listStudioScenes } from '@/lib/api/studio';
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import { listTourComments, type TourComment } from '@/lib/api/tour-comments';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
+import { withPublishedStatus } from '@/lib/studio/published-status';
 import {
   selectResumableSession,
   selectTopTours,
@@ -61,7 +62,9 @@ export default function StudioDashboardPage() {
     setIsLoading(true);
     setError(null);
     try {
-      const sessions = await listStudioSessions(guideId);
+      // Promote sessions whose GuideTour is published (StudioSession.status lags
+      // on publish) so KPIs / top tours / resume reflect reality. See withPublishedStatus.
+      const sessions = await withPublishedStatus(await listStudioSessions(guideId));
 
       // Scenes per session — for resume hero progression bar
       const scenesPerSession: Record<string, { total: number; done: number }> = {};

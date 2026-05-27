@@ -24,6 +24,11 @@ const stubJobs = new Map<string, {
   durationMs: number;
 }>();
 
+// --- Real-mode microservice jobs ---
+// The microservice TTS endpoint is async: submit → job_id → poll. We remember the
+// language per job_id so getTTSStatus can build the TTSResult on completion.
+const microserviceTTSJobs = new Map<string, { language: string }>();
+
 // --- Stub API ---
 
 function stubRequestTTS(segmentId: string, text: string, language: string): TTSResult {
@@ -89,23 +94,25 @@ export async function requestTTS(
   }
 
   try {
-    const url = getMicroserviceUrl();
-    const response = await fetch(`${url}/v1/tts/generate`, {
-      method: 'POST',
-      headers: getMicroserviceHeaders(),
-      body: JSON.stringify({ text, language }),
-    });
-    const data = await response.json();
+    // Async: submit and return a job id. getTTSStatus polls GET /v1/jobs/{id}
+    // and builds the data-URL audio key on completion.
+    const response = await submitMicroserviceJob('/v1/tts/generate', { text, language });
 
-    if (data.ok && data.audio_base64) {
-      // Return audio as data URL — playable directly in the browser
-      const audioKey = `data:audio/wav;base64,${data.audio_base64}`;
+    // 429 = backpressure exhausted after retries → transient failure, retryable.
+    if (response.status === 429) {
+      logger.error(SERVICE_NAME, 'TTS submit unavailable (429)', { language });
+      return { jobId: '', status: 'failed', audioKey: null, language, durationMs: null };
+    }
+
+    const data = await response.json();
+    if (data.ok && data.job_id) {
+      microserviceTTSJobs.set(data.job_id, { language });
       return {
-        jobId: `tts-${Date.now()}-${segmentId}`,
-        status: 'completed',
-        audioKey,
+        jobId: data.job_id,
+        status: 'processing',
+        audioKey: null,
         language,
-        durationMs: data.duration_ms ?? null,
+        durationMs: null,
       };
     }
 
@@ -133,7 +140,33 @@ export async function getTTSStatus(jobId: string): Promise<TTSResult | null> {
     return stubGetStatus(jobId);
   }
 
-  // Real mode: query backend for TTS job status
+  // Microservice TTS job: poll /v1/jobs/{id} and build the data-URL on completion.
+  const tracked = microserviceTTSJobs.get(jobId);
+  if (tracked) {
+    const body = await pollMicroserviceJob(jobId);
+    // Transient network error → keep the caller polling.
+    if (!body) {
+      return { jobId, status: 'processing', audioKey: null, language: tracked.language, durationMs: null };
+    }
+    if (body.status === 'completed' && body.audio_base64) {
+      microserviceTTSJobs.delete(jobId);
+      return {
+        jobId,
+        status: 'completed',
+        audioKey: `data:audio/wav;base64,${body.audio_base64 as string}`,
+        language: tracked.language,
+        durationMs: (body.duration_ms as number) ?? null,
+      };
+    }
+    if (body.status === 'failed') {
+      microserviceTTSJobs.delete(jobId);
+      return { jobId, status: 'failed', audioKey: null, language: tracked.language, durationMs: null };
+    }
+    // queued | processing
+    return { jobId, status: 'processing', audioKey: null, language: tracked.language, durationMs: null };
+  }
+
+  // Otherwise: a backend (Lambda/AppSync) TTS job.
   try {
     const { getClient } = await import('@/lib/api/appsync-client');
     const client = getClient();
@@ -149,9 +182,10 @@ export async function getTTSStatus(jobId: string): Promise<TTSResult | null> {
   }
 }
 
-import { getMicroserviceUrl, getMicroserviceHeaders } from './microservice-config';
+import { submitMicroserviceJob, pollMicroserviceJob } from './microservice-config';
 
 /** Test-only: reset stub state */
 export function __resetTTSStubs(): void {
   stubJobs.clear();
+  microserviceTTSJobs.clear();
 }

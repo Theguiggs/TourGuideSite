@@ -50,6 +50,12 @@ export function TourCardCompact({ tour, isHighlighted, onHover }: TourCardCompac
                   {tour.languageAudioTypes?.[lang] === 'recording' ? '🎤' : tour.languageAudioTypes?.[lang] === 'tts' ? '🤖' : ''}
                 </span>
               ))}
+              {tour.languageAudioTypes &&
+                Object.values(tour.languageAudioTypes).some((t) => t === 'tts') && (
+                  <span className="text-[10px] bg-mer-soft text-mer font-medium px-1.5 py-0.5 rounded">
+                    🤖 Voix de synthèse
+                  </span>
+                )}
             </div>
           )}
         </div>

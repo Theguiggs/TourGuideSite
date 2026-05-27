@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Pin } from '@murmure/design-system/web';
 import { tgColors } from '@murmure/design-system';
 import { cityFamily, FAMILY_META } from '@/components/studio/shell';
+import { S3Image } from '@/components/studio/s3-image';
 import {
   tourStatusLabel,
   type TourStatusLabel,
@@ -122,15 +123,27 @@ export function TourCard({
       {/* Bande couleur ville */}
       <span className={famMeta.bg} aria-hidden="true" />
 
-      {/* Photo placeholder */}
+      {/* Photo de couverture (cover photo) — fallback Pin si absente */}
       <Link
         href={editHref}
-        className={`${famMeta.bgSoft} flex items-center justify-center relative no-underline`}
+        className={`${famMeta.bgSoft} flex items-center justify-center relative no-underline overflow-hidden`}
         aria-label={`Ouvrir ${session.title ?? 'la session'}`}
       >
-        <Pin size={26} color={pinHex} />
+        {session.coverPhotoKey ? (
+          <S3Image
+            s3Key={session.coverPhotoKey}
+            alt={session.title ?? 'Photo du tour'}
+            className="absolute inset-0 w-full h-full"
+          />
+        ) : (
+          <Pin size={26} color={pinHex} />
+        )}
         <span
-          className={`absolute bottom-1.5 right-1.5 text-[9px] font-bold tracking-widest ${famMeta.text}`}
+          className={
+            session.coverPhotoKey
+              ? 'absolute bottom-1.5 right-1.5 text-[9px] font-bold tracking-widest text-paper bg-ink/60 px-1 py-0.5 rounded'
+              : `absolute bottom-1.5 right-1.5 text-[9px] font-bold tracking-widest ${famMeta.text}`
+          }
         >
           {scenesTotal} SC.
         </span>

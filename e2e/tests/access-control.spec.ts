@@ -41,14 +41,17 @@ test.describe('Access Control', () => {
 
   test('guest can browse catalogue cities', async ({ page }) => {
     await page.goto('/catalogue');
-    await expect(page.locator('h1')).toContainText('Catalogue');
-    // At least one tour card should be visible in the new map-based catalogue
-    await expect(page.locator('[data-testid^="tour-card-"]').first()).toBeVisible({ timeout: 10_000 });
+    // Map-based catalogue lists cities (not tours). h1 = "Le catalogue des villes".
+    await expect(page.locator('h1')).toContainText(/catalogue/i);
+    // The seeded city (Grasse) is listed as a city block link.
+    await expect(page.getByRole('link', { name: /Grasse/i }).first()).toBeVisible({ timeout: 10_000 });
   });
 
   test('guest can view tour detail page', async ({ page }) => {
     await page.goto('/catalogue');
-    // Click first tour card (new UI navigates directly to tour detail)
+    // New UX: catalogue (cities) → city page (tour cards) → tour detail.
+    await page.getByRole('link', { name: /Grasse/i }).first().click();
+    await expect(page).toHaveURL(/\/catalogue\/[^/]+$/, { timeout: 10_000 });
     await page.locator('[data-testid^="tour-card-"]').first().click();
     await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
     // Tour title should be visible

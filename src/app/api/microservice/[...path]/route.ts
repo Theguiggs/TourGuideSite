@@ -9,10 +9,10 @@ import { NextRequest, NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// Translation inference is serialized on the microservice (one worker), so when
-// several scenes are queued a later request may wait behind earlier ones. Allow
-// generous headroom so queued requests complete instead of aborting at the proxy.
-const TIMEOUT_MS = 180_000;
+// The heavy endpoints are now async (submit → job_id → poll), so every proxied
+// call — a submit or a single poll — is sub-second. A short timeout is enough and
+// fails fast instead of holding a connection open for minutes.
+const TIMEOUT_MS = 30_000;
 
 function getBaseUrl(): string {
   const raw = process.env.MICROSERVICE_URL ?? 'http://localhost:8000';
@@ -54,6 +54,9 @@ async function proxy(req: NextRequest, segments: string[]) {
     const responseHeaders = new Headers();
     const upstreamContentType = upstream.headers.get('content-type');
     if (upstreamContentType) responseHeaders.set('content-type', upstreamContentType);
+    // Forward backpressure hint so the client can back off on 429.
+    const retryAfter = upstream.headers.get('retry-after');
+    if (retryAfter) responseHeaders.set('retry-after', retryAfter);
 
     const payload = await upstream.arrayBuffer();
     return new NextResponse(payload, {

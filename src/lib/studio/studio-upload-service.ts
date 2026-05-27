@@ -213,6 +213,50 @@ export async function uploadCoverPhoto(
   }
 }
 
+/**
+ * Upload a guide's profile photo. Keyed under `guide-photos/{identityId}/…`,
+ * which is guest-readable so tourists (logged-in or not) can see it on the
+ * public catalogue + app. A timestamp token makes each (re)upload a distinct
+ * object so a fresh signed URL is issued — neither the URL cache nor the
+ * browser serves the previous photo after a change. Returns the S3 key to
+ * store in `GuideProfile.photoUrl`.
+ */
+export async function uploadGuideProfilePhoto(
+  file: File,
+): Promise<{ ok: true; s3Key: string } | { ok: false; error: string }> {
+  if (!PHOTO_MIMES.has(file.type)) {
+    return { ok: false, error: `Type photo non supporté : ${file.type} (JPG, PNG ou WebP)` };
+  }
+  if (file.size > MAX_PHOTO_SIZE) {
+    return { ok: false, error: `Photo trop volumineuse (${Math.round(file.size / 1024 / 1024)}MB > 5MB)` };
+  }
+
+  const ext = getExtFromMime(file.type);
+  const objectName = `profile_${Date.now()}.${ext}`;
+  const uploadId = 'guide-profile-photo';
+
+  try {
+    const result = await withRetry(() =>
+      uploadData({
+        path: ({ identityId }) => `guide-photos/${identityId}/${objectName}`,
+        data: file,
+        options: {
+          onProgress: (event) => {
+            notifyProgress(uploadId, event.transferredBytes, event.totalBytes ?? file.size);
+          },
+        },
+      }).result,
+    );
+
+    const s3Key = result.path;
+    logger.info(SERVICE_NAME, 'Guide profile photo uploaded', { s3Key });
+    return { ok: true, s3Key };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'Guide profile photo upload failed after retries', { error: String(error) });
+    return { ok: false, error: 'Upload de la photo de profil échoué après 3 tentatives.' };
+  }
+}
+
 export async function getPlayableUrl(s3Key: string): Promise<string> {
   const cached = urlCache.get(s3Key);
   if (cached && Date.now() < cached.expiresAt) {

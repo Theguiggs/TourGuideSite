@@ -18,6 +18,8 @@ export interface Tour {
   guideId: string;
   guideName: string;
   guidePhotoUrl?: string;
+  guideBio?: string;
+  guideVerified?: boolean;
   description: string;
   shortDescription: string;
   duration: number; // minutes
