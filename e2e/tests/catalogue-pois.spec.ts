@@ -64,8 +64,8 @@ test.describe('Catalogue POIs', () => {
     await expect(page.getByText('min').first()).toBeVisible();
     await expect(page.getByText('km').first()).toBeVisible();
 
-    // Download CTA
-    await expect(page.getByText(/Telecharger/i).first()).toBeVisible();
+    // App CTA — detail page links into the Murmure app ("Ouvrir dans Murmure")
+    await expect(page.getByText(/Ouvrir dans Murmure/i).first()).toBeVisible();
   });
 
   test('tour detail shows reviews with ratings', async ({ page }) => {
@@ -91,7 +91,7 @@ test.describe('Catalogue POIs', () => {
     await page.locator('[data-testid^="tour-card-"]').first().click();
     await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
 
-    // Guide name should be visible
-    await expect(page.getByText('Guide local').first()).toBeVisible({ timeout: 5_000 });
+    // Guide showcase card — labelled "Votre guide"
+    await expect(page.getByText('Votre guide').first()).toBeVisible({ timeout: 5_000 });
   });
 });
