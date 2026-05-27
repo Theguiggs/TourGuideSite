@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Button, Eyebrow, PullQuote } from '@murmure/design-system/web';
 import StepCard from './_components/StepCard';
@@ -103,12 +104,12 @@ export default function AidePage() {
               style={{ color: tg.colors.ink60, fontSize: tg.fontSize.caption }}
             >
               Pas encore de compte ?{' '}
-              <a
+              <Link
                 href="/guide/signup"
                 style={{ color: tg.colors.grenadine, fontWeight: 600 }}
               >
                 Devenir guide
-              </a>
+              </Link>
             </p>
           </div>
         </div>
@@ -213,7 +214,7 @@ export default function AidePage() {
             >
               Contacter le support
             </Button>
-            <a
+            <Link
               href="/catalogue"
               className="font-sans no-underline hover:opacity-80"
               style={{
@@ -223,7 +224,7 @@ export default function AidePage() {
               }}
             >
               Voir le catalogue
-            </a>
+            </Link>
           </div>
         </div>
       </section>
