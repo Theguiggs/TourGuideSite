@@ -5,13 +5,17 @@ No GPU required. Runs on any machine with Python 3.11+.
 
 import asyncio
 import base64
+import hashlib
 import io
 import logging
 import os
 import re
 import tempfile
+import threading
 import xml.etree.ElementTree as ET
+from collections import OrderedDict
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import asynccontextmanager
 from urllib.parse import urlparse
 
 import edge_tts
@@ -22,6 +26,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+from services.job_manager import JobManager, QueueFull
 from services.text_sanitize import normalize_source, postclean_translation
 
 logging.basicConfig(level=logging.INFO)
@@ -129,6 +134,66 @@ async def _run_inference(fn, *args):
     return await loop.run_in_executor(_INFERENCE_EXECUTOR, fn, *args)
 
 
+# -- Translation cache --
+# Keyed by sha256(src|tgt|sentence). Dedups identical sentences across scenes and
+# guides, and makes a retry of a previously-translated scene instant (it never
+# re-occupies the single inference thread). Bounded LRU so memory stays flat.
+_TRANSLATION_CACHE: "OrderedDict[str, str]" = OrderedDict()
+_TRANSLATION_CACHE_MAX = int(os.getenv("TRANSLATION_CACHE_MAX", "5000"))
+_cache_lock = threading.Lock()
+
+
+def _cache_key(src: str, tgt: str, text: str) -> str:
+    return hashlib.sha256(f"{src}|{tgt}|{text}".encode("utf-8")).hexdigest()
+
+
+def _cache_get(src: str, tgt: str, text: str) -> str | None:
+    key = _cache_key(src, tgt, text)
+    with _cache_lock:
+        if key in _TRANSLATION_CACHE:
+            _TRANSLATION_CACHE.move_to_end(key)
+            return _TRANSLATION_CACHE[key]
+    return None
+
+
+def _cache_set(src: str, tgt: str, text: str, translated: str) -> None:
+    key = _cache_key(src, tgt, text)
+    with _cache_lock:
+        _TRANSLATION_CACHE[key] = translated
+        _TRANSLATION_CACHE.move_to_end(key)
+        while len(_TRANSLATION_CACHE) > _TRANSLATION_CACHE_MAX:
+            _TRANSLATION_CACHE.popitem(last=False)
+
+
+# -- Job manager (async submit -> job_id -> poll) --
+# Created in the lifespan so its semaphores bind to the running event loop.
+job_manager: JobManager | None = None
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    global job_manager
+    job_manager = JobManager(
+        max_inflight=int(os.getenv("MAX_INFLIGHT_JOBS", "50")),
+        concurrency={
+            # MarianMT inference is GIL-bound + not thread-safe -> serialize to 1.
+            "translate": int(os.getenv("TRANSLATE_CONCURRENCY", "1")),
+            # edge-tts hits the FREE Azure endpoint -> keep low to avoid rate-limits.
+            "tts": int(os.getenv("TTS_CONCURRENCY", "2")),
+        },
+    )
+    job_manager.start()
+    logger.info(
+        "Job manager started (max_inflight=%d, translate=%s, tts=%s)",
+        job_manager._max_inflight,
+        os.getenv("TRANSLATE_CONCURRENCY", "1"),
+        os.getenv("TTS_CONCURRENCY", "2"),
+    )
+    yield
+    if job_manager:
+        await job_manager.stop()
+
+
 # -- Edge-TTS voices --
 EDGE_VOICES = {
     "fr": "fr-FR-HenriNeural",
@@ -143,7 +208,7 @@ EDGE_VOICES = {
 }
 
 # -- FastAPI --
-app = FastAPI(title="TourGuide Microservice (local)")
+app = FastAPI(title="TourGuide Microservice (local)", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -195,6 +260,8 @@ async def health():
         "tts_mode": "edge-tts",
         "translation": True,
         "silence_detection": True,
+        "inflight_jobs": job_manager.inflight_count() if job_manager else 0,
+        "cache_size": len(_TRANSLATION_CACHE),
     }
 
 
@@ -425,39 +492,51 @@ async def _synthesize_ssml(text: str, voice: str):
     return combined
 
 
+async def _tts_work(text: str, language: str, voice_id: str | None) -> dict:
+    """Render TTS audio. Runs as a 'tts' job under the concurrency cap so the free
+    edge-tts endpoint isn't rate-limited. Raises on failure (recorded as job error)."""
+    from pydub import AudioSegment
+
+    voice = voice_id or EDGE_VOICES.get(language, "fr-FR-HenriNeural")
+
+    # Detect if text contains SSML tags we need to interpret ourselves
+    has_ssml = bool(re.search(r"<(break|prosody|emphasis|say-as|phoneme|sub)\b", text))
+
+    if has_ssml:
+        logger.info(f"TTS (SSML): voice={voice}, len={len(text)}")
+        audio_seg = await _synthesize_ssml(text, voice)
+    else:
+        logger.info(f"TTS: voice={voice}, text={text[:80]}...")
+        tmp_path = tempfile.mktemp(suffix=".mp3")
+        communicate = edge_tts.Communicate(text, voice)
+        await asyncio.wait_for(communicate.save(tmp_path), timeout=TTS_CHUNK_TIMEOUT_S)
+        audio_seg = await _run_blocking(AudioSegment.from_file, tmp_path)
+        os.unlink(tmp_path)
+
+    buf = io.BytesIO()
+    audio_seg.export(buf, format="wav")
+    buf.seek(0)
+    audio_b64 = base64.b64encode(buf.read()).decode("ascii")
+    duration_ms = len(audio_seg)
+    logger.info(f"TTS OK: {duration_ms}ms, {len(audio_b64)//1024}KB")
+    return {"audio_base64": audio_b64, "duration_ms": duration_ms}
+
+
 @app.post("/v1/tts/generate")
 async def generate_tts(req: TTSRequest):
+    """Enqueue TTS generation. Returns 202 {job_id, status} or 429 if the
+    in-flight cap is reached. Poll GET /v1/jobs/{job_id} for the result."""
+    if job_manager is None:
+        return JSONResponse(status_code=503, content={"ok": False, "error": "service starting"})
     try:
-        voice = req.voice_id or EDGE_VOICES.get(req.language, "fr-FR-HenriNeural")
-        text = req.text
-
-        # Detect if text contains SSML tags we need to interpret ourselves
-        has_ssml = bool(re.search(r"<(break|prosody|emphasis|say-as|phoneme|sub)\b", text))
-
-        from pydub import AudioSegment
-
-        if has_ssml:
-            logger.info(f"TTS (SSML): voice={voice}, len={len(text)}")
-            audio_seg = await _synthesize_ssml(text, voice)
-        else:
-            logger.info(f"TTS: voice={voice}, text={text[:80]}...")
-            tmp_path = tempfile.mktemp(suffix=".mp3")
-            communicate = edge_tts.Communicate(text, voice)
-            await asyncio.wait_for(communicate.save(tmp_path), timeout=TTS_CHUNK_TIMEOUT_S)
-            audio_seg = await _run_blocking(AudioSegment.from_file, tmp_path)
-            os.unlink(tmp_path)
-
-        buf = io.BytesIO()
-        audio_seg.export(buf, format="wav")
-        buf.seek(0)
-        audio_b64 = base64.b64encode(buf.read()).decode("ascii")
-        duration_ms = len(audio_seg)
-
-        logger.info(f"TTS OK: {duration_ms}ms, {len(audio_b64)//1024}KB")
-        return {"ok": True, "audio_base64": audio_b64, "duration_ms": duration_ms}
-    except Exception as e:
-        logger.error(f"TTS error: {e}")
-        return {"ok": False, "error": str(e)}
+        job_id = job_manager.submit("tts", lambda: _tts_work(req.text, req.language, req.voice_id))
+    except QueueFull:
+        return JSONResponse(
+            status_code=429,
+            content={"ok": False, "error": "busy", "retry_after": 5},
+            headers={"Retry-After": "5"},
+        )
+    return JSONResponse(status_code=202, content={"ok": True, "job_id": job_id, "status": "queued"})
 
 
 @app.post("/v1/translate/marianmt")
@@ -474,28 +553,73 @@ async def translate(req: TranslateRequest):
         return {"ok": False, "error": str(e)}
 
 
+async def _translate_batch_work(src: str, tgt: str, texts: list[str]) -> dict:
+    """Translate a list of sentences in a single batched forward pass. Cache hits
+    are filled without touching the inference thread; only misses are translated.
+    Runs as a 'translate' job (serialized). Pairs without a direct MarianMT model
+    (e.g. fr->it) pivot through English. Raises ValueError on an unsupported pair."""
+    if src == tgt:
+        return {"translations": list(texts)}
+
+    out = list(texts)  # default: echo originals (covers empties)
+    miss_idx: list[int] = []
+    miss_texts: list[str] = []
+    for i, t in enumerate(texts):
+        if not t or not t.strip():
+            continue  # don't feed empties to the model; echo them back
+        cached = _cache_get(src, tgt, t)
+        if cached is not None:
+            out[i] = cached
+        else:
+            miss_idx.append(i)
+            miss_texts.append(t)
+
+    if miss_texts:
+        translated = await _run_inference(translate_texts, src, tgt, miss_texts)
+        for j, text in enumerate(translated):
+            out[miss_idx[j]] = text
+            _cache_set(src, tgt, miss_texts[j], text)
+
+    return {"translations": out}
+
+
 @app.post("/v1/translate/batch")
 async def translate_batch(req: BatchTranslateRequest):
-    """Translate a list of sentences in a single batched forward pass.
-    Far faster than calling /marianmt once per sentence. Pairs without a direct
-    MarianMT model (e.g. fr->it) are pivoted through English."""
-    if req.source_lang == req.target_lang:
-        return {"ok": True, "translations": list(req.texts)}
+    """Enqueue batch translation. Returns 202 {job_id, status} or 429 if the
+    in-flight cap is reached. Poll GET /v1/jobs/{job_id} for {translations}."""
+    if job_manager is None:
+        return JSONResponse(status_code=503, content={"ok": False, "error": "service starting"})
     try:
-        # Preserve empty/whitespace entries (don't feed them to the model).
-        idx_nonempty = [i for i, t in enumerate(req.texts) if t and t.strip()]
-        nonempty = [req.texts[i] for i in idx_nonempty]
-        out = list(req.texts)  # default: echo originals (covers empties)
-        if nonempty:
-            translated = await _run_inference(translate_texts, req.source_lang, req.target_lang, nonempty)
-            for j, text in enumerate(translated):
-                out[idx_nonempty[j]] = text
-        return {"ok": True, "translations": out}
-    except ValueError as e:
-        return {"ok": False, "error": str(e)}
-    except Exception as e:
-        logger.error(f"Batch translation error: {e}")
-        return {"ok": False, "error": str(e)}
+        job_id = job_manager.submit(
+            "translate",
+            lambda: _translate_batch_work(req.source_lang, req.target_lang, list(req.texts)),
+        )
+    except QueueFull:
+        return JSONResponse(
+            status_code=429,
+            content={"ok": False, "error": "busy", "retry_after": 5},
+            headers={"Retry-After": "5"},
+        )
+    return JSONResponse(status_code=202, content={"ok": True, "job_id": job_id, "status": "queued"})
+
+
+@app.get("/v1/jobs/{job_id}")
+async def get_job(job_id: str):
+    """Poll a submitted job. status is queued|processing|completed|failed.
+    On 'completed' the result fields (translations / audio_base64+duration_ms) are
+    inlined at top level; on 'failed' the error message is returned."""
+    if job_manager is None:
+        return JSONResponse(status_code=503, content={"ok": False, "error": "service starting"})
+    job = job_manager.get(job_id)
+    if job is None:
+        return JSONResponse(status_code=404, content={"ok": False, "error": "job not found"})
+    body: dict = {"ok": True, "status": job.status}
+    if job.status == "completed" and job.result is not None:
+        body.update(job.result)
+    elif job.status == "failed":
+        body["ok"] = False
+        body["error"] = job.error or "job failed"
+    return body
 
 
 ALLOWED_HOSTS = {"s3.amazonaws.com", "s3.us-east-1.amazonaws.com"}
@@ -510,27 +634,35 @@ def is_allowed_url(url):
         return False
 
 
+def _silence_detect_sync(audio_url: str) -> list[dict]:
+    """Blocking: download audio + detect non-silent segments. Run via _run_blocking
+    so the HTTP download + ffmpeg decode never freeze the asyncio event loop (they
+    previously ran inline in the async handler, stalling every other request)."""
+    from pydub import AudioSegment
+    from pydub.silence import detect_nonsilent
+
+    resp = req_lib.get(audio_url, timeout=30, allow_redirects=False)
+    resp.raise_for_status()
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
+        tmp.write(resp.content)
+        tmp_path = tmp.name
+    try:
+        audio = AudioSegment.from_file(tmp_path)
+        segments = detect_nonsilent(audio, min_silence_len=800, silence_thresh=-40)
+        if not segments:
+            segments = [(0, len(audio))]
+        return [{"start_ms": s[0], "end_ms": s[1]} for s in segments]
+    finally:
+        os.unlink(tmp_path)
+
+
 @app.post("/v1/silence-detect")
 async def silence_detect(req: SilenceRequest):
     if not is_allowed_url(req.audio_url):
         return {"ok": False, "error": "URL non autorisee"}
     try:
-        from pydub import AudioSegment
-        from pydub.silence import detect_nonsilent
-
-        resp = req_lib.get(req.audio_url, timeout=30, allow_redirects=False)
-        resp.raise_for_status()
-        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-            tmp.write(resp.content)
-            tmp_path = tmp.name
-        try:
-            audio = AudioSegment.from_file(tmp_path)
-            segments = detect_nonsilent(audio, min_silence_len=800, silence_thresh=-40)
-            if not segments:
-                segments = [(0, len(audio))]
-            return {"ok": True, "segments": [{"start_ms": s[0], "end_ms": s[1]} for s in segments]}
-        finally:
-            os.unlink(tmp_path)
+        segments = await _run_blocking(_silence_detect_sync, req.audio_url)
+        return {"ok": True, "segments": segments}
     except Exception as e:
         logger.error(f"Silence detection error: {e}")
         return {"ok": False, "error": str(e)}

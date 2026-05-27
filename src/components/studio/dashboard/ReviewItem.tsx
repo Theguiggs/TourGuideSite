@@ -11,6 +11,8 @@ interface ReviewItemProps {
   quote: string;
   /** Star rating 1..5, or null if no rating. */
   rating: number | null;
+  /** Reviewer actually purchased/listened — shows a "verified" badge. */
+  verified?: boolean;
 }
 
 /**
@@ -18,7 +20,7 @@ interface ReviewItemProps {
  * Citation en font-editorial italic.
  * Port de docs/design/ds/studio-dashboard.jsx:127-141.
  */
-export function ReviewItem({ author, when, tourTitle, quote, rating }: ReviewItemProps) {
+export function ReviewItem({ author, when, tourTitle, quote, rating, verified }: ReviewItemProps) {
   const initial = author.trim().charAt(0).toUpperCase() || '?';
   const stars = rating !== null ? Math.max(0, Math.min(5, Math.round(rating))) : null;
 
@@ -33,7 +35,18 @@ export function ReviewItem({ author, when, tourTitle, quote, rating }: ReviewIte
             {initial}
           </span>
           <div className="min-w-0">
-            <div className="text-meta font-semibold text-ink truncate">{author}</div>
+            <div className="text-meta font-semibold text-ink truncate flex items-center gap-1.5">
+              <span className="truncate">{author}</span>
+              {verified && (
+                <span
+                  title="Écoute vérifiée"
+                  className="text-olive font-bold shrink-0"
+                  aria-label="Écoute vérifiée"
+                >
+                  ✓ vérifié
+                </span>
+              )}
+            </div>
             <div className="text-meta text-ink-40 truncate">
               {when} · {tourTitle}
             </div>

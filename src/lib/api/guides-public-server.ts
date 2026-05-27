@@ -48,8 +48,25 @@ async function mapProfile(p: {
 }
 
 async function getRealAllPublicGuides(): Promise<PublicGuideProfile[]> {
-  const profiles = await listGuideProfilesServer();
-  return Promise.all(profiles.map((p) => mapProfile(p)));
+  const [profiles, publishedTours] = await Promise.all([
+    listGuideProfilesServer(),
+    listGuideToursServer({ status: 'published' }),
+  ]);
+
+  // Live count of PUBLISHED tours per guide — the stored GuideProfile.tourCount
+  // isn't synced on publish (stays 0). Linkage: GuideTour.guideId === GuideProfile.id.
+  const publishedByGuide: Record<string, number> = {};
+  for (const t of publishedTours) {
+    const gid = (t as { guideId?: string }).guideId;
+    if (gid) publishedByGuide[gid] = (publishedByGuide[gid] ?? 0) + 1;
+  }
+
+  return Promise.all(
+    profiles.map(async (p) => ({
+      ...(await mapProfile(p)),
+      tourCount: publishedByGuide[p.id] ?? 0,
+    })),
+  );
 }
 
 // Stub fallbacks delegate to guides-public (client file) mock data — duplicated here

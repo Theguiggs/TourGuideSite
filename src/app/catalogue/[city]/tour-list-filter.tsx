@@ -129,6 +129,15 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
                             )}
                           </div>
                         )}
+                        {tour.languageAudioTypes &&
+                          Object.values(tour.languageAudioTypes).some((t) => t === 'tts') && (
+                            <span
+                              className="inline-flex items-center gap-1 bg-mer-soft text-mer text-xs font-medium px-2 py-0.5 rounded-full"
+                              title="Tout ou partie de l'audio de ce parcours est généré par synthèse vocale"
+                            >
+                              🤖 Voix de synthèse
+                            </span>
+                          )}
                       </div>
                       <p className="text-sm text-ink-60 mb-2">
                         Par {tour.guideName} &middot; {tour.duration} min &middot; {tour.distance} km

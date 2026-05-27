@@ -8,6 +8,7 @@ import { logger } from '@/lib/logger';
 import { listStudioSessions, listStudioScenes } from '@/lib/api/studio';
 import { deleteSession } from '@/lib/api/studio-submission';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
+import { withPublishedStatus } from '@/lib/studio/published-status';
 import {
   filterTours,
   sortTours,
@@ -49,7 +50,7 @@ export default function StudioToursPage() {
     setIsLoading(true);
     setError(null);
     try {
-      const all = await listStudioSessions(guideId);
+      const all = await withPublishedStatus(await listStudioSessions(guideId));
       setSessions(all);
 
       const sceneLists = await Promise.all(all.map((s) => listStudioScenes(s.id)));

@@ -167,6 +167,56 @@ export async function listTourReviews(tourId: string) {
   }
 }
 
+/**
+ * List a tour's guide-replies (one per review). Degrades to [] if the ReviewReply
+ * model isn't deployed yet, so the Avis page works before/after the schema ships.
+ */
+export async function listReviewRepliesByTour(tourId: string) {
+  try {
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const model = (client.models as any).ReviewReply;
+    if (!model) {
+      logger.warn(SERVICE_NAME, 'ReviewReply model not available — skipping');
+      return [] as Array<{ id: string; reviewId: string; tourId: string; guideId: string; message: string }>;
+    }
+    const result = await model.list({ filter: { tourId: { eq: tourId } }, authMode: 'userPool' });
+    return (result.data ?? []) as Array<{ id: string; reviewId: string; tourId: string; guideId: string; message: string }>;
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'listReviewRepliesByTour failed', { error: String(error) });
+    return [];
+  }
+}
+
+/** Create (or update if one already exists) the guide's reply to a review. */
+export async function upsertReviewReply(params: {
+  reviewId: string;
+  tourId: string;
+  guideId: string;
+  message: string;
+  existingId?: string | null;
+}): Promise<{ ok: true; id: string } | { ok: false; error: string }> {
+  try {
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const model = (client.models as any).ReviewReply;
+    if (!model) {
+      return { ok: false, error: 'Les réponses ne sont pas encore disponibles (backend à déployer).' };
+    }
+    const { reviewId, tourId, guideId, message, existingId } = params;
+    const result = existingId
+      ? await model.update({ id: existingId, message }, { authMode: 'userPool' })
+      : await model.create({ reviewId, tourId, guideId, message }, { authMode: 'userPool' });
+    const id = (result?.data as { id?: string } | null)?.id;
+    if (!id) return { ok: false, error: 'Réponse non enregistrée.' };
+    logger.info(SERVICE_NAME, 'upsertReviewReply ok', { reviewId, updated: !!existingId });
+    return { ok: true, id };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'upsertReviewReply failed', { error: String(error) });
+    return { ok: false, error: String(error) };
+  }
+}
+
 export async function getTourStats(tourId: string) {
   try {
     const client = getClient();

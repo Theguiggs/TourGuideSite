@@ -143,7 +143,20 @@ function getStubGuidesByCity(citySlug: string): PublicGuideProfile[] {
 // --- Real API functions ---
 
 async function getRealAllPublicGuides(): Promise<PublicGuideProfile[]> {
-  const profiles = await appsync.listGuideProfiles();
+  const [profiles, publishedTours] = await Promise.all([
+    appsync.listGuideProfiles(),
+    appsync.listGuideTours({ status: 'published' }),
+  ]);
+
+  // Live count of PUBLISHED tours per guide. The stored GuideProfile.tourCount
+  // isn't synced on publish (it stays 0), so we count instead. Matches the public
+  // tour list in getGuidePublicTours. Linkage: GuideTour.guideId === GuideProfile.id.
+  const publishedByGuide: Record<string, number> = {};
+  for (const t of publishedTours) {
+    const gid = (t as { guideId?: string }).guideId;
+    if (gid) publishedByGuide[gid] = (publishedByGuide[gid] ?? 0) + 1;
+  }
+
   return profiles.map((p) => ({
     id: p.id,
     userId: p.userId,
@@ -156,7 +169,7 @@ async function getRealAllPublicGuides(): Promise<PublicGuideProfile[]> {
     specialties: (p.specialties as string[]) ?? [],
     languages: (p.languages as string[]) ?? [],
     rating: p.rating ?? null,
-    tourCount: p.tourCount ?? null,
+    tourCount: publishedByGuide[p.id] ?? 0,
     verified: p.verified ?? false,
     freeLanguageUsed: ((p as Record<string, unknown>).freeLanguageUsed as boolean | undefined) ?? false,
     slug: generateGuideSlug(p.displayName, p.city),

@@ -6,9 +6,9 @@ import outputs from '../../../amplify_outputs.json';
  * This provides model_introspection data required by generateClient<Schema>()
  * for client.models.X.create/update/list to work correctly.
  *
- * amplify_outputs.json is copied from ../TourGuide/amplify_outputs.json.
+ * amplify_outputs.json is copied from ../TourGuideApp/amplify_outputs.json.
  * Re-copy after each `npx ampx sandbox` deploy:
- *   cp ../TourGuide/amplify_outputs.json ./amplify_outputs.json
+ *   cp ../TourGuideApp/amplify_outputs.json ./amplify_outputs.json
  *
  * No { ssr: true } — uses localStorage for tokens (cookie-based SSR storage
  * causes "Unable to get user session following successful sign-in" in Amplify v6).

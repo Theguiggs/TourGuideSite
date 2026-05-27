@@ -16,6 +16,7 @@ import { getTourBySlug, getCityBySlug } from '@/lib/api/tours-server';
 import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
 import SmartAppLink from '@/components/SmartAppLink';
+import { S3Image } from '@/components/studio/s3-image';
 import { AnalyticsEvents } from '@/lib/analytics';
 
 const LANG_FLAGS: Record<string, string> = {
@@ -306,17 +307,21 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            {/* Guide info */}
-            {guideSlug ? (
-              <Link
-                href={`/guides/${guideSlug}`}
-                className="flex items-center gap-3 mb-8 p-4 rounded-2xl"
-                style={{ background: tg.colors.paperSoft }}
-              >
+            {/* Guide info — "Votre guide" showcase card */}
+            {(() => {
+              const avatar = tour.guidePhotoUrl ? (
+                <S3Image
+                  s3Key={tour.guidePhotoUrl}
+                  alt={`Photo de ${tour.guideName}`}
+                  className="w-16 h-16 rounded-full shrink-0"
+                  fallback={tour.guideName.charAt(0)}
+                />
+              ) : (
                 <div
+                  className="shrink-0"
                   style={{
-                    width: 48,
-                    height: 48,
+                    width: 64,
+                    height: 64,
                     borderRadius: tg.radius.pill,
                     background: heroBg,
                     color: heroAccentFg,
@@ -324,51 +329,57 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontFamily: tg.fonts.display,
-                    fontSize: tg.fontSize.h6,
+                    fontSize: tg.fontSize.h5,
                   }}
                 >
                   {tour.guideName.charAt(0)}
                 </div>
-                <div>
-                  <p style={{ fontFamily: tg.fonts.sans, fontWeight: 600, color: tg.colors.ink, margin: 0 }}>
-                    {tour.guideName}
-                  </p>
-                  <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.caption, color: tg.colors.ink60, margin: 0 }}>
-                    Guide local · Voir le profil
-                  </p>
-                </div>
-              </Link>
-            ) : (
-              <div
-                className="flex items-center gap-3 mb-8 p-4 rounded-2xl"
-                style={{ background: tg.colors.paperSoft }}
-              >
-                <div
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: tg.radius.pill,
-                    background: heroBg,
-                    color: heroAccentFg,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: tg.fonts.display,
-                    fontSize: tg.fontSize.h6,
-                  }}
+              );
+              const bioSnippet = tour.guideBio
+                ? tour.guideBio.length > 120
+                  ? `${tour.guideBio.slice(0, 120).trimEnd()}…`
+                  : tour.guideBio
+                : null;
+              const inner = (
+                <>
+                  {avatar}
+                  <div className="min-w-0">
+                    <p style={{ fontFamily: tg.fonts.sans, margin: 0, fontSize: tg.fontSize.meta, color: tg.colors.ink60, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      Votre guide
+                    </p>
+                    <p className="flex items-center gap-1.5" style={{ fontFamily: tg.fonts.display, fontSize: tg.fontSize.h6, fontWeight: 600, color: tg.colors.ink, margin: '2px 0 0' }}>
+                      {tour.guideName}
+                      {tour.guideVerified && (
+                        <span title="Guide vérifié" style={{ color: tg.colors.grenadine, fontSize: tg.fontSize.caption }}>✓</span>
+                      )}
+                    </p>
+                    {bioSnippet && (
+                      <p className="line-clamp-2" style={{ fontFamily: tg.fonts.editorial, fontStyle: 'italic', fontSize: tg.fontSize.caption, color: tg.colors.ink80, margin: '4px 0 0' }}>
+                        « {bioSnippet} »
+                      </p>
+                    )}
+                    {guideSlug && (
+                      <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.caption, color: tg.colors.grenadine, fontWeight: 600, margin: '6px 0 0' }}>
+                        Voir le profil →
+                      </p>
+                    )}
+                  </div>
+                </>
+              );
+              return guideSlug ? (
+                <Link
+                  href={`/guides/${guideSlug}`}
+                  className="flex items-start gap-4 mb-8 p-4 rounded-2xl transition-shadow hover:shadow-md"
+                  style={{ background: tg.colors.paperSoft }}
                 >
-                  {tour.guideName.charAt(0)}
+                  {inner}
+                </Link>
+              ) : (
+                <div className="flex items-start gap-4 mb-8 p-4 rounded-2xl" style={{ background: tg.colors.paperSoft }}>
+                  {inner}
                 </div>
-                <div>
-                  <p style={{ fontFamily: tg.fonts.sans, fontWeight: 600, color: tg.colors.ink, margin: 0 }}>
-                    {tour.guideName}
-                  </p>
-                  <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.caption, color: tg.colors.ink60, margin: 0 }}>
-                    Guide local
-                  </p>
-                </div>
-              </div>
-            )}
+              );
+            })()}
 
             {/* Description */}
             <div className="mb-10">

@@ -34,12 +34,39 @@ let _citiesCache: City[] | null = null;
 let _availableLangsCache: Map<string, string[]> | null = null;
 let _guideNameCache: Map<string, string> | null = null;
 
+interface GuideInfo {
+  displayName: string;
+  photoUrl?: string;
+  bio?: string;
+  verified?: boolean;
+}
+let _guideInfoCache: Map<string, GuideInfo> | null = null;
+
 async function resolveGuideName(guideId: string): Promise<string> {
   if (!_guideNameCache) {
     const profiles = await listGuideProfilesServer();
     _guideNameCache = new Map(profiles.map((p) => [p.id, p.displayName]));
   }
   return _guideNameCache.get(guideId) ?? '';
+}
+
+/** Full guide identity for the tour-detail "Votre guide" showcase card. */
+async function resolveGuideInfo(guideId: string): Promise<GuideInfo> {
+  if (!_guideInfoCache) {
+    const profiles = await listGuideProfilesServer();
+    _guideInfoCache = new Map(
+      profiles.map((p) => [
+        p.id,
+        {
+          displayName: p.displayName,
+          photoUrl: (p.photoUrl as string | null) ?? undefined,
+          bio: (p.bio as string | null) ?? undefined,
+          verified: (p.verified as boolean | null) ?? undefined,
+        },
+      ]),
+    );
+  }
+  return _guideInfoCache.get(guideId) ?? { displayName: '' };
 }
 
 async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise<string[]> {
@@ -88,8 +115,15 @@ async function getLanguageAudioTypes(sessionId: string): Promise<Record<string, 
 
     const frSources = new Set<string>();
     for (const sc of scenes) {
-      const key = (sc.studioAudioKey as string) || (sc.originalAudioKey as string) || '';
-      frSources.add(key.includes('tts') ? 'tts' : 'recording');
+      // Prefer the reliable marker written by the studio at audio-creation time.
+      // Legacy scenes (no marker) fall back to the ambiguous filename heuristic.
+      const marker = sc.baseAudioSource as 'tts' | 'recording' | undefined;
+      if (marker === 'tts' || marker === 'recording') {
+        frSources.add(marker);
+      } else {
+        const key = (sc.studioAudioKey as string) || (sc.originalAudioKey as string) || '';
+        frSources.add(key.includes('tts') ? 'tts' : 'recording');
+      }
     }
     const result: Record<string, 'tts' | 'recording' | 'mixed'> = {
       fr: frSources.size === 1 ? (Array.from(frSources)[0] as 'tts' | 'recording') : 'mixed',
@@ -144,7 +178,11 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
   const mapped = await Promise.all(filtered.map(async (t) => {
     let imageUrl: string | undefined;
     const raw = t as Record<string, unknown>;
-    if (raw.heroImageUrl) {
+    // Prefer the guide's cover photo (from Général); fall back to the first
+    // scene photo. Both are guide-studio/* S3 keys resolved by <S3Image>.
+    if (raw.coverPhotoKey) {
+      imageUrl = raw.coverPhotoKey as string;
+    } else if (raw.heroImageUrl) {
       imageUrl = raw.heroImageUrl as string;
     } else if (raw.sessionId) {
       try {
@@ -188,7 +226,8 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     sessionId ? listPublicScenesBySessionServer(sessionId) : Promise.resolve({ ok: false as const, data: [] as Record<string, unknown>[] }),
   ]);
 
-  const guideName = await resolveGuideName(tour.guideId);
+  const guideInfo = await resolveGuideInfo(tour.guideId);
+  const guideName = guideInfo.displayName;
   const scenes = scenesResult.ok ? scenesResult.data : [];
   const pois = scenes
     .filter((s: Record<string, unknown>) => s.title && !s.archived)
@@ -206,6 +245,9 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     id: tour.id, title: tour.title, slug: generateSlug(tour.title),
     city: tour.city, citySlug: generateSlug(tour.city),
     guideId: tour.guideId, guideName,
+    guidePhotoUrl: guideInfo.photoUrl,
+    guideBio: guideInfo.bio,
+    guideVerified: guideInfo.verified,
     description: tour.description || '',
     shortDescription: (tour.description || '').substring(0, 100),
     duration: tour.duration || 0, distance: tour.distance || 0, poiCount: tour.poiCount || 0,
@@ -214,6 +256,7 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     availableLanguages: await resolveAvailableLanguages(tour as unknown as Record<string, unknown>),
     createdAt: ((tour as unknown as Record<string, unknown>).createdAt as string) ?? '',
     languageAudioTypes: tour.sessionId ? await getLanguageAudioTypes(tour.sessionId) : {},
+    imageUrl: ((tour as unknown as Record<string, unknown>).coverPhotoKey as string) ?? undefined,
     pois,
     reviews: reviews.map((r) => ({
       id: r.id, userId: r.userId, rating: r.rating,

@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
 import { getStudioSession, listStudioScenes, getSceneStatusConfig } from '@/lib/api/studio';
+import { withPublishedStatus } from '@/lib/studio/published-status';
 import { StepNav } from '@/components/studio/wizard';
 import { submitSessionForModeration, submitForReview, retractSubmission, deleteSession } from '@/lib/api/studio-submission';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
@@ -74,10 +75,14 @@ export default function PreviewPage() {
 
     async function load() {
       try {
-        const [sess, scns] = await Promise.all([
+        const [rawSess, scns] = await Promise.all([
           getStudioSession(sessionId),
           listStudioScenes(sessionId),
         ]);
+        // GuideTour.status is the source of truth for publication; a session can
+        // lag at 'submitted' after an admin approval (sync best-effort). Reconcile
+        // it — same pattern as the dashboard / tours list (see withPublishedStatus).
+        const sess = rawSess ? (await withPublishedStatus([rawSess]))[0] : rawSess;
         if (!cancelled) {
           setSession(sess);
           const activeScenes = scns.filter((s) => !s.archived);

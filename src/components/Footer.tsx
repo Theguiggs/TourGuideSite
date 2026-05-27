@@ -57,6 +57,24 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/aide"
+                  style={{ color: tg.colors.paperSoft }}
+                  className="hover:opacity-80"
+                >
+                  Aide
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/guide/signup"
+                  style={{ color: tg.colors.paperSoft }}
+                  className="hover:opacity-80"
+                >
+                  Devenir guide
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/privacy.html"
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"

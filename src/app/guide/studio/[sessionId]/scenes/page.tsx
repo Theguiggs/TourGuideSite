@@ -495,7 +495,7 @@ export default function ScenesPage() {
   // Upload audio blob to S3 and persist to AppSync
   const doUploadAudio = useCallback(async (blob: Blob, sceneId: string, sceneIndex: number) => {
     if (shouldUseStubs()) {
-      await updateSceneAudio(sceneId, `studio-audio/${sessionId}/${sceneId}.webm`);
+      await updateSceneAudio(sceneId, `studio-audio/${sessionId}/${sceneId}.webm`, sessionId, sceneIndex, 'recording');
     } else {
       setIsUploading(true);
       setUploadError(null);
@@ -506,7 +506,7 @@ export default function ScenesPage() {
         const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex, sceneId);
         unsub();
         if (result.ok) {
-          await updateSceneAudio(sceneId, result.s3Key);
+          await updateSceneAudio(sceneId, result.s3Key, sessionId, sceneIndex, 'recording');
           failedBlobRef.current = null;
         } else {
           setUploadError(result.error);
@@ -683,14 +683,15 @@ export default function ScenesPage() {
     audioKey: string,
     sourceLabel: string,
     sceneIndex: number,
+    source: 'tts' | 'recording',
   ) => {
     setScenes((prev) => prev.map((s) =>
-      s.id === sceneId ? { ...s, studioAudioKey: audioKey, status: 'recorded' as const, updatedAt: new Date().toISOString() } : s,
+      s.id === sceneId ? { ...s, studioAudioKey: audioKey, baseAudioSource: source, status: 'recorded' as const, updatedAt: new Date().toISOString() } : s,
     ));
-    updateSceneAudio(sceneId, audioKey, sessionId, sceneIndex);
+    updateSceneAudio(sceneId, audioKey, sessionId, sceneIndex, source);
     setAudioSaveToast(sourceLabel);
     setTimeout(() => setAudioSaveToast(null), 3000);
-    logger.info(SERVICE_NAME, 'Audio source selected', { sceneId, source: sourceLabel, sceneIndex });
+    logger.info(SERVICE_NAME, 'Audio source selected', { sceneId, source: sourceLabel, baseAudioSource: source, sceneIndex });
   }, [sessionId]);
 
   // Persist a translated-segment's TTS audio. In real mode requestTTS returns a
@@ -780,7 +781,7 @@ export default function ScenesPage() {
           }
         }
         if (audioKey) {
-          selectAudioSource(scene.id, audioKey, `TTS ${session.language.toUpperCase()}`, scene.sceneIndex);
+          selectAudioSource(scene.id, audioKey, `TTS ${session.language.toUpperCase()}`, scene.sceneIndex, 'tts');
         } else {
           failures++;
         }
@@ -1598,7 +1599,7 @@ export default function ScenesPage() {
                 {activeScene.originalAudioKey && (() => {
                   const sel = activeScene.studioAudioKey === activeScene.originalAudioKey;
                   return (
-                    <button onClick={() => selectAudioSource(activeScene.id, activeScene.originalAudioKey!, 'Terrain', activeScene.sceneIndex)}
+                    <button onClick={() => selectAudioSource(activeScene.id, activeScene.originalAudioKey!, 'Terrain', activeScene.sceneIndex, 'recording')}
                       className={`p-3 rounded-lg border-2 text-left transition-all ${sel ? 'border-grenadine bg-grenadine-soft' : 'border-line hover:border-line'}`}>
                       <p className="text-lg mb-1">🌍</p>
                       <p className={`text-xs font-medium ${sel ? 'text-grenadine' : 'text-ink'}`}>Terrain</p>
@@ -1623,7 +1624,7 @@ export default function ScenesPage() {
                   const sel = !!ttsState.audioKey && activeScene.studioAudioKey === ttsState.audioKey;
                   return (
                     <button
-                      onClick={() => { if (ttsState.audioKey) selectAudioSource(activeScene.id, ttsState.audioKey, 'Audio TTS', activeScene.sceneIndex); }}
+                      onClick={() => { if (ttsState.audioKey) selectAudioSource(activeScene.id, ttsState.audioKey, 'Audio TTS', activeScene.sceneIndex, 'tts'); }}
                       disabled={ttsState.status === 'processing'}
                       className={`p-3 rounded-lg border-2 text-left transition-all ${
                         ttsState.status === 'processing' ? 'border-mer-soft bg-mer-soft animate-pulse'
@@ -1703,7 +1704,7 @@ export default function ScenesPage() {
                     text={translationState?.translatedText ?? activeSegment.transcriptText ?? ''}
                     language={translationState?.targetLang ?? activeSegment.language}
                     gpuAvailable={gpuAvailable}
-                    onSaveAsSceneAudio={(audioDataUrl, lang) => selectAudioSource(activeScene.id, audioDataUrl, `TTS ${(lang ?? '').toUpperCase()}`, activeScene.sceneIndex)}
+                    onSaveAsSceneAudio={(audioDataUrl, lang) => selectAudioSource(activeScene.id, audioDataUrl, `TTS ${(lang ?? '').toUpperCase()}`, activeScene.sceneIndex, 'tts')}
                   />
                 </div>
               )}
@@ -1745,7 +1746,7 @@ export default function ScenesPage() {
                         const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
                         const unsub = studioUploadService.onProgress(uploadId, (p) => setUploadProgress(p));
                         try { const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex, sceneId); unsub();
-                          if (result.ok) { await updateSceneAudio(sceneId, result.s3Key); failedBlobRef.current = null; const refreshed = await listStudioScenes(sessionId); setScenes(refreshed); }
+                          if (result.ok) { await updateSceneAudio(sceneId, result.s3Key, sessionId, sceneIndex, 'recording'); failedBlobRef.current = null; const refreshed = await listStudioScenes(sessionId); setScenes(refreshed); }
                           else { setUploadError(result.error); }
                         } catch { unsub(); setUploadError('Upload echoue.'); }
                         finally { setIsUploading(false); setUploadProgress(null); }

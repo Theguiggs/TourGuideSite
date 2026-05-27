@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { StepNav } from '@/components/studio/wizard';
 import { getStudioSession, getSessionStatusConfig, listStudioScenes, listSegmentsByScene, cloneSessionAsV2, listStudioSessions } from '@/lib/api/studio';
+import { withPublishedStatus } from '@/lib/studio/published-status';
 import { submitForReview, retractSubmission, updateSessionStatus } from '@/lib/api/studio-submission';
 import { listLanguagePurchases, checkLanguageReadiness, submitLanguageForModeration, retractLanguageSubmission } from '@/lib/api/language-purchase';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
@@ -40,13 +41,16 @@ export default function PublicationPage() {
   const clearSession = useStudioSessionStore(selectClearSession);
 
   const reload = useCallback(async () => {
-    const sess = await getStudioSession(sessionId);
+    const raw = await getStudioSession(sessionId);
+    // Reconcile with GuideTour (source of truth for publication) — a session can
+    // lag at 'submitted' after an admin approval. See withPublishedStatus.
+    const sess = raw ? (await withPublishedStatus([raw]))[0] : raw;
     if (sess) { setSession(sess); setActiveSession(sess); }
     const purchaseResult = await listLanguagePurchases(sessionId);
     if (purchaseResult.ok) setPurchases(purchaseResult.value.filter((p) => p.status === 'active'));
     // Reload siblings
     if (guideId) {
-      const all = await listStudioSessions(guideId);
+      const all = await withPublishedStatus(await listStudioSessions(guideId));
       if (sess?.tourId) {
         setSiblingVersions(all.filter((s) => s.tourId === sess.tourId && s.id !== sess.id));
       }
@@ -58,8 +62,11 @@ export default function PublicationPage() {
     let cancelled = false;
     async function load() {
       try {
-        const [sess, scns] = await Promise.all([getStudioSession(sessionId), listStudioScenes(sessionId)]);
+        const [rawSess, scns] = await Promise.all([getStudioSession(sessionId), listStudioScenes(sessionId)]);
         if (cancelled) return;
+        // Reconcile with GuideTour (source of truth for publication) — a session
+        // can lag at 'submitted' after an admin approval. See withPublishedStatus.
+        const sess = rawSess ? (await withPublishedStatus([rawSess]))[0] : rawSess;
         setSession(sess);
         if (sess) setActiveSession(sess);
         const activeScenes = scns.filter((s) => !s.archived);
@@ -72,7 +79,7 @@ export default function PublicationPage() {
         } catch { /* non-blocking */ }
         // Load sibling versions
         if (guideId && sess?.tourId) {
-          const all = await listStudioSessions(guideId);
+          const all = await withPublishedStatus(await listStudioSessions(guideId));
           if (!cancelled) setSiblingVersions(all.filter((s) => s.tourId === sess.tourId && s.id !== sess.id));
         }
       } catch { /* ignore */ }

@@ -6,6 +6,7 @@ import {
   getGuidePublicTours,
 } from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
+import { S3Image } from '@/components/studio/s3-image';
 import { AnalyticsEvents } from '@/lib/analytics';
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
@@ -66,9 +67,18 @@ export default async function GuideProfilePage({ params }: GuidePageProps) {
       {/* Profile Header */}
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-12">
         {/* Photo */}
-        <div className="w-48 h-48 flex-shrink-0 bg-grenadine-soft rounded-full flex items-center justify-center text-grenadine font-bold text-6xl">
-          {guide.displayName.charAt(0)}
-        </div>
+        {guide.photoUrl ? (
+          <S3Image
+            s3Key={guide.photoUrl}
+            alt={`Photo de ${guide.displayName}`}
+            className="w-48 h-48 flex-shrink-0 rounded-full shadow-md ring-4 ring-paper"
+            fallback={guide.displayName.charAt(0)}
+          />
+        ) : (
+          <div className="w-48 h-48 flex-shrink-0 bg-grenadine-soft rounded-full flex items-center justify-center text-grenadine font-bold text-6xl">
+            {guide.displayName.charAt(0)}
+          </div>
+        )}
 
         <div className="text-center md:text-left flex-1">
           <h1 className="text-3xl sm:text-4xl font-bold text-ink mb-2">

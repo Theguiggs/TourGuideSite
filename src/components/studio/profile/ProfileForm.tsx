@@ -1,11 +1,14 @@
 'use client';
 
+import { useRef, useState } from 'react';
 import { cityFamily, FAMILY_META } from '@/components/studio/shell';
 import {
   PROFILE_LIMITS,
   validateDraft,
   type GuideProfileDraft,
 } from '@/lib/studio/profile-helpers';
+import { uploadGuideProfilePhoto } from '@/lib/studio/studio-upload-service';
+import { S3Image } from '@/components/studio/s3-image';
 import { SpecialtyChipsInput } from './SpecialtyChipsInput';
 import { LanguageTogglePills } from './LanguageTogglePills';
 
@@ -27,8 +30,32 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
   const famMeta = FAMILY_META[fam];
   const validation = validateDraft(value);
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
   const update = <K extends keyof GuideProfileDraft>(key: K, v: GuideProfileDraft[K]) => {
     onChange({ ...value, [key]: v });
+  };
+
+  const handlePhotoSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = ''; // allow re-selecting the same file
+    if (!file) return;
+    setUploadError(null);
+    setUploading(true);
+    try {
+      const result = await uploadGuideProfilePhoto(file);
+      if (result.ok) {
+        update('photoUrl', result.s3Key);
+      } else {
+        setUploadError(result.error);
+      }
+    } catch {
+      setUploadError('Upload de la photo échoué.');
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -37,27 +64,44 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
 
       {/* Avatar */}
       <div className="mt-4 flex gap-4 items-center">
-        <div
-          className={`w-[72px] h-[72px] rounded-full text-paper flex items-center justify-center font-display text-h4 relative ${famMeta.bg}`}
-          aria-hidden="true"
-        >
-          {initial}
-        </div>
+        {value.photoUrl ? (
+          <S3Image
+            s3Key={value.photoUrl}
+            alt="Photo de profil"
+            className="w-[72px] h-[72px] rounded-full shrink-0"
+          />
+        ) : (
+          <div
+            className={`w-[72px] h-[72px] rounded-full text-paper flex items-center justify-center font-display text-h4 relative shrink-0 ${famMeta.bg}`}
+            aria-hidden="true"
+          >
+            {initial}
+          </div>
+        )}
         <div>
           <div className="text-caption font-semibold text-ink">Photo de profil</div>
           <div className="text-meta text-ink-60 mt-0.5">
-            Carrée, format JPG ou PNG, 400 px minimum.
+            Carrée, format JPG ou PNG, 400 px minimum (max 5 Mo).
           </div>
-          <div className="flex gap-2 mt-2">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            onChange={handlePhotoSelected}
+            className="hidden"
+            data-testid="profile-photo-input"
+          />
+          <div className="flex gap-2 mt-2 items-center">
             <button
               type="button"
-              disabled
-              title="Bientôt disponible"
-              className="text-meta px-3 py-1.5 bg-ink text-paper border-none rounded-sm font-semibold cursor-not-allowed opacity-60"
+              disabled={uploading}
+              onClick={() => fileInputRef.current?.click()}
+              className="text-meta px-3 py-1.5 bg-ink text-paper border-none rounded-sm font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+              data-testid="profile-photo-import"
             >
-              Importer
+              {uploading ? 'Import…' : value.photoUrl ? 'Changer' : 'Importer'}
             </button>
-            {value.photoUrl && (
+            {value.photoUrl && !uploading && (
               <button
                 type="button"
                 onClick={() => update('photoUrl', null)}
@@ -67,6 +111,11 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
               </button>
             )}
           </div>
+          {uploadError && (
+            <div className="text-meta text-danger mt-1" role="alert">
+              {uploadError}
+            </div>
+          )}
         </div>
       </div>
 
