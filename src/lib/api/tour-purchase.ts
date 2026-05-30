@@ -1,0 +1,117 @@
+/**
+ * Tour purchase API — Story mon-1.3b (web sale of an individual tour).
+ *
+ * Two-step secure flow (the client NEVER self-grants):
+ *  1. createTourPaymentIntent(tourId) → Lambda reads the authoritative price from
+ *     GuideTour and returns a Stripe clientSecret.
+ *  2. (UI confirms the payment with Stripe Elements)
+ *  3. confirmTourPurchase(paymentIntentId) → Lambda verifies the PaymentIntent
+ *     with Stripe (succeeded + belongs to caller) and creates the server-only
+ *     TourPurchase. Idempotent.
+ *
+ * Mirrors language-purchase.ts (stub in dev/tests, real AppSync mutations in prod).
+ */
+
+import { shouldUseStubs } from '@/config/api-mode';
+import { logger } from '@/lib/logger';
+
+const SERVICE_NAME = 'TourPurchaseAPI';
+
+export interface TourPaymentIntentResult {
+  clientSecret: string | null;
+  amountCents: number;
+}
+
+export interface ConfirmTourPurchaseResult {
+  tourId: string;
+  alreadyOwned: boolean;
+}
+
+export interface ApiError {
+  code: number;
+  message: string;
+}
+
+export type Result<T> = { ok: true; value: T } | { ok: false; error: ApiError };
+
+/**
+ * Shape returned by the Lambda-backed mutations (`a.json()`):
+ * `{ ok, value?, error? }`.
+ */
+interface LambdaEnvelope<T> {
+  ok: boolean;
+  value?: T;
+  error?: ApiError;
+}
+
+function parseEnvelope<T>(raw: unknown): Result<T> {
+  const env = (raw ?? {}) as LambdaEnvelope<T>;
+  if (env.ok && env.value !== undefined) {
+    return { ok: true, value: env.value };
+  }
+  return {
+    ok: false,
+    error: env.error ?? { code: 2614, message: 'Unknown tour purchase error' },
+  };
+}
+
+/**
+ * Step 1: create a Stripe PaymentIntent for buying `tourId`. The amount is the
+ * AUTHORITATIVE catalog price (resolved server-side) — never supplied here.
+ */
+export async function createTourPaymentIntent(
+  tourId: string,
+): Promise<Result<TourPaymentIntentResult>> {
+  if (shouldUseStubs()) {
+    await new Promise((r) => setTimeout(r, 400));
+    return {
+      ok: true,
+      value: { clientSecret: `pi_stub_secret_${Date.now()}`, amountCents: 499 },
+    };
+  }
+
+  try {
+    const { getClient } = await import('@/lib/api/appsync-client');
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).mutations.createTourPaymentIntent(
+      { tourId },
+      { authMode: 'userPool' },
+    );
+    return parseEnvelope<TourPaymentIntentResult>(result?.data);
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'createTourPaymentIntent failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return { ok: false, error: { code: 2614, message: 'createTourPaymentIntent failed' } };
+  }
+}
+
+/**
+ * Step 3: after Stripe confirms the payment client-side, ask the server to verify
+ * it and grant the tour (create TourPurchase). Idempotent — safe to retry.
+ */
+export async function confirmTourPurchase(
+  paymentIntentId: string,
+): Promise<Result<ConfirmTourPurchaseResult>> {
+  if (shouldUseStubs()) {
+    await new Promise((r) => setTimeout(r, 400));
+    return { ok: true, value: { tourId: 'stub-tour', alreadyOwned: false } };
+  }
+
+  try {
+    const { getClient } = await import('@/lib/api/appsync-client');
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).mutations.confirmTourPurchase(
+      { paymentIntentId },
+      { authMode: 'userPool' },
+    );
+    return parseEnvelope<ConfirmTourPurchaseResult>(result?.data);
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'confirmTourPurchase failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return { ok: false, error: { code: 2624, message: 'confirmTourPurchase failed' } };
+  }
+}
