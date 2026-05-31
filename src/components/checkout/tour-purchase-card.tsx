@@ -19,7 +19,7 @@ import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-
 import { Button, tg } from '@murmure/design-system/web';
 import { getStripePromise, isStripeConfigured } from '@/lib/stripe/client';
 import { useAuth } from '@/lib/auth/auth-context';
-import { createTourPaymentIntent, confirmTourPurchase } from '@/lib/api/tour-purchase';
+import { createTourPaymentIntent, confirmTourPurchase, ownsTour } from '@/lib/api/tour-purchase';
 
 interface Props {
   tourId: string;
@@ -101,6 +101,19 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
+  const [owned, setOwned] = useState(false);
+
+  // Already-purchased check: hide the buy CTA + show a badge if the user owns it.
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    let cancelled = false;
+    ownsTour(tourId).then((o) => {
+      if (!cancelled && o) setOwned(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [isAuthenticated, tourId]);
 
   if (!isStripeConfigured()) return null;
 
@@ -167,7 +180,37 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
 
   return (
     <div style={{ marginTop: tg.space[4] }}>
-      {step === 'idle' && (
+      {/* Badge "déjà débloquée" — possession existante OU achat qui vient d'aboutir. */}
+      {(owned || step === 'done') && (
+        <div
+          data-testid="tour-owned-badge"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: tg.space[1],
+            padding: `${tg.space[3]} ${tg.space[4]}`,
+            borderRadius: tg.radius.md,
+            background: tg.colors.olive ? `${tg.colors.olive}1A` : '#E8EFE0',
+            border: `1px solid ${tg.colors.olive ?? '#7E8C5A'}`,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: tg.fonts.sans,
+              fontWeight: 700,
+              fontSize: tg.fontSize.body,
+              color: tg.colors.olive ?? '#5E6B3E',
+            }}
+          >
+            ✓ Visite débloquée
+          </span>
+          <span style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}>
+            Ouvrez Murmure avec le même compte pour l&apos;écouter.
+          </span>
+        </div>
+      )}
+
+      {step === 'idle' && !owned && (
         <Button variant="accent" size="lg" fullWidth onClick={startCheckout} disabled={busy}>
           {label}
         </Button>
@@ -209,24 +252,16 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
           <Elements stripe={getStripePromise()} options={{ clientSecret }}>
             <PaymentForm
               paymentIntentId={paymentIntentId}
-              onSuccess={() => setStep('done')}
+              onSuccess={() => {
+                setOwned(true);
+                setStep('done');
+              }}
               onError={(msg) => {
                 setError(msg);
                 setStep('error');
               }}
             />
           </Elements>
-        </div>
-      )}
-
-      {step === 'done' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: tg.space[2] }}>
-          <p style={{ fontFamily: tg.fonts.display, fontSize: tg.fontSize.h6, color: tg.colors.ink }}>
-            Merci ! La visite est débloquée.
-          </p>
-          <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.body, color: tg.colors.ink80 }}>
-            Ouvrez Murmure avec le même compte pour la retrouver.
-          </p>
         </div>
       )}
 

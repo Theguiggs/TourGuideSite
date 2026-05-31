@@ -107,29 +107,12 @@ export async function createTourPaymentIntent(
       { tourId },
       { authMode: 'userPool' },
     );
-    // TEMP diagnostic — dump en CHAÎNE (lisible dans l'overlay/console) + à l'écran.
-    let dump = '';
-    try {
-      dump = JSON.stringify({
-        keys: Object.keys(result ?? {}),
-        data: result?.data,
-        errors: result?.errors,
-      });
-    } catch {
-      dump = String(result);
-    }
-    // eslint-disable-next-line no-console
-    console.log('[diag] createTourPaymentIntent dump =', dump);
-
     if (result?.errors?.length) {
-      return { ok: false, error: { code: 2614, message: describeError(result) } };
+      const detail = describeError(result);
+      logger.error(SERVICE_NAME, 'createTourPaymentIntent GraphQL error', { detail });
+      return { ok: false, error: { code: 2614, message: detail } };
     }
-    const parsed = parseEnvelope<TourPaymentIntentResult>(result?.data);
-    if (!parsed.ok) {
-      // Inclure le brut dans le message à l'écran pour diagnostic immédiat.
-      return { ok: false, error: { code: 2614, message: `${parsed.error.message} | brut=${dump.slice(0, 300)}` } };
-    }
-    return parsed;
+    return parseEnvelope<TourPaymentIntentResult>(result?.data);
   } catch (error) {
     const detail = describeError(error);
     logger.error(SERVICE_NAME, 'createTourPaymentIntent failed', { detail });
@@ -167,5 +150,30 @@ export async function confirmTourPurchase(
     const detail = describeError(error);
     logger.error(SERVICE_NAME, 'confirmTourPurchase failed', { detail });
     return { ok: false, error: { code: 2624, message: detail || 'confirmTourPurchase failed' } };
+  }
+}
+
+/**
+ * Does the current (authenticated) user already own this tour? Owner-based auth
+ * (`ownerDefinedIn('userId')`) scopes the list to the caller, so we only filter
+ * by tourId + active. Returns false for guests/stub/errors (fail-open to "buyable").
+ */
+export async function ownsTour(tourId: string): Promise<boolean> {
+  if (shouldUseStubs()) {
+    return false;
+  }
+  try {
+    const { getClient } = await import('@/lib/api/appsync-client');
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).models.TourPurchase.list({
+      filter: { tourId: { eq: tourId }, status: { eq: 'active' } },
+      authMode: 'userPool',
+    });
+    const rows = (result?.data ?? []) as unknown[];
+    return rows.length > 0;
+  } catch (error) {
+    logger.warn(SERVICE_NAME, 'ownsTour check failed', { detail: describeError(error) });
+    return false;
   }
 }
