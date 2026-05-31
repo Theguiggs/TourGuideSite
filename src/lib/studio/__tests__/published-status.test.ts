@@ -38,12 +38,20 @@ describe('withPublishedStatus', () => {
     expect(mockUpdateStudioSessionMutation).toHaveBeenCalledWith('s1', { status: 'published' });
   });
 
-  it('n’ÉCRIT JAMAIS un brouillon, même si son tour (partagé avec une V1) est publié', async () => {
+  it('ne promeut NI n’écrit un brouillon V2 partageant le tourId d’une V1 publiée', async () => {
     mockGetGuideTourById.mockResolvedValue({ status: 'published' });
     const [out] = await withPublishedStatus([session('v2', 'draft', 't1')]);
-    // L'affichage suit la règle large existante…
-    expect(out.status).toBe('published');
-    // …mais aucune écriture destructive sur le brouillon.
+    // Bug fix 2026-05-31 : un brouillon (version de travail) ne doit jamais
+    // apparaître ni être écrit 'published' juste parce que la V1 est en ligne.
+    expect(out.status).toBe('draft');
+    expect(mockUpdateStudioSessionMutation).not.toHaveBeenCalled();
+  });
+
+  it('ne promeut/écrit JAMAIS la version de travail (draftSessionId), même soumise', async () => {
+    // V2 soumise == GuideTour.draftSessionId → en attente de modération, pas live.
+    mockGetGuideTourById.mockResolvedValue({ status: 'published', draftSessionId: 'v2' });
+    const [out] = await withPublishedStatus([session('v2', 'submitted', 't1')]);
+    expect(out.status).toBe('submitted');
     expect(mockUpdateStudioSessionMutation).not.toHaveBeenCalled();
   });
 
