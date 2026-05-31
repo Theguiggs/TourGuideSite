@@ -95,6 +95,12 @@ export async function createTourPaymentIntent(
       { tourId },
       { authMode: 'userPool' },
     );
+    // Surface GraphQL/resolver-level errors (data is null when the Lambda fails).
+    if (result?.errors?.length) {
+      const detail = describeError(result);
+      logger.error(SERVICE_NAME, 'createTourPaymentIntent GraphQL error', { detail });
+      return { ok: false, error: { code: 2614, message: detail } };
+    }
     return parseEnvelope<TourPaymentIntentResult>(result?.data);
   } catch (error) {
     const detail = describeError(error);
@@ -123,6 +129,11 @@ export async function confirmTourPurchase(
       { paymentIntentId },
       { authMode: 'userPool' },
     );
+    if (result?.errors?.length) {
+      const detail = describeError(result);
+      logger.error(SERVICE_NAME, 'confirmTourPurchase GraphQL error', { detail });
+      return { ok: false, error: { code: 2624, message: detail } };
+    }
     return parseEnvelope<ConfirmTourPurchaseResult>(result?.data);
   } catch (error) {
     const detail = describeError(error);
