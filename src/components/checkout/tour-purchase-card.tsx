@@ -95,6 +95,9 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
 
   // Step 2: fetch a PaymentIntent (server resolves the authoritative price).
   async function beginPayment() {
+    // Idempotent: once we already have a clientSecret (form mounted), don't re-fetch
+    // (guards against the auto-skip effect / StrictMode double-invoke).
+    if (clientSecret || busy) return;
     setBusy(true);
     setError(null);
     const res = await createTourPaymentIntent(tourId);

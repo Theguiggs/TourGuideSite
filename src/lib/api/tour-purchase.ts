@@ -107,10 +107,9 @@ export async function createTourPaymentIntent(
       { tourId },
       { authMode: 'userPool' },
     );
-    // TEMP diagnostic — voir la forme exacte renvoyée (data + errors).
-    let rawDump = '';
-    try { rawDump = JSON.stringify({ data: result?.data, errors: result?.errors }); } catch { rawDump = String(result); }
-    logger.error(SERVICE_NAME, 'createTourPaymentIntent RAW', { raw: rawDump.slice(0, 800) });
+    // TEMP diagnostic — log brut direct (non filtré par le logger) pour voir l'objet.
+    // eslint-disable-next-line no-console
+    console.error('[diag] createTourPaymentIntent result =', result);
     // Surface GraphQL/resolver-level errors (data is null when the Lambda fails).
     if (result?.errors?.length) {
       const detail = describeError(result);
