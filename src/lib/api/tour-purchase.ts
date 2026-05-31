@@ -107,15 +107,29 @@ export async function createTourPaymentIntent(
       { tourId },
       { authMode: 'userPool' },
     );
-    // TEMP diagnostic — log brut direct (non filtré par le logger) pour voir l'objet.
-    // eslint-disable-next-line no-console
-    console.error('[diag] createTourPaymentIntent result =', result);
-    // Surface GraphQL/resolver-level errors (data is null when the Lambda fails).
-    if (result?.errors?.length) {
-      const detail = describeError(result);
-      return { ok: false, error: { code: 2614, message: detail } };
+    // TEMP diagnostic — dump en CHAÎNE (lisible dans l'overlay/console) + à l'écran.
+    let dump = '';
+    try {
+      dump = JSON.stringify({
+        keys: Object.keys(result ?? {}),
+        data: result?.data,
+        errors: result?.errors,
+      });
+    } catch {
+      dump = String(result);
     }
-    return parseEnvelope<TourPaymentIntentResult>(result?.data);
+    // eslint-disable-next-line no-console
+    console.log('[diag] createTourPaymentIntent dump =', dump);
+
+    if (result?.errors?.length) {
+      return { ok: false, error: { code: 2614, message: describeError(result) } };
+    }
+    const parsed = parseEnvelope<TourPaymentIntentResult>(result?.data);
+    if (!parsed.ok) {
+      // Inclure le brut dans le message à l'écran pour diagnostic immédiat.
+      return { ok: false, error: { code: 2614, message: `${parsed.error.message} | brut=${dump.slice(0, 300)}` } };
+    }
+    return parsed;
   } catch (error) {
     const detail = describeError(error);
     logger.error(SERVICE_NAME, 'createTourPaymentIntent failed', { detail });
