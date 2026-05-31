@@ -14,7 +14,7 @@
  * NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY.
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Button, tg } from '@murmure/design-system/web';
 import { getStripePromise, isStripeConfigured } from '@/lib/stripe/client';
@@ -123,6 +123,16 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
     }
     void beginPayment();
   }
+
+  // Auto-skip the login step once the session is recognised (e.g. user clicked
+  // "Acheter" before AuthProvider finished restoring the session, or just signed in).
+  useEffect(() => {
+    if (step === 'login' && isAuthenticated) {
+      void beginPayment();
+    }
+    // beginPayment is stable enough for this guarded one-shot; deps intentionally minimal.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step, isAuthenticated]);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
