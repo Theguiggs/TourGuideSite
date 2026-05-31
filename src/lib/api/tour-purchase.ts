@@ -61,15 +61,27 @@ interface LambdaEnvelope<T> {
   error?: ApiError;
 }
 
-function parseEnvelope<T>(raw: unknown): Result<T> {
-  const env = (raw ?? {}) as LambdaEnvelope<T>;
-  if (env.ok && env.value !== undefined) {
-    return { ok: true, value: env.value };
+function parseEnvelope<T>(raw: unknown, fallbackCode = 2614): Result<T> {
+  // `a.json()` mutations sometimes return the payload as a JSON STRING — parse it.
+  let env: unknown = raw;
+  if (typeof env === 'string') {
+    try {
+      env = JSON.parse(env);
+    } catch {
+      /* keep as string */
+    }
   }
-  return {
-    ok: false,
-    error: env.error ?? { code: 2614, message: 'Unknown tour purchase error' },
-  };
+  const e = (env ?? {}) as LambdaEnvelope<T>;
+  if (e.ok && e.value !== undefined) {
+    return { ok: true, value: e.value };
+  }
+  if (e.error) {
+    return { ok: false, error: e.error };
+  }
+  // Unexpected shape — surface the raw payload (truncated) for diagnosis.
+  const snippet =
+    typeof raw === 'string' ? raw.slice(0, 300) : JSON.stringify(raw ?? null).slice(0, 300);
+  return { ok: false, error: { code: fallbackCode, message: `Réponse inattendue: ${snippet}` } };
 }
 
 /**
@@ -95,10 +107,13 @@ export async function createTourPaymentIntent(
       { tourId },
       { authMode: 'userPool' },
     );
+    // TEMP diagnostic — voir la forme exacte renvoyée (data + errors).
+    let rawDump = '';
+    try { rawDump = JSON.stringify({ data: result?.data, errors: result?.errors }); } catch { rawDump = String(result); }
+    logger.error(SERVICE_NAME, 'createTourPaymentIntent RAW', { raw: rawDump.slice(0, 800) });
     // Surface GraphQL/resolver-level errors (data is null when the Lambda fails).
     if (result?.errors?.length) {
       const detail = describeError(result);
-      logger.error(SERVICE_NAME, 'createTourPaymentIntent GraphQL error', { detail });
       return { ok: false, error: { code: 2614, message: detail } };
     }
     return parseEnvelope<TourPaymentIntentResult>(result?.data);
