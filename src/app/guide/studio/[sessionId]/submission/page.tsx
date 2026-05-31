@@ -275,10 +275,15 @@ export default function PublicationPage() {
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-grenadine-soft bg-grenadine-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
-              <span className="text-base shrink-0">&#x2728;</span>
+              <span className="text-base shrink-0">&#x270F;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-grenadine">Creer V{version + 1}</p>
-                <p className="text-xs text-grenadine">Nouvelle version a partir du contenu actuel. {isPublished ? 'V' + version + ' reste publiee pendant le travail.' : 'Rien ne sera visible tant que V' + (version + 1) + ' n\'est pas publiee.'}</p>
+                <p className="text-sm font-medium text-grenadine">
+                  Mettre à jour la visite (nouvelle version V{version + 1})
+                </p>
+                <p className="text-xs text-grenadine">
+                  Crée un brouillon V{version + 1} à partir du contenu actuel — vos langues/traductions
+                  sont reportées. Éditez puis re-soumettez. {isPublished ? 'V' + version + ' reste publiée pendant le travail.' : 'Rien n\'est visible tant que V' + (version + 1) + ' n\'est pas publiée.'}
+                </p>
               </div>
             </button>
           )}
