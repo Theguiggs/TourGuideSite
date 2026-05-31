@@ -49,26 +49,37 @@ function PaymentForm({
   const [busy, setBusy] = useState(false);
 
   async function pay() {
-    if (!stripe || !elements) return;
+    // Ne plus sortir en silence : surfacer la raison (Stripe non prêt = clé publishable ?).
+    if (!stripe || !elements) {
+      onError(
+        'Paiement non prêt — Stripe.js non initialisé. Vérifie NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY (pk_test_…) dans .env.local puis REDÉMARRE le serveur.',
+      );
+      return;
+    }
     setBusy(true);
-    const { error, paymentIntent } = await stripe.confirmPayment({
-      elements,
-      redirect: 'if_required',
-    });
-    if (error) {
+    try {
+      const { error, paymentIntent } = await stripe.confirmPayment({
+        elements,
+        redirect: 'if_required',
+      });
+      if (error) {
+        setBusy(false);
+        onError(error.message ?? 'Paiement refusé.');
+        return;
+      }
+      if (paymentIntent?.status === 'succeeded') {
+        const confirmed = await confirmTourPurchase(paymentIntent.id ?? paymentIntentId);
+        setBusy(false);
+        if (confirmed.ok) onSuccess();
+        else onError(confirmed.error.message);
+        return;
+      }
       setBusy(false);
-      onError(error.message ?? 'Paiement refusé.');
-      return;
-    }
-    if (paymentIntent?.status === 'succeeded') {
-      const confirmed = await confirmTourPurchase(paymentIntentId);
+      onError(`Paiement non finalisé (${paymentIntent?.status ?? 'inconnu'}).`);
+    } catch (e) {
       setBusy(false);
-      if (confirmed.ok) onSuccess();
-      else onError(confirmed.error.message);
-      return;
+      onError(`Erreur paiement: ${e instanceof Error ? e.message : String(e)}`);
     }
-    setBusy(false);
-    onError(`Paiement non finalisé (${paymentIntent?.status ?? 'inconnu'}).`);
   }
 
   return (
