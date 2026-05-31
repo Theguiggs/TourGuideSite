@@ -27,6 +27,10 @@ export interface Tour {
   poiCount: number;
   imageUrl?: string;
   isFree: boolean;
+  // mon-1.3b: per-tour purchase. priceCents = catalog price (e.g. 499 = 4,99 €).
+  // purchaseType 'paid' → buyable individually (web sale). Absent ⇒ 'free' (back-compat).
+  priceCents?: number;
+  purchaseType?: 'free' | 'paid' | 'subscription_only';
   status: 'draft' | 'pending_moderation' | 'published' | 'rejected' | 'archived';
   availableLanguages?: string[];
   createdAt?: string;
