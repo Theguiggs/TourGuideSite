@@ -1210,14 +1210,19 @@ export default function ModerationReviewPage() {
               {/* Map */}
               {detail.scenes.some((s) => s.latitude && s.longitude) && (
                 <div className="rounded-lg overflow-hidden border border-line mb-4">
-                  <PreviewMap scenes={detail.scenes.map((s) => ({
-                    id: s.id,
-                    latitude: s.latitude,
-                    longitude: s.longitude,
-                    title: s.title,
-                    sceneIndex: s.order - 1,
-                    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-                  } as import("@/types/studio").StudioScene))} />
+                  <PreviewMap
+                    scenes={detail.scenes.map((s) => ({
+                      id: s.id,
+                      latitude: s.latitude,
+                      longitude: s.longitude,
+                      title: s.title,
+                      sceneIndex: s.order - 1,
+                      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+                    } as import("@/types/studio").StudioScene))}
+                    // Trace le parcours RÉEL du guide (polyline) au lieu de relier
+                    // les POIs en lignes droites (cohérent avec l'aperçu plus haut).
+                    customPath={guideRoutePath}
+                  />
                 </div>
               )}
 
