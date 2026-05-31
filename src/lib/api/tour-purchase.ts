@@ -34,6 +34,23 @@ export interface ApiError {
 
 export type Result<T> = { ok: true; value: T } | { ok: false; error: ApiError };
 
+/** Surface a meaningful string from an Amplify/GraphQL error (avoid logging `{}`). */
+function describeError(e: unknown): string {
+  if (e instanceof Error) return `${e.name}: ${e.message}`;
+  if (e && typeof e === 'object') {
+    const o = e as Record<string, unknown>;
+    if (Array.isArray(o.errors)) {
+      return o.errors.map((er) => (er as { message?: string })?.message ?? String(er)).join('; ');
+    }
+    try {
+      return JSON.stringify(o);
+    } catch {
+      return String(e);
+    }
+  }
+  return String(e);
+}
+
 /**
  * Shape returned by the Lambda-backed mutations (`a.json()`):
  * `{ ok, value?, error? }`.
@@ -80,10 +97,9 @@ export async function createTourPaymentIntent(
     );
     return parseEnvelope<TourPaymentIntentResult>(result?.data);
   } catch (error) {
-    logger.error(SERVICE_NAME, 'createTourPaymentIntent failed', {
-      error: error instanceof Error ? error.message : String(error),
-    });
-    return { ok: false, error: { code: 2614, message: 'createTourPaymentIntent failed' } };
+    const detail = describeError(error);
+    logger.error(SERVICE_NAME, 'createTourPaymentIntent failed', { detail });
+    return { ok: false, error: { code: 2614, message: detail || 'createTourPaymentIntent failed' } };
   }
 }
 
@@ -109,9 +125,8 @@ export async function confirmTourPurchase(
     );
     return parseEnvelope<ConfirmTourPurchaseResult>(result?.data);
   } catch (error) {
-    logger.error(SERVICE_NAME, 'confirmTourPurchase failed', {
-      error: error instanceof Error ? error.message : String(error),
-    });
-    return { ok: false, error: { code: 2624, message: 'confirmTourPurchase failed' } };
+    const detail = describeError(error);
+    logger.error(SERVICE_NAME, 'confirmTourPurchase failed', { detail });
+    return { ok: false, error: { code: 2624, message: detail || 'confirmTourPurchase failed' } };
   }
 }
