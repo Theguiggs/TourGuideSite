@@ -189,6 +189,8 @@ export default function ModerationReviewPage() {
   const [translatedDescriptions, setTranslatedDescriptions] = useState<Record<string, string>>({});
   const [translatedTitles, setTranslatedTitles] = useState<Record<string, string>>({});
   const [guideRoutePath, setGuideRoutePath] = useState<Array<{ lat: number; lng: number }> | null>(null);
+  // mon-1.2/1.3b : monétisation de la visite (lue sur GuideTour) pour la revue admin.
+  const [monetization, setMonetization] = useState<{ purchaseType?: string; priceCents?: number } | null>(null);
 
   useEffect(() => {
     Promise.all([
@@ -229,11 +231,17 @@ export default function ModerationReviewPage() {
       if (d?.tourId) {
         import('@/lib/api/appsync-client').then(({ getGuideTourById }) => {
           getGuideTourById(d.tourId).then((tour) => {
-            let descs = (tour as Record<string, unknown>)?.translatedDescriptions;
+            const t = tour as Record<string, unknown> | null;
+            let descs = t?.translatedDescriptions;
             if (typeof descs === 'string') { try { descs = JSON.parse(descs); } catch { descs = null; } }
             if (descs && typeof descs === 'object') {
               setTranslatedDescriptions((prev) => ({ ...prev, ...descs as Record<string, string> }));
             }
+            // mon-1.2/1.3b : exposer la monétisation à l'admin.
+            setMonetization({
+              purchaseType: t?.purchaseType as string | undefined,
+              priceCents: t?.priceCents as number | undefined,
+            });
           });
         });
       }
@@ -794,6 +802,20 @@ export default function ModerationReviewPage() {
                     {detail.city} &middot; {detail.duration} min &middot; {detail.distance} km &middot; {detail.poiCount} points d&apos;interet
                     &middot; Difficulte : {detail.difficulty}
                   </p>
+                  {monetization && (
+                    <p className="text-white text-sm mt-1 font-semibold" data-testid="moderation-monetization">
+                      Monétisation :{' '}
+                      {monetization.purchaseType === 'paid'
+                        ? `Payante — ${
+                            typeof monetization.priceCents === 'number'
+                              ? (monetization.priceCents / 100).toFixed(2).replace('.', ',') + ' €'
+                              : 'prix non défini ⚠️'
+                          }`
+                        : monetization.purchaseType === 'subscription_only'
+                          ? 'Abonnés uniquement'
+                          : 'Gratuite'}
+                    </p>
+                  )}
                 </div>
               </div>
 
