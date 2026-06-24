@@ -88,7 +88,7 @@
     </nav>
 
     <h2 id="sec-1">1. Qui est responsable de vos données ?</h2>
-    <p>Murmure (« nous », « l'application ») est édité par <strong>[à compléter : raison sociale]</strong>, dont le siège est à <strong>[à compléter : adresse]</strong>. Pour toute question relative à la présente politique ou à l'exercice de vos droits, contactez-nous à : <a href="mailto:tourguideyeup@gmail.com">tourguideyeup@gmail.com</a>.</p>
+    <p>Murmure (« nous », « l'application ») est édité par <strong>Steffen Guillaume</strong>, entrepreneur individuel, dont le siège est au <strong>25 boulevard commandant Autran, 06130 Grasse, France</strong>. Pour toute question relative à la présente politique ou à l'exercice de vos droits, contactez-nous à : <a href="mailto:murmure.tourguide@gmail.com">murmure.tourguide@gmail.com</a>.</p>
     <p>Au sens du Règlement Général sur la Protection des Données (RGPD, UE 2016/679), nous sommes <strong>responsable du traitement</strong> des données collectées via l'application Murmure (anciennement TourGuide).</p>
 
     <h2 id="sec-2">2. Quelles données collectons-nous ?</h2>
@@ -134,6 +134,9 @@
     <h3>2.5 Données de paiement</h3>
     <p>Historique des achats (produit, prix, date, devise), géré par Google Play / Apple App Store via RevenueCat. <strong>Nous n'accédons jamais à vos numéros de carte bancaire</strong> — le paiement est intégralement géré par Google ou Apple.</p>
 
+    <h3>2.6 Données techniques et de diagnostic</h3>
+    <p>Pour détecter et corriger les pannes, nous pouvons collecter des rapports de plantage et de diagnostic (trace technique, type d'appareil, version de l'application, journal des actions ayant mené à l'erreur) via <strong>Sentry</strong>. <strong>Aucune adresse IP</strong> ni identifiant personnel n'est transmis (option désactivée côté SDK). Ces données servent uniquement à la stabilité de l'application.</p>
+
     <h2 id="sec-3">3. Avec qui partageons-nous vos données ?</h2>
     <table>
       <thead><tr><th>Sous-traitant</th><th>Données</th><th>Localisation</th><th>Mécanisme</th></tr></thead>
@@ -141,7 +144,8 @@
         <tr><td>Amazon Web Services (Cognito, AppSync, DynamoDB, S3, SES, Lambda)</td><td>Compte, contenu, géolocalisation guides, emails transactionnels</td><td>États-Unis (us-east-1)</td><td>Clauses Contractuelles Types + Data Privacy Framework UE-USA</td></tr>
         <tr><td>Amplitude (analytique)</td><td>ID anonyme appareil, événements agrégés</td><td>Union Européenne (Francfort)</td><td>Aucun transfert hors UE</td></tr>
         <tr><td>RevenueCat (abonnements)</td><td>Achats anonymisés (pas d'email)</td><td>États-Unis</td><td>CCT UE-USA</td></tr>
-        <tr><td>Google Firebase (push, à venir)</td><td>Token FCM anonyme</td><td>États-Unis</td><td>CCT UE-USA</td></tr>
+        <tr><td>Google Firebase Cloud Messaging (notifications push)</td><td>Jeton d'appareil FCM</td><td>États-Unis</td><td>CCT UE-USA + Data Privacy Framework</td></tr>
+        <tr><td>Sentry (diagnostic / plantages)</td><td>Rapports de plantage et diagnostics techniques (sans IP ni identifiant personnel)</td><td>Union Européenne</td><td>Aucun transfert hors UE</td></tr>
       </tbody>
     </table>
     <div class="highlight">
@@ -168,10 +172,10 @@
       <thead><tr><th>Droit</th><th>Comment l'exercer</th></tr></thead>
       <tbody>
         <tr><td><strong>Accès &amp; portabilité</strong> (Art. 15, 20)</td><td>Réglages → Données personnelles → <strong>Exporter mes données</strong>. Lien email valable 7 jours.</td></tr>
-        <tr><td><strong>Effacement</strong> (Art. 17)</td><td>Réglages → Données personnelles → <strong>Supprimer mon compte</strong>. Immédiat et irréversible.</td></tr>
+        <tr><td><strong>Effacement</strong> (Art. 17)</td><td>Réglages → Données personnelles → <strong>Supprimer mon compte</strong>. Immédiat et irréversible. Voir aussi notre <a href="suppression-compte.html">page de suppression de compte</a>.</td></tr>
         <tr><td><strong>Opposition analytique</strong> (Art. 21)</td><td>Réglages → Confidentialité → toggle « Analytique anonyme » → OFF</td></tr>
         <tr><td><strong>Rectification</strong> (Art. 16)</td><td>Réglages → modifier email/profil</td></tr>
-        <tr><td><strong>Limitation</strong> (Art. 18) ou <strong>plainte</strong> (Art. 77)</td><td>Email à <a href="mailto:tourguideyeup@gmail.com">tourguideyeup@gmail.com</a> ; en cas de litige, saisir la <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a></td></tr>
+        <tr><td><strong>Limitation</strong> (Art. 18) ou <strong>plainte</strong> (Art. 77)</td><td>Email à <a href="mailto:murmure.tourguide@gmail.com">murmure.tourguide@gmail.com</a> ; en cas de litige, saisir la <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a></td></tr>
       </tbody>
     </table>
     <p>Délai de réponse maximum : <strong>30 jours</strong>.</p>
@@ -194,7 +198,7 @@
     <p>Cette politique peut évoluer pour refléter des changements techniques ou réglementaires. Toute modification substantielle sera notifiée par email et/ou via une alerte dans l'app. La date en haut du document fait foi.</p>
 
     <h2 id="sec-10">10. Contact</h2>
-    <p><strong>Email</strong> : <a href="mailto:tourguideyeup@gmail.com">tourguideyeup@gmail.com</a></p>
+    <p><strong>Email</strong> : <a href="mailto:murmure.tourguide@gmail.com">murmure.tourguide@gmail.com</a></p>
     <p><strong>Adresse postale</strong> : Murmure, 25 boulevard commandant Autran, Grasse</p>
     <p><strong>Autorité de contrôle (plaintes)</strong> : CNIL, 3 Place de Fontenoy – TSA 80715, 75334 PARIS CEDEX 07, France</p>
   </main>
