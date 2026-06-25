@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
+import pkg from '../../package.json';
 
 // Story 4.2 (T6) — Footer migré : tokens DS + lexique strict (Hors-ligne, Tour),
 // accents FR préservés (Télécharger, confidentialité, réservés).
@@ -125,6 +126,17 @@ export default function Footer() {
           }}
         >
           &copy; {year} Murmure. Tous droits réservés.
+          <span
+            style={{
+              marginLeft: '1rem',
+              opacity: 0.45,
+              fontSize: tg.fontSize.caption ?? '0.75rem',
+              fontFamily: 'var(--font-mono)',
+              letterSpacing: '0.04em',
+            }}
+          >
+            v{pkg.version}
+          </span>
         </div>
       </div>
     </footer>
