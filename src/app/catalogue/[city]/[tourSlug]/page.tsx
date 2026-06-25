@@ -16,6 +16,7 @@ import { getTourBySlug, getCityBySlug } from '@/lib/api/tours-server';
 import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
 import SmartAppLink from '@/components/SmartAppLink';
+import TourPurchaseCard from '@/components/checkout/tour-purchase-card';
 import { S3Image } from '@/components/studio/s3-image';
 import { AnalyticsEvents } from '@/lib/analytics';
 
@@ -605,6 +606,15 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                       {editorial.cta.listen}
                     </Button>
                   </SmartAppLink>
+
+                  {/* mon-1.3b — web sale CTA for individually-priced tours */}
+                  {tour.purchaseType === 'paid' && (
+                    <TourPurchaseCard
+                      tourId={tour.id}
+                      title={tour.title}
+                      priceCents={tour.priceCents}
+                    />
+                  )}
 
                   <div
                     style={{

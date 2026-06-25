@@ -17,11 +17,16 @@ import {
 } from 'aws-amplify/auth';
 import { getGuideProfileByUserId } from '@/lib/api/appsync-client';
 
+// 'tourist' = an authenticated Cognito user WITHOUT a GuideProfile (e.g. an app
+// user logging in on the web to buy a tour, mon-1.3b). Tourists are NOT guides:
+// isGuide/isAdmin stay false so guide/admin UI remains gated.
+type AuthRole = 'guide' | 'admin' | 'tourist';
+
 interface AuthUser {
   id: string;
   email: string;
   displayName: string;
-  role: 'guide' | 'admin';
+  role: AuthRole;
   guideId: string | null;
 }
 
@@ -30,11 +35,12 @@ interface AuthContextType {
   isAuthenticated: boolean;
   isGuide: boolean;
   isAdmin: boolean;
+  isTourist: boolean;
   isLoading: boolean;
-  signIn: (email: string, password: string) => Promise<{ ok: boolean; role?: 'guide' | 'admin'; error?: string }>;
+  signIn: (email: string, password: string) => Promise<{ ok: boolean; role?: AuthRole; error?: string }>;
   signOut: () => Promise<void>;
   /** Re-resolve the current Cognito session into AuthUser (use after signup). */
-  refreshUser: () => Promise<{ ok: boolean; role?: 'guide' | 'admin'; error?: string }>;
+  refreshUser: () => Promise<{ ok: boolean; role?: AuthRole; error?: string }>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -72,8 +78,10 @@ async function resolveAuthUser(): Promise<AuthUser | null> {
   const profile = await getGuideProfileByUserId(userId, 'userPool');
   console.log('[Auth] GuideProfile result:', profile);
   if (!profile) {
-    console.warn('[Auth] No GuideProfile found for userId:', userId);
-    return null;
+    // No guide profile → authenticated TOURIST (mon-1.3b: app user buying on web).
+    // Not a rejection anymore — they get a tourist session (no guide/admin rights).
+    console.log('[Auth] No GuideProfile — resolving as tourist for userId:', userId);
+    return { id: userId, email, displayName, role: 'tourist', guideId: null };
   }
 
   return {
@@ -121,7 +129,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const refreshUser = useCallback(async (): Promise<{ ok: boolean; role?: 'guide' | 'admin'; error?: string }> => {
+  const refreshUser = useCallback(async (): Promise<{ ok: boolean; role?: AuthRole; error?: string }> => {
     try {
       const resolved = await resolveAuthUser();
       if (!resolved) return { ok: false, error: 'Profil introuvable' };
@@ -134,7 +142,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signIn = useCallback(
-    async (email: string, password: string): Promise<{ ok: boolean; role?: 'guide' | 'admin'; error?: string }> => {
+    async (email: string, password: string): Promise<{ ok: boolean; role?: AuthRole; error?: string }> => {
       try {
         await amplifySignIn({ username: email, password });
       } catch (error) {
@@ -148,8 +156,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const resolved = await resolveAuthUser();
       if (!resolved) {
+        // Now only happens on a stale/invalid session (not "no guide profile").
         await amplifySignOut();
-        return { ok: false, error: 'Compte non autorisé — aucun profil guide trouvé' };
+        return { ok: false, error: 'Session invalide — reconnectez-vous' };
       }
       setUser(resolved);
       return { ok: true, role: resolved.role };
@@ -173,6 +182,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isAuthenticated: !!user,
         isGuide: user?.role === 'guide' || user?.role === 'admin',
         isAdmin: user?.role === 'admin',
+        isTourist: user?.role === 'tourist',
         isLoading,
         signIn,
         signOut,

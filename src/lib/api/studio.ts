@@ -470,8 +470,16 @@ export async function createStudioSession(
 }
 
 /**
- * Clone a published session as V2 draft. Copies all scenes (text, audio, photos, GPS).
- * Does NOT clone translated segments — V2 starts in source language only.
+ * Clone a published session as a new-version draft. Copies all scenes (text,
+ * audio, photos, GPS) AND carries the existing translations forward:
+ *  - translated SceneSegments (language ≠ source) are cloned to the new scenes,
+ *    with `sourceUpdatedAt` = the new scene's updatedAt so the existing staleness
+ *    mechanism flags a translation "à actualiser" as soon as the guide edits that
+ *    scene's source content in the new version;
+ *  - the session's `availableLanguages` carry over;
+ *  - language entitlements (TourLanguagePurchase) are re-linked to the new
+ *    session with `amountCents: 0` (already paid in the prior version → no
+ *    re-charge) and `moderationStatus: 'draft'` (re-moderated with the new version).
  */
 export async function cloneSessionAsV2(
   parentSessionId: string,
@@ -500,7 +508,7 @@ export async function cloneSessionAsV2(
   }
 
   try {
-    const { createStudioSessionMutation, createStudioSceneMutation, updateGuideTourMutation, updateStudioSessionMutation } = await import('./appsync-client');
+    const { createStudioSessionMutation, createStudioSceneMutation, updateGuideTourMutation, updateStudioSessionMutation, listLanguagePurchasesBySession, createLanguagePurchaseMutation } = await import('./appsync-client');
 
     // Create new session
     const sessResult = await createStudioSessionMutation({
@@ -522,9 +530,10 @@ export async function cloneSessionAsV2(
       await updateStudioSessionMutation(newSessionId, { routePathJson: JSON.stringify(parentSession.routePath) });
     }
 
-    // Clone scenes
+    // Clone scenes + carry their translated segments.
+    const sourceLang = parentSession.language ?? 'fr';
     for (const scene of parentScenes.sort((a, b) => a.sceneIndex - b.sceneIndex)) {
-      await createStudioSceneMutation({
+      const created = await createStudioSceneMutation({
         sessionId: newSessionId,
         sceneIndex: scene.sceneIndex,
         title: scene.title ?? '',
@@ -538,6 +547,53 @@ export async function cloneSessionAsV2(
         longitude: scene.longitude ?? undefined,
         archived: false,
       });
+      if (!created.ok) continue;
+      const newScene = created.data as { id: string; updatedAt?: string };
+      // staleness baseline = the new scene's updatedAt at clone time.
+      const baseline = newScene.updatedAt ?? new Date().toISOString();
+      const segs = await listSegmentsByScene(scene.id);
+      for (const seg of segs) {
+        if (!seg.language || seg.language === sourceLang) continue; // keep translations only
+        await createSceneSegment({
+          sceneId: newScene.id,
+          segmentIndex: seg.segmentIndex,
+          audioKey: seg.audioKey ?? undefined,
+          transcriptText: seg.transcriptText ?? undefined,
+          translatedTitle: seg.translatedTitle ?? undefined,
+          startTimeMs: seg.startTimeMs ?? undefined,
+          endTimeMs: seg.endTimeMs ?? undefined,
+          language: seg.language,
+          sourceSegmentId: seg.id,
+          status: seg.status,
+          sourceUpdatedAt: baseline,
+        });
+      }
+    }
+
+    // Carry available languages onto the new-version session.
+    if (parentSession.availableLanguages && parentSession.availableLanguages.length > 0) {
+      await updateStudioSessionMutation(newSessionId, {
+        availableLanguages: parentSession.availableLanguages,
+      });
+    }
+
+    // Re-link language entitlements to the new version (no re-charge, re-moderated).
+    const purchasesRes = await listLanguagePurchasesBySession(parentSessionId);
+    if (purchasesRes.ok) {
+      for (const p of purchasesRes.data) {
+        const pr = p as Record<string, unknown>;
+        if (pr.status !== 'active') continue;
+        await createLanguagePurchaseMutation({
+          guideId: parentSession.guideId,
+          sessionId: newSessionId,
+          language: pr.language as string,
+          qualityTier: (pr.qualityTier as 'standard' | 'pro') ?? 'standard',
+          provider: pr.provider as 'marianmt' | 'deepl' | undefined,
+          purchaseType:
+            (pr.purchaseType as 'single' | 'pack_3' | 'pack_all' | 'free_first') ?? 'single',
+          amountCents: 0,
+        });
+      }
     }
 
     // Link draft session to tour
@@ -1141,6 +1197,8 @@ export interface CreateSegmentInput {
   language?: string;
   sourceSegmentId?: string;
   status?: SegmentStatus;
+  /** mon-1.3/versioning: source scene's updatedAt at clone time → staleness baseline. */
+  sourceUpdatedAt?: string;
 }
 
 export async function createSceneSegment(
@@ -1164,7 +1222,7 @@ export async function createSceneSegment(
       status: input.status ?? 'empty',
       manuallyEdited: false,
       translatedTitle: input.translatedTitle ?? null,
-      sourceUpdatedAt: null,
+      sourceUpdatedAt: input.sourceUpdatedAt ?? null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };

@@ -61,6 +61,15 @@ const AVAILABLE_LANGUAGES = [
   { value: 'it', label: 'Italien' },
 ];
 
+// mon-1.2 (parité web) — modèle d'accès de la visite, écrit sur GuideTour.
+const PURCHASE_TYPE_OPTIONS = [
+  { value: 'free', label: 'Gratuite' },
+  { value: 'paid', label: 'Payante' },
+  { value: 'subscription_only', label: 'Abonnés uniquement' },
+];
+const PRICE_MIN_EUROS = 0.99;
+const PRICE_MAX_EUROS = 49.99;
+
 export default function GeneralPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
@@ -80,6 +89,10 @@ export default function GeneralPage() {
   const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0);
+  // mon-1.2 (parité web) — monétisation
+  const [purchaseType, setPurchaseType] = useState<'free' | 'paid' | 'subscription_only'>('free');
+  const [priceEuros, setPriceEuros] = useState('');
+  const [priceError, setPriceError] = useState<string | null>(null);
 
   // Cover photo state
   const [coverPhotoKey, setCoverPhotoKey] = useState<string | null>(null);
@@ -152,6 +165,11 @@ export default function GeneralPage() {
                 setDescription((tour.description as string) || '');
                 setDuration((tour.duration as number) || 0);
                 setDistance((tour.distance as number) || 0);
+                setPurchaseType(
+                  (tour.purchaseType as 'free' | 'paid' | 'subscription_only') ?? 'free',
+                );
+                const pc = tour.priceCents as number | undefined;
+                setPriceEuros(typeof pc === 'number' ? (pc / 100).toFixed(2) : '');
               }
             } catch (e) {
               logger.warn(SERVICE_NAME, 'Failed to load tour data', {
@@ -245,6 +263,21 @@ export default function GeneralPage() {
 
   const handleSave = useCallback(async () => {
     if (!session) return;
+
+    // mon-1.2 (parité web) — validate price for a paid tour before saving.
+    let priceCents: number | null = null;
+    if (purchaseType === 'paid') {
+      const euros = Number(priceEuros.replace(',', '.'));
+      if (!Number.isFinite(euros) || euros < PRICE_MIN_EUROS || euros > PRICE_MAX_EUROS) {
+        setPriceError(
+          `Prix entre ${PRICE_MIN_EUROS.toFixed(2).replace('.', ',')} € et ${PRICE_MAX_EUROS.toFixed(2).replace('.', ',')} €`,
+        );
+        return;
+      }
+      priceCents = Math.round(euros * 100);
+    }
+    setPriceError(null);
+
     try {
       const appsync = await import('@/lib/api/appsync-client');
       await appsync.updateStudioSessionMutation(sessionId, {
@@ -261,6 +294,9 @@ export default function GeneralPage() {
           duration,
           distance,
           poiCount: scenesCount,
+          // mon-1.2 (parité web) → consommé par mon-1.3b (createTourPaymentIntent lit GuideTour).
+          purchaseType,
+          priceCents,
         });
       }
       localStorage.setItem(
@@ -287,6 +323,8 @@ export default function GeneralPage() {
     selectedLanguages,
     selectedThemes,
     scenesCount,
+    purchaseType,
+    priceEuros,
   ]);
 
   if (isLoading) {
@@ -508,6 +546,51 @@ export default function GeneralPage() {
           max={3}
         />
       </WizField>
+
+      {/* ───── Monétisation (mon-1.2 parité web) ───── */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <WizField
+          label="Monétisation"
+          htmlFor="tour-purchase-type"
+          helper="Comment les voyageurs accèdent à cette visite."
+        >
+          <WizSelect
+            id="tour-purchase-type"
+            options={PURCHASE_TYPE_OPTIONS}
+            value={purchaseType}
+            onChange={(e) =>
+              setPurchaseType(e.target.value as 'free' | 'paid' | 'subscription_only')
+            }
+            disabled={isLocked}
+            data-testid="purchase-type-select"
+          />
+        </WizField>
+        {purchaseType === 'paid' && (
+          <WizField
+            label="Prix (€)"
+            htmlFor="tour-price"
+            helper="Entre 0,99 € et 49,99 €. Le prix in-app dépend du produit créé sur le store."
+          >
+            <WizInput
+              id="tour-price"
+              type="number"
+              min={PRICE_MIN_EUROS}
+              max={PRICE_MAX_EUROS}
+              step={0.01}
+              value={priceEuros}
+              onChange={(e) => setPriceEuros(e.target.value)}
+              disabled={isLocked}
+              data-testid="price-input"
+              placeholder="4.99"
+            />
+          </WizField>
+        )}
+      </div>
+      {priceError && (
+        <div className="text-meta text-danger mb-3" role="alert" data-testid="price-error">
+          {priceError}
+        </div>
+      )}
 
       {/* ───── Multilang (visible quand soumis/publié) ───── */}
       {(session.status === 'submitted' ||

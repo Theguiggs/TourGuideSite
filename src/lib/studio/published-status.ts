@@ -29,25 +29,42 @@ export async function withPublishedStatus(sessions: StudioSession[]): Promise<St
   if (shouldUseStubs() || sessions.length === 0) return sessions;
 
   const { getGuideTourById, updateStudioSessionMutation } = await import('@/lib/api/appsync-client');
-  const statuses = await Promise.all(
+  const tours = await Promise.all(
     sessions.map((s) =>
       s.tourId
         ? getGuideTourById(s.tourId)
-            .then((t) => (t as { status?: string } | null)?.status ?? null)
+            .then((t) => (t as { status?: string; draftSessionId?: string } | null) ?? null)
             .catch(() => null)
         : Promise.resolve(null),
     ),
   );
 
-  // Persist the fix for approved-but-unsynced sessions (narrow: 'submitted' only).
+  // A session represents the LIVE version only if its tour is published AND it is
+  // NOT the work-in-progress version. Because a V2 (cloneSessionAsV2) SHARES its
+  // parent's tourId, we must never promote/heal:
+  //   - the session pointed to by GuideTour.draftSessionId (the version being edited), or
+  //   - any session still in a working state (draft/editing/recording).
+  // Otherwise an unvalidated V2 of a published V1 would wrongly appear — or be
+  // persisted — as 'published', bypassing moderation. (Bug fix 2026-05-31.)
+  const WIP_STATES = ['draft', 'editing', 'recording'];
+  const isLiveVersion = (i: number): boolean => {
+    const tour = tours[i];
+    const s = sessions[i];
+    if (tour?.status !== 'published') return false;
+    if (tour.draftSessionId && tour.draftSessionId === s.id) return false;
+    if (WIP_STATES.includes(s.status)) return false;
+    return true;
+  };
+
+  // Persist the fix for approved-but-unsynced LIVE sessions (narrow: 'submitted' only).
   sessions.forEach((s, i) => {
-    if (statuses[i] === 'published' && s.status === 'submitted') {
+    if (isLiveVersion(i) && s.status === 'submitted') {
       updateStudioSessionMutation(s.id, { status: 'published' }).catch(() => {});
     }
   });
 
   return sessions.map((s, i) =>
-    statuses[i] === 'published' && s.status !== 'published'
+    isLiveVersion(i) && s.status !== 'published'
       ? { ...s, status: 'published' as StudioSession['status'] }
       : s,
   );
