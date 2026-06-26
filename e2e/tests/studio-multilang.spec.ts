@@ -171,24 +171,18 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
     // Click button to open modal
     await openBtn.click();
 
-    // Modal should appear with step 1 visible
+    // Modal should appear (flat table UI — no stepped wizard)
     const modal = page.getByTestId('multilang-modal');
     await expect(modal).toBeVisible({ timeout: 5_000 });
     await expect(modal).toHaveAttribute('role', 'dialog');
     await expect(modal).toHaveAttribute('aria-modal', 'true');
 
-    // Step indicators visible
-    await expect(page.getByTestId('step-indicator-1')).toBeVisible();
-    await expect(page.getByTestId('step-indicator-2')).toBeVisible();
-    await expect(page.getByTestId('step-indicator-3')).toBeVisible();
+    // Language table rows (EN + ES seeded by beforeAll)
+    await expect(page.getByTestId('lang-row-en')).toBeVisible();
+    await expect(page.getByTestId('lang-row-es')).toBeVisible();
 
-    // Step 1 content: language selection
-    await expect(page.getByTestId('step-1')).toBeVisible();
-    await expect(page.getByText('Quelles langues souhaitez-vous ajouter')).toBeVisible();
-
-    // Next button disabled when no language selected
-    const nextBtn = page.getByTestId('step1-next-btn');
-    await expect(nextBtn).toBeDisabled();
+    // Confirm/pay button always rendered
+    await expect(page.getByTestId('confirm-btn')).toBeVisible();
 
     // Close modal
     await page.getByTestId('modal-close-btn').click();

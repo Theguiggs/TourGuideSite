@@ -95,10 +95,10 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
     // Should navigate to session detail
     await expect(page).toHaveURL(new RegExp(seeded.sessionId), { timeout: 10_000 });
 
-    // Verify session detail page has navigation links
-    await expect(page.getByTestId('general-link')).toBeVisible();
-    await expect(page.getByTestId('scenes-link')).toBeVisible();
-    await expect(page.getByTestId('preview-link-top')).toBeVisible();
+    // Verify wizard navigation tabs (WizardShell renders data-testid="wizard-tab-{key}")
+    await expect(page.getByTestId('wizard-tab-general')).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByTestId('wizard-tab-scenes')).toBeVisible();
+    await expect(page.getByTestId('wizard-tab-preview')).toBeVisible();
 
     await page.screenshot({ path: 'test-results/1.1-session-detail.png' });
     await context.close();
