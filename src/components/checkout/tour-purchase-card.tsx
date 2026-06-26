@@ -115,8 +115,6 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
     };
   }, [isAuthenticated, tourId]);
 
-  if (!isStripeConfigured()) return null;
-
   // Step 2: fetch a PaymentIntent (server resolves the authoritative price).
   async function beginPayment() {
     // Idempotent: once we already have a clientSecret (form mounted), don't re-fetch
@@ -160,6 +158,9 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
     // beginPayment is stable enough for this guarded one-shot; deps intentionally minimal.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step, isAuthenticated]);
+
+  // All hooks above this line — only now may we bail out early.
+  if (!isStripeConfigured()) return null;
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
