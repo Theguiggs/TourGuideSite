@@ -412,8 +412,8 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
 
     await expect(page.getByTestId('title-input')).toBeVisible({ timeout: 15_000 });
 
-    // Verify status badge is displayed
-    const statusBadge = page.getByTestId('session-status-badge');
+    // Verify status badge is displayed (WizardShell renders wizard-status-pill)
+    const statusBadge = page.getByTestId('wizard-status-pill');
     await expect(statusBadge).toBeVisible();
     const badgeText = await statusBadge.textContent();
     expect(badgeText).toBeTruthy();
@@ -424,8 +424,11 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
     const multilangSection = page.getByTestId('multilang-section');
     await expect(multilangSection).toBeVisible({ timeout: 5_000 });
 
-    // "Ouvrir le multilangue" button should be present
+    // "Ouvrir le multilangue" button — inside Collapsible, may be closed before purchases load
     const multilangBtn = page.getByTestId('open-multilang-btn');
+    await multilangBtn.waitFor({ state: 'visible', timeout: 3_000 }).catch(async () => {
+      await multilangSection.click();
+    });
     await expect(multilangBtn).toBeVisible();
 
     await page.screenshot({ path: 'test-results/1.10-multilang-button.png' });
