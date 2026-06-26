@@ -64,8 +64,9 @@ test.describe('Catalogue POIs', () => {
     await expect(page.getByText('min').first()).toBeVisible();
     await expect(page.getByText('km').first()).toBeVisible();
 
-    // App CTA — detail page links into the Murmure app ("Ouvrir dans Murmure")
-    await expect(page.getByText(/Ouvrir dans Murmure/i).first()).toBeVisible();
+    // App CTA — sidebar always shows download prompt ("Téléchargez Murmure")
+    // "Ouvrir dans Murmure" only appears in QR-scan context (?source=qr)
+    await expect(page.getByText(/Téléchargez Murmure/i).first()).toBeVisible();
   });
 
   test('tour detail shows reviews with ratings', async ({ page }) => {

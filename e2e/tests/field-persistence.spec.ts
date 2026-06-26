@@ -187,9 +187,9 @@ test.describe.serial('Field Persistence', () => {
     await descInput.clear();
     await descInput.fill(newDesc);
 
-    // Save
-    await page.locator('[data-testid="save-general-btn"], button:has-text("Enregistrer")').first().click();
-    await page.waitForTimeout(3_000);
+    // Save — wait for confirmation the same way tests 1 and 2 do
+    await page.getByTestId('save-general-btn').click();
+    await expect(page.locator('[role="status"]', { hasText: /Enregistr/i })).toBeVisible({ timeout: 5_000 });
 
     // Navigate away
     await page.goto(`${sessionUrl}/scenes`);

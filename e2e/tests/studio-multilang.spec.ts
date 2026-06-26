@@ -161,8 +161,15 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
     await page.goto(`${sessionUrl}/general`);
     await expect(page.getByTestId('multilang-section')).toBeVisible({ timeout: 15_000 });
 
+    // The Collapsible defaultOpen depends on purchasedLanguages being loaded at mount.
+    // If they weren't ready yet, the section is closed — click header to open it.
+    const openBtn = page.getByTestId('open-multilang-btn');
+    await openBtn.waitFor({ state: 'visible', timeout: 3_000 }).catch(async () => {
+      await page.getByTestId('multilang-section').click();
+    });
+
     // Click button to open modal
-    await page.getByTestId('open-multilang-btn').click();
+    await openBtn.click();
 
     // Modal should appear with step 1 visible
     const modal = page.getByTestId('multilang-modal');

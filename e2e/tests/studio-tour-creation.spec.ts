@@ -77,19 +77,20 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
 
     await page.goto('/');
     await injectRGPDConsent(page);
-    await page.goto(STUDIO_BASE);
+    // Tours list moved from dashboard to /tours sub-page
+    await page.goto(`${STUDIO_BASE}/tours`);
 
-    // Wait for sessions list to load (seeded data guarantees at least one session)
-    await page.waitForSelector('[data-testid="sessions-list"]', { timeout: 15_000 });
+    // Wait for tours list to load
+    await page.waitForSelector('[data-testid="tours-list"]', { timeout: 15_000 });
 
-    // Verify the seeded session card is displayed
-    const sessionCard = page.getByTestId(`session-card-${seeded.sessionId}`);
+    // Find the seeded session card via its data-session-id attribute (set by TourCard)
+    const sessionCard = page.locator(`[data-session-id="${seeded.sessionId}"]`);
     await expect(sessionCard).toBeVisible({ timeout: 10_000 });
 
     await page.screenshot({ path: 'test-results/1.1-session-list.png' });
 
-    // Click the session card
-    await sessionCard.click({ timeout: 10_000 });
+    // Click the first link inside the card (navigates to the session)
+    await sessionCard.locator('a').first().click({ timeout: 10_000 });
 
     // Should navigate to session detail
     await expect(page).toHaveURL(new RegExp(seeded.sessionId), { timeout: 10_000 });
