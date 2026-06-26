@@ -118,8 +118,8 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
     // Wait for page to load
     await expect(page.getByTestId('title-input')).toBeVisible({ timeout: 15_000 });
 
-    // Verify status badge is displayed
-    await expect(page.getByTestId('session-status-badge')).toBeVisible();
+    // Verify status badge is displayed (WizardShell renders wizard-status-pill)
+    await expect(page.getByTestId('wizard-status-pill')).toBeVisible();
 
     // Verify form fields are present and editable
     await expect(page.getByTestId('title-input')).toBeVisible();

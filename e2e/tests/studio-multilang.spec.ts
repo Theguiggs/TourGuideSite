@@ -433,15 +433,20 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
     const { context, page } = await createGuideContext(browser, guidePath);
 
     await page.goto(`${sessionUrl}/general`);
-    await expect(page.getByTestId('open-multilang-btn')).toBeVisible({ timeout: 15_000 });
-    await page.getByTestId('open-multilang-btn').click();
+    await expect(page.getByTestId('multilang-section')).toBeVisible({ timeout: 15_000 });
+    // Collapsible may be closed if purchasedLanguages hadn't loaded at mount
+    const openBtn2 = page.getByTestId('open-multilang-btn');
+    await openBtn2.waitFor({ state: 'visible', timeout: 3_000 }).catch(async () => {
+      await page.getByTestId('multilang-section').click();
+    });
+    await openBtn2.click();
 
-    // Modal ARIA
+    // Modal ARIA (aria-label matches the rendered component)
     const modal = page.getByTestId('multilang-modal');
     await expect(modal).toBeVisible({ timeout: 5_000 });
     await expect(modal).toHaveAttribute('role', 'dialog');
     await expect(modal).toHaveAttribute('aria-modal', 'true');
-    await expect(modal).toHaveAttribute('aria-label', 'Ouvrir le multilangue');
+    await expect(modal).toHaveAttribute('aria-label', 'Ajouter des langues');
 
     // Close button has aria-label
     const closeBtn = page.getByTestId('modal-close-btn');
