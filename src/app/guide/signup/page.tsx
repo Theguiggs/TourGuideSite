@@ -8,12 +8,13 @@
  * After confirmation: auto sign-in + create GuideProfile in AppSync → dashboard
  */
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { signUp, confirmSignUp, signIn as amplifySignIn, fetchAuthSession, signOut as amplifySignOut } from 'aws-amplify/auth';
 import { createGuideProfileMutation, getGuideProfileByUserId } from '@/lib/api/appsync-client';
 import { useAuth } from '@/lib/auth/auth-context';
+import { trackEvent, GuideAnalyticsEvents } from '@/lib/analytics';
 
 const CITIES = [
   'Grasse', 'Nice', 'Cannes', 'Antibes', 'Monaco',
@@ -63,6 +64,14 @@ export default function GuideSignupPage() {
   // Step 2 fields
   const [code, setCode] = useState('');
   const [resendCooldown, setResendCooldown] = useState(0);
+
+  const signupStartedFired = useRef(false);
+
+  function trackSignupStarted() {
+    if (signupStartedFired.current) return;
+    signupStartedFired.current = true;
+    trackEvent(GuideAnalyticsEvents.GUIDE_SIGNUP_STARTED);
+  }
 
   // ---- Validation ----
 
@@ -160,6 +169,7 @@ export default function GuideSignupPage() {
 
         // 5. Refresh auth-context (reads the new GuideProfile and populates session)
         const refreshResult = await refreshUser();
+        trackEvent(GuideAnalyticsEvents.GUIDE_SIGNUP_COMPLETED, { city });
         if (refreshResult.ok) {
           router.push('/guide/dashboard');
         } else {
@@ -252,7 +262,7 @@ export default function GuideSignupPage() {
                     id="displayName"
                     type="text"
                     value={displayName}
-                    onChange={(e) => setDisplayName(e.target.value)}
+                    onChange={(e) => { trackSignupStarted(); setDisplayName(e.target.value); }}
                     placeholder="Marie Dupont"
                     required
                     className={`${inputBase} ${errors.displayName ? 'border-grenadine' : 'border-line'}`}
@@ -268,7 +278,7 @@ export default function GuideSignupPage() {
                     id="email"
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => { trackSignupStarted(); setEmail(e.target.value); }}
                     placeholder="guide@exemple.com"
                     required
                     autoComplete="email"
@@ -286,11 +296,27 @@ export default function GuideSignupPage() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Min. 8 caractères, 1 majuscule, 1 chiffre"
+                    placeholder="Votre mot de passe"
                     required
                     autoComplete="new-password"
                     className={`${inputBase} ${errors.password ? 'border-grenadine' : 'border-line'}`}
                   />
+                  {password.length > 0 && (
+                    <ul className="mt-2 space-y-1">
+                      {[
+                        { label: '8 caractères minimum', ok: password.length >= 8 },
+                        { label: 'Une majuscule (A–Z)', ok: /[A-Z]/.test(password) },
+                        { label: 'Une minuscule (a–z)', ok: /[a-z]/.test(password) },
+                        { label: 'Un chiffre (0–9)', ok: /[0-9]/.test(password) },
+                        { label: 'Un caractère spécial (!@#$%…)', ok: /[^A-Za-z0-9]/.test(password) },
+                      ].map(({ label, ok }) => (
+                        <li key={label} className={`flex items-center gap-1.5 text-meta transition-colors ${ok ? 'text-mer' : 'text-ink-40'}`}>
+                          <span className="text-[11px] font-bold">{ok ? '✓' : '○'}</span>
+                          {label}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   {errors.password && <p className="text-danger text-meta mt-1">{errors.password}</p>}
                 </div>
 
