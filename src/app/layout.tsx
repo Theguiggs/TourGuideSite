@@ -3,8 +3,10 @@ import { DM_Serif_Display, DM_Serif_Text, Manrope, JetBrains_Mono } from 'next/f
 import './globals.css';
 import { SiteChrome } from '@/components/SiteChrome';
 import AmplifyProvider from '@/components/AmplifyProvider';
+import AmplitudeProvider from '@/components/AmplitudeProvider';
 import { AuthProvider } from '@/lib/auth/auth-context';
 import { DsVersionAttribute } from '@/components/DsVersionAttribute';
+import { PendingTourConfirmRecovery } from '@/components/checkout/pending-tour-confirm-recovery';
 
 // Story 1.3 — 4 familles DS auto-loadées via next/font/google.
 // Chaque font écrit sa variable CSS, alignée avec les noms de tokens.css
@@ -41,12 +43,8 @@ const jetBrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
-// Story 3.5 — OG images hybrides (static + Edge dynamique).
-// `/og-default.png` est généré par le pipeline d'export Story 3.1 (PinNegatif paper sur fond
-// grenadine + slogan). Tant que Story 3.1 n'a pas peuplé `public/og-default.png`, la balise
-// `og:image` pointera vers une 404 — voir `public/og-default-TODO.md`.
-// Les pages tour étendent ces metadata via `generateMetadata` pour pointer vers la route
-// Edge dynamique `/og/tour/[city]/[tourSlug]`.
+// OG image: opengraph-image.tsx in this directory generates the default at /opengraph-image.
+// Tour pages extend metadata via generateMetadata pointing to /og/tour/[city]/[tourSlug].
 export const metadata: Metadata = {
   metadataBase: new URL('https://murmure.app'),
   title: {
@@ -63,7 +61,7 @@ export const metadata: Metadata = {
     url: 'https://murmure.app',
     images: [
       {
-        url: '/og-default.png',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Murmure — Le monde a une voix.',
@@ -78,7 +76,7 @@ export const metadata: Metadata = {
       "Telecharger l'app gratuite.",
     images: [
       {
-        url: '/og-default.png',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Murmure',
@@ -122,11 +120,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="fr" data-ds="v2" className={fontVariables}>
       <body className="antialiased">
         <DsVersionAttribute>
-          <AmplifyProvider>
-            <AuthProvider>
-              <SiteChrome>{children}</SiteChrome>
-            </AuthProvider>
-          </AmplifyProvider>
+          <AmplitudeProvider>
+            <AmplifyProvider>
+              <AuthProvider>
+                <PendingTourConfirmRecovery />
+                <SiteChrome>{children}</SiteChrome>
+              </AuthProvider>
+            </AmplifyProvider>
+          </AmplitudeProvider>
         </DsVersionAttribute>
       </body>
     </html>

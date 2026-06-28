@@ -1,7 +1,4 @@
-/**
- * Web analytics events — will integrate with Amplitude when SDK is added.
- * For now, logs to console in development.
- */
+import { track } from '@/lib/amplitude';
 
 export const AnalyticsEvents = {
   WEB_LANDING_VISIT: 'web_landing_visit',
@@ -14,6 +11,8 @@ export const AnalyticsEvents = {
 } as const;
 
 export const GuideAnalyticsEvents = {
+  GUIDE_SIGNUP_STARTED: 'guide_signup_started',
+  GUIDE_SIGNUP_COMPLETED: 'guide_signup_completed',
   GUIDE_PORTAL_LOGIN: 'guide_portal_login',
   GUIDE_PORTAL_DASHBOARD_VIEW: 'guide_portal_dashboard_view',
   GUIDE_PORTAL_TOUR_EDIT: 'guide_portal_tour_edit',
@@ -67,6 +66,5 @@ export function trackEvent(event: EventName, properties?: Record<string, unknown
     console.log(`[Analytics] ${event}`, properties);
   }
 
-  // TODO: Integrate @amplitude/analytics-browser
-  // amplitude.track(event, properties);
+  track(event, properties);
 }
