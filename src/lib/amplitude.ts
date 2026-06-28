@@ -39,7 +39,7 @@ export function identifyUser(userId: string, traits?: Record<string, unknown>): 
   amplitude.setUserId(userId);
   if (traits) {
     const identity = new amplitude.Identify();
-    Object.entries(traits).forEach(([key, value]) => identity.set(key, value as amplitude.ValidPropertyType));
+    Object.entries(traits).forEach(([key, value]) => identity.set(key, value as string | number | boolean | string[] | number[] | boolean[]));
     amplitude.identify(identity);
   }
 }
