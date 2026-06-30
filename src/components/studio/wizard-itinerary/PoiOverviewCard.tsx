@@ -33,7 +33,6 @@ export function PoiOverviewCard({
   onMoveUp,
   onMoveDown,
   onEdit,
-  onToggleValidate,
   onDelete,
 }: PoiOverviewCardProps) {
   return (

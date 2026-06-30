@@ -7,7 +7,6 @@ describe('PoiOverviewCard', () => {
     index: 1,
     title: 'Place du Peyra',
     hasGps: true,
-    validated: false,
   };
 
   it("rend numéro et titre", () => {
@@ -26,28 +25,19 @@ describe('PoiOverviewCard', () => {
     expect(screen.getByText(/Pas de GPS/)).toBeInTheDocument();
   });
 
-  it("affiche '✓ Validé' quand validated=true", () => {
-    render(<PoiOverviewCard {...baseProps} validated />);
-    expect(screen.getByTestId('poi-validated')).toBeInTheDocument();
-  });
-
-  it("appelle onEdit / onToggleValidate / onDelete", () => {
+  it("appelle onEdit / onDelete", () => {
     const onEdit = jest.fn();
-    const onToggleValidate = jest.fn();
     const onDelete = jest.fn();
     render(
       <PoiOverviewCard
         {...baseProps}
         onEdit={onEdit}
-        onToggleValidate={onToggleValidate}
         onDelete={onDelete}
       />,
     );
     fireEvent.click(screen.getByTestId('poi-edit'));
-    fireEvent.click(screen.getByTestId('poi-validate'));
     fireEvent.click(screen.getByTestId('poi-delete'));
     expect(onEdit).toHaveBeenCalledTimes(1);
-    expect(onToggleValidate).toHaveBeenCalledTimes(1);
     expect(onDelete).toHaveBeenCalledTimes(1);
   });
 
