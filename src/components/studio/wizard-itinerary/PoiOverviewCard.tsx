@@ -6,8 +6,6 @@ interface PoiOverviewCardProps {
   title: string;
   /** Has GPS coordinates set. */
   hasGps: boolean;
-  /** Validated by the guide. */
-  validated: boolean;
   /** Disable all interactive controls (locked status). */
   locked?: boolean;
   /** Show reorder ▲ button (false for first item). */
@@ -17,7 +15,6 @@ interface PoiOverviewCardProps {
   onMoveUp?: () => void;
   onMoveDown?: () => void;
   onEdit?: () => void;
-  onToggleValidate?: () => void;
   onDelete?: () => void;
 }
 
@@ -30,7 +27,6 @@ export function PoiOverviewCard({
   index,
   title,
   hasGps,
-  validated,
   locked = false,
   canMoveUp = false,
   canMoveDown = false,
@@ -89,11 +85,7 @@ export function PoiOverviewCard({
           <span className={`text-meta ${hasGps ? 'text-success' : 'text-ocre'}`}>
             {hasGps ? 'GPS OK' : 'Pas de GPS'}
           </span>
-          {validated && (
-            <span className="text-meta text-olive font-bold ml-2" data-testid="poi-validated">
-              ✓ Validé
-            </span>
-          )}
+
         </div>
       </div>
 
@@ -110,23 +102,6 @@ export function PoiOverviewCard({
               className="w-7 h-7 rounded-sm bg-transparent border-none text-ink-60 hover:text-grenadine hover:bg-grenadine-soft transition cursor-pointer text-meta"
             >
               ✎
-            </button>
-          )}
-          {onToggleValidate && (
-            <button
-              type="button"
-              onClick={onToggleValidate}
-              data-testid="poi-validate"
-              aria-label={validated ? 'Retirer la validation' : 'Valider'}
-              title={validated ? 'Retirer la validation' : 'Valider'}
-              aria-pressed={validated}
-              className={`w-7 h-7 rounded-sm bg-transparent border-none transition cursor-pointer text-meta ${
-                validated
-                  ? 'text-success'
-                  : 'text-ink-60 hover:text-success hover:bg-olive-soft'
-              }`}
-            >
-              ✓
             </button>
           )}
           {onDelete && (

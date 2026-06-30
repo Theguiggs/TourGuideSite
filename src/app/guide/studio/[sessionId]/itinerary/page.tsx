@@ -82,7 +82,6 @@ export default function ItineraryPage() {
   const [error, setError] = useState<string | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<EditingPOI | null>(null);
-  const [validatedPois, setValidatedPois] = useState<Set<string>>(new Set());
   const [waypoints, setWaypoints] = useState<Waypoint[]>([]);
   const [routeInfo, setRouteInfo] = useState<{
     distanceMeters: number;
@@ -377,25 +376,11 @@ export default function ItineraryPage() {
     setEditForm(null);
   }, []);
 
-  const toggleValidation = useCallback((sceneId: string) => {
-    setValidatedPois((prev) => {
-      const next = new Set(prev);
-      if (next.has(sceneId)) next.delete(sceneId);
-      else next.add(sceneId);
-      return next;
-    });
-  }, []);
-
   const archivePoi = useCallback(
     (sceneId: string) => {
       setScenes((prev) =>
         prev.map((s) => (s.id === sceneId ? { ...s, archived: true } : s)),
       );
-      setValidatedPois((prev) => {
-        const next = new Set(prev);
-        next.delete(sceneId);
-        return next;
-      });
       persistSceneUpdate(sceneId, { archived: true });
     },
     [persistSceneUpdate],
@@ -694,7 +679,7 @@ export default function ItineraryPage() {
     <div className="flex flex-col gap-2" data-testid="poi-list">
       {activeScenes.map((scene, index) => {
         const isEditing = editingId === scene.id;
-        const isValidated = validatedPois.has(scene.id);
+
         const hasGps = !!(scene.latitude && scene.longitude);
 
         if (!isLocked && isEditing && editForm) {
@@ -816,14 +801,12 @@ export default function ItineraryPage() {
             index={index + 1}
             title={scene.title || `POI ${index + 1}`}
             hasGps={hasGps}
-            validated={isValidated}
             locked={isLocked}
             canMoveUp={index > 0}
             canMoveDown={index < activeScenes.length - 1}
             onMoveUp={() => moveScene(scene.id, 'up')}
             onMoveDown={() => moveScene(scene.id, 'down')}
             onEdit={() => startEdit(scene)}
-            onToggleValidate={() => toggleValidation(scene.id)}
             onDelete={() => archivePoi(scene.id)}
           />
         );
@@ -1019,7 +1002,6 @@ export default function ItineraryPage() {
         <MapStatsHeader
           totalPois={activeScenes.length}
           geolocated={geoScenes.length}
-          validated={validatedPois.size}
         />
       </div>
 
