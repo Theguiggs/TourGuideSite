@@ -80,7 +80,7 @@ export function PoiOverviewCard({
 
       {/* Title + indicators */}
       <div className="min-w-0">
-        <div className="text-caption font-medium text-ink truncate">{title}</div>
+        <div className="text-caption font-medium text-ink line-clamp-2 break-words">{title}</div>
         <div className="flex items-center gap-1.5 mt-1">
           <span
             className={`w-1.5 h-1.5 rounded-pill ${hasGps ? 'bg-success' : 'bg-ocre'}`}
