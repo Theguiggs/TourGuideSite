@@ -90,6 +90,7 @@ export default function ItineraryPage() {
   const [addressSearch, setAddressSearch] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [searchResult, setSearchResult] = useState<string | null>(null);
+  const [flyToCoords, setFlyToCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [clickToPlaceId, setClickToPlaceId] = useState<string | null>(null);
   const [mapMode, setMapMode] = useState(false);
   const [panelOpen, setPanelOpen] = useState(true);
@@ -320,12 +321,19 @@ export default function ItineraryPage() {
           ? { ...prev, latitude: result.lat.toFixed(6), longitude: result.lng.toFixed(6) }
           : prev,
       );
-      setSearchResult(result.display);
+      setScenes((prev) =>
+        prev.map((s) =>
+          s.id === editForm.id ? { ...s, latitude: result.lat, longitude: result.lng } : s,
+        ),
+      );
+      persistSceneUpdate(editForm.id, { latitude: result.lat, longitude: result.lng });
+      setFlyToCoords({ lat: result.lat, lng: result.lng });
+      setSearchResult(`📍 ${result.display.split(',').slice(0, 2).join(',').trim()}`);
     } else {
       setSearchResult('Adresse non trouvée');
     }
     setIsSearching(false);
-  }, [addressSearch, editForm]);
+  }, [addressSearch, editForm, persistSceneUpdate]);
 
   const handleMapClickForPoi = useCallback(
     (sceneId: string, lat: number, lng: number) => {
@@ -595,6 +603,7 @@ export default function ItineraryPage() {
       }}
       manualMode={manualMode}
       pathOverride={pathOverride?.path ?? null}
+      flyToCoords={flyToCoords}
     />
   );
 
@@ -735,7 +744,9 @@ export default function ItineraryPage() {
                   </button>
                 </div>
                 {searchResult && (
-                  <p className="text-meta text-success mt-1 truncate">{searchResult}</p>
+                  <p className={`text-meta mt-1 truncate ${searchResult.startsWith('📍') ? 'text-success' : 'text-danger'}`}>
+                    {searchResult}
+                  </p>
                 )}
               </div>
               <div className="grid grid-cols-2 gap-2">

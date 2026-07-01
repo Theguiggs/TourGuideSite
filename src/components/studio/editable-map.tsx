@@ -43,6 +43,7 @@ interface EditableMapProps {
   freehandMode?: boolean;
   onFreehandFinish?: (path: LatLng[]) => void;
   pathOverride?: LatLng[] | null;
+  flyToCoords?: { lat: number; lng: number } | null;
 }
 
 const DEFAULT_FALLBACK = { center: [48.8566, 2.3522] as L.LatLngTuple, zoom: 12 };
@@ -151,6 +152,15 @@ function CursorClass({ cursor }: { cursor: 'grab' | 'crosshair' }) {
   return null;
 }
 
+function FlyTo({ lat, lng }: { lat: number; lng: number }) {
+  const map = useMap();
+  useEffect(() => {
+    map.flyTo([lat, lng], Math.max(map.getZoom(), 16), { duration: 0.8 });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [map, lat, lng]);
+  return null;
+}
+
 // ─────────────────────────────────────────────────────────────────────────
 // Main component
 
@@ -169,6 +179,7 @@ export function EditableMap({
   freehandMode = false,
   onFreehandFinish,
   pathOverride = null,
+  flyToCoords = null,
 }: EditableMapProps) {
   const geoScenes = useMemo(
     () => scenes.filter((s) => s.latitude !== null && s.longitude !== null),
@@ -396,6 +407,7 @@ export function EditableMap({
           oneShot
         />
         <CursorClass cursor={cursor} />
+        {flyToCoords && <FlyTo lat={flyToCoords.lat} lng={flyToCoords.lng} />}
 
         {!freehandMode && (
           <MapClickHandler onClick={handleMapClick} onDblClick={handleMapDblClick} />

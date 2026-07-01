@@ -515,11 +515,13 @@ export async function approveTour(
     if (!MOCK_DETAIL[moderationId]) return { ok: false, error: 'Item non trouve' };
     return { ok: true };
   }
-  // Get the tourId to also update GuideTour status
   const item = await resolveModerationItem(moderationId);
   if (!item) return { ok: false, error: 'Item de moderation introuvable' };
 
-  const [modResult, tourResult] = await Promise.all([
+  // item.sessionId is already available — no extra round-trip needed.
+  const sessionId = item.sessionId || undefined;
+
+  const [modResult, tourResult, sessionResult] = await Promise.all([
     appsync.updateModerationItemMutation(item.id, {
       status: 'approved',
       reviewDate: Date.now(),
@@ -527,22 +529,28 @@ export async function approveTour(
       feedbackJson: JSON.stringify({ notes }),
     }),
     appsync.updateGuideTourMutation(item.tourId, { status: 'published' }),
+    sessionId
+      ? appsync.updateStudioSessionMutation(sessionId, { status: 'published' })
+      : Promise.resolve({ ok: true as const }),
   ]);
   if (!modResult.ok) return { ok: false, error: modResult.error };
   if (!tourResult.ok) return { ok: false, error: tourResult.error };
+  if (!sessionResult.ok) {
+    logger.warn('ModerationAPI', 'approveTour: StudioSession publish sync failed (non-fatal)', { tourId: item.tourId, sessionId });
+  }
 
-  // Sync the StudioSession to 'published' too. The GuideTour publish above does
-  // NOT touch it (unlike sendBackForRevision, which syncs the session) — that gap
-  // left guide-side lists/KPIs showing approved tours as still "in review".
-  // Best-effort: the tour is already live, so don't fail approval if this hiccups.
-  try {
-    const tour = await appsync.getGuideTourById(item.tourId);
-    const sessionId = (tour as Record<string, unknown> | null)?.sessionId as string | undefined;
-    if (sessionId) {
-      await appsync.updateStudioSessionMutation(sessionId, { status: 'published' });
+  // pub-1: persist the published content version onto GuideTour (best-effort —
+  // don't block approval if the version field isn't deployed on AppSync yet).
+  if (sessionId) {
+    try {
+      const { getStudioSession } = await import('./studio');
+      const session = await getStudioSession(sessionId);
+      if (session && session.version > 1) {
+        await appsync.updateGuideTourMutation(item.tourId, { version: session.version });
+      }
+    } catch (e) {
+      logger.warn('ModerationAPI', 'approveTour: GuideTour version sync failed (non-fatal)', { tourId: item.tourId, error: String(e) });
     }
-  } catch (e) {
-    logger.warn('ModerationAPI', 'approveTour: StudioSession publish sync failed (non-fatal)', { tourId: item.tourId, error: String(e) });
   }
 
   // Auto-log to comment thread
