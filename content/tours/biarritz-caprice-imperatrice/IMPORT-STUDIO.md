@@ -30,20 +30,24 @@ Coordonnées **approximatives** : dans l'éditeur d'itinéraire, tu peux aussi
 **rechercher l'adresse** (le marqueur se place automatiquement) puis ajuster le
 point à la main. Vérifie chaque emplacement sur la carte avant de valider.
 
-| # | POI | Adresse / repère | Lat | Lng | Texte à coller |
-|---|-----|------------------|-----|-----|----------------|
-| 1 | Hôtel du Palais | 1 Av. de l'Impératrice | 43.4859 | -1.5618 | `scenes/01-hotel-du-palais.md` |
-| 2 | Église Alexandre-Nevski | 8 Av. de l'Impératrice | 43.4849 | -1.5593 | `scenes/02-eglise-russe.md` |
-| 3 | Grande Plage | Promenade / Bd du Général de Gaulle | 43.4835 | -1.5605 | `scenes/03-grande-plage.md` |
-| 4 | Casino municipal | 1 Av. Édouard VII | 43.4820 | -1.5612 | `scenes/04-casino.md` |
-| 5 | Chapelle Impériale | Rue Pellot | 43.4801 | -1.5585 | `scenes/05-chapelle-imperiale.md` |
-| 6 | Port des Pêcheurs | Port des Pêcheurs | 43.4843 | -1.5658 | `scenes/06-port-des-pecheurs.md` |
-| 7 | Rocher de la Vierge | Plateau de l'Atalaye / passerelle | 43.4836 | -1.5688 | `scenes/07-rocher-de-la-vierge.md` |
-| 8 | Port Vieux | Plage du Port Vieux | 43.4826 | -1.5675 | `scenes/08-port-vieux.md` |
-| 9 | Côte des Basques | Belvédère de la Côte des Basques | 43.4802 | -1.5672 | `scenes/09-cote-des-basques.md` |
+| # | POI | Adresse / repère | Lat | Lng | Fiabilité | Texte à coller |
+|---|-----|------------------|-----|-----|-----------|----------------|
+| 1 | Hôtel du Palais | 1 Av. de l'Impératrice | 43.4867 | -1.5564 | adresse officielle (entrée) | `scenes/01-hotel-du-palais.md` |
+| 2 | Église Alexandre-Nevski | 8 Av. de l'Impératrice | 43.4850 | -1.5577 | estimé ⚑ | `scenes/02-eglise-russe.md` |
+| 3 | Grande Plage | Promenade / mi-plage | 43.4843 | -1.5601 | estimé ⚑ | `scenes/03-grande-plage.md` |
+| 4 | Casino Barrière | 1 Av. Édouard VII | 43.4836 | -1.5597 | source web | `scenes/04-casino.md` |
+| 5 | Chapelle Impériale | Rue Pellot | 43.4832 | -1.5586 | source (Monumentum) | `scenes/05-chapelle-imperiale.md` |
+| 6 | Port des Pêcheurs | Allée Port des Pêcheurs | 43.4829 | -1.5653 | source web | `scenes/06-port-des-pecheurs.md` |
+| 7 | Rocher de la Vierge | Plateau de l'Atalaye / passerelle | 43.4834 | -1.5684 | source web | `scenes/07-rocher-de-la-vierge.md` |
+| 8 | Port Vieux | Plage du Port Vieux | 43.4825 | -1.5677 | source web | `scenes/08-port-vieux.md` |
+| 9 | Côte des Basques | Belvédère nord (Bd du Prince de Galles) | 43.4805 | -1.5672 | estimé ⚑ | `scenes/09-cote-des-basques.md` |
 
-> ⚠️ Ces coordonnées sont des estimations pour amorcer le placement. À contrôler
-> et corriger précisément dans l'éditeur (recherche d'adresse + glisser le marqueur).
+> ⚠️ Coordonnées WGS84 (décimal). Les lignes marquées ⚑ sont estimées ; les autres
+> proviennent de sources web croisées. À **contrôler dans l'éditeur** (recherche
+> d'adresse + glisser le marqueur). Les points 1 et 3 sont géocodés côté avenue
+> (entrée) — tu peux les glisser vers le front de mer si tu veux coller au récit.
+> La plage de la Côte des Basques s'étend loin vers le sud ; on place ici le
+> belvédère nord pour la continuité de marche avec le Port Vieux.
 
 ## 3. Scènes (onglet Scènes / Éditeur de texte)
 
