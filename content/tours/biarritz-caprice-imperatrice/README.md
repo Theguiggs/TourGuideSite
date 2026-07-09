@@ -4,7 +4,9 @@
 **Distance :** ~3 km | **POIs :** 9
 **Thème :** Comment le caprice d'une impératrice a transformé un village de chasseurs de baleines en plage des têtes couronnées d'Europe
 **Ton :** Confidence éditoriale Murmure (voix basse, intime, tutoiement)
-**Guide :** Amaia Etchegaray — historienne biarrote, spécialiste du Second Empire et de la Belle Époque sur la côte basque
+**Guide :** Steffen Guillaume
+
+> **Bio (proposition — à personnaliser dans ton profil guide) :** « Passionné de Biarritz et de son histoire, je fais revivre le Second Empire, la Belle Époque et l'âge d'or de la station : le village de baleiniers devenu la plage des rois d'Europe, sous le caprice d'une impératrice. »
 
 ## Structure
 
