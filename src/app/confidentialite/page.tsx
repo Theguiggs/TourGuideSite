@@ -9,7 +9,7 @@ import { Eyebrow } from '@murmure/design-system/web';
  * Prérequis de validation store (Apple / Google exigent une URL de politique
  * de confidentialité accessible publiquement). Le contenu ci-dessous est une
  * base structurée : les mentions marquées [À COMPLÉTER] doivent être renseignées
- * (raison sociale, SIREN, adresse du responsable de traitement) et l'ensemble
+ * (raison sociale, SIREN, adresse du responsable de traitement) et l’ensemble
  * relu par un juriste avant soumission.
  */
 export const metadata: Metadata = {
@@ -95,11 +95,11 @@ export default function ConfidentialitePage() {
               </li>
               <li>
                 <strong>Contenu créateur</strong> : pour les guides, les enregistrements audio,
-                textes et points d'intérêt (dont des données de localisation) fournis pour créer un
+                textes et points d’intérêt (dont des données de localisation) fournis pour créer un
                 parcours.
               </li>
               <li>
-                <strong>Usage</strong> : données techniques et statistiques d'utilisation
+                <strong>Usage</strong> : données techniques et statistiques d’utilisation
                 (événements analytiques, diagnostics) pour améliorer le service.
               </li>
             </ul>
@@ -118,7 +118,7 @@ export default function ConfidentialitePage() {
             <p>
               Nous faisons appel à des sous-traitants qui traitent des données pour notre compte,
               notamment : Amazon Web Services (hébergement, authentification et stockage), Stripe et
-              RevenueCat (paiements et gestion des abonnements), et nos outils d'analytique et de
+              RevenueCat (paiements et gestion des abonnements), et nos outils d’analytique et de
               diagnostic. Chacun est encadré par des garanties contractuelles appropriées.
             </p>
           </Section>
@@ -132,18 +132,18 @@ export default function ConfidentialitePage() {
             </p>
           </Section>
 
-          <Section title="6. Transferts hors de l'Union européenne">
+          <Section title="6. Transferts hors de l’Union européenne">
             <p>
-              Certains sous-traitants peuvent traiter des données en dehors de l'UE. Dans ce cas,
+              Certains sous-traitants peuvent traiter des données en dehors de l’UE. Dans ce cas,
               les transferts sont encadrés par des mécanismes reconnus (clauses contractuelles types
-              de la Commission européenne ou décisions d'adéquation).
+              de la Commission européenne ou décisions d’adéquation).
             </p>
           </Section>
 
           <Section title="7. Vos droits">
             <p>
-              Conformément au RGPD, vous disposez d'un droit d'accès, de rectification,
-              d'effacement, de limitation, d'opposition et de portabilité de vos données, ainsi que
+              Conformément au RGPD, vous disposez d’un droit d’accès, de rectification,
+              d’effacement, de limitation, d’opposition et de portabilité de vos données, ainsi que
               du droit de définir des directives post-mortem. Pour les exercer, écrivez à{' '}
               <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: tg.colors.grenadine }}>
                 {CONTACT_EMAIL}
@@ -155,16 +155,16 @@ export default function ConfidentialitePage() {
           <Section title="8. Cookies et stockage local">
             <p>
               Le portail web utilise le stockage local de votre navigateur pour maintenir votre
-              session d'authentification et vos préférences. Nous n'utilisons pas de cookies
-              publicitaires. [À COMPLÉTER : détailler tout cookie de mesure d'audience si applicable.]
+              session d’authentification et vos préférences. Nous n’utilisons pas de cookies
+              publicitaires. [À COMPLÉTER : détailler tout cookie de mesure d’audience si applicable.]
             </p>
           </Section>
 
           <Section title="9. Sécurité">
             <p>
               Nous mettons en œuvre des mesures techniques et organisationnelles pour protéger vos
-              données (chiffrement en transit, contrôle d'accès, hébergement sécurisé). Aucun système
-              n'étant infaillible, nous vous invitons à choisir un mot de passe robuste.
+              données (chiffrement en transit, contrôle d’accès, hébergement sécurisé). Aucun système
+              n’étant infaillible, nous vous invitons à choisir un mot de passe robuste.
             </p>
           </Section>
 
@@ -187,7 +187,7 @@ export default function ConfidentialitePage() {
 
           <p className="font-sans" style={{ marginTop: tg.space[10] }}>
             <Link href="/cgu" style={{ color: tg.colors.grenadine, fontWeight: 600 }}>
-              Voir les Conditions Générales d'Utilisation →
+              Voir les Conditions Générales d’Utilisation →
             </Link>
           </p>
         </div>
