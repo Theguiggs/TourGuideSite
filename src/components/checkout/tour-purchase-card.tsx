@@ -20,6 +20,7 @@ import { Button, tg } from '@murmure/design-system/web';
 import { getStripePromise, isStripeConfigured } from '@/lib/stripe/client';
 import { useAuth } from '@/lib/auth/auth-context';
 import { createTourPaymentIntent, confirmTourPurchase, ownsTour } from '@/lib/api/tour-purchase';
+import { emitPurchasesChanged } from '@/lib/checkout/purchase-events';
 
 interface Props {
   tourId: string;
@@ -256,6 +257,9 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
               onSuccess={() => {
                 setOwned(true);
                 setStep('done');
+                // M5 — notifier le reste du SPA (badges "Acheté", "Mes achats",
+                // catalogue) pour rafraîchir la propriété sans hard reload.
+                emitPurchasesChanged();
               }}
               onError={(msg) => {
                 setError(msg);

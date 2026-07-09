@@ -151,14 +151,20 @@ export async function submitForReview(
       logger.warn(SERVICE_NAME, 'Could not read coverPhotoKey for tour mirror', { error: String(e) });
     }
 
-    const tourResult = await appsync.updateGuideTourMutation(
-      tourId,
-      coverPhotoKey ? { status: 'review', coverPhotoKey } : { status: 'review' },
-    );
+    // C2 — the status transition goes through the guarded Lambda mutation (the
+    // guide can no longer write GuideTour.status directly). The cover mirror is a
+    // non-status field and stays a normal owner update below.
+    const tourResult = await appsync.setTourWorkflowStatusMutation(tourId, 'review');
     if (!tourResult.ok) {
-      logger.error(SERVICE_NAME, 'Tour update failed, rolling back session', { tourId, error: tourResult.error });
+      logger.error(SERVICE_NAME, 'Tour status transition failed, rolling back session', { tourId, error: tourResult.error });
       await appsync.updateStudioSessionMutation(sessionId, { status: 'editing' });
       return { ok: false, error: tourResult.error };
+    }
+    if (coverPhotoKey) {
+      const coverResult = await appsync.updateGuideTourMutation(tourId, { coverPhotoKey });
+      if (!coverResult.ok) {
+        logger.warn(SERVICE_NAME, 'Cover mirror failed (non-fatal)', { tourId, error: coverResult.error });
+      }
     }
 
     // Create or update ModerationItem so admin sees it in the moderation queue
@@ -228,10 +234,11 @@ export async function retractSubmission(
     const sessionResult = await appsync.updateStudioSessionMutation(sessionId, { status: 'editing' });
     if (!sessionResult.ok) return { ok: false, error: sessionResult.error };
 
-    const tourResult = await appsync.updateGuideTourMutation(tourId, { status: 'editing' });
+    // C2 — status transition via the guarded Lambda mutation (see submitForReview).
+    const tourResult = await appsync.setTourWorkflowStatusMutation(tourId, 'editing');
     if (!tourResult.ok) {
       // Rollback session to previous status
-      logger.error(SERVICE_NAME, 'Tour update failed, rolling back session', { tourId, error: tourResult.error });
+      logger.error(SERVICE_NAME, 'Tour status transition failed, rolling back session', { tourId, error: tourResult.error });
       await appsync.updateStudioSessionMutation(sessionId, { status: 'submitted' });
       return { ok: false, error: tourResult.error };
     }

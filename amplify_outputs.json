@@ -277,9 +277,7 @@
             "status": {
               "name": "status",
               "isArray": false,
-              "type": {
-                "enum": "GuideTourStatus"
-              },
+              "type": "String",
               "isRequired": false,
               "attributes": []
             },
@@ -336,6 +334,51 @@
               "name": "sessionId",
               "isArray": false,
               "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "availableLanguages": {
+              "name": "availableLanguages",
+              "isArray": true,
+              "type": "String",
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "translatedAudioKeys": {
+              "name": "translatedAudioKeys",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
+            "coverPhotoKey": {
+              "name": "coverPhotoKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "languageAudioTypes": {
+              "name": "languageAudioTypes",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
+            "priceCents": {
+              "name": "priceCents",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "purchaseType": {
+              "name": "purchaseType",
+              "isArray": false,
+              "type": {
+                "enum": "GuideTourPurchaseType"
+              },
               "isRequired": false,
               "attributes": []
             },
@@ -684,6 +727,19 @@
                     "groups": [
                       "admin"
                     ]
+                  },
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "iam",
+                    "operations": [
+                      "read"
+                    ]
                   }
                 ]
               }
@@ -737,6 +793,15 @@
               "name": "studioAudioKey",
               "isArray": false,
               "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "baseAudioSource": {
+              "name": "baseAudioSource",
+              "isArray": false,
+              "type": {
+                "enum": "StudioSceneBaseAudioSource"
+              },
               "isRequired": false,
               "attributes": []
             },
@@ -1147,6 +1212,19 @@
                     ],
                     "groups": [
                       "admin"
+                    ]
+                  },
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "iam",
+                    "operations": [
+                      "read"
                     ]
                   }
                 ]
@@ -1567,6 +1645,420 @@
             "sortKeyFieldNames": []
           }
         },
+        "TourPurchase": {
+          "name": "TourPurchase",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "tourId": {
+              "name": "tourId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "amountCents": {
+              "name": "amountCents",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "source": {
+              "name": "source",
+              "isArray": false,
+              "type": {
+                "enum": "TourPurchaseSource"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "stripePaymentIntentId": {
+              "name": "stripePaymentIntentId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": {
+                "enum": "TourPurchaseStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "refundedAt": {
+              "name": "refundedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "TourPurchases",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "tourPurchasesByUserId",
+                "queryField": "listTourPurchaseByUserId",
+                "fields": [
+                  "userId"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "tourPurchasesByTourId",
+                "queryField": "listTourPurchaseByTourId",
+                "fields": [
+                  "tourId"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "provider": "userPools",
+                    "ownerField": "userId",
+                    "allow": "owner",
+                    "operations": [
+                      "read"
+                    ],
+                    "identityClaim": "cognito:username"
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "operations": [
+                      "create",
+                      "read",
+                      "update",
+                      "delete"
+                    ],
+                    "groups": [
+                      "admin"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "UserEntitlement": {
+          "name": "UserEntitlement",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "entitlementId": {
+              "name": "entitlementId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "active": {
+              "name": "active",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "expiresAtMs": {
+              "name": "expiresAtMs",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "productId": {
+              "name": "productId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "environment": {
+              "name": "environment",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "store": {
+              "name": "store",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "lastEventType": {
+              "name": "lastEventType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "lastEventAtMs": {
+              "name": "lastEventAtMs",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "UserEntitlements",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "userEntitlementsByUserId",
+                "queryField": "listUserEntitlementByUserId",
+                "fields": [
+                  "userId"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "provider": "userPools",
+                    "ownerField": "userId",
+                    "allow": "owner",
+                    "operations": [
+                      "read"
+                    ],
+                    "identityClaim": "cognito:username"
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "operations": [
+                      "create",
+                      "read",
+                      "update",
+                      "delete"
+                    ],
+                    "groups": [
+                      "admin"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "TourAccessCode": {
+          "name": "TourAccessCode",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "tourId": {
+              "name": "tourId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": {
+                "enum": "TourAccessCodeStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "redeemedByUserId": {
+              "name": "redeemedByUserId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "redeemedAt": {
+              "name": "redeemedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "amountCents": {
+              "name": "amountCents",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "TourAccessCodes",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "tourAccessCodesByCode",
+                "queryField": "listTourAccessCodeByCode",
+                "fields": [
+                  "code"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "tourAccessCodesByTourId",
+                "queryField": "listTourAccessCodeByTourId",
+                "fields": [
+                  "tourId"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "operations": [
+                      "create",
+                      "read",
+                      "update",
+                      "delete"
+                    ],
+                    "groups": [
+                      "admin"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
         "ModerationItem": {
           "name": "ModerationItem",
           "fields": {
@@ -1759,7 +2251,8 @@
                     "allow": "owner",
                     "operations": [
                       "create",
-                      "read"
+                      "read",
+                      "update"
                     ],
                     "identityClaim": "cognito:username"
                   },
@@ -1775,13 +2268,6 @@
                     ],
                     "groups": [
                       "admin"
-                    ]
-                  },
-                  {
-                    "allow": "private",
-                    "operations": [
-                      "read",
-                      "update"
                     ]
                   }
                 ]
@@ -2228,6 +2714,20 @@
               "isRequired": false,
               "attributes": []
             },
+            "authorName": {
+              "name": "authorName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "verified": {
+              "name": "verified",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
             "createdAt": {
               "name": "createdAt",
               "isArray": false,
@@ -2555,6 +3055,127 @@
             "primaryKeyFieldName": "id",
             "sortKeyFieldNames": []
           }
+        },
+        "ReviewReply": {
+          "name": "ReviewReply",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "reviewId": {
+              "name": "reviewId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "tourId": {
+              "name": "tourId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "guideId": {
+              "name": "guideId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "message": {
+              "name": "message",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "ReviewReplies",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "reviewRepliesByReviewId",
+                "queryField": "listReviewReplyByReviewId",
+                "fields": [
+                  "reviewId"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "reviewRepliesByTourId",
+                "queryField": "listReviewReplyByTourId",
+                "fields": [
+                  "tourId"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "provider": "userPools",
+                    "ownerField": "owner",
+                    "allow": "owner",
+                    "operations": [
+                      "create",
+                      "read",
+                      "update",
+                      "delete"
+                    ],
+                    "identityClaim": "cognito:username"
+                  },
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "iam",
+                    "operations": [
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
         }
       },
       "enums": {
@@ -2575,18 +3196,12 @@
             "rejected"
           ]
         },
-        "GuideTourStatus": {
-          "name": "GuideTourStatus",
+        "GuideTourPurchaseType": {
+          "name": "GuideTourPurchaseType",
           "values": [
-            "draft",
-            "synced",
-            "editing",
-            "review",
-            "pending_moderation",
-            "published",
-            "revision_requested",
-            "rejected",
-            "archived"
+            "free",
+            "paid",
+            "subscription_only"
           ]
         },
         "StudioSessionStatus": {
@@ -2610,6 +3225,13 @@
           "values": [
             "scene_builder",
             "phased_capture"
+          ]
+        },
+        "StudioSceneBaseAudioSource": {
+          "name": "StudioSceneBaseAudioSource",
+          "values": [
+            "tts",
+            "recording"
           ]
         },
         "StudioSceneTranscriptionStatus": {
@@ -2713,6 +3335,29 @@
           "values": [
             "active",
             "refunded"
+          ]
+        },
+        "TourPurchaseSource": {
+          "name": "TourPurchaseSource",
+          "values": [
+            "web",
+            "code",
+            "iap"
+          ]
+        },
+        "TourPurchaseStatus": {
+          "name": "TourPurchaseStatus",
+          "values": [
+            "active",
+            "refunded"
+          ]
+        },
+        "TourAccessCodeStatus": {
+          "name": "TourAccessCodeStatus",
+          "values": [
+            "unused",
+            "redeemed",
+            "void"
           ]
         },
         "ModerationItemStatus": {
@@ -2921,6 +3566,39 @@
               "attributes": []
             }
           }
+        },
+        "SetTourWorkflowStatusReturnType": {
+          "name": "SetTourWorkflowStatusReturnType",
+          "fields": {
+            "ok": {
+              "name": "ok",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
         }
       },
       "queries": {
@@ -3026,6 +3704,56 @@
             "nonModel": "DeleteUserAccountReturnType"
           },
           "isRequired": false
+        },
+        "createTourPaymentIntent": {
+          "name": "createTourPaymentIntent",
+          "isArray": false,
+          "type": "AWSJSON",
+          "isRequired": false,
+          "arguments": {
+            "tourId": {
+              "name": "tourId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
+        },
+        "confirmTourPurchase": {
+          "name": "confirmTourPurchase",
+          "isArray": false,
+          "type": "AWSJSON",
+          "isRequired": false,
+          "arguments": {
+            "paymentIntentId": {
+              "name": "paymentIntentId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
+        },
+        "setTourWorkflowStatus": {
+          "name": "setTourWorkflowStatus",
+          "isArray": false,
+          "type": {
+            "nonModel": "SetTourWorkflowStatusReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "tourId": {
+              "name": "tourId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
         }
       }
     }
@@ -3083,11 +3811,18 @@
             "authenticated": [
               "get",
               "list"
+            ],
+            "guest": [
+              "get",
+              "list"
             ]
           }
         }
       }
     ]
   },
-  "version": "1.4"
+  "version": "1.4",
+  "custom": {
+    "revenueCatWebhookUrl": "https://jlyvm45lqof33oeo3w6xa2hpny0aiydi.lambda-url.us-east-1.on.aws/"
+  }
 }

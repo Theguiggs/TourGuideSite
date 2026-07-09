@@ -348,10 +348,56 @@ export async function updateGuideTourMutation(
       { id, ...safeUpdates } as Parameters<typeof client.models.GuideTour.update>[0],
       { authMode: 'userPool' },
     );
+    // Amplify does NOT throw on authorization/validation failures — it returns them
+    // in result.errors and leaves result.data null. Without this check a rejected
+    // update (e.g. owner mismatch, expired session) is reported as success and the
+    // UI shows "Enregistré ✓" while nothing was persisted.
+    if (result.errors?.length || !result.data) {
+      const msg = result.errors?.map((e) => e.message).join('; ')
+        || 'aucune donnée retournée (autorisation refusée ou session expirée ?)';
+      logger.error(SERVICE_NAME, 'updateGuideTour rejected', { id, errors: msg });
+      return { ok: false as const, error: `Mise à jour refusée : ${msg}` };
+    }
     return { ok: true as const, data: result.data };
   } catch (error) {
     logger.error(SERVICE_NAME, 'updateGuideTour failed', { error: String(error) });
     return { ok: false as const, error: 'Erreur lors de la mise a jour du parcours' };
+  }
+}
+
+/**
+ * SÉCURITÉ (C2) — transition d'état GuideTour côté guide.
+ * `GuideTour.status` n'est plus modifiable en direct par le guide (field-level
+ * auth admin-only). Cette mutation custom (Lambda) vérifie la propriété du tour
+ * et n'autorise que les statuts « guide » (draft/synced/editing/review/
+ * pending_moderation/archived) — jamais published/rejected/revision_requested.
+ */
+export async function setTourWorkflowStatusMutation(
+  tourId: string,
+  status: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  try {
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).mutations.setTourWorkflowStatus(
+      { tourId, status },
+      { authMode: 'userPool' },
+    );
+    if (result?.errors?.length) {
+      const msg = result.errors.map((e: { message: string }) => e.message).join('; ');
+      logger.error(SERVICE_NAME, 'setTourWorkflowStatus GraphQL error', { tourId, status, msg });
+      return { ok: false as const, error: `Transition refusée : ${msg}` };
+    }
+    const env = result?.data as { ok?: boolean; error?: string } | null;
+    if (!env?.ok) {
+      const msg = env?.error ?? 'transition refusée (autorisation ou statut invalide ?)';
+      logger.error(SERVICE_NAME, 'setTourWorkflowStatus rejected', { tourId, status, msg });
+      return { ok: false as const, error: msg };
+    }
+    return { ok: true as const };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'setTourWorkflowStatus failed', { error: String(error) });
+    return { ok: false as const, error: 'Erreur lors du changement de statut' };
   }
 }
 
