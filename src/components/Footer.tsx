@@ -76,11 +76,20 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/privacy.html"
+                  href="/confidentialite"
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
                   Politique de confidentialité
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/supprimer-mon-compte"
+                  style={{ color: tg.colors.paperSoft }}
+                  className="hover:opacity-80"
+                >
+                  Supprimer mon compte
                 </Link>
               </li>
             </ul>

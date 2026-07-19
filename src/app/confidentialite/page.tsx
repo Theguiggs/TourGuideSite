@@ -152,6 +152,19 @@ export default function ConfidentialitePage() {
             </p>
           </Section>
 
+          <Section title="Supprimer votre compte">
+            <p>
+              Dans l&apos;application Murmure, ouvrez <strong>Reglages</strong>, puis{' '}
+              <strong>Donnees personnelles</strong> et choisissez <strong>Supprimer mon compte</strong>.
+              Cette action efface definitivement le compte et les donnees associees. Si vous ne
+              pouvez plus acceder a l&apos;application, utilisez notre{' '}
+              <Link href="/supprimer-mon-compte" style={{ color: tg.colors.grenadine }}>
+                page de demande de suppression
+              </Link>
+              .
+            </p>
+          </Section>
+
           <Section title="8. Cookies et stockage local">
             <p>
               Le portail web utilise le stockage local de votre navigateur pour maintenir votre
