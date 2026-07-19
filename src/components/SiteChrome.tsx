@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from './Header';
 import Footer from './Footer';
@@ -18,6 +19,12 @@ interface SiteChromeProps {
  */
 export function SiteChrome({ children }: SiteChromeProps) {
   const pathname = usePathname() ?? '';
+  const locale = pathname.startsWith('/en/') || pathname === '/en' ? 'en' : 'fr';
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   const isStudio = pathname.startsWith('/guide/studio');
   // Pages legacy /guide/{dashboard,tours,profile,revenue} embarquent désormais
   // le même shell que le Studio (StudioHeader + sidebar Murmure). On supprime
@@ -30,9 +37,9 @@ export function SiteChrome({ children }: SiteChromeProps) {
 
   return (
     <>
-      <Header />
+      <Header locale={locale} />
       <main className="min-h-screen">{children}</main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

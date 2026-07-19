@@ -46,7 +46,7 @@ const jetBrainsMono = JetBrains_Mono({
 // OG image: opengraph-image.tsx in this directory generates the default at /opengraph-image.
 // Tour pages extend metadata via generateMetadata pointing to /og/tour/[city]/[tourSlug].
 export const metadata: Metadata = {
-  metadataBase: new URL('https://murmure.app'),
+  metadataBase: new URL('https://murmure-visit.com'),
   title: {
     default: 'Murmure — Visites guidees audio immersives',
     template: '%s | Murmure',
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     siteName: 'Murmure',
-    url: 'https://murmure.app',
+    url: 'https://murmure-visit.com',
     images: [
       {
         url: '/opengraph-image',

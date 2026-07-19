@@ -177,3 +177,41 @@ export async function ownsTour(tourId: string): Promise<boolean> {
     return false;
   }
 }
+
+/**
+ * Set of every tourId the current (authenticated) user owns, in ONE request.
+ * Owner-based auth (`ownerDefinedIn('userId')`) already scopes the list to the
+ * caller, so no per-tour filter is needed — ideal for badging a whole catalogue
+ * list. Returns an empty set for guests/stub/errors (fail-open to "buyable").
+ */
+export async function listOwnedTourIds(): Promise<Set<string>> {
+  if (shouldUseStubs()) {
+    return new Set();
+  }
+  try {
+    const { getClient } = await import('@/lib/api/appsync-client');
+    const client = getClient();
+    // Paginate: DynamoDB applies the filter AFTER each scanned page, so a single
+    // .list() call can silently miss owned tours — the price badge would re-show
+    // and the user could buy a tour twice.
+    const owned = new Set<string>();
+    let nextToken: string | null | undefined;
+    do {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = await (client as any).models.TourPurchase.list({
+        filter: { status: { eq: 'active' } },
+        authMode: 'userPool',
+        nextToken,
+      });
+      const rows = (result?.data ?? []) as Array<{ tourId?: string }>;
+      for (const r of rows) {
+        if (r.tourId) owned.add(r.tourId);
+      }
+      nextToken = result?.nextToken;
+    } while (nextToken);
+    return owned;
+  } catch (error) {
+    logger.warn(SERVICE_NAME, 'listOwnedTourIds check failed', { detail: describeError(error) });
+    return new Set();
+  }
+}

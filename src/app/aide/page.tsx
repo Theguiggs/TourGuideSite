@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: 'Aide — Murmure',
   description:
     'Le guide complet de Murmure : créez un parcours audio étape par étape, et trouvez les réponses aux questions des guides comme des voyageurs.',
+  alternates: {
+    canonical: '/aide',
+    languages: {fr: '/aide', en: '/en/help'},
+  },
 };
 
 export default function AidePage() {

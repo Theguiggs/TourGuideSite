@@ -27,6 +27,7 @@ import {
 interface CatalogueViewCitiesProps {
   cities: City[];
   tours: Tour[];
+  locale?: 'fr' | 'en';
 }
 
 const ACCENT_FILTERS: ReadonlyArray<CityAccent> = [
@@ -49,23 +50,24 @@ interface CityBlockProps {
   city: City;
   accent: CityAccent;
   avgDuration: number;
+  locale: 'fr' | 'en';
 }
 
-function CityBlock({ city, accent, avgDuration }: CityBlockProps) {
+function CityBlock({ city, accent, avgDuration, locale }: CityBlockProps) {
   const accentColor = tg.colors[accent];
   const softKey = `${accent}Soft` as const;
   const bgColor = tg.colors[softKey];
 
   const tourCountLabel =
     city.tourCount === 0
-      ? 'Bientôt disponible'
+      ? locale === 'en' ? 'Coming soon' : 'Bientôt disponible'
       : `${city.tourCount} tour${city.tourCount > 1 ? 's' : ''} · ${avgDuration} min`;
 
   const ariaLabel = `${city.name} — ${city.tourCount} tour${city.tourCount > 1 ? 's' : ''}`;
 
   return (
     <Link
-      href={`/catalogue/${city.slug}`}
+      href={`${locale === 'en' ? '/en' : ''}/catalogue/${city.slug}`}
       aria-label={ariaLabel}
       className="block transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2"
       style={{
@@ -109,7 +111,7 @@ function CityBlock({ city, accent, avgDuration }: CityBlockProps) {
   );
 }
 
-export function CatalogueViewCities({ cities, tours }: CatalogueViewCitiesProps) {
+export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueViewCitiesProps) {
   const [activeAccent, setActiveAccent] = useState<CityAccent | null>(null);
 
   const citiesWithAccent = useMemo(
@@ -147,11 +149,13 @@ export function CatalogueViewCities({ cities, tours }: CatalogueViewCitiesProps)
             margin: 0,
           }}
         >
-          Le catalogue des villes
+          {locale === 'en' ? 'The city catalogue' : 'Le catalogue des villes'}
         </h1>
         <div style={{ marginTop: tg.space[4], maxWidth: 640 }}>
           <PullQuote size="md">
-            Chaque ville cache ses voix. Choisissez la vôtre.
+            {locale === 'en'
+              ? 'Every city hides its voices. Choose yours.'
+              : 'Chaque ville cache ses voix. Choisissez la vôtre.'}
           </PullQuote>
         </div>
       </header>
@@ -179,7 +183,7 @@ export function CatalogueViewCities({ cities, tours }: CatalogueViewCitiesProps)
           className="focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           <Chip color="default" active={activeAccent === null}>
-            Toutes ({citiesWithAccent.length})
+            {locale === 'en' ? 'All' : 'Toutes'} ({citiesWithAccent.length})
           </Chip>
         </button>
         {ACCENT_FILTERS.map((accent) => {
@@ -199,7 +203,7 @@ export function CatalogueViewCities({ cities, tours }: CatalogueViewCitiesProps)
               className="focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <Chip color={accent} active={isActive}>
-                {ACCENT_LABELS[accent]}
+                {locale === 'en' && accent === 'mer' ? 'Coast' : ACCENT_LABELS[accent]}
               </Chip>
             </button>
           );
@@ -208,7 +212,10 @@ export function CatalogueViewCities({ cities, tours }: CatalogueViewCitiesProps)
 
       <div style={{ marginBottom: tg.space[5] }}>
         <Eyebrow color={tg.colors.ink60}>
-          {totalCount} ville{totalCount > 1 ? 's' : ''}
+          {totalCount}{' '}
+          {locale === 'en'
+            ? `cit${totalCount > 1 ? 'ies' : 'y'}`
+            : `ville${totalCount > 1 ? 's' : ''}`}
         </Eyebrow>
       </div>
 
@@ -223,7 +230,9 @@ export function CatalogueViewCities({ cities, tours }: CatalogueViewCitiesProps)
           }}
         >
           <PullQuote size="md">
-            Aucune ville pour ce filtre. Choisissez un autre accent ou Toutes.
+            {locale === 'en'
+              ? 'No cities match this filter. Choose another category or All.'
+              : 'Aucune ville pour ce filtre. Choisissez un autre accent ou Toutes.'}
           </PullQuote>
         </div>
       ) : (
@@ -234,6 +243,7 @@ export function CatalogueViewCities({ cities, tours }: CatalogueViewCitiesProps)
               city={entry.city}
               accent={entry.accent}
               avgDuration={entry.avgDuration}
+              locale={locale}
             />
           ))}
         </div>

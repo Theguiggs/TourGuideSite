@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Eyebrow } from '@murmure/design-system/web';
+import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
 
 /**
  * Politique de confidentialité — page légale RGPD.
@@ -16,6 +17,10 @@ export const metadata: Metadata = {
   title: 'Politique de confidentialité — Murmure',
   description:
     'Comment Murmure collecte, utilise et protège vos données personnelles, et comment exercer vos droits RGPD.',
+  alternates: {
+    canonical: '/confidentialite',
+    languages: {fr: '/confidentialite', en: '/en/privacy'},
+  },
 };
 
 const EFFECTIVE_DATE = '2 juillet 2026';
@@ -197,6 +202,12 @@ export default function ConfidentialitePage() {
               signalée sur cette page, avec une date de mise à jour actualisée.
             </p>
           </Section>
+
+          <LegalLanguageSwitcher
+            locale="fr"
+            frenchHref="/confidentialite"
+            englishHref="/en/privacy"
+          />
 
           <p className="font-sans" style={{ marginTop: tg.space[10] }}>
             <Link href="/cgu" style={{ color: tg.colors.grenadine, fontWeight: 600 }}>

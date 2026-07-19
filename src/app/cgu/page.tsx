@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Eyebrow } from '@murmure/design-system/web';
+import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
 
 /**
  * Conditions Générales d’Utilisation — page légale.
@@ -14,6 +15,10 @@ export const metadata: Metadata = {
   title: "Conditions Générales d’Utilisation — Murmure",
   description:
     "Les conditions qui régissent l’utilisation de l’application et de l’atelier web Murmure.",
+  alternates: {
+    canonical: '/cgu',
+    languages: {fr: '/cgu', en: '/en/terms'},
+  },
 };
 
 const EFFECTIVE_DATE = '2 juillet 2026';
@@ -165,6 +170,8 @@ export default function CguPage() {
               .
             </p>
           </Section>
+
+          <LegalLanguageSwitcher locale="fr" frenchHref="/cgu" englishHref="/en/terms" />
 
           <p className="font-sans" style={{ marginTop: tg.space[10] }}>
             <Link href="/confidentialite" style={{ color: tg.colors.grenadine, fontWeight: 600 }}>

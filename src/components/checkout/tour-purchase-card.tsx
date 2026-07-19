@@ -26,13 +26,17 @@ interface Props {
   tourId: string;
   title: string;
   priceCents?: number;
+  locale?: 'fr' | 'en';
 }
 
 type Step = 'idle' | 'login' | 'pay' | 'done' | 'error';
 
-function formatPrice(cents?: number): string {
+function formatPrice(cents?: number, locale: 'fr' | 'en' = 'fr'): string {
   if (typeof cents !== 'number' || !Number.isFinite(cents) || cents < 0) return '';
-  return `${(cents / 100).toFixed(2).replace('.', ',')} €`;
+  return new Intl.NumberFormat(locale === 'en' ? 'en-GB' : 'fr-FR', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(cents / 100);
 }
 
 // --- Inner payment form (must live inside <Elements>) ---
@@ -40,10 +44,12 @@ function PaymentForm({
   paymentIntentId,
   onSuccess,
   onError,
+  locale,
 }: {
   paymentIntentId: string;
   onSuccess: () => void;
   onError: (msg: string) => void;
+  locale: 'fr' | 'en';
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -53,7 +59,9 @@ function PaymentForm({
     // Ne plus sortir en silence : surfacer la raison (Stripe non prêt = clé publishable ?).
     if (!stripe || !elements) {
       onError(
-        'Paiement non prêt — Stripe.js non initialisé. Vérifie NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY (pk_test_…) dans .env.local puis REDÉMARRE le serveur.',
+        locale === 'en'
+          ? 'Payment is not ready. Please try again later.'
+          : 'Paiement non prêt — Stripe.js non initialisé. Vérifie NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY (pk_test_…) dans .env.local puis REDÉMARRE le serveur.',
       );
       return;
     }
@@ -65,7 +73,7 @@ function PaymentForm({
       });
       if (error) {
         setBusy(false);
-        onError(error.message ?? 'Paiement refusé.');
+        onError(error.message ?? (locale === 'en' ? 'Payment declined.' : 'Paiement refusé.'));
         return;
       }
       if (paymentIntent?.status === 'succeeded') {
@@ -76,10 +84,10 @@ function PaymentForm({
         return;
       }
       setBusy(false);
-      onError(`Paiement non finalisé (${paymentIntent?.status ?? 'inconnu'}).`);
+      onError(locale === 'en' ? `Payment not completed (${paymentIntent?.status ?? 'unknown'}).` : `Paiement non finalisé (${paymentIntent?.status ?? 'inconnu'}).`);
     } catch (e) {
       setBusy(false);
-      onError(`Erreur paiement: ${e instanceof Error ? e.message : String(e)}`);
+      onError(`${locale === 'en' ? 'Payment error' : 'Erreur paiement'}: ${e instanceof Error ? e.message : String(e)}`);
     }
   }
 
@@ -87,13 +95,13 @@ function PaymentForm({
     <div style={{ display: 'flex', flexDirection: 'column', gap: tg.space[4] }}>
       <PaymentElement />
       <Button variant="accent" size="lg" fullWidth onClick={pay} disabled={busy}>
-        {busy ? 'Paiement…' : 'Payer'}
+        {busy ? (locale === 'en' ? 'Processing…' : 'Paiement…') : (locale === 'en' ? 'Pay' : 'Payer')}
       </Button>
     </div>
   );
 }
 
-export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
+export default function TourPurchaseCard({ tourId, title, priceCents, locale = 'fr' }: Props) {
   const { isAuthenticated, signIn } = useAuth();
   const [step, setStep] = useState<Step>('idle');
   const [clientSecret, setClientSecret] = useState<string | null>(null);
@@ -131,7 +139,7 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
       return;
     }
     if (!res.value.clientSecret) {
-      setError('Paiement indisponible pour cette visite.');
+      setError(locale === 'en' ? 'Payment is unavailable for this tour.' : 'Paiement indisponible pour cette visite.');
       setStep('error');
       return;
     }
@@ -170,7 +178,7 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
     const r = await signIn(email, password);
     if (!r.ok) {
       setBusy(false);
-      setError(r.error ?? 'Connexion échouée.');
+      setError(r.error ?? (locale === 'en' ? 'Sign-in failed.' : 'Connexion échouée.'));
       return;
     }
     setBusy(false);
@@ -178,7 +186,9 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
     void beginPayment();
   }
 
-  const label = priceCents ? `Acheter — ${formatPrice(priceCents)}` : 'Acheter cette visite';
+  const label = priceCents
+    ? `${locale === 'en' ? 'Buy' : 'Acheter'} — ${formatPrice(priceCents, locale)}`
+    : locale === 'en' ? 'Buy this tour' : 'Acheter cette visite';
 
   return (
     <div style={{ marginTop: tg.space[4] }}>
@@ -204,10 +214,12 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
               color: tg.colors.olive ?? '#5E6B3E',
             }}
           >
-            ✓ Visite débloquée
+            ✓ {locale === 'en' ? 'Tour unlocked' : 'Visite débloquée'}
           </span>
           <span style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}>
-            Ouvrez Murmure avec le même compte pour l&apos;écouter.
+            {locale === 'en'
+              ? 'Open Murmure with the same account to listen.'
+              : "Ouvrez Murmure avec le même compte pour l'écouter."}
           </span>
         </div>
       )}
@@ -221,7 +233,9 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
       {step === 'login' && (
         <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3] }}>
           <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.body, color: tg.colors.ink80 }}>
-            Connectez-vous avec votre compte Murmure pour acheter « {title} ».
+            {locale === 'en'
+              ? `Sign in with your Murmure account to buy “${title}”.`
+              : `Connectez-vous avec votre compte Murmure pour acheter « ${title} ».`}
           </p>
           <input
             type="email"
@@ -234,14 +248,14 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
           <input
             type="password"
             required
-            placeholder="Mot de passe"
+            placeholder={locale === 'en' ? 'Password' : 'Mot de passe'}
             value={password}
             onChange={(ev) => setPassword(ev.target.value)}
             style={inputStyle}
           />
           {error && <p style={errorStyle}>{error}</p>}
           <Button variant="accent" size="lg" fullWidth disabled={busy}>
-            {busy ? 'Connexion…' : 'Se connecter et payer'}
+            {busy ? (locale === 'en' ? 'Signing in…' : 'Connexion…') : (locale === 'en' ? 'Sign in and pay' : 'Se connecter et payer')}
           </Button>
         </form>
       )}
@@ -249,7 +263,7 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
       {step === 'pay' && clientSecret && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3] }}>
           <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.body, color: tg.colors.ink80 }}>
-            Paiement sécurisé — {formatPrice(priceCents)}
+            {locale === 'en' ? 'Secure payment' : 'Paiement sécurisé'} — {formatPrice(priceCents, locale)}
           </p>
           <Elements stripe={getStripePromise()} options={{ clientSecret }}>
             <PaymentForm
@@ -265,6 +279,7 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
                 setError(msg);
                 setStep('error');
               }}
+              locale={locale}
             />
           </Elements>
         </div>
@@ -272,9 +287,9 @@ export default function TourPurchaseCard({ tourId, title, priceCents }: Props) {
 
       {step === 'error' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3] }}>
-          <p style={errorStyle}>{error ?? 'Une erreur est survenue.'}</p>
+          <p style={errorStyle}>{error ?? (locale === 'en' ? 'An error occurred.' : 'Une erreur est survenue.')}</p>
           <Button variant="ghost" size="md" fullWidth onClick={() => setStep('idle')}>
-            Réessayer
+            {locale === 'en' ? 'Try again' : 'Réessayer'}
           </Button>
         </div>
       )}

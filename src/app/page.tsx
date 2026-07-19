@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: 'Murmure — Créez des visites audio de votre ville',
   description:
     'Donnez de la voix à votre ville. Créez, traduisez et publiez vos parcours audio ; les voyageurs les écoutent partout, même hors-ligne.',
+  alternates: {
+    canonical: '/',
+    languages: {fr: '/', en: '/en'},
+  },
 };
 
 // AC2 — étapes de création, liées aux ancres de la page d'aide.

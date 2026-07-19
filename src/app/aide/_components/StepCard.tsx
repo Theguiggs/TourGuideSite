@@ -9,7 +9,7 @@ import type { HelpStep } from '../_content';
  * (« Comment ça marche »). `scrollMarginTop` évite que le titre passe sous
  * le Header sticky (h-16 = 64px).
  */
-export default function StepCard({ step }: { step: HelpStep }) {
+export default function StepCard({ step, locale = 'fr' }: { step: HelpStep; locale?: 'fr' | 'en' }) {
   return (
     <article id={step.id} style={{ scrollMarginTop: '88px' }}>
       <Card variant="flat">
@@ -60,7 +60,7 @@ export default function StepCard({ step }: { step: HelpStep }) {
                 borderLeft: `3px solid ${tg.colors.grenadine}`,
               }}
             >
-              <span style={{ fontWeight: 600 }}>Astuce — </span>
+              <span style={{ fontWeight: 600 }}>{locale === 'en' ? 'Tip - ' : 'Astuce — '}</span>
               {step.tip}
             </p>
           )}

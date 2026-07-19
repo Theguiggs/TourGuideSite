@@ -46,6 +46,8 @@ export interface POI {
   latitude: number;
   longitude: number;
   order: number;
+  /** First scene photo (guide-studio/* S3 key), resolved via <S3Image>. Optional. */
+  photoKey?: string;
 }
 
 export interface TourDetail extends Tour {

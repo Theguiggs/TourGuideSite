@@ -4,8 +4,40 @@ import pkg from '../../package.json';
 
 // Story 4.2 (T6) — Footer migré : tokens DS + lexique strict (Hors-ligne, Tour),
 // accents FR préservés (Télécharger, confidentialité, réservés).
-export default function Footer() {
+interface FooterProps {
+  locale?: 'fr' | 'en';
+}
+
+const FOOTER_COPY = {
+  fr: {
+    tagline: 'Visites guidées audio. Hors-ligne, où que vous soyez.',
+    navigation: 'Navigation',
+    catalogue: 'Catalogue des tours',
+    help: 'Aide',
+    guide: 'Devenir guide',
+    privacy: 'Politique de confidentialité',
+    deletion: 'Supprimer mon compte',
+    download: 'Télécharger',
+    rights: 'Tous droits réservés.',
+  },
+  en: {
+    tagline: 'Audio walking tours. Offline, wherever you are.',
+    navigation: 'Navigation',
+    catalogue: 'Tour catalogue',
+    help: 'Help',
+    guide: 'Become a guide',
+    privacy: 'Privacy policy',
+    deletion: 'Delete my account',
+    download: 'Download',
+    rights: 'All rights reserved.',
+  },
+} as const;
+
+export default function Footer({ locale = 'fr' }: FooterProps) {
   const year = new Date().getFullYear();
+  const copy = FOOTER_COPY[locale];
+  const catalogueHref = locale === 'en' ? '/en/catalogue' : '/catalogue';
+  const helpHref = locale === 'en' ? '/en/help' : '/aide';
   return (
     <footer
       className="bg-ink"
@@ -32,7 +64,7 @@ export default function Footer() {
                 lineHeight: 1.55,
               }}
             >
-              Visites guidées audio. Hors-ligne, où que vous soyez.
+              {copy.tagline}
             </p>
           </div>
           <div>
@@ -44,25 +76,25 @@ export default function Footer() {
                 fontWeight: 600,
               }}
             >
-              Navigation
+              {copy.navigation}
             </h4>
             <ul className="space-y-2" style={{ fontSize: tg.fontSize.body }}>
               <li>
                 <Link
-                  href="/catalogue"
+                  href={catalogueHref}
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
-                  Catalogue des tours
+                  {copy.catalogue}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/aide"
+                  href={helpHref}
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
-                  Aide
+                  {copy.help}
                 </Link>
               </li>
               <li>
@@ -71,25 +103,25 @@ export default function Footer() {
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
-                  Devenir guide
+                  {copy.guide}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/confidentialite"
+                  href={locale === 'en' ? '/en/privacy' : '/confidentialite'}
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
-                  Politique de confidentialité
+                  {copy.privacy}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/supprimer-mon-compte"
+                  href={locale === 'en' ? '/en/delete-account' : '/supprimer-mon-compte'}
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
-                  Supprimer mon compte
+                  {copy.deletion}
                 </Link>
               </li>
             </ul>
@@ -103,7 +135,7 @@ export default function Footer() {
                 fontWeight: 600,
               }}
             >
-              Télécharger
+              {copy.download}
             </h4>
             <div
               className="flex flex-col gap-2"
@@ -134,7 +166,7 @@ export default function Footer() {
             fontSize: tg.fontSize.body,
           }}
         >
-          &copy; {year} Murmure. Tous droits réservés.
+          &copy; {year} Murmure. {copy.rights}
           <span
             style={{
               marginLeft: '1rem',

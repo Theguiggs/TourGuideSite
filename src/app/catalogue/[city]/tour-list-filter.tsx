@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { S3Image } from '@/components/studio/s3-image';
+import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
 import type { Tour } from '@/types/tour';
 
 const LANG_FLAGS: Record<string, string> = {
@@ -13,12 +14,15 @@ const LANG_NAMES: Record<string, string> = {
   fr: 'Français', en: 'English', es: 'Español', it: 'Italiano', de: 'Deutsch',
 };
 
+const SUPPORTED_AUDIO_LANGUAGES = ['fr', 'en', 'es', 'de', 'it'] as const;
+
 interface TourListWithFilterProps {
   tours: Tour[];
   citySlug: string;
+  locale?: 'fr' | 'en';
 }
 
-export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps) {
+export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListWithFilterProps) {
   const [filterLang, setFilterLang] = useState<string>('');
 
   // Collect all available languages across tours
@@ -29,7 +33,7 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
         langs.add(lang);
       }
     }
-    return Array.from(langs).sort();
+    return SUPPORTED_AUDIO_LANGUAGES.filter((lang) => langs.has(lang));
   }, [tours]);
 
   // Filter tours by language
@@ -39,7 +43,11 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
   }, [tours, filterLang]);
 
   if (tours.length === 0) {
-    return <p className="text-ink-60">Aucune visite disponible pour le moment.</p>;
+    return (
+      <p className="text-ink-60">
+        {locale === 'en' ? 'No tours are available yet.' : 'Aucune visite disponible pour le moment.'}
+      </p>
+    );
   }
 
   return (
@@ -47,14 +55,16 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
       {/* Language filter */}
       {allLanguages.length > 1 && (
         <div className="flex flex-wrap items-center gap-2 mb-6">
-          <span className="text-sm text-ink-60">Filtrer par langue :</span>
+          <span className="text-sm text-ink-60">
+            {locale === 'en' ? 'Filter by audio language:' : 'Filtrer par langue :'}
+          </span>
           <button
             onClick={() => setFilterLang('')}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               !filterLang ? 'bg-grenadine text-white' : 'bg-paper-deep text-ink-60 hover:bg-paper-deep'
             }`}
           >
-            Toutes ({tours.length})
+            {locale === 'en' ? 'All' : 'Toutes'} ({tours.length})
           </button>
           {allLanguages.map((lang) => {
             const count = tours.filter((t) => t.availableLanguages?.includes(lang)).length;
@@ -75,13 +85,15 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
 
       {/* Tour cards */}
       {filteredTours.length === 0 ? (
-        <p className="text-ink-60">Aucune visite disponible dans cette langue.</p>
+        <p className="text-ink-60">
+          {locale === 'en' ? 'No tours are available in this language.' : 'Aucune visite disponible dans cette langue.'}
+        </p>
       ) : (
         <div className="space-y-6">
           {filteredTours.map((tour) => (
             <Link
               key={tour.id}
-              href={`/catalogue/${citySlug}/${tour.slug}`}
+              href={`${locale === 'en' ? '/en' : ''}/catalogue/${citySlug}/${tour.slug}`}
               data-testid={`tour-card-${tour.id}`}
               className="block rounded-xl border border-line hover:shadow-md transition-shadow overflow-hidden"
             >
@@ -103,11 +115,7 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
                     <div>
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <h2 className="text-xl font-semibold text-ink">{tour.title}</h2>
-                        {tour.isFree && (
-                          <span className="bg-olive-soft text-olive text-xs font-bold px-2 py-0.5 rounded-full">
-                            GRATUIT
-                          </span>
-                        )}
+                        <TourPriceBadge tour={tour} locale={locale} />
                         {tour.availableLanguages && tour.availableLanguages.length > 0 && (
                           <div className="inline-flex gap-1 items-center" data-testid={`lang-flags-${tour.id}`}>
                             {tour.availableLanguages.slice(0, 5).map((lang) => {
@@ -140,8 +148,8 @@ export function TourListWithFilter({ tours, citySlug }: TourListWithFilterProps)
                           )}
                       </div>
                       <p className="text-sm text-ink-60 mb-2">
-                        Par {tour.guideName} &middot; {tour.duration} min &middot; {tour.distance} km
-                        &middot; {tour.poiCount} points
+                        {locale === 'en' ? 'By' : 'Par'} {tour.guideName} &middot; {tour.duration} min &middot; {tour.distance} km
+                        &middot; {tour.poiCount} {locale === 'en' ? 'stops' : 'points'}
                       </p>
                     </div>
                   </div>

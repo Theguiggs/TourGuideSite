@@ -3,6 +3,7 @@ import { getCities, getAllTours } from '@/lib/api/tours-server';
 import TrackPageView from '@/components/TrackPageView';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { CatalogueViewCities } from './catalogue-view-cities';
+import { MyPurchasesStripClient } from '@/components/catalogue/my-purchases-strip-client';
 
 // Force dynamic rendering: server AppSync client reads cookies (generateServerClientUsingCookies),
 // which is incompatible with static ISR. Switch to force-dynamic so Next.js doesn't attempt to
@@ -14,6 +15,10 @@ export const metadata: Metadata = {
   description:
     'Explorez les villes proposées en visite audio. ' +
     'Chaque ville révèle ses propres histoires.',
+  alternates: {
+    canonical: '/catalogue',
+    languages: {fr: '/catalogue', en: '/en/catalogue'},
+  },
 };
 
 export default async function CataloguePage() {
@@ -22,6 +27,8 @@ export default async function CataloguePage() {
   return (
     <>
       <TrackPageView event={AnalyticsEvents.WEB_CATALOGUE_BROWSE} />
+      {/* Owner-scoped purchases resolved client-side (localStorage Cognito session). */}
+      <MyPurchasesStripClient />
       <CatalogueViewCities cities={cities} tours={tours} />
     </>
   );

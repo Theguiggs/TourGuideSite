@@ -6,7 +6,6 @@ import {
   Card,
   Chip,
   Eyebrow,
-  NumberMark,
   PullQuote,
   tg,
 } from '@murmure/design-system/web';
@@ -19,6 +18,8 @@ import SmartAppLink from '@/components/SmartAppLink';
 import TourPurchaseCard from '@/components/checkout/tour-purchase-card';
 import { S3Image } from '@/components/studio/s3-image';
 import { AnalyticsEvents } from '@/lib/analytics';
+import { isTourFree } from '@/lib/catalogue/tour-pricing';
+import ItineraryList from './itinerary-list';
 
 const LANG_FLAGS: Record<string, string> = {
   fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪',
@@ -28,11 +29,35 @@ const LANG_NAMES: Record<string, string> = {
   fr: 'Français', en: 'English', es: 'Español', it: 'Italiano', de: 'Deutsch',
 };
 
-const AUDIO_TYPE_LABELS: Record<string, { icon: string; label: string }> = {
-  recording: { icon: '🎤', label: 'Voix du guide' },
-  tts: { icon: '🤖', label: 'Voix de synthèse' },
-  mixed: { icon: '🔀', label: 'Mixte' },
-};
+const AUDIO_TYPE_LABELS = {
+  fr: {
+    recording: { icon: '🎤', label: 'Voix du guide' },
+    tts: { icon: '🤖', label: 'Voix de synthèse' },
+    mixed: { icon: '🔀', label: 'Mixte' },
+  },
+  en: {
+    recording: { icon: '🎤', label: 'Guide recording' },
+    tts: { icon: '🤖', label: 'Synthetic voice' },
+    mixed: { icon: '🔀', label: 'Mixed' },
+  },
+} as const;
+
+const DETAIL_COPY = {
+  fr: {
+    openInApp: 'Ouvrir dans Murmure', bestExperience: 'Pour la meilleure expérience audio immersive', open: 'Ouvrir',
+    free: 'GRATUIT', yourGuide: 'Votre guide', verifiedGuide: 'Guide vérifié', viewProfile: 'Voir le profil →',
+    audioByLanguage: 'Audio par langue', itinerary: 'Itinéraire', reviews: 'Avis', liveTour: 'Vivez cette visite',
+    download: "Téléchargez Murmure pour profiter de l'expérience audio immersive complète.",
+    duration: 'Durée', distance: 'Distance', stops: 'Étapes', completions: 'Completions', listen: "Écouter ce tour dans l'app",
+  },
+  en: {
+    openInApp: 'Open in Murmure', bestExperience: 'For the best immersive audio experience', open: 'Open',
+    free: 'FREE', yourGuide: 'Your guide', verifiedGuide: 'Verified guide', viewProfile: 'View profile →',
+    audioByLanguage: 'Audio by language', itinerary: 'Itinerary', reviews: 'Reviews', liveTour: 'Experience this tour',
+    download: 'Download Murmure for the complete immersive audio experience.',
+    duration: 'Duration', distance: 'Distance', stops: 'Stops', completions: 'Completions', listen: 'Listen to this tour in the app',
+  },
+} as const;
 
 // Story 4.4 — Cleanup: utilise `getCityAccent` de Story 4.3 (`lib/cities/accent-map`)
 // au lieu du fallback local précédent. Hash-based fallback inclus pour villes inconnues.
@@ -55,16 +80,20 @@ function accentColor(accent: CityAccent): string {
   }
 }
 
-function formatRelativeDate(dateStr: string): string {
+function formatRelativeDate(dateStr: string, locale: 'fr' | 'en'): string {
   if (!dateStr) return '';
   const date = new Date(dateStr);
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  if (diffDays < 1) return 'Publié aujourd\'hui';
-  if (diffDays < 30) return `Publié il y a ${diffDays} jour${diffDays > 1 ? 's' : ''}`;
-  const month = date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
-  return `Publié en ${month}`;
+  if (diffDays < 1) return locale === 'en' ? 'Published today' : 'Publié aujourd\'hui';
+  if (diffDays < 30) {
+    return locale === 'en'
+      ? `Published ${diffDays} day${diffDays > 1 ? 's' : ''} ago`
+      : `Publié il y a ${diffDays} jour${diffDays > 1 ? 's' : ''}`;
+  }
+  const month = date.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { month: 'long', year: 'numeric' });
+  return locale === 'en' ? `Published in ${month}` : `Publié en ${month}`;
 }
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
@@ -87,6 +116,13 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
   return {
     title: `${tour.title} · Murmure`,
     description,
+    alternates: {
+      canonical: `/catalogue/${citySlug}/${tourSlug}`,
+      languages: {
+        fr: `/catalogue/${citySlug}/${tourSlug}`,
+        en: `/en/catalogue/${citySlug}/${tourSlug}`,
+      },
+    },
     openGraph: {
       title: `${tour.title} · Murmure`,
       description,
@@ -108,16 +144,16 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
   };
 }
 
-function StarRating({ rating }: { rating: number }) {
+function StarRating({ rating, locale = 'fr' }: { rating: number; locale?: 'fr' | 'en' }) {
   return (
-    <span style={{ color: tg.colors.ocre }} aria-label={`${rating.toFixed(1)} étoiles sur 5`}>
+    <span style={{ color: tg.colors.ocre }} aria-label={locale === 'en' ? `${rating.toFixed(1)} stars out of 5` : `${rating.toFixed(1)} étoiles sur 5`}>
       {'★'.repeat(Math.round(rating))}
       {'☆'.repeat(5 - Math.round(rating))}
     </span>
   );
 }
 
-export default async function TourDetailPage({ params, searchParams }: TourPageProps) {
+export async function LocalizedTourDetailPage({ params, searchParams, locale = 'fr' }: TourPageProps & {locale?: 'fr' | 'en'}) {
   const { city: citySlug, tourSlug } = await params;
   const resolvedSearchParams = await searchParams;
   const tour = await getTourBySlug(citySlug, tourSlug);
@@ -128,6 +164,8 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
     getGuideSlugByGuideId(tour.guideId),
   ]);
   const isQrVisit = resolvedSearchParams.source === 'qr';
+  const copy = DETAIL_COPY[locale];
+  const catalogueBase = locale === 'en' ? '/en/catalogue' : '/catalogue';
 
   const accent = getCityAccent(citySlug);
   const heroBg = accentSoftColor(accent);
@@ -160,9 +198,9 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
             style={{ background: tg.colors.ink, color: tg.colors.paper }}
           >
             <div>
-              <p style={{ fontFamily: tg.fonts.sans, fontWeight: 700 }}>Ouvrir dans Murmure</p>
+              <p style={{ fontFamily: tg.fonts.sans, fontWeight: 700 }}>{copy.openInApp}</p>
               <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.caption, color: tg.colors.paperDeep }}>
-                Pour la meilleure expérience audio immersive
+                {copy.bestExperience}
               </p>
             </div>
             <SmartAppLink
@@ -174,7 +212,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                 fontFamily: tg.fonts.sans,
               }}
             >
-              Ouvrir
+              {copy.open}
             </SmartAppLink>
           </div>
         )}
@@ -188,11 +226,11 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
             fontFamily: tg.fonts.sans,
           }}
         >
-          <Link href="/catalogue" style={{ color: tg.colors.ink60 }}>
+          <Link href={catalogueBase} style={{ color: tg.colors.ink60 }}>
             Catalogue
           </Link>
           <span style={{ margin: '0 8px' }}>/</span>
-          <Link href={`/catalogue/${citySlug}`} style={{ color: tg.colors.ink60 }}>
+          <Link href={`${catalogueBase}/${citySlug}`} style={{ color: tg.colors.ink60 }}>
             {cityName}
           </Link>
           <span style={{ margin: '0 8px' }}>/</span>
@@ -231,7 +269,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                 >
                   {tour.title}
                 </h1>
-                {tour.isFree && (
+                {isTourFree(tour) && (
                   <span
                     style={{
                       display: 'inline-flex',
@@ -246,7 +284,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    GRATUIT
+                    {copy.free}
                   </span>
                 )}
               </div>
@@ -296,7 +334,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                     color: tg.colors.ink60,
                   }}
                 >
-                  {formatRelativeDate(tour.createdAt)}
+                  {formatRelativeDate(tour.createdAt, locale)}
                 </div>
               )}
             </div>
@@ -313,7 +351,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
               const avatar = tour.guidePhotoUrl ? (
                 <S3Image
                   s3Key={tour.guidePhotoUrl}
-                  alt={`Photo de ${tour.guideName}`}
+                  alt={locale === 'en' ? `Photo of ${tour.guideName}` : `Photo de ${tour.guideName}`}
                   className="w-16 h-16 rounded-full shrink-0"
                   fallback={tour.guideName.charAt(0)}
                 />
@@ -346,12 +384,12 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                   {avatar}
                   <div className="min-w-0">
                     <p style={{ fontFamily: tg.fonts.sans, margin: 0, fontSize: tg.fontSize.meta, color: tg.colors.ink60, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                      Votre guide
+                      {copy.yourGuide}
                     </p>
                     <p className="flex items-center gap-1.5" style={{ fontFamily: tg.fonts.display, fontSize: tg.fontSize.h6, fontWeight: 600, color: tg.colors.ink, margin: '2px 0 0' }}>
                       {tour.guideName}
                       {tour.guideVerified && (
-                        <span title="Guide vérifié" style={{ color: tg.colors.grenadine, fontSize: tg.fontSize.caption }}>✓</span>
+                        <span title={copy.verifiedGuide} style={{ color: tg.colors.grenadine, fontSize: tg.fontSize.caption }}>✓</span>
                       )}
                     </p>
                     {bioSnippet && (
@@ -361,7 +399,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                     )}
                     {guideSlug && (
                       <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.caption, color: tg.colors.grenadine, fontWeight: 600, margin: '6px 0 0' }}>
-                        Voir le profil →
+                        {copy.viewProfile}
                       </p>
                     )}
                   </div>
@@ -419,11 +457,14 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                     marginBottom: tg.space[4],
                   }}
                 >
-                  Audio par langue
+                  {copy.audioByLanguage}
                 </h2>
                 <div className="space-y-2">
-                  {Object.entries(tour.languageAudioTypes).map(([lang, type]) => {
-                    const info = AUDIO_TYPE_LABELS[type] ?? AUDIO_TYPE_LABELS.mixed;
+                  {Object.entries(tour.languageAudioTypes)
+                    .filter(([lang]) => ['fr', 'en', 'es', 'de', 'it'].includes(lang))
+                    .map(([lang, type]) => {
+                    const labels = AUDIO_TYPE_LABELS[locale];
+                    const info = labels[type as keyof typeof labels] ?? labels.mixed;
                     return (
                       <div
                         key={lang}
@@ -466,57 +507,15 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                   marginBottom: tg.space[6],
                 }}
               >
-                Itinéraire
+                {copy.itinerary}
               </h2>
-              {tour.pois.length === 0 ? (
-                <Eyebrow style={{ color: tg.colors.ink60 }}>
-                  Itinéraire en cours de finalisation
-                </Eyebrow>
-              ) : (
-                <ol style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {tour.pois.map((poi) => (
-                    <li
-                      key={poi.id}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: tg.space[5],
-                        marginBottom: tg.space[6],
-                      }}
-                    >
-                      <div style={{ flexShrink: 0, minWidth: 56 }}>
-                        <NumberMark n={poi.order} color={heroAccentFg} size={tg.fontSize.h3} />
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <h5
-                          style={{
-                            fontFamily: tg.fonts.display,
-                            fontSize: tg.fontSize.h5,
-                            color: tg.colors.ink,
-                            margin: 0,
-                            marginBottom: tg.space[1],
-                          }}
-                        >
-                          {poi.title}
-                        </h5>
-                        {poi.description && (
-                          <p
-                            style={{
-                              fontFamily: tg.fonts.sans,
-                              fontSize: tg.fontSize.body,
-                              color: tg.colors.ink80,
-                              lineHeight: 1.5,
-                              margin: 0,
-                            }}
-                          >
-                            {poi.description}
-                          </p>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              )}
+              <ItineraryList
+                pois={tour.pois}
+                tourId={tour.id}
+                isFree={isTourFree(tour)}
+                heroAccentFg={heroAccentFg}
+                locale={locale}
+              />
             </div>
 
             {/* Reviews */}
@@ -530,7 +529,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                   marginBottom: tg.space[4],
                 }}
               >
-                Avis ({tour.reviewCount})
+                {copy.reviews} ({tour.reviewCount})
                 {tour.averageRating > 0 && (
                   <span
                     style={{
@@ -540,7 +539,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                       fontWeight: 400,
                     }}
                   >
-                    <StarRating rating={tour.averageRating} /> {tour.averageRating.toFixed(1)}
+                    <StarRating rating={tour.averageRating} locale={locale} /> {tour.averageRating.toFixed(1)}
                   </span>
                 )}
               </h2>
@@ -555,7 +554,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                       className="flex items-center gap-2"
                       style={{ marginBottom: tg.space[2] }}
                     >
-                      <StarRating rating={review.rating} />
+                      <StarRating rating={review.rating} locale={locale} />
                       <span
                         style={{
                           fontFamily: tg.fonts.sans,
@@ -563,7 +562,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                           color: tg.colors.ink60,
                         }}
                       >
-                        {new Date(review.createdAt).toLocaleDateString('fr-FR')}
+                        {new Date(review.createdAt).toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR')}
                       </span>
                     </div>
                     {review.comment && (
@@ -583,7 +582,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
               <Card variant="md">
                 <Card.Body>
                   <Eyebrow style={{ color: heroAccentFg, marginBottom: tg.space[3] }}>
-                    Vivez cette visite
+                    {copy.liveTour}
                   </Eyebrow>
                   <p
                     style={{
@@ -594,7 +593,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                       marginBottom: tg.space[5],
                     }}
                   >
-                    Téléchargez Murmure pour profiter de l&apos;expérience audio immersive complète.
+                    {copy.download}
                   </p>
 
                   <SmartAppLink
@@ -603,7 +602,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                     style={{ display: 'block', textDecoration: 'none' }}
                   >
                     <Button variant="accent" size="lg" fullWidth>
-                      {editorial.cta.listen}
+                      {locale === 'en' ? 'Listen in the app' : editorial.cta.listen}
                     </Button>
                   </SmartAppLink>
 
@@ -613,6 +612,7 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                       tourId={tour.id}
                       title={tour.title}
                       priceCents={tour.priceCents}
+                      locale={locale}
                     />
                   )}
 
@@ -625,25 +625,25 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
                   >
                     <div className="space-y-2">
                       <div className="flex justify-between">
-                        <Eyebrow style={{ color: tg.colors.ink60 }}>Durée</Eyebrow>
+                        <Eyebrow style={{ color: tg.colors.ink60 }}>{copy.duration}</Eyebrow>
                         <span style={{ fontFamily: tg.fonts.sans, fontWeight: 600, color: tg.colors.ink }}>
                           {tour.duration} min
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <Eyebrow style={{ color: tg.colors.ink60 }}>Distance</Eyebrow>
+                        <Eyebrow style={{ color: tg.colors.ink60 }}>{copy.distance}</Eyebrow>
                         <span style={{ fontFamily: tg.fonts.sans, fontWeight: 600, color: tg.colors.ink }}>
                           {tour.distance} km
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <Eyebrow style={{ color: tg.colors.ink60 }}>Étapes</Eyebrow>
+                        <Eyebrow style={{ color: tg.colors.ink60 }}>{copy.stops}</Eyebrow>
                         <span style={{ fontFamily: tg.fonts.sans, fontWeight: 600, color: tg.colors.ink }}>
                           {tour.poiCount}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <Eyebrow style={{ color: tg.colors.ink60 }}>Completions</Eyebrow>
+                        <Eyebrow style={{ color: tg.colors.ink60 }}>{copy.completions}</Eyebrow>
                         <span style={{ fontFamily: tg.fonts.sans, fontWeight: 600, color: tg.colors.ink }}>
                           {tour.completionCount}
                         </span>
@@ -669,10 +669,10 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
         <SmartAppLink
           tourId={tour.id}
           style={{ display: 'block', textDecoration: 'none' }}
-          aria-label="Écouter ce tour dans l'app"
+          aria-label={copy.listen}
         >
           <Button variant="accent" size="lg" fullWidth>
-            {editorial.cta.listen}
+            {locale === 'en' ? 'Listen in the app' : editorial.cta.listen}
           </Button>
         </SmartAppLink>
       </div>
@@ -704,4 +704,8 @@ export default async function TourDetailPage({ params, searchParams }: TourPageP
       />
     </div>
   );
+}
+
+export default async function TourDetailPage(props: TourPageProps) {
+  return LocalizedTourDetailPage({...props, locale: 'fr'});
 }
