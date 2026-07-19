@@ -1,5 +1,7 @@
 'use client';
 
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
+
 export interface LanguageOption {
   /** ISO 639-1 code (lowercase). */
   code: string;
@@ -36,6 +38,10 @@ export function LanguageTogglePills({
   nativeCode,
   options = DEFAULT_LANGUAGES,
 }: LanguageTogglePillsProps) {
+  const { locale } = useStudioLocale();
+  const translatedLabels: Record<string, string> = locale === 'en'
+    ? { fr: 'French', en: 'English', it: 'Italian', es: 'Spanish', de: 'German', pt: 'Portuguese' }
+    : { fr: 'Français', en: 'Anglais', it: 'Italien', es: 'Espagnol', de: 'Allemand', pt: 'Portugais' };
   const set = new Set(value);
 
   const toggle = (code: string) => {
@@ -51,7 +57,7 @@ export function LanguageTogglePills({
       className="flex gap-2 flex-wrap"
       data-testid="language-toggle-pills"
       role="group"
-      aria-label="Langues parlées"
+      aria-label={locale === 'en' ? 'Languages spoken' : 'Langues parlées'}
     >
       {options.map((opt) => {
         const isOn = set.has(opt.code);
@@ -70,9 +76,9 @@ export function LanguageTogglePills({
                 : 'bg-paper text-ink-60 border-line hover:bg-paper-soft',
             ].join(' ')}
           >
-            {opt.label}
+            {translatedLabels[opt.code] ?? opt.label}
             {isOn && isNative && (
-              <span className="text-[9px] ml-1 opacity-70 tracking-wider font-bold">NATIF</span>
+              <span className="text-[9px] ml-1 opacity-70 tracking-wider font-bold">{locale === 'en' ? 'NATIVE' : 'NATIF'}</span>
             )}
           </button>
         );

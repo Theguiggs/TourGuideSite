@@ -1,6 +1,7 @@
 'use client';
 
 import { formatEuros } from '@/lib/studio/revenues-helpers';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface RevenueChartBar {
   label: string;
@@ -20,13 +21,14 @@ interface RevenueChartProps {
  * Port de docs/design/ds/studio-revenus.jsx:104-134.
  */
 export function RevenueChart({ data, highlightIndex }: RevenueChartProps) {
+  const { locale } = useStudioLocale();
   const max = Math.max(...data.map((d) => d.value), 1);
   const hi = highlightIndex ?? data.length - 1;
 
   return (
     <div className="bg-card border border-line rounded-lg p-7" data-testid="revenue-chart">
       <div className="flex justify-between items-baseline">
-        <div className="tg-eyebrow text-olive">Évolution · 12 mois glissants</div>
+        <div className="tg-eyebrow text-olive">{locale === 'en' ? 'Trend · rolling 12 months' : 'Évolution · 12 mois glissants'}</div>
       </div>
       <div
         className="mt-5 flex items-end gap-2 px-1 pt-5 border-t border-dashed border-line border-b border-line relative"

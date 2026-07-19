@@ -171,7 +171,7 @@ export default function GuideSignupPage() {
         const refreshResult = await refreshUser();
         trackEvent(GuideAnalyticsEvents.GUIDE_SIGNUP_COMPLETED, { city });
         if (refreshResult.ok) {
-          router.push('/guide/dashboard');
+          router.push('/guide/studio');
         } else {
           router.push('/guide/login?registered=1');
         }

@@ -71,9 +71,9 @@ describe('ProfileForm', () => {
     expect(screen.getByTestId('language-toggle-pills')).toBeInTheDocument();
   });
 
-  it("désactive le bouton 'Importer' (hors scope cette PR)", () => {
+  it("permet d'importer une photo de profil", () => {
     render(<ProfileForm value={baseDraft} onChange={jest.fn()} />);
     const btn = screen.getByText('Importer');
-    expect(btn).toBeDisabled();
+    expect(btn).toBeEnabled();
   });
 });

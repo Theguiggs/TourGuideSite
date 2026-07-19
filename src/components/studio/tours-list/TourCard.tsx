@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { MoreVertical } from 'lucide-react';
 import { Pin } from '@murmure/design-system/web';
 import { tgColors } from '@murmure/design-system';
 import { cityFamily, FAMILY_META } from '@/components/studio/shell';
@@ -10,6 +11,7 @@ import {
   type TourStatusLabel,
 } from '@/lib/studio/tours-list-helpers';
 import type { StudioSession } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface TourCardProps {
   /** Session to display. */
@@ -71,6 +73,7 @@ export function TourCard({
   langs,
   onDelete,
 }: TourCardProps) {
+  const { locale } = useStudioLocale();
   const city = cityFromTitle(session.title);
   const fam = cityFamily(city);
   const famMeta = FAMILY_META[fam];
@@ -87,21 +90,35 @@ export function TourCard({
 
   const showProgress = status.bucket === 'draft' && scenesTotal > 0;
   const pct = showProgress ? Math.round((scenesDone / scenesTotal) * 100) : 0;
+  const copy = locale === 'en' ? {
+    resume: 'Resume', edit: 'Edit', continue: 'Continue', current: 'In progress', untitled: 'Untitled tour',
+    open: 'Open', photo: 'Tour photo', updated: 'Updated', language: 'language', languages: 'languages',
+    plays: 'Plays', rating: 'Rating', delete: 'Delete', sceneShort: 'SC.',
+  } : {
+    resume: 'Reprendre', edit: 'Modifier', continue: 'Continuer', current: 'En cours', untitled: 'Visite sans titre',
+    open: 'Ouvrir', photo: 'Photo de la visite', updated: 'Mis à jour le', language: 'langue', languages: 'langues',
+    plays: 'Écoutes', rating: 'Note', delete: 'Supprimer', sceneShort: 'SC.',
+  };
+  const englishStatus: Record<string, string> = {
+    published: 'Live', draft: 'Draft', recording: 'Recording', editing: 'Editing',
+    pending_moderation: 'In review', revision_requested: 'Changes requested', rejected: 'Rejected', archived: 'Archived',
+  };
+  const statusLabel = locale === 'en' ? englishStatus[session.status] ?? status.label : status.label;
 
   // Action label + style depending on bucket.
   const actionConfig: { label: string; classes: string } = current
     ? {
-        label: 'Reprendre',
+        label: copy.resume,
         classes: 'bg-grenadine text-paper hover:opacity-90',
       }
     : status.bucket === 'live'
       ? {
-          label: 'Modifier',
+          label: copy.edit,
           classes:
             'bg-transparent text-ink border border-line hover:bg-paper-soft',
         }
       : {
-          label: 'Continuer',
+          label: copy.continue,
           classes: 'bg-ink text-paper hover:opacity-90',
         };
 
@@ -115,24 +132,23 @@ export function TourCard({
       data-testid="tour-card"
       data-session-id={session.id}
       className={[
-        'bg-card rounded-lg overflow-hidden grid items-stretch transition',
+        'bg-card rounded-lg overflow-hidden grid grid-cols-[6px_80px_minmax(0,1fr)] items-stretch transition xl:grid-cols-[6px_100px_minmax(0,1fr)_180px_150px_132px]',
         current ? 'border-2 border-grenadine shadow-md' : 'border border-line shadow-sm',
       ].join(' ')}
-      style={{ gridTemplateColumns: '6px 100px 1fr 200px 160px 140px' }}
     >
       {/* Bande couleur ville */}
-      <span className={famMeta.bg} aria-hidden="true" />
+      <span className={`${famMeta.bg} row-span-4 xl:row-span-1`} aria-hidden="true" />
 
       {/* Photo de couverture (cover photo) — fallback Pin si absente */}
       <Link
         href={editHref}
         className={`${famMeta.bgSoft} flex items-center justify-center relative no-underline overflow-hidden`}
-        aria-label={`Ouvrir ${session.title ?? 'la session'}`}
+        aria-label={`${copy.open} ${session.title ?? copy.untitled}`}
       >
         {session.coverPhotoKey ? (
           <S3Image
             s3Key={session.coverPhotoKey}
-            alt={session.title ?? 'Photo du tour'}
+            alt={session.title ?? copy.photo}
             className="absolute inset-0 w-full h-full"
           />
         ) : (
@@ -145,7 +161,7 @@ export function TourCard({
               : `absolute bottom-1.5 right-1.5 text-[9px] font-bold tracking-widest ${famMeta.text}`
           }
         >
-          {scenesTotal} SC.
+          {scenesTotal} {copy.sceneShort}
         </span>
       </Link>
 
@@ -155,7 +171,7 @@ export function TourCard({
           <span className={`tg-eyebrow ${famMeta.text}`}>{city}</span>
           {current && (
             <span className="tg-eyebrow bg-grenadine text-paper px-2 py-0.5 rounded-pill">
-              En cours
+              {copy.current}
             </span>
           )}
         </div>
@@ -163,7 +179,7 @@ export function TourCard({
           href={editHref}
           className="block font-display text-h6 mt-1 leading-tight text-ink no-underline hover:underline"
         >
-          {session.title || 'Tour sans titre'}
+          {session.title || copy.untitled}
         </Link>
         {showProgress ? (
           <div className="mt-2.5 flex items-center gap-2 max-w-xs">
@@ -178,27 +194,27 @@ export function TourCard({
           </div>
         ) : (
           <div className="text-meta text-ink-60 mt-1.5 font-editorial italic">
-            Mis à jour le{' '}
-            {new Date(session.updatedAt).toLocaleDateString('fr-FR', {
+            {copy.updated}{' '}
+            {new Date(session.updatedAt).toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', {
               day: 'numeric',
               month: 'short',
             })}
-            {sessionLangs.length > 0 && ` · ${sessionLangs.length} langue${sessionLangs.length > 1 ? 's' : ''}`}
+            {sessionLangs.length > 0 && ` · ${sessionLangs.length} ${sessionLangs.length > 1 ? copy.languages : copy.language}`}
           </div>
         )}
       </div>
 
       {/* Stats */}
-      <div className="p-4 border-l border-line flex items-center gap-5">
+      <div className="col-start-2 col-span-2 flex items-center gap-5 border-t border-line p-3 xl:col-auto xl:col-span-1 xl:border-l xl:border-t-0 xl:p-4">
         <div>
-          <div className="tg-eyebrow text-ink-40">Écoutes</div>
+          <div className="tg-eyebrow text-ink-40">{copy.plays}</div>
           <div className="font-display text-h6 mt-0.5 text-ink leading-none">
             {plays ?? '—'}
           </div>
         </div>
         {rating !== null && (
           <div>
-            <div className="tg-eyebrow text-ink-40">Note</div>
+            <div className="tg-eyebrow text-ink-40">{copy.rating}</div>
             <div className="font-display text-h6 mt-0.5 text-ocre leading-none">
               ★{rating.toFixed(1).replace('.', ',')}
             </div>
@@ -207,12 +223,12 @@ export function TourCard({
       </div>
 
       {/* Status + langs */}
-      <div className="p-4 border-l border-line flex flex-col justify-center gap-2">
+      <div className="col-start-2 col-span-2 flex flex-row flex-wrap items-center gap-2 border-t border-line p-3 xl:col-auto xl:col-span-1 xl:flex-col xl:items-start xl:justify-center xl:border-l xl:border-t-0 xl:p-4">
         <span
           className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-pill text-meta font-bold self-start ${statusCfg.soft} ${statusCfg.text}`}
         >
           <span className={`w-1.5 h-1.5 rounded-pill ${statusCfg.dot}`} aria-hidden="true" />
-          {status.label}
+          {statusLabel}
         </span>
         <div className="flex gap-1 flex-wrap">
           {sessionLangs.map((l) => (
@@ -227,7 +243,7 @@ export function TourCard({
       </div>
 
       {/* Action */}
-      <div className="p-3 border-l border-line flex items-center justify-center gap-1.5">
+      <div className="col-start-2 col-span-2 flex items-center justify-end gap-1.5 border-t border-line p-3 xl:col-auto xl:col-span-1 xl:justify-center xl:border-l xl:border-t-0">
         <Link
           href={editHref}
           data-testid="tour-card-cta"
@@ -240,10 +256,11 @@ export function TourCard({
             type="button"
             onClick={() => onDelete(session)}
             data-testid="tour-card-delete"
-            aria-label={`Supprimer ${session.title ?? 'la session'}`}
-            className="px-2 py-2 text-ink-40 hover:text-danger transition rounded-md"
+            aria-label={`${copy.delete} ${session.title ?? copy.untitled}`}
+            title={`${copy.delete} ${session.title ?? copy.untitled}`}
+            className="inline-flex h-9 w-9 items-center justify-center text-ink-40 hover:text-danger transition rounded-md"
           >
-            <span aria-hidden="true">⋯</span>
+            <MoreVertical size={18} aria-hidden="true" />
           </button>
         )}
       </div>

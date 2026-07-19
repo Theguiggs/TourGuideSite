@@ -1,5 +1,7 @@
 'use client';
 
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
+
 interface NextPaymentCardProps {
   /** Pre-formatted payment date label (e.g. "5 mai 2026"). */
   dateLabel: string;
@@ -21,30 +23,31 @@ export function NextPaymentCard({
   ibanLast4,
   bankLabel,
 }: NextPaymentCardProps) {
-  const ibanStr = ibanLast4 ? `IBAN •••• ${ibanLast4}` : 'IBAN à renseigner';
+  const { locale } = useStudioLocale();
+  const ibanStr = ibanLast4 ? `IBAN •••• ${ibanLast4}` : locale === 'en' ? 'IBAN required' : 'IBAN à renseigner';
 
   return (
     <div className="bg-mer-soft rounded-lg p-5" data-testid="next-payment">
-      <div className="tg-eyebrow text-mer">Prochain versement</div>
+      <div className="tg-eyebrow text-mer">{locale === 'en' ? 'Next payment' : 'Prochain versement'}</div>
       <div className="font-display text-h6 mt-2 leading-snug text-ink">
         {dateLabel}
         <br />
         <em className="font-editorial italic text-body text-mer">
           {daysUntil === 0
-            ? "aujourd'hui"
+            ? (locale === 'en' ? 'today' : "aujourd'hui")
             : daysUntil === 1
-              ? 'demain'
-              : `dans ${daysUntil} jours`}
+              ? (locale === 'en' ? 'tomorrow' : 'demain')
+              : locale === 'en' ? `in ${daysUntil} days` : `dans ${daysUntil} jours`}
         </em>
       </div>
       <div className="text-meta text-ink-60 mt-2 italic">
-        Virement automatique{ibanLast4 || bankLabel ? ' sur ' : ''}
+        {locale === 'en' ? 'Automatic transfer' : 'Virement automatique'}{ibanLast4 || bankLabel ? (locale === 'en' ? ' to ' : ' sur ') : ''}
         {ibanStr}
         {bankLabel && ` · ${bankLabel}`}
       </div>
       <div className="h-px bg-line my-3.5" aria-hidden="true" />
       <div className="text-meta text-ink-60">
-        Reçu fiscal disponible le lendemain · TVA non applicable, art. 293 B du CGI.
+        {locale === 'en' ? 'Tax receipt available the next day · VAT not applicable, article 293 B of the French tax code.' : 'Reçu fiscal disponible le lendemain · TVA non applicable, art. 293 B du CGI.'}
       </div>
     </div>
   );

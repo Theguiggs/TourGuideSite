@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import Link from 'next/link';
+import { Plus } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
@@ -19,6 +20,7 @@ import {
 import { TourCard, TourFilters } from '@/components/studio/tours-list';
 import { DeleteSessionDialog } from '@/components/studio/session-list/delete-session-dialog';
 import type { StudioSession } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'StudioToursPage';
 
@@ -40,6 +42,20 @@ export default function StudioToursPage() {
   const [deleteTarget, setDeleteTarget] = useState<StudioSession | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
+  const { locale } = useStudioLocale();
+  const copy = useMemo(() => locale === 'en' ? {
+    loadError: 'Unable to load your tours.', deleteError: 'Unable to delete this session.', guideOnly: 'The Studio is for guides. Create a guide profile to get started.',
+    retry: 'Try again', emptyTitle: 'You have not created a tour yet', emptyText: 'Record a route in the field with the mobile app, then come back here to turn it into an audio tour.',
+    create: 'Create a new tour', eyebrow: 'My tours', total: 'total', live: 'live', titleStart: 'Your', titleEmphasis: 'catalogue',
+    intro: 'Everything you have written, in progress or published. Open a tour to resume, edit or read feedback.', newTour: 'New tour',
+    noResults: 'No tours match these filters.', reset: 'Reset filters', quote: 'A good tour starts with a place you love too much to keep to yourself.',
+  } : {
+    loadError: 'Impossible de charger vos visites.', deleteError: 'Erreur lors de la suppression.', guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.',
+    retry: 'Réessayer', emptyTitle: "Vous n'avez pas encore créé de visite", emptyText: "Enregistrez un parcours sur le terrain avec l'app mobile, puis revenez ici pour le transformer en visite audio.",
+    create: 'Créer une nouvelle visite', eyebrow: 'Mes visites', total: 'au total', live: 'en ligne', titleStart: 'Votre', titleEmphasis: 'catalogue',
+    intro: 'Tout ce que vous avez écrit, en cours ou publié. Ouvrez une visite pour la reprendre, la modifier ou lire les retours.', newTour: 'Nouvelle visite',
+    noResults: 'Aucune visite ne correspond à ces filtres.', reset: 'Réinitialiser les filtres', quote: "Une bonne visite commence par un endroit qu'on aime trop pour le garder pour soi.",
+  }, [locale]);
 
   const lastSessionId = useMemo(
     () => studioPersistenceService.getLastSessionId(),
@@ -65,12 +81,12 @@ export default function StudioToursPage() {
       setScenesPerSession(map);
       logger.info(SERVICE_NAME, 'Tours loaded', { count: all.length });
     } catch (e) {
-      setError('Impossible de charger vos tours.');
+      setError(copy.loadError);
       logger.error(SERVICE_NAME, 'Failed to load tours', { error: String(e) });
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [copy.loadError]);
 
   useEffect(() => {
     const guideId = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
@@ -102,7 +118,7 @@ export default function StudioToursPage() {
       setSessions((prev) => prev.filter((s) => s.id !== deleteTarget.id));
       setDeleteTarget(null);
     } else {
-      setDeleteError(result.error ?? 'Erreur lors de la suppression.');
+      setDeleteError(result.error ?? copy.deleteError);
     }
   };
 
@@ -134,7 +150,7 @@ export default function StudioToursPage() {
     return (
       <div className="p-8 max-w-7xl mx-auto">
         <div className="bg-ocre-soft border border-ocre rounded-lg p-4 text-ocre" role="alert">
-          Le Studio est réservé aux guides. Créez un profil guide pour commencer.
+          {copy.guideOnly}
         </div>
       </div>
     );
@@ -151,7 +167,7 @@ export default function StudioToursPage() {
             onClick={() => loadTours(user?.guideId || 'guide-1')}
             className="mt-2 text-caption font-medium text-danger underline hover:opacity-80"
           >
-            Réessayer
+            {copy.retry}
           </button>
         </div>
       </div>
@@ -167,16 +183,16 @@ export default function StudioToursPage() {
           data-testid="tours-empty-global"
         >
           <div className="font-display text-h5 text-ink mb-2">
-            Vous n&apos;avez pas encore créé de tour
+            {copy.emptyTitle}
           </div>
           <p className="text-caption text-ink-60 max-w-md mx-auto mb-6">
-            Enregistrez un parcours sur le terrain avec l&apos;app mobile, puis revenez ici pour le transformer en tour audio.
+            {copy.emptyText}
           </p>
           <Link
             href="/guide/studio/nouveau"
             className="inline-flex items-center gap-2 bg-grenadine text-paper px-6 py-3 rounded-pill text-caption font-bold no-underline hover:opacity-90 transition"
           >
-            ＋ Créer un nouveau tour
+            <Plus size={18} aria-hidden="true" /> {copy.create}
           </Link>
         </div>
       </div>
@@ -191,13 +207,13 @@ export default function StudioToursPage() {
       <div className="flex items-start justify-between gap-6 flex-wrap mb-7">
         <div>
           <div className="tg-eyebrow text-grenadine">
-            Mes tours · {sessions.length} au total · {liveCount} en ligne
+            {copy.eyebrow} · {sessions.length} {copy.total} · {liveCount} {copy.live}
           </div>
           <h1 className="font-display text-h3 text-ink mt-1 leading-none">
-            Votre <em className="font-editorial italic">catalogue</em>.
+            {copy.titleStart} <em className="font-editorial italic">{copy.titleEmphasis}</em>.
           </h1>
           <p className="font-editorial italic text-body text-ink-60 max-w-xl mt-2">
-            Tout ce que vous avez écrit, en cours ou publié. Cliquez pour reprendre, modifier ou voir les retours.
+            {copy.intro}
           </p>
         </div>
         <Link
@@ -205,7 +221,7 @@ export default function StudioToursPage() {
           data-testid="new-tour-cta"
           className="bg-grenadine text-paper border-none px-5 py-3.5 rounded-pill text-caption font-bold no-underline hover:opacity-90 transition shadow-md whitespace-nowrap"
         >
-          ＋ Nouveau tour
+          <span className="inline-flex items-center gap-2"><Plus size={17} aria-hidden="true" />{copy.newTour}</span>
         </Link>
       </div>
 
@@ -228,14 +244,14 @@ export default function StudioToursPage() {
             data-testid="tours-empty-filtered"
           >
             <p className="text-caption text-ink-60 mb-2">
-              Aucun tour ne correspond à ces filtres.
+              {copy.noResults}
             </p>
             <button
               type="button"
               onClick={resetFilters}
               className="text-caption font-semibold text-grenadine underline hover:opacity-80"
             >
-              Réinitialiser les filtres
+              {copy.reset}
             </button>
           </div>
         ) : (
@@ -255,7 +271,7 @@ export default function StudioToursPage() {
       {/* ───── Pull-quote éditorial ───── */}
       <div className="mt-10 px-6 py-6 bg-paper-deep rounded-lg text-center">
         <p className="font-editorial italic text-body text-ink-60">
-          « Un bon tour commence par un endroit qu&apos;on aime trop pour le garder pour soi. »
+          “{copy.quote}”
         </p>
       </div>
 

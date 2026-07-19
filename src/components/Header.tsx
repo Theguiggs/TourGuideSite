@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { PinNegatif } from '@murmure/design-system/web';
+import { Menu, PanelsTopLeft, X } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { localizePublicPath } from '@/lib/i18n/public-routes';
+import { MurmureLogo } from '@/components/shell/MurmureLogo';
 
 interface HeaderProps {
   locale?: 'fr' | 'en';
@@ -17,6 +18,8 @@ const HEADER_COPY = {
     purchases: 'Mes achats',
     signOut: 'Déconnexion',
     guideSpace: 'Espace Guide',
+    studio: 'Créer',
+    admin: 'Administrer',
     download: "Télécharger l'app",
     closeMenu: 'Fermer le menu',
     openMenu: 'Ouvrir le menu',
@@ -26,6 +29,8 @@ const HEADER_COPY = {
     purchases: 'My purchases',
     signOut: 'Sign out',
     guideSpace: 'Guide area',
+    studio: 'Create',
+    admin: 'Admin',
     download: 'Download the app',
     closeMenu: 'Close menu',
     openMenu: 'Open menu',
@@ -42,21 +47,14 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
   const helpHref = locale === 'en' ? '/en/help' : '/aide';
   // Tourists have no dashboard — their account destination is their purchases.
   const purchasesHref = locale === 'en' ? '/en/my-purchases' : '/mes-visites';
-  const accountHref = isAdmin ? '/admin/moderation' : isGuide ? '/guide/dashboard' : purchasesHref;
+  const accountHref = isAdmin ? '/admin/moderation' : isGuide ? '/guide/studio' : purchasesHref;
 
   return (
     <header className="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-line">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo Murmure : PinNegatif grenadine + wordmark DM Serif Display */}
           <Link href={homeHref} className="flex items-center gap-2.5 no-underline">
-            <PinNegatif size={26} bg="grenadine" fg="paper" />
-            <span
-              className="font-display text-ink leading-none"
-              style={{ fontSize: '1.375rem', letterSpacing: '-0.01em' }}
-            >
-              Murmure
-            </span>
+            <MurmureLogo size={26} />
           </Link>
 
           {/* Desktop nav */}
@@ -99,12 +97,18 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
                 >
                   {copy.purchases}
                 </Link>
-                <Link
-                  href={accountHref}
-                  className="text-caption text-ink-60 hover:text-ink font-medium no-underline transition"
-                >
+                {(isGuide || isAdmin) && (
+                  <Link
+                    href={accountHref}
+                    className="inline-flex items-center gap-1.5 text-caption text-grenadine hover:text-ink font-semibold no-underline transition"
+                  >
+                    <PanelsTopLeft size={16} aria-hidden="true" />
+                    {isAdmin ? copy.admin : copy.studio}
+                  </Link>
+                )}
+                <span className="max-w-32 truncate text-caption font-semibold text-ink">
                   {user?.displayName}
-                </Link>
+                </span>
                 <button
                   onClick={signOut}
                   className="text-meta text-ink-40 hover:text-grenadine font-medium transition"
@@ -130,19 +134,12 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
             )}
           </div>
 
-          {/* Mobile hamburger */}
           <button
             className="md:hidden p-2 text-ink-60 hover:text-ink"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? copy.closeMenu : copy.openMenu}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {menuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            {menuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
 
@@ -191,10 +188,11 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
                 {(isGuide || isAdmin) && (
                   <Link
                     href={accountHref}
-                    className="block py-3 text-caption text-grenadine font-medium no-underline"
+                    className="flex items-center gap-2 py-3 text-caption text-grenadine font-semibold no-underline"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Dashboard
+                    <PanelsTopLeft size={17} aria-hidden="true" />
+                    {isAdmin ? copy.admin : copy.studio}
                   </Link>
                 )}
                 <button

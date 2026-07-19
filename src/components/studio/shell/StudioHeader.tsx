@@ -2,88 +2,155 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import {
+  ChevronDown,
+  Compass,
+  HelpCircle,
+  LogOut,
+  Menu,
+  UserRound,
+  X,
+} from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
-import { MurmureLogo } from './MurmureLogo';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
+import { MurmureLogo } from '@/components/shell/MurmureLogo';
 
-/**
- * <StudioHeader> — barre haut globale du back-office Murmure.
- * Logo + nav externe (Catalogue / Aide) + avatar user + dropdown.
- * Port de docs/design/ds/studio-shared.jsx:40-56.
- */
-export function StudioHeader() {
+interface StudioHeaderProps {
+  menuOpen?: boolean;
+  onMenuToggle?: () => void;
+}
+
+const COPY = {
+  fr: {
+    studio: 'Studio',
+    explore: 'Explorer',
+    help: 'Aide',
+    profile: 'Mon profil',
+    signOut: 'Se déconnecter',
+    openNavigation: 'Ouvrir la navigation',
+    closeNavigation: 'Fermer la navigation',
+    chooseLanguage: 'Choisir la langue',
+  },
+  en: {
+    studio: 'Studio',
+    explore: 'Explore',
+    help: 'Help',
+    profile: 'My profile',
+    signOut: 'Sign out',
+    openNavigation: 'Open navigation',
+    closeNavigation: 'Close navigation',
+    chooseLanguage: 'Choose language',
+  },
+} as const;
+
+export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined }: StudioHeaderProps) {
   const { user, signOut } = useAuth();
-  const [menuOpen, setMenuOpen] = useState(false);
-
+  const { locale, setLocale } = useStudioLocale();
+  const [accountOpen, setAccountOpen] = useState(false);
+  const copy = COPY[locale];
   const initial = (user?.displayName ?? 'S').trim().charAt(0).toUpperCase() || 'S';
+  const publicHelpHref = locale === 'en' ? '/en/help' : '/aide';
+  const publicCatalogueHref = locale === 'en' ? '/en/catalogue' : '/catalogue';
 
   return (
     <header
-      className="bg-paper border-b border-line px-8 py-3 flex items-center justify-between"
+      className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-line bg-paper/95 px-4 backdrop-blur-sm sm:px-6 lg:px-8"
       data-testid="studio-header"
     >
-      <Link href="/guide/studio" className="no-underline">
-        <MurmureLogo size={26} />
-      </Link>
-
-      <div className="flex items-center gap-5 text-caption">
-        <Link
-          href="/catalogue"
-          className="text-ink-60 hover:text-ink font-medium no-underline transition"
+      <div className="flex min-w-0 items-center gap-2">
+        <button
+          type="button"
+          onClick={onMenuToggle}
+          aria-label={menuOpen ? copy.closeNavigation : copy.openNavigation}
+          aria-expanded={menuOpen}
+          className="inline-flex h-10 w-10 items-center justify-center text-ink-60 hover:text-ink lg:hidden"
         >
-          Catalogue public
+          {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+        </button>
+        <Link href="/guide/studio" className="no-underline">
+          <MurmureLogo size={26} contextLabel={copy.studio} />
+        </Link>
+      </div>
+
+      <div className="flex items-center gap-2 sm:gap-3">
+        <Link
+          href={publicCatalogueHref}
+          className="hidden items-center gap-1.5 text-caption font-semibold text-ink-60 no-underline transition hover:text-ink md:inline-flex"
+        >
+          <Compass size={17} aria-hidden="true" />
+          {copy.explore}
         </Link>
         <Link
-          href="/aide"
-          className="text-ink-60 hover:text-ink font-medium no-underline transition"
+          href={publicHelpHref}
+          aria-label={copy.help}
+          title={copy.help}
+          className="hidden h-9 w-9 items-center justify-center text-ink-60 no-underline transition hover:text-ink sm:inline-flex"
         >
-          Aide
+          <HelpCircle size={18} aria-hidden="true" />
         </Link>
 
-        <span className="w-px h-4 bg-line" aria-hidden="true" />
+        <div
+          className="inline-flex overflow-hidden rounded-md border border-line"
+          aria-label={copy.chooseLanguage}
+        >
+          {(['fr', 'en'] as const).map((targetLocale) => (
+            <button
+              key={targetLocale}
+              type="button"
+              onClick={() => setLocale(targetLocale)}
+              aria-pressed={locale === targetLocale}
+              className={`min-h-8 px-2 text-meta font-bold transition ${
+                locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper text-ink-60 hover:text-ink'
+              }`}
+            >
+              {targetLocale.toUpperCase()}
+            </button>
+          ))}
+        </div>
 
         <div className="relative">
           <button
             type="button"
-            onClick={() => setMenuOpen((v) => !v)}
+            onClick={() => setAccountOpen((value) => !value)}
             aria-haspopup="menu"
-            aria-expanded={menuOpen}
+            aria-expanded={accountOpen}
             data-testid="studio-header-user"
-            className="flex items-center gap-2 px-1 py-1 rounded-md hover:bg-paper-soft transition"
+            className="flex h-10 items-center gap-2 rounded-md px-1.5 transition hover:bg-paper-soft"
           >
-            <span className="w-7 h-7 rounded-full bg-grenadine text-paper flex items-center justify-center text-meta font-bold">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-grenadine text-meta font-bold text-paper">
               {initial}
             </span>
-            <span className="text-caption font-semibold text-ink">
-              {user?.displayName ?? 'Invité'}
+            <span className="hidden max-w-32 truncate text-caption font-semibold text-ink lg:inline">
+              {user?.displayName ?? (locale === 'en' ? 'Guest' : 'Invité')}
             </span>
-            <span className="text-ink-40 text-meta" aria-hidden="true">
-              ▾
-            </span>
+            <ChevronDown size={15} className="hidden text-ink-40 sm:block" aria-hidden="true" />
           </button>
 
-          {menuOpen && (
+          {accountOpen && (
             <div
               role="menu"
-              className="absolute right-0 top-full mt-2 w-48 bg-card border border-line rounded-md shadow-md py-1 z-30"
+              className="absolute right-0 top-full z-50 mt-2 w-52 rounded-md border border-line bg-card py-1 shadow-md"
             >
               <Link
                 href="/guide/studio/profil"
                 role="menuitem"
-                onClick={() => setMenuOpen(false)}
-                className="block px-3 py-2 text-caption text-ink-80 hover:bg-paper-soft no-underline"
+                onClick={() => setAccountOpen(false)}
+                className="flex items-center gap-2 px-3 py-2.5 text-caption text-ink-80 no-underline hover:bg-paper-soft"
               >
-                Mon profil
+                <UserRound size={16} aria-hidden="true" />
+                {copy.profile}
               </Link>
               <button
                 type="button"
                 role="menuitem"
                 onClick={() => {
-                  setMenuOpen(false);
+                  setAccountOpen(false);
                   void signOut();
                 }}
-                className="block w-full text-left px-3 py-2 text-caption text-ink-80 hover:bg-paper-soft"
+                className="flex w-full items-center gap-2 px-3 py-2.5 text-left text-caption text-ink-80 hover:bg-paper-soft"
               >
-                Se déconnecter
+                <LogOut size={16} aria-hidden="true" />
+                {copy.signOut}
               </button>
             </div>
           )}

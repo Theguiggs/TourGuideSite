@@ -27,7 +27,7 @@ function GuideLoginContent() {
 
     if (result.ok) {
       trackEvent(GuideAnalyticsEvents.GUIDE_PORTAL_LOGIN, { email_domain: email.split('@')[1] });
-      router.push(result.role === 'admin' ? '/admin/moderation' : '/guide/dashboard');
+      router.push(result.role === 'admin' ? '/admin/moderation' : '/guide/studio');
     } else {
       setError(result.error || 'Erreur de connexion');
     }

@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface StepNavProps {
   prevHref?: string;
@@ -20,12 +22,15 @@ interface StepNavProps {
  */
 export function StepNav({
   prevHref,
-  prevLabel = 'Précédent',
+  prevLabel,
   nextHref,
-  nextLabel = 'Suivant',
+  nextLabel,
   nextDisabled = false,
   onNextClick,
 }: StepNavProps) {
+  const { locale } = useStudioLocale();
+  const resolvedPrevLabel = prevLabel ?? (locale === 'en' ? 'Previous' : 'Précédent');
+  const resolvedNextLabel = nextLabel ?? (locale === 'en' ? 'Next' : 'Suivant');
   return (
     <div
       className="mt-8 pt-5 border-t border-line flex justify-between items-center gap-3 flex-wrap"
@@ -37,7 +42,7 @@ export function StepNav({
           data-testid="step-nav-prev"
           className="text-ink-60 hover:text-ink text-caption font-semibold py-2 no-underline transition"
         >
-          ← {prevLabel}
+          <span className="inline-flex items-center gap-2"><ArrowLeft size={16} aria-hidden="true" />{resolvedPrevLabel}</span>
         </Link>
       ) : (
         <span aria-hidden="true" />
@@ -51,7 +56,7 @@ export function StepNav({
             data-testid="step-nav-next"
             className="bg-grenadine text-paper border-none px-5 py-3 rounded-pill text-caption font-bold cursor-pointer hover:opacity-90 transition disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center gap-2"
           >
-            {nextLabel} →
+            {resolvedNextLabel} <ArrowRight size={16} aria-hidden="true" />
           </button>
         ) : (
           <Link
@@ -62,7 +67,7 @@ export function StepNav({
               nextDisabled ? 'opacity-40 pointer-events-none' : ''
             }`}
           >
-            {nextLabel} →
+            {resolvedNextLabel} <ArrowRight size={16} aria-hidden="true" />
           </Link>
         )
       ) : null}

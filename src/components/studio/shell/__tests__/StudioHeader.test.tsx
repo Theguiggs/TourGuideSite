@@ -34,7 +34,7 @@ describe('StudioHeader', () => {
 
   it('rend les liens de navigation externe', () => {
     render(<StudioHeader />);
-    expect(screen.getByRole('link', { name: /Catalogue public/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Explorer/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Aide/i })).toBeInTheDocument();
   });
 

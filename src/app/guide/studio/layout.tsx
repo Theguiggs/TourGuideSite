@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import {
   useStudioConsentStore,
@@ -16,6 +16,7 @@ import {
   type SidebarKey,
 } from '@/components/studio/shell';
 import { Toaster } from '@/components/studio/feedback';
+import { StudioLocaleProvider } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'StudioLayout';
 
@@ -33,11 +34,12 @@ function resolveSidebarKey(pathname: string): SidebarKey {
   return 'dashboard';
 }
 
-export default function StudioLayout({ children }: { children: React.ReactNode }) {
+function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   const hasConsented = useStudioConsentStore(selectHasConsented);
   const loadConsent = useStudioConsentStore(selectLoadConsent);
   const mainRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const [navigationOpen, setNavigationOpen] = useState(false);
 
   const activeKey = useMemo(() => resolveSidebarKey(pathname ?? ''), [pathname]);
 
@@ -71,12 +73,40 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
       tabIndex={-1}
       className="outline-none flex flex-col min-h-screen bg-paper-soft"
     >
-      <StudioHeader />
-      <div className="flex-1 grid grid-cols-[240px_1fr] min-h-0">
-        <StudioSidebar active={activeKey} />
-        <main className="overflow-y-auto bg-paper-soft">{children}</main>
+      <StudioHeader
+        menuOpen={navigationOpen}
+        onMenuToggle={() => setNavigationOpen((value) => !value)}
+      />
+      <div className="relative flex-1 min-h-0 lg:grid lg:grid-cols-[240px_minmax(0,1fr)]">
+        <StudioSidebar active={activeKey} className="hidden lg:flex" />
+        {navigationOpen && (
+          <>
+            <button
+              type="button"
+              aria-label="Fermer la navigation"
+              onClick={() => setNavigationOpen(false)}
+              className="fixed inset-0 top-16 z-40 bg-ink/30 lg:hidden"
+            />
+            <div className="fixed bottom-0 left-0 top-16 z-50 lg:hidden">
+              <StudioSidebar
+                active={activeKey}
+                onNavigate={() => setNavigationOpen(false)}
+                className="shadow-lg"
+              />
+            </div>
+          </>
+        )}
+        <main className="min-w-0 overflow-y-auto bg-paper-soft">{children}</main>
       </div>
       <Toaster />
     </div>
+  );
+}
+
+export default function StudioLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <StudioLocaleProvider>
+      <StudioLayoutContent>{children}</StudioLayoutContent>
+    </StudioLocaleProvider>
   );
 }

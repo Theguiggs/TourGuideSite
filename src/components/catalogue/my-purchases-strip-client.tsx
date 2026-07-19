@@ -25,10 +25,7 @@ export function MyPurchasesStripClient({locale = 'fr'}: {locale?: 'fr' | 'en'}) 
   }, []);
 
   useEffect(() => {
-    if (isLoading || !isAuthenticated) {
-      setPurchases([]);
-      return;
-    }
+    if (isLoading || !isAuthenticated) return;
     let cancelled = false;
     getMyPurchasesClient().then((res) => {
       if (!cancelled) setPurchases(res.purchases);
@@ -38,7 +35,7 @@ export function MyPurchasesStripClient({locale = 'fr'}: {locale?: 'fr' | 'en'}) 
     };
   }, [isLoading, isAuthenticated, user?.id, refreshTick]);
 
-  if (purchases.length === 0) return null;
+  if (!isAuthenticated || purchases.length === 0) return null;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">

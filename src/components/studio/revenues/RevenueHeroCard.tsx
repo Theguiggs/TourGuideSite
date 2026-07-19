@@ -1,6 +1,7 @@
 'use client';
 
 import { formatEuros } from '@/lib/studio/revenues-helpers';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface RevenueHeroCardProps {
   /** Net amount the guide will receive. */
@@ -30,6 +31,7 @@ export function RevenueHeroCard({
   delta,
   expectedLabel = 'À recevoir le mois prochain',
 }: RevenueHeroCardProps) {
+  const { locale } = useStudioLocale();
   const fullStr = formatEuros(amount, { withCents: true, currency });
   // Split "342,00 €" into "342" and ",00 €"
   const match = /^(-?[\d\s ]+)([.,]\d+)?\s?(.*)?$/.exec(fullStr);
@@ -38,7 +40,7 @@ export function RevenueHeroCard({
   const symbol = match?.[3]?.trim() ?? '€';
 
   const deltaLabel = delta
-    ? `${delta.sign === '=' ? '=' : `${delta.sign}${delta.pct} %`} vs mois précédent`
+    ? `${delta.sign === '=' ? '=' : `${delta.sign}${delta.pct} %`} ${locale === 'en' ? 'vs previous month' : 'vs mois précédent'}`
     : null;
 
   return (
@@ -54,7 +56,7 @@ export function RevenueHeroCard({
         </div>
       </div>
       <div className="text-caption opacity-85 mt-2">
-        {listens.toLocaleString('fr-FR')} écoutes payantes · part de {sharePct}&nbsp;%
+        {listens.toLocaleString(locale === 'en' ? 'en-GB' : 'fr-FR')} {locale === 'en' ? 'paid plays · share' : 'écoutes payantes · part de'} {sharePct}&nbsp;%
       </div>
       {deltaLabel && (
         <div className="text-meta opacity-85 mt-4" data-testid="revenue-hero-delta">

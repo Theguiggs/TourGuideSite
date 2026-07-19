@@ -21,7 +21,7 @@ describe('TourFilters', () => {
 
   it('rend les 4 tabs avec leurs counts', () => {
     render(<TourFilters {...baseProps} />);
-    expect(screen.getByTestId('tour-filters-tab-all')).toHaveTextContent('Tous');
+    expect(screen.getByTestId('tour-filters-tab-all')).toHaveTextContent('Toutes');
     expect(screen.getByTestId('tour-filters-tab-all')).toHaveTextContent('12');
     expect(screen.getByTestId('tour-filters-tab-live')).toHaveTextContent('9');
     expect(screen.getByTestId('tour-filters-tab-draft')).toHaveTextContent('2');

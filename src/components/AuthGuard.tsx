@@ -18,7 +18,7 @@ export default function AuthGuard({ children, requireAdmin = false }: AuthGuardP
     if (!isAuthenticated) {
       router.replace('/guide/login');
     } else if (requireAdmin && !isAdmin) {
-      router.replace('/guide/dashboard');
+      router.replace('/guide/studio');
     }
   }, [isAuthenticated, isAdmin, isLoading, requireAdmin, router]);
 

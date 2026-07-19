@@ -2,6 +2,7 @@
 
 import { cityFamily, FAMILY_META } from '@/components/studio/shell';
 import { formatEuros } from '@/lib/studio/revenues-helpers';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface RevenueTourRowProps {
   city: string;
@@ -25,14 +26,14 @@ export function RevenueTourRow({
   percentage,
   isLast = false,
 }: RevenueTourRowProps) {
+  const { locale } = useStudioLocale();
   const fam = cityFamily(city);
   const meta = FAMILY_META[fam];
 
   return (
     <div
       data-testid="revenue-tour-row"
-      className={`grid items-center gap-3.5 py-3 ${isLast ? '' : 'border-b border-line'}`}
-      style={{ gridTemplateColumns: '4px 1fr 80px 90px 60px' }}
+      className={`grid grid-cols-[4px_minmax(0,1fr)_74px] items-center gap-3 py-3 sm:grid-cols-[4px_minmax(0,1fr)_80px_90px_60px] sm:gap-3.5 ${isLast ? '' : 'border-b border-line'}`}
     >
       <span className={`block w-1 h-7 rounded-sm ${meta.bg}`} aria-hidden="true" />
       <div className="min-w-0">
@@ -43,16 +44,16 @@ export function RevenueTourRow({
       </div>
       <div className="text-right">
         <div className="font-mono text-caption text-ink-60">
-          {listens.toLocaleString('fr-FR')}
+          {listens.toLocaleString(locale === 'en' ? 'en-GB' : 'fr-FR')}
         </div>
-        <div className="text-meta text-ink-40">écoutes</div>
+        <div className="text-meta text-ink-40">{locale === 'en' ? 'plays' : 'écoutes'}</div>
       </div>
-      <div className="text-right">
+      <div className="hidden text-right sm:block">
         <div className="font-display text-h6 text-olive font-semibold">
           {formatEuros(revenue, { withCents: false })}
         </div>
       </div>
-      <div className="text-right font-mono text-meta text-ink-40">{percentage.toFixed(0)}%</div>
+      <div className="hidden text-right font-mono text-meta text-ink-40 sm:block">{percentage.toFixed(0)}%</div>
     </div>
   );
 }

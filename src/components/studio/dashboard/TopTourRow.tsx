@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { tgColors } from '@murmure/design-system';
 import { cityFamily, FAMILY_META, type CityFamily } from '@/components/studio/shell';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface TopTourRowProps {
   /** Tour href (link target). */
@@ -43,6 +44,7 @@ export function TopTourRow({
   sparkData,
   isLast = false,
 }: TopTourRowProps) {
+  const { locale } = useStudioLocale();
   const fam = cityFamily(city);
   const meta = FAMILY_META[fam];
 
@@ -50,8 +52,7 @@ export function TopTourRow({
     <Link
       href={href}
       data-testid="top-tour-row"
-      className={`grid items-center gap-4 px-4 py-3 no-underline hover:bg-paper-soft transition ${isLast ? '' : 'border-b border-line'}`}
-      style={{ gridTemplateColumns: '4px 1fr 90px 90px 60px' }}
+      className={`grid grid-cols-[4px_minmax(0,1fr)_64px] items-center gap-3 px-4 py-3 no-underline transition hover:bg-paper-soft md:grid-cols-[4px_minmax(0,1fr)_90px_90px_60px] md:gap-4 ${isLast ? '' : 'border-b border-line'}`}
     >
       <span className={`block w-1 h-9 rounded-sm ${meta.bg}`} aria-hidden="true" />
       <div className="min-w-0">
@@ -64,17 +65,17 @@ export function TopTourRow({
         </div>
       </div>
       {sparkData && sparkData.length > 1 ? (
-        <Sparkline data={sparkData} stroke={FAMILY_HEX[fam]} />
+        <span className="hidden md:block"><Sparkline data={sparkData} stroke={FAMILY_HEX[fam]} /></span>
       ) : (
-        <span aria-hidden="true" />
+        <span className="hidden md:block" aria-hidden="true" />
       )}
       <div className="text-right">
         <div className="font-display text-h6 text-ink leading-none">
           {plays ?? '—'}
         </div>
-        <div className="text-meta text-ink-40 font-mono tracking-wide">écoutes</div>
+        <div className="text-meta text-ink-40 font-mono tracking-wide">{locale === 'en' ? 'plays' : 'écoutes'}</div>
       </div>
-      <div className="text-right text-caption text-ocre font-bold">
+      <div className="hidden text-right text-caption font-bold text-ocre md:block">
         {rating !== null ? `★${rating.toFixed(1).replace('.', ',')}` : '—'}
       </div>
     </Link>

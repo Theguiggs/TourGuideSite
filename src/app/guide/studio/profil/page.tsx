@@ -13,6 +13,7 @@ import {
 } from '@/lib/studio/profile-helpers';
 import { ProfileForm, LivePreview } from '@/components/studio/profile';
 import type { StudioSession } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'StudioProfilPage';
 
@@ -27,6 +28,18 @@ export default function StudioProfilPage() {
   const [error, setError] = useState<string | null>(null);
   const [saveState, setSaveState] = useState<SaveState>('idle');
   const [saveError, setSaveError] = useState<string | null>(null);
+  const { locale } = useStudioLocale();
+  const copy = useMemo(() => locale === 'en' ? {
+    notFound: 'Profile not found. Contact the team.', loadError: 'Unable to load your profile.', saveError: 'Unable to save your profile.',
+    guideOnly: 'The Studio is for guides. Create a guide profile to get started.', unexpected: 'Unexpected error.', retry: 'Try again',
+    eyebrow: 'My profile · public', titleStart: 'How you', titleEmphasis: 'appear', intro: 'Travellers see this profile when they listen to your tours. Treat it with care: it is your signature.',
+    saving: 'Saving...', save: 'Save changes', saved: 'Changes saved.', untitled: 'Untitled tour',
+  } : {
+    notFound: 'Profil introuvable. Contactez l’équipe.', loadError: 'Impossible de charger votre profil.', saveError: 'Erreur lors de la sauvegarde.',
+    guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.', unexpected: 'Erreur inattendue.', retry: 'Réessayer',
+    eyebrow: 'Mon profil · public', titleStart: 'Comment vous', titleEmphasis: 'apparaissez', intro: 'Ce profil est visible des voyageurs qui écoutent vos visites. Soignez-le : c’est votre signature.',
+    saving: 'Enregistrement...', save: 'Enregistrer les modifications', saved: 'Modifications enregistrées.', untitled: 'Visite sans titre',
+  }, [locale]);
 
   const load = useCallback(async (guideId: string) => {
     setIsLoading(true);
@@ -37,7 +50,7 @@ export default function StudioProfilPage() {
         listStudioSessions(guideId),
       ]);
       if (!profile) {
-        setError('Profil introuvable. Contactez l’équipe.');
+        setError(copy.notFound);
         return;
       }
       const baseDraft: GuideProfileDraft = {
@@ -54,12 +67,12 @@ export default function StudioProfilPage() {
       setTours(sessions);
       logger.info(SERVICE_NAME, 'Profile loaded', { guideId });
     } catch (e) {
-      setError('Impossible de charger votre profil.');
+      setError(copy.loadError);
       logger.error(SERVICE_NAME, 'Failed to load profile', { error: String(e) });
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [copy.loadError, copy.notFound]);
 
   useEffect(() => {
     const guideId = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
@@ -119,7 +132,7 @@ export default function StudioProfilPage() {
       setInitial(draft);
       setSaveState('saved');
     } else {
-      setSaveError(result.error ?? 'Erreur lors de la sauvegarde.');
+      setSaveError(result.error ?? copy.saveError);
       setSaveState('error');
     }
   };
@@ -128,9 +141,9 @@ export default function StudioProfilPage() {
     () =>
       tours.slice(0, 2).map((s) => {
         const city = (s.title ?? '').split(/[—\-,]/)[0]?.trim() || 'Tour';
-        return { city, title: s.title ?? 'Tour sans titre' };
+        return { city, title: s.title ?? copy.untitled };
       }),
-    [tours],
+    [tours, copy.untitled],
   );
 
   // ─── Loading ───
@@ -152,7 +165,7 @@ export default function StudioProfilPage() {
     return (
       <div className="p-8 max-w-7xl mx-auto">
         <div className="bg-ocre-soft border border-ocre rounded-lg p-4 text-ocre" role="alert">
-          Le Studio est réservé aux guides. Créez un profil guide pour commencer.
+          {copy.guideOnly}
         </div>
       </div>
     );
@@ -163,13 +176,13 @@ export default function StudioProfilPage() {
     return (
       <div className="p-8 max-w-7xl mx-auto">
         <div className="bg-grenadine-soft border border-grenadine rounded-lg p-4" role="alert">
-          <p className="text-danger">{error ?? 'Erreur inattendue.'}</p>
+          <p className="text-danger">{error ?? copy.unexpected}</p>
           <button
             type="button"
             onClick={() => load(user?.guideId || 'guide-1')}
             className="mt-2 text-caption font-medium text-danger underline hover:opacity-80"
           >
-            Réessayer
+            {copy.retry}
           </button>
         </div>
       </div>
@@ -183,12 +196,12 @@ export default function StudioProfilPage() {
       {/* ───── Page header ───── */}
       <div className="flex items-start justify-between gap-6 flex-wrap mb-7">
         <div>
-          <div className="tg-eyebrow text-grenadine">Mon profil · public</div>
+          <div className="tg-eyebrow text-grenadine">{copy.eyebrow}</div>
           <h1 className="font-display text-h3 text-ink mt-1 leading-none">
-            Comment vous <em className="font-editorial italic">apparaissez</em>.
+            {copy.titleStart} <em className="font-editorial italic">{copy.titleEmphasis}</em>.
           </h1>
           <p className="font-editorial italic text-body text-ink-60 max-w-xl mt-2">
-            Ce profil est visible des voyageurs qui écoutent vos tours. Soignez-le — c&apos;est votre signature.
+            {copy.intro}
           </p>
         </div>
         <button
@@ -198,7 +211,7 @@ export default function StudioProfilPage() {
           data-testid="profile-save"
           className="bg-ink text-paper border-none px-5 py-3 rounded-pill text-caption font-bold cursor-pointer hover:opacity-90 transition disabled:opacity-40 disabled:cursor-not-allowed whitespace-nowrap"
         >
-          {saveState === 'saving' ? 'Enregistrement…' : 'Enregistrer les modifications'}
+          {saveState === 'saving' ? copy.saving : copy.save}
         </button>
       </div>
 
@@ -209,7 +222,7 @@ export default function StudioProfilPage() {
           className="bg-grenadine-soft border border-grenadine rounded-md px-4 py-2.5 mb-5 text-caption text-grenadine font-semibold"
           role="status"
         >
-          Modifications enregistrées.
+          {copy.saved}
         </div>
       )}
       {saveState === 'error' && saveError && (

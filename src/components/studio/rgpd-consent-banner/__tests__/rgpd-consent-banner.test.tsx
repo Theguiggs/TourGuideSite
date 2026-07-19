@@ -10,7 +10,7 @@ describe('RgpdConsentBanner', () => {
 
   it('renders RGPD banner when consent not given', () => {
     render(<RgpdConsentBanner />);
-    expect(screen.getByText('Consentement RGPD — Audio Studio')).toBeInTheDocument();
+    expect(screen.getByText('Consentement RGPD - Studio audio')).toBeInTheDocument();
     expect(screen.getByTestId('rgpd-accept')).toBeInTheDocument();
   });
 
@@ -31,10 +31,10 @@ describe('RgpdConsentBanner', () => {
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
-  it('has a Refuser button linking to dashboard', () => {
+  it('has a Refuser link returning to the public catalogue', () => {
     render(<RgpdConsentBanner />);
     const declineLink = screen.getByTestId('rgpd-decline');
-    expect(declineLink).toHaveAttribute('href', '/guide/dashboard');
+    expect(declineLink).toHaveAttribute('href', '/catalogue');
     expect(declineLink).toHaveTextContent('Refuser');
   });
 

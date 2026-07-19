@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import Link from 'next/link';
+import { CircleDollarSign, Map, MessageSquareText, Plus, Sparkles, Star } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
@@ -27,6 +28,7 @@ import {
   SuggestionCard,
 } from '@/components/studio/dashboard';
 import type { StudioSession, TourLanguagePurchase } from '@/types/studio';
+import { useStudioLocale, type StudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'StudioDashboardPage';
 
@@ -39,24 +41,38 @@ interface DashboardData {
   resumable: StudioSession | null;
 }
 
-function formatRelative(iso: string, now: Date = new Date()): string {
+function formatRelative(iso: string, locale: StudioLocale, now: Date = new Date()): string {
   const date = new Date(iso);
   const diffMs = now.getTime() - date.getTime();
   const minutes = Math.floor(diffMs / (60 * 1000));
-  if (minutes < 60) return minutes <= 1 ? "à l'instant" : `il y a ${minutes} min`;
+  if (minutes < 60) return minutes <= 1 ? (locale === 'en' ? 'just now' : "à l'instant") : locale === 'en' ? `${minutes} min ago` : `il y a ${minutes} min`;
   const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `il y a ${hours} h`;
+  if (hours < 24) return locale === 'en' ? `${hours}h ago` : `il y a ${hours} h`;
   const days = Math.floor(hours / 24);
-  if (days === 1) return 'hier';
-  if (days < 7) return `il y a ${days} j.`;
-  return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+  if (days === 1) return locale === 'en' ? 'yesterday' : 'hier';
+  if (days < 7) return locale === 'en' ? `${days}d ago` : `il y a ${days} j.`;
+  return date.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'short' });
 }
 
 export default function StudioDashboardPage() {
   const { user } = useAuth();
+  const { locale } = useStudioLocale();
   const [data, setData] = useState<DashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const copy = useMemo(() => locale === 'en' ? {
+    loadError: 'Unable to load the dashboard.', loading: 'Loading dashboard...', guideOnly: 'The Studio is for guides. Create a guide profile to get started.', retry: 'Try again',
+    welcome: 'Welcome to your Studio', empty: 'You have not created a tour yet. Record a route with the mobile app, then return here to turn it into an audio tour.', create: 'Create a new tour',
+    month: 'This month', numbers: 'Your figures.', allRevenue: 'View all revenue', published: 'Published tours', netRevenue: 'Net revenue', thisMonth: 'this month', average: 'Average rating', reviews: 'Recent reviews',
+    top: 'Tours performing well', noPublished: 'No published tours yet.', untitled: 'Untitled tour', noReviews: 'No reviews yet.',
+    suggestionEyebrow: 'Suggestion · recommended action', suggestionBody: 'An English version could expand your audience. Many international visitors prefer listening in English.', suggestionCta: 'Start translation',
+  } : {
+    loadError: 'Impossible de charger le tableau de bord.', loading: 'Chargement du tableau de bord...', guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.', retry: 'Réessayer',
+    welcome: 'Bienvenue dans votre Studio', empty: "Vous n'avez pas encore créé de visite. Enregistrez un parcours avec l'app mobile, puis revenez ici pour le transformer en visite audio.", create: 'Créer une nouvelle visite',
+    month: 'Le mois en bref', numbers: 'Vos chiffres.', allRevenue: 'Voir tous les revenus', published: 'Visites publiées', netRevenue: 'Revenus nets', thisMonth: 'ce mois', average: 'Note moyenne', reviews: 'Avis récents',
+    top: 'Visites qui marchent', noPublished: 'Aucune visite publiée pour le moment.', untitled: 'Visite sans titre', noReviews: 'Aucun avis pour le moment.',
+    suggestionEyebrow: 'Suggestion · une action recommandée', suggestionBody: "Une version EN pourrait étendre votre audience. Beaucoup de visiteurs internationaux préfèrent écouter en anglais.", suggestionCta: 'Démarrer la traduction',
+  }, [locale]);
 
   const loadDashboard = useCallback(async (guideId: string) => {
     setIsLoading(true);
@@ -118,12 +134,12 @@ export default function StudioDashboardPage() {
       logger.info(SERVICE_NAME, 'Dashboard loaded', { sessions: sessions.length });
       trackEvent(StudioAnalyticsEvents.STUDIO_SESSIONS_VIEW, { count: sessions.length });
     } catch (e) {
-      setError('Impossible de charger le tableau de bord.');
+      setError(copy.loadError);
       logger.error(SERVICE_NAME, 'Failed to load dashboard', { error: String(e) });
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [copy.loadError]);
 
   useEffect(() => {
     const guideId = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
@@ -143,7 +159,7 @@ export default function StudioDashboardPage() {
   if (isLoading) {
     return (
       <div className="p-8 max-w-7xl mx-auto" aria-busy="true">
-        <span className="sr-only">Chargement du tableau de bord…</span>
+        <span className="sr-only">{copy.loading}</span>
         <div className="h-40 bg-paper-deep rounded-xl animate-pulse mb-7" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-8">
           {[1, 2, 3, 4].map((i) => (
@@ -163,7 +179,7 @@ export default function StudioDashboardPage() {
     return (
       <div className="p-8 max-w-7xl mx-auto">
         <div className="bg-ocre-soft border border-ocre rounded-lg p-4 text-ocre" role="alert">
-          Le Studio est réservé aux guides. Créez un profil guide pour commencer.
+          {copy.guideOnly}
         </div>
       </div>
     );
@@ -180,7 +196,7 @@ export default function StudioDashboardPage() {
             onClick={() => loadDashboard(user?.guideId || 'guide-1')}
             className="mt-2 text-caption font-medium text-danger underline hover:opacity-80"
           >
-            Réessayer
+            {copy.retry}
           </button>
         </div>
       </div>
@@ -200,16 +216,16 @@ export default function StudioDashboardPage() {
           data-testid="dashboard-empty"
         >
           <div className="font-display text-h5 text-ink mb-2">
-            Bienvenue dans votre Studio
+            {copy.welcome}
           </div>
           <p className="text-caption text-ink-60 max-w-md mx-auto mb-6">
-            Vous n&apos;avez pas encore créé de tour. Lancez-vous : enregistrez un parcours sur le terrain avec l&apos;app mobile, puis revenez ici pour le transformer en tour audio.
+            {copy.empty}
           </p>
           <Link
             href="/guide/studio/nouveau"
             className="inline-flex items-center gap-2 bg-grenadine text-paper px-6 py-3 rounded-pill text-caption font-bold no-underline hover:opacity-90 transition"
           >
-            ＋ Créer un nouveau tour
+            <Plus size={18} aria-hidden="true" /> {copy.create}
           </Link>
         </div>
       </div>
@@ -240,30 +256,30 @@ export default function StudioDashboardPage() {
       <section className="mb-10">
         <div className="flex items-baseline justify-between flex-wrap gap-2 mb-4">
           <div>
-            <div className="tg-eyebrow text-ink-60">Le mois en bref</div>
-            <h2 className="font-display text-h5 text-ink mt-1">Vos chiffres.</h2>
+            <div className="tg-eyebrow text-ink-60">{copy.month}</div>
+            <h2 className="font-display text-h5 text-ink mt-1">{copy.numbers}</h2>
           </div>
           <Link
             href="/guide/studio/revenus"
             className="text-meta text-ink-60 hover:text-ink no-underline transition"
           >
-            Voir tous les revenus →
+            {copy.allRevenue} →
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
           <KpiCard
-            label="Tours publiés"
+            label={copy.published}
             value={String(publishedCount)}
             color="mer"
-            icon="◉"
+            icon={<Map size={17} />}
           />
-          <KpiCard label="Revenus nets" value="—" sub="ce mois" color="olive" icon="€" />
-          <KpiCard label="Note moyenne" value="—" sub="/ 5" color="ocre" icon="★" />
+          <KpiCard label={copy.netRevenue} value="—" sub={copy.thisMonth} color="olive" icon={<CircleDollarSign size={17} />} />
+          <KpiCard label={copy.average} value="—" sub="/ 5" color="ocre" icon={<Star size={17} />} />
           <KpiCard
-            label="Avis récents"
+            label={copy.reviews}
             value={String(reviewsThisMonth)}
             color="grenadine"
-            icon="✎"
+            icon={<MessageSquareText size={17} />}
           />
         </div>
       </section>
@@ -271,10 +287,10 @@ export default function StudioDashboardPage() {
       {/* ───── Top tours + Avis récents ───── */}
       <section className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-5 mb-10">
         <div>
-          <div className="tg-eyebrow text-mer mb-3">Tours qui marchent</div>
+          <div className="tg-eyebrow text-mer mb-3">{copy.top}</div>
           {topTours.length === 0 ? (
             <div className="bg-card border border-line rounded-lg p-6 text-caption text-ink-60">
-              Aucun tour publié pour le moment.
+              {copy.noPublished}
             </div>
           ) : (
             <div className="bg-card border border-line rounded-lg overflow-hidden">
@@ -285,7 +301,7 @@ export default function StudioDashboardPage() {
                     key={s.id}
                     href={`/guide/studio/${s.id}`}
                     city={cityFromTitle}
-                    title={s.title || 'Tour sans titre'}
+                    title={s.title || copy.untitled}
                     plays={null}
                     rating={null}
                     isLast={i === topTours.length - 1}
@@ -298,11 +314,11 @@ export default function StudioDashboardPage() {
 
         <div>
           <div className="tg-eyebrow text-grenadine mb-3">
-            {recentReviews.length} avis récent{recentReviews.length > 1 ? 's' : ''}
+            {recentReviews.length} {locale === 'en' ? `recent review${recentReviews.length === 1 ? '' : 's'}` : `avis récent${recentReviews.length > 1 ? 's' : ''}`}
           </div>
           {recentReviews.length === 0 ? (
             <div className="bg-card border border-line rounded-lg p-6 text-caption text-ink-60">
-              Aucun avis pour le moment.
+              {copy.noReviews}
             </div>
           ) : (
             <div className="flex flex-col gap-3">
@@ -310,7 +326,7 @@ export default function StudioDashboardPage() {
                 <ReviewItem
                   key={r.id}
                   author={r.author}
-                  when={formatRelative(r.createdAt)}
+                  when={formatRelative(r.createdAt, locale)}
                   tourTitle={r.tourTitle}
                   quote={r.message}
                   rating={r.rating}
@@ -325,13 +341,13 @@ export default function StudioDashboardPage() {
       {suggestion && (
         <section>
           <SuggestionCard
-            eyebrow={suggestion.eyebrow}
-            title={suggestion.title}
-            body={suggestion.body}
-            ctaLabel={suggestion.ctaLabel}
+            eyebrow={locale === 'en' ? copy.suggestionEyebrow : suggestion.eyebrow}
+            title={locale === 'en' ? `Your tour ${sessions.find((session) => suggestion.ctaHref.includes(session.id))?.title ?? copy.untitled} has no English version.` : suggestion.title}
+            body={locale === 'en' ? copy.suggestionBody : suggestion.body}
+            ctaLabel={locale === 'en' ? copy.suggestionCta : suggestion.ctaLabel}
             ctaHref={suggestion.ctaHref}
             color={suggestion.color}
-            icon="✦"
+            icon={<Sparkles size={20} />}
           />
         </section>
       )}

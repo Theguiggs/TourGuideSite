@@ -11,6 +11,7 @@ import { listTourReviews, listReviewRepliesByTour, upsertReviewReply } from '@/l
 import { selectRecentReviews, type DashboardReview } from '@/lib/studio/dashboard-helpers';
 import { ReviewItem } from '@/components/studio/dashboard';
 import type { StudioSession } from '@/types/studio';
+import { useStudioLocale, type StudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'StudioAvisPage';
 
@@ -24,7 +25,9 @@ const LANG_LABELS: Record<string, string> = {
   de: 'Allemand',
   es: 'Espagnol',
 };
-const langLabel = (code: string) => LANG_LABELS[code] ?? code.toUpperCase();
+const langLabel = (code: string, locale: StudioLocale) => locale === 'en'
+  ? ({ fr: 'French', en: 'English', it: 'Italian', de: 'German', es: 'Spanish' }[code] ?? code.toUpperCase())
+  : LANG_LABELS[code] ?? code.toUpperCase();
 
 /** Shape returned by listTourReviews (AppSync TourReview model, loosely typed). */
 interface ReviewLike {
@@ -67,17 +70,17 @@ interface AvisData {
   attention: AttentionTour[];
 }
 
-function formatRelative(iso: string, now: Date = new Date()): string {
+function formatRelative(iso: string, locale: StudioLocale, now: Date = new Date()): string {
   const date = new Date(iso);
   const diffMs = now.getTime() - date.getTime();
   const minutes = Math.floor(diffMs / (60 * 1000));
-  if (minutes < 60) return minutes <= 1 ? "à l'instant" : `il y a ${minutes} min`;
+  if (minutes < 60) return minutes <= 1 ? (locale === 'en' ? 'just now' : "à l'instant") : locale === 'en' ? `${minutes} min ago` : `il y a ${minutes} min`;
   const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `il y a ${hours} h`;
+  if (hours < 24) return locale === 'en' ? `${hours}h ago` : `il y a ${hours} h`;
   const days = Math.floor(hours / 24);
-  if (days === 1) return 'hier';
-  if (days < 7) return `il y a ${days} j.`;
-  return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+  if (days === 1) return locale === 'en' ? 'yesterday' : 'hier';
+  if (days < 7) return locale === 'en' ? `${days}d ago` : `il y a ${days} j.`;
+  return date.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'short' });
 }
 
 /** listTourComments returns oldest→newest, so the last admin entry is the latest feedback. */
@@ -89,6 +92,7 @@ function latestAdminComment(comments: TourComment[]): TourComment | null {
 
 export default function StudioAvisPage() {
   const { user } = useAuth();
+  const { locale } = useStudioLocale();
   const [data, setData] = useState<AvisData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -103,6 +107,25 @@ export default function StudioAvisPage() {
   const [draftReply, setDraftReply] = useState('');
   const [savingReply, setSavingReply] = useState(false);
   const [replyError, setReplyError] = useState<string | null>(null);
+  const copy = useMemo(() => locale === 'en' ? {
+    loadError: 'Unable to load reviews.', loading: 'Loading reviews...', guideOnly: 'The Studio is for guides. Create a guide profile to get started.', retry: 'Try again',
+    eyebrow: 'Reviews & feedback', titleStart: 'Your', titleEmphasis: 'feedback', intro: 'What listeners think and moderation feedback, all in one place.',
+    listenerReview: 'listener review', listenerReviews: 'listener reviews', starsOutOf: 'stars out of 5', filterStars: 'Filter by',
+    attention: 'Needs attention', tour: 'tour', tours: 'tours', untitled: 'Untitled tour', rejected: 'Rejected', revision: 'Changes requested',
+    openFeedback: 'Open the tour to read the moderation feedback.', viewFix: 'View and fix', language: 'Language', allMasc: 'All', allFem: 'All', rating: 'Rating', reset: 'Reset',
+    listenerSection: 'Listener reviews', noListener: 'No listener reviews yet. They will appear here after travellers listen to your tours.', noFilter: 'No reviews match these filters.', resetFilters: 'Reset filters',
+    listener: 'Listener', replyPlaceholder: 'Your public reply to this review...', saving: 'Saving...', save: 'Save', cancel: 'Cancel', yourReply: 'Your reply', edit: 'Edit', reply: 'Reply',
+    moderation: 'Moderation feedback', noModeration: 'No moderation feedback', forTour: ' for this tour', viewTours: 'View my tours',
+  } : {
+    loadError: 'Impossible de charger les avis.', loading: 'Chargement des avis...', guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.', retry: 'Réessayer',
+    eyebrow: 'Avis & retours', titleStart: 'Vos', titleEmphasis: 'retours', intro: 'Ce que vos auditeurs en pensent et les retours de la modération, au même endroit.',
+    listenerReview: 'avis auditeur', listenerReviews: 'avis auditeurs', starsOutOf: 'étoiles sur 5', filterStars: 'Filtrer sur',
+    attention: 'À traiter', tour: 'visite', tours: 'visites', untitled: 'Visite sans titre', rejected: 'Refusée', revision: 'Révision demandée',
+    openFeedback: 'Ouvrez la visite pour voir le détail du retour de la modération.', viewFix: 'Voir et corriger', language: 'Langue', allMasc: 'Toutes', allFem: 'Toutes', rating: 'Note', reset: 'Réinitialiser',
+    listenerSection: 'Avis des auditeurs', noListener: 'Aucun avis d’auditeur pour le moment. Ils apparaîtront ici après l’écoute de vos visites.', noFilter: 'Aucun avis ne correspond à ces filtres.', resetFilters: 'Réinitialiser les filtres',
+    listener: 'Auditeur', replyPlaceholder: 'Votre réponse publique à cet avis...', saving: 'Enregistrement...', save: 'Enregistrer', cancel: 'Annuler', yourReply: 'Votre réponse', edit: 'Modifier', reply: 'Répondre',
+    moderation: 'Retours de la modération', noModeration: 'Aucun retour de la modération', forTour: ' pour cette visite', viewTours: 'Voir mes visites',
+  }, [locale]);
 
   const loadAvis = useCallback(async (guideId: string) => {
     setIsLoading(true);
@@ -154,7 +177,7 @@ export default function StudioAvisPage() {
               language: r.language ?? null,
               createdAt: r.createdAt,
               tourId,
-              tourTitle: s.title || 'Tour sans titre',
+              tourTitle: s.title || copy.untitled,
               authorName: r.authorName ?? null,
               verified: !!r.verified,
             });
@@ -185,12 +208,12 @@ export default function StudioAvisPage() {
         attention: attention.length,
       });
     } catch (e) {
-      setError('Impossible de charger les avis.');
+      setError(copy.loadError);
       logger.error(SERVICE_NAME, 'Failed to load avis', { error: String(e) });
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [copy.loadError, copy.untitled]);
 
   useEffect(() => {
     const guideId = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
@@ -234,7 +257,7 @@ export default function StudioAvisPage() {
   if (isLoading) {
     return (
       <div className="p-6 lg:p-8 max-w-5xl mx-auto" aria-busy="true">
-        <span className="sr-only">Chargement des avis…</span>
+        <span className="sr-only">{copy.loading}</span>
         <div className="h-12 w-48 bg-paper-deep rounded-md animate-pulse mb-6" />
         <div className="flex flex-col gap-3">
           {[1, 2, 3].map((i) => (
@@ -250,7 +273,7 @@ export default function StudioAvisPage() {
     return (
       <div className="p-8 max-w-5xl mx-auto">
         <div className="bg-ocre-soft border border-ocre rounded-lg p-4 text-ocre" role="alert">
-          Le Studio est réservé aux guides. Créez un profil guide pour commencer.
+          {copy.guideOnly}
         </div>
       </div>
     );
@@ -267,7 +290,7 @@ export default function StudioAvisPage() {
             onClick={() => loadAvis(user?.guideId || 'guide-1')}
             className="mt-2 text-caption font-medium text-danger underline hover:opacity-80"
           >
-            Réessayer
+            {copy.retry}
           </button>
         </div>
       </div>
@@ -333,12 +356,12 @@ export default function StudioAvisPage() {
     <div className="p-6 lg:p-8 max-w-5xl mx-auto">
       {/* ───── Header + note moyenne + histogramme ───── */}
       <header className="mb-7">
-        <div className="tg-eyebrow text-grenadine">Avis & retours</div>
+        <div className="tg-eyebrow text-grenadine">{copy.eyebrow}</div>
         <h1 className="font-display text-h3 text-ink mt-1 leading-none">
-          Vos <em className="font-editorial italic">retours</em>.
+          {copy.titleStart} <em className="font-editorial italic">{copy.titleEmphasis}</em>.
         </h1>
         <p className="font-editorial italic text-body text-ink-60 max-w-xl mt-2">
-          Ce que vos auditeurs en pensent, et les retours de la modération — au même endroit.
+          {copy.intro}
         </p>
 
         {ratedCount > 0 && (
@@ -350,7 +373,7 @@ export default function StudioAvisPage() {
               </div>
               <div
                 className="text-ocre text-caption font-bold mt-1"
-                aria-label={`${avgStars} étoiles sur 5`}
+                aria-label={`${avgStars} ${copy.starsOutOf}`}
               >
                 <span aria-hidden="true">{'★'.repeat(avgStars)}</span>
                 <span aria-hidden="true" className="text-ink-20">
@@ -358,7 +381,7 @@ export default function StudioAvisPage() {
                 </span>
               </div>
               <div className="text-meta text-ink-60 mt-1">
-                {ratedCount} avis auditeur{ratedCount > 1 ? 's' : ''}
+                {ratedCount} {ratedCount > 1 ? copy.listenerReviews : copy.listenerReview}
               </div>
             </div>
 
@@ -379,7 +402,7 @@ export default function StudioAvisPage() {
                       'w-full flex items-center gap-3 py-1 group',
                       active ? 'opacity-100' : 'opacity-90 hover:opacity-100',
                     ].join(' ')}
-                    title={`Filtrer sur ${star} étoile${star > 1 ? 's' : ''}`}
+                    title={`${copy.filterStars} ${star}`}
                   >
                     <span className="text-meta text-ink-60 w-8 text-right shrink-0">
                       {star}★
@@ -403,7 +426,7 @@ export default function StudioAvisPage() {
       {attention.length > 0 && (
         <section className="mb-9" data-testid="avis-attention">
           <div className="tg-eyebrow text-ocre mb-3">
-            À traiter · {attention.length} tour{attention.length > 1 ? 's' : ''}
+            {copy.attention} · {attention.length} {attention.length > 1 ? copy.tours : copy.tour}
           </div>
           <div className="flex flex-col gap-2.5">
             {attention.map(({ session, feedback, when }) => {
@@ -417,7 +440,7 @@ export default function StudioAvisPage() {
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div className="text-caption font-semibold text-ink truncate">
-                      {session.title || 'Tour sans titre'}
+                      {session.title || copy.untitled}
                     </div>
                     <span
                       className={[
@@ -425,7 +448,7 @@ export default function StudioAvisPage() {
                         isRejected ? 'bg-grenadine text-paper' : 'bg-ocre text-paper',
                       ].join(' ')}
                     >
-                      {isRejected ? 'Refusé' : 'Révision demandée'}
+                      {isRejected ? copy.rejected : copy.revision}
                     </span>
                   </div>
                   {feedback ? (
@@ -434,11 +457,11 @@ export default function StudioAvisPage() {
                     </p>
                   ) : (
                     <p className="text-meta text-ink-60 mt-2">
-                      Ouvrez le tour pour voir le détail du retour de la modération.
+                      {copy.openFeedback}
                     </p>
                   )}
                   <div className="text-meta text-ink-40 mt-2">
-                    {when ? `${formatRelative(when)} · ` : ''}Voir et corriger →
+                    {when ? `${formatRelative(when, locale)} · ` : ''}{copy.viewFix} →
                   </div>
                 </Link>
               );
@@ -452,14 +475,14 @@ export default function StudioAvisPage() {
         <div className="flex items-center gap-3 flex-wrap mb-5" data-testid="avis-filters">
           {tourOptions.length > 0 && (
             <label className="flex items-center gap-2">
-              <span className="text-meta text-ink-60">Tour</span>
+              <span className="text-meta text-ink-60">{copy.tour}</span>
               <select
                 value={filterTour}
                 onChange={(e) => setFilterTour(e.target.value)}
                 data-testid="avis-filter-tour"
                 className={selectClass}
               >
-                <option value="all">Tous</option>
+                <option value="all">{copy.allMasc}</option>
                 {tourOptions.map((t) => (
                   <option key={t} value={t}>
                     {t}
@@ -470,17 +493,17 @@ export default function StudioAvisPage() {
           )}
           {langOptions.length > 0 && (
             <label className="flex items-center gap-2">
-              <span className="text-meta text-ink-60">Langue</span>
+              <span className="text-meta text-ink-60">{copy.language}</span>
               <select
                 value={filterLang}
                 onChange={(e) => setFilterLang(e.target.value)}
                 data-testid="avis-filter-lang"
                 className={selectClass}
               >
-                <option value="all">Toutes</option>
+                <option value="all">{copy.allFem}</option>
                 {langOptions.map((l) => (
                   <option key={l} value={l}>
-                    {langLabel(l)}
+                    {langLabel(l, locale)}
                   </option>
                 ))}
               </select>
@@ -488,7 +511,7 @@ export default function StudioAvisPage() {
           )}
           {filterRating !== 'all' && (
             <span className="text-meta text-ink-80 bg-paper-deep rounded-pill px-3 py-1">
-              Note : {filterRating}★
+              {copy.rating} : {filterRating}★
             </span>
           )}
           {anyFilterActive && (
@@ -498,7 +521,7 @@ export default function StudioAvisPage() {
               data-testid="avis-filter-reset"
               className="text-meta font-semibold text-grenadine underline hover:opacity-80"
             >
-              Réinitialiser
+              {copy.reset}
             </button>
           )}
         </div>
@@ -507,21 +530,21 @@ export default function StudioAvisPage() {
       {/* ───── Avis des auditeurs ───── */}
       <section className="mb-9" data-testid="avis-auditeurs">
         <div className="tg-eyebrow text-mer mb-3">
-          Avis des auditeurs{filteredAuditor.length > 0 ? ` · ${filteredAuditor.length}` : ''}
+          {copy.listenerSection}{filteredAuditor.length > 0 ? ` · ${filteredAuditor.length}` : ''}
         </div>
         {data.auditorReviews.length === 0 ? (
           <div className="bg-card border border-line rounded-lg p-6 text-caption text-ink-60">
-            Aucun avis d&apos;auditeur pour le moment. Ils apparaîtront ici une fois vos tours écoutés.
+            {copy.noListener}
           </div>
         ) : filteredAuditor.length === 0 ? (
           <div className="bg-card border border-line rounded-lg p-6 text-center" data-testid="avis-auditeurs-filtered-empty">
-            <p className="text-caption text-ink-60 mb-2">Aucun avis ne correspond à ces filtres.</p>
+            <p className="text-caption text-ink-60 mb-2">{copy.noFilter}</p>
             <button
               type="button"
               onClick={resetFilters}
               className="text-caption font-semibold text-grenadine underline hover:opacity-80"
             >
-              Réinitialiser les filtres
+              {copy.resetFilters}
             </button>
           </div>
         ) : (
@@ -532,8 +555,8 @@ export default function StudioAvisPage() {
               return (
                 <div key={r.id} data-testid="avis-auditeur-item">
                   <ReviewItem
-                    author={r.authorName || 'Auditeur'}
-                    when={formatRelative(r.createdAt)}
+                    author={r.authorName || copy.listener}
+                    when={formatRelative(r.createdAt, locale)}
                     tourTitle={r.language ? `${r.tourTitle} · ${r.language.toUpperCase()}` : r.tourTitle}
                     quote={r.comment}
                     rating={r.rating}
@@ -551,7 +574,7 @@ export default function StudioAvisPage() {
                             rows={3}
                             maxLength={1000}
                             autoFocus
-                            placeholder="Votre réponse publique à cet avis…"
+                            placeholder={copy.replyPlaceholder}
                             className="w-full bg-paper border border-line rounded-md px-3 py-2 text-meta text-ink placeholder:text-ink-40 focus:outline-none focus:border-grenadine transition"
                           />
                           {replyError && <p className="text-meta text-danger mt-1">{replyError}</p>}
@@ -563,20 +586,20 @@ export default function StudioAvisPage() {
                               data-testid="avis-reply-save"
                               className="bg-grenadine text-paper px-4 py-1.5 rounded-pill text-meta font-bold hover:opacity-90 transition disabled:opacity-40 disabled:cursor-not-allowed"
                             >
-                              {savingReply ? 'Enregistrement…' : 'Enregistrer'}
+                              {savingReply ? copy.saving : copy.save}
                             </button>
                             <button
                               type="button"
                               onClick={cancelReply}
                               className="text-meta text-ink-60 hover:text-ink transition"
                             >
-                              Annuler
+                              {copy.cancel}
                             </button>
                           </div>
                         </div>
                       ) : reply ? (
                         <div>
-                          <div className="text-meta font-bold text-ocre">Votre réponse</div>
+                          <div className="text-meta font-bold text-ocre">{copy.yourReply}</div>
                           <p className="text-meta text-ink-80 mt-0.5 leading-relaxed">{reply.message}</p>
                           {canReply && (
                             <button
@@ -584,7 +607,7 @@ export default function StudioAvisPage() {
                               onClick={() => startReply(r.id, reply.message)}
                               className="text-meta font-semibold text-grenadine underline hover:opacity-80 mt-1"
                             >
-                              Modifier
+                              {copy.edit}
                             </button>
                           )}
                         </div>
@@ -595,7 +618,7 @@ export default function StudioAvisPage() {
                           data-testid="avis-reply-btn"
                           className="text-meta font-semibold text-grenadine hover:opacity-80 transition"
                         >
-                          ↳ Répondre
+                          ↳ {copy.reply}
                         </button>
                       )}
                     </div>
@@ -611,11 +634,11 @@ export default function StudioAvisPage() {
       {!auditorOnlyFilterActive && (
         <section data-testid="avis-moderation">
           <div className="tg-eyebrow text-ink-60 mb-3">
-            Retours de la modération{filteredModeration.length > 0 ? ` · ${filteredModeration.length}` : ''}
+            {copy.moderation}{filteredModeration.length > 0 ? ` · ${filteredModeration.length}` : ''}
           </div>
           {filteredModeration.length === 0 ? (
             <div className="bg-card border border-line rounded-lg p-6 text-caption text-ink-60">
-              Aucun retour de la modération{filterTour !== 'all' ? ' pour ce tour' : ''}.
+              {copy.noModeration}{filterTour !== 'all' ? copy.forTour : ''}.
             </div>
           ) : (
             <div className="flex flex-col gap-3">
@@ -623,7 +646,7 @@ export default function StudioAvisPage() {
                 <ReviewItem
                   key={r.id}
                   author={r.author}
-                  when={formatRelative(r.createdAt)}
+                  when={formatRelative(r.createdAt, locale)}
                   tourTitle={r.tourTitle}
                   quote={r.message}
                   rating={r.rating}
@@ -641,7 +664,7 @@ export default function StudioAvisPage() {
             href="/guide/studio/tours"
             className="text-caption font-semibold text-grenadine underline hover:opacity-80"
           >
-            Voir mes tours
+            {copy.viewTours}
           </Link>
         </div>
       )}

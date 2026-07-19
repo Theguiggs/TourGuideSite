@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 import { getSessionStatusConfig } from '@/lib/api/studio';
 import { WIZARD_TABS, type WizardTabKey } from '@/lib/studio/wizard-helpers';
 import type { StudioSession } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface WizardShellProps {
   session: StudioSession | null;
@@ -43,23 +45,31 @@ export function WizardShell({
   headerLoading = false,
   children,
 }: WizardShellProps) {
+  const { locale } = useStudioLocale();
   const sessionId = session?.id ?? '';
   const statusConfig = session ? getSessionStatusConfig(session.status) : null;
   const city = cityFromTitle(session?.title);
   const parcours = parcoursFromTitle(session?.title);
+  const tabLabels: Record<WizardTabKey, string> = locale === 'en'
+    ? { accueil: 'Overview', general: 'Details', itinerary: 'Itinerary', scenes: 'Scenes', preview: 'Preview', submission: 'Publish' }
+    : { accueil: 'Accueil', general: 'Général', itinerary: 'Itinéraire', scenes: 'Scènes', preview: 'Aperçu', submission: 'Publication' };
+  const statusLabels: Record<string, string> = locale === 'en' ? {
+    draft: 'Draft', recording: 'Recording', transcribing: 'Transcribing', editing: 'Editing', ready_for_review: 'Ready for review',
+    pending_moderation: 'In review', revision_requested: 'Changes requested', published: 'Published', rejected: 'Rejected', archived: 'Archived',
+  } : {};
 
   return (
     <div className="flex flex-col h-full" data-testid="wizard-shell">
       {/* Sticky sub-header */}
-      <div className="sticky top-0 z-20 bg-card border-b border-line shadow-sm px-6 pt-4 pb-0">
+      <div className="sticky top-0 z-20 border-b border-line bg-card px-4 pt-3 shadow-sm sm:px-6 sm:pt-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 mb-3 flex-wrap text-meta text-ink-60">
           <Link
             href="/guide/studio/tours"
             className="text-ink-60 hover:text-grenadine transition no-underline"
-            aria-label="Retour à la liste des tours"
+            aria-label={locale === 'en' ? 'Back to tours' : 'Retour à la liste des visites'}
           >
-            ← Sessions
+            <span className="inline-flex items-center gap-1"><ArrowLeft size={14} aria-hidden="true" />{locale === 'en' ? 'Tours' : 'Visites'}</span>
           </Link>
           <span className="text-ink-40">›</span>
           {headerLoading ? (
@@ -81,7 +91,7 @@ export function WizardShell({
                   className={`tg-eyebrow px-2 py-0.5 rounded-pill ${statusConfig.color}`}
                   data-testid="wizard-status-pill"
                 >
-                  {statusConfig.label}
+                  {statusLabels[session?.status ?? ''] ?? statusConfig.label}
                 </span>
               )}
               {session?.language && (
@@ -94,7 +104,7 @@ export function WizardShell({
         </div>
 
         {/* Tabs */}
-        <nav className="flex gap-1 -mb-px overflow-x-auto" aria-label="Onglets studio">
+        <nav className="-mb-px flex gap-1 overflow-x-auto" aria-label={locale === 'en' ? 'Studio tabs' : 'Onglets Studio'}>
           {WIZARD_TABS.map((tab) => {
             const isActive = tab.key === activeTab;
             const href = tab.pathSuffix
@@ -119,7 +129,7 @@ export function WizardShell({
                 >
                   {tab.number}
                 </span>
-                {tab.label}
+                {tabLabels[tab.key] ?? tab.label}
               </Link>
             );
           })}

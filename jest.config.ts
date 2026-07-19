@@ -2,6 +2,7 @@ import type { Config } from 'jest';
 
 const config: Config = {
   testEnvironment: 'jsdom',
+  roots: ['<rootDir>/src'],
   transform: {
     '^.+\\.tsx?$': ['ts-jest', { tsconfig: 'tsconfig.json' }],
   },
@@ -18,7 +19,9 @@ const config: Config = {
     '\\.(css)$': '<rootDir>/src/__mocks__/styleMock.ts',
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts", "<rootDir>/src/__mocks__/appsync-client-mock.ts"],
-  testMatch: ['<rootDir>/src/**/*.test.{ts,tsx}'],
+  testMatch: ['**/*.test.{ts,tsx}'],
+  modulePathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
+  watchPathIgnorePatterns: ['<rootDir>/.next/'],
   coverageThreshold: {
     global: {
       branches: 37,

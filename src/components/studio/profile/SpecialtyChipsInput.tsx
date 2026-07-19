@@ -2,6 +2,8 @@
 
 import { useState, type KeyboardEvent } from 'react';
 import { dedupeChips } from '@/lib/studio/profile-helpers';
+import { X } from 'lucide-react';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface SpecialtyChipsInputProps {
   value: string[];
@@ -24,25 +26,27 @@ export function SpecialtyChipsInput({
   onChange,
   max = 8,
   maxLength = 30,
-  placeholder = 'Ajouter…',
+  placeholder,
   onError,
 }: SpecialtyChipsInputProps) {
+  const { locale } = useStudioLocale();
+  const inputPlaceholder = placeholder ?? (locale === 'en' ? 'Add...' : 'Ajouter...');
   const [draft, setDraft] = useState('');
 
   const commit = (raw: string) => {
     const trimmed = raw.trim();
     if (!trimmed) return;
     if (trimmed.length > maxLength) {
-      onError?.(`${maxLength} caractères max par spécialité.`);
+      onError?.(locale === 'en' ? `${maxLength} characters max per specialty.` : `${maxLength} caractères max par spécialité.`);
       return;
     }
     const next = dedupeChips([...value, trimmed]);
     if (next.length === value.length) {
-      onError?.('Cette spécialité existe déjà.');
+      onError?.(locale === 'en' ? 'This specialty already exists.' : 'Cette spécialité existe déjà.');
       return;
     }
     if (next.length > max) {
-      onError?.(`${max} spécialités max.`);
+      onError?.(locale === 'en' ? `${max} specialties maximum.` : `${max} spécialités maximum.`);
       return;
     }
     onChange(next);
@@ -80,10 +84,10 @@ export function SpecialtyChipsInput({
           <button
             type="button"
             onClick={() => remove(s)}
-            aria-label={`Retirer ${s}`}
+            aria-label={`${locale === 'en' ? 'Remove' : 'Retirer'} ${s}`}
             className="opacity-60 hover:opacity-100 text-meta cursor-pointer"
           >
-            ✕
+            <X size={12} aria-hidden="true" />
           </button>
         </span>
       ))}
@@ -93,7 +97,7 @@ export function SpecialtyChipsInput({
         onChange={(e) => setDraft(e.target.value)}
         onKeyDown={onKeyDown}
         onBlur={() => commit(draft)}
-        placeholder={isFull ? '' : placeholder}
+        placeholder={isFull ? '' : inputPlaceholder}
         disabled={isFull}
         maxLength={maxLength}
         data-testid="specialty-chips-input-field"

@@ -31,12 +31,9 @@ export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
   useEffect(() => {
     if (authLoading) return; // wait until the session is resolved
     if (!isAuthenticated) {
-      setLoading(false);
       return;
     }
     let cancelled = false;
-    setLoading(true);
-    setError(false);
     getMyPurchasesClient()
       .then((res) => {
         if (cancelled) return;
@@ -51,7 +48,7 @@ export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
     };
   }, [authLoading, isAuthenticated, user?.id, refreshTick]);
 
-  if (authLoading || loading) {
+  if (authLoading || (isAuthenticated && loading)) {
     return (
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" aria-busy="true">
         {[0, 1, 2].map((i) => (
@@ -94,7 +91,11 @@ export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
             : 'Impossible de charger vos achats pour le moment. Vos visites ne sont pas perdues — réessayez dans quelques instants.'}
         </p>
         <button
-          onClick={() => setRefreshTick((t) => t + 1)}
+          onClick={() => {
+            setLoading(true);
+            setError(false);
+            setRefreshTick((t) => t + 1);
+          }}
           className="text-grenadine font-medium hover:underline"
         >
           {locale === 'en' ? 'Try again' : 'Réessayer'}

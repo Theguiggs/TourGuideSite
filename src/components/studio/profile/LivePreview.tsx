@@ -4,6 +4,7 @@ import { Pin } from '@murmure/design-system/web';
 import { tgColors } from '@murmure/design-system';
 import { cityFamily, FAMILY_META } from '@/components/studio/shell';
 import type { GuideProfileDraft } from '@/lib/studio/profile-helpers';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface LivePreviewProps {
   value: GuideProfileDraft;
@@ -29,6 +30,16 @@ export function LivePreview({
   averageRating = null,
   sampleTours = [],
 }: LivePreviewProps) {
+  const { locale } = useStudioLocale();
+  const copy = locale === 'en' ? {
+    eyebrow: 'Traveller preview', intro: 'What Murmure users see when they listen to one of your tours.', author: 'The author',
+    yourName: 'Your name', city: 'City', since: 'since', emptyBio: 'Your biography will appear here. A few lines are enough: travellers connect with guides who feel human.',
+    tours: 'tours', plays: 'plays', rating: 'average rating', byAuthor: 'Their tours', liveUpdate: 'The preview updates as you edit the form.',
+  } : {
+    eyebrow: 'Aperçu côté voyageur', intro: 'Ce que voient les utilisateurs Murmure quand ils écoutent une de vos visites.', author: "L'auteur",
+    yourName: 'Votre nom', city: 'Ville', since: 'depuis', emptyBio: 'Votre biographie apparaîtra ici. Quelques lignes suffisent : les voyageurs aiment sentir la personnalité de leur guide.',
+    tours: 'visites', plays: 'écoutes', rating: 'note moyenne', byAuthor: 'Ses visites', liveUpdate: 'L’aperçu se met à jour pendant vos modifications.',
+  };
   const initial = (value.displayName ?? 'S').trim().charAt(0).toUpperCase() || 'S';
   const fam = cityFamily(value.city);
   const famMeta = FAMILY_META[fam];
@@ -37,9 +48,9 @@ export function LivePreview({
 
   return (
     <div className="sticky top-8" data-testid="live-preview">
-      <div className="tg-eyebrow text-mer">Aperçu côté voyageur</div>
+      <div className="tg-eyebrow text-mer">{copy.eyebrow}</div>
       <p className="text-meta text-ink-40 mt-1 italic">
-        Ce que voient les utilisateurs Murmure quand ils écoutent un de vos tours.
+        {copy.intro}
       </p>
 
       {/* Phone-ish frame */}
@@ -53,7 +64,7 @@ export function LivePreview({
 
           {/* Hero — auteur */}
           <div className="px-5 pt-4 pb-5 border-b border-line">
-            <div className="tg-eyebrow text-ink-60">L&apos;auteur</div>
+            <div className="tg-eyebrow text-ink-60">{copy.author}</div>
             <div className="flex gap-4 mt-3 items-start">
               <div
                 className={`w-[72px] h-[72px] rounded-full text-paper flex items-center justify-center font-display text-h4 shrink-0 ${famMeta.bg}`}
@@ -63,11 +74,11 @@ export function LivePreview({
               </div>
               <div className="flex-1 min-w-0">
                 <div className="font-display text-h5 leading-none text-ink">
-                  {value.displayName || 'Votre nom'}
+                  {value.displayName || copy.yourName}
                 </div>
                 <div className={`tg-eyebrow ${famMeta.text} mt-1`}>
-                  {value.city || 'Ville'}
-                  {value.yearsExperience ? ` · depuis ${value.yearsExperience}` : ''}
+                  {value.city || copy.city}
+                  {value.yearsExperience ? ` · ${copy.since} ${value.yearsExperience}` : ''}
                 </div>
                 {(visibleSpecialties.length > 0 || extraSpecialtiesCount > 0) && (
                   <div className="flex gap-1 mt-2 flex-wrap">
@@ -97,7 +108,7 @@ export function LivePreview({
                   `« ${value.bio} »`
                 ) : (
                   <span className="text-ink-40">
-                    « Votre biographie apparaîtra ici. Quelques lignes suffisent — les voyageurs lisent les guides qu&apos;ils sentent humains. »
+                    “{copy.emptyBio}”
                   </span>
                 )}
               </p>
@@ -106,11 +117,11 @@ export function LivePreview({
 
           {/* Stats */}
           <div className="px-5 py-5 border-b border-line flex justify-around">
-            <Stat value={String(toursCount)} label="tours" />
-            <Stat value={totalPlays !== null ? String(totalPlays) : '—'} label="écoutes" />
+            <Stat value={String(toursCount)} label={copy.tours} />
+            <Stat value={totalPlays !== null ? String(totalPlays) : '—'} label={copy.plays} />
             <Stat
               value={averageRating !== null ? `${averageRating.toFixed(1).replace('.', ',')}★` : '—'}
-              label="note moyenne"
+              label={copy.rating}
             />
           </div>
 
@@ -118,7 +129,7 @@ export function LivePreview({
           {sampleTours.length > 0 && (
             <div className="px-5 pt-4 pb-5">
               <div className="tg-eyebrow text-ink-60">
-                Ses tours · {toursCount}
+                {copy.byAuthor} · {toursCount}
               </div>
               {sampleTours.slice(0, 2).map((t) => {
                 const tFam = cityFamily(t.city);
@@ -148,7 +159,7 @@ export function LivePreview({
       </div>
 
       <div className="text-meta text-ink-40 mt-3 text-center italic">
-        La preview se met à jour en direct quand vous éditez à gauche.
+        {copy.liveUpdate}
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import { uploadGuideProfilePhoto } from '@/lib/studio/studio-upload-service';
 import { S3Image } from '@/components/studio/s3-image';
 import { SpecialtyChipsInput } from './SpecialtyChipsInput';
 import { LanguageTogglePills } from './LanguageTogglePills';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface ProfileFormProps {
   value: GuideProfileDraft;
@@ -25,6 +26,20 @@ interface ProfileFormProps {
  * Port de docs/design/ds/studio-profile.jsx:30-132.
  */
 export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileFormProps) {
+  const { locale } = useStudioLocale();
+  const copy = locale === 'en' ? {
+    information: 'Information', profilePhoto: 'Profile photo', photoAlt: 'Profile photo', photoHint: 'Square JPG or PNG, at least 400 px (5 MB max).',
+    uploading: 'Uploading...', change: 'Change', import: 'Upload', remove: 'Remove', uploadFailed: 'Photo upload failed.',
+    authorName: 'Author name', nameHint: 'This is what travellers see at the top of every tour.', bio: 'Biography',
+    bioPlaceholder: 'A few lines to help travellers get to know you. Why do you tell the stories of these places?',
+    homeCity: 'Home city', family: 'Family', startYear: 'Starting year', specialties: 'Specialties', languages: 'Languages spoken',
+  } : {
+    information: 'Informations', profilePhoto: 'Photo de profil', photoAlt: 'Photo de profil', photoHint: 'Carrée, format JPG ou PNG, 400 px minimum (max 5 Mo).',
+    uploading: 'Import...', change: 'Changer', import: 'Importer', remove: 'Retirer', uploadFailed: 'Échec de l’envoi de la photo.',
+    authorName: "Nom d'auteur", nameHint: 'C’est ce que les voyageurs voient en haut de chaque visite.', bio: 'Biographie',
+    bioPlaceholder: 'Quelques lignes pour que les voyageurs vous connaissent. Pourquoi racontez-vous ces lieux ?',
+    homeCity: "Ville d'attache", family: 'Famille', startYear: 'Année de début', specialties: 'Spécialités', languages: 'Langues parlées',
+  };
   const initial = (value.displayName ?? 'S').trim().charAt(0).toUpperCase() || 'S';
   const fam = cityFamily(value.city);
   const famMeta = FAMILY_META[fam];
@@ -52,7 +67,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
         setUploadError(result.error);
       }
     } catch {
-      setUploadError('Upload de la photo échoué.');
+      setUploadError(copy.uploadFailed);
     } finally {
       setUploading(false);
     }
@@ -60,14 +75,14 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
 
   return (
     <div className="bg-card border border-line rounded-lg p-8">
-      <div className="tg-eyebrow text-ink-60">Informations</div>
+      <div className="tg-eyebrow text-ink-60">{copy.information}</div>
 
       {/* Avatar */}
       <div className="mt-4 flex gap-4 items-center">
         {value.photoUrl ? (
           <S3Image
             s3Key={value.photoUrl}
-            alt="Photo de profil"
+            alt={copy.photoAlt}
             className="w-[72px] h-[72px] rounded-full shrink-0"
           />
         ) : (
@@ -79,9 +94,9 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
           </div>
         )}
         <div>
-          <div className="text-caption font-semibold text-ink">Photo de profil</div>
+          <div className="text-caption font-semibold text-ink">{copy.profilePhoto}</div>
           <div className="text-meta text-ink-60 mt-0.5">
-            Carrée, format JPG ou PNG, 400 px minimum (max 5 Mo).
+            {copy.photoHint}
           </div>
           <input
             ref={fileInputRef}
@@ -99,7 +114,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
               className="text-meta px-3 py-1.5 bg-ink text-paper border-none rounded-sm font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
               data-testid="profile-photo-import"
             >
-              {uploading ? 'Import…' : value.photoUrl ? 'Changer' : 'Importer'}
+              {uploading ? copy.uploading : value.photoUrl ? copy.change : copy.import}
             </button>
             {value.photoUrl && !uploading && (
               <button
@@ -107,7 +122,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
                 onClick={() => update('photoUrl', null)}
                 className="text-meta px-3 py-1.5 bg-transparent text-ink-60 border-none cursor-pointer hover:text-ink"
               >
-                Retirer
+                {copy.remove}
               </button>
             )}
           </div>
@@ -122,7 +137,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
       {/* Display name */}
       <div className="mt-6">
         <label htmlFor="profile-name" className="text-meta font-semibold text-ink-80 flex justify-between">
-          <span>Nom d&apos;auteur</span>
+          <span>{copy.authorName}</span>
           <span className="text-ink-40 font-normal">
             {value.displayName.length} / {PROFILE_LIMITS.displayNameMax}
           </span>
@@ -142,7 +157,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
           </div>
         ) : (
           <div className="text-meta text-ink-60 mt-1 italic">
-            C&apos;est ce que les voyageurs voient en haut de chaque tour.
+            {copy.nameHint}
           </div>
         )}
       </div>
@@ -150,7 +165,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
       {/* Bio */}
       <div className="mt-5">
         <label htmlFor="profile-bio" className="text-meta font-semibold text-ink-80 flex justify-between">
-          <span>Biographie</span>
+          <span>{copy.bio}</span>
           <span className="text-ink-40 font-normal">
             {value.bio?.length ?? 0} / {PROFILE_LIMITS.bioMax}
           </span>
@@ -161,7 +176,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
           value={value.bio ?? ''}
           onChange={(e) => update('bio', e.target.value)}
           maxLength={PROFILE_LIMITS.bioMax}
-          placeholder="Quelques lignes pour que les voyageurs vous connaissent. Pourquoi racontez-vous ces lieux ?"
+          placeholder={copy.bioPlaceholder}
           data-testid="profile-bio"
           className="mt-1.5 w-full px-3.5 py-3 text-caption font-editorial italic border border-line rounded-md bg-paper text-ink box-border outline-none focus:border-grenadine transition resize-y leading-relaxed"
         />
@@ -176,7 +191,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
       <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         <div>
           <label htmlFor="profile-city" className="text-meta font-semibold text-ink-80">
-            Ville d&apos;attache
+            {copy.homeCity}
           </label>
           <input
             id="profile-city"
@@ -188,7 +203,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
           />
           <div className={`mt-1.5 text-meta ${famMeta.text} flex items-center gap-1.5`}>
             <span className={`w-2 h-2 rounded-pill ${famMeta.bg}`} aria-hidden="true" />
-            Famille {famMeta.label}
+            {copy.family} {famMeta.label}
           </div>
           {validation.errors.city && (
             <div className="text-meta text-danger mt-1" role="alert">
@@ -198,7 +213,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
         </div>
         <div>
           <label htmlFor="profile-year" className="text-meta font-semibold text-ink-80">
-            Année de début
+            {copy.startYear}
           </label>
           <input
             id="profile-year"
@@ -223,7 +238,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
 
       {/* Specialties */}
       <div className="mt-5">
-        <label className="text-meta font-semibold text-ink-80">Spécialités</label>
+        <label className="text-meta font-semibold text-ink-80">{copy.specialties}</label>
         <div className="mt-2">
           <SpecialtyChipsInput
             value={value.specialties}
@@ -241,7 +256,7 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
 
       {/* Languages */}
       <div className="mt-5">
-        <label className="text-meta font-semibold text-ink-80">Langues parlées</label>
+        <label className="text-meta font-semibold text-ink-80">{copy.languages}</label>
         <div className="mt-2">
           <LanguageTogglePills
             value={value.languages}

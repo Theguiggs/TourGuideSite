@@ -1,5 +1,8 @@
 'use client';
 
+import { BadgeCheck } from 'lucide-react';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
+
 interface ReviewItemProps {
   /** Display name of the reviewer. */
   author: string;
@@ -21,6 +24,7 @@ interface ReviewItemProps {
  * Port de docs/design/ds/studio-dashboard.jsx:127-141.
  */
 export function ReviewItem({ author, when, tourTitle, quote, rating, verified }: ReviewItemProps) {
+  const { locale } = useStudioLocale();
   const initial = author.trim().charAt(0).toUpperCase() || '?';
   const stars = rating !== null ? Math.max(0, Math.min(5, Math.round(rating))) : null;
 
@@ -39,11 +43,11 @@ export function ReviewItem({ author, when, tourTitle, quote, rating, verified }:
               <span className="truncate">{author}</span>
               {verified && (
                 <span
-                  title="Écoute vérifiée"
+                  title={locale === 'en' ? 'Verified listen' : 'Écoute vérifiée'}
                   className="text-olive font-bold shrink-0"
-                  aria-label="Écoute vérifiée"
+                  aria-label={locale === 'en' ? 'Verified listen' : 'Écoute vérifiée'}
                 >
-                  ✓ vérifié
+                  <BadgeCheck size={13} className="inline" aria-hidden="true" /> {locale === 'en' ? 'verified' : 'vérifié'}
                 </span>
               )}
             </div>
@@ -53,7 +57,7 @@ export function ReviewItem({ author, when, tourTitle, quote, rating, verified }:
           </div>
         </div>
         {stars !== null && (
-          <div className="text-meta text-ocre font-bold shrink-0" aria-label={`${stars} étoiles sur 5`}>
+          <div className="text-meta text-ocre font-bold shrink-0" aria-label={locale === 'en' ? `${stars} stars out of 5` : `${stars} étoiles sur 5`}>
             <span aria-hidden="true">{'★'.repeat(stars)}</span>
             <span aria-hidden="true" className="text-ink-20">
               {'★'.repeat(5 - stars)}
