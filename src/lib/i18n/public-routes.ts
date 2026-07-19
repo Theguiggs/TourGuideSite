@@ -1,6 +1,7 @@
 export type PublicLocale = 'fr' | 'en';
 
 const EN_TO_FR: ReadonlyArray<readonly [string, string]> = [
+  ['/en/my-purchases', '/mes-visites'],
   ['/en/delete-account', '/supprimer-mon-compte'],
   ['/en/privacy', '/confidentialite'],
   ['/en/terms', '/cgu'],
@@ -21,6 +22,7 @@ export function localizePublicPath(pathname: string, locale: PublicLocale): stri
 
   if (path === '/') return '/en';
   if (path === '/supprimer-mon-compte') return '/en/delete-account';
+  if (path === '/mes-visites') return '/en/my-purchases';
   if (path === '/confidentialite') return '/en/privacy';
   if (path === '/cgu') return '/en/terms';
   if (path === '/aide' || path.startsWith('/aide/')) return path.replace('/aide', '/en/help');

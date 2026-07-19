@@ -9,6 +9,7 @@ describe('localizePublicPath', () => {
     ['/aide', '/en/help'],
     ['/confidentialite', '/en/privacy'],
     ['/supprimer-mon-compte', '/en/delete-account'],
+    ['/mes-visites', '/en/my-purchases'],
   ])('maps French %s to English %s', (source, expected) => {
     expect(localizePublicPath(source, 'en')).toBe(expected);
   });
@@ -19,6 +20,7 @@ describe('localizePublicPath', () => {
     ['/en/help', '/aide'],
     ['/en/privacy', '/confidentialite'],
     ['/en/delete-account', '/supprimer-mon-compte'],
+    ['/en/my-purchases', '/mes-visites'],
   ])('maps English %s to French %s', (source, expected) => {
     expect(localizePublicPath(source, 'fr')).toBe(expected);
   });

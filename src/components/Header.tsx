@@ -41,7 +41,8 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
   const catalogueHref = locale === 'en' ? '/en/catalogue' : '/catalogue';
   const helpHref = locale === 'en' ? '/en/help' : '/aide';
   // Tourists have no dashboard — their account destination is their purchases.
-  const accountHref = isAdmin ? '/admin/moderation' : isGuide ? '/guide/dashboard' : '/mes-visites';
+  const purchasesHref = locale === 'en' ? '/en/my-purchases' : '/mes-visites';
+  const accountHref = isAdmin ? '/admin/moderation' : isGuide ? '/guide/dashboard' : purchasesHref;
 
   return (
     <header className="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-line">
@@ -93,7 +94,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
             {isAuthenticated ? (
               <>
                 <Link
-                  href="/mes-visites"
+                  href={purchasesHref}
                   className="text-caption text-ink-60 hover:text-ink font-medium no-underline transition"
                 >
                   {copy.purchases}
@@ -181,7 +182,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
             {isAuthenticated ? (
               <>
                 <Link
-                  href="/mes-visites"
+                  href={purchasesHref}
                   className="block py-3 text-caption text-ink-60 hover:text-ink font-medium no-underline"
                   onClick={() => setMenuOpen(false)}
                 >
