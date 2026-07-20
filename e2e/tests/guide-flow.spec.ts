@@ -49,6 +49,12 @@ test.describe.serial('Guide Flow', () => {
     const page = await context.newPage();
 
     await page.goto('/guide/studio/tours');
+    const consentBtn = page.getByRole('button', { name: /^Accepter$/i });
+    await consentBtn.waitFor({ state: 'visible', timeout: 5_000 }).catch(() => {});
+    if (await consentBtn.isVisible()) {
+      await consentBtn.click();
+      await consentBtn.waitFor({ state: 'hidden', timeout: 5_000 });
+    }
     await page.getByTestId('new-tour-cta').click();
     await expect(page).toHaveURL(/\/guide\/studio\/nouveau$/, { timeout: 10_000 });
 
