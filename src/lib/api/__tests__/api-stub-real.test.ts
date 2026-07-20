@@ -26,7 +26,7 @@ jest.mock('../appsync-client', () => ({
   getGuideDashboardStatsById: jest.fn(() => Promise.resolve(null)),
 }));
 
-import { getCities, getToursByCity, getTourBySlug, getAllTours } from '../tours';
+import { getCities, getCityBySlug, getToursByCity, getTourBySlug, getAllTours } from '../tours';
 import { getAllPublicGuides, getGuideBySlug, getGuidePublicTours } from '../guides-public';
 import { getGuideDashboardStats, getGuideTours, getGuideProfile, updateGuideProfile } from '../guide';
 import { getModerationQueue, getModerationMetrics, getModerationHistory, approveTour, rejectTour } from '../moderation';
@@ -166,6 +166,21 @@ describe('API layer — error handling (real mode)', () => {
   it('getCities returns empty array on API failure', async () => {
     const cities = await getCities();
     expect(Array.isArray(cities)).toBe(true);
+  });
+
+  it('getCityBySlug sees cities published after an earlier lookup', async () => {
+    const { listGuideTours } = jest.requireMock('../appsync-client') as {
+      listGuideTours: jest.Mock;
+    };
+    listGuideTours
+      .mockResolvedValueOnce([{ city: 'Nice', status: 'published' }])
+      .mockResolvedValueOnce([
+        { city: 'Nice', status: 'published' },
+        { city: 'Biarritz', status: 'published' },
+      ]);
+
+    await expect(getCityBySlug('nice')).resolves.toMatchObject({ name: 'Nice' });
+    await expect(getCityBySlug('biarritz')).resolves.toMatchObject({ name: 'Biarritz' });
   });
 
   it('getTourBySlug returns null on API failure', async () => {

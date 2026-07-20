@@ -463,13 +463,10 @@ export async function getCities(): Promise<City[]> {
   return getRealCities();
 }
 
-// Cache cities within the same server render to avoid N+1
-let _citiesCache: City[] | null = null;
-
 export async function getCityBySlug(slug: string): Promise<City | null> {
   if (shouldUseStubs()) return getStubCityBySlug(slug);
-  if (!_citiesCache) _citiesCache = await getRealCities();
-  return _citiesCache.find((c) => c.slug === slug) ?? null;
+  const cities = await getRealCities();
+  return cities.find((c) => c.slug === slug) ?? null;
 }
 
 export async function getToursByCity(citySlug: string): Promise<Tour[]> {

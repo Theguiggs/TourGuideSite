@@ -28,9 +28,8 @@ import {
   listPublicScenesBySessionServer,
 } from './appsync-server-public';
 
-// --- Per-request caches ---
+// --- Lookup caches ---
 
-let _citiesCache: City[] | null = null;
 let _availableLangsCache: Map<string, string[]> | null = null;
 let _guideNameCache: Map<string, string> | null = null;
 
@@ -284,8 +283,8 @@ export async function getCities(): Promise<City[]> {
 
 export async function getCityBySlug(slug: string): Promise<City | null> {
   if (shouldUseStubs()) return getStubCityBySlug(slug);
-  if (!_citiesCache) _citiesCache = await getRealCities();
-  return _citiesCache.find((c) => c.slug === slug) ?? null;
+  const cities = await getRealCities();
+  return cities.find((c) => c.slug === slug) ?? null;
 }
 
 export async function getToursByCity(citySlug: string): Promise<Tour[]> {
