@@ -41,20 +41,21 @@ test.describe.serial('Guide Flow', () => {
     await page.getByTestId('login-email').fill(E2E_GUIDE_EMAIL);
     await page.getByTestId('login-password').fill(E2E_GUIDE_PASSWORD);
     await page.getByTestId('login-submit').click();
-    await expect(page).toHaveURL(/\/guide\/dashboard/, { timeout: 15_000 });
+    await expect(page).toHaveURL(/\/guide\/studio$/, { timeout: 15_000 });
   });
 
   test('2 - Create tour', async ({ browser }) => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
 
-    await page.goto('/guide/tours');
-    await page.getByTestId('create-tour-btn').click();
+    await page.goto('/guide/studio/tours');
+    await page.getByTestId('new-tour-cta').click();
+    await expect(page).toHaveURL(/\/guide\/studio\/nouveau$/, { timeout: 10_000 });
 
     // Fill modal form
-    await page.getByPlaceholder("Ex : L'Âme des Parfumeurs").fill(`${prefix} Mon Tour Test`);
-    await page.getByPlaceholder('Ex : Grasse').fill('Grasse');
-    await page.getByRole('button', { name: /Créer et éditer/i }).click();
+    await page.getByTestId('nouveau-title').fill(`${prefix} Mon Tour Test`);
+    await page.getByTestId('nouveau-city').fill('Grasse');
+    await page.getByTestId('nouveau-submit').click();
 
     // Should navigate to studio session
     await expect(page).toHaveURL(/\/guide\/studio\//, { timeout: 15_000 });

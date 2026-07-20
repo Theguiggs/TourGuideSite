@@ -58,11 +58,11 @@ test.describe('Access Control', () => {
     await expect(page.locator('h1').first()).toBeVisible();
   });
 
-  test('authenticated user can access guide dashboard', async ({ browser }) => {
+  test('authenticated user can access the canonical Studio dashboard', async ({ browser }) => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
-    await page.goto('/guide/dashboard');
-    await expect(page).toHaveURL(/\/guide\/dashboard/, { timeout: 10_000 });
+    await page.goto('/guide/studio');
+    await expect(page).toHaveURL(/\/guide\/studio$/, { timeout: 10_000 });
     await context.close();
   });
 });

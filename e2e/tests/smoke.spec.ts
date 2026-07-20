@@ -14,7 +14,7 @@ import { seedTour, queryTourByTitle, deleteItemsByPrefix } from '../helpers/apps
 import { getAccessTokenFromStorageState } from '../fixtures/auth.fixture';
 
 test.describe('Smoke Tests', () => {
-  test('smoke-auth: login guide via UI navigates to dashboard', async ({ page }, testInfo) => {
+  test('smoke-auth: login guide via UI navigates to Studio', async ({ page }, testInfo) => {
     // F15 fix: disable trace/video for this test to avoid capturing credentials
     testInfo.config.projects[0].use = {
       ...testInfo.config.projects[0].use,
@@ -27,7 +27,7 @@ test.describe('Smoke Tests', () => {
     await page.getByTestId('login-password').fill(E2E_GUIDE_PASSWORD);
     await page.getByTestId('login-submit').click();
 
-    await expect(page).toHaveURL(/\/guide\/dashboard/, { timeout: 15_000 });
+    await expect(page).toHaveURL(/\/guide\/studio$/, { timeout: 15_000 });
   });
 
   test('smoke-crud: create tour via API, verify, cleanup', async () => {
