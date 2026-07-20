@@ -87,6 +87,8 @@ export default function GeneralPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSaved, setIsSaved] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   // Form state
   const [title, setTitle] = useState('');
@@ -269,6 +271,11 @@ export default function GeneralPage() {
     if (coverInputRef.current) coverInputRef.current.value = '';
   }, []);
 
+  const isLocked = session
+    ? ['submitted', 'published', 'revision_requested'].includes(session.status)
+    : false;
+  const canEditMonetization = !isLocked || session?.status === 'published';
+
   const handleSave = useCallback(async () => {
     if (!session) return;
 
@@ -285,17 +292,25 @@ export default function GeneralPage() {
       priceCents = Math.round(euros * 100);
     }
     setPriceError(null);
+    setSaveError(null);
+    setIsSaved(false);
+    setIsSaving(true);
 
     try {
       const appsync = await import('@/lib/api/appsync-client');
-      await appsync.updateStudioSessionMutation(sessionId, {
-        title,
-        language,
-        coverPhotoKey,
-        availableLanguages: selectedLanguages,
-      });
-      if (session.tourId) {
-        await appsync.updateGuideTourMutation(session.tourId, {
+      if (!isLocked) {
+        const sessionResult = await appsync.updateStudioSessionMutation(sessionId, {
+          title,
+          language,
+          coverPhotoKey,
+          availableLanguages: selectedLanguages,
+        });
+        if (!sessionResult.ok) throw new Error(sessionResult.error);
+      }
+      if (!session.tourId) throw new Error('No tour associated with this session.');
+      const tourResult = await appsync.updateGuideTourMutation(
+        session.tourId,
+        isLocked ? { purchaseType, priceCents } : {
           title,
           city,
           description,
@@ -305,18 +320,27 @@ export default function GeneralPage() {
           // mon-1.2 (parité web) → consommé par mon-1.3b (createTourPaymentIntent lit GuideTour).
           purchaseType,
           priceCents,
-        });
-      }
-      localStorage.setItem(
-        `tour-meta-${session.tourId ?? sessionId}`,
-        JSON.stringify({ difficulty, themes: selectedThemes }),
+        },
       );
+      if (!tourResult.ok) throw new Error(tourResult.error);
+      if (!isLocked) {
+        localStorage.setItem(
+          `tour-meta-${session.tourId ?? sessionId}`,
+          JSON.stringify({ difficulty, themes: selectedThemes }),
+        );
+      }
       logger.info(SERVICE_NAME, 'Saved general info', { sessionId });
+      setIsSaved(true);
+      setTimeout(() => setIsSaved(false), 3000);
     } catch (e) {
       logger.error(SERVICE_NAME, 'Save failed', { error: String(e) });
+      setSaveError(t(
+        "L'enregistrement a échoué. Vos modifications n'ont pas été sauvegardées.",
+        'Save failed. Your changes were not saved.',
+      ));
+    } finally {
+      setIsSaving(false);
     }
-    setIsSaved(true);
-    setTimeout(() => setIsSaved(false), 3000);
   }, [
     sessionId,
     session,
@@ -333,6 +357,8 @@ export default function GeneralPage() {
     scenesCount,
     purchaseType,
     priceEuros,
+    isLocked,
+    t,
   ]);
 
   if (isLoading) {
@@ -362,8 +388,6 @@ export default function GeneralPage() {
     );
   }
 
-  const isLocked = ['submitted', 'published', 'revision_requested'].includes(session.status);
-
   return (
     <div className="p-6 lg:p-8 max-w-3xl mx-auto">
       {isLocked && (
@@ -373,8 +397,12 @@ export default function GeneralPage() {
           data-testid="readonly-banner"
         >
           {t(
-            'Visite soumise — les informations sont en lecture seule. Vous pouvez ajouter des langues.',
-            'Submitted tour — information is read-only. You can still add languages.',
+            session.status === 'published'
+              ? 'Visite publiée — le contenu est en lecture seule. Vous pouvez modifier son accès et son tarif.'
+              : 'Visite soumise — les informations sont en lecture seule. Vous pouvez ajouter des langues.',
+            session.status === 'published'
+              ? 'Published tour — content is read-only. You can still change access and pricing.'
+              : 'Submitted tour — information is read-only. You can still add languages.',
           )}
         </div>
       )}
@@ -572,7 +600,7 @@ export default function GeneralPage() {
             onChange={(e) =>
               setPurchaseType(e.target.value as 'free' | 'paid' | 'subscription_only')
             }
-            disabled={isLocked}
+            disabled={!canEditMonetization}
             data-testid="purchase-type-select"
           />
         </WizField>
@@ -590,7 +618,7 @@ export default function GeneralPage() {
               step={0.01}
               value={priceEuros}
               onChange={(e) => setPriceEuros(e.target.value)}
-              disabled={isLocked}
+              disabled={!canEditMonetization}
               data-testid="price-input"
               placeholder="4.99"
             />
@@ -690,19 +718,29 @@ export default function GeneralPage() {
 
       {/* ───── Save bar ───── */}
       <div className="flex items-center gap-3 flex-wrap mt-2 mb-2">
-        {!isLocked && (
+        {canEditMonetization && (
           <button
             type="button"
             onClick={handleSave}
+            disabled={isSaving}
             data-testid="save-general-btn"
-            className="bg-ink text-paper border-none px-5 py-2.5 rounded-pill text-caption font-bold cursor-pointer hover:opacity-90 transition"
+            className="bg-ink text-paper border-none px-5 py-2.5 rounded-pill text-caption font-bold cursor-pointer hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {t('Enregistrer', 'Save')}
+            {isSaving
+              ? t('Enregistrement...', 'Saving...')
+              : session.status === 'published'
+                ? t('Enregistrer le tarif', 'Save pricing')
+                : t('Enregistrer', 'Save')}
           </button>
         )}
         {isSaved && (
           <span className="text-caption text-success font-semibold" role="status">
             ✓ {t('Enregistré', 'Saved')}
+          </span>
+        )}
+        {saveError && (
+          <span className="text-caption text-danger font-semibold" role="alert" data-testid="save-general-error">
+            {saveError}
           </span>
         )}
       </div>
