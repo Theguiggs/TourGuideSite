@@ -6,6 +6,7 @@ import { estimateCost, checkMicroserviceHealth, requestTranslation } from '@/lib
 import { useTranslationStore } from '@/lib/stores/translation-store';
 import type { TranslationProvider, SceneSegment, QualityTier } from '@/types/studio';
 import type { CostEstimate, MicroserviceHealth } from '@/lib/api/translation';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'TranslationSelector';
 
@@ -38,6 +39,7 @@ function getQualityTierForProvider(provider: TranslationProvider): QualityTier {
 }
 
 export function TranslationSelector({ segment, translatedLanguages = [], onTranslationStarted, onManualTranslation }: TranslationSelectorProps) {
+  const { t } = useStudioLocale();
   const [targetLang, setTargetLang] = useState<string | null>(null);
   const [mode, setMode] = useState<TranslationMode>('auto');
   const [provider, setProvider] = useState<TranslationProvider>('marianmt');
@@ -95,17 +97,17 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
       } else {
         setSegmentStatus(segment.id, {
           status: 'failed',
-          error: 'Échec du déclenchement de la traduction.',
+          error: t('Échec du déclenchement de la traduction.', 'Could not start translation.'),
         });
       }
       onTranslationStarted?.();
     } catch (err) {
       logger.error(SERVICE_NAME, 'Translation request failed', { error: String(err) });
-      setSegmentStatus(segment.id, { status: 'failed', error: 'Erreur inattendue.' });
+      setSegmentStatus(segment.id, { status: 'failed', error: t('Erreur inattendue.', 'Unexpected error.') });
     } finally {
       setIsSubmitting(false);
     }
-  }, [segment, targetLang, provider, isSubmitting, setSegmentStatus, startPolling, onTranslationStarted]);
+  }, [segment, targetLang, provider, isSubmitting, setSegmentStatus, startPolling, onTranslationStarted, t]);
 
   const handleManualStart = useCallback(() => {
     if (!targetLang) return;
@@ -133,7 +135,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
       {/* Translated languages summary */}
       {translatedLanguages.length > 0 && (
         <div className="p-3 bg-olive-soft border border-olive-soft rounded-lg" data-testid="translated-langs-summary">
-          <p className="text-sm font-medium text-success mb-1">Traductions disponibles</p>
+          <p className="text-sm font-medium text-success mb-1">{t('Traductions disponibles', 'Available translations')}</p>
           <div className="flex gap-2 flex-wrap">
             {translatedLanguages.map((code) => {
               const lang = TARGET_LANGUAGES.find((l) => l.code === code);
@@ -150,7 +152,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
       {/* Target language — mandatory */}
       <div>
         <label className="text-sm font-medium text-ink-80 block mb-1">
-          Langue cible <span className="text-danger">*</span>
+          {t('Langue cible', 'Target language')} <span className="text-danger">*</span>
         </label>
         <div className="flex gap-2 flex-wrap">
           {TARGET_LANGUAGES.map((lang) => {
@@ -178,7 +180,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
         </div>
         {!langSelected && (
           <p className="text-xs text-ocre mt-1" data-testid="lang-required">
-            Veuillez sélectionner une langue cible
+            {t('Veuillez sélectionner une langue cible', 'Select a target language')}
           </p>
         )}
       </div>
@@ -197,7 +199,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
               }`}
               data-testid="mode-auto"
             >
-              Traduction automatique
+              {t('Traduction automatique', 'Automatic translation')}
             </button>
             <button
               onClick={() => setMode('manual')}
@@ -208,7 +210,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
               }`}
               data-testid="mode-manual"
             >
-              Je traduis moi-même
+              {t('Je traduis moi-même', 'I will translate it myself')}
             </button>
           </div>
         </div>
@@ -219,7 +221,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
         <>
           {/* Quality/Provider */}
           <div>
-            <label className="text-sm font-medium text-ink-80 block mb-1">Qualité de traduction</label>
+            <label className="text-sm font-medium text-ink-80 block mb-1">{t('Qualité de traduction', 'Translation quality')}</label>
             <div className="space-y-2">
               {PROVIDERS.map((p) => {
                 const disabled = p.value === 'marianmt' && isGpuDown;
@@ -276,7 +278,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
             className="w-full bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white font-medium py-2.5 rounded-lg text-sm transition"
             data-testid="translate-btn"
           >
-            {isSubmitting ? 'Traduction en cours...' : cost?.isFree ? 'Traduire (gratuit)' : `Confirmer et traduire (${cost ? (cost.costCharged / 100).toFixed(2) : '...'} EUR)`}
+            {isSubmitting ? t('Traduction en cours...', 'Translating...') : cost?.isFree ? t('Traduire (gratuit)', 'Translate (free)') : `${t('Confirmer et traduire', 'Confirm and translate')} (${cost ? (cost.costCharged / 100).toFixed(2) : '...'} EUR)`}
           </button>
         </>
       )}

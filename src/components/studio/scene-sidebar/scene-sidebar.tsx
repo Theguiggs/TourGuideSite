@@ -2,6 +2,7 @@ import type { StudioScene } from '@/types/studio';
 import { getSceneStatusConfig } from '@/lib/api/studio';
 import { useTranslationStore } from '@/lib/stores/translation-store';
 import { useTTSStore } from '@/lib/stores/tts-store';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface SceneSidebarProps {
   scenes: StudioScene[];
@@ -10,6 +11,7 @@ interface SceneSidebarProps {
 }
 
 function SegmentBadges({ sceneId }: { sceneId: string }) {
+  const { t } = useStudioLocale();
   // Check both implicit (legacy) and any real segment keyed by sceneId
   const translationState = useTranslationStore((s) => {
     const implicit = s.segments[`implicit-${sceneId}`];
@@ -28,7 +30,7 @@ function SegmentBadges({ sceneId }: { sceneId: string }) {
   const badges: { label: string; color: string }[] = [];
 
   if (translationState?.status === 'completed') {
-    badges.push({ label: 'Traduit', color: 'bg-mer-soft text-mer' });
+    badges.push({ label: t('Traduit', 'Translated'), color: 'bg-mer-soft text-mer' });
   } else if (translationState?.status === 'processing') {
     badges.push({ label: 'Trad...', color: 'bg-mer-soft text-mer' });
   }
@@ -53,11 +55,19 @@ function SegmentBadges({ sceneId }: { sceneId: string }) {
 }
 
 export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSidebarProps) {
+  const { t } = useStudioLocale();
+  const statusLabel = (label: string) => ({
+    'Audio terrain': t('Audio terrain', 'Field audio'),
+    'À transcrire': t('À transcrire', 'Needs transcription'),
+    'Transcription en cours': t('Transcription en cours', 'Transcribing'),
+    'Transcrit': t('Transcrit', 'Transcribed'),
+    'Prêt': t('Prêt', 'Ready'),
+  } as Record<string, string>)[label] ?? label;
   return (
     <nav aria-label="Scenes" className="w-full lg:w-56 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-line bg-paper-soft">
       <div className="p-3">
         <h3 className="text-xs font-semibold text-ink-40 uppercase tracking-wider mb-2 px-2">
-          Scènes
+          {t('Scènes', 'Scenes')}
         </h3>
         <ol className="space-y-1">
           {scenes.map((scene) => {
@@ -79,10 +89,10 @@ export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSide
                     <span className="w-5 h-5 rounded-full bg-paper-deep flex items-center justify-center text-xs font-bold text-ink-60 flex-shrink-0">
                       {scene.sceneIndex + 1}
                     </span>
-                    <span className="truncate">{scene.title || `Scène ${scene.sceneIndex + 1}`}</span>
+                    <span className="truncate">{scene.title || `${t('Scène', 'Scene')} ${scene.sceneIndex + 1}`}</span>
                   </span>
                   <span className={`inline-flex ml-7 mt-0.5 px-1.5 py-0 rounded text-[10px] font-medium ${statusConfig.color}`}>
-                    {statusConfig.label}
+                    {statusLabel(statusConfig.label)}
                   </span>
                   <SegmentBadges sceneId={scene.id} />
                 </button>

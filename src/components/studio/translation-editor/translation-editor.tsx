@@ -6,6 +6,7 @@ import { useAutoSave } from '@/hooks/use-auto-save';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
 import { useTranslationStore, selectSegmentTranslation } from '@/lib/stores/translation-store';
 import type { SceneSegment } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'TranslationEditor';
 
@@ -20,6 +21,7 @@ interface TranslationEditorProps {
 }
 
 export function TranslationEditor({ segment, sessionId, onGenerateTTS }: TranslationEditorProps) {
+  const { t } = useStudioLocale();
   const translationState = useTranslationStore(selectSegmentTranslation(segment.id));
   const setSegmentStatus = useTranslationStore((s) => s.setSegmentStatus);
 
@@ -58,7 +60,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
   if (isProcessing) {
     return (
       <div className="p-4 bg-mer-soft rounded-lg animate-pulse" data-testid="translation-processing">
-        <p className="text-sm text-mer">Traduction en cours...</p>
+        <p className="text-sm text-mer">{t('Traduction en cours...', 'Translation in progress...')}</p>
       </div>
     );
   }
@@ -66,7 +68,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
   if (isFailed) {
     return (
       <div className="p-4 bg-grenadine-soft border border-grenadine-soft rounded-lg" data-testid="translation-failed">
-        <p className="text-sm text-danger">{translationState?.error ?? 'Échec de la traduction.'}</p>
+        <p className="text-sm text-danger">{translationState?.error ?? t('Échec de la traduction.', 'Translation failed.')}</p>
       </div>
     );
   }
@@ -74,7 +76,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
   if (!hasTranslation && !isCompleted) {
     return (
       <div className="p-4 bg-paper-soft rounded-lg text-sm text-ink-60 text-center" data-testid="translation-empty">
-        Aucune traduction disponible — utilisez le sélecteur ci-dessus pour traduire.
+        {t('Aucune traduction disponible — utilisez le sélecteur ci-dessus pour traduire.', 'No translation is available — use the selector above to translate.')}
       </div>
     );
   }
@@ -109,8 +111,8 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
             </label>
             <div className="text-xs text-ink-40">
               {isSaving && <span className="text-mer">Sauvegarde...</span>}
-              {!isSaving && isDirty && <span>Non sauvegardé</span>}
-              {!isSaving && !isDirty && editedText && <span className="text-success">Sauvegardé</span>}
+              {!isSaving && isDirty && <span>{t('Non sauvegardé', 'Unsaved')}</span>}
+              {!isSaving && !isDirty && editedText && <span className="text-success">{t('Sauvegardé', 'Saved')}</span>}
             </div>
           </div>
           <textarea
@@ -143,7 +145,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
           className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg text-sm transition"
           data-testid="generate-tts-btn"
         >
-          Générer l&apos;audio
+          {t("Générer l'audio", 'Generate audio')}
         </button>
       )}
     </div>

@@ -21,6 +21,7 @@ import { LanguagePreviewPlayer } from '@/components/studio/language-preview';
 import { listSegmentsByScene } from '@/lib/api/studio';
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import type { StudioSession, StudioScene, SceneSegment } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 // Dynamic import for Leaflet map (no SSR — browser-only)
 const PreviewMap = dynamic(() => import('@/components/studio/preview-map').then((m) => ({ default: m.PreviewMap })), {
@@ -34,6 +35,7 @@ export default function PreviewPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
   const router = useRouter();
+  const { t } = useStudioLocale();
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenes, setScenes] = useState<StudioScene[]>([]);
@@ -309,7 +311,7 @@ export default function PreviewPage() {
       const result = await submitSessionForModeration(sessionId);
       if (result.ok) {
         setIsSubmitSuccess(true);
-        setSubmitMessage('Tour soumis pour modération !');
+        setSubmitMessage(t('Tour soumis pour modération !', 'Tour submitted for review!'));
         logger.info(SERVICE_NAME, 'Submitted', { sessionId });
       } else {
         setSubmitMessage(result.error);
@@ -320,7 +322,7 @@ export default function PreviewPage() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [sessionId]);
+  }, [sessionId, t]);
 
   const handleSubmitForReview = useCallback(async () => {
     if (!session?.tourId) return;
@@ -392,7 +394,7 @@ export default function PreviewPage() {
   if (isLoading) {
     return (
       <div className="p-6" aria-busy="true">
-        <span className="sr-only">Chargement du preview...</span>
+        <span className="sr-only">{t("Chargement de l'aperçu...", 'Loading preview...')}</span>
         <div className="space-y-3">
           {[1, 2, 3].map((i) => <div key={i} className="bg-paper-soft rounded-lg h-16 animate-pulse" />)}
         </div>
@@ -404,7 +406,7 @@ export default function PreviewPage() {
     return (
       <div className="p-6">
         <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
-          &larr; Retour à la session
+          &larr; {t('Retour à la session', 'Back to session')}
         </Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">
           {error || 'Session introuvable.'}
@@ -443,13 +445,13 @@ export default function PreviewPage() {
   return (
     <div className="p-6 max-w-3xl">
       <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
-        &larr; Retour à la session
+        &larr; {t('Retour à la session', 'Back to session')}
       </Link>
 
       <h1 className="text-2xl font-bold text-ink mb-1">Preview — {session.title || 'Session'}</h1>
       {previewLanguages.length > 1 && (
         <p className="text-sm text-ink-60 mb-2" data-testid="preview-lang-indicator">
-          Langue affichee : <span className="font-medium text-ink-80">{previewLang.toUpperCase()}</span>
+          {t('Langue affichée', 'Display language')} : <span className="font-medium text-ink-80">{previewLang.toUpperCase()}</span>
         </p>
       )}
 
@@ -461,7 +463,7 @@ export default function PreviewPage() {
             viewMode === 'studio' ? 'bg-ink text-white' : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
           }`}
         >
-          Vue Studio
+          {t('Vue Studio', 'Studio view')}
         </button>
         <button
           onClick={() => setViewMode('catalogue')}
@@ -469,7 +471,7 @@ export default function PreviewPage() {
             viewMode === 'catalogue' ? 'bg-ink text-white' : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
           }`}
         >
-          Vue Catalogue (touriste)
+          {t('Vue Catalogue (touriste)', 'Catalogue view (visitor)')}
         </button>
       </div>
 
@@ -523,7 +525,7 @@ export default function PreviewPage() {
               }`}
               data-testid="play-all-btn"
             >
-              {isPlayingAll ? 'Arreter' : 'Ecouter la visite'}
+              {isPlayingAll ? t('Arrêter', 'Stop') : t('Écouter la visite', 'Play tour')}
             </button>
             <AudioPlayerBar compact />
           </div>
@@ -610,7 +612,7 @@ export default function PreviewPage() {
                 }`}
                 data-testid="play-all-btn"
               >
-                {isPlayingAll ? 'Arreter' : 'Ecouter tout'}
+                {isPlayingAll ? t('Arrêter', 'Stop') : t('Écouter tout', 'Play all')}
               </button>
               {isPlayingAll && playingIndex !== null && (
                 <p className="text-xs text-ink-40">
@@ -743,7 +745,7 @@ export default function PreviewPage() {
             className="bg-mer hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2.5 px-6 rounded-lg transition"
             data-testid="submit-review-btn"
           >
-            {isSubmitting ? 'Publication...' : hasRevisionFeedback ? '📤 Republier' : '📋 Publier'}
+            {isSubmitting ? t('Publication...', 'Publishing...') : hasRevisionFeedback ? t('📤 Republier', '📤 Republish') : t('📋 Publier', '📋 Publish')}
           </button>
         )}
         {canSubmit && !session.tourId && (
@@ -753,7 +755,7 @@ export default function PreviewPage() {
             className="bg-mer hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2.5 px-6 rounded-lg transition"
             data-testid="submit-btn"
           >
-            {isSubmitting ? 'Publication...' : hasRevisionFeedback ? '📤 Republier' : '📤 Publier'}
+            {isSubmitting ? t('Publication...', 'Publishing...') : hasRevisionFeedback ? t('📤 Republier', '📤 Republish') : t('📤 Publier', '📤 Publish')}
           </button>
         )}
 
@@ -834,17 +836,17 @@ export default function PreviewPage() {
         {/* Status messages for non-actionable states */}
         {isInReview && !canSubmit && (
           <span className="text-sm text-ink-60">
-            ⏳ En attente de la modération
+            ⏳ {t('En attente de la modération', 'Waiting for review')}
           </span>
         )}
         {isArchived && (
           <span className="text-sm text-ink-60">
-            📦 Parcours archivé
+            📦 {t('Parcours archivé', 'Tour archived')}
           </span>
         )}
         {isPublished && (
           <span className="text-sm text-success font-medium">
-            ✅ Parcours publié
+            ✅ {t('Parcours publié', 'Tour published')}
           </span>
         )}
 
@@ -868,7 +870,7 @@ export default function PreviewPage() {
 
       <StepNav
         prevHref={`/guide/studio/${sessionId}/scenes`}
-        prevLabel="Scènes"
+        prevLabel={t('Scènes', 'Scenes')}
         nextHref={`/guide/studio/${sessionId}/submission`}
         nextLabel="Publication"
       />
@@ -877,9 +879,9 @@ export default function PreviewPage() {
       {showDeleteConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" role="dialog" aria-modal="true">
           <div className="bg-white rounded-xl shadow-2xl max-w-sm w-full mx-4 p-6">
-            <h3 className="text-lg font-bold text-ink mb-3">Supprimer cette session ?</h3>
+            <h3 className="text-lg font-bold text-ink mb-3">{t('Supprimer cette session ?', 'Delete this session?')}</h3>
             <p className="text-sm text-ink-80 mb-5">
-              Tous les fichiers audio, textes et métadonnées seront supprimés définitivement. Cette action est irréversible.
+              {t('Tous les fichiers audio, textes et métadonnées seront supprimés définitivement. Cette action est irréversible.', 'All audio files, text and metadata will be permanently deleted. This action cannot be undone.')}
             </p>
             <div className="flex gap-3">
               <button
@@ -888,7 +890,7 @@ export default function PreviewPage() {
                 className="flex-1 bg-danger hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-4 rounded-lg transition"
                 data-testid="confirm-delete-btn"
               >
-                {isDeleting ? 'Suppression...' : 'Supprimer'}
+                {isDeleting ? t('Suppression...', 'Deleting...') : t('Supprimer', 'Delete')}
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(false)}

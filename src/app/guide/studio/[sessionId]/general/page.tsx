@@ -31,6 +31,7 @@ import {
   SessionTerrainCard,
 } from '@/components/studio/wizard-general';
 import type { StudioSession } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'GeneralPage';
 
@@ -47,32 +48,39 @@ const TOUR_THEMES_OPTIONS = [
   { value: 'sportif', label: 'Sportif' },
 ] as const;
 
-const DIFFICULTY_OPTIONS = [
-  { value: 'facile', label: 'Facile — accessible à tous' },
-  { value: 'moyen', label: 'Moyen — quelques montées' },
-  { value: 'difficile', label: 'Difficile — terrain accidenté' },
-];
-
-const AVAILABLE_LANGUAGES = [
-  { value: 'fr', label: 'Français' },
-  { value: 'en', label: 'Anglais' },
-  { value: 'es', label: 'Espagnol' },
-  { value: 'de', label: 'Allemand' },
-  { value: 'it', label: 'Italien' },
-];
-
 // mon-1.2 (parité web) — modèle d'accès de la visite, écrit sur GuideTour.
-const PURCHASE_TYPE_OPTIONS = [
-  { value: 'free', label: 'Gratuite' },
-  { value: 'paid', label: 'Payante' },
-  { value: 'subscription_only', label: 'Abonnés uniquement' },
-];
 const PRICE_MIN_EUROS = 0.99;
 const PRICE_MAX_EUROS = 49.99;
 
 export default function GeneralPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
+  const { locale, t } = useStudioLocale();
+
+  const themeOptions = useMemo(
+    () => TOUR_THEMES_OPTIONS.map((option) => ({
+      ...option,
+      label: locale === 'en' ? ({ histoire: 'History', gastronomie: 'Food', art: 'Art', nature: 'Nature', architecture: 'Architecture', culture: 'Culture', insolite: 'Unusual', romantique: 'Romantic', famille: 'Family', sportif: 'Sports' } as Record<string, string>)[option.value] : option.label,
+    })),
+    [locale],
+  );
+  const difficultyOptions = useMemo(() => [
+    { value: 'facile', label: t('Facile — accessible à tous', 'Easy — accessible to everyone') },
+    { value: 'moyen', label: t('Moyen — quelques montées', 'Moderate — some uphill sections') },
+    { value: 'difficile', label: t('Difficile — terrain accidenté', 'Difficult — uneven terrain') },
+  ], [t]);
+  const languageOptions = useMemo(() => [
+    { value: 'fr', label: t('Français', 'French') },
+    { value: 'en', label: t('Anglais', 'English') },
+    { value: 'es', label: t('Espagnol', 'Spanish') },
+    { value: 'de', label: t('Allemand', 'German') },
+    { value: 'it', label: t('Italien', 'Italian') },
+  ], [t]);
+  const purchaseTypeOptions = useMemo(() => [
+    { value: 'free', label: t('Gratuite', 'Free') },
+    { value: 'paid', label: t('Payante', 'Paid') },
+    { value: 'subscription_only', label: t('Abonnés uniquement', 'Subscribers only') },
+  ], [t]);
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenesCount, setScenesCount] = useState(0);
@@ -342,13 +350,13 @@ export default function GeneralPage() {
           href={`/guide/studio/${sessionId}`}
           className="text-grenadine text-caption font-semibold no-underline hover:opacity-80 mb-3 inline-block"
         >
-          ← Retour
+          ← {t('Retour', 'Back')}
         </Link>
         <div
           className="bg-grenadine-soft border border-grenadine rounded-md p-4 text-danger"
           role="alert"
         >
-          {error || 'Session introuvable.'}
+          {error || t('Session introuvable.', 'Session not found.')}
         </div>
       </div>
     );
@@ -364,12 +372,15 @@ export default function GeneralPage() {
           role="status"
           data-testid="readonly-banner"
         >
-          Visite soumise — les informations sont en lecture seule. Vous pouvez ajouter des langues.
+          {t(
+            'Visite soumise — les informations sont en lecture seule. Vous pouvez ajouter des langues.',
+            'Submitted tour — information is read-only. You can still add languages.',
+          )}
         </div>
       )}
 
       {/* ───── Photo de couverture ───── */}
-      <WizField label="Photo de couverture">
+      <WizField label={t('Photo de couverture', 'Cover photo')}>
         <div className="flex flex-wrap gap-4 items-start">
           <div className="w-[200px] h-[132px] rounded-md overflow-hidden border border-line bg-paper-soft flex items-center justify-center">
             {coverPreviewUrl ? (
@@ -388,7 +399,7 @@ export default function GeneralPage() {
               />
             ) : (
               <span className="text-meta text-ink-40 text-center px-2">
-                Aucune photo
+                {t('Aucune photo', 'No photo')}
               </span>
             )}
           </div>
@@ -409,7 +420,7 @@ export default function GeneralPage() {
               data-testid="cover-photo-btn"
               className="text-meta text-grenadine font-semibold underline underline-offset-2 hover:opacity-80 transition disabled:opacity-50 text-left"
             >
-              {isUploadingCover ? 'Envoi…' : coverPhotoKey ? 'Changer' : 'Ajouter'}
+              {isUploadingCover ? t('Envoi…', 'Uploading...') : coverPhotoKey ? t('Changer', 'Change') : t('Ajouter', 'Add')}
             </button>
             {coverPhotoKey && !isLocked && (
               <button
@@ -418,7 +429,7 @@ export default function GeneralPage() {
                 data-testid="remove-cover-btn"
                 className="text-meta text-danger font-semibold underline underline-offset-2 hover:opacity-80 transition text-left"
               >
-                Supprimer
+                {t('Supprimer', 'Remove')}
               </button>
             )}
             <div className="text-meta text-ink-60 italic mt-1 max-w-[200px]">
@@ -433,7 +444,7 @@ export default function GeneralPage() {
 
       {/* ───── Titre + Ville ───── */}
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4">
-        <WizField label="Titre du tour" required htmlFor="tour-title">
+        <WizField label={t('Titre du tour', 'Tour title')} required htmlFor="tour-title">
           <WizInput
             id="tour-title"
             type="text"
@@ -442,14 +453,14 @@ export default function GeneralPage() {
             maxLength={100}
             disabled={isLocked}
             data-testid="title-input"
-            placeholder="Ex : Vence — Chapelle Matisse et Cité Épiscopale"
+            placeholder={t('Ex : Vence — Chapelle Matisse et Cité Épiscopale', 'Example: Vence — Matisse Chapel and Episcopal City')}
           />
         </WizField>
         <WizField
-          label="Ville"
+          label={t('Ville', 'City')}
           required
           htmlFor="tour-city"
-          helper="Couleur attribuée automatiquement selon la ville."
+          helper={t('Couleur attribuée automatiquement selon la ville.', 'Colour is assigned automatically based on the city.')}
         >
           <div className="relative">
             <WizInput
@@ -469,7 +480,7 @@ export default function GeneralPage() {
 
       {/* ───── Description ───── */}
       <WizField
-        label="Description longue"
+        label={t('Description longue', 'Full description')}
         hint={`${description.length} / 2000`}
         htmlFor="tour-description"
       >
@@ -481,33 +492,33 @@ export default function GeneralPage() {
           maxLength={2000}
           disabled={isLocked}
           data-testid="description-input"
-          placeholder="Décrivez votre tour tel qu'il apparaîtra dans le catalogue…"
+          placeholder={t("Décrivez votre tour tel qu'il apparaîtra dans le catalogue…", 'Describe your tour as it will appear in the catalogue...')}
         />
       </WizField>
 
       {/* ───── Langue / Difficulté / Durée / Distance ───── */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <WizField label="Langue" htmlFor="tour-language">
+        <WizField label={t('Langue', 'Language')} htmlFor="tour-language">
           <WizSelect
             id="tour-language"
-            options={AVAILABLE_LANGUAGES}
+            options={languageOptions}
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
             disabled={isLocked}
             data-testid="language-select"
           />
         </WizField>
-        <WizField label="Difficulté" htmlFor="tour-difficulty">
+        <WizField label={t('Difficulté', 'Difficulty')} htmlFor="tour-difficulty">
           <WizSelect
             id="tour-difficulty"
-            options={DIFFICULTY_OPTIONS}
+            options={difficultyOptions}
             value={difficulty}
             onChange={(e) => setDifficulty(e.target.value)}
             disabled={isLocked}
             data-testid="difficulty-select"
           />
         </WizField>
-        <WizField label="Durée (min)" htmlFor="tour-duration">
+        <WizField label={t('Durée (min)', 'Duration (min)')} htmlFor="tour-duration">
           <WizInput
             id="tour-duration"
             type="number"
@@ -519,7 +530,7 @@ export default function GeneralPage() {
             data-testid="duration-input"
           />
         </WizField>
-        <WizField label="Distance (km)" htmlFor="tour-distance">
+        <WizField label={t('Distance (km)', 'Distance (km)')} htmlFor="tour-distance">
           <WizInput
             id="tour-distance"
             type="number"
@@ -536,11 +547,11 @@ export default function GeneralPage() {
 
       {/* ───── Thèmes ───── */}
       <WizField
-        label="Thèmes"
-        helper="Maximum 3 thèmes. Ils servent à la recherche dans le catalogue."
+        label={t('Thèmes', 'Themes')}
+        helper={t('Maximum 3 thèmes. Ils servent à la recherche dans le catalogue.', 'Choose up to 3 themes. They are used for catalogue search.')}
       >
         <ThemeChips
-          options={TOUR_THEMES_OPTIONS}
+          options={themeOptions}
           value={selectedThemes}
           onChange={setSelectedThemes}
           max={3}
@@ -550,13 +561,13 @@ export default function GeneralPage() {
       {/* ───── Monétisation (mon-1.2 parité web) ───── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <WizField
-          label="Monétisation"
+          label={t('Monétisation', 'Access and pricing')}
           htmlFor="tour-purchase-type"
-          helper="Comment les voyageurs accèdent à cette visite."
+          helper={t('Comment les voyageurs accèdent à cette visite.', 'Choose how visitors access this tour.')}
         >
           <WizSelect
             id="tour-purchase-type"
-            options={PURCHASE_TYPE_OPTIONS}
+            options={purchaseTypeOptions}
             value={purchaseType}
             onChange={(e) =>
               setPurchaseType(e.target.value as 'free' | 'paid' | 'subscription_only')
@@ -567,9 +578,9 @@ export default function GeneralPage() {
         </WizField>
         {purchaseType === 'paid' && (
           <WizField
-            label="Prix (€)"
+            label={t('Prix (€)', 'Price (€)')}
             htmlFor="tour-price"
-            helper="Entre 0,99 € et 49,99 €. Le prix in-app dépend du produit créé sur le store."
+            helper={t('Entre 0,99 € et 49,99 €. Le prix in-app dépend du produit créé sur le store.', 'Between €0.99 and €49.99. The in-app price depends on the store product.')}
           >
             <WizInput
               id="tour-price"
@@ -601,11 +612,11 @@ export default function GeneralPage() {
             storageKey={`general-multilang-${sessionId}`}
             defaultOpen={purchasedLanguages.length > 0}
             icon={<span aria-hidden="true">✦</span>}
-            title="Langues additionnelles"
+            title={t('Langues additionnelles', 'Additional languages')}
             subtitle={
               purchasedLanguages.length > 0
                 ? `${purchasedLanguages.length} langue${purchasedLanguages.length > 1 ? 's' : ''} ajoutée${purchasedLanguages.length > 1 ? 's' : ''}`
-                : 'Aucune'
+                : t('Aucune', 'None')
             }
             compact
             testId="multilang-section"
@@ -617,10 +628,10 @@ export default function GeneralPage() {
               data-testid="open-multilang-btn"
             >
               <span className="block text-caption font-bold text-grenadine">
-                Ouvrir le multilangue
+                {t('Ouvrir le multilangue', 'Open multilingual tools')}
               </span>
               <span className="block text-meta text-grenadine mt-0.5">
-                Traduisez vous-même ou utilisez la traduction automatique.
+                {t('Traduisez vous-même ou utilisez la traduction automatique.', 'Translate it yourself or use automatic translation.')}
               </span>
             </button>
 
@@ -686,12 +697,12 @@ export default function GeneralPage() {
             data-testid="save-general-btn"
             className="bg-ink text-paper border-none px-5 py-2.5 rounded-pill text-caption font-bold cursor-pointer hover:opacity-90 transition"
           >
-            Enregistrer
+            {t('Enregistrer', 'Save')}
           </button>
         )}
         {isSaved && (
           <span className="text-caption text-success font-semibold" role="status">
-            ✓ Enregistré
+            ✓ {t('Enregistré', 'Saved')}
           </span>
         )}
       </div>
@@ -699,9 +710,9 @@ export default function GeneralPage() {
       {/* ───── Step nav ───── */}
       <StepNav
         prevHref={`/guide/studio/${sessionId}`}
-        prevLabel="Accueil"
+        prevLabel={t('Accueil', 'Home')}
         nextHref={`/guide/studio/${sessionId}/itinerary`}
-        nextLabel="Itinéraire"
+        nextLabel={t('Itinéraire', 'Itinerary')}
       />
     </div>
   );

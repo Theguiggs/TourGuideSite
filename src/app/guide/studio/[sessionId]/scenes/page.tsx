@@ -48,6 +48,7 @@ import { getStaleSegments, getSourceHashUpdates } from '@/lib/multilang/stalenes
 import { SplitEditor } from '@/components/studio/split-editor';
 import { LanguageAudioSection } from '@/components/studio/language-audio-section';
 import { requestTTS, getTTSStatus } from '@/lib/api/tts';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'ScenesPage';
 const LANG_FLAGS: Record<string, string> = { fr: '🇫🇷', en: '🇬🇧', it: '🇮🇹', de: '🇩🇪', es: '🇪🇸' };
@@ -106,6 +107,7 @@ function AudioSourceCard({ icon, label, sublabel, isSelected, isPlaying, onPlay,
 export default function ScenesPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
+  const { t } = useStudioLocale();
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenes, setScenes] = useState<StudioScene[]>([]);
@@ -515,7 +517,7 @@ export default function ScenesPage() {
       } catch (e) {
         unsub();
         logger.error(SERVICE_NAME, 'Audio upload exception', { error: String(e) });
-        setUploadError('Upload échoué.');
+        setUploadError(t('Upload échoué.', 'Upload failed.'));
         failedBlobRef.current = { blob, sceneId, sceneIndex };
       } finally {
         setIsUploading(false);
@@ -524,7 +526,7 @@ export default function ScenesPage() {
     }
     const refreshed = await listStudioScenes(sessionId);
     setScenes(refreshed);
-  }, [sessionId]);
+  }, [sessionId, t]);
 
   // Warn before leaving if upload in progress
   useEffect(() => {
@@ -598,7 +600,7 @@ export default function ScenesPage() {
           setPoiLng(parseFloat(data[0].lon).toFixed(6));
           setSearchResult(`📍 ${data[0].display_name}`);
         } else {
-          setSearchResult('Adresse non trouvée');
+          setSearchResult(t('Adresse non trouvée', 'Address not found'));
         }
       }
     } catch {
@@ -606,7 +608,7 @@ export default function ScenesPage() {
     } finally {
       setIsSearching(false);
     }
-  }, [addressSearch]);
+  }, [addressSearch, t]);
 
   // Save POI data
   const handleSavePoi = useCallback(async () => {
@@ -904,7 +906,7 @@ export default function ScenesPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine text-sm mb-4 inline-block">&larr; Retour</Link>
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine text-sm mb-4 inline-block">&larr; {t('Retour', 'Back')}</Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">{error || 'Introuvable.'}</div>
       </div>
     );
@@ -920,9 +922,9 @@ export default function ScenesPage() {
   // Translation tab removed — translation is now handled via language tabs (ML-4 refonte)
   const tabs = [
     { key: 'poi' as const, label: '📍 POI' },
-    { key: 'photos' as const, label: '📷 Photos', count: activeScene?.photosRefs.length },
+    { key: 'photos' as const, label: `📷 ${t('Photos', 'Photos')}`, count: activeScene?.photosRefs.length },
     { key: 'text' as const, label: '📝 Texte' },
-    { key: 'audio' as const, label: '🎙️ Audio' },
+    { key: 'audio' as const, label: `🎙️ ${t('Audio', 'Audio')}` },
   ];
 
   return (
@@ -1324,7 +1326,7 @@ export default function ScenesPage() {
         {(!activeLanguageTab || activeLanguageTab === session.language || languageTabItems.length <= 1) && (<>
         <div className="flex items-center justify-between mb-3">
           <div>
-            <Link href={`/guide/studio/${sessionId}`} className="text-grenadine text-sm mb-1 inline-block">&larr; Retour</Link>
+            <Link href={`/guide/studio/${sessionId}`} className="text-grenadine text-sm mb-1 inline-block">&larr; {t('Retour', 'Back')}</Link>
             <h2 className="text-lg font-semibold text-ink">
               {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
             </h2>
@@ -1393,7 +1395,7 @@ export default function ScenesPage() {
           <div className="space-y-4">
             {/* Scene title */}
             <div>
-              <label htmlFor="poi-title" className="text-sm font-medium text-ink-80 block mb-1">Titre de la scène</label>
+              <label htmlFor="poi-title" className="text-sm font-medium text-ink-80 block mb-1">{t('Titre de la scène', 'Scene title')}</label>
               <input
                 id="poi-title"
                 type="text"
@@ -1408,7 +1410,7 @@ export default function ScenesPage() {
 
             {/* POI description */}
             <div>
-              <label htmlFor="poi-desc" className="text-sm font-medium text-ink-80 block mb-1">Description du point d&apos;intérêt</label>
+              <label htmlFor="poi-desc" className="text-sm font-medium text-ink-80 block mb-1">{t("Description du point d'intérêt", 'Point of interest description')}</label>
               <textarea
                 id="poi-desc"
                 value={poiDescription}
@@ -1493,9 +1495,9 @@ export default function ScenesPage() {
                   className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg text-sm transition"
                   data-testid="save-poi-btn"
                 >
-                  💾 Enregistrer le POI
+                  💾 {t('Enregistrer le POI', 'Save POI')}
                 </button>
-                {poiSaved && <span className="text-sm text-success">✓ Enregistré</span>}
+                {poiSaved && <span className="text-sm text-success">✓ {t('Enregistré', 'Saved')}</span>}
               </div>
             )}
           </div>
@@ -1533,15 +1535,15 @@ export default function ScenesPage() {
             )}
 
             <div className="mt-3 flex items-center justify-between">
-              <label htmlFor="scene-text" className="text-sm font-medium text-ink-80">Texte de la scène</label>
+              <label htmlFor="scene-text" className="text-sm font-medium text-ink-80">{t('Texte de la scène', 'Scene text')}</label>
               <div className="text-xs text-ink-40">
                 {isSaving && <span className="text-mer">Sauvegarde...</span>}
-                {!isSaving && isDirty && <span>Non sauvegardé</span>}
-                {!isSaving && !isDirty && editorText && <span className="text-success">Sauvegardé</span>}
+                {!isSaving && isDirty && <span>{t('Non sauvegardé', 'Unsaved')}</span>}
+                {!isSaving && !isDirty && editorText && <span className="text-success">{t('Sauvegardé', 'Saved')}</span>}
               </div>
             </div>
             <textarea ref={textareaRef} id="scene-text" value={editorText} onChange={(e) => setEditorText(e.target.value)}
-              placeholder="Saisissez ou modifiez le texte de cette scène..."
+              placeholder={t('Saisissez ou modifiez le texte de cette scène...', 'Enter or edit the text for this scene...')}
               maxLength={50000} rows={10} readOnly={isBaseLangLocked}
               className={`w-full mt-1 p-3 border border-line rounded-lg text-ink text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine ${isBaseLangLocked ? 'bg-paper-soft text-ink-60 cursor-not-allowed' : ''}`}
               data-testid="scene-editor" />
@@ -1805,7 +1807,7 @@ export default function ScenesPage() {
         {/* Navigation */}
         <StepNav
           prevHref={`/guide/studio/${sessionId}/itinerary`}
-          prevLabel="Itinéraire"
+          prevLabel={t('Itinéraire', 'Itinerary')}
           nextHref={`/guide/studio/${sessionId}/preview`}
           nextLabel="Preview"
         />

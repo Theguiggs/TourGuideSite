@@ -1,5 +1,7 @@
 'use client';
 
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
+
 interface QuotaTranscriptionCardProps {
   /** Minutes already used. */
   usedMin: number;
@@ -20,6 +22,7 @@ export function QuotaTranscriptionCard({
   totalMin,
   monthLabel,
 }: QuotaTranscriptionCardProps) {
+  const { locale, t } = useStudioLocale();
   const safeTotal = Math.max(1, totalMin);
   const pct = Math.min(100, Math.max(0, (usedMin / safeTotal) * 100));
   const remaining = Math.max(0, totalMin - usedMin);
@@ -28,7 +31,7 @@ export function QuotaTranscriptionCard({
   // Format with one decimal if non-integer, else integer.
   const fmtMin = (v: number): string => {
     if (Number.isInteger(v)) return String(v);
-    return v.toFixed(1).replace('.', ',');
+    return new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(v);
   };
 
   return (
@@ -39,7 +42,7 @@ export function QuotaTranscriptionCard({
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2.5">
           <span className="text-caption font-bold text-ink border-b-2 border-grenadine pb-0.5">
-            Quota transcription
+            {t('Quota transcription', 'Transcription allowance')}
           </span>
           {monthLabel && (
             <span className="text-meta text-ink-60">· {monthLabel}</span>
@@ -63,12 +66,13 @@ export function QuotaTranscriptionCard({
       <div className="text-meta text-ink-60 mt-1.5">
         {isFull ? (
           <>
-            <strong className="text-danger">Quota épuisé</strong> · revient le 1
-            <sup>er</sup> du mois prochain.
+            <strong className="text-danger">{t('Quota épuisé', 'Allowance used')}</strong>
+            {' · '}{t('renouvellement le 1er du mois prochain.', 'renews on the first day of next month.')}
           </>
         ) : (
           <>
-            Encore <strong className="text-ink">{fmtMin(remaining)} min</strong> de transcription audio disponibles{monthLabel ? ` ce mois-ci` : ''}.
+            {t('Encore', 'You have')} <strong className="text-ink">{fmtMin(remaining)} min</strong>{' '}
+            {t('de transcription audio disponibles', 'of audio transcription left')}{monthLabel ? t(' ce mois-ci', ' this month') : ''}.
           </>
         )}
       </div>

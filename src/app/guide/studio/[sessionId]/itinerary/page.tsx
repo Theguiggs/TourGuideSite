@@ -23,6 +23,7 @@ import {
 import type { StudioSession, StudioScene, RoutePath } from '@/types/studio';
 import type { Waypoint } from '@/components/studio/editable-map';
 import { parseGpx, simplifyPath, pathDistanceMeters, type LatLng } from '@/lib/path-utils';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface PathOverride {
   source: 'gpx';
@@ -75,6 +76,7 @@ async function geocodeAddress(
 export default function ItineraryPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
+  const { t } = useStudioLocale();
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenes, setScenes] = useState<StudioScene[]>([]);
@@ -263,7 +265,7 @@ export default function ItineraryPage() {
         const text = await file.text();
         const raw = parseGpx(text);
         if (raw.length < 2) {
-          window.alert('Fichier GPX invalide ou sans tracé exploitable.');
+          window.alert(t('Fichier GPX invalide ou sans tracé exploitable.', 'Invalid GPX file or no usable route found.'));
           return;
         }
         // GPX traces are often very dense (1 point/sec from a GPS) — simplify
@@ -282,7 +284,7 @@ export default function ItineraryPage() {
         window.alert("Impossible de lire ce fichier GPX.");
       }
     },
-    [persistOverride],
+    [persistOverride, t],
   );
 
   // Escape key exits fullscreen map mode.
@@ -330,10 +332,10 @@ export default function ItineraryPage() {
       setFlyToCoords({ lat: result.lat, lng: result.lng });
       setSearchResult(`📍 ${result.display.split(',').slice(0, 2).join(',').trim()}`);
     } else {
-      setSearchResult('Adresse non trouvée');
+      setSearchResult(t('Adresse non trouvée', 'Address not found'));
     }
     setIsSearching(false);
-  }, [addressSearch, editForm, persistSceneUpdate]);
+  }, [addressSearch, editForm, persistSceneUpdate, t]);
 
   const handleMapClickForPoi = useCallback(
     (sceneId: string, lat: number, lng: number) => {
@@ -641,7 +643,7 @@ export default function ItineraryPage() {
           data-testid="path-override-chip"
         >
           <span aria-hidden="true">🖊️</span>
-          Tracé GPX importé
+          {t('Tracé GPX importé', 'GPX route imported')}
           <button
             type="button"
             onClick={handleClearOverride}
@@ -698,7 +700,7 @@ export default function ItineraryPage() {
               className="bg-grenadine-soft/30 border border-grenadine rounded-md p-4 space-y-3"
               data-testid="poi-edit-form"
             >
-              <WizField label="Titre du POI" htmlFor={`edit-title-${scene.id}`}>
+              <WizField label={t('Titre du POI', 'POI title')} htmlFor={`edit-title-${scene.id}`}>
                 <WizInput
                   id={`edit-title-${scene.id}`}
                   type="text"
@@ -707,7 +709,7 @@ export default function ItineraryPage() {
                   autoFocus
                 />
               </WizField>
-              <WizField label="Description" htmlFor={`edit-desc-${scene.id}`}>
+              <WizField label={t('Description', 'Description')} htmlFor={`edit-desc-${scene.id}`}>
                 <WizTextarea
                   id={`edit-desc-${scene.id}`}
                   rows={2}
@@ -831,7 +833,7 @@ export default function ItineraryPage() {
           data-testid="add-poi-btn"
           className="w-full border border-dashed border-line text-ink-40 hover:border-grenadine hover:text-grenadine rounded-md py-2.5 text-meta font-semibold transition cursor-pointer disabled:opacity-50"
         >
-          {isAddingPoi ? 'Ajout…' : '+ Ajouter un POI'}
+          {isAddingPoi ? t('Ajout…', 'Adding...') : t('+ Ajouter un POI', '+ Add a POI')}
         </button>
       )}
     </div>
@@ -862,7 +864,7 @@ export default function ItineraryPage() {
     );
     if (saveStatus === 'saved') return (
       <span className="text-meta text-success inline-flex items-center gap-1" data-testid="save-status-saved">
-        ✓ Sauvegardé
+        ✓ {t('Sauvegardé', 'Saved')}
       </span>
     );
     return (
@@ -886,7 +888,7 @@ export default function ItineraryPage() {
           className={`${panelOpen ? 'w-80' : 'w-0'} transition-all duration-200 overflow-hidden flex flex-col border-r border-line bg-paper shrink-0`}
         >
           <div className="flex items-center justify-between px-4 py-2.5 border-b border-line bg-paper-soft shrink-0">
-            <h2 className="text-caption font-bold text-ink">Points d&apos;intérêt</h2>
+            <h2 className="text-caption font-bold text-ink">{t("Points d'intérêt", 'Points of interest')}</h2>
             <span className="text-meta text-ink-40">{activeScenes.length} POIs</span>
           </div>
           {routeBar}
@@ -941,8 +943,8 @@ export default function ItineraryPage() {
             <span className="flex-1" />
             <p className="text-meta text-ink-40 hidden lg:block">
               {hasOverride
-                ? 'Tracé GPX actif · ✕ pour revenir au tracé auto'
-                : 'Tirez • pour ajouter · Glissez pour déplacer · Esc = quitter'}
+                ? t('Tracé GPX actif · ✕ pour revenir au tracé auto', 'GPX route active · ✕ to return to automatic routing')
+                : t('Tirez • pour ajouter · Glissez pour déplacer · Esc = quitter', 'Drag • to add · Drag points to move · Esc to exit')}
             </p>
             {saveBadge}
             {tracerControls}
@@ -957,7 +959,7 @@ export default function ItineraryPage() {
                     : 'bg-paper-soft text-ink-80 border-line hover:bg-paper-deep'
                 }`}
               >
-                <span aria-hidden="true">✏️</span> {manualMode ? 'Tracé manuel' : 'Tracé auto'}
+                <span aria-hidden="true">✏️</span> {manualMode ? t('Tracé manuel', 'Manual route') : t('Tracé auto', 'Automatic route')}
               </button>
             )}
             <button
@@ -980,7 +982,7 @@ export default function ItineraryPage() {
     <div className="p-6 lg:p-8 max-w-4xl mx-auto">
       {hiddenGpxInput}
       <div className="flex items-center justify-between gap-3 flex-wrap mb-1">
-        <h1 className="font-display text-h5 text-ink leading-none">Itinéraire</h1>
+        <h1 className="font-display text-h5 text-ink leading-none">{t('Itinéraire', 'Itinerary')}</h1>
         <div className="flex items-center gap-2 flex-wrap">
           {saveBadge}
           {tracerControls}
@@ -996,7 +998,7 @@ export default function ItineraryPage() {
                   : 'bg-paper-soft text-ink-80 border-line hover:bg-paper-deep'
               }`}
             >
-              <span aria-hidden="true">✏️</span> {manualMode ? 'Tracé manuel' : 'Tracé auto'}
+              <span aria-hidden="true">✏️</span> {manualMode ? t('Tracé manuel', 'Manual route') : t('Tracé auto', 'Automatic route')}
             </button>
           )}
           <button
@@ -1005,7 +1007,7 @@ export default function ItineraryPage() {
             data-testid="open-map-mode"
             className="bg-grenadine text-paper border-none px-4 py-2.5 rounded-pill text-meta font-bold cursor-pointer hover:opacity-90 transition inline-flex items-center gap-2"
           >
-            <span aria-hidden="true">◉</span> Ouvrir en mode carte
+            <span aria-hidden="true">◉</span> {t('Ouvrir en mode carte', 'Open map mode')}
           </button>
         </div>
       </div>
@@ -1031,7 +1033,7 @@ export default function ItineraryPage() {
           role="status"
         >
           <span aria-hidden="true">📍</span>
-          Cliquez sur la carte pour positionner le POI.
+          {t('Cliquez sur la carte pour positionner le POI.', 'Select the map to position the POI.')}
           <button
             type="button"
             onClick={() => setClickToPlaceId(null)}
@@ -1050,11 +1052,11 @@ export default function ItineraryPage() {
         {geoScenes.length === 0
           ? 'Aucun POI géolocalisé — cliquez « Placer sur la carte » sur un POI pour commencer.'
           : hasOverride
-          ? 'Tracé GPX actif — cliquez ✕ pour revenir au tracé auto'
-          : 'Tirez les pastilles • du tracé pour ajouter un point · Glissez les points pour les déplacer · Cliquez pour les supprimer'}
+          ? t('Tracé GPX actif — cliquez ✕ pour revenir au tracé auto', 'GPX route active — select ✕ to return to automatic routing')
+          : t('Tirez les pastilles • du tracé pour ajouter un point · Glissez les points pour les déplacer · Cliquez pour les supprimer', 'Drag the • handles to add a point · Drag points to move them · Select a point to delete it')}
       </p>
 
-      <h2 className="font-display text-h6 text-ink mb-3">Points d&apos;intérêt</h2>
+      <h2 className="font-display text-h6 text-ink mb-3">{t("Points d'intérêt", 'Points of interest')}</h2>
       {poiList}
 
       {activeScenes.length === 0 && (
@@ -1092,9 +1094,9 @@ export default function ItineraryPage() {
 
       <StepNav
         prevHref={`/guide/studio/${sessionId}/general`}
-        prevLabel="Général"
+        prevLabel={t('Général', 'General')}
         nextHref={`/guide/studio/${sessionId}/scenes`}
-        nextLabel="Scènes"
+        nextLabel={t('Scènes', 'Scenes')}
       />
     </div>
   );

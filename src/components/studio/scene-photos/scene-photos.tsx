@@ -7,6 +7,7 @@ import { logger } from '@/lib/logger';
 import { shouldUseStubs } from '@/config/api-mode';
 import * as studioUploadService from '@/lib/studio/studio-upload-service';
 import { S3Image } from '@/components/studio/s3-image';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'ScenePhotos';
 const MAX_PHOTO_SIZE_MB = 5;
@@ -20,6 +21,7 @@ interface ScenePhotosProps {
 }
 
 export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true }: ScenePhotosProps) {
+  const { t } = useStudioLocale();
   const inputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -37,11 +39,11 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
     const valid: File[] = [];
     for (const file of filesToAdd) {
       if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
-        setError(`Format non supporté : ${file.type}. Acceptés : JPEG, PNG, WebP.`);
+        setError(t(`Format non supporté : ${file.type}. Acceptés : JPEG, PNG, WebP.`, `Unsupported format: ${file.type}. Accepted: JPEG, PNG, WebP.`));
         continue;
       }
       if (file.size > MAX_PHOTO_SIZE_MB * 1024 * 1024) {
-        setError(`Photo trop volumineuse (max ${MAX_PHOTO_SIZE_MB} Mo).`);
+        setError(t(`Photo trop volumineuse (max ${MAX_PHOTO_SIZE_MB} Mo).`, `Photo is too large (max ${MAX_PHOTO_SIZE_MB} MB).`));
         continue;
       }
       valid.push(file);
@@ -78,7 +80,7 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
     }
 
     if (inputRef.current) inputRef.current.value = '';
-  }, [photos, scene.id, scene.sceneIndex, sessionId, onPhotosChange]);
+  }, [photos, scene.id, scene.sceneIndex, sessionId, onPhotosChange, t]);
 
   const handleRemove = useCallback((index: number) => {
     const updated = photos.filter((_, i) => i !== index);
@@ -96,7 +98,7 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
               <button
                 onClick={() => handleRemove(index)}
                 className="absolute top-0.5 right-0.5 w-5 h-5 bg-danger text-white rounded-full text-xs flex items-center justify-center hover:opacity-90"
-                aria-label={`Supprimer photo ${index + 1}`}
+                aria-label={`${t('Supprimer la photo', 'Delete photo')} ${index + 1}`}
                 data-testid={`remove-photo-${scene.id}-${index}`}
               >
                 ✕
@@ -120,7 +122,7 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
               onClick={() => inputRef.current?.click()}
               className="w-24 h-24 rounded-lg border-2 border-dashed border-line flex items-center justify-center text-ink-40 hover:border-grenadine hover:text-grenadine transition"
               data-testid={`add-photo-btn-${scene.id}`}
-              aria-label={`Ajouter photo (${photos.length}/${MAX_PHOTOS_PER_SCENE})`}
+              aria-label={`${t('Ajouter une photo', 'Add photo')} (${photos.length}/${MAX_PHOTOS_PER_SCENE})`}
             >
               <span className="text-2xl">+</span>
             </button>

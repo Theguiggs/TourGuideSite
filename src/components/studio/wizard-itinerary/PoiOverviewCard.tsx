@@ -1,5 +1,7 @@
 'use client';
 
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
+
 interface PoiOverviewCardProps {
   /** 1-based index displayed as a numbered marker (italic editorial). */
   index: number;
@@ -35,6 +37,7 @@ export function PoiOverviewCard({
   onEdit,
   onDelete,
 }: PoiOverviewCardProps) {
+  const { t } = useStudioLocale();
   return (
     <div
       data-testid="poi-overview-card"
@@ -48,7 +51,7 @@ export function PoiOverviewCard({
             type="button"
             onClick={onMoveUp}
             data-testid="poi-move-up"
-            aria-label="Déplacer vers le haut"
+            aria-label={t('Déplacer vers le haut', 'Move up')}
             className="text-ink-40 hover:text-ink leading-none text-meta cursor-pointer"
           >
             ▲
@@ -65,7 +68,7 @@ export function PoiOverviewCard({
             type="button"
             onClick={onMoveDown}
             data-testid="poi-move-down"
-            aria-label="Déplacer vers le bas"
+            aria-label={t('Déplacer vers le bas', 'Move down')}
             className="text-ink-40 hover:text-ink leading-none text-meta cursor-pointer"
           >
             ▼
@@ -82,7 +85,7 @@ export function PoiOverviewCard({
             aria-hidden="true"
           />
           <span className={`text-meta ${hasGps ? 'text-success' : 'text-ocre'}`}>
-            {hasGps ? 'GPS OK' : 'Pas de GPS'}
+            {hasGps ? 'GPS OK' : t('Pas de GPS', 'No GPS')}
           </span>
 
         </div>
@@ -96,8 +99,8 @@ export function PoiOverviewCard({
               type="button"
               onClick={onEdit}
               data-testid="poi-edit"
-              aria-label="Éditer"
-              title="Éditer"
+              aria-label={t('Éditer', 'Edit')}
+              title={t('Éditer', 'Edit')}
               className="w-7 h-7 rounded-sm bg-transparent border-none text-ink-60 hover:text-grenadine hover:bg-grenadine-soft transition cursor-pointer text-meta"
             >
               ✎
@@ -108,8 +111,8 @@ export function PoiOverviewCard({
               type="button"
               onClick={onDelete}
               data-testid="poi-delete"
-              aria-label="Supprimer"
-              title="Supprimer"
+              aria-label={t('Supprimer', 'Delete')}
+              title={t('Supprimer', 'Delete')}
               className="w-7 h-7 rounded-sm bg-transparent border-none text-ink-60 hover:text-danger hover:bg-grenadine-soft transition cursor-pointer text-meta"
             >
               ✕

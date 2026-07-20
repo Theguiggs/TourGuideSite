@@ -9,6 +9,7 @@ import { shouldUseStubs } from '@/config/api-mode';
 import * as studioUploadService from '@/lib/studio/studio-upload-service';
 import { SSMLToolbar } from '@/components/studio/ssml-toolbar';
 import type { SceneSegment } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'TTSControls';
 
@@ -22,6 +23,7 @@ interface TTSControlsProps {
 }
 
 export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSceneAudio }: TTSControlsProps) {
+  const { t } = useStudioLocale();
   const ttsState = useTTSStore(selectSegmentTTS(segment.id));
   const setSegmentStatus = useTTSStore((s) => s.setSegmentStatus);
   const startPolling = useTTSStore((s) => s.startPolling);
@@ -87,16 +89,16 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
       } else {
         setSegmentStatus(segment.id, {
           status: 'failed',
-          error: 'Échec de la génération audio.',
+          error: t('Échec de la génération audio.', 'Audio generation failed.'),
         });
       }
     } catch (err) {
       logger.error(SERVICE_NAME, 'TTS trigger failed', { error: String(err) });
-      setSegmentStatus(segment.id, { status: 'failed', error: 'Erreur inattendue.' });
+      setSegmentStatus(segment.id, { status: 'failed', error: t('Erreur inattendue.', 'Unexpected error.') });
     } finally {
       setIsTriggering(false);
     }
-  }, [hasText, isTriggering, segment.id, editableText, language, setSegmentStatus, startPolling]);
+  }, [hasText, isTriggering, segment.id, editableText, language, setSegmentStatus, startPolling, onSaveAsSceneAudio, t]);
 
   const handlePlay = useCallback(async () => {
     if (!ttsState?.audioKey) return;
@@ -116,8 +118,8 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
   if (!gpuAvailable) {
     return (
       <div className="p-4 bg-ocre-soft border border-ocre-soft rounded-lg" data-testid="tts-gpu-unavailable">
-        <p className="text-sm text-ocre">Génération audio temporairement indisponible</p>
-        <p className="text-xs text-ocre mt-1">Le service TTS nécessite un GPU — réessayez plus tard.</p>
+        <p className="text-sm text-ocre">{t('Génération audio temporairement indisponible', 'Audio generation is temporarily unavailable')}</p>
+        <p className="text-xs text-ocre mt-1">{t('Le service TTS nécessite un GPU — réessayez plus tard.', 'The TTS service requires a GPU — please try again later.')}</p>
       </div>
     );
   }
@@ -125,7 +127,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
   if (!hasText) {
     return (
       <div className="p-4 bg-paper-soft rounded-lg text-sm text-ink-60 text-center" data-testid="tts-no-text">
-        Pas de texte disponible pour la génération audio.
+        {t('Pas de texte disponible pour la génération audio.', 'No text is available for audio generation.')}
       </div>
     );
   }
@@ -135,8 +137,8 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
       {/* Status indicator */}
       {isProcessing && (
         <div className="p-3 bg-mer-soft border border-mer-soft rounded-lg animate-pulse" data-testid="tts-processing">
-          <p className="text-sm text-mer">Génération audio en cours...</p>
-          <p className="text-xs text-mer mt-1">Langue : {language.toUpperCase()}</p>
+          <p className="text-sm text-mer">{t('Génération audio en cours...', 'Generating audio...')}</p>
+          <p className="text-xs text-mer mt-1">{t('Langue', 'Language')} : {language.toUpperCase()}</p>
         </div>
       )}
 
@@ -148,7 +150,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
             className="mt-2 text-sm font-medium text-danger underline hover:opacity-80"
             data-testid="tts-retry-btn"
           >
-            Réessayer
+            {t('Réessayer', 'Try again')}
           </button>
         </div>
       )}
@@ -157,7 +159,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
         <div className="p-3 bg-olive-soft border border-olive-soft rounded-lg" data-testid="tts-completed">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-success">Audio TTS généré</p>
+              <p className="text-sm font-medium text-success">{t('Audio TTS généré', 'TTS audio generated')}</p>
               <p className="text-xs text-success mt-0.5">
                 Langue : {(ttsState.language ?? language).toUpperCase()}
                 {ttsState.durationMs && ` | Durée : ${Math.round(ttsState.durationMs / 1000)}s`}
@@ -168,7 +170,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
               className="bg-success hover:opacity-90 text-white text-xs font-medium py-1.5 px-4 rounded-lg transition"
               data-testid="tts-play-btn"
             >
-              Écouter
+              {t('Écouter', 'Listen')}
             </button>
           </div>
         </div>

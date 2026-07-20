@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import { useRecordingStore, selectRecorderState, selectDevices, selectSelectedDeviceId } from '@/lib/stores/recording-store';
 import { mediaRecorderService } from '@/lib/studio/media-recorder-service';
 import { logger } from '@/lib/logger';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'AudioRecorder';
 
@@ -13,6 +14,7 @@ interface AudioRecorderProps {
 }
 
 export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderProps) {
+  const { t } = useStudioLocale();
   const recorderState = useRecordingStore(selectRecorderState);
   const devices = useRecordingStore(selectDevices);
   const selectedDeviceId = useRecordingStore(selectSelectedDeviceId);
@@ -71,7 +73,7 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
       {devices.length > 1 && (
         <div className="mb-3">
           <label htmlFor="device-select" className="text-xs text-ink-60 block mb-1">
-            Microphone
+            {t('Microphone', 'Microphone')}
           </label>
           <select
             id="device-select"
@@ -105,7 +107,7 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
             className="bg-danger hover:opacity-90 text-white font-medium py-2 px-4 rounded-lg text-sm transition"
             data-testid="record-btn"
           >
-            🔴 Enregistrer
+            🔴 {t('Enregistrer', 'Record')}
           </button>
         )}
 
@@ -113,21 +115,21 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
           <>
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 bg-danger rounded-full animate-pulse" aria-hidden="true" />
-              <span className="text-sm text-danger font-medium">Enregistrement...</span>
+              <span className="text-sm text-danger font-medium">{t('Enregistrement...', 'Recording...')}</span>
             </div>
             <button
               onClick={handlePauseRecording}
               className="bg-ocre hover:opacity-90 text-white font-medium py-1.5 px-3 rounded-lg text-sm transition"
               data-testid="pause-record-btn"
             >
-              ⏸ Pause
+              ⏸ {t('Pause', 'Pause')}
             </button>
             <button
               onClick={handleStopRecording}
               className="bg-ink-80 hover:bg-ink-60 text-white font-medium py-1.5 px-3 rounded-lg text-sm transition"
               data-testid="stop-record-btn"
             >
-              ⏹ Arrêter
+              ⏹ {t('Arrêter', 'Stop')}
             </button>
           </>
         )}
@@ -147,7 +149,7 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
               className="bg-ink-80 hover:bg-ink-60 text-white font-medium py-1.5 px-3 rounded-lg text-sm transition"
               data-testid="stop-record-btn-paused"
             >
-              ⏹ Arrêter
+              ⏹ {t('Arrêter', 'Stop')}
             </button>
           </>
         )}

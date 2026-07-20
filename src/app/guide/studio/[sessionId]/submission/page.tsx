@@ -14,6 +14,7 @@ import { Collapsible } from '@/components/ui/collapsible';
 import { shouldUseStubs } from '@/config/api-mode';
 import { useAuth } from '@/lib/auth/auth-context';
 import type { StudioSession, StudioSessionStatus, TourLanguagePurchase, StudioScene, SceneSegment } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const LANG_FLAGS: Record<string, string> = {
   fr: '\u{1F1EB}\u{1F1F7}', en: '\u{1F1EC}\u{1F1E7}', es: '\u{1F1EA}\u{1F1F8}', it: '\u{1F1EE}\u{1F1F9}', de: '\u{1F1E9}\u{1F1EA}', ja: '\u{1F1EF}\u{1F1F5}', zh: '\u{1F1E8}\u{1F1F3}', pt: '\u{1F1F5}\u{1F1F9}',
@@ -23,6 +24,7 @@ export default function PublicationPage() {
   const params = useParams<{ sessionId: string }>();
   const router = useRouter();
   const { user } = useAuth();
+  const { t } = useStudioLocale();
   const sessionId = params.sessionId;
   const guideId = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
 
@@ -140,17 +142,29 @@ export default function PublicationPage() {
 
   // --- Status explanation ---
   const statusMessages: Record<string, string> = {
-    draft: 'Votre parcours est en brouillon. Completez les informations puis soumettez-le pour validation.',
-    editing: 'Parcours en cours de travail. Finalisez les scenes puis soumettez-le.',
-    recording: 'Parcours en cours d\'enregistrement.',
-    ready: 'Parcours pret. Soumettez-le pour moderation.',
-    submitted: 'Parcours en attente de moderation. Vous pouvez retirer la publication pour modifier.',
-    published: `Parcours publie et visible par les touristes (V${version}).`,
-    paused: 'Parcours masque temporairement. Les touristes ne le voient plus. Vous pouvez le reprendre a tout moment sans remoderation.',
-    revision_requested: 'La moderation a demande des modifications. Consultez le feedback ci-dessous, corrigez puis resoumettez.',
-    rejected: 'Parcours refuse. Consultez le feedback ci-dessous.',
-    archived: 'Parcours archive. Il n\'est plus visible et ne peut pas etre republier directement.',
+    draft: t('Votre parcours est en brouillon. Complétez les informations puis soumettez-le pour validation.', 'Your tour is a draft. Complete the information, then submit it for review.'),
+    editing: t('Parcours en cours de travail. Finalisez les scènes puis soumettez-le.', 'Tour in progress. Complete the scenes, then submit it.'),
+    recording: t("Parcours en cours d'enregistrement.", 'Tour recording in progress.'),
+    ready: t('Parcours prêt. Soumettez-le pour modération.', 'Tour ready. Submit it for review.'),
+    submitted: t('Parcours en attente de modération. Vous pouvez retirer la publication pour modifier.', 'Tour waiting for review. You can withdraw it to make changes.'),
+    published: t(`Parcours publié et visible par les touristes (V${version}).`, `Tour published and visible to visitors (V${version}).`),
+    paused: t('Parcours masqué temporairement. Vous pouvez le reprendre sans nouvelle modération.', 'Tour temporarily hidden. You can resume it without another review.'),
+    revision_requested: t('La modération demande des modifications. Consultez le retour, corrigez puis soumettez à nouveau.', 'Changes were requested. Review the feedback, make corrections and resubmit.'),
+    rejected: t('Parcours refusé. Consultez le retour ci-dessous.', 'Tour rejected. Review the feedback below.'),
+    archived: t("Parcours archivé. Il n'est plus visible et ne peut pas être republié directement.", 'Tour archived. It is no longer visible and cannot be republished directly.'),
   };
+  const translatedStatusLabel = ({
+    Brouillon: t('Brouillon', 'Draft'),
+    'En édition': t('En édition', 'Editing'),
+    Enregistrement: t('Enregistrement', 'Recording'),
+    Prêt: t('Prêt', 'Ready'),
+    Soumis: t('Soumis', 'Submitted'),
+    Publié: t('Publié', 'Published'),
+    Suspendu: t('Suspendu', 'Paused'),
+    'Révision demandée': t('Révision demandée', 'Changes requested'),
+    Refusé: t('Refusé', 'Rejected'),
+    Archivé: t('Archivé', 'Archived'),
+  } as Record<string, string>)[statusConfig.label] ?? statusConfig.label;
 
   return (
     <div className="p-4 max-w-4xl">
@@ -161,7 +175,7 @@ export default function PublicationPage() {
           <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl">
             <p className="text-sm text-ink-80 mb-4">{confirmAction.warning}</p>
             <div className="flex gap-3">
-              <button onClick={() => setConfirmAction(null)} className="flex-1 bg-paper-soft text-ink-80 font-medium py-2 rounded-lg hover:bg-paper-deep">Annuler</button>
+              <button onClick={() => setConfirmAction(null)} className="flex-1 bg-paper-soft text-ink-80 font-medium py-2 rounded-lg hover:bg-paper-deep">{t('Annuler', 'Cancel')}</button>
               <button onClick={executeConfirm} className="flex-1 bg-danger text-white font-medium py-2 rounded-lg hover:opacity-90">{confirmAction.label}</button>
             </div>
           </div>
@@ -170,7 +184,7 @@ export default function PublicationPage() {
 
       {/* === STATUS BAR (compact) === */}
       <div className="bg-white rounded-lg border border-line p-3 mb-3 flex items-center gap-3 flex-wrap">
-        <span className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium ${statusConfig.color}`}>{statusConfig.label}</span>
+        <span className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium ${statusConfig.color}`}>{translatedStatusLabel}</span>
         <span className="text-xs text-ink-40">V{version}</span>
         <span className="text-xs text-ink-80 flex-1 min-w-0">{statusMessages[session.status] ?? ''}</span>
       </div>
@@ -190,7 +204,7 @@ export default function PublicationPage() {
 
       {/* === ACTIONS CARD === */}
       <div className="bg-white rounded-lg border border-line p-3 mb-3">
-        <h2 className="text-sm font-semibold text-ink mb-2">Actions</h2>
+        <h2 className="text-sm font-semibold text-ink mb-2">{t('Actions', 'Actions')}</h2>
 
         <div className="grid gap-1.5">
 
@@ -206,8 +220,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x1F4E4;</span>
               <div>
-                <p className="text-sm font-medium text-mer">{hasRevisionFeedback ? 'Republier' : 'Publier'}</p>
-                <p className="text-xs text-mer">Envoyer a la moderation pour publication</p>
+                <p className="text-sm font-medium text-mer">{hasRevisionFeedback ? t('Republier', 'Republish') : t('Publier', 'Publish')}</p>
+                <p className="text-xs text-mer">{t('Envoyer à la modération pour publication', 'Send for review and publication')}</p>
               </div>
             </button>
           )}
@@ -278,7 +292,7 @@ export default function PublicationPage() {
               <span className="text-base shrink-0">&#x270F;&#xFE0F;</span>
               <div>
                 <p className="text-sm font-medium text-grenadine">
-                  Mettre à jour la visite (nouvelle version V{version + 1})
+                  {t('Mettre à jour la visite', 'Update the tour')} ({t('nouvelle version', 'new version')} V{version + 1})
                 </p>
                 <p className="text-xs text-grenadine">
                   Crée un brouillon V{version + 1} à partir du contenu actuel — vos langues/traductions
@@ -338,7 +352,7 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x1F5D1;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-danger">Supprimer ce brouillon</p>
+                <p className="text-sm font-medium text-danger">{t('Supprimer ce brouillon', 'Delete this draft')}</p>
                 <p className="text-xs text-danger">Supprime definitivement cette session et tout son contenu</p>
               </div>
             </button>
@@ -400,7 +414,7 @@ export default function PublicationPage() {
           storageKey={`submission-siblings-${sessionId}`}
           defaultOpen={false}
           icon={<span>📚</span>}
-          title="Autres versions"
+          title={t('Autres versions', 'Other versions')}
           subtitle={`${siblingVersions.length} version${siblingVersions.length > 1 ? 's' : ''}`}
           compact
           className="mb-3"
@@ -437,7 +451,7 @@ export default function PublicationPage() {
             storageKey={`submission-comments-${sessionId}`}
             defaultOpen={false}
             icon={<span>💬</span>}
-            title="Journal d'échanges"
+            title={t("Journal d'échanges", 'Review history')}
             subtitle="Messages avec la moderation"
             compact
           >
@@ -527,7 +541,7 @@ export default function PublicationPage() {
                           disabled={isActioning || langActioning === purchase.language}
                           className="bg-mer hover:opacity-90 disabled:bg-ink-40 text-white text-xs font-medium py-1 px-2.5 rounded transition"
                         >
-                          {langActioning === purchase.language ? '...' : 'Publier'}
+                          {langActioning === purchase.language ? '...' : t('Publier', 'Publish')}
                         </button>
                       )}
                       {canSubmitLang && !readiness.ready && <span className="text-xs text-ocre">Incomplet</span>}

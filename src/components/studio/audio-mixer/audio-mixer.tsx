@@ -7,6 +7,7 @@ import { AmbiancePicker } from './ambiance-picker';
 import { useGuideAmbianceStore } from '@/lib/stores/guide-ambiance-store';
 import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
 import type { AmbianceSound } from '@/lib/studio/ambiance-catalog';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface AudioMixerProps {
   /** The speech audio URL (data: URL or S3 key) */
@@ -27,6 +28,7 @@ function formatTime(seconds: number): string {
 }
 
 export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerProps) {
+  const { t } = useStudioLocale();
   const [mixerState, setMixerState] = useState<MixerState>(audioMixerService.getState());
   const [showPicker, setShowPicker] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -161,7 +163,7 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
       <div className="p-3 bg-paper-soft rounded-lg">
         <div className="flex items-center justify-between mb-1">
           <span className="text-xs font-medium text-ink-80">
-            {ambianceSound ? `${ambianceSound.icon} Ambiance : ${ambianceSound.label}` : '🔇 Ambiance : aucune'}
+            {ambianceSound ? `${ambianceSound.icon} ${t('Ambiance', 'Ambience')} : ${ambianceSound.label}` : `🔇 ${t('Ambiance : aucune', 'Ambience: none')}`}
           </span>
           <div className="flex items-center gap-2">
             {ambianceSound && (
@@ -198,7 +200,7 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
             className="w-full py-2 border border-dashed border-mer-soft rounded-lg text-xs text-mer hover:bg-mer-soft transition"
             data-testid="add-ambiance-btn"
           >
-            + Ajouter une ambiance sonore
+            + {t('Ajouter une ambiance sonore', 'Add background sound')}
           </button>
         )}
         {ambianceSound && (
@@ -250,7 +252,7 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
             className="w-8 h-8 rounded-full bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-[10px] font-bold transition">
             -10
           </button>
-          <button onClick={handlePlayPause} title={mixerState.isPlaying ? 'Pause' : 'Lecture'}
+          <button onClick={handlePlayPause} title={mixerState.isPlaying ? 'Pause' : t('Lecture', 'Play')}
             disabled={isLoading}
             className="w-10 h-10 rounded-full bg-grenadine hover:opacity-90 disabled:bg-ink-80 text-white flex items-center justify-center text-lg transition">
             {isLoading ? '...' : mixerState.isPlaying ? '||' : '\u25B6'}

@@ -1,4 +1,5 @@
 import type { TranscriptionStatus } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface TranscriptionControlsProps {
   sceneId: string;
@@ -21,11 +22,12 @@ export function TranscriptionControls({
   onTrigger,
   onRetry,
 }: TranscriptionControlsProps) {
+  const { t } = useStudioLocale();
   // Already transcribed — show text
   if (transcriptionStatus === 'completed' && transcriptText) {
     return (
       <div className="mt-2 p-2 bg-grenadine-soft rounded text-sm text-ink-80" data-testid={`transcript-${sceneId}`}>
-        <p className="text-xs font-medium text-grenadine mb-1">Texte transcrit :</p>
+        <p className="text-xs font-medium text-grenadine mb-1">{t('Texte transcrit :', 'Transcript:')}</p>
         <p className="line-clamp-2">{transcriptText}</p>
       </div>
     );
@@ -45,7 +47,7 @@ export function TranscriptionControls({
   if (transcriptionStatus === 'failed') {
     return (
       <div className="mt-2" data-testid={`failed-${sceneId}`}>
-        <p className="text-sm text-danger mb-1">{error || 'Échec de la transcription.'}</p>
+        <p className="text-sm text-danger mb-1">{error || t('Échec de la transcription.', 'Transcription failed.')}</p>
         <button
           onClick={() => onRetry(sceneId)}
           disabled={isQuotaExceeded}

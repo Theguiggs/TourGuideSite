@@ -6,8 +6,17 @@
  * ici on n'expose que des "stories" sous forme de composants React.
  */
 import * as React from 'react';
+import type { Meta } from '@storybook/react';
 import { Player, type TranscriptSegment } from './Player';
 import { tgColors } from '../tokens';
+
+const meta = {
+  title: 'Components/Player',
+  component: Player,
+  parameters: { layout: 'fullscreen' },
+} satisfies Meta<typeof Player>;
+
+export default meta;
 
 const SAMPLE_SEGMENTS: TranscriptSegment[] = [
   { id: 's1', text: 'Le Marais, c\'est d\'abord une géographie : un quartier né dans les marécages.' },

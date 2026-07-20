@@ -2,6 +2,7 @@
 
 import { sceneStatusPill } from '@/lib/studio/wizard-helpers';
 import type { StudioScene } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface SceneOverviewCardProps {
   /** 1-based index displayed as a numbered marker. */
@@ -27,6 +28,7 @@ export function SceneOverviewCard({
   onPlayToggle,
   audioAvailable,
 }: SceneOverviewCardProps) {
+  const { t } = useStudioLocale();
   const pill = sceneStatusPill(scene.status);
   const excerpt = scene.transcriptText?.trim();
   const hasExcerpt = excerpt && excerpt.length > 0;
@@ -48,7 +50,7 @@ export function SceneOverviewCard({
       <div className="min-w-0">
         <div className="flex items-center gap-2.5 flex-wrap">
           <span className="font-display text-h6 text-ink leading-tight">
-            {scene.title || `Scène ${index}`}
+            {scene.title || `${t('Scène', 'Scene')} ${index}`}
           </span>
           <span
             className={`tg-eyebrow px-2 py-0.5 rounded-pill ${pill.bgClass} ${pill.textClass}`}
@@ -59,14 +61,14 @@ export function SceneOverviewCard({
         </div>
         {hasExcerpt ? (
           <>
-            <div className="tg-eyebrow text-grenadine mt-1.5">Texte transcrit</div>
+            <div className="tg-eyebrow text-grenadine mt-1.5">{t('Texte transcrit', 'Transcript')}</div>
             <p className="font-editorial italic text-caption text-ink-80 mt-1 leading-relaxed">
               {excerpt}
             </p>
           </>
         ) : (
           <p className="text-meta text-ink-40 italic mt-1">
-            Aucune transcription pour le moment.
+            {t('Aucune transcription pour le moment.', 'No transcript yet.')}
           </p>
         )}
       </div>
@@ -76,7 +78,7 @@ export function SceneOverviewCard({
           type="button"
           onClick={() => onPlayToggle(scene)}
           disabled={!audioAvailable}
-          aria-label={isPlaying ? 'Pause' : "Lire l'audio"}
+          aria-label={isPlaying ? 'Pause' : t("Lire l'audio", 'Play audio')}
           aria-pressed={isPlaying}
           data-testid="scene-play-toggle"
           className="w-7 h-7 rounded-full bg-ink text-paper border-none cursor-pointer text-meta flex items-center justify-center hover:opacity-90 transition disabled:opacity-30 disabled:cursor-not-allowed"

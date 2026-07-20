@@ -32,29 +32,16 @@ import {
 } from '@/lib/stores/transcription-store';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
 import type { StudioSession, StudioScene } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'SessionDetailPage';
-
-const MONTH_LABEL_FR = [
-  'janvier',
-  'février',
-  'mars',
-  'avril',
-  'mai',
-  'juin',
-  'juillet',
-  'août',
-  'septembre',
-  'octobre',
-  'novembre',
-  'décembre',
-];
 
 export default function SessionDetailPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
   const router = useRouter();
   const { user } = useAuth();
+  const { locale, t } = useStudioLocale();
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenes, setScenes] = useState<StudioScene[]>([]);
@@ -113,7 +100,7 @@ export default function SessionDetailPage() {
         }
       } catch (e) {
         if (!cancelled) {
-          setError('Impossible de charger la session.');
+          setError(t('Impossible de charger la session.', 'Unable to load the session.'));
           logger.error(SERVICE_NAME, 'Failed to load session', { error: String(e) });
         }
       } finally {
@@ -128,7 +115,7 @@ export default function SessionDetailPage() {
       stopAllPolling();
       clearSession();
     };
-  }, [sessionId, setActiveSession, clearSession, guideId, setQuota, stopAllPolling, router]);
+  }, [sessionId, setActiveSession, clearSession, guideId, setQuota, stopAllPolling, router, t]);
 
   // Sync playingSceneId when audio ends naturally
   useEffect(() => {
@@ -148,23 +135,23 @@ export default function SessionDetailPage() {
     try {
       const result = await createStudioSession(session.sourceSessionId, guideId);
       if (result.ok) {
-        setCreateMessage('Session studio créée !');
+        setCreateMessage(t('Session studio créée !', 'Studio session created!'));
         logger.info(SERVICE_NAME, 'Studio session created', { sessionId: result.session.id });
         trackEvent(StudioAnalyticsEvents.STUDIO_SESSION_CREATED, {
           sessionId: result.session.id,
         });
       } else {
         setCreateMessage(
-          result.existingSessionId ? 'Session déjà existante.' : result.error,
+          result.existingSessionId ? t('Session déjà existante.', 'Session already exists.') : result.error,
         );
       }
     } catch (e) {
-      setCreateMessage('Erreur inattendue.');
+      setCreateMessage(t('Erreur inattendue.', 'Unexpected error.'));
       logger.error(SERVICE_NAME, 'Create session failed', { error: String(e) });
     } finally {
       setIsCreating(false);
     }
-  }, [session, guideId]);
+  }, [session, guideId, t]);
 
   const handlePlayToggle = useCallback(
     async (scene: StudioScene) => {
@@ -195,7 +182,7 @@ export default function SessionDetailPage() {
   if (isLoading) {
     return (
       <div className="p-6 lg:p-8 max-w-5xl mx-auto" aria-busy="true">
-        <span className="sr-only">Chargement de la session…</span>
+        <span className="sr-only">{t('Chargement de la session…', 'Loading session...')}</span>
         <div className="h-8 w-48 bg-paper-deep rounded animate-pulse mb-3" />
         <div className="h-16 bg-card border border-line rounded-md animate-pulse mb-4" />
         {[1, 2, 3].map((i) => (
@@ -215,20 +202,20 @@ export default function SessionDetailPage() {
           className="bg-grenadine-soft border border-grenadine rounded-md p-4 text-danger"
           role="alert"
         >
-          {error || 'Session introuvable.'}
+          {error || t('Session introuvable.', 'Session not found.')}
         </div>
       </div>
     );
   }
 
-  const monthLabel = MONTH_LABEL_FR[new Date().getMonth()];
+  const monthLabel = new Intl.DateTimeFormat(locale, { month: 'long' }).format(new Date());
 
   return (
     <div className="p-6 lg:p-8 max-w-5xl mx-auto">
       {/* ───── Header ───── */}
       <div className="flex items-baseline gap-3.5 mb-1.5 flex-wrap">
         <h1 className="font-display text-h5 text-ink leading-none">
-          {scenes.length} {scenes.length > 1 ? 'scènes' : 'scène'}
+          {scenes.length} {t(scenes.length > 1 ? 'scènes' : 'scène', scenes.length === 1 ? 'scene' : 'scenes')}
         </h1>
         {session.tourId && (
           <Link
@@ -236,13 +223,15 @@ export default function SessionDetailPage() {
             className="text-meta text-grenadine font-semibold underline underline-offset-2 hover:opacity-80 transition"
             data-testid="tour-link"
           >
-            ↗ Voir dans Mes tours
+            ↗ {t('Voir dans Mes tours', 'View in My tours')}
           </Link>
         )}
       </div>
       <p className="font-editorial italic text-caption text-ink-60 mb-5">
-        Vue d&apos;ensemble du tour. Cliquez sur une scène pour la lire ou allez à
-        l&apos;onglet <strong className="not-italic font-semibold">Scènes</strong> pour le mode édition.
+        {t(
+          "Vue d'ensemble du tour. Cliquez sur une scène pour la lire ou allez à l'onglet Scènes pour le mode édition.",
+          'Tour overview. Select a scene to play it, or open the Scenes tab to edit it.',
+        )}
       </p>
 
       {/* ───── Quota transcription ───── */}
@@ -266,7 +255,7 @@ export default function SessionDetailPage() {
             data-testid="create-studio-btn"
             className="bg-grenadine text-paper border-none px-4 py-2 rounded-md text-caption font-bold cursor-pointer hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
-            {isCreating ? 'Création…' : 'Créer une session studio'}
+            {isCreating ? t('Création…', 'Creating...') : t('Créer une session studio', 'Create a Studio session')}
           </button>
           {createMessage && (
             <span
@@ -287,7 +276,7 @@ export default function SessionDetailPage() {
           className="bg-paper-soft rounded-md p-6 text-center text-caption text-ink-60"
           data-testid="no-scenes"
         >
-          Aucune scène dans cette session.
+          {t('Aucune scène dans cette session.', 'There are no scenes in this session.')}
         </div>
       ) : (
         <div className="flex flex-col gap-2.5" data-testid="scenes-list">
@@ -310,9 +299,9 @@ export default function SessionDetailPage() {
       {/* ───── Step navigation ───── */}
       <StepNav
         prevHref="/guide/studio/tours"
-        prevLabel="Mes tours"
+        prevLabel={t('Mes tours', 'My tours')}
         nextHref={`/guide/studio/${sessionId}/general`}
-        nextLabel="Général"
+        nextLabel={t('Général', 'General')}
       />
 
       <StudioToast />

@@ -10,11 +10,13 @@ const LOCALE_CHANGE_EVENT = 'murmure-studio-locale-change';
 interface StudioLocaleContextValue {
   locale: StudioLocale;
   setLocale: (locale: StudioLocale) => void;
+  t: (fr: string, en: string) => string;
 }
 
 const StudioLocaleContext = createContext<StudioLocaleContextValue>({
   locale: 'fr',
   setLocale: () => undefined,
+  t: (fr) => fr,
 });
 
 export function StudioLocaleProvider({ children }: { children: React.ReactNode }) {
@@ -43,7 +45,12 @@ export function StudioLocaleProvider({ children }: { children: React.ReactNode }
     window.dispatchEvent(new Event(LOCALE_CHANGE_EVENT));
   }, []);
 
-  const value = useMemo<StudioLocaleContextValue>(() => ({ locale, setLocale }), [locale, setLocale]);
+  const t = useCallback((fr: string, en: string) => (locale === 'en' ? en : fr), [locale]);
+
+  const value = useMemo<StudioLocaleContextValue>(
+    () => ({ locale, setLocale, t }),
+    [locale, setLocale, t],
+  );
 
   return (
     <StudioLocaleContext.Provider value={value}>
