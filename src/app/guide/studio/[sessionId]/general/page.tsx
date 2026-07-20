@@ -280,7 +280,9 @@ export default function GeneralPage() {
     if (!session) return;
 
     // mon-1.2 (parité web) — validate price for a paid tour before saving.
-    let priceCents: number | null = null;
+    // AppSync rejects `null` for owner updates on this optional field. Zero also
+    // clears any stale paid price while purchaseType remains the access source of truth.
+    let priceCents = 0;
     if (purchaseType === 'paid') {
       const euros = Number(priceEuros.replace(',', '.'));
       if (!Number.isFinite(euros) || euros < PRICE_MIN_EUROS || euros > PRICE_MAX_EUROS) {
