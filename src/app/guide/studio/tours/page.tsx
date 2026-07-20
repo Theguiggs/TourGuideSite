@@ -190,6 +190,7 @@ export default function StudioToursPage() {
           </p>
           <Link
             href="/guide/studio/nouveau"
+            data-testid="new-tour-cta"
             className="inline-flex items-center gap-2 bg-grenadine text-paper px-6 py-3 rounded-pill text-caption font-bold no-underline hover:opacity-90 transition"
           >
             <Plus size={18} aria-hidden="true" /> {copy.create}
