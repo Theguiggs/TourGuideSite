@@ -103,6 +103,7 @@ export default function GeneralPage() {
   const [purchaseType, setPurchaseType] = useState<'free' | 'paid' | 'subscription_only'>('free');
   const [priceEuros, setPriceEuros] = useState('');
   const [priceError, setPriceError] = useState<string | null>(null);
+  const [supportsMonetization, setSupportsMonetization] = useState(false);
 
   // Cover photo state
   const [coverPhotoKey, setCoverPhotoKey] = useState<string | null>(null);
@@ -171,6 +172,7 @@ export default function GeneralPage() {
               const tourResult = await getGuideTourById(sess.tourId);
               if (tourResult) {
                 const tour = tourResult as unknown as Record<string, unknown>;
+                setSupportsMonetization('purchaseType' in tour || 'priceCents' in tour);
                 setCity((tour.city as string) || '');
                 setDescription((tour.description as string) || '');
                 setDuration((tour.duration as number) || 0);
@@ -274,7 +276,9 @@ export default function GeneralPage() {
   const isLocked = session
     ? ['submitted', 'published', 'revision_requested'].includes(session.status)
     : false;
-  const canEditMonetization = !isLocked || session?.status === 'published';
+  const canEditMonetization = supportsMonetization
+    && (!isLocked || session?.status === 'published');
+  const canSave = !isLocked || canEditMonetization;
 
   const handleSave = useCallback(async () => {
     if (!session) return;
@@ -310,9 +314,10 @@ export default function GeneralPage() {
         if (!sessionResult.ok) throw new Error(sessionResult.error);
       }
       if (!session.tourId) throw new Error('No tour associated with this session.');
+      const monetizationUpdates = supportsMonetization ? { purchaseType, priceCents } : {};
       const tourResult = await appsync.updateGuideTourMutation(
         session.tourId,
-        isLocked ? { purchaseType, priceCents } : {
+        isLocked ? monetizationUpdates : {
           title,
           city,
           description,
@@ -320,8 +325,7 @@ export default function GeneralPage() {
           distance,
           poiCount: scenesCount,
           // mon-1.2 (parité web) → consommé par mon-1.3b (createTourPaymentIntent lit GuideTour).
-          purchaseType,
-          priceCents,
+          ...monetizationUpdates,
         },
       );
       if (!tourResult.ok) throw new Error(tourResult.error);
@@ -359,6 +363,7 @@ export default function GeneralPage() {
     scenesCount,
     purchaseType,
     priceEuros,
+    supportsMonetization,
     isLocked,
     t,
   ]);
@@ -720,7 +725,7 @@ export default function GeneralPage() {
 
       {/* ───── Save bar ───── */}
       <div className="flex items-center gap-3 flex-wrap mt-2 mb-2">
-        {canEditMonetization && (
+        {canSave && (
           <button
             type="button"
             onClick={handleSave}
