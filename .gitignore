@@ -50,3 +50,6 @@ test-results/
 .env.e2e
 .venv/
 microservice/.venv/
+
+# Local editorial backups and batch logs
+/artifacts/content-expansion/
