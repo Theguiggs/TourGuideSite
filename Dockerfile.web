@@ -22,6 +22,10 @@ ENV NEXT_PUBLIC_AMPLITUDE_API_KEY=$NEXT_PUBLIC_AMPLITUDE_API_KEY
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/packages ./packages
 COPY . .
+RUN if [ ! -f ../TourGuideApp/amplify/data/resource.ts ]; then \
+      mkdir -p ../TourGuideApp/amplify/data && \
+      cp src/types/amplify-schema-fallback.ts ../TourGuideApp/amplify/data/resource.ts; \
+    fi
 RUN npm run build
 
 # --- 3) runner stage: minimal image
