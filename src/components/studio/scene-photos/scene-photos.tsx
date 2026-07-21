@@ -64,8 +64,7 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
       setIsUploading(true);
       const newKeys: string[] = [];
       for (let i = 0; i < valid.length; i++) {
-        const photoIndex = photos.length + i;
-        const result = await studioUploadService.uploadPhoto(valid[i], sessionId, scene.sceneIndex, photoIndex);
+        const result = await studioUploadService.uploadPhoto(valid[i], sessionId, scene.id);
         if (result.ok) {
           newKeys.push(result.s3Key);
         } else {
@@ -80,7 +79,7 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
     }
 
     if (inputRef.current) inputRef.current.value = '';
-  }, [photos, scene.id, scene.sceneIndex, sessionId, onPhotosChange, t]);
+  }, [photos, scene.id, sessionId, onPhotosChange, t]);
 
   const handleRemove = useCallback((index: number) => {
     const updated = photos.filter((_, i) => i !== index);
