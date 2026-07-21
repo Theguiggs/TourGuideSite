@@ -948,6 +948,13 @@ export default function ScenesPage() {
         longitude: Number.isFinite(parsedPoiLng) ? parsedPoiLng : null,
       }
     : null;
+  const activePoiMapKey = activePoiMapScene
+    ? `${activePoiMapScene.id}-${activePoiMapScene.latitude ?? 'no-lat'}-${activePoiMapScene.longitude ?? 'no-lng'}`
+    : 'no-active-poi';
+  const activePoiFlyToCoords =
+    activePoiMapScene && activePoiMapScene.latitude !== null && activePoiMapScene.longitude !== null
+      ? { lat: activePoiMapScene.latitude, lng: activePoiMapScene.longitude }
+      : null;
 
   // Translation tab removed — translation is now handled via language tabs (ML-4 refonte)
   const tabs = [
@@ -1447,9 +1454,11 @@ export default function ScenesPage() {
             onSave={handleSavePoi}
             mapPreview={activePoiMapScene ? (
               <EditableMap
+                key={activePoiMapKey}
                 scenes={[activePoiMapScene]}
                 waypoints={[]}
                 height="224px"
+                flyToCoords={activePoiFlyToCoords}
                 manualMode
                 onPoiDrag={(_, lat, lng) => {
                   if (isBaseLangLocked) return;
