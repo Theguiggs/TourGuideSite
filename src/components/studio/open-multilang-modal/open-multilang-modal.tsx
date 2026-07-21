@@ -526,8 +526,8 @@ export function OpenMultilangModal({
 
         {/* Stripe payment step — shown after PaymentIntent is created for paid orders */}
         {pendingPayment && pendingPayment.clientSecret && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 rounded-xl p-4" data-testid="payment-step">
-            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full p-5">
+          <div className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-black/40 p-4 sm:p-6" data-testid="payment-step">
+            <div className="mt-4 mb-6 max-h-[calc(100vh-2rem)] w-full max-w-sm overflow-y-auto rounded-lg bg-white p-5 shadow-xl sm:mt-8">
               <h3 className="text-sm font-bold text-ink mb-2">Paiement — {formatPrice(order.totalCents)}</h3>
               <p className="text-sm text-ink-60 mb-4">Entrez vos informations de paiement pour finaliser l&apos;achat.</p>
               {errorMessage && (
