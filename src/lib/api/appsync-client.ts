@@ -110,7 +110,7 @@ export async function getGuideProfileById(id: string, authMode?: 'userPool' | 'i
       { id },
       authMode ? { authMode } : {},
     );
-    return result.data ?? null;
+    return Array.isArray(result.data) ? (result.data[0] ?? null) : (result.data ?? null);
   } catch (error) {
     logger.error(SERVICE_NAME, 'getGuideProfileById failed', { error: String(error) });
     return null;
