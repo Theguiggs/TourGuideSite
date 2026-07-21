@@ -235,7 +235,7 @@ export function OpenMultilangModal({
     logger.info(SERVICE_NAME, 'Confirming mixed multilang', { sessionId, chargeableSelections });
 
     try {
-      let paymentIntentId = '';
+      const paymentIntentId = '';
       if (order.totalCents > 0) {
         const piResult = await createPaymentIntentMixed(sessionId, chargeableSelections);
         if (!piResult.ok) {
