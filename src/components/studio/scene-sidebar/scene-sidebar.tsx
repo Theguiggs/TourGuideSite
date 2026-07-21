@@ -73,6 +73,7 @@ export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSide
           {scenes.map((scene) => {
             const isActive = scene.id === activeSceneId;
             const statusConfig = getSceneStatusConfig(scene.status);
+            const hasPoiLocation = typeof scene.latitude === 'number' && typeof scene.longitude === 'number';
             return (
               <li key={scene.id}>
                 <button
@@ -93,6 +94,11 @@ export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSide
                   </span>
                   <span className={`inline-flex ml-7 mt-0.5 px-1.5 py-0 rounded text-[10px] font-medium ${statusConfig.color}`}>
                     {statusLabel(statusConfig.label)}
+                  </span>
+                  <span className={`inline-flex ml-1 mt-0.5 px-1.5 py-0 rounded text-[10px] font-medium ${
+                    hasPoiLocation ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre'
+                  }`}>
+                    {hasPoiLocation ? 'Lieu OK' : 'Lieu ?'}
                   </span>
                   <SegmentBadges sceneId={scene.id} />
                 </button>

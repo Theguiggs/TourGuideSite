@@ -10,6 +10,7 @@ import { triggerTranscription, getTranscriptionQuota, toBCP47 } from '@/lib/api/
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import { SceneSidebar } from '@/components/studio/scene-sidebar';
 import { ScenePhotos } from '@/components/studio/scene-photos';
+import { PoiValidationPanel } from '@/components/studio/poi-validation-panel';
 import { StepNav } from '@/components/studio/wizard';
 import { QuotaDisplay } from '@/components/studio/quota-display';
 import { TranscriptionControls } from '@/components/studio/transcription-controls';
@@ -128,7 +129,7 @@ export default function ScenesPage() {
   const [poiLng, setPoiLng] = useState('');
   const [addressSearch, setAddressSearch] = useState('');
   const [isSearching, setIsSearching] = useState(false);
-  const [searchResult, setSearchResult] = useState<string | null>(null);
+  const [searchResult, setSearchResult] = useState('');
   const [poiSaved, setPoiSaved] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<{ loaded: number; total: number } | null>(null);
@@ -553,7 +554,7 @@ export default function ScenesPage() {
     setPoiLat(activeScene.latitude?.toString() ?? '');
     setPoiLng(activeScene.longitude?.toString() ?? '');
     setPoiSaved(false);
-    setSearchResult(null);
+    setSearchResult('');
     setAddressSearch('');
   }, [activeSceneId, activeScene?.latitude, activeScene?.longitude, activeScene?.title, activeScene?.poiDescription]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -597,7 +598,7 @@ export default function ScenesPage() {
   const handleAddressSearch = useCallback(async () => {
     if (!addressSearch.trim()) return;
     setIsSearching(true);
-    setSearchResult(null);
+    setSearchResult('');
     try {
       const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(addressSearch)}&format=json&limit=1`;
       const res = await fetch(url, { headers: { 'Accept-Language': 'fr' } });
@@ -932,8 +933,8 @@ export default function ScenesPage() {
 
   // Translation tab removed — translation is now handled via language tabs (ML-4 refonte)
   const tabs = [
-    { key: 'poi' as const, label: '📍 POI' },
-    { key: 'photos' as const, label: `📷 ${t('Photos', 'Photos')}`, count: activeScene?.photosRefs.length },
+    { key: 'poi' as const, label: t('Lieu', 'Place') },
+    { key: 'photos' as const, label: `?? ${t('Photos', 'Photos')}`, count: activeScene?.photosRefs.length },
     { key: 'text' as const, label: '📝 Texte' },
     { key: 'audio' as const, label: `🎙️ ${t('Audio', 'Audio')}` },
   ];
@@ -1403,115 +1404,26 @@ export default function ScenesPage() {
 
         {/* Tab content */}
         {activeScene && activeTab === 'poi' && (
-          <div className="space-y-4">
-            {/* Scene title */}
-            <div>
-              <label htmlFor="poi-title" className="text-sm font-medium text-ink-80 block mb-1">{t('Titre de la scène', 'Scene title')}</label>
-              <input
-                id="poi-title"
-                type="text"
-                value={poiTitle}
-                onChange={(e) => setPoiTitle(e.target.value)}
-                placeholder="Ex: Place aux Aires"
-                disabled={isBaseLangLocked}
-                className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine disabled:bg-paper-soft disabled:text-ink-60"
-                data-testid="poi-title-input"
-              />
-            </div>
-
-            {/* POI description */}
-            <div>
-              <label htmlFor="poi-desc" className="text-sm font-medium text-ink-80 block mb-1">{t("Description du point d'intérêt", 'Point of interest description')}</label>
-              <textarea
-                id="poi-desc"
-                value={poiDescription}
-                onChange={(e) => setPoiDescription(e.target.value)}
-                placeholder="Aide au touriste — ce qu'il verra à cet endroit"
-                rows={3}
-                disabled={isBaseLangLocked}
-                className="w-full border border-line rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-grenadine disabled:bg-paper-soft disabled:text-ink-60"
-              />
-            </div>
-
-            {/* Address search */}
-            <div>
-              <label className="text-sm font-medium text-ink-80 block mb-1">Localisation GPS</label>
-              <div className="flex gap-2 mb-2">
-                <input
-                  type="text"
-                  value={addressSearch}
-                  onChange={(e) => setAddressSearch(e.target.value)}
-                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddressSearch(); } }}
-                  placeholder="Rechercher une adresse..."
-                  disabled={isBaseLangLocked}
-                  className="flex-1 border border-line rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine disabled:bg-paper-soft disabled:text-ink-60"
-                  data-testid="poi-address-search"
-                />
-                <button
-                  onClick={handleAddressSearch}
-                  disabled={isSearching || isBaseLangLocked}
-                  className="bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white text-sm px-4 py-2 rounded-lg transition"
-                >
-                  {isSearching ? '...' : '🔍 Chercher'}
-                </button>
-              </div>
-              {searchResult && (
-                <p className={`text-xs mb-2 ${searchResult.startsWith('📍') ? 'text-success' : 'text-danger'}`}>
-                  {searchResult}
-                </p>
-              )}
-
-              {/* Manual coordinates */}
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <label htmlFor="poi-lat" className="text-xs text-ink-60 block mb-0.5">Latitude</label>
-                  <input
-                    id="poi-lat"
-                    type="text"
-                    value={poiLat}
-                    onChange={(e) => setPoiLat(e.target.value)}
-                    placeholder="43.6591"
-                    disabled={isBaseLangLocked}
-                    className="w-full border border-line rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine disabled:bg-paper-soft disabled:text-ink-60"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="poi-lng" className="text-xs text-ink-60 block mb-0.5">Longitude</label>
-                  <input
-                    id="poi-lng"
-                    type="text"
-                    value={poiLng}
-                    onChange={(e) => setPoiLng(e.target.value)}
-                    placeholder="6.9243"
-                    disabled={isBaseLangLocked}
-                    className="w-full border border-line rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine disabled:bg-paper-soft disabled:text-ink-60"
-                  />
-                </div>
-              </div>
-
-              {/* GPS status */}
-              {poiLat && poiLng && (
-                <p className="text-xs text-success mt-1">📍 {parseFloat(poiLat).toFixed(4)}, {parseFloat(poiLng).toFixed(4)}</p>
-              )}
-              {!poiLat && !poiLng && (
-                <p className="text-xs text-ocre mt-1">⚠ Pas de coordonnées GPS — recherchez une adresse ou saisissez les coordonnées</p>
-              )}
-            </div>
-
-            {/* Save button */}
-            {!isBaseLangLocked && (
-              <div className="flex items-center gap-3 pt-2">
-                <button
-                  onClick={handleSavePoi}
-                  className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg text-sm transition"
-                  data-testid="save-poi-btn"
-                >
-                  💾 {t('Enregistrer le POI', 'Save POI')}
-                </button>
-                {poiSaved && <span className="text-sm text-success">✓ {t('Enregistré', 'Saved')}</span>}
-              </div>
-            )}
-          </div>
+          <PoiValidationPanel
+            sceneLabel={`${t('Scene', 'Scene')} ${activeScene.sceneIndex + 1}`}
+            textExcerpt={activeScene.transcriptText}
+            title={poiTitle}
+            description={poiDescription}
+            latitude={poiLat}
+            longitude={poiLng}
+            addressSearch={addressSearch}
+            searchResult={searchResult}
+            isSearching={isSearching}
+            isSaved={poiSaved}
+            isLocked={isBaseLangLocked}
+            onTitleChange={setPoiTitle}
+            onDescriptionChange={setPoiDescription}
+            onLatitudeChange={setPoiLat}
+            onLongitudeChange={setPoiLng}
+            onAddressSearchChange={setAddressSearch}
+            onAddressSearch={handleAddressSearch}
+            onSave={handleSavePoi}
+          />
         )}
 
         {activeScene && activeTab === 'photos' && (

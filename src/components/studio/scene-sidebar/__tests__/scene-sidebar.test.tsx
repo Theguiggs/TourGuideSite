@@ -4,7 +4,7 @@ import { SceneSidebar } from '../scene-sidebar';
 import type { StudioScene } from '@/types/studio';
 
 const mockScenes: StudioScene[] = [
-  { id: 's1', sessionId: 'sess-1', sceneIndex: 0, title: 'Place aux Aires', originalAudioKey: null, studioAudioKey: null, transcriptText: 'Some text', transcriptionJobId: null, transcriptionStatus: null, qualityScore: null, qualityDetailsJson: null, codecStatus: null, status: 'edited', takesCount: null, selectedTakeIndex: null, moderationFeedback: null, photosRefs: [], latitude: null, longitude: null, poiDescription: null, archived: false, createdAt: '', updatedAt: '' },
+  { id: 's1', sessionId: 'sess-1', sceneIndex: 0, title: 'Place aux Aires', originalAudioKey: null, studioAudioKey: null, transcriptText: 'Some text', transcriptionJobId: null, transcriptionStatus: null, qualityScore: null, qualityDetailsJson: null, codecStatus: null, status: 'edited', takesCount: null, selectedTakeIndex: null, moderationFeedback: null, photosRefs: [], latitude: 43.6591, longitude: 6.9243, poiDescription: null, archived: false, createdAt: '', updatedAt: '' },
   { id: 's2', sessionId: 'sess-1', sceneIndex: 1, title: null, originalAudioKey: null, studioAudioKey: null, transcriptText: null, transcriptionJobId: null, transcriptionStatus: null, qualityScore: null, qualityDetailsJson: null, codecStatus: null, status: 'empty', takesCount: null, selectedTakeIndex: null, moderationFeedback: null, photosRefs: [], latitude: null, longitude: null, poiDescription: null, archived: false, createdAt: '', updatedAt: '' },
 ];
 
@@ -32,6 +32,12 @@ describe('SceneSidebar', () => {
     render(<SceneSidebar scenes={mockScenes} activeSceneId={null} onSceneSelect={jest.fn()} />);
     expect(screen.getByText('\u00c9dit\u00e9')).toBeInTheDocument();
     expect(screen.getByText('Vide')).toBeInTheDocument();
+  });
+
+  it('shows place validation badges', () => {
+    render(<SceneSidebar scenes={mockScenes} activeSceneId={null} onSceneSelect={jest.fn()} />);
+    expect(screen.getByText('Lieu OK')).toBeInTheDocument();
+    expect(screen.getByText('Lieu ?')).toBeInTheDocument();
   });
 
   it('has accessible navigation label', () => {
