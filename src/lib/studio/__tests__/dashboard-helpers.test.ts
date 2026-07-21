@@ -125,6 +125,19 @@ describe('selectRecentReviews', () => {
     };
     expect(selectRecentReviews(sessions, comments, 2)).toHaveLength(2);
   });
+
+  it('déduplique par id quand deux sessions partagent un tourId (même commentaire)', () => {
+    // listTourComments est keyé par tourId : deux sessions sur le même tour
+    // ramènent les mêmes commentaires → sans dédup, clés React dupliquées.
+    const sessions = [
+      mkSession({ id: 's1', tourId: 't1', title: 'Tour A' }),
+      mkSession({ id: 's2', tourId: 't1', title: 'Tour A' }),
+    ];
+    const shared = [mkComment({ id: 'dup1', createdAt: '2026-04-12T00:00:00Z', message: 'X' })];
+    const comments = { s1: shared, s2: shared };
+    const reviews = selectRecentReviews(sessions, comments);
+    expect(reviews.map((r) => r.id)).toEqual(['dup1']);
+  });
 });
 
 describe('selectSuggestion', () => {

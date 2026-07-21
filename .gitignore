@@ -50,3 +50,11 @@ test-results/
 .env.e2e
 .venv/
 microservice/.venv/
+
+# Python bytecode (microservice)
+__pycache__/
+*.pyc
+
+# Local dev artifacts
+dev.log
+.claude/

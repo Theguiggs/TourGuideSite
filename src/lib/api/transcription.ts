@@ -98,11 +98,28 @@ function stubGetQuota(): TranscriptionQuota {
   };
 }
 
+// --- Helpers ---
+
+const LANG_TO_BCP47: Record<string, string> = {
+  fr: 'fr-FR',
+  en: 'en-US',
+  es: 'es-ES',
+  de: 'de-DE',
+  it: 'it-IT',
+  ja: 'ja-JP',
+};
+
+export function toBCP47(lang: string): string {
+  return LANG_TO_BCP47[lang] ?? lang;
+}
+
 // --- Public API ---
 
 export async function triggerTranscription(
   sceneId: string,
   audioDurationMin: number,
+  audioKey = '',
+  languageCode = 'fr-FR',
 ): Promise<TriggerResult> {
   if (shouldUseStubs()) {
     // Simulate small network delay
@@ -116,7 +133,7 @@ export async function triggerTranscription(
     const client = getClient();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result = await (client as any).mutations.triggerTranscription(
-      { sceneId, audioKey: `guide-studio/${sceneId}/audio/scene_0.aac`, languageCode: 'fr-FR' },
+      { sceneId, audioKey, languageCode },
       { authMode: 'userPool' },
     );
     const data = result?.data;

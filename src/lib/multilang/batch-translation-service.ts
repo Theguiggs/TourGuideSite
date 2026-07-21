@@ -553,10 +553,31 @@ export async function retryScene(
   }
 
   // --- Save segment ---
+  // Never store base64 data URLs in AppSync (too large for DynamoDB)
+  let audioKeyToStore = ttsResult.audioKey;
+  if (audioKeyToStore && audioKeyToStore.startsWith('data:')) {
+    try {
+      const { uploadAudio } = await import('@/lib/studio/studio-upload-service');
+      const audioResponse = await fetch(audioKeyToStore);
+      const audioBlob = new Blob([await audioResponse.blob()], { type: 'audio/wav' });
+      const uploadResult = await uploadAudio(audioBlob, scene.sessionId, scene.sceneIndex ?? 0, scene.id);
+      if (uploadResult.ok) {
+        audioKeyToStore = uploadResult.s3Key;
+        logger.info(SERVICE_NAME, 'Retry TTS audio uploaded to S3', { sceneId: scene.id, s3Key: audioKeyToStore });
+      } else {
+        audioKeyToStore = `tts-${lang}-${scene.id}-${Date.now()}`;
+        logger.warn(SERVICE_NAME, 'Retry S3 upload failed, using marker', { error: uploadResult.error });
+      }
+    } catch (uploadErr) {
+      audioKeyToStore = `tts-${lang}-${scene.id}-${Date.now()}`;
+      logger.warn(SERVICE_NAME, 'Retry S3 upload exception', { error: String(uploadErr) });
+    }
+  }
+
   try {
     await updateSceneSegment(segmentId, {
       transcriptText: translatedText,
-      audioKey: ttsResult.audioKey,
+      audioKey: audioKeyToStore,
       sourceUpdatedAt,
       sourceTextHash: hashSourceText(scene.transcriptText, scene.title),
       language: lang,
@@ -575,7 +596,7 @@ export async function retryScene(
   }
 
   logger.info(SERVICE_NAME, 'Retry scene completed', { sceneId: scene.id, lang });
-  return { ok: true, translatedText, audioKey: ttsResult.audioKey };
+  return { ok: true, translatedText, audioKey: audioKeyToStore };
 }
 
 // --- Missing scenes detection ---

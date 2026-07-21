@@ -7,6 +7,7 @@ import {
 } from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
 import { S3Image } from '@/components/studio/s3-image';
+import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
 import { AnalyticsEvents } from '@/lib/analytics';
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
@@ -164,6 +165,7 @@ export default async function GuideProfilePage({ params }: GuidePageProps) {
                     SIGNATURE
                   </span>
                   <h3 className="font-semibold text-ink">{tour.title}</h3>
+                  <TourPriceBadge tour={tour} />
                 </div>
                 <p className="text-sm text-ink-60">{tour.shortDescription}</p>
                 <p className="text-xs text-ink-40 mt-2">
@@ -197,11 +199,7 @@ export default async function GuideProfilePage({ params }: GuidePageProps) {
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-semibold text-ink">{tour.title}</h3>
-                    {tour.isFree && (
-                      <span className="bg-olive-soft text-olive text-xs font-bold px-2 py-0.5 rounded-full">
-                        GRATUIT
-                      </span>
-                    )}
+                    <TourPriceBadge tour={tour} />
                   </div>
                   <p className="text-sm text-ink-60 line-clamp-2 mb-3">{tour.shortDescription}</p>
                   <div className="flex items-center gap-3 text-xs text-ink-40">

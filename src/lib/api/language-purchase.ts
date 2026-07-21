@@ -19,6 +19,44 @@ export interface ApiError {
 
 type Result<T> = { ok: true; value: T } | { ok: false; error: ApiError };
 
+/**
+ * The `createPaymentIntent` Lambda (mutation typed `a.json()`) returns the
+ * envelope `{ ok, value: { clientSecret, amountCents, ... }, error }` — and
+ * Amplify sometimes hands it back as a JSON *string*. The clientSecret lives at
+ * `value.clientSecret` (NOT at the top level), and the response carries NO
+ * paymentIntentId — it must be derived from the clientSecret, whose shape is
+ * `pi_xxx_secret_yyy` (the id is the part before `_secret_`). Reading
+ * `data.clientSecret` directly yields '' and Stripe Elements then throws
+ * "clientSecret should be of the form ${id}_secret_${secret}".
+ */
+function parsePaymentIntentEnvelope(raw: unknown): Result<PaymentIntentResult> {
+  let env: unknown = raw;
+  if (typeof env === 'string') {
+    try {
+      env = JSON.parse(env);
+    } catch {
+      /* keep as string — falls through to the unexpected-shape error below */
+    }
+  }
+  const e = (env ?? {}) as {
+    ok?: boolean;
+    value?: { clientSecret?: string | null };
+    error?: ApiError;
+  };
+  if (e.error) {
+    return { ok: false, error: e.error };
+  }
+  const clientSecret = e.value?.clientSecret ?? '';
+  if (!clientSecret) {
+    const snippet =
+      typeof raw === 'string' ? raw.slice(0, 200) : JSON.stringify(raw ?? null).slice(0, 200);
+    return { ok: false, error: { code: 2602, message: `Aucun clientSecret reçu (paiement indisponible). Réponse: ${snippet}` } };
+  }
+  // PaymentIntent id = the part before "_secret_" in the clientSecret.
+  const paymentIntentId = clientSecret.split('_secret_')[0];
+  return { ok: true, value: { clientSecret, paymentIntentId } };
+}
+
 // --- Stub state ---
 
 const stubPurchases = new Map<string, TourLanguagePurchase>();
@@ -155,14 +193,12 @@ export async function createPaymentIntent(
       { sessionId, languages, qualityTier },
       { authMode: 'userPool' },
     );
-    const data = result?.data;
-    return {
-      ok: true,
-      value: {
-        clientSecret: data?.clientSecret ?? '',
-        paymentIntentId: data?.paymentIntentId ?? '',
-      },
-    };
+    if (result?.errors?.length) {
+      const message = result.errors.map((e: { message?: string }) => e?.message ?? String(e)).join('; ');
+      logger.error(SERVICE_NAME, 'createPaymentIntent GraphQL error', { message });
+      return { ok: false, error: { code: 2602, message } };
+    }
+    return parsePaymentIntentEnvelope(result?.data);
   } catch (err) {
     logger.error(SERVICE_NAME, 'createPaymentIntent failed', { error: String(err) });
     return { ok: false, error: { code: 2602, message: `Payment intent creation failed: ${String(err)}` } };
@@ -313,8 +349,12 @@ export async function createPaymentIntentMixed(
       },
       { authMode: 'userPool' },
     );
-    const data = result?.data;
-    return { ok: true, value: { clientSecret: data?.clientSecret ?? '', paymentIntentId: data?.paymentIntentId ?? '' } };
+    if (result?.errors?.length) {
+      const message = result.errors.map((e: { message?: string }) => e?.message ?? String(e)).join('; ');
+      logger.error(SERVICE_NAME, 'createPaymentIntentMixed GraphQL error', { message });
+      return { ok: false, error: { code: 2602, message } };
+    }
+    return parsePaymentIntentEnvelope(result?.data);
   } catch (err) {
     logger.error(SERVICE_NAME, 'createPaymentIntentMixed failed', { error: String(err) });
     return { ok: false, error: { code: 2602, message: `Payment intent failed: ${String(err)}` } };
@@ -327,10 +367,12 @@ export async function confirmLanguagePurchaseMixed(
   sessionId: string,
   selections: import('@/lib/multilang/language-pricing').LangSelections,
   paymentIntentId: string,
+  freeLanguageUsed = false,
 ): Promise<Result<TourLanguagePurchase[]>> {
   const { computeMixedOrder, effectiveTierFor } = await import('@/lib/multilang/language-pricing');
-  const order = computeMixedOrder(selections, false);
+  const order = computeMixedOrder(selections, freeLanguageUsed);
   const amountByLang = new Map(order.lines.map((l) => [l.language, l.priceCents]));
+  const billingByLang = new Map(order.lines.map((l) => [l.language, l.billing]));
   const langs = Object.keys(selections);
 
   if (shouldUseStubs()) {
@@ -340,6 +382,7 @@ export async function confirmLanguagePurchaseMixed(
       const mode = selections[lang];
       const tier = effectiveTierFor(lang, mode);
       const isManual = mode === 'manual';
+      const billing = billingByLang.get(lang) ?? 'single';
       const p: TourLanguagePurchase = {
         id: `purchase-${sessionId}-${lang}`,
         guideId: 'guide-stub-1',
@@ -347,7 +390,7 @@ export async function confirmLanguagePurchaseMixed(
         language: lang,
         qualityTier: (isManual ? 'manual' : tier) as TourLanguagePurchase['qualityTier'],
         provider: isManual ? null : (tier === 'standard' ? 'marianmt' : 'deepl'),
-        purchaseType: isManual ? 'manual' : (order.packAllApplied ? 'pack_all' : 'single'),
+        purchaseType: (isManual ? 'manual' : billing) as TourLanguagePurchase['purchaseType'],
         amountCents: amountByLang.get(lang) ?? 0,
         stripePaymentIntentId: paymentIntentId || null,
         moderationStatus: 'draft',
@@ -372,6 +415,7 @@ export async function confirmLanguagePurchaseMixed(
       const isManual = mode === 'manual';
       const tier = effectiveTierFor(lang, mode);
       const provider = isManual ? undefined : (tier === 'standard' ? 'marianmt' : 'deepl');
+      const billing = billingByLang.get(lang) ?? 'single';
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const result = await (client as any).models.TourLanguagePurchase.create(
         {
@@ -379,7 +423,7 @@ export async function confirmLanguagePurchaseMixed(
           sessionId,
           language: lang,
           qualityTier: isManual ? 'manual' : tier,
-          purchaseType: isManual ? 'manual' : (order.packAllApplied ? 'pack_all' : 'single'),
+          purchaseType: isManual ? 'manual' : billing,
           amountCents: amountByLang.get(lang) ?? 0,
           provider,
           stripePaymentIntentId: paymentIntentId || undefined,

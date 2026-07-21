@@ -879,10 +879,11 @@ export async function updateSceneAudio(
         logger.info(SERVICE_NAME, 'Audio uploaded to S3', { sceneId, s3Key: audioKeyToStore });
       } else {
         logger.error(SERVICE_NAME, 'S3 upload failed for scene audio', { sceneId, error: uploadResult.error });
-        // Keep data URL in local cache for playback, but don't persist to AppSync
+        return { ok: false, error: uploadResult.error };
       }
     } catch (uploadErr) {
       logger.error(SERVICE_NAME, 'S3 upload exception for scene audio', { sceneId, error: String(uploadErr) });
+      return { ok: false, error: 'Upload audio échoué.' };
     }
   }
 
@@ -911,9 +912,9 @@ export async function updateSceneAudio(
   // Real mode: persist the S3 key (not the data URL) to AppSync
   try {
     const { updateStudioSceneMutation } = await import('./appsync-client');
-    const keyToSave = audioKeyToStore.startsWith('data:') ? `tts-fr-${sceneId}` : audioKeyToStore;
+    const keyToSave = audioKeyToStore.startsWith('data:') ? `tts-placeholder-${sceneId}` : audioKeyToStore;
     // Persist the honesty marker when the caller knows the audio's origin. A
-    // data-URL fallback key (`tts-…`) is always TTS regardless of the hint.
+    // data-URL fallback key (`tts-placeholder-…`) is always TTS regardless of the hint.
     const resolvedSource = audioKeyToStore.startsWith('data:') ? 'tts' : baseAudioSource;
     const result = await updateStudioSceneMutation(sceneId, {
       studioAudioKey: keyToSave,
@@ -921,14 +922,14 @@ export async function updateSceneAudio(
       ...(resolvedSource ? { baseAudioSource: resolvedSource } : {}),
     });
     if (!result.ok) {
-      logger.warn(SERVICE_NAME, 'AppSync persist failed, local cache updated', { sceneId });
-      return { ok: true };
+      logger.error(SERVICE_NAME, 'AppSync persist failed for scene audio', { sceneId });
+      return { ok: false, error: 'Erreur de sauvegarde. Veuillez réessayer.' };
     }
     logger.info(SERVICE_NAME, 'Scene audio updated (AppSync)', { sceneId, keyLength: keyToSave.length });
     return { ok: true };
   } catch (e) {
-    logger.warn(SERVICE_NAME, 'updateSceneAudio AppSync failed, local cache OK', { error: String(e) });
-    return { ok: true };
+    logger.error(SERVICE_NAME, 'updateSceneAudio AppSync failed', { error: String(e) });
+    return { ok: false, error: 'Erreur réseau lors de la sauvegarde.' };
   }
 }
 

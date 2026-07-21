@@ -38,6 +38,7 @@ export function useAutoSave({
   const savedDataRef = useRef(data);
   const onSaveRef = useRef(onSave);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const inFlightRef = useRef(false);
 
   // Keep refs current
   dataRef.current = data;
@@ -51,7 +52,9 @@ export function useAutoSave({
   const performSave = useCallback(async () => {
     const current = dataRef.current;
     if (current === savedDataRef.current) return; // No changes
+    if (inFlightRef.current) return; // Prevent concurrent saves
 
+    inFlightRef.current = true;
     setIsSaving(true);
     try {
       await onSaveRef.current(current);
@@ -62,6 +65,7 @@ export function useAutoSave({
     } catch (e) {
       logger.error(SERVICE_NAME, 'Auto-save failed', { error: String(e) });
     } finally {
+      inFlightRef.current = false;
       setIsSaving(false);
     }
   }, []);

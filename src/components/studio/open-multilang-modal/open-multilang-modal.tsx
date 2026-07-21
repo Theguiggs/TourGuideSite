@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useMemo } from 'react';
+import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useLanguagePurchaseStore } from '@/lib/stores/language-purchase-store';
 import { logger } from '@/lib/logger';
 import {
@@ -15,7 +16,67 @@ import {
 } from '@/components/studio/language-checkout/language-checkbox-card';
 import { computeMixedOrder, type LangMode, type LangSelections } from '@/lib/multilang/language-pricing';
 import { isLanguagePremium } from '@/lib/multilang/provider-router';
+import { getStripePromise } from '@/lib/stripe/client';
 import type { QualityTier } from '@/types/studio';
+
+// --- Stripe payment form (must live inside <Elements>) ---
+function MultilangPaymentForm({
+  paymentIntentId,
+  onSuccess,
+  onError,
+}: {
+  paymentIntentId: string;
+  onSuccess: (paymentIntentId: string) => void;
+  onError: (msg: string) => void;
+}) {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [busy, setBusy] = useState(false);
+
+  const handlePay = useCallback(async () => {
+    if (!stripe || !elements) {
+      onError('Stripe non initialisé. Vérifiez NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY.');
+      return;
+    }
+    setBusy(true);
+    try {
+      const { error, paymentIntent } = await stripe.confirmPayment({
+        elements,
+        redirect: 'if_required',
+      });
+      if (error) {
+        setBusy(false);
+        onError(error.message ?? 'Paiement refusé.');
+        return;
+      }
+      if (paymentIntent?.status === 'succeeded') {
+        onSuccess(paymentIntent.id ?? paymentIntentId);
+        return;
+      }
+      setBusy(false);
+      onError(`Paiement non finalisé (${paymentIntent?.status ?? 'inconnu'}).`);
+    } catch (e) {
+      setBusy(false);
+      onError(`Erreur paiement : ${e instanceof Error ? e.message : String(e)}`);
+    }
+  }, [stripe, elements, paymentIntentId, onSuccess, onError]);
+
+  return (
+    <div className="space-y-4">
+      <PaymentElement />
+      <button
+        type="button"
+        onClick={handlePay}
+        disabled={busy}
+        className={`w-full rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
+          busy ? 'bg-paper-deep text-ink-40 cursor-not-allowed' : 'bg-grenadine text-white hover:opacity-90'
+        }`}
+      >
+        {busy ? 'Traitement...' : 'Confirmer le paiement'}
+      </button>
+    </div>
+  );
+}
 
 const SERVICE_NAME = 'OpenMultilangModal';
 
@@ -47,6 +108,7 @@ export function OpenMultilangModal({
   const [selections, setSelections] = useState<LangSelections>({});
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [pendingPayment, setPendingPayment] = useState<{ clientSecret: string; paymentIntentId: string } | null>(null);
 
   const allPurchases = useLanguagePurchaseStore((s) => s.purchases);
   const setPurchases = useLanguagePurchaseStore((s) => s.setPurchases);
@@ -140,7 +202,7 @@ export function OpenMultilangModal({
     try {
       const collected: typeof purchases = [];
       if (Object.keys(newSelections).length > 0) {
-        const result = await confirmLanguagePurchaseMixed(sessionId, newSelections, paymentIntentId);
+        const result = await confirmLanguagePurchaseMixed(sessionId, newSelections, paymentIntentId, freeLanguageUsed);
         if (!result.ok) { setErrorMessage('Erreur serveur. Réessayez.'); setIsLoading(false); return; }
         collected.push(...result.value);
       }
@@ -158,12 +220,13 @@ export function OpenMultilangModal({
       onClose();
       setSelections({});
       setPendingOverwrite(null);
+      setPendingPayment(null);
     } catch (err) {
       setErrorMessage('Erreur inattendue. Réessayez.');
       logger.error(SERVICE_NAME, 'runConfirm failed', { error: String(err) });
     }
     setIsLoading(false);
-  }, [sessionId, newSelections, upgradeSelections, autoLangs, chargeableSelections, setPurchases, onLanguagesChanged, onClose, onBatchTranslationNeeded, purchases]);
+  }, [sessionId, newSelections, upgradeSelections, autoLangs, chargeableSelections, freeLanguageUsed, setPurchases, onLanguagesChanged, onClose, onBatchTranslationNeeded, purchases]);
 
   const handleConfirm = useCallback(async () => {
     if (chargeableCount === 0) return;
@@ -176,12 +239,23 @@ export function OpenMultilangModal({
       if (order.totalCents > 0) {
         const piResult = await createPaymentIntentMixed(sessionId, chargeableSelections);
         if (!piResult.ok) {
-          setErrorMessage('Erreur de paiement. Réessayez.');
-          logger.error(SERVICE_NAME, 'Payment intent failed', { code: piResult.error.code });
+          setErrorMessage(piResult.error.message || 'Erreur de paiement. Réessayez.');
+          logger.error(SERVICE_NAME, 'Payment intent failed', { code: piResult.error.code, message: piResult.error.message });
           setIsLoading(false);
           return;
         }
-        paymentIntentId = piResult.value.paymentIntentId;
+        // Defensive: never mount Stripe <Elements> with an empty clientSecret
+        // (it throws "clientSecret should be of the form ${id}_secret_${secret}").
+        if (!piResult.value.clientSecret) {
+          setErrorMessage('Paiement indisponible (clientSecret manquant). Réessayez.');
+          logger.error(SERVICE_NAME, 'Payment intent returned empty clientSecret', {});
+          setIsLoading(false);
+          return;
+        }
+        // Show Stripe payment form — do NOT proceed until card is confirmed.
+        setPendingPayment({ clientSecret: piResult.value.clientSecret, paymentIntentId: piResult.value.paymentIntentId });
+        setIsLoading(false);
+        return;
       }
 
       // If we're upgrading manual languages that already have content, ask first.
@@ -201,6 +275,27 @@ export function OpenMultilangModal({
       setIsLoading(false);
     }
   }, [sessionId, chargeableSelections, order.totalCents, chargeableCount, upgradeSelections, runConfirm]);
+
+  const handlePaymentSuccess = useCallback(async (confirmedIntentId: string) => {
+    if (!pendingPayment) return;
+    setIsLoading(true);
+    setErrorMessage(null);
+    // Check for overwrite if there are upgrades
+    const upgradeLangs = Object.keys(upgradeSelections);
+    if (upgradeLangs.length > 0) {
+      const withContent = await languagesWithManualContent(sessionId, upgradeLangs);
+      if (withContent.length > 0) {
+        setPendingOverwrite({ langs: withContent, paymentIntentId: confirmedIntentId });
+        setIsLoading(false);
+        return;
+      }
+    }
+    await runConfirm(confirmedIntentId, true);
+  }, [pendingPayment, upgradeSelections, sessionId, runConfirm]);
+
+  const handlePaymentError = useCallback((msg: string) => {
+    setErrorMessage(msg);
+  }, []);
 
   const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) onClose();
@@ -425,6 +520,34 @@ export function OpenMultilangModal({
                   Annuler
                 </button>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Stripe payment step — shown after PaymentIntent is created for paid orders */}
+        {pendingPayment && pendingPayment.clientSecret && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 rounded-xl p-4" data-testid="payment-step">
+            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full p-5">
+              <h3 className="text-sm font-bold text-ink mb-2">Paiement — {formatPrice(order.totalCents)}</h3>
+              <p className="text-sm text-ink-60 mb-4">Entrez vos informations de paiement pour finaliser l&apos;achat.</p>
+              {errorMessage && (
+                <p className="text-xs text-danger mb-3" role="alert">{errorMessage}</p>
+              )}
+              <Elements stripe={getStripePromise()} options={{ clientSecret: pendingPayment.clientSecret }}>
+                <MultilangPaymentForm
+                  paymentIntentId={pendingPayment.paymentIntentId}
+                  onSuccess={handlePaymentSuccess}
+                  onError={handlePaymentError}
+                />
+              </Elements>
+              <button
+                type="button"
+                onClick={() => { setPendingPayment(null); setErrorMessage(null); }}
+                className="w-full mt-3 rounded-lg px-4 py-2 text-xs text-ink-40 hover:text-ink-60"
+                data-testid="payment-cancel"
+              >
+                Annuler
+              </button>
             </div>
           </div>
         )}

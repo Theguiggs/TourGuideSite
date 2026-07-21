@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import type { Tour } from '@/types/tour';
 import { TILE_URL, TILE_ATTRIBUTION } from '@/lib/maps/tile-config';
 import { FitToPoints } from '@/components/map/FitToPoints';
+import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
 
 const LANG_FLAGS: Record<string, string> = {
   fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪',
@@ -124,7 +125,10 @@ export function CatalogueMap({ tours, highlightedTourId, onBoundsChange, onTourH
           eventHandlers={{ remove: () => setInfoTour(null) }}
         >
           <div className="p-1 max-w-[220px]">
-            <p className="font-semibold text-gray-900 text-sm mb-1">{infoTour.title}</p>
+            <div className="flex items-start gap-2 mb-1">
+              <p className="font-semibold text-gray-900 text-sm">{infoTour.title}</p>
+              <TourPriceBadge tour={infoTour} />
+            </div>
             <p className="text-xs text-gray-500 mb-1">
               {infoTour.city} · {infoTour.duration} min · {infoTour.distance} km
             </p>

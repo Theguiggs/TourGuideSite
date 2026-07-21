@@ -13,16 +13,30 @@ import { getServerClient } from '@/lib/amplify/server-client';
 
 const SERVICE_NAME = 'AppSyncServerPublic';
 
+/** Paginate through all pages of a list query using nextToken. */
+async function paginateAll<T>(
+  fetcher: (nextToken: string | null | undefined) => Promise<{ data: T[]; nextToken?: string | null }>,
+): Promise<T[]> {
+  const all: T[] = [];
+  let nextToken: string | null | undefined = null;
+  do {
+    const page = await fetcher(nextToken);
+    all.push(...(page.data ?? []));
+    nextToken = page.nextToken;
+  } while (nextToken);
+  return all;
+}
+
 export async function listGuideToursServer(filters?: { city?: string; status?: string }) {
   try {
     const client = getServerClient();
-    const result = await client.models.GuideTour.list({
-      filter: {
-        ...(filters?.city ? { city: { eq: filters.city } } : {}),
-        ...(filters?.status ? { status: { eq: filters.status as 'published' } } : {}),
-      },
-    });
-    return result.data ?? [];
+    const filter = {
+      ...(filters?.city ? { city: { eq: filters.city } } : {}),
+      ...(filters?.status ? { status: { eq: filters.status as 'published' } } : {}),
+    };
+    return await paginateAll((nextToken) =>
+      client.models.GuideTour.list({ filter, nextToken: nextToken ?? undefined }),
+    );
   } catch (error) {
     logger.error(SERVICE_NAME, 'listGuideToursServer failed', { error: String(error) });
     return [];
@@ -32,13 +46,13 @@ export async function listGuideToursServer(filters?: { city?: string; status?: s
 export async function listGuideProfilesServer(filters?: { city?: string }) {
   try {
     const client = getServerClient();
-    const result = await client.models.GuideProfile.list({
-      filter: {
-        ...(filters?.city ? { city: { eq: filters.city } } : {}),
-        profileStatus: { eq: 'active' },
-      },
-    });
-    return result.data ?? [];
+    const filter = {
+      ...(filters?.city ? { city: { eq: filters.city } } : {}),
+      profileStatus: { eq: 'active' },
+    };
+    return await paginateAll((nextToken) =>
+      client.models.GuideProfile.list({ filter, nextToken: nextToken ?? undefined }),
+    );
   } catch (error) {
     logger.error(SERVICE_NAME, 'listGuideProfilesServer failed', { error: String(error) });
     return [];
@@ -48,10 +62,13 @@ export async function listGuideProfilesServer(filters?: { city?: string }) {
 export async function listTourReviewsServer(tourId: string) {
   try {
     const client = getServerClient();
-    const result = await client.models.TourReview.list({
-      filter: { tourId: { eq: tourId }, status: { eq: 'visible' } },
-    });
-    return (result.data ?? []).sort(
+    const all = await paginateAll((nextToken) =>
+      client.models.TourReview.list({
+        filter: { tourId: { eq: tourId }, status: { eq: 'visible' } },
+        nextToken: nextToken ?? undefined,
+      }),
+    );
+    return all.sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
   } catch (error) {

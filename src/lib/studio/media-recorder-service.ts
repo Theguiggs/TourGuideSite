@@ -106,8 +106,14 @@ class MediaRecorderServiceImpl {
       };
 
       this.recorder.onerror = () => {
-        logger.error(SERVICE_NAME, 'Recorder error');
+        logger.error(SERVICE_NAME, 'Recorder error — releasing stream');
         this.setState('stopped');
+        // Stop all tracks so the mic indicator clears and stopRecording() resolves
+        if (this.stream) {
+          this.stream.getTracks().forEach((t) => t.stop());
+          this.stream = null;
+        }
+        this.recorder = null;
       };
 
       this.recorder.start(1000); // collect data every second

@@ -97,7 +97,7 @@ describe('uploadPhoto', () => {
     const file = new File(['photo'], 'test.jpg', { type: 'image/jpeg' });
     mockUploadData.mockReturnValue({ result: Promise.resolve({ path: 'guide-studio/sub/s1/photos/scene_0_0.jpg' }) });
 
-    const result = await uploadPhoto(file, 'session-1', 0, 0);
+    const result = await uploadPhoto(file, 'session-1', 'scene-1');
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.s3Key).toBe('guide-studio/sub/s1/photos/scene_0_0.jpg');
   });
@@ -106,7 +106,7 @@ describe('uploadPhoto', () => {
     // Create a fake file with size > 5MB
     const bigContent = new Uint8Array(6 * 1024 * 1024);
     const file = new File([bigContent], 'big.jpg', { type: 'image/jpeg' });
-    const result = await uploadPhoto(file, 'session-1', 0, 0);
+    const result = await uploadPhoto(file, 'session-1', 'scene-1');
     expect(result.ok).toBe(false);
     expect(mockUploadData).not.toHaveBeenCalled();
   });

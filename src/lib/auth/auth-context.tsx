@@ -51,15 +51,13 @@ const AuthContext = createContext<AuthContextType | null>(null);
  * - Otherwise looks up GuideProfile by userId in AppSync
  */
 async function resolveAuthUser(): Promise<AuthUser | null> {
-  const { userId, username } = await getCurrentUser();
-  console.log('[Auth] resolveAuthUser — userId:', userId, 'username:', username);
+  const { userId } = await getCurrentUser();
   let attrs: Awaited<ReturnType<typeof fetchUserAttributes>>;
   let session: Awaited<ReturnType<typeof fetchAuthSession>>;
   try {
     [attrs, session] = await Promise.all([fetchUserAttributes(), fetchAuthSession()]);
-  } catch (err) {
+  } catch {
     // Stale tokens (user deleted from pool, token expired, etc.) — clear session
-    console.warn('[Auth] fetchUserAttributes/fetchAuthSession failed — clearing session:', err);
     try { await amplifySignOut(); } catch { /* ignore */ }
     return null;
   }
@@ -74,13 +72,9 @@ async function resolveAuthUser(): Promise<AuthUser | null> {
   }
 
   // Look up GuideProfile by Cognito userId — use userPool auth since user is authenticated
-  console.log('[Auth] Looking up GuideProfile for userId:', userId);
   const profile = await getGuideProfileByUserId(userId, 'userPool');
-  console.log('[Auth] GuideProfile result:', profile);
   if (!profile) {
     // No guide profile → authenticated TOURIST (mon-1.3b: app user buying on web).
-    // Not a rejection anymore — they get a tourist session (no guide/admin rights).
-    console.log('[Auth] No GuideProfile — resolving as tourist for userId:', userId);
     return { id: userId, email, displayName, role: 'tourist', guideId: null };
   }
 
@@ -136,7 +130,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(resolved);
       return { ok: true, role: resolved.role };
     } catch (error) {
-      console.error('[Auth] refreshUser failed:', error);
       return { ok: false, error: parseAmplifyError(error) };
     }
   }, []);
@@ -150,7 +143,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (error instanceof Error && error.name === 'UserAlreadyAuthenticatedException') {
           return refreshUser();
         }
-        console.error('[Auth] signIn failed:', error);
         return { ok: false, error: parseAmplifyError(error) };
       }
 
@@ -169,8 +161,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signOut = useCallback(async () => {
     try {
       await amplifySignOut();
-    } catch (error) {
-      console.error('[Auth] signOut failed:', error);
+    } catch {
+      // best-effort
     }
     setUser(null);
   }, []);

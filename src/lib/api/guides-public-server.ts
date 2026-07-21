@@ -136,6 +136,10 @@ export async function getGuidePublicTours(guideId: string): Promise<Tour[]> {
       distance: t.distance || 0,
       poiCount: t.poiCount || 0,
       isFree: false,
+      // Mirror tours-server so guide-profile cards badge identically to /catalogue.
+      priceCents: ((t as Record<string, unknown>).priceCents as number | undefined) ?? undefined,
+      purchaseType:
+        ((t as Record<string, unknown>).purchaseType as Tour['purchaseType']) ?? undefined,
       status: (t.status || 'draft') as Tour['status'],
       availableLanguages: Array.isArray((t as Record<string, unknown>).availableLanguages)
         ? (t as Record<string, unknown>).availableLanguages as string[]

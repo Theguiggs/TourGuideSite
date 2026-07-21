@@ -85,11 +85,17 @@ export function selectRecentReviews(
   limit = 3,
 ): DashboardReview[] {
   const reviews: DashboardReview[] = [];
+  // Dedupe by comment id: sessions that share a tourId fetch the same comments
+  // (listTourComments is keyed by tourId), which would otherwise push duplicate
+  // ids and collide on the React key in the dashboard list.
+  const seen = new Set<string>();
 
   for (const s of sessions) {
     const comments = commentsBySession[s.id];
     if (!comments) continue;
     for (const c of comments) {
+      if (seen.has(c.id)) continue;
+      seen.add(c.id);
       reviews.push({
         id: c.id,
         author: c.authorName || (c.author === 'admin' ? 'Modération' : 'Guide'),

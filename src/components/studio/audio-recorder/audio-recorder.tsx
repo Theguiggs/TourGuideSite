@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useRecordingStore, selectRecorderState, selectDevices, selectSelectedDeviceId } from '@/lib/stores/recording-store';
 import { mediaRecorderService } from '@/lib/studio/media-recorder-service';
 import { logger } from '@/lib/logger';
@@ -22,6 +22,9 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
   const setDevices = useRecordingStore((s) => s.setDevices);
   const selectDevice = useRecordingStore((s) => s.selectDevice);
   const addTake = useRecordingStore((s) => s.addTake);
+
+  // Release the microphone when this component unmounts (page navigation, tab close, etc.)
+  useEffect(() => () => { mediaRecorderService.releaseStream(); }, []);
 
   const handleRequestPermission = useCallback(async () => {
     const result = await mediaRecorderService.requestPermission(selectedDeviceId ?? undefined);
@@ -64,6 +67,8 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
 
   const handleDeviceChange = useCallback(async (deviceId: string) => {
     selectDevice(deviceId);
+    // Release the old stream before acquiring the new device
+    mediaRecorderService.releaseStream();
     await mediaRecorderService.requestPermission(deviceId);
   }, [selectDevice]);
 

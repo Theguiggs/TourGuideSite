@@ -33,10 +33,30 @@ jest.mock('@/lib/api/language-purchase', () => ({
   languagesWithManualContent: jest.fn(),
 }));
 
+// Paid orders now route through a Stripe payment step (PaymentIntent → Elements →
+// confirmPayment) before confirm/upgrade run. Mock Stripe so the form mounts and
+// "Confirmer le paiement" resolves to a succeeded PaymentIntent.
+const mockConfirmPayment = jest.fn();
+jest.mock('@/lib/stripe/client', () => ({
+  getStripePromise: () => Promise.resolve({}),
+}));
+jest.mock('@stripe/react-stripe-js', () => ({
+  Elements: ({ children }: { children: React.ReactNode }) => <div data-testid="stripe-elements">{children}</div>,
+  PaymentElement: () => <div data-testid="stripe-payment-element" />,
+  useStripe: () => ({ confirmPayment: mockConfirmPayment }),
+  useElements: () => ({}),
+}));
+
 const mockConfirm = confirmLanguagePurchaseMixed as jest.Mock;
 const mockCreatePI = createPaymentIntentMixed as jest.Mock;
 const mockUpgrade = upgradeLanguagesToAuto as jest.Mock;
 const mockManualContent = languagesWithManualContent as jest.Mock;
+
+/** Drive the Stripe payment step: wait for the form, then confirm a succeeded PI. */
+async function completeStripePayment() {
+  await screen.findByTestId('payment-step');
+  fireEvent.click(screen.getByRole('button', { name: 'Confirmer le paiement' }));
+}
 
 function manualPurchase(sessionId: string, lang: string) {
   return {
@@ -71,7 +91,8 @@ const defaultProps = {
 beforeEach(() => {
   jest.clearAllMocks();
   mockStorePurchases = {};
-  mockCreatePI.mockResolvedValue({ ok: true, value: { clientSecret: 'cs', paymentIntentId: 'pi_1' } });
+  mockCreatePI.mockResolvedValue({ ok: true, value: { clientSecret: 'pi_1_secret_abc', paymentIntentId: 'pi_1' } });
+  mockConfirmPayment.mockResolvedValue({ paymentIntent: { id: 'pi_1', status: 'succeeded' } });
   mockConfirm.mockResolvedValue({ ok: true, value: [] });
   mockUpgrade.mockResolvedValue({ ok: true, value: [] });
   mockManualContent.mockResolvedValue([]);
@@ -138,7 +159,11 @@ describe('OpenMultilangModal (mixed per-language)', () => {
     fireEvent.change(screen.getByTestId('mode-select-ja'), { target: { value: 'pro' } });
     fireEvent.click(screen.getByTestId('confirm-btn'));
     await waitFor(() => expect(mockCreatePI).toHaveBeenCalled());
-    expect(mockConfirm).toHaveBeenCalledWith('session-1', { ja: 'pro' }, 'pi_1');
+    // Paid order → Stripe payment step first; confirm runs only after payment succeeds.
+    await completeStripePayment();
+    await waitFor(() =>
+      expect(mockConfirm).toHaveBeenCalledWith('session-1', { ja: 'pro' }, 'pi_1', expect.any(Boolean)),
+    );
   });
 
   it('manual-only confirm skips payment intent', async () => {
@@ -175,6 +200,8 @@ describe('OpenMultilangModal — upgrade manual → auto', () => {
     // 'pro' is always charged (299), so a payment intent is created
     fireEvent.change(screen.getByTestId('mode-select-en'), { target: { value: 'pro' } });
     fireEvent.click(screen.getByTestId('confirm-btn'));
+    // Paid upgrade → pay first, then upgrade runs (no manual content → no overwrite prompt).
+    await completeStripePayment();
     await waitFor(() => expect(mockUpgrade).toHaveBeenCalled());
     expect(mockUpgrade).toHaveBeenCalledWith('session-1', { en: 'pro' }, 'pi_1', true);
     expect(mockConfirm).not.toHaveBeenCalled(); // no new languages
@@ -186,6 +213,8 @@ describe('OpenMultilangModal — upgrade manual → auto', () => {
     render(<OpenMultilangModal {...defaultProps} />);
     fireEvent.change(screen.getByTestId('mode-select-en'), { target: { value: 'pro' } });
     fireEvent.click(screen.getByTestId('confirm-btn'));
+    // Pay first; the overwrite prompt is shown after a successful payment.
+    await completeStripePayment();
     await waitFor(() => expect(screen.getByTestId('overwrite-dialog')).toBeInTheDocument());
     // upgrade not yet called — waiting for choice
     expect(mockUpgrade).not.toHaveBeenCalled();
@@ -200,6 +229,7 @@ describe('OpenMultilangModal — upgrade manual → auto', () => {
     render(<OpenMultilangModal {...defaultProps} />);
     fireEvent.change(screen.getByTestId('mode-select-en'), { target: { value: 'pro' } });
     fireEvent.click(screen.getByTestId('confirm-btn'));
+    await completeStripePayment();
     await waitFor(() => expect(screen.getByTestId('overwrite-dialog')).toBeInTheDocument());
     fireEvent.click(screen.getByTestId('overwrite-confirm'));
     await waitFor(() => expect(mockUpgrade).toHaveBeenCalledWith('session-1', { en: 'pro' }, 'pi_1', true));

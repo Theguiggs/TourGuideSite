@@ -142,8 +142,7 @@ export async function uploadAudio(
 export async function uploadPhoto(
   file: File,
   sessionId: string,
-  sceneIndex: number,
-  photoIndex: number,
+  sceneId: string,
 ): Promise<{ ok: true; s3Key: string } | { ok: false; error: string }> {
   if (!PHOTO_MIMES.has(file.type)) {
     return { ok: false, error: `Type photo non supporté : ${file.type}` };
@@ -153,12 +152,14 @@ export async function uploadPhoto(
   }
 
   const ext = getExtFromMime(file.type);
-  const uploadId = `${sessionId}-scene-${sceneIndex}-photo-${photoIndex}`;
+  // Use sceneId + timestamp for a stable, unique key — avoids index collisions on delete+add
+  const ts = Date.now();
+  const uploadId = `${sessionId}-scene-${sceneId}-photo-${ts}`;
 
   try {
     const result = await withRetry(() =>
       uploadData({
-        path: ({ identityId }) => `guide-studio/${identityId}/${sessionId}/photos/scene_${sceneIndex}_${photoIndex}.${ext}`,
+        path: ({ identityId }) => `guide-studio/${identityId}/${sessionId}/photos/scene_${sceneId}_${ts}.${ext}`,
         data: file,
         options: {
           onProgress: (event) => {
@@ -169,10 +170,10 @@ export async function uploadPhoto(
     );
 
     const s3Key = result.path;
-    logger.info(SERVICE_NAME, 'Photo uploaded', { sessionId, sceneIndex, photoIndex, s3Key });
+    logger.info(SERVICE_NAME, 'Photo uploaded', { sessionId, sceneId, s3Key });
     return { ok: true, s3Key };
   } catch (error) {
-    logger.error(SERVICE_NAME, 'Photo upload failed after retries', { sessionId, sceneIndex, photoIndex, error: String(error) });
+    logger.error(SERVICE_NAME, 'Photo upload failed after retries', { sessionId, sceneId, error: String(error) });
     return { ok: false, error: 'Upload photo échoué après 3 tentatives.' };
   }
 }
@@ -291,8 +292,8 @@ export function onProgress(uploadId: string, callback: ProgressCallback): () => 
 export async function uploadTTSAudio(
   blob: Blob,
   sessionId: string,
-  sceneIndex: number,
-  segmentIndex: number,
+  sceneId: string,
+  segmentId: string,
   language: string,
 ): Promise<{ ok: true; s3Key: string } | { ok: false; error: string }> {
   // Validate MIME — TTS generates WAV audio
@@ -304,13 +305,14 @@ export async function uploadTTSAudio(
     return { ok: false, error: `Audio TTS trop volumineux (${Math.round(blob.size / 1024 / 1024)}MB > 50MB)` };
   }
 
-  const uploadId = `${sessionId}-scene-${sceneIndex}-seg-${segmentIndex}-${language}-tts`;
+  const ts = Date.now();
+  const uploadId = `${sessionId}-scene-${sceneId}-seg-${segmentId}-${language}-tts`;
 
   try {
     const result = await withRetry(() =>
       uploadData({
         path: ({ identityId }) =>
-          `guide-studio/${identityId}/${sessionId}/audio/scene_${sceneIndex}_seg_${segmentIndex}_${language}.wav`,
+          `guide-studio/${identityId}/${sessionId}/audio/scene_${sceneId}_seg_${segmentId}_${language}_${ts}.wav`,
         data: blob,
         options: {
           onProgress: (event) => {
@@ -321,11 +323,11 @@ export async function uploadTTSAudio(
     );
 
     const s3Key = result.path;
-    logger.info(SERVICE_NAME, 'TTS audio uploaded', { sessionId, sceneIndex, segmentIndex, language, s3Key });
+    logger.info(SERVICE_NAME, 'TTS audio uploaded', { sessionId, sceneId, segmentId, language, s3Key });
     return { ok: true, s3Key };
   } catch (error) {
     logger.error(SERVICE_NAME, 'TTS audio upload failed after retries', {
-      sessionId, sceneIndex, segmentIndex, language, error: String(error),
+      sessionId, sceneId, segmentId, language, error: String(error),
     });
     return { ok: false, error: 'Upload audio TTS échoué après 3 tentatives.' };
   }

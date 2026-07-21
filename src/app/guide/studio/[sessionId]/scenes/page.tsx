@@ -6,7 +6,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { logger } from '@/lib/logger';
 import { getStudioSession, listStudioScenes, updateSceneText, updateSceneAudio, getSceneStatusConfig, listSegmentsByScene, updateSceneSegment } from '@/lib/api/studio';
-import { triggerTranscription, getTranscriptionQuota } from '@/lib/api/transcription';
+import { triggerTranscription, getTranscriptionQuota, toBCP47 } from '@/lib/api/transcription';
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import { SceneSidebar } from '@/components/studio/scene-sidebar';
 import { ScenePhotos } from '@/components/studio/scene-photos';
@@ -21,7 +21,7 @@ import { useAutoSave } from '@/hooks/use-auto-save';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { useTranscriptionStore, selectQuota } from '@/lib/stores/transcription-store';
-import { useRecordingStore } from '@/lib/stores/recording-store';
+import { useRecordingStore, selectRecorderState } from '@/lib/stores/recording-store';
 import { shouldUseStubs } from '@/config/api-mode';
 import * as studioUploadService from '@/lib/studio/studio-upload-service';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
@@ -144,6 +144,9 @@ export default function ScenesPage() {
   const [batchMessage, setBatchMessage] = useState<string | null>(null);
   const [bulkTTSProgress, setBulkTTSProgress] = useState<{ current: number; total: number } | null>(null);
   // selectedLangSceneId removed — V2: all scenes shown inline
+
+  const recorderState = useRecordingStore(selectRecorderState);
+  const isRecording = recorderState === 'recording' || recorderState === 'paused';
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
@@ -508,8 +511,13 @@ export default function ScenesPage() {
         const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex, sceneId);
         unsub();
         if (result.ok) {
-          await updateSceneAudio(sceneId, result.s3Key, sessionId, sceneIndex, 'recording');
-          failedBlobRef.current = null;
+          const saveResult = await updateSceneAudio(sceneId, result.s3Key, sessionId, sceneIndex, 'recording');
+          if (!saveResult.ok) {
+            setUploadError(saveResult.error);
+            failedBlobRef.current = { blob, sceneId, sceneIndex };
+          } else {
+            failedBlobRef.current = null;
+          }
         } else {
           setUploadError(result.error);
           failedBlobRef.current = { blob, sceneId, sceneIndex };
@@ -528,14 +536,14 @@ export default function ScenesPage() {
     setScenes(refreshed);
   }, [sessionId, t]);
 
-  // Warn before leaving if upload in progress
+  // Warn before leaving if upload in progress, recording active, or text has unsaved edits
   useEffect(() => {
     const handler = (e: BeforeUnloadEvent) => {
-      if (isUploading) { e.preventDefault(); }
+      if (isUploading || isRecording || isDirty) { e.preventDefault(); }
     };
     window.addEventListener('beforeunload', handler);
     return () => window.removeEventListener('beforeunload', handler);
-  }, [isUploading]);
+  }, [isUploading, isRecording, isDirty]);
 
   // Sync POI form when active scene changes
   useEffect(() => {
@@ -666,7 +674,10 @@ export default function ScenesPage() {
     if (quota?.isExceeded) return;
     setSceneStatus(sceneId, { status: 'processing', error: null });
     try {
-      const result = await triggerTranscription(sceneId, 3);
+      const scene = scenes.find((s) => s.id === sceneId);
+      const audioKey = scene?.studioAudioKey ?? scene?.originalAudioKey ?? '';
+      const languageCode = toBCP47(session?.language ?? 'fr');
+      const result = await triggerTranscription(sceneId, 3, audioKey, languageCode);
       if (result.ok) {
         setSceneStatus(sceneId, { status: 'processing', jobId: result.jobId });
         startPolling(sceneId, result.jobId);
@@ -677,7 +688,7 @@ export default function ScenesPage() {
     } catch {
       setSceneStatus(sceneId, { status: 'failed', error: 'Erreur inattendue.' });
     }
-  }, [quota, guideId, setSceneStatus, startPolling, setQuota]);
+  }, [quota, guideId, scenes, session, setSceneStatus, startPolling, setQuota]);
 
   // Helper: select an audio source for the POI with visual feedback
   const selectAudioSource = useCallback((
@@ -933,7 +944,7 @@ export default function ScenesPage() {
       <div className="fixed bottom-2 right-2 z-50 text-xs px-2 py-1 rounded" style={{ background: shouldUseStubs() ? tg.colors.danger : tg.colors.success, color: 'white' }}>
         {shouldUseStubs() ? '⚠️ STUBS' : '✅ REAL'}
       </div>
-      <SceneSidebar scenes={visibleScenes} activeSceneId={activeSceneId} onSceneSelect={isUploading ? () => {} : handleSceneSelect} />
+      <SceneSidebar scenes={visibleScenes} activeSceneId={activeSceneId} onSceneSelect={isUploading || isRecording ? () => {} : handleSceneSelect} />
 
       <div className="flex-1 p-4 lg:p-6">
         {/* Batch translation progress banner */}
@@ -1748,7 +1759,7 @@ export default function ScenesPage() {
                         const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
                         const unsub = studioUploadService.onProgress(uploadId, (p) => setUploadProgress(p));
                         try { const result = await studioUploadService.uploadAudio(blob, sessionId, sceneIndex, sceneId); unsub();
-                          if (result.ok) { await updateSceneAudio(sceneId, result.s3Key, sessionId, sceneIndex, 'recording'); failedBlobRef.current = null; const refreshed = await listStudioScenes(sessionId); setScenes(refreshed); }
+                          if (result.ok) { const saveResult = await updateSceneAudio(sceneId, result.s3Key, sessionId, sceneIndex, 'recording'); if (saveResult.ok) { failedBlobRef.current = null; const refreshed = await listStudioScenes(sessionId); setScenes(refreshed); } else { setUploadError(saveResult.error); } }
                           else { setUploadError(result.error); }
                         } catch { unsub(); setUploadError('Upload echoue.'); }
                         finally { setIsUploading(false); setUploadProgress(null); }
