@@ -91,6 +91,7 @@ cp /opt/murmure/.env.example /opt/murmure/.env
 #   DOMAIN=murmure-visit.com
 #   API_DOMAIN=api.murmure-visit.com
 #   MICROSERVICE_API_KEY=<clé aléatoire longue>
+#   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
 ```
 
 ### 6. Lancer
