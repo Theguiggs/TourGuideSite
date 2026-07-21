@@ -60,6 +60,14 @@ const Teleprompter = dynamic(
   { ssr: false, loading: () => <div className="bg-ink rounded-lg h-48 animate-pulse" /> },
 );
 
+const EditableMap = dynamic(
+  () => import('@/components/studio/editable-map').then((m) => ({ default: m.EditableMap })),
+  {
+    ssr: false,
+    loading: () => <div className="bg-paper-soft h-56 animate-pulse" />,
+  },
+);
+
 function AudioSourceCard({ icon, label, sublabel, isSelected, isPlaying, onPlay, onSelect }: {
   icon: string;
   label: string;
@@ -931,6 +939,15 @@ export default function ScenesPage() {
   // Lock translated language tab when submitted or approved
   const activePurchase = purchases.find((p) => p.language === activeLanguageTab && p.status === 'active');
   const isActiveLangLocked = !!(activePurchase && ['submitted', 'approved'].includes(activePurchase.moderationStatus));
+  const parsedPoiLat = Number(poiLat.replace(',', '.'));
+  const parsedPoiLng = Number(poiLng.replace(',', '.'));
+  const activePoiMapScene = activeScene
+    ? {
+        ...activeScene,
+        latitude: Number.isFinite(parsedPoiLat) ? parsedPoiLat : null,
+        longitude: Number.isFinite(parsedPoiLng) ? parsedPoiLng : null,
+      }
+    : null;
 
   // Translation tab removed — translation is now handled via language tabs (ML-4 refonte)
   const tabs = [
@@ -1428,6 +1445,29 @@ export default function ScenesPage() {
             onAddressSearchChange={setAddressSearch}
             onAddressSearch={handleAddressSearch}
             onSave={handleSavePoi}
+            mapPreview={activePoiMapScene ? (
+              <EditableMap
+                scenes={[activePoiMapScene]}
+                waypoints={[]}
+                height="224px"
+                manualMode
+                onPoiDrag={(_, lat, lng) => {
+                  if (isBaseLangLocked) return;
+                  setPoiLat(lat.toFixed(6));
+                  setPoiLng(lng.toFixed(6));
+                  setPoiSaved(false);
+                }}
+                onMapClick={(lat, lng) => {
+                  if (isBaseLangLocked) return;
+                  setPoiLat(lat.toFixed(6));
+                  setPoiLng(lng.toFixed(6));
+                  setPoiSaved(false);
+                }}
+                onWaypointDrag={() => {}}
+                onWaypointAdd={() => {}}
+                onWaypointDelete={() => {}}
+              />
+            ) : null}
           />
         )}
 

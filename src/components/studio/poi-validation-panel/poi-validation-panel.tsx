@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 interface PoiValidationPanelProps {
   sceneLabel: string;
   textExcerpt: string | null;
@@ -17,6 +19,7 @@ interface PoiValidationPanelProps {
   onAddressSearchChange: (value: string) => void;
   onAddressSearch: () => void;
   onSave: () => void;
+  mapPreview?: ReactNode;
 }
 
 function parseCoordinate(value: string): number | null {
@@ -29,20 +32,8 @@ function formatCoord(value: number): string {
   return value.toFixed(5);
 }
 
-function buildGoogleMapsUrl(lat: number, lng: number): string {
-  return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
-}
-
 function buildStreetViewUrl(lat: number, lng: number): string {
   return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`;
-}
-
-function buildMapEmbedUrl(lat: number, lng: number): string {
-  const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-  if (key) {
-    return `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(key)}&q=${lat},${lng}&zoom=18`;
-  }
-  return `https://www.google.com/maps?q=${lat},${lng}&z=18&output=embed`;
 }
 
 function buildStreetViewEmbedUrl(lat: number, lng: number): string | null {
@@ -70,13 +61,12 @@ export function PoiValidationPanel({
   onAddressSearchChange,
   onAddressSearch,
   onSave,
+  mapPreview,
 }: PoiValidationPanelProps) {
   const lat = parseCoordinate(latitude);
   const lng = parseCoordinate(longitude);
   const hasValidCoordinates = lat !== null && lng !== null;
-  const mapsUrl = hasValidCoordinates ? buildGoogleMapsUrl(lat, lng) : null;
   const streetViewUrl = hasValidCoordinates ? buildStreetViewUrl(lat, lng) : null;
-  const mapEmbedUrl = hasValidCoordinates ? buildMapEmbedUrl(lat, lng) : null;
   const streetViewEmbedUrl = hasValidCoordinates ? buildStreetViewEmbedUrl(lat, lng) : null;
 
   return (
@@ -213,11 +203,6 @@ export function PoiValidationPanel({
               Valider le lieu
             </button>
             {isSaved && <span className="text-sm text-success">Enregistre</span>}
-            {mapsUrl && (
-              <a href={mapsUrl} target="_blank" rel="noreferrer" className="text-sm font-medium text-grenadine hover:underline">
-                Ouvrir dans Google Maps
-              </a>
-            )}
             {streetViewUrl && (
               <a href={streetViewUrl} target="_blank" rel="noreferrer" className="text-sm font-medium text-grenadine hover:underline">
                 Ouvrir Street View
@@ -231,21 +216,9 @@ export function PoiValidationPanel({
         <div className="border border-line rounded-lg overflow-hidden bg-paper-soft">
           <div className="px-3 py-2 border-b border-line flex items-center justify-between">
             <p className="text-xs font-semibold text-ink-60 uppercase tracking-widest">Carte</p>
-            {mapsUrl && (
-              <a href={mapsUrl} target="_blank" rel="noreferrer" className="text-xs text-grenadine hover:underline">
-                Plein ecran
-              </a>
-            )}
           </div>
-          {mapEmbedUrl ? (
-            <iframe
-              title="Apercu carte du POI"
-              src={mapEmbedUrl}
-              className="w-full h-56 border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              data-testid="poi-map-preview"
-            />
+          {mapPreview ? (
+            <div data-testid="poi-map-preview">{mapPreview}</div>
           ) : (
             <div className="h-56 flex items-center justify-center px-6 text-center text-sm text-ink-60">
               Recherchez ou saisissez les coordonnees du lieu.

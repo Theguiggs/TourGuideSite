@@ -29,9 +29,11 @@ describe('PoiValidationPanel', () => {
   });
 
   it('shows a localized status when coordinates are valid', () => {
-    render(<PoiValidationPanel {...baseProps} />);
+    render(<PoiValidationPanel {...baseProps} mapPreview={<div>Carte itineraire</div>} />);
     expect(screen.getByTestId('poi-validation-status')).toHaveTextContent('Lieu localise');
     expect(screen.getByTestId('poi-map-preview')).toBeInTheDocument();
+    expect(screen.getByText('Carte itineraire')).toBeInTheDocument();
+    expect(screen.queryByText('Ouvrir dans Google Maps')).not.toBeInTheDocument();
   });
 
   it('shows a verification status without coordinates', () => {
