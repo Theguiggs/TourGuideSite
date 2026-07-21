@@ -20,7 +20,10 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@amplify-schema": ["../TourGuideApp/amplify/data/resource"]
+      "@amplify-schema": [
+        "../TourGuideApp/amplify/data/resource",
+        "./src/types/amplify-schema-fallback"
+      ]
     }
   },
   "include": [
