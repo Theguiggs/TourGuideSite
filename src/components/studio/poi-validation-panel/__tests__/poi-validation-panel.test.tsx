@@ -51,5 +51,14 @@ describe('PoiValidationPanel', () => {
     fireEvent.click(screen.getByTestId('save-poi-btn'));
     expect(baseProps.onSave).toHaveBeenCalled();
   });
-});
 
+  it('keeps the full reference text in a scrollable area', () => {
+    const textExcerpt = 'Premiere ligne\nDeuxieme ligne\nTroisieme ligne';
+    render(<PoiValidationPanel {...baseProps} textExcerpt={textExcerpt} />);
+    const referenceText = screen.getByTestId('poi-reference-text');
+    expect(referenceText).toHaveTextContent('Premiere ligne');
+    expect(referenceText).toHaveTextContent('Troisieme ligne');
+    expect(referenceText).toHaveClass('overflow-y-auto');
+    expect(referenceText).not.toHaveClass('line-clamp-5');
+  });
+});

@@ -100,7 +100,12 @@ export function PoiValidationPanel({
         {textExcerpt && (
           <div className="bg-paper-soft border border-line rounded-lg p-3">
             <p className="text-[11px] font-semibold text-ink-40 uppercase tracking-widest mb-1">Texte de reference</p>
-            <p className="text-sm text-ink-80 leading-relaxed line-clamp-5">{textExcerpt}</p>
+            <div
+              className="max-h-44 overflow-y-auto pr-2 text-sm text-ink-80 leading-relaxed whitespace-pre-wrap"
+              data-testid="poi-reference-text"
+            >
+              {textExcerpt}
+            </div>
           </div>
         )}
 
