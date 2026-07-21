@@ -153,6 +153,7 @@ export default function ScenesPage() {
   const completedCountCache = useRef<Record<string, number>>({});
   const [batchMessage, setBatchMessage] = useState<string | null>(null);
   const [bulkTTSProgress, setBulkTTSProgress] = useState<{ current: number; total: number } | null>(null);
+  const [isMultiLangBatchRunning, setIsMultiLangBatchRunning] = useState(false);
   // selectedLangSceneId removed — V2: all scenes shown inline
 
   const recorderState = useRecordingStore(selectRecorderState);
@@ -177,6 +178,16 @@ export default function ScenesPage() {
   const activePurchases = useMemo(
     () => purchases.filter((p) => p.status === 'active'),
     [purchases],
+  );
+  const runnableAutoPurchases = useMemo(
+    () => activePurchases.filter((p) => (
+      p.qualityTier !== 'manual'
+      && p.purchaseType !== 'manual'
+      && p.language !== session?.language
+      && p.moderationStatus !== 'submitted'
+      && p.moderationStatus !== 'approved'
+    )),
+    [activePurchases, session?.language],
   );
 
   // Hydrate language purchases from AppSync on mount (survives page refresh)
@@ -358,6 +369,96 @@ export default function ScenesPage() {
       });
     return () => { cancelled = true; };
   }, [refreshLangSegments]);
+
+  const handleRunAllLanguageBatch = useCallback(async () => {
+    if (!session || isMultiLangBatchRunning) return;
+
+    const activeScenes = scenes.filter((s) => !s.archived && (s.transcriptText ?? '').trim().length > 0);
+    if (activeScenes.length === 0 || runnableAutoPurchases.length === 0) return;
+
+    const langLabels = runnableAutoPurchases.map((p) => p.language.toUpperCase()).join(', ');
+    const totalWork = activeScenes.length * runnableAutoPurchases.length;
+    const confirmed = window.confirm(
+      `Lancer traduction + TTS pour ${runnableAutoPurchases.length} langue${runnableAutoPurchases.length > 1 ? 's' : ''} (${langLabels}) ?\n\n` +
+      `${totalWork} scene-langue seront traitees. Les traductions et audios TTS existants de ces langues peuvent etre remplaces.`,
+    );
+    if (!confirmed) return;
+
+    setIsMultiLangBatchRunning(true);
+    setBatchMessage(`Preparation traduction + TTS (${langLabels})...`);
+
+    try {
+      const { executeBatch } = await import('@/lib/multilang/batch-translation-service');
+      const { getGuideTourById } = await import('@/lib/api/appsync-client');
+
+      let tourDescriptionForBatch = '';
+      if (session.tourId) {
+        const tour = await getGuideTourById(session.tourId);
+        tourDescriptionForBatch = (tour as Record<string, unknown>)?.description as string ?? '';
+      }
+
+      let completedCount = 0;
+      let failedCount = 0;
+
+      for (const purchase of runnableAutoPurchases) {
+        const langConfig = LANGUAGE_CONFIG.find((c) => c.code === purchase.language);
+        const targetLang = {
+          code: purchase.language,
+          label: langConfig?.label ?? purchase.language.toUpperCase(),
+        };
+
+        setBatchMessage(`Traduction + TTS ${purchase.language.toUpperCase()} : 0/${activeScenes.length} scenes...`);
+        logger.info(SERVICE_NAME, 'Manual multi-language batch started', {
+          lang: purchase.language,
+          tier: purchase.qualityTier,
+          sceneCount: activeScenes.length,
+        });
+
+        const result = await executeBatch(
+          sessionId,
+          activeScenes,
+          [targetLang],
+          purchase.qualityTier as 'standard' | 'pro',
+          (lang, _sceneId, step) => {
+            if (step === 'tts_completed') {
+              completedCount++;
+              const langCompleted = completedCountCache.current[lang] ?? 0;
+              completedCountCache.current[lang] = Math.min(activeScenes.length, langCompleted + 1);
+            }
+            setBatchMessage(`Traduction + TTS : ${completedCount}/${totalWork} terminees...`);
+          },
+          session.title ?? '',
+          tourDescriptionForBatch,
+          session.language,
+          session.tourId ?? undefined,
+        );
+
+        if (!result.ok) {
+          failedCount += activeScenes.length;
+          logger.error(SERVICE_NAME, 'Manual multi-language batch failed', { lang: purchase.language, error: result.error });
+          continue;
+        }
+        failedCount += result.value.failedScenes.length;
+      }
+
+      const refreshedSession = await getStudioSession(sessionId);
+      if (refreshedSession) setSession(refreshedSession);
+      await refreshLangSegments();
+
+      const successCount = Math.max(0, totalWork - failedCount);
+      setBatchMessage(
+        `Traduction + TTS terminees — ${successCount} reussie${successCount > 1 ? 's' : ''}` +
+        `${failedCount > 0 ? `, ${failedCount} echec${failedCount > 1 ? 's' : ''}` : ''}.`,
+      );
+      setTimeout(() => setBatchMessage(null), 7000);
+    } catch (err) {
+      logger.error(SERVICE_NAME, 'Manual multi-language batch threw', { error: String(err) });
+      setBatchMessage('Erreur lors de la traduction + TTS multi-langues.');
+      setTimeout(() => setBatchMessage(null), 7000);
+    } finally {
+      setIsMultiLangBatchRunning(false);
+    }
+  }, [session, isMultiLangBatchRunning, scenes, runnableAutoPurchases, sessionId, refreshLangSegments]);
 
   // Build language tab items
   const languageTabItems: LanguageTabItem[] = (() => {
@@ -983,11 +1084,30 @@ export default function ScenesPage() {
 
         {/* Language tabs — only visible when purchased languages exist */}
         {languageTabItems.length > 1 && (
-          <LanguageTabs
-            languages={languageTabItems}
-            activeLanguage={activeLanguageTab ?? session.language}
-            onLanguageChange={(lang) => { setActiveLanguageTab(lang); }}
-          />
+          <div className="mb-4">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+              <div className="min-w-0 flex-1">
+                <LanguageTabs
+                  languages={languageTabItems}
+                  activeLanguage={activeLanguageTab ?? session.language}
+                  onLanguageChange={(lang) => { setActiveLanguageTab(lang); }}
+                />
+              </div>
+              {runnableAutoPurchases.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleRunAllLanguageBatch}
+                  disabled={isMultiLangBatchRunning || isUploading || isRecording}
+                  className="inline-flex items-center justify-center rounded-full bg-mer px-4 py-2 text-sm font-semibold text-paper transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                  data-testid="run-all-language-batch-btn"
+                >
+                  {isMultiLangBatchRunning
+                    ? 'Traduction + TTS...'
+                    : `Traduire + TTS (${runnableAutoPurchases.length})`}
+                </button>
+              )}
+            </div>
+          </div>
         )}
 
         {/* Read-only banner for base language */}
