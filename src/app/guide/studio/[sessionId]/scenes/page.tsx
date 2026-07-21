@@ -50,6 +50,7 @@ import { SplitEditor } from '@/components/studio/split-editor';
 import { LanguageAudioSection } from '@/components/studio/language-audio-section';
 import { requestTTS, getTTSStatus } from '@/lib/api/tts';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
+import { Image as ImageIcon } from 'lucide-react';
 
 const SERVICE_NAME = 'ScenesPage';
 const LANG_FLAGS: Record<string, string> = { fr: '🇫🇷', en: '🇬🇧', it: '🇮🇹', de: '🇩🇪', es: '🇪🇸' };
@@ -934,7 +935,7 @@ export default function ScenesPage() {
   // Translation tab removed — translation is now handled via language tabs (ML-4 refonte)
   const tabs = [
     { key: 'poi' as const, label: t('Lieu', 'Place') },
-    { key: 'photos' as const, label: `?? ${t('Photos', 'Photos')}`, count: activeScene?.photosRefs.length },
+    { key: 'photos' as const, label: t('Photos', 'Photos'), icon: ImageIcon, count: activeScene?.photosRefs.length },
     { key: 'text' as const, label: '📝 Texte' },
     { key: 'audio' as const, label: `🎙️ ${t('Audio', 'Audio')}` },
   ];
@@ -1397,7 +1398,11 @@ export default function ScenesPage() {
                   : 'border-transparent text-ink-60 hover:text-ink-80'
               }`}
               data-testid={`tab-${tab.key}`}>
-              {tab.label} {tab.count !== undefined && tab.count > 0 ? `(${tab.count})` : ''}
+              <span className="inline-flex items-center gap-1.5">
+                {'icon' in tab && tab.icon ? <tab.icon className="h-4 w-4" aria-hidden="true" /> : null}
+                <span>{tab.label}</span>
+                {tab.count !== undefined && tab.count > 0 ? <span>({tab.count})</span> : null}
+              </span>
             </button>
           ))}
         </div>
