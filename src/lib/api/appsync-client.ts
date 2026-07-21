@@ -67,7 +67,7 @@ export async function getGuideTourById(id: string) {
   try {
     const client = getClient();
     const result = await client.models.GuideTour.get({ id }, { authMode: 'userPool' });
-    return result.data ?? null;
+    return Array.isArray(result.data) ? (result.data[0] ?? null) : (result.data ?? null);
   } catch (error) {
     logger.error(SERVICE_NAME, 'getGuideTourById failed', { error: String(error) });
     return null;
