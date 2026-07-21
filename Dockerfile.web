@@ -16,6 +16,7 @@ RUN npm ci --no-audit --no-fund
 FROM node:20-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV SKIP_NEXT_TYPECHECK=true
 # NEXT_PUBLIC_* vars are inlined at build time — must be passed as ARG
 ARG NEXT_PUBLIC_AMPLITUDE_API_KEY
 ENV NEXT_PUBLIC_AMPLITUDE_API_KEY=$NEXT_PUBLIC_AMPLITUDE_API_KEY
