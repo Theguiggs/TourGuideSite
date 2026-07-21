@@ -179,16 +179,26 @@ export default function ScenesPage() {
     () => purchases.filter((p) => p.status === 'active'),
     [purchases],
   );
-  const runnableAutoPurchases = useMemo(
+  const autoLanguagePurchases = useMemo(
     () => activePurchases.filter((p) => (
       p.qualityTier !== 'manual'
       && p.purchaseType !== 'manual'
       && p.language !== session?.language
-      && p.moderationStatus !== 'submitted'
-      && p.moderationStatus !== 'approved'
     )),
     [activePurchases, session?.language],
   );
+  const runnableAutoPurchases = useMemo(
+    () => autoLanguagePurchases.filter((p) => (
+      p.moderationStatus !== 'submitted'
+      && p.moderationStatus !== 'approved'
+    )),
+    [autoLanguagePurchases],
+  );
+  const canRunAllLanguageBatch = runnableAutoPurchases.length > 0
+    && scenes.some((s) => !s.archived && (s.transcriptText ?? '').trim().length > 0)
+    && !isMultiLangBatchRunning
+    && !isUploading
+    && !isRecording;
 
   // Hydrate language purchases from AppSync on mount (survives page refresh)
   const setPurchases = useLanguagePurchaseStore((s) => s.setPurchases);
@@ -1085,28 +1095,37 @@ export default function ScenesPage() {
         {/* Language tabs — only visible when purchased languages exist */}
         {languageTabItems.length > 1 && (
           <div className="mb-4">
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-              <div className="min-w-0 flex-1">
-                <LanguageTabs
-                  languages={languageTabItems}
-                  activeLanguage={activeLanguageTab ?? session.language}
-                  onLanguageChange={(lang) => { setActiveLanguageTab(lang); }}
-                />
-              </div>
-              {runnableAutoPurchases.length > 0 && (
+            <LanguageTabs
+              languages={languageTabItems}
+              activeLanguage={activeLanguageTab ?? session.language}
+              onLanguageChange={(lang) => { setActiveLanguageTab(lang); }}
+            />
+            {autoLanguagePurchases.length > 0 && (
+              <div
+                className="mt-3 flex flex-col gap-3 rounded-lg border border-mer-soft bg-mer-soft px-4 py-3 lg:flex-row lg:items-center lg:justify-between"
+                data-testid="run-all-language-batch-banner"
+              >
+                <div className="text-sm text-mer">
+                  <p className="font-semibold">Traduction automatique multi-langues</p>
+                  <p className="text-xs text-mer/80">
+                    Enchaine traduction, titre/description et TTS pour toutes les langues automatiques disponibles, sans changer d&apos;onglet.
+                  </p>
+                </div>
                 <button
                   type="button"
                   onClick={handleRunAllLanguageBatch}
-                  disabled={isMultiLangBatchRunning || isUploading || isRecording}
+                  disabled={!canRunAllLanguageBatch}
                   className="inline-flex items-center justify-center rounded-full bg-mer px-4 py-2 text-sm font-semibold text-paper transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                   data-testid="run-all-language-batch-btn"
                 >
                   {isMultiLangBatchRunning
-                    ? 'Traduction + TTS...'
-                    : `Traduire + TTS (${runnableAutoPurchases.length})`}
+                    ? 'Traduction + TTS en cours...'
+                    : runnableAutoPurchases.length > 0
+                      ? `Tout traduire + TTS (${runnableAutoPurchases.length})`
+                      : 'Langues verrouillees'}
                 </button>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         )}
 
