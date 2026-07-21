@@ -450,8 +450,9 @@ export function EditableMap({
         {/* POI markers — draggable, clickable */}
         {geoScenes.map((scene, index) => {
           const isSelected = selectedPoi === scene.id;
+          const markerNumber = typeof scene.sceneIndex === 'number' ? scene.sceneIndex + 1 : index + 1;
           const icon = createNumberedIcon({
-            number: index + 1,
+            number: markerNumber,
             fillColor: isSelected ? tg.colors.ardoise : tg.colors.mer,
             textColor: '#ffffff',
             borderColor: '#ffffff',
@@ -465,7 +466,7 @@ export function EditableMap({
               position={[scene.latitude!, scene.longitude!]}
               icon={icon}
               draggable
-              title={`${index + 1}. ${scene.title ?? 'Scene'}`}
+              title={`${markerNumber}. ${scene.title ?? 'Scene'}`}
               eventHandlers={{
                 dragend: (e) => {
                   const { lat, lng } = (e.target as L.Marker).getLatLng();
