@@ -3,6 +3,7 @@
 import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { fetchAuthSession } from 'aws-amplify/auth';
 import { getGuideProfileById, listAllGuideTours, adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
@@ -51,6 +52,9 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
   const [profile, setProfile]   = useState<GuideProfile | null>(null);
   const [tours, setTours]       = useState<GuideTour[]>([]);
   const [guideEmail, setGuideEmail] = useState<string | null>(null);
+  const [guideEmailUserId, setGuideEmailUserId] = useState<string | null>(null);
+  const [emailLookupError, setEmailLookupError] = useState<string | null>(null);
+  const [emailLookupUserId, setEmailLookupUserId] = useState<string | null>(null);
   const [loading, setLoading]   = useState(true);
   const [error, setError]       = useState<string | null>(null);
   const [saving, setSaving]     = useState(false);
@@ -93,12 +97,59 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
   // Fetch guide email from Cognito once profile is loaded
   useEffect(() => {
-    if (!profile?.userId) return;
-    fetch(`/api/admin/cognito-user?userId=${profile.userId}`)
-      .then(r => r.ok ? r.json() : null)
-      .then(data => { if (data?.email) setGuideEmail(data.email); })
-      .catch(() => {});
-  }, [profile?.userId]);
+    const userId = profile?.userId;
+    if (!userId) return;
+    const targetUserId = userId;
+    let cancelled = false;
+
+    async function loadGuideEmail() {
+      try {
+        const session = await fetchAuthSession();
+        const accessToken = session.tokens?.accessToken?.toString();
+        if (!accessToken) {
+          if (!cancelled) {
+            setEmailLookupUserId(targetUserId);
+            setEmailLookupError('Session expirée — reconnectez-vous.');
+          }
+          router.replace('/guide/login');
+          return;
+        }
+
+        const response = await fetch(`/api/admin/cognito-user?userId=${targetUserId}`, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        const data = (await response.json()) as { email?: string | null; error?: string };
+        if (cancelled) return;
+
+        if (response.status === 401) {
+          setEmailLookupUserId(targetUserId);
+          setEmailLookupError('Session expirée — reconnectez-vous.');
+          router.replace('/guide/login');
+        } else if (response.status === 403) {
+          setEmailLookupUserId(targetUserId);
+          setEmailLookupError('Accès administrateur requis.');
+        } else if (!response.ok) {
+          setEmailLookupUserId(targetUserId);
+          setEmailLookupError(data.error ?? 'Lecture Cognito indisponible.');
+        } else {
+          setGuideEmail(data.email ?? null);
+          setGuideEmailUserId(targetUserId);
+          setEmailLookupUserId(targetUserId);
+          setEmailLookupError(data.email ? null : 'Aucune adresse email Cognito trouvée.');
+        }
+      } catch {
+        if (!cancelled) {
+          setEmailLookupUserId(targetUserId);
+          setEmailLookupError('Lecture Cognito indisponible.');
+        }
+      }
+    }
+
+    void loadGuideEmail();
+    return () => {
+      cancelled = true;
+    };
+  }, [profile?.userId, router]);
 
   const setStatus = async (status: 'active' | 'suspended' | 'rejected') => {
     if (!profile) return;
@@ -196,11 +247,16 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
         </div>
 
         {/* Email */}
-        {guideEmail && (
+        {guideEmail && guideEmailUserId === profile.userId && (
           <div className="flex items-center gap-2 mb-4 p-3 bg-mer-soft rounded-lg">
             <span className="text-sm text-mer font-medium">Email :</span>
             <a href={`mailto:${guideEmail}`} className="text-sm text-mer font-mono hover:underline">{guideEmail}</a>
           </div>
+        )}
+        {emailLookupError && emailLookupUserId === profile.userId && (
+          <p className="mb-4 text-sm text-danger" role="alert">
+            {emailLookupError}
+          </p>
         )}
 
         {/* Info grid */}

@@ -9,6 +9,7 @@ import TrackPageView from '@/components/TrackPageView';
 import { S3Image } from '@/components/studio/s3-image';
 import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
 import { AnalyticsEvents } from '@/lib/analytics';
+import { safeJsonLd } from '@/lib/security/safe-json-ld';
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
 export const dynamic = 'force-dynamic';
@@ -220,7 +221,7 @@ export default async function GuideProfilePage({ params }: GuidePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: safeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'Person',
             name: guide.displayName,
@@ -248,7 +249,7 @@ export default async function GuideProfilePage({ params }: GuidePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: safeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [

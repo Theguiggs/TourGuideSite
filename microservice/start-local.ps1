@@ -26,13 +26,17 @@ pip install -q torch --index-url https://download.pytorch.org/whl/cpu
 Write-Host "[...] Installation des autres dependances..." -ForegroundColor Yellow
 pip install -q fastapi "uvicorn[standard]" edge-tts soundfile pydub requests transformers sentencepiece
 
-# Set API key
-$env:MICROSERVICE_API_KEY = "tourguide-tts-2026"
+# Require an explicit API key so a repository-known default can never protect
+# an accidentally exposed local server.
+if ([string]::IsNullOrWhiteSpace($env:MICROSERVICE_API_KEY)) {
+    Write-Host "[FAIL] MICROSERVICE_API_KEY doit etre definie avant le demarrage." -ForegroundColor Red
+    exit 1
+}
 
 Write-Host ""
 Write-Host "[OK] Microservice pret" -ForegroundColor Green
 Write-Host "   URL: http://localhost:8000"
-Write-Host "   API Key: $env:MICROSERVICE_API_KEY"
+Write-Host "   API key configured"
 Write-Host "   Health: http://localhost:8000/health"
 Write-Host ""
 

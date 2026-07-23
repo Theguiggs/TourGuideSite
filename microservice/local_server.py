@@ -18,6 +18,10 @@ from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
 from urllib.parse import urlparse
 
+API_KEY = os.getenv("MICROSERVICE_API_KEY")
+if not API_KEY or not API_KEY.strip():
+    raise RuntimeError("MICROSERVICE_API_KEY is required")
+
 import edge_tts
 import soundfile as sf
 import requests as req_lib
@@ -31,8 +35,6 @@ from services.text_sanitize import normalize_source, postclean_translation
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("tourguide-local")
-
-API_KEY = os.getenv("MICROSERVICE_API_KEY", "")
 
 # -- MarianMT lazy loading --
 translation_models = {}
@@ -223,7 +225,7 @@ async def verify_api_key(request: Request, call_next):
     # Skip auth for health check and CORS preflight
     if request.url.path == "/health" or request.method == "OPTIONS":
         return await call_next(request)
-    if API_KEY and request.headers.get("X-API-Key") != API_KEY:
+    if request.headers.get("X-API-Key") != API_KEY:
         return JSONResponse(status_code=401, content={"detail": "Invalid API key"})
     return await call_next(request)
 

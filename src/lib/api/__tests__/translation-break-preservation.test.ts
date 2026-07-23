@@ -17,6 +17,12 @@ jest.mock('@/lib/logger', () => ({
   logger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
 }));
 
+jest.mock('aws-amplify/auth', () => ({
+  fetchAuthSession: jest.fn().mockResolvedValue({
+    tokens: { accessToken: { toString: () => 'valid-access-token' } },
+  }),
+}));
+
 import { requestTranslation, getTranslationStatus, __resetTranslationStubs } from '../translation';
 
 interface FakeJob {

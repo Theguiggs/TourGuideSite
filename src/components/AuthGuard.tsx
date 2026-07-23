@@ -7,10 +7,15 @@ import { useAuth } from '@/lib/auth/auth-context';
 interface AuthGuardProps {
   children: React.ReactNode;
   requireAdmin?: boolean;
+  requireGuide?: boolean;
 }
 
-export default function AuthGuard({ children, requireAdmin = false }: AuthGuardProps) {
-  const { isAuthenticated, isAdmin, isLoading } = useAuth();
+export default function AuthGuard({
+  children,
+  requireAdmin = false,
+  requireGuide = false,
+}: AuthGuardProps) {
+  const { isAuthenticated, isAdmin, isGuide, isLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -18,9 +23,11 @@ export default function AuthGuard({ children, requireAdmin = false }: AuthGuardP
     if (!isAuthenticated) {
       router.replace('/guide/login');
     } else if (requireAdmin && !isAdmin) {
-      router.replace('/guide/studio');
+      router.replace(isGuide ? '/guide/studio' : '/catalogue');
+    } else if (requireGuide && !isGuide) {
+      router.replace('/catalogue');
     }
-  }, [isAuthenticated, isAdmin, isLoading, requireAdmin, router]);
+  }, [isAuthenticated, isAdmin, isGuide, isLoading, requireAdmin, requireGuide, router]);
 
   if (isLoading) {
     return (
@@ -32,6 +39,7 @@ export default function AuthGuard({ children, requireAdmin = false }: AuthGuardP
 
   if (!isAuthenticated) return null;
   if (requireAdmin && !isAdmin) return null;
+  if (requireGuide && !isGuide) return null;
 
   return <>{children}</>;
 }

@@ -13,6 +13,12 @@ jest.mock('@/lib/logger', () => ({
   logger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
 }));
 
+jest.mock('aws-amplify/auth', () => ({
+  fetchAuthSession: jest.fn().mockResolvedValue({
+    tokens: { accessToken: { toString: () => 'valid-access-token' } },
+  }),
+}));
+
 import { requestTTS, getTTSStatus, __resetTTSStubs } from '../tts';
 
 function mockMicroservice(opts: {
@@ -55,6 +61,14 @@ describe('TTS real-mode (async job/poll)', () => {
     expect(result.jobId).toBe('tts-1');
     expect(result.audioKey).toBeNull();
     expect(result.language).toBe('fr');
+    expect(global.fetch).toHaveBeenCalledWith(
+      '/api/microservice/v1/tts/generate',
+      expect.objectContaining({
+        headers: expect.objectContaining({
+          Authorization: 'Bearer valid-access-token',
+        }),
+      }),
+    );
   });
 
   it('poll returns completed with a data-URL audio key + duration', async () => {

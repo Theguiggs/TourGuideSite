@@ -407,7 +407,10 @@ export async function checkMicroserviceHealth(): Promise<MicroserviceHealth> {
 
   try {
     const response = await fetch(`${getMicroserviceUrl()}/health`, {
-      headers: { 'ngrok-skip-browser-warning': 'true' },
+      headers: {
+        ...(await getMicroserviceHeaders()),
+        'ngrok-skip-browser-warning': 'true',
+      },
       signal: AbortSignal.timeout(5000),
     });
     return await response.json();
@@ -433,7 +436,7 @@ export async function triggerBatchTranslation(
 
   const response = await fetch(`${getMicroserviceUrl()}/v1/translate/batch`, {
     method: 'POST',
-    headers: getMicroserviceHeaders(),
+    headers: await getMicroserviceHeaders(),
     body: JSON.stringify({ session_id: sessionId, source_lang: sourceLang, target_langs: targetLangs }),
   });
   if (!response.ok) {

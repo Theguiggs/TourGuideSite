@@ -3,9 +3,7 @@ import {
   CognitoIdentityProviderClient,
   AdminGetUserCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
-import { fetchAuthSession } from 'aws-amplify/auth/server';
-import { cookies } from 'next/headers';
-import { runWithAmplifyServerContext } from '@/lib/amplify/amplify-server-utils';
+import { requireServerRole, ServerAuthError } from '@/lib/auth/server-token';
 import outputs from '../../../../../amplify_outputs.json';
 
 const USER_POOL_ID = (outputs as { auth: { user_pool_id: string } }).auth.user_pool_id;
@@ -18,24 +16,13 @@ const REGION = (outputs as { auth: { aws_region: string } }).auth.aws_region;
  * Requires admin group membership — returns 403 otherwise.
  */
 export async function GET(request: NextRequest) {
-  // Verify caller is an authenticated admin
   try {
-    const session = await runWithAmplifyServerContext({
-      nextServerContext: { cookies },
-      operation: (ctx) => fetchAuthSession(ctx),
-    });
-
-    if (!session.tokens) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    await requireServerRole(request, ['admin']);
+  } catch (error) {
+    if (error instanceof ServerAuthError) {
+      return NextResponse.json({ error: error.message }, { status: error.status });
     }
-
-    const groups =
-      (session.tokens.accessToken?.payload['cognito:groups'] as string[] | undefined) ?? [];
-    if (!groups.includes('admin')) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-    }
-  } catch {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    return NextResponse.json({ error: 'Authentication unavailable' }, { status: 503 });
   }
 
   const userId = request.nextUrl.searchParams.get('userId');

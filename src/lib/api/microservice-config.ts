@@ -12,6 +12,7 @@
  */
 
 import { logger } from '@/lib/logger';
+import { fetchAuthSession } from 'aws-amplify/auth';
 
 const SERVICE_NAME = 'MicroserviceClient';
 const SUBMIT_MAX_ATTEMPTS = 5;
@@ -20,9 +21,15 @@ export function getMicroserviceUrl(): string {
   return '/api/microservice';
 }
 
-export function getMicroserviceHeaders(): Record<string, string> {
+export async function getMicroserviceHeaders(): Promise<Record<string, string>> {
+  const session = await fetchAuthSession();
+  const accessToken = session.tokens?.accessToken?.toString();
+  if (!accessToken) {
+    throw new Error('Authenticated Cognito session required');
+  }
   return {
     'Content-Type': 'application/json',
+    Authorization: `Bearer ${accessToken}`,
   };
 }
 
@@ -46,7 +53,7 @@ export async function submitMicroserviceJob(path: string, body: unknown): Promis
   for (let attempt = 1; attempt <= SUBMIT_MAX_ATTEMPTS; attempt++) {
     const response = await fetch(`${getMicroserviceUrl()}${path}`, {
       method: 'POST',
-      headers: getMicroserviceHeaders(),
+      headers: await getMicroserviceHeaders(),
       body: JSON.stringify(body),
     });
     if (response.status !== 429) return response;
@@ -66,9 +73,12 @@ export async function submitMicroserviceJob(path: string, body: unknown): Promis
  * service restarted and lost in-flight state) is surfaced as a terminal failure.
  */
 export async function pollMicroserviceJob(jobId: string): Promise<MicroserviceJobBody | null> {
+  // Authentication failures are not transient network failures. Resolve the
+  // session before entering the retryable fetch block so callers can stop.
+  const headers = await getMicroserviceHeaders();
   try {
     const response = await fetch(`${getMicroserviceUrl()}/v1/jobs/${jobId}`, {
-      headers: getMicroserviceHeaders(),
+      headers,
     });
     if (response.status === 404) {
       return { ok: false, status: 'failed', error: 'job not found' };

@@ -19,6 +19,7 @@ import TourPurchaseCard from '@/components/checkout/tour-purchase-card';
 import { S3Image } from '@/components/studio/s3-image';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { isTourFree } from '@/lib/catalogue/tour-pricing';
+import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import ItineraryList from './itinerary-list';
 
 const LANG_FLAGS: Record<string, string> = {
@@ -681,7 +682,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: safeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'TouristAttraction',
             name: tour.title,

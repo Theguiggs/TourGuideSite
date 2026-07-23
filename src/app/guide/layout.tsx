@@ -16,5 +16,5 @@ export default function GuideLayout({ children }: { children: React.ReactNode })
     return <>{children}</>;
   }
 
-  return <AuthGuard>{children}</AuthGuard>;
+  return <AuthGuard requireGuide>{children}</AuthGuard>;
 }
