@@ -10,6 +10,10 @@
 import 'server-only';
 import { logger } from '@/lib/logger';
 import { getServerClient } from '@/lib/amplify/server-client';
+import {
+  queryPublishedTourContent,
+  type PublishedTourContentQueryClient,
+} from './published-tour-content';
 
 const SERVICE_NAME = 'AppSyncServerPublic';
 
@@ -90,17 +94,17 @@ export async function getTourStatsServer(tourId: string) {
   }
 }
 
-export async function listPublicScenesBySessionServer(sessionId: string) {
+export async function getPublishedTourContentServer(tourId: string) {
   try {
-    const client = getServerClient();
-    const result = await client.models.StudioScene.listStudioSceneBySessionId({ sessionId });
-    const sorted = (result.data ?? []).sort(
-      (a, b) => (a.sceneIndex ?? 0) - (b.sceneIndex ?? 0),
-    );
-    return { ok: true as const, data: sorted };
+    const client = getServerClient() as unknown as PublishedTourContentQueryClient;
+    const content = await queryPublishedTourContent(client, tourId);
+    return { ok: true as const, data: content };
   } catch (error) {
-    logger.error(SERVICE_NAME, 'listPublicScenesBySessionServer failed', { error: String(error) });
-    return { ok: false as const, data: [] };
+    logger.error(SERVICE_NAME, 'getPublishedTourContentServer failed', {
+      error: String(error),
+      tourId,
+    });
+    return { ok: false as const, error: 'Contenu public indisponible' };
   }
 }
 
