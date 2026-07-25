@@ -115,4 +115,21 @@ describe('WizardShell', () => {
       '/guide/studio/sess-1/submission',
     );
   });
+
+  it("conserve l'identifiant de route dans les liens pendant le chargement", () => {
+    render(
+      <WizardShell
+        session={null}
+        routeSessionId="sess-loading"
+        activeTab="accueil"
+        headerLoading
+      >
+        <div />
+      </WizardShell>,
+    );
+    expect(screen.getByTestId('wizard-tab-preview')).toHaveAttribute(
+      'href',
+      '/guide/studio/sess-loading/preview',
+    );
+  });
 });

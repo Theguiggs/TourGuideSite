@@ -332,14 +332,17 @@ export async function queryTourByTitle(
   titleContains: string,
   token: string,
 ): Promise<CreatedItem[]> {
-  const data = await graphql<{ listGuideTours: { items: CreatedItem[] } }>(
-    `query ListTours($filter: ModelGuideTourFilterInput) {
-      listGuideTours(filter: $filter) { items { id title city status guideId } }
+  const guideId = await resolveGuideId(token);
+  const data = await graphql<{ listGuideTourByGuideId: { items: CreatedItem[] } }>(
+    `query ListToursByGuide($guideId: String!, $filter: ModelGuideTourFilterInput) {
+      listGuideTourByGuideId(guideId: $guideId, filter: $filter) {
+        items { id title city status guideId }
+      }
     }`,
-    { filter: { title: { contains: titleContains } } },
+    { guideId, filter: { title: { contains: titleContains } } },
     token,
   );
-  return data.listGuideTours.items;
+  return data.listGuideTourByGuideId.items;
 }
 
 export async function queryTourById(

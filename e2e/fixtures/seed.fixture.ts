@@ -130,6 +130,10 @@ export async function seedPublishedTour(
     status: 'finalized',
   });
 
+  // The public catalogue reads GuideTour through the city GSI, which is
+  // eventually consistent. Let the new published row become discoverable.
+  await new Promise((resolve) => setTimeout(resolve, 5_000));
+
   return {
     tourId: tour.id,
     sessionId: session.id,
