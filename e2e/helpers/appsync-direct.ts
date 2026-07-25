@@ -125,8 +125,9 @@ export async function seedSession(
   overrides?: Partial<{ sourceSessionId: string; status: string; title: string; guideId: string }>,
 ): Promise<CreatedItem> {
   validateE2ePrefix(prefix);
+  const guideId = overrides?.guideId ?? await resolveGuideId(token);
   const input = {
-    guideId: overrides?.guideId ?? `${prefix}-guide`,
+    guideId,
     tourId,
     title: overrides?.title ?? `${prefix} Session`,
     status: overrides?.status ?? 'draft',
