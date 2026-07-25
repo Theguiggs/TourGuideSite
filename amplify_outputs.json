@@ -3414,6 +3414,119 @@
         }
       },
       "nonModels": {
+        "PublicTourPoint": {
+          "name": "PublicTourPoint",
+          "fields": {
+            "latitude": {
+              "name": "latitude",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "longitude": {
+              "name": "longitude",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            }
+          }
+        },
+        "PublicTourScene": {
+          "name": "PublicTourScene",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "order": {
+              "name": "order",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true,
+              "attributes": []
+            },
+            "title": {
+              "name": "title",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "description": {
+              "name": "description",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "audioKey": {
+              "name": "audioKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "photos": {
+              "name": "photos",
+              "isArray": true,
+              "type": "String",
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": false
+            },
+            "latitude": {
+              "name": "latitude",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "longitude": {
+              "name": "longitude",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "PublishedTourContent": {
+          "name": "PublishedTourContent",
+          "fields": {
+            "tourId": {
+              "name": "tourId",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "scenes": {
+              "name": "scenes",
+              "isArray": true,
+              "type": {
+                "nonModel": "PublicTourScene"
+              },
+              "isRequired": true,
+              "attributes": [],
+              "isArrayNullable": false
+            },
+            "walkPath": {
+              "name": "walkPath",
+              "isArray": true,
+              "type": {
+                "nonModel": "PublicTourPoint"
+              },
+              "isRequired": true,
+              "attributes": [],
+              "isArrayNullable": false
+            }
+          }
+        },
         "TriggerTranscriptionReturnType": {
           "name": "TriggerTranscriptionReturnType",
           "fields": {
@@ -3602,6 +3715,22 @@
         }
       },
       "queries": {
+        "getPublishedTourContent": {
+          "name": "getPublishedTourContent",
+          "isArray": false,
+          "type": {
+            "nonModel": "PublishedTourContent"
+          },
+          "isRequired": false,
+          "arguments": {
+            "tourId": {
+              "name": "tourId",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true
+            }
+          }
+        },
         "checkTranscription": {
           "name": "checkTranscription",
           "isArray": false,
