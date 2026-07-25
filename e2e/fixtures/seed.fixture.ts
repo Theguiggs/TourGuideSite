@@ -123,10 +123,16 @@ export async function seedPublishedTour(
     status: 'published',
   });
 
+  await updateTourSessionId(tour.id, session.id, token);
+
   const scene1 = await seedScene(session.id, 0, token, {
     title: `${prefix} Scene 1`,
     status: 'finalized',
   });
+
+  // The public catalogue reads GuideTour through the city GSI, which is
+  // eventually consistent. Let the new published row become discoverable.
+  await new Promise((resolve) => setTimeout(resolve, 5_000));
 
   return {
     tourId: tour.id,

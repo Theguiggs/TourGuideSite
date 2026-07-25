@@ -736,18 +736,16 @@ export async function updateWalkSegmentMutation(id: string, updates: Record<stri
   }
 }
 
-/** Public: list scenes for a published tour's session (guest auth for catalogue pages). */
-export async function listPublicScenesBySession(sessionId: string) {
+/** Public allowlisted Studio projection. The server derives the private session. */
+export async function getPublishedTourContent(tourId: string) {
   try {
-    const client = getClient();
-    const result = await client.models.StudioScene.listStudioSceneBySessionId(
-      { sessionId },
-    );
-    const sorted = (result.data ?? []).sort((a, b) => (a.sceneIndex ?? 0) - (b.sceneIndex ?? 0));
-    return { ok: true as const, data: sorted };
+    const client = getClient() as unknown as import('./published-tour-content').PublishedTourContentQueryClient;
+    const { queryPublishedTourContent } = await import('./published-tour-content');
+    const content = await queryPublishedTourContent(client, tourId);
+    return { ok: true as const, data: content };
   } catch (error) {
-    logger.error(SERVICE_NAME, 'listPublicScenesBySession failed', { error: String(error) });
-    return { ok: false as const, data: [] };
+    logger.error(SERVICE_NAME, 'getPublishedTourContent failed', { error: String(error), tourId });
+    return { ok: false as const, error: 'Contenu public indisponible' };
   }
 }
 

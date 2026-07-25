@@ -24,6 +24,7 @@ const prefix = e2ePrefix('access');
 
 test.describe('Access Control', () => {
   let guidePath: string;
+  let publishedTourId: string;
 
   test.beforeAll(async () => {
     guidePath = getGuideStorageStatePath();
@@ -32,7 +33,8 @@ test.describe('Access Control', () => {
       createStorageState(tokens, E2E_GUIDE_EMAIL, guidePath);
     }
     const token = getAccessTokenFromStorageState(guidePath);
-    await seedPublishedTour(prefix, token);
+    const seeded = await seedPublishedTour(prefix, token);
+    publishedTourId = seeded.tourId;
   });
 
   test.afterAll(async () => {
@@ -48,11 +50,10 @@ test.describe('Access Control', () => {
   });
 
   test('guest can view tour detail page', async ({ page }) => {
-    await page.goto('/catalogue');
-    // New UX: catalogue (cities) → city page (tour cards) → tour detail.
-    await page.getByRole('link', { name: /Grasse/i }).first().click();
+    // City navigation is covered above; target the seeded city and tour here.
+    await page.goto('/catalogue/grasse');
     await expect(page).toHaveURL(/\/catalogue\/[^/]+$/, { timeout: 10_000 });
-    await page.locator('[data-testid^="tour-card-"]').first().click();
+    await page.getByTestId(`tour-card-${publishedTourId}`).click();
     await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
     // Tour title should be visible
     await expect(page.locator('h1').first()).toBeVisible();

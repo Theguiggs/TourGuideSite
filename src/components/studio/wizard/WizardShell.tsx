@@ -9,6 +9,8 @@ import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface WizardShellProps {
   session: StudioSession | null;
+  /** Route identifier available before the session query resolves. */
+  routeSessionId?: string;
   /** Currently active tab (highlights its underline). */
   activeTab: WizardTabKey;
   /** When true, the title area shows a skeleton instead of the session title. */
@@ -41,12 +43,13 @@ function parcoursFromTitle(title: string | null | undefined): string {
  */
 export function WizardShell({
   session,
+  routeSessionId,
   activeTab,
   headerLoading = false,
   children,
 }: WizardShellProps) {
   const { locale } = useStudioLocale();
-  const sessionId = session?.id ?? '';
+  const sessionId = session?.id ?? routeSessionId ?? '';
   const statusConfig = session ? getSessionStatusConfig(session.status) : null;
   const city = cityFromTitle(session?.title);
   const parcours = parcoursFromTitle(session?.title);

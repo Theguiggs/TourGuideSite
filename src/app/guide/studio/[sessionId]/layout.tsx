@@ -55,7 +55,12 @@ export default function SessionLayout({ children }: { children: React.ReactNode 
   );
 
   return (
-    <WizardShell session={session} activeTab={activeTab} headerLoading={headerLoading}>
+    <WizardShell
+      session={session}
+      routeSessionId={sessionId}
+      activeTab={activeTab}
+      headerLoading={headerLoading}
+    >
       {children}
     </WizardShell>
   );

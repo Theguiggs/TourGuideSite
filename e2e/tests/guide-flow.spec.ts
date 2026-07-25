@@ -17,6 +17,7 @@ const prefix = e2ePrefix('guide');
 
 test.describe.serial('Guide Flow', () => {
   let guidePath: string;
+  let studioSessionPath: string;
 
   test.beforeAll(async () => {
     guidePath = getGuideStorageStatePath();
@@ -64,7 +65,11 @@ test.describe.serial('Guide Flow', () => {
     await page.getByTestId('nouveau-submit').click();
 
     // Should navigate to studio session
-    await expect(page).toHaveURL(/\/guide\/studio\//, { timeout: 15_000 });
+    await expect(page).toHaveURL(
+      /\/guide\/studio\/(?!nouveau(?:\/|$))[^/?#]+/,
+      { timeout: 15_000 },
+    );
+    studioSessionPath = new URL(page.url()).pathname;
 
     await context.close();
   });
@@ -74,8 +79,8 @@ test.describe.serial('Guide Flow', () => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
 
-    // Navigate to studio and find our session
-    await page.goto('/guide/studio');
+    // Navigate directly to the session created by the preceding UI test.
+    await page.goto(studioSessionPath);
 
     // Dismiss RGPD consent modal if present
     const acceptBtn = page.getByRole('button', { name: /^Accepter$/i });
@@ -84,9 +89,6 @@ test.describe.serial('Guide Flow', () => {
       await acceptBtn.click();
       await acceptBtn.waitFor({ state: 'hidden', timeout: 5_000 });
     }
-
-    await page.getByText(prefix, { exact: false }).first().click({ timeout: 10_000 });
-    await expect(page).toHaveURL(/\/guide\/studio\//, { timeout: 10_000 });
 
     // Go to scenes
     await page.getByRole('link', { name: /Scènes/i }).click();
@@ -113,15 +115,13 @@ test.describe.serial('Guide Flow', () => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
 
-    await page.goto('/guide/studio');
+    await page.goto(studioSessionPath);
     const consentBtn4 = page.getByRole('button', { name: /^Accepter$/i });
     await consentBtn4.waitFor({ state: 'visible', timeout: 5_000 }).catch(() => {});
     if (await consentBtn4.isVisible()) {
       await consentBtn4.click();
       await consentBtn4.waitFor({ state: 'hidden', timeout: 5_000 });
     }
-    await page.getByText(prefix, { exact: false }).first().click({ timeout: 10_000 });
-
     // Go to preview
     await page.getByRole('link', { name: /Aperçu|Preview/i }).click();
     await expect(page).toHaveURL(/\/preview/, { timeout: 10_000 });
@@ -138,15 +138,13 @@ test.describe.serial('Guide Flow', () => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
 
-    await page.goto('/guide/studio');
+    await page.goto(studioSessionPath);
     const consentBtn5 = page.getByRole('button', { name: /^Accepter$/i });
     await consentBtn5.waitFor({ state: 'visible', timeout: 5_000 }).catch(() => {});
     if (await consentBtn5.isVisible()) {
       await consentBtn5.click();
       await consentBtn5.waitFor({ state: 'hidden', timeout: 5_000 });
     }
-    await page.getByText(prefix, { exact: false }).first().click({ timeout: 10_000 });
-
     // Go to preview page
     await page.getByRole('link', { name: /Aperçu|Preview/i }).click();
     await expect(page).toHaveURL(/\/preview/, { timeout: 10_000 });

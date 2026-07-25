@@ -25,8 +25,9 @@ import {
   listGuideProfilesServer,
   listTourReviewsServer,
   getTourStatsServer,
-  listPublicScenesBySessionServer,
+  getPublishedTourContentServer,
 } from './appsync-server-public';
+import { mapWithConcurrency } from './published-tour-content';
 
 // --- Lookup caches ---
 
@@ -97,62 +98,24 @@ async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise
   return [sourceLang];
 }
 
-async function getLanguageAudioTypes(sessionId: string): Promise<Record<string, 'tts' | 'recording' | 'mixed'>> {
-  try {
-    const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
-    const { DynamoDBDocumentClient, ScanCommand } = await import('@aws-sdk/lib-dynamodb');
-    const appId = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
-    const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
-
-    const sceneScan = await dynamo.send(new ScanCommand({
-      TableName: `StudioScene-${appId}-NONE`,
-      FilterExpression: 'sessionId = :sid',
-      ExpressionAttributeValues: { ':sid': sessionId },
-    }));
-    const scenes = sceneScan.Items ?? [];
-    if (scenes.length === 0) return {};
-
-    const frSources = new Set<string>();
-    for (const sc of scenes) {
-      // Prefer the reliable marker written by the studio at audio-creation time.
-      // Legacy scenes (no marker) fall back to the ambiguous filename heuristic.
-      const marker = sc.baseAudioSource as 'tts' | 'recording' | undefined;
-      if (marker === 'tts' || marker === 'recording') {
-        frSources.add(marker);
-      } else {
-        const key = (sc.studioAudioKey as string) || (sc.originalAudioKey as string) || '';
-        frSources.add(key.includes('tts') ? 'tts' : 'recording');
-      }
+function publishedLanguageAudioTypes(
+  tour: Record<string, unknown>,
+): Record<string, 'tts' | 'recording' | 'mixed'> {
+  const raw = tour.languageAudioTypes;
+  if (typeof raw === 'string') {
+    try {
+      return publishedLanguageAudioTypes({ languageAudioTypes: JSON.parse(raw) });
+    } catch {
+      return {};
     }
-    const result: Record<string, 'tts' | 'recording' | 'mixed'> = {
-      fr: frSources.size === 1 ? (Array.from(frSources)[0] as 'tts' | 'recording') : 'mixed',
-    };
-
-    const purchaseScan = await dynamo.send(new ScanCommand({
-      TableName: `TourLanguagePurchase-${appId}-NONE`,
-      FilterExpression: 'sessionId = :sid AND #s = :active AND moderationStatus = :approved',
-      ExpressionAttributeNames: { '#s': 'status' },
-      ExpressionAttributeValues: { ':sid': sessionId, ':active': 'active', ':approved': 'approved' },
-    }));
-    const approvedLangs = new Set((purchaseScan.Items ?? []).map((p) => p.language as string));
-
-    const sceneIds = scenes.map((s) => s.id as string);
-    const segScan = await dynamo.send(new ScanCommand({ TableName: `SceneSegment-${appId}-NONE` }));
-    const allSegs = (segScan.Items ?? []).filter((s) => sceneIds.includes(s.sceneId as string));
-
-    const byLang = new Map<string, Set<string>>();
-    for (const seg of allSegs) {
-      const lang = seg.language as string;
-      if (lang === 'fr' || !approvedLangs.has(lang)) continue;
-      const source = (seg.audioSource as string) || (seg.ttsGenerated ? 'tts' : 'recording');
-      if (!byLang.has(lang)) byLang.set(lang, new Set());
-      byLang.get(lang)!.add(source);
-    }
-    for (const [lang, sources] of byLang) {
-      result[lang] = sources.size === 1 ? (Array.from(sources)[0] as 'tts' | 'recording') : 'mixed';
-    }
-    return result;
-  } catch { return {}; }
+  }
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return {};
+  return Object.fromEntries(
+    Object.entries(raw).filter(
+      (entry): entry is [string, 'tts' | 'recording' | 'mixed'] =>
+        entry[1] === 'tts' || entry[1] === 'recording' || entry[1] === 'mixed',
+    ),
+  );
 }
 
 // --- Real API ---
@@ -174,7 +137,7 @@ async function getRealCities(): Promise<City[]> {
 async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
   const tours = await listGuideToursServer({ status: 'published' });
   const filtered = tours.filter((t) => generateSlug(t.city) === citySlug);
-  const mapped = await Promise.all(filtered.map(async (t) => {
+  const mapped = await mapWithConcurrency(filtered, 5, async (t) => {
     let imageUrl: string | undefined;
     const raw = t as Record<string, unknown>;
     // Prefer the guide's cover photo (from Général); fall back to the first
@@ -185,11 +148,10 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
       imageUrl = raw.heroImageUrl as string;
     } else if (raw.sessionId) {
       try {
-        const scenesResult = await listPublicScenesBySessionServer(raw.sessionId as string);
-        if (scenesResult.ok && scenesResult.data.length > 0) {
-          const firstScene = scenesResult.data
-            .sort((a: Record<string, unknown>, b: Record<string, unknown>) => ((a.sceneIndex as number) ?? 0) - ((b.sceneIndex as number) ?? 0))[0] as Record<string, unknown>;
-          const photos = firstScene.photosRefs as string[] | undefined;
+        const contentResult = await getPublishedTourContentServer(t.id);
+        if (contentResult.ok && contentResult.data.scenes.length > 0) {
+          const firstScene = contentResult.data.scenes[0];
+          const photos = firstScene.photos;
           if (photos?.[0]) imageUrl = photos[0];
         }
       } catch { /* non-blocking */ }
@@ -207,11 +169,10 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
       status: (t.status || 'draft') as Tour['status'],
       availableLanguages: await resolveAvailableLanguages(t as Record<string, unknown>),
       createdAt: ((t as Record<string, unknown>).createdAt as string) ?? '',
-      languageAudioTypes: (t as Record<string, unknown>).sessionId
-        ? await getLanguageAudioTypes((t as Record<string, unknown>).sessionId as string) : {},
+      languageAudioTypes: publishedLanguageAudioTypes(t as unknown as Record<string, unknown>),
       imageUrl,
     };
-  }));
+  });
   return mapped.sort((a, b) => a.title.localeCompare(b.title));
 }
 
@@ -220,25 +181,25 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
   const tour = tours.find((t) => generateSlug(t.city) === citySlug && generateSlug(t.title) === tourSlug);
   if (!tour) return null;
 
-  const sessionId = tour.sessionId;
-  const [reviews, stats, scenesResult] = await Promise.all([
+  const [reviews, stats, contentResult] = await Promise.all([
     listTourReviewsServer(tour.id),
     getTourStatsServer(tour.id),
-    sessionId ? listPublicScenesBySessionServer(sessionId) : Promise.resolve({ ok: false as const, data: [] as Record<string, unknown>[] }),
+    getPublishedTourContentServer(tour.id),
   ]);
 
   const guideInfo = await resolveGuideInfo(tour.guideId);
   const guideName = guideInfo.displayName;
-  const scenes = scenesResult.ok ? scenesResult.data : [];
+  if (!contentResult.ok) {
+    throw new Error(contentResult.error);
+  }
+  const scenes = contentResult.data.scenes;
   const pois = scenes
-    .filter((s: Record<string, unknown>) => s.title && !s.archived)
-    .sort((a: Record<string, unknown>, b: Record<string, unknown>) => ((a.sceneIndex as number) ?? 0) - ((b.sceneIndex as number) ?? 0))
-    .map((s: Record<string, unknown>, i: number) => ({
-      id: String(s.id ?? ''),
-      title: String(s.title ?? `Point ${i + 1}`),
-      description: String(s.poiDescription ?? s.transcriptText ?? '').substring(0, 200),
-      latitude: (s.latitude as number) ?? 0,
-      longitude: (s.longitude as number) ?? 0,
+    .map((s, i: number) => ({
+      id: s.id,
+      title: s.title || `Point ${i + 1}`,
+      description: s.description.substring(0, 200),
+      latitude: s.latitude ?? 0,
+      longitude: s.longitude ?? 0,
       order: i + 1,
     }));
 
@@ -258,7 +219,7 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     status: (tour.status || 'draft') as Tour['status'],
     availableLanguages: await resolveAvailableLanguages(tour as unknown as Record<string, unknown>),
     createdAt: ((tour as unknown as Record<string, unknown>).createdAt as string) ?? '',
-    languageAudioTypes: tour.sessionId ? await getLanguageAudioTypes(tour.sessionId) : {},
+    languageAudioTypes: publishedLanguageAudioTypes(tour as unknown as Record<string, unknown>),
     imageUrl: ((tour as unknown as Record<string, unknown>).coverPhotoKey as string) ?? undefined,
     pois,
     reviews: reviews.map((r) => ({
@@ -313,52 +274,32 @@ export async function getAllTours(): Promise<Tour[]> {
     status: (t.status || 'draft') as Tour['status'],
     availableLanguages: await resolveAvailableLanguages(t as unknown as Record<string, unknown>),
     createdAt: ((t as unknown as Record<string, unknown>).createdAt as string) ?? '',
-    languageAudioTypes: (t as unknown as Record<string, unknown>).sessionId
-      ? await getLanguageAudioTypes((t as unknown as Record<string, unknown>).sessionId as string) : {},
+    languageAudioTypes: publishedLanguageAudioTypes(t as unknown as Record<string, unknown>),
   })));
 }
 
 export async function getAllToursWithCoords(): Promise<Tour[]> {
   const baseTours = shouldUseStubs() ? getStubAllTours() : await getAllTours();
 
-  try {
-    const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
-    const { DynamoDBDocumentClient, ScanCommand } = await import('@aws-sdk/lib-dynamodb');
-    const appId = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
-    const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
-
-    const sceneScan = await dynamo.send(new ScanCommand({
-      TableName: `StudioScene-${appId}-NONE`,
-      ProjectionExpression: 'sessionId, sceneIndex, latitude, longitude, photosRefs',
-    }));
-    const scenes = sceneScan.Items ?? [];
-
-    const tourScan = await dynamo.send(new ScanCommand({
-      TableName: `GuideTour-${appId}-NONE`,
-      ProjectionExpression: 'id, sessionId',
-    }));
-    const tourSessionMap = new Map<string, string>();
-    for (const t of tourScan.Items ?? []) {
-      if (t.sessionId) tourSessionMap.set(t.id as string, t.sessionId as string);
-    }
-
-    const firstSceneBySession = new Map<string, { lat: number; lng: number; photo?: string; idx: number }>();
-    for (const sc of scenes) {
-      const sid = sc.sessionId as string;
-      const idx = (sc.sceneIndex as number) ?? 99;
-      const lat = sc.latitude as number | undefined;
-      const lng = sc.longitude as number | undefined;
-      const photos = sc.photosRefs as string[] | undefined;
-      const existing = firstSceneBySession.get(sid);
-      if (lat && lng && (!existing || idx < existing.idx)) {
-        firstSceneBySession.set(sid, { lat, lng, photo: photos?.[0], idx });
+  return mapWithConcurrency(
+    baseTours,
+    5,
+    async (tour) => {
+      const content = await getPublishedTourContentServer(tour.id);
+      if (!content.ok) {
+        throw new Error(content.error);
       }
-    }
+      const first = content.data.scenes.find(
+        (scene) =>
+          typeof scene.latitude === 'number' && typeof scene.longitude === 'number',
+      );
+      return {
+        ...tour,
+        latitude: first?.latitude,
+        longitude: first?.longitude,
+        imageUrl: tour.imageUrl ?? first?.photos[0],
+      };
+    },
+  );
 
-    return baseTours.map((tour) => {
-      const sessionId = tourSessionMap.get(tour.id);
-      const first = sessionId ? firstSceneBySession.get(sessionId) : undefined;
-      return { ...tour, latitude: first?.lat, longitude: first?.lng, imageUrl: first?.photo };
-    });
-  } catch { return baseTours; }
 }

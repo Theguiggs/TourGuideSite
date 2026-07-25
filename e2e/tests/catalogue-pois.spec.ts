@@ -25,6 +25,8 @@ import { seedPublishedTour, cleanupByPrefix } from '../fixtures/seed.fixture';
 const prefix = e2ePrefix('pois');
 
 test.describe('Catalogue POIs', () => {
+  let publishedTourId: string;
+
   test.beforeAll(async () => {
     const guidePath = getGuideStorageStatePath();
     if (!isTokenValid(guidePath)) {
@@ -32,7 +34,8 @@ test.describe('Catalogue POIs', () => {
       createStorageState(tokens, E2E_GUIDE_EMAIL, guidePath);
     }
     const token = getAccessTokenFromStorageState(guidePath);
-    await seedPublishedTour(prefix, token);
+    const seeded = await seedPublishedTour(prefix, token);
+    publishedTourId = seeded.tourId;
   });
 
   test.afterAll(async () => {
@@ -40,21 +43,15 @@ test.describe('Catalogue POIs', () => {
   });
 
   test('catalogue main page lists tour cards', async ({ page }) => {
-    await page.goto('/catalogue');
-    // New UX: tour cards live on the city page. Open the seeded city (Grasse).
-    await page.getByRole('link', { name: /Grasse/i }).first().click();
+    // Tour cards live on the city page.
+    await page.goto('/catalogue/grasse');
     // City page tour cards: data-testid="tour-card-{id}"
-    const tourCards = page.locator('[data-testid^="tour-card-"]');
-    await expect(tourCards.first()).toBeVisible({ timeout: 10_000 });
-    const count = await tourCards.count();
-    expect(count).toBeGreaterThanOrEqual(1);
+    await expect(page.getByTestId(`tour-card-${publishedTourId}`)).toBeVisible({ timeout: 15_000 });
   });
 
   test('tour detail shows description and metadata', async ({ page }) => {
-    await page.goto('/catalogue');
-    // New UX: catalogue (cities) → city page → tour card → detail.
-    await page.getByRole('link', { name: /Grasse/i }).first().click();
-    await page.locator('[data-testid^="tour-card-"]').first().click();
+    await page.goto('/catalogue/grasse');
+    await page.getByTestId(`tour-card-${publishedTourId}`).click();
     await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
 
     // Description section
@@ -70,9 +67,8 @@ test.describe('Catalogue POIs', () => {
   });
 
   test('tour detail shows reviews with ratings', async ({ page }) => {
-    await page.goto('/catalogue');
-    await page.getByRole('link', { name: /Grasse/i }).first().click();
-    await page.locator('[data-testid^="tour-card-"]').first().click();
+    await page.goto('/catalogue/grasse');
+    await page.getByTestId(`tour-card-${publishedTourId}`).click();
     await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
 
     // Avis section should exist
@@ -87,9 +83,8 @@ test.describe('Catalogue POIs', () => {
   });
 
   test('tour detail shows guide info', async ({ page }) => {
-    await page.goto('/catalogue');
-    await page.getByRole('link', { name: /Grasse/i }).first().click();
-    await page.locator('[data-testid^="tour-card-"]').first().click();
+    await page.goto('/catalogue/grasse');
+    await page.getByTestId(`tour-card-${publishedTourId}`).click();
     await expect(page).toHaveURL(/\/catalogue\/[^/]+\/[^/]+/, { timeout: 10_000 });
 
     // Guide showcase card — labelled "Votre guide"

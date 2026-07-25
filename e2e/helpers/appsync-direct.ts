@@ -11,8 +11,8 @@ import outputs from '../../amplify_outputs.json';
 
 const APPSYNC_URL = (outputs as { data: { url: string } }).data.url;
 
-// F1 fix: derive APP_ID from env var with hardcoded fallback
-const APP_ID = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
+// Keep direct DynamoDB cleanup aligned with the deployed AppSync API.
+const APP_ID = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
 const ENV = 'NONE';
 const REGION = (outputs as { auth?: { aws_region?: string } }).auth?.aws_region ?? 'us-east-1';
 
@@ -66,8 +66,9 @@ export async function seedTour(
   overrides?: Partial<{ title: string; city: string; description: string; status: string; guideId: string; sessionId: string }>,
 ): Promise<CreatedItem> {
   validateE2ePrefix(prefix);
+  const guideId = overrides?.guideId ?? await resolveGuideId(token);
   const input = {
-    guideId: overrides?.guideId ?? `${prefix}-guide`,
+    guideId,
     title: overrides?.title ?? `${prefix} Tour Test`,
     city: overrides?.city ?? 'Grasse',
     status: overrides?.status ?? 'draft',
@@ -124,8 +125,9 @@ export async function seedSession(
   overrides?: Partial<{ sourceSessionId: string; status: string; title: string; guideId: string }>,
 ): Promise<CreatedItem> {
   validateE2ePrefix(prefix);
+  const guideId = overrides?.guideId ?? await resolveGuideId(token);
   const input = {
-    guideId: overrides?.guideId ?? `${prefix}-guide`,
+    guideId,
     tourId,
     title: overrides?.title ?? `${prefix} Session`,
     status: overrides?.status ?? 'draft',
@@ -330,14 +332,17 @@ export async function queryTourByTitle(
   titleContains: string,
   token: string,
 ): Promise<CreatedItem[]> {
-  const data = await graphql<{ listGuideTours: { items: CreatedItem[] } }>(
-    `query ListTours($filter: ModelGuideTourFilterInput) {
-      listGuideTours(filter: $filter) { items { id title city status guideId } }
+  const guideId = await resolveGuideId(token);
+  const data = await graphql<{ listGuideTourByGuideId: { items: CreatedItem[] } }>(
+    `query ListToursByGuide($guideId: String!, $filter: ModelGuideTourFilterInput) {
+      listGuideTourByGuideId(guideId: $guideId, filter: $filter) {
+        items { id title city status guideId }
+      }
     }`,
-    { filter: { title: { contains: titleContains } } },
+    { guideId, filter: { title: { contains: titleContains } } },
     token,
   );
-  return data.listGuideTours.items;
+  return data.listGuideTourByGuideId.items;
 }
 
 export async function queryTourById(
