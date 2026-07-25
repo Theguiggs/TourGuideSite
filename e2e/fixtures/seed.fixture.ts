@@ -123,6 +123,8 @@ export async function seedPublishedTour(
     status: 'published',
   });
 
+  await updateTourSessionId(tour.id, session.id, token);
+
   const scene1 = await seedScene(session.id, 0, token, {
     title: `${prefix} Scene 1`,
     status: 'finalized',

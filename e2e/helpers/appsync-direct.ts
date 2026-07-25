@@ -11,8 +11,8 @@ import outputs from '../../amplify_outputs.json';
 
 const APPSYNC_URL = (outputs as { data: { url: string } }).data.url;
 
-// F1 fix: derive APP_ID from env var with hardcoded fallback
-const APP_ID = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
+// Keep direct DynamoDB cleanup aligned with the deployed AppSync API.
+const APP_ID = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
 const ENV = 'NONE';
 const REGION = (outputs as { auth?: { aws_region?: string } }).auth?.aws_region ?? 'us-east-1';
 
