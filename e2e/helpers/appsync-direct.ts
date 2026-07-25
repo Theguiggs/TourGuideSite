@@ -66,8 +66,9 @@ export async function seedTour(
   overrides?: Partial<{ title: string; city: string; description: string; status: string; guideId: string; sessionId: string }>,
 ): Promise<CreatedItem> {
   validateE2ePrefix(prefix);
+  const guideId = overrides?.guideId ?? await resolveGuideId(token);
   const input = {
-    guideId: overrides?.guideId ?? `${prefix}-guide`,
+    guideId,
     title: overrides?.title ?? `${prefix} Tour Test`,
     city: overrides?.city ?? 'Grasse',
     status: overrides?.status ?? 'draft',
