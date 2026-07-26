@@ -63,7 +63,14 @@ function startsWithE2e(value) {
 }
 
 function directlyMarked(item) {
-  return ['id', 'title', 'tourTitle', 'guideId'].some((field) => startsWithE2e(item[field]));
+  const prefixMarked = ['id', 'title', 'tourTitle', 'guideId']
+    .some((field) => startsWithE2e(item[field]));
+  const legacyPersistenceTour =
+    CLEANUP_PREFIX === 'e2e-' &&
+    item.description === 'E2E test tour' &&
+    typeof item.title === 'string' &&
+    item.title.toLowerCase().startsWith('persistence test ');
+  return prefixMarked || legacyPersistenceTour;
 }
 
 function collectIds(items) {

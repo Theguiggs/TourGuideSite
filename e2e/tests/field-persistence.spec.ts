@@ -23,9 +23,9 @@ import {
   seedMultilangReadyTour,
   seedLanguagePurchase,
   seedSceneSegment,
-  cleanupByPrefix,
   type SeededTour,
 } from '../fixtures/seed.fixture';
+import { deleteItemsById } from '../helpers/appsync-direct';
 
 const STUDIO_BASE = '/guide/studio';
 const PREFIX = e2ePrefix('persist');
@@ -51,6 +51,7 @@ test.describe.serial('Field Persistence', () => {
   let sessionUrl: string;
   let token: string;
   let segmentId: string;
+  let languagePurchaseId: string;
 
   test.beforeAll(async () => {
     guidePath = getGuideStorageStatePath();
@@ -65,7 +66,7 @@ test.describe.serial('Field Persistence', () => {
     sessionUrl = `${STUDIO_BASE}/${seeded.sessionId}`;
 
     // Seed a language purchase for English
-    await seedLanguagePurchase(seeded.sessionId, 'en', token, {
+    const languagePurchase = await seedLanguagePurchase(seeded.sessionId, 'en', token, {
       guideId: seeded.guideId,
       qualityTier: 'manual',
       purchaseType: 'manual',
@@ -73,6 +74,7 @@ test.describe.serial('Field Persistence', () => {
       moderationStatus: 'draft',
       status: 'active',
     });
+    languagePurchaseId = languagePurchase.id;
 
     // Seed an EN segment for the first scene with translated text
     const seg = await seedSceneSegment(seeded.sceneIds[0], 0, token, {
@@ -91,8 +93,12 @@ test.describe.serial('Field Persistence', () => {
   });
 
   test.afterAll(async () => {
-    // TEMP: skip cleanup to keep seeded data for manual verification
-    // await cleanupByPrefix(PREFIX);
+    if (!seeded) return;
+    await deleteItemsById('SceneSegment', [segmentId]);
+    await deleteItemsById('TourLanguagePurchase', [languagePurchaseId]);
+    await deleteItemsById('StudioScene', seeded.sceneIds);
+    await deleteItemsById('StudioSession', [seeded.sessionId]);
+    await deleteItemsById('GuideTour', [seeded.tourId]);
   });
 
   // ---------------------------------------------------------------------------
