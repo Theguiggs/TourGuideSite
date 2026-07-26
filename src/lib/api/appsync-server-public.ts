@@ -15,6 +15,7 @@ import {
   type PublishedTourContentQueryClient,
 } from './published-tour-content';
 import { isPublicCatalogueTour } from './public-tour-policy';
+import { isPublicCatalogueGuide } from './public-guide-policy';
 
 const SERVICE_NAME = 'AppSyncServerPublic';
 
@@ -56,9 +57,10 @@ export async function listGuideProfilesServer(filters?: { city?: string }) {
       ...(filters?.city ? { city: { eq: filters.city } } : {}),
       profileStatus: { eq: 'active' },
     };
-    return await paginateAll((nextToken) =>
+    const profiles = await paginateAll((nextToken) =>
       client.models.GuideProfile.list({ filter, nextToken: nextToken ?? undefined }),
     );
+    return profiles.filter(isPublicCatalogueGuide);
   } catch (error) {
     logger.error(SERVICE_NAME, 'listGuideProfilesServer failed', { error: String(error) });
     return [];
