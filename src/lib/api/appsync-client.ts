@@ -12,6 +12,7 @@ import { Amplify } from 'aws-amplify';
 import type { Schema } from '@amplify-schema';
 import { configureAmplify } from '@/lib/amplify/config';
 import { logger } from '@/lib/logger';
+import { isPublicCatalogueTour } from './public-tour-policy';
 
 const SERVICE_NAME = 'AppSyncClient';
 
@@ -44,7 +45,7 @@ export async function listGuideTours(filters?: { city?: string; status?: string 
         ...(filters?.status ? { status: { eq: filters.status as 'published' } } : {}),
       },
     });
-    return result.data ?? [];
+    return (result.data ?? []).filter(isPublicCatalogueTour);
   } catch (error) {
     logger.error(SERVICE_NAME, 'listGuideTours failed', { error: String(error) });
     return [];

@@ -1,109 +1,155 @@
 /**
- * cleanup-e2e-data.mjs — Supprime toutes les données E2E (préfixe "e2e-") de DynamoDB.
+ * Removes orphaned E2E data from the deployed DynamoDB backend.
  *
  * Usage:
+ *   node scripts/cleanup-e2e-data.mjs --dry-run
  *   node scripts/cleanup-e2e-data.mjs
- *
- * Prérequis: AWS credentials configurés (env vars ou AWS config)
  */
 
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient, ScanCommand, BatchWriteCommand } from '@aws-sdk/lib-dynamodb';
+import { BatchWriteCommand, DynamoDBDocumentClient, ScanCommand } from '@aws-sdk/lib-dynamodb';
 
-// F1 fix: derive APP_ID from amplify_outputs.json or env var
-const APP_ID = process.env.AMPLIFY_APP_ID ?? '4z7fvz7n2bh5rpixdgihjmhdpa';
-const ENV = 'NONE';
-const REGION = 'us-east-1';
+const APP_ID = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
+const ENV = process.env.AMPLIFY_ENV ?? 'NONE';
+const REGION = process.env.AWS_REGION ?? 'us-east-1';
 const E2E_PREFIX = 'e2e-';
+const DRY_RUN = process.argv.includes('--dry-run');
 
 const TABLES = [
   'GuideTour',
   'StudioSession',
   'StudioScene',
   'ModerationItem',
+  'TourLanguagePurchase',
+  'SceneSegment',
+  'WalkSegment',
+  'TourStats',
+  'TourReview',
+  'ReviewReply',
+  'TourComment',
+  'TourHistory',
+  'TourAccessCode',
+  'TourPurchase',
+  'UserEntitlement',
   'GuideDashboardStats',
 ];
-
-const SEARCH_FIELDS = {
-  GuideTour: ['title', 'guideId'],
-  StudioSession: ['guideId', 'title'],
-  StudioScene: ['title'],
-  ModerationItem: ['tourTitle', 'guideId'],
-  GuideDashboardStats: ['guideId'],
-};
 
 const dynamo = DynamoDBDocumentClient.from(
   new DynamoDBClient({ region: REGION }),
   { marshallOptions: { removeUndefinedValues: true } },
 );
 
-let totalDeleted = 0;
-
-for (const table of TABLES) {
-  const fullName = `${table}-${APP_ID}-${ENV}`;
-  const idsToDelete = new Set();
-
-  // Scan for items with e2e- prefix in ID
+async function scanTable(table) {
+  const tableName = `${table}-${APP_ID}-${ENV}`;
+  const items = [];
   let lastKey;
+
   do {
-    const scan = await dynamo.send(new ScanCommand({
-      TableName: fullName,
-      ProjectionExpression: 'id',
+    const result = await dynamo.send(new ScanCommand({
+      TableName: tableName,
       ExclusiveStartKey: lastKey,
     }));
-
-    for (const item of scan.Items ?? []) {
-      if (typeof item.id === 'string' && item.id.startsWith(E2E_PREFIX)) {
-        idsToDelete.add(item.id);
-      }
-    }
-    lastKey = scan.LastEvaluatedKey;
+    items.push(...(result.Items ?? []));
+    lastKey = result.LastEvaluatedKey;
   } while (lastKey);
 
-  // Scan by relevant text fields
-  for (const field of (SEARCH_FIELDS[table] ?? [])) {
-    let key;
-    do {
-      const result = await dynamo.send(new ScanCommand({
-        TableName: fullName,
-        ProjectionExpression: 'id',
-        FilterExpression: 'begins_with(#f, :prefix)',
-        ExpressionAttributeNames: { '#f': field },
-        ExpressionAttributeValues: { ':prefix': E2E_PREFIX },
-        ExclusiveStartKey: key,
+  return { table, tableName, items };
+}
+
+function startsWithE2e(value) {
+  return typeof value === 'string' && value.toLowerCase().startsWith(E2E_PREFIX);
+}
+
+function directlyMarked(item) {
+  return ['id', 'title', 'tourTitle', 'guideId'].some((field) => startsWithE2e(item[field]));
+}
+
+function collectIds(items) {
+  return new Set(items.map((item) => item.id).filter((id) => typeof id === 'string'));
+}
+
+function selectRelatedData(scans) {
+  const byTable = new Map(scans.map(({ table, items }) => [table, items]));
+  const selected = new Map();
+
+  const select = (table, predicate) => {
+    const matches = (byTable.get(table) ?? []).filter(
+      (item) => directlyMarked(item) || predicate(item),
+    );
+    selected.set(table, matches);
+    return collectIds(matches);
+  };
+
+  const tourIds = select('GuideTour', () => false);
+  const sessionIds = select('StudioSession', (item) => tourIds.has(item.tourId));
+  const sceneIds = select('StudioScene', (item) => sessionIds.has(item.sessionId));
+  const reviewIds = select('TourReview', (item) => tourIds.has(item.tourId));
+
+  select('ModerationItem', (item) => tourIds.has(item.tourId));
+  select('TourLanguagePurchase', (item) => sessionIds.has(item.sessionId));
+  select('SceneSegment', (item) => sceneIds.has(item.sceneId));
+  select('WalkSegment', (item) =>
+    sessionIds.has(item.sessionId) || tourIds.has(item.tourId));
+  select('TourStats', (item) => tourIds.has(item.tourId));
+  select('ReviewReply', (item) => reviewIds.has(item.reviewId));
+  select('TourComment', (item) => tourIds.has(item.tourId));
+  select('TourHistory', (item) => tourIds.has(item.tourId));
+  select('TourAccessCode', (item) => tourIds.has(item.tourId));
+  select('TourPurchase', (item) => tourIds.has(item.tourId));
+  select('UserEntitlement', (item) => tourIds.has(item.tourId));
+  select('GuideDashboardStats', () => false);
+
+  return selected;
+}
+
+async function deleteItems(tableName, items) {
+  let deleted = 0;
+
+  for (let index = 0; index < items.length; index += 25) {
+    let pending = items.slice(index, index + 25).map(({ id }) => ({
+      DeleteRequest: { Key: { id } },
+    }));
+
+    for (let attempt = 0; pending.length > 0 && attempt < 5; attempt += 1) {
+      const result = await dynamo.send(new BatchWriteCommand({
+        RequestItems: { [tableName]: pending },
       }));
-      for (const item of result.Items ?? []) {
-        if (typeof item.id === 'string') {
-          idsToDelete.add(item.id);
-        }
+      const unprocessed = result.UnprocessedItems?.[tableName] ?? [];
+      deleted += pending.length - unprocessed.length;
+      pending = unprocessed;
+
+      if (pending.length > 0) {
+        await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
       }
-      key = result.LastEvaluatedKey;
-    } while (key);
+    }
+
+    if (pending.length > 0) {
+      throw new Error(`[cleanup] ${tableName}: ${pending.length} deletions remained unprocessed`);
+    }
   }
 
-  if (idsToDelete.size === 0) {
-    console.log(`[cleanup] ${table}: 0 items to delete`);
+  return deleted;
+}
+
+if (!/^[a-z0-9]{10,32}$/i.test(APP_ID)) {
+  throw new Error(`[cleanup] Invalid AMPLIFY_APP_ID: ${APP_ID}`);
+}
+
+console.log(`[cleanup] Backend ${APP_ID}/${ENV} in ${REGION}${DRY_RUN ? ' (dry run)' : ''}`);
+const scans = await Promise.all(TABLES.map(scanTable));
+const selected = selectRelatedData(scans);
+let total = 0;
+
+for (const { table, tableName } of scans) {
+  const items = selected.get(table) ?? [];
+  if (items.length === 0) {
+    console.log(`[cleanup] ${table}: 0`);
     continue;
   }
 
-  // Batch delete with retry for unprocessed items (max 25 per batch)
-  const ids = [...idsToDelete];
-  for (let i = 0; i < ids.length; i += 25) {
-    const batch = ids.slice(i, i + 25);
-    let requestItems = {
-      [fullName]: batch.map(id => ({ DeleteRequest: { Key: { id } } })),
-    };
-    for (let attempt = 0; attempt < 3; attempt++) {
-      const response = await dynamo.send(new BatchWriteCommand({ RequestItems: requestItems }));
-      const unprocessed = response.UnprocessedItems?.[fullName];
-      if (!unprocessed || unprocessed.length === 0) break;
-      requestItems = { [fullName]: unprocessed };
-      await new Promise(r => setTimeout(r, 1000 * (attempt + 1)));
-    }
-  }
-
-  console.log(`[cleanup] ${table}: deleted ${idsToDelete.size} items`);
-  totalDeleted += idsToDelete.size;
+  const count = DRY_RUN ? items.length : await deleteItems(tableName, items);
+  console.log(`[cleanup] ${table}: ${DRY_RUN ? 'would delete' : 'deleted'} ${count}`);
+  total += count;
 }
 
-console.log(`[cleanup] Total deleted: ${totalDeleted} items`);
+console.log(`[cleanup] Total ${DRY_RUN ? 'selected' : 'deleted'}: ${total}`);
