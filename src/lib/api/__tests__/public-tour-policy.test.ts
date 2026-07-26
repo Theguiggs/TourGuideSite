@@ -19,6 +19,7 @@ describe('isPublicCatalogueTour', () => {
     'e2e-catalogue-123 Tour publiée',
     'E2E-admin-456 Visite',
     '  e2e-cross-platform-789 Grasse',
+    'Persistence Test 1785092298316',
   ])('hides E2E test tour %s', (title) => {
     expect(isPublicCatalogueTour({ title })).toBe(false);
   });
