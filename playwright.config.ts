@@ -3,6 +3,8 @@ dotenv.config({ path: '.env.e2e' });
 
 import { defineConfig } from '@playwright/test';
 
+process.env.E2E_RUN_PREFIX ??= `local-${process.pid}-${Date.now()}`;
+
 export default defineConfig({
   testDir: './e2e/tests',
   fullyParallel: false,

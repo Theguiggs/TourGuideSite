@@ -12,7 +12,9 @@ import { BatchWriteCommand, DynamoDBDocumentClient, ScanCommand } from '@aws-sdk
 const APP_ID = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
 const ENV = process.env.AMPLIFY_ENV ?? 'NONE';
 const REGION = process.env.AWS_REGION ?? 'us-east-1';
-const E2E_PREFIX = 'e2e-';
+const CLEANUP_PREFIX = process.argv
+  .find((argument) => argument.startsWith('--prefix='))
+  ?.slice('--prefix='.length) ?? 'e2e-';
 const DRY_RUN = process.argv.includes('--dry-run');
 
 const TABLES = [
@@ -57,7 +59,7 @@ async function scanTable(table) {
 }
 
 function startsWithE2e(value) {
-  return typeof value === 'string' && value.toLowerCase().startsWith(E2E_PREFIX);
+  return typeof value === 'string' && value.toLowerCase().startsWith(CLEANUP_PREFIX);
 }
 
 function directlyMarked(item) {
@@ -134,8 +136,14 @@ async function deleteItems(tableName, items) {
 if (!/^[a-z0-9]{10,32}$/i.test(APP_ID)) {
   throw new Error(`[cleanup] Invalid AMPLIFY_APP_ID: ${APP_ID}`);
 }
+if (!CLEANUP_PREFIX.startsWith('e2e-')) {
+  throw new Error(`[cleanup] Refusing unsafe prefix: ${CLEANUP_PREFIX}`);
+}
 
-console.log(`[cleanup] Backend ${APP_ID}/${ENV} in ${REGION}${DRY_RUN ? ' (dry run)' : ''}`);
+console.log(
+  `[cleanup] Backend ${APP_ID}/${ENV} in ${REGION}, prefix "${CLEANUP_PREFIX}"` +
+  `${DRY_RUN ? ' (dry run)' : ''}`,
+);
 const scans = await Promise.all(TABLES.map(scanTable));
 const selected = selectRelatedData(scans);
 let total = 0;

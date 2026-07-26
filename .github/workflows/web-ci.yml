@@ -101,6 +101,7 @@ jobs:
       AWS_REGION: us-east-1
       AMPLIFY_APP_ID: ${{ secrets.AMPLIFY_APP_ID }}
       E2E_ALLOW_TEST_TOURS: 'true'
+      E2E_RUN_PREFIX: ${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
         with:
