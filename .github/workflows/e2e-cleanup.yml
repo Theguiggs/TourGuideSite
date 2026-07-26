@@ -13,10 +13,10 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: us-east-1
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
       - run: npm ci --ignore-scripts
       - name: Write amplify_outputs.json
         run: echo "${{ secrets.AMPLIFY_OUTPUTS_B64 }}" | base64 -d > amplify_outputs.json

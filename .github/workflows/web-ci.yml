@@ -19,10 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
       - run: npm ci
       - run: npm run lint
@@ -31,18 +31,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.repository }}
           path: TourGuideWeb
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: Theguiggs/TourGuideApp
           path: TourGuideApp
           token: ${{ secrets.TOURGUIDE_REPO_PAT }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: TourGuideWeb/package-lock.json
       - run: cd TourGuideWeb && npm ci
@@ -56,18 +56,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.repository }}
           path: TourGuideWeb
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: Theguiggs/TourGuideApp
           path: TourGuideApp
           token: ${{ secrets.TOURGUIDE_REPO_PAT }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: TourGuideWeb/package-lock.json
       - run: cd TourGuideWeb && npm ci
@@ -101,20 +101,21 @@ jobs:
       AWS_REGION: us-east-1
       AMPLIFY_APP_ID: ${{ secrets.AMPLIFY_APP_ID }}
       E2E_ALLOW_TEST_TOURS: 'true'
+      E2E_ALLOW_TEST_GUIDES: 'true'
       E2E_RUN_PREFIX: ${{ github.run_id }}-${{ github.run_attempt }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.repository }}
           path: TourGuideWeb
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: Theguiggs/TourGuideApp
           path: TourGuideApp
           token: ${{ secrets.TOURGUIDE_REPO_PAT }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: TourGuideWeb/package-lock.json
       - run: cd TourGuideWeb && npm ci
@@ -173,14 +174,14 @@ jobs:
             echo "⚠️ No test results found" >> $GITHUB_STEP_SUMMARY
           fi
       - name: Upload Playwright HTML report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: playwright-report
           path: TourGuideWeb/playwright-report/
           retention-days: 7
       - name: Upload test results (JUnit + JSON + screenshots + traces)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: e2e-test-results
@@ -193,18 +194,18 @@ jobs:
     timeout-minutes: 15
     needs: [unit-tests]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.repository }}
           path: TourGuideWeb
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: Theguiggs/TourGuideApp
           path: TourGuideApp
           token: ${{ secrets.TOURGUIDE_REPO_PAT }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: TourGuideWeb/package-lock.json
       - run: cd TourGuideWeb && npm ci

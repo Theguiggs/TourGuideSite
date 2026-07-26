@@ -13,6 +13,7 @@ import type { Schema } from '@amplify-schema';
 import { configureAmplify } from '@/lib/amplify/config';
 import { logger } from '@/lib/logger';
 import { isPublicCatalogueTour } from './public-tour-policy';
+import { isPublicCatalogueGuide } from './public-guide-policy';
 
 const SERVICE_NAME = 'AppSyncClient';
 
@@ -84,7 +85,7 @@ export async function listGuideProfiles(filters?: { city?: string }) {
         profileStatus: { eq: 'active' },
       },
     });
-    return result.data ?? [];
+    return (result.data ?? []).filter(isPublicCatalogueGuide);
   } catch (error) {
     logger.error(SERVICE_NAME, 'listGuideProfiles failed', { error: String(error) });
     return [];
