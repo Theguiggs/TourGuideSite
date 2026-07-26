@@ -8,5 +8,6 @@ export const COGNITO_CLIENT_ID = outputs.auth.user_pool_client_id;
 export const COGNITO_REGION = outputs.auth.aws_region;
 
 export function e2ePrefix(suite: string): string {
-  return `e2e-${suite}-${Date.now()}`;
+  const runPrefix = process.env.E2E_RUN_PREFIX;
+  return `e2e-${runPrefix ? `${runPrefix}-` : ''}${suite}-${Date.now()}`;
 }

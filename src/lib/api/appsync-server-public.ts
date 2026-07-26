@@ -14,6 +14,7 @@ import {
   queryPublishedTourContent,
   type PublishedTourContentQueryClient,
 } from './published-tour-content';
+import { isPublicCatalogueTour } from './public-tour-policy';
 
 const SERVICE_NAME = 'AppSyncServerPublic';
 
@@ -38,9 +39,10 @@ export async function listGuideToursServer(filters?: { city?: string; status?: s
       ...(filters?.city ? { city: { eq: filters.city } } : {}),
       ...(filters?.status ? { status: { eq: filters.status as 'published' } } : {}),
     };
-    return await paginateAll((nextToken) =>
+    const tours = await paginateAll((nextToken) =>
       client.models.GuideTour.list({ filter, nextToken: nextToken ?? undefined }),
     );
+    return tours.filter(isPublicCatalogueTour);
   } catch (error) {
     logger.error(SERVICE_NAME, 'listGuideToursServer failed', { error: String(error) });
     return [];
