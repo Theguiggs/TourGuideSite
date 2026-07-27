@@ -51,7 +51,8 @@ export const useLanguagePurchaseStore = create<LanguagePurchaseStoreState>((set)
   removePurchase: (sessionId, language) => {
     const key = getPurchaseKey(sessionId, language);
     set((state) => {
-      const { [key]: _, ...rest } = state.purchases;
+      const rest = { ...state.purchases };
+      delete rest[key];
       return { purchases: rest };
     });
   },

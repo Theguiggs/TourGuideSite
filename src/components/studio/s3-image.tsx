@@ -54,6 +54,8 @@ export function S3Image({ s3Key, alt, className = '', fallback = '📷' }: S3Ima
   }
 
   return (
+    // S3 URLs are resolved dynamically and are not compatible with static Next image optimization.
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={url}
       alt={alt}

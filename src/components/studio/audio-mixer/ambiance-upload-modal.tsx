@@ -54,13 +54,13 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const resetMedia = () => {
+  const resetMedia = useCallback(() => {
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     setBlob(null);
     setPreviewUrl(null);
     setDurationSec(0);
     setIsPlaying(false);
-  };
+  }, [previewUrl]);
 
   // --- Recording ---
 
@@ -97,8 +97,7 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
       setError('Impossible d\'acceder au microphone. Autorisez l\'acces.');
       logger.error(SERVICE_NAME, 'getUserMedia failed', { error: String(e) });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [resetMedia, recordingTime]);
 
   const stopRecording = useCallback(() => {
     if (mediaRecorderRef.current && isRecording) {
@@ -138,7 +137,7 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
     if (!title) {
       setTitle(file.name.replace(/\.[^/.]+$/, '').replace(/[_-]/g, ' ').slice(0, 60));
     }
-  }, [title]);
+  }, [title, resetMedia]);
 
   // --- Preview ---
 

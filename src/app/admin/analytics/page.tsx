@@ -75,7 +75,7 @@ export default function AdminAnalyticsPage() {
       <section className="mb-8">
         <h2 className="text-lg font-semibold text-ink mb-3">Funnel de production</h2>
         <div className="bg-card border border-line rounded-lg p-4">
-          {Object.entries(funnel).map(([key, value], index) => {
+          {Object.entries(funnel).map(([key, value]) => {
             const labels: Record<string, string> = {
               fieldSessions: 'Sessions terrain',
               studioCreated: 'Studios créés',

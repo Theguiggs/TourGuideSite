@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unknown-property */
+
 // Story 3.5 — Route Edge OG dynamique pour articles Journal (Phase B).
 // Stub minimal : Phase A (V1.0) n'a pas encore d'API journal — on rend un layout
 // paper avec un fallback `Journal Murmure` + slug humanisé.

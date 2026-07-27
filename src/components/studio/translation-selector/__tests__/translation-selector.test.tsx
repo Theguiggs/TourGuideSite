@@ -31,7 +31,7 @@ jest.mock('@/lib/logger', () => ({
   logger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
 }));
 
-const { estimateCost, checkMicroserviceHealth, requestTranslation } = jest.requireMock('@/lib/api/translation');
+const { checkMicroserviceHealth, requestTranslation } = jest.requireMock('@/lib/api/translation');
 
 const makeSegment = (overrides?: Partial<SceneSegment>): SceneSegment => ({
   id: 'seg-1',

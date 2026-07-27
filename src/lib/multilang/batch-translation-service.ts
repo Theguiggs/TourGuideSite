@@ -4,7 +4,7 @@ import { requestTranslation, getTranslationStatus } from '@/lib/api/translation'
 import type { TranslationResult } from '@/lib/api/translation';
 import { requestTTS, getTTSStatus } from '@/lib/api/tts';
 import type { TTSResult } from '@/lib/api/tts';
-import { getProviderForTier, isLanguagePremium } from '@/lib/multilang/provider-router';
+import { getProviderForTier } from '@/lib/multilang/provider-router';
 import { updateSceneSegment, listSegmentsByScene, getStudioSession, updateStudioSession } from '@/lib/api/studio';
 import { logger } from '@/lib/logger';
 

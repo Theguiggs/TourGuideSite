@@ -44,7 +44,7 @@ interface LanguageBatchStoreState {
 
 // --- Store ---
 
-export const useLanguageBatchStore = create<LanguageBatchStoreState>((set, get) => ({
+export const useLanguageBatchStore = create<LanguageBatchStoreState>((set) => ({
   progress: {},
   failedSceneDetails: {},
   retryingScenes: {},

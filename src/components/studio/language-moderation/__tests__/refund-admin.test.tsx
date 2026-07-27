@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import {
   refundLanguagePurchase,
   confirmLanguagePurchase,
@@ -152,10 +152,6 @@ describe('ML-5.5 Refund Admin', () => {
     expect(progress.total).toBe(3);
 
     // Verify the 100% failure condition that useAutoRefund checks
-    const is100PercentFailed =
-      progress.status === 'failed' &&
-      progress.failedScenes.length === progress.total &&
-      progress.total > 0;
     // Note: markFailed doesn't set status to 'failed' by default —
     // it only adds to failedScenes. The condition still holds for count check.
     expect(progress.failedScenes.length).toBe(progress.total);

@@ -94,6 +94,9 @@ async function stubCreatePaymentIntent(
   _languages: string[],
   _qualityTier: QualityTier,
 ): Promise<Result<PaymentIntentResult>> {
+  void _sessionId;
+  void _languages;
+  void _qualityTier;
   await new Promise((r) => setTimeout(r, 500));
   return {
     ok: true,

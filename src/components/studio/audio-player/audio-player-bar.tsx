@@ -52,7 +52,6 @@ export function AudioPlayerBar({ label, compact = false }: AudioPlayerBarProps) 
   // Don't render if no audio loaded
   if (!state.currentUrl) return null;
 
-  const progress = state.duration > 0 ? (state.currentTime / state.duration) * 100 : 0;
 
   if (compact) {
     return (

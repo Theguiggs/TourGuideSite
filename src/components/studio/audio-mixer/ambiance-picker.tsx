@@ -4,7 +4,6 @@ import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import {
   AMBIANCE_CATEGORIES,
   getAmbiancesByCategory,
-  getAmbianceUrl,
   type AmbianceCategory,
   type AmbianceSound,
 } from '@/lib/studio/ambiance-catalog';

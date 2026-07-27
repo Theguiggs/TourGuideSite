@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import type { SceneSegment, StudioScene } from '@/types/studio';
 import { ManuallyEditedModal } from './manually-edited-modal';
 import { logger } from '@/lib/logger';

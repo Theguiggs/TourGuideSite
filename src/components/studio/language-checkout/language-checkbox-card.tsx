@@ -67,7 +67,6 @@ export function LanguageCheckboxCard({
   purchasedTier = null,
   purchasedType = null,
   isPremiumDisabled = false,
-  currentTier,
 }: LanguageCheckboxCardProps) {
   // Manual purchases can be toggled (removed), paid purchases cannot
   const isPaidPurchase = isPurchased && purchasedType !== 'manual';
@@ -150,6 +149,7 @@ export function LanguageCheckboxCard({
       </div>
 
       {/* Flag */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`https://flagcdn.com/w40/${countryCode}.png`}
         srcSet={`https://flagcdn.com/w80/${countryCode}.png 2x`}

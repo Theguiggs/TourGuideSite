@@ -26,12 +26,10 @@ import { useRecordingStore, selectRecorderState } from '@/lib/stores/recording-s
 import { shouldUseStubs } from '@/config/api-mode';
 import * as studioUploadService from '@/lib/studio/studio-upload-service';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
-import { TranslationSelector } from '@/components/studio/translation-selector';
-import { TranslationEditor } from '@/components/studio/translation-editor';
 import { LanguageTabs } from '@/components/studio/language-tabs';
 import type { LanguageTabItem } from '@/components/studio/language-tabs';
 import { useLanguagePurchaseStore } from '@/lib/stores/language-purchase-store';
-import { useLanguageBatchStore, selectBatchProgress } from '@/lib/stores/language-batch-store';
+import { useLanguageBatchStore } from '@/lib/stores/language-batch-store';
 import { tg } from '@murmure/design-system';
 import { LANG_TO_COUNTRY, LANGUAGE_CONFIG } from '@/components/studio/language-checkout/language-checkbox-card';
 import { TTSControls } from '@/components/studio/tts-controls';
@@ -67,52 +65,6 @@ const EditableMap = dynamic(
     loading: () => <div className="bg-paper-soft h-56 animate-pulse" />,
   },
 );
-
-function AudioSourceCard({ icon, label, sublabel, isSelected, isPlaying, onPlay, onSelect }: {
-  icon: string;
-  label: string;
-  sublabel: string;
-  isSelected: boolean;
-  isPlaying?: boolean;
-  onPlay: () => void;
-  onSelect: () => void;
-}) {
-  return (
-    <div
-      onClick={onSelect}
-      className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all cursor-pointer ${
-        isSelected
-          ? 'border-grenadine bg-grenadine-soft shadow-sm'
-          : 'border-line hover:border-line hover:bg-paper-soft'
-      }`}
-      role="radio"
-      aria-checked={isSelected}
-    >
-      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-lg flex-shrink-0 ${
-        isSelected ? 'bg-grenadine text-white' : 'bg-paper-soft'
-      }`}>
-        {isSelected ? '\u2713' : icon}
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className={`text-sm font-medium ${isSelected ? 'text-grenadine' : 'text-ink'}`}>
-          {label}
-          {isSelected && <span className="ml-2 text-xs bg-grenadine text-white px-1.5 py-0.5 rounded">Selectionne</span>}
-        </p>
-        <p className="text-xs text-ink-60">{sublabel}</p>
-      </div>
-      <button
-        onClick={(e) => { e.stopPropagation(); onPlay(); }}
-        className={`text-xs font-medium py-1.5 px-4 rounded-lg transition flex-shrink-0 ${
-          isPlaying
-            ? 'bg-grenadine text-white animate-pulse'
-            : 'bg-paper-soft hover:bg-paper-deep text-ink-80'
-        }`}
-      >
-        {isPlaying ? '... Lecture' : 'Ecouter'}
-      </button>
-    </div>
-  );
-}
 
 export default function ScenesPage() {
   const params = useParams<{ sessionId: string }>();
@@ -378,7 +330,7 @@ export default function ScenesPage() {
         }
       });
     return () => { cancelled = true; };
-  }, [refreshLangSegments]);
+  }, [refreshLangSegments, activeLanguageTab, purchases, scenes, session, sessionId]);
 
   const handleRunAllLanguageBatch = useCallback(async () => {
     if (!session || isMultiLangBatchRunning) return;
@@ -568,7 +520,7 @@ export default function ScenesPage() {
         // Check microservice health for TTS/translation
         checkMicroserviceHealth().then((h) => setGpuAvailable(h.tts)).catch(() => setGpuAvailable(false));
         logger.info(SERVICE_NAME, 'Scenes page loaded', { sessionId });
-      } catch (e) {
+      } catch {
         if (!cancelled) { setError('Impossible de charger.'); }
       } finally {
         if (!cancelled) setIsLoading(false);

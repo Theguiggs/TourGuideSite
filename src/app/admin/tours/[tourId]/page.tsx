@@ -15,10 +15,6 @@ const TourMap = dynamic(() => import('@/components/map/TourMap'), {
   loading: () => <div className="bg-paper-deep rounded-lg h-64 animate-pulse" />,
 });
 
-const LANG_FLAGS: Record<string, string> = {
-  fr: 'FR', en: 'EN', es: 'ES', it: 'IT', de: 'DE',
-};
-
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   draft: { label: 'Brouillon', className: 'bg-paper-deep text-ink-80' },
   synced: { label: 'Transf\u00e9r\u00e9', className: 'bg-mer-soft text-mer' },

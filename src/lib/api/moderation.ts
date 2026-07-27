@@ -343,7 +343,6 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
     const fallbackTour = await appsync.getGuideTourById(moderationId);
     if (!fallbackTour) return null;
     const fallbackProfile = await appsync.getGuideProfileById(fallbackTour.guideId, 'userPool');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     item = {
       id: moderationId,
       tourId: fallbackTour.id,
@@ -800,7 +799,7 @@ export async function addReviewComment(
       await appsync.updateStudioSceneMutation(comment.sceneId, {
         moderationFeedback: `${comment.reviewerName}: ${comment.comment}`,
       });
-    } catch (e) {
+    } catch {
       // Non-blocking — guide will still see GuideTour comments
     }
   }

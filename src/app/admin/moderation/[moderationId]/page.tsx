@@ -181,7 +181,7 @@ export default function ModerationReviewPage() {
       : initialLang ? 'tourist' : 'overview',
   );
   // Language purchases and translated segments for preview
-  const [languagePurchases, setLanguagePurchases] = useState<TourLanguagePurchase[]>([]);
+  const [, setLanguagePurchases] = useState<TourLanguagePurchase[]>([]);
   const [segmentsByScene, setSegmentsByScene] = useState<Record<string, SceneSegment[]>>({});
   // Fixed to the language from ?lang= param — no toggle, one language at a time
   const activePreviewLang = initialLang || 'fr';
@@ -255,7 +255,7 @@ export default function ModerationReviewPage() {
         });
 
         // Load segments for all scenes (for translated content)
-        console.log('[ModerationDetail] Loading segments for', d.scenes.length, 'scenes, sessionId:', d.sessionId, 'activePreviewLang:', initialLang);
+        console.log('[ModerationDetail] Loading segments for', d.scenes.length, 'scenes, sessionId:', d.sessionId);
         if (d.scenes.length > 0) {
           setLoadingSegments(true);
           Promise.all(
@@ -515,21 +515,6 @@ export default function ModerationReviewPage() {
       setPlayingSceneId(null);
     }
   }, [playingSceneId]);
-
-  /** Get available translation languages from segments */
-  const availableLanguages = (() => {
-    const langs = new Set<string>();
-    for (const segments of Object.values(segmentsByScene)) {
-      for (const seg of segments) {
-        if (seg.language) langs.add(seg.language);
-      }
-    }
-    // Also add languages from purchases
-    for (const p of languagePurchases) {
-      langs.add(p.language);
-    }
-    return Array.from(langs).sort();
-  })();
 
   if (loading) {
     return (
@@ -1217,7 +1202,6 @@ export default function ModerationReviewPage() {
                       longitude: s.longitude,
                       title: s.title,
                       sceneIndex: s.order - 1,
-                      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
                     } as import("@/types/studio").StudioScene))}
                     // Trace le parcours RÉEL du guide (polyline) au lieu de relier
                     // les POIs en lignes droites (cohérent avec l'aperçu plus haut).

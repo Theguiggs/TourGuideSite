@@ -62,7 +62,7 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
   useEffect(() => {
     if (!speechUrl) return;
     let cancelled = false;
-    setIsLoading(true); // eslint-disable-line react-hooks/set-state-in-effect -- loading flag for async fetch
+    setIsLoading(true);
     (async () => {
       try {
         // S3 keys (e.g. guide-studio/...) need to be resolved to a signed URL before fetching

@@ -10,7 +10,7 @@
  * 4. All segments already translated -> batch does NOT trigger
  * 5. No purchase for language -> batch does NOT trigger
  */
-import type { SceneSegment, QualityTier } from '@/types/studio';
+import type { QualityTier } from '@/types/studio';
 
 // --- Extract the batch-trigger decision logic as a pure function ---
 

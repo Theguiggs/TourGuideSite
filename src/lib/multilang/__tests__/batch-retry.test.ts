@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { StudioScene, SceneSegment } from '@/types/studio';
 
 // --- Mocks (inline jest.fn per hoisting rules) ---

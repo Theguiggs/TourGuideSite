@@ -112,7 +112,6 @@ describe('LanguageTabs', () => {
 
   it('renders flag images from flagcdn.com', () => {
     render(<LanguageTabs languages={mockLanguages} activeLanguage="fr" onLanguageChange={jest.fn()} />);
-    const images = screen.getAllByRole('presentation', { hidden: true });
     // All flag images should have flagcdn.com src
     const flagImgs = document.querySelectorAll('img[src*="flagcdn.com"]');
     expect(flagImgs.length).toBe(3);

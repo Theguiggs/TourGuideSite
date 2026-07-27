@@ -227,17 +227,20 @@ export default function CleanupPage() {
   // made within the last 2s aren't silently dropped, then mark unmounted so
   // the late save promise doesn't call setState on a dead tree.
   useEffect(() => {
+    const scenePatchBuffer = pendingScenePatches.current;
+    const walkPatchBuffer = pendingWalkPatches.current;
+
     return () => {
       if (saveTimer.current) {
         clearTimeout(saveTimer.current);
         saveTimer.current = null;
       }
       // Fire pending saves without awaiting — we are unmounting.
-      const scenePatches = Array.from(pendingScenePatches.current.entries());
-      const walkPatches = Array.from(pendingWalkPatches.current.entries());
+      const scenePatches = Array.from(scenePatchBuffer.entries());
+      const walkPatches = Array.from(walkPatchBuffer.entries());
       const metaPatch = { ...pendingMetadataPatch.current };
-      pendingScenePatches.current.clear();
-      pendingWalkPatches.current.clear();
+      scenePatchBuffer.clear();
+      walkPatchBuffer.clear();
       pendingMetadataPatch.current = {};
       for (const [id, patch] of scenePatches) {
         void updateSceneData(id, patch as Record<string, unknown>);

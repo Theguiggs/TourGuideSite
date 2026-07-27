@@ -8,7 +8,7 @@ class MockAudioContext {
       samples[i] = Math.sin(i * 0.1) * 0.3;
     }
     return {
-      getChannelData: (_channel: number) => samples,
+      getChannelData: () => samples,
       sampleRate: 44100,
       length: samples.length,
       duration: 1,

@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { logger } from '@/lib/logger';
 import {
   getTranslationStatus,
-  type TranslationResult,
   type CostEstimate,
 } from '@/lib/api/translation';
 import type { TranslationProvider, TranslationJobStatus } from '@/types/studio';
