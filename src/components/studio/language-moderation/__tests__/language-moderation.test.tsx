@@ -5,9 +5,7 @@ import { ModerationFeedbackForm } from '../moderation-feedback-form';
 import {
   updateModerationStatusByLang,
   confirmLanguagePurchase,
-  listLanguagePurchases,
   __resetLanguagePurchaseStubs,
-  __getStubPurchases,
 } from '@/lib/api/language-purchase';
 import type { TourLanguagePurchase } from '@/types/studio';
 

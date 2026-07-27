@@ -226,7 +226,7 @@ export function OpenMultilangModal({
       logger.error(SERVICE_NAME, 'runConfirm failed', { error: String(err) });
     }
     setIsLoading(false);
-  }, [sessionId, newSelections, upgradeSelections, autoLangs, chargeableSelections, freeLanguageUsed, setPurchases, onLanguagesChanged, onClose, onBatchTranslationNeeded, purchases]);
+  }, [sessionId, newSelections, upgradeSelections, autoLangs, chargeableSelections, freeLanguageUsed, setPurchases, onLanguagesChanged, onClose, onBatchTranslationNeeded]);
 
   const handleConfirm = useCallback(async () => {
     if (chargeableCount === 0) return;
@@ -363,6 +363,8 @@ export function OpenMultilangModal({
                       <tr key={lang.code} className="border-b border-line/50" data-testid={`lang-row-${lang.code}`}>
                         <td className="py-2">
                           <span className="flex items-center gap-2">
+                            {/* External flag image: Next/Image does not add value for this fixed-size asset. */}
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                               src={`https://flagcdn.com/w40/${lang.countryCode}.png`}
                               width="20" height="15" alt="" aria-hidden="true" className="shrink-0"

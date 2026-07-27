@@ -25,7 +25,7 @@ function mockMicroservice(opts: {
   submitStatus?: number;
   job?: { status: string; audio_base64?: string; duration_ms?: number };
 } = {}) {
-  global.fetch = jest.fn(async (url: string, init?: RequestInit) => {
+  global.fetch = jest.fn(async (url: string) => {
     const u = String(url);
     if (u.endsWith('/v1/tts/generate')) {
       const status = opts.submitStatus ?? 202;

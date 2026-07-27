@@ -1183,7 +1183,7 @@ export function getStubScenesCount(sessionId: string): number {
 
 // --- SceneSegment CRUD ---
 
-import type { SceneSegment, SegmentStatus, TranslationProvider } from '@/types/studio';
+import type { SceneSegment, SegmentStatus } from '@/types/studio';
 
 const stubSegments: SceneSegment[] = [];
 
@@ -1367,7 +1367,6 @@ export async function listSegmentsByScene(
     const { getClient } = await import('./appsync-client');
     const client = getClient();
     // Use secondary index (GSI) on sceneId for efficient query
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let result: { data?: SceneSegment[] };
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

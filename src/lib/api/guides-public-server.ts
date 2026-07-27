@@ -72,11 +72,6 @@ async function getRealAllPublicGuides(): Promise<PublicGuideProfile[]> {
 // Stub fallbacks delegate to guides-public (client file) mock data — duplicated here
 // would bloat the server bundle; for stubs we return [] and rely on dev using the browser path.
 // In stub mode Server Components are rare, but keep behavior safe.
-async function getStubAllPublicGuides(): Promise<PublicGuideProfile[]> {
-  if (typeof window !== 'undefined') return [];
-  return [];
-}
-
 export async function getAllPublicGuides(): Promise<PublicGuideProfile[]> {
   if (shouldUseStubs()) {
     // Delegate to mock-based function from the client module (safe: pure data, no React hooks)

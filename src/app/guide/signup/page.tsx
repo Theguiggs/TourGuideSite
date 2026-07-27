@@ -210,7 +210,6 @@ export default function GuideSignupPage() {
     } finally {
       setLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email, resendCooldown]);
 
   // ---- Render ----

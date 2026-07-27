@@ -16,7 +16,6 @@ import type {
   QualityTier,
   PurchaseType,
   PurchaseStatus,
-  PurchaseModerationStatus,
   SceneSegment,
 } from '@/types/studio';
 

@@ -56,11 +56,9 @@ export function Collapsible({
     try {
       const stored = localStorage.getItem(`collapsible:${storageKey}`);
       if (stored !== null) {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setOpen(stored === 'true');
       }
     } catch { /* ignore */ }
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHydrated(true);
   }, [storageKey]);
 

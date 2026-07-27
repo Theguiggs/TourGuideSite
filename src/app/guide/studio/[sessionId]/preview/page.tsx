@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
-import { getStudioSession, listStudioScenes, getSceneStatusConfig } from '@/lib/api/studio';
+import { getStudioSession, listStudioScenes } from '@/lib/api/studio';
 import { withPublishedStatus } from '@/lib/studio/published-status';
 import { StepNav } from '@/components/studio/wizard';
 import { submitSessionForModeration, submitForReview, retractSubmission, deleteSession } from '@/lib/api/studio-submission';
@@ -13,7 +13,6 @@ import { useStudioSessionStore, selectSetActiveSession, selectClearSession } fro
 import { shouldUseStubs } from '@/config/api-mode';
 import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
 import { S3Image } from '@/components/studio/s3-image';
-import { ScenePhotos } from '@/components/studio/scene-photos';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
 import dynamic from 'next/dynamic';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
@@ -347,7 +346,7 @@ export default function PreviewPage() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [sessionId, session?.tourId]);
+  }, [sessionId, session?.tourId, setActiveSession]);
 
   const handleRetract = useCallback(async () => {
     if (!session?.tourId) return;
@@ -371,7 +370,7 @@ export default function PreviewPage() {
     } finally {
       setIsRetracting(false);
     }
-  }, [sessionId, session?.tourId]);
+  }, [sessionId, session?.tourId, setActiveSession]);
 
   const handleDelete = useCallback(async () => {
     setIsDeleting(true);
@@ -655,7 +654,6 @@ export default function PreviewPage() {
       {/* Scenes list */}
       <div className="space-y-2 mb-6" data-testid="preview-scenes">
         {scenes.map((scene, index) => {
-          const statusConfig = getSceneStatusConfig(scene.status);
           const isActive = playingIndex === index;
           const hasAudio = !!getSceneAudioKey(scene);
           const sceneTranscript = getSceneTranscript(scene);
@@ -788,7 +786,7 @@ export default function PreviewPage() {
                 setSubmitMessage('Parcours suspendu.');
                 const sess = await getStudioSession(sessionId);
                 if (sess) { setSession(sess); setActiveSession(sess); }
-              } catch (e) {
+              } catch {
                 setSubmitMessage('Erreur.');
               } finally {
                 setIsSubmitting(false);
@@ -819,7 +817,7 @@ export default function PreviewPage() {
                 setSubmitMessage('Parcours archivé.');
                 const sess = await getStudioSession(sessionId);
                 if (sess) { setSession(sess); setActiveSession(sess); }
-              } catch (e) {
+              } catch {
                 setSubmitMessage('Erreur.');
               } finally {
                 setIsSubmitting(false);

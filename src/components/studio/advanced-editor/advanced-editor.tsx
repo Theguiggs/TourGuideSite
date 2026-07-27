@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
-import dynamic from 'next/dynamic';
+import { useState, useEffect, useRef } from 'react';
 import { tg } from '@murmure/design-system';
 import { logger } from '@/lib/logger';
 import { detectSilences, type DetectedSegment } from '@/lib/api/silence-detection';
@@ -16,7 +15,7 @@ interface AdvancedEditorProps {
   onSegmentsChange?: (segments: DetectedSegment[]) => void;
 }
 
-export function AdvancedEditor({ audioKey, audioUrl, segments, onSegmentsChange }: AdvancedEditorProps) {
+export function AdvancedEditor({ audioKey, audioUrl, onSegmentsChange }: AdvancedEditorProps) {
   const [detectedSegments, setDetectedSegments] = useState<DetectedSegment[]>([]);
   const [isDetecting, setIsDetecting] = useState(false);
   const [waveformReady, setWaveformReady] = useState(false);

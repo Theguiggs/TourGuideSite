@@ -156,7 +156,6 @@ function FlyTo({ lat, lng }: { lat: number; lng: number }) {
   const map = useMap();
   useEffect(() => {
     map.flyTo([lat, lng], Math.max(map.getZoom(), 16), { duration: 0.8 });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, lat, lng]);
   return null;
 }

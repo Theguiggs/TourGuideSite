@@ -20,6 +20,7 @@ export interface SilenceDetectionResult {
 // --- Stub API ---
 
 function stubDetect(_audioKey: string): SilenceDetectionResult {
+  void _audioKey;
   // Generate 3-5 random segments for a ~3min audio
   const segmentCount = 3 + Math.floor(Math.random() * 3);
   const totalDuration = 180_000; // 3 min

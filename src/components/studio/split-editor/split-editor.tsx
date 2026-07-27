@@ -187,7 +187,7 @@ export function SplitEditor({
     } else {
       logger.error(SERVICE_NAME, 'Save failed', { segmentId, error: result.error });
     }
-  }, [segment.id, segment.sceneId, segment.language, segment.manuallyEdited, sessionId, editedTitle, setSegmentStatus, onSaved, onSegmentCreated]);
+  }, [segment.sceneId, segment.language, segment.manuallyEdited, sessionId, editedTitle, setSegmentStatus, onSaved, onSegmentCreated]);
 
   // Combine text + title so title-only edits also trigger auto-save
   const autoSaveData = `${editedText}\n---TITLE---\n${editedTitle}`;
@@ -257,6 +257,7 @@ export function SplitEditor({
         {/* Source text (read-only) */}
         <div>
           <label className="text-sm font-medium text-ink-80 flex items-center gap-2 mb-1">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={getFlagUrl(sourceLang)}
               alt={sourceLang.toUpperCase()}
@@ -279,6 +280,7 @@ export function SplitEditor({
               htmlFor={`split-editor-textarea-${segment.id}`}
               className="text-sm font-medium text-ink-80 flex items-center gap-2"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={getFlagUrl(targetLang)}
                 alt={targetLang.toUpperCase()}

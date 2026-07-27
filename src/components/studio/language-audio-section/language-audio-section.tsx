@@ -8,8 +8,6 @@ import { AudioRecorder } from '@/components/studio/audio-recorder';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { updateSceneSegment, createSceneSegment } from '@/lib/api/studio';
-import { shouldUseStubs } from '@/config/api-mode';
-import * as studioUploadService from '@/lib/studio/studio-upload-service';
 import type { SceneSegment, AudioSource } from '@/types/studio';
 
 const SERVICE_NAME = 'LanguageAudioSection';
@@ -137,7 +135,7 @@ export function LanguageAudioSection({
     } else {
       onAudioSaved?.();
     }
-  }, [segment.id, segment.sceneId, segment.segmentIndex, segment.language, sessionId, onAudioSaved]);
+  }, [segment.sceneId, segment.segmentIndex, segment.language, sessionId, onAudioSaved]);
 
   // --- Recording complete callback ---
 

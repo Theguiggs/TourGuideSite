@@ -74,7 +74,6 @@ export function LanguagePreviewPlayer({
   scenes,
   segments,
   language,
-  teaserMode = false,
 }: LanguagePreviewPlayerProps) {
   const [mode, setMode] = useState<PlaybackMode>('idle');
   const [currentSceneIndex, setCurrentSceneIndex] = useState<number | null>(null);

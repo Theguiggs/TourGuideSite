@@ -49,6 +49,7 @@ export async function analyzeAudioQuality(blob: Blob): Promise<QualityResult> {
 }
 
 function analyzeChannelData(data: Float32Array, sampleRate: number): QualityResult {
+  void sampleRate;
   const totalSamples = data.length;
   if (totalSamples === 0) return fallbackResult();
 

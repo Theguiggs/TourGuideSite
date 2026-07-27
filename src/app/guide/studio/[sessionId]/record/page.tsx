@@ -12,7 +12,6 @@ import { TakesList } from '@/components/studio/takes-list';
 import { FileImport } from '@/components/studio/file-import';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { useRecordingStore } from '@/lib/stores/recording-store';
-import { useCallback } from 'react';
 import type { StudioSession, StudioScene } from '@/types/studio';
 
 const SERVICE_NAME = 'RecordPage';
@@ -96,7 +95,7 @@ export default function RecordPage() {
       clearSession();
       useRecordingStore.getState().resetStore();
     };
-  }, [sessionId, setActiveSession, clearSession]);
+  }, [sessionId, setActiveSession, clearSession, queryLang, querySceneId]);
 
   if (isLoading) {
     return (

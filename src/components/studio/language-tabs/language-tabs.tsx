@@ -126,6 +126,7 @@ export function LanguageTabs({ languages, activeLanguage, onLanguageChange }: La
               }`}
               data-testid={`lang-tab-${tab.code}`}
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={`https://flagcdn.com/w40/${tab.countryCode}.png`}
                 srcSet={`https://flagcdn.com/w80/${tab.countryCode}.png 2x`}
@@ -172,6 +173,7 @@ export function LanguageTabs({ languages, activeLanguage, onLanguageChange }: La
                     }`}
                     data-testid={`lang-overflow-${tab.code}`}
                   >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={`https://flagcdn.com/w40/${tab.countryCode}.png`}
                       srcSet={`https://flagcdn.com/w80/${tab.countryCode}.png 2x`}

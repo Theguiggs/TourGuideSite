@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unknown-property */
+
 // Story 3.5 — Route Edge OG dynamique pour pages tour.
 // Compose une preview 1200×630 via Satori (next/og built-in) avec :
 //   - color-block ville (mapping accent grenadine/ocre/mer/olive)

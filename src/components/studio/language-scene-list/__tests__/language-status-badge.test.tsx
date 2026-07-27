@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { LanguageStatusBadge, type SceneLanguageStatus } from '../language-status-badge';
-import { LanguageSceneList, computeSceneLanguageStatus, sortScenesByStatus } from '../language-scene-list';
+import { LanguageSceneList, computeSceneLanguageStatus } from '../language-scene-list';
 import type { StudioScene, SceneSegment } from '@/types/studio';
 import { hashSourceText } from '@/types/studio';
 import type { BatchProgress, FailedSceneEntry } from '@/lib/stores/language-batch-store';
