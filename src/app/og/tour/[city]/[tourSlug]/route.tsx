@@ -12,13 +12,13 @@
 // puis passer dans `ImageResponse({ fonts: [...] })`. Pour l'instant fallback `serif` system.
 //
 // TODO Story 3.5 follow-up : remplacer le stub `tour` par fetch via `getTourBySlug()` —
-// vérifier que le client AppSync server est compatible Edge runtime (sinon créer un endpoint
-// REST cache-friendly `/api/og-tour/{city}/{slug}`). Actuellement stub minimal.
+// Le runtime Node.js permet l'intégration future du client AppSync server.
+// Actuellement stub minimal.
 
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const contentType = 'image/png';
 
 interface Params {

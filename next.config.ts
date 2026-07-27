@@ -37,6 +37,11 @@ const contentSecurityPolicy = [
 
 const nextConfig: NextConfig = {
   transpilePackages: ['@murmure/design-system'],
+  turbopack: {
+    // Keep workspace detection inside this app even when a parent directory
+    // contains an unrelated lockfile.
+    root: process.cwd(),
+  },
   output: 'standalone',
   typescript: { ignoreBuildErrors: process.env.SKIP_NEXT_TYPECHECK === 'true' },
   async headers() {
