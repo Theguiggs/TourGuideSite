@@ -4,13 +4,13 @@
 **Ville :** Deauville
 **Thème :** Sport — yearlings, polo et bains de mer : le sport comme art de vivre normand.
 **Durée narration :** ~8 min
-**Distance :** ~4 km | **POIs :** 6
+**Distance :** ~8,4 km | **POIs :** 6
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Hippodrome de Clairefontaine : Le cheval, une manière de vivre
-**GPS :** 49.3480, 0.0580 *(approx. à vérifier)*
+## Scène 1 — Entrée publique de l’hippodrome de Clairefontaine : Le cheval, une manière de vivre
+**GPS :** 49.3461253, 0.0570551 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Bienvenue à Clairefontaine. Devant toi, une piste verte qui ondule, des tribunes de bois, l'odeur du foin, et partout, des chevaux. Cet hippodrome-là est né en 1928, et c'est le plus familier des deux que compte Deauville. Ici, on peut passer derrière le décor : longer les écuries au petit matin, voir les lads panser les bêtes, approcher ces athlètes de sang et de muscle avant qu'ils ne s'élancent. On court sur le plat, on saute les obstacles, et le dimanche, des familles entières viennent en voisins.
 
@@ -24,8 +24,8 @@ Prends maintenant la route de la ville. Compte un bon quart d'heure de marche ve
 
 ---
 
-## Scène 2 — Hippodrome de La Touques : Là où tout a commencé
-**GPS :** 49.3555, 0.0755 *(approx. à vérifier)*
+## Scène 2 — Entrée publique de l’hippodrome de La Touques : Là où tout a commencé
+**GPS :** 49.3510735, 0.0823374 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voici devant l'hippodrome de La Touques, le grand, le prestigieux. Pelouse impeccable, tribunes élégantes, drapeaux au vent. C'est ici, et non à Clairefontaine, que se joue la gloire.
 
@@ -38,7 +38,7 @@ Mais avant de courir, un cheval, ça s'achète. Et ça, à Deauville, c'est un s
 ---
 
 ## Scène 3 — Les ventes de yearlings : La bourse du rêve
-**GPS :** 49.3548, 0.0742 *(approx. à vérifier)*
+**GPS :** 49.350462, 0.073047 *(vérifié IGN — 2026-08-09)*
 
 Entre, si les portes sont ouvertes, dans ce grand rond couvert : le ring des ventes. Des gradins en cercle, une piste de sciure au centre, une chaire pour le commissaire-priseur. C'est ici, chaque année, que se vendent les yearlings.
 
@@ -50,8 +50,8 @@ C'est ça aussi, le cheval de Deauville : un commerce de sang bleu, une bourse d
 
 ---
 
-## Scène 4 — Le Pôle International du Cheval : Quand le sport devient un art
-**GPS :** 49.3520, 0.0770 *(approx. à vérifier)*
+## Scène 4 — Accès nord du Pôle International du Cheval : Quand le sport devient un art
+**GPS :** 49.341157, 0.0953086 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici devant le Pôle International du Cheval, une grande arène moderne, ses carrières de sable, ses gradins. Ici, on ne court pas : on danse et on saute.
 
@@ -64,20 +64,20 @@ Et c'est le propre de Deauville : le cheval y est tout à la fois. Une machine �
 ---
 
 ## Scène 5 — Le Polo de Deauville : Le sport et le beau monde
-**GPS :** 49.3530, 0.0778 *(approx. à vérifier)*
+**GPS :** 49.3530, 0.0778 *(vérifié IGN — 2026-08-09)*
 
 Devant toi s'étendent de larges pelouses parfaitement rases : les terrains de polo. Si tu viens en août, tu verras peut-être la scène — huit cavaliers lancés au galop, un maillet à la main, qui se disputent une petite balle de bois dans un fracas de sabots.
 
 Le polo est l'un des jeux les plus anciens et les plus rapides du monde. À Deauville, il a ses lettres de noblesse. Chaque été s'y dispute la Coupe d'Or, l'un des grands tournois d'Europe, qui attire des équipes venues de partout et des chevaux d'exception, ces « poneys » de polo, vifs comme l'éclair malgré leur nom.
 
-Autour du terrain, l'autre spectacle : le public. Chapeaux, robes claires, coupes de champagne à la main. À la mi-temps, tradition oblige, les spectateurs descendent sur la pelouse pour remettre en place les mottes de terre arrachées par les sabots. Le sport et le beau monde, main dans la main.
+Autour du terrain, l'autre spectacle : le public. Chapeaux, robes claires, programmes à la main. À la mi-temps, tradition oblige, les spectateurs descendent sur la pelouse pour remettre en place les mottes de terre arrachées par les sabots. Le sport et le beau monde, main dans la main.
 
 Tu l'as compris : ici, le cheval est mondain autant que sportif. Il nous reste à le suivre là où on l'attend le moins. Reviens vers la ville et la mer, un quart d'heure de marche vers le nord, jusqu'à la plage. Suis-moi.
 
 ---
 
-## Scène 6 — La plage : Les chevaux dans l'écume
-**GPS :** 49.3607, 0.0720 *(approx. à vérifier)*
+## Scène 6 — Les Planches, au bord de la plage : Les chevaux dans l'écume
+**GPS :** 49.359388, 0.072815 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y sommes : la plage de Deauville, le grand sable clair, les parasols, la Manche à perte de vue. Tu te demandes ce que le cheval vient faire ici, au bord de l'eau. Attends la réponse.
 

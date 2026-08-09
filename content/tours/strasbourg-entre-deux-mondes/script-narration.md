@@ -10,7 +10,7 @@
 ---
 
 ## Scène 1 — Ponts Couverts : Quatre drapeaux en une seule vie
-**GPS :** 48.5793, 7.7395 *(approx. à vérifier)*
+**GPS :** 48.5793, 7.7395 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi au milieu du pont. Devant toi, des tours carrées du Moyen Âge montent la garde au-dessus de l'eau. Derrière toi, le barrage Vauban ferme la rivière de tout son poids. Deux fortifications face à face, deux époques, un seul message : cette ville, tout le monde l'a voulue.
 
@@ -24,8 +24,8 @@ Longe l'eau vers la droite, entre les maisons à colombages. Dans quatre minutes
 
 ---
 
-## Scène 2 — Petite France : Le secret des cartes postales
-**GPS :** 48.5808, 7.7415 *(approx. à vérifier)*
+## Scène 2 — Quai de la Petite-France : Le secret des cartes postales
+**GPS :** 48.5806501, 7.7392769 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà place Benjamin-Zix, au cœur de la Petite France. Regarde ces maisons de tanneurs penchées sur l'eau : leurs greniers ouverts servaient à sécher les peaux, et l'odeur, crois-moi, ne ressemblait pas à celle d'aujourd'hui.
 
@@ -39,8 +39,8 @@ Traverse les passerelles et suis les ruelles vers l'est. À cinq minutes d'ici t
 
 ---
 
-## Scène 3 — Église Saint-Thomas : Le maréchal interdit de Paris
-**GPS :** 48.5800, 7.7460 *(approx. à vérifier)*
+## Scène 3 — Église protestante Saint-Thomas : Le maréchal interdit de Paris
+**GPS :** 48.5796572, 7.7456235 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette grande église rose, c'est Saint-Thomas — la cathédrale des protestants d'Alsace. Pousse la porte si elle est ouverte : ce qui se cache dedans est unique en France.
 
@@ -55,7 +55,7 @@ Remonte maintenant vers le nord. Dans sept minutes, tu débouches sur une place 
 ---
 
 ## Scène 4 — Place Kléber : Le général sous la place
-**GPS :** 48.5833, 7.7458 *(approx. à vérifier)*
+**GPS :** 48.5833, 7.7458 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu es sur la plus grande place de Strasbourg, son salon, son cœur battant. Et au milieu, sur son socle, un général de bronze : Kléber.
 
@@ -70,7 +70,7 @@ Continue vers l'est, dépasse les vitrines. À cinq minutes, une place élégant
 ---
 
 ## Scène 5 — Place Broglie : La chanson d'une nuit
-**GPS :** 48.5850, 7.7495 *(approx. à vérifier)*
+**GPS :** 48.5849867, 7.7503177 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette longue place aristocratique, avec l'Opéra au fond, s'appelle Broglie. Repère le bâtiment de la Banque de France, sur ta droite : à cet emplacement se dressait l'hôtel du maire de Strasbourg, Frédéric de Dietrich.
 
@@ -85,7 +85,7 @@ Au bout de la place, tu apercevras un général de bronze. Retiens-le : je te ra
 ---
 
 ## Scène 6 — Place de la République : La place de l'empereur
-**GPS :** 48.5870, 7.7540 *(approx. à vérifier)*
+**GPS :** 48.5870, 7.7540 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Sens-tu que tout a changé ? Les rues étroites ont disparu. Autour de toi, des palais de pierre grise, massifs, monumentaux. Tu viens de passer une frontière invisible : ici commence la ville allemande.
 
@@ -99,8 +99,8 @@ Garde cette image. Puis marche deux minutes vers la droite, vers le bâtiment au
 
 ---
 
-## Scène 7 — Bibliothèque nationale et universitaire : Les livres brûlés
-**GPS :** 48.5877, 7.7563 *(approx. à vérifier)*
+## Scène 7 — Bibliothèque nationale et universitaire de Strasbourg : Les livres brûlés
+**GPS :** 48.5871097, 7.7558219 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Ce temple du savoir, avec sa coupole et ses colonnes, cache une histoire de cendres.
 
@@ -115,7 +115,7 @@ Reprends ta marche : l'avenue qui s'ouvre là devant s'est appelée de quatre no
 ---
 
 ## Scène 8 — Avenue de la Liberté : La rue aux quatre noms
-**GPS :** 48.5880, 7.7590 *(approx. à vérifier)*
+**GPS :** 48.5862292, 7.7574341 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Marche tranquillement sous les arbres et regarde les façades cossues. Cette avenue est la même depuis cent cinquante ans. Son nom, lui, n'a pas arrêté de changer.
 
@@ -130,7 +130,7 @@ Continue l'avenue, puis oblique à droite vers le grand palais universitaire. L�
 ---
 
 ## Scène 9 — Palais universitaire : Séduire, puis broyer
-**GPS :** 48.5850, 7.7648 *(approx. à vérifier)*
+**GPS :** 48.5848004, 7.7625945 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde ce palais néo-Renaissance, son escalier, son allure de temple grec. Après 1871, l'Allemagne comprend qu'on n'annexe pas les cœurs avec des casernes. Alors elle offre à Strasbourg une université modèle, dotée de moyens colossaux, de laboratoires flambant neufs et de professeurs vedettes — un certain Röntgen, futur découvreur des rayons X, enseigne ici. Le message : voyez comme l'Empire vous gâte.
 
@@ -145,7 +145,7 @@ Encore deux minutes de marche, jusqu'aux jardins de la place de l'Université. O
 ---
 
 ## Scène 10 — Place de l'Université : Le serment tenu
-**GPS :** 48.5845, 7.7660 *(approx. à vérifier)*
+**GPS :** 48.5849918, 7.761946 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Entre dans les jardins et trouve un banc. Goethe, en étudiant flâneur, a usé ses semelles dans ce quartier — sa statue veille toujours sur les amoureux. Mais c'est une autre histoire que je veux te laisser.
 

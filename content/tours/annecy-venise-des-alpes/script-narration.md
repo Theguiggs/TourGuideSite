@@ -4,15 +4,15 @@
 **Ville :** Annecy
 **Thème :** Histoire & secrets — canaux, prisons et château : la vieille ville qui flotte entre lac et montagne.
 **Durée narration :** ~10 min
-**Distance :** ~2 km | **POIs :** 8
+**Distance :** ~2,6 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Pont Perrière : Le vaisseau de pierre
-**GPS :** 45.8986, 6.1291 *(approx. à vérifier)*
+**GPS :** 45.8986, 6.1291 *(vérifié IGN — 2026-08-09)*
 
-Arrête-toi au milieu du pont. Devant toi, cette étrave de pierre qui fend la rivière, comme un navire à l'ancre depuis huit siècles : le Palais de l'Île. Tu l'as déjà vu cent fois — sur les boîtes de chocolats, les magnets, les fonds d'écran. On dit souvent que c'est l'un des monuments les plus photographiés de France.
+Arrête-toi au milieu du pont. Devant toi, cette étrave de pierre qui fend la rivière, comme un navire à l'ancre depuis huit siècles : le Palais de l'Île. Tu l'as déjà vu cent fois — sur les cartes postales, les magnets, les fonds d'écran. On dit souvent que c'est l'un des monuments les plus photographiés de France.
 
 Et c'est un mensonge magnifique. Parce que cette carte postale est une prison.
 
@@ -25,7 +25,7 @@ Regarde encore la proue du vieux vaisseau. Puis suis la rivière vers l'aval, su
 ---
 
 ## Scène 2 — Les vannes du Thiou : La rivière-machine
-**GPS :** 45.8989, 6.1266 *(approx. à vérifier)*
+**GPS :** 45.898528, 6.120109 *(vérifié IGN — 2026-08-09)*
 
 Ces vannes, sous tes yeux — ce vieux mécanisme de fer et de bois qu'on manœuvre encore à la main. Ça n'a l'air de rien. C'est le cœur de la ville.
 
@@ -38,7 +38,7 @@ Traverse la passerelle et remonte la ruelle vers la grande église, juste au-des
 ---
 
 ## Scène 3 — Cathédrale Saint-Pierre : Le gamin de Genève
-**GPS :** 45.8997, 6.1261 *(approx. à vérifier)*
+**GPS :** 45.8997, 6.1261 *(vérifié IGN — 2026-08-09)*
 
 Te voilà devant la cathédrale Saint-Pierre. Façade sobre, presque timide, coincée dans sa ruelle. C'est pourtant ici qu'a eu lieu l'une des rencontres les plus célèbres de la littérature française.
 
@@ -50,19 +50,19 @@ Redescends vers la rivière, traverse-la, et prends à droite la longue rue à a
 
 ---
 
-## Scène 4 — Porte Sainte-Claire : La ville des foires
-**GPS :** 45.8979, 6.1235 *(approx. à vérifier)*
+## Scène 4 — Place Sainte-Claire, devant la porte : La ville des foires
+**GPS :** 45.8982638, 6.1237249 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette porte massive devant toi, coiffée de son horloge : la porte Sainte-Claire, l'une des dernières portes des remparts d'Annecy. Pendant des siècles, tout ce qui entrait en ville passait sous une voûte comme celle-ci — marchandises, colporteurs, nouvelles du monde.
 
-Retourne-toi et regarde la rue que tu viens de descendre. Ces arcades basses, de chaque côté : dessous, les marchands installaient leurs étals à l'abri de la pluie et de la neige. Car Annecy, capitale du Genevois, était une ville de foires et de marchés. Le bétail des vallées, les toiles, le sel, les fromages descendus des alpages : tout convergeait ici, entre ces façades. Et rien n'a vraiment changé — les matins de marché, la rue Sainte-Claire crie, marchande et déborde comme il y a cinq cents ans.
+Retourne-toi et regarde la rue que tu viens de descendre. Ces arcades basses, de chaque côté : dessous, les marchands installaient leurs étals à l'abri de la pluie et de la neige. Car Annecy, capitale du Genevois, était une ville de foires et de marchés. Le bétail des vallées, les toiles, le sel et les ouvrages des artisans : tout convergeait ici, entre ces façades. Et rien n'a vraiment changé — les matins de marché, la rue Sainte-Claire crie, marchande et déborde comme il y a cinq cents ans.
 
 Maintenant, la montée. Juste derrière toi, une rampe pavée grimpe vers le château. Quelques minutes d'effort. Là-haut t'attend une famille qui a tout perdu — sauf Annecy.
 
 ---
 
 ## Scène 5 — Château d'Annecy : Les comtes sans royaume
-**GPS :** 45.8976, 6.1252 *(approx. à vérifier)*
+**GPS :** 45.8976, 6.1252 *(vérifié IGN — 2026-08-09)*
 
 Reprends ton souffle dans la cour du château. Regarde ces murs énormes — la tour de la Reine, la plus ancienne, a des murailles de plusieurs mètres d'épaisseur.
 
@@ -75,7 +75,7 @@ Avance vers le rebord de l'esplanade : les toits, le lac, les montagnes. Puis re
 ---
 
 ## Scène 6 — Place Saint-François : La Rome des Alpes
-**GPS :** 45.8990, 6.1283 *(approx. à vérifier)*
+**GPS :** 45.8990, 6.1283 *(vérifié IGN — 2026-08-09)*
 
 Cette façade baroque un peu fatiguée, c'est l'église Saint-François-de-Sales. Elle porte le nom de l'homme qui a valu à Annecy son surnom le plus inattendu : la Rome des Alpes.
 
@@ -88,7 +88,7 @@ File maintenant vers le lac en suivant la rivière. Là où l'eau s'élargit, un
 ---
 
 ## Scène 7 — Jardins de l'Europe : Le oui de 1860
-**GPS :** 45.8996, 6.1329 *(approx. à vérifier)*
+**GPS :** 45.899238, 6.131197 *(vérifié IGN — 2026-08-09)*
 
 Lève la tête : des séquoias. Des arbres d'Amérique, immenses, plantés dans un jardin à l'anglaise posé sur le lac. Les Jardins de l'Europe. Leur histoire commence par un vote.
 
@@ -101,7 +101,7 @@ Longe le port vers la gauche, jusqu'au petit canal tranquille où dorment les ba
 ---
 
 ## Scène 8 — Pont des Amours : L'eau apprivoisée
-**GPS :** 45.9016, 6.1352 *(approx. à vérifier)*
+**GPS :** 45.900183, 6.131366 *(vérifié IGN — 2026-08-09)*
 
 Avance jusqu'au milieu de la passerelle. Sous tes pieds, le canal du Vassé, immobile sous ses platanes. À ta droite, le lac ouvre grand ses montagnes. Tu es sur le pont des Amours.
 

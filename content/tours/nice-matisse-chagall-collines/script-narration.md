@@ -4,13 +4,13 @@
 **Ville :** Nice
 **Thème :** Art — pourquoi les plus grands peintres du XXᵉ siècle ont tous fini sous cette lumière.
 **Durée narration :** ~12 min
-**Distance :** ~2 km | **POIs :** 9
+**Distance :** ~5,2 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Musée Marc Chagall : Le testament sous le ciel bleu
-**GPS :** 43.7030, 7.2720 *(approx. à vérifier)*
+**GPS :** 43.709136, 7.269527 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Commençons devant ce bâtiment bas, clair, presque modeste, posé dans un jardin d'oliviers et de cyprès. Ne te fie pas à sa discrétion. Derrière ces murs, un peintre a voulu enfermer rien de moins que la lumière du monde. Marc Chagall.
 
@@ -27,7 +27,7 @@ Sors du jardin et prends la montée vers Cimiez, plein nord. Suis-moi.
 ---
 
 ## Scène 2 — Boulevard de Cimiez : Les palais d'hiver
-**GPS :** 43.7075, 7.2735 *(approx. à vérifier)*
+**GPS :** 43.7062169, 7.2700876 *(vérifié OpenStreetMap — 2026-08-09)*
 
 On grimpe. Cette large avenue qui monte, c'est le boulevard de Cimiez, et elle raconte à elle seule pourquoi les artistes sont venus.
 
@@ -42,7 +42,7 @@ Continue de monter, le souffle un peu court, jusqu'au plus fastueux de tous ces 
 ---
 
 ## Scène 3 — Hôtel Régina : L'atelier de Matisse
-**GPS :** 43.7180, 7.2745 *(approx. à vérifier)*
+**GPS :** 43.719607, 7.2732731 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Voici le roi des palaces : l'Excelsior Régina. On l'a bâti en 1897 pour une cliente en particulier — la reine Victoria, qui venait passer ses hivers à Nice et occupait toute une aile. Regarde, au sommet, la couronne dorée qui veille encore.
 
@@ -57,7 +57,7 @@ Juste à côté du palais s'ouvre un champ de ruines antiques. Marche jusque-là
 ---
 
 ## Scène 4 — Arènes de Cimiez : Deux mille ans de lumière
-**GPS :** 43.7185, 7.2760 *(approx. à vérifier)*
+**GPS :** 43.7199585, 7.2752889 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Ces gradins de pierre à demi enfouis dans l'herbe, ce sont des arènes romaines. Car bien avant les palaces et les peintres, il y avait ici une ville entière, romaine, capitale d'une petite province des Alpes. Elle s'appelait Cemenelum. On en a retrouvé les arènes, les thermes, les rues.
 
@@ -72,7 +72,7 @@ Traverse le terre-plein vers la grande maison de couleur ocre rouge. Suis-moi.
 ---
 
 ## Scène 5 — Musée Matisse : Une vie entière dans une maison
-**GPS :** 43.7188, 7.2755 *(approx. à vérifier)*
+**GPS :** 43.7188, 7.2755 *(vérifié IGN — 2026-08-09)*
 
 Cette grande villa d'un rouge sang, aux fenêtres en trompe-l'œil, date du XVIIe siècle, du temps des marchands génois. Aujourd'hui, elle abrite le musée Matisse.
 
@@ -87,7 +87,7 @@ Ressors dans le jardin d'oliviers qui entoure les arènes. On va y respirer un i
 ---
 
 ## Scène 6 — L'oliveraie : Le secret dans les feuilles
-**GPS :** 43.7192, 7.2765 *(approx. à vérifier)*
+**GPS :** 43.712347, 7.2672431 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Prends ce sentier sous les oliviers. Ce verger a des siècles ; certains arbres étaient déjà là quand Cimiez n'était qu'un village accroché au-dessus de Nice. Assieds-toi une seconde sur un muret, si tu veux, et lève les yeux vers la lumière qui tombe entre les feuilles.
 
@@ -102,7 +102,7 @@ Suis l'allée vers l'église et le grand monastère, un peu plus loin. Suis-moi.
 ---
 
 ## Scène 7 — Monastère de Cimiez : Le peintre d'il y a cinq siècles
-**GPS :** 43.7195, 7.2778 *(approx. à vérifier)*
+**GPS :** 43.7195, 7.2778 *(vérifié IGN — 2026-08-09)*
 
 Ce monastère de Franciscains veille sur Nice depuis le Moyen Âge. Entre dans son église — elle est modeste, sombre après l'éclat du dehors. Laisse tes yeux s'habituer, et cherche, sur les murs, de grands retables de bois doré.
 
@@ -115,7 +115,7 @@ Ressors, et gagne le jardin en terrasse, derrière l'église. Mais avant le gran
 ---
 
 ## Scène 8 — Cimetière de Cimiez : La dernière maison
-**GPS :** 43.7200, 7.2782 *(approx. à vérifier)*
+**GPS :** 43.7200, 7.2782 *(vérifié IGN — 2026-08-09)*
 
 Ce cimetière est petit, tranquille, planté de cyprès, avec la ville tout en bas. Beaucoup de Niçois y dorment. Mais deux tombes, ici, valent qu'on s'arrête.
 
@@ -132,7 +132,7 @@ Sors, et va jusqu'à la balustrade du jardin, devant l'église. Là s'ouvre tout
 ---
 
 ## Scène 9 — Terrasse du monastère : Le plus beau des tableaux
-**GPS :** 43.7196, 7.2776 *(approx. à vérifier)*
+**GPS :** 43.7196, 7.2776 *(vérifié IGN — 2026-08-09)*
 
 Nous voilà à la balustrade, devant le grand jardin du monastère. Et là, d'un coup, tout Nice s'ouvre à tes pieds. Les toits, les collines, et surtout, immense, la baie. Le bleu.
 

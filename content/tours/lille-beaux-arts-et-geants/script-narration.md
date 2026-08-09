@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Lille
 **Thème :** Art & figures — Du deuxième musée de France aux géants du Nord : l'art savant et l'art de la rue.
-**Durée narration :** ~14 min
-**Distance :** ~3,5 km | **POIs :** 9
+**Durée narration :** ~13 min
+**Distance :** ~5,2 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Palais des Beaux-Arts : Le deuxième musée de France
-**GPS :** 50.6316, 3.0626 *(approx. à vérifier)*
+**GPS :** 50.6316, 3.0626 *(vérifié IGN — 2026-08-09)*
 
 Place-toi au milieu de la place de la République, face à ce grand palais de pierre claire et de colonnes, avec ses allégories sculptées au sommet. C'est le Palais des Beaux-Arts, souvent présenté comme le deuxième musée de France par la richesse de ses collections, juste derrière le Louvre.
 
@@ -25,7 +25,7 @@ Commençons par un secret d'architecte, tout près. Prends la rue de Fleurus, à
 ---
 
 ## Scène 2 — Maison Coilliot : Une façade qui fait de la réclame
-**GPS :** 50.6320, 3.0583 *(approx. à vérifier)*
+**GPS :** 50.6269801, 3.0601164 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi devant le 14 de la rue de Fleurus, et lève les yeux. Au milieu des façades sages, celle-ci ondule, se tord, joue de la couleur et de la matière : bois sculpté, fer forgé en tiges de plantes, et une pierre étrange, verte et luisante, comme émaillée. C'est la maison Coilliot, un bijou de l'Art nouveau achevé vers 1900.
 
@@ -38,7 +38,7 @@ Remonte vers le nord, jusqu'à une grande place et son théâtre. Suis-moi place
 ---
 
 ## Scène 3 — Théâtre Sébastopol : L'art pour le peuple
-**GPS :** 50.6330, 3.0567 *(approx. à vérifier)*
+**GPS :** 50.6290886, 3.0579452 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Devant toi, sur sa place, le théâtre Sébastopol, silhouette de pierre et de brique du début du XXe siècle. Ne cherche pas ici le velours guindé des opéras d'élite. Le « Séba », comme on dit à Lille, est né théâtre populaire, celui de l'opérette, du café-concert, du spectacle qu'on vient voir en famille, sans habit de soirée.
 
@@ -51,7 +51,7 @@ Reprenons vers l'est, vers la grande artère qui mène au centre. Un bâtiment d
 ---
 
 ## Scène 4 — Le Nouveau Siècle : La maison de l'orchestre
-**GPS :** 50.6353, 3.0603 *(approx. à vérifier)*
+**GPS :** 50.6353, 3.0603 *(vérifié IGN — 2026-08-09)*
 
 On s'arrête devant cet ensemble massif et anguleux, le Nouveau Siècle, bien moins gracieux que le palais du début, avouons-le. Ne juge pas sur la façade : c'est ici que loge l'Orchestre National de Lille, l'un des grands ensembles symphoniques du pays.
 
@@ -63,8 +63,8 @@ Continue vers le nord-est, vers le grand décor de la ville, sa place la plus c�
 
 ---
 
-## Scène 5 — Grand-Place, l'immeuble de la Voix du Nord : Trois déesses dorées
-**GPS :** 50.6371, 3.0636 *(approx. à vérifier)*
+## Scène 5 — Grand-Place, devant les façades de la Voix du Nord : Trois déesses dorées
+**GPS :** 50.636889, 3.0647436 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici sur la Grand-Place, que je te laisse admirer en un regard — la Déesse sur sa colonne, la Vieille Bourse ciselée à côté : d'autres t'en ont conté l'histoire. Moi, je veux lever ton regard vers un seul immeuble, sur le côté nord de la place.
 
@@ -77,7 +77,7 @@ Descendons vers l'est, du côté des gares. L'art, là-bas, a pris ses quartiers
 ---
 
 ## Scène 6 — Le Tripostal : L'art dans l'usine à courrier
-**GPS :** 50.6360, 3.0707 *(approx. à vérifier)*
+**GPS :** 50.6366637, 3.0728035 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Devant toi, près des gares, un grand bâtiment sobre et fonctionnel, sans grâce apparente : le Tripostal. Son nom dit son passé. On l'a bâti au milieu du XXe siècle pour trier le courrier de toute la région : des tonnes de lettres, des tapis roulants, un ballet postal jour et nuit.
 
@@ -90,7 +90,7 @@ Suivons cette idée jusqu'à sa plus belle preuve, un peu plus au sud, le long d
 ---
 
 ## Scène 7 — Gare Saint-Sauveur : La gare devenue palais du présent
-**GPS :** 50.6289, 3.0725 *(approx. à vérifier)*
+**GPS :** 50.625897, 3.076106 *(vérifié IGN — 2026-08-09)*
 
 Te voilà devant la gare Saint-Sauveur. Oublie les voyageurs : ici ne passaient que des marchandises, le charbon, les matières premières, tout ce qui nourrissait les usines. Une gare de fret, utilitaire, oubliée. Regarde ses longues halles de brique et de verrière.
 
@@ -103,7 +103,7 @@ Il nous reste à rencontrer les vraies vedettes de la rue, celles qui donnent so
 ---
 
 ## Scène 8 — Beffroi de l'hôtel de ville : Deux géants de pierre
-**GPS :** 50.6296, 3.0688 *(approx. à vérifier)*
+**GPS :** 50.6296, 3.0688 *(vérifié IGN — 2026-08-09)*
 
 Lève la tête vers cette tour immense de brique, le beffroi de l'hôtel de ville, inauguré en 1932. On dit que c'est le plus haut beffroi civil d'Europe, cent quatre mètres dressés là pour affirmer la fierté d'une ville meurtrie par la Grande Guerre et bien décidée à se relever. Il est, comme les autres beffrois de la région, inscrit au patrimoine mondial.
 
@@ -116,7 +116,7 @@ Ces deux géants figés ont des frères vivants, de chair et d'osier, qui dansen
 ---
 
 ## Scène 9 — Vers la Porte de Paris : Les géants qui dansent
-**GPS :** 50.6301, 3.0682 *(approx. à vérifier)*
+**GPS :** 50.6301, 3.0682 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi près de la Porte de Paris, ce vieil arc de triomphe que je te laisse admirer sans le raconter — d'autres l'ont fait avant moi. Nous, on est là pour la fin de notre histoire, la plus joyeuse : les géants du Nord.
 

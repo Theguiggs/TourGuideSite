@@ -4,13 +4,13 @@
 **Ville :** Deauville
 **Thème :** Art — le festival, les Planches et les parasols : la plage la plus filmée de France.
 **Durée narration :** ~10 min
-**Distance :** ~2 km | **POIs :** 7
+**Distance :** ~4,5 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Les Planches : La plage la plus filmée de France
-**GPS :** 49.3600, 0.0720 *(approx. à vérifier)*
+**GPS :** 49.3593879, 0.0728154 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi là, à l'endroit où la ville s'arrête et où commencent les Planches. Sous tes pieds, un long tapis de bois, des lattes claires posées bout à bout, qui court le long de la plage sur des centaines de mètres. À gauche, la mer plate. À droite, une rangée de cabines de bain, blanches, coiffées d'un toit pointu. Et au-dessus de chaque cabine, un nom peint. Lis-les. Ce ne sont pas des propriétaires. Ce sont des vedettes. Des acteurs, des réalisateurs américains, tous passés ici.
 
@@ -26,8 +26,8 @@ Avance le long des Planches, vers l'ouest, jusqu'au grand pavillon de bains. Sui
 
 ---
 
-## Scène 2 — Les Bains Pompéiens : Une plage déguisée
-**GPS :** 49.3600, 0.0710 *(approx. à vérifier)*
+## Scène 2 — Pavillon des Bains, sur le site des Bains Pompéiens : Une plage déguisée
+**GPS :** 49.3581539, 0.0626171 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voici devant un curieux bâtiment, tout en longueur, avec ses colonnes claires et ses fresques aux couleurs passées. On l'appelle les Bains Pompéiens. Ne cherche pas de ruines romaines : tout est faux, tout est décor, et c'est justement ça, Deauville. On l'a bâti dans les années vingt, à l'époque des Planches, en imitant les villas antiques de Pompéi. Colonnades, mosaïques, dieux peints sur les murs. Une plage normande déguisée en Méditerranée.
 
@@ -39,8 +39,8 @@ Garde cette idée en tête. Elle explique tout le reste. Continue le long du fro
 
 ---
 
-## Scène 3 — L'Hôtel Normandy : Coco Chanel et les palaces
-**GPS :** 49.3590, 0.0695 *(approx. à vérifier)*
+## Scène 3 — Entrée de l’Hôtel Normandy Barrière : Coco Chanel et les palaces
+**GPS :** 49.3600323, 0.0711053 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Lève les yeux vers cette immense façade à colombages, ces toits pointus, ces balcons fleuris : l'hôtel Normandy. Malgré son air de vieux manoir, il est né en 1912, dessiné d'un coup, pour ressembler à ce qu'on rêvait qu'une Normandie soit. Encore un décor. Un faux ancien, plus vrai que le vrai.
 
@@ -52,8 +52,8 @@ Avance de quelques pas, vers l'ouest, jusqu'à la coupole du casino. Suis-moi.
 
 ---
 
-## Scène 4 — Le Casino : Une ville déjà prête pour la caméra
-**GPS :** 49.3597, 0.0690 *(approx. à vérifier)*
+## Scène 4 — Casino de Deauville : Une ville déjà prête pour la caméra
+**GPS :** 49.3592003, 0.0699412 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Devant toi, le casino. Colonnes, dorures, drapeaux : une façade faite pour l'argent et pour le regard. Celui-ci date lui aussi de 1912, du même élan que les grands hôtels. Deauville se rêvait alors capitale du plaisir, et il fallait un temple au jeu.
 
@@ -61,14 +61,14 @@ Derrière ces portes, on a gagné et perdu des fortunes en une nuit. Mais ce qui
 
 Car c'est le grand secret de Deauville : la ville n'a pas eu besoin de se transformer pour devenir un plateau. Elle était déjà un plateau. Chaque bâtiment est une scène, chaque perspective un cadre. Les réalisateurs n'ont eu qu'à poser leur caméra.
 
-Le plus célèbre d'entre eux, on en parlera tout à l'heure. Pour l'instant, quitte le front de mer et enfonce-toi dans la ville, vers l'intérieur, jusqu'à un quartier de villas. Suis-moi.
+Le plus célèbre d'entre eux, on en parlera tout à l'heure. Pour l'instant, quitte le front de mer et enfonce-toi dans la ville, vers l'intérieur, jusqu'à la villa Strassburger. Suis-moi.
 
 ---
 
-## Scène 5 — Les villas Belle Époque : Une ville sortie des marais
-**GPS :** 49.3588, 0.0730 *(approx. à vérifier)*
+## Scène 5 — Villa Strassburger : Une ville sortie des marais
+**GPS :** 49.3510286, 0.0744403 *(vérifié OpenStreetMap — 2026-08-09)*
 
-Regarde autour de toi ces villas. Colombages peints, tourelles, balcons de bois ouvragé, jardinets fleuris — chacune plus fantaisiste que sa voisine. On dirait des maisons de conte. Elles racontent, elles aussi, l'invention de Deauville.
+Regarde la villa Strassburger et les demeures de ce quartier. Colombages peints, tourelles, balcons de bois ouvragé, jardinets fleuris : chacune semble composer sa propre silhouette. On dirait des maisons de conte. Elles racontent, elles aussi, l'invention de Deauville.
 
 Car cette ville a un père, et une date. En 1860, le duc de Morny, demi-frère de l'empereur Napoléon III, homme d'argent et de plaisir, regarde ces marais vides face à Trouville, et décide d'y bâtir une station de rien. En quatre ans à peine, on assèche, on trace des avenues, on dresse un hippodrome, des villas, une église. Une ville sortie du sol par volonté, comme un décor de théâtre monté en une saison.
 
@@ -79,7 +79,7 @@ Retiens ça : à Deauville, même les maisons jouent un rôle. Continue vers un 
 ---
 
 ## Scène 6 — Les Franciscaines : La ville qui garde ses images
-**GPS :** 49.3585, 0.0745 *(approx. à vérifier)*
+**GPS :** 49.3542746, 0.0670011 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Pousse jusqu'à ce vaste bâtiment aux murs clairs, autour d'un cloître : les Franciscaines. C'était un couvent ; des sœurs y ont vécu et prié pendant plus d'un siècle. Aujourd'hui, depuis 2021, c'est le cœur culturel de la ville : une médiathèque, des salles d'exposition, un lieu où Deauville range sa mémoire.
 
@@ -91,8 +91,8 @@ Il ne nous reste qu'un lieu à voir. Le plus important. Reviens vers la mer, ver
 
 ---
 
-## Scène 7 — Le CID : Le festival et « Un homme et une femme »
-**GPS :** 49.3603, 0.0678 *(approx. à vérifier)*
+## Scène 7 — Centre International de Deauville : Le festival et « Un homme et une femme »
+**GPS :** 49.360079, 0.068722 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y voilà. Ce grand bâtiment moderne, face à la mer, ouvert en 1992, c'est le CID, le Centre International de Deauville. Neuf mois par an, c'est un centre de congrès qui dort. Mais chaque septembre, il se réveille et devient le temple du cinéma américain en France.
 

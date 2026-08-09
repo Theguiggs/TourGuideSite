@@ -4,13 +4,13 @@
 **Ville :** Dijon
 **Thème :** Histoire & secrets — quand Dijon rivalisait avec Paris : le siècle éblouissant des Grands Ducs de Bourgogne.
 **Durée narration :** ~12 min
-**Distance :** ~2 km | **POIs :** 9
+**Distance :** ~1 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place des Ducs de Bourgogne : Le palais d'un rêve
-**GPS :** 47.3222, 5.0417 *(approx. à vérifier)*
+**GPS :** 47.322173, 5.042275 *(vérifié IGN — 2026-08-09)*
 
 Lève les yeux. Devant toi, cette façade de pierre blonde, ces fenêtres à meneaux, cette tour carrée qui monte dans le ciel : c'est le cœur d'un palais. Le palais des ducs de Bourgogne. Tu es sur une petite place discrète, à l'arrière du grand ensemble, là où la pierre a gardé son âge : le Moyen Âge.
 
@@ -25,7 +25,7 @@ Fais le tour du palais par la gauche, jusqu'à une cour pavée et une vieille to
 ---
 
 ## Scène 2 — Cour de Bar : Le fils cadet devenu prince
-**GPS :** 47.3220, 5.0420 *(approx. à vérifier)*
+**GPS :** 47.3216335, 5.0423617 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà dans une cour de pierre, au pied de la plus vieille tour du palais : la tour de Bar. Pose la main sur ce mur. Il a plus de six cents ans, et il a tout vu commencer.
 
@@ -40,11 +40,11 @@ Reviens vers le cœur du palais, dans la grande cour, et cherche la haute tour q
 ---
 
 ## Scène 3 — Tour Philippe le Bon : Le Grand Duc d'Occident
-**GPS :** 47.3219, 5.0416 *(approx. à vérifier)*
+**GPS :** 47.3219441, 5.0416159 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde en l'air. Cette tour, la plus haute, presque cinquante mètres, c'est celle de Philippe le Bon. Le troisième duc. Et le plus éblouissant de tous.
 
-Sous lui, au XVe siècle, la cour de Bourgogne devient la plus fastueuse d'Europe. Plus riche que celle du roi de France, qui, lui, se débat encore dans la guerre de Cent Ans. Ici, on reçoit des peintres flamands, des musiciens, des orfèvres. On donne des banquets restés légendaires, où l'on sert, dit-on, des paons rhabillés de leurs plumes.
+Sous lui, au XVe siècle, la cour de Bourgogne devient la plus fastueuse d'Europe. Plus riche que celle du roi de France, qui, lui, se débat encore dans la guerre de Cent Ans. Ici, on reçoit des peintres flamands, des musiciens, des orfèvres. On organise des cérémonies et des spectacles restés légendaires, où chaque détail affirme la puissance des ducs.
 
 C'est Philippe le Bon qui invente, en 1430, un ordre de chevalerie pour célébrer sa gloire : l'ordre de la Toison d'or. Le collier au bélier d'or, que se disputeront les plus grands princes d'Europe pendant des siècles. Il naît ici, d'un duc de Dijon.
 
@@ -57,7 +57,7 @@ Sors du palais côté est, jusqu'à la grande place ouverte devant le théâtre 
 ---
 
 ## Scène 4 — Place du Théâtre : La chapelle disparue de la Toison d'or
-**GPS :** 47.3213, 5.0428 *(approx. à vérifier)*
+**GPS :** 47.321299, 5.043223 *(vérifié IGN — 2026-08-09)*
 
 Cette grande place ouverte, avec son théâtre à colonnes, cache un fantôme. Ici s'élevait autrefois la Sainte-Chapelle de Dijon, la chapelle des ducs. Une flèche élégante, des vitraux, un joyau. Elle a disparu, rasée après la Révolution. Il n'en reste rien, ou presque.
 
@@ -72,7 +72,7 @@ Reprends vers le nord-ouest, par les vieilles rues, jusqu'à la rue des Forges, 
 ---
 
 ## Scène 5 — Rue des Forges : Dijon face à Paris
-**GPS :** 47.3224, 5.0410 *(approx. à vérifier)*
+**GPS :** 47.322202, 5.040278 *(vérifié IGN — 2026-08-09)*
 
 Tu marches dans la plus vieille rue de Dijon : la rue des Forges. Regarde ces façades. Des maisons de pierre et de bois, des portails ouvragés, des cours cachées derrière de lourdes portes. C'était la grand-rue des riches : marchands, banquiers, hommes de loi.
 
@@ -87,7 +87,7 @@ Continue vers l'est ; la rue débouche bientôt devant une grande église héris
 ---
 
 ## Scène 6 — Notre-Dame de Dijon : L'horloge volée en Flandre
-**GPS :** 47.3228, 5.0419 *(approx. à vérifier)*
+**GPS :** 47.3228, 5.0419 *(vérifié IGN — 2026-08-09)*
 
 Devant toi, l'église Notre-Dame, avec sa façade étrange, criblée de gargouilles en rangées serrées. Mais lève les yeux plus haut encore, tout en haut, vers l'horloge. Vois-tu ce petit personnage de métal qui frappe la cloche à chaque heure ? On l'appelle le Jacquemart. Et il n'est pas d'ici.
 
@@ -99,21 +99,21 @@ Redescends vers le sud-est, jusqu'au grand bâtiment à pignon pointu qui fut le
 
 ---
 
-## Scène 7 — Palais de Justice : Après les ducs, la robe
-**GPS :** 47.3205, 5.0430 *(approx. à vérifier)*
+## Scène 7 — Cour d'honneur du palais, mémoire de la justice : Après les ducs, la robe
+**GPS :** 47.3216, 5.0413 *(vérifié IGN — 2026-08-09)*
 
 Ce beau bâtiment, avec son pignon de bois sculpté et sa façade Renaissance, c'était le Parlement de Bourgogne. Pas un parlement d'élus comme aujourd'hui : une cour de justice souveraine, la plus haute du pays. Ici siégeaient les magistrats en robe rouge, qui jugeaient au nom du roi.
 
 Car nous voici après les ducs. Quand la Bourgogne devient française, à la fin du XVe siècle, le roi ne détruit pas la ville : il la garde, et il la gouverne. Il installe ici ce Parlement, et confirme les États de Bourgogne, l'assemblée qui vote les impôts de la province.
 
-Dijon reste donc une capitale — mais une capitale de robe, de magistrats, de conseillers. Toute une noblesse nouvelle naît là, qui bâtira les plus beaux hôtels particuliers de la ville. La grandeur a changé de visage. Fini les banquets aux paons ; place aux procès, aux registres, aux sceaux de cire.
+Dijon reste donc une capitale — mais une capitale de robe, de magistrats, de conseillers. Toute une noblesse nouvelle naît là, qui bâtira les plus beaux hôtels particuliers de la ville. La grandeur a changé de visage. Fini le faste de la cour ducale ; place aux procès, aux registres, aux sceaux de cire.
 
 Pousse la porte si elle est ouverte : le plafond de la grande salle est un chef-d'œuvre de bois peint. Puis reviens vers le palais, dans sa large cour d'honneur. Suis-moi.
 
 ---
 
 ## Scène 8 — Cour d'honneur du palais : Le palais des rois
-**GPS :** 47.3216, 5.0413 *(approx. à vérifier)*
+**GPS :** 47.3216, 5.0413 *(vérifié IGN — 2026-08-09)*
 
 Te voilà dans la cour d'honneur du palais, face à ces longues façades claires, régulières, classiques. Rien à voir avec la vieille tour trapue de tout à l'heure. Ici, c'est le grand siècle, celui de Louis XIV et de Louis XV, qui a habillé le vieux palais des ducs d'un manteau tout neuf.
 
@@ -126,7 +126,7 @@ Il reste une dernière question. Comment ce rêve bourguignon s'est-il éteint ?
 ---
 
 ## Scène 9 — Place de la Libération : Un matin d'hiver à Nancy
-**GPS :** 47.3214, 5.0416 *(approx. à vérifier)*
+**GPS :** 47.3214, 5.0416 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes. Cette place en demi-cercle, si parfaite, si royale, c'est le point final de notre histoire. On l'a dessinée sous Louis XIV, par le grand architecte du roi. On l'a voulue pour y dresser une statue du Roi-Soleil, à cheval, au milieu. La ville des ducs, désormais, s'inclinait devant le roi de France.
 

@@ -4,13 +4,13 @@
 **Ville :** Bayonne
 **Thème :** Sport — Trinquets, frontons et chisteras : le jeu le plus rapide du monde est une identité.
 **Durée narration :** ~10 min
-**Distance :** ~2 km | **POIs :** 7
+**Distance :** ~2,6 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place de la Liberté : Un claquement sec, comme un coup de fouet
-**GPS :** 43.4934, -1.4757 *(approx. à vérifier)*
+**GPS :** 43.492726, -1.474845 *(vérifié IGN — 2026-08-09)*
 
 Reste une minute sur cette place, au milieu du va-et-vient. Ferme les yeux, si tu oses. J'aimerais te faire entendre un bruit : un claquement sec, comme un coup de fouet, suivi d'un silence — puis d'un autre claquement. C'est le bruit d'une pelote qui frappe un mur. Au Pays basque, ce son-là est le battement de cœur des villages.
 
@@ -22,8 +22,8 @@ Voilà notre fil : comprendre comment un jeu devient une identité. Traverse le 
 
 ---
 
-## Scène 2 — Quais de la Nive : L'ancêtre royal et le quart de tour basque
-**GPS :** 43.4929, -1.4743 *(approx. à vérifier)*
+## Scène 2 — Quai des Corsaires, au bord de la Nive : L'ancêtre royal et le quart de tour basque
+**GPS :** 43.491737, -1.473772 *(vérifié IGN — 2026-08-09)*
 
 Longe tranquillement la rivière. Ces maisons hautes et colorées, c'est la carte postale de Bayonne — mais je t'ai amené ici pour parler généalogie.
 
@@ -36,7 +36,7 @@ Un jeu que l'Europe abandonnait, un peuple qui le retourne littéralement et le 
 ---
 
 ## Scène 3 — Musée Basque : L'arbre généalogique en objets
-**GPS :** 43.4925, -1.4738 *(approx. à vérifier)*
+**GPS :** 43.4925, -1.4738 *(vérifié IGN — 2026-08-09)*
 
 Cette demeure de marchand du XVIIe siècle, c'est la Maison Dagourette, et dedans vit le Musée Basque — la plus riche collection consacrée à la culture basque en France. Un jour, entre : il y a là-dedans une salle entière pour la pelote, et c'est l'arbre généalogique du jeu, raconté en objets.
 
@@ -49,9 +49,9 @@ Reprends le quai vers l'amont, puis tourne à gauche dans la rue Pannecau.
 ---
 
 ## Scène 4 — Rue Pannecau : Chiquito, la première star
-**GPS :** 43.4928, -1.4729 *(approx. à vérifier)*
+**GPS :** 43.489768, -1.474449 *(vérifié IGN — 2026-08-09)*
 
-Avance entre les façades peintes. Les soirs de grands matchs, les bars de cette rue bruissent des conversations qu'ailleurs on réserve au football : les pilotari, leurs exploits, leurs mains.
+Avance entre les façades peintes. Les soirs de grands matchs, cette rue bruisse des conversations qu'ailleurs on réserve au football : les pilotari, leurs exploits, leurs mains.
 
 Car la pelote a ses légendes, et la plus grande s'appelait Joseph Apesteguy — le monde entier l'a connu sous son nom de joueur : Chiquito de Cambo. Au début du XXe siècle, ce colosse élégant est une véritable star : il remplit les frontons parisiens de la Belle Époque, où la pelote est devenue un spectacle mondain ; on raconte qu'il joua devant des têtes couronnées, et que les paris s'envolaient dès qu'il entrait en piste. Un demi-siècle durant, son nom a suffi à remplir les gradins.
 
@@ -62,7 +62,7 @@ Tourne à droite dans la rue des Tonneliers. Cherche une porte discrète : derri
 ---
 
 ## Scène 5 — Trinquet Saint-André : L'instrument de musique
-**GPS :** 43.4923, -1.4717 *(approx. à vérifier)*
+**GPS :** 43.4923, -1.4717 *(vérifié IGN — 2026-08-09)*
 
 Pousse la porte si elle est ouverte — sinon, reviens un jour de partie. Le trinquet Saint-André est une merveille cachée : une salle de jeu où l'on tape la pelote depuis des siècles ; on raconte que des parties s'y disputaient déjà au XVIIe siècle. Et tout, ici, descend en droite ligne des vieilles salles de jeu de paume.
 
@@ -75,7 +75,7 @@ En sortant, remonte la rue vers l'église toute proche : Saint-André. Oui, une 
 ---
 
 ## Scène 6 — Église Saint-André : Le premier fronton était un mur d'église
-**GPS :** 43.4914, -1.4722 *(approx. à vérifier)*
+**GPS :** 43.4914, -1.4722 *(vérifié IGN — 2026-08-09)*
 
 Une église, dans une balade sur la pelote ? Évidemment. Partout au Pays basque, le premier fronton fut un mur d'église. Un grand mur plat, sans fenêtres, en plein cœur du village : la tentation était irrésistible. On jouait contre le chevet le dimanche, au sortir de la messe — et les archives des paroisses gardent la trace des colères de curés, des interdictions, des amendes. Rien n'y a fait : les Basques ont continué de jouer, et plus d'un curé, on le raconte volontiers, a fini par retrousser la soutane le temps d'une partie.
 
@@ -86,7 +86,7 @@ Il te reste un temple à voir, le plus grand. Remonte vers le nord, longe les vi
 ---
 
 ## Scène 7 — Trinquet Moderne : Le mur reste
-**GPS :** 43.4958, -1.4713 *(approx. à vérifier)*
+**GPS :** 43.4912892, -1.4870815 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Le voilà : le Trinquet Moderne. Le nom sonne comme un manifeste, et c'en est un — ici, le vieux jeu des villages s'est offert une grande salle de ville, des gradins, des soirées de gala. C'est aujourd'hui l'un des hauts lieux de la main nue : les grandes finales s'y jouent devant des travées combles, dans une chaleur de fête de famille.
 

@@ -4,13 +4,13 @@
 **Ville :** Aix-en-Provence
 **Thème :** Histoire & secrets — ville d'eaux depuis Rome, capitale des comtes de Provence : Aix côté cours et fontaines.
 **Durée narration :** ~12 min
-**Distance :** ~2 km | **POIs :** 9
+**Distance :** ~2,1 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Fontaine de la Rotonde : La ville née de l'eau
-**GPS :** 43.5266, 5.4467 *(approx. à vérifier)*
+**GPS :** 43.5266, 5.4467 *(vérifié IGN — 2026-08-09)*
 
 Commençons par le commencement : cette énorme fontaine ronde, au bas du cours, la fontaine de la Rotonde. Tout Aix passe par là. Approche-toi du bassin, écoute l'eau, et lève les yeux vers les trois femmes de pierre, tout en haut.
 
@@ -27,7 +27,7 @@ Remonte le cours Mirabeau vers l'est, à l'ombre des platanes, jusqu'à la premi
 ---
 
 ## Scène 2 — Fontaine des Neuf-Canons : La frontière des deux Aix
-**GPS :** 43.5271, 5.4482 *(approx. à vérifier)*
+**GPS :** 43.5271, 5.4482 *(vérifié IGN — 2026-08-09)*
 
 Cette fontaine basse, posée au milieu de la chaussée, s'appelle la fontaine des Neuf-Canons. Ne cherche pas de canons de guerre : ici, un canon, c'est un tuyau, une bouche d'eau. On raconte qu'on l'a placée là, exprès, pour abreuver les troupeaux de moutons qui traversaient la ville en descendant des montagnes vers la plaine.
 
@@ -42,7 +42,7 @@ Continue de monter le cours, jusqu'à cette étrange fontaine toute verte de mou
 ---
 
 ## Scène 3 — Fontaine moussue : Le secret sous la mousse
-**GPS :** 43.5275, 5.4491 *(approx. à vérifier)*
+**GPS :** 43.5275, 5.4491 *(vérifié IGN — 2026-08-09)*
 
 La voici, la plus surprenante des fontaines d'Aix : la fontaine moussue. On dirait un gros champignon de pierre, une motte couverte de mousse épaisse, de barbe verte, hiver comme été. La plupart des passants la trouvent négligée. Ils se trompent. C'est un secret qui affleure.
 
@@ -57,13 +57,13 @@ Poursuis jusqu'au bout du cours, vers la grande statue dressée au sommet de la 
 ---
 
 ## Scène 4 — Fontaine du Roi René : Le dernier des comtes
-**GPS :** 43.5281, 5.4513 *(approx. à vérifier)*
+**GPS :** 43.5281, 5.4513 *(vérifié IGN — 2026-08-09)*
 
 Au bout du cours, dressé sur sa fontaine, un roi de marbre te regarde venir. Dans une main, un sceptre ; dans l'autre, une grappe de raisin. C'est le bon roi René — et avec lui, entrons dans la seconde histoire de cette ville.
 
 René d'Anjou, au quinzième siècle, était comte de Provence, et bien plus : duc, roi sans royaume de Naples et de Jérusalem, sur le papier. Il a choisi Aix pour capitale et pour retraite. Sa cour y brillait : poètes, musiciens, fêtes, tournois. On l'aimait parce qu'il était lettré, curieux, proche des gens, et qu'il vivait là, parmi eux.
 
-La grappe qu'il tient n'est pas un hasard. On lui attribue d'avoir répandu en Provence le raisin muscat, ce raisin sucré, parfumé. Vrai ou non, cela dit bien ce qu'on retient de lui : un prince qui aimait la vigne, la table et le bonheur simple.
+L'attribut qu'il tient n'est pas un hasard. La tradition en a fait un prince attentif à son territoire et à ses usages. Vrai ou non, cela dit bien ce qu'on retient de lui : une figure familière, associée à un bonheur simple.
 
 Mais René est le dernier. À sa mort, en 1480, la Provence n'a plus d'héritier pour longtemps. Quelques années plus tard, le pays tombe dans l'escarcelle du roi de France. La Provence indépendante s'éteint. Aix cesse d'être une capitale pour devenir une ville du royaume.
 
@@ -71,8 +71,8 @@ Traverse le cours vers le sud, entre dans le quartier neuf des nobles, jusqu'à 
 
 ---
 
-## Scène 5 — Quartier Mazarin : La ville des magistrats
-**GPS :** 43.5258, 5.4489 *(approx. à vérifier)*
+## Scène 5 — Fontaine des Quatre-Dauphins, au cœur du quartier Mazarin : La ville des magistrats
+**GPS :** 43.5253259, 5.4501697 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voici dans un autre monde. Fini le tumulte du cours : ici, des rues droites, calmes, tirées au cordeau, bordées de hautes façades nobles. C'est le quartier Mazarin. Et au centre, cette fontaine délicate, quatre dauphins de pierre crachant l'eau autour d'un obélisque : la fontaine des Quatre-Dauphins.
 
@@ -85,7 +85,7 @@ Reprends vers le nord, repasse le cours, jusqu'à une place minuscule et parfait
 ---
 
 ## Scène 6 — Place d'Albertas : Le décor d'un orgueil
-**GPS :** 43.5282, 5.4463 *(approx. à vérifier)*
+**GPS :** 43.5282, 5.4463 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi. Tu viens d'entrer dans ce que beaucoup tiennent pour le plus beau lieu d'Aix : la place d'Albertas. Un petit carré fermé, pavé, avec une fontaine au milieu et, tout autour, des façades qui se répondent comme un décor de théâtre.
 
@@ -100,7 +100,7 @@ Remonte au nord jusqu'à la grande place de la mairie et sa tour à l'horloge. S
 ---
 
 ## Scène 7 — Tour de l'Horloge : Deux mille ans sous une porte
-**GPS :** 43.5294, 5.4477 *(approx. à vérifier)*
+**GPS :** 43.5294, 5.4477 *(vérifié IGN — 2026-08-09)*
 
 Cette belle place, c'est la place de l'Hôtel de Ville, le cœur civique d'Aix depuis toujours. Devant toi, la mairie du dix-septième siècle, sa cour, ses grilles dorées. Mais lève plutôt les yeux vers la tour à côté : la tour de l'Horloge.
 
@@ -113,7 +113,7 @@ Encore quelques pas vers le nord, et tu vas toucher la pierre la plus ancienne d
 ---
 
 ## Scène 8 — Cathédrale Saint-Sauveur : Rome sous l'église
-**GPS :** 43.5308, 5.4472 *(approx. à vérifier)*
+**GPS :** 43.5308, 5.4472 *(vérifié IGN — 2026-08-09)*
 
 Voici la cathédrale Saint-Sauveur. De l'extérieur déjà, elle étonne : ce n'est pas un seul édifice, mais mille ans d'architectures collées les unes aux autres. Entre, et cherche, sur la droite, une petite salle ronde en contrebas : le baptistère.
 
@@ -128,7 +128,7 @@ Redescends vers l'ouest, hors des remparts anciens, jusqu'aux thermes. C'est là
 ---
 
 ## Scène 9 — Thermes Sextius : La source du premier jour
-**GPS :** 43.5305, 5.4445 *(approx. à vérifier)*
+**GPS :** 43.5310836, 5.4442249 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous finissons là où Aix a commencé : aux thermes Sextius. Aujourd'hui, c'est un établissement thermal moderne, où l'on vient soigner son corps dans l'eau chaude. Mais gratte un peu, et tu touches le tout premier jour de la ville.
 

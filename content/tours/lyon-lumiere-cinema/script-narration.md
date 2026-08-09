@@ -3,16 +3,16 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Lyon
 **Thème :** Art — sortie d'usine, 1895 : à Monplaisir, le faubourg de l'est où deux frères ont inventé le cinéma
-**Durée narration :** ~20 min
-**Distance :** ~2,5 km | **POIs :** 9
+**Durée narration :** ~12 min
+**Distance :** ~1 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place Ambroise Courtois : un faubourg qui a changé le monde
-**GPS :** 45.7449, 4.8705 *(approx. à vérifier)*
+**GPS :** 45.744532, 4.871457 *(vérifié IGN — 2026-08-09)*
 
-Regarde autour de toi. Une place ordinaire de l'est lyonnais : des cafés, un cinéma, l'entrée du métro. Tu es à Monplaisir, un quartier qui fut, il y a un peu plus d'un siècle, une banlieue d'usines et de cheminées, loin des vieilles pierres du centre. Rien, ici, ne crie l'histoire. Et pourtant.
+Regarde autour de toi. Une place ordinaire de l'est lyonnais : des commerces, un cinéma, l'entrée du métro. Tu es à Monplaisir, un quartier qui fut, il y a un peu plus d'un siècle, une banlieue d'usines et de cheminées, loin des vieilles pierres du centre. Rien, ici, ne crie l'histoire. Et pourtant.
 
 Approche-toi de la bouche de métro et lis le nom de la station : Monplaisir-Lumière. Lumière, comme la lumière, oui, mais surtout comme un nom de famille. Le nom de deux frères qui, à quelques pas d'ici, ont inventé quelque chose que le monde entier fait aujourd'hui, chaque soir, sans y penser : le cinéma.
 
@@ -25,7 +25,7 @@ Suis-moi. On va remonter le fil, de la maison du père jusqu'au mur exact où to
 ---
 
 ## Scène 2 — Avenue des Frères Lumière : le père, les plaques et la fortune
-**GPS :** 45.7440, 4.8690 *(approx. à vérifier)*
+**GPS :** 45.7440, 4.8690 *(vérifié IGN — 2026-08-09)*
 
 Nous voici sur l'avenue des Frères Lumière, l'artère qui porte leur nom. Le temps de la remonter, laisse-moi te présenter la famille, car sans le père, il n'y aurait pas eu de cinéma.
 
@@ -40,11 +40,11 @@ Montons vers la maison que cette fortune a bâtie : le château Lumière.
 ---
 
 ## Scène 3 — Château Lumière : la maison d'une famille arrivée
-**GPS :** 45.7456, 4.8712 *(approx. à vérifier)*
+**GPS :** 45.7456, 4.8712 *(vérifié IGN — 2026-08-09)*
 
 Lève les yeux vers cette demeure. Une grande maison bourgeoise, ornée, un peu tape-à-l'œil, avec ses balcons de pierre et son jardin d'hiver de verre et de fer. C'est le château Lumière, la villa que la famille se fait construire à la toute fin du dix-neuvième siècle, quand l'argent des plaques coule à flots.
 
-Antoine, le père, l'a voulue à son image : généreuse, théâtrale, faite pour recevoir. On imagine les dîners, les discussions, les deux fils déjà mûrs qui parlent chimie et mécanique entre la poire et le fromage. La maison dit tout d'une famille arrivée, fière de sa réussite, et qui n'a pas fini de surprendre le monde.
+Antoine, le père, l'a voulue à son image : généreuse, théâtrale, faite pour recevoir. On imagine les longues discussions, les deux fils déjà mûrs qui parlent chimie et mécanique jusque tard dans la soirée. La maison dit tout d'une famille arrivée, fière de sa réussite, et qui n'a pas fini de surprendre le monde.
 
 Aujourd'hui, cette villa abrite l'Institut Lumière, gardien de leur mémoire et temple des cinéphiles. Nous y reviendrons à la fin de notre promenade, car c'est là que bat encore le cœur du cinéma lyonnais.
 
@@ -52,8 +52,8 @@ Mais une belle maison ne fait pas une révolution. La révolution, elle, s'est j
 
 ---
 
-## Scène 4 — Anciennes usines Lumière : le décor du premier film
-**GPS :** 45.7464, 4.8722 *(approx. à vérifier)*
+## Scène 4 — Entrée publique de l'Institut Lumière : le décor du premier film
+**GPS :** 45.7450881, 4.8706151 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde ce secteur, aujourd'hui remodelé, où subsistent quelques traces de la grande usine Lumière. Ici s'étendaient les ateliers qui fabriquaient les plaques photographiques par milliers, puis bientôt la pellicule. Des bâtiments longs, des cheminées, une main-d'œuvre nombreuse : une véritable industrie, l'une des plus importantes de son domaine en Europe.
 
@@ -66,7 +66,7 @@ Avance de quelques pas, jusqu'au dernier mur qui a survécu. C'est le lieu le pl
 ---
 
 ## Scène 5 — Hangar du Premier-Film : cinquante secondes qui inventent tout
-**GPS :** 45.7451, 4.8715 *(approx. à vérifier)*
+**GPS :** 45.74529, 4.868818 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi devant ce grand mur de brique et de fer : c'est le hangar du Premier-Film, la dernière relique de l'usine. On l'a sauvé, dressé comme un monument, parce que c'est ici, très exactement, que le cinéma est né.
 
@@ -79,7 +79,7 @@ Ce portail que tu imagines, ces ouvrières disparues depuis longtemps, ils sont 
 ---
 
 ## Scène 6 — Rue du Premier-Film : marcher dans le champ de la caméra
-**GPS :** 45.7454, 4.8708 *(approx. à vérifier)*
+**GPS :** 45.74529, 4.868818 *(vérifié IGN — 2026-08-09)*
 
 Voici la rue du Premier-Film. Elle s'appelait autrefois rue Saint-Victor, un nom quelconque. La ville l'a rebaptisée en l'honneur de ce qui s'est joué à son extrémité. C'est peut-être la seule rue au monde dont le nom célèbre une simple prise de vue.
 
@@ -91,8 +91,8 @@ Mais comment cette image a-t-elle pu naître ? Grâce à une machine, une seule,
 
 ---
 
-## Scène 7 — Le Cinématographe : une boîte de bois contre l'Amérique
-**GPS :** 45.7450, 4.8717 *(approx. à vérifier)*
+## Scène 7 — Entrée publique de l'Institut Lumière : une boîte de bois contre l'Amérique
+**GPS :** 45.7450881, 4.8706151 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Le secret de tout, c'est une boîte. Une boîte en bois d'à peine quelques kilos, qu'un homme peut porter sous le bras. Les frères Lumière l'appellent le Cinématographe, et ils en déposent le brevet en février 1895, quelques semaines avant de tourner leur premier film.
 
@@ -104,10 +104,10 @@ Cette boîte légère va pouvoir voyager. Et elle va parcourir la planète. Suis
 
 ---
 
-## Scène 8 — Des Capucines au monde entier : le cinéma part en voyage
-**GPS :** 45.7455, 4.8709 *(approx. à vérifier)*
+## Scène 8 — Entrée publique de l'Institut Lumière : le cinéma part en voyage
+**GPS :** 45.7450881, 4.8706151 *(vérifié OpenStreetMap — 2026-08-09)*
 
-Le premier film est tourné en mars 1895. Mais le vrai coup de tonnerre a lieu à la fin de l'année, à Paris, dans le salon d'un café du boulevard des Capucines. Le 28 décembre 1895, pour la première fois, des spectateurs paient leur place pour voir des images projetées. Ils sont une poignée. Ils ressortent stupéfaits. Le cinéma vient de devenir un spectacle public.
+Le premier film est tourné en mars 1895. Mais le vrai coup de tonnerre a lieu à la fin de l'année, à Paris, dans une salle du boulevard des Capucines. Le 28 décembre 1895, pour la première fois, des spectateurs paient leur place pour voir des images projetées. Ils sont une poignée. Ils ressortent stupéfaits. Le cinéma vient de devenir un spectacle public.
 
 Alors les Lumière font une chose visionnaire : ils forment des opérateurs et les envoient sur toute la Terre. Ces hommes traversent les mers avec leur boîte de bois, filment un couronnement en Russie, des pyramides en Égypte, une rue à New York, un marché lointain. Ils rapportent le monde en images et le projettent partout. En quelques années, la planète entière se regarde pour la première fois.
 
@@ -118,7 +118,7 @@ Revenons vers la maison Lumière. Notre voyage s'achève là où la mémoire vei
 ---
 
 ## Scène 9 — Institut et Festival Lumière : la lumière qui ne s'éteint pas
-**GPS :** 45.7452, 4.8713 *(approx. à vérifier)*
+**GPS :** 45.7452, 4.8713 *(vérifié IGN — 2026-08-09)*
 
 Nous revoici devant la villa des Lumière, celle par où nous avons commencé. Mais cette fois, entrons dans ce qu'elle est devenue : l'Institut Lumière. Depuis 1982, cette maison veille sur la mémoire des deux frères, conserve leurs films, leurs machines, et projette du cinéma, tous les soirs, dans une salle aménagée à côté du fameux hangar.
 

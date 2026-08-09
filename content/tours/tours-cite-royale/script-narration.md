@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Tours
 **Thème :** Histoire & secrets — Saint Martin, Louis XI et la soie : quand la Loire était le centre de la France.
-**Durée narration :** ~15 min
+**Durée narration :** ~12 min
 **Distance :** ~2,2 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place Plumereau : Le cœur d'une capitale oubliée
-**GPS :** 47.3947, 0.6820 *(approx. à vérifier)*
+**GPS :** 47.3947, 0.6820 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi au milieu de cette place, le nez en l'air. Autour de toi, des maisons de bois et de brique, des colombages tordus par cinq siècles, des pignons pointus qui se penchent les uns vers les autres comme pour se parler. C'est la place Plumereau, le cœur du vieux Tours. Le matin, un marché ; le soir, une fête d'étudiants. Mais gratte un peu, et sous les terrasses, tu trouveras une capitale.
 
@@ -25,7 +25,7 @@ Ces maisons n'ont pas poussé au hasard. Elles sont nées autour du tombeau de c
 ---
 
 ## Scène 2 — Rue Briçonnet : La ville des marchands d'argent
-**GPS :** 47.3952, 0.6812 *(approx. à vérifier)*
+**GPS :** 47.3952, 0.6812 *(vérifié IGN — 2026-08-09)*
 
 Regarde cette rue étroite qui grimpe : la rue Briçonnet. Prends ton temps, lève les yeux. À chaque maison, un siècle différent. Là, une façade de bois du Moyen Âge ; ici, de la pierre Renaissance couverte de sculptures ; plus loin, une arcade romane. On lit l'histoire de Tours sur quelques mètres, comme sur les anneaux d'un arbre.
 
@@ -38,7 +38,7 @@ Continue de descendre. La rue débouche bientôt sur une place ouverte, dominée
 ---
 
 ## Scène 3 — Tour Charlemagne : Le géant disparu
-**GPS :** 47.3936, 0.6807 *(approx. à vérifier)*
+**GPS :** 47.3933369, 0.6825821 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette grosse tour plantée là, un peu de travers, au bord d'une place trop moderne pour elle, c'est la tour Charlemagne. Elle a l'air d'un fragment, et c'en est un. Le fragment d'un géant disparu.
 
@@ -53,7 +53,7 @@ Mais si tout ce monde venait ici, ce n'était pas pour Charlemagne. C'était pou
 ---
 
 ## Scène 4 — Basilique Saint-Martin : Le manteau coupé en deux
-**GPS :** 47.3932, 0.6810 *(approx. à vérifier)*
+**GPS :** 47.3932, 0.6810 *(vérifié IGN — 2026-08-09)*
 
 Nous voici devant la basilique Saint-Martin. Celle-ci est neuve — un siècle à peine, un style byzantin, des coupoles rondes. On l'a bâtie pour remplacer la géante détruite, et pour abriter de nouveau le trésor de la ville : le tombeau de Martin. Descends dans la crypte, en silence. Il est là.
 
@@ -68,7 +68,7 @@ Son tombeau devint l'un des plus grands pèlerinages d'Europe. Sors, et prenons 
 ---
 
 ## Scène 5 — Hôtel Goüin : Le fil d'or de Louis XI
-**GPS :** 47.3946, 0.6835 *(approx. à vérifier)*
+**GPS :** 47.395309, 0.684679 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi devant cette façade. Au milieu de rues plus austères, elle éclate : de la pierre blanche entièrement brodée de sculptures, des coquilles, des rinceaux, des médaillons. C'est l'hôtel Goüin, l'une des rares demeures Renaissance que Tours ait sauvées des incendies et des guerres. Un négociant l'a fait bâtir au début du XVIe siècle, quand la ville nageait dans l'argent.
 
@@ -83,7 +83,7 @@ Continue vers l'est, jusqu'à une place bordée de belles façades anciennes, la
 ---
 
 ## Scène 6 — Place Foire-le-Roi : Le roi qui n'aimait pas Paris
-**GPS :** 47.3956, 0.6875 *(approx. à vérifier)*
+**GPS :** 47.396464, 0.689949 *(vérifié IGN — 2026-08-09)*
 
 Cette place discrète, bordée de hautes maisons à pignons, porte un nom qui dit tout : Foire-le-Roi. La foire du roi. C'est ici, et alentour, que se tenaient les grandes foires franches de Tours — ces marchés géants où, quelques semaines par an, des marchands de toute l'Europe venaient acheter et vendre en franchise d'impôt.
 
@@ -98,7 +98,7 @@ Prends la rue qui part vers l'est, la rue Colbert. Cherche, sur une maison, une 
 ---
 
 ## Scène 7 — Rue Colbert : La Pucelle armée
-**GPS :** 47.3949, 0.6868 *(approx. à vérifier)*
+**GPS :** 47.395478, 0.688444 *(vérifié IGN — 2026-08-09)*
 
 Nous sommes rue Colbert, l'une des plus vieilles artères de Tours, bordée de maisons de bois. Cherche, en levant les yeux, une enseigne peinte : « À la Pucelle armée ». Une jeune fille en armure.
 
@@ -113,7 +113,7 @@ Continue tout droit vers l'est. Bientôt, au bout de la rue, deux hautes tours a
 ---
 
 ## Scène 8 — Cathédrale Saint-Gatien : Le tombeau des enfants
-**GPS :** 47.3949, 0.6928 *(approx. à vérifier)*
+**GPS :** 47.3949, 0.6928 *(vérifié IGN — 2026-08-09)*
 
 Lève la tête. Cette façade de dentelle, ces deux tours qui montent en s'affinant, coiffées de couronnes de pierre : c'est la cathédrale Saint-Gatien. On l'a bâtie sur près de trois siècles ; c'est pourquoi elle change de style en montant, du gothique sévère du bas au flamboyant fou du sommet, presque Renaissance.
 
@@ -128,7 +128,7 @@ Sortons. Prenons, à deux pas, la direction du fleuve, jusqu'aux vieux murs qui 
 ---
 
 ## Scène 9 — Château de Tours : L'artère du royaume
-**GPS :** 47.3960, 0.6930 *(approx. à vérifier)*
+**GPS :** 47.3960, 0.6930 *(vérifié IGN — 2026-08-09)*
 
 Nous y voilà, au bord de la Loire. Derrière toi, les tours du vieux château de Tours ; devant toi, le fleuve, large, clair, tranquille, avec ses bancs de sable et ses oiseaux. Prends le temps de le regarder. Tout ce qu'on s'est raconté aujourd'hui est né de cette eau.
 

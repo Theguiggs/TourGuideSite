@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Toulouse
 **Thème :** Spécialité — de Mermoz à Ariane : la ville d'où la France s'est envolée.
-**Durée narration :** ~14 min
-**Distance :** ~2 km | **POIs :** 9
+**Durée narration :** ~12 min
+**Distance :** ~3,2 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Gare de Montaudran : Le quai d'où le monde s'est rapproché
-**GPS :** 43.5765, 1.4735 *(approx. à vérifier)*
+## Scène 1 — Montaudran Gare — Piste des Géants : Le quai d'où le monde s'est rapproché
+**GPS :** 43.5723132, 1.4814251 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi sur ce quai modeste. Une petite halte de banlieue, quelques rails, des trains régionaux qui passent sans même ralentir. Rien, ici, ne crie l'histoire. Et pourtant.
 
@@ -24,8 +24,8 @@ Suis-moi. On va marcher sur cette piste, la vraie. Prends l'allée qui longe l'a
 
 ---
 
-## Scène 2 — L'Envol des Pionniers : L'homme qui a réalisé l'impossible
-**GPS :** 43.5748, 1.4762 *(approx. à vérifier)*
+## Scène 2 — Musée L'Envol des Pionniers : L'homme qui a réalisé l'impossible
+**GPS :** 43.5742566, 1.4769494 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà devant les bâtiments de brique de l'ancienne base. Ici bat le cœur du site : L'Envol des Pionniers, le lieu de mémoire qui raconte l'épopée. Mais avant le musée, il y a un homme, et une idée que tout le monde jugeait absurde.
 
@@ -39,8 +39,8 @@ Longe maintenant les anciens hangars, vers le vaste terrain dégagé qui s'ouvre
 
 ---
 
-## Scène 3 — Le terrain de l'aérodrome : L'aube des pilotes
-**GPS :** 43.5738, 1.4770 *(approx. à vérifier)*
+## Scène 3 — Jardins de la Ligne, sur l'ancien terrain de Montaudran : L'aube des pilotes
+**GPS :** 43.5732503, 1.4754164 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde ce terrain dégagé. Imagine-le il y a cent ans : pas de piste en dur, juste de l'herbe rase, des flaques, le vent, et tout autour des hangars de tôle où l'on assemblait les avions. C'est d'ici qu'on partait vers l'inconnu.
 
@@ -53,7 +53,7 @@ C'est cette discipline de fer qui a forgé la légende. Et elle avait un visage,
 ---
 
 ## Scène 4 — Monument Didier Daurat : Le chef, et l'écrivain qu'il a révélé
-**GPS :** 43.5731, 1.4778 *(approx. à vérifier)*
+**GPS :** 43.5718211, 1.477628 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde cette sculpture : une aile de béton nu, tendue vers le sud, vers Barcelone — la toute première escale. Elle rend hommage à Didier Daurat, le chef d'exploitation de la ligne. L'homme qui faisait régner l'ordre sur ce terrain.
 
@@ -66,7 +66,7 @@ Entre maintenant dans le jardin lui-même, ce long ruban planté qui suit l'anci
 ---
 
 ## Scène 5 — Les Jardins de la Ligne : Mermoz et l'océan sauté d'un coup d'aile
-**GPS :** 43.5726, 1.4785 *(approx. à vérifier)*
+**GPS :** 43.5727858, 1.4764105 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Ce jardin porte un beau nom : les Jardins de la Ligne. Regarde les plantations, elles ne sont pas là par hasard. Chaque massif évoque un pays que traversait l'Aéropostale — l'Espagne, le Maroc, la Mauritanie, le Sénégal, puis, de l'autre côté de l'océan, le Brésil, l'Uruguay, l'Argentine, le Chili. Tu marches le long de la ligne entière, réduite à quelques dizaines de mètres.
 
@@ -79,7 +79,7 @@ Continue le long du jardin, vers le nord. La piste s'ouvre devant toi, immense. 
 ---
 
 ## Scène 6 — La Piste des Géants : Guillaumet, et ce qu'aucune bête n'aurait fait
-**GPS :** 43.5719, 1.4792 *(approx. à vérifier)*
+**GPS :** 43.5719, 1.4792 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu y es. Cette longue coulée qui file tout droit, c'est la piste. On l'a rebaptisée la Piste des Géants, et elle reprend le tracé de l'ancienne piste d'envol de Montaudran. Sous tes pieds, le sol d'où s'arrachaient les avions du courrier.
 
@@ -91,8 +91,8 @@ Avance vers l'immense halle de verre et d'acier, sur ta droite. Trois minutes. L
 
 ---
 
-## Scène 7 — La Halle de la Machine : Le même geste, cent ans plus tard
-**GPS :** 43.5710, 1.4805 *(approx. à vérifier)*
+## Scène 7 — Halle de La Machine : Le même geste, cent ans plus tard
+**GPS :** 43.5727561, 1.478113 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Devant toi, la Halle de la Machine. Dedans sommeille un colosse : Astérion, un Minotaure de bois et d'acier, quatorze mètres de haut, plusieurs dizaines de tonnes. Il marche, tourne la tête, roule des yeux, et promène parfois les visiteurs sur son dos, ici même, sur la piste des pionniers.
 
@@ -104,8 +104,8 @@ Reprends la piste vers son extrémité, vers ce grand vaisseau de verre posé au
 
 ---
 
-## Scène 8 — Le B612 : L'astéroïde du Petit Prince
-**GPS :** 43.5701, 1.4818 *(approx. à vérifier)*
+## Scène 8 — B612 — Centre d'innovation de Toulouse Aerospace : L'astéroïde du Petit Prince
+**GPS :** 43.5630857, 1.4886252 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Ce long bâtiment de verre, au bout exact de l'ancienne piste, s'appelle le B 612. Un drôle de nom pour un centre de recherche. C'est celui d'un astéroïde — la minuscule planète où habite le Petit Prince, dans le conte de Saint-Exupéry.
 
@@ -117,8 +117,8 @@ Fais encore quelques pas, jusqu'à embrasser tout le terrain du regard. Notre de
 
 ---
 
-## Scène 9 — Toulouse Aerospace : Le ciel n'était qu'un début
-**GPS :** 43.5698, 1.4822 *(approx. à vérifier)*
+## Scène 9 — B612 — Centre d'innovation de Toulouse Aerospace : Le ciel n'était qu'un début
+**GPS :** 43.5630857, 1.4886252 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Voilà. Arrête-toi et regarde ce terrain une dernière fois. Une bande d'herbe et de béton, coincée entre un jardin, une halle et des immeubles de verre. Un promeneur qui passe ne voit rien. Toi, maintenant, tu vois tout.
 

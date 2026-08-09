@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Saint-Malo
 **Thème :** Sport — Tous les quatre ans, la ville regarde partir les fous de l'Atlantique en solitaire.
-**Durée narration :** ~11 min
-**Distance :** ~3 km | **POIs :** 7
+**Durée narration :** ~10 min
+**Distance :** ~3,8 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Esplanade Saint-Vincent, face aux bassins : Le village des départs
-**GPS :** 48.6489, -2.0235 *(approx. à vérifier)*
+## Scène 1 — Esplanade Saint-Vincent : Le village des départs
+**GPS :** 48.6510287, -2.0219696 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Mets-toi face aux bassins, dos aux remparts. Aujourd'hui, l'eau est calme, quelques mâts se balancent. Mais un automne sur quatre, ce plan d'eau tranquille devient le centre du monde de la voile.
 
@@ -24,8 +24,8 @@ Monte sur le rempart, juste au-dessus de la Grande Porte. On va regarder tout ç
 
 ---
 
-## Scène 2 — Remparts sud, au-dessus des bassins : Les machines volantes
-**GPS :** 48.6482, -2.0255 *(approx. à vérifier)*
+## Scène 2 — Esplanade Saint-Vincent : Les machines volantes
+**GPS :** 48.6510287, -2.0219696 *(vérifié OpenStreetMap — 2026-08-09)*
 
 D'ici, les années de course, tu dominerais une forêt de mâts. Prends une minute pour faire connaissance avec cette flotte, parce qu'elle raconte tout l'éventail de la folie humaine.
 
@@ -38,7 +38,7 @@ Suis le rempart vers l'ouest, au-dessus des toits. Je t'emmène voir la mer du d
 ---
 
 ## Scène 3 — Remparts ouest, plage de Bon-Secours : Le dimanche du canon
-**GPS :** 48.6497, -2.0310 *(approx. à vérifier)*
+**GPS :** 48.649186, -2.029198 *(vérifié IGN — 2026-08-09)*
 
 Penche-toi sur le parapet. En contrebas, la plage de Bon-Secours et sa piscine d'eau de mer. Devant toi, la rade, les îlots, puis le large.
 
@@ -53,11 +53,11 @@ Descends du rempart par la porte de Dinan, et marche jusqu'à la longue jetée q
 ---
 
 ## Scène 4 — Môle des Noires : Là où commence la solitude
-**GPS :** 48.6462, -2.0340 *(approx. à vérifier)*
+**GPS :** 48.6440457, -2.0300633 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Avance sur le môle, aussi loin que le vent te le permet. Cette jetée, c'est la dernière poignée de main de la terre. Les jours de départ, les proches viennent ici, agitent les bras une dernière fois, et regardent une voile devenir un point.
 
-Parlons de ce qui attend celui qui est à bord. Trois semaines seul, parfois beaucoup plus. On n'y dort jamais vraiment : des siestes de quelques minutes, réveillé par des alarmes, parce qu'un cargo ou un grain peut surgir à tout moment. On mange du lyophilisé, on répare la nuit à moitié dans l'eau, on parle tout seul, on pleure parfois. Et dans les coups de vent, on a peur — tous le disent, les plus grands champions d'abord.
+Parlons de ce qui attend celui qui est à bord. Trois semaines seul, parfois beaucoup plus. On n'y dort jamais vraiment : des siestes de quelques minutes, réveillé par des alarmes, parce qu'un cargo ou un grain peut surgir à tout moment. On surveille les instruments, on répare la nuit à moitié dans l'eau, on parle tout seul, on pleure parfois. Et dans les coups de vent, on a peur — tous le disent, les plus grands champions d'abord.
 
 Alors pourquoi ? Chacun a sa réponse. Le goût du large, la gloire, le silence, une revanche à prendre sur la vie. Cette ville, en tout cas, les comprend sans qu'on lui explique : elle a toujours regardé ses marins partir loin et longtemps — ses cap-horniers d'autrefois s'absentaient des années entières.
 
@@ -66,7 +66,7 @@ Reviens vers les remparts, longe-les vers le nord, et monte jusqu'à la grosse t
 ---
 
 ## Scène 5 — Tour Bidouane : Manureva ne répond plus
-**GPS :** 48.6519, -2.0291 *(approx. à vérifier)*
+**GPS :** 48.6506334, -2.028665 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Face au large, maintenant. Il faut que je te dise le prix de tout ça.
 
@@ -83,7 +83,7 @@ Longe maintenant le rempart nord, jusqu'à la porte qui ouvre sur la grande baie
 ---
 
 ## Scène 6 — Porte Saint-Thomas, face à la baie : La fiancée de l'Atlantique
-**GPS :** 48.6517, -2.0247 *(approx. à vérifier)*
+**GPS :** 48.6517, -2.0247 *(vérifié IGN — 2026-08-09)*
 
 Sous toi, la plage de l'Éventail et toute la baie où la flotte parade avant les départs. C'est une très vieille habitude : ceux qui veulent l'ouest partent d'ici. En 1534 déjà, Jacques Cartier quittait cette rade avec deux navires pour chercher un passage vers l'Asie — il trouvera le Canada et son grand fleuve.
 
@@ -98,7 +98,7 @@ Franchis la porte et descends sur la digue. La plus grande plage de la ville, po
 ---
 
 ## Scène 7 — Plage du Sillon : Quatre-vingt-dix-huit secondes
-**GPS :** 48.6535, -2.0190 *(approx. à vérifier)*
+**GPS :** 48.6535043, -2.0116396 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Marche un peu sur cette digue. Trois kilomètres de sable : la plage du Sillon. Les jours de grande marée, la mer saute par-dessus le parapet — mais ça, je te le raconte dans une autre balade.
 

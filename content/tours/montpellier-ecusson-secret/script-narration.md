@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Montpellier
 **Thème :** Histoire & secrets — hôtels particuliers, mikvé médiéval et cours cachées : l'Écusson à double fond.
-**Durée narration :** ~13 min
+**Durée narration :** ~11 min
 **Distance :** ~1,3 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place Jean-Jaurès : La ville sans Romains
-**GPS :** 43.6098, 3.8776 *(approx. à vérifier)*
+**GPS :** 43.6098, 3.8776 *(vérifié IGN — 2026-08-09)*
 
 Installe-toi au milieu de cette place pleine de terrasses et de bruit. Elle a l'air toute simple. Pourtant, sous tes pieds, il y a un secret : les restes d'une église engloutie. Ici s'élevait Notre-Dame-des-Tables, le grand sanctuaire du Moyen Âge, but de pèlerinages, détruit puis rasé au fil des guerres et des révolutions. Les « tables », c'étaient celles des changeurs de monnaie, installés sur le parvis : car cette église était aussi le cœur battant du négoce montpelliérain. On peut encore descendre visiter sa crypte, juste là, sous la place.
 
@@ -21,7 +21,7 @@ C'est ça que je veux te faire voir aujourd'hui : l'Écusson, ce centre en forme
 ---
 
 ## Scène 2 — Place Saint-Ravy : Quand Montpellier était espagnole
-**GPS :** 43.6094, 3.8770 *(approx. à vérifier)*
+**GPS :** 43.6094, 3.8770 *(vérifié IGN — 2026-08-09)*
 
 Regarde, sur cette petite place tranquille, ces fenêtres ogivales et ces arcades de pierre fine, un peu perdues entre les immeubles. Ce sont les vestiges d'un palais. Pas n'importe lequel : le palais des rois de Majorque.
 
@@ -34,7 +34,7 @@ Continue de quelques pas vers la rue Embouque-d'Or. Derrière une porte toute ba
 ---
 
 ## Scène 3 — Hôtel de Varennes : Le luxe qui se cache
-**GPS :** 43.6100, 3.8768 *(approx. à vérifier)*
+**GPS :** 43.6100, 3.8768 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi devant cette porte. Rien, ou presque, ne la distingue des autres. Une façade droite, sobre, un peu fermée sur la rue. Et c'est justement ça, la règle du jeu à Montpellier : dehors, la discrétion ; dedans, la splendeur.
 
@@ -46,8 +46,8 @@ Justement, poussons-en une autre, plus troublante encore. Prends la rue de la Ba
 
 ---
 
-## Scène 4 — Le mikvé : Le bain secret des marchands de savoir
-**GPS :** 43.6106, 3.8763 *(approx. à vérifier)*
+## Scène 4 — Entrée du mikvé médiéval : Le bain secret des marchands de savoir
+**GPS :** 43.6112272, 3.8754881 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici rue de la Barralerie. Là, sous un immeuble comme les autres, un escalier descend vers l'une des choses les plus rares d'Europe : un mikvé, un bain rituel juif du Moyen Âge, taillé dans la pierre, alimenté par l'eau vive de la nappe. Il date sans doute du XIIe ou du XIIIe siècle. Peu de bains de ce genre sont aussi anciens, aussi bien conservés.
 
@@ -60,7 +60,7 @@ Un secret sous un secret. Remonte doucement, et suis-moi vers la ruelle la plus 
 ---
 
 ## Scène 5 — Rue du Bras-de-Fer : Se perdre exprès
-**GPS :** 43.6103, 3.8760 *(approx. à vérifier)*
+**GPS :** 43.609619, 3.876117 *(vérifié IGN — 2026-08-09)*
 
 Engage-toi dans cette ruelle étroite, sombre, coiffée d'une arche de pierre qui enjambe le passage : la rue du Bras-de-Fer. On dirait qu'un couvercle s'est posé sur la ville. Lève la tête vers la voûte, touche les murs : c'est le Moyen Âge à l'état pur, resté là, presque intact.
 
@@ -73,7 +73,7 @@ Sors de l'autre côté et cherche la rue des Trésoriers-de-la-Bourse. On va enf
 ---
 
 ## Scène 6 — Hôtel des Trésoriers de la Bourse : L'escalier qui vole
-**GPS :** 43.6096, 3.8757 *(approx. à vérifier)*
+**GPS :** 43.6094838, 3.8764704 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Pousse ce portail, si tu peux, ou regarde par l'entrebâillement. D'un coup, la rue étroite s'efface, et s'ouvre une cour magnifique, silencieuse, baignée de lumière. Et là, l'exploit : un grand escalier de pierre qui monte en larges volées, comme suspendu dans le vide, sans presque rien pour le soutenir. On appelle ça un escalier à l'italienne. Une prouesse de bâtisseur, une pure démonstration de richesse.
 
@@ -86,7 +86,7 @@ Continue vers la rue Jacques-Cœur, tout près. Elle porte le nom d'un homme fab
 ---
 
 ## Scène 7 — Rue Jacques-Cœur : Le marchand qui valait un royaume
-**GPS :** 43.6099, 3.8752 *(approx. à vérifier)*
+**GPS :** 43.6092588, 3.879103 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voici dans la rue Jacques-Cœur, devant l'hôtel des Trésoriers de France, l'un des plus vastes de la ville. Le nom de la rue n'est pas un hasard. Jacques Cœur, c'est l'homme le plus riche du royaume au XVe siècle, l'argentier du roi Charles VII, un marchand qui a tissé sa fortune sur toute la Méditerranée — les épices, la soie, l'or. Et Montpellier, grand port de commerce de l'époque, fut l'une de ses places. On raconte qu'il posséda ici une maison.
 
@@ -99,7 +99,7 @@ Reprends vers la Grand-Rue Jean-Moulin. Le prochain hôtel dissimule, sous son t
 ---
 
 ## Scène 8 — Hôtel Saint-Côme : Le dôme secret
-**GPS :** 43.6089, 3.8770 *(approx. à vérifier)*
+**GPS :** 43.6089, 3.8770 *(vérifié IGN — 2026-08-09)*
 
 Devant toi, l'hôtel Saint-Côme. De la rue, une belle façade du XVIIIe siècle, sans plus. Mais le cœur est caché à l'intérieur : une salle octogonale, coiffée d'un dôme vitré, qui laisse tomber la lumière du ciel au centre même de la pièce. Un vrai bijou d'architecture, invisible du dehors.
 
@@ -112,7 +112,7 @@ Encore une porte poussée, encore un secret levé. Il en reste un dernier, le pl
 ---
 
 ## Scène 9 — Tour de la Babote : La tour qui regardait les étoiles
-**GPS :** 43.6083, 3.8748 *(approx. à vérifier)*
+**GPS :** 43.6083, 3.8748 *(vérifié IGN — 2026-08-09)*
 
 Nous y voilà, au pied de la tour de la Babote. Elle est massive, ronde, plantée sur les anciens remparts qui ceinturaient la ville. Imagine : au Moyen Âge, une vingtaine de tours comme celle-ci entouraient Montpellier, reliées par une muraille. Des guetteurs y surveillaient les routes, l'arme à la main, l'œil tendu vers l'horizon.
 

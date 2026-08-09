@@ -3,18 +3,18 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** La Rochelle
 **Thème :** Histoire & secrets — 1628, Richelieu affame la ville : le siège qui a brisé la République protestante de l'Atlantique.
-**Durée narration :** ~14 min
+**Durée narration :** ~13 min
 **Distance :** ~2,5 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Tour Saint-Nicolas : Les gardiennes du port
-**GPS :** 46.1548, -1.1510 *(approx. à vérifier)*
+**GPS :** 46.1548, -1.1510 *(vérifié IGN — 2026-08-09)*
 
 Plante-toi là, au bord de l'eau, à l'entrée du Vieux-Port. Devant toi, deux tours de pierre se font face, massives, trapues, dressées de chaque côté du chenal comme deux sentinelles. Celle sous laquelle tu te tiens, la plus haute et la plus large, c'est la tour Saint-Nicolas. En face, de l'autre côté du goulet, sa jumelle : la tour de la Chaîne. Et ce nom te dit déjà tout. Chaque soir, entre ces deux tours, on tendait une énorme chaîne de fer en travers de l'eau. Le port se fermait comme un coffre. Personne n'entrait, personne ne sortait.
 
-Car il faut que tu comprennes ce qu'était cette ville. Pas une ville française ordinaire. Une république presque libre, gouvernée par ses bourgeois, riche à millions du commerce de l'Atlantique — le sel, le vin, la morue. Et surtout : une ville protestante. La grande citadelle huguenote du royaume. On l'appelait la Genève de l'Ouest.
+Car il faut que tu comprennes ce qu'était cette ville. Pas une ville française ordinaire. Une république presque libre, gouvernée par ses bourgeois, riche à millions du commerce de l'Atlantique — le sel, les draps, le bois. Et surtout : une ville protestante. La grande citadelle huguenote du royaume. On l'appelait la Genève de l'Ouest.
 
 Une ville qui priait autrement que son roi, qui votait ses maires, qui traitait presque d'égale à égale avec l'Angleterre. Un caillou dans la chaussure de la France catholique.
 
@@ -25,7 +25,7 @@ Longe le quai, contourne le bassin, et rejoins-moi de l'autre côté, au pied de
 ---
 
 ## Scène 2 — Tour de la Chaîne : La ville qui défiait un royaume
-**GPS :** 46.1553, -1.1525 *(approx. à vérifier)*
+**GPS :** 46.1553, -1.1525 *(vérifié IGN — 2026-08-09)*
 
 Te voilà au pied de la tour de la Chaîne. C'est ici qu'on remontait, chaque nuit, l'énorme chaîne que tu imaginais tout à l'heure — un treuil, des hommes, et le port se verrouillait. À l'intérieur, aujourd'hui, on peut voir la maquette de ce qui va décider de tout : la digue.
 
@@ -40,7 +40,7 @@ Le piège se referme. Suis le chemin de ronde, le long du vieux mur, jusqu'à la
 ---
 
 ## Scène 3 — Tour de la Lanterne : Le phare devenu prison
-**GPS :** 46.1560, -1.1545 *(approx. à vérifier)*
+**GPS :** 46.1560, -1.1545 *(vérifié IGN — 2026-08-09)*
 
 Cette troisième tour, la plus haute et la plus fine, coiffée d'une flèche gothique, c'est la tour de la Lanterne. Son nom vient de son premier métier : tout en haut, un fanal, une lanterne, brûlait pour guider les navires vers le port. Le phare de la ville.
 
@@ -55,11 +55,11 @@ Redescends vers les quais, longe le port animé, et remonte vers la grande porte
 ---
 
 ## Scène 4 — Grosse-Horloge : L'or de l'Atlantique
-**GPS :** 46.1585, -1.1510 *(approx. à vérifier)*
+**GPS :** 46.1585, -1.1510 *(vérifié IGN — 2026-08-09)*
 
 Cette grande porte massive, surmontée d'un beffroi et d'une horloge coiffée de clochetons, c'est la Grosse-Horloge. C'était la porte de la ville. D'un côté, le port et ses bateaux ; de l'autre, la cité marchande. On passait dessous pour entrer dans le cœur battant de La Rochelle.
 
-Et ce cœur, il bat au rythme de l'argent. Franchis la porte, lève les yeux : des rues bordées d'arcades, de galeries de pierre où l'on marchait à l'abri de la pluie et du soleil. Sous ces arcades, on vendait de tout. Le sel des marais, le vin des Charentes, les draps, les épices, plus tard le sucre des îles.
+Et ce cœur, il bat au rythme de l'argent. Franchis la porte, lève les yeux : des rues bordées d'arcades, de galeries de pierre où l'on marchait à l'abri de la pluie et du soleil. Sous ces arcades, on vendait de tout. Le sel des marais, les draps, les épices, le bois et les cargaisons venues des îles.
 
 Les Rochelais sont des marchands, et de riches marchands. Ils arment des navires pour le monde entier. Leur ville n'obéit pas à un seigneur : elle se gouverne elle-même. Un maire élu, des échevins, un corps de ville. Une petite république bourgeoise, fière, sûre d'elle.
 
@@ -70,7 +70,7 @@ Prends la rue qui monte à droite, vers un bâtiment ouvragé caché derrière u
 ---
 
 ## Scène 5 — Hôtel de Ville : Le maire au poignard
-**GPS :** 46.1592, -1.1518 *(approx. à vérifier)*
+**GPS :** 46.1592, -1.1518 *(vérifié IGN — 2026-08-09)*
 
 Derrière ce mur crénelé, cette dentelle de pierre, c'est l'hôtel de ville — l'un des plus anciens de France encore en activité. Façade Renaissance, statues, devises gravées. Un incendie l'a ravagé il y a quelques années ; on l'a patiemment relevé, comme la ville a toujours su le faire.
 
@@ -85,7 +85,7 @@ Reprends vers le nord, jusqu'à un temple sobre, sans dorures ni statues. C'est 
 ---
 
 ## Scène 6 — Le temple protestant : La foi au bout du monde
-**GPS :** 46.1600, -1.1520 *(approx. à vérifier)*
+**GPS :** 46.1600, -1.1520 *(vérifié IGN — 2026-08-09)*
 
 Nous voici devant un temple protestant. Regarde comme il est nu : pas de saints dorés, pas de vitraux flamboyants, pas d'encens. Des murs clairs, des bancs, une chaire, une Bible ouverte. Tout est là, et rien de plus. C'est cela, la foi réformée qui a fait La Rochelle.
 
@@ -100,7 +100,7 @@ Continue vers la grande place, dominée par une cathédrale de pierre claire. Su
 ---
 
 ## Scène 7 — Cathédrale Saint-Louis : La réponse du roi
-**GPS :** 46.1608, -1.1512 *(approx. à vérifier)*
+**GPS :** 46.1608, -1.1512 *(vérifié IGN — 2026-08-09)*
 
 Cette grande place, c'est la place de Verdun, et ce vaisseau de pierre claire au fronton sévère, c'est la cathédrale Saint-Louis. Prends le temps de la regarder, car elle raconte la suite de notre histoire.
 
@@ -108,14 +108,14 @@ La Rochelle a longtemps vécu sans grande cathédrale. Ville de marchands et de 
 
 Le message est limpide. Là où régnait la république protestante, c'est désormais l'Église et la couronne qui dominent le ciel de la ville. La cathédrale d'un roi, plantée au cœur de la cité qui avait osé se passer de roi.
 
-Regarde autour de la place les grands cafés, les façades du XVIIIe siècle. Peu à peu, La Rochelle est rentrée dans le rang. Domptée, mais pas effacée.
+Regarde autour de la place les grandes arcades, les façades du XVIIIe siècle. Peu à peu, La Rochelle est rentrée dans le rang. Domptée, mais pas effacée.
 
 Redescends vers l'ouest, vers la ceinture verte qui borde la vieille ville. Là où couraient les remparts. Suis-moi.
 
 ---
 
 ## Scène 8 — Parc Charruyer : Là où sont tombés les murs
-**GPS :** 46.1575, -1.1560 *(approx. à vérifier)*
+**GPS :** 46.1618611, -1.1571704 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà dans une longue allée d'arbres, un ruban de verdure qui enveloppe la vieille ville. C'est le parc Charruyer, tracé sur les anciens fossés. Et sous tes pieds, sous ces pelouses, dort le souvenir des murailles.
 
@@ -129,8 +129,8 @@ Suis l'allée vers le sud, jusqu'à ce qu'elle débouche sur la mer. C'est là, 
 
 ---
 
-## Scène 9 — Face au large : La digue qui affama la ville
-**GPS :** 46.1565, -1.1555 *(approx. à vérifier)*
+## Scène 9 — Tour de la Lanterne, face au large : La digue qui affama la ville
+**GPS :** 46.156, -1.1545 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes. Face à la mer. Respire cet air du large, et regarde droit devant, vers l'horizon, entre la côte et l'île de Ré. C'est là, sur cette eau paisible, que s'est joué le sort de la ville.
 

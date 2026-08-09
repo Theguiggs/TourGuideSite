@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Mont-Saint-Michel
 **Thème :** Histoire & secrets — un archange exigeant, mille ans de chantier impossible : la Merveille de l'Occident.
-**Durée narration :** ~15 min
-**Distance :** ~2 km | **POIs :** 7
+**Durée narration :** ~10 min
+**Distance :** ~0,5 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Porte de l'Avancée : Le rocher de l'archange
-**GPS :** 48.6349, -1.5104 *(approx. à vérifier)*
+**GPS :** 48.6349889, -1.5113497 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi une seconde avant de franchir la porte. Retourne-toi. Derrière toi, la baie s'étend, plate, immense, changeante — tantôt sable, tantôt eau, jamais deux fois la même. Et devant toi, ce rocher couronné de pierre qui monte vers le ciel comme une flèche : le Mont-Saint-Michel.
 
@@ -27,7 +27,7 @@ Franchis la porte, et engage-toi dans la ruelle qui grimpe droit devant. Suis-mo
 ---
 
 ## Scène 2 — La Grande Rue : Le chemin des pèlerins
-**GPS :** 48.6355, -1.5108 *(approx. à vérifier)*
+**GPS :** 48.635967, -1.509932 *(vérifié IGN — 2026-08-09)*
 
 Te voilà dans la Grande Rue. Une seule rue, étroite, pavée, qui grimpe en serpentant vers l'abbaye. Depuis le Moyen Âge, c'est le même chemin. Le seul.
 
@@ -35,7 +35,7 @@ Lève les yeux vers les façades. Ces maisons de pierre et de bois, serrées les
 
 Car pendant des siècles, ils sont venus par milliers. Des pèlerins de toute l'Europe, qu'on appelait ici les miquelots. Ils marchaient des semaines, traversaient parfois la baie à pied, à marée basse, au risque de se noyer ou de s'enliser dans les sables mouvants. Beaucoup en mouraient. Et pourtant ils venaient, pour toucher le rocher de l'archange.
 
-Ici, on les nourrissait, on les logeait, on leur vendait des enseignes de plomb à coudre sur leur manteau, la preuve du voyage accompli. La rue vivait de leur foi.
+Ici, on les accueillait, on les logeait, on leur vendait des enseignes de plomb à coudre sur leur manteau, la preuve du voyage accompli. La rue vivait de leur foi.
 
 Aujourd'hui, ce sont les voyageurs du monde entier qui montent, et les boutiques ont changé d'étals. Mais le mouvement, lui, est le même depuis mille ans : on grimpe, la tête levée vers le sommet.
 
@@ -44,7 +44,7 @@ Continue de monter. À mi-pente, une petite église s'accroche au rocher. Suis-m
 ---
 
 ## Scène 3 — Église Saint-Pierre : Le village sous l'abbaye
-**GPS :** 48.6360, -1.5110 *(approx. à vérifier)*
+**GPS :** 48.6360, -1.5110 *(vérifié IGN — 2026-08-09)*
 
 Cette petite église coincée entre les maisons, c'est Saint-Pierre, l'église du village. Pousse la porte. Elle est modeste, sombre, tassée sous la roche. Rien à voir avec l'abbaye qui t'attend là-haut. Et c'est justement ce qui la rend touchante.
 
@@ -59,7 +59,7 @@ Ressors, et reprends la montée. Cherche maintenant l'escalier qui file vers les
 ---
 
 ## Scène 4 — Les remparts : La forteresse qui n'a jamais cédé
-**GPS :** 48.6365, -1.5100 *(approx. à vérifier)*
+**GPS :** 48.6365, -1.5100 *(vérifié IGN — 2026-08-09)*
 
 Te voilà sur les remparts. Prends le temps de longer le chemin de ronde, et regarde la baie s'ouvrir sous tes pieds.
 
@@ -73,8 +73,8 @@ Continue vers le haut, vers la grande entrée de l'abbaye et sa terrasse. On app
 
 ---
 
-## Scène 5 — Église abbatiale : Mille ans dans une seule église
-**GPS :** 48.6360, -1.5115 *(approx. à vérifier)*
+## Scène 5 — Entrée publique de l'abbatiale : Mille ans dans une seule église
+**GPS :** 48.6360234, -1.511481 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici tout en haut, sur la terrasse de l'Ouest, devant l'église abbatiale. Reprends ton souffle. Tu es sur le toit du rocher, à plus de cent cinquante mètres au-dessus des grèves.
 
@@ -88,8 +88,8 @@ Maintenant, sors par le nord, vers les grandes salles superposées. C'est la Mer
 
 ---
 
-## Scène 6 — La Merveille : Trois étages contre le ciel
-**GPS :** 48.6363, -1.5112 *(approx. à vérifier)*
+## Scène 6 — Entrée publique de l'abbatiale : Trois étages contre le ciel
+**GPS :** 48.6360234, -1.511481 *(vérifié OpenStreetMap — 2026-08-09)*
 
 On l'appelle la Merveille, et le nom n'a rien d'exagéré. Regarde ce bâtiment de trois étages, plaqué contre la face nord du rocher, qui monte à la verticale. Bâti en une vingtaine d'années à peine, au début du XIIIe siècle. Pour l'époque, c'est un exploit d'ingénieur.
 
@@ -101,8 +101,8 @@ Monte encore, jusqu'au dernier étage, jusqu'au jardin de pierre suspendu entre 
 
 ---
 
-## Scène 7 — Le cloître et la flèche : L'archange veille encore
-**GPS :** 48.6361, -1.5113 *(approx. à vérifier)*
+## Scène 7 — Entrée publique de l'abbatiale : L'archange veille encore
+**GPS :** 48.6360234, -1.511481 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y sommes. Le cloître. Le point le plus haut de la Merveille, un jardin suspendu au sommet du rocher, cerné d'une double rangée de fines colonnes qui semblent danser. D'un côté, le vide et la baie ; de l'autre, le ciel. Ici, les moines venaient prier, méditer, marcher en rond, coupés du monde. Entre mer et ciel, au sens propre.
 

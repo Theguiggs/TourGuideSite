@@ -3,18 +3,18 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Rennes
 **Thème :** Histoire & secrets — ville de bois brûlée en 1720, palais sauvé des flammes en 1994 : Rennes renaît toujours.
-**Durée narration :** ~13 min
-**Distance :** ~2,5 km | **POIs :** 9
+**Durée narration :** ~12 min
+**Distance :** ~1,9 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place du Champ-Jacquet : La ville qui a failli disparaître
-**GPS :** 48.1126, -1.6805 *(approx. à vérifier)*
+**GPS :** 48.1126, -1.6805 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi au milieu de cette petite place en triangle. Lève les yeux. Ces hautes maisons de bois qui se penchent vers toi, ventrues, de guingois, avec leurs poutres brunes et leurs façades qui semblent se retenir de tomber — regarde-les bien. Elles ont près de quatre siècles. Et elles ont eu de la chance.
 
-Parce que voici l'histoire que je vais te raconter tout au long de cette balade. Dans la nuit du 22 au 23 décembre 1720, à deux pas d'ici, un feu s'allume. On raconte qu'un artisan pris de boisson aurait renversé sa lampe dans un tas de copeaux. Une étincelle. Rien, d'abord. Et puis le vent se lève.
+Parce que voici l'histoire que je vais te raconter tout au long de cette balade. Dans la nuit du 22 au 23 décembre 1720, à deux pas d'ici, un feu s'allume. On raconte qu'un artisan aurait renversé sa lampe dans un tas de copeaux. Une étincelle. Rien, d'abord. Et puis le vent se lève.
 
 Rennes, à l'époque, c'est une ville de bois. Des ruelles serrées, des maisons à pans de bois collées les unes aux autres, du chanvre, de la paille, des greniers pleins. Le feu trouve tout ça. Il court de toit en toit. Il brûle une nuit, un jour, puis une semaine entière. Quand il s'éteint enfin, tout le cœur de la ville a disparu. Des centaines de maisons, des rues entières, réduites en cendres.
 
@@ -27,7 +27,7 @@ Monte maintenant vers le nord, jusqu'à une grande place animée, dominée par u
 ---
 
 ## Scène 2 — Place Sainte-Anne : Le Rennes qui n'a pas brûlé
-**GPS :** 48.1141, -1.6821 *(approx. à vérifier)*
+**GPS :** 48.11426, -1.680393 *(vérifié IGN — 2026-08-09)*
 
 Te voilà place Sainte-Anne. Le soir, elle déborde de terrasses et de rires ; mais regarde au-delà des parasols. Ces maisons hautes et étroites, à pans de bois, avec leurs pignons pointus et leurs poutres qui dessinent des croix — voilà le vrai visage du Rennes d'autrefois.
 
@@ -40,7 +40,7 @@ Quitte la place par le sud. Faufile-toi dans les ruelles qui descendent vers la 
 ---
 
 ## Scène 3 — Rue du Chapitre : Le bois, puis la pierre
-**GPS :** 48.1113, -1.6829 *(approx. à vérifier)*
+**GPS :** 48.1113, -1.6829 *(vérifié IGN — 2026-08-09)*
 
 Nous voici rue du Chapitre. Étroite, silencieuse, un peu à l'écart du bruit. C'est l'une des plus vieilles rues de Rennes, et l'une des plus belles.
 
@@ -55,7 +55,7 @@ Descends la rue jusqu'au bout, vers la masse claire de la cathédrale. Suis-moi.
 ---
 
 ## Scène 4 — Cathédrale Saint-Pierre : Rien ne dure, rien ne meurt
-**GPS :** 48.1116, -1.6836 *(approx. à vérifier)*
+**GPS :** 48.1116, -1.6836 *(vérifié IGN — 2026-08-09)*
 
 Voici la cathédrale Saint-Pierre. Massive, un peu coincée entre les maisons, avec sa façade de pierre grise encadrée de deux tours carrées. Elle a l'air solide, éternelle. Ne t'y fie pas.
 
@@ -70,7 +70,7 @@ Ressors, et descends encore, vers l'ouest, jusqu'à deux grosses tours de pierre
 ---
 
 ## Scène 5 — Portes Mordelaises : La porte des ducs
-**GPS :** 48.1109, -1.6846 *(approx. à vérifier)*
+**GPS :** 48.112003, -1.684692 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi devant ces deux tours trapues, leur passage sombre, la trace de leur pont-levis. Les Portes Mordelaises. C'est la plus vieille porte de Rennes, ce qui reste des remparts qui, autrefois, enfermaient toute la ville.
 
@@ -85,7 +85,7 @@ Remonte le long de la cathédrale et oblique vers une église à la façade clai
 ---
 
 ## Scène 6 — Basilique Saint-Sauveur : La ville sauvée
-**GPS :** 48.1121, -1.6829 *(approx. à vérifier)*
+**GPS :** 48.1121, -1.6829 *(vérifié IGN — 2026-08-09)*
 
 Voici la basilique Saint-Sauveur, coincée dans son écrin de vieilles maisons. Sa façade concave, ses pierres blondes, son air un peu secret. Entre, si tu peux. À l'intérieur, une chapelle dorée abrite une statue vénérée : Notre-Dame des Miracles.
 
@@ -100,7 +100,7 @@ Reprends vers l'est, quitte les ruelles médiévales et débouche sur une grande
 ---
 
 ## Scène 7 — Hôtel de Ville : Le trou dans la façade
-**GPS :** 48.1113, -1.6796 *(approx. à vérifier)*
+**GPS :** 48.1110261, -1.6793111 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà place de la Mairie. Change d'époque. Fini le Moyen Âge tortueux ; ici tout est droit, clair, symétrique. Voici le Rennes d'après l'incendie, dessiné d'un seul geste.
 
@@ -115,7 +115,7 @@ Descends vers l'est, vers la rivière, jusqu'à une longue et noble façade de p
 ---
 
 ## Scène 8 — Palais Saint-Georges : Le quartier épargné
-**GPS :** 48.1124, -1.6758 *(approx. à vérifier)*
+**GPS :** 48.1124, -1.6758 *(vérifié IGN — 2026-08-09)*
 
 Devant toi, cette très longue façade de pierre claire, régulière, avec son jardin et ses jets d'eau : c'est le palais Saint-Georges. Malgré son allure de palais, ce fut d'abord un couvent — l'abbaye Saint-Georges, un monastère de femmes, riche et puissant.
 
@@ -130,7 +130,7 @@ Remonte maintenant vers le nord, à travers les rues, jusqu'à un immense palais
 ---
 
 ## Scène 9 — Parlement de Bretagne : Deux fois sauvé des flammes
-**GPS :** 48.1131, -1.6781 *(approx. à vérifier)*
+**GPS :** 48.1131, -1.6781 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes. Devant toi, le plus majestueux monument de Rennes : le Parlement de Bretagne. Cette grande façade de pierre et de granit, ces hautes fenêtres, cette allure de château posé sur une place. Prends le temps de le regarder.
 

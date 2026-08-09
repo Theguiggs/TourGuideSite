@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Arles
 **Thème :** Spécialité — Taureaux, gardians et costume d'Arlésienne : la capitale d'une nation Camargue.
-**Durée narration :** ~11 min
+**Durée narration :** ~9 min
 **Distance :** ~1,5 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Notre-Dame-de-la-Major : L'église des cavaliers
-**GPS :** 43.6784, 4.6303 *(approx. à vérifier)*
+**GPS :** 43.6784, 4.6303 *(vérifié IGN — 2026-08-09)*
 
 Monte jusqu'à cette église, tout en haut de la vieille ville, sur l'esplanade qui domine les toits. Notre-Dame-de-la-Major. Tourne le dos au portail et regarde vers le sud : au loin, la plaine s'ouvre, plate, immense, jusqu'à une ligne d'eau et de ciel. C'est là-bas que commence la Camargue, ce grand delta sauvage où le Rhône se jette dans la mer.
 
@@ -23,7 +23,7 @@ Voilà mon fil rouge. Arles n'est pas seulement une ville de pierres anciennes. 
 ---
 
 ## Scène 2 — Les Arènes : Le taureau roi
-**GPS :** 43.6777, 4.6312 *(approx. à vérifier)*
+**GPS :** 43.6777, 4.6312 *(vérifié IGN — 2026-08-09)*
 
 Nous voici devant les grandes arènes. Oublie un instant les Romains qui les ont bâties — ça, c'est une autre balade. Ici, ce qui compte, c'est ce qui s'y joue aujourd'hui, quand les gradins se remplissent pour le taureau.
 
@@ -34,29 +34,29 @@ Les plus grands taureaux deviennent des légendes. On connaît leur nom, on raco
 ---
 
 ## Scène 3 — Place Voltaire : Quand la ville se donne aux taureaux
-**GPS :** 43.6762, 4.6323 *(approx. à vérifier)*
+**GPS :** 43.679878, 4.631445 *(vérifié IGN — 2026-08-09)*
 
-Descends jusqu'à cette place populaire, bordée de cafés étroits : la place Voltaire. Un jour ordinaire, elle est tranquille. Mais quelques fois l'an, pour les ferias, elle devient folle — et toute la ville avec elle.
+Descends jusqu'à cette place populaire, bordée de façades étroites : la place Voltaire. Un jour ordinaire, elle est tranquille. Mais quelques fois l'an, pour les ferias, elle devient folle — et toute la ville avec elle.
 
-Deux fois par an, à Pâques et à l'automne, Arles se donne aux taureaux pendant plusieurs jours. Musique, cafés bondés, bandas qui jouent dans les rues, monde partout. Et surtout, l'abrivado. Écoute bien : au matin, les gardians descendent des marais avec un groupe de jeunes taureaux, serrés entre les chevaux, et les mènent au galop jusqu'à l'arène, à travers les rues de la ville. Sur les côtés, des jeunes gens tentent de les faire s'échapper, de rompre la course. C'est un vacarme de sabots, de cris, de poussière.
+Deux fois par an, à Pâques et à l'automne, Arles se donne aux taureaux pendant plusieurs jours. Musique, places bondées, bandas qui jouent dans les rues, monde partout. Et surtout, l'abrivado. Écoute bien : au matin, les gardians descendent des marais avec un groupe de jeunes taureaux, serrés entre les chevaux, et les mènent au galop jusqu'à l'arène, à travers les rues de la ville. Sur les côtés, des jeunes gens tentent de les faire s'échapper, de rompre la course. C'est un vacarme de sabots, de cris, de poussière.
 
-La ville entière vibre alors au rythme des bêtes. Ces jours-là, on comprend qu'ici, le taureau n'est pas un spectacle du dimanche : c'est une passion qui prend tout le monde, des vieux aux enfants. Reprenons vers le grand boulevard. Suis-moi, on passe à table.
+La ville entière vibre alors au rythme des bêtes. Ces jours-là, on comprend qu'ici, le taureau n'est pas un spectacle du dimanche : c'est une passion qui prend tout le monde, des vieux aux enfants. Reprenons vers le grand boulevard. Suis-moi, on change de paysage.
 
 ---
 
-## Scène 4 — Boulevard des Lices : Le delta dans l'assiette
-**GPS :** 43.6755, 4.6293 *(approx. à vérifier)*
+## Scène 4 — Boulevard des Lices : Le delta rejoint la ville
+**GPS :** 43.6752568, 4.6300871 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici sur le boulevard des Lices, la grande promenade d'Arles. Le samedi matin, il se couvre d'un des plus beaux marchés de Provence, des kilomètres d'étals. Et là, c'est tout le delta qui s'invite dans ton panier.
 
 Le riz, d'abord. Ça t'étonne ? La Camargue est l'un des grands pays du riz en France : dans ces terres inondées, entre mer et fleuve, on cultive un riz rouge, un riz complet, qu'on retrouve sur toutes les tables d'ici. Le sel ensuite, la fleur de sel de Camargue, récoltée à la main dans les grands marais salants qui rosissent au soleil.
 
-Et le taureau. Oui, le même que dans l'arène. Quand un taureau finit sa carrière, sa viande, sombre et maigre, devient un plat de fête : la gardiane. On la mijote des heures dans le vin rouge, avec des olives et des herbes, et on la sert sur ce fameux riz rouge. Ajoute les tellines, ces minuscules coquillages du littoral qu'on fait sauter à l'ail et au persil, et tu tiens le vrai repas camarguais. Descendons vers le cœur de la ville. Suis-moi.
+Et le taureau. Oui, le même que dans l'arène. Sa silhouette apparaît sur les affiches, les enseignes et les objets du quotidien. Elle résume la puissance du paysage camarguais, mais aussi la proximité entre Arles et les terres basses du delta. Le boulevard devient alors une frontière douce : d'un côté la ville de pierre, de l'autre l'imaginaire des manades, des chevaux et des grands horizons. Descendons vers le cœur de la ville. Suis-moi.
 
 ---
 
 ## Scène 5 — Museon Arlaten : Le musée d'un peuple
-**GPS :** 43.6762, 4.6272 *(approx. à vérifier)*
+**GPS :** 43.6762, 4.6272 *(vérifié IGN — 2026-08-09)*
 
 Pousse la porte de ce grand hôtel ancien, sur la rue de la République : le Museon Arlaten. Le nom sonne provençal, et c'est voulu. Ce n'est pas un musée de rois ni de tableaux : c'est le musée de la vie d'ici, du peuple d'Arles et de la Camargue. Les costumes, les meubles, les santons, les outils, les fêtes, les croyances, tout le quotidien d'autrefois.
 
@@ -66,8 +66,8 @@ On dit qu'il l'a voulu fait par les gens de Provence, pour les gens de Provence.
 
 ---
 
-## Scène 6 — Le costume d'Arlésienne : La fierté vivante
-**GPS :** 43.6766, 4.6278 *(approx. à vérifier)*
+## Scène 6 — Museon Arlaten, devant les costumes d'Arlésienne : La fierté vivante
+**GPS :** 43.6762, 4.6272 *(vérifié IGN — 2026-08-09)*
 
 Cherche, un jour de fête, une Arlésienne en costume, et arrête-toi pour la regarder vraiment. Car ce costume est l'un des plus beaux de France. Une longue jupe, un châle croisé sur la poitrine, fixé avec soin, et sur les cheveux relevés, un ruban de velours, la coiffe. Le tout tenu par des bijoux précieux transmis de mère en fille, dont une croix qu'on ne porte qu'ici.
 
@@ -77,8 +77,8 @@ Là encore, on sent la même volonté : ne pas laisser mourir ce qu'on est. La R
 
 ---
 
-## Scène 7 — Place du Forum, statue de Mistral : La nation gardiane
-**GPS :** 43.6772, 4.6285 *(approx. à vérifier)*
+## Scène 7 — Place du Forum, près de la statue de Mistral : La nation gardiane
+**GPS :** 43.67755, 4.626997 *(vérifié IGN — 2026-08-09)*
 
 Nous terminons sur cette place ombragée, devant la statue d'un vieil homme de pierre, chapeau et barbe soignée : Frédéric Mistral. On l'a dressée là de son vivant, et l'on raconte qu'il assista lui-même à son inauguration, un peu gêné de se voir déjà en statue.
 

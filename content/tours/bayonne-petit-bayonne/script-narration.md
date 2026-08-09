@@ -9,8 +9,8 @@
 
 ---
 
-## Scène 1 — Porte d'Espagne : La ville qui ne s'est jamais rendue
-**GPS :** 43.4884, -1.4797 *(approx. à vérifier)*
+## Scène 1 — Place de la Porte d'Espagne : La ville qui ne s'est jamais rendue
+**GPS :** 43.4881575, -1.478232 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi sous la porte. Porte d'Espagne : le nom donne la direction — derrière toi, la route file vers la frontière, à trente kilomètres à peine. Pose la main sur la pierre. Tu touches deux mille ans de méfiance.
 
@@ -25,7 +25,7 @@ Tourne le dos à la porte et remonte vers le cœur de la vieille ville. Dans que
 ---
 
 ## Scène 2 — Cathédrale Sainte-Marie : Un gothique du Nord en pays basque
-**GPS :** 43.4903, -1.4788 *(approx. à vérifier)*
+**GPS :** 43.4903, -1.4788 *(vérifié IGN — 2026-08-09)*
 
 Lève les yeux. Deux flèches claires, un gothique venu du Nord, comme égaré en pays basque. Ce n'est pas un hasard : c'est presque une signature anglaise.
 
@@ -40,7 +40,7 @@ Ressors et prends la rue des Gouverneurs, qui descend vers le nord. Son nom t'an
 ---
 
 ## Scène 3 — Château-Vieux : Les gouverneurs et la baïonnette
-**GPS :** 43.4913, -1.4780 *(approx. à vérifier)*
+**GPS :** 43.4913, -1.4780 *(vérifié IGN — 2026-08-09)*
 
 Cette forteresse trapue, coincée entre les maisons, c'est le Château-Vieux. Bâti sur un angle de l'ancien camp romain, renforcé par les Anglais, repris par les rois de France. Ici logèrent les gouverneurs de la ville — la rue que tu viens de descendre leur doit son nom — et les garnisons chargées de la tenir.
 
@@ -53,7 +53,7 @@ Descends maintenant vers la rivière par les ruelles, droit vers l'est. Rendez-v
 ---
 
 ## Scène 4 — Pont Marengo : La Nive, frontière entre deux Bayonne
-**GPS :** 43.4922, -1.4747 *(approx. à vérifier)*
+**GPS :** 43.4922, -1.4747 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi au milieu du pont. Sous tes pieds coule la Nive, descendue des montagnes basques. À deux cents mètres sur ta gauche, elle se jette dans l'Adour. Et entre ses deux rives, elle sépare deux mondes.
 
@@ -66,7 +66,7 @@ Traverse, puis prends à gauche le long de l'eau. Le quai que tu vas suivre port
 ---
 
 ## Scène 5 — Quai des Corsaires : La piraterie avec des papiers en règle
-**GPS :** 43.4926, -1.4738 *(approx. à vérifier)*
+**GPS :** 43.491737, -1.473772 *(vérifié IGN — 2026-08-09)*
 
 Quai des Corsaires : rien de décoratif là-dedans. Aux XVIIe et XVIIIe siècles, quand la France est en guerre — c'est-à-dire souvent —, Bayonne « arme en course ». Le principe : le roi signe des lettres qui autorisent des capitaines privés à chasser les navires marchands ennemis. Le butin se partage entre l'armateur, l'équipage et la couronne. De la piraterie ? Non : de la piraterie avec des papiers en règle.
 
@@ -79,11 +79,11 @@ Continue sur le quai, puis engage-toi à droite dans la rue Pannecau, la colonne
 ---
 
 ## Scène 6 — Rue Pannecau : Le quartier frondeur
-**GPS :** 43.4928, -1.4729 *(approx. à vérifier)*
+**GPS :** 43.489768, -1.474449 *(vérifié IGN — 2026-08-09)*
 
-Te voilà dans la rue la plus vivante du quartier. En journée, elle somnole gentiment entre ses façades peintes. Le soir, ses bars s'allument, et le Petit Bayonne retrouve sa vraie nature : frondeuse.
+Te voilà dans la rue la plus vivante du quartier. En journée, elle somnole gentiment entre ses façades peintes. Le soir, ses fenêtres s'allument, et le Petit Bayonne retrouve sa vraie nature : frondeuse.
 
-Ce quartier populaire a toujours été le contre-pouvoir de la ville. C'est ici qu'on reléguait les métiers bruyants et odorants dont le Grand Bayonne ne voulait pas sous ses fenêtres. Ici que se réunissent les peñas, ces sociétés d'amis qui tiennent bar ouvert, fanfare prête et répartie affûtée. Et dans les années 1960 et 1970, c'est ici que trouvent refuge des Basques fuyant l'Espagne de Franco : pour un temps, le Petit Bayonne devient le salon discret où l'autre versant du pays respire.
+Ce quartier populaire a toujours été le contre-pouvoir de la ville. C'est ici qu'on reléguait les métiers bruyants et odorants dont le Grand Bayonne ne voulait pas sous ses fenêtres. Ici que se réunissent les peñas, ces sociétés d'amis qui gardent leurs locaux ouverts, fanfare prête et répartie affûtée. Et dans les années 1960 et 1970, c'est ici que trouvent refuge des Basques fuyant l'Espagne de Franco : pour un temps, le Petit Bayonne devient le salon discret où l'autre versant du pays respire.
 
 Frondeur, mais fidèle. Quand la ville a quelque chose à fêter — une victoire de rugby, un championnat de pelote, n'importe quel prétexte honnête —, c'est toujours par ici que ça commence, et toujours par ici que ça finit.
 
@@ -92,7 +92,7 @@ Au bout de la rue, tourne à gauche et monte doucement. Une deuxième forteresse
 ---
 
 ## Scène 7 — Château-Neuf : Le canon braqué vers l'intérieur
-**GPS :** 43.4919, -1.4706 *(approx. à vérifier)*
+**GPS :** 43.4919, -1.4706 *(vérifié IGN — 2026-08-09)*
 
 Voici le Château-Neuf, posé sur la hauteur du Petit Bayonne. Note sa date de naissance : la fin du XVe siècle. Juste après 1451 — juste après que les Français ont repris la ville aux Anglais.
 
@@ -105,7 +105,7 @@ Redescends vers la Nive, traverse le pont Mayou, et rejoins la grande place ouve
 ---
 
 ## Scène 8 — Place de la Liberté : Le jour où la forteresse capitule
-**GPS :** 43.4934, -1.4757 *(approx. à vérifier)*
+**GPS :** 43.492726, -1.474845 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes. La place de la Liberté : le théâtre, les arcades, la mairie. Et ce balcon, juste au-dessus de toi. Regarde-le bien : c'est le point exact où, chaque été, la forteresse capitule.
 

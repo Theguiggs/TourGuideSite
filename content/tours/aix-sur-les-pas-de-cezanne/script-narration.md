@@ -4,17 +4,17 @@
 **Ville :** Aix-en-Provence
 **Thème :** Art — l'atelier, la Sainte-Victoire et le père banquier : Cézanne contre sa ville, sa ville pour Cézanne.
 **Durée narration :** ~12 min
-**Distance :** ~3 km | **POIs :** 9
+**Distance :** ~3,1 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Cours Mirabeau : Le café des deux amis
-**GPS :** 43.5278, 5.4497 *(approx. à vérifier)*
+## Scène 1 — Cours Mirabeau : Les deux amis
+**GPS :** 43.526816, 5.449173 *(vérifié IGN — 2026-08-09)*
 
-Arrête-toi ici, à mi-hauteur du cours Mirabeau, sous les grands platanes qui ferment le ciel comme une voûte. À ta droite, une terrasse de café : les Deux Garçons. Retiens ce nom. Un incendie l'a ravagé en 2019, on l'a depuis relevé, mais pendant deux siècles, c'est là qu'Aix a refait le monde à voix haute.
+Arrête-toi ici, à mi-hauteur du cours Mirabeau, sous les grands platanes qui ferment le ciel comme une voûte. Regarde la double rangée de façades, les fontaines et la largeur de cette promenade aménagée au XVIIe siècle. Pendant des générations, c'est ici qu'Aix s'est montrée, rencontrée et racontée à voix haute.
 
-Deux gamins d'ici s'y sont assis, il y a longtemps. L'un s'appelait Émile Zola. L'autre, Paul Cézanne. Ils s'étaient connus au collège, ils rêvaient de Paris, de gloire, d'art. L'un l'a eue de son vivant. L'autre, non.
+Deux gamins d'ici ont arpenté ce cours, il y a longtemps. L'un s'appelait Émile Zola. L'autre, Paul Cézanne. Ils s'étaient connus au collège, ils rêvaient de Paris, de gloire, d'art. L'un l'a eue de son vivant. L'autre, non.
 
 Parce qu'il faut que tu saches une chose, et c'est l'histoire que je vais te raconter tout au long de cette balade. Cézanne est le plus grand peintre qu'Aix ait donné au monde — et de son vivant, sa ville l'a pris pour un raté. On l'appelait « le barbouilleur ». On riait de ses toiles. Les bourgeois d'ici, à commencer par son propre père, un banquier, ne comprenaient rien à ce qu'il cherchait.
 
@@ -27,7 +27,7 @@ Descends le cours vers l'est, jusqu'à la fontaine du bout, puis tourne dans la 
 ---
 
 ## Scène 2 — Rue de l'Opéra : L'enfant du chapelier
-**GPS :** 43.5272, 5.4508 *(approx. à vérifier)*
+**GPS :** 43.527251, 5.453434 *(vérifié IGN — 2026-08-09)*
 
 Nous voici rue de l'Opéra. Lève les yeux vers le numéro 28. C'est là, un matin de janvier 1839, qu'est né Paul Cézanne. Rien ne le destinait à la peinture — au contraire.
 
@@ -42,7 +42,7 @@ Reprends vers le sud, jusqu'aux grilles d'un grand collège. Suis-moi.
 ---
 
 ## Scène 3 — Collège Bourbon : Le pacte des inséparables
-**GPS :** 43.5254, 5.4499 *(approx. à vérifier)*
+**GPS :** 43.5254, 5.4499 *(vérifié IGN — 2026-08-09)*
 
 Ce grand bâtiment sévère, c'était le collège Bourbon — aujourd'hui le collège Mignet. Le jeune Paul y use ses culottes sur les bancs. Et c'est là qu'il rencontre un autre gamin, malingre, myope, souvent chahuté : Émile Zola.
 
@@ -57,7 +57,7 @@ Reviens vers l'est, vers l'église et le musée au bout de la rue. Suis-moi.
 ---
 
 ## Scène 4 — Musée Granet : La ville qui ne voulait pas de lui
-**GPS :** 43.5257, 5.4507 *(approx. à vérifier)*
+**GPS :** 43.5257, 5.4507 *(vérifié IGN — 2026-08-09)*
 
 Devant toi, l'église Saint-Jean-de-Malte et, contre elle, le musée Granet — le musée des beaux-arts d'Aix. C'est ici que se joue le grand malentendu entre Cézanne et sa ville.
 
@@ -74,7 +74,7 @@ Remonte vers le nord, traverse le cours, jusqu'à la place de l'hôtel de ville.
 ---
 
 ## Scène 5 — Place de l'Hôtel de Ville : Le pays des bourgeois
-**GPS :** 43.5294, 5.4477 *(approx. à vérifier)*
+**GPS :** 43.5294, 5.4477 *(vérifié IGN — 2026-08-09)*
 
 Te voici sur la place de l'Hôtel de Ville, avec sa jolie tour à l'horloge et son marché aux fleurs. C'est le décor du monde qui a jugé Cézanne : le monde des notables, des avocats, des propriétaires — le monde de son père.
 
@@ -89,7 +89,7 @@ Prends la rue qui monte au nord, la rue Boulegon. Suis-moi.
 ---
 
 ## Scène 6 — Rue Boulegon : La dernière adresse
-**GPS :** 43.5298, 5.4479 *(approx. à vérifier)*
+**GPS :** 43.531056, 5.449947 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi devant le numéro 23 de la rue Boulegon. Rien ne le signale, ou presque. Pourtant, c'est ici que Cézanne a vécu ses dernières années, et c'est ici qu'il est mort.
 
@@ -104,7 +104,7 @@ Continue de monter, jusqu'à la grande cathédrale au sommet de la vieille ville
 ---
 
 ## Scène 7 — Cathédrale Saint-Sauveur : La foi retrouvée
-**GPS :** 43.5308, 5.4472 *(approx. à vérifier)*
+**GPS :** 43.5308, 5.4472 *(vérifié IGN — 2026-08-09)*
 
 Voici la cathédrale Saint-Sauveur, tout en haut de la vieille ville. Entre un instant si tu peux, ou reste sur le parvis, et pense au vieil homme qu'était devenu Cézanne.
 
@@ -118,8 +118,8 @@ Maintenant, quitte la vieille ville et grimpe l'avenue Paul-Cézanne, au nord. C
 
 ---
 
-## Scène 8 — Atelier des Lauves : La maison de la lumière
-**GPS :** 43.5350, 5.4489 *(approx. à vérifier)*
+## Scène 8 — Atelier Cézanne : La maison de la lumière
+**GPS :** 43.538403, 5.4462542 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y sommes : l'atelier des Lauves. Cézanne l'a fait bâtir sur cette colline en 1902, avec l'argent du père, pour avoir enfin un lieu à lui. Une grande pièce nue, et surtout, au nord, une immense verrière : la lumière égale, sans ombre dure, celle qu'aime le peintre.
 
@@ -134,7 +134,7 @@ Sors, monte encore un peu, jusqu'au petit terrain qui domine tout. Suis-moi.
 ---
 
 ## Scène 9 — Terrain des Peintres : La montagne enfin
-**GPS :** 43.5359, 5.4490 *(approx. à vérifier)*
+**GPS :** 43.53839, 5.446179 *(vérifié IGN — 2026-08-09)*
 
 Nous y voilà. Le terrain des Peintres. Retourne-toi vers l'est, et regarde.
 
@@ -144,7 +144,7 @@ Parce que Cézanne l'a peinte des dizaines de fois. À l'huile, à l'aquarelle, 
 
 Alors reviens à notre histoire. Un fils que son père voulait avocat. Une ville qui le prenait pour un fou. Un homme mort seul, sans gloire, un pinceau à la main.
 
-Et regarde aujourd'hui. Son nom sur l'avenue, sur le collège, sur les cafés. Ses « C » de bronze dans le trottoir. Sa montagne devenue lieu de pèlerinage. Aix a fini par comprendre qu'elle avait porté, sans le savoir, l'un des plus grands.
+Et regarde aujourd'hui. Son nom sur l'avenue, sur le collège, sur les plaques de la ville. Ses « C » de bronze dans le trottoir. Sa montagne devenue lieu de pèlerinage. Aix a fini par comprendre qu'elle avait porté, sans le savoir, l'un des plus grands.
 
 « Aix, ma patrie », disait-il. Elle est devenue, pour toujours, la patrie de Cézanne.
 

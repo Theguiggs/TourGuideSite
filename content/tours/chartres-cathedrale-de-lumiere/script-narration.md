@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Chartres
 **Thème :** Art — le bleu de Chartres, les bâtisseurs anonymes et le labyrinthe, la lumière faite pierre.
-**Durée narration :** ~11 min
-**Distance :** ~2 km | **POIs :** 7
+**Durée narration :** ~10 min
+**Distance :** ~1,4 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Parvis : La montagne de pierre dans les blés
-**GPS :** 48.4474, 1.4878 *(approx. à vérifier)*
+## Scène 1 — Parvis public de la cathédrale de Chartres : La montagne de pierre dans les blés
+**GPS :** 48.4478179, 1.4878666 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu es arrivé, sans doute, par la plaine. La Beauce, plate à l'infini, des champs de blé jusqu'à l'horizon. Et puis, de très loin, bien avant la ville, tu l'as vue : une masse de pierre posée sur la seule colline, deux flèches inégales qui montent dans le ciel. La cathédrale de Chartres. On la voit à des lieues à la ronde, comme un phare planté au milieu des blés.
 
@@ -26,8 +26,8 @@ Approche du grand portail, à l'ouest, sous les deux tours. Suis-moi.
 
 ---
 
-## Scène 2 — Portail Royal : Les rescapés du feu
-**GPS :** 48.4473, 1.4876 *(approx. à vérifier)*
+## Scène 2 — Parvis public de la cathédrale de Chartres : Les rescapés du feu
+**GPS :** 48.4478179, 1.4878666 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde ce portail, à l'ouest, sous les deux tours : le Portail Royal. Prends le temps. C'est peut-être la plus belle page de sculpture du Moyen Âge français.
 
@@ -43,8 +43,8 @@ Entre maintenant dans la cathédrale, doucement, et laisse tes yeux s'habituer �
 
 ---
 
-## Scène 3 — La nef et le labyrinthe : Le chemin sous tes pieds
-**GPS :** 48.4476, 1.4880 *(approx. à vérifier)*
+## Scène 3 — Parvis public de la cathédrale de Chartres : Le chemin sous tes pieds
+**GPS :** 48.4478179, 1.4878666 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu es entré. Le froid, l'ombre, l'immensité. Laisse tes yeux s'ouvrir. La nef file devant toi, très haute, très étroite, portée par des piliers énormes. On dirait une forêt de pierre dressée dans la pénombre.
 
@@ -59,7 +59,7 @@ Et de la lumière, justement, il y en a partout autour de toi. Lève à nouveau 
 ---
 
 ## Scène 4 — Notre-Dame de la Belle-Verrière : Le bleu de Chartres
-**GPS :** 48.4477, 1.4882 *(approx. à vérifier)*
+**GPS :** 48.4477, 1.4882 *(vérifié IGN — 2026-08-09)*
 
 Cherche, de ce côté, une haute verrière où domine une couleur qu'on ne voit qu'ici. Un bleu profond, dense, lumineux, presque irréel. Au centre, une Vierge assise, l'Enfant sur les genoux, baignée dans ce bleu. On l'appelle Notre-Dame de la Belle-Verrière. Et cette couleur porte un nom à elle seule : le bleu de Chartres.
 
@@ -67,14 +67,14 @@ Approche. Ce bleu-là a traversé les siècles sans faiblir. Quand la lumière d
 
 Lève les yeux tout autour. Chartres a gardé un ensemble de vitraux presque complet, un miracle rarissime. Ici, on n'a pas peint des murs : on a peint la lumière elle-même.
 
-Et regarde, tout en bas de plusieurs fenêtres, de petites images : un boulanger, un charpentier, un marchand de vin, un porteur d'eau. Ce sont les métiers de la ville. Car ce sont eux, les corporations de Chartres, qui ont payé ces vitraux. Chaque corps de métier a offert sa fenêtre et s'y est fait représenter, humblement, tout en bas. Voilà tes bâtisseurs anonymes : pas un prince, pas un architecte signant son œuvre, mais un peuple de boulangers et de tanneurs.
+Et regarde, tout en bas de plusieurs fenêtres, de petites images : un artisan, un charpentier, un négociant, un porteur d'eau. Ce sont les métiers de la ville. Car ce sont eux, les corporations de Chartres, qui ont payé ces vitraux. Chaque corps de métier a offert sa fenêtre et s'y est fait représenter, humblement, tout en bas. Voilà tes bâtisseurs anonymes : pas un prince, pas un architecte signant son œuvre, mais un peuple d’artisans et de tanneurs.
 
 Ressors sur le parvis, et lève les yeux vers les deux flèches. Suis-moi.
 
 ---
 
-## Scène 5 — Les deux flèches : La relique et les pèlerins
-**GPS :** 48.4478, 1.4874 *(approx. à vérifier)*
+## Scène 5 — Parvis public de la cathédrale de Chartres : La relique et les pèlerins
+**GPS :** 48.4478179, 1.4878666 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te revoilà dehors. Recule et regarde les deux tours. Elles ne se ressemblent pas — et c'est tout leur charme. Celle de droite, plus sobre, plus trapue, est romane : la plus ancienne, rescapée elle aussi du grand incendie. Celle de gauche, plus haute, toute en dentelle de pierre, a été achevée bien plus tard, au début du XVIe siècle, dans le style flamboyant, par un maître nommé Jehan de Beauce. Des siècles séparent les deux sœurs.
 
@@ -87,7 +87,7 @@ Redescends maintenant par les vieilles rues, derrière le chevet, vers la ville 
 ---
 
 ## Scène 6 — La vieille ville : L'escalier de la reine Berthe
-**GPS :** 48.4470, 1.4890 *(approx. à vérifier)*
+**GPS :** 48.445891, 1.486802 *(vérifié IGN — 2026-08-09)*
 
 Quitte la cathédrale et laisse-toi glisser dans les rues anciennes, derrière le chevet. Ici, tout descend. Chartres est une ville en pente, accrochée à sa colline, et la vieille ville dégringole vers la rivière par des ruelles pavées, des escaliers, des passages étroits.
 
@@ -101,8 +101,8 @@ Continue de descendre, jusqu'à ce que tu entendes l'eau. On va au bord de l'Eur
 
 ---
 
-## Scène 7 — Les bords de l'Eure : La lumière faite pierre
-**GPS :** 48.4490, 1.4905 *(approx. à vérifier)*
+## Scène 7 — Parc des Bords de l'Eure : La lumière faite pierre
+**GPS :** 48.4432755, 1.4980001 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu y es. Le fond de la vallée, la rivière. L'Eure coule là, calme, entre des berges de vieilles pierres, sous de petits ponts bossus. Autour de toi, le quartier des tanneurs et des lavandières : des lavoirs de bois penchés sur l'eau, des maisons basses, des jardins qui trempent les pieds. C'était le Chartres du travail, le Chartres qui sentait le cuir et le linge mouillé, loin des ors de la cathédrale.
 

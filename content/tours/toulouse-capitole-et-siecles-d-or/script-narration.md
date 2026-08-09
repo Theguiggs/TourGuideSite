@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Toulouse
 **Thème :** Histoire & secrets — du pastel à la brique rose : les fortunes et les drames de la ville qui a deux âges d'or.
-**Durée narration :** ~13 min
-**Distance :** ~2,5 km | **POIs :** 10
+**Durée narration :** ~14 min
+**Distance :** ~3,9 km | **POIs :** 10
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place du Capitole : La ville aux deux fortunes
-**GPS :** 43.6045, 1.4440 *(approx. à vérifier)*
+**GPS :** 43.6043987, 1.4433516 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Avance jusqu'au centre de la place. Sous tes pieds, une immense croix occitane de bronze, incrustée dans le pavé, avec les douze signes du zodiaque au bout de ses branches. Tu es exactement au cœur de Toulouse. Et au cœur d'une énigme.
 
@@ -25,7 +25,7 @@ Prends la rue du Taur, qui part au coin de la place. Son nom, à lui seul, est d
 ---
 
 ## Scène 2 — Notre-Dame du Taur : Le saint traîné par un taureau
-**GPS :** 43.6060, 1.4433 *(approx. à vérifier)*
+**GPS :** 43.6060, 1.4433 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Lève les yeux sur cette façade plate, tout en brique, qui monte comme un mur de forteresse percé de cloches. C'est Notre-Dame du Taur. Taur, comme taureau. Et ce n'est pas une coquetterie.
 
@@ -38,7 +38,7 @@ Et Sernin, justement, t'attend au bout de la rue. Continue tout droit, trois min
 ---
 
 ## Scène 3 — Basilique Saint-Sernin : Le premier âge d'or
-**GPS :** 43.6084, 1.4419 *(approx. à vérifier)*
+**GPS :** 43.6084, 1.4419 *(vérifié OpenStreetMap — 2026-08-09)*
 
 La voilà. Prends une seconde pour la regarder entière : la basilique Saint-Sernin, souvent citée comme la plus vaste église romane conservée d'Europe. Son clocher octogonal monte en étages comme une pièce montée de brique et de pierre. Mille ans, et elle tient toujours.
 
@@ -50,8 +50,8 @@ Mais cette brillance va attirer la foudre. Redescends vers la Garonne, par les p
 
 ---
 
-## Scène 4 — Saint-Pierre-des-Cuisines : La doyenne discrète
-**GPS :** 43.6046, 1.4372 *(approx. à vérifier)*
+## Scène 4 — Auditorium Saint-Pierre des Cuisines : La doyenne discrète
+**GPS :** 43.6042843, 1.4356331 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette façade modeste, presque timide à côté de sa grande sœur Saint-Sernin, cache l'un des plus anciens lieux chrétiens de la ville : Saint-Pierre-des-Cuisines. Sous son sol, les archéologues ont retrouvé une nécropole des premiers siècles chrétiens — des sarcophages alignés là depuis quinze siècles, quand Toulouse était encore la capitale d'un royaume wisigoth.
 
@@ -63,8 +63,8 @@ Maintenant, suis la rue vers l'eau. À deux cents mètres, la Garonne gronde con
 
 ---
 
-## Scène 5 — Le Bazacle : Les meuniers qui ont inventé les actionnaires
-**GPS :** 43.6040, 1.4345 *(approx. à vérifier)*
+## Scène 5 — Espace EDF Bazacle : Les meuniers qui ont inventé les actionnaires
+**GPS :** 43.6041754, 1.431971 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Écoute la Garonne. Ici, le fleuve butte sur un haut-fond naturel — un ancien gué que les Romains appelaient déjà vadaculum, le petit passage, devenu Bazacle. Et où l'eau accélère, l'homme installe des moulins.
 
@@ -76,8 +76,8 @@ Première fortune : le blé et l'eau. Mais pendant que les meuniers comptaient l
 
 ---
 
-## Scène 6 — Les Jacobins : La croisade, la pierre des femmes et le palmier
-**GPS :** 43.6042, 1.4404 *(approx. à vérifier)*
+## Scène 6 — Église des Jacobins : La croisade, la pierre des femmes et le palmier
+**GPS :** 43.6034791, 1.4402257 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Entre dans le silence de cette église-forteresse, ou reste devant sa brique nue : le couvent des Jacobins raconte la plus grande blessure de l'histoire toulousaine.
 
@@ -90,7 +90,7 @@ Ressors vers la rue Gambetta, puis la rue des Changes. On va parler argent — b
 ---
 
 ## Scène 7 — Rue des Changes : La rue où l'argent changeait de mains
-**GPS :** 43.6015, 1.4438 *(approx. à vérifier)*
+**GPS :** 43.6009604, 1.4437266 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu marches sur l'ancienne artère marchande de Toulouse. Son nom dit tout : rue des Changes, la rue des changeurs de monnaie. Ici se croisaient écus, ducats et florins, et les affaires du Midi se concluaient d'une poignée de main.
 
@@ -103,7 +103,7 @@ Continue la rue, puis glisse à droite vers la rue de Metz. Le palais du roi du 
 ---
 
 ## Scène 8 — Hôtel d'Assézat : L'or bleu et la chute
-**GPS :** 43.6006, 1.4431 *(approx. à vérifier)*
+**GPS :** 43.6003819, 1.4418817 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Pousse-toi dans la cour si elle est ouverte, ou admire le portail : l'hôtel d'Assézat est le plus beau palais Renaissance de la ville. Colonnes superposées, pierre claire mêlée à la brique, tour d'escalier qui n'en finit pas de monter. C'est le chef-d'œuvre d'un homme : Pierre d'Assézat, marchand de pastel.
 
@@ -116,7 +116,7 @@ Son palais, lui, a trouvé une belle vieillesse : il abrite notamment l'académi
 ---
 
 ## Scène 9 — Pont Neuf : Pourquoi la ville est rose
-**GPS :** 43.5996, 1.4410 *(approx. à vérifier)*
+**GPS :** 43.5993424, 1.4390625 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Avance sur le pont et retourne-toi vers la ville. Voilà le secret le plus visible de Toulouse, celui qu'on oublie de questionner : pourquoi tout est-il rose ?
 
@@ -131,7 +131,7 @@ Reviens sur la rive et prends la rue des Filatiers. Notre dernière histoire est
 ---
 
 ## Scène 10 — Rue des Filatiers : L'affaire Calas, le drame qui fit la lumière
-**GPS :** 43.5990, 1.4443 *(approx. à vérifier)*
+**GPS :** 43.5993204, 1.4439831 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Marche doucement dans cette rue commerçante, et arrête-toi vers le numéro 50. Ici vivait une famille de marchands d'étoffes : les Calas. Protestants, dans une ville profondément catholique où leur culte est à peine toléré.
 

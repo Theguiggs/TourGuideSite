@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Chamonix-Mont-Blanc
 **Thème :** Histoire & secrets — la Compagnie des guides, ses héros et ses drames : vivre de la montagne qui tue.
-**Durée narration :** ~10 min
-**Distance :** ~1,8 km | **POIs :** 7
+**Durée narration :** ~9 min
+**Distance :** ~2,1 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Maison de la Montagne : La plus vieille compagnie du monde
-**GPS :** 45.9232, 6.8693 *(approx. à vérifier)*
+**GPS :** 45.9232, 6.8693 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi sur cette place, devant ce grand bâtiment ancien, aux volets de bois : la Maison de la Montagne. Autrefois, c'était le presbytère, la maison du curé. Aujourd'hui, c'est la maison des guides. Et c'est ici, sous ce toit, que bat depuis deux siècles le cœur d'un métier unique.
 
@@ -25,7 +25,7 @@ Voilà le fil de notre balade : comment vivre, et même prospérer, d'une montag
 ---
 
 ## Scène 2 — Église Saint-Michel : La messe des cordes
-**GPS :** 45.9236, 6.8697 *(approx. à vérifier)*
+**GPS :** 45.9236, 6.8697 *(vérifié IGN — 2026-08-09)*
 
 Voici l'église Saint-Michel, avec son clocher à bulbe tourné vers les cimes. C'est l'église du village, mais c'est surtout, chaque année, l'église des guides.
 
@@ -40,7 +40,7 @@ Prends maintenant l'allée qui remonte vers le nord, vers un grand édifice blan
 ---
 
 ## Scène 3 — Le Majestic : Les clients de la belle époque
-**GPS :** 45.9248, 6.8701 *(approx. à vérifier)*
+**GPS :** 45.922458, 6.86653 *(vérifié IGN — 2026-08-09)*
 
 Ce grand vaisseau blanc, avec ses balcons et ses rangées de fenêtres, c'est le Majestic. Un palace, bâti au début du XXe siècle, quand Chamonix devint l'une des stations les plus courues d'Europe.
 
@@ -55,7 +55,7 @@ Voilà le marché étrange qui fait vivre la vallée : d'un côté, des messieur
 ---
 
 ## Scène 4 — Avenue Ravanel-le-Rouge : Les guides entrent dans la légende
-**GPS :** 45.9254, 6.8686 *(approx. à vérifier)*
+**GPS :** 45.920076, 6.866363 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette avenue porte un surnom : Ravanel le Rouge. Derrière ce nom, un guide véritable, Joseph Ravanel, un roux flamboyant, l'une des figures de la grande époque, ouvreur de voies nouvelles au début du XXe siècle.
 
@@ -69,8 +69,8 @@ Poursuis vers le nord. Cherche, entre les toits, les grandes silhouettes de pier
 
 ---
 
-## Scène 5 — Belvédère des Aiguilles : La montagne qui tue
-**GPS :** 45.9260, 6.8678 *(approx. à vérifier)*
+## Scène 5 — Parvis du Majestic, face aux Aiguilles : La montagne qui tue
+**GPS :** 45.922458, 6.86653 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi et lève les yeux vers l'est. Là-haut, ces flèches de granit sombre, vertigineuses, qui déchirent le ciel : ce sont les Aiguilles de Chamonix. Et plus loin, cette pointe altière, l'Aiguille Verte, et les Drus.
 
@@ -85,7 +85,7 @@ Regarde encore ces aiguilles. Elles sont splendides. Elles sont mortelles. Et de
 ---
 
 ## Scène 6 — Le Biollay : Le glacier qui rend ses morts
-**GPS :** 45.9266, 6.8668 *(approx. à vérifier)*
+**GPS :** 45.922732, 6.877993 *(vérifié IGN — 2026-08-09)*
 
 Nous quittons le centre, et le bruit s'éteint. C'est le bon moment pour te raconter l'histoire qui hante la vallée.
 
@@ -102,7 +102,7 @@ Continue jusqu'à la grille, un peu plus loin, à l'ombre des arbres. Suis-moi.
 ---
 
 ## Scène 7 — Cimetière du Biollay : Ceux qui reposent face aux cimes
-**GPS :** 45.9271, 6.8662 *(approx. à vérifier)*
+**GPS :** 45.922732, 6.877993 *(vérifié IGN — 2026-08-09)*
 
 Nous voici devant le cimetière du Biollay. Pousse la grille, marche doucement. Ici reposent des générations de Chamoniards — et parmi eux, beaucoup de ceux dont je t'ai parlé.
 

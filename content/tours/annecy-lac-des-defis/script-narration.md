@@ -4,13 +4,13 @@
 **Ville :** Annecy
 **Thème :** Sport — nage, voile, vol libre, vélo : le lac-stade d'Annecy et le jour où la ville a rêvé des anneaux olympiques.
 **Durée narration :** ~9 min
-**Distance :** ~2,5 km | **POIs :** 7
+**Distance :** ~2,4 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Plage de l'Impérial : Le lac est un stade
-**GPS :** 45.9043, 6.1417 *(approx. à vérifier)*
+**GPS :** 45.9027847, 6.1426141 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Pose-toi face à l'eau, là où la pelouse descend vers la plage. Derrière toi, ce grand palace blanc de 1913, l'Impérial, avec ses airs de gâteau Belle Époque. Devant toi, le lac — et tout autour, les montagnes penchées sur l'eau comme des spectateurs dans une tribune.
 
@@ -25,7 +25,7 @@ Mets-toi en route : suis le rivage, le lac à ta gauche. Tu vas traverser une im
 ---
 
 ## Scène 2 — Le Pâquier : La ligne de départ
-**GPS :** 45.9017, 6.1338 *(approx. à vérifier)*
+**GPS :** 45.9018669, 6.1324855 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette esplanade immense, plate comme un green, grande ouverte sur le lac : le Pâquier. Le mot veut dire pâturage — les vaches ont brouté ici bien avant les joggeurs.
 
@@ -37,8 +37,8 @@ Continue le long de l'eau jusqu'au port, là où les mâts s'agitent.
 
 ---
 
-## Scène 3 — Le port : Attraper le vent
-**GPS :** 45.8999, 6.1333 *(approx. à vérifier)*
+## Scène 3 — Le Pâquier, face au port : Attraper le vent
+**GPS :** 45.901867, 6.132485 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Des pontons, des mâts, des drisses qui claquent. Le port d'Annecy est petit, mais ne t'y fie pas : on navigue sérieusement, ici.
 
@@ -50,8 +50,8 @@ Poursuis vers le sud, le long du quai. La prochaine histoire ne se passe pas sur
 
 ---
 
-## Scène 4 — Quai des Marquisats : Les ailes du Semnoz
-**GPS :** 45.8962, 6.1345 *(approx. à vérifier)*
+## Scène 4 — Voie Verte du lac d'Annecy, quai des Marquisats : Les ailes du Semnoz
+**GPS :** 45.8941167, 6.1363585 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi et lève la tête. Par beau temps, tu les vois forcément : des dizaines de voiles colorées suspendues dans le ciel du lac, qui tournent lentement, comme des feuilles qui refuseraient de tomber. Bienvenue dans l'un des hauts lieux mondiaux du parapente.
 
@@ -64,7 +64,7 @@ Continue sur le quai, encore quelques minutes. Une plage et de grands bassins t'
 ---
 
 ## Scène 5 — Plage des Marquisats : La plus belle victoire
-**GPS :** 45.8938, 6.1352 *(approx. à vérifier)*
+**GPS :** 45.8927541, 6.1374118 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Voici la plage des Marquisats et son stade nautique, des bassins posés au ras du lac, où les lignes d'eau regardent les montagnes.
 
@@ -81,7 +81,7 @@ Poursuis vers le sud. Les hangars à bateaux ne sont plus très loin.
 ---
 
 ## Scène 6 — Base nautique des Marquisats : Les rameurs de l'aube
-**GPS :** 45.8921, 6.1356 *(approx. à vérifier)*
+**GPS :** 45.8935738, 6.1361462 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Des hangars, des racks de coques effilées, des kayaks empilés jusqu'au plafond : la base nautique des Marquisats, la salle des machines du lac.
 
@@ -93,8 +93,8 @@ Encore quelques centaines de mètres vers le sud. Là où les rails d'un vieux t
 
 ---
 
-## Scène 7 — La voie verte : Le rêve olympique
-**GPS :** 45.8901, 6.1372 *(approx. à vérifier)*
+## Scène 7 — Voie Verte du lac d'Annecy : Le rêve olympique
+**GPS :** 45.8941167, 6.1363585 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu y es. Ce long ruban d'asphalte lisse qui file vers le bout du lac, c'est la voie verte. Écoute : le sifflement des roues de vélo, le roulement des rollers, les foulées. Il y a un siècle, c'étaient des locomotives — tu marches sur l'ancienne voie ferrée qui reliait Annecy à Albertville. Quand le train s'est tu, la ville a eu une idée simple et géniale : garder le tracé, enlever les rails. On la dit aujourd'hui l'une des pistes les plus fréquentées de France.
 

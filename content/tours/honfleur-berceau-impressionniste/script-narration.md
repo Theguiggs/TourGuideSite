@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Honfleur
 **Thème :** Art — Boudin, Monet et la ferme Saint-Siméon, le port qui a appris aux peintres à peindre le ciel en plein air.
-**Durée narration :** ~12 min
-**Distance :** ~3 km | **POIs :** 7
+**Durée narration :** ~10 min
+**Distance :** ~2,5 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Le Vieux Bassin : Le tableau que tu as sous les yeux
-**GPS :** 49.4188, 0.2345 *(approx. à vérifier)*
+**GPS :** 49.4188, 0.2345 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi au bord de l'eau, devant le Vieux Bassin. Prends le temps. Devant toi, ce miroir sombre où se reflètent des maisons hautes, étroites, serrées les unes contre les autres, couvertes d'ardoise grise jusqu'aux fenêtres. Des mâts de voiliers se balancent. Et au-dessus, le vrai spectacle : le ciel. Un ciel de Normandie, changeant, où les nuages courent et où la lumière ne tient jamais en place.
 
@@ -27,7 +27,7 @@ Suis-moi. Longe le bassin vers cette étrange église de bois, là-haut. Je vais
 ---
 
 ## Scène 2 — Église Sainte-Catherine : Un chantier de charpentiers de marine
-**GPS :** 49.4197, 0.2330 *(approx. à vérifier)*
+**GPS :** 49.4197, 0.2330 *(vérifié IGN — 2026-08-09)*
 
 Te voilà sur la place Sainte-Catherine, devant la plus grande église de bois de France. Lève les yeux. Pas de pierre, pas de voûtes de cathédrale : des poutres, du chêne, une charpente. Entre, si tu peux. Le plafond, au-dessus de toi, ressemble à deux coques de bateau retournées. Normal. Ceux qui l'ont bâtie, au sortir de la guerre de Cent Ans, n'étaient pas des maçons. C'étaient des charpentiers de marine. Ils ont construit une église comme ils construisaient des navires.
 
@@ -40,7 +40,7 @@ Redescends vers le bassin, puis file à droite jusqu'à un musée qui porte son 
 ---
 
 ## Scène 3 — Musée Eugène Boudin : Le roi des ciels
-**GPS :** 49.4200, 0.2318 *(approx. à vérifier)*
+**GPS :** 49.4200, 0.2318 *(vérifié IGN — 2026-08-09)*
 
 Nous voici devant le musée Eugène Boudin. On l'a fondé de son vivant, avec lui, il y a plus de cent cinquante ans. Et derrière ces murs, tu trouveras des Boudin, bien sûr, mais aussi des Monet, des Jongkind, des Dufy — toute la bande qui a peint ce coin de côte.
 
@@ -55,7 +55,7 @@ Continue vers le sud, dans les ruelles, jusqu'à une maison à colombages au dr�
 ---
 
 ## Scène 4 — Les Maisons Satie : Un port qui fabrique des artistes
-**GPS :** 49.4173, 0.2302 *(approx. à vérifier)*
+**GPS :** 49.423482, 0.230505 *(vérifié IGN — 2026-08-09)*
 
 Cette maison à colombages, c'est la maison natale d'Erik Satie. Le nom te dit peut-être quelque chose : un musicien, l'homme des Gymnopédies, ces mélodies lentes, dépouillées, comme suspendues. Il est né ici, à Honfleur, en 1866. Aujourd'hui, sa maison est un musée farfelu, plein de poires ailées et de manèges, à son image.
 
@@ -67,8 +67,8 @@ Maintenant, on quitte le port. On va grimper là où tout s'est joué. Prends la
 
 ---
 
-## Scène 5 — La montée de la Côte de Grâce : Le point de vue des peintres
-**GPS :** 49.4168, 0.2270 *(approx. à vérifier)*
+## Scène 5 — Croix de Grâce, sur la montée de la Côte de Grâce : Le point de vue des peintres
+**GPS :** 49.4281631, 0.2235366 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Reprends ton souffle, et retourne-toi. De ce belvédère, au-dessus des toits, tu tiens tout Honfleur dans un seul regard. Les ardoises grises, les clochers, la forêt de mâts du bassin, et là-bas, immense, l'estuaire de la Seine qui s'ouvre vers la mer.
 
@@ -81,13 +81,13 @@ Continue de monter le chemin, sous les arbres, jusqu'à une belle demeure caché
 ---
 
 ## Scène 6 — La Ferme Saint-Siméon : L'auberge où tout a commencé
-**GPS :** 49.4162, 0.2240 *(approx. à vérifier)*
+**GPS :** 49.4237756, 0.2246561 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y sommes presque. Cette belle demeure normande, aujourd'hui un hôtel de luxe, c'était autrefois une simple ferme-auberge. La ferme Saint-Siméon. Et dans les années 1860, elle est devenue le repaire le plus célèbre de la peinture française.
 
-Imagine. Une patronne, la mère Toutain, qui sert du cidre et de la galette. Une terrasse sous les pommiers, avec la mer en contrebas. Et des peintres, partout. Boudin y montait. Le Hollandais Jongkind aussi. Le jeune Monet. Et puis Courbet, Bazille, Daubigny — les uns déjà connus, les autres encore inconnus, presque tous fauchés, tous exaltés.
+Imagine. Une auberge tenue par la mère Toutain. Une terrasse sous les arbres, avec la mer en contrebas. Et des peintres, partout. Boudin y montait. Le Hollandais Jongkind aussi. Le jeune Monet. Et puis Courbet, Bazille, Daubigny — les uns déjà connus, les autres encore inconnus, presque tous fauchés, tous exaltés. Le lieu devient un atelier sans murs, ouvert au ciel changeant de l’estuaire.
 
-Ils logeaient là pour presque rien. Le jour, ils peignaient dehors, sur le motif, l'estuaire et les bateaux. Le soir, ils se retrouvaient à cette table, ils buvaient, ils s'engueulaient sur la couleur et la lumière. On a appelé ça, plus tard, l'école de Saint-Siméon. Un laboratoire à ciel ouvert où se préparait, sans le savoir, la révolution impressionniste.
+Ils logeaient là pour presque rien. Le jour, ils peignaient dehors, sur le motif, l'estuaire et les bateaux. Le soir, ils se retrouvaient dans la même salle, échangeaient et s'engueulaient sur la couleur et la lumière. On a appelé ça, plus tard, l'école de Saint-Siméon. Un laboratoire à ciel ouvert où se préparait, sans le savoir, la révolution impressionniste.
 
 Rien de figé ici. Pas de professeur, pas d'académie. Juste des jeunes gens qui avaient décidé de peindre le monde tel qu'ils le voyaient.
 
@@ -96,7 +96,7 @@ Encore quelques pas vers le sommet de la colline, jusqu'à une petite chapelle. 
 ---
 
 ## Scène 7 — Chapelle Notre-Dame-de-Grâce : La lumière, pour finir
-**GPS :** 49.4150, 0.2205 *(approx. à vérifier)*
+**GPS :** 49.422857, 0.2217175 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici tout en haut, sur le plateau de la Côte de Grâce, devant la chapelle Notre-Dame-de-Grâce. Une petite église toute simple, entourée d'arbres. Depuis des siècles, les marins de Honfleur montaient ici prier avant de partir, et suspendre à l'intérieur des maquettes de bateaux, pour remercier le ciel de les avoir ramenés vivants. Regarde-les si tu entres : une forêt de petits navires accrochés dans la pénombre.
 

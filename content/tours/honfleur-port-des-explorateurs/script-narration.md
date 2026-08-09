@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Honfleur
 **Thème :** Histoire & secrets — de Champlain parti fonder Québec aux terre-neuvas, le port des grands départs.
-**Durée narration :** ~12 min
-**Distance :** ~1,5 km | **POIs :** 7
+**Durée narration :** ~10 min
+**Distance :** ~0,9 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — La Lieutenance : La dernière porte de France
-**GPS :** 49.4199, 0.2352 *(approx. à vérifier)*
+**GPS :** 49.4199, 0.2352 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi devant ce vieux bâtiment de pierre, à l'entrée du bassin, là où l'eau du port rejoint l'eau du large. C'est la Lieutenance. Un gros morceau de forteresse, trapu, percé d'une arche : c'est presque tout ce qui reste des remparts qui, autrefois, enfermaient Honfleur.
 
@@ -27,7 +27,7 @@ Longe le quai, à droite, le long du Vieux Bassin. Suis-moi.
 ---
 
 ## Scène 2 — Le Vieux Bassin : Le port de Colbert
-**GPS :** 49.4189, 0.2345 *(approx. à vérifier)*
+**GPS :** 49.4189, 0.2345 *(vérifié IGN — 2026-08-09)*
 
 Te voilà le long du Vieux Bassin, avec ses hautes maisons qui se mirent dans l'eau. Ce décor de carte postale a une date de naissance. Nous sommes en 1681. Le roi, c'est Louis XIV, et son grand ministre, Colbert, veut faire de la France une puissance maritime. Il ordonne d'agrandir le port de Honfleur.
 
@@ -39,8 +39,8 @@ Continue le long du bassin, vers le fond, là où l'on garde la mémoire d'un ho
 
 ---
 
-## Scène 3 — Samuel de Champlain : Le départ pour Québec
-**GPS :** 49.4193, 0.2338 *(approx. à vérifier)*
+## Scène 3 — Vieux Bassin, mémoire du départ de Champlain : Le départ pour Québec
+**GPS :** 49.4199, 0.2352 *(vérifié IGN — 2026-08-09)*
 
 C'est ici, quelque part sur ces quais, qu'a commencé l'aventure du Canada français. En 1608, un navigateur embarque à Honfleur sur un navire qu'on dit avoir eu pour nom le Don-de-Dieu. Il s'appelle Samuel de Champlain.
 
@@ -55,7 +55,7 @@ Enfonce-toi maintenant dans la vieille ville, derrière les quais, jusqu'à deux
 ---
 
 ## Scène 4 — Les Greniers à sel : Le sel, la morue et les terre-neuvas
-**GPS :** 49.4202, 0.2360 *(approx. à vérifier)*
+**GPS :** 49.4202, 0.2360 *(vérifié IGN — 2026-08-09)*
 
 Regarde ces vastes bâtiments de pierre et de bois, presque des cathédrales sans clocher. Ce sont les greniers à sel. On les a construits sous Louis XIV pour y entreposer une seule chose, mais une chose vitale : le sel.
 
@@ -70,7 +70,7 @@ Reviens vers les quais, jusqu'à une vieille église de pierre devenue musée. S
 ---
 
 ## Scène 5 — Église Saint-Étienne : Ceux qui ne revenaient pas
-**GPS :** 49.4189, 0.2347 *(approx. à vérifier)*
+**GPS :** 49.4189, 0.2347 *(vérifié IGN — 2026-08-09)*
 
 Cette église de pierre, la plus vieille de Honfleur, ne dit plus la messe. On l'a transformée en musée de la Marine. À l'intérieur : des maquettes de bateaux, des instruments de navigation, et le souvenir de tous ces marins du port.
 
@@ -85,7 +85,7 @@ Suis le quai vers la sortie du port, là où l'eau s'ouvre vers le grand large. 
 ---
 
 ## Scène 6 — Le port des découvreurs : Honfleur et le grand large
-**GPS :** 49.4198, 0.2338 *(approx. à vérifier)*
+**GPS :** 49.4198, 0.2338 *(vérifié IGN — 2026-08-09)*
 
 Fais quelques pas encore vers l'avant-port, là où les bateaux gagnent la mer. Et regarde vers le large, parce que Champlain et les terre-neuvas ne sont pas les seuls à être partis d'ici.
 
@@ -100,7 +100,7 @@ Marche jusqu'au bout de la jetée, face à la mer et au grand pont. Notre histoi
 ---
 
 ## Scène 7 — L'avant-port et le Pont de Normandie : Les grands départs
-**GPS :** 49.4210, 0.2345 *(approx. à vérifier)*
+**GPS :** 49.4210, 0.2345 *(vérifié IGN — 2026-08-09)*
 
 Nous voici au bout du port, face au large. Devant toi, l'estuaire de la Seine s'ouvre en grand, et là, immense, ce pont blanc suspendu à ses câbles qui enjambe le fleuve d'un seul bond : le Pont de Normandie. On l'a ouvert en 1995. Longtemps, il a compté parmi les plus grands ponts de ce type au monde. Aujourd'hui, il relie Honfleur au Havre en quelques minutes.
 

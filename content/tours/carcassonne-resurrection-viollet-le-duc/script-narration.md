@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Carcassonne
 **Thème :** Art — condamnée à la démolition en 1850, ressuscitée par un architecte fou de Moyen Âge.
-**Durée narration :** ~12 min
-**Distance :** ~2 km | **POIs :** 7
+**Durée narration :** ~9 min
+**Distance :** ~1,4 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Porte Narbonnaise : La ruine qu'on allait démolir
-**GPS :** 43.2110, 2.3668 *(approx. à vérifier)*
+**GPS :** 43.206854, 2.365687 *(vérifié IGN — 2026-08-09)*
 
 Regarde ces deux tours coiffées de toits pointus, en ardoise sombre, comme deux casques d'acier. C'est par là qu'on entre dans la Cité, et c'est déjà tout le sujet de notre balade. Parce que ces toits pointus, tu vas l'apprendre, un homme les a dessinés il y a moins de deux siècles. Avant lui, ils n'existaient pas.
 
@@ -24,8 +24,8 @@ Entre, et glisse-toi dans les lices, le couloir entre les deux murs. Suis-moi.
 
 ---
 
-## Scène 2 — Les Lices : Où finit le vrai, où commence le rêve
-**GPS :** 43.2095, 2.3650 *(approx. à vérifier)*
+## Scène 2 — Porte Narbonnaise, entrée des Lices : Où finit le vrai, où commence le rêve
+**GPS :** 43.2066125, 2.3658795 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici dans les lices, entre les deux remparts. C'est ici qu'on comprend le travail de Viollet-le-Duc, parce qu'ici, la pierre ne ment pas. Baisse les yeux vers le bas des murs : de gros blocs, des rangs de briques rouges. Ça, c'est d'origine, c'est gallo-romain, vieux de près de deux mille ans. L'architecte, lui, n'y a pas touché. Il l'a lu comme un livre.
 
@@ -38,7 +38,7 @@ Continue les lices vers l'ouest, jusqu'au château qui commande toute la Cité. 
 ---
 
 ## Scène 3 — Château Comtal : L'atelier du restaurateur
-**GPS :** 43.2066, 2.3624 *(approx. à vérifier)*
+**GPS :** 43.2066, 2.3624 *(vérifié IGN — 2026-08-09)*
 
 Voici le Château Comtal, forteresse dans la forteresse. Pour Viollet-le-Duc, ce fut le quartier général. C'est d'ici qu'il a piloté un chantier titanesque : des ouvriers par centaines, des tailleurs de pierre, des charpentiers, année après année, pendant plus de vingt ans.
 
@@ -51,7 +51,7 @@ Ressors et descends vers le sud, jusqu'à la basilique et ses grandes verrières
 ---
 
 ## Scène 4 — Basilique Saint-Nazaire : La première pierre
-**GPS :** 43.2053, 2.3630 *(approx. à vérifier)*
+**GPS :** 43.2053, 2.3630 *(vérifié IGN — 2026-08-09)*
 
 Entre dans la basilique Saint-Nazaire. C'est ici, en 1853, que tout a commencé : la toute première restauration de Carcassonne, avant même les remparts. Viollet-le-Duc débute par l'église, comme on soigne d'abord le cœur.
 
@@ -66,7 +66,7 @@ Ressors et remonte le long des remparts du sud, là où les tours dressent leurs
 ---
 
 ## Scène 5 — Remparts sud : La grande querelle des toits pointus
-**GPS :** 43.2058, 2.3618 *(approx. à vérifier)*
+**GPS :** 43.2058, 2.3618 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi ici, au pied des tours, et regarde bien leurs coiffes. Des toits coniques, élancés, couverts d'ardoise gris-bleu. C'est l'image de Carcassonne, celle des cartes postales, celle des châteaux de contes de fées. Et c'est aussi la plus grande querelle de toute la restauration.
 
@@ -79,7 +79,7 @@ Continue vers l'ouest, jusqu'à la porte suspendue au-dessus de la vallée. Suis
 ---
 
 ## Scène 6 — Porte d'Aude : Un décor grandeur nature
-**GPS :** 43.2076, 2.3607 *(approx. à vérifier)*
+**GPS :** 43.2076, 2.3607 *(vérifié IGN — 2026-08-09)*
 
 Te voilà à la Porte d'Aude, accrochée au flanc de la colline, au-dessus du vide. En bas, la rivière ; en face, la ville basse ; et sous tes pieds, la longue rampe qui dévalait vers la vallée. Viollet-le-Duc a redressé cette porte, ses tours, ses murs, comme il a repris toute l'enceinte, tour après tour.
 
@@ -92,7 +92,7 @@ Descends maintenant la rampe et le sentier, vers la rivière et le vieux pont, t
 ---
 
 ## Scène 7 — Pont Vieux : La revanche d'un rêveur
-**GPS :** 43.2090, 2.3560 *(approx. à vérifier)*
+**GPS :** 43.2090, 2.3560 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi sur le Pont Vieux, ou juste avant, là où la Cité tout entière se dresse de l'autre côté de l'Aude. Retourne-toi. Voilà. C'est pour ce moment précis que nous avons descendu la colline.
 

@@ -9,10 +9,10 @@
 
 ---
 
-## Scène 1 — Musée de la Céramique : Le secret dans l'assiette
-**GPS :** 49.4449, 1.0935 *(approx. à vérifier)*
+## Scène 1 — Musée de la Céramique : Le secret sous l’émail
+**GPS :** 49.4449, 1.0935 *(vérifié IGN — 2026-08-09)*
 
-Pousse la grille de cet hôtel particulier et monte à l'étage. Cherche une assiette. N'importe laquelle, pourvu qu'elle soit blanche et bleue.
+Pousse la grille de cet hôtel particulier et monte à l'étage. Cherche une pièce de faïence. N'importe laquelle, pourvu qu'elle soit blanche et bleue.
 
 Regarde le bord : une dentelle de motifs qui rayonne vers le centre, régulière, obsessionnelle, comme un soleil retourné. Ça s'appelle le décor rayonnant. Ça n'existe nulle part ailleurs. C'est la signature de Rouen, et pendant un siècle, toute l'Europe a essayé de la copier.
 
@@ -20,7 +20,7 @@ Tout commence vers 1540 avec un homme, Masséot Abaquesne. Il sait faire ce que 
 
 Puis vient le coup de génie. En 1673, un Rouennais, Louis Poterat, obtient un privilège pour une pâte translucide : de la porcelaine, la première fabriquée en France. Il la garde pour lui. Il meurt sans rien dire à personne. Le secret meurt avec lui.
 
-Et enfin le coup de chance. Louis XIV, ruiné par ses guerres, ordonne aux grands du royaume de porter leur vaisselle d'or et d'argent à la fonte. Il faut bien manger dans quelque chose. La noblesse se rabat sur la faïence — et Rouen, qui a les fours, les peintres et le fleuve, décroche le gros lot.
+Et enfin le coup de chance. Louis XIV, ruiné par ses guerres, ordonne aux grands du royaume de porter leurs objets d'or et d'argent à la fonte. Les grandes maisons se tournent alors vers la faïence — et Rouen, qui a les fours, les peintres et le fleuve, décroche le gros lot.
 
 Voilà le fil que je te propose. Cette ville n'a jamais rien eu d'autre que ses mains. La terre, le fer, le fil, le bois, la pierre. Je te les montre une par une. Et tout au bout, dans un beffroi, une aiguille dorée te dira ce que tout ça valait.
 
@@ -29,7 +29,7 @@ Sors et prends vers le sud. Quatre minutes, direction une église pleine de fer.
 ---
 
 ## Scène 2 — Musée Le Secq des Tournelles : L'église noire
-**GPS :** 49.4438, 1.0954 *(approx. à vérifier)*
+**GPS :** 49.4438, 1.0954 *(vérifié IGN — 2026-08-09)*
 
 Cette église n'est plus une église. Saint-Laurent, gothique flamboyant, fermée au culte à la Révolution, vidée, oubliée, transformée en entrepôt. Puis, en 1921, on la rouvre pour y mettre du fer. Rien que du fer.
 
@@ -46,7 +46,7 @@ Prends vers le sud-est. Six minutes : on va suivre une rivière disparue.
 ---
 
 ## Scène 3 — Rue Eau-de-Robec : L'eau qui teignait
-**GPS :** 49.4417, 1.0996 *(approx. à vérifier)*
+**GPS :** 49.441626, 1.104029 *(vérifié IGN — 2026-08-09)*
 
 Ce mince filet d'eau qui court au milieu de la rue, entre les petits ponts de pierre, c'est un décor. Le vrai Robec coule sous tes pieds, enterré sous des voûtes depuis longtemps. On a remis ce ruisseau-là en scène dans les années 1980, pour te raconter ce qui s'est passé ici.
 
@@ -63,7 +63,7 @@ Continue, deux rues plus loin. Trois minutes. Et cette fois, lève franchement l
 ---
 
 ## Scène 4 — Rue Damiette : Le bois debout
-**GPS :** 49.4411, 1.0989 *(approx. à vérifier)*
+**GPS :** 49.440544, 1.098404 *(vérifié IGN — 2026-08-09)*
 
 Regarde ces maisons. Elles penchent, elles avancent, elles s'appuient les unes sur les autres, et chaque étage déborde un peu plus que celui du dessous. Ça s'appelle l'encorbellement.
 
@@ -80,13 +80,13 @@ Cap à l'ouest. Huit minutes, jusqu'à une rue qui porte le nom d'un métier.
 ---
 
 ## Scène 5 — Rue Ganterie : D'où vient le mot chef-d'œuvre
-**GPS :** 49.4432, 1.0936 *(approx. à vérifier)*
+**GPS :** 49.4434595, 1.0940021 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Rue Ganterie. Lis le nom. Les gantiers étaient là.
 
 Toute cette ville est un annuaire de métiers écrit au coin des rues. Ce n'était pas du folklore, c'était de l'organisation. Chaque métier avait sa corporation, ses statuts, et ses jurés qui passaient dans les ateliers vérifier la marchandise et cassaient en public ce qui n'était pas conforme.
 
-Et pour entrer là-dedans, il fallait payer de sa personne. Tu commences apprenti, gamin, chez un maître qui te loge et te nourrit. Des années. Puis compagnon : payé, enfin, mais toujours aux ordres. Et un jour, si tu veux ton atelier, ta boutique et le droit de signer ton travail, tu dois fabriquer une pièce unique, seul, devant les jurés du métier. Une pièce qui prouve que tu sais tout faire.
+Et pour entrer là-dedans, il fallait payer de sa personne. Tu commences apprenti, gamin, chez un maître qui te loge et te forme. Des années. Puis compagnon : payé, enfin, mais toujours aux ordres. Et un jour, si tu veux ton atelier, ta boutique et le droit de signer ton travail, tu dois fabriquer une pièce unique, seul, devant les jurés du métier. Une pièce qui prouve que tu sais tout faire.
 
 Cette pièce-là porte un nom. On l'appelle le chef-d'œuvre.
 
@@ -97,13 +97,13 @@ Continue plein ouest, sept minutes. Je t'emmène chez un bourgeois qui avait les
 ---
 
 ## Scène 6 — Hôtel de Bourgtheroulde : Le reportage en pierre
-**GPS :** 49.4426, 1.0873 *(approx. à vérifier)*
+**GPS :** 49.4420976, 1.0882736 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Entre dans la cour, c'est ouvert. Devant toi, l'hôtel de Bourgtheroulde, bâti au début du XVIᵉ siècle par la famille Le Roux : des bourgeois enrichis devenus officiers du roi, assez riches pour s'offrir les meilleurs tailleurs de pierre de Normandie.
 
 Va vers la galerie du fond, au rez-de-chaussée, et baisse-toi un peu. Il y a là une frise de bas-reliefs, une bande dessinée de pierre. Elle raconte un événement précis : le Camp du Drap d'Or.
 
-Juin 1520, quelque part entre Calais et Ardres. François Ier et Henri VIII d'Angleterre se rencontrent pendant dix-huit jours dans un déluge de tentes dorées, de tournois et de banquets. Deux rois qui se jaugent en se ruinant. Personne, à Rouen, n'y était.
+Juin 1520, quelque part entre Calais et Ardres. François Ier et Henri VIII d'Angleterre se rencontrent pendant dix-huit jours dans un déluge de tentes dorées, de tournois et de cérémonies. Deux rois qui se jaugent en se ruinant. Personne, à Rouen, n'y était.
 
 Alors les sculpteurs ont travaillé d'après des gravures. Ils ont taillé les chevaux, les armures, les rois, les pavillons, sans avoir rien vu de leurs yeux — juste pour que le maître de maison puisse dire à ses visiteurs : moi, je sais ce qui se passe dans le monde.
 
@@ -113,8 +113,8 @@ Redescends vers l'est. Cinq minutes. Tu vas passer sous quelque chose.
 
 ---
 
-## Scène 7 — Le Gros-Horloge : Une seule aiguille
-**GPS :** 49.4416, 1.0919 *(approx. à vérifier)*
+## Scène 7 — Gros-Horloge : Une seule aiguille
+**GPS :** 49.441528, 1.0912622 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu y es. Ne passe pas dessous tout de suite. Recule un peu, et regarde ce cadran.
 
@@ -130,8 +130,8 @@ Trois minutes d'escalier. Monte.
 
 ---
 
-## Scène 8 — Le beffroi : Ce que pèsent les heures
-**GPS :** 49.4414, 1.0917 *(approx. à vérifier)*
+## Scène 8 — Tour du Beffroi : Ce que pèsent les heures
+**GPS :** 49.4414788, 1.09118 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà dans le beffroi. Prends ton temps. Tout est là.
 

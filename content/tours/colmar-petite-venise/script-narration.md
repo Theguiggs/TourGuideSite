@@ -3,18 +3,18 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Colmar
 **Thème :** Histoire & secrets — tanneurs, maraîchers et canaux, la ville-décor qui a failli disparaître.
-**Durée narration :** ~14 min
+**Durée narration :** ~11 min
 **Distance :** ~2 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place de l'Ancienne Douane : Le Koïfhus, cœur d'une ville marchande
-**GPS :** 48.0772, 7.3583 *(approx. à vérifier)*
+**GPS :** 48.075839, 7.359915 *(vérifié IGN — 2026-08-09)*
 
 Plante-toi devant ce grand bâtiment jaune au toit de tuiles vernissées, ces losanges verts et rouges qui brillent au soleil. C'est le Koïfhus, l'ancienne douane. Le plus vieux bâtiment public de Colmar : on l'a élevé en 1480. Retiens ce nom, Koïfhus — il vient de l'allemand Kaufhaus, la maison du commerce.
 
-En bas, sous ces arcades, on entreposait les marchandises et on percevait la taxe : le vin, le blé, le drap, tout ce qui entrait en ville payait ici son dû. En haut, dans la grande salle, se réunissaient les délégués de la Décapole — la ligue des dix villes libres d'Alsace, qui s'étaient juré entraide. Colmar en était l'une des têtes. Dans cette pièce, on décidait de la paix, de la guerre, des impôts. Une petite république marchande, fière et prospère.
+En bas, sous ces arcades, on entreposait les marchandises et on percevait la taxe : le blé, le drap, le bois, tout ce qui entrait en ville payait ici son dû. En haut, dans la grande salle, se réunissaient les délégués de la Décapole — la ligue des dix villes libres d'Alsace, qui s'étaient juré entraide. Colmar en était l'une des têtes. Dans cette pièce, on décidait de la paix, de la guerre, des impôts. Une petite république marchande, fière et prospère.
 
 Et c'est l'histoire que je vais te raconter tout au long de cette balade. Colmar a bâti sa fortune sur trois choses : l'eau d'une rivière, la Lauch, qui traverse la ville ; la terre grasse des maraîchers, qui la nourrissait ; et le travail rude des tanneurs, qui la faisait puer et vivre.
 
@@ -24,8 +24,8 @@ Alors quitte cette place par la rue qui plonge vers le sud, vers le quartier des
 
 ---
 
-## Scène 2 — Quartier des Tanneurs : Les maisons qui séchaient les peaux
-**GPS :** 48.0766, 7.3586 *(approx. à vérifier)*
+## Scène 2 — Maison Pfister, au seuil du quartier des Tanneurs : Les maisons qui séchaient les peaux
+**GPS :** 48.0767512, 7.3581513 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà rue des Tanneurs. Lève les yeux sur ces maisons : les plus hautes de la vieille ville, serrées les unes contre les autres, avec leurs derniers étages tout ajourés, comme des cages de bois ouvertes à l'air.
 
@@ -40,7 +40,7 @@ Descends encore vers l'eau, jusqu'au quai qui longe la rivière. Suis-moi.
 ---
 
 ## Scène 3 — Quai de la Poissonnerie : Le monde des pêcheurs
-**GPS :** 48.0763, 7.3577 *(approx. à vérifier)*
+**GPS :** 48.074288, 7.359893 *(vérifié IGN — 2026-08-09)*
 
 Nous voici sur le quai de la Poissonnerie. Regarde ces maisons qui trempent presque les pieds dans l'eau, peintes de rouge, d'ocre, de bleu, penchées comme de vieux camarades qui se tiennent l'épaule.
 
@@ -55,13 +55,13 @@ Continue le long de l'eau, vers la grande halle de brique qui se dresse un peu p
 ---
 
 ## Scène 4 — Marché Couvert : La halle où arrivaient les barques
-**GPS :** 48.0761, 7.3587 *(approx. à vérifier)*
+**GPS :** 48.0761, 7.3587 *(vérifié IGN — 2026-08-09)*
 
 Cette halle de brique rouge et de fer, c'est le marché couvert. On l'a bâtie en 1865, à l'époque où la France entière se couvrait de ces grandes verrières de fonte, sœurs des gares.
 
-Mais regarde du côté de la rivière. Là, un petit débarcadère, une porte qui donne droit sur l'eau. Ce n'est pas décoratif. Par là arrivaient les barques chargées de légumes, poussées depuis les jardins d'en amont. On amarrait, on déchargeait les choux, les navets, les salades, directement dans la halle. La rivière servait de route, et le maraîcher, de livreur.
+Mais regarde du côté de la rivière. Là, un petit débarcadère, une porte qui donne droit sur l'eau. Ce n'est pas décoratif. Par là arrivaient des barques venues des jardins et des ateliers d'amont. On amarrait, on déchargeait les marchandises directement dans la halle. La rivière servait de route et reliait les quartiers au lieu d'échange.
 
-Pousse la porte si le marché est ouvert. Tu y trouveras encore les fruits, les fromages de la vallée, le pain, la charcuterie, le vin du coteau. Des siècles que ça dure, à la même place. Peu de villes peuvent en dire autant.
+Pousse la porte si le bâtiment est ouvert. Tu y retrouveras l’animation d’un lieu d’échange installé au bord de l’eau. Des générations de Colmariens s’y sont croisées, à la même place. Peu de villes peuvent en dire autant.
 
 Voilà la deuxième source de Colmar, après le commerce : la terre. Et ceux qui la travaillaient vivaient tout près, dans un quartier qu'on va rejoindre maintenant.
 
@@ -69,14 +69,14 @@ Sors côté rivière, franchis le petit pont et enfonce-toi dans les ruelles de 
 
 ---
 
-## Scène 5 — La Krutenau : Le quartier des maraîchers
-**GPS :** 48.0753, 7.3583 *(approx. à vérifier)*
+## Scène 5 — Rue de la Poissonnerie, dans la Krutenau : Le quartier des maraîchers
+**GPS :** 48.0740182, 7.3581530 *(vérifié OpenStreetMap — 2026-08-09)*
 
-Bienvenue à la Krutenau. Le nom sonne rude, et il dit tout : il vient du mot alsacien pour les choux, les légumes. C'était le quartier des maraîchers.
+Bienvenue à la Krutenau. Le nom, lié dans la langue alsacienne aux cultures qui occupaient ce secteur humide, rappelle l'ancien quartier des maraîchers.
 
-Autour de toi, jadis, ce n'étaient pas des rues mais des jardins, quadrillés de fossés remplis d'eau. Une terre noire, humide, grasse, gagnée sur le marais. Les familles y faisaient pousser tout ce qui nourrissait la ville : choux pour la choucroute, oignons, carottes, salades à n'en plus finir.
+Autour de toi, jadis, ce n'étaient pas des rues mais des jardins, quadrillés de fossés remplis d'eau. Une terre noire, humide, grasse, gagnée sur le marais. Les familles y entretenaient des parcelles étroites, séparées par des canaux, au plus près des maisons.
 
-Et pour circuler entre ces parcelles gorgées d'eau, un seul moyen : la barque à fond plat. Longue, étroite, silencieuse. On la chargeait de légumes à l'aube, et on glissait jusqu'au marché sans presque troubler l'eau.
+Et pour circuler entre ces parcelles gorgées d'eau, un seul moyen : la barque à fond plat. Longue, étroite, silencieuse. On y plaçait outils et marchandises à l'aube, puis on glissait jusqu'à la halle sans presque troubler l'eau.
 
 Les maraîchers de la Krutenau formaient un monde à part. On raconte qu'ils se mariaient entre eux, gardaient leurs coutumes, leurs costumes de fête, leur fierté. Le reste de Colmar les regardait d'un peu haut ; eux, ils nourrissaient tout le monde.
 
@@ -86,8 +86,8 @@ Rejoins la berge, à l'endroit où les barques attendent le long de la Lauch. Su
 
 ---
 
-## Scène 6 — Les barques à fond plat : La Petite Venise au fil de l'eau
-**GPS :** 48.0757, 7.3573 *(approx. à vérifier)*
+## Scène 6 — Marché couvert, embarcadère de la Petite Venise : La Petite Venise au fil de l'eau
+**GPS :** 48.0761, 7.3587 *(vérifié IGN — 2026-08-09)*
 
 Regarde-les, alignées le long de la berge : les barques à fond plat, longues et effilées, vertes ou brunes. Aujourd'hui, elles promènent les visiteurs. Hier, elles portaient les choux.
 
@@ -102,7 +102,7 @@ Remonte sur la berge et prends la petite rue qui longe l'eau, la rue de Turenne.
 ---
 
 ## Scène 7 — Rue de Turenne : L'envers du décor
-**GPS :** 48.0759, 7.3570 *(approx. à vérifier)*
+**GPS :** 48.073484, 7.35872 *(vérifié IGN — 2026-08-09)*
 
 La rue de Turenne suit la rivière au plus près. Longtemps, ça n'avait rien d'une carte postale. C'était l'envers du décor : l'eau où l'on rinçait le linge, où l'on jetait les ordures, où montaient les crues qui inondaient les caves. Les lavandières s'y cassaient le dos, agenouillées sur la pierre.
 
@@ -117,7 +117,7 @@ Suis la rue jusqu'au petit pont de pierre qui enjambe la Lauch, tout au bout. Su
 ---
 
 ## Scène 8 — Pont Saint-Pierre : Le décor sauvé
-**GPS :** 48.0755, 7.3568 *(approx. à vérifier)*
+**GPS :** 48.0755, 7.3568 *(vérifié IGN — 2026-08-09)*
 
 Nous y voici. Le pont Saint-Pierre. Arrête-toi au milieu, pose tes mains sur la pierre, et regarde vers l'amont.
 

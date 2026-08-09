@@ -4,13 +4,13 @@
 **Ville :** Reims
 **Thème :** Histoire & secrets — Clovis, trente rois et une cathédrale martyre : là où la France se couronnait.
 **Durée narration :** ~13 min
-**Distance :** ~2,5 km | **POIs :** 9
+**Distance :** ~2,4 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Basilique Saint-Remi : Le tombeau du parrain des rois
-**GPS :** 49.2480, 4.0397 *(approx. à vérifier)*
+**GPS :** 49.2430696, 4.0419077 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Commence ici, loin de la foule et des grandes flèches. Cette longue église basse, aux murs usés par le temps, c'est la basilique Saint-Remi. Et quelque part dans sa pénombre dort l'homme qui a tout déclenché. Remi. L'évêque de Reims. Le parrain des rois de France.
 
@@ -25,7 +25,7 @@ Sors de la basilique et longe-la sur ta gauche, vers l'ancien monastère. Je te 
 ---
 
 ## Scène 2 — Ancienne abbaye royale Saint-Remi : Les gardiens de la fiole
-**GPS :** 49.2478, 4.0403 *(approx. à vérifier)*
+**GPS :** 49.243463, 4.041467 *(vérifié IGN — 2026-08-09)*
 
 Ces bâtiments immenses accolés à la basilique, c'est l'ancienne abbaye royale de Saint-Remi. Aujourd'hui un musée ; hier, l'un des monastères les plus puissants du royaume. Et sa mission secrète tenait dans un objet minuscule : la Sainte Ampoule.
 
@@ -40,7 +40,7 @@ Reprends vers le nord, par la rue qui monte doucement. En quelques minutes, une 
 ---
 
 ## Scène 3 — Ancien Collège des Jésuites : L'ombre des faiseurs de rois
-**GPS :** 49.2496, 4.0386 *(approx. à vérifier)*
+**GPS :** 49.2464714, 4.0404268 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde cette longue façade classique, ces colonnes, ce calme un peu solennel : l'ancien collège des Jésuites, fondé au XVIIᵉ siècle. Derrière, il cache une bibliothèque baroque en bois sculpté et un réfectoire peint qui coupent le souffle. Mais si je t'arrête ici, c'est pour te parler d'un pouvoir qu'on oublie : celui de l'Église de Reims.
 
@@ -53,7 +53,7 @@ Continue de monter vers le centre. La marche est un peu plus longue ; laisse dé
 ---
 
 ## Scène 4 — Cryptoportique, place du Forum : Rome sous les sacres
-**GPS :** 49.2551, 4.0327 *(approx. à vérifier)*
+**GPS :** 49.256577, 4.033816 *(vérifié IGN — 2026-08-09)*
 
 Te voilà sur la place du Forum. Le nom ne ment pas : tu es au cœur de la Reims romaine. Et devant toi, à demi enterrée, cette galerie de pierre aux arcades sombres, c'est le cryptoportique — le dernier vestige debout du forum antique.
 
@@ -66,7 +66,7 @@ Quitte la place vers le sud. Deux minutes de marche, et un roi de bronze t'atten
 ---
 
 ## Scène 5 — Place Royale : Le roi de bronze et la fiole brisée
-**GPS :** 49.2546, 4.0334 *(approx. à vérifier)*
+**GPS :** 49.2553807, 4.0341876 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette place régulière, ces arcades, cette élégance un peu froide du XVIIIᵉ siècle : c'est la Place Royale. Et au centre, sur son socle, ce roi de bronze en costume d'empereur romain, c'est Louis XV. Mais l'histoire que je veux te raconter ne se joue pas sur le socle. Elle se joue à ses pieds, un jour de 1793.
 
@@ -79,7 +79,7 @@ Descends maintenant vers les flèches, droit devant toi. Sur le parvis, une jeun
 ---
 
 ## Scène 6 — Statue de Jeanne d'Arc : La bergère et le sacre de 1429
-**GPS :** 49.2537, 4.0344 *(approx. à vérifier)*
+**GPS :** 49.2537, 4.0344 *(vérifié IGN — 2026-08-09)*
 
 La voilà, sur son cheval de bronze, l'épée levée vers la cathédrale : Jeanne d'Arc. On a fini par oublier pourquoi elle est là, précisément là, à Reims. Ce n'est pas un décor. C'est le cœur de sa mission.
 
@@ -94,11 +94,11 @@ Fais quelques pas vers le palais, sur le flanc droit de la cathédrale. C'est l�
 ---
 
 ## Scène 7 — Palais du Tau : Le festin des rois
-**GPS :** 49.2532, 4.0353 *(approx. à vérifier)*
+**GPS :** 49.2532624, 4.0345372 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Ce palais collé au flanc de la cathédrale, c'est le palais du Tau, la demeure des archevêques. Et le jour d'un sacre, c'était l'antichambre et la salle de fête des rois de France.
 
-Le matin, le futur roi s'habillait ici. Puis venait la cérémonie, juste à côté, sous les grandes voûtes. Et le soir, retour au Tau pour le banquet. Un banquet qui n'avait rien d'un simple repas. Le roi mangeait seul, sur une estrade, devant la grande cheminée, entouré des douze pairs du royaume. Douze. Comme les douze apôtres autour du Christ. Tout, dans ce décor, répétait le même message : ce roi-là n'est pas un homme parmi d'autres, il est l'élu de Dieu, sacré presque comme un prêtre.
+Le matin, le futur roi s'habillait ici. Puis venait la cérémonie, juste à côté, sous les grandes voûtes. Et le soir, retour au Tau pour un dernier acte public du sacre. Le roi prenait place seul, sur une estrade, devant la grande cheminée, entouré des douze pairs du royaume. Douze. Comme les douze apôtres autour du Christ. Tout, dans ce décor et cette mise en scène, répétait le même message : ce roi-là n'est pas un homme parmi d'autres, il est l'élu de Dieu, sacré presque comme un prêtre.
 
 À l'intérieur, on conserve encore le trésor des sacres. Les manteaux, les calices, un talisman qu'on dit venu de Charlemagne, et surtout ce fameux reliquaire qui abrite le dernier fragment de la Sainte Ampoule — le morceau sauvé de la Révolution, celui qui a servi à Charles X. Le fil de Clovis, jamais tout à fait rompu.
 
@@ -107,7 +107,7 @@ Maintenant, retourne devant la grande façade. Lève les yeux le plus haut possi
 ---
 
 ## Scène 8 — Cathédrale Notre-Dame, la façade : Trente rois sous la pierre
-**GPS :** 49.2535, 4.0345 *(approx. à vérifier)*
+**GPS :** 49.2535, 4.0345 *(vérifié IGN — 2026-08-09)*
 
 Recule un peu, pour l'embrasser tout entière. Cette façade, c'est l'une des plus grandes pages de pierre du monde. Plus de deux mille statues la couvrent. Et tout en haut, cette rangée de géants dans leurs niches, ce qu'on appelle la galerie des rois : cinquante-six statues royales qui montent la garde, comme la mémoire de pierre de tout ce qui s'est joué en dessous.
 
@@ -120,7 +120,7 @@ Approche-toi de la cathédrale, place-toi bien face à elle. Je vais te raconter
 ---
 
 ## Scène 9 — Cathédrale Notre-Dame : La cathédrale martyre
-**GPS :** 49.2536, 4.0349 *(approx. à vérifier)*
+**GPS :** 49.2536, 4.0349 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes. Devant la cathédrale des rois. Mais je veux te parler d'un autre jour : le 19 septembre 1914. La guerre vient de commencer, le front est à quelques kilomètres, et les obus tombent sur Reims. La cathédrale est couverte d'échafaudages en bois — on la restaurait. Ce jour-là, un obus met le feu aux échafaudages. Et la plus sacrée des églises de France se met à brûler.
 

@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Biarritz
 **Thème :** Art — folies Belle Époque, Art déco et néo-basque : la station qui collectionnait les architectes.
-**Durée narration :** ~14 min
-**Distance :** ~3 km | **POIs :** 8
+**Durée narration :** ~11 min
+**Distance :** ~2,9 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Le phare : La frontière d'une ville inventée
-**GPS :** 43.4930, -1.5535 *(approx. à vérifier)*
+**GPS :** 43.4930, -1.5535 *(vérifié IGN — 2026-08-09)*
 
 Monte jusqu'au phare, à la pointe Saint-Martin, tout au nord de Biarritz. Une haute tour blanche, coiffée de sa lanterne, plantée sur la falaise depuis 1834. De là-haut — si tu as le courage des marches — ou simplement d'ici, du pied, regarde vers le sud : toute la ville s'étale, ses toits, ses dômes, ses villas, jusqu'aux falaises lointaines.
 
@@ -22,8 +22,8 @@ Voilà notre promenade : lire cette collection, du nord au sud. Des folies Belle
 
 ---
 
-## Scène 2 — Le Grand Hôtel Régina : L'âge des palaces
-**GPS :** 43.4918, -1.5555 *(approx. à vérifier)*
+## Scène 2 — Entrée du Grand Hôtel Régina : L'âge des palaces
+**GPS :** 43.4912803, -1.5515849 *(vérifié OpenStreetMap — 2026-08-09)*
 
 À quelques pas du phare se dresse une longue façade blanche, percée de balcons et coiffée de dômes : l'ancien Grand Hôtel Régina, bâti en 1907. Aujourd'hui partagé en appartements, il fut l'un de ces palaces qui ont fait la gloire de Biarritz.
 
@@ -36,7 +36,7 @@ Descends maintenant vers la ville par l'avenue de l'Impératrice. Ses villas von
 ---
 
 ## Scène 3 — L'avenue de l'Impératrice : Les folies Belle Époque
-**GPS :** 43.4888, -1.5578 *(approx. à vérifier)*
+**GPS :** 43.4872107, -1.5544319 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Descends l'avenue de l'Impératrice, large et calme. De chaque côté, derrière les grilles et les palmiers, s'alignent les villas de la grande époque. Prends le temps de les détailler : aucune ne ressemble tout à fait à sa voisine.
 
@@ -48,8 +48,8 @@ Reprends vers la Grande Plage. Au tournant du siècle, un vent nouveau va souffl
 
 ---
 
-## Scène 4 — Le Casino municipal : Le virage Art déco
-**GPS :** 43.4826, -1.5588 *(approx. à vérifier)*
+## Scène 4 — Casino Barrière de Biarritz : Le virage Art déco
+**GPS :** 43.4838185, -1.5593281 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voici devant le Casino municipal, posé sur la Grande Plage. Oublie les tourelles et les dômes : ici, tout a changé. Lignes droites, angles nets, longue façade blanche horizontale, hublots comme sur un navire. Nous sommes en 1929, et le style a basculé dans l'Art déco.
 
@@ -61,8 +61,8 @@ Continue vers le sud, vers le vieux cœur de la ville. Les rues vont te montrer 
 
 ---
 
-## Scène 5 — Les maisons rouges : Le style néo-basque
-**GPS :** 43.4818, -1.5615 *(approx. à vérifier)*
+## Scène 5 — Port-Vieux, face aux maisons rouges : Le style néo-basque
+**GPS :** 43.4805, -1.5645 *(vérifié IGN — 2026-08-09)*
 
 En marchant vers le vieux quartier, lève les yeux sur les maisons. Peu à peu, un autre visage apparaît : des façades blanches barrées de pans de bois peints en rouge sang-de-bœuf, parfois en vert. De grands toits asymétriques, une pente longue d'un côté, courte de l'autre. Des volets de la même couleur, des linteaux gravés.
 
@@ -75,7 +75,7 @@ Descends vers le plateau qui s'avance dans la mer. Un chef-d'œuvre Art déco t'
 ---
 
 ## Scène 6 — Le Musée de la Mer : Le paquebot de pierre
-**GPS :** 43.4835, -1.5645 *(approx. à vérifier)*
+**GPS :** 43.4831805, -1.5674094 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Sur le plateau de l'Atalaye, avancé au-dessus des flots, se dresse un grand bâtiment blanc aux lignes tendues : le Musée de la Mer, l'aquarium de Biarritz, inauguré en 1933. C'est peut-être le plus beau morceau d'Art déco de la ville.
 
@@ -87,8 +87,8 @@ Reste sur le plateau. Juste à côté veille une villa à tourelle, dernier capr
 
 ---
 
-## Scène 7 — La villa à belvédère : Le luxe d'un point de vue
-**GPS :** 43.4830, -1.5640 *(approx. à vérifier)*
+## Scène 7 — Villa Belza : Le luxe d'un point de vue
+**GPS :** 43.481651, -1.5690714 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Avant de redescendre, arrête-toi devant l'une des villas de ce plateau, coiffée d'une haute tour carrée en belvédère. On l'appelle la villa Le Goéland, bâtie au tout début du XXe siècle pour une famille aisée de la station, et transformée depuis en maison d'hôtes.
 
@@ -100,8 +100,8 @@ Redescends enfin vers le Port Vieux, et tourne-toi vers le rocher, sur ta gauche
 
 ---
 
-## Scène 8 — La Villa Belza : Le château sur les flots
-**GPS :** 43.4800, -1.5650 *(approx. à vérifier)*
+## Scène 8 — Villa Belza : Le château sur les flots
+**GPS :** 43.481651, -1.5690714 *(vérifié OpenStreetMap — 2026-08-09)*
 
 La voici, dressée seule sur son rocher, les pieds dans l'écume, entre le Port Vieux et la Côte des Basques : la Villa Belza. Une haute tour carrée, des murs sombres, un air de petit château médiéval posé là par erreur, ou par magie. C'est sans doute la villa la plus photographiée de Biarritz, et la plus romanesque.
 

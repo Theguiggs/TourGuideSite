@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Nîmes
 **Thème :** Histoire & secrets — arènes, Maison carrée, crocodile : la ville qui n'a jamais quitté l'Empire romain.
-**Durée narration :** ~14 min
-**Distance :** ~3,5 km | **POIs :** 8
+**Durée narration :** ~11 min
+**Distance :** ~3,3 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Les Arènes : Deux mille ans de spectacle
-**GPS :** 43.8345, 4.3601 *(approx. à vérifier)*
+**GPS :** 43.8345, 4.3601 *(vérifié IGN — 2026-08-09)*
 
 Lève les yeux. Devant toi, deux étages d'arcades de pierre blonde, soixante en bas, soixante en haut, un anneau parfait posé au cœur de la ville. C'est l'amphithéâtre romain de Nîmes — les Arènes. Il a près de deux mille ans, et c'est l'un des mieux conservés de tout l'ancien Empire.
 
@@ -25,7 +25,7 @@ Fais le tour de l'amphithéâtre par la droite et remonte vers la petite place j
 ---
 
 ## Scène 2 — Place du Marché : Le crocodile enchaîné
-**GPS :** 43.8357, 4.3596 *(approx. à vérifier)*
+**GPS :** 43.836168, 4.35902 *(vérifié IGN — 2026-08-09)*
 
 Te voilà sur la place du Marché, à l'ombre des platanes. Baisse les yeux vers la fontaine : un crocodile de bronze, enchaîné à un palmier. Voilà le blason de Nîmes. Tu le verras partout — sur les plaques de rue, les drapeaux, les tee-shirts. Un crocodile, en plein Languedoc. Pourquoi ?
 
@@ -39,8 +39,8 @@ Traverse vers l'ouest, par les ruelles, jusqu'à un temple posé sur sa terrasse
 
 ---
 
-## Scène 3 — La Maison Carrée : Le temple parfait
-**GPS :** 43.8382, 4.3560 *(approx. à vérifier)*
+## Scène 3 — Maison Carrée : Le temple parfait
+**GPS :** 43.8381914, 4.3561318 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi devant elle. Une façade de colonnes, un fronton triangulaire, l'ensemble posé sur un haut socle, net, intact, comme sorti d'hier. C'est la Maison Carrée. Et pourtant elle a deux mille ans — c'est l'un des temples romains les mieux conservés au monde, peut-être le plus complet de tous.
 
@@ -54,8 +54,8 @@ Va maintenant vers l'est, jusqu'à la grande porte antique sur le boulevard. Sui
 
 ---
 
-## Scène 4 — La Porte d'Auguste : La porte de l'empereur
-**GPS :** 43.8378, 4.3620 *(approx. à vérifier)*
+## Scène 4 — Porte d'Auguste : La porte de l'empereur
+**GPS :** 43.8394385, 4.3631549 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde cette porte de pierre, avec ses deux grands passages pour les chars et ses deux petits pour les piétons. C'est la Porte d'Auguste — l'une des portes de l'enceinte romaine. Par ici entrait la Voie Domitienne, la grande route qui reliait l'Italie à l'Espagne en traversant Nîmes de part en part.
 
@@ -67,8 +67,8 @@ Franchis la porte, comme le faisaient les voyageurs de l'Antiquité, puis remont
 
 ---
 
-## Scène 5 — Le Castellum : Le secret de l'eau
-**GPS :** 43.8425, 4.3596 *(approx. à vérifier)*
+## Scène 5 — Castellum aquae : Le secret de l'eau
+**GPS :** 43.8423457, 4.3559511 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Voici l'un des trésors les plus discrets de Nîmes, et l'un des plus rares au monde. Un simple bassin rond, creusé dans la pierre, à peine plus large qu'une chambre. On l'appelle le Castellum. Et c'était le point d'arrivée de l'eau.
 
@@ -81,7 +81,7 @@ Deux mille ans plus tard, l'eau descend toujours vers la ville. Suis-la. Descend
 ---
 
 ## Scène 6 — Les Jardins de la Fontaine : Le dieu qui a donné son nom
-**GPS :** 43.8395, 4.3521 *(approx. à vérifier)*
+**GPS :** 43.8414305, 4.3497314 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Entre dans les jardins. Bassins, balustrades, statues, escaliers d'eau : un décor du dix-huitième siècle, l'un des tout premiers jardins publics d'Europe. Mais ne t'arrête pas au décor. Va jusqu'au grand bassin, là où l'eau sourd, sombre et froide, du pied de la colline.
 
@@ -95,8 +95,8 @@ Longe le bassin vers la gauche, jusqu'à ce grand bâtiment de pierre à demi ru
 
 ---
 
-## Scène 7 — Le Temple de Diane : Le temple qui n'en est pas un
-**GPS :** 43.8398, 4.3515 *(approx. à vérifier)*
+## Scène 7 — Temple de Diane : Le temple qui n'en est pas un
+**GPS :** 43.8399074, 4.3483842 *(vérifié OpenStreetMap — 2026-08-09)*
 
 On l'appelle le Temple de Diane. Retiens bien ce nom, car il est faux. Personne ne sait vraiment à quoi servait ce bâtiment. Ce dont on est sûr, c'est qu'il n'a jamais rien eu à voir avec la déesse Diane — ce nom lui a été collé bien plus tard, par habitude, par erreur.
 
@@ -111,7 +111,7 @@ Sors des jardins et attaque la montée, à travers les pins, jusqu'à la tour qu
 ---
 
 ## Scène 8 — La Tour Magne : Rome vue d'en haut
-**GPS :** 43.8388, 4.3496 *(approx. à vérifier)*
+**GPS :** 43.8427257, 4.3492137 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà en haut, essoufflé peut-être, au pied de la Tour Magne. La grande tour. Elle veille sur Nîmes depuis le sommet du mont Cavalier, le point le plus haut de la ville.
 

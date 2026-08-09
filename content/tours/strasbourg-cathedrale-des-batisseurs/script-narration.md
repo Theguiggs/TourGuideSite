@@ -10,7 +10,7 @@
 ---
 
 ## Scène 1 — Rue Mercière : L'apparition
-**GPS :** 48.5815, 7.7485 *(approx. à vérifier)*
+**GPS :** 48.5815, 7.7485 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Reste au début de la rue, ne t'approche pas encore. C'est ici qu'il faut la voir pour la première fois : au bout de ce couloir de maisons, une falaise rose barre le ciel. Elle est trop grande pour la rue, trop grande pour la ville — c'est exactement l'effet que ses bâtisseurs voulaient te faire, et il fonctionne depuis six siècles.
 
@@ -24,8 +24,8 @@ Avance, maintenant. Elle grandit à chaque pas.
 
 ---
 
-## Scène 2 — Le parvis : La harpe de pierre d'Erwin
-**GPS :** 48.5819, 7.7500 *(approx. à vérifier)*
+## Scène 2 — Parvis de la cathédrale Notre-Dame : La harpe de pierre d'Erwin
+**GPS :** 48.5818885, 7.7510521 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà au pied de la façade. Recule autant que la place le permet, et regarde-la comme un tissu : des centaines de fines colonnettes tendues devant le mur, comme les cordes d'un instrument. C'est la signature du lieu : une façade double, un mur de pierre habillé d'une résille de pierre, posée à quelques centimètres devant lui. Quand la lumière passe derrière, l'édifice entier semble vibrer.
 
@@ -37,8 +37,8 @@ Maintenant, longe la façade vers la droite, jusqu'au pied de la tour. On va par
 
 ---
 
-## Scène 3 — Le pied de la tour : L'étudiant qui montait pour avoir peur
-**GPS :** 48.5817, 7.7504 *(approx. à vérifier)*
+## Scène 3 — Parvis de la cathédrale Notre-Dame : L'étudiant qui montait pour avoir peur
+**GPS :** 48.5818885, 7.7510521 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Lève la tête, doucement, jusqu'à la plateforme — ce balcon perché à soixante-six mètres. Pendant des siècles, des veilleurs y ont vécu jour et nuit, scrutant les toits : dans une ville de bois, repérer un incendie une heure trop tard, c'était perdre un quartier.
 
@@ -51,7 +51,7 @@ Contourne maintenant l'édifice par la droite, vers la place du Château. Deux m
 ---
 
 ## Scène 4 — Place du Château : L'horloge qui calcule la fin des temps
-**GPS :** 48.5812, 7.7515 *(approx. à vérifier)*
+**GPS :** 48.5812, 7.7515 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu longes le flanc sud de la cathédrale. Derrière ce portail se cachent les deux vedettes du lieu.
 
@@ -64,7 +64,7 @@ La suite est à trente mètres : la maison où dorment les plans.
 ---
 
 ## Scène 5 — Musée de l'Œuvre Notre-Dame : Les parchemins et la doublure
-**GPS :** 48.5809, 7.7517 *(approx. à vérifier)*
+**GPS :** 48.5809, 7.7517 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette belle maison à pignons, c'est l'Œuvre Notre-Dame : depuis le Moyen Âge, la maison des bâtisseurs de la cathédrale — la loge, les ateliers, la caisse du chantier. Son musée garde des trésors qui donnent le frisson.
 
@@ -79,7 +79,7 @@ Ce réflexe de mise à l'abri a sauvé l'essentiel : en 1939, les vitraux médi�
 ---
 
 ## Scène 6 — Palais Rohan : Versailles au bord de l'eau
-**GPS :** 48.5807, 7.7525 *(approx. à vérifier)*
+**GPS :** 48.5807, 7.7525 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Ce grand palais classique posé sur l'Ill, c'est le palais Rohan, élevé dans les années 1730 sur les plans de Robert de Cotte, premier architecte du roi. Après quatre siècles de gothique, la famille de Rohan — des cardinaux-évêques cousus d'or — voulait montrer que Strasbourg savait aussi parler français : colonnes, balustrades, salons dorés. On raconte même que le premier de la lignée devait sa fortune à une rumeur : il aurait été un fils caché de Louis XIV.
 
@@ -92,7 +92,7 @@ Traverse maintenant vers l'ouest, trois petites minutes, jusqu'à une place où 
 ---
 
 ## Scène 7 — Place Gutenberg : L'autre bâtisseur
-**GPS :** 48.5817, 7.7468 *(approx. à vérifier)*
+**GPS :** 48.5811897, 7.7485392 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Au centre de la place, un homme de bronze te montre une page. Penche-toi : on y lit « Et la lumière fut ». C'est Gutenberg, et cette statue de David d'Angers rappelle un épisode que même beaucoup de Strasbourgeois ont oublié : c'est ici que tout a commencé.
 
@@ -104,8 +104,8 @@ Il nous reste un secret à percer — le plus visible de tous. Reviens vers le p
 
 ---
 
-## Scène 8 — Retour au parvis : La tour qui manque
-**GPS :** 48.5819, 7.7501 *(approx. à vérifier)*
+## Scène 8 — Parvis de la cathédrale Notre-Dame : La tour qui manque
+**GPS :** 48.5818885, 7.7510521 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y voilà. Regarde-la une dernière fois, en entier. Tu ne remarques rien ? Une flèche à gauche… et rien à droite. Un moignon plat, là où le programme des grandes cathédrales exigeait une seconde tour, jumelle de la première.
 

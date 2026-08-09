@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Lyon
 **Thème :** Histoire & secrets — traboules, imprimeries clandestines et Jean Moulin : Lyon capitale de la Résistance
-**Durée narration :** ~22 min
-**Distance :** ~3,5 km | **POIs :** 10
+**Durée narration :** ~14 min
+**Distance :** ~2,2 km | **POIs :** 10
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Place Bellecour, le Veilleur de pierre : cinq noms contre un mur
-**GPS :** 45.7574, 4.8317 *(approx. à vérifier)*
+## Scène 1 — Veilleur de pierre, place Bellecour : cinq noms contre un mur
+**GPS :** 45.7582517, 4.8332712 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Approche-toi, dans l'angle de cette immense place, d'une statue sombre : un homme debout, figé dans la pierre, qui semble monter la garde. On l'appelle le Veilleur de pierre. Il veille sur cinq noms.
 
@@ -25,7 +25,7 @@ Voilà l'histoire que je vais te raconter, de rue en rue : celle d'une ville qui
 ---
 
 ## Scène 2 — Place de la République : pourquoi ce fut Lyon
-**GPS :** 45.7628, 4.8338 *(approx. à vérifier)*
+**GPS :** 45.7628, 4.8338 *(vérifié IGN — 2026-08-09)*
 
 Nous voici place de la République, sur cette longue artère qui traverse la Presqu'île. Foule, vitrines, tramways : imagine tout cela en gris, en 1943, sous l'uniforme et le couvre-feu.
 
@@ -38,7 +38,7 @@ Puis, en novembre 1942, les Allemands envahissent aussi la zone sud. Lyon passe 
 ---
 
 ## Scène 3 — Musée de l'Imprimerie : la guerre des mots
-**GPS :** 45.7635, 4.8331 *(approx. à vérifier)*
+**GPS :** 45.7635, 4.8331 *(vérifié IGN — 2026-08-09)*
 
 Nous sommes rue de la Poulaillerie, devant le musée de l'Imprimerie, installé dans un vieil hôtel de pierre. Lyon fut, dès la Renaissance, une immense ville d'imprimeurs. Et ce savoir-faire ancien va, quatre siècles plus tard, devenir une arme de guerre.
 
@@ -51,7 +51,7 @@ Ces journaux, il fallait ensuite les répandre dans toute la ville. Et un homme 
 ---
 
 ## Scène 4 — Place des Cordeliers : Jean Moulin, l'homme qui devait tout unir
-**GPS :** 45.7646, 4.8353 *(approx. à vérifier)*
+**GPS :** 45.7646, 4.8353 *(vérifié IGN — 2026-08-09)*
 
 Place des Cordeliers, sous la façade de l'ancienne Bourse. C'est ici, dans le va-et-vient de la Presqu'île, que je veux te parler de l'homme dont le nom résume à lui seul la Résistance française : Jean Moulin.
 
@@ -64,7 +64,7 @@ Un homme, presque seul, qui tient dans sa tête les fils de tout un réseau. Sa 
 ---
 
 ## Scène 5 — Quai Saint-Antoine : l'armée de l'ombre et ses gestes minuscules
-**GPS :** 45.7650, 4.8300 *(approx. à vérifier)*
+**GPS :** 45.7650, 4.8300 *(vérifié IGN — 2026-08-09)*
 
 Le long de la Saône, sur ce quai paisible, laisse-moi te raconter la Résistance ordinaire, celle qui n'a pas de statue. Car derrière les grands noms, il y avait une armée de l'ombre faite de gestes minuscules et mortels.
 
@@ -77,7 +77,7 @@ Car cette machine clandestine, si courageuse fût-elle, avait un ennemi redoutab
 ---
 
 ## Scène 6 — Une traboule du Vieux Lyon : le passage qui avale les hommes
-**GPS :** 45.7628, 4.8278 *(approx. à vérifier)*
+**GPS :** 45.7628, 4.8278 *(vérifié IGN — 2026-08-09)*
 
 Nous avons franchi la Saône, nous voici dans les ruelles du Vieux Lyon. Pousse cette porte avec moi, discrètement : nous entrons dans une traboule. Tu sais peut-être déjà ce que c'est : un passage secret qui traverse tout un pâté de maisons, de cour en couloir, pour ressortir dans une autre rue. La ville en est percée, ici et sur les pentes du nord.
 
@@ -90,7 +90,7 @@ Mais ne rêvons pas trop. L'occupant a fini par apprendre, lui aussi, l'existenc
 ---
 
 ## Scène 7 — Vieux Lyon : Caluire, la trahison et le silence de Moulin
-**GPS :** 45.7622, 4.8274 *(approx. à vérifier)*
+**GPS :** 45.7622, 4.8274 *(vérifié IGN — 2026-08-09)*
 
 Arrêtons-nous dans cette ruelle du Vieux Lyon. Le nom du bourreau, c'est Klaus Barbie, le chef de la police secrète allemande à Lyon. On le surnommera le boucher de Lyon. Torture, exécutions, déportations : il régnait par la terreur.
 
@@ -103,7 +103,7 @@ Des années plus tard, la France transférera ses cendres au Panthéon, parmi se
 ---
 
 ## Scène 8 — Quai Romain Rolland : Izieu, Montluc et la ville libérée
-**GPS :** 45.7620, 4.8283 *(approx. à vérifier)*
+**GPS :** 45.7629, 4.828776 *(vérifié IGN — 2026-08-09)*
 
 Nous longeons la Saône, face aux quais. Je dois te dire l'ampleur du crime, même si c'est lourd, parce que c'est pour cela que nous marchons aujourd'hui. Barbie et les siens n'ont pas seulement traqué des résistants. Ils ont pourchassé les Juifs de Lyon et de la région.
 
@@ -115,8 +115,8 @@ La guerre s'achève. Mais pour Lyon, une longue attente commence : celle de voir
 
 ---
 
-## Scène 9 — Palais de justice historique : la longue traque de Barbie
-**GPS :** 45.7617, 4.8285 *(approx. à vérifier)*
+## Scène 9 — Palais de Justice historique de Lyon : la longue traque de Barbie
+**GPS :** 45.7618947, 4.8280102 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Devant toi se dresse le vieux palais de justice, sa longue rangée de vingt-quatre colonnes face à la Saône. Retiens ce décor : il va accueillir l'un des procès les plus importants du vingtième siècle. Mais avant le procès, il a fallu retrouver l'accusé, et ce fut une longue histoire.
 
@@ -128,8 +128,8 @@ La ville qu'il avait ensanglantée allait pouvoir le regarder en face, et le jug
 
 ---
 
-## Scène 10 — Le procès Barbie et la mémoire : pourquoi on se souvient
-**GPS :** 45.7614, 4.8287 *(approx. à vérifier)*
+## Scène 10 — Palais de Justice historique de Lyon : pourquoi on se souvient
+**GPS :** 45.7618947, 4.8280102 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici au pied du palais des vingt-quatre colonnes. En 1987, derrière ces murs, s'est ouvert le procès de Klaus Barbie. Pour la première fois en France, un homme était jugé non pour des crimes de guerre ordinaires, mais pour crimes contre l'humanité : pour avoir traqué, torturé, déporté des êtres humains à cause de ce qu'ils étaient.
 

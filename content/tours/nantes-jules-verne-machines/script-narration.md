@@ -4,13 +4,13 @@
 **Ville :** Nantes
 **Thème :** Art — de l'île Feydeau à l'Éléphant : la ville qui a appris à Jules Verne à rêver.
 **Durée narration :** ~13 min
-**Distance :** ~4 km | **POIs :** 9
+**Distance :** ~4,8 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Île Feydeau : L'enfant qui regardait les mâts
-**GPS :** 47.2126, -1.5566 *(approx. à vérifier)*
+**GPS :** 47.2126, -1.5566 *(vérifié IGN — 2026-08-09)*
 
 Regarde cette rangée de vieilles maisons de pierre, un peu penchées, un peu fatiguées, avec leurs visages sculptés au-dessus des fenêtres. Tu es sur l'île Feydeau, une ancienne île de la Loire, aujourd'hui rattachée à la terre. Et dans l'une de ces maisons, un matin de février 1828, est né un petit garçon qui allait envoyer l'humanité sous les mers, au centre de la Terre et jusqu'à la Lune. Jules Verne.
 
@@ -25,7 +25,7 @@ Remonte vers le nord, jusqu'à une belle place ronde avec une grande fontaine. S
 ---
 
 ## Scène 2 — Place Royale : La ville en majesté
-**GPS :** 47.2145, -1.5578 *(approx. à vérifier)*
+**GPS :** 47.2145, -1.5578 *(vérifié IGN — 2026-08-09)*
 
 Te voilà place Royale. Une place claire, harmonieuse, avec en son centre une grande fontaine de pierre et de bronze. Approche. Tout en haut, une femme assise, couronnée : c'est Nantes elle-même, la ville, en majesté. À ses pieds, d'autres figures versent de l'eau : ce sont la Loire et ses rivières, réunies là en statues. Toute la géographie de la région, coulée dans le bronze.
 
@@ -38,7 +38,7 @@ Quitte la place et cherche, à deux pas, une entrée discrète qui s'enfonce sou
 ---
 
 ## Scène 3 — Passage Pommeraye : Une machine à merveilles
-**GPS :** 47.2138, -1.5583 *(approx. à vérifier)*
+**GPS :** 47.213456, -1.559623 *(vérifié IGN — 2026-08-09)*
 
 Pousse la porte, et lève les yeux. Tu viens d'entrer dans le passage Pommeraye, et je te promets un émerveillement. Une galerie couverte, sur trois niveaux, reliés par un escalier d'honneur monumental. Une verrière laisse tomber une lumière dorée. Partout, des statues de pierre, des lampadaires, des balustrades ouvragées, des boiseries sombres. On dirait un décor de théâtre, ou l'intérieur d'un rêve.
 
@@ -51,7 +51,7 @@ Redescends vers le fleuve, jusqu'au grand quai qui longe la Loire. Suis-moi.
 ---
 
 ## Scène 4 — Quai de la Fosse : Le voyageur immobile
-**GPS :** 47.2100, -1.5630 *(approx. à vérifier)*
+**GPS :** 47.209927, -1.564877 *(vérifié IGN — 2026-08-09)*
 
 Te voilà de nouveau au bord de l'eau, sur le quai de la Fosse. Grande artère aujourd'hui, mais imagine-la couverte de navires, comme du temps de Verne. C'est ici que l'enfant venait traîner, en cachette parfois, pour regarder partir les trois-mâts vers les îles.
 
@@ -64,7 +64,7 @@ Longe le fleuve vers l'ouest et grimpe la colline verte qui domine le port. Suis
 ---
 
 ## Scène 5 — Butte Sainte-Anne : La ligne d'horizon
-**GPS :** 47.2067, -1.5745 *(approx. à vérifier)*
+**GPS :** 47.203998, -1.578631 *(vérifié IGN — 2026-08-09)*
 
 Te voilà en haut de la butte Sainte-Anne. Reprends ton souffle, et retourne-toi. Toute la Loire s'ouvre à tes pieds, large, argentée, filant vers l'estuaire et l'océan. C'est l'un des plus beaux points de vue de Nantes. Et ce n'est pas un hasard si la ville a installé ici, dans une maison bourgeoise, le musée Jules Verne.
 
@@ -76,8 +76,8 @@ Redescends vers le fleuve et franchis le pont vers la grande île, en face, là 
 
 ---
 
-## Scène 6 — Anciens chantiers navals : La friche endormie
-**GPS :** 47.2048, -1.5678 *(approx. à vérifier)*
+## Scène 6 — Parc des Chantiers, site des anciens chantiers navals : La friche endormie
+**GPS :** 47.204706, -1.5637201 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu es maintenant sur l'île de Nantes, au milieu du fleuve. Regarde autour de toi ce sol de béton, ces rails, ces immenses grues de métal plantées au bord de l'eau. Tu es sur les anciens chantiers navals. Pendant plus d'un siècle, c'est ici qu'on a construit des navires, de vrais géants d'acier, lancés dans la Loire sous les acclamations.
 
@@ -90,7 +90,7 @@ Avance vers ce grand hall vitré, l'ancienne halle des chantiers. Écoute bien :
 ---
 
 ## Scène 7 — Galerie des Machines : L'atelier des créatures
-**GPS :** 47.2053, -1.5665 *(approx. à vérifier)*
+**GPS :** 47.2053, -1.5665 *(vérifié IGN — 2026-08-09)*
 
 Entre dans la grande nef. Voici la Galerie des Machines. Tu es dans un atelier, un vrai, mais un atelier de créatures. Autour de toi, suspendus, posés, articulés : une fourmi géante, un calmar aux tentacules de cuir, un héron aux ailes déployées, une araignée. Toutes en bois et en métal, toutes mécaniques, toutes vivantes dès qu'une main actionne leurs leviers.
 
@@ -102,8 +102,8 @@ Ressors à la lumière. Sur l'esplanade, une créature t'attend, bien plus grand
 
 ---
 
-## Scène 8 — Le Grand Éléphant : Le galion à pattes
-**GPS :** 47.2055, -1.5655 *(approx. à vérifier)*
+## Scène 8 — Parvis des Machines de l'île : Le galion à pattes
+**GPS :** 47.204706, -1.5637201 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Le voilà. Tu ne peux pas le manquer : il fait douze mètres de haut. Un éléphant. Un éléphant de bois et d'acier qui marche, pour de vrai, sur l'esplanade, en portant des dizaines de passagers sur son dos.
 
@@ -116,7 +116,7 @@ Prends le temps de le suivre des yeux. Puis descends vers le quai, tout au bord 
 ---
 
 ## Scène 9 — Carrousel des Mondes Marins : Le rêve devenu matière
-**GPS :** 47.2045, -1.5625 *(approx. à vérifier)*
+**GPS :** 47.205915, -1.56776 *(vérifié IGN — 2026-08-09)*
 
 Nous y voilà, au bord de la Loire, devant le Carrousel des Mondes Marins. De loin, on dirait un manège de fête foraine. Approche, et c'est tout un océan qui tourne. Trois étages de créatures : des poissons des abysses, des crabes géants, un calmar, un bateau des profondeurs, une raie qui bat des ailes. On monte dedans, on actionne des manivelles, et l'on plonge, sans se mouiller, jusqu'au fond de la mer. Vingt mille lieues sous les mers, devenu un tour de manège.
 

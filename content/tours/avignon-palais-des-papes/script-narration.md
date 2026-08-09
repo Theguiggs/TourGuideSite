@@ -4,13 +4,13 @@
 **Ville :** Avignon
 **Thème :** Histoire & secrets — Neuf papes, un palais-forteresse : le siècle où Avignon fut le centre du monde chrétien.
 **Durée narration :** ~13 min
-**Distance :** ~2,5 km | **POIs :** 9
+**Distance :** ~3,6 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place du Palais : Le centre du monde
-**GPS :** 43.9509, 4.8076 *(approx. à vérifier)*
+**GPS :** 43.9509, 4.8076 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi au milieu de cette place, et lève les yeux. Devant toi, une falaise de pierre blonde : des tours, des créneaux, des arcs qui montent à trente, quarante mètres. On dirait une forteresse. C'est un palais. Le plus grand palais gothique du monde. Et pendant presque un siècle, derrière ces murs, on a gouverné la chrétienté tout entière.
 
@@ -25,7 +25,7 @@ Voilà ce que je vais te raconter : comment neuf papes ont fait d'Avignon le cœ
 ---
 
 ## Scène 2 — Palais des Papes : Deux papes, deux caractères
-**GPS :** 43.9510, 4.8080 *(approx. à vérifier)*
+**GPS :** 43.9510, 4.8080 *(vérifié IGN — 2026-08-09)*
 
 Regarde bien cette façade : elle raconte deux hommes, deux caractères, deux idées de ce qu'un pape doit être.
 
@@ -42,7 +42,7 @@ Monte maintenant vers l'église qui domine le palais, juste au-dessus. Elle éta
 ---
 
 ## Scène 3 — Cathédrale Notre-Dame des Doms : Plus vieille que les papes
-**GPS :** 43.9516, 4.8082 *(approx. à vérifier)*
+**GPS :** 43.9516, 4.8082 *(vérifié IGN — 2026-08-09)*
 
 Cette église blanche, coiffée d'une grande Vierge dorée, c'est la cathédrale Notre-Dame des Doms. Et elle a un secret : elle est plus vieille que tout ce qui l'entoure.
 
@@ -57,7 +57,7 @@ Contourne l'église et grimpe le sentier qui monte encore. Tu arrives sur le toi
 ---
 
 ## Scène 4 — Rocher des Doms : Le berceau et la frontière
-**GPS :** 43.9526, 4.8087 *(approx. à vérifier)*
+**GPS :** 43.9526, 4.8087 *(vérifié IGN — 2026-08-09)*
 
 Te voilà tout en haut, dans ce jardin suspendu, la ville à tes pieds. Respire. C'est le Rocher des Doms. Et sous ce gazon paisible dort le berceau d'Avignon.
 
@@ -72,11 +72,11 @@ Justement, ce pont, allons-y. Redescends du jardin vers le nord. Au pied du roch
 ---
 
 ## Scène 5 — Musée du Petit Palais : L'or des cardinaux
-**GPS :** 43.9523, 4.8066 *(approx. à vérifier)*
+**GPS :** 43.9523, 4.8066 *(vérifié IGN — 2026-08-09)*
 
 Cette grande demeure au fond de la place, presque modeste à côté du palais des papes, on l'appelle le Petit Palais. Ne te fie pas au nom. Ici vivaient les hommes les plus puissants après le pape : d'abord les évêques d'Avignon, puis des cardinaux.
 
-Il faut que tu imagines la cour pontificale. Autour du pape gravitent des dizaines de cardinaux, chacun avec sa maison, ses serviteurs, ses cuisiniers, ses secrétaires — on appelait ces palais des « livrées ». Toute une aristocratie de l'Église, richissime, qui a fait venir à Avignon les meilleurs peintres et tailleurs de pierre d'Italie.
+Il faut que tu imagines la cour pontificale. Autour du pape gravitent des dizaines de cardinaux, chacun avec sa maison, ses serviteurs, ses intendants, ses secrétaires — on appelait ces palais des « livrées ». Toute une aristocratie de l'Église, richissime, qui a fait venir à Avignon les meilleurs peintres et tailleurs de pierre d'Italie.
 
 D'où venait tout cet or ? De partout. Le premier grand pape d'ici, Jean XXII, était un homme de Cahors, un financier de génie. Il a réorganisé les comptes de l'Église, taxé chaque diocèse, chaque nomination. Sous lui, la papauté d'Avignon devient la machine à lever l'impôt la plus efficace de la chrétienté.
 
@@ -87,7 +87,7 @@ Traverse la place vers la gauche et suis le fléchage du pont. Nous descendons a
 ---
 
 ## Scène 6 — Pont Saint-Bénézet : Le pont qui ne va nulle part
-**GPS :** 43.9531, 4.8049 *(approx. à vérifier)*
+**GPS :** 43.9531, 4.8049 *(vérifié IGN — 2026-08-09)*
 
 Le voici : le pont d'Avignon. Celui de la chanson. Regarde-le bien — il ne va nulle part. Quatre arches s'avancent sur le Rhône, puis s'arrêtent net, au milieu de l'eau.
 
@@ -104,7 +104,7 @@ Fais demi-tour et longe maintenant les grands remparts vers le sud.
 ---
 
 ## Scène 7 — Les Remparts : La capitale qui eut peur
-**GPS :** 43.9509, 4.8032 *(approx. à vérifier)*
+**GPS :** 43.9496755, 4.8201957 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Pose la main sur ces murailles. Des kilomètres de remparts enserrent encore toute la vieille ville, avec leurs tours, leurs portes, leurs créneaux. Presque intacts. Peu de villes en France en gardent autant.
 
@@ -119,7 +119,7 @@ Ces remparts, restaurés bien plus tard, tu vas les suivre un moment. Ils t'emm�
 ---
 
 ## Scène 8 — Église Saint-Agricol : La ville sous les papes
-**GPS :** 43.9490, 4.8060 *(approx. à vérifier)*
+**GPS :** 43.9490, 4.8060 *(vérifié IGN — 2026-08-09)*
 
 Cette église coincée entre les maisons, au bas d'un escalier, c'est Saint-Agricol. Elle porte le nom d'un ancien évêque d'Avignon, le saint patron de la ville. Rien d'un monument célèbre — et c'est justement pour ça que je t'y amène.
 
@@ -134,9 +134,9 @@ Remonte cette rue vers la grande place ouverte, tout au bout. C'est là que fini
 ---
 
 ## Scène 9 — Place de l'Horloge : La fin du centre du monde
-**GPS :** 43.9496, 4.8069 *(approx. à vérifier)*
+**GPS :** 43.9493459, 4.8062047 *(vérifié OpenStreetMap — 2026-08-09)*
 
-Nous voici place de l'Horloge, le salon d'Avignon : ses cafés, ses platanes, son manège, l'hôtel de ville et sa tour à l'automate qui sonne les heures. Prends une chaise. C'est ici que notre histoire se dénoue.
+Nous voici place de l'Horloge, le salon d'Avignon : ses façades, ses platanes, son manège, l'hôtel de ville et sa tour à l'automate qui sonne les heures. Reste un instant. C'est ici que notre histoire se dénoue.
 
 Reviens en 1377. Après près de soixante-dix ans, un pape, Grégoire XI, décide enfin de rentrer à Rome. On raconte qu'une jeune femme, Catherine de Sienne, l'avait supplié de le faire. Il part. Avignon retient son souffle.
 
@@ -146,4 +146,4 @@ Le dernier pape d'Avignon, un Espagnol têtu, finira assiégé dans son propre p
 
 Le centre du monde s'éteint doucement. Mais Avignon reste terre du pape — non plus des papes en personne, cette fois, mais de leurs gouverneurs — pendant près de quatre siècles encore. Il faudra la Révolution, en 1791, pour que la ville devienne enfin française.
 
-Voilà. Neuf papes, un palais-forteresse, un siècle où toutes les routes de la foi menaient ici. Regarde autour de toi : les Avignonnais boivent leur café tranquillement, au-dessus de cette histoire immense. Prends le temps d'en faire autant. C'était Avignon, la cité des papes. Prends soin de toi, et à bientôt pour une autre balade.
+Voilà. Neuf papes, un palais-forteresse, un siècle où toutes les routes de la foi menaient ici. Regarde autour de toi : les Avignonnais traversent tranquillement la place, au-dessus de cette histoire immense. Prends le temps d'en mesurer l'échelle. C'était Avignon, la cité des papes. Prends soin de toi, et à bientôt pour une autre balade.

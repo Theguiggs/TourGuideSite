@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Strasbourg
 **Thème :** Spécialité — Christkindelsmärik, 1570 : le plus vieux marché de Noël de France, et la ville qui a donné au monde son sapin décoré.
-**Durée narration :** ~12 min
-**Distance :** ~2,5 km | **POIs :** 8
+**Durée narration :** ~13 min
+**Distance :** ~2,2 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place de la Cathédrale : Le sermon qui a inventé Noël
-**GPS :** 48.5819, 7.7509 *(approx. à vérifier)*
+**GPS :** 48.5815551, 7.7501556 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Place-toi au milieu du parvis, dos à la grande façade rose. Elle a ses propres secrets ; ce n'est pas pour eux que je viens te chercher. Regarde plutôt le sol. Cette place, et la cour derrière le chevet — le Fronhof, aujourd'hui place du Château : c'est ici que tout a commencé. Ici que le Noël du monde entier a pris la forme que tu lui connais.
 
@@ -29,11 +29,11 @@ Descends vers l'eau, plein sud. Je te retrouve au bord de l'Ill, dans six minute
 ---
 
 ## Scène 2 — Quai Saint-Nicolas : Le saint, la fée et le croquemitaine
-**GPS :** 48.5794, 7.7492 *(approx. à vérifier)*
+**GPS :** 48.5791791, 7.7505217 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà quai Saint-Nicolas. Le nom ne s'invente pas. Derrière ces vieilles façades se cache le musée Alsacien, où l'on a sauvé les intérieurs de l'Alsace d'autrefois. C'est là que dorment les visages de Noël.
 
-On a détrôné saint Nicolas, tu te souviens. Mais on ne détrône pas si facilement. Le 6 décembre, l'Alsace fête toujours le vieil évêque, et les boulangers vendent des mannele — de petits bonshommes de brioche aux yeux de raisin. On raconte que Nicolas ressuscita trois enfants qu'un boucher avait tués. Alors on les mange en brioche. Personne ne trouve ça étrange.
+On a détrôné saint Nicolas, tu te souviens. Mais on ne détrône pas si facilement. Le 6 décembre, l'Alsace fête toujours le vieil évêque. Dans les images anciennes, il avance en habit épiscopal, crosse en main, accompagné de trois enfants qu'une légende raconte revenus à la vie. La Réforme a déplacé sa place dans le calendrier, sans effacer son visage de la mémoire locale.
 
 À sa place, la Réforme a inventé le Christkindel : une jeune fille voilée de blanc, couronnée de bougies, l'Enfant Christ devenu lumière. Elle entre dans les maisons, elle donne.
 
@@ -45,8 +45,8 @@ Longe le quai vers l'ouest, puis remonte vers la grande église rose. Cinq minut
 
 ---
 
-## Scène 3 — Église Saint-Thomas : Le sapin a une date de naissance
-**GPS :** 48.5800, 7.7460 *(approx. à vérifier)*
+## Scène 3 — Église protestante Saint-Thomas : Le sapin a une date de naissance
+**GPS :** 48.5796572, 7.7456235 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette grande église rose, c'est Saint-Thomas, la cathédrale des protestants d'Alsace. Elle abrite un mausolée fameux et un maréchal encombrant — mais ce n'est pas pour eux que je t'ai fait venir. C'est pour le nom sur la porte. Thomas.
 
@@ -65,7 +65,7 @@ Remonte au nord-est, jusqu'à la place où un homme de bronze tend une page.
 ---
 
 ## Scène 4 — Place Gutenberg : 1605, l'arbre entre à la maison
-**GPS :** 48.5817, 7.7468 *(approx. à vérifier)*
+**GPS :** 48.5811897, 7.7485392 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Au centre de la place, un homme de bronze brandit une page imprimée : Gutenberg, qui a cherché ici le secret des caractères mobiles. Garde son idée en tête — la trace écrite. Tout ce que je te raconte ne tient qu'à ça : du papier qui a survécu.
 
@@ -82,7 +82,7 @@ Continue vers le nord, trois minutes, jusqu'à la place du Temple-Neuf. Les past
 ---
 
 ## Scène 5 — Place du Temple-Neuf : La guerre des pasteurs
-**GPS :** 48.5828, 7.7473 *(approx. à vérifier)*
+**GPS :** 48.5831619, 7.7478595 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette place tranquille porte le Temple-Neuf, rebâti après un incendie qui coûta à la ville sa bibliothèque — une autre histoire, un autre jour. Ce qui m'amène ici, c'est ce qu'on entendait alors du haut des chaires protestantes de Strasbourg. Et un homme qui s'est vraiment fâché.
 
@@ -97,7 +97,7 @@ L'Église a résisté deux siècles. Elle a perdu. Le sapin, lui, t'attend à tr
 ---
 
 ## Scène 6 — Place Kléber : La pomme devenue boule
-**GPS :** 48.5833, 7.7458 *(approx. à vérifier)*
+**GPS :** 48.5833, 7.7458 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà place Kléber, la plus grande place de la ville. Un général de bronze au milieu — il dort plus près de toi que tu ne crois, mais c'est une autre balade. Chaque hiver, à côté de lui, on dresse le Grand Sapin : jusqu'à trente mètres, choisi dans les Vosges, hissé à la grue. Hors saison, tu ne verras qu'une place vide. Regarde-la quand même, et écoute.
 
@@ -113,8 +113,8 @@ Remonte au nord, trois minutes. Une église t'attend, coupée en deux.
 
 ---
 
-## Scène 7 — Saint-Pierre-le-Jeune : Deux Noëls sous un seul toit
-**GPS :** 48.5847, 7.7452 *(approx. à vérifier)*
+## Scène 7 — Église protestante Saint-Pierre-le-Jeune : Deux Noëls sous un seul toit
+**GPS :** 48.5855304, 7.7464291 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette église-là est un cas unique. Saint-Pierre-le-Jeune, la protestante — il en existe une autre, catholique, plus loin dans les quartiers allemands ; tu vas comprendre pourquoi. Entre si tu peux : cloître roman, fresques médiévales, jubé sculpté. Et une cicatrice.
 
@@ -131,7 +131,7 @@ Cinq minutes vers l'est, et on y est. La dernière place. Celle où il vit encor
 ---
 
 ## Scène 8 — Place Broglie : L'arbre qui a pris le train
-**GPS :** 48.5850, 7.7495 *(approx. à vérifier)*
+**GPS :** 48.5849867, 7.7503177 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y voilà. Cette longue place bordée d'arbres, l'Opéra au fond : Broglie. Un chant célèbre y est né une nuit d'avril 1792 — mais c'est une autre naissance qui nous occupe.
 

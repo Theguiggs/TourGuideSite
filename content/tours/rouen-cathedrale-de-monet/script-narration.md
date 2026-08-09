@@ -4,13 +4,13 @@
 **Ville :** Rouen
 **Thème :** Art — Trente fois la même façade : Monet, la lumière et la naissance d'une révolution.
 **Durée narration :** ~12 min
-**Distance :** ~3 km | **POIs :** 8
+**Distance :** ~3,1 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Musée des Beaux-Arts : Les tableaux qui manquent
-**GPS :** 49.4443, 1.0947 *(approx. à vérifier)*
+## Scène 1 — Musée des Beaux-Arts de Rouen : Les tableaux qui manquent
+**GPS :** 49.4448162, 1.0942239 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Entre, et cherche une petite toile pleine de drapeaux. Une rue étroite, noyée de bleu, de blanc, de rouge, une foule qu'on devine à peine sous les étoffes qui claquent. C'est Claude Monet, la rue Saint-Denis, le 30 juin 1878, jour de fête nationale. Il a peint ça vite, debout dans la cohue, comme on vole une photo avant que la lumière change.
 
@@ -29,7 +29,7 @@ Sors du musée et prends vers l'ouest. Quatre minutes de marche. On commence par
 ---
 
 ## Scène 2 — Église Saint-Godard : Peindre avec le jour
-**GPS :** 49.4452, 1.0910 *(approx. à vérifier)*
+**GPS :** 49.4449399, 1.0955089 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Pousse la porte de cette église trapue, coincée entre deux immeubles comme si la ville avait poussé autour d'elle sans faire attention. Saint-Godard. Va vers la droite, et lève les yeux.
 
@@ -46,7 +46,7 @@ Ressors et prends vers l'est. Sept minutes, et je te présente la famille la plu
 ---
 
 ## Scène 3 — Lycée Pierre-Corneille : Les trois frères
-**GPS :** 49.4433, 1.0977 *(approx. à vérifier)*
+**GPS :** 49.4455825, 1.1009647 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Ces bâtiments austères derrière la grille, c'est le lycée Corneille, ancien collège de jésuites ouvert à la fin du XVIᵉ siècle. La liste de ses élèves donne le vertige : Corneille, Fontenelle, Flaubert, Maupassant. Et, au tout début du XXᵉ siècle, trois frères d'une même famille normande.
 
@@ -61,7 +61,7 @@ Descends vers le sud-est. Six minutes, jusqu'à une église en dentelle.
 ---
 
 ## Scène 4 — Église Saint-Maclou : L'Anglais qui aimait trop
-**GPS :** 49.4404, 1.1003 *(approx. à vérifier)*
+**GPS :** 49.4397819, 1.0983808 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi devant ce porche. Cinq arcades en éventail, de la pierre qui semble brodée plutôt que taillée. Saint-Maclou, gothique flamboyant, un chantier ouvert vers 1437 et poursuivi pendant quatre-vingts ans. Les vantaux sculptés, on les attribue depuis toujours à Jean Goujon — sans preuve, mais l'idée est trop belle pour mourir.
 
@@ -76,7 +76,7 @@ Remonte vers l'ouest, six minutes. Rendez-vous dans la cour des libraires.
 ---
 
 ## Scène 5 — Portail des Libraires : Le petit bonhomme de Proust
-**GPS :** 49.4405, 1.0958 *(approx. à vérifier)*
+**GPS :** 49.4405, 1.0958 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Entre dans cette cour par la grille ouvragée. Devant toi, le portail des Libraires. Il s'appelle comme ça parce que des marchands de livres tenaient boutique ici même, adossés au flanc de la cathédrale.
 
@@ -93,7 +93,7 @@ Sors de la cour, file vers l'est puis descends plein sud par la rue de la Répub
 ---
 
 ## Scène 6 — Quais de Seine : Le port des peintres
-**GPS :** 49.4383, 1.0930 *(approx. à vérifier)*
+**GPS :** 49.4385537, 1.0886639 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà au bord de la Seine, face au pont Boieldieu. Ce pont-là est jeune : celui d'avant a sauté pendant la guerre. Mais l'eau, l'air mouillé, les fumées, la lumière basse — c'est le même décor.
 
@@ -107,8 +107,8 @@ Remonte la rue du Grand-Pont, plein nord. Cinq minutes. On y est presque.
 
 ---
 
-## Scène 7 — Rue du Grand-Pont : La fenêtre
-**GPS :** 49.4396, 1.0938 *(approx. à vérifier)*
+## Scène 7 — Pont Boieldieu, au débouché de la rue du Grand-Pont : La fenêtre
+**GPS :** 49.4372127, 1.0912092 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi et lève les yeux vers ces étages, au-dessus des boutiques, ceux qui donnent sur la place.
 
@@ -124,12 +124,12 @@ Trois minutes. Traverse la place, va jusqu'au milieu, et retourne-toi enfin.
 
 ---
 
-## Scène 8 — Place de la Cathédrale : Ce qu'il y a entre elle et toi
-**GPS :** 49.4400, 1.0949 *(approx. à vérifier)*
+## Scène 8 — Parvis de la cathédrale Notre-Dame : Ce qu'il y a entre elle et toi
+**GPS :** 49.440288, 1.0948212 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Voilà. Regarde-la.
 
-Trois portails, et deux tours qui ne se ressemblent pas. À gauche la tour Saint-Romain, la vieille, l'entêtée. À droite la tour de Beurre, achevée au début du XVIᵉ siècle : on raconte que les Rouennais l'ont payée en achetant le droit de manger du beurre pendant le carême. Et là-haut, cette flèche de fonte terminée en 1876 — pendant quatre ans, l'édifice le plus haut du monde.
+Trois portails, et deux tours qui ne se ressemblent pas. À gauche la tour Saint-Romain, la vieille, l'entêtée. À droite la tour de Beurre, achevée au début du XVIᵉ siècle grâce à une indulgence accordée pendant le carême. Et là-haut, cette flèche de fonte terminée en 1876 — pendant quatre ans, l'édifice le plus haut du monde.
 
 Maintenant, oublie tout ce que je viens de te dire. Parce que c'est exactement ce que Monet a fait.
 

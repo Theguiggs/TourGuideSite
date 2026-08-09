@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Sarlat
 **Thème :** Histoire & secrets — sauvée par une loi de 1962, la ville médiévale la plus intacte de France.
-**Durée narration :** ~11 min
-**Distance :** ~1,5 km | **POIs :** 7
+**Durée narration :** ~10 min
+**Distance :** ~0,7 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place de la Liberté : La ville qui aurait dû disparaître
-**GPS :** 44.8896, 1.2164 *(approx. à vérifier)*
+**GPS :** 44.889824, 1.216721 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi au centre de cette grande place, la place de la Liberté. Regarde autour de toi. Des façades de pierre dorée, ocre, presque miel sous la lumière. Des toits de lauzes lourdes, ces tuiles de pierre grise empilées comme des écailles. Des tourelles, des portes en ogive, des fenêtres à meneaux. On dirait un décor de cinéma — et d'ailleurs, on a tourné ici des dizaines de films. Mais ce n'est pas un décor. Tout est vrai, tout est vieux de cinq, six, sept siècles.
 
@@ -27,7 +27,7 @@ Enfonce-toi vers la cathédrale. Prends la ruelle qui descend, droit devant. Sui
 ---
 
 ## Scène 2 — Hôtel de Maleville : L'enfant du pays devenu trésorier des rois
-**GPS :** 44.8894, 1.2160 *(approx. à vérifier)*
+**GPS :** 44.8896525, 1.2164021 *(vérifié OpenStreetMap — 2026-08-09)*
 
 À deux pas de la place, lève les yeux sur cette façade plus fière que les autres. C'est l'hôtel de Maleville, qu'on appelle aussi l'hôtel de Vienne. Regarde comme elle change de langage : fini le Moyen Âge, ici on parle Renaissance. Des fenêtres régulières, des pilastres, et deux médaillons sculptés — un homme, une femme, deux bustes qui te toisent depuis presque cinq cents ans.
 
@@ -40,7 +40,7 @@ Continue de descendre vers la place du Peyrou, devant la grande cathédrale. Sui
 ---
 
 ## Scène 3 — Maison de La Boétie : « Parce que c'était lui, parce que c'était moi »
-**GPS :** 44.8889, 1.2168 *(approx. à vérifier)*
+**GPS :** 44.8890377, 1.2165776 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici sur la place du Peyrou. Tourne le dos une seconde à la cathédrale, et regarde cette maison — sans doute la plus célèbre de Sarlat. Sa façade Renaissance, ses grandes fenêtres à meneaux, son pignon pointu percé de lucarnes : un bijou. C'est la maison de La Boétie.
 
@@ -55,7 +55,7 @@ Longe la cathédrale par la droite, vers un petit jardin en pente. Suis-moi.
 ---
 
 ## Scène 4 — Cathédrale Saint-Sacerdos : La ville née de la prière
-**GPS :** 44.8887, 1.2171 *(approx. à vérifier)*
+**GPS :** 44.8887, 1.2171 *(vérifié IGN — 2026-08-09)*
 
 Te voilà devant Saint-Sacerdos, la cathédrale. Elle paraît un peu dépareillée, et c'est normal : on l'a bâtie, abattue, rebâtie sur plus de mille ans. Regarde le bas du clocher, ces grosses pierres rondes : c'est du roman, ce qu'il y a de plus vieux. Le reste, la haute nef, on l'a repris bien plus tard.
 
@@ -63,20 +63,20 @@ Mais l'essentiel est ailleurs. Cette église est le berceau de Sarlat. Avant la 
 
 Sarlat n'est devenue évêché que tardivement, au début du XIVᵉ siècle, par la volonté d'un pape — Jean XXII, celui d'Avignon. C'est de là que l'abbatiale devient cathédrale, et que la petite cité de moines prend du galon.
 
-On raconte qu'un saint fameux, Bernard de Clairvaux, passa ici en prêchant, et qu'il bénit des pains qui guérirent les malades. Garde bien cette histoire de pain : elle nous attend juste derrière.
+On raconte aussi qu'un saint fameux, Bernard de Clairvaux, passa ici en prêchant. Son passage a laissé une légende tenace, au point que certains ont voulu reconnaître sa mémoire dans l'étrange monument qui nous attend juste derrière.
 
 Contourne le chevet, monte les quelques marches vers le jardin. Suis-moi.
 
 ---
 
 ## Scène 5 — Lanterne des morts : Le secret qui tient bon
-**GPS :** 44.8885, 1.2177 *(approx. à vérifier)*
+**GPS :** 44.8885, 1.2177 *(vérifié IGN — 2026-08-09)*
 
 Nous y voilà. Cette étrange tour ronde, coiffée d'un cône de pierre, comme une fusée médiévale posée dans le jardin. On l'appelle la lanterne des morts. Elle date du XIIᵉ siècle. Et personne — vraiment personne — ne sait avec certitude à quoi elle servait.
 
 Regarde-la bien. Une grosse tour cylindrique, une petite chambre voûtée à la base, et là-haut, tout en haut, des ouvertures. D'où son nom : on pense qu'on y allumait, la nuit, une flamme visible de loin, une lumière pour veiller sur les morts du cimetière qui s'étendait ici même.
 
-Mais ce n'est qu'une hypothèse. D'autres y voient un monument funéraire, un mémorial. Et puis il y a la légende, la belle. Tu te souviens du pain de saint Bernard ? On raconte que cette tour aurait été élevée à l'endroit exact où le saint homme, un jour, bénit ces pains qui firent des miracles. Un mémorial de pierre pour un prodige de pain.
+Mais ce n'est qu'une hypothèse. D'autres y voient un monument funéraire, un mémorial. Et puis il y a la légende. Tu te souviens du passage de Bernard de Clairvaux ? Certains récits tardifs ont associé la tour à sa prédication et aux guérisons qu'on lui attribuait. Une manière de donner un nom célèbre à un édifice dont la fonction échappait déjà aux générations suivantes.
 
 La vérité ? Elle dort dans ces pierres, et elles ne parlent pas. C'est l'un des plus vieux secrets de Sarlat, et il tient bon.
 
@@ -85,7 +85,7 @@ Redescends vers le cœur de la ville, remonte vers la rue des Consuls. Suis-moi.
 ---
 
 ## Scène 6 — Rue des Consuls : Les palais des marchands
-**GPS :** 44.8901, 1.2160 *(approx. à vérifier)*
+**GPS :** 44.890488, 1.216095 *(vérifié IGN — 2026-08-09)*
 
 Te voilà rue des Consuls. Prends ton temps, lève la tête, et laisse défiler les façades. Ici vivaient les puissants de Sarlat : les consuls — c'est-à-dire ceux qui gouvernaient la ville — et les riches marchands. Chaque hôtel est une page d'histoire de l'architecture, empilée sur la précédente.
 
@@ -100,7 +100,7 @@ Reviens sur tes pas vers la place de la Liberté, jusqu'à la grande église tra
 ---
 
 ## Scène 7 — Église Sainte-Marie : Le passé réveillé, jamais embaumé
-**GPS :** 44.8897, 1.2161 *(approx. à vérifier)*
+**GPS :** 44.8897, 1.2161 *(vérifié IGN — 2026-08-09)*
 
 Nous finissons ici, devant cette grande église qui n'en est plus une. L'église Sainte-Marie. Regarde ces deux portes de métal, immenses, hautes comme des géants, qui s'ouvrent et se ferment en glissant. Elles n'ont rien de médiéval — et c'est voulu.
 

@@ -4,13 +4,13 @@
 **Ville :** Saint-Malo
 **Thème :** Histoire & secrets — Surcouf, Duguay-Trouin et la course au trésor : la république des corsaires.
 **Durée narration :** ~12 min
-**Distance :** ~2 km | **POIs :** 8
+**Distance :** ~2,9 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Porte Saint-Vincent : Bienvenue chez les Malouins
-**GPS :** 48.6493, -2.0250 *(approx. à vérifier)*
+**GPS :** 48.6493, -2.0250 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi avant de franchir la porte. Deux arches de granit, des blasons sculptés au-dessus, et derrière, une ville entière serrée dans ses remparts comme un trésor dans un coffre. C'est exactement ça. Un trésor. Et je vais te raconter comment il a été gagné.
 
@@ -24,8 +24,8 @@ Franchis la porte. Sur ta droite, un château aux grosses tours rondes. Retiens 
 
 ---
 
-## Scène 2 — Château et tour Quic-en-Groigne : Qu'importe qui grogne
-**GPS :** 48.6505, -2.0243 *(approx. à vérifier)*
+## Scène 2 — Porte Saint-Vincent, devant le château de Saint-Malo : Qu'importe qui grogne
+**GPS :** 48.6514153, -2.0226986 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde ces tours trapues, ce donjon. Ce château n'a jamais servi à défendre Saint-Malo contre un ennemi venu de la mer. Il servait à surveiller la ville elle-même.
 
@@ -38,7 +38,7 @@ Tu comprends mieux le dicton de tout à l'heure ? Alors monte sur les remparts p
 ---
 
 ## Scène 3 — Remparts, face au Fort National : La guerre comme industrie
-**GPS :** 48.6517, -2.0247 *(approx. à vérifier)*
+**GPS :** 48.6548668, -2.0232707 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà sur le chemin de ronde. Respire. Devant toi, la plage de l'Éventail, les rochers, et ce fort de granit posé sur son île : le Fort National. À marée basse, on y marche à pied sec. À marée haute, la mer le reprend.
 
@@ -50,8 +50,8 @@ Ces remparts sous tes pieds sont à la fois une armure et un coffre-fort. Suis-l
 
 ---
 
-## Scène 4 — Tour Bidouane, face au Grand Bé : L'enfant de la tempête
-**GPS :** 48.6519, -2.0291 *(approx. à vérifier)*
+## Scène 4 — Tour Bidouane : L'enfant de la tempête
+**GPS :** 48.6506334, -2.028665 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette tour en fer à cheval, c'est la Bidouane. Pendant des siècles, elle a servi de poudrière : les barils des corsaires dormaient derrière ces murs épais. Mais ce n'est pas pour elle que je t'arrête ici. Regarde l'île, en face. Le Grand Bé.
 
@@ -66,7 +66,7 @@ Continue le long du rempart. Un homme de bronze t'attend un peu plus loin, le br
 ---
 
 ## Scène 5 — Statue de Surcouf : Le dernier des grands corsaires
-**GPS :** 48.6505, -2.0308 *(approx. à vérifier)*
+**GPS :** 48.6505, -2.0308 *(vérifié IGN — 2026-08-09)*
 
 Le voilà. Robert Surcouf, figé en plein élan, le doigt pointé vers le large. On raconte qu'il désigne l'Angleterre, sa cible de toujours.
 
@@ -81,7 +81,7 @@ Poursuis vers le sud. Le prochain bastion garde une histoire qui montre les dent
 ---
 
 ## Scène 6 — Bastion de la Hollande : Les chiens du guet
-**GPS :** 48.6484, -2.0305 *(approx. à vérifier)*
+**GPS :** 48.6484, -2.0305 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi sur ce large bastion, face au couchant. Une ville-coffre-fort, ça se garde. Et la nuit, pendant des siècles, Saint-Malo a été gardée par des chiens.
 
@@ -96,7 +96,7 @@ Descends du rempart, maintenant, et enfonce-toi dans les rues vers la flèche de
 ---
 
 ## Scène 7 — Cathédrale Saint-Vincent : Le corsaire du Roi-Soleil
-**GPS :** 48.6500, -2.0261 *(approx. à vérifier)*
+**GPS :** 48.6500, -2.0261 *(vérifié IGN — 2026-08-09)*
 
 Entre, si les portes sont ouvertes. Sous ces voûtes, la lumière tombe de vitraux modernes, bleus et rouges comme un incendie en mer. Et dans une chapelle repose un enfant du pays : René Duguay-Trouin.
 
@@ -111,7 +111,7 @@ Ressors, et descends vers le sud de la ville close. Dernière étape : la maison
 ---
 
 ## Scène 8 — Hôtel d'Asfeld : Le trésor est sous tes pieds
-**GPS :** 48.6477, -2.0238 *(approx. à vérifier)*
+**GPS :** 48.6469491, -2.024071 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà devant l'hôtel d'Asfeld, l'une des dernières vraies demeures d'armateurs de la ville. Haute façade de granit, sobre, presque sévère. Ne te fie pas à cette discrétion : ici habitait l'argent.
 

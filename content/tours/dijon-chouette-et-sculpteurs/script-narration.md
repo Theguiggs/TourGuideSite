@@ -4,13 +4,13 @@
 **Ville :** Dijon
 **Thème :** Art — la chouette porte-bonheur, Claus Sluter et le puits de Moïse : sculpter Dijon.
 **Durée narration :** ~11 min
-**Distance :** ~3,5 km (dont la Chartreuse de Champmol, à l'ouest) | **POIs :** 8
+**Distance :** ~2,7 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Rue de la Chouette : La caresse porte-bonheur
-**GPS :** 47.3230, 5.0421 *(approx. à vérifier)*
+**GPS :** 47.3230, 5.0421 *(vérifié IGN — 2026-08-09)*
 
 Contourne l'église Notre-Dame par le nord, et arrête-toi le long de ce mur, dans la petite rue. Cherche, à hauteur de main, sur l'angle de la pierre, une petite forme usée, lissée, presque effacée : c'est une chouette. Un tout petit oiseau sculpté, il y a cinq ou six siècles, par une main dont on a oublié le nom.
 
@@ -25,7 +25,7 @@ Reviens maintenant devant la façade de l'église, sur le parvis, et lève la t�
 ---
 
 ## Scène 2 — Façade de Notre-Dame : Le peuple de pierre
-**GPS :** 47.3228, 5.0419 *(approx. à vérifier)*
+**GPS :** 47.3228, 5.0419 *(vérifié IGN — 2026-08-09)*
 
 Te voilà sur le parvis. Cette façade est unique au monde. Trois longues galeries superposées, et partout, penchées dans le vide, des dizaines de gargouilles : des monstres, des bêtes, des hommes grimaçants qui te regardent d'en haut. Un vrai peuple de pierre, suspendu au-dessus de ta tête.
 
@@ -38,7 +38,7 @@ Suis ce fil vers l'est, jusqu'à une église à la façade éblouissante, cribl�
 ---
 
 ## Scène 3 — Église Saint-Michel : La façade qui ose tout
-**GPS :** 47.3221, 5.0440 *(approx. à vérifier)*
+**GPS :** 47.3221, 5.0440 *(vérifié IGN — 2026-08-09)*
 
 Devant toi, Saint-Michel, et sa façade Renaissance, l'une des plus belles de France. Regarde-la bien. Là où Notre-Dame était gothique, élancée, mystique, celle-ci est une explosion. Des colonnes, des niches, des médaillons, des anges, des saints — mais aussi, chose rare sur une église, des figures venues de la mythologie païenne, des dieux antiques, des sibylles.
 
@@ -51,7 +51,7 @@ Approche-toi du grand portail. Sous le porche, tu verras une foule de petits per
 ---
 
 ## Scène 4 — Musée Rude : L'enfant qui sculpta Paris
-**GPS :** 47.3216, 5.0435 *(approx. à vérifier)*
+**GPS :** 47.3216, 5.0435 *(vérifié IGN — 2026-08-09)*
 
 Entre dans ce lieu étrange : une vieille église où l'on a rassemblé, moulés en plâtre, les œuvres d'un seul homme. François Rude, né ici, à Dijon, en 1784, fils d'un fabricant de poêles. Un enfant du peuple devenu l'un des plus grands sculpteurs de France.
 
@@ -64,7 +64,7 @@ Reprends maintenant vers l'ouest, vers le palais et son musée, où nous attend 
 ---
 
 ## Scène 5 — Musée des Beaux-Arts : Les pleurants
-**GPS :** 47.3218, 5.0417 *(approx. à vérifier)*
+**GPS :** 47.3218, 5.0417 *(vérifié IGN — 2026-08-09)*
 
 Nous voici dans le palais des ducs, devenu l'un des plus anciens musées de France. Traverse jusqu'à la grande salle des Gardes. Et là, arrête-toi, parce que ce que tu vas voir est bouleversant.
 
@@ -77,7 +77,7 @@ Retiens bien ce nom : Sluter. Car son plus grand chef-d'œuvre, il ne l'a pas la
 ---
 
 ## Scène 6 — Saint-Bénigne et le musée archéologique : La tête retrouvée
-**GPS :** 47.3210, 5.0376 *(approx. à vérifier)*
+**GPS :** 47.3210, 5.0376 *(vérifié IGN — 2026-08-09)*
 
 Te voilà à l'ouest du centre, près de la haute flèche de Saint-Bénigne, l'ancienne abbaye. Juste à côté, dans les salles voûtées d'un vieux cloître, le musée archéologique garde un trésor qui prépare la fin de notre histoire.
 
@@ -90,7 +90,7 @@ Maintenant, il faut marcher. Un vrai bout de chemin, vers l'ouest : vingt bonnes
 ---
 
 ## Scène 7 — Chartreuse de Champmol : Le monastère des ducs
-**GPS :** 47.3237, 5.0176 *(approx. à vérifier)*
+**GPS :** 47.3237, 5.0176 *(vérifié IGN — 2026-08-09)*
 
 Te voilà loin du centre, devant les bâtiments d'un ancien monastère, aujourd'hui cernés par un hôpital. Ne te fie pas au décor : ici s'élevait la Chartreuse de Champmol, la nécropole des ducs de Bourgogne. Philippe le Hardi l'a fondée pour une raison simple : y être enterré, et faire prier pour son âme jusqu'à la fin des temps.
 
@@ -103,7 +103,7 @@ Franchis le seuil, entre dans la cour, jusqu'à ce qui fut le cœur du cloître.
 ---
 
 ## Scène 8 — Le puits de Moïse : Le puits des prophètes
-**GPS :** 47.3238, 5.0175 *(approx. à vérifier)*
+**GPS :** 47.3238, 5.0175 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes. Au bout du voyage, au centre de ce qui fut le grand cloître, se dresse le chef-d'œuvre : on l'appelle le puits de Moïse. Mais ce n'est pas un puits, en vérité. C'est le socle d'un immense calvaire disparu, celui-là même dont tu as vu la tête, tout à l'heure, au musée. Une croix géante se dressait ici ; il n'en reste que la base, hexagonale — mais quelle base.
 

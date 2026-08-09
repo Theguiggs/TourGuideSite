@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** La Rochelle
 **Thème :** Sport — du Vieux-Port aux Minimes : la ville qui vit vent debout.
-**Durée narration :** ~12 min
-**Distance :** ~4 km | **POIs :** 8
+**Durée narration :** ~11 min
+**Distance :** ~5 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Cours des Dames : La ville et le vent
-**GPS :** 46.1573, -1.1512 *(approx. à vérifier)*
+**GPS :** 46.1570748, -1.1538089 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi le long du Vieux-Port, sur ce large quai bordé de terrasses : le cours des Dames. Devant toi, l'eau, les bateaux, et surtout les mâts. Des dizaines de mâts qui se balancent, des cordages qui claquent, des drisses qui tintent contre l'aluminium comme de petites cloches. Écoute une seconde. Ce carillon métallique, léger, entêtant, c'est la musique de fond de cette ville. Le bruit du vent dans les gréements.
 
@@ -25,20 +25,20 @@ Longe le quai vers l'est, vers les grands bassins où l'eau dort derrière les �
 ---
 
 ## Scène 2 — Bassin des Chalutiers : Là où la pêche a laissé la place
-**GPS :** 46.1560, -1.1490 *(approx. à vérifier)*
+**GPS :** 46.153134, -1.151827 *(vérifié IGN — 2026-08-09)*
 
 Te voilà au bord du bassin des Chalutiers. Le nom le dit : ici accostaient les chalutiers, les bateaux de pêche, par dizaines, dans une odeur de gasoil et de poisson. La Rochelle a longtemps été un grand port de pêche, et elle l'est encore — mais la flotte, elle, a déménagé un peu plus loin, à Chef de Baie, à l'ouest de la ville.
 
 Alors qu'est-ce qui a pris la place ? La plaisance. Les voiliers, les yachts, les bateaux de loisir. Regarde ce bassin aujourd'hui : de belles coques blanches, des ketchs, des sloops, quelques vieux gréements amoureusement entretenus.
 
-C'est toute l'histoire de la ville moderne, résumée dans un plan d'eau. Le poisson a nourri La Rochelle pendant des siècles ; puis, dans les années soixante et soixante-dix, la ville a compris qu'une autre richesse arrivait par la mer — non plus dans les filets, mais sous les voiles. Le tourisme, le nautisme, le simple plaisir de naviguer.
+C'est toute l'histoire de la ville moderne, résumée dans un plan d'eau. La pêche a fait vivre La Rochelle pendant des siècles ; puis, dans les années soixante et soixante-dix, la ville a compris qu'une autre richesse arrivait par la mer — non plus avec les navires de travail, mais sous les voiles. Le tourisme, le nautisme, le simple plaisir de naviguer.
 
 Au fond du bassin, tu vois des navires plus imposants, sombres, chargés d'histoire. C'est le musée à flot. Approche. Suis-moi.
 
 ---
 
 ## Scène 3 — Musée Maritime : Deux gamins et le bout du monde
-**GPS :** 46.1558, -1.1478 *(approx. à vérifier)*
+**GPS :** 46.1506021, -1.1506946 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Ce grand navire blanc amarré là, c'est le France 1, un ancien bateau météo qui passait des mois seul en plein Atlantique à guetter les tempêtes. Il fait partie du musée maritime, à flot, que tu peux visiter. Mais ce n'est pas lui que je veux te montrer. C'est un tout petit voilier, minuscule à côté des géants. Il s'appelle Damien.
 
@@ -53,7 +53,7 @@ Ressors, et longe le grand bâtiment de verre posé au bord de l'eau. Suis-moi.
 ---
 
 ## Scène 4 — Espace Encan : De la criée aux régates
-**GPS :** 46.1550, -1.1470 *(approx. à vérifier)*
+**GPS :** 46.152109, -1.15079 *(vérifié IGN — 2026-08-09)*
 
 Ce vaste bâtiment de verre et de métal, ouvert sur le bassin, c'est l'Espace Encan. Retiens ce mot, encan : c'était la criée. C'est ici qu'on vendait le poisson à la voix, au plus offrant, dès le petit matin, dans le vacarme des mareyeurs.
 
@@ -68,7 +68,7 @@ Continue vers le sud, franchis la passerelle, et suis la promenade qui longe la 
 ---
 
 ## Scène 5 — Le Gabut : Le chemin de l'eau
-**GPS :** 46.1567, -1.1500 *(approx. à vérifier)*
+**GPS :** 46.1567, -1.1500 *(vérifié IGN — 2026-08-09)*
 
 Regarde ces maisons de bois peintes, rouges, bleues, vertes, serrées les unes contre les autres : c'est le quartier du Gabut. Autrefois, un faubourg de pêcheurs et de dockers, tout en cabanes et en planches. On l'a sauvé, ravivé de couleurs, et il garde ce petit air de port du bout du monde.
 
@@ -81,7 +81,7 @@ Devant toi, bientôt, s'ouvre une immense étendue de mâts, à perte de vue. Ce
 ---
 
 ## Scène 6 — Port des Minimes : La forêt de mâts
-**GPS :** 46.1470, -1.1560 *(approx. à vérifier)*
+**GPS :** 46.1468086, -1.1668407 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y sommes : le port des Minimes. Arrête-toi et regarde. Des pontons à l'infini, des passerelles, des coques, et surtout ces milliers de mâts alignés qui griffent le ciel comme une forêt sans feuilles. On le présente souvent comme l'un des plus grands ports de plaisance d'Europe — un titre qu'il faudrait vérifier bassin par bassin, alors disons-le prudemment : rares sont les marinas qui alignent autant de bateaux sur toute la façade atlantique.
 
@@ -95,8 +95,8 @@ Longe les pontons vers le sud, vers l'endroit où les enfants apprennent à barr
 
 ---
 
-## Scène 7 — L'école de voile : On apprend le vent tout petit
-**GPS :** 46.1450, -1.1580 *(approx. à vérifier)*
+## Scène 7 — Port des Minimes, devant l'école de voile : On apprend le vent tout petit
+**GPS :** 46.146809, -1.166841 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Écoute les cris, les rires, les coups de sifflet. Sur ce plan d'eau abrité, une nuée de petits voiliers zigzague : des Optimists, ces coques minuscules, presque des baignoires à voile, dans lesquelles des enfants de sept ou huit ans apprennent la mer.
 
@@ -111,7 +111,7 @@ Avance jusqu'au bout de la pointe, là où la terre s'arrête et où la mer s'ou
 ---
 
 ## Scène 8 — Pointe des Minimes : Face au large
-**GPS :** 46.1440, -1.1595 *(approx. à vérifier)*
+**GPS :** 46.1385550, -1.1741294 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici au bout du chemin, à la pointe des Minimes. Devant toi, plus rien que l'eau, le ciel, et cette lumière d'Atlantique qui change dix fois par jour. Assieds-toi un instant sur les rochers ou sur le sable, et laisse tes yeux courir vers l'horizon.
 

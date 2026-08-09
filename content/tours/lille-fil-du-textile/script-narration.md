@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Lille
 **Thème :** Spécialité de la ville — Du drap médiéval à la VPC : la ville que le fil a tissée, filature après filature.
-**Durée narration :** ~14 min
-**Distance :** ~3 km | **POIs :** 9
+**Durée narration :** ~12 min
+**Distance :** ~2,7 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Maison de Gilles de la Boë : La fortune née d'un fil
-**GPS :** 50.6407, 3.0645 *(approx. à vérifier)*
+## Scène 1 — Place Louise-de-Bettignies, devant la maison Gilles-de-la-Boë : La fortune née d'un fil
+**GPS :** 50.6408424, 3.0647507 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Lève les yeux vers cette façade, à l'angle de la place, près de l'ancien port. Pierre blonde, brique, arcades en anse de panier, lourdes guirlandes de fruits sculptées. Une maison bâtie en 1636 pour un homme riche, Gilles de la Boë, marchand d'épices et d'étoffes. Sa richesse, une bonne part, il la doit au tissu.
 
@@ -23,7 +23,7 @@ Quitte le Vieux-Lille et descends vers le sud, en direction de la grande artère
 ---
 
 ## Scène 2 — Rue Nationale : L'avenue des patrons
-**GPS :** 50.6345, 3.0595 *(approx. à vérifier)*
+**GPS :** 50.63671, 3.062267 *(vérifié IGN — 2026-08-09)*
 
 Regarde cette longue avenue rectiligne, ses immeubles hauts et cossus, leurs balcons de pierre. Au XIXe siècle, quand le textile s'industrialise et fait couler l'or, c'est ici, au centre, que la bourgeoisie du fil aime vivre et montrer sa réussite. Les patrons des filatures habitent la belle ville, claire et aérée.
 
@@ -36,7 +36,7 @@ Alors basculons dans l'autre Lille. Continue vers le sud-ouest, franchis l'ancie
 ---
 
 ## Scène 3 — Église Saint-Pierre-Saint-Paul de Wazemmes : Le faubourg qui a explosé
-**GPS :** 50.6305, 3.0508 *(approx. à vérifier)*
+**GPS :** 50.6261736, 3.0509037 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Devant toi, la grande église de Wazemmes, trop vaste, trop haute pour un simple quartier. Elle raconte une histoire d'explosion. Car Wazemmes n'a pas toujours été Lille. C'était un village, une commune à part, avec ses champs et ses blanchisseries de lin, qui profitaient de l'eau claire des ruisseaux.
 
@@ -49,11 +49,11 @@ Descends vers le centre du quartier, vers le vacarme joyeux des étals. À deux 
 ---
 
 ## Scène 4 — Marché de Wazemmes : Le ventre du peuple ouvrier
-**GPS :** 50.6300, 3.0490 *(approx. à vérifier)*
+**GPS :** 50.626695, 3.049273 *(vérifié IGN — 2026-08-09)*
 
 Voilà le marché de Wazemmes, l'un des plus vivants du Nord. Halle couverte, étals qui débordent sur la place, cris des marchands, odeurs de tous les continents. Prends le temps d'écouter ce brouhaha : c'est le son d'un quartier qui n'a jamais cessé d'être populaire.
 
-Ce marché est le prolongement direct de l'histoire ouvrière. Quand des dizaines de milliers de travailleurs du textile s'entassaient ici, il fallait les nourrir à bas prix. Le marché est né de ce besoin, avec ses produits simples et bon marché. Il porte encore, en partie, le nom d'un ancien jardin de plaisir : la Nouvelle Aventure. Le peuple du textile venait s'y détendre, entre deux journées d'usine sans fin.
+Ce marché est le prolongement direct de l'histoire ouvrière. Quand des dizaines de milliers de travailleurs du textile s'entassaient ici, il fallait des lieux d'échange accessibles, proches des logements et des ateliers. Le marché est devenu l'un de ces grands rendez-vous populaires. Il porte encore, en partie, le nom d'un ancien jardin de plaisir : la Nouvelle Aventure. Le peuple du textile venait s'y retrouver, entre deux journées d'usine sans fin.
 
 Aujourd'hui, les ouvriers des filatures ont disparu, mais l'esprit est là. Familles modestes, étudiants, habitants venus du monde entier s'y croisent le dimanche matin, comme jadis. On y vient pour un poulet rôti, un bouquet de fleurs, trois fois rien, et surtout pour l'ambiance. Un peuple change de visage, pas de caractère.
 
@@ -61,8 +61,8 @@ Maintenant, glisse dans les petites rues autour, celles où logeaient ceux qui f
 
 ---
 
-## Scène 5 — Les courées : Où vivaient ceux qui filaient
-**GPS :** 50.6291, 3.0518 *(approx. à vérifier)*
+## Scène 5 — Marché de Wazemmes, mémoire des courées : Où vivaient ceux qui filaient
+**GPS :** 50.626695, 3.049273 *(vérifié IGN — 2026-08-09)*
 
 Cherche, dans ces rues, un étroit passage entre deux maisons, un porche qui s'ouvre sur une petite cour bordée de logis minuscules. Si tu en trouves un, tu as devant toi une courée. C'est là que vivait le peuple du textile.
 
@@ -74,8 +74,8 @@ Sortons de la cour et allons voir enfin la machine elle-même, le lieu du travai
 
 ---
 
-## Scène 6 — Devant une cheminée de brique : Le bruit et la poussière
-**GPS :** 50.6285, 3.0526 *(approx. à vérifier)*
+## Scène 6 — Maison Folie de Wazemmes, ancienne filature : Le bruit et la poussière
+**GPS :** 50.624724, 3.048302 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Lève la tête vers cette haute cheminée de brique. Il y en avait des centaines comme elle, plantées dans le ciel du Nord — on a surnommé les cités voisines les « villes aux mille cheminées ». Chacune signalait une usine, et le plus souvent une filature, l'atelier où l'on transforme la fibre brute en fil.
 
@@ -87,8 +87,8 @@ Le fil, pourtant, ne s'est pas arrêté. Il a muté, il est devenu autre chose. 
 
 ---
 
-## Scène 7 — Le fil devient catalogue : L'invention de la vente à distance
-**GPS :** 50.6284, 3.0517 *(approx. à vérifier)*
+## Scène 7 — Maison Folie de Wazemmes, du fil au catalogue : L'invention de la vente à distance
+**GPS :** 50.624724, 3.048302 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Reste ici, dans Wazemmes, mais imagine les villes voisines, Roubaix et Tourcoing, à quelques kilomètres au nord-est, reliées à Lille par une longue avenue et par le tramway. C'étaient les capitales mondiales de la laine, hérissées de filatures encore plus nombreuses.
 
@@ -101,7 +101,7 @@ Reviens maintenant vers la grande cheminée voisine. Elle abrite la dernière é
 ---
 
 ## Scène 8 — Maison Folie de Wazemmes : L'usine qui n'a pas voulu mourir
-**GPS :** 50.6283, 3.0533 *(approx. à vérifier)*
+**GPS :** 50.6247243, 3.0483022 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Franchis le porche. Devant toi, une ancienne filature reconvertie : la Maison Folie de Wazemmes. Prends la mesure du lieu, ses volumes de brique, ses verrières, sa cheminée conservée comme un totem. Ici, on ne file plus le lin. On y fait de l'art, des expositions, des concerts, des ateliers.
 
@@ -113,8 +113,8 @@ Entre dans la cour, assieds-toi un instant. C'est là que je veux conclure notre
 
 ---
 
-## Scène 9 — La cour de la Maison Folie : Ce que le fil a laissé
-**GPS :** 50.6282, 3.0534 *(approx. à vérifier)*
+## Scène 9 — Cour publique de la Maison Folie de Wazemmes : Ce que le fil a laissé
+**GPS :** 50.624724, 3.048302 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Assieds-toi dans cette cour, contre la brique tiède, et dénoue avec moi le fil qu'on a suivi depuis le matin.
 

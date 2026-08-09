@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Arles
 **Thème :** Histoire & secrets — Arles antique : arènes, théâtre, cryptoportiques, nécropole.
-**Durée narration :** ~12 min
-**Distance :** ~2 km | **POIs :** 9
+**Durée narration :** ~11 min
+**Distance :** ~2,2 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Les Arènes : la ville dans le monument
-**GPS :** 43.6777, 4.6312 *(approx. à vérifier)*
+**GPS :** 43.6777, 4.6312 *(vérifié IGN — 2026-08-09)*
 
 Lève les yeux. Deux étages d'arcades, des pierres blondes empilées par des mains romaines il y a près de deux mille ans. L'amphithéâtre d'Arles. On y entassait des dizaines de milliers de spectateurs pour voir couler le sang des gladiateurs et des bêtes. Le plus grand monument de la ville. Il tient toujours debout.
 
@@ -23,7 +23,7 @@ Voilà le fil de cette visite. Arles fut une petite Rome, une capitale d'empire 
 ---
 
 ## Scène 2 — Thermes de Constantin : l'empereur au bord du Rhône
-**GPS :** 43.6791, 4.6281 *(approx. à vérifier)*
+**GPS :** 43.6789869, 4.6274969 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voilà devant les thermes de Constantin, près du Rhône. Des murs de brique rose et de pierre, une belle abside percée de fenêtres : ce sont les bains publics de la ville romaine, et les plus grands qui subsistent en Provence. Imagine la vapeur, l'eau chaude, l'eau froide, les corps, les affaires qu'on traitait entre deux bassins. À Rome, on ne se lavait pas seul : on se lavait en société.
 
@@ -34,7 +34,7 @@ Tu marches sur les vestiges d'une capitale impériale. Garde ça en tête. Remon
 ---
 
 ## Scène 3 — Place du Forum : le temple dans le mur
-**GPS :** 43.6772, 4.6285 *(approx. à vérifier)*
+**GPS :** 43.67755, 4.626997 *(vérifié IGN — 2026-08-09)*
 
 Place du Forum. Terrasses, platanes, l'animation du soir. Mais lis le nom de la place : le Forum. C'était ici, exactement, le centre de la vie romaine — la grande place publique où l'on parlait affaires, politique, justice, où battait le pouls d'Arelate.
 
@@ -45,20 +45,20 @@ C'est ça, Arles. Une ville qui n'a jamais fait table rase. Chaque époque a pos
 ---
 
 ## Scène 4 — Cryptoportiques : le squelette de la ville
-**GPS :** 43.6764, 4.6281 *(approx. à vérifier)*
+**GPS :** 43.6767939, 4.6274309 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Descends. La rumeur de la place s'éteint d'un coup. Nous voici dans les cryptoportiques, un immense couloir en fer à cheval creusé sous le forum, il y a plus de deux mille ans. Trois galeries voûtées, sombres, fraîches, qui courent sous la ville. Une architecture souterraine presque intacte.
 
 À quoi servaient-elles ? Les Romains avaient un problème : le terrain penche vers le fleuve. Alors, pour poser leur grande place bien horizontale, ils ont bâti dessous ces galeries comme des fondations creuses, un socle gigantesque. Peut-être aussi pour y garder le grain, à l'abri de la chaleur. Personne n'en est tout à fait certain.
 
-Écoute le silence. Touche la pierre suintante. Au-dessus de ta tête, il y a les cafés, les touristes, la lumière. Ici, il n'y a que le squelette de la ville romaine, tel qu'on l'a coulé sous Auguste. Peu de villes te laissent descendre ainsi dans leurs propres fondations.
+Écoute le silence. Touche la pierre suintante. Au-dessus de ta tête, il y a les façades, les touristes, la lumière. Ici, il n'y a que le squelette de la ville romaine, tel qu'on l'a coulé sous Auguste. Peu de villes te laissent descendre ainsi dans leurs propres fondations.
 
 Remonte à la lumière. On sort sur la plus belle place d'Arles, où t'attend une aiguille de pierre venue de très loin.
 
 ---
 
 ## Scène 5 — Place de la République : l'obélisque du cirque
-**GPS :** 43.6763, 4.6282 *(approx. à vérifier)*
+**GPS :** 43.676218, 4.627411 *(vérifié IGN — 2026-08-09)*
 
 Place de la République. Prends-la d'un coup d'œil : l'hôtel de ville d'un côté, une cathédrale de l'autre, et au milieu, dressé vers le ciel, un obélisque. Approche-toi de lui.
 
@@ -71,7 +71,7 @@ Tourne-toi vers la cathédrale. Son porche est un chef-d'œuvre, et il te racont
 ---
 
 ## Scène 6 — Saint-Trophime : Rome au service des saints
-**GPS :** 43.6763, 4.6285 *(approx. à vérifier)*
+**GPS :** 43.6763, 4.6285 *(vérifié IGN — 2026-08-09)*
 
 Voici Saint-Trophime, et surtout son portail. Prends le temps de le lire comme une page. Autour de la porte, sculptés dans la pierre au XIIᵉ siècle, le Christ en majesté, les apôtres alignés, les élus qu'on mène au paradis et les damnés qu'on emporte, enchaînés, vers le feu. Un des plus beaux portails romans du Midi.
 
@@ -84,7 +84,7 @@ Puis reviens, et marchons vers l'est. Le plus élégant des monuments romains no
 ---
 
 ## Scène 7 — Théâtre antique : les deux veuves
-**GPS :** 43.6766, 4.6317 *(approx. à vérifier)*
+**GPS :** 43.6764852, 4.6300223 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Le théâtre antique. Il ne reste pas grand-chose, et pourtant c'est bouleversant. Les gradins en demi-cercle, taillés à flanc, où des milliers de spectateurs prenaient place. Et là-bas, plantées seules au milieu du vide, deux hautes colonnes qui tenaient jadis le grand mur de scène. On les appelle « les deux veuves ». Toutes leurs sœurs ont disparu.
 
@@ -97,7 +97,7 @@ L'été, sur ces gradins, on joue de nouveau, on chante, comme au premier jour. 
 ---
 
 ## Scène 8 — Les Alyscamps : l'allée des morts
-**GPS :** 43.6732, 4.6335 *(approx. à vérifier)*
+**GPS :** 43.670687, 4.635399 *(vérifié IGN — 2026-08-09)*
 
 Passe la grille : voici les Alyscamps. Une longue allée droite, bordée de sarcophages de pierre, sous une voûte d'arbres. Le nom vient du latin : les Champs Élysées, le séjour des morts heureux. C'était la grande nécropole d'Arles, le long de la route antique qui sortait de la ville.
 
@@ -110,7 +110,7 @@ Avance dans l'allée, doucement, jusqu'au bout. Une église ruinée nous attend,
 ---
 
 ## Scène 9 — Saint-Honorat : Rome tient encore debout
-**GPS :** 43.6727, 4.6339 *(approx. à vérifier)*
+**GPS :** 43.6712854, 4.6373140 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici au bout du chemin, devant Saint-Honorat, l'église de pierre qui ferme l'allée. Un clocher massif, une nef à demi ouverte au ciel, des tombeaux jusque sous les murs. Assieds-toi une minute. Écoute. Ce lieu a fait rêver les plus grands : Dante, dans son Enfer, a comparé un champ de damnés aux tombes d'Arles ; l'Arioste, plus tard, en a fait un décor de chevalerie. Cette allée était célèbre dans toute l'Europe.
 

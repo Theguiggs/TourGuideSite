@@ -4,13 +4,13 @@
 **Ville :** Bordeaux
 **Thème :** Art — apprendre à lire le XVIIIᵉ siècle sur les façades blondes : mascarons, fer forgé, pierre tendre et les peintres de la ville.
 **Durée narration :** ~12 min
-**Distance :** ~2,5 km | **POIs :** 9
+**Distance :** ~3,9 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Cours de l'Intendance : Trois mille visages te regardent
-**GPS :** 44.8418, -0.5754 *(approx. à vérifier)*
+**GPS :** 44.841913, -0.577161 *(vérifié IGN — 2026-08-09)*
 
 Lève les yeux. Non, plus haut, au-dessus des vitrines. Là, sur cette façade de pierre claire, un visage te regarde : sculpté dans la pierre, au-dessus d'une fenêtre, une tête d'homme, ou de femme, ou de dieu. On l'appelle un mascaron. Et il n'est pas seul. À Bordeaux, on en compte, dit-on, plusieurs milliers — trois mille, murmure-t-on. Des centaines de visages de pierre qui, depuis le XVIIIe siècle, veillent sur les passants sans qu'ils s'en doutent.
 
@@ -23,7 +23,7 @@ Alors ouvre l'œil. Pendant toute cette balade, ne regarde plus seulement les bo
 ---
 
 ## Scène 2 — Église Notre-Dame : La pierre qui se taille comme du beurre
-**GPS :** 44.8421, -0.5763 *(approx. à vérifier)*
+**GPS :** 44.8421, -0.5763 *(vérifié IGN — 2026-08-09)*
 
 Sur cette place discrète se dresse l'église Notre-Dame, et elle jure avec tout ce que Bordeaux aime d'ordinaire. Ici, pas de lignes sobres et droites : une façade baroque, ondulante, chargée de colonnes, de courbes, de guirlandes de pierre. Elle a été bâtie autour de 1700 par les Dominicains, et c'est presque une page d'Italie posée en plein Bordeaux.
 
@@ -36,7 +36,7 @@ Retiens cette leçon de pierre tendre : elle explique tout le reste, et surtout 
 ---
 
 ## Scène 3 — Place Tourny : Le metteur en scène de la ville
-**GPS :** 44.8436, -0.5741 *(approx. à vérifier)*
+**GPS :** 44.8450991, -0.5779468 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici place Tourny. Au centre, une statue : un homme en perruque et habit du XVIIIe siècle. C'est lui, le marquis de Tourny, et sans lui, cette promenade n'existerait pas.
 
@@ -49,11 +49,11 @@ Garde ce nom en tête : Tourny, le metteur en scène de la ville. Prenons mainte
 ---
 
 ## Scène 4 — Hôtel de Lalande : La grammaire des mascarons
-**GPS :** 44.8388, -0.5786 *(approx. à vérifier)*
+**GPS :** 44.8388752, -0.5802286 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici rue Bouffard, devant l'hôtel de Lalande, un hôtel particulier bâti à la fin du XVIIIe siècle pour un riche magistrat. Aujourd'hui, il abrite le musée des Arts décoratifs et du Design. Mais reste dehors un instant, et regarde la façade : c'est ici qu'on lit le mieux le vocabulaire des mascarons.
 
-Car ces visages ont un sens. Certains sont des dieux : Bacchus couronné de vigne pour le vin, Neptune barbu pour le fleuve et la mer. D'autres sont des femmes souriantes, des grotesques qui tirent la langue, des mufles de lion. On croyait autrefois qu'ils protégeaient la maison, qu'ils éloignaient le mauvais sort. Le riche propriétaire, lui, montrait surtout son goût et sa fortune : mon mascaron est plus beau que le tien.
+Car ces visages ont un sens. Certains sont des dieux : Bacchus couronné de feuillage, Neptune barbu pour le fleuve et la mer. D'autres sont des femmes souriantes, des grotesques qui tirent la langue, des mufles de lion. On croyait autrefois qu'ils protégeaient la maison, qu'ils éloignaient le mauvais sort. Le riche propriétaire, lui, montrait surtout son goût et sa fortune : mon mascaron est plus beau que le tien.
 
 Baisse maintenant les yeux vers les balcons. Ces rampes de fer forgé, tout en volutes et en courbes, sont l'autre trésor des façades bordelaises. Le ferronnier travaillait le métal comme le sculpteur travaillait la pierre : de la dentelle, mais en dur.
 
@@ -62,24 +62,24 @@ Pierre et fer, visages et volutes : tu tiens maintenant la grammaire. Descendons
 ---
 
 ## Scène 5 — Musée des Beaux-Arts : La ville qui a fait éclore des peintres
-**GPS :** 44.8378, -0.5793 *(approx. à vérifier)*
+**GPS :** 44.8378, -0.5793 *(vérifié IGN — 2026-08-09)*
 
 Derrière ce jardin paisible, dans deux ailes de pierre, se cache le musée des Beaux-Arts. Je ne vais pas te faire la liste de ses tableaux. Je veux juste te dire une chose que peu de gens savent : Bordeaux, ville de marchands, a donné à la France de très grands peintres.
 
 Trois noms, nés ici. Rosa Bonheur, au début du XIXe siècle, l'une des premières femmes à vivre de sa peinture, célèbre dans le monde entier pour ses animaux. Odilon Redon, le rêveur, le peintre des fleurs étranges et des visions, un magicien de la couleur. Et Albert Marquet, plus tard, l'homme qui a peint l'eau et les quais mieux que personne.
 
-C'est amusant, non ? Une ville qu'on croit tout entière tournée vers l'argent et le vin a fait éclore des yeux pareils. Comme si la beauté des façades, respirée dès l'enfance, finissait par former le regard des enfants du pays.
+C'est amusant, non ? Une ville qu'on croit tout entière tournée vers le commerce a fait éclore des yeux pareils. Comme si la beauté des façades, respirée dès l'enfance, finissait par former le regard des enfants du pays.
 
 Sors du jardin par le sud. Nous allons quitter les grandes places pour une rue plus secrète, où logeaient autrefois les puissants de la ville.
 
 ---
 
 ## Scène 6 — Rue du Mirail : La richesse qui se cache derrière les portes
-**GPS :** 44.8367, -0.5770 *(approx. à vérifier)*
+**GPS :** 44.8333805, -0.5710037 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici rue du Mirail, une rue étroite et un peu à l'écart. Ne te fie pas à sa discrétion : derrière ces hauts portails se cachent quelques-uns des plus beaux hôtels particuliers de Bordeaux.
 
-Ici logeaient les parlementaires — les magistrats de cette cour de justice qui faisait la loi dans la région. C'étaient les hommes les plus riches et les plus puissants de la ville, avant même les négociants en vin. Et comme tous les puissants, ils voulaient un écrin. Alors ils se sont bâti des demeures à cour et à jardin, cachées de la rue.
+Ici logeaient les parlementaires — les magistrats de cette cour de justice qui faisait la loi dans la région. C'étaient les hommes les plus riches et les plus puissants de la ville, avant même les grands négociants du port. Et comme tous les puissants, ils voulaient un écrin. Alors ils se sont bâti des demeures à cour et à jardin, cachées de la rue.
 
 Voilà tout le secret de l'art de bâtir bordelais : la richesse ne s'étale pas sur la rue, elle se cache derrière. Une façade sobre, un porche fermé — et, une fois la porte franchie, une cour d'honneur, un escalier majestueux, un jardin. Si tu croises un portail entrouvert, jette un œil, discrètement. Tu découvriras une autre ville, intérieure, invisible aux passants.
 
@@ -88,7 +88,7 @@ Continuons. Il est temps de comprendre d'où vient cette pierre blonde, et ce qu
 ---
 
 ## Scène 7 — Rue du Loup : Des visages sur les maisons modestes
-**GPS :** 44.8372, -0.5748 *(approx. à vérifier)*
+**GPS :** 44.8379305, -0.5740508 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Prends la rue du Loup, l'une des plus anciennes de Bordeaux. Elle n'a rien de grandiose : des maisons de commerçants, de petites façades serrées. Et pourtant, lève les yeux — encore. Là aussi, des mascarons. Là aussi, des balcons de fer forgé. Sur des maisons ordinaires, pas seulement sur les palais.
 
@@ -101,7 +101,7 @@ Salue-les en passant. Puis descendons vers le sud, vers le musée d'Aquitaine, p
 ---
 
 ## Scène 8 — Musée d'Aquitaine : Les ancêtres de la pierre
-**GPS :** 44.8340, -0.5745 *(approx. à vérifier)*
+**GPS :** 44.8340, -0.5745 *(vérifié IGN — 2026-08-09)*
 
 Devant toi, le musée d'Aquitaine, qui raconte deux mille ans d'histoire de la ville. Je ne t'y envoie pas pour l'histoire, mais pour la pierre. Car sous ce toit, Bordeaux garde ses sculptures les plus anciennes : des dieux romains, des tombeaux, des saints de pierre arrachés aux vieilles églises.
 
@@ -114,11 +114,11 @@ Encore quelques pas vers le sud, jusqu'à une grande place. Là nous attend la f
 ---
 
 ## Scène 9 — Place de la Victoire : Deux siècles se répondent
-**GPS :** 44.8318, -0.5735 *(approx. à vérifier)*
+**GPS :** 44.8318, -0.5735 *(vérifié IGN — 2026-08-09)*
 
 Nous voici place de la Victoire, au bout de notre chemin. Regarde d'abord la belle porte de pierre : la porte d'Aquitaine, un arc de triomphe du XVIIIe siècle, tout en pierre blonde, sobre et fier. C'est du Tourny tout craché — la ville qui se pare de portes majestueuses, comme une capitale se donne des allures d'empire.
 
-Et maintenant, tourne-toi vers le centre de la place. Là se dresse tout autre chose : un obélisque de marbre, moderne, planté il y a une vingtaine d'années par un artiste, Ivan Theimer. Regarde à son pied : des tortues de bronze, énormes, tranquilles, qui semblent porter le monument sur leur dos. Un clin d'œil malicieux à la ville, à son vin, à son université.
+Et maintenant, tourne-toi vers le centre de la place. Là se dresse tout autre chose : un obélisque de marbre, moderne, planté il y a une vingtaine d'années par un artiste, Ivan Theimer. Regarde à son pied : des tortues de bronze, énormes, tranquilles, qui semblent porter le monument sur leur dos. Un clin d'œil malicieux à la ville et à son université.
 
 Vois-tu ce qui se joue ici ? D'un côté, la pierre blonde du XVIIIe et ses visages graves. De l'autre, le bronze d'aujourd'hui et ses tortues. Deux siècles se répondent sur la même place. Car Bordeaux n'a jamais cessé de sculpter, de se parer, de poser des figures dans l'espace public. Les mascarons d'hier, les tortues d'aujourd'hui : le même geste, la même envie de laisser un visage à la ville.
 

@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Colmar
 **Thème :** Art — du retable d'Issenheim à la statue de la Liberté, deux chefs-d'œuvre nés ici.
-**Durée narration :** ~14 min
-**Distance :** ~1,8 km | **POIs :** 8
+**Durée narration :** ~11 min
+**Distance :** ~1,7 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Musée Unterlinden : Le retable d'Issenheim
-**GPS :** 48.0801, 7.3556 *(approx. à vérifier)*
+**GPS :** 48.0801, 7.3556 *(vérifié IGN — 2026-08-09)*
 
 Entre dans l'ancien couvent des Dominicaines d'Unterlinden. Franchis le cloître, ce carré de calme et de vieilles pierres, et cherche la grande salle où l'on garde le trésor. Le retable d'Issenheim.
 
@@ -25,11 +25,11 @@ Ressors, tourne à gauche, jusqu'à une maison couverte de visages de pierre. Su
 ---
 
 ## Scène 2 — Maison des Têtes : Le tonnelier de Bartholdi
-**GPS :** 48.0797, 7.3549 *(approx. à vérifier)*
+**GPS :** 48.0785603, 7.3555319 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Lève les yeux sur cette façade extraordinaire. On l'appelle la Maison des Têtes, et tu comprends pourquoi : plus de cent visages de pierre te dévisagent, grotesques, grimaçants, tirant la langue ou gonflant les joues. Un riche marchand l'a fait bâtir en 1609, au sommet de sa fortune, pour épater la ville entière.
 
-Mais monte encore le regard, tout en haut du pignon. Là, une statue de bronze, seule : un homme qui tient un tonneau. Un tonnelier. Elle est bien plus récente que la maison — elle date de 1902, quand le bâtiment est devenu la Bourse aux vins de Colmar.
+Mais monte encore le regard, tout en haut du pignon. Là, une statue de bronze, seule : un homme qui rappelle un ancien métier. Elle est bien plus récente que la maison — elle date de 1902, au moment où le bâtiment recevait une nouvelle fonction commerciale.
 
 Et surtout, elle est signée d'un nom qu'on va suivre tout au long de cette balade : Bartholdi. Frédéric Auguste Bartholdi, sculpteur, enfant de Colmar, né ici en 1834, à deux pas de là. Ce tonnelier tout simple, c'est lui. Et le géant de New York, ce sera lui aussi.
 
@@ -40,7 +40,7 @@ Redescends vers le sud, jusqu'à l'église des Dominicains, quelques pas plus lo
 ---
 
 ## Scène 3 — Église des Dominicains : La Vierge de Schongauer
-**GPS :** 48.0789, 7.3563 *(approx. à vérifier)*
+**GPS :** 48.0789, 7.3563 *(vérifié IGN — 2026-08-09)*
 
 Entre dans l'église des Dominicains. Nef haute, nue, baignée d'une lumière douce. Va tout au fond, vers le chœur. Là, sous un dais, un tableau te fait signe : une Vierge en robe rouge, assise dans un buisson de roses où voltigent des oiseaux. C'est la Vierge au buisson de roses.
 
@@ -55,7 +55,7 @@ Ressors et dirige-toi vers le grand clocher qui domine la vieille ville. Suis-mo
 ---
 
 ## Scène 4 — Collégiale Saint-Martin : L'école du regard
-**GPS :** 48.0784, 7.3577 *(approx. à vérifier)*
+**GPS :** 48.0784, 7.3577 *(vérifié IGN — 2026-08-09)*
 
 Te voilà devant la collégiale Saint-Martin. Les Colmariens l'appellent volontiers « la cathédrale » — un abus de langage, car Colmar n'a jamais eu d'évêque. C'est une collégiale, bâtie aux XIIIe et XIVe siècles, dans ce beau grès jaune et rose des Vosges.
 
@@ -70,7 +70,7 @@ Redescends la rue des Marchands vers le sud, jusqu'à une maison de bois magnifi
 ---
 
 ## Scène 5 — Maison Pfister : L'art à hauteur de rue
-**GPS :** 48.0779, 7.3576 *(approx. à vérifier)*
+**GPS :** 48.0767512, 7.3581513 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette maison-là, tout le monde s'arrête devant. La Maison Pfister, joyau de la Renaissance, bâtie en 1537. Regarde cette tourelle d'angle en encorbellement, cette longue galerie de bois, et surtout ces peintures qui courent sur la façade : empereurs, scènes bibliques, allégories, tout un livre d'images à ciel ouvert.
 
@@ -85,7 +85,7 @@ Poursuis vers le sud, jusqu'à une fontaine où un chevalier de bronze monte la 
 ---
 
 ## Scène 6 — Fontaine Roesselmann : Le sculpteur patriote
-**GPS :** 48.0769, 7.3572 *(approx. à vérifier)*
+**GPS :** 48.073974, 7.356683 *(vérifié IGN — 2026-08-09)*
 
 Cette fontaine, c'est encore Bartholdi. Il en a semé un peu partout dans sa ville — des fontaines, des monuments, des héros de bronze plantés sur les places. Colmar est un musée à ciel ouvert, et le conservateur, c'est lui.
 
@@ -100,7 +100,7 @@ Remonte maintenant la rue des Marchands, vers le nord, jusqu'à une belle maison
 ---
 
 ## Scène 7 — Musée Bartholdi : La maison natale
-**GPS :** 48.0777, 7.3574 *(approx. à vérifier)*
+**GPS :** 48.0777, 7.3574 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes. Trente, rue des Marchands. Derrière cette façade, le 2 août 1834, est né Frédéric Auguste Bartholdi. Aujourd'hui, sa maison est un musée. Entre, si tu peux, jusqu'à la cour : au centre trône un grand bronze, des figures qui semblent porter le monde sur leurs épaules.
 
@@ -115,7 +115,7 @@ Sors, et fais quelques pas devant la maison. C'est là que finit notre histoire.
 ---
 
 ## Scène 8 — Rue des Marchands : De la Lauch à l'Hudson
-**GPS :** 48.0778, 7.3574 *(approx. à vérifier)*
+**GPS :** 48.076711, 7.357681 *(vérifié IGN — 2026-08-09)*
 
 Reste là, devant la maison natale, et mesure le chemin parcouru aujourd'hui.
 

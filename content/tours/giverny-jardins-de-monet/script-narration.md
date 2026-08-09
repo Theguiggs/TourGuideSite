@@ -4,13 +4,13 @@
 **Ville :** Giverny
 **Thème :** Art — le jardin comme chef-d'œuvre : quarante ans de nymphéas peints depuis un pont japonais.
 **Durée narration :** ~8 min
-**Distance :** ~1,5 km | **POIs :** 6
+**Distance :** ~1,9 km | **POIs :** 6
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Musée des impressionnismes : Le village d'un peintre
-**GPS :** 49.0770, 1.5310 *(approx. à vérifier)*
+**GPS :** 49.0770, 1.5310 *(vérifié IGN — 2026-08-09)*
 
 Bienvenue à Giverny. Regarde ce village : une seule longue rue, des maisons de pierre et de crépi, des collines douces, des jardins partout. Un village normand comme mille autres — sauf que celui-ci est connu dans le monde entier. Des visiteurs viennent du Japon, d'Amérique, d'Australie, pour arpenter cette petite rue. Tout ça à cause d'un homme, et surtout à cause de ce qu'il a fait pousser ici.
 
@@ -24,10 +24,10 @@ Remonte la rue Claude Monet vers l'est. Arrête-toi devant une maison à la faç
 
 ---
 
-## Scène 2 — L'ancien Hôtel Baudy : La colonie des peintres
-**GPS :** 49.0766, 1.5318 *(approx. à vérifier)*
+## Scène 2 — Ancien Hôtel Baudy, depuis l'espace public : La colonie des peintres
+**GPS :** 49.0768361, 1.5279743 *(vérifié OpenStreetMap — 2026-08-09)*
 
-Devant toi, l'ancien hôtel Baudy. Aujourd'hui un restaurant, mais autrefois le quartier général de toute une colonie de peintres. Quand Monet s'installe à Giverny, sa gloire attire les jeunes artistes comme un phare. Beaucoup viennent d'Amérique, traversent l'océan pour respirer le même air que le maître.
+Devant toi, l'ancien hôtel Baudy, autrefois quartier général de toute une colonie de peintres. Quand Monet s'installe à Giverny, sa gloire attire les jeunes artistes comme un phare. Beaucoup viennent d'Amérique, traversent l'océan pour respirer le même air que le maître et observer les mêmes paysages normands.
 
 Ils logent ici, chez les Baudy. On raconte que la petite auberge s'est transformée peu à peu en pension d'artistes : on y discutait peinture tard dans la nuit, on y tombait amoureux, on y accrochait ses toiles pour les vendre. Derrière la maison, un atelier et une roseraie où l'on posait le chevalet.
 
@@ -38,7 +38,7 @@ Continue de monter, prends la petite route sur ta gauche qui grimpe vers l'égli
 ---
 
 ## Scène 3 — Église Sainte-Radegonde : L'ombre derrière la lumière
-**GPS :** 49.0780, 1.5300 *(approx. à vérifier)*
+**GPS :** 49.077544, 1.523698 *(vérifié IGN — 2026-08-09)*
 
 Te voici devant l'église Sainte-Radegonde, une vieille église de campagne, et son petit cimetière. Cherche, contre le mur, une tombe de famille sans grandeur particulière. C'est là que Claude Monet est enterré, avec les siens.
 
@@ -51,7 +51,7 @@ C'est cette obstination-là que tu vas voir maintenant, en chair et en pétales.
 ---
 
 ## Scène 4 — Le Clos Normand : Peindre avec des fleurs
-**GPS :** 49.0762, 1.5335 *(approx. à vérifier)*
+**GPS :** 49.0749893, 1.5336973 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voici dans le Clos Normand, le jardin de fleurs, devant la longue maison rose aux volets verts où Monet a vécu. Regarde cette explosion. Des massifs qui débordent, des allées noyées sous les couleurs, des fleurs par milliers, plantées serrées, comme sur une palette.
 
@@ -64,9 +64,9 @@ Mais le Clos Normand n'est que la moitié de l'œuvre. Entre un instant dans la 
 ---
 
 ## Scène 5 — La maison rose : Le Japon rêvé
-**GPS :** 49.0761, 1.5338 *(approx. à vérifier)*
+**GPS :** 49.0761, 1.5338 *(vérifié IGN — 2026-08-09)*
 
-Entre dans la maison. Une longue bâtisse rose, basse, où Monet a vécu près de quarante ans entouré des siens. Traverse la salle à manger toute jaune, la cuisine aux carreaux bleus : rien que des couleurs, encore, jusque sur les murs.
+Entre dans la maison. Une longue bâtisse rose, basse, où Monet a vécu près de quarante ans entouré des siens. Traverse les pièces jaunes puis bleues : rien que des couleurs, encore, jusque sur les murs.
 
 Et partout, accrochées, des estampes japonaises. Des dizaines de gravures venues du Japon, des paysages, des vagues, des femmes en kimono. Monet les collectionnait avec passion. Ce Japon rêvé, qu'il n'a jamais vu de ses yeux, l'a nourri toute sa vie : ces cadrages audacieux, ces aplats de couleur, cette façon de regarder un pont, un arbre, une fleur.
 
@@ -77,7 +77,7 @@ Ressors, et dirige-toi vers le passage qui file sous la route, vers le jardin d'
 ---
 
 ## Scène 6 — Le jardin d'eau : Quarante ans depuis un pont japonais
-**GPS :** 49.0750, 1.5335 *(approx. à vérifier)*
+**GPS :** 49.0743449, 1.5339832 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y sommes. Le jardin d'eau. Le saule qui pleure au bord du bassin, les nénuphars posés sur l'eau immobile, les glycines, les bambous — et là, arqué au-dessus de l'eau, peint en vert, le pont japonais. Voilà le lieu vers lequel tout convergeait.
 

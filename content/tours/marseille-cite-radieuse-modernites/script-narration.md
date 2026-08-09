@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Marseille
 **Thème :** Art & modernité — Le Corbusier, le MuCEM et les utopies bâties : Marseille, laboratoire de la modernité
-**Durée narration :** ~13 min
-**Distance :** ~1,5 km | **POIs :** 9
+**Durée narration :** ~12 min
+**Distance :** ~1,6 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Cité Radieuse : La Maison du Fada
-**GPS :** 43.2612, 5.3958 *(approx. à vérifier)*
+## Scène 1 — Entrée publique de la Cité Radieuse : La Maison du Fada
+**GPS :** 43.26146, 5.3962763 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Lève les yeux. Devant toi, un immense bloc de béton posé sur d'énormes pattes, comme un paquebot qu'on aurait échoué au milieu d'un parc. Cent trente-sept mètres de long, dix-huit niveaux, une masse grise piquée de rouge, de bleu, de jaune. C'est la Cité Radieuse. Et pour beaucoup de Marseillais, longtemps, ça a été « la Maison du Fada » — la maison du fou.
 
@@ -22,12 +22,12 @@ Et ce béton laissé nu, brut, avec encore la marque des planches du coffrage : 
 
 ---
 
-## Scène 2 — La rue intérieure : Un village dans un immeuble
-**GPS :** 43.2612, 5.3959 *(approx. à vérifier)*
+## Scène 2 — Entrée publique de la Cité Radieuse : Un village dans un immeuble
+**GPS :** 43.26146, 5.3962763 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Entre, et montons jusqu'au milieu du bâtiment. Là, une surprise : un couloir large, haut, éclairé — et des vitrines. Tu es dans une rue. Une vraie rue commerçante, mais à l'intérieur de l'immeuble, suspendue en l'air.
 
-Le Corbusier voulait que ses habitants n'aient presque pas besoin de descendre. Alors il a glissé, au cœur du bâtiment, une rue avec des boutiques : autrefois une boulangerie, une librairie, et un petit hôtel qui existe toujours, où tu peux dormir dans un décor de 1952. Plus haut, sur le toit, une école. Tout un quartier tenait dans une seule barre de béton.
+Le Corbusier voulait que ses habitants n'aient presque pas besoin de descendre. Alors il a glissé, au cœur du bâtiment, une rue avec des boutiques : des services de proximité, une librairie et un petit hôtel qui existe toujours, où tu peux dormir dans un décor de 1952. Plus haut, sur le toit, une école. Tout un quartier tenait dans une seule barre de béton.
 
 Marche dans ce couloir et imagine la vie. Une utopie généreuse : loger dignement les familles ouvrières, leur donner la lumière, l'air, la mer à l'horizon, et une communauté sous le même toit. Certains ont adoré. D'autres ont trouvé ça froid, trop pensé, trop rigide. Le débat n'a jamais cessé.
 
@@ -37,8 +37,8 @@ Poussons une porte, maintenant. On entre chez les gens. Suis-moi.
 
 ---
 
-## Scène 3 — L'appartement traversant : Construire à la mesure de l'homme
-**GPS :** 43.2612, 5.3957 *(approx. à vérifier)*
+## Scène 3 — Entrée publique de la Cité Radieuse : Construire à la mesure de l'homme
+**GPS :** 43.26146, 5.3962763 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Entrons dans un appartement — il y en a qu'on peut visiter. Et là, deuxième surprise. Vu de dehors, l'immeuble paraît écrasant ; à l'intérieur, chaque logement est étonnamment lumineux, fin, intelligent.
 
@@ -52,8 +52,8 @@ Ressors avec moi, et cherchons l'ascenseur. On monte tout en haut, sur le toit. 
 
 ---
 
-## Scène 4 — Le toit-terrasse : Une place publique dans le ciel
-**GPS :** 43.2613, 5.3956 *(approx. à vérifier)*
+## Scène 4 — Entrée publique de la Cité Radieuse : Une place publique dans le ciel
+**GPS :** 43.26146, 5.3962763 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici sur le toit. Respire. Après la pénombre du béton, d'un coup, le ciel, la lumière, et tout autour, les montagnes sèches d'un côté, la mer devinée de l'autre.
 
@@ -67,8 +67,8 @@ Reste sur le toit. À l'autre bout, dans l'ancien gymnase, quelque chose de plus
 
 ---
 
-## Scène 5 — Le MAMO : L'art qui habite la machine
-**GPS :** 43.2613, 5.3957 *(approx. à vérifier)*
+## Scène 5 — Entrée publique de la Cité Radieuse : L'art qui habite la machine
+**GPS :** 43.26146, 5.3962763 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Marche jusqu'à cette longue salle basse, au bout du toit. C'était le gymnase de Le Corbusier. Depuis 2013, c'est autre chose : le MAMO, pour « Marseille Modulor », un petit centre d'art contemporain perché sur le toit-terrasse.
 
@@ -82,8 +82,8 @@ Redescendons. On quitte le paquebot de béton pour marcher vers un musée, plus 
 
 ---
 
-## Scène 6 — Vers Bonneveine : Une ville qui n'a jamais peur du neuf
-**GPS :** 43.2585, 5.3947 *(approx. à vérifier)*
+## Scène 6 — Entrée publique de la Cité Radieuse : Une ville qui n'a jamais peur du neuf
+**GPS :** 43.26146, 5.3962763 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Reprenons la marche, tranquillement, vers le sud, en descendant vers le quartier de Bonneveine. Autour de toi, le Marseille du vingtième siècle : de grands immeubles, des avenues larges, des arbres, la lumière qui tape.
 
@@ -97,8 +97,8 @@ Encore quelques minutes de marche. Le musée est là, tapi dans la verdure. Suis
 
 ---
 
-## Scène 7 — Le MAC : Le musée qui a choisi le dérangeant
-**GPS :** 43.2557, 5.3945 *(approx. à vérifier)*
+## Scène 7 — Entrée publique du Musée d'art contemporain : Le musée qui a choisi le dérangeant
+**GPS :** 43.2504507, 5.3901765 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici devant le MAC, le Musée d'Art Contemporain de Marseille, posé dans une pinède du quartier de Bonneveine. Rien à voir avec un palais : un bâtiment bas, sobre, discret, presque effacé sous les arbres.
 
@@ -110,8 +110,8 @@ Prends le temps d'entrer si tu peux, ou de longer les salles. Et garde de la pla
 
 ---
 
-## Scène 8 — César : La ferraille devenue chef-d'œuvre
-**GPS :** 43.2556, 5.3943 *(approx. à vérifier)*
+## Scène 8 — Entrée publique du Musée d'art contemporain : La ferraille devenue chef-d'œuvre
+**GPS :** 43.2504507, 5.3901765 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Sortons dans le jardin, parmi les sculptures. Et laisse-moi te présenter quelqu'un : César. César Baldaccini, né à Marseille en 1921, fils d'immigrés italiens, élevé pas très loin d'ici, du côté de la Belle de Mai. L'un des plus grands sculpteurs français du vingtième siècle.
 
@@ -125,8 +125,8 @@ Reste un instant. On va conclure ici même. Suis-moi de quelques pas.
 
 ---
 
-## Scène 9 — Le jardin du MAC : Marseille, laboratoire
-**GPS :** 43.2556, 5.3944 *(approx. à vérifier)*
+## Scène 9 — Entrée publique du Musée d'art contemporain : Marseille, laboratoire
+**GPS :** 43.2504507, 5.3901765 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrêtons-nous là, dans ce jardin, entre les sculptures et les pins. C'est ici que je veux boucler notre histoire.
 

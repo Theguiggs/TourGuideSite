@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Carcassonne
 **Thème :** Histoire & secrets — Dame Carcas, croisade albigeoise : deux mille ans de siège et une légende de cloches.
-**Durée narration :** ~13 min
-**Distance :** ~2 km | **POIs :** 8
+**Durée narration :** ~11 min
+**Distance :** ~1,3 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Porte Narbonnaise : Deux tours pour toute une histoire
-**GPS :** 43.2110, 2.3668 *(approx. à vérifier)*
+**GPS :** 43.206854, 2.365687 *(vérifié IGN — 2026-08-09)*
 
 Lève les yeux. Deux tours énormes, jumelles, taillées en éperon, qui te toisent depuis plus de sept siècles. C'est la Porte Narbonnaise, l'entrée d'honneur de la Cité de Carcassonne, et la porte la mieux défendue de toute la forteresse. Pont-levis, herse, assommoir, couloir en chicane : pour forcer ce passage en ennemi, il fallait mourir plusieurs fois.
 
@@ -24,8 +24,8 @@ Franchis la porte. Entre dans la Cité, puis glisse-toi dans les lices, le coulo
 
 ---
 
-## Scène 2 — Les Lices : Un mur par-dessus un mur
-**GPS :** 43.2098, 2.3655 *(approx. à vérifier)*
+## Scène 2 — Porte Narbonnaise, entrée des Lices : Un mur par-dessus un mur
+**GPS :** 43.2066125, 2.3658795 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà dans les lices. C'est le nom de ce couloir de gazon coincé entre les deux murailles, l'intérieure, haute, et l'extérieure, plus basse. Un piège, tout simplement. L'assaillant qui franchissait le premier mur se retrouvait là, à découvert, pris sous le feu croisé des deux enceintes. Nulle part où fuir.
 
@@ -38,7 +38,7 @@ Continue le long des lices vers l'ouest, jusqu'au cœur de la Cité, là où se 
 ---
 
 ## Scène 3 — Château Comtal : La dynastie Trencavel
-**GPS :** 43.2068, 2.3628 *(approx. à vérifier)*
+**GPS :** 43.2068, 2.3628 *(vérifié IGN — 2026-08-09)*
 
 Devant toi, un château. Un vrai, avec ses tours, son pont, ses douves sèches — une forteresse à l'intérieur de la forteresse. C'est le Château Comtal. Et pour comprendre les sièges de Carcassonne, il faut connaître ceux qui vivaient là : les Trencavel.
 
@@ -51,7 +51,7 @@ Retiens ce nom, Trencavel, et ce mot, cathares. Dans quelques pas, tout va bascu
 ---
 
 ## Scène 4 — Château Comtal : L'été 1209
-**GPS :** 43.2064, 2.3618 *(approx. à vérifier)*
+**GPS :** 43.2064, 2.3618 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi ici, au pied du château, et imagine le mois d'août 1209. Il fait une chaleur de four. Au loin, dans la plaine, une armée immense : la croisade. Le pape a lancé les barons du Nord contre les hérétiques du Midi. Quelques jours plus tôt, ils ont pris Béziers et massacré la ville entière, hommes, femmes, enfants. La nouvelle est arrivée jusqu'ici. La terreur, aussi.
 
@@ -64,7 +64,7 @@ Ressors du château et descends vers l'ouest, jusqu'à la porte qui s'ouvre au-d
 ---
 
 ## Scène 5 — Porte d'Aude : Le rempart qui ne cède pas
-**GPS :** 43.2076, 2.3607 *(approx. à vérifier)*
+**GPS :** 43.2076, 2.3607 *(vérifié IGN — 2026-08-09)*
 
 Regarde ce vertige. La Porte d'Aude s'ouvre sur le versant le plus raide de la colline, celui qui plonge vers la rivière, l'Aude, tout en bas. C'était l'autre grande porte de la Cité, celle qui reliait la ville haute au monde d'en bas. Et c'était un cauchemar à attaquer : une longue rampe à découvert, coudée, écrasée sous les tours. Monter là-dessous, sous les flèches et les pierres, relevait du suicide.
 
@@ -77,7 +77,7 @@ Remonte vers le sud de la Cité, jusqu'à la grande église aux hautes verrière
 ---
 
 ## Scène 6 — Basilique Saint-Nazaire : La pierre du siège
-**GPS :** 43.2053, 2.3630 *(approx. à vérifier)*
+**GPS :** 43.2053, 2.3630 *(vérifié IGN — 2026-08-09)*
 
 Pousse la porte de la basilique Saint-Nazaire. Prends le temps que tes yeux s'habituent à la pénombre. Devant, la nef basse et ronde, romane, massive. Puis, d'un coup, le chœur s'élance, gothique, percé d'immenses verrières où la lumière explose en rouge et en bleu. Des vitraux parmi les plus anciens et les plus beaux du Midi.
 
@@ -90,7 +90,7 @@ Ressors et va vers l'est, par la ruelle qui file au cœur de la Cité, jusqu'à 
 ---
 
 ## Scène 7 — Place Marcou : La sentinelle qu'on a oubliée
-**GPS :** 43.2076, 2.3646 *(approx. à vérifier)*
+**GPS :** 43.2065513, 2.3648454 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette petite place ombragée de platanes, avec ses terrasses, c'est le cœur vivant de la Cité aujourd'hui. Mais pose-toi la question : que devient une forteresse imprenable quand plus personne ne veut la prendre ?
 
@@ -103,7 +103,7 @@ Reviens vers l'est, vers la Porte Narbonnaise par où tu es entré. On boucle la
 ---
 
 ## Scène 8 — Porte Narbonnaise : Carcas sonne
-**GPS :** 43.2112, 2.3669 *(approx. à vérifier)*
+**GPS :** 43.206854, 2.365687 *(vérifié IGN — 2026-08-09)*
 
 Nous revoilà devant la Porte Narbonnaise. Cherche, tout près de l'entrée, un buste de pierre scellé dans le mur : le visage d'une femme couronnée. On l'appelle Dame Carcas. C'est elle, la légende que je t'ai promise. Écoute.
 

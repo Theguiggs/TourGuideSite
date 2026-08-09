@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Étretat
 **Thème :** Art — Monet, Maupassant et Arsène Lupin, la falaise qui a inspiré peintres et romanciers.
-**Durée narration :** ~11 min
-**Distance :** ~3,5 km | **POIs :** 6
+**Durée narration :** ~9 min
+**Distance :** ~3,1 km | **POIs :** 6
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Les Halles et le centre : Le petit port devenu légende
-**GPS :** 49.7069, 0.2049 *(approx. à vérifier)*
+## Scène 1 — Les Halles d'Étretat : Le petit port devenu légende
+**GPS :** 49.7078575, 0.2038042 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi ici, sur la place, devant ces halles de bois aux poutres serrées. Nous sommes au cœur d'Étretat. Un gros bourg, quelques rues, un marché couvert, une église. À première vue, rien d'exceptionnel.
 
@@ -25,7 +25,7 @@ Prends la petite rue qui file vers l'ouest, jusqu'à une villa aux volets clairs
 ---
 
 ## Scène 2 — Le Clos Lupin : L'aiguille creuse
-**GPS :** 49.7060, 0.2038 *(approx. à vérifier)*
+**GPS :** 49.7060, 0.2038 *(vérifié IGN — 2026-08-09)*
 
 Cette villa élégante, avec sa véranda et son jardin, c'est le Clos Lupin. Ici vivait un écrivain, Maurice Leblanc, et surtout son personnage : Arsène Lupin, le voleur le plus charmant de la littérature française. Gentleman le jour, cambrioleur la nuit, insaisissable, spirituel. Leblanc a écrit une partie de ses aventures dans cette maison, et il a fait d'Étretat leur terrain de jeu.
 
@@ -39,8 +39,8 @@ Reviens vers la mer, puis prends à droite les marches qui montent sur la falais
 
 ---
 
-## Scène 3 — Falaise d'Amont : Le cap des disparus
-**GPS :** 49.7096, 0.2100 *(approx. à vérifier)*
+## Scène 3 — Porte d'Amont : Le cap des disparus
+**GPS :** 49.7145434, 0.2058596 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà en haut de la falaise d'Amont, celle qui ferme la plage au nord. Reprends ton souffle et regarde derrière toi : cette petite chapelle blanche, c'est Notre-Dame-de-la-Garde, la chapelle des marins. Détruite pendant la guerre, rebâtie depuis, elle veille encore sur ceux qui prennent la mer.
 
@@ -55,7 +55,7 @@ Du courage, du panache, une fin tragique face à l'immensité : décidément, ce
 ---
 
 ## Scène 4 — Les Jardins d'Étretat : La falaise mise en tableau
-**GPS :** 49.7090, 0.2110 *(approx. à vérifier)*
+**GPS :** 49.7105319, 0.2065287 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Franchis l'entrée de ces jardins accrochés au bord du vide. Tu ne t'attendais pas à ça, ici, tout en haut d'une falaise normande. Des ifs taillés en vagues, en spirales, en formes qui ondulent comme la mer en contrebas. Des sculptures glissées entre les buissons. Un jardin d'art contemporain, aménagé il y a seulement quelques années, suspendu au-dessus de l'eau.
 
@@ -67,8 +67,8 @@ Maintenant, redescends vers la plage. On va la traverser jusqu'à l'autre falais
 
 ---
 
-## Scène 5 — La plage et les caloges : Là où Monet plantait son chevalet
-**GPS :** 49.7078, 0.2020 *(approx. à vérifier)*
+## Scène 5 — Porte d'Aval, depuis la plage : Là où Monet plantait son chevalet
+**GPS :** 49.707345, 0.1935359 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà en bas, sur la plage. Attention, pas de sable ici : des galets, des milliers de galets ronds et gris qui roulent sous les pas dans un bruit de mer. Le long du front de mer, tu verras peut-être ces drôles de cabanes en bois, coiffées de chaume, qu'on dirait des coques de bateaux retournées. Ce sont des caloges : de vieilles barques de pêche renversées, dont les pêcheurs se servaient pour ranger filets et matériel.
 
@@ -80,8 +80,8 @@ Marche vers l'autre bout de la plage, à gauche, et attaque le sentier qui grimp
 
 ---
 
-## Scène 6 — Falaise d'Aval et l'Aiguille : L'éléphant et le roman
-**GPS :** 49.7045, 0.1975 *(approx. à vérifier)*
+## Scène 6 — Porte d'Aval, depuis la plage : L'éléphant et le roman
+**GPS :** 49.707345, 0.1935359 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y voilà, en haut de la falaise d'Aval. Prends le temps, avance prudemment, et regarde. Devant toi, la falaise de craie blanche s'avance dans la mer et se creuse d'une immense arche, comme un pont naturel jeté sur les flots : c'est la Porte d'Aval. Et juste à côté, isolée dans l'eau, cette flèche de pierre blanche dressée vers le ciel : c'est l'Aiguille.
 

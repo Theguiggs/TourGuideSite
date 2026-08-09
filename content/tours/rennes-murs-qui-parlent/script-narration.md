@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Rennes
 **Thème :** Art — pans de bois peints, street-art et Transmusicales : la ville qui s'exprime sur ses murs.
-**Durée narration :** ~12 min
-**Distance :** ~2,5 km | **POIs :** 8
+**Durée narration :** ~11 min
+**Distance :** ~2,3 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Rue Saint-Guillaume : La maison qui te regarde
-**GPS :** 48.1117, -1.6828 *(approx. à vérifier)*
+**GPS :** 48.1119420, -1.6828836 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi au coin de cette ruelle, tout près de la cathédrale, et lève la tête vers cette maison-là. Une haute maison de bois, sombre, penchée, comme sortie d'un conte. Regarde bien ses poutres. Elles ne sont pas nues. Des personnages y sont sculptés — des figures, des visages, qui te regardent depuis des siècles.
 
@@ -25,7 +25,7 @@ Contourne la cathédrale et glisse-toi dans la petite rue qui court derrière el
 ---
 
 ## Scène 2 — Rue de la Psalette : Un livre en bois peint
-**GPS :** 48.1120, -1.6833 *(approx. à vérifier)*
+**GPS :** 48.111418, -1.68283 *(vérifié IGN — 2026-08-09)*
 
 Te voici rue de la Psalette. Étroite, courbe, pavée, à l'abri derrière la cathédrale. Son drôle de nom vient des enfants de chœur, les « psalettes », qu'on formait ici à chanter les psaumes. Mais lève plutôt les yeux.
 
@@ -40,7 +40,7 @@ Remonte vers le centre, jusqu'à une petite rue commerçante et courbe, la rue d
 ---
 
 ## Scène 3 — Rue du Pont-aux-Foulons : La couleur qui parle
-**GPS :** 48.1121, -1.6806 *(approx. à vérifier)*
+**GPS :** 48.11384, -1.679811 *(vérifié IGN — 2026-08-09)*
 
 Nous voici rue du Pont-aux-Foulons. Une rue qui tourne doucement, bordée de hautes maisons de bois aux façades peintes, penchées les unes vers les autres jusqu'à presque se toucher au-dessus de ta tête.
 
@@ -54,8 +54,8 @@ Descends vers la rivière, la Vilaine, jusqu'aux quais. Là, les murs se remette
 
 ---
 
-## Scène 4 — Les quais de la Vilaine : Le street-art
-**GPS :** 48.1103, -1.6785 *(approx. à vérifier)*
+## Scène 4 — Quai Chateaubriand, au bord de la Vilaine : Le street-art
+**GPS :** 48.1101913, -1.6753301 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà au bord de la Vilaine, la rivière qui traverse Rennes. Regarde les quais, les ponts, les murs qui les bordent. Et cherche la couleur. Des fresques, des lettrages, des silhouettes peintes, des tags plus ou moins fins. Ici, l'art est redescendu dans la rue.
 
@@ -70,7 +70,7 @@ Longe la rivière vers l'ouest, sur le quai, jusqu'à un grand bâtiment classiq
 ---
 
 ## Scène 5 — Musée des Beaux-Arts : La flamme cachée
-**GPS :** 48.1098, -1.6772 *(approx. à vérifier)*
+**GPS :** 48.1098, -1.6772 *(vérifié IGN — 2026-08-09)*
 
 Voici le musée des Beaux-Arts, installé au bord de la Vilaine dans un ancien palais universitaire. Après les murs de la rue, entrons voir l'art rangé, encadré, protégé.
 
@@ -85,7 +85,7 @@ Ressors, longe encore la rivière, puis oblique vers un étonnant bâtiment mode
 ---
 
 ## Scène 6 — Les Champs Libres : Le vaisseau des idées
-**GPS :** 48.1055, -1.6772 *(approx. à vérifier)*
+**GPS :** 48.1051387, -1.6746861 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Lève les yeux vers ce bâtiment. Étrange, non ? Une grande pyramide posée à l'envers, la pointe en bas, et une sorte de sphère accrochée sur le côté. On dirait un vaisseau. Ce sont les Champs Libres, dessinés par un grand architecte, Christian de Portzamparc.
 
@@ -100,7 +100,7 @@ Prends vers le nord-est, en direction du centre, jusqu'à une salle de concert d
 ---
 
 ## Scène 7 — L'Ubu : La ville qui fait du rock
-**GPS :** 48.1074, -1.6740 *(approx. à vérifier)*
+**GPS :** 48.1080556, -1.6732065 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici devant l'Ubu. De l'extérieur, rien de spectaculaire : une façade sobre, une porte, une enseigne. Mais derrière ce mur-là bat depuis des décennies le cœur musical de Rennes.
 
@@ -114,8 +114,8 @@ Reste dans le quartier, tout près. Il nous reste à parler du rendez-vous qui, 
 
 ---
 
-## Scène 8 — Les Transmusicales : La ville qui prend la parole
-**GPS :** 48.1070, -1.6735 *(approx. à vérifier)*
+## Scène 8 — L'Ubu, mémoire des Transmusicales : La ville qui prend la parole
+**GPS :** 48.108056, -1.673207 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici au bout de notre balade — et au cœur de ce qui fait vibrer Rennes. Chaque année, au début du mois de décembre, quand la nuit tombe tôt et que le froid s'installe, la ville s'allume : ce sont les Transmusicales.
 

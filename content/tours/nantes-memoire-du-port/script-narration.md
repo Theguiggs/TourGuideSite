@@ -10,7 +10,7 @@
 ---
 
 ## Scène 1 — Château des ducs de Bretagne : Deux villes en une pierre
-**GPS :** 47.2159, -1.5497 *(approx. à vérifier)*
+**GPS :** 47.2159, -1.5497 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi au bord des douves. Devant toi, une double ville de pierre. En bas, une forteresse trapue, des tours massives, des murs de granit taillés pour la guerre. Et au-dessus, dépassant les remparts, des façades blanches et fines, des fenêtres sculptées, presque un palais. Deux Nantes dans un seul monument. C'est le château des ducs de Bretagne. Ici est née Anne, duchesse de Bretagne, deux fois reine de France. Ici, un roi a signé l'édit de Nantes. Des siècles de pouvoir dans ces murs.
 
@@ -25,7 +25,7 @@ Longe les douves, contourne le château et monte vers la grande flèche de pierr
 ---
 
 ## Scène 2 — Cathédrale Saint-Pierre-et-Saint-Paul : La ville se tourne vers la mer
-**GPS :** 47.2185, -1.5525 *(approx. à vérifier)*
+**GPS :** 47.2185, -1.5525 *(vérifié IGN — 2026-08-09)*
 
 Lève la tête. Cette façade de pierre blanche, ces deux tours, cette dentelle gothique, c'est la cathédrale Saint-Pierre-et-Saint-Paul. Entre, si les portes sont ouvertes. À l'intérieur, la nef file vers le ciel, si haute, si claire, qu'on en oublie de respirer. Cherche, dans le transept, un tombeau de marbre noir et blanc. C'est celui de François II, le dernier duc de Bretagne, et de son épouse. Un chef-d'œuvre, veillé aux quatre coins par des femmes de pierre.
 
@@ -38,11 +38,11 @@ Redescends vers le fleuve, jusqu'à une place pavée entourée de vieilles maiso
 ---
 
 ## Scène 3 — Place du Bouffay : Là où germe l'idée
-**GPS :** 47.2145, -1.5541 *(approx. à vérifier)*
+**GPS :** 47.2145, -1.5541 *(vérifié IGN — 2026-08-09)*
 
 Te voilà place du Bouffay. Regarde ces maisons serrées, à pans de bois, ces ruelles étroites qui partent en étoile. C'est le cœur le plus ancien de Nantes, le quartier médiéval, celui d'avant les fortunes. Ici battait le premier port, quand la Loire léchait encore ces pavés.
 
-Sur ces quais disparus, on déchargeait le sel des marais, le vin du pays, le blé, le bois. Un commerce honnête, patient, à l'échelle du fleuve. Les marchands nantais s'enrichissaient doucement, cargaison après cargaison, comme partout ailleurs.
+Sur ces quais disparus, on déchargeait le sel des marais, le blé, le bois et les étoffes. Un commerce honnête, patient, à l'échelle du fleuve. Les marchands nantais s'enrichissaient doucement, cargaison après cargaison, comme partout ailleurs.
 
 Ce qui va tout changer, c'est le grand large. Aux seizième et dix-septième siècles, les navires nantais commencent à filer plus loin, toujours plus loin. L'Espagne, le Portugal, puis les Antilles. Et là-bas, dans les îles, on plante la canne à sucre. Un or blanc qui rapporte des fortunes. Mais pour couper la canne, sous le soleil, il faut des bras. Beaucoup de bras. Des bras qu'on ne paiera pas.
 
@@ -51,7 +51,7 @@ C'est ici, dans la tête de quelques armateurs, que germe l'idée qui va faire l
 ---
 
 ## Scène 4 — Île Feydeau : Les maisons qui penchent
-**GPS :** 47.2128, -1.5560 *(approx. à vérifier)*
+**GPS :** 47.2128, -1.5560 *(vérifié IGN — 2026-08-09)*
 
 Tu marches sur une ancienne île. Difficile à croire, non ? Autrefois, la Loire coulait des deux côtés d'ici. C'était l'île Feydeau, un banc de sable au milieu du fleuve. On l'a comblée il y a un siècle, les bras du fleuve sont devenus des avenues. Mais les maisons, elles, sont restées.
 
@@ -65,8 +65,8 @@ Avance de quelques pas, jusqu'à la façade la plus richement sculptée de toute
 
 ---
 
-## Scène 5 — Le Temple du Goût : La vitrine d'un armateur
-**GPS :** 47.2123, -1.5567 *(approx. à vérifier)*
+## Scène 5 — Temple du Goût : La vitrine d'un armateur
+**GPS :** 47.2125737, -1.5567238 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi devant celle-ci. On la surnomme le Temple du Goût. Une façade sculptée du haut en bas, montant en pointe vers le ciel, la plus somptueuse de toute l'île. Elle a été bâtie au milieu du dix-huitième siècle, et elle appartenait à un homme : Guillaume Grou.
 
@@ -81,7 +81,7 @@ Rejoins la grande place ouverte, vers l'ouest, là où la ville rencontrait le f
 ---
 
 ## Scène 6 — Place du Commerce : La mécanique tranquille
-**GPS :** 47.2132, -1.5595 *(approx. à vérifier)*
+**GPS :** 47.2133455, -1.5578517 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici sur une vaste place. Son nom dit tout : la place du Commerce. Là où tu te tiens, il y a deux siècles, c'était le bord de l'eau. Les navires venaient s'amarrer presque à tes pieds. Regarde ce grand bâtiment à colonnes : l'ancienne Bourse, le palais des marchands.
 
@@ -94,11 +94,11 @@ C'est cette mécanique tranquille que je veux que tu gardes en tête, en marchan
 ---
 
 ## Scène 7 — Quai de la Fosse : Le sommet du triangle
-**GPS :** 47.2110, -1.5620 *(approx. à vérifier)*
+**GPS :** 47.2110, -1.5620 *(vérifié IGN — 2026-08-09)*
 
 Te voilà sur le quai de la Fosse. Aujourd'hui, des immeubles, des voitures, un tramway. Mais ferme les yeux une seconde. Ici, c'était une forêt : des dizaines de mâts, des voiles, des cordages, l'odeur du goudron et de la marée. Le grand port de Nantes. C'est de ce quai que partaient les navires négriers.
 
-Suis le voyage en pensée. Un bateau quitte cette rive, chargé de marchandises : des étoffes, des fusils, des barres de fer, des perles, de l'eau-de-vie. Il descend la Loire, gagne le large, met le cap au sud, vers les côtes d'Afrique. Là, pendant des semaines, on échange ces marchandises contre des êtres humains. Puis le navire traverse l'océan, ses cales entassées, vers les Antilles ou l'Amérique. On y vend les survivants. Et l'on repart pour Nantes, chargé de sucre, de café, de coton.
+Suis le voyage en pensée. Un bateau quitte cette rive, chargé de marchandises : des étoffes, des fusils, des barres de fer, des outils et des perles. Il descend la Loire, gagne le large, met le cap au sud, vers les côtes d'Afrique. Là, pendant des semaines, on échange ces marchandises contre des êtres humains. Puis le navire traverse l'océan, ses cales entassées, vers les Antilles ou l'Amérique. On y vend les survivants. Et l'on repart pour Nantes, chargé de coton, d'indigo et d'autres matières coloniales.
 
 Trois côtes, trois échanges, un seul cercle. On l'appelait le commerce triangulaire. Chaque angle rapportait de l'argent, et le sommet du triangle, c'était ici, ce quai, cette ville.
 
@@ -107,20 +107,20 @@ Marche encore vers l'ouest, en longeant l'eau, là où le quai s'élargit et où
 ---
 
 ## Scène 8 — Quai de la Fosse, aval : Une ville entière
-**GPS :** 47.2088, -1.5645 *(approx. à vérifier)*
+**GPS :** 47.209927, -1.564877 *(vérifié IGN — 2026-08-09)*
 
-Continue le long du fleuve. Sur cette portion du quai, autrefois, s'alignaient les entrepôts et les manufactures. Car les navires ne revenaient pas vides. Ils rapportaient les fruits des îles, cultivés là-bas par ceux qu'on avait déportés. Et Nantes s'est mise à tout transformer.
+Continue le long du fleuve. Sur cette portion du quai, autrefois, s'alignaient les entrepôts et les manufactures. Car les navires ne revenaient pas vides. Ils rapportaient des matières produites outre-Atlantique par ceux qu'on avait déportés. Et Nantes s'est mise à tout transformer.
 
-Le sucre, d'abord. On l'a raffiné ici, dans des dizaines de raffineries, jusqu'à en faire ces pains blancs vendus dans toute l'Europe. Le coton, ensuite. On l'a filé, tissé, puis imprimé de couleurs vives. Ce sont les fameuses indiennes, ces toiles fleuries dont on s'habillait de Paris à Saint-Pétersbourg. Le café, le tabac, l'indigo suivaient le même chemin.
+Le coton occupait une place majeure. On l'a filé, tissé, puis imprimé de couleurs vives. Ce sont les fameuses indiennes, ces toiles fleuries dont on s'habillait de Paris à Saint-Pétersbourg. L'indigo alimentait ces ateliers, tandis que d'autres matières remplissaient magasins et entrepôts du port.
 
-Comprends bien : ce n'est pas seulement une poignée d'armateurs qui vivaient de ce système. C'est une ville entière. Les ouvriers des raffineries, les tisserands, les tonneliers, les charpentiers, les marins, les épouses qui tenaient les comptes. Une prospérité partagée, bâtie sur une injustice qu'on préférait ne pas regarder en face.
+Comprends bien : ce n'est pas seulement une poignée d'armateurs qui vivaient de ce système. C'est une ville entière. Les ouvriers des manufactures, les tisserands, les tonneliers, les charpentiers, les marins, les épouses qui tenaient les comptes. Une prospérité partagée, bâtie sur une injustice qu'on préférait ne pas regarder en face.
 
 Puis vint le temps où quelques voix, enfin, ont osé dire non. Avance vers cette fine passerelle blanche qui enjambe le fleuve, au ras de l'eau. Suis-moi.
 
 ---
 
 ## Scène 9 — Passerelle Victor-Schœlcher : Le silence, puis le réveil
-**GPS :** 47.2074, -1.5652 *(approx. à vérifier)*
+**GPS :** 47.209048, -1.561534 *(vérifié IGN — 2026-08-09)*
 
 Cette passerelle légère, posée juste au-dessus de l'eau, porte un nom qu'il faut retenir : Victor Schœlcher. Regarde-la relier les deux rives, comme un trait tendu au ras du fleuve.
 
@@ -133,7 +133,7 @@ Il faudra attendre notre époque pour que la ville rouvre les yeux. Descends là
 ---
 
 ## Scène 10 — Mémorial de l'abolition de l'esclavage : Dire les noms
-**GPS :** 47.2076, -1.5662 *(approx. à vérifier)*
+**GPS :** 47.2076, -1.5662 *(vérifié IGN — 2026-08-09)*
 
 Descends les marches. Le bruit de la ville s'éloigne, la lumière baisse. Te voilà sous le quai, dans un long passage de béton et de bois qui suit le fleuve. D'un côté, la Loire, tout près, presque à ta main. De l'autre, le mur. Et sur le sol, sous tes pieds, des milliers de plaques de verre.
 

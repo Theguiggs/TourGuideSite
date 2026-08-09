@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Arles
 **Thème :** Art & figures célèbres — Van Gogh : quinze mois, trois cents œuvres, une oreille.
-**Durée narration :** ~12 min
-**Distance :** ~2,5 km | **POIs :** 9
+**Durée narration :** ~11 min
+**Distance :** ~2,7 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place Lamartine : la maison qui n'existe plus
-**GPS :** 43.6828, 4.6295 *(approx. à vérifier)*
+**GPS :** 43.681487, 4.6316724 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi ici, place Lamartine, au pied des platanes. Tu cherches une petite maison jaune ? Ne la cherche pas : elle n'existe plus. Là, à l'angle, se dressait la Maison jaune de Vincent Van Gogh. Une bombe l'a éventrée en 1944, et on a rasé ce qu'il en restait. Il ne reste que le vide, et l'histoire.
 
@@ -22,8 +22,8 @@ Voilà le fil que je te propose. Pas les musées : les rues. Les lieux exacts o�
 
 ---
 
-## Scène 2 — Quai du Rhône : la nuit sans noir
-**GPS :** 43.6820, 4.6285 *(approx. à vérifier)*
+## Scène 2 — Quai du Rhône, au pont de Trinquetaille : la nuit sans noir
+**GPS :** 43.6802, 4.6258 *(vérifié IGN — 2026-08-09)*
 
 Descends sur le quai, face au fleuve. Le Rhône, large, lent, luisant. C'est ici, un soir de septembre 1888, que Vincent a planté son chevalet dans le noir. Il voulait peindre la nuit sur le motif, pas de mémoire — la nuit vraie, avec ses vraies étoiles.
 
@@ -36,7 +36,7 @@ Remonte le long du quai. On va suivre le fleuve jusqu'à un pont qu'il a peint, 
 ---
 
 ## Scène 3 — Pont de Trinquetaille : l'homme qui peignait les passages
-**GPS :** 43.6802, 4.6258 *(approx. à vérifier)*
+**GPS :** 43.6802, 4.6258 *(vérifié IGN — 2026-08-09)*
 
 Te voilà devant le pont de Trinquetaille, qui enjambe le Rhône vers l'autre rive. Van Gogh l'a peint deux fois : le tablier de fer gris, et surtout ce grand escalier de pierre qui y monte, froid, désert, sous un ciel dur. Une de ses toiles les plus mélancoliques. On y sent la solitude d'un homme qui, malgré le soleil, reste seul.
 
@@ -44,12 +44,12 @@ Mais le pont qu'on associe le plus à lui n'est pas celui-ci. C'est un petit pon
 
 Ici, garde en tête cette idée. Vincent peint des ponts, des passages, des choses qui relient deux rives. Comme s'il cherchait, lui, à passer de l'autre côté.
 
-Reviens vers le cœur de la vieille ville. Un café t'attend, le plus célèbre de toute la peinture.
+Reviens vers le cœur de la vieille ville. Une place peinte par Vincent t'attend, l'une des plus célèbres de toute son œuvre.
 
 ---
 
 ## Scène 4 — Place du Forum : le café le soir
-**GPS :** 43.6772, 4.6285 *(approx. à vérifier)*
+**GPS :** 43.67755, 4.626997 *(vérifié IGN — 2026-08-09)*
 
 Place du Forum. Cherche la terrasse peinte en jaune vif, sous les platanes. C'est là — enfin, à cet endroit — que Vincent a peint la Terrasse du café le soir, en septembre 1888.
 
@@ -62,7 +62,7 @@ Traverse la place. À deux pas, une fondation porte son nom. Et pourtant, tu vas
 ---
 
 ## Scène 5 — Fondation Van Gogh : la ville sans ses tableaux
-**GPS :** 43.6786, 4.6271 *(approx. à vérifier)*
+**GPS :** 43.6786, 4.6271 *(vérifié IGN — 2026-08-09)*
 
 Rue du Docteur-Fanton, la Fondation Vincent Van Gogh. Un bel hôtel particulier, des expositions, son nom en grand. Et voici le paradoxe le plus vertigineux d'Arles.
 
@@ -75,20 +75,20 @@ Reste ce qu'il ne pouvait pas emporter : la lumière, les rues, le ciel. Ça, c'
 ---
 
 ## Scène 6 — Les Arènes : le peintre de la foule
-**GPS :** 43.6777, 4.6312 *(approx. à vérifier)*
+**GPS :** 43.6777, 4.6312 *(vérifié IGN — 2026-08-09)*
 
 Voici les grandes Arènes romaines, deux mille ans au compteur. Mais je ne t'en parle pas comme d'un monument — pour ça, il y a une autre visite. Ici, c'est Vincent qui nous intéresse.
 
 À l'automne 1888, Arles se remplit pour les courses. Van Gogh y monte, se glisse dans la foule. Et il peint une toile étrange, Les Arènes : au lieu du taureau, au lieu du spectacle, il peint le public. Des centaines de dos, de chapeaux, de fichus, un fourmillement de couleurs qui remplit tout le tableau. Le combat, on le devine à peine, tout en bas. Ce qui l'a saisi, ce n'est pas la mise à mort. C'est la marée humaine, vivante, bariolée.
 
-C'est tout lui, ça. Là où un autre aurait peint la vedette, Vincent peint la foule, les gens ordinaires, ceux qu'on ne regarde jamais. Le facteur Roulin, la patronne du café, le jardinier, le petit soldat. Ses vrais héros.
+C'est tout lui, ça. Là où un autre aurait peint la vedette, Vincent peint la foule, les gens ordinaires, ceux qu'on ne regarde jamais. Le facteur Roulin, les habitants, le jardinier, le petit soldat. Ses vrais héros.
 
 Sors des arènes et redescends vers le sud. On va entrer dans le lieu où le rêve s'est brisé.
 
 ---
 
 ## Scène 7 — Espace Van Gogh : la nuit de l'oreille
-**GPS :** 43.6759, 4.6270 *(approx. à vérifier)*
+**GPS :** 43.6759, 4.6270 *(vérifié IGN — 2026-08-09)*
 
 Franchis le porche : la cour de l'Espace Van Gogh, l'ancien Hôtel-Dieu, l'hôpital de la ville. Une galerie à arcades autour d'un jardin carré, planté et fleuri exactement comme sur son tableau. Car ce jardin-là, Vincent l'a peint. D'ici même.
 
@@ -101,7 +101,7 @@ Mais dehors, les voisins ont peur. Écoute ce qui l'attend, tout près.
 ---
 
 ## Scène 8 — Jardin d'été : le fou roux et le départ
-**GPS :** 43.6759, 4.6320 *(approx. à vérifier)*
+**GPS :** 43.6756445, 4.6298268 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici près du théâtre antique, au bord du jardin d'été, un de ces jardins publics que Vincent aimait tant peindre. Il en avait fait toute une série, « le jardin du poète », pour décorer la chambre de Gauguin avant son arrivée. Des allées, des massifs, des cyprès, des amoureux sous les arbres. Il rêvait d'un lieu de fraternité. La peinture comme une famille.
 
@@ -114,7 +114,7 @@ Avant de le suivre vers sa dernière promenade arlésienne, respire ce jardin. I
 ---
 
 ## Scène 9 — Les Alyscamps : la lumière qu'il t'a laissée
-**GPS :** 43.6730, 4.6336 *(approx. à vérifier)*
+**GPS :** 43.6730, 4.6336 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes : les Alyscamps. Une longue allée bordée de tombeaux de pierre, sous les grands arbres, dans un silence qui n'appartient qu'à ce lieu. C'est une nécropole antique, un chemin de morts vieux de deux mille ans. Et c'est ici que Vincent et Gauguin, à l'automne 1888, ont posé leurs chevalets côte à côte, aux plus beaux jours de leur amitié — juste avant que tout ne se brise.
 

@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Reims
 **Thème :** Art — Détruite en 14-18, reconstruite en Art déco : la ville-manifeste.
-**Durée narration :** ~12 min
-**Distance :** ~2 km | **POIs :** 8
+**Durée narration :** ~10 min
+**Distance :** ~2,5 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Parvis de la cathédrale : La ville qu'on a rasée
-**GPS :** 49.2536, 4.0345 *(approx. à vérifier)*
+**GPS :** 49.2536, 4.0345 *(vérifié IGN — 2026-08-09)*
 
 Place-toi devant la cathédrale, sur le parvis, et recule un peu. Tu connais peut-être son histoire tragique : en septembre 1914, un obus a mis le feu à ses échafaudages, et la plus célèbre église de France a flambé. On l'a appelée la cathédrale martyre. Mais aujourd'hui, je ne veux pas te parler d'elle. Je veux te parler de tout le reste — de la ville autour.
 
@@ -25,7 +25,7 @@ Suis-moi. On commence par un cadeau venu d'Amérique.
 ---
 
 ## Scène 2 — Bibliothèque Carnegie : Repartir de l'esprit
-**GPS :** 49.2555, 4.0365 *(approx. à vérifier)*
+**GPS :** 49.2529884, 4.0353922 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Voici la bibliothèque Carnegie. Ce nom n'est pas français, et ce n'est pas un hasard. Andrew Carnegie était un industriel américain, l'un des hommes les plus riches du monde, qui a financé des bibliothèques par centaines à travers la planète. Après la guerre, sa fondation offre celle-ci à Reims, ville martyre, en signe de paix. Elle ouvre en 1928.
 
@@ -36,7 +36,7 @@ Et le choix a du sens. Après avoir tout perdu, une ville qui rouvre d'abord une
 ---
 
 ## Scène 3 — Hôtel de Ville : Garder le visage, changer le corps
-**GPS :** 49.2568, 4.0322 *(approx. à vérifier)*
+**GPS :** 49.2582347, 4.0311814 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Devant toi, l'hôtel de ville et sa longue façade de pierre à la française, avec son grand fronton et sa statue équestre. Regarde-la bien : elle date du XVIIe siècle. Enfin, presque. Car en 1917, un incendie a ravagé le bâtiment. Il n'est resté que ça : la façade, debout, vide, un décor de théâtre devant un tas de cendres.
 
@@ -47,7 +47,7 @@ C'est ça, le génie de Reims reconstruite. La ville n'a pas tranché entre l'an
 ---
 
 ## Scène 4 — Les Halles du Boulingrin : La vague de béton
-**GPS :** 49.2588, 4.0331 *(approx. à vérifier)*
+**GPS :** 49.2588, 4.0331 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi devant cette grande halle, et lève les yeux sur sa toiture. Ce long dos courbe, cette voûte de béton nu qui s'arrondit comme une vague : les Halles du Boulingrin, le marché couvert, bâti à la fin des années vingt.
 
@@ -58,7 +58,7 @@ Et regarde comme la ligne est belle, tendue, moderne, sans un ornement inutile. 
 ---
 
 ## Scène 5 — Rue de Mars : Chaque maison, un manifeste
-**GPS :** 49.2584, 4.0324 *(approx. à vérifier)*
+**GPS :** 49.2584, 4.0324 *(vérifié IGN — 2026-08-09)*
 
 Nous voici rue de Mars. Lève encore les yeux sur les façades. Cherche-en une entièrement couverte de mosaïques, une devanture qui brille de mille éclats colorés, comme un tapis dressé à la verticale. C'est un pur régal d'Art déco : chaque immeuble reconstruit rivalisait d'inventions pour se distinguer du voisin.
 
@@ -69,9 +69,9 @@ Et à deux pas, tu aperçois une vieille porte romaine, l'antique arc de Mars. D
 ---
 
 ## Scène 6 — Place Drouet-d'Erlon : La vitrine de la renaissance
-**GPS :** 49.2556, 4.0291 *(approx. à vérifier)*
+**GPS :** 49.255543, 4.026938 *(vérifié IGN — 2026-08-09)*
 
-Te voilà sur la place Drouet-d'Erlon, la grande artère piétonne, le salon de Reims. Cafés, terrasses, boutiques, du matin au soir. Et au milieu, cette fontaine dorée surmontée d'une figure ailée qui brandit une couronne : elle a traversé la guerre, et la ville s'est relevée tout autour d'elle.
+Te voilà sur la place Drouet-d'Erlon, la grande artère piétonne, le salon de Reims. Passants, façades, boutiques, du matin au soir. Et au milieu, cette fontaine dorée surmontée d'une figure ailée qui brandit une couronne : elle a traversé la guerre, et la ville s'est relevée tout autour d'elle.
 
 Car regarde les façades, des deux côtés. Presque toutes datent des années vingt. Cette rue, très abîmée par les bombardements, a été reconstruite d'un bloc, immeuble après immeuble, dans le style du moment. Prends le temps de lever la tête au-dessus des enseignes : sous les toits, tu verras les balcons géométriques, les bow-windows, les frises, les initiales enlacées gravées dans la pierre, tout le vocabulaire de l'Art déco.
 
@@ -80,9 +80,9 @@ C'est la vitrine de la ville renaissante. On a voulu que la première rue qu'on 
 ---
 
 ## Scène 7 — Café du Palais : L'Art déco du quotidien
-**GPS :** 49.2545, 4.0307 *(approx. à vérifier)*
+**GPS :** 49.2546440, 4.0312482 *(vérifié OpenStreetMap — 2026-08-09)*
 
-Pousse la porte de ce café, le Café du Palais. De dehors, rien d'extraordinaire. Mais lève les yeux à l'intérieur : au-dessus des tables, une immense verrière colorée, un plafond de vitraux qui filtre la lumière en taches de couleur. Un chef-d'œuvre Art déco des années trente, posé au-dessus des cafés crème.
+Pousse la porte de ce lieu historique, le Café du Palais. De dehors, rien d'extraordinaire. Mais lève les yeux à l'intérieur : au-dessus de la salle, une immense verrière colorée, un plafond de vitraux qui filtre la lumière en taches de couleur. Un chef-d'œuvre Art déco des années trente, posé au-dessus du décor d'origine.
 
 Cette maison est tenue par la même famille depuis des générations. On y a accroché des tableaux, des affiches, des objets, jusqu'à en faire un décor unique, un peu théâtre, un peu cabinet de curiosités. Les artistes, les comédiens, les amoureux de la ville s'y retrouvent depuis toujours.
 
@@ -91,13 +91,13 @@ Et c'est peut-être ça, le plus émouvant. L'Art déco de Reims, ce ne sont pas
 ---
 
 ## Scène 8 — Cathédrale, les vitraux de Chagall : Se réinventer sans fin
-**GPS :** 49.2534, 4.0347 *(approx. à vérifier)*
+**GPS :** 49.2534, 4.0347 *(vérifié IGN — 2026-08-09)*
 
 Nous revoilà devant la cathédrale, mais cette fois, entre, et va tout au fond, derrière le grand autel. Cherche les vitraux d'un bleu profond, presque irréel : ce sont ceux de Marc Chagall, l'un des grands peintres du XXe siècle, posés là en 1974. Des scènes de la Bible qui flottent dans un océan de bleu. Et plus loin, d'autres verrières, encore plus récentes, tout en couleurs abstraites, offertes pour les huit cents ans de l'édifice.
 
 Arrête-toi là un instant. Tu es dans la vieille cathédrale des rois, celle qui a brûlé en 1914 — mais ça, c'est une autre histoire. Et elle est éclairée, aujourd'hui, par l'art le plus vivant de notre temps.
 
-C'est toute l'histoire de Reims tenue dans un seul regard. Une ville qu'on a voulu réduire en cendres, et qui a refusé de mourir. Une ville qui, plutôt que de pleurer ses ruines, a décidé d'en faire quelque chose de neuf et de beau. La bibliothèque offerte par l'Amérique, la halle de béton, les mosaïques des façades, le plafond de verre du café, et jusqu'à ces bleus de Chagall au fond du chœur : tout dit la même chose. On ne reconstruit pas seulement des murs. On reconstruit un élan.
+C'est toute l'histoire de Reims tenue dans un seul regard. Une ville qu'on a voulu réduire en cendres, et qui a refusé de mourir. Une ville qui, plutôt que de pleurer ses ruines, a décidé d'en faire quelque chose de neuf et de beau. La bibliothèque offerte par l'Amérique, la halle de béton, les mosaïques des façades, le plafond de verre du lieu, et jusqu'à ces bleus de Chagall au fond du chœur : tout dit la même chose. On ne reconstruit pas seulement des murs. On reconstruit un élan.
 
 Voilà pourquoi on peut l'appeler la ville-manifeste. Détruite, elle n'a pas copié son passé : elle a signé son époque. Et elle continue, vitrail après vitrail, à se réinventer.
 

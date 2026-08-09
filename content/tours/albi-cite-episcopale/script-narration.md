@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Albi
 **Thème :** Histoire & secrets — une cathédrale-forteresse de brique rouge, la réponse écrasante de l'Église aux Cathares.
-**Durée narration :** ~11 min
-**Distance :** ~1,8 km | **POIs :** 7
+**Durée narration :** ~10 min
+**Distance :** ~1,1 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place Sainte-Cécile : Un poing de brique dressé vers le ciel
-**GPS :** 43.9284, 2.1428 *(approx. à vérifier)*
+**GPS :** 43.9284, 2.1428 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi sur la place Sainte-Cécile, et lève les yeux. Devant toi se dresse l'une des choses les plus stupéfiantes de France : la cathédrale Sainte-Cécile d'Albi. La plus grande cathédrale de brique du monde. Une montagne rouge, lisse, sans presque une fenêtre en bas, avec un clocher qui grimpe à près de quatre-vingts mètres, comme le donjon d'un château fort.
 
@@ -25,7 +25,7 @@ Elle a bâti ceci. Non pas une maison de prière accueillante, mais une menace d
 ---
 
 ## Scène 2 — Cathédrale Sainte-Cécile : La force nue et la dentelle
-**GPS :** 43.9282, 2.1426 *(approx. à vérifier)*
+**GPS :** 43.9282, 2.1426 *(vérifié IGN — 2026-08-09)*
 
 Fais le tour, longe ces murailles. Sens leur épaisseur. Les murs montent d'un seul jet, renforcés de contreforts arrondis comme des tours à demi enfoncées. Presque aucune ouverture à hauteur d'homme. En cas de révolte, l'évêque pouvait s'y barricader comme dans un château fort. Ce n'était pas une image : la ville, souvent, grondait.
 
@@ -38,7 +38,7 @@ Comme si l'Église, une fois sa victoire assurée, s'était enfin permis d'être
 ---
 
 ## Scène 3 — Intérieur de Sainte-Cécile : Le ciel peint et l'avertissement
-**GPS :** 43.9284, 2.1424 *(approx. à vérifier)*
+**GPS :** 43.9284, 2.1424 *(vérifié IGN — 2026-08-09)*
 
 Entre. Et laisse le choc te saisir. Autant le dehors est nu et menaçant, autant le dedans est une explosion. Lève la tête : la voûte tout entière est peinte, bleue et or, semée d'anges, de saints, de motifs. Des mètres et des mètres de couleurs, réalisés au début du XVIᵉ siècle par des artistes venus d'Italie. C'est l'une des plus vastes peintures de la Renaissance qu'on puisse voir en France, et elle est là, au-dessus de ta tête, depuis cinq cents ans.
 
@@ -51,7 +51,7 @@ Ressors, et gagne le palais voisin, la Berbie. Suis-moi.
 ---
 
 ## Scène 4 — Palais de la Berbie : La maison de l'évêque-seigneur
-**GPS :** 43.9286, 2.1420 *(approx. à vérifier)*
+**GPS :** 43.9293302, 2.1433125 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voici au pied du palais de la Berbie. Son nom te dit déjà tout : « Berbie » vient d'un vieux mot d'oc, bisbia, qui veut simplement dire « l'évêché ». La maison de l'évêque. Mais quelle maison.
 
@@ -66,7 +66,7 @@ Cathédrale-forteresse d'un côté, palais-forteresse de l'autre : les deux poin
 ---
 
 ## Scène 5 — Collégiale Saint-Salvi : L'autre Albi, celle d'avant
-**GPS :** 43.9294, 2.1445 *(approx. à vérifier)*
+**GPS :** 43.9294, 2.1445 *(vérifié IGN — 2026-08-09)*
 
 Voici la collégiale Saint-Salvi. Prends le temps de la regarder : c'est la plus vieille église d'Albi, bien plus ancienne que la grande cathédrale rouge. Un patchwork de pierre et de brique, de roman et de gothique, remanié sans cesse au fil des siècles.
 
@@ -81,7 +81,7 @@ Redescends vers le vieux quartier, du côté de la rivière. Suis-moi.
 ---
 
 ## Scène 6 — Castelviel : La fortune bleue du pastel
-**GPS :** 43.9283, 2.1415 *(approx. à vérifier)*
+**GPS :** 43.9283, 2.1415 *(vérifié IGN — 2026-08-09)*
 
 Descends dans les ruelles du vieil Albi, du côté du Castelviel, le plus ancien quartier de la ville, celui qui s'accroche à la butte au-dessus du Tarn. Ici, les maisons se serrent, penchées, faites de brique rose et de bois brun, leurs étages avançant au-dessus de la rue. Cherche la Maison du Vieil Alby : une belle bâtisse de marchand, vieille de plusieurs siècles.
 
@@ -96,7 +96,7 @@ Descends maintenant jusqu'à la rivière, jusqu'au vieux pont. Suis-moi.
 ---
 
 ## Scène 7 — Pont Vieux : La forteresse de la peur devenue trésor
-**GPS :** 43.9270, 2.1408 *(approx. à vérifier)*
+**GPS :** 43.9312101, 2.1445612 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Descends sur le Pont Vieux, et avance jusqu'au milieu. Ce pont sous tes pieds est un vieillard : près de mille ans qu'il enjambe le Tarn, l'un des plus vieux ponts de France encore en service. Des générations d'Albigeois l'ont franchi, à pied, à cheval, en charrette.
 

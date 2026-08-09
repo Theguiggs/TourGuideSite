@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Marseille
 **Thème :** Sport — de la Canebière au Vélodrome, l'OM comme religion municipale d'une ville-stade
-**Durée narration :** ~13 min
-**Distance :** ~2 km | **POIs :** 9
+**Durée narration :** ~12 min
+**Distance :** ~2,2 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Rond-Point du Prado : La procession du soir
-**GPS :** 43.2688, 5.3835 *(approx. à vérifier)*
+**GPS :** 43.2725801, 5.3906421 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi au rond-point du Prado. Un jour ordinaire, c'est un grand carrefour, des voitures, une bouche de métro, et là-haut, veillant sur tout, une copie géante du David de Michel-Ange, cinq mètres et demi de marbre blanc, plantée là depuis les années cinquante.
 
@@ -25,7 +25,7 @@ Alors mets-toi dans le courant. Remonte le boulevard avec eux. Suis-moi, on mont
 ---
 
 ## Scène 2 — Boulevard Michelet : Une rivière bleu et blanc
-**GPS :** 43.2668, 5.3908 *(approx. à vérifier)*
+**GPS :** 43.267852, 5.393568 *(vérifié IGN — 2026-08-09)*
 
 Nous remontons le boulevard Michelet, la grande artère qui mène au stade. Regarde autour de toi : ce n'est plus une rue, c'est une rivière bleu et blanc.
 
@@ -40,7 +40,7 @@ Continue de monter. Une grande enceinte s'ouvre sur ta gauche. Suis-moi.
 ---
 
 ## Scène 3 — Parc Chanot : Le camp de base
-**GPS :** 43.2685, 5.3945 *(approx. à vérifier)*
+**GPS :** 43.2728451, 5.3956765 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Faisons une courte halte ici, au niveau du parc Chanot, cette grande enceinte de foires et de congrès, juste en face du stade. Un jour de match, ses abords deviennent un immense point de ralliement.
 
@@ -54,8 +54,8 @@ Traverse avec moi vers l'autre côté du boulevard. Suis-moi, on arrive au Vélo
 
 ---
 
-## Scène 4 — Le Vélodrome : Le temple né d'une piste cyclable
-**GPS :** 43.2699, 5.3948 *(approx. à vérifier)*
+## Scène 4 — Parvis du stade Vélodrome : Le temple né d'une piste cyclable
+**GPS :** 43.2698474, 5.3959082 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Le voilà. Le stade Vélodrome, aujourd'hui l'Orange Vélodrome. Une immense vague blanche, un toit qui ondule comme une voile tendue au-dessus des gradins. Lève la tête : impossible de ne pas être saisi.
 
@@ -67,8 +67,8 @@ Fais quelques pas le long de la façade, sous cette vague. On va tourner autour 
 
 ---
 
-## Scène 5 — Les gradins : Le chaudron
-**GPS :** 43.2703, 5.3962 *(approx. à vérifier)*
+## Scène 5 — Parvis du stade Vélodrome : Le chaudron
+**GPS :** 43.2698474, 5.3959082 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Entrons, en imagination, sous la coque. Regarde comme les gradins montent, raides, presque à la verticale, tout près de la pelouse. Plus de piste, plus de fossé, plus de distance. Le public tombe littéralement sur le terrain.
 
@@ -81,7 +81,7 @@ Deux tribunes, surtout, mènent la danse : les deux virages, au nord et au sud, 
 ---
 
 ## Scène 6 — Virage Sud : Le peuple qui ne s'assoit jamais
-**GPS :** 43.2686, 5.3958 *(approx. à vérifier)*
+**GPS :** 43.269054, 5.3963805 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici derrière le but sud, face au virage Sud. Les soirs de match, c'est une marée de couleurs, debout du début à la fin, qui ne s'assoit jamais.
 
@@ -94,7 +94,7 @@ Le virage d'en face, au nord, a la même ferveur et une histoire qui serre le c�
 ---
 
 ## Scène 7 — Virage Nord : Le virage d'un simple supporter
-**GPS :** 43.2712, 5.3958 *(approx. à vérifier)*
+**GPS :** 43.270601, 5.3954469 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici derrière le but nord. Lève les yeux vers le haut du virage : il porte un nom. Officiellement, depuis 2002, c'est le « virage Patrice de Peretti ». Mais tout le monde, ici, dit simplement « Depé ».
 
@@ -106,8 +106,8 @@ Reste dans ce virage. On va remonter le temps jusqu'à la plus grande nuit de to
 
 ---
 
-## Scène 8 — La nuit de Munich : À jamais les premiers
-**GPS :** 43.2705, 5.3968 *(approx. à vérifier)*
+## Scène 8 — Parvis du stade Vélodrome : À jamais les premiers
+**GPS :** 43.2698474, 5.3959082 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Reste là, face à la pelouse, et ferme presque les yeux. Je vais te ramener au 26 mai 1993. Pas ici : à Munich, en finale de la Coupe d'Europe, la plus grande. En face, le grand Milan AC, l'une des meilleures équipes du monde. Et l'OM.
 
@@ -121,8 +121,8 @@ Sortons, une dernière fois, prendre un peu de recul. Suis-moi.
 
 ---
 
-## Scène 9 — L'esplanade : La ville tout entière est le stade
-**GPS :** 43.2699, 5.3955 *(approx. à vérifier)*
+## Scène 9 — Parvis du stade Vélodrome : La ville tout entière est le stade
+**GPS :** 43.269847, 5.395908 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Ressortons sur l'esplanade, au pied de la grande vague blanche. Et regarde une dernière fois ce vaisseau posé au milieu de la ville.
 

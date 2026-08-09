@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Toulouse
 **Thème :** Sport — le Stade Toulousain et la messe du dimanche : pourquoi ici, le rugby est une civilisation.
-**Durée narration :** ~13 min
-**Distance :** ~2,7 km | **POIs :** 8
+**Durée narration :** ~10 min
+**Distance :** ~3,2 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Monument Héraklès : Un temple pour des joueurs de ballon
-**GPS :** 43.6079, 1.4278 *(approx. à vérifier)*
+## Scène 1 — Square de l'Héraclès : Un temple pour des joueurs de ballon
+**GPS :** 43.6079, 1.4278 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi devant ce grand archer de bronze. Un homme nu, arc-bouté, qui bande un arc immense vers le ciel. C'est l'Héraklès archer, une œuvre du sculpteur Antoine Bourdelle, dressée ici en 1925. Regarde-le bien : ce n'est pas seulement une statue de héros grec. C'est un monument aux morts.
 
@@ -25,20 +25,20 @@ Suis-moi. On va remonter vers le berceau de tout ça, le long de ce vieux canal.
 ---
 
 ## Scène 2 — Le canal de Brienne : Naissance d'un club pas comme les autres
-**GPS :** 43.6112, 1.4245 *(approx. à vérifier)*
+**GPS :** 43.605957, 1.429487 *(vérifié IGN — 2026-08-09)*
 
 Longe le canal. Ces platanes, cette eau calme, ce silence de faubourg : difficile d'imaginer qu'on est au berceau d'un géant du rugby mondial. Et pourtant, tout s'est joué à quelques pas d'ici, au tout début du XXᵉ siècle.
 
 À l'époque, le ballon ovale débarque d'Angleterre et enflamme la jeunesse toulousaine. Des clubs d'étudiants se disputent les terrains vagues. En 1907, plusieurs de ces cercles fusionnent et prennent un nom simple, promis à la gloire : le Stade Toulousain. Le maillot sera rouge et noir. Le rouge de la ville, le noir pour trancher.
 
-Très vite, ce club-là ne ressemble à aucun autre. On lui prêtera une manière de jouer bien à lui : le jeu de mouvement, la passe, l'audace — ce qu'on appellera plus tard le « rugby champagne ». Une réputation de beau jeu qui colle encore à ses crampons aujourd'hui.
+Très vite, ce club-là ne ressemble à aucun autre. On lui prêtera une manière de jouer bien à lui : le jeu de mouvement, la passe, l'audace — une réputation de beau jeu qui colle encore à ses crampons aujourd'hui.
 
 Mais avant les trophées, il a fallu un terrain, un vrai, avec des tribunes. Continue jusqu'à l'endroit où le canal en rejoint deux autres, là-bas, sous les ponts. C'est là qu'est né le premier stade. Deux minutes.
 
 ---
 
 ## Scène 3 — Les Ponts-Jumeaux : Le doyen, les gamins et la Vierge rouge
-**GPS :** 43.6165, 1.4188 *(approx. à vérifier)*
+**GPS :** 43.6128495, 1.4205009 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici aux Ponts-Jumeaux, là où trois canaux se rejoignent. Aujourd'hui, le vacarme du périphérique couvre presque l'eau. Mais tends l'oreille : c'est ici que le Stade Toulousain a planté ses premiers poteaux, en 1907.
 
@@ -50,34 +50,34 @@ Approche-toi du grand pont de béton qui enjambe l'ancien terrain. Il cache une 
 
 ---
 
-## Scène 4 — Le pont du périphérique : Le berceau englouti
-**GPS :** 43.6172, 1.4180 *(approx. à vérifier)*
+## Scène 4 — Rue des Troènes, près de l’ancien stade : Le berceau englouti
+**GPS :** 43.6144561, 1.4143865 *(vérifié OpenStreetMap — 2026-08-09)*
 
-Regarde ce pont de béton, ces voies rapides, ce flot de voitures. Tu ne le devinerais jamais, mais la pelouse mythique des Ponts-Jumeaux est là-dessous. Le stade fondateur du Stade Toulousain a été englouti par le périphérique.
+Regarde vers les voies rapides et l’échangeur voisin. Tu ne le devinerais jamais, mais la pelouse mythique des Ponts-Jumeaux occupait ce secteur. Le stade fondateur du Stade Toulousain a disparu lors de la construction du périphérique.
 
 En 1980, la ville a besoin de sa rocade, et le tracé passe pile sur le terrain. On exproprie. Le 30 mars 1980, les Toulousains disputent leur dernier match sur cette herbe historique, contre Aurillac. Une page se tourne.
 
 Mais écoute la suite, elle est belle. Une vieille loi obligeait à reconstruire à l'identique tout équipement sportif détruit. La ville cède alors au club, pour un franc symbolique, un terrain un peu plus au nord, aux Sept-Deniers. Et par respect, on garde le nom du fondateur : le nouveau stade s'appellera lui aussi Ernest-Wallon. Le berceau disparaît sous le bitume, mais le nom, lui, ne meurt pas. Le rugby toulousain déménage sans jamais renier ses racines.
 
-Suis-moi vers le nord, le long de la Garonne. On marche vers ce nouveau temple. Cinq minutes, tranquille. Je t'explique en chemin ce qui se transmet ici.
+Suis la rue des Troènes vers le nord, puis gagne le parc des Sept-Deniers. On marche vers le nouveau stade. Une dizaine de minutes, tranquille. Je t’explique en chemin ce qui se transmet ici.
 
 ---
 
-## Scène 5 — Les berges de la Garonne : Ce qui se transmet
-**GPS :** 43.6215, 1.4155 *(approx. à vérifier)*
+## Scène 5 — Parc des Sept-Deniers : Ce qui se transmet
+**GPS :** 43.6193885, 1.4135061 *(vérifié OpenStreetMap — 2026-08-09)*
 
-Marchons le long de l'eau. C'est le chemin que des dizaines de milliers de supporters prennent les soirs de match, en rouge et noir, gamins sur les épaules, vers le stade des Sept-Deniers. Un vrai cortège. Une procession, presque.
+Traverse le parc. Les soirs de match, les supporters convergent vers le stade des Sept-Deniers, en rouge et noir, parfois avec des enfants sur les épaules. Les rues et les allées deviennent un cortège. Une procession, presque.
 
 Car c'est ça, une civilisation du rugby : ça se transmet. Ici, on n'attend pas d'acheter des vedettes toutes faites. On les fabrique. L'école de rugby du club forme les gosses du quartier et de toute la région, leur apprend la passe et le sens du collectif avant même de savoir plaquer. Beaucoup des plus grands champions toulousains sont sortis de cette filière.
 
 Le stade, ce n'est pas seulement l'équipe première du samedi soir. C'est aussi les équipes de jeunes, les féminines, les vétérans, les bénévoles qui repeignent les vestiaires. Tout un peuple qui vit au rythme du ballon ovale, de septembre à juin, génération après génération.
 
-Regarde : les tribunes apparaissent déjà au-dessus des arbres. On approche du cœur du réacteur. Trois minutes encore.
+Regarde : les tribunes apparaissent déjà au-dessus des arbres. On approche du cœur du réacteur. Quelques minutes encore.
 
 ---
 
 ## Scène 6 — Le parvis d'Ernest-Wallon : Le club le plus titré du monde
-**GPS :** 43.6262, 1.4148 *(approx. à vérifier)*
+**GPS :** 43.621878, 1.415617 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes : le stade Ernest-Wallon, la maison du Stade Toulousain. Inauguré en 1982, agrandi depuis, il tient près de vingt mille personnes — et les soirs de grand match, il tremble.
 
@@ -89,12 +89,12 @@ Mais les chiffres ne disent pas l'essentiel. Le vrai secret est ailleurs. Franch
 
 ---
 
-## Scène 7 — Les terrains d'entraînement : L'usine à champions
-**GPS :** 43.6268, 1.4140 *(approx. à vérifier)*
+## Scène 7 — Entrée publique du stade Ernest-Wallon : L'usine à champions
+**GPS :** 43.6218981, 1.4153673 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Voici les terrains d'entraînement. Rien de spectaculaire : de l'herbe, des poteaux, des sacs de plaquage. Et pourtant, c'est peut-être le lieu le plus important de tout le club. C'est ici, loin des projecteurs, que se gagnent les matchs du samedi.
 
-Sous la pluie, dans le froid, les professionnels répètent mille fois les mêmes gestes. La passe qui arrive juste, le soutien qui surgit, le ballon qui vit de main en main. Cette obsession du mouvement, elle vient de loin, du « rugby champagne » des ancêtres. On ne défend pas seulement : on ose, on court, on offre du jeu. C'est une philosophie autant qu'une tactique.
+Sous la pluie, dans le froid, les professionnels répètent mille fois les mêmes gestes. La passe qui arrive juste, le soutien qui surgit, le ballon qui vit de main en main. Cette obsession du mouvement vient de loin. On ne défend pas seulement : on ose, on court, on offre du jeu. C'est une philosophie autant qu'une tactique.
 
 Et tout le monde s'entraîne ici : les hommes, mais aussi les féminines du club, qui portent les mêmes couleurs et la même ambition. Le rouge et noir, ce n'est pas un genre, c'est une famille. On y entre enfant, on y reste souvent pour la vie.
 
@@ -102,8 +102,8 @@ Reviens vers l'entrée principale du stade, devant les grilles. C'est là que je
 
 ---
 
-## Scène 8 — La porte du temple : Je suis du Stade
-**GPS :** 43.6259, 1.4150 *(approx. à vérifier)*
+## Scène 8 — Entrée publique du stade Ernest-Wallon : Je suis du Stade
+**GPS :** 43.6218981, 1.4153673 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi devant les grilles du stade. Un jour de match, tu ne pourrais pas rester seul comme maintenant : tu serais pris dans une marée rouge et noir, portée par un même chant, une même impatience. On appelle ça, ici, la messe du dimanche. Et le mot n'est pas de trop.
 

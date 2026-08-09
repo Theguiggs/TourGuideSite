@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Biarritz
 **Thème :** Sport — comment un bout de côte basque est devenu la capitale européenne du surf.
-**Durée narration :** ~14 min
-**Distance :** ~3 km | **POIs :** 8
+**Durée narration :** ~11 min
+**Distance :** ~3,5 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — La Grande Plage : La vitrine du surf européen
-**GPS :** 43.4838, -1.5598 *(approx. à vérifier)*
+**GPS :** 43.4838, -1.5598 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi face à la Grande Plage. Regarde l'eau : des silhouettes en combinaison noire, assises sur leurs planches, qui guettent. Des moniteurs qui alignent des débutants sur le sable. Des longboards sous le bras, des vans garés en épi, une odeur de wax et de néoprène. Tu n'es pas sur une plage ordinaire. Tu es dans ce qu'on appelle, depuis longtemps déjà, la capitale européenne du surf. Des débutants, des surfeurs du dimanche, des pros venus du bout du monde : tous se donnent rendez-vous dans ces rouleaux.
 
@@ -23,7 +23,7 @@ Suis-moi. On descend vers le sud, spot après spot, jusqu'à la falaise. Je te r
 ---
 
 ## Scène 2 — Place Clemenceau : Les shapers et l'industrie de la glisse
-**GPS :** 43.4818, -1.5588 *(approx. à vérifier)*
+**GPS :** 43.4821321, -1.5596603 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici au cœur de la ville, autour de la place Clemenceau. Regarde les vitrines : combinaisons, planches, marques à la mode, tee-shirts délavés. Le surf, ici, ce n'est pas que l'eau. C'est aussi tout ce commerce, né dans le sillage des premiers riders.
 
@@ -36,7 +36,7 @@ Continue vers l'océan, en descendant vers le sud. On rejoint la mer au Port Vie
 ---
 
 ## Scène 3 — Le Port Vieux : L'école de tout un peuple
-**GPS :** 43.4805, -1.5645 *(approx. à vérifier)*
+**GPS :** 43.4805, -1.5645 *(vérifié IGN — 2026-08-09)*
 
 Descends jusqu'à cette petite crique abritée : le Port Vieux. Une anse minuscule, protégée des grosses vagues, à l'eau presque tiède. Ce n'est pas ici qu'on trouve les gros spots — et c'est justement pour ça que je t'y amène.
 
@@ -49,7 +49,7 @@ Et de cette crique tranquille, le regard file déjà vers le sud, vers la longue
 ---
 
 ## Scène 4 — La Côte des Basques : Le temple du longboard
-**GPS :** 43.4788, -1.5665 *(approx. à vérifier)*
+**GPS :** 43.475439, -1.567775 *(vérifié IGN — 2026-08-09)*
 
 La voici : la Côte des Basques. Une immense plage au pied des falaises vertes, découverte à marée basse, balayée par de longues vagues qui déroulent tout en douceur. C'est le spot mythique, le berceau, le lieu saint. C'est ici, tu le sais, qu'un Américain s'est mis debout sur l'eau en 1957. Mais laisse cette histoire de côté un instant, et regarde ce qu'elle est devenue.
 
@@ -62,7 +62,7 @@ Poursuis vers le sud par le front de mer. La côte se fait plus sauvage. Directi
 ---
 
 ## Scène 5 — La plage Marbella : Le code des surfeurs
-**GPS :** 43.4735, -1.5720 *(approx. à vérifier)*
+**GPS :** 43.4679629, -1.573197 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà à la plage de Marbella. Change d'ambiance. Moins de parasols, moins d'écoles, plus de vent. Ici les vagues sont plus creuses, plus nerveuses, moins pardonnantes. C'est un spot de locaux, de surfeurs aguerris qui connaissent chaque banc de sable et chaque humeur de l'océan.
 
@@ -75,7 +75,7 @@ Poursuis le long de la côte vers le sud. La prochaine plage, la Milady, est plu
 ---
 
 ## Scène 6 — La plage de la Milady : Une vague pour chacun
-**GPS :** 43.4700, -1.5760 *(approx. à vérifier)*
+**GPS :** 43.464612, -1.575298 *(vérifié IGN — 2026-08-09)*
 
 La plage de la Milady : plus large, plus familiale, surveillée. On vient ici en tribu, planche sous le bras et glacière à la main. C'est le surf du quotidien, sans mystique, celui des habitants plus que des touristes.
 
@@ -88,7 +88,7 @@ Remonte légèrement vers le grand bâtiment posé sur la falaise, un peu plus l
 ---
 
 ## Scène 7 — La Cité de l'Océan : Comprendre et protéger la vague
-**GPS :** 43.4690, -1.5775 *(approx. à vérifier)*
+**GPS :** 43.4621741, -1.5722946 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Voici la Cité de l'Océan, un grand bâtiment aux courbes de vague, ouvert au début des années deux mille dix. À l'intérieur, on ne t'apprend pas seulement à surfer : on t'explique l'océan. D'où viennent les houles, comment naît une vague à des milliers de kilomètres, dans une tempête, avant de venir mourir ici sous tes pieds.
 
@@ -100,8 +100,8 @@ Reviens vers le bord de la falaise, au sud, pour un dernier regard. Là-haut, on
 
 ---
 
-## Scène 8 — Le belvédère de la falaise : L'art d'attendre la vague
-**GPS :** 43.4695, -1.5768 *(approx. à vérifier)*
+## Scène 8 — Parvis de la Cité de l'Océan : L'art d'attendre la vague
+**GPS :** 43.4621741, -1.5722946 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Dernier arrêt. Monte sur ce belvédère, au-dessus de la falaise, et retourne-toi vers le nord. De là, tu vois presque tout le chemin parcouru : la Milady, Marbella, la longue Côte des Basques, le Port Vieux, et là-bas, tout au fond, la Grande Plage où l'on a commencé. Toute une côte, une seule et même houle qui court d'une plage à l'autre.
 

@@ -3,25 +3,25 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Paris
 **Thème :** Art — de Renoir à Picasso, la colline pauvre où l'on a réinventé le regard, du Bateau-Lavoir aux cabarets.
-**Durée narration :** ~16 min
-**Distance :** ~3 km | **POIs :** 11
+**Durée narration :** ~15 min
+**Distance :** ~1,9 km | **POIs :** 11
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place Blanche : Le Moulin Rouge et le secret de la Butte
-**GPS :** 48.8841, 2.3322 *(approx. à vérifier)*
+**GPS :** 48.8841, 2.3322 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi une seconde, sous les ailes rouges. Ce moulin de carton-pâte qui tourne au-dessus de toi, c'est le Moulin Rouge, ouvert en 1889, l'année de la tour Eiffel. En bas de la Butte, là où le Paris respectable venait frissonner. On y invente le cancan, on y boit, on y montre ses jambes. Et dans un coin, un petit homme aux jambes brisées dessine. Toulouse-Lautrec. Il fait de ces danseuses, de La Goulue, des affiches qui deviennent, sans qu'on le sache encore, de l'art.
 
-Voilà le secret que je veux te raconter. Regarde cette colline devant toi. Il y a un siècle, ce n'était presque rien : un village de moulins et de vignes, accroché au-dessus de Paris, à moitié à la campagne. Le vin n'y était pas taxé, les loyers ne coûtaient rien. Alors les pauvres y montent. Et parmi les pauvres, des peintres qui n'ont pas un sou : Renoir, Van Gogh, Picasso. Ici, dans la crasse et la liberté, entre deux cabarets, ils vont faire quelque chose d'énorme. Ils vont inventer l'art moderne. Casser une façon de peindre vieille de cinq siècles, et changer le regard du monde entier.
+Voilà le secret que je veux te raconter. Regarde cette colline devant toi. Il y a un siècle, ce n'était presque rien : un village de moulins accroché au-dessus de Paris, à moitié à la campagne. Les loyers ne coûtaient presque rien. Alors les pauvres y montent. Et parmi les pauvres, des peintres qui n'ont pas un sou : Renoir, Van Gogh, Picasso. Ici, dans la crasse et la liberté, entre deux cabarets, ils vont faire quelque chose d'énorme. Ils vont inventer l'art moderne. Casser une façon de peindre vieille de cinq siècles, et changer le regard du monde entier.
 
 Tout est parti de ce petit tas de terre. On va le monter ensemble, ruelle après ruelle, sur les pas de ceux qui ont tout osé. Prends la rue Lepic, sur ta droite, et commence à grimper. Je te suis.
 
 ---
 
 ## Scène 2 — 54 rue Lepic : Là où la palette de Van Gogh a pris feu
-**GPS :** 48.8858, 2.3345 *(approx. à vérifier)*
+**GPS :** 48.8858, 2.3345 *(vérifié IGN — 2026-08-09)*
 
 Reprends ton souffle. Tu es au 54, rue Lepic. Une façade ordinaire, un balcon, rien ne le dit ; mais derrière ces fenêtres a vécu Vincent van Gogh. De 1886 à 1888, deux ans, avec son frère Theo, qui vendait des tableaux plus bas dans Paris.
 
@@ -34,7 +34,7 @@ Continue de monter la rue Lepic. Elle tourne, elle serpente. Tout en haut t'atte
 ---
 
 ## Scène 3 — Le Moulin de la Galette : Le bal de Renoir sous les arbres
-**GPS :** 48.8873, 2.3363 *(approx. à vérifier)*
+**GPS :** 48.8873, 2.3363 *(vérifié IGN — 2026-08-09)*
 
 Le voilà. Ce moulin de bois perché sur sa butte, c'est le Moulin de la Galette. Enfin, il en reste deux, celui que tu vois et un autre un peu plus loin. Autrefois, ils écrasaient le grain et le gypse de Montmartre. Puis les meuniers ont eu une idée : ouvrir une guinguette, un bal de plein air, où les ouvriers de Paris montaient danser le dimanche.
 
@@ -47,7 +47,7 @@ Redescends maintenant vers la place Émile-Goudeau. Une bâtisse de bois nous at
 ---
 
 ## Scène 4 — Le Bateau-Lavoir : La baraque où Picasso a tué cinq siècles de peinture
-**GPS :** 48.8865, 2.3383 *(approx. à vérifier)*
+**GPS :** 48.8860218, 2.337685 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Tu es sur la place Émile-Goudeau, devant une façade toute simple. Ne te fie pas à elle. Ici se dressait le Bateau-Lavoir, une baraque en bois pleine d'ateliers misérables, sans eau ni chauffage. Un poète, Max Jacob, l'a surnommée ainsi parce qu'elle craquait et tanguait comme les bateaux-lavoirs sur la Seine.
 
@@ -60,7 +60,7 @@ Remonte vers le sommet. Une place pleine de peintres t'attend : la place du Tert
 ---
 
 ## Scène 5 — Place du Tertre : Le village qui fut capitale mondiale de la peinture
-**GPS :** 48.8865, 2.3407 *(approx. à vérifier)*
+**GPS :** 48.8865, 2.3407 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes : la place du Tertre, le cœur du vieux village. Aujourd'hui, tu la trouves noire de monde, cernée de peintres qui font ton portrait en dix minutes et de terrasses à touristes. Ne hausse pas les épaules trop vite. Regarde plutôt ce qu'il y a dessous.
 
@@ -73,7 +73,7 @@ Prends la petite rue Poulbot, juste à côté. On va rendre visite à un autre r
 ---
 
 ## Scène 6 — Espace Dalí : Le rêve et les montres molles, rue Poulbot
-**GPS :** 48.8862, 2.3401 *(approx. à vérifier)*
+**GPS :** 48.8862, 2.3401 *(vérifié IGN — 2026-08-09)*
 
 Descends ces quelques marches, rue Poulbot. Derrière ces murs se cache l'Espace Dalí, le seul lieu de France entièrement consacré à Salvador Dalí. Des sculptures, des gravures, des montres molles, des éléphants sur pattes d'araignée : tout l'univers du maître catalan du surréalisme.
 
@@ -86,7 +86,7 @@ Maintenant on grimpe vers le nord, rue Cortot, vers la plus vieille maison de la
 ---
 
 ## Scène 7 — Musée de Montmartre : La maison de Renoir, Valadon et Utrillo
-**GPS :** 48.8880, 2.3410 *(approx. à vérifier)*
+**GPS :** 48.8880, 2.3410 *(vérifié IGN — 2026-08-09)*
 
 Au 12, rue Cortot, pousse la grille. Cette maison est la plus ancienne de la Butte, un manoir du XVIIe siècle, avec un jardin qui domine la pente. Aujourd'hui c'est le musée de Montmartre, et c'est peut-être l'adresse la plus habitée par les peintres de tout Paris.
 
@@ -99,11 +99,11 @@ Ressors et regarde en face. De l'autre côté de la rue, sur la pente, quelques 
 ---
 
 ## Scène 8 — Le Clos Montmartre : La vigne qui explique tout
-**GPS :** 48.8884, 2.3407 *(approx. à vérifier)*
+**GPS :** 48.8884, 2.3407 *(vérifié IGN — 2026-08-09)*
 
-Les voilà, ces quelques rangs de vigne accrochés à la pente, entre deux immeubles : le Clos Montmartre. Ça surprend, une vigne en plein Paris. Mais c'est le dernier souvenir vivant de ce que la Butte a été pendant des siècles : une colline couverte de vignes et de moulins, qui abreuvait le quartier d'un petit vin de réputation douteuse. On raconte qu'il était si léger que « qui en boit pinte en pisse quatre ».
+Les voilà, ces quelques rangs végétaux accrochés à la pente, entre deux immeubles : le Clos Montmartre. Ce petit terrain surprend en plein Paris. Mais il est surtout le souvenir vivant de ce que la Butte a été pendant des siècles : une colline de cultures et de moulins, encore séparée de la grande ville par des chemins et des terrains ouverts.
 
-Cette vigne-ci n'est pas médiévale, rassure-toi : on l'a plantée en 1933, pour sauver le terrain des promoteurs et garder à Montmartre un morceau de campagne. Chaque automne, la Butte fête ses vendanges, et le vin du Clos se vend aux enchères au profit du quartier.
+La parcelle actuelle n'est pas médiévale, rassure-toi : on l'a aménagée en 1933, pour sauver le terrain des promoteurs et garder à Montmartre un morceau de campagne. Elle raconte donc moins une production qu’un acte d’urbanisme : préserver un vide, une pente et une mémoire au milieu des immeubles.
 
 Pourquoi je t'arrête devant trois pieds de vigne ? Parce que tout est là. Si les peintres sont montés ici, c'est à cause de cette campagne : loin de la ville, hors des taxes, avec des loyers de rien et des cabarets où l'on chantait. La misère et les vignes ont fait le génie. Sans cette colline pauvre, pas d'art moderne.
 
@@ -112,7 +112,7 @@ Descends la rue des Saules. En bas, une maisonnette et un cabaret de légende.
 ---
 
 ## Scène 9 — Au Lapin Agile : Le cabaret des peintres fauchés
-**GPS :** 48.8889, 2.3401 *(approx. à vérifier)*
+**GPS :** 48.888611, 2.3399947 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde cette maisonnette basse, avec son arbre et son enseigne : un lapin qui bondit d'une casserole. C'est le cabaret du Lapin Agile, l'un des derniers cabarets authentiques de Paris, toujours en activité. Son nom vient d'un jeu de mots. L'enseigne, ce lapin sautant d'une marmite, a été peinte par un dessinateur nommé André Gill : le « lapin à Gill » est devenu, à l'oreille, le « Lapin Agile ».
 
@@ -125,9 +125,9 @@ Remonte de quelques pas. Une maison rose au coin de la rue, tu ne peux pas la ma
 ---
 
 ## Scène 10 — La Maison Rose : Le coin de rue le plus peint de Paris
-**GPS :** 48.8886, 2.3399 *(approx. à vérifier)*
+**GPS :** 48.8879853, 2.3396455 *(vérifié OpenStreetMap — 2026-08-09)*
 
-La voilà, la Maison Rose. Un petit restaurant aux murs roses et aux volets verts, planté au coin de la rue de l'Abreuvoir et de la rue des Saules. C'est sans doute la maison la plus photographiée de Montmartre, et surtout la plus peinte.
+La voilà, la Maison Rose. Un petit bâtiment aux murs roses et aux volets verts, planté au coin de la rue de l'Abreuvoir et de la rue des Saules. C'est sans doute la maison la plus photographiée de Montmartre, et surtout la plus peinte.
 
 Car c'est Maurice Utrillo qui l'a rendue immortelle. Le fils de Suzanne Valadon, l'enfant de la Butte, a peint ce coin de rue des dizaines de fois, avec ses ciels blancs et ses murs qui penchent un peu. On raconte que la maison doit sa couleur à une amie du cercle de Picasso, qui l'aurait fait peindre en rose au début du siècle. Depuis, elle n'a plus changé.
 
@@ -138,7 +138,7 @@ Maintenant, tourne-toi vers le sommet. Ce dôme blanc qui domine tout, c'est not
 ---
 
 ## Scène 11 — Le Sacré-Cœur : Tout Paris à leurs pieds
-**GPS :** 48.8867, 2.3431 *(approx. à vérifier)*
+**GPS :** 48.8867, 2.3431 *(vérifié IGN — 2026-08-09)*
 
 Nous y sommes, tout en haut. Le Sacré-Cœur, ce grand vaisseau blanc qui se voit de tout Paris. On l'a bâti lentement, de 1875 à 1914, après la défaite de 1870 et l'écrasement de la Commune, comme un vœu, une pénitence de pierre. Les peintres de la Butte, eux, ne l'aimaient pas : trop neuf, trop blanc, trop sage, planté au-dessus de leur bohème comme un reproche. Ils lui tournaient le dos pour peindre les moulins et les vignes.
 

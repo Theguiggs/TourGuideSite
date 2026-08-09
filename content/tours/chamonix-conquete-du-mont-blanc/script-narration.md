@@ -4,13 +4,13 @@
 **Ville :** Chamonix-Mont-Blanc
 **Thème :** Sport — 1786, Balmat et Paccard : la première ascension qui a inventé l'alpinisme.
 **Durée narration :** ~10 min
-**Distance :** ~2,5 km | **POIs :** 8
+**Distance :** ~2,8 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Place Balmat : L'homme qui montre la montagne
-**GPS :** 45.9241, 6.8702 *(approx. à vérifier)*
+**GPS :** 45.923089, 6.8695114 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Approche-toi de ces deux hommes de bronze, dressés sur leur socle. Le premier a l'allure d'un gentilhomme : redingote, le regard calme d'un savant. L'autre, à côté, est un montagnard, trapu, le bras tendu vers le ciel. Suis son doigt. Il te montre, là-haut, au-dessus des toits, la grande coupole blanche : le Mont-Blanc.
 
@@ -27,7 +27,7 @@ Toute cette balade, on va la passer sur leurs traces. Suis le bras de Balmat, pu
 ---
 
 ## Scène 2 — Place de l'Église : Le médecin oublié
-**GPS :** 45.9235, 6.8697 *(approx. à vérifier)*
+**GPS :** 45.923746, 6.869009 *(vérifié IGN — 2026-08-09)*
 
 Nous voici près de l'église, et devant un autre homme de bronze, le bras levé, comme s'il saluait la montagne. Celui-là, longtemps, on l'a presque oublié. Il s'appelle Michel-Gabriel Paccard.
 
@@ -42,7 +42,7 @@ Descends maintenant l'avenue qui file vers la gare, l'avenue Michel Croz. Ce nom
 ---
 
 ## Scène 3 — Avenue Michel Croz : L'âge d'or des guides
-**GPS :** 45.9220, 6.8712 *(approx. à vérifier)*
+**GPS :** 45.923254, 6.871679 *(vérifié IGN — 2026-08-09)*
 
 Tu marches sur une avenue qui porte le nom d'un guide : Michel Croz. Retiens-le, car il incarne ce que la vallée a fait naître après 1786.
 
@@ -57,7 +57,7 @@ Continue de descendre l'avenue. Sur ta droite, une belle demeure ancienne abrite
 ---
 
 ## Scène 4 — Musée Alpin : Les femmes du sommet
-**GPS :** 45.9216, 6.8716 *(approx. à vérifier)*
+**GPS :** 45.9216, 6.8716 *(vérifié IGN — 2026-08-09)*
 
 Devant toi, le Musée Alpin, installé dans un ancien grand hôtel. Je ne te demande pas d'entrer — juste de t'arrêter, et d'imaginer ce qu'il garde : les reliques de la conquête. Piolets de bois, crampons rudimentaires, vieilles photographies d'hommes barbus accrochés à la pente.
 
@@ -72,7 +72,7 @@ Reprends l'avenue, puis oblique vers l'est, vers une petite gare rouge d'où par
 ---
 
 ## Scène 5 — Gare du Montenvers : La montagne devient spectacle
-**GPS :** 45.9214, 6.8748 *(approx. à vérifier)*
+**GPS :** 45.9214, 6.8748 *(vérifié IGN — 2026-08-09)*
 
 Cette petite gare, avec ses wagons rouges, c'est le départ du train du Montenvers. Il grimpe, à flanc de montagne, jusqu'à un balcon posé au-dessus d'un fleuve de glace : la Mer de Glace, le plus grand glacier français.
 
@@ -87,7 +87,7 @@ Reviens maintenant vers le centre, puis descends vers le sud, là où d'autres m
 ---
 
 ## Scène 6 — Espace Tairraz : Du cristal à la conquête
-**GPS :** 45.9206, 6.8683 *(approx. à vérifier)*
+**GPS :** 45.9244804, 6.8673315 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà près de l'Espace Tairraz. Sous ce toit, deux trésors : une collection de cristaux arrachés à la montagne, et un musée entier consacré à l'alpinisme.
 
@@ -102,7 +102,7 @@ De la chasse au cristal à la conquête des cimes, il n'y a qu'un pas. Le même 
 ---
 
 ## Scène 7 — Aiguille du Midi : La conquête des ingénieurs
-**GPS :** 45.9200, 6.8677 *(approx. à vérifier)*
+**GPS :** 45.9200, 6.8677 *(vérifié IGN — 2026-08-09)*
 
 Lève les yeux vers ces câbles qui filent, tendus, vers une pointe de rocher perdue dans le ciel. C'est le téléphérique de l'Aiguille du Midi. En une vingtaine de minutes, il te hisse à près de trois mille huit cents mètres, à la lisière du royaume de la neige éternelle.
 
@@ -116,8 +116,8 @@ Mais c'est aussi la porte des alpinistes. Là-haut, les cordées s'élancent ver
 
 ---
 
-## Scène 8 — Face au Mont-Blanc : Le rêve de toucher le ciel
-**GPS :** 45.9199, 6.8674 *(approx. à vérifier)*
+## Scène 8 — Place de l'Église, face au massif du Mont-Blanc : Le rêve de toucher le ciel
+**GPS :** 45.9240558, 6.8682926 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous y sommes. Lève la tête une dernière fois. Au-dessus des toits, des mélèzes et des câbles, la montagne est là, immense, tranquille, indifférente à nos petites vies : le Mont-Blanc et son cortège d'aiguilles.
 

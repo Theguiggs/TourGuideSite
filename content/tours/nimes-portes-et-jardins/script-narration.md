@@ -1,0 +1,74 @@
+# Nîmes — Portes et jardins
+
+**Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
+**Ville :** Nîmes
+**Thème :** Histoire urbaine — suivre les seuils antiques et les promenades qui ont recomposé la ville.
+**Durée narration :** ~8 min
+**Distance :** ~3,2 km | **POIs :** 6
+**Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
+
+---
+
+## Scène 1 — Porte Auguste : Entrer dans Nemausus
+**GPS :** 43.838625, 4.363352 *(vérifié OpenStreetMap — 2026-08-09)*
+
+Devant ces blocs clairs, imagine une porte traversée par la voie Domitienne. La Porte Auguste appartenait à l’enceinte de Nemausus, élevée à la charnière de notre ère. Une inscription, aujourd’hui disparue mais connue par des relevés, associait cette construction à l’empereur Auguste. Quatre passages percent encore le monument : les deux plus larges servaient aux véhicules, les plus étroits aux piétons.
+
+Ce dispositif ne marquait pas seulement une défense. Il organisait les flux et mettait en scène l’entrée dans une cité romaine importante. Regarde les amorces de tours rondes sur les côtés. Puis observe la rue actuelle qui traverse le secteur : près de deux mille ans après, la logique du passage demeure lisible sous la circulation moderne.
+
+Notre fil rouge suivra ces seuils. Certaines portes sont encore debout, d’autres ont disparu mais continuent de guider les rues. Les jardins, eux, montreront comment Nîmes a transformé une source antique en promenade publique. Pars vers le sud-ouest par le boulevard Amiral-Courbet et l’esplanade. Tu vas rejoindre une seconde porte romaine, plus modeste, mais placée sur un autre axe essentiel de la ville.
+
+---
+
+## Scène 2 — Porte de France : Le passage vers le sud
+**GPS :** 43.832673, 4.357769 *(vérifié OpenStreetMap — 2026-08-09)*
+
+La Porte de France se résume aujourd’hui à une large baie cintrée, encadrée de maçonnerie antique. Son apparente simplicité trompe un peu : elle faisait partie du même rempart que la Porte Auguste et ouvrait la cité vers le sud. Des vestiges de tours latérales ont été repérés, confirmant que le passage appartenait à un ensemble plus développé que l’arche visible.
+
+Approche sans franchir les protections. Les pierres portent les traces d’une longue réutilisation urbaine. Après la disparition de sa fonction défensive, la porte a été absorbée par le quartier, entourée de bâtiments, puis dégagée. Elle raconte ainsi deux histoires à la fois : celle de l’enceinte romaine et celle d’une ville qui bâtit sur ses propres limites.
+
+En repartant vers les Arènes, mesure la faible distance qui séparait ce seuil du cœur monumental. Nemausus n’était pas une abstraction enfouie sous Nîmes ; son plan continue d’affleurer dans les rues. Contourne l’amphithéâtre par l’espace public et gagne l’esplanade Charles-de-Gaulle. Tu quitteras les portes pour une promenade créée bien plus tard, lorsque la ville commence à ouvrir et ordonner ses abords.
+
+---
+
+## Scène 3 — Esplanade Charles-de-Gaulle : Une ville mise en perspective
+**GPS :** 43.834929, 4.362551 *(vérifié IGN — 2026-08-09)*
+
+L’esplanade dégage devant toi une perspective que le centre ancien offre rarement. Elle fut aménagée hors des vieux remparts et plusieurs fois transformée. Au XIXe siècle, l’arrivée du chemin de fer renforce cet axe : depuis la gare, le voyageur entre dans Nîmes par une suite d’espaces ouverts qui conduit vers les Arènes et le cœur de la ville.
+
+Au centre, la fontaine Pradier rassemble des figures allégoriques en marbre. Inaugurée en 1851, elle place Nîmes au milieu de représentations de cours d’eau liés à son territoire. Observe comment le monument sert de pivot plutôt que de barrière. Les allées passent autour de lui et distribuent le regard vers les façades, la gare et l’amphithéâtre.
+
+Cette esplanade constitue une porte sans mur : un seuil composé par la perspective, les plantations et la circulation. Elle révèle une nouvelle manière de fabriquer la ville, fondée sur l’accueil et la promenade publique. Rejoins maintenant la Maison Carrée en suivant les boulevards puis la rue de l’Horloge. Tu vas retrouver l’Antiquité, mais dans un espace que les siècles récents ont volontairement dégagé pour lui redonner de la présence.
+
+---
+
+## Scène 4 — Maison Carrée : Le forum rendu à la lumière
+**GPS :** 43.838191, 4.356132 *(vérifié OpenStreetMap — 2026-08-09)*
+
+La Maison Carrée se dresse sur un podium élevé, face à l’ancien Carré d’Art. Ce temple romain du début de notre ère appartenait au forum de Nemausus. Il était dédié aux princes Caius et Lucius César, petits-fils et héritiers adoptifs d’Auguste. Sa conservation exceptionnelle tient en partie à ses nombreux usages après l’Antiquité : habitation, église, lieu de réunion, dépôt d’archives.
+
+Regarde les colonnes libres du portique, puis celles qui restent engagées dans les murs latéraux. Le bâtiment commande l’espace par sa façade et son escalier frontal. On n’y entrait pas de tous côtés : l’architecture impose une direction, presque une cérémonie du seuil. La place actuelle a été recomposée pour rendre ce geste plus lisible et établir un dialogue entre le temple et l’architecture contemporaine qui lui fait face.
+
+Poursuis par la rue Racine puis le quai de la Fontaine. L’eau va désormais guider tes pas. Elle conduit à un jardin du XVIIIe siècle installé autour d’un sanctuaire beaucoup plus ancien. Là, Nîmes ne se contente plus de préserver un monument : elle transforme un paysage archéologique entier en promenade.
+
+---
+
+## Scène 5 — Jardins de la Fontaine : La source devient promenade
+**GPS :** 43.841431, 4.349731 *(vérifié OpenStreetMap — 2026-08-09)*
+
+Les Jardins de la Fontaine furent aménagés au XVIIIe siècle autour de la source qui donna naissance à la ville. Les travaux, dirigés par Jacques-Philippe Mareschal, mettent au jour et intègrent des vestiges antiques. Bassins, balustrades, escaliers et alignements composent ainsi un jardin régulier où l’eau et l’archéologie partagent la même scène.
+
+Au bord du bassin, cherche le nymphée antique et le temple que l’on appelle, par tradition, temple de Diane. Sa fonction exacte demeure discutée ; mieux vaut écouter cette incertitude que lui inventer un récit. Ce qui est certain, c’est l’importance du sanctuaire de la source dans la Nemausus romaine. La promenade moderne s’est construite autour de cette mémoire enfouie.
+
+Monte ensuite progressivement vers la partie haute du jardin. Les allées deviennent plus sinueuses et la pente remplace la symétrie. Ce passage du bassin à la colline résume notre parcours : l’eau, les portes et les monuments déterminent des directions que chaque époque réinterprète. Suis les chemins publics jusqu’à la Tour Magne. Sa silhouette dominait déjà l’enceinte romaine ; elle sera notre dernier repère et notre vue d’ensemble.
+
+---
+
+## Scène 6 — Tour Magne : Les limites visibles depuis la colline
+**GPS :** 43.843075, 4.349468 *(vérifié OpenStreetMap — 2026-08-09)*
+
+La Tour Magne occupe le point haut du mont Cavalier. Les Romains ont enveloppé et agrandi une tour plus ancienne, probablement gauloise, pour l’intégrer au rempart augustéen. Sa masse signalait Nemausus de loin et surveillait les voies d’approche. Même privée de sa partie supérieure, elle conserve cette puissance de repère.
+
+Depuis les abords publics, retourne mentalement au début de la marche. La Porte Auguste contrôlait la voie Domitienne ; la Porte de France ouvrait vers le sud ; l’esplanade moderne accueillait les voyageurs arrivés par le train. Plus bas, la source des Jardins rappelle que la ville s’est d’abord fixée autour de l’eau. Les seuils nîmois ne sont donc pas seulement des arches. Ce sont des manières successives d’entrer, de circuler et de se situer.
+
+La hauteur relie enfin ces fragments. Elle montre une cité romaine devenue ville contemporaine sans effacer complètement ses lignes anciennes. Quand tu redescendras, observe comment chaque rue cadre brièvement la tour, un jardin ou une façade. Tu sauras reconnaître ces portes invisibles. Merci d’avoir suivi ce dessin urbain avec moi. À bientôt pour une autre promenade.

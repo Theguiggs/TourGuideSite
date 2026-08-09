@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Avignon
 **Thème :** Art — Jean Vilar, 1947 : la cité des papes devenue la plus grande scène du monde.
-**Durée narration :** ~12 min
-**Distance :** ~2 km | **POIs :** 8
+**Durée narration :** ~11 min
+**Distance :** ~4,2 km | **POIs :** 8
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Cour d'Honneur du Palais des Papes : 1947, un plateau sous les étoiles
-**GPS :** 43.9508, 4.8083 *(approx. à vérifier)*
+**GPS :** 43.9508, 4.8083 *(vérifié IGN — 2026-08-09)*
 
 Entre dans la grande cour du palais des papes, et arrête-toi au centre. Autour de toi, quatre murs de pierre nue qui montent vers le ciel. En temps normal, c'est le silence et l'écho de tes pas. Mais chaque été, en juillet, on dresse ici un plateau de bois, on aligne des gradins, et cette cour devient la plus célèbre scène de théâtre du monde.
 
@@ -25,7 +25,7 @@ Voilà mon fil rouge : comment la cité des papes est devenue, un été, la capi
 ---
 
 ## Scène 2 — Maison Jean Vilar : L'homme au pull noir
-**GPS :** 43.9505, 4.8072 *(approx. à vérifier)*
+**GPS :** 43.9505, 4.8072 *(vérifié IGN — 2026-08-09)*
 
 À quelques pas du palais, dans une belle demeure ancienne, se cache la mémoire de tout ça : la Maison Jean Vilar. On y garde les archives du Festival — les affiches, les costumes, les enregistrements, les photos. C'est ici que l'histoire se range et se raconte.
 
@@ -40,7 +40,7 @@ Redescends vers la grande place de la ville, celle du théâtre municipal. Deux 
 ---
 
 ## Scène 3 — Place de l'Horloge : Le In et le Off
-**GPS :** 43.9496, 4.8069 *(approx. à vérifier)*
+**GPS :** 43.9493459, 4.8062047 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Nous voici place de l'Horloge, le grand salon d'Avignon. Regarde ce bâtiment à colonnes, avec ses deux statues sur la façade : c'est l'Opéra, le théâtre de la ville, bâti au milieu du XIXᵉ siècle. Les deux hommes de pierre qui montent la garde, ce sont Molière et Corneille — le théâtre veille sur la place.
 
@@ -55,7 +55,7 @@ Descends la rue qui part vers l'ouest. Je t'emmène voir un autre visage de l'ar
 ---
 
 ## Scène 4 — Musée Calvet : Le legs d'un médecin curieux
-**GPS :** 43.9482, 4.8046 *(approx. à vérifier)*
+**GPS :** 43.9482, 4.8046 *(vérifié IGN — 2026-08-09)*
 
 Pousse la porte de cet hôtel particulier du XVIIIᵉ siècle, avec sa cour et son jardin : c'est le musée Calvet. Un des plus beaux musées de la ville, et l'un des plus discrets.
 
@@ -70,7 +70,7 @@ En ressortant, remonte un peu la rue et prends à droite. À deux pas t'attend u
 ---
 
 ## Scène 5 — Musée Angladon : Le seul Van Gogh de Provence
-**GPS :** 43.9479, 4.8058 *(approx. à vérifier)*
+**GPS :** 43.9479, 4.8058 *(vérifié IGN — 2026-08-09)*
 
 Ce musée-ci est tout petit. On peut le visiter en une demi-heure. Et pourtant, il contient quelque chose d'unique dans toute la Provence.
 
@@ -87,7 +87,7 @@ Continue vers le sud. Un peu plus loin, un ancien collège abrite l'art le plus 
 ---
 
 ## Scène 6 — Collection Lambert : L'art d'aujourd'hui dans les murs d'hier
-**GPS :** 43.9463, 4.8055 *(approx. à vérifier)*
+**GPS :** 43.9463, 4.8055 *(vérifié IGN — 2026-08-09)*
 
 Nous changeons complètement d'époque. Cette collection-là, installée dans deux hôtels particuliers du XVIIIᵉ siècle, ne montre que de l'art contemporain — celui qui se fait maintenant, sous nos yeux.
 
@@ -102,7 +102,7 @@ Reprends ta marche vers le sud de la vieille ville. Je t'emmène voir la maison 
 ---
 
 ## Scène 7 — La FabricA : L'atelier caché
-**GPS :** 43.9453, 4.8062 *(approx. à vérifier)*
+**GPS :** 43.9356713, 4.795551 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde ce grand bâtiment moderne, presque austère, planté dans un quartier tranquille, loin des foules. On l'appelle la FabricA. Et c'est ici, à l'abri des regards, que le Festival se prépare.
 
@@ -117,7 +117,7 @@ Encore quelques pas vers le nord-est, jusqu'à une place ombragée bordée de te
 ---
 
 ## Scène 8 — Cloître des Célestins : La ville rendue au théâtre
-**GPS :** 43.9461, 4.8065 *(approx. à vérifier)*
+**GPS :** 43.9461, 4.8065 *(vérifié IGN — 2026-08-09)*
 
 Arrête-toi sur cette place tranquille, à l'ombre des grands arbres, devant ce cloître de pierre au fond. Le cloître des Célestins : un ancien couvent gothique, silencieux onze mois sur douze. Mais en juillet, on y monte un plateau, et l'un des théâtres du Festival s'installe là, entre ces vieilles arcades.
 

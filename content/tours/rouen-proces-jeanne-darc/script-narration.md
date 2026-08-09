@@ -4,13 +4,13 @@
 **Ville :** Rouen
 **Thème :** Histoire & secrets — 1431, place du Vieux-Marché : le procès qui a fait une sainte et hanté une ville.
 **Durée narration :** ~13 min
-**Distance :** ~2,5 km | **POIs :** 9
+**Distance :** ~2,6 km | **POIs :** 9
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
 ## Scène 1 — Tour Jeanne-d'Arc : La prisonnière de Noël
-**GPS :** 49.4462, 1.0955 *(approx. à vérifier)*
+**GPS :** 49.4464677, 1.0943946 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi devant cette grosse tour ronde, coiffée d'ardoise. C'est tout ce qui reste du château que Philippe Auguste a planté ici quand il a pris la Normandie aux rois d'Angleterre. Et c'est dans ce château, à Noël 1430, qu'on enferme une fille de dix-huit ans, vendue par ses ravisseurs pour une rançon de roi. Jeanne d'Arc.
 
@@ -25,7 +25,7 @@ Descends vers le sud, en direction de la grande abbatiale. Six minutes de marche
 ---
 
 ## Scène 2 — Abbatiale Saint-Ouen : Le jour où elle a cédé
-**GPS :** 49.4434, 1.0993 *(approx. à vérifier)*
+**GPS :** 49.4425208, 1.0997385 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Cette église immense, c'est Saint-Ouen, l'abbatiale d'un des plus puissants monastères de Normandie. Le 24 mai 1431, dans le cimetière qui la borde, on dresse deux estrades face à face. Sur l'une, les juges, les prélats, les notables. Sur l'autre, Jeanne, seule, épuisée par trois mois d'interrogatoires.
 
@@ -42,7 +42,7 @@ Continue vers le sud, par les petites rues. Dans six minutes, un endroit que peu
 ---
 
 ## Scène 3 — Aître Saint-Maclou : La ville qui vivait avec la mort
-**GPS :** 49.4399, 1.1010 *(approx. à vérifier)*
+**GPS :** 49.4402647, 1.0998461 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Pousse le porche du 186, rue Martainville. Tu débouches dans une cour paisible, entourée de galeries à colombages. Lève les yeux vers les poutres : des crânes, des tibias, des pelles de fossoyeur, des cercueils sculptés dans le bois. Bienvenue à l'aître Saint-Maclou, l'un des derniers cimetières à charniers d'Europe.
 
@@ -55,7 +55,7 @@ Ressors et remonte vers l'ouest. Six minutes, et je te présente la rue des juge
 ---
 
 ## Scène 4 — Rue Saint-Romain : La rue des juges
-**GPS :** 49.4406, 1.0955 *(approx. à vérifier)*
+**GPS :** 49.4404855, 1.0959441 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà rue Saint-Romain, la rue des chanoines. Au bout, la cathédrale monte comme une falaise — Monet l'a peinte et repeinte, mais c'est une autre visite qui te racontera ça. Sur ta gauche, le palais de l'archevêque. C'est dans ces murs et dans la chapelle du château que le procès se déroule, de février à mai 1431.
 
@@ -68,7 +68,7 @@ Descends la ruelle vers la droite, trois minutes. Je dois te montrer l'ironie la
 ---
 
 ## Scène 5 — Place de la Haute-Vieille-Tour : La ville qui graciait un condamné par an
-**GPS :** 49.4394, 1.0938 *(approx. à vérifier)*
+**GPS :** 49.4385622, 1.0948995 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Ce petit pavillon de pierre, au milieu de la place, c'est la chapelle de la Fierte Saint-Romain. Et il abrite le secret le plus étrange de Rouen.
 
@@ -83,7 +83,7 @@ Remonte vers le nord. Tu passeras sous une voûte au cadran d'or — elle mérit
 ---
 
 ## Scène 6 — Palais de Justice : Les strates de la justice
-**GPS :** 49.4427, 1.0921 *(approx. à vérifier)*
+**GPS :** 49.4423104, 1.0918313 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Regarde cette façade hérissée de pinacles, de gargouilles, de dentelle de pierre. Le Palais de Justice, commencé vers 1499 pour l'Échiquier de Normandie, devenu Parlement. Pendant trois siècles, on a jugé ici tout le duché — au nom du roi de France, cette fois.
 
@@ -98,7 +98,7 @@ Cinq minutes vers l'ouest, jusqu'à une place qui porte un surnom.
 ---
 
 ## Scène 7 — Place de la Pucelle : Le procès du procès
-**GPS :** 49.4426, 1.0871 *(approx. à vérifier)*
+**GPS :** 49.442149, 1.0886001 *(vérifié OpenStreetMap — 2026-08-09)*
 
 La Pucelle. Pas de nom, pas de prénom : le surnom de Jeanne suffit, et cette place le porte depuis des générations. Car son histoire ne s'arrête pas au bûcher — il y a eu un second procès. Le procès du procès.
 
@@ -111,7 +111,7 @@ Encore deux minutes vers la grande place, juste là. Il est temps d'affronter le
 ---
 
 ## Scène 8 — Place du Vieux-Marché : Le 30 mai 1431
-**GPS :** 49.4433, 1.0884 *(approx. à vérifier)*
+**GPS :** 49.4433, 1.0884 *(vérifié OpenStreetMap — 2026-08-09)*
 
 C'est ici. Au sol, un dallage et un jardin marquent l'emplacement du bûcher ; à côté, tu devines les fondations de l'église Saint-Sauveur, qui bordait la place ce matin-là.
 
@@ -126,7 +126,7 @@ Tourne-toi vers cette étrange toiture grise, à quelques pas. La fin de l'histo
 ---
 
 ## Scène 9 — Église Sainte-Jeanne-d'Arc : Ce que la ville en a fait
-**GPS :** 49.4434, 1.0888 *(approx. à vérifier)*
+**GPS :** 49.4434, 1.0888 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Approche-toi de cette église posée au ras de la place. Née en 1979, dessinée par Louis Arretche. Regarde bien sa toiture : certains y voient des flammes figées, d'autres une coque de navire retournée — le bûcher et la Seine, réconciliés dans le même geste.
 
@@ -136,4 +136,4 @@ Entre, si c'est ouvert. Tout un mur de l'église est une verrière Renaissance �
 
 Dehors, la grande croix de la Réhabilitation monte au-dessus de l'emplacement du bûcher. Entre la croix et cette toiture en forme de flamme, la ville hantée a fini par faire la paix.
 
-Voilà. Tu as marché sur les cinq derniers mois d'une vie, et sur six siècles de mémoire. Prends le temps d'un café sur la place — les Rouennais vivent ici, tranquilles, au-dessus de l'histoire. C'était Rouen, c'était Jeanne. Prends soin de toi, et à bientôt pour une autre balade.
+Voilà. Tu as marché sur les cinq derniers mois d'une vie, et sur six siècles de mémoire. Reste un instant sur la place — les Rouennais vivent ici, tranquilles, au-dessus de l'histoire. C'était Rouen, c'était Jeanne. Prends soin de toi, et à bientôt pour une autre balade.

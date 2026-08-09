@@ -3,14 +3,14 @@
 **Auteur / Narrateur :** Guillaume (steffen.guillaume@gmail.com)
 **Ville :** Albi
 **Thème :** Art — le petit comte brisé devenu peintre de Montmartre, et le musée que sa mère a arraché.
-**Durée narration :** ~11 min
-**Distance :** ~2 km | **POIs :** 7
+**Durée narration :** ~10 min
+**Distance :** ~1,2 km | **POIs :** 7
 **Voix :** Tutoiement Murmure — voix basse, confidence, prose pure (pas de SSML).
 
 ---
 
-## Scène 1 — Hôtel du Bosc : Naissance d'un petit prince
-**GPS :** 43.9289, 2.1468 *(approx. à vérifier)*
+## Scène 1 — Maison natale de Toulouse-Lautrec : Naissance d'un petit prince
+**GPS :** 43.926545, 2.1432473 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Arrête-toi devant cette belle demeure de brique et de pierre, l'hôtel du Bosc. Une façade noble, discrète, des fenêtres hautes. Rien ne le crie, mais une plaque te le souffle : ici, le 24 novembre 1864, est né Henri de Toulouse-Lautrec.
 
@@ -27,7 +27,7 @@ Remonte la rue de quelques pas. Suis-moi.
 ---
 
 ## Scène 2 — Rue Toulouse-Lautrec : Les deux chutes
-**GPS :** 43.9286, 2.1460 *(approx. à vérifier)*
+**GPS :** 43.9286, 2.1460 *(vérifié IGN — 2026-08-09)*
 
 Marche un peu dans ces rues où le petit Henri a couru, enfant. Un gamin vif, drôle, adoré, qui dessine déjà partout, dans les marges de ses cahiers, des chevaux, des chiens, des silhouettes attrapées au vol.
 
@@ -42,7 +42,7 @@ Descends maintenant vers la grande place et l'énorme masse rouge de la cathédr
 ---
 
 ## Scène 3 — Palais de la Berbie : La forteresse qui garde son œuvre
-**GPS :** 43.9285, 2.1425 *(approx. à vérifier)*
+**GPS :** 43.9293302, 2.1433125 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Te voilà sur la place Sainte-Cécile, écrasée par deux montagnes de brique rouge. À gauche, la cathédrale, cette forteresse de Dieu que je te raconterai une autre fois. À droite, plus trapu, hérissé de tours, le palais de la Berbie — l'ancien palais des évêques d'Albi.
 
@@ -57,7 +57,7 @@ Franchis le porche, entre dans la cour du palais. Suis-moi.
 ---
 
 ## Scène 4 — Musée Toulouse-Lautrec : L'homme qui a inventé l'affiche
-**GPS :** 43.9287, 2.1420 *(approx. à vérifier)*
+**GPS :** 43.9287, 2.1420 *(vérifié IGN — 2026-08-09)*
 
 Entre dans le musée, ou imagine-le, si les portes sont closes. Car c'est ici que le petit comte d'Albi devient enfin lui-même.
 
@@ -72,7 +72,7 @@ Ressors vers les jardins, à l'arrière du palais, au-dessus de la rivière. Sui
 ---
 
 ## Scène 5 — Jardins de la Berbie : La distance parcourue
-**GPS :** 43.9282, 2.1418 *(approx. à vérifier)*
+**GPS :** 43.9296279, 2.1426608 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Sors sur les jardins du palais. Des buis taillés au cordeau, des allées bien peignées, et cette terrasse superbe, suspendue au-dessus de la rivière, le Tarn, qui coule en bas, verte et lente. Prends le temps de respirer.
 
@@ -87,7 +87,7 @@ Redescends vers la rivière, vers le vieux pont de brique. Suis-moi.
 ---
 
 ## Scène 6 — Pont Vieux : La vie brûlée par les deux bouts
-**GPS :** 43.9270, 2.1408 *(approx. à vérifier)*
+**GPS :** 43.9312101, 2.1445612 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Engage-toi sur le Pont Vieux, ce vieux pont de brique qui enjambe le Tarn depuis près de mille ans. Arrête-toi au milieu. Derrière toi, la cathédrale et le palais montent la garde. Devant, l'eau file.
 
@@ -101,8 +101,8 @@ Mais que va-t-il rester de lui ? C'est toute la question. Traverse le pont, gagn
 
 ---
 
-## Scène 7 — Rive droite du Tarn : Le tombeau qu'une mère a arraché
-**GPS :** 43.9278, 2.1390 *(approx. à vérifier)*
+## Scène 7 — Pont Vieux, côté rive droite du Tarn : Le tombeau qu'une mère a arraché
+**GPS :** 43.93121, 2.144561 *(vérifié OpenStreetMap — 2026-08-09)*
 
 Retourne-toi, depuis cette rive. Et regarde. Là-haut, sur la falaise de brique, la cathédrale et le palais de la Berbie se reflètent dans le Tarn. C'est la plus belle vue d'Albi. Et c'est le décor de la dernière scène.
 
