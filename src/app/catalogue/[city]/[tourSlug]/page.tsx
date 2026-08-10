@@ -16,6 +16,7 @@ import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
 import SmartAppLink from '@/components/SmartAppLink';
 import TourPurchaseCard from '@/components/checkout/tour-purchase-card';
+import { AiDisclosureBadge } from '@/components/catalogue/ai-disclosure-badge';
 import { S3Image } from '@/components/studio/s3-image';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { isTourFree } from '@/lib/catalogue/tour-pricing';
@@ -596,6 +597,8 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                   >
                     {copy.download}
                   </p>
+
+                  <AiDisclosureBadge tourId={tour.id} locale={locale} detailed />
 
                   <SmartAppLink
                     tourId={tour.id}

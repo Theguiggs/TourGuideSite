@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { S3Image } from '@/components/studio/s3-image';
 import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
+import { AiDisclosureBadge } from '@/components/catalogue/ai-disclosure-badge';
 import type { Tour } from '@/types/tour';
 
 const LANG_FLAGS: Record<string, string> = {
@@ -116,6 +117,7 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <h2 className="text-xl font-semibold text-ink">{tour.title}</h2>
                         <TourPriceBadge tour={tour} locale={locale} />
+                        <AiDisclosureBadge tourId={tour.id} locale={locale} />
                         {tour.availableLanguages && tour.availableLanguages.length > 0 && (
                           <div className="inline-flex gap-1 items-center" data-testid={`lang-flags-${tour.id}`}>
                             {tour.availableLanguages.slice(0, 5).map((lang) => {

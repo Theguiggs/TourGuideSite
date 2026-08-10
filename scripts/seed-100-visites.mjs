@@ -40,7 +40,6 @@ const ENV = getOpt('env', process.env.AMPLIFY_ENV || 'NONE');
 const REGION = getOpt('region', process.env.AWS_REGION || 'us-east-1');
 const CONFIRM = hasFlag('--confirm');
 const CLEAN = hasFlag('--clean');
-const PRICE_CENTS = parseInt(getOpt('price', '999'), 10);
 const SEED_PREFIX = 'seed-100-';
 const DRY_RUN = !APP_ID || !CONFIRM;
 
@@ -88,6 +87,21 @@ export const SLUGS = [
   'albi-toulouse-lautrec','albi-cite-episcopale',
   'nimes-rome-francaise','nimes-portes-et-jardins','cassis-port-falaises-et-calanques',
 ];
+
+// Parcours vitrines accessibles sans abonnement. Tous les autres parcours de
+// cette collection sont inclus dans l'abonnement Murmure.
+export const FREE_SLUGS = new Set([
+  'paris-montmartre-des-peintres',
+  'lyon-presquile-places-et-passages',
+  'marseille-quais-et-forts-du-vieux-port',
+  'bordeaux-pierre-et-mascarons',
+  'nice-places-et-ruelles-du-vieux-nice',
+  'toulouse-capitole-et-siecles-d-or',
+  'strasbourg-quais-et-ponts-de-lill',
+  'saint-malo-remparts-plages-et-marees',
+  'biarritz-ocean-et-belvederes',
+  'mont-saint-michel-remparts-et-baie',
+]);
 
 // ── Parsing (identique à seed-villes-bankable.mjs) ──
 function durationToMinutes(s) {
@@ -158,7 +172,8 @@ export function buildRecords(tours) {
       sessionId, availableLanguages: ['fr'],
       languageAudioTypes: JSON.stringify({ fr: 'tts' }),
       coverPhotoKey: `guide-photos/${tourId}/cover.jpg`,
-      priceCents: PRICE_CENTS, purchaseType: 'paid',
+      purchaseType: FREE_SLUGS.has(t.slug) ? 'free' : 'subscription_only',
+      developedByAI: true,
       createdAt: now, updatedAt: now, __typename: 'GuideTour',
     });
 
