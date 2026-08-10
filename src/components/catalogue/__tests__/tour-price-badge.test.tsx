@@ -51,6 +51,13 @@ describe('<TourPriceBadge>', () => {
     expect(screen.getByTestId('badge-price-b')).toHaveTextContent('12,50 €');
   });
 
+  it('labels a subscription-only tour', () => {
+    render(<TourPriceBadge tour={tour({ id: 'sub', purchaseType: 'subscription_only' })} />);
+    expect(screen.getByTestId('badge-subscription-sub')).toHaveTextContent(
+      'INCLUS DANS L’ABONNEMENT',
+    );
+  });
+
   it('renders nothing for a paid tour without a price', () => {
     const { container } = render(
       <TourPriceBadge tour={tour({ id: 'c', purchaseType: 'paid' })} />,

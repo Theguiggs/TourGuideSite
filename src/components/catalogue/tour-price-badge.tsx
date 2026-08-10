@@ -40,6 +40,16 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
       </span>
     );
   }
+  if (tour.purchaseType === 'subscription_only') {
+    return (
+      <span
+        data-testid={`badge-subscription-${tour.id}`}
+        className="bg-ocre-soft text-ocre text-xs font-bold px-2 py-0.5 rounded-full"
+      >
+        {locale === 'en' ? 'INCLUDED WITH SUBSCRIPTION' : 'INCLUS DANS L’ABONNEMENT'}
+      </span>
+    );
+  }
   if (tour.priceCents) {
     return (
       <span

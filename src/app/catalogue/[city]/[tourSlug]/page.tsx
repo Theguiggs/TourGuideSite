@@ -289,6 +289,24 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                     {copy.free}
                   </span>
                 )}
+                {tour.purchaseType === 'subscription_only' && (
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '6px 12px',
+                      borderRadius: tg.radius.pill,
+                      background: tg.colors.ocreSoft,
+                      color: tg.colors.ocre,
+                      fontFamily: tg.fonts.sans,
+                      fontSize: tg.fontSize.meta,
+                      fontWeight: 700,
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {locale === 'en' ? 'INCLUDED WITH SUBSCRIPTION' : 'INCLUS DANS L’ABONNEMENT'}
+                  </span>
+                )}
               </div>
 
               <PullQuote size="md" style={{ marginBottom: tg.space[6], maxWidth: 640 }}>
