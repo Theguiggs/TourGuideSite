@@ -13,7 +13,7 @@ jest.mock('../appsync-server-public', () => ({
 }));
 
 import * as publicApi from '../appsync-server-public';
-import { getAllToursWithCoords, getTourBySlug } from '../tours-server';
+import { getAllToursWithCoords, getTourBySlug, getToursByCity } from '../tours-server';
 
 const tour = {
   id: 'tour-1',
@@ -71,6 +71,16 @@ describe('published tour SSR mappings', () => {
     });
     await expect(getAllToursWithCoords()).resolves.toEqual([
       expect.objectContaining({ id: 'tour-1', latitude: 43.7, longitude: 7.2 }),
+    ]);
+  });
+
+  it('uses the approved languages persisted on GuideTour during SSR', async () => {
+    jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([
+      { ...tour, availableLanguages: ['fr', 'en', 'es', 'de', 'it'] },
+    ] as never);
+
+    await expect(getToursByCity('nice')).resolves.toEqual([
+      expect.objectContaining({ availableLanguages: ['fr', 'en', 'es', 'de', 'it'] }),
     ]);
   });
 

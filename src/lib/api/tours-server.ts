@@ -74,6 +74,19 @@ async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise
   const sessionId = tour.sessionId as string | undefined;
   const sourceLang = (tour.language as string) ?? 'fr';
 
+  // Language approval persists the consumer-facing list directly on GuideTour.
+  // Prefer that authoritative value before the process-local cache or the
+  // legacy DynamoDB fallback. The production web container intentionally has
+  // no direct DynamoDB credentials, so ignoring this field made every approved
+  // multilingual tour silently fall back to French only.
+  const persistedLanguages = Array.isArray(tour.availableLanguages)
+    ? tour.availableLanguages.filter(
+        (language): language is string => typeof language === 'string' && language.length > 0,
+      )
+    : [];
+  const persisted = [...new Set([sourceLang, ...persistedLanguages])];
+  if (persisted.length > 1) return persisted;
+
   if (_availableLangsCache?.has(tourId)) return _availableLangsCache.get(tourId)!;
   if (!sessionId) return [sourceLang];
 
