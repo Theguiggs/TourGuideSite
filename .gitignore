@@ -40,8 +40,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Amplify backend outputs (generated — copy from ../TourGuide/amplify_outputs.json)
-amplify_outputs.json
+# Amplify backend outputs.
+# NOTE : amplify_outputs.json est VOLONTAIREMENT SUIVI par git (le VPS de prod le
+# récupère via `git clone` + `COPY . .` dans Dockerfile.web). Il ne contient aucun
+# secret — configuration client publique, déjà embarquée dans l'APK.
+# Le recopier depuis TourGuideApp/ après chaque redéploiement du backend, et committer.
+# Ne pas le ré-ignorer ici : la ligne n'aurait aucun effet sur un fichier déjà suivi,
+# elle ne ferait que laisser croire qu'il n'est pas versionné.
 
 # Playwright
 e2e/.auth/

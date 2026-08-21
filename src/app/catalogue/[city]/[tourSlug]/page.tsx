@@ -16,6 +16,7 @@ import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
 import SmartAppLink from '@/components/SmartAppLink';
 import TourPurchaseCard from '@/components/checkout/tour-purchase-card';
+import ForfaitPurchaseCard from '@/components/checkout/forfait-purchase-card';
 import { AiDisclosureBadge } from '@/components/catalogue/ai-disclosure-badge';
 import { S3Image } from '@/components/studio/s3-image';
 import { AnalyticsEvents } from '@/lib/analytics';
@@ -636,6 +637,13 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                       priceCents={tour.priceCents}
                       locale={locale}
                     />
+                  )}
+
+                  {/* Forfait « visites IA » — les visites incluses affichaient leur
+                      statut sans aucun moyen d'acheter : c'est ici que l'intention
+                      d'achat est la plus forte. */}
+                  {tour.purchaseType === 'subscription_only' && (
+                    <ForfaitPurchaseCard locale={locale} />
                   )}
 
                   <div
