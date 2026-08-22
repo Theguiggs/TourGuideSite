@@ -1,9 +1,9 @@
 {
   "auth": {
-    "user_pool_id": "us-east-1_AbgsYCrsv",
+    "user_pool_id": "us-east-1_6LLCychLP",
     "aws_region": "us-east-1",
-    "user_pool_client_id": "642km9jkdicm34qs25pmdgqtl",
-    "identity_pool_id": "us-east-1:c54ba4a1-b86c-4d0b-8979-b04e5e3bb274",
+    "user_pool_client_id": "12le9tggg5o36ud050bcrb75uk",
+    "identity_pool_id": "us-east-1:ffb33b7c-189d-4d67-be33-2b8aec288844",
     "mfa_methods": [],
     "standard_required_attributes": [
       "email"
@@ -26,7 +26,7 @@
     "unauthenticated_identities_enabled": true
   },
   "data": {
-    "url": "https://gh4srboqrzhklloscjikd6yqoy.appsync-api.us-east-1.amazonaws.com/graphql",
+    "url": "https://ncwhqefs5rhhbpwz76xiw3qfle.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_region": "us-east-1",
     "default_authorization_type": "AWS_IAM",
     "authorization_types": [
@@ -379,6 +379,34 @@
               "type": {
                 "enum": "GuideTourPurchaseType"
               },
+              "isRequired": false,
+              "attributes": []
+            },
+            "startAddress": {
+              "name": "startAddress",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "endAddress": {
+              "name": "endAddress",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "isLoop": {
+              "name": "isLoop",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "practicalTips": {
+              "name": "practicalTips",
+              "isArray": false,
+              "type": "String",
               "isRequired": false,
               "attributes": []
             },
@@ -3862,6 +3890,26 @@
             }
           }
         },
+        "createForfaitPaymentIntent": {
+          "name": "createForfaitPaymentIntent",
+          "isArray": false,
+          "type": "AWSJSON",
+          "isRequired": false
+        },
+        "confirmForfaitPurchase": {
+          "name": "confirmForfaitPurchase",
+          "isArray": false,
+          "type": "AWSJSON",
+          "isRequired": false,
+          "arguments": {
+            "paymentIntentId": {
+              "name": "paymentIntentId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
+        },
         "setTourWorkflowStatus": {
           "name": "setTourWorkflowStatus",
           "isArray": false,
@@ -3889,11 +3937,11 @@
   },
   "storage": {
     "aws_region": "us-east-1",
-    "bucket_name": "amplify-tourguideapp-stef-tourguideassetsbucket8b8-nwmcsixu8au1",
+    "bucket_name": "amplify-dieqe5vfmuc69-mai-tourguideassetsbucket8b8-qyql7idkrnkr",
     "buckets": [
       {
         "name": "tourguideAssets",
-        "bucket_name": "amplify-tourguideapp-stef-tourguideassetsbucket8b8-nwmcsixu8au1",
+        "bucket_name": "amplify-dieqe5vfmuc69-mai-tourguideassetsbucket8b8-qyql7idkrnkr",
         "aws_region": "us-east-1",
         "paths": {
           "guide-photos/${cognito-identity.amazonaws.com:sub}/*": {
@@ -3952,6 +4000,7 @@
   },
   "version": "1.4",
   "custom": {
-    "revenueCatWebhookUrl": "https://jlyvm45lqof33oeo3w6xa2hpny0aiydi.lambda-url.us-east-1.on.aws/"
+    "revenueCatWebhookUrl": "https://qc7wfe2km2qxzop55hwfan3qa40itoks.lambda-url.us-east-1.on.aws/",
+    "stripeWebhookUrl": "https://fvqz3opbgj64ts73e4h3ox5pjy0syjdr.lambda-url.us-east-1.on.aws/"
   }
 }
