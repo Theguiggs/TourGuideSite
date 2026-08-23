@@ -139,6 +139,34 @@ Le dossier `microservice/` contient un serveur **FastAPI** qui expose :
 Langues TTS supportées : `fr · en · it · de · es · ja · ko · zh · ru`.
 Paires de traduction : `fr↔en`, `fr↔it`, `fr↔de`, `fr↔es`.
 
+#### Post-traitement audio
+
+L'endpoint TTS ajoute ~210 ms de silence en tête et ~900 ms en queue **de chaque
+appel**. Comme une scène SSML est rendue en plusieurs appels (un par run, un par
+chunk de 2000 caractères) puis concaténée, chaque raccord portait ~1,1 s de blanc
+et un `<break time="1s"/>` durait en réalité ~2,1 s — c'est ce qui donnait le
+rendu saccadé. `services/audio_post.py` détoure chaque chunk, réinsère la pause
+exacte demandée et normalise le niveau de la scène entière.
+
+Réglages (variables d'environnement, valeurs par défaut entre parenthèses) :
+
+| Variable | Rôle |
+| -------- | ---- |
+| `TTS_SENTENCE_GAP_MS` (220) | pause entre deux phrases d'une même scène |
+| `TTS_RUN_GAP_MS` (70) | pause à une coupure en milieu de phrase (bords d'un `<prosody>`, virgule) |
+| `TTS_TARGET_DBFS` (-18) | niveau RMS visé pour la scène |
+| `TTS_PEAK_CEILING_DBFS` (-1) | plafond crête — le gain ne peut jamais saturer |
+| `TTS_TRIM_DB` (-50) · `TTS_TRIM_KEEP_MS` (25) · `TTS_EDGE_FADE_MS` (8) | détourage et fondus de raccord |
+
+Comparer un rendu avant/après (écrit deux WAV et mesure les pauses) :
+
+```bash
+cd microservice
+python tts_ab.py                    # scène d'exemple
+python tts_ab.py --sample prosody   # scène avec <prosody> / <emphasis>
+python tts_ab.py --text-file ma-scene.txt --voice fr-FR-DeniseNeural
+```
+
 ### 5.1 — Lancement (Windows / PowerShell)
 
 ```powershell

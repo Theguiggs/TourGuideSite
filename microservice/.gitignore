@@ -1,3 +1,6 @@
 # local microservice run logs
 microservice.out.log
 microservice.err.log
+
+# A/B render output from tts_ab.py
+tts-ab/

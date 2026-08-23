@@ -32,6 +32,7 @@ from pydantic import BaseModel, Field
 
 from services.job_manager import JobManager, QueueFull
 from services.text_sanitize import normalize_source, postclean_translation
+from services.audio_post import RUN_GAP_MS, SENTENCE_GAP_MS, SpeechJoiner
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("tourguide-local")
@@ -439,10 +440,61 @@ def _collect_runs(elem, params: dict, runs: list) -> None:
             runs.append(("text", child.tail.strip(), dict(new_params)))
 
 
+async def _render_runs(runs: list, voice: str):
+    """Render a flat run list to one scene.
+
+    Every rendered chunk is de-padded (see services.audio_post) and the pauses
+    are re-inserted deliberately by the joiner, so the seams carry the gap the
+    script asked for instead of ~1.1 s of endpoint padding.
+    """
+    joiner = SpeechJoiner()
+    skipped = 0
+    failed = 0
+    prev_text: str | None = None
+
+    for kind, value, params in runs:
+        if kind == "break":
+            joiner.request_pause(value)
+            continue
+        if not _is_speakable(value):
+            skipped += 1
+            continue
+        # Split long runs to stay under edge-tts limits, and render each chunk
+        # with retry. If a chunk still can't be rendered after retries, skip it
+        # rather than failing the whole scene — partial audio beats no audio.
+        for chunk in _split_for_tts(value):
+            if not _is_speakable(chunk):
+                skipped += 1
+                continue
+            try:
+                seg = await _synth_chunk(chunk, voice, params)
+            except Exception as e:
+                failed += 1
+                logger.error(
+                    "Skipping unrenderable chunk after %d retries (%s); chunk[:60]=%r",
+                    RETRY_ATTEMPTS, e, chunk[:60],
+                )
+                continue
+            # Size the seam from what the PREVIOUS chunk ended on: a full stop
+            # gets a sentence pause, anything else (a comma-split of an
+            # over-long sentence, or the text on either side of a <prosody>
+            # span) is mid-sentence and must stay tight or the phrase breaks.
+            if prev_text is None:
+                gap = 0
+            elif prev_text.rstrip().endswith((".", "!", "?", "…", ":", ";")):
+                gap = SENTENCE_GAP_MS
+            else:
+                gap = RUN_GAP_MS
+            if joiner.add_speech(seg, gap_before_ms=gap):
+                prev_text = chunk
+
+    if skipped or failed:
+        logger.info("TTS render summary: skipped=%d, failed=%d", skipped, failed)
+    return joiner.build()
+
+
 async def _synthesize_ssml(text: str, voice: str):
     """Render SSML to a single pydub AudioSegment."""
-    from pydub import AudioSegment
-
     # Strip namespace / version attrs so ElementTree stays in default ns
     cleaned = re.sub(r'\s(?:xmlns(?::[a-z]+)?|version|xml:lang)="[^"]*"', "", text)
     if not cleaned.strip().startswith("<speak"):
@@ -462,43 +514,12 @@ async def _synthesize_ssml(text: str, voice: str):
         plain = re.sub(r"<[^>]+>", "", text).strip()
         runs = [("text", plain, {})] if plain else []
 
-    combined = AudioSegment.silent(duration=0, frame_rate=24000)
-    skipped = 0
-    failed = 0
-    for kind, value, params in runs:
-        if kind == "break":
-            combined += AudioSegment.silent(duration=value, frame_rate=24000)
-            continue
-        if not _is_speakable(value):
-            skipped += 1
-            continue
-        # Split long runs to stay under edge-tts limits, and render each chunk
-        # with retry. If a chunk still can't be rendered after retries, skip it
-        # rather than failing the whole scene — partial audio beats no audio.
-        for chunk in _split_for_tts(value):
-            if not _is_speakable(chunk):
-                skipped += 1
-                continue
-            try:
-                seg = await _synth_chunk(chunk, voice, params)
-                combined += seg
-            except Exception as e:
-                failed += 1
-                logger.error(
-                    "Skipping unrenderable chunk after %d retries (%s); chunk[:60]=%r",
-                    RETRY_ATTEMPTS, e, chunk[:60],
-                )
-
-    if skipped or failed:
-        logger.info("SSML render summary: skipped=%d, failed=%d", skipped, failed)
-    return combined
+    return await _render_runs(runs, voice)
 
 
 async def _tts_work(text: str, language: str, voice_id: str | None) -> dict:
     """Render TTS audio. Runs as a 'tts' job under the concurrency cap so the free
     edge-tts endpoint isn't rate-limited. Raises on failure (recorded as job error)."""
-    from pydub import AudioSegment
-
     voice = voice_id or EDGE_VOICES.get(language, "fr-FR-HenriNeural")
 
     # Detect if text contains SSML tags we need to interpret ourselves
@@ -508,12 +529,14 @@ async def _tts_work(text: str, language: str, voice_id: str | None) -> dict:
         logger.info(f"TTS (SSML): voice={voice}, len={len(text)}")
         audio_seg = await _synthesize_ssml(text, voice)
     else:
+        # Plain text goes through the same machinery: it gets the chunk retries
+        # and the sentence-boundary splitting, so a scene longer than the
+        # endpoint's per-call ceiling renders instead of failing outright.
         logger.info(f"TTS: voice={voice}, text={text[:80]}...")
-        tmp_path = tempfile.mktemp(suffix=".mp3")
-        communicate = edge_tts.Communicate(text, voice)
-        await asyncio.wait_for(communicate.save(tmp_path), timeout=TTS_CHUNK_TIMEOUT_S)
-        audio_seg = await _run_blocking(AudioSegment.from_file, tmp_path)
-        os.unlink(tmp_path)
+        audio_seg = await _render_runs([("text", text.strip(), {})], voice)
+
+    if len(audio_seg) == 0:
+        raise RuntimeError("TTS produced no audio (every chunk failed or was unspeakable)")
 
     buf = io.BytesIO()
     audio_seg.export(buf, format="wav")
