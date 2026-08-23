@@ -363,6 +363,17 @@ export async function updateGuideProfileMutation(
  * dans son ensemble — la débloquer ici ferait aboutir une écriture destructrice.
  * À corriger en même temps que la fusion dans `language-purchase.ts`.
  */
+// `translatedAudioKeys` manquait ici alors que le schema le declare `a.json()`.
+// Il partait donc en OBJET, et AppSync rejette la mutation entiere dans ce cas
+// (meme incident que `languageAudioTypes`) : l'approbation d'une langue
+// n'ecrivait alors NI les cles audio NI `availableLanguages`. L'echec restait
+// invisible tant que l'appelant ignorait le retour et se repliait sur DynamoDB.
+// `translatedAudioKeys` est DÉLIBÉRÉMENT absent. Le champ est de l'AWSJSON, donc
+// tant qu'il n'est pas sérialisé AppSync rejette la mutation entière — ce qui
+// bloque l'écriture d'approbation de `language-purchase.ts`. Or cette écriture
+// reconstruit les trois cartes de zéro et les remplace en bloc, sans fusion :
+// l'activer ferait passer « rien ne s'écrit » à « tout est écrasé ». À réactiver
+// en même temps que la fusion, pas avant. Voir deferred-work.md.
 const GUIDE_TOUR_JSON_FIELDS = ['translatedDescriptions', 'languageAudioTypes'];
 
 /** @param updates Unvalidated — callers must ensure keys match schema fields */
@@ -806,12 +817,13 @@ export async function createLanguagePurchaseMutation(data: {
 }) {
   try {
     const client = getClient();
+    // SÉCURITÉ — `moderationStatus` et `status` ne sont PLUS envoyés : le
+    // propriétaire n'a pas le droit `create` dessus (sinon il naîtrait des lignes
+    // déjà « approved »). Le serveur applique les valeurs par défaut du schéma,
+    // `draft` et `active`. Renvoyer ces clés ferait refuser la création entière —
+    // c'est-à-dire tout achat de langue.
     const result = await client.models.TourLanguagePurchase.create(
-      {
-        ...data,
-        moderationStatus: 'draft' as const,
-        status: 'active' as const,
-      } as Parameters<typeof client.models.TourLanguagePurchase.create>[0],
+      data as Parameters<typeof client.models.TourLanguagePurchase.create>[0],
       { authMode: 'userPool' },
     );
     if (!result.data) {
@@ -825,6 +837,18 @@ export async function createLanguagePurchaseMutation(data: {
   }
 }
 
+/**
+ * Direct update of a TourLanguagePurchase row.
+ *
+ * SÉCURITÉ — `moderationStatus` et `status` sont désormais admin-only en écriture
+ * (field-level auth). Un guide qui tente de les écrire par ici SE FAIT REFUSER :
+ * ce refus arrive dans `result.errors` avec `ok` apparent, pas en exception. On
+ * le remonte donc explicitement — sans cela « Dépublier » afficherait un succès
+ * alors que rien n'a bougé. Les transitions guide légitimes passent par
+ * `setLanguageModerationStatusMutation`.
+ *
+ * @param updates Unvalidated — callers must ensure keys match schema fields
+ */
 export async function updateLanguagePurchaseMutation(
   id: string,
   updates: Record<string, unknown>,
@@ -835,10 +859,87 @@ export async function updateLanguagePurchaseMutation(
       { id, ...updates } as Parameters<typeof client.models.TourLanguagePurchase.update>[0],
       { authMode: 'userPool' },
     );
+    // Amplify resolves successfully but populates result.errors when the server
+    // rejected the mutation (field-level auth, unknown field, validation).
+    const errs = (result as unknown as { errors?: Array<{ message: string }> }).errors;
+    if (errs && errs.length > 0) {
+      const msg = errs.map((e) => e.message).join('; ');
+      logger.error(SERVICE_NAME, 'updateLanguagePurchase returned errors', {
+        id,
+        fields: Object.keys(updates),
+        errors: msg,
+      });
+      return { ok: false as const, error: msg };
+    }
+    if (!result.data) {
+      logger.error(SERVICE_NAME, 'updateLanguagePurchase returned no data', {
+        id,
+        fields: Object.keys(updates),
+      });
+      return { ok: false as const, error: 'Mise à jour refusée par le backend (données nulles)' };
+    }
+    // La documentation Amplify décrit un champ refusé RENVOYÉ À `null` plutôt
+    // qu'une mutation rejetée ; des rapports de terrain décrivent l'inverse. On
+    // couvre les deux : si l'appelant a demandé un des champs resserrés et que la
+    // ligne relue ne le porte pas, c'est un refus — pas un succès silencieux.
+    const row = result.data as unknown as Record<string, unknown>;
+    for (const field of ['moderationStatus', 'status'] as const) {
+      if (field in updates && row[field] !== updates[field]) {
+        logger.error(SERVICE_NAME, 'updateLanguagePurchase silently dropped a guarded field', {
+          id, field, wanted: updates[field], got: row[field],
+        });
+        return {
+          ok: false as const,
+          error: `Écriture de « ${field} » refusée par le backend (champ réservé à la modération)`,
+        };
+      }
+    }
     return { ok: true as const, data: result.data };
   } catch (error) {
     logger.error(SERVICE_NAME, 'updateLanguagePurchase failed', { error: String(error) });
     return { ok: false as const, error: 'Erreur lors de la mise à jour de l\'achat de langue' };
+  }
+}
+
+/**
+ * SÉCURITÉ — seule voie GUIDE pour changer `TourLanguagePurchase.moderationStatus`.
+ * Le champ n'est plus modifiable en direct par le guide (field-level auth
+ * admin-only). Cette mutation custom (Lambda) vérifie la propriété de la ligne
+ * d'achat et n'autorise que les deux transitions guide : `submitted`
+ * (soumission) et `draft` (retrait / dépublication). `approved`, `rejected`,
+ * `revision_requested` restent au chemin admin.
+ */
+export async function setLanguageModerationStatusMutation(
+  sessionId: string,
+  language: string,
+  moderationStatus: 'submitted' | 'draft',
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  try {
+    const client = getClient();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).mutations.setLanguageModerationStatus(
+      { sessionId, language, moderationStatus },
+      { authMode: 'userPool' },
+    );
+    if (result?.errors?.length) {
+      const msg = result.errors.map((e: { message: string }) => e.message).join('; ');
+      logger.error(SERVICE_NAME, 'setLanguageModerationStatus GraphQL error', {
+        sessionId, language, moderationStatus, msg,
+      });
+      return { ok: false as const, error: `Transition refusée : ${msg}` };
+    }
+    const env = result?.data as { ok?: boolean; error?: string } | null;
+    if (!env?.ok) {
+      const msg = env?.error ?? 'transition refusée (autorisation ou statut invalide ?)';
+      logger.error(SERVICE_NAME, 'setLanguageModerationStatus rejected', {
+        sessionId, language, moderationStatus, msg,
+      });
+      return { ok: false as const, error: msg };
+    }
+    return { ok: true as const };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'setLanguageModerationStatus failed', { error: String(error) });
+    return { ok: false as const, error: 'Erreur lors du changement de statut de la langue' };
   }
 }
 

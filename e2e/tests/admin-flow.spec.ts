@@ -52,7 +52,6 @@ test.describe('Admin Flow', () => {
     const purchase = await seedLanguagePurchase(seeded.sessionId, 'en', guideToken, {
       guideId,
       moderationStatus: 'submitted',
-      status: 'active',
     });
     purchaseId = purchase.id;
 

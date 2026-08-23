@@ -75,8 +75,8 @@ test.describe('Language Submission Lifecycle', () => {
     const data = await seedMultilangReadyTour(PREFIX, guideToken);
     tourId = data.tourId; sessionId = data.sessionId; sceneIds = data.sceneIds;
 
-    const enP = await seedLanguagePurchase(sessionId, 'en', guideToken, { guideId, moderationStatus: 'submitted', status: 'active', amountCents: 199, qualityTier: 'standard', purchaseType: 'single' });
-    const esP = await seedLanguagePurchase(sessionId, 'es', guideToken, { guideId, moderationStatus: 'draft', status: 'active', amountCents: 199, qualityTier: 'standard', purchaseType: 'single' });
+    const enP = await seedLanguagePurchase(sessionId, 'en', guideToken, { guideId, moderationStatus: 'submitted', amountCents: 199, qualityTier: 'standard', purchaseType: 'single' });
+    const esP = await seedLanguagePurchase(sessionId, 'es', guideToken, { guideId, moderationStatus: 'draft', amountCents: 199, qualityTier: 'standard', purchaseType: 'single' });
     purchaseIds = [enP.id, esP.id];
 
     for (let i = 0; i < sceneIds.length; i++) {

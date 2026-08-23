@@ -179,3 +179,55 @@ describe('getGuideTourResult — « absente » n est pas « lecture en echec »'
     await expect(getGuideTourById('unreadable')).resolves.toBeNull();
   });
 });
+
+// ---------------------------------------------------------------------------
+// SÉCURITÉ (porte 2) — availableLanguages, translatedAudioKeys, languageAudioTypes.
+//
+// Ces trois champs SONT l'effet visible de l'approbation : l'app mobile les lit
+// pour savoir quelles langues sont disponibles. Le schéma les réserve désormais
+// au groupe admin en écriture (propriétaire en lecture seule).
+//
+// ⚠️ Les refus ci-dessous sont SIMULÉS — c'est la réponse qu'AppSync renverrait à
+// un jeton guide. La règle de champ elle-même ne peut être exercée que sur le bac
+// à sable. Ce qui est prouvé ici : le refus ressort en { ok: false } avec le nom
+// du champ, au lieu d'un « Enregistré ✓ » mensonger.
+// ---------------------------------------------------------------------------
+
+describe('champs de publication réservés à la modération', () => {
+  it.each([
+    ['availableLanguages', { availableLanguages: ['fr', 'en'] }],
+    ['translatedAudioKeys', { translatedAudioKeys: { en: { 's1': 'a.mp3' } } }],
+    ['languageAudioTypes', { languageAudioTypes: { fr: 'tts' } }],
+  ])('un refus sur %s ressort en { ok: false }', async (field, updates) => {
+    mockGuideTourUpdate.mockResolvedValue({
+      data: null,
+      errors: [{ message: `Not Authorized to access ${field} on type GuideTour` }],
+    });
+
+    const result = await updateGuideTourMutation('tour-1', updates as Record<string, unknown>);
+
+    expect(result.ok).toBe(false);
+    expect(result.ok === false && result.error).toContain(field);
+  });
+
+  it('le chemin administrateur écrit les trois champs d un coup, sans être altéré', async () => {
+    mockGuideTourUpdate.mockResolvedValue({ data: { id: 'tour-1' }, errors: undefined });
+
+    const result = await updateGuideTourMutation('tour-1', {
+      availableLanguages: ['fr', 'en', 'es'],
+      translatedAudioKeys: { en: { 's1': 'en.mp3' } },
+      languageAudioTypes: { fr: 'recording', en: 'tts' },
+    });
+
+    expect(result.ok).toBe(true);
+    const sent = mockGuideTourUpdate.mock.calls[0][0];
+    expect(sent.availableLanguages).toEqual(['fr', 'en', 'es']);
+    expect(typeof sent.languageAudioTypes).toBe('string');
+    expect(JSON.parse(sent.languageAudioTypes)).toEqual({ fr: 'recording', en: 'tts' });
+    // `translatedAudioKeys` est délibérément NON sérialisé : il part en objet,
+    // AppSync rejette alors la mutation entière, et c'est ce rejet qui bloque
+    // l'écriture d'approbation — laquelle remplace les trois cartes en bloc
+    // sans fusionner. À sérialiser en même temps que la fusion, pas avant.
+    expect(typeof sent.translatedAudioKeys).toBe('object');
+  });
+});

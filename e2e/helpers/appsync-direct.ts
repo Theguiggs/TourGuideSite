@@ -53,6 +53,31 @@ async function graphql<T = Record<string, unknown>>(
   return json.data as T;
 }
 
+/**
+ * Fail fast when an admin-only write is handed a guide token. Without this the
+ * call reaches AppSync and comes back as a generic "Unauthorized", which reads
+ * like a flaky backend instead of what it is: the fixture using the wrong
+ * identity. Decodes the Cognito access token's `cognito:groups` claim — no
+ * signature check, it is a fixture guard, not a security control.
+ */
+function assertAdminToken(token: string, caller: string): void {
+  let groups: string[] = [];
+  try {
+    const payload = JSON.parse(
+      Buffer.from(token.split('.')[1], 'base64').toString('utf-8'),
+    ) as { 'cognito:groups'?: string[] };
+    groups = payload['cognito:groups'] ?? [];
+  } catch {
+    throw new Error(`${caller}: could not decode the token — an ADMIN token is required.`);
+  }
+  if (!groups.includes('admin')) {
+    throw new Error(
+      `${caller}: needs an ADMIN token (groups: ${groups.join(',') || 'none'}). ` +
+      `moderationStatus/status are admin-only in AppSync — a guide token cannot write them.`,
+    );
+  }
+}
+
 // --- Seed Functions (via GraphQL HTTP) ---
 
 interface CreatedItem {
@@ -202,8 +227,12 @@ export async function seedLanguagePurchase(
   sessionId: string,
   language: string,
   token: string,
-  overrides?: Partial<{ guideId: string; qualityTier: string; purchaseType: string; amountCents: number; moderationStatus: string; status: string }>,
+  overrides?: Partial<{ guideId: string; qualityTier: string; purchaseType: string; amountCents: number; moderationStatus: string }>,
 ): Promise<CreatedItem> {
+  // The row is created WITHOUT `moderationStatus` / `status`: the owner has no
+  // create right on either, and the server applies the schema defaults
+  // (`draft` / `active`). Sending them would make AppSync refuse the whole
+  // creation — which is precisely what a real guide's browser now faces.
   const input = {
     guideId: overrides?.guideId ?? 'e2e-guide',
     sessionId,
@@ -211,17 +240,29 @@ export async function seedLanguagePurchase(
     qualityTier: overrides?.qualityTier ?? 'manual',
     purchaseType: overrides?.purchaseType ?? 'manual',
     amountCents: overrides?.amountCents ?? 0,
-    moderationStatus: overrides?.moderationStatus ?? 'draft',
-    status: overrides?.status ?? 'active',
   };
   const data = await graphql<{ createTourLanguagePurchase: CreatedItem }>(
     `mutation($input: CreateTourLanguagePurchaseInput!) {
-      createTourLanguagePurchase(input: $input) { id sessionId language qualityTier status }
+      createTourLanguagePurchase(input: $input) { id sessionId language qualityTier moderationStatus status }
     }`,
     { input },
     token,
   );
-  return data.createTourLanguagePurchase;
+  const created = data.createTourLanguagePurchase;
+
+  // Anything beyond the server default is reached the way the product reaches it:
+  // through the guide Lambda. No local whitelist — the server is the authority, and
+  // an `approved` seed comes back as a thrown refusal with the server's own reason.
+  const wanted = overrides?.moderationStatus;
+  if (wanted && wanted !== 'draft') {
+    await guideSetLanguageModerationStatus(
+      sessionId,
+      language,
+      wanted as 'submitted' | 'draft',
+      token,
+    );
+  }
+  return created;
 }
 
 export async function seedSceneSegment(
@@ -268,18 +309,57 @@ export async function updateModerationItemStatus(
   );
 }
 
-export async function updateLanguagePurchaseStatus(
+/**
+ * Moderation verdict on a language purchase — ADMIN ONLY.
+ *
+ * `TourLanguagePurchase.moderationStatus` carries its own field-level auth: the
+ * owner may read it and set it at creation, never update it. A guide token here
+ * gets an AppSync "Unauthorized" and `graphql()` throws — which is the point:
+ * the fixtures used to pose `approved` with a guide token, i.e. to exercise the
+ * very hole the schema now closes. The guide's own two transitions
+ * (submitted / draft) go through the `setLanguageModerationStatus` mutation.
+ */
+export async function adminSetLanguageModerationStatus(
   id: string,
   moderationStatus: string,
-  token: string,
+  adminToken: string,
 ): Promise<void> {
+  assertAdminToken(adminToken, 'adminSetLanguageModerationStatus');
   await graphql(
     `mutation UpdateTourLanguagePurchase($input: UpdateTourLanguagePurchaseInput!) {
       updateTourLanguagePurchase(input: $input) { id moderationStatus }
     }`,
     { input: { id, moderationStatus } },
-    token,
+    adminToken,
   );
+}
+
+/**
+ * Guide-side transition, through the same Lambda the Studio UI uses. Accepts only
+ * `submitted` and `draft` — anything else is refused server-side.
+ */
+export async function guideSetLanguageModerationStatus(
+  sessionId: string,
+  language: string,
+  moderationStatus: 'submitted' | 'draft',
+  guideToken: string,
+): Promise<void> {
+  const data = await graphql<{ setLanguageModerationStatus: { ok: boolean; error?: string | null } }>(
+    `mutation SetLanguageModerationStatus($sessionId: String!, $language: String!, $moderationStatus: String!) {
+      setLanguageModerationStatus(sessionId: $sessionId, language: $language, moderationStatus: $moderationStatus) {
+        ok
+        moderationStatus
+        error
+        code
+      }
+    }`,
+    { sessionId, language, moderationStatus },
+    guideToken,
+  );
+  const env = data.setLanguageModerationStatus;
+  if (!env?.ok) {
+    throw new Error(`setLanguageModerationStatus refused: ${env?.error ?? 'unknown reason'}`);
+  }
 }
 
 export async function updateSessionStatus(

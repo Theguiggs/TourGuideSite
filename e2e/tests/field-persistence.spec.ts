@@ -72,7 +72,6 @@ test.describe.serial('Field Persistence', () => {
       purchaseType: 'manual',
       amountCents: 0,
       moderationStatus: 'draft',
-      status: 'active',
     });
     languagePurchaseId = languagePurchase.id;
 
