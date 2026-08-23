@@ -9,7 +9,12 @@
 
 import {
   AUDIO_DISCLOSURE_ERR,
+  audioSourceLabel,
   coversLanguage,
+  displayedAudioSource,
+  displayedLanguages,
+  humanVoiceLabel,
+  isSyntheticAudioSource,
   deriveSourceAudioType,
   isAudioSourceType,
   sceneAudioSource,
@@ -303,5 +308,163 @@ describe('disclosureWriteViolation — l invariant est maintenu, pas seulement p
 
   it('laisse passer une mention non vide écrite hors publication', () => {
     expect(disclosureWriteViolation({ languageAudioTypes: { fr: 'tts' } })).toBeNull();
+  });
+});
+
+/* ------------------------------------------------------------------------- *
+ * Volet lecture — la matrice d'affichage de la story 18.
+ * ------------------------------------------------------------------------- */
+
+describe('displayedAudioSource — matrice d affichage', () => {
+  it('rend la synthèse déclarée', () => {
+    expect(displayedAudioSource({ fr: 'tts' }, 'fr')).toBe('tts');
+  });
+
+  it('rend le mixte déclaré', () => {
+    expect(displayedAudioSource({ fr: 'mixed' }, 'fr')).toBe('mixed');
+  });
+
+  it('rend la voix humaine déclarée sans la travestir', () => {
+    expect(displayedAudioSource({ fr: 'recording' }, 'fr')).toBe('recording');
+  });
+
+  it('traite les deux sentinelles de vide — {} (web) et undefined (mobile)', () => {
+    expect(displayedAudioSource({}, 'fr')).toBe('tts');
+    expect(displayedAudioSource(undefined, 'fr')).toBe('tts');
+    expect(displayedAudioSource(null, 'fr')).toBe('tts');
+  });
+
+  it('traite une carte illisible comme de la synthèse', () => {
+    expect(displayedAudioSource('{pas du json', 'fr')).toBe('tts');
+    expect(displayedAudioSource(['fr', 'tts'], 'fr')).toBe('tts');
+    expect(displayedAudioSource(42, 'fr')).toBe('tts');
+    expect(displayedAudioSource(true, 'fr')).toBe('tts');
+  });
+
+  it('traite une langue vendue mais non couverte comme de la synthèse', () => {
+    expect(displayedAudioSource({ fr: 'recording' }, 'nl')).toBe('tts');
+    expect(displayedAudioSource({ fr: 'tts' }, 'en')).toBe('tts');
+  });
+
+  it('traite une valeur hors des trois valeurs connues comme de la synthèse', () => {
+    expect(displayedAudioSource({ fr: 'human' }, 'fr')).toBe('tts');
+    expect(displayedAudioSource({ fr: null }, 'fr')).toBe('tts');
+    expect(displayedAudioSource({ fr: 1 }, 'fr')).toBe('tts');
+  });
+
+  it('lit une clé héritée en normalisant les deux côtés', () => {
+    expect(displayedAudioSource({ FR: 'recording' }, 'fr')).toBe('recording');
+    expect(displayedAudioSource({ 'fr-FR': 'recording' }, 'FR')).toBe('recording');
+    expect(displayedAudioSource({ nl: 'recording' }, 'nl_BE')).toBe('recording');
+  });
+
+  it('lit une carte transportée en chaîne AWSJSON', () => {
+    expect(displayedAudioSource('{"fr":"recording"}', 'fr')).toBe('recording');
+    expect(displayedAudioSource('{"nl":"mixed"}', 'nl')).toBe('mixed');
+  });
+
+  it('rend la synthèse pour une langue vide ou absurde', () => {
+    expect(displayedAudioSource({ fr: 'recording' }, '')).toBe('tts');
+    expect(displayedAudioSource({ fr: 'recording' }, undefined)).toBe('tts');
+    expect(displayedAudioSource({ '': 'recording' }, '')).toBe('tts');
+  });
+});
+
+describe('displayedAudioSource — arbitrage de conflit de clés', () => {
+  it('rend « mixte » quand synthèse et voix humaine sont déclarées pour la même langue', () => {
+    expect(displayedAudioSource({ fr: 'recording', 'fr-FR': 'tts' }, 'fr')).toBe('mixed');
+    expect(displayedAudioSource({ fr: 'tts', 'fr-FR': 'recording' }, 'fr')).toBe('mixed');
+  });
+
+  it('ne rabaisse pas une synthèse pleine en « en partie »', () => {
+    expect(displayedAudioSource({ fr: 'tts', 'fr-FR': 'mixed' }, 'fr')).toBe('tts');
+    expect(displayedAudioSource({ fr: 'mixed', 'fr-FR': 'tts' }, 'fr')).toBe('tts');
+  });
+
+  it('ne retombe pas sur la voix humaine quand « mixte » est aussi déclaré', () => {
+    expect(displayedAudioSource({ fr: 'recording', 'fr-FR': 'mixed' }, 'fr')).toBe('mixed');
+  });
+
+  it('rend « mixte » quand les trois valeurs se contredisent', () => {
+    expect(displayedAudioSource({ fr: 'recording', 'fr-FR': 'tts', fr_CA: 'mixed' }, 'fr')).toBe(
+      'mixed',
+    );
+  });
+
+  it('ne se laisse pas sauver par une clé valide quand une autre est hors domaine', () => {
+    // Une entrée existe pour la langue et ne dit rien de connu : pas de preuve.
+    expect(displayedAudioSource({ fr: 'recording', 'fr-FR': 'human' }, 'fr')).toBe('tts');
+  });
+});
+
+describe('mention affichée', () => {
+  it('porte la mention sur tout ce qui n est pas une voix humaine déclarée', () => {
+    expect(isSyntheticAudioSource('tts')).toBe(true);
+    expect(isSyntheticAudioSource('mixed')).toBe(true);
+    expect(isSyntheticAudioSource('recording')).toBe(false);
+  });
+
+  it('ne connaît que les deux libellés existants — mêmes mots que sur mobile', () => {
+    expect(audioSourceLabel('tts')).toBe('Voix de synthèse');
+    expect(audioSourceLabel('mixed')).toBe('Voix de synthèse (en partie)');
+    expect(audioSourceLabel('recording')).toBeNull();
+  });
+
+  it('porte les quatre chaînes de mention — aucune surface n en écrit une cinquième', () => {
+    expect(audioSourceLabel('tts', 'fr')).toBe('Voix de synthèse');
+    expect(audioSourceLabel('mixed', 'fr')).toBe('Voix de synthèse (en partie)');
+    expect(audioSourceLabel('tts', 'en')).toBe('Synthetic voice');
+    expect(audioSourceLabel('mixed', 'en')).toBe('Synthetic voice (partly)');
+    expect(audioSourceLabel('recording', 'en')).toBeNull();
+  });
+
+  it('localise le pendant humain, qui n est pas une mention', () => {
+    expect(humanVoiceLabel()).toBe('Voix du guide');
+    expect(humanVoiceLabel('fr')).toBe('Voix du guide');
+    expect(humanVoiceLabel('en')).toBe('Guide recording');
+  });
+
+  it('garantit par le type qu une source synthétique porte toujours un libellé', () => {
+    // `isSyntheticAudioSource` est un garde de type : dans cette branche,
+    // `audioSourceLabel` est typée `string`, sans assertion non-nulle.
+    for (const type of ['tts', 'mixed', 'recording'] as const) {
+      const label = isSyntheticAudioSource(type)
+        ? audioSourceLabel(type, 'en')
+        : humanVoiceLabel('en');
+      expect(typeof label).toBe('string');
+      expect(label.length).toBeGreaterThan(0);
+    }
+  });
+});
+
+describe('displayedLanguages — l affichage suit ce qui est vendu', () => {
+  it('rend les langues vendues, mention ou pas', () => {
+    expect(displayedLanguages(['fr', 'nl'], { fr: 'recording' })).toEqual(['fr', 'nl']);
+    expect(displayedLanguages(['fr', 'en'], {})).toEqual(['fr', 'en']);
+    expect(displayedLanguages(['fr'], undefined)).toEqual(['fr']);
+  });
+
+  it('normalise et dédoublonne sans perdre l ordre de vente', () => {
+    expect(displayedLanguages([' FR ', 'fr-FR', 'nl_BE'])).toEqual(['fr', 'nl']);
+  });
+
+  it('garde une langue sans libellé plutôt que de la faire disparaître', () => {
+    expect(displayedLanguages(['fr', 'ca'])).toEqual(['fr', 'ca']);
+  });
+
+  it('écarte ce qui ne porte pas de langue', () => {
+    expect(displayedLanguages(['fr', '', 'français', null as unknown as string])).toEqual(['fr']);
+  });
+
+  it('retombe sur les clés de la carte quand aucune langue n est vendue', () => {
+    expect(displayedLanguages([], { FR: 'recording', nl: 'tts' })).toEqual(['fr', 'nl']);
+    expect(displayedLanguages(undefined, '{"fr":"tts"}')).toEqual(['fr']);
+    // Même une valeur hors domaine vaut une ligne : elle se lira « synthèse ».
+    expect(displayedLanguages(undefined, { fr: 'human' })).toEqual(['fr']);
+  });
+
+  it('ne rend rien quand il n y a ni langue vendue ni carte', () => {
+    expect(displayedLanguages(undefined, undefined)).toEqual([]);
+    expect(displayedLanguages([], {})).toEqual([]);
   });
 });
