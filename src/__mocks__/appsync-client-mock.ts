@@ -4,6 +4,8 @@
 jest.mock('@/lib/api/appsync-client', () => ({
   listGuideTours: jest.fn(() => Promise.resolve([])),
   getGuideTourById: jest.fn(() => Promise.resolve(null)),
+  getGuideTourResult: jest.fn(() => Promise.resolve({ ok: true, data: null })),
+  listStudioScenesBySession: jest.fn(() => Promise.resolve({ ok: true, data: [] })),
   listGuideProfiles: jest.fn(() => Promise.resolve([])),
   getGuideProfileById: jest.fn(() => Promise.resolve(null)),
   listTourReviews: jest.fn(() => Promise.resolve([])),

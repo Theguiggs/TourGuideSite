@@ -8,6 +8,8 @@ jest.mock('../appsync-client', () => ({
   getModerationItemById: jest.fn(),
   listModerationItems: jest.fn(),
   getGuideTourById: jest.fn(),
+  getGuideTourResult: jest.fn(),
+  listStudioScenesBySession: jest.fn(),
   updateModerationItemMutation: jest.fn(),
   updateGuideTourMutation: jest.fn(),
   updateStudioSessionMutation: jest.fn(),
@@ -27,7 +29,8 @@ import * as appsyncModule from '../appsync-client';
 import * as studioModule from '../studio';
 
 const mockGetModerationItemById = appsyncModule.getModerationItemById as jest.Mock;
-const mockGetGuideTourById = appsyncModule.getGuideTourById as jest.Mock;
+const mockGetGuideTourResult = appsyncModule.getGuideTourResult as jest.Mock;
+const mockListScenesBySession = appsyncModule.listStudioScenesBySession as jest.Mock;
 const mockUpdateModerationItem = appsyncModule.updateModerationItemMutation as jest.Mock;
 const mockUpdateGuideTour = appsyncModule.updateGuideTourMutation as jest.Mock;
 const mockUpdateStudioSession = appsyncModule.updateStudioSessionMutation as jest.Mock;
@@ -51,7 +54,11 @@ beforeEach(() => {
   mockUpdateModerationItem.mockResolvedValue({ ok: true });
   mockUpdateGuideTour.mockResolvedValue({ ok: true });
   mockUpdateStudioSession.mockResolvedValue({ ok: true });
-  mockGetGuideTourById.mockResolvedValue({ id: 'tour-1', languageAudioTypes: null, availableLanguages: [] });
+  mockGetGuideTourResult.mockResolvedValue({
+    ok: true,
+    data: { id: 'tour-1', languageAudioTypes: null, availableLanguages: [] },
+  });
+  mockListScenesBySession.mockResolvedValue({ ok: true, data: [] });
   mockListStudioScenes.mockResolvedValue([]);
   global.fetch = jest.fn();
 });

@@ -48,6 +48,10 @@ export default function AdminToursPage() {
   const [deleteConfirm, setDeleteConfirm] = useState<AdminTour | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [purchasesByTour, setPurchasesByTour] = useState<Record<string, TourLanguagePurchase[]>>({});
+  // Les refus d action sont porteurs : `adminSetTourStatus` renvoie par exemple
+  // « [2900] Publication refusée : aucune mention de source audio… ». Sans surface
+  // d erreur, le bouton paraissait simplement inerte.
+  const [actionError, setActionError] = useState<string | null>(null);
 
   useEffect(() => {
     getAllAdminTours()
@@ -75,6 +79,7 @@ export default function AdminToursPage() {
   });
 
   const askAction = (tour: AdminTour, status: 'published' | 'archived') => {
+    setActionError(null);
     setConfirmTour(tour);
     setPendingStatus(status);
   };
@@ -86,6 +91,8 @@ export default function AdminToursPage() {
     const result = await adminSetTourStatus(confirmTour.id, pendingStatus);
     if (result.ok) {
       setTours((prev) => prev.map((t) => t.id === confirmTour.id ? { ...t, status: pendingStatus } : t));
+    } else {
+      setActionError(result.error ?? 'Action refusée par le serveur.');
     }
     setActioning(null);
     setPendingStatus(null);
@@ -94,6 +101,22 @@ export default function AdminToursPage() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-ink mb-6">Tous les parcours</h1>
+
+      {actionError && (
+        <div
+          role="alert"
+          data-testid="admin-tour-action-error"
+          className="mb-6 rounded-lg border border-grenadine bg-grenadine-soft px-4 py-3"
+        >
+          <p className="text-sm font-medium text-danger">{actionError}</p>
+          <button
+            onClick={() => setActionError(null)}
+            className="mt-2 text-xs text-danger underline"
+          >
+            Fermer
+          </button>
+        </div>
+      )}
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-6">
@@ -316,6 +339,8 @@ export default function AdminToursPage() {
                   const result = await adminDeleteTour(deleteConfirm.id);
                   if (result.ok) {
                     setTours((prev) => prev.filter((t) => t.id !== deleteConfirm.id));
+                  } else {
+                    setActionError(result.error ?? 'Suppression refusée par le serveur.');
                   }
                   setDeleteConfirm(null);
                   setIsDeleting(false);

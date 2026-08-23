@@ -13,6 +13,16 @@ import { addAdminComment as addAdminCommentToTour } from './guide';
 import { shouldUseStubs } from '@/config/api-mode';
 import * as appsync from './appsync-client';
 import { addTourComment } from './tour-comments';
+import {
+  AUDIO_DISCLOSURE_ERR,
+  coversLanguage,
+  deriveSourceAudioType,
+  disclosureWriteViolation,
+  mergeLanguageAudioType,
+  normalizeLanguageTag,
+  type AudioSourceScene,
+  type LanguageAudioTypes,
+} from './audio-source-policy';
 
 /**
  * Moderation data access layer.
@@ -532,6 +542,107 @@ async function reverseGeocode(lat: number, lng: number): Promise<string | null> 
   }
 }
 
+const DEFAULT_SOURCE_LANGUAGE = 'fr';
+
+/** Lecture en echec — reessayer a du sens. */
+const ERR_UNVERIFIABLE = `[${AUDIO_DISCLOSURE_ERR.DISCLOSURE_UNVERIFIABLE}] Lecture du parcours en échec : mention de source audio invérifiable, publication refusée. Réessayez.`;
+/** Visite inexistante — reessayer n'a aucun sens. */
+const ERR_TOUR_NOT_FOUND = `[${AUDIO_DISCLOSURE_ERR.TOUR_NOT_FOUND}] Parcours introuvable : publication refusée.`;
+
+/**
+ * Langue source d'une Visite. Elle ne vit pas sur `GuideTour` mais sur la
+ * `StudioSession`. Normalisée : sans cela une valeur vide rangerait la mention
+ * sous la clé `''`, invisible à toute lecture `languageAudioTypes['fr']`, et la
+ * garde l'accepterait puisque la clé existe. `'FR'` et `'fr-FR'` se replient
+ * aussi sur `'fr'`.
+ */
+function sourceLanguageOf(session: { language?: string | null } | null): string {
+  return normalizeLanguageTag(session?.language) ?? DEFAULT_SOURCE_LANGUAGE;
+}
+
+/**
+ * Session Studio, ou `null` — y compris si la lecture échoue : `getStudioSession`
+ * rend déjà `null` sur erreur, et la langue source retombe alors sur son défaut.
+ */
+async function loadStudioSession(sessionId: string | undefined, context: string) {
+  if (!sessionId) return null;
+  try {
+    const { getStudioSession } = await import('./studio');
+    return await getStudioSession(sessionId);
+  } catch (e) {
+    logger.warn('ModerationAPI', `${context}: StudioSession read failed`, { sessionId, error: String(e) });
+    return null;
+  }
+}
+
+type LoadedStudioSession = Awaited<ReturnType<typeof loadStudioSession>>;
+
+type DisclosureOutcome =
+  | { ok: true; sourceLang: string; updates: Record<string, unknown> }
+  | { ok: false; error: string };
+
+/**
+ * Dérive la mention de source pour la langue source, la fusionne dans la carte
+ * déjà persistée, et renvoie la charge utile de publication.
+ *
+ * Toute lecture en échec REFUSE (29xx) au lieu de retomber sur le défaut :
+ *  - `getGuideTourResult` distingue « absente » de « lecture en échec » ; sans la
+ *    Visite, la fusion est impossible et écrire effacerait les autres langues ;
+ *  - `listStudioScenesBySession` renvoie un Result — contrairement à
+ *    `listStudioScenes`, qui rend `[]` aussi bien pour « aucune scène » que pour
+ *    une lecture ratée. Publier une visite humaine en « voix de synthèse » sur
+ *    une panne de lecture serait un mensonge sans correction ultérieure possible.
+ *
+ * `sessionId` absent est en revanche un cas légitime, pas une panne : un
+ * ModerationItem auto-créé par `resolveModerationItem` n'en porte pas, les scènes
+ * sont alors inatteignables et l'absence de preuve vaut `'tts'`.
+ */
+async function deriveSourceDisclosure(
+  tourId: string,
+  sessionId: string | undefined,
+  sessionRead: Promise<LoadedStudioSession>,
+): Promise<DisclosureOutcome> {
+  // Les trois lectures partent ensemble — la Visite, ses scènes et sa session —
+  // là où trois allers-retours se succédaient.
+  const [tourRead, scenesRead, session] = await Promise.all([
+    appsync.getGuideTourResult(tourId),
+    sessionId
+      ? appsync.listStudioScenesBySession(sessionId)
+      : Promise.resolve({ ok: true as const, data: [] as unknown[] }),
+    sessionRead,
+  ]);
+
+  if (!tourRead.ok) {
+    logger.error('ModerationAPI', 'deriveSourceDisclosure: GuideTour read failed', { tourId, error: tourRead.error });
+    return { ok: false, error: ERR_UNVERIFIABLE };
+  }
+  if (!tourRead.data) return { ok: false, error: ERR_TOUR_NOT_FOUND };
+  if (!scenesRead.ok) {
+    logger.error('ModerationAPI', 'deriveSourceDisclosure: scenes read failed', { tourId, sessionId });
+    return { ok: false, error: ERR_UNVERIFIABLE };
+  }
+
+  const tour = tourRead.data as unknown as Record<string, unknown>;
+  const sourceLang = sourceLanguageOf(session);
+  const scenes = scenesRead.data as unknown as AudioSourceScene[];
+  const languageAudioTypes: LanguageAudioTypes = mergeLanguageAudioType(
+    tour.languageAudioTypes,
+    sourceLang,
+    deriveSourceAudioType(scenes),
+  );
+
+  // `availableLanguages` n'est joint QUE si la valeur lue est exploitable : la
+  // réécrire depuis un `null` (champ non projeté, lecture partielle) écraserait
+  // les langues déjà approuvées avec la seule langue source.
+  const existingLangs = tour.availableLanguages;
+  const updates: Record<string, unknown> = { status: 'published', languageAudioTypes };
+  if (Array.isArray(existingLangs)) {
+    updates.availableLanguages = Array.from(new Set([sourceLang, ...(existingLangs as string[])]));
+  }
+
+  return { ok: true, sourceLang, updates };
+}
+
 export async function approveTour(
   moderationId: string,
   checklist: Record<string, { checked: boolean; note: string }>,
@@ -547,84 +658,64 @@ export async function approveTour(
   // item.sessionId is already available — no extra round-trip needed.
   const sessionId = item.sessionId || undefined;
 
-  const [modResult, tourResult, sessionResult] = await Promise.all([
+  // La session est lue UNE fois pour toute l'approbation : la dérivation de la
+  // mention, la synchronisation de version et les infos visiteur (BTU-8) se
+  // partagent cet unique aller-retour, qui part en parallèle des autres lectures.
+  const sessionRead = loadStudioSession(sessionId, 'approveTour');
+
+  // CAP-8 — la mention de source audio est une CONDITION de la publication.
+  // Elle est dérivée avant toute écriture et voyage dans la MÊME mutation que
+  // `status: 'published'` : publication et mention atterrissent ensemble, ou
+  // aucune des deux. (Auparavant la publication précédait une écriture séparée
+  // dont le retour était ignoré — une panne laissait la Visite publiée nue.)
+  const disclosure = await deriveSourceDisclosure(item.tourId, sessionId, sessionRead);
+  if (!disclosure.ok) return { ok: false, error: disclosure.error };
+
+  const session = await sessionRead;
+
+  const violation = disclosureWriteViolation(disclosure.updates, disclosure.sourceLang);
+  if (violation) {
+    logger.error('ModerationAPI', 'approveTour: refused publish without disclosure', { tourId: item.tourId, sourceLang: disclosure.sourceLang });
+    return { ok: false, error: violation };
+  }
+
+  // La publication de la Visite passe EN PREMIER, seule. Les deux écritures
+  // suivantes font sortir l'item de la file de modération : groupées avec
+  // celle-ci, un refus serveur sur GuideTour laissait une Visite non publiée ET
+  // un item déjà approuvé — donc sans recours, `adminSetTourStatus` renvoyant
+  // ensuite vers une modération qui n'existe plus.
+  // `updateGuideTourMutation` ne lève jamais : elle retourne { ok: false }.
+  const tourResult = await appsync.updateGuideTourMutation(item.tourId, disclosure.updates);
+  if (!tourResult.ok) {
+    logger.error('ModerationAPI', 'approveTour: GuideTour publish refused', { tourId: item.tourId, error: tourResult.error });
+    return {
+      ok: false,
+      error: `[${AUDIO_DISCLOSURE_ERR.PUBLISH_WRITE_REFUSED}] Publication refusée : ${tourResult.error}`,
+    };
+  }
+
+  const [modResult, sessionResult] = await Promise.all([
     appsync.updateModerationItemMutation(item.id, {
       status: 'approved',
       reviewDate: Date.now(),
       checklistJson: JSON.stringify(checklist),
       feedbackJson: JSON.stringify({ notes }),
     }),
-    appsync.updateGuideTourMutation(item.tourId, { status: 'published' }),
     sessionId
       ? appsync.updateStudioSessionMutation(sessionId, { status: 'published' })
       : Promise.resolve({ ok: true as const }),
   ]);
   if (!modResult.ok) return { ok: false, error: modResult.error };
-  if (!tourResult.ok) return { ok: false, error: tourResult.error };
   if (!sessionResult.ok) {
     logger.warn('ModerationAPI', 'approveTour: StudioSession publish sync failed (non-fatal)', { tourId: item.tourId, sessionId });
   }
 
   // pub-1: persist the published content version onto GuideTour (best-effort —
   // don't block approval if the version field isn't deployed on AppSync yet).
-  if (sessionId) {
-    try {
-      const { getStudioSession } = await import('./studio');
-      const session = await getStudioSession(sessionId);
-      if (session && session.version > 1) {
-        await appsync.updateGuideTourMutation(item.tourId, { version: session.version });
-      }
-    } catch (e) {
-      logger.warn('ModerationAPI', 'approveTour: GuideTour version sync failed (non-fatal)', { tourId: item.tourId, error: String(e) });
-    }
-  }
-
-  // C7: derive and persist languageAudioTypes[sourceLang] so the "Voix de
-  // synthèse" disclosure shows up on mobile even when a tour is approved
-  // directly (i.e. never went through a language-purchase approval, the only
-  // other writer of this field — see language-purchase.ts). Merges into any
-  // existing map so previously-approved translations aren't overwritten.
-  if (sessionId) {
-    try {
-      const { getStudioSession, listStudioScenes } = await import('./studio');
-      const [session, scenes, tour] = await Promise.all([
-        getStudioSession(sessionId),
-        listStudioScenes(sessionId),
-        appsync.getGuideTourById(item.tourId),
-      ]);
-      const sourceLang = session?.language ?? 'fr';
-      const baseSources = new Set<'tts' | 'recording'>();
-      for (const sc of scenes.filter((s) => !s.archived)) {
-        if (sc.baseAudioSource === 'tts' || sc.baseAudioSource === 'recording') {
-          baseSources.add(sc.baseAudioSource);
-        } else {
-          const k = sc.studioAudioKey ?? sc.originalAudioKey ?? '';
-          if (k) baseSources.add(k.includes('tts') ? 'tts' : 'recording');
-        }
-      }
-      if (baseSources.size > 0) {
-        const rawExisting = (tour as { languageAudioTypes?: unknown } | null)?.languageAudioTypes;
-        const existing: Record<string, 'tts' | 'recording' | 'mixed'> =
-          (typeof rawExisting === 'string'
-            ? (() => {
-                try {
-                  return JSON.parse(rawExisting);
-                } catch {
-                  return {};
-                }
-              })()
-            : rawExisting) ?? {};
-        const sourceType: 'tts' | 'recording' | 'mixed' =
-          baseSources.size === 1 ? Array.from(baseSources)[0] : 'mixed';
-        const languageAudioTypes = { ...existing, [sourceLang]: sourceType };
-        const existingLangs = Array.isArray((tour as { availableLanguages?: unknown } | null)?.availableLanguages)
-          ? ((tour as { availableLanguages: string[] }).availableLanguages)
-          : [];
-        const availableLanguages = Array.from(new Set([sourceLang, ...existingLangs]));
-        await appsync.updateGuideTourMutation(item.tourId, { languageAudioTypes, availableLanguages });
-      }
-    } catch (e) {
-      logger.warn('ModerationAPI', 'approveTour: languageAudioTypes derivation failed (non-fatal)', { tourId: item.tourId, error: String(e) });
+  if (session && session.version > 1) {
+    const versionResult = await appsync.updateGuideTourMutation(item.tourId, { version: session.version });
+    if (!versionResult.ok) {
+      logger.warn('ModerationAPI', 'approveTour: GuideTour version sync failed (non-fatal)', { tourId: item.tourId, error: versionResult.error });
     }
   }
 
@@ -632,28 +723,27 @@ export async function approveTour(
   // at the moment of approval (final, moderated polyline) — avoids a
   // reverse-geocoding call on every mobile client. Best-effort/non-blocking,
   // same pattern as the two blocks above.
-  if (sessionId) {
-    try {
-      const { getStudioSession } = await import('./studio');
-      const session = await getStudioSession(sessionId);
-      const path = session?.routePath?.computedPath;
-      if (path && path.length >= 2) {
-        const start = path[0];
-        const end = path[path.length - 1];
-        const isLoop = haversineMeters(start, end) < LOOP_THRESHOLD_METERS;
-        const [startAddress, endAddress] = await Promise.all([
-          reverseGeocode(start.lat, start.lng),
-          isLoop ? Promise.resolve(null) : reverseGeocode(end.lat, end.lng),
-        ]);
-        await appsync.updateGuideTourMutation(item.tourId, {
-          isLoop,
-          ...(startAddress ? { startAddress } : {}),
-          ...(!isLoop && endAddress ? { endAddress } : {}),
-        });
+  try {
+    const path = session?.routePath?.computedPath;
+    if (path && path.length >= 2) {
+      const start = path[0];
+      const end = path[path.length - 1];
+      const isLoop = haversineMeters(start, end) < LOOP_THRESHOLD_METERS;
+      const [startAddress, endAddress] = await Promise.all([
+        reverseGeocode(start.lat, start.lng),
+        isLoop ? Promise.resolve(null) : reverseGeocode(end.lat, end.lng),
+      ]);
+      const infoResult = await appsync.updateGuideTourMutation(item.tourId, {
+        isLoop,
+        ...(startAddress ? { startAddress } : {}),
+        ...(!isLoop && endAddress ? { endAddress } : {}),
+      });
+      if (!infoResult.ok) {
+        logger.warn('ModerationAPI', 'approveTour: visitor info write failed (non-fatal)', { tourId: item.tourId, error: infoResult.error });
       }
-    } catch (e) {
-      logger.warn('ModerationAPI', 'approveTour: visitor info derivation failed (non-fatal)', { tourId: item.tourId, error: String(e) });
     }
+  } catch (e) {
+    logger.warn('ModerationAPI', 'approveTour: visitor info derivation failed (non-fatal)', { tourId: item.tourId, error: String(e) });
   }
 
   // Auto-log to comment thread
@@ -770,8 +860,50 @@ export async function adminSetTourStatus(
   status: 'published' | 'archived',
 ): Promise<{ ok: boolean; error?: string }> {
   if (shouldUseStubs()) return { ok: true };
-  const result = await appsync.updateGuideTourMutation(tourId, { status });
-  return result.ok ? { ok: true } : { ok: false, error: result.error };
+
+  const updates: Record<string, unknown> = { status };
+
+  // CAP-8 — le chemin admin (« Réactiver » sur /admin/tours) publiait en n'écrivant
+  // que { status }. Il ne dérive rien : il exige que la mention soit DÉJÀ portée
+  // pour la langue source, et la ré-embarque dans l'écriture (idempotent) afin que
+  // publication et mention restent indissociables.
+  if (status === 'published') {
+    const tourRead = await appsync.getGuideTourResult(tourId);
+    // « Lecture en échec » et « Visite inexistante » portent des codes distincts :
+    // seul le premier justifie un nouvel essai.
+    if (!tourRead.ok) {
+      logger.error('ModerationAPI', 'adminSetTourStatus: GuideTour read failed', { tourId, error: tourRead.error });
+      return { ok: false, error: ERR_UNVERIFIABLE };
+    }
+    if (!tourRead.data) return { ok: false, error: ERR_TOUR_NOT_FOUND };
+
+    const tour = tourRead.data as unknown as Record<string, unknown>;
+    const session = await loadStudioSession(
+      (tour.sessionId as string | null) ?? undefined,
+      'adminSetTourStatus',
+    );
+    const sourceLang = sourceLanguageOf(session);
+    if (!coversLanguage(tour.languageAudioTypes, sourceLang)) {
+      logger.error('ModerationAPI', 'adminSetTourStatus: refused publish without disclosure', { tourId, sourceLang });
+      return {
+        ok: false,
+        error: `[${AUDIO_DISCLOSURE_ERR.PUBLISH_WITHOUT_DISCLOSURE}] Publication refusée : aucune mention de source audio pour la langue source « ${sourceLang} ». Approuvez le parcours via la modération pour la dériver.`,
+      };
+    }
+    // La mention existante fait foi : la valeur BRUTE est réécrite telle quelle,
+    // sans passer par `parseLanguageAudioTypes`, qui élaguerait toute entrée hors
+    // domaine — une ligne héritée `{fr:'tts', en:'human'}` perdrait `en` sur une
+    // simple réactivation.
+    updates.languageAudioTypes = tour.languageAudioTypes;
+  }
+
+  const result = await appsync.updateGuideTourMutation(tourId, updates);
+  if (!result.ok) {
+    // Le retour est vérifié : `updateGuideTourMutation` ne lève jamais.
+    const prefix = status === 'published' ? `[${AUDIO_DISCLOSURE_ERR.PUBLISH_WRITE_REFUSED}] ` : '';
+    return { ok: false, error: `${prefix}${result.error}` };
+  }
+  return { ok: true };
 }
 
 export async function getAllAdminTours(): Promise<Array<{ id: string; title: string; city: string; status: string; guideId: string; poiCount: number; duration: number; distance: number; sessionId: string | null; guideName: string }>> {
