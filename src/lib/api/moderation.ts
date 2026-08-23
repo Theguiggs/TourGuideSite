@@ -505,6 +505,33 @@ async function resolveModerationItem(idOrTourId: string) {
   return null;
 }
 
+// BTU-8 — practical visitor info derived at approval time.
+const LOOP_THRESHOLD_METERS = 100;
+
+function haversineMeters(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number {
+  const R = 6371000;
+  const toRad = (d: number) => (d * Math.PI) / 180;
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const s =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(s));
+}
+
+/** Same free Nominatim service already used for forward geocoding in the itinerary tracer. */
+async function reverseGeocode(lat: number, lng: number): Promise<string | null> {
+  try {
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
+    const res = await fetch(url, { headers: { 'Accept-Language': 'fr' } });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { display_name?: string };
+    return data.display_name ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export async function approveTour(
   moderationId: string,
   checklist: Record<string, { checked: boolean; note: string }>,
@@ -549,6 +576,34 @@ export async function approveTour(
       }
     } catch (e) {
       logger.warn('ModerationAPI', 'approveTour: GuideTour version sync failed (non-fatal)', { tourId: item.tourId, error: String(e) });
+    }
+  }
+
+  // BTU-8: derive startAddress/endAddress/isLoop from the guide's traced route
+  // at the moment of approval (final, moderated polyline) — avoids a
+  // reverse-geocoding call on every mobile client. Best-effort/non-blocking,
+  // same pattern as the two blocks above.
+  if (sessionId) {
+    try {
+      const { getStudioSession } = await import('./studio');
+      const session = await getStudioSession(sessionId);
+      const path = session?.routePath?.computedPath;
+      if (path && path.length >= 2) {
+        const start = path[0];
+        const end = path[path.length - 1];
+        const isLoop = haversineMeters(start, end) < LOOP_THRESHOLD_METERS;
+        const [startAddress, endAddress] = await Promise.all([
+          reverseGeocode(start.lat, start.lng),
+          isLoop ? Promise.resolve(null) : reverseGeocode(end.lat, end.lng),
+        ]);
+        await appsync.updateGuideTourMutation(item.tourId, {
+          isLoop,
+          ...(startAddress ? { startAddress } : {}),
+          ...(!isLoop && endAddress ? { endAddress } : {}),
+        });
+      }
+    } catch (e) {
+      logger.warn('ModerationAPI', 'approveTour: visitor info derivation failed (non-fatal)', { tourId: item.tourId, error: String(e) });
     }
   }
 

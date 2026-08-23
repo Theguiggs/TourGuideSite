@@ -99,6 +99,9 @@ export default function GeneralPage() {
   const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0);
+  // BTU-8 — conseils pratiques libres du guide (météo locale, horaires, marées…),
+  // éditables même une fois le tour publié (comme le prix).
+  const [practicalTips, setPracticalTips] = useState('');
   // mon-1.2 (parité web) — monétisation
   const [purchaseType, setPurchaseType] = useState<'free' | 'paid' | 'subscription_only'>('free');
   const [priceEuros, setPriceEuros] = useState('');
@@ -177,6 +180,7 @@ export default function GeneralPage() {
                 setDescription((tour.description as string) || '');
                 setDuration((tour.duration as number) || 0);
                 setDistance((tour.distance as number) || 0);
+                setPracticalTips((tour.practicalTips as string) || '');
                 setPurchaseType(
                   (tour.purchaseType as 'free' | 'paid' | 'subscription_only') ?? 'free',
                 );
@@ -278,7 +282,9 @@ export default function GeneralPage() {
     : false;
   const canEditMonetization = supportsMonetization
     && (!isLocked || session?.status === 'published');
-  const canSave = !isLocked || canEditMonetization;
+  // BTU-8 — comme le prix, les conseils pratiques restent modifiables une fois publié.
+  const canEditPracticalTips = !isLocked || session?.status === 'published';
+  const canSave = !isLocked || canEditMonetization || canEditPracticalTips;
 
   const handleSave = useCallback(async () => {
     if (!session) return;
@@ -315,9 +321,10 @@ export default function GeneralPage() {
       }
       if (!session.tourId) throw new Error('No tour associated with this session.');
       const monetizationUpdates = supportsMonetization ? { purchaseType, priceCents } : {};
+      const practicalTipsUpdates = canEditPracticalTips ? { practicalTips } : {};
       const tourResult = await appsync.updateGuideTourMutation(
         session.tourId,
-        isLocked ? monetizationUpdates : {
+        isLocked ? { ...monetizationUpdates, ...practicalTipsUpdates } : {
           title,
           city,
           description,
@@ -326,6 +333,7 @@ export default function GeneralPage() {
           poiCount: scenesCount,
           // mon-1.2 (parité web) → consommé par mon-1.3b (createTourPaymentIntent lit GuideTour).
           ...monetizationUpdates,
+          ...practicalTipsUpdates,
         },
       );
       if (!tourResult.ok) throw new Error(tourResult.error);
@@ -365,6 +373,8 @@ export default function GeneralPage() {
     priceEuros,
     supportsMonetization,
     isLocked,
+    practicalTips,
+    canEditPracticalTips,
     t,
   ]);
 
@@ -528,6 +538,28 @@ export default function GeneralPage() {
           disabled={isLocked}
           data-testid="description-input"
           placeholder={t("Décrivez votre tour tel qu'il apparaîtra dans le catalogue…", 'Describe your tour as it will appear in the catalogue...')}
+        />
+      </WizField>
+
+      {/* ───── BTU-8 : Conseils pratiques (éditable même une fois publié) ───── */}
+      <WizField
+        label={t('Conseils pratiques', 'Practical tips')}
+        hint={`${practicalTips.length} / 500`}
+        htmlFor="tour-practical-tips"
+        helper={t(
+          "Visible par le visiteur avant/pendant la visite : météo locale, horaires, marées, toilettes…",
+          'Shown to the visitor before/during the tour: local weather, opening hours, tides, restrooms…',
+        )}
+      >
+        <WizTextarea
+          id="tour-practical-tips"
+          rows={3}
+          value={practicalTips}
+          onChange={(e) => setPracticalTips(e.target.value)}
+          maxLength={500}
+          disabled={!canEditPracticalTips}
+          data-testid="practical-tips-input"
+          placeholder={t('Ex : Prévoir de bonnes chaussures, le quai est glissant par temps de pluie.', 'E.g. Wear good shoes, the quay is slippery when wet.')}
         />
       </WizField>
 
