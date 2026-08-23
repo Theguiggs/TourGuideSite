@@ -579,6 +579,55 @@ export async function approveTour(
     }
   }
 
+  // C7: derive and persist languageAudioTypes[sourceLang] so the "Voix de
+  // synthèse" disclosure shows up on mobile even when a tour is approved
+  // directly (i.e. never went through a language-purchase approval, the only
+  // other writer of this field — see language-purchase.ts). Merges into any
+  // existing map so previously-approved translations aren't overwritten.
+  if (sessionId) {
+    try {
+      const { getStudioSession, listStudioScenes } = await import('./studio');
+      const [session, scenes, tour] = await Promise.all([
+        getStudioSession(sessionId),
+        listStudioScenes(sessionId),
+        appsync.getGuideTourById(item.tourId),
+      ]);
+      const sourceLang = session?.language ?? 'fr';
+      const baseSources = new Set<'tts' | 'recording'>();
+      for (const sc of scenes.filter((s) => !s.archived)) {
+        if (sc.baseAudioSource === 'tts' || sc.baseAudioSource === 'recording') {
+          baseSources.add(sc.baseAudioSource);
+        } else {
+          const k = sc.studioAudioKey ?? sc.originalAudioKey ?? '';
+          if (k) baseSources.add(k.includes('tts') ? 'tts' : 'recording');
+        }
+      }
+      if (baseSources.size > 0) {
+        const rawExisting = (tour as { languageAudioTypes?: unknown } | null)?.languageAudioTypes;
+        const existing: Record<string, 'tts' | 'recording' | 'mixed'> =
+          (typeof rawExisting === 'string'
+            ? (() => {
+                try {
+                  return JSON.parse(rawExisting);
+                } catch {
+                  return {};
+                }
+              })()
+            : rawExisting) ?? {};
+        const sourceType: 'tts' | 'recording' | 'mixed' =
+          baseSources.size === 1 ? Array.from(baseSources)[0] : 'mixed';
+        const languageAudioTypes = { ...existing, [sourceLang]: sourceType };
+        const existingLangs = Array.isArray((tour as { availableLanguages?: unknown } | null)?.availableLanguages)
+          ? ((tour as { availableLanguages: string[] }).availableLanguages)
+          : [];
+        const availableLanguages = Array.from(new Set([sourceLang, ...existingLangs]));
+        await appsync.updateGuideTourMutation(item.tourId, { languageAudioTypes, availableLanguages });
+      }
+    } catch (e) {
+      logger.warn('ModerationAPI', 'approveTour: languageAudioTypes derivation failed (non-fatal)', { tourId: item.tourId, error: String(e) });
+    }
+  }
+
   // BTU-8: derive startAddress/endAddress/isLoop from the guide's traced route
   // at the moment of approval (final, moderated polyline) — avoids a
   // reverse-geocoding call on every mobile client. Best-effort/non-blocking,
