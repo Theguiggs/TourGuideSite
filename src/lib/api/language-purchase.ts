@@ -277,10 +277,18 @@ export async function confirmLanguagePurchase(
           amountCents,
           provider,
           stripePaymentIntentId: paymentIntentId || undefined,
-          // SÉCURITÉ — ni `moderationStatus` ni `status` ici : le propriétaire n'a
-          // plus le droit `create` dessus. Le serveur pose `draft` / `active` via
-          // les valeurs par défaut du schéma. Les renvoyer ferait refuser
-          // l'intégralité de la création, c'est-à-dire tout achat de langue.
+          // SÉCURITÉ — `moderationStatus` n'est PAS envoyé : le propriétaire n'a
+          // pas le droit `create` dessus, sinon il naîtrait des lignes déjà
+          // « approved ». Le champ reste nul à la création, ce qui est sûr : le
+          // balayage de publication exige `moderationStatus = 'approved'` et ne
+          // matche jamais un nul. C'est la Lambda qui le porte ensuite à
+          // `submitted`. Éprouvé sur bac à sable : envoyer la clé fait refuser
+          // la création entière (« Unauthorized on [moderationStatus] »).
+          // `status`, lui, DOIT être envoyé — le propriétaire garde `create`, et
+          // une valeur par défaut de schéma serait elle aussi comptée comme
+          // fournie par le client, donc refusée. Quatre filtres du produit
+          // comparent ce champ à 'active'.
+          status: 'active',
         },
         { authMode: 'userPool' },
       );
@@ -432,10 +440,18 @@ export async function confirmLanguagePurchaseMixed(
           amountCents: amountByLang.get(lang) ?? 0,
           provider,
           stripePaymentIntentId: paymentIntentId || undefined,
-          // SÉCURITÉ — ni `moderationStatus` ni `status` ici : le propriétaire n'a
-          // plus le droit `create` dessus. Le serveur pose `draft` / `active` via
-          // les valeurs par défaut du schéma. Les renvoyer ferait refuser
-          // l'intégralité de la création, c'est-à-dire tout achat de langue.
+          // SÉCURITÉ — `moderationStatus` n'est PAS envoyé : le propriétaire n'a
+          // pas le droit `create` dessus, sinon il naîtrait des lignes déjà
+          // « approved ». Le champ reste nul à la création, ce qui est sûr : le
+          // balayage de publication exige `moderationStatus = 'approved'` et ne
+          // matche jamais un nul. C'est la Lambda qui le porte ensuite à
+          // `submitted`. Éprouvé sur bac à sable : envoyer la clé fait refuser
+          // la création entière (« Unauthorized on [moderationStatus] »).
+          // `status`, lui, DOIT être envoyé — le propriétaire garde `create`, et
+          // une valeur par défaut de schéma serait elle aussi comptée comme
+          // fournie par le client, donc refusée. Quatre filtres du produit
+          // comparent ce champ à 'active'.
+          status: 'active',
         },
         { authMode: 'userPool' },
       );

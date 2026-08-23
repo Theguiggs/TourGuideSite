@@ -817,13 +817,18 @@ export async function createLanguagePurchaseMutation(data: {
 }) {
   try {
     const client = getClient();
-    // SÉCURITÉ — `moderationStatus` et `status` ne sont PLUS envoyés : le
-    // propriétaire n'a pas le droit `create` dessus (sinon il naîtrait des lignes
-    // déjà « approved »). Le serveur applique les valeurs par défaut du schéma,
-    // `draft` et `active`. Renvoyer ces clés ferait refuser la création entière —
-    // c'est-à-dire tout achat de langue.
+    // SÉCURITÉ — `moderationStatus` n'est PAS envoyé : le propriétaire n'a pas
+    // le droit `create` dessus, sinon il naîtrait des lignes déjà « approved ».
+    // Le champ reste nul, ce qui est sûr : le balayage de publication exige
+    // `moderationStatus = 'approved'` et ne matche jamais un nul.
+    // `status` est envoyé — le propriétaire garde `create`, et une valeur par
+    // défaut de schéma serait comptée comme fournie par le client, donc refusée
+    // (éprouvé sur bac à sable : « Unauthorized on [moderationStatus, status] »
+    // alors que le client n'envoyait rien).
     const result = await client.models.TourLanguagePurchase.create(
-      data as Parameters<typeof client.models.TourLanguagePurchase.create>[0],
+      { ...data, status: 'active' } as Parameters<
+        typeof client.models.TourLanguagePurchase.create
+      >[0],
       { authMode: 'userPool' },
     );
     if (!result.data) {

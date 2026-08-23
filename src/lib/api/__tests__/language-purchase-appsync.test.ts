@@ -131,7 +131,7 @@ beforeEach(() => {
 // ---------------------------------------------------------------------------
 
 describe('createLanguagePurchaseMutation', () => {
-  it("n'envoie NI moderationStatus NI status — le serveur pose les valeurs par défaut", async () => {
+  it("n'envoie pas moderationStatus, mais envoie status — éprouvé sur bac à sable", async () => {
     const result = await createLanguagePurchaseMutation({
       guideId: 'guide-1',
       sessionId: 'session-1',
@@ -144,9 +144,17 @@ describe('createLanguagePurchaseMutation', () => {
     expect(result.ok).toBe(true);
     const sent = mockPurchaseCreate.mock.calls[0][0];
     expect(sent).toMatchObject({ sessionId: 'session-1', language: 'en' });
-    // Le cœur de la porte 3 : envoyer ces clés ferait refuser la création entière.
+    // Le cœur de la porte 3. Éprouvé contre un backend déployé le 2026-08-23 :
+    // envoyer `moderationStatus` fait refuser la création entière
+    // (« Unauthorized on [moderationStatus] »), donc un guide ne peut pas naître
+    // « approved ». Le champ reste nul, et c'est sûr : le balayage de publication
+    // exige `moderationStatus = 'approved'` et ne matche jamais un nul.
     expect(sent).not.toHaveProperty('moderationStatus');
-    expect(sent).not.toHaveProperty('status');
+    // `status` DOIT partir. Le propriétaire garde `create` dessus, et une valeur
+    // par défaut de schéma ne sauverait rien : la même épreuve a montré qu'AppSync
+    // la compte comme fournie par le client et refuse la création. Quatre filtres
+    // du produit comparent ce champ à 'active'.
+    expect(sent).toMatchObject({ status: 'active' });
   });
 
   it("remonte le refus si une création portait quand même un champ d'état (simulé)", async () => {
@@ -449,7 +457,7 @@ describe('lectures par session', () => {
 // ---------------------------------------------------------------------------
 
 describe('sites de création de language-purchase.ts', () => {
-  it('confirmLanguagePurchase crée sans moderationStatus ni status', async () => {
+  it('confirmLanguagePurchase crée avec status, sans moderationStatus', async () => {
     mockPurchaseCreate.mockResolvedValue({ data: SAMPLE_ROW, errors: undefined });
     mockSceneListBySession.mockResolvedValue({ data: [] });
 
@@ -457,9 +465,8 @@ describe('sites de création de language-purchase.ts', () => {
 
     expect(mockPurchaseCreate).toHaveBeenCalled();
     const sent = mockPurchaseCreate.mock.calls[0][0];
-    expect(sent).toMatchObject({ sessionId: 'session-1', language: 'en' });
+    expect(sent).toMatchObject({ sessionId: 'session-1', language: 'en', status: 'active' });
     expect(sent).not.toHaveProperty('moderationStatus');
-    expect(sent).not.toHaveProperty('status');
   });
 });
 
