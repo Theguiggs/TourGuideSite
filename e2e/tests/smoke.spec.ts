@@ -10,7 +10,13 @@ import {
   authenticateCognito,
   createStorageState,
 } from '../fixtures/auth.fixture';
-import { seedTour, queryTourByTitle, deleteItemsByPrefix } from '../helpers/appsync-direct';
+import {
+  seedTour,
+  queryTourByTitle,
+  deleteItemsByPrefix,
+  seedLanguagePurchase,
+  graphql,
+} from '../helpers/appsync-direct';
 import { getAccessTokenFromStorageState } from '../fixtures/auth.fixture';
 
 test.describe('Smoke Tests', () => {
@@ -62,5 +68,40 @@ test.describe('Smoke Tests', () => {
     const afterCleanup = await queryTourByTitle(prefix, token);
     const stillExists = afterCleanup.some(t => String(t.title ?? '').includes(prefix));
     expect(stillExists).toBe(false);
+  });
+
+  /**
+   * Régression du 2026-08-24 : poser des autorisations de CHAMP sur
+   * `TourLanguagePurchase` avait retiré `delete` de l'autorisation de TYPE,
+   * alors que la règle de modèle l'accorde. Un guide ne pouvait plus supprimer
+   * son propre brouillon — `submission/page.tsx:338` efface les achats de
+   * langue de la session avant de la supprimer.
+   *
+   * Le défaut est parti en production sans qu'aucun des 1541 tests unitaires,
+   * des 54 e2e ni d'une revue à trois lentilles ne le voie : ce chemin n'avait
+   * aucune couverture. Ce test est cette couverture.
+   *
+   * Il tombera si l'un des champs annotés du modèle cesse d'autoriser `delete`.
+   */
+  test('smoke-authz: le propriétaire peut supprimer son propre achat de langue', async () => {
+    const guidePath = getGuideStorageStatePath();
+    if (!isTokenValid(guidePath)) {
+      const tokens = await authenticateCognito(E2E_GUIDE_EMAIL, E2E_GUIDE_PASSWORD);
+      createStorageState(tokens, E2E_GUIDE_EMAIL, guidePath);
+    }
+    const token = getAccessTokenFromStorageState(guidePath);
+    const sessionId = e2ePrefix('smoke-del');
+
+    const purchase = await seedLanguagePurchase(sessionId, 'en', token);
+    expect(purchase.id).toBeTruthy();
+
+    const deleted = await graphql<{ deleteTourLanguagePurchase: { id: string } | null }>(
+      `mutation($input: DeleteTourLanguagePurchaseInput!) {
+        deleteTourLanguagePurchase(input: $input) { id }
+      }`,
+      { input: { id: purchase.id } },
+      token,
+    );
+    expect(deleted.deleteTourLanguagePurchase?.id).toBe(purchase.id);
   });
 });

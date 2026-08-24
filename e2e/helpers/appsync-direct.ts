@@ -53,7 +53,7 @@ const TABLES_TO_CLEAN = [
 
 // --- GraphQL HTTP helper ---
 
-async function graphql<T = Record<string, unknown>>(
+export async function graphql<T = Record<string, unknown>>(
   query: string,
   variables: Record<string, unknown>,
   token: string,
