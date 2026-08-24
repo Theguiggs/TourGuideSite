@@ -84,6 +84,28 @@ describe('published tour SSR mappings', () => {
     ]);
   });
 
+  it('ne fabrique aucune langue que la Visite ne vend pas', async () => {
+    // `GuideTour` ne porte pas de champ `language` : le 'fr' de repli préfixait
+    // une langue fantôme, désormais déclarée « voix de synthèse » à l'affichage.
+    jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([
+      { ...tour, availableLanguages: ['en'], languageAudioTypes: { en: 'recording' } },
+    ] as never);
+
+    await expect(getToursByCity('nice')).resolves.toEqual([
+      expect.objectContaining({ availableLanguages: ['en'] }),
+    ]);
+  });
+
+  it('retombe sur le français, jamais sur [undefined], quand rien n est persisté', async () => {
+    jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([
+      { ...tour, availableLanguages: undefined },
+    ] as never);
+
+    await expect(getToursByCity('nice')).resolves.toEqual([
+      expect.objectContaining({ availableLanguages: ['fr'] }),
+    ]);
+  });
+
   it('propagates facade failures during SSR', async () => {
     jest.mocked(publicApi.getPublishedTourContentServer).mockResolvedValue({
       ok: false,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import {
-  refundLanguagePurchase,
+  revokeLanguageAccess,
   confirmLanguagePurchase,
   listLanguagePurchases,
   __resetLanguagePurchaseStubs,
@@ -61,7 +61,7 @@ describe('ML-5.5 Refund Admin', () => {
       expect(enPurchase!.status).toBe('active');
 
       // Refund
-      const refundResult = await refundLanguagePurchase(enPurchase!.id);
+      const refundResult = await revokeLanguageAccess(enPurchase!.id);
       expect(refundResult.ok).toBe(true);
       if (refundResult.ok) {
         expect(refundResult.value.status).toBe('refunded');
@@ -82,7 +82,7 @@ describe('ML-5.5 Refund Admin', () => {
     expect(listBefore.ok).toBe(true);
     if (listBefore.ok) {
       const purchase = listBefore.value.find((p) => p.language === 'en');
-      await refundLanguagePurchase(purchase!.id);
+      await revokeLanguageAccess(purchase!.id);
     }
 
     // Verify refunded
@@ -157,7 +157,7 @@ describe('ML-5.5 Refund Admin', () => {
     expect(progress.failedScenes.length).toBe(progress.total);
 
     // Simulate what the auto-refund timer callback does: call refund
-    const refundResult = await refundLanguagePurchase(purchase!.id);
+    const refundResult = await revokeLanguageAccess(purchase!.id);
     expect(refundResult.ok).toBe(true);
     if (refundResult.ok) {
       expect(refundResult.value.status).toBe('refunded');

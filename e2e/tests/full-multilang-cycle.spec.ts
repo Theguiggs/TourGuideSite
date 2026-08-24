@@ -16,7 +16,7 @@ import {
 } from '../fixtures/seed.fixture';
 import {
   seedModerationItem, deleteItemsById, resolveGuideId, updateSessionTranslations,
-  updateModerationItemStatus, updateLanguagePurchaseStatus, updateSessionStatus,
+  updateModerationItemStatus, adminSetLanguageModerationStatus, updateSessionStatus,
 } from '../helpers/appsync-direct';
 
 const PREFIX = e2ePrefix('full-ml');
@@ -96,10 +96,10 @@ test.describe('Full Multilang Cycle', () => {
     tourId = data.tourId; sessionId = data.sessionId; sceneIds = data.sceneIds;
 
     // EN + ES purchases (both submitted)
-    const enP = await seedLanguagePurchase(sessionId, 'en', guideToken, { guideId, moderationStatus: 'submitted', status: 'active', amountCents: 199, qualityTier: 'standard', purchaseType: 'single' });
-    const esP = await seedLanguagePurchase(sessionId, 'es', guideToken, { guideId, moderationStatus: 'submitted', status: 'active', amountCents: 199, qualityTier: 'standard', purchaseType: 'single' });
+    const enP = await seedLanguagePurchase(sessionId, 'en', guideToken, { guideId, moderationStatus: 'submitted', amountCents: 199, qualityTier: 'standard', purchaseType: 'single' });
+    const esP = await seedLanguagePurchase(sessionId, 'es', guideToken, { guideId, moderationStatus: 'submitted', amountCents: 199, qualityTier: 'standard', purchaseType: 'single' });
     // IT purchase with no segments (edge case)
-    const itP = await seedLanguagePurchase(sessionId, 'it', guideToken, { guideId, moderationStatus: 'draft', status: 'active', amountCents: 199, qualityTier: 'standard', purchaseType: 'single' });
+    const itP = await seedLanguagePurchase(sessionId, 'it', guideToken, { guideId, moderationStatus: 'draft', amountCents: 199, qualityTier: 'standard', purchaseType: 'single' });
     enPurchaseId = enP.id; esPurchaseId = esP.id; itPurchaseId = itP.id;
 
     // EN + ES segments for each scene
@@ -214,10 +214,13 @@ test.describe('Full Multilang Cycle', () => {
 
   // Phase 2.5 + 3 — Admin approves EN, rejects ES (via API)
   test('2.5+3.1 Admin approves EN, rejects ES via API', async () => {
+    // Le verdict de modération est une écriture ADMIN : `moderationStatus` porte
+    // sa propre autorisation et le propriétaire ne peut plus l'écrire. Ces deux
+    // lignes passaient un jeton GUIDE — elles exerçaient le trou refermé depuis.
     // Approve EN purchase
-    await updateLanguagePurchaseStatus(enPurchaseId, 'approved', guideToken);
+    await adminSetLanguageModerationStatus(enPurchaseId, 'approved', adminToken);
     // Reject ES purchase with feedback
-    await updateLanguagePurchaseStatus(esPurchaseId, 'rejected', guideToken);
+    await adminSetLanguageModerationStatus(esPurchaseId, 'rejected', adminToken);
     // Update moderation item with rejection feedback
     await updateModerationItemStatus(moderationItemId, 'rejected', JSON.stringify({
       category: 'translation',

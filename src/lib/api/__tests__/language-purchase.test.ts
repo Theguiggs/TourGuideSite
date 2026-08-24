@@ -2,7 +2,7 @@ import {
   createPaymentIntent,
   confirmLanguagePurchase,
   listLanguagePurchases,
-  refundLanguagePurchase,
+  revokeLanguageAccess,
   __resetLanguagePurchaseStubs,
 } from '../language-purchase';
 
@@ -56,11 +56,11 @@ describe('LanguagePurchaseAPI', () => {
     }
   });
 
-  it('refundLanguagePurchase returns purchase with status refunded', async () => {
+  it('revokeLanguageAccess returns purchase with status refunded', async () => {
     // First confirm a purchase so it exists in stub state
     await confirmLanguagePurchase('session-1', ['en'], 'standard', 'pi_refund_test');
 
-    const result = await refundLanguagePurchase('purchase-session-1-en');
+    const result = await revokeLanguageAccess('purchase-session-1-en');
     expect(result.ok).toBe(true);
     if (result.ok) {
       expect(result.value.status).toBe('refunded');

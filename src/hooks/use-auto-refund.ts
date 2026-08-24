@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { refundLanguagePurchase } from '@/lib/api/language-purchase';
+import { revokeLanguageAccess } from '@/lib/api/language-purchase';
 import { useLanguageBatchStore } from '@/lib/stores/language-batch-store';
 import { logger } from '@/lib/logger';
 
@@ -9,11 +9,17 @@ const SERVICE_NAME = 'AutoRefund';
 const AUTO_REFUND_DELAY_MS = 15 * 60 * 1000; // 15 minutes
 
 /**
- * Hook that triggers an automatic refund if a batch translation
+ * Hook that revokes access to a purchased language if a batch translation
  * fails 100% (all scenes failed) after a 15-minute timeout.
  *
  * Per story ML-5.5 AC5: the timer starts when all scenes fail,
- * and fires the refund if no retry has succeeded in the meantime.
+ * and fires if no retry has succeeded in the meantime.
+ *
+ * ⚠️ Ce n'est PAS un remboursement Stripe : `revokeLanguageAccess` ne fait que
+ * passer l'achat en `status: 'refunded'` (accès coupé). Et depuis le resserrage
+ * par champ, ce champ est admin-only : un guide connecté verra l'appel échouer
+ * bruyamment. Ce hook n'est monté par aucun composant aujourd'hui ; le rebrancher
+ * suppose de faire porter la révocation par un chemin serveur/admin.
  */
 export function useAutoRefund(
   lang: string | null,
@@ -53,12 +59,12 @@ export function useAutoRefund(
         currentProgress.status === 'failed' &&
         currentProgress.failedScenes.length === currentProgress.total
       ) {
-        logger.info(SERVICE_NAME, 'Auto-refund triggered', {
+        logger.info(SERVICE_NAME, 'Auto-revoke triggered', {
           purchaseId,
           lang,
           reason: 'batch_100_fail_timeout',
         });
-        await refundLanguagePurchase(purchaseId);
+        await revokeLanguageAccess(purchaseId);
       } else {
         logger.info(SERVICE_NAME, 'Auto-refund cancelled — batch state changed', {
           purchaseId,

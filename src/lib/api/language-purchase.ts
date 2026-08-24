@@ -148,7 +148,7 @@ async function stubListLanguagePurchases(
   return { ok: true, value: defaults };
 }
 
-async function stubRefundLanguagePurchase(
+async function stubRevokeLanguageAccess(
   purchaseId: string,
 ): Promise<Result<TourLanguagePurchase>> {
   await new Promise((r) => setTimeout(r, 300));
@@ -277,7 +277,17 @@ export async function confirmLanguagePurchase(
           amountCents,
           provider,
           stripePaymentIntentId: paymentIntentId || undefined,
-          moderationStatus: 'draft',
+          // SÉCURITÉ — `moderationStatus` n'est PAS envoyé : le propriétaire n'a
+          // pas le droit `create` dessus, sinon il naîtrait des lignes déjà
+          // « approved ». Le champ reste nul à la création, ce qui est sûr : le
+          // balayage de publication exige `moderationStatus = 'approved'` et ne
+          // matche jamais un nul. C'est la Lambda qui le porte ensuite à
+          // `submitted`. Éprouvé sur bac à sable : envoyer la clé fait refuser
+          // la création entière (« Unauthorized on [moderationStatus] »).
+          // `status`, lui, DOIT être envoyé — le propriétaire garde `create`, et
+          // une valeur par défaut de schéma serait elle aussi comptée comme
+          // fournie par le client, donc refusée. Quatre filtres du produit
+          // comparent ce champ à 'active'.
           status: 'active',
         },
         { authMode: 'userPool' },
@@ -430,7 +440,17 @@ export async function confirmLanguagePurchaseMixed(
           amountCents: amountByLang.get(lang) ?? 0,
           provider,
           stripePaymentIntentId: paymentIntentId || undefined,
-          moderationStatus: 'draft',
+          // SÉCURITÉ — `moderationStatus` n'est PAS envoyé : le propriétaire n'a
+          // pas le droit `create` dessus, sinon il naîtrait des lignes déjà
+          // « approved ». Le champ reste nul à la création, ce qui est sûr : le
+          // balayage de publication exige `moderationStatus = 'approved'` et ne
+          // matche jamais un nul. C'est la Lambda qui le porte ensuite à
+          // `submitted`. Éprouvé sur bac à sable : envoyer la clé fait refuser
+          // la création entière (« Unauthorized on [moderationStatus] »).
+          // `status`, lui, DOIT être envoyé — le propriétaire garde `create`, et
+          // une valeur par défaut de schéma serait elle aussi comptée comme
+          // fournie par le client, donc refusée. Quatre filtres du produit
+          // comparent ce champ à 'active'.
           status: 'active',
         },
         { authMode: 'userPool' },
@@ -595,26 +615,41 @@ export async function listLanguagePurchases(
   }
 }
 
-export async function refundLanguagePurchase(
+/**
+ * Révoque l'accès à une langue achetée (`status: 'refunded'`).
+ *
+ * ⚠️ Le nom historique était `refundLanguagePurchase` : il mentait. Aucune
+ * inversion de paiement Stripe n'est déclenchée ici — c'est un simple changement
+ * d'état d'accès. L'argent, s'il doit être rendu, l'est hors de ce chemin.
+ *
+ * CHEMIN ADMINISTRATEUR. `TourLanguagePurchase.status` est admin-only en écriture
+ * (field-level auth) : un guide ne peut plus se rembourser lui-même, et un appel
+ * avec un jeton guide échoue bruyamment ({ok:false}) au lieu de faire semblant.
+ * L'ancienne implémentation visait `client.mutations.updateLanguagePurchase`,
+ * une opération qui n'a jamais existé dans le schéma.
+ */
+export async function revokeLanguageAccess(
   purchaseId: string,
 ): Promise<Result<TourLanguagePurchase>> {
   if (shouldUseStubs()) {
-    logger.info(SERVICE_NAME, 'refundLanguagePurchase (stub)', { purchaseId });
-    return stubRefundLanguagePurchase(purchaseId);
+    logger.info(SERVICE_NAME, 'revokeLanguageAccess (stub)', { purchaseId });
+    return stubRevokeLanguageAccess(purchaseId);
   }
 
   try {
-    const { getClient } = await import('@/lib/api/appsync-client');
-    const client = getClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const result = await (client as any).mutations.updateLanguagePurchase(
-      { id: purchaseId, status: 'refunded', refundedAt: new Date().toISOString() },
-      { authMode: 'userPool' },
-    );
-    return { ok: true, value: result?.data as TourLanguagePurchase };
+    const { updateLanguagePurchaseMutation } = await import('@/lib/api/appsync-client');
+    const result = await updateLanguagePurchaseMutation(purchaseId, {
+      status: 'refunded',
+      refundedAt: new Date().toISOString(),
+    });
+    if (!result.ok) {
+      logger.error(SERVICE_NAME, 'revokeLanguageAccess rejected', { purchaseId, error: result.error });
+      return { ok: false, error: { code: 2607, message: `Revoke failed: ${result.error}` } };
+    }
+    return { ok: true, value: result.data as unknown as TourLanguagePurchase };
   } catch (err) {
-    logger.error(SERVICE_NAME, 'refundLanguagePurchase failed', { error: String(err) });
-    return { ok: false, error: { code: 2607, message: `Refund failed: ${String(err)}` } };
+    logger.error(SERVICE_NAME, 'revokeLanguageAccess failed', { error: String(err) });
+    return { ok: false, error: { code: 2607, message: `Revoke failed: ${String(err)}` } };
   }
 }
 
@@ -805,28 +840,35 @@ export async function updateModerationStatusByLang(
             logger.warn(SERVICE_NAME, 'Failed to build translatedAudioKeys (non-blocking)', { error: String(segErr) });
           }
 
-          // Try Amplify first, fallback to DynamoDB direct
-          try {
-            await updateGuideTourMutation(tourId, { availableLanguages: allLangs, translatedAudioKeys, languageAudioTypes });
-          } catch {
-            // Amplify may not support these fields yet — use DynamoDB direct
-            const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
-            const { DynamoDBDocumentClient, UpdateCommand } = await import('@aws-sdk/lib-dynamodb');
-            const appId = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
-            const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
-            await dynamo.send(new UpdateCommand({
-              TableName: `GuideTour-${appId}-NONE`,
-              Key: { id: tourId },
-              UpdateExpression: 'SET availableLanguages = :l, translatedAudioKeys = :t, languageAudioTypes = :a',
-              ExpressionAttributeValues: { ':l': allLangs, ':t': translatedAudioKeys, ':a': languageAudioTypes },
-            }));
-          }
-          logger.info(SERVICE_NAME, 'Updated GuideTour multilang surface', {
-            tourId,
-            languages: allLangs,
-            translatedLangs: Object.keys(translatedAudioKeys),
-            audioTypes: languageAudioTypes,
+          // SEUL écrivain AppSync des trois champs de publication, et il est
+          // administrateur — le schéma les réserve désormais au groupe admin.
+          // Le repli « DynamoDB direct » qui vivait dans un catch ici a été
+          // supprimé : il exigeait des identifiants AWS dans un navigateur, visait
+          // un identifiant d'application obsolète (`t5n…`, mort depuis la bascule
+          // hors bac à sable), et n'était de toute façon jamais atteint —
+          // `updateGuideTourMutation` ne lève pas, elle retourne `{ok:false}`.
+          // C'était un contournement d'autorisation écrit noir sur blanc.
+          const surfaceResult = await updateGuideTourMutation(tourId, {
+            availableLanguages: allLangs,
+            translatedAudioKeys,
+            languageAudioTypes,
           });
+          if (!surfaceResult.ok) {
+            // Cette écriture EST la publication : sans elle, la langue est
+            // approuvée côté modération mais reste invisible dans l'app.
+            logger.error(SERVICE_NAME, 'GuideTour multilang surface write REFUSED', {
+              tourId,
+              languages: allLangs,
+              error: surfaceResult.error,
+            });
+          } else {
+            logger.info(SERVICE_NAME, 'Updated GuideTour multilang surface', {
+              tourId,
+              languages: allLangs,
+              translatedLangs: Object.keys(translatedAudioKeys),
+              audioTypes: languageAudioTypes,
+            });
+          }
         }
       } catch (langErr) {
         // Non-blocking: log but don't fail the approval
@@ -961,7 +1003,7 @@ export async function submitLanguageForModeration(
   }
 
   try {
-    const { updateLanguagePurchaseMutation, getLanguagePurchase } = await import('@/lib/api/appsync-client');
+    const { setLanguageModerationStatusMutation, getLanguagePurchase } = await import('@/lib/api/appsync-client');
     const purchaseResult = await getLanguagePurchase(sessionId, language);
     if (!purchaseResult.ok || !purchaseResult.data) {
       return {
@@ -978,15 +1020,25 @@ export async function submitLanguageForModeration(
       };
     }
 
-    const result = await updateLanguagePurchaseMutation(purchase.id, {
-      moderationStatus: 'submitted',
-    });
+    // SÉCURITÉ — le guide n'écrit plus `moderationStatus` en direct : la
+    // transition passe par le Lambda, qui vérifie la propriété de la ligne et
+    // n'accepte que `submitted` / `draft`. Un refus remonte ici en {ok:false}.
+    const result = await setLanguageModerationStatusMutation(sessionId, language, 'submitted');
 
     if (!result.ok) {
       return { ok: false, error: { code: 2614, message: `Submission failed: ${result.error}` } };
     }
 
-    return { ok: true, value: result.data as TourLanguagePurchase };
+    // Le Lambda ne renvoie pas la ligne complète : on projette la transition
+    // confirmée par le serveur sur l'achat qu'on vient de lire.
+    return {
+      ok: true,
+      value: {
+        ...purchase,
+        moderationStatus: 'submitted',
+        updatedAt: new Date().toISOString(),
+      } as TourLanguagePurchase,
+    };
   } catch (err) {
     logger.error(SERVICE_NAME, 'submitLanguageForModeration failed', { error: String(err) });
     return { ok: false, error: { code: 2614, message: `Submission failed: ${String(err)}` } };
@@ -1013,26 +1065,30 @@ export async function retractLanguageSubmission(
   }
 
   try {
-    const { getClient } = await import('@/lib/api/appsync-client');
-    const client = getClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const listResult = await (client as any).models.TourLanguagePurchase.listTourLanguagePurchaseBySessionId(
-      { sessionId },
-      { authMode: 'userPool' },
-    );
-    const items = (listResult?.data ?? []) as TourLanguagePurchase[];
-    const match = items.find((p: TourLanguagePurchase) => p.language === language);
-    if (!match) {
+    const { setLanguageModerationStatusMutation, getLanguagePurchase } = await import('@/lib/api/appsync-client');
+    const purchaseResult = await getLanguagePurchase(sessionId, language);
+    if (!purchaseResult.ok || !purchaseResult.data) {
       return { ok: false, error: { code: 2604, message: `No purchase found for ${language}` } };
     }
+    const match = purchaseResult.data as unknown as TourLanguagePurchase;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const updateResult = await (client as any).models.TourLanguagePurchase.update(
-      { id: match.id, moderationStatus: 'draft' },
-      { authMode: 'userPool' },
-    );
+    // SÉCURITÉ — même voie que la soumission : le guide n'écrit plus
+    // `moderationStatus` en direct. Un refus (propriété, statut hors liste
+    // blanche) remonte ici en {ok:false} — « Dépublier » ne ment plus.
+    const result = await setLanguageModerationStatusMutation(sessionId, language, 'draft');
+    if (!result.ok) {
+      return { ok: false, error: { code: 2608, message: `Retract failed: ${result.error}` } };
+    }
+
     logger.info(SERVICE_NAME, 'Language submission retracted', { sessionId, language });
-    return { ok: true, value: updateResult?.data as TourLanguagePurchase };
+    return {
+      ok: true,
+      value: {
+        ...match,
+        moderationStatus: 'draft',
+        updatedAt: new Date().toISOString(),
+      } as TourLanguagePurchase,
+    };
   } catch (err) {
     logger.error(SERVICE_NAME, 'retractLanguageSubmission failed', { error: String(err) });
     return { ok: false, error: { code: 2608, message: `Retract failed: ${String(err)}` } };

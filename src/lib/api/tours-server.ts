@@ -69,10 +69,22 @@ async function resolveGuideInfo(guideId: string): Promise<GuideInfo> {
   return _guideInfoCache.get(guideId) ?? { displayName: '' };
 }
 
+/** Ultime recours : ni langue source, ni liste persistée, ni langue approuvée. */
+const DEFAULT_SOURCE_LANGUAGE = 'fr';
+
+const asLanguage = (value: unknown): string | null =>
+  typeof value === 'string' && value.trim().length > 0 ? value : null;
+
 async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise<string[]> {
   const tourId = tour.id as string;
   const sessionId = tour.sessionId as string | undefined;
-  const sourceLang = (tour.language as string) ?? 'fr';
+  // `GuideTour` ne porte AUCUN champ `language` : le `language` à défaut 'fr' du
+  // schéma appartient à `StudioSession`. Poser 'fr' ici préfixait donc un
+  // français fantôme à toute Visite — une Visite vendue en anglais seul se
+  // voyait attribuer une langue qu'elle ne vend pas, et, l'affichage étant
+  // désormais piloté par `availableLanguages`, une mention de synthèse dessus.
+  // On ne préfixe que si la langue source existe réellement.
+  const sourceLang = asLanguage(tour.language);
 
   // Language approval persists the consumer-facing list directly on GuideTour.
   // Prefer that authoritative value before the process-local cache or the
@@ -84,11 +96,15 @@ async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise
         (language): language is string => typeof language === 'string' && language.length > 0,
       )
     : [];
-  const persisted = [...new Set([sourceLang, ...persistedLanguages])];
+  const persisted = [...new Set([...(sourceLang ? [sourceLang] : []), ...persistedLanguages])];
   if (persisted.length > 1) return persisted;
 
   if (_availableLangsCache?.has(tourId)) return _availableLangsCache.get(tourId)!;
-  if (!sessionId) return [sourceLang];
+
+  // Langue de repli du chemin hérité : celle qui est persistée, jamais un défaut
+  // inventé — et jamais `undefined`, qui rendrait `[undefined]`.
+  const baseLang = persisted[0] ?? DEFAULT_SOURCE_LANGUAGE;
+  if (!sessionId) return [baseLang];
 
   try {
     const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
@@ -101,14 +117,16 @@ async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise
       ExpressionAttributeNames: { '#s': 'status' },
       ExpressionAttributeValues: { ':sid': sessionId, ':active': 'active', ':approved': 'approved' },
     }));
-    const approvedLangs = (result.Items ?? []).map((p) => p.language as string);
-    const langs = [...new Set([sourceLang, ...approvedLangs])];
+    const approvedLangs = (result.Items ?? [])
+      .map((p) => asLanguage(p.language))
+      .filter((language): language is string => language !== null);
+    const langs = [...new Set([baseLang, ...approvedLangs])];
     if (!_availableLangsCache) _availableLangsCache = new Map();
     _availableLangsCache.set(tourId, langs);
     return langs;
   } catch { /* fallback */ }
 
-  return [sourceLang];
+  return [baseLang];
 }
 
 function publishedLanguageAudioTypes(

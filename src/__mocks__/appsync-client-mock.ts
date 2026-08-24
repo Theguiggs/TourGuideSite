@@ -4,6 +4,8 @@
 jest.mock('@/lib/api/appsync-client', () => ({
   listGuideTours: jest.fn(() => Promise.resolve([])),
   getGuideTourById: jest.fn(() => Promise.resolve(null)),
+  getGuideTourResult: jest.fn(() => Promise.resolve({ ok: true, data: null })),
+  listStudioScenesBySession: jest.fn(() => Promise.resolve({ ok: true, data: [] })),
   listGuideProfiles: jest.fn(() => Promise.resolve([])),
   getGuideProfileById: jest.fn(() => Promise.resolve(null)),
   listTourReviews: jest.fn(() => Promise.resolve([])),
@@ -18,6 +20,8 @@ jest.mock('@/lib/api/appsync-client', () => ({
   getGuideDashboardStatsById: jest.fn(() => Promise.resolve(null)),
   createLanguagePurchaseMutation: jest.fn(() => Promise.resolve({ ok: true, data: {} })),
   updateLanguagePurchaseMutation: jest.fn(() => Promise.resolve({ ok: true, data: {} })),
+  // Seule voie guide pour moderationStatus (le champ est admin-only en direct).
+  setLanguageModerationStatusMutation: jest.fn(() => Promise.resolve({ ok: true })),
   listLanguagePurchasesBySession: jest.fn(() => Promise.resolve({ ok: true, data: [] })),
   getLanguagePurchase: jest.fn(() => Promise.resolve({ ok: true, data: null })),
 }));

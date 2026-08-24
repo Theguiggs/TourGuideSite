@@ -21,29 +21,27 @@ import { AiDisclosureBadge } from '@/components/catalogue/ai-disclosure-badge';
 import { S3Image } from '@/components/studio/s3-image';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { isTourFree } from '@/lib/catalogue/tour-pricing';
+import {
+  audioSourceLabel,
+  displayedAudioSource,
+  displayedLanguages,
+  humanVoiceLabel,
+  isSyntheticAudioSource,
+} from '@/lib/api/audio-source-policy';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import ItineraryList from './itinerary-list';
 
+// Aucune liste blanche : ces tables n'habillent que ce qui est vendu. Une
+// langue absente d'ici s'affiche quand même, sans drapeau et sous son code.
 const LANG_FLAGS: Record<string, string> = {
   fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪',
+  nl: '🇳🇱', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
 };
 
 const LANG_NAMES: Record<string, string> = {
   fr: 'Français', en: 'English', es: 'Español', it: 'Italiano', de: 'Deutsch',
+  nl: 'Nederlands', pt: 'Português', ja: '日本語', zh: '中文',
 };
-
-const AUDIO_TYPE_LABELS = {
-  fr: {
-    recording: { icon: '🎤', label: 'Voix du guide' },
-    tts: { icon: '🤖', label: 'Voix de synthèse' },
-    mixed: { icon: '🔀', label: 'Mixte' },
-  },
-  en: {
-    recording: { icon: '🎤', label: 'Guide recording' },
-    tts: { icon: '🤖', label: 'Synthetic voice' },
-    mixed: { icon: '🔀', label: 'Mixed' },
-  },
-} as const;
 
 const DETAIL_COPY = {
   fr: {
@@ -174,6 +172,10 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
   const heroBg = accentSoftColor(accent);
   const heroAccentFg = accentColor(accent);
   const cityName = city?.name || tour.city;
+
+  // Les langues du bloc audio viennent de ce qui est vendu, pas de la carte de
+  // mentions : une carte vide n'escamote plus aucune ligne.
+  const audioLanguages = displayedLanguages(tour.availableLanguages, tour.languageAudioTypes);
 
   const accroche =
     tour.shortDescription ||
@@ -466,8 +468,9 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
               </p>
             </div>
 
-            {/* Audio par langue */}
-            {tour.languageAudioTypes && Object.keys(tour.languageAudioTypes).length > 0 && (
+            {/* Audio par langue — une langue vendue mais absente de la carte de
+                mentions doit apparaître, avec sa mention de synthèse. */}
+            {audioLanguages.length > 0 && (
               <div className="mb-10">
                 <h2
                   style={{
@@ -480,19 +483,24 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 >
                   {copy.audioByLanguage}
                 </h2>
-                <div className="space-y-2">
-                  {Object.entries(tour.languageAudioTypes)
-                    .filter(([lang]) => ['fr', 'en', 'es', 'de', 'it'].includes(lang))
-                    .map(([lang, type]) => {
-                    const labels = AUDIO_TYPE_LABELS[locale];
-                    const info = labels[type as keyof typeof labels] ?? labels.mixed;
+                <div className="space-y-2" data-testid="tour-audio-by-language">
+                  {audioLanguages.map((lang) => {
+                    const type = displayedAudioSource(tour.languageAudioTypes, lang);
+                    // La mention et son pendant humain viennent tous deux du
+                    // module, localisés : aucune chaîne de divulgation n'est
+                    // écrite ici, et « /en/catalogue » n'en perd aucune.
+                    const label = isSyntheticAudioSource(type)
+                      ? audioSourceLabel(type, locale)
+                      : humanVoiceLabel(locale);
                     return (
                       <div
                         key={lang}
+                        data-testid={`audio-lang-${lang}`}
                         className="flex items-center justify-between p-3 rounded-xl"
                         style={{ background: tg.colors.paperSoft }}
                       >
                         <span
+                          data-testid={`audio-lang-name-${lang}`}
                           style={{
                             fontFamily: tg.fonts.sans,
                             fontWeight: 600,
@@ -502,13 +510,14 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                           {LANG_FLAGS[lang] ?? ''} {LANG_NAMES[lang] ?? lang.toUpperCase()}
                         </span>
                         <span
+                          data-testid={`audio-mention-${lang}`}
                           style={{
                             fontFamily: tg.fonts.sans,
                             fontSize: tg.fontSize.caption,
                             color: tg.colors.ink60,
                           }}
                         >
-                          {info.icon} {info.label}
+                          {isSyntheticAudioSource(type) ? '🤖' : '🎤'} {label}
                         </span>
                       </div>
                     );
