@@ -29,6 +29,16 @@ RUN if [ ! -f ../TourGuideApp/amplify/data/resource.ts ]; then \
       mkdir -p ../TourGuideApp/amplify/data && \
       cp src/types/amplify-schema-fallback.ts ../TourGuideApp/amplify/data/resource.ts; \
     fi
+# Empreinte de build. Next.js inline les NEXT_PUBLIC_* depuis .env.production au
+# moment du build : on les y écrit juste avant. L'horodatage suffit à voir qu'un
+# redéploiement a atterri ; le SHA, lui, doit être fourni par l'appelant, faute
+# de quoi il vaut « dev » (le contexte Docker exclut .git, cf. .dockerignore).
+ARG BUILD_SHA=dev
+RUN printf '
+NEXT_PUBLIC_BUILD_SHA=%s
+NEXT_PUBLIC_BUILD_TIME=%s
+'       "$BUILD_SHA" "$(date -u +%Y-%m-%dT%H:%MZ)" >> .env.production
+
 RUN npm run build
 
 # --- 3) runner stage: minimal image

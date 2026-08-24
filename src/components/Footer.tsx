@@ -2,6 +2,22 @@ import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import pkg from '../../package.json';
 
+/**
+ * Empreinte du build, gravée au moment où l'image est construite.
+ *
+ * `pkg.version` seul ne dit pas quel code tourne : il ne bouge qu'à un bump
+ * manuel, si bien qu'après un redéploiement le pied de page affiche toujours la
+ * même chose et personne ne peut dire si la nouvelle version a atterri. Ces deux
+ * valeurs, elles, changent à chaque construction d'image.
+ *
+ * `NEXT_PUBLIC_*` est inliné par Next.js au build — la valeur est donc figée
+ * dans le bundle, pas lue à l'exécution. Vide en développement local, ce qui est
+ * voulu : l'empreinte ne s'affiche que sur une image construite.
+ */
+const BUILD_SHA = process.env.NEXT_PUBLIC_BUILD_SHA ?? '';
+const BUILD_TIME = process.env.NEXT_PUBLIC_BUILD_TIME ?? '';
+const BUILD_STAMP = [BUILD_SHA, BUILD_TIME].filter(Boolean).join(' · ');
+
 // Story 4.2 (T6) — Footer migré : tokens DS + lexique strict (Hors-ligne, Tour),
 // accents FR préservés (Télécharger, confidentialité, réservés).
 interface FooterProps {
@@ -177,6 +193,7 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
             }}
           >
             v{pkg.version}
+            {BUILD_STAMP ? ` · ${BUILD_STAMP}` : ''}
           </span>
         </div>
       </div>
