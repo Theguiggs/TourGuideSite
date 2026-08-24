@@ -99,6 +99,10 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: us-east-1
+      # Identifiant de l'API AppSync, dont sont dérivés les noms de tables
+      # DynamoDB du nettoyage. À NE PAS confondre avec l'identifiant d'app
+      # Amplify, que le dépôt TourGuideApp range sous le même nom de secret.
+      APPSYNC_API_ID: ${{ secrets.APPSYNC_API_ID }}
       AMPLIFY_APP_ID: ${{ secrets.AMPLIFY_APP_ID }}
       E2E_ALLOW_TEST_TOURS: 'true'
       E2E_ALLOW_TEST_GUIDES: 'true'

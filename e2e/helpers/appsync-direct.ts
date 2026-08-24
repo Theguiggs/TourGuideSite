@@ -11,8 +11,33 @@ import outputs from '../../amplify_outputs.json';
 
 const APPSYNC_URL = (outputs as { data: { url: string } }).data.url;
 
-// Keep direct DynamoDB cleanup aligned with the deployed AppSync API.
-const APP_ID = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
+/**
+ * Identifiant de l'API AppSync — PAS l'identifiant d'app Amplify.
+ *
+ * Les tables DynamoDB générées par Amplify sont nommées `<Modele>-<apiId>-<env>`,
+ * où `apiId` est celui de l'API AppSync. Deux pièges se cumulaient ici :
+ *
+ *  1. l'`apiId` (`yvupc5stq…`) et le nom d'hôte de l'URL GraphQL
+ *     (`ncwhqefs…`) sont deux identifiants DIFFÉRENTS de la même API, et le
+ *     fichier de sorties ne porte que le second — d'où l'obligation de passer
+ *     l'`apiId` par l'environnement ;
+ *  2. la variable s'appelait `AMPLIFY_APP_ID`, nom qui désigne l'app Amplify
+ *     (`dieqe5vfmuc69`) dans le dépôt voisin. Deux dépôts, un nom, deux sens.
+ *
+ * Le repli codé en dur qui existait ici pointait vers un ancien bac à sable :
+ * le nettoyage balayait donc des tables inexistantes et rapportait « 0 supprimé »
+ * sans rien signaler. Un nettoyage qui ne nettoie rien en silence est pire que
+ * pas de nettoyage — on échoue bruyamment.
+ */
+const APPSYNC_API_ID = process.env.APPSYNC_API_ID ?? process.env.AMPLIFY_APP_ID;
+if (!APPSYNC_API_ID) {
+  throw new Error(
+    'APPSYNC_API_ID manquant : impossible de dériver les noms de tables DynamoDB. ' +
+      "Poser l'identifiant de l'API AppSync (pas celui de l'app Amplify) — " +
+      '`aws appsync list-graphql-apis --query "graphqlApis[].apiId"`.',
+  );
+}
+const APP_ID = APPSYNC_API_ID;
 const ENV = 'NONE';
 const REGION = (outputs as { auth?: { aws_region?: string } }).auth?.aws_region ?? 'us-east-1';
 
