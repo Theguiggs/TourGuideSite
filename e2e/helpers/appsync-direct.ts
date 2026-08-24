@@ -254,10 +254,19 @@ export async function seedLanguagePurchase(
   token: string,
   overrides?: Partial<{ guideId: string; qualityTier: string; purchaseType: string; amountCents: number; moderationStatus: string }>,
 ): Promise<CreatedItem> {
-  // The row is created WITHOUT `moderationStatus` / `status`: the owner has no
-  // create right on either, and the server applies the schema defaults
-  // (`draft` / `active`). Sending them would make AppSync refuse the whole
-  // creation — which is precisely what a real guide's browser now faces.
+  // Reproduit EXACTEMENT ce que fait le navigateur d'un vrai guide, et rien
+  // d'autre — c'est tout l'intérêt d'une fixture de bout en bout.
+  //
+  // `moderationStatus` n'est PAS envoyé : le propriétaire n'a pas le droit de
+  // création dessus, et l'envoyer ferait refuser toute la mutation. Le champ
+  // reste nul, ce qui est sûr : le balayage de publication exige `approved`.
+  //
+  // `status` EST envoyé, et doit l'être. Il n'a pas de valeur par défaut de
+  // schéma — une valeur par défaut serait comptée comme fournie par le client
+  // et refusée, ce qui a été éprouvé sur bac à sable. Sans lui, la ligne naît
+  // à `null` et disparaît des quatre filtres du produit qui comparent à
+  // 'active', dont la liste de la page de soumission : l'achat existe en base
+  // mais n'apparaît nulle part.
   const input = {
     guideId: overrides?.guideId ?? 'e2e-guide',
     sessionId,
@@ -265,6 +274,7 @@ export async function seedLanguagePurchase(
     qualityTier: overrides?.qualityTier ?? 'manual',
     purchaseType: overrides?.purchaseType ?? 'manual',
     amountCents: overrides?.amountCents ?? 0,
+    status: 'active',
   };
   const data = await graphql<{ createTourLanguagePurchase: CreatedItem }>(
     `mutation($input: CreateTourLanguagePurchaseInput!) {
