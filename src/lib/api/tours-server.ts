@@ -28,6 +28,7 @@ import {
   getPublishedTourContentServer,
 } from './appsync-server-public';
 import { mapWithConcurrency } from './published-tour-content';
+import { mapScenesToPois } from '@/lib/catalogue/scene-pois';
 
 // --- Lookup caches ---
 
@@ -223,16 +224,7 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
   if (!contentResult.ok) {
     throw new Error(contentResult.error);
   }
-  const scenes = contentResult.data.scenes;
-  const pois = scenes
-    .map((s, i: number) => ({
-      id: s.id,
-      title: s.title || `Point ${i + 1}`,
-      description: s.description.substring(0, 200),
-      latitude: s.latitude ?? 0,
-      longitude: s.longitude ?? 0,
-      order: i + 1,
-    }));
+  const pois = mapScenesToPois(contentResult.data.scenes);
 
   return {
     id: tour.id, title: tour.title, slug: generateSlug(tour.title),

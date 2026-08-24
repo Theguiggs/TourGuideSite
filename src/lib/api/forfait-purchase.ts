@@ -24,6 +24,10 @@ const SERVICE_NAME = 'ForfaitPurchaseAPI';
 /** Prix affiché. Le montant réellement débité est imposé côté serveur. */
 export const FORFAIT_PRICE_CENTS = 1990;
 
+/** Bornes de la lecture des droits — voir `hasActiveForfait`. */
+const ENTITLEMENT_PAGE_SIZE = 50;
+const ENTITLEMENT_MAX_PAGES = 20;
+
 export interface ForfaitPaymentIntentResult {
   clientSecret: string | null;
   amountCents: number;
@@ -74,8 +78,9 @@ function parseEnvelope<T>(raw: unknown, fallbackCode: number): Result<T> {
  * comme celui venu de Play via RevenueCat (`premium_access`) — exactement la même
  * règle que `isEntitled` côté serveur.
  *
- * Purement cosmétique : ça masque le bouton d'achat. L'accès réel reste décidé
- * par le serveur.
+ * Ne décide d'aucun accès : ça masque le bouton d'achat et allume le badge. Ce
+ * que le visiteur peut lire reste accordé ou tronqué par le serveur, sur
+ * l'identité de la requête.
  */
 export async function hasActiveForfait(): Promise<boolean> {
   if (shouldUseStubs()) return false;
@@ -83,13 +88,39 @@ export async function hasActiveForfait(): Promise<boolean> {
   try {
     const { getClient } = await import('@/lib/api/appsync-client');
     const client = getClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const res = await (client as any).models.UserEntitlement.list({ authMode: 'userPool' });
     const now = Date.now();
-    return (res?.data ?? []).some(
-      (e: { active?: boolean; expiresAtMs?: number | null }) =>
-        e?.active === true && (e.expiresAtMs == null || e.expiresAtMs > now),
-    );
+    // Pagine : DynamoDB applique le filtre de propriété APRÈS chaque page
+    // balayée, si bien qu'un seul `.list()` peut ne rien rendre alors que le
+    // droit existe — le porteur de forfait resterait sans son badge. Même
+    // précaution que `listOwnedTourIds`.
+    //
+    // Borné : répondre à une question booléenne ne doit jamais tourner sans fin
+    // si le serveur renvoie un jeton qui n'avance pas. Au-delà, on répond « pas
+    // de droit » plutôt que de continuer à balayer.
+    let nextToken: string | null | undefined;
+    let pages = 0;
+    do {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const res = await (client as any).models.UserEntitlement.list({
+        authMode: 'userPool',
+        limit: ENTITLEMENT_PAGE_SIZE,
+        nextToken,
+      });
+      const rows = (res?.data ?? []) as Array<{ active?: boolean; expiresAtMs?: number | null }>;
+      if (
+        rows.some((e) => e?.active === true && (e.expiresAtMs == null || e.expiresAtMs > now))
+      ) {
+        return true;
+      }
+      const next = res?.nextToken;
+      nextToken = next && next !== nextToken ? next : null;
+      pages += 1;
+      if (pages >= ENTITLEMENT_MAX_PAGES && nextToken) {
+        logger.warn(SERVICE_NAME, 'hasActiveForfait stopped at page cap', { pages });
+        return false;
+      }
+    } while (nextToken);
+    return false;
   } catch (error) {
     // Ne jamais bloquer l'achat sur cette lecture : en cas d'échec on affiche le
     // bouton. Un achat en double serait de toute façon idempotent côté serveur.

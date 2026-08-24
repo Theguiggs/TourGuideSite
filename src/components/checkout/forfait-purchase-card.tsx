@@ -301,6 +301,10 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
             locale={locale}
             onSuccess={() => {
               setStep('done');
+              // Le serveur vient d'écrire l'entitlement (confirmForfaitPurchase a
+              // rendu ok). Ce signal rafraîchit la possession — droit permanent
+              // COMPRIS — et la redemande du contenu : la visite ouverte derrière
+              // cette carte se déverrouille sans rechargement manuel.
               emitPurchasesChanged();
             }}
             onError={(msg) => {

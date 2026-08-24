@@ -2,6 +2,7 @@ import type { City, Tour, TourDetail, TourReview } from '@/types/tour';
 import { shouldUseStubs } from '@/config/api-mode';
 import * as appsync from './appsync-client';
 import { mapWithConcurrency } from './published-tour-content';
+import { mapScenesToPois } from '@/lib/catalogue/scene-pois';
 
 /**
  * Tour data access layer.
@@ -371,16 +372,7 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
   if (!contentResult.ok) {
     throw new Error(contentResult.error);
   }
-  const scenes = contentResult.data.scenes;
-  const pois = scenes
-    .map((s, i: number) => ({
-      id: s.id,
-      title: s.title || `Point ${i + 1}`,
-      description: s.description.substring(0, 200),
-      latitude: s.latitude ?? 0,
-      longitude: s.longitude ?? 0,
-      order: i + 1,
-    }));
+  const pois = mapScenesToPois(contentResult.data.scenes);
 
   return {
     id: tour.id,

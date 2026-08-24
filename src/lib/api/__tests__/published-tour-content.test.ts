@@ -104,6 +104,28 @@ describe('parsePublishedTourContent', () => {
     );
   });
 
+  it('reste anonyme par défaut, et ne porte une identité que si on la lui donne', async () => {
+    // Le rendu serveur n'appelle jamais avec un mode : il DOIT rester public.
+    // Seul le chemin navigateur, qui a des jetons, demande `userPool` — le seul
+    // mode qui fasse arriver un `sub` jusqu'à `isEntitled` côté Lambda.
+    const query = jest
+      .fn()
+      .mockResolvedValue({ data: { tourId: 'tour-1', scenes: [], walkPath: [] } });
+    const client = {
+      queries: { getPublishedTourContent: query },
+    } as PublishedTourContentQueryClient;
+
+    await queryPublishedTourContent(client, 'tour-1');
+    await queryPublishedTourContent(client, 'tour-1', 'userPool');
+    await queryPublishedTourContent(client, 'tour-1', 'identityPool');
+
+    expect(query.mock.calls.map((call) => call[1])).toEqual([
+      { authMode: 'identityPool' },
+      { authMode: 'userPool' },
+      { authMode: 'identityPool' },
+    ]);
+  });
+
   it('bounds concurrent catalogue projections while preserving order', async () => {
     let active = 0;
     let maxActive = 0;

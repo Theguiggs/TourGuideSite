@@ -15,11 +15,28 @@ export interface PublishedTourContent {
   walkPath: { latitude: number; longitude: number }[];
 }
 
+/**
+ * Identité portée par la requête de contenu publié.
+ *
+ * `identityPool` — requête anonyme : le Lambda ne reçoit aucun `sub` Cognito et
+ * tronque donc tout contenu payant à l'aperçu. C'est le rendu public, et le
+ * défaut : un appelant qui ne dit rien n'affirme rien.
+ *
+ * `userPool` — requête signée par le visiteur : c'est le SEUL mode qui fait
+ * arriver un `sub` jusqu'à `isEntitled`, donc le seul par lequel un droit (achat
+ * à l'unité ou forfait) peut ouvrir le contenu complet. Il exige des jetons, qui
+ * vivent dans `localStorage` : ce mode n'a de sens que dans le navigateur,
+ * jamais pendant le rendu serveur.
+ *
+ * Le client ne fait que *demander* — c'est le serveur qui accorde ou tronque.
+ */
+export type PublishedTourContentAuthMode = 'identityPool' | 'userPool';
+
 export interface PublishedTourContentQueryClient {
   queries: {
     getPublishedTourContent(
       input: { tourId: string },
-      options?: { authMode: 'identityPool' },
+      options?: { authMode: PublishedTourContentAuthMode },
     ): Promise<{ data?: unknown; errors?: Array<{ message: string }> }>;
   };
 }
@@ -27,11 +44,9 @@ export interface PublishedTourContentQueryClient {
 export async function queryPublishedTourContent(
   client: PublishedTourContentQueryClient,
   tourId: string,
+  authMode: PublishedTourContentAuthMode = 'identityPool',
 ): Promise<PublishedTourContent> {
-  const result = await client.queries.getPublishedTourContent(
-    { tourId },
-    { authMode: 'identityPool' },
-  );
+  const result = await client.queries.getPublishedTourContent({ tourId }, { authMode });
   if (result.errors?.length) {
     throw new Error(result.errors.map((error) => error.message).join(', '));
   }

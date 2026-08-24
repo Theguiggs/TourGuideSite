@@ -85,6 +85,30 @@ describe('forfait-purchase API', () => {
       await expect(hasActiveForfait()).resolves.toBe(true);
     });
 
+    it("lit toujours sous l'identité du visiteur", async () => {
+      // `UserEntitlement` est lisible par son propriétaire. Une lecture invité
+      // serait refusée, l'échec avalé par le `catch`, et la fonction répondrait
+      // « pas de droit » à un porteur de forfait — sans erreur nulle part.
+      mockListEntitlements.mockResolvedValue({ data: [] });
+
+      await hasActiveForfait();
+
+      expect(mockListEntitlements).toHaveBeenNthCalledWith(
+        1,
+        expect.objectContaining({ authMode: 'userPool' }),
+      );
+    });
+
+    it('borne le balayage si le serveur renvoie un jeton qui n’avance pas', async () => {
+      // Une question booléenne ne doit jamais tourner sans fin.
+      mockListEntitlements.mockResolvedValue({ data: [], nextToken: 'toujours-la-meme' });
+
+      await expect(hasActiveForfait()).resolves.toBe(false);
+      // Un tour pour découvrir le jeton, un second pour constater qu'il ne
+      // bouge pas — puis on s'arrête, au lieu de balayer sans fin.
+      expect(mockListEntitlements).toHaveBeenCalledTimes(2);
+    });
+
     it('ignore un forfait expiré', async () => {
       mockListEntitlements.mockResolvedValue({
         data: [{ active: true, expiresAtMs: Date.now() - DAY }],
@@ -105,6 +129,32 @@ describe('forfait-purchase API', () => {
       mockListEntitlements.mockResolvedValue({ data: [{ active: true, expiresAtMs: null }] });
 
       await expect(hasActiveForfait()).resolves.toBe(true);
+    });
+
+    it('suit la pagination : un droit relégué en 2e page compte quand même', async () => {
+      // DynamoDB filtre APRÈS chaque page balayée : une 1re page vide n'est pas
+      // une absence de droit. Sans pagination, le porteur de forfait restait
+      // devant un aperçu flouté alors qu'il avait payé.
+      mockListEntitlements
+        .mockResolvedValueOnce({ data: [], nextToken: 'page-2' })
+        .mockResolvedValueOnce({ data: [{ active: true, expiresAtMs: Date.now() + 30 * DAY }] });
+
+      await expect(hasActiveForfait()).resolves.toBe(true);
+      expect(mockListEntitlements).toHaveBeenCalledTimes(2);
+      expect(mockListEntitlements).toHaveBeenNthCalledWith(
+        2,
+        expect.objectContaining({ nextToken: 'page-2' }),
+      );
+    });
+
+    it('s’arrête dès qu’un droit actif est trouvé', async () => {
+      mockListEntitlements.mockResolvedValueOnce({
+        data: [{ active: true, expiresAtMs: null }],
+        nextToken: 'page-2',
+      });
+
+      await expect(hasActiveForfait()).resolves.toBe(true);
+      expect(mockListEntitlements).toHaveBeenCalledTimes(1);
     });
 
     it('ne bloque pas l’achat si la lecture échoue', async () => {

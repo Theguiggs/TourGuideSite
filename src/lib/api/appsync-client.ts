@@ -790,12 +790,42 @@ export async function updateWalkSegmentMutation(id: string, updates: Record<stri
   }
 }
 
+/**
+ * Qui demande le contenu publié ?
+ *
+ * Le serveur reste seul juge de ce qu'il renvoie, mais il ne peut juger que s'il
+ * sait qui demande : seuls les appels `userPool` portent un `sub` Cognito jusqu'au
+ * Lambda (`allow.authenticated('userPools')` est déjà déclaré sur la requête).
+ *
+ * Les jetons vivent dans `localStorage` : cette résolution n'a de sens que dans
+ * le navigateur. Côté serveur — et dès que la session est absente, illisible ou
+ * expirée — on retombe sur `identityPool`, c'est-à-dire exactement le rendu
+ * public d'aujourd'hui.
+ */
+async function resolvePublishedContentAuthMode(): Promise<
+  import('./published-tour-content').PublishedTourContentAuthMode
+> {
+  if (typeof window === 'undefined') return 'identityPool';
+  try {
+    const { fetchAuthSession } = await import('aws-amplify/auth');
+    const session = await fetchAuthSession();
+    return session?.tokens?.accessToken ? 'userPool' : 'identityPool';
+  } catch (error) {
+    // Une session illisible n'est pas une panne : on redevient un anonyme.
+    logger.warn(SERVICE_NAME, 'published content auth mode fell back to guest', {
+      error: String(error),
+    });
+    return 'identityPool';
+  }
+}
+
 /** Public allowlisted Studio projection. The server derives the private session. */
 export async function getPublishedTourContent(tourId: string) {
   try {
     const client = getClient() as unknown as import('./published-tour-content').PublishedTourContentQueryClient;
     const { queryPublishedTourContent } = await import('./published-tour-content');
-    const content = await queryPublishedTourContent(client, tourId);
+    const authMode = await resolvePublishedContentAuthMode();
+    const content = await queryPublishedTourContent(client, tourId, authMode);
     return { ok: true as const, data: content };
   } catch (error) {
     logger.error(SERVICE_NAME, 'getPublishedTourContent failed', { error: String(error), tourId });
