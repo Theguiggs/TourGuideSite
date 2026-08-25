@@ -1569,18 +1569,14 @@
             "moderationStatus": {
               "name": "moderationStatus",
               "isArray": false,
-              "type": {
-                "enum": "TourLanguagePurchaseModerationStatus"
-              },
+              "type": "String",
               "isRequired": false,
               "attributes": []
             },
             "status": {
               "name": "status",
               "isArray": false,
-              "type": {
-                "enum": "TourLanguagePurchaseStatus"
-              },
+              "type": "String",
               "isRequired": false,
               "attributes": []
             },
@@ -1887,6 +1883,15 @@
               "name": "lastEventAtMs",
               "isArray": false,
               "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "spendQualification": {
+              "name": "spendQualification",
+              "isArray": false,
+              "type": {
+                "enum": "UserEntitlementSpendQualification"
+              },
               "isRequired": false,
               "attributes": []
             },
@@ -3348,23 +3353,6 @@
             "manual"
           ]
         },
-        "TourLanguagePurchaseModerationStatus": {
-          "name": "TourLanguagePurchaseModerationStatus",
-          "values": [
-            "draft",
-            "submitted",
-            "approved",
-            "rejected",
-            "revision_requested"
-          ]
-        },
-        "TourLanguagePurchaseStatus": {
-          "name": "TourLanguagePurchaseStatus",
-          "values": [
-            "active",
-            "refunded"
-          ]
-        },
         "TourPurchaseSource": {
           "name": "TourPurchaseSource",
           "values": [
@@ -3378,6 +3366,14 @@
           "values": [
             "active",
             "refunded"
+          ]
+        },
+        "UserEntitlementSpendQualification": {
+          "name": "UserEntitlementSpendQualification",
+          "values": [
+            "annual_pass",
+            "legacy_subscription",
+            "unqualified"
           ]
         },
         "TourAccessCodeStatus": {
@@ -3740,6 +3736,46 @@
               "attributes": []
             }
           }
+        },
+        "SetLanguageModerationStatusReturnType": {
+          "name": "SetLanguageModerationStatusReturnType",
+          "fields": {
+            "ok": {
+              "name": "ok",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "moderationStatus": {
+              "name": "moderationStatus",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "purchaseId": {
+              "name": "purchaseId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
         }
       },
       "queries": {
@@ -3926,6 +3962,34 @@
             },
             "status": {
               "name": "status",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
+        },
+        "setLanguageModerationStatus": {
+          "name": "setLanguageModerationStatus",
+          "isArray": false,
+          "type": {
+            "nonModel": "SetLanguageModerationStatusReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "sessionId": {
+              "name": "sessionId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "language": {
+              "name": "language",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "moderationStatus": {
+              "name": "moderationStatus",
               "isArray": false,
               "type": "String",
               "isRequired": true
