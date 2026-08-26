@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-rennes-portes-et-places-du-centre",
+  "sessionId": "seed-100-rennes-portes-et-places-du-centre-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Rennes",
+  "title": "Rennes — Portes et places du centre",
+  "description": "Patrimoine — suivre l’agrandissement du centre à travers ses seuils et ses places.",
+  "themes": [
+    "Patrimoine — suivre l’agrandissement du centre à travers ses seuils et ses places."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6427,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "en": "Heritage, follow the expansion of the center through its thresholds and places.",
+    "it": "Patrimonio, seguire l'espansione del centro attraverso le sue soglie e luoghi.",
+    "es": "Patrimonio, seguir la ampliación del centro a través de sus umbrales y plazas.",
+    "de": "Erbe, der Erweiterung des Zentrums durch seine Schwellen und Plätze folgen."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-rennes-portes-et-places-du-centre-scene-0",
+      "index": 0,
+      "title": "Portes Mordelaises",
+      "text": "Les deux tours des Portes Mordelaises encadrent l’une des anciennes entrées de Rennes. Le dispositif visible date principalement du XVe siècle, lorsque l’enceinte est renforcée. La route qui passait ici menait vers Mordelles, d’où le nom du monument. Mais ce seuil avait aussi une fonction cérémonielle : les ducs de Bretagne l’empruntaient avant leur couronnement dans la cathédrale voisine.\n\nRegarde le passage charretier, les traces du pont-levis et le jeu des ouvertures défensives. La porte devait à la fois filtrer, protéger et impressionner. Aujourd’hui dégagée de bâtiments qui l’avaient longtemps masquée, elle retrouve sa relation avec les vestiges du rempart et les espaces publics aménagés autour d’elle.\n\nNotre promenade suivra la façon dont Rennes est passée de portes contrôlées à des places ouvertes. Pars vers la place des Lices. Le trajet est court, mais il suffit pour franchir l’ancienne limite de la cité close. Là où les murailles comprimaient les circulations, un vaste terrain extérieur permettait rassemblements, exercices et transformations successives.",
+      "hash": "a47dad35",
+      "chars": 1079,
+      "existingSegments": {
+        "es": "seed-100-rennes-portes-et-places-du-centre-scene-0-seg-es",
+        "de": "seed-100-rennes-portes-et-places-du-centre-scene-0-seg-de",
+        "en": "seed-100-rennes-portes-et-places-du-centre-scene-0-seg-en",
+        "it": "seed-100-rennes-portes-et-places-du-centre-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-portes-et-places-du-centre-scene-1",
+      "index": 1,
+      "title": "Place des Lices",
+      "text": "La place des Lices conserve dans son nom le souvenir des tournois chevaleresques. Elle s’étendait près des remparts, sur un terrain assez vaste pour accueillir des rassemblements. Les hôtels particuliers qui la bordent, élevés surtout aux XVIIe et XVIIIe siècles, témoignent ensuite de l’installation de familles influentes autour de cet espace dégagé.\n\nObserve la pente et la division en terrasses. La place n’est pas un rectangle composé d’un seul geste. Ses niveaux, ses alignements et ses deux pavillons construits au XIXe siècle révèlent des aménagements successifs. Elle fonctionne comme une réserve d’espace à la lisière de la vieille ville : ouverte, adaptable, reliée à plusieurs rues anciennes.\n\nRemonte maintenant vers la place Sainte-Anne par la rue Saint-Louis. Tu suivras une direction qui longeait les quartiers conventuels du nord. L’arrivée est très différente : Sainte-Anne fut agrandie par des démolitions et réaménagée à plusieurs reprises. Son volume actuel raconte moins une enceinte qu’une ville qui cherche de nouveaux nœuds de circulation.",
+      "hash": "8c617641",
+      "chars": 1064,
+      "existingSegments": {
+        "it": "seed-100-rennes-portes-et-places-du-centre-scene-1-seg-it",
+        "de": "seed-100-rennes-portes-et-places-du-centre-scene-1-seg-de",
+        "en": "seed-100-rennes-portes-et-places-du-centre-scene-1-seg-en",
+        "es": "seed-100-rennes-portes-et-places-du-centre-scene-1-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-portes-et-places-du-centre-scene-2",
+      "index": 2,
+      "title": "Place Sainte-Anne",
+      "text": "La place Sainte-Anne s’est formée par étapes au nord du centre ancien. Elle doit une partie de son ampleur actuelle à la disparition d’îlots et aux transformations des XIXe et XXe siècles. Sur son bord se trouvent la basilique Notre-Dame-de-Bonne-Nouvelle et l’ancien couvent des Jacobins, devenu un équipement public après une importante restauration.\n\nPlace-toi de manière à voir ces deux masses. La basilique présente une façade dont le chantier, commencé au XIXe siècle, ne fut achevé que bien plus tard. Le couvent rappelle, lui, la présence des ordres religieux dans ce secteur dès le Moyen Âge. Entre eux s’étend une place utilisée comme carrefour : les lignes de déplacement y comptent autant que les monuments.\n\nContinue par la rue Saint-Melaine jusqu’à la place Hoche. Le trajet suit le bord nord du centre et révèle une autre phase d’urbanisation. Tu quitteras un espace ancien remodelé pour une composition plus régulière, associée à des équipements du XIXe siècle et à l’extension de la ville vers ses quartiers nouveaux.",
+      "hash": "53d93173",
+      "chars": 1034,
+      "existingSegments": {
+        "en": "seed-100-rennes-portes-et-places-du-centre-scene-2-seg-en",
+        "it": "seed-100-rennes-portes-et-places-du-centre-scene-2-seg-it",
+        "es": "seed-100-rennes-portes-et-places-du-centre-scene-2-seg-es",
+        "de": "seed-100-rennes-portes-et-places-du-centre-scene-2-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-portes-et-places-du-centre-scene-3",
+      "index": 3,
+      "title": "Place Hoche",
+      "text": "La place Hoche porte le nom du général Lazare Hoche, dont la statue occupe le centre. Son ordonnance plus régulière contraste avec les contours hérités de la place des Lices. Elle appartient à une ville qui s’étend au-delà de son noyau médiéval et compose de nouvelles perspectives autour d’institutions, de logements et de voies élargies.\n\nRegarde les façades comme les bords d’une pièce urbaine. Elles maintiennent une hauteur assez cohérente et laissent le monument central distribuer les axes. Ici, aucun rempart visible ne décide du chemin. C’est la géométrie de la place elle-même qui oriente les pas. Rennes passe ainsi d’un urbanisme du seuil à un urbanisme de la composition.\n\nReviens vers le sud-ouest par la rue de Penhoët et rejoins la place du Champ-Jacquet. La distance est modeste, mais l’atmosphère change brusquement. Tu retrouveras un espace irrégulier, bordé de maisons à pans de bois, où l’ancien parcellaire impose encore ses décalages et ses lignes instables.",
+      "hash": "f91b9c39",
+      "chars": 981,
+      "existingSegments": {
+        "it": "seed-100-rennes-portes-et-places-du-centre-scene-3-seg-it",
+        "de": "seed-100-rennes-portes-et-places-du-centre-scene-3-seg-de",
+        "en": "seed-100-rennes-portes-et-places-du-centre-scene-3-seg-en",
+        "es": "seed-100-rennes-portes-et-places-du-centre-scene-3-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-portes-et-places-du-centre-scene-4",
+      "index": 4,
+      "title": "Place du Champ-Jacquet",
+      "text": "La place du Champ-Jacquet semble bouger. Plusieurs maisons à pans de bois présentent des façades légèrement inclinées et des encorbellements qui avancent au-dessus du sol. Elles rappellent la ville construite avec une ossature de bois, avant que l’incendie de 1720 et les nouvelles règles urbaines n’imposent plus largement la pierre dans le centre.\n\nAu milieu se trouve la statue de Jean Leperdit, maire de Rennes pendant la Révolution. Mais le véritable sujet de cette halte est le contour de la place. Il ne suit pas un dessin régulier : les rues y convergent selon un héritage plus ancien. Chaque façade ferme un angle différent et transforme la perception quand tu avances de quelques mètres.\n\nDescends vers la place Rallier-du-Baty, derrière la rue de la Visitation. Cette dernière étape reste dans le tissu ancien mais montre une autre opération de dégagement. Tu pourras alors comparer trois familles d’espaces : le terrain extérieur aux remparts, la place régulière d’extension et la petite place obtenue au cœur d’îlots déjà construits.",
+      "hash": "c6209aeb",
+      "chars": 1046,
+      "existingSegments": {
+        "es": "seed-100-rennes-portes-et-places-du-centre-scene-4-seg-es",
+        "de": "seed-100-rennes-portes-et-places-du-centre-scene-4-seg-de",
+        "en": "seed-100-rennes-portes-et-places-du-centre-scene-4-seg-en",
+        "it": "seed-100-rennes-portes-et-places-du-centre-scene-4-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-portes-et-places-du-centre-scene-5",
+      "index": 5,
+      "title": "Place Rallier-du-Baty",
+      "text": "La place Rallier-du-Baty porte le nom d’un maire de Rennes du début du XXe siècle. Son espace résulte des transformations d’un quartier ancien, dans un secteur longtemps occupé par des constructions serrées. Les façades qui l’entourent ne composent pas un décor uniforme ; elles témoignent de périodes différentes et maintiennent plusieurs accès étroits vers les rues voisines.\n\nArrête-toi près du centre et repère ces sorties. Aucune porte monumentale ne les garde, pourtant chacune agit comme un seuil. L’une reconduit vers les rues commerçantes, une autre vers les maisons anciennes, une autre encore vers les places reconstruites après l’incendie. La croissance de Rennes ne se lit pas seulement dans sa taille. Elle apparaît dans la manière dont la ville a successivement fermé, dégagé, aligné puis reconnecté ses espaces.\n\nLes Portes Mordelaises contrôlaient une entrée précise. La place des Lices étendait la ville devant ses murs. Sainte-Anne et Hoche ont accompagné de nouveaux usages, tandis que le Champ-Jacquet et Rallier-du-Baty conservent les irrégularités du centre. Tu peux maintenant poursuivre sans voix : chaque ouverture te dira à quelle Rennes elle appartient. Merci d’avoir marché avec moi. À bientôt.",
+      "hash": "d22a4104",
+      "chars": 1223,
+      "existingSegments": {
+        "it": "seed-100-rennes-portes-et-places-du-centre-scene-5-seg-it",
+        "de": "seed-100-rennes-portes-et-places-du-centre-scene-5-seg-de",
+        "es": "seed-100-rennes-portes-et-places-du-centre-scene-5-seg-es",
+        "en": "seed-100-rennes-portes-et-places-du-centre-scene-5-seg-en"
+      }
+    }
+  ]
+}

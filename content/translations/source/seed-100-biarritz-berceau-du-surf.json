@@ -1,0 +1,141 @@
+{
+  "tourId": "seed-100-biarritz-berceau-du-surf",
+  "sessionId": "seed-100-biarritz-berceau-du-surf-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Biarritz",
+  "title": "Biarritz — Le berceau du surf",
+  "description": "Sport — comment un bout de côte basque est devenu la capitale européenne du surf.",
+  "themes": [
+    "Sport — comment un bout de côte basque est devenu la capitale européenne du surf."
+  ],
+  "baseLanguage": "fr",
+  "chars": 9605,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "de": "Sport, wie ein Stück der baskischen Küste wurde die europäische Surfhauptstadt.",
+    "es": "Deportes, cómo un pedazo de costa vasca se convirtió en la capital europea del surf.",
+    "it": "Sport, come una costa basca è diventata la capitale europea del surf.",
+    "en": "Sport, how a Basque coast became the European surf capital."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-biarritz-berceau-du-surf-scene-0",
+      "index": 0,
+      "title": "La Grande Plage",
+      "text": "Arrête-toi face à la Grande Plage. Regarde l'eau : des silhouettes en combinaison noire, assises sur leurs planches, qui guettent. Des moniteurs qui alignent des débutants sur le sable. Des longboards sous le bras, des vans garés en épi, une odeur de wax et de néoprène. Tu n'es pas sur une plage ordinaire. Tu es dans ce qu'on appelle, depuis longtemps déjà, la capitale européenne du surf. Des débutants, des surfeurs du dimanche, des pros venus du bout du monde : tous se donnent rendez-vous dans ces rouleaux.\r\n\r\nTout le monde connaît le point de départ : un jour de 1957, un scénariste américain, Peter Viertel, entre dans ces vagues avec une planche, et l'étincelle prend. On te l'a peut-être déjà raconté. Ce que je veux te montrer, moi, c'est la suite — ce que Biarritz a fait de cette étincelle. Comment un bout de côte basque, en quelques décennies, est devenu une vraie capitale : ses spots, ses shapers, ses écoles, ses champions, ses marques, et surtout un état d'esprit.\r\n\r\nCar ici, le surf n'est pas resté un sport de vacances. Il est devenu une industrie, une culture, presque une religion douce, avec ses temples de sable et ses fidèles en néoprène. Chaque année, la ville accueille des compétitions internationales, et des milliers de gamins viennent apprendre à tenir debout sur l'océan. On y croise aussi bien le retraité qui rame au petit matin que la future championne.\r\n\r\nSuis-moi. On descend vers le sud, spot après spot, jusqu'à la falaise. Je te raconte tout en chemin.",
+      "hash": "338457da",
+      "chars": 1495,
+      "existingSegments": {
+        "de": "seed-100-biarritz-berceau-du-surf-scene-0-seg-de",
+        "it": "seed-100-biarritz-berceau-du-surf-scene-0-seg-it",
+        "en": "seed-100-biarritz-berceau-du-surf-scene-0-seg-en",
+        "es": "seed-100-biarritz-berceau-du-surf-scene-0-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-biarritz-berceau-du-surf-scene-1",
+      "index": 1,
+      "title": "Place Clemenceau",
+      "text": "Nous voici au cœur de la ville, autour de la place Clemenceau. Regarde les vitrines : combinaisons, planches, marques à la mode, tee-shirts délavés. Le surf, ici, ce n'est pas que l'eau. C'est aussi tout ce commerce, né dans le sillage des premiers riders.\r\n\r\nCar très vite, après 1957, il a fallu des planches. Et on n'allait pas les faire venir de Californie à chaque fois. À Biarritz, deux hommes s'y collent : Michel Barland, un ingénieur, et Jacky Rott, un menuisier passionné. Dans leur atelier, ils bricolent, rabotent, moulent — et fabriquent les premières planches de surf de France. Les shapers biarrots sont nés. Un savoir-faire artisanal qui ne s'est jamais éteint : aujourd'hui encore, des shapers façonnent ici des planches à la main, dans la poussière de résine.\r\n\r\nAutour d'eux s'est bâtie toute une industrie de la glisse — boutiques, ateliers, marques. La côte basque en est devenue l'un des grands laboratoires européens : on y dessine des combinaisons, on y teste des planches, on y invente des modes qui partiront ensuite conquérir le continent.\r\n\r\nContinue vers l'océan, en descendant vers le sud. On rejoint la mer au Port Vieux, la petite crique où tout débutant met un jour les pieds.",
+      "hash": "f2130bdf",
+      "chars": 1209,
+      "existingSegments": {
+        "de": "seed-100-biarritz-berceau-du-surf-scene-1-seg-de",
+        "en": "seed-100-biarritz-berceau-du-surf-scene-1-seg-en",
+        "it": "seed-100-biarritz-berceau-du-surf-scene-1-seg-it",
+        "es": "seed-100-biarritz-berceau-du-surf-scene-1-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-biarritz-berceau-du-surf-scene-2",
+      "index": 2,
+      "title": "Le Port Vieux",
+      "text": "Descends jusqu'à cette petite crique abritée : le Port Vieux. Une anse minuscule, protégée des grosses vagues, à l'eau presque tiède. Ce n'est pas ici qu'on trouve les gros spots — et c'est justement pour ça que je t'y amène.\r\n\r\nParce que le surf de Biarritz, ce n'est pas qu'une affaire de champions. C'est d'abord une immense école populaire. Sur ces plages douces, des générations de gamins ont attrapé leur première vague : allongés d'abord, à genoux ensuite, debout enfin — et cette seconde-là, ce premier équilibre volé à l'océan, ils ne l'oublient jamais.\r\n\r\nRegarde-les faire. Le moniteur pousse la planche, le gosse se lève, tombe, remonte en riant, recommence. C'est ça, le vrai moteur d'une capitale du surf : pas seulement l'exploit, mais la transmission. Ici, on apprend à surfer comme on apprend à nager. Le surf est entré dans l'enfance biarrote, aussi naturel qu'un vélo.\r\n\r\nEt de cette crique tranquille, le regard file déjà vers le sud, vers la longue plage encadrée de falaises où tout a vraiment commencé. Suis le sentier qui monte le long de la côte. Trois minutes, et le temple apparaît.",
+      "hash": "77b6d658",
+      "chars": 1109,
+      "existingSegments": {
+        "it": "seed-100-biarritz-berceau-du-surf-scene-2-seg-it",
+        "en": "seed-100-biarritz-berceau-du-surf-scene-2-seg-en",
+        "es": "seed-100-biarritz-berceau-du-surf-scene-2-seg-es",
+        "de": "seed-100-biarritz-berceau-du-surf-scene-2-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-biarritz-berceau-du-surf-scene-3",
+      "index": 3,
+      "title": "La Côte des Basques",
+      "text": "La voici : la Côte des Basques. Une immense plage au pied des falaises vertes, découverte à marée basse, balayée par de longues vagues qui déroulent tout en douceur. C'est le spot mythique, le berceau, le lieu saint. C'est ici, tu le sais, qu'un Américain s'est mis debout sur l'eau en 1957. Mais laisse cette histoire de côté un instant, et regarde ce qu'elle est devenue.\r\n\r\nCes vagues longues et molles sont un cadeau pour une discipline précise : le longboard. La planche longue, le style ample, la marche jusqu'au bout du nez de la planche — ce qu'on appelle le noseriding. La Côte des Basques en est devenue l'une des capitales mondiales. Pendant des années, on y a tenu un grand festival de longboard qui attirait les meilleurs riders de la planète, dans une ambiance rétro, planches en bois et maillots vintage.\r\n\r\nDès les années soixante, l'un des pionniers, Jo Moraiz, ouvre ici l'une des toutes premières écoles de surf d'Europe. Depuis, elles se comptent par dizaines sur ce sable. Regarde le line-up à marée basse : débutants et vieux sages glissent sur les mêmes vagues, dans un ballet lent et poli.\r\n\r\nPoursuis vers le sud par le front de mer. La côte se fait plus sauvage. Direction Marbella.",
+      "hash": "219638b8",
+      "chars": 1208,
+      "existingSegments": {
+        "it": "seed-100-biarritz-berceau-du-surf-scene-3-seg-it",
+        "de": "seed-100-biarritz-berceau-du-surf-scene-3-seg-de",
+        "en": "seed-100-biarritz-berceau-du-surf-scene-3-seg-en",
+        "es": "seed-100-biarritz-berceau-du-surf-scene-3-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-biarritz-berceau-du-surf-scene-4",
+      "index": 4,
+      "title": "La plage Marbella",
+      "text": "Te voilà à la plage de Marbella. Change d'ambiance. Moins de parasols, moins d'écoles, plus de vent. Ici les vagues sont plus creuses, plus nerveuses, moins pardonnantes. C'est un spot de locaux, de surfeurs aguerris qui connaissent chaque banc de sable et chaque humeur de l'océan.\r\n\r\nC'est l'occasion de te dire une chose sur le surf : ce sport a des règles non écrites, un code d'honneur que tout le monde respecte à l'eau. Une vague appartient à celui qui est le mieux placé, le plus près de l'endroit où elle se creuse. Lui couper la route — on appelle ça brûler la priorité — est la pire des impolitesses. On attend son tour, on respecte les anciens, on partage.\r\n\r\nCe code, sévère et courtois à la fois, fait partie de l'esprit de glisse autant que le geste lui-même. Il transforme une foule de surfeurs en communauté, avec ses habitués, ses règles tacites, sa hiérarchie de l'eau. À Marbella, on l'apprend vite, parfois à ses dépens.\r\n\r\nPoursuis le long de la côte vers le sud. La prochaine plage, la Milady, est plus large, plus ouverte — la plage de tout le monde. Cinq minutes de marche.",
+      "hash": "f9e233fa",
+      "chars": 1098,
+      "existingSegments": {
+        "de": "seed-100-biarritz-berceau-du-surf-scene-4-seg-de",
+        "es": "seed-100-biarritz-berceau-du-surf-scene-4-seg-es",
+        "it": "seed-100-biarritz-berceau-du-surf-scene-4-seg-it",
+        "en": "seed-100-biarritz-berceau-du-surf-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-biarritz-berceau-du-surf-scene-5",
+      "index": 5,
+      "title": "La plage de la Milady",
+      "text": "La plage de la Milady : plus large, plus familiale, surveillée. On vient ici en tribu, planche sous le bras et glacière à la main. C'est le surf du quotidien, sans mystique, celui des habitants plus que des touristes.\r\n\r\nEt c'est ici que je veux te parler d'une belle idée : le surf pour tous, vraiment tous. Depuis des années, la côte basque est à la pointe du handisurf — le surf adapté aux personnes en situation de handicap. Sur des planches spéciales, accompagnés de bénévoles, des gens qu'on n'imaginerait jamais sur une vague se lèvent, ou se laissent porter, et retrouvent dans l'eau une liberté que la terre leur refuse parfois.\r\n\r\nC'est peut-être là le vrai génie de Biarritz : avoir pris un jeu venu d'ailleurs et l'avoir ouvert à tout le monde. Les enfants, les champions, les anciens, les corps empêchés. La même vague pour chacun, sans distinction.\r\n\r\nRemonte légèrement vers le grand bâtiment posé sur la falaise, un peu plus loin. On y explique l'océan tout entier. Deux minutes.",
+      "hash": "cee44ddc",
+      "chars": 995,
+      "existingSegments": {
+        "es": "seed-100-biarritz-berceau-du-surf-scene-5-seg-es",
+        "de": "seed-100-biarritz-berceau-du-surf-scene-5-seg-de",
+        "en": "seed-100-biarritz-berceau-du-surf-scene-5-seg-en",
+        "it": "seed-100-biarritz-berceau-du-surf-scene-5-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-biarritz-berceau-du-surf-scene-6",
+      "index": 6,
+      "title": "La Cité de l'Océan",
+      "text": "Voici la Cité de l'Océan, un grand bâtiment aux courbes de vague, ouvert au début des années deux mille dix. À l'intérieur, on ne t'apprend pas seulement à surfer : on t'explique l'océan. D'où viennent les houles, comment naît une vague à des milliers de kilomètres, dans une tempête, avant de venir mourir ici sous tes pieds.\r\n\r\nCar à force de vivre de la mer, Biarritz a fini par vouloir la comprendre — et la protéger. C'est sur cette côte qu'est née en 1990 la Surfrider Foundation Europe, une association fondée par des surfeurs pour défendre l'océan, les vagues et le littoral. L'idée est simple et forte : on ne peut pas aimer glisser sur une eau qu'on laisse mourir. Les surfeurs, premiers témoins des pollutions, en sont devenus les premiers gardiens.\r\n\r\nC'est l'autre visage de l'esprit de glisse. Pas seulement le plaisir, mais le soin. Le surfeur n'est pas qu'un joueur : c'est un guetteur, attentif à la santé de la mer, comme le veilleur d'autrefois scrutait l'horizon.\r\n\r\nReviens vers le bord de la falaise, au sud, pour un dernier regard. Là-haut, on voit toute la côte qu'on vient de descendre.",
+      "hash": "dfdf4e70",
+      "chars": 1111,
+      "existingSegments": {
+        "de": "seed-100-biarritz-berceau-du-surf-scene-6-seg-de",
+        "es": "seed-100-biarritz-berceau-du-surf-scene-6-seg-es",
+        "en": "seed-100-biarritz-berceau-du-surf-scene-6-seg-en",
+        "it": "seed-100-biarritz-berceau-du-surf-scene-6-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-biarritz-berceau-du-surf-scene-7",
+      "index": 7,
+      "title": "Parvis de la Cité de l'Océan",
+      "text": "Dernier arrêt. Monte sur ce belvédère, au-dessus de la falaise, et retourne-toi vers le nord. De là, tu vois presque tout le chemin parcouru : la Milady, Marbella, la longue Côte des Basques, le Port Vieux, et là-bas, tout au fond, la Grande Plage où l'on a commencé. Toute une côte, une seule et même houle qui court d'une plage à l'autre.\r\n\r\nMesure ce qui s'est passé ici. Il y a moins d'un siècle, l'océan n'était pour les Biarrots qu'une menace — celle qui tuait les pêcheurs, celle qui rongeait les digues. Puis une planche est arrivée, et le regard a changé. Ce qui broyait est devenu ce qui porte. La peur est devenue jeu, puis art, puis identité, puis un métier, une industrie, une manière de vivre.\r\n\r\nVoilà ce qu'est vraiment le berceau du surf : pas seulement l'endroit d'un premier exploit, mais celui d'une longue transformation. Une ville qui a appris à glisser sur son propre destin, comme ses enfants glissent sur la houle.\r\n\r\nEt si tu regardes bien ces silhouettes assises sur l'eau, patientes, tu comprends l'essentiel de ce sport. L'attente. On ne prend pas une vague : on l'attend, on la mérite, et quand elle arrive enfin, on ne pense plus à rien. Rien que l'instant, l'eau, l'équilibre.\r\n\r\nMerci d'avoir marché avec moi jusqu'à cette falaise. Maintenant, tu sais lire cette côte. Loue une planche, ou reste simplement assis à regarder — et attrape la tienne.",
+      "hash": "4495c63a",
+      "chars": 1380,
+      "existingSegments": {
+        "en": "seed-100-biarritz-berceau-du-surf-scene-7-seg-en",
+        "de": "seed-100-biarritz-berceau-du-surf-scene-7-seg-de",
+        "es": "seed-100-biarritz-berceau-du-surf-scene-7-seg-es",
+        "it": "seed-100-biarritz-berceau-du-surf-scene-7-seg-it"
+      }
+    }
+  ]
+}

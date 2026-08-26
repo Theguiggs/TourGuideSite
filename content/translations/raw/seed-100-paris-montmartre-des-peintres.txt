@@ -1,0 +1,559 @@
+@@LANG=en
+@@TITLE=Paris — Montmartre of the Painters: the Hill That Invented Modern Art
+@@DESC=Art — from Renoir to Picasso, the poor hill where the way of seeing was reinvented, from the Bateau-Lavoir to the cabarets.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-0
+@@STITLE=Place Blanche
+Stop for a second, under the red wings. That papier-mâché windmill turning above you is the Moulin Rouge, opened in 1889, the same year as the Eiffel Tower. At the foot of the Butte, where respectable Paris came to get a thrill. The cancan is invented here, people drink here, show off their legs here. And in a corner, a small man with broken legs is drawing. Toulouse-Lautrec. Out of these dancers, out of La Goulue, he makes posters that become, without anyone knowing it yet, art.
+
+Here's the secret I want to tell you. Look at this hill in front of you. A century ago, it was almost nothing: a village of windmills perched above Paris, half in the countryside. Rents cost almost nothing. So the poor climbed up here. And among the poor, painters without a penny to their name: Renoir, Van Gogh, Picasso. Here, in the grime and the freedom, between two cabarets, they're going to do something enormous. They're going to invent modern art. Break a way of painting five centuries old, and change the way the whole world sees.
+
+It all started from this small mound of earth. We're going to climb it together, lane by lane, in the footsteps of those who dared everything. Take the rue Lepic, on your right, and start climbing. I'll follow you.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-1
+@@STITLE=54 rue Lepic
+Catch your breath. You're at 54, rue Lepic. An ordinary façade, a balcony, nothing gives it away; but behind these windows lived Vincent van Gogh. From 1886 to 1888, two years, with his brother Theo, who sold paintings further down in Paris.
+
+Vincent arrives from a dark Holland. His painting, up until then, is earth, peasants, muddy tones. And then he moves up here. He meets the Impressionists, the light of Paris, other people's colors. Something ignites. His palette catches fire. The yellows, the blues, the vibrating brushstrokes, everything that will make the Van Gogh the world adores, it begins in this apartment, on this hill. He paints the view from his window, he paints the windmills right above, he paints Paris at his feet.
+
+Two years later, he'll head south, toward Arles and the sun that will burn him. But it's here, on rue Lepic, that he learned color. People walk past it without knowing. You, now, you know.
+
+Keep climbing rue Lepic. It turns, it winds. At the very top, a real windmill awaits you, the last survivor of a time when the Butte had dozens of them.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-2
+@@STITLE=Le Moulin de la Galette
+There it is. This wooden windmill perched on its hill is the Moulin de la Galette. Well, two remain, the one you see and another a little further on. They used to grind Montmartre's grain and gypsum. Then the millers had an idea: open a guinguette, an open-air dance hall, where Paris workers came up to dance on Sundays.
+
+One day in 1876, a painter sets up his easel here. Auguste Renoir. He watches the crowd dancing under the trees, the patches of sunlight falling through the leaves onto the dresses and hats. And he paints this: not a frozen scene, but light in motion, joy, movement, the blur of a happy Sunday. Le Bal du moulin de la Galette. One of the most beautiful Impressionist paintings in the world, today at the Musée d'Orsay.
+
+That's the revolution beginning. No longer painting kings or gods, but ordinary people dancing, everyday life caught in full light. Van Gogh will paint this windmill, Toulouse-Lautrec too, Picasso again. One windmill, three geniuses.
+
+Now head back down toward the place Émile-Goudeau. A wooden building awaits us, the most important in the entire history of modern art.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-3
+@@STITLE=Le Bateau-Lavoir
+You're on the place Émile-Goudeau, in front of a very plain façade. Don't be fooled by it. Here once stood the Bateau-Lavoir, a wooden shack full of wretched studios, with no water or heating. A poet, Max Jacob, nicknamed it that because it creaked and swayed like the laundry boats on the Seine.
+
+In this hovel, around 1904, a poor twenty-three-year-old Spaniard moves in, painting by candlelight at night. Pablo Picasso. It's there, in a filthy room of this shack, that he paints in 1907 a painting that will blow everything apart: Les Demoiselles d'Avignon. Five women with broken faces, carved like masks, seen from several angles at once. His friends are shocked, some think he's gone mad. He has just killed three centuries of painting. With Braque, right after, he invents Cubism, the greatest rupture in Western art.
+
+The Bateau-Lavoir burned down in 1970; what you see is a reconstruction. But the place remains sacred. Modigliani, Juan Gris lived here too. A shack of planks, and the twentieth century being born inside it.
+
+Head back up toward the summit. A square full of painters awaits you: the place du Tertre.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-4
+@@STITLE=Place du Tertre
+Here we are: the place du Tertre, the heart of the old village. Today you'll find it packed with people, ringed with painters who'll do your portrait in ten minutes and terraces full of tourists. Don't shrug it off too fast. Look instead at what lies beneath it.
+
+This square was the main square of the town of Montmartre, back when the Butte was its own commune, with its own town hall and mayor. And throughout the nineteenth century, the real painters lived and worked around here, for lack of anything better. Setting up an easel outdoors, painting from life, in the open air: this habit was born with the Impressionists, and it took root on this square. Today's portrait artists, however commercial they may be, are the great-grandchildren of that new idea: the studio is the street.
+
+They say that here, and in the nearby cabarets, every broke genius Paris had to offer crossed paths, argued, helped each other out. Picasso, Utrillo, Modigliani, a few meters apart from one another. Paris's poorest village was the world capital of painting.
+
+Take the small rue Poulbot, just alongside. We're going to visit another revolutionary of the eye: Salvador Dalí.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-5
+@@STITLE=Espace Dalí
+Go down these few steps, rue Poulbot. Behind these walls hides the Espace Dalí, the only place in France entirely devoted to Salvador Dalí. Sculptures, engravings, melting clocks, elephants on spider legs: the whole universe of the Catalan master of Surrealism.
+
+You might say: Dalí is Spain, Catalonia, not Montmartre. That's true. But his presence here tells us something. After the Impressionists, after the Cubists, modern art never stopped reinventing itself, and each new wave came looking for a bit of the Butte's legend. Surrealism is the next generation: it's no longer just about breaking form, it's about opening the doors of dream and the unconscious. Melting clocks are time that no longer obeys.
+
+By the way, the street bears the name of Francisque Poulbot, a cartoonist who drew Montmartre's poor kids, scruffy and mischievous: the "poulbots." You can still see them on signs and façades. The Butte invented sophisticated art, and also its popular, tender, slightly cheeky image.
+
+Now we climb north, rue Cortot, toward the oldest house on the hill, the one where Renoir had his studio.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-6
+@@STITLE=Musée de Montmartre
+At 12, rue Cortot, push open the gate. This house is the oldest on the Butte, a seventeenth-century manor, with a garden overlooking the slope. Today it's the Musée de Montmartre, and it might be the address most inhabited by painters in all of Paris.
+
+Count up who worked here. Renoir first, who rented a studio within these walls at the very moment he was painting the Bal du moulin de la Galette, just steps away. Then Suzanne Valadon, an incredible case: a former model, an acrobat who fell from a trapeze, she learns painting by watching herself pose for Renoir and Degas, and becomes one of the great artists of her time, a woman, in this world of men. She lives here with her son, Maurice Utrillo, the child of the Butte, alcoholic and brilliant, who will paint the streets of Montmartre better than anyone.
+
+The garden has been redesigned to look like Renoir's canvases. Sit down for a minute if you can: it's exactly the light he was looking for.
+
+Come back out and look across the way. On the other side of the street, on the slope, a few rows of vines still cling on. Follow me to the Clos Montmartre.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-7
+@@STITLE=Le Clos Montmartre
+There they are, these few rows of plants clinging to the slope, between two buildings: the Clos Montmartre. This little plot is a surprise, right in the middle of Paris. But above all, it's the living memory of what the Butte was for centuries: a hill of crops and windmills, still separated from the big city by paths and open land.
+
+The current plot isn't medieval, rest assured: it was laid out in 1933, to save the land from developers and keep a piece of countryside in Montmartre. So it tells less of a production story than an act of urban planning: preserving an empty space, a slope, and a memory in the middle of the buildings.
+
+Why am I stopping you in front of three rows of vines? Because everything is right there. If the painters climbed up here, it's because of this countryside: far from the city, outside the taxes, with rents worth nothing and cabarets where people sang. Poverty and vineyards made the genius. Without this poor hill, no modern art.
+
+Go down the rue des Saules. At the bottom, a little house and a legendary cabaret.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-8
+@@STITLE=Au Lapin Agile
+Look at this low little house, with its tree and its sign: a rabbit leaping out of a saucepan. This is the cabaret Au Lapin Agile, one of the last authentic cabarets in Paris, still active today. Its name comes from a play on words. The sign, that rabbit jumping out of a pot, was painted by an illustrator named André Gill: the "lapin à Gill" (Gill's rabbit) became, to the ear, the "Lapin Agile" (nimble rabbit).
+
+At the start of the twentieth century, it's the haunt of the Butte's penniless artists. People drink little here, sing, recite verses, remake the world until dawn. Picasso comes here, and paints a famous picture from it. Apollinaire, Utrillo, Mac Orlan push open its door.
+
+It's from here, so the story still goes, that a memorable prank was launched. Writers tied a paintbrush to a donkey's tail, let it beat a canvas with its tail dipped in paint, and presented the result in a real salon under a pompous title. No one saw through it. A joke to mock modern art, played by the very people who were inventing it.
+
+Walk back up a few steps. A pink house at the corner of the street, you can't miss it.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-9
+@@STITLE=La Maison Rose
+There it is, la Maison Rose. A small building with pink walls and green shutters, set at the corner of the rue de l'Abreuvoir and the rue des Saules. It's probably the most photographed house in Montmartre, and above all the most painted.
+
+Because it was Maurice Utrillo who made it immortal. Suzanne Valadon's son, the child of the Butte, painted this street corner dozens of times, with its white skies and its slightly leaning walls. It's said the house owes its color to a friend of Picasso's circle, who supposedly had it painted pink at the start of the century. It hasn't changed since.
+
+Take the time to look around you. These lanes running downhill, these staircases, these streetlamps, these crooked walls: this is the Montmartre the painters fixed for eternity. You're not just walking through a pretty neighborhood. You're walking inside hundreds of paintings hung in museums all over the world. The subject and the setting have become one and the same.
+
+Now, turn toward the summit. That white dome towering over everything is our last stop. Climb with me toward the Sacré-Cœur.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-10
+@@STITLE=Le Sacré-Cœur
+Here we are, right at the top. The Sacré-Cœur, this great white vessel visible from all of Paris. It was built slowly, from 1875 to 1914, after the defeat of 1870 and the crushing of the Commune, like a vow, a penance in stone. The painters of the Butte, for their part, didn't like it: too new, too white, too proper, planted above their bohemia like a reproach. They turned their backs on it to paint the windmills and the vines instead.
+
+And yet, come here, onto the forecourt. Look. All of Paris is at your feet, as far as the eye can see, in mist or in sunshine. This is the view they had every single day, these brilliant starving artists: Renoir, Van Gogh, Picasso, Utrillo, Valadon. They lived in filth, on a hill of vineyards and cabarets, and they saw the world from higher up than anyone else.
+
+Think back over the path. The cancan and Lautrec down below; Van Gogh's color on rue Lepic; Renoir's dance; Picasso's Demoiselles in a shack of planks; the cabarets, the vines, la Maison Rose. On this small mound of earth, within a few decades, penniless men and women reinvented the very way of seeing the world. They left, one day, for Montparnasse and for glory. But the Butte remained, and the art it gave birth to hangs everywhere, on every wall on the planet.
+
+Thank you for climbing all the way up here with me. Go back down slowly, eyes wide open. Every lane, from now on, is a painting. See you soon on the Butte.
+
+@@LANG=es
+@@TITLE=París — El Montmartre de los pintores: la colina que inventó el arte moderno
+@@DESC=Arte — de Renoir a Picasso, la colina pobre donde se reinventó la mirada, del Bateau-Lavoir a los cabarets.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-0
+@@STITLE=Place Blanche
+Detente un segundo, bajo las alas rojas. Ese molino de cartón piedra que gira encima de ti es el Moulin Rouge, inaugurado en 1889, el mismo año que la torre Eiffel. Al pie de la Butte, donde el París respetable venía a estremecerse. Aquí se inventa el cancán, se bebe, se enseñan las piernas. Y en un rincón, un hombrecito de piernas rotas dibuja. Toulouse-Lautrec. De esas bailarinas, de La Goulue, hace carteles que se convierten, sin que nadie lo sepa todavía, en arte.
+
+He aquí el secreto que quiero contarte. Mira esta colina delante de ti. Hace un siglo, no era casi nada: un pueblo de molinos colgado sobre París, casi en el campo. Los alquileres no costaban casi nada. Así que los pobres suben aquí. Y entre los pobres, pintores sin un céntimo: Renoir, Van Gogh, Picasso. Aquí, en la mugre y la libertad, entre dos cabarets, van a hacer algo enorme. Van a inventar el arte moderno. Romper una manera de pintar de cinco siglos de antigüedad, y cambiar la mirada del mundo entero.
+
+Todo partió de este pequeño montón de tierra. Vamos a subirlo juntos, callejuela tras callejuela, sobre los pasos de quienes lo arriesgaron todo. Toma la rue Lepic, a tu derecha, y empieza a subir. Yo te sigo.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-1
+@@STITLE=54 rue Lepic
+Recupera el aliento. Estás en el 54 de la rue Lepic. Una fachada ordinaria, un balcón, nada lo delata; pero detrás de estas ventanas vivió Vincent van Gogh. De 1886 a 1888, dos años, con su hermano Theo, que vendía cuadros más abajo en París.
+
+Vincent llega de una Holanda sombría. Su pintura, hasta entonces, es la tierra, los campesinos, los tonos de barro. Y luego sube aquí. Conoce a los impresionistas, la luz de París, los colores de los demás. Algo se enciende. Su paleta prende fuego. Los amarillos, los azules, las pinceladas que vibran, todo lo que hará el Van Gogh que el mundo adora, empieza en este apartamento, en esta colina. Pinta la vista desde su ventana, pinta los molinos justo encima, pinta París a sus pies.
+
+Dos años después, bajará hacia el sur, hacia Arlés y el sol que lo quemará. Pero es aquí, en la rue Lepic, donde aprendió el color. Se pasa por delante sin saberlo. Tú, ahora, ya lo sabes.
+
+Sigue subiendo la rue Lepic. Gira, serpentea. Arriba del todo te espera un molino de verdad, el último superviviente de una época en la que la Butte contaba con decenas.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-2
+@@STITLE=Le Moulin de la Galette
+Ahí está. Este molino de madera encaramado en su colina es el Moulin de la Galette. Bueno, quedan dos, el que ves y otro un poco más allá. Antaño molían el grano y el yeso de Montmartre. Luego a los molineros se les ocurrió una idea: abrir una guinguette, un baile al aire libre, donde los obreros de París subían a bailar los domingos.
+
+Un día de 1876, un pintor planta su caballete aquí. Auguste Renoir. Mira a la multitud que baila bajo los árboles, las manchas de sol que caen a través de las hojas sobre los vestidos y los sombreros. Y pinta eso: no una escena inmóvil, sino la luz que se mueve, la alegría, el movimiento, el desenfoque de un domingo feliz. Le Bal du moulin de la Galette. Uno de los cuadros impresionistas más bellos del mundo, hoy en el musée d'Orsay.
+
+Esa es la revolución que comienza. Dejar de pintar reyes y dioses, y pintar a gente sencilla que baila, la vida ordinaria atrapada en plena luz. Van Gogh pintará este molino, Toulouse-Lautrec también, Picasso también. Un molino, tres genios.
+
+Baja ahora hacia la place Émile-Goudeau. Nos espera un edificio de madera, el más importante de toda la historia del arte moderno.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-3
+@@STITLE=Le Bateau-Lavoir
+Estás en la place Émile-Goudeau, delante de una fachada muy sencilla. No te fíes de ella. Aquí se alzaba el Bateau-Lavoir, una barraca de madera llena de talleres miserables, sin agua ni calefacción. Un poeta, Max Jacob, la apodó así porque crujía y se balanceaba como los bateaux-lavoirs del Sena.
+
+En ese tugurio, hacia 1904, se instala un joven español de veintitrés años, sin un céntimo, que pinta de noche a la luz de una vela. Pablo Picasso. Es ahí, en una habitación sucia de esa chabola, donde pinta en 1907 un cuadro que va a hacerlo estallar todo: Les Demoiselles d'Avignon. Cinco mujeres de rostros rotos, tallados como máscaras, vistas desde varios lados a la vez. Sus amigos se escandalizan, algunos creen que se ha vuelto loco. Acaba de matar tres siglos de pintura. Con Braque, en la misma época, inventa el cubismo, la mayor ruptura del arte occidental.
+
+El Bateau-Lavoir ardió en 1970; lo que ves es una reconstrucción. Pero el lugar sigue siendo sagrado. Modigliani, Juan Gris vivieron también aquí. Una chabola de tablones, y el siglo veinte naciendo dentro.
+
+Sube de nuevo hacia la cima. Te espera una plaza llena de pintores: la place du Tertre.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-4
+@@STITLE=Place du Tertre
+Ya estamos: la place du Tertre, el corazón del viejo pueblo. Hoy la encuentras abarrotada de gente, rodeada de pintores que te hacen el retrato en diez minutos y de terrazas para turistas. No te encojas de hombros tan deprisa. Mira más bien lo que hay debajo.
+
+Esta plaza era la plaza mayor del pueblo de Montmartre, cuando la Butte era un municipio aparte, con su ayuntamiento y su alcalde. Y durante todo el siglo diecinueve, los verdaderos pintores vivieron y trabajaron por aquí, a falta de algo mejor. Poner el caballete fuera, pintar del natural, al aire libre: esa costumbre nació con los impresionistas, y echó raíces en esta plaza. Los retratistas de hoy, por muy comerciales que sean, son los tataranietos de esa idea nueva: el taller es la calle.
+
+Se cuenta que aquí y en los cabarets vecinos, todo lo que París tenía de genios sin blanca se cruzaba, discutía, se ayudaba mutuamente. Picasso, Utrillo, Modigliani, a pocos metros unos de otros. El pueblo más pobre de París era la capital mundial de la pintura.
+
+Toma la pequeña rue Poulbot, justo al lado. Vamos a visitar a otro revolucionario de la mirada: Salvador Dalí.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-5
+@@STITLE=Espace Dalí
+Baja estos pocos escalones, rue Poulbot. Detrás de estos muros se esconde el Espace Dalí, el único lugar de Francia enteramente dedicado a Salvador Dalí. Esculturas, grabados, relojes blandos, elefantes con patas de araña: todo el universo del maestro catalán del surrealismo.
+
+Me dirás: Dalí es España, Cataluña, no Montmartre. Es verdad. Pero su presencia aquí cuenta algo. Después de los impresionistas, después de los cubistas, el arte moderno no dejó de reinventarse, y cada nueva oleada vino a buscar un poco de la leyenda de la Butte. El surrealismo es la generación siguiente: ya no se trata solo de romper la forma, se abren las puertas del sueño y del inconsciente. Los relojes que se derriten son el tiempo que ya no obedece.
+
+De paso, la calle lleva el nombre de Francisque Poulbot, un dibujante que retrató a los niños pobres de Montmartre, desaliñados, traviesos: los «poulbots». Todavía se les ve en carteles y fachadas. La Butte inventó el arte culto, y también su imagen popular, tierna, un poco pícara.
+
+Ahora subimos hacia el norte, rue Cortot, hacia la casa más antigua de la colina, aquella donde Renoir tenía su taller.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-6
+@@STITLE=Musée de Montmartre
+En el número 12 de la rue Cortot, empuja la verja. Esta casa es la más antigua de la Butte, una mansión del siglo diecisiete, con un jardín que domina la pendiente. Hoy es el musée de Montmartre, y es quizá la dirección más habitada por pintores de todo París.
+
+Cuenta quién ha trabajado aquí. Renoir, primero, que alquilaba un taller entre estos muros justo cuando pintaba el Bal du moulin de la Galette, a dos pasos. Luego Suzanne Valadon, un caso increíble: antigua modelo, acróbata caída de un trapecio, aprende a pintar mirando cómo posa para Renoir y Degas, y se convierte en una de las grandes artistas de su tiempo, una mujer, en ese mundo de hombres. Vive aquí con su hijo, Maurice Utrillo, el niño de la Butte, alcohólico y genial, que pintará las calles de Montmartre mejor que nadie.
+
+El jardín ha sido rediseñado como en los lienzos de Renoir. Siéntate un minuto si puedes: es exactamente la luz que él buscaba.
+
+Sal de nuevo y mira enfrente. Al otro lado de la calle, en la pendiente, todavía se aferran algunas hileras de viñas. Sígueme hasta el Clos Montmartre.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-7
+@@STITLE=Le Clos Montmartre
+Ahí están, esas pocas hileras de plantas aferradas a la pendiente, entre dos edificios: el Clos Montmartre. Este pequeño terreno sorprende en pleno París. Pero es, sobre todo, el recuerdo vivo de lo que fue la Butte durante siglos: una colina de cultivos y de molinos, todavía separada de la gran ciudad por caminos y terrenos abiertos.
+
+La parcela actual no es medieval, tranquilo: se acondicionó en 1933, para salvar el terreno de los promotores y conservar en Montmartre un trozo de campo. Cuenta, pues, menos una producción que un acto de urbanismo: preservar un vacío, una pendiente y una memoria en medio de los edificios.
+
+¿Por qué te detengo delante de tres cepas de viña? Porque todo está ahí. Si los pintores subieron aquí, fue por este campo: lejos de la ciudad, fuera de los impuestos, con alquileres de nada y cabarets donde se cantaba. La miseria y las viñas hicieron el genio. Sin esta colina pobre, no habría arte moderno.
+
+Baja la rue des Saules. Abajo, una casita y un cabaret legendario.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-8
+@@STITLE=Au Lapin Agile
+Mira esta casita baja, con su árbol y su letrero: un conejo que salta de una cacerola. Es el cabaret Au Lapin Agile, uno de los últimos cabarets auténticos de París, todavía en activo. Su nombre viene de un juego de palabras. El letrero, ese conejo saltando de una olla, lo pintó un dibujante llamado André Gill: el «lapin à Gill» (el conejo de Gill) se convirtió, de oído, en el «Lapin Agile» (el conejo ágil).
+
+A principios del siglo veinte, es la guarida de los artistas sin blanca de la Butte. Se bebe poco, se canta, se recitan versos, se rehace el mundo hasta el alba. Picasso viene aquí, y saca de ello un cuadro célebre. Apollinaire, Utrillo, Mac Orlan cruzan su puerta.
+
+Fue de aquí, todavía se cuenta, de donde partió una broma memorable. Unos escritores atan un pincel a la cola de un burro, lo dejan golpear un lienzo con su cola empapada de pintura, y presentan el resultado en un salón de verdad bajo un título grandilocuente. Nadie se da cuenta del engaño. Una broma para burlarse del arte moderno, hecha por los mismos que lo estaban inventando.
+
+Sube unos pasos. Una casa rosa en la esquina de la calle, no puedes perdértela.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-9
+@@STITLE=La Maison Rose
+Ahí está, la Maison Rose. Un pequeño edificio de muros rosados y postigos verdes, plantado en la esquina de la rue de l'Abreuvoir y la rue des Saules. Es sin duda la casa más fotografiada de Montmartre, y sobre todo la más pintada.
+
+Porque fue Maurice Utrillo quien la hizo inmortal. El hijo de Suzanne Valadon, el niño de la Butte, pintó esta esquina decenas de veces, con sus cielos blancos y sus muros un poco torcidos. Se cuenta que la casa debe su color a una amiga del círculo de Picasso, que la habría hecho pintar de rosa a principios de siglo. Desde entonces no ha cambiado.
+
+Tómate tiempo para mirar a tu alrededor. Estas callejuelas que bajan, estas escaleras, estos faroles, estos muros torcidos: es el Montmartre que los pintores fijaron para la eternidad. No solo caminas por un barrio bonito. Caminas dentro de cientos de cuadros colgados en museos de todo el mundo. El motivo y el decorado se han vuelto una sola cosa.
+
+Ahora, gírate hacia la cima. Esa cúpula blanca que lo domina todo es nuestra última etapa. Sube conmigo hacia el Sacré-Cœur.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-10
+@@STITLE=Le Sacré-Cœur
+Ya estamos, arriba del todo. El Sacré-Cœur, ese gran navío blanco que se ve desde todo París. Se construyó lentamente, de 1875 a 1914, tras la derrota de 1870 y el aplastamiento de la Comuna, como un voto, una penitencia de piedra. A los pintores de la Butte, por su parte, no les gustaba: demasiado nuevo, demasiado blanco, demasiado formal, plantado sobre su bohemia como un reproche. Le daban la espalda para pintar los molinos y las viñas.
+
+Y sin embargo, ven aquí, al atrio. Mira. Todo París está a tus pies, hasta donde alcanza la vista, entre bruma o bajo el sol. Esta es la vista que tenían cada día, esos genios muertos de hambre: Renoir, Van Gogh, Picasso, Utrillo, Valadon. Vivían en la mugre, en una colina de viñas y cabarets, y veían el mundo desde más alto que nadie.
+
+Repasa el camino recorrido. El cancán y Lautrec ahí abajo; el color de Van Gogh en la rue Lepic; el baile de Renoir; las Demoiselles de Picasso en una chabola de tablones; los cabarets, las viñas, la Maison Rose. En este pequeño montón de tierra, en pocas décadas, hombres y mujeres sin dinero reinventaron la misma manera de ver el mundo. Se fueron, un día, hacia Montparnasse y hacia la gloria. Pero la Butte se quedó, y el arte que hizo nacer cuelga en todas partes, en todas las paredes del planeta.
+
+Gracias por subir hasta aquí conmigo. Baja despacio, con los ojos bien abiertos. Cada callejuela, a partir de ahora, es un cuadro. Hasta pronto en la Butte.
+
+@@LANG=de
+@@TITLE=Paris — Das Montmartre der Maler: der Hügel, der die moderne Kunst erfand
+@@DESC=Kunst — von Renoir bis Picasso, der arme Hügel, auf dem der Blick neu erfunden wurde, vom Bateau-Lavoir bis zu den Kabaretts.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-0
+@@STITLE=Place Blanche
+Bleib eine Sekunde stehen, unter den roten Flügeln. Diese Pappmaché-Mühle, die sich über dir dreht, ist das Moulin Rouge, eröffnet 1889, im selben Jahr wie der Eiffelturm. Am Fuß der Butte, dort, wo das anständige Paris kam, um zu schaudern. Hier wird der Cancan erfunden, hier trinkt man, hier zeigt man seine Beine. Und in einer Ecke zeichnet ein kleiner Mann mit gebrochenen Beinen. Toulouse-Lautrec. Aus diesen Tänzerinnen, aus La Goulue, macht er Plakate, die, ohne dass man es noch weiß, zu Kunst werden.
+
+Hier ist das Geheimnis, das ich dir erzählen möchte. Schau dir diesen Hügel vor dir an. Vor einem Jahrhundert war er fast nichts: ein Mühlendorf, das über Paris hing, halb auf dem Land. Die Mieten kosteten fast nichts. Also ziehen die Armen hinauf. Und unter den Armen Maler ohne einen Cent: Renoir, Van Gogh, Picasso. Hier, im Dreck und in der Freiheit, zwischen zwei Kabaretts, werden sie etwas Riesiges tun. Sie werden die moderne Kunst erfinden. Eine fünf Jahrhunderte alte Art zu malen zerbrechen, und den Blick der ganzen Welt verändern.
+
+Alles begann auf diesem kleinen Erdhaufen. Wir werden ihn gemeinsam erklimmen, Gasse für Gasse, in den Spuren derer, die alles gewagt haben. Nimm die rue Lepic auf deiner rechten Seite und beginn zu steigen. Ich folge dir.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-1
+@@STITLE=54 rue Lepic
+Verschnauf. Du bist in der Nummer 54, rue Lepic. Eine gewöhnliche Fassade, ein Balkon, nichts verrät es; doch hinter diesen Fenstern lebte Vincent van Gogh. Von 1886 bis 1888, zwei Jahre, mit seinem Bruder Theo, der weiter unten in Paris Gemälde verkaufte.
+
+Vincent kommt aus einem düsteren Holland. Seine Malerei ist bis dahin Erde, Bauern, matschige Töne. Und dann zieht er hierher. Er begegnet den Impressionisten, dem Licht von Paris, den Farben der anderen. Etwas entzündet sich. Seine Palette fängt Feuer. Die Gelbtöne, die Blautöne, die vibrierenden Pinselstriche, alles, was den Van Gogh ausmachen wird, den die Welt liebt, beginnt in dieser Wohnung, auf diesem Hügel. Er malt die Aussicht aus seinem Fenster, er malt die Mühlen direkt darüber, er malt Paris zu seinen Füßen.
+
+Zwei Jahre später wird er in den Süden ziehen, nach Arles und zur Sonne, die ihn verbrennen wird. Doch hier, in der rue Lepic, hat er die Farbe gelernt. Man geht daran vorbei, ohne es zu wissen. Du, jetzt, weißt es.
+
+Steig weiter die rue Lepic hinauf. Sie biegt sich, sie schlängelt sich. Ganz oben erwartet dich eine echte Mühle, die letzte Überlebende einer Zeit, in der die Butte davon Dutzende zählte.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-2
+@@STITLE=Le Moulin de la Galette
+Da ist sie. Diese hölzerne Mühle, thronend auf ihrem Hügel, ist das Moulin de la Galette. Nun, es sind zwei geblieben, die, die du siehst, und eine weitere etwas weiter entfernt. Früher mahlten sie Getreide und Gips von Montmartre. Dann hatten die Müller eine Idee: eine guinguette zu eröffnen, einen Freiluft-Tanzsaal, wo die Pariser Arbeiter sonntags zum Tanzen hinaufkamen.
+
+Eines Tages im Jahr 1876 stellt hier ein Maler seine Staffelei auf. Auguste Renoir. Er beobachtet die unter den Bäumen tanzende Menge, die Sonnenflecken, die durch die Blätter auf die Kleider und Hüte fallen. Und er malt genau das: keine erstarrte Szene, sondern das sich bewegende Licht, die Freude, die Bewegung, das Verschwommene eines glücklichen Sonntags. Le Bal du moulin de la Galette. Eines der schönsten impressionistischen Gemälde der Welt, heute im musée d'Orsay.
+
+Das ist die Revolution, die beginnt. Nicht mehr Könige oder Götter malen, sondern einfache Menschen, die tanzen, das gewöhnliche Leben, mitten im Licht eingefangen. Van Gogh wird diese Mühle malen, Toulouse-Lautrec ebenfalls, Picasso auch. Eine Mühle, drei Genies.
+
+Steig jetzt hinab zur place Émile-Goudeau. Ein Holzgebäude erwartet uns, das wichtigste der gesamten Geschichte der modernen Kunst.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-3
+@@STITLE=Le Bateau-Lavoir
+Du bist auf der place Émile-Goudeau, vor einer ganz einfachen Fassade. Lass dich nicht von ihr täuschen. Hier stand einst der Bateau-Lavoir, eine Holzbaracke voller elender Ateliers, ohne Wasser oder Heizung. Ein Dichter, Max Jacob, gab ihr diesen Spitznamen, weil sie knarrte und schwankte wie die Wäschereiboote auf der Seine.
+
+In diesem Elendsquartier zieht um 1904 ein mittelloser, dreiundzwanzigjähriger Spanier ein, der nachts bei Kerzenlicht malt. Pablo Picasso. Genau dort, in einem schmutzigen Zimmer dieser Baracke, malt er 1907 ein Gemälde, das alles zum Explodieren bringen wird: Les Demoiselles d'Avignon. Fünf Frauen mit gebrochenen Gesichtern, wie Masken behauen, aus mehreren Blickwinkeln gleichzeitig gesehen. Seine Freunde sind schockiert, manche glauben, er sei verrückt geworden. Er hat gerade drei Jahrhunderte Malerei getötet. Mit Braque erfindet er im selben Zug den Kubismus, den größten Bruch der westlichen Kunst.
+
+Der Bateau-Lavoir brannte 1970 nieder; was du siehst, ist ein Nachbau. Doch der Ort bleibt heilig. Modigliani, Juan Gris haben hier ebenfalls gelebt. Eine Bretterbude, und darin wird das zwanzigste Jahrhundert geboren.
+
+Steig hinauf zum Gipfel. Ein Platz voller Maler erwartet dich: die place du Tertre.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-4
+@@STITLE=Place du Tertre
+Da sind wir: die place du Tertre, das Herz des alten Dorfes. Heute findest du sie voller Menschen, umringt von Malern, die dein Porträt in zehn Minuten anfertigen, und von Terrassen für Touristen. Zuck nicht zu schnell mit den Schultern. Schau lieber, was darunter liegt.
+
+Dieser Platz war der Marktplatz des Dorfes Montmartre, aus der Zeit, als die Butte eine eigenständige Gemeinde war, mit ihrem eigenen Rathaus und ihrem Bürgermeister. Und während des gesamten neunzehnten Jahrhunderts lebten und arbeiteten die echten Maler hier in der Umgebung, mangels etwas Besserem. Die Staffelei draußen aufzustellen, nach dem Motiv zu malen, im Freien: diese Gewohnheit entstand mit den Impressionisten, und sie verwurzelte sich auf diesem Platz. Die Porträtmaler von heute, so kommerziell sie auch sein mögen, sind die Urenkel dieser neuen Idee: das Atelier ist die Straße.
+
+Man erzählt, dass hier und in den benachbarten Kabaretts alle mittellosen Genies, die Paris zu bieten hatte, sich kreuzten, stritten, einander halfen. Picasso, Utrillo, Modigliani, nur wenige Meter voneinander entfernt. Das ärmste Dorf von Paris war die Welthauptstadt der Malerei.
+
+Nimm die kleine rue Poulbot, gleich nebenan. Wir besuchen einen weiteren Revolutionär des Blicks: Salvador Dalí.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-5
+@@STITLE=Espace Dalí
+Steig diese paar Stufen hinab, rue Poulbot. Hinter diesen Mauern verbirgt sich der Espace Dalí, der einzige Ort in Frankreich, der ganz Salvador Dalí gewidmet ist. Skulpturen, Radierungen, weiche Uhren, Elefanten auf Spinnenbeinen: das gesamte Universum des katalanischen Meisters des Surrealismus.
+
+Du wirst mir sagen: Dalí, das ist Spanien, Katalonien, nicht Montmartre. Das stimmt. Doch seine Anwesenheit hier erzählt etwas. Nach den Impressionisten, nach den Kubisten hat sich die moderne Kunst nie aufgehört neu zu erfinden, und jede Welle kam, um sich ein Stück von der Legende der Butte zu holen. Der Surrealismus ist die nächste Generation: man zerbricht nicht mehr nur die Form, man öffnet die Türen des Traums und des Unbewussten. Die zerfließenden Uhren, das ist die Zeit, die nicht mehr gehorcht.
+
+Übrigens trägt die Straße den Namen von Francisque Poulbot, einem Zeichner, der die armen Kinder von Montmartre porträtierte, zerzaust und schelmisch: die „Poulbots". Man sieht sie noch auf Schildern und Fassaden. Die Butte erfand die hohe Kunst, und auch ihr volkstümliches, zärtliches, ein wenig freches Bild.
+
+Jetzt steigen wir nach Norden, rue Cortot, zum ältesten Haus des Hügels, jenem, in dem Renoir sein Atelier hatte.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-6
+@@STITLE=Musée de Montmartre
+In der Nummer 12, rue Cortot, drück das Gittertor auf. Dieses Haus ist das älteste der Butte, ein Herrenhaus aus dem siebzehnten Jahrhundert, mit einem Garten, der über die Steigung blickt. Heute ist es das musée de Montmartre, und es ist vielleicht die Adresse, die am meisten von Malern bewohnt wurde in ganz Paris.
+
+Zähl mit, wer hier gearbeitet hat. Renoir zuerst, der innerhalb dieser Mauern ein Atelier mietete, genau zu der Zeit, als er den Bal du moulin de la Galette malte, nur wenige Schritte entfernt. Dann Suzanne Valadon, ein unglaublicher Fall: ehemaliges Modell, eine von einem Trapez gestürzte Akrobatin, sie lernt die Malerei, indem sie zusieht, wie sie für Renoir und Degas posiert, und wird eine der großen Künstlerinnen ihrer Zeit, eine Frau, in dieser Männerwelt. Sie lebt hier mit ihrem Sohn, Maurice Utrillo, dem Kind der Butte, alkoholkrank und genial, der die Straßen von Montmartre besser malen wird als jeder andere.
+
+Der Garten wurde neu gestaltet, wie auf Renoirs Leinwänden. Setz dich eine Minute hin, wenn du kannst: es ist genau das Licht, das er suchte.
+
+Geh wieder hinaus und schau nach vorn. Auf der anderen Straßenseite, am Hang, klammern sich noch ein paar Rebreihen fest. Folge mir bis zum Clos Montmartre.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-7
+@@STITLE=Le Clos Montmartre
+Da sind sie, diese wenigen Pflanzenreihen, die sich an den Hang klammern, zwischen zwei Gebäuden: der Clos Montmartre. Dieses kleine Grundstück überrascht mitten in Paris. Doch vor allem ist es die lebendige Erinnerung an das, was die Butte über Jahrhunderte war: ein Hügel voller Felder und Mühlen, noch immer durch Wege und offenes Land von der großen Stadt getrennt.
+
+Die heutige Parzelle stammt nicht aus dem Mittelalter, keine Sorge: sie wurde 1933 angelegt, um das Grundstück vor den Bauträgern zu retten und Montmartre ein Stück Land zu erhalten. Sie erzählt also weniger von einer Produktion als von einem städtebaulichen Akt: eine Leere, ein Gefälle und eine Erinnerung inmitten der Gebäude zu bewahren.
+
+Warum halte ich dich vor drei Rebstöcken an? Weil alles darin steckt. Wenn die Maler hierher hinaufzogen, dann wegen dieses ländlichen Charakters: weit weg von der Stadt, außerhalb der Steuern, mit Mieten für fast nichts und Kabaretts, in denen gesungen wurde. Das Elend und die Weinreben schufen das Genie. Ohne diesen armen Hügel keine moderne Kunst.
+
+Steig die rue des Saules hinunter. Unten erwarten dich ein kleines Haus und ein legendäres Kabarett.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-8
+@@STITLE=Au Lapin Agile
+Schau dir dieses niedrige kleine Haus an, mit seinem Baum und seinem Schild: ein Hase, der aus einem Topf springt. Das ist das Kabarett Au Lapin Agile, eines der letzten authentischen Kabaretts von Paris, noch immer in Betrieb. Sein Name kommt von einem Wortspiel. Das Schild, dieser aus einem Topf springende Hase, wurde von einem Zeichner namens André Gill gemalt: der „lapin à Gill" (Gills Hase) wurde, lautlich, zum „Lapin Agile" (flinker Hase).
+
+Zu Beginn des zwanzigsten Jahrhunderts ist es das Versteck der mittellosen Künstler der Butte. Man trinkt hier wenig, man singt, man rezitiert Verse, man erfindet bis zum Morgengrauen die Welt neu. Picasso kommt her, und daraus entsteht ein berühmtes Gemälde. Apollinaire, Utrillo, Mac Orlan stoßen die Tür auf.
+
+Von hier aus, so erzählt man sich noch, ging ein denkwürdiger Streich aus. Schriftsteller binden einen Pinsel an den Schwanz eines Esels, lassen ihn eine Leinwand mit seinem in Farbe getauchten Schwanz bearbeiten, und präsentieren das Ergebnis in einem echten Salon unter einem hochtrabenden Titel. Niemand durchschaut es. Ein Scherz, um sich über die moderne Kunst lustig zu machen, gemacht von genau denen, die sie erfanden.
+
+Steig ein paar Schritte höher. Ein rosa Haus an der Straßenecke, du kannst es nicht verfehlen.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-9
+@@STITLE=La Maison Rose
+Da ist sie, die Maison Rose. Ein kleines Gebäude mit rosa Wänden und grünen Fensterläden, an der Ecke der rue de l'Abreuvoir und der rue des Saules gelegen. Es ist wohl das meistfotografierte Haus von Montmartre, und vor allem das meistgemalte.
+
+Denn es war Maurice Utrillo, der es unsterblich gemacht hat. Der Sohn von Suzanne Valadon, das Kind der Butte, malte diese Straßenecke Dutzende Male, mit ihren weißen Himmeln und ihren leicht schiefen Mauern. Man erzählt, das Haus verdanke seine Farbe einer Freundin aus Picassos Kreis, die es zu Beginn des Jahrhunderts habe rosa streichen lassen. Seitdem hat es sich nicht mehr verändert.
+
+Nimm dir die Zeit, dich umzusehen. Diese abwärts führenden Gassen, diese Treppen, diese Straßenlaternen, diese windschiefen Mauern: das ist das Montmartre, das die Maler für die Ewigkeit festgehalten haben. Du gehst nicht nur durch ein hübsches Viertel. Du gehst durch Hunderte von Gemälden, die in Museen auf der ganzen Welt hängen. Das Motiv und die Kulisse sind eins geworden.
+
+Dreh dich jetzt zum Gipfel um. Diese weiße Kuppel, die alles überragt, ist unsere letzte Etappe. Steig mit mir hinauf zum Sacré-Cœur.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-10
+@@STITLE=Le Sacré-Cœur
+Da sind wir, ganz oben. Das Sacré-Cœur, dieses große weiße Schiff, das man aus ganz Paris sieht. Man baute es langsam, von 1875 bis 1914, nach der Niederlage von 1870 und der Niederschlagung der Commune, wie ein Gelübde, eine steinerne Buße. Die Maler der Butte mochten es ihrerseits nicht: zu neu, zu weiß, zu brav, über ihrer Boheme errichtet wie ein Vorwurf. Sie kehrten ihm den Rücken, um die Mühlen und die Weinberge zu malen.
+
+Und dennoch, komm hierher, auf den Vorplatz. Schau. Ganz Paris liegt dir zu Füßen, so weit das Auge reicht, im Dunst oder in der Sonne. Das ist der Anblick, den sie jeden Tag hatten, diese genialen Hungerleider: Renoir, Van Gogh, Picasso, Utrillo, Valadon. Sie lebten im Dreck, auf einem Hügel voller Weinberge und Kabaretts, und sie sahen die Welt von höher oben als alle anderen.
+
+Denk noch einmal an den zurückgelegten Weg. Der Cancan und Lautrec da unten; Van Goghs Farbe in der rue Lepic; Renoirs Ball; Picassos Demoiselles in einer Bretterbude; die Kabaretts, die Weinberge, die Maison Rose. Auf diesem kleinen Erdhaufen erfanden mittellose Männer und Frauen innerhalb weniger Jahrzehnte die Art und Weise, die Welt zu sehen, völlig neu. Eines Tages zogen sie fort, nach Montparnasse und zum Ruhm. Doch die Butte blieb, und die Kunst, die sie hervorbrachte, hängt überall, an allen Wänden des Planeten.
+
+Danke, dass du mit mir bis hierher hinaufgestiegen bist. Steig langsam wieder hinab, mit weit geöffneten Augen. Jede Gasse ist von nun an ein Gemälde. Bis bald auf der Butte.
+
+@@LANG=it
+@@TITLE=Parigi — La Montmartre dei pittori: la collina che ha inventato l'arte moderna
+@@DESC=Arte — da Renoir a Picasso, la collina povera dove si è reinventato lo sguardo, dal Bateau-Lavoir ai cabaret.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-0
+@@STITLE=Place Blanche
+Fermati un secondo, sotto le ali rosse. Quel mulino di cartapesta che gira sopra di te è il Moulin Rouge, aperto nel 1889, lo stesso anno della torre Eiffel. Ai piedi della Butte, dove la Parigi rispettabile veniva a rabbrividire. Qui si inventa il cancan, si beve, si mostrano le gambe. E in un angolo, un ometto dalle gambe spezzate disegna. Toulouse-Lautrec. Da quelle ballerine, da La Goulue, ricava manifesti che diventano, senza che nessuno lo sappia ancora, arte.
+
+Ecco il segreto che voglio raccontarti. Guarda questa collina davanti a te. Un secolo fa, non era quasi nulla: un villaggio di mulini appeso sopra Parigi, per metà in campagna. Gli affitti non costavano quasi nulla. Così i poveri salgono qui. E tra i poveri, pittori senza un soldo: Renoir, Van Gogh, Picasso. Qui, nel sudiciume e nella libertà, tra due cabaret, faranno qualcosa di enorme. Inventeranno l'arte moderna. Rompere un modo di dipingere vecchio di cinque secoli, e cambiare lo sguardo del mondo intero.
+
+Tutto è partito da questo piccolo cumulo di terra. Lo saliremo insieme, vicolo dopo vicolo, sui passi di chi ha osato tutto. Prendi la rue Lepic, sulla tua destra, e comincia a salire. Io ti seguo.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-1
+@@STITLE=54 rue Lepic
+Riprendi fiato. Sei al 54 di rue Lepic. Una facciata ordinaria, un balcone, niente lo rivela; ma dietro queste finestre visse Vincent van Gogh. Dal 1886 al 1888, due anni, con suo fratello Theo, che vendeva quadri più in basso a Parigi.
+
+Vincent arriva da un'Olanda cupa. La sua pittura, fino ad allora, è la terra, i contadini, i toni di fango. E poi sale qui. Incontra gli impressionisti, la luce di Parigi, i colori degli altri. Qualcosa si accende. La sua tavolozza prende fuoco. I gialli, i blu, le pennellate che vibrano, tutto ciò che farà il Van Gogh che il mondo adora, comincia in questo appartamento, su questa collina. Dipinge la vista dalla sua finestra, dipinge i mulini appena sopra, dipinge Parigi ai suoi piedi.
+
+Due anni dopo, scenderà verso il sud, verso Arles e il sole che lo brucerà. Ma è qui, in rue Lepic, che ha imparato il colore. Si passa davanti senza saperlo. Tu, ora, lo sai.
+
+Continua a salire per rue Lepic. Gira, serpeggia. In cima ti aspetta un vero mulino, l'ultimo sopravvissuto di un tempo in cui la Butte ne contava decine.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-2
+@@STITLE=Le Moulin de la Galette
+Eccolo. Questo mulino di legno appollaiato sulla sua collina è il Moulin de la Galette. Be', ne restano due, quello che vedi e un altro poco più avanti. Un tempo macinavano il grano e il gesso di Montmartre. Poi ai mugnai venne un'idea: aprire una guinguette, un ballo all'aperto, dove gli operai di Parigi salivano a ballare la domenica.
+
+Un giorno del 1876, un pittore pianta qui il suo cavalletto. Auguste Renoir. Osserva la folla che balla sotto gli alberi, le macchie di sole che cadono tra le foglie sui vestiti e sui cappelli. E dipinge questo: non una scena immobile, ma la luce che si muove, la gioia, il movimento, la sfocatura di una domenica felice. Le Bal du moulin de la Galette. Uno dei più bei quadri impressionisti del mondo, oggi al musée d'Orsay.
+
+Ecco la rivoluzione che comincia. Non dipingere più re o dei, ma gente semplice che balla, la vita ordinaria colta in piena luce. Van Gogh dipingerà questo mulino, anche Toulouse-Lautrec, anche Picasso. Un mulino, tre geni.
+
+Ridiscendi ora verso place Émile-Goudeau. Ci attende un edificio di legno, il più importante di tutta la storia dell'arte moderna.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-3
+@@STITLE=Le Bateau-Lavoir
+Sei in place Émile-Goudeau, davanti a una facciata molto semplice. Non fidarti. Qui si ergeva il Bateau-Lavoir, una baracca di legno piena di atelier miseri, senza acqua né riscaldamento. Un poeta, Max Jacob, la soprannominò così perché scricchiolava e ondeggiava come i bateaux-lavoirs sulla Senna.
+
+In quel tugurio, verso il 1904, si installa un giovane spagnolo di ventitré anni, senza un soldo, che dipinge di notte a lume di candela. Pablo Picasso. È lì, in una stanza sporca di quella baracca, che nel 1907 dipinge un quadro che farà esplodere tutto: Les Demoiselles d'Avignon. Cinque donne dai volti spezzati, intagliati come maschere, viste da più lati contemporaneamente. I suoi amici sono scioccati, alcuni lo credono impazzito. Ha appena ucciso tre secoli di pittura. Con Braque, nello stesso momento, inventa il cubismo, la più grande rottura dell'arte occidentale.
+
+Il Bateau-Lavoir è bruciato nel 1970; ciò che vedi è una ricostruzione. Ma il luogo resta sacro. Anche Modigliani, Juan Gris vi hanno vissuto. Una baracca di assi, e il ventesimo secolo che vi nasce dentro.
+
+Risali verso la cima. Ti aspetta una piazza piena di pittori: la place du Tertre.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-4
+@@STITLE=Place du Tertre
+Eccoci: la place du Tertre, il cuore del vecchio villaggio. Oggi la trovi affollata di gente, circondata da pittori che ti fanno il ritratto in dieci minuti e da terrazze per turisti. Non alzare le spalle troppo in fretta. Guarda piuttosto cosa c'è sotto.
+
+Questa piazza era la piazza principale del borgo di Montmartre, dai tempi in cui la Butte era un comune a sé, con il suo municipio e il suo sindaco. E per tutto il diciannovesimo secolo, i veri pittori hanno vissuto e lavorato qui intorno, in mancanza di meglio. Piantare il cavalletto fuori, dipingere dal vero, all'aria aperta: questa abitudine è nata con gli impressionisti, e si è radicata su questa piazza. I ritrattisti di oggi, per quanto commerciali, sono i pronipoti di quella nuova idea: l'atelier è la strada.
+
+Si racconta che qui e nei cabaret vicini, tutti i geni squattrinati che Parigi contava si incrociavano, litigavano, si aiutavano a vicenda. Picasso, Utrillo, Modigliani, a pochi metri l'uno dall'altro. Il villaggio più povero di Parigi era la capitale mondiale della pittura.
+
+Prendi la piccola rue Poulbot, proprio accanto. Andiamo a far visita a un altro rivoluzionario dello sguardo: Salvador Dalí.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-5
+@@STITLE=Espace Dalí
+Scendi questi pochi gradini, rue Poulbot. Dietro queste mura si nasconde l'Espace Dalí, l'unico luogo di Francia interamente dedicato a Salvador Dalí. Sculture, incisioni, orologi molli, elefanti su zampe di ragno: tutto l'universo del maestro catalano del surrealismo.
+
+Mi dirai: Dalí è la Spagna, la Catalogna, non Montmartre. È vero. Ma la sua presenza qui racconta qualcosa. Dopo gli impressionisti, dopo i cubisti, l'arte moderna non ha mai smesso di reinventarsi, e ogni nuova ondata è venuta a cercare un po' della leggenda della Butte. Il surrealismo è la generazione successiva: non si tratta più solo di rompere la forma, si aprono le porte del sogno e dell'inconscio. Gli orologi che si sciolgono sono il tempo che non obbedisce più.
+
+Di passaggio, la via porta il nome di Francisque Poulbot, un disegnatore che ha ritratto i bambini poveri di Montmartre, spettinati, birichini: i «poulbots». Li si vede ancora su insegne e facciate. La Butte ha inventato l'arte colta, e anche la sua immagine popolare, tenera, un po' canagliesca.
+
+Ora saliamo verso nord, rue Cortot, verso la casa più antica della collina, quella dove Renoir aveva il suo atelier.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-6
+@@STITLE=Musée de Montmartre
+Al numero 12 di rue Cortot, spingi il cancello. Questa casa è la più antica della Butte, un maniero del diciassettesimo secolo, con un giardino che domina il pendio. Oggi è il musée de Montmartre, ed è forse l'indirizzo più abitato dai pittori di tutta Parigi.
+
+Fai il conto di chi ha lavorato qui. Renoir, per primo, che affittava un atelier tra queste mura proprio mentre dipingeva il Bal du moulin de la Galette, a due passi. Poi Suzanne Valadon, un caso incredibile: ex modella, acrobata caduta da un trapezio, impara a dipingere osservando se stessa posare per Renoir e Degas, e diventa una delle grandi artiste del suo tempo, una donna, in quel mondo di uomini. Vive qui con suo figlio, Maurice Utrillo, il bambino della Butte, alcolizzato e geniale, che dipingerà le strade di Montmartre meglio di chiunque altro.
+
+Il giardino è stato ridisegnato come nelle tele di Renoir. Siediti un minuto se puoi: è esattamente la luce che lui cercava.
+
+Esci di nuovo e guarda di fronte. Dall'altra parte della strada, sul pendio, alcune file di vigne si aggrappano ancora. Seguimi fino al Clos Montmartre.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-7
+@@STITLE=Le Clos Montmartre
+Eccole, queste poche file di piante aggrappate al pendio, tra due edifici: il Clos Montmartre. Questo piccolo terreno sorprende in piena Parigi. Ma è soprattutto il ricordo vivo di ciò che è stata la Butte per secoli: una collina di colture e di mulini, ancora separata dalla grande città da sentieri e terreni aperti.
+
+L'attuale appezzamento non è medievale, sta' tranquillo: fu sistemato nel 1933, per salvare il terreno dai costruttori e conservare a Montmartre un pezzo di campagna. Racconta dunque meno una produzione che un atto di urbanistica: preservare un vuoto, un pendio e una memoria in mezzo agli edifici.
+
+Perché ti fermo davanti a tre ceppi di vite? Perché tutto è lì. Se i pittori sono saliti qui, è a causa di questa campagna: lontano dalla città, fuori dalle tasse, con affitti da nulla e cabaret dove si cantava. La miseria e le vigne hanno fatto il genio. Senza questa collina povera, niente arte moderna.
+
+Scendi rue des Saules. In fondo, una casetta e un cabaret leggendario.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-8
+@@STITLE=Au Lapin Agile
+Guarda questa casetta bassa, con il suo albero e la sua insegna: un coniglio che salta fuori da una pentola. È il cabaret Au Lapin Agile, uno degli ultimi cabaret autentici di Parigi, ancora in attività. Il suo nome viene da un gioco di parole. L'insegna, quel coniglio che salta da una pentola, è stata dipinta da un disegnatore chiamato André Gill: il «lapin à Gill» (il coniglio di Gill) è diventato, a orecchio, il «Lapin Agile» (il coniglio agile).
+
+All'inizio del ventesimo secolo, è il rifugio degli artisti squattrinati della Butte. Si beve poco, si canta, si recitano versi, si rifà il mondo fino all'alba. Picasso ci viene, e ne trae un quadro famoso. Apollinaire, Utrillo, Mac Orlan ne spingono la porta.
+
+È da qui, si racconta ancora, che partì uno scherzo memorabile. Alcuni scrittori legano un pennello alla coda di un asino, lo lasciano battere una tela con la sua coda intinta nella pittura, e presentano il risultato in un vero salone sotto un titolo altisonante. Nessuno ci vede nulla di strano. Uno scherzo per prendere in giro l'arte moderna, fatto proprio da coloro che la stavano inventando.
+
+Risali di qualche passo. Una casa rosa all'angolo della strada, non puoi mancarla.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-9
+@@STITLE=La Maison Rose
+Eccola, la Maison Rose. Un piccolo edificio dai muri rosa e dalle imposte verdi, piantato all'angolo tra rue de l'Abreuvoir e rue des Saules. È probabilmente la casa più fotografata di Montmartre, e soprattutto la più dipinta.
+
+Perché fu Maurice Utrillo a renderla immortale. Il figlio di Suzanne Valadon, il bambino della Butte, dipinse quest'angolo di strada decine di volte, con i suoi cieli bianchi e i suoi muri un po' storti. Si racconta che la casa debba il suo colore a un'amica del circolo di Picasso, che l'avrebbe fatta dipingere di rosa all'inizio del secolo. Da allora non è più cambiata.
+
+Prenditi il tempo di guardarti intorno. Questi vicoli che scendono, queste scale, questi lampioni, questi muri storti: è la Montmartre che i pittori hanno fissato per l'eternità. Non stai semplicemente camminando in un bel quartiere. Stai camminando dentro centinaia di quadri appesi nei musei di tutto il mondo. Il soggetto e lo scenario non fanno più che uno.
+
+Ora, girati verso la cima. Quella cupola bianca che domina tutto è la nostra ultima tappa. Sali con me verso il Sacré-Cœur.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-10
+@@STITLE=Le Sacré-Cœur
+Eccoci, proprio in cima. Il Sacré-Cœur, questo grande vascello bianco che si vede da tutta Parigi. Fu costruito lentamente, dal 1875 al 1914, dopo la sconfitta del 1870 e la repressione della Comune, come un voto, una penitenza di pietra. I pittori della Butte, dal canto loro, non lo amavano: troppo nuovo, troppo bianco, troppo perbene, piantato sopra la loro bohème come un rimprovero. Gli voltavano le spalle per dipingere i mulini e le vigne.
+
+Eppure, vieni qui, sul sagrato. Guarda. Tutta Parigi è ai tuoi piedi, a perdita d'occhio, nella foschia o nel sole. Questa è la vista che avevano ogni giorno, quei geni morti di fame: Renoir, Van Gogh, Picasso, Utrillo, Valadon. Vivevano nel sudiciume, su una collina di vigne e cabaret, e vedevano il mondo da più in alto di chiunque altro.
+
+Ripensa al cammino percorso. Il cancan e Lautrec là in basso; il colore di Van Gogh in rue Lepic; il ballo di Renoir; le Demoiselles di Picasso in una baracca di assi; i cabaret, le vigne, la Maison Rose. Su questo piccolo cumulo di terra, in pochi decenni, uomini e donne senza soldi hanno reinventato lo stesso modo di vedere il mondo. Se ne sono andati, un giorno, verso Montparnasse e verso la gloria. Ma la Butte è rimasta, e l'arte a cui ha dato vita è appesa ovunque, su tutti i muri del pianeta.
+
+Grazie per essere salito fin qui con me. Ridiscendi piano, con gli occhi ben aperti. Ogni vicolo, ormai, è un quadro. A presto sulla Butte.
+
+@@LANG=nl
+@@TITLE=Parijs — Het Montmartre van de schilders: de heuvel die de moderne kunst uitvond
+@@DESC=Kunst — van Renoir tot Picasso, de arme heuvel waar de blik werd heruitgevonden, van het Bateau-Lavoir tot de cabarets.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-0
+@@STITLE=Place Blanche
+Stop even, onder de rode wieken. Die papier-maché molen die boven je draait, is de Moulin Rouge, geopend in 1889, hetzelfde jaar als de Eiffeltoren. Aan de voet van de Butte, waar het fatsoenlijke Parijs kwam huiveren. Hier wordt de cancan uitgevonden, hier drinkt men, hier laat men zijn benen zien. En in een hoekje tekent een klein mannetje met gebroken benen. Toulouse-Lautrec. Van die danseressen, van La Goulue, maakt hij affiches die, zonder dat iemand het nog weet, kunst worden.
+
+Dat is het geheim dat ik je wil vertellen. Kijk naar deze heuvel voor je. Een eeuw geleden was het bijna niets: een dorp van molens, hangend boven Parijs, half op het platteland. De huren kostten bijna niets. Dus klimmen de armen hierheen. En onder de armen, schilders zonder een cent: Renoir, Van Gogh, Picasso. Hier, in het vuil en de vrijheid, tussen twee cabarets, gaan ze iets enorms doen. Ze gaan de moderne kunst uitvinden. Een vijf eeuwen oude manier van schilderen breken, en de blik van de hele wereld veranderen.
+
+Alles begon op deze kleine aardhoop. We gaan hem samen beklimmen, steegje na steegje, in de voetsporen van hen die alles durfden. Neem de rue Lepic, aan je rechterhand, en begin te klimmen. Ik volg je.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-1
+@@STITLE=54 rue Lepic
+Kom op adem. Je bent op nummer 54, rue Lepic. Een gewone gevel, een balkon, niets verraadt het; maar achter deze ramen woonde Vincent van Gogh. Van 1886 tot 1888, twee jaar, met zijn broer Theo, die verderop in Parijs schilderijen verkocht.
+
+Vincent komt uit een somber Nederland. Zijn schilderkunst is tot dan toe aarde, boeren, modderige tinten. En dan trekt hij hierheen. Hij ontmoet de impressionisten, het licht van Parijs, de kleuren van anderen. Er ontsteekt iets. Zijn palet vat vlam. De gele tinten, de blauwe tinten, de trillende toetsen, alles wat de Van Gogh zal maken die de wereld aanbidt, begint in dit appartement, op deze heuvel. Hij schildert het uitzicht vanuit zijn raam, hij schildert de molens vlak erboven, hij schildert Parijs aan zijn voeten.
+
+Twee jaar later zal hij naar het zuiden trekken, naar Arles en de zon die hem zal verbranden. Maar het is hier, in de rue Lepic, dat hij de kleur heeft geleerd. Men loopt eraan voorbij zonder het te weten. Jij, nu, weet het.
+
+Blijf de rue Lepic oplopen. Ze draait, ze kronkelt. Helemaal boven wacht je een echte molen, de laatste overlevende van een tijd waarin de Butte er tientallen telde.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-2
+@@STITLE=Le Moulin de la Galette
+Daar is hij. Deze houten molen, gehurkt op zijn heuvel, is de Moulin de la Galette. Nou ja, er blijven er twee over, degene die je ziet en nog een iets verderop. Vroeger maalden ze het graan en het gips van Montmartre. Toen kregen de molenaars een idee: een guinguette openen, een openluchtdanszaal, waar de Parijse arbeiders 's zondags kwamen dansen.
+
+Op een dag in 1876 zet een schilder hier zijn ezel neer. Auguste Renoir. Hij kijkt naar de menigte die onder de bomen danst, de zonneplekken die door de bladeren op de jurken en hoeden vallen. En hij schildert dat: geen bevroren tafereel, maar het bewegende licht, de vreugde, de beweging, de vervaging van een gelukkige zondag. Le Bal du moulin de la Galette. Een van de mooiste impressionistische schilderijen ter wereld, vandaag in het musée d'Orsay.
+
+Dat is de revolutie die begint. Niet langer koningen of goden schilderen, maar eenvoudige mensen die dansen, het gewone leven gevangen in vol licht. Van Gogh zal deze molen schilderen, Toulouse-Lautrec ook, Picasso ook. Eén molen, drie genieën.
+
+Ga nu naar beneden naar de place Émile-Goudeau. Een houten gebouw wacht ons op, het belangrijkste uit de hele geschiedenis van de moderne kunst.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-3
+@@STITLE=Le Bateau-Lavoir
+Je bent op de place Émile-Goudeau, voor een heel eenvoudige gevel. Laat je niet misleiden. Hier stond ooit het Bateau-Lavoir, een houten keet vol ellendige ateliers, zonder water of verwarming. Een dichter, Max Jacob, gaf het die bijnaam omdat het kraakte en slingerde zoals de wasboten op de Seine.
+
+In dat krot vestigt zich rond 1904 een arme drieëntwintigjarige Spanjaard, die 's nachts bij kaarslicht schildert. Pablo Picasso. Daar, in een smerige kamer van die keet, schildert hij in 1907 een schilderij dat alles zal doen ontploffen: Les Demoiselles d'Avignon. Vijf vrouwen met gebroken gezichten, gesneden als maskers, gezien vanuit meerdere kanten tegelijk. Zijn vrienden zijn geschokt, sommigen denken dat hij gek is geworden. Hij heeft zojuist drie eeuwen schilderkunst gedood. Samen met Braque vindt hij vlak daarna het kubisme uit, de grootste breuk in de westerse kunst.
+
+Het Bateau-Lavoir is in 1970 afgebrand; wat je ziet is een reconstructie. Maar de plek blijft heilig. Modigliani, Juan Gris hebben er ook gewoond. Een keet van planken, en de twintigste eeuw die erin geboren wordt.
+
+Klim weer naar de top. Een plein vol schilders wacht je: de place du Tertre.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-4
+@@STITLE=Place du Tertre
+Daar zijn we: de place du Tertre, het hart van het oude dorp. Vandaag vind je het stampvol mensen, omringd door schilders die je portret in tien minuten maken en terrassen vol toeristen. Haal niet te snel je schouders op. Kijk liever naar wat eronder zit.
+
+Dit plein was het marktplein van het dorp Montmartre, uit de tijd dat de Butte een eigen gemeente was, met haar eigen gemeentehuis en burgemeester. En gedurende de hele negentiende eeuw hebben de echte schilders hier in de buurt geleefd en gewerkt, bij gebrek aan beter. De ezel buiten neerzetten, naar het leven schilderen, in de open lucht: die gewoonte is ontstaan met de impressionisten, en heeft wortel geschoten op dit plein. De portretschilders van vandaag, hoe commercieel ze ook zijn, zijn de achterkleinkinderen van dat nieuwe idee: het atelier is de straat.
+
+Men vertelt dat hier en in de naburige cabarets alle berooide genieën die Parijs telde elkaar kruisten, ruzieden, elkaar hielpen. Picasso, Utrillo, Modigliani, op enkele meters van elkaar. Het armste dorp van Parijs was de wereldhoofdstad van de schilderkunst.
+
+Neem de kleine rue Poulbot, vlak ernaast. We gaan een andere revolutionair van de blik bezoeken: Salvador Dalí.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-5
+@@STITLE=Espace Dalí
+Ga deze paar trappen af, rue Poulbot. Achter deze muren schuilt de Espace Dalí, de enige plek in Frankrijk die volledig gewijd is aan Salvador Dalí. Beeldhouwwerken, gravures, smeltende klokken, olifanten op spinnenpoten: het hele universum van de Catalaanse meester van het surrealisme.
+
+Je zult zeggen: Dalí, dat is Spanje, Catalonië, niet Montmartre. Dat klopt. Maar zijn aanwezigheid hier vertelt iets. Na de impressionisten, na de kubisten, is de moderne kunst nooit opgehouden zichzelf opnieuw uit te vinden, en elke nieuwe golf kwam een beetje van de legende van de Butte zoeken. Het surrealisme is de volgende generatie: men breekt niet langer alleen de vorm, men opent de deuren van de droom en het onbewuste. De smeltende klokken, dat is de tijd die niet meer gehoorzaamt.
+
+Overigens draagt de straat de naam van Francisque Poulbot, een tekenaar die de arme kinderen van Montmartre tekende, verfomfaaid en ondeugend: de "poulbots". Je ziet ze nog op uithangborden en gevels. De Butte heeft de geleerde kunst uitgevonden, en ook haar volkse, tedere, een beetje schelmse imago.
+
+Nu klimmen we naar het noorden, rue Cortot, naar het oudste huis van de heuvel, dat waar Renoir zijn atelier had.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-6
+@@STITLE=Musée de Montmartre
+Op nummer 12, rue Cortot, duw het hek open. Dit huis is het oudste van de Butte, een landhuis uit de zeventiende eeuw, met een tuin die uitkijkt over de helling. Vandaag is het het musée de Montmartre, en het is misschien het adres dat het meest bewoond is geweest door schilders in heel Parijs.
+
+Tel mee wie hier heeft gewerkt. Renoir eerst, die binnen deze muren een atelier huurde op precies het moment dat hij de Bal du moulin de la Galette schilderde, op een steenworp afstand. Dan Suzanne Valadon, een ongelooflijk geval: voormalig model, acrobate gevallen van een trapeze, ze leert schilderen door zichzelf te zien poseren voor Renoir en Degas, en wordt een van de grote kunstenaars van haar tijd, een vrouw, in die wereld van mannen. Ze woont hier met haar zoon, Maurice Utrillo, het kind van de Butte, alcoholist en briljant, die de straten van Montmartre beter zal schilderen dan wie ook.
+
+De tuin is heringericht zoals op de doeken van Renoir. Ga even zitten als je kunt: het is precies het licht dat hij zocht.
+
+Ga weer naar buiten en kijk voor je. Aan de overkant van de straat, op de helling, klampen zich nog enkele rijen wijnstokken vast. Volg me tot aan de Clos Montmartre.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-7
+@@STITLE=Le Clos Montmartre
+Daar zijn ze, die paar rijen planten die zich aan de helling vastklampen, tussen twee gebouwen: de Clos Montmartre. Dit kleine stuk grond verrast midden in Parijs. Maar het is vooral de levende herinnering aan wat de Butte eeuwenlang is geweest: een heuvel van akkers en molens, nog steeds gescheiden van de grote stad door paden en open terreinen.
+
+Het huidige perceel is niet middeleeuws, wees gerust: het werd in 1933 aangelegd, om de grond te redden van projectontwikkelaars en Montmartre een stukje platteland te bewaren. Het vertelt dus minder een verhaal van productie dan van stedenbouw: een leegte, een helling en een herinnering bewaren te midden van de gebouwen.
+
+Waarom houd ik je staande voor drie wijnstokken? Omdat alles daarin zit. Als de schilders hierheen klommen, was het vanwege dit platteland: ver van de stad, buiten de belastingen, met huren van niets en cabarets waar men zong. De armoede en de wijngaarden hebben het genie gemaakt. Zonder deze arme heuvel, geen moderne kunst.
+
+Ga de rue des Saules af. Onderaan, een huisje en een legendarisch cabaret.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-8
+@@STITLE=Au Lapin Agile
+Kijk naar dit lage huisje, met zijn boom en zijn uithangbord: een konijn dat uit een pan springt. Dit is het cabaret Au Lapin Agile, een van de laatste authentieke cabarets van Parijs, nog steeds actief. Zijn naam komt van een woordspeling. Het uithangbord, dat konijn dat uit een pot springt, werd geschilderd door een tekenaar genaamd André Gill: het "lapin à Gill" (het konijn van Gill) werd, op het gehoor, het "Lapin Agile" (het vlugge konijn).
+
+Aan het begin van de twintigste eeuw is het de schuilplaats van de berooide kunstenaars van de Butte. Men drinkt hier weinig, men zingt, men declameert verzen, men maakt de wereld opnieuw tot aan de dageraad. Picasso komt hier, en haalt er een beroemd schilderij uit. Apollinaire, Utrillo, Mac Orlan duwen de deur open.
+
+Vanhier vertrok, zo vertelt men nog steeds, een gedenkwaardige grap. Schrijvers binden een penseel aan de staart van een ezel, laten hem een doek bewerken met zijn in verf gedompelde staart, en presenteren het resultaat in een echte salon onder een hoogdravende titel. Niemand ziet er iets vreemds in. Een grap om de spot te drijven met de moderne kunst, gemaakt door diezelfde mensen die haar aan het uitvinden waren.
+
+Loop een paar stappen terug omhoog. Een roze huis op de hoek van de straat, je kunt het niet missen.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-9
+@@STITLE=La Maison Rose
+Daar is het, de Maison Rose. Een klein gebouw met roze muren en groene luiken, gelegen op de hoek van de rue de l'Abreuvoir en de rue des Saules. Het is waarschijnlijk het meest gefotografeerde huis van Montmartre, en vooral het meest geschilderde.
+
+Want het was Maurice Utrillo die het onsterfelijk maakte. De zoon van Suzanne Valadon, het kind van de Butte, schilderde deze straathoek tientallen keren, met haar witte luchten en haar licht scheve muren. Men vertelt dat het huis zijn kleur te danken heeft aan een vriendin uit de kring van Picasso, die het aan het begin van de eeuw roze zou hebben laten schilderen. Sindsdien is het niet meer veranderd.
+
+Neem de tijd om om je heen te kijken. Deze steegjes die naar beneden lopen, deze trappen, deze straatlantaarns, deze scheve muren: dit is het Montmartre dat de schilders voor de eeuwigheid hebben vastgelegd. Je loopt niet alleen door een mooie wijk. Je loopt binnen in honderden schilderijen die in musea over de hele wereld hangen. Het onderwerp en het decor zijn één geworden.
+
+Draai je nu om naar de top. Die witte koepel die alles overheerst, is onze laatste halte. Klim met mij mee naar de Sacré-Cœur.
+
+@@SCENE=seed-100-paris-montmartre-des-peintres-scene-10
+@@STITLE=Le Sacré-Cœur
+Daar zijn we, helemaal boven. De Sacré-Cœur, dit grote witte vaartuig dat vanuit heel Parijs te zien is. Het werd langzaam gebouwd, van 1875 tot 1914, na de nederlaag van 1870 en de verpletterende onderdrukking van de Commune, als een gelofte, een boetedoening in steen. De schilders van de Butte hielden er op hun beurt niet van: te nieuw, te wit, te braaf, boven hun bohème geplant als een verwijt. Ze keerden het de rug toe om de molens en de wijngaarden te schilderen.
+
+En toch, kom hier, op het voorplein. Kijk. Heel Parijs ligt aan je voeten, zo ver het oog reikt, in nevel of in de zon. Dit is het uitzicht dat ze elke dag hadden, die geniale hongerlijders: Renoir, Van Gogh, Picasso, Utrillo, Valadon. Ze leefden in het vuil, op een heuvel van wijngaarden en cabarets, en ze zagen de wereld van hoger dan wie dan ook.
+
+Denk terug aan de afgelegde weg. De cancan en Lautrec daar beneden; de kleur van Van Gogh in de rue Lepic; het bal van Renoir; de Demoiselles van Picasso in een keet van planken; de cabarets, de wijngaarden, de Maison Rose. Op deze kleine aardhoop hebben, binnen enkele decennia, mannen en vrouwen zonder geld de manier zelf om de wereld te zien opnieuw uitgevonden. Ze vertrokken, op een dag, naar Montparnasse en naar de roem. Maar de Butte bleef, en de kunst die ze heeft voortgebracht hangt overal, op alle muren van de planeet.
+
+Dank je dat je met mij tot hier bent geklommen. Daal langzaam weer af, met wijd open ogen. Elk steegje is voortaan een schilderij. Tot snel op de Butte.

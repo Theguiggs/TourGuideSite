@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-saint-malo-remparts-plages-et-marees",
+  "sessionId": "seed-100-saint-malo-remparts-plages-et-marees-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Saint-Malo",
+  "title": "Saint-Malo — Remparts, plages et marées",
+  "description": "Paysage — comprendre comment la ville close dialogue avec l’estran et les marées.",
+  "themes": [
+    "Paysage — comprendre comment la ville close dialogue avec l’estran et les marées."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6204,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "es": "Paisaje, entender cómo la ciudad cierra diálogo con el estran y las mareas.",
+    "it": "Paesaggio, capire come la città chiude il dialogo con le anterestre e maree.",
+    "de": "Landschaft, verstehen, wie die Stadt mit dem Estran und den Gezeiten Dialog geschlossen.",
+    "en": "Landscape, understand how the city closes dialogue with foreshore and tides."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-saint-malo-remparts-plages-et-marees-scene-0",
+      "index": 0,
+      "title": "Porte Saint-Vincent",
+      "text": "La Porte Saint-Vincent ouvre la ville close du côté du port. Construite au début du XVIIIe siècle, elle porte les armes de Saint-Malo et de la Bretagne. Ses deux arches sont prises dans un front de granite qui paraît stable, presque immobile. Pourtant, tout autour, le paysage change avec la mer : hauteur de l’eau, largeur de l’estran, accès aux rochers.\n\nMonte sur le rempart par l’accès public voisin et regarde les bassins. Saint-Malo s’est développée sur un rocher entouré d’eau à marée haute. Des chaussées, des quais et des ouvrages successifs ont peu à peu relié, protégé et agrandi la cité. La muraille visible fut profondément renforcée par l’ingénieur Siméon Garangeau, collaborateur de Vauban, à la fin du XVIIe et au début du XVIIIe siècle.\n\nNotre parcours suivra cette frontière mobile. Marche vers le château, sans quitter les cheminements autorisés. À chaque halte, compare la ligne minérale des fortifications et celle, mouvante, du rivage. Le premier grand contraste apparaîtra depuis la plage de l’Éventail, face au Fort National.",
+      "hash": "4a1de94c",
+      "chars": 1049,
+      "existingSegments": {
+        "de": "seed-100-saint-malo-remparts-plages-et-marees-scene-0-seg-de",
+        "es": "seed-100-saint-malo-remparts-plages-et-marees-scene-0-seg-es",
+        "en": "seed-100-saint-malo-remparts-plages-et-marees-scene-0-seg-en",
+        "it": "seed-100-saint-malo-remparts-plages-et-marees-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-remparts-plages-et-marees-scene-1",
+      "index": 1,
+      "title": "Plage de l’Éventail",
+      "text": "Depuis le haut de plage, regarde le Fort National posé sur son îlot. Garangeau le construit à partir de plans de Vauban à la fin du XVIIe siècle, dans le système défensif destiné à protéger la rade. À marée haute, l’eau l’isole. À marée basse, une langue de sable et de roche peut apparaître entre lui et la ville.\n\nNe t’engage jamais sur l’estran sans connaître les horaires, les conditions et les accès autorisés. Ici, la marée ne sert pas de décor : elle commande réellement le chemin. Cette alternance faisait aussi partie de la défense, en compliquant l’approche des ouvrages. Le fort, la muraille et le rocher utilisaient ensemble la géographie de la baie.\n\nReprends le chemin de ronde vers le bastion de la Reine. En avançant, observe les brise-lames dressés sur la plage du Sillon. Ces pieux de bois, renouvelés au fil du temps, dissipent une partie de l’énergie des vagues. La défense contemporaine contre la mer répond ainsi, à sa manière, aux anciennes défenses contre les attaques venues du large.",
+      "hash": "ab7b0fa7",
+      "chars": 1009,
+      "existingSegments": {
+        "es": "seed-100-saint-malo-remparts-plages-et-marees-scene-1-seg-es",
+        "de": "seed-100-saint-malo-remparts-plages-et-marees-scene-1-seg-de",
+        "it": "seed-100-saint-malo-remparts-plages-et-marees-scene-1-seg-it",
+        "en": "seed-100-saint-malo-remparts-plages-et-marees-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-remparts-plages-et-marees-scene-2",
+      "index": 2,
+      "title": "Fort à la Reine",
+      "text": "Le bastion de la Reine avance comme un angle puissant dans la ligne des remparts. Sa forme permettait de surveiller et de défendre plusieurs directions. Aujourd’hui, elle offre surtout un point de lecture exceptionnel : d’un côté la longue plage du Sillon, de l’autre les îlots et les murs de la cité.\n\nRegarde comment le granite change de couleur selon qu’il est sec, humide ou couvert d’embruns. La frontière entre ville et mer n’est pas une ligne nette. Elle comprend le mur, les rochers, la plage et toute la zone que la marée découvre puis recouvre. Les ingénieurs ont travaillé avec cette profondeur variable, en plaçant batteries et forts là où les chenaux imposaient leurs contraintes.\n\nContinue sur le rempart vers l’ouest. Tu passeras au-dessus des rues reconstruites après les destructions de 1944. Garde cependant le regard tourné vers l’extérieur : notre prochaine halte, le bastion de la Hollande, domine la plage de Bon-Secours et les îles du Grand Bé et du Petit Bé. Là encore, le chemin change avec l’heure de la marée.",
+      "hash": "d7ff890d",
+      "chars": 1036,
+      "existingSegments": {
+        "de": "seed-100-saint-malo-remparts-plages-et-marees-scene-2-seg-de",
+        "en": "seed-100-saint-malo-remparts-plages-et-marees-scene-2-seg-en",
+        "it": "seed-100-saint-malo-remparts-plages-et-marees-scene-2-seg-it",
+        "es": "seed-100-saint-malo-remparts-plages-et-marees-scene-2-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-remparts-plages-et-marees-scene-3",
+      "index": 3,
+      "title": "Bastion de la Hollande",
+      "text": "Depuis le bastion de la Hollande, le Grand Bé paraît parfois proche, parfois rejeté au large. Une chaussée naturelle se découvre à marée basse et permet de rejoindre l’île lorsque les conditions sont sûres. À marée montante, l’eau referme rapidement le passage. La tombe de Chateaubriand se trouve sur le Grand Bé, tournée vers la mer, mais notre halte reste ici, sur le rempart public.\n\nPlus loin, le fort du Petit Bé complète le système défensif de la rade. Sa position montre combien les fortifications malouines débordent les murs de la ville : elles utilisent un archipel entier. Le bastion sous tes pieds faisait partie de cette chaîne de surveillance et de tirs croisés.\n\nDescends maintenant vers la plage de Bon-Secours par un accès autorisé, sans t’approcher des zones couvertes par la marée. Le niveau inférieur donnera une autre mesure de la muraille. Vue depuis le sable, elle ne borde plus simplement le paysage : elle devient une falaise construite, posée sur le rocher de Saint-Malo.",
+      "hash": "d26b8fcb",
+      "chars": 998,
+      "existingSegments": {
+        "de": "seed-100-saint-malo-remparts-plages-et-marees-scene-3-seg-de",
+        "it": "seed-100-saint-malo-remparts-plages-et-marees-scene-3-seg-it",
+        "en": "seed-100-saint-malo-remparts-plages-et-marees-scene-3-seg-en",
+        "es": "seed-100-saint-malo-remparts-plages-et-marees-scene-3-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-remparts-plages-et-marees-scene-4",
+      "index": 4,
+      "title": "Plage de Bon-Secours",
+      "text": "Depuis le haut de la plage de Bon-Secours, l’enceinte révèle sa hauteur et ses irrégularités. Le mur suit le rocher plutôt qu’un tracé abstrait. Certains pans descendent presque jusqu’à l’estran ; ailleurs, des ouvrages avancent pour contrôler un angle ou protéger une porte. La piscine d’eau de mer, visible selon la marée, retient une partie de l’eau lorsque la mer se retire.\n\nObserve sans perdre de vue les conditions du rivage. Les rochers couverts d’algues peuvent être glissants et la marée remonte vite. Le point important est justement cette variation : en haut des remparts, la ville semblait dominer une étendue stable. En bas, chaque heure redessine la distance entre l’eau et la pierre.\n\nRejoins la porte de Dinan par l’intérieur des murs, puis avance sur le môle des Noires par le cheminement public si les conditions le permettent. Cette jetée prolongera notre lecture au-delà de l’enceinte. Au lieu de regarder la mer depuis la ville, tu pourras te retourner et voir Saint-Malo comme un navire de granite posé à l’entrée du port.",
+      "hash": "9f186ca4",
+      "chars": 1045,
+      "existingSegments": {
+        "es": "seed-100-saint-malo-remparts-plages-et-marees-scene-4-seg-es",
+        "de": "seed-100-saint-malo-remparts-plages-et-marees-scene-4-seg-de",
+        "it": "seed-100-saint-malo-remparts-plages-et-marees-scene-4-seg-it",
+        "en": "seed-100-saint-malo-remparts-plages-et-marees-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-remparts-plages-et-marees-scene-5",
+      "index": 5,
+      "title": "Môle des Noires",
+      "text": "Le môle des Noires protège l’entrée du port et porte à son extrémité un feu de signalisation. Depuis cette jetée, la ville close se rassemble enfin dans le regard. Les remparts forment une coque continue, ponctuée de bastions et de tours. Derrière eux, les toits et le clocher montrent que la forteresse est aussi une ville habitée.\n\nRetourne mentalement vers la Porte Saint-Vincent. Tu as vu le Fort National devenir île selon la hauteur d’eau, le bastion de la Reine articuler deux rivages, les Bés se rapprocher puis s’éloigner, et la muraille grandir depuis la plage. Aucun de ces lieux ne se comprend sans la marée. Elle ouvre des chemins, les retire, agrandit les plages et rend aux murs leur contact avec la mer.\n\nLe môle ajoute une dernière ligne, construite pour calmer les eaux du port et guider les entrées. Saint-Malo apparaît ainsi comme un dialogue de limites : certaines sont taillées dans le granite, d’autres tracées pour quelques heures par l’océan. Reviens prudemment vers la ville. Merci d’avoir suivi cette frontière mouvante avec moi. À bientôt.",
+      "hash": "3d6d48f5",
+      "chars": 1067,
+      "existingSegments": {
+        "it": "seed-100-saint-malo-remparts-plages-et-marees-scene-5-seg-it",
+        "de": "seed-100-saint-malo-remparts-plages-et-marees-scene-5-seg-de",
+        "es": "seed-100-saint-malo-remparts-plages-et-marees-scene-5-seg-es",
+        "en": "seed-100-saint-malo-remparts-plages-et-marees-scene-5-seg-en"
+      }
+    }
+  ]
+}

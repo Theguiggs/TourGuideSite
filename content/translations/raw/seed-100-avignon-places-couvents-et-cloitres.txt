@@ -1,0 +1,229 @@
+@@LANG=en
+@@TITLE=Avignon — Squares, Convents and Cloisters
+@@DESC=Heritage — linking the squares and convent complexes of the walled town.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-0
+@@STITLE=Place Pie
+Start at the edge of the place Pie and look, behind the bustle, for the traces of a religious history. Its name recalls Pope Pius V. The square was opened in the sixteenth century after houses were demolished, near the Dominican convent. Over time it became one of the great public spaces of the walled town. Its shape and its uses have changed, but it keeps that origin: an urban void created against a vast convent establishment.
+
+Look towards the tour Saint-Jean, a remnant of the former Hospitaller commandery. It rises above the buildings like a vertical landmark. Then look at the streets leaving the square. They quickly lead back into a tighter fabric, made of corners, close-set façades and small vistas. Avignon thus juxtaposes open squares and enclosures once closed off from ordinary life.
+
+Head towards the rue des Teinturiers, keeping to public streets. The route will take you towards another former convent, that of the Cordeliers. As you walk, listen to the town changing: the open square fades, the water of the Sorgue becomes noticeable, and rows of trees announce a street of a very different character.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-1
+@@STITLE=Rue des Teinturiers
+Walk on under the plane trees of the rue des Teinturiers. The canal of the Sorgue runs alongside the roadway, punctuated by footbridges and paddle wheels. These wheels recall the craft activities that used the current, but our attention today stops at the clocher des Cordeliers. It is one of the main remains of the church of the Franciscan convent established here in the thirteenth century.
+
+The poet Petrarch chose this church as the burial place for Laura, the figure celebrated in his work. A large part of the complex was destroyed after the Revolution, then again in the nineteenth century. The isolated bell tower thus gives the measure of an absence. Try to picture around it the convent buildings, the church and the enclosed spaces that occupied a footprint far larger than the visible remnant.
+
+Carry on towards the place des Corps-Saints. The canal will stay close to you for a moment before the street opens out. This transition reveals a frequent pattern in Avignon: religious monuments, sometimes fragmentary, give rise to squares or redraw their boundaries. At the next stop, a former Célestins church will occupy an entire side of the public space.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-2
+@@STITLE=Place des Corps-Saints
+Stand facing the église des Célestins. Its plain façade closes the square like a great stone wall. The convent was founded at the end of the fourteenth century, close to the tomb of Pierre de Luxembourg, a young cardinal who died in Avignon. Backed by the papacy, the complex became one of the town's important religious establishments. Its church and buildings still bear witness to that presence, even though their functions have changed.
+
+The square carries a name linked to the relics and burials once numerous in the area. Notice its irregularity: it does not follow the plan of a classical square designed in a single stroke. It formed against the convent, the streets, and the successive transformations of the district. The religious façade today serves as a backdrop to a fully urban space, crossed and inhabited.
+
+Next, make your way to the square Agricol-Perdiguier through the streets of the centre. Stay alert to blind walls and large gateways. They sometimes signal former enclosures, even where the buildings have vanished or changed use. You are now going to reach a public garden laid out on the remains of another religious complex: the former abbaye Saint-Martial.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-3
+@@STITLE=Square Agricol-Perdiguier
+Go into the square Agricol-Perdiguier by an entrance open to the public, and respect its opening hours. The garden occupies part of the former enclosure of Saint-Martial. First a cardinal's palace in the fourteenth century, the site later became a Benedictine monastery. The neighbouring church and cloister keep the memory of these transformations, while the square today offers a planted space in the middle of the dense streets.
+
+Look at the way the old walls border the paths. They give the garden a sense of withdrawal, almost of an outdoor room. That calm is no accident: convent enclosures were organised around courtyards, gardens and galleries, set apart from the movement of the town. Here public use has replaced the monastic enclosure without entirely erasing its shape.
+
+Take the time to look at the openings towards the église Saint-Martial and the surrounding buildings. Then leave the square heading for the place Saint-Didier. The distance is short, but it links two kinds of space: a garden born of a religious estate and a square dominated by a parish church. If the square is closed, stay at its entrance and continue along the public pavements; the story remains readable from the boundary.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-4
+@@STITLE=Place Saint-Didier
+The place Saint-Didier is smaller than the place Pie, but its role as a breathing space is immediately apparent. The church, rebuilt in the fourteenth century under the pontificate of Innocent VI, presents a massive façade and a bell tower rising above the rooftops. It does not depend on a great cloister visible from the street: it is set directly into an old district, at the crossing of several routes.
+
+Look at the forecourt. It creates a small distance in front of the portal, just enough to set the façade apart from the neighbouring streets. The houses surrounding it immediately bring the scale back to that of everyday life. This closeness sets Saint-Didier apart from the former enclosures visited earlier. In Avignon, religious heritage does not produce a single urban model; it can give rise to a great square, an enclosed garden, a fragment of bell tower, or this simple open space in front of a church.
+
+Now head towards the place du Palais. The route climbs back towards the monumental sector of the papal town. As you approach, the views widen and the volumes become more imposing. Our last stop will bring together, in a single panorama, the palace, the cathedral and the public square born of their meeting.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-5
+@@STITLE=Place du Palais
+Stop in the middle of the place du Palais, away from the crowds. In front of you, the Palais des Papes unfolds its towers and its almost blind walls. Beside it, the cathédrale Notre-Dame-des-Doms occupies another level of the rock. The whole recalls the fourteenth century, when the papal presence transformed Avignon profoundly. The present square, however, is the result of successive clearances: it stages buildings that were for a long time surrounded by a denser fabric.
+
+Look at the edges of this vast surface. The opposing façades, the rock and the sloping approaches prevent any simple symmetry. This monumental void links religious, administrative and urban powers. It forms the logical conclusion of our walk: after the fragmentary traces of the convents, here is an architecture that still fully dominates its surroundings.
+
+Think back to the place Pie, the clocher des Cordeliers, the Célestins, the garden of Saint-Martial and Saint-Didier. Each place has known a different kind of opening onto the town. Some enclosures have vanished; others have become gardens, halls or squares. Avignon, then, is understood not only through its preserved monuments, but through the voids they have created around themselves. The walk ends here, in the most spectacular of these shared spaces.
+
+@@LANG=es
+@@TITLE=Avignon — Plazas, conventos y claustros
+@@DESC=Patrimonio: relacionar las plazas y los conjuntos conventuales de la ciudad amurallada.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-0
+@@STITLE=Place Pie
+Empieza en el borde de la place Pie y busca, tras la animación, las huellas de una historia religiosa. Su nombre evoca al papa Pío V. La plaza se abrió en el siglo XVI tras la demolición de casas, cerca del convento de los dominicos. Con el tiempo se convirtió en uno de los grandes espacios públicos de la ciudad amurallada. Su forma y sus usos han cambiado, pero conserva ese origen: un vacío urbano creado en contacto con un vasto establecimiento conventual.
+
+Mira hacia la tour Saint-Jean, vestigio de la antigua encomienda de los Hospitalarios. Surge por encima de las construcciones como un referente vertical. Luego observa las calles que salen de la plaza. Devuelven rápidamente a un tejido más estrecho, hecho de esquinas, fachadas próximas y pequeñas perspectivas. Aviñón yuxtapone así plazas despejadas y recintos antes cerrados a la vida ordinaria.
+
+Dirígete hacia la rue des Teinturiers manteniéndote en las vías públicas. El camino te llevará hacia otro antiguo convento, el de los Cordeliers. Durante el trayecto, escucha cómo cambia la ciudad: la plaza abierta se desvanece, el agua de la Sorgue se hace perceptible y las alineaciones de árboles anuncian una calle de carácter muy distinto.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-1
+@@STITLE=Rue des Teinturiers
+Avanza bajo los plátanos de la rue des Teinturiers. El canal de la Sorgue bordea la calzada, jalonado de pasarelas y ruedas de paletas. Estas ruedas recuerdan las actividades artesanales que utilizaban la corriente, pero nuestra mirada se detiene hoy en el clocher des Cordeliers. Es uno de los principales vestigios de la iglesia del convento franciscano establecido aquí en el siglo XIII.
+
+El poeta Petrarca eligió esta iglesia como lugar de sepultura para Laura, la figura celebrada en su obra. Una gran parte del conjunto fue destruida después de la Revolución, y luego en el siglo XIX. El campanario aislado da así la medida de una ausencia. Intenta imaginar a su alrededor los edificios conventuales, la iglesia y los espacios cerrados que ocupaban una superficie mucho más vasta que el vestigio visible.
+
+Continúa hacia la place des Corps-Saints. El canal permanecerá un instante junto a ti antes de que la calle se abra. Esta transición revela un motivo frecuente en Aviñón: monumentos religiosos, a veces fragmentarios, dan origen a plazas o redibujan sus límites. En la próxima parada, una antigua iglesia de los Célestins ocupará todo un lado del espacio público.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-2
+@@STITLE=Place des Corps-Saints
+Ponte frente a la église des Célestins. Su fachada sobria cierra la plaza como un gran muro de piedra. El convento se fundó a finales del siglo XIV, cerca de la tumba de Pierre de Luxembourg, joven cardenal muerto en Aviñón. Respaldado por el papado, el conjunto se convirtió en uno de los establecimientos religiosos importantes de la ciudad. Su iglesia y sus edificios siguen dando testimonio de esa presencia, aunque sus funciones hayan cambiado.
+
+La plaza lleva un nombre ligado a las reliquias y a las sepulturas antaño numerosas en la zona. Observa su irregularidad: no responde al plano de una plaza clásica concebida de un solo trazo. Se formó en contacto con el convento, las calles y las transformaciones sucesivas del barrio. La fachada religiosa sirve hoy de telón de fondo a un espacio plenamente urbano, atravesado y habitado.
+
+A continuación, dirígete al square Agricol-Perdiguier por las calles del centro. Mantente atento a los muros ciegos y a los grandes portales. A veces señalan antiguos recintos, incluso cuando los edificios han desaparecido o han cambiado de uso. Vas a llegar ahora a un jardín público instalado sobre los vestigios de otro conjunto religioso: la antigua abadía de Saint-Martial.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-3
+@@STITLE=Square Agricol-Perdiguier
+Entra en el square Agricol-Perdiguier por una entrada abierta al público y respeta su horario. El jardín ocupa una parte del antiguo recinto de Saint-Martial. Primero palacio cardenalicio en el siglo XIV, el lugar se convirtió después en un monasterio benedictino. La iglesia y el claustro vecinos conservan la memoria de esas transformaciones, mientras que la plaza ofrece hoy un espacio ajardinado en pleno centro de calles densas.
+
+Mira cómo los muros antiguos bordean los paseos. Le dan al jardín una sensación de retiro, casi de estancia al aire libre. Esa calma no es casualidad: los recintos conventuales se organizaban en torno a patios, jardines y galerías, apartados del movimiento de la ciudad. Aquí, el uso público ha sustituido al cercado monástico sin borrar del todo su forma.
+
+Tómate el tiempo de observar las aberturas hacia la église Saint-Martial y los edificios de alrededor. Luego sal del square hacia la place Saint-Didier. La distancia es corta, pero conecta dos tipos de espacio: un jardín nacido de un dominio religioso y una plaza dominada por una iglesia parroquial. Si el square está cerrado, quédate en su entrada y sigue por las aceras públicas; el relato sigue siendo legible desde el límite.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-4
+@@STITLE=Place Saint-Didier
+La place Saint-Didier es menos amplia que la place Pie, pero su papel de respiro se percibe de inmediato. La iglesia, reconstruida en el siglo XIV bajo el pontificado de Inocencio VI, presenta una fachada maciza y un campanario que sobresale de los tejados. No depende de un gran claustro visible desde la calle: se inserta directamente en un barrio antiguo, en el cruce de varias circulaciones.
+
+Observa el atrio. Crea una pequeña distancia ante el pórtico, justo la suficiente para aislar la fachada de las calles vecinas. Las casas que la rodean devuelven de inmediato la escala a la de la vida cotidiana. Esta proximidad distingue a Saint-Didier de los antiguos recintos visitados antes. En Aviñón, el patrimonio religioso no produce un solo modelo urbano; puede engendrar una gran plaza, un jardín cerrado, un fragmento de campanario o este simple despeje ante una iglesia.
+
+Dirígete ahora hacia la place du Palais. El camino sube de nuevo hacia el sector monumental de la ciudad pontificia. A medida que te acercas, las perspectivas se amplían y los volúmenes se vuelven más imponentes. Nuestra última parada reunirá, en un mismo panorama, el palacio, la catedral y la plaza pública nacida de su confrontación.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-5
+@@STITLE=Place du Palais
+Detente en el centro de la place du Palais, apartado del flujo. Ante ti, el Palais des Papes despliega sus torres y sus muros casi ciegos. Al lado, la cathédrale Notre-Dame-des-Doms ocupa otro nivel de la roca. El conjunto recuerda al siglo XIV, cuando la presencia pontificia transformó profundamente Aviñón. La plaza actual, sin embargo, resulta de despejamientos sucesivos: pone en escena edificios que estuvieron largo tiempo rodeados de un tejido más denso.
+
+Mira los límites de esta vasta superficie. Las fachadas opuestas, la roca y los accesos en pendiente impiden cualquier simetría simple. Este vacío monumental conecta poderes religiosos, administrativos y urbanos. Forma la culminación lógica de nuestro paseo: tras las huellas fragmentarias de los conventos, he aquí una arquitectura que todavía domina plenamente su entorno.
+
+Piensa de nuevo en la place Pie, el clocher des Cordeliers, los Célestins, el jardín de Saint-Martial y Saint-Didier. Cada lugar ha conocido una apertura diferente hacia la ciudad. Algunos recintos han desaparecido; otros se han convertido en jardines, salas o plazas. Aviñón no se comprende, pues, solo por sus monumentos conservados, sino por los vacíos que han creado a su alrededor. La visita termina aquí, en el más espectacular de estos espacios compartidos.
+
+@@LANG=de
+@@TITLE=Avignon — Plätze, Klöster und Kreuzgänge
+@@DESC=Kulturerbe — die Plätze und Klosteranlagen der ummauerten Stadt miteinander verbinden.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-0
+@@STITLE=Place Pie
+Beginn am Rand der place Pie und such, hinter dem Treiben, nach den Spuren einer religiösen Geschichte. Ihr Name erinnert an Papst Pius V. Der Platz wurde im 16. Jahrhundert nach dem Abriss von Häusern angelegt, nahe dem Dominikanerkloster. Im Lauf der Zeit wurde er zu einem der großen öffentlichen Räume der ummauerten Stadt. Seine Form und seine Nutzungen haben sich verändert, doch er bewahrt diesen Ursprung: eine städtische Leere, entstanden im Kontakt mit einer weitläufigen Klosteranlage.
+
+Sieh zum tour Saint-Jean hin, einem Überrest der ehemaligen Ordenskommende der Hospitaliter. Er ragt über die Bebauung hinaus wie ein senkrechter Orientierungspunkt. Betrachte dann die Straßen, die vom Platz weggehen. Sie führen rasch zurück in ein engeres Gewebe aus Ecken, dicht stehenden Fassaden und kleinen Durchblicken. Avignon stellt so offene Plätze neben Einfriedungen, die einst dem gewöhnlichen Leben verschlossen waren.
+
+Geh zur rue des Teinturiers, bleib dabei auf den öffentlichen Wegen. Der Weg führt dich zu einem weiteren ehemaligen Kloster, dem der Cordeliers. Hör beim Gehen, wie sich die Stadt verändert: Der offene Platz verschwindet, das Wasser der Sorgue wird spürbar, und Baumreihen kündigen eine Straße von ganz anderem Charakter an.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-1
+@@STITLE=Rue des Teinturiers
+Geh weiter unter den Platanen der rue des Teinturiers. Der Kanal der Sorgue begleitet die Fahrbahn, unterbrochen von Stegen und Schaufelrädern. Diese Räder erinnern an die handwerklichen Tätigkeiten, die die Strömung nutzten, aber unser Blick bleibt heute am clocher des Cordeliers hängen. Er ist einer der wichtigsten Überreste der Kirche des Franziskanerklosters, das hier im 13. Jahrhundert gegründet wurde.
+
+Der Dichter Petrarca wählte diese Kirche als Grabstätte für Laura, die in seinem Werk gefeierte Figur. Ein großer Teil der Anlage wurde nach der Revolution zerstört, dann noch einmal im 19. Jahrhundert. Der isolierte Glockenturm gibt so das Maß einer Abwesenheit. Versuch dir rund um ihn die Klostergebäude, die Kirche und die geschlossenen Bereiche vorzustellen, die eine viel größere Fläche einnahmen als der sichtbare Überrest.
+
+Geh weiter zur place des Corps-Saints. Der Kanal bleibt noch einen Moment an deiner Seite, bevor sich die Straße öffnet. Dieser Übergang zeigt ein häufiges Muster in Avignon: religiöse Bauwerke, manchmal nur fragmentarisch erhalten, bringen Plätze hervor oder zeichnen deren Grenzen neu. An der nächsten Station wird eine ehemalige Kirche der Célestins eine ganze Seite des öffentlichen Raums einnehmen.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-2
+@@STITLE=Place des Corps-Saints
+Stell dich der église des Célestins gegenüber auf. Ihre schlichte Fassade schließt den Platz wie eine große Steinmauer ab. Das Kloster wurde Ende des 14. Jahrhunderts gegründet, nahe dem Grab von Pierre de Luxembourg, einem jungen, in Avignon verstorbenen Kardinal. Vom Papsttum unterstützt, wurde die Anlage zu einer der bedeutenden religiösen Einrichtungen der Stadt. Ihre Kirche und ihre Gebäude zeugen noch von dieser Präsenz, auch wenn sich ihre Funktionen geändert haben.
+
+Der Platz trägt einen Namen, der mit den einst zahlreichen Reliquien und Grabstätten in der Gegend verbunden ist. Beachte seine Unregelmäßigkeit: Er folgt nicht dem Grundriss eines klassischen, in einem Zug entworfenen Platzes. Er entstand im Kontakt mit dem Kloster, den Straßen und den aufeinanderfolgenden Umgestaltungen des Viertels. Die religiöse Fassade dient heute als Kulisse für einen ganz und gar städtischen Raum, durchquert und bewohnt.
+
+Als Nächstes erreichst du den square Agricol-Perdiguier über die Straßen des Zentrums. Achte weiter auf blinde Mauern und große Tore. Sie zeigen manchmal frühere Einfriedungen an, selbst wenn die Gebäude verschwunden sind oder ihre Nutzung geändert haben. Du erreichst nun einen öffentlichen Garten, angelegt auf den Überresten einer weiteren religiösen Anlage: der ehemaligen abbaye Saint-Martial.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-3
+@@STITLE=Square Agricol-Perdiguier
+Geh in den square Agricol-Perdiguier durch einen öffentlich zugänglichen Eingang und achte auf seine Öffnungszeiten. Der Garten nimmt einen Teil der ehemaligen Einfriedung von Saint-Martial ein. Zunächst im 14. Jahrhundert ein Kardinalspalast, wurde der Ort später ein Benediktinerkloster. Die benachbarte Kirche und der Kreuzgang bewahren die Erinnerung an diese Umwandlungen, während der Platz heute einen bepflanzten Raum inmitten der dichten Straßen bietet.
+
+Sieh dir an, wie die alten Mauern die Wege säumen. Sie verleihen dem Garten ein Gefühl des Rückzugs, fast wie ein Zimmer im Freien. Diese Ruhe ist kein Zufall: Klostereinfriedungen waren um Höfe, Gärten und Galerien organisiert, abgesondert vom Treiben der Stadt. Hier hat die öffentliche Nutzung die klösterliche Umfriedung ersetzt, ohne ihre Form ganz auszulöschen.
+
+Nimm dir Zeit, die Öffnungen zur église Saint-Martial und den umliegenden Gebäuden zu betrachten. Verlass dann den Platz in Richtung place Saint-Didier. Die Entfernung ist kurz, doch sie verbindet zwei Arten von Raum: einen aus einem religiösen Anwesen hervorgegangenen Garten und einen von einer Pfarrkirche beherrschten Platz. Falls der square geschlossen ist, bleib an seinem Eingang und geh auf den öffentlichen Gehwegen weiter; die Erzählung bleibt von der Grenze aus lesbar.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-4
+@@STITLE=Place Saint-Didier
+Die place Saint-Didier ist kleiner als die place Pie, doch ihre Rolle als Atempause zeigt sich sofort. Die im 14. Jahrhundert unter dem Pontifikat Innozenz' VI. wiederaufgebaute Kirche zeigt eine massive Fassade und einen Glockenturm, der über die Dächer hinausragt. Sie hängt nicht von einem großen, von der Straße aus sichtbaren Kreuzgang ab: Sie fügt sich direkt in ein altes Viertel ein, an der Kreuzung mehrerer Wege.
+
+Betrachte den Vorplatz. Er schafft einen kleinen Abstand vor dem Portal, gerade genug, um die Fassade von den Nachbarstraßen abzusetzen. Die sie umgebenden Häuser bringen den Maßstab sofort auf den des Alltagslebens zurück. Diese Nähe unterscheidet Saint-Didier von den zuvor besuchten früheren Einfriedungen. In Avignon erzeugt das religiöse Erbe kein einziges städtebauliches Modell; es kann einen großen Platz, einen umschlossenen Garten, ein Fragment eines Glockenturms oder diesen einfachen freien Raum vor einer Kirche hervorbringen.
+
+Geh nun zur place du Palais. Der Weg steigt wieder zum monumentalen Bereich der Papststadt an. Je näher du kommst, desto weiter werden die Ausblicke und desto imposanter die Baumassen. Unsere letzte Station vereint in einem einzigen Panorama den Palast, die Kathedrale und den öffentlichen Platz, der aus ihrer Begegnung entstanden ist.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-5
+@@STITLE=Place du Palais
+Halt in der Mitte der place du Palais an, abseits des Stroms. Vor dir entfaltet der Palais des Papes seine Türme und seine fast blinden Mauern. Daneben nimmt die cathédrale Notre-Dame-des-Doms eine andere Ebene des Felsens ein. Das Ensemble erinnert an das 14. Jahrhundert, als die päpstliche Präsenz Avignon tiefgreifend veränderte. Der heutige Platz jedoch ist das Ergebnis aufeinanderfolgender Freilegungen: Er inszeniert Bauwerke, die lange von einem dichteren Gewebe umgeben waren.
+
+Sieh dir die Grenzen dieser weiten Fläche an. Die gegenüberliegenden Fassaden, der Fels und die abschüssigen Zugänge verhindern jede einfache Symmetrie. Diese monumentale Leere verbindet religiöse, administrative und städtische Mächte. Sie bildet den logischen Abschluss unseres Spaziergangs: Nach den fragmentarischen Spuren der Klöster steht hier eine Architektur, die ihre Umgebung noch immer vollständig beherrscht.
+
+Denk zurück an die place Pie, den clocher des Cordeliers, die Célestins, den Garten von Saint-Martial und Saint-Didier. Jeder Ort hat eine andere Art der Öffnung zur Stadt erfahren. Manche Einfriedungen sind verschwunden; andere wurden zu Gärten, Sälen oder Plätzen. Avignon versteht man also nicht nur durch seine erhaltenen Bauwerke, sondern durch die Leerräume, die sie um sich herum geschaffen haben. Der Spaziergang endet hier, im spektakulärsten dieser gemeinsam genutzten Räume.
+
+@@LANG=it
+@@TITLE=Avignone — Piazze, conventi e chiostri
+@@DESC=Patrimonio: collegare le piazze e i complessi conventuali della città murata.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-0
+@@STITLE=Place Pie
+Comincia sul bordo di place Pie e cerca, dietro l'animazione, le tracce di una storia religiosa. Il suo nome evoca papa Pio V. La piazza fu aperta nel Cinquecento dopo la demolizione di case, vicino al convento dei domenicani. Nel tempo è diventata uno dei grandi spazi pubblici della città murata. La sua forma e i suoi usi sono cambiati, ma conserva questa origine: un vuoto urbano creato a contatto con un vasto complesso conventuale.
+
+Guarda verso la tour Saint-Jean, vestigio dell'antica commenda degli Ospitalieri. Emerge sopra le costruzioni come un punto di riferimento verticale. Poi osserva le strade che lasciano la piazza. Riportano rapidamente a un tessuto più stretto, fatto di angoli, facciate ravvicinate e piccole prospettive. Avignone giustappone così piazze sgombre e recinti un tempo chiusi alla vita ordinaria.
+
+Vai verso rue des Teinturiers restando nelle vie pubbliche. Il percorso ti condurrà verso un altro antico convento, quello dei Cordeliers. Durante la camminata, ascolta la città cambiare: la piazza aperta svanisce, l'acqua della Sorgue diventa percepibile e gli allineamenti di alberi annunciano una strada dal carattere molto diverso.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-1
+@@STITLE=Rue des Teinturiers
+Avanza sotto i platani di rue des Teinturiers. Il canale della Sorgue costeggia la carreggiata, punteggiato di passerelle e ruote a pale. Queste ruote ricordano le attività artigianali che utilizzavano la corrente, ma il nostro sguardo si ferma oggi sul clocher des Cordeliers. È uno dei principali resti della chiesa del convento francescano stabilito qui nel Duecento.
+
+Il poeta Petrarca scelse questa chiesa come luogo di sepoltura per Laura, la figura celebrata nella sua opera. Gran parte del complesso fu distrutta dopo la Rivoluzione, poi ancora nell'Ottocento. Il campanile isolato dà quindi la misura di un'assenza. Prova a immaginare attorno a esso gli edifici conventuali, la chiesa e gli spazi chiusi che occupavano un'area molto più vasta del vestigio visibile.
+
+Prosegui verso place des Corps-Saints. Il canale resterà un istante accanto a te prima che la strada si apra. Questa transizione rivela un motivo frequente ad Avignone: monumenti religiosi, a volte frammentari, danno vita a piazze o ne ridisegnano i limiti. Alla prossima tappa, un'antica chiesa dei Célestins occuperà un intero lato dello spazio pubblico.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-2
+@@STITLE=Place des Corps-Saints
+Mettiti di fronte alla église des Célestins. La sua facciata sobria chiude la piazza come un grande muro di pietra. Il convento fu fondato alla fine del Trecento, vicino alla tomba di Pierre de Luxembourg, giovane cardinale morto ad Avignone. Sostenuto dal papato, il complesso divenne uno degli importanti insediamenti religiosi della città. La sua chiesa e i suoi edifici testimoniano ancora questa presenza, anche se le loro funzioni sono cambiate.
+
+La piazza porta un nome legato alle reliquie e alle sepolture un tempo numerose nella zona. Osserva la sua irregolarità: non risponde al piano di una piazza classica concepita in un unico gesto. Si è formata a contatto con il convento, le strade e le trasformazioni successive del quartiere. La facciata religiosa serve oggi da sfondo a uno spazio pienamente urbano, attraversato e abitato.
+
+Per proseguire, raggiungi il square Agricol-Perdiguier attraverso le vie del centro. Resta attento ai muri ciechi e ai grandi portali. A volte segnalano antichi recinti, anche quando gli edifici sono scomparsi o hanno cambiato uso. Raggiungerai ora un giardino pubblico allestito sui resti di un altro complesso religioso: l'antica abbaye Saint-Martial.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-3
+@@STITLE=Square Agricol-Perdiguier
+Entra nel square Agricol-Perdiguier da un ingresso aperto al pubblico e rispettane gli orari. Il giardino occupa una parte dell'antico recinto di Saint-Martial. Dapprima palazzo cardinalizio nel Trecento, il sito divenne poi un monastero benedettino. La chiesa e il chiostro vicini conservano la memoria di queste trasformazioni, mentre la piazza offre oggi uno spazio verde nel cuore delle strade dense.
+
+Guarda come i muri antichi bordano i vialetti. Danno al giardino una sensazione di ritiro, quasi di una stanza all'aperto. Questa calma non è un caso: i recinti conventuali erano organizzati attorno a cortili, giardini e gallerie, separati dal movimento della città. Qui l'uso pubblico ha sostituito la clausura monastica senza cancellarne del tutto la forma.
+
+Prenditi il tempo di osservare le aperture verso la église Saint-Martial e gli edifici circostanti. Poi lascia il square verso place Saint-Didier. La distanza è breve, ma collega due tipi di spazio: un giardino nato da un dominio religioso e una piazza dominata da una chiesa parrocchiale. Se il square è chiuso, resta al suo ingresso e prosegui sui marciapiedi pubblici; il racconto resta leggibile dal limite.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-4
+@@STITLE=Place Saint-Didier
+La place Saint-Didier è meno vasta della place Pie, ma il suo ruolo di respiro appare immediatamente. La chiesa, ricostruita nel Trecento sotto il pontificato di Innocenzo VI, presenta una facciata massiccia e un campanile che supera i tetti. Non dipende da un grande chiostro visibile dalla strada: si inserisce direttamente in un quartiere antico, all'incrocio di più percorsi.
+
+Osserva il sagrato. Crea una piccola distanza davanti al portale, appena sufficiente a isolare la facciata dalle strade vicine. Le case che la circondano riportano subito la scala a quella della vita quotidiana. Questa vicinanza distingue Saint-Didier dagli antichi recinti visitati in precedenza. Ad Avignone, il patrimonio religioso non produce un unico modello urbano; può generare una grande piazza, un giardino chiuso, un frammento di campanile o questo semplice slargo davanti a una chiesa.
+
+Dirigiti ora verso place du Palais. Il percorso risale verso il settore monumentale della città pontificia. Man mano che ti avvicini, le prospettive si allargano e i volumi diventano più imponenti. La nostra ultima tappa riunirà, in un unico panorama, il palazzo, la cattedrale e la piazza pubblica nata dal loro confronto.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-5
+@@STITLE=Place du Palais
+Fermati al centro di place du Palais, lontano dai flussi. Davanti a te, il Palais des Papes dispiega le sue torri e i suoi muri quasi ciechi. Accanto, la cathédrale Notre-Dame-des-Doms occupa un altro livello della roccia. L'insieme richiama il Trecento, quando la presenza pontificia trasformò profondamente Avignone. La piazza attuale, tuttavia, risulta da sgomberi successivi: mette in scena edifici che furono a lungo circondati da un tessuto più denso.
+
+Guarda i limiti di questa vasta superficie. Le facciate opposte, la roccia e gli accessi in pendenza impediscono qualsiasi simmetria semplice. Questo vuoto monumentale collega poteri religiosi, amministrativi e urbani. Costituisce l'esito logico della nostra passeggiata: dopo le tracce frammentarie dei conventi, ecco un'architettura che domina ancora pienamente il suo ambiente.
+
+Ripensa a place Pie, al clocher des Cordeliers, ai Célestins, al giardino di Saint-Martial e a Saint-Didier. Ogni luogo ha conosciuto un'apertura diversa verso la città. Alcuni recinti sono scomparsi; altri sono diventati giardini, sale o piazze. Avignone non si comprende dunque soltanto attraverso i suoi monumenti conservati, ma attraverso i vuoti che hanno creato attorno a sé. La visita si conclude qui, nel più spettacolare di questi spazi condivisi.
+
+@@LANG=nl
+@@TITLE=Avignon — Pleinen, kloosters en kloostergangen
+@@DESC=Erfgoed — de pleinen en kloostercomplexen van de ommuurde stad met elkaar verbinden.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-0
+@@STITLE=Place Pie
+Begin aan de rand van de place Pie en zoek, achter de drukte, naar de sporen van een religieuze geschiedenis. Haar naam roept paus Pius V op. Het plein werd in de zestiende eeuw aangelegd na de sloop van huizen, dicht bij het dominicanenklooster. Met de tijd werd het een van de grote openbare ruimten van de ommuurde stad. Haar vorm en gebruik zijn veranderd, maar ze behoudt die oorsprong: een stedelijke leegte ontstaan in contact met een uitgestrekt kloostercomplex.
+
+Kijk naar de tour Saint-Jean, een overblijfsel van de vroegere commanderij van de Hospitaalridders. Ze rijst boven de bebouwing uit als een verticaal oriëntatiepunt. Bekijk vervolgens de straten die van het plein weglopen. Ze voeren snel terug naar een nauwer weefsel van hoeken, dicht op elkaar staande gevels en kleine doorkijkjes. Avignon plaatst zo open pleinen naast omheiningen die ooit gesloten waren voor het gewone leven.
+
+Ga richting de rue des Teinturiers, blijf daarbij op de openbare wegen. De route leidt je naar een ander voormalig klooster, dat van de Cordeliers. Luister tijdens het lopen hoe de stad verandert: het open plein vervaagt, het water van de Sorgue wordt merkbaar, en rijen bomen kondigen een straat van heel ander karakter aan.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-1
+@@STITLE=Rue des Teinturiers
+Loop verder onder de plataanbomen van de rue des Teinturiers. Het kanaal van de Sorgue loopt langs de rijweg, onderbroken door voetbruggetjes en schoepenraderen. Deze raderen herinneren aan de ambachtelijke activiteiten die de stroming gebruikten, maar onze blik blijft vandaag rusten op de clocher des Cordeliers. Het is een van de belangrijkste overblijfselen van de kerk van het franciscanenklooster dat hier in de dertiende eeuw werd gesticht.
+
+De dichter Petrarca koos deze kerk als rustplaats voor Laura, de figuur die in zijn werk wordt bezongen. Een groot deel van het complex werd verwoest na de Revolutie, en opnieuw in de negentiende eeuw. De geïsoleerde klokkentoren geeft zo de maat van een afwezigheid. Probeer je eromheen de kloostergebouwen, de kerk en de omsloten ruimten voor te stellen die een veel groter oppervlak innamen dan het zichtbare overblijfsel.
+
+Ga verder naar de place des Corps-Saints. Het kanaal blijft nog even naast je voordat de straat zich opent. Deze overgang onthult een terugkerend patroon in Avignon: religieuze monumenten, soms fragmentarisch, geven aanleiding tot pleinen of tekenen hun grenzen opnieuw. Bij de volgende halte zal een voormalige Célestins-kerk een hele zijde van de openbare ruimte innemen.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-2
+@@STITLE=Place des Corps-Saints
+Ga tegenover de église des Célestins staan. Haar sobere gevel sluit het plein af als een grote stenen muur. Het klooster werd eind veertiende eeuw gesticht, dicht bij het graf van Pierre de Luxembourg, een jonge kardinaal die in Avignon stierf. Gesteund door het pausdom werd het complex een van de belangrijke religieuze instellingen van de stad. De kerk en de gebouwen getuigen nog van die aanwezigheid, ook al zijn hun functies veranderd.
+
+Het plein draagt een naam die verbonden is met de relieken en begrafenissen die ooit talrijk waren in de buurt. Let op de onregelmatigheid ervan: ze volgt niet het plan van een klassiek plein, in één keer ontworpen. Ze ontstond in contact met het klooster, de straten en de opeenvolgende omvormingen van de wijk. De religieuze gevel dient vandaag als decor voor een volledig stedelijke ruimte, doorkruist en bewoond.
+
+Ga vervolgens naar de square Agricol-Perdiguier via de straten van het centrum. Blijf alert op blinde muren en grote poorten. Ze duiden soms op vroegere omheiningen, zelfs wanneer de gebouwen zijn verdwenen of van functie zijn veranderd. Je bereikt nu een openbare tuin die is aangelegd op de resten van een ander religieus complex: de voormalige abbaye Saint-Martial.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-3
+@@STITLE=Square Agricol-Perdiguier
+Ga de square Agricol-Perdiguier binnen via een voor het publiek toegankelijke ingang en respecteer de openingstijden. De tuin beslaat een deel van de vroegere omheining van Saint-Martial. Aanvankelijk een kardinaalspaleis in de veertiende eeuw, werd de plek later een benedictijnenklooster. De naburige kerk en kloostergang bewaren de herinnering aan deze omvormingen, terwijl het plein vandaag een beplante ruimte biedt te midden van de dichte straten.
+
+Kijk hoe de oude muren de paden omzomen. Ze geven de tuin een gevoel van afzondering, bijna van een buitenkamer. Die rust is geen toeval: kloosteromheiningen waren georganiseerd rond binnenplaatsen, tuinen en galerijen, afgezonderd van de beweging van de stad. Hier heeft openbaar gebruik de kloostersluiting vervangen zonder haar vorm helemaal uit te wissen.
+
+Neem de tijd om de openingen naar de église Saint-Martial en de omliggende gebouwen te bekijken. Verlaat dan het plein richting de place Saint-Didier. De afstand is kort, maar ze verbindt twee soorten ruimte: een tuin ontstaan uit een religieus domein en een plein gedomineerd door een parochiekerk. Als het plein gesloten is, blijf dan bij de ingang en vervolg je weg over de openbare stoepen; het verhaal blijft leesbaar vanaf de grens.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-4
+@@STITLE=Place Saint-Didier
+De place Saint-Didier is kleiner dan de place Pie, maar haar rol als ademruimte is onmiddellijk duidelijk. De kerk, herbouwd in de veertiende eeuw onder het pontificaat van Innocentius VI, toont een massieve gevel en een klokkentoren die boven de daken uitsteekt. Ze hangt niet af van een grote, vanaf de straat zichtbare kloostergang: ze voegt zich rechtstreeks in een oude wijk, op het kruispunt van meerdere routes.
+
+Bekijk het voorplein. Het schept een kleine afstand voor het portaal, net genoeg om de gevel af te zonderen van de naburige straten. De huizen eromheen brengen de schaal meteen terug naar die van het dagelijks leven. Deze nabijheid onderscheidt Saint-Didier van de eerder bezochte omheiningen. In Avignon levert religieus erfgoed niet één stedelijk model op; het kan een groot plein voortbrengen, een omsloten tuin, een fragment van een klokkentoren of deze eenvoudige open ruimte voor een kerk.
+
+Ga nu richting de place du Palais. De route klimt weer naar de monumentale sector van de pausenstad. Naarmate je nadert, verbreden de vergezichten zich en worden de volumes indrukwekkender. Onze laatste halte brengt in één panorama het paleis, de kathedraal en het openbare plein samen dat uit hun confrontatie ontstond.
+@@SCENE=seed-100-avignon-places-couvents-et-cloitres-scene-5
+@@STITLE=Place du Palais
+Blijf midden op de place du Palais staan, weg van de drukte. Voor je ontvouwt het Palais des Papes zijn torens en zijn bijna blinde muren. Ernaast neemt de cathédrale Notre-Dame-des-Doms een ander niveau van de rots in. Het geheel herinnert aan de veertiende eeuw, toen de pauselijke aanwezigheid Avignon ingrijpend veranderde. Het huidige plein is echter het resultaat van opeenvolgende ontruimingen: het toont gebouwen die lange tijd omringd waren door een dichter weefsel.
+
+Kijk naar de randen van dit uitgestrekte oppervlak. De tegenoverliggende gevels, de rots en de hellende toegangen verhinderen elke eenvoudige symmetrie. Deze monumentale leegte verbindt religieuze, bestuurlijke en stedelijke machten. Ze vormt het logische sluitstuk van onze wandeling: na de fragmentarische sporen van de kloosters, hier een architectuur die haar omgeving nog volledig beheerst.
+
+Denk terug aan de place Pie, de clocher des Cordeliers, de Célestins, de tuin van Saint-Martial en Saint-Didier. Elke plek heeft een andere vorm van opening naar de stad gekend. Sommige omheiningen zijn verdwenen; andere zijn tuinen, zalen of pleinen geworden. Avignon begrijp je dus niet alleen door haar bewaarde monumenten, maar door de leegtes die ze om zich heen hebben geschapen. De wandeling eindigt hier, in de meest spectaculaire van deze gedeelde ruimten.

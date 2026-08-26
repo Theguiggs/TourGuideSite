@@ -1,0 +1,229 @@
+@@LANG=en
+@@TITLE=Bordeaux — Squares and Gardens of the Centre
+@@DESC=Architecture — observing how squares, gardens and vistas organise the centre of Bordeaux.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-0
+@@STITLE=Place Gambetta
+Start on the place Gambetta, at the edge of its central garden. This space was laid out at the end of the eighteenth century on part of the town's former defensive land. The orderly façades surrounding it form a continuous frame, while the trees and paths create a calmer interior. The square thus combines two forms: a stone urban drawing room and a neighbourhood garden.
+
+Look at the corners. The streets do not all arrive symmetrically, but the alignment of the buildings restores a sense of unity. The greenery hides then reveals the façades depending on where you stand. This alternation will be the thread of the walk: Bordeaux organises its centre through carefully designed voids, sometimes planted, sometimes opening onto a monument or a long vista.
+
+Leave the square towards the cours de l'Intendance, then reach the place de la Comédie via the pedestrian routes. As you go, notice the regularity of the cornices and the pale colour of the stone. The street acts as a corridor between two breathing spaces. Behind you, the garden absorbs the movement. In front of you, the façade of the Grand-Théâtre will gradually close the vista and give the public space a far more monumental expression.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-1
+@@STITLE=Place de la Comédie
+Stop facing the Grand-Théâtre. Designed by the architect Victor Louis and opened in 1780, the building presents a portico of twelve Corinthian columns. Above, twelve statues represent muses and goddesses. The façade cannot be appreciated in isolation: it organises the whole place de la Comédie and completes several vistas of the centre.
+
+Turn towards the allées de Tourny. Their width extends the theatrical space northward. Then look towards the cours de l'Intendance and the rue Sainte-Catherine. Three important axes meet here, each with its own rhythm. The square works as a hinge between these directions. Its open ground lets the architecture be read from a distance, unlike a narrow street where the façade would always be seen at an angle.
+
+Head towards the allées de Tourny. Walk under the trees if the way is clear and watch how the Grand-Théâtre shrinks behind you without ever ceasing to act as a landmark. The next stage is not an enclosed square, but a lengthwise promenade. It shows that a planted space can also organise movement and connect several monuments of the centre.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-2
+@@STITLE=Allées de Tourny
+The allées de Tourny were laid out in the eighteenth century as part of the great embellishment works carried out under the intendant Tourny. Their design combines circulation, planting and display. The rows of trees create a leafy ceiling, while the regular façades maintain the stone continuity of the centre. It is neither an enclosed garden nor a simple street: it is an urban promenade conceived as an axis.
+
+Stop halfway along and look in both directions. To the south, the Grand-Théâtre remains present. To the north, the space leads towards the squares near the old moats. The trees break up the length and give a more human scale to this vast vista. Depending on the season, their foliage transforms the light strongly without changing the overall design.
+
+Carry on towards the place des Quinconces. As you approach, the built alignments break off and the sky suddenly takes up more room. This break is deliberate: you pass from a framed promenade to one of the largest urban esplanades in France. Keep the line of the allées in mind. It will help you understand how the town links a monument, a promenade and an open space all the way to the edge of the Garonne.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-3
+@@STITLE=Place des Quinconces
+Walk out onto the place des Quinconces to an open point. The esplanade was laid out in the nineteenth century on the site of the château Trompette, a fortress facing the town as much as the river. After it was demolished, the freed land became an immense public space. The trees planted in a quincunx pattern gave the square its name and structure its edges.
+
+Look at the monument aux Girondins, raised at the end of the nineteenth century. Its column and its fountains form a vertical landmark in a very horizontal expanse. At the other end, the colonnes rostrales mark the opening towards the Garonne. Between these elements, the empty space can host temporary uses without losing its legibility.
+
+Cross towards the Jardin public using the secured crossings. The change will feel almost theatrical. The Quinconces exposes the visitor to the sky and to long distances; the garden shelters, diverts the paths and multiplies the foregrounds. Yet the two places are neighbours, and both inherit from the transformation of the old urban boundaries. One keeps the memory of a vanished fortress, the other that of an embellishment project meant to offer the inhabitants a planted landscape.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-4
+@@STITLE=Jardin public
+Go into the Jardin public if its gates are open. Created in the eighteenth century then redesigned in a landscape style in the nineteenth, it forms a vast leafy interior close to the centre. Its curving paths, its lawns, its pond and its mature trees break with the direct geometry of the Quinconces. Here the route reveals itself gradually instead of being visible at a single glance.
+
+Look at the buildings bordering the garden, in particular the former hôtel de Lisleferme. Architecture remains present among the foliage and the reflections. The garden does not deny the town; it filters it. Railings and façades maintain a clear boundary with the neighbouring streets.
+
+Then make your way to the quays via the public routes, heading towards the place des Quinconces and then the river. If the garden is closed, go round it without crossing the fences. The last stop will be at the edge of the Garonne. After the planted square, the theatre, the allées, the esplanade and the garden, you will discover a space whose main vista is no longer framed by a building, but by the curve of the river.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-5
+@@STITLE=Quai Louis-XVIII
+Stop on the promenade of the quai Louis-XVIII, facing the Garonne. The bank offers a distance the streets of the centre never allow. From this point, the façades of Bordeaux form a continuous front behind you, while the river opens the view upstream and downstream. The curve of the port de la Lune becomes perceptible in the simple change of orientation of the quays.
+
+Look towards the colonnes rostrales of the Quinconces. They signal the passage between the esplanade and the world of the port. Then mentally retrace the stages: the garden of Gambetta formed a green room amid the houses; the Comédie organised axes around the Grand-Théâtre; Tourny stretched out a promenade; the Quinconces freed a monumental void; the Jardin public recomposed a more intimate landscape.
+
+Here, no façade closes off the space. The water becomes the moving boundary, and the opposite bank alone gives a sense of the width. The walk ends on this opening. Bordeaux appears as a series of breathing spaces linked by precise vistas. Squares and gardens are not pauses added afterwards: they form the visible framework of the centre, right up to the point where that framework meets the river.
+
+@@LANG=es
+@@TITLE=Burdeos — Plazas y jardines del centro
+@@DESC=Arquitectura: observar cómo plazas, jardines y perspectivas organizan el centro de Burdeos.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-0
+@@STITLE=Place Gambetta
+Empieza en la place Gambetta, al borde de su jardín central. Este espacio se acondicionó a finales del siglo XVIII sobre una parte de los antiguos terrenos defensivos de la ciudad. Las fachadas ordenadas que lo rodean componen un marco continuo, mientras que los árboles y los paseos crean un interior más tranquilo. La plaza combina así dos formas: un salón urbano mineral y un jardín de proximidad.
+
+Observa los ángulos. Las calles no llegan todas de manera simétrica, pero la alineación de los edificios restablece una impresión de unidad. La vegetación oculta y luego revela las fachadas según tu posición. Esta alternancia será el hilo del paseo: Burdeos organiza su centro mediante vacíos cuidadosamente diseñados, a veces plantados, a veces abiertos hacia un monumento o una larga perspectiva.
+
+Deja la plaza hacia el cours de l'Intendance, y luego llega a la place de la Comédie por los caminos peatonales. Al avanzar, fíjate en la regularidad de las cornisas y el color claro de la piedra. La calle actúa como un pasillo entre dos respiros. Detrás de ti, el jardín absorbe el movimiento. Delante de ti, la fachada del Grand-Théâtre irá cerrando progresivamente la perspectiva y dará al espacio público una expresión mucho más monumental.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-1
+@@STITLE=Place de la Comédie
+Detente frente al Grand-Théâtre. Diseñado por el arquitecto Victor Louis e inaugurado en 1780, el edificio presenta un pórtico de doce columnas corintias. Encima, doce estatuas representan a musas y diosas. La fachada no se aprecia de forma aislada: organiza toda la place de la Comédie y completa varias perspectivas del centro.
+
+Vuélvete hacia las allées de Tourny. Su anchura prolonga el espacio teatral hacia el norte. Mira después hacia el cours de l'Intendance y la rue Sainte-Catherine. Tres ejes importantes se encuentran aquí, cada uno con su propio ritmo. La plaza funciona como bisagra entre esas direcciones. Su suelo despejado permite leer la arquitectura a distancia, a diferencia de una calle estrecha donde la fachada siempre se vería de sesgo.
+
+Dirígete hacia las allées de Tourny. Camina bajo los árboles si el paso está libre y observa cómo el Grand-Théâtre disminuye tras de ti sin dejar de servir de referencia. La próxima etapa no es una plaza cerrada, sino un paseo longitudinal. Muestra que un espacio ajardinado también puede ordenar los desplazamientos y poner en relación varios monumentos del centro.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-2
+@@STITLE=Allées de Tourny
+Las allées de Tourny se acondicionaron en el siglo XVIII en el marco de las grandes obras de embellecimiento llevadas a cabo bajo el intendente Tourny. Su trazado combina circulación, plantación y representación. Las hileras de árboles crean un techo vegetal, mientras que las fachadas regulares mantienen la continuidad mineral del centro. No es ni un jardín cerrado ni una simple calle: es un paseo urbano concebido como un eje.
+
+Detente a mitad de camino y mira en ambas direcciones. Hacia el sur, el Grand-Théâtre sigue presente. Hacia el norte, el espacio conduce hacia las plazas próximas a los antiguos fosos. Los árboles fraccionan la longitud y dan una escala más humana a esta vasta perspectiva. Según la estación, su follaje transforma fuertemente la luz sin modificar el trazado general.
+
+Continúa hacia la place des Quinconces. Al aproximarte, las alineaciones edificadas se interrumpen y el cielo ocupa de pronto más espacio. Esta ruptura es voluntaria: pasas de un paseo enmarcado a una de las mayores explanadas urbanas de Francia. Guarda en la memoria la línea de las allées. Te ayudará a comprender cómo la ciudad conecta un monumento, un paseo y un espacio abierto hasta la orilla del Garona.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-3
+@@STITLE=Place des Quinconces
+Avanza por la place des Quinconces hasta un punto despejado. La explanada se acondicionó en el siglo XIX sobre el emplazamiento del château Trompette, una fortaleza orientada tanto hacia la ciudad como hacia el río. Tras su demolición, el terreno liberado se convirtió en un inmenso espacio público. Los árboles plantados al tresbolillo dieron su nombre a la plaza y estructuran sus bordes.
+
+Mira el monument aux Girondins, erigido a finales del siglo XIX. Su columna y sus fuentes forman una referencia vertical en una superficie muy horizontal. En el otro extremo, las colonnes rostrales marcan la apertura hacia el Garona. Entre estos elementos, el vacío puede acoger usos temporales sin perder su legibilidad.
+
+Cruza hacia el Jardin public utilizando los pasos protegidos. El cambio será casi teatral. Las Quinconces exponen al visitante al cielo y a las largas distancias; el jardín protege, desvía los caminos y multiplica los primeros planos. Ambos lugares son, sin embargo, vecinos, y ambos heredan la transformación de los antiguos límites urbanos. Uno conserva la memoria de una fortaleza desaparecida, el otro la de un proyecto de embellecimiento destinado a ofrecer un paisaje ajardinado a los habitantes.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-4
+@@STITLE=Jardin public
+Entra en el Jardin public si sus verjas están abiertas. Creado en el siglo XVIII y luego rediseñado con gusto paisajístico en el XIX, forma un vasto interior vegetal cerca del centro. Sus senderos curvos, sus céspedes, su estanque y sus árboles adultos rompen con la geometría directa de las Quinconces. Aquí el recorrido se descubre progresivamente en lugar de ser visible de un solo vistazo.
+
+Observa los edificios que bordean el jardín, en particular el antiguo hôtel de Lisleferme. La arquitectura sigue presente entre el follaje y los reflejos. El jardín no niega la ciudad; la filtra. Verjas y fachadas mantienen un límite claro con las calles vecinas.
+
+Dirígete después hacia los muelles por las vías públicas, en dirección a la place des Quinconces y luego al río. Si el jardín está cerrado, rodéalo sin cruzar las cercas. La última parada se encontrará a orillas del Garona. Tras la plaza ajardinada, el teatro, las allées, la explanada y el jardín, descubrirás un espacio cuya perspectiva principal ya no está enmarcada por un edificio, sino por la curva del río.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-5
+@@STITLE=Quai Louis-XVIII
+Detente en el paseo del quai Louis-XVIII, frente al Garona. La orilla ofrece una distancia que las calles del centro nunca permiten. Desde este punto, las fachadas bordelesas forman un frente continuo detrás de ti, mientras que el río abre la perspectiva aguas arriba y aguas abajo. La curva del port de la Lune se hace perceptible en el simple cambio de orientación de los muelles.
+
+Mira hacia las colonnes rostrales de las Quinconces. Señalan el paso entre la explanada y el mundo portuario. Luego recompón mentalmente las etapas: el jardín de Gambetta formaba una pieza verde en medio de las casas; la Comédie organizaba ejes en torno al Grand-Théâtre; Tourny estiraba un paseo; las Quinconces liberaban un vacío monumental; el Jardin public recomponía un paisaje más íntimo.
+
+Aquí, ninguna fachada cierra el espacio. El agua se convierte en el límite móvil, y solo la orilla opuesta da una medida de la anchura. El paseo termina en esta apertura. Burdeos aparece como una sucesión de respiros conectados por perspectivas precisas. Plazas y jardines no son pausas añadidas a posteriori: constituyen el armazón visible del centro, hasta el punto en que ese armazón se encuentra con el río.
+
+@@LANG=de
+@@TITLE=Bordeaux — Plätze und Gärten des Zentrums
+@@DESC=Architektur — beobachten, wie Plätze, Gärten und Sichtachsen das Zentrum von Bordeaux ordnen.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-0
+@@STITLE=Place Gambetta
+Beginn auf der place Gambetta, am Rand ihres zentralen Gartens. Dieser Raum wurde Ende des 18. Jahrhunderts auf einem Teil der früheren Verteidigungsflächen der Stadt angelegt. Die geordneten Fassaden ringsum bilden einen durchgehenden Rahmen, während die Bäume und Wege ein ruhigeres Inneres schaffen. Der Platz vereint so zwei Formen: einen steinernen städtischen Salon und einen Nachbarschaftsgarten.
+
+Betrachte die Ecken. Die Straßen münden nicht alle symmetrisch, doch die Fluchtlinien der Gebäude stellen einen Eindruck von Einheit wieder her. Das Grün verbirgt die Fassaden und enthüllt sie dann wieder, je nach deinem Standort. Dieses Wechselspiel wird der rote Faden des Spaziergangs sein: Bordeaux ordnet sein Zentrum durch sorgfältig gestaltete Leerräume, mal bepflanzt, mal geöffnet zu einem Denkmal oder einer langen Sichtachse.
+
+Verlass den Platz Richtung cours de l'Intendance und erreiche dann über die Fußgängerwege die place de la Comédie. Achte im Gehen auf die Regelmäßigkeit der Gesimse und die helle Farbe des Steins. Die Straße wirkt wie ein Korridor zwischen zwei Atempausen. Hinter dir nimmt der Garten die Bewegung auf. Vor dir wird die Fassade des Grand-Théâtre die Sichtachse allmählich schließen und dem öffentlichen Raum einen weit monumentaleren Ausdruck verleihen.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-1
+@@STITLE=Place de la Comédie
+Halt dem Grand-Théâtre gegenüber an. Vom Architekten Victor Louis entworfen und 1780 eröffnet, zeigt das Gebäude einen Portikus mit zwölf korinthischen Säulen. Darüber stellen zwölf Statuen Musen und Göttinnen dar. Die Fassade lässt sich nicht isoliert würdigen: Sie ordnet den ganzen place de la Comédie und schließt mehrere Sichtachsen des Zentrums ab.
+
+Dreh dich zu den allées de Tourny um. Ihre Breite verlängert den Theaterraum nach Norden. Sieh dann zum cours de l'Intendance und zur rue Sainte-Catherine. Drei wichtige Achsen treffen sich hier, jede mit ihrem eigenen Rhythmus. Der Platz wirkt als Scharnier zwischen diesen Richtungen. Sein offener Boden erlaubt es, die Architektur aus der Ferne zu lesen, anders als in einer engen Straße, wo die Fassade immer schräg gesehen würde.
+
+Geh zu den allées de Tourny. Geh unter den Bäumen, wenn der Weg frei ist, und beobachte, wie das Grand-Théâtre hinter dir kleiner wird, ohne aufzuhören, als Orientierungspunkt zu dienen. Die nächste Etappe ist kein geschlossener Platz, sondern eine längs verlaufende Promenade. Sie zeigt, dass ein bepflanzter Raum auch die Bewegung ordnen und mehrere Denkmäler des Zentrums miteinander verbinden kann.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-2
+@@STITLE=Allées de Tourny
+Die allées de Tourny wurden im 18. Jahrhundert im Rahmen der großen Verschönerungsmaßnahmen unter dem Intendanten Tourny angelegt. Ihr Entwurf verbindet Verkehr, Bepflanzung und Repräsentation. Die Baumreihen schaffen eine grüne Decke, während die regelmäßigen Fassaden die steinerne Kontinuität des Zentrums bewahren. Es ist weder ein geschlossener Garten noch eine einfache Straße: Es ist eine als Achse konzipierte städtische Promenade.
+
+Halt auf halbem Weg an und sieh in beide Richtungen. Nach Süden bleibt das Grand-Théâtre präsent. Nach Norden führt der Raum zu den Plätzen nahe den alten Gräben. Die Bäume gliedern die Länge und geben dieser weiten Sichtachse einen menschlicheren Maßstab. Je nach Jahreszeit verändert ihr Laub das Licht stark, ohne den Gesamtentwurf zu verändern.
+
+Geh weiter zur place des Quinconces. Bei der Annäherung brechen die bebauten Fluchtlinien ab, und der Himmel nimmt plötzlich mehr Raum ein. Dieser Bruch ist gewollt: Du gehst von einer gerahmten Promenade zu einer der größten städtischen Esplanaden Frankreichs über. Behalte die Linie der Alleen im Gedächtnis. Sie wird dir helfen zu verstehen, wie die Stadt ein Denkmal, eine Promenade und einen offenen Raum bis zum Ufer der Garonne miteinander verbindet.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-3
+@@STITLE=Place des Quinconces
+Geh auf der place des Quinconces bis zu einem offenen Punkt vor. Die Esplanade wurde im 19. Jahrhundert an der Stelle des château Trompette angelegt, einer Festung, die sich sowohl der Stadt als auch dem Fluss zuwandte. Nach ihrem Abriss wurde das freigewordene Gelände zu einem riesigen öffentlichen Raum. Die im Schachbrettmuster gepflanzten Bäume gaben dem Platz seinen Namen und gliedern seine Ränder.
+
+Sieh dir das monument aux Girondins an, Ende des 19. Jahrhunderts errichtet. Seine Säule und seine Brunnen bilden einen senkrechten Orientierungspunkt in einer sehr waagerechten Fläche. Am anderen Ende markieren die colonnes rostrales die Öffnung zur Garonne. Zwischen diesen Elementen kann die Leere zeitweilige Nutzungen aufnehmen, ohne ihre Lesbarkeit zu verlieren.
+
+Überquere zum Jardin public hinüber und nutze dabei die gesicherten Übergänge. Der Wechsel wird fast theatralisch wirken. Die Quinconces setzen den Besucher dem Himmel und den weiten Entfernungen aus; der Garten schützt, lenkt die Wege um und vervielfacht die Vordergründe. Beide Orte sind dennoch Nachbarn und erben beide von der Umwandlung der alten Stadtgrenzen. Der eine bewahrt die Erinnerung an eine verschwundene Festung, der andere die eines Verschönerungsprojekts, das den Bewohnern eine bepflanzte Landschaft bieten sollte.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-4
+@@STITLE=Jardin public
+Geh in den Jardin public hinein, wenn seine Gitter offen sind. Im 18. Jahrhundert angelegt und im 19. Jahrhundert in einem landschaftlichen Geschmack umgestaltet, bildet er ein weites grünes Inneres nahe dem Zentrum. Seine geschwungenen Wege, seine Rasenflächen, sein Wasserbecken und seine ausgewachsenen Bäume brechen mit der direkten Geometrie der Quinconces. Hier erschließt sich der Weg allmählich, statt auf einen Blick sichtbar zu sein.
+
+Betrachte die den Garten umgebenden Gebäude, insbesondere das ehemalige hôtel de Lisleferme. Die Architektur bleibt zwischen dem Laub und den Spiegelungen präsent. Der Garten leugnet die Stadt nicht; er filtert sie. Gitter und Fassaden bewahren eine klare Grenze zu den Nachbarstraßen.
+
+Erreiche anschließend über die öffentlichen Wege die Kais, Richtung place des Quinconces und dann den Fluss. Ist der Garten geschlossen, umgeh ihn, ohne die Zäune zu überqueren. Die letzte Station befindet sich am Ufer der Garonne. Nach dem bepflanzten Platz, dem Theater, den Alleen, der Esplanade und dem Garten wirst du einen Raum entdecken, dessen Hauptsichtachse nicht mehr von einem Gebäude, sondern von der Krümmung des Flusses gerahmt wird.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-5
+@@STITLE=Quai Louis-XVIII
+Halt auf der Promenade des quai Louis-XVIII an, der Garonne gegenüber. Das Ufer bietet einen Abstand, den die Straßen des Zentrums nie erlauben. Von diesem Punkt aus bilden die Fassaden von Bordeaux hinter dir eine durchgehende Front, während der Fluss den Blick flussauf- und flussabwärts öffnet. Die Krümmung des port de la Lune wird allein durch den Richtungswechsel der Kais spürbar.
+
+Sieh zu den colonnes rostrales der Quinconces. Sie markieren den Übergang zwischen der Esplanade und der Welt des Hafens. Ruf dir dann gedanklich die Etappen ins Gedächtnis: Der Garten von Gambetta bildete einen grünen Raum inmitten der Häuser; die Comédie ordnete Achsen um das Grand-Théâtre; Tourny zog eine Promenade in die Länge; die Quinconces gaben eine monumentale Leere frei; der Jardin public setzte eine intimere Landschaft neu zusammen.
+
+Hier schließt keine Fassade den Raum ab. Das Wasser wird zur beweglichen Grenze, und allein das gegenüberliegende Ufer gibt ein Maß für die Breite. Der Spaziergang endet an dieser Öffnung. Bordeaux erscheint als eine Abfolge von Atempausen, verbunden durch präzise Sichtachsen. Plätze und Gärten sind keine nachträglich hinzugefügten Pausen: Sie bilden das sichtbare Gerüst des Zentrums, bis zu dem Punkt, an dem dieses Gerüst auf den Fluss trifft.
+
+@@LANG=it
+@@TITLE=Bordeaux — Piazze e giardini del centro
+@@DESC=Architettura: osservare come piazze, giardini e prospettive organizzano il centro di Bordeaux.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-0
+@@STITLE=Place Gambetta
+Comincia in place Gambetta, sul bordo del suo giardino centrale. Questo spazio fu allestito alla fine del Settecento su una parte degli antichi terreni difensivi della città. Le facciate ordinate che lo circondano compongono una cornice continua, mentre gli alberi e i vialetti creano un interno più tranquillo. La piazza associa così due forme: un salotto urbano minerale e un giardino di prossimità.
+
+Osserva gli angoli. Le strade non arrivano tutte in modo simmetrico, ma l'allineamento degli edifici ristabilisce un'impressione di unità. Il verde nasconde e poi rivela le facciate a seconda della tua posizione. Questa alternanza sarà il filo della passeggiata: Bordeaux organizza il proprio centro attraverso vuoti accuratamente disegnati, a volte piantumati, a volte aperti su un monumento o una lunga prospettiva.
+
+Lascia la piazza verso il cours de l'Intendance, poi raggiungi place de la Comédie attraverso i percorsi pedonali. Avanzando, nota la regolarità dei cornicioni e il colore chiaro della pietra. La strada agisce come un corridoio tra due respiri. Dietro di te, il giardino assorbe il movimento. Davanti a te, la facciata del Grand-Théâtre chiuderà progressivamente la prospettiva e darà allo spazio pubblico un'espressione molto più monumentale.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-1
+@@STITLE=Place de la Comédie
+Fermati di fronte al Grand-Théâtre. Progettato dall'architetto Victor Louis e inaugurato nel 1780, l'edificio presenta un portico di dodici colonne corinzie. Sopra, dodici statue rappresentano muse e dee. La facciata non si apprezza isolatamente: organizza tutta la place de la Comédie e completa diverse prospettive del centro.
+
+Voltati verso le allées de Tourny. La loro ampiezza prolunga lo spazio teatrale verso nord. Guarda poi verso il cours de l'Intendance e rue Sainte-Catherine. Qui si incontrano tre assi importanti, ciascuno con il proprio ritmo. La piazza funziona come una cerniera tra queste direzioni. Il suo suolo sgombro permette di leggere l'architettura a distanza, a differenza di una strada stretta dove la facciata sarebbe sempre vista di sbieco.
+
+Dirigiti verso le allées de Tourny. Cammina sotto gli alberi se il passaggio è libero e osserva come il Grand-Théâtre si rimpicciolisce dietro di te senza smettere di fungere da punto di riferimento. La prossima tappa non è una piazza chiusa, ma una passeggiata longitudinale. Mostra che uno spazio piantumato può anche ordinare gli spostamenti e mettere in relazione più monumenti del centro.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-2
+@@STITLE=Allées de Tourny
+Le allées de Tourny furono allestite nel Settecento nell'ambito dei grandi abbellimenti condotti sotto l'intendente Tourny. Il loro disegno associa circolazione, piantumazione e rappresentanza. I filari di alberi creano un soffitto vegetale, mentre le facciate regolari mantengono la continuità minerale del centro. Non è né un giardino chiuso né una semplice strada: è una passeggiata urbana concepita come un asse.
+
+Fermati a metà percorso e guarda nelle due direzioni. Verso sud, il Grand-Théâtre resta presente. Verso nord, lo spazio conduce verso le piazze vicine agli antichi fossati. Gli alberi frazionano la lunghezza e danno una scala più umana a questa vasta prospettiva. A seconda della stagione, il loro fogliame trasforma fortemente la luce senza modificare il disegno generale.
+
+Prosegui verso place des Quinconces. Avvicinandoti, gli allineamenti costruiti si interrompono e il cielo prende improvvisamente più spazio. Questa rottura è voluta: passi da una passeggiata incorniciata a una delle più grandi spianate urbane di Francia. Tieni a mente la linea dei viali. Ti aiuterà a capire come la città colleghi un monumento, una passeggiata e uno spazio aperto fino alla riva della Garonna.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-3
+@@STITLE=Place des Quinconces
+Avanza su place des Quinconces fino a un punto sgombro. La spianata fu allestita nell'Ottocento sul sito del château Trompette, una fortezza rivolta tanto verso la città quanto verso il fiume. Dopo la sua demolizione, il terreno liberato divenne un immenso spazio pubblico. Gli alberi piantati a quinconce hanno dato il nome alla piazza e ne strutturano i bordi.
+
+Guarda il monument aux Girondins, eretto alla fine dell'Ottocento. La sua colonna e le sue fontane formano un punto di riferimento verticale in una superficie molto orizzontale. All'altra estremità, le colonnes rostrales segnano l'apertura verso la Garonna. Tra questi elementi, il vuoto può accogliere usi temporanei senza perdere la propria leggibilità.
+
+Attraversa verso il Jardin public utilizzando i passaggi protetti. Il cambiamento sarà quasi teatrale. Le Quinconces espongono il visitatore al cielo e alle lunghe distanze; il giardino protegge, devia i percorsi e moltiplica i primi piani. I due luoghi sono tuttavia vicini ed ereditano entrambi la trasformazione degli antichi limiti urbani. L'uno conserva la memoria di una fortezza scomparsa, l'altro quella di un progetto di abbellimento destinato a offrire agli abitanti un paesaggio piantumato.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-4
+@@STITLE=Jardin public
+Entra nel Jardin public se i suoi cancelli sono aperti. Creato nel Settecento e poi ridisegnato in gusto paesaggistico nell'Ottocento, forma un vasto interno vegetale vicino al centro. I suoi vialetti curvi, i suoi prati, il suo specchio d'acqua e i suoi alberi maturi rompono con la geometria diretta delle Quinconces. Qui il percorso si scopre progressivamente invece di essere visibile in un solo sguardo.
+
+Osserva gli edifici che bordano il giardino, in particolare l'antico hôtel de Lisleferme. L'architettura resta presente tra il fogliame e i riflessi. Il giardino non nega la città; la filtra. Cancelli e facciate mantengono un limite chiaro con le strade vicine.
+
+Raggiungi poi le banchine per le vie pubbliche in direzione di place des Quinconces e quindi del fiume. Se il giardino è chiuso, aggiralo senza oltrepassare le recinzioni. L'ultima tappa si troverà sulla riva della Garonna. Dopo la piazza piantumata, il teatro, i viali, la spianata e il giardino, scoprirai uno spazio la cui prospettiva principale non è più incorniciata da un edificio, ma dalla curva del fiume.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-5
+@@STITLE=Quai Louis-XVIII
+Fermati sulla passeggiata del quai Louis-XVIII, di fronte alla Garonna. La riva offre un distacco che le strade del centro non permettono mai. Da questo punto, le facciate bordolesi formano un fronte continuo dietro di te, mentre il fiume apre la prospettiva verso monte e verso valle. La curva del port de la Lune diventa percepibile nel semplice cambio di orientamento delle banchine.
+
+Guarda verso le colonnes rostrales delle Quinconces. Segnalano il passaggio tra la spianata e il mondo portuale. Poi ripercorri mentalmente le tappe: il giardino di Gambetta formava un ambiente verde in mezzo alle case; la Comédie organizzava assi attorno al Grand-Théâtre; Tourny distendeva una passeggiata; le Quinconces liberavano un vuoto monumentale; il Jardin public ricomponeva un paesaggio più intimo.
+
+Qui, nessuna facciata chiude lo spazio. L'acqua diventa il limite mobile, e solo la riva opposta dà una misura della larghezza. La passeggiata si conclude su questa apertura. Bordeaux appare come una successione di respiri collegati da prospettive precise. Piazze e giardini non sono pause aggiunte in un secondo momento: costituiscono l'ossatura visibile del centro, fino al punto in cui questa ossatura incontra il fiume.
+
+@@LANG=nl
+@@TITLE=Bordeaux — Pleinen en tuinen van het centrum
+@@DESC=Architectuur — observeren hoe pleinen, tuinen en vergezichten het centrum van Bordeaux ordenen.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-0
+@@STITLE=Place Gambetta
+Begin op de place Gambetta, aan de rand van haar centrale tuin. Deze ruimte werd eind achttiende eeuw aangelegd op een deel van de vroegere verdedigingsgronden van de stad. De geordende gevels eromheen vormen een doorlopend kader, terwijl de bomen en paden een rustiger binnenruimte scheppen. Het plein combineert zo twee vormen: een stenen stedelijke salon en een buurttuin.
+
+Let op de hoeken. De straten komen niet allemaal symmetrisch uit, maar de rooilijnen van de gebouwen herstellen een gevoel van eenheid. Het groen verbergt en onthult afwisselend de gevels, afhankelijk van je positie. Deze afwisseling zal de rode draad van de wandeling zijn: Bordeaux ordent haar centrum door zorgvuldig ontworpen leegtes, soms beplant, soms geopend naar een monument of een lang vergezicht.
+
+Verlaat het plein richting de cours de l'Intendance, en bereik dan de place de la Comédie via de voetgangerspaden. Let onderweg op de regelmaat van de kroonlijsten en de lichte kleur van de steen. De straat werkt als een gang tussen twee ademruimtes. Achter je absorbeert de tuin de beweging. Voor je zal de gevel van het Grand-Théâtre het vergezicht geleidelijk sluiten en de openbare ruimte een veel monumentalere uitdrukking geven.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-1
+@@STITLE=Place de la Comédie
+Blijf staan tegenover het Grand-Théâtre. Ontworpen door architect Victor Louis en geopend in 1780, toont het gebouw een portiek van twaalf Korinthische zuilen. Daarboven verbeelden twaalf standbeelden muzen en godinnen. De gevel wordt niet geïsoleerd gewaardeerd: ze ordent heel de place de la Comédie en voltooit meerdere vergezichten van het centrum.
+
+Draai je naar de allées de Tourny. Hun breedte verlengt de theaterruimte naar het noorden. Kijk dan naar de cours de l'Intendance en de rue Sainte-Catherine. Hier komen drie belangrijke assen samen, elk met haar eigen ritme. Het plein werkt als een scharnier tussen deze richtingen. De open vloer laat toe de architectuur van op afstand te lezen, anders dan in een smalle straat waar de gevel altijd schuin gezien zou worden.
+
+Ga richting de allées de Tourny. Loop onder de bomen als de doorgang vrij is en zie hoe het Grand-Théâtre achter je kleiner wordt zonder op te houden als oriëntatiepunt te dienen. De volgende etappe is geen omsloten plein, maar een langgerekte promenade. Ze toont dat een beplante ruimte ook de verplaatsingen kan ordenen en meerdere monumenten van het centrum met elkaar in verband kan brengen.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-2
+@@STITLE=Allées de Tourny
+De allées de Tourny werden in de achttiende eeuw aangelegd in het kader van de grote verfraaiingswerken onder intendant Tourny. Hun ontwerp combineert verkeer, beplanting en representatie. De bomenrijen creëren een groen plafond, terwijl de regelmatige gevels de stenen continuïteit van het centrum bewaren. Het is noch een omsloten tuin, noch een gewone straat: het is een stedelijke promenade, opgevat als een as.
+
+Blijf halverwege staan en kijk in beide richtingen. Naar het zuiden blijft het Grand-Théâtre aanwezig. Naar het noorden leidt de ruimte naar de pleinen dicht bij de oude grachten. De bomen verdelen de lengte en geven dit uitgestrekte vergezicht een menselijker schaal. Afhankelijk van het seizoen verandert hun gebladerte het licht sterk zonder het algemene ontwerp te wijzigen.
+
+Ga verder naar de place des Quinconces. Naarmate je nadert, breken de bebouwde rooilijnen af en neemt de hemel plotseling meer ruimte in. Deze breuk is bewust: je gaat van een omkaderde promenade naar een van de grootste stedelijke esplanades van Frankrijk. Onthoud de lijn van de lanen. Ze zal je helpen te begrijpen hoe de stad een monument, een promenade en een open ruimte verbindt tot aan de oever van de Garonne.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-3
+@@STITLE=Place des Quinconces
+Loop over de place des Quinconces tot een open punt. De esplanade werd in de negentiende eeuw aangelegd op de plek van het château Trompette, een vesting die zowel naar de stad als naar de rivier gericht was. Na de sloop ervan werd het vrijgekomen terrein een immense openbare ruimte. De in een schaakbordpatroon geplante bomen gaven het plein zijn naam en structureren de randen ervan.
+
+Kijk naar het monument aux Girondins, eind negentiende eeuw opgericht. De zuil en de fonteinen vormen een verticaal oriëntatiepunt in een zeer horizontaal vlak. Aan het andere uiteinde markeren de colonnes rostrales de opening naar de Garonne. Tussen deze elementen kan de leegte tijdelijke gebruiken herbergen zonder haar leesbaarheid te verliezen.
+
+Steek over naar de Jardin public via de beveiligde oversteekplaatsen. De verandering zal bijna theatraal aanvoelen. De Quinconces stellen de bezoeker bloot aan de hemel en aan grote afstanden; de tuin beschut, leidt de paden om en vermenigvuldigt de voorgronden. Beide plekken zijn niettemin buren en erven allebei van de omvorming van de oude stadsgrenzen. De ene bewaart de herinnering aan een verdwenen vesting, de andere die van een verfraaiingsproject bedoeld om de bewoners een beplant landschap te bieden.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-4
+@@STITLE=Jardin public
+Ga de Jardin public binnen als de hekken open zijn. Aangelegd in de achttiende eeuw en later herontworpen in landschapsstijl in de negentiende, vormt hij een uitgestrekt groen interieur dicht bij het centrum. Zijn kronkelende paden, zijn grasvelden, zijn waterpartij en zijn volwassen bomen breken met de rechtlijnige geometrie van de Quinconces. Hier onthult het traject zich geleidelijk in plaats van in één oogopslag zichtbaar te zijn.
+
+Bekijk de gebouwen die de tuin omzomen, met name het voormalige hôtel de Lisleferme. De architectuur blijft aanwezig tussen het gebladerte en de weerspiegelingen. De tuin ontkent de stad niet; ze filtert haar. Hekken en gevels bewaren een duidelijke grens met de naburige straten.
+
+Bereik vervolgens de kades via de openbare wegen, richting de place des Quinconces en dan de rivier. Als de tuin gesloten is, ga er dan omheen zonder de omheiningen over te steken. De laatste halte bevindt zich aan de oever van de Garonne. Na het beplante plein, het theater, de lanen, de esplanade en de tuin ontdek je een ruimte waarvan het belangrijkste vergezicht niet langer wordt omkaderd door een gebouw, maar door de bocht van de rivier.
+@@SCENE=seed-100-bordeaux-places-et-jardins-du-centre-scene-5
+@@STITLE=Quai Louis-XVIII
+Blijf staan op de promenade van de quai Louis-XVIII, tegenover de Garonne. De oever biedt een afstand die de straten van het centrum nooit toelaten. Vanaf dit punt vormen de gevels van Bordeaux een doorlopend front achter je, terwijl de rivier het uitzicht stroomopwaarts en stroomafwaarts opent. De bocht van de port de la Lune wordt merkbaar in de eenvoudige richtingsverandering van de kades.
+
+Kijk naar de colonnes rostrales van de Quinconces. Ze markeren de overgang tussen de esplanade en de wereld van de haven. Doorloop dan mentaal de etappes: de tuin van Gambetta vormde een groene kamer te midden van de huizen; de Comédie ordende assen rond het Grand-Théâtre; Tourny rekte een promenade uit; de Quinconces bevrijdden een monumentale leegte; de Jardin public stelde een intiemer landschap samen.
+
+Hier sluit geen enkele gevel de ruimte af. Het water wordt de bewegende grens, en alleen de tegenoverliggende oever geeft een maat voor de breedte. De wandeling eindigt op deze opening. Bordeaux verschijnt als een opeenvolging van ademruimtes, verbonden door precieze vergezichten. Pleinen en tuinen zijn geen achteraf toegevoegde pauzes: ze vormen het zichtbare geraamte van het centrum, tot aan het punt waar dat geraamte de rivier ontmoet.

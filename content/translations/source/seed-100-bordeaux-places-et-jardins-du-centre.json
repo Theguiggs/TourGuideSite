@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-bordeaux-places-et-jardins-du-centre",
+  "sessionId": "seed-100-bordeaux-places-et-jardins-du-centre-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Bordeaux",
+  "title": "Bordeaux — Places et jardins du centre",
+  "description": "Architecture — observer comment places, jardins et perspectives organisent le centre de Bordeaux.",
+  "themes": [
+    "Architecture — observer comment places, jardins et perspectives organisent le centre de Bordeaux."
+  ],
+  "baseLanguage": "fr",
+  "chars": 7086,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Architettura, osservare come luoghi, giardini e prospettive organizzano il centro di Bordeaux.",
+    "en": "Architecture, observe how places, gardens and perspectives organize the center of Bordeaux.",
+    "de": "Architektur, beobachten Sie wie Plätze, Gärten und Perspektiven das Zentrum von Bordeaux organisieren.",
+    "es": "Arquitectura, cómo plazas, jardines y perspectivas organizan el centro de Burdeos."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-bordeaux-places-et-jardins-du-centre-scene-0",
+      "index": 0,
+      "title": "Place Gambetta",
+      "text": "Commence place Gambetta, au bord de son jardin central. Cet espace fut aménagé à la fin du XVIIIe siècle sur une partie des anciens terrains défensifs de la ville. Les façades ordonnées qui l’entourent composent un cadre continu, tandis que les arbres et les allées créent un intérieur plus calme. La place associe ainsi deux formes : un salon urbain minéral et un jardin de proximité.\n\nObserve les angles. Les rues n’arrivent pas toutes de façon symétrique, mais les alignements des immeubles rétablissent une impression d’unité. Le végétal masque puis révèle les façades selon ta position. Cette alternance sera le fil de la promenade : Bordeaux organise son centre par des vides soigneusement dessinés, tantôt plantés, tantôt ouverts sur un monument ou une longue perspective.\n\nQuitte la place vers le cours de l’Intendance, puis rejoins la place de la Comédie par les cheminements piétons. En avançant, remarque la régularité des corniches et la couleur claire de la pierre. La rue agit comme un couloir entre deux respirations. Derrière toi, le jardin absorbe le mouvement. Devant toi, la façade du Grand-Théâtre va progressivement fermer la perspective et donner à l’espace public une expression beaucoup plus monumentale.",
+      "hash": "67b8d523",
+      "chars": 1228,
+      "existingSegments": {
+        "es": "seed-100-bordeaux-places-et-jardins-du-centre-scene-0-seg-es",
+        "de": "seed-100-bordeaux-places-et-jardins-du-centre-scene-0-seg-de",
+        "en": "seed-100-bordeaux-places-et-jardins-du-centre-scene-0-seg-en",
+        "it": "seed-100-bordeaux-places-et-jardins-du-centre-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-bordeaux-places-et-jardins-du-centre-scene-1",
+      "index": 1,
+      "title": "Place de la Comédie",
+      "text": "Arrête-toi face au Grand-Théâtre. Conçu par l’architecte Victor Louis et inauguré en 1780, l’édifice présente un portique de douze colonnes corinthiennes. Au-dessus, douze statues représentent des muses et des déesses. La façade ne s’apprécie pas isolément : elle organise toute la place de la Comédie et achève plusieurs perspectives du centre.\n\nTourne-toi vers les allées de Tourny. Leur largeur prolonge l’espace théâtral vers le nord. Puis regarde vers le cours de l’Intendance et la rue Sainte-Catherine. Trois axes importants se rencontrent ici, chacun avec son rythme. La place fonctionne comme une charnière entre ces directions. Son sol dégagé permet de lire l’architecture à distance, contrairement à une rue étroite où la façade serait toujours vue de biais.\n\nDirige-toi vers les allées de Tourny. Marche sous les arbres si le passage est libre et observe comment le Grand-Théâtre diminue derrière toi sans cesser de servir de repère. La prochaine étape n’est pas une place fermée, mais une promenade longitudinale. Elle montre qu’un espace planté peut aussi ordonner les déplacements et mettre en relation plusieurs monuments du centre.",
+      "hash": "62ca61f3",
+      "chars": 1148,
+      "existingSegments": {
+        "de": "seed-100-bordeaux-places-et-jardins-du-centre-scene-1-seg-de",
+        "it": "seed-100-bordeaux-places-et-jardins-du-centre-scene-1-seg-it",
+        "es": "seed-100-bordeaux-places-et-jardins-du-centre-scene-1-seg-es",
+        "en": "seed-100-bordeaux-places-et-jardins-du-centre-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-bordeaux-places-et-jardins-du-centre-scene-2",
+      "index": 2,
+      "title": "Allées de Tourny",
+      "text": "Les allées de Tourny furent aménagées au XVIIIe siècle dans le cadre des grands embellissements conduits sous l’intendant Tourny. Leur dessin associe circulation, plantation et représentation. Les rangées d’arbres créent un plafond végétal, tandis que les façades régulières maintiennent la continuité minérale du centre. Ce n’est ni un jardin clos ni une simple rue : c’est une promenade urbaine conçue comme un axe.\n\nArrête-toi à mi-parcours et regarde dans les deux directions. Vers le sud, le Grand-Théâtre reste présent. Vers le nord, l’espace conduit vers les places proches des anciens fossés. Les arbres fractionnent la longueur et donnent une échelle plus humaine à cette vaste perspective. Selon la saison, leur feuillage transforme fortement la lumière sans modifier le dessin général.\n\nContinue vers la place des Quinconces. À l’approche, les alignements bâtis s’interrompent et le ciel prend soudain plus de place. Cette rupture est volontaire : tu passes d’une promenade encadrée à l’une des plus grandes esplanades urbaines de France. Garde la ligne des allées en mémoire. Elle t’aidera à comprendre comment la ville relie un monument, une promenade et un espace ouvert jusqu’au bord de la Garonne.",
+      "hash": "17241591",
+      "chars": 1213,
+      "existingSegments": {
+        "es": "seed-100-bordeaux-places-et-jardins-du-centre-scene-2-seg-es",
+        "de": "seed-100-bordeaux-places-et-jardins-du-centre-scene-2-seg-de",
+        "it": "seed-100-bordeaux-places-et-jardins-du-centre-scene-2-seg-it",
+        "en": "seed-100-bordeaux-places-et-jardins-du-centre-scene-2-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-bordeaux-places-et-jardins-du-centre-scene-3",
+      "index": 3,
+      "title": "Place des Quinconces",
+      "text": "Avance sur la place des Quinconces jusqu’à un point dégagé. L’esplanade fut aménagée au XIXe siècle sur l’emplacement du château Trompette, forteresse tournée autant vers la ville que vers le fleuve. Après sa démolition, le terrain libéré devint un immense espace public. Les arbres plantés en quinconce ont donné leur nom à la place et structurent ses bords.\n\nRegarde le monument aux Girondins, élevé à la fin du XIXe siècle. Sa colonne et ses fontaines forment un repère vertical dans une surface très horizontale. À l’autre extrémité, les colonnes rostrales marquent l’ouverture vers la Garonne. Entre ces éléments, le vide peut accueillir des usages temporaires sans perdre sa lisibilité.\n\nTraverse vers le Jardin public en utilisant les passages sécurisés. Le changement sera presque théâtral. Les Quinconces exposent le visiteur au ciel et aux longues distances ; le jardin protège, détourne les chemins et multiplie les premiers plans. Les deux lieux sont pourtant voisins et héritent tous deux de la transformation des anciennes limites urbaines. L’un conserve la mémoire d’une forteresse disparue, l’autre celle d’un projet d’embellissement destiné à offrir un paysage planté aux habitants.",
+      "hash": "1975ee74",
+      "chars": 1199,
+      "existingSegments": {
+        "es": "seed-100-bordeaux-places-et-jardins-du-centre-scene-3-seg-es",
+        "en": "seed-100-bordeaux-places-et-jardins-du-centre-scene-3-seg-en",
+        "it": "seed-100-bordeaux-places-et-jardins-du-centre-scene-3-seg-it",
+        "de": "seed-100-bordeaux-places-et-jardins-du-centre-scene-3-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-bordeaux-places-et-jardins-du-centre-scene-4",
+      "index": 4,
+      "title": "Jardin public",
+      "text": "Entre dans le Jardin public si ses grilles sont ouvertes. Créé au XVIIIe siècle puis redessiné dans un goût paysager au XIXe, il forme un vaste intérieur végétal près du centre. Ses allées courbes, ses pelouses, son plan d’eau et ses arbres adultes rompent avec la géométrie directe des Quinconces. Ici, le parcours se découvre progressivement au lieu d’être visible d’un seul regard.\n\nObserve les bâtiments qui bordent le jardin, notamment l’ancien hôtel de Lisleferme. L’architecture reste présente parmi les feuillages et les reflets. Le jardin ne nie pas la ville ; il la filtre. Grilles et façades maintiennent une limite claire avec les rues voisines.\n\nRejoins ensuite les quais par les voies publiques en direction de la place des Quinconces puis du fleuve. Si le jardin est fermé, contourne-le sans franchir les clôtures. Le dernier arrêt se trouvera au bord de la Garonne. Après la place plantée, le théâtre, les allées, l’esplanade et le jardin, tu découvriras un espace dont la perspective principale n’est plus cadrée par un bâtiment, mais par la courbe du fleuve.",
+      "hash": "22a2e893",
+      "chars": 1076,
+      "existingSegments": {
+        "it": "seed-100-bordeaux-places-et-jardins-du-centre-scene-4-seg-it",
+        "de": "seed-100-bordeaux-places-et-jardins-du-centre-scene-4-seg-de",
+        "en": "seed-100-bordeaux-places-et-jardins-du-centre-scene-4-seg-en",
+        "es": "seed-100-bordeaux-places-et-jardins-du-centre-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-bordeaux-places-et-jardins-du-centre-scene-5",
+      "index": 5,
+      "title": "Quai Louis-XVIII",
+      "text": "Arrête-toi sur la promenade du quai Louis-XVIII, face à la Garonne. La rive offre un recul que les rues du centre ne permettent jamais. Depuis ce point, les façades bordelaises forment un front continu derrière toi, tandis que le fleuve ouvre la perspective vers l’amont et l’aval. La courbe du port de la Lune devient perceptible dans le simple changement d’orientation des quais.\n\nRegarde vers les colonnes rostrales des Quinconces. Elles signalent le passage entre l’esplanade et le monde portuaire. Puis replace mentalement les étapes : le jardin de Gambetta formait une pièce verte au milieu des maisons ; la Comédie organisait des axes autour du Grand-Théâtre ; Tourny étirait une promenade ; les Quinconces libéraient un vide monumental ; le Jardin public recomposait un paysage plus intime.\n\nIci, aucune façade ne ferme l’espace. L’eau devient la limite mouvante et la rive opposée donne seule une mesure de la largeur. La promenade s’achève sur cette ouverture. Bordeaux apparaît comme une suite de respirations reliées par des perspectives précises. Places et jardins ne sont pas des pauses ajoutées après coup : ils constituent l’armature visible du centre, jusqu’au point où cette armature rencontre le fleuve.",
+      "hash": "976e5a6",
+      "chars": 1222,
+      "existingSegments": {
+        "de": "seed-100-bordeaux-places-et-jardins-du-centre-scene-5-seg-de",
+        "it": "seed-100-bordeaux-places-et-jardins-du-centre-scene-5-seg-it",
+        "en": "seed-100-bordeaux-places-et-jardins-du-centre-scene-5-seg-en",
+        "es": "seed-100-bordeaux-places-et-jardins-du-centre-scene-5-seg-es"
+      }
+    }
+  ]
+}

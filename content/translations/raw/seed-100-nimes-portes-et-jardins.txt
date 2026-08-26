@@ -1,0 +1,259 @@
+@@LANG=en
+@@TITLE=Nîmes — Gates and Gardens
+@@DESC=Urban history — following the ancient thresholds and promenades that reshaped the city.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-0
+@@STITLE=Porte Auguste
+In front of these pale stone blocks, picture a gate crossed by the Via Domitia. The Porte Auguste belonged to the ramparts of Nemausus, raised at the turn of our era. An inscription, now lost but known from old surveys, linked this construction to the emperor Augustus. Four passages still pierce the monument: the two wider ones served vehicles, the narrower ones pedestrians.
+
+This arrangement wasn't only a defense. It organized traffic flow and staged the entrance into an important Roman city. Look at the beginnings of round towers on either side. Then look at the present-day street crossing this area: nearly two thousand years later, the logic of the passage remains legible beneath modern traffic.
+
+Our thread will follow these thresholds. Some gates still stand, others have vanished but continue to guide the streets. The gardens, for their part, will show how Nîmes turned an ancient spring into a public promenade. Head southwest along the boulevard Amiral-Courbet and the esplanade. You'll reach a second Roman gate, more modest, but set on another essential axis of the city.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-1
+@@STITLE=Porte de France
+The Porte de France today amounts to a wide arched bay, framed by ancient masonry. Its apparent simplicity is a little deceptive: it belonged to the same rampart as the Porte Auguste and opened the city toward the south. Traces of side towers have been identified, confirming that the passage was part of a larger structure than the visible arch.
+
+Come closer without crossing the barriers. The stones carry the marks of a long history of urban reuse. After losing its defensive function, the gate was absorbed into the surrounding neighborhood, surrounded by buildings, then later cleared. It tells two stories at once: that of the Roman ramparts, and that of a city building on top of its own boundaries.
+
+As you head back toward the Arènes, take note of the short distance separating this threshold from the monumental heart of the city. Nemausus wasn't some abstraction buried beneath Nîmes; its layout still surfaces in the streets. Skirt the amphitheater along the public space and reach the esplanade Charles-de-Gaulle. You'll leave the gates behind for a promenade created much later, when the city began opening up and ordering its surroundings.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-2
+@@STITLE=Esplanade Charles-de-Gaulle
+The esplanade opens up a vista rarely offered by the old town center. It was laid out outside the old ramparts and reshaped several times. In the nineteenth century, the arrival of the railway reinforced this axis: from the station, travelers enter Nîmes through a sequence of open spaces leading toward the Arènes and the heart of the city.
+
+At its center, the fontaine Pradier gathers allegorical marble figures. Inaugurated in 1851, it places Nîmes among representations of the waterways tied to its territory. Notice how the monument serves as a pivot rather than a barrier. The paths pass around it and direct the eye toward the façades, the station, and the amphitheater.
+
+This esplanade forms a gate without walls: a threshold shaped by perspective, plantings, and circulation. It reveals a new way of building the city, founded on welcome and public promenade. Now head to the Maison Carrée by following the boulevards and then the rue de l'Horloge. You'll find antiquity again, but within a space that recent centuries have deliberately cleared to give it back its presence.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-3
+@@STITLE=Maison Carrée
+The Maison Carrée stands on a raised podium, facing the former Carré d'Art. This Roman temple from the start of our era belonged to the forum of Nemausus. It was dedicated to the princes Gaius and Lucius Caesar, grandsons and adopted heirs of Augustus. Its exceptional state of preservation owes much to its many uses after antiquity: dwelling, church, meeting hall, archive depot.
+
+Look at the free-standing columns of the portico, then at the ones still engaged within the side walls. The building commands the space through its façade and its front staircase. It wasn't entered from every side: the architecture imposes a direction, almost a ceremony of the threshold. The present-day square was redesigned to make this gesture more legible and to establish a dialogue between the temple and the contemporary architecture facing it.
+
+Continue along the rue Racine, then the quai de la Fontaine. Water will now guide your steps. It leads to an eighteenth-century garden built around a much older sanctuary. There, Nîmes no longer merely preserves a monument: it transforms an entire archaeological landscape into a promenade.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-4
+@@STITLE=Jardins de la Fontaine
+The Jardins de la Fontaine were laid out in the eighteenth century around the spring that gave rise to the city. The works, directed by Jacques-Philippe Mareschal, uncovered and incorporated ancient remains. Basins, balustrades, staircases, and alignments together compose a formal garden where water and archaeology share the same stage.
+
+At the edge of the basin, look for the ancient nymphaeum and the temple traditionally known as the temple de Diane. Its exact function remains debated; it's better to sit with that uncertainty than to invent a story for it. What is certain is the importance of the spring sanctuary in Roman Nemausus. The modern promenade was built around this buried memory.
+
+Then climb gradually toward the upper part of the garden. The paths become more winding, and slope replaces symmetry. This shift from basin to hillside sums up our walk: water, gates, and monuments set directions that each era reinterprets in turn. Follow the public paths up to the Tour Magne. Its silhouette already dominated the Roman ramparts; it will be our last landmark and our overview.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-5
+@@STITLE=Tour Magne
+The Tour Magne occupies the high point of the mont Cavalier. The Romans enveloped and enlarged an older tower, probably Gallic, to incorporate it into the Augustan rampart. Its bulk signaled Nemausus from afar and watched over the approach roads. Even without its upper section, it retains that power as a landmark.
+
+From the public grounds, mentally retrace the walk from the beginning. The Porte Auguste controlled the Via Domitia; the Porte de France opened toward the south; the modern esplanade welcomed travelers arriving by train. Further down, the spring in the Jardins recalls that the city first settled around water. The thresholds of Nîmes, then, aren't only arches. They are successive ways of entering, moving through, and situating oneself.
+
+Height finally ties these fragments together. It shows a Roman city that became a contemporary town without entirely erasing its ancient lines. As you go back down, notice how each street briefly frames the tower, a garden, or a façade. You'll know how to recognize these invisible gates. Thank you for following this urban design with me. See you soon for another walk.
+
+@@LANG=es
+@@TITLE=Nimes — Puertas y jardines
+@@DESC=Historia urbana — seguir los umbrales antiguos y los paseos que recompusieron la ciudad.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-0
+@@STITLE=Porte Auguste
+Delante de estos bloques de piedra clara, imagina una puerta atravesada por la vía Domicia. La Porte Auguste pertenecía a la muralla de Nemausus, levantada en el cambio de nuestra era. Una inscripción, hoy desaparecida pero conocida por antiguos relevamientos, asociaba esta construcción al emperador Augusto. Cuatro pasos aún atraviesan el monumento: los dos más anchos servían para vehículos, los más estrechos para peatones.
+
+Este dispositivo no marcaba solo una defensa. Organizaba los flujos y escenificaba la entrada a una importante ciudad romana. Mira los arranques de las torres redondas a los lados. Luego observa la calle actual que atraviesa el sector: casi dos mil años después, la lógica del paso sigue siendo legible bajo el tráfico moderno.
+
+Nuestro hilo conductor seguirá estos umbrales. Algunas puertas siguen en pie, otras han desaparecido pero continúan guiando las calles. Los jardines, por su parte, mostrarán cómo Nimes transformó un manantial antiguo en un paseo público. Dirígete hacia el suroeste por el boulevard Amiral-Courbet y la explanada. Vas a llegar a una segunda puerta romana, más modesta, pero situada sobre otro eje esencial de la ciudad.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-1
+@@STITLE=Porte de France
+La Porte de France se resume hoy a un amplio vano abovedado, enmarcado por mampostería antigua. Su aparente sencillez engaña un poco: formaba parte de la misma muralla que la Porte Auguste y abría la ciudad hacia el sur. Se han localizado vestigios de torres laterales, confirmando que el paso pertenecía a un conjunto más desarrollado que el arco visible.
+
+Acércate sin cruzar las protecciones. Las piedras llevan las huellas de una larga reutilización urbana. Tras la desaparición de su función defensiva, la puerta fue absorbida por el barrio, rodeada de edificios, y luego liberada. Cuenta así dos historias a la vez: la de la muralla romana y la de una ciudad que construye sobre sus propios límites.
+
+Al volver hacia las Arènes, mide la escasa distancia que separaba este umbral del corazón monumental. Nemausus no era una abstracción sepultada bajo Nimes; su trazado sigue aflorando en las calles. Bordea el anfiteatro por el espacio público y llega hasta la esplanade Charles-de-Gaulle. Dejarás las puertas por un paseo creado mucho más tarde, cuando la ciudad empieza a abrir y ordenar sus alrededores.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-2
+@@STITLE=Esplanade Charles-de-Gaulle
+La explanada abre ante ti una perspectiva que el centro antiguo ofrece raramente. Fue acondicionada fuera de las viejas murallas y transformada varias veces. En el siglo diecinueve, la llegada del ferrocarril refuerza este eje: desde la estación, el viajero entra en Nimes por una sucesión de espacios abiertos que conduce hacia las Arènes y el corazón de la ciudad.
+
+En el centro, la fontaine Pradier reúne figuras alegóricas de mármol. Inaugurada en 1851, sitúa a Nimes entre representaciones de cursos de agua ligados a su territorio. Observa cómo el monumento sirve de eje más que de barrera. Los paseos pasan alrededor de él y distribuyen la mirada hacia las fachadas, la estación y el anfiteatro.
+
+Esta explanada constituye una puerta sin muro: un umbral compuesto por la perspectiva, las plantaciones y la circulación. Revela una nueva manera de fabricar la ciudad, fundada en la acogida y el paseo público. Dirígete ahora hacia la Maison Carrée siguiendo los bulevares y luego la rue de l'Horloge. Volverás a encontrar la Antigüedad, pero en un espacio que los siglos recientes han despejado voluntariamente para devolverle presencia.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-3
+@@STITLE=Maison Carrée
+La Maison Carrée se alza sobre un podio elevado, frente al antiguo Carré d'Art. Este templo romano de comienzos de nuestra era pertenecía al foro de Nemausus. Estaba dedicado a los príncipes Cayo y Lucio César, nietos y herederos adoptivos de Augusto. Su conservación excepcional se debe en parte a sus numerosos usos posteriores a la Antigüedad: vivienda, iglesia, sala de reuniones, depósito de archivos.
+
+Mira las columnas exentas del pórtico, y luego las que quedan adosadas a los muros laterales. El edificio domina el espacio con su fachada y su escalinata frontal. No se entraba por todos lados: la arquitectura impone una dirección, casi una ceremonia del umbral. La plaza actual ha sido recompuesta para hacer más legible este gesto y establecer un diálogo entre el templo y la arquitectura contemporánea que le hace frente.
+
+Continúa por la rue Racine y luego el quai de la Fontaine. El agua guiará ahora tus pasos. Conduce a un jardín del siglo dieciocho instalado alrededor de un santuario mucho más antiguo. Ahí, Nimes ya no se contenta con preservar un monumento: transforma todo un paisaje arqueológico en un paseo.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-4
+@@STITLE=Jardins de la Fontaine
+Los Jardins de la Fontaine fueron acondicionados en el siglo dieciocho alrededor del manantial que dio origen a la ciudad. Las obras, dirigidas por Jacques-Philippe Mareschal, sacan a la luz e integran vestigios antiguos. Estanques, balaustradas, escaleras y alineaciones componen así un jardín regular donde el agua y la arqueología comparten el mismo escenario.
+
+Al borde del estanque, busca el ninfeo antiguo y el templo que se llama, por tradición, temple de Diane. Su función exacta sigue siendo objeto de debate; es mejor aceptar esa incertidumbre que inventarle un relato. Lo que sí es cierto es la importancia del santuario del manantial en la Nemausus romana. El paseo moderno se construyó alrededor de esta memoria enterrada.
+
+Sube luego progresivamente hacia la parte alta del jardín. Los senderos se vuelven más sinuosos y la pendiente reemplaza a la simetría. Este paso del estanque a la colina resume nuestro recorrido: el agua, las puertas y los monumentos determinan direcciones que cada época reinterpreta. Sigue los caminos públicos hasta la Tour Magne. Su silueta ya dominaba la muralla romana; será nuestra última referencia y nuestra vista de conjunto.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-5
+@@STITLE=Tour Magne
+La Tour Magne ocupa el punto más alto del mont Cavalier. Los romanos envolvieron y agrandaron una torre más antigua, probablemente gala, para integrarla en la muralla augustea. Su masa señalaba Nemausus desde lejos y vigilaba las vías de acceso. Incluso privada de su parte superior, conserva ese poder de referencia.
+
+Desde los alrededores públicos, vuelve mentalmente al inicio de la caminata. La Porte Auguste controlaba la vía Domicia; la Porte de France abría hacia el sur; la explanada moderna acogía a los viajeros llegados en tren. Más abajo, el manantial de los Jardins recuerda que la ciudad se estableció primero alrededor del agua. Los umbrales de Nimes, entonces, no son solo arcos. Son maneras sucesivas de entrar, de circular y de situarse.
+
+La altura conecta finalmente estos fragmentos. Muestra una ciudad romana convertida en ciudad contemporánea sin borrar del todo sus líneas antiguas. Cuando vuelvas a bajar, observa cómo cada calle enmarca brevemente la torre, un jardín o una fachada. Sabrás reconocer estas puertas invisibles. Gracias por seguir este trazado urbano conmigo. Hasta pronto para otro paseo.
+
+@@LANG=de
+@@TITLE=Nîmes — Tore und Gärten
+@@DESC=Stadtgeschichte — den antiken Schwellen und Promenaden folgen, die die Stadt neu geformt haben.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-0
+@@STITLE=Porte Auguste
+Stell dir vor diesen hellen Steinblöcken ein Tor vor, durch das die Via Domitia führte. Die Porte Auguste gehörte zur Umfassungsmauer von Nemausus, errichtet an der Wende unserer Zeitrechnung. Eine Inschrift, heute verschwunden, aber aus alten Aufzeichnungen bekannt, verband dieses Bauwerk mit dem Kaiser Augustus. Vier Durchgänge durchbrechen das Monument noch immer: die beiden breiteren dienten den Fahrzeugen, die schmaleren den Fußgängern.
+
+Diese Anlage markierte nicht nur eine Verteidigung. Sie organisierte den Verkehrsfluss und inszenierte den Eintritt in eine bedeutende römische Stadt. Schau dir die Ansätze runder Türme an den Seiten an. Betrachte dann die heutige Straße, die diesen Bereich durchquert: fast zweitausend Jahre später bleibt die Logik des Durchgangs unter dem modernen Verkehr lesbar.
+
+Unser roter Faden folgt diesen Schwellen. Manche Tore stehen noch, andere sind verschwunden, leiten aber weiterhin die Straßen. Die Gärten wiederum zeigen, wie Nîmes eine antike Quelle in eine öffentliche Promenade verwandelt hat. Geh nach Südwesten über den boulevard Amiral-Courbet und die Esplanade. Du erreichst ein zweites römisches Tor, bescheidener, aber auf einer anderen wesentlichen Achse der Stadt gelegen.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-1
+@@STITLE=Porte de France
+Die Porte de France beschränkt sich heute auf eine breite Bogenöffnung, gefasst von antikem Mauerwerk. Ihre scheinbare Schlichtheit täuscht ein wenig: sie gehörte zur selben Stadtmauer wie die Porte Auguste und öffnete die Stadt nach Süden. Reste seitlicher Türme wurden festgestellt, was bestätigt, dass der Durchgang zu einer weiter ausgebauten Anlage gehörte als dem sichtbaren Bogen.
+
+Nähere dich, ohne die Absperrungen zu überschreiten. Die Steine tragen die Spuren einer langen städtischen Wiederverwendung. Nach dem Wegfall ihrer Verteidigungsfunktion wurde das Tor vom Viertel aufgenommen, von Gebäuden umgeben, dann wieder freigelegt. So erzählt es zwei Geschichten zugleich: die der römischen Stadtmauer und die einer Stadt, die auf ihren eigenen Grenzen baut.
+
+Auf dem Rückweg zu den Arènes miss den geringen Abstand, der diese Schwelle vom monumentalen Herzen trennte. Nemausus war keine unter Nîmes verborgene Abstraktion; sein Grundriss tritt weiterhin in den Straßen zutage. Umgeh das Amphitheater über den öffentlichen Raum und erreiche die esplanade Charles-de-Gaulle. Du verlässt die Tore für eine viel später angelegte Promenade, als die Stadt begann, ihre Umgebung zu öffnen und zu ordnen.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-2
+@@STITLE=Esplanade Charles-de-Gaulle
+Die Esplanade eröffnet vor dir eine Perspektive, die das alte Zentrum nur selten bietet. Sie wurde außerhalb der alten Stadtmauern angelegt und mehrfach umgestaltet. Im neunzehnten Jahrhundert verstärkt die Ankunft der Eisenbahn diese Achse: vom Bahnhof aus betritt der Reisende Nîmes durch eine Folge offener Räume, die zu den Arènes und zum Herzen der Stadt führt.
+
+In der Mitte versammelt der fontaine Pradier allegorische Marmorfiguren. 1851 eingeweiht, stellt er Nîmes inmitten von Darstellungen der zu seinem Gebiet gehörenden Wasserläufe dar. Beachte, wie das Denkmal eher als Angelpunkt denn als Barriere dient. Die Alleen führen um es herum und lenken den Blick auf die Fassaden, den Bahnhof und das Amphitheater.
+
+Diese Esplanade bildet ein Tor ohne Mauer: eine Schwelle, komponiert aus Perspektive, Bepflanzung und Verkehr. Sie offenbart eine neue Art, die Stadt zu gestalten, gegründet auf Empfang und öffentlicher Promenade. Erreiche nun die Maison Carrée, indem du den Boulevards und dann der rue de l'Horloge folgst. Du wirst die Antike wiederfinden, aber in einem Raum, den die jüngeren Jahrhunderte bewusst freigelegt haben, um ihr wieder Präsenz zu verleihen.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-3
+@@STITLE=Maison Carrée
+Die Maison Carrée erhebt sich auf einem hohen Podium, gegenüber dem ehemaligen Carré d'Art. Dieser römische Tempel vom Beginn unserer Zeitrechnung gehörte zum Forum von Nemausus. Er war den Prinzen Gaius und Lucius Caesar gewidmet, Enkeln und Adoptiverben des Augustus. Seine außergewöhnliche Erhaltung verdankt sich teilweise seinen zahlreichen Nutzungen nach der Antike: Wohnhaus, Kirche, Versammlungsort, Archivlager.
+
+Betrachte die freistehenden Säulen des Portikus, dann jene, die noch in die Seitenmauern eingebunden sind. Das Gebäude beherrscht den Raum durch seine Fassade und seine Frontaltreppe. Man betrat es nicht von allen Seiten: die Architektur schreibt eine Richtung vor, fast eine Zeremonie der Schwelle. Der heutige Platz wurde neu gestaltet, um diese Geste lesbarer zu machen und einen Dialog zwischen dem Tempel und der ihm gegenüberliegenden zeitgenössischen Architektur herzustellen.
+
+Geh weiter über die rue Racine und dann den quai de la Fontaine. Das Wasser wird nun deine Schritte lenken. Es führt zu einem Garten aus dem achtzehnten Jahrhundert, angelegt um ein viel älteres Heiligtum. Dort begnügt sich Nîmes nicht mehr damit, ein Denkmal zu bewahren: es verwandelt eine ganze archäologische Landschaft in eine Promenade.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-4
+@@STITLE=Jardins de la Fontaine
+Die Jardins de la Fontaine wurden im achtzehnten Jahrhundert um die Quelle herum angelegt, die der Stadt ihren Ursprung gab. Die Arbeiten, geleitet von Jacques-Philippe Mareschal, legen antike Überreste frei und binden sie ein. Becken, Balustraden, Treppen und Ausrichtungen bilden so einen regelmäßigen Garten, in dem Wasser und Archäologie dieselbe Bühne teilen.
+
+Am Rand des Beckens such nach dem antiken Nymphäum und dem Tempel, den man traditionell temple de Diane nennt. Seine genaue Funktion bleibt umstritten; man sollte diese Ungewissheit besser stehen lassen, als ihr eine Geschichte anzudichten. Sicher ist die Bedeutung des Quellheiligtums im römischen Nemausus. Die moderne Promenade wurde um diese verborgene Erinnerung herum errichtet.
+
+Steig dann allmählich zum oberen Teil des Gartens hinauf. Die Wege werden gewundener, und das Gefälle löst die Symmetrie ab. Dieser Übergang vom Becken zum Hügel fasst unseren Weg zusammen: Wasser, Tore und Denkmäler bestimmen Richtungen, die jede Epoche neu deutet. Folge den öffentlichen Wegen bis zum Tour Magne. Seine Silhouette überragte schon die römische Stadtmauer; er wird unser letzter Bezugspunkt und unser Gesamtblick sein.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-5
+@@STITLE=Tour Magne
+Der Tour Magne nimmt den höchsten Punkt des mont Cavalier ein. Die Römer umhüllten und vergrößerten einen älteren, vermutlich gallischen Turm, um ihn in die augusteische Stadtmauer einzubinden. Seine Masse signalisierte Nemausus schon von Weitem und überwachte die Zufahrtswege. Auch ohne seinen oberen Teil bewahrt er diese Kraft als Wahrzeichen.
+
+Kehr von der öffentlichen Umgebung aus gedanklich zum Beginn des Spaziergangs zurück. Die Porte Auguste kontrollierte die Via Domitia; die Porte de France öffnete sich nach Süden; die moderne Esplanade empfing die mit dem Zug angereisten Reisenden. Weiter unten erinnert die Quelle der Jardins daran, dass sich die Stadt zuerst um das Wasser herum niederließ. Die Schwellen von Nîmes sind also nicht nur Bögen. Es sind aufeinanderfolgende Weisen, einzutreten, sich zu bewegen und sich zu verorten.
+
+Die Höhe verbindet schließlich diese Fragmente. Sie zeigt eine römische Stadt, die zur zeitgenössischen Stadt wurde, ohne ihre alten Linien vollständig auszulöschen. Wenn du wieder hinabsteigst, beobachte, wie jede Straße kurz den Turm, einen Garten oder eine Fassade rahmt. Du wirst diese unsichtbaren Tore erkennen können. Danke, dass du diesem städtischen Entwurf mit mir gefolgt bist. Bis bald zu einem anderen Spaziergang.
+
+@@LANG=it
+@@TITLE=Nîmes — Porte e giardini
+@@DESC=Storia urbana — seguire le antiche soglie e le passeggiate che hanno ricomposto la città.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-0
+@@STITLE=Porte Auguste
+Davanti a questi blocchi di pietra chiara, immagina una porta attraversata dalla via Domizia. La Porte Auguste apparteneva alla cinta muraria di Nemausus, eretta a cavallo della nostra era. Un'iscrizione, oggi scomparsa ma nota da rilievi antichi, associava questa costruzione all'imperatore Augusto. Quattro passaggi bucano ancora il monumento: i due più larghi servivano ai veicoli, i più stretti ai pedoni.
+
+Questo dispositivo non segnava solo una difesa. Organizzava i flussi e metteva in scena l'ingresso in un'importante città romana. Guarda gli attacchi delle torri rotonde ai lati. Poi osserva la via attuale che attraversa il settore: quasi duemila anni dopo, la logica del passaggio resta leggibile sotto il traffico moderno.
+
+Il nostro filo conduttore seguirà queste soglie. Alcune porte sono ancora in piedi, altre sono scomparse ma continuano a guidare le strade. I giardini, dal canto loro, mostreranno come Nîmes abbia trasformato una sorgente antica in una passeggiata pubblica. Dirigiti verso sud-ovest lungo il boulevard Amiral-Courbet e l'esplanade. Raggiungerai una seconda porta romana, più modesta, ma posta su un altro asse essenziale della città.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-1
+@@STITLE=Porte de France
+La Porte de France si riduce oggi a un'ampia apertura ad arco, incorniciata da muratura antica. La sua apparente semplicità inganna un po': faceva parte della stessa cinta muraria della Porte Auguste e apriva la città verso sud. Sono stati individuati resti di torri laterali, a conferma che il passaggio apparteneva a un complesso più sviluppato dell'arco visibile.
+
+Avvicinati senza oltrepassare le protezioni. Le pietre portano i segni di un lungo riutilizzo urbano. Dopo la scomparsa della sua funzione difensiva, la porta fu assorbita dal quartiere, circondata da edifici, poi liberata. Racconta così due storie insieme: quella della cinta muraria romana e quella di una città che costruisce sui propri limiti.
+
+Tornando verso le Arènes, misura la breve distanza che separava questa soglia dal cuore monumentale. Nemausus non era un'astrazione sepolta sotto Nîmes; la sua pianta continua ad affiorare nelle strade. Costeggia l'anfiteatro attraverso lo spazio pubblico e raggiungi l'esplanade Charles-de-Gaulle. Lascerai le porte per una passeggiata creata molto più tardi, quando la città inizia ad aprire e ordinare i suoi dintorni.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-2
+@@STITLE=Esplanade Charles-de-Gaulle
+L'esplanade apre davanti a te una prospettiva che il centro antico offre raramente. Fu allestita fuori dalle vecchie mura e trasformata più volte. Nel diciannovesimo secolo, l'arrivo della ferrovia rafforza questo asse: dalla stazione, il viaggiatore entra a Nîmes attraverso una sequenza di spazi aperti che conduce verso le Arènes e il cuore della città.
+
+Al centro, la fontaine Pradier raccoglie figure allegoriche in marmo. Inaugurata nel 1851, colloca Nîmes tra rappresentazioni di corsi d'acqua legati al suo territorio. Osserva come il monumento funga da perno piuttosto che da barriera. I viali passano intorno ad esso e distribuiscono lo sguardo verso le facciate, la stazione e l'anfiteatro.
+
+Questa esplanade costituisce una porta senza muro: una soglia composta dalla prospettiva, dalle piantumazioni e dalla circolazione. Rivela un nuovo modo di costruire la città, fondato sull'accoglienza e sulla passeggiata pubblica. Raggiungi ora la Maison Carrée seguendo i viali e poi la rue de l'Horloge. Ritroverai l'Antichità, ma in uno spazio che i secoli recenti hanno volutamente liberato per restituirle presenza.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-3
+@@STITLE=Maison Carrée
+La Maison Carrée si erge su un podio rialzato, di fronte all'antico Carré d'Art. Questo tempio romano dell'inizio della nostra era apparteneva al foro di Nemausus. Era dedicato ai principi Gaio e Lucio Cesare, nipoti ed eredi adottivi di Augusto. La sua conservazione eccezionale è dovuta in parte ai suoi numerosi usi dopo l'Antichità: abitazione, chiesa, luogo di riunione, deposito di archivi.
+
+Guarda le colonne libere del portico, poi quelle che restano incorporate nei muri laterali. L'edificio domina lo spazio con la sua facciata e la sua scalinata frontale. Non vi si entrava da ogni lato: l'architettura impone una direzione, quasi una cerimonia della soglia. La piazza attuale è stata ricomposta per rendere più leggibile questo gesto e stabilire un dialogo tra il tempio e l'architettura contemporanea che gli sta di fronte.
+
+Prosegui per la rue Racine e poi il quai de la Fontaine. L'acqua guiderà ormai i tuoi passi. Conduce a un giardino del diciottesimo secolo allestito intorno a un santuario molto più antico. Lì, Nîmes non si limita più a preservare un monumento: trasforma un intero paesaggio archeologico in una passeggiata.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-4
+@@STITLE=Jardins de la Fontaine
+I Jardins de la Fontaine furono allestiti nel diciottesimo secolo intorno alla sorgente che diede origine alla città. I lavori, diretti da Jacques-Philippe Mareschal, portano alla luce e integrano resti antichi. Vasche, balaustre, scalinate e allineamenti compongono così un giardino regolare dove l'acqua e l'archeologia condividono la stessa scena.
+
+Sul bordo della vasca, cerca il ninfeo antico e il tempio che si chiama, per tradizione, temple de Diane. La sua funzione esatta resta discussa; è meglio accettare questa incertezza che inventarle una storia. Ciò che è certo è l'importanza del santuario della sorgente nella Nemausus romana. La passeggiata moderna si è costruita intorno a questa memoria sepolta.
+
+Sali poi progressivamente verso la parte alta del giardino. I viali diventano più sinuosi e la pendenza sostituisce la simmetria. Questo passaggio dalla vasca alla collina riassume il nostro percorso: l'acqua, le porte e i monumenti determinano direzioni che ogni epoca reinterpreta. Segui i sentieri pubblici fino alla Tour Magne. La sua sagoma dominava già la cinta muraria romana; sarà il nostro ultimo punto di riferimento e la nostra vista d'insieme.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-5
+@@STITLE=Tour Magne
+La Tour Magne occupa il punto più alto del mont Cavalier. I Romani avvolsero e ingrandirono una torre più antica, probabilmente gallica, per integrarla nella cinta muraria augustea. La sua mole segnalava Nemausus da lontano e sorvegliava le vie d'accesso. Anche privata della sua parte superiore, conserva questo potere di riferimento.
+
+Dagli spazi pubblici circostanti, torna mentalmente all'inizio della passeggiata. La Porte Auguste controllava la via Domizia; la Porte de France apriva verso sud; l'esplanade moderna accoglieva i viaggiatori arrivati in treno. Più in basso, la sorgente dei Jardins ricorda che la città si stabilì prima intorno all'acqua. Le soglie di Nîmes non sono dunque solo archi. Sono modi successivi di entrare, circolare e situarsi.
+
+L'altezza collega infine questi frammenti. Mostra una città romana diventata città contemporanea senza cancellare del tutto le sue linee antiche. Quando ridiscenderai, osserva come ogni strada inquadri brevemente la torre, un giardino o una facciata. Saprai riconoscere queste porte invisibili. Grazie per aver seguito con me questo disegno urbano. A presto per un'altra passeggiata.
+
+@@LANG=nl
+@@TITLE=Nîmes — Poorten en tuinen
+@@DESC=Stadsgeschiedenis — de antieke drempels en wandelpromenades volgen die de stad hebben hervormd.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-0
+@@STITLE=Porte Auguste
+Stel je voor deze lichte stenen blokken een poort voor, doorkruist door de Via Domitia. De Porte Auguste behoorde tot de omwalling van Nemausus, opgericht bij het begin van onze jaartelling. Een inscriptie, nu verdwenen maar bekend uit oude opmetingen, verbond deze constructie met keizer Augustus. Vier doorgangen doorboren het monument nog steeds: de twee bredere dienden voor voertuigen, de smallere voor voetgangers.
+
+Deze inrichting markeerde niet alleen een verdediging. Ze organiseerde de doorstroming en ensceneerde de toegang tot een belangrijke Romeinse stad. Kijk naar de aanzetten van ronde torens aan de zijkanten. Bekijk dan de huidige straat die dit gebied doorkruist: bijna tweeduizend jaar later blijft de logica van de doorgang leesbaar onder het moderne verkeer.
+
+Onze rode draad volgt deze drempels. Sommige poorten staan nog overeind, andere zijn verdwenen maar blijven de straten sturen. De tuinen op hun beurt tonen hoe Nîmes een antieke bron omvormde tot een openbare wandelpromenade. Ga naar het zuidwesten via de boulevard Amiral-Courbet en de esplanade. Je bereikt een tweede Romeinse poort, bescheidener, maar gelegen op een andere essentiële as van de stad.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-1
+@@STITLE=Porte de France
+De Porte de France beperkt zich vandaag tot een brede, gewelfde opening, omlijst door antiek metselwerk. Haar schijnbare eenvoud misleidt een beetje: ze maakte deel uit van dezelfde stadsmuur als de Porte Auguste en opende de stad naar het zuiden. Er zijn resten van zijtorens ontdekt, wat bevestigt dat de doorgang deel uitmaakte van een groter geheel dan de zichtbare boog.
+
+Kom dichterbij zonder de afzettingen te overschrijden. De stenen dragen de sporen van een lang stedelijk hergebruik. Nadat ze haar verdedigingsfunctie verloor, werd de poort opgenomen in de wijk, omringd door gebouwen, en later weer vrijgemaakt. Zo vertelt ze twee verhalen tegelijk: dat van de Romeinse stadsmuur en dat van een stad die bouwt op haar eigen grenzen.
+
+Meet, terwijl je teruggaat naar de Arènes, de geringe afstand die deze drempel scheidde van het monumentale hart. Nemausus was geen abstractie, begraven onder Nîmes; haar plattegrond blijft aan de oppervlakte komen in de straten. Loop om het amfitheater heen via de openbare ruimte en bereik de esplanade Charles-de-Gaulle. Je verlaat de poorten voor een wandelpromenade die veel later werd aangelegd, toen de stad haar omgeving begon te openen en te ordenen.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-2
+@@STITLE=Esplanade Charles-de-Gaulle
+De esplanade opent voor je een vergezicht dat het oude centrum zelden biedt. Ze werd aangelegd buiten de oude stadsmuren en meermaals omgevormd. In de negentiende eeuw versterkt de komst van de spoorweg deze as: vanaf het station komt de reiziger Nîmes binnen via een opeenvolging van open ruimtes die naar de Arènes en het hart van de stad leidt.
+
+In het midden verzamelt de fontaine Pradier allegorische marmeren figuren. Ingehuldigd in 1851, plaatst ze Nîmes te midden van voorstellingen van waterlopen die verbonden zijn met haar grondgebied. Let op hoe het monument eerder als spil dan als barrière dient. De lanen lopen eromheen en leiden de blik naar de gevels, het station en het amfitheater.
+
+Deze esplanade vormt een poort zonder muur: een drempel opgebouwd uit perspectief, beplanting en verkeer. Ze onthult een nieuwe manier om de stad te maken, gebaseerd op ontvangst en openbare wandelpromenade. Ga nu naar de Maison Carrée via de boulevards en vervolgens de rue de l'Horloge. Je vindt de oudheid terug, maar in een ruimte die de recente eeuwen doelbewust hebben vrijgemaakt om haar weer aanwezigheid te geven.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-3
+@@STITLE=Maison Carrée
+De Maison Carrée verheft zich op een verhoogd podium, tegenover het voormalige Carré d'Art. Deze Romeinse tempel uit het begin van onze jaartelling behoorde tot het forum van Nemausus. Ze was gewijd aan de prinsen Gaius en Lucius Caesar, kleinzonen en geadopteerde erfgenamen van Augustus. Haar uitzonderlijke bewaring is deels te danken aan haar talrijke gebruiken na de oudheid: woning, kerk, vergaderplaats, archiefdepot.
+
+Bekijk de vrijstaande zuilen van het portiek, en dan degene die nog in de zijmuren zijn opgenomen. Het gebouw beheerst de ruimte door zijn gevel en zijn frontale trap. Men ging er niet van alle kanten binnen: de architectuur legt een richting op, bijna een ceremonie van de drempel. Het huidige plein werd heringericht om dit gebaar leesbaarder te maken en een dialoog tot stand te brengen tussen de tempel en de hedendaagse architectuur die ertegenover ligt.
+
+Vervolg via de rue Racine en dan de quai de la Fontaine. Het water zal voortaan je stappen leiden. Het leidt naar een achttiende-eeuwse tuin, aangelegd rond een veel ouder heiligdom. Daar stelt Nîmes zich niet langer tevreden met het bewaren van een monument: ze verandert een heel archeologisch landschap in een wandelpromenade.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-4
+@@STITLE=Jardins de la Fontaine
+De Jardins de la Fontaine werden in de achttiende eeuw aangelegd rond de bron die de stad haar oorsprong gaf. De werken, geleid door Jacques-Philippe Mareschal, brengen antieke resten aan het licht en integreren ze. Bassins, balustrades, trappen en rooilijnen vormen zo een formele tuin waarin water en archeologie hetzelfde toneel delen.
+
+Zoek aan de rand van het bassin naar het antieke nymphaeum en de tempel die traditioneel temple de Diane wordt genoemd. Haar exacte functie blijft omstreden; het is beter die onzekerheid te aanvaarden dan er een verhaal bij te verzinnen. Wat wel zeker is, is het belang van het bronheiligdom in het Romeinse Nemausus. De moderne wandelpromenade werd rond deze begraven herinnering gebouwd.
+
+Klim daarna geleidelijk naar het hoger gelegen deel van de tuin. De paden worden kronkeliger en de helling vervangt de symmetrie. Deze overgang van het bassin naar de heuvel vat onze route samen: water, poorten en monumenten bepalen richtingen die elke periode opnieuw interpreteert. Volg de openbare paden tot de Tour Magne. Haar silhouet domineerde reeds de Romeinse stadsmuur; ze wordt ons laatste oriëntatiepunt en ons totaaloverzicht.
+
+@@SCENE=seed-100-nimes-portes-et-jardins-scene-5
+@@STITLE=Tour Magne
+De Tour Magne bezet het hoogste punt van de mont Cavalier. De Romeinen omhulden en vergrootten een oudere toren, waarschijnlijk Gallisch, om hem op te nemen in de Augusteïsche stadsmuur. Zijn massa signaleerde Nemausus van ver en bewaakte de toegangswegen. Zelfs zonder zijn bovenste deel behoudt hij die kracht als oriëntatiepunt.
+
+Keer vanuit de openbare omgeving mentaal terug naar het begin van de wandeling. De Porte Auguste controleerde de Via Domitia; de Porte de France opende naar het zuiden; de moderne esplanade ontving de reizigers die per trein aankwamen. Verderop naar beneden herinnert de bron van de Jardins eraan dat de stad zich eerst rond het water vestigde. De drempels van Nîmes zijn dus niet alleen bogen. Het zijn opeenvolgende manieren om binnen te komen, zich te verplaatsen en zich te situeren.
+
+De hoogte verbindt ten slotte deze fragmenten. Ze toont een Romeinse stad die een hedendaagse stad werd zonder haar oude lijnen volledig uit te wissen. Wanneer je weer afdaalt, kijk dan hoe elke straat kort de toren, een tuin of een gevel omlijst. Je zult deze onzichtbare poorten leren herkennen. Dank je dat je deze stedelijke tekening met mij hebt gevolgd. Tot snel voor een andere wandeling.

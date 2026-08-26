@@ -1,0 +1,141 @@
+{
+  "tourId": "seed-100-strasbourg-capitale-de-noel",
+  "sessionId": "seed-100-strasbourg-capitale-de-noel-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Strasbourg",
+  "title": "Strasbourg — Capitale de Noël",
+  "description": "Spécialité — Christkindelsmärik, 1570 : le plus vieux marché de Noël de France, et la ville qui a donné au monde son sapin décoré.",
+  "themes": [
+    "Spécialité — Christkindelsmärik, 1570 : le plus vieux marché de Noël de France, et la ville qui a donné au monde son sapin décoré."
+  ],
+  "baseLanguage": "fr",
+  "chars": 11119,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Specialità, Christkindelsmárik, 1570: il più antico mercatino di Natale in Francia e la città che ha dato al mondo il suo albero decorato.",
+    "de": "Spezialität, Christkindelsmärik, 1570: der älteste Weihnachtsmarkt Frankreichs und die Stadt, die der Welt ihren dekorierten Baum gab.",
+    "en": "Speciality, Christkindelsmärik, 1570: the oldest Christmas market in France, and the city that gave the world its decorated tree.",
+    "es": "Especialidad, Christkindelsmärik, 1570: el mercado de Navidad más antiguo de Francia, y la ciudad que dio al mundo su árbol decorado."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-strasbourg-capitale-de-noel-scene-0",
+      "index": 0,
+      "title": "Place de la Cathédrale",
+      "text": "Place-toi au milieu du parvis, dos à la grande façade rose. Elle a ses propres secrets ; ce n'est pas pour eux que je viens te chercher. Regarde plutôt le sol. Cette place, et la cour derrière le chevet — le Fronhof, aujourd'hui place du Château : c'est ici que tout a commencé. Ici que le Noël du monde entier a pris la forme que tu lui connais.\r\n\r\nRemonte au Moyen Âge. Chaque début décembre, Strasbourg tient son Klausemärik, le marché de la Saint-Nicolas. On y achète les jouets que le grand saint barbu déposera le 6 décembre. C'est le rendez-vous de l'année.\r\n\r\nPuis la Réforme passe. La ville l'adopte en 1525, et les pasteurs regardent de travers ce saint qui distribue les cadeaux à la place du Christ. En 1570, dans la cathédrale devenue temple protestant, un prédicateur nommé Johannes Flinner monte en chaire et tape du poing : offrir au nom d'un saint, dit-il, c'est du papisme. Le donateur, ce doit être l'Enfant Jésus.\r\n\r\nLe sermon fait mouche. Le 4 décembre 1570, le Conseil des XXI — les patrons de la ville — tranche. La Saint-Nicolas est supprimée. Mais les marchands gardent leur marché : on le décale de quelques jours, et on le rebaptise du nom de l'enfant. Christkindelsmärik. Le marché de l'Enfant Christ. Les cadeaux, eux, glissent au soir du 24.\r\n\r\nLe plus vieux marché de Noël de France est né d'une querelle de théologiens. Et il ne s'est jamais arrêté depuis.\r\n\r\nVoilà ma promesse : comment cette ville a détrôné un saint, adopté un arbre dont personne ne voulait, et fini par offrir son Noël à la planète.\r\n\r\nDescends vers l'eau, plein sud. Je te retrouve au bord de l'Ill, dans six minutes.",
+      "hash": "73d176d5",
+      "chars": 1621,
+      "existingSegments": {
+        "de": "seed-100-strasbourg-capitale-de-noel-scene-0-seg-de",
+        "es": "seed-100-strasbourg-capitale-de-noel-scene-0-seg-es",
+        "en": "seed-100-strasbourg-capitale-de-noel-scene-0-seg-en",
+        "it": "seed-100-strasbourg-capitale-de-noel-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-strasbourg-capitale-de-noel-scene-1",
+      "index": 1,
+      "title": "Quai Saint-Nicolas",
+      "text": "Te voilà quai Saint-Nicolas. Le nom ne s'invente pas. Derrière ces vieilles façades se cache le musée Alsacien, où l'on a sauvé les intérieurs de l'Alsace d'autrefois. C'est là que dorment les visages de Noël.\r\n\r\nOn a détrôné saint Nicolas, tu te souviens. Mais on ne détrône pas si facilement. Le 6 décembre, l'Alsace fête toujours le vieil évêque. Dans les images anciennes, il avance en habit épiscopal, crosse en main, accompagné de trois enfants qu'une légende raconte revenus à la vie. La Réforme a déplacé sa place dans le calendrier, sans effacer son visage de la mémoire locale.\n\r\nÀ sa place, la Réforme a inventé le Christkindel : une jeune fille voilée de blanc, couronnée de bougies, l'Enfant Christ devenu lumière. Elle entre dans les maisons, elle donne.\r\n\r\nMais elle ne vient jamais seule. Derrière elle traîne Hans Trapp : manteau sombre, barbe hirsute, fagot de verges. On raconte qu'il fut un vrai chevalier — Hans von Trotha, seigneur redouté d'un château du nord de l'Alsace, mort en 1503. Les siècles en ont fait le croquemitaine des enfants alsaciens. Son nom claque comme son pas : trappen, marcher lourdement.\r\n\r\nUne fée qui récompense, un monstre qui punit. Tout était réglé dès le XVIe siècle.\r\n\r\nLonge le quai vers l'ouest, puis remonte vers la grande église rose. Cinq minutes. On va parler de l'arbre.",
+      "hash": "63ade3a8",
+      "chars": 1330,
+      "existingSegments": {
+        "es": "seed-100-strasbourg-capitale-de-noel-scene-1-seg-es",
+        "it": "seed-100-strasbourg-capitale-de-noel-scene-1-seg-it",
+        "de": "seed-100-strasbourg-capitale-de-noel-scene-1-seg-de",
+        "en": "seed-100-strasbourg-capitale-de-noel-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-strasbourg-capitale-de-noel-scene-2",
+      "index": 2,
+      "title": "Église protestante Saint-Thomas",
+      "text": "Cette grande église rose, c'est Saint-Thomas, la cathédrale des protestants d'Alsace. Elle abrite un mausolée fameux et un maréchal encombrant — mais ce n'est pas pour eux que je t'ai fait venir. C'est pour le nom sur la porte. Thomas.\r\n\r\nParce que le sapin de Noël a une date de naissance écrite. Et elle tombe un jour de Saint-Thomas.\r\n\r\n1521. À Sélestat, à quarante-cinq kilomètres au sud, un comptable municipal note une dépense minuscule : quatre schillings aux gardes forestiers, pour surveiller les arbres à partir de la Saint-Thomas, le 21 décembre. Traduis avec moi. Les habitants filaient tellement couper des sapins dans la forêt communale qu'il fallait payer des hommes pour les en empêcher. Le registre ne décrit pas la coutume : il la surveille. C'est mieux encore — la preuve qu'elle existait déjà, et qu'elle était populaire.\r\n\r\nCe registre existe toujours, à Sélestat. C'est la plus ancienne mention écrite connue de l'arbre de Noël.\r\n\r\nAlors soyons honnêtes. Strasbourg n'a pas inventé le sapin. Sélestat a le papier. Fribourg-en-Brisgau revendique un arbre décoré dès 1419, chez des boulangers. Riga, Tallinn et Brême se disputent aussi le berceau. Personne ne tranchera jamais.\r\n\r\nCe que Strasbourg a inventé, c'est autre chose. Et ça se joue à cinq minutes d'ici, dans les salons.\r\n\r\nRemonte au nord-est, jusqu'à la place où un homme de bronze tend une page.",
+      "hash": "259ae5e7",
+      "chars": 1379,
+      "existingSegments": {
+        "es": "seed-100-strasbourg-capitale-de-noel-scene-2-seg-es",
+        "en": "seed-100-strasbourg-capitale-de-noel-scene-2-seg-en",
+        "it": "seed-100-strasbourg-capitale-de-noel-scene-2-seg-it",
+        "de": "seed-100-strasbourg-capitale-de-noel-scene-2-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-strasbourg-capitale-de-noel-scene-3",
+      "index": 3,
+      "title": "Place Gutenberg",
+      "text": "Au centre de la place, un homme de bronze brandit une page imprimée : Gutenberg, qui a cherché ici le secret des caractères mobiles. Garde son idée en tête — la trace écrite. Tout ce que je te raconte ne tient qu'à ça : du papier qui a survécu.\r\n\r\nEt le papier le plus précieux de cette histoire a été noirci ici, vers 1605, par un homme dont on ignore le nom. Il vit à Strasbourg, il tient un carnet des choses remarquables qu'il observe. Et il note ceci :\r\n\r\nÀ Noël, à Strasbourg, on dresse des sapins dans les salons. On y accroche des roses découpées dans du papier de toutes les couleurs, des pommes, des hosties, de l'or en feuille, du sucre.\r\n\r\nRelis-le doucement. Des sapins. Dans les maisons. Décorés. Trois lignes — et la plus ancienne description fiable connue de l'arbre de Noël tel que tu le connais : coupé, rentré, habillé, offert aux enfants. Avant lui, l'arbre restait dehors, ou dans une église, ou dans une salle de corporation. Ici, il entre au chaud.\r\n\r\nRegarde la liste, aussi. Pommes rouges, gâteaux, papier doré, sucre. Toutes tes boules de Noël sont déjà là — en version comestible. On y reviendra.\r\n\r\nContinue vers le nord, trois minutes, jusqu'à la place du Temple-Neuf. Les pasteurs n'ont pas du tout aimé.",
+      "hash": "26b55c15",
+      "chars": 1234,
+      "existingSegments": {
+        "de": "seed-100-strasbourg-capitale-de-noel-scene-3-seg-de",
+        "it": "seed-100-strasbourg-capitale-de-noel-scene-3-seg-it",
+        "es": "seed-100-strasbourg-capitale-de-noel-scene-3-seg-es",
+        "en": "seed-100-strasbourg-capitale-de-noel-scene-3-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-strasbourg-capitale-de-noel-scene-4",
+      "index": 4,
+      "title": "Place du Temple-Neuf",
+      "text": "Cette place tranquille porte le Temple-Neuf, rebâti après un incendie qui coûta à la ville sa bibliothèque — une autre histoire, un autre jour. Ce qui m'amène ici, c'est ce qu'on entendait alors du haut des chaires protestantes de Strasbourg. Et un homme qui s'est vraiment fâché.\r\n\r\nIl s'appelle Johann Conrad Dannhauer. Théologien luthérien, professeur, prédicateur vedette du XVIIe siècle — il prêche à la cathédrale, et tout Strasbourg vient l'écouter. Un poids lourd. À partir de 1642, il publie ses sermons sous un titre magnifique : le Lait du catéchisme. La doctrine servie tiède, comme à des enfants. Et au détour d'un volume, il explose.\r\n\r\nParmi les futilités, écrit-il, avec lesquelles on célèbre le temps de Noël plus qu'avec la parole de Dieu, il y a aussi le sapin qu'on dresse à la maison. Il énumère, écœuré : les roses de papier, les pommes, les hosties, l'or, le sucre. Exactement la liste de 1605. Puis il tranche : mieux vaudrait montrer aux enfants le vrai cèdre, le cèdre spirituel — le Christ.\r\n\r\nC'est la plus vieille engueulade connue contre le sapin de Noël. Un pasteur furieux qui te confirme, sans le vouloir, qu'une génération plus tard la coutume avait pris.\r\n\r\nL'Église a résisté deux siècles. Elle a perdu. Le sapin, lui, t'attend à trois minutes.",
+      "hash": "a5df7be3",
+      "chars": 1280,
+      "existingSegments": {
+        "de": "seed-100-strasbourg-capitale-de-noel-scene-4-seg-de",
+        "it": "seed-100-strasbourg-capitale-de-noel-scene-4-seg-it",
+        "en": "seed-100-strasbourg-capitale-de-noel-scene-4-seg-en",
+        "es": "seed-100-strasbourg-capitale-de-noel-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-strasbourg-capitale-de-noel-scene-5",
+      "index": 5,
+      "title": "Place Kléber",
+      "text": "Te voilà place Kléber, la plus grande place de la ville. Un général de bronze au milieu — il dort plus près de toi que tu ne crois, mais c'est une autre balade. Chaque hiver, à côté de lui, on dresse le Grand Sapin : jusqu'à trente mètres, choisi dans les Vosges, hissé à la grue. Hors saison, tu ne verras qu'une place vide. Regarde-la quand même, et écoute.\r\n\r\nCe Grand Sapin-là est un jeune homme : le premier date de 1994, sur une idée d'un club-service local, quand la place venait de passer aux piétons. Quatre siècles après le carnet de 1605, la ville a mis son arbre au milieu de son salon.\r\n\r\nEt ses boules ? Un accident. On raconte que 1858 fut si sèche dans les Vosges du Nord qu'il n'y eut pas de pommes à accrocher aux branches. Un souffleur de Goetzenbruck, village verrier voisin de Meisenthal, aurait soufflé des boules de verre pour remplacer les fruits manquants.\r\n\r\nCe qui est sûr : la verrerie de Goetzenbruck en produit à partir de 1858, par centaines de milliers, jusqu'à ce que le plastique la tue dans les années soixante. À Meisenthal, on a rallumé les fours à la fin du siècle.\r\n\r\nTa boule de Noël est née d'une pomme qui manquait.\r\n\r\nRemonte au nord, trois minutes. Une église t'attend, coupée en deux.",
+      "hash": "be1454fc",
+      "chars": 1229,
+      "existingSegments": {
+        "es": "seed-100-strasbourg-capitale-de-noel-scene-5-seg-es",
+        "de": "seed-100-strasbourg-capitale-de-noel-scene-5-seg-de",
+        "it": "seed-100-strasbourg-capitale-de-noel-scene-5-seg-it",
+        "en": "seed-100-strasbourg-capitale-de-noel-scene-5-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-strasbourg-capitale-de-noel-scene-6",
+      "index": 6,
+      "title": "Église protestante Saint-Pierre-le-Jeune",
+      "text": "Cette église-là est un cas unique. Saint-Pierre-le-Jeune, la protestante — il en existe une autre, catholique, plus loin dans les quartiers allemands ; tu vas comprendre pourquoi. Entre si tu peux : cloître roman, fresques médiévales, jubé sculpté. Et une cicatrice.\r\n\r\n1681, Louis XIV prend la ville. Dès l'année suivante, il rend le culte catholique à Saint-Pierre-le-Jeune. Sauf que les protestants sont chez eux depuis un siècle et demi, et ne partent pas. Alors on coupe. Début 1683, un mur monte derrière le jubé : le chœur aux catholiques, la nef aux protestants. Un bâtiment, deux paroisses, deux clés, un seul clocher. On appelle ça le simultaneum.\r\n\r\nÇa a duré deux cent dix ans. Jusqu'en 1893, quand les catholiques ont enfin reçu leur église, ailleurs.\r\n\r\nAlors imagine décembre, ici, pendant deux siècles. D'un côté du mur, la messe de minuit. De l'autre, le culte de Noël. Les mêmes cantiques, à quelques mètres, sans jamais se voir. Le même enfant fêté deux fois dans la même pierre.\r\n\r\nC'est le génie de cette ville : on n'y tombe pas d'accord, on s'y arrange. Et le sapin, finalement, c'est peut-être le seul objet sur lequel tout le monde a cédé. Protestants, catholiques — puis tout le monde, croyant ou pas.\r\n\r\nCinq minutes vers l'est, et on y est. La dernière place. Celle où il vit encore.",
+      "hash": "af3c5500",
+      "chars": 1311,
+      "existingSegments": {
+        "it": "seed-100-strasbourg-capitale-de-noel-scene-6-seg-it",
+        "de": "seed-100-strasbourg-capitale-de-noel-scene-6-seg-de",
+        "en": "seed-100-strasbourg-capitale-de-noel-scene-6-seg-en",
+        "es": "seed-100-strasbourg-capitale-de-noel-scene-6-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-strasbourg-capitale-de-noel-scene-7",
+      "index": 7,
+      "title": "Place Broglie",
+      "text": "Nous y voilà. Cette longue place bordée d'arbres, l'Opéra au fond : Broglie. Un chant célèbre y est né une nuit d'avril 1792 — mais c'est une autre naissance qui nous occupe.\r\n\r\nDepuis 1871, c'est ici que vit le Christkindelsmärik. Il avait commencé au pied de la cathédrale, trois jours par an. Il a déménagé place Kléber au XIXe siècle, a disparu pendant la Grande Guerre, puis est revenu. Au début des années 1990, la ville a assumé le titre : Strasbourg, Capitale de Noël. Le marché a essaimé sur une dizaine de places que tu as traversées sans le savoir.\r\n\r\nMais le vrai voyage, c'est l'arbre qui l'a fait.\r\n\r\n1837. À Paris, Hélène de Mecklembourg, belle-fille allemande de Louis-Philippe, fait dresser un sapin décoré aux Tuileries. La cour trouve ça charmant, exotique. Un caprice de château.\r\n\r\nPuis 1871. L'Alsace est annexée. Des dizaines de milliers d'Alsaciens refusent de devenir allemands, montent dans des trains, se répandent dans toute la France. Ils emportent leurs meubles, leur accent — et cette habitude bizarre de rentrer un conifère au salon le 24 décembre. En une génération, le sapin est partout. La France a hérité de son Noël d'une blessure.\r\n\r\nLa prochaine fois qu'on te dira que Strasbourg a inventé le sapin, souris. Sélestat a le plus vieux papier, Fribourg revendique, personne ne saura.\r\n\r\nStrasbourg a fait mieux qu'inventer l'arbre. Elle l'a rentré à la maison, couvert de sucre et de papier doré, mis un enfant à la place d'un saint. Et offert tout ça au monde, sans déposer de brevet.\r\n\r\nReviens en décembre, si tu peux. Mais même en juillet, sous ces arbres, tu es sur la plus vieille place de Noël de France. Merci d'avoir marché avec moi. Et joyeux Noël — quel que soit le mois où tu écoutes ça.",
+      "hash": "b58c2334",
+      "chars": 1735,
+      "existingSegments": {
+        "it": "seed-100-strasbourg-capitale-de-noel-scene-7-seg-it",
+        "en": "seed-100-strasbourg-capitale-de-noel-scene-7-seg-en",
+        "de": "seed-100-strasbourg-capitale-de-noel-scene-7-seg-de",
+        "es": "seed-100-strasbourg-capitale-de-noel-scene-7-seg-es"
+      }
+    }
+  ]
+}

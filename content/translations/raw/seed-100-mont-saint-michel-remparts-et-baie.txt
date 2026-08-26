@@ -1,0 +1,259 @@
+@@LANG=en
+@@TITLE=Mont-Saint-Michel — Ramparts and Bay
+@@DESC=Landscape — understanding the dialogue between the rock, its defenses, and the vastness of the bay.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-0
+@@STITLE=Pont-passerelle
+Walk out onto the footbridge, keeping the traffic lanes clear. The Mont looks as if it's been set down at the end of a thin line. This access, opened in the 21st century, replaced the old causeway-road that had encouraged sediment buildup. Along with the dam built on the Couesnon, it's part of a project meant to more often give the rock back its maritime character.
+
+Look at the different levels of the landscape. The footbridge stays above ordinary water levels, while certain tides cover the surroundings and visually isolate the Mont. The salt marshes, channels, and sandbanks change with the hour and the seasons. Never leave the developed access path: the bay demands precise knowledge of its currents and its sands.
+
+Our route will follow the rising defenses, from this completely open approach to the rampart walk. The further you go, the more the walls will fill your view. Reach the porte de l'Avancée at the foot of the village. Notice how the route suddenly narrows: the vast horizon turns into a controlled passage.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-1
+@@STITLE=Porte de l'Avancée
+The porte de l'Avancée forms the first fortified access to the Mont. It opens onto a courtyard where an old guardhouse stands. The passage offers no straight line of sight into the interior: the successive gates and changes of direction slow the entry. This design forced any newcomer to present themselves under the watch of the defenders.
+
+Before crossing the threshold, turn back toward the bay. Within a few meters, you go from a space with no visible edge to a stone architecture that measures every movement. The contrast sums up the strength of the site. The rock isn't a fortress simply placed in front of the landscape; its walls exploit exactly the slope, the tides, and the narrowness of the access points.
+
+Continue on to the porte du Roi along the public walkway. You'll come across a new defensive line, associated with a drawbridge and a guardroom. Look at the grooves, the arches, and the closing mechanisms. Each layer adds a difficulty, without needing a long wall on flat ground.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-2
+@@STITLE=Porte du Roy
+The porte du Roi commands the entrance to the Grande Rue. Its vaulted passage sits beneath a building and preserves the elements of a former drawbridge mechanism. The tide naturally protected part of the rock, but the land access required several closely spaced obstacles. Here, the defense relies on depth: crossing one gate is never the last step.
+
+Notice the relationship with the street. Behind the threshold, the road climbs immediately between narrow houses. It would be difficult to advance there in large numbers or to keep a clear line of sight. The terrain thus becomes an ally of the walls. The inhabited town and the fortification blend together without a clear separation.
+
+Take the public access to the ramparts and reach the area of the tour du Nord. The climb can be steep and the steps uneven; move without rushing. As you climb, the rooftops pass beneath your gaze and the bay reappears. The next stop will show how the rampart walk combines military surveillance with a panoramic reading of the landscape.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-3
+@@STITLE=Tour du Nord
+The tour du Nord projects out along the line of the ramparts and offers a sweeping view over the bay. Built into the Mont's medieval defensive system, it allowed control over an area that the tides made alternately accessible and impassable. Its rounded shape limits blind spots and follows the outline of the rock.
+
+From the rampart walk, spot the channels if the light reveals them. They don't stay fixed: the water gradually shifts their curves. An army therefore had to face a changing terrain even before reaching the wall. During the Hundred Years' War, the Mont withstood English attacks and kept a strong symbolic value.
+
+Continue along the ramparts to the area of the Grand Degré. Stay on the public parapets and respect any closures. The path will draw closer to the abbey buildings, whose mass seems to extend the natural slope. You'll see how the builders stacked halls, buttresses, and terraces for lack of level ground.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-4
+@@STITLE=Grand Degré
+The Grand Degré is the monumental staircase leading up to the abbey. From its foot or its freely accessible surroundings, look up at the stacked buildings. The sanctuary occupies the summit of the rock, while the monastic buildings rest against its flanks. To the north, the complex known as la Merveille stacks together, among other things, reception spaces, communal halls, and a cloister.
+
+This verticality isn't just a dramatic effect. The lack of land forces construction by levels, transferring loads through powerful walls and buttresses. The defense benefits from the same terrain: the higher you climb, the narrower and more controllable the approaches become.
+
+Then head back down along the public paths toward the western side and the tour Gabriel. Stay alert to the steps, the crossings, and the opening hours of the access points. The last stop will bring you back to the lower level of the rock. After looking at the bay from the ramparts, you'll observe an artillery tower placed almost right at the water's edge.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-5
+@@STITLE=Tour Gabriel
+The tour Gabriel was built in the 16th century to strengthen the western side of the Mont against the growing power of artillery. Its massive, rounded shape allowed for the installation of guns capable of covering the low approaches. It bears the name of the king's lieutenant, Gabriel du Puy, associated with its construction.
+
+Look at its position relative to the upper walls. At the start of our route, the silhouette of the Mont seemed compact and vertical. Having crossed its gates and walked its ramparts, you now see that it results from a succession of adaptations: obstacles at the entrance, flanking towers, rampart walks, buildings clinging to the slope, and an artillery structure right at the edge of the bay.
+
+The tide connects all these defenses. It changes the distances, reveals the mudflats, then gives the rock back its isolation. The walls, for their part, fix a lasting line onto this shifting landscape. Head back only by the developed access paths, without venturing onto the sands. Thank you for following the stone from the footbridge to this low tower. See you soon for another walk.
+
+@@LANG=es
+@@TITLE=Mont-Saint-Michel — Murallas y bahía
+@@DESC=Paisaje — comprender el diálogo entre la roca, sus defensas y la inmensidad de la bahía.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-0
+@@STITLE=Pont-passerelle
+Avanza por la pasarela manteniendo libres las zonas de circulación. El Mont parece posado al final de una línea fina. Este acceso, abierto en el siglo XXI, sustituyó al antiguo dique-carretera que favorecía la acumulación de sedimentos. Junto con la presa construida sobre el Couesnon, forma parte de un proyecto destinado a devolverle más a menudo a la roca su carácter marítimo.
+
+Mira los distintos niveles del paisaje. La pasarela permanece por encima de las aguas ordinarias, mientras que ciertas mareas cubren los alrededores y aíslan visualmente el Mont. Los prados salinos, los canales y los bancos de arena cambian según la hora y las estaciones. No abandones nunca el acceso acondicionado: la bahía exige un conocimiento preciso de sus corrientes y de sus arenas.
+
+Nuestro recorrido seguirá el ascenso de las defensas, desde este enfoque completamente abierto hasta el camino de ronda. Cuanto más avances, más llenarán los muros tu mirada. Llega a la porte de l'Avancée al pie del pueblo. Observa cómo el itinerario se estrecha bruscamente: el vasto horizonte se transforma en un pasaje controlado.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-1
+@@STITLE=Porte de l'Avancée
+La porte de l'Avancée forma el primer acceso fortificado del Mont. Se abre a un patio donde se encuentra un antiguo cuerpo de guardia. El paso no ofrece ninguna perspectiva recta hacia el interior: las puertas sucesivas y los cambios de dirección ralentizan la entrada. Este diseño obligaba a todo recién llegado a presentarse bajo la mirada de los defensores.
+
+Antes de cruzar el umbral, vuélvete hacia la bahía. En pocos metros, pasas de un espacio sin borde aparente a una arquitectura de piedra que mide cada movimiento. El contraste resume la fuerza del lugar. La roca no es una fortaleza colocada delante del paisaje; sus muros explotan exactamente la pendiente, las mareas y la estrechez de los accesos.
+
+Continúa hasta la porte du Roi por el camino público. Encontrarás una nueva línea defensiva, asociada a un puente levadizo y a un cuerpo de guardia. Mira las ranuras, los arcos y los dispositivos de cierre. Cada capa añade una dificultad, sin necesidad de una larga muralla en terreno llano.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-2
+@@STITLE=Porte du Roy
+La porte du Roi domina la entrada de la Grande Rue. Su pasaje abovedado se encuentra bajo un edificio y conserva los elementos de un antiguo dispositivo de puente levadizo. La marea protegía naturalmente una parte de la roca, pero el acceso terrestre exigía varios obstáculos próximos entre sí. Aquí, la defensa utiliza la profundidad: una puerta franqueada nunca es la última.
+
+Observa la relación con la calle. Detrás del umbral, la vía sube de inmediato entre casas estrechas. Sería difícil avanzar allí en gran número o conservar una vista despejada. El relieve se convierte, así, en aliado de los muros. La ciudad habitada y la fortificación se entremezclan sin separación neta.
+
+Toma el acceso público de las murallas y llega al sector de la tour du Nord. El ascenso puede ser empinado y los peldaños irregulares; avanza sin prisa. A medida que subes, los tejados pasan bajo tu mirada y la bahía reaparece. La próxima parada mostrará cómo el camino de ronda combina la vigilancia militar con una lectura panorámica del paisaje.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-3
+@@STITLE=Tour du Nord
+La tour du Nord avanza en la línea de las murallas y ofrece una vista amplia sobre la bahía. Construida dentro del sistema defensivo medieval del Mont, permitía controlar un sector que las mareas volvían alternativamente accesible e impracticable. Su forma redondeada limita los ángulos muertos y acompaña el trazado de la roca.
+
+Desde el camino de ronda, localiza los canales si la luz los revela. No permanecen fijos: el agua desplaza progresivamente sus curvas. Un ejército debía, por tanto, enfrentarse a un terreno cambiante incluso antes de alcanzar la muralla. Durante la guerra de los Cien Años, el Mont resistió los ataques ingleses y conservó un fuerte valor simbólico.
+
+Continúa por las murallas hasta el sector del Grand Degré. No abandones los parapetos públicos y respeta los posibles cierres. El camino se acercará a las construcciones abaciales, cuya masa parece prolongar la pendiente natural. Verás cómo los constructores apilaron salas, contrafuertes y terrazas por falta de espacio horizontal.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-4
+@@STITLE=Grand Degré
+El Grand Degré es la escalinata monumental que conduce hacia la abadía. Desde su pie o sus alrededores de libre acceso, levanta la vista hacia los edificios superpuestos. El santuario ocupa la cima de la roca, mientras que las construcciones monásticas se apoyan en sus laderas. Al norte, el conjunto llamado la Merveille apila, entre otras cosas, espacios de acogida, salas comunitarias y claustro.
+
+Esta verticalidad no es un simple efecto espectacular. La falta de terreno obliga a construir por niveles y a transferir las cargas mediante muros potentes y contrafuertes. La defensa se beneficia del mismo relieve: cuanto más se sube, más estrechos y controlables se vuelven los accesos.
+
+Baja luego de nuevo por las vías públicas hacia el lado occidental y la tour Gabriel. Permanece atento a los peldaños, a los cruces y a los horarios de los accesos. La última parada recuperará el nivel bajo de la roca. Tras haber mirado la bahía desde las murallas, observarás una torre de artillería colocada casi en contacto con la orilla.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-5
+@@STITLE=Tour Gabriel
+La tour Gabriel se construyó en el siglo XVI para reforzar el lado occidental del Mont frente al desarrollo de la artillería. Su forma maciza y redondeada permitía instalar piezas capaces de cubrir los accesos bajos. Lleva el nombre del lugarteniente del rey Gabriel du Puy, asociado a su construcción.
+
+Mira su posición respecto a los muros superiores. Al principio del recorrido, la silueta del Mont parecía compacta y vertical. Tras haber cruzado sus puertas y recorrido sus murallas, ves que resulta de una sucesión de adaptaciones: obstáculos en la entrada, torres de flanqueo, caminos de ronda, edificios aferrados a la pendiente y obra de artillería al ras de la bahía.
+
+La marea conecta todas estas defensas. Modifica las distancias, descubre las playas y luego devuelve a la roca su aislamiento. Las murallas, por su parte, fijan una línea duradera sobre este paisaje móvil. Vuelve únicamente por los accesos acondicionados, sin aventurarte sobre las arenas. Gracias por haber seguido la piedra desde la pasarela hasta esta torre baja. Hasta pronto, para otro paseo.
+
+@@LANG=de
+@@TITLE=Mont-Saint-Michel — Mauern und Bucht
+@@DESC=Landschaft — den Dialog zwischen dem Felsen, seinen Verteidigungsanlagen und der Weite der Bucht verstehen.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-0
+@@STITLE=Pont-passerelle
+Geh auf den Steg hinaus, und halte die Verkehrsflächen frei. Der Mont wirkt, als wäre er ans Ende einer dünnen Linie gesetzt worden. Dieser im 21. Jahrhundert eröffnete Zugang ersetzte den alten Damm-Weg, der die Sedimentanhäufung begünstigte. Zusammen mit dem am Couesnon errichteten Staudamm ist er Teil eines Projekts, das dem Felsen häufiger seinen maritimen Charakter zurückgeben soll.
+
+Schau dir die verschiedenen Ebenen der Landschaft an. Der Steg bleibt über dem gewöhnlichen Wasserstand, während bestimmte Gezeiten die Umgebung bedecken und den Mont optisch isolieren. Die Salzwiesen, Priele und Sandbänke verändern sich je nach Tageszeit und Jahreszeit. Verlass niemals den ausgebauten Zugang: die Bucht verlangt genaue Kenntnis ihrer Strömungen und ihres Sandes.
+
+Unser Weg folgt dem Aufstieg der Verteidigungsanlagen, von diesem völlig offenen Zugang bis zum Wehrgang. Je weiter du gehst, desto mehr füllen die Mauern deinen Blick. Erreiche die porte de l'Avancée am Fuß des Dorfes. Beobachte, wie sich die Route plötzlich verengt: der weite Horizont verwandelt sich in einen kontrollierten Durchgang.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-1
+@@STITLE=Porte de l'Avancée
+Die porte de l'Avancée bildet den ersten befestigten Zugang zum Mont. Sie öffnet sich zu einem Hof, in dem eine alte Wachstube steht. Der Durchgang bietet keine gerade Sichtachse ins Innere: die aufeinanderfolgenden Tore und Richtungswechsel verlangsamen den Eintritt. Diese Anordnung zwang jeden Ankommenden, sich unter den Blicken der Verteidiger zu zeigen.
+
+Dreh dich, bevor du die Schwelle überschreitest, zur Bucht um. Innerhalb weniger Meter wechselst du von einem Raum ohne sichtbaren Rand zu einer steinernen Architektur, die jede Bewegung misst. Der Kontrast fasst die Stärke des Ortes zusammen. Der Felsen ist keine Festung, die einfach vor die Landschaft gesetzt wurde; seine Mauern nutzen genau die Neigung, die Gezeiten und die Enge der Zugänge.
+
+Geh weiter zur porte du Roi über den öffentlichen Weg. Du triffst auf eine neue Verteidigungslinie, verbunden mit einer Zugbrücke und einer Wachstube. Schau dir die Führungsrillen, die Bögen und die Verschlussmechanismen an. Jede Schicht fügt eine Schwierigkeit hinzu, ohne eine lange Mauer auf flachem Gelände zu benötigen.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-2
+@@STITLE=Porte du Roy
+Die porte du Roi beherrscht den Eingang zur Grande Rue. Ihr gewölbter Durchgang liegt unter einem Gebäude und bewahrt die Elemente eines ehemaligen Zugbrückenmechanismus. Die Gezeit schützte auf natürliche Weise einen Teil des Felsens, doch der Landzugang erforderte mehrere eng aufeinanderfolgende Hindernisse. Hier setzt die Verteidigung auf Tiefe: ein durchschrittenes Tor ist nie das letzte.
+
+Beobachte die Beziehung zur Straße. Hinter der Schwelle steigt der Weg sofort zwischen engen Häusern an. Es wäre schwierig, dort in großer Zahl voranzukommen oder freie Sicht zu bewahren. Das Relief wird so zum Verbündeten der Mauern. Die bewohnte Stadt und die Befestigung vermischen sich ohne klare Trennung.
+
+Nimm den öffentlichen Zugang zu den Mauern und erreiche den Bereich des tour du Nord. Der Aufstieg kann steil sein und die Stufen unregelmäßig; geh ohne Eile. Während du hinaufsteigst, gleiten die Dächer unter deinem Blick vorbei, und die Bucht erscheint wieder. Der nächste Halt wird zeigen, wie der Wehrgang militärische Überwachung mit einer panoramischen Lesart der Landschaft verbindet.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-3
+@@STITLE=Tour du Nord
+Der tour du Nord springt aus der Linie der Mauern hervor und bietet einen weiten Blick über die Bucht. In das mittelalterliche Verteidigungssystem des Mont eingebaut, erlaubte er die Kontrolle eines Bereichs, den die Gezeiten abwechselnd zugänglich und unpassierbar machten. Seine gerundete Form begrenzt tote Winkel und folgt dem Verlauf des Felsens.
+
+Erkenne vom Wehrgang aus die Priele, wenn das Licht sie enthüllt. Sie bleiben nicht fest: das Wasser verschiebt allmählich ihre Kurven. Eine Armee musste also schon vor Erreichen der Mauer ein sich veränderndes Gelände bewältigen. Während des Hundertjährigen Krieges widerstand der Mont englischen Angriffen und behielt einen hohen symbolischen Wert.
+
+Geh weiter auf den Mauern bis zum Bereich des Grand Degré. Verlass die öffentlichen Brustwehren nicht und beachte etwaige Sperrungen. Der Weg wird sich den Abteigebäuden nähern, deren Masse die natürliche Neigung fortzusetzen scheint. Du wirst sehen, wie die Baumeister aus Mangel an ebenem Raum Säle, Strebepfeiler und Terrassen übereinandergestapelt haben.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-4
+@@STITLE=Grand Degré
+Der Grand Degré ist die monumentale Treppe, die zur Abtei hinaufführt. Von ihrem Fuß oder ihrer frei zugänglichen Umgebung aus, heb den Blick zu den übereinandergestapelten Gebäuden. Das Heiligtum nimmt den Gipfel des Felsens ein, während sich die klösterlichen Bauten an seine Flanken lehnen. Im Norden stapelt das als la Merveille bezeichnete Ensemble unter anderem Empfangsräume, Gemeinschaftssäle und einen Kreuzgang.
+
+Diese Vertikalität ist kein bloßer spektakulärer Effekt. Der Mangel an Gelände zwingt dazu, in Ebenen zu bauen und die Lasten über kräftige Mauern und Strebepfeiler abzuleiten. Die Verteidigung profitiert vom selben Relief: je höher man steigt, desto enger und kontrollierbarer werden die Zugänge.
+
+Steig anschließend über die öffentlichen Wege zur Westseite und zum tour Gabriel hinunter. Bleib aufmerksam bei den Stufen, den Kreuzungen und den Öffnungszeiten der Zugänge. Der letzte Halt bringt dich zurück auf die untere Ebene des Felsens. Nachdem du die Bucht von den Mauern aus betrachtet hast, wirst du einen Artillerieturm beobachten, der fast am Watt selbst liegt.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-5
+@@STITLE=Tour Gabriel
+Der tour Gabriel wurde im 16. Jahrhundert erbaut, um die Westseite des Mont angesichts der wachsenden Bedeutung der Artillerie zu verstärken. Seine massive, gerundete Form erlaubte die Aufstellung von Geschützen, die die niedrigen Zugänge decken konnten. Er trägt den Namen des königlichen Statthalters Gabriel du Puy, der mit seinem Bau in Verbindung steht.
+
+Schau auf seine Position im Verhältnis zu den oberen Mauern. Zu Beginn des Weges wirkte die Silhouette des Mont kompakt und vertikal. Nachdem du seine Tore durchschritten und seine Mauern begangen hast, siehst du, dass sie aus einer Abfolge von Anpassungen entsteht: Hindernisse am Eingang, Flankierungstürme, Wehrgänge, an den Hang geklammerte Gebäude und ein Artilleriebauwerk unmittelbar an der Bucht.
+
+Die Gezeit verbindet all diese Verteidigungsanlagen. Sie verändert die Entfernungen, legt die Wattflächen frei und gibt dem Felsen dann seine Isolation zurück. Die Mauern hingegen ziehen eine dauerhafte Linie durch diese bewegliche Landschaft. Kehre nur über die ausgebauten Zugänge zurück, ohne dich auf den Sand zu wagen. Danke, dass du dem Stein vom Steg bis zu diesem niedrigen Turm gefolgt bist. Bis bald für einen anderen Spaziergang.
+
+@@LANG=it
+@@TITLE=Mont-Saint-Michel — Mura e baia
+@@DESC=Paesaggio — capire il dialogo tra la roccia, le sue difese e l'immensità della baia.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-0
+@@STITLE=Pont-passerelle
+Avanza sulla passerella tenendo libere le zone di circolazione. Il Mont sembra posato in fondo a una linea sottile. Questo accesso, aperto nel XXI secolo, ha sostituito la vecchia diga-strada che favoriva l'accumulo di sedimenti. Insieme alla diga costruita sul Couesnon, partecipa al progetto destinato a restituire più spesso alla roccia il suo carattere marittimo.
+
+Guarda i diversi livelli del paesaggio. La passerella resta sopra le acque ordinarie, mentre certe maree ricoprono i dintorni e isolano visivamente il Mont. Le praterie salmastre, i canali e i banchi di sabbia cambiano secondo l'ora e le stagioni. Non lasciare mai l'accesso attrezzato: la baia richiede una conoscenza precisa delle sue correnti e delle sue sabbie.
+
+Il nostro percorso seguirà la salita delle difese, da questo approccio interamente aperto fino al cammino di ronda. Più avanzerai, più le mura riempiranno il tuo sguardo. Raggiungi la porte de l'Avancée ai piedi del villaggio. Osserva come l'itinerario si restringe bruscamente: il vasto orizzonte si trasforma in un passaggio controllato.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-1
+@@STITLE=Porte de l'Avancée
+La porte de l'Avancée forma il primo accesso fortificato del Mont. Si apre su un cortile dove si trova un antico corpo di guardia. Il passaggio non offre alcuna prospettiva diritta verso l'interno: le porte successive e i cambi di direzione rallentano l'ingresso. Questo disegno obbligava ogni arrivato a presentarsi sotto lo sguardo dei difensori.
+
+Prima di varcare la soglia, voltati verso la baia. In pochi metri, passi da uno spazio senza bordo apparente a un'architettura di pietra che misura ogni movimento. Il contrasto riassume la forza del luogo. La roccia non è una fortezza posata davanti al paesaggio; le sue mura sfruttano esattamente la pendenza, le maree e la strettezza degli accessi.
+
+Continua fino alla porte du Roi per il percorso pubblico. Incontrerai una nuova linea difensiva, associata a un ponte levatoio e a un corpo di guardia. Guarda le scanalature, gli archi e i dispositivi di chiusura. Ogni strato aggiunge una difficoltà, senza bisogno di una lunga cinta muraria su terreno piatto.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-2
+@@STITLE=Porte du Roy
+La porte du Roi domina l'ingresso della Grande Rue. Il suo passaggio a volta si trova sotto un edificio e conserva gli elementi di un antico dispositivo a ponte levatoio. La marea proteggeva naturalmente una parte della roccia, ma l'accesso terrestre richiedeva diversi ostacoli ravvicinati. Qui, la difesa sfrutta la profondità: una porta varcata non è mai l'ultima.
+
+Osserva la relazione con la strada. Dietro la soglia, la via sale subito tra case strette. Sarebbe difficile avanzarvi in gran numero o conservare una vista sgombra. Il rilievo diventa dunque un alleato delle mura. La città abitata e la fortificazione si mescolano senza una separazione netta.
+
+Prendi l'accesso pubblico delle mura e raggiungi il settore della tour du Nord. La salita può essere ripida e i gradini irregolari; avanza senza fretta. Man mano che sali, i tetti passano sotto il tuo sguardo e la baia riappare. La prossima tappa mostrerà come il cammino di ronda unisca sorveglianza militare e lettura panoramica del paesaggio.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-3
+@@STITLE=Tour du Nord
+La tour du Nord sporge sulla linea delle mura e offre una vista estesa sulla baia. Costruita nel sistema difensivo medievale del Mont, permetteva di controllare un settore che le maree rendevano volta a volta accessibile e impraticabile. La sua forma arrotondata limita gli angoli morti e accompagna il tracciato della roccia.
+
+Dal cammino di ronda, individua i canali se la luce li rivela. Non restano fissi: l'acqua sposta progressivamente le loro curve. Un esercito doveva dunque affrontare un terreno mutevole ancor prima di raggiungere la muraglia. Durante la guerra dei Cent'anni, il Mont resistette agli attacchi inglesi e conservò un forte valore simbolico.
+
+Continua sulle mura fino al settore del Grand Degré. Non lasciare i parapetti pubblici e rispetta le eventuali chiusure. Il cammino si avvicinerà alle costruzioni abbaziali, la cui massa sembra prolungare la pendenza naturale. Vedrai come i costruttori abbiano impilato sale, contrafforti e terrazze per mancanza di spazio orizzontale.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-4
+@@STITLE=Grand Degré
+Il Grand Degré è la scalinata monumentale che conduce all'abbazia. Dal suo piede o dai suoi dintorni liberamente accessibili, alza gli occhi verso gli edifici sovrapposti. Il santuario occupa la cima della roccia, mentre le costruzioni monastiche si appoggiano ai suoi fianchi. A nord, l'insieme chiamato la Merveille impila tra l'altro spazi di accoglienza, sale comunitarie e chiostro.
+
+Questa verticalità non è un semplice effetto spettacolare. La mancanza di terreno obbliga a costruire per livelli e a riportare i carichi tramite muri potenti e contrafforti. La difesa approfitta dello stesso rilievo: più si sale, più gli accessi diventano stretti e controllabili.
+
+Scendi poi di nuovo per le vie pubbliche verso il lato occidentale e la tour Gabriel. Resta attento ai gradini, agli incroci e agli orari degli accessi. L'ultima tappa ritroverà il livello basso della roccia. Dopo aver guardato la baia dalle mura, osserverai una torre d'artiglieria posta quasi a contatto con la battigia.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-5
+@@STITLE=Tour Gabriel
+La tour Gabriel fu costruita nel XVI secolo per rinforzare il lato occidentale del Mont di fronte allo sviluppo dell'artiglieria. La sua forma massiccia e arrotondata permetteva di installare pezzi capaci di coprire gli accessi bassi. Porta il nome del luogotenente del re Gabriel du Puy, associato alla sua costruzione.
+
+Guarda la sua posizione rispetto alle mura superiori. All'inizio del percorso, la sagoma del Mont sembrava compatta e verticale. Dopo aver attraversato le sue porte e percorso le sue mura, vedi che risulta da una successione di adattamenti: ostacoli all'ingresso, torri di fiancheggiamento, cammini di ronda, edifici aggrappati al pendio e opera d'artiglieria a filo della baia.
+
+La marea collega tutte queste difese. Modifica le distanze, scopre le spiagge fangose e poi restituisce alla roccia il suo isolamento. Le mura, invece, fissano una linea duratura su questo paesaggio mobile. Riparti solo dagli accessi attrezzati, senza avventurarti sulle sabbie. Grazie per aver seguito la pietra dalla passerella fino a questa torre bassa. A presto per un'altra passeggiata.
+
+@@LANG=nl
+@@TITLE=Mont-Saint-Michel — Vestingmuren en baai
+@@DESC=Landschap — de dialoog begrijpen tussen de rots, haar verdedigingswerken en de onmetelijkheid van de baai.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-0
+@@STITLE=Pont-passerelle
+Loop de loopbrug op en houd de doorgangszones vrij. De Mont lijkt neergezet aan het eind van een dunne lijn. Deze toegang, geopend in de 21e eeuw, verving de oude dijkweg die de opeenhoping van sediment bevorderde. Samen met de dam die op de Couesnon werd gebouwd, maakt hij deel uit van een project dat bedoeld is om de rots vaker haar maritieme karakter terug te geven.
+
+Kijk naar de verschillende niveaus van het landschap. De loopbrug blijft boven het gewone waterpeil, terwijl bepaalde getijden de omgeving bedekken en de Mont visueel isoleren. De schorren, de geulen en de zandbanken veranderen naargelang het uur en de seizoenen. Verlaat nooit de aangelegde toegang: de baai vereist een precieze kennis van haar stromingen en haar zand.
+
+Onze route volgt de opklimmende verdedigingswerken, van deze volledig open aanpak tot aan het weergangpad. Hoe verder je gaat, hoe meer de muren je blik vullen. Bereik de porte de l'Avancée aan de voet van het dorp. Merk op hoe de route abrupt versmalt: de weidse horizon verandert in een gecontroleerde doorgang.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-1
+@@STITLE=Porte de l'Avancée
+De porte de l'Avancée vormt de eerste versterkte toegang tot de Mont. Ze opent op een binnenplaats waar een oude wachtpost staat. De doorgang biedt geen rechte zichtlijn naar binnen: de opeenvolgende poorten en richtingveranderingen vertragen de toegang. Dit ontwerp dwong elke aankomende om zich te tonen onder het oog van de verdedigers.
+
+Draai je om naar de baai voordat je de drempel overschrijdt. Binnen een paar meter ga je van een ruimte zonder zichtbare rand over naar een stenen architectuur die elke beweging meet. Het contrast vat de kracht van de plek samen. De rots is geen vesting die simpelweg voor het landschap is neergezet; haar muren benutten precies de helling, de getijden en de nauwte van de toegangen.
+
+Ga verder naar de porte du Roi via het openbare pad. Je stuit op een nieuwe verdedigingslinie, verbonden met een ophaalbrug en een wachtlokaal. Kijk naar de groeven, de bogen en de sluitmechanismen. Elke laag voegt een moeilijkheid toe, zonder dat er een lange muur op vlak terrein nodig is.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-2
+@@STITLE=Porte du Roy
+De porte du Roi beheerst de ingang van de Grande Rue. Haar gewelfde doorgang bevindt zich onder een gebouw en bewaart de elementen van een voormalig ophaalbrugmechanisme. Het getij beschermde van nature een deel van de rots, maar de landtoegang vereiste verschillende dicht op elkaar liggende obstakels. Hier maakt de verdediging gebruik van diepte: een gepasseerde poort is nooit de laatste.
+
+Merk de relatie met de straat op. Achter de drempel klimt de weg meteen omhoog tussen smalle huizen. Het zou moeilijk zijn er in grote aantallen voort te gaan of een vrij zicht te behouden. Het reliëf wordt zo een bondgenoot van de muren. De bewoonde stad en de vesting versmelten zonder duidelijke scheiding.
+
+Neem de openbare toegang tot de vestingmuren en bereik het gebied van de tour du Nord. De klim kan steil zijn en de treden onregelmatig; loop zonder haast. Naarmate je klimt, glijden de daken onder je blik voorbij en verschijnt de baai opnieuw. De volgende halte toont hoe het weergangpad militaire bewaking combineert met een panoramische lezing van het landschap.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-3
+@@STITLE=Tour du Nord
+De tour du Nord springt naar voren in de lijn van de vestingmuren en biedt een weids uitzicht over de baai. Ingebouwd in het middeleeuwse verdedigingssysteem van de Mont, maakte hij het mogelijk een gebied te controleren dat door de getijden afwisselend toegankelijk en onbegaanbaar werd. Zijn ronde vorm beperkt dode hoeken en volgt het tracé van de rots.
+
+Herken vanaf het weergangpad de geulen als het licht ze onthult. Ze blijven niet vast: het water verschuift geleidelijk hun bochten. Een leger moest dus al een veranderlijk terrein trotseren voordat het de muur bereikte. Tijdens de Honderdjarige Oorlog weerstond de Mont de Engelse aanvallen en behield een sterke symbolische waarde.
+
+Ga verder op de vestingmuren tot het gebied van de Grand Degré. Verlaat de openbare borstweringen niet en respecteer eventuele afsluitingen. Het pad zal dichter bij de abdijgebouwen komen, waarvan de massa de natuurlijke helling lijkt voort te zetten. Je zult zien hoe de bouwmeesters, bij gebrek aan horizontale ruimte, zalen, steunberen en terrassen op elkaar stapelden.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-4
+@@STITLE=Grand Degré
+De Grand Degré is de monumentale trap die naar de abdij leidt. Kijk vanaf de voet ervan, of vanuit haar vrij toegankelijke omgeving, omhoog naar de op elkaar gestapelde gebouwen. Het heiligdom neemt de top van de rots in, terwijl de kloostergebouwen tegen haar flanken leunen. In het noorden stapelt het geheel, la Merveille genoemd, onder meer ontvangstruimtes, gemeenschapszalen en een kloostergang op elkaar.
+
+Deze verticaliteit is geen louter spectaculair effect. Het gebrek aan terrein dwingt om in niveaus te bouwen en de lasten via krachtige muren en steunberen af te voeren. De verdediging profiteert van hetzelfde reliëf: hoe hoger men klimt, hoe smaller en beter controleerbaar de toegangen worden.
+
+Daal daarna via de openbare wegen weer af naar de westzijde en de tour Gabriel. Blijf alert op de treden, de kruispunten en de openingstijden van de toegangen. De laatste halte brengt je terug naar het lage niveau van de rots. Nadat je de baai vanaf de vestingmuren hebt bekeken, zul je een artillerietoren waarnemen die bijna in contact staat met het wad.
+
+@@SCENE=seed-100-mont-saint-michel-remparts-et-baie-scene-5
+@@STITLE=Tour Gabriel
+De tour Gabriel werd in de 16e eeuw gebouwd om de westzijde van de Mont te versterken tegen de opkomst van de artillerie. Zijn massieve, ronde vorm maakte het mogelijk stukken te installeren die de lage toegangen konden bestrijken. Hij draagt de naam van de koninklijke luitenant Gabriel du Puy, die met de bouw ervan wordt geassocieerd.
+
+Kijk naar zijn positie ten opzichte van de bovenste muren. Aan het begin van de route leek de silhouet van de Mont compact en verticaal. Nadat je haar poorten bent gepasseerd en haar vestingmuren hebt belopen, zie je dat ze het resultaat is van een opeenvolging van aanpassingen: obstakels bij de ingang, flankerende torens, weergangpaden, gebouwen die zich aan de helling vastklampen en een artilleriewerk vlak aan de baai.
+
+Het getij verbindt al deze verdedigingswerken met elkaar. Het verandert de afstanden, ontbloot de wadvlakten en geeft de rots vervolgens haar isolatie terug. De muren daarentegen leggen een blijvende lijn vast op dit beweeglijke landschap. Keer alleen terug via de aangelegde toegangen, zonder je op het zand te wagen. Bedankt dat je de steen hebt gevolgd van de loopbrug tot aan deze lage toren. Tot snel voor een andere wandeling.

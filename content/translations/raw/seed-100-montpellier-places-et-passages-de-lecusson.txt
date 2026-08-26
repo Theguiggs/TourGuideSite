@@ -1,0 +1,259 @@
+@@LANG=en
+@@TITLE=Montpellier — Squares and Passages of the Écusson
+@@DESC=Urban history — linking the public spaces that reveal the shape of the old center.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-0
+@@STITLE=Place de la Comédie
+The place de la Comédie forms a vast opening at the eastern edge of the Écusson. Its name comes from the municipal theater, rebuilt in the 19th century after a fire. At its center, the fontaine des Trois Grâces acts as a pivot for a space that its curved façades almost turn into an outdoor room.
+
+Look at the ground and the directions branching off from it. To the east, the esplanade extends the square beneath the trees. To the west, the rue de la Loge cuts into the old center. The contrast is clear: breadth, light, and long vistas on one side; narrower streets and tightly packed plots on the other. The Écusson owes its name to the general shape of its old fortified perimeter, close to that of a shield.
+
+Our walk will cross this layout all the way to its western edge. Take the rue de la Loge. Don't just follow the slope: notice the side streets, often short, that connect this axis to small squares. The city doesn't reveal itself through a regular grid, but through a succession of compressions and openings.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-1
+@@STITLE=Place Jean-Jaurès
+The place Jean-Jaurès occupies a site linked to the former église Notre-Dame-des-Tables. Archaeological remains preserved beneath the current ground level bear witness to the religious and urban history of the place. The visible square, lined with tall façades, acts like a clearing amid the streets of the center.
+
+Look at its entrances. The rue de la Loge runs alongside it, while several narrower passages arrive at an angle. No central monument permanently closes off the view. It's the built outline that gives shape to the space and reveals the differences in level. Beneath your feet, archaeology reminds you that a square can be born from disappearances as much as from constructions.
+
+Continue toward the rue de l'Ancien-Courrier. This pedestrian street is narrower and slightly curved. It will illustrate another way of moving through the Écusson: the eye never carries very far, but each bend reveals a new façade. Stay within the public space and let the details of the buildings guide your attention.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-2
+@@STITLE=Rue de l'Ancien-Courrier
+The rue de l'Ancien-Courrier follows a narrow route through the heart of Montpellier. Its name recalls a former mail service once located in the area. The façades, close to one another, limit direct light and force the eye to climb toward balconies, cornices, and roof angles.
+
+Walk slowly. The slight curve prevents you from seeing the far end of the street from the start. That's not a flaw in the layout: it's the result of an urban fabric formed before the great modern alignments. The plots, the inner courtyards, and the old property boundaries shaped the street just as much as any overall plan did.
+
+Reach the place de la Canourgue through the public streets. The arrival brings another change of rhythm. This elevated, tree-lined, and relatively calm square occupies the area near the cathedral. It will offer a rare sense of distance from the mansions, and a vista opening toward the north of the city.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-3
+@@STITLE=Place de la Canourgue
+The place de la Canourgue is one of the oldest squares in Montpellier. Its name is linked to the canons, once called "canourges" in Occitan. Lined with mansions, it occupies a raised position that gives it the quality of a terrace. The so-called fontaine des Licornes, installed here in the 19th century, commemorates the Battle of Clostercamp.
+
+Look beyond the monument. The trees frame the façades and open up views toward the cathédrale Saint-Pierre. Unlike the Comédie, this square doesn't organize any major flows of movement. It offers an inward pause, almost a garden contained by the city. The relative silence only reinforces this sense of withdrawal.
+
+Head toward the rue Foch and the arc de triomphe. This street, cut through and aligned in the 19th century, introduces a much more direct axis into the old fabric. At its far end, the arch marks the site of one of the old city gates. You're about to move from an inherited square to a deliberately recomposed vista.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-4
+@@STITLE=Arc de triomphe
+The arc de triomphe was raised at the end of the 17th century in honor of Louis XIV. It replaces a former gate in the city wall and opens onto the promenade du Peyrou. Its reliefs and inscriptions celebrate the reign, while its position turns crossing through it into a kind of ceremony.
+
+From the rue Foch, the arch closes off the view like a frame. Once beneath it, the eye is set free toward a far vaster space. This sequence is carefully composed: a straight street, a threshold monument, then an open terrace. It differs radically from the discreet transitions of the rue de l'Ancien-Courrier. The pale stone only sharpens the crispness of the passage.
+
+Cross through the arch and walk onto the promenade du Peyrou along the public paths. The water tower will serve as the final point. Turning around halfway there, notice how the arch reduces the old city to a single precise opening. The Écusson, wandered through from the inside like a maze, suddenly becomes a shape held at a distance.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-5
+@@STITLE=Promenade du Peyrou
+The promenade du Peyrou was laid out in the 17th and 18th centuries at the western edge of the city. Its terrace holds an equestrian statue of Louis XIV and, at its far end, a monumental water tower connected to the aqueduc Saint-Clément. This structure carried water from a spring located outside Montpellier.
+
+Walk to the public viewpoint that lets you see the main axes. Here, the perspective no longer depends on tightly packed façades. The sky, the rows of trees, and the balustrade compose the landscape. The arc de triomphe links this open space to the center you've just crossed.
+
+Think back over the route: the Comédie formed a modern threshold, Jean-Jaurès preserved vanished levels, the Ancien-Courrier followed the irregularities of the plots, and the Canourgue created an intimate terrace. The rue Foch and the arch, finally, imposed an axis. The Écusson, then, isn't a uniform maze. It alternates between inherited passages and deliberately staged spaces. Thank you for following this rhythm from square to square. Hold the horizon a moment longer, then head off at your own pace. See you soon.
+
+@@LANG=es
+@@TITLE=Montpellier — Plazas y pasajes del Écusson
+@@DESC=Historia urbana — conectar los espacios públicos que revelan la forma del centro antiguo.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-0
+@@STITLE=Place de la Comédie
+La place de la Comédie forma una amplia abertura en el borde oriental del Écusson. Su nombre proviene del teatro municipal, reconstruido en el siglo XIX tras un incendio. En el centro, la fontaine des Trois Grâces sirve de eje a un espacio que las fachadas curvas transforman casi en una sala al aire libre.
+
+Mira el suelo y las direcciones que escapan de él. Al este, la esplanade prolonga la plaza bajo los árboles. Al oeste, la rue de la Loge penetra en el centro antiguo. El contraste es claro: amplitud, luz y largas perspectivas por un lado; calle más estrecha y parcelas apretadas por el otro. El Écusson debe su nombre a la forma general de su antiguo perímetro fortificado, próxima a la de un escudo.
+
+Nuestro paseo atravesará este trazado hasta su borde occidental. Toma la rue de la Loge. No te limites a seguir la pendiente: observa las calles laterales, a menudo breves, que conectan este eje con pequeñas plazas. La ciudad no se revela mediante una cuadrícula regular, sino mediante una sucesión de compresiones y aperturas.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-1
+@@STITLE=Place Jean-Jaurès
+La place Jean-Jaurès ocupa un emplazamiento ligado a la antigua église Notre-Dame-des-Tables. Vestigios arqueológicos conservados bajo el nivel actual dan testimonio de la historia religiosa y urbana del lugar. La plaza visible, bordeada de fachadas altas, actúa como un claro en medio de las calles del centro.
+
+Observa sus entradas. La rue de la Loge la bordea, mientras que varios pasajes más estrechos llegan en ángulo. Ningún monumento central cierra de forma permanente la perspectiva. Es el contorno construido el que da forma al espacio y revela las diferencias de nivel. Bajo tus pasos, la arqueología recuerda que una plaza puede nacer tanto de desapariciones como de construcciones.
+
+Continúa hacia la rue de l'Ancien-Courrier. Esta vía peatonal es más estrecha y ligeramente curva. Ilustrará otra manera de recorrer el Écusson: la mirada nunca alcanza muy lejos, pero cada inflexión descubre una nueva fachada. Permanece en el espacio público y deja que los detalles del edificado guíen tu atención.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-2
+@@STITLE=Rue de l'Ancien-Courrier
+La rue de l'Ancien-Courrier sigue un trazado estrecho en el corazón de Montpellier. Su nombre recuerda un antiguo servicio de correo instalado en la zona. Las fachadas, próximas unas a otras, limitan la luz directa y obligan a la mirada a subir hacia los balcones, las cornisas y los ángulos de los tejados.
+
+Camina despacio. La ligera curva impide ver el extremo de la calle desde el principio. No es un defecto del trazado: es el resultado de un tejido urbano formado antes de las grandes alineaciones modernas. Las parcelas, los patios interiores y los antiguos límites de propiedad guiaron la vía tanto como cualquier proyecto de conjunto.
+
+Llega a la place de la Canourgue por las calles públicas. La llegada cambia de nuevo de ritmo. Esta plaza elevada, ajardinada y relativamente tranquila ocupa la zona cercana a la catedral. Ofrecerá un raro distanciamiento respecto a los palacetes, y una perspectiva que se abre hacia el norte de la ciudad.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-3
+@@STITLE=Place de la Canourgue
+La place de la Canourgue es una de las plazas más antiguas de Montpellier. Su nombre está ligado a los canónigos, antaño llamados «canourges» en occitano. Bordeada de palacetes, ocupa una posición elevada que le da una cualidad de terraza. La llamada fontaine des Licornes, instalada aquí en el siglo XIX, conmemora la batalla de Clostercamp.
+
+Mira más allá del monumento. Los árboles recortan las fachadas y ofrecen vistas hacia la cathédrale Saint-Pierre. A diferencia de la Comédie, esta plaza no organiza grandes circulaciones. Ofrece una pausa interior, casi un jardín contenido por la ciudad. El silencio relativo refuerza aún más esta impresión de retiro.
+
+Dirígete hacia la rue Foch y el arc de triomphe. La calle, abierta y alineada en el siglo XIX, introduce una dirección mucho más franca en el tejido antiguo. En su extremo, el arco marca el emplazamiento de una de las antiguas puertas. Vas a pasar, pues, de una plaza heredada a una perspectiva deliberadamente recompuesta.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-4
+@@STITLE=Arc de triomphe
+El arc de triomphe se levantó a finales del siglo XVII en honor de Luis XIV. Sustituye a una antigua puerta de la muralla y se abre hacia la promenade du Peyrou. Sus relieves e inscripciones celebran el reinado, mientras que su posición transforma el paso bajo él en una ceremonia.
+
+Desde la rue Foch, el arco cierra la perspectiva como un marco. Una vez debajo, la mirada se libera hacia un espacio mucho más vasto. Esta sucesión está cuidadosamente compuesta: calle recta, monumento-umbral, y luego terraza abierta. Difiere radicalmente de las transiciones discretas de la rue de l'Ancien-Courrier. La piedra clara acentúa aún más la nitidez del paso.
+
+Cruza el arco y avanza por la promenade du Peyrou por los caminos públicos. El château d'eau servirá de punto final. Al volverte a mitad de camino, observa cómo el arco reduce la ciudad antigua a una abertura precisa. El Écusson, recorrido desde dentro como un laberinto, se convierte de pronto en una forma mantenida a distancia.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-5
+@@STITLE=Promenade du Peyrou
+La promenade du Peyrou se acondicionó en los siglos XVII y XVIII al oeste de la ciudad. Su terraza alberga una estatua ecuestre de Luis XIV y, en su extremo, un château d'eau monumental conectado al aqueduc Saint-Clément. Esta obra traía el agua desde un manantial situado fuera de Montpellier.
+
+Avanza hasta el punto público que permite ver los grandes ejes. Aquí, la perspectiva ya no depende de fachadas apretadas. El cielo, las hileras de árboles y la balaustrada componen el paisaje. El arc de triomphe conecta esta abertura con el centro que acabas de atravesar.
+
+Piensa de nuevo en el camino recorrido: la Comédie formaba un umbral moderno, Jean-Jaurès conservaba niveles desaparecidos, el Ancien-Courrier seguía las irregularidades de las parcelas y la Canourgue creaba una terraza íntima. La rue Foch y el arco, por último, imponían un eje. El Écusson no es, pues, un laberinto uniforme. Alterna pasajes heredados y espacios deliberadamente escenificados. Gracias por haber seguido esta respiración de plaza en plaza. Guarda el horizonte un instante, y luego retoma tu camino a tu ritmo. Hasta pronto.
+
+@@LANG=de
+@@TITLE=Montpellier — Plätze und Passagen des Écusson
+@@DESC=Stadtgeschichte — die öffentlichen Räume verbinden, die die Form des alten Zentrums offenbaren.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-0
+@@STITLE=Place de la Comédie
+Die place de la Comédie bildet eine weite Öffnung am östlichen Rand des Écusson. Ihr Name stammt vom städtischen Theater, das im 19. Jahrhundert nach einem Brand wiederaufgebaut wurde. In der Mitte dient der Brunnen der Drei Grazien als Angelpunkt eines Raums, den seine geschwungenen Fassaden fast zu einem Freiluftsaal machen.
+
+Schau auf den Boden und die Richtungen, die von ihm ausgehen. Im Osten verlängert die Esplanade den Platz unter den Bäumen. Im Westen dringt die rue de la Loge in das alte Zentrum ein. Der Kontrast ist deutlich: Weite, Licht und lange Sichtachsen auf der einen Seite; engere Straßen und dicht gedrängte Parzellen auf der anderen. Der Écusson verdankt seinen Namen der allgemeinen Form seines alten befestigten Umrisses, die einem Schild ähnelt.
+
+Unser Spaziergang wird diesen Grundriss bis zu seinem westlichen Rand durchqueren. Nimm die rue de la Loge. Folg nicht nur dem Gefälle: beobachte die oft kurzen Seitenstraßen, die diese Achse mit kleinen Plätzen verbinden. Die Stadt offenbart sich nicht durch ein regelmäßiges Raster, sondern durch eine Abfolge von Verengungen und Öffnungen.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-1
+@@STITLE=Place Jean-Jaurès
+Die place Jean-Jaurès nimmt einen Ort ein, der mit der ehemaligen église Notre-Dame-des-Tables verbunden ist. Unter dem heutigen Niveau erhaltene archäologische Überreste zeugen von der religiösen und städtischen Geschichte des Ortes. Der sichtbare Platz, gesäumt von hohen Fassaden, wirkt wie eine Lichtung inmitten der Straßen des Zentrums.
+
+Beobachte seine Zugänge. Die rue de la Loge verläuft an ihm entlang, während mehrere schmalere Durchgänge schräg einmünden. Kein zentrales Denkmal schließt die Perspektive dauerhaft ab. Es ist der bebaute Umriss, der dem Raum seine Form gibt und die Höhenunterschiede offenbart. Unter deinen Füßen erinnert die Archäologie daran, dass ein Platz ebenso sehr aus Verschwundenem wie aus Gebautem entstehen kann.
+
+Geh weiter zur rue de l'Ancien-Courrier. Diese Fußgängerstraße ist enger und leicht gekrümmt. Sie zeigt eine andere Art, den Écusson zu durchqueren: der Blick reicht nie sehr weit, doch jede Biegung enthüllt eine neue Fassade. Bleib im öffentlichen Raum und lass die Details der Bebauung deine Aufmerksamkeit lenken.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-2
+@@STITLE=Rue de l'Ancien-Courrier
+Die rue de l'Ancien-Courrier folgt einem engen Verlauf im Herzen von Montpellier. Ihr Name erinnert an einen ehemaligen Postdienst, der in diesem Gebiet ansässig war. Die Fassaden, dicht beieinander, begrenzen das direkte Licht und zwingen den Blick, zu Balkonen, Gesimsen und Dachwinkeln aufzusteigen.
+
+Geh langsam. Die leichte Krümmung verhindert, dass man das Ende der Straße von Anfang an sieht. Das ist kein Mangel des Plans: es ist das Ergebnis eines städtischen Gefüges, das vor den großen modernen Fluchtlinien entstand. Die Parzellen, die Innenhöfe und die alten Grundstücksgrenzen prägten die Straße ebenso sehr wie irgendein Gesamtplan.
+
+Erreiche die place de la Canourgue über die öffentlichen Straßen. Die Ankunft bringt erneut einen Rhythmuswechsel. Dieser erhöhte, begrünte und relativ ruhige Platz liegt im Bereich nahe der Kathedrale. Er bietet einen seltenen Abstand zu den Stadtpalais und eine Perspektive, die sich nach Norden zur Stadt hin öffnet.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-3
+@@STITLE=Place de la Canourgue
+Die place de la Canourgue ist einer der ältesten Plätze von Montpellier. Ihr Name ist mit den Chorherren verbunden, die früher auf Okzitanisch „canourges" genannt wurden. Von Stadtpalais gesäumt, nimmt sie eine erhöhte Lage ein, die ihr die Qualität einer Terrasse verleiht. Der sogenannte Brunnen der Einhörner, hier im 19. Jahrhundert errichtet, erinnert an die Schlacht von Clostercamp.
+
+Schau über das Denkmal hinaus. Die Bäume rahmen die Fassaden und eröffnen Blicke zur cathédrale Saint-Pierre. Anders als bei der Comédie organisiert dieser Platz keine großen Bewegungsströme. Er bietet eine innere Pause, fast einen von der Stadt umschlossenen Garten. Die relative Stille verstärkt diesen Eindruck des Rückzugs noch.
+
+Geh zur rue Foch und zum arc de triomphe. Diese im 19. Jahrhundert durchgebrochene und ausgerichtete Straße bringt eine viel direktere Richtung in das alte Gefüge. An ihrem Ende markiert der Bogen den Standort eines der alten Stadttore. Du wirst also von einem überkommenen Platz zu einer bewusst neu komponierten Perspektive übergehen.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-4
+@@STITLE=Arc de triomphe
+Der arc de triomphe wurde Ende des 17. Jahrhunderts zu Ehren Ludwigs XIV. errichtet. Er ersetzt ein früheres Tor der Stadtmauer und öffnet sich zur promenade du Peyrou hin. Seine Reliefs und Inschriften feiern die Herrschaft, während seine Lage den Durchgang zu einer Art Zeremonie macht.
+
+Von der rue Foch aus schließt der Bogen die Perspektive wie ein Rahmen ab. Einmal darunter, wird der Blick zu einem viel weiteren Raum hin frei. Diese Abfolge ist sorgfältig komponiert: gerade Straße, Schwellendenkmal, dann offene Terrasse. Sie unterscheidet sich radikal von den unauffälligen Übergängen der rue de l'Ancien-Courrier. Der helle Stein unterstreicht die Klarheit des Durchgangs noch zusätzlich.
+
+Durchschreite den Bogen und geh auf den öffentlichen Wegen auf die promenade du Peyrou hinaus. Der Wasserturm dient als Schlusspunkt. Wenn du dich auf halbem Weg umdrehst, beobachte, wie der Bogen die Altstadt auf eine präzise Öffnung reduziert. Der Écusson, von innen wie ein Labyrinth durchquert, wird plötzlich zu einer auf Distanz gehaltenen Form.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-5
+@@STITLE=Promenade du Peyrou
+Die promenade du Peyrou wurde im 17. und 18. Jahrhundert am westlichen Rand der Stadt angelegt. Ihre Terrasse trägt eine Reiterstatue Ludwigs XIV. und an ihrem Ende einen monumentalen Wasserturm, verbunden mit dem aqueduc Saint-Clément. Dieses Bauwerk führte Wasser von einer außerhalb Montpelliers gelegenen Quelle heran.
+
+Geh bis zu dem öffentlichen Punkt, von dem aus du die großen Achsen sehen kannst. Hier hängt die Perspektive nicht mehr von eng gedrängten Fassaden ab. Der Himmel, die Baumreihen und die Balustrade bilden die Landschaft. Der arc de triomphe verbindet diese Öffnung mit dem Zentrum, das du gerade durchquert hast.
+
+Denk an den zurückgelegten Weg zurück: die Comédie bildete eine moderne Schwelle, Jean-Jaurès bewahrte verschwundene Ebenen, die Ancien-Courrier folgte den Unregelmäßigkeiten der Parzellen, und die Canourgue schuf eine intime Terrasse. Die rue Foch und der Bogen schließlich gaben eine Achse vor. Der Écusson ist also kein einheitliches Labyrinth. Er wechselt zwischen überkommenen Durchgängen und bewusst inszenierten Räumen. Danke, dass du diesem Atmen von Platz zu Platz gefolgt bist. Halt den Horizont noch einen Moment fest, und geh dann in deinem eigenen Tempo weiter. Bis bald.
+
+@@LANG=it
+@@TITLE=Montpellier — Piazze e passaggi dell'Écusson
+@@DESC=Storia urbana — collegare gli spazi pubblici che rivelano la forma del centro antico.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-0
+@@STITLE=Place de la Comédie
+La place de la Comédie forma un'ampia apertura sul bordo orientale dell'Écusson. Il suo nome deriva dal teatro comunale, ricostruito nel XIX secolo dopo un incendio. Al centro, la fontaine des Trois Grâces funge da perno di uno spazio che le facciate curve trasformano quasi in una sala all'aperto.
+
+Guarda il suolo e le direzioni che se ne diramano. A est, l'esplanade prolunga la piazza sotto gli alberi. A ovest, la rue de la Loge penetra nel centro antico. Il contrasto è netto: ampiezza, luce e lunghe prospettive da un lato; strada più stretta e parcelle serrate dall'altro. L'Écusson deve il suo nome alla forma generale del suo antico perimetro fortificato, vicina a quella di uno scudo.
+
+La nostra passeggiata attraverserà questo disegno fino al suo bordo occidentale. Prendi la rue de la Loge. Non limitarti a seguire la pendenza: osserva le vie laterali, spesso brevi, che collegano questo asse a piccole piazze. La città non si rivela attraverso una griglia regolare, ma attraverso una successione di compressioni e aperture.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-1
+@@STITLE=Place Jean-Jaurès
+La place Jean-Jaurès occupa un sito legato all'antica église Notre-Dame-des-Tables. Vestigia archeologiche conservate sotto il livello attuale testimoniano la storia religiosa e urbana del luogo. La piazza visibile, fiancheggiata da facciate alte, agisce come una radura in mezzo alle strade del centro.
+
+Osserva i suoi ingressi. La rue de la Loge la costeggia, mentre diversi passaggi più stretti arrivano di sbieco. Nessun monumento centrale chiude durevolmente la prospettiva. È il profilo costruito che dà forma allo spazio e rivela le differenze di livello. Sotto i tuoi passi, l'archeologia ricorda che una piazza può nascere tanto dalle sparizioni quanto dalle costruzioni.
+
+Continua verso la rue de l'Ancien-Courrier. Questa via pedonale è più stretta e leggermente curva. Illustrerà un altro modo di percorrere l'Écusson: lo sguardo non spazia mai molto lontano, ma ogni inflessione svela una nuova facciata. Resta nello spazio pubblico e lascia che i dettagli dell'edificato guidino la tua attenzione.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-2
+@@STITLE=Rue de l'Ancien-Courrier
+La rue de l'Ancien-Courrier segue un tracciato stretto nel cuore di Montpellier. Il suo nome ricorda un antico servizio di corriere installato nella zona. Le facciate, vicine le une alle altre, limitano la luce diretta e obbligano lo sguardo a salire verso i balconi, le cornici e gli angoli dei tetti.
+
+Cammina lentamente. La leggera curva impedisce di vedere l'estremità della strada fin dall'inizio. Non è un difetto del tracciato: è il risultato di un tessuto urbano formatosi prima dei grandi allineamenti moderni. Le parcelle, i cortili interni e gli antichi confini di proprietà hanno guidato la via tanto quanto un progetto d'insieme.
+
+Raggiungi la place de la Canourgue attraverso le strade pubbliche. L'arrivo cambia ancora ritmo. Questa piazza rialzata, alberata e relativamente tranquilla occupa la zona vicina alla cattedrale. Offrirà un raro distacco dai palazzi nobiliari e una prospettiva che si apre verso il nord della città.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-3
+@@STITLE=Place de la Canourgue
+La place de la Canourgue è una delle piazze più antiche di Montpellier. Il suo nome è legato ai canonici, un tempo chiamati «canourges» in occitano. Fiancheggiata da palazzi nobiliari, occupa una posizione elevata che le conferisce una qualità di terrazza. La cosiddetta fontaine des Licornes, installata qui nel XIX secolo, commemora la battaglia di Clostercamp.
+
+Guarda oltre il monumento. Gli alberi ritagliano le facciate e offrono vedute verso la cathédrale Saint-Pierre. A differenza della Comédie, questa piazza non organizza grandi flussi di circolazione. Offre una pausa interiore, quasi un giardino contenuto dalla città. Il silenzio relativo rafforza ulteriormente questa impressione di ritiro.
+
+Dirigiti verso la rue Foch e l'arc de triomphe. La via, aperta e allineata nel XIX secolo, introduce una direzione molto più netta nel tessuto antico. Alla sua estremità, l'arco segna l'ubicazione di una delle antiche porte. Passerai dunque da una piazza ereditata a una prospettiva deliberatamente ricomposta.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-4
+@@STITLE=Arc de triomphe
+L'arc de triomphe fu innalzato alla fine del XVII secolo in onore di Luigi XIV. Sostituisce un'antica porta delle mura e si apre verso la promenade du Peyrou. I suoi rilievi e le sue iscrizioni celebrano il regno, mentre la sua posizione trasforma l'attraversamento in una cerimonia.
+
+Dalla rue Foch, l'arco chiude la prospettiva come una cornice. Una volta sotto, lo sguardo si libera verso uno spazio molto più vasto. Questa successione è accuratamente composta: strada dritta, monumento-soglia, poi terrazza aperta. Differisce radicalmente dalle transizioni discrete della rue de l'Ancien-Courrier. La pietra chiara accentua ulteriormente la nettezza del passaggio.
+
+Attraversa l'arco e avanza sulla promenade du Peyrou attraverso i percorsi pubblici. Il château d'eau servirà da punto finale. Voltandoti a metà strada, osserva come l'arco riduca la città antica a un'apertura precisa. L'Écusson, percorso dall'interno come un labirinto, diventa improvvisamente una forma tenuta a distanza.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-5
+@@STITLE=Promenade du Peyrou
+La promenade du Peyrou fu realizzata nel XVII e XVIII secolo a ovest della città. La sua terrazza accoglie una statua equestre di Luigi XIV e, alla sua estremità, un château d'eau monumentale collegato all'aqueduc Saint-Clément. Quest'opera portava l'acqua da una sorgente situata fuori Montpellier.
+
+Avanza fino al punto pubblico che permette di vedere i grandi assi. Qui, la prospettiva non dipende più da facciate serrate. Il cielo, i filari di alberi e la balaustra compongono il paesaggio. L'arc de triomphe collega questa apertura al centro che hai appena attraversato.
+
+Ripensa al cammino: la Comédie formava una soglia moderna, Jean-Jaurès conservava livelli scomparsi, l'Ancien-Courrier seguiva le irregolarità delle parcelle e la Canourgue creava una terrazza intima. La rue Foch e l'arco, infine, imponevano un asse. L'Écusson non è dunque un dedalo uniforme. Alterna passaggi ereditati e spazi deliberatamente messi in scena. Grazie per aver seguito questo respiro di piazza in piazza. Trattieni l'orizzonte un istante, poi riparti al tuo ritmo. A presto.
+
+@@LANG=nl
+@@TITLE=Montpellier — Pleinen en passages van het Écusson
+@@DESC=Stadsgeschiedenis — de openbare ruimtes verbinden die de vorm van het oude centrum onthullen.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-0
+@@STITLE=Place de la Comédie
+De place de la Comédie vormt een weidse opening aan de oostelijke rand van het Écusson. Haar naam komt van het stedelijke theater, in de 19e eeuw na een brand herbouwd. In het midden dient de fontaine des Trois Grâces als spil van een ruimte die de gebogen gevels bijna omtoveren tot een openluchtzaal.
+
+Kijk naar de grond en de richtingen die eruit voortvloeien. Naar het oosten verlengt de esplanade het plein onder de bomen. Naar het westen dringt de rue de la Loge het oude centrum binnen. Het contrast is duidelijk: ruimte, licht en lange vergezichten aan de ene kant; een smallere straat en dicht opeengepakte percelen aan de andere kant. Het Écusson dankt zijn naam aan de algemene vorm van zijn oude vestingomtrek, die op een schild lijkt.
+
+Onze wandeling zal dit patroon doorkruisen tot aan haar westelijke rand. Neem de rue de la Loge. Volg niet alleen de helling: let op de vaak korte zijstraten die deze as verbinden met kleine pleintjes. De stad onthult zich niet via een regelmatig raster, maar via een opeenvolging van vernauwingen en openingen.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-1
+@@STITLE=Place Jean-Jaurès
+De place Jean-Jaurès neemt een plek in die verbonden is met de voormalige église Notre-Dame-des-Tables. Archeologische resten, bewaard onder het huidige niveau, getuigen van de religieuze en stedelijke geschiedenis van deze plek. Het zichtbare plein, omzoomd door hoge gevels, werkt als een open plek te midden van de straten van het centrum.
+
+Bekijk de toegangen ervan. De rue de la Loge loopt eraan voorbij, terwijl verschillende smallere doorgangen er schuin op uitkomen. Geen enkel centraal monument sluit het perspectief blijvend af. Het is de bebouwde omtrek die de ruimte haar vorm geeft en de niveauverschillen onthult. Onder je voeten herinnert de archeologie eraan dat een plein evengoed uit verdwijningen als uit bouwwerken kan ontstaan.
+
+Ga verder naar de rue de l'Ancien-Courrier. Deze voetgangersstraat is smaller en licht gebogen. Ze illustreert een andere manier om het Écusson te doorkruisen: de blik reikt nooit ver, maar elke bocht onthult een nieuwe gevel. Blijf in de openbare ruimte en laat de details van de bebouwing je aandacht sturen.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-2
+@@STITLE=Rue de l'Ancien-Courrier
+De rue de l'Ancien-Courrier volgt een smal tracé in het hart van Montpellier. Haar naam herinnert aan een voormalige postdienst die in deze buurt gevestigd was. De gevels, dicht bij elkaar, beperken het directe licht en dwingen de blik om omhoog te klimmen naar de balkons, kroonlijsten en dakhoeken.
+
+Loop langzaam. De lichte bocht belet dat je het einde van de straat meteen ziet. Dat is geen gebrek van het plan: het is het resultaat van een stedelijk weefsel dat gevormd werd vóór de grote moderne uitlijningen. De percelen, de binnenplaatsen en de oude eigendomsgrenzen bepaalden de straat evenzeer als enig totaalplan.
+
+Bereik de place de la Canourgue via de openbare straten. De aankomst verandert opnieuw van ritme. Dit verhoogde, beplante en relatief rustige plein ligt in de buurt van de kathedraal. Het biedt een zeldzame afstand tot de herenhuizen, en een perspectief dat zich naar het noorden van de stad opent.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-3
+@@STITLE=Place de la Canourgue
+De place de la Canourgue is een van de oudste pleinen van Montpellier. Haar naam is verbonden met de kanunniken, vroeger in het Occitaans "canourges" genoemd. Omzoomd door herenhuizen, neemt ze een verhoogde positie in die haar de kwaliteit van een terras geeft. De zogenaamde fontaine des Licornes, hier in de 19e eeuw geïnstalleerd, herdenkt de Slag bij Clostercamp.
+
+Kijk voorbij het monument. De bomen omlijsten de gevels en bieden uitzichten op de cathédrale Saint-Pierre. In tegenstelling tot de Comédie organiseert dit plein geen grote verkeersstromen. Het biedt een innerlijke pauze, bijna een door de stad omsloten tuin. De relatieve stilte versterkt dit gevoel van teruggetrokkenheid nog verder.
+
+Ga naar de rue Foch en de arc de triomphe. Deze in de 19e eeuw doorgebroken en uitgelijnde straat introduceert een veel directere richting in het oude weefsel. Aan het uiteinde markeert de boog de plek van een van de oude stadspoorten. Je gaat dus over van een geërfd plein naar een doelbewust opnieuw samengesteld vergezicht.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-4
+@@STITLE=Arc de triomphe
+De arc de triomphe werd aan het eind van de 17e eeuw opgericht ter ere van Lodewijk XIV. Hij vervangt een voormalige poort in de stadsmuur en opent zich naar de promenade du Peyrou. Zijn reliëfs en inscripties vieren de heerschappij, terwijl zijn positie het doorlopen ervan tot een soort ceremonie maakt.
+
+Vanaf de rue Foch sluit de boog het perspectief af als een lijst. Eenmaal eronder komt de blik vrij naar een veel wijdere ruimte. Deze opeenvolging is zorgvuldig samengesteld: rechte straat, drempelmonument, dan open terras. Ze verschilt radicaal van de discrete overgangen van de rue de l'Ancien-Courrier. De lichte steen benadrukt de helderheid van de doorgang nog verder.
+
+Loop door de boog en ga via de openbare paden de promenade du Peyrou op. De watertoren dient als eindpunt. Als je halverwege omkijkt, merk je hoe de boog de oude stad terugbrengt tot een precieze opening. Het Écusson, van binnenuit doorkruist als een labyrint, wordt plotseling een op afstand gehouden vorm.
+
+@@SCENE=seed-100-montpellier-places-et-passages-de-lecusson-scene-5
+@@STITLE=Promenade du Peyrou
+De promenade du Peyrou werd in de 17e en 18e eeuw aangelegd aan de westelijke rand van de stad. Haar terras herbergt een ruiterstandbeeld van Lodewijk XIV en, aan haar uiteinde, een monumentale watertoren verbonden met het aqueduc Saint-Clément. Dit bouwwerk voerde water aan vanaf een bron buiten Montpellier.
+
+Loop door tot het openbare punt van waaruit je de grote assen kunt zien. Hier hangt het perspectief niet meer af van dicht opeengepakte gevels. De hemel, de bomenrijen en de balustrade vormen het landschap. De arc de triomphe verbindt deze opening met het centrum dat je zojuist hebt doorkruist.
+
+Denk terug aan de afgelegde weg: de Comédie vormde een moderne drempel, Jean-Jaurès bewaarde verdwenen niveaus, de Ancien-Courrier volgde de onregelmatigheden van de percelen en de Canourgue creëerde een intiem terras. De rue Foch en de boog legden ten slotte een as op. Het Écusson is dus geen uniform doolhof. Het wisselt geërfde doorgangen af met bewust in scène gezette ruimtes. Bedankt dat je deze ademhaling van plein naar plein hebt gevolgd. Houd de horizon nog even vast, en vertrek dan weer op je eigen tempo. Tot snel.

@@ -1,0 +1,141 @@
+{
+  "tourId": "seed-100-carcassonne-cite-assiegee",
+  "sessionId": "seed-100-carcassonne-cite-assiegee-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Carcassonne",
+  "title": "Carcassonne — La Cité assiégée",
+  "description": "Histoire & secrets — Dame Carcas, croisade albigeoise : deux mille ans de siège et une légende de cloches.",
+  "themes": [
+    "Histoire & secrets — Dame Carcas, croisade albigeoise : deux mille ans de siège et une légende de cloches."
+  ],
+  "baseLanguage": "fr",
+  "chars": 9094,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "de": "Geschichte & Geheimnisse, Lady Carcas, albige Kreuzzug: 2.000 Jahre Sitz und eine Legende von Glocken.",
+    "en": "History & secrets, Dame Carcas, Albigoise Crusade: two thousand years of siege and a legend of bells.",
+    "it": "Storia & segreti, Dame Carcas, Albigoise Crociata: duemila anni di assedio e una leggenda delle campane.",
+    "es": "Historia & secretos, Señora Carcas, cruzada albigena: dos mil años de sitio y una leyenda de campanas."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-carcassonne-cite-assiegee-scene-0",
+      "index": 0,
+      "title": "Porte Narbonnaise",
+      "text": "Lève les yeux. Deux tours énormes, jumelles, taillées en éperon, qui te toisent depuis plus de sept siècles. C'est la Porte Narbonnaise, l'entrée d'honneur de la Cité de Carcassonne, et la porte la mieux défendue de toute la forteresse. Pont-levis, herse, assommoir, couloir en chicane : pour forcer ce passage en ennemi, il fallait mourir plusieurs fois.\r\n\r\nPrends la mesure de ce que tu as devant toi. Deux enceintes de pierre, l'une enfermée dans l'autre, une cinquantaine de tours, près de trois kilomètres de remparts. L'une des plus vastes cités fortifiées d'Europe encore debout. Et pendant que tu la regardes, retiens un mot, un seul : siège. Car c'est l'histoire que je vais te souffler tout au long de cette balade. Deux mille ans de sièges.\r\n\r\nOn s'est battu pour cette colline avant les Romains. On s'est battu pour elle sous les rois de France. Des armées entières sont venues camper au pied de ces murs, la faim au ventre, l'espoir de forcer la porte. Presque toujours, la Cité a tenu.\r\n\r\nEt il y a une légende, ici, que tout le monde connaît. Une histoire de dame rusée, de cochon, et de cloches. Je te la garde pour la fin — quand tu auras compris pourquoi cette ville n'a jamais aimé qu'on la prenne par la faim.\r\n\r\nFranchis la porte. Entre dans la Cité, puis glisse-toi dans les lices, le couloir d'herbe qui sépare les deux remparts. Suis-moi.",
+      "hash": "e4c0e8d3",
+      "chars": 1362,
+      "existingSegments": {
+        "en": "seed-100-carcassonne-cite-assiegee-scene-0-seg-en",
+        "it": "seed-100-carcassonne-cite-assiegee-scene-0-seg-it",
+        "de": "seed-100-carcassonne-cite-assiegee-scene-0-seg-de",
+        "es": "seed-100-carcassonne-cite-assiegee-scene-0-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-carcassonne-cite-assiegee-scene-1",
+      "index": 1,
+      "title": "Porte Narbonnaise, entrée des Lices",
+      "text": "Te voilà dans les lices. C'est le nom de ce couloir de gazon coincé entre les deux murailles, l'intérieure, haute, et l'extérieure, plus basse. Un piège, tout simplement. L'assaillant qui franchissait le premier mur se retrouvait là, à découvert, pris sous le feu croisé des deux enceintes. Nulle part où fuir.\r\n\r\nMaintenant, approche-toi de la muraille intérieure et regarde la pierre de près. Elle te raconte les siècles. En bas, de gros blocs et des rangées de briques rouges, plates : ça, c'est romain. Il y a près de deux mille ans, Carcaso, la ville gallo-romaine, était déjà ceinte de murs à cet endroit. Repère les tours en fer à cheval, arrondies : leurs fondations sont antiques. Au-dessus, la pierre change, plus régulière : là, c'est le Moyen Âge qui a rehaussé, complété, doublé.\r\n\r\nCette ville n'a jamais cessé de se blinder. Romains, Wisigoths, vicomtes, rois : chacun a ajouté sa couche de pierre, comme on enfile une armure par-dessus une autre.\r\n\r\nContinue le long des lices vers l'ouest, jusqu'au cœur de la Cité, là où se dresse un château dans le château. Suis-moi.",
+      "hash": "f84a7486",
+      "chars": 1086,
+      "existingSegments": {
+        "es": "seed-100-carcassonne-cite-assiegee-scene-1-seg-es",
+        "it": "seed-100-carcassonne-cite-assiegee-scene-1-seg-it",
+        "de": "seed-100-carcassonne-cite-assiegee-scene-1-seg-de",
+        "en": "seed-100-carcassonne-cite-assiegee-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-carcassonne-cite-assiegee-scene-2",
+      "index": 2,
+      "title": "Château Comtal",
+      "text": "Devant toi, un château. Un vrai, avec ses tours, son pont, ses douves sèches — une forteresse à l'intérieur de la forteresse. C'est le Château Comtal. Et pour comprendre les sièges de Carcassonne, il faut connaître ceux qui vivaient là : les Trencavel.\r\n\r\nAu douzième siècle, les Trencavel sont vicomtes de Carcassonne, mais pas seulement : ils tiennent aussi Béziers, Albi, Nîmes. Une dynastie puissante, cultivée, qui règne sur un pays de langue d'oc riche et raffiné, où l'on aime la poésie des troubadours, où l'on discute librement de religion. Trop librement, peut-être, au goût de l'Église.\r\n\r\nCar dans ce pays prospère, une autre foi s'est répandue. On les appelle les bons hommes, ou les cathares. Ils prêchent une vie pauvre, refusent les richesses de l'Église de Rome. Ils sont nombreux, protégés par les seigneurs du Midi. Et à Rome, cela ne passe plus.\r\n\r\nRetiens ce nom, Trencavel, et ce mot, cathares. Dans quelques pas, tout va basculer. Longe le flanc du château jusqu'à la terrasse qui domine la rivière. Suis-moi.",
+      "hash": "d3100bfe",
+      "chars": 1032,
+      "existingSegments": {
+        "it": "seed-100-carcassonne-cite-assiegee-scene-2-seg-it",
+        "en": "seed-100-carcassonne-cite-assiegee-scene-2-seg-en",
+        "de": "seed-100-carcassonne-cite-assiegee-scene-2-seg-de",
+        "es": "seed-100-carcassonne-cite-assiegee-scene-2-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-carcassonne-cite-assiegee-scene-3",
+      "index": 3,
+      "title": "Château Comtal",
+      "text": "Arrête-toi ici, au pied du château, et imagine le mois d'août 1209. Il fait une chaleur de four. Au loin, dans la plaine, une armée immense : la croisade. Le pape a lancé les barons du Nord contre les hérétiques du Midi. Quelques jours plus tôt, ils ont pris Béziers et massacré la ville entière, hommes, femmes, enfants. La nouvelle est arrivée jusqu'ici. La terreur, aussi.\r\n\r\nDans ces murs, un jeune homme de vingt-quatre ans : Raymond-Roger Trencavel, le vicomte. La Cité est bondée de réfugiés. Les croisés s'emparent des faubourgs, en bas, et coupent l'accès à l'eau de la rivière. En plein été, sans eau, une ville surpeuplée ne tient pas. La soif fait ce que les armes n'ont pas fait.\r\n\r\nLe vicomte sort parlementer. On le retient prisonnier — dans son propre château, dit-on. Trois mois plus tard, il meurt là, dans un cachot, à vingt-quatre ans. On a longtemps chuchoté qu'on l'avait aidé à mourir. La Cité, elle, est tombée presque sans bataille. Prise par la faim et par la soif.\r\n\r\nRessors du château et descends vers l'ouest, jusqu'à la porte qui s'ouvre au-dessus du vide, face à la rivière. Suis-moi.",
+      "hash": "964783f0",
+      "chars": 1116,
+      "existingSegments": {
+        "en": "seed-100-carcassonne-cite-assiegee-scene-3-seg-en",
+        "es": "seed-100-carcassonne-cite-assiegee-scene-3-seg-es",
+        "it": "seed-100-carcassonne-cite-assiegee-scene-3-seg-it",
+        "de": "seed-100-carcassonne-cite-assiegee-scene-3-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-carcassonne-cite-assiegee-scene-4",
+      "index": 4,
+      "title": "Porte d'Aude",
+      "text": "Regarde ce vertige. La Porte d'Aude s'ouvre sur le versant le plus raide de la colline, celui qui plonge vers la rivière, l'Aude, tout en bas. C'était l'autre grande porte de la Cité, celle qui reliait la ville haute au monde d'en bas. Et c'était un cauchemar à attaquer : une longue rampe à découvert, coudée, écrasée sous les tours. Monter là-dessous, sous les flèches et les pierres, relevait du suicide.\r\n\r\nAprès la chute de 1209, un chef croisé récupère la vicomté : Simon de Montfort, soldat de fer, impitoyable. Mais le pays du Midi ne se résigne pas. En 1240, le fils de Trencavel revient, avec des fidèles, pour reprendre la ville de son père. Il assiège Carcassonne à son tour. En vain. La forteresse ne cède pas.\r\n\r\nLe roi de France comprend la leçon. Il expulse les habitants des faubourgs, de l'autre côté de la rivière, et leur fait bâtir une ville neuve dans la plaine : la bastide. La Cité, elle, devient une pure machine de guerre du royaume. Imprenable.\r\n\r\nRemonte vers le sud de la Cité, jusqu'à la grande église aux hautes verrières. Suis-moi.",
+      "hash": "a80605bf",
+      "chars": 1063,
+      "existingSegments": {
+        "it": "seed-100-carcassonne-cite-assiegee-scene-4-seg-it",
+        "de": "seed-100-carcassonne-cite-assiegee-scene-4-seg-de",
+        "en": "seed-100-carcassonne-cite-assiegee-scene-4-seg-en",
+        "es": "seed-100-carcassonne-cite-assiegee-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-carcassonne-cite-assiegee-scene-5",
+      "index": 5,
+      "title": "Basilique Saint-Nazaire",
+      "text": "Pousse la porte de la basilique Saint-Nazaire. Prends le temps que tes yeux s'habituent à la pénombre. Devant, la nef basse et ronde, romane, massive. Puis, d'un coup, le chœur s'élance, gothique, percé d'immenses verrières où la lumière explose en rouge et en bleu. Des vitraux parmi les plus anciens et les plus beaux du Midi.\r\n\r\nCette église a tout vu. On raconte que le pape Urbain II, de passage, en bénit les pierres à la fin du onzième siècle. Cherche, scellée dans un mur, une dalle sculptée : la pierre du siège. On y devine des assaillants, des machines de guerre, une ville attaquée. La pierre gravée d'une époque qui ne parlait que de ça.\r\n\r\nEt sache une chose : après sa mort, le corps de Simon de Montfort, le croisé, fut d'abord déposé ici même. Le bras armé de l'Église contre le Midi, enterré au cœur du Midi. On l'emmènera plus tard vers le Nord.\r\n\r\nRessors et va vers l'est, par la ruelle qui file au cœur de la Cité, jusqu'à une petite place bordée de terrasses. Suis-moi.",
+      "hash": "fd972df3",
+      "chars": 992,
+      "existingSegments": {
+        "de": "seed-100-carcassonne-cite-assiegee-scene-5-seg-de",
+        "en": "seed-100-carcassonne-cite-assiegee-scene-5-seg-en",
+        "es": "seed-100-carcassonne-cite-assiegee-scene-5-seg-es",
+        "it": "seed-100-carcassonne-cite-assiegee-scene-5-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-carcassonne-cite-assiegee-scene-6",
+      "index": 6,
+      "title": "Place Marcou",
+      "text": "Cette petite place ombragée de platanes, avec ses terrasses, c'est le cœur vivant de la Cité aujourd'hui. Mais pose-toi la question : que devient une forteresse imprenable quand plus personne ne veut la prendre ?\r\n\r\nPendant quatre siècles, Carcassonne a monté la garde à la frontière du royaume, face à l'Aragon, face à l'Espagne. On entretenait ses murs, on armait ses tours. Et puis, en 1659, un traité change tout : la France signe la paix des Pyrénées, la frontière recule loin au sud. D'un trait de plume, la grande sentinelle ne sert plus à rien.\r\n\r\nAlors la Cité s'endort. Les rois l'oublient. Les soldats partent. Les murs se lézardent, des maisons poussent contre les remparts, on vole des pierres pour bâtir ailleurs. La ville basse, la bastide, prospère ; la ville haute, elle, tombe en ruine. Au dix-neuvième siècle, on parlera même de la démolir. Mais ça, c'est une autre histoire, celle d'une autre balade.\r\n\r\nReviens vers l'est, vers la Porte Narbonnaise par où tu es entré. On boucle la boucle. Suis-moi.",
+      "hash": "fc5c735e",
+      "chars": 1020,
+      "existingSegments": {
+        "de": "seed-100-carcassonne-cite-assiegee-scene-6-seg-de",
+        "en": "seed-100-carcassonne-cite-assiegee-scene-6-seg-en",
+        "es": "seed-100-carcassonne-cite-assiegee-scene-6-seg-es",
+        "it": "seed-100-carcassonne-cite-assiegee-scene-6-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-carcassonne-cite-assiegee-scene-7",
+      "index": 7,
+      "title": "Porte Narbonnaise",
+      "text": "Nous revoilà devant la Porte Narbonnaise. Cherche, tout près de l'entrée, un buste de pierre scellé dans le mur : le visage d'une femme couronnée. On l'appelle Dame Carcas. C'est elle, la légende que je t'ai promise. Écoute.\r\n\r\nOn raconte qu'il y a très longtemps, du temps de Charlemagne, la Cité était tenue par les Sarrasins et gouvernée par une dame rusée, Dame Carcas. Les Francs mettent le siège. Des mois passent. Dans la ville, on meurt de faim ; il ne reste presque plus rien, qu'un cochon et un dernier sac de blé.\r\n\r\nAlors Dame Carcas a une idée folle. Elle fait gaver le cochon avec le dernier grain, et le fait jeter du haut des remparts, aux pieds des assiégeants. Les Francs, épuisés, voient s'écraser une bête grasse, gonflée de blé. Ils se disent : si l'ennemi jette ses cochons pleins de grain, c'est qu'il en a à revendre. Jamais nous ne les affamerons. Et ils lèvent le siège.\r\n\r\nComme l'armée s'éloigne, Dame Carcas, folle de joie, fait sonner toutes les cloches de la ville. Un soldat se retourne et crie : « Carcas sonne ! » Carcas sonne… Carcassonne. La ville aurait pris là son nom.\r\n\r\nC'est une légende, bien sûr. Le vrai nom vient des Romains, de Carcaso, bien avant elle. Mais tu comprends, maintenant, pourquoi cette ville aime tant cette histoire : deux mille ans de sièges, et pas une fois elle n'a voulu céder à la faim. Reste un moment. Écoute. Les cloches sonnent encore. À bientôt, l'ami.",
+      "hash": "ad597209",
+      "chars": 1423,
+      "existingSegments": {
+        "en": "seed-100-carcassonne-cite-assiegee-scene-7-seg-en",
+        "it": "seed-100-carcassonne-cite-assiegee-scene-7-seg-it",
+        "es": "seed-100-carcassonne-cite-assiegee-scene-7-seg-es",
+        "de": "seed-100-carcassonne-cite-assiegee-scene-7-seg-de"
+      }
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "tourId": "seed-100-nice-nissa-la-bella",
+  "sessionId": "seed-100-nice-nissa-la-bella-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Nice",
+  "title": "Nice — Nissa la Bella",
+  "description": "Histoire & secrets — comté sarde devenu français par un vote, la vieille ville qui parle encore nissart.",
+  "themes": [
+    "Histoire & secrets — comté sarde devenu français par un vote, la vieille ville qui parle encore nissart."
+  ],
+  "baseLanguage": "fr",
+  "chars": 12109,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Storia & segreti, la contea sardi divenne francese con un voto, il centro storico che ancora parla nissart.",
+    "es": "Historia & secretos, condado sarda convertido en francés por un voto, el casco antiguo que habla todavía nissart.",
+    "de": "Geschichte & Geheimnisse, sardische Grafschaft wurde durch eine Abstimmung Französisch, die Altstadt, die noch spricht Nissart.",
+    "en": "History & secrets, Sardinian county became French by a vote, the old town that still speaks nissart."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-nice-nissa-la-bella-scene-0",
+      "index": 0,
+      "title": "Place Masséna",
+      "text": "Arrête-toi au milieu de cette place immense, sur le grand damier noir et blanc. Autour de toi, des façades d'un rouge profond, presque sang, à arcades. Ce rouge-là, ce n'est pas Paris. C'est Turin. Regarde la fontaine, au sud : un Apollon de bronze, nu, immense, qui a fait scandale à son inauguration. Et cette place porte le nom d'un enfant du pays, André Masséna, gamin d'ici devenu maréchal d'Empire, l'un des plus grands soldats de Napoléon.\r\n\r\nVoilà déjà tout le paradoxe de Nice. Un maréchal français, sur une place bâtie à l'italienne.\r\n\r\nParce qu'il faut que tu saches une chose, et c'est l'histoire que je vais te raconter pendant toute cette balade : Nice n'a presque jamais été française. Pendant près de cinq siècles, cette ville a regardé vers l'est, vers les Alpes, vers Turin. Elle était la fenêtre sur la mer d'un État qu'on appelait la Savoie, puis le royaume de Sardaigne. Ses comtes, ses rois, on les couronnait de l'autre côté de la montagne.\r\n\r\nEt puis, en 1860, tout bascule. Par un vote. Nice devient française presque du jour au lendemain — et cette histoire-là, celle d'un peuple à qui on demande de changer de pays, on va la remonter rue par rue.\r\n\r\nUn dernier secret avant de partir. Ici, on n'a rien oublié. La langue d'avant, le nissart, on la parle encore, on la chante encore. Tu vas l'entendre.\r\n\r\nEnfonce-toi dans la vieille ville, droit devant, vers le marché du cours Saleya. Suis-moi.",
+      "hash": "2ac6f358",
+      "chars": 1421,
+      "existingSegments": {
+        "en": "seed-100-nice-nissa-la-bella-scene-0-seg-en",
+        "it": "seed-100-nice-nissa-la-bella-scene-0-seg-it",
+        "es": "seed-100-nice-nissa-la-bella-scene-0-seg-es",
+        "de": "seed-100-nice-nissa-la-bella-scene-0-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-nice-nissa-la-bella-scene-1",
+      "index": 1,
+      "title": "Cours Saleya",
+      "text": "Te voilà sur le cours Saleya. Oublie une seconde les parasols et les étals — regarde plutôt, tout au bout, ce grand bâtiment ocre et cossu, celui de la préfecture. Ce n'était pas une préfecture. C'était un palais. Le palais de nos maîtres d'alors : les ducs de Savoie, devenus rois de Sardaigne.\r\n\r\nQuand le souverain descendait de Turin passer l'hiver au bord de la mer, c'est ici qu'il logeait. La cour suivait, avec ses carrosses, ses gardes, ses intrigues. Et ce cours, cette longue esplanade où tu marches, c'était la promenade chic de la ville. On y paradait en habits de cour, on s'y montrait, on y complotait à voix basse.\r\n\r\nRetiens bien ce mot, sarde. Pendant que Louis XIV, puis Louis XV, régnaient à Versailles, les Niçois, eux, étaient sujets du roi de Sardaigne. Un roi qu'ils ne voyaient presque jamais, mais dont les portraits ornaient chaque salle officielle.\r\n\r\nCe palais a vu défiler des princes, une reine en exil, et le dernier gouverneur sarde qui a dû, un jour de 1860, plier bagage. On y reviendra.\r\n\r\nPrends la première ruelle sur ta droite, vers le cœur de la vieille ville, jusqu'à une petite place couleur d'ocre. Suis-moi.",
+      "hash": "27b1c3c4",
+      "chars": 1151,
+      "existingSegments": {
+        "es": "seed-100-nice-nissa-la-bella-scene-1-seg-es",
+        "de": "seed-100-nice-nissa-la-bella-scene-1-seg-de",
+        "it": "seed-100-nice-nissa-la-bella-scene-1-seg-it",
+        "en": "seed-100-nice-nissa-la-bella-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-nice-nissa-la-bella-scene-2",
+      "index": 2,
+      "title": "Place Rossetti",
+      "text": "Cette petite place ocre et rose, avec sa fontaine et ses terrasses, c'est la place Rossetti, le cœur battant de la vieille ville. Devant toi, la façade baroque de la cathédrale : Sainte-Réparate.\r\n\r\nRéparate, c'est la patronne de Nice. On raconte qu'elle était une toute jeune fille, martyre en Orient il y a dix-sept siècles, décapitée pour sa foi. Son corps, dit la légende, aurait été déposé dans une barque livrée aux flots. Et la barque aurait dérivé, seule, jusqu'ici, guidée par des anges. C'est de là, dit-on, que vient le nom de la grande baie que tu longeras : la Baie des Anges.\r\n\r\nPousse la porte si elle est ouverte. À l'intérieur, c'est une débauche de dorures, de marbres, de stucs : le baroque italien dans toute sa fièvre. Rien d'étonnant. Les artistes, les architectes, les idées venaient d'Italie, de Gênes, de Turin. Cette cathédrale ne ressemble à aucune église du reste de la France. Elle ressemble au Piémont.\r\n\r\nEncore un détail niçois : le clocher et le dôme sont couverts de tuiles vernissées, luisantes, comme dans le nord de l'Italie.\r\n\r\nRemonte la rue qui grimpe derrière la place, la rue Droite. Deux minutes, jusqu'à un palais. Suis-moi.",
+      "hash": "cb442615",
+      "chars": 1168,
+      "existingSegments": {
+        "it": "seed-100-nice-nissa-la-bella-scene-2-seg-it",
+        "en": "seed-100-nice-nissa-la-bella-scene-2-seg-en",
+        "es": "seed-100-nice-nissa-la-bella-scene-2-seg-es",
+        "de": "seed-100-nice-nissa-la-bella-scene-2-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-nice-nissa-la-bella-scene-3",
+      "index": 3,
+      "title": "Palais Lascaris",
+      "text": "Nous voici rue Droite. Petite blague niçoise : elle n'a rien de droit, elle serpente. Son nom vient d'un vieux mot qui voulait dire « la rue directe », celle qui traversait la ville de part en part. Et derrière une porte monumentale se cache le palais Lascaris.\r\n\r\nDerrière cette façade étroite dort l'un des plus beaux escaliers baroques de France. Balustres de marbre, statues, plafonds peints où des dieux se prélassent dans les nuages. C'était l'hôtel d'une des grandes familles du comté, les Lascaris-Vintimille — des comtes qui se disaient, rien de moins, descendants des empereurs de Byzance.\r\n\r\nVoilà l'autre visage de cette ville sarde. Sous les rois de Turin, une noblesse locale, riche, orgueilleuse, qui bâtissait des palais dans des ruelles où deux ânes se croisaient à peine. Ils vivaient au-dessus de leurs boutiques, escalier de prince et fenêtres donnant sur la lessive du voisin.\r\n\r\nAujourd'hui, le palais garde une collection d'instruments de musique anciens — luths, clavecins, violes. La maison chante encore.\r\n\r\nContinue de monter la rue Droite, puis oblique vers la petite place à fontaine, devant l'ancien couvent. Suis-moi.",
+      "hash": "30f5b05b",
+      "chars": 1148,
+      "existingSegments": {
+        "it": "seed-100-nice-nissa-la-bella-scene-3-seg-it",
+        "es": "seed-100-nice-nissa-la-bella-scene-3-seg-es",
+        "de": "seed-100-nice-nissa-la-bella-scene-3-seg-de",
+        "en": "seed-100-nice-nissa-la-bella-scene-3-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-nice-nissa-la-bella-scene-4",
+      "index": 4,
+      "title": "Place Saint-François",
+      "text": "Cette petite place avec sa fontaine, c'est la place Saint-François. Le matin, on y vend encore le poisson, comme depuis des siècles, sur des étals de marbre. Lève les yeux : cette haute tour, c'est ce qui reste d'un ancien couvent de Franciscains. Sa cloche sonnait les heures de la ville, les alarmes, les fêtes.\r\n\r\nIci, on est loin des palais. On est dans la ville du peuple — pêcheurs, lavandières, portefaix, petites gens entassées dans des maisons hautes et étroites. Et c'est cette ville-là, la ville d'en bas, qui a gardé le mieux sa langue.\r\n\r\nLe nissart. Ce n'est pas du français mal parlé, ni de l'italien. C'est une langue à part entière, cousine de l'occitan et du ligure, avec ses mots à elle. On dit calèna pour Noël, câcan pour un notable qui se croit important, ratapignata pour la chauve-souris. Sur les étals, dans les cours, on l'entendait du matin au soir.\r\n\r\nÉcoute bien. Dans les noms de rue, doublés en nissart sur les plaques, dans les cris du marché, elle est toujours là. Une ville qui a changé de pays, mais pas de bouche.\r\n\r\nSuis la ruelle qui file vers le nord-est, jusqu'à un bas-relief scellé dans un mur. Suis-moi.",
+      "hash": "35a0a00d",
+      "chars": 1146,
+      "existingSegments": {
+        "de": "seed-100-nice-nissa-la-bella-scene-4-seg-de",
+        "it": "seed-100-nice-nissa-la-bella-scene-4-seg-it",
+        "es": "seed-100-nice-nissa-la-bella-scene-4-seg-es",
+        "en": "seed-100-nice-nissa-la-bella-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-nice-nissa-la-bella-scene-5",
+      "index": 5,
+      "title": "Catherine Ségurane",
+      "text": "Regarde ce mur. Un bas-relief usé, une femme robuste qui brandit quelque chose. C'est Catherine Ségurane — la plus célèbre héroïne de Nice, et peut-être la plus légendaire.\r\n\r\nReviens en 1543. La ville est assiégée. Deux puissances énormes se sont liguées contre elle : le roi de France, François Ier, et son allié le sultan de Constantinople, dont la flotte turque mouille dans la baie. Les canons crachent, les remparts tremblent. Nice, petite ville sarde, tient tête à un empire.\r\n\r\nEt c'est là, on raconte, qu'une simple lavandière, Catherine Ségurane, monte sur les murs. Elle empoigne un assaillant, lui arrache son étendard, galvanise les défenseurs. Une autre version, plus salée, jure qu'elle aurait retroussé ses jupes et montré son derrière aux assiégeants pour les défier. Les Niçois adorent celle-là.\r\n\r\nA-t-elle vraiment existé ? Nul ne le sait. Mais chaque année, la ville lui rend hommage. Elle est devenue le symbole de Nice elle-même : petite, pauvre, entêtée, refusant de plier.\r\n\r\nLa ville a fini par tomber ; mais la citadelle, là-haut, a tenu bon. On y montera tout à l'heure.\r\n\r\nContinue vers le nord, jusqu'à la grande place à arcades qui s'ouvre devant toi. Suis-moi.",
+      "hash": "5cad0f7f",
+      "chars": 1192,
+      "existingSegments": {
+        "es": "seed-100-nice-nissa-la-bella-scene-5-seg-es",
+        "en": "seed-100-nice-nissa-la-bella-scene-5-seg-en",
+        "de": "seed-100-nice-nissa-la-bella-scene-5-seg-de",
+        "it": "seed-100-nice-nissa-la-bella-scene-5-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-nice-nissa-la-bella-scene-6",
+      "index": 6,
+      "title": "Place Garibaldi",
+      "text": "Voici la plus solennelle des places de Nice : la place Garibaldi. Regarde ces façades jaune d'or, ces arcades régulières, ces trompe-l'œil peints. On dirait une place de Turin — et c'est exactement ce qu'on a voulu. On l'a tracée à la fin du XVIIIe siècle comme la porte d'honneur de la ville, celle qui ouvrait la route royale vers le Piémont, vers la capitale.\r\n\r\nAu centre, en haut de son socle, un homme de marbre : Giuseppe Garibaldi. Le héros de l'unité italienne, le général en chemise rouge. Et il est là pour une raison simple : il est né ici, à Nice, en 1807, à deux pas du port.\r\n\r\nVoilà tout le drame de 1860. Au moment où l'on demande aux Niçois s'ils veulent devenir français, le plus glorieux de leurs fils, lui, est furieux. Garibaldi crie à la trahison. Il dit qu'on a fait de lui un étranger dans sa propre ville. Il ira jusqu'au parlement de Turin pour protester, en vain.\r\n\r\nCar on ne l'écoute pas. Les grandes puissances ont déjà tout décidé. La ville de Garibaldi va voter, et voter oui.\r\n\r\nDescends maintenant vers le sud-est, vers l'eau, jusqu'au vieux port. Cinq minutes. Suis-moi.",
+      "hash": "25b66bd1",
+      "chars": 1106,
+      "existingSegments": {
+        "it": "seed-100-nice-nissa-la-bella-scene-6-seg-it",
+        "de": "seed-100-nice-nissa-la-bella-scene-6-seg-de",
+        "en": "seed-100-nice-nissa-la-bella-scene-6-seg-en",
+        "es": "seed-100-nice-nissa-la-bella-scene-6-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-nice-nissa-la-bella-scene-7",
+      "index": 7,
+      "title": "Port de Nice — Port Lympia",
+      "text": "Nous voici au vieux port, le port Lympia. Aujourd'hui, ce sont les gros ferries blancs pour la Corse qui l'emplissent. Hier, c'était vers l'est qu'on partait d'ici — vers Gênes, vers la Sardaigne, vers l'Italie tout entière.\r\n\r\nLà, sur ces quais, dans une maison qui donnait sur l'eau, est né Garibaldi, fils d'un patron de barque. Enfant, il apprend la mer avant les lettres. Et toute sa vie, il gardera ce port dans le cœur.\r\n\r\nRegarde bien la géographie. La montagne, derrière toi, coupe Nice du reste de la France ; la mer, devant, l'ouvre vers l'Italie. Pendant des siècles, la ville a vécu tournée vers l'est. On partait d'ici pour Turin par bateau, plutôt que par les cols enneigés. Le cordon ombilical de Nice, ce n'était pas la route de Marseille — c'était cette eau.\r\n\r\nC'est pour ça que 1860 est un tel bouleversement. On ne change pas seulement de drapeau. On demande à une ville de tourner le dos à la mer qui l'a nourrie, et de regarder, désormais, par-dessus les montagnes.\r\n\r\nLonge le pied de la grande colline verte et commence à grimper — sentiers, marches, ou l'ascenseur si tu préfères. On monte au berceau. Suis-moi.",
+      "hash": "b646e15d",
+      "chars": 1137,
+      "existingSegments": {
+        "en": "seed-100-nice-nissa-la-bella-scene-7-seg-en",
+        "it": "seed-100-nice-nissa-la-bella-scene-7-seg-it",
+        "es": "seed-100-nice-nissa-la-bella-scene-7-seg-es",
+        "de": "seed-100-nice-nissa-la-bella-scene-7-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-nice-nissa-la-bella-scene-8",
+      "index": 8,
+      "title": "Colline du Château",
+      "text": "Te voilà sur la colline. Reprends ton souffle, et comprends une chose : ici, c'est là que tout a commencé. Bien avant les palais d'en bas, la vraie Nice, la ville médiévale, était perchée sur ce rocher. Ses maisons, ses ruelles, sa cathédrale, son château fort — tout était là-haut, à l'abri des pillards.\r\n\r\nSous l'herbe et les pins, regarde bien : des fondations, des pans de murs, le plan au sol d'une grande église disparue. C'était Sainte-Marie du Château, la première cathédrale, avant celle d'en bas. Les archéologues l'ont dégagée. Tu marches dans une ville fantôme.\r\n\r\nAlors, que s'est-il passé ? Louis XIV. En 1706, ses armées prennent enfin la citadelle qui leur résistait depuis toujours. Et le Roi-Soleil, excédé, donne un ordre net : qu'on la rase. Entièrement. On fait sauter les remparts, on abat le château, on efface la forteresse de la carte.\r\n\r\nLa ville, privée de sa coquille de pierre, redescend alors vers la plaine. C'est le Nice d'en bas que tu viens de traverser. La colline, elle, devient peu à peu ce jardin.\r\n\r\nMonte encore, jusqu'au grand plateau qui domine toute la baie. C'est là que finit notre histoire. Suis-moi.",
+      "hash": "5897d525",
+      "chars": 1147,
+      "existingSegments": {
+        "en": "seed-100-nice-nissa-la-bella-scene-8-seg-en",
+        "it": "seed-100-nice-nissa-la-bella-scene-8-seg-it",
+        "de": "seed-100-nice-nissa-la-bella-scene-8-seg-de",
+        "es": "seed-100-nice-nissa-la-bella-scene-8-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-nice-nissa-la-bella-scene-9",
+      "index": 9,
+      "title": "Belvédère public de la colline du Château",
+      "text": "Nous y sommes. Le sommet. Prends le temps de tourner sur toi-même.\r\n\r\nD'un côté, la Baie des Anges qui s'étire, la grande courbe de la Promenade, la mer immense. De l'autre, à tes pieds, les toits de tuiles rouges de la vieille ville, serrés, avec leurs clochers vernissés. Et là-bas, le port, la route de l'Italie. Tout ce qu'on s'est raconté, tu le vois d'un seul regard.\r\n\r\nAlors revenons à la question du départ. Avril 1860. On installe des urnes dans toute la ville. On demande aux Niçois : voulez-vous devenir français ? Et la ville répond oui, à une écrasante majorité — dans des conditions qu'on discute encore, il faut le dire, car le résultat était joué d'avance. Nice devient française. Garibaldi enrage, mais le vote a parlé.\r\n\r\nEt pourtant. Regarde en bas, écoute. Plus de cent soixante ans après, cette ville n'a pas oublié d'où elle vient. Elle regarde vers la Sardaigne, elle prie baroque, elle jure en nissart. Chaque année, dans les stades et dans les rues, des milliers de voix reprennent le même chant, un hymne écrit ici il y a un siècle. Ça s'appelle Nissa la Bella — Nice la Belle. C'est presque un serment.\n\r\nVoilà le secret de cette ville. Elle est devenue française par un bulletin de vote, mais elle est restée niçoise par le cœur. Française sur la carte, sarde dans les pierres, nissarde dans la bouche.\r\n\r\nReste encore un peu là-haut. Laisse le vent te la raconter. Et quand tu redescendras, tu ne verras plus jamais Nice tout à fait comme avant. À bientôt, l'ami.",
+      "hash": "d49f9413",
+      "chars": 1493,
+      "existingSegments": {
+        "de": "seed-100-nice-nissa-la-bella-scene-9-seg-de",
+        "es": "seed-100-nice-nissa-la-bella-scene-9-seg-es",
+        "it": "seed-100-nice-nissa-la-bella-scene-9-seg-it",
+        "en": "seed-100-nice-nissa-la-bella-scene-9-seg-en"
+      }
+    }
+  ]
+}

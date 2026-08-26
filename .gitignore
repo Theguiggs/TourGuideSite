@@ -63,3 +63,13 @@ __pycache__/
 # Local dev artifacts
 dev.log
 .claude/
+
+# Retraduction des 101 visites : sauvegardes DynamoDB/S3 produites par retrad-2.
+# Le contenu éditorial (source/, raw/, out/) est versionné ; ces dumps ne le sont pas.
+content/translations/_backup/
+
+# Journaux de scripts d'exploitation (seed, microservice) et sauvegardes de migration.
+*.err.log
+*.out.log
+scripts/*.backup-*.json
+amplify_outputs.json.bak-*

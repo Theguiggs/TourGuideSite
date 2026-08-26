@@ -1,0 +1,554 @@
+@@LANG=en
+@@TITLE=Aix-en-Provence — In Cézanne's Footsteps
+@@DESC=Art — the studio, the Sainte-Victoire and the banker father: Cézanne against his town, his town for Cézanne.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-0
+@@STITLE=Cours Mirabeau
+Stop here, halfway up the cours Mirabeau, under the great plane trees that close the sky like a vault. Look at the double row of façades, the fountains and the width of this promenade laid out in the seventeenth century. For generations this is where Aix showed itself, met itself and told its story out loud.
+
+Two local boys walked this avenue, long ago. One was called Émile Zola. The other, Paul Cézanne. They had met at school, they dreamed of Paris, of glory, of art. One had it in his lifetime. The other did not.
+
+Because there is something you need to know, and it is the story I shall be telling you all along this walk. Cézanne is the greatest painter Aix ever gave the world — and in his lifetime his town took him for a failure. They called him "the dauber". They laughed at his canvases. The bourgeois here, starting with his own father, a banker, understood nothing of what he was after.
+
+He, stubborn as stone, spent his life painting three things: apples on a table, the people of his country, and a mountain, over there to the east — the Sainte-Victoire. Always the same one. Dozens of times.
+
+Today the whole town carries his name. Bronze letter Cs are set into the pavement to guide you towards him. Let's follow them.
+
+Walk down the cours towards the east, as far as the fountain at the end, then turn into the small street running south. Follow me.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-1
+@@STITLE=Rue de l'Opéra
+Here we are in the rue de l'Opéra. Raise your eyes to number 28. It was there, one January morning in 1839, that Paul Cézanne was born. Nothing marked him out for painting — quite the opposite.
+
+His father, Louis-Auguste, was a hard man who had started with nothing. A hatter first: he sold felts to the peasants who came to market. Then he sensed something better than hats. By taking over the town's only bank, which had just gone under, he became a banker. Cézanne's father lent money to the whole of Aix.
+
+Rich, then. Rich enough to buy a large country house outside town, the Jas de Bouffan, and to offer his son what the bourgeois dreamed of: a position. Paul would be a lawyer. He is enrolled in law, right here, at the faculty of Aix.
+
+Except that the son draws. Everywhere, all the time, in the margins of his law notebooks. And between the father who wants a notary and the son who wants to paint, war is declared. A war of money, of silence, of slammed doors, that will last twenty years.
+
+Head south again, as far as the railings of a large school. Follow me.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-2
+@@STITLE=Collège Bourbon
+This large severe building was the collège Bourbon — today the collège Mignet. Young Paul wore out his trousers on its benches. And it is there that he meets another boy, puny, short-sighted, often bullied: Émile Zola.
+
+The story goes that one day Zola gets a beating in the yard, and that Cézanne, the sturdier of the two, stands up for him. The next day Zola gives him a basket of apples to thank him. Apples. Remember that word: perhaps the most famous still life in the history of art begins there.
+
+The two boys become inseparable. They roam the countryside, swim in the Arc, recite verses, swear to go up to Paris and become great there. One through words, the other through colour.
+
+The story will end badly, though. Once a famous novelist, Zola will publish a book, The Masterpiece, whose hero is a brilliant, failed painter who hangs himself in front of his unfinished canvas. Cézanne recognises himself in it. He closes the book, writes one last polite letter to his childhood friend — and never speaks to him again.
+
+Come back east, towards the church and the museum at the end of the street. Follow me.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-3
+@@STITLE=Musée Granet
+In front of you, the église Saint-Jean-de-Malte and, against it, the musée Granet — the fine arts museum of Aix. This is where the great misunderstanding between Cézanne and his town is played out.
+
+As a boy Paul learned to draw very close by, at the town's free drawing school. He even won a prize there. He surely dreamed of one day hanging a canvas in that museum, the museum of his own country.
+
+Nothing of the sort happened. The story goes that the curator of the museum, a local painter, swore that never, as long as he lived, would a work by Cézanne soil his walls. And he kept his word. Cézanne died without Aix hanging a single one of his canvases.
+
+"Aix, my homeland," he wrote all the same, in spite of everything. He loved this town that despised him, the way one loves a difficult father.
+
+Today — sweet irony — the museum devotes a room to him. People come from all over the world to see the few Cézannes of Aix, in the town that did not want them. The wheel has turned. It always turns too late.
+
+Head north, cross the cours, as far as the town hall square. Follow me.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-4
+@@STITLE=Place de l'Hôtel de Ville
+Here you are on the place de l'Hôtel de Ville, with its pretty clock tower and its flower market. This is the setting of the world that judged Cézanne: the world of notables, of lawyers, of landowners — his father's world.
+
+Imagine what was said about him, in low voices, under these arcades. The Cézanne boy? An eccentric. He wanders about in stained clothes, he no longer shaves, he goes up to Paris and comes back without a penny of glory. The banker's son who has made a mess of his life.
+
+And while they whisper, he is watching those people. He watches the farmhands of the Jas de Bouffan, pipe in mouth, sitting round a game of cards. Out of it he draws one of the most powerful paintings of the century: The Card Players. Two men, a table, a fold of curtain. Nothing. And everything.
+
+Cézanne did not paint princes. He painted this country, these faces, these apples, this light. He got Aix into the greatest museums in the world without ever flattering it.
+
+Take the street climbing north, the rue Boulegon. Follow me.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-5
+@@STITLE=Rue Boulegon
+Stop in front of number 23 rue Boulegon. Almost nothing marks it out. Yet it is here that Cézanne lived his last years, and it is here that he died.
+
+In 1886 his father dies. The hard old banker leaves Paul a fortune. At forty-seven, at last, the painter is free: free to sell nothing, to please nobody, to paint only for what he is looking for. "My father was a man of genius," he would say; "he left me enough to live on."
+
+He rents this flat in town, fits out a studio in it, and is looked after by a faithful housekeeper. And he works like a convict, alone.
+
+One October day in 1906 he goes out to paint from the motif, in spite of the storm. Caught by the rain, he collapses on the way, comes home soaked and chilled. He goes out to paint again the next day all the same. The fever rises. A few days later, in this house, he dies. He is buried in the Saint-Pierre cemetery, here in Aix. Brush in hand to the very end.
+
+Keep climbing, as far as the great cathedral at the top of the old town. Follow me.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-6
+@@STITLE=Cathédrale Saint-Sauveur
+Here is the cathédrale Saint-Sauveur, at the very top of the old town. Go in for a moment if you can, or stay on the forecourt, and think of the old man Cézanne had become.
+
+Towards the end, this rebel, this breaker of rules, comes back to something very old: the faith of his childhood. He starts going to mass again, almost every morning, in a church of Aix like this one. "When I paint," he confides, "my faith comes back to me."
+
+There is no contradiction in that. All his life Cézanne looked for the same thing: what holds, what lasts, what does not move beneath the changing appearance of things. The hidden structure of an apple, of a face, of a mountain. A kind of prayer with a brush.
+
+He died a couple of streets from here, alone with his search, understood by almost no one. Twenty years later Picasso, Matisse, all the great names, would call him "the father of us all".
+
+Now leave the old town and climb the avenue Paul-Cézanne, to the north. It is a good climb, a quarter of an hour on foot — but it is the road he took every day. Follow me.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-7
+@@STITLE=Atelier Cézanne
+Here we are: the studio of Les Lauves. Cézanne had it built on this hill in 1902, with his father's money, so as to have at last a place of his own. One large bare room and, above all, a huge north-facing window: even light, with no hard shadow, the light a painter loves.
+
+Push the door open. Everything has been left as it was on the last day. His coat hanging, his hat. On the shelves, his silent models: bottles, earthenware pots, a skull, a small plaster cupid, those apples and onions he arranged for hours before daring to paint them.
+
+Look at the tall vertical slot in the wall. It was used to slide his very large canvases out into the garden: this is where he painted The Large Bathers, the work of his life, left unfinished.
+
+Every morning the old man climbed up here from the town. He painted the light, the fruit, the flesh. And when the canvas in the studio was no longer enough, he walked a few steps further, to the top of the hill, to find again the one thing that had never betrayed him.
+
+Go out, climb a little higher, to the small terrace that overlooks it all. Follow me.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-8
+@@STITLE=Terrain des Peintres
+Here we are. The terrain des Peintres, the painters' ground. Turn to the east, and look.
+
+Over there, beyond the roofs and the pines, a mass of blue and white limestone bars the horizon: the montagne Sainte-Victoire. Barely more than a thousand metres. Nothing, next to the Alps. And yet it is perhaps the most famous mountain in all of painting.
+
+Because Cézanne painted it dozens of times. In oil, in watercolour, from far off, from close up, in winter, in summer. Always the same, never the same. He was not trying to make something pretty. He was trying to understand how a mountain stands up, how light builds it, how a few patches of colour, placed just so, can make a whole country rise up before your eyes. It is there, in front of that stone, that a good part of modern art was born.
+
+So come back to our story. A son whose father wanted him to be a lawyer. A town that took him for a madman. A man who died alone, without glory, a brush in his hand.
+
+And look at it today. His name on the avenue, on the school, on the plaques of the town. His bronze Cs in the pavement. His mountain become a place of pilgrimage. Aix ended up understanding that it had carried, without knowing it, one of the very greatest.
+
+"Aix, my homeland," he said. It has become, for ever, the homeland of Cézanne.
+
+Stay a moment facing the mountain. Let it look at you. And when you walk back down, you will never see this light the way you did before. See you soon, my friend.
+
+@@LANG=es
+@@TITLE=Aix-en-Provence — Tras los pasos de Cézanne
+@@DESC=Arte: el taller, la Sainte-Victoire y el padre banquero. Cézanne contra su ciudad, su ciudad por Cézanne.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-0
+@@STITLE=Cours Mirabeau
+Detente aquí, a media altura del cours Mirabeau, bajo los grandes plátanos que cierran el cielo como una bóveda. Mira la doble hilera de fachadas, las fuentes y la anchura de este paseo trazado en el siglo XVII. Durante generaciones, aquí es donde Aix se mostró, se encontró y se contó en voz alta.
+
+Dos chavales de aquí recorrieron este cours hace mucho tiempo. Uno se llamaba Émile Zola. El otro, Paul Cézanne. Se habían conocido en el colegio, soñaban con París, con la gloria, con el arte. Uno la tuvo en vida. El otro, no.
+
+Porque tienes que saber una cosa, y es la historia que voy a contarte a lo largo de este paseo. Cézanne es el pintor más grande que Aix ha dado al mundo, y en vida su ciudad lo tomó por un fracasado. Lo llamaban «el pintamonas». Se reían de sus cuadros. Los burgueses de aquí, empezando por su propio padre, un banquero, no entendían nada de lo que buscaba.
+
+Él, terco como la piedra, pasó la vida pintando tres cosas: manzanas sobre una mesa, la gente de su tierra y una montaña, allá al este, la Sainte-Victoire. Siempre la misma. Decenas de veces.
+
+Hoy la ciudad entera lleva su nombre. Unas «C» de bronce están selladas en la acera para guiarte hasta él. Sigámoslas.
+
+Baja el cours hacia el este, hasta la fuente del final, y luego dobla por la callecita que va hacia el sur. Sígueme.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-1
+@@STITLE=Rue de l'Opéra
+Aquí estamos, en la rue de l'Opéra. Levanta los ojos hacia el número 28. Fue ahí, una mañana de enero de 1839, donde nació Paul Cézanne. Nada lo destinaba a la pintura; al contrario.
+
+Su padre, Louis-Auguste, era un hombre duro, salido de la nada. Sombrerero primero: vendía fieltros a los campesinos que venían al mercado. Luego olió algo mejor que el sombrero. Al hacerse con el único banco de la ciudad, que acababa de hundirse, se convirtió en banquero. El padre de Cézanne prestaba dinero a todo Aix.
+
+Rico, pues. Lo bastante para comprar un gran caserón a la salida de la ciudad, el Jas de Bouffan, y para ofrecer a su hijo lo que soñaban los burgueses: una posición. Paul sería abogado. Lo matriculan en derecho, aquí mismo, en la facultad de Aix.
+
+Solo que el hijo dibuja. En todas partes, todo el tiempo, en los márgenes de sus cuadernos de derecho. Y entre el padre que quiere un notario y el hijo que quiere pintar, se declara la guerra. Una guerra de dinero, de silencio, de portazos, que durará veinte años.
+
+Sigue hacia el sur, hasta las verjas de un gran instituto. Sígueme.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-2
+@@STITLE=Collège Bourbon
+Este gran edificio severo era el collège Bourbon, hoy el collège Mignet. El joven Paul gastó ahí sus pantalones en los bancos. Y es ahí donde conoce a otro chaval, enclenque, miope, a menudo zarandeado: Émile Zola.
+
+Se cuenta que un día Zola recibe una paliza en el patio y que Cézanne, más fornido, lo defiende. Al día siguiente, Zola le regala una cesta de manzanas para darle las gracias. Manzanas. Recuerda esa palabra: quizá ahí empiece el bodegón más célebre de la historia del arte.
+
+Los dos chicos se vuelven inseparables. Corren por el campo, se bañan en el Arc, recitan versos, se juran subir a París y hacerse grandes allí. Uno por las palabras, el otro por el color.
+
+La historia, sin embargo, acabará mal. Convertido en novelista célebre, Zola publicará un libro, «La obra», cuyo héroe es un pintor genial y fracasado que se ahorca ante su lienzo inacabado. Cézanne se reconoce en él. Cierra el libro, escribe una última carta cortés a su amigo de infancia y no vuelve a hablarle jamás.
+
+Vuelve hacia el este, hacia la iglesia y el museo al final de la calle. Sígueme.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-3
+@@STITLE=Musée Granet
+Ante ti, la église Saint-Jean-de-Malte y, pegado a ella, el musée Granet, el museo de bellas artes de Aix. Aquí se juega el gran malentendido entre Cézanne y su ciudad.
+
+De niño, Paul aprendió a dibujar muy cerca, en la escuela gratuita de dibujo de la ciudad. Incluso ganó allí un premio. Sin duda soñaba con colgar algún día un cuadro en ese museo, el de su tierra.
+
+No fue así. Se cuenta que el conservador del museo, un pintor local, habría jurado que jamás, mientras él viviera, una obra de Cézanne ensuciaría sus paredes. Y cumplió su palabra. Cézanne murió sin que Aix colgara ni uno solo de sus lienzos.
+
+«Aix, mi patria», escribía sin embargo, pese a todo. Amaba a esa ciudad que lo despreciaba, como se quiere a un padre difícil.
+
+Hoy, dulce ironía, el museo le dedica una sala. Se viene del mundo entero a ver los pocos Cézanne de Aix, en la ciudad que no los quería. La rueda ha girado. Siempre gira demasiado tarde.
+
+Sube hacia el norte, cruza el cours, hasta la plaza del ayuntamiento. Sígueme.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-4
+@@STITLE=Place de l'Hôtel de Ville
+Aquí estás, en la place de l'Hôtel de Ville, con su bonita torre del reloj y su mercado de flores. Es el decorado del mundo que juzgó a Cézanne: el mundo de los notables, de los abogados, de los propietarios, el mundo de su padre.
+
+Imagina lo que se decía de él, en voz baja, bajo estos soportales. ¿El hijo de Cézanne? Un excéntrico. Ronda con la ropa manchada, ya no se afeita, sube a París y vuelve sin un céntimo de gloria. El hijo del banquero que ha echado a perder su vida.
+
+Y mientras cuchichean, él mira a esa gente. Mira a los campesinos del Jas de Bouffan, la pipa en la boca, sentados en torno a una partida de cartas. De ahí saca uno de los cuadros más poderosos del siglo: «Los jugadores de cartas». Dos hombres, una mesa, un pliegue de cortina. Nada. Y todo.
+
+Cézanne no pintaba príncipes. Pintaba esta tierra, estos rostros, estas manzanas, esta luz. Hizo entrar a Aix en los mayores museos del mundo sin adularla jamás.
+
+Toma la calle que sube al norte, la rue Boulegon. Sígueme.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-5
+@@STITLE=Rue Boulegon
+Detente ante el número 23 de la rue Boulegon. Casi nada lo señala. Y sin embargo, es aquí donde Cézanne vivió sus últimos años, y es aquí donde murió.
+
+En 1886 su padre se apaga. El viejo banquero duro deja a Paul una fortuna. A los cuarenta y siete años, por fin, el pintor es libre: libre de no vender nada, de no gustar a nadie, de pintar solo para lo que busca. «Mi padre era un hombre de genio», dirá; «me dejó con qué vivir».
+
+Alquila este piso en la ciudad, se instala un taller y lo cuida un ama de llaves fiel. Y trabaja como un forzado, solo.
+
+Un día de octubre de 1906 sale a pintar fuera, del natural, pese a la tormenta. Sorprendido por la lluvia, se desploma por el camino, vuelve empapado, aterido. Al día siguiente sale a pintar de todos modos. La fiebre sube. Unos días después, en esta casa, se apaga. Lo entierran en el cementerio Saint-Pierre, aquí, en Aix. Con el pincel en la mano hasta el final.
+
+Sigue subiendo, hasta la gran catedral en lo alto de la ciudad vieja. Sígueme.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-6
+@@STITLE=Cathédrale Saint-Sauveur
+Esta es la cathédrale Saint-Sauveur, en lo más alto de la ciudad vieja. Entra un instante si puedes, o quédate en el atrio, y piensa en el anciano en que se había convertido Cézanne.
+
+Al final, ese rebelde, ese rompedor de reglas, vuelve a algo muy antiguo: la fe de su infancia. Empieza de nuevo a ir a misa, casi cada mañana, en una iglesia de Aix como esta. «Cuando pinto —confiesa—, me vuelve la fe».
+
+No hay ahí ninguna contradicción. Toda su vida Cézanne buscó la misma cosa: lo que sostiene, lo que dura, lo que no se mueve bajo la apariencia cambiante de las cosas. La estructura oculta de una manzana, de un rostro, de una montaña. Una especie de oración con un pincel.
+
+Murió a dos pasos de aquí, solo con su búsqueda, incomprendido por casi todos. Veinte años después, Picasso, Matisse, todos los grandes, lo llamarán «nuestro padre a todos».
+
+Ahora deja la ciudad vieja y sube por la avenue Paul-Cézanne, hacia el norte. Es una buena cuesta, un cuarto de hora a pie, pero es el camino que él tomaba cada día. Sígueme.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-7
+@@STITLE=Atelier Cézanne
+Ya estamos: el taller de Les Lauves. Cézanne lo mandó construir en esta colina en 1902, con el dinero del padre, para tener por fin un lugar suyo. Una gran sala desnuda y, sobre todo, al norte, un enorme ventanal: la luz igual, sin sombra dura, la que le gusta al pintor.
+
+Empuja la puerta. Se ha dejado todo como el último día. Su abrigo colgado, su sombrero. En los estantes, sus modelos mudos: botellas, cacharros de barro, una calavera, un amorcillo de yeso, esas manzanas y esas cebollas que ordenaba durante horas antes de atreverse a pintarlas.
+
+Mira la alta ranura vertical en la pared. Servía para deslizar sus lienzos muy grandes hacia el jardín: aquí pintó «Las grandes bañistas», la obra de su vida, que quedó inacabada.
+
+Cada mañana, el anciano subía aquí desde la ciudad. Pintaba la luz, la fruta, la carne. Y cuando el lienzo del taller ya no bastaba, daba unos pasos más, hasta lo alto de la colina, para reencontrar lo único que nunca lo había traicionado.
+
+Sal, sube todavía un poco, hasta el pequeño mirador que domina todo. Sígueme.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-8
+@@STITLE=Terrain des Peintres
+Ya estamos. El terrain des Peintres, el terreno de los pintores. Vuélvete hacia el este y mira.
+
+Allá, al final de los tejados y de los pinos, una masa de caliza azul y blanca cierra el horizonte: la montagne Sainte-Victoire. Apenas más de mil metros. Nada, al lado de los Alpes. Y sin embargo es quizá la montaña más célebre de toda la pintura.
+
+Porque Cézanne la pintó decenas de veces. Al óleo, a la acuarela, de lejos, de cerca, en invierno, en verano. Siempre la misma, nunca la misma. No buscaba hacer algo bonito. Buscaba entender cómo se sostiene una montaña, cómo la luz la construye, cómo unas cuantas manchas de color, puestas justo, pueden hacer surgir todo un país ante tus ojos. Es ahí, ante esa piedra, donde nació buena parte del arte moderno.
+
+Así que vuelve a nuestra historia. Un hijo al que su padre quería abogado. Una ciudad que lo tomaba por loco. Un hombre muerto solo, sin gloria, con un pincel en la mano.
+
+Y mira hoy. Su nombre en la avenida, en el instituto, en las placas de la ciudad. Sus «C» de bronce en la acera. Su montaña convertida en lugar de peregrinación. Aix acabó por comprender que había llevado, sin saberlo, a uno de los más grandes.
+
+«Aix, mi patria», decía. Se ha convertido, para siempre, en la patria de Cézanne.
+
+Quédate un momento frente a la montaña. Deja que te mire. Y cuando bajes, ya nunca verás esta luz como antes. Hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Aix-en-Provence — Auf Cézannes Spuren
+@@DESC=Kunst — das Atelier, die Sainte-Victoire und der Vater als Bankier: Cézanne gegen seine Stadt, seine Stadt für Cézanne.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-0
+@@STITLE=Cours Mirabeau
+Halt hier an, auf halber Höhe des cours Mirabeau, unter den großen Platanen, die den Himmel wie ein Gewölbe schließen. Sieh dir die doppelte Reihe der Fassaden an, die Brunnen und die Breite dieser im 17. Jahrhundert angelegten Promenade. Generationenlang hat Aix sich hier gezeigt, hier getroffen und hier laut von sich erzählt.
+
+Zwei Jungen von hier sind vor langer Zeit diesen Cours entlanggelaufen. Der eine hieß Émile Zola. Der andere Paul Cézanne. Sie hatten sich in der Schule kennengelernt, sie träumten von Paris, von Ruhm, von Kunst. Der eine bekam ihn zu Lebzeiten. Der andere nicht.
+
+Denn du musst eines wissen, und das ist die Geschichte, die ich dir auf diesem ganzen Spaziergang erzählen werde. Cézanne ist der größte Maler, den Aix der Welt geschenkt hat — und zu Lebzeiten hielt ihn seine Stadt für einen Gescheiterten. Man nannte ihn den Farbenschmierer. Man lachte über seine Bilder. Die Bürger hier, angefangen bei seinem eigenen Vater, einem Bankier, verstanden nichts von dem, was er suchte.
+
+Er, stur wie Stein, verbrachte sein Leben damit, drei Dinge zu malen: Äpfel auf einem Tisch, die Menschen seiner Gegend und einen Berg, dort im Osten — die Sainte-Victoire. Immer denselben. Dutzende Male.
+
+Heute trägt die ganze Stadt seinen Namen. Bronzene C sind ins Trottoir eingelassen und führen dich zu ihm. Folgen wir ihnen.
+
+Geh den Cours nach Osten hinunter, bis zum Brunnen am Ende, und bieg dann in die kleine Straße nach Süden ein. Folge mir.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-1
+@@STITLE=Rue de l'Opéra
+Wir sind in der rue de l'Opéra. Heb den Blick zur Nummer 28. Dort wurde an einem Januarmorgen 1839 Paul Cézanne geboren. Nichts bestimmte ihn zur Malerei — im Gegenteil.
+
+Sein Vater, Louis-Auguste, war ein harter Mann, der aus dem Nichts kam. Zuerst Hutmacher: Er verkaufte Filze an die Bauern, die zum Markt kamen. Dann witterte er Besseres als den Hut. Indem er die einzige Bank der Stadt übernahm, die gerade zusammengebrochen war, wurde er Bankier. Cézannes Vater lieh ganz Aix Geld.
+
+Reich also. Reich genug, um am Stadtrand ein großes Landhaus zu kaufen, das Jas de Bouffan, und seinem Sohn zu bieten, wovon die Bürger träumten: eine Stellung. Paul sollte Anwalt werden. Man schreibt ihn für Jura ein, genau hier, an der Fakultät von Aix.
+
+Nur zeichnet der Sohn. Überall, ständig, an die Ränder seiner Jura-Hefte. Und zwischen dem Vater, der einen Notar will, und dem Sohn, der malen will, ist der Krieg erklärt. Ein Krieg aus Geld, Schweigen und zugeschlagenen Türen, der zwanzig Jahre dauern wird.
+
+Geh weiter nach Süden, bis zum Gitter einer großen Schule. Folge mir.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-2
+@@STITLE=Collège Bourbon
+Dieses große, strenge Gebäude war das collège Bourbon — heute das collège Mignet. Der junge Paul rutschte hier auf den Bänken herum. Und hier trifft er einen anderen Jungen, schmächtig, kurzsichtig, oft gehänselt: Émile Zola.
+
+Man erzählt, Zola habe eines Tages im Hof Prügel bezogen, und Cézanne, der Kräftigere, habe ihn verteidigt. Am nächsten Tag schenkt Zola ihm zum Dank einen Korb Äpfel. Äpfel. Merk dir dieses Wort: Vielleicht beginnt dort das berühmteste Stillleben der Kunstgeschichte.
+
+Die beiden Jungen werden unzertrennlich. Sie durchstreifen das Land, baden im Arc, sagen Verse auf, schwören einander, nach Paris zu gehen und dort groß zu werden. Der eine mit Worten, der andere mit Farbe.
+
+Die Geschichte endet allerdings schlecht. Als berühmter Romancier veröffentlicht Zola ein Buch, Das Werk, dessen Held ein genialer, gescheiterter Maler ist, der sich vor seinem unvollendeten Bild erhängt. Cézanne erkennt sich darin. Er klappt das Buch zu, schreibt seinem Jugendfreund einen letzten höflichen Brief — und spricht nie wieder mit ihm.
+
+Geh nach Osten zurück, zur Kirche und zum Museum am Ende der Straße. Folge mir.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-3
+@@STITLE=Musée Granet
+Vor dir die église Saint-Jean-de-Malte und, an sie angebaut, das musée Granet — das Kunstmuseum von Aix. Hier spielt sich das große Missverständnis zwischen Cézanne und seiner Stadt ab.
+
+Als Kind lernte Paul ganz in der Nähe zeichnen, an der kostenlosen Zeichenschule der Stadt. Er gewann dort sogar einen Preis. Sicher träumte er davon, eines Tages ein Bild in jenem Museum zu hängen, dem seiner Heimat.
+
+Daraus wurde nichts. Man erzählt, der Konservator des Museums, ein hiesiger Maler, habe geschworen, dass niemals, solange er lebe, ein Werk Cézannes seine Wände beschmutzen werde. Und er hielt Wort. Cézanne starb, ohne dass Aix ein einziges seiner Bilder aufgehängt hätte.
+
+„Aix, meine Heimat", schrieb er trotzdem, allem zum Trotz. Er liebte diese Stadt, die ihn verachtete, wie man einen schwierigen Vater liebt.
+
+Heute — süße Ironie — widmet ihm das Museum einen Saal. Man kommt aus aller Welt, um die wenigen Cézannes von Aix zu sehen, in der Stadt, die sie nicht wollte. Das Rad hat sich gedreht. Es dreht sich immer zu spät.
+
+Geh nach Norden hinauf, überquere den Cours, bis zum Rathausplatz. Folge mir.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-4
+@@STITLE=Place de l'Hôtel de Ville
+Da bist du auf der place de l'Hôtel de Ville, mit ihrem hübschen Uhrturm und ihrem Blumenmarkt. Das ist die Kulisse jener Welt, die Cézanne verurteilte: die Welt der Honoratioren, der Anwälte, der Grundbesitzer — die Welt seines Vaters.
+
+Stell dir vor, was man unter diesen Arkaden halblaut über ihn sagte. Der Cézanne-Sohn? Ein Sonderling. Er streunt in fleckigen Kleidern herum, rasiert sich nicht mehr, fährt nach Paris und kommt ohne einen Groschen Ruhm zurück. Der Sohn des Bankiers, der sein Leben verpfuscht hat.
+
+Und während man tuschelt, sieht er diese Leute an. Er sieht die Landarbeiter des Jas de Bouffan an, die Pfeife im Mund, um ein Kartenspiel versammelt. Daraus zieht er eines der stärksten Bilder des Jahrhunderts: Die Kartenspieler. Zwei Männer, ein Tisch, eine Vorhangfalte. Nichts. Und alles.
+
+Cézanne malte keine Fürsten. Er malte dieses Land, diese Gesichter, diese Äpfel, dieses Licht. Er hat Aix in die größten Museen der Welt gebracht, ohne ihm je zu schmeicheln.
+
+Nimm die Straße, die nach Norden ansteigt, die rue Boulegon. Folge mir.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-5
+@@STITLE=Rue Boulegon
+Halt vor der Nummer 23 der rue Boulegon. Fast nichts weist darauf hin. Und doch hat Cézanne hier seine letzten Jahre gelebt, und hier ist er gestorben.
+
+1886 stirbt sein Vater. Der harte alte Bankier hinterlässt Paul ein Vermögen. Mit siebenundvierzig ist der Maler endlich frei: frei, nichts mehr zu verkaufen, niemandem zu gefallen, nur noch für das zu malen, was er sucht. „Mein Vater war ein genialer Mann", wird er sagen, „er hat mir hinterlassen, wovon ich leben kann."
+
+Er mietet diese Wohnung in der Stadt, richtet sich darin ein Atelier ein und lässt sich von einer treuen Haushälterin versorgen. Und er arbeitet wie ein Sträfling, allein.
+
+An einem Oktobertag 1906 zieht er trotz des Gewitters hinaus, um vor dem Motiv zu malen. Vom Regen überrascht, bricht er unterwegs zusammen, kommt durchnässt und durchgefroren heim. Am nächsten Tag geht er trotzdem wieder malen. Das Fieber steigt. Wenige Tage später stirbt er in diesem Haus. Man begräbt ihn auf dem Friedhof Saint-Pierre, hier in Aix. Den Pinsel bis zuletzt in der Hand.
+
+Steig weiter hinauf, bis zur großen Kathedrale oben in der Altstadt. Folge mir.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-6
+@@STITLE=Cathédrale Saint-Sauveur
+Das ist die cathédrale Saint-Sauveur, ganz oben in der Altstadt. Geh einen Augenblick hinein, wenn du kannst, oder bleib auf dem Vorplatz, und denk an den alten Mann, der aus Cézanne geworden war.
+
+Am Ende kehrt dieser Rebell, dieser Regelbrecher, zu etwas sehr Altem zurück: zum Glauben seiner Kindheit. Er geht wieder zur Messe, fast jeden Morgen, in einer Kirche von Aix wie dieser. „Wenn ich male", vertraut er an, „kommt mir mein Glaube zurück."
+
+Darin liegt kein Widerspruch. Sein Leben lang suchte Cézanne dasselbe: das, was hält, was dauert, was sich unter der wechselnden Erscheinung der Dinge nicht bewegt. Die verborgene Struktur eines Apfels, eines Gesichts, eines Berges. Eine Art Gebet mit dem Pinsel.
+
+Er starb zwei Schritte von hier, allein mit seiner Suche, von fast allen unverstanden. Zwanzig Jahre später werden Picasso, Matisse, alle Großen, ihn „unser aller Vater" nennen.
+
+Verlass nun die Altstadt und steig die avenue Paul-Cézanne hinauf, nach Norden. Es ist ein guter Anstieg, eine Viertelstunde zu Fuß — aber es ist der Weg, den er jeden Tag nahm. Folge mir.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-7
+@@STITLE=Atelier Cézanne
+Da sind wir: das Atelier von Les Lauves. Cézanne ließ es 1902 auf diesem Hügel bauen, mit dem Geld des Vaters, um endlich einen eigenen Ort zu haben. Ein großer, kahler Raum und vor allem nach Norden ein riesiges Fenster: das gleichmäßige Licht ohne harten Schatten, das Licht, das der Maler liebt.
+
+Stoß die Tür auf. Man hat alles gelassen wie am letzten Tag. Sein aufgehängter Mantel, sein Hut. Auf den Regalen seine stummen Modelle: Flaschen, Tontöpfe, ein Schädel, ein kleiner Gipsamor, jene Äpfel und Zwiebeln, die er stundenlang ordnete, bevor er wagte, sie zu malen.
+
+Sieh dir den hohen senkrechten Schlitz in der Wand an. Durch ihn schob er seine sehr großen Leinwände in den Garten: Hier malte er Die großen Badenden, das Werk seines Lebens, unvollendet geblieben.
+
+Jeden Morgen stieg der alte Mann von der Stadt hier herauf. Er malte das Licht, die Früchte, das Fleisch. Und wenn die Leinwand im Atelier nicht mehr genügte, ging er ein paar Schritte weiter, auf die Kuppe des Hügels, um das eine wiederzufinden, das ihn nie verraten hatte.
+
+Geh hinaus, steig noch ein Stück höher, bis zu dem kleinen Platz, der alles überblickt. Folge mir.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-8
+@@STITLE=Terrain des Peintres
+Da wären wir. Das terrain des Peintres, das Malergelände. Dreh dich nach Osten und sieh hin.
+
+Dort hinten, hinter den Dächern und den Pinien, versperrt eine Masse aus blauem und weißem Kalkstein den Horizont: die montagne Sainte-Victoire. Kaum mehr als tausend Meter. Nichts neben den Alpen. Und doch ist es vielleicht der berühmteste Berg der ganzen Malerei.
+
+Denn Cézanne hat ihn dutzendfach gemalt. In Öl, in Aquarell, von fern, von nah, im Winter, im Sommer. Immer derselbe, nie derselbe. Er wollte nichts Hübsches machen. Er wollte verstehen, wie ein Berg steht, wie das Licht ihn baut, wie ein paar Farbflecken, richtig gesetzt, ein ganzes Land vor deinen Augen entstehen lassen. Dort, vor diesem Stein, ist ein guter Teil der modernen Kunst entstanden.
+
+Komm also zu unserer Geschichte zurück. Ein Sohn, den sein Vater als Anwalt wollte. Eine Stadt, die ihn für verrückt hielt. Ein Mann, allein gestorben, ohne Ruhm, den Pinsel in der Hand.
+
+Und sieh dir heute an. Sein Name auf der Avenue, auf der Schule, auf den Schildern der Stadt. Seine bronzenen C im Trottoir. Sein Berg als Wallfahrtsort. Aix hat schließlich begriffen, dass es, ohne es zu wissen, einen der Allergrößten getragen hatte.
+
+„Aix, meine Heimat", sagte er. Sie ist für immer Cézannes Heimat geworden.
+
+Bleib einen Moment dem Berg zugewandt. Lass ihn dich ansehen. Und wenn du hinuntergehst, wirst du dieses Licht nie wieder sehen wie zuvor. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Aix-en-Provence — Sulle tracce di Cézanne
+@@DESC=Arte: l'atelier, la Sainte-Victoire e il padre banchiere. Cézanne contro la sua città, la sua città per Cézanne.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-0
+@@STITLE=Cours Mirabeau
+Fermati qui, a metà del cours Mirabeau, sotto i grandi platani che chiudono il cielo come una volta. Guarda la doppia fila di facciate, le fontane e la larghezza di questa passeggiata tracciata nel Seicento. Per generazioni è qui che Aix si è mostrata, si è incontrata e si è raccontata ad alta voce.
+
+Due ragazzi di qui hanno percorso questo cours, molto tempo fa. Uno si chiamava Émile Zola. L'altro, Paul Cézanne. Si erano conosciuti al collegio, sognavano Parigi, la gloria, l'arte. Uno l'ha avuta da vivo. L'altro no.
+
+Perché devi sapere una cosa, ed è la storia che ti racconterò lungo tutta questa passeggiata. Cézanne è il più grande pittore che Aix abbia dato al mondo, e da vivo la sua città lo prese per un fallito. Lo chiamavano «l'imbrattatele». Ridevano delle sue tele. I borghesi di qui, a cominciare da suo padre, un banchiere, non capivano nulla di ciò che cercava.
+
+Lui, testardo come la pietra, ha passato la vita a dipingere tre cose: mele su un tavolo, la gente del suo paese e una montagna, laggiù a est, la Sainte-Victoire. Sempre la stessa. Decine di volte.
+
+Oggi la città intera porta il suo nome. Delle «C» di bronzo sono fissate nel marciapiede per guidarti verso di lui. Seguiamole.
+
+Scendi il cours verso est, fino alla fontana in fondo, poi gira nella stradina che va a sud. Seguimi.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-1
+@@STITLE=Rue de l'Opéra
+Eccoci in rue de l'Opéra. Alza gli occhi verso il numero 28. È lì che, una mattina di gennaio del 1839, è nato Paul Cézanne. Nulla lo destinava alla pittura, anzi.
+
+Suo padre, Louis-Auguste, era un uomo duro, partito dal nulla. Cappellaio all'inizio: vendeva feltri ai contadini che venivano al mercato. Poi ha fiutato di meglio del cappello. Rilevando l'unica banca della città, appena fallita, è diventato banchiere. Il padre di Cézanne prestava denaro a tutta Aix.
+
+Ricco, dunque. Abbastanza da comprare una grande bastide fuori città, il Jas de Bouffan, e da offrire al figlio ciò che i borghesi sognavano: una posizione. Paul sarebbe stato avvocato. Lo iscrivono a giurisprudenza, proprio qui, alla facoltà di Aix.
+
+Solo che il figlio disegna. Ovunque, tutto il tempo, nei margini dei suoi quaderni di diritto. E tra il padre che vuole un notaio e il figlio che vuole dipingere, la guerra è dichiarata. Una guerra di denaro, di silenzi, di porte sbattute, che durerà vent'anni.
+
+Prosegui verso sud, fino alle cancellate di un grande collegio. Seguimi.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-2
+@@STITLE=Collège Bourbon
+Questo grande edificio severo era il collège Bourbon, oggi collège Mignet. Il giovane Paul vi ha consumato i pantaloni sui banchi. Ed è lì che incontra un altro ragazzo, gracile, miope, spesso preso di mira: Émile Zola.
+
+Si racconta che un giorno Zola le prenda di santa ragione nel cortile, e che Cézanne, più robusto, lo difenda. L'indomani Zola gli regala un cesto di mele per ringraziarlo. Mele. Ricorda questa parola: forse è lì che comincia la natura morta più celebre della storia dell'arte.
+
+I due ragazzi diventano inseparabili. Corrono per la campagna, si bagnano nell'Arc, recitano versi, si giurano di salire a Parigi e di diventarvi grandi. Uno con le parole, l'altro con il colore.
+
+La storia, però, finirà male. Diventato romanziere celebre, Zola pubblicherà un libro, «L'opera», il cui eroe è un pittore geniale e fallito che si impicca davanti alla sua tela incompiuta. Cézanne vi si riconosce. Chiude il libro, scrive un'ultima lettera cortese all'amico d'infanzia e non gli parla mai più.
+
+Torna verso est, verso la chiesa e il museo in fondo alla strada. Seguimi.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-3
+@@STITLE=Musée Granet
+Davanti a te la église Saint-Jean-de-Malte e, addossato a essa, il musée Granet, il museo di belle arti di Aix. È qui che si gioca il grande malinteso tra Cézanne e la sua città.
+
+Da ragazzo Paul ha imparato a disegnare qui vicino, alla scuola gratuita di disegno della città. Vi ha persino vinto un premio. Sognava certo, un giorno, di appendere una tela in quel museo, quello del suo paese.
+
+Non fu così. Si racconta che il conservatore del museo, un pittore locale, avrebbe giurato che mai, finché fosse vissuto, un'opera di Cézanne avrebbe sporcato le sue pareti. E mantenne la parola. Cézanne morì senza che Aix appendesse una sola delle sue tele.
+
+«Aix, la mia patria», scriveva comunque, nonostante tutto. Amava quella città che lo disprezzava, come si ama un padre difficile.
+
+Oggi — dolce ironia — il museo gli dedica una sala. Si viene da tutto il mondo a vedere i pochi Cézanne di Aix, nella città che non li voleva. La ruota ha girato. Gira sempre troppo tardi.
+
+Risali verso nord, attraversa il cours, fino alla piazza del municipio. Seguimi.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-4
+@@STITLE=Place de l'Hôtel de Ville
+Eccoti in place de l'Hôtel de Ville, con la sua bella torre dell'orologio e il suo mercato dei fiori. È la scenografia del mondo che ha giudicato Cézanne: il mondo dei notabili, degli avvocati, dei proprietari, il mondo di suo padre.
+
+Immagina cosa si diceva di lui, sottovoce, sotto questi portici. Il figlio di Cézanne? Un tipo strano. Gira con i vestiti macchiati, non si rade più, sale a Parigi e ne torna senza un soldo di gloria. Il figlio del banchiere che ha sbagliato la vita.
+
+E mentre si mormora, lui guarda quella gente. Guarda i contadini del Jas de Bouffan, la pipa in bocca, seduti attorno a una partita a carte. Ne ricava uno dei quadri più potenti del secolo: «I giocatori di carte». Due uomini, un tavolo, una piega di tenda. Nulla. E tutto.
+
+Cézanne non dipingeva principi. Dipingeva questo paese, questi volti, queste mele, questa luce. Ha fatto entrare Aix nei più grandi musei del mondo senza mai lusingarla.
+
+Prendi la strada che sale a nord, la rue Boulegon. Seguimi.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-5
+@@STITLE=Rue Boulegon
+Fermati davanti al numero 23 di rue Boulegon. Quasi nulla lo segnala. Eppure è qui che Cézanne ha vissuto i suoi ultimi anni, ed è qui che è morto.
+
+Nel 1886 suo padre si spegne. Il vecchio banchiere duro lascia a Paul una fortuna. A quarantasette anni, finalmente, il pittore è libero: libero di non vendere più nulla, di non piacere a nessuno, di dipingere solo per ciò che cerca. «Mio padre era un uomo di genio», dirà, «mi ha lasciato di che vivere.»
+
+Affitta questo appartamento in città, vi ricava un atelier, si fa accudire da una governante fedele. E lavora come un forzato, solo.
+
+Un giorno di ottobre del 1906 esce a dipingere all'aperto, dal vero, nonostante il temporale. Sorpreso dalla pioggia, crolla per strada, torna fradicio, intirizzito. L'indomani riparte a dipingere lo stesso. La febbre sale. Qualche giorno dopo, in questa casa, si spegne. Lo seppelliscono al cimitero Saint-Pierre, qui ad Aix. Con il pennello in mano fino alla fine.
+
+Continua a salire, fino alla grande cattedrale in cima alla città vecchia. Seguimi.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-6
+@@STITLE=Cathédrale Saint-Sauveur
+Ecco la cathédrale Saint-Sauveur, in cima alla città vecchia. Entra un istante se puoi, oppure resta sul sagrato, e pensa al vecchio che Cézanne era diventato.
+
+Alla fine, questo ribelle, questo infrangitore di regole, torna a qualcosa di molto antico: la fede della sua infanzia. Ricomincia ad andare a messa, quasi ogni mattina, in una chiesa di Aix come questa. «Quando dipingo — confida — mi torna la fede.»
+
+Non c'è alcuna contraddizione. Per tutta la vita Cézanne ha cercato la stessa cosa: ciò che tiene, ciò che dura, ciò che non si muove sotto l'apparenza mutevole delle cose. La struttura nascosta di una mela, di un volto, di una montagna. Una specie di preghiera con un pennello.
+
+È morto a due passi da qui, solo con la sua ricerca, incompreso da quasi tutti. Vent'anni dopo, Picasso, Matisse, tutti i grandi, lo chiameranno «il padre di noi tutti».
+
+Ora lascia la città vecchia e sali l'avenue Paul-Cézanne, verso nord. È una bella salita, un quarto d'ora a piedi, ma è la strada che lui prendeva ogni giorno. Seguimi.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-7
+@@STITLE=Atelier Cézanne
+Ci siamo: l'atelier di Les Lauves. Cézanne lo fece costruire su questa collina nel 1902, con i soldi del padre, per avere finalmente un luogo suo. Una grande stanza spoglia e, soprattutto, a nord, un'immensa vetrata: la luce uniforme, senza ombre dure, quella che il pittore ama.
+
+Spingi la porta. È stato lasciato tutto come l'ultimo giorno. Il suo cappotto appeso, il suo cappello. Sugli scaffali i suoi modelli muti: bottiglie, vasi di terracotta, un teschio, un amorino di gesso, quelle mele e quelle cipolle che disponeva per ore prima di osare dipingerle.
+
+Guarda l'alta fessura verticale nel muro. Serviva a far scivolare le sue tele enormi verso il giardino: è qui che ha dipinto «Le grandi bagnanti», l'opera della sua vita, rimasta incompiuta.
+
+Ogni mattina il vecchio saliva quassù dalla città. Dipingeva la luce, la frutta, la carne. E quando la tela dell'atelier non bastava più, faceva qualche passo in più, in cima alla collina, per ritrovare l'unica cosa che non lo aveva mai tradito.
+
+Esci, sali ancora un poco, fino al piccolo spiazzo che domina tutto. Seguimi.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-8
+@@STITLE=Terrain des Peintres
+Eccoci. Il terrain des Peintres, lo spiazzo dei pittori. Voltati verso est e guarda.
+
+Laggiù, oltre i tetti e i pini, una massa di calcare azzurro e bianco sbarra l'orizzonte: la montagne Sainte-Victoire. Poco più di mille metri. Nulla, accanto alle Alpi. Eppure è forse la montagna più celebre di tutta la pittura.
+
+Perché Cézanne l'ha dipinta decine di volte. A olio, ad acquerello, da lontano, da vicino, d'inverno, d'estate. Sempre la stessa, mai la stessa. Non cercava di fare qualcosa di grazioso. Cercava di capire come sta in piedi una montagna, come la luce la costruisce, come qualche macchia di colore, posata al punto giusto, può far sorgere un intero paese sotto i tuoi occhi. È lì, davanti a quella pietra, che è nata buona parte dell'arte moderna.
+
+Torna dunque alla nostra storia. Un figlio che il padre voleva avvocato. Una città che lo prendeva per matto. Un uomo morto solo, senza gloria, con un pennello in mano.
+
+E guarda oggi. Il suo nome sul viale, sul collegio, sulle targhe della città. Le sue «C» di bronzo nel marciapiede. La sua montagna diventata luogo di pellegrinaggio. Aix ha finito per capire di aver portato, senza saperlo, uno dei più grandi.
+
+«Aix, la mia patria», diceva. È diventata, per sempre, la patria di Cézanne.
+
+Resta un momento di fronte alla montagna. Lascia che ti guardi. E quando scenderai, non vedrai mai più questa luce come prima. A presto, amico.
+
+@@LANG=nl
+@@TITLE=Aix-en-Provence — In het spoor van Cézanne
+@@DESC=Kunst — het atelier, de Sainte-Victoire en de vader-bankier: Cézanne tegen zijn stad, zijn stad voor Cézanne.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-0
+@@STITLE=Cours Mirabeau
+Blijf hier staan, halverwege de cours Mirabeau, onder de grote plataanbomen die de hemel als een gewelf afsluiten. Kijk naar de dubbele rij gevels, de fonteinen en de breedte van deze in de zeventiende eeuw aangelegde promenade. Generaties lang heeft Aix zich hier laten zien, elkaar hier ontmoet en hier hardop over zichzelf verteld.
+
+Twee jongens van hier hebben deze cours lang geleden afgelopen. De ene heette Émile Zola. De andere Paul Cézanne. Ze hadden elkaar op school leren kennen, ze droomden van Parijs, van roem, van kunst. De ene kreeg die bij zijn leven. De andere niet.
+
+Want er is iets dat je moet weten, en dat is het verhaal dat ik je deze hele wandeling zal vertellen. Cézanne is de grootste schilder die Aix aan de wereld heeft gegeven — en bij zijn leven hield zijn stad hem voor een mislukkeling. Men noemde hem de kladschilder. Men lachte om zijn doeken. De burgerij hier, om te beginnen zijn eigen vader, een bankier, begreep niets van wat hij zocht.
+
+Hij, koppig als steen, heeft zijn leven besteed aan het schilderen van drie dingen: appels op een tafel, de mensen van zijn streek, en een berg, daar in het oosten — de Sainte-Victoire. Altijd dezelfde. Tientallen keren.
+
+Vandaag draagt de hele stad zijn naam. Bronzen C's liggen in het trottoir om je naar hem toe te leiden. Laten we ze volgen.
+
+Loop de cours af naar het oosten, tot aan de fontein op het eind, en sla dan het straatje in dat naar het zuiden loopt. Volg mij.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-1
+@@STITLE=Rue de l'Opéra
+Hier zijn we in de rue de l'Opéra. Kijk omhoog naar nummer 28. Daar werd op een ochtend in januari 1839 Paul Cézanne geboren. Niets voorbestemde hem voor de schilderkunst — integendeel.
+
+Zijn vader, Louis-Auguste, was een harde man die uit het niets kwam. Eerst hoedenmaker: hij verkocht vilt aan de boeren die naar de markt kwamen. Toen rook hij iets beters dan de hoed. Door de enige bank van de stad over te nemen, die net was omgevallen, werd hij bankier. De vader van Cézanne leende heel Aix geld.
+
+Rijk dus. Rijk genoeg om buiten de stad een groot landhuis te kopen, het Jas de Bouffan, en zijn zoon te bieden waarvan de burgerij droomde: een positie. Paul zou advocaat worden. Men schrijft hem in voor rechten, hier ter plaatse, aan de faculteit van Aix.
+
+Alleen tekent de zoon. Overal, de hele tijd, in de marges van zijn rechtenschriften. En tussen de vader die een notaris wil en de zoon die wil schilderen is de oorlog verklaard. Een oorlog van geld, van zwijgen, van dichtslaande deuren, die twintig jaar zal duren.
+
+Ga verder naar het zuiden, tot aan de hekken van een grote school. Volg mij.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-2
+@@STITLE=Collège Bourbon
+Dit grote strenge gebouw was het collège Bourbon — vandaag het collège Mignet. De jonge Paul sleet er zijn broek op de banken. En daar ontmoet hij een andere jongen, tenger, bijziend, vaak gepest: Émile Zola.
+
+Men vertelt dat Zola op een dag op de speelplaats een pak slaag krijgt, en dat Cézanne, de steviger van de twee, het voor hem opneemt. De dag erna geeft Zola hem een mand appels als dank. Appels. Onthoud dat woord: misschien begint daar het beroemdste stilleven uit de kunstgeschiedenis.
+
+De twee jongens worden onafscheidelijk. Ze zwerven door het land, zwemmen in de Arc, dragen verzen voor, zweren elkaar naar Parijs te gaan en er groot te worden. De een met woorden, de ander met kleur.
+
+Het verhaal loopt echter slecht af. Als beroemd romanschrijver publiceert Zola een boek, Het meesterwerk, waarvan de held een geniale, mislukte schilder is die zich voor zijn onvoltooide doek ophangt. Cézanne herkent zichzelf erin. Hij slaat het boek dicht, schrijft zijn jeugdvriend een laatste beleefde brief — en spreekt hem nooit meer.
+
+Kom terug naar het oosten, naar de kerk en het museum aan het eind van de straat. Volg mij.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-3
+@@STITLE=Musée Granet
+Voor je de église Saint-Jean-de-Malte en, ertegenaan gebouwd, het musée Granet — het museum voor schone kunsten van Aix. Hier speelt zich het grote misverstand tussen Cézanne en zijn stad af.
+
+Als jongen leerde Paul vlakbij tekenen, op de gratis tekenschool van de stad. Hij won er zelfs een prijs. Hij droomde er ongetwijfeld van ooit een doek te hangen in dat museum, het museum van zijn eigen streek.
+
+Daar kwam niets van. Men vertelt dat de conservator van het museum, een plaatselijke schilder, zou hebben gezworen dat nooit, zolang hij leefde, een werk van Cézanne zijn muren zou bevuilen. En hij hield woord. Cézanne stierf zonder dat Aix ook maar één van zijn doeken had opgehangen.
+
+"Aix, mijn vaderland," schreef hij toch, ondanks alles. Hij hield van die stad die hem verachtte, zoals je van een moeilijke vader houdt.
+
+Vandaag — zoete ironie — wijdt het museum hem een zaal. Men komt van over de hele wereld om de weinige Cézannes van Aix te zien, in de stad die ze niet wilde. Het rad is gedraaid. Het draait altijd te laat.
+
+Loop naar het noorden, steek de cours over, tot aan het stadhuisplein. Volg mij.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-4
+@@STITLE=Place de l'Hôtel de Ville
+Daar sta je op de place de l'Hôtel de Ville, met haar mooie klokkentoren en haar bloemenmarkt. Dit is het decor van de wereld die Cézanne beoordeelde: de wereld van notabelen, van advocaten, van grondbezitters — de wereld van zijn vader.
+
+Stel je voor wat er onder deze arcades zachtjes over hem werd gezegd. De zoon van Cézanne? Een zonderling. Hij zwerft rond in bevlekte kleren, hij scheert zich niet meer, hij gaat naar Parijs en komt terug zonder een cent roem. De zoon van de bankier die zijn leven heeft verknoeid.
+
+En terwijl men fluistert, kijkt hij naar die mensen. Hij kijkt naar de landarbeiders van het Jas de Bouffan, de pijp in de mond, rond een kaartspel gezeten. Daaruit haalt hij een van de krachtigste schilderijen van de eeuw: De kaartspelers. Twee mannen, een tafel, een plooi van een gordijn. Niets. En alles.
+
+Cézanne schilderde geen vorsten. Hij schilderde dit land, deze gezichten, deze appels, dit licht. Hij bracht Aix in de grootste musea ter wereld zonder het ooit te vleien.
+
+Neem de straat die naar het noorden omhoogloopt, de rue Boulegon. Volg mij.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-5
+@@STITLE=Rue Boulegon
+Blijf staan voor nummer 23 van de rue Boulegon. Bijna niets wijst erop. En toch heeft Cézanne hier zijn laatste jaren geleefd, en hier is hij gestorven.
+
+In 1886 sterft zijn vader. De harde oude bankier laat Paul een fortuin na. Op zijn zevenenveertigste is de schilder eindelijk vrij: vrij om niets meer te verkopen, niemand te behagen, alleen te schilderen voor wat hij zoekt. "Mijn vader was een man van genie," zal hij zeggen, "hij heeft me nagelaten waarvan ik kan leven."
+
+Hij huurt dit appartement in de stad, richt er een atelier in en laat zich verzorgen door een trouwe huishoudster. En hij werkt als een galeislaaf, alleen.
+
+Op een dag in oktober 1906 trekt hij eropuit om buiten naar het motief te schilderen, ondanks het onweer. Overvallen door de regen zakt hij onderweg in elkaar, komt doorweekt en verkleumd thuis. De volgende dag gaat hij toch weer schilderen. De koorts stijgt. Enkele dagen later sterft hij in dit huis. Hij wordt begraven op de begraafplaats Saint-Pierre, hier in Aix. Met het penseel in de hand tot het laatst.
+
+Blijf klimmen, tot aan de grote kathedraal bovenaan de oude stad. Volg mij.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-6
+@@STITLE=Cathédrale Saint-Sauveur
+Dit is de cathédrale Saint-Sauveur, helemaal bovenaan de oude stad. Ga even naar binnen als je kunt, of blijf op het voorplein, en denk aan de oude man die Cézanne was geworden.
+
+Tegen het einde keert deze opstandeling, deze breker van regels, terug naar iets heel ouds: het geloof van zijn kindertijd. Hij gaat weer naar de mis, bijna elke ochtend, in een kerk van Aix zoals deze. "Als ik schilder," vertrouwt hij toe, "komt mijn geloof terug."
+
+Daar zit geen tegenspraak in. Zijn hele leven zocht Cézanne hetzelfde: wat standhoudt, wat blijft, wat niet beweegt onder de wisselende schijn van de dingen. De verborgen structuur van een appel, van een gezicht, van een berg. Een soort gebed met een penseel.
+
+Hij stierf twee stappen hiervandaan, alleen met zijn zoektocht, door vrijwel niemand begrepen. Twintig jaar later zullen Picasso, Matisse, alle groten, hem "de vader van ons allen" noemen.
+
+Verlaat nu de oude stad en klim de avenue Paul-Cézanne op, naar het noorden. Het is een flinke klim, een kwartier lopen — maar het is de weg die hij elke dag nam. Volg mij.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-7
+@@STITLE=Atelier Cézanne
+Daar zijn we: het atelier van Les Lauves. Cézanne liet het in 1902 op deze heuvel bouwen, met het geld van zijn vader, om eindelijk een eigen plek te hebben. Eén grote kale ruimte en vooral, op het noorden, een enorm raam: het gelijkmatige licht zonder harde schaduw, het licht waar de schilder van houdt.
+
+Duw de deur open. Alles is gelaten zoals op de laatste dag. Zijn jas aan de haak, zijn hoed. Op de planken zijn stille modellen: flessen, aardewerken potten, een schedel, een gipsen cupidootje, die appels en uien die hij urenlang schikte voordat hij ze durfde te schilderen.
+
+Kijk naar de hoge verticale spleet in de muur. Die diende om zijn zeer grote doeken naar de tuin te schuiven: hier schilderde hij De grote baadsters, het werk van zijn leven, onvoltooid gebleven.
+
+Elke ochtend klom de oude man hier vanuit de stad naartoe. Hij schilderde het licht, het fruit, het vlees. En wanneer het doek in het atelier niet meer volstond, liep hij nog een paar passen verder, naar de top van de heuvel, om het enige terug te vinden dat hem nooit had verraden.
+
+Ga naar buiten, klim nog wat hoger, tot het kleine terrein dat alles overziet. Volg mij.
+@@SCENE=seed-100-aix-sur-les-pas-de-cezanne-scene-8
+@@STITLE=Terrain des Peintres
+Daar zijn we. Het terrain des Peintres, het schildersterrein. Draai je naar het oosten en kijk.
+
+Daarginds, achter de daken en de pijnbomen, verspert een massa blauwe en witte kalksteen de horizon: de montagne Sainte-Victoire. Nauwelijks meer dan duizend meter. Niets, naast de Alpen. En toch is het misschien de beroemdste berg van de hele schilderkunst.
+
+Want Cézanne heeft hem tientallen keren geschilderd. In olieverf, in aquarel, van ver, van dichtbij, in de winter, in de zomer. Altijd dezelfde, nooit dezelfde. Hij probeerde niet iets moois te maken. Hij probeerde te begrijpen hoe een berg overeind staat, hoe het licht hem opbouwt, hoe een paar kleurvlekken, precies neergezet, een heel land voor je ogen kunnen laten oprijzen. Daar, voor die steen, is een groot deel van de moderne kunst geboren.
+
+Kom dus terug bij ons verhaal. Een zoon van wie de vader wilde dat hij advocaat werd. Een stad die hem voor gek verklaarde. Een man die alleen stierf, zonder roem, met een penseel in de hand.
+
+En kijk vandaag. Zijn naam op de avenue, op de school, op de plaquettes van de stad. Zijn bronzen C's in het trottoir. Zijn berg, een bedevaartsoord geworden. Aix is uiteindelijk gaan begrijpen dat het, zonder het te weten, een van de allergrootsten had gedragen.
+
+"Aix, mijn vaderland," zei hij. Ze is voorgoed het vaderland van Cézanne geworden.
+
+Blijf een moment tegenover de berg staan. Laat hem naar je kijken. En als je weer afdaalt, zul je dit licht nooit meer zien zoals eerst. Tot ziens, vriend.

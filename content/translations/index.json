@@ -1,0 +1,719 @@
+{
+  "generatedAt": "2026-08-23T15:11:42.323Z",
+  "langs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "tours": [
+    {
+      "tourId": "seed-100-aix-places-et-portes",
+      "city": "Aix-en-Provence",
+      "title": "Aix-en-Provence — Places et portes",
+      "scenes": 6,
+      "chars": 7106
+    },
+    {
+      "tourId": "seed-100-aix-fontaines-et-comtes",
+      "city": "Aix-en-Provence",
+      "title": "Aix-en-Provence — Fontaines et comtes",
+      "scenes": 9,
+      "chars": 10460
+    },
+    {
+      "tourId": "seed-100-aix-sur-les-pas-de-cezanne",
+      "city": "Aix-en-Provence",
+      "title": "Aix-en-Provence — Sur les pas de Cézanne",
+      "scenes": 9,
+      "chars": 10376
+    },
+    {
+      "tourId": "seed-100-albi-toulouse-lautrec",
+      "city": "Albi",
+      "title": "Albi — Le comte brisé de Montmartre",
+      "scenes": 7,
+      "chars": 8512
+    },
+    {
+      "tourId": "seed-100-albi-cite-episcopale",
+      "city": "Albi",
+      "title": "Albi — La forteresse de brique rouge",
+      "scenes": 7,
+      "chars": 8562
+    },
+    {
+      "tourId": "seed-100-amboise-leonard-dernier-voyage",
+      "city": "Amboise",
+      "title": "Amboise — Le dernier voyage de Léonard",
+      "scenes": 7,
+      "chars": 8478
+    },
+    {
+      "tourId": "seed-100-annecy-ponts-canaux-et-jardins",
+      "city": "Annecy",
+      "title": "Annecy — Ponts, canaux et jardins",
+      "scenes": 6,
+      "chars": 6995
+    },
+    {
+      "tourId": "seed-100-annecy-venise-des-alpes",
+      "city": "Annecy",
+      "title": "Annecy — La ville qui flotte",
+      "scenes": 8,
+      "chars": 8836
+    },
+    {
+      "tourId": "seed-100-annecy-lac-des-defis",
+      "city": "Annecy",
+      "title": "Annecy — Le lac des défis",
+      "scenes": 7,
+      "chars": 7888
+    },
+    {
+      "tourId": "seed-100-arles-rome-en-provence",
+      "city": "Arles",
+      "title": "Arles — la petite Rome des Gaules",
+      "scenes": 9,
+      "chars": 9556
+    },
+    {
+      "tourId": "seed-100-arles-camargue-et-gardians",
+      "city": "Arles",
+      "title": "Arles — La capitale d'une nation Camargue",
+      "scenes": 7,
+      "chars": 7988
+    },
+    {
+      "tourId": "seed-100-arles-van-gogh-la-lumiere",
+      "city": "Arles",
+      "title": "Arles — Van Gogh, embrasé par la lumière",
+      "scenes": 9,
+      "chars": 9433
+    },
+    {
+      "tourId": "seed-100-avignon-ville-theatre",
+      "city": "Avignon",
+      "title": "Avignon — La cité des papes devenue la plus grande scène du monde",
+      "scenes": 8,
+      "chars": 9459
+    },
+    {
+      "tourId": "seed-100-avignon-palais-des-papes",
+      "city": "Avignon",
+      "title": "Avignon — Neuf papes, un palais-forteresse",
+      "scenes": 9,
+      "chars": 11105
+    },
+    {
+      "tourId": "seed-100-avignon-places-couvents-et-cloitres",
+      "city": "Avignon",
+      "title": "Avignon — Places, couvents et cloîtres",
+      "scenes": 6,
+      "chars": 7277
+    },
+    {
+      "tourId": "seed-100-bayonne-pelote-basque",
+      "city": "Bayonne",
+      "title": "Bayonne — Le jeu le plus rapide du monde",
+      "scenes": 7,
+      "chars": 8221
+    },
+    {
+      "tourId": "seed-100-bayonne-petit-bayonne",
+      "city": "Bayonne",
+      "title": "Bayonne — La forteresse qui danse",
+      "scenes": 8,
+      "chars": 9560
+    },
+    {
+      "tourId": "seed-100-bayonne-confluence-quais-et-ponts",
+      "city": "Bayonne",
+      "title": "Bayonne — Confluence, quais et ponts",
+      "scenes": 6,
+      "chars": 6902
+    },
+    {
+      "tourId": "seed-100-beaune-remparts-et-bastions",
+      "city": "Beaune",
+      "title": "Beaune — Remparts et bastions",
+      "scenes": 6,
+      "chars": 7138
+    },
+    {
+      "tourId": "seed-100-beaune-hospices-et-charite",
+      "city": "Beaune",
+      "title": "Beaune — Les Hospices et le paradis d'un chancelier",
+      "scenes": 7,
+      "chars": 8676
+    },
+    {
+      "tourId": "seed-100-biarritz-ocean-et-belvederes",
+      "city": "Biarritz",
+      "title": "Biarritz — Océan et belvédères",
+      "scenes": 6,
+      "chars": 6944
+    },
+    {
+      "tourId": "seed-100-biarritz-berceau-du-surf",
+      "city": "Biarritz",
+      "title": "Biarritz — Le berceau du surf",
+      "scenes": 8,
+      "chars": 9605
+    },
+    {
+      "tourId": "seed-100-biarritz-villas-et-architectes",
+      "city": "Biarritz",
+      "title": "Biarritz — Villas et architectes",
+      "scenes": 8,
+      "chars": 9395
+    },
+    {
+      "tourId": "seed-100-bordeaux-pierre-et-mascarons",
+      "city": "Bordeaux",
+      "title": "Bordeaux — Pierre blonde et mascarons",
+      "scenes": 9,
+      "chars": 10427
+    },
+    {
+      "tourId": "seed-100-bordeaux-places-et-jardins-du-centre",
+      "city": "Bordeaux",
+      "title": "Bordeaux — Places et jardins du centre",
+      "scenes": 6,
+      "chars": 7086
+    },
+    {
+      "tourId": "seed-100-bordeaux-chartrons-entrepots-et-bassins",
+      "city": "Bordeaux",
+      "title": "Bordeaux — Chartrons, entrepôts et bassins",
+      "scenes": 6,
+      "chars": 7340
+    },
+    {
+      "tourId": "seed-100-carcassonne-resurrection-viollet-le-duc",
+      "city": "Carcassonne",
+      "title": "Carcassonne — La résurrection de Viollet-le-Duc",
+      "scenes": 7,
+      "chars": 8326
+    },
+    {
+      "tourId": "seed-100-carcassonne-cite-assiegee",
+      "city": "Carcassonne",
+      "title": "Carcassonne — La Cité assiégée",
+      "scenes": 8,
+      "chars": 9094
+    },
+    {
+      "tourId": "seed-100-carcassonne-bastide-saint-louis",
+      "city": "Carcassonne",
+      "title": "Carcassonne — La Bastide Saint-Louis",
+      "scenes": 6,
+      "chars": 7163
+    },
+    {
+      "tourId": "seed-100-cassis-port-falaises-et-calanques",
+      "city": "Cassis",
+      "title": "Cassis — Port, falaises et calanques",
+      "scenes": 6,
+      "chars": 6975
+    },
+    {
+      "tourId": "seed-100-chamonix-conquete-du-mont-blanc",
+      "city": "Chamonix-Mont-Blanc",
+      "title": "Chamonix-Mont-Blanc — La conquête du Mont-Blanc",
+      "scenes": 8,
+      "chars": 9021
+    },
+    {
+      "tourId": "seed-100-chamonix-village-et-panoramas",
+      "city": "Chamonix-Mont-Blanc",
+      "title": "Chamonix — Village et panoramas",
+      "scenes": 6,
+      "chars": 6991
+    },
+    {
+      "tourId": "seed-100-chamonix-guides-et-cimes",
+      "city": "Chamonix-Mont-Blanc",
+      "title": "Chamonix-Mont-Blanc — Guides et cimes",
+      "scenes": 7,
+      "chars": 8303
+    },
+    {
+      "tourId": "seed-100-chartres-cathedrale-de-lumiere",
+      "city": "Chartres",
+      "title": "Chartres — La cathédrale de lumière",
+      "scenes": 7,
+      "chars": 9129
+    },
+    {
+      "tourId": "seed-100-colmar-petite-venise",
+      "city": "Colmar",
+      "title": "Colmar — La ville-décor qui a failli disparaître",
+      "scenes": 8,
+      "chars": 9373
+    },
+    {
+      "tourId": "seed-100-colmar-retable-et-bartholdi",
+      "city": "Colmar",
+      "title": "Colmar — Du retable à la Liberté",
+      "scenes": 8,
+      "chars": 9607
+    },
+    {
+      "tourId": "seed-100-colmar-enseignes-et-facades",
+      "city": "Colmar",
+      "title": "Colmar — Enseignes et façades",
+      "scenes": 6,
+      "chars": 7173
+    },
+    {
+      "tourId": "seed-100-deauville-hippodromes-et-polo",
+      "city": "Deauville",
+      "title": "Deauville — Le royaume du cheval",
+      "scenes": 6,
+      "chars": 7041
+    },
+    {
+      "tourId": "seed-100-deauville-planches-et-cinema",
+      "city": "Deauville",
+      "title": "Deauville — Les Planches, écran de sable",
+      "scenes": 7,
+      "chars": 8411
+    },
+    {
+      "tourId": "seed-100-dijon-chouette-et-sculpteurs",
+      "city": "Dijon",
+      "title": "Dijon — Sculpter la ville",
+      "scenes": 8,
+      "chars": 9424
+    },
+    {
+      "tourId": "seed-100-dijon-hotels-et-ruelles",
+      "city": "Dijon",
+      "title": "Dijon — Hôtels et ruelles",
+      "scenes": 6,
+      "chars": 7004
+    },
+    {
+      "tourId": "seed-100-dijon-ducs-de-bourgogne",
+      "city": "Dijon",
+      "title": "Dijon — Le siècle éblouissant des Grands Ducs",
+      "scenes": 9,
+      "chars": 10432
+    },
+    {
+      "tourId": "seed-100-etretat-falaises-des-peintres",
+      "city": "Étretat",
+      "title": "Étretat — La falaise la plus romanesque de France",
+      "scenes": 6,
+      "chars": 7474
+    },
+    {
+      "tourId": "seed-100-giverny-jardins-de-monet",
+      "city": "Giverny",
+      "title": "Giverny — Le jardin d'un seul homme",
+      "scenes": 6,
+      "chars": 7263
+    },
+    {
+      "tourId": "78e3f3cc-7c1d-4a88-a274-8690e9411fc2",
+      "city": "Grasse",
+      "title": "Grasse — Les Routes du Parfum",
+      "scenes": 7,
+      "chars": 44857
+    },
+    {
+      "tourId": "seed-100-honfleur-port-des-explorateurs",
+      "city": "Honfleur",
+      "title": "Honfleur — Le vieux bassin des grands départs",
+      "scenes": 7,
+      "chars": 8261
+    },
+    {
+      "tourId": "seed-100-honfleur-berceau-impressionniste",
+      "city": "Honfleur",
+      "title": "Honfleur — Le port qui a appris aux peintres à sortir",
+      "scenes": 7,
+      "chars": 8473
+    },
+    {
+      "tourId": "seed-100-la-rochelle-capitale-de-la-voile",
+      "city": "La Rochelle",
+      "title": "La Rochelle — Capitale de la voile",
+      "scenes": 8,
+      "chars": 9138
+    },
+    {
+      "tourId": "seed-100-la-rochelle-tours-et-siege",
+      "city": "La Rochelle",
+      "title": "La Rochelle — Les tours et le siège",
+      "scenes": 9,
+      "chars": 10792
+    },
+    {
+      "tourId": "seed-100-la-rochelle-arcades-quais-et-tours",
+      "city": "La Rochelle",
+      "title": "La Rochelle — Arcades, quais et tours",
+      "scenes": 6,
+      "chars": 7104
+    },
+    {
+      "tourId": "seed-100-lille-fil-du-textile",
+      "city": "Lille",
+      "title": "Lille — Le fil du textile",
+      "scenes": 9,
+      "chars": 10771
+    },
+    {
+      "tourId": "seed-100-lille-beaux-arts-et-geants",
+      "city": "Lille",
+      "title": "Lille — Beaux-Arts et géants",
+      "scenes": 9,
+      "chars": 11067
+    },
+    {
+      "tourId": "seed-100-lille-places-et-facades-du-vieux-lille",
+      "city": "Lille",
+      "title": "Lille — Places et façades du Vieux-Lille",
+      "scenes": 6,
+      "chars": 6957
+    },
+    {
+      "tourId": "seed-100-lyon-capitale-resistance",
+      "city": "Lyon",
+      "title": "Lyon — Capitale de la Résistance",
+      "scenes": 10,
+      "chars": 12336
+    },
+    {
+      "tourId": "seed-100-lyon-presquile-places-et-passages",
+      "city": "Lyon",
+      "title": "Lyon — Places et passages de la Presqu’île",
+      "scenes": 6,
+      "chars": 7007
+    },
+    {
+      "tourId": "seed-100-lyon-lumiere-cinema",
+      "city": "Lyon",
+      "title": "Lyon — Lumière : la ville où naquit le cinéma",
+      "scenes": 9,
+      "chars": 10909
+    },
+    {
+      "tourId": "seed-100-marseille-cite-radieuse-modernites",
+      "city": "Marseille",
+      "title": "Marseille — La Cité Radieuse et les Modernités",
+      "scenes": 9,
+      "chars": 10232
+    },
+    {
+      "tourId": "seed-100-marseille-ville-stade",
+      "city": "Marseille",
+      "title": "Marseille — La Ville-Stade",
+      "scenes": 9,
+      "chars": 10037
+    },
+    {
+      "tourId": "seed-100-marseille-quais-et-forts-du-vieux-port",
+      "city": "Marseille",
+      "title": "Marseille — Quais et forts du Vieux-Port",
+      "scenes": 6,
+      "chars": 6266
+    },
+    {
+      "tourId": "seed-100-mont-saint-michel-remparts-et-baie",
+      "city": "Mont-Saint-Michel",
+      "title": "Mont-Saint-Michel — Remparts et baie",
+      "scenes": 6,
+      "chars": 6183
+    },
+    {
+      "tourId": "seed-100-mont-saint-michel-la-merveille",
+      "city": "Mont-Saint-Michel",
+      "title": "Mont-Saint-Michel — La Merveille de l'Occident",
+      "scenes": 7,
+      "chars": 8706
+    },
+    {
+      "tourId": "seed-100-montpellier-ecusson-secret",
+      "city": "Montpellier",
+      "title": "Montpellier — L'Écusson à double fond",
+      "scenes": 9,
+      "chars": 9837
+    },
+    {
+      "tourId": "seed-100-montpellier-places-et-passages-de-lecusson",
+      "city": "Montpellier",
+      "title": "Montpellier — Places et passages de l’Écusson",
+      "scenes": 6,
+      "chars": 5975
+    },
+    {
+      "tourId": "seed-100-montpellier-mille-ans-de-medecine",
+      "city": "Montpellier",
+      "title": "Montpellier — Mille ans de médecine",
+      "scenes": 9,
+      "chars": 10202
+    },
+    {
+      "tourId": "seed-100-nantes-memoire-du-port",
+      "city": "Nantes",
+      "title": "Nantes — Mémoire du port",
+      "scenes": 10,
+      "chars": 12198
+    },
+    {
+      "tourId": "seed-100-nantes-ile-et-chantiers",
+      "city": "Nantes",
+      "title": "Nantes — L’île et les chantiers",
+      "scenes": 6,
+      "chars": 6242
+    },
+    {
+      "tourId": "seed-100-nantes-jules-verne-machines",
+      "city": "Nantes",
+      "title": "Nantes — Les rêves de Jules Verne",
+      "scenes": 9,
+      "chars": 11040
+    },
+    {
+      "tourId": "seed-100-nice-matisse-chagall-collines",
+      "city": "Nice",
+      "title": "Nice — Sous la même lumière",
+      "scenes": 9,
+      "chars": 10323
+    },
+    {
+      "tourId": "seed-100-nice-places-et-ruelles-du-vieux-nice",
+      "city": "Nice",
+      "title": "Nice — Places et ruelles du Vieux-Nice",
+      "scenes": 6,
+      "chars": 6610
+    },
+    {
+      "tourId": "seed-100-nice-nissa-la-bella",
+      "city": "Nice",
+      "title": "Nice — Nissa la Bella",
+      "scenes": 10,
+      "chars": 12109
+    },
+    {
+      "tourId": "seed-100-nimes-portes-et-jardins",
+      "city": "Nîmes",
+      "title": "Nîmes — Portes et jardins",
+      "scenes": 6,
+      "chars": 6875
+    },
+    {
+      "tourId": "seed-100-nimes-rome-francaise",
+      "city": "Nîmes",
+      "title": "Nîmes — La ville qui n'a jamais quitté Rome",
+      "scenes": 8,
+      "chars": 9358
+    },
+    {
+      "tourId": "seed-100-paris-montmartre-des-peintres",
+      "city": "Paris",
+      "title": "Paris — Montmartre des peintres : la butte qui a inventé l'art moderne",
+      "scenes": 11,
+      "chars": 13012
+    },
+    {
+      "tourId": "seed-100-paris-rive-gauche-des-ecrivains",
+      "city": "Paris",
+      "title": "Paris — La rive gauche des écrivains : livres, mansardes et scandales",
+      "scenes": 11,
+      "chars": 13800
+    },
+    {
+      "tourId": "seed-100-paris-rues-et-passages-des-halles",
+      "city": "Paris",
+      "title": "Paris — Rues et passages des Halles",
+      "scenes": 6,
+      "chars": 6754
+    },
+    {
+      "tourId": "seed-100-reims-souterraine-et-reconstruite",
+      "city": "Reims",
+      "title": "Reims — Souterraine et reconstruite",
+      "scenes": 6,
+      "chars": 6540
+    },
+    {
+      "tourId": "seed-100-reims-art-deco-renaissance",
+      "city": "Reims",
+      "title": "Reims — La ville-manifeste, reconstruite en Art déco",
+      "scenes": 8,
+      "chars": 8968
+    },
+    {
+      "tourId": "seed-100-reims-ville-des-sacres",
+      "city": "Reims",
+      "title": "Reims — Là où la France se couronnait",
+      "scenes": 9,
+      "chars": 10941
+    },
+    {
+      "tourId": "seed-100-rennes-portes-et-places-du-centre",
+      "city": "Rennes",
+      "title": "Rennes — Portes et places du centre",
+      "scenes": 6,
+      "chars": 6427
+    },
+    {
+      "tourId": "seed-100-rennes-murs-qui-parlent",
+      "city": "Rennes",
+      "title": "Rennes — Les murs qui parlent",
+      "scenes": 8,
+      "chars": 9622
+    },
+    {
+      "tourId": "seed-100-rennes-parlement-et-incendies",
+      "city": "Rennes",
+      "title": "Rennes — Le feu et la pierre",
+      "scenes": 9,
+      "chars": 10809
+    },
+    {
+      "tourId": "seed-100-rouen-cathedrale-de-monet",
+      "city": "Rouen",
+      "title": "Rouen — Trente fois la même façade",
+      "scenes": 8,
+      "chars": 10305
+    },
+    {
+      "tourId": "seed-100-rouen-proces-jeanne-darc",
+      "city": "Rouen",
+      "title": "Rouen — Le procès de Jeanne d'Arc",
+      "scenes": 9,
+      "chars": 11132
+    },
+    {
+      "tourId": "seed-100-rouen-faience-et-gros-horloge",
+      "city": "Rouen",
+      "title": "Rouen — Bleu de Rouen et aiguilles d'or",
+      "scenes": 8,
+      "chars": 10469
+    },
+    {
+      "tourId": "seed-100-saint-malo-cite-corsaire",
+      "city": "Saint-Malo",
+      "title": "Saint-Malo — La République des corsaires",
+      "scenes": 8,
+      "chars": 10617
+    },
+    {
+      "tourId": "seed-100-saint-malo-remparts-plages-et-marees",
+      "city": "Saint-Malo",
+      "title": "Saint-Malo — Remparts, plages et marées",
+      "scenes": 6,
+      "chars": 6204
+    },
+    {
+      "tourId": "seed-100-saint-malo-route-du-rhum",
+      "city": "Saint-Malo",
+      "title": "Saint-Malo — Les Fous de l'Atlantique",
+      "scenes": 7,
+      "chars": 9841
+    },
+    {
+      "tourId": "seed-100-sarlat-perigord-medieval",
+      "city": "Sarlat",
+      "title": "Sarlat — La ville médiévale la plus intacte de France",
+      "scenes": 7,
+      "chars": 8718
+    },
+    {
+      "tourId": "seed-100-sarlat-places-passages-et-facades",
+      "city": "Sarlat",
+      "title": "Sarlat — Places, passages et façades",
+      "scenes": 6,
+      "chars": 6401
+    },
+    {
+      "tourId": "seed-100-strasbourg-entre-deux-mondes",
+      "city": "Strasbourg",
+      "title": "Strasbourg — Entre deux mondes",
+      "scenes": 10,
+      "chars": 12636
+    },
+    {
+      "tourId": "seed-100-strasbourg-cathedrale-des-batisseurs",
+      "city": "Strasbourg",
+      "title": "Strasbourg — La cathédrale des bâtisseurs",
+      "scenes": 8,
+      "chars": 10205
+    },
+    {
+      "tourId": "seed-100-strasbourg-quais-et-ponts-de-lill",
+      "city": "Strasbourg",
+      "title": "Strasbourg — Quais et ponts de l’Ill",
+      "scenes": 6,
+      "chars": 6268
+    },
+    {
+      "tourId": "seed-100-strasbourg-capitale-de-noel",
+      "city": "Strasbourg",
+      "title": "Strasbourg — Capitale de Noël",
+      "scenes": 8,
+      "chars": 11119
+    },
+    {
+      "tourId": "seed-100-toulouse-canal-quais-et-ponts",
+      "city": "Toulouse",
+      "title": "Toulouse — Canal, quais et ponts",
+      "scenes": 6,
+      "chars": 6373
+    },
+    {
+      "tourId": "seed-100-toulouse-ovalie",
+      "city": "Toulouse",
+      "title": "Toulouse — La messe du dimanche",
+      "scenes": 8,
+      "chars": 8902
+    },
+    {
+      "tourId": "seed-100-toulouse-capitole-et-siecles-d-or",
+      "city": "Toulouse",
+      "title": "Toulouse — Capitole et siècles d'or",
+      "scenes": 10,
+      "chars": 12618
+    },
+    {
+      "tourId": "seed-100-toulouse-aeropostale-et-espace",
+      "city": "Toulouse",
+      "title": "Toulouse — De Mermoz à Ariane",
+      "scenes": 9,
+      "chars": 10706
+    },
+    {
+      "tourId": "seed-100-tours-cite-royale",
+      "city": "Tours",
+      "title": "Tours — Quand la Loire était le centre de la France",
+      "scenes": 9,
+      "chars": 10786
+    },
+    {
+      "tourId": "seed-100-tours-loire-quais-et-passerelles",
+      "city": "Tours",
+      "title": "Tours — Loire, quais et passerelles",
+      "scenes": 6,
+      "chars": 6127
+    },
+    {
+      "tourId": "seed-100-versailles-perspectives-et-jardins",
+      "city": "Versailles",
+      "title": "Versailles — Perspectives et jardins",
+      "scenes": 6,
+      "chars": 6418
+    },
+    {
+      "tourId": "seed-100-versailles-ville-du-roi-soleil",
+      "city": "Versailles",
+      "title": "Versailles — La ville-machine du Roi-Soleil",
+      "scenes": 9,
+      "chars": 12001
+    }
+  ]
+}

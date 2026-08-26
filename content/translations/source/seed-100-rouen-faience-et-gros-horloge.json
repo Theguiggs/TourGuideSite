@@ -1,0 +1,141 @@
+{
+  "tourId": "seed-100-rouen-faience-et-gros-horloge",
+  "sessionId": "seed-100-rouen-faience-et-gros-horloge-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Rouen",
+  "title": "Rouen — Bleu de Rouen et aiguilles d'or",
+  "description": "Spécialité — Bleu de Rouen et aiguilles d'or : les savoir-faire d'une capitale normande.",
+  "themes": [
+    "Spécialité — Bleu de Rouen et aiguilles d'or : les savoir-faire d'une capitale normande."
+  ],
+  "baseLanguage": "fr",
+  "chars": 10469,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "en": "Speciality, Rouen Blue and Gold Needles: the know-how of a Norman capital.",
+    "de": "Spezialität, Blau von Rouen und goldene Nadeln: das Know-how einer normannischen Hauptstadt.",
+    "it": "Specialità, Rouen Blue e Gold Needles: il know-how di una capitale normanna.",
+    "es": "Especialidad, Azul de Rouen y agujas de oro: los conocimientos técnicos de una capital normanda."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-rouen-faience-et-gros-horloge-scene-0",
+      "index": 0,
+      "title": "Musée de la Céramique",
+      "text": "Pousse la grille de cet hôtel particulier et monte à l'étage. Cherche une pièce de faïence. N'importe laquelle, pourvu qu'elle soit blanche et bleue.\n\r\nRegarde le bord : une dentelle de motifs qui rayonne vers le centre, régulière, obsessionnelle, comme un soleil retourné. Ça s'appelle le décor rayonnant. Ça n'existe nulle part ailleurs. C'est la signature de Rouen, et pendant un siècle, toute l'Europe a essayé de la copier.\r\n\r\nTout commence vers 1540 avec un homme, Masséot Abaquesne. Il sait faire ce que presque personne ne sait faire en France : cuire de la terre, la couvrir d'un émail blanc opaque, et peindre dessus. Le connétable de Montmorency lui commande le pavement de son château d'Écouen. La faïence française vient de naître, ici.\r\n\r\nPuis vient le coup de génie. En 1673, un Rouennais, Louis Poterat, obtient un privilège pour une pâte translucide : de la porcelaine, la première fabriquée en France. Il la garde pour lui. Il meurt sans rien dire à personne. Le secret meurt avec lui.\r\n\r\nEt enfin le coup de chance. Louis XIV, ruiné par ses guerres, ordonne aux grands du royaume de porter leurs objets d'or et d'argent à la fonte. Les grandes maisons se tournent alors vers la faïence — et Rouen, qui a les fours, les peintres et le fleuve, décroche le gros lot.\n\r\nVoilà le fil que je te propose. Cette ville n'a jamais rien eu d'autre que ses mains. La terre, le fer, le fil, le bois, la pierre. Je te les montre une par une. Et tout au bout, dans un beffroi, une aiguille dorée te dira ce que tout ça valait.\r\n\r\nSors et prends vers le sud. Quatre minutes, direction une église pleine de fer.",
+      "hash": "fe29d9d1",
+      "chars": 1613,
+      "existingSegments": {
+        "en": "seed-100-rouen-faience-et-gros-horloge-scene-0-seg-en",
+        "it": "seed-100-rouen-faience-et-gros-horloge-scene-0-seg-it",
+        "de": "seed-100-rouen-faience-et-gros-horloge-scene-0-seg-de",
+        "es": "seed-100-rouen-faience-et-gros-horloge-scene-0-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-faience-et-gros-horloge-scene-1",
+      "index": 1,
+      "title": "Musée Le Secq des Tournelles",
+      "text": "Cette église n'est plus une église. Saint-Laurent, gothique flamboyant, fermée au culte à la Révolution, vidée, oubliée, transformée en entrepôt. Puis, en 1921, on la rouvre pour y mettre du fer. Rien que du fer.\r\n\r\nEntre. C'est un choc : une nef de lumière bourrée de milliers d'objets noirs. Des enseignes de boutiques suspendues dans le vide, des grilles de chœur, des heurtoirs, des coffres, des instruments de chirurgie. Et des serrures. Des centaines de serrures.\r\n\r\nTout ça vient d'un seul homme, Henri Le Secq des Tournelles, un collectionneur qui a passé sa vie à ramasser ce que les autres portaient à la ferraille. Il a tout donné à Rouen. On dit qu'il n'existe rien de comparable ailleurs dans le monde.\r\n\r\nApproche-toi des serrures. Regarde le travail : des mécanismes cachés, de faux trous, des ressorts en embuscade, des pênes qui partent dans trois directions. Un serrurier ne vendait pas une serrure. Il vendait une énigme.\r\n\r\nRetiens le fer. Dans une heure, tu monteras dans une tour où c'est lui, et lui seul, qui compte les heures depuis six siècles.\r\n\r\nPrends vers le sud-est. Six minutes : on va suivre une rivière disparue.",
+      "hash": "7bdc5807",
+      "chars": 1146,
+      "existingSegments": {
+        "it": "seed-100-rouen-faience-et-gros-horloge-scene-1-seg-it",
+        "es": "seed-100-rouen-faience-et-gros-horloge-scene-1-seg-es",
+        "de": "seed-100-rouen-faience-et-gros-horloge-scene-1-seg-de",
+        "en": "seed-100-rouen-faience-et-gros-horloge-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-faience-et-gros-horloge-scene-2",
+      "index": 2,
+      "title": "Rue Eau-de-Robec",
+      "text": "Ce mince filet d'eau qui court au milieu de la rue, entre les petits ponts de pierre, c'est un décor. Le vrai Robec coule sous tes pieds, enterré sous des voûtes depuis longtemps. On a remis ce ruisseau-là en scène dans les années 1980, pour te raconter ce qui s'est passé ici.\r\n\r\nIci, pendant des siècles, on teignait. Les teinturiers avaient besoin d'eau courante, alors ils se sont collés au Robec, maison contre maison, et ils y rinçaient leurs étoffes. Lève les yeux vers les toits : ces greniers ouverts, tout en haut, à claire-voie, ce sont des séchoirs. Le tissu pendait là, dans le vent.\r\n\r\nEt l'eau, elle, changeait de couleur selon la teinte du jour. Rouge, bleue, jaune, noire. Un gamin du quartier pouvait deviner la commande en cours rien qu'en regardant le caniveau.\r\n\r\nFlaubert, enfant de cette ville, a mis ce coin-là dans Madame Bovary. Il n'y va pas de main morte : il appelle ça une ignoble petite Venise.\r\n\r\nDe ces cuves puantes sont sorties les rouenneries, des cotonnades imprimées vendues dans toute l'Europe. La ville s'est habillée en marchande de tissu.\r\n\r\nContinue, deux rues plus loin. Trois minutes. Et cette fois, lève franchement la tête.",
+      "hash": "20cf5fae",
+      "chars": 1170,
+      "existingSegments": {
+        "es": "seed-100-rouen-faience-et-gros-horloge-scene-2-seg-es",
+        "en": "seed-100-rouen-faience-et-gros-horloge-scene-2-seg-en",
+        "it": "seed-100-rouen-faience-et-gros-horloge-scene-2-seg-it",
+        "de": "seed-100-rouen-faience-et-gros-horloge-scene-2-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-faience-et-gros-horloge-scene-3",
+      "index": 3,
+      "title": "Rue Damiette",
+      "text": "Regarde ces maisons. Elles penchent, elles avancent, elles s'appuient les unes sur les autres, et chaque étage déborde un peu plus que celui du dessous. Ça s'appelle l'encorbellement.\r\n\r\nOn te dira que c'était pour frauder l'impôt, calculé au sol. Jolie histoire. La vérité est plus simple : chaque étage qu'on pousse en avant, c'est de la surface gagnée dans une ville étranglée par ses remparts. Et c'est surtout un parapluie. La pluie glisse d'auvent en auvent et ne pourrit pas le pied de la maison.\r\n\r\nCe que tu regardes, c'est du chêne. Des poutres équarries à la hache, assemblées sans un seul clou, par tenons et mortaises, serrées avec des chevilles de bois. Le charpentier numérotait chaque pièce au ciseau, montait la maison une première fois dans son chantier pour vérifier que tout tombait juste, la démontait, et venait la remonter ici comme un meuble.\r\n\r\nRouen en a gardé des centaines. Beaucoup dormaient derrière des façades de plâtre, posées par des propriétaires du XIXᵉ siècle qui trouvaient le bois trop moyenâgeux. Les guerres et les restaurations ont fait tomber le plâtre. La ville a redécouvert son squelette.\r\n\r\nAvant de partir, regarde les poteaux d'angle : certains sont sculptés.\r\n\r\nCap à l'ouest. Huit minutes, jusqu'à une rue qui porte le nom d'un métier.",
+      "hash": "b69523ab",
+      "chars": 1286,
+      "existingSegments": {
+        "en": "seed-100-rouen-faience-et-gros-horloge-scene-3-seg-en",
+        "de": "seed-100-rouen-faience-et-gros-horloge-scene-3-seg-de",
+        "es": "seed-100-rouen-faience-et-gros-horloge-scene-3-seg-es",
+        "it": "seed-100-rouen-faience-et-gros-horloge-scene-3-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-faience-et-gros-horloge-scene-4",
+      "index": 4,
+      "title": "Rue Ganterie",
+      "text": "Rue Ganterie. Lis le nom. Les gantiers étaient là.\r\n\r\nToute cette ville est un annuaire de métiers écrit au coin des rues. Ce n'était pas du folklore, c'était de l'organisation. Chaque métier avait sa corporation, ses statuts, et ses jurés qui passaient dans les ateliers vérifier la marchandise et cassaient en public ce qui n'était pas conforme.\r\n\r\nEt pour entrer là-dedans, il fallait payer de sa personne. Tu commences apprenti, gamin, chez un maître qui te loge et te forme. Des années. Puis compagnon : payé, enfin, mais toujours aux ordres. Et un jour, si tu veux ton atelier, ta boutique et le droit de signer ton travail, tu dois fabriquer une pièce unique, seul, devant les jurés du métier. Une pièce qui prouve que tu sais tout faire.\n\r\nCette pièce-là porte un nom. On l'appelle le chef-d'œuvre.\r\n\r\nVoilà d'où vient le mot que tu emploies pour parler des tableaux d'un musée. Il ne vient pas du génie ni de l'inspiration : il vient d'un examen de passage d'artisan. Dans cette ville, un chef-d'œuvre, c'était d'abord une preuve de compétence.\r\n\r\nContinue plein ouest, sept minutes. Je t'emmène chez un bourgeois qui avait les moyens.",
+      "hash": "82c79b1c",
+      "chars": 1144,
+      "existingSegments": {
+        "en": "seed-100-rouen-faience-et-gros-horloge-scene-4-seg-en",
+        "it": "seed-100-rouen-faience-et-gros-horloge-scene-4-seg-it",
+        "es": "seed-100-rouen-faience-et-gros-horloge-scene-4-seg-es",
+        "de": "seed-100-rouen-faience-et-gros-horloge-scene-4-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-faience-et-gros-horloge-scene-5",
+      "index": 5,
+      "title": "Hôtel de Bourgtheroulde",
+      "text": "Entre dans la cour, c'est ouvert. Devant toi, l'hôtel de Bourgtheroulde, bâti au début du XVIᵉ siècle par la famille Le Roux : des bourgeois enrichis devenus officiers du roi, assez riches pour s'offrir les meilleurs tailleurs de pierre de Normandie.\r\n\r\nVa vers la galerie du fond, au rez-de-chaussée, et baisse-toi un peu. Il y a là une frise de bas-reliefs, une bande dessinée de pierre. Elle raconte un événement précis : le Camp du Drap d'Or.\r\n\r\nJuin 1520, quelque part entre Calais et Ardres. François Ier et Henri VIII d'Angleterre se rencontrent pendant dix-huit jours dans un déluge de tentes dorées, de tournois et de cérémonies. Deux rois qui se jaugent en se ruinant. Personne, à Rouen, n'y était.\n\r\nAlors les sculpteurs ont travaillé d'après des gravures. Ils ont taillé les chevaux, les armures, les rois, les pavillons, sans avoir rien vu de leurs yeux — juste pour que le maître de maison puisse dire à ses visiteurs : moi, je sais ce qui se passe dans le monde.\r\n\r\nC'est de l'information sculptée. Le journal du soir, en calcaire, commandé par un homme qui voulait qu'on sache qu'il comptait.\r\n\r\nRedescends vers l'est. Cinq minutes. Tu vas passer sous quelque chose.",
+      "hash": "b1ada02f",
+      "chars": 1182,
+      "existingSegments": {
+        "en": "seed-100-rouen-faience-et-gros-horloge-scene-5-seg-en",
+        "it": "seed-100-rouen-faience-et-gros-horloge-scene-5-seg-it",
+        "de": "seed-100-rouen-faience-et-gros-horloge-scene-5-seg-de",
+        "es": "seed-100-rouen-faience-et-gros-horloge-scene-5-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-faience-et-gros-horloge-scene-6",
+      "index": 6,
+      "title": "Gros-Horloge",
+      "text": "Tu y es. Ne passe pas dessous tout de suite. Recule un peu, et regarde ce cadran.\r\n\r\nUn soleil d'or à vingt-quatre rayons, sur un ciel bleu semé d'étoiles. Et une seule aiguille. Une. À l'époque, la minute n'intéresse strictement personne : on vit à l'heure de la cloche, pas de la montre.\r\n\r\nAu-dessus du cadran, une petite lucarne : un globe y tourne lentement et te montre la lune, exactement dans la phase où elle est ce soir. En dessous, un panneau qui bascule à minuit et t'annonce le jour de la semaine avec la divinité qui va avec — Diane le lundi, Mars le mardi, Vénus le vendredi. Une horloge qui te donne l'heure, le ciel et un calendrier païen, plantée en plein cœur d'une ville d'églises.\r\n\r\nEt maintenant l'essentiel. Ce cadran n'a pas toujours été là. Il était en haut, dans le beffroi, invisible d'en bas. À la fin des années 1520, les échevins de Rouen prennent une décision très moderne : ils font bâtir cette arche par-dessus la rue la plus passante de la ville, et ils descendent l'heure à hauteur de peuple.\r\n\r\nPasse dessous et lève les yeux vers la voûte. Un berger, et son troupeau. Le mouton, ici, ce n'est pas de la poésie : c'est de la laine. Et la laine, c'est l'argent.\r\n\r\nTrois minutes d'escalier. Monte.",
+      "hash": "e8ff26cd",
+      "chars": 1233,
+      "existingSegments": {
+        "en": "seed-100-rouen-faience-et-gros-horloge-scene-6-seg-en",
+        "it": "seed-100-rouen-faience-et-gros-horloge-scene-6-seg-it",
+        "de": "seed-100-rouen-faience-et-gros-horloge-scene-6-seg-de",
+        "es": "seed-100-rouen-faience-et-gros-horloge-scene-6-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-faience-et-gros-horloge-scene-7",
+      "index": 7,
+      "title": "Tour du Beffroi",
+      "text": "Te voilà dans le beffroi. Prends ton temps. Tout est là.\r\n\r\nCe mécanisme de fer forgé date de 1389. Six siècles. L'un des plus vieux d'Europe encore en marche. Regarde-le bien : pas un ressort, pas un moteur. Des poids qui descendent lentement, une corde, des roues, un balancier qui compte. Il a fallu qu'un homme monte ici remonter ces poids à la main, tous les jours, pendant des siècles. On l'appelait le gouverneur de l'horloge. Il vivait dans cette tour, l'heure de tout le monde entre les mains.\r\n\r\nÉcoute, maintenant. Les cloches.\r\n\r\nIl y a Cache-Ribaud, fondue au XIIIᵉ siècle, qui sonne encore le soir. C'était le couvre-feu : à son signal, on rentrait, on couvrait le feu, et les ribauds — les mauvais garçons — devaient déguerpir des rues. Une cloche qui donne à toute une ville l'ordre d'aller se coucher.\r\n\r\nEt il y a le silence de l'autre. Car ce beffroi n'appartenait pas au roi. Il appartenait à la ville. Sonner ses propres cloches, à l'époque, c'est le signe qu'on se gouverne soi-même. En 1382, les Rouennais se révoltent contre l'impôt : c'est la Harelle. Charles VI monte mater la ville en personne, et sa punition est chirurgicale. Il supprime la commune, et il fait taire la cloche. Pas de sang : il leur a simplement retiré le droit de sonner l'heure.\r\n\r\nAlors ressors, et regarde une dernière fois cette aiguille dorée sur son soleil bleu.\r\n\r\nUne ville qui teint, qui forge, qui cuit la terre, qui taille la pierre — et qui, pour finir, fabrique le temps lui-même et l'accroche au-dessus de sa rue, assez bas pour que le dernier des apprentis puisse le lire.\r\n\r\nC'était Rouen, la ville qui travaille de ses mains. Prends soin de toi, et à bientôt pour une autre balade.",
+      "hash": "324c134a",
+      "chars": 1695,
+      "existingSegments": {
+        "it": "seed-100-rouen-faience-et-gros-horloge-scene-7-seg-it",
+        "en": "seed-100-rouen-faience-et-gros-horloge-scene-7-seg-en",
+        "es": "seed-100-rouen-faience-et-gros-horloge-scene-7-seg-es",
+        "de": "seed-100-rouen-faience-et-gros-horloge-scene-7-seg-de"
+      }
+    }
+  ]
+}

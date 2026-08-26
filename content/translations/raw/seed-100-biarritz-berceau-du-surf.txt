@@ -1,0 +1,389 @@
+@@LANG=en
+@@TITLE=Biarritz — The Cradle of Surfing
+@@DESC=Sport — how a stretch of Basque coast became the surfing capital of Europe.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-0
+@@STITLE=La Grande Plage
+Stop facing the Grande Plage. Look at the water: shapes in black wetsuits, sitting on their boards, watching. Instructors lining up beginners on the sand. Longboards under arms, vans parked in herringbone rows, a smell of wax and neoprene. You are not on an ordinary beach. You are in what has long been called the surfing capital of Europe. Beginners, Sunday surfers, pros come from the other side of the world: they all meet in these breakers.
+
+Everyone knows the starting point: one day in 1957, an American screenwriter, Peter Viertel, walks into these waves with a board, and the spark catches. You may already have been told that story. What I want to show you is what came next — what Biarritz did with that spark. How a stretch of Basque coast, within a few decades, became a true capital: its spots, its shapers, its schools, its champions, its brands, and above all a state of mind.
+
+For here, surfing did not stay a holiday sport. It became an industry, a culture, almost a gentle religion, with its temples of sand and its faithful in neoprene. Every year the town hosts international competitions, and thousands of kids come to learn to stand up on the ocean. You will meet both the retiree paddling out at dawn and the future champion.
+
+Follow me. We go down towards the south, spot after spot, as far as the cliff. I'll tell you everything along the way.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-1
+@@STITLE=Place Clemenceau
+Here we are in the heart of the town, around the place Clemenceau. Look at the shop windows: wetsuits, boards, fashionable brands, faded T-shirts. Surfing here is not just about the water. It is also all this trade, born in the wake of the first riders.
+
+For very soon after 1957, boards were needed. And they were not going to be shipped in from California every time. In Biarritz two men set to work: Michel Barland, an engineer, and Jacky Rott, a passionate carpenter. In their workshop they tinker, plane, mould — and make the first surfboards in France. The Biarritz shapers were born. A craft that has never died out: even today shapers here still shape boards by hand, in a cloud of resin dust.
+
+Around them a whole surf industry was built — shops, workshops, brands. The Basque coast became one of Europe's great laboratories for it: wetsuits are designed here, boards are tested here, trends are invented here that will later go and conquer the continent.
+
+Carry on towards the ocean, heading south. We reach the sea at the Port Vieux, the small cove where every beginner sets foot one day.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-2
+@@STITLE=Le Port Vieux
+Go down to this small sheltered cove: the Port Vieux. A tiny inlet, protected from big waves, the water almost warm. This is not where you find the big spots — and that is exactly why I am bringing you here.
+
+Because Biarritz surfing is not only about champions. It is above all a huge popular school. On these gentle beaches, generations of kids have caught their first wave: lying down at first, then on their knees, finally standing — and that second, that first balance stolen from the ocean, they never forget it.
+
+Watch them at it. The instructor pushes the board, the kid stands up, falls, comes back up laughing, tries again. That is the true engine of a surfing capital: not just the feat, but the passing on. Here you learn to surf the way you learn to swim. Surfing has become part of a Biarritz childhood, as natural as a bicycle.
+
+And from this quiet cove, the eye already runs south, towards the long beach framed by cliffs where it all really began. Follow the path climbing along the coast. Three minutes, and the temple appears.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-3
+@@STITLE=La Côte des Basques
+Here it is: the Côte des Basques. An immense beach at the foot of green cliffs, uncovered at low tide, swept by long waves that peel with perfect smoothness. This is the legendary spot, the cradle, the holy place. It is here, as you know, that an American stood up on the water in 1957. But set that story aside for a moment, and look at what it became.
+
+These long, soft waves are a gift for one particular discipline: longboarding. The long board, the flowing style, the walk to the very tip of the board — what is called noseriding. The Côte des Basques became one of the world capitals of it. For years it hosted a great longboard festival that drew the best riders on the planet, in a retro atmosphere of wooden boards and vintage swimsuits.
+
+As early as the 1960s, one of the pioneers, Jo Moraiz, opened here one of the very first surf schools in Europe. Since then they number in the dozens on this sand. Look at the line-up at low tide: beginners and old sages glide on the same waves, in a slow, polished ballet.
+
+Carry on south along the seafront. The coast turns wilder. Heading for Marbella.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-4
+@@STITLE=La plage Marbella
+Here you are at the plage de Marbella. A change of mood. Fewer parasols, fewer schools, more wind. Here the waves are hollower, more nervous, less forgiving. It is a locals' spot, of seasoned surfers who know every sandbank and every mood of the ocean.
+
+This is a good moment to tell you something about surfing: this sport has unwritten rules, a code of honour everyone respects in the water. A wave belongs to whoever is best positioned, closest to where it is breaking. Cutting across their path — what's called dropping in — is the worst kind of rudeness. You wait your turn, you respect the elders, you share.
+
+This code, strict and courteous at once, is as much a part of the surfing spirit as the act of riding itself. It turns a crowd of surfers into a community, with its regulars, its unspoken rules, its hierarchy of the water. At Marbella you learn it fast, sometimes the hard way.
+
+Carry on along the coast southward. The next beach, La Milady, is wider, more open — everyone's beach. Five minutes' walk.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-5
+@@STITLE=La plage de la Milady
+The plage de la Milady: wider, more family-friendly, watched over by lifeguards. People come here as a tribe, board under one arm, cool box in the other hand. This is everyday surfing, without mystique, more the locals' than the tourists'.
+
+And this is where I want to tell you about a fine idea: surfing for everyone, truly everyone. For years the Basque coast has been at the forefront of handisurf — surfing adapted for people with disabilities. On special boards, accompanied by volunteers, people you would never imagine on a wave stand up, or let themselves be carried, and find in the water a freedom the land sometimes denies them.
+
+That may be Biarritz's real genius: taking a game that came from elsewhere and opening it up to everyone. Children, champions, elders, bodies held back by disability. The same wave for each of them, without distinction.
+
+Head back up slightly towards the large building set on the cliff, a little further on. There the whole ocean is explained. Two minutes.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-6
+@@STITLE=La Cité de l'Océan
+Here is the Cité de l'Océan, a great building with wave-like curves, opened in the early 2010s. Inside, you are not only taught to surf: the ocean itself is explained to you. Where swells come from, how a wave is born thousands of kilometres away, in a storm, before coming to die here beneath your feet.
+
+For after living off the sea for so long, Biarritz eventually wanted to understand it — and protect it. It was on this coast that the Surfrider Foundation Europe was born in 1990, an association founded by surfers to defend the ocean, the waves and the coastline. The idea is simple and powerful: you cannot love gliding on water you let die. Surfers, the first witnesses of pollution, became its first guardians.
+
+That is the other face of the surfing spirit. Not just pleasure, but care. The surfer is not only a player: they are a watcher, alert to the health of the sea, the way the old-time lookout once scanned the horizon.
+
+Come back to the edge of the cliff, to the south, for a last look. From up there you can see the whole coast you have just come down.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-7
+@@STITLE=Parvis de la Cité de l'Océan
+Last stop. Climb onto this viewpoint, above the cliff, and turn back towards the north. From there you can see almost the whole way you have come: la Milady, Marbella, the long Côte des Basques, the Port Vieux, and over there, right at the far end, the Grande Plage where we started. One whole coastline, a single swell running from one beach to the next.
+
+Measure what happened here. Less than a century ago, the ocean was nothing to the people of Biarritz but a threat — the one that killed fishermen, the one that ate away at the breakwaters. Then a board arrived, and the way of seeing it changed. What used to crush became what carries. Fear became play, then art, then identity, then a trade, an industry, a way of life.
+
+That is what the cradle of surfing really is: not just the place of a first feat, but that of a long transformation. A town that learned to glide on its own destiny, the way its children glide on the swell.
+
+And if you look closely at those figures sitting on the water, patient, you understand the essence of this sport. Waiting. You do not take a wave: you wait for it, you earn it, and when it finally comes, you stop thinking about anything else. Nothing but the moment, the water, the balance.
+
+Thank you for walking with me as far as this cliff. Now you know how to read this coast. Rent a board, or just sit and watch — and catch your own.
+
+@@LANG=es
+@@TITLE=Biarritz — La cuna del surf
+@@DESC=Deporte: cómo un trozo de costa vasca se convirtió en la capital europea del surf.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-0
+@@STITLE=La Grande Plage
+Detente frente a la Grande Plage. Mira el agua: siluetas con traje de neopreno negro, sentadas en sus tablas, al acecho. Monitores que alinean a los principiantes en la arena. Longboards bajo el brazo, furgonetas aparcadas en espiga, un olor a parafina y neopreno. No estás en una playa cualquiera. Estás en lo que desde hace tiempo se llama la capital europea del surf. Principiantes, surfistas de domingo, profesionales llegados del otro extremo del mundo: todos se dan cita en estas olas.
+
+Todo el mundo conoce el punto de partida: un día de 1957, un guionista estadounidense, Peter Viertel, entra en estas aguas con una tabla, y salta la chispa. Puede que ya te lo hayan contado. Lo que quiero mostrarte yo es lo que vino después: lo que Biarritz hizo con esa chispa. Cómo un trozo de costa vasca, en pocas décadas, se convirtió en una auténtica capital: sus spots, sus shapers, sus escuelas, sus campeones, sus marcas, y sobre todo un estado de ánimo.
+
+Porque aquí el surf no se quedó en un deporte de vacaciones. Se convirtió en una industria, en una cultura, casi en una religión suave, con sus templos de arena y sus fieles en neopreno. Cada año, la ciudad acoge competiciones internacionales, y miles de niños vienen a aprender a mantenerse en pie sobre el océano. Aquí te cruzas tanto con el jubilado que rema al amanecer como con la futura campeona.
+
+Sígueme. Bajamos hacia el sur, spot tras spot, hasta el acantilado. Te lo cuento todo por el camino.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-1
+@@STITLE=Place Clemenceau
+Aquí estamos, en el corazón de la ciudad, en torno a la place Clemenceau. Mira los escaparates: trajes de neopreno, tablas, marcas de moda, camisetas descoloridas. El surf, aquí, no es solo el agua. Es también todo este comercio, nacido en la estela de los primeros riders.
+
+Porque muy pronto, después de 1957, hicieron falta tablas. Y no se iban a traer de California cada vez. En Biarritz, dos hombres se ponen manos a la obra: Michel Barland, un ingeniero, y Jacky Rott, un carpintero apasionado. En su taller, improvisan, cepillan, moldean —y fabrican las primeras tablas de surf de Francia. Nacieron los shapers biarrotas. Un saber hacer artesanal que nunca se ha apagado: todavía hoy, unos shapers dan forma aquí a las tablas a mano, entre polvo de resina.
+
+En torno a ellos se construyó toda una industria del deslizamiento —tiendas, talleres, marcas. La costa vasca se convirtió en uno de sus grandes laboratorios europeos: aquí se diseñan trajes de neopreno, se prueban tablas, se inventan modas que después partirán a conquistar el continente.
+
+Continúa hacia el océano, bajando hacia el sur. Llegamos al mar en el Port Vieux, la pequeña cala donde todo principiante pone los pies algún día.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-2
+@@STITLE=Le Port Vieux
+Baja hasta esta pequeña cala abrigada: el Port Vieux. Una ensenada minúscula, protegida de las grandes olas, con el agua casi templada. Aquí no es donde se encuentran los grandes spots —y por eso mismo te traigo.
+
+Porque el surf de Biarritz no es solo cosa de campeones. Es, ante todo, una inmensa escuela popular. En estas playas suaves, generaciones de niños han cogido su primera ola: tumbados primero, de rodillas después, de pie por fin —y ese segundo, ese primer equilibrio robado al océano, nunca lo olvidan.
+
+Míralos hacer. El monitor empuja la tabla, el niño se levanta, cae, vuelve a subir riendo, empieza de nuevo. Ese es el verdadero motor de una capital del surf: no solo la hazaña, sino la transmisión. Aquí se aprende a hacer surf como se aprende a nadar. El surf ha entrado en la infancia biarrota, tan natural como una bicicleta.
+
+Y desde esta cala tranquila, la mirada ya se dirige hacia el sur, hacia la larga playa enmarcada por acantilados donde todo empezó de verdad. Sigue el sendero que sube por la costa. Tres minutos, y aparece el templo.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-3
+@@STITLE=La Côte des Basques
+Aquí está: la Côte des Basques. Una playa inmensa al pie de los acantilados verdes, descubierta con la marea baja, barrida por olas largas que se desenrollan con toda suavidad. Es el spot mítico, la cuna, el lugar sagrado. Aquí, ya lo sabes, un estadounidense se puso de pie sobre el agua en 1957. Pero deja esa historia a un lado un momento, y mira en qué se ha convertido.
+
+Estas olas largas y suaves son un regalo para una disciplina precisa: el longboard. La tabla larga, el estilo amplio, el paseo hasta la punta misma de la tabla —lo que se llama noseriding. La Côte des Basques se convirtió en una de sus capitales mundiales. Durante años se celebró aquí un gran festival de longboard que atraía a los mejores riders del planeta, en un ambiente retro, con tablas de madera y bañadores vintage.
+
+Ya en los años sesenta, uno de los pioneros, Jo Moraiz, abre aquí una de las primerísimas escuelas de surf de Europa. Desde entonces se cuentan por decenas en esta arena. Mira el line-up con marea baja: principiantes y viejos sabios se deslizan sobre las mismas olas, en un ballet lento y pulido.
+
+Continúa hacia el sur por el paseo marítimo. La costa se vuelve más salvaje. Dirección Marbella.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-4
+@@STITLE=La plage Marbella
+Aquí estás, en la plage de Marbella. Cambia el ambiente. Menos sombrillas, menos escuelas, más viento. Aquí las olas son más huecas, más nerviosas, menos indulgentes. Es un spot de locales, de surfistas curtidos que conocen cada banco de arena y cada humor del océano.
+
+Es el momento de contarte algo sobre el surf: este deporte tiene reglas no escritas, un código de honor que todos respetan en el agua. Una ola pertenece a quien está mejor situado, más cerca del punto donde rompe. Cortarle el paso —lo que se llama robar la ola— es la peor de las descortesías. Se espera el turno, se respeta a los veteranos, se comparte.
+
+Este código, severo y cortés a la vez, forma parte del espíritu del deslizamiento tanto como el gesto mismo. Convierte a una multitud de surfistas en una comunidad, con sus habituales, sus reglas tácitas, su jerarquía del agua. En Marbella se aprende rápido, a veces a las malas.
+
+Continúa por la costa hacia el sur. La próxima playa, la Milady, es más ancha, más abierta —la playa de todos. Cinco minutos a pie.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-5
+@@STITLE=La plage de la Milady
+La plage de la Milady: más ancha, más familiar, vigilada. Aquí se viene en tribu, tabla bajo el brazo y nevera en la mano. Es el surf del día a día, sin mística, más de los habitantes que de los turistas.
+
+Y aquí es donde quiero hablarte de una idea hermosa: el surf para todos, de verdad para todos. Desde hace años, la costa vasca está a la vanguardia del handisurf —el surf adaptado a personas con discapacidad. Sobre tablas especiales, acompañadas de voluntarios, personas que nunca imaginarías sobre una ola se ponen de pie, o se dejan llevar, y encuentran en el agua una libertad que la tierra a veces les niega.
+
+Quizá ahí esté el verdadero genio de Biarritz: haber tomado un juego venido de otra parte y haberlo abierto a todo el mundo. Los niños, los campeones, los mayores, los cuerpos con limitaciones. La misma ola para cada uno, sin distinción.
+
+Sube ligeramente hacia el gran edificio asentado sobre el acantilado, un poco más adelante. Ahí se explica el océano entero. Dos minutos.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-6
+@@STITLE=La Cité de l'Océan
+Aquí está la Cité de l'Océan, un gran edificio de curvas onduladas, abierto a principios de la década de 2010. Dentro, no solo te enseñan a hacer surf: te explican el océano. De dónde vienen las marejadas, cómo nace una ola a miles de kilómetros, en una tormenta, antes de venir a morir aquí bajo tus pies.
+
+Porque a fuerza de vivir del mar, Biarritz acabó por querer comprenderlo —y protegerlo. En esta costa nació en 1990 la Surfrider Foundation Europe, una asociación fundada por surfistas para defender el océano, las olas y el litoral. La idea es simple y potente: no se puede amar deslizarse sobre un agua que se deja morir. Los surfistas, primeros testigos de las contaminaciones, se convirtieron en sus primeros guardianes.
+
+Es la otra cara del espíritu del deslizamiento. No solo el placer, sino el cuidado. El surfista no es solo un jugador: es un vigía, atento a la salud del mar, como el vigilante de antaño escrutaba el horizonte.
+
+Vuelve hacia el borde del acantilado, al sur, para una última mirada. Allá arriba se ve toda la costa que acabas de bajar.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-7
+@@STITLE=Parvis de la Cité de l'Océan
+Última parada. Sube a este mirador, sobre el acantilado, y date la vuelta hacia el norte. Desde ahí ves casi todo el camino recorrido: la Milady, Marbella, la larga Côte des Basques, el Port Vieux, y allá, al fondo, la Grande Plage donde empezamos. Toda una costa, una sola y misma marejada que corre de una playa a otra.
+
+Mide lo que ha pasado aquí. Hace menos de un siglo, el océano no era para los biarrotas más que una amenaza —la que mataba a los pescadores, la que roía los diques. Luego llegó una tabla, y la mirada cambió. Lo que trituraba se convirtió en lo que sostiene. El miedo se convirtió en juego, luego en arte, luego en identidad, luego en un oficio, una industria, una forma de vivir.
+
+Eso es realmente la cuna del surf: no solo el lugar de una primera hazaña, sino el de una larga transformación. Una ciudad que ha aprendido a deslizarse sobre su propio destino, como sus hijos se deslizan sobre la marejada.
+
+Y si miras bien esas siluetas sentadas en el agua, pacientes, comprendes lo esencial de este deporte. La espera. No se coge una ola: se espera, se merece, y cuando por fin llega, ya no se piensa en nada más. Solo el instante, el agua, el equilibrio.
+
+Gracias por caminar conmigo hasta este acantilado. Ahora sabes leer esta costa. Alquila una tabla, o simplemente quédate sentado mirando —y atrapa la tuya.
+
+@@LANG=de
+@@TITLE=Biarritz — Die Wiege des Surfens
+@@DESC=Sport — wie ein Stück baskische Küste zur europäischen Hauptstadt des Surfens wurde.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-0
+@@STITLE=La Grande Plage
+Halt der Grande Plage gegenüber an. Sieh dir das Wasser an: Gestalten in schwarzen Neoprenanzügen, auf ihren Brettern sitzend, wartend. Lehrer, die Anfänger im Sand aufreihen. Longboards unter dem Arm, in Fischgrätenmuster geparkte Vans, ein Geruch nach Wax und Neopren. Du bist nicht an einem gewöhnlichen Strand. Du bist an dem Ort, den man seit langem die europäische Hauptstadt des Surfens nennt. Anfänger, Sonntagssurfer, Profis vom anderen Ende der Welt: Sie alle treffen sich in diesen Wellen.
+
+Jeder kennt den Ausgangspunkt: eines Tages im Jahr 1957 geht der amerikanische Drehbuchautor Peter Viertel mit einem Brett in diese Wellen, und der Funke springt über. Man hat dir diese Geschichte vielleicht schon erzählt. Was ich dir zeigen möchte, ist das, was danach kam — was Biarritz aus diesem Funken gemacht hat. Wie ein Stück baskische Küste in wenigen Jahrzehnten zu einer echten Hauptstadt wurde: ihre Spots, ihre Shaper, ihre Schulen, ihre Champions, ihre Marken, und vor allem eine Geisteshaltung.
+
+Denn hier blieb das Surfen kein Ferienspaß. Es wurde zu einer Industrie, zu einer Kultur, fast zu einer sanften Religion, mit ihren Tempeln aus Sand und ihren Gläubigen in Neopren. Jedes Jahr empfängt die Stadt internationale Wettkämpfe, und Tausende von Kindern kommen, um auf dem Ozean stehen zu lernen. Man trifft hier ebenso den Rentner, der im Morgengrauen hinauspaddelt, wie die künftige Meisterin.
+
+Folge mir. Wir gehen nach Süden hinunter, Spot für Spot, bis zur Klippe. Ich erzähle dir alles unterwegs.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-1
+@@STITLE=Place Clemenceau
+Da sind wir, im Herzen der Stadt, rund um die place Clemenceau. Sieh dir die Schaufenster an: Neoprenanzüge, Bretter, angesagte Marken, verwaschene T-Shirts. Surfen ist hier nicht nur das Wasser. Es ist auch dieser ganze Handel, entstanden im Windschatten der ersten Rider.
+
+Denn schon bald nach 1957 brauchte man Bretter. Und man wollte sie nicht jedes Mal aus Kalifornien kommen lassen. In Biarritz machen sich zwei Männer an die Arbeit: Michel Barland, ein Ingenieur, und Jacky Rott, ein leidenschaftlicher Schreiner. In ihrer Werkstatt basteln, hobeln, formen sie — und stellen die ersten Surfbretter Frankreichs her. Die Biarritzer Shaper waren geboren. Ein handwerkliches Können, das nie erloschen ist: Noch heute formen hier Shaper Bretter von Hand, im Staub des Harzes.
+
+Um sie herum entstand eine ganze Gleitsport-Industrie — Läden, Werkstätten, Marken. Die baskische Küste wurde zu einem der großen europäischen Labore dafür: Hier werden Neoprenanzüge entworfen, Bretter getestet, Trends erfunden, die später aufbrechen, um den Kontinent zu erobern.
+
+Geh weiter zum Ozean, nach Süden hinab. Wir erreichen das Meer am Port Vieux, der kleinen Bucht, wo jeder Anfänger eines Tages seine ersten Schritte macht.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-2
+@@STITLE=Le Port Vieux
+Steig hinab zu dieser kleinen geschützten Bucht: dem Port Vieux. Eine winzige Bucht, vor großen Wellen geschützt, das Wasser fast lau. Hier findet man nicht die großen Spots — und genau deshalb bringe ich dich hierher.
+
+Denn das Surfen in Biarritz ist nicht nur Sache der Champions. Es ist vor allem eine riesige Volksschule. An diesen sanften Stränden haben Generationen von Kindern ihre erste Welle gefangen: erst liegend, dann kniend, schließlich stehend — und diese Sekunde, dieses erste dem Ozean gestohlene Gleichgewicht, vergessen sie nie.
+
+Sieh ihnen zu. Der Lehrer schiebt das Brett an, das Kind steht auf, fällt, kommt lachend wieder hoch, versucht es erneut. Das ist der wahre Motor einer Surf-Hauptstadt: nicht nur die Großtat, sondern die Weitergabe. Hier lernt man surfen wie schwimmen. Das Surfen ist Teil der Kindheit in Biarritz geworden, so selbstverständlich wie ein Fahrrad.
+
+Und von dieser ruhigen Bucht aus wandert der Blick schon nach Süden, zum langen Strand zwischen den Klippen, wo alles wirklich begann. Folge dem Pfad, der an der Küste entlang hinaufführt. Drei Minuten, und der Tempel erscheint.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-3
+@@STITLE=La Côte des Basques
+Da ist sie: die Côte des Basques. Ein riesiger Strand am Fuß grüner Klippen, bei Ebbe freigelegt, überzogen von langen Wellen, die sich ganz sanft entrollen. Das ist der legendäre Spot, die Wiege, der heilige Ort. Hier, du weißt es, hat sich 1957 ein Amerikaner auf dem Wasser aufgerichtet. Doch lass diese Geschichte für einen Moment beiseite und sieh dir an, was daraus geworden ist.
+
+Diese langen, weichen Wellen sind ein Geschenk für eine bestimmte Disziplin: das Longboarden. Das lange Brett, der weite Stil, der Gang bis zur äußersten Spitze des Bretts — das, was man Noseriding nennt. Die Côte des Basques wurde zu einer der Welthauptstädte dafür. Jahrelang fand hier ein großes Longboard-Festival statt, das die besten Rider des Planeten anzog, in einer Retro-Atmosphäre aus Holzbrettern und Vintage-Badeanzügen.
+
+Bereits in den 1960er-Jahren eröffnet hier einer der Pioniere, Jo Moraiz, eine der allerersten Surfschulen Europas. Seither zählen sie zu Dutzenden auf diesem Sand. Sieh dir das Line-up bei Ebbe an: Anfänger und alte Meister gleiten auf denselben Wellen, in einem langsamen, geschliffenen Ballett.
+
+Geh weiter nach Süden entlang der Meerespromenade. Die Küste wird wilder. Richtung Marbella.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-4
+@@STITLE=La plage Marbella
+Da bist du am plage de Marbella. Ein Stimmungswechsel. Weniger Sonnenschirme, weniger Schulen, mehr Wind. Hier sind die Wellen hohler, nervöser, weniger nachsichtig. Es ist ein Spot der Einheimischen, erfahrener Surfer, die jede Sandbank und jede Laune des Ozeans kennen.
+
+Das ist die Gelegenheit, dir etwas über das Surfen zu erzählen: Dieser Sport hat ungeschriebene Regeln, einen Ehrenkodex, den im Wasser jeder respektiert. Eine Welle gehört dem, der am besten positioniert ist, am nächsten an der Stelle, wo sie bricht. Ihm den Weg abzuschneiden — man nennt das Dropping-in — ist die schlimmste Unhöflichkeit. Man wartet, bis man an der Reihe ist, respektiert die Älteren, teilt.
+
+Dieser Kodex, streng und höflich zugleich, gehört ebenso zum Geist des Gleitsports wie die Bewegung selbst. Er verwandelt eine Menge von Surfern in eine Gemeinschaft, mit ihren Stammgästen, ihren ungeschriebenen Regeln, ihrer Hierarchie des Wassers. In Marbella lernt man das schnell, manchmal auf die harte Tour.
+
+Geh weiter die Küste entlang nach Süden. Der nächste Strand, la Milady, ist breiter, offener — der Strand für alle. Fünf Minuten zu Fuß.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-5
+@@STITLE=La plage de la Milady
+Der plage de la Milady: breiter, familienfreundlicher, überwacht. Man kommt hierher als Sippe, Brett unter dem einen Arm, Kühlbox in der anderen Hand. Das ist Alltagssurfen, ohne Mystik, eher das der Einheimischen als das der Touristen.
+
+Und hier möchte ich dir von einer schönen Idee erzählen: Surfen für alle, wirklich alle. Seit Jahren steht die baskische Küste an der Spitze des Handisurfens — des an Menschen mit Behinderung angepassten Surfens. Auf speziellen Brettern, begleitet von Freiwilligen, stehen Menschen auf, die man sich nie auf einer Welle vorstellen würde, oder lassen sich tragen, und finden im Wasser eine Freiheit, die ihnen das Land manchmal verwehrt.
+
+Vielleicht liegt genau darin das wahre Genie von Biarritz: ein von anderswo gekommenes Spiel genommen und es für alle geöffnet zu haben. Kinder, Champions, Alte, durch eine Behinderung eingeschränkte Körper. Für jeden dieselbe Welle, ohne Unterschied.
+
+Steig leicht hinauf zu dem großen Gebäude auf der Klippe, ein Stück weiter. Dort wird der ganze Ozean erklärt. Zwei Minuten.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-6
+@@STITLE=La Cité de l'Océan
+Hier ist die Cité de l'Océan, ein großes Gebäude mit wellenförmigen Kurven, Anfang der 2010er-Jahre eröffnet. Drinnen wird dir nicht nur das Surfen beigebracht: Der Ozean selbst wird dir erklärt. Woher die Dünungen kommen, wie eine Welle Tausende von Kilometern entfernt in einem Sturm entsteht, bevor sie hier unter deinen Füßen stirbt.
+
+Denn nachdem es so lange vom Meer gelebt hatte, wollte Biarritz es schließlich verstehen — und schützen. An dieser Küste entstand 1990 die Surfrider Foundation Europe, ein von Surfern gegründeter Verein zur Verteidigung des Ozeans, der Wellen und der Küste. Die Idee ist einfach und stark: Man kann es nicht lieben, auf einem Wasser zu gleiten, das man sterben lässt. Die Surfer, erste Zeugen der Verschmutzung, wurden zu ihren ersten Hütern.
+
+Das ist die andere Seite des Gleitsport-Geists. Nicht nur das Vergnügen, sondern die Sorge. Der Surfer ist nicht nur ein Spieler: Er ist ein Wächter, aufmerksam für die Gesundheit des Meeres, wie der Ausguck von einst den Horizont absuchte.
+
+Komm zum Rand der Klippe zurück, im Süden, für einen letzten Blick. Von dort oben sieht man die ganze Küste, die du gerade hinuntergegangen bist.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-7
+@@STITLE=Parvis de la Cité de l'Océan
+Letzter Halt. Steig auf diesen Aussichtspunkt über der Klippe und dreh dich nach Norden um. Von dort aus siehst du fast den ganzen zurückgelegten Weg: la Milady, Marbella, die lange Côte des Basques, den Port Vieux, und dort hinten, ganz am Ende, die Grande Plage, wo wir begonnen haben. Eine ganze Küste, ein und dieselbe Dünung, die von einem Strand zum nächsten läuft.
+
+Ermiss, was hier geschehen ist. Vor weniger als einem Jahrhundert war der Ozean für die Menschen von Biarritz nur eine Bedrohung — die, die Fischer tötete, die, die an den Deichen nagte. Dann kam ein Brett, und der Blick änderte sich. Was zermalmte, wurde zu dem, was trägt. Die Angst wurde zum Spiel, dann zur Kunst, dann zur Identität, dann zu einem Beruf, einer Industrie, einer Lebensweise.
+
+Das ist die Wiege des Surfens wirklich: nicht nur der Ort einer ersten Großtat, sondern der einer langen Verwandlung. Eine Stadt, die gelernt hat, über ihr eigenes Schicksal zu gleiten, so wie ihre Kinder über die Dünung gleiten.
+
+Und wenn du diese geduldigen, auf dem Wasser sitzenden Gestalten genau betrachtest, verstehst du das Wesentliche dieses Sports. Das Warten. Man nimmt sich keine Welle: Man wartet auf sie, verdient sie sich, und wenn sie endlich kommt, denkt man an nichts mehr. Nur an den Moment, das Wasser, das Gleichgewicht.
+
+Danke, dass du mit mir bis zu dieser Klippe gegangen bist. Jetzt kannst du diese Küste lesen. Leih dir ein Brett, oder bleib einfach sitzen und schau zu — und fang deine eigene Welle.
+
+@@LANG=it
+@@TITLE=Biarritz — La culla del surf
+@@DESC=Sport: come un tratto di costa basca è diventato la capitale europea del surf.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-0
+@@STITLE=La Grande Plage
+Fermati di fronte alla Grande Plage. Guarda l'acqua: sagome in muta nera, sedute sulle loro tavole, in attesa. Istruttori che allineano principianti sulla sabbia. Longboard sottobraccio, furgoni parcheggiati a spina di pesce, un odore di cera e neoprene. Non sei su una spiaggia qualsiasi. Sei in quella che da tempo si chiama la capitale europea del surf. Principianti, surfisti della domenica, professionisti venuti dall'altro capo del mondo: tutti si danno appuntamento in questi frangenti.
+
+Tutti conoscono il punto di partenza: un giorno del 1957, uno sceneggiatore americano, Peter Viertel, entra in queste onde con una tavola, e scocca la scintilla. Forse te l'hanno già raccontato. Quello che voglio mostrarti io è il seguito — cosa ne ha fatto Biarritz di quella scintilla. Come un tratto di costa basca, in pochi decenni, sia diventato una vera capitale: i suoi spot, i suoi shaper, le sue scuole, i suoi campioni, i suoi marchi, e soprattutto uno stato d'animo.
+
+Perché qui il surf non è rimasto uno sport da vacanza. È diventato un'industria, una cultura, quasi una religione dolce, con i suoi templi di sabbia e i suoi fedeli in neoprene. Ogni anno, la città accoglie competizioni internazionali, e migliaia di bambini vengono a imparare a stare in piedi sull'oceano. Vi si incontrano tanto il pensionato che rema all'alba quanto la futura campionessa.
+
+Seguimi. Scendiamo verso sud, spot dopo spot, fino alla falesia. Te lo racconto tutto lungo il cammino.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-1
+@@STITLE=Place Clemenceau
+Eccoci nel cuore della città, attorno a place Clemenceau. Guarda le vetrine: mute, tavole, marchi alla moda, magliette slavate. Il surf, qui, non è solo l'acqua. È anche tutto questo commercio, nato sulla scia dei primi rider.
+
+Perché molto presto, dopo il 1957, servirono tavole. E non le si poteva far arrivare dalla California ogni volta. A Biarritz, due uomini si mettono al lavoro: Michel Barland, un ingegnere, e Jacky Rott, un falegname appassionato. Nel loro laboratorio, armeggiano, piallano, stampano — e fabbricano le prime tavole da surf di Francia. Nacquero gli shaper biarrotti. Un know-how artigianale che non si è mai spento: ancora oggi, alcuni shaper danno forma qui alle tavole a mano, nella polvere di resina.
+
+Attorno a loro si è costruita un'intera industria dello scivolamento — negozi, laboratori, marchi. La costa basca ne è diventata uno dei grandi laboratori europei: qui si disegnano mute, si testano tavole, si inventano mode che poi partiranno alla conquista del continente.
+
+Continua verso l'oceano, scendendo verso sud. Raggiungiamo il mare al Port Vieux, la piccola insenatura dove ogni principiante mette piede un giorno.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-2
+@@STITLE=Le Port Vieux
+Scendi fino a questa piccola insenatura riparata: il Port Vieux. Una baietta minuscola, protetta dalle grandi onde, con l'acqua quasi tiepida. Non è qui che si trovano i grandi spot — ed è proprio per questo che ti ci porto.
+
+Perché il surf di Biarritz non è solo affare di campioni. È prima di tutto un'immensa scuola popolare. Su queste spiagge dolci, generazioni di bambini hanno preso la loro prima onda: sdraiati dapprima, poi in ginocchio, infine in piedi — e quel secondo, quel primo equilibrio rubato all'oceano, non lo dimenticano mai.
+
+Guardali fare. L'istruttore spinge la tavola, il bambino si alza, cade, risale ridendo, ricomincia. È questo il vero motore di una capitale del surf: non solo l'impresa, ma la trasmissione. Qui si impara a fare surf come si impara a nuotare. Il surf è entrato nell'infanzia biarrotta, naturale quanto una bicicletta.
+
+E da questa insenatura tranquilla, lo sguardo corre già verso sud, verso la lunga spiaggia incorniciata da falesie dove tutto è davvero cominciato. Segui il sentiero che sale lungo la costa. Tre minuti, e il tempio appare.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-3
+@@STITLE=La Côte des Basques
+Eccola: la Côte des Basques. Un'immensa spiaggia ai piedi di falesie verdi, scoperta con la bassa marea, spazzata da onde lunghe che si srotolano con tutta dolcezza. È lo spot mitico, la culla, il luogo sacro. È qui, lo sai, che un americano si è messo in piedi sull'acqua nel 1957. Ma lascia da parte questa storia per un momento, e guarda cosa è diventata.
+
+Queste onde lunghe e morbide sono un dono per una disciplina precisa: il longboard. La tavola lunga, lo stile ampio, la camminata fino alla punta stessa della tavola — quello che si chiama noseriding. La Côte des Basques ne è diventata una delle capitali mondiali. Per anni vi si è tenuto un grande festival di longboard che attirava i migliori rider del pianeta, in un'atmosfera retro, tavole in legno e costumi vintage.
+
+Già negli anni sessanta, uno dei pionieri, Jo Moraiz, apre qui una delle primissime scuole di surf d'Europa. Da allora se ne contano a decine su questa sabbia. Guarda il line-up con la bassa marea: principianti e vecchi saggi scivolano sulle stesse onde, in un balletto lento e levigato.
+
+Prosegui verso sud lungo il lungomare. La costa si fa più selvaggia. Direzione Marbella.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-4
+@@STITLE=La plage Marbella
+Eccoti alla plage de Marbella. Cambia atmosfera. Meno ombrelloni, meno scuole, più vento. Qui le onde sono più cave, più nervose, meno indulgenti. È uno spot di locali, di surfisti navigati che conoscono ogni banco di sabbia e ogni umore dell'oceano.
+
+È l'occasione per dirti una cosa sul surf: questo sport ha regole non scritte, un codice d'onore che tutti rispettano in acqua. Un'onda appartiene a chi è meglio posizionato, più vicino al punto in cui si increspa. Tagliarle la strada — lo si chiama rubare la priorità — è la peggiore delle scortesie. Si aspetta il proprio turno, si rispettano gli anziani, si condivide.
+
+Questo codice, severo e cortese insieme, fa parte dello spirito dello scivolamento tanto quanto il gesto stesso. Trasforma una folla di surfisti in una comunità, con i suoi habitué, le sue regole tacite, la sua gerarchia dell'acqua. A Marbella lo si impara in fretta, a volte a proprie spese.
+
+Prosegui lungo la costa verso sud. La prossima spiaggia, la Milady, è più larga, più aperta — la spiaggia di tutti. Cinque minuti a piedi.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-5
+@@STITLE=La plage de la Milady
+La plage de la Milady: più larga, più familiare, sorvegliata. Qui si viene in tribù, tavola sottobraccio e borsa frigo in mano. È il surf quotidiano, senza mistica, quello degli abitanti più che dei turisti.
+
+Ed è qui che voglio parlarti di una bella idea: il surf per tutti, davvero tutti. Da anni, la costa basca è all'avanguardia dell'handisurf — il surf adattato alle persone con disabilità. Su tavole speciali, accompagnate da volontari, persone che non ci si immaginerebbe mai su un'onda si alzano, o si lasciano portare, e ritrovano nell'acqua una libertà che la terraferma a volte nega loro.
+
+Forse è proprio questo il vero genio di Biarritz: aver preso un gioco venuto da altrove e averlo aperto a tutti. I bambini, i campioni, gli anziani, i corpi limitati. La stessa onda per ciascuno, senza distinzione.
+
+Risali leggermente verso il grande edificio posato sulla falesia, poco più avanti. Lì si spiega l'oceano intero. Due minuti.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-6
+@@STITLE=La Cité de l'Océan
+Ecco la Cité de l'Océan, un grande edificio dalle curve a onda, aperto all'inizio degli anni dieci del Duemila. All'interno, non ti si insegna solo a fare surf: ti si spiega l'oceano. Da dove vengono le mareggiate, come nasce un'onda a migliaia di chilometri di distanza, in una tempesta, prima di venire a morire qui sotto i tuoi piedi.
+
+Perché a forza di vivere del mare, Biarritz ha finito per volerlo capire — e proteggerlo. È su questa costa che è nata nel 1990 la Surfrider Foundation Europe, un'associazione fondata da surfisti per difendere l'oceano, le onde e il litorale. L'idea è semplice e forte: non si può amare scivolare su un'acqua che si lascia morire. I surfisti, primi testimoni degli inquinamenti, ne sono diventati i primi guardiani.
+
+È l'altro volto dello spirito dello scivolamento. Non solo il piacere, ma la cura. Il surfista non è solo un giocatore: è una vedetta, attento alla salute del mare, come il guardiano di un tempo scrutava l'orizzonte.
+
+Torna verso il bordo della falesia, a sud, per un ultimo sguardo. Lassù si vede tutta la costa che si è appena discesa.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-7
+@@STITLE=Parvis de la Cité de l'Océan
+Ultima tappa. Sali su questo belvedere, sopra la falesia, e voltati verso nord. Da lì vedi quasi tutto il cammino percorso: la Milady, Marbella, la lunga Côte des Basques, il Port Vieux, e laggiù, in fondo, la Grande Plage dove abbiamo cominciato. Un'intera costa, una sola e medesima mareggiata che corre da una spiaggia all'altra.
+
+Misura ciò che è accaduto qui. Meno di un secolo fa, l'oceano non era per i biarrotti che una minaccia — quella che uccideva i pescatori, quella che erodeva le dighe. Poi è arrivata una tavola, e lo sguardo è cambiato. Ciò che stritolava è diventato ciò che sostiene. La paura è diventata gioco, poi arte, poi identità, poi un mestiere, un'industria, un modo di vivere.
+
+Ecco cos'è davvero la culla del surf: non solo il luogo di una prima impresa, ma quello di una lunga trasformazione. Una città che ha imparato a scivolare sul proprio destino, come i suoi figli scivolano sulla mareggiata.
+
+E se guardi bene quelle sagome sedute sull'acqua, pazienti, capisci l'essenziale di questo sport. L'attesa. Non si prende un'onda: la si aspetta, la si merita, e quando finalmente arriva, non si pensa più a nulla. Solo l'istante, l'acqua, l'equilibrio.
+
+Grazie per aver camminato con me fino a questa falesia. Ora sai leggere questa costa. Noleggia una tavola, o resta semplicemente seduto a guardare — e prendi la tua.
+
+@@LANG=nl
+@@TITLE=Biarritz — De bakermat van het surfen
+@@DESC=Sport — hoe een stuk Baskische kust de Europese surfhoofdstad werd.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-0
+@@STITLE=La Grande Plage
+Blijf staan tegenover de Grande Plage. Kijk naar het water: gestalten in zwarte wetsuits, zittend op hun planken, op de loer. Instructeurs die beginners op het zand op een rij zetten. Longboards onder de arm, busjes in visgraatpatroon geparkeerd, een geur van wax en neopreen. Je staat niet op een gewoon strand. Je bent op wat al lang de Europese surfhoofdstad wordt genoemd. Beginners, zondagssurfers, profs van de andere kant van de wereld: iedereen spreekt hier af in deze branding.
+
+Iedereen kent het vertrekpunt: op een dag in 1957 loopt een Amerikaanse scenarioschrijver, Peter Viertel, met een plank deze golven in, en de vonk slaat over. Misschien heeft men je dat verhaal al verteld. Wat ik je wil laten zien, is het vervolg — wat Biarritz met die vonk heeft gedaan. Hoe een stuk Baskische kust binnen enkele decennia een echte hoofdstad werd: haar spots, haar shapers, haar scholen, haar kampioenen, haar merken, en vooral een mentaliteit.
+
+Want hier is surfen geen vakantiesport gebleven. Het werd een industrie, een cultuur, bijna een zachte religie, met haar tempels van zand en haar gelovigen in neopreen. Elk jaar ontvangt de stad internationale wedstrijden, en duizenden kinderen komen leren rechtop te staan op de oceaan. Je treft er zowel de gepensioneerde die in de vroege ochtend gaat peddelen als de toekomstige kampioene.
+
+Volg mij. We dalen af naar het zuiden, spot na spot, tot aan de klif. Ik vertel je onderweg alles.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-1
+@@STITLE=Place Clemenceau
+Hier zijn we, in het hart van de stad, rond de place Clemenceau. Kijk naar de etalages: wetsuits, planken, trendy merken, verbleekte T-shirts. Surfen is hier niet alleen het water. Het is ook al deze handel, geboren in het kielzog van de eerste riders.
+
+Want al snel na 1957 waren er planken nodig. En die zouden niet elke keer uit Californië komen. In Biarritz gaan twee mannen aan de slag: Michel Barland, een ingenieur, en Jacky Rott, een gepassioneerde timmerman. In hun werkplaats knutselen, schaven, gieten ze — en maken de eerste surfplanken van Frankrijk. De Biarritzse shapers waren geboren. Een ambachtelijk vakmanschap dat nooit is uitgedoofd: nog vandaag vormen shapers hier planken met de hand, in het harsstof.
+
+Rondom hen werd een hele glijsportindustrie opgebouwd — winkels, werkplaatsen, merken. De Baskische kust werd er een van de grote Europese laboratoria voor: hier worden wetsuits ontworpen, planken getest, trends uitgevonden die later het continent zullen veroveren.
+
+Ga verder naar de oceaan, afdalend naar het zuiden. We bereiken de zee bij de Port Vieux, de kleine inham waar elke beginner ooit voor het eerst voet zet.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-2
+@@STITLE=Le Port Vieux
+Daal af naar deze kleine beschutte inham: de Port Vieux. Een piepklein baaitje, beschermd tegen grote golven, het water bijna lauw. Hier vind je niet de grote spots — en juist daarom breng ik je hierheen.
+
+Want surfen in Biarritz gaat niet alleen om kampioenen. Het is vooral een immense volksschool. Op deze zachte stranden hebben generaties kinderen hun eerste golf gevangen: eerst liggend, dan op de knieën, ten slotte staand — en die seconde, dat eerste evenwicht gestolen van de oceaan, vergeten ze nooit.
+
+Kijk hoe ze het doen. De instructeur duwt de plank, het kind staat op, valt, komt lachend weer overeind, probeert opnieuw. Dat is de echte motor van een surfhoofdstad: niet alleen het huzarenstukje, maar de overdracht. Hier leer je surfen zoals je leert zwemmen. Surfen is deel geworden van een Biarritzse jeugd, zo vanzelfsprekend als een fiets.
+
+En vanaf deze rustige inham dwaalt de blik al naar het zuiden, naar het lange strand omkaderd door kliffen waar alles echt begon. Volg het pad dat langs de kust omhoog klimt. Drie minuten, en de tempel verschijnt.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-3
+@@STITLE=La Côte des Basques
+Daar is ze: de Côte des Basques. Een immens strand aan de voet van groene kliffen, blootgelegd bij eb, geveegd door lange golven die zich met volmaakte zachtheid afrollen. Dit is de legendarische spot, de bakermat, de heilige plek. Hier, dat weet je, is een Amerikaan in 1957 op het water gaan staan. Maar laat dat verhaal even opzij, en kijk wat ervan geworden is.
+
+Deze lange, zachte golven zijn een geschenk voor één specifieke discipline: het longboarden. De lange plank, de ruime stijl, het lopen tot aan de uiterste punt van de plank — wat noseriding wordt genoemd. De Côte des Basques werd er een van de wereldhoofdsteden van. Jarenlang werd hier een groot longboardfestival gehouden dat de beste riders ter wereld aantrok, in een retrosfeer van houten planken en vintage badpakken.
+
+Al in de jaren zestig opent een van de pioniers, Jo Moraiz, hier een van de allereerste surfscholen van Europa. Sindsdien zijn het er tientallen op dit zand. Kijk naar de line-up bij eb: beginners en oude wijzen glijden op dezelfde golven, in een trage, gepolijste balletbeweging.
+
+Ga verder naar het zuiden langs het zeefront. De kust wordt wilder. Richting Marbella.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-4
+@@STITLE=La plage Marbella
+Daar sta je, op de plage de Marbella. Andere sfeer. Minder parasols, minder scholen, meer wind. Hier zijn de golven holler, nerveuzer, minder vergevingsgezind. Het is een spot van locals, van doorgewinterde surfers die elke zandbank en elke stemming van de oceaan kennen.
+
+Dit is het moment om je iets over surfen te vertellen: deze sport heeft ongeschreven regels, een erecode die iedereen in het water respecteert. Een golf behoort toe aan wie het beste gepositioneerd is, het dichtst bij de plek waar ze breekt. Hem de pas afsnijden — dat heet drop-in — is de ergste onbeleefdheid. Je wacht op je beurt, respecteert de ouderen, deelt.
+
+Deze code, streng en beleefd tegelijk, hoort net zo bij de geest van het glijden als de beweging zelf. Ze verandert een menigte surfers in een gemeenschap, met haar vaste klanten, haar ongeschreven regels, haar hiërarchie van het water. In Marbella leer je dat snel, soms op de harde manier.
+
+Ga verder langs de kust naar het zuiden. Het volgende strand, la Milady, is breder, opener — het strand van iedereen. Vijf minuten lopen.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-5
+@@STITLE=La plage de la Milady
+De plage de la Milady: breder, gezinsvriendelijker, bewaakt. Men komt hier als stam, plank onder de ene arm, koelbox in de andere hand. Dit is het alledaagse surfen, zonder mystiek, meer dat van de bewoners dan van de toeristen.
+
+En hier wil ik je vertellen over een mooi idee: surfen voor iedereen, echt iedereen. Al jaren loopt de Baskische kust voorop in het handisurfen — surfen aangepast voor mensen met een beperking. Op speciale planken, begeleid door vrijwilligers, staan mensen op die je je nooit op een golf zou voorstellen, of laten zich dragen, en vinden in het water een vrijheid die het land hun soms ontzegt.
+
+Misschien is dat wel het echte genie van Biarritz: een spel dat van elders kwam, hebben genomen en het voor iedereen hebben opengesteld. Kinderen, kampioenen, ouderen, lichamen die door een beperking worden gehinderd. Dezelfde golf voor ieder van hen, zonder onderscheid.
+
+Klim licht omhoog naar het grote gebouw op de klif, iets verderop. Daar wordt de hele oceaan uitgelegd. Twee minuten.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-6
+@@STITLE=La Cité de l'Océan
+Hier is de Cité de l'Océan, een groot gebouw met golfvormige rondingen, geopend in het begin van de jaren 2010. Binnen leert men je niet alleen surfen: de oceaan zelf wordt je uitgelegd. Waar deining vandaan komt, hoe een golf duizenden kilometers verderop ontstaat, in een storm, voordat hij hier onder je voeten komt sterven.
+
+Want na zo lang van de zee geleefd te hebben, wilde Biarritz haar uiteindelijk begrijpen — en beschermen. Op deze kust ontstond in 1990 de Surfrider Foundation Europe, een vereniging opgericht door surfers om de oceaan, de golven en de kustlijn te verdedigen. Het idee is eenvoudig en krachtig: je kunt niet houden van glijden op water dat je laat sterven. Surfers, de eerste getuigen van vervuiling, werden er de eerste hoeders van.
+
+Dat is het andere gezicht van de glijsportgeest. Niet alleen het genot, maar de zorg. De surfer is niet alleen een speler: hij is een wachter, alert op de gezondheid van de zee, zoals de vroegere uitkijk de horizon afspeurde.
+
+Kom terug naar de rand van de klif, in het zuiden, voor een laatste blik. Daarboven zie je de hele kust die je net bent afgedaald.
+@@SCENE=seed-100-biarritz-berceau-du-surf-scene-7
+@@STITLE=Parvis de la Cité de l'Océan
+Laatste halte. Klim op dit uitkijkpunt, boven de klif, en draai je om naar het noorden. Vandaar zie je bijna de hele afgelegde weg: la Milady, Marbella, de lange Côte des Basques, de Port Vieux, en daarginds, helemaal aan het eind, de Grande Plage waar we begonnen. Een hele kust, één en dezelfde deining die van het ene strand naar het andere loopt.
+
+Meet wat hier is gebeurd. Minder dan een eeuw geleden was de oceaan voor de inwoners van Biarritz niets dan een dreiging — degene die vissers doodde, degene die de dijken uitknaagde. Toen kwam er een plank, en de blik veranderde. Wat verpletterde, werd wat draagt. Angst werd spel, dan kunst, dan identiteit, dan een vak, een industrie, een manier van leven.
+
+Dat is wat de bakermat van het surfen werkelijk is: niet alleen de plek van een eerste huzarenstukje, maar die van een lange transformatie. Een stad die heeft leren glijden over haar eigen lot, zoals haar kinderen glijden over de deining.
+
+En als je goed kijkt naar die geduldige gestalten die op het water zitten, begrijp je de essentie van deze sport. Het wachten. Je neemt geen golf: je wacht erop, verdient hem, en wanneer hij eindelijk komt, denk je nergens meer aan. Niets dan het moment, het water, het evenwicht.
+
+Bedankt dat je met me tot aan deze klif hebt gelopen. Nu weet je hoe je deze kust moet lezen. Huur een plank, of blijf gewoon zitten kijken — en vang de jouwe.

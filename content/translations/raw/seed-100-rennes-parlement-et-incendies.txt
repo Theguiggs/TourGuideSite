@@ -1,0 +1,569 @@
+@@LANG=en
+@@TITLE=Rennes — Fire and Stone
+@@DESC=History & secrets — a wooden city burned in 1720, a palace saved from the flames in 1994: Rennes always rises again.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-0
+@@STITLE=Place du Champ-Jacquet
+Stop in the middle of this small triangular square. Look up. These tall wooden houses leaning toward you, bulging, crooked, with their brown beams and their façades that seem to be holding themselves back from falling — look at them closely. They're nearly four centuries old. And they were lucky.
+
+Because here's the story I'm going to tell you throughout this whole walk. On the night of December 22 to 23, 1720, just steps from here, a fire breaks out. It's said a craftsman knocked over his lamp into a pile of wood shavings. A spark. Nothing, at first. And then the wind picks up.
+
+Rennes, at the time, is a wooden city. Tight lanes, half-timbered houses pressed against each other, hemp, straw, attics full of stores. The fire finds all of it. It runs from roof to roof. It burns for one night, one day, then an entire week. When it finally goes out, the whole heart of the city has vanished. Hundreds of houses, entire streets, reduced to ashes.
+
+These houses, in front of you, stood at the very edge of the abyss. The fire stopped just before reaching them. They tell of the Rennes from before the fire, the one the city almost lost entirely.
+
+And that's the secret of this city: it has burned, it has collapsed, it was even bombed. And every single time, it pushed back up. Keep that idea in mind.
+
+Head north now, up to a great lively square, dominated by a church. Follow me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-1
+@@STITLE=Place Sainte-Anne
+Here you are on the place Sainte-Anne. In the evening, it overflows with terraces and laughter; but look beyond the parasols. These tall, narrow, half-timbered houses, with their pointed gables and their beams tracing crosses — this is the true face of the Rennes of old.
+
+Remember the fire. The blaze of 1720 devoured the heart of the city, over there, to the east. But here, to the northwest, in these very lanes, it never got through. This neighborhood kept its wood, its colors, its leaning façades. When you walk here, you're walking through medieval Rennes, the one from before the flames.
+
+Look up at the great church that dominates the square, Saint-Aubin, with its spire and its pale stone façade. Don't be fooled: it looks old, but it's young. It was rebuilt just over a century ago, in place of a more modest chapel. Yet another new stone laid over an old memory. In Rennes, they never stop rebuilding.
+
+Leave the square heading south. Slip into the lanes running down toward the cathedral, to a narrow, dark alley: the rue du Chapitre. Follow me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-2
+@@STITLE=Rue du Chapitre
+Here we are on the rue du Chapitre. Narrow, quiet, set a little apart from the noise. It's one of the oldest streets in Rennes, and one of the most beautiful.
+
+On one side, still wood: timber-framed houses that have seen five centuries pass. On the other, look at that great stone gateway, that noble, cold façade. It's the hôtel de Blossac. Push open the carriage door, if it's unlocked: inside hides a monumental grand staircase, all stone and wrought iron, one of the finest in the city.
+
+And right there, in this single street, you hold the entire history of Rennes. Wood is the before. Stone is the after. After the fire, rebuilding in wood was banned. No more leaning houses, no more attics pressed together. From now on, they wanted stone, straight façades, wide streets where fire could no longer run. The wealthy have these severe, aligned, pale granite townhouses built for themselves.
+
+One city burned; another was born on its ashes, harder, more regular.
+
+Go down the street to the end, toward the pale mass of the cathedral. Follow me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-3
+@@STITLE=Cathédrale Saint-Pierre
+Here is the cathédrale Saint-Pierre. Massive, a little squeezed between the houses, with its grey stone façade framed by two square towers. It looks solid, eternal. Don't trust that.
+
+This cathedral is already the third, perhaps the fourth, to rise on this spot. The previous ones cracked, sank, collapsed. In the eighteenth century, the old Gothic nave threatened to fall on the faithful. In the end, everything was razed except the two front towers, and the interior was rebuilt from scratch.
+
+So push open the door. The contrast is jarring. Outside, bare stone; inside, an explosion of gold, colored marble, columns painted in faux marble, a dazzling ceiling. It looks like a theater set. It's the taste of the nineteenth century, which wanted a brand-new, dazzling cathedral.
+
+Once again, the same lesson. Here, nothing really lasts; but nothing entirely dies either. They tear down, and they raise back up. They burn, and they regild.
+
+Come back out, and go down further west, to two thick stone towers pierced by a passage: the Portes Mordelaises. Follow me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-4
+@@STITLE=Portes Mordelaises
+Stop in front of these two squat towers, their dark passage, the trace of their drawbridge. The Portes Mordelaises. It's the oldest gate in Rennes, what's left of the ramparts that once enclosed the whole city.
+
+Walk beneath them. Under your feet, in these stones, sleeps the first Rennes — that of the Gauls, then the Romans, long before the fires, long before the kings of France. This was the city's ceremonial entrance. The great gate through which people made their solemn entry.
+
+And the gate the dukes of Brittany passed through. Because Rennes, before being French, was Breton, capital of a proud duchy. It was through this gate that the dukes entered their city; and it was at the nearby cathedral that they were crowned. The last of them, Anne of Brittany, that stubborn little duchess, was crowned right here, very young. She had to marry two kings of France, one after the other, in an attempt to save her country. After her, Brittany eventually joined the kingdom.
+
+A city that was once a capital. That lost its duchy, then burned, then rises again. You're starting to know it.
+
+Head back up alongside the cathedral and turn toward a church with a pale, rounded façade: Saint-Sauveur. Follow me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-5
+@@STITLE=Basilique Saint-Sauveur
+Here is the basilique Saint-Sauveur, wedged in its setting of old houses. Its concave façade, its golden stone, its slightly secretive air. Go in, if you can. Inside, a gilded chapel houses a venerated statue: Notre-Dame des Miracles.
+
+Why miracles? Go back to 1357. Rennes is under siege by the English. The Hundred Years' War rages on, famine sets in, the city is at its limit. The English secretly dig a tunnel beneath the ramparts to bring them down.
+
+And here, so the story goes, the Virgin is said to have intervened. To have warned the people of Rennes of the danger, pointed out the exact location of the mine. The defenders dig in turn, expose the trap, save the city. Rennes doesn't fall.
+
+True or not, this story is one the city believed in for centuries. It made her its protector. Once again, you see: besieged, starved, undermined — and still standing despite it all.
+
+Head back east, leave the medieval lanes, and come out onto a great, orderly square, dominated by a town hall with a clock. Follow me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-6
+@@STITLE=Hôtel de Ville
+Here you are on the place de la Mairie. Change of era. Gone is the twisting Middle Ages; here everything is straight, clear, symmetrical. This is the Rennes that came after the fire, drawn in a single stroke.
+
+Facing you, the hôtel de ville, with its clock tower in the middle and its two wings embracing it in a curve. It's the work of Jacques Gabriel, the king's chief architect, the one sent from Paris to raise the burned city back up. He laid out squares, aligned granite façades, imposed the straight line. The Rennes you've been walking through this whole time is, for the most part, his.
+
+Now look closely at the tower, just beneath the clock. Do you see that great empty niche? The people of Rennes call it the hole. There used to be a monument there in honor of Louis XV. During the Revolution, it was smashed to pieces. Ever since, the niche has stayed gaping, like a missing tooth. Two centuries, and nothing has ever been put back inside it.
+
+A void at the heart of the city that no one dares fill. It's yours to imagine.
+
+Head down east, toward the river, to a long, noble stone façade lined with a garden: the palais Saint-Georges. Follow me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-7
+@@STITLE=Palais Saint-Georges
+In front of you, this very long façade of pale stone, regular, with its garden and its fountains: this is the palais Saint-Georges. Despite its palace-like appearance, it was first a convent — the abbaye Saint-Georges, a monastery of women, wealthy and powerful.
+
+Read the inscription carved in giant letters right at the top. It's a signature, that of the abbess who had the place rebuilt in the seventeenth century, Magdeleine de La Fayette. A woman, a nun, who wanted to carve her name into the stone for eternity. It's still there.
+
+And remember this well about this neighborhood, to the east of the city: the great fire spared it. The blaze of 1720 devastated the center and the north, but it stopped before reaching this far. That's why, all around here, you can still find old lanes, wooden houses, a piece of the old Rennes intact.
+
+The randomness of the flames: one street razed, the street right next door saved.
+
+Head back north now, through the streets, to an immense stone palace set in the middle of a square. The most beautiful in the city. Follow me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-8
+@@STITLE=Parlement de Bretagne
+Here we are. In front of you, the most majestic monument in Rennes: the Parlement de Bretagne. This great façade of stone and granite, these tall windows, this look of a castle set upon a square. Take the time to look at it.
+
+It was built four centuries ago, designed by an architect who came from Paris, Salomon de Brosse, the very same one who built palaces for kings. This is where the Parlement de Bretagne once sat, the highest court of justice in the province, the seat of power. Inside, gilded ceilings, paintings, carved wood — a decor meant to dazzle and to judge.
+
+And here's what you need to know. This palace is the great survivor. In 1720, when the whole center burned, it held firm, alone and standing amid the ashes.
+
+But the story wasn't over with the fire. On the night of February 4 to 5, 1994, angry fishermen protest on this square against the collapse of fish prices. Tensions rise. A distress flare is launched, falls back onto the roof, slips beneath the rafters. And the palace that had defied the fire of 1720 catches fire in its turn. All night long, the city watches its heart burn. By morning, the roof has collapsed.
+
+And yet, look at it today. Standing. Restored stone by stone, gilding by gilding, over the course of years. Reopened, given back to the city.
+
+That's the secret of Rennes, the one I've been telling you since the start. Burned in 1720, burned in 1994. Besieged, collapsed, rebuilt. And every single time, stubborn, it rises back up. Stay a little longer in front of this palace, saved twice from the flames. And remember: here, nothing ever truly dies. See you soon, friend.
+
+@@LANG=es
+@@TITLE=Rennes — El fuego y la piedra
+@@DESC=Historia y secretos — ciudad de madera quemada en 1720, palacio salvado de las llamas en 1994: Rennes siempre renace.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-0
+@@STITLE=Place du Champ-Jacquet
+Detente en medio de esta pequeña plaza triangular. Levanta la vista. Estas altas casas de madera que se inclinan hacia ti, panzudas, torcidas, con sus vigas marrones y sus fachadas que parecen contenerse para no caer: míralas bien. Tienen casi cuatro siglos. Y tuvieron suerte.
+
+Porque he aquí la historia que voy a contarte a lo largo de todo este paseo. En la noche del 22 al 23 de diciembre de 1720, a dos pasos de aquí, se declara un incendio. Se cuenta que un artesano habría volcado su lámpara sobre un montón de virutas. Una chispa. Nada, al principio. Y luego se levanta el viento.
+
+Rennes, en aquella época, es una ciudad de madera. Callejuelas apretadas, casas de entramado de madera pegadas unas a otras, cáñamo, paja, graneros llenos. El fuego encuentra todo eso. Corre de tejado en tejado. Arde una noche, un día, y luego una semana entera. Cuando por fin se apaga, todo el corazón de la ciudad ha desaparecido. Cientos de casas, calles enteras, reducidas a cenizas.
+
+Estas casas, delante de ti, están al borde del abismo. El fuego se detuvo justo antes. Cuentan el Rennes de antes del incendio, el que casi se pierde por completo.
+
+Y ese es el secreto de esta ciudad: ardió, se derrumbó, hasta la bombardearon. Y cada vez, volvió a levantarse. Guarda esa idea en mente.
+
+Sube ahora hacia el norte, hasta una gran plaza animada, dominada por una iglesia. Sígueme.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-1
+@@STITLE=Place Sainte-Anne
+Aquí estás en la place Sainte-Anne. Por la noche, rebosa de terrazas y risas; pero mira más allá de las sombrillas. Estas casas altas y estrechas, de entramado de madera, con sus hastiales puntiagudos y sus vigas que dibujan cruces: he ahí el verdadero rostro del Rennes de antaño.
+
+Recuerda el incendio. El fuego de 1720 devoró el corazón de la ciudad, allá, hacia el este. Pero aquí, al noroeste, en estas mismas callejuelas, no llegó a entrar. Este barrio conservó su madera, sus colores, sus fachadas inclinadas. Cuando caminas aquí, caminas por el Rennes medieval, el de antes de las llamas.
+
+Levanta la vista hacia la gran iglesia que domina la plaza, Saint-Aubin, con su aguja y su fachada de piedra clara. No te dejes engañar: parece antigua, pero es joven. Se reconstruyó hace poco más de un siglo, en lugar de una capilla más modesta. Otra piedra nueva más, posada sobre una memoria antigua. En Rennes, nunca se deja de reconstruir.
+
+Sal de la plaza por el sur. Deslízate por las callejuelas que bajan hacia la catedral, hasta un pasadizo estrecho y oscuro: la rue du Chapitre. Sígueme.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-2
+@@STITLE=Rue du Chapitre
+Henos aquí en la rue du Chapitre. Estrecha, silenciosa, algo apartada del ruido. Es una de las calles más viejas de Rennes, y una de las más bonitas.
+
+Por un lado, todavía madera: casas de entramado que han visto pasar cinco siglos. Por el otro, mira ese gran portal de piedra, esa fachada noble y fría. Es el hôtel de Blossac. Empuja la puerta cochera si está abierta: en el interior se esconde una escalera de honor monumental, toda de piedra y hierro forjado, una de las más bellas de la ciudad.
+
+Y ahí, en esta única calle, tienes toda la historia de Rennes. La madera es el antes. La piedra es el después. Tras el incendio, se prohibió reconstruir en madera. Se acabaron las casas inclinadas, los graneros pegados. Ahora se quiere piedra, fachadas rectas, calles anchas donde el fuego ya no pueda correr. Los ricos se hacen construir estos palacetes de granito claro, severos, alineados.
+
+Una ciudad ardió; otra nació sobre sus cenizas, más dura, más regular.
+
+Baja por la calle hasta el final, hacia la masa clara de la catedral. Sígueme.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-3
+@@STITLE=Cathédrale Saint-Pierre
+Aquí está la cathédrale Saint-Pierre. Maciza, un poco apretada entre las casas, con su fachada de piedra gris enmarcada por dos torres cuadradas. Parece sólida, eterna. No te fíes.
+
+Esta catedral ya es la tercera, quizá la cuarta, en alzarse en este punto. Las anteriores se agrietaron, se hundieron, se derrumbaron. En el siglo dieciocho, la vieja nave gótica amenazaba con caer sobre los fieles. Al final se arrasó todo, salvo las dos torres de fachada, y se reconstruyó el interior desde cero.
+
+Así que empuja la puerta. El contraste es violento. Fuera, la piedra desnuda; dentro, una explosión de oro, de mármoles de colores, de columnas pintadas de falso mármol, un techo deslumbrante. Parece un decorado de teatro. Es el gusto del siglo diecinueve, que quiso una catedral flamante, deslumbrante.
+
+Una vez más, la misma lección. Aquí, nada dura de verdad; pero nada muere del todo. Se derriba, y se levanta de nuevo. Se quema, y se redora.
+
+Sal de nuevo, y baja todavía más, hacia el oeste, hasta dos gruesas torres de piedra atravesadas por un pasaje: las Portes Mordelaises. Sígueme.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-4
+@@STITLE=Portes Mordelaises
+Detente delante de estas dos torres achaparradas, su pasaje oscuro, la huella de su puente levadizo. Las Portes Mordelaises. Es la puerta más vieja de Rennes, lo que queda de las murallas que antaño encerraban toda la ciudad.
+
+Pasa por debajo. Bajo tus pies, en estas piedras, duerme el primer Rennes: el de los galos, luego el de los romanos, mucho antes de los incendios, mucho antes de los reyes de Francia. Aquí estaba la entrada de honor de la ciudad. La gran puerta por donde se hacía la entrada solemne.
+
+Y por donde pasaban los duques de Bretaña. Porque Rennes, antes de ser francesa, era bretona, capital de un ducado orgulloso. Por esta puerta entraban los duques en su ciudad; y en la catedral cercana se les coronaba. La última, Ana de Bretaña, esa pequeña duquesa testaruda, fue coronada aquí mismo, muy joven. Tuvo que casarse con dos reyes de Francia para intentar salvar su país. Después de ella, Bretaña acabó entrando en el reino.
+
+Una ciudad que fue una capital. Que perdió su ducado, luego ardió, y renace de nuevo. Empiezas a conocerla.
+
+Sube de nuevo a lo largo de la catedral y gira hacia una iglesia de fachada clara y redondeada: Saint-Sauveur. Sígueme.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-5
+@@STITLE=Basilique Saint-Sauveur
+Aquí está la basilique Saint-Sauveur, encajada en su estuche de casas antiguas. Su fachada cóncava, sus piedras doradas, su aire un poco secreto. Entra, si puedes. En el interior, una capilla dorada alberga una estatua venerada: Notre-Dame des Miracles.
+
+¿Por qué milagros? Vuelve a 1357. Rennes está sitiada por los ingleses. La guerra de los Cien Años hace estragos, la hambruna se instala, la ciudad está al límite. Los ingleses cavan en secreto una galería bajo las murallas para hacerlas derrumbarse.
+
+Y ahí, se cuenta, la Virgen habría intervenido. Que habría avisado a los habitantes de Rennes del peligro, señalado el lugar exacto de la mina. Los defensores cavan a su vez, descubren la trampa, salvan la ciudad. Rennes no cae.
+
+Verdadera o no, esta historia, la ciudad creyó en ella durante siglos. La convirtió en su protectora. Una vez más, lo ves: sitiada, hambrienta, minada, y en pie a pesar de todo.
+
+Retoma hacia el este, deja las callejuelas medievales y desemboca en una gran plaza ordenada, dominada por un ayuntamiento con reloj. Sígueme.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-6
+@@STITLE=Hôtel de Ville
+Aquí estás en la place de la Mairie. Cambia de época. Se acabó la Edad Media tortuosa; aquí todo es recto, claro, simétrico. He ahí el Rennes de después del incendio, trazado de un solo gesto.
+
+Enfrente, el hôtel de ville, con su torre del reloj en medio y sus dos alas que lo abrazan en redondo. Es obra de Jacques Gabriel, el primer arquitecto del rey, aquel a quien enviaron desde París para levantar la ciudad quemada. Trazó plazas, alineó fachadas de granito, impuso la línea recta. El Rennes que atraviesas desde hace un rato es, en gran parte, obra suya.
+
+Ahora, mira bien la torre, justo debajo del reloj. ¿Ves esa gran hornacina vacía? Los habitantes de Rennes la llaman el agujero. Ahí había un monumento a la gloria de Luis XV. En la Revolución, lo hicieron pedazos. Desde entonces, la hornacina se ha quedado abierta, como un diente que falta. Dos siglos sin volver a poner nada dentro.
+
+Un vacío en el corazón de la ciudad, que nadie se atreve a llenar. A ti te toca imaginarlo.
+
+Baja hacia el este, hacia el río, hasta una larga y noble fachada de piedra bordeada de un jardín: el palais Saint-Georges. Sígueme.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-7
+@@STITLE=Palais Saint-Georges
+Delante de ti, esta larguísima fachada de piedra clara, regular, con su jardín y sus surtidores: es el palais Saint-Georges. A pesar de su aire de palacio, fue primero un convento: la abbaye Saint-Georges, un monasterio de mujeres, rico y poderoso.
+
+Lee la inscripción grabada en letras gigantes, arriba del todo. Es una firma, la de la abadesa que hizo reconstruir el lugar en el siglo diecisiete, Magdeleine de La Fayette. Una mujer, una religiosa, que quiso grabar su nombre en la piedra para la eternidad. Todavía está ahí.
+
+Y de este barrio, al este de la ciudad, retén bien esto: el gran incendio lo respetó. El fuego de 1720 devastó el centro y el norte, pero se detuvo antes de llegar hasta aquí. Por eso, alrededor, todavía encuentras callejuelas antiguas, casas de madera, un trozo del viejo Rennes intacto.
+
+El azar de las llamas: una calle arrasada, la calle de al lado salvada.
+
+Sube ahora de nuevo hacia el norte, a través de las calles, hasta un inmenso palacio de piedra posado en medio de una plaza. El más bello de la ciudad. Sígueme.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-8
+@@STITLE=Parlement de Bretagne
+Ya estamos. Delante de ti, el monumento más majestuoso de Rennes: el Parlement de Bretagne. Esta gran fachada de piedra y granito, estas altas ventanas, este aire de castillo posado en una plaza. Tómate el tiempo de mirarlo.
+
+Se construyó hace cuatro siglos, diseñado por un arquitecto venido de París, Salomon de Brosse, el mismo que construía palacios para los reyes. Aquí tenía su sede el Parlement de Bretagne, la más alta corte de justicia de la provincia, el lugar del poder. En el interior, techos dorados, pinturas, madera esculpida: un decorado para deslumbrar y para juzgar.
+
+Y he aquí lo que debes saber. Este palacio es el gran superviviente. En 1720, cuando todo el centro ardía, él aguantó firme, solo y en pie en medio de las cenizas.
+
+Pero la historia no había terminado con el fuego. La noche del 4 al 5 de febrero de 1994, unos pescadores enfadados manifiestan en esta plaza contra la caída del precio del pescado. La tensión sube. Sale disparada una bengala de socorro, cae sobre el tejado, se cuela bajo las buhardillas. Y el palacio que había desafiado el incendio de 1720 se incendia a su vez. Toda la noche, la ciudad mira arder su corazón. Por la mañana, el tejado se ha derrumbado.
+
+Y sin embargo, míralo hoy. En pie. Restaurado piedra a piedra, dorado a dorado, durante años. Reabierto, devuelto a la ciudad.
+
+He ahí el secreto de Rennes, el que te cuento desde el principio. Quemada en 1720, quemada en 1994. Sitiada, derrumbada, reconstruida. Y cada vez, obstinada, se levanta de nuevo. Quédate un poco más delante de este palacio, salvado dos veces de las llamas. Y recuerda: aquí, nada muere del todo. Hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Rennes — Feuer und Stein
+@@DESC=Geschichte & Geheimnisse — eine 1720 niedergebrannte Holzstadt, ein 1994 vor den Flammen gerettetes Schloss: Rennes ersteht immer wieder neu.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-0
+@@STITLE=Place du Champ-Jacquet
+Bleib mitten auf diesem kleinen dreieckigen Platz stehen. Heb den Blick. Diese hohen Holzhäuser, die sich dir entgegenneigen, bauchig, schief, mit ihren braunen Balken und ihren Fassaden, die sich davor zurückzuhalten scheinen umzufallen — schau sie dir genau an. Sie sind fast vier Jahrhunderte alt. Und sie hatten Glück.
+
+Denn hier ist die Geschichte, die ich dir während dieses ganzen Spaziergangs erzählen werde. In der Nacht vom 22. auf den 23. Dezember 1720 bricht, nur wenige Schritte von hier, ein Feuer aus. Man erzählt, ein Handwerker habe seine Lampe in einen Haufen Holzspäne gestoßen. Ein Funke. Zunächst nichts. Und dann erhebt sich der Wind.
+
+Rennes ist zu jener Zeit eine Stadt aus Holz. Enge Gassen, aneinandergepresste Fachwerkhäuser, Hanf, Stroh, volle Dachböden. Das Feuer findet all das. Es läuft von Dach zu Dach. Es brennt eine Nacht, einen Tag, dann eine ganze Woche. Als es endlich erlischt, ist das ganze Herz der Stadt verschwunden. Hunderte von Häusern, ganze Straßen, zu Asche verbrannt.
+
+Diese Häuser hier vor dir stehen am Rand des Abgrunds. Das Feuer hielt kurz davor inne. Sie erzählen vom Rennes vor dem Brand, jenem, das man beinahe ganz verloren hätte.
+
+Und das ist das Geheimnis dieser Stadt: sie ist niedergebrannt, sie ist eingestürzt, man hat sie sogar bombardiert. Und jedes Mal ist sie wieder aufgestanden. Behalte diesen Gedanken im Kopf.
+
+Steig jetzt nach Norden hinauf, bis zu einem großen belebten Platz, von einer Kirche überragt. Folge mir.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-1
+@@STITLE=Place Sainte-Anne
+Da bist du nun auf der place Sainte-Anne. Am Abend quillt sie über von Terrassen und Gelächter; doch schau über die Sonnenschirme hinaus. Diese hohen, schmalen Fachwerkhäuser, mit ihren spitzen Giebeln und ihren Balken, die Kreuze zeichnen — das ist das wahre Gesicht des Rennes von einst.
+
+Erinnere dich an den Brand. Das Feuer von 1720 verschlang das Herz der Stadt, dort drüben, im Osten. Doch hier, im Nordwesten, in genau diesen Gassen, drang es nicht durch. Dieses Viertel bewahrte sein Holz, seine Farben, seine schrägen Fassaden. Wenn du hier gehst, gehst du durch das mittelalterliche Rennes, jenes von vor den Flammen.
+
+Heb den Blick zur großen Kirche, die den Platz überragt, Saint-Aubin, mit ihrem Turm und ihrer Fassade aus hellem Stein. Lass dich nicht täuschen: sie wirkt alt, ist aber jung. Man hat sie vor etwas mehr als einem Jahrhundert wiedererrichtet, anstelle einer bescheideneren Kapelle. Wieder ein neuer Stein, auf eine alte Erinnerung gesetzt. In Rennes hört man nie auf zu bauen.
+
+Verlass den Platz im Süden. Schlüpf in die Gassen, die zur Kathedrale hinabführen, bis zu einer engen, dunklen Gasse: die rue du Chapitre. Folge mir.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-2
+@@STITLE=Rue du Chapitre
+Da sind wir nun in der rue du Chapitre. Eng, still, etwas abseits vom Lärm. Es ist eine der ältesten Straßen von Rennes, und eine der schönsten.
+
+Auf der einen Seite noch Holz: Fachwerkhäuser, die fünf Jahrhunderte haben vorbeiziehen sehen. Auf der anderen Seite schau dir dieses große Steinportal an, diese vornehme, kühle Fassade. Es ist das hôtel de Blossac. Drück das Toreingangstor auf, wenn es offen ist: im Inneren verbirgt sich eine monumentale Ehrentreppe, ganz aus Stein und Schmiedeeisen, eine der schönsten der Stadt.
+
+Und dort, in dieser einen Straße, hältst du die ganze Geschichte von Rennes in Händen. Das Holz ist das Davor. Der Stein ist das Danach. Nach dem Brand wurde der Wiederaufbau in Holz verboten. Schluss mit den schiefen Häusern, den aneinandergedrängten Dachböden. Man will nun Stein, gerade Fassaden, breite Straßen, in denen sich das Feuer nicht mehr ausbreiten kann. Die Reichen lassen sich diese strengen, ausgerichteten, hellgrauen Granitpaläste bauen.
+
+Eine Stadt brannte; eine andere wurde auf ihrer Asche geboren, härter, regelmäßiger.
+
+Geh die Straße bis zum Ende hinunter, zur hellen Masse der Kathedrale. Folge mir.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-3
+@@STITLE=Cathédrale Saint-Pierre
+Hier ist die cathédrale Saint-Pierre. Massiv, ein wenig zwischen den Häusern eingezwängt, mit ihrer grauen Steinfassade, gerahmt von zwei quadratischen Türmen. Sie wirkt solide, ewig. Verlass dich nicht darauf.
+
+Diese Kathedrale ist bereits die dritte, vielleicht die vierte, die sich an diesem Punkt erhebt. Die vorherigen bekamen Risse, sackten ab, stürzten ein. Im achtzehnten Jahrhundert drohte das alte gotische Kirchenschiff, auf die Gläubigen zu fallen. Man riss schließlich alles ab, außer den beiden Frontürmen, und baute das Innere völlig neu auf.
+
+Also drück die Tür auf. Der Kontrast ist heftig. Draußen der nackte Stein; drinnen eine Explosion von Gold, farbigem Marmor, in falschem Marmor bemalten Säulen, eine strahlende Decke. Man könnte es für eine Theaterkulisse halten. Es ist der Geschmack des neunzehnten Jahrhunderts, das eine funkelnagelneue, blendende Kathedrale wollte.
+
+Wieder einmal dieselbe Lektion. Hier hält nichts wirklich lange; doch nichts stirbt ganz. Man reißt ab, und man richtet wieder auf. Man verbrennt, und man vergoldet neu.
+
+Tritt wieder hinaus, und geh weiter nach Westen hinunter, bis zu zwei dicken Steintürmen, durchbrochen von einem Durchgang: die Portes Mordelaises. Folge mir.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-4
+@@STITLE=Portes Mordelaises
+Bleib vor diesen beiden gedrungenen Türmen stehen, ihrem dunklen Durchgang, der Spur ihrer Zugbrücke. Die Portes Mordelaises. Es ist das älteste Tor von Rennes, was von den Stadtmauern übrig ist, die einst die ganze Stadt umschlossen.
+
+Geh hindurch. Unter deinen Füßen, in diesen Steinen, schläft das erste Rennes — das der Gallier, dann der Römer, lange vor den Bränden, lange vor den Königen von Frankreich. Hier war der Ehreneingang der Stadt. Das große Tor, durch das man seinen feierlichen Einzug hielt.
+
+Und durch das die Herzöge der Bretagne zogen. Denn Rennes war, bevor es französisch wurde, bretonisch, Hauptstadt eines stolzen Herzogtums. Durch dieses Tor zogen die Herzöge in ihre Stadt ein; und in der nahen Kathedrale wurden sie gekrönt. Die letzte von ihnen, Anne von der Bretagne, jene eigensinnige kleine Herzogin, wurde genau hier gekrönt, noch sehr jung. Sie musste nacheinander zwei Könige von Frankreich heiraten, um ihr Land zu retten. Nach ihr ging die Bretagne schließlich im Königreich auf.
+
+Eine Stadt, die eine Hauptstadt war. Die ihr Herzogtum verlor, dann brannte, dann wieder aufersteht. Du fängst an, sie zu kennen.
+
+Steig wieder an der Kathedrale entlang hinauf und wende dich zu einer Kirche mit heller, gerundeter Fassade: Saint-Sauveur. Folge mir.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-5
+@@STITLE=Basilique Saint-Sauveur
+Hier ist die basilique Saint-Sauveur, eingebettet in ihr Gehäuse aus alten Häusern. Ihre konkave Fassade, ihre goldfarbenen Steine, ihr etwas geheimnisvoller Ausdruck. Geh hinein, wenn du kannst. Im Inneren beherbergt eine vergoldete Kapelle eine verehrte Statue: Notre-Dame des Miracles.
+
+Warum Wunder? Kehr zurück ins Jahr 1357. Rennes wird von den Engländern belagert. Der Hundertjährige Krieg tobt, die Hungersnot setzt ein, die Stadt ist am Ende ihrer Kräfte. Die Engländer graben heimlich einen Gang unter den Stadtmauern, um sie zum Einsturz zu bringen.
+
+Und dort, so erzählt man, soll die Jungfrau eingegriffen haben. Sie habe die Bewohner von Rennes vor der Gefahr gewarnt, den genauen Ort der Mine gezeigt. Die Verteidiger graben ihrerseits, decken die Falle auf, retten die Stadt. Rennes fällt nicht.
+
+Ob wahr oder nicht, an diese Geschichte hat die Stadt jahrhundertelang geglaubt. Sie machte sie zu ihrer Beschützerin. Wieder einmal siehst du es: belagert, ausgehungert, unterhöhlt — und trotz allem stehend geblieben.
+
+Nimm wieder Richtung Osten, verlasse die mittelalterlichen Gassen und tritt auf einen großen, geordneten Platz hinaus, überragt von einem Rathaus mit Uhr. Folge mir.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-6
+@@STITLE=Hôtel de Ville
+Da bist du nun auf der place de la Mairie. Wechsle die Epoche. Vorbei mit dem gewundenen Mittelalter; hier ist alles gerade, klar, symmetrisch. Das ist das Rennes nach dem Brand, in einem einzigen Zug gezeichnet.
+
+Gegenüber das hôtel de ville, mit seinem Uhrturm in der Mitte und seinen beiden Flügeln, die es in einer Rundung umarmen. Es ist das Werk von Jacques Gabriel, dem ersten Architekten des Königs, jenem, den man aus Paris schickte, um die niedergebrannte Stadt wiederaufzurichten. Er zog Plätze, richtete Granitfassaden aus, setzte die gerade Linie durch. Das Rennes, das du seit einer Weile durchquerst, ist größtenteils sein Werk.
+
+Schau nun genau auf den Turm, direkt unter der Uhr. Siehst du diese große leere Nische? Die Rennaiser nennen sie das Loch. Dort stand einst ein Denkmal zu Ehren Ludwigs XV. In der Revolution wurde es in Stücke geschlagen. Seither ist die Nische leer geblieben, wie ein fehlender Zahn. Zwei Jahrhunderte lang hat man nie wieder etwas hineingesetzt.
+
+Eine Leerstelle im Herzen der Stadt, die niemand zu füllen wagt. Es ist an dir, sie dir vorzustellen.
+
+Steig nach Osten hinab, zum Fluss, bis zu einer langen, edlen Steinfassade, gesäumt von einem Garten: der palais Saint-Georges. Folge mir.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-7
+@@STITLE=Palais Saint-Georges
+Vor dir diese sehr lange Fassade aus hellem, regelmäßigem Stein, mit ihrem Garten und ihren Springbrunnen: das ist der palais Saint-Georges. Trotz seiner palastähnlichen Erscheinung war es zunächst ein Kloster — die abbaye Saint-Georges, ein Frauenkloster, reich und mächtig.
+
+Lies die in riesigen Buchstaben ganz oben eingemeißelte Inschrift. Es ist eine Signatur, die der Äbtissin, die den Ort im siebzehnten Jahrhundert wiederaufbauen ließ, Magdeleine de La Fayette. Eine Frau, eine Nonne, die ihren Namen für die Ewigkeit in den Stein meißeln lassen wollte. Er ist immer noch dort.
+
+Und zu diesem Viertel, im Osten der Stadt, präg dir dies gut ein: der große Brand verschonte es. Das Feuer von 1720 verwüstete das Zentrum und den Norden, doch es hielt an, bevor es hierher gelangte. Deshalb findest du ringsum noch alte Gassen, Holzhäuser, ein unversehrtes Stück des alten Rennes.
+
+Der Zufall der Flammen: eine Straße dem Erdboden gleichgemacht, die Straße nebenan gerettet.
+
+Steig nun wieder nach Norden hinauf, durch die Straßen, bis zu einem gewaltigen Steinpalast, mitten auf einem Platz. Der schönste der Stadt. Folge mir.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-8
+@@STITLE=Parlement de Bretagne
+Da sind wir. Vor dir das majestätischste Denkmal von Rennes: das Parlement de Bretagne. Diese große Fassade aus Stein und Granit, diese hohen Fenster, dieser Anschein eines auf einem Platz stehenden Schlosses. Nimm dir die Zeit, es zu betrachten.
+
+Man baute es vor vier Jahrhunderten, entworfen von einem aus Paris gekommenen Architekten, Salomon de Brosse, eben jenem, der Paläste für Könige baute. Hier tagte das Parlement de Bretagne, das höchste Gericht der Provinz, der Ort der Macht. Im Inneren vergoldete Decken, Gemälde, geschnitztes Holz — ein Dekor, um zu blenden und zu richten.
+
+Und hier ist, was du wissen musst. Dieser Palast ist der große Überlebende. 1720, als das ganze Zentrum brannte, hielt er stand, allein und aufrecht inmitten der Asche.
+
+Doch die Geschichte war mit dem Feuer nicht zu Ende. In der Nacht vom 4. auf den 5. Februar 1994 demonstrieren wütende Fischer auf diesem Platz gegen den Verfall der Fischpreise. Die Spannung steigt. Eine Signalrakete steigt auf, fällt aufs Dach zurück, gleitet unter das Dachgebälk. Und der Palast, der dem Brand von 1720 getrotzt hatte, geht seinerseits in Flammen auf. Die ganze Nacht schaut die Stadt zu, wie ihr Herz brennt. Am Morgen ist das Dach eingestürzt.
+
+Und dennoch, schau ihn dir heute an. Aufrecht. Über Jahre hinweg Stein für Stein, Vergoldung für Vergoldung restauriert. Wiedereröffnet, der Stadt zurückgegeben.
+
+Das ist das Geheimnis von Rennes, das ich dir seit dem Anfang erzähle. 1720 niedergebrannt, 1994 niedergebrannt. Belagert, eingestürzt, wiederaufgebaut. Und jedes Mal, störrisch, richtet sie sich wieder auf. Bleib noch etwas vor diesem zweimal vor den Flammen geretteten Palast stehen. Und erinnere dich: hier stirbt nichts für immer. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Rennes — Il fuoco e la pietra
+@@DESC=Storia e segreti — città di legno bruciata nel 1720, palazzo salvato dalle fiamme nel 1994: Rennes rinasce sempre.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-0
+@@STITLE=Place du Champ-Jacquet
+Fermati in mezzo a questa piccola piazza triangolare. Alza gli occhi. Queste alte case di legno che si piegano verso di te, panciute, storte, con le loro travi brune e le loro facciate che sembrano trattenersi dal cadere — guardale bene. Hanno quasi quattro secoli. E hanno avuto fortuna.
+
+Perché ecco la storia che ti racconterò per tutta questa passeggiata. Nella notte tra il 22 e il 23 dicembre 1720, a due passi da qui, scoppia un incendio. Si racconta che un artigiano avrebbe rovesciato la sua lampada su un mucchio di trucioli. Una scintilla. Nulla, all'inizio. E poi si alza il vento.
+
+Rennes, all'epoca, è una città di legno. Vicoli stretti, case a graticcio incollate le une alle altre, canapa, paglia, granai pieni. Il fuoco trova tutto questo. Corre di tetto in tetto. Brucia una notte, un giorno, poi un'intera settimana. Quando infine si spegne, tutto il cuore della città è scomparso. Centinaia di case, intere strade, ridotte in cenere.
+
+Queste case, davanti a te, sono sull'orlo dell'abisso. Il fuoco si è fermato appena prima. Raccontano la Rennes precedente all'incendio, quella che si è quasi persa per intero.
+
+Ed è questo il segreto di questa città: è bruciata, è crollata, l'hanno persino bombardata. E ogni volta, è risorta. Tieni bene a mente questa idea.
+
+Sali ora verso nord, fino a una grande piazza animata, dominata da una chiesa. Seguimi.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-1
+@@STITLE=Place Sainte-Anne
+Eccoti in place Sainte-Anne. La sera, trabocca di terrazze e risate; ma guarda oltre gli ombrelloni. Queste case alte e strette, a graticcio, con i loro timpani appuntiti e le loro travi che disegnano croci — ecco il vero volto della Rennes di un tempo.
+
+Ricorda l'incendio. Il fuoco del 1720 divorò il cuore della città, laggiù, verso est. Ma qui, a nord-ovest, in questi stessi vicoli, non riuscì a penetrare. Questo quartiere ha conservato il suo legno, i suoi colori, le sue facciate inclinate. Quando cammini qui, cammini nella Rennes medievale, quella di prima delle fiamme.
+
+Alza gli occhi verso la grande chiesa che domina la piazza, Saint-Aubin, con la sua guglia e la sua facciata di pietra chiara. Non lasciarti ingannare: sembra antica, ma è giovane. È stata ricostruita poco più di un secolo fa, al posto di una cappella più modesta. Ancora una pietra nuova posata su una memoria antica. A Rennes, non si smette mai di ricostruire.
+
+Lascia la piazza a sud. Infilati nei vicoli che scendono verso la cattedrale, fino a un vicoletto stretto e buio: la rue du Chapitre. Seguimi.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-2
+@@STITLE=Rue du Chapitre
+Eccoci in rue du Chapitre. Stretta, silenziosa, un po' appartata dal rumore. È una delle vie più antiche di Rennes, e una delle più belle.
+
+Da un lato, ancora legno: case a graticcio che hanno visto passare cinque secoli. Dall'altro, guarda quel grande portale di pietra, quella facciata nobile e fredda. È l'hôtel de Blossac. Spingi il portone se è aperto: all'interno si nasconde una scala d'onore monumentale, tutta in pietra e ferro battuto, una delle più belle della città.
+
+E lì, in questa sola via, tieni tutta la storia di Rennes. Il legno è il prima. La pietra è il dopo. Dopo l'incendio, si proibì di ricostruire in legno. Basta case inclinate, granai attaccati. Ora si vuole pietra, facciate diritte, strade larghe dove il fuoco non possa più correre. I ricchi si fanno costruire questi palazzi di granito chiaro, austeri, allineati.
+
+Una città è bruciata; un'altra è nata sulle sue ceneri, più dura, più regolare.
+
+Scendi la via fino in fondo, verso la massa chiara della cattedrale. Seguimi.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-3
+@@STITLE=Cathédrale Saint-Pierre
+Ecco la cathédrale Saint-Pierre. Massiccia, un po' incastrata tra le case, con la sua facciata di pietra grigia incorniciata da due torri quadrate. Sembra solida, eterna. Non fidartene.
+
+Questa cattedrale è già la terza, forse la quarta, a elevarsi in questo punto. Le precedenti si sono incrinate, sono affondate, sono crollate. Nel diciottesimo secolo, la vecchia navata gotica minacciava di cadere sui fedeli. Alla fine si è raso tutto al suolo, tranne le due torri della facciata, e si è ricostruito l'interno da zero.
+
+Allora spingi la porta. Il contrasto è violento. Fuori, la pietra nuda; dentro, un'esplosione di oro, di marmi colorati, di colonne dipinte a finto marmo, un soffitto sfolgorante. Sembra uno scenario teatrale. È il gusto del diciannovesimo secolo, che ha voluto una cattedrale nuova di zecca, abbagliante.
+
+Ancora una volta, la stessa lezione. Qui, nulla dura davvero; ma nulla muore del tutto. Si abbatte, e si rialza. Si brucia, e si ridora.
+
+Esci di nuovo, e scendi ancora, verso ovest, fino a due grosse torri di pietra attraversate da un passaggio: le Portes Mordelaises. Seguimi.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-4
+@@STITLE=Portes Mordelaises
+Fermati davanti a queste due torri tozze, il loro passaggio buio, la traccia del loro ponte levatoio. Le Portes Mordelaises. È la porta più vecchia di Rennes, ciò che resta delle mura che un tempo racchiudevano tutta la città.
+
+Passaci sotto. Sotto i tuoi piedi, in queste pietre, dorme la prima Rennes — quella dei Galli, poi dei Romani, ben prima degli incendi, ben prima dei re di Francia. Qui c'era l'ingresso d'onore della città. La grande porta da cui si faceva il proprio ingresso solenne.
+
+E da cui passavano i duchi di Bretagna. Perché Rennes, prima di essere francese, era bretone, capitale di un ducato fiero. Da questa porta entravano i duchi nella loro città; ed era nella vicina cattedrale che venivano incoronati. L'ultima, Anna di Bretagna, quella piccola duchessa testarda, fu incoronata proprio qui, giovanissima. Dovette sposare due re di Francia per tentare di salvare il suo paese. Dopo di lei, la Bretagna finì per entrare nel regno.
+
+Una città che è stata una capitale. Che ha perso il suo ducato, poi è bruciata, poi rinasce ancora. Cominci a conoscerla.
+
+Risali lungo la cattedrale e volta verso una chiesa dalla facciata chiara e arrotondata: Saint-Sauveur. Seguimi.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-5
+@@STITLE=Basilique Saint-Sauveur
+Ecco la basilique Saint-Sauveur, incastonata nel suo scrigno di vecchie case. La sua facciata concava, le sue pietre dorate, la sua aria un po' segreta. Entra, se puoi. All'interno, una cappella dorata custodisce una statua venerata: Notre-Dame des Miracles.
+
+Perché miracoli? Torna al 1357. Rennes è assediata dagli inglesi. La guerra dei Cent'anni infuria, la carestia si insedia, la città è allo stremo. Gli inglesi scavano in segreto una galleria sotto le mura per farle crollare.
+
+E lì, si racconta, sarebbe intervenuta la Vergine. Avrebbe avvertito gli abitanti di Rennes del pericolo, indicato il punto esatto della mina. I difensori scavano a loro volta, sventano la trappola, salvano la città. Rennes non cade.
+
+Vera o no, questa storia, la città vi ha creduto per secoli. Ne ha fatto la sua protettrice. Ancora una volta, vedi: assediata, affamata, minata — e in piedi nonostante tutto.
+
+Riprendi verso est, lascia i vicoli medievali e sbocca su una grande piazza ordinata, dominata da un municipio con orologio. Seguimi.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-6
+@@STITLE=Hôtel de Ville
+Eccoti in place de la Mairie. Cambia epoca. Finito il Medioevo tortuoso; qui tutto è diritto, chiaro, simmetrico. Ecco la Rennes di dopo l'incendio, disegnata con un solo gesto.
+
+Di fronte, l'hôtel de ville, con la sua torre dell'orologio al centro e le sue due ali che l'abbracciano ad arco. È l'opera di Jacques Gabriel, il primo architetto del re, quello che fu mandato da Parigi per rialzare la città bruciata. Ha tracciato piazze, allineato facciate di granito, imposto la linea retta. La Rennes che attraversi da un po', è in gran parte opera sua.
+
+Ora, guarda bene la torre, proprio sotto l'orologio. Vedi quella grande nicchia vuota? Gli abitanti di Rennes la chiamano il buco. C'era lì un monumento alla gloria di Luigi XV. Alla Rivoluzione, lo fecero a pezzi. Da allora, la nicchia è rimasta spalancata, come un dente mancante. Due secoli senza mai rimettervi nulla.
+
+Un vuoto nel cuore della città, che nessuno osa colmare. Sta a te immaginarlo.
+
+Scendi verso est, verso il fiume, fino a una lunga e nobile facciata di pietra bordata da un giardino: il palais Saint-Georges. Seguimi.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-7
+@@STITLE=Palais Saint-Georges
+Davanti a te, questa lunghissima facciata di pietra chiara, regolare, con il suo giardino e i suoi zampilli d'acqua: è il palais Saint-Georges. Nonostante il suo aspetto da palazzo, fu prima un convento — l'abbaye Saint-Georges, un monastero di donne, ricco e potente.
+
+Leggi l'iscrizione incisa in lettere giganti in cima. È una firma, quella della badessa che fece ricostruire il luogo nel diciassettesimo secolo, Magdeleine de La Fayette. Una donna, una religiosa, che volle incidere il proprio nome nella pietra per l'eternità. È ancora lì.
+
+E di questo quartiere, a est della città, ricorda bene questo: il grande incendio lo risparmiò. Il fuoco del 1720 devastò il centro e il nord, ma si fermò prima di arrivare fin qui. Per questo, tutt'intorno, trovi ancora vicoli antichi, case di legno, un pezzo della vecchia Rennes intatto.
+
+Il caso delle fiamme: una strada rasa al suolo, la strada accanto salvata.
+
+Risali ora verso nord, attraverso le strade, fino a un immenso palazzo di pietra posato in mezzo a una piazza. Il più bello della città. Seguimi.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-8
+@@STITLE=Parlement de Bretagne
+Ci siamo. Davanti a te, il monumento più maestoso di Rennes: il Parlement de Bretagne. Questa grande facciata di pietra e granito, queste alte finestre, quest'aria da castello posato su una piazza. Prenditi il tempo di guardarlo.
+
+Fu costruito quattro secoli fa, disegnato da un architetto venuto da Parigi, Salomon de Brosse, quello stesso che costruiva palazzi per i re. Qui aveva sede il Parlement de Bretagne, la più alta corte di giustizia della provincia, il luogo del potere. All'interno, soffitti dorati, dipinti, legno scolpito — uno scenario per abbagliare e per giudicare.
+
+Ed ecco ciò che devi sapere. Questo palazzo è il grande superstite. Nel 1720, quando tutto il centro bruciava, esso tenne duro, solo e in piedi in mezzo alle ceneri.
+
+Ma la storia non era finita con il fuoco. Nella notte tra il 4 e il 5 febbraio 1994, dei pescatori infuriati manifestano su questa piazza contro il crollo del prezzo del pesce. La tensione sale. Un razzo di soccorso parte, ricade sul tetto, si infila sotto le travature. E il palazzo che aveva sfidato l'incendio del 1720 prende fuoco a sua volta. Tutta la notte, la città guarda bruciare il proprio cuore. Al mattino, il tetto è crollato.
+
+Eppure, guardalo oggi. In piedi. Restaurato pietra dopo pietra, doratura dopo doratura, per anni. Riaperto, restituito alla città.
+
+Ecco il segreto di Rennes, quello che ti racconto fin dall'inizio. Bruciata nel 1720, bruciata nel 1994. Assediata, crollata, ricostruita. E ogni volta, testarda, si rialza. Resta ancora un po' davanti a questo palazzo, salvato due volte dalle fiamme. E ricorda: qui, nulla muore per sempre. A presto, amico.
+
+@@LANG=nl
+@@TITLE=Rennes — Vuur en steen
+@@DESC=Geschiedenis en geheimen — een houten stad die in 1720 afbrandde, een paleis gered van de vlammen in 1994: Rennes herrijst altijd.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-0
+@@STITLE=Place du Champ-Jacquet
+Stop midden op dit kleine driehoekige plein. Kijk omhoog. Deze hoge houten huizen die naar je overhellen, buikig, scheef, met hun bruine balken en hun gevels die zich lijken in te houden om niet te vallen — bekijk ze goed. Ze zijn bijna vier eeuwen oud. En ze hadden geluk.
+
+Want hier is het verhaal dat ik je tijdens deze hele wandeling ga vertellen. In de nacht van 22 op 23 december 1720 breekt, vlak hiervandaan, een brand uit. Er wordt verteld dat een ambachtsman zijn lamp zou hebben omgestoten in een hoop houtkrullen. Een vonk. Eerst niets. En dan steekt de wind op.
+
+Rennes is in die tijd een houten stad. Nauwe steegjes, tegen elkaar aan gedrukte vakwerkhuizen, hennep, stro, volle zolders. Het vuur vindt dat allemaal. Het rent van dak naar dak. Het brandt een nacht, een dag, dan een hele week. Wanneer het eindelijk dooft, is het hele hart van de stad verdwenen. Honderden huizen, hele straten, tot as herleid.
+
+Deze huizen, voor je, staan aan de rand van de afgrond. Het vuur hield er net op tijd mee op. Ze vertellen over het Rennes van vóór de brand, dat de stad bijna helemaal kwijtraakte.
+
+En dat is het geheim van deze stad: ze is afgebrand, ze is ingestort, ze is zelfs gebombardeerd. En elke keer weer stond ze weer op. Onthoud dat idee.
+
+Klim nu naar het noorden, tot een groot levendig plein, gedomineerd door een kerk. Volg me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-1
+@@STITLE=Place Sainte-Anne
+Hier ben je op de place Sainte-Anne. 's Avonds loopt het over van terrassen en gelach; maar kijk voorbij de parasols. Deze hoge, smalle vakwerkhuizen, met hun puntige geveltoppen en hun balken die kruisen tekenen — dat is het ware gezicht van het Rennes van vroeger.
+
+Denk terug aan de brand. Het vuur van 1720 verslond het hart van de stad, daarginds, naar het oosten. Maar hier, in het noordwesten, in precies deze steegjes, drong het niet door. Deze wijk bewaarde haar hout, haar kleuren, haar overhellende gevels. Wanneer je hier loopt, loop je door het middeleeuwse Rennes, dat van vóór de vlammen.
+
+Kijk omhoog naar de grote kerk die het plein domineert, Saint-Aubin, met haar torenspits en haar gevel van lichte steen. Laat je niet misleiden: ze ziet er oud uit, maar is jong. Ze werd iets meer dan een eeuw geleden herbouwd, op de plaats van een bescheidener kapel. Weer een nieuwe steen op een oude herinnering gelegd. In Rennes houdt men nooit op met herbouwen.
+
+Verlaat het plein via het zuiden. Glip in de steegjes die naar beneden lopen richting de kathedraal, tot een smal, donker straatje: de rue du Chapitre. Volg me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-2
+@@STITLE=Rue du Chapitre
+Hier zijn we dan op de rue du Chapitre. Smal, stil, een beetje afgezonderd van het lawaai. Het is een van de oudste straten van Rennes, en een van de mooiste.
+
+Aan de ene kant nog hout: vakwerkhuizen die vijf eeuwen hebben zien voorbijgaan. Aan de andere kant, kijk naar die grote stenen poort, die nobele, koele gevel. Dat is het hôtel de Blossac. Duw de koetspoort open als ze open is: binnen schuilt een monumentale eretrap, helemaal van steen en smeedijzer, een van de mooiste van de stad.
+
+En daar, in deze ene straat, houd je de hele geschiedenis van Rennes vast. Het hout is het ervoor. De steen is het erna. Na de brand werd het verboden om in hout te herbouwen. Geen overhellende huizen meer, geen aan elkaar geplakte zolders. Men wil voortaan steen, rechte gevels, brede straten waar het vuur niet meer kan rennen. De rijken laten deze strenge, uitgelijnde, lichtgrijze granieten herenhuizen bouwen.
+
+Een stad brandde af; een andere werd geboren op haar as, harder, regelmatiger.
+
+Loop de straat helemaal af, naar de lichte massa van de kathedraal. Volg me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-3
+@@STITLE=Cathédrale Saint-Pierre
+Hier is de cathédrale Saint-Pierre. Massief, een beetje ingeklemd tussen de huizen, met haar grijze stenen gevel, omlijst door twee vierkante torens. Ze oogt solide, eeuwig. Vertrouw daar niet op.
+
+Deze kathedraal is al de derde, misschien de vierde, die op deze plek verrijst. De vorige scheurden, zakten, stortten in. In de achttiende eeuw dreigde het oude gotische schip op de gelovigen te vallen. Uiteindelijk werd alles gesloopt, behalve de twee voorste torens, en werd het interieur volledig nieuw opgebouwd.
+
+Duw dus de deur open. Het contrast is hevig. Buiten kale steen; binnen een explosie van goud, gekleurd marmer, in vals marmer geschilderde zuilen, een schitterend plafond. Het lijkt wel een theaterdecor. Het is de smaak van de negentiende eeuw, die een gloednieuwe, verblindende kathedraal wilde.
+
+Nogmaals dezelfde les. Hier duurt niets echt lang; maar niets sterft helemaal. Men breekt af, en men richt weer op. Men verbrandt, en men vergult opnieuw.
+
+Ga weer naar buiten, en daal nog verder af, naar het westen, tot twee dikke stenen torens doorboord door een doorgang: de Portes Mordelaises. Volg me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-4
+@@STITLE=Portes Mordelaises
+Stop voor deze twee gedrongen torens, hun donkere doorgang, het spoor van hun ophaalbrug. De Portes Mordelaises. Het is de oudste poort van Rennes, wat overblijft van de stadsmuur die vroeger de hele stad omsloot.
+
+Loop eronderdoor. Onder je voeten, in deze stenen, slaapt het eerste Rennes — dat van de Galliërs, dan van de Romeinen, lang vóór de branden, lang vóór de koningen van Frankrijk. Hier was de erepoort van de stad. De grote poort waardoor men zijn plechtige intocht deed.
+
+En waardoor de hertogen van Bretagne kwamen. Want Rennes was, voordat het Frans werd, Bretons, hoofdstad van een trots hertogdom. Door deze poort trokken de hertogen hun stad binnen; en in de nabijgelegen kathedraal werden ze gekroond. De laatste, Anna van Bretagne, dat koppige hertoginnetje, werd hier zelf gekroond, nog heel jong. Ze moest achtereenvolgens twee koningen van Frankrijk trouwen om te proberen haar land te redden. Na haar werd Bretagne uiteindelijk bij het koninkrijk gevoegd.
+
+Een stad die een hoofdstad was. Die haar hertogdom verloor, toen afbrandde, en nu weer herrijst. Je begint haar te kennen.
+
+Ga weer omhoog langs de kathedraal en sla af naar een kerk met een lichte, ronde gevel: Saint-Sauveur. Volg me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-5
+@@STITLE=Basilique Saint-Sauveur
+Hier is de basilique Saint-Sauveur, ingeklemd in haar juwelendoosje van oude huizen. Haar concave gevel, haar goudkleurige stenen, haar wat geheimzinnige sfeer. Ga naar binnen, als je kunt. Binnen herbergt een vergulde kapel een vereerd beeld: Notre-Dame des Miracles.
+
+Waarom wonderen? Ga terug naar 1357. Rennes wordt belegerd door de Engelsen. De Honderdjarige Oorlog woedt, hongersnood zet in, de stad is uitgeput. De Engelsen graven in het geheim een gang onder de stadsmuur om die te laten instorten.
+
+En daar, zo wordt verteld, zou de Maagd hebben ingegrepen. Ze zou de inwoners van Rennes voor het gevaar hebben gewaarschuwd, de exacte plek van de mijn hebben aangewezen. De verdedigers graven op hun beurt, ontdekken de val, redden de stad. Rennes valt niet.
+
+Waar of niet, dit verhaal, de stad heeft er eeuwenlang in geloofd. Ze maakte er haar beschermvrouwe van. Nogmaals zie je het: belegerd, uitgehongerd, ondermijnd — en toch overeind gebleven.
+
+Ga weer naar het oosten, verlaat de middeleeuwse steegjes en kom uit op een groot, geordend plein, gedomineerd door een stadhuis met klok. Volg me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-6
+@@STITLE=Hôtel de Ville
+Hier ben je op de place de la Mairie. Verander van tijdperk. Voorbij de kronkelige middeleeuwen; hier is alles recht, helder, symmetrisch. Dit is het Rennes van na de brand, in één gebaar getekend.
+
+Tegenover je het hôtel de ville, met zijn klokkentoren in het midden en zijn twee vleugels die het in een ronding omarmen. Het is het werk van Jacques Gabriel, de eerste architect van de koning, degene die vanuit Parijs werd gestuurd om de afgebrande stad weer op te bouwen. Hij tekende pleinen, lijnde granieten gevels uit, legde de rechte lijn op. Het Rennes dat je al een tijdje doorkruist, is grotendeels zijn werk.
+
+Kijk nu goed naar de toren, vlak onder de klok. Zie je die grote lege nis? De inwoners van Rennes noemen het het gat. Daar stond ooit een monument ter ere van Lodewijk XV. Tijdens de Revolutie sloeg men het aan stukken. Sindsdien is de nis leeg gebleven, als een ontbrekende tand. Twee eeuwen lang heeft men er nooit meer iets in teruggezet.
+
+Een leegte in het hart van de stad, die niemand durft te vullen. Aan jou om het je voor te stellen.
+
+Ga naar het oosten, richting de rivier, tot een lange, edele stenen gevel omzoomd door een tuin: het palais Saint-Georges. Volg me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-7
+@@STITLE=Palais Saint-Georges
+Voor je, deze zeer lange gevel van lichte, regelmatige steen, met haar tuin en haar fonteinen: dat is het palais Saint-Georges. Ondanks haar paleisachtige uitstraling was het eerst een klooster — de abbaye Saint-Georges, een vrouwenklooster, rijk en machtig.
+
+Lees de inscriptie, in reusachtige letters helemaal bovenaan gebeiteld. Het is een handtekening, die van de abdis die de plek in de zeventiende eeuw liet herbouwen, Magdeleine de La Fayette. Een vrouw, een non, die haar naam voor de eeuwigheid in de steen wilde beitelen. Ze staat er nog steeds.
+
+En over deze wijk, in het oosten van de stad, onthoud dit goed: de grote brand spaarde haar. Het vuur van 1720 verwoestte het centrum en het noorden, maar hield op voordat het hier kwam. Daarom vind je hier rondom nog oude steegjes, houten huizen, een stukje van het oude Rennes intact.
+
+Het toeval van de vlammen: de ene straat met de grond gelijkgemaakt, de straat ernaast gered.
+
+Ga nu weer naar het noorden, door de straten, tot een immens stenen paleis midden op een plein. Het mooiste van de stad. Volg me.
+
+@@SCENE=seed-100-rennes-parlement-et-incendies-scene-8
+@@STITLE=Parlement de Bretagne
+Hier zijn we dan. Voor je, het meest majestueuze monument van Rennes: het Parlement de Bretagne. Deze grote gevel van steen en graniet, deze hoge ramen, deze uitstraling van een kasteel op een plein. Neem de tijd om het te bekijken.
+
+Het werd vier eeuwen geleden gebouwd, ontworpen door een architect uit Parijs, Salomon de Brosse, dezelfde die paleizen bouwde voor koningen. Hier zetelde het Parlement de Bretagne, het hoogste gerechtshof van de provincie, de plaats van de macht. Binnen, vergulde plafonds, schilderijen, gesneden hout — een decor om te verblinden en te oordelen.
+
+En hier is wat je moet weten. Dit paleis is de grote overlevende. In 1720, toen het hele centrum brandde, hield het stand, alleen en overeind te midden van de as.
+
+Maar het verhaal was niet afgelopen met het vuur. In de nacht van 4 op 5 februari 1994 betogen boze vissers op dit plein tegen de instortende visprijzen. De spanning loopt op. Een noodraket wordt afgeschoten, valt terug op het dak, glijdt onder het dakgebinte. En het paleis dat de brand van 1720 had getrotseerd, vat op zijn beurt vlam. De hele nacht kijkt de stad toe hoe haar hart brandt. 's Ochtends is het dak ingestort.
+
+En toch, kijk er vandaag naar. Overeind. Steen voor steen, verguldsel voor verguldsel, jarenlang gerestaureerd. Heropend, teruggegeven aan de stad.
+
+Dat is het geheim van Rennes, dat ik je vanaf het begin vertel. Afgebrand in 1720, afgebrand in 1994. Belegerd, ingestort, herbouwd. En elke keer, koppig, staat ze weer op. Blijf nog even voor dit tweemaal van de vlammen geredde paleis staan. En onthoud: hier sterft niets voorgoed. Tot snel, vriend.

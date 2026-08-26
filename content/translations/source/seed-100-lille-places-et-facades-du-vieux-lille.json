@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-lille-places-et-facades-du-vieux-lille",
+  "sessionId": "seed-100-lille-places-et-facades-du-vieux-lille-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Lille",
+  "title": "Lille — Places et façades du Vieux-Lille",
+  "description": "Architecture — lire l’identité flamande dans les places, façades et passages du Vieux-Lille.",
+  "themes": [
+    "Architecture — lire l’identité flamande dans les places, façades et passages du Vieux-Lille."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6957,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "de": "Architektur, flämische Identität an den Plätzen, Fassaden und Passagen des Alten Lille lesen.",
+    "en": "Architecture, read Flemish identity in the squares, facades and passages of Old Lille.",
+    "it": "Architettura, leggere l'identità fiamminga nelle piazze, facciate e passaggi di Vecchio Lille.",
+    "es": "Arquitectura, leer la identidad flamenca en las plazas, fachadas y pasajes de Vieux-Lille."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-lille-places-et-facades-du-vieux-lille-scene-0",
+      "index": 0,
+      "title": "Grand’Place",
+      "text": "Commence au centre de la Grand’Place, officiellement place du Général-de-Gaulle. Les façades qui l’entourent composent un panorama dense de pignons, de couleurs et de décors. Au milieu se dresse la colonne de la Déesse, élevée au XIXe siècle en mémoire du siège de Lille en 1792. Elle donne un repère vertical à cet espace largement horizontal.\n\nRegarde le rang de Beauregard puis les autres maisons. Leurs parcelles étroites produisent une succession rapide de travées. Courbes, frontons et motifs sculptés individualisent chaque façade, tandis que les hauteurs proches maintiennent l’unité de la place. La pierre, la brique et les enduits colorés rappellent la position de Lille au croisement d’influences flamandes et françaises.\n\nDirige-toi vers la Vieille Bourse, qui sépare la Grand’Place de la place du Théâtre. Cherche ses quatre entrées et traverse seulement lorsque la cour est ouverte. Le bâtiment te fera passer d’un espace public très large à un intérieur presque secret. Cette alternance entre grandes places et passages resserrés sera le fil de notre promenade dans le Vieux-Lille.",
+      "hash": "6b0b03cf",
+      "chars": 1096,
+      "existingSegments": {
+        "it": "seed-100-lille-places-et-facades-du-vieux-lille-scene-0-seg-it",
+        "en": "seed-100-lille-places-et-facades-du-vieux-lille-scene-0-seg-en",
+        "es": "seed-100-lille-places-et-facades-du-vieux-lille-scene-0-seg-es",
+        "de": "seed-100-lille-places-et-facades-du-vieux-lille-scene-0-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-lille-places-et-facades-du-vieux-lille-scene-1",
+      "index": 1,
+      "title": "Vieille Bourse",
+      "text": "La Vieille Bourse fut construite au XVIIe siècle, à l’époque où Lille appartenait aux Pays-Bas espagnols. L’ensemble réunit vingt-quatre maisons disposées autour d’une cour rectangulaire. Depuis l’extérieur, elles donnent l’impression d’un monument unique. Dans la cour, leurs travées répétées révèlent pourtant la structure de cet assemblage.\n\nObserve les pilastres, les guirlandes sculptées, les frontons et les couleurs. Le décor abondant appartient au maniérisme flamand. Il anime chaque façade sans rompre la régularité générale. Les passages placés aux angles relient directement les deux places voisines. La cour fonctionne donc comme une pièce intérieure traversée par la ville, à la fois protégée et ouverte selon ses horaires.\n\nRessors vers la Grand’Place puis prends la rue Esquermoise. Ne cherche pas à entrer dans les espaces fermés. La voie prolonge l’un des anciens axes du centre vers l’ouest. En avançant, compare les façades plus étroites de la rue à celles de la Bourse. Tu retrouveras les mêmes matériaux et le même goût du relief, mais adaptés à une perspective longue où chaque maison doit signaler sa présence dans un alignement continu.",
+      "hash": "396bc4f5",
+      "chars": 1160,
+      "existingSegments": {
+        "es": "seed-100-lille-places-et-facades-du-vieux-lille-scene-1-seg-es",
+        "en": "seed-100-lille-places-et-facades-du-vieux-lille-scene-1-seg-en",
+        "it": "seed-100-lille-places-et-facades-du-vieux-lille-scene-1-seg-it",
+        "de": "seed-100-lille-places-et-facades-du-vieux-lille-scene-1-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-lille-places-et-facades-du-vieux-lille-scene-2",
+      "index": 2,
+      "title": "Rue Esquermoise",
+      "text": "Arrête-toi dans une portion dégagée de la rue Esquermoise. Son tracé ancien relie la Grand’Place aux secteurs occidentaux du Vieux-Lille. Regarde vers les étages : les façades sont assez étroites, mais elles gagnent en présence par leurs pignons, leurs fenêtres hautes et leurs décors verticaux. La répétition des travées conduit le regard le long de la rue.\n\nChoisis quelques détails. Une pierre plus claire souligne un encadrement ; la brique donne au mur une texture régulière ; une ferronnerie prolonge un balcon devant les fenêtres. Les reconstructions et restaurations ont laissé cohabiter plusieurs époques. L’identité du quartier vient moins d’un modèle unique que d’un dialogue entre ces variations.\n\nQuitte l’axe principal pour rejoindre la place aux Oignons par les rues piétonnes. Le changement d’échelle est rapide. La circulation diminue, les angles se multiplient et les façades semblent se rapprocher. Au bout du passage, une petite place irrégulière apparaîtra presque par surprise. Elle montrera une autre face du Vieux-Lille : non plus la représentation d’une grande place centrale, mais un espace de voisinage produit par la rencontre de quelques rues anciennes.",
+      "hash": "b4f914e1",
+      "chars": 1182,
+      "existingSegments": {
+        "en": "seed-100-lille-places-et-facades-du-vieux-lille-scene-2-seg-en",
+        "es": "seed-100-lille-places-et-facades-du-vieux-lille-scene-2-seg-es",
+        "de": "seed-100-lille-places-et-facades-du-vieux-lille-scene-2-seg-de",
+        "it": "seed-100-lille-places-et-facades-du-vieux-lille-scene-2-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-lille-places-et-facades-du-vieux-lille-scene-3",
+      "index": 3,
+      "title": "Place aux Oignons",
+      "text": "Entre sur la place aux Oignons et arrête-toi sans gêner les accès. Sa forme irrégulière et ses dimensions modestes contrastent avec la Grand’Place. Les façades proches limitent le champ de vision ; quelques pas suffisent pour en faire le tour. Ce caractère presque domestique résulte de la trame ancienne du quartier, longtemps plus dense et moins monumentale.\n\nObserve les maisons restaurées, leurs soubassements, leurs fenêtres et les changements de couleur. La place ne possède pas de grand édifice central. Son identité repose entièrement sur ses bords et sur les rues étroites qui s’y rejoignent. Chaque ouverture agit comme un cadre vers un autre fragment du Vieux-Lille.\n\nPoursuis vers le parvis de la cathédrale Notre-Dame-de-la-Treille. Le trajet traverse des voies sinueuses qui empêchent souvent de voir loin. À l’approche de la cathédrale, l’espace s’ouvrira brusquement. Cette transition permet de comprendre combien une place dépend de la taille du bâtiment qu’elle présente. Après un vide à l’échelle des maisons, tu trouveras un parvis conçu pour donner du recul à une façade religieuse très différente des architectures flamandes rencontrées jusque-là.",
+      "hash": "8095140d",
+      "chars": 1169,
+      "existingSegments": {
+        "en": "seed-100-lille-places-et-facades-du-vieux-lille-scene-3-seg-en",
+        "es": "seed-100-lille-places-et-facades-du-vieux-lille-scene-3-seg-es",
+        "de": "seed-100-lille-places-et-facades-du-vieux-lille-scene-3-seg-de",
+        "it": "seed-100-lille-places-et-facades-du-vieux-lille-scene-3-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-lille-places-et-facades-du-vieux-lille-scene-4",
+      "index": 4,
+      "title": "Parvis de Notre-Dame-de-la-Treille",
+      "text": "Place-toi face à Notre-Dame-de-la-Treille. La construction de la cathédrale commença au XIXe siècle et s’étendit sur une très longue période. Sa façade occidentale, achevée à la fin du XXe siècle, utilise une paroi de pierre translucide maintenue par une structure métallique. La lumière peut la transformer selon l’heure, donnant à l’édifice une présence différente des façades de brique et de pierre du quartier.\n\nRegarde les limites du parvis. D’un côté, la cathédrale impose sa grande échelle ; de l’autre, les maisons du Vieux-Lille ramènent rapidement le regard vers des volumes plus modestes. Cette confrontation n’efface pas les différences historiques. Elle les rend visibles dans un même espace public.\n\nDirige-toi ensuite vers la porte de Gand par la rue de Gand. Le parcours suit un axe plus régulier qui annonce la limite nord-est de l’ancien centre. Observe comme les perspectives s’allongent à mesure que tu quittes le lacis des petites rues. La dernière halte sera une ancienne porte de l’enceinte espagnole, devenue passage urbain. Elle permettra de relire toutes les places traversées comme autant de seuils entre différentes échelles de ville.",
+      "hash": "d14063bb",
+      "chars": 1162,
+      "existingSegments": {
+        "en": "seed-100-lille-places-et-facades-du-vieux-lille-scene-4-seg-en",
+        "de": "seed-100-lille-places-et-facades-du-vieux-lille-scene-4-seg-de",
+        "es": "seed-100-lille-places-et-facades-du-vieux-lille-scene-4-seg-es",
+        "it": "seed-100-lille-places-et-facades-du-vieux-lille-scene-4-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-lille-places-et-facades-du-vieux-lille-scene-5",
+      "index": 5,
+      "title": "Porte de Gand",
+      "text": "Arrête-toi devant la porte de Gand depuis un trottoir sûr. Construite au début du XVIIe siècle, elle appartenait à l’enceinte établie pendant la période espagnole. Ses passages et sa façade de pierre contrôlaient la route vers Gand. Les fortifications ont disparu dans ce secteur, mais la porte conserve la mémoire précise de leur tracé.\n\nRegarde à travers une arche. Vers le sud, la rue de Gand ramène au cœur du Vieux-Lille. Vers le nord, les voies s’ouvrent au-delà de l’ancien périmètre. La porte cadre donc la ville comme les passages de la Vieille Bourse cadraient les places, mais avec une fonction défensive et une échelle différente. Elle transforme une simple direction en véritable entrée.\n\nRepense à la Grand’Place, à la cour de la Bourse, à la rue Esquermoise, à la place aux Oignons et au parvis de la Treille. Le parcours a alterné ouverture et resserrement, façades collectives et maisons singulières, décor ancien et intervention contemporaine. L’identité du Vieux-Lille se trouve dans ces contrastes autant que dans ses couleurs. La promenade se termine sur cette porte encore debout, là où l’on peut mesurer d’un regard le chemin entre le centre et son ancienne limite.",
+      "hash": "23bea139",
+      "chars": 1188,
+      "existingSegments": {
+        "es": "seed-100-lille-places-et-facades-du-vieux-lille-scene-5-seg-es",
+        "de": "seed-100-lille-places-et-facades-du-vieux-lille-scene-5-seg-de",
+        "en": "seed-100-lille-places-et-facades-du-vieux-lille-scene-5-seg-en",
+        "it": "seed-100-lille-places-et-facades-du-vieux-lille-scene-5-seg-it"
+      }
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "tourId": "seed-100-rouen-cathedrale-de-monet",
+  "sessionId": "seed-100-rouen-cathedrale-de-monet-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Rouen",
+  "title": "Rouen — Trente fois la même façade",
+  "description": "Art — Trente fois la même façade : Monet, la lumière et la naissance d'une révolution.",
+  "themes": [
+    "Art — Trente fois la même façade : Monet, la lumière et la naissance d'une révolution."
+  ],
+  "baseLanguage": "fr",
+  "chars": 10305,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Arte, trenta volte la stessa facciata: Monet, luce e nascita di una rivoluzione.",
+    "de": "Kunst, Dreißigmal die gleiche Fassade: Monet, Licht und Geburt einer Revolution.",
+    "es": "Arte, Treinta veces la misma fachada: Monet, luz y nacimiento de una revolución.",
+    "en": "Art, Thirty times the same facade: Monet, light and birth of a revolution."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-rouen-cathedrale-de-monet-scene-0",
+      "index": 0,
+      "title": "Musée des Beaux-Arts de Rouen",
+      "text": "Entre, et cherche une petite toile pleine de drapeaux. Une rue étroite, noyée de bleu, de blanc, de rouge, une foule qu'on devine à peine sous les étoffes qui claquent. C'est Claude Monet, la rue Saint-Denis, le 30 juin 1878, jour de fête nationale. Il a peint ça vite, debout dans la cohue, comme on vole une photo avant que la lumière change.\r\n\r\nRetiens ces cinq mots : avant que la lumière change. Toute cette balade tient là-dedans.\r\n\r\nCe musée est né d'un décret. En 1801, l'État distribue à quinze villes les tableaux entassés depuis la Révolution. Rouen est servie. Un siècle plus tard, le bâtiment que tu traverses ouvre ses portes, et la ville se met à collectionner les peintres qu'on siffle encore : Monet, Sisley, Renoir, Pissarro. Un ensemble que bien des capitales lui envient.\r\n\r\nMais il manque quelque chose ici. Les tableaux les plus célèbres jamais peints à Rouen ne sont pas dans ce musée. Ils ne sont même pas à Rouen. Ils sont à Paris, à Washington, à Boston, à Moscou.\r\n\r\nEntre 1892 et 1893, à trois cents mètres de l'endroit où tu te tiens, un homme s'est enfermé derrière une fenêtre et a peint une trentaine de fois le même mur. La même façade. Encore. Encore. Encore. On l'a cru fou, épuisé, fini. C'était une révolution.\r\n\r\nJe t'emmène jusqu'à cette fenêtre. Mais pas tout de suite. D'abord, il faut comprendre pourquoi ça devait arriver ici, dans cette ville-là, et pas ailleurs.\r\n\r\nSors du musée et prends vers l'ouest. Quatre minutes de marche. On commence par la lumière — la vraie.",
+      "hash": "55d8c705",
+      "chars": 1513,
+      "existingSegments": {
+        "it": "seed-100-rouen-cathedrale-de-monet-scene-0-seg-it",
+        "es": "seed-100-rouen-cathedrale-de-monet-scene-0-seg-es",
+        "de": "seed-100-rouen-cathedrale-de-monet-scene-0-seg-de",
+        "en": "seed-100-rouen-cathedrale-de-monet-scene-0-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-cathedrale-de-monet-scene-1",
+      "index": 1,
+      "title": "Église Saint-Godard",
+      "text": "Pousse la porte de cette église trapue, coincée entre deux immeubles comme si la ville avait poussé autour d'elle sans faire attention. Saint-Godard. Va vers la droite, et lève les yeux.\r\n\r\nUn arbre. Un vrai arbre de verre, qui sort du ventre d'un vieil homme endormi et porte des rois dans ses branches. C'est un arbre de Jessé, la généalogie du Christ, montée en vitrail au début du XVIᵉ siècle. Regarde les bleus. Regarde les rouges. Ils ne sont pas posés sur le verre, ils sont dedans, cuits dans la matière — et ils n'existent que si le jour veut bien passer.\r\n\r\nVoilà le premier savoir-faire de cette ville, quatre siècles avant Monet. Rouen a été une capitale du vitrail : des ateliers entiers, des dynasties de verriers, des maîtres qu'on s'arrachait dans toute la Normandie. Leur matière première n'était pas le pigment. C'était la lumière.\r\n\r\nReste une minute, sans bouger. Si un nuage passe, l'arbre s'éteint d'un coup. Reviens à midi, il flambe. Le même verre, deux tableaux différents, et rien n'a bougé que le ciel.\r\n\r\nUn peintre finira par comprendre que la pierre, dehors, fait exactement pareil.\r\n\r\nRessors et prends vers l'est. Sept minutes, et je te présente la famille la plus explosive de Rouen.",
+      "hash": "7cb03f07",
+      "chars": 1216,
+      "existingSegments": {
+        "de": "seed-100-rouen-cathedrale-de-monet-scene-1-seg-de",
+        "es": "seed-100-rouen-cathedrale-de-monet-scene-1-seg-es",
+        "en": "seed-100-rouen-cathedrale-de-monet-scene-1-seg-en",
+        "it": "seed-100-rouen-cathedrale-de-monet-scene-1-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-cathedrale-de-monet-scene-2",
+      "index": 2,
+      "title": "Lycée Pierre-Corneille",
+      "text": "Ces bâtiments austères derrière la grille, c'est le lycée Corneille, ancien collège de jésuites ouvert à la fin du XVIᵉ siècle. La liste de ses élèves donne le vertige : Corneille, Fontenelle, Flaubert, Maupassant. Et, au tout début du XXᵉ siècle, trois frères d'une même famille normande.\r\n\r\nL'aîné signera ses toiles Jacques Villon. Le cadet sculptera sous le nom de Duchamp-Villon. Le petit dernier s'appelle Marcel Duchamp. Il use ses fonds de culotte sur ces bancs, il y décroche un prix de dessin, et personne ne se doute qu'il va faire sauter l'art moderne.\r\n\r\n1912. Marcel présente un tableau : Nu descendant un escalier. Un corps décomposé en dizaines d'instants superposés, comme un film écrasé sur une seule toile. Ses amis peintres trouvent ça déplacé, hors des clous. Et ce sont ses propres frères qu'on envoie lui demander de retirer l'œuvre du Salon. Il la retire, sans un mot. Il ne le leur pardonnera jamais tout à fait. L'année suivante, New York découvre le tableau et hurle au scandale. Le voilà célèbre en une nuit.\r\n\r\nGarde ça au chaud. Un homme d'ici peindra le temps dans un seul tableau. Un autre le peindra en trente. Deux façons de gagner la même guerre.\r\n\r\nDescends vers le sud-est. Six minutes, jusqu'à une église en dentelle.",
+      "hash": "5243ab7f",
+      "chars": 1255,
+      "existingSegments": {
+        "it": "seed-100-rouen-cathedrale-de-monet-scene-2-seg-it",
+        "de": "seed-100-rouen-cathedrale-de-monet-scene-2-seg-de",
+        "es": "seed-100-rouen-cathedrale-de-monet-scene-2-seg-es",
+        "en": "seed-100-rouen-cathedrale-de-monet-scene-2-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-cathedrale-de-monet-scene-3",
+      "index": 3,
+      "title": "Église Saint-Maclou",
+      "text": "Arrête-toi devant ce porche. Cinq arcades en éventail, de la pierre qui semble brodée plutôt que taillée. Saint-Maclou, gothique flamboyant, un chantier ouvert vers 1437 et poursuivi pendant quatre-vingts ans. Les vantaux sculptés, on les attribue depuis toujours à Jean Goujon — sans preuve, mais l'idée est trop belle pour mourir.\r\n\r\nAu XIXᵉ siècle, un jeune Anglais s'assoit ici, carnet sur les genoux, et dessine ces détails pendant des heures. John Ruskin. Il deviendra le critique le plus écouté de son siècle, celui qui apprendra à l'Europe entière à regarder le Moyen Âge. Il écrira que trois villes sont les centres de sa pensée : Rouen, Genève et Pise. Rouen en premier.\r\n\r\nEt il enrage. Partout autour de lui on restaure, on gratte, on remplace les pierres fatiguées par des neuves, bien propres. Pour lui c'est un assassinat : restaurer, dit-il, c'est la destruction la plus totale qu'un édifice puisse subir. Ce que tu regardes, il voulait qu'on le laisse vieillir, se creuser, et mourir en paix.\r\n\r\nRuskin a eu un lecteur français. Un asthmatique de trente ans qui viendra jusqu'ici, exprès, pour vérifier une seule de ses phrases.\r\n\r\nRemonte vers l'ouest, six minutes. Rendez-vous dans la cour des libraires.",
+      "hash": "5a1204a6",
+      "chars": 1223,
+      "existingSegments": {
+        "de": "seed-100-rouen-cathedrale-de-monet-scene-3-seg-de",
+        "en": "seed-100-rouen-cathedrale-de-monet-scene-3-seg-en",
+        "es": "seed-100-rouen-cathedrale-de-monet-scene-3-seg-es",
+        "it": "seed-100-rouen-cathedrale-de-monet-scene-3-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-cathedrale-de-monet-scene-4",
+      "index": 4,
+      "title": "Portail des Libraires",
+      "text": "Entre dans cette cour par la grille ouvragée. Devant toi, le portail des Libraires. Il s'appelle comme ça parce que des marchands de livres tenaient boutique ici même, adossés au flanc de la cathédrale.\r\n\r\nApproche-toi des médaillons du bas, à hauteur d'homme. Regarde ce qui grouille dans la pierre : des hommes à tête de chien, des poissons à pattes, des monstres qui se mordent, un bestiaire délirant taillé par des artisans dont personne n'a retenu les noms.\r\n\r\nRuskin en avait décrit un, minuscule, dans un de ses livres. Une petite figure grimaçante, la joue posée sur la main.\r\n\r\nDes années plus tard, Marcel Proust, qui traduisait Ruskin sans savoir l'anglais, est venu ici avec ses amis. Il a cherché ce bonhomme, dans le froid, en toussant, parmi des centaines d'autres. Il l'a trouvé. Et il en a tiré une idée que je te laisse : cette figurine n'était rien du tout, absolument rien — sinon que Ruskin l'avait regardée. Un regard suffit à rendre un caillou immortel.\r\n\r\nRetiens ça aussi. On y revient à la fin.\r\n\r\nSors de la cour, file vers l'est puis descends plein sud par la rue de la République. Évite la grande place, on la garde. Six minutes, jusqu'aux quais.",
+      "hash": "c903abbb",
+      "chars": 1175,
+      "existingSegments": {
+        "es": "seed-100-rouen-cathedrale-de-monet-scene-4-seg-es",
+        "de": "seed-100-rouen-cathedrale-de-monet-scene-4-seg-de",
+        "it": "seed-100-rouen-cathedrale-de-monet-scene-4-seg-it",
+        "en": "seed-100-rouen-cathedrale-de-monet-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-cathedrale-de-monet-scene-5",
+      "index": 5,
+      "title": "Quais de Seine",
+      "text": "Te voilà au bord de la Seine, face au pont Boieldieu. Ce pont-là est jeune : celui d'avant a sauté pendant la guerre. Mais l'eau, l'air mouillé, les fumées, la lumière basse — c'est le même décor.\r\n\r\nLongtemps, Rouen a été un port immense, le dernier avant la mer, hérissé de mâts, noyé de vapeur et de charbon. Les Anglais arrivent les premiers. Turner s'arrête ici dans les années 1820 et 1830, plante son carnet sur le quai et rapporte des aquarelles de brume : un fleuve gris et or où l'on ne distingue presque plus rien. Personne, alors, ne peint comme ça.\r\n\r\nUn demi-siècle plus tard, Camille Pissarro prend une chambre d'hôtel sur ces quais, ouvre la fenêtre et peint le port sans jamais descendre. Ses yeux le lâchent, il ne supporte plus les courants d'air, alors il travaille à l'abri, en hauteur. La grue, le pont, la fumée, le contre-jour. Il écrit à son fils Lucien que c'est aussi beau que Venise.\r\n\r\nTu vois où je veux en venir ? Une chambre. Une fenêtre. Un motif qu'on ne quitte plus des yeux.\r\n\r\nRemonte la rue du Grand-Pont, plein nord. Cinq minutes. On y est presque.",
+      "hash": "7c573458",
+      "chars": 1087,
+      "existingSegments": {
+        "it": "seed-100-rouen-cathedrale-de-monet-scene-5-seg-it",
+        "en": "seed-100-rouen-cathedrale-de-monet-scene-5-seg-en",
+        "es": "seed-100-rouen-cathedrale-de-monet-scene-5-seg-es",
+        "de": "seed-100-rouen-cathedrale-de-monet-scene-5-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-cathedrale-de-monet-scene-6",
+      "index": 6,
+      "title": "Pont Boieldieu, au débouché de la rue du Grand-Pont",
+      "text": "Arrête-toi et lève les yeux vers ces étages, au-dessus des boutiques, ceux qui donnent sur la place.\r\n\r\nFévrier 1892. Monet a cinquante et un ans. Il loue une pièce vide là-haut, colle son chevalet contre la vitre et commence. Il revient l'hiver suivant, change de fenêtre, recommence. On raconte qu'il a même travaillé dans une boutique de lingerie, planqué derrière un paravent pour ne pas gêner les clientes en train d'essayer.\r\n\r\nIl ne peint pas un tableau. Il en peint une dizaine à la fois, alignés autour de lui. Le soleil tourne, la façade change de couleur, il repose une toile, en attrape une autre, court après le jour du matin au soir. Le soir, justement, il est vidé. Il écrit à sa femme Alice qu'il est moulu, qu'il n'y arrivera jamais, qu'il a fait un cauchemar : la cathédrale lui tombait dessus, et elle était bleue, ou rose, ou jaune.\r\n\r\nEt il ne finit rien sur place. Il rapporte tout à Giverny, retouche pendant des mois, de mémoire, dans son atelier — lui, le peintre du plein air. Ça, il le dit moins fort.\r\n\r\nUne trentaine de toiles. Vingt seront accrochées à Paris, en mai 1895.\r\n\r\nTrois minutes. Traverse la place, va jusqu'au milieu, et retourne-toi enfin.",
+      "hash": "45144b81",
+      "chars": 1182,
+      "existingSegments": {
+        "es": "seed-100-rouen-cathedrale-de-monet-scene-6-seg-es",
+        "it": "seed-100-rouen-cathedrale-de-monet-scene-6-seg-it",
+        "de": "seed-100-rouen-cathedrale-de-monet-scene-6-seg-de",
+        "en": "seed-100-rouen-cathedrale-de-monet-scene-6-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-rouen-cathedrale-de-monet-scene-7",
+      "index": 7,
+      "title": "Parvis de la cathédrale Notre-Dame",
+      "text": "Voilà. Regarde-la.\r\n\r\nTrois portails, et deux tours qui ne se ressemblent pas. À gauche la tour Saint-Romain, la vieille, l'entêtée. À droite la tour de Beurre, achevée au début du XVIᵉ siècle grâce à une indulgence accordée pendant le carême. Et là-haut, cette flèche de fonte terminée en 1876 — pendant quatre ans, l'édifice le plus haut du monde.\n\r\nMaintenant, oublie tout ce que je viens de te dire. Parce que c'est exactement ce que Monet a fait.\r\n\r\nIl n'a peint ni l'architecture, ni le gothique, ni Dieu, ni la Normandie. Il a peint ce qu'il y a entre cette façade et la fenêtre, là-bas : l'air, la brume, l'heure qui passe. La pierre n'est qu'un écran tendu pour recevoir le jour. Le vrai sujet, c'est l'instant. Un instant qui ne reviendra pas.\r\n\r\nMai 1895, galerie Durand-Ruel, à Paris. Vingt cathédrales alignées sur les murs, du bleu de l'aube au rouge du couchant. Il en demande quinze mille francs pièce, un prix qui fait suffoquer le tout-Paris. Un journaliste sort de là bouleversé et publie un article furieux : il supplie le président de la République d'acheter les vingt d'un bloc, pour la nation, parce que sinon elles ne se reverront jamais. Ce journaliste s'appelle Georges Clemenceau.\r\n\r\nL'État n'a pas acheté. Les toiles sont parties une par une, aux quatre coins du monde. En 1994, le musée où tu as commencé en a fait revenir plusieurs, empruntées partout, le temps d'une exposition. Puis elles se sont redispersées.\r\n\r\nAlors il te reste l'originale, et c'est de loin le mieux. Reviens demain, à une autre heure : ce ne sera pas la même. C'était Rouen, c'était la lumière. Prends soin de toi, et à bientôt pour une autre balade.",
+      "hash": "f48720bc",
+      "chars": 1654,
+      "existingSegments": {
+        "es": "seed-100-rouen-cathedrale-de-monet-scene-7-seg-es",
+        "it": "seed-100-rouen-cathedrale-de-monet-scene-7-seg-it",
+        "de": "seed-100-rouen-cathedrale-de-monet-scene-7-seg-de",
+        "en": "seed-100-rouen-cathedrale-de-monet-scene-7-seg-en"
+      }
+    }
+  ]
+}

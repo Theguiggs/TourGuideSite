@@ -1,0 +1,439 @@
+@@LANG=en
+@@TITLE=Strasbourg — The Builders' Cathedral
+@@DESC=Art & Famous Figures — 142 meters of pink sandstone: the tallest building in the world for two centuries, and its secrets.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-0
+@@STITLE=Rue Mercière
+Stay at the start of the street, don't get closer yet. This is where you need to see it for the first time: at the end of this corridor of houses, a pink cliff bars the sky. It's too big for the street, too big for the city — that's exactly the effect its builders wanted, and it's still working after six centuries.
+
+A few numbers, to grasp the scale. The spire peaks at one hundred forty-two meters. It's completed in 1439 — before the discovery of America. And from 1647 to 1874, for more than two centuries, this building is quite simply the tallest structure in the world. Not the tallest church: the tallest human structure, of any kind. Entire generations lived and died without humanity knowing how to build higher than what you're looking at.
+
+The craziest part? No steel, no concrete, no machines. Hands, ropes, wooden scaffolding — and pink sandstone torn from the Vosges, this sandstone that changes color with the hours, golden in the morning, blood-red at sunset. Victor Hugo, dazzled, will speak of "a prodigy of the gigantic and the delicate."
+
+So here's my promise: I'm going to introduce you to the people who made this. An architect who became a legend, a student curing his vertigo, a clock that calculates the end of time, plans drawn on sheepskin — and the secret of a missing tower.
+
+Move forward, now. It grows with every step.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-1
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Here you are at the foot of the façade. Step back as far as the square allows, and look at it like a fabric: hundreds of thin colonnettes stretched in front of the wall, like the strings of an instrument. That's the signature of this place: a double façade, a stone wall dressed in a stone lattice, set a few centimeters in front of it. When light passes behind it, the entire building seems to vibrate.
+
+The man who launched this project in 1277 is named Erwin de Steinbach. We know almost nothing about him, and yet he's one of the rare medieval master builders whose name has crossed the centuries — five hundred years later, the young Goethe will devote a fiery text to him that will turn Erwin into a Romantic hero, the Gothic genius par excellence.
+
+Come closer to the right-hand portal. There you'll see wise young maidens, and facing them a smiling seducer holding out an apple. Walk around the figure, if you can: his back is crawling with carved toads and snakes. The Tempter, magnificent from the front, rotten from behind. The builders knew how to preach in stone.
+
+Now, follow the façade to the right, to the foot of the tower. Let's talk about vertigo.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-2
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Lift your head, slowly, up to the platform — that balcony perched at sixty-six meters. For centuries, watchmen lived up there day and night, scanning the rooftops: in a city of wood, spotting a fire an hour too late meant losing an entire district.
+
+In 1770, a twenty-year-old law student arrives in Strasbourg, brilliant, tormented, and afflicted with a dreadful fear of heights. His method for curing it: climbing. Again and again, he climbs the more than three hundred steps, forces himself to stay at the edge of the void, comes back down, climbs again the next day. It works. The student's name is Goethe, he'll become the greatest writer in the German language, and he'll tell the story of this duel between himself and this tower for the rest of his life.
+
+Above the platform, look at what follows: an openwork octagonal tower, then the lace-like spire, where spiral staircases climb into the open sky. Several architects worked on it in succession — it's Jean Hültz, who came from Cologne, who places the crowning piece in 1439. Different generations, different styles, and yet a single gesture, as if one and the same hand had drawn it all.
+
+Now go around the building to the right, toward the place du Château. Two marvels await you on the south side.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-3
+@@STITLE=Place du Château
+You're walking along the south flank of the cathedral. Behind this doorway hide the two stars of the place.
+
+First, the astronomical clock, tall as a building. Its current mechanism dates from 1842, signed by Jean-Baptiste Schwilgué, a man obsessed with precision who waited for this project his whole life. His machine calculates leap years, equinoxes, eclipses, and even the date of Easter — the great headache of calendars — for centuries to come. Every day, at half past noon, the automatons parade: the ages of life pass before Death, the apostles greet Christ, and the rooster crows three times, as at Peter's denial. The rooster from the very first clock still exists — you can go greet it at the palais Rohan, just a few steps away. And of course, they say the clockmaker's eyes were put out so he could never build another one anywhere else. Every great clock in Europe drags this legend along; this one carries it better than the rest.
+
+Next to it, look for the pilier des Anges: a single column where the angels of the Last Judgment rise tier upon tier toward the vault. On the balustrade opposite, a small stone man watches. Legend says he's a rival sculptor, come to wait for the pillar to collapse. Eight centuries he's been waiting.
+
+What's next is thirty meters away: the house where the plans sleep.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-4
+@@STITLE=Musée de l'Œuvre Notre-Dame
+This beautiful gabled house is the Œuvre Notre-Dame: since the Middle Ages, the home of the cathedral's builders — the lodge, the workshops, the project's treasury. Its museum holds treasures that send a chill down your spine.
+
+First, the plans. Architectural drawings on parchment, drawn in the Middle Ages, among the oldest preserved in Europe: the façade is drawn there stroke by stroke, taller than a man. You can lay eyes on the draft of a masterpiece, seven centuries old.
+
+Then the originals. Many of the statues you see outside are copies: the real ones are here, sheltered. Including two absolute marvels: the Triumphant Church and the blindfolded Synagogue, her spear broken — Gothic sculpture at its peak, overwhelming in its gentleness despite its message from another age. And it's said that one of Erwin's daughters, Sabine, wielded the chisel right here — a lovely legend, no proof, but we like the idea that a woman is hiding somewhere in this story of men.
+
+This instinct for sheltering things saved the essentials: in 1939, the medieval stained-glass windows are dismantled and evacuated; seized during the war, they'll be found in 1945 in a German salt mine, before being returned to their windows.
+
+Two minutes away, a palace fancies itself Versailles. Come along.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-5
+@@STITLE=Palais Rohan
+This great classical palace set on the Ill is the palais Rohan, raised in the 1730s to the plans of Robert de Cotte, the king's first architect. After four centuries of Gothic, the Rohan family — cardinal-bishops rolling in gold — wanted to show that Strasbourg could also speak French: columns, balustrades, gilded salons. It's even said the founder of the line owed his fortune to a rumor: that he was a hidden son of Louis XIV.
+
+It's here, in May 1770, that a fourteen-year-old girl spends her first night in France: Marie-Antoinette, on her way to marry the future Louis XVI. The whole city is celebrating; no one guesses what's to come. Fifteen years later, another Cardinal de Rohan, bishop here, will get himself tangled up in the famous Affair of the Queen's Necklace.
+
+Today, the palace houses three museums — decorative arts, fine arts, archaeology. The rooster from the first clock awaits you there, a promise kept.
+
+Cross now toward the west, three short minutes, to a square where the world was changed with lead.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-6
+@@STITLE=Place Gutenberg
+In the center of the square, a bronze man shows you a page. Lean in: it reads "And there was light." This is Gutenberg, and this statue by David d'Angers recalls an episode that even many people of Strasbourg have forgotten: it's here that it all began.
+
+Around 1434, Gutenberg leaves Mainz, his hometown, and settles in Strasbourg for about ten years. Officially, he polishes mirrors for pilgrims. Unofficially, he's after something else. In 1439, a lawsuit opens a window onto it for us: the heirs of a deceased business partner drag him before the city's judges, and the trial records speak of a press, of lead, of parts taken apart so no one can understand them — of a mysterious "venture and art" that the partners had sworn to keep secret. It's the oldest written trace of the invention of printing.
+
+Gutenberg will go back to Mainz to finish his Bible and reap the glory. But it's in this city of builders that he searched, failed, and started over. A cathedral of stone over there, a cathedral of paper here: two ways of raising the mind.
+
+We have one secret left to crack — the most visible of them all. Come back toward the square in front, we'll finish facing her.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-7
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Here we are. Look at her one last time, in full. Don't you notice something? A spire on the left... and nothing on the right. A flat stump, exactly where the program for great cathedrals demanded a second tower, twin to the first.
+
+Why was it never built? Eight centuries of debate, no certainty. Money, some say. The ground, say others — because here's a dizzying secret: this colossal monument rests on a former marsh, carried on oak piles driven into the mud. Adding another tower might have meant tempting fate. And then there's a third hypothesis, my favorite: they stopped because it was perfect as it was. The asymmetry became a signature — this single-spired silhouette, recognizable among all the cathedrals in the world.
+
+But here's the most beautiful secret of all: this building site has never closed. The first stone dates from 1015 — more than a thousand years ago. And the Œuvre Notre-Dame, the builders' house you saw earlier, still exists: its stonecutters are still working, every week, replacing block by block the pink sandstone that wind and rain devour. The tallest monument in the world of yesterday was never finished — and that's exactly why it's alive. The builders aren't an old legend: they've just changed scaffolding.
+
+Once night falls, the façade lights up and the sandstone seems to breathe. Stay a while, if you can. Thank you for looking up with me — and next time you spot a crane above a city, spare a thought for Erwin.
+
+@@LANG=es
+@@TITLE=Estrasburgo — La catedral de los constructores
+@@DESC=Arte y personajes célebres — 142 metros de arenisca rosa: el edificio más alto del mundo durante dos siglos, y sus secretos.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-0
+@@STITLE=Rue Mercière
+Quédate al principio de la calle, no te acerques todavía. Aquí es donde hay que verla por primera vez: al final de este pasillo de casas, un acantilado rosa corta el cielo. Es demasiado grande para la calle, demasiado grande para la ciudad; es exactamente el efecto que sus constructores querían causarte, y lleva funcionando seis siglos.
+
+Algunas cifras, para tomar la medida. La aguja culmina a ciento cuarenta y dos metros. Se termina en 1439, antes del descubrimiento de América. Y de 1647 a 1874, durante más de dos siglos, este edificio es sencillamente la construcción más alta del mundo. No la iglesia más alta: la construcción humana más alta, de cualquier categoría. Generaciones enteras vivieron y murieron sin que la humanidad supiera construir más alto que lo que estás mirando.
+
+¿Lo más loco? Sin acero, sin hormigón, sin máquinas. Manos, cuerdas, andamios de madera, y arenisca rosa arrancada a los Vosgos, esa arenisca que cambia de color con las horas, dorada por la mañana, sangre al ocaso. Victor Hugo, deslumbrado, hablará de un «prodigio de lo gigantesco y de lo delicado».
+
+Así que aquí va mi promesa: te voy a presentar a quienes hicieron esto. Un arquitecto convertido en leyenda, un estudiante curando su vértigo, un reloj que calcula el fin de los tiempos, planos sobre piel de oveja, y el secreto de una torre que falta.
+
+Avanza, ahora. Crece a cada paso.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-1
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Ya estás al pie de la fachada. Retrocede tanto como te lo permita la plaza, y mírala como un tejido: cientos de finas columnillas tensadas frente al muro, como las cuerdas de un instrumento. Es la firma de este lugar: una fachada doble, un muro de piedra vestido con una celosía de piedra, colocada unos centímetros delante de él. Cuando la luz pasa por detrás, todo el edificio parece vibrar.
+
+El hombre que lanzó esta obra en 1277 se llama Erwin de Steinbach. Casi no sabemos nada de él, y sin embargo es uno de los pocos maestros de obra medievales cuyo nombre ha atravesado los siglos; quinientos años después, el joven Goethe le dedicará un texto encendido que hará de Erwin un héroe romántico, el genio gótico por excelencia.
+
+Acércate al portal de la derecha. Verás ahí a sabias doncellas, y frente a ellas a un seductor sonriente que tiende una manzana. Da la vuelta al personaje, si puedes: su espalda hierve de sapos y serpientes esculpidos. El Tentador, magnífico de frente, podrido por detrás. Los constructores sabían predicar en piedra.
+
+Ahora, bordea la fachada hacia la derecha, hasta el pie de la torre. Vamos a hablar de vértigo.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-2
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Levanta la cabeza, despacio, hasta la plataforma, ese balcón encaramado a sesenta y seis metros. Durante siglos, unos vigías vivieron allí día y noche, escrutando los tejados: en una ciudad de madera, detectar un incendio una hora demasiado tarde suponía perder todo un barrio.
+
+En 1770 llega a Estrasburgo un estudiante de derecho de veinte años, brillante, atormentado, y afligido por un vértigo espantoso. Su método para curarse: subir. Una y otra vez, sube los más de trescientos peldaños, se obliga a permanecer al borde del vacío, vuelve a bajar, sube de nuevo al día siguiente. Funciona. El estudiante se llama Goethe, se convertirá en el más grande escritor en lengua alemana, y contará toda su vida ese duelo entre él y esta torre.
+
+Por encima de la plataforma, mira lo que sigue: una torre octogonal calada, luego la aguja de encaje, donde unas escaleras de caracol suben a cielo abierto. Varios arquitectos se sucedieron en la obra; es Jean Hültz, venido de Colonia, quien coloca el remate en 1439. Generaciones distintas, estilos distintos, y sin embargo un único gesto, como si una misma mano lo hubiera dibujado todo.
+
+Ahora rodea el edificio por la derecha, hacia la place du Château. Dos maravillas te esperan en el lado sur.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-3
+@@STITLE=Place du Château
+Bordeas el flanco sur de la catedral. Tras este portal se esconden las dos estrellas del lugar.
+
+Primero, el reloj astronómico, alto como un edificio. Su mecanismo actual data de 1842, firmado por Jean-Baptiste Schwilgué, un obsesionado con la precisión que esperó esta obra toda su vida. Su máquina calcula los años bisiestos, los equinoccios, los eclipses e incluso la fecha de Pascua, el quebradero de cabeza de los calendarios, para los siglos venideros. Cada día, a las doce y media, desfilan los autómatas: las edades de la vida pasan ante la Muerte, los apóstoles saludan a Cristo, y el gallo canta tres veces, como en la negación de Pedro. El gallo del primerísimo reloj todavía existe; podrás saludarlo en el palais Rohan, a dos pasos. Y por supuesto, se cuenta que le sacaron los ojos al relojero para que no volviera a construir otro en ningún otro sitio. Todos los grandes relojes de Europa arrastran esta leyenda; este la lleva mejor que los demás.
+
+Al lado, busca el pilier des Anges: una columna única donde los ángeles del Juicio Final se escalonan hacia la bóveda. En la balaustrada de enfrente, un hombrecillo de piedra observa. Se cuenta que es un escultor rival, venido a esperar a que la columna se derrumbe. Ocho siglos que espera.
+
+Lo siguiente está a treinta metros: la casa donde duermen los planos.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-4
+@@STITLE=Musée de l'Œuvre Notre-Dame
+Esta hermosa casa de aguilones es la Œuvre Notre-Dame: desde la Edad Media, la casa de los constructores de la catedral, la logia, los talleres, la caja de la obra. Su museo guarda tesoros que dan escalofríos.
+
+Primero, los planos. Dibujos de arquitectura sobre pergamino, trazados en la Edad Media, entre los más antiguos conservados de Europa: la fachada está dibujada ahí trazo a trazo, más alta que un hombre. Puedes posar la vista en el borrador de una obra maestra, con siete siglos de antigüedad.
+
+Luego los originales. Muchas de las estatuas que ves fuera son copias: las verdaderas están aquí, a resguardo. Entre ellas, dos maravillas absolutas: la Iglesia triunfante y la Sinagoga con los ojos vendados, su lanza rota; la escultura gótica en su culmen, conmovedora de dulzura pese a su mensaje de otro tiempo. Y se cuenta que una hija de Erwin, Sabine, habría manejado el cincel aquí mismo; bonita leyenda, sin prueba alguna, pero nos gusta la idea de que una mujer se esconda en esta historia de hombres.
+
+Este reflejo de poner a resguardo salvó lo esencial: en 1939, las vidrieras medievales se desmontan y se evacúan; confiscadas durante la guerra, se encontrarán en 1945 en una mina de sal alemana, antes de devolverlas a sus ventanas.
+
+A dos minutos, un palacio se cree Versalles. Ven.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-5
+@@STITLE=Palais Rohan
+Este gran palacio clásico posado sobre el Ill es el palais Rohan, levantado en la década de 1730 según los planos de Robert de Cotte, primer arquitecto del rey. Tras cuatro siglos de gótico, la familia Rohan, cardenales-obispos cubiertos de oro, quería mostrar que Estrasburgo también sabía hablar francés: columnas, balaustradas, salones dorados. Se cuenta incluso que el primero del linaje debía su fortuna a un rumor: habría sido un hijo oculto de Luis XIV.
+
+Es aquí, en mayo de 1770, donde una adolescente de catorce años pasa su primera noche en Francia: María Antonieta, camino de casarse con el futuro Luis XVI. Toda la ciudad está de fiesta; nadie adivina lo que vendrá. Quince años después, otro cardenal de Rohan, obispo aquí, se perderá en el famoso asunto del collar de la reina.
+
+Hoy, el palacio alberga tres museos: artes decorativas, bellas artes, arqueología. El gallo del primer reloj te espera allí, promesa cumplida.
+
+Cruza ahora hacia el oeste, tres pequeños minutos, hasta una plaza donde se cambió el mundo con plomo.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-6
+@@STITLE=Place Gutenberg
+En el centro de la plaza, un hombre de bronce te muestra una página. Inclínate: se lee «Y la luz fue». Es Gutenberg, y esta estatua de David d'Angers recuerda un episodio que hasta muchos estrasburgueses han olvidado: fue aquí donde todo empezó.
+
+Hacia 1434, Gutenberg deja Maguncia, su ciudad, y se instala en Estrasburgo durante una decena de años. Oficialmente, pule espejos para los peregrinos. Extraoficialmente, busca otra cosa. En 1439, un proceso judicial nos abre una ventana: los herederos de un socio fallecido lo arrastran ante los jueces de la ciudad, y las actas del proceso hablan de una prensa, de plomo, de piezas que se desmontan para que nadie entienda; de una misteriosa «aventura y arte» que los socios habían jurado mantener en secreto. Es el rastro escrito más antiguo de la invención de la imprenta.
+
+Gutenberg volverá a Maguncia a terminar su Biblia y a cosechar la gloria. Pero es en esta ciudad de constructores donde buscó, fracasó, volvió a empezar. Una catedral de piedra allá, una catedral de papel aquí: dos maneras de elevar el espíritu.
+
+Nos queda un secreto por desvelar, el más visible de todos. Vuelve hacia la plaza, terminamos frente a ella.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-7
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Aquí estamos. Mírala una última vez, entera. ¿No notas algo? Una aguja a la izquierda... y nada a la derecha. Un muñón plano, justo donde el programa de las grandes catedrales exigía una segunda torre, gemela de la primera.
+
+¿Por qué nunca se construyó? Ocho siglos de debates, ninguna certeza. El dinero, dicen unos. El suelo, dicen otros; porque he aquí un secreto vertiginoso: este monumento colosal descansa sobre un antiguo pantano, sostenido por pilotes de roble hundidos en el barro. Añadir una torre era quizás tentar al diablo. Y luego está la tercera hipótesis, mi preferida: se detuvieron porque así era perfecto. La asimetría se convirtió en una firma, esta silueta de una sola aguja, reconocible entre todas las catedrales del mundo.
+
+Pero he aquí el secreto más hermoso: esta obra nunca ha cerrado. La primera piedra data de 1015, hace más de mil años. Y la Œuvre Notre-Dame, la casa de los constructores que has visto antes, sigue existiendo: sus canteros siguen trabajando, cada semana, reemplazando bloque a bloque la arenisca rosa que el viento y la lluvia devoran. El monumento más alto del mundo de antaño nunca se terminó, y por eso está vivo. Los constructores no son una leyenda antigua: solo han cambiado de andamio.
+
+Al caer la noche, la fachada se ilumina y la arenisca parece respirar. Quédate un momento si puedes. Gracias por levantar la vista conmigo, y la próxima vez que te cruces con una grúa sobre una ciudad, ten un pensamiento para Erwin.
+
+@@LANG=de
+@@TITLE=Straßburg — Die Kathedrale der Baumeister
+@@DESC=Kunst & berühmte Persönlichkeiten — 142 Meter rosa Sandstein: zwei Jahrhunderte lang das höchste Bauwerk der Welt, und seine Geheimnisse.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-0
+@@STITLE=Rue Mercière
+Bleib am Anfang der Straße stehen, komm noch nicht näher. Hier musst du sie zum ersten Mal sehen: am Ende dieses Häuserkorridors versperrt eine rosafarbene Klippe den Himmel. Sie ist zu groß für die Straße, zu groß für die Stadt — genau das ist der Effekt, den ihre Erbauer erzielen wollten, und er wirkt seit sechs Jahrhunderten.
+
+Ein paar Zahlen, um das Ausmaß zu begreifen. Die Turmspitze erreicht hundertzweiundvierzig Meter. Sie wird 1439 fertiggestellt — vor der Entdeckung Amerikas. Und von 1647 bis 1874, über zwei Jahrhunderte lang, ist dieses Bauwerk schlicht das höchste der Welt. Nicht die höchste Kirche: das höchste menschliche Bauwerk überhaupt, ganz gleich welcher Kategorie. Ganze Generationen lebten und starben, ohne dass die Menschheit höher zu bauen wusste als das, was du gerade betrachtest.
+
+Das Verrückteste? Kein Stahl, kein Beton, keine Maschinen. Hände, Seile, Holzgerüste — und rosa Sandstein, den Vogesen entrissen, dieser Sandstein, der mit den Tageszeiten die Farbe wechselt, golden am Morgen, blutrot bei Sonnenuntergang. Victor Hugo wird geblendet von einem „Wunder aus Gigantischem und Zartem" sprechen.
+
+Also hier mein Versprechen: ich stelle dir diejenigen vor, die das geschaffen haben. Ein Architekt, der zur Legende wurde, ein Student, der seinen Schwindel kurierte, eine Uhr, die das Ende der Zeiten berechnet, Pläne auf Schafshaut — und das Geheimnis eines fehlenden Turms.
+
+Geh jetzt weiter. Sie wächst mit jedem Schritt.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-1
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Da bist du am Fuß der Fassade. Tritt so weit zurück, wie der Platz es erlaubt, und betrachte sie wie ein Gewebe: hunderte feiner Säulchen, vor die Mauer gespannt, wie die Saiten eines Instruments. Das ist die Signatur dieses Ortes: eine doppelte Fassade, eine Steinmauer, bekleidet mit einem steinernen Netzwerk, wenige Zentimeter davor angebracht. Wenn das Licht dahinter hindurchfällt, scheint das ganze Bauwerk zu vibrieren.
+
+Der Mann, der dieses Bauvorhaben 1277 in Gang setzte, heißt Erwin von Steinbach. Man weiß fast nichts über ihn, und doch ist er einer der wenigen mittelalterlichen Baumeister, deren Name die Jahrhunderte überdauert hat — fünfhundert Jahre später wird der junge Goethe ihm einen glühenden Text widmen, der aus Erwin einen romantischen Helden macht, das gotische Genie schlechthin.
+
+Komm näher an das rechte Portal heran. Dort siehst du kluge junge Mädchen, und ihnen gegenüber einen lächelnden Verführer, der einen Apfel reicht. Umrunde die Figur, wenn du kannst: sein Rücken wimmelt von geschnitzten Kröten und Schlangen. Der Versucher, von vorne prächtig, von hinten verfault. Die Baumeister wussten im Stein zu predigen.
+
+Folge nun der Fassade nach rechts, bis zum Fuß des Turms. Wir sprechen jetzt über Höhenangst.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-2
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Heb den Kopf, langsam, bis zur Plattform — jenem Balkon, hoch oben in sechsundsechzig Metern. Jahrhundertelang lebten dort Wächter Tag und Nacht, die die Dächer absuchten: in einer Stadt aus Holz bedeutete ein eine Stunde zu spät entdeckter Brand, ein ganzes Viertel zu verlieren.
+
+1770 kommt ein zwanzigjähriger Jurastudent nach Straßburg, brillant, gequält, und mit einer schrecklichen Höhenangst geschlagen. Seine Methode, sie zu heilen: hinaufsteigen. Wieder und wieder erklimmt er die mehr als dreihundert Stufen, zwingt sich, am Rand des Abgrunds zu bleiben, steigt wieder hinab, am nächsten Tag wieder hinauf. Es funktioniert. Der Student heißt Goethe, er wird der größte Schriftsteller der deutschen Sprache werden, und er wird sein ganzes Leben lang von diesem Duell zwischen ihm und diesem Turm erzählen.
+
+Über der Plattform schau dir an, was folgt: ein durchbrochener achteckiger Turm, dann die spitzenartige Turmspitze, wo Wendeltreppen unter freiem Himmel emporsteigen. Mehrere Architekten lösten einander ab — es ist Jean Hültz, aus Köln gekommen, der 1439 die Krönung aufsetzt. Verschiedene Generationen, verschiedene Stile, und dennoch eine einzige Geste, als hätte eine einzige Hand alles gezeichnet.
+
+Umrunde nun das Bauwerk nach rechts, zur place du Château. Zwei Wunder erwarten dich auf der Südseite.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-3
+@@STITLE=Place du Château
+Du gehst an der Südflanke der Kathedrale entlang. Hinter diesem Portal verbergen sich die beiden Stars des Ortes.
+
+Zuerst die astronomische Uhr, hoch wie ein Gebäude. Ihr aktuelles Uhrwerk stammt von 1842, signiert von Jean-Baptiste Schwilgué, einem von Präzision besessenen Mann, der sein ganzes Leben auf dieses Projekt gewartet hat. Seine Maschine berechnet Schaltjahre, Tagundnachtgleichen, Finsternisse und sogar das Osterdatum — das Kopfzerbrechen der Kalender — für die kommenden Jahrhunderte. Jeden Tag, um halb eins mittags, ziehen die Automaten auf: die Lebensalter ziehen an dem Tod vorbei, die Apostel grüßen Christus, und der Hahn kräht dreimal, wie bei der Verleugnung des Petrus. Der Hahn der allerersten Uhr existiert noch — du kannst ihn im Palais Rohan begrüßen, nur wenige Schritte entfernt. Und natürlich erzählt man sich, man habe dem Uhrmacher die Augen ausgestochen, damit er nie wieder anderswo eine solche Uhr baue. Alle großen Uhren Europas schleppen diese Legende mit sich; diese hier trägt sie besser als alle anderen.
+
+Daneben such nach dem pilier des Anges: eine einzige Säule, an der sich die Engel des Jüngsten Gerichts stufenweise zum Gewölbe erheben. Auf der gegenüberliegenden Balustrade beobachtet ein kleiner steinerner Mann. Man erzählt, er sei ein rivalisierender Bildhauer, gekommen, um darauf zu warten, dass die Säule einstürzt. Seit acht Jahrhunderten wartet er.
+
+Was als Nächstes kommt, liegt dreißig Meter entfernt: das Haus, in dem die Pläne schlummern.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-4
+@@STITLE=Musée de l'Œuvre Notre-Dame
+Dieses schöne Giebelhaus ist die Œuvre Notre-Dame: seit dem Mittelalter das Haus der Baumeister der Kathedrale — die Bauhütte, die Werkstätten, die Baukasse. Ihr Museum bewahrt Schätze, die einem einen Schauer über den Rücken jagen.
+
+Zuerst die Pläne. Architekturzeichnungen auf Pergament, im Mittelalter angefertigt, unter den ältesten Europas: die Fassade ist dort Strich für Strich gezeichnet, größer als ein Mensch. Du kannst deinen Blick auf den Entwurf eines sieben Jahrhunderte alten Meisterwerks richten.
+
+Dann die Originale. Viele der Statuen, die du draußen siehst, sind Kopien: die echten sind hier, in Sicherheit. Darunter zwei absolute Wunder: die triumphierende Kirche und die mit verbundenen Augen dargestellte Synagoge mit ihrer zerbrochenen Lanze — gotische Bildhauerkunst auf ihrem Höhepunkt, ergreifend in ihrer Sanftheit trotz ihrer Botschaft aus einer anderen Zeit. Und man erzählt, eine Tochter Erwins, Sabine, habe genau hier den Meißel geführt — eine hübsche Legende, kein Beweis, aber man mag den Gedanken, dass sich in dieser Geschichte von Männern eine Frau verbirgt.
+
+Dieser Instinkt, Dinge in Sicherheit zu bringen, rettete das Wesentliche: 1939 werden die mittelalterlichen Glasfenster ausgebaut und evakuiert; während des Krieges beschlagnahmt, findet man sie 1945 in einem deutschen Salzbergwerk wieder, bevor man sie ihren Fenstern zurückgibt.
+
+Zwei Minuten entfernt hält sich ein Palast für Versailles. Komm mit.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-5
+@@STITLE=Palais Rohan
+Dieser große klassizistische Palast am Ill ist der Palais Rohan, in den 1730er-Jahren nach den Plänen von Robert de Cotte, dem ersten Architekten des Königs, errichtet. Nach vier Jahrhunderten Gotik wollte die Familie Rohan — Kardinal-Bischöfe, in Gold gebadet — zeigen, dass Straßburg auch Französisch sprechen konnte: Säulen, Balustraden, vergoldete Salons. Man erzählt sogar, der Erste der Linie habe sein Vermögen einem Gerücht zu verdanken gehabt: er sei ein heimlicher Sohn Ludwigs XIV. gewesen.
+
+Hier verbringt im Mai 1770 eine vierzehnjährige Jugendliche ihre erste Nacht in Frankreich: Marie-Antoinette, auf dem Weg, den zukünftigen Ludwig XVI. zu heiraten. Die ganze Stadt feiert; niemand ahnt, was folgen wird. Fünfzehn Jahre später wird sich ein anderer Kardinal de Rohan, hier Bischof, in der berühmten Halsbandaffäre der Königin verstricken.
+
+Heute beherbergt der Palast drei Museen — Kunstgewerbe, bildende Kunst, Archäologie. Der Hahn der ersten Uhr erwartet dich dort, ein gehaltenes Versprechen.
+
+Geh nun nach Westen, drei kurze Minuten, zu einem Platz, an dem man mit Blei die Welt verändert hat.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-6
+@@STITLE=Place Gutenberg
+In der Mitte des Platzes zeigt dir ein bronzener Mann eine Seite. Beug dich vor: dort steht „Und es ward Licht". Das ist Gutenberg, und diese Statue von David d'Angers erinnert an eine Episode, die selbst viele Straßburger vergessen haben: hier hat alles angefangen.
+
+Um 1434 verlässt Gutenberg Mainz, seine Heimatstadt, und lässt sich für rund zehn Jahre in Straßburg nieder. Offiziell poliert er Spiegel für Pilger. Inoffiziell sucht er nach etwas anderem. 1439 öffnet uns ein Prozess ein Fenster: die Erben eines verstorbenen Geschäftspartners schleppen ihn vor die Richter der Stadt, und die Prozessakten sprechen von einer Presse, von Blei, von Teilen, die man auseinandernimmt, damit niemand sie versteht — von einem geheimnisvollen „Unternehmen und Kunst", das die Partner sich zu bewahren geschworen hatten. Es ist die älteste schriftliche Spur der Erfindung des Buchdrucks.
+
+Gutenberg wird nach Mainz zurückkehren, um seine Bibel zu vollenden und den Ruhm einzufahren. Doch in dieser Stadt der Baumeister hat er gesucht, versagt, neu begonnen. Dort eine Kathedrale aus Stein, hier eine Kathedrale aus Papier: zwei Arten, den Geist zu erheben.
+
+Uns bleibt noch ein Geheimnis zu lüften — das sichtbarste von allen. Komm zurück zum Platz vor der Kathedrale, wir enden ihr gegenüber.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-7
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Da sind wir. Schau sie dir ein letztes Mal ganz an. Fällt dir nichts auf? Eine Turmspitze links... und nichts rechts. Ein flacher Stumpf, genau dort, wo das Programm der großen Kathedralen einen zweiten, zum ersten zwillingsgleichen Turm verlangte.
+
+Warum wurde er nie gebaut? Acht Jahrhunderte Debatten, keine Gewissheit. Das Geld, sagen die einen. Der Boden, sagen die anderen — denn hier ist ein schwindelerregendes Geheimnis: dieses gewaltige Bauwerk ruht auf einem ehemaligen Sumpf, getragen von Eichenpfählen, die in den Schlamm gerammt wurden. Einen weiteren Turm hinzuzufügen, hätte vielleicht bedeutet, den Teufel herauszufordern. Und dann gibt es noch die dritte Hypothese, meine Lieblingshypothese: man hörte auf, weil es so perfekt war. Die Asymmetrie wurde zu einer Signatur — diese Silhouette mit nur einer Turmspitze, unter allen Kathedralen der Welt wiederzuerkennen.
+
+Doch das schönste Geheimnis ist dieses: diese Baustelle hat nie geschlossen. Der erste Stein stammt aus dem Jahr 1015 — mehr als tausend Jahre her. Und die Œuvre Notre-Dame, das Haus der Baumeister, das du vorhin gesehen hast, existiert noch immer: ihre Steinmetze arbeiten weiterhin, jede Woche, und ersetzen Block für Block den rosa Sandstein, den Wind und Regen verschlingen. Das einst höchste Bauwerk der Welt wurde nie fertiggestellt — und genau deshalb ist es lebendig. Die Baumeister sind keine alte Legende: sie haben nur das Gerüst gewechselt.
+
+Wenn die Nacht kommt, erstrahlt die Fassade, und der Sandstein scheint zu atmen. Bleib eine Weile, wenn du kannst. Danke, dass du mit mir aufgeschaut hast — und wenn dir das nächste Mal ein Kran über einer Stadt begegnet, denk kurz an Erwin.
+
+@@LANG=it
+@@TITLE=Strasburgo — La cattedrale dei costruttori
+@@DESC=Arte e personaggi celebri — 142 metri di arenaria rosa: l'edificio più alto del mondo per due secoli, e i suoi segreti.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-0
+@@STITLE=Rue Mercière
+Resta all'inizio della strada, non avvicinarti ancora. È qui che bisogna vederla per la prima volta: in fondo a questo corridoio di case, una scogliera rosa sbarra il cielo. È troppo grande per la strada, troppo grande per la città — è esattamente l'effetto che i suoi costruttori volevano produrre, e funziona da sei secoli.
+
+Qualche cifra, per farsi un'idea. La guglia culmina a centoquarantadue metri. Viene completata nel 1439, prima della scoperta dell'America. E dal 1647 al 1874, per più di due secoli, questo edificio è semplicemente la costruzione più alta del mondo. Non la chiesa più alta: la costruzione umana più alta, in assoluto. Generazioni intere sono vissute e morte senza che l'umanità sapesse costruire più in alto di ciò che stai guardando.
+
+La cosa più folle? Niente acciaio, niente cemento, niente macchine. Mani, corde, impalcature di legno — e arenaria rosa strappata ai Vosgi, quell'arenaria che cambia colore con le ore, dorata al mattino, sangue al tramonto. Victor Hugo, abbagliato, parlerà di un «prodigio del gigantesco e del delicato».
+
+Ecco quindi la mia promessa: ti presenterò coloro che hanno fatto questo. Un architetto diventato leggenda, uno studente che curava le sue vertigini, un orologio che calcola la fine dei tempi, piani su pelle di pecora — e il segreto di una torre mancante.
+
+Avanza, ora. Cresce a ogni passo.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-1
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Eccoti ai piedi della facciata. Arretra quanto la piazza lo permette, e guardala come un tessuto: centinaia di sottili colonnine tese davanti al muro, come le corde di uno strumento. È la firma del luogo: una facciata doppia, un muro di pietra vestito con un traliccio di pietra, posto a qualche centimetro davanti a esso. Quando la luce passa da dietro, l'intero edificio sembra vibrare.
+
+L'uomo che avviò questo cantiere nel 1277 si chiama Erwin di Steinbach. Non si sa quasi nulla di lui, eppure è uno dei rari capomastri medievali il cui nome ha attraversato i secoli — cinquecento anni dopo, il giovane Goethe gli dedicherà un testo infiammato che farà di Erwin un eroe romantico, il genio gotico per eccellenza.
+
+Avvicinati al portale di destra. Vi vedrai delle sagge fanciulle, e di fronte a loro un seduttore sorridente che porge una mela. Fai il giro del personaggio, se puoi: la sua schiena brulica di rospi e serpenti scolpiti. Il Tentatore, magnifico di fronte, marcio dietro. I costruttori sapevano predicare nella pietra.
+
+Ora, costeggia la facciata verso destra, fino alla base della torre. Parliamo di vertigini.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-2
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Alza la testa, lentamente, fino alla piattaforma — quel balcone appollaiato a sessantasei metri. Per secoli, delle sentinelle vi hanno vissuto giorno e notte, scrutando i tetti: in una città di legno, individuare un incendio con un'ora di ritardo significava perdere un intero quartiere.
+
+Nel 1770 arriva a Strasburgo uno studente di legge di vent'anni, brillante, tormentato, e afflitto da vertigini spaventose. Il suo metodo per guarirne: salire. Ancora e ancora, sale i più di trecento gradini, si costringe a restare sul bordo del vuoto, ridiscende, risale il giorno dopo. Funziona. Lo studente si chiama Goethe, diventerà il più grande scrittore in lingua tedesca, e racconterà per tutta la vita questo duello tra lui e questa torre.
+
+Sopra la piattaforma, guarda ciò che segue: una torre ottagonale traforata, poi la guglia a merletto, dove scale a chiocciola salgono a cielo aperto. Diversi architetti si sono succeduti — è Jean Hültz, venuto da Colonia, a posare il coronamento nel 1439. Generazioni diverse, stili diversi, eppure un unico gesto, come se una sola mano avesse disegnato tutto.
+
+Ora aggira l'edificio verso destra, verso la place du Château. Due meraviglie ti aspettano sul lato sud.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-3
+@@STITLE=Place du Château
+Costeggi il fianco sud della cattedrale. Dietro questo portale si nascondono le due star del luogo.
+
+Prima l'orologio astronomico, alto come un palazzo. Il suo meccanismo attuale risale al 1842, firmato Jean-Baptiste Schwilgué, un ossessionato dalla precisione che ha atteso questo cantiere tutta la vita. La sua macchina calcola gli anni bisestili, gli equinozi, le eclissi e persino la data di Pasqua — il rompicapo dei calendari — per i secoli a venire. Ogni giorno, a mezzogiorno e mezza, gli automi sfilano: le età della vita passano davanti alla Morte, gli apostoli salutano Cristo, e il gallo canta tre volte, come al rinnegamento di Pietro. Il gallo del primissimo orologio esiste ancora — potrai salutarlo al palais Rohan, a due passi. E naturalmente si racconta che avrebbero cavato gli occhi all'orologiaio perché non ricominciasse mai altrove. Tutti i grandi orologi d'Europa si trascinano dietro questa leggenda; questo la porta meglio degli altri.
+
+Accanto, cerca il pilier des Anges: una colonna unica dove gli angeli del Giudizio Universale si dispongono a strati verso la volta. Sulla balaustra di fronte, un ometto di pietra osserva. Si racconta che sia uno scultore rivale, venuto ad aspettare che il pilastro crolli. Sono otto secoli che aspetta.
+
+Il seguito è a trenta metri: la casa dove dormono i piani.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-4
+@@STITLE=Musée de l'Œuvre Notre-Dame
+Questa bella casa con i frontoni è l'Œuvre Notre-Dame: fin dal Medioevo, la casa dei costruttori della cattedrale — la loggia, le officine, la cassa del cantiere. Il suo museo custodisce tesori che fanno venire i brividi.
+
+Prima i piani. Disegni architettonici su pergamena, tracciati nel Medioevo, tra i più antichi conservati in Europa: la facciata vi è disegnata tratto per tratto, più alta di un uomo. Puoi posare gli occhi sulla bozza di un capolavoro, vecchia di sette secoli.
+
+Poi gli originali. Molte delle statue che vedi fuori sono copie: le vere sono qui, al riparo. Tra cui due meraviglie assolute: la Chiesa trionfante e la Sinagoga con gli occhi bendati, la sua lancia spezzata — la scultura gotica al suo apice, commovente di dolcezza nonostante il suo messaggio di un'altra epoca. E si racconta che una figlia di Erwin, Sabine, avrebbe maneggiato lo scalpello proprio qui — bella leggenda, nessuna prova, ma ci piace l'idea che una donna si nasconda in questa storia di uomini.
+
+Questo riflesso di mettere al riparo ha salvato l'essenziale: nel 1939, le vetrate medievali vengono smontate ed evacuate; sequestrate durante la guerra, verranno ritrovate nel 1945 in una miniera di sale tedesca, prima di essere restituite alle loro finestre.
+
+A due minuti, un palazzo si crede Versailles. Vieni.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-5
+@@STITLE=Palais Rohan
+Questo grande palazzo classico posato sull'Ill è il palais Rohan, eretto negli anni 1730 su progetto di Robert de Cotte, primo architetto del re. Dopo quattro secoli di gotico, la famiglia Rohan — cardinali-vescovi coperti d'oro — voleva mostrare che Strasburgo sapeva anche parlare francese: colonne, balaustre, saloni dorati. Si racconta persino che il primo della stirpe dovesse la sua fortuna a una voce: sarebbe stato un figlio nascosto di Luigi XIV.
+
+È qui, nel maggio 1770, che un'adolescente di quattordici anni trascorre la sua prima notte in Francia: Maria Antonietta, in viaggio per sposare il futuro Luigi XVI. Tutta la città è in festa; nessuno immagina il seguito. Quindici anni dopo, un altro cardinale de Rohan, qui vescovo, si perderà nella famosa vicenda della collana della regina.
+
+Oggi, il palazzo ospita tre musei — arti decorative, belle arti, archeologia. Il gallo del primo orologio ti aspetta lì, promessa mantenuta.
+
+Attraversa ora verso ovest, tre brevi minuti, fino a una piazza dove si è cambiato il mondo con il piombo.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-6
+@@STITLE=Place Gutenberg
+Al centro della piazza, un uomo di bronzo ti mostra una pagina. Chinati: vi si legge «E la luce fu». È Gutenberg, e questa statua di David d'Angers ricorda un episodio che persino molti strasburghesi hanno dimenticato: è qui che tutto è cominciato.
+
+Verso il 1434, Gutenberg lascia Magonza, la sua città, e si stabilisce a Strasburgo per una decina d'anni. Ufficialmente, lucida specchi per i pellegrini. Ufficiosamente, cerca altro. Nel 1439, un processo ci apre una finestra: gli eredi di un socio defunto lo trascinano davanti ai giudici della città, e i verbali del processo parlano di una pressa, di piombo, di pezzi smontati perché nessuno capisca — di una misteriosa «impresa e arte» che i soci avevano giurato di tenere segreta. È la più antica traccia scritta dell'invenzione della stampa.
+
+Gutenberg tornerà a Magonza a completare la sua Bibbia e a raccogliere la gloria. Ma è in questa città di costruttori che ha cercato, fallito, ricominciato. Una cattedrale di pietra là, una cattedrale di carta qui: due modi di elevare lo spirito.
+
+Ci resta un segreto da svelare — il più visibile di tutti. Torna verso il sagrato, finiamo di fronte a lei.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-7
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Eccoci qui. Guardala un'ultima volta, per intero. Non noti nulla? Una guglia a sinistra... e niente a destra. Un moncone piatto, proprio dove il programma delle grandi cattedrali richiedeva una seconda torre, gemella della prima.
+
+Perché non fu mai costruita? Otto secoli di dibattiti, nessuna certezza. Il denaro, dicono alcuni. Il terreno, dicono altri — perché ecco un segreto vertiginoso: questo monumento colossale poggia su un antico pantano, sostenuto da pali di quercia conficcati nel fango. Aggiungere una torre significava forse tentare il diavolo. E poi c'è la terza ipotesi, la mia preferita: ci si fermò perché così era perfetto. L'asimmetria è diventata una firma — questa sagoma a una sola guglia, riconoscibile tra tutte le cattedrali del mondo.
+
+Ma ecco il segreto più bello: questo cantiere non ha mai chiuso. La prima pietra risale al 1015 — più di mille anni fa. E l'Œuvre Notre-Dame, la casa dei costruttori che hai visto poco fa, esiste ancora: i suoi scalpellini lavorano ancora, ogni settimana, sostituendo blocco per blocco l'arenaria rosa che il vento e la pioggia divorano. Il monumento più alto del mondo di un tempo non è mai stato terminato — ed è per questo che è vivo. I costruttori non sono una leggenda antica: hanno solo cambiato impalcatura.
+
+Quando scende la notte, la facciata si illumina e l'arenaria sembra respirare. Resta un momento se puoi. Grazie per aver alzato gli occhi con me — e la prossima volta che incontrerai una gru sopra una città, abbi un pensiero per Erwin.
+
+@@LANG=nl
+@@TITLE=Straatsburg — De kathedraal van de bouwmeesters
+@@DESC=Kunst & beroemde figuren — 142 meter roze zandsteen: twee eeuwen lang het hoogste bouwwerk ter wereld, en zijn geheimen.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-0
+@@STITLE=Rue Mercière
+Blijf aan het begin van de straat staan, kom nog niet dichterbij. Hier moet je haar voor het eerst zien: aan het eind van deze huizengang verspert een roze klif de hemel. Ze is te groot voor de straat, te groot voor de stad — dat is precies het effect dat haar bouwers wilden bereiken, en het werkt al zes eeuwen.
+
+Enkele cijfers, om de maat te nemen. De torenspits piekt op honderdtweeënveertig meter. Ze wordt voltooid in 1439 — vóór de ontdekking van Amerika. En van 1647 tot 1874, meer dan twee eeuwen lang, is dit gebouw eenvoudigweg het hoogste bouwwerk ter wereld. Niet de hoogste kerk: het hoogste menselijke bouwwerk, in welke categorie dan ook. Hele generaties leefden en stierven zonder dat de mensheid hoger wist te bouwen dan wat je nu bekijkt.
+
+Het gekste? Geen staal, geen beton, geen machines. Handen, touwen, houten steigers — en roze zandsteen, aan de Vogezen ontrukt, die zandsteen die van kleur verandert met de uren, goudkleurig 's ochtends, bloedrood bij zonsondergang. Victor Hugo, verblind, zal spreken van een "wonder van het gigantische en het delicate".
+
+Dus hier is mijn belofte: ik ga je voorstellen aan degenen die dit gemaakt hebben. Een architect die een legende werd, een student die zijn hoogtevrees genas, een klok die het einde der tijden berekent, plannen op schapenvel — en het geheim van een ontbrekende toren.
+
+Loop nu verder. Ze groeit met elke stap.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-1
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Daar sta je aan de voet van de gevel. Ga zo ver mogelijk achteruit als het plein toelaat, en bekijk haar als een weefsel: honderden dunne zuiltjes, gespannen voor de muur, als de snaren van een instrument. Dat is het handelsmerk van deze plek: een dubbele gevel, een stenen muur gekleed in een stenen traliewerk, enkele centimeters ervoor geplaatst. Wanneer het licht erachter doorvalt, lijkt het hele gebouw te trillen.
+
+De man die dit bouwproject in 1277 lanceerde, heet Erwin von Steinbach. We weten bijna niets over hem, en toch is hij een van de weinige middeleeuwse bouwmeesters wiens naam de eeuwen heeft doorstaan — vijfhonderd jaar later zal de jonge Goethe hem een vurige tekst wijden die van Erwin een romantische held maakt, het gotische genie bij uitstek.
+
+Kom dichter bij het rechterportaal. Daar zie je wijze jonge meisjes, en tegenover hen een glimlachende verleider die een appel aanreikt. Loop om de figuur heen, als je kunt: zijn rug krioelt van gebeeldhouwde padden en slangen. De Verleider, prachtig van voren, verrot van achteren. De bouwmeesters wisten in steen te preken.
+
+Volg nu de gevel naar rechts, tot aan de voet van de toren. We gaan het over hoogtevrees hebben.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-2
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Hef je hoofd, langzaam, tot aan het platform — dat balkon, hoog op zesenzestig meter. Eeuwenlang leefden er wachters, dag en nacht, die de daken afspeurden: in een stad van hout betekende een brand die een uur te laat werd opgemerkt, het verlies van een hele wijk.
+
+In 1770 komt een twintigjarige rechtenstudent aan in Straatsburg, briljant, gekweld, en geplaagd door een verschrikkelijke hoogtevrees. Zijn methode om ervan te genezen: klimmen. Steeds opnieuw beklimt hij de meer dan driehonderd treden, dwingt zichzelf aan de rand van de afgrond te blijven, daalt weer af, klimt de volgende dag opnieuw. Het werkt. De student heet Goethe, hij zal de grootste schrijver in de Duitse taal worden, en hij zal zijn hele leven vertellen over dit duel tussen hem en deze toren.
+
+Boven het platform, kijk naar wat erop volgt: een doorbroken achthoekige toren, dan de kanten torenspits, waar wenteltrappen onder de open hemel omhoog klimmen. Verschillende architecten volgden elkaar op — het is Jean Hültz, gekomen uit Keulen, die in 1439 de bekroning plaatst. Verschillende generaties, verschillende stijlen, en toch één enkel gebaar, alsof één en dezelfde hand alles had getekend.
+
+Loop nu om het gebouw heen naar rechts, richting de place du Château. Twee wonderen wachten je aan de zuidkant.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-3
+@@STITLE=Place du Château
+Je loopt langs de zuidflank van de kathedraal. Achter deze poort verbergen zich de twee sterren van de plek.
+
+Eerst het astronomische uurwerk, hoog als een gebouw. Het huidige mechanisme dateert uit 1842, gesigneerd door Jean-Baptiste Schwilgué, een op precisie geobsedeerde man die zijn hele leven op dit project heeft gewacht. Zijn machine berekent schrikkeljaren, equinoxen, verduisteringen en zelfs de datum van Pasen — het hoofdpijndossier van de kalenders — voor de komende eeuwen. Elke dag, om half een 's middags, defileren de automaten: de levensfasen trekken voorbij de Dood, de apostelen groeten Christus, en de haan kraait driemaal, zoals bij de verloochening van Petrus. De haan van de allereerste klok bestaat nog steeds — je kunt hem begroeten in het palais Rohan, een paar passen verderop. En natuurlijk wordt er verteld dat men de ogen van de klokkenmaker zou hebben uitgestoken, zodat hij nooit ergens anders opnieuw kon beginnen. Alle grote klokken van Europa slepen deze legende met zich mee; deze draagt haar beter dan de andere.
+
+Ernaast, zoek de pilier des Anges: een enkele zuil waarop de engelen van het Laatste Oordeel zich trapsgewijs naar het gewelf verheffen. Op de balustrade ertegenover kijkt een klein stenen mannetje toe. Er wordt verteld dat hij een rivaliserende beeldhouwer is, gekomen om te wachten tot de pijler instort. Acht eeuwen wacht hij al.
+
+Het vervolg ligt dertig meter verderop: het huis waar de plannen slapen.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-4
+@@STITLE=Musée de l'Œuvre Notre-Dame
+Dit mooie huis met puntgevels is de Œuvre Notre-Dame: sinds de middeleeuwen het huis van de bouwmeesters van de kathedraal — de bouwloods, de werkplaatsen, de bouwkas. Haar museum bewaart schatten die je koude rillingen bezorgen.
+
+Eerst de plannen. Architectuurtekeningen op perkament, getekend in de middeleeuwen, tot de oudste bewaarde in Europa: de gevel is er streep voor streep getekend, groter dan een mens. Je kunt je ogen laten rusten op de kladversie van een meesterwerk, zeven eeuwen oud.
+
+Dan de originelen. Veel van de beelden die je buiten ziet, zijn kopieën: de echte staan hier, veilig opgeborgen. Waaronder twee absolute wonderen: de zegevierende Kerk en de geblinddoekte Synagoge, met haar gebroken speer — gotische beeldhouwkunst op haar hoogtepunt, overweldigend zacht ondanks haar boodschap uit een andere tijd. En er wordt verteld dat een dochter van Erwin, Sabine, hier zelf de beitel zou hebben gehanteerd — mooie legende, geen enkel bewijs, maar we houden van het idee dat er zich een vrouw verschuilt in dit mannenverhaal.
+
+Deze reflex om dingen te beschermen, redde het essentiële: in 1939 worden de middeleeuwse glas-in-loodramen gedemonteerd en geëvacueerd; tijdens de oorlog in beslag genomen, worden ze in 1945 teruggevonden in een Duitse zoutmijn, voordat ze aan hun ramen worden teruggegeven.
+
+Twee minuten verderop waant een paleis zich Versailles. Kom mee.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-5
+@@STITLE=Palais Rohan
+Dit grote klassieke paleis aan de Ill is het palais Rohan, opgetrokken in de jaren 1730 naar de plannen van Robert de Cotte, eerste architect van de koning. Na vier eeuwen gotiek wilde de familie Rohan — kardinaal-bisschoppen, met goud overladen — laten zien dat Straatsburg ook Frans kon spreken: zuilen, balustrades, vergulde salons. Er wordt zelfs verteld dat de eerste van de dynastie zijn fortuin te danken had aan een gerucht: hij zou een verborgen zoon van Lodewijk XIV zijn geweest.
+
+Het is hier, in mei 1770, dat een veertienjarig meisje haar eerste nacht in Frankrijk doorbrengt: Marie-Antoinette, op weg om te trouwen met de toekomstige Lodewijk XVI. De hele stad viert feest; niemand vermoedt wat komen gaat. Vijftien jaar later zal een andere kardinaal de Rohan, hier bisschop, verstrikt raken in de beruchte zaak van het halssnoer van de koningin.
+
+Vandaag herbergt het paleis drie musea — decoratieve kunsten, schone kunsten, archeologie. De haan van de eerste klok wacht je daar op, een gehouden belofte.
+
+Steek nu over naar het westen, drie korte minuten, tot een plein waar de wereld met lood werd veranderd.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-6
+@@STITLE=Place Gutenberg
+In het midden van het plein toont een bronzen man je een bladzijde. Buig je voorover: er staat "En er was licht". Dit is Gutenberg, en dit standbeeld van David d'Angers herinnert aan een episode die zelfs veel Straatsburgers zijn vergeten: hier is alles begonnen.
+
+Rond 1434 verlaat Gutenberg Mainz, zijn stad, en vestigt zich voor een tiental jaren in Straatsburg. Officieel polijst hij spiegels voor pelgrims. Officieus zoekt hij iets anders. In 1439 opent een rechtszaak ons een venster: de erfgenamen van een overleden compagnon slepen hem voor de rechters van de stad, en de procesverbalen spreken van een pers, van lood, van onderdelen die uit elkaar worden gehaald zodat niemand ze begrijpt — van een mysterieus "avontuur en kunst" dat de compagnons hadden gezworen geheim te houden. Het is het oudste geschreven spoor van de uitvinding van de boekdrukkunst.
+
+Gutenberg zal teruggaan naar Mainz om zijn Bijbel af te maken en de roem te oogsten. Maar het is in deze stad van bouwmeesters dat hij zocht, faalde, opnieuw begon. Daar een kathedraal van steen, hier een kathedraal van papier: twee manieren om de geest te verheffen.
+
+Er blijft ons nog één geheim te ontrafelen — het zichtbaarste van allemaal. Kom terug naar het plein, we eindigen tegenover haar.
+
+@@SCENE=seed-100-strasbourg-cathedrale-des-batisseurs-scene-7
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Daar zijn we. Bekijk haar nog een laatste keer, helemaal. Merk je niets op? Een torenspits links... en niets rechts. Een platte stomp, precies waar het programma van de grote kathedralen een tweede toren eiste, tweelingzus van de eerste.
+
+Waarom is die nooit gebouwd? Acht eeuwen discussie, geen zekerheid. Het geld, zeggen sommigen. De grond, zeggen anderen — want hier is een duizelingwekkend geheim: dit kolossale monument rust op een voormalig moeras, gedragen door eiken palen die in de modder zijn geheid. Nog een toren toevoegen was misschien de duivel tarten. En dan is er nog de derde hypothese, mijn favoriete: men stopte omdat het zo perfect was. De asymmetrie werd een handelsmerk — deze silhouet met één enkele torenspits, herkenbaar tussen alle kathedralen ter wereld.
+
+Maar hier is het mooiste geheim: deze bouwplaats is nooit gesloten geweest. De eerste steen dateert uit 1015 — meer dan duizend jaar geleden. En de Œuvre Notre-Dame, het huis van de bouwmeesters dat je zonet zag, bestaat nog steeds: haar steenhouwers werken nog altijd, elke week, en vervangen blok voor blok de roze zandsteen die wind en regen verslinden. Het ooit hoogste monument ter wereld is nooit voltooid — en juist daarom leeft het. De bouwmeesters zijn geen oude legende: ze hebben alleen van steiger gewisseld.
+
+Als de nacht valt, licht de gevel op en lijkt de zandsteen te ademen. Blijf een moment als je kunt. Dank je voor het samen met mij omhoogkijken — en de volgende keer dat je een kraan boven een stad tegenkomt, denk dan even aan Erwin.

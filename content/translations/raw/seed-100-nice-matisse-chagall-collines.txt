@@ -1,0 +1,579 @@
+@@LANG=en
+@@TITLE=Nice — Under the Same Light
+@@DESC=Art — why the greatest painters of the twentieth century all ended up under this light.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-0
+@@STITLE=Musée Marc Chagall
+Let's start in front of this low, pale building, almost modest, set in a garden of olive and cypress trees. Don't be fooled by its discretion. Behind these walls, a painter wanted to enclose nothing less than the light of the world. Marc Chagall.
+
+Chagall was born far from here, in Russia, amid the snow and wooden houses of Vitebsk. Jewish, poor, he lived through the century and its horrors, exile, war, flight all the way to the United States. And at the end of his life, where did he set down his great work, his testament, his immense canvases of the Message biblique? Here. In Nice. Under this sky.
+
+He wanted this museum, designed it, hung the works himself, color by color. It's the first museum France ever devoted to a still-living artist. Inside, fiery reds, night blues, and a wall of blue stained glass through which the sun enters and makes the whole room vibrate.
+
+Here's the question I want to ask you, all the way up this climb. Why all of them? Why did Chagall, Matisse, Dufy, and so many others, the greatest painters of their century, end their journey here, on this hill in Nice? What were they looking for?
+
+The answer fits in one word. Light. We'll follow it, painting by painting, all the way to the top of the hill.
+
+Leave the garden and take the climb toward Cimiez, due north. Follow me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-1
+@@STITLE=Boulevard de Cimiez
+We're climbing. This wide avenue rising ahead is the boulevard de Cimiez, and it alone tells you why the artists came.
+
+In the nineteenth century, wealthy, ailing Europe discovered Nice. People fled the northern winter here, the fog, their fragile lungs. Doctors ordered it: go breathe over there, the air is bright and dry. So, on this hill, enormous white domed palaces were built for them — hotels as grand as castles, where an entire high society season would descend, trunks and servants in tow.
+
+Look at these outsized façades, these gardens, these balconies turned toward the setting sun. Queens, grand dukes, billionaires: all of them came here looking for the same thing. Gentleness, and this light that washes everything clean.
+
+The painters followed the same path, for the same reason. Except they weren't coming to heal their lungs. They were coming to heal their eyes.
+
+Keep climbing, a little short of breath, up to the most sumptuous of all these palaces, right at the top of the slope. Follow me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-2
+@@STITLE=Hôtel Régina
+Here's the king of palaces: the Excelsior Régina. It was built in 1897 for one particular guest — Queen Victoria, who came to spend her winters in Nice and occupied an entire wing. Look, at the top, the gilded crown still keeping watch.
+
+Once the queen was gone, the palace ended up as apartments. And in one of them, on the upper floors, an aging man came to settle in 1938. Henri Matisse.
+
+Matisse had arrived in Nice twenty years earlier, almost by chance, one wartime winter, in 1917. He was staying down below, near the sea. And he never left again. He said he couldn't quite believe his good fortune, every morning, rediscovering that silvery light.
+
+Here, at the Régina, he turns his apartment into a studio, an aviary, a small private paradise. He paints languid odalisques, windows open onto palm trees, interiors overflowing with color. And old, ill, bedridden, no longer able to hold a brush for long, he invents something else: he cuts pure color with scissors, like a child, and composes his cut-outs. Light, right up to his last breath.
+
+Right beside the palace, a field of ancient ruins opens up. Walk over there. Follow me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-3
+@@STITLE=Arènes de Cimiez
+These stone tiers, half-buried in the grass, are Roman arenas. Because long before the palaces and the painters, there was an entire city here, Roman, capital of a small Alpine province. It was called Cemenelum. Its arena, baths, and streets have since been uncovered.
+
+Take the measure of this place. Beneath your feet, two thousand years. Legionaries, bishops, monks, queens on holiday, painters — all of them loved this balcony perched above the sea.
+
+And look, all around, these gnarled olive trees, some very old. This light slipping between their silvery leaves, this light, trembling shade, is exactly what the painters came looking for. A clarity that doesn't burn, that caresses, that outlines shapes without hardening them.
+
+It's no accident that the museum of a man who spent his life painting that very light was placed at the edge of these arenas, in a handsome red villa.
+
+Cross the open ground toward the large house in reddish ochre. Follow me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-4
+@@STITLE=Musée Matisse
+This large blood-red villa, with its trompe-l'œil windows, dates from the seventeenth century, from the time of the Genoese merchants. Today, it houses the musée Matisse.
+
+This isn't a museum like the others. It doesn't gather the master's most expensive masterpieces — those are in New York, Paris, Moscow. Here, it's something else. It's the studio, the life, the other side of the picture. His first dark studies, then the explosion of color, all the way to the great cut-outs of his final years. An entire painter's existence, from beginning to very end, in a single house.
+
+Many of these works, Matisse wanted right here. He chose to leave his adopted city not his celebrated canvases, but the intimacy of his working life. A kind of thank-you for nearly forty years of light.
+
+Look at his favorite objects, his fabrics, his vases: you'll find, set right there, the very same ones as in his paintings. The boundary between his life and his painting had eventually disappeared.
+
+Step back out into the olive garden surrounding the arenas. Let's breathe for a moment. Follow me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-5
+@@STITLE=L'oliveraie
+Take this path beneath the olive trees. This grove is centuries old; some of these trees were already here when Cimiez was just a village perched above Nice. Sit for a second on a low wall, if you like, and look up at the light falling between the leaves.
+
+That's it, exactly there, the whole secret. This Mediterranean light isn't golden like Tuscany's, nor white and harsh like Greece's. It's silvery, almost pearly, softened by the sea. It lays a clear color on everything, but without violence. A painter sees this, and can never leave again.
+
+This garden is still alive. In spring, the cougourdons are celebrated here, those dried squashes people carve and decorate; in summer, for many years, jazz used to echo beneath these trees, late into the warm night.
+
+One painter above all sang of the bay you can just make out from here, its blues, its palm trees, its flag-decked regattas: Raoul Dufy. And he too never left this hill — even in death, as you'll see.
+
+Follow the path toward the church and the great monastery, a little further on. Follow me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-6
+@@STITLE=Monastère de Cimiez
+This Franciscan monastery has watched over Nice since the Middle Ages. Step into its church — it's modest, dim after the brightness outside. Let your eyes adjust, and look, on the walls, for large gilded wooden altarpieces.
+
+These are masterpieces, and they tell you something important: the great painters didn't arrive in Nice with Matisse. Five centuries ago, the city already had its own. This one was named Louis Bréa, the great Niçois primitive, our own Fra Angelico. He painted Virgins in golden cloaks, Christs on the cross, Pietàs of overwhelming tenderness, on this very ground, under this very sky.
+
+Bréa, Matisse, Chagall: five centuries separate them, but the same hill gathers them, the same clarity bathes them. The light of Nice didn't wait for the twentieth century to call the painters. It has been calling them all along.
+
+Step back out, and make your way to the terraced garden behind the church. But before the great panorama, stop for a moment at the small cemetery, off to the side. You need to see who rests there. Follow me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-7
+@@STITLE=Cimetière de Cimiez
+This cemetery is small, peaceful, planted with cypresses, with the city spread out far below. Many people of Nice sleep here. But two graves, here, are worth pausing for.
+
+The first, plain, set a little apart, beneath the trees: Henri Matisse. The painter who couldn't quite believe his good fortune at seeing that light again every morning now rests within it, forever, above the bay he painted so often.
+
+Not far off, another: Raoul Dufy, painter of blue regattas and festive skies. He, who had traveled the whole world, chose too to end his days on this hill.
+
+Let's take up the word from our walk: they all ended here. Ended their work, first — their finest years, their last inventions. And ended their lives too, for many of them. As though, having searched everywhere else, they had recognized here their final home. The point where one finally settles.
+
+It isn't sad, you know. Look around you: this cemetery is a balcony over the sea.
+
+Go back out, and walk to the garden balustrade in front of the church. There, all of Nice opens up. Follow me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-8
+@@STITLE=Terrasse du monastère
+Here we are at the balustrade, in front of the monastery's great garden. And suddenly, all of Nice opens up at your feet. The rooftops, the hills, and above all, immense, the bay. The blue.
+
+Really take it in, that blue. It isn't an ordinary blue. There's light inside it, it vibrates, it changes with every hour of the day. A child of Nice loved it so much that he spent his life trying to capture it in paint, a single blue, deep, absolute. His name was Yves Klein, he was born down there, in this city, and he even claimed, as a young man, to have signed the sky above his head, the way one signs a painting. That very sky. The one you're looking at.
+
+So now you understand the answer to the question I asked at the start. Why all of them? Chagall and his stained glass, Matisse and his scissors, Dufy and his regattas, Bréa and his gold, Klein and his blue.
+
+Because a painter spends their life chasing after one single thing: light. And here, on this coast, between the sea and the olive trees, it gives itself like nowhere else. Gentle, clear, generous. A painter who has seen this can never do without it again. They come, they stay, they end their days here.
+
+They're all gone now. But the light is still keeping its appointment. It's right there, before your eyes, free, offered to anyone who wants to see it. Look at it the way they looked at it.
+
+That's it. Your visit ends here, on this balcony. Stay as long as the sun is setting. It's the most beautiful painting of all, and it changes every evening. See you soon.
+
+@@LANG=es
+@@TITLE=Niza — Bajo la misma luz
+@@DESC=Arte — por qué los más grandes pintores del siglo veinte acabaron todos bajo esta luz.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-0
+@@STITLE=Musée Marc Chagall
+Empecemos delante de este edificio bajo, claro, casi modesto, situado en un jardín de olivos y cipreses. No te fíes de su discreción. Detrás de estos muros, un pintor quiso encerrar nada menos que la luz del mundo. Marc Chagall.
+
+Chagall nació lejos de aquí, en Rusia, entre la nieve y las casas de madera de Vitebsk. Judío, pobre, atravesó el siglo y sus horrores, el exilio, la guerra, la huida hasta Estados Unidos. Y al final de su vida, ¿dónde deposita su gran obra, su testamento, sus telas inmensas del Message biblique? Aquí. En Niza. Bajo este cielo.
+
+Este museo lo quiso él, lo diseñó, colgó él mismo las obras, color a color. Es el primer museo que Francia dedicó jamás a un artista todavía vivo. Dentro, rojos de fuego, azules de noche, y una pared de vidrieras azules por donde entra el sol y hace vibrar toda la sala.
+
+Esta es la pregunta que quiero hacerte, a lo largo de toda esta subida. ¿Por qué todos ellos? ¿Por qué Chagall, Matisse, Dufy, tantos otros, los más grandes pintores de su siglo, acabaron su recorrido aquí, en esta colina de Niza? ¿Qué buscaban?
+
+La respuesta cabe en una palabra. La luz. La vamos a seguir, de cuadro en cuadro, hasta lo alto de la colina.
+
+Sal del jardín y toma la subida hacia Cimiez, hacia el norte. Sígueme.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-1
+@@STITLE=Boulevard de Cimiez
+Subimos. Esta amplia avenida que asciende es el boulevard de Cimiez, y ella sola cuenta por qué vinieron los artistas.
+
+En el siglo diecinueve, la Europa rica y enferma descubrió Niza. Se venía a huir del invierno del norte, de la niebla, de los pulmones frágiles. Los médicos lo ordenaban: id a respirar allí, hace un tiempo claro y seco. Así que, en esta colina, se construyeron para ellos palacios enormes, blancos, con cúpulas, hoteles grandes como castillos, adonde bajaba toda una temporada mundana, con baúles y sirvientes.
+
+Mira estas fachadas desmesuradas, estos jardines, estos balcones vueltos hacia el sol poniente. Reinas, grandes duques, multimillonarios: todo ese mundo venía a buscar aquí lo mismo. La suavidad, y esta luz que lo lava todo.
+
+Los pintores siguieron el mismo camino, por la misma razón. Salvo que ellos no venían a curar sus pulmones. Venían a curar su mirada.
+
+Sigue subiendo, un poco falto de aliento, hasta el más fastuoso de todos estos palacios, en lo más alto de la cuesta. Sígueme.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-2
+@@STITLE=Hôtel Régina
+Aquí está el rey de los palacios: el Excelsior Régina. Se construyó en 1897 para una clienta en particular: la reina Victoria, que venía a pasar sus inviernos en Niza y ocupaba toda un ala. Mira, en lo alto, la corona dorada que todavía vela.
+
+Cuando la reina se fue, el palacio acabó convertido en apartamentos. Y en uno de ellos, en los pisos altos, un hombre ya mayor vino a instalarse en 1938. Henri Matisse.
+
+Matisse había llegado a Niza veinte años antes, casi por casualidad, un invierno de guerra, en 1917. Se alojaba abajo, cerca del mar. Y ya nunca se marchó. Decía que no lograba creerse su suerte, cada mañana, al reencontrar esa luz plateada.
+
+Aquí, en el Régina, convierte su apartamento en un taller, una pajarera, un pequeño paraíso privado. Pinta odaliscas lánguidas, ventanas abiertas a las palmeras, interiores que rebosan de colores. Y viejo, enfermo, clavado en la cama, sin poder ya sostener un pincel mucho rato, inventa otra cosa: recorta el color puro con tijeras, como un niño, y compone sus gouaches recortadas. La luz, hasta el último aliento.
+
+Justo al lado del palacio se abre un campo de ruinas antiguas. Camina hasta allí. Sígueme.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-3
+@@STITLE=Arènes de Cimiez
+Estas gradas de piedra medio enterradas en la hierba son unas arenas romanas. Porque mucho antes de los palacios y los pintores, aquí hubo toda una ciudad, romana, capital de una pequeña provincia de los Alpes. Se llamaba Cemenelum. Se han encontrado sus arenas, sus termas, sus calles.
+
+Toma la medida del lugar. Bajo tus pies, dos mil años. Legionarios, obispos, monjes, reinas de vacaciones, pintores: todos amaron este balcón asomado sobre el mar.
+
+Y mira, a tu alrededor, estos olivos nudosos, algunos muy viejos. Esta luz que se desliza entre sus hojas plateadas, esta sombra ligera, temblorosa, es exactamente lo que venían a buscar los pintores. Una claridad que no quema, que acaricia, que recorta las formas sin endurecerlas.
+
+No es casualidad que se haya instalado, al borde de estas arenas, en una hermosa villa roja, el museo de un hombre que pasó su vida pintando esa misma luz.
+
+Cruza el terraplén hacia la gran casa de color ocre rojizo. Sígueme.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-4
+@@STITLE=Musée Matisse
+Esta gran villa de un rojo sangre, con sus ventanas en trampantojo, data del siglo diecisiete, de la época de los mercaderes genoveses. Hoy alberga el musée Matisse.
+
+No es un museo como los demás. Aquí no se han reunido las obras maestras más caras del maestro; esas están en Nueva York, en París, en Moscú. Aquí es otra cosa. Es el taller, la vida, el reverso del decorado. Sus primeros ensayos oscuros, luego la explosión de colores, y hasta las grandes gouaches recortadas del final. Toda una existencia de pintor, desde el principio hasta el mismísimo final, en una sola casa.
+
+Muchas de estas obras, Matisse las quiso aquí. Eligió dejarle a su ciudad de adopción no sus telas de gloria, sino la intimidad de su trabajo. Como un agradecimiento por casi cuarenta años de luz.
+
+Mira sus objetos fetiche, sus telas, sus jarrones: encuentras, colocados ahí, los mismos que aparecen en sus cuadros. La frontera entre su vida y su pintura había acabado por desaparecer.
+
+Sal de nuevo al jardín de olivos que rodea las arenas. Vamos a respirar un instante. Sígueme.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-5
+@@STITLE=L'oliveraie
+Toma este sendero bajo los olivos. Este huerto tiene siglos; algunos árboles ya estaban aquí cuando Cimiez no era más que un pueblo colgado sobre Niza. Siéntate un segundo en un murete, si quieres, y levanta la vista hacia la luz que cae entre las hojas.
+
+Ahí está, exactamente ahí, todo el secreto. Esta luz mediterránea no es dorada como en la Toscana, ni blanca y dura como en Grecia. Es plateada, casi nacarada, suavizada por el mar. Posa sobre cada cosa un color nítido, pero sin violencia. Un pintor ve eso, y ya no puede volver a marcharse.
+
+Este jardín sigue vivo. En primavera, se celebran aquí los cougourdons, esas calabazas secas que se esculpen y decoran; en verano, durante mucho tiempo, el jazz resonó bajo estos árboles, hasta muy entrada la noche cálida.
+
+Un pintor entre todos cantó la bahía que se adivina desde aquí, sus azules, sus palmeras, sus regatas engalanadas: Raoul Dufy. Y él tampoco dejó esta colina, ni siquiera en la muerte, ya lo verás.
+
+Sigue el paseo hacia la iglesia y el gran monasterio, un poco más allá. Sígueme.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-6
+@@STITLE=Monastère de Cimiez
+Este monasterio de franciscanos vela por Niza desde la Edad Media. Entra en su iglesia: es modesta, oscura tras el resplandor de fuera. Deja que tus ojos se acostumbren, y busca, en las paredes, grandes retablos de madera dorada.
+
+Son obras maestras, y te cuentan algo importante: los pintores de genio no llegaron a Niza con Matisse. Hace cinco siglos, la ciudad ya tenía los suyos. Este se llamaba Louis Bréa, el gran primitivo niceo, nuestro Fra Angelico particular. Pintaba Vírgenes de manto dorado, Cristos en la cruz, Piedades de una dulzura conmovedora, sobre este mismo suelo, bajo este mismo cielo.
+
+Bréa, Matisse, Chagall: cinco siglos los separan, pero la misma colina los reúne, la misma claridad los baña. La luz de Niza no esperó al siglo veinte para llamar a los pintores. Los llama desde siempre.
+
+Sal de nuevo, y ve hacia el jardín en terraza, detrás de la iglesia. Pero antes del gran panorama, detente un instante en el pequeño cementerio, a un lado. Tienes que ver quién descansa allí. Sígueme.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-7
+@@STITLE=Cimetière de Cimiez
+Este cementerio es pequeño, tranquilo, plantado de cipreses, con la ciudad allá abajo. Muchos niceos duermen aquí. Pero dos tumbas, aquí, merecen que nos detengamos.
+
+La primera, sobria, un poco apartada, bajo los árboles: Henri Matisse. El pintor que no lograba creerse su suerte de volver a ver cada mañana esa luz descansa ahora dentro de ella, para siempre, sobre la bahía que tanto pintó.
+
+No lejos, otra: Raoul Dufy, el pintor de las regatas azules y los cielos en fiesta. Él, que había recorrido el mundo entero, eligió también terminar en esta colina.
+
+Retomemos la palabra de nuestro paseo: todos acabaron aquí. Acabaron su obra, primero, sus mejores años, sus últimas invenciones. Y acabaron su vida también, muchos de ellos. Como si, tras haberlo buscado todo en otra parte, hubieran reconocido aquí su última casa. El punto donde uno por fin se posa.
+
+No es triste, ¿sabes? Mira a tu alrededor: este cementerio es un balcón sobre el mar.
+
+Sal, y ve hasta la balaustrada del jardín, delante de la iglesia. Ahí se abre toda Niza. Sígueme.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-8
+@@STITLE=Terrasse du monastère
+Aquí estamos, en la balaustrada, delante del gran jardín del monasterio. Y ahí, de golpe, toda Niza se abre a tus pies. Los tejados, las colinas, y sobre todo, inmensa, la bahía. El azul.
+
+Tómalo de verdad, ese azul. No es un azul cualquiera. Hay luz dentro, vibra, cambia a cada hora del día. Un hijo de Niza lo amó tanto que pasó su vida intentando ponerlo en pintura, un solo azul, profundo, absoluto. Se llamaba Yves Klein, nació abajo, en esta ciudad, e incluso llegó a afirmar, de joven, haber firmado el cielo sobre su cabeza, como se firma un cuadro. Ese cielo. El que estás mirando.
+
+Así que ya la entiendes, la respuesta a mi pregunta del principio. ¿Por qué todos ellos? Chagall y sus vidrieras, Matisse y sus tijeras, Dufy y sus regatas, Bréa y sus dorados, Klein y su azul.
+
+Porque un pintor pasa su vida persiguiendo una sola cosa: la luz. Y aquí, en esta costa, entre el mar y los olivos, se entrega como en ningún otro lugar. Suave, clara, generosa. Un pintor que ha visto eso ya no puede prescindir de ella. Viene, se queda, acaba aquí.
+
+Todos se han ido ya. Pero la luz sigue fiel a la cita. Está ahí, ante tus ojos, gratuita, ofrecida a quien quiera verla. Mírala como ellos la miraron.
+
+Ya está. Tu visita termina aquí, en este balcón. Quédate mientras el sol desciende. Es el más hermoso de los cuadros, y cambia cada noche. Hasta pronto.
+
+@@LANG=de
+@@TITLE=Nizza — Unter demselben Licht
+@@DESC=Kunst — warum die größten Maler des zwanzigsten Jahrhunderts alle unter diesem Licht endeten.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-0
+@@STITLE=Musée Marc Chagall
+Beginnen wir vor diesem niedrigen, hellen, fast bescheidenen Gebäude, das in einem Garten aus Olivenbäumen und Zypressen liegt. Lass dich von seiner Zurückhaltung nicht täuschen. Hinter diesen Mauern wollte ein Maler nichts Geringeres einschließen als das Licht der Welt. Marc Chagall.
+
+Chagall wurde weit von hier geboren, in Russland, inmitten von Schnee und Holzhäusern in Witebsk. Jüdisch, arm, durchlebte er das Jahrhundert und seine Schrecken, das Exil, den Krieg, die Flucht bis in die Vereinigten Staaten. Und am Ende seines Lebens, wo legt er sein großes Werk nieder, sein Vermächtnis, seine riesigen Leinwände des Message biblique? Hier. In Nizza. Unter diesem Himmel.
+
+Dieses Museum wollte er, entwarf er, hängte er selbst auf, Farbe für Farbe. Es ist das erste Museum, das Frankreich jemals einem noch lebenden Künstler gewidmet hat. Im Inneren feuriges Rot, nächtliches Blau, und eine Wand aus blauen Glasfenstern, durch die die Sonne eindringt und den ganzen Saal zum Vibrieren bringt.
+
+Das ist die Frage, die ich dir während dieses ganzen Aufstiegs stellen möchte. Warum sie alle? Warum haben Chagall, Matisse, Dufy und so viele andere, die größten Maler ihres Jahrhunderts, ihren Weg hier beendet, auf diesem Hügel von Nizza? Wonach suchten sie?
+
+Die Antwort steckt in einem einzigen Wort. Das Licht. Wir werden ihm folgen, von Gemälde zu Gemälde, bis hinauf zum Gipfel des Hügels.
+
+Verlasse den Garten und nimm den Aufstieg Richtung Cimiez, genau nach Norden. Folge mir.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-1
+@@STITLE=Boulevard de Cimiez
+Wir steigen. Diese breite, aufsteigende Allee ist der boulevard de Cimiez, und sie allein erzählt dir, warum die Künstler kamen.
+
+Im neunzehnten Jahrhundert entdeckte das reiche, kranke Europa Nizza. Man floh hierher vor dem Winter des Nordens, dem Nebel, den schwachen Lungen. Die Ärzte verordneten es: geht dorthin atmen, dort ist die Luft klar und trocken. Also baute man auf diesem Hügel für sie riesige weiße Paläste mit Kuppeln, Hotels, groß wie Schlösser, in die eine ganze mondäne Saison hinabzog, mit Koffern und Dienstboten.
+
+Schau dir diese überdimensionierten Fassaden an, diese Gärten, diese Balkone, der untergehenden Sonne zugewandt. Königinnen, Großherzöge, Milliardäre: all diese Welt kam hierher, um dasselbe zu suchen. Milde, und dieses Licht, das alles reinwäscht.
+
+Die Maler folgten demselben Weg, aus demselben Grund. Nur kamen sie nicht, um ihre Lungen zu heilen. Sie kamen, um ihren Blick zu heilen.
+
+Steig weiter hinauf, etwas außer Atem, bis zum prächtigsten all dieser Paläste, ganz oben auf der Steigung. Folge mir.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-2
+@@STITLE=Hôtel Régina
+Hier ist der König der Paläste: das Excelsior Régina. Es wurde 1897 für eine ganz bestimmte Gästin gebaut, Königin Victoria, die ihre Winter in Nizza verbrachte und einen ganzen Flügel bewohnte. Schau, ganz oben, die goldene Krone, die noch immer wacht.
+
+Nachdem die Königin gegangen war, endete der Palast als Wohnungen. Und in einer davon, in den oberen Etagen, ließ sich 1938 ein alternder Mann nieder. Henri Matisse.
+
+Matisse war zwanzig Jahre zuvor in Nizza angekommen, fast zufällig, in einem Kriegswinter, 1917. Er wohnte weiter unten, nahe dem Meer. Und er reiste nie wieder ab. Er sagte, er könne sein Glück kaum fassen, jeden Morgen dieses silbrige Licht wiederzuentdecken.
+
+Hier, im Régina, macht er aus seiner Wohnung ein Atelier, eine Voliere, ein kleines privates Paradies. Er malt träge Odalisken, Fenster, die sich zu Palmen öffnen, Innenräume, die vor Farben überquellen. Und alt, krank, ans Bett gefesselt, nicht mehr in der Lage, lange einen Pinsel zu halten, erfindet er etwas anderes: er schneidet reine Farbe mit der Schere, wie ein Kind, und komponiert seine Scherenschnitte. Das Licht, bis zum letzten Atemzug.
+
+Direkt neben dem Palast öffnet sich ein Feld antiker Ruinen. Geh dorthin. Folge mir.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-3
+@@STITLE=Arènes de Cimiez
+Diese Steinstufen, halb im Gras vergraben, sind römische Arenen. Denn lange vor den Palästen und den Malern gab es hier eine ganze Stadt, römisch, Hauptstadt einer kleinen Alpenprovinz. Sie hieß Cemenelum. Man hat ihre Arena, ihre Thermen, ihre Straßen wiedergefunden.
+
+Nimm das Maß dieses Ortes. Unter deinen Füßen, zweitausend Jahre. Legionäre, Bischöfe, Mönche, Königinnen im Urlaub, Maler — alle liebten diesen Balkon über dem Meer.
+
+Und schau dir ringsum diese knorrigen Olivenbäume an, manche sehr alt. Dieses Licht, das zwischen ihren silbrigen Blättern hindurchgleitet, dieser leichte, zitternde Schatten, das ist genau das, was die Maler suchten. Eine Klarheit, die nicht brennt, die streichelt, die Formen umreißt, ohne sie zu verhärten.
+
+Es ist kein Zufall, dass man am Rand dieser Arenen, in einer schönen roten Villa, das Museum eines Mannes eingerichtet hat, der sein Leben damit verbrachte, genau dieses Licht zu malen.
+
+Überquere die Freifläche zum großen ockerroten Haus. Folge mir.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-4
+@@STITLE=Musée Matisse
+Diese große blutrote Villa mit ihren Trompe-l'œil-Fenstern stammt aus dem siebzehnten Jahrhundert, aus der Zeit der genuesischen Kaufleute. Heute beherbergt sie das musée Matisse.
+
+Das ist kein Museum wie die anderen. Man hat hier nicht die teuersten Meisterwerke des Malers versammelt — die befinden sich in New York, in Paris, in Moskau. Hier ist es etwas anderes. Es ist das Atelier, das Leben, die Kehrseite der Kulisse. Seine ersten dunklen Versuche, dann die Explosion der Farben, bis hin zu den großen Scherenschnitten seiner letzten Jahre. Ein ganzes Malerleben, vom Anfang bis zum allerletzten Ende, in einem einzigen Haus.
+
+Viele dieser Werke wollte Matisse ausdrücklich hier haben. Er entschied sich, seiner Wahlheimatstadt nicht seine ruhmreichen Leinwände zu hinterlassen, sondern die Intimität seiner Arbeit. Wie einen Dank für fast vierzig Jahre Licht.
+
+Schau dir seine Lieblingsgegenstände an, seine Stoffe, seine Vasen: du findest, dort aufgestellt, dieselben wieder, die auch auf seinen Bildern erscheinen. Die Grenze zwischen seinem Leben und seiner Malerei war schließlich verschwunden.
+
+Tritt wieder hinaus in den Olivengarten, der die Arenen umgibt. Wir atmen dort einen Moment durch. Folge mir.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-5
+@@STITLE=L'oliveraie
+Nimm diesen Pfad unter den Olivenbäumen. Dieser Hain ist jahrhundertealt; manche Bäume standen hier schon, als Cimiez nur ein Dorf war, das über Nizza hing. Setz dich, wenn du willst, einen Moment auf eine kleine Mauer und blick hinauf zu dem Licht, das zwischen den Blättern hindurchfällt.
+
+Genau da, genau dort, liegt das ganze Geheimnis. Dieses mediterrane Licht ist nicht golden wie in der Toskana, auch nicht weiß und hart wie in Griechenland. Es ist silbrig, fast perlmuttfarben, vom Meer gemildert. Es legt auf jedes Ding eine klare Farbe, aber ohne Gewalt. Ein Maler sieht das, und er kann nicht mehr weg.
+
+Dieser Garten lebt noch. Im Frühling feiert man hier die Cougourdons, jene getrockneten Kürbisse, die man schnitzt und verziert; im Sommer, lange Zeit, erklang hier Jazz unter den Bäumen, bis spät in die warme Nacht.
+
+Ein Maler vor allen anderen besang die Bucht, die man von hier erahnt, ihr Blau, ihre Palmen, ihre beflaggten Regatten: Raoul Dufy. Und auch er hat diesen Hügel nie verlassen — selbst im Tod nicht, wie du gleich sehen wirst.
+
+Folge dem Weg zur Kirche und dem großen Kloster, ein Stück weiter. Folge mir.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-6
+@@STITLE=Monastère de Cimiez
+Dieses Franziskanerkloster wacht seit dem Mittelalter über Nizza. Betritt seine Kirche — sie ist bescheiden, dunkel nach dem Glanz draußen. Lass deine Augen sich gewöhnen, und such an den Wänden große vergoldete Holzretabel.
+
+Das sind Meisterwerke, und sie erzählen dir etwas Wichtiges: die genialen Maler kamen nicht erst mit Matisse nach Nizza. Vor fünf Jahrhunderten hatte die Stadt schon ihre eigenen. Dieser hier hieß Louis Bréa, der große Primitive aus Nizza, unser eigener Fra Angelico. Er malte Jungfrauen im goldenen Mantel, Christusfiguren am Kreuz, Pietàs von überwältigender Sanftheit, auf demselben Boden, unter demselben Himmel.
+
+Bréa, Matisse, Chagall: fünf Jahrhunderte trennen sie, doch derselbe Hügel vereint sie, dieselbe Klarheit badet sie. Das Licht von Nizza hat nicht erst auf das zwanzigste Jahrhundert gewartet, um die Maler zu rufen. Es ruft sie seit jeher.
+
+Tritt wieder hinaus und geh zum Terrassengarten hinter der Kirche. Doch vor dem großen Panorama halte einen Moment am kleinen Friedhof an, seitlich. Du musst sehen, wer dort ruht. Folge mir.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-7
+@@STITLE=Cimetière de Cimiez
+Dieser Friedhof ist klein, ruhig, mit Zypressen bepflanzt, mit der Stadt ganz unten. Viele Menschen aus Nizza schlafen hier. Doch zwei Gräber hier sind es wert, dass man innehält.
+
+Das erste, schlicht, etwas abseits, unter den Bäumen: Henri Matisse. Der Maler, der sein Glück kaum fassen konnte, jeden Morgen dieses Licht wiederzusehen, ruht nun für immer darin, über der Bucht, die er so oft gemalt hat.
+
+Nicht weit davon ein weiteres: Raoul Dufy, der Maler der blauen Regatten und festlichen Himmel. Auch er, der die Welt bereist hatte, wählte, sein Leben auf diesem Hügel zu beenden.
+
+Nehmen wir das Wort unseres Spaziergangs wieder auf: sie alle endeten hier. Beendeten zunächst ihr Werk — ihre schönsten Jahre, ihre letzten Erfindungen. Und beendeten auch ihr Leben, viele von ihnen. Als hätten sie, nachdem sie überall sonst gesucht hatten, hier ihr letztes Zuhause erkannt. Den Punkt, an dem man sich endlich niederlässt.
+
+Das ist nicht traurig, weißt du. Schau dich um: dieser Friedhof ist ein Balkon über dem Meer.
+
+Geh hinaus, und geh bis zur Gartenbalustrade vor der Kirche. Dort öffnet sich ganz Nizza. Folge mir.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-8
+@@STITLE=Terrasse du monastère
+Da sind wir nun an der Balustrade, vor dem großen Garten des Klosters. Und dort, mit einem Mal, öffnet sich ganz Nizza zu deinen Füßen. Die Dächer, die Hügel, und vor allem, riesig, die Bucht. Das Blau.
+
+Nimm es wirklich in dich auf, dieses Blau. Es ist kein gewöhnliches Blau. Es steckt Licht darin, es vibriert, es ändert sich mit jeder Tageszeit. Ein Kind von Nizza liebte es so sehr, dass er sein Leben damit verbrachte, zu versuchen, es in Malerei zu fassen, ein einziges Blau, tief, absolut. Er hieß Yves Klein, er wurde unten, in dieser Stadt, geboren, und er behauptete sogar, als junger Mann, den Himmel über seinem Kopf signiert zu haben, so wie man ein Bild signiert. Genau diesen Himmel. Den, den du gerade betrachtest.
+
+Nun verstehst du also die Antwort auf meine Frage vom Anfang. Warum sie alle? Chagall und seine Glasfenster, Matisse und seine Schere, Dufy und seine Regatten, Bréa und sein Gold, Klein und sein Blau.
+
+Weil ein Maler sein Leben damit verbringt, einer einzigen Sache hinterherzujagen: dem Licht. Und weil es sich hier, an dieser Küste, zwischen Meer und Olivenbäumen, hingibt wie nirgendwo sonst. Sanft, klar, großzügig. Ein Maler, der das gesehen hat, kann nicht mehr darauf verzichten. Er kommt, er bleibt, er beendet hier sein Leben.
+
+Sie sind jetzt alle fort. Aber das Licht, es hält immer noch sein Versprechen. Es ist da, vor deinen Augen, kostenlos, jedem angeboten, der es sehen will. Schau es dir an, wie sie es angeschaut haben.
+
+So. Dein Besuch endet hier, auf diesem Balkon. Bleib, solange die Sonne sinkt. Es ist das schönste aller Gemälde, und es ändert sich jeden Abend. Bis bald.
+
+@@LANG=it
+@@TITLE=Nizza — Sotto la stessa luce
+@@DESC=Arte — perché i più grandi pittori del ventesimo secolo hanno finito tutti sotto questa luce.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-0
+@@STITLE=Musée Marc Chagall
+Cominciamo davanti a questo edificio basso, chiaro, quasi modesto, posto in un giardino di ulivi e cipressi. Non fidarti della sua discrezione. Dietro queste mura, un pittore ha voluto racchiudere niente meno che la luce del mondo. Marc Chagall.
+
+Chagall è nato lontano da qui, in Russia, tra la neve e le case di legno di Vitebsk. Ebreo, povero, ha attraversato il secolo e i suoi orrori, l'esilio, la guerra, la fuga fino agli Stati Uniti. E alla fine della sua vita, dove depone la sua grande opera, il suo testamento, le sue tele immense del Message biblique? Qui. A Nizza. Sotto questo cielo.
+
+Questo museo l'ha voluto lui, l'ha disegnato, ha appeso lui stesso le opere, colore dopo colore. È il primo museo che la Francia abbia mai dedicato a un artista ancora vivente. All'interno, rossi di fuoco, blu di notte, e una parete di vetrate blu da cui entra il sole e fa vibrare tutta la sala.
+
+Ecco la domanda che voglio farti, lungo tutta questa salita. Perché tutti loro? Perché Chagall, Matisse, Dufy, tanti altri, i più grandi pittori del loro secolo, hanno finito il loro percorso qui, su questa collina di Nizza? Cosa cercavano?
+
+La risposta sta in una parola. La luce. La seguiremo, di quadro in quadro, fino in cima alla collina.
+
+Esci dal giardino e prendi la salita verso Cimiez, verso nord. Seguimi.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-1
+@@STITLE=Boulevard de Cimiez
+Saliamo. Questo ampio viale che sale è il boulevard de Cimiez, e da solo racconta perché sono venuti gli artisti.
+
+Nel diciannovesimo secolo, l'Europa ricca e malata scoprì Nizza. Ci si veniva a fuggire dall'inverno del Nord, dalla nebbia, dai polmoni fragili. I medici lo ordinavano: andate a respirare laggiù, lì il clima è chiaro e secco. Così, su questa collina, si costruirono per loro palazzi enormi, bianchi, con cupole, alberghi grandi come castelli, dove scendeva un'intera stagione mondana, tra bauli e domestici.
+
+Guarda queste facciate smisurate, questi giardini, questi balconi rivolti verso il sole al tramonto. Regine, granduchi, miliardari: tutto quel mondo veniva a cercare qui la stessa cosa. La dolcezza, e questa luce che lava tutto.
+
+I pittori seguirono la stessa strada, per la stessa ragione. Solo che loro non venivano a curare i polmoni. Venivano a curare lo sguardo.
+
+Continua a salire, un po' senza fiato, fino al più fastoso di tutti questi palazzi, proprio in cima alla salita. Seguimi.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-2
+@@STITLE=Hôtel Régina
+Ecco il re dei palazzi: l'Excelsior Régina. Fu costruito nel 1897 per una cliente in particolare: la regina Vittoria, che veniva a trascorrere i suoi inverni a Nizza e occupava un'intera ala. Guarda, in cima, la corona dorata che veglia ancora.
+
+Partita la regina, il palazzo finì trasformato in appartamenti. E in uno di essi, ai piani alti, un uomo ormai anziano venne ad abitare nel 1938. Henri Matisse.
+
+Matisse era arrivato a Nizza vent'anni prima, quasi per caso, in un inverno di guerra, nel 1917. Alloggiava più in basso, vicino al mare. E non se ne andò mai più. Diceva di non riuscire a credere alla propria fortuna, ogni mattina, nel ritrovare quella luce argentata.
+
+Qui, al Régina, trasforma il suo appartamento in un atelier, una voliera, un piccolo paradiso privato. Dipinge odalische languide, finestre aperte sulle palme, interni che traboccano di colori. E vecchio, malato, inchiodato a letto, non potendo più tenere a lungo un pennello, inventa qualcos'altro: ritaglia il colore puro con le forbici, come un bambino, e compone i suoi papiers découpés. La luce, fino all'ultimo respiro.
+
+Proprio accanto al palazzo si apre un campo di rovine antiche. Cammina fin là. Seguimi.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-3
+@@STITLE=Arènes de Cimiez
+Queste gradinate di pietra semisepolte nell'erba sono arene romane. Perché molto prima dei palazzi e dei pittori, qui c'era un'intera città, romana, capitale di una piccola provincia delle Alpi. Si chiamava Cemenelum. Ne sono state ritrovate le arene, le terme, le strade.
+
+Prendi la misura del luogo. Sotto i tuoi piedi, duemila anni. Legionari, vescovi, monaci, regine in villeggiatura, pittori: tutti hanno amato questo balcone affacciato sul mare.
+
+E guarda, tutt'intorno, questi ulivi nodosi, alcuni molto vecchi. Questa luce che scivola tra le loro foglie argentate, quest'ombra leggera, tremula, è esattamente ciò che i pittori venivano a cercare. Una chiarezza che non brucia, che accarezza, che ritaglia le forme senza indurirle.
+
+Non è un caso che si sia installato, al margine di queste arene, in una bella villa rossa, il museo di un uomo che ha passato la vita a dipingere proprio quella luce.
+
+Attraversa lo spiazzo verso la grande casa color ocra rosso. Seguimi.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-4
+@@STITLE=Musée Matisse
+Questa grande villa rosso sangue, dalle finestre in trompe-l'œil, risale al diciassettesimo secolo, all'epoca dei mercanti genovesi. Oggi ospita il musée Matisse.
+
+Non è un museo come gli altri. Qui non sono stati riuniti i capolavori più costosi del maestro; quelli si trovano a New York, a Parigi, a Mosca. Qui è un'altra cosa. È l'atelier, la vita, il rovescio della scena. I suoi primi tentativi scuri, poi l'esplosione dei colori, fino ai grandi papiers découpés dell'ultimo periodo. Un'intera esistenza di pittore, dall'inizio fino alla fine vera e propria, in un'unica casa.
+
+Molte di queste opere, Matisse le ha volute qui. Ha scelto di lasciare alla sua città d'adozione non le sue tele di gloria, ma l'intimità del suo lavoro. Come un ringraziamento per quasi quarant'anni di luce.
+
+Guarda i suoi oggetti feticcio, le sue stoffe, i suoi vasi: li ritrovi, posati lì, gli stessi che compaiono nei suoi quadri. Il confine tra la sua vita e la sua pittura era finito per scomparire.
+
+Esci di nuovo nel giardino di ulivi che circonda le arene. Ci respiriamo un istante. Seguimi.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-5
+@@STITLE=L'oliveraie
+Prendi questo sentiero sotto gli ulivi. Questo frutteto ha secoli; alcuni alberi erano già qui quando Cimiez era solo un villaggio appeso sopra Nizza. Siediti un secondo su un muretto, se vuoi, e alza gli occhi verso la luce che cade tra le foglie.
+
+È lì, esattamente lì, tutto il segreto. Questa luce mediterranea non è dorata come in Toscana, né bianca e dura come in Grecia. È argentea, quasi madreperlacea, addolcita dal mare. Posa su ogni cosa un colore netto, ma senza violenza. Un pittore vede questo, e non può più ripartire.
+
+Questo giardino è ancora vivo. In primavera, vi si festeggiano i cougourdons, quelle zucche essiccate che si scolpiscono e si decorano; d'estate, a lungo, il jazz vi ha risuonato sotto gli alberi, fino a tarda notte calda.
+
+Un pittore tra tutti ha cantato la baia che si intuisce da qui, i suoi blu, le sue palme, le sue regate imbandierate: Raoul Dufy. E nemmeno lui ha lasciato questa collina, nemmeno nella morte, lo vedrai.
+
+Segui il viale verso la chiesa e il grande monastero, un po' più avanti. Seguimi.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-6
+@@STITLE=Monastère de Cimiez
+Questo monastero di francescani veglia su Nizza dal Medioevo. Entra nella sua chiesa: è modesta, buia dopo lo splendore di fuori. Lascia che i tuoi occhi si abituino, e cerca, sulle pareti, grandi pale d'altare in legno dorato.
+
+Sono capolavori, e ti dicono una cosa importante: i pittori di genio non sono arrivati a Nizza con Matisse. Cinque secoli fa, la città aveva già i suoi. Questo si chiamava Louis Bréa, il grande primitivo nizzardo, il nostro Fra Angelico. Dipingeva Vergini dal manto dorato, Cristi in croce, Pietà di una dolcezza sconvolgente, su questo stesso suolo, sotto questo stesso cielo.
+
+Bréa, Matisse, Chagall: cinque secoli li separano, ma la stessa collina li riunisce, la stessa chiarezza li bagna. La luce di Nizza non ha aspettato il ventesimo secolo per chiamare i pittori. Li chiama da sempre.
+
+Esci di nuovo, e raggiungi il giardino a terrazza, dietro la chiesa. Ma prima del grande panorama, fermati un istante al piccolo cimitero, di lato. Devi vedere chi riposa lì. Seguimi.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-7
+@@STITLE=Cimetière de Cimiez
+Questo cimitero è piccolo, tranquillo, piantumato di cipressi, con la città tutta in basso. Molti nizzardi vi dormono. Ma due tombe, qui, meritano una sosta.
+
+La prima, sobria, un po' appartata, sotto gli alberi: Henri Matisse. Il pittore che non riusciva a credere alla sua fortuna di rivedere ogni mattina quella luce riposa ormai dentro di essa, per sempre, sopra la baia che ha tanto dipinto.
+
+Non lontano, un'altra: Raoul Dufy, il pittore delle regate blu e dei cieli in festa. Anche lui, che aveva percorso il mondo, ha scelto di finire su questa collina.
+
+Riprendiamo la parola della nostra passeggiata: hanno finito tutti qui. Finito la loro opera, prima di tutto, i loro anni più belli, le loro ultime invenzioni. E finito anche la loro vita, per molti di loro. Come se, dopo aver cercato ovunque altrove, avessero riconosciuto qui la loro ultima casa. Il punto in cui ci si posa finalmente.
+
+Non è triste, sai. Guardati intorno: questo cimitero è un balcone sul mare.
+
+Esci, e vai fino alla balaustra del giardino, davanti alla chiesa. Lì si apre tutta Nizza. Seguimi.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-8
+@@STITLE=Terrasse du monastère
+Eccoci alla balaustra, davanti al grande giardino del monastero. E lì, all'improvviso, tutta Nizza si apre ai tuoi piedi. I tetti, le colline, e soprattutto, immensa, la baia. Il blu.
+
+Prendilo davvero, questo blu. Non è un blu qualunque. C'è luce dentro, vibra, cambia a ogni ora del giorno. Un figlio di Nizza lo amò così tanto che passò la vita a cercare di metterlo in pittura, un solo blu, profondo, assoluto. Si chiamava Yves Klein, è nato laggiù, in questa città, e da giovane arrivò persino a sostenere di aver firmato il cielo sopra la sua testa, come si firma un quadro. Proprio quel cielo. Quello che stai guardando.
+
+Allora, ora la capisci, la risposta alla mia domanda dell'inizio. Perché tutti loro? Chagall e le sue vetrate, Matisse e le sue forbici, Dufy e le sue regate, Bréa e i suoi ori, Klein e il suo blu.
+
+Perché un pittore passa la vita a inseguire una sola cosa: la luce. E qui, su questa costa, tra il mare e gli ulivi, si dona come in nessun altro luogo. Dolce, chiara, generosa. Un pittore che ha visto questo non può più farne a meno. Viene, resta, finisce qui.
+
+Sono partiti tutti, ormai. Ma la luce, lei, è sempre puntuale all'appuntamento. È lì, sotto i tuoi occhi, gratuita, offerta a chiunque voglia vederla. Guardala come l'hanno guardata loro.
+
+Ecco. La tua visita finisce qui, su questo balcone. Resta finché il sole scende. È il più bello dei quadri, e cambia ogni sera. A presto.
+
+@@LANG=nl
+@@TITLE=Nice — Onder hetzelfde licht
+@@DESC=Kunst — waarom de grootste schilders van de twintigste eeuw allemaal eindigden onder dit licht.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-0
+@@STITLE=Musée Marc Chagall
+Laten we beginnen voor dit lage, lichte, bijna bescheiden gebouw, gelegen in een tuin van olijf- en cipresbomen. Laat je niet misleiden door zijn bescheidenheid. Achter deze muren wilde een schilder niets minder dan het licht van de wereld opsluiten. Marc Chagall.
+
+Chagall werd ver van hier geboren, in Rusland, tussen de sneeuw en de houten huizen van Vitebsk. Joods, arm, doorleefde hij de eeuw en haar verschrikkingen, de ballingschap, de oorlog, de vlucht tot in de Verenigde Staten. En aan het einde van zijn leven, waar zet hij zijn grote werk neer, zijn testament, zijn immense doeken van de Message biblique? Hier. In Nice. Onder deze hemel.
+
+Dit museum wilde hij zelf, ontwierp hij zelf, hing hij zelf op, kleur voor kleur. Het is het eerste museum dat Frankrijk ooit aan een nog levende kunstenaar heeft gewijd. Binnen, vuurrood, nachtblauw, en een wand van blauwe glas-in-loodramen waardoor de zon binnenkomt en de hele zaal doet trillen.
+
+Dat is de vraag die ik je wil stellen, gedurende deze hele beklimming. Waarom zij allemaal? Waarom eindigden Chagall, Matisse, Dufy, en zoveel anderen, de grootste schilders van hun eeuw, hun weg hier, op deze heuvel van Nice? Wat zochten ze?
+
+Het antwoord past in één woord. Het licht. We gaan het volgen, van schilderij naar schilderij, tot boven op de heuvel.
+
+Verlaat de tuin en neem de klim richting Cimiez, pal noordwaarts. Volg me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-1
+@@STITLE=Boulevard de Cimiez
+We klimmen. Deze brede oplopende laan is de boulevard de Cimiez, en zij alleen al vertelt waarom de kunstenaars kwamen.
+
+In de negentiende eeuw ontdekte het rijke, zieke Europa Nice. Men vluchtte hierheen voor de winter van het noorden, de mist, de zwakke longen. De artsen schreven het voor: ga daar ademen, het is er helder en droog. Dus bouwde men op deze heuvel voor hen enorme, witte paleizen met koepels, hotels zo groot als kastelen, waar een heel mondain seizoen neerstreek, met koffers en bedienden.
+
+Kijk naar deze buitenmatige gevels, deze tuinen, deze balkons gericht naar de ondergaande zon. Koninginnen, groothertogen, miljardairs: al die mensen kwamen hier hetzelfde zoeken. De zachtheid, en dit licht dat alles wast.
+
+De schilders volgden hetzelfde pad, om dezelfde reden. Alleen kwamen zij niet om hun longen te genezen. Ze kwamen om hun blik te genezen.
+
+Blijf klimmen, wat kortademig, tot aan het meest weelderige van al deze paleizen, helemaal boven aan de helling. Volg me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-2
+@@STITLE=Hôtel Régina
+Hier is de koning der paleizen: het Excelsior Régina. Het werd in 1897 gebouwd voor één bepaalde gast: koningin Victoria, die haar winters in Nice kwam doorbrengen en een hele vleugel bewoonde. Kijk, helemaal bovenaan, de gouden kroon die nog steeds waakt.
+
+Toen de koningin vertrokken was, eindigde het paleis als appartementen. En in een daarvan, op de hoge verdiepingen, kwam in 1938 een verouderende man wonen. Henri Matisse.
+
+Matisse was twintig jaar eerder in Nice aangekomen, bijna bij toeval, in een oorlogswinter, in 1917. Hij logeerde beneden, dicht bij de zee. En hij vertrok nooit meer. Hij zei dat hij zijn geluk elke ochtend nauwelijks kon geloven, wanneer hij dat zilveren licht terugvond.
+
+Hier, in het Régina, maakt hij van zijn appartement een atelier, een vogelvolière, een klein privéparadijs. Hij schildert loomliggende odalisken, ramen die open staan naar de palmbomen, interieurs die overlopen van kleur. En oud, ziek, aan bed gekluisterd, niet meer in staat om lang een penseel vast te houden, bedenkt hij iets anders: hij knipt pure kleur met een schaar, als een kind, en stelt zijn papiers découpés samen. Het licht, tot de laatste adem.
+
+Vlak naast het paleis opent zich een veld met antieke ruïnes. Loop daarheen. Volg me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-3
+@@STITLE=Arènes de Cimiez
+Deze stenen tribunes, half begraven in het gras, zijn Romeinse arena's. Want lang voor de paleizen en de schilders was hier een hele stad, Romeins, hoofdstad van een kleine Alpenprovincie. Ze heette Cemenelum. Men heeft haar arena, haar thermen, haar straten teruggevonden.
+
+Neem de maat van deze plek. Onder je voeten, tweeduizend jaar. Legioensoldaten, bisschoppen, monniken, koninginnen op vakantie, schilders: allemaal hielden ze van dit balkon boven de zee.
+
+En kijk, helemaal rondom, deze knoestige olijfbomen, sommige heel oud. Dit licht dat glijdt tussen hun zilveren blaadjes, deze lichte, trillende schaduw, dat is precies wat de schilders kwamen zoeken. Een helderheid die niet brandt, die streelt, die vormen uittekent zonder ze te verharden.
+
+Het is geen toeval dat men aan de rand van deze arena's, in een mooie rode villa, het museum heeft ondergebracht van een man die zijn leven doorbracht met het schilderen van precies dat licht.
+
+Steek het open terrein over naar het grote huis in roodoker. Volg me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-4
+@@STITLE=Musée Matisse
+Deze grote, bloedrode villa met haar trompe-l'œil-ramen dateert uit de zeventiende eeuw, uit de tijd van de Genuese kooplieden. Vandaag huisvest ze het musée Matisse.
+
+Dit is geen museum zoals de andere. Hier heeft men niet de duurste meesterwerken van de meester verzameld; die bevinden zich in New York, in Parijs, in Moskou. Hier is het iets anders. Het is het atelier, het leven, de achterkant van het decor. Zijn eerste, donkere probeersels, dan de explosie van kleuren, tot aan de grote papiers découpés van het einde. Een heel schildersleven, van begin tot het allerlaatste einde, in één huis.
+
+Veel van deze werken wilde Matisse hier hebben. Hij koos ervoor om zijn adoptiestad niet zijn roemrijke doeken na te laten, maar de intimiteit van zijn werk. Als een dankjewel voor bijna veertig jaar licht.
+
+Bekijk zijn fetisjvoorwerpen, zijn stoffen, zijn vazen: je vindt ze hier terug, precies dezelfde als op zijn schilderijen. De grens tussen zijn leven en zijn schilderkunst was uiteindelijk verdwenen.
+
+Ga weer naar buiten, naar de olijftuin rond de arena's. Laten we daar even ademhalen. Volg me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-5
+@@STITLE=L'oliveraie
+Neem dit pad onder de olijfbomen. Deze boomgaard is eeuwenoud; sommige bomen stonden hier al toen Cimiez nog maar een dorp was, hoog boven Nice. Ga even op een muurtje zitten, als je wilt, en kijk omhoog naar het licht dat tussen de bladeren valt.
+
+Dat is het, precies daar, het hele geheim. Dit mediterrane licht is niet goudkleurig zoals in Toscane, en ook niet wit en hard zoals in Griekenland. Het is zilverachtig, bijna parelmoerkleurig, verzacht door de zee. Het legt op elk ding een heldere kleur, maar zonder geweld. Een schilder ziet dat, en kan nooit meer weg.
+
+Deze tuin leeft nog. In de lente viert men hier de cougourdons, die gedroogde pompoenen die worden uitgesneden en versierd; in de zomer klonk hier lange tijd jazz onder de bomen, tot diep in de warme nacht.
+
+Eén schilder boven allen bezong de baai die je vanhier vermoedt, haar blauwtinten, haar palmbomen, haar met vlaggen versierde regatta's: Raoul Dufy. En ook hij heeft deze heuvel nooit verlaten — zelfs in de dood niet, zoals je zult zien.
+
+Volg het pad naar de kerk en het grote klooster, een stukje verderop. Volg me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-6
+@@STITLE=Monastère de Cimiez
+Dit franciscaner klooster waakt sinds de middeleeuwen over Nice. Ga zijn kerk binnen — ze is bescheiden, donker na de pracht buiten. Laat je ogen wennen, en zoek op de muren naar grote vergulde houten altaarstukken.
+
+Dit zijn meesterwerken, en ze vertellen je iets belangrijks: de geniale schilders kwamen niet pas met Matisse naar Nice. Vijf eeuwen geleden had de stad al de hare. Deze heette Louis Bréa, de grote Nice-primitief, onze eigen Fra Angelico. Hij schilderde Maagden in gouden mantel, Christussen aan het kruis, Piëta's van een ontroerende zachtheid, op diezelfde grond, onder diezelfde hemel.
+
+Bréa, Matisse, Chagall: vijf eeuwen scheiden hen, maar dezelfde heuvel verenigt hen, dezelfde helderheid baadt hen. Het licht van Nice heeft niet gewacht op de twintigste eeuw om de schilders te roepen. Het roept ze al sinds altijd.
+
+Ga weer naar buiten, en ga naar de tuinterras achter de kerk. Maar vóór het grote panorama, stop even bij het kleine kerkhof, opzij. Je moet zien wie daar rust. Volg me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-7
+@@STITLE=Cimetière de Cimiez
+Dit kerkhof is klein, rustig, beplant met cipressen, met de stad helemaal beneden. Veel inwoners van Nice slapen hier. Maar twee graven hier zijn de moeite van een stop waard.
+
+Het eerste, sober, een beetje afgezonderd, onder de bomen: Henri Matisse. De schilder die zijn geluk niet kon geloven om elke ochtend dat licht terug te zien, rust nu voorgoed erin, boven de baai die hij zo vaak schilderde.
+
+Niet ver daarvandaan, een ander: Raoul Dufy, de schilder van blauwe regatta's en feestelijke luchten. Ook hij, die de hele wereld had doorkruist, koos ervoor om op deze heuvel te eindigen.
+
+Laten we het woord van onze wandeling weer oppakken: ze eindigden allemaal hier. Eindigden eerst hun werk — hun mooiste jaren, hun laatste vondsten. En eindigden ook hun leven, velen van hen. Alsof ze, na overal elders gezocht te hebben, hier hun laatste thuis herkenden. Het punt waar men eindelijk neerstrijkt.
+
+Het is niet triest, weet je. Kijk om je heen: dit kerkhof is een balkon boven de zee.
+
+Ga naar buiten, en loop naar de tuinbalustrade voor de kerk. Daar opent zich heel Nice. Volg me.
+
+@@SCENE=seed-100-nice-matisse-chagall-collines-scene-8
+@@STITLE=Terrasse du monastère
+Daar zijn we dan bij de balustrade, voor de grote tuin van het klooster. En daar opent zich, in één klap, heel Nice aan je voeten. De daken, de heuvels, en vooral, immens, de baai. Het blauw.
+
+Neem het echt in je op, dat blauw. Het is geen gewoon blauw. Er zit licht in, het trilt, het verandert elk uur van de dag. Een kind van Nice hield er zo veel van dat hij zijn leven doorbracht met de poging het in verf te vatten, één enkel blauw, diep, absoluut. Hij heette Yves Klein, hij werd hieronder geboren, in deze stad, en hij beweerde zelfs, als jongeman, de hemel boven zijn hoofd te hebben gesigneerd, zoals je een schilderij signeert. Precies die hemel. Degene waar je nu naar kijkt.
+
+Dus nu begrijp je het, het antwoord op mijn vraag van het begin. Waarom zij allemaal? Chagall en zijn glas-in-lood, Matisse en zijn schaar, Dufy en zijn regatta's, Bréa en zijn goud, Klein en zijn blauw.
+
+Omdat een schilder zijn leven doorbrengt met het najagen van één ding: het licht. En omdat het zich hier, aan deze kust, tussen de zee en de olijfbomen, geeft zoals nergens anders. Zacht, helder, gul. Een schilder die dat heeft gezien kan er nooit meer zonder. Hij komt, hij blijft, hij eindigt hier.
+
+Ze zijn nu allemaal vertrokken. Maar het licht houdt nog steeds zijn afspraak. Het is er, voor je ogen, gratis, aangeboden aan wie het maar wil zien. Kijk ernaar zoals zij ernaar keken.
+
+Zo. Je bezoek eindigt hier, op dit balkon. Blijf zolang de zon zakt. Het is het mooiste van alle schilderijen, en het verandert elke avond. Tot snel.

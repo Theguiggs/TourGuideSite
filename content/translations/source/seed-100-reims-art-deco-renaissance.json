@@ -1,0 +1,141 @@
+{
+  "tourId": "seed-100-reims-art-deco-renaissance",
+  "sessionId": "seed-100-reims-art-deco-renaissance-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Reims",
+  "title": "Reims — La ville-manifeste, reconstruite en Art déco",
+  "description": "Art — Détruite en 14-18, reconstruite en Art déco : la ville-manifeste.",
+  "themes": [
+    "Art — Détruite en 14-18, reconstruite en Art déco : la ville-manifeste."
+  ],
+  "baseLanguage": "fr",
+  "chars": 8968,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Arte, Distrutta nel 14-18, ricostruita in Art Deco: la città-manifesta.",
+    "de": "Kunst, zerstört in 14-18, wieder aufgebaut in Art Deco: die Stadt-Manifest.",
+    "es": "Art, Destruida en 14-18, reconstruida con Arte decorativo: la ciudad-manifiesta.",
+    "en": "Art, Destroyed in 14-18, rebuilt in Art Deco: the city-manifest."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-reims-art-deco-renaissance-scene-0",
+      "index": 0,
+      "title": "Parvis de la cathédrale",
+      "text": "Place-toi devant la cathédrale, sur le parvis, et recule un peu. Tu connais peut-être son histoire tragique : en septembre 1914, un obus a mis le feu à ses échafaudages, et la plus célèbre église de France a flambé. On l'a appelée la cathédrale martyre. Mais aujourd'hui, je ne veux pas te parler d'elle. Je veux te parler de tout le reste — de la ville autour.\r\n\r\nCar en 1914, le front s'arrête ici, à quelques kilomètres. Et pendant quatre ans, Reims va vivre sous les obus. On la bombarde, on la brûle, on la vide de ses habitants. À la fin de la guerre, la ville est un champ de ruines. On a longtemps répété qu'elle avait été détruite à quatre-vingts pour cent. Les historiens sont plus prudents aujourd'hui : sans doute bien plus de la moitié des maisons, quelque chose comme six sur dix, rasées ou rendues inhabitables. Une ville presque effacée.\r\n\r\nEt là, une question se pose. Que fait-on d'une ville morte ? On la rebâtit à l'identique, pour retrouver le passé ? Ou on la réinvente dans le goût du jour ? Reims va choisir — et son choix, c'est ce que je vais te faire lire dans les rues.\r\n\r\nCar dans les années vingt, un style neuf explose partout dans le monde : des lignes droites, des angles, des fleurs stylisées, des mosaïques, du fer forgé, du béton. On l'appellera plus tard l'Art déco. Et Reims, ville à reconstruire tout entière, va devenir l'une de ses plus belles vitrines. Une ville-manifeste, écrite d'un seul jet dans les années folles.\r\n\r\nSuis-moi. On commence par un cadeau venu d'Amérique.",
+      "hash": "95feb75d",
+      "chars": 1516,
+      "existingSegments": {
+        "es": "seed-100-reims-art-deco-renaissance-scene-0-seg-es",
+        "it": "seed-100-reims-art-deco-renaissance-scene-0-seg-it",
+        "en": "seed-100-reims-art-deco-renaissance-scene-0-seg-en",
+        "de": "seed-100-reims-art-deco-renaissance-scene-0-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-art-deco-renaissance-scene-1",
+      "index": 1,
+      "title": "Bibliothèque Carnegie",
+      "text": "Voici la bibliothèque Carnegie. Ce nom n'est pas français, et ce n'est pas un hasard. Andrew Carnegie était un industriel américain, l'un des hommes les plus riches du monde, qui a financé des bibliothèques par centaines à travers la planète. Après la guerre, sa fondation offre celle-ci à Reims, ville martyre, en signe de paix. Elle ouvre en 1928.\r\n\r\nEntre, si tu peux. C'est un pur joyau des années vingt. Un hall de marbre, une coupole, des mosaïques dorées, des vitraux aux couleurs profondes, des ferronneries dessinées comme des bijoux, des luminaires en pâte de verre. Tout y est net, géométrique, précieux. On dirait moins une bibliothèque qu'un petit temple dédié au savoir.\r\n\r\nEt le choix a du sens. Après avoir tout perdu, une ville qui rouvre d'abord une bibliothèque, un lieu de livres et de lumière, dit quelque chose de fort : on ne repart pas des murs, on repart de l'esprit. Le premier geste de la renaissance, ici, c'est offrir des livres à ceux qui reviennent. Remonte vers l'hôtel de ville. Suis-moi.",
+      "hash": "4aabe43a",
+      "chars": 1021,
+      "existingSegments": {
+        "it": "seed-100-reims-art-deco-renaissance-scene-1-seg-it",
+        "es": "seed-100-reims-art-deco-renaissance-scene-1-seg-es",
+        "en": "seed-100-reims-art-deco-renaissance-scene-1-seg-en",
+        "de": "seed-100-reims-art-deco-renaissance-scene-1-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-art-deco-renaissance-scene-2",
+      "index": 2,
+      "title": "Hôtel de Ville",
+      "text": "Devant toi, l'hôtel de ville et sa longue façade de pierre à la française, avec son grand fronton et sa statue équestre. Regarde-la bien : elle date du XVIIe siècle. Enfin, presque. Car en 1917, un incendie a ravagé le bâtiment. Il n'est resté que ça : la façade, debout, vide, un décor de théâtre devant un tas de cendres.\r\n\r\nEt ici se lit tout le dilemme de la reconstruction. On aurait pu tout raser et bâtir moderne. On a choisi l'inverse : sauver la vieille façade, la restaurer pierre à pierre, et reconstruire un bâtiment neuf derrière. Garder le visage d'avant, changer le corps.\r\n\r\nC'est ça, le génie de Reims reconstruite. La ville n'a pas tranché entre l'ancien et le moderne : elle a fait les deux, souvent dans la même rue, parfois dans le même immeuble. Une façade classique ici, un balcon Art déco à côté, une mosaïque plus loin. Un urbaniste américain est même venu aider à redessiner les rues. Continue vers le grand marché couvert, un peu plus haut. Suis-moi.",
+      "hash": "79e34391",
+      "chars": 977,
+      "existingSegments": {
+        "en": "seed-100-reims-art-deco-renaissance-scene-2-seg-en",
+        "de": "seed-100-reims-art-deco-renaissance-scene-2-seg-de",
+        "es": "seed-100-reims-art-deco-renaissance-scene-2-seg-es",
+        "it": "seed-100-reims-art-deco-renaissance-scene-2-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-art-deco-renaissance-scene-3",
+      "index": 3,
+      "title": "Les Halles du Boulingrin",
+      "text": "Arrête-toi devant cette grande halle, et lève les yeux sur sa toiture. Ce long dos courbe, cette voûte de béton nu qui s'arrondit comme une vague : les Halles du Boulingrin, le marché couvert, bâti à la fin des années vingt.\r\n\r\nCe qui est fou, c'est la technique. Toute cette voûte immense ne repose sur presque rien : une simple coque de béton, mince comme une coquille d'œuf à côté de sa portée, qui tient toute seule, sans forêt de piliers dessous. C'est l'œuvre d'un ingénieur de génie, Eugène Freyssinet, un maître du béton, associé à l'architecte Émile Maigrot. Pour l'époque, c'est un exploit, l'une des plus audacieuses voûtes de son temps.\r\n\r\nEt regarde comme la ligne est belle, tendue, moderne, sans un ornement inutile. C'est l'autre visage de l'Art déco : pas seulement le luxe des mosaïques, mais aussi la beauté nue de l'ingénieur. Longtemps menacée de démolition, laissée à l'abandon, la halle a failli disparaître. On l'a sauvée et rouverte. Prends la petite rue voisine. Suis-moi.",
+      "hash": "55949b34",
+      "chars": 998,
+      "existingSegments": {
+        "it": "seed-100-reims-art-deco-renaissance-scene-3-seg-it",
+        "de": "seed-100-reims-art-deco-renaissance-scene-3-seg-de",
+        "en": "seed-100-reims-art-deco-renaissance-scene-3-seg-en",
+        "es": "seed-100-reims-art-deco-renaissance-scene-3-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-art-deco-renaissance-scene-4",
+      "index": 4,
+      "title": "Rue de Mars",
+      "text": "Nous voici rue de Mars. Lève encore les yeux sur les façades. Cherche-en une entièrement couverte de mosaïques, une devanture qui brille de mille éclats colorés, comme un tapis dressé à la verticale. C'est un pur régal d'Art déco : chaque immeuble reconstruit rivalisait d'inventions pour se distinguer du voisin.\r\n\r\nRegarde le détail partout autour de toi. Des mosaïques, donc, mais aussi des céramiques, des balcons de fer forgé aux motifs géométriques, des frises de fleurs et de fruits stylisés au-dessus des portes, des vitraux dans les cages d'escalier. Les reconstructeurs de Reims n'ont pas bâti à la va-vite : ils ont fait appel à des artisans, mosaïstes, ferronniers, verriers, comme si chaque maison devait être un petit manifeste.\r\n\r\nEt à deux pas, tu aperçois une vieille porte romaine, l'antique arc de Mars. Deux mille ans les séparent, et pourtant les deux se répondent : ici, chaque siècle a laissé sa signature de pierre. Redescends maintenant vers la grande place animée, plus au sud. Suis-moi.",
+      "hash": "e7ceff86",
+      "chars": 1013,
+      "existingSegments": {
+        "it": "seed-100-reims-art-deco-renaissance-scene-4-seg-it",
+        "es": "seed-100-reims-art-deco-renaissance-scene-4-seg-es",
+        "de": "seed-100-reims-art-deco-renaissance-scene-4-seg-de",
+        "en": "seed-100-reims-art-deco-renaissance-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-art-deco-renaissance-scene-5",
+      "index": 5,
+      "title": "Place Drouet-d'Erlon",
+      "text": "Te voilà sur la place Drouet-d'Erlon, la grande artère piétonne, le salon de Reims. Passants, façades, boutiques, du matin au soir. Et au milieu, cette fontaine dorée surmontée d'une figure ailée qui brandit une couronne : elle a traversé la guerre, et la ville s'est relevée tout autour d'elle.\n\r\nCar regarde les façades, des deux côtés. Presque toutes datent des années vingt. Cette rue, très abîmée par les bombardements, a été reconstruite d'un bloc, immeuble après immeuble, dans le style du moment. Prends le temps de lever la tête au-dessus des enseignes : sous les toits, tu verras les balcons géométriques, les bow-windows, les frises, les initiales enlacées gravées dans la pierre, tout le vocabulaire de l'Art déco.\r\n\r\nC'est la vitrine de la ville renaissante. On a voulu que la première rue qu'on traverse en arrivant soit belle, gaie, moderne, un pied de nez aux ruines d'hier. Fais quelques pas vers une adresse plus discrète, mais qui cache une merveille. Suis-moi.",
+      "hash": "53fe82d7",
+      "chars": 980,
+      "existingSegments": {
+        "es": "seed-100-reims-art-deco-renaissance-scene-5-seg-es",
+        "de": "seed-100-reims-art-deco-renaissance-scene-5-seg-de",
+        "it": "seed-100-reims-art-deco-renaissance-scene-5-seg-it",
+        "en": "seed-100-reims-art-deco-renaissance-scene-5-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-art-deco-renaissance-scene-6",
+      "index": 6,
+      "title": "Café du Palais",
+      "text": "Pousse la porte de ce lieu historique, le Café du Palais. De dehors, rien d'extraordinaire. Mais lève les yeux à l'intérieur : au-dessus de la salle, une immense verrière colorée, un plafond de vitraux qui filtre la lumière en taches de couleur. Un chef-d'œuvre Art déco des années trente, posé au-dessus du décor d'origine.\n\r\nCette maison est tenue par la même famille depuis des générations. On y a accroché des tableaux, des affiches, des objets, jusqu'à en faire un décor unique, un peu théâtre, un peu cabinet de curiosités. Les artistes, les comédiens, les amoureux de la ville s'y retrouvent depuis toujours.\r\n\r\nEt c'est peut-être ça, le plus émouvant. L'Art déco de Reims, ce ne sont pas seulement les grands monuments. C'est aussi ce plafond de verre au-dessus d'un comptoir, cette beauté glissée dans la vie de tous les jours. Une ville rebâtie non pas pour être admirée de loin, mais pour être habitée, joyeusement. Reprends le chemin de la cathédrale. C'est là que finit notre histoire. Suis-moi.",
+      "hash": "bc2944a7",
+      "chars": 1008,
+      "existingSegments": {
+        "es": "seed-100-reims-art-deco-renaissance-scene-6-seg-es",
+        "de": "seed-100-reims-art-deco-renaissance-scene-6-seg-de",
+        "en": "seed-100-reims-art-deco-renaissance-scene-6-seg-en",
+        "it": "seed-100-reims-art-deco-renaissance-scene-6-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-art-deco-renaissance-scene-7",
+      "index": 7,
+      "title": "Cathédrale, les vitraux de Chagall",
+      "text": "Nous revoilà devant la cathédrale, mais cette fois, entre, et va tout au fond, derrière le grand autel. Cherche les vitraux d'un bleu profond, presque irréel : ce sont ceux de Marc Chagall, l'un des grands peintres du XXe siècle, posés là en 1974. Des scènes de la Bible qui flottent dans un océan de bleu. Et plus loin, d'autres verrières, encore plus récentes, tout en couleurs abstraites, offertes pour les huit cents ans de l'édifice.\r\n\r\nArrête-toi là un instant. Tu es dans la vieille cathédrale des rois, celle qui a brûlé en 1914 — mais ça, c'est une autre histoire. Et elle est éclairée, aujourd'hui, par l'art le plus vivant de notre temps.\r\n\r\nC'est toute l'histoire de Reims tenue dans un seul regard. Une ville qu'on a voulu réduire en cendres, et qui a refusé de mourir. Une ville qui, plutôt que de pleurer ses ruines, a décidé d'en faire quelque chose de neuf et de beau. La bibliothèque offerte par l'Amérique, la halle de béton, les mosaïques des façades, le plafond de verre du lieu, et jusqu'à ces bleus de Chagall au fond du chœur : tout dit la même chose. On ne reconstruit pas seulement des murs. On reconstruit un élan.\n\r\nVoilà pourquoi on peut l'appeler la ville-manifeste. Détruite, elle n'a pas copié son passé : elle a signé son époque. Et elle continue, vitrail après vitrail, à se réinventer.\r\n\r\nRegarde encore une fois ce bleu avant de sortir. Puis va marcher dans les rues, autrement. Prends soin de toi, l'ami, et à bientôt.",
+      "hash": "13960fa",
+      "chars": 1455,
+      "existingSegments": {
+        "en": "seed-100-reims-art-deco-renaissance-scene-7-seg-en",
+        "it": "seed-100-reims-art-deco-renaissance-scene-7-seg-it",
+        "de": "seed-100-reims-art-deco-renaissance-scene-7-seg-de",
+        "es": "seed-100-reims-art-deco-renaissance-scene-7-seg-es"
+      }
+    }
+  ]
+}

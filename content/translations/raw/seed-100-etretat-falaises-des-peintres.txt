@@ -1,0 +1,359 @@
+@@LANG=en
+@@TITLE=Étretat — France's Most Romantic Cliff
+@@DESC=Art — Monet, Maupassant, and Arsène Lupin: the cliff that inspired painters and novelists.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-0
+@@STITLE=Les Halles d'Étretat
+Stop here, on the square, in front of these wooden market halls with their tightly packed beams. We're in the heart of Étretat. A sizable town, a few streets, a covered market, a church. At first glance, nothing exceptional.
+
+And yet, remember this name: Étretat. Because this small fishing village became, within a century, one of the most famous landscapes in France. These white chalk cliffs you're about to discover, their arches, their spire of stone planted in the sea, have been painted, written about, filmed, a thousand times over.
+
+That's the story I'm going to tell you. How a modest stretch of Normandy coast became a dream setting. Three names will guide us. A painter, first: Claude Monet, who came here to set up his easel facing the cliffs and paint them again and again. A writer: Guy de Maupassant, who grew up nearby and put these rocks into his books. And a third, more surprising one: Arsène Lupin, the gentleman thief — a fictional character, but one who haunts this coast as if he had really existed.
+
+Painters, novelists, paper-bound adventurers: all of them made Étretat the most romantic cliff in France. One coastline, one light, and this strange power to summon stories. Let's go find out why.
+
+Take the small street heading west, to a villa with pale shutters, tucked away in its garden. Follow me.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-1
+@@STITLE=Le Clos Lupin
+This elegant villa, with its veranda and garden, is the Clos Lupin. A writer lived here, Maurice Leblanc, and above all, his character: Arsène Lupin, the most charming thief in French literature. A gentleman by day, a burglar by night, elusive, witty. Leblanc wrote part of his adventures in this house, and he made Étretat their playground.
+
+And it's here that he invented a brilliant idea. You'll soon see, out at sea, a chalk spire standing in the water. In his novel The Hollow Needle, Leblanc imagines that this spire is hollow — empty inside — and that it has always hidden the secret treasure of the Kings of France. Lupin, of course, knows its entrance.
+
+So let's be clear, you and I: this is pure invention. A novel. The needle is a solid rock, the sea hides no chest. But the idea was so beautiful that, for over a century, readers have come here, scanning the rock for the door to the treasure.
+
+That's the magic of Étretat: the real landscape and the invented story end up blending into one.
+
+Head back toward the sea, then take the steps on the right climbing up the cliff, the one on the north side. Follow me.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-2
+@@STITLE=Porte d'Amont
+Here you are at the top of the Falaise d'Amont, the one closing off the beach to the north. Catch your breath and look behind you: that small white chapel is Notre-Dame-de-la-Garde, the sailors' chapel. Destroyed during the war, rebuilt since, it still watches over those who put out to sea.
+
+But walk on to that strange shape, pointed at the sky like the nose of an airplane. It's a monument, and it tells a tragic story. In May 1927, two Frenchmen, Nungesser and Coli, took off from Paris aboard a white plane, the Oiseau Blanc. Their wager: to reach New York in one single flight, across the Atlantic. The last land they were seen flying over was here, this cliff. After that, nothing. They vanished into the ocean, and were never found.
+
+Two weeks later, another man, the American Lindbergh, succeeded in the crossing the other way and entered legend. Nungesser and Coli, meanwhile, entered silence, somewhere at the bottom of the sea.
+
+Courage, panache, a tragic end facing the immensity: this coast really does draw romantic stories to it.
+
+A few steps away, a remarkable garden clings to the edge of the cliff. Follow me.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-3
+@@STITLE=Les Jardins d'Étretat
+Go through the entrance to these gardens, clinging to the edge of the void. You wouldn't expect this, here, at the top of a Normandy cliff. Yew trees clipped into waves, spirals, shapes that ripple like the sea down below. Sculptures slipped between the bushes. A contemporary art garden, laid out only a few years ago, suspended above the water.
+
+It's said that the idea of a garden, in this exact spot, goes back to a friend of Monet's, who was also captivated by the view. True or not, the spirit is there: these bushes clipped into waves answer the real waves, down there below. Art imitates the landscape, which itself inspired art. The circle closes.
+
+And above all, go to the edge. From up here, the view over the whole bay is magnificent: the crescent-shaped beach, the village nestled at the back, and at the other end, the other cliff, the one where we'll finish. It's from this kind of height that painters took in the whole scene in a single glance.
+
+Now head back down to the beach. We're going to cross it to the other cliff. Count on a good quarter of an hour's walk. Follow me.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-4
+@@STITLE=Porte d'Aval, depuis la plage
+Here you are, down on the beach. Careful, no sand here: pebbles, thousands of round gray pebbles rolling underfoot with a sound like the sea. Along the seafront, you might spot these odd little wooden huts, thatched with straw, that look like upturned boat hulls. They're called caloges: old fishing boats turned upside down, which fishermen used to store nets and gear.
+
+It's here, on this beach, that the painters set up. The most famous, Claude Monet, came for several winters, in the 1880s, staying at a small hotel on the seafront. He would set up his easel on the pebbles and paint the cliffs, the boats, the light on the water — the same subject, again and again, at every hour of the day.
+
+Before him, others had already come: Courbet, who painted the cliff after the storm; Delacroix, Boudin, Isabey. Étretat became an open-air studio. The train brought the painters from Paris, and the cliff did the rest.
+
+Walk toward the other end of the beach, to the left, and take on the path climbing up the Falaise d'Aval. That's where it all comes together. Follow me.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-5
+@@STITLE=Porte d'Aval, depuis la plage
+Here we are, at the top of the Falaise d'Aval. Take your time, move carefully, and look. In front of you, the white chalk cliff juts out into the sea and hollows into an immense arch, like a natural bridge thrown over the waves: it's the Porte d'Aval. And right next to it, standing alone in the water, that spire of white stone pointing at the sky: it's the Aiguille, the Needle.
+
+A man described this arch better than anyone. Guy de Maupassant, who grew up nearby, wrote that it looked like an elephant dipping its trunk into the sea. Look closely: once someone's told you that, you can't unsee it. The bulk of the body, the leg, and the long trunk drinking the water.
+
+And you recognize this needle. It's the very one, the hollow needle from the novel, the one hiding the kings' treasure. Remember: it's fiction, an invention of Maurice Leblanc's. But standing before it, for real, with the light playing on the chalk, you understand how such an idea could be born. This rock calls out for stories.
+
+Here's all of Étretat gathered before your eyes. The cliff Monet painted dozens of times. The arch Maupassant turned into an elephant. The needle where Lupin hid his gold. The real and the imaginary, the rock and the novel, blended into the same landscape. That's why they call it the most romantic cliff in France.
+
+Stay up here a little longer, facing the wind, watching the elephant drink the sea. See you soon, friend.
+
+@@LANG=es
+@@TITLE=Étretat — El acantilado más novelesco de Francia
+@@DESC=Arte — Monet, Maupassant y Arsène Lupin: el acantilado que inspiró a pintores y novelistas.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-0
+@@STITLE=Les Halles d'Étretat
+Detente aquí, en la plaza, frente a estas halles de madera de vigas apretadas. Estamos en el corazón de Étretat. Un pueblo grande, unas cuantas calles, un mercado cubierto, una iglesia. A primera vista, nada excepcional.
+
+Y sin embargo, recuerda este nombre: Étretat. Porque este pequeño pueblo de pescadores se convirtió, en un siglo, en uno de los paisajes más célebres de Francia. Estos acantilados de creta blanca que vas a descubrir dentro de poco, sus arcos, su aguja de piedra plantada en el mar, se han pintado, escrito, filmado, mil veces.
+
+Esa es la historia que voy a contarte. Cómo un modesto litoral normando se convirtió en un decorado de ensueño. Tres nombres nos van a guiar. Un pintor, primero: Claude Monet, que vino aquí a plantar su caballete frente a los acantilados y a pintarlos una y otra vez. Un escritor: Guy de Maupassant, que creció muy cerca y puso estas rocas en sus libros. Y un tercero, más sorprendente: Arsène Lupin, el ladrón caballero, un personaje de novela, pero que planea sobre esta costa como si de verdad hubiera existido.
+
+Pintores, novelistas, aventureros de papel: todos hicieron de Étretat el acantilado más novelesco de Francia. Una misma costa, una misma luz, y ese extraño poder de convocar historias. Vayamos a ver por qué.
+
+Toma la callejuela que va hacia el oeste, hasta una villa de postigos claros, escondida en su jardín. Sígueme.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-1
+@@STITLE=Le Clos Lupin
+Esta elegante villa, con su galería y su jardín, es el Clos Lupin. Aquí vivía un escritor, Maurice Leblanc, y sobre todo su personaje: Arsène Lupin, el ladrón más encantador de la literatura francesa. Caballero de día, ladrón de noche, inasible, ingenioso. Leblanc escribió parte de sus aventuras en esta casa, e hizo de Étretat su terreno de juego.
+
+Y aquí inventó una idea genial. Vas a ver pronto, mar adentro, una aguja de creta erguida en el agua. En su novela La aguja hueca, Leblanc imagina que esta aguja está hueca —vacía por dentro— y que esconde desde siempre el tesoro secreto de los reyes de Francia. Lupin, evidentemente, conoce su entrada.
+
+Así que seamos claros, tú y yo: es pura invención. Una novela. La aguja es una roca maciza, el mar no esconde ningún cofre. Pero la idea era tan hermosa que, desde hace más de un siglo, los lectores llegan aquí buscando con la mirada la puerta del tesoro.
+
+Eso es la magia de Étretat: el paisaje real y la historia inventada acaban confundiéndose.
+
+Vuelve hacia el mar, y luego toma a la derecha las escaleras que suben al acantilado, el del lado norte. Sígueme.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-2
+@@STITLE=Porte d'Amont
+Aquí estás, en lo alto del acantilado de Amont, el que cierra la playa por el norte. Recupera el aliento y mira detrás de ti: esa pequeña capilla blanca es Notre-Dame-de-la-Garde, la capilla de los marineros. Destruida durante la guerra, reconstruida desde entonces, sigue velando por quienes se hacen a la mar.
+
+Pero avanza hasta esa forma extraña, apuntando al cielo como la proa de un avión. Es un monumento, y cuenta un drama. En mayo de 1927, dos franceses, Nungesser y Coli, despegan de París a bordo de un avión blanco, el Oiseau Blanc. Su apuesta: llegar a Nueva York de un solo tirón, cruzando el Atlántico. La última tierra sobre la que se les vio volar fue aquí, este acantilado. Después, nada más. Desaparecieron en el océano, y nunca se les encontró.
+
+Dos semanas después, otro hombre, el estadounidense Lindbergh, logró la travesía en sentido contrario y entró en la leyenda. Nungesser y Coli, en cambio, entraron en el silencio, en algún lugar del fondo del mar.
+
+Coraje, arrojo, un final trágico frente a la inmensidad: decididamente, esta costa atrae las historias novelescas.
+
+A dos pasos, un jardín asombroso se aferra al borde del acantilado. Sígueme.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-3
+@@STITLE=Les Jardins d'Étretat
+Cruza la entrada de estos jardines aferrados al borde del vacío. No te esperabas esto, aquí, en lo más alto de un acantilado normando. Tejos podados en olas, en espirales, en formas que ondulan como el mar de más abajo. Esculturas deslizadas entre los arbustos. Un jardín de arte contemporáneo, creado hace solo unos años, suspendido sobre el agua.
+
+Se cuenta que la idea de un jardín, en este lugar exacto, se remontaría a una amiga de Monet, seducida también ella por la vista. Verdad o no, el espíritu está ahí: estos arbustos podados en olas responden a las olas de verdad, allá abajo. El arte imita el paisaje, que a su vez inspiró el arte. El círculo se cierra.
+
+Y sobre todo, ve hasta el borde. Desde ahí arriba, la vista sobre toda la bahía es magnífica: la playa en arco, el pueblo acurrucado al fondo, y en el otro extremo, el otro acantilado, aquel donde vamos a terminar. Es desde este tipo de altura que los pintores abarcaban todo el decorado de un solo vistazo.
+
+Ahora, baja hacia la playa. Vamos a cruzarla hasta el otro acantilado. Cuenta un buen cuarto de hora de caminata. Sígueme.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-4
+@@STITLE=Porte d'Aval, depuis la plage
+Aquí estás, abajo, en la playa. Cuidado, aquí no hay arena: guijarros, miles de guijarros redondos y grises que ruedan bajo los pies con un sonido de mar. A lo largo del paseo marítimo, quizá veas esas curiosas cabañas de madera, con techo de paja, que parecen cascos de barco volcados. Son las caloges: viejas barcas de pesca invertidas, que los pescadores usaban para guardar redes y aparejos.
+
+Aquí, en esta playa, se instalaron los pintores. El más célebre, Claude Monet, vino varios inviernos, en la década de 1880, a alojarse en un pequeño hotel del paseo marítimo. Plantaba su caballete sobre los guijarros y pintaba los acantilados, las barcas, la luz sobre el agua: el mismo motivo, una y otra vez, a todas horas del día.
+
+Antes que él, ya habían venido otros: Courbet, que pintó el acantilado tras la tormenta; Delacroix, Boudin, Isabey. Étretat se convirtió en un taller al aire libre. El tren traía a los pintores desde París, y el acantilado hacía el resto.
+
+Camina hacia el otro extremo de la playa, a la izquierda, y afronta el sendero que sube al acantilado de Aval. Ahí es donde todo se decide. Sígueme.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-5
+@@STITLE=Porte d'Aval, depuis la plage
+Aquí estamos, en lo alto del acantilado de Aval. Tómate el tiempo, avanza con prudencia, y mira. Delante de ti, el acantilado de creta blanca avanza hacia el mar y se ahueca en un inmenso arco, como un puente natural tendido sobre las olas: es la Porte d'Aval. Y justo al lado, aislada en el agua, esa flecha de piedra blanca erguida hacia el cielo: es la Aiguille, la Aguja.
+
+Este arco, un hombre lo describió mejor que nadie. Guy de Maupassant, que creció muy cerca, escribió que parecía un elefante hundiendo su trompa en el mar. Mira bien: una vez que te lo han dicho, ya no puedes ver otra cosa. La masa del cuerpo, la pata, y la larga trompa que bebe el agua.
+
+Y esa aguja, la reconoces. Es ella, la aguja hueca de la novela, la que esconde el tesoro de los reyes. Recuerda: es una ficción, una invención de Maurice Leblanc. Pero frente a ella, de verdad, con la luz jugando sobre la creta, entiendes cómo pudo nacer semejante idea. Esta piedra convoca las historias.
+
+Ahí tienes toda Étretat reunida ante tus ojos. El acantilado que Monet pintó decenas de veces. El arco que Maupassant convirtió en elefante. La aguja donde Lupin escondía su oro. Lo real y lo imaginario, la roca y la novela, mezclados en el mismo paisaje. Por eso lo llaman el acantilado más novelesco de Francia.
+
+Quédate un poco más ahí arriba, frente al viento, mirando al elefante beber el mar. Y hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Étretat — Frankreichs romanhafteste Klippe
+@@DESC=Kunst — Monet, Maupassant und Arsène Lupin: die Klippe, die Maler und Romanciers inspirierte.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-0
+@@STITLE=Les Halles d'Étretat
+Halt hier an, auf dem Platz, vor dieser Markthalle aus Holz mit ihren dicht stehenden Balken. Wir sind im Herzen von Étretat. Ein größerer Ort, ein paar Straßen, eine überdachte Markthalle, eine Kirche. Auf den ersten Blick nichts Besonderes.
+
+Und doch, merke dir diesen Namen: Étretat. Denn dieses kleine Fischerdorf wurde innerhalb eines Jahrhunderts zu einer der berühmtesten Landschaften Frankreichs. Diese weißen Kreidefelsen, die du gleich entdecken wirst, ihre Bögen, ihre steinerne Nadel, die im Meer aufragt, wurden tausendmal gemalt, beschrieben, verfilmt.
+
+Das ist die Geschichte, die ich dir erzählen werde. Wie ein bescheidener normannischer Küstenabschnitt zu einer Traumkulisse wurde. Drei Namen werden uns leiten. Zunächst ein Maler: Claude Monet, der hierherkam, um seine Staffelei den Klippen gegenüber aufzustellen und sie immer wieder zu malen. Ein Schriftsteller: Guy de Maupassant, der ganz in der Nähe aufwuchs und diese Felsen in seinen Büchern verewigte. Und ein dritter, überraschenderer: Arsène Lupin, der Gentleman-Einbrecher — eine Romanfigur, die aber über dieser Küste schwebt, als hätte sie wirklich existiert.
+
+Maler, Romanciers, Papierabenteurer: sie alle machten Étretat zur romanhaftesten Klippe Frankreichs. Dieselbe Küste, dasselbe Licht, und diese seltsame Kraft, Geschichten heraufzubeschwören. Gehen wir schauen, warum.
+
+Nimm die kleine Straße, die nach Westen führt, bis zu einer Villa mit hellen Fensterläden, versteckt in ihrem Garten. Folge mir.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-1
+@@STITLE=Le Clos Lupin
+Diese elegante Villa, mit ihrer Veranda und ihrem Garten, ist der Clos Lupin. Hier lebte ein Schriftsteller, Maurice Leblanc, und vor allem seine Figur: Arsène Lupin, der charmanteste Dieb der französischen Literatur. Tagsüber Gentleman, nachts Einbrecher, unfassbar, geistreich. Leblanc schrieb einen Teil seiner Abenteuer in diesem Haus und machte Étretat zu ihrem Schauplatz.
+
+Und hier hatte er eine geniale Idee. Du wirst gleich, draußen auf dem Meer, eine Kreidenadel sehen, die aus dem Wasser ragt. In seinem Roman Die hohle Nadel stellt sich Leblanc vor, diese Nadel sei hohl — innen leer — und verberge seit jeher den geheimen Schatz der Könige von Frankreich. Lupin kennt natürlich ihren Eingang.
+
+Seien wir also klar, du und ich: das ist reine Erfindung. Ein Roman. Die Nadel ist ein massiver Fels, das Meer verbirgt keine Truhe. Aber die Idee war so schön, dass seit über einem Jahrhundert Leser hierherkommen und mit den Augen nach der Tür zum Schatz suchen.
+
+Das ist die Magie von Étretat: die echte Landschaft und die erfundene Geschichte verschmelzen am Ende miteinander.
+
+Geh zurück zum Meer, dann nimm rechts die Treppe, die auf die Klippe hinaufführt, die auf der Nordseite. Folge mir.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-2
+@@STITLE=Porte d'Amont
+Da bist du nun oben auf der Falaise d'Amont, die den Strand im Norden abschließt. Verschnauf einen Moment und schau hinter dich: diese kleine weiße Kapelle ist Notre-Dame-de-la-Garde, die Kapelle der Seeleute. Während des Krieges zerstört, seither wieder aufgebaut, wacht sie noch immer über jene, die aufs Meer hinausfahren.
+
+Doch geh weiter bis zu jener seltsamen Form, die wie der Bug eines Flugzeugs zum Himmel weist. Es ist ein Denkmal, und es erzählt ein Drama. Im Mai 1927 starten zwei Franzosen, Nungesser und Coli, in Paris an Bord eines weißen Flugzeugs, dem Oiseau Blanc. Ihre Wette: New York in einem einzigen Flug zu erreichen, über den Atlantik hinweg. Das letzte Land, über dem man sie fliegen sah, war hier, diese Klippe. Danach nichts mehr. Sie verschwanden im Ozean, und man hat sie nie wiedergefunden.
+
+Zwei Wochen später gelang einem anderen, dem Amerikaner Lindbergh, die Überquerung in der Gegenrichtung, und er ging in die Legende ein. Nungesser und Coli hingegen gingen ins Schweigen ein, irgendwo auf dem Meeresgrund.
+
+Mut, Schwung, ein tragisches Ende angesichts der Unermesslichkeit: diese Küste zieht wirklich romanhafte Geschichten an.
+
+Ein paar Schritte weiter klammert sich ein erstaunlicher Garten an den Rand der Klippe. Folge mir.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-3
+@@STITLE=Les Jardins d'Étretat
+Durchquere den Eingang dieser Gärten, die sich an den Rand der Leere klammern. Das hättest du hier, oben auf einer normannischen Klippe, nicht erwartet. Eiben, geschnitten zu Wellen, zu Spiralen, zu Formen, die sich winden wie das Meer weiter unten. Skulpturen, zwischen die Büsche geschoben. Ein zeitgenössischer Kunstgarten, erst vor wenigen Jahren angelegt, über dem Wasser schwebend.
+
+Man erzählt, die Idee zu einem Garten, genau an dieser Stelle, gehe auf eine Freundin Monets zurück, die ebenfalls von der Aussicht bezaubert war. Ob wahr oder nicht, der Geist ist da: diese zu Wellen geschnittenen Büsche antworten den echten Wellen, dort unten. Die Kunst ahmt die Landschaft nach, die selbst die Kunst inspiriert hat. Der Kreis schließt sich.
+
+Und vor allem, geh bis zum Rand. Von dort oben ist der Blick über die ganze Bucht großartig: der bogenförmige Strand, das am Ende geduckte Dorf, und am anderen Ende die andere Klippe, dort, wo wir enden werden. Aus solcher Höhe erfassten die Maler die ganze Kulisse mit einem einzigen Blick.
+
+Geh nun wieder hinunter zum Strand. Wir werden ihn bis zur anderen Klippe durchqueren. Rechne mit einer guten Viertelstunde Fußweg. Folge mir.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-4
+@@STITLE=Porte d'Aval, depuis la plage
+Da bist du nun unten, am Strand. Vorsicht, hier kein Sand: Kiesel, Tausende runde graue Kiesel, die unter den Schritten mit einem Meeresrauschen rollen. Entlang der Strandpromenade siehst du vielleicht diese merkwürdigen strohgedeckten Holzhütten, die wie umgedrehte Bootsrümpfe aussehen. Das sind Caloges: alte, umgedrehte Fischerboote, die die Fischer nutzten, um Netze und Gerät zu verstauen.
+
+Hier, an diesem Strand, ließen sich die Maler nieder. Der berühmteste, Claude Monet, kam mehrere Winter lang, in den 1880er Jahren, und wohnte in einem kleinen Hotel an der Strandpromenade. Er stellte seine Staffelei auf die Kiesel und malte die Klippen, die Boote, das Licht auf dem Wasser — dasselbe Motiv, immer wieder, zu jeder Tageszeit.
+
+Vor ihm waren schon andere gekommen: Courbet, der die Klippe nach dem Sturm malte; Delacroix, Boudin, Isabey. Étretat wurde zu einem Atelier unter freiem Himmel. Der Zug brachte die Maler aus Paris, und die Klippe erledigte den Rest.
+
+Geh zum anderen Ende des Strandes, nach links, und nimm den Pfad, der auf die Falaise d'Aval hinaufsteigt. Dort entscheidet sich alles. Folge mir.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-5
+@@STITLE=Porte d'Aval, depuis la plage
+Da sind wir nun, oben auf der Falaise d'Aval. Nimm dir Zeit, geh vorsichtig weiter, und schau. Vor dir schiebt sich die weiße Kreideklippe ins Meer hinaus und höhlt sich zu einem gewaltigen Bogen aus, wie eine natürliche Brücke über die Fluten geworfen: das ist die Porte d'Aval. Und gleich daneben, allein im Wasser stehend, diese Spitze aus weißem Stein, die zum Himmel ragt: das ist die Aiguille, die Nadel.
+
+Diesen Bogen hat ein Mann besser beschrieben als jeder andere. Guy de Maupassant, der ganz in der Nähe aufwuchs, schrieb, er ähnele einem Elefanten, der seinen Rüssel ins Meer taucht. Schau genau hin: sobald man es dir gesagt hat, siehst du nur noch das. Die Masse des Körpers, das Bein, und den langen Rüssel, der das Wasser trinkt.
+
+Und diese Nadel erkennst du. Sie ist es, die hohle Nadel aus dem Roman, jene, die den Schatz der Könige verbirgt. Erinnere dich: es ist Fiktion, eine Erfindung Maurice Leblancs. Doch vor ihr stehend, in Wirklichkeit, mit dem Licht, das auf der Kreide spielt, verstehst du, wie eine solche Idee entstehen konnte. Dieser Stein ruft nach Geschichten.
+
+Da hast du nun ganz Étretat vor Augen versammelt. Die Klippe, die Monet Dutzende Male gemalt hat. Der Bogen, den Maupassant in einen Elefanten verwandelte. Die Nadel, wo Lupin sein Gold versteckte. Das Wirkliche und das Erfundene, der Fels und der Roman, vermischt in derselben Landschaft. Deshalb nennt man sie die romanhafteste Klippe Frankreichs.
+
+Bleib noch ein wenig hier oben, dem Wind zugewandt, und schau dem Elefanten zu, wie er das Meer trinkt. Und bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Étretat — La scogliera più romanzesca di Francia
+@@DESC=Arte — Monet, Maupassant e Arsène Lupin: la scogliera che ha ispirato pittori e romanzieri.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-0
+@@STITLE=Les Halles d'Étretat
+Fermati qui, sulla piazza, davanti a questi mercati coperti di legno dalle travi serrate. Siamo nel cuore di Étretat. Un grosso borgo, qualche via, un mercato coperto, una chiesa. A prima vista, nulla di eccezionale.
+
+Eppure, ricorda questo nome: Étretat. Perché questo piccolo villaggio di pescatori è diventato, in un secolo, uno dei paesaggi più celebri di Francia. Queste scogliere di gesso bianco che scoprirai tra poco, i loro archi, il loro ago di pietra piantato nel mare, sono stati dipinti, scritti, filmati, mille volte.
+
+Ecco la storia che ti racconterò. Come un modesto tratto di costa normanna sia diventato uno scenario da sogno. Tre nomi ci guideranno. Un pittore, prima di tutto: Claude Monet, che venne qui a piantare il suo cavalletto di fronte alle scogliere e a dipingerle ancora e ancora. Uno scrittore: Guy de Maupassant, che crebbe qui vicino e mise queste rocce nei suoi libri. E un terzo, più sorprendente: Arsène Lupin, il ladro gentiluomo — un personaggio da romanzo, ma che aleggia su questa costa come se fosse davvero esistito.
+
+Pittori, romanzieri, avventurieri di carta: tutti hanno fatto di Étretat la scogliera più romanzesca di Francia. Una stessa costa, una stessa luce, e questo strano potere di evocare storie. Andiamo a vedere perché.
+
+Prendi la stradina che va verso ovest, fino a una villa dalle persiane chiare, nascosta nel suo giardino. Seguimi.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-1
+@@STITLE=Le Clos Lupin
+Questa elegante villa, con la sua veranda e il suo giardino, è il Clos Lupin. Qui viveva uno scrittore, Maurice Leblanc, e soprattutto il suo personaggio: Arsène Lupin, il ladro più affascinante della letteratura francese. Gentiluomo di giorno, ladro di notte, inafferrabile, spiritoso. Leblanc scrisse parte delle sue avventure in questa casa, e fece di Étretat il loro terreno di gioco.
+
+E qui ebbe un'idea geniale. Vedrai presto, al largo, un ago di gesso eretto nel mare. Nel suo romanzo L'ago cavo, Leblanc immagina che questo ago sia cavo — vuoto all'interno — e che nasconda da sempre il tesoro segreto dei re di Francia. Lupin, ovviamente, ne conosce l'entrata.
+
+Allora siamo chiari, tu e io: è pura invenzione. Un romanzo. L'ago è una roccia piena, il mare non nasconde nessun forziere. Ma l'idea era così bella che, da oltre un secolo, i lettori arrivano qui cercando con lo sguardo la porta del tesoro.
+
+È questa la magia di Étretat: il paesaggio vero e la storia inventata finiscono per confondersi.
+
+Torna verso il mare, poi prendi a destra i gradini che salgono sulla scogliera, quella del lato nord. Seguimi.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-2
+@@STITLE=Porte d'Amont
+Eccoti in cima alla scogliera d'Amont, quella che chiude la spiaggia a nord. Riprendi fiato e guarda dietro di te: quella piccola cappella bianca è Notre-Dame-de-la-Garde, la cappella dei marinai. Distrutta durante la guerra, ricostruita in seguito, veglia ancora su chi prende il mare.
+
+Ma avanza fino a quella forma strana, puntata verso il cielo come la prua di un aereo. È un monumento, e racconta un dramma. Nel maggio 1927, due francesi, Nungesser e Coli, decollano da Parigi a bordo di un aereo bianco, l'Oiseau Blanc. La loro scommessa: raggiungere New York in un'unica tratta, attraverso l'Atlantico. L'ultima terra su cui li si vide sorvolare fu qui, questa scogliera. Dopo, più nulla. Scomparvero nell'oceano, e non furono mai ritrovati.
+
+Due settimane dopo, un altro, l'americano Lindbergh, riuscì nella traversata nell'altro senso ed entrò nella leggenda. Nungesser e Coli, invece, entrarono nel silenzio, da qualche parte in fondo al mare.
+
+Coraggio, slancio, una fine tragica di fronte all'immensità: decisamente, questa costa attira le storie romanzesche.
+
+A due passi, un giardino sorprendente si aggrappa al bordo della scogliera. Seguimi.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-3
+@@STITLE=Les Jardins d'Étretat
+Varca l'ingresso di questi giardini aggrappati al bordo del vuoto. Non te lo aspettavi, qui, in cima a una scogliera normanna. Tassi tagliati a onde, a spirali, a forme che ondeggiano come il mare più in basso. Sculture infilate tra i cespugli. Un giardino d'arte contemporanea, allestito solo pochi anni fa, sospeso sull'acqua.
+
+Si racconta che l'idea di un giardino, in questo punto esatto, risalirebbe a un'amica di Monet, sedotta anch'essa dalla vista. Vero o no, lo spirito c'è: questi cespugli tagliati a onde rispondono alle vere onde, là in basso. L'arte imita il paesaggio, che a sua volta ha ispirato l'arte. Il cerchio si chiude.
+
+E soprattutto, vai fino al bordo. Da lassù, la vista su tutta la baia è magnifica: la spiaggia ad arco, il villaggio raccolto in fondo, e all'altro capo, l'altra scogliera, quella dove finiremo. È da questo tipo di altezza che i pittori abbracciavano tutto lo scenario con un solo sguardo.
+
+Ora, scendi verso la spiaggia. La attraverseremo fino all'altra scogliera. Conta un buon quarto d'ora di cammino. Seguimi.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-4
+@@STITLE=Porte d'Aval, depuis la plage
+Eccoti in basso, sulla spiaggia. Attenzione, niente sabbia qui: ciottoli, migliaia di ciottoli tondi e grigi che rotolano sotto i passi con un rumore di mare. Lungo il lungomare, forse vedrai queste buffe capanne di legno, coperte di paglia, che sembrano scafi di barche capovolti. Sono le caloges: vecchie barche da pesca rovesciate, che i pescatori usavano per riporre reti e attrezzatura.
+
+È qui, su questa spiaggia, che si sono installati i pittori. Il più celebre, Claude Monet, venne per diversi inverni, negli anni 1880, ad alloggiare in un piccolo albergo del lungomare. Piantava il suo cavalletto sui ciottoli e dipingeva le scogliere, le barche, la luce sull'acqua — lo stesso motivo, ancora e ancora, a ogni ora del giorno.
+
+Prima di lui, altri erano già venuti: Courbet, che dipinse la scogliera dopo la tempesta; Delacroix, Boudin, Isabey. Étretat divenne un atelier a cielo aperto. Il treno portava i pittori da Parigi, e la scogliera faceva il resto.
+
+Cammina verso l'altro capo della spiaggia, a sinistra, e affronta il sentiero che sale sulla scogliera d'Aval. È lì che tutto si decide. Seguimi.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-5
+@@STITLE=Porte d'Aval, depuis la plage
+Eccoci, in cima alla scogliera d'Aval. Prenditi il tempo, avanza con prudenza, e guarda. Davanti a te, la scogliera di gesso bianco avanza nel mare e si scava in un immenso arco, come un ponte naturale gettato sui flutti: è la Porte d'Aval. E proprio accanto, isolata nell'acqua, quella freccia di pietra bianca eretta verso il cielo: è l'Aiguille, l'Ago.
+
+Quest'arco, un uomo lo ha descritto meglio di chiunque altro. Guy de Maupassant, che crebbe qui vicino, scrisse che assomigliava a un elefante che immerge la proboscide nel mare. Guarda bene: una volta che te l'hanno detto, non vedi più altro che questo. La massa del corpo, la zampa, e la lunga proboscide che beve l'acqua.
+
+E quest'ago, lo riconosci. È lui, l'ago cavo del romanzo, quello che nasconde il tesoro dei re. Ricorda: è una finzione, un'invenzione di Maurice Leblanc. Ma davanti a lui, per davvero, con la luce che gioca sul gesso, capisci come sia potuta nascere un'idea simile. Questa pietra evoca le storie.
+
+Ecco tutta Étretat riunita davanti ai tuoi occhi. La scogliera che Monet ha dipinto decine di volte. L'arco che Maupassant ha trasformato in elefante. L'ago dove Lupin nascondeva il suo oro. Il vero e l'immaginario, la roccia e il romanzo, mescolati nello stesso paesaggio. Per questo la chiamano la scogliera più romanzesca di Francia.
+
+Resta ancora un po' quassù, di fronte al vento, a guardare l'elefante bere il mare. E a presto, amico.
+
+@@LANG=nl
+@@TITLE=Étretat — De meest romaneske klif van Frankrijk
+@@DESC=Kunst — Monet, Maupassant en Arsène Lupin: de klif die schilders en romanschrijvers inspireerde.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-0
+@@STITLE=Les Halles d'Étretat
+Stop hier, op het plein, voor deze houten markthallen met hun dicht opeengepakte balken. We zijn in het hart van Étretat. Een groot stadje, een paar straten, een overdekte markt, een kerk. Op het eerste gezicht niets bijzonders.
+
+En toch, onthoud deze naam: Étretat. Want dit kleine vissersdorp is binnen een eeuw een van de beroemdste landschappen van Frankrijk geworden. Deze witte krijtrotsen die je zo dadelijk gaat ontdekken, hun bogen, hun stenen naald geplant in de zee, zijn duizend keer geschilderd, beschreven, verfilmd.
+
+Dat is het verhaal dat ik je ga vertellen. Hoe een bescheiden stukje Normandische kust een droomdecor werd. Drie namen zullen ons gidsen. Eerst een schilder: Claude Monet, die hierheen kwam om zijn ezel op te zetten tegenover de klippen en ze steeds opnieuw te schilderen. Een schrijver: Guy de Maupassant, die vlakbij opgroeide en deze rotsen in zijn boeken zette. En een derde, verrassender: Arsène Lupin, de heer-inbreker — een romanpersonage, maar een die boven deze kust zweeft alsof hij echt heeft bestaan.
+
+Schilders, romanschrijvers, avonturiers van papier: allemaal maakten ze van Étretat de meest romaneske klif van Frankrijk. Eenzelfde kust, eenzelfde licht, en die vreemde kracht om verhalen op te roepen. Laten we gaan kijken waarom.
+
+Neem het straatje dat naar het westen loopt, tot aan een villa met lichte luiken, verscholen in haar tuin. Volg me.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-1
+@@STITLE=Le Clos Lupin
+Deze elegante villa, met haar veranda en tuin, is de Clos Lupin. Hier woonde een schrijver, Maurice Leblanc, en vooral zijn personage: Arsène Lupin, de charmantste dief uit de Franse literatuur. Overdag heer, 's nachts inbreker, ongrijpbaar, geestig. Leblanc schreef een deel van zijn avonturen in dit huis, en maakte van Étretat hun speelterrein.
+
+En hier bedacht hij een geniaal idee. Je zult zo meteen, op zee, een krijtnaald zien oprijzen uit het water. In zijn roman De holle naald stelt Leblanc zich voor dat deze naald hol is — van binnen leeg — en dat ze al sinds mensenheugenis de geheime schat van de koningen van Frankrijk verbergt. Lupin kent uiteraard de ingang ervan.
+
+Laten we dus duidelijk zijn, jij en ik: dit is pure verzinsel. Een roman. De naald is een massieve rots, de zee verbergt geen kist. Maar het idee was zo mooi dat, al meer dan een eeuw, lezers hierheen komen om met hun blik de deur naar de schat te zoeken.
+
+Dat is de magie van Étretat: het echte landschap en het verzonnen verhaal versmelten uiteindelijk met elkaar.
+
+Ga terug naar de zee, en neem dan rechts de trappen die de klif op klimmen, die aan de noordkant. Volg me.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-2
+@@STITLE=Porte d'Amont
+Hier ben je nu boven op de Falaise d'Amont, die het strand aan de noordkant afsluit. Haal even adem en kijk achter je: die kleine witte kapel is Notre-Dame-de-la-Garde, de kapel van de zeelieden. Verwoest tijdens de oorlog, sindsdien herbouwd, waakt ze nog steeds over hen die de zee op gaan.
+
+Maar loop door tot aan die vreemde vorm, naar de hemel gericht als de neus van een vliegtuig. Het is een monument, en het vertelt een drama. In mei 1927 stijgen twee Fransen, Nungesser en Coli, op vanuit Parijs aan boord van een wit vliegtuig, de Oiseau Blanc. Hun weddenschap: New York in één ononderbroken vlucht bereiken, over de Atlantische Oceaan. Het laatste land waarboven men hen zag vliegen, was hier, deze klif. Daarna niets meer. Ze verdwenen in de oceaan, en werden nooit teruggevonden.
+
+Twee weken later slaagde een ander, de Amerikaan Lindbergh, in de oversteek de andere kant op en ging de legende in. Nungesser en Coli gingen daarentegen de stilte in, ergens op de bodem van de zee.
+
+Moed, flair, een tragisch einde tegenover de onmetelijkheid: deze kust trekt beslist romaneske verhalen aan.
+
+Op een paar passen afstand klampt een verbazingwekkende tuin zich vast aan de rand van de klif. Volg me.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-3
+@@STITLE=Les Jardins d'Étretat
+Ga door de ingang van deze tuinen, die zich vastklampen aan de rand van de leegte. Dit had je hier, boven op een Normandische klif, niet verwacht. Taxusbomen geknipt in golven, in spiralen, in vormen die golven zoals de zee daar beneden. Sculpturen tussen de struiken geschoven. Een hedendaagse kunsttuin, pas enkele jaren geleden aangelegd, zwevend boven het water.
+
+Men vertelt dat het idee voor een tuin, precies op deze plek, teruggaat op een vriendin van Monet, die eveneens door het uitzicht werd verleid. Waar of niet, de geest is er: deze in golven geknipte struiken beantwoorden aan de echte golven, daar beneden. De kunst bootst het landschap na, dat zelf de kunst heeft geïnspireerd. De cirkel is rond.
+
+En ga vooral tot aan de rand. Vanaf daarboven is het uitzicht over de hele baai prachtig: het boogvormige strand, het dorp genesteld op de achtergrond, en aan het andere uiteinde, de andere klif, die waar we gaan eindigen. Vanaf zo'n hoogte namen de schilders het hele decor in één oogopslag in zich op.
+
+Ga nu weer naar beneden, naar het strand. We gaan het oversteken tot aan de andere klif. Reken op een goed kwartier lopen. Volg me.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-4
+@@STITLE=Porte d'Aval, depuis la plage
+Hier ben je nu, beneden, op het strand. Let op, geen zand hier: kiezelstenen, duizenden ronde, grijze kiezelstenen die onder je voeten rollen met een geluid als de zee. Langs de boulevard zie je misschien die grappige houten hutjes, met een rieten dak, die op omgekeerde scheepsrompen lijken. Dat zijn caloges: oude, omgekeerde vissersboten, die vissers gebruikten om netten en gereedschap in op te bergen.
+
+Hier, op dit strand, vestigden de schilders zich. De beroemdste, Claude Monet, kwam verscheidene winters, in de jaren 1880, logeren in een klein hotel aan de boulevard. Hij zette zijn ezel op de kiezels neer en schilderde de klippen, de boten, het licht op het water — hetzelfde onderwerp, keer op keer, op alle uren van de dag.
+
+Voor hem waren er al anderen gekomen: Courbet, die de klif na de storm schilderde; Delacroix, Boudin, Isabey. Étretat werd een atelier in de open lucht. De trein bracht de schilders vanuit Parijs, en de klif deed de rest.
+
+Loop naar het andere uiteinde van het strand, links, en neem het pad dat de Falaise d'Aval op klimt. Daar wordt alles beslist. Volg me.
+
+@@SCENE=seed-100-etretat-falaises-des-peintres-scene-5
+@@STITLE=Porte d'Aval, depuis la plage
+Hier zijn we, boven op de Falaise d'Aval. Neem de tijd, loop voorzichtig verder, en kijk. Voor je schuift de witte krijtklif de zee in en holt zich uit tot een immense boog, als een natuurlijke brug over de golven geworpen: dat is de Porte d'Aval. En vlak ernaast, alleen in het water, die pijl van wit gesteente, naar de hemel gericht: dat is de Aiguille, de Naald.
+
+Deze boog heeft een man beter beschreven dan wie ook. Guy de Maupassant, die vlakbij opgroeide, schreef dat hij op een olifant leek die zijn slurf in de zee doopt. Kijk goed: eenmaal je het is verteld, zie je alleen dat nog. De massa van het lichaam, de poot, en de lange slurf die het water drinkt.
+
+En deze naald, die herken je. Het is dezelfde, de holle naald uit de roman, die de schat van de koningen verbergt. Denk eraan: het is fictie, een verzinsel van Maurice Leblanc. Maar ervoor staand, in werkelijkheid, met het licht dat over het krijt speelt, begrijp je hoe zo'n idee kon ontstaan. Deze steen roept om verhalen.
+
+Daar heb je heel Étretat verzameld voor je ogen. De klif die Monet tientallen keren schilderde. De boog die Maupassant in een olifant veranderde. De naald waar Lupin zijn goud verstopte. Het echte en het denkbeeldige, de rots en de roman, vermengd in hetzelfde landschap. Daarom noemt men het de meest romaneske klif van Frankrijk.
+
+Blijf nog even hierboven staan, met je gezicht in de wind, kijkend naar de olifant die de zee drinkt. Tot ziens, vriend.

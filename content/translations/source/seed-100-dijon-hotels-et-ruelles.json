@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-dijon-hotels-et-ruelles",
+  "sessionId": "seed-100-dijon-hotels-et-ruelles-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Dijon",
+  "title": "Dijon — Hôtels et ruelles",
+  "description": "Architecture — reconnaître cours, hôtels particuliers et ruelles dans le centre sauvegardé.",
+  "themes": [
+    "Architecture — reconnaître cours, hôtels particuliers et ruelles dans le centre sauvegardé."
+  ],
+  "baseLanguage": "fr",
+  "chars": 7004,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "de": "Architektur, Anerkennung von Kursen, Privathotels und Gassen im gesicherten Zentrum.",
+    "en": "Architecture, recognize courses, private hotels and alleys in the saved center.",
+    "es": "Arquitectura, reconocer cursos, hoteles particulares y callejones en el centro guardado.",
+    "it": "Architettura, corsi di riconoscimento, hotel privati e vicoli nel centro salvato."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-dijon-hotels-et-ruelles-scene-0",
+      "index": 0,
+      "title": "Porte Guillaume",
+      "text": "Commence place Darcy, face à la porte Guillaume. Cet arc du XVIIIe siècle remplaça une entrée plus ancienne dans l’enceinte de Dijon. Il porte le nom de Guillaume de Volpiano, réformateur de l’abbaye Saint-Bénigne au Moyen Âge. Sa position marque encore le passage entre les boulevards et la rue de la Liberté, grand axe du centre historique.\n\nRegarde à travers l’arche. La perspective se resserre rapidement entre les façades, comme si la porte comprimait la ville avant de la laisser se déployer. Derrière toi, la place et le jardin Darcy appartiennent aux aménagements plus ouverts des XIXe et XXe siècles. Devant toi commence un tissu ancien où les hôtels particuliers se découvrent rarement d’un seul regard.\n\nEmprunte la rue de la Liberté puis dirige-toi vers l’hôtel Chambellan. Reste attentif aux passages et aux portes cochères. Beaucoup ne donnent qu’un aperçu de cour et peuvent appartenir à des propriétés privées ; observe-les depuis la rue sans franchir les seuils fermés. Notre parcours suivra cette alternance entre façades publiques et espaces intérieurs suggérés, caractéristique des demeures urbaines construites pour de grandes familles ou des officiers du pouvoir ducal.",
+      "hash": "435774c7",
+      "chars": 1191,
+      "existingSegments": {
+        "it": "seed-100-dijon-hotels-et-ruelles-scene-0-seg-it",
+        "en": "seed-100-dijon-hotels-et-ruelles-scene-0-seg-en",
+        "es": "seed-100-dijon-hotels-et-ruelles-scene-0-seg-es",
+        "de": "seed-100-dijon-hotels-et-ruelles-scene-0-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-dijon-hotels-et-ruelles-scene-1",
+      "index": 1,
+      "title": "Hôtel Chambellan",
+      "text": "Arrête-toi devant l’accès de l’hôtel Chambellan, dans la rue des Forges. Cette demeure de la fin du XVe siècle est connue pour sa cour et sa galerie de bois sculpté. Lorsque la cour est légalement accessible, entre avec discrétion ; sinon, reste au seuil. Le passage depuis la rue révèle un principe essentiel de l’hôtel particulier : une façade parfois réservée à la ville, puis un espace intérieur où l’architecture devient plus démonstrative.\n\nObserve l’escalier, les galeries et les supports sculptés. Le bois contraste avec la pierre. La cour éclaire une parcelle profonde et organise plusieurs corps de bâtiment derrière une façade étroite.\n\nRejoins maintenant la rue de la Chouette, près de l’église Notre-Dame. Le trajet passe par des voies étroites où chaque angle révèle un fragment différent : tourelle, toiture, portail ou mur mitoyen. Ne cherche pas à pénétrer dans les cours closes. Leur retrait fait partie du récit. Dijon protège une partie de son architecture derrière des seuils, et la promenade consiste justement à lire ce qui se montre, ce qui se cadre et ce qui reste caché.",
+      "hash": "4df07d4f",
+      "chars": 1096,
+      "existingSegments": {
+        "es": "seed-100-dijon-hotels-et-ruelles-scene-1-seg-es",
+        "en": "seed-100-dijon-hotels-et-ruelles-scene-1-seg-en",
+        "it": "seed-100-dijon-hotels-et-ruelles-scene-1-seg-it",
+        "de": "seed-100-dijon-hotels-et-ruelles-scene-1-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-dijon-hotels-et-ruelles-scene-2",
+      "index": 2,
+      "title": "Rue de la Chouette",
+      "text": "Avance dans la rue de la Chouette en longeant l’église Notre-Dame. Son côté nord porte une petite sculpture devenue l’un des repères familiers de Dijon. Regarde surtout l’échelle de la ruelle : le mur religieux occupe un bord, les maisons anciennes l’autre, et le ciel se réduit à une bande étroite au-dessus des toits.\n\nEn contournant l’église, tu peux observer les gargouilles et la richesse du portail occidental depuis les espaces publics. La proximité rend les détails presque tactiles, mais garde ton regard mobile pour ne pas gêner le passage. Cette rue montre comment un grand monument s’insère dans un tissu dense sans disposer d’un vaste parvis sur tous ses côtés.\n\nContinue vers l’hôtel de Vogüé. Son portail et sa cour appartiennent au XVIIe siècle et annonceront un langage architectural différent. En marchant, remarque les changements de pierre, les fenêtres à meneaux et les toitures vernissées qui apparaissent parfois au-dessus des murs. La ruelle fonctionne comme un montage : elle ne donne jamais l’ensemble, seulement une suite de fragments. C’est précisément cette vision partielle qui prépare la découverte d’une cour ordonnée derrière un portail monumental.",
+      "hash": "dc8540db",
+      "chars": 1181,
+      "existingSegments": {
+        "es": "seed-100-dijon-hotels-et-ruelles-scene-2-seg-es",
+        "it": "seed-100-dijon-hotels-et-ruelles-scene-2-seg-it",
+        "de": "seed-100-dijon-hotels-et-ruelles-scene-2-seg-de",
+        "en": "seed-100-dijon-hotels-et-ruelles-scene-2-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-dijon-hotels-et-ruelles-scene-3",
+      "index": 3,
+      "title": "Hôtel de Vogüé",
+      "text": "Place-toi face au portail de l’hôtel de Vogüé. Construit au début du XVIIe siècle pour Étienne Bouhier, magistrat au parlement de Bourgogne, l’édifice associe un décor Renaissance tardive à des formes classiques. Le portail annonce le rang du propriétaire avant même que la cour ne soit visible. Ses bossages, ses sculptures et ses proportions composent une véritable façade de seuil.\n\nSi l’accès public est ouvert, observe la cour sans pénétrer dans les espaces réservés. Les bâtiments s’organisent autour d’elle avec davantage de régularité que dans l’hôtel Chambellan. La toiture de tuiles vernissées ajoute un motif coloré visible depuis plusieurs angles. Ici encore, la cour apporte lumière et distance au sein d’une parcelle urbaine dense.\n\nPars ensuite vers la rue de la Verrerie. Cette voie conserve plusieurs maisons anciennes et offre un contraste avec la solennité de l’hôtel. Regarde la façon dont les étages avancent parfois au-dessus du rez-de-chaussée. Les demeures modestes et les hôtels prestigieux appartiennent au même tissu : les uns donnent son rythme à la rue, les autres creusent des respirations derrière leurs portes. La prochaine halte permettra de comparer directement ces deux échelles.",
+      "hash": "50d17770",
+      "chars": 1214,
+      "existingSegments": {
+        "es": "seed-100-dijon-hotels-et-ruelles-scene-3-seg-es",
+        "de": "seed-100-dijon-hotels-et-ruelles-scene-3-seg-de",
+        "en": "seed-100-dijon-hotels-et-ruelles-scene-3-seg-en",
+        "it": "seed-100-dijon-hotels-et-ruelles-scene-3-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-dijon-hotels-et-ruelles-scene-4",
+      "index": 4,
+      "title": "Rue de la Verrerie",
+      "text": "Arrête-toi dans la rue de la Verrerie à un endroit où le passage reste libre. Plusieurs maisons à pans de bois rappellent les techniques utilisées avant la généralisation des façades de pierre. Les étages en encorbellement gagnent de la surface au-dessus d’une chaussée étroite. Leurs poutres dessinent une trame visible, à la fois structure et décor.\n\nCompare ces maisons aux hôtels particuliers rencontrés plus tôt. Ici, aucun grand portail ne crée de recul. La façade est directement au contact de la rue, et la répétition des travées produit une continuité serrée. Pourtant, chaque bâtiment conserve ses irrégularités : angle déformé, sablière sculptée, fenêtre déplacée. La ruelle porte la mémoire de transformations lentes plutôt que celle d’un projet unique.\n\nRejoins la place de la Libération en passant par les voies du centre. L’espace va s’ouvrir brutalement devant le palais des ducs et des États de Bourgogne. Cette transition constitue l’un des contrastes les plus forts du parcours. Après des cours secrètes et des rues resserrées, tu arriveras sur une place conçue pour donner du recul à un vaste ensemble de pouvoir et pour ordonner la ville autour de sa façade.",
+      "hash": "181f6b1c",
+      "chars": 1179,
+      "existingSegments": {
+        "es": "seed-100-dijon-hotels-et-ruelles-scene-4-seg-es",
+        "en": "seed-100-dijon-hotels-et-ruelles-scene-4-seg-en",
+        "it": "seed-100-dijon-hotels-et-ruelles-scene-4-seg-it",
+        "de": "seed-100-dijon-hotels-et-ruelles-scene-4-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-dijon-hotels-et-ruelles-scene-5",
+      "index": 5,
+      "title": "Place de la Libération",
+      "text": "Avance sur la place de la Libération et regarde la façade courbe qui accompagne ton mouvement. L’espace fut conçu à la fin du XVIIe siècle par Jules Hardouin-Mansart devant le palais des États. Sa forme en hémicycle met en scène l’entrée du palais et crée une transition majestueuse entre le bâtiment du pouvoir et la ville.\n\nAu centre de l’ensemble se trouve la tour Philippe le Bon, élevée au XVe siècle. Elle rappelle le palais des ducs de Bourgogne, intégré puis transformé lorsque Dijon devint capitale provinciale du royaume. Plusieurs périodes architecturales se superposent donc derrière une composition qui semble unitaire depuis la place.\n\nRepense à la porte Guillaume, aux cours des hôtels Chambellan et de Vogüé, puis aux rues de la Chouette et de la Verrerie. Le parcours est passé d’un seuil urbain à des seuils privés, d’espaces cachés à cette vaste scène publique. Les hôtels particuliers utilisaient la cour pour se retirer de la rue ; ici, la place ouvre au contraire le palais sur la cité. La promenade s’achève dans ce renversement, là où l’architecture ne se découvre plus par fragments mais se déploie tout autour de toi.",
+      "hash": "5679cf68",
+      "chars": 1143,
+      "existingSegments": {
+        "en": "seed-100-dijon-hotels-et-ruelles-scene-5-seg-en",
+        "es": "seed-100-dijon-hotels-et-ruelles-scene-5-seg-es",
+        "it": "seed-100-dijon-hotels-et-ruelles-scene-5-seg-it",
+        "de": "seed-100-dijon-hotels-et-ruelles-scene-5-seg-de"
+      }
+    }
+  ]
+}

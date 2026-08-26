@@ -1,0 +1,127 @@
+{
+  "tourId": "seed-100-mont-saint-michel-la-merveille",
+  "sessionId": "seed-100-mont-saint-michel-la-merveille-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Mont-Saint-Michel",
+  "title": "Mont-Saint-Michel — La Merveille de l'Occident",
+  "description": "Histoire & secrets — un archange exigeant, mille ans de chantier impossible : la Merveille de l'Occident.",
+  "themes": [
+    "Histoire & secrets — un archange exigeant, mille ans de chantier impossible : la Merveille de l'Occident."
+  ],
+  "baseLanguage": "fr",
+  "chars": 8706,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "en": "History & secrets, a demanding archangel, thousand years of impossible construction: Wonder of the West.",
+    "it": "Storia & segreti, un arcangelo esigente, mille anni di costruzione impossibile: Meraviglia dell'Occidente.",
+    "de": "Geschichte & Geheimnisse, ein anspruchsvoller Erzengel, tausend Jahre Baustelle unmöglich: das Wunder des Westens.",
+    "es": "Historia y secretos, un arcángel exigente, mil años de obra imposible: la Maravilla de Occidente."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-mont-saint-michel-la-merveille-scene-0",
+      "index": 0,
+      "title": "Porte de l'Avancée",
+      "text": "Arrête-toi une seconde avant de franchir la porte. Retourne-toi. Derrière toi, la baie s'étend, plate, immense, changeante — tantôt sable, tantôt eau, jamais deux fois la même. Et devant toi, ce rocher couronné de pierre qui monte vers le ciel comme une flèche : le Mont-Saint-Michel.\r\n\r\nRegarde bien ces deux grosses bouches de fer posées près de l'entrée. Ce sont les Michelettes, des canons que les Anglais ont abandonnés ici, il y a près de six siècles, le jour où ils ont renoncé à prendre le Mont. Car cette forteresse-là n'est jamais tombée.\r\n\r\nVoici l'histoire que je vais te raconter, marche après marche, jusqu'au sommet. Celle d'un rocher que rien ne destinait à devenir la merveille de l'Occident. On l'appelait Mont-Tombe, un caillou perdu dans les sables, battu par les plus grandes marées d'Europe.\r\n\r\nEt puis, on raconte qu'au VIIIe siècle, un archange s'en est mêlé. Saint Michel serait apparu trois fois en songe à un évêque du pays, Aubert, pour lui ordonner de bâtir un sanctuaire ici, sur ce rocher. Trois fois. Parce que la première, et la deuxième, l'évêque a hésité.\r\n\r\nDe ce songe est né mille ans de chantier impossible. Des moines, des rois, des bâtisseurs se sont relayés pour hisser une abbaye au sommet d'un piton de granit, en pleine mer. C'est cette folie que tu vas gravir.\r\n\r\nFranchis la porte, et engage-toi dans la ruelle qui grimpe droit devant. Suis-moi.",
+      "hash": "d2122c89",
+      "chars": 1392,
+      "existingSegments": {
+        "es": "seed-100-mont-saint-michel-la-merveille-scene-0-seg-es",
+        "it": "seed-100-mont-saint-michel-la-merveille-scene-0-seg-it",
+        "en": "seed-100-mont-saint-michel-la-merveille-scene-0-seg-en",
+        "de": "seed-100-mont-saint-michel-la-merveille-scene-0-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-la-merveille-scene-1",
+      "index": 1,
+      "title": "La Grande Rue",
+      "text": "Te voilà dans la Grande Rue. Une seule rue, étroite, pavée, qui grimpe en serpentant vers l'abbaye. Depuis le Moyen Âge, c'est le même chemin. Le seul.\r\n\r\nLève les yeux vers les façades. Ces maisons de pierre et de bois, serrées les unes contre les autres, certaines penchées, datent pour beaucoup du XVe et du XVIe siècle. Elles ont toujours vécu du même métier : accueillir ceux qui montent.\r\n\r\nCar pendant des siècles, ils sont venus par milliers. Des pèlerins de toute l'Europe, qu'on appelait ici les miquelots. Ils marchaient des semaines, traversaient parfois la baie à pied, à marée basse, au risque de se noyer ou de s'enliser dans les sables mouvants. Beaucoup en mouraient. Et pourtant ils venaient, pour toucher le rocher de l'archange.\r\n\r\nIci, on les accueillait, on les logeait, on leur vendait des enseignes de plomb à coudre sur leur manteau, la preuve du voyage accompli. La rue vivait de leur foi.\n\r\nAujourd'hui, ce sont les voyageurs du monde entier qui montent, et les boutiques ont changé d'étals. Mais le mouvement, lui, est le même depuis mille ans : on grimpe, la tête levée vers le sommet.\r\n\r\nContinue de monter. À mi-pente, une petite église s'accroche au rocher. Suis-moi.",
+      "hash": "4b791954",
+      "chars": 1199,
+      "existingSegments": {
+        "en": "seed-100-mont-saint-michel-la-merveille-scene-1-seg-en",
+        "de": "seed-100-mont-saint-michel-la-merveille-scene-1-seg-de",
+        "it": "seed-100-mont-saint-michel-la-merveille-scene-1-seg-it",
+        "es": "seed-100-mont-saint-michel-la-merveille-scene-1-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-la-merveille-scene-2",
+      "index": 2,
+      "title": "Église Saint-Pierre",
+      "text": "Cette petite église coincée entre les maisons, c'est Saint-Pierre, l'église du village. Pousse la porte. Elle est modeste, sombre, tassée sous la roche. Rien à voir avec l'abbaye qui t'attend là-haut. Et c'est justement ce qui la rend touchante.\r\n\r\nCar il faut que tu comprennes une chose : sous l'abbaye des moines, il y a toujours eu un village. Un vrai. Des pêcheurs, des aubergistes, des marchands, des familles nées et mortes sur ce rocher. Aujourd'hui encore, une poignée d'habitants seulement vivent ici à l'année. Quelques dizaines. C'est l'une des plus petites communes de France.\r\n\r\nÀ l'intérieur, cherche la statue de saint Michel, l'archange en armure qui terrasse le dragon de sa lance. Tu vas le retrouver partout, jusqu'au sommet de la flèche. C'est lui le vrai maître des lieux. Le patron, le protecteur, celui à qui tout le rocher appartient.\r\n\r\nRemarque, près de l'entrée, les plaques et les ex-voto laissés par des marins. Ici, on priait Michel pour rentrer vivant de la mer.\r\n\r\nRessors, et reprends la montée. Cherche maintenant l'escalier qui file vers les remparts, à ta droite. Suis-moi.",
+      "hash": "2263c9dc",
+      "chars": 1110,
+      "existingSegments": {
+        "it": "seed-100-mont-saint-michel-la-merveille-scene-2-seg-it",
+        "en": "seed-100-mont-saint-michel-la-merveille-scene-2-seg-en",
+        "es": "seed-100-mont-saint-michel-la-merveille-scene-2-seg-es",
+        "de": "seed-100-mont-saint-michel-la-merveille-scene-2-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-la-merveille-scene-3",
+      "index": 3,
+      "title": "Les remparts",
+      "text": "Te voilà sur les remparts. Prends le temps de longer le chemin de ronde, et regarde la baie s'ouvrir sous tes pieds.\r\n\r\nCes murailles, ces tours trapues, ces canonnières, ce n'est pas du décor. Le Mont a été une forteresse redoutable. Pendant la guerre de Cent Ans, alors que les Anglais tenaient toute la Normandie autour, ce rocher-ci n'a jamais cédé. Une poignée de chevaliers, retranchés derrière ces pierres, avec la mer pour meilleure alliée, ont tenu tête à un royaume entier. C'est pour ça que les canons anglais rouillent en bas, près de la porte.\r\n\r\nLa mer, justement. Regarde-la. Ici montent les plus grandes marées d'Europe continentale — l'eau peut monter et descendre d'une quinzaine de mètres. À marée basse, la baie se vide, le sable s'étend à perte de vue, et le Mont devient presque une montagne posée sur le désert. À marée haute, l'eau revient, encercle le rocher, et l'île redevient île.\r\n\r\nCette marée, c'était la meilleure des douves. Aucune armée ne pouvait camper longtemps dans des sables qui se noient deux fois par jour.\r\n\r\nContinue vers le haut, vers la grande entrée de l'abbaye et sa terrasse. On approche du cœur. Suis-moi.",
+      "hash": "8561926b",
+      "chars": 1155,
+      "existingSegments": {
+        "it": "seed-100-mont-saint-michel-la-merveille-scene-3-seg-it",
+        "de": "seed-100-mont-saint-michel-la-merveille-scene-3-seg-de",
+        "es": "seed-100-mont-saint-michel-la-merveille-scene-3-seg-es",
+        "en": "seed-100-mont-saint-michel-la-merveille-scene-3-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-la-merveille-scene-4",
+      "index": 4,
+      "title": "Entrée publique de l'abbatiale",
+      "text": "Nous voici tout en haut, sur la terrasse de l'Ouest, devant l'église abbatiale. Reprends ton souffle. Tu es sur le toit du rocher, à plus de cent cinquante mètres au-dessus des grèves.\r\n\r\nCette église, les moines l'ont commencée il y a mille ans, vers l'an mille. Et ils ont fait un pari fou. Le sommet du rocher est minuscule, pointu — beaucoup trop étroit pour poser une grande église dessus. Alors qu'ont-ils fait ? Ils ont bâti tout autour, en dessous, des cryptes énormes, des chapelles massives aux murs épais, pour élargir artificiellement le sommet. L'église que tu vois repose sur ces piliers cachés. Le pic de granit passe, dit-on, juste sous le maître-autel.\r\n\r\nEntre. La nef romane est sobre, puissante, austère. Mais avance vers le chœur : là, tout change. Les colonnes s'élancent, la pierre se fait dentelle, les fenêtres montent vers la lumière. C'est du gothique flamboyant. L'ancien chœur roman s'était effondré, et on l'a reconstruit à la fin du Moyen Âge, plus haut, plus ajouré, plus vertigineux.\r\n\r\nMille ans de chantier, je t'avais dit. Regarde : tu as le roman et le gothique dans une même église, l'un posé sur l'autre.\r\n\r\nMaintenant, sors par le nord, vers les grandes salles superposées. C'est la Merveille. Suis-moi.",
+      "hash": "54c7a534",
+      "chars": 1243,
+      "existingSegments": {
+        "de": "seed-100-mont-saint-michel-la-merveille-scene-4-seg-de",
+        "it": "seed-100-mont-saint-michel-la-merveille-scene-4-seg-it",
+        "es": "seed-100-mont-saint-michel-la-merveille-scene-4-seg-es",
+        "en": "seed-100-mont-saint-michel-la-merveille-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-la-merveille-scene-5",
+      "index": 5,
+      "title": "Entrée publique de l'abbatiale",
+      "text": "On l'appelle la Merveille, et le nom n'a rien d'exagéré. Regarde ce bâtiment de trois étages, plaqué contre la face nord du rocher, qui monte à la verticale. Bâti en une vingtaine d'années à peine, au début du XIIIe siècle. Pour l'époque, c'est un exploit d'ingénieur.\r\n\r\nEt sais-tu pourquoi on l'a construit ? À cause d'un incendie. En 1204, le roi de France conquiert la Normandie, et dans la bataille, ses alliés bretons mettent le feu au Mont. Une partie de l'abbaye brûle. Le roi, pour se faire pardonner, ouvre sa bourse. C'est son argent qui a payé la Merveille.\r\n\r\nTraverse ses salles. Tout en bas, l'aumônerie et le cellier, où l'on recevait les pauvres et où l'on stockait les vivres. Au milieu, la belle salle des Hôtes, pour les rois et les princes de passage, et la salle des Chevaliers, où les moines écrivaient et copiaient des manuscrits. Chaque niveau, sa fonction, son monde. Les pauvres en bas, les puissants au milieu, et les moines tout en haut, au plus près du ciel.\r\n\r\nMonte encore, jusqu'au dernier étage, jusqu'au jardin de pierre suspendu entre mer et ciel. C'est là que finit notre histoire. Suis-moi.",
+      "hash": "a1e11035",
+      "chars": 1128,
+      "existingSegments": {
+        "en": "seed-100-mont-saint-michel-la-merveille-scene-5-seg-en",
+        "de": "seed-100-mont-saint-michel-la-merveille-scene-5-seg-de",
+        "it": "seed-100-mont-saint-michel-la-merveille-scene-5-seg-it",
+        "es": "seed-100-mont-saint-michel-la-merveille-scene-5-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-la-merveille-scene-6",
+      "index": 6,
+      "title": "Entrée publique de l'abbatiale",
+      "text": "Nous y sommes. Le cloître. Le point le plus haut de la Merveille, un jardin suspendu au sommet du rocher, cerné d'une double rangée de fines colonnes qui semblent danser. D'un côté, le vide et la baie ; de l'autre, le ciel. Ici, les moines venaient prier, méditer, marcher en rond, coupés du monde. Entre mer et ciel, au sens propre.\r\n\r\nPrends le temps de lever les yeux vers la flèche, au-dessus de toi. Tout en haut, minuscule d'ici, une silhouette dorée qui brille : saint Michel, l'archange, sa lance levée. Cette statue-là est récente — un sculpteur l'a posée à la toute fin du XIXe siècle, en 1897, pour couronner enfin le sommet. L'archange veille sur la baie, à plus de cent cinquante mètres au-dessus des flots.\r\n\r\nEt pourtant, ce lieu de prière a bien failli tout oublier. Après la Révolution, on a chassé les moines, et on a transformé l'abbaye en prison. Pendant plus d'un demi-siècle, la Merveille a enfermé des détenus derrière ses murs superbes. On l'appelait la Bastille des mers. Il a fallu attendre 1863 pour qu'on ferme le cachot et qu'on rende le Mont à sa grandeur.\r\n\r\nSouviens-toi d'où nous sommes partis. Un caillou dans les sables, un évêque qui hésite, un archange qui insiste. Mille ans plus tard, des millions de pèlerins et de voyageurs montent encore cette même rue pour toucher ce rocher.\r\n\r\nReste là un moment. Écoute le vent, regarde la marée respirer. Et quand tu redescendras, tu sauras pourquoi, ici, on parle d'une merveille. À bientôt, l'ami.",
+      "hash": "4dd45822",
+      "chars": 1479,
+      "existingSegments": {
+        "it": "seed-100-mont-saint-michel-la-merveille-scene-6-seg-it",
+        "de": "seed-100-mont-saint-michel-la-merveille-scene-6-seg-de",
+        "es": "seed-100-mont-saint-michel-la-merveille-scene-6-seg-es",
+        "en": "seed-100-mont-saint-michel-la-merveille-scene-6-seg-en"
+      }
+    }
+  ]
+}

@@ -1,0 +1,489 @@
+@@LANG=en
+@@TITLE=Saint-Malo — The Republic of Privateers
+@@DESC=History & Secrets — Surcouf, Duguay-Trouin, and the race for treasure: the republic of privateers.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-0
+@@STITLE=Porte Saint-Vincent
+Stop before you go through the gate. Two granite arches, coats of arms carved above, and behind them, an entire city packed inside its ramparts like a treasure in a chest. That's exactly what it is. A treasure. And I'm going to tell you how it was won.
+
+You're not entering an ordinary French city here. The people here had a saying, and they meant it: "Neither French, nor Breton, I am a Malouin." Neither French nor Breton. Malouin first. For centuries, this rock lived like a small republic of sailors, shipowners, and captains, who negotiated with kings instead of obeying them.
+
+And there's this word you'll hear throughout the walk: corsaire, privateer. A privateer is not a pirate, far from it. A pirate steals for himself, outside the law, and ends up at the end of a rope. A privateer, though, carries a letter from the king. In wartime, it authorizes him to attack enemy merchant ships, seize their cargo, and sell it all off. Legally. A share for the king, a share for the shipowner who financed the vessel, a share for the crew. War turned into a business venture. Saint-Malo was France's leading privateering port, and it was built on the profits.
+
+That's our thread: the race for treasure. I'll show you where it was won, who won it, and where it's hiding today — because it's still here, you'll see.
+
+Go through the gate. On your right, a castle with big round towers. Remember this well: it wasn't built for the people of Saint-Malo. It was built against them. I'll explain over there.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-1
+@@STITLE=Porte Saint-Vincent, devant le château de Saint-Malo
+Look at these squat towers, this keep. This castle never served to defend Saint-Malo against an enemy coming from the sea. It served to watch over the city itself.
+
+The dukes of Brittany, then the kings of France, were wary of this port that was too rich and too proud. At the end of the fifteenth century, Duchess Anne of Brittany had the fortress reinforced despite the furious protests of the townspeople. It's said she had her answer carved into the stone: "Quic-en-groigne, ainsi sera, car tel est mon plaisir" — grumble who may, so it shall be, for such is my pleasure. No matter who grumbles. The great tower still bears that name.
+
+But the people of Saint-Malo had their revenge. In 1590, the kingdom is torn apart between Catholics and Protestants, and a Protestant king, Henry IV, takes the throne. Saint-Malo flatly refuses him. One night in March, townsmen scale this castle, seize it, and the city declares itself independent. For four years, it governs itself, trades on its own account, dispenses its own justice. A tiny, perfectly serious Malouin republic. It only rejoins the kingdom after the king converts to Catholicism — and it makes sure to be paid for its return, in privileges.
+
+Do you understand the saying now? Then climb up onto the ramparts through the Porte Saint-Thomas, just behind the castle. The sea is waiting for you.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-2
+@@STITLE=Remparts, face au Fort National
+Here you are on the sentry walk. Breathe. Ahead of you, the plage de l'Éventail, the rocks, and this granite fort perched on its island: the Fort National. At low tide, you can walk out to it dry-shod. At high tide, the sea takes it back.
+
+It owes its existence to a name you know: Vauban, Louis XIV's military engineer. In 1689, France is at war with England, and Saint-Malo has become a priority target — its privateers are doing too much damage in the Channel. So Vauban draws, and a Malouin architect, Garangeau, builds. The fort locks down the harbor, the ramparts widen, and the city becomes impregnable.
+
+You have to grasp what was at stake. At the time, privateering is an industry. Dozens of armed ships set out from here to lie in wait for enemy merchant convoys. The prizes are brought back to port, judged by the admiralty, sold at auction. The exasperated English try to raze the city: bombardments, and even a ship packed with gunpowder launched against the walls — it explodes too soon, on the rocks. Saint-Malo holds.
+
+These ramparts beneath your feet are both armor and a strongbox. Follow them west, to the big round tower guarding the corner of the city.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-3
+@@STITLE=Tour Bidouane
+This horseshoe-shaped tower is the Bidouane. For centuries, it served as a powder magazine: the privateers' barrels slept behind these thick walls. But that's not why I'm stopping you here. Look at the island, out front. The Grand Bé.
+
+Up there, facing the open sea, there's a grave. A slab of granite, a bare cross, no name. That's where François-René de Chateaubriand rests, the writer of the Mémoires d'outre-tombe. He was born in 1768 on a street in this city, on a stormy night — he tells the story himself, adding that the roar of the waves was the first music of his life.
+
+Having become one of the most famous writers in Europe, an ambassador, a minister, he asks for only one thing: to be buried here, on this wind-battered rock, without a name, facing the sea. In 1848, a silent crowd crosses the strand at low tide behind his coffin.
+
+If you want to climb up there someday, watch the time: the sea comes back fast and cuts off the way. Walkers get trapped there regularly. The writer, somewhere, must appreciate that.
+
+Continue along the rampart. A bronze man awaits you a little further on, his arm stretched toward the horizon.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-4
+@@STITLE=Statue de Surcouf
+There he is. Robert Surcouf, frozen mid-stride, finger pointed out to sea. It's said he's pointing at England, his lifelong target.
+
+Surcouf is the privateer who became a legend in his own lifetime. Born in Saint-Malo in 1773, he went to sea as a teenager, and hunted, on the other side of the world, in the Indian Ocean, the ships of the English East India Company laden with riches. His masterstroke: in 1800, in the Bay of Bengal, his ship La Confiance boards the Kent, a giant that dwarfs it in size, guns, and men. The affair is settled in under an hour. London puts a price on his head. Paris makes him a hero.
+
+He's credited with this exchange with an English officer: "You French fight for money. We English fight for honor." Surcouf's reply: "Everyone fights for what he lacks." The line is perhaps too perfect to be genuine. It suits him perfectly.
+
+The cleverest thing about him? He knew when to stop. Back home, he became a shipowner, financed other men's expeditions, and died in his bed, immensely wealthy. In this trade, that's the rarest feat of all.
+
+Continue south. The next bastion guards a story that bares its teeth.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-5
+@@STITLE=Bastion de la Hollande
+Stop on this wide bastion, facing the sunset. A city-strongbox has to be guarded. And at night, for centuries, Saint-Malo was guarded by dogs.
+
+Every evening, a bell rang the curfew — the Malouins called it Noguette. The gates closed. And a pack of mastiffs was released onto the strand, fighting dogs trained to attack anything that moved. All night long, they patrolled at the foot of the ramparts, around ships beached at low tide and their cargo. Woe to the belated stroller: all that was left for him was to climb onto a rock and shout until morning.
+
+This canine watch lasted for centuries, and it ended in tragedy. In 1770, a young officer walking home along the strand at night is attacked by the pack and dies of his wounds. The horrified city has the dogs put down. The four-legged watch never resumed.
+
+What's left are stories, names, and this very Malouin lesson: here, even the dogs worked for the treasure.
+
+Come down off the rampart now, and head into the streets toward the cathedral spire. The greatest of the privateers awaits you there.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-6
+@@STITLE=Cathédrale Saint-Vincent
+Go in, if the doors are open. Under these vaults, light falls through modern stained glass, blue and red like a fire at sea. And in a chapel rests a son of this land: René Duguay-Trouin.
+
+He's the giant who came before Surcouf. Son of a Malouin shipowner, he went to sea at sixteen, and commanded his first ship before he was twenty. He captured so many vessels that Louis XIV moved him from privateering into the royal navy.
+
+His masterpiece: Rio de Janeiro, 1711. Portugal, an ally of England, is mistreating French sailors held prisoner. Duguay-Trouin mounts a punitive expedition financed by Saint-Malo's shipowners — a genuine business venture, with shares, launched like a company. He forces his way into the bay of Rio, takes the city, and gives it back for an enormous ransom. On his return, the investors pocket almost double their stake. War, quoted like an investment.
+
+Ennobled, covered in honors, he ends up among the highest-ranking officers of the French navy, and his body eventually came back to rest here, at home. A few steps away, the cathedral holds another tomb: Jacques Cartier, the Malouin who crossed the Atlantic all the way to Canada — but that's another epic.
+
+Go back out, and head down toward the south of the walled city. Last stop: the treasure house.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-7
+@@STITLE=Hôtel d'Asfeld
+Here you are in front of the hôtel d'Asfeld, one of the last true shipowners' mansions left in the city. A tall granite façade, sober, almost stern. Don't be fooled by that discretion: this is where the money lived.
+
+This house belonged to Auguste Magon de la Lande, of the powerful Magon dynasty. These people didn't board ships themselves: they financed them. Privateering, Newfoundland cod, trade with the Indies — along with a few other families, they were called the "gentlemen of Saint-Malo," and their credit impressed even Versailles. In the vaulted cellars slept bolts of cloth, spices, silver from the southern seas. The race for treasure ended here, in account books.
+
+And then, August 1944. During the fighting of the Liberation, the old town burns — roughly four houses out of five destroyed. Centuries of privateers' mansions go up in smoke in a single week. This one is among the rare few spared.
+
+So the people of Saint-Malo did something mad, worthy of their ancestors: instead of rebuilding fast, modern, and cheap, they raised their city back up in granite, stone by stone, within its old outlines. Twenty years of building work. Almost everything you've admired today is a rebirth.
+
+Do you understand now? The privateers' treasure isn't a chest or an ingot. It's the city itself: won from the sea, paid for by privateering, burned down, and then raised up one last time by the sheer stubbornness of its people. Neither French, nor Breton — I am a Malouin.
+
+Thank you for walking with me. If you come back one day in November, you might see giant sailing ships setting off for the Caribbean; that's another story. Take care of yourself, and keep an eye on the horizon. It's a habit around here.
+
+@@LANG=es
+@@TITLE=Saint-Malo — La República de los corsarios
+@@DESC=Historia y secretos — Surcouf, Duguay-Trouin y la carrera del tesoro: la república de los corsarios.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-0
+@@STITLE=Porte Saint-Vincent
+Detente antes de cruzar la puerta. Dos arcos de granito, escudos esculpidos encima, y detrás, toda una ciudad apretada dentro de sus murallas como un tesoro en un cofre. Es exactamente eso. Un tesoro. Y voy a contarte cómo se ganó.
+
+No entras aquí en una ciudad francesa cualquiera. La gente de aquí tenía un dicho, y lo decía en serio: «Ni francés, ni bretón, soy malouin.» Ni francés ni bretón. Malouin ante todo. Durante siglos, esta roca vivió como una pequeña república de marinos, armadores y capitanes, que negociaba con los reyes en lugar de obedecerlos.
+
+Y hay una palabra que vas a oír durante todo el paseo: corsario. Un corsario no es un pirata, ni mucho menos. El pirata roba para sí mismo, fuera de la ley, y acaba al final de una cuerda. El corsario, en cambio, lleva una carta del rey. En tiempos de guerra, lo autoriza a atacar los barcos mercantes enemigos, apoderarse de sus cargamentos, revenderlo todo. Legalmente. Una parte para el rey, una parte para el armador que financió el barco, una parte para la tripulación. La guerra convertida en negocio. Saint-Malo fue el primer puerto corsario de Francia, y se construyó con los beneficios.
+
+Ese es nuestro hilo conductor: la carrera del tesoro. Voy a mostrarte dónde se ganó, quién lo ganó, y dónde se esconde hoy, porque sigue aquí, ya verás.
+
+Cruza la puerta. A tu derecha, un castillo de gruesas torres redondas. Retén bien esto: no se construyó para los malouins. Se construyó contra ellos. Te lo explico allí.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-1
+@@STITLE=Porte Saint-Vincent, devant le château de Saint-Malo
+Mira estas torres achaparradas, este torreón. Este castillo nunca sirvió para defender Saint-Malo de un enemigo venido del mar. Servía para vigilar la ciudad misma.
+
+Los duques de Bretaña, y luego los reyes de Francia, desconfiaban de este puerto demasiado rico y demasiado orgulloso. A finales del siglo XV, la duquesa Ana de Bretaña hace reforzar la fortaleza pese a las furiosas protestas de los habitantes. Se cuenta que hizo grabar su respuesta en la piedra: «Quic-en-groigne, ainsi sera, car tel est mon plaisir» —gruña quien gruña, así será, porque es mi voluntad—. Qué más da quién refunfuñe. La gran torre todavía lleva ese nombre.
+
+Pero los malouins tuvieron su revancha. En 1590, el reino se desgarra entre católicos y protestantes, y un rey protestante, Enrique IV, sube al trono. Saint-Malo se niega en redondo. Una noche de marzo, unos burgueses escalan este castillo, se apoderan de él, y la ciudad se declara independiente. Durante cuatro años, se gobierna sola, comercia por su cuenta, imparte su propia justicia. Una república malouine, minúscula y absolutamente seria. Solo vuelve a formar parte del reino tras la conversión del rey al catolicismo, y se hace pagar el regreso en privilegios.
+
+¿Entiendes mejor el dicho de antes? Entonces sube a las murallas por la porte Saint-Thomas, justo detrás del castillo. El mar te espera.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-2
+@@STITLE=Remparts, face au Fort National
+Ya estás en el adarve. Respira. Delante de ti, la plage de l'Éventail, las rocas, y ese fuerte de granito posado en su isla: el Fort National. Con marea baja, se llega a pie seco. Con marea alta, el mar lo recupera.
+
+Nació de un nombre que conoces: Vauban, el ingeniero militar de Luis XIV. En 1689, Francia está en guerra con Inglaterra, y Saint-Malo se ha convertido en un objetivo prioritario: sus corsarios causan demasiados destrozos en el Canal de la Mancha. Así que Vauban diseña, y un arquitecto malouin, Garangeau, construye. El fuerte cierra la rada, las murallas se ensanchan, la ciudad se vuelve inexpugnable.
+
+Hay que medir lo que estaba en juego. En esa época, el corso es una industria. Decenas de barcos armados salen de aquí a acechar los convoyes mercantes enemigos. Las presas se traen de vuelta al puerto, se juzgan ante el almirantazgo, se venden en subasta. Los ingleses, exasperados, intentan arrasar la ciudad: bombardeos, e incluso un barco cargado de pólvora lanzado contra las murallas —explota demasiado pronto, en las rocas. Saint-Malo aguanta.
+
+Estas murallas bajo tus pies son a la vez una armadura y una caja fuerte. Síguelas hacia el oeste, hasta la gran torre redonda que guarda la esquina de la ciudad.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-3
+@@STITLE=Tour Bidouane
+Esta torre en forma de herradura es la Bidouane. Durante siglos sirvió de polvorín: los barriles de los corsarios dormían detrás de estos muros gruesos. Pero no es por ella por lo que te detengo aquí. Mira la isla, enfrente. El Grand Bé.
+
+Allá arriba, frente a mar abierto, hay una tumba. Una losa de granito, una cruz desnuda, ningún nombre. Ahí descansa François-René de Chateaubriand, el escritor de las Mémoires d'outre-tombe. Nació en 1768 en una calle de esta ciudad, una noche de tormenta —él mismo lo cuenta, y añade que el bramido de las olas fue la primera música de su vida.
+
+Convertido en uno de los escritores más célebres de Europa, embajador, ministro, no pide más que una cosa: ser enterrado aquí, en esta roca azotada por el viento, sin nombre, frente al mar. En 1848, una multitud silenciosa cruza la playa con la marea baja detrás de su ataúd.
+
+Si quieres subir allí algún día, vigila la hora: el mar vuelve rápido y corta el paso. Los paseantes se dejan atrapar con regularidad. El escritor, en algún lugar, debe de disfrutarlo.
+
+Continúa por la muralla. Un hombre de bronce te espera un poco más allá, con el brazo extendido hacia el horizonte.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-4
+@@STITLE=Statue de Surcouf
+Ahí está. Robert Surcouf, congelado en pleno impulso, con el dedo apuntando hacia el mar abierto. Se dice que señala Inglaterra, su objetivo de siempre.
+
+Surcouf es el corsario convertido en leyenda en vida. Nacido en Saint-Malo en 1773, embarcado desde adolescente, caza al otro lado del mundo, en el océano Índico, los barcos de la Compañía inglesa de las Indias cargados de riquezas. Su golpe maestro: en 1800, en el golfo de Bengala, su barco la Confiance aborda el Kent, un gigante que lo supera en tamaño, en cañones y en hombres. El asunto se resuelve en menos de una hora. Londres pone precio a su cabeza. París hace de él un héroe.
+
+Se le atribuye este diálogo con un oficial inglés: «Ustedes, los franceses, luchan por dinero. Nosotros, los ingleses, por honor.» Respuesta de Surcouf: «Cada cual lucha por lo que le falta.» La frase es tal vez demasiado bonita para ser auténtica. Le queda perfecta.
+
+¿Lo más astuto de él? Supo detenerse. De vuelta en su país, se hace armador, financia las expediciones de otros, y muere en su cama, inmensamente rico. En este oficio, es la hazaña más rara de todas.
+
+Sigue hacia el sur. El próximo bastión guarda una historia que enseña los dientes.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-5
+@@STITLE=Bastion de la Hollande
+Detente en este amplio bastión, de cara al poniente. Una ciudad-caja fuerte hay que vigilarla. Y de noche, durante siglos, Saint-Malo fue vigilada por perros.
+
+Cada noche, una campana tocaba el toque de queda: los malouins la llamaban Noguette. Las puertas se cerraban. Y se soltaba sobre las playas una jauría de dogos, perros de combate adiestrados para atacar todo lo que se moviera. Toda la noche, patrullaban al pie de las murallas, alrededor de los barcos varados con marea baja y de sus cargamentos. Ay del paseante rezagado: no le quedaba más que subirse a una roca y gritar hasta el amanecer.
+
+Esta guardia canina duró siglos, y terminó en tragedia. En 1770, un joven oficial que volvía de una velada por la playa es atacado por la jauría y muere de sus heridas. La ciudad, horrorizada, hace matar a los perros. La guardia a cuatro patas nunca se retomó.
+
+Quedan relatos, nombres, y esta lección muy malouine: aquí, hasta los perros trabajaban para el tesoro.
+
+Baja de la muralla ahora, y adéntrate en las calles hacia la flecha de la catedral. Allí te espera el más grande de los corsarios.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-6
+@@STITLE=Cathédrale Saint-Vincent
+Entra, si las puertas están abiertas. Bajo estas bóvedas, la luz cae de vidrieras modernas, azules y rojas como un incendio en el mar. Y en una capilla descansa un hijo de esta tierra: René Duguay-Trouin.
+
+Él es el gigante anterior a Surcouf. Hijo de un armador malouin, embarcado a los dieciséis años, comanda su primer barco antes de los veinte. Captura tantos barcos que Luis XIV lo traslada del corso a la marina real.
+
+Su obra maestra: Río de Janeiro, 1711. Portugal, aliado de Inglaterra, maltrata a marineros franceses prisioneros. Duguay-Trouin monta una expedición punitiva financiada por los armadores de Saint-Malo —un verdadero montaje de negocios, con participaciones, como quien lanza una sociedad. Fuerza la entrada de la bahía de Río, toma la ciudad, y la devuelve a cambio de un rescate enorme. A la vuelta, los inversores cobran casi el doble de su apuesta. La guerra, cotizada como una inversión.
+
+Ennoblecido, cubierto de honores, termina entre los más altos mandos de la marina francesa, y su cuerpo acabó volviendo a descansar aquí, en su tierra. A pocos pasos, la catedral guarda otra tumba: Jacques Cartier, el malouin que cruzó el Atlántico hasta Canadá, pero esa es otra epopeya.
+
+Sal de nuevo, y baja hacia el sur de la ciudad amurallada. Última parada: la casa del tesoro.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-7
+@@STITLE=Hôtel d'Asfeld
+Ahí tienes el hôtel d'Asfeld, una de las últimas verdaderas mansiones de armadores de la ciudad. Fachada alta de granito, sobria, casi severa. No te fíes de esa discreción: aquí vivía el dinero.
+
+Esta casa fue la de Auguste Magon de la Lande, de la poderosa dinastía de los Magon. Esta gente no abordaba los barcos: los financiaba. Corso, bacalao de Terranova, comercio de las Indias —junto con algunas otras familias, se les llamaba los «señores de Saint-Malo», y su crédito impresionaba hasta en Versalles. En las bodegas abovedadas dormían las telas, las especias, la plata de los mares del Sur. La carrera del tesoro terminaba aquí, en asientos contables.
+
+Y luego, agosto de 1944. Durante los combates de la Liberación, la ciudad vieja arde: cerca de cuatro casas de cada cinco quedan destruidas. Siglos de mansiones corsarias se van en humo en una semana. Esta es una de las pocas que se salvaron.
+
+Entonces los malouins hicieron algo descabellado, digno de sus antepasados: en lugar de reconstruir rápido, moderno y barato, levantaron de nuevo su ciudad en granito, piedra a piedra, respetando los volúmenes antiguos. Veinte años de obras. Casi todo lo que has admirado hoy es un renacimiento.
+
+¿Lo entiendes ahora? El tesoro de los corsarios no es ni un cofre ni un lingote. Es la ciudad misma: ganada al mar, pagada por el corso, quemada, y luego levantada una última vez por la obstinación de sus habitantes. Ni francés, ni bretón: soy malouin.
+
+Gracias por caminar conmigo. Si vuelves a pasar un día de noviembre, quizá veas grandes veleros zarpar hacia las Antillas; eso es otra historia. Cuídate, y no le quites el ojo de encima al horizonte. Es una costumbre de aquí.
+
+@@LANG=de
+@@TITLE=Saint-Malo — Die Republik der Kaperfahrer
+@@DESC=Geschichte & Geheimnisse — Surcouf, Duguay-Trouin und die Jagd nach dem Schatz: die Republik der Kaperfahrer.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-0
+@@STITLE=Porte Saint-Vincent
+Bleib stehen, bevor du durch das Tor gehst. Zwei Granitbögen, darüber gemeißelte Wappen, und dahinter eine ganze Stadt, eingeschlossen in ihre Stadtmauern wie ein Schatz in einer Truhe. Genau das ist es. Ein Schatz. Und ich erzähle dir, wie er gewonnen wurde.
+
+Du betrittst hier keine gewöhnliche französische Stadt. Die Menschen hier hatten einen Spruch, und sie meinten ihn ernst: „Weder Franzose noch Bretone, ich bin Malouin." Weder Franzose noch Bretone. Zuerst Malouin. Jahrhundertelang lebte dieser Felsen wie eine kleine Republik aus Seeleuten, Reedern und Kapitänen, die mit Königen verhandelte, statt ihnen zu gehorchen.
+
+Und da ist dieses Wort, das du während des ganzen Spaziergangs hören wirst: Kaperfahrer. Ein Kaperfahrer ist kein Pirat, ganz und gar nicht. Der Pirat stiehlt für sich selbst, außerhalb des Gesetzes, und endet am Ende eines Stricks. Der Kaperfahrer dagegen trägt einen Brief des Königs bei sich. In Kriegszeiten erlaubt er ihm, feindliche Handelsschiffe anzugreifen, ihre Ladung zu beschlagnahmen, alles weiterzuverkaufen. Legal. Ein Anteil für den König, ein Anteil für den Reeder, der das Schiff finanziert hat, ein Anteil für die Mannschaft. Krieg, verwandelt in ein Handelsunternehmen. Saint-Malo war Frankreichs führender Kaperhafen, und es wurde mit dem Gewinn erbaut.
+
+Das ist unser roter Faden: die Jagd nach dem Schatz. Ich zeige dir, wo er gewonnen wurde, wer ihn gewann, und wo er sich heute versteckt — denn er ist immer noch hier, du wirst sehen.
+
+Geh durch das Tor. Auf deiner Rechten, ein Schloss mit dicken runden Türmen. Behalt das gut im Kopf: es wurde nicht für die Malouins gebaut. Es wurde gegen sie gebaut. Ich erkläre es dir dort drüben.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-1
+@@STITLE=Porte Saint-Vincent, devant le château de Saint-Malo
+Schau dir diese gedrungenen Türme an, diesen Bergfried. Dieses Schloss diente nie dazu, Saint-Malo gegen einen Feind zu verteidigen, der vom Meer her kam. Es diente dazu, die Stadt selbst zu überwachen.
+
+Die Herzöge der Bretagne, dann die Könige von Frankreich, misstrauten diesem allzu reichen und allzu stolzen Hafen. Ende des fünfzehnten Jahrhunderts lässt Herzogin Anna von der Bretagne die Festung trotz der wütenden Proteste der Einwohner verstärken. Man erzählt, sie habe ihre Antwort in Stein meißeln lassen: „Quic-en-groigne, ainsi sera, car tel est mon plaisir" — mag grummeln, wer will, so wird es sein, denn so ist mein Wille. Was kümmert's, wer grummelt. Der große Turm trägt diesen Namen noch heute.
+
+Aber die Malouins nahmen Revanche. 1590 zerreißt sich das Königreich zwischen Katholiken und Protestanten, und ein protestantischer König, Heinrich IV., besteigt den Thron. Saint-Malo weigert sich rundheraus. In einer Märznacht erklimmen Bürger dieses Schloss, nehmen es ein, und die Stadt erklärt sich für unabhängig. Vier Jahre lang regiert sie sich selbst, treibt Handel auf eigene Rechnung, spricht ihr eigenes Recht. Eine winzige, vollkommen ernst zu nehmende Malouiner Republik. Sie kehrt erst ins Königreich zurück, nachdem der König zum Katholizismus übergetreten ist — und lässt sich die Rückkehr in Form von Privilegien bezahlen.
+
+Verstehst du jetzt den Spruch von vorhin besser? Dann steig über die Porte Saint-Thomas, gleich hinter dem Schloss, auf die Stadtmauer. Das Meer erwartet dich.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-2
+@@STITLE=Remparts, face au Fort National
+Da bist du auf dem Wehrgang. Atme durch. Vor dir die plage de l'Éventail, die Felsen, und dieses Granitfort auf seiner Insel: das Fort National. Bei Ebbe geht man trockenen Fußes hin. Bei Flut holt das Meer es sich zurück.
+
+Es verdankt seine Entstehung einem Namen, den du kennst: Vauban, dem Militäringenieur Ludwigs XIV. 1689 befindet sich Frankreich im Krieg mit England, und Saint-Malo ist zu einem vorrangigen Ziel geworden — seine Kaperfahrer richten im Ärmelkanal zu viel Schaden an. Also entwirft Vauban, und ein Malouiner Architekt, Garangeau, baut. Das Fort verriegelt die Reede, die Stadtmauern werden erweitert, die Stadt wird uneinnehmbar.
+
+Man muss verstehen, was auf dem Spiel steht. Zu dieser Zeit ist die Kaperei eine Industrie. Dutzende bewaffnete Schiffe laufen von hier aus, um feindlichen Handelskonvois aufzulauern. Die Prisen werden in den Hafen zurückgebracht, vor der Admiralität verhandelt, versteigert. Die erbosten Engländer versuchen, die Stadt dem Erdboden gleichzumachen: Bombardements, und sogar ein mit Pulver vollgestopftes Schiff, gegen die Mauern gelenkt — es explodiert zu früh, auf den Felsen. Saint-Malo hält stand.
+
+Diese Stadtmauern unter deinen Füßen sind zugleich Rüstung und Tresor. Folge ihnen nach Westen, bis zu dem großen runden Turm, der die Ecke der Stadt bewacht.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-3
+@@STITLE=Tour Bidouane
+Dieser hufeisenförmige Turm ist die Bidouane. Jahrhundertelang diente er als Pulvermagazin: die Fässer der Kaperfahrer schliefen hinter diesen dicken Mauern. Aber nicht ihretwegen halte ich dich hier an. Schau auf die Insel, gegenüber. Le Grand Bé.
+
+Dort oben, dem offenen Meer zugewandt, gibt es ein Grab. Eine Granitplatte, ein nacktes Kreuz, kein Name. Dort ruht François-René de Chateaubriand, der Verfasser der Mémoires d'outre-tombe. Er wurde 1768 in einer Straße dieser Stadt geboren, in einer Sturmnacht — er selbst erzählt es und fügt hinzu, das Brüllen der Wellen sei die erste Musik seines Lebens gewesen.
+
+Zu einem der berühmtesten Schriftsteller Europas geworden, Botschafter, Minister, verlangt er nur eines: hier begraben zu werden, auf diesem windgepeitschten Felsen, ohne Namen, dem Meer zugewandt. 1848 durchquert eine schweigende Menge bei Ebbe den Strand hinter seinem Sarg.
+
+Wenn du eines Tages dort hinaufsteigen willst, achte auf die Zeit: das Meer kehrt schnell zurück und schneidet den Weg ab. Spaziergänger lassen sich regelmäßig einschließen. Der Schriftsteller mag das irgendwo zu schätzen wissen.
+
+Geh weiter die Stadtmauer entlang. Ein bronzener Mann erwartet dich ein Stück weiter, den Arm zum Horizont ausgestreckt.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-4
+@@STITLE=Statue de Surcouf
+Da ist er. Robert Surcouf, mitten in der Bewegung erstarrt, den Finger aufs offene Meer gerichtet. Man erzählt, er zeige auf England, sein Ziel von jeher.
+
+Surcouf ist der Kaperfahrer, der noch zu Lebzeiten zur Legende wurde. 1773 in Saint-Malo geboren, ging er als Jugendlicher zur See und jagte am anderen Ende der Welt, im Indischen Ozean, die reich beladenen Schiffe der englischen Ostindien-Kompanie. Sein Meisterstück: 1800, im Golf von Bengalen, entert sein Schiff, die Confiance, die Kent, einen Riesen, der ihn an Größe, Kanonen und Mannschaft weit übertrifft. Die Sache ist in weniger als einer Stunde erledigt. London setzt einen Preis auf seinen Kopf aus. Paris macht ihn zum Helden.
+
+Man schreibt ihm diesen Dialog mit einem englischen Offizier zu: „Ihr Franzosen kämpft für Geld. Wir Engländer kämpfen für die Ehre." Surcoufs Antwort: „Jeder kämpft für das, was ihm fehlt." Der Satz ist vielleicht zu schön, um echt zu sein. Er passt perfekt zu ihm.
+
+Das Klügste an ihm? Er wusste aufzuhören. Zurück in der Heimat wird er Reeder, finanziert die Expeditionen anderer, und stirbt in seinem Bett, unermesslich reich. In diesem Gewerbe ist das die seltenste aller Heldentaten.
+
+Geh weiter nach Süden. Die nächste Bastion hütet eine Geschichte, die die Zähne zeigt.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-5
+@@STITLE=Bastion de la Hollande
+Bleib auf dieser breiten Bastion stehen, dem Sonnenuntergang zugewandt. Eine Stadt-Tresorkammer muss bewacht werden. Und nachts, jahrhundertelang, wurde Saint-Malo von Hunden bewacht.
+
+Jeden Abend läutete eine Glocke die Ausgangssperre ein — die Malouins nannten sie Noguette. Die Tore schlossen. Und man ließ ein Rudel Doggen auf den Strand los, Kampfhunde, abgerichtet, alles anzugreifen, was sich bewegte. Die ganze Nacht patrouillierten sie am Fuß der Stadtmauern, um bei Ebbe gestrandete Schiffe und ihre Ladung. Wehe dem Spätheimkehrer: ihm blieb nur, auf einen Felsen zu klettern und bis zum Morgen zu schreien.
+
+Diese Hundewache dauerte Jahrhunderte, und sie endete in einer Tragödie. 1770 wird ein junger Offizier, der abends am Strand entlang nach Hause geht, vom Rudel angefallen und stirbt an seinen Verletzungen. Die entsetzte Stadt lässt die Hunde erschießen. Die vierbeinige Wache wurde nie wieder aufgenommen.
+
+Was bleibt, sind Erzählungen, Namen, und diese sehr Malouiner Lektion: hier arbeiteten sogar die Hunde für den Schatz.
+
+Steig jetzt von der Stadtmauer herunter und geh in die Straßen hinein, Richtung Kathedralenturm. Der größte aller Kaperfahrer erwartet dich dort.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-6
+@@STITLE=Cathédrale Saint-Vincent
+Geh hinein, falls die Türen offen sind. Unter diesen Gewölben fällt Licht durch moderne Glasfenster, blau und rot wie ein Feuer auf See. Und in einer Kapelle ruht ein Sohn dieses Landes: René Duguay-Trouin.
+
+Er ist der Riese vor Surcouf. Sohn eines Malouiner Reeders, ging er mit sechzehn zur See und befehligte sein erstes Schiff vor seinem zwanzigsten Lebensjahr. Er erbeutete so viele Schiffe, dass Ludwig XIV. ihn von der Kaperei in die königliche Marine wechseln ließ.
+
+Sein Meisterwerk: Rio de Janeiro, 1711. Portugal, ein Verbündeter Englands, misshandelt gefangene französische Seeleute. Duguay-Trouin stellt eine Strafexpedition auf, finanziert von den Reedern Saint-Malos — ein regelrechtes Geschäftsunternehmen, mit Anteilen, wie man eine Gesellschaft gründet. Er erzwingt den Zugang zur Bucht von Rio, nimmt die Stadt ein, und gibt sie gegen ein gewaltiges Lösegeld zurück. Bei der Rückkehr streichen die Investoren fast das Doppelte ihres Einsatzes ein. Der Krieg, notiert wie eine Kapitalanlage.
+
+Geadelt, mit Ehren überhäuft, endet er unter den höchsten Rängen der französischen Marine, und sein Leichnam kehrte schließlich hierher zurück, zu sich nach Hause. Wenige Schritte weiter bewahrt die Kathedrale ein weiteres Grab: Jacques Cartier, der Malouin, der bis nach Kanada über den Atlantik fuhr — aber das ist eine andere Heldensaga.
+
+Geh wieder hinaus, und geh hinunter in den Süden der ummauerten Stadt. Letzte Station: das Haus des Schatzes.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-7
+@@STITLE=Hôtel d'Asfeld
+Da bist du vor dem hôtel d'Asfeld, einem der letzten echten Reederhäuser der Stadt. Hohe Granitfassade, schlicht, fast streng. Lass dich von dieser Zurückhaltung nicht täuschen: hier wohnte das Geld.
+
+Dieses Haus gehörte Auguste Magon de la Lande, aus der mächtigen Dynastie der Magon. Diese Leute enterten keine Schiffe: sie finanzierten sie. Kaperei, Kabeljau von Neufundland, Handel mit Indien — zusammen mit ein paar anderen Familien nannte man sie die „Herren von Saint-Malo", und ihr Kredit beeindruckte selbst Versailles. In den gewölbten Kellern schliefen Stoffe, Gewürze, Silber aus den Südmeeren. Die Jagd nach dem Schatz endete hier, in Kontobüchern.
+
+Und dann, August 1944. Während der Kämpfe der Befreiung brennt die Altstadt — etwa vier von fünf Häusern werden zerstört. Jahrhunderte an Kaperherrenhäusern gehen in einer einzigen Woche in Rauch auf. Dieses hier ist eines der wenigen verschonten.
+
+Also taten die Malouins etwas Verrücktes, ihrer Vorfahren würdig: statt schnell, modern und billig wieder aufzubauen, richteten sie ihre Stadt in Granit wieder auf, Stein für Stein, in den alten Formen. Zwanzig Jahre Bauzeit. Fast alles, was du heute bewundert hast, ist eine Wiedergeburt.
+
+Verstehst du jetzt? Der Schatz der Kaperfahrer ist weder eine Truhe noch ein Barren. Es ist die Stadt selbst: dem Meer abgerungen, durch Kaperei bezahlt, niedergebrannt, und dann ein letztes Mal durch die Beharrlichkeit ihrer Bewohner wieder aufgerichtet. Weder Franzose noch Bretone — ich bin Malouin.
+
+Danke, dass du mit mir gegangen bist. Wenn du eines Tages im November wiederkommst, siehst du vielleicht riesige Segelschiffe Richtung Antillen aufbrechen; das ist eine andere Geschichte. Pass auf dich auf, und behalt den Horizont im Auge. Das ist hier so Brauch.
+
+@@LANG=it
+@@TITLE=Saint-Malo — La Repubblica dei corsari
+@@DESC=Storia e segreti — Surcouf, Duguay-Trouin e la caccia al tesoro: la repubblica dei corsari.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-0
+@@STITLE=Porte Saint-Vincent
+Fermati prima di varcare la porta. Due archi di granito, stemmi scolpiti sopra, e dietro, un'intera città stretta nelle sue mura come un tesoro in uno scrigno. È esattamente questo. Un tesoro. E ti racconterò come è stato conquistato.
+
+Qui non entri in una città francese come le altre. La gente di qui aveva un detto, e lo pensava sul serio: «Né francese, né bretone, sono malouin.» Né francese né bretone. Malouin prima di tutto. Per secoli, questo scoglio è vissuto come una piccola repubblica di marinai, armatori e capitani, che trattava con i re invece di obbedire loro.
+
+E c'è questa parola, che sentirai per tutta la passeggiata: corsaro. Un corsaro non è un pirata, tutt'altro. Il pirata ruba per sé, fuorilegge, e finisce alla forca. Il corsaro, invece, porta una lettera del re. In tempo di guerra, lo autorizza ad attaccare le navi mercantili nemiche, a sequestrarne i carichi, a rivenderli tutti. Legalmente. Una parte per il re, una parte per l'armatore che ha finanziato la nave, una parte per l'equipaggio. La guerra trasformata in impresa commerciale. Saint-Malo ne è stata il primo porto di Francia, e si è costruita con i proventi.
+
+Ecco il nostro filo conduttore: la caccia al tesoro. Ti mostrerò dove è stato conquistato, chi lo ha conquistato, e dove si nasconde oggi — perché è ancora qui, vedrai.
+
+Varca la porta. Sulla tua destra, un castello con grosse torri rotonde. Tieni bene a mente questo: non è stato costruito per i malouins. È stato costruito contro di loro. Te lo spiego laggiù.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-1
+@@STITLE=Porte Saint-Vincent, devant le château de Saint-Malo
+Guarda queste torri tozze, questo mastio. Questo castello non è mai servito a difendere Saint-Malo da un nemico venuto dal mare. Serviva a sorvegliare la città stessa.
+
+I duchi di Bretagna, poi i re di Francia, diffidavano di questo porto troppo ricco e troppo fiero. Alla fine del quindicesimo secolo, la duchessa Anna di Bretagna fa rinforzare la fortezza nonostante le furiose proteste degli abitanti. Si racconta che abbia fatto incidere la sua risposta nella pietra: «Quic-en-groigne, ainsi sera, car tel est mon plaisir» — brontoli chi vuole, così sarà, perché tale è il mio piacere. Non importa chi brontola. La grande torre porta ancora questo nome.
+
+Ma i malouins ebbero la loro rivincita. Nel 1590, il regno si lacera tra cattolici e protestanti, e un re protestante, Enrico IV, sale al trono. Saint-Malo rifiuta categoricamente. Una notte di marzo, dei borghesi scalano questo castello, se ne impadroniscono, e la città si dichiara indipendente. Per quattro anni, si governa da sola, commercia per conto proprio, amministra la propria giustizia. Una repubblica malouine, minuscola e assolutamente seria. Rientra nel regno solo dopo la conversione del re al cattolicesimo — e si fa pagare il ritorno in privilegi.
+
+Capisci meglio il detto di prima, adesso? Allora sali sulle mura tramite la porte Saint-Thomas, subito dietro il castello. Il mare ti aspetta.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-2
+@@STITLE=Remparts, face au Fort National
+Eccoti sul cammino di ronda. Respira. Davanti a te, la plage de l'Éventail, gli scogli, e questo forte di granito posato sulla sua isola: il Fort National. A marea bassa, ci si arriva a piedi asciutti. A marea alta, il mare se lo riprende.
+
+Nasce da un nome che conosci: Vauban, l'ingegnere militare di Luigi XIV. Nel 1689, la Francia è in guerra con l'Inghilterra, e Saint-Malo è diventata un bersaglio prioritario — i suoi corsari fanno troppi danni nella Manica. Così Vauban disegna, e un architetto malouin, Garangeau, costruisce. Il forte chiude la rada, le mura si allargano, la città diventa inespugnabile.
+
+Bisogna misurare la posta in gioco. All'epoca, la corsa è un'industria. Decine di navi armate partono da qui per appostarsi sui convogli mercantili nemici. Le prede vengono riportate al porto, giudicate dall'ammiragliato, vendute all'asta. Gli inglesi, esasperati, tentano di radere al suolo la città: bombardamenti, e persino una nave stipata di polvere da sparo lanciata contro le mura — esplode troppo presto, sugli scogli. Saint-Malo tiene.
+
+Queste mura sotto i tuoi piedi sono al tempo stesso un'armatura e una cassaforte. Seguile verso ovest, fino alla grande torre rotonda che custodisce l'angolo della città.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-3
+@@STITLE=Tour Bidouane
+Questa torre a ferro di cavallo è la Bidouane. Per secoli è servita da polveriera: i barili dei corsari dormivano dietro queste mura spesse. Ma non è per lei che ti fermo qui. Guarda l'isola, di fronte. Il Grand Bé.
+
+Lassù, di fronte al mare aperto, c'è una tomba. Una lastra di granito, una croce nuda, nessun nome. Lì riposa François-René de Chateaubriand, lo scrittore delle Mémoires d'outre-tombe. Nacque nel 1768 in una via di questa città, in una notte di tempesta — lo racconta lui stesso, aggiungendo che il muggito delle onde fu la prima musica della sua vita.
+
+Diventato uno degli scrittori più celebri d'Europa, ambasciatore, ministro, non chiede che una cosa: essere sepolto qui, su questo scoglio battuto dai venti, senza nome, di fronte al mare. Nel 1848, una folla silenziosa attraversa la spiaggia a marea bassa dietro la sua bara.
+
+Se un giorno vuoi salire lassù, controlla l'ora: il mare torna in fretta e taglia il passaggio. I passanti restano intrappolati regolarmente. Lo scrittore, da qualche parte, deve apprezzarlo.
+
+Continua lungo il bastione. Un uomo di bronzo ti aspetta poco più avanti, con il braccio teso verso l'orizzonte.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-4
+@@STITLE=Statue de Surcouf
+Eccolo. Robert Surcouf, immobilizzato in pieno slancio, il dito puntato verso il largo. Si racconta che indichi l'Inghilterra, il suo bersaglio di sempre.
+
+Surcouf è il corsaro diventato leggenda in vita. Nato a Saint-Malo nel 1773, imbarcato adolescente, dà la caccia dall'altra parte del mondo, nell'oceano Indiano, alle navi della Compagnia inglese delle Indie cariche di ricchezze. Il suo colpo da maestro: nel 1800, nel golfo del Bengala, la sua nave la Confiance affianca il Kent, un gigante che lo supera in dimensioni, cannoni e uomini. La faccenda si chiude in meno di un'ora. Londra mette una taglia sulla sua testa. Parigi ne fa un eroe.
+
+Gli si attribuisce questo dialogo con un ufficiale inglese: «Voi francesi combattete per il denaro. Noi inglesi, per l'onore.» Risposta di Surcouf: «Ognuno combatte per ciò che gli manca.» La frase è forse troppo bella per essere autentica. Gli somiglia perfettamente.
+
+La cosa più astuta di lui? Ha saputo fermarsi. Tornato in patria, diventa armatore, finanzia le spedizioni altrui, e muore nel suo letto, immensamente ricco. In questo mestiere, è l'impresa più rara di tutte.
+
+Prosegui verso sud. Il prossimo bastione custodisce una storia che mostra i denti.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-5
+@@STITLE=Bastion de la Hollande
+Fermati su questo ampio bastione, di fronte al tramonto. Una città-cassaforte va sorvegliata. E di notte, per secoli, Saint-Malo è stata sorvegliata da cani.
+
+Ogni sera, una campana suonava il coprifuoco — i malouins la chiamavano Noguette. Le porte si chiudevano. E si lasciava andare sulle spiagge un branco di mastini, cani da combattimento addestrati ad attaccare tutto ciò che si muoveva. Tutta la notte, pattugliavano ai piedi delle mura, intorno alle navi arenate a marea bassa e ai loro carichi. Guai al passante ritardatario: non gli restava che arrampicarsi su uno scoglio e gridare fino al mattino.
+
+Questa guardia canina durò secoli, e finì in tragedia. Nel 1770, un giovane ufficiale che rientrava da una serata lungo la spiaggia viene assalito dal branco e muore per le ferite. La città, inorridita, fa abbattere i cani. La ronda a quattro zampe non riprese mai più.
+
+Ne restano racconti, nomi, e questa lezione molto malouine: qui, persino i cani lavoravano per il tesoro.
+
+Scendi dal bastione, ora, e addentrati nelle strade verso la guglia della cattedrale. Lì ti aspetta il più grande dei corsari.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-6
+@@STITLE=Cathédrale Saint-Vincent
+Entra, se le porte sono aperte. Sotto queste volte, la luce cade da vetrate moderne, blu e rosse come un incendio in mare. E in una cappella riposa un figlio di questa terra: René Duguay-Trouin.
+
+Lui è il gigante prima di Surcouf. Figlio di un armatore malouin, imbarcato a sedici anni, comanda la sua prima nave prima dei vent'anni. Cattura così tante navi che Luigi XIV lo fa passare dalla corsa alla marina reale.
+
+Il suo capolavoro: Rio de Janeiro, 1711. Il Portogallo, alleato dell'Inghilterra, maltratta marinai francesi prigionieri. Duguay-Trouin allestisce una spedizione punitiva finanziata dagli armatori di Saint-Malo — una vera e propria operazione d'affari, con quote, come si lancia una società. Forza l'ingresso della baia di Rio, prende la città, e la restituisce in cambio di un riscatto enorme. Al ritorno, gli investitori incassano quasi il doppio della loro posta. La guerra, quotata come un investimento.
+
+Nobilitato, coperto di onori, finisce tra i più alti gradi della marina francese, e il suo corpo è infine tornato a riposare qui, a casa. A pochi passi, la cattedrale custodisce un'altra tomba: Jacques Cartier, il malouin che attraversò l'Atlantico fino al Canada — ma questa è un'altra epopea.
+
+Esci di nuovo, e scendi verso il sud della città murata. Ultima tappa: la casa del tesoro.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-7
+@@STITLE=Hôtel d'Asfeld
+Eccoti davanti all'hôtel d'Asfeld, una delle ultime vere dimore di armatori della città. Alta facciata di granito, sobria, quasi severa. Non fidarti di questa discrezione: qui abitava il denaro.
+
+Questa casa fu quella di Auguste Magon de la Lande, della potente dinastia dei Magon. Questa gente non abbordava le navi: le finanziava. Corsa, merluzzo di Terranova, commercio delle Indie — insieme ad alcune altre famiglie, venivano chiamati i «signori di Saint-Malo», e il loro credito impressionava fino a Versailles. Nelle cantine a volta dormivano le stoffe, le spezie, l'argento dei mari del Sud. La caccia al tesoro finiva qui, in scritture contabili.
+
+E poi, agosto 1944. Durante i combattimenti della Liberazione, la città vecchia brucia — circa quattro case su cinque distrutte. Secoli di dimore corsare vanno in fumo in una settimana. Questa è una delle poche risparmiate.
+
+Allora i malouins fecero una cosa folle, degna dei loro antenati: invece di ricostruire in fretta, moderno ed economico, hanno rialzato la loro città in granito, pietra dopo pietra, nei volumi antichi. Vent'anni di cantiere. Quasi tutto ciò che hai ammirato oggi è una rinascita.
+
+Capisci, adesso? Il tesoro dei corsari non è né uno scrigno né un lingotto. È la città stessa: conquistata sul mare, pagata dalla corsa, bruciata, poi rialzata un'ultima volta dalla caparbietà dei suoi abitanti. Né francese, né bretone — sono malouin.
+
+Grazie per aver camminato con me. Se ripassi un giorno di novembre, forse vedrai velieri giganti salpare verso le Antille; ma questa è un'altra storia. Abbi cura di te, e tieni d'occhio l'orizzonte. È un'abitudine di qui.
+
+@@LANG=nl
+@@TITLE=Saint-Malo — De Republiek van de kapers
+@@DESC=Geschiedenis & geheimen — Surcouf, Duguay-Trouin en de jacht op de schat: de republiek van de kapers.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-0
+@@STITLE=Porte Saint-Vincent
+Stop voordat je door de poort gaat. Twee granieten bogen, wapenschilden erboven uitgehouwen, en erachter een hele stad, samengeperst binnen haar stadsmuren als een schat in een kist. Dat is precies wat het is. Een schat. En ik ga je vertellen hoe die gewonnen werd.
+
+Je betreedt hier geen gewone Franse stad. De mensen hier hadden een gezegde, en ze meenden het: "Noch Frans, noch Bretons, ik ben Malouin." Noch Frans, noch Bretons. Eerst Malouin. Eeuwenlang leefde deze rots als een kleine republiek van zeelui, reders en kapiteins, die met koningen onderhandelde in plaats van hen te gehoorzamen.
+
+En er is dit woord, dat je de hele wandeling zult horen: kaper. Een kaper is geen piraat, verre van dat. De piraat steelt voor zichzelf, buiten de wet, en eindigt aan het eind van een touw. De kaper daarentegen draagt een brief van de koning bij zich. In oorlogstijd machtigt die hem om vijandelijke koopvaardijschepen aan te vallen, hun lading in beslag te nemen, alles door te verkopen. Legaal. Een deel voor de koning, een deel voor de reder die het schip financierde, een deel voor de bemanning. Oorlog omgevormd tot een handelsonderneming. Saint-Malo was de eerste kaperhaven van Frankrijk, en werd opgebouwd met de winsten.
+
+Dat is onze rode draad: de jacht op de schat. Ik zal je laten zien waar hij gewonnen werd, wie hem won, en waar hij zich vandaag verbergt — want hij is er nog steeds, dat zul je zien.
+
+Ga door de poort. Aan je rechterhand, een kasteel met dikke ronde torens. Onthoud dit goed: het werd niet gebouwd voor de Malouins. Het werd tegen hen gebouwd. Ik leg het je daar uit.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-1
+@@STITLE=Porte Saint-Vincent, devant le château de Saint-Malo
+Kijk naar deze gedrongen torens, deze donjon. Dit kasteel heeft nooit gediend om Saint-Malo te verdedigen tegen een vijand die vanaf zee kwam. Het diende om de stad zelf in de gaten te houden.
+
+De hertogen van Bretagne, en later de koningen van Frankrijk, wantrouwden deze te rijke en te trotse haven. Aan het eind van de vijftiende eeuw laat hertogin Anna van Bretagne de vesting versterken, ondanks de woedende protesten van de bewoners. Er wordt verteld dat ze haar antwoord in de steen liet graveren: "Quic-en-groigne, ainsi sera, car tel est mon plaisir" — mopper wie wil, zo zal het zijn, want zo is mijn wil. Wat maakt het uit wie er mopperen. De grote toren draagt die naam nog steeds.
+
+Maar de Malouins kregen hun revanche. In 1590 scheurt het koninkrijk zich uiteen tussen katholieken en protestanten, en een protestantse koning, Hendrik IV, bestijgt de troon. Saint-Malo weigert botweg. Op een nacht in maart beklimmen burgers dit kasteel, nemen het in, en de stad verklaart zich onafhankelijk. Vier jaar lang bestuurt ze zichzelf, drijft handel voor eigen rekening, spreekt haar eigen recht. Een minuscule, volkomen serieuze Malouinse republiek. Ze treedt pas weer tot het koninkrijk toe na de bekering van de koning tot het katholicisme — en laat zich de terugkeer betalen in privileges.
+
+Begrijp je het gezegde van daarnet nu beter? Klim dan via de porte Saint-Thomas, vlak achter het kasteel, op de stadsmuren. De zee wacht op je.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-2
+@@STITLE=Remparts, face au Fort National
+Daar sta je op het wandelpad langs de muur. Adem. Voor je, het plage de l'Éventail, de rotsen, en dit granieten fort op zijn eilandje: het Fort National. Bij eb loop je er droogvoets naartoe. Bij vloed neemt de zee het weer in bezit.
+
+Het ontstond dankzij een naam die je kent: Vauban, de militair ingenieur van Lodewijk XIV. In 1689 is Frankrijk in oorlog met Engeland, en Saint-Malo is een prioritair doelwit geworden — haar kapers richten te veel schade aan in het Kanaal. Dus ontwerpt Vauban, en een Malouinse architect, Garangeau, bouwt. Het fort vergrendelt de rede, de stadsmuren worden uitgebreid, de stad wordt onneembaar.
+
+Je moet begrijpen wat er op het spel stond. In die tijd is kaapvaart een industrie. Tientallen bewapende schepen vertrekken vanhier om vijandelijke koopvaardijconvooien op te wachten. De buit wordt teruggebracht naar de haven, beoordeeld door de admiraliteit, geveild. De geërgerde Engelsen proberen de stad met de grond gelijk te maken: bombardementen, en zelfs een met buskruit volgeladen schip dat tegen de muren wordt gelanceerd — het ontploft te vroeg, op de rotsen. Saint-Malo houdt stand.
+
+Deze stadsmuren onder je voeten zijn tegelijk een harnas en een kluis. Volg ze naar het westen, tot aan de grote ronde toren die de hoek van de stad bewaakt.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-3
+@@STITLE=Tour Bidouane
+Deze hoefijzervormige toren is de Bidouane. Eeuwenlang diende ze als kruitmagazijn: de vaten van de kapers sliepen achter deze dikke muren. Maar daarvoor houd ik je hier niet staande. Kijk naar het eiland, ertegenover. Le Grand Bé.
+
+Daarboven, met uitzicht op de open zee, ligt een graf. Een granieten plaat, een kaal kruis, geen naam. Daar rust François-René de Chateaubriand, de schrijver van de Mémoires d'outre-tombe. Hij werd in 1768 geboren in een straat van deze stad, op een stormachtige nacht — hij vertelt het zelf, en voegt eraan toe dat het gebulder van de golven de eerste muziek van zijn leven was.
+
+Uitgegroeid tot een van de beroemdste schrijvers van Europa, ambassadeur, minister, vraagt hij maar één ding: hier begraven te worden, op deze door de wind gebeukte rots, zonder naam, met uitzicht op zee. In 1848 steekt een stille menigte bij eb het strand over, achter zijn kist aan.
+
+Als je er ooit naartoe wilt klimmen, hou de tijd in de gaten: de zee keert snel terug en snijdt de doorgang af. Wandelaars laten zich er geregeld door verrassen. De schrijver zal het, ergens, wel waarderen.
+
+Ga verder langs de stadsmuur. Een bronzen man wacht je iets verderop, met de arm uitgestrekt naar de horizon.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-4
+@@STITLE=Statue de Surcouf
+Daar is hij. Robert Surcouf, bevroren midden in een beweging, de vinger gericht op de open zee. Er wordt verteld dat hij naar Engeland wijst, zijn eeuwige doelwit.
+
+Surcouf is de kaper die al bij leven een legende werd. Geboren in Saint-Malo in 1773, als tiener aan boord gegaan, jaagt hij aan de andere kant van de wereld, in de Indische Oceaan, op de met rijkdommen beladen schepen van de Engelse Oost-Indische Compagnie. Zijn meesterzet: in 1800, in de Golf van Bengalen, entert zijn schip la Confiance de Kent, een reus die hem in grootte, kanonnen en manschappen ver overtreft. De zaak is in minder dan een uur beklonken. Londen zet een prijs op zijn hoofd. Parijs maakt van hem een held.
+
+Men schrijft hem deze wisseling met een Engelse officier toe: "Jullie Fransen vechten voor geld. Wij Engelsen, voor eer." Antwoord van Surcouf: "Iedereen vecht voor wat hem ontbreekt." De zin is misschien te mooi om echt te zijn. Ze past hem als gegoten.
+
+Het slimste aan hem? Hij wist te stoppen. Terug in eigen land wordt hij reder, financiert de expedities van anderen, en sterft in zijn bed, immens rijk. In dit vak is dat het zeldzaamste huzarenstukje van allemaal.
+
+Ga verder naar het zuiden. Het volgende bolwerk bewaart een verhaal dat de tanden laat zien.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-5
+@@STITLE=Bastion de la Hollande
+Stop op dit brede bolwerk, met uitzicht op de zonsondergang. Een stad-kluis moet bewaakt worden. En 's nachts werd Saint-Malo eeuwenlang bewaakt door honden.
+
+Elke avond luidde een klok de avondklok in — de Malouins noemden haar Noguette. De poorten sloten. En op de stranden werd een roedel doggen losgelaten, vechthonden getraind om alles aan te vallen wat bewoog. De hele nacht patrouilleerden ze aan de voet van de stadsmuren, rond de bij eb gestrande schepen en hun lading. Wee de late wandelaar: hem restte niets anders dan op een rots te klimmen en tot de ochtend te schreeuwen.
+
+Deze hondenwacht duurde eeuwenlang, en eindigde in een tragedie. In 1770 wordt een jonge officier die 's avonds laat langs het strand naar huis loopt, aangevallen door de roedel en sterft aan zijn verwondingen. De ontzette stad laat de honden afmaken. De viervoetige wacht werd nooit hervat.
+
+Wat rest zijn verhalen, namen, en deze zeer Malouinse les: hier werkten zelfs de honden voor de schat.
+
+Daal nu af van de stadsmuur, en ga de straten in richting de torenspits van de kathedraal. De grootste van alle kapers wacht je daar.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-6
+@@STITLE=Cathédrale Saint-Vincent
+Ga naar binnen, als de deuren open zijn. Onder deze gewelven valt het licht door moderne glas-in-loodramen, blauw en rood als een vuur op zee. En in een kapel rust een zoon van dit land: René Duguay-Trouin.
+
+Hij is de reus van vóór Surcouf. Zoon van een Malouinse reder, op zijn zestiende aan boord gegaan, voert hij vóór zijn twintigste zijn eerste schip aan. Hij verovert zoveel schepen dat Lodewijk XIV hem van de kaapvaart naar de koninklijke marine laat overstappen.
+
+Zijn meesterwerk: Rio de Janeiro, 1711. Portugal, bondgenoot van Engeland, mishandelt gevangen Franse zeelieden. Duguay-Trouin zet een strafexpeditie op, gefinancierd door de reders van Saint-Malo — een echte zakelijke onderneming, met aandelen, zoals men een vennootschap opricht. Hij dwingt de toegang tot de baai van Rio af, neemt de stad in, en geeft haar terug tegen een enorm losgeld. Bij terugkomst strijken de investeerders bijna het dubbele van hun inleg op. De oorlog, verhandeld als een belegging.
+
+Geadeld, overladen met eerbewijzen, eindigt hij tussen de hoogste rangen van de Franse marine, en zijn lichaam keerde uiteindelijk hierheen terug, naar huis. Een paar passen verderop bewaart de kathedraal nog een graf: Jacques Cartier, de Malouin die de Atlantische Oceaan overstak tot in Canada — maar dat is een ander epos.
+
+Ga weer naar buiten, en daal af naar het zuiden van de ommuurde stad. Laatste halte: het huis van de schat.
+
+@@SCENE=seed-100-saint-malo-cite-corsaire-scene-7
+@@STITLE=Hôtel d'Asfeld
+Daar sta je voor het hôtel d'Asfeld, een van de laatste echte redershuizen van de stad. Hoge granieten gevel, sober, bijna streng. Laat je niet misleiden door die ingetogenheid: hier woonde het geld.
+
+Dit huis was dat van Auguste Magon de la Lande, uit de machtige Magon-dynastie. Deze mensen enterden zelf geen schepen: ze financierden ze. Kaapvaart, kabeljauw uit Newfoundland, handel met de Indiën — samen met een paar andere families werden ze de "heren van Saint-Malo" genoemd, en hun krediet maakte zelfs in Versailles indruk. In de gewelfde kelders sliepen de stoffen, de specerijen, het zilver van de zuidelijke zeeën. De jacht op de schat eindigde hier, in boekhoudkundige aantekeningen.
+
+En dan, augustus 1944. Tijdens de gevechten van de Bevrijding brandt de oude stad — ongeveer vier van de vijf huizen worden verwoest. Eeuwen aan kapershuizen gaan in een week in rook op. Dit is een van de weinige gespaarde.
+
+Toen deden de Malouins iets waanzinnigs, hun voorouders waardig: in plaats van snel, modern en goedkoop te herbouwen, richtten ze hun stad weer op in graniet, steen voor steen, binnen de oude omtrekken. Twintig jaar bouwwerk. Bijna alles wat je vandaag hebt bewonderd, is een wedergeboorte.
+
+Begrijp je het nu? De schat van de kapers is geen kist en geen goudstaaf. Het is de stad zelf: gewonnen op de zee, betaald door de kaapvaart, verbrand, en dan een laatste keer weer opgericht door de koppigheid van haar bewoners. Noch Frans, noch Bretons — ik ben Malouin.
+
+Dank je voor het wandelen met mij. Als je ooit terugkomt op een dag in november, zie je misschien reusachtige zeilschepen vertrekken naar de Antillen; dat is een ander verhaal. Zorg goed voor jezelf, en houd de horizon in de gaten. Dat is hier een gewoonte.

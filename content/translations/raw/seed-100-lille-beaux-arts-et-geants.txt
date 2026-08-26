@@ -1,0 +1,479 @@
+@@LANG=en
+@@TITLE=Lille — Fine Arts and Giants
+@@DESC=Art & figures — From France's second-largest museum to the giants of the North: high art and street art.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-0
+@@STITLE=Palais des Beaux-Arts
+Stand in the middle of the place de la République, facing this great palace of pale stone and columns, with its sculpted allegories at the top. This is the Palais des Beaux-Arts, often described as France's second-richest museum by the wealth of its collections, right behind the Louvre.
+
+Look first at the building itself. It was raised at the very end of the 19th century, at a time when the city, enriched by industry, wanted a temple worthy of itself. And that's the real message. This palace states a conviction: art doesn't belong only to princes, it must be offered to the people, to the worker as much as to the bourgeois. A museum as grand as a castle, set on a square open to all.
+
+Inside awaits a dizzying array. Flemish and Dutch masters first, at home in this Flemish city: Rubens, Van Dyck and their genius for chiaroscuro. But also Goya, Delacroix, Courbet, the Impressionists. Five centuries of European painting under a single roof.
+
+Here's one side of art: high art, framed, silent, the kind admired with your hands behind your back. Hold onto that, because our whole walk is going to stretch a thread between it and its opposite — street art, loud, popular, the kind that dances and parades. From this palace to the giants of cardboard, there's just one city to cross.
+
+Let's start with an architect's secret, close by. Take the rue de Fleurus, to the west. Follow me to a house unlike any other.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-1
+@@STITLE=Maison Coilliot
+Stop in front of number 14, rue de Fleurus, and look up. Among the sedate façades, this one ripples, twists, plays with color and material: carved wood, wrought iron shaped into plant stems, and a strange stone, green and glossy, as if enameled. This is the Maison Coilliot, an Art Nouveau gem completed around 1900.
+
+Listen to its story — it's a clever one. A certain Louis Coilliot was a merchant of ceramics and "enameled lava," that vitrified volcanic stone. He wanted to impress and to sell. So he commissioned his house from a young architect who would soon become known the world over for the Paris metro entrances: Hector Guimard. The façade isn't just a façade. It's a showcase, a demonstration, a giant sign. Look: the material sold by the owner is displayed on his own wall.
+
+Here already is art descending into the street, leaving its frame to become city decor. A painting you can't take down, offered to every passerby, for free. The house is private, you can't visit inside — but its finest piece, the façade, belongs to you, right here, right now.
+
+Head back north, to a large square and its theater. Follow me to the place Sébastopol.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-2
+@@STITLE=Théâtre Sébastopol
+In front of you, on its square, the Théâtre Sébastopol, a silhouette of stone and brick from the early 20th century. Don't look here for the stiff velvet of elite opera houses. The "Séba," as they call it in Lille, was born a popular theater — the theater of operetta, of the café-concert, of the show you come to see as a family, without evening dress.
+
+It's an important link in our story. Because in this industrial city, the question of art has always also been a social question. Who does beauty belong to? To the wealthy only, or to those who work? The grand opera house in the center, near the Grand-Place, offered splendor to the notables. Halls like this one offered laughter and song to the many. Two floors of the same desire for spectacle.
+
+Even today, the Sébastopol hosts a bit of everything: concerts, comedians, touring shows. It has kept this calling as a wide-open stage, with no airs. High art on one side, festive art on the other — and often, the boundary is thinner than you'd think.
+
+Let's head back east, toward the great avenue leading to the center. A concrete building there hides the region's finest orchestra. Follow me to the rue Nationale.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-3
+@@STITLE=Le Nouveau Siècle
+Let's stop in front of this massive, angular ensemble, the Nouveau Siècle, far less graceful than the palace we started with, let's admit it. Don't judge by the façade: this is where the Orchestre National de Lille is housed, one of the country's great symphonic ensembles.
+
+I want to tell you about an intention, more than a building. When this orchestra was founded, in the 1970s, it was built on a specific idea, a very Northern one: great music shouldn't stay locked inside a single hall for the happy few. The orchestra was designed to travel, to go and play throughout the region, in mid-sized towns, sometimes in factories, to meet people who would never walk through the door of a concert hall.
+
+Here again, in music this time, you find the thread running through our whole walk. High art refusing the ivory tower and coming down to the public. Beethoven carried all the way into the mining basin, just like the palace's paintings offered to the worker. A certain stubborn idea: that beauty is shared, or it is nothing.
+
+Continue northeast, toward the city's great showpiece, its most famous square. There, art is written on the façades. Follow me to the Grand-Place.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-4
+@@STITLE=Grand-Place, devant les façades de la Voix du Nord
+Here we are on the Grand-Place, which I'll let you admire in a single glance — the Goddess on her column, the Vieille Bourse finely carved beside it: others have already told you their story. As for me, I want to raise your eyes to a single building, on the north side of the square.
+
+Look for the one bearing the name of a newspaper, La Voix du Nord. Its façade dates from the 1930s, and its stepped gable, in a staircase pattern, imitates the old Flemish gables. But look higher still: three gilded bronze statues stand at the very top, three female figures. They're called the three Graces, and they represent the region's three former provinces: Flanders, Artois, Hainaut.
+
+See the feat here. A 20th-century newspaper builds itself an Art Deco façade, but dressed in Flemish costume, crowned with gilded allegories like an ancient temple. Art, here, isn't in a museum: it's plastered onto an office building, right in the middle of the street, to declare a region's pride. Every passerby looks up without always knowing it.
+
+Let's head down toward the east, toward the train stations. Art, over there, has taken up residence in former working buildings. Follow me to the Tripostal.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-5
+@@STITLE=Le Tripostal
+In front of you, near the stations, a large, plain, functional building, with no apparent grace: the Tripostal. Its name tells its past. It was built in the mid-20th century to sort the mail for the whole region: tons of letters, conveyor belts, a postal ballet running day and night.
+
+And then sorting moved elsewhere, and the building fell silent. It could have been torn down. Instead, starting in 2004, the city turned it into one of its major centers for contemporary art. Today, under these concrete ceilings, immense works are hung, films are projected, installations are set up, people dance late into the night. The place of the mail has become a place of creation.
+
+You can see a way of doing things taking shape here, very local. Here, people don't willingly raze the industrial past: they recycle it, pour art into it. The factory becomes a gallery, the station becomes a stage. The North, which produced so much and closed so much, has learned to give a second life to its old walls of brick and concrete, by filling them with beauty.
+
+Let's follow this idea to its finest proof, a little further south, along the boulevard. A former freight station awaits us. Follow me to the gare Saint-Sauveur.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-6
+@@STITLE=Gare Saint-Sauveur
+Here you are in front of the gare Saint-Sauveur. Forget about passengers: only freight ever passed through here — coal, raw materials, everything that fed the factories. A utilitarian, forgotten freight station. Look at its long brick halls and glass roofs.
+
+It too has been brought back to life as a place of art and celebration. Large exhibitions are shown here, often free, films are screened, drinks are had under the roof trusses. And above all, it's one of the hearts of an event that regularly comes back to transform the entire city into a work of art: great cultural seasons where the whole metropolis dresses itself in installations, colors, giant creatures suspended over the streets.
+
+Can you feel the thread drawing tighter? We started at a solemn museum, art locked away and guarded. Now here we are in an open station where art spills out into the street, free, popular, fleeting. The same desire, two faces: the immortal painting and the one-night celebration.
+
+We still have to meet the true stars of the street, the ones giving their name to our walk. Head back up toward the city hall, its tall tower will guide you. Follow me.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-7
+@@STITLE=Beffroi de l'hôtel de ville
+Look up at this immense brick tower, the belfry of the hôtel de ville, inaugurated in 1932. It's said to be the tallest civic belfry in Europe, a hundred and four meters raised there to assert the pride of a city wounded by the Great War and firmly determined to rise again. Like the region's other belfries, it's listed as a UNESCO World Heritage site.
+
+But now lower your eyes to its base, on either side of the entrance. Two colossal figures stand guard there, carved into the concrete: Lydéric and Phinaert. They're the giants of the legend of Lille's founding. The story goes that the young Lydéric confronted the giant outlaw Phinaert, defeated him before the king's eyes, and founded the city on his lands. There they stand, petrified, guardians of the threshold.
+
+Notice the sculptor's technique, Carlo Sarrabezolles: he didn't assemble them, he carved them directly into the wet concrete, freehand, racing against the clock, before the material could harden. High art again, but one that carves a folk tale into stone.
+
+These two frozen giants have living brothers, made of flesh and wicker, who dance in the streets. Take a few steps toward the nearby arch. I'm going to introduce them to you. Follow me.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-8
+@@STITLE=Vers la Porte de Paris
+Stop near the Porte de Paris, this old triumphal arch that I'll let you admire without telling its story — others have already done that before me. We're here for the end of our story, the most joyful part: the giants of the North.
+
+Because you don't only meet Lydéric and Phinaert in stone. They also exist for real, as immense figures several meters tall, with heads of painted cardboard and bodies of wicker, carried on the shoulders of people hidden underneath. And on certain festival days, they come out. They go down into the street, sway to the sound of brass bands, wave to the crowd, dance heavily across the squares. Every town, every village in the North has its own, with a name, a family, a story. They're christened, married off, mourned. This tradition of parading giants is even recognized by UNESCO as a treasure of humanity.
+
+And there, our thread is tied off. Remember where we came from: the silence of the great museum, the Rubens paintings kept under watch, high art under glass. And look at where we've arrived: a cardboard colossus dancing in the street to make children laugh. This isn't the opposite of art. It's its other side, just as noble. The immortal painting and the giant of a single day both reach out to the same need: to give beauty and joy to an entire people.
+
+The North understood that better than anyone. Next time you cross paths with a giant, greet it for me. Thank you for walking alongside me, from the palace to the street.
+
+@@LANG=es
+@@TITLE=Lille — Bellas Artes y gigantes
+@@DESC=Arte y figuras — Del segundo museo de Francia a los gigantes del Norte: el arte culto y el arte de la calle.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-0
+@@STITLE=Palais des Beaux-Arts
+Colócate en medio de la place de la République, frente a este gran palacio de piedra clara y columnas, con sus alegorías esculpidas en lo alto. Es el Palais des Beaux-Arts, presentado a menudo como el segundo museo de Francia por la riqueza de sus colecciones, justo detrás del Louvre.
+
+Mira primero el edificio en sí. Se levantó a finales del siglo XIX, en una época en la que la ciudad, enriquecida por la industria, quería un templo digno de ella. Y ahí está el verdadero mensaje. Este palacio expresa una convicción: el arte no pertenece solo a los príncipes, debe ofrecerse al pueblo, tanto al obrero como al burgués. Un museo grande como un castillo, plantado en una plaza abierta a todos.
+
+En el interior te espera un vértigo. Maestros flamencos y holandeses, primero, en su terreno en esta ciudad flamenca: Rubens, Van Dyck y su genio del claroscuro. Pero también Goya, Delacroix, Courbet, los impresionistas. Cinco siglos de pintura europea bajo un mismo techo.
+
+Ahí tienes una vertiente del arte: el arte culto, enmarcado, silencioso, ese que se admira con las manos detrás de la espalda. Guárdalo bien, porque todo nuestro paseo va a tender un hilo entre él y su contrario: el arte de la calle, ruidoso, popular, el que baila y desfila. De este palacio a los gigantes de cartón, solo hay una ciudad que atravesar.
+
+Empecemos por un secreto de arquitecto, muy cerca. Toma la rue de Fleurus, al oeste. Sígueme hacia una casa distinta a las demás.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-1
+@@STITLE=Maison Coilliot
+Detente frente al número 14 de la rue de Fleurus, y levanta la vista. En medio de fachadas comedidas, esta ondula, se retuerce, juega con el color y la materia: madera esculpida, hierro forjado en forma de tallos de plantas, y una piedra extraña, verde y brillante, como esmaltada. Es la maison Coilliot, una joya del Art Nouveau terminada hacia 1900.
+
+Escucha su historia, es astuta. Un tal Louis Coilliot era comerciante de cerámicas y de «lava esmaltada», esa piedra volcánica vitrificada. Quería impresionar y vender. Así que encargó su casa a un joven arquitecto que pronto sería conocido en el mundo entero por las bocas del metro de París: Hector Guimard. La fachada no es solo una fachada. Es un escaparate, una demostración, un cartel gigante. Mira: el material vendido por el propietario se exhibe en su propio muro.
+
+Ahí tienes ya el arte bajando a la calle, dejando el marco para convertirse en decorado urbano. Un cuadro que no se puede descolgar, ofrecido a todos los transeúntes, gratis. La casa es privada, no se visita, pero su pieza más hermosa, la fachada, es tuya, ahí mismo, ahora mismo.
+
+Sube de nuevo hacia el norte, hasta una gran plaza y su teatro. Sígueme a la place Sébastopol.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-2
+@@STITLE=Théâtre Sébastopol
+Delante de ti, en su plaza, el théâtre Sébastopol, silueta de piedra y ladrillo de principios del siglo XX. No busques aquí el terciopelo estirado de las óperas de élite. El «Séba», como se dice en Lille, nació como teatro popular, el de la opereta, el del café-concierto, el del espectáculo que se viene a ver en familia, sin traje de noche.
+
+Es un eslabón importante de nuestra historia. Porque en esta ciudad industrial, la cuestión del arte siempre ha sido también una cuestión social. ¿A quién pertenece la belleza? ¿Solo a los ricos, o también a los que trabajan? El gran teatro de ópera del centro, cerca de la Grand-Place, ofrecía el fasto a los notables. Salas como esta ofrecían la risa y la canción al mayor número. Dos pisos de un mismo deseo de espectáculo.
+
+Aún hoy, el Sébastopol acoge de todo: conciertos, humoristas, giras. Ha conservado esa vocación de escenario amplio y abierto, sin remilgos. El arte culto por un lado, el arte de la fiesta por otro, y a menudo, la frontera es más delgada de lo que se cree.
+
+Retomemos hacia el este, hacia la gran arteria que lleva al centro. Un edificio de hormigón esconde allí la mejor orquesta de la región. Sígueme hacia la rue Nationale.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-3
+@@STITLE=Le Nouveau Siècle
+Nos detenemos delante de este conjunto macizo y anguloso, el Nouveau Siècle, mucho menos elegante que el palacio del principio, lo reconozco. No juzgues por la fachada: aquí tiene su sede la Orchestre National de Lille, uno de los grandes conjuntos sinfónicos del país.
+
+Quiero contarte una intención, más que un edificio. Cuando se funda esta orquesta, en los años 1970, es con una idea precisa, muy propia del Norte: la gran música no debe quedar encerrada en una sola sala para unos pocos privilegiados. La orquesta se concibió como itinerante, para ir a tocar por toda la región, en ciudades medianas, a veces en fábricas, al encuentro de gente que nunca cruzaría la puerta de un concierto.
+
+Reencuentras aquí, en música esta vez, el hilo de todo nuestro paseo. El arte culto que rechaza la torre de marfil y baja hacia el público. Beethoven llevado hasta la cuenca minera, igual que los cuadros del palacio ofrecidos al obrero. Una idea tenaz: que la belleza se comparte, o no es nada.
+
+Continúa hacia el noreste, hacia el gran escenario de la ciudad, su plaza más famosa. Allí, el arte se lee en las fachadas. Sígueme hacia la Grand-Place.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-4
+@@STITLE=Grand-Place, devant les façades de la Voix du Nord
+Henos aquí en la Grand-Place, que te dejo admirar de un vistazo: la Diosa sobre su columna, la Vieille Bourse cincelada al lado; otros ya te han contado su historia. Yo quiero levantar tu mirada hacia un único edificio, en el lado norte de la plaza.
+
+Busca el que lleva el nombre de un periódico, la Voix du Nord. Su fachada data de los años 1930, y su hastial escalonado, en forma de escalera, imita los viejos hastiales flamencos. Pero sube todavía un poco más la mirada: tres estatuas de bronce dorado se yerguen allí arriba, tres figuras femeninas. Se las llama las tres Gracias, y representan las tres antiguas provincias de la región: Flandes, Artois, Hainaut.
+
+Fíjate en el alarde. Un periódico del siglo XX se construye una fachada Art déco, pero vestida con traje flamenco, coronada de alegorías doradas como un templo antiguo. El arte, aquí, no está en un museo: está pegado a un edificio de oficinas, en plena calle, para expresar el orgullo de una región. Cada transeúnte levanta la vista sin saberlo siempre.
+
+Bajemos hacia el este, hacia el lado de las estaciones. El arte, allí, se ha instalado en antiguos edificios de trabajo. Sígueme hacia el Tripostal.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-5
+@@STITLE=Le Tripostal
+Delante de ti, cerca de las estaciones, un gran edificio sobrio y funcional, sin gracia aparente: el Tripostal. Su nombre dice su pasado. Se construyó a mediados del siglo XX para clasificar el correo de toda la región: toneladas de cartas, cintas transportadoras, un ballet postal día y noche.
+
+Y luego la clasificación se trasladó, el edificio enmudeció. Podría haber sido derribado. En lugar de eso, la ciudad lo convirtió, a partir de 2004, en uno de sus grandes centros de arte contemporáneo. Hoy, bajo estos techos de hormigón, se cuelgan obras inmensas, se proyecta, se instala, se baila hasta tarde por la noche. El lugar del correo se ha convertido en lugar de creación.
+
+Ves dibujarse una manera de hacer las cosas, muy local. Aquí no se arrasa de buen grado el pasado industrial: se recicla, se vierte en él el arte. La fábrica se convierte en galería, la estación se convierte en escenario. El Norte, que tanto produjo y tanto cerró, ha aprendido a dar una segunda vida a sus viejos muros de ladrillo y hormigón, instalando en ellos la belleza.
+
+Sigamos esta idea hasta su prueba más hermosa, un poco más al sur, a lo largo del bulevar. Una antigua estación de mercancías nos espera. Sígueme hacia la gare Saint-Sauveur.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-6
+@@STITLE=Gare Saint-Sauveur
+Aquí estás frente a la gare Saint-Sauveur. Olvida a los viajeros: aquí solo pasaban mercancías, el carbón, las materias primas, todo lo que alimentaba las fábricas. Una estación de mercancías, utilitaria, olvidada. Mira sus largas naves de ladrillo y cristalera.
+
+Ella también ha sido resucitada como lugar de arte y de fiesta. Se presentan aquí grandes exposiciones, a menudo gratuitas, se proyectan películas, se toma una copa bajo las armaduras de madera. Y sobre todo, es uno de los corazones de un evento que regresa regularmente a transformar toda la ciudad en obra de arte: grandes temporadas culturales en las que toda la metrópolis se engalana con instalaciones, colores, criaturas gigantes suspendidas en las calles.
+
+¿Sientes cómo se estrecha el hilo? Partimos de un museo solemne, el arte encerrado y custodiado. Henos aquí en una estación abierta donde el arte se desborda hacia la calle, gratuito, popular, efímero. El mismo deseo, dos caras: el cuadro inmortal y la fiesta de una noche.
+
+Nos queda encontrarnos con las verdaderas estrellas de la calle, las que dan título a nuestro paseo. Sube de nuevo hacia el hôtel de ville, su alta torre te guía. Sígueme.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-7
+@@STITLE=Beffroi de l'hôtel de ville
+Levanta la cabeza hacia esta torre inmensa de ladrillo, el beffroi del hôtel de ville, inaugurado en 1932. Se dice que es el campanario civil más alto de Europa, ciento cuatro metros erguidos ahí para afirmar el orgullo de una ciudad herida por la Gran Guerra y bien decidida a levantarse de nuevo. Está, como los demás beffrois de la región, inscrito en el patrimonio mundial.
+
+Pero baja ahora la mirada hacia su base, a ambos lados de la entrada. Dos figuras colosales montan guardia allí, talladas en el hormigón: Lydéric y Phinaert. Son los gigantes de la leyenda de la fundación de Lille. Se cuenta que el joven Lydéric se enfrentó al gigante bandido Phinaert, lo venció ante los ojos del rey, y fundó la ciudad sobre sus tierras. Ahí están, petrificados, guardianes del umbral.
+
+Fíjate en el gesto del escultor, Carlo Sarrabezolles: no los ensambló, los talló directamente en el hormigón fresco, a mano alzada, contrarreloj, antes de que la materia endureciera. Arte culto, otra vez, pero que graba en piedra un cuento popular.
+
+Estos dos gigantes petrificados tienen hermanos vivos, de carne y de mimbre, que bailan por las calles. Da unos pasos hacia el arco vecino. Voy a presentártelos. Sígueme.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-8
+@@STITLE=Vers la Porte de Paris
+Detente cerca de la Porte de Paris, ese viejo arco de triunfo que te dejo admirar sin contarlo: otros ya lo han hecho antes que yo. Nosotros estamos aquí para el final de nuestra historia, el más alegre: los gigantes del Norte.
+
+Porque a Lydéric y Phinaert no los encuentras solo en piedra. También existen de verdad, inmensas figuras de varios metros, con la cabeza de cartón pintado y el cuerpo de mimbre, cargadas a hombros por personas escondidas debajo. Y en ciertas fiestas, salen. Bajan a la calle, se contonean al son de las bandas de música, saludan a la multitud, bailan pesadamente por las plazas. Cada ciudad, cada pueblo del Norte tiene los suyos, con un nombre, una familia, una historia. Se los bautiza, se los casa, se los llora. Esta tradición de los gigantes que desfilan está incluso reconocida por la Unesco como un tesoro de la humanidad.
+
+Y así queda anudado nuestro hilo. Recuerda de dónde venimos: el silencio del gran museo, los Rubens custodiados, el arte culto bajo campana de cristal. Y mira a dónde llegamos: un coloso de cartón que baila en la calle para hacer reír a los niños. No es lo contrario del arte. Es su otra vertiente, igual de noble. El cuadro inmortal y el gigante de un día tienden la mano a la misma necesidad: dar belleza y alegría a todo un pueblo.
+
+El Norte entendió esto mejor que nadie. La próxima vez que te cruces con un gigante, salúdalo de mi parte. Gracias por caminar a mi lado, desde el palacio hasta la calle.
+
+@@LANG=de
+@@TITLE=Lille — Bildende Kunst und Riesen
+@@DESC=Kunst & Figuren — Vom zweitgrößten Museum Frankreichs zu den Riesen des Nordens: die hohe Kunst und die Straßenkunst.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-0
+@@STITLE=Palais des Beaux-Arts
+Stell dich mitten auf die place de la République, gegenüber diesem großen Palast aus hellem Stein und Säulen, mit seinen Allegorien, die oben eingemeißelt sind. Das ist der Palais des Beaux-Arts, oft als das zweitreichste Museum Frankreichs bezeichnet, gemessen an der Fülle seiner Sammlungen, gleich hinter dem Louvre.
+
+Schau dir zunächst das Gebäude selbst an. Es wurde ganz am Ende des 19. Jahrhunderts errichtet, in einer Zeit, in der die durch die Industrie bereicherte Stadt einen Tempel wollte, der ihrer würdig war. Und genau darin liegt die eigentliche Botschaft. Dieser Palast drückt eine Überzeugung aus: Kunst gehört nicht nur den Fürsten, sie muss dem Volk angeboten werden, dem Arbeiter ebenso wie dem Bürger. Ein Museum so groß wie ein Schloss, aufgestellt auf einem Platz, der allen offensteht.
+
+Im Inneren erwartet dich ein Schwindel. Flämische und niederländische Meister zuerst, zu Hause in dieser flämischen Stadt: Rubens, Van Dyck und ihr Genie des Chiaroscuro. Aber auch Goya, Delacroix, Courbet, die Impressionisten. Fünf Jahrhunderte europäischer Malerei unter einem einzigen Dach.
+
+Das ist eine Seite der Kunst: die hohe Kunst, gerahmt, still, jene, die man mit den Händen auf dem Rücken bewundert. Behalte das im Kopf, denn unser ganzer Spaziergang wird einen Faden zwischen ihr und ihrem Gegenteil spannen — der Straßenkunst, laut, volkstümlich, jener, die tanzt und paradiert. Von diesem Palast bis zu den Pappriesen ist nur eine Stadt zu durchqueren.
+
+Beginnen wir mit einem Architektengeheimnis, ganz in der Nähe. Nimm die rue de Fleurus, im Westen. Folge mir zu einem Haus, das anders ist als alle anderen.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-1
+@@STITLE=Maison Coilliot
+Halt vor der Nummer 14 der rue de Fleurus an, und schau nach oben. Inmitten der zurückhaltenden Fassaden wellt sich diese hier, windet sich, spielt mit Farbe und Material: geschnitztes Holz, Schmiedeeisen, geformt zu Pflanzenstängeln, und ein seltsamer Stein, grün und glänzend, wie emailliert. Das ist die maison Coilliot, ein Juwel des Jugendstils, vollendet um 1900.
+
+Hör dir seine Geschichte an, sie ist raffiniert. Ein gewisser Louis Coilliot war Händler von Keramik und „emaillierter Lava", jenem verglasten Vulkangestein. Er wollte beeindrucken und verkaufen. Also gab er sein Haus bei einem jungen Architekten in Auftrag, der bald in der ganzen Welt für die Pariser Metroeingänge bekannt werden sollte: Hector Guimard. Die Fassade ist nicht nur eine Fassade. Sie ist ein Schaufenster, eine Demonstration, ein riesiges Schild. Schau: das vom Besitzer verkaufte Material zeigt sich an seiner eigenen Wand.
+
+Hier schon steigt die Kunst hinab in die Straße, verlässt den Rahmen, um zum Stadtdekor zu werden. Ein Gemälde, das man nicht abhängen kann, jedem Passanten angeboten, kostenlos. Das Haus ist privat, man kann es nicht besichtigen — aber sein schönstes Stück, die Fassade, gehört dir, genau hier, genau jetzt.
+
+Geh wieder nach Norden, zu einem großen Platz und seinem Theater. Folge mir zur place Sébastopol.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-2
+@@STITLE=Théâtre Sébastopol
+Vor dir, auf seinem Platz, das théâtre Sébastopol, eine Silhouette aus Stein und Ziegel vom Anfang des 20. Jahrhunderts. Such hier nicht den steifen Samt der Elite-Opernhäuser. Das „Séba", wie man in Lille sagt, wurde als volkstümliches Theater geboren, das der Operette, des Café-Concert, des Schauspiels, das man als Familie besucht, ohne Abendkleidung.
+
+Es ist ein wichtiges Glied unserer Geschichte. Denn in dieser Industriestadt war die Frage der Kunst immer auch eine soziale Frage. Wem gehört die Schönheit? Nur den Reichen, oder auch denen, die arbeiten? Die große Oper im Zentrum, nahe der Grand-Place, bot den Honoratioren Prunk. Säle wie dieser boten Lachen und Gesang für die vielen. Zwei Etagen desselben Verlangens nach Spektakel.
+
+Noch heute empfängt das Sébastopol von allem etwas: Konzerte, Komiker, Tourneen. Es hat sich diese Berufung als weit offene Bühne bewahrt, ohne Umschweife. Die hohe Kunst auf der einen Seite, die Kunst des Festes auf der anderen — und oft ist die Grenze dünner, als man glaubt.
+
+Kehren wir zurück nach Osten, zur großen Achse, die zum Zentrum führt. Ein Betongebäude verbirgt dort das beste Orchester der Region. Folge mir zur rue Nationale.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-3
+@@STITLE=Le Nouveau Siècle
+Wir halten vor diesem massiven, kantigen Komplex, dem Nouveau Siècle, viel weniger anmutig als der Palast vom Anfang, geben wir es zu. Urteile nicht nach der Fassade: hier ist das Orchestre National de Lille untergebracht, eines der großen sinfonischen Ensembles des Landes.
+
+Ich möchte dir eher eine Absicht erzählen als ein Gebäude. Als dieses Orchester in den 1970er Jahren gegründet wurde, geschah das mit einer präzisen, sehr nordfranzösischen Idee: die große Musik darf nicht in einem einzigen Saal für die happy few eingesperrt bleiben. Das Orchester wurde als reisendes Ensemble konzipiert, um überall in der Region zu spielen, in mittelgroßen Städten, manchmal in Fabriken, um Menschen zu begegnen, die niemals die Tür eines Konzertsaals durchschreiten würden.
+
+Hier findest du, diesmal in der Musik, den roten Faden unseres ganzen Spaziergangs wieder. Die hohe Kunst, die den Elfenbeinturm ablehnt und zum Publikum hinabsteigt. Beethoven, getragen bis ins Kohlerevier, so wie die Gemälde des Palastes dem Arbeiter angeboten wurden. Eine hartnäckige Vorstellung: dass Schönheit geteilt wird, oder nichts ist.
+
+Geh weiter nach Nordosten, zum großen Schaustück der Stadt, ihrem berühmtesten Platz. Dort liest sich die Kunst an den Fassaden ab. Folge mir zur Grand-Place.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-4
+@@STITLE=Grand-Place, devant les façades de la Voix du Nord
+Da sind wir nun auf der Grand-Place, die ich dich in einem einzigen Blick bewundern lasse — die Göttin auf ihrer Säule, die fein gemeißelte Vieille Bourse daneben: andere haben dir ihre Geschichte schon erzählt. Ich möchte deinen Blick auf ein einziges Gebäude lenken, an der Nordseite des Platzes.
+
+Such dasjenige, das den Namen einer Zeitung trägt, die Voix du Nord. Seine Fassade stammt aus den 1930er Jahren, und sein Treppengiebel, stufenförmig, ahmt die alten flämischen Giebel nach. Aber blick jetzt noch etwas höher: drei vergoldete Bronzestatuen erheben sich dort oben, drei weibliche Figuren. Man nennt sie die drei Grazien, und sie stehen für die drei ehemaligen Provinzen der Region: Flandern, Artois, Hennegau.
+
+Sieh dir das Kunststück an. Eine Zeitung des 20. Jahrhunderts baut sich eine Art-déco-Fassade, aber gekleidet in flämisches Kostüm, gekrönt mit vergoldeten Allegorien wie ein antiker Tempel. Kunst ist hier nicht in einem Museum: sie ist auf ein Bürogebäude geklebt, mitten auf der Straße, um den Stolz einer Region auszudrücken. Jeder Passant blickt nach oben, ohne es immer zu wissen.
+
+Steigen wir hinunter nach Osten, zur Seite der Bahnhöfe. Die Kunst hat sich dort in ehemaligen Arbeitsgebäuden niedergelassen. Folge mir zum Tripostal.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-5
+@@STITLE=Le Tripostal
+Vor dir, nahe den Bahnhöfen, ein großes, nüchternes, funktionales Gebäude ohne erkennbaren Charme: der Tripostal. Sein Name verrät seine Vergangenheit. Man erbaute ihn Mitte des 20. Jahrhunderts, um die Post der ganzen Region zu sortieren: Tonnen von Briefen, Förderbänder, ein Postballett bei Tag und Nacht.
+
+Und dann zog die Sortierung um, das Gebäude verstummte. Es hätte fallen können. Stattdessen machte die Stadt daraus, ab 2004, eines ihrer wichtigsten Zentren für zeitgenössische Kunst. Heute hängt man unter diesen Betondecken riesige Werke auf, projiziert, installiert, tanzt bis spät in die Nacht. Der Ort der Post ist zum Ort der Kreation geworden.
+
+Du siehst hier eine sehr lokale Vorgehensweise Gestalt annehmen. Hier reißt man die industrielle Vergangenheit nicht gerne ab: man recycelt sie, gießt Kunst hinein. Die Fabrik wird zur Galerie, der Bahnhof wird zur Bühne. Der Norden, der so viel produziert und so viel geschlossen hat, hat gelernt, seinen alten Backstein- und Betonmauern ein zweites Leben zu geben, indem er die Schönheit in ihnen einzieht.
+
+Verfolgen wir diese Idee bis zu ihrem schönsten Beweis, etwas weiter südlich, entlang des Boulevards. Ein ehemaliger Güterbahnhof erwartet uns. Folge mir zur gare Saint-Sauveur.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-6
+@@STITLE=Gare Saint-Sauveur
+Da bist du nun vor der gare Saint-Sauveur. Vergiss die Reisenden: hier fuhren nur Güter durch, Kohle, Rohstoffe, alles, was die Fabriken nährte. Ein Güterbahnhof, zweckmäßig, vergessen. Schau dir seine langen Backstein- und Glasdachhallen an.
+
+Auch er wurde wiederbelebt, zu einem Ort der Kunst und des Feierns. Man zeigt hier große Ausstellungen, oft kostenlos, projiziert Filme, trinkt ein Glas unter den Dachstühlen. Und vor allem ist er eines der Herzstücke eines Ereignisses, das regelmäßig wiederkehrt, um die ganze Stadt in ein Kunstwerk zu verwandeln: große Kultursaisons, in denen sich die gesamte Metropole mit Installationen, Farben, über den Straßen schwebenden Riesenkreaturen schmückt.
+
+Spürst du, wie sich der Faden zusammenzieht? Wir sind bei einem feierlichen Museum aufgebrochen, der eingeschlossenen und bewachten Kunst. Nun sind wir in einem offenen Bahnhof, wo die Kunst auf die Straße überschwappt, kostenlos, volkstümlich, vergänglich. Dasselbe Verlangen, zwei Gesichter: das unsterbliche Gemälde und das Fest eines einzigen Abends.
+
+Es bleibt uns, die wahren Stars der Straße kennenzulernen, jene, die unserem Spaziergang seinen Titel geben. Steig wieder hinauf zum Rathaus, sein hoher Turm leitet dich. Folge mir.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-7
+@@STITLE=Beffroi de l'hôtel de ville
+Heb den Kopf zu diesem gewaltigen Backsteinturm, dem Belfried des Rathauses, eingeweiht 1932. Man sagt, es sei der höchste zivile Belfried Europas, hundertvier Meter dort aufgerichtet, um den Stolz einer Stadt zu behaupten, die vom Großen Krieg verwundet wurde und fest entschlossen ist, sich wieder zu erheben. Er ist, wie die anderen Belfriede der Region, als Weltkulturerbe eingetragen.
+
+Aber senk jetzt den Blick zu seiner Basis, zu beiden Seiten des Eingangs. Zwei kolossale Gestalten halten dort Wache, in den Beton gehauen: Lydéric und Phinaert. Es sind die Riesen aus der Legende der Gründung von Lille. Man erzählt, dass der junge Lydéric den riesigen Räuber Phinaert konfrontierte, ihn vor den Augen des Königs besiegte und die Stadt auf dessen Land gründete. Da stehen sie nun, versteinert, Wächter der Schwelle.
+
+Beachte die Geste des Bildhauers, Carlo Sarrabezolles: er hat sie nicht zusammengesetzt, er hat sie direkt in den frischen Beton gehauen, freihändig, im Wettlauf mit der Uhr, bevor das Material aushärten konnte. Wieder hohe Kunst, aber eine, die eine Volkssage in Stein meißelt.
+
+Diese beiden erstarrten Riesen haben lebendige Brüder, aus Fleisch und Weidengeflecht, die auf den Straßen tanzen. Geh ein paar Schritte zum benachbarten Bogen. Ich werde sie dir vorstellen. Folge mir.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-8
+@@STITLE=Vers la Porte de Paris
+Halt in der Nähe der Porte de Paris an, diesem alten Triumphbogen, den ich dich bewundern lasse, ohne seine Geschichte zu erzählen — andere haben das schon vor mir getan. Wir sind hier für das Ende unserer Geschichte, das fröhlichste: die Riesen des Nordens.
+
+Denn Lydéric und Phinaert triffst du nicht nur aus Stein. Sie existieren auch wirklich, als riesige, mehrere Meter hohe Puppen, mit einem Kopf aus bemalter Pappe und einem Körper aus Weidengeflecht, getragen auf den Schultern von Menschen, die darunter verborgen sind. Und an bestimmten Festtagen kommen sie heraus. Sie steigen hinab auf die Straße, wiegen sich im Klang der Blaskapellen, grüßen die Menge, tanzen schwerfällig über die Plätze. Jede Stadt, jedes Dorf im Norden hat seine eigenen, mit einem Namen, einer Familie, einer Geschichte. Man tauft sie, verheiratet sie, beweint sie. Diese Tradition der paradierenden Riesen ist sogar von der UNESCO als Schatz der Menschheit anerkannt.
+
+Und da ist unser Faden geknüpft. Erinnere dich, woher wir kommen: die Stille des großen Museums, die bewachten Rubens-Gemälde, die hohe Kunst unter der Glasglocke. Und schau, wo wir angekommen sind: ein Koloss aus Pappe, der auf der Straße tanzt, um Kinder zum Lachen zu bringen. Das ist nicht das Gegenteil von Kunst. Es ist ihre andere Seite, genauso edel. Das unsterbliche Gemälde und der Riese für einen Tag reichen demselben Bedürfnis die Hand: einem ganzen Volk Schönheit und Freude zu schenken.
+
+Der Norden hat das besser verstanden als jeder andere. Wenn du das nächste Mal einem Riesen begegnest, grüß ihn von mir. Danke, dass du an meiner Seite gegangen bist, vom Palast bis zur Straße.
+
+@@LANG=it
+@@TITLE=Lille — Belle Arti e giganti
+@@DESC=Arte e figure — Dal secondo museo di Francia ai giganti del Nord: l'arte colta e l'arte di strada.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-0
+@@STITLE=Palais des Beaux-Arts
+Mettiti in mezzo alla place de la République, di fronte a questo grande palazzo di pietra chiara e colonne, con le sue allegorie scolpite in cima. È il Palais des Beaux-Arts, spesso presentato come il secondo museo di Francia per la ricchezza delle sue collezioni, subito dopo il Louvre.
+
+Guarda prima l'edificio stesso. Fu innalzato alla fine del XIX secolo, in un'epoca in cui la città, arricchita dall'industria, voleva un tempio degno di sé. Ed è lì il vero messaggio. Questo palazzo esprime una convinzione: l'arte non appartiene solo ai principi, deve essere offerta al popolo, all'operaio quanto al borghese. Un museo grande come un castello, piantato su una piazza aperta a tutti.
+
+All'interno ti aspetta una vertigine. Maestri fiamminghi e olandesi, prima di tutto, a casa loro in questa città fiamminga: Rubens, Van Dyck e il loro genio del chiaroscuro. Ma anche Goya, Delacroix, Courbet, gli impressionisti. Cinque secoli di pittura europea sotto un solo tetto.
+
+Ecco un versante dell'arte: l'arte colta, incorniciata, silenziosa, quella che si ammira con le mani dietro la schiena. Tienilo bene a mente, perché tutta la nostra passeggiata tenderà un filo tra questa e il suo contrario — l'arte di strada, rumorosa, popolare, quella che balla e sfila. Da questo palazzo ai giganti di cartone, c'è solo una città da attraversare.
+
+Cominciamo con un segreto d'architetto, qui vicino. Prendi la rue de Fleurus, a ovest. Seguimi verso una casa diversa dalle altre.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-1
+@@STITLE=Maison Coilliot
+Fermati davanti al civico 14 della rue de Fleurus, e alza gli occhi. In mezzo a facciate sobrie, questa ondeggia, si torce, gioca con il colore e la materia: legno scolpito, ferro battuto a forma di steli di piante, e una pietra strana, verde e lucida, come smaltata. È la maison Coilliot, un gioiello dell'Art Nouveau completato intorno al 1900.
+
+Ascolta la sua storia, è astuta. Un certo Louis Coilliot era commerciante di ceramiche e di «lava smaltata», quella pietra vulcanica vetrificata. Voleva stupire e vendere. Così commissiona la sua casa a un giovane architetto che presto sarà conosciuto in tutto il mondo per gli ingressi della metropolitana di Parigi: Hector Guimard. La facciata non è solo una facciata. È una vetrina, una dimostrazione, un'insegna gigante. Guarda: il materiale venduto dal proprietario si mostra sul suo stesso muro.
+
+Ecco già l'arte che scende in strada, che lascia la cornice per diventare decoro urbano. Un quadro che non si può staccare, offerto a tutti i passanti, gratuitamente. La casa è privata, non la si visita — ma il suo pezzo più bello, la facciata, è tuo, proprio lì, proprio ora.
+
+Risali verso nord, fino a una grande piazza e al suo teatro. Seguimi in place Sébastopol.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-2
+@@STITLE=Théâtre Sébastopol
+Davanti a te, sulla sua piazza, il théâtre Sébastopol, silhouette di pietra e mattoni dell'inizio del XX secolo. Non cercare qui il velluto compassato delle opere d'élite. Il «Séba», come si dice a Lille, è nato teatro popolare, quello dell'operetta, del caffè-concerto, dello spettacolo che si viene a vedere in famiglia, senza abito da sera.
+
+È un anello importante della nostra storia. Perché in questa città industriale, la questione dell'arte è sempre stata anche una questione sociale. A chi appartiene la bellezza? Solo ai ricchi, o anche a chi lavora? Il grande teatro dell'opera del centro, vicino alla Grand-Place, offriva il fasto ai notabili. Sale come questa offrivano la risata e la canzone al maggior numero. Due piani di uno stesso desiderio di spettacolo.
+
+Ancora oggi, il Sébastopol accoglie di tutto: concerti, comici, tournée. Ha mantenuto questa vocazione di palcoscenico ampio e aperto, senza smancerie. L'arte colta da una parte, l'arte della festa dall'altra — e spesso, il confine è più sottile di quanto si creda.
+
+Riprendiamo verso est, verso la grande arteria che porta al centro. Un edificio di cemento vi nasconde la migliore orchestra della regione. Seguimi verso la rue Nationale.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-3
+@@STITLE=Le Nouveau Siècle
+Ci fermiamo davanti a questo complesso massiccio e angoloso, il Nouveau Siècle, molto meno grazioso del palazzo iniziale, ammettiamolo. Non giudicare dalla facciata: è qui che risiede l'Orchestre National de Lille, uno dei grandi ensemble sinfonici del paese.
+
+Voglio raccontarti un'intenzione, più che un edificio. Quando questa orchestra viene fondata, negli anni '70, è con un'idea precisa, molto nordista: la grande musica non deve restare rinchiusa in un'unica sala per happy few. L'orchestra è concepita come itinerante, per andare a suonare in tutta la regione, nelle città medie, a volte nelle fabbriche, all'incontro con persone che non varcherebbero mai la porta di un concerto.
+
+Ritrovi qui, in musica questa volta, il filo di tutta la nostra passeggiata. L'arte colta che rifiuta la torre d'avorio e scende verso il pubblico. Beethoven portato fin nel bacino minerario, come i quadri del palazzo offerti all'operaio. Un'idea tenace: che la bellezza si condivide, o non è niente.
+
+Continua verso nord-est, verso il grande scenario della città, la sua piazza più famosa. Là, l'arte si legge sulle facciate. Seguimi verso la Grand-Place.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-4
+@@STITLE=Grand-Place, devant les façades de la Voix du Nord
+Eccoci sulla Grand-Place, che ti lascio ammirare in un solo sguardo — la Dea sulla sua colonna, la Vieille Bourse cesellata accanto: altri te ne hanno già raccontato la storia. Io voglio sollevare il tuo sguardo verso un unico edificio, sul lato nord della piazza.
+
+Cerca quello che porta il nome di un giornale, la Voix du Nord. La sua facciata risale agli anni '30, e il suo timpano a gradoni, a scalinata, imita i vecchi timpani fiamminghi. Ma alza ancora un po' lo sguardo: tre statue di bronzo dorato si ergono lassù, tre figure femminili. Le chiamano le tre Grazie, e rappresentano le tre antiche province della regione: la Fiandra, l'Artois, l'Hainaut.
+
+Osserva il tour de force. Un giornale del XX secolo si costruisce una facciata Art déco, ma vestita in costume fiammingo, coronata di allegorie dorate come un tempio antico. L'arte, qui, non è in un museo: è incollata a un palazzo di uffici, in piena strada, per dire l'orgoglio di una regione. Ogni passante alza gli occhi senza sempre saperlo.
+
+Scendiamo verso est, dal lato delle stazioni. L'arte, laggiù, ha preso dimora in antichi edifici di lavoro. Seguimi verso il Tripostal.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-5
+@@STITLE=Le Tripostal
+Davanti a te, vicino alle stazioni, un grande edificio sobrio e funzionale, senza grazia apparente: il Tripostal. Il suo nome racconta il suo passato. Fu costruito a metà del XX secolo per smistare la posta di tutta la regione: tonnellate di lettere, nastri trasportatori, un balletto postale giorno e notte.
+
+E poi lo smistamento si è trasferito, l'edificio è ammutolito. Avrebbe potuto essere demolito. Invece, la città ne ha fatto, a partire dal 2004, uno dei suoi grandi luoghi dell'arte contemporanea. Oggi, sotto questi soffitti di cemento, si appendono opere immense, si proiettano film, si allestiscono installazioni, si balla fino a tardi la sera. Il luogo della posta è diventato luogo di creazione.
+
+Vedi delinearsi un modo di fare, molto locale. Qui, non si rade volentieri il passato industriale: lo si ricicla, vi si versa l'arte. La fabbrica diventa galleria, la stazione diventa palcoscenico. Il Nord, che ha prodotto tanto e chiuso tanto, ha imparato a dare una seconda vita ai suoi vecchi muri di mattoni e cemento, installandovi il bello.
+
+Seguiamo questa idea fino alla sua prova più bella, un po' più a sud, lungo il viale. Un'antica stazione merci ci attende. Seguimi verso la gare Saint-Sauveur.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-6
+@@STITLE=Gare Saint-Sauveur
+Eccoti davanti alla gare Saint-Sauveur. Dimentica i viaggiatori: qui passavano solo merci, il carbone, le materie prime, tutto ciò che nutriva le fabbriche. Una stazione merci, utilitaria, dimenticata. Guarda le sue lunghe navate di mattoni e vetrate.
+
+Anche lei è stata resuscitata come luogo d'arte e di festa. Vi si presentano grandi mostre, spesso gratuite, vi si proiettano film, vi si beve un bicchiere sotto le capriate. E soprattutto, è uno dei cuori di un evento che torna regolarmente a trasformare l'intera città in un'opera d'arte: grandi stagioni culturali in cui l'intera metropoli si adorna di installazioni, colori, creature giganti sospese nelle strade.
+
+Senti il filo stringersi? Siamo partiti da un museo solenne, l'arte rinchiusa e custodita. Eccoci in una stazione aperta dove l'arte trabocca nella strada, gratuita, popolare, effimera. Lo stesso desiderio, due volti: il quadro immortale e la festa di una sera.
+
+Ci resta da incontrare le vere star della strada, quelle che danno il titolo alla nostra passeggiata. Risali verso l'hôtel de ville, la sua alta torre ti guida. Seguimi.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-7
+@@STITLE=Beffroi de l'hôtel de ville
+Alza la testa verso questa immensa torre di mattoni, il beffroi dell'hôtel de ville, inaugurato nel 1932. Si dice sia il campanile civile più alto d'Europa, centoquattro metri eretti lì per affermare l'orgoglio di una città ferita dalla Grande Guerra e ben decisa a rialzarsi. È, come gli altri beffroi della regione, iscritto al patrimonio mondiale.
+
+Ma abbassa ora lo sguardo verso la sua base, su entrambi i lati dell'ingresso. Due figure colossali vi montano la guardia, scolpite nel cemento: Lydéric e Phinaert. Sono i giganti della leggenda della fondazione di Lille. Si racconta che il giovane Lydéric affrontò il gigante brigante Phinaert, lo vinse sotto gli occhi del re, e fondò la città sulle sue terre. Eccoli lì, pietrificati, guardiani della soglia.
+
+Nota il gesto dello scultore, Carlo Sarrabezolles: non li ha assemblati, li ha scolpiti direttamente nel cemento fresco, a mano libera, contro il tempo, prima che la materia indurisse. Arte colta, ancora, ma che scolpisce nella pietra un racconto popolare.
+
+Questi due giganti immobili hanno fratelli vivi, di carne e di vimini, che ballano nelle strade. Fai qualche passo verso l'arco vicino. Te li presenterò. Seguimi.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-8
+@@STITLE=Vers la Porte de Paris
+Fermati vicino alla Porte de Paris, questo vecchio arco di trionfo che ti lascio ammirare senza raccontartelo — altri lo hanno già fatto prima di me. Noi siamo qui per la fine della nostra storia, la più gioiosa: i giganti del Nord.
+
+Perché Lydéric e Phinaert non li incontri solo in pietra. Esistono anche per davvero, immensi manichini di diversi metri, con la testa di cartone dipinto e il corpo di vimini, portati sulle spalle di persone nascoste sotto. E in certe feste, escono. Scendono in strada, si dondolano al suono delle bande musicali, salutano la folla, ballano pesantemente sulle piazze. Ogni città, ogni villaggio del Nord ha i propri, con un nome, una famiglia, una storia. Li si battezza, li si sposa, li si piange. Questa tradizione dei giganti che sfilano è persino riconosciuta dall'Unesco come un tesoro dell'umanità.
+
+Ed ecco il nostro filo annodato. Ricorda da dove veniamo: il silenzio del grande museo, i Rubens custoditi, l'arte colta sotto una campana di vetro. E guarda dove arriviamo: un colosso di cartone che balla in strada per far ridere i bambini. Non è il contrario dell'arte. È il suo altro versante, altrettanto nobile. Il quadro immortale e il gigante di un giorno tendono la mano allo stesso bisogno: dare bellezza e gioia a tutto un popolo.
+
+Il Nord lo ha capito meglio di chiunque altro. La prossima volta che incontrerai un gigante, salutalo per me. Grazie per aver camminato al mio fianco, dal palazzo fino alla strada.
+
+@@LANG=nl
+@@TITLE=Lille — Beeldende kunst en reuzen
+@@DESC=Kunst en figuren — Van het op één na grootste museum van Frankrijk tot de reuzen van het Noorden: hoge kunst en straatkunst.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-0
+@@STITLE=Palais des Beaux-Arts
+Ga midden op de place de la République staan, tegenover dit grote paleis van lichte steen en zuilen, met zijn allegorieën die bovenaan uitgehouwen zijn. Dit is het Palais des Beaux-Arts, vaak omschreven als het op één na grootste museum van Frankrijk qua rijkdom van zijn collecties, vlak achter het Louvre.
+
+Bekijk eerst het gebouw zelf. Het werd helemaal aan het eind van de 19e eeuw opgetrokken, in een tijd waarin de door de industrie verrijkte stad een tempel wilde die haar waardig was. En dat is de echte boodschap. Dit paleis spreekt een overtuiging uit: kunst behoort niet alleen aan vorsten toe, ze moet aan het volk worden aangeboden, aan de arbeider net zo goed als aan de burger. Een museum zo groot als een kasteel, neergezet op een plein dat voor iedereen openstaat.
+
+Binnen wacht je een duizeling. Vlaamse en Hollandse meesters, om te beginnen, thuis in deze Vlaamse stad: Rubens, Van Dyck en hun genie voor het clair-obscur. Maar ook Goya, Delacroix, Courbet, de impressionisten. Vijf eeuwen Europese schilderkunst onder één dak.
+
+Dat is één kant van de kunst: de hoge kunst, ingelijst, stil, degene die men bewondert met de handen op de rug. Onthoud dit goed, want onze hele wandeling zal een draad spannen tussen haar en haar tegendeel — de straatkunst, luidruchtig, volks, degene die danst en optocht houdt. Van dit paleis tot de kartonnen reuzen is er maar één stad te doorkruisen.
+
+Laten we beginnen met een architectengeheim, hier vlakbij. Neem de rue de Fleurus, naar het westen. Volg me naar een huis dat anders is dan de rest.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-1
+@@STITLE=Maison Coilliot
+Stop voor nummer 14 van de rue de Fleurus, en kijk omhoog. Te midden van ingetogen gevels golft deze, kronkelt, speelt met kleur en materiaal: gesneden hout, smeedijzer gevormd tot plantenstengels, en een vreemde steen, groen en glanzend, alsof geëmailleerd. Dit is het maison Coilliot, een Art Nouveau-juweeltje, voltooid rond 1900.
+
+Luister naar zijn verhaal, het is slim. Een zekere Louis Coilliot was handelaar in keramiek en in "geëmailleerde lava," die verglaasde vulkanische steen. Hij wilde imponeren en verkopen. Dus gaf hij zijn huis in opdracht bij een jonge architect die weldra wereldberoemd zou worden voor de ingangen van de Parijse metro: Hector Guimard. De gevel is niet zomaar een gevel. Het is een etalage, een demonstratie, een gigantisch uithangbord. Kijk: het materiaal dat de eigenaar verkocht, staat te pronken op zijn eigen muur.
+
+Hier al zie je kunst afdalen naar de straat, het kader verlaten om stadsdecor te worden. Een schilderij dat je niet kunt weghalen, aangeboden aan elke voorbijganger, gratis. Het huis is privé, je kunt het niet bezoeken — maar het mooiste stuk ervan, de gevel, is van jou, hier, nu meteen.
+
+Ga weer naar het noorden, naar een groot plein en zijn theater. Volg me naar de place Sébastopol.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-2
+@@STITLE=Théâtre Sébastopol
+Voor je, op zijn plein, het théâtre Sébastopol, een silhouet van steen en baksteen uit het begin van de 20e eeuw. Zoek hier niet het stijve fluweel van de elite-opera's. Het "Séba", zoals men in Lille zegt, is geboren als volkstheater, dat van de operette, van het café-chantant, van het spektakel dat je als gezin komt bekijken, zonder avondkleding.
+
+Het is een belangrijke schakel in ons verhaal. Want in deze industriestad is de kwestie van kunst altijd ook een sociale kwestie geweest. Van wie is schoonheid? Alleen van de rijken, of ook van wie werkt? De grote opera in het centrum, bij de Grand-Place, bood de notabelen pracht en praal. Zalen zoals deze boden lach en lied aan het grote publiek. Twee verdiepingen van hetzelfde verlangen naar spektakel.
+
+Nog vandaag ontvangt het Sébastopol van alles: concerten, cabaretiers, tournees. Het heeft die roeping als breed open podium behouden, zonder franje. Hoge kunst aan de ene kant, feestkunst aan de andere — en vaak is de grens dunner dan je zou denken.
+
+Laten we verder gaan naar het oosten, naar de grote as die naar het centrum leidt. Een betonnen gebouw verbergt daar het beste orkest van de regio. Volg me naar de rue Nationale.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-3
+@@STITLE=Le Nouveau Siècle
+We stoppen voor dit massieve, hoekige complex, het Nouveau Siècle, veel minder gracieus dan het paleis waarmee we begonnen, laten we dat toegeven. Oordeel niet naar de gevel: hier is het Orchestre National de Lille gevestigd, een van de grote symfonische ensembles van het land.
+
+Ik wil je liever een bedoeling vertellen dan een gebouw. Toen dit orkest in de jaren 1970 werd opgericht, gebeurde dat met een precies idee, zeer typisch voor het Noorden: de grote muziek mag niet opgesloten blijven in één enkele zaal voor de happy few. Het orkest werd ontworpen als reizend gezelschap, om overal in de regio te gaan spelen, in middelgrote steden, soms in fabrieken, om mensen te ontmoeten die nooit de deur van een concertzaal zouden binnengaan.
+
+Je vindt hier, ditmaal in muziek, de rode draad van onze hele wandeling terug. De hoge kunst die de ivoren toren afwijst en afdaalt naar het publiek. Beethoven gedragen tot in het mijnbekken, net als de schilderijen van het paleis die aan de arbeider werden aangeboden. Een hardnekkig idee: dat schoonheid gedeeld wordt, of niets is.
+
+Ga verder naar het noordoosten, naar het grote decor van de stad, haar beroemdste plein. Daar leest men kunst op de gevels. Volg me naar de Grand-Place.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-4
+@@STITLE=Grand-Place, devant les façades de la Voix du Nord
+Hier zijn we op de Grand-Place, die ik je in één oogopslag laat bewonderen — de Godin op haar zuil, de fijn gebeeldhouwde Vieille Bourse ernaast: anderen hebben je hun verhaal al verteld. Ik wil je blik richten op één enkel gebouw, aan de noordkant van het plein.
+
+Zoek het gebouw dat de naam van een krant draagt, de Voix du Nord. De gevel dateert uit de jaren 1930, en de trapgevel imiteert de oude Vlaamse gevels. Maar kijk nu nog wat hoger: drie vergulde bronzen standbeelden rijzen daar op, drie vrouwelijke figuren. Men noemt ze de drie Gratiën, en ze staan voor de drie voormalige provincies van de regio: Vlaanderen, Artesië, Henegouwen.
+
+Zie het kunststukje. Een krant uit de 20e eeuw bouwt zichzelf een art-decogevel, maar gekleed in Vlaams kostuum, gekroond met vergulde allegorieën als een antieke tempel. Kunst is hier niet in een museum: ze is op een kantoorgebouw geplakt, midden op straat, om de trots van een regio uit te drukken. Elke voorbijganger kijkt omhoog zonder het altijd te weten.
+
+Laten we naar het oosten afdalen, naar de kant van de stations. Kunst heeft zich daar gevestigd in voormalige werkgebouwen. Volg me naar de Tripostal.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-5
+@@STITLE=Le Tripostal
+Voor je, dicht bij de stations, een groot, sober en functioneel gebouw, zonder zichtbare gratie: de Tripostal. Zijn naam vertelt zijn verleden. Het werd halverwege de 20e eeuw gebouwd om de post van de hele regio te sorteren: tonnen brieven, lopende banden, een postballet dag en nacht.
+
+En toen verhuisde de sortering, viel het gebouw stil. Het had gesloopt kunnen worden. In plaats daarvan maakte de stad er vanaf 2004 een van haar belangrijkste centra voor hedendaagse kunst van. Vandaag hangt men onder deze betonnen plafonds immense werken op, projecteert men, installeert men, danst men tot laat in de avond. De plek van de post is een plek van creatie geworden.
+
+Je ziet hier een heel lokale manier van werken vorm krijgen. Hier sloopt men het industriële verleden niet graag: men recyclet het, giet er kunst in. De fabriek wordt een galerie, het station wordt een podium. Het Noorden, dat zoveel produceerde en zoveel sloot, heeft geleerd zijn oude muren van baksteen en beton een tweede leven te geven, door er schoonheid in te vestigen.
+
+Laten we dit idee volgen tot zijn mooiste bewijs, iets zuidelijker, langs de boulevard. Een voormalig goederenstation wacht op ons. Volg me naar de gare Saint-Sauveur.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-6
+@@STITLE=Gare Saint-Sauveur
+Hier sta je voor de gare Saint-Sauveur. Vergeet de reizigers: hier passeerden alleen goederen, steenkool, grondstoffen, alles wat de fabrieken voedde. Een goederenstation, functioneel, vergeten. Kijk naar de lange hallen van baksteen en glas.
+
+Ook dit station is tot leven gewekt als plek van kunst en feest. Er worden hier grote tentoonstellingen getoond, vaak gratis, films vertoond, een glas gedronken onder de dakspanten. En vooral is het een van de harten van een evenement dat regelmatig terugkeert om de hele stad te veranderen in een kunstwerk: grote culturele seizoenen waarin de hele metropool zich tooit met installaties, kleuren, gigantische wezens die boven de straten hangen.
+
+Voel je de draad zich aanspannen? We vertrokken bij een plechtig museum, de opgesloten en bewaakte kunst. Hier zijn we nu in een open station waar kunst de straat instroomt, gratis, volks, vluchtig. Hetzelfde verlangen, twee gezichten: het onsterfelijke schilderij en het feest van één avond.
+
+Ons rest nog kennis te maken met de echte sterren van de straat, degene die onze wandeling haar titel geven. Ga weer omhoog naar het stadhuis, haar hoge toren leidt je. Volg me.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-7
+@@STITLE=Beffroi de l'hôtel de ville
+Kijk omhoog naar deze immense bakstenen toren, het belfort van het stadhuis, ingehuldigd in 1932. Men zegt dat het het hoogste burgerlijke belfort van Europa is, honderdvier meter daar opgericht om de trots te bevestigen van een stad die gewond raakte door de Grote Oorlog en vastbesloten is om weer op te staan. Het is, net als de andere belforten van de regio, ingeschreven op de werelderfgoedlijst.
+
+Maar laat je blik nu zakken naar de voet ervan, aan weerszijden van de ingang. Twee kolossale figuren houden daar de wacht, uitgehouwen in het beton: Lydéric en Phinaert. Dat zijn de reuzen uit de legende van de stichting van Lille. Men vertelt dat de jonge Lydéric de reuzenbandiet Phinaert trotseerde, hem versloeg voor de ogen van de koning, en de stad stichtte op diens grondgebied. Daar staan ze, versteend, wachters van de drempel.
+
+Merk het gebaar van de beeldhouwer op, Carlo Sarrabezolles: hij heeft ze niet samengesteld, hij heeft ze rechtstreeks in het verse beton gehouwen, uit de vrije hand, tegen de klok in, voordat het materiaal kon uitharden. Weer hoge kunst, maar dan een die een volksverhaal in steen beitelt.
+
+Deze twee bevroren reuzen hebben levende broers, van vlees en wilgentenen, die op straat dansen. Zet een paar stappen naar de naburige boog. Ik ga ze aan je voorstellen. Volg me.
+
+@@SCENE=seed-100-lille-beaux-arts-et-geants-scene-8
+@@STITLE=Vers la Porte de Paris
+Stop bij de Porte de Paris, die oude triomfboog die ik je laat bewonderen zonder erover te vertellen — anderen hebben dat al voor mij gedaan. Wij zijn hier voor het einde van ons verhaal, het vrolijkste: de reuzen van het Noorden.
+
+Want Lydéric en Phinaert ontmoet je niet alleen in steen. Ze bestaan ook echt, als immense poppen van meerdere meters hoog, met een hoofd van beschilderd karton en een lichaam van wilgentenen, gedragen op de schouders van mensen die eronder verborgen zitten. En op bepaalde feestdagen komen ze naar buiten. Ze dalen af naar de straat, wiegen op het geluid van de fanfares, groeten de menigte, dansen zwaar over de pleinen. Elke stad, elk dorp in het Noorden heeft de zijne, met een naam, een familie, een verhaal. Men doopt ze, huwt ze uit, betreurt ze. Deze traditie van paraderende reuzen wordt zelfs door de Unesco erkend als een schat van de mensheid.
+
+En daar is onze draad geknoopt. Denk terug aan waar we vandaan komen: de stilte van het grote museum, de bewaakte Rubens-schilderijen, de hoge kunst onder de stolp. En kijk waar we aankomen: een kartonnen kolos die op straat danst om kinderen aan het lachen te maken. Dat is niet het tegendeel van kunst. Het is haar andere kant, even nobel. Het onsterfelijke schilderij en de reus van één dag reiken allebei de hand naar dezelfde behoefte: schoonheid en vreugde geven aan een heel volk.
+
+Het Noorden heeft dat beter begrepen dan wie ook. De volgende keer dat je een reus tegenkomt, groet hem van mij. Bedankt dat je naast me hebt gelopen, van het paleis tot aan de straat.

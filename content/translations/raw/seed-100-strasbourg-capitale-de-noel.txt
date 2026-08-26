@@ -1,0 +1,609 @@
+@@LANG=en
+@@TITLE=Strasbourg — Capital of Christmas
+@@DESC=Specialty — Christkindelsmärik, 1570: the oldest Christmas market in France, and the city that gave the world its decorated fir tree.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-0
+@@STITLE=Place de la Cathédrale
+Stand in the middle of the square, your back to the great pink façade. It has its own secrets; that's not what I've come to find you for. Look at the ground instead. This square, and the courtyard behind the apse — the Fronhof, today the place du Château: this is where it all began. Here, the Christmas the whole world knows took the shape you recognize.
+
+Go back to the Middle Ages. Every start of December, Strasbourg holds its Klausemärik, the market of Saint Nicholas. People buy there the toys the great bearded saint will leave on December 6. It's the appointment of the year.
+
+Then the Reformation comes through. The city adopts it in 1525, and the pastors frown at this saint handing out gifts in Christ's place. In 1570, in the cathedral turned Protestant church, a preacher named Johannes Flinner climbs into the pulpit and pounds his fist: giving in a saint's name, he says, is popery. The giver should be the Christ Child.
+
+The sermon hits home. On December 4, 1570, the Conseil des XXI — the city's rulers — decides. Saint Nicholas is abolished. But the merchants keep their market: it's shifted by a few days and renamed after the child. Christkindelsmärik. The market of the Christ Child. The gifts, meanwhile, slide to the evening of the 24th.
+
+France's oldest Christmas market was born of a theologians' quarrel. And it has never stopped since.
+
+So here's my promise: how this city dethroned a saint, adopted a tree nobody wanted, and ended up giving its Christmas to the whole planet.
+
+Head down toward the water, due south. I'll meet you on the banks of the Ill, in six minutes.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-1
+@@STITLE=Quai Saint-Nicolas
+Here you are on the quai Saint-Nicolas. The name isn't a coincidence. Behind these old façades hides the musée Alsacien, where the interiors of old-time Alsace have been saved. That's where the faces of Christmas sleep.
+
+We dethroned Saint Nicholas, remember. But dethroning isn't so easy. On December 6, Alsace still celebrates the old bishop. In old images, he advances in episcopal robes, crosier in hand, accompanied by three children a legend says were brought back to life. The Reformation shifted his place in the calendar, without erasing his face from local memory.
+
+In his place, the Reformation invented the Christkindel: a young girl veiled in white, crowned with candles, the Christ Child turned into light. She enters the houses, she gives.
+
+But she never comes alone. Trailing behind her comes Hans Trapp: dark coat, shaggy beard, bundle of switches. It's said he was a real knight — Hans von Trotha, a feared lord of a castle in the north of Alsace, who died in 1503. The centuries turned him into the bogeyman of Alsatian children. His name cracks like his footstep: trappen, to trudge heavily.
+
+A fairy who rewards, a monster who punishes. It was all settled by the sixteenth century.
+
+Follow the quay west, then head up toward the great pink church. Five minutes. Let's talk about the tree.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-2
+@@STITLE=Église protestante Saint-Thomas
+This large pink church is Saint-Thomas, the cathedral of Alsace's Protestants. It houses a famous mausoleum and a cumbersome marshal — but that's not why I brought you here. It's for the name on the door. Thomas.
+
+Because the Christmas tree has a written birth date. And it falls on a Saint Thomas's Day.
+
+1521. In Sélestat, forty-five kilometers to the south, a municipal accountant notes down a tiny expense: four shillings to the forest wardens, to keep watch over the trees starting from Saint Thomas's Day, December 21. Let's translate that together. The townspeople were dashing off to cut fir trees in the communal forest so often that men had to be paid to stop them. The register doesn't describe the custom: it monitors it. Which is even better — proof that it already existed, and that it was popular.
+
+That register still exists, in Sélestat. It's the oldest known written mention of the Christmas tree.
+
+So let's be honest. Strasbourg didn't invent the fir tree. Sélestat has the paper trail. Freiburg im Breisgau claims a decorated tree as early as 1419, among bakers. Riga, Tallinn, and Bremen also fight over the cradle. No one will ever settle it.
+
+What Strasbourg invented is something else. And it plays out five minutes from here, inside people's living rooms.
+
+Head back up to the northeast, to the square where a bronze man holds out a page.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-3
+@@STITLE=Place Gutenberg
+In the center of the square, a bronze man brandishes a printed page: Gutenberg, who searched here for the secret of movable type. Keep his idea in mind — the written trace. Everything I'm telling you rests on just that: paper that survived.
+
+And the most precious paper of this story was blackened here, around 1605, by a man whose name we don't know. He lives in Strasbourg, keeps a notebook of the remarkable things he observes. And he writes this:
+
+At Christmas, in Strasbourg, they set up fir trees in the parlors. On them they hang roses cut from paper of every color, apples, wafers, gold leaf, sugar.
+
+Read it back slowly. Fir trees. Inside houses. Decorated. Three lines — and the oldest reliable known description of the Christmas tree as you know it: cut, brought indoors, dressed up, given to children. Before him, the tree stayed outside, or in a church, or in a guild hall. Here, it comes in out of the cold.
+
+Look at the list too. Red apples, cakes, gilded paper, sugar. All your Christmas ornaments are already there — in edible form. We'll come back to that.
+
+Continue north, three minutes, to the place du Temple-Neuf. The pastors did not like this one bit.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-4
+@@STITLE=Place du Temple-Neuf
+This quiet square holds the Temple-Neuf, rebuilt after a fire that cost the city its library — another story, for another day. What brings me here is what could be heard back then from the Protestant pulpits of Strasbourg. And one man who got truly angry.
+
+His name is Johann Conrad Dannhauer. A Lutheran theologian, professor, star preacher of the seventeenth century — he preaches at the cathedral, and all of Strasbourg comes to listen. A heavyweight. Starting in 1642, he publishes his sermons under a magnificent title: the Milk of the Catechism. Doctrine served lukewarm, as for children. And partway through one volume, he explodes.
+
+Among the frivolities, he writes, with which people celebrate Christmastime more than with the word of God, there is also the fir tree set up at home. He lists them, disgusted: the paper roses, the apples, the wafers, the gold, the sugar. Exactly the list from 1605. Then he delivers his verdict: it would be better to show children the true cedar, the spiritual cedar — Christ.
+
+It's the oldest known rant against the Christmas tree. A furious pastor who confirms for you, without meaning to, that a generation later the custom had taken hold.
+
+The Church resisted for two centuries. It lost. The tree, meanwhile, is waiting for you three minutes from here.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-5
+@@STITLE=Place Kléber
+Here you are on the place Kléber, the city's largest square. A bronze general stands in the middle — he's sleeping closer to you than you'd think, but that's another walk. Every winter, next to him, they raise the Grand Sapin: up to thirty meters tall, chosen from the Vosges, hoisted by crane. Out of season, you'll only see an empty square. Look at it anyway, and listen.
+
+That Grand Sapin is a young thing: the first one dates from 1994, an idea of a local service club, right when the square had just been made pedestrian-only. Four centuries after the 1605 notebook, the city put its tree in the middle of its own parlor.
+
+And its ornaments? An accident. Legend has it 1858 was so dry in the northern Vosges that there were no apples to hang from the branches. A glassblower from Goetzenbruck, a glassmaking village next to Meisenthal, is said to have blown glass balls to replace the missing fruit.
+
+What's certain: the Goetzenbruck glassworks produced them from 1858 onward, by the hundreds of thousands, until plastic killed the trade in the 1960s. In Meisenthal, they've relit the furnaces since the end of the century.
+
+Your Christmas bauble was born from a missing apple.
+
+Head back up north, three minutes. A church awaits you there, cut in two.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-6
+@@STITLE=Église protestante Saint-Pierre-le-Jeune
+This church is a unique case. Saint-Pierre-le-Jeune, the Protestant one — there's another one, Catholic, further off in the German districts; you'll see why in a moment. Go in if you can: Romanesque cloister, medieval frescoes, carved rood screen. And a scar.
+
+1681, Louis XIV takes the city. As early as the following year, he restores Catholic worship at Saint-Pierre-le-Jeune. Except the Protestants have been at home there for a century and a half, and they aren't leaving. So they split it. In early 1683, a wall goes up behind the rood screen: the choir to the Catholics, the nave to the Protestants. One building, two parishes, two keys, a single bell tower. It's called the simultaneum.
+
+It lasted two hundred and ten years. Until 1893, when the Catholics finally got their own church, elsewhere.
+
+So picture December, here, over two centuries. On one side of the wall, midnight Mass. On the other, the Christmas service. The same carols, a few meters apart, never seeing each other. The same child celebrated twice within the same stone.
+
+That's the genius of this city: people here don't reach agreement, they make arrangements. And the fir tree, in the end, is perhaps the one single thing everyone gave in on. Protestants, Catholics — and then everyone, believer or not.
+
+Five minutes east, and we're there. The last square. The one where it still lives.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-7
+@@STITLE=Place Broglie
+Here we are. This long square lined with trees, the Opera at the far end: Broglie. A famous song was born here one night in April 1792 — but it's another birth that concerns us now.
+
+Since 1871, this is where the Christkindelsmärik lives. It began at the foot of the cathedral, three days a year. It moved to place Kléber in the nineteenth century, disappeared during the Great War, then came back. In the early 1990s, the city took up the title officially: Strasbourg, Capital of Christmas. The market has spread across a dozen squares you've crossed without realizing it.
+
+But the real journey is the one the tree made.
+
+1837. In Paris, Hélène de Mecklembourg, the German daughter-in-law of Louis-Philippe, has a decorated fir tree set up at the Tuileries. The court finds it charming, exotic. A palace whim.
+
+Then 1871. Alsace is annexed. Tens of thousands of Alsatians refuse to become German, board trains, scatter across all of France. They carry their furniture, their accent — and this strange habit of bringing a conifer indoors on December 24. Within a generation, the fir tree is everywhere. France inherited its Christmas from a wound.
+
+Next time someone tells you Strasbourg invented the fir tree, smile. Sélestat has the oldest paper trail, Freiburg makes its own claim, no one will ever know for sure.
+
+Strasbourg did better than invent the tree. It brought it indoors, covered it in sugar and gilded paper, put a child in place of a saint. And gave all of that to the world, without ever filing a patent.
+
+Come back in December, if you can. But even in July, under these trees, you're standing on the oldest Christmas square in France. Thank you for walking with me. And merry Christmas — whatever month you're listening to this in.
+
+@@LANG=es
+@@TITLE=Estrasburgo — Capital de la Navidad
+@@DESC=Especialidad — Christkindelsmärik, 1570: el mercado de Navidad más antiguo de Francia, y la ciudad que dio al mundo su abeto decorado.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-0
+@@STITLE=Place de la Cathédrale
+Ponte en medio del atrio, de espaldas a la gran fachada rosa. Tiene sus propios secretos; no he venido a buscarte por ellos. Mira más bien el suelo. Esta plaza, y el patio detrás de la cabecera —el Fronhof, hoy place du Château—: aquí es donde todo empezó. Aquí es donde la Navidad de todo el mundo tomó la forma que conoces.
+
+Remóntate a la Edad Media. Cada principios de diciembre, Estrasburgo celebra su Klausemärik, el mercado de San Nicolás. Allí se compran los juguetes que el gran santo barbudo dejará el 6 de diciembre. Es la cita del año.
+
+Luego llega la Reforma. La ciudad la adopta en 1525, y los pastores miran con recelo a ese santo que reparte regalos en lugar de Cristo. En 1570, en la catedral convertida en templo protestante, un predicador llamado Johannes Flinner sube al púlpito y golpea con el puño: dar en nombre de un santo, dice, es papismo. El donante debe ser el Niño Jesús.
+
+El sermón da en el blanco. El 4 de diciembre de 1570, el Conseil des XXI —los patronos de la ciudad— decide. Se suprime la fiesta de San Nicolás. Pero los comerciantes conservan su mercado: se desplaza unos días y se rebautiza con el nombre del niño. Christkindelsmärik. El mercado del Niño Cristo. Los regalos, por su parte, se deslizan a la noche del 24.
+
+El mercado de Navidad más antiguo de Francia nació de una disputa entre teólogos. Y no se ha detenido desde entonces.
+
+Así que aquí va mi promesa: cómo esta ciudad destronó a un santo, adoptó un árbol que nadie quería, y acabó regalando su Navidad al planeta entero.
+
+Baja hacia el agua, hacia el sur. Nos encontramos a orillas del Ill, en seis minutos.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-1
+@@STITLE=Quai Saint-Nicolas
+Ya estás en el quai Saint-Nicolas. El nombre no es casualidad. Detrás de estas viejas fachadas se esconde el musée Alsacien, donde se han salvado los interiores de la Alsacia de antaño. Ahí duermen los rostros de la Navidad.
+
+Destronamos a san Nicolás, recuerdas. Pero destronar no es tan fácil. El 6 de diciembre, Alsacia sigue festejando al viejo obispo. En las imágenes antiguas, avanza con hábito episcopal, báculo en mano, acompañado de tres niños que una leyenda dice que volvieron a la vida. La Reforma desplazó su lugar en el calendario, sin borrar su rostro de la memoria local.
+
+En su lugar, la Reforma inventó al Christkindel: una joven cubierta de blanco, coronada de velas, el Niño Cristo convertido en luz. Entra en las casas, da.
+
+Pero nunca viene sola. Detrás de ella viene arrastrándose Hans Trapp: abrigo oscuro, barba hirsuta, manojo de varas. Se cuenta que fue un caballero de verdad —Hans von Trotha, señor temido de un castillo del norte de Alsacia, muerto en 1503. Los siglos hicieron de él el coco de los niños alsacianos. Su nombre resuena como su paso: trappen, andar pesadamente.
+
+Un hada que recompensa, un monstruo que castiga. Todo estaba resuelto ya en el siglo XVI.
+
+Bordea el muelle hacia el oeste, luego sube hacia la gran iglesia rosa. Cinco minutos. Vamos a hablar del árbol.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-2
+@@STITLE=Église protestante Saint-Thomas
+Esta gran iglesia rosa es Saint-Thomas, la catedral de los protestantes de Alsacia. Alberga un mausoleo famoso y un mariscal engorroso —pero no es por ellos por lo que te he traído aquí. Es por el nombre en la puerta. Thomas.
+
+Porque el árbol de Navidad tiene una fecha de nacimiento por escrito. Y cae en un día de Santo Tomás.
+
+1521. En Sélestat, a cuarenta y cinco kilómetros al sur, un contable municipal anota un gasto minúsculo: cuatro chelines a los guardas forestales, para vigilar los árboles a partir de Santo Tomás, el 21 de diciembre. Traduzcámoslo juntos. Los habitantes se lanzaban tanto a cortar abetos en el bosque comunal que había que pagar a hombres para impedirlo. El registro no describe la costumbre: la vigila. Es aún mejor: la prueba de que ya existía, y de que era popular.
+
+Ese registro todavía existe, en Sélestat. Es la mención escrita más antigua conocida del árbol de Navidad.
+
+Así que seamos honestos. Estrasburgo no inventó el abeto. Sélestat tiene el papel. Friburgo de Brisgovia reivindica un árbol decorado ya en 1419, entre panaderos. Riga, Tallin y Bremen también se disputan la cuna. Nadie lo resolverá jamás.
+
+Lo que Estrasburgo inventó es otra cosa. Y se juega a cinco minutos de aquí, en los salones.
+
+Sube hacia el noreste, hasta la plaza donde un hombre de bronce muestra una página.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-3
+@@STITLE=Place Gutenberg
+En el centro de la plaza, un hombre de bronce blande una página impresa: Gutenberg, que buscó aquí el secreto de los caracteres móviles. Guarda su idea en mente: la huella escrita. Todo lo que te cuento se sostiene solo en eso: papel que ha sobrevivido.
+
+Y el papel más precioso de esta historia se ennegreció aquí, hacia 1605, de la mano de un hombre cuyo nombre desconocemos. Vive en Estrasburgo, lleva un cuaderno de las cosas notables que observa. Y anota esto:
+
+En Navidad, en Estrasburgo, se levantan abetos en los salones. Se cuelgan en ellos rosas recortadas en papel de todos los colores, manzanas, hostias, oro en pan, azúcar.
+
+Vuelve a leerlo despacio. Abetos. En las casas. Decorados. Tres líneas —y la descripción fiable más antigua conocida del árbol de Navidad tal como lo conoces: cortado, metido en casa, engalanado, ofrecido a los niños. Antes de él, el árbol se quedaba fuera, o en una iglesia, o en una sala gremial. Aquí, entra al calor.
+
+Mira también la lista. Manzanas rojas, pasteles, papel dorado, azúcar. Todas tus bolas de Navidad están ya ahí —en versión comestible. Volveremos a ello.
+
+Continúa hacia el norte, tres minutos, hasta la place du Temple-Neuf. A los pastores no les gustó nada.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-4
+@@STITLE=Place du Temple-Neuf
+Esta plaza tranquila alberga el Temple-Neuf, reconstruido tras un incendio que costó a la ciudad su biblioteca —otra historia, para otro día. Lo que me trae aquí es lo que se oía entonces desde los púlpitos protestantes de Estrasburgo. Y un hombre que se enfadó de verdad.
+
+Se llama Johann Conrad Dannhauer. Teólogo luterano, profesor, predicador estrella del siglo XVII —predica en la catedral, y toda Estrasburgo va a escucharlo. Un peso pesado. A partir de 1642, publica sus sermones bajo un título magnífico: la Leche del catecismo. La doctrina servida tibia, como a los niños. Y en algún pasaje de un volumen, estalla.
+
+Entre las futilidades, escribe, con las que se celebra la Navidad más que con la palabra de Dios, está también el abeto que se levanta en casa. Enumera, asqueado: las rosas de papel, las manzanas, las hostias, el oro, el azúcar. Exactamente la lista de 1605. Luego sentencia: mejor sería mostrar a los niños el verdadero cedro, el cedro espiritual —Cristo.
+
+Es la protesta más antigua conocida contra el árbol de Navidad. Un pastor furioso que te confirma, sin quererlo, que una generación después la costumbre había arraigado.
+
+La Iglesia resistió dos siglos. Perdió. El árbol, por su parte, te espera a tres minutos.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-5
+@@STITLE=Place Kléber
+Ya estás en la place Kléber, la plaza más grande de la ciudad. Un general de bronce en el centro —duerme más cerca de ti de lo que crees, pero eso es otro paseo. Cada invierno, junto a él, se levanta el Grand Sapin: hasta treinta metros, elegido en los Vosgos, izado con grúa. Fuera de temporada, solo verás una plaza vacía. Mírala de todos modos, y escucha.
+
+Ese Grand Sapin es cosa reciente: el primero data de 1994, idea de un club de servicio local, justo cuando la plaza acababa de peatonalizarse. Cuatro siglos después del cuaderno de 1605, la ciudad puso su árbol en medio de su propio salón.
+
+¿Y sus bolas? Un accidente. Se cuenta que 1858 fue tan seco en los Vosgos del Norte que no hubo manzanas que colgar de las ramas. Un soplador de vidrio de Goetzenbruck, aldea vidriera vecina de Meisenthal, habría soplado bolas de cristal para sustituir la fruta que faltaba.
+
+Lo que es seguro: la cristalería de Goetzenbruck las produjo a partir de 1858, por cientos de miles, hasta que el plástico acabó con el oficio en los años sesenta. En Meisenthal, se han vuelto a encender los hornos a finales de siglo.
+
+Tu bola de Navidad nació de una manzana que faltaba.
+
+Sube de nuevo hacia el norte, tres minutos. Una iglesia te espera, cortada en dos.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-6
+@@STITLE=Église protestante Saint-Pierre-le-Jeune
+Esta iglesia es un caso único. Saint-Pierre-le-Jeune, la protestante —existe otra, católica, más allá en los barrios alemanes; ya verás por qué. Entra si puedes: claustro románico, frescos medievales, jubé esculpido. Y una cicatriz.
+
+1681, Luis XIV toma la ciudad. Ya al año siguiente, devuelve el culto católico a Saint-Pierre-le-Jeune. Solo que los protestantes llevan siglo y medio en su casa, y no se van. Así que se corta. A principios de 1683, se levanta un muro detrás del jubé: el coro para los católicos, la nave para los protestantes. Un edificio, dos parroquias, dos llaves, un solo campanario. A eso se le llama el simultaneum.
+
+Duró doscientos diez años. Hasta 1893, cuando los católicos por fin recibieron su propia iglesia, en otro lugar.
+
+Así que imagina diciembre, aquí, durante dos siglos. A un lado del muro, la misa de medianoche. Al otro, el culto de Navidad. Los mismos villancicos, a unos metros, sin verse jamás. El mismo niño celebrado dos veces en la misma piedra.
+
+Ese es el genio de esta ciudad: aquí no se llega a un acuerdo, se arreglan las cosas. Y el abeto, al final, es quizá el único objeto en el que todos cedieron. Protestantes, católicos —y luego todo el mundo, creyente o no.
+
+Cinco minutos hacia el este, y llegamos. La última plaza. Donde todavía vive.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-7
+@@STITLE=Place Broglie
+Aquí estamos. Esta larga plaza bordeada de árboles, con la Ópera al fondo: Broglie. Un canto célebre nació aquí una noche de abril de 1792 —pero es otro nacimiento el que nos ocupa.
+
+Desde 1871, aquí vive el Christkindelsmärik. Había empezado a los pies de la catedral, tres días al año. Se mudó a la place Kléber en el siglo XIX, desapareció durante la Gran Guerra, y luego volvió. A principios de los años 1990, la ciudad asumió el título: Estrasburgo, Capital de la Navidad. El mercado se ha extendido por una decena de plazas que has cruzado sin saberlo.
+
+Pero el verdadero viaje lo hizo el árbol.
+
+1837. En París, Hélène de Mecklembourg, nuera alemana de Luis Felipe, hace levantar un abeto decorado en las Tullerías. La corte lo encuentra encantador, exótico. Un capricho de palacio.
+
+Luego 1871. Alsacia es anexionada. Decenas de miles de alsacianos se niegan a hacerse alemanes, suben a trenes, se dispersan por toda Francia. Se llevan sus muebles, su acento —y esa costumbre extraña de meter un conífero en el salón el 24 de diciembre. En una generación, el abeto está en todas partes. Francia heredó su Navidad de una herida.
+
+La próxima vez que te digan que Estrasburgo inventó el abeto, sonríe. Sélestat tiene el papel más antiguo, Friburgo reivindica lo suyo, nadie lo sabrá nunca.
+
+Estrasburgo hizo algo mejor que inventar el árbol. Lo metió en casa, lo cubrió de azúcar y papel dorado, puso a un niño en el lugar de un santo. Y regaló todo eso al mundo, sin registrar ninguna patente.
+
+Vuelve en diciembre, si puedes. Pero incluso en julio, bajo estos árboles, estás sobre la plaza de Navidad más antigua de Francia. Gracias por caminar conmigo. Y feliz Navidad —sea cual sea el mes en que escuches esto.
+
+@@LANG=de
+@@TITLE=Straßburg — Hauptstadt von Weihnachten
+@@DESC=Spezialität — Christkindelsmärik, 1570: der älteste Weihnachtsmarkt Frankreichs, und die Stadt, die der Welt ihren geschmückten Weihnachtsbaum schenkte.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-0
+@@STITLE=Place de la Cathédrale
+Stell dich in die Mitte des Platzes, den Rücken zur großen rosa Fassade. Sie hat ihre eigenen Geheimnisse; deswegen bin ich nicht gekommen, um dich zu holen. Schau lieber auf den Boden. Dieser Platz, und der Hof hinter dem Chor — der Fronhof, heute place du Château: hier hat alles angefangen. Hier hat das Weihnachten der ganzen Welt die Form angenommen, die du kennst.
+
+Geh zurück ins Mittelalter. Jeden Anfang Dezember hält Straßburg seinen Klausemärik ab, den Markt des heiligen Nikolaus. Dort kauft man die Spielsachen, die der große bärtige Heilige am 6. Dezember bringen wird. Es ist der Termin des Jahres.
+
+Dann kommt die Reformation. Die Stadt nimmt sie 1525 an, und die Pfarrer schauen schief auf diesen Heiligen, der anstelle Christi Geschenke verteilt. 1570, in der zum protestantischen Tempel gewordenen Kathedrale, steigt ein Prediger namens Johannes Flinner auf die Kanzel und schlägt mit der Faust auf: im Namen eines Heiligen zu schenken, sagt er, sei Papisterei. Der Schenkende soll das Christkind sein.
+
+Die Predigt trifft ins Schwarze. Am 4. Dezember 1570 entscheidet der Conseil des XXI — die Herren der Stadt. Der Nikolaustag wird abgeschafft. Doch die Kaufleute behalten ihren Markt: er wird um ein paar Tage verschoben und nach dem Kind umbenannt. Christkindelsmärik. Der Markt des Christkinds. Die Geschenke, ihrerseits, wandern auf den Abend des 24.
+
+Der älteste Weihnachtsmarkt Frankreichs ist aus einem Theologenstreit geboren. Und er hat seitdem nie aufgehört.
+
+Also, hier mein Versprechen: wie diese Stadt einen Heiligen entthronte, einen Baum annahm, den niemand wollte, und am Ende ihr Weihnachten dem ganzen Planeten schenkte.
+
+Geh hinunter zum Wasser, geradewegs nach Süden. Ich treffe dich am Ufer der Ill wieder, in sechs Minuten.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-1
+@@STITLE=Quai Saint-Nicolas
+Da bist du am quai Saint-Nicolas. Der Name ist kein Zufall. Hinter diesen alten Fassaden verbirgt sich das musée Alsacien, wo man die Innenräume des früheren Elsass gerettet hat. Dort schlummern die Gesichter von Weihnachten.
+
+Wir haben den heiligen Nikolaus entthront, erinnerst du dich. Doch entthronen ist nicht so einfach. Am 6. Dezember feiert das Elsass immer noch den alten Bischof. Auf alten Bildern schreitet er im bischöflichen Gewand voran, den Bischofsstab in der Hand, begleitet von drei Kindern, die einer Legende zufolge ins Leben zurückgekehrt sind. Die Reformation verschob seinen Platz im Kalender, ohne sein Gesicht aus dem lokalen Gedächtnis zu tilgen.
+
+An seiner Stelle erfand die Reformation das Christkindel: ein junges Mädchen, weiß verschleiert, mit Kerzen gekrönt, das Christkind, zu Licht geworden. Sie tritt in die Häuser, sie schenkt.
+
+Doch sie kommt nie allein. Hinter ihr schleicht Hans Trapp: dunkler Mantel, struppiger Bart, Rutenbündel. Man erzählt, er sei ein echter Ritter gewesen — Hans von Trotha, gefürchteter Herr eines Schlosses im Norden des Elsass, gestorben 1503. Die Jahrhunderte machten ihn zum Schreckgespenst elsässischer Kinder. Sein Name knallt wie sein Schritt: trappen, schwer stapfen.
+
+Eine Fee, die belohnt, ein Ungeheuer, das straft. Alles war schon im sechzehnten Jahrhundert geregelt.
+
+Folge dem Kai nach Westen, dann steig hinauf zur großen rosa Kirche. Fünf Minuten. Wir sprechen über den Baum.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-2
+@@STITLE=Église protestante Saint-Thomas
+Diese große rosa Kirche ist Saint-Thomas, die Kathedrale der elsässischen Protestanten. Sie beherbergt ein berühmtes Mausoleum und einen unhandlichen Marschall — doch nicht deswegen habe ich dich hergebracht. Es ist wegen des Namens an der Tür. Thomas.
+
+Denn der Weihnachtsbaum hat ein schriftlich festgehaltenes Geburtsdatum. Und es fällt auf einen Thomastag.
+
+1521. In Sélestat, fünfundvierzig Kilometer südlich, verzeichnet ein Stadtrechner eine winzige Ausgabe: vier Schillinge für die Förster, um von Sankt Thomas an, dem 21. Dezember, die Bäume zu bewachen. Übersetzen wir das gemeinsam. Die Einwohner rannten so oft los, um Tannen im Gemeindewald zu fällen, dass man Männer bezahlen musste, um sie daran zu hindern. Das Register beschreibt den Brauch nicht: es überwacht ihn. Das ist sogar besser — der Beweis, dass er schon existierte, und dass er beliebt war.
+
+Dieses Register existiert noch, in Sélestat. Es ist die älteste bekannte schriftliche Erwähnung des Weihnachtsbaums.
+
+Also seien wir ehrlich. Straßburg hat die Tanne nicht erfunden. Sélestat hat das Papier. Freiburg im Breisgau beansprucht einen geschmückten Baum schon 1419, bei Bäckern. Riga, Tallinn und Bremen streiten sich ebenfalls um die Wiege. Niemand wird das je entscheiden.
+
+Was Straßburg erfunden hat, ist etwas anderes. Und das spielt sich fünf Minuten von hier ab, in den Wohnstuben.
+
+Steig wieder nach Nordosten hinauf, zu dem Platz, wo ein bronzener Mann eine Seite emporhält.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-3
+@@STITLE=Place Gutenberg
+In der Mitte des Platzes schwenkt ein bronzener Mann eine bedruckte Seite: Gutenberg, der hier das Geheimnis der beweglichen Lettern suchte. Behalt seine Idee im Kopf — die schriftliche Spur. Alles, was ich dir erzähle, beruht allein darauf: auf Papier, das überlebt hat.
+
+Und das kostbarste Papier dieser Geschichte wurde hier, um 1605, von einem Mann geschwärzt, dessen Namen wir nicht kennen. Er lebt in Straßburg, führt ein Heft über die bemerkenswerten Dinge, die er beobachtet. Und er notiert Folgendes:
+
+Zu Weihnachten stellt man in Straßburg Tannenbäume in den Wohnstuben auf. Daran hängt man Rosen, aus buntem Papier geschnitten, Äpfel, Hostien, Blattgold, Zucker.
+
+Lies es dir noch einmal langsam durch. Tannenbäume. In den Häusern. Geschmückt. Drei Zeilen — und die älteste bekannte, zuverlässige Beschreibung des Weihnachtsbaums, so wie du ihn kennst: gefällt, hereingebracht, geschmückt, den Kindern geschenkt. Vor ihm blieb der Baum draußen, oder in einer Kirche, oder in einem Zunfthaus. Hier kommt er in die Wärme.
+
+Schau dir auch die Liste an. Rote Äpfel, Kuchen, vergoldetes Papier, Zucker. All deine Christbaumkugeln sind schon da — in essbarer Form. Wir kommen darauf zurück.
+
+Geh weiter nach Norden, drei Minuten, zur place du Temple-Neuf. Den Pfarrern hat das gar nicht gefallen.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-4
+@@STITLE=Place du Temple-Neuf
+Dieser ruhige Platz beherbergt den Temple-Neuf, wiederaufgebaut nach einem Brand, der die Stadt ihre Bibliothek kostete — eine andere Geschichte, für einen anderen Tag. Was mich hierher führt, ist das, was man damals von den protestantischen Kanzeln Straßburgs hörte. Und ein Mann, der sich wirklich empörte.
+
+Er heißt Johann Conrad Dannhauer. Lutherischer Theologe, Professor, Starprediger des siebzehnten Jahrhunderts — er predigt an der Kathedrale, und ganz Straßburg kommt, um ihm zuzuhören. Ein Schwergewicht. Ab 1642 veröffentlicht er seine Predigten unter einem prächtigen Titel: die Katechismusmilch. Die Lehre lauwarm serviert, wie für Kinder. Und mitten in einem Band platzt ihm der Kragen.
+
+Unter den Nichtigkeiten, schreibt er, mit denen man die Weihnachtszeit mehr feiert als mit dem Wort Gottes, ist auch der Tannenbaum, den man zu Hause aufstellt. Er zählt auf, angewidert: die Papierrosen, die Äpfel, die Hostien, das Gold, den Zucker. Genau die Liste von 1605. Dann fällt er sein Urteil: besser wäre es, den Kindern die wahre Zeder zu zeigen, die geistliche Zeder — Christus.
+
+Es ist die älteste bekannte Schimpftirade gegen den Weihnachtsbaum. Ein wütender Pfarrer, der dir, ohne es zu wollen, bestätigt, dass der Brauch eine Generation später bereits Fuß gefasst hatte.
+
+Die Kirche widerstand zwei Jahrhunderte lang. Sie verlor. Der Baum, seinerseits, erwartet dich drei Minuten von hier.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-5
+@@STITLE=Place Kléber
+Da bist du auf der place Kléber, dem größten Platz der Stadt. Ein bronzener General in der Mitte — er schläft näher bei dir, als du denkst, doch das ist ein anderer Spaziergang. Jeden Winter wird neben ihm der Grand Sapin aufgestellt: bis zu dreißig Meter hoch, aus den Vogesen ausgewählt, per Kran gehievt. Außerhalb der Saison siehst du nur einen leeren Platz. Schau ihn dir trotzdem an, und hör zu.
+
+Dieser Grand Sapin ist noch jung: der erste stammt von 1994, eine Idee eines lokalen Service-Clubs, genau als der Platz gerade zur Fußgängerzone geworden war. Vier Jahrhunderte nach dem Heft von 1605 stellte die Stadt ihren Baum in die Mitte ihrer eigenen Wohnstube.
+
+Und seine Kugeln? Ein Zufall. Man erzählt, 1858 sei es in den Nordvogesen so trocken gewesen, dass es keine Äpfel zum Aufhängen an die Zweige gab. Ein Glasbläser aus Goetzenbruck, einem Glasmacherdorf neben Meisenthal, soll Glaskugeln geblasen haben, um die fehlenden Früchte zu ersetzen.
+
+Was sicher ist: die Glashütte von Goetzenbruck produzierte sie ab 1858, zu Hunderttausenden, bis das Plastik das Handwerk in den sechziger Jahren tötete. In Meisenthal hat man Ende des Jahrhunderts die Öfen wieder angeheizt.
+
+Deine Christbaumkugel ist aus einem fehlenden Apfel geboren.
+
+Steig wieder nach Norden hinauf, drei Minuten. Eine Kirche erwartet dich dort, in zwei geteilt.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-6
+@@STITLE=Église protestante Saint-Pierre-le-Jeune
+Diese Kirche ist ein einzigartiger Fall. Saint-Pierre-le-Jeune, die protestantische — es gibt noch eine andere, katholische, weiter draußen in den deutschen Vierteln; du wirst gleich verstehen, warum. Geh hinein, wenn du kannst: romanischer Kreuzgang, mittelalterliche Fresken, geschnitzter Lettner. Und eine Narbe.
+
+1681 nimmt Ludwig XIV. die Stadt ein. Schon im folgenden Jahr gibt er den katholischen Gottesdienst in Saint-Pierre-le-Jeune zurück. Nur dass die Protestanten seit anderthalb Jahrhunderten dort zu Hause sind und nicht weichen. Also teilt man. Anfang 1683 wird hinter dem Lettner eine Mauer hochgezogen: der Chor den Katholiken, das Schiff den Protestanten. Ein Gebäude, zwei Gemeinden, zwei Schlüssel, ein einziger Glockenturm. Man nennt das das Simultaneum.
+
+Es dauerte zweihundertzehn Jahre. Bis 1893, als die Katholiken endlich ihre eigene Kirche bekamen, an anderer Stelle.
+
+Stell dir also den Dezember vor, hier, über zwei Jahrhunderte hinweg. Auf der einen Seite der Mauer die Mitternachtsmesse. Auf der anderen der Weihnachtsgottesdienst. Dieselben Lieder, nur wenige Meter entfernt, ohne sich je zu sehen. Dasselbe Kind, zweimal gefeiert im selben Stein.
+
+Das ist das Genie dieser Stadt: man einigt sich hier nicht, man richtet sich ein. Und der Baum ist am Ende vielleicht das einzige Ding, bei dem alle nachgegeben haben. Protestanten, Katholiken — und dann alle, gläubig oder nicht.
+
+Fünf Minuten nach Osten, und wir sind da. Der letzte Platz. Dort, wo er noch lebt.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-7
+@@STITLE=Place Broglie
+Da sind wir. Dieser lange, von Bäumen gesäumte Platz, mit der Oper am Ende: Broglie. Ein berühmtes Lied wurde hier in einer Nacht im April 1792 geboren — doch eine andere Geburt beschäftigt uns jetzt.
+
+Seit 1871 lebt hier der Christkindelsmärik. Er hatte am Fuß der Kathedrale begonnen, drei Tage im Jahr. Er zog im neunzehnten Jahrhundert auf die place Kléber um, verschwand während des Ersten Weltkriegs, kam dann zurück. Anfang der 1990er-Jahre nahm die Stadt den Titel offiziell an: Straßburg, Hauptstadt von Weihnachten. Der Markt hat sich auf ein Dutzend Plätze ausgebreitet, die du überquert hast, ohne es zu wissen.
+
+Doch die wirkliche Reise hat der Baum gemacht.
+
+1837. In Paris lässt Hélène de Mecklembourg, die deutsche Schwiegertochter Louis-Philippes, einen geschmückten Tannenbaum in den Tuilerien aufstellen. Der Hof findet das charmant, exotisch. Eine Laune des Schlosses.
+
+Dann 1871. Das Elsass wird annektiert. Zehntausende Elsässer weigern sich, Deutsche zu werden, steigen in Züge, verteilen sich über ganz Frankreich. Sie nehmen ihre Möbel mit, ihren Akzent — und diese seltsame Gewohnheit, am 24. Dezember einen Nadelbaum in die Wohnstube zu holen. Innerhalb einer Generation ist der Weihnachtsbaum überall. Frankreich erbte sein Weihnachtsfest von einer Wunde.
+
+Wenn dir das nächste Mal jemand erzählt, Straßburg habe die Tanne erfunden, lächle. Sélestat hat das älteste Papier, Freiburg erhebt seinen Anspruch, niemand wird es je wissen.
+
+Straßburg hat mehr getan, als den Baum zu erfinden. Es hat ihn ins Haus geholt, mit Zucker und vergoldetem Papier bedeckt, ein Kind an die Stelle eines Heiligen gesetzt. Und all das der Welt geschenkt, ohne je ein Patent anzumelden.
+
+Komm im Dezember wieder, wenn du kannst. Doch selbst im Juli, unter diesen Bäumen, stehst du auf dem ältesten Weihnachtsplatz Frankreichs. Danke, dass du mit mir gegangen bist. Und frohe Weihnachten — in welchem Monat du das hier auch hörst.
+
+@@LANG=it
+@@TITLE=Strasburgo — Capitale del Natale
+@@DESC=Specialità — Christkindelsmärik, 1570: il mercatino di Natale più antico di Francia, e la città che ha donato al mondo il suo abete decorato.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-0
+@@STITLE=Place de la Cathédrale
+Mettiti al centro del sagrato, con le spalle alla grande facciata rosa. Ha i suoi segreti; non è per quelli che sono venuto a cercarti. Guarda piuttosto il suolo. Questa piazza, e il cortile dietro l'abside — il Fronhof, oggi place du Château: è qui che tutto è cominciato. Qui che il Natale di tutto il mondo ha preso la forma che conosci.
+
+Torna indietro al Medioevo. Ogni inizio di dicembre, Strasburgo tiene il suo Klausemärik, il mercato di San Nicola. Vi si comprano i giocattoli che il grande santo barbuto lascerà il 6 dicembre. È l'appuntamento dell'anno.
+
+Poi passa la Riforma. La città la adotta nel 1525, e i pastori guardano di traverso questo santo che distribuisce regali al posto di Cristo. Nel 1570, nella cattedrale diventata tempio protestante, un predicatore di nome Johannes Flinner sale sul pulpito e batte il pugno: donare in nome di un santo, dice, è papismo. Il donatore deve essere il Bambin Gesù.
+
+Il sermone fa centro. Il 4 dicembre 1570, il Conseil des XXI — i padroni della città — decide. Il San Nicola viene soppresso. Ma i mercanti mantengono il loro mercato: lo spostano di qualche giorno, e lo ribattezzano con il nome del bambino. Christkindelsmärik. Il mercato del Bambino Cristo. I regali, invece, scivolano alla sera del 24.
+
+Il più antico mercatino di Natale di Francia è nato da una disputa tra teologi. E non si è mai fermato da allora.
+
+Ecco quindi la mia promessa: come questa città ha detronizzato un santo, adottato un albero che nessuno voleva, e finito per regalare il suo Natale al pianeta intero.
+
+Scendi verso l'acqua, dritto verso sud. Ci ritroviamo sulle rive dell'Ill, tra sei minuti.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-1
+@@STITLE=Quai Saint-Nicolas
+Eccoti al quai Saint-Nicolas. Il nome non è un caso. Dietro queste vecchie facciate si nasconde il musée Alsacien, dove sono stati salvati gli interni dell'Alsazia di un tempo. È lì che dormono i volti del Natale.
+
+Abbiamo detronizzato san Nicola, ricordi. Ma detronizzare non è così facile. Il 6 dicembre, l'Alsazia festeggia ancora il vecchio vescovo. Nelle immagini antiche, avanza in abiti episcopali, pastorale in mano, accompagnato da tre bambini che una leggenda racconta essere tornati in vita. La Riforma ha spostato il suo posto nel calendario, senza cancellare il suo volto dalla memoria locale.
+
+Al suo posto, la Riforma ha inventato il Christkindel: una giovane fanciulla velata di bianco, incoronata di candele, il Bambino Cristo diventato luce. Entra nelle case, dona.
+
+Ma non viene mai da sola. Dietro di lei trascina i piedi Hans Trapp: mantello scuro, barba ispida, fascio di verghe. Si racconta che fosse un vero cavaliere — Hans von Trotha, signore temuto di un castello del nord dell'Alsazia, morto nel 1503. I secoli ne hanno fatto lo spauracchio dei bambini alsaziani. Il suo nome schiocca come il suo passo: trappen, camminare pesantemente.
+
+Una fata che premia, un mostro che punisce. Tutto era già regolato nel sedicesimo secolo.
+
+Costeggia la banchina verso ovest, poi risali verso la grande chiesa rosa. Cinque minuti. Parliamo dell'albero.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-2
+@@STITLE=Église protestante Saint-Thomas
+Questa grande chiesa rosa è Saint-Thomas, la cattedrale dei protestanti d'Alsazia. Ospita un mausoleo famoso e un maresciallo ingombrante — ma non è per loro che ti ho fatto venire qui. È per il nome sulla porta. Thomas.
+
+Perché l'albero di Natale ha una data di nascita scritta. E cade in un giorno di San Tommaso.
+
+1521. A Sélestat, quarantacinque chilometri a sud, un contabile municipale annota una spesa minuscola: quattro scellini alle guardie forestali, per sorvegliare gli alberi a partire da San Tommaso, il 21 dicembre. Traduciamolo insieme. Gli abitanti correvano così spesso a tagliare abeti nel bosco comunale che bisognava pagare degli uomini per impedirglielo. Il registro non descrive l'usanza: la sorveglia. È ancora meglio — la prova che esisteva già, e che era popolare.
+
+Quel registro esiste ancora, a Sélestat. È la più antica menzione scritta conosciuta dell'albero di Natale.
+
+Allora siamo onesti. Strasburgo non ha inventato l'abete. Sélestat ha la carta. Friburgo in Brisgovia rivendica un albero decorato già nel 1419, presso dei fornai. Riga, Tallinn e Brema si contendono anch'esse la culla. Nessuno lo deciderà mai.
+
+Ciò che Strasburgo ha inventato è un'altra cosa. E si gioca a cinque minuti da qui, nei salotti.
+
+Risali verso nord-est, fino alla piazza dove un uomo di bronzo porge una pagina.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-3
+@@STITLE=Place Gutenberg
+Al centro della piazza, un uomo di bronzo brandisce una pagina stampata: Gutenberg, che qui cercò il segreto dei caratteri mobili. Tieni a mente la sua idea — la traccia scritta. Tutto ciò che ti racconto si regge solo su questo: carta che è sopravvissuta.
+
+E la carta più preziosa di questa storia è stata annerita qui, verso il 1605, da un uomo di cui ignoriamo il nome. Vive a Strasburgo, tiene un quaderno delle cose notevoli che osserva. E annota questo:
+
+A Natale, a Strasburgo, si allestiscono abeti nei salotti. Vi si appendono rose ritagliate in carta di tutti i colori, mele, ostie, oro in foglia, zucchero.
+
+Rileggilo lentamente. Abeti. Nelle case. Decorati. Tre righe — e la più antica descrizione affidabile conosciuta dell'albero di Natale così come lo conosci: tagliato, portato dentro, vestito, offerto ai bambini. Prima di lui, l'albero restava fuori, o in una chiesa, o in una sala corporativa. Qui, entra al caldo.
+
+Guarda anche la lista. Mele rosse, dolci, carta dorata, zucchero. Tutte le tue palline di Natale sono già lì — in versione commestibile. Ci torneremo.
+
+Continua verso nord, tre minuti, fino alla place du Temple-Neuf. Ai pastori non è piaciuto per niente.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-4
+@@STITLE=Place du Temple-Neuf
+Questa piazza tranquilla ospita il Temple-Neuf, ricostruito dopo un incendio che costò alla città la sua biblioteca — un'altra storia, per un altro giorno. Ciò che mi porta qui è quello che si sentiva allora dai pulpiti protestanti di Strasburgo. E un uomo che si è davvero arrabbiato.
+
+Si chiama Johann Conrad Dannhauer. Teologo luterano, professore, predicatore star del diciassettesimo secolo — predica alla cattedrale, e tutta Strasburgo va ad ascoltarlo. Un peso massimo. A partire dal 1642, pubblica i suoi sermoni sotto un titolo magnifico: il Latte del catechismo. La dottrina servita tiepida, come ai bambini. E a un certo punto di un volume, esplode.
+
+Tra le futilità, scrive, con cui si celebra il tempo di Natale più che con la parola di Dio, c'è anche l'abete che si allestisce in casa. Elenca, disgustato: le rose di carta, le mele, le ostie, l'oro, lo zucchero. Esattamente la lista del 1605. Poi sentenzia: sarebbe meglio mostrare ai bambini il vero cedro, il cedro spirituale — Cristo.
+
+È la più antica sfuriata conosciuta contro l'albero di Natale. Un pastore furioso che ti conferma, senza volerlo, che una generazione dopo l'usanza si era radicata.
+
+La Chiesa ha resistito due secoli. Ha perso. L'albero, dal canto suo, ti aspetta a tre minuti da qui.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-5
+@@STITLE=Place Kléber
+Eccoti in place Kléber, la piazza più grande della città. Un generale di bronzo al centro — dorme più vicino a te di quanto pensi, ma è un'altra passeggiata. Ogni inverno, accanto a lui, si erge il Grand Sapin: fino a trenta metri, scelto nei Vosgi, issato con la gru. Fuori stagione, vedrai solo una piazza vuota. Guardala comunque, e ascolta.
+
+Quel Grand Sapin è cosa recente: il primo risale al 1994, un'idea di un club di servizio locale, proprio quando la piazza era appena diventata pedonale. Quattro secoli dopo il quaderno del 1605, la città ha messo il suo albero al centro del proprio salotto.
+
+E le sue palline? Un incidente. Si racconta che il 1858 fu così secco nei Vosgi del Nord che non ci furono mele da appendere ai rami. Un soffiatore di vetro di Goetzenbruck, villaggio vetraio vicino a Meisenthal, avrebbe soffiato palline di vetro per sostituire la frutta mancante.
+
+Ciò che è certo: la vetreria di Goetzenbruck ne produsse a partire dal 1858, a centinaia di migliaia, finché la plastica non uccise il mestiere negli anni sessanta. A Meisenthal, si sono riaccesi i forni alla fine del secolo.
+
+La tua pallina di Natale è nata da una mela mancante.
+
+Risali verso nord, tre minuti. Una chiesa ti aspetta, tagliata in due.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-6
+@@STITLE=Église protestante Saint-Pierre-le-Jeune
+Questa chiesa è un caso unico. Saint-Pierre-le-Jeune, la protestante — ne esiste un'altra, cattolica, più avanti nei quartieri tedeschi; capirai perché tra poco. Entra se puoi: chiostro romanico, affreschi medievali, tramezzo scolpito. E una cicatrice.
+
+1681, Luigi XIV prende la città. Già l'anno successivo, restituisce il culto cattolico a Saint-Pierre-le-Jeune. Solo che i protestanti sono di casa da un secolo e mezzo, e non se ne vanno. Allora si taglia. All'inizio del 1683, si alza un muro dietro il tramezzo: il coro ai cattolici, la navata ai protestanti. Un edificio, due parrocchie, due chiavi, un solo campanile. Lo si chiama il simultaneum.
+
+È durato duecentodieci anni. Fino al 1893, quando i cattolici hanno finalmente ricevuto la loro chiesa, altrove.
+
+Allora immagina dicembre, qui, per due secoli. Da un lato del muro, la messa di mezzanotte. Dall'altro, la funzione di Natale. Gli stessi canti, a pochi metri, senza mai vedersi. Lo stesso bambino festeggiato due volte nella stessa pietra.
+
+È il genio di questa città: qui non ci si mette d'accordo, ci si arrangia. E l'albero, alla fine, è forse l'unico oggetto sul quale tutti hanno ceduto. Protestanti, cattolici — e poi tutti, credenti o no.
+
+Cinque minuti verso est, e ci siamo. L'ultima piazza. Quella dove vive ancora.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-7
+@@STITLE=Place Broglie
+Eccoci qui. Questa lunga piazza bordata di alberi, con l'Opera in fondo: Broglie. Un canto celebre vi è nato una notte d'aprile del 1792 — ma è un'altra nascita a occuparci ora.
+
+Dal 1871, è qui che vive il Christkindelsmärik. Era iniziato ai piedi della cattedrale, tre giorni all'anno. Si è trasferito in place Kléber nel diciannovesimo secolo, è scomparso durante la Grande Guerra, poi è tornato. All'inizio degli anni 1990, la città ha assunto il titolo: Strasburgo, Capitale del Natale. Il mercatino si è propagato su una decina di piazze che hai attraversato senza saperlo.
+
+Ma il vero viaggio, è l'albero ad averlo fatto.
+
+1837. A Parigi, Hélène de Mecklembourg, nuora tedesca di Luigi Filippo, fa allestire un abete decorato alle Tuileries. La corte lo trova incantevole, esotico. Un capriccio di palazzo.
+
+Poi il 1871. L'Alsazia viene annessa. Decine di migliaia di alsaziani rifiutano di diventare tedeschi, salgono su treni, si disperdono in tutta la Francia. Portano con sé i loro mobili, il loro accento — e questa strana abitudine di portare un conifero in salotto il 24 dicembre. In una generazione, l'abete è ovunque. La Francia ha ereditato il suo Natale da una ferita.
+
+La prossima volta che ti diranno che Strasburgo ha inventato l'abete, sorridi. Sélestat ha la carta più antica, Friburgo rivendica il suo, nessuno lo saprà mai.
+
+Strasburgo ha fatto di meglio che inventare l'albero. Lo ha portato in casa, ricoperto di zucchero e carta dorata, messo un bambino al posto di un santo. E regalato tutto questo al mondo, senza depositare alcun brevetto.
+
+Torna a dicembre, se puoi. Ma anche a luglio, sotto questi alberi, sei sulla più antica piazza di Natale di Francia. Grazie per aver camminato con me. E buon Natale — in qualsiasi mese tu stia ascoltando questo.
+
+@@LANG=nl
+@@TITLE=Straatsburg — Hoofdstad van Kerstmis
+@@DESC=Specialiteit — Christkindelsmärik, 1570: de oudste kerstmarkt van Frankrijk, en de stad die de wereld haar versierde kerstboom schonk.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-0
+@@STITLE=Place de la Cathédrale
+Ga in het midden van het plein staan, met je rug naar de grote roze gevel. Die heeft haar eigen geheimen; daarvoor ben ik je niet komen halen. Kijk liever naar de grond. Dit plein, en de binnenplaats achter het koor — de Fronhof, tegenwoordig place du Château: hier is alles begonnen. Hier kreeg de Kerstmis van de hele wereld de vorm die je kent.
+
+Ga terug naar de middeleeuwen. Elk begin december houdt Straatsburg zijn Klausemärik, de markt van Sint-Nicolaas. Daar koopt men het speelgoed dat de grote gebaarde heilige op 6 december zal achterlaten. Het is de afspraak van het jaar.
+
+Dan komt de Reformatie voorbij. De stad neemt haar aan in 1525, en de predikanten kijken scheef naar deze heilige die cadeaus uitdeelt in plaats van Christus. In 1570 beklimt, in de tot protestantse kerk geworden kathedraal, een predikant genaamd Johannes Flinner de kansel en slaat met zijn vuist: geven in naam van een heilige, zegt hij, is paperij. De gever moet het Christuskind zijn.
+
+De preek slaat aan. Op 4 december 1570 beslist de Conseil des XXI — de bazen van de stad. Sinterklaas wordt afgeschaft. Maar de kooplieden houden hun markt: ze wordt een paar dagen verschoven en herdoopt naar de naam van het kind. Christkindelsmärik. De markt van het Christuskind. De cadeaus, op hun beurt, verschuiven naar de avond van de 24e.
+
+De oudste kerstmarkt van Frankrijk is geboren uit een theologenruzie. En ze is sindsdien nooit gestopt.
+
+Dus hier is mijn belofte: hoe deze stad een heilige onttroonde, een boom aannam die niemand wilde, en uiteindelijk haar Kerstmis aan de hele planeet schonk.
+
+Ga naar beneden richting het water, recht naar het zuiden. Ik zie je terug aan de oever van de Ill, over zes minuten.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-1
+@@STITLE=Quai Saint-Nicolas
+Daar sta je op het quai Saint-Nicolas. De naam is geen toeval. Achter deze oude gevels schuilt het musée Alsacien, waar de interieurs van het vroegere Elzas zijn gered. Daar slapen de gezichten van Kerstmis.
+
+We hebben Sint-Nicolaas onttroond, weet je nog. Maar onttronen gaat niet zo makkelijk. Op 6 december viert de Elzas nog altijd de oude bisschop. Op oude afbeeldingen schrijdt hij voort in bisschoppelijk gewaad, staf in de hand, vergezeld van drie kinderen die volgens een legende weer tot leven werden gewekt. De Reformatie verschoof zijn plaats in de kalender, zonder zijn gezicht uit het plaatselijke geheugen te wissen.
+
+In zijn plaats verzon de Reformatie het Christkindel: een jong meisje gesluierd in het wit, gekroond met kaarsen, het Christuskind geworden tot licht. Ze gaat de huizen binnen, ze geeft.
+
+Maar ze komt nooit alleen. Achter haar sjokt Hans Trapp aan: donkere jas, ruige baard, bundel roeden. Er wordt verteld dat hij een echte ridder was — Hans von Trotha, gevreesde heer van een kasteel in het noorden van de Elzas, overleden in 1503. De eeuwen maakten van hem de boeman van Elzasser kinderen. Zijn naam klinkt hard als zijn tred: trappen, zwaar stampen.
+
+Een fee die beloont, een monster dat straft. Alles was al in de zestiende eeuw geregeld.
+
+Volg de kade naar het westen, en klim dan naar de grote roze kerk. Vijf minuten. We gaan het over de boom hebben.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-2
+@@STITLE=Église protestante Saint-Thomas
+Deze grote roze kerk is Saint-Thomas, de kathedraal van de protestanten van de Elzas. Ze herbergt een beroemd mausoleum en een omslachtige maarschalk — maar daarvoor heb ik je niet hierheen gehaald. Het is vanwege de naam op de deur. Thomas.
+
+Want de kerstboom heeft een geschreven geboortedatum. En die valt op een Sint-Thomasdag.
+
+1521. In Sélestat, vijfenveertig kilometer zuidelijker, noteert een gemeentelijke boekhouder een piepklein bedrag: vier schellingen aan de boswachters, om vanaf Sint-Thomas, 21 december, toezicht te houden op de bomen. Laten we het samen vertalen. De inwoners renden zo vaak weg om dennenbomen te kappen in het gemeentebos dat men mannen moest betalen om hen tegen te houden. Het register beschrijft de gewoonte niet: het houdt er toezicht op. Dat is nog beter — het bewijs dat ze al bestond, en dat ze populair was.
+
+Dat register bestaat nog steeds, in Sélestat. Het is de oudste bekende geschreven vermelding van de kerstboom.
+
+Laten we dus eerlijk zijn. Straatsburg heeft de dennenboom niet uitgevonden. Sélestat heeft het papier. Freiburg im Breisgau claimt al in 1419 een versierde boom, bij bakkers. Riga, Tallinn en Bremen betwisten ook de bakermat. Niemand zal het ooit beslechten.
+
+Wat Straatsburg heeft uitgevonden, is iets anders. En dat speelt zich af vijf minuten hiervandaan, in de salons.
+
+Klim weer naar het noordoosten, naar het plein waar een bronzen man een bladzijde toont.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-3
+@@STITLE=Place Gutenberg
+In het midden van het plein zwaait een bronzen man met een bedrukte bladzijde: Gutenberg, die hier het geheim van de losse letters zocht. Onthoud zijn idee — het geschreven spoor. Alles wat ik je vertel, berust alleen daarop: papier dat heeft overleefd.
+
+En het kostbaarste papier van dit verhaal werd hier zwart gemaakt, rond 1605, door een man wiens naam we niet kennen. Hij woont in Straatsburg, houdt een schrift bij van de opmerkelijke dingen die hij observeert. En hij noteert dit:
+
+Met Kerstmis zet men in Straatsburg dennenbomen op in de salons. Daaraan hangt men rozen, uitgeknipt uit papier van allerlei kleuren, appels, hosties, bladgoud, suiker.
+
+Lees het rustig opnieuw. Dennenbomen. In de huizen. Versierd. Drie regels — en de oudste betrouwbare bekende beschrijving van de kerstboom zoals jij hem kent: gekapt, naar binnen gebracht, aangekleed, aan de kinderen gegeven. Vóór hem bleef de boom buiten, of in een kerk, of in een gildehuis. Hier komt hij binnen in de warmte.
+
+Kijk ook naar de lijst. Rode appels, gebak, verguld papier, suiker. Al je kerstballen staan er al — in eetbare versie. Daar komen we op terug.
+
+Ga verder naar het noorden, drie minuten, tot de place du Temple-Neuf. De predikanten vonden dit helemaal niet leuk.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-4
+@@STITLE=Place du Temple-Neuf
+Dit rustige plein herbergt de Temple-Neuf, herbouwd na een brand die de stad haar bibliotheek kostte — een ander verhaal, voor een andere dag. Wat me hierheen brengt, is wat men toen hoorde vanaf de protestantse kansels van Straatsburg. En een man die zich echt kwaad maakte.
+
+Hij heet Johann Conrad Dannhauer. Lutherse theoloog, hoogleraar, sterprediker van de zeventiende eeuw — hij preekt in de kathedraal, en heel Straatsburg komt hem beluisteren. Een zwaargewicht. Vanaf 1642 publiceert hij zijn preken onder een prachtige titel: de Melk van de catechismus. De leer lauw geserveerd, zoals voor kinderen. En ergens in een deel ontploft hij.
+
+Onder de futiliteiten, schrijft hij, waarmee men de Kersttijd viert meer dan met het woord van God, is er ook de dennenboom die men thuis opzet. Hij somt op, walgend: de papieren rozen, de appels, de hosties, het goud, de suiker. Precies de lijst van 1605. Dan velt hij zijn oordeel: beter zou het zijn om de kinderen de echte ceder te tonen, de geestelijke ceder — Christus.
+
+Het is de oudste bekende scheldpartij tegen de kerstboom. Een woedende predikant die je, zonder het te willen, bevestigt dat de gewoonte een generatie later ingeburgerd was.
+
+De Kerk verzette zich twee eeuwen lang. Ze verloor. De boom, van zijn kant, wacht je op drie minuten hiervandaan.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-5
+@@STITLE=Place Kléber
+Daar sta je op de place Kléber, het grootste plein van de stad. Een bronzen generaal in het midden — hij slaapt dichter bij je dan je denkt, maar dat is een andere wandeling. Elke winter wordt naast hem de Grand Sapin opgericht: tot dertig meter hoog, gekozen in de Vogezen, met een kraan omhoog gehesen. Buiten het seizoen zie je alleen een leeg plein. Bekijk het toch, en luister.
+
+Die Grand Sapin is een jong verschijnsel: de eerste dateert van 1994, een idee van een lokale service-club, net toen het plein voetgangersgebied was geworden. Vier eeuwen na het schrift van 1605 zette de stad haar boom in het midden van haar eigen salon.
+
+En haar kerstballen? Een ongeluk. Er wordt verteld dat 1858 zo droog was in de noordelijke Vogezen dat er geen appels waren om aan de takken te hangen. Een glasblazer uit Goetzenbruck, een glasmakersdorp naast Meisenthal, zou glazen ballen hebben geblazen om het ontbrekende fruit te vervangen.
+
+Wat zeker is: de glasfabriek van Goetzenbruck produceerde ze vanaf 1858, bij honderdduizenden, tot plastic het ambacht in de jaren zestig doodde. In Meisenthal heeft men aan het eind van de eeuw de ovens weer aangestoken.
+
+Jouw kerstbal is geboren uit een ontbrekende appel.
+
+Klim weer naar het noorden, drie minuten. Een kerk wacht je daar, in tweeën gesneden.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-6
+@@STITLE=Église protestante Saint-Pierre-le-Jeune
+Deze kerk is een uniek geval. Saint-Pierre-le-Jeune, de protestantse — er bestaat nog een andere, katholieke, verderop in de Duitse wijken; je zult zo begrijpen waarom. Ga naar binnen als je kunt: romaanse kloostergang, middeleeuwse fresco's, gebeeldhouwd doksaal. En een litteken.
+
+1681, Lodewijk XIV neemt de stad in. Al het jaar erop geeft hij de katholieke eredienst terug aan Saint-Pierre-le-Jeune. Behalve dat de protestanten er al anderhalve eeuw thuis zijn, en niet weggaan. Dus wordt er gesplitst. Begin 1683 komt er een muur achter het doksaal: het koor voor de katholieken, het schip voor de protestanten. Eén gebouw, twee parochies, twee sleutels, één enkele klokkentoren. Men noemt dat het simultaneum.
+
+Het duurde tweehonderdtien jaar. Tot 1893, toen de katholieken eindelijk hun eigen kerk kregen, elders.
+
+Stel je dus december voor, hier, gedurende twee eeuwen. Aan de ene kant van de muur, de middernachtmis. Aan de andere kant, de kerstdienst. Dezelfde gezangen, een paar meter verderop, zonder elkaar ooit te zien. Hetzelfde kind twee keer gevierd in dezelfde steen.
+
+Dat is het genie van deze stad: men bereikt hier geen overeenstemming, men regelt het onderling. En de kerstboom is uiteindelijk misschien wel het enige waarover iedereen heeft toegegeven. Protestanten, katholieken — en dan iedereen, gelovig of niet.
+
+Vijf minuten naar het oosten, en we zijn er. Het laatste plein. Waar hij nog leeft.
+
+@@SCENE=seed-100-strasbourg-capitale-de-noel-scene-7
+@@STITLE=Place Broglie
+Daar zijn we. Dit lange, met bomen omzoomde plein, met de Opera aan het eind: Broglie. Een beroemd lied werd hier geboren op een nacht in april 1792 — maar het is een andere geboorte die ons nu bezighoudt.
+
+Sinds 1871 woont hier de Christkindelsmärik. Ze was begonnen aan de voet van de kathedraal, drie dagen per jaar. Ze verhuisde in de negentiende eeuw naar de place Kléber, verdween tijdens de Grote Oorlog, en kwam toen terug. Begin jaren negentig nam de stad de titel officieel aan: Straatsburg, Hoofdstad van Kerstmis. De markt heeft zich verspreid over een tiental pleinen die je zonder het te weten hebt doorkruist.
+
+Maar de echte reis heeft de boom gemaakt.
+
+1837. In Parijs laat Hélène de Mecklembourg, de Duitse schoondochter van Lodewijk Filips, een versierde dennenboom opzetten in de Tuilerieën. Het hof vindt het charmant, exotisch. Een gril van het paleis.
+
+Dan 1871. De Elzas wordt geannexeerd. Tienduizenden Elzassers weigeren Duits te worden, stappen in treinen, verspreiden zich over heel Frankrijk. Ze nemen hun meubels mee, hun accent — en die vreemde gewoonte om op 24 december een naaldboom naar binnen te halen. Binnen één generatie staat de dennenboom overal. Frankrijk erfde zijn Kerstmis van een wond.
+
+De volgende keer dat iemand je vertelt dat Straatsburg de dennenboom heeft uitgevonden, glimlach dan. Sélestat heeft het oudste papier, Freiburg claimt het zijne, niemand zal het ooit weten.
+
+Straatsburg heeft meer gedaan dan de boom uitvinden. Ze heeft hem naar binnen gehaald, bedekt met suiker en verguld papier, een kind in de plaats van een heilige gezet. En dat alles aan de wereld geschonken, zonder ooit een patent aan te vragen.
+
+Kom terug in december, als je kunt. Maar zelfs in juli, onder deze bomen, sta je op het oudste kerstplein van Frankrijk. Dank je voor het wandelen met mij. En vrolijk kerstfeest — in welke maand je dit ook beluistert.

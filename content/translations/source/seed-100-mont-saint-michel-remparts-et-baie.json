@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-mont-saint-michel-remparts-et-baie",
+  "sessionId": "seed-100-mont-saint-michel-remparts-et-baie-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Mont-Saint-Michel",
+  "title": "Mont-Saint-Michel — Remparts et baie",
+  "description": "Paysage — comprendre le dialogue entre le rocher, ses défenses et l’immensité de la baie.",
+  "themes": [
+    "Paysage — comprendre le dialogue entre le rocher, ses défenses et l’immensité de la baie."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6183,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Paesaggio, comprensione del dialogo tra roccia, le sue difese e l'immensità della baia.",
+    "es": "Paisaje, comprender el diálogo entre la roca, sus defensas y la inmensidad de la bahía.",
+    "en": "Landscape, understanding the dialogue between rock, its defences and the immensity of the bay.",
+    "de": "Landschaft, verstehen Sie den Dialog zwischen dem Felsen, seine Verteidigung und die Weite der Bucht."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-mont-saint-michel-remparts-et-baie-scene-0",
+      "index": 0,
+      "title": "Pont-passerelle",
+      "text": "Avance sur la passerelle en gardant les zones de circulation libres. Le Mont paraît posé au bout d’une ligne fine. Cet accès, ouvert au XXIe siècle, a remplacé l’ancienne digue-route qui favorisait l’accumulation des sédiments. Avec le barrage construit sur le Couesnon, il participe au projet destiné à rendre plus souvent au rocher son caractère maritime.\n\nRegarde les différents niveaux du paysage. La passerelle reste au-dessus des eaux ordinaires, tandis que certaines marées recouvrent les abords et isolent visuellement le Mont. Les herbus, les chenaux et les bancs de sable changent selon l’heure et les saisons. Ne quitte jamais l’accès aménagé : la baie exige une connaissance précise de ses courants et de ses sables.\n\nNotre parcours suivra la montée des défenses, depuis cette approche entièrement ouverte jusqu’au chemin de ronde. Plus tu avanceras, plus les murs rempliront le regard. Rejoins la porte de l’Avancée au pied du village. Observe comment l’itinéraire se resserre brusquement : le vaste horizon se transforme en un passage contrôlé.",
+      "hash": "58407f45",
+      "chars": 1058,
+      "existingSegments": {
+        "it": "seed-100-mont-saint-michel-remparts-et-baie-scene-0-seg-it",
+        "de": "seed-100-mont-saint-michel-remparts-et-baie-scene-0-seg-de",
+        "en": "seed-100-mont-saint-michel-remparts-et-baie-scene-0-seg-en",
+        "es": "seed-100-mont-saint-michel-remparts-et-baie-scene-0-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-remparts-et-baie-scene-1",
+      "index": 1,
+      "title": "Porte de l’Avancée",
+      "text": "La porte de l’Avancée forme le premier accès fortifié du Mont. Elle ouvre sur une cour où se trouve un ancien corps de garde. Le passage n’offre aucune perspective droite vers l’intérieur : les portes successives et les changements de direction ralentissent l’entrée. Ce dessin obligeait tout arrivant à se présenter sous le regard des défenseurs.\n\nAvant de franchir le seuil, retourne-toi vers la baie. En quelques mètres, tu passes d’un espace sans bord apparent à une architecture de pierre qui mesure chaque mouvement. Le contraste résume la force du site. Le rocher n’est pas une forteresse posée devant le paysage ; ses murs exploitent exactement la pente, les marées et l’étroitesse des accès.\n\nContinue jusqu’à la porte du Roi par le cheminement public. Tu rencontreras une nouvelle ligne défensive, associée à un pont-levis et à un logis. Regarde les rainures, les arcs et les dispositifs de fermeture. Chaque couche ajoute une difficulté, sans avoir besoin d’une longue enceinte sur terrain plat.",
+      "hash": "df7a5438",
+      "chars": 1006,
+      "existingSegments": {
+        "it": "seed-100-mont-saint-michel-remparts-et-baie-scene-1-seg-it",
+        "en": "seed-100-mont-saint-michel-remparts-et-baie-scene-1-seg-en",
+        "es": "seed-100-mont-saint-michel-remparts-et-baie-scene-1-seg-es",
+        "de": "seed-100-mont-saint-michel-remparts-et-baie-scene-1-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-remparts-et-baie-scene-2",
+      "index": 2,
+      "title": "Porte du Roy",
+      "text": "La porte du Roi commande l’entrée de la Grande Rue. Son passage voûté se trouve sous un bâtiment et conserve les éléments d’un ancien dispositif de pont-levis. La marée protégeait naturellement une partie du rocher, mais l’accès terrestre exigeait plusieurs obstacles rapprochés. Ici, la défense utilise la profondeur : une porte franchie n’est jamais la dernière.\n\nObserve la relation avec la rue. Derrière le seuil, la voie monte aussitôt entre des maisons étroites. Il serait difficile d’y avancer en nombre ou de conserver une vue dégagée. Le relief devient donc un allié des murs. La ville habitée et la fortification se mêlent sans séparation nette.\n\nEmprunte l’accès public des remparts et gagne le secteur de la tour du Nord. L’ascension peut être raide et les marches irrégulières ; avance sans te presser. À mesure que tu montes, les toits passent sous ton regard et la baie réapparaît. La prochaine halte montrera comment le chemin de ronde associe surveillance militaire et lecture panoramique du paysage.",
+      "hash": "56cb4d4e",
+      "chars": 1017,
+      "existingSegments": {
+        "es": "seed-100-mont-saint-michel-remparts-et-baie-scene-2-seg-es",
+        "en": "seed-100-mont-saint-michel-remparts-et-baie-scene-2-seg-en",
+        "de": "seed-100-mont-saint-michel-remparts-et-baie-scene-2-seg-de",
+        "it": "seed-100-mont-saint-michel-remparts-et-baie-scene-2-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-remparts-et-baie-scene-3",
+      "index": 3,
+      "title": "Tour du Nord",
+      "text": "La tour du Nord avance dans la ligne des remparts et offre une vue étendue sur la baie. Construite dans le système défensif médiéval du Mont, elle permettait de contrôler un secteur que les marées rendaient tour à tour accessible et impraticable. Sa forme arrondie limite les angles morts et accompagne le tracé du rocher.\n\nDepuis le chemin de ronde, repère les chenaux si la lumière les révèle. Ils ne restent pas fixes : l’eau déplace progressivement leurs courbes. Une armée devait donc affronter un terrain changeant avant même d’atteindre la muraille. Pendant la guerre de Cent Ans, le Mont résista aux attaques anglaises et conserva une forte valeur symbolique.\n\nContinue sur les remparts jusqu’au secteur du Grand Degré. Ne quitte pas les parapets publics et respecte les éventuelles fermetures. Le chemin va se rapprocher des constructions abbatiales, dont la masse paraît prolonger la pente naturelle. Tu verras comment les bâtisseurs ont empilé salles, contreforts et terrasses faute d’espace horizontal.",
+      "hash": "bf2730d8",
+      "chars": 1014,
+      "existingSegments": {
+        "it": "seed-100-mont-saint-michel-remparts-et-baie-scene-3-seg-it",
+        "en": "seed-100-mont-saint-michel-remparts-et-baie-scene-3-seg-en",
+        "de": "seed-100-mont-saint-michel-remparts-et-baie-scene-3-seg-de",
+        "es": "seed-100-mont-saint-michel-remparts-et-baie-scene-3-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-remparts-et-baie-scene-4",
+      "index": 4,
+      "title": "Grand Degré",
+      "text": "Le Grand Degré est l’escalier monumental qui conduit vers l’abbaye. Depuis son pied ou ses abords librement accessibles, lève les yeux vers les bâtiments superposés. Le sanctuaire occupe le sommet du rocher, tandis que les constructions monastiques s’appuient sur ses flancs. Au nord, l’ensemble appelé la Merveille empile notamment espaces d’accueil, salles communautaires et cloître.\n\nCette verticalité n’est pas un simple effet spectaculaire. Le manque de terrain oblige à construire par niveaux et à reporter les charges au moyen de murs puissants et de contreforts. La défense profite du même relief : plus l’on monte, plus les approches deviennent étroites et contrôlables.\n\nRedescends ensuite par les voies publiques vers le côté occidental et la tour Gabriel. Reste attentif aux marches, aux croisements et aux horaires des accès. La dernière halte retrouvera le niveau bas du rocher. Après avoir regardé la baie depuis les remparts, tu observeras une tour d’artillerie placée presque au contact de l’estran.",
+      "hash": "ecdf4cfb",
+      "chars": 1016,
+      "existingSegments": {
+        "en": "seed-100-mont-saint-michel-remparts-et-baie-scene-4-seg-en",
+        "es": "seed-100-mont-saint-michel-remparts-et-baie-scene-4-seg-es",
+        "it": "seed-100-mont-saint-michel-remparts-et-baie-scene-4-seg-it",
+        "de": "seed-100-mont-saint-michel-remparts-et-baie-scene-4-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-mont-saint-michel-remparts-et-baie-scene-5",
+      "index": 5,
+      "title": "Tour Gabriel",
+      "text": "La tour Gabriel fut construite au XVIe siècle pour renforcer le côté occidental du Mont face au développement de l’artillerie. Sa forme massive et arrondie permettait d’installer des pièces capables de couvrir les approches basses. Elle porte le nom du lieutenant du roi Gabriel du Puy, associé à sa construction.\n\nRegarde sa position par rapport aux murs supérieurs. Au début du parcours, la silhouette du Mont semblait compacte et verticale. Après avoir traversé ses portes et parcouru ses remparts, tu vois qu’elle résulte d’une succession d’adaptations : obstacles à l’entrée, tours de flanquement, chemins de ronde, bâtiments accrochés à la pente et ouvrage d’artillerie au ras de la baie.\n\nLa marée relie toutes ces défenses. Elle modifie les distances, découvre les grèves puis rend au rocher son isolement. Les murailles, elles, fixent une ligne durable sur ce paysage mobile. Repars uniquement par les accès aménagés, sans t’aventurer sur les sables. Merci d’avoir suivi la pierre depuis la passerelle jusqu’à cette tour basse. À bientôt pour une autre promenade.",
+      "hash": "201a4a18",
+      "chars": 1072,
+      "existingSegments": {
+        "it": "seed-100-mont-saint-michel-remparts-et-baie-scene-5-seg-it",
+        "en": "seed-100-mont-saint-michel-remparts-et-baie-scene-5-seg-en",
+        "es": "seed-100-mont-saint-michel-remparts-et-baie-scene-5-seg-es",
+        "de": "seed-100-mont-saint-michel-remparts-et-baie-scene-5-seg-de"
+      }
+    }
+  ]
+}

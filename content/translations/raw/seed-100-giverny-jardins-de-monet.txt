@@ -1,0 +1,339 @@
+@@LANG=en
+@@TITLE=Giverny — One Man's Garden
+@@DESC=Art — the garden as masterpiece: forty years of water lilies painted from a Japanese bridge.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-0
+@@STITLE=Musée des impressionnismes
+Welcome to Giverny. Look at this village: a single long street, houses of stone and plaster, gentle hills, gardens everywhere. A Normandy village like a thousand others — except this one is known the world over. Visitors come from Japan, from America, from Australia, to walk this small street. All because of one man, and above all because of what he grew here.
+
+You're near the Musée des impressionnismes. The name already says it all. Because this village was, over a century ago, a nest of painters. From the 1880s onward, artists came from the United States and settled here, drawn by the light, by the countryside, and by the presence, at the end of the street, of the most famous of them all.
+
+That man is Claude Monet. The father of Impressionism, the one who painted light rather than things. In 1883, he discovers Giverny through a train window, falls in love with the place, and settles here. He will stay forty-three years, until his death.
+
+But here's what I want to tell you throughout this walk. Monet's greatest masterpiece isn't a canvas. It's a garden. A garden he dug, planted, designed with his own hands, and painted relentlessly for forty years. By the end of his life, he was painting almost nothing else: a pond, water lilies, and a small Japanese bridge.
+
+Go up rue Claude Monet toward the east. Stop in front of a house with a façade covered in vines: the former Hôtel Baudy. Follow me.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-1
+@@STITLE=Ancien Hôtel Baudy, depuis l'espace public
+In front of you, the former Hôtel Baudy, once headquarters of a whole colony of painters. When Monet settles in Giverny, his fame draws young artists like a lighthouse. Many come from America, crossing the ocean to breathe the same air as the master and observe the same Normandy landscapes.
+
+They stayed here, at the Baudys'. It's said the small inn gradually turned into an artists' boarding house: painting was discussed late into the night, people fell in love, canvases were hung up here for sale. Behind the house, a studio and a rose garden where the easel would be set up.
+
+Monet himself wasn't really seeking out this crowd. He lived somewhat apart, protective of his work and his garden. But whether he wanted it or not, he had turned this village into a pilgrimage site for painting. Giverny, thanks to him, became a name on the map of art.
+
+Keep going up, take the small road on your left climbing toward the church. That's where, beneath a simple stone, the master of the place rests. Follow me.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-2
+@@STITLE=Église Sainte-Radegonde
+Here you are in front of the Église Sainte-Radegonde, an old country church, and its small cemetery. Look, against the wall, for a family grave with nothing particularly grand about it. That's where Claude Monet is buried, with his family.
+
+Before seeing his splendor, you need to know his shadow. Because behind the painter of happy gardens lies a man who lost a great deal. His first wife, Camille, died young. Then Alice, his second companion, with whom he raised a large family in the house next door, passed away in turn. Then his eldest son. Old age even steals his eyes: cataracts gradually blur his colors, he who lived through sight.
+
+And yet, in mourning, with night falling over his eyes, he never stopped digging, planting, painting his garden. As if the flowers and the water were his own way of staying upright.
+
+That's the stubbornness you're about to see now, in flesh and petals. Head back down toward the pink house, a little further down the street. Go through the garden gate. Follow me.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-3
+@@STITLE=Le Clos Normand
+Here you are in the Clos Normand, the flower garden, in front of the long pink house with green shutters where Monet lived. Look at this explosion. Flowerbeds overflowing, paths drowned in color, thousands of flowers, planted close together, like on a palette.
+
+Nothing here is left to chance. Monet designed this garden the way he painted his canvases: in touches of color, in harmonies, by season. He chose his flowers for their hues, paired them, made them answer each other. He employed gardeners, gave them precise instructions, grew angry over a poorly turned-out bed. It's said he claimed to be good at only two things: painting and gardening.
+
+In front of you, the Grande Allée: this path lined with iron arches where climbing roses grow, and where nasturtiums, by autumn, end up spreading across the ground. At the end, the house. A living painting that changes every day, every hour, with the light.
+
+But the Clos Normand is only half the work. Step inside the house for a moment, before crossing to the other side of the road, where the true heart of the masterpiece beats. Follow me.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-4
+@@STITLE=La maison rose
+Go into the house. A long, low pink building, where Monet lived for nearly forty years surrounded by his family. Walk through the yellow rooms, then the blue ones: nothing but color, again, even on the walls.
+
+And everywhere, hung up, Japanese prints. Dozens of engravings from Japan, landscapes, waves, women in kimonos. Monet collected them with passion. This dreamed-of Japan, which he never saw with his own eyes, nourished him his whole life: those bold framings, those flat fields of color, that way of looking at a bridge, a tree, a flower.
+
+Remember these Japanese images well. Because, on the other side of the road, Monet wanted to recreate that very Japan. Not copy it — dream it. A water garden, a pond, and a curved bridge like the ones in his prints.
+
+Go back outside, and head toward the passage running beneath the road, toward the water garden. That's where our story ends, and where his greatest painting begins. Follow me.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-5
+@@STITLE=Le jardin d'eau
+Here we are. The water garden. The weeping willow at the edge of the pond, the water lilies resting on the still water, the wisteria, the bamboo — and there, arched above the water, painted green, the Japanese bridge. This is the place toward which everything converged.
+
+This pond didn't exist. In 1893, Monet buys this patch of marshy land, on the other side of the road and the railway line, and diverts a branch of the river to create this pool. The neighbors worry: they fear his plants from elsewhere will poison the water. He goes ahead anyway. He plants his water lilies, throws up this curved bridge straight out of his prints, and starts painting.
+
+And there, something shifts. For nearly thirty years, until his death, Monet will paint almost nothing else. This pond, this bridge, these flowers on the water. Again and again, at every hour, in every light. Hundreds of canvases. The whole world, reduced to a few square meters of water and reflections.
+
+At the end, nearly blind, he paints immense panels of water lilies, larger than himself, where the water, the sky, and the flowers merge into one. The day after the Great War, he donates them to France, as a monument to peace. They were installed in Paris, at the Orangerie, in two oval rooms that people today enter as if entering a chapel. They were born here, in front of this bridge.
+
+That's the masterpiece. Not a canvas, but a garden, and the water a man watched for forty years. Stay a moment on the little bridge. Lean over the water. It's Monet's last painting, and it's still alive. See you soon, friend.
+
+@@LANG=es
+@@TITLE=Giverny — El jardín de un solo hombre
+@@DESC=Arte — el jardín como obra maestra: cuarenta años de nenúfares pintados desde un puente japonés.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-0
+@@STITLE=Musée des impressionnismes
+Bienvenido a Giverny. Mira este pueblo: una sola calle larga, casas de piedra y revoco, colinas suaves, jardines por todas partes. Un pueblo normando como mil otros, salvo que este es conocido en el mundo entero. Vienen visitantes de Japón, de América, de Australia, para recorrer esta pequeña calle. Todo por culpa de un hombre, y sobre todo por lo que hizo crecer aquí.
+
+Estás cerca del Musée des impressionnismes. El nombre ya lo dice todo. Porque este pueblo fue, hace más de un siglo, un nido de pintores. Desde la década de 1880, artistas venidos de Estados Unidos se instalaron aquí, atraídos por la luz, por el campo, y por la presencia, al final de la calle, del más célebre de todos.
+
+Ese hombre es Claude Monet. El padre del impresionismo, el que pintaba la luz más que las cosas. En 1883, descubre Giverny por la ventanilla de un tren, se enamora del lugar, y se instala en él. Se quedará cuarenta y tres años, hasta su muerte.
+
+Pero he aquí lo que quiero contarte a lo largo de este paseo. La mayor obra maestra de Monet no es un cuadro. Es un jardín. Un jardín que excavó, plantó, diseñó con sus propias manos, y que pintó sin descanso durante cuarenta años. Al final de su vida, ya casi no pintaba más que una sola cosa: un estanque, nenúfares, y un pequeño puente japonés.
+
+Sube por la rue Claude Monet hacia el este. Detente frente a una casa de fachada cubierta de vid: el antiguo hôtel Baudy. Sígueme.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-1
+@@STITLE=Ancien Hôtel Baudy, depuis l'espace public
+Delante de ti, el antiguo hôtel Baudy, otrora cuartel general de toda una colonia de pintores. Cuando Monet se instala en Giverny, su gloria atrae a los jóvenes artistas como un faro. Muchos vienen de América, cruzan el océano para respirar el mismo aire que el maestro y observar los mismos paisajes normandos.
+
+Se alojaban aquí, en casa de los Baudy. Se cuenta que la pequeña posada se fue transformando poco a poco en pensión de artistas: se discutía de pintura hasta bien entrada la noche, se enamoraba uno, se colgaban los cuadros para venderlos. Detrás de la casa, un taller y un rosaleda donde se colocaba el caballete.
+
+Monet, por su parte, no buscaba realmente ese cortejo. Vivía un poco al margen, celoso de su trabajo y de su jardín. Pero, lo quisiera o no, había convertido este pueblo en un lugar de peregrinación para la pintura. Giverny, gracias a él, se convirtió en un nombre en el mapa del arte.
+
+Sigue subiendo, toma la callejuela a tu izquierda que sube hacia la iglesia. Ahí, bajo una simple piedra, reposa el maestro del lugar. Sígueme.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-2
+@@STITLE=Église Sainte-Radegonde
+Aquí estás, frente a la iglesia Sainte-Radegonde, una vieja iglesia de campo, y su pequeño cementerio. Busca, contra el muro, una tumba familiar sin grandeza particular. Ahí está enterrado Claude Monet, con los suyos.
+
+Antes de ir a ver su esplendor, hay que conocer su sombra. Porque detrás del pintor de jardines felices, hay un hombre que perdió mucho. Su primera esposa, Camille, muerta joven. Luego Alice, su segunda compañera, con quien crió una numerosa familia en la casa de al lado, desaparecida a su vez. Luego su hijo mayor. La vejez le roba incluso los ojos: unas cataratas nublan poco a poco sus colores, a él, que vivía por la mirada.
+
+Y sin embargo, en el duelo y la noche que cae sobre sus ojos, nunca dejó de cavar, de plantar, de pintar su jardín. Como si las flores y el agua fueran su manera de mantenerse en pie.
+
+Es esa obstinación la que vas a ver ahora, en carne y pétalos. Baja de nuevo hacia la casa rosa, un poco más abajo en la calle. Cruza la puerta del jardín. Sígueme.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-3
+@@STITLE=Le Clos Normand
+Aquí estás en el Clos Normand, el jardín de flores, frente a la larga casa rosa de postigos verdes donde vivió Monet. Mira esta explosión. Macizos que rebosan, senderos anegados de colores, flores por millares, plantadas apretadas, como sobre una paleta.
+
+Aquí nada se deja al azar. Monet diseñó este jardín como pintaba sus cuadros: por toques de color, por acordes, por estaciones. Elegía sus flores por sus tonos, las combinaba, hacía que se respondieran. Empleaba jardineros, les daba órdenes precisas, se enfadaba por un macizo mal logrado. Se cuenta que decía no ser bueno más que en dos cosas: la pintura y la jardinería.
+
+Delante de ti, la Grande Allée: este camino bordeado de arcos de hierro donde trepan los rosales, y donde los capuchinas acaban, en otoño, invadiendo el suelo. Al fondo, la casa. Un cuadro vivo que cambia cada día, cada hora, con la luz.
+
+Pero el Clos Normand es solo la mitad de la obra. Entra un instante en la casa, antes de pasar al otro lado de la carretera, ahí donde late el verdadero corazón de la obra maestra. Sígueme.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-4
+@@STITLE=La maison rose
+Entra en la casa. Un edificio largo, bajo, rosa, donde Monet vivió casi cuarenta años rodeado de los suyos. Cruza las habitaciones amarillas y luego las azules: nada más que colores, otra vez, hasta en los muros.
+
+Y por todas partes, colgados, estampas japonesas. Decenas de grabados venidos de Japón, paisajes, olas, mujeres en kimono. Monet los coleccionaba con pasión. Ese Japón soñado, que nunca vio con sus propios ojos, lo alimentó toda su vida: esos encuadres audaces, esos planos de color, esa manera de mirar un puente, un árbol, una flor.
+
+Recuerda bien estas imágenes japonesas. Porque, al otro lado de la carretera, Monet quiso recrear ese Japón. No copiarlo: soñarlo. Un jardín de agua, un estanque, y un puente curvo como en sus estampas.
+
+Sal de nuevo, y dirígete hacia el pasaje que discurre bajo la carretera, hacia el jardín de agua. Ahí termina nuestra historia, y comienza su cuadro más grande. Sígueme.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-5
+@@STITLE=Le jardin d'eau
+Aquí estamos. El jardín de agua. El sauce llorón a orillas del estanque, los nenúfares posados sobre el agua inmóvil, las glicinas, los bambúes, y ahí, arqueado sobre el agua, pintado de verde, el puente japonés. Este es el lugar hacia el que todo convergía.
+
+Este estanque no existía. En 1893, Monet compra este trozo de terreno pantanoso, al otro lado de la carretera y de la vía férrea, y desvía un brazo de río para crear este estanque. Los vecinos se inquietan: temen que sus plantas venidas de otros lugares envenenen el agua. Él sigue adelante. Planta sus nenúfares, tiende este puente curvo salido directamente de sus estampas, y se pone a pintar.
+
+Y ahí, algo cambia. Durante casi treinta años, hasta su muerte, Monet ya no pintará casi otra cosa. Este estanque, este puente, estas flores sobre el agua. Una y otra vez, a todas horas, con todas las luces. Cientos de cuadros. El mundo entero, reducido a unos pocos metros cuadrados de agua y reflejos.
+
+Al final, casi ciego, pinta inmensos paneles de nenúfares, más grandes que él, donde el agua, el cielo y las flores se confunden. Al día siguiente de la Gran Guerra, los dona a Francia, como un monumento a la paz. Se instalaron en París, en la Orangerie, en dos salas ovaladas donde hoy se entra como en una capilla. Nacieron aquí, frente a este puente.
+
+Esa es la obra maestra. No un cuadro, sino un jardín, y el agua que un hombre miró durante cuarenta años. Quédate un momento en el pequeño puente. Inclínate sobre el agua. Es el último cuadro de Monet, y sigue vivo. Hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Giverny — Der Garten eines einzigen Mannes
+@@DESC=Kunst — der Garten als Meisterwerk: vierzig Jahre Seerosen, gemalt von einer japanischen Brücke aus.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-0
+@@STITLE=Musée des impressionnismes
+Willkommen in Giverny. Schau dir dieses Dorf an: eine einzige lange Straße, Häuser aus Stein und Putz, sanfte Hügel, überall Gärten. Ein normannisches Dorf wie tausend andere — nur dass dieses hier weltbekannt ist. Besucher kommen aus Japan, aus Amerika, aus Australien, um diese kleine Straße entlangzuschlendern. Alles wegen eines einzigen Mannes, und vor allem wegen dessen, was er hier wachsen ließ.
+
+Du bist in der Nähe des Musée des impressionnismes. Der Name sagt schon alles. Denn dieses Dorf war vor über einem Jahrhundert ein Nest von Malern. Ab den 1880er Jahren ließen sich Künstler aus den Vereinigten Staaten hier nieder, angezogen vom Licht, vom Land und von der Anwesenheit, am Ende der Straße, des berühmtesten von allen.
+
+Dieser Mann ist Claude Monet. Der Vater des Impressionismus, der eher das Licht malte als die Dinge. 1883 entdeckt er Giverny durch ein Zugfenster, verliebt sich in den Ort und lässt sich dort nieder. Er wird dreiundvierzig Jahre bleiben, bis zu seinem Tod.
+
+Doch hier ist, was ich dir während dieses ganzen Spaziergangs erzählen will. Monets größtes Meisterwerk ist kein Gemälde. Es ist ein Garten. Ein Garten, den er mit eigenen Händen ausgehoben, bepflanzt, entworfen hat, und den er vierzig Jahre lang unermüdlich malte. Am Ende seines Lebens malte er fast nur noch eines: einen Teich, Seerosen, und eine kleine japanische Brücke.
+
+Geh die rue Claude Monet nach Osten hinauf. Halt vor einem Haus mit einer von Wein überwucherten Fassade an: dem ehemaligen Hôtel Baudy. Folge mir.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-1
+@@STITLE=Ancien Hôtel Baudy, depuis l'espace public
+Vor dir das ehemalige Hôtel Baudy, einst Hauptquartier einer ganzen Malerkolonie. Als Monet sich in Giverny niederlässt, zieht sein Ruhm die jungen Künstler an wie ein Leuchtturm. Viele kommen aus Amerika, überqueren den Ozean, um dieselbe Luft wie der Meister zu atmen und dieselben normannischen Landschaften zu beobachten.
+
+Sie wohnten hier, bei den Baudys. Man erzählt, das kleine Gasthaus habe sich nach und nach in eine Künstlerpension verwandelt: man diskutierte bis spät in die Nacht über Malerei, man verliebte sich, man hängte hier seine Bilder auf, um sie zu verkaufen. Hinter dem Haus ein Atelier und ein Rosengarten, wo die Staffelei aufgestellt wurde.
+
+Monet selbst suchte diesen Hofstaat eigentlich nicht. Er lebte etwas abseits, eifersüchtig auf seine Arbeit und seinen Garten bedacht. Doch ob er wollte oder nicht, er hatte aus diesem Dorf einen Wallfahrtsort für die Malerei gemacht. Giverny wurde dank ihm zu einem Namen auf der Landkarte der Kunst.
+
+Geh weiter hinauf, nimm die kleine Straße links, die zur Kirche hinaufführt. Dort, unter einem einfachen Stein, ruht der Meister dieses Ortes. Folge mir.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-2
+@@STITLE=Église Sainte-Radegonde
+Da bist du nun vor der Kirche Sainte-Radegonde, einer alten Landkirche, und ihrem kleinen Friedhof. Such, an der Mauer, nach einem Familiengrab ohne besondere Größe. Dort ist Claude Monet begraben, bei den Seinen.
+
+Bevor du seine Pracht siehst, musst du seinen Schatten kennen. Denn hinter dem Maler glücklicher Gärten steht ein Mann, der viel verloren hat. Seine erste Frau, Camille, jung gestorben. Dann Alice, seine zweite Lebensgefährtin, mit der er im Haus nebenan eine große Familie großzog, verstarb ihrerseits. Dann sein ältester Sohn. Das Alter raubt ihm sogar die Augen: grauer Star trübt nach und nach seine Farben, ihm, der vom Sehen lebte.
+
+Und doch, in Trauer und in der Nacht, die über seine Augen hereinbricht, hörte er nie auf, seinen Garten zu graben, zu bepflanzen, zu malen. Als wären die Blumen und das Wasser seine eigene Art, aufrecht zu bleiben.
+
+Diese Hartnäckigkeit wirst du jetzt sehen, in Fleisch und Blütenblättern. Geh wieder hinunter zum rosa Haus, etwas weiter unten in der Straße. Geh durch das Gartentor. Folge mir.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-3
+@@STITLE=Le Clos Normand
+Da bist du nun im Clos Normand, dem Blumengarten, vor dem langen rosa Haus mit den grünen Fensterläden, in dem Monet lebte. Schau dir diese Explosion an. Überquellende Beete, in Farben ertrunkene Wege, Tausende von Blumen, dicht gepflanzt, wie auf einer Palette.
+
+Hier ist nichts dem Zufall überlassen. Monet entwarf diesen Garten so, wie er seine Bilder malte: in Farbtupfern, in Akkorden, nach Jahreszeiten. Er wählte seine Blumen nach ihren Farbtönen aus, kombinierte sie, ließ sie einander antworten. Er beschäftigte Gärtner, gab ihnen genaue Anweisungen, ärgerte sich über ein misslungenes Beet. Man erzählt, er habe gesagt, er könne nur zwei Dinge: malen und gärtnern.
+
+Vor dir die Grande Allée: dieser von Eisenbögen gesäumte Weg, an dem Rosen emporranken, und wo Kapuzinerkresse im Herbst schließlich den Boden erobert. Am Ende das Haus. Ein lebendiges Gemälde, das sich jeden Tag, jede Stunde, mit dem Licht verändert.
+
+Doch der Clos Normand ist nur die Hälfte des Werks. Geh einen Moment ins Haus, bevor du auf die andere Straßenseite wechselst, dort, wo das wahre Herz des Meisterwerks schlägt. Folge mir.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-4
+@@STITLE=La maison rose
+Geh ins Haus hinein. Ein langgestrecktes, niedriges rosa Gebäude, in dem Monet fast vierzig Jahre lang, umgeben von seiner Familie, lebte. Durchquere die gelben, dann die blauen Räume: nichts als Farben, wieder, bis hin zu den Wänden.
+
+Und überall, aufgehängt, japanische Drucke. Dutzende von Stichen aus Japan, Landschaften, Wellen, Frauen im Kimono. Monet sammelte sie mit Leidenschaft. Dieses erträumte Japan, das er nie mit eigenen Augen sah, nährte ihn sein Leben lang: diese kühnen Bildausschnitte, diese flächigen Farbfelder, diese Art, eine Brücke, einen Baum, eine Blume zu betrachten.
+
+Präg dir diese japanischen Bilder gut ein. Denn auf der anderen Straßenseite wollte Monet genau dieses Japan neu erschaffen. Nicht kopieren — erträumen. Einen Wassergarten, einen Teich, und eine geschwungene Brücke wie auf seinen Drucken.
+
+Geh wieder hinaus und wende dich dem Durchgang zu, der unter der Straße hindurchführt, zum Wassergarten. Dort endet unsere Geschichte, und dort beginnt sein größtes Gemälde. Folge mir.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-5
+@@STITLE=Le jardin d'eau
+Da sind wir. Der Wassergarten. Die Trauerweide am Ufer des Teichs, die Seerosen, die auf dem regungslosen Wasser liegen, die Glyzinien, die Bambusse — und dort, über dem Wasser gewölbt, grün gestrichen, die japanische Brücke. Das ist der Ort, auf den alles zulief.
+
+Diesen Teich gab es nicht. 1893 kauft Monet dieses sumpfige Stück Land, auf der anderen Seite der Straße und der Bahnlinie, und leitet einen Flussarm um, um diesen Teich zu schaffen. Die Nachbarn sind besorgt: sie fürchten, seine Pflanzen von anderswo könnten das Wasser vergiften. Er setzt sich darüber hinweg. Er pflanzt seine Seerosen, wirft diese geschwungene Brücke auf, die direkt aus seinen Drucken zu stammen scheint, und beginnt zu malen.
+
+Und dort kippt etwas. Fast dreißig Jahre lang, bis zu seinem Tod, wird Monet fast nichts anderes mehr malen. Diesen Teich, diese Brücke, diese Blumen auf dem Wasser. Immer wieder, zu jeder Stunde, in jedem Licht. Hunderte von Gemälden. Die ganze Welt, reduziert auf ein paar Quadratmeter Wasser und Spiegelungen.
+
+Am Ende, fast blind, malt er riesige Seerosenpaneele, größer als er selbst, in denen Wasser, Himmel und Blumen ineinander verschmelzen. Am Tag nach dem Großen Krieg schenkt er sie Frankreich, als Denkmal für den Frieden. Man hat sie in Paris installiert, in der Orangerie, in zwei ovalen Sälen, die man heute betritt wie eine Kapelle. Sie sind hier entstanden, vor dieser Brücke.
+
+Das ist das Meisterwerk. Kein Gemälde, sondern ein Garten, und das Wasser, das ein Mann vierzig Jahre lang betrachtete. Bleib noch einen Moment auf der kleinen Brücke. Beug dich über das Wasser. Es ist Monets letztes Gemälde, und es lebt noch immer. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Giverny — Il giardino di un solo uomo
+@@DESC=Arte — il giardino come capolavoro: quarant'anni di ninfee dipinte da un ponte giapponese.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-0
+@@STITLE=Musée des impressionnismes
+Benvenuto a Giverny. Guarda questo villaggio: un'unica lunga via, case di pietra e intonaco, dolci colline, giardini ovunque. Un villaggio normanno come mille altri, tranne che questo è conosciuto in tutto il mondo. I visitatori arrivano dal Giappone, dall'America, dall'Australia, per percorrere questa piccola via. Tutto per colpa di un uomo, e soprattutto per ciò che ha fatto crescere qui.
+
+Sei vicino al Musée des impressionnismes. Il nome dice già tutto. Perché questo villaggio è stato, oltre un secolo fa, un nido di pittori. Fin dagli anni 1880, artisti venuti dagli Stati Uniti vi si stabilirono, attirati dalla luce, dalla campagna, e dalla presenza, in fondo alla via, del più celebre di tutti.
+
+Quest'uomo è Claude Monet. Il padre dell'impressionismo, colui che dipingeva la luce piuttosto che le cose. Nel 1883, scopre Giverny dal finestrino di un treno, si innamora del luogo, e vi si stabilisce. Vi resterà quarantatré anni, fino alla sua morte.
+
+Ma ecco ciò che voglio raccontarti lungo tutta questa passeggiata. Il più grande capolavoro di Monet non è un dipinto. È un giardino. Un giardino che ha scavato, piantato, disegnato con le proprie mani, e che ha dipinto senza sosta per quarant'anni. Alla fine della sua vita, non dipingeva quasi più che una sola cosa: uno stagno, ninfee, e un piccolo ponte giapponese.
+
+Risali rue Claude Monet verso est. Fermati davanti a una casa dalla facciata coperta di vite: l'antico hôtel Baudy. Seguimi.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-1
+@@STITLE=Ancien Hôtel Baudy, depuis l'espace public
+Davanti a te, l'antico hôtel Baudy, un tempo quartier generale di un'intera colonia di pittori. Quando Monet si stabilisce a Giverny, la sua fama attira i giovani artisti come un faro. Molti vengono dall'America, attraversano l'oceano per respirare la stessa aria del maestro e osservare gli stessi paesaggi normanni.
+
+Alloggiavano qui, dai Baudy. Si racconta che la piccola locanda si sia trasformata a poco a poco in una pensione per artisti: si discuteva di pittura fino a tarda notte, ci si innamorava, si appendevano i propri quadri per venderli. Dietro la casa, un atelier e un roseto dove si posava il cavalletto.
+
+Monet, dal canto suo, non cercava davvero questo seguito. Viveva un po' in disparte, geloso del suo lavoro e del suo giardino. Ma che lo volesse o no, aveva fatto di questo villaggio un luogo di pellegrinaggio per la pittura. Giverny, grazie a lui, è diventato un nome sulla mappa dell'arte.
+
+Continua a salire, prendi la stradina a sinistra che sale verso la chiesa. È lì, sotto una semplice pietra, che riposa il maestro del luogo. Seguimi.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-2
+@@STITLE=Église Sainte-Radegonde
+Eccoti davanti alla chiesa Sainte-Radegonde, una vecchia chiesa di campagna, e al suo piccolo cimitero. Cerca, contro il muro, una tomba di famiglia senza particolare grandezza. È lì che è sepolto Claude Monet, con i suoi cari.
+
+Prima di andare a vedere il suo splendore, bisogna conoscere la sua ombra. Perché dietro il pittore di giardini felici, c'è un uomo che ha perso molto. La sua prima moglie, Camille, morta giovane. Poi Alice, la sua seconda compagna, con cui crebbe una numerosa famiglia nella casa accanto, scomparsa a sua volta. Poi il suo figlio maggiore. La vecchiaia gli ruba persino gli occhi: delle cateratte offuscano a poco a poco i suoi colori, a lui che viveva attraverso lo sguardo.
+
+Eppure, nel lutto e nella notte che scende sui suoi occhi, non ha mai smesso di scavare, di piantare, di dipingere il suo giardino. Come se i fiori e l'acqua fossero il suo modo di restare in piedi.
+
+È questa ostinazione che vedrai ora, in carne e petali. Scendi di nuovo verso la casa rosa, un po' più in basso nella via. Varca la porta del giardino. Seguimi.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-3
+@@STITLE=Le Clos Normand
+Eccoti nel Clos Normand, il giardino di fiori, davanti alla lunga casa rosa dalle persiane verdi dove visse Monet. Guarda questa esplosione. Aiuole traboccanti, viali sommersi dai colori, fiori a migliaia, piantati fitti, come su una tavolozza.
+
+Qui nulla è lasciato al caso. Monet disegnò questo giardino come dipingeva i suoi quadri: a tocchi di colore, ad accordi, per stagioni. Sceglieva i suoi fiori per le loro tinte, li accostava, li faceva rispondersi. Impiegava giardinieri, dava loro ordini precisi, si arrabbiava per un'aiuola mal riuscita. Si racconta che dicesse di saper fare solo due cose: dipingere e fare giardinaggio.
+
+Davanti a te, la Grande Allée: questo sentiero costeggiato da archi di ferro dove si arrampicano i rosai, e dove le capucine finiscono, in autunno, per invadere il suolo. In fondo, la casa. Un quadro vivente che cambia ogni giorno, ogni ora, con la luce.
+
+Ma il Clos Normand è solo metà dell'opera. Entra un momento nella casa, prima di passare dall'altra parte della strada, là dove batte il vero cuore del capolavoro. Seguimi.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-4
+@@STITLE=La maison rose
+Entra nella casa. Un lungo edificio rosa, basso, dove Monet visse per quasi quarant'anni circondato dai suoi cari. Attraversa le stanze gialle e poi quelle blu: nient'altro che colori, ancora, fin sulle pareti.
+
+E ovunque, appese, stampe giapponesi. Decine di incisioni venute dal Giappone, paesaggi, onde, donne in kimono. Monet le collezionava con passione. Questo Giappone sognato, che non vide mai con i propri occhi, lo nutrì per tutta la vita: quelle inquadrature audaci, quelle campiture di colore, quel modo di guardare un ponte, un albero, un fiore.
+
+Ricorda bene queste immagini giapponesi. Perché, dall'altra parte della strada, Monet volle ricreare proprio quel Giappone. Non copiarlo — sognarlo. Un giardino d'acqua, uno stagno, e un ponte curvo come nelle sue stampe.
+
+Esci di nuovo, e dirigiti verso il passaggio che corre sotto la strada, verso il giardino d'acqua. È lì che finisce la nostra storia, e che comincia il suo dipinto più grande. Seguimi.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-5
+@@STITLE=Le jardin d'eau
+Ci siamo. Il giardino d'acqua. Il salice piangente sul bordo dello stagno, le ninfee posate sull'acqua immobile, i glicini, i bambù — e lì, arcuato sopra l'acqua, dipinto di verde, il ponte giapponese. Ecco il luogo verso cui tutto convergeva.
+
+Questo stagno non esisteva. Nel 1893, Monet acquista questo pezzo di terreno paludoso, dall'altra parte della strada e della ferrovia, e devia un ramo del fiume per creare questo stagno. I vicini si preoccupano: temono che le sue piante venute da altrove avvelenino l'acqua. Lui va comunque avanti. Pianta le sue ninfee, getta questo ponte curvo uscito direttamente dalle sue stampe, e si mette a dipingere.
+
+E lì, qualcosa cambia. Per quasi trent'anni, fino alla sua morte, Monet non dipingerà quasi più altro. Questo stagno, questo ponte, questi fiori sull'acqua. Ancora e ancora, a ogni ora, in ogni luce. Centinaia di quadri. Il mondo intero, ridotto a pochi metri quadrati d'acqua e riflessi.
+
+Alla fine, quasi cieco, dipinge immensi pannelli di ninfee, più grandi di lui, dove l'acqua, il cielo e i fiori si confondono. All'indomani della Grande Guerra, li dona alla Francia, come un monumento alla pace. Sono stati installati a Parigi, all'Orangerie, in due sale ovali dove oggi si entra come in una cappella. Sono nati qui, davanti a questo ponte.
+
+Ecco il capolavoro. Non un dipinto, ma un giardino, e l'acqua che un uomo ha guardato per quarant'anni. Resta un momento sul piccolo ponte. Sporgiti sull'acqua. È l'ultimo dipinto di Monet, ed è ancora vivo. A presto, amico.
+
+@@LANG=nl
+@@TITLE=Giverny — De tuin van één man
+@@DESC=Kunst — de tuin als meesterwerk: veertig jaar waterlelies geschilderd vanaf een Japanse brug.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-0
+@@STITLE=Musée des impressionnismes
+Welkom in Giverny. Kijk naar dit dorp: één enkele lange straat, huizen van steen en pleisterwerk, zachte heuvels, overal tuinen. Een Normandisch dorp zoals duizend andere — behalve dat dit dorp wereldberoemd is. Bezoekers komen uit Japan, uit Amerika, uit Australië, om deze kleine straat te doorkruisen. Allemaal vanwege één man, en vooral vanwege wat hij hier liet groeien.
+
+Je bent dicht bij het Musée des impressionnismes. De naam zegt al genoeg. Want dit dorp was, meer dan een eeuw geleden, een nest van schilders. Vanaf de jaren 1880 vestigden zich hier kunstenaars uit de Verenigde Staten, aangetrokken door het licht, door het platteland, en door de aanwezigheid, aan het eind van de straat, van de beroemdste van allemaal.
+
+Die man is Claude Monet. De vader van het impressionisme, degene die het licht schilderde eerder dan de dingen zelf. In 1883 ontdekt hij Giverny door een treinraam, wordt verliefd op de plek, en vestigt zich er. Hij zal er drieënveertig jaar blijven, tot zijn dood.
+
+Maar dit is wat ik je tijdens deze hele wandeling wil vertellen. Monets grootste meesterwerk is geen doek. Het is een tuin. Een tuin die hij met eigen handen groef, plantte, ontwierp, en die hij veertig jaar lang onophoudelijk schilderde. Tegen het einde van zijn leven schilderde hij bijna nog maar één ding: een vijver, waterlelies, en een klein Japans bruggetje.
+
+Loop de rue Claude Monet op, naar het oosten. Stop voor een huis met een gevel bedekt met wingerd: het voormalige Hôtel Baudy. Volg me.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-1
+@@STITLE=Ancien Hôtel Baudy, depuis l'espace public
+Voor je het voormalige Hôtel Baudy, ooit hoofdkwartier van een hele kolonie schilders. Toen Monet zich in Giverny vestigt, trekt zijn roem jonge kunstenaars aan als een vuurtoren. Velen komen uit Amerika, steken de oceaan over om dezelfde lucht in te ademen als de meester en dezelfde Normandische landschappen te observeren.
+
+Ze logeerden hier, bij de Baudy's. Men vertelt dat de kleine herberg zich geleidelijk veranderde in een kunstenaarspension: er werd tot diep in de nacht over schilderkunst gepraat, men werd er verliefd, men hing er zijn doeken op om ze te verkopen. Achter het huis, een atelier en een rozentuin waar de ezel werd neergezet.
+
+Monet zelf zocht dit gezelschap eigenlijk niet echt op. Hij leefde enigszins terzijde, jaloers waakend over zijn werk en zijn tuin. Maar of hij het nu wilde of niet, hij had van dit dorp een pelgrimsoord voor de schilderkunst gemaakt. Giverny werd dankzij hem een naam op de kaart van de kunst.
+
+Ga verder omhoog, neem het straatje links dat naar de kerk klimt. Daar, onder een eenvoudige steen, rust de meester van deze plek. Volg me.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-2
+@@STITLE=Église Sainte-Radegonde
+Hier sta je voor de kerk Sainte-Radegonde, een oude plattelandskerk, en haar kleine begraafplaats. Zoek, tegen de muur, naar een familiegraf zonder bijzondere grootsheid. Daar ligt Claude Monet begraven, bij de zijnen.
+
+Voordat je zijn pracht gaat zien, moet je zijn schaduw kennen. Want achter de schilder van gelukkige tuinen schuilt een man die veel verloor. Zijn eerste vrouw, Camille, jong gestorven. Toen Alice, zijn tweede levensgezellin, met wie hij een groot gezin grootbracht in het huis ernaast, op haar beurt overleden. Toen zijn oudste zoon. De ouderdom rooft hem zelfs zijn ogen: staar vertroebelt geleidelijk zijn kleuren, hem, die door zijn blik leefde.
+
+En toch, in rouw en in de nacht die over zijn ogen valt, is hij nooit opgehouden zijn tuin te graven, te beplanten, te schilderen. Alsof de bloemen en het water zijn eigen manier waren om overeind te blijven.
+
+Die koppigheid ga je nu zien, in vlees en bloembladen. Ga weer naar beneden, naar het roze huis, iets verderop in de straat. Ga door de tuinpoort. Volg me.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-3
+@@STITLE=Le Clos Normand
+Hier ben je in de Clos Normand, de bloementuin, voor het lange roze huis met groene luiken waar Monet woonde. Kijk naar deze explosie. Overvloeiende border, paden verdronken in kleur, duizenden bloemen, dicht op elkaar geplant, als op een palet.
+
+Hier is niets aan het toeval overgelaten. Monet ontwierp deze tuin zoals hij zijn doeken schilderde: in kleurtoetsen, in akkoorden, per seizoen. Hij koos zijn bloemen om hun tinten, combineerde ze, liet ze op elkaar reageren. Hij had tuinlieden in dienst, gaf hun precieze instructies, werd boos om een mislukt bloembed. Men vertelt dat hij zei slechts goed te zijn in twee dingen: schilderen en tuinieren.
+
+Voor je de Grande Allée: dit pad omzoomd met ijzeren bogen waar klimrozen tegenop groeien, en waar Oost-Indische kers, in de herfst, uiteindelijk de grond overwoekert. Aan het eind, het huis. Een levend schilderij dat elke dag, elk uur, met het licht verandert.
+
+Maar de Clos Normand is slechts de helft van het werk. Ga even het huis binnen, voordat je oversteekt naar de andere kant van de weg, daar waar het ware hart van het meesterwerk klopt. Volg me.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-4
+@@STITLE=La maison rose
+Ga het huis binnen. Een lang, laag roze gebouw, waar Monet bijna veertig jaar woonde, omringd door zijn gezin. Loop door de gele kamers en dan de blauwe: niets dan kleuren, opnieuw, tot op de muren.
+
+En overal, opgehangen, Japanse prenten. Tientallen gravures uit Japan, landschappen, golven, vrouwen in kimono. Monet verzamelde ze met passie. Dit gedroomde Japan, dat hij nooit met eigen ogen zag, voedde hem zijn hele leven: die gedurfde beeldkaders, die vlakke kleurvelden, die manier om naar een brug, een boom, een bloem te kijken.
+
+Onthoud deze Japanse beelden goed. Want aan de andere kant van de weg wilde Monet precies dat Japan herscheppen. Niet kopiëren — dromen. Een watertuin, een vijver, en een gebogen brug zoals op zijn prenten.
+
+Ga weer naar buiten, en loop naar de doorgang die onder de weg door loopt, naar de watertuin. Daar eindigt ons verhaal, en daar begint zijn grootste schilderij. Volg me.
+
+@@SCENE=seed-100-giverny-jardins-de-monet-scene-5
+@@STITLE=Le jardin d'eau
+Hier zijn we. De watertuin. De treurwilg aan de rand van de vijver, de waterlelies rustend op het stille water, de blauweregen, de bamboe — en daar, gewelfd boven het water, groen geschilderd, de Japanse brug. Dit is de plek waarnaar alles toestroomde.
+
+Deze vijver bestond niet. In 1893 koopt Monet dit moerassige stuk grond, aan de andere kant van de weg en de spoorlijn, en leidt een riviertak om om deze vijver te creëren. De buren maken zich zorgen: ze vrezen dat zijn planten van elders het water zullen vergiftigen. Hij zet door. Hij plant zijn waterlelies, gooit deze gebogen brug op, rechtstreeks uit zijn prenten gekomen, en begint te schilderen.
+
+En daar verschuift er iets. Bijna dertig jaar lang, tot aan zijn dood, zal Monet bijna niets anders meer schilderen. Deze vijver, deze brug, deze bloemen op het water. Keer op keer, op elk uur, in elk licht. Honderden doeken. De hele wereld, teruggebracht tot een paar vierkante meter water en spiegelingen.
+
+Aan het einde, bijna blind, schildert hij immense panelen vol waterlelies, groter dan hijzelf, waarin het water, de hemel en de bloemen in elkaar overvloeien. Daags na de Grote Oorlog schenkt hij ze aan Frankrijk, als een monument voor de vrede. Ze werden geïnstalleerd in Parijs, in de Orangerie, in twee ovale zalen die je vandaag betreedt als een kapel. Ze zijn hier geboren, voor deze brug.
+
+Dat is het meesterwerk. Geen doek, maar een tuin, en het water dat een man veertig jaar lang bekeek. Blijf nog even op het bruggetje staan. Buig je over het water. Het is Monets laatste schilderij, en het leeft nog steeds. Tot ziens, vriend.

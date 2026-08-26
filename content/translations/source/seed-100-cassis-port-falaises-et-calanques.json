@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-cassis-port-falaises-et-calanques",
+  "sessionId": "seed-100-cassis-port-falaises-et-calanques-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Cassis",
+  "title": "Cassis — Port, falaises et calanques",
+  "description": "Paysage — lire la rencontre du village, des falaises et des calanques depuis des points publics.",
+  "themes": [
+    "Paysage — lire la rencontre du village, des falaises et des calanques depuis des points publics."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6975,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "es": "Paisaje, leer el encuentro del pueblo, acantilados y calas desde puntos públicos.",
+    "de": "Landschaft, lesen Sie das Treffen des Dorfes, der Klippen und Calanques aus öffentlichen Punkten.",
+    "it": "Paesaggio, leggere l'incontro di villaggio, scogliere e calanche da punti pubblici.",
+    "en": "Landscape, read the meeting of village, cliffs and calanques from public points."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-cassis-port-falaises-et-calanques-scene-0",
+      "index": 0,
+      "title": "Quai des Baux",
+      "text": "Commence sur le quai des Baux, face au bassin du port. Le village de Cassis s’organise en amphithéâtre autour de cette petite ouverture sur la Méditerranée. Regarde les façades qui suivent la courbe du quai, puis l’église et les maisons qui montent en arrière-plan. Ici, la forme urbaine épouse le relief plutôt qu’elle ne cherche à le corriger.\n\nTourne ensuite ton regard vers les deux côtés de la baie. À l’est, le cap Canaille et ses falaises colorées ferment l’horizon. À l’ouest, la côte calcaire conduit vers les calanques. Ces deux masses géologiques très différentes encadrent un même port. Le bassin, protégé par ses jetées, paraît calme en comparaison du large, mais il reste directement soumis aux changements de vent et de lumière.\n\nNotre promenade partira vers l’ouest, en direction du Bestouan puis de Port-Miou. Avant de quitter le quai, repère le château sur sa hauteur. Il domine le port depuis un site défensif ancien et donne une échelle verticale au village. Suis maintenant les voies publiques qui contournent le bassin. Reste attentif aux véhicules et aux zones portuaires réservées. À chaque détour, le cap Canaille réapparaîtra comme un mur lointain derrière toi.",
+      "hash": "bd4bf574",
+      "chars": 1187,
+      "existingSegments": {
+        "it": "seed-100-cassis-port-falaises-et-calanques-scene-0-seg-it",
+        "en": "seed-100-cassis-port-falaises-et-calanques-scene-0-seg-en",
+        "es": "seed-100-cassis-port-falaises-et-calanques-scene-0-seg-es",
+        "de": "seed-100-cassis-port-falaises-et-calanques-scene-0-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-cassis-port-falaises-et-calanques-scene-1",
+      "index": 1,
+      "title": "Traverse du Château",
+      "text": "Depuis un point public sous le château de Cassis, cherche la vue sur le port sans franchir les accès privés. La forteresse occupe une position dominante choisie pour surveiller la baie. Transformé au fil des siècles, le bâtiment n’est pas librement accessible, mais le relief explique son implantation.\n\nRegarde en contrebas. Le bassin dessine une forme protégée au pied des maisons, puis les jetées ouvrent un passage étroit vers la mer. Depuis le quai, tu percevais surtout la succession des façades. Ici, le plan entier du village devient lisible : rues serrées autour du port, pentes vers l’intérieur, falaises de part et d’autre. Le belvédère transforme des impressions de marche en une géographie cohérente.\n\nRedescends vers le port, puis prends la direction de la plage du Bestouan par les cheminements indiqués. Ne cherche pas de raccourci sur les propriétés ou les talus. La route franchit un petit col urbain avant de révéler une nouvelle anse. En marchant, observe le changement de roche et de végétation. Le front construit du village va progressivement céder la place à une côte plus découpée, annonçant l’entrée du parc national des Calanques.",
+      "hash": "556752ea",
+      "chars": 1157,
+      "existingSegments": {
+        "it": "seed-100-cassis-port-falaises-et-calanques-scene-1-seg-it",
+        "es": "seed-100-cassis-port-falaises-et-calanques-scene-1-seg-es",
+        "de": "seed-100-cassis-port-falaises-et-calanques-scene-1-seg-de",
+        "en": "seed-100-cassis-port-falaises-et-calanques-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-cassis-port-falaises-et-calanques-scene-2",
+      "index": 2,
+      "title": "Plage du Bestouan",
+      "text": "Arrête-toi sur la promenade qui borde la plage du Bestouan. Cette anse de galets s’ouvre vers le sud, entre le relief du village et la côte qui conduit aux calanques. Le cap Canaille se dresse en face, de l’autre côté de la baie de Cassis. Sa falaise, parmi les plus hautes falaises maritimes d’Europe, appartient à un massif de roches détritiques dont les teintes contrastent avec le calcaire clair des calanques.\n\nObserve la transparence de l’eau près du rivage, puis la couleur plus sombre du large. Le vent, la houle et la position du soleil modifient rapidement cette lecture. La plage constitue moins une destination isolée qu’un seuil géologique : derrière toi se trouve le port abrité ; devant toi commence une côte étroite, découpée et plus sauvage.\n\nContinue vers la presqu’île puis vers Port-Miou en empruntant uniquement les voies balisées. Le trajet comporte des pentes et peut être exposé à la chaleur. Vérifie les restrictions d’accès au massif, fréquentes en période de risque d’incendie, et renonce si le sentier est fermé. Au prochain arrêt, tu découvriras une calanque exceptionnellement longue, utilisée comme abri naturel depuis bien avant la création du parc national.",
+      "hash": "74a98094",
+      "chars": 1190,
+      "existingSegments": {
+        "es": "seed-100-cassis-port-falaises-et-calanques-scene-2-seg-es",
+        "en": "seed-100-cassis-port-falaises-et-calanques-scene-2-seg-en",
+        "de": "seed-100-cassis-port-falaises-et-calanques-scene-2-seg-de",
+        "it": "seed-100-cassis-port-falaises-et-calanques-scene-2-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-cassis-port-falaises-et-calanques-scene-3",
+      "index": 3,
+      "title": "Calanque de Port-Miou",
+      "text": "Arrête-toi sur un chemin public dominant Port-Miou. La calanque s’enfonce sur plus d’un kilomètre dans le calcaire et constitue un abri naturel remarquable. Elle sert aujourd’hui de port, ce que révèlent les pontons et les embarcations alignées le long de ses rives. Malgré son allure de fjord, sa formation appartient au réseau de vallées calcaires noyées du littoral méditerranéen.\n\nObserve les parois marquées par d’anciennes carrières. Cette activité a modifié le relief : nature, navigation et extraction se sont superposées avant la protection du massif. L’eau paraît immobile au fond de l’échancrure, tandis que le large reste caché par la côte.\n\nSi les conditions et les règles d’accès le permettent, suis le sentier balisé vers la pointe de la Cacau. Prévois une marche sur terrain pierreux, sans garantie d’ombre, et fais demi-tour au moindre doute. Ne quitte jamais les tracés autorisés. Le passage longe le relief entre deux calanques proches mais très différentes : l’une est longue, équipée et tournée vers le port ; l’autre offre une petite anse au fond d’un vallon plus resserré.",
+      "hash": "96e3e749",
+      "chars": 1095,
+      "existingSegments": {
+        "es": "seed-100-cassis-port-falaises-et-calanques-scene-3-seg-es",
+        "en": "seed-100-cassis-port-falaises-et-calanques-scene-3-seg-en",
+        "it": "seed-100-cassis-port-falaises-et-calanques-scene-3-seg-it",
+        "de": "seed-100-cassis-port-falaises-et-calanques-scene-3-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-cassis-port-falaises-et-calanques-scene-4",
+      "index": 4,
+      "title": "Pointe de la Cacau",
+      "text": "Gagne un belvédère public de la pointe de la Cacau en restant sur le sentier autorisé. Ce promontoire calcaire sépare les approches de Port-Miou et de Port-Pin. Le sol clair, la végétation basse et les fissures de la roche racontent un milieu sec, exposé au vent et au sel. Avance avec prudence : les pierres polies peuvent devenir glissantes et les bords ne sont pas toujours protégés.\n\nRegarde la côte plutôt que le vide à tes pieds. Les calanques sont d’anciennes vallées creusées dans le massif puis envahies par la mer après la remontée du niveau marin. Leur forme étroite ne résulte donc pas d’un simple découpage des vagues. Depuis la pointe, cette géographie devient visible : des bras d’eau pénètrent profondément entre des parois abruptes.\n\nRejoins ensuite Port-Pin par le chemin balisé. Selon la saison et la réglementation, certains itinéraires peuvent être interdits ; respecte toujours la signalisation sur place. En approchant, tu verras la calanque s’inscrire dans un vallon plus court que celui de Port-Miou. Son rivage naturel contraste avec les quais et les bateaux observés à l’étape précédente, et forme la dernière étape du parcours.",
+      "hash": "4e15fefa",
+      "chars": 1155,
+      "existingSegments": {
+        "es": "seed-100-cassis-port-falaises-et-calanques-scene-4-seg-es",
+        "it": "seed-100-cassis-port-falaises-et-calanques-scene-4-seg-it",
+        "en": "seed-100-cassis-port-falaises-et-calanques-scene-4-seg-en",
+        "de": "seed-100-cassis-port-falaises-et-calanques-scene-4-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-cassis-port-falaises-et-calanques-scene-5",
+      "index": 5,
+      "title": "Calanque de Port-Pin",
+      "text": "Reste sur le sentier autorisé à l’approche de Port-Pin et cherche un point stable pour observer l’ensemble. La calanque doit son nom aux pins qui s’accrochent aux pentes calcaires. Son bras d’eau, plus court que celui de Port-Miou, se termine par une petite plage encadrée de rochers. La végétation adoucit les parois sans masquer leur structure abrupte.\n\nRegarde vers l’ouverture de la calanque. Le large n’apparaît que dans un cadre étroit, découpé par les deux rives. Cette vue inverse celle du départ : au port de Cassis, le village enveloppait un bassin tourné vers la baie ; ici, le massif enveloppe une eau qui pénètre dans la terre. Entre les deux, le Bestouan et la pointe de la Cacau ont montré la transition progressive du paysage construit vers le parc national.\n\nLa visite s’achève à cet endroit, sous réserve que l’accès soit ouvert et adapté à tes capacités. Le retour emprunte le même itinéraire balisé jusqu’à Port-Miou puis Cassis. Ne prolonge pas vers d’autres sentiers sans préparation. Garde plutôt en mémoire la succession des échelles : quai, port, baie, pointe et vallon noyé. Elle suffit à raconter la relation singulière entre Cassis, ses falaises et ses calanques.",
+      "hash": "28de288b",
+      "chars": 1191,
+      "existingSegments": {
+        "en": "seed-100-cassis-port-falaises-et-calanques-scene-5-seg-en",
+        "es": "seed-100-cassis-port-falaises-et-calanques-scene-5-seg-es",
+        "de": "seed-100-cassis-port-falaises-et-calanques-scene-5-seg-de",
+        "it": "seed-100-cassis-port-falaises-et-calanques-scene-5-seg-it"
+      }
+    }
+  ]
+}

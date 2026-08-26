@@ -1,0 +1,539 @@
+@@LANG=en
+@@TITLE=Marseille — The Cité Radieuse and Modern Marseille
+@@DESC=Art & modernity — Le Corbusier, the MuCEM, and built utopias: Marseille, laboratory of modernity.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-0
+@@STITLE=Entrée publique de la Cité Radieuse
+Look up. In front of you, an immense block of concrete resting on huge legs, like an ocean liner run aground in the middle of a park. A hundred and thirty-seven meters long, eighteen levels, a gray mass dotted with red, blue, and yellow. This is the Cité Radieuse. And for many people from Marseille, for a long time, it was known as "la Maison du Fada" — the madman's house.
+
+The madman is him: Le Corbusier, the most influential architect of the twentieth century. In the aftermath of the war, France is short of housing. He's commissioned to build an apartment block. He delivers a utopia. Completed in 1952, after five years of construction, his "unité d'habitation" isn't a building: it's a vertical village, three hundred and thirty-seven apartments for about sixteen hundred people, with its own streets, shops, a school, all stacked under a single roof.
+
+Look at the base of the building. Those big concrete pillars, the pilotis, lift the whole mass off the ground. Why? To give the land back to the people. Underneath, you can walk, breathe, watch the park stretch out beneath the building. The ground belongs to everyone.
+
+And that concrete, left bare, raw, still bearing the marks of the wooden formwork boards: it was hated at first, then copied all over the world. A revolution was born here, in Marseille. Walk around it, touch the material, and follow me toward the entrance.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-1
+@@STITLE=Entrée publique de la Cité Radieuse
+Come in, and let's go up to the middle of the building. There, a surprise: a corridor, wide, tall, lit up — and shop windows. You're in a street. A real shopping street, but inside the building, suspended in mid-air.
+
+Le Corbusier wanted his residents to hardly ever need to go downstairs. So he slipped, right into the heart of the building, a street with shops: local services, a bookshop, and a small hotel that still exists today, where you can sleep in a 1952 setting. Higher up, on the roof, a school. An entire neighborhood fit inside a single concrete slab.
+
+Walk down this corridor and picture the life here. A generous utopia: house working-class families with dignity, give them light, air, the sea on the horizon, and a community under the same roof. Some loved it. Others found it cold, too calculated, too rigid. The debate has never really stopped.
+
+Since 2016, the Cité Radieuse and the work of Le Corbusier have been listed as UNESCO World Heritage. The madman's house has become a treasure. Time has settled the argument.
+
+Let's push open a door now. We're going into people's homes. Follow me.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-2
+@@STITLE=Entrée publique de la Cité Radieuse
+Let's go into an apartment — some of them can be visited. And here, a second surprise. Seen from outside, the building looks overwhelming; inside, each home is surprisingly bright, refined, clever.
+
+The secret is the through-apartment. It runs from one side of the building to the other, so that you get the morning sun on one façade and the evening sun on the other. A large living room opens across two floors, double-height, extended by a loggia looking out over the landscape. You can breathe.
+
+Look at the proportions, the height, the width of the rooms. Nothing was decided at random. Le Corbusier invented a system of measurement based on the human body, which he called the Modulor: a silhouette of a man, arm raised, that fixes every dimension of the building. The idea is simple and radical: build to the scale of the human being, not the machine.
+
+The colors, too, are deliberate. In the loggias, red, green, deep blue, applied by the architect the way a painter lays out a palette. The gray concrete lights up.
+
+Come back out with me, and let's find the elevator. We're going all the way up, to the roof. Follow me.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-3
+@@STITLE=Entrée publique de la Cité Radieuse
+Here we are on the roof. Breathe. After the dimness of the concrete, suddenly, the sky, the light, and all around, the dry mountains on one side, the sea glimpsed on the other.
+
+This roof isn't a roof. It's a public square set fifty-six meters up in the air. Le Corbusier put everything here: a paddling pool for children, a gymnasium, an open-air theater stage, a running track, benches. And great sculpted concrete shapes, ventilation chimneys that look like modern artworks, like the prows of ships.
+
+Look at how the low walls cut into the landscape. Here, a notch toward the mountain; there, an opening onto the open sea. The architect becomes a painter: he frames the sky like a painting. Nothing is left to chance.
+
+Imagine the building's children climbing up here to swim, between sky and sea, while their parents come home from work. That was the dream: a better life, literally raised above the city.
+
+Stay on the roof. At the far end, in the former gymnasium, something more recent awaits us. Follow me.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-4
+@@STITLE=Entrée publique de la Cité Radieuse
+Walk to this long, low room at the end of the roof. This was Le Corbusier's gymnasium. Since 2013, it's something else: the MAMO, for "Marseille Modulor," a small contemporary art center perched on the roof terrace.
+
+The idea is a beautiful one. Artists of today are invited to occupy this unique place, with the sea, the mountain, and the master's concrete as their backdrop. Living art in dialogue with yesterday's utopia. The machine for living becomes a machine for looking.
+
+And there's something moving in this story. In February 2012, a violent fire ravaged several floors of the Cité Radieuse, destroying apartments and hotel rooms. People feared for it. Everything was patiently rebuilt exactly as it had been. The following year, art moved onto the roof. As if to say: it's alive and well.
+
+Le Corbusier's building, here, isn't a dusty relic. It's a place that breathes, that has burned, that has been reborn, that exhibits. Exactly the spirit of this city.
+
+Let's go back down. We're leaving the concrete ocean liner to walk toward a museum, further down. Follow me.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-5
+@@STITLE=Entrée publique de la Cité Radieuse
+Let's resume walking, calmly, toward the south, heading down toward the Bonneveine neighborhood. Around you, twentieth-century Marseille: large apartment blocks, wide avenues, trees, the bright, beating light.
+
+Use this walk to take a step back. What we just saw up at the top of the boulevard, that concrete madness, isn't an isolated accident. Marseille has always loved the modern gesture, the built utopia, the bet on the future.
+
+You may know its other face, right at the edge of the harbor, at the entrance to the city: the MuCEM and its black concrete lattice set over the water, opened in 2013, but that one looks out toward the sea and history, and it's a different walk. Here, in the south, modernity is different. More intimate, more everyday.
+
+It's the modernity of the buildings people actually live in, of museums hidden among the pines, of artists born from the pavement of Marseille. That's what we're heading down toward now.
+
+Just a few more minutes of walking. The museum is there, tucked away in the greenery. Follow me.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-6
+@@STITLE=Entrée publique du Musée d'art contemporain
+Here we are in front of the MAC, the Musée d'Art Contemporain de Marseille, set in a pine grove in the Bonneveine neighborhood. Nothing like a palace: a low, sober, discreet building, almost hidden beneath the trees.
+
+It opened in 1994, and has just reopened in 2023 after lengthy renovations. Inside, it's the adventure of art from the sixties right up to today. Nouveau Réalisme, Arte Povera, torn-up posters, everyday objects turned into artworks, words painted large by the artist Ben.
+
+What I want you to notice is Marseille's choice here. Many cities jealously guard their old art, their old masters, their gilding. Marseille, on the other hand, wanted a great museum for the most contemporary, most unsettling art, the kind that shakes things up. Consistent, for a city that has never been afraid of the new.
+
+Take the time to go in if you can, or to walk along the rooms. And save some room for one last encounter, outside, in the garden: that of a local boy who became a giant. Follow me toward the sculptures.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-7
+@@STITLE=Entrée publique du Musée d'art contemporain
+Let's go out into the garden, among the sculptures. And let me introduce you to someone: César. César Baldaccini, born in Marseille in 1921, son of Italian immigrants, raised not far from here, over toward the Belle de Mai. One of the greatest French sculptors of the twentieth century.
+
+You already know his work, without realizing it. He's the one who sculpted "le Pouce" — the Thumb — that giant thumb standing toward the sky you can see in several cities. He's also the one whose work gave its shape to French cinema's top awards: the César statuette is his design.
+
+His great idea was to take the discarded material of the modern world and turn it into art. He compresses entire cars into blocks of twisted metal. He makes foam "expand" until it overflows and sets solid. Scrap metal, waste, the raw material of factories become beauty.
+
+Do you see the connection? Le Corbusier takes bare concrete and makes it into a utopia. César takes crushed sheet metal and makes it into a sculpture. Two men from Marseille, two ways of saying the same thing: the poorest material can become the noblest.
+
+Stay a moment. We're going to wrap up right here. Follow me a few more steps.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-8
+@@STITLE=Entrée publique du Musée d'art contemporain
+Let's stop here, in this garden, among the sculptures and the pines. This is where I want to close our story.
+
+Think back over the path we've walked. Way up at the top of the boulevard, an architect sets a concrete village on stilts and dreams of a better life for workers. Here, down below, a kid from the Belle de Mai crushes cars and stands them up like totems. Between the two, a city that chose to build a great museum for art that unsettles, and that, at the edge of its harbor, dared to set a cube of black lace facing the sea.
+
+Do you see the thread? Marseille has never been a museum-city, frozen in its past. It's a laboratory-city. It takes risks, sometimes gets it wrong, builds utopias that get mocked before being listed as world treasures. Yesterday's "Maison du Fada" is today's pilgrimage site for architects.
+
+And it isn't over. This city keeps testing the future, building, breaking, starting over. It burns and it's reborn, just like its Cité Radieuse.
+
+So, before you leave, do one thing. Turn back toward the top of the boulevard, look for the long gray mass of Le Corbusier's ocean liner, up there in the light. And tell yourself that you've just walked through seventy years of boldness, concrete, and dreams. Thank you for following me this far. Stay a little longer under the pines, and let the idea sink in. See you soon.
+
+@@LANG=es
+@@TITLE=Marsella — La Cité Radieuse y las modernidades
+@@DESC=Arte y modernidad — Le Corbusier, el MuCEM y las utopías construidas: Marsella, laboratorio de la modernidad.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-0
+@@STITLE=Entrée publique de la Cité Radieuse
+Levanta la vista. Delante de ti, un inmenso bloque de hormigón posado sobre enormes patas, como un transatlántico varado en medio de un parque. Ciento treinta y siete metros de largo, dieciocho niveles, una masa gris salpicada de rojo, azul y amarillo. Es la Cité Radieuse. Y para muchos marselleses, durante mucho tiempo, fue «la Maison du Fada»: la casa del loco.
+
+El loco es él: Le Corbusier, el arquitecto más influyente del siglo veinte. Al término de la guerra, Francia carece de viviendas. Le encargan un edificio. Él entrega una utopía. Terminada en 1952, tras cinco años de obras, su «unité d'habitation» no es un edificio: es un pueblo vertical, trescientos treinta y siete apartamentos para unas mil seiscientas personas, con sus calles, sus comercios, su escuela, todo apilado bajo un solo techo.
+
+Mira los pies del edificio. Esos gruesos pilares de hormigón, los pilotis, elevan toda la masa por encima del suelo. ¿Por qué? Para devolver la tierra a la gente. Debajo, puedes caminar, respirar, ver cómo el parque se extiende bajo el edificio. El suelo pertenece a todos.
+
+Y ese hormigón dejado desnudo, en bruto, con la marca todavía visible de las tablas del encofrado: se odió, y luego se copió por todo el mundo. Aquí, en Marsella, nació una revolución. Da la vuelta, toca el material, y sígueme hacia la entrada.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-1
+@@STITLE=Entrée publique de la Cité Radieuse
+Entra, y subamos hasta la mitad del edificio. Ahí, una sorpresa: un pasillo ancho, alto, iluminado, y escaparates. Estás en una calle. Una verdadera calle comercial, pero dentro del edificio, suspendida en el aire.
+
+Le Corbusier quería que sus habitantes casi no necesitaran bajar. Así que deslizó, en el corazón mismo del edificio, una calle con tiendas: servicios de proximidad, una librería y un pequeño hotel que todavía existe, donde puedes dormir en un decorado de 1952. Más arriba, en la azotea, una escuela. Todo un barrio cabía en una sola barra de hormigón.
+
+Camina por este pasillo e imagina la vida. Una utopía generosa: alojar dignamente a las familias obreras, darles luz, aire, el mar en el horizonte, y una comunidad bajo el mismo techo. Algunos lo adoraron. Otros lo encontraron frío, demasiado pensado, demasiado rígido. El debate nunca ha cesado.
+
+Desde 2016, la Cité Radieuse y la obra de Le Corbusier están inscritas en el patrimonio mundial de la humanidad. La casa del loco se ha convertido en un tesoro. El tiempo ha zanjado el debate.
+
+Empujemos una puerta, ahora. Entramos en las casas de la gente. Sígueme.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-2
+@@STITLE=Entrée publique de la Cité Radieuse
+Entremos en un apartamento; hay algunos que se pueden visitar. Y ahí, segunda sorpresa. Visto desde fuera, el edificio parece aplastante; por dentro, cada vivienda es sorprendentemente luminosa, fina, inteligente.
+
+El secreto es el apartamento pasante. Recorre de un extremo a otro del edificio, de modo que tienes el sol de la mañana en una fachada y el de la tarde en la otra. Un gran salón se abre a doble altura, sobre dos plantas, prolongado por una loggia sobre el paisaje. Se respira.
+
+Mira las proporciones, la altura, la anchura de las habitaciones. Nada se decidió al azar. Le Corbusier inventó una regla de medida basada en el cuerpo humano, que llamó el Modulor: una silueta de hombre, con el brazo levantado, que fija todas las dimensiones del edificio. La idea es simple y radical: construir a la medida del hombre, no de la máquina.
+
+Los colores, también, están pensados. En las loggias, rojo, verde, azul profundo, aplicados por el arquitecto como un pintor coloca su paleta. El hormigón gris se ilumina.
+
+Sal de nuevo conmigo, y busquemos el ascensor. Subimos hasta arriba del todo, a la azotea. Sígueme.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-3
+@@STITLE=Entrée publique de la Cité Radieuse
+Aquí estamos en la azotea. Respira. Después de la penumbra del hormigón, de golpe, el cielo, la luz, y a tu alrededor, las montañas secas por un lado, el mar adivinado por el otro.
+
+Esta azotea no es una azotea. Es una plaza pública situada a cincuenta y seis metros de altura. Le Corbusier puso ahí de todo: una piscina infantil para los niños, un gimnasio, un escenario de teatro al aire libre, una pista para correr, bancos. Y grandes formas de hormigón esculpidas, chimeneas de ventilación que parecen obras modernas, proas de barco.
+
+Mira cómo los muros bajos recortan el paisaje. Aquí una escotadura hacia la montaña, allá una abertura hacia el mar abierto. El arquitecto se convierte en pintor: enmarca el cielo como un cuadro. Nada se deja al azar.
+
+Imagina a los niños del edificio subiendo a nadar ahí arriba, entre cielo y mar, mientras sus padres vuelven del trabajo. Ese era el sueño: una vida mejor, literalmente elevada por encima de la ciudad.
+
+Quédate en la azotea. En el otro extremo, en el antiguo gimnasio, algo más reciente nos espera. Sígueme.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-4
+@@STITLE=Entrée publique de la Cité Radieuse
+Camina hasta esa sala larga y baja, al final de la azotea. Era el gimnasio de Le Corbusier. Desde 2013, es otra cosa: el MAMO, «Marseille Modulor», un pequeño centro de arte contemporáneo encaramado en la azotea-terraza.
+
+La idea es hermosa. Se invita a artistas de hoy a ocupar este lugar único, con el mar, la montaña y el hormigón del maestro como decorado. Arte vivo que dialoga con la utopía de ayer. La máquina para habitar se convierte en una máquina para mirar.
+
+Y hay, en esta historia, algo conmovedor. En febrero de 2012, un violento incendio devastó varios pisos de la Cité Radieuse, destruyendo apartamentos y habitaciones del hotel. Se temió por ella. Todo se reconstruyó pacientemente, idéntico a como era. Al año siguiente, el arte se instalaba en la azotea. Como una forma de decir: sigue bien viva.
+
+Le Corbusier, aquí, no es una reliquia polvorienta. Es un lugar que respira, que ha ardido, que ha renacido, que expone. Exactamente el espíritu de esta ciudad.
+
+Bajemos de nuevo. Dejamos el transatlántico de hormigón para caminar hacia un museo, más abajo. Sígueme.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-5
+@@STITLE=Entrée publique de la Cité Radieuse
+Retomemos la marcha, tranquilamente, hacia el sur, bajando hacia el barrio de Bonneveine. A tu alrededor, el Marsella del siglo veinte: grandes edificios, avenidas anchas, árboles, la luz que golpea.
+
+Aprovecha este trayecto para tomar distancia. Lo que acabamos de ver arriba del bulevar, esa locura de hormigón, no es un accidente aislado. Marsella siempre ha amado el gesto moderno, la utopía construida, la apuesta por el futuro.
+
+Quizás conoces su otro rostro, justo al borde del puerto, en la entrada de la ciudad: el MuCEM y su celosía de hormigón negro posada sobre el agua, inaugurado en 2013, pero ese mira al mar y a la historia, y es otro paseo. Aquí, al sur, la modernidad es distinta. Más íntima, más cotidiana.
+
+Es la de los edificios donde se vive, de los museos escondidos entre los pinos, de los artistas nacidos del adoquín marsellés. Es hacia ellos que bajamos ahora.
+
+Todavía unos minutos de camino. El museo está ahí, agazapado entre el verdor. Sígueme.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-6
+@@STITLE=Entrée publique du Musée d'art contemporain
+Aquí estamos delante del MAC, el Musée d'Art Contemporain de Marseille, situado en un pinar del barrio de Bonneveine. Nada que ver con un palacio: un edificio bajo, sobrio, discreto, casi borrado bajo los árboles.
+
+Abrió en 1994, y acaba de reabrir en 2023 tras largas obras. Dentro, está la aventura del arte desde los años sesenta hasta hoy. El nuevo realismo, el arte povera, los carteles rasgados, los objetos cotidianos convertidos en obras, las palabras pintadas a gran escala por el artista Ben.
+
+Lo que quiero que notes es la elección de Marsella. Muchas ciudades guardan celosamente su arte antiguo, sus viejos maestros, sus dorados. Marsella, en cambio, quiso un gran museo para el arte más contemporáneo, más desconcertante, el que sacude. Coherente, para una ciudad que nunca ha tenido miedo de lo nuevo.
+
+Tómate el tiempo de entrar si puedes, o de recorrer las salas. Y guarda sitio para un último encuentro, fuera, en el jardín: el de un hijo de la tierra convertido en gigante. Sígueme hacia las esculturas.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-7
+@@STITLE=Entrée publique du Musée d'art contemporain
+Salgamos al jardín, entre las esculturas. Y déjame presentarte a alguien: César. César Baldaccini, nacido en Marsella en 1921, hijo de inmigrantes italianos, criado no muy lejos de aquí, por el lado de la Belle de Mai. Uno de los mayores escultores franceses del siglo veinte.
+
+Conoces su obra sin saberlo. Es él quien esculpió «le Pouce», ese pulgar gigante alzado hacia el cielo que se ve en varias ciudades. Es él, también, quien con una de sus obras dio forma a los premios del cine francés: la estatuilla de los César es obra suya.
+
+Su gran idea es tomar el desecho del mundo moderno y convertirlo en arte. Comprime coches enteros en bloques de metal retorcido. Hace «expandir» espuma que se desborda y se solidifica. La chatarra, el desperdicio, la materia bruta de las fábricas se convierten en belleza.
+
+¿Ves la conexión? Le Corbusier toma el hormigón desnudo y hace de él una utopía. César toma la chapa triturada y hace de ella una escultura. Dos marselleses, dos maneras de decir lo mismo: la materia más pobre puede convertirse en la más noble.
+
+Quédate un instante. Vamos a concluir aquí mismo. Sígueme unos pasos más.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-8
+@@STITLE=Entrée publique du Musée d'art contemporain
+Detengámonos aquí, en este jardín, entre las esculturas y los pinos. Es aquí donde quiero cerrar nuestra historia.
+
+Piensa en el camino recorrido. Arriba del todo del bulevar, un arquitecto planta sobre pilotis un pueblo de hormigón y sueña con una vida mejor para los obreros. Aquí, más abajo, un chaval de la Belle de Mai tritura coches y los erige en tótems. Entre los dos, una ciudad que eligió construir un gran museo para el arte que incomoda, y que, al borde de su puerto, se atrevió a colocar un cubo de encaje negro frente al mar.
+
+¿Ves el hilo? Marsella nunca ha sido una ciudad-museo, congelada en su pasado. Es una ciudad-laboratorio. Se arriesga, a veces se equivoca, construye utopías de las que se burlan antes de catalogarlas como tesoros del mundo. La «Maison du Fada» de ayer es el lugar de peregrinaje de los arquitectos de hoy.
+
+Y esto no ha terminado. Esta ciudad sigue poniendo a prueba el futuro, construyendo, rompiendo, empezando de nuevo. Arde y renace, como su Cité Radieuse.
+
+Así que, antes de irte, haz una cosa. Vuélvete hacia lo alto del bulevar, busca con la mirada la larga masa gris del transatlántico de Le Corbusier, allá arriba en la luz. Y dite que acabas de atravesar setenta años de audacia, de hormigón y de sueño. Gracias por haberme seguido hasta aquí. Quédate un poco más bajo los pinos, y deja que la idea se asiente. Hasta pronto.
+
+@@LANG=de
+@@TITLE=Marseille — Die Cité Radieuse und die Modernen
+@@DESC=Kunst & Moderne — Le Corbusier, das MuCEM und gebaute Utopien: Marseille, Laboratorium der Moderne.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-0
+@@STITLE=Entrée publique de la Cité Radieuse
+Heb den Blick. Vor dir ein gewaltiger Betonblock auf riesigen Stelzen, wie ein Ozeandampfer, der mitten in einem Park gestrandet ist. Hundertsiebenunddreißig Meter lang, achtzehn Ebenen, eine graue Masse, gesprenkelt mit Rot, Blau und Gelb. Das ist die Cité Radieuse. Und für viele Marseillaner war sie lange „la Maison du Fada" — das Haus des Verrückten.
+
+Der Verrückte, das ist er: Le Corbusier, der einflussreichste Architekt des zwanzigsten Jahrhunderts. Nach dem Krieg fehlt es Frankreich an Wohnraum. Man beauftragt ihn mit einem Gebäude. Er liefert eine Utopie. 1952 fertiggestellt, nach fünf Jahren Bauzeit, ist seine „unité d'habitation" kein Gebäude: es ist ein vertikales Dorf, dreihundertsiebenunddreißig Wohnungen für etwa sechzehnhundert Menschen, mit eigenen Straßen, Geschäften, einer Schule, alles unter einem einzigen Dach gestapelt.
+
+Schau auf den Fuß des Gebäudes. Diese dicken Betonpfeiler, die pilotis, heben die gesamte Masse vom Boden ab. Warum? Um den Menschen den Boden zurückzugeben. Darunter kannst du gehen, atmen, sehen, wie der Park unter dem Gebäude verläuft. Der Boden gehört allen.
+
+Und dieser Beton, roh belassen, nackt, mit den Spuren der Schalungsbretter noch sichtbar: man hasste ihn, dann kopierte man ihn überall auf der Welt. Hier, in Marseille, wurde eine Revolution geboren. Geh herum, berühre das Material, und folge mir zum Eingang.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-1
+@@STITLE=Entrée publique de la Cité Radieuse
+Geh hinein, und lass uns bis zur Mitte des Gebäudes hinaufsteigen. Dort eine Überraschung: ein breiter, hoher, hell erleuchteter Flur — und Schaufenster. Du bist in einer Straße. Einer echten Einkaufsstraße, aber im Inneren des Gebäudes, in der Luft schwebend.
+
+Le Corbusier wollte, dass seine Bewohner kaum je nach unten müssten. Also schob er, mitten ins Herz des Gebäudes, eine Straße mit Geschäften: Nahversorgung, eine Buchhandlung und ein kleines Hotel, das es noch heute gibt, wo du in einer Kulisse von 1952 schlafen kannst. Weiter oben, auf dem Dach, eine Schule. Ein ganzes Viertel steckte in einem einzigen Betonriegel.
+
+Geh diesen Flur entlang und stell dir das Leben hier vor. Eine großzügige Utopie: Arbeiterfamilien würdig unterbringen, ihnen Licht, Luft, das Meer am Horizont geben, und eine Gemeinschaft unter demselben Dach. Manche liebten es. Andere fanden es kalt, zu durchdacht, zu starr. Die Debatte hat nie aufgehört.
+
+Seit 2016 sind die Cité Radieuse und das Werk Le Corbusiers als Weltkulturerbe eingetragen. Das Haus des Verrückten ist zu einem Schatz geworden. Die Zeit hat entschieden.
+
+Öffnen wir jetzt eine Tür. Wir betreten die Wohnungen der Menschen. Folge mir.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-2
+@@STITLE=Entrée publique de la Cité Radieuse
+Gehen wir in eine Wohnung — es gibt welche, die man besichtigen kann. Und da, zweite Überraschung. Von außen betrachtet wirkt das Gebäude erdrückend; im Inneren ist jede Wohnung erstaunlich hell, fein, klug durchdacht.
+
+Das Geheimnis ist die durchgehende Wohnung. Sie zieht sich von einer Seite des Gebäudes zur anderen, sodass du morgens die Sonne auf der einen Fassade hast und abends auf der anderen. Ein großer Wohnraum öffnet sich über zwei Geschosse, doppelte Raumhöhe, fortgesetzt durch eine Loggia zur Landschaft hin. Man kann durchatmen.
+
+Schau dir die Proportionen an, die Höhe, die Breite der Räume. Nichts wurde zufällig entschieden. Le Corbusier erfand ein Maßsystem, das auf dem menschlichen Körper beruht und das er den Modulor nannte: die Silhouette eines Mannes, den Arm erhoben, die alle Abmessungen des Gebäudes festlegt. Die Idee ist einfach und radikal: nach dem Maß des Menschen bauen, nicht der Maschine.
+
+Auch die Farben sind durchdacht. In den Loggien Rot, Grün, tiefes Blau, vom Architekten aufgetragen wie ein Maler seine Palette anlegt. Der graue Beton erstrahlt.
+
+Komm mit mir wieder heraus, und lass uns den Aufzug suchen. Wir fahren ganz nach oben, auf das Dach. Folge mir.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-3
+@@STITLE=Entrée publique de la Cité Radieuse
+Da sind wir nun auf dem Dach. Atme durch. Nach dem Halbdunkel des Betons, plötzlich, der Himmel, das Licht, und ringsherum, auf der einen Seite die trockenen Berge, auf der anderen das erahnte Meer.
+
+Dieses Dach ist kein Dach. Es ist ein öffentlicher Platz, sechsundfünfzig Meter über dem Boden. Le Corbusier hat alles dorthin gesetzt: ein Planschbecken für Kinder, eine Turnhalle, eine Freilichtbühne, eine Laufbahn, Bänke. Und große, skulptierte Betonformen, Lüftungsschächte, die wie moderne Kunstwerke aussehen, wie Schiffsbüge.
+
+Schau, wie die niedrigen Mauern die Landschaft ausschneiden. Hier eine Kerbe zum Berg, dort eine Öffnung zum offenen Meer. Der Architekt wird zum Maler: er rahmt den Himmel wie ein Gemälde. Nichts ist dem Zufall überlassen.
+
+Stell dir die Kinder des Gebäudes vor, wie sie hier oben schwimmen gehen, zwischen Himmel und Meer, während ihre Eltern von der Arbeit heimkehren. Das war der Traum: ein besseres Leben, buchstäblich über die Stadt erhoben.
+
+Bleib auf dem Dach. Am anderen Ende, in der ehemaligen Turnhalle, erwartet uns etwas Neueres. Folge mir.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-4
+@@STITLE=Entrée publique de la Cité Radieuse
+Geh bis zu diesem langen, niedrigen Saal am Ende des Dachs. Das war Le Corbusiers Turnhalle. Seit 2013 ist es etwas anderes: das MAMO, für „Marseille Modulor", ein kleines Zentrum für zeitgenössische Kunst, auf der Dachterrasse hoch oben.
+
+Die Idee ist schön. Man lädt heutige Künstler ein, diesen einzigartigen Ort zu besetzen, mit dem Meer, dem Berg und dem Beton des Meisters als Kulisse. Lebendige Kunst im Dialog mit der Utopie von gestern. Die Wohnmaschine wird zur Betrachtungsmaschine.
+
+Und es gibt, in dieser Geschichte, etwas Bewegendes. Im Februar 2012 verwüstete ein heftiges Feuer mehrere Stockwerke der Cité Radieuse, zerstörte Wohnungen und Hotelzimmer. Man fürchtete um sie. Alles wurde geduldig originalgetreu wiederaufgebaut. Im Jahr darauf zog die Kunst auf das Dach ein. Wie eine Art zu sagen: sie lebt.
+
+Le Corbusier ist hier keine verstaubte Reliquie. Es ist ein Ort, der atmet, der gebrannt hat, der wiedergeboren wurde, der ausstellt. Genau der Geist dieser Stadt.
+
+Steigen wir wieder hinunter. Wir verlassen den Betondampfer, um zu einem Museum weiter unten zu gehen. Folge mir.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-5
+@@STITLE=Entrée publique de la Cité Radieuse
+Setzen wir unseren Weg ruhig fort, nach Süden, hinunter zum Viertel Bonneveine. Um dich herum das Marseille des zwanzigsten Jahrhunderts: große Gebäude, breite Alleen, Bäume, das gleißende Licht.
+
+Nutze diesen Weg, um Abstand zu gewinnen. Was wir gerade ganz oben auf dem Boulevard gesehen haben, dieser Betonwahnsinn, ist kein isolierter Unfall. Marseille hat immer die moderne Geste geliebt, die gebaute Utopie, die Wette auf die Zukunft.
+
+Du kennst vielleicht ihr anderes Gesicht, ganz am Rand des Hafens, am Eingang der Stadt: das MuCEM mit seinem schwarzen Betongeflecht über dem Wasser, 2013 eröffnet, aber das schaut auf das Meer und die Geschichte, und das ist ein anderer Spaziergang. Hier, im Süden, ist die Moderne anders. Intimer, alltäglicher.
+
+Es ist die Moderne der Gebäude, in denen man lebt, der Museen, versteckt zwischen den Pinien, der Künstler, die aus dem Pflaster von Marseille geboren wurden. Zu ihnen steigen wir jetzt hinunter.
+
+Noch ein paar Minuten zu Fuß. Das Museum liegt dort, im Grün geduckt. Folge mir.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-6
+@@STITLE=Entrée publique du Musée d'art contemporain
+Da sind wir nun vor dem MAC, dem Musée d'Art Contemporain de Marseille, in einem Pinienhain im Viertel Bonneveine gelegen. Nichts wie ein Palast: ein niedriges, nüchternes, diskretes Gebäude, fast unter den Bäumen verschwindend.
+
+Es eröffnete 1994, und hat gerade 2023 nach langen Bauarbeiten wieder eröffnet. Drinnen ist das Abenteuer der Kunst von den sechziger Jahren bis heute. Der Nouveau Réalisme, die Arte Povera, die zerrissenen Plakate, die alltäglichen Gegenstände, die zu Kunstwerken wurden, die großformatig gemalten Worte des Künstlers Ben.
+
+Was ich dich bemerken lassen möchte, ist die Entscheidung von Marseille. Viele Städte hüten eifersüchtig ihre alte Kunst, ihre alten Meister, ihre Vergoldungen. Marseille dagegen wollte ein großes Museum für die zeitgenössischste, verstörendste Kunst, jene, die aufrüttelt. Folgerichtig, für eine Stadt, die sich nie vor dem Neuen gefürchtet hat.
+
+Nimm dir die Zeit, hineinzugehen, wenn du kannst, oder die Säle entlangzugehen. Und behalte Platz für eine letzte Begegnung, draußen, im Garten: die eines Kindes des Landes, das zum Riesen wurde. Folge mir zu den Skulpturen.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-7
+@@STITLE=Entrée publique du Musée d'art contemporain
+Gehen wir hinaus in den Garten, zwischen die Skulpturen. Und lass mich dir jemanden vorstellen: César. César Baldaccini, geboren 1921 in Marseille, Sohn italienischer Einwanderer, nicht weit von hier aufgewachsen, in Richtung Belle de Mai. Einer der größten französischen Bildhauer des zwanzigsten Jahrhunderts.
+
+Du kennst sein Werk, ohne es zu wissen. Er ist es, der „le Pouce" schuf, jenen riesigen Daumen, der sich zum Himmel erhebt und den man in mehreren Städten sieht. Er ist es auch, dessen Werk den Preisen des französischen Films ihre Form gab: die César-Statuette ist seine Arbeit.
+
+Seine große Idee war es, den Abfall der modernen Welt zu nehmen und Kunst daraus zu machen. Er presst ganze Autos zu Blöcken aus verdrehtem Metall. Er lässt Schaum „expandieren", der überläuft und erstarrt. Schrott, Abfall, das rohe Material der Fabriken werden zu Schönheit.
+
+Siehst du den Zusammenhang? Le Corbusier nimmt nackten Beton und macht daraus eine Utopie. César nimmt zerdrücktes Blech und macht daraus eine Skulptur. Zwei Männer aus Marseille, zwei Arten, dasselbe zu sagen: das ärmste Material kann zum edelsten werden.
+
+Bleib noch einen Moment. Wir werden hier genau schließen. Folge mir noch ein paar Schritte.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-8
+@@STITLE=Entrée publique du Musée d'art contemporain
+Bleiben wir hier stehen, in diesem Garten, zwischen den Skulpturen und den Pinien. Hier möchte ich unsere Geschichte abschließen.
+
+Denk an den zurückgelegten Weg. Ganz oben auf dem Boulevard setzt ein Architekt ein Betondorf auf Stelzen und träumt von einem besseren Leben für die Arbeiter. Hier unten zerdrückt ein Junge aus der Belle de Mai Autos und richtet sie als Totems auf. Zwischen beiden eine Stadt, die sich entschieden hat, ein großes Museum für verstörende Kunst zu bauen, und die es am Rand ihres Hafens wagte, einen Würfel aus schwarzer Spitze dem Meer entgegenzustellen.
+
+Siehst du den roten Faden? Marseille war nie eine Museumsstadt, in ihrer Vergangenheit erstarrt. Sie ist eine Laborstadt. Sie geht Risiken ein, irrt sich manchmal, baut Utopien, über die man sich lustig macht, bevor man sie zu Weltschätzen erklärt. Das „Maison du Fada" von gestern ist heute Pilgerstätte der Architekten.
+
+Und das ist noch nicht vorbei. Diese Stadt testet weiterhin die Zukunft, baut, bricht ab, fängt neu an. Sie brennt und ersteht wieder, wie ihre Cité Radieuse.
+
+Also, bevor du gehst, tu eines. Dreh dich zum oberen Ende des Boulevards um, such mit den Augen die lange graue Masse des Ozeandampfers von Le Corbusier, dort oben im Licht. Und sag dir, dass du gerade siebzig Jahre Kühnheit, Beton und Traum durchquert hast. Danke, dass du mir bis hierher gefolgt bist. Bleib noch etwas unter den Pinien, und lass die Idee nachwirken. Bis bald.
+
+@@LANG=it
+@@TITLE=Marsiglia — La Cité Radieuse e le modernità
+@@DESC=Arte e modernità — Le Corbusier, il MuCEM e le utopie costruite: Marsiglia, laboratorio della modernità.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-0
+@@STITLE=Entrée publique de la Cité Radieuse
+Alza lo sguardo. Davanti a te, un immenso blocco di cemento posato su enormi zampe, come un transatlantico arenato in mezzo a un parco. Centotrentasette metri di lunghezza, diciotto livelli, una massa grigia punteggiata di rosso, blu e giallo. È la Cité Radieuse. E per molti marsigliesi, a lungo, è stata «la Maison du Fada»: la casa del pazzo.
+
+Il pazzo è lui: Le Corbusier, l'architetto più influente del ventesimo secolo. All'uscita dalla guerra, alla Francia mancano alloggi. Gli viene commissionato un edificio. Lui consegna un'utopia. Terminata nel 1952, dopo cinque anni di cantiere, la sua «unité d'habitation» non è un edificio: è un villaggio verticale, trecentotrentasette appartamenti per circa milleseicento persone, con le sue strade, i suoi negozi, la sua scuola, tutto impilato sotto un unico tetto.
+
+Guarda i piedi dell'edificio. Questi grossi pilastri di cemento, i pilotis, sollevano tutta la massa da terra. Perché? Per restituire la terra alla gente. Sotto, puoi camminare, respirare, vedere il parco stendersi sotto l'edificio. Il suolo appartiene a tutti.
+
+E quel cemento lasciato nudo, grezzo, con ancora il segno delle tavole della cassaforma: lo si è odiato, poi copiato ovunque nel mondo. Qui, a Marsiglia, è nata una rivoluzione. Fai il giro, tocca la materia, e seguimi verso l'ingresso.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-1
+@@STITLE=Entrée publique de la Cité Radieuse
+Entra, e saliamo fino a metà dell'edificio. Lì, una sorpresa: un corridoio largo, alto, illuminato — e vetrine. Sei in una strada. Una vera via commerciale, ma all'interno dell'edificio, sospesa in aria.
+
+Le Corbusier voleva che i suoi abitanti non avessero quasi mai bisogno di scendere. Così ha fatto scivolare, nel cuore dell'edificio, una strada con negozi: servizi di prossimità, una libreria e un piccolo hotel che esiste ancora, dove puoi dormire in un decoro del 1952. Più in alto, sul tetto, una scuola. Un intero quartiere stava in un'unica barra di cemento.
+
+Cammina in questo corridoio e immagina la vita. Un'utopia generosa: alloggiare dignitosamente le famiglie operaie, dare loro luce, aria, il mare all'orizzonte, e una comunità sotto lo stesso tetto. Alcuni l'hanno adorata. Altri l'hanno trovata fredda, troppo pensata, troppo rigida. Il dibattito non si è mai fermato.
+
+Dal 2016, la Cité Radieuse e l'opera di Le Corbusier sono classificate patrimonio mondiale dell'umanità. La casa del pazzo è diventata un tesoro. Il tempo ha deciso.
+
+Spingiamo una porta, adesso. Entriamo nelle case della gente. Seguimi.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-2
+@@STITLE=Entrée publique de la Cité Radieuse
+Entriamo in un appartamento — ce ne sono alcuni visitabili. E lì, seconda sorpresa. Visto da fuori, l'edificio appare schiacciante; all'interno, ogni alloggio è sorprendentemente luminoso, raffinato, intelligente.
+
+Il segreto è l'appartamento passante. Corre da un lato all'altro dell'edificio, così hai il sole del mattino su una facciata e quello della sera sull'altra. Un grande soggiorno si apre su due piani, a doppia altezza, prolungato da una loggia sul paesaggio. Si respira.
+
+Guarda le proporzioni, l'altezza, la larghezza delle stanze. Niente è deciso a caso. Le Corbusier ha inventato una regola di misura basata sul corpo umano, che ha chiamato il Modulor: una silhouette d'uomo, braccio alzato, che fissa tutte le dimensioni dell'edificio. L'idea è semplice e radicale: costruire a misura d'uomo, non di macchina.
+
+Anche i colori sono studiati. Nelle logge, rosso, verde, blu profondo, posati dall'architetto come un pittore stende la sua tavolozza. Il cemento grigio si illumina.
+
+Esci di nuovo con me, e cerchiamo l'ascensore. Saliamo fino in cima, sul tetto. Seguimi.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-3
+@@STITLE=Entrée publique de la Cité Radieuse
+Eccoci sul tetto. Respira. Dopo la penombra del cemento, all'improvviso, il cielo, la luce, e tutt'intorno, le montagne aride da un lato, il mare intuito dall'altro.
+
+Questo tetto non è un tetto. È una piazza pubblica posata a cinquantasei metri d'altezza. Le Corbusier vi ha messo di tutto: una piscina per bambini, una palestra, un palcoscenico teatrale all'aperto, una pista per correre, panchine. E grandi forme di cemento scolpite, camini di aerazione che sembrano opere moderne, prue di nave.
+
+Guarda come i muretti bassi ritagliano il paesaggio. Qui un'incisura verso la montagna, là un'apertura verso il largo. L'architetto si fa pittore: incornicia il cielo come un quadro. Niente è lasciato al caso.
+
+Immagina i bambini dell'edificio che salgono a nuotare lassù, tra cielo e mare, mentre i genitori tornano dal lavoro. Era questo, il sogno: una vita migliore, letteralmente elevata sopra la città.
+
+Resta sul tetto. All'altra estremità, nell'antica palestra, qualcosa di più recente ci aspetta. Seguimi.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-4
+@@STITLE=Entrée publique de la Cité Radieuse
+Cammina fino a quella lunga sala bassa, in fondo al tetto. Era la palestra di Le Corbusier. Dal 2013, è qualcos'altro: il MAMO, per «Marseille Modulor», un piccolo centro d'arte contemporanea appollaiato sul tetto-terrazza.
+
+L'idea è bella. Vi si invitano artisti di oggi a occupare questo luogo unico, con il mare, la montagna e il cemento del maestro come sfondo. Arte viva che dialoga con l'utopia di ieri. La macchina per abitare diventa una macchina per guardare.
+
+E c'è, in questa storia, qualcosa di commovente. Nel febbraio 2012, un violento incendio ha devastato diversi piani della Cité Radieuse, distruggendo appartamenti e camere dell'hotel. Si è temuto per lei. Tutto è stato pazientemente ricostruito identico a com'era. L'anno dopo, l'arte si installava sul tetto. Come un modo di dire: è ben viva.
+
+Le Corbusier, qui, non è una reliquia polverosa. È un luogo che respira, che ha bruciato, che è rinato, che espone. Esattamente lo spirito di questa città.
+
+Scendiamo di nuovo. Lasciamo il transatlantico di cemento per camminare verso un museo, più in basso. Seguimi.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-5
+@@STITLE=Entrée publique de la Cité Radieuse
+Riprendiamo la marcia, tranquillamente, verso sud, scendendo verso il quartiere di Bonneveine. Intorno a te, la Marsiglia del ventesimo secolo: grandi edifici, ampi viali, alberi, la luce che batte.
+
+Approfitta di questo tragitto per prendere le distanze. Ciò che abbiamo appena visto in cima al viale, quella follia di cemento, non è un incidente isolato. Marsiglia ha sempre amato il gesto moderno, l'utopia costruita, la scommessa sul futuro.
+
+Conosci forse il suo altro volto, proprio sul bordo del porto, all'ingresso della città: il MuCEM e la sua trama di cemento nero posata sull'acqua, aperto nel 2013, ma quello guarda al mare e alla storia, ed è un'altra passeggiata. Qui, a sud, la modernità è diversa. Più intima, più quotidiana.
+
+È quella degli edifici in cui si vive, dei musei nascosti tra i pini, degli artisti nati dal selciato marsigliese. È verso di loro che scendiamo adesso.
+
+Ancora qualche minuto di cammino. Il museo è lì, rannicchiato nel verde. Seguimi.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-6
+@@STITLE=Entrée publique du Musée d'art contemporain
+Eccoci davanti al MAC, il Musée d'Art Contemporain de Marseille, posato in una pineta del quartiere di Bonneveine. Niente a che vedere con un palazzo: un edificio basso, sobrio, discreto, quasi cancellato sotto gli alberi.
+
+Ha aperto nel 1994, e ha appena riaperto nel 2023 dopo lunghi lavori. Dentro, c'è l'avventura dell'arte dagli anni sessanta a oggi. Il nouveau réalisme, l'arte povera, i manifesti lacerati, gli oggetti quotidiani diventati opere, le parole dipinte in grande dall'artista Ben.
+
+Ciò che voglio farti notare è la scelta di Marsiglia. Molte città custodiscono gelosamente la loro arte antica, i loro vecchi maestri, i loro ori. Marsiglia, invece, ha voluto un grande museo per l'arte più contemporanea, più spiazzante, quella che scuote. Coerente, per una città che non ha mai avuto paura del nuovo.
+
+Prenditi il tempo di entrare se puoi, o di percorrere le sale. E tieni un po' di tempo per un ultimo incontro, fuori, nel giardino: quello di un figlio del luogo diventato gigante. Seguimi verso le sculture.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-7
+@@STITLE=Entrée publique du Musée d'art contemporain
+Usciamo nel giardino, tra le sculture. E lasciami presentarti qualcuno: César. César Baldaccini, nato a Marsiglia nel 1921, figlio di immigrati italiani, cresciuto non molto lontano da qui, dalle parti della Belle de Mai. Uno dei più grandi scultori francesi del ventesimo secolo.
+
+Conosci la sua opera senza saperlo. È lui che ha scolpito «le Pouce», quel pollice gigante rivolto verso il cielo che si vede in diverse città. È sempre lui la cui opera ha dato la sua forma ai premi del cinema francese: la statuetta dei César è opera sua.
+
+La sua grande idea è prendere lo scarto del mondo moderno e farne arte. Comprime automobili intere in blocchi di metallo contorto. Fa «espandere» della schiuma che trabocca e si solidifica. La ferraglia, il rifiuto, la materia grezza delle fabbriche diventano bellezza.
+
+Vedi il legame? Le Corbusier prende il cemento nudo e ne fa un'utopia. César prende la lamiera schiacciata e ne fa una scultura. Due marsigliesi, due modi di dire la stessa cosa: la materia più povera può diventare la più nobile.
+
+Resta un istante. Concluderemo proprio qui. Seguimi ancora qualche passo.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-8
+@@STITLE=Entrée publique du Musée d'art contemporain
+Fermiamoci qui, in questo giardino, tra le sculture e i pini. È qui che voglio chiudere la nostra storia.
+
+Ripensa al cammino percorso. In cima al viale, un architetto pianta su dei pilotis un villaggio di cemento e sogna una vita migliore per gli operai. Qui, più in basso, un ragazzino della Belle de Mai schiaccia automobili e le erige a totem. Tra i due, una città che ha scelto di costruire un grande museo per l'arte che disturba, e che, sul bordo del suo porto, ha osato posare un cubo di pizzo nero di fronte al mare.
+
+Vedi il filo? Marsiglia non è mai stata una città-museo, congelata nel suo passato. È una città-laboratorio. Si assume rischi, a volte sbaglia, costruisce utopie di cui ci si prende gioco prima di classificarle tesori del mondo. La «Maison du Fada» di ieri è il pellegrinaggio degli architetti di oggi.
+
+E non è finita. Questa città continua a testare il futuro, a costruire, a rompere, a ricominciare. Brucia e rinasce, come la sua Cité Radieuse.
+
+Allora, prima di partire, fai una cosa. Voltati verso la cima del viale, cerca con lo sguardo la lunga massa grigia del transatlantico di Le Corbusier, lassù nella luce. E dì a te stesso che hai appena attraversato settant'anni di audacia, di cemento e di sogno. Grazie per avermi seguito fin qui. Resta ancora un po' sotto i pini, e lascia che l'idea si sedimenti. A presto.
+
+@@LANG=nl
+@@TITLE=Marseille — De Cité Radieuse en de moderniteit
+@@DESC=Kunst en moderniteit — Le Corbusier, het MuCEM en gebouwde utopieën: Marseille, laboratorium van de moderniteit.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-0
+@@STITLE=Entrée publique de la Cité Radieuse
+Kijk omhoog. Voor je een immens blok beton op enorme poten, als een oceaanstomer die midden in een park is gestrand. Honderdzevenendertig meter lang, achttien niveaus, een grijze massa doorspekt met rood, blauw en geel. Dit is de Cité Radieuse. En voor veel Marseillanen was het lange tijd "la Maison du Fada" — het huis van de gek.
+
+De gek, dat is hij: Le Corbusier, de invloedrijkste architect van de twintigste eeuw. Na de oorlog kampt Frankrijk met woningnood. Men geeft hem opdracht voor een gebouw. Hij levert een utopie af. Voltooid in 1952, na vijf jaar bouwwerk, is zijn "unité d'habitation" geen flatgebouw: het is een verticaal dorp, driehonderdzevenendertig appartementen voor ongeveer zestienhonderd mensen, met eigen straten, winkels, een school, alles gestapeld onder één dak.
+
+Kijk naar de voet van het gebouw. Die dikke betonnen pilaren, de pilotis, tillen de hele massa van de grond. Waarom? Om de grond aan de mensen terug te geven. Eronder kun je lopen, ademen, het park onder het gebouw door zien lopen. De grond behoort iedereen toe.
+
+En dat beton, ruw en naakt gelaten, nog met de sporen van de bekistingsplanken erop: het werd gehaat, en later overal ter wereld gekopieerd. Hier, in Marseille, werd een revolutie geboren. Loop eromheen, raak het materiaal aan, en volg me naar de ingang.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-1
+@@STITLE=Entrée publique de la Cité Radieuse
+Ga naar binnen, en laten we naar het midden van het gebouw klimmen. Daar wacht een verrassing: een brede, hoge, verlichte gang — en etalages. Je staat in een straat. Een echte winkelstraat, maar binnen in het gebouw, in de lucht opgehangen.
+
+Le Corbusier wilde dat zijn bewoners bijna nooit naar beneden hoefden. Dus schoof hij, in het hart van het gebouw, een straat met winkels: buurtdiensten, een boekwinkel en een klein hotel dat nog altijd bestaat, waar je kunt slapen in een decor uit 1952. Hoger op, op het dak, een school. Een hele wijk paste in één enkele betonnen staaf.
+
+Loop door deze gang en stel je het leven hier voor. Een gulle utopie: arbeidersgezinnen waardig huisvesten, hun licht, lucht, de zee aan de horizon geven, en een gemeenschap onder hetzelfde dak. Sommigen waren er dol op. Anderen vonden het koud, te doordacht, te star. Het debat is nooit gestopt.
+
+Sinds 2016 staan de Cité Radieuse en het werk van Le Corbusier op de Werelderfgoedlijst. Het huis van de gek is een schat geworden. De tijd heeft beslist.
+
+Laten we nu een deur openduwen. We gaan de woningen van de mensen binnen. Volg me.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-2
+@@STITLE=Entrée publique de la Cité Radieuse
+Laten we een appartement binnengaan — sommige zijn te bezoeken. En daar, een tweede verrassing. Van buiten gezien lijkt het gebouw verpletterend; van binnen is elke woning verrassend licht, fijn, doordacht.
+
+Het geheim is het doorwoonappartement. Het loopt van de ene kant van het gebouw naar de andere, zodat je 's ochtends de zon op de ene gevel hebt en 's avonds op de andere. Een grote woonkamer opent zich over twee verdiepingen, dubbelhoog, verlengd door een loggia met uitzicht op het landschap. Je kunt ademen.
+
+Kijk naar de verhoudingen, de hoogte, de breedte van de kamers. Niets is willekeurig besloten. Le Corbusier vond een maatstelsel uit dat gebaseerd is op het menselijk lichaam, dat hij de Modulor noemde: een silhouet van een man, arm omhoog, dat alle afmetingen van het gebouw vastlegt. Het idee is eenvoudig en radicaal: bouwen op maat van de mens, niet van de machine.
+
+Ook de kleuren zijn doordacht. In de loggia's rood, groen, diepblauw, aangebracht door de architect zoals een schilder zijn palet aanbrengt. Het grijze beton licht op.
+
+Kom weer naar buiten met mij, en laten we de lift zoeken. We gaan helemaal naar boven, naar het dak. Volg me.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-3
+@@STITLE=Entrée publique de la Cité Radieuse
+Hier zijn we op het dak. Adem. Na de schemering van het beton, plotseling, de hemel, het licht, en rondom, de droge bergen aan de ene kant, de zee die je vermoedt aan de andere.
+
+Dit dak is geen dak. Het is een openbaar plein, zesenvijftig meter hoog. Le Corbusier heeft er alles op gezet: een pierebadje voor kinderen, een gymzaal, een openluchttoneel, een looppiste, banken. En grote gebeeldhouwde betonvormen, ventilatieschoorstenen die op moderne kunstwerken lijken, op scheepsboegen.
+
+Kijk hoe de lage muurtjes het landschap uitsnijden. Hier een inkeping naar de berg, daar een opening naar de open zee. De architect wordt schilder: hij lijst de hemel in als een schilderij. Niets is aan het toeval overgelaten.
+
+Stel je de kinderen van het gebouw voor die hier boven komen zwemmen, tussen hemel en zee, terwijl hun ouders van het werk thuiskomen. Dat was de droom: een beter leven, letterlijk verheven boven de stad.
+
+Blijf op het dak. Aan het andere eind, in de voormalige gymzaal, wacht ons iets recenters. Volg me.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-4
+@@STITLE=Entrée publique de la Cité Radieuse
+Loop naar die lange, lage zaal aan het eind van het dak. Dit was de gymzaal van Le Corbusier. Sinds 2013 is het iets anders: het MAMO, voor "Marseille Modulor," een klein hedendaags kunstcentrum, hoog op het dakterras.
+
+Het idee is mooi. Men nodigt hedendaagse kunstenaars uit om deze unieke plek te bezetten, met de zee, de berg en het beton van de meester als decor. Levende kunst die in dialoog gaat met de utopie van gisteren. De machine om in te wonen wordt een machine om naar te kijken.
+
+En er is, in dit verhaal, iets ontroerends. In februari 2012 verwoestte een hevige brand meerdere verdiepingen van de Cité Radieuse, en vernietigde appartementen en hotelkamers. Men vreesde voor het gebouw. Alles werd geduldig identiek herbouwd. Het jaar daarop vestigde de kunst zich op het dak. Als een manier om te zeggen: het leeft nog.
+
+Le Corbusier is hier geen stoffig relikwie. Het is een plek die ademt, die gebrand heeft, die herboren is, die exposeert. Precies de geest van deze stad.
+
+Laten we weer naar beneden gaan. We verlaten de betonnen oceaanstomer om naar een museum te lopen, verderop naar beneden. Volg me.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-5
+@@STITLE=Entrée publique de la Cité Radieuse
+Laten we onze wandeling rustig hervatten, naar het zuiden, afdalend naar de wijk Bonneveine. Om je heen het Marseille van de twintigste eeuw: grote gebouwen, brede lanen, bomen, het felle licht.
+
+Gebruik dit traject om afstand te nemen. Wat we net helemaal boven op de boulevard hebben gezien, die betonnen dwaasheid, is geen op zichzelf staand ongeluk. Marseille heeft altijd van het moderne gebaar gehouden, van de gebouwde utopie, van de gok op de toekomst.
+
+Je kent misschien haar andere gezicht, helemaal aan de rand van de haven, bij de ingang van de stad: het MuCEM en zijn zwarte betonnen kant, over het water gespannen, geopend in 2013, maar dat kijkt naar de zee en de geschiedenis, en dat is een andere wandeling. Hier, in het zuiden, is de moderniteit anders. Intiemer, alledaagser.
+
+Het is die van de gebouwen waar men woont, van musea verscholen tussen de pijnbomen, van kunstenaars geboren uit het Marseillaanse plaveisel. Naar hen dalen we nu af.
+
+Nog een paar minuten lopen. Het museum ligt daar, weggedoken in het groen. Volg me.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-6
+@@STITLE=Entrée publique du Musée d'art contemporain
+Hier staan we voor het MAC, het Musée d'Art Contemporain de Marseille, gelegen in een pijnbomenbos in de wijk Bonneveine. Niets weg van een paleis: een laag, sober, discreet gebouw, bijna weggevaagd onder de bomen.
+
+Het opende in 1994, en is net in 2023 heropend na lange werkzaamheden. Binnen is het het avontuur van de kunst vanaf de jaren zestig tot vandaag. Het nouveau réalisme, de arte povera, de gescheurde affiches, de alledaagse voorwerpen die kunstwerken werden, de woorden groot geschilderd door kunstenaar Ben.
+
+Wat ik je wil laten opmerken, is de keuze van Marseille. Veel steden bewaken jaloers hun oude kunst, hun oude meesters, hun goud. Marseille wilde daarentegen een groot museum voor de meest hedendaagse, meest verwarrende kunst, die welke schudt. Consequent, voor een stad die nooit bang is geweest voor het nieuwe.
+
+Neem de tijd om binnen te gaan als je kunt, of langs de zalen te lopen. En bewaar plaats voor een laatste ontmoeting, buiten, in de tuin: die van een kind van de streek dat een reus werd. Volg me naar de beelden.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-7
+@@STITLE=Entrée publique du Musée d'art contemporain
+Laten we naar buiten gaan in de tuin, tussen de beelden. En laat me je iemand voorstellen: César. César Baldaccini, geboren in Marseille in 1921, zoon van Italiaanse immigranten, opgegroeid niet ver hiervandaan, richting de Belle de Mai. Een van de grootste Franse beeldhouwers van de twintigste eeuw.
+
+Je kent zijn werk zonder het te weten. Hij is degene die "le Pouce" beeldhouwde, die reusachtige duim die naar de hemel wijst en die je in verschillende steden ziet. Hij is het ook wiens werk vorm gaf aan de prijzen van de Franse film: het César-beeldje is zijn ontwerp.
+
+Zijn grote idee is het afval van de moderne wereld te nemen en er kunst van te maken. Hij perst hele auto's samen tot blokken verwrongen metaal. Hij laat schuim "uitdijen" dat overloopt en verhardt. Schroot, afval, de ruwe materie van de fabrieken worden schoonheid.
+
+Zie je het verband? Le Corbusier neemt kaal beton en maakt er een utopie van. César neemt verpletterd plaatstaal en maakt er een beeldhouwwerk van. Twee Marseillanen, twee manieren om hetzelfde te zeggen: de armste materie kan de nobelste worden.
+
+Blijf nog even. We gaan hier zelf afronden. Volg me nog een paar stappen.
+
+@@SCENE=seed-100-marseille-cite-radieuse-modernites-scene-8
+@@STITLE=Entrée publique du Musée d'art contemporain
+Laten we hier stoppen, in deze tuin, tussen de beelden en de pijnbomen. Hier wil ik ons verhaal afsluiten.
+
+Denk terug aan de afgelegde weg. Helemaal boven op de boulevard zet een architect een betonnen dorp op stelten en droomt van een beter leven voor de arbeiders. Hier, meer naar beneden, verplettert een jongen uit de Belle de Mai auto's en richt ze op als totems. Tussen de twee in, een stad die ervoor koos een groot museum te bouwen voor kunst die schuurt, en die, aan de rand van haar haven, het aandurfde een kubus van zwart kant tegenover de zee te plaatsen.
+
+Zie je de draad? Marseille is nooit een museumstad geweest, bevroren in haar verleden. Het is een laboratoriumstad. Ze neemt risico's, vergist zich soms, bouwt utopieën waar men eerst mee spot voordat ze tot wereldschatten worden verklaard. Het "Maison du Fada" van gisteren is de bedevaartsplek van de architecten van vandaag.
+
+En het is nog niet voorbij. Deze stad blijft de toekomst testen, bouwen, breken, opnieuw beginnen. Ze brandt en herrijst, net als haar Cité Radieuse.
+
+Doe dus, voordat je vertrekt, één ding. Draai je om naar het bovenste eind van de boulevard, zoek met je ogen de lange grijze massa van Le Corbusiers oceaanstomer, daarboven in het licht. En zeg tegen jezelf dat je zojuist zeventig jaar durf, beton en droom hebt doorkruist. Bedankt dat je me tot hier hebt gevolgd. Blijf nog wat langer onder de pijnbomen, en laat het idee bezinken. Tot snel.

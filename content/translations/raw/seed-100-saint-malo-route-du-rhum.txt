@@ -1,0 +1,439 @@
+@@LANG=en
+@@TITLE=Saint-Malo — The Madmen of the Atlantic
+@@DESC=Sport — Every four years, the city watches the madmen of the Atlantic set off alone.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-0
+@@STITLE=Esplanade Saint-Vincent
+Stand facing the basins, your back to the ramparts. Today, the water is calm, a few masts sway gently. The hulls rub softly against their moorings, the façades reflect in trembling patches, and the ramparts behind you look like a granite balcony set above the harbor. But one autumn in four, this quiet stretch of water becomes the center of the sailing world.
+
+Every four years, in early November, dozens of racing yachts moor here, side by side: giant trimarans, round-the-world monohulls, small boats belonging to enthusiasts. Around them grows a city within the city — pontoons, screens, the smell of crêpes and resin — and a human tide flows down from the ramparts to come lay eyes on them. Visitors move slowly, noses tilted up toward the masts, as if inside a makeshift cathedral of carbon, halyards, and folded sails. This is the Route du Rhum. In a few days, all these sailors will set off alone, each on their own boat, without a crew, to cross the Atlantic all the way to Pointe-à-Pitre, in Guadeloupe. Some 3,500 nautical miles. Alone, yes, you heard right.
+
+Where does this mad idea come from? From 1978. At the time, the great solo transatlantic race is English, and its organizers have just tightened its rules. On the French side, an advertising man, Michel Etevenon, senses the deal of the century: create a French transat, free, open to any boat, backed by Guadeloupean rum producers eager to promote their product. The course retraces the old trade route between the Antilles and the ports of the Channel. The name falls into place on its own: the Route du Rhum. It speaks at once of the cargo, the voyage, the Atlantic, and that touch of celebration that clings to Saint-Malo even under a low sky.
+
+No one, that day, imagines the first edition will give birth to one of the most beautiful stories in sport — and one of the most tragic. That's the mix that makes this place so particular: here, the quay applauds, but it also knows the sea signs no promises. Look again at the mooring lines and the rusted rings: everything seems designed to hold fast, while the race speaks only of letting go. I'll keep both for you on this walk.
+
+Climb up onto the rampart, just above the Grande Porte. Let's look at all this from higher up.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-1
+@@STITLE=Esplanade Saint-Vincent
+From here, in race years, you'd be looking down over a forest of masts. Take a minute to get acquainted with this fleet, because it tells the whole range of human madness.
+
+There are the Ultims, first: immense trimarans that, lifted by their foils, rise up and literally fly above the water — the fastest of them swallow the Atlantic in barely a week. Then the great offshore racing monohulls, the round-the-world ones. The Class40s, more modest, where professionals rub shoulders with very serious amateurs. And my favorite: the Rhum class, the boats of old-timers and dreamers, the spirit of 1978 in person.
+
+What makes this race unique is that everyone crosses paths. During village week, the skippers push through the crowd to reach their boat; you can see the hulls up close, chat with a sailor in oilskins, get a cap signed. Then, the day before the start, the boats pass one by one through the lock that closes off the basins, applauded like bullfighters entering the ring, and go anchor out in the roadstead.
+
+Follow the rampart to the west, above the rooftops. I'm taking you to see the sea of the start.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-2
+@@STITLE=Remparts ouest, plage de Bon-Secours
+Lean over the parapet. Below, the plage de Bon-Secours and its seawater pool. Ahead of you, the roadstead, the islets, then the open sea.
+
+Now, picture this landscape on a Sunday in November, a Rhum year. On these ramparts, a dense crowd, bundled up, flags, children on shoulders. Out at sea, the fleet tacks back and forth waiting for the hour. And to the west, that dark silhouette set on the horizon is the cap Fréhel: the competitors will skim close under its cliffs before turning south — down there too, the moor is black with people.
+
+The cannon fires. The line releases, the bows accelerate, helicopters circle like flies. It's a strange moment, when you think about it: an entire city gathered to watch people leave.
+
+An hour later, the horizon has swallowed everything. The city empties all at once, and for three weeks, everyone here will follow, morning and evening, the little beacons of the boats on the map, the way you check in on family news.
+
+Come down off the rampart through the porte de Dinan, and walk to the long jetty that closes off the harbor. That's where the solitude begins.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-3
+@@STITLE=Môle des Noires
+Walk out on the jetty, as far as the wind will let you. This breakwater is the last handshake from land. On departure days, loved ones come here, wave their arms one last time, and watch a sail become a dot.
+
+Let's talk about what awaits whoever is on board. Three weeks alone, sometimes much more. You never really sleep: naps of a few minutes, jolted awake by alarms, because a cargo ship or a squall can appear at any moment. You watch the instruments, you make repairs at night half-soaked, you talk to yourself, you sometimes cry. And in the gales, you're afraid — everyone says so, the greatest champions first of all.
+
+So why do it? Everyone has their own answer. The taste for the open sea, glory, silence, a score to settle with life. This city, in any case, understands them without needing an explanation: it has always watched its sailors leave for far away and for a long time — its old Cape Horners used to be gone for years at a stretch.
+
+Come back toward the ramparts, follow them north, and climb up to the big round tower at the northwest corner. I have a graver story to tell you up there.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-4
+@@STITLE=Tour Bidouane
+Facing the open sea now. I have to tell you the cost of all this.
+
+November 1978, the first Route du Rhum. Among the competitors, a huge star: Alain Colas. Winner of the English transat in 1972, the first sailor to have completed a solo round-the-world voyage on a multihull. Three years earlier, a line had nearly torn off his foot during a maneuver; he was said to be finished. He sets off anyway, on his trimaran Manureva — Éric Tabarly's former boat, renamed with a Tahitian word that speaks of birds and journeys.
+
+On November 16, in the middle of a storm off the Azores, his radio sends a last message. Then nothing more. Neither the boat nor the man will ever be found.
+
+France holds its breath for weeks. The following year, a song will bear the name of the vanished boat — you may have already hummed it without knowing it was about him.
+
+Since then, every edition sets off carrying this memory on board. The sea here makes legends, and it keeps a few of them for itself.
+
+Now follow the north rampart, to the gate that opens onto the great bay. It's time to talk about those who come back.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-5
+@@STITLE=Porte Saint-Thomas, face à la baie
+Below you, the plage de l'Éventail and the whole bay where the fleet parades before departures. It's a very old habit: those who want the west set off from here. As early as 1534, Jacques Cartier left this roadstead with two ships to look for a passage to Asia — he would find Canada and its great river instead.
+
+But the heiress I want to introduce you to is named Florence Arthaud. November 1990: on her trimaran Pierre 1er, she stands up to the storms and all the favorites, and wins the Route du Rhum. A woman, alone, ahead of every man — a first in a major solo transat. The press nicknames her "the little fiancée of the Atlantic." The nickname is too tame for her: she's a magnificent wild spirit, who survived a terrible car accident at seventeen and chose the sea against everyone's advice.
+
+Twelve years later, another woman, Ellen MacArthur, would make her mark among the monohulls. The door Florence opened never closed again.
+
+She died in 2015, far from the ocean, in a helicopter accident. Here, her name still makes voices drop a little.
+
+Go through the gate and down onto the dike. The city's largest beach, for its most beautiful story.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-6
+@@STITLE=Plage du Sillon
+Walk a little way along this dike. Three kilometers of sand: the plage du Sillon. On days of the highest tides, the sea leaps right over the parapet — but that's a story for another walk.
+
+Here's the story I promised. November 1978, the first Route du Rhum. After three weeks at sea, everything comes down to two men who couldn't be more different. Michel Malinovsky, an experienced sailor, on a big, sleek racing monohull built for speed: Kriter V. And Mike Birch, a quiet Canadian, a former cowboy turned skipper, on a small yellow eleven-meter trimaran: Olympus. The little yellow boat shouldn't stand a chance against the big one.
+
+In the early morning, within sight of Guadeloupe, Malinovsky sees himself as the winner. But the wind drops, and the trimaran, light as an insect, slides through where the monohull gets bogged down. Birch comes back, mile after mile, and almost overtakes him right on the line. Twenty-three days of racing. Ninety-eight seconds apart. One of the closest finishes in the history of sailing, and the founding legend of this race: from that day on, everyone knows that here, nothing is ever decided in advance.
+
+Forty years later, in 2018, history stutters magnificently: Francis Joyon overtakes François Gabart in the final miles and wins by a mere seven minutes — after just seven days at sea, on those flying trimarans I told you about.
+
+That's why, every four years, this city watches its madmen set off: because they bring it back stories no one else knows how to make.
+
+My walk ends here, facing the bay. If you come back some November during the race, climb up on the ramparts and shout along with everyone else. Thank you for walking with me. Hold your course.
+
+@@LANG=es
+@@TITLE=Saint-Malo — Los locos del Atlántico
+@@DESC=Deporte — Cada cuatro años, la ciudad ve partir en solitario a los locos del Atlántico.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-0
+@@STITLE=Esplanade Saint-Vincent
+Ponte de cara a las dársenas, de espaldas a las murallas. Hoy, el agua está tranquila, algunos mástiles se balancean. Los cascos rozan suavemente sus amarras, las fachadas se reflejan en manchas temblorosas, y las murallas detrás de ti parecen un balcón de granito posado sobre el puerto. Pero un otoño de cada cuatro, esta lámina de agua tranquila se convierte en el centro del mundo de la vela.
+
+Cada cuatro años, a principios de noviembre, decenas de veleros de carrera se amarran aquí, uno junto a otro: trimaranes gigantes, monocascos de vuelta al mundo, pequeños barcos de aficionados. A su alrededor crece una ciudad dentro de la ciudad —pantalanes, pantallas, olor a crepe y a resina— y una marea humana baja de las murallas para venir a tocarlos con la mirada. Los visitantes avanzan despacio, la nariz levantada hacia los mástiles, como en una catedral provisional de carbono, drizas y velas plegadas. Es la Route du Rhum. Dentro de unos días, todos estos marinos partirán solos, cada uno en su barco, sin tripulación, a cruzar el Atlántico hasta Pointe-à-Pitre, en Guadalupe. Unas 3.500 millas náuticas. Solos, has oído bien.
+
+¿De dónde viene esta idea loca? De 1978. En esa época, la gran carrera transatlántica en solitario es inglesa, y sus organizadores acaban de restringir sus reglas. Del lado francés, un hombre de la publicidad, Michel Etevenon, olfatea la jugada del siglo: crear una transatlántica francesa, libre, abierta a todos los barcos, respaldada por los productores de ron de Guadalupe que quieren dar a conocer su producto. El recorrido retoma la vieja ruta del comercio entre las Antillas y los puertos del Canal de la Mancha. El nombre surge solo: la Route du Rhum. Dice a la vez la mercancía, el viaje, el Atlántico, y esa pizca de fiesta que se pega a Saint-Malo incluso cuando el cielo está bajo.
+
+Nadie, ese día, imagina que la primera edición dará a luz una de las historias más hermosas del deporte, y una de las más trágicas. Es esa mezcla lo que hace este lugar tan especial: aquí, el muelle aplaude, pero también sabe que el mar no firma ninguna promesa. Mira otra vez las amarras y las argollas oxidadas: todo parece pensado para retener, mientras que la carrera solo habla de soltar. Te guardo las dos cosas para este paseo.
+
+Sube a la muralla, justo encima de la Grande Porte. Vamos a mirar todo esto desde más arriba.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-1
+@@STITLE=Esplanade Saint-Vincent
+Desde aquí, en los años de carrera, dominarías un bosque de mástiles. Tómate un minuto para conocer esta flota, porque cuenta toda la gama de la locura humana.
+
+Están los Ultim, primero: trimaranes inmensos que, alzados por sus foils, se elevan y literalmente vuelan sobre el agua —los más rápidos se tragan el Atlántico en poco más de una semana. Luego los grandes monocascos de altura, los de las vueltas al mundo. Los Class40, más modestos, donde se codean profesionales y aficionados muy serios. Y mi preferida: la clase Rhum, la de los barcos antiguos y los soñadores, el espíritu de 1978 en persona.
+
+Lo que hace única esta carrera es que todo el mundo se cruza. Durante la semana del pueblo náutico, los patrones se abren paso entre la multitud para llegar a su barco; puedes ver los cascos muy de cerca, charlar con un marino en impermeable, hacerte firmar una gorra. Luego, la víspera de la salida, los barcos pasan uno a uno la esclusa que cierra las dársenas, aplaudidos como toreros a la entrada del ruedo, y van a fondear en la rada.
+
+Sigue la muralla hacia el oeste, por encima de los tejados. Te llevo a ver el mar de la salida.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-2
+@@STITLE=Remparts ouest, plage de Bon-Secours
+Asómate al parapeto. Abajo, la plage de Bon-Secours y su piscina de agua de mar. Delante de ti, la rada, los islotes, y luego el mar abierto.
+
+Ahora, imagina este paisaje un domingo de noviembre, año de Rhum. Sobre estas murallas, una multitud compacta, bien abrigada, banderas, niños a hombros. En alta mar, la flota va y viene esperando la hora. Y al oeste, esa silueta oscura posada en el horizonte es el cap Fréhel: los competidores irán a rozarlo bajo sus acantilados antes de girar hacia el sur; allí también, el páramo está negro de gente.
+
+El cañón dispara. La línea se libera, las proas aceleran, los helicópteros giran como moscas. Es un momento extraño, si lo piensas: toda una ciudad reunida para ver marchar a gente.
+
+Una hora después, el horizonte se lo ha tragado todo. La ciudad se vacía de golpe, y durante tres semanas, cada uno aquí seguirá, mañana y tarde, las pequeñas balizas de los barcos en el mapa, como quien pide noticias de la familia.
+
+Baja de la muralla por la porte de Dinan, y camina hasta el largo espigón que cierra el puerto. Ahí es donde empieza la soledad.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-3
+@@STITLE=Môle des Noires
+Avanza por el espigón, tan lejos como el viento te lo permita. Este dique es el último apretón de manos de la tierra. Los días de salida, los allegados vienen aquí, agitan los brazos una última vez, y ven una vela convertirse en un punto.
+
+Hablemos de lo que espera a quien está a bordo. Tres semanas solo, a veces mucho más. Nunca se duerme realmente: siestas de unos minutos, despertado por alarmas, porque un carguero o un chubasco pueden surgir en cualquier momento. Se vigilan los instrumentos, se reparan cosas de noche medio metido en el agua, se habla solo, a veces se llora. Y en las galernas, se tiene miedo —todos lo dicen, los más grandes campeones los primeros.
+
+Entonces, ¿por qué? Cada cual tiene su respuesta. El gusto por el mar abierto, la gloria, el silencio, una revancha que tomarse con la vida. Esta ciudad, en todo caso, los comprende sin que se lo expliquen: siempre ha visto partir a sus marinos lejos y por mucho tiempo —sus antiguos marinos del cabo de Hornos se ausentaban años enteros.
+
+Vuelve hacia las murallas, síguelas hacia el norte, y sube hasta la gran torre redonda de la esquina noroeste. Tengo una historia más grave que contarte allá arriba.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-4
+@@STITLE=Tour Bidouane
+De cara al mar abierto, ahora. Tengo que contarte el precio de todo esto.
+
+Noviembre de 1978, primera Route du Rhum. Entre los competidores, una gran estrella: Alain Colas. Vencedor de la transatlántica inglesa en 1972, primer marino en haber completado una vuelta al mundo en solitario en un multicasco. Tres años antes, un cabo casi le arranca un pie durante una maniobra; se le dio por acabado. Sale de todos modos, en su trimarán Manureva —el antiguo barco de Éric Tabarly, rebautizado con un nombre tahitiano que habla de pájaros y de viajes.
+
+El 16 de noviembre, en plena tormenta cerca de las Azores, su radio envía un último mensaje. Luego, nada más. Ni el barco ni el hombre serán encontrados jamás.
+
+Francia contiene el aliento durante semanas. Al año siguiente, una canción llevará el nombre del barco desaparecido —quizá ya la hayas tarareado sin saber que hablaba de él.
+
+Desde entonces, cada edición parte con esta memoria a bordo. El mar de aquí fabrica leyendas, y se guarda algunas para sí mismo.
+
+Sigue ahora la muralla norte, hasta la puerta que se abre a la gran bahía. Es hora de hablar de quienes vuelven.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-5
+@@STITLE=Porte Saint-Thomas, face à la baie
+Bajo ti, la plage de l'Éventail y toda la bahía donde la flota desfila antes de las salidas. Es una costumbre muy antigua: quienes quieren el oeste parten de aquí. Ya en 1534, Jacques Cartier dejaba esta rada con dos barcos para buscar un paso hacia Asia; encontraría Canadá y su gran río.
+
+Pero la heredera que quiero presentarte se llama Florence Arthaud. Noviembre de 1990: en su trimarán Pierre 1er, hace frente a las tormentas y a todos los favoritos, y gana la Route du Rhum. Una mujer, sola, por delante de todos los hombres —una primicia en una gran transatlántica en solitario. La prensa la apoda «la pequeña novia del Atlántico». El apodo le queda demasiado dócil: es una salvaje magníficia, que sobrevivió a los diecisiete años a un terrible accidente de tráfico y eligió el mar contra todos los consejos.
+
+Doce años después, otra mujer, Ellen MacArthur, se impondría entre los monocascos. La puerta que Florence abrió nunca volvió a cerrarse.
+
+Murió en 2015, lejos del océano, en un accidente de helicóptero. Aquí, su nombre todavía hace bajar un poco la voz.
+
+Cruza la puerta y baja hacia el dique. La playa más grande de la ciudad, para la historia más hermosa.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-6
+@@STITLE=Plage du Sillon
+Camina un poco por este dique. Tres kilómetros de arena: la plage du Sillon. Los días de marea viva, el mar salta por encima del parapeto —pero eso te lo cuento en otro paseo.
+
+Aquí está la historia prometida. Noviembre de 1978, primera Route du Rhum. Tras tres semanas de Atlántico, todo se decide entre dos hombres a los que todo opone. Michel Malinovsky, marino experimentado, en un gran monocasco estilizado, hecho para la velocidad: Kriter V. Y Mike Birch, un canadiense discreto, antiguo vaquero convertido en patrón, en un pequeño trimarán amarillo de once metros: Olympus. El pequeño amarillo no debería poder nada contra el grande.
+
+Al amanecer, a la vista de Guadalupe, Malinovsky se ve ganador. Pero el viento afloja, y el trimarán, ligero como un insecto, se desliza allí donde el monocasco se atasca. Birch vuelve, milla tras milla, y casi lo supera en la línea. Veintitrés días de carrera. Noventa y ocho segundos de diferencia. Una de las llegadas más ajustadas de la historia de la vela, y la leyenda fundadora de esta carrera: desde ese día, todo el mundo sabe que aquí, nada está nunca decidido de antemano.
+
+Cuarenta años después, en 2018, la historia tartamudea magníficamente: Francis Joyon supera a François Gabart en las últimas millas y gana por solo siete minutos —tras apenas siete días de mar, en esos trimaranes voladores de los que te hablé.
+
+Por eso, cada cuatro años, esta ciudad ve partir a sus locos: porque le traen historias que nadie más sabe fabricar.
+
+Mi paseo termina aquí, frente a la bahía. Si vuelves un noviembre de carrera, sube a las murallas y grita con los demás. Gracias por caminar conmigo. Mantén el rumbo.
+
+@@LANG=de
+@@TITLE=Saint-Malo — Die Verrückten des Atlantiks
+@@DESC=Sport — Alle vier Jahre sieht die Stadt zu, wie die Verrückten des Atlantiks allein aufbrechen.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-0
+@@STITLE=Esplanade Saint-Vincent
+Stell dich mit dem Blick zu den Hafenbecken, den Rücken zu den Stadtmauern. Heute ist das Wasser ruhig, ein paar Masten schaukeln. Die Rümpfe reiben sanft an ihren Leinen, die Fassaden spiegeln sich in zitternden Flecken, und die Stadtmauern hinter dir sehen aus wie ein Granitbalkon über dem Hafen. Doch einen Herbst von vieren wird dieses ruhige Wasserbecken zum Mittelpunkt der Segelwelt.
+
+Alle vier Jahre, Anfang November, legen hier Dutzende Rennyachten Seite an Seite an: riesige Trimarane, Weltumsegler-Einrümpfer, kleine Boote von Liebhabern. Um sie herum wächst eine Stadt in der Stadt — Stege, Bildschirme, der Geruch von Crêpes und Harz — und eine Menschenflut strömt von den Stadtmauern herab, um sie mit Blicken zu berühren. Die Besucher gehen langsam, die Nase zu den Masten erhoben, wie in einer provisorischen Kathedrale aus Carbon, Fallen und zusammengelegten Segeln. Das ist die Route du Rhum. In wenigen Tagen brechen all diese Segler allein auf, jeder auf seinem eigenen Boot, ohne Crew, um den Atlantik bis nach Pointe-à-Pitre in Guadeloupe zu überqueren. Rund 3.500 Seemeilen. Allein, du hast richtig gehört.
+
+Woher kommt diese verrückte Idee? Aus dem Jahr 1978. Damals ist das große Einhand-Transatlantikrennen englisch, und seine Organisatoren haben gerade die Regeln verschärft. Auf französischer Seite wittert ein Werbemann, Michel Etevenon, den Deal des Jahrhunderts: eine französische Transat schaffen, frei, offen für alle Boote, unterstützt von den Rumherstellern Guadeloupes, die ihr Produkt bekannt machen wollen. Der Kurs greift die alte Handelsroute zwischen den Antillen und den Häfen des Ärmelkanals wieder auf. Der Name findet sich von selbst: die Route du Rhum. Er spricht zugleich von der Ware, der Reise, dem Atlantik, und jenem Hauch von Fest, der Saint-Malo anhaftet, selbst unter tief hängendem Himmel.
+
+Niemand ahnt an diesem Tag, dass die erste Austragung eine der schönsten Geschichten des Sports hervorbringen wird — und eine der tragischsten. Genau diese Mischung macht diesen Ort so besonders: hier applaudiert der Kai, aber er weiß auch, dass das Meer keine Versprechen unterschreibt. Schau dir noch einmal die Leinen und die verrosteten Ringe an: alles scheint dazu gedacht, festzuhalten, während das Rennen nur vom Loslassen spricht. Ich behalte dir beides für diesen Spaziergang.
+
+Steig auf die Stadtmauer, gleich über der Grande Porte. Wir schauen uns das alles von weiter oben an.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-1
+@@STITLE=Esplanade Saint-Vincent
+Von hier aus würdest du in den Rennjahren einen Wald aus Masten überblicken. Nimm dir eine Minute, um diese Flotte kennenzulernen, denn sie erzählt die ganze Bandbreite menschlichen Wahnsinns.
+
+Da sind zunächst die Ultims: gewaltige Trimarane, die, von ihren Foils getragen, sich erheben und buchstäblich über dem Wasser fliegen — die schnellsten verschlingen den Atlantik in knapp einer Woche. Dann die großen Hochsee-Einrümpfer, die der Weltumsegelungen. Die Class40, bescheidener, wo sich Profis und sehr ernsthafte Amateure begegnen. Und meine Lieblingsklasse: die Rhum-Klasse, die der alten Boote und der Träumer, der Geist von 1978 in Person.
+
+Was dieses Rennen einzigartig macht, ist, dass sich alle begegnen. Während der Dorfwoche bahnen sich die Skipper ihren Weg durch die Menge zu ihrem Boot; du kannst die Rümpfe aus nächster Nähe sehen, mit einem Segler im Ölzeug plaudern, dir eine Kappe signieren lassen. Am Vorabend des Starts passieren die Boote dann eines nach dem anderen die Schleuse, die die Becken abschließt, bejubelt wie Stierkämpfer beim Einzug in die Arena, und gehen draußen auf der Reede vor Anker.
+
+Folge der Stadtmauer nach Westen, über den Dächern. Ich zeige dir das Meer des Starts.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-2
+@@STITLE=Remparts ouest, plage de Bon-Secours
+Beug dich über die Brüstung. Unten die plage de Bon-Secours mit ihrem Meerwasserbecken. Vor dir die Reede, die Inselchen, dann die offene See.
+
+Stell dir jetzt diese Landschaft an einem Sonntag im November vor, einem Rhum-Jahr. Auf diesen Stadtmauern eine dichte, warm eingepackte Menge, Fahnen, Kinder auf den Schultern. Draußen kreuzt die Flotte, während sie auf die Stunde wartet. Und im Westen diese dunkle Silhouette am Horizont, das ist das cap Fréhel: die Teilnehmer werden unter seinen Klippen vorbeistreifen, bevor sie nach Süden abbiegen — auch dort ist die Heide schwarz vor Menschen.
+
+Der Kanonenschuss knallt. Die Linie gibt frei, die Buge beschleunigen, Hubschrauber kreisen wie Fliegen. Es ist ein seltsamer Moment, wenn man darüber nachdenkt: eine ganze Stadt versammelt, um Leute abfahren zu sehen.
+
+Eine Stunde später hat der Horizont alles verschluckt. Die Stadt leert sich auf einen Schlag, und drei Wochen lang wird hier jeder morgens und abends die kleinen Positionsmarken der Boote auf der Karte verfolgen, so wie man sich nach Familiennachrichten erkundigt.
+
+Steig über die porte de Dinan von der Stadtmauer herunter und geh bis zur langen Mole, die den Hafen abschließt. Dort beginnt die Einsamkeit.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-3
+@@STITLE=Môle des Noires
+Geh auf der Mole so weit hinaus, wie der Wind es dir erlaubt. Dieser Wellenbrecher ist der letzte Handschlag des Landes. An den Starttagen kommen die Angehörigen hierher, winken ein letztes Mal, und sehen zu, wie aus einem Segel ein Punkt wird.
+
+Sprechen wir davon, was denjenigen erwartet, der an Bord ist. Drei Wochen allein, manchmal viel länger. Man schläft dort nie wirklich: ein paar Minuten Nickerchen, von Alarmen geweckt, weil ein Frachter oder eine Bö jederzeit auftauchen kann. Man überwacht die Instrumente, repariert nachts halb im Wasser stehend, spricht mit sich selbst, weint manchmal. Und in den Sturmböen hat man Angst — das sagen alle, die größten Champions zuerst.
+
+Warum also? Jeder hat seine eigene Antwort. Die Lust an der Weite, der Ruhm, die Stille, eine Revanche, die man mit dem Leben nehmen will. Diese Stadt jedenfalls versteht sie, ohne dass man es ihr erklären müsste: sie hat ihre Seeleute immer weit und lange fortziehen sehen — ihre einstigen Kap-Hoorniers waren ganze Jahre lang fort.
+
+Komm zurück zu den Stadtmauern, folge ihnen nach Norden, und steig zum großen runden Turm in der Nordwestecke hinauf. Ich habe dort oben eine ernstere Geschichte für dich.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-4
+@@STITLE=Tour Bidouane
+Dem offenen Meer zugewandt, jetzt. Ich muss dir den Preis von all dem erzählen.
+
+November 1978, erste Route du Rhum. Unter den Teilnehmern ein riesiger Star: Alain Colas. Sieger der englischen Transat 1972, erster Seemann, der eine Weltumsegelung im Alleingang auf einem Mehrrumpfboot vollendet hat. Drei Jahre zuvor hätte ihm ein Tau bei einem Manöver fast den Fuß abgerissen; man hielt ihn für erledigt. Er startet trotzdem, auf seinem Trimaran Manureva — dem ehemaligen Boot von Éric Tabarly, umgetauft mit einem tahitianischen Namen, der von Vögeln und Reisen spricht.
+
+Am 16. November, mitten in einem Sturm bei den Azoren, sendet sein Funkgerät eine letzte Nachricht. Dann nichts mehr. Weder das Boot noch der Mann werden jemals gefunden.
+
+Frankreich hält wochenlang den Atem an. Im folgenden Jahr trägt ein Lied den Namen des verschwundenen Bootes — vielleicht hast du es schon gesummt, ohne zu wissen, dass es von ihm handelt.
+
+Seitdem startet jede Austragung mit dieser Erinnerung an Bord. Das Meer hier schafft Legenden, und es behält sich ein paar davon selbst vor.
+
+Folge nun der Nordmauer, bis zum Tor, das sich zur großen Bucht hin öffnet. Es ist Zeit, von denen zu sprechen, die zurückkehren.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-5
+@@STITLE=Porte Saint-Thomas, face à la baie
+Unter dir die plage de l'Éventail und die ganze Bucht, in der die Flotte vor den Starts paradiert. Es ist eine sehr alte Gewohnheit: wer den Westen will, bricht von hier auf. Schon 1534 verließ Jacques Cartier diese Reede mit zwei Schiffen, um eine Passage nach Asien zu suchen — er wird stattdessen Kanada und seinen großen Fluss finden.
+
+Aber die Erbin, die ich dir vorstellen möchte, heißt Florence Arthaud. November 1990: auf ihrem Trimaran Pierre 1er trotzt sie den Stürmen und allen Favoriten und gewinnt die Route du Rhum. Eine Frau, allein, vor allen Männern — ein Novum bei einer großen Einhand-Transat. Die Presse nennt sie „die kleine Verlobte des Atlantiks". Der Spitzname ist zu brav für sie: sie ist eine großartige Wilde, die mit siebzehn Jahren einen schweren Autounfall überlebte und sich gegen alle Ratschläge für das Meer entschied.
+
+Zwölf Jahre später wird sich eine andere Frau, Ellen MacArthur, bei den Einrümpfern durchsetzen. Die Tür, die Florence geöffnet hat, hat sich nie wieder geschlossen.
+
+Sie starb 2015, weit weg vom Ozean, bei einem Hubschrauberunglück. Hier senkt sich bei ihrem Namen immer noch ein wenig die Stimme.
+
+Geh durch das Tor und hinunter auf den Deich. Der größte Strand der Stadt, für die schönste Geschichte.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-6
+@@STITLE=Plage du Sillon
+Geh ein Stück auf diesem Deich entlang. Drei Kilometer Sand: die plage du Sillon. An Tagen mit besonders hoher Flut springt das Meer über die Brüstung — aber das erzähle ich dir bei einem anderen Spaziergang.
+
+Hier ist die versprochene Geschichte. November 1978, erste Route du Rhum. Nach drei Wochen Atlantik entscheidet sich alles zwischen zwei Männern, die nichts gemeinsam haben. Michel Malinovsky, erfahrener Seemann, auf einem großen, schlanken Renn-Einrümpfer, gebaut für Geschwindigkeit: Kriter V. Und Mike Birch, ein zurückhaltender Kanadier, ehemaliger Cowboy, der zum Skipper wurde, auf einem kleinen gelben Elf-Meter-Trimaran: Olympus. Das kleine Gelbe sollte gegen das Große nichts ausrichten können.
+
+Am frühen Morgen, in Sichtweite von Guadeloupe, sieht sich Malinovsky schon als Sieger. Doch der Wind lässt nach, und der Trimaran, leicht wie ein Insekt, gleitet dort, wo der Einrümpfer feststeckt. Birch holt auf, Meile um Meile, und überholt ihn fast auf der Ziellinie. Dreiundzwanzig Renntage. Achtundneunzig Sekunden Abstand. Eines der knappsten Ankünfte in der Geschichte des Segelsports, und die Gründungslegende dieses Rennens: seit jenem Tag weiß jeder, dass hier nie etwas im Voraus entschieden ist.
+
+Vierzig Jahre später, 2018, stottert die Geschichte großartig weiter: Francis Joyon überholt François Gabart auf den letzten Meilen und gewinnt mit nur sieben Minuten Vorsprung — nach nur sieben Tagen auf See, auf jenen fliegenden Trimaranen, von denen ich dir erzählt habe.
+
+Deshalb sieht diese Stadt alle vier Jahre ihren Verrückten beim Aufbruch zu: weil sie ihr Geschichten mitbringen, die sonst niemand zu erschaffen weiß.
+
+Mein Spaziergang endet hier, mit Blick auf die Bucht. Wenn du an einem Rennen-November zurückkommst, steig auf die Stadtmauern und schrei mit den anderen. Danke, dass du mit mir gegangen bist. Halte Kurs.
+
+@@LANG=it
+@@TITLE=Saint-Malo — I pazzi dell'Atlantico
+@@DESC=Sport — Ogni quattro anni, la città guarda partire in solitaria i pazzi dell'Atlantico.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-0
+@@STITLE=Esplanade Saint-Vincent
+Mettiti di fronte ai bacini, con le spalle alle mura. Oggi l'acqua è calma, qualche albero ondeggia. Gli scafi sfregano dolcemente i loro ormeggi, le facciate si riflettono in chiazze tremolanti, e le mura dietro di te sembrano un balcone di granito posato sopra il porto. Ma un autunno su quattro, questo specchio d'acqua tranquillo diventa il centro del mondo della vela.
+
+Ogni quattro anni, all'inizio di novembre, decine di velieri da corsa si ormeggiano qui, fianco a fianco: trimarani giganti, monoscafi da giro del mondo, piccole barche di appassionati. Intorno a loro cresce una città nella città — pontili, schermi, odore di crêpe e resina — e una marea umana scende dalle mura per venire a toccarli con lo sguardo. I visitatori avanzano lentamente, il naso rivolto verso gli alberi, come in una cattedrale provvisoria di carbonio, drizze e vele piegate. È la Route du Rhum. Tra qualche giorno, tutti questi marinai partiranno da soli, ciascuno sulla propria barca, senza equipaggio, ad attraversare l'Atlantico fino a Pointe-à-Pitre, in Guadalupa. Circa 3.500 miglia nautiche. Da soli, hai capito bene.
+
+Da dove viene questa idea folle? Dal 1978. All'epoca, la grande regata transatlantica in solitaria è inglese, e i suoi organizzatori hanno appena inasprito le regole. Sul versante francese, un uomo della pubblicità, Michel Etevenon, fiuta l'affare del secolo: creare una transat francese, libera, aperta a tutte le barche, sostenuta dai produttori di rum della Guadalupa che vogliono far conoscere il loro prodotto. Il percorso riprende l'antica rotta commerciale tra le Antille e i porti della Manica. Il nome viene da sé: la Route du Rhum. Dice insieme la merce, il viaggio, l'Atlantico, e quella punta di festa che si attacca a Saint-Malo anche quando il cielo è basso.
+
+Nessuno, quel giorno, immagina che la prima edizione partorirà una delle storie più belle dello sport — e una delle più tragiche. È questa miscela a rendere il luogo così particolare: qui, la banchina applaude, ma sa anche che il mare non firma alcuna promessa. Guarda ancora gli ormeggi e gli anelli arrugginiti: tutto sembra pensato per trattenere, mentre la corsa parla solo di lasciar andare. Ti tengo entrambe le cose per questa passeggiata.
+
+Sali sulle mura, proprio sopra la Grande Porte. Guardiamo tutto questo da più in alto.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-1
+@@STITLE=Esplanade Saint-Vincent
+Da qui, negli anni di corsa, domineresti una foresta di alberi. Prenditi un minuto per fare conoscenza con questa flotta, perché racconta tutta la gamma della follia umana.
+
+Ci sono gli Ultim, per primi: trimarani immensi che, sollevati dai loro foil, si alzano e volano letteralmente sopra l'acqua — i più veloci divorano l'Atlantico in poco più di una settimana. Poi i grandi monoscafi d'altura, quelli dei giri del mondo. I Class40, più modesti, dove si mescolano professionisti e amatori molto seri. E la mia preferita: la classe Rhum, quella delle barche antiche e dei sognatori, lo spirito del 1978 in persona.
+
+Ciò che rende unica questa corsa è che tutti si incrociano. Durante la settimana del villaggio, gli skipper si fanno strada tra la folla per raggiungere la propria barca; puoi vedere gli scafi da vicinissimo, chiacchierare con un marinaio in cerata, far firmare un berretto. Poi, alla vigilia della partenza, le barche passano una a una la conca che chiude i bacini, applaudite come toreri all'ingresso dell'arena, e vanno all'ancora nella rada.
+
+Segui le mura verso ovest, sopra i tetti. Ti porto a vedere il mare della partenza.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-2
+@@STITLE=Remparts ouest, plage de Bon-Secours
+Sporgiti dal parapetto. In basso, la plage de Bon-Secours e la sua piscina di acqua di mare. Davanti a te, la rada, gli isolotti, poi il largo.
+
+Ora, immagina questo paesaggio una domenica di novembre, anno di Rhum. Su queste mura, una folla compatta, infagottata, bandiere, bambini sulle spalle. Al largo, la flotta bordeggia in attesa dell'ora. E a ovest, quella sagoma scura posata sull'orizzonte è il cap Fréhel: i concorrenti andranno a rasentarlo sotto le sue scogliere prima di virare verso sud — anche laggiù, la brughiera è nera di gente.
+
+Il cannone spara. La linea si libera, le prue accelerano, gli elicotteri girano come mosche. È un momento strano, a pensarci bene: un'intera città radunata per guardare della gente andarsene.
+
+Un'ora dopo, l'orizzonte ha inghiottito tutto. La città si svuota di colpo, e per tre settimane, ognuno qui seguirà, mattina e sera, i piccoli segnali delle barche sulla mappa, come si chiedono notizie della famiglia.
+
+Scendi dalle mura dalla porte de Dinan, e cammina fino al lungo molo che chiude il porto. È lì che comincia la solitudine.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-3
+@@STITLE=Môle des Noires
+Avanza sul molo, il più lontano possibile che il vento ti permetta. Questo frangiflutti è l'ultima stretta di mano della terraferma. Nei giorni di partenza, i familiari vengono qui, agitano le braccia un'ultima volta, e vedono una vela diventare un punto.
+
+Parliamo di ciò che aspetta chi è a bordo. Tre settimane da soli, a volte molto di più. Non si dorme mai davvero: pisolini di qualche minuto, svegliati da allarmi, perché una nave cargo o una raffica possono comparire in qualsiasi momento. Si sorvegliano gli strumenti, si ripara di notte mezzi immersi nell'acqua, si parla da soli, a volte si piange. E nelle burrasche, si ha paura — lo dicono tutti, i più grandi campioni per primi.
+
+E allora perché? Ognuno ha la sua risposta. Il gusto del largo, la gloria, il silenzio, una rivincita da prendersi sulla vita. Questa città, comunque, li capisce senza bisogno di spiegazioni: ha sempre visto i suoi marinai partire lontano e a lungo — i suoi antichi naviganti di Capo Horn si assentavano per anni interi.
+
+Torna verso le mura, seguile verso nord, e sali fino alla grande torre rotonda dell'angolo nord-ovest. Ho una storia più grave da raccontarti lassù.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-4
+@@STITLE=Tour Bidouane
+Di fronte al largo, ora. Devo dirti il prezzo di tutto questo.
+
+Novembre 1978, prima Route du Rhum. Tra i concorrenti, un'immensa star: Alain Colas. Vincitore della transat inglese nel 1972, primo marinaio ad aver completato un giro del mondo in solitaria su un multiscafo. Tre anni prima, un cavo gli aveva quasi strappato un piede durante una manovra; lo si diceva finito. Riparte comunque, sul suo trimarano Manureva — l'ex barca di Éric Tabarly, ribattezzata con un nome tahitiano che parla di uccelli e di viaggi.
+
+Il 16 novembre, in piena tempesta al largo delle Azzorre, la sua radio invia un ultimo messaggio. Poi più nulla. Né la barca né l'uomo saranno mai ritrovati.
+
+La Francia trattiene il fiato per settimane. L'anno seguente, una canzone porterà il nome della barca scomparsa — forse l'hai già canticchiata senza sapere che parlava di lui.
+
+Da allora, ogni edizione parte con questa memoria a bordo. Il mare di qui fabbrica leggende, e ne tiene qualcuna per sé.
+
+Segui ora le mura nord, fino alla porta che si apre sulla grande baia. È tempo di parlare di chi ritorna.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-5
+@@STITLE=Porte Saint-Thomas, face à la baie
+Sotto di te, la plage de l'Éventail e tutta la baia dove la flotta sfila prima delle partenze. È un'abitudine molto antica: chi vuole l'ovest parte da qui. Già nel 1534, Jacques Cartier lasciava questa rada con due navi per cercare un passaggio verso l'Asia — troverà invece il Canada e il suo grande fiume.
+
+Ma l'erede che voglio presentarti si chiama Florence Arthaud. Novembre 1990: sul suo trimarano Pierre 1er, tiene testa alle tempeste e a tutti i favoriti, e vince la Route du Rhum. Una donna, sola, davanti a tutti gli uomini — una prima volta in una grande transat in solitaria. La stampa la soprannomina «la piccola fidanzata dell'Atlantico». Il soprannome è troppo mansueto per lei: è una selvaggia magnifica, sopravvissuta a diciassette anni a un terribile incidente stradale, che ha scelto il mare contro ogni consiglio.
+
+Dodici anni dopo, un'altra donna, Ellen MacArthur, si imporrà tra i monoscafi. La porta che Florence ha aperto non si è mai più richiusa.
+
+È scomparsa nel 2015, lontano dall'oceano, in un incidente d'elicottero. Qui, il suo nome fa ancora abbassare un po' la voce.
+
+Varca la porta e scendi sulla diga. La spiaggia più grande della città, per la storia più bella.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-6
+@@STITLE=Plage du Sillon
+Cammina un po' su questa diga. Tre chilometri di sabbia: la plage du Sillon. Nei giorni di marea sizigiale, il mare salta oltre il parapetto — ma questo te lo racconto in un'altra passeggiata.
+
+Ecco la storia promessa. Novembre 1978, prima Route du Rhum. Dopo tre settimane di Atlantico, tutto si decide tra due uomini che tutto oppone. Michel Malinovsky, marinaio esperto, su un grande monoscafo affusolato, fatto per la velocità: Kriter V. E Mike Birch, un canadese schivo, ex cow-boy diventato skipper, su un piccolo trimarano giallo di undici metri: Olympus. Il piccolo giallo non dovrebbe poter nulla contro il grande.
+
+Al mattino presto, in vista della Guadalupa, Malinovsky si vede già vincitore. Ma il vento cala, e il trimarano, leggero come un insetto, scivola dove il monoscafo si impantana. Birch recupera, miglio dopo miglio, e lo supera quasi sul traguardo. Ventitré giorni di corsa. Novantotto secondi di distacco. Uno degli arrivi più combattuti della storia della vela, e la leggenda fondatrice di questa corsa: da quel giorno, tutti sanno che qui non è mai deciso nulla in anticipo.
+
+Quarant'anni dopo, nel 2018, la storia balbetta magnificamente: Francis Joyon supera François Gabart nelle ultime miglia e vince per soli sette minuti — dopo appena sette giorni di mare, su quei trimarani volanti di cui ti ho parlato.
+
+Ecco perché, ogni quattro anni, questa città guarda partire i suoi pazzi: perché le riportano storie che nessun altro sa fabbricare.
+
+La mia passeggiata finisce qui, di fronte alla baia. Se torni un novembre di corsa, sali sulle mura e grida con gli altri. Grazie per aver camminato con me. Tieni la rotta.
+
+@@LANG=nl
+@@TITLE=Saint-Malo — De dwazen van de Atlantische Oceaan
+@@DESC=Sport — Om de vier jaar kijkt de stad toe hoe de dwazen van de Atlantische Oceaan er alleen op uit trekken.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-0
+@@STITLE=Esplanade Saint-Vincent
+Ga met je gezicht naar de bekkens staan, met je rug naar de stadsmuren. Vandaag is het water kalm, een paar masten wiegen zachtjes. De rompen schuren zachtjes tegen hun trossen, de gevels weerspiegelen in trillende vlekken, en de stadsmuren achter je lijken op een granieten balkon boven de haven. Maar één herfst op vier wordt dit rustige water het centrum van de zeilwereld.
+
+Om de vier jaar, begin november, meren hier tientallen racejachten af, zij aan zij: reusachtige trimarans, monohulls voor de wereldreis, kleine bootjes van liefhebbers. Om hen heen groeit een stad in de stad — steigers, schermen, de geur van crêpes en hars — en een menselijke vloedgolf daalt af van de stadsmuren om ze met de ogen aan te raken. Bezoekers lopen langzaam, neus omhoog naar de masten, alsof ze zich in een voorlopige kathedraal van koolstofvezel, vallen en opgevouwen zeilen bevinden. Dit is de Route du Rhum. Over een paar dagen vertrekken al deze zeilers alleen, ieder op zijn eigen boot, zonder bemanning, om de Atlantische Oceaan over te steken tot Pointe-à-Pitre, op Guadeloupe. Zo'n 3.500 zeemijl. Alleen, je hebt het goed gehoord.
+
+Waar komt dit waanzinnige idee vandaan? Uit 1978. In die tijd is de grote solo-transatlantische race Engels, en de organisatoren hebben net de regels aangescherpt. Aan Franse kant ruikt een reclameman, Michel Etevenon, de deal van de eeuw: een Franse transat oprichten, vrij, open voor alle boten, gesteund door de rumproducenten van Guadeloupe die hun product bekend willen maken. Het parcours volgt de oude handelsroute tussen de Antillen en de havens van het Kanaal. De naam ontstaat vanzelf: de Route du Rhum. Hij spreekt tegelijk van de koopwaar, de reis, de Atlantische Oceaan, en dat vleugje feest dat aan Saint-Malo kleeft, zelfs onder een lage hemel.
+
+Niemand vermoedt die dag dat de eerste editie een van de mooiste verhalen van de sport zal voortbrengen — en een van de tragischste. Precies die mengeling maakt deze plek zo bijzonder: hier applaudisseert de kade, maar ze weet ook dat de zee geen enkele belofte ondertekent. Kijk nog eens naar de trossen en de roestige ringen: alles lijkt bedacht om vast te houden, terwijl de race alleen maar over loslaten spreekt. Ik bewaar allebei voor je, voor deze wandeling.
+
+Klim op de stadsmuur, vlak boven de Grande Porte. We gaan dit alles van hogerop bekijken.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-1
+@@STITLE=Esplanade Saint-Vincent
+Vanaf hier zou je, in racejaren, uitkijken over een woud van masten. Neem een minuutje om kennis te maken met deze vloot, want ze vertelt heel het spectrum van menselijke waanzin.
+
+Er zijn eerst de Ultims: immense trimarans die, gedragen door hun foils, zich optillen en letterlijk boven het water vliegen — de snelste verslinden de Atlantische Oceaan in nog geen week. Dan de grote hogezee-monohulls, die van de wereldreizen. De Class40's, bescheidener, waar professionals en zeer serieuze amateurs elkaar treffen. En mijn favoriet: de Rhum-klasse, die van de oude boten en de dromers, de geest van 1978 in eigen persoon.
+
+Wat deze race uniek maakt, is dat iedereen elkaar tegenkomt. Tijdens de dorpsweek banen de schippers zich een weg door de menigte naar hun boot; je kunt de rompen van dichtbij zien, kletsen met een zeiler in oliejas, een pet laten signeren. Dan, de dag vóór de start, passeren de boten één voor één de sluis die de bekkens afsluit, toegejuicht als stierenvechters bij het betreden van de arena, en gaan voor anker liggen op de rede.
+
+Volg de stadsmuur naar het westen, boven de daken. Ik neem je mee om de zee van de start te bekijken.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-2
+@@STITLE=Remparts ouest, plage de Bon-Secours
+Buig je over de borstwering. Beneden, het plage de Bon-Secours en zijn zeewaterbad. Voor je, de rede, de eilandjes, dan de open zee.
+
+Stel je dit landschap nu voor op een zondag in november, een Rhum-jaar. Op deze stadsmuren een dichte, ingepakte menigte, vlaggen, kinderen op schouders. Op zee laveert de vloot in afwachting van het uur. En in het westen, die donkere silhouet aan de horizon, dat is het cap Fréhel: de deelnemers zullen er rakelings onder de kliffen langs scheren voordat ze naar het zuiden afbuigen — ook daar staat de heide zwart van de mensen.
+
+Het kanon knalt. De lijn geeft vrij, de boegen versnellen, helikopters cirkelen als vliegen. Het is een vreemd moment, als je erover nadenkt: een hele stad samengekomen om mensen te zien vertrekken.
+
+Een uur later heeft de horizon alles opgeslokt. De stad loopt in één klap leeg, en drie weken lang zal iedereen hier, ochtend en avond, de kleine bakens van de boten op de kaart volgen, zoals je nieuws van de familie navraagt.
+
+Daal af van de stadsmuur via de porte de Dinan, en loop naar de lange pier die de haven afsluit. Daar begint de eenzaamheid.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-3
+@@STITLE=Môle des Noires
+Loop zo ver mogelijk op de pier, zo ver als de wind het toelaat. Deze havendam is de laatste handdruk van het land. Op vertrekdagen komen dierbaren hierheen, zwaaien nog één keer met hun armen, en zien een zeil een stip worden.
+
+Laten we het hebben over wat degene die aan boord is te wachten staat. Drie weken alleen, soms veel langer. Je slaapt er nooit echt: dutjes van een paar minuten, gewekt door alarmen, want een vrachtschip of een windvlaag kan elk moment opduiken. Je houdt de instrumenten in de gaten, repareert 's nachts half in het water, praat tegen jezelf, huilt soms. En bij storm ben je bang — dat zegt iedereen, de grootste kampioenen het eerst.
+
+Waarom dan toch? Iedereen heeft zijn eigen antwoord. De smaak van de open zee, de roem, de stilte, een revanche te nemen op het leven. Deze stad begrijpt hen in elk geval zonder uitleg: ze heeft haar zeelieden altijd ver en lang zien vertrekken — haar vroegere Kaap Hoorn-vaarders bleven soms jarenlang weg.
+
+Kom terug naar de stadsmuren, volg ze naar het noorden, en klim naar de grote ronde toren op de noordwesthoek. Ik heb daarboven een ernstiger verhaal voor je.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-4
+@@STITLE=Tour Bidouane
+Nu met het gezicht naar de open zee. Ik moet je de prijs van dit alles vertellen.
+
+November 1978, eerste Route du Rhum. Onder de deelnemers, een grote ster: Alain Colas. Winnaar van de Engelse transat in 1972, eerste zeiler die een solo-wereldreis op een multihull voltooide. Drie jaar eerder had een lijn hem tijdens een manoeuvre bijna een voet afgerukt; men zei dat hij klaar was. Hij vertrekt toch, op zijn trimaran Manureva — het voormalige schip van Éric Tabarly, herdoopt met een Tahitiaanse naam die spreekt van vogels en reizen.
+
+Op 16 november, midden in een storm bij de Azoren, stuurt zijn radio een laatste bericht. Dan niets meer. Noch de boot, noch de man zullen ooit worden teruggevonden.
+
+Frankrijk houdt wekenlang zijn adem in. Het jaar daarop draagt een lied de naam van de verdwenen boot — misschien heb je hem al neuriën zonder te weten dat het over hem ging.
+
+Sindsdien vertrekt elke editie met deze herinnering aan boord. De zee hier maakt legendes, en houdt er een paar voor zichzelf.
+
+Volg nu de noordelijke stadsmuur, tot aan de poort die uitkomt op de grote baai. Het is tijd om te praten over degenen die terugkeren.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-5
+@@STITLE=Porte Saint-Thomas, face à la baie
+Onder je, het plage de l'Éventail en de hele baai waar de vloot paradeert voor de starts. Het is een heel oude gewoonte: wie het westen wil, vertrekt hiervandaan. Al in 1534 verliet Jacques Cartier deze rede met twee schepen om een doorgang naar Azië te zoeken — hij zou in plaats daarvan Canada en zijn grote rivier vinden.
+
+Maar de erfgename die ik je wil voorstellen heet Florence Arthaud. November 1990: op haar trimaran Pierre 1er trotseert ze de stormen en alle favorieten, en wint de Route du Rhum. Een vrouw, alleen, vóór alle mannen — een primeur in een grote solo-transat. De pers noemt haar "het bruidje van de Atlantische Oceaan". De bijnaam is te braaf voor haar: ze is een prachtige wildebras, die op haar zeventiende een verschrikkelijk verkeersongeval overleefde en tegen alle adviezen in voor de zee koos.
+
+Twaalf jaar later zal een andere vrouw, Ellen MacArthur, zich onderscheiden bij de monohulls. De deur die Florence opende, is nooit meer dichtgegaan.
+
+Ze overleed in 2015, ver van de oceaan, bij een helikopterongeluk. Hier daalt bij haar naam nog altijd de stem een beetje.
+
+Ga door de poort en daal af naar de dijk. Het grootste strand van de stad, voor het mooiste verhaal.
+
+@@SCENE=seed-100-saint-malo-route-du-rhum-scene-6
+@@STITLE=Plage du Sillon
+Loop een stukje over deze dijk. Drie kilometer zand: het plage du Sillon. Op dagen met springtij springt de zee over de borstwering — maar dat vertel ik je in een andere wandeling.
+
+Hier is het beloofde verhaal. November 1978, eerste Route du Rhum. Na drie weken op de Atlantische Oceaan komt alles neer op twee mannen die niets gemeen hebben. Michel Malinovsky, een ervaren zeeman, op een grote, gestroomlijnde racemonohull, gebouwd voor snelheid: Kriter V. En Mike Birch, een stille Canadees, oud-cowboy geworden schipper, op een kleine gele trimaran van elf meter: Olympus. De kleine gele boot zou niets moeten kunnen beginnen tegen de grote.
+
+Vroeg in de ochtend, in het zicht van Guadeloupe, ziet Malinovsky zichzelf al als winnaar. Maar de wind valt weg, en de trimaran, licht als een insect, glijdt daar waar de monohull vastloopt. Birch haalt in, mijl na mijl, en passeert hem bijna op de finish. Drieëntwintig dagen race. Achtennegentig seconden verschil. Een van de nipste aankomsten uit de geschiedenis van het zeilen, en de stichtende legende van deze race: sindsdien weet iedereen dat hier nooit iets bij voorbaat vaststaat.
+
+Veertig jaar later, in 2018, herhaalt de geschiedenis zich schitterend: Francis Joyon passeert François Gabart in de laatste mijlen en wint met slechts zeven minuten verschil — na amper zeven dagen op zee, op die vliegende trimarans waar ik je over vertelde.
+
+Daarom kijkt deze stad om de vier jaar toe hoe haar dwazen vertrekken: omdat ze haar verhalen terugbrengen die niemand anders weet te maken.
+
+Mijn wandeling eindigt hier, met uitzicht op de baai. Als je ooit terugkomt in een novembermaand van de race, klim dan op de stadsmuren en schreeuw mee met de anderen. Dank je voor het wandelen met mij. Hou koers.

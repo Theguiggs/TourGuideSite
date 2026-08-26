@@ -1,0 +1,155 @@
+{
+  "tourId": "seed-100-tours-cite-royale",
+  "sessionId": "seed-100-tours-cite-royale-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Tours",
+  "title": "Tours — Quand la Loire était le centre de la France",
+  "description": "Histoire & secrets — Saint Martin, Louis XI et la soie : quand la Loire était le centre de la France.",
+  "themes": [
+    "Histoire & secrets — Saint Martin, Louis XI et la soie : quand la Loire était le centre de la France."
+  ],
+  "baseLanguage": "fr",
+  "chars": 10786,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "es": "Historia & secretos, San Martín, Luis XI y la seda: cuando el Loira era el centro de Francia.",
+    "it": "Storia e segreti, Saint Martin, Louis XI e seta: quando la Loira era il centro della Francia.",
+    "en": "History & secrets, Saint Martin, Louis XI and silk: when the Loire was the center of France.",
+    "de": "Geschichte & Geheimnisse, Saint Martin, Louis XI und Seide: als die Loire das Zentrum Frankreichs war."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-tours-cite-royale-scene-0",
+      "index": 0,
+      "title": "Place Plumereau",
+      "text": "Arrête-toi au milieu de cette place, le nez en l'air. Autour de toi, des maisons de bois et de brique, des colombages tordus par cinq siècles, des pignons pointus qui se penchent les uns vers les autres comme pour se parler. C'est la place Plumereau, le cœur du vieux Tours. Le matin, un marché ; le soir, une fête d'étudiants. Mais gratte un peu, et sous les terrasses, tu trouveras une capitale.\r\n\r\nOui, une capitale. Voilà l'histoire que je vais te raconter tout au long de cette balade : pendant des siècles, cette ville de province tranquille, posée entre deux rivières, a été le centre de la France. Pas Paris. Ici.\r\n\r\nTout est parti d'un homme, un soldat romain devenu moine, qui a fait de Tours la ville la plus sainte du royaume. Puis d'un roi rusé et pieux, Louis XI, qui a préféré cette douceur à la capitale et y a installé son pouvoir, ses foires, et un trésor qu'on tissait sur des métiers : la soie.\r\n\r\nUn saint, un roi, un fil d'or. Trois raisons pour lesquelles, un temps, toute la France a regardé vers la Loire.\r\n\r\nCes maisons n'ont pas poussé au hasard. Elles sont nées autour du tombeau de ce saint, dans un quartier qu'on appelait Châteauneuf, la ville-neuve des pèlerins. Prends la ruelle qui monte sur ta gauche, la rue Briçonnet, l'une des plus belles de la ville. Suis-moi.",
+      "hash": "17506dc0",
+      "chars": 1299,
+      "existingSegments": {
+        "es": "seed-100-tours-cite-royale-scene-0-seg-es",
+        "de": "seed-100-tours-cite-royale-scene-0-seg-de",
+        "en": "seed-100-tours-cite-royale-scene-0-seg-en",
+        "it": "seed-100-tours-cite-royale-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-cite-royale-scene-1",
+      "index": 1,
+      "title": "Rue Briçonnet",
+      "text": "Regarde cette rue étroite qui grimpe : la rue Briçonnet. Prends ton temps, lève les yeux. À chaque maison, un siècle différent. Là, une façade de bois du Moyen Âge ; ici, de la pierre Renaissance couverte de sculptures ; plus loin, une arcade romane. On lit l'histoire de Tours sur quelques mètres, comme sur les anneaux d'un arbre.\r\n\r\nArrête-toi devant la plus étrange : la Maison de Tristan. Une haute façade de brique rose et de pierre blanche, hérissée de fenêtres en dentelle. On l'a longtemps crue habitée par un personnage de légende ; en vérité, c'était l'orgueil d'un riche marchand, à la fin du XVe siècle. Car il y avait ici des marchands richissimes.\r\n\r\nLe nom de la rue, Briçonnet, c'est celui d'une famille d'argent, des financiers qui prêtaient aux rois et mariaient leurs filles à des cardinaux. Voilà le vrai visage du vieux Tours : sous les colombages pittoresques, une ville d'affaires, de banquiers, de soyeux, gonflée par l'argent du roi et des pèlerins.\r\n\r\nContinue de descendre. La rue débouche bientôt sur une place ouverte, dominée par une grosse tour trapue, un peu perdue au milieu du moderne. Suis-moi.",
+      "hash": "13d290a3",
+      "chars": 1130,
+      "existingSegments": {
+        "it": "seed-100-tours-cite-royale-scene-1-seg-it",
+        "en": "seed-100-tours-cite-royale-scene-1-seg-en",
+        "es": "seed-100-tours-cite-royale-scene-1-seg-es",
+        "de": "seed-100-tours-cite-royale-scene-1-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-cite-royale-scene-2",
+      "index": 2,
+      "title": "Tour Charlemagne",
+      "text": "Cette grosse tour plantée là, un peu de travers, au bord d'une place trop moderne pour elle, c'est la tour Charlemagne. Elle a l'air d'un fragment, et c'en est un. Le fragment d'un géant disparu.\r\n\r\nFerme les yeux une seconde et imagine. À cet endroit s'élevait l'une des plus grandes églises de tout l'Occident : la basilique Saint-Martin. Cinq nefs, une forêt de colonnes, des flots de pèlerins, de l'or, des cierges par milliers. Elle était si vaste que la rue où tu marches, la rue des Halles, passe aujourd'hui en plein milieu de ce qui était le vaisseau de pierre.\r\n\r\nQue s'est-il passé ? La Révolution. On a fermé l'église, vendu ses pierres, laissé la grande nef s'effondrer d'elle-même au tout début du XIXe siècle. On a percé une rue à travers les ruines. De la merveille, il ne reste que deux tours esseulées : celle-ci, et une autre un peu plus loin, la tour de l'Horloge.\r\n\r\nOn raconte que sous la tour Charlemagne repose Luitgarde, l'épouse de l'empereur, morte à Tours voilà plus de mille ans. D'où son nom.\r\n\r\nMais si tout ce monde venait ici, ce n'était pas pour Charlemagne. C'était pour un tombeau. Fais quelques pas encore, jusqu'à la grande basilique blanche. Suis-moi.",
+      "hash": "2e4f5f3e",
+      "chars": 1190,
+      "existingSegments": {
+        "en": "seed-100-tours-cite-royale-scene-2-seg-en",
+        "es": "seed-100-tours-cite-royale-scene-2-seg-es",
+        "de": "seed-100-tours-cite-royale-scene-2-seg-de",
+        "it": "seed-100-tours-cite-royale-scene-2-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-cite-royale-scene-3",
+      "index": 3,
+      "title": "Basilique Saint-Martin",
+      "text": "Nous voici devant la basilique Saint-Martin. Celle-ci est neuve — un siècle à peine, un style byzantin, des coupoles rondes. On l'a bâtie pour remplacer la géante détruite, et pour abriter de nouveau le trésor de la ville : le tombeau de Martin. Descends dans la crypte, en silence. Il est là.\r\n\r\nAlors, qui était Martin ? Un soldat de l'armée romaine. Un jour d'hiver, aux portes d'Amiens, il croise un mendiant qui grelotte. Il tire son épée — non pour frapper, mais pour trancher son grand manteau en deux, et il en donne la moitié au pauvre. Cette nuit-là, dit-on, le Christ lui apparaît, vêtu du demi-manteau. Martin quitte l'armée, devient moine, puis, malgré lui, évêque de Tours.\r\n\r\nCe demi-manteau, cette « petite cape », en latin la cappella, les rois francs la gardèrent comme une relique sacrée. Le prêtre qui la veillait, on l'appela le chapelain ; le lieu, la chapelle. Ces mots que tu emploies encore viennent du manteau coupé sur cette terre.\r\n\r\nÀ sa mort, on ramène son corps par la Loire, en barque. On raconte qu'en plein novembre, sur son passage, les arbres refleurirent : c'est, dit la légende, « l'été de la Saint-Martin ».\r\n\r\nSon tombeau devint l'un des plus grands pèlerinages d'Europe. Sors, et prenons la direction du levant. Suis-moi.",
+      "hash": "c754a4aa",
+      "chars": 1262,
+      "existingSegments": {
+        "it": "seed-100-tours-cite-royale-scene-3-seg-it",
+        "en": "seed-100-tours-cite-royale-scene-3-seg-en",
+        "de": "seed-100-tours-cite-royale-scene-3-seg-de",
+        "es": "seed-100-tours-cite-royale-scene-3-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-cite-royale-scene-4",
+      "index": 4,
+      "title": "Hôtel Goüin",
+      "text": "Arrête-toi devant cette façade. Au milieu de rues plus austères, elle éclate : de la pierre blanche entièrement brodée de sculptures, des coquilles, des rinceaux, des médaillons. C'est l'hôtel Goüin, l'une des rares demeures Renaissance que Tours ait sauvées des incendies et des guerres. Un négociant l'a fait bâtir au début du XVIe siècle, quand la ville nageait dans l'argent.\r\n\r\nD'où venait cet argent ? En grande partie d'un fil. La soie.\r\n\r\nC'est Louis XI qui, vers 1470, décide d'installer à Tours la fabrique de la soie, pour cesser d'acheter aux Italiens ces étoffes précieuses qui ruinaient le royaume. Il fait venir des ouvriers, accorde des privilèges. Et Tours devient, pour plus d'un siècle, la capitale française de la soie — velours, damas, brocarts tissés d'or, portés par toute la cour.\r\n\r\nDes maisons comme celle-ci, il y en eut des dizaines, gonflées par le commerce des étoffes et de l'argent. Plus tard, Lyon prendra le dessus et le grand métier tourangeau déclinera. Mais quelques ateliers tissent encore, à la main, les soieries des châteaux et des palais.\r\n\r\nContinue vers l'est, jusqu'à une place bordée de belles façades anciennes, la place Foire-le-Roi. Suis-moi.",
+      "hash": "bc7bd2e0",
+      "chars": 1191,
+      "existingSegments": {
+        "en": "seed-100-tours-cite-royale-scene-4-seg-en",
+        "it": "seed-100-tours-cite-royale-scene-4-seg-it",
+        "es": "seed-100-tours-cite-royale-scene-4-seg-es",
+        "de": "seed-100-tours-cite-royale-scene-4-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-cite-royale-scene-5",
+      "index": 5,
+      "title": "Place Foire-le-Roi",
+      "text": "Cette place discrète, bordée de hautes maisons à pignons, porte un nom qui dit tout : Foire-le-Roi. La foire du roi. C'est ici, et alentour, que se tenaient les grandes foires franches de Tours — ces marchés géants où, quelques semaines par an, des marchands de toute l'Europe venaient acheter et vendre en franchise d'impôt.\r\n\r\nEt le roi qui protège ces foires, qui les enrichit, c'est encore lui : Louis XI. Un roi qu'on n'aimait guère — méfiant, avare, habillé comme un petit bourgeois, entouré d'espions. Mais un roi qui a compris que la puissance venait de l'argent et du commerce autant que des batailles.\r\n\r\nLouis XI n'aimait pas Paris. Il lui préférait la Touraine, sa douceur, ses rivières. Il s'installe tout près d'ici, dans son manoir du Plessis, hérissé de gardes. De ce coin de Loire, il gouverne la France, tisse ses alliances, agrandit le royaume pièce par pièce. Sous son règne, le centre de la France, ce n'est pas la Seine. C'est ici.\r\n\r\nOn jouait aussi, sur cette place, des mystères — de grands spectacles religieux. La ville riait, priait, comptait son or.\r\n\r\nPrends la rue qui part vers l'est, la rue Colbert. Cherche, sur une maison, une curieuse enseigne. Suis-moi.",
+      "hash": "edf429c5",
+      "chars": 1190,
+      "existingSegments": {
+        "es": "seed-100-tours-cite-royale-scene-5-seg-es",
+        "en": "seed-100-tours-cite-royale-scene-5-seg-en",
+        "de": "seed-100-tours-cite-royale-scene-5-seg-de",
+        "it": "seed-100-tours-cite-royale-scene-5-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-cite-royale-scene-6",
+      "index": 6,
+      "title": "Rue Colbert",
+      "text": "Nous sommes rue Colbert, l'une des plus vieilles artères de Tours, bordée de maisons de bois. Cherche, en levant les yeux, une enseigne peinte : « À la Pucelle armée ». Une jeune fille en armure.\r\n\r\nCar ici passe une autre histoire, une des plus célèbres de France. Au printemps 1429, une paysanne de dix-sept ans traverse Tours : Jeanne d'Arc. Le royaume est coupé en deux, les Anglais tiennent le nord, et elle a convaincu le futur Charles VII qu'elle délivrera Orléans.\r\n\r\nAvant de partir se battre, il lui faut une armure. On raconte que c'est ici, dans cette rue, chez un armurier de Tours, qu'on forge pour elle un harnois blanc, taillé à sa mesure de jeune fille. C'est aussi à Tours, dit la tradition, qu'on peint son fameux étendard.\r\n\r\nDe Tours, elle file vers Orléans, et la légende commence. Encore une fois, tout se joue sur la Loire, au cœur du royaume.\r\n\r\nContinue tout droit vers l'est. Bientôt, au bout de la rue, deux hautes tours ajourées vont surgir au-dessus des toits : la cathédrale. Suis-moi.",
+      "hash": "fc09d76e",
+      "chars": 1016,
+      "existingSegments": {
+        "it": "seed-100-tours-cite-royale-scene-6-seg-it",
+        "es": "seed-100-tours-cite-royale-scene-6-seg-es",
+        "de": "seed-100-tours-cite-royale-scene-6-seg-de",
+        "en": "seed-100-tours-cite-royale-scene-6-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-cite-royale-scene-7",
+      "index": 7,
+      "title": "Cathédrale Saint-Gatien",
+      "text": "Lève la tête. Cette façade de dentelle, ces deux tours qui montent en s'affinant, coiffées de couronnes de pierre : c'est la cathédrale Saint-Gatien. On l'a bâtie sur près de trois siècles ; c'est pourquoi elle change de style en montant, du gothique sévère du bas au flamboyant fou du sommet, presque Renaissance.\r\n\r\nEntre, si tu peux. Le choc, ce sont les vitraux : ceux du chœur, tout là-haut, ont plus de sept cents ans. Rouges profonds, bleus d'outremer, ils allument la pierre comme un brasier de couleurs. L'un des plus beaux ensembles de vitraux de France.\r\n\r\nEt cherche, dans une chapelle, un petit tombeau de marbre blanc. Deux enfants y dorment, sculptés, mains jointes : les deux fils du roi Charles VIII et de la reine Anne de Bretagne, morts en bas âge, ici même, à Tours. Regarde les visages, la tendresse du ciseau. Toute la douleur d'un couple royal tient dans ce marbre.\r\n\r\nSaint Gatien, lui, fut le tout premier à porter la foi ici, bien avant Martin. La ville lui doit sa cathédrale.\r\n\r\nSortons. Prenons, à deux pas, la direction du fleuve, jusqu'aux vieux murs qui bordent la Loire. C'est là que finit notre histoire. Suis-moi.",
+      "hash": "f29084bf",
+      "chars": 1148,
+      "existingSegments": {
+        "en": "seed-100-tours-cite-royale-scene-7-seg-en",
+        "it": "seed-100-tours-cite-royale-scene-7-seg-it",
+        "es": "seed-100-tours-cite-royale-scene-7-seg-es",
+        "de": "seed-100-tours-cite-royale-scene-7-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-cite-royale-scene-8",
+      "index": 8,
+      "title": "Château de Tours",
+      "text": "Nous y voilà, au bord de la Loire. Derrière toi, les tours du vieux château de Tours ; devant toi, le fleuve, large, clair, tranquille, avec ses bancs de sable et ses oiseaux. Prends le temps de le regarder. Tout ce qu'on s'est raconté aujourd'hui est né de cette eau.\r\n\r\nSouviens-toi. Un soldat romain devenu saint, ramené ici par ce fleuve, en barque — et son tombeau qui attire l'Europe entière. Un roi méfiant et malin, Louis XI, qui délaisse Paris pour cette douceur, y plante son pouvoir et y fait tisser la soie. Une petite bergère qui traverse la ville avant d'entrer dans la légende. Trois fils d'une même histoire, et tous passent par la Loire.\r\n\r\nCar c'est là le secret de Tours. Pendant tout un âge — celui des saints, puis celui des rois Valois — le centre de la France n'était pas au bord de la Seine. Il était ici, sur ces rives douces où l'on vivait bien, où les rois aimaient chasser, prier, aimer et gouverner. La Loire n'était pas une province : c'était l'artère du royaume.\r\n\r\nPuis la cour est remontée vers Paris, et Tours est redevenue une ville tranquille, qui garde ses trésors sans se vanter. C'est ce qui la rend précieuse. Il faut la mériter un peu.\r\n\r\nReste encore là, devant l'eau. Écoute-la couler. Elle a porté des saints, des rois et des reines, et te voilà, toi aussi, sur sa berge. Prends-en un peu avec toi. À bientôt, l'ami.",
+      "hash": "fe8e5350",
+      "chars": 1360,
+      "existingSegments": {
+        "it": "seed-100-tours-cite-royale-scene-8-seg-it",
+        "en": "seed-100-tours-cite-royale-scene-8-seg-en",
+        "es": "seed-100-tours-cite-royale-scene-8-seg-es",
+        "de": "seed-100-tours-cite-royale-scene-8-seg-de"
+      }
+    }
+  ]
+}

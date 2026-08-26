@@ -1,0 +1,141 @@
+{
+  "tourId": "seed-100-rennes-murs-qui-parlent",
+  "sessionId": "seed-100-rennes-murs-qui-parlent-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Rennes",
+  "title": "Rennes — Les murs qui parlent",
+  "description": "Art — pans de bois peints, street-art et Transmusicales : la ville qui s'exprime sur ses murs.",
+  "themes": [
+    "Art — pans de bois peints, street-art et Transmusicales : la ville qui s'exprime sur ses murs."
+  ],
+  "baseLanguage": "fr",
+  "chars": 9622,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "en": "Art, painted wood panels, street art and Transmusicals: the city that expresses itself on its walls.",
+    "de": "Kunst, Holzspangen bemalt, Street-Art und Transmusik: die Stadt, die sich an ihren Wänden ausdrückt.",
+    "it": "Arte, pannelli in legno dipinto, street art e Transmusicals: la città che si esprime sulle sue mura.",
+    "es": "Arte, pedazos de madera pintados, street-art y Transmusicales: la ciudad que se expresa sobre sus paredes."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-rennes-murs-qui-parlent-scene-0",
+      "index": 0,
+      "title": "Rue Saint-Guillaume",
+      "text": "Arrête-toi au coin de cette ruelle, tout près de la cathédrale, et lève la tête vers cette maison-là. Une haute maison de bois, sombre, penchée, comme sortie d'un conte. Regarde bien ses poutres. Elles ne sont pas nues. Des personnages y sont sculptés — des figures, des visages, qui te regardent depuis des siècles.\r\n\r\nCette maison est l'une des plus vieilles de Rennes. On l'appelle parfois la maison de Du Guesclin. On raconte que le grand chevalier breton, le terrible connétable qui écrasa les Anglais, y aurait vécu, ou serait passé. C'est sans doute une légende — les dates ne collent pas tout à fait. Mais la légende, ici, fait partie des murs.\r\n\r\nEt c'est justement l'histoire que je vais te raconter aujourd'hui. À Rennes, les murs parlent. Depuis toujours. Bien avant les affiches et les écrans, les Rennais faisaient parler leurs façades. Ils sculptaient le bois, ils le peignaient, ils y accrochaient des figures pour dire qui ils étaient, ce qu'ils croyaient, ce qu'ils vendaient.\r\n\r\nDe ces vieilles poutres sculptées jusqu'aux fresques d'aujourd'hui, en passant par la musique qui fait vibrer la ville, c'est la même chose : une ville qui n'a jamais pu s'empêcher de s'exprimer. Une ville bavarde, colorée, vivante, qui écrit sur ses murs.\r\n\r\nContourne la cathédrale et glisse-toi dans la petite rue qui court derrière elle : la rue de la Psalette. Suis-moi.",
+      "hash": "68c1adea",
+      "chars": 1373,
+      "existingSegments": {
+        "es": "seed-100-rennes-murs-qui-parlent-scene-0-seg-es",
+        "it": "seed-100-rennes-murs-qui-parlent-scene-0-seg-it",
+        "en": "seed-100-rennes-murs-qui-parlent-scene-0-seg-en",
+        "de": "seed-100-rennes-murs-qui-parlent-scene-0-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-murs-qui-parlent-scene-1",
+      "index": 1,
+      "title": "Rue de la Psalette",
+      "text": "Te voici rue de la Psalette. Étroite, courbe, pavée, à l'abri derrière la cathédrale. Son drôle de nom vient des enfants de chœur, les « psalettes », qu'on formait ici à chanter les psaumes. Mais lève plutôt les yeux.\r\n\r\nCette rue, c'est un livre d'images en bois. Des maisons à pans de bois serrées, penchées, dont les façades sont peintes de couleurs vives — rouges profonds, bleus, ocres, verts. Ce n'est pas un décor moderne. C'est ainsi que Rennes se montrait autrefois : bariolée, éclatante, loin de l'image sage qu'on imagine.\r\n\r\nRegarde les poutres qui avancent au-dessus de toi, les pièces de bois sculptées, ces petites gueules qu'on appelle des engoulants, ces figures grimaçantes coincées sous les toits. Chaque maison rivalisait avec sa voisine. On montrait sa richesse, son métier, son humour parfois, dans le bois taillé et peint.\r\n\r\nVoilà les premiers murs qui parlent de Rennes. Pas des tableaux dans un musée : des façades, dans la rue, offertes à tous les regards. L'art était dehors, sur le pas de la porte.\r\n\r\nRemonte vers le centre, jusqu'à une petite rue commerçante et courbe, la rue du Pont-aux-Foulons. Suis-moi.",
+      "hash": "5733ad16",
+      "chars": 1138,
+      "existingSegments": {
+        "es": "seed-100-rennes-murs-qui-parlent-scene-1-seg-es",
+        "de": "seed-100-rennes-murs-qui-parlent-scene-1-seg-de",
+        "it": "seed-100-rennes-murs-qui-parlent-scene-1-seg-it",
+        "en": "seed-100-rennes-murs-qui-parlent-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-murs-qui-parlent-scene-2",
+      "index": 2,
+      "title": "Rue du Pont-aux-Foulons",
+      "text": "Nous voici rue du Pont-aux-Foulons. Une rue qui tourne doucement, bordée de hautes maisons de bois aux façades peintes, penchées les unes vers les autres jusqu'à presque se toucher au-dessus de ta tête.\r\n\r\nRegarde les couleurs. Un rouge sang, un bleu vif, un jaune, un vert d'eau. Ces teintes-là ne sont pas décoratives par hasard. Elles étaient un langage. Autrefois, dans une ville où beaucoup ne savaient pas lire, la façade racontait tout : le riche affichait ses poutres sculptées, le marchand peignait sa maison pour la faire remarquer, l'enseigne se voyait de loin.\r\n\r\nToute la ville était une conversation. On se parlait par les murs, par les couleurs, par les figures de bois. Chaque maison disait quelque chose à celui qui passait.\r\n\r\nCe goût-là, Rennes ne l'a jamais perdu. Il a simplement changé d'outils. Le bois sculpté est devenu la bombe de peinture ; la couleur sur la poutre est devenue la fresque sur le mur. Mais l'envie est la même : couvrir la ville de signes, ne pas laisser un mur se taire.\r\n\r\nDescends vers la rivière, la Vilaine, jusqu'aux quais. Là, les murs se remettent à parler — autrement. Suis-moi.",
+      "hash": "2b8e4d88",
+      "chars": 1130,
+      "existingSegments": {
+        "it": "seed-100-rennes-murs-qui-parlent-scene-2-seg-it",
+        "es": "seed-100-rennes-murs-qui-parlent-scene-2-seg-es",
+        "de": "seed-100-rennes-murs-qui-parlent-scene-2-seg-de",
+        "en": "seed-100-rennes-murs-qui-parlent-scene-2-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-murs-qui-parlent-scene-3",
+      "index": 3,
+      "title": "Quai Chateaubriand, au bord de la Vilaine",
+      "text": "Te voilà au bord de la Vilaine, la rivière qui traverse Rennes. Regarde les quais, les ponts, les murs qui les bordent. Et cherche la couleur. Des fresques, des lettrages, des silhouettes peintes, des tags plus ou moins fins. Ici, l'art est redescendu dans la rue.\r\n\r\nRennes a l'une des plus anciennes scènes de graffiti de France. Dès les années 1980, des jeunes ont commencé à écrire sur les murs, à taguer, à peindre, portés par le hip-hop naissant. La ville a d'abord grondé, effacé, puis fini par comprendre. Aujourd'hui, elle commande des fresques, ouvre des murs, invite des artistes. Le street-art fait partie du paysage.\r\n\r\nNe cherche pas une œuvre unique, un chef-d'œuvre à photographier. Le sujet, c'est la ville entière. Ouvre l'œil en marchant : au coin d'une rue, sous un pont, sur un pignon aveugle, une fresque t'attend, parfois immense, parfois minuscule.\r\n\r\nC'est le même geste, au fond, que celui des sculpteurs d'autrefois. Refuser le mur nu. Prendre l'espace public pour toile. Faire parler la pierre et le béton comme on faisait parler le bois.\r\n\r\nLonge la rivière vers l'ouest, sur le quai, jusqu'à un grand bâtiment classique posé au bord de l'eau : le musée des Beaux-Arts. Suis-moi.",
+      "hash": "13f404e6",
+      "chars": 1208,
+      "existingSegments": {
+        "it": "seed-100-rennes-murs-qui-parlent-scene-3-seg-it",
+        "en": "seed-100-rennes-murs-qui-parlent-scene-3-seg-en",
+        "es": "seed-100-rennes-murs-qui-parlent-scene-3-seg-es",
+        "de": "seed-100-rennes-murs-qui-parlent-scene-3-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-murs-qui-parlent-scene-4",
+      "index": 4,
+      "title": "Musée des Beaux-Arts",
+      "text": "Voici le musée des Beaux-Arts, installé au bord de la Vilaine dans un ancien palais universitaire. Après les murs de la rue, entrons voir l'art rangé, encadré, protégé.\r\n\r\nCe musée est ancien, riche, un peu inattendu pour une ville de cette taille. On y trouve des tableaux de plusieurs siècles, des antiquités, des dessins. Mais s'il y a une œuvre à chercher, c'est celle-là : « Le Nouveau-Né », de Georges de La Tour.\r\n\r\nCherche-la. Un petit tableau, sombre, silencieux. Une femme tient un nourrisson emmailloté ; une autre, à côté, protège de sa main la flamme d'une bougie qu'on ne voit pas. Toute la lumière vient de là, cachée, douce, posée sur les visages et sur l'enfant. Pas de décor, pas d'or, pas de fioritures. Juste cette clarté qui semble sortir du silence.\r\n\r\nPeu de tableaux au monde disent aussi bien le calme, la tendresse, le mystère. Reste un instant devant. La ville qui crie sur ses murs sait aussi, ici, se taire et murmurer.\r\n\r\nRessors, longe encore la rivière, puis oblique vers un étonnant bâtiment moderne coiffé d'une pyramide renversée : les Champs Libres. Suis-moi.",
+      "hash": "fb5e4ec5",
+      "chars": 1095,
+      "existingSegments": {
+        "de": "seed-100-rennes-murs-qui-parlent-scene-4-seg-de",
+        "en": "seed-100-rennes-murs-qui-parlent-scene-4-seg-en",
+        "it": "seed-100-rennes-murs-qui-parlent-scene-4-seg-it",
+        "es": "seed-100-rennes-murs-qui-parlent-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-murs-qui-parlent-scene-5",
+      "index": 5,
+      "title": "Les Champs Libres",
+      "text": "Lève les yeux vers ce bâtiment. Étrange, non ? Une grande pyramide posée à l'envers, la pointe en bas, et une sorte de sphère accrochée sur le côté. On dirait un vaisseau. Ce sont les Champs Libres, dessinés par un grand architecte, Christian de Portzamparc.\r\n\r\nIci, l'art et le savoir se sont donné rendez-vous sous un même toit. Une immense bibliothèque. Un musée qui raconte toute la Bretagne, son histoire, sa langue, ses costumes. Et un espace des sciences, avec son planétarium, où l'on va regarder les étoiles en plein cœur de la ville.\r\n\r\nArrête-toi sur l'idée. Une ville qui bâtit, en plein centre, un lieu pareil, ouvert à tous, dit quelque chose d'elle-même. Rennes est une ville jeune, une ville d'étudiants, de chercheurs, de curieux. Elle mise sur les têtes, sur les idées, sur la culture partagée.\r\n\r\nLe bâtiment lui-même est une déclaration. Encore un mur qui parle — mais un mur d'aujourd'hui, qui dit : ici, on pense, on cherche, on apprend.\r\n\r\nPrends vers le nord-est, en direction du centre, jusqu'à une salle de concert discrète : l'Ubu. Suis-moi.",
+      "hash": "f5a7ab1d",
+      "chars": 1068,
+      "existingSegments": {
+        "de": "seed-100-rennes-murs-qui-parlent-scene-5-seg-de",
+        "en": "seed-100-rennes-murs-qui-parlent-scene-5-seg-en",
+        "es": "seed-100-rennes-murs-qui-parlent-scene-5-seg-es",
+        "it": "seed-100-rennes-murs-qui-parlent-scene-5-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-murs-qui-parlent-scene-6",
+      "index": 6,
+      "title": "L'Ubu",
+      "text": "Nous voici devant l'Ubu. De l'extérieur, rien de spectaculaire : une façade sobre, une porte, une enseigne. Mais derrière ce mur-là bat depuis des décennies le cœur musical de Rennes.\r\n\r\nCar cette ville, discrète, pluvieuse, un peu à l'écart, est une capitale du rock. À la fin des années 1970, une bande de jeunes Rennais s'est mise à faire une musique nerveuse, sombre, électrique. Un groupe, Marquis de Sade, a marqué toute une génération. Un autre garçon, timide, allait devenir immense : Étienne Daho, l'enfant de Rennes, qui a inventé ici une pop française élégante et mélancolique.\r\n\r\nComment expliquer ça ? Peut-être la pluie, l'ennui, l'énergie des étudiants, les salles où l'on pouvait enfin jouer. Toujours est-il que, depuis, Rennes n'a jamais cessé de faire de la musique et d'en découvrir. Des caves aux salles comme celle-ci, il s'y est joué des milliers de concerts, les premiers pas de groupes devenus célèbres.\r\n\r\nEncore une façon, pour cette ville, de faire parler ses murs. Non plus par la couleur, mais par le son.\r\n\r\nReste dans le quartier, tout près. Il nous reste à parler du rendez-vous qui, chaque hiver, fait résonner Rennes dans le monde entier. Suis-moi.",
+      "hash": "abf75a1a",
+      "chars": 1183,
+      "existingSegments": {
+        "de": "seed-100-rennes-murs-qui-parlent-scene-6-seg-de",
+        "it": "seed-100-rennes-murs-qui-parlent-scene-6-seg-it",
+        "en": "seed-100-rennes-murs-qui-parlent-scene-6-seg-en",
+        "es": "seed-100-rennes-murs-qui-parlent-scene-6-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-rennes-murs-qui-parlent-scene-7",
+      "index": 7,
+      "title": "L'Ubu, mémoire des Transmusicales",
+      "text": "Nous voici au bout de notre balade — et au cœur de ce qui fait vibrer Rennes. Chaque année, au début du mois de décembre, quand la nuit tombe tôt et que le froid s'installe, la ville s'allume : ce sont les Transmusicales.\r\n\r\nTout a commencé en 1979. Une poignée de passionnés a eu une idée simple et folle : monter un festival, non pas pour faire venir les vedettes que tout le monde connaît, mais pour faire découvrir celles que personne ne connaît encore. Des groupes inconnus, venus du monde entier, qui montent sur scène devant un public curieux, prêt à aimer avant tout le monde.\r\n\r\nEt ça marche. Depuis, des artistes du monde entier ont fait à Rennes leurs premiers pas français, sur ces scènes, dans ces halls, devant ces foules qui bravent le froid pour entendre du neuf. On vient ici pour être surpris. Pour découvrir demain, ce soir.\r\n\r\nVoilà ce que cette ville a toujours su faire, depuis les poutres sculptées jusqu'aux fresques, jusqu'à la musique. S'exprimer. Prendre la parole. Ne jamais laisser un mur, une scène, un silence, rester vide. Rennes n'est pas une ville qui se tait. C'est une ville qui parle, qui peint, qui chante, qui cherche toujours la prochaine chose à dire.\r\n\r\nAlors, avant de partir, promène encore une fois ton regard. Sur une façade de bois, une fresque au coin d'un mur, une affiche de concert. Écoute la ville. Elle a mille choses à te dire, et elle ne s'arrête jamais. À bientôt, l'ami.",
+      "hash": "a976474c",
+      "chars": 1427,
+      "existingSegments": {
+        "de": "seed-100-rennes-murs-qui-parlent-scene-7-seg-de",
+        "es": "seed-100-rennes-murs-qui-parlent-scene-7-seg-es",
+        "en": "seed-100-rennes-murs-qui-parlent-scene-7-seg-en",
+        "it": "seed-100-rennes-murs-qui-parlent-scene-7-seg-it"
+      }
+    }
+  ]
+}

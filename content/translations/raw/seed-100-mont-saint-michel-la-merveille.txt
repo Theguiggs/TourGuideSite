@@ -1,0 +1,449 @@
+@@LANG=en
+@@TITLE=Mont-Saint-Michel — The Wonder of the West
+@@DESC=History & secrets — a demanding archangel, a thousand years of impossible construction: the Wonder of the West.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-0
+@@STITLE=Porte de l'Avancée
+Stop for a second before crossing the gate. Turn around. Behind you, the bay stretches out, flat, immense, ever-changing — now sand, now water, never the same twice. And in front of you, this rock crowned with stone rising toward the sky like an arrow: Mont-Saint-Michel.
+
+Look closely at these two big iron mouths set near the entrance. These are the Michelettes, cannons the English abandoned here, nearly six centuries ago, on the day they gave up trying to take the Mont. Because this fortress has never fallen.
+
+Here's the story I'm going to tell you, step by step, all the way to the top. The story of a rock that nothing destined to become the Wonder of the West. It used to be called Mont-Tombe, a lonely rock lost in the sands, battered by the largest tides in Europe.
+
+And then, so the story goes, in the 8th century, an archangel got involved. Saint Michael is said to have appeared three times in a dream to a local bishop, Aubert, ordering him to build a sanctuary here, on this rock. Three times. Because the first time, and the second, the bishop hesitated.
+
+Out of that dream came a thousand years of impossible construction. Monks, kings, and builders took turns hoisting an abbey to the summit of a granite peak, out in the middle of the sea. That's the madness you're about to climb.
+
+Cross the gate, and head into the lane climbing straight ahead. Follow me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-1
+@@STITLE=La Grande Rue
+Here you are on the Grande Rue. A single street, narrow, cobbled, winding its way up toward the abbey. Since the Middle Ages, it's been the same path. The only one.
+
+Look up at the façades. These houses of stone and wood, pressed close together, some of them leaning, mostly date from the 15th and 16th centuries. They've always lived off the same trade: welcoming those climbing up.
+
+Because for centuries, people came here by the thousands. Pilgrims from all over Europe, known here as the miquelots. They walked for weeks, sometimes crossing the bay on foot, at low tide, risking drowning or getting stuck in the quicksand. Many died doing it. And yet they kept coming, to touch the archangel's rock.
+
+Here, they were welcomed, housed, sold lead badges to sew onto their coats, proof of the journey completed. The street lived off their faith.
+
+Today, it's travelers from around the world who climb it, and the shops have changed their wares. But the movement itself has stayed the same for a thousand years: you climb, head raised toward the summit.
+
+Keep climbing. Halfway up the slope, a small church clings to the rock. Follow me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-2
+@@STITLE=Église Saint-Pierre
+This small church wedged between the houses is Saint-Pierre, the village church. Push open the door. It's modest, dark, huddled beneath the rock. Nothing like the abbey waiting for you up above. And that's exactly what makes it so touching.
+
+Because you need to understand something: beneath the monks' abbey, there has always been a village. A real one. Fishermen, innkeepers, merchants, families born and died on this rock. Even today, only a handful of residents live here year-round. A few dozen. It's one of the smallest municipalities in France.
+
+Inside, look for the statue of Saint Michael, the archangel in armor striking down the dragon with his lance. You'll find him everywhere, all the way up to the top of the spire. He's the true master of this place. The patron, the protector, the one to whom this whole rock belongs.
+
+Notice, near the entrance, the plaques and votive offerings left by sailors. Here, people prayed to Michael to come back alive from the sea.
+
+Go back outside, and continue the climb. Now look for the staircase heading toward the ramparts, on your right. Follow me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-3
+@@STITLE=Les remparts
+Here you are on the ramparts. Take your time walking along the rampart walk, and watch the bay open up beneath your feet.
+
+These walls, these squat towers, these gun ports, this isn't just decoration. The Mont was a formidable fortress. During the Hundred Years' War, while the English held all of Normandy around it, this rock never gave in. A handful of knights, dug in behind these stones, with the sea as their best ally, held out against an entire kingdom. That's why the English cannons rust down below, near the gate.
+
+The sea, precisely. Look at it. Here rise the largest tides in continental Europe — the water can rise and fall by around fifteen meters. At low tide, the bay empties out, the sand stretches as far as the eye can see, and the Mont becomes almost a mountain set down in a desert. At high tide, the water comes back, surrounds the rock, and the island becomes an island again.
+
+That tide was the best of moats. No army could camp for long on sands that drowned twice a day.
+
+Continue upward, toward the abbey's grand entrance and its terrace. We're approaching the heart of the place. Follow me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-4
+@@STITLE=Entrée publique de l'abbatiale
+Here we are, right at the top, on the western terrace, in front of the abbey church. Catch your breath. You're on the roof of the rock, more than a hundred and fifty meters above the mudflats.
+
+The monks began this church a thousand years ago, around the year 1000. And they made a mad bet. The summit of the rock is tiny, pointed — far too narrow to set a large church on top of it. So what did they do? They built, all around, underneath, enormous crypts, massive chapels with thick walls, to artificially widen the summit. The church you see rests on these hidden pillars. The granite peak, they say, passes right beneath the high altar.
+
+Go in. The Romanesque nave is austere, powerful, plain. But walk toward the choir: there, everything changes. The columns soar, the stone turns into lace, the windows climb toward the light. This is Flamboyant Gothic. The old Romanesque choir had collapsed, and it was rebuilt at the end of the Middle Ages, taller, more open, more dizzying.
+
+A thousand years of construction, I told you. Look: you have Romanesque and Gothic in the same church, one set upon the other.
+
+Now go out to the north, toward the great stacked halls. This is the Merveille. Follow me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-5
+@@STITLE=Entrée publique de l'abbatiale
+They call it the Merveille — the Marvel — and the name is no exaggeration. Look at this three-story building, set flat against the north face of the rock, rising straight up. Built in barely twenty years, at the start of the 13th century. For its time, it's an engineering feat.
+
+And do you know why it was built? Because of a fire. In 1204, the King of France conquers Normandy, and during the fighting, his Breton allies set fire to the Mont. Part of the abbey burns. The king, to make amends, opens his purse. It's his money that paid for the Merveille.
+
+Walk through its halls. Right at the bottom, the almonry and the cellar, where the poor were received and provisions were stored. In the middle, the beautiful Salle des Hôtes, for visiting kings and princes, and the Salle des Chevaliers, where the monks wrote and copied manuscripts. Each level, its own function, its own world. The poor at the bottom, the powerful in the middle, and the monks right at the top, closest to the sky.
+
+Climb further still, to the last floor, to the stone garden suspended between sea and sky. That's where our story ends. Follow me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-6
+@@STITLE=Entrée publique de l'abbatiale
+Here we are. The cloister. The highest point of the Merveille, a garden suspended atop the rock, ringed by a double row of slender columns that seem to dance. On one side, emptiness and the bay; on the other, the sky. Here, the monks came to pray, to meditate, to walk in circles, cut off from the world. Between sea and sky, quite literally.
+
+Take a moment to look up at the spire above you. Right at the top, tiny from here, a golden silhouette gleaming: Saint Michael, the archangel, his lance raised. That statue is recent — a sculptor placed it there at the very end of the 19th century, in 1897, to finally crown the summit. The archangel watches over the bay, more than a hundred and fifty meters above the waves.
+
+And yet, this place of prayer very nearly lost everything. After the Revolution, the monks were driven out, and the abbey was turned into a prison. For more than half a century, the Merveille locked prisoners behind its magnificent walls. It was known as the Bastille of the seas. It wasn't until 1863 that the jail was closed and the Mont was given back its greatness.
+
+Remember where we started. A rock in the sands, a hesitant bishop, an insistent archangel. A thousand years later, millions of pilgrims and travelers still climb this same street to touch this rock.
+
+Stay here a moment. Listen to the wind, watch the tide breathe. And when you head back down, you'll know why, here, they speak of a wonder. See you soon, friend.
+
+@@LANG=es
+@@TITLE=Mont-Saint-Michel — La Maravilla de Occidente
+@@DESC=Historia y secretos — un arcángel exigente, mil años de obra imposible: la Maravilla de Occidente.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-0
+@@STITLE=Porte de l'Avancée
+Detente un segundo antes de cruzar la puerta. Date la vuelta. Detrás de ti, la bahía se extiende, plana, inmensa, cambiante —a veces arena, a veces agua, nunca dos veces igual. Y delante de ti, esta roca coronada de piedra que se eleva hacia el cielo como una flecha: el Mont-Saint-Michel.
+
+Mira bien estas dos grandes bocas de hierro colocadas cerca de la entrada. Son las Michelettes, cañones que los ingleses abandonaron aquí, hace casi seis siglos, el día en que renunciaron a tomar el Mont. Porque esta fortaleza nunca ha caído.
+
+Aquí está la historia que voy a contarte, escalón tras escalón, hasta la cima. La de una roca a la que nada destinaba a convertirse en la maravilla de Occidente. Se llamaba Mont-Tombe, una piedra perdida en las arenas, batida por las mareas más grandes de Europa.
+
+Y luego, se cuenta que en el siglo VIII, un arcángel se entrometió. San Miguel se habría aparecido tres veces en sueños a un obispo de la región, Aubert, para ordenarle construir un santuario aquí, en esta roca. Tres veces. Porque la primera, y la segunda, el obispo dudó.
+
+De ese sueño nació un milenio de obra imposible. Monjes, reyes, constructores se han ido relevando para izar una abadía en la cima de un peñón de granito, en pleno mar. Es esa locura la que vas a subir.
+
+Cruza la puerta, y adéntrate en la callejuela que sube recta delante de ti. Sígueme.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-1
+@@STITLE=La Grande Rue
+Aquí estás en la Grande Rue. Una única calle, estrecha, empedrada, que sube serpenteando hacia la abadía. Desde la Edad Media, es el mismo camino. El único.
+
+Levanta la vista hacia las fachadas. Estas casas de piedra y madera, apretadas unas contra otras, algunas inclinadas, datan en su mayoría del siglo XV y del XVI. Siempre han vivido del mismo oficio: acoger a los que suben.
+
+Porque durante siglos, vinieron por millares. Peregrinos de toda Europa, a los que aquí se llamaba los miquelots. Caminaban semanas, cruzaban a veces la bahía a pie, con marea baja, arriesgándose a ahogarse o a hundirse en las arenas movedizas. Muchos morían en el intento. Y aun así seguían viniendo, para tocar la roca del arcángel.
+
+Aquí se los acogía, se les daba alojamiento, se les vendían insignias de plomo para coser en su capa, la prueba del viaje cumplido. La calle vivía de su fe.
+
+Hoy, son los viajeros del mundo entero quienes suben, y las tiendas han cambiado de mercancía. Pero el movimiento, ese, es el mismo desde hace mil años: se sube, con la cabeza alzada hacia la cima.
+
+Sigue subiendo. A media pendiente, una pequeña iglesia se aferra a la roca. Sígueme.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-2
+@@STITLE=Église Saint-Pierre
+Esta pequeña iglesia encajonada entre las casas es Saint-Pierre, la iglesia del pueblo. Empuja la puerta. Es modesta, oscura, apretujada bajo la roca. Nada que ver con la abadía que te espera ahí arriba. Y es precisamente eso lo que la hace tan conmovedora.
+
+Porque debes entender una cosa: bajo la abadía de los monjes, siempre ha habido un pueblo. Uno de verdad. Pescadores, posaderos, comerciantes, familias nacidas y muertas en esta roca. Todavía hoy, solo un puñado de habitantes vive aquí todo el año. Unas pocas decenas. Es uno de los municipios más pequeños de Francia.
+
+En el interior, busca la estatua de san Miguel, el arcángel con armadura que derriba al dragón con su lanza. Lo encontrarás por todas partes, hasta la cima de la aguja. Él es el verdadero amo del lugar. El patrón, el protector, aquel a quien pertenece toda la roca.
+
+Fíjate, cerca de la entrada, en las placas y los exvotos dejados por marineros. Aquí se rezaba a Miguel para volver vivo del mar.
+
+Vuelve a salir, y retoma la subida. Busca ahora la escalera que se dirige hacia las murallas, a tu derecha. Sígueme.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-3
+@@STITLE=Les remparts
+Aquí estás en las murallas. Tómate el tiempo de bordear el camino de ronda, y mira cómo la bahía se abre bajo tus pies.
+
+Estos muros, estas torres achaparradas, estas troneras, no son decorado. El Mont fue una fortaleza temible. Durante la guerra de los Cien Años, mientras los ingleses ocupaban toda Normandía a su alrededor, esta roca nunca cedió. Un puñado de caballeros, atrincherados tras estas piedras, con el mar como mejor aliado, plantaron cara a un reino entero. Por eso los cañones ingleses se oxidan abajo, cerca de la puerta.
+
+El mar, precisamente. Mírala. Aquí suben las mareas más grandes de la Europa continental —el agua puede subir y bajar unos quince metros. Con marea baja, la bahía se vacía, la arena se extiende hasta donde alcanza la vista, y el Mont se convierte casi en una montaña posada sobre el desierto. Con marea alta, el agua vuelve, rodea la roca, y la isla vuelve a ser isla.
+
+Esa marea era el mejor de los fosos. Ningún ejército podía acampar mucho tiempo en unas arenas que se anegaban dos veces al día.
+
+Continúa hacia arriba, hacia la gran entrada de la abadía y su terraza. Nos acercamos al corazón. Sígueme.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-4
+@@STITLE=Entrée publique de l'abbatiale
+Aquí estamos, del todo arriba, en la terraza del Oeste, frente a la iglesia abacial. Recupera el aliento. Estás en el tejado de la roca, a más de ciento cincuenta metros por encima de las playas.
+
+Esta iglesia, los monjes la empezaron hace mil años, hacia el año mil. E hicieron una apuesta loca. La cima de la roca es diminuta, puntiaguda —demasiado estrecha para colocar encima una gran iglesia. ¿Qué hicieron entonces? Construyeron todo alrededor, debajo, enormes criptas, capillas macizas de muros gruesos, para ensanchar artificialmente la cima. La iglesia que ves descansa sobre esos pilares ocultos. El pico de granito pasa, se dice, justo bajo el altar mayor.
+
+Entra. La nave románica es sobria, potente, austera. Pero avanza hacia el coro: ahí, todo cambia. Las columnas se elevan, la piedra se convierte en encaje, las ventanas suben hacia la luz. Es gótico flamígero. El antiguo coro románico se había derrumbado, y se reconstruyó a finales de la Edad Media, más alto, más calado, más vertiginoso.
+
+Mil años de obras, ya te lo había dicho. Mira: tienes el románico y el gótico en una misma iglesia, uno posado sobre el otro.
+
+Ahora, sal por el norte, hacia las grandes salas superpuestas. Es la Merveille. Sígueme.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-5
+@@STITLE=Entrée publique de l'abbatiale
+La llaman la Merveille, y el nombre no tiene nada de exagerado. Mira este edificio de tres plantas, adosado a la cara norte de la roca, que sube en vertical. Construido en apenas una veintena de años, a principios del siglo XIII. Para la época, es una hazaña de ingeniería.
+
+¿Y sabes por qué se construyó? A causa de un incendio. En 1204, el rey de Francia conquista Normandía, y en la batalla, sus aliados bretones prenden fuego al Mont. Una parte de la abadía arde. El rey, para hacerse perdonar, abre su bolsa. Es su dinero el que pagó la Merveille.
+
+Atraviesa sus salas. Del todo abajo, la limosnería y la bodega, donde se recibía a los pobres y se almacenaban los víveres. En medio, la hermosa salle des Hôtes, para los reyes y príncipes de paso, y la salle des Chevaliers, donde los monjes escribían y copiaban manuscritos. Cada nivel, su función, su mundo. Los pobres abajo, los poderosos en medio, y los monjes del todo arriba, lo más cerca posible del cielo.
+
+Sube todavía más, hasta el último piso, hasta el jardín de piedra suspendido entre mar y cielo. Ahí termina nuestra historia. Sígueme.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-6
+@@STITLE=Entrée publique de l'abbatiale
+Aquí estamos. El claustro. El punto más alto de la Merveille, un jardín suspendido en la cima de la roca, rodeado de una doble hilera de finas columnas que parecen bailar. A un lado, el vacío y la bahía; al otro, el cielo. Aquí venían los monjes a rezar, a meditar, a caminar en círculo, apartados del mundo. Entre mar y cielo, en el sentido literal.
+
+Tómate el tiempo de levantar la vista hacia la aguja, por encima de ti. Del todo arriba, diminuta desde aquí, una silueta dorada que brilla: san Miguel, el arcángel, su lanza en alto. Esa estatua es reciente —un escultor la colocó a finales del siglo XIX, en 1897, para coronar por fin la cima. El arcángel vela sobre la bahía, a más de ciento cincuenta metros por encima de las olas.
+
+Y sin embargo, este lugar de oración estuvo a punto de perderlo todo. Después de la Revolución, se expulsó a los monjes, y se transformó la abadía en prisión. Durante más de medio siglo, la Merveille encerró a presos tras sus muros soberbios. Se la llamaba la Bastilla de los mares. Hubo que esperar a 1863 para que se cerrara la mazmorra y se le devolviera al Mont su grandeza.
+
+Recuerda de dónde partimos. Una piedra en las arenas, un obispo que duda, un arcángel que insiste. Mil años después, millones de peregrinos y viajeros siguen subiendo esta misma calle para tocar esta roca.
+
+Quédate aquí un momento. Escucha el viento, mira la marea respirar. Y cuando bajes de nuevo, sabrás por qué, aquí, se habla de una maravilla. Hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Mont-Saint-Michel — Das Wunder des Abendlandes
+@@DESC=Geschichte & Geheimnisse — ein anspruchsvoller Erzengel, tausend Jahre unmöglicher Bauarbeiten: das Wunder des Abendlandes.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-0
+@@STITLE=Porte de l'Avancée
+Halt einen Moment inne, bevor du das Tor durchschreitest. Dreh dich um. Hinter dir erstreckt sich die Bucht, flach, riesig, wandelbar — mal Sand, mal Wasser, nie zweimal dieselbe. Und vor dir dieser mit Stein gekrönte Felsen, der wie ein Pfeil zum Himmel aufsteigt: der Mont-Saint-Michel.
+
+Schau dir diese beiden großen eisernen Mündungen an, die nahe dem Eingang stehen. Das sind die Michelettes, Kanonen, die die Engländer hier vor fast sechshundert Jahren zurückließen, an dem Tag, als sie darauf verzichteten, den Mont einzunehmen. Denn diese Festung ist nie gefallen.
+
+Hier ist die Geschichte, die ich dir erzählen werde, Stufe für Stufe, bis zum Gipfel. Die eines Felsens, dem nichts vorherbestimmt war, das Wunder des Abendlandes zu werden. Man nannte ihn Mont-Tombe, einen verlorenen Stein im Sand, umtost von den größten Gezeiten Europas.
+
+Und dann, so erzählt man, mischte sich im 8. Jahrhundert ein Erzengel ein. Der heilige Michael soll dreimal im Traum einem örtlichen Bischof, Aubert, erschienen sein, um ihm zu befehlen, hier auf diesem Felsen ein Heiligtum zu errichten. Dreimal. Denn beim ersten und beim zweiten Mal zögerte der Bischof.
+
+Aus diesem Traum entstand ein Jahrtausend unmöglicher Bauarbeiten. Mönche, Könige, Baumeister lösten einander ab, um eine Abtei auf den Gipfel eines Granitfelsens mitten im Meer zu hieven. Genau diesen Wahnsinn wirst du erklimmen.
+
+Durchschreite das Tor und geh in die Gasse hinein, die geradeaus vor dir aufsteigt. Folge mir.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-1
+@@STITLE=La Grande Rue
+Da bist du nun auf der Grande Rue. Eine einzige Straße, eng, gepflastert, die sich schlängelnd zur Abtei hinaufwindet. Seit dem Mittelalter ist es derselbe Weg. Der einzige.
+
+Heb den Blick zu den Fassaden. Diese Häuser aus Stein und Holz, dicht aneinandergedrängt, manche schief, stammen größtenteils aus dem 15. und 16. Jahrhundert. Sie haben immer von demselben Gewerbe gelebt: jene aufzunehmen, die hinaufsteigen.
+
+Denn jahrhundertelang kamen sie zu Tausenden. Pilger aus ganz Europa, hier miquelots genannt. Sie liefen wochenlang, durchquerten manchmal die Bucht zu Fuß, bei Ebbe, auf die Gefahr hin, zu ertrinken oder im Treibsand zu versinken. Viele starben dabei. Und dennoch kamen sie, um den Fels des Erzengels zu berühren.
+
+Hier wurden sie aufgenommen, beherbergt, man verkaufte ihnen bleierne Abzeichen zum Aufnähen auf den Mantel, den Beweis der vollbrachten Reise. Die Straße lebte von ihrem Glauben.
+
+Heute sind es Reisende aus aller Welt, die hinaufsteigen, und die Läden haben ihre Waren gewechselt. Doch die Bewegung selbst ist seit tausend Jahren dieselbe geblieben: man steigt hinauf, den Kopf zum Gipfel erhoben.
+
+Steig weiter hinauf. Auf halbem Weg klammert sich eine kleine Kirche an den Felsen. Folge mir.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-2
+@@STITLE=Église Saint-Pierre
+Diese kleine, zwischen den Häusern eingeklemmte Kirche ist Saint-Pierre, die Dorfkirche. Stoß die Tür auf. Sie ist bescheiden, dunkel, unter dem Fels zusammengedrückt. Nichts wie die Abtei, die dort oben auf dich wartet. Und genau das macht sie so rührend.
+
+Denn du musst eines verstehen: unter der Mönchsabtei gab es immer schon ein Dorf. Ein echtes. Fischer, Gastwirte, Kaufleute, Familien, die auf diesem Felsen geboren wurden und starben. Auch heute noch lebt hier nur eine Handvoll Einwohner das ganze Jahr über. Ein paar Dutzend. Es ist eine der kleinsten Gemeinden Frankreichs.
+
+Im Inneren such nach der Statue des heiligen Michael, des Erzengels in Rüstung, der den Drachen mit seiner Lanze niederstreckt. Du wirst ihn überall wiederfinden, bis hinauf zur Spitze der Turmspitze. Er ist der wahre Herr dieses Ortes. Der Schutzpatron, der Beschützer, dem der ganze Felsen gehört.
+
+Beachte, nahe dem Eingang, die Tafeln und Votivgaben, die Seeleute hinterlassen haben. Hier betete man zu Michael, um lebend vom Meer zurückzukehren.
+
+Geh wieder hinaus, und setz den Aufstieg fort. Such jetzt nach der Treppe, die rechts zu den Stadtmauern führt. Folge mir.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-3
+@@STITLE=Les remparts
+Da bist du nun auf den Mauern. Nimm dir Zeit, dem Wehrgang entlangzugehen, und schau, wie sich die Bucht unter deinen Füßen öffnet.
+
+Diese Mauern, diese gedrungenen Türme, diese Kanonenscharten sind keine Kulisse. Der Mont war eine gefürchtete Festung. Während des Hundertjährigen Krieges, als die Engländer die ganze Normandie ringsum hielten, gab dieser Felsen niemals nach. Eine Handvoll Ritter, verschanzt hinter diesen Steinen, mit dem Meer als bestem Verbündeten, hielt einem ganzen Königreich stand. Deshalb rosten die englischen Kanonen unten, nahe dem Tor.
+
+Das Meer eben. Schau es dir an. Hier steigen die größten Gezeiten des europäischen Festlands — das Wasser kann um etwa fünfzehn Meter steigen und fallen. Bei Ebbe leert sich die Bucht, der Sand erstreckt sich, so weit das Auge reicht, und der Mont wird fast zu einem Berg, mitten in der Wüste. Bei Flut kehrt das Wasser zurück, umschließt den Felsen, und die Insel wird wieder zur Insel.
+
+Diese Gezeit war der beste aller Wassergräben. Keine Armee konnte lange in Sand lagern, der zweimal täglich absoff.
+
+Steig weiter hinauf, zum großen Eingang der Abtei und ihrer Terrasse. Wir nähern uns dem Herzen. Folge mir.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-4
+@@STITLE=Entrée publique de l'abbatiale
+Da sind wir nun, ganz oben, auf der Westterrasse, vor der Abteikirche. Verschnauf dich. Du stehst auf dem Dach des Felsens, mehr als hundertfünfzig Meter über den Watten.
+
+Diese Kirche begannen die Mönche vor tausend Jahren, um das Jahr 1000. Und sie machten eine verrückte Wette. Der Gipfel des Felsens ist winzig, spitz — viel zu schmal, um eine große Kirche darauf zu setzen. Was taten sie also? Sie bauten ringsherum, darunter, riesige Krypten, wuchtige Kapellen mit dicken Mauern, um den Gipfel künstlich zu erweitern. Die Kirche, die du siehst, ruht auf diesen verborgenen Pfeilern. Die Granitspitze verläuft, so heißt es, genau unter dem Hochaltar.
+
+Geh hinein. Das romanische Kirchenschiff ist schlicht, kraftvoll, streng. Doch geh weiter zum Chor: dort ändert sich alles. Die Säulen schwingen sich auf, der Stein wird zu Spitzenwerk, die Fenster steigen zum Licht hinauf. Das ist Flammende Gotik. Der alte romanische Chor war eingestürzt, und man baute ihn am Ende des Mittelalters wieder auf, höher, durchbrochener, schwindelerregender.
+
+Tausend Jahre Bauzeit, hatte ich dir gesagt. Schau: du hast Romanik und Gotik in derselben Kirche, die eine auf der anderen.
+
+Geh jetzt nach Norden hinaus, zu den großen übereinandergestapelten Sälen. Das ist die Merveille. Folge mir.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-5
+@@STITLE=Entrée publique de l'abbatiale
+Man nennt sie die Merveille, und der Name ist keineswegs übertrieben. Schau dir dieses dreistöckige Gebäude an, flach an die Nordseite des Felsens gesetzt, das senkrecht aufsteigt. Erbaut in kaum zwanzig Jahren, zu Beginn des 13. Jahrhunderts. Für die damalige Zeit ist das eine ingenieurtechnische Meisterleistung.
+
+Und weißt du, warum man sie gebaut hat? Wegen eines Brandes. 1204 erobert der König von Frankreich die Normandie, und im Kampf stecken seine bretonischen Verbündeten den Mont in Brand. Ein Teil der Abtei brennt nieder. Der König öffnet, um sich zu entschuldigen, seine Börse. Es ist sein Geld, das die Merveille bezahlt hat.
+
+Durchquere ihre Säle. Ganz unten die Almosenkammer und der Vorratskeller, wo man die Armen empfing und Vorräte lagerte. In der Mitte der schöne Gästesaal, für durchreisende Könige und Fürsten, und der Rittersaal, wo die Mönche schrieben und Manuskripte kopierten. Jede Ebene ihre Funktion, ihre Welt. Die Armen unten, die Mächtigen in der Mitte, und die Mönche ganz oben, dem Himmel am nächsten.
+
+Steig noch weiter, bis zum obersten Stockwerk, bis zum steinernen Garten, aufgehängt zwischen Meer und Himmel. Dort endet unsere Geschichte. Folge mir.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-6
+@@STITLE=Entrée publique de l'abbatiale
+Da sind wir. Der Kreuzgang. Der höchste Punkt der Merveille, ein Garten, aufgehängt auf dem Gipfel des Felsens, umgeben von einer doppelten Reihe schlanker Säulen, die zu tanzen scheinen. Auf der einen Seite die Leere und die Bucht; auf der anderen der Himmel. Hierher kamen die Mönche, um zu beten, zu meditieren, im Kreis zu gehen, von der Welt abgeschnitten. Zwischen Meer und Himmel, im wörtlichen Sinne.
+
+Nimm dir Zeit, den Blick zur Turmspitze über dir zu heben. Ganz oben, von hier winzig, eine goldene, glänzende Gestalt: der heilige Michael, der Erzengel, seine Lanze erhoben. Diese Statue ist neueren Datums — ein Bildhauer stellte sie ganz am Ende des 19. Jahrhunderts, 1897, dort auf, um endlich den Gipfel zu krönen. Der Erzengel wacht über die Bucht, mehr als hundertfünfzig Meter über den Wellen.
+
+Und doch hätte dieser Ort des Gebets fast alles verloren. Nach der Revolution vertrieb man die Mönche und verwandelte die Abtei in ein Gefängnis. Über ein halbes Jahrhundert lang sperrte die Merveille Gefangene hinter ihren prächtigen Mauern ein. Man nannte sie die Bastille der Meere. Erst 1863 wurde der Kerker geschlossen und dem Mont seine Größe zurückgegeben.
+
+Erinnere dich, wo wir aufgebrochen sind. Ein Stein im Sand, ein zögernder Bischof, ein beharrlicher Erzengel. Tausend Jahre später steigen noch immer Millionen von Pilgern und Reisenden dieselbe Straße hinauf, um diesen Felsen zu berühren.
+
+Bleib hier noch einen Moment. Hör dem Wind zu, schau der Gezeit beim Atmen zu. Und wenn du wieder hinuntersteigst, wirst du wissen, warum man hier von einem Wunder spricht. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Mont-Saint-Michel — La Meraviglia d'Occidente
+@@DESC=Storia e segreti — un arcangelo esigente, mille anni di cantiere impossibile: la Meraviglia d'Occidente.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-0
+@@STITLE=Porte de l'Avancée
+Fermati un secondo prima di varcare la porta. Voltati. Dietro di te, la baia si estende, piatta, immensa, mutevole — a volte sabbia, a volte acqua, mai due volte uguale. E davanti a te, questa roccia coronata di pietra che sale verso il cielo come una freccia: il Mont-Saint-Michel.
+
+Guarda bene queste due grosse bocche di ferro poste vicino all'ingresso. Sono le Michelettes, cannoni che gli inglesi abbandonarono qui, quasi sei secoli fa, il giorno in cui rinunciarono a prendere il Mont. Perché questa fortezza non è mai caduta.
+
+Ecco la storia che ti racconterò, gradino dopo gradino, fino alla cima. Quella di una roccia che nulla destinava a diventare la meraviglia d'Occidente. La si chiamava Mont-Tombe, un sasso perduto nelle sabbie, battuto dalle maree più grandi d'Europa.
+
+E poi, si racconta che nell'VIII secolo, un arcangelo si sia intromesso. San Michele sarebbe apparso tre volte in sogno a un vescovo della regione, Aubert, per ordinargli di costruire un santuario qui, su questa roccia. Tre volte. Perché la prima, e la seconda, il vescovo esitò.
+
+Da quel sogno nacque un millennio di cantiere impossibile. Monaci, re, costruttori si sono avvicendati per issare un'abbazia sulla cima di un picco di granito, in pieno mare. È questa follia che stai per scalare.
+
+Varca la porta, e imboccati nel vicolo che sale dritto davanti a te. Seguimi.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-1
+@@STITLE=La Grande Rue
+Eccoti nella Grande Rue. Un'unica strada, stretta, pavimentata, che sale serpeggiando verso l'abbazia. Fin dal Medioevo, è lo stesso cammino. L'unico.
+
+Alza gli occhi verso le facciate. Queste case di pietra e legno, serrate le une contro le altre, alcune pendenti, risalgono per lo più al XV e al XVI secolo. Hanno sempre vissuto dello stesso mestiere: accogliere coloro che salgono.
+
+Perché per secoli, sono venuti a migliaia. Pellegrini da tutta Europa, chiamati qui i miquelots. Camminavano per settimane, attraversavano a volte la baia a piedi, con la bassa marea, rischiando di annegare o di sprofondare nelle sabbie mobili. Molti ne morivano. Eppure continuavano a venire, per toccare la roccia dell'arcangelo.
+
+Qui li si accoglieva, li si alloggiava, si vendevano loro insegne di piombo da cucire sul mantello, la prova del viaggio compiuto. La strada viveva della loro fede.
+
+Oggi, sono i viaggiatori di tutto il mondo a salire, e i negozi hanno cambiato merce. Ma il movimento, quello, è lo stesso da mille anni: si sale, con la testa alzata verso la cima.
+
+Continua a salire. A metà pendio, una piccola chiesa si aggrappa alla roccia. Seguimi.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-2
+@@STITLE=Église Saint-Pierre
+Questa piccola chiesa incastrata tra le case è Saint-Pierre, la chiesa del villaggio. Spingi la porta. È modesta, scura, rannicchiata sotto la roccia. Niente a che vedere con l'abbazia che ti aspetta lassù. Ed è proprio questo che la rende commovente.
+
+Perché devi capire una cosa: sotto l'abbazia dei monaci, c'è sempre stato un villaggio. Uno vero. Pescatori, osti, mercanti, famiglie nate e morte su questa roccia. Ancora oggi, solo una manciata di abitanti vive qui tutto l'anno. Qualche decina. È uno dei comuni più piccoli di Francia.
+
+All'interno, cerca la statua di san Michele, l'arcangelo in armatura che abbatte il drago con la sua lancia. Lo ritroverai ovunque, fino in cima alla guglia. È lui il vero padrone del luogo. Il patrono, il protettore, colui a cui appartiene tutta la roccia.
+
+Nota, vicino all'ingresso, le targhe e gli ex voto lasciati dai marinai. Qui si pregava Michele per tornare vivi dal mare.
+
+Esci di nuovo, e riprendi la salita. Cerca ora la scala che si dirige verso le mura, alla tua destra. Seguimi.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-3
+@@STITLE=Les remparts
+Eccoti sulle mura. Prenditi il tempo di costeggiare il cammino di ronda, e guarda la baia aprirsi sotto i tuoi piedi.
+
+Queste mura, queste torri tozze, queste cannoniere, non sono un decoro. Il Mont fu una fortezza temibile. Durante la guerra dei Cent'anni, mentre gli inglesi occupavano tutta la Normandia intorno, questa roccia non cedette mai. Una manciata di cavalieri, trincerati dietro queste pietre, con il mare come migliore alleato, tenne testa a un intero regno. Per questo i cannoni inglesi arrugginiscono in basso, vicino alla porta.
+
+Il mare, appunto. Guardalo. Qui salgono le maree più grandi dell'Europa continentale — l'acqua può salire e scendere di una quindicina di metri. Con la bassa marea, la baia si svuota, la sabbia si estende a perdita d'occhio, e il Mont diventa quasi una montagna posata sul deserto. Con l'alta marea, l'acqua torna, circonda la roccia, e l'isola torna a essere isola.
+
+Quella marea era il migliore dei fossati. Nessun esercito poteva accamparsi a lungo su sabbie che annegavano due volte al giorno.
+
+Continua verso l'alto, verso il grande ingresso dell'abbazia e la sua terrazza. Ci avviciniamo al cuore. Seguimi.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-4
+@@STITLE=Entrée publique de l'abbatiale
+Eccoci proprio in cima, sulla terrazza Ovest, davanti alla chiesa abbaziale. Riprendi fiato. Sei sul tetto della roccia, a più di centocinquanta metri sopra le distese di fango.
+
+Questa chiesa, i monaci la iniziarono mille anni fa, verso l'anno mille. E fecero una scommessa folle. La cima della roccia è minuscola, appuntita — troppo stretta per posarvi sopra una grande chiesa. Cosa fecero allora? Costruirono tutt'intorno, sotto, enormi cripte, cappelle massicce dai muri spessi, per allargare artificialmente la cima. La chiesa che vedi poggia su questi pilastri nascosti. Il picco di granito passa, si dice, proprio sotto l'altare maggiore.
+
+Entra. La navata romanica è sobria, potente, austera. Ma avanza verso il coro: lì, tutto cambia. Le colonne si slanciano, la pietra diventa merletto, le finestre salgono verso la luce. È gotico fiammeggiante. L'antico coro romanico era crollato, e lo si è ricostruito alla fine del Medioevo, più alto, più traforato, più vertiginoso.
+
+Mille anni di cantiere, te l'avevo detto. Guarda: hai il romanico e il gotico in una stessa chiesa, l'uno posato sull'altro.
+
+Adesso, esci a nord, verso le grandi sale sovrapposte. È la Merveille. Seguimi.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-5
+@@STITLE=Entrée publique de l'abbatiale
+La chiamano la Merveille, e il nome non ha nulla di esagerato. Guarda questo edificio di tre piani, addossato alla facciata nord della roccia, che sale in verticale. Costruito in appena una ventina d'anni, all'inizio del XIII secolo. Per l'epoca, è un'impresa d'ingegneria.
+
+E sai perché lo si costruì? A causa di un incendio. Nel 1204, il re di Francia conquista la Normandia, e nella battaglia, i suoi alleati bretoni danno fuoco al Mont. Una parte dell'abbazia brucia. Il re, per farsi perdonare, apre la sua borsa. È il suo denaro che ha pagato la Merveille.
+
+Attraversa le sue sale. Del tutto in basso, l'elemosineria e la cantina, dove si accoglievano i poveri e si conservavano le vettovaglie. In mezzo, la bella salle des Hôtes, per i re e i principi di passaggio, e la salle des Chevaliers, dove i monaci scrivevano e copiavano manoscritti. Ogni livello, la sua funzione, il suo mondo. I poveri in basso, i potenti in mezzo, e i monaci del tutto in cima, il più vicino possibile al cielo.
+
+Sali ancora, fino all'ultimo piano, fino al giardino di pietra sospeso tra mare e cielo. È lì che finisce la nostra storia. Seguimi.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-6
+@@STITLE=Entrée publique de l'abbatiale
+Eccoci. Il chiostro. Il punto più alto della Merveille, un giardino sospeso sulla cima della roccia, cinto da una doppia fila di sottili colonne che sembrano danzare. Da un lato, il vuoto e la baia; dall'altro, il cielo. Qui venivano i monaci a pregare, a meditare, a camminare in cerchio, tagliati fuori dal mondo. Tra mare e cielo, in senso letterale.
+
+Prenditi il tempo di alzare gli occhi verso la guglia, sopra di te. Del tutto in cima, minuscola da qui, una silhouette dorata che brilla: san Michele, l'arcangelo, la sua lancia levata. Quella statua è recente — uno scultore l'ha posata alla fine del XIX secolo, nel 1897, per coronare finalmente la cima. L'arcangelo veglia sulla baia, a più di centocinquanta metri sopra le onde.
+
+Eppure, questo luogo di preghiera rischiò davvero di perdere tutto. Dopo la Rivoluzione, si cacciarono i monaci, e si trasformò l'abbazia in prigione. Per più di mezzo secolo, la Merveille rinchiuse detenuti dietro le sue splendide mura. La si chiamava la Bastiglia dei mari. Bisognò aspettare il 1863 perché si chiudesse la cella e si restituisse al Mont la sua grandezza.
+
+Ricorda da dove siamo partiti. Un sasso nelle sabbie, un vescovo che esita, un arcangelo che insiste. Mille anni dopo, milioni di pellegrini e viaggiatori salgono ancora questa stessa strada per toccare questa roccia.
+
+Resta qui un momento. Ascolta il vento, guarda la marea respirare. E quando scenderai di nuovo, saprai perché, qui, si parla di una meraviglia. A presto, amico.
+
+@@LANG=nl
+@@TITLE=Mont-Saint-Michel — Het Wonder van het Westen
+@@DESC=Geschiedenis en geheimen — een veeleisende aartsengel, duizend jaar onmogelijke bouwwerkzaamheden: het Wonder van het Westen.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-0
+@@STITLE=Porte de l'Avancée
+Stop even voor je de poort doorgaat. Draai je om. Achter je strekt de baai zich uit, vlak, immens, veranderlijk — nu eens zand, dan weer water, nooit tweemaal hetzelfde. En voor je deze met steen bekroonde rots die als een pijl naar de hemel oprijst: de Mont-Saint-Michel.
+
+Bekijk goed deze twee grote ijzeren monden bij de ingang. Dit zijn de Michelettes, kanonnen die de Engelsen hier bijna zes eeuwen geleden achterlieten, op de dag dat ze ervan afzagen de Mont in te nemen. Want deze vesting is nooit gevallen.
+
+Hier is het verhaal dat ik je ga vertellen, trede voor trede, tot aan de top. Dat van een rots die niets voorbestemde om het Wonder van het Westen te worden. Men noemde haar Mont-Tombe, een verloren steen in het zand, geteisterd door de grootste getijden van Europa.
+
+En dan, zo wordt verteld, mengt zich in de 8e eeuw een aartsengel in de zaak. De heilige Michaël zou driemaal in een droom aan een plaatselijke bisschop, Aubert, zijn verschenen om hem te bevelen hier, op deze rots, een heiligdom te bouwen. Driemaal. Want de eerste, en de tweede keer, aarzelde de bisschop.
+
+Uit die droom ontstond duizend jaar van onmogelijke bouwwerkzaamheden. Monniken, koningen, bouwmeesters wisselden elkaar af om een abdij op de top van een granietpiek, midden in zee, op te trekken. Dat is de waanzin die je gaat beklimmen.
+
+Ga door de poort, en sla het steegje in dat rechtdoor voor je oprijst. Volg me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-1
+@@STITLE=La Grande Rue
+Hier ben je op de Grande Rue. Eén enkele straat, smal, geplaveid, die kronkelend naar de abdij opklimt. Sinds de middeleeuwen is het dezelfde weg. De enige.
+
+Kijk omhoog naar de gevels. Deze huizen van steen en hout, dicht tegen elkaar aan, sommige scheefgezakt, dateren voor het merendeel uit de 15e en 16e eeuw. Ze hebben altijd van hetzelfde beroep geleefd: degenen die opklimmen verwelkomen.
+
+Want eeuwenlang kwamen ze bij duizenden. Pelgrims uit heel Europa, hier de miquelots genoemd. Ze liepen weken lang, staken soms de baai te voet over, bij eb, met het risico te verdrinken of vast te lopen in het drijfzand. Velen stierven eraan. En toch bleven ze komen, om de rots van de aartsengel aan te raken.
+
+Hier werden ze onthaald, ondergebracht, verkocht men hun loden insignes om op hun mantel te naaien, het bewijs van de volbrachte reis. De straat leefde van hun geloof.
+
+Vandaag zijn het reizigers uit de hele wereld die opklimmen, en de winkels hebben hun koopwaar veranderd. Maar de beweging zelf is al duizend jaar dezelfde: men klimt, het hoofd geheven naar de top.
+
+Blijf verder klimmen. Halverwege de helling klampt zich een kleine kerk aan de rots vast. Volg me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-2
+@@STITLE=Église Saint-Pierre
+Deze kleine kerk, ingeklemd tussen de huizen, is Saint-Pierre, de dorpskerk. Duw de deur open. Ze is bescheiden, donker, weggedoken onder de rots. Niets vergeleken met de abdij die daarboven op je wacht. En dat is precies wat haar zo ontroerend maakt.
+
+Want je moet één ding begrijpen: onder de abdij van de monniken is er altijd een dorp geweest. Een echt dorp. Vissers, herbergiers, kooplieden, families geboren en gestorven op deze rots. Zelfs vandaag woont hier nog maar een handvol inwoners het hele jaar door. Enkele tientallen. Het is een van de kleinste gemeenten van Frankrijk.
+
+Zoek binnen naar het standbeeld van de heilige Michaël, de aartsengel in harnas die de draak neervelt met zijn lans. Je vindt hem overal terug, tot boven op de torenspits. Hij is de ware meester van deze plek. De patroon, de beschermer, degene aan wie de hele rots toebehoort.
+
+Merk, vlak bij de ingang, de plaquettes en ex-voto's op die door zeelieden zijn achtergelaten. Hier bad men tot Michaël om levend van de zee terug te keren.
+
+Ga weer naar buiten, en hervat de klim. Zoek nu de trap die naar de vestingmuren voert, aan je rechterhand. Volg me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-3
+@@STITLE=Les remparts
+Hier ben je op de vestingmuren. Neem de tijd om het weergangpad te volgen, en kijk hoe de baai zich onder je voeten opent.
+
+Deze muren, deze gedrongen torens, deze kanonnengaten, dat is geen decor. De Mont was een gevreesde vesting. Tijdens de Honderdjarige Oorlog, terwijl de Engelsen heel Normandië eromheen bezetten, gaf deze rots nooit toe. Een handvol ridders, verschanst achter deze stenen, met de zee als beste bondgenoot, hield stand tegen een heel koninkrijk. Daarom roesten de Engelse kanonnen beneden, bij de poort.
+
+De zee, precies. Kijk ernaar. Hier stijgen de grootste getijden van het Europese vasteland — het water kan wel vijftien meter stijgen en dalen. Bij eb loopt de baai leeg, strekt het zand zich uit zover het oog reikt, en wordt de Mont bijna een berg, neergezet op een woestijn. Bij vloed keert het water terug, omringt de rots, en wordt het eiland weer een eiland.
+
+Dat getij was de beste van alle grachten. Geen enkel leger kon lang kamperen op zand dat tweemaal per dag onder water liep.
+
+Ga verder omhoog, naar de grote ingang van de abdij en haar terras. We naderen het hart. Volg me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-4
+@@STITLE=Entrée publique de l'abbatiale
+Hier zijn we, helemaal boven, op het westelijke terras, voor de abdijkerk. Haal even adem. Je staat op het dak van de rots, meer dan honderdvijftig meter boven de wadplaten.
+
+Deze kerk begonnen de monniken duizend jaar geleden, rond het jaar duizend. En ze deden een waanzinnige weddenschap. De top van de rots is minuscuul, puntig — veel te smal om er een grote kerk op te zetten. Wat deden ze dus? Ze bouwden er rondom, eronder, enorme crypten, massieve kapellen met dikke muren, om de top kunstmatig te verbreden. De kerk die je ziet, rust op deze verborgen pijlers. De granietpiek loopt, naar men zegt, precies onder het hoogaltaar door.
+
+Ga naar binnen. Het Romaanse schip is sober, krachtig, streng. Maar loop verder naar het koor: daar verandert alles. De zuilen schieten omhoog, de steen wordt kant, de ramen klimmen naar het licht. Dit is vlammende gotiek. Het oude Romaanse koor was ingestort, en werd aan het eind van de middeleeuwen herbouwd, hoger, opener, duizelingwekkender.
+
+Duizend jaar bouwen, had ik je gezegd. Kijk: je hebt de romaanse en de gotische stijl in dezelfde kerk, de ene op de andere.
+
+Ga nu naar buiten aan de noordkant, naar de grote, op elkaar gestapelde zalen. Dit is de Merveille. Volg me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-5
+@@STITLE=Entrée publique de l'abbatiale
+Men noemt haar de Merveille, en de naam is geenszins overdreven. Kijk naar dit gebouw van drie verdiepingen, plat tegen de noordkant van de rots gezet, dat verticaal oprijst. Gebouwd in amper twintig jaar, in het begin van de 13e eeuw. Voor die tijd is het een ingenieursprestatie.
+
+En weet je waarom hij gebouwd werd? Vanwege een brand. In 1204 verovert de koning van Frankrijk Normandië, en tijdens de strijd steken zijn Bretonse bondgenoten de Mont in brand. Een deel van de abdij brandt af. De koning opent, om zich te verontschuldigen, zijn beurs. Het is zijn geld dat de Merveille heeft betaald.
+
+Doorkruis haar zalen. Helemaal onderaan, de aalmoeskamer en de kelder, waar de armen werden ontvangen en de proviand werd opgeslagen. In het midden, de mooie salle des Hôtes, voor doorreizende koningen en prinsen, en de salle des Chevaliers, waar de monniken schreven en manuscripten kopieerden. Elk niveau zijn functie, zijn wereld. De armen beneden, de machtigen in het midden, en de monniken helemaal boven, het dichtst bij de hemel.
+
+Klim nog verder, tot de bovenste verdieping, tot de stenen tuin, opgehangen tussen zee en hemel. Daar eindigt ons verhaal. Volg me.
+
+@@SCENE=seed-100-mont-saint-michel-la-merveille-scene-6
+@@STITLE=Entrée publique de l'abbatiale
+Hier zijn we. De kloostergang. Het hoogste punt van de Merveille, een tuin opgehangen op de top van de rots, omringd door een dubbele rij slanke zuilen die lijken te dansen. Aan de ene kant de leegte en de baai; aan de andere kant de hemel. Hier kwamen de monniken bidden, mediteren, in kringen lopen, afgesneden van de wereld. Tussen zee en hemel, letterlijk.
+
+Neem de tijd om je blik omhoog te richten naar de torenspits boven je. Helemaal bovenin, piepklein vanaf hier, een gouden silhouet dat glinstert: de heilige Michaël, de aartsengel, zijn lans geheven. Dat beeld is recent — een beeldhouwer plaatste het er helemaal aan het eind van de 19e eeuw, in 1897, om eindelijk de top te bekronen. De aartsengel waakt over de baai, meer dan honderdvijftig meter boven de golven.
+
+En toch was deze plek van gebed bijna alles kwijtgeraakt. Na de Revolutie werden de monniken verjaagd, en werd de abdij omgevormd tot gevangenis. Meer dan een halve eeuw lang sloot de Merveille gevangenen op achter haar prachtige muren. Men noemde haar de Bastille van de zeeën. Er moest gewacht worden tot 1863 voordat de kerker gesloten werd en de Mont haar grootsheid terugkreeg.
+
+Denk terug aan waar we zijn vertrokken. Een steen in het zand, een aarzelende bisschop, een volhardende aartsengel. Duizend jaar later klimmen miljoenen pelgrims en reizigers nog altijd diezelfde straat op om deze rots aan te raken.
+
+Blijf hier nog even. Luister naar de wind, kijk naar het getij dat ademt. En wanneer je weer afdaalt, zul je weten waarom men hier van een wonder spreekt. Tot snel, vriend.

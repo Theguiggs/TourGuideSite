@@ -1,0 +1,374 @@
+@@LANG=en
+@@TITLE=Annecy — The Lake of Challenges
+@@DESC=Sport — swimming, sailing, paragliding, cycling: Annecy's lake-stadium, and the day the town dreamed of the Olympic rings.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-0
+@@STITLE=Plage de l'Impérial
+Settle here facing the water, where the lawn slopes down to the beach. Behind you, that great white palace from 1913, the Impérial, with its Belle Époque cake looks. In front of you, the lake — and all around, the mountains leaning over the water like spectators in a stand.
+
+That is exactly the secret of Annecy: this lake is not a landscape. It is a stadium.
+
+When the Impérial opens, just before the Great War, people come here to be seen. They go boating in boaters, they bathe in striped costumes, cautiously, near the edge. A century later, look: swimmers in wetsuits streak along the buoys, paraglider wings circle above the opposite shore, bikes stream past without a break. The setting has not moved. The ambition has.
+
+Here is what I suggest. We will follow this shore, from north to south, and meet everyone who turned this stretch of water into a playground: the long-distance swimmers, the freshwater sailors, the flying madmen, the dawn rowers, the cyclists. And at the end I will tell you about the day this small town looked up and dreamed of the Olympic rings.
+
+Set off: follow the shore, the lake on your left. You will cross an enormous lawn that the people of Annecy consider, without a hint of a smile, the centre of the world.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-1
+@@STITLE=Le Pâquier
+This huge esplanade, flat as a green, wide open onto the lake: the Pâquier. The word means pasture — cows grazed here long before joggers.
+
+Today it is the running track of a whole town. Come at seven in the morning: runners burst out of the mist, headlamps strapped on in winter. At midday: crunches and planks under the trees. In the evening: the whole town walks, pedals, stretches. And on a spring Sunday, all of it turns serious — the lake marathon sets off to run along the water, and the lawn fills with race bibs, families and heroic cramps.
+
+Look up now. Opposite, la Tournette, the great pyramid dominating the eastern shore. To your right, the long wooded spine of the Semnoz. Remember those two names: shortly you will see people throwing themselves off those slopes into thin air.
+
+Carry on along the water to the port, where the masts are stirring.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-2
+@@STITLE=Le Pâquier, face au port
+Pontoons, masts, halyards slapping. Annecy's port is small, but do not be fooled: sailing here is serious business.
+
+A mountain lake is a school of patience. No tide, no trade winds: thermal breezes, made fresh every day by the sun. In the morning, cold air comes down from the peaks and slides over the water; in the afternoon, the slopes heat up and pull the wind back the other way. Sailors here learn to read all of it — a gust running across the dark water, a cloud caught on la Tournette — the way others read a musical score.
+
+So yes, seasoned ocean sailors smile when they talk about fresh water. But ask them what they think of a stretch of water where the wind drops, turns and picks up again three times within the same hour. Many great sailors trained on lakes. The kids from the local sailing schools, out on their Optimists, are learning a wind more fickle than many a sea.
+
+Carry on south, along the quay. The next story does not happen on the water. It happens above it.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-3
+@@STITLE=Voie Verte du lac d'Annecy, quai des Marquisats
+Stop and look up. In fine weather you cannot miss them: dozens of coloured wings suspended in the lake's sky, turning slowly, like leaves refusing to fall. Welcome to one of the world capitals of paragliding.
+
+The Annecy basin is a natural airfield. The slopes of the Semnoz, right above you, and the col de la Forclaz, on the other side of the lake, offer perfect take-off spots. The thermal breezes I mentioned at the port do the rest: warm air rises along the sun-facing slopes like an invisible lift. Pilots launch in three running steps, spiral to gain height, cross the lake in silence, and glide gently down into the meadows of Doussard, right at the far end of the water.
+
+Pilots from all over the world make the pilgrimage, from a first tandem flight to full competition. On perfect days, they say there are traffic jams up there.
+
+Carry on along the quay, a few more minutes. A beach and large pools await you — that is where the town won its finest challenge.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-4
+@@STITLE=Plage des Marquisats
+Here is the plage des Marquisats and its swimming stadium, pools set right at the lake's edge, their lanes gazing at the mountains.
+
+This is the place to tell Annecy's greatest sporting feat. It is neither a record nor a medal.
+
+First, there is the swimming. Long before neoprene wetsuits, already between the two world wars, people raced across the lake by swimming; the crossing remains, every summer, a ritual for swimmers of every age.
+
+But here is the thing: in the middle of the twentieth century this lake was dying. Sewage poured into it, algae spread, the water turned. A mayor, Charles Bosson, refused to accept that fate. With the lakeside towns, he launched a mad project: a collector running the whole way round the lake so that nothing would ever be discharged into it again. Years of work, invisible, thankless. The result: water so clear again that this lake is often presented as the purest in Europe.
+
+So look at the swimmers here with respect: every one of their strokes is a victory won by engineers.
+
+Carry on south. The boathouses are not far now.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-5
+@@STITLE=Base nautique des Marquisats
+Boathouses, racks of slender hulls, kayaks stacked to the ceiling: the base nautique des Marquisats, the engine room of the lake.
+
+The show happens early. Around six, in summer, when the water is a grey mirror nothing has yet scratched, the doors open and the crews carry their boats down. Rowing hates chop: people row at dawn, before the wind and the motorboats wake up. Eight blades biting the water in a single motion, the rumble of the sliding seats, a white arrow streaking towards open water — it is one of the loveliest things to see in Annecy, and almost no one sees it.
+
+The kayakers are less early but bolder: they go out even when the lake is choppy and the rowers stay ashore.
+
+A few hundred more metres to the south. Where the rails of an old train have become a path, I will tell you the end of our story — the day Annecy aimed for the rings.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-6
+@@STITLE=Voie Verte du lac d'Annecy
+Here you are. This long ribbon of smooth asphalt running towards the far end of the lake is the voie verte, the greenway. Listen: the whir of bicycle wheels, the roll of skates, footsteps. A century ago it was locomotives — you are walking on the old railway line that linked Annecy to Albertville. When the train fell silent, the town had a simple, brilliant idea: keep the route, remove the rails. Today it is said to be one of the busiest cycle paths in France.
+
+Everything comes together here. Triathletes climb out of the water at the Marquisats and jump onto their saddles on this ribbon. In 2009 the Tour de France came to race a time trial around the lake, and the best riders in the world suffered on this shore.
+
+So, inevitably, the town ended up dreaming bigger. In 2011 Annecy became an official candidate for the 2018 Winter Olympics. The flame, the rings, the whole world at the lakeside. The vote falls, one July evening, in Durban: Pyeongchang wins, by a wide margin. The disappointment is huge.
+
+And then what? Look around you. The swimmers of the crossing, the wings above the Forclaz, the dawn rowers, this endless stream of bikes. Annecy did not get its Games — it did not need them. Here, the opening ceremony happens every morning, and everyone gets to stand on the podium.
+
+Your turn now. Choose your challenge: a length, a pass, a dawn on flat water. The lake is waiting for you. Thank you for walking with me — and if you come back, come back in trainers.
+
+@@LANG=es
+@@TITLE=Annecy — El lago de los desafíos
+@@DESC=Deporte: natación, vela, vuelo libre, bicicleta. El lago-estadio de Annecy, y el día en que la ciudad soñó con los anillos olímpicos.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-0
+@@STITLE=Plage de l'Impérial
+Instálate frente al agua, donde el césped baja hacia la playa. Detrás de ti, ese gran palacio blanco de 1913, el Impérial, con sus aires de pastel de la Belle Époque. Delante de ti, el lago —y alrededor, las montañas inclinadas sobre el agua como espectadores en una tribuna.
+
+Ese es exactamente el secreto de Annecy: este lago no es un paisaje. Es un estadio.
+
+Cuando el Impérial abre, justo antes de la Gran Guerra, se viene aquí para dejarse ver. Se pasea en canoa con canotier, se baña en traje de rayas, con prudencia, cerca de la orilla. Un siglo después, mira: nadadores en neopreno pasan raudos junto a las boyas, alas de parapente giran sobre la orilla de enfrente, bicicletas desfilan sin interrupción. El decorado no se ha movido. La ambición, sí.
+
+Esto es lo que te propongo. Vamos a recorrer esta orilla, de norte a sur, y a encontrarnos con todos los que han hecho de esta lámina de agua un terreno de juego: los nadadores de fondo, los marinos de agua dulce, los locos voladores, los remeros del alba, los ciclistas. Y al final, te contaré el día en que esta pequeña ciudad alzó la vista y soñó con los anillos olímpicos.
+
+Ponte en marcha: sigue la orilla, con el lago a tu izquierda. Vas a cruzar un césped inmenso que los habitantes de Annecy consideran, sin ironía, el centro del mundo.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-1
+@@STITLE=Le Pâquier
+Esta explanada inmensa, plana como un green, abierta de par en par al lago: el Pâquier. La palabra significa pastizal —las vacas pastaron aquí mucho antes que los corredores.
+
+Hoy es la pista de footing de toda una ciudad. Ven a las siete de la mañana: corredores emergen de la bruma, con frontal atornillado a la cabeza en invierno. Al mediodía: abdominales y plancha bajo los árboles. Por la tarde: toda la ciudad camina, pedalea, se estira. Y un domingo de primavera, todo eso se vuelve serio: el maratón del lago arranca para bordear el agua, y el césped se cubre de dorsales, de familias y de calambres heroicos.
+
+Levanta la vista ahora. Enfrente, la Tournette, la gran pirámide que domina la orilla este. A tu derecha, el largo lomo boscoso del Semnoz. Retén estos dos nombres: dentro de un rato verás a gente lanzarse al vacío desde esas laderas.
+
+Continúa junto al agua hasta el puerto, donde se agitan los mástiles.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-2
+@@STITLE=Le Pâquier, face au port
+Pantalanes, mástiles, drizas que restallan. El puerto de Annecy es pequeño, pero no te fíes: aquí se navega en serio.
+
+Un lago de montaña es una escuela de paciencia. Sin marea, sin alisios: brisas térmicas, fabricadas cada día por el sol. Por la mañana, el aire frío baja de las cumbres y se desliza sobre el agua; por la tarde, las laderas se calientan y aspiran el viento en sentido contrario. Los regatistas de aquí aprenden a leer todo eso —una racha que corre sobre el agua oscura, una nube enganchada a la Tournette— como otros leen una partitura.
+
+Así que sí, los curtidos marinos de océano sonríen al hablar de agua dulce. Pero pregúntales qué opinan de una lámina de agua donde el viento cae, gira y vuelve a levantarse tres veces en la misma hora. Muchos grandes marinos se formaron en lagos. Los chavales de las escuelas de vela de aquí, en sus Optimist, aprenden un viento más caprichoso que muchos mares.
+
+Sigue hacia el sur, a lo largo del muelle. La próxima historia no ocurre en el agua. Ocurre por encima.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-3
+@@STITLE=Voie Verte du lac d'Annecy, quai des Marquisats
+Detente y levanta la cabeza. Con buen tiempo, seguro que las ves: decenas de velas de colores suspendidas en el cielo del lago, girando lentamente, como hojas que se negaran a caer. Bienvenido a uno de los grandes santuarios mundiales del parapente.
+
+La cuenca de Annecy es un aeródromo natural. Las laderas del Semnoz, justo encima de ti, y el col de la Forclaz, al otro lado del lago, ofrecen despegues perfectos. Las brisas térmicas de las que te hablaba en el puerto hacen el resto: el aire caliente sube por las laderas soleadas como un ascensor invisible. Los pilotos se lanzan tras tres pasos de carrera, ascienden en espiral para ganar altura, cruzan el lago en silencio y aterrizan con suavidad en los prados de Doussard, en el mismísimo extremo del agua.
+
+Pilotos de todo el mundo hacen la peregrinación, desde el bautismo en biplaza hasta la competición. Los días perfectos, dicen, hay atascos allá arriba.
+
+Sigue por el muelle, unos minutos más. Una playa y grandes piscinas te esperan: ahí es donde la ciudad ganó su mayor desafío.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-4
+@@STITLE=Plage des Marquisats
+Aquí está la plage des Marquisats y su estadio acuático, piscinas asentadas al ras del lago, cuyas calles miran a las montañas.
+
+Aquí hay que contar la mayor hazaña deportiva de Annecy. No es un récord, ni una medalla.
+
+Primero está la natación. Mucho antes de los trajes de neopreno, ya en el periodo de entreguerras, se cruzaba el lago a nado en competición; la travesía sigue siendo, cada verano, un ritual para nadadores de todas las edades.
+
+Pero he aquí: a mediados del siglo XX, este lago se estaba muriendo. Las alcantarillas vertían en él, las algas ganaban terreno, el agua se enturbiaba. Un alcalde, Charles Bosson, se negó a aceptar la fatalidad. Con los municipios ribereños, lanzó una obra descomunal: un colector que rodea por completo el lago para no verter ya nada en él. Años de trabajo, invisibles, ingratos. Resultado: un agua vuelta tan clara que a menudo se presenta este lago como el más puro de Europa.
+
+Así que mira a los nadadores de aquí con respeto: cada una de sus brazadas es una victoria de ingenieros.
+
+Sigue hacia el sur. Los cobertizos para barcas ya no están muy lejos.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-5
+@@STITLE=Base nautique des Marquisats
+Cobertizos, estantes de cascos afilados, kayaks apilados hasta el techo: la base nautique des Marquisats, la sala de máquinas del lago.
+
+El espectáculo ocurre temprano. Hacia las seis, en verano, cuando el agua es un espejo gris que nada raya todavía, las puertas se abren y las tripulaciones bajan sus barcas. El remo detesta el oleaje: se rema al alba, antes de que despierten el viento y los motores. Ocho palas que muerden el agua en un mismo gesto, el rodar de los asientos deslizantes, una flecha blanca que se lanza hacia mar abierto: es una de las cosas más hermosas que ver en Annecy, y casi nadie la ve.
+
+Los piragüistas, por su parte, son menos madrugadores pero más temerarios: salen incluso cuando el lago se encrespa y los remeros se quedan en tierra.
+
+Unos cientos de metros más hacia el sur. Donde los raíles de un viejo tren se han convertido en un camino, te contaré el final de nuestra historia: el día en que Annecy apuntó a los anillos.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-6
+@@STITLE=Voie Verte du lac d'Annecy
+Ya estás. Esta larga cinta de asfalto liso que corre hacia el extremo del lago es la voie verte, la vía verde. Escucha: el silbido de las ruedas de bicicleta, el rodar de los patines, las zancadas. Hace un siglo eran locomotoras: caminas sobre la antigua vía férrea que unía Annecy con Albertville. Cuando el tren enmudeció, la ciudad tuvo una idea simple y genial: conservar el trazado, quitar los raíles. Hoy se la considera una de las vías más frecuentadas de Francia.
+
+Aquí es donde todo se une. Los triatletas salen del agua en los Marquisats y saltan a sus sillines sobre esta cinta. En 2009, el Tour de Francia vino a correr una contrarreloj alrededor del lago, y los mejores ciclistas del mundo sufrieron en esta orilla.
+
+Así que, inevitablemente, la ciudad acabó soñando más a lo grande. En 2011, Annecy se convirtió en candidata oficial a los Juegos Olímpicos de invierno de 2018. La llama, los anillos, el mundo entero a orillas del lago. El voto cae, una tarde de julio, en Durban: Pyeongchang gana, por amplio margen. La decepción es inmensa.
+
+¿Y luego qué? Mira a tu alrededor. Los nadadores de la travesía, las alas sobre la Forclaz, los remeros del alba, este desfile de bicicletas que no se detiene nunca. Annecy no tuvo sus Juegos: no los necesitaba. Aquí, la ceremonia de apertura tiene lugar cada mañana, y todo el mundo sube al podio.
+
+Ahora te toca a ti. Elige tu desafío: un largo, un puerto de montaña, un amanecer sobre agua en calma. El lago te espera. Gracias por caminar conmigo —y si vuelves, vuelve con zapatillas.
+
+@@LANG=de
+@@TITLE=Annecy — Der See der Herausforderungen
+@@DESC=Sport — Schwimmen, Segeln, Gleitschirmfliegen, Radfahren: Annecys See-Stadion, und der Tag, an dem die Stadt von den olympischen Ringen träumte.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-0
+@@STITLE=Plage de l'Impérial
+Setz dich hier dem Wasser gegenüber hin, dort, wo der Rasen zum Strand abfällt. Hinter dir dieser große weiße Palast von 1913, der Impérial, mit seinem Belle-Époque-Torten-Anstrich. Vor dir der See — und ringsum die Berge, über das Wasser gebeugt wie Zuschauer auf einer Tribüne.
+
+Genau das ist das Geheimnis von Annecy: Dieser See ist keine Landschaft. Er ist ein Stadion.
+
+Als der Impérial kurz vor dem Ersten Weltkrieg öffnet, kommt man hierher, um sich zu zeigen. Man rudert im Kanotier, badet im gestreiften Kostüm, vorsichtig, nahe am Ufer. Ein Jahrhundert später sieh dir das an: Schwimmer in Neoprenanzügen schießen an den Bojen entlang, Gleitschirmflügel kreisen über dem gegenüberliegenden Ufer, Fahrräder ziehen ununterbrochen vorbei. Die Kulisse hat sich nicht bewegt. Der Ehrgeiz schon.
+
+Hier ist mein Vorschlag. Wir folgen diesem Ufer, von Norden nach Süden, und begegnen allen, die aus dieser Wasserfläche einen Spielplatz gemacht haben: den Langstreckenschwimmern, den Süßwasser-Seglern, den fliegenden Verrückten, den Ruderern im Morgengrauen, den Radfahrern. Und am Ende erzähle ich dir vom Tag, an dem diese kleine Stadt aufblickte und von den olympischen Ringen träumte.
+
+Mach dich auf den Weg: folge dem Ufer, den See zu deiner Linken. Du wirst einen riesigen Rasen überqueren, den die Menschen von Annecy, ganz ohne Ironie, für den Mittelpunkt der Welt halten.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-1
+@@STITLE=Le Pâquier
+Diese riesige Esplanade, flach wie ein Golfgrün, weit offen zum See: der Pâquier. Das Wort bedeutet Weide — Kühe grasten hier lange vor den Joggern.
+
+Heute ist es die Laufstrecke einer ganzen Stadt. Komm um sieben Uhr morgens: Läufer tauchen aus dem Nebel auf, im Winter mit Stirnlampe. Mittags: Bauchmuskeln und Planks unter den Bäumen. Abends: die ganze Stadt geht spazieren, tritt in die Pedale, dehnt sich. Und an einem Frühlingssonntag wird das alles ernst — der Seemarathon startet am Wasser entlang, und der Rasen füllt sich mit Startnummern, Familien und heldenhaften Krämpfen.
+
+Heb jetzt den Blick. Gegenüber die Tournette, die große Pyramide, die das Ostufer beherrscht. Zu deiner Rechten der lange bewaldete Rücken des Semnoz. Merk dir diese beiden Namen: Gleich siehst du Leute, die sich von diesen Hängen in die Luft stürzen.
+
+Geh am Wasser weiter bis zum Hafen, wo sich die Masten bewegen.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-2
+@@STITLE=Le Pâquier, face au port
+Stege, Masten, klatschende Fallen. Der Hafen von Annecy ist klein, aber lass dich nicht täuschen: Hier wird ernsthaft gesegelt.
+
+Ein Bergsee ist eine Schule der Geduld. Keine Gezeiten, keine Passatwinde: thermische Brisen, jeden Tag frisch von der Sonne gemacht. Morgens sinkt kalte Luft von den Gipfeln herab und gleitet über das Wasser; nachmittags heizen sich die Hänge auf und ziehen den Wind in die andere Richtung. Die Regattasegler hier lernen, all das zu lesen — eine Bö, die über das dunkle Wasser läuft, eine Wolke, die an der Tournette hängt — wie andere eine Partitur lesen.
+
+Ja, gestandene Hochseesegler lächeln, wenn sie von Süßwasser sprechen. Aber frag sie, was sie von einer Wasserfläche halten, auf der der Wind dreimal in derselben Stunde einschläft, dreht und wieder auflebt. Viele große Seeleute haben auf Seen das Segeln gelernt. Die Kinder der hiesigen Segelschulen lernen auf ihren Optimisten einen launischeren Wind als so manches Meer.
+
+Geh weiter nach Süden, am Kai entlang. Die nächste Geschichte spielt sich nicht auf dem Wasser ab. Sie spielt sich darüber ab.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-3
+@@STITLE=Voie Verte du lac d'Annecy, quai des Marquisats
+Halt an und heb den Kopf. Bei schönem Wetter kannst du sie nicht übersehen: Dutzende farbige Schirme, im Himmel über dem See aufgehängt, die sich langsam drehen wie Blätter, die sich weigern zu fallen. Willkommen in einer der Welthauptstädte des Gleitschirmfliegens.
+
+Das Becken von Annecy ist ein natürlicher Flugplatz. Die Hänge des Semnoz, direkt über dir, und der col de la Forclaz auf der anderen Seeseite bieten perfekte Startplätze. Die thermischen Brisen, von denen ich am Hafen sprach, erledigen den Rest: Warme Luft steigt an den sonnenbeschienenen Hängen wie ein unsichtbarer Aufzug empor. Die Piloten starten mit drei Anlaufschritten, kreisen, um an Höhe zu gewinnen, überqueren den See lautlos und landen sanft in den Wiesen von Doussard, ganz am Ende des Wassers.
+
+Piloten aus aller Welt pilgern hierher, vom ersten Tandemflug bis zum Wettkampf. An perfekten Tagen soll es dort oben Staus geben.
+
+Geh weiter am Kai entlang, noch ein paar Minuten. Ein Strand und große Becken erwarten dich — dort hat die Stadt ihre schönste Herausforderung gewonnen.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-4
+@@STITLE=Plage des Marquisats
+Hier ist die plage des Marquisats mit ihrem Schwimmstadion, Becken direkt am Seeufer, deren Bahnen zu den Bergen blicken.
+
+Hier muss man die größte sportliche Leistung von Annecy erzählen. Es ist weder ein Rekord noch eine Medaille.
+
+Zuerst das Schwimmen. Lange vor den Neoprenanzügen, schon in der Zwischenkriegszeit, durchschwamm man den See im Wettkampf; die Überquerung bleibt jeden Sommer ein Ritual für Schwimmer jeden Alters.
+
+Aber hier ist der Punkt: Mitte des 20. Jahrhunderts war dieser See am Sterben. Abwässer flossen hinein, Algen breiteten sich aus, das Wasser trübte sich. Ein Bürgermeister, Charles Bosson, weigerte sich, dieses Schicksal hinzunehmen. Zusammen mit den Uferorten startete er ein wahnwitziges Bauvorhaben: einen Sammler, der einmal ganz um den See herumführt, damit nichts mehr hineingeleitet wird. Jahre der Arbeit, unsichtbar, undankbar. Ergebnis: ein Wasser, wieder so klar, dass man diesen See oft als den saubersten Europas bezeichnet.
+
+Sieh dir also die Schwimmer hier mit Respekt an: Jeder ihrer Züge ist ein Sieg von Ingenieuren.
+
+Geh weiter nach Süden. Die Bootshäuser sind nicht mehr weit.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-5
+@@STITLE=Base nautique des Marquisats
+Bootshäuser, Gestelle mit schlanken Rümpfen, bis zur Decke gestapelte Kajaks: die base nautique des Marquisats, der Maschinenraum des Sees.
+
+Das Schauspiel findet früh statt. Gegen sechs Uhr, im Sommer, wenn das Wasser ein grauer Spiegel ist, den noch nichts geritzt hat, öffnen sich die Türen und die Mannschaften tragen ihre Boote hinunter. Rudern hasst Wellengang: Man rudert im Morgengrauen, bevor Wind und Motorboote erwachen. Acht Riemen, die im gleichen Takt ins Wasser beißen, das Rollen der Rollsitze, ein weißer Pfeil, der aufs offene Wasser hinausschießt — es ist eines der schönsten Dinge, die man in Annecy sehen kann, und fast niemand sieht es.
+
+Die Kajakfahrer sind weniger frühe Vögel, aber verwegener: Sie fahren sogar hinaus, wenn der See sich kräuselt und die Ruderer an Land bleiben.
+
+Noch ein paar hundert Meter nach Süden. Dort, wo die Schienen einer alten Bahn zu einem Weg geworden sind, erzähle ich dir das Ende unserer Geschichte — den Tag, an dem Annecy nach den Ringen griff.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-6
+@@STITLE=Voie Verte du lac d'Annecy
+Da bist du. Dieses lange Band aus glattem Asphalt, das zum Ende des Sees läuft, ist die voie verte, der grüne Weg. Hör hin: das Surren der Fahrradreifen, das Rollen der Skates, die Schritte. Vor einem Jahrhundert waren es Lokomotiven — du gehst auf der alten Bahnstrecke, die Annecy mit Albertville verband. Als der Zug verstummte, hatte die Stadt eine einfache, geniale Idee: die Trasse behalten, die Schienen entfernen. Heute gilt sie als einer der meistbefahrenen Radwege Frankreichs.
+
+Hier läuft alles zusammen. Triathleten steigen bei den Marquisats aus dem Wasser und schwingen sich auf diesem Band in den Sattel. 2009 kam die Tour de France, um ein Einzelzeitfahren rund um den See zu fahren, und die besten Radfahrer der Welt litten an diesem Ufer.
+
+Also träumte die Stadt zwangsläufig irgendwann größer. 2011 wurde Annecy offizielle Bewerberin für die Olympischen Winterspiele 2018. Die Flamme, die Ringe, die ganze Welt am Ufer des Sees. Die Abstimmung fällt, an einem Juliabend, in Durban: Pyeongchang gewinnt, deutlich. Die Enttäuschung ist riesig.
+
+Und dann? Sieh dich um. Die Schwimmer der Überquerung, die Schirme über der Forclaz, die Ruderer im Morgengrauen, dieser endlose Zug von Fahrrädern. Annecy hat seine Spiele nicht bekommen — es brauchte sie nicht. Hier findet die Eröffnungsfeier jeden Morgen statt, und jeder steigt aufs Siegerpodest.
+
+Jetzt bist du dran. Wähle deine Herausforderung: eine Bahnlänge, einen Pass, eine Morgendämmerung auf glattem Wasser. Der See wartet auf dich. Danke, dass du mit mir gegangen bist — und wenn du wiederkommst, komm in Turnschuhen.
+
+@@LANG=it
+@@TITLE=Annecy — Il lago delle sfide
+@@DESC=Sport: nuoto, vela, volo libero, bicicletta. Il lago-stadio di Annecy, e il giorno in cui la città sognò i cinque cerchi olimpici.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-0
+@@STITLE=Plage de l'Impérial
+Sistemati di fronte all'acqua, là dove il prato scende verso la spiaggia. Dietro di te, quel grande palazzo bianco del 1913, l'Impérial, con la sua aria da torta Belle Époque. Davanti a te, il lago — e tutt'intorno, le montagne chine sull'acqua come spettatori in una tribuna.
+
+È esattamente questo il segreto di Annecy: questo lago non è un paesaggio. È uno stadio.
+
+Quando l'Impérial apre, poco prima della Grande Guerra, si viene qui per farsi vedere. Si va in barca con il canotier, ci si bagna in costume a righe, con prudenza, vicino alla riva. Un secolo dopo, guarda: nuotatori in muta sfrecciano lungo le boe, ali di parapendio girano sopra la riva di fronte, biciclette sfilano senza sosta. Lo scenario non si è mosso. L'ambizione sì.
+
+Ecco cosa ti propongo. Costeggeremo questa riva, da nord a sud, e incontreremo tutti quelli che hanno fatto di questo specchio d'acqua un campo di gioco: i nuotatori di fondo, i marinai d'acqua dolce, i pazzi volanti, i rematori dell'alba, i ciclisti. E alla fine ti racconterò il giorno in cui questa piccola città alzò lo sguardo e sognò i cinque cerchi olimpici.
+
+Mettiti in cammino: segui la riva, con il lago alla tua sinistra. Attraverserai un prato immenso che gli abitanti di Annecy considerano, senza ironia, il centro del mondo.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-1
+@@STITLE=Le Pâquier
+Questa spianata immensa, piatta come un green, spalancata sul lago: il Pâquier. La parola significa pascolo — le mucche vi hanno brucato molto prima dei podisti.
+
+Oggi è la pista di corsa di un'intera città. Vieni alle sette del mattino: i corridori sbucano dalla foschia, con la frontale avvitata sulla testa d'inverno. A mezzogiorno: addominali e plank sotto gli alberi. La sera: tutta la città cammina, pedala, si allunga. E una domenica di primavera, tutto questo diventa serio — la maratona del lago parte per costeggiare l'acqua, e il prato si copre di pettorali, di famiglie e di crampi eroici.
+
+Alza gli occhi, ora. Di fronte, la Tournette, la grande piramide che domina la riva orientale. Alla tua destra, il lungo dorso boscoso del Semnoz. Trattieni questi due nomi: tra poco vedrai persone lanciarsi nel vuoto da quei pendii.
+
+Prosegui lungo l'acqua fino al porto, dove si agitano gli alberi delle barche.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-2
+@@STITLE=Le Pâquier, face au port
+Pontili, alberi, drizze che sbattono. Il porto di Annecy è piccolo, ma non fidarti: qui si naviga sul serio.
+
+Un lago di montagna è una scuola di pazienza. Niente marea, niente alisei: brezze termiche, fabbricate ogni giorno dal sole. Al mattino, l'aria fredda scende dalle vette e scivola sull'acqua; nel pomeriggio, i pendii si scaldano e risucchiano il vento nella direzione opposta. I regatanti di qui imparano a leggere tutto questo — una raffica che corre sull'acqua scura, una nuvola agganciata alla Tournette — come altri leggono uno spartito.
+
+Quindi sì, i navigatori d'oceano navigati sorridono parlando di acqua dolce. Ma chiedi loro cosa pensano di uno specchio d'acqua dove il vento cala, gira e riparte tre volte nella stessa ora. Molti grandi marinai si sono formati sui laghi. I ragazzini delle scuole di vela di qui, sui loro Optimist, imparano un vento più capriccioso di molti mari.
+
+Prosegui verso sud, lungo la banchina. La prossima storia non si svolge sull'acqua. Si svolge sopra.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-3
+@@STITLE=Voie Verte du lac d'Annecy, quai des Marquisats
+Fermati e alza la testa. Con il bel tempo, non puoi non vederle: decine di vele colorate sospese nel cielo del lago, che girano lentamente, come foglie che rifiutassero di cadere. Benvenuto in uno dei luoghi mondiali del parapendio.
+
+Il bacino di Annecy è un aerodromo naturale. I pendii del Semnoz, proprio sopra di te, e il col de la Forclaz, dall'altra parte del lago, offrono decolli perfetti. Le brezze termiche di cui ti parlavo al porto fanno il resto: l'aria calda sale lungo i versanti soleggiati come un ascensore invisibile. I piloti si lanciano in tre passi di corsa, salgono in spirale per guadagnare quota, attraversano il lago in silenzio, e vanno ad atterrare dolcemente nei prati di Doussard, proprio in fondo all'acqua.
+
+Piloti da tutto il mondo compiono il pellegrinaggio, dal primo volo in biposto fino alla gara. Nei giorni perfetti, si dice che lassù ci siano ingorghi.
+
+Prosegui sulla banchina, ancora qualche minuto. Ti aspettano una spiaggia e grandi vasche — è lì che la città ha vinto la sua sfida più bella.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-4
+@@STITLE=Plage des Marquisats
+Ecco la plage des Marquisats e il suo stadio nautico, vasche posate a filo del lago, le cui corsie guardano le montagne.
+
+È qui che bisogna raccontare la più grande impresa sportiva di Annecy. Non è né un record, né una medaglia.
+
+Prima di tutto c'è il nuoto. Molto prima delle mute in neoprene, già nel periodo tra le due guerre, si attraversava il lago a nuoto in gara; la traversata resta, ogni estate, un rituale per nuotatori di tutte le età.
+
+Ma ecco: a metà del Novecento, questo lago stava morendo. Le fognature vi si riversavano, le alghe guadagnavano terreno, l'acqua torbidava. Un sindaco, Charles Bosson, rifiutò la fatalità. Con i comuni rivieraschi, lanciò un cantiere folle: un collettore che fa il giro completo del lago per non scaricarvi più nulla. Anni di lavori, invisibili, ingrati. Risultato: un'acqua tornata così limpida che spesso si presenta questo lago come il più puro d'Europa.
+
+Guarda dunque i nuotatori di qui con rispetto: ogni loro bracciata è una vittoria di ingegneri.
+
+Prosegui verso sud. Le rimesse per le barche non sono più molto lontane.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-5
+@@STITLE=Base nautique des Marquisats
+Rimesse, rastrelliere di scafi affusolati, kayak impilati fino al soffitto: la base nautique des Marquisats, la sala macchine del lago.
+
+Lo spettacolo avviene presto. Verso le sei, d'estate, quando l'acqua è uno specchio grigio che nulla ancora graffia, le porte si aprono e gli equipaggi calano le loro imbarcazioni. Il canottaggio odia il moto ondoso: si rema all'alba, prima che si sveglino il vento e i motori. Otto pale che mordono l'acqua con lo stesso gesto, il rotolare dei carrelli, una freccia bianca che sfreccia verso il largo — è una delle cose più belle da vedere ad Annecy, e quasi nessuno la vede.
+
+I canoisti, dal canto loro, sono meno mattinieri ma più temerari: escono anche quando il lago si increspa e i canottieri restano a terra.
+
+Ancora qualche centinaio di metri verso sud. Là dove le rotaie di un vecchio treno sono diventate una pista, ti racconto la fine della nostra storia — il giorno in cui Annecy puntò ai cinque cerchi.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-6
+@@STITLE=Voie Verte du lac d'Annecy
+Ci sei. Questo lungo nastro d'asfalto liscio che corre verso l'estremità del lago è la voie verte, la via verde. Ascolta: il sibilo delle ruote di bicicletta, il rotolare dei pattini, i passi. Un secolo fa erano locomotive — cammini sulla vecchia linea ferroviaria che collegava Annecy ad Albertville. Quando il treno tacque, la città ebbe un'idea semplice e geniale: conservare il tracciato, togliere le rotaie. Oggi la si considera una delle piste più frequentate di Francia.
+
+È qui che tutto si ricongiunge. I triatleti escono dall'acqua ai Marquisats e saltano in sella su questo nastro. Nel 2009, il Tour de France è venuto a correre una cronometro intorno al lago, e i migliori corridori del mondo hanno sofferto su questa riva.
+
+Così, inevitabilmente, la città ha finito per sognare più in grande. Nel 2011, Annecy è candidata ufficiale ai Giochi olimpici invernali del 2018. La fiamma, i cerchi, il mondo intero sulle rive del lago. Il voto cade, una sera di luglio, a Durban: Pyeongchang vince, ampiamente. La delusione è immensa.
+
+E poi? Guardati intorno. I nuotatori della traversata, le ali sopra la Forclaz, i rematori dell'alba, questa sfilata di biciclette che non si ferma mai. Annecy non ha avuto i suoi Giochi — non ne aveva bisogno. Qui, la cerimonia di apertura ha luogo ogni mattina, e tutti salgono sul podio.
+
+Ora tocca a te. Scegli la tua sfida: una vasca, un valico, un'alba sull'acqua piatta. Il lago ti aspetta. Grazie per aver camminato con me — e se torni, torna con le scarpe da ginnastica.
+
+@@LANG=nl
+@@TITLE=Annecy — Het meer van uitdagingen
+@@DESC=Sport — zwemmen, zeilen, paragliden, fietsen: Annecy's meer-stadion, en de dag waarop de stad droomde van de olympische ringen.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-0
+@@STITLE=Plage de l'Impérial
+Ga hier zitten, met je gezicht naar het water, waar het gazon afdaalt naar het strand. Achter je dat grote witte paleis uit 1913, het Impérial, met zijn taartachtige Belle Époque-uiterlijk. Voor je het meer — en rondom de bergen die over het water buigen als toeschouwers in een tribune.
+
+Dat is precies het geheim van Annecy: dit meer is geen landschap. Het is een stadion.
+
+Als het Impérial vlak voor de Grote Oorlog opent, komt men hierheen om zich te laten zien. Men vaart in een strohoed, baadt in een gestreept badpak, voorzichtig, dicht bij de rand. Een eeuw later, kijk: zwemmers in wetsuits schieten langs de boeien, parapente-schermen cirkelen boven de overkant, fietsen trekken zonder onderbreking voorbij. Het decor is niet veranderd. De ambitie wel.
+
+Dit stel ik je voor. We volgen deze oever, van noord naar zuid, en ontmoeten iedereen die van dit stuk water een speelplaats maakte: de langeafstandszwemmers, de zoetwaterzeilers, de vliegende dwazen, de roeiers van het ochtendgloren, de fietsers. En aan het eind vertel ik je over de dag waarop dit kleine stadje opkeek en droomde van de olympische ringen.
+
+Ga op weg: volg de oever, het meer aan je linkerhand. Je steekt een enorm gazon over dat de inwoners van Annecy, zonder ironie, het middelpunt van de wereld noemen.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-1
+@@STITLE=Le Pâquier
+Deze immense esplanade, vlak als een green, wijd open naar het meer: de Pâquier. Het woord betekent weide — koeien graasden hier lang vóór de joggers.
+
+Vandaag is het de looppiste van een hele stad. Kom om zeven uur 's ochtends: hardlopers duiken op uit de nevel, met hoofdlamp op in de winter. Om twaalf uur: buikspieroefeningen en planken onder de bomen. 's Avonds: de hele stad wandelt, trapt, rekt zich. En op een lentezondag wordt dat allemaal serieus — de meermarathon start langs het water, en het gazon vult zich met rugnummers, families en heroïsche krampen.
+
+Kijk nu omhoog. Tegenover je de Tournette, de grote piramide die de oostelijke oever beheerst. Rechts van je de lange beboste rug van de Semnoz. Onthoud die twee namen: straks zie je mensen zich vanaf die hellingen de leegte in werpen.
+
+Loop verder langs het water naar de haven, waar de masten bewegen.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-2
+@@STITLE=Le Pâquier, face au port
+Steigers, masten, klepperende vallen. De haven van Annecy is klein, maar laat je niet misleiden: hier wordt serieus gezeild.
+
+Een bergmeer is een school van geduld. Geen getij, geen passaatwinden: thermische briesjes, elke dag opnieuw door de zon gemaakt. 's Ochtends daalt koude lucht van de toppen en glijdt over het water; 's middags warmen de hellingen op en zuigen de wind de andere kant op. De zeilers hier leren dat alles lezen — een windvlaag die over het donkere water loopt, een wolk die aan de Tournette blijft hangen — zoals anderen een partituur lezen.
+
+Dus ja, doorgewinterde oceaanzeilers glimlachen als ze over zoet water spreken. Maar vraag ze wat ze denken van een watervlak waar de wind drie keer binnen hetzelfde uur wegvalt, draait en weer opsteekt. Veel grote zeilers hebben op meren leren zeilen. De kinderen van de plaatselijke zeilscholen, op hun Optimisten, leren een grilligere wind kennen dan menige zee.
+
+Ga verder naar het zuiden, langs de kade. Het volgende verhaal speelt zich niet op het water af. Het speelt zich erboven af.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-3
+@@STITLE=Voie Verte du lac d'Annecy, quai des Marquisats
+Blijf staan en kijk omhoog. Bij mooi weer kun je ze niet missen: tientallen kleurige schermen hangend in de lucht boven het meer, langzaam draaiend, als bladeren die weigeren te vallen. Welkom in een van de wereldhoofdsteden van het paragliden.
+
+Het bekken van Annecy is een natuurlijk vliegveld. De hellingen van de Semnoz, vlak boven je, en de col de la Forclaz aan de overkant van het meer, bieden perfecte startplekken. De thermische briesjes waarover ik het bij de haven had, doen de rest: warme lucht stijgt langs de zonbeschenen hellingen op als een onzichtbare lift. Piloten starten met drie rennende passen, spiraliseren om hoogte te winnen, steken het meer geluidloos over en landen zachtjes in de weiden van Doussard, helemaal aan het eind van het water.
+
+Piloten van over de hele wereld maken de pelgrimstocht, van een eerste tandemvlucht tot wedstrijden. Op perfecte dagen zou het daarboven filekop staan.
+
+Loop verder langs de kade, nog een paar minuten. Een strand en grote baden wachten je — daar heeft de stad haar mooiste uitdaging gewonnen.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-4
+@@STITLE=Plage des Marquisats
+Hier is de plage des Marquisats met haar zwemstadion, baden vlak aan de rand van het meer, waarvan de banen naar de bergen kijken.
+
+Hier moet het grootste sportieve wapenfeit van Annecy verteld worden. Het is geen record, geen medaille.
+
+Eerst is er het zwemmen. Lang vóór de wetsuits van neopreen, al in het interbellum, zwom men wedstrijdgewijs het meer over; de oversteek blijft, elke zomer, een ritueel voor zwemmers van alle leeftijden.
+
+Maar hier komt het: halverwege de twintigste eeuw stierf dit meer langzaam af. Rioolwater stroomde erin, algen wonnen terrein, het water troebelde. Een burgemeester, Charles Bosson, weigerde dat lot te aanvaarden. Samen met de oevergemeenten begon hij aan een waanzinnig project: een verzamelleiding die volledig rond het meer loopt zodat er niets meer in wordt geloosd. Jaren van werk, onzichtbaar, ondankbaar. Resultaat: water dat weer zo helder is dat dit meer vaak wordt voorgesteld als het zuiverste van Europa.
+
+Kijk dus met respect naar de zwemmers hier: elke slag van hen is een overwinning van ingenieurs.
+
+Ga verder naar het zuiden. De botenhuizen zijn niet ver meer.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-5
+@@STITLE=Base nautique des Marquisats
+Loodsen, rekken met slanke rompen, kajaks tot aan het plafond gestapeld: de base nautique des Marquisats, de machinekamer van het meer.
+
+Het schouwspel vindt vroeg plaats. Rond zes uur, in de zomer, wanneer het water een grijze spiegel is die nog niets bekrast, gaan de deuren open en dragen de bemanningen hun boten naar beneden. Roeien haat golfslag: men roeit bij zonsopgang, voordat de wind en de motorboten ontwaken. Acht riemen die in dezelfde beweging het water bijten, het rollen van de schuifbankjes, een witte pijl die naar open water schiet — het is een van de mooiste dingen om in Annecy te zien, en bijna niemand ziet het.
+
+De kajakvaarders zijn minder vroeg, maar dapperder: zij gaan er zelfs op uit wanneer het meer golft en de roeiers aan land blijven.
+
+Nog een paar honderd meter naar het zuiden. Waar de rails van een oude trein een pad zijn geworden, vertel ik je het einde van ons verhaal — de dag waarop Annecy naar de ringen mikte.
+@@SCENE=seed-100-annecy-lac-des-defis-scene-6
+@@STITLE=Voie Verte du lac d'Annecy
+Daar ben je. Dit lange lint van glad asfalt dat naar het uiteinde van het meer loopt, is de voie verte, het groene pad. Luister: het suizen van fietswielen, het rollen van skates, voetstappen. Een eeuw geleden waren het locomotieven — je loopt op de oude spoorlijn die Annecy met Albertville verbond. Toen de trein verstomde, kreeg de stad een eenvoudig, geniaal idee: het tracé behouden, de rails verwijderen. Vandaag geldt het als een van de drukst bereden fietspaden van Frankrijk.
+
+Hier komt alles samen. Triatleten stappen uit het water bij de Marquisats en springen op dit lint in het zadel. In 2009 kwam de Tour de France een tijdrit rond het meer rijden, en de beste renners ter wereld leden op deze oever.
+
+Dus, onvermijdelijk, ging de stad groter dromen. In 2011 werd Annecy officieel kandidaat voor de Olympische Winterspelen van 2018. De vlam, de ringen, de hele wereld aan de oever van het meer. De stemming valt, op een julie-avond, in Durban: Pyeongchang wint, met ruime marge. De teleurstelling is enorm.
+
+En dan? Kijk om je heen. De zwemmers van de oversteek, de schermen boven de Forclaz, de roeiers van het ochtendgloren, deze eindeloze stoet fietsen. Annecy kreeg haar Spelen niet — ze had ze niet nodig. Hier vindt de openingsceremonie elke ochtend plaats, en iedereen mag op het podium staan.
+
+Nu is het jouw beurt. Kies je uitdaging: een baan, een bergpas, een zonsopgang boven vlak water. Het meer wacht op je. Bedankt dat je met me hebt meegelopen — en als je terugkomt, kom dan in sportschoenen.

@@ -1,0 +1,229 @@
+@@LANG=en
+@@TITLE=Biarritz — Ocean and Viewpoints
+@@DESC=Urban nature — discovering the town from its promontories, squares and seafront.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-0
+@@STITLE=Place Sainte-Eugénie
+Start on the place Sainte-Eugénie, facing the neo-Gothic church that bears the name of Empress Eugénie. In the nineteenth century the regular visits of the imperial couple helped turn Biarritz, once a fishing village, into an international resort town. The square belongs to this new urban front turned towards the ocean.
+
+Walk to the railing and notice the change in level. The town here rests on cliffs and jagged promontories. Steps, ramps and footbridges are therefore not incidental: they make it possible to keep walking despite the terrain. Below, the port des Pêcheurs occupies a small sheltered cove. Out at sea, the horizon line looks steady, while the waves reveal the constant motion of the Atlantic.
+
+Our route will follow the seafront southward, from one viewpoint to the next. Go down to the port des Pêcheurs along the public paths. Do not go near the edge outside protected areas, especially in strong wind or heavy swell. As you lose height, the square disappears behind the walls and the landscape narrows around the small port.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-1
+@@STITLE=Port des Pêcheurs
+Go into the port des Pêcheurs by the public way and look at the small structures lined up at the foot of the cliff. Called crampottes, they were used to store fishermen's gear. The port was laid out in the nineteenth century in a natural cove. Its modest size contrasts with the vastness of the ocean visible beyond the breakwater.
+
+Notice how each structure answers the terrain: the jetty breaks the swell, the walls support the upper town, the steps link several levels. The port seems set apart from the centre, yet the place Sainte-Eugénie sits just above. This vertical closeness is one of Biarritz's particular features. Within a few dozen metres you pass from a monumental square to a shelter squeezed between rock and water.
+
+Now make your way to the plateau de l'Atalaye by following the authorised ramps and steps. The climb offers successive views over the port. Stop only on the open landings and keep a careful distance from the parapets when the ground is wet. At the top, the view will carry further towards the coast and the rocher de la Vierge. The small basin you are leaving will then become a mere detail in a far vaster landscape.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-2
+@@STITLE=Plateau de l'Atalaye
+The plateau de l'Atalaye juts out over the ocean between the port des Pêcheurs and the rocher de la Vierge. Its name is linked to the idea of a watch post. This promontory made it possible to keep an eye on the sea and observe movements offshore. Even today its position explains the breadth of the panorama far better than any lengthy description could.
+
+Turn your gaze slowly. To the north the town and its beaches appear; to the south the rocky coast cuts away towards the port Vieux. Between the two, waves strike the reefs that make this stretch of coastline both spectacular and dangerous. The railings are a reminder that the viewpoint remains a built space facing a powerful environment. Never cross them, even if another vantage point seems within reach.
+
+Carry on towards the rocher de la Vierge along the marked path. The route follows the cliff and reveals the arches, hollows and rock layers sculpted by erosion. When the footbridge is closed due to conditions, stay at the mainland viewpoint. The next stage does not require reaching the tip of the rock to understand its role: it is enough to observe how this isolated mass became the emblem of a town facing the Atlantic.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-3
+@@STITLE=Rocher de la Vierge
+The rocher de la Vierge is linked to the coast by a metal footbridge. The passage was cut through in the nineteenth century as part of works tied to the refuge-harbour project wanted under Napoleon III. A statue of the Virgin was placed on the rock in 1865. The harbour project never took the hoped-for shape, but the promontory became a major landmark of Biarritz.
+
+If the footbridge is open and conditions are safe, walk on without stopping in the narrow passages. Otherwise, look from the public platform. On either side, waves enter the coves and underline the jagged shape of the cliff. Look towards the land too: the silhouette of the town overlaps the coastal relief, and the église Sainte-Eugénie recalls the starting point.
+
+Then come back towards the mainland and carry on to the port Vieux. The path skirts the rocks along laid-out walkways. The transition is quick: after the exposure of the rock, you will find a more enclosed cove, facing west. It shows a different relationship with the ocean, no longer that of challenge and panorama, but that of a natural shelter between two rocky points.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-4
+@@STITLE=Port Vieux
+Stop on the promenade overlooking the port Vieux. Before the development of the port des Pêcheurs, this small cove served as a shelter for boats. Today it is occupied by a beach framed by cliffs and buildings. Its narrow shape softens the landscape: the horizon stays visible, but the rocky points partly shelter the bay.
+
+Look at the layers of the town around the water. Retaining walls carry the upper streets; steps go down to the beach; the promenade follows the natural curve of the cove. Biarritz did not simply build along the ocean's edge. It turned its terrain into a succession of public levels, each offering a different relationship with the sea.
+
+For the last stop, climb towards the Côte des Basques along the marked routes. The slope is real; go at your own pace. At the top, look for the laid-out esplanade rather than a direct route to the rocks. The panorama will open southward, along a much longer beach. After the shelter of the port Vieux, this change of scale will make the power of the coastline especially clear.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-5
+@@STITLE=Perspective de la Côte des Basques
+From the viewpoint over the Côte des Basques, watch the beach stretch away to the south. At low tide, a broad band of sand and rock appears; at high tide, the ocean can reach the foot of the cliffs and sharply reduce the space available. This daily variation is a reminder that the landscape is never fixed. Always check access and tide times before going down, but stay here to conclude.
+
+In the distance, the Basque coast cuts away as far as the relief close to the Spanish border, when visibility allows. Behind you, the town rests on top of the cliff. In front of you, the horizon almost erases any sense of scale. The viewpoint links these two scales: that of the built streets and that of a coastline shaped by the waves.
+
+Think back to Sainte-Eugénie, the port des Pêcheurs, the Atalaye, the rocher de la Vierge and the port Vieux. These places do not offer the same view six times over. They tell, one after another, of an urban terrace, a shelter, a watch post, an isolated rock, a cove and a long beach. The walk ends here, facing the geography that gave Biarritz its shape and its identity.
+
+@@LANG=es
+@@TITLE=Biarritz — Océano y miradores
+@@DESC=Naturaleza urbana: descubrir la ciudad desde sus promontorios, sus plazas y su fachada marítima.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-0
+@@STITLE=Place Sainte-Eugénie
+Empieza en la place Sainte-Eugénie, frente a la iglesia neogótica que lleva el nombre de la emperatriz Eugenia. En el siglo XIX, las estancias regulares de la pareja imperial contribuyeron a transformar Biarritz, antiguo pueblo marinero, en una ciudad de veraneo internacional. La plaza pertenece a esta nueva fachada urbana vuelta hacia el océano.
+
+Avanza hasta la barandilla y observa el desnivel. Aquí la ciudad se asienta sobre acantilados y promontorios recortados. Las escaleras, rampas y pasarelas no son, por tanto, accesorias: hacen posible la continuidad del paseo pese al relieve. Más abajo, el port des Pêcheurs ocupa una pequeña cala protegida. Mar adentro, la línea del horizonte parece estable, mientras que las olas revelan el movimiento constante del Atlántico.
+
+Nuestro recorrido seguirá la fachada marítima hacia el sur, de mirador en mirador. Baja hacia el port des Pêcheurs por los caminos públicos. No te acerques al borde fuera de las zonas protegidas, sobre todo con viento fuerte o marejada. A medida que pierdas altura, la plaza desaparecerá tras los muros y el paisaje se estrechará en torno al pequeño puerto.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-1
+@@STITLE=Port des Pêcheurs
+Entra en el port des Pêcheurs por la vía pública y mira las pequeñas construcciones alineadas al pie del acantilado. Llamadas crampottes, servían para guardar el material de los marineros. El puerto se acondicionó en el siglo XIX en una cala natural. Su tamaño modesto contrasta con la amplitud del océano visible más allá del dique.
+
+Observa cómo cada obra responde al relieve: el espigón frena el oleaje, los muros sostienen la ciudad alta, las escaleras unen varios niveles. El puerto parece apartado del centro, y sin embargo la place Sainte-Eugénie está justo encima. Esta cercanía vertical es una de las particularidades de Biarritz. En pocas decenas de metros pasas de una plaza monumental a un refugio apretado entre roca y agua.
+
+Dirígete ahora hacia el plateau de l'Atalaye siguiendo las rampas y escaleras autorizadas. La subida ofrece vistas sucesivas sobre el puerto. Detente solo en los rellanos despejados y mantén una distancia prudente con los pretiles cuando el suelo esté húmedo. En la cima, la mirada alcanzará más lejos, hacia la costa y el rocher de la Vierge. La pequeña dársena que dejas atrás se convertirá entonces en un simple detalle dentro de un paisaje mucho más vasto.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-2
+@@STITLE=Plateau de l'Atalaye
+El plateau de l'Atalaye avanza sobre el océano entre el port des Pêcheurs y el rocher de la Vierge. Su nombre está asociado a la idea de vigía. Este promontorio permitía vigilar el mar y observar los movimientos en alta mar. Todavía hoy, su posición explica la amplitud del panorama mucho mejor que un largo discurso.
+
+Gira lentamente la mirada. Al norte aparecen la ciudad y sus playas; al sur, la costa rocosa se recorta hacia el port Vieux. Entre ambos, las olas golpean los arrecifes que hacen de este tramo del litoral algo espectacular y peligroso. Las barandillas recuerdan que el mirador sigue siendo un espacio construido frente a un medio poderoso. No las cruces nunca, aunque otro punto de vista parezca accesible.
+
+Continúa hacia el rocher de la Vierge por el paseo señalizado. El recorrido sigue el acantilado y revela los arcos, las cavidades y las capas de roca esculpidas por la erosión. Cuando la pasarela esté cerrada por las condiciones, quédate en el mirador continental. La siguiente etapa no exige alcanzar el extremo de la roca para comprender su papel: basta con observar cómo esa masa aislada se convierte en el emblema de una ciudad vuelta hacia el Atlántico.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-3
+@@STITLE=Rocher de la Vierge
+El rocher de la Vierge está unido a la costa por una pasarela metálica. El paso se abrió en el siglo XIX como parte de las obras ligadas al proyecto de puerto de refugio querido bajo Napoleón III. En 1865 se instaló una estatua de la Virgen sobre la roca. El proyecto portuario no tomó la forma esperada, pero el promontorio se convirtió en un referente mayor de Biarritz.
+
+Si la pasarela está abierta y las condiciones son seguras, avanza sin detenerte en los pasos estrechos. Si no, observa desde la plataforma pública. A ambos lados, las olas entran en las calas y subrayan el recorte del acantilado. Mira también hacia tierra: la silueta de la ciudad se superpone al relieve costero, y la église Sainte-Eugénie recuerda el punto de partida.
+
+Vuelve luego hacia el continente y sigue hasta el port Vieux. El camino bordea las rocas por paseos acondicionados. La transición es rápida: tras la exposición de la roca, encontrarás una cala más cerrada, orientada al oeste. Muestra otra relación con el océano, ya no la del desafío y el panorama, sino la de un refugio natural entre dos puntas rocosas.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-4
+@@STITLE=Port Vieux
+Detente en el paseo que domina el port Vieux. Antes del desarrollo del port des Pêcheurs, esta pequeña cala servía de abrigo a las embarcaciones. Hoy la ocupa una playa enmarcada por acantilados y edificios. Su forma estrecha suaviza el paisaje: el horizonte sigue visible, pero las puntas rocosas protegen parcialmente la bahía.
+
+Observa las capas de la ciudad en torno al agua. Los muros de contención sostienen las calles altas; unas escaleras bajan hacia la playa; el paseo sigue la curva natural de la cala. Biarritz no se limitó a construir junto al océano. Transformó su relieve en una sucesión de niveles públicos, cada uno con una relación distinta con el mar.
+
+Para la última parada, sube hacia la Côte des Basques por las vías indicadas. La pendiente es real; avanza a tu ritmo. En la cima, busca la explanada acondicionada en lugar de un acceso directo a las rocas. El panorama se abrirá hacia el sur, a lo largo de una playa mucho más extensa. Tras el abrigo del port Vieux, este cambio de escala hará especialmente perceptible la fuerza del litoral.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-5
+@@STITLE=Perspective de la Côte des Basques
+Desde el mirador de la Côte des Basques, mira la playa estirarse hacia el sur. Con marea baja aparece una amplia franja de arena y roca; con marea alta, el océano puede alcanzar el pie de los acantilados y reducir fuertemente el espacio disponible. Esta variación diaria recuerda que el paisaje nunca es fijo. Consulta siempre los accesos y los horarios de marea antes de cualquier bajada, pero quédate aquí para concluir.
+
+A lo lejos, la costa vasca se recorta hasta los relieves cercanos a la frontera española cuando la visibilidad lo permite. Detrás de ti, la ciudad se apoya en lo alto del acantilado. Delante de ti, el horizonte borra casi toda medida. El mirador conecta estas dos escalas: la de las calles construidas y la de un litoral modelado por las olas.
+
+Piensa de nuevo en Sainte-Eugénie, el port des Pêcheurs, la Atalaye, el rocher de la Vierge y el port Vieux. Estos lugares no ofrecen seis veces la misma vista. Cuentan sucesivamente una terraza urbana, un refugio, un puesto de vigía, una roca aislada, una cala y una larga playa. La visita termina aquí, frente a esta geografía que ha dado su forma y su identidad a Biarritz.
+
+@@LANG=de
+@@TITLE=Biarritz — Ozean und Aussichtspunkte
+@@DESC=Stadtnatur — die Stadt von ihren Landzungen, Plätzen und ihrer Meeresfront aus entdecken.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-0
+@@STITLE=Place Sainte-Eugénie
+Beginn auf der place Sainte-Eugénie, gegenüber der neogotischen Kirche, die den Namen der Kaiserin Eugénie trägt. Im 19. Jahrhundert trugen die regelmäßigen Aufenthalte des Kaiserpaares dazu bei, Biarritz, einst ein Fischerdorf, in eine internationale Kurstadt zu verwandeln. Der Platz gehört zu dieser neuen, dem Ozean zugewandten städtischen Front.
+
+Geh bis zum Geländer und beachte den Höhenunterschied. Die Stadt ruht hier auf Klippen und zerklüfteten Landzungen. Treppen, Rampen und Stege sind daher keine Nebensache: Sie machen die Fortsetzung des Spaziergangs trotz des Reliefs erst möglich. Weiter unten liegt der port des Pêcheurs in einer kleinen geschützten Bucht. Auf dem offenen Meer wirkt die Horizontlinie ruhig, während die Wellen die stete Bewegung des Atlantiks offenbaren.
+
+Unser Weg wird der Meeresfront nach Süden folgen, von Aussichtspunkt zu Aussichtspunkt. Geh auf den öffentlichen Wegen hinunter zum port des Pêcheurs. Nähere dich außerhalb geschützter Bereiche nicht dem Rand, besonders bei starkem Wind oder hoher Dünung. Während du an Höhe verlierst, verschwindet der Platz hinter den Mauern, und die Landschaft verengt sich um den kleinen Hafen.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-1
+@@STITLE=Port des Pêcheurs
+Betritt den port des Pêcheurs über den öffentlichen Weg und sieh dir die kleinen Bauten an, die am Fuß der Klippe aufgereiht sind. Sie heißen crampottes und dienten dazu, die Ausrüstung der Fischer zu lagern. Der Hafen wurde im 19. Jahrhundert in einer natürlichen Bucht angelegt. Seine bescheidene Größe steht im Kontrast zur Weite des Ozeans, der jenseits der Mole sichtbar ist.
+
+Beachte, wie jedes Bauwerk auf das Relief reagiert: Die Mole bremst den Wellengang, die Mauern stützen die Oberstadt, die Treppen verbinden mehrere Ebenen. Der Hafen wirkt vom Zentrum abgesondert, doch die place Sainte-Eugénie liegt genau darüber. Diese vertikale Nähe ist eine der Besonderheiten von Biarritz. Auf wenigen Dutzend Metern gelangst du von einem monumentalen Platz zu einem zwischen Fels und Wasser eingeklemmten Unterschlupf.
+
+Erreiche nun das plateau de l'Atalaye, indem du den zugelassenen Rampen und Treppen folgst. Der Aufstieg bietet aufeinanderfolgende Ausblicke auf den Hafen. Halt nur auf den offenen Absätzen an und halte einen vorsichtigen Abstand zu den Brüstungen, wenn der Boden nass ist. Oben trägt der Blick weiter zur Küste und zum rocher de la Vierge. Das kleine Becken, das du verlässt, wird dann zu einem bloßen Detail in einer viel weiteren Landschaft.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-2
+@@STITLE=Plateau de l'Atalaye
+Das plateau de l'Atalaye springt über dem Ozean zwischen dem port des Pêcheurs und dem rocher de la Vierge vor. Sein Name ist mit der Vorstellung eines Wachpostens verbunden. Diese Landzunge erlaubte es, das Meer zu überwachen und Bewegungen auf offener See zu beobachten. Noch heute erklärt ihre Lage die Weite des Panoramas viel besser als jede lange Beschreibung.
+
+Dreh den Blick langsam. Im Norden erscheinen die Stadt und ihre Strände; im Süden zeichnet sich die felsige Küste zum port Vieux hin ab. Dazwischen schlagen die Wellen gegen die Riffe, die diesen Küstenabschnitt zugleich spektakulär und gefährlich machen. Die Geländer erinnern daran, dass der Aussichtspunkt ein gebauter Raum bleibt, der einer mächtigen Umgebung gegenübersteht. Überquere sie niemals, selbst wenn ein anderer Aussichtspunkt erreichbar scheint.
+
+Geh weiter zum rocher de la Vierge auf dem markierten Weg. Der Pfad folgt der Klippe und zeigt die Bögen, Höhlungen und Gesteinsschichten, die von der Erosion geformt wurden. Ist der Steg witterungsbedingt gesperrt, bleib am Festland-Aussichtspunkt. Die nächste Etappe erfordert nicht, die Spitze des Felsens zu erreichen, um seine Rolle zu verstehen: Es genügt zu beobachten, wie diese isolierte Masse zum Wahrzeichen einer dem Atlantik zugewandten Stadt wurde.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-3
+@@STITLE=Rocher de la Vierge
+Der rocher de la Vierge ist durch einen Metallsteg mit der Küste verbunden. Der Durchbruch entstand im 19. Jahrhundert im Rahmen von Arbeiten, die mit dem unter Napoleon III. gewünschten Zufluchtshafen-Projekt zusammenhingen. 1865 wurde eine Marienstatue auf dem Felsen aufgestellt. Das Hafenprojekt nahm nicht die erhoffte Form an, doch die Landzunge wurde zu einem bedeutenden Wahrzeichen von Biarritz.
+
+Ist der Steg geöffnet und die Bedingungen sicher, geh in den engen Durchgängen weiter, ohne anzuhalten. Andernfalls betrachte alles von der öffentlichen Plattform aus. Auf beiden Seiten dringen die Wellen in die Buchten ein und unterstreichen die Zerklüftung der Klippe. Sieh auch zum Land hin: Die Silhouette der Stadt überlagert sich mit dem Küstenrelief, und die église Sainte-Eugénie erinnert an den Ausgangspunkt.
+
+Kehr dann zum Festland zurück und geh weiter bis zum port Vieux. Der Weg umgeht die Felsen auf angelegten Promenaden. Der Übergang geschieht schnell: Nach der Exponiertheit des Felsens findest du eine geschlossenere, nach Westen gerichtete Bucht. Sie zeigt eine andere Beziehung zum Ozean, nicht mehr die der Herausforderung und des Panoramas, sondern die eines natürlichen Zufluchtsorts zwischen zwei Felsspitzen.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-4
+@@STITLE=Port Vieux
+Halt auf der Promenade an, die über den port Vieux blickt. Vor der Entwicklung des port des Pêcheurs diente diese kleine Bucht als Unterschlupf für Boote. Heute wird sie von einem Strand eingenommen, der von Klippen und Gebäuden gerahmt wird. Ihre enge Form dämpft die Landschaft: Der Horizont bleibt sichtbar, doch die Felsspitzen schützen die Bucht teilweise.
+
+Betrachte die Schichten der Stadt rund um das Wasser. Stützmauern tragen die oberen Straßen; Treppen führen zum Strand hinunter; die Promenade folgt der natürlichen Kurve der Bucht. Biarritz hat sich nicht damit begnügt, am Rand des Ozeans zu bauen. Es hat sein Relief in eine Abfolge öffentlicher Ebenen verwandelt, von denen jede eine andere Beziehung zum Meer bietet.
+
+Steig für die letzte Station auf den ausgewiesenen Wegen zur Côte des Basques hinauf. Das Gefälle ist real; geh in deinem eigenen Tempo. Sieh oben nach der angelegten Esplanade statt nach einem direkten Zugang zu den Felsen. Das Panorama öffnet sich nach Süden, entlang eines viel längeren Strandes. Nach dem geschützten port Vieux wird dieser Maßstabswechsel die Kraft der Küste besonders spürbar machen.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-5
+@@STITLE=Perspective de la Côte des Basques
+Sieh vom Aussichtspunkt über die Côte des Basques, wie sich der Strand nach Süden erstreckt. Bei Ebbe erscheint ein breites Band aus Sand und Fels; bei Flut kann der Ozean den Fuß der Klippen erreichen und den verfügbaren Raum stark verringern. Diese tägliche Veränderung erinnert daran, dass die Landschaft nie festgelegt ist. Prüfe stets Zugänge und Gezeitenzeiten, bevor du hinabsteigst, doch bleib hier für den Abschluss.
+
+In der Ferne zeichnet sich die baskische Küste ab, bei guter Sicht bis zu den Erhebungen nahe der spanischen Grenze. Hinter dir stützt sich die Stadt auf die Spitze der Klippe. Vor dir löscht der Horizont fast jedes Maß aus. Der Aussichtspunkt verbindet diese beiden Maßstäbe: den der gebauten Straßen und den einer von den Wellen geformten Küste.
+
+Denk zurück an Sainte-Eugénie, den port des Pêcheurs, die Atalaye, den rocher de la Vierge und den port Vieux. Diese Orte bieten nicht sechsmal denselben Blick. Sie erzählen nacheinander von einer städtischen Terrasse, einem Unterschlupf, einem Wachposten, einem isolierten Felsen, einer Bucht und einem langen Strand. Der Spaziergang endet hier, gegenüber dieser Geografie, die Biarritz seine Form und seine Identität gegeben hat.
+
+@@LANG=it
+@@TITLE=Biarritz — Oceano e belvedere
+@@DESC=Natura urbana: scoprire la città dai suoi promontori, dalle sue piazze e dal suo lungomare.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-0
+@@STITLE=Place Sainte-Eugénie
+Comincia in place Sainte-Eugénie, di fronte alla chiesa neogotica che porta il nome dell'imperatrice Eugenia. Nell'Ottocento, i soggiorni regolari della coppia imperiale contribuirono a trasformare Biarritz, antico villaggio marinaro, in una città di villeggiatura internazionale. La piazza appartiene a questo nuovo fronte urbano rivolto verso l'oceano.
+
+Avanza fino al parapetto e osserva il dislivello. Qui la città poggia su falesie e promontori frastagliati. Scale, rampe e passerelle non sono dunque accessorie: rendono possibile la continuità della passeggiata nonostante il rilievo. Più in basso, il port des Pêcheurs occupa una piccola insenatura protetta. Al largo, la linea dell'orizzonte sembra stabile, mentre le onde rivelano il movimento costante dell'Atlantico.
+
+Il nostro percorso seguirà il lungomare verso sud, di belvedere in belvedere. Scendi verso il port des Pêcheurs per i percorsi pubblici. Non avvicinarti al bordo fuori dalle zone protette, soprattutto con vento forte o mare mosso. Man mano che perdi quota, la piazza scompare dietro i muri e il paesaggio si stringe attorno al piccolo porto.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-1
+@@STITLE=Port des Pêcheurs
+Entra nel port des Pêcheurs dalla via pubblica e guarda le piccole costruzioni allineate ai piedi della falesia. Chiamate crampottes, servivano a custodire l'attrezzatura dei marinai. Il porto fu allestito nell'Ottocento in un'insenatura naturale. Le sue dimensioni modeste contrastano con l'ampiezza dell'oceano visibile oltre il molo.
+
+Osserva come ogni opera risponda al rilievo: il molo frena il moto ondoso, i muri sostengono la città alta, le scale collegano più livelli. Il porto sembra appartato dal centro, eppure la place Sainte-Eugénie si trova proprio sopra. Questa vicinanza verticale è una delle particolarità di Biarritz. In poche decine di metri passi da una piazza monumentale a un riparo stretto tra roccia e acqua.
+
+Raggiungi ora il plateau de l'Atalaye seguendo le rampe e le scale autorizzate. La salita offre viste successive sul porto. Fermati solo sui pianerottoli sgombri e mantieni una distanza prudente dai parapetti quando il suolo è bagnato. In cima, lo sguardo spazierà più lontano verso la costa e il rocher de la Vierge. Il piccolo bacino che lasci diventerà allora un semplice dettaglio in un paesaggio molto più vasto.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-2
+@@STITLE=Plateau de l'Atalaye
+Il plateau de l'Atalaye avanza sull'oceano tra il port des Pêcheurs e il rocher de la Vierge. Il suo nome è associato all'idea di vedetta. Questo promontorio permetteva di sorvegliare il mare e osservare i movimenti al largo. Ancora oggi, la sua posizione spiega l'ampiezza del panorama molto meglio di un lungo discorso.
+
+Volgi lentamente lo sguardo. A nord appaiono la città e le sue spiagge; a sud, la costa rocciosa si ritaglia verso il port Vieux. Tra i due, le onde colpiscono le scogliere che rendono questo tratto di litorale spettacolare e pericoloso. I parapetti ricordano che il belvedere resta uno spazio costruito di fronte a un ambiente potente. Non oltrepassarli mai, anche se un altro punto di vista sembra accessibile.
+
+Prosegui verso il rocher de la Vierge lungo la passeggiata segnalata. Il percorso segue la falesia e rivela archi, cavità e strati di roccia scolpiti dall'erosione. Quando la passerella è chiusa per le condizioni meteo, resta al belvedere continentale. La prossima tappa non richiede di raggiungere l'estremità della roccia per comprenderne il ruolo: basta osservare come questa massa isolata sia diventata l'emblema di una città rivolta verso l'Atlantico.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-3
+@@STITLE=Rocher de la Vierge
+Il rocher de la Vierge è collegato alla costa da una passerella metallica. Il varco fu aperto nell'Ottocento nell'ambito di lavori legati al progetto di porto di rifugio voluto sotto Napoleone III. Nel 1865 fu installata sulla roccia una statua della Vergine. Il progetto portuale non prese la forma sperata, ma il promontorio divenne un punto di riferimento maggiore di Biarritz.
+
+Se la passerella è aperta e le condizioni sono sicure, avanza senza fermarti nei passaggi stretti. Altrimenti, osserva dalla piattaforma pubblica. Su entrambi i lati, le onde entrano nelle insenature e sottolineano il frastagliarsi della falesia. Guarda anche verso terra: la sagoma della città si sovrappone ai rilievi costieri, e la église Sainte-Eugénie ricorda il punto di partenza.
+
+Torna poi verso il continente e prosegui fino al port Vieux. Il cammino aggira le rocce lungo passeggiate attrezzate. La transizione è rapida: dopo l'esposizione della roccia, troverai un'insenatura più chiusa, rivolta a ovest. Mostra un altro rapporto con l'oceano, non più quello della sfida e del panorama, ma quello di un rifugio naturale tra due punte rocciose.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-4
+@@STITLE=Port Vieux
+Fermati sulla passeggiata che domina il port Vieux. Prima dello sviluppo del port des Pêcheurs, questa piccola insenatura serviva da riparo alle imbarcazioni. Oggi è occupata da una spiaggia incorniciata da falesie ed edifici. La sua forma stretta ammorbidisce il paesaggio: l'orizzonte resta visibile, ma le punte rocciose proteggono in parte la baia.
+
+Osserva gli strati della città attorno all'acqua. I muri di sostegno reggono le vie alte; delle scale scendono verso la spiaggia; la passeggiata segue la curva naturale dell'insenatura. Biarritz non si è limitata a costruire sul bordo dell'oceano. Ha trasformato il suo rilievo in una successione di livelli pubblici, ciascuno con un rapporto diverso con il mare.
+
+Per l'ultima tappa, sali verso la Côte des Basques per le vie indicate. La pendenza è reale; procedi al tuo ritmo. In cima, cerca la spianata attrezzata piuttosto che un accesso diretto alle rocce. Il panorama si aprirà verso sud, lungo una spiaggia molto più estesa. Dopo il riparo del port Vieux, questo cambio di scala renderà particolarmente evidente la potenza del litorale.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-5
+@@STITLE=Perspective de la Côte des Basques
+Dal belvedere sulla Côte des Basques, guarda la spiaggia stendersi verso sud. Con la bassa marea appare un'ampia striscia di sabbia e roccia; con l'alta marea, l'oceano può raggiungere il piede delle falesie e ridurre fortemente lo spazio disponibile. Questa variazione quotidiana ricorda che il paesaggio non è mai fisso. Consulta sempre gli accessi e gli orari delle maree prima di ogni discesa, ma resta qui per concludere.
+
+In lontananza, la costa basca si ritaglia fino ai rilievi vicini al confine spagnolo quando la visibilità lo permette. Dietro di te, la città poggia sulla sommità della falesia. Davanti a te, l'orizzonte cancella quasi ogni misura. Il belvedere collega queste due scale: quella delle strade costruite e quella di un litorale modellato dalle onde.
+
+Ripensa a Sainte-Eugénie, al port des Pêcheurs, all'Atalaye, al rocher de la Vierge e al port Vieux. Questi luoghi non offrono sei volte la stessa vista. Raccontano in successione una terrazza urbana, un riparo, un posto di vedetta, una roccia isolata, un'insenatura e una lunga spiaggia. La visita si conclude qui, di fronte a questa geografia che ha dato forma e identità a Biarritz.
+
+@@LANG=nl
+@@TITLE=Biarritz — Oceaan en uitkijkpunten
+@@DESC=Stadsnatuur — de stad ontdekken vanaf haar landtongen, pleinen en zeefront.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-0
+@@STITLE=Place Sainte-Eugénie
+Begin op de place Sainte-Eugénie, tegenover de neogotische kerk die de naam van keizerin Eugénie draagt. In de negentiende eeuw droegen de regelmatige verblijven van het keizerpaar ertoe bij dat Biarritz, ooit een vissersdorp, veranderde in een internationale badplaats. Het plein hoort bij dit nieuwe stedelijke front, gericht op de oceaan.
+
+Loop naar de reling en let op het hoogteverschil. De stad rust hier op kliffen en versnipperde landtongen. Trappen, hellingen en loopbruggen zijn dus geen bijzaak: ze maken het mogelijk om ondanks het reliëf te blijven wandelen. Beneden neemt de port des Pêcheurs een kleine beschutte inham in. Op zee lijkt de horizonlijn stabiel, terwijl de golven de voortdurende beweging van de Atlantische Oceaan onthullen.
+
+Onze route volgt het zeefront naar het zuiden, van uitkijkpunt naar uitkijkpunt. Daal af naar de port des Pêcheurs via de openbare paden. Kom niet in de buurt van de rand buiten de beschermde zones, vooral niet bij sterke wind of hoge deining. Naarmate je hoogte verliest, verdwijnt het plein achter de muren en versmalt het landschap zich rond de kleine haven.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-1
+@@STITLE=Port des Pêcheurs
+Ga de port des Pêcheurs binnen via de openbare weg en bekijk de kleine constructies die op een rij staan aan de voet van de klif. Ze heten crampottes en dienden om het materiaal van de vissers op te bergen. De haven werd in de negentiende eeuw aangelegd in een natuurlijke inham. De bescheiden omvang contrasteert met de weidsheid van de oceaan die voorbij de golfbreker zichtbaar is.
+
+Let op hoe elk bouwwerk inspeelt op het reliëf: de pier breekt de deining, de muren dragen de bovenstad, de trappen verbinden meerdere niveaus. De haven lijkt afgezonderd van het centrum, en toch ligt de place Sainte-Eugénie er vlak boven. Deze verticale nabijheid is een van de bijzonderheden van Biarritz. In enkele tientallen meters ga je van een monumentaal plein naar een schuilplaats geklemd tussen rots en water.
+
+Bereik nu het plateau de l'Atalaye door de toegestane hellingen en trappen te volgen. De klim biedt opeenvolgende uitzichten op de haven. Blijf alleen staan op de open bordessen en houd voorzichtige afstand tot de leuningen wanneer de grond nat is. Boven reikt de blik verder naar de kust en de rocher de la Vierge. Het kleine bekken dat je verlaat, wordt dan een eenvoudig detail in een veel uitgestrekter landschap.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-2
+@@STITLE=Plateau de l'Atalaye
+Het plateau de l'Atalaye steekt uit boven de oceaan tussen de port des Pêcheurs en de rocher de la Vierge. De naam is verbonden met het idee van een wachtpost. Deze landtong maakte het mogelijk de zee te bewaken en de bewegingen op open water te observeren. Nog vandaag verklaart haar positie de breedte van het panorama veel beter dan een lang betoog zou kunnen.
+
+Draai je blik langzaam rond. In het noorden verschijnen de stad en haar stranden; in het zuiden tekent de rotsachtige kust zich af richting de port Vieux. Daartussen slaan de golven tegen de riffen die dit stuk kust zowel spectaculair als gevaarlijk maken. De leuningen herinneren eraan dat het uitkijkpunt een gebouwde ruimte blijft tegenover een machtige omgeving. Steek ze nooit over, zelfs als een ander uitzichtpunt bereikbaar lijkt.
+
+Ga verder naar de rocher de la Vierge via het gemarkeerde pad. De route volgt de klif en onthult de bogen, holtes en gesteentelagen die door erosie zijn gevormd. Wanneer de loopbrug wegens de omstandigheden gesloten is, blijf dan op het vasteland-uitkijkpunt. De volgende etappe vereist niet dat je de punt van de rots bereikt om haar rol te begrijpen: het volstaat te observeren hoe deze geïsoleerde massa het symbool werd van een op de Atlantische Oceaan gerichte stad.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-3
+@@STITLE=Rocher de la Vierge
+De rocher de la Vierge is met de kust verbonden door een metalen loopbrug. De doorgang werd in de negentiende eeuw uitgehouwen als onderdeel van de werken verbonden aan het onder Napoleon III gewenste toevluchtshavenproject. In 1865 werd een Mariabeeld op de rots geplaatst. Het havenproject nam niet de gehoopte vorm aan, maar de landtong werd een groot herkenningspunt van Biarritz.
+
+Als de loopbrug open is en de omstandigheden veilig zijn, loop dan door zonder te stoppen in de nauwe doorgangen. Kijk anders vanaf het openbare platform. Aan weerszijden dringen de golven de inhammen binnen en onderstrepen ze de versnippering van de klif. Kijk ook naar het land: de silhouet van de stad overlapt met het kustreliëf, en de église Sainte-Eugénie herinnert aan het vertrekpunt.
+
+Ga dan terug naar het vasteland en vervolg je weg tot de port Vieux. Het pad omzeilt de rotsen via aangelegde wandelpaden. De overgang gaat snel: na de blootstelling van de rots vind je een meer omsloten inham, naar het westen gericht. Ze toont een andere relatie met de oceaan, niet langer die van uitdaging en panorama, maar die van een natuurlijke schuilplaats tussen twee rotspunten.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-4
+@@STITLE=Port Vieux
+Blijf staan op de promenade die uitkijkt over de port Vieux. Vóór de ontwikkeling van de port des Pêcheurs diende deze kleine inham als schuilplaats voor boten. Vandaag wordt ze ingenomen door een strand omkaderd door kliffen en gebouwen. Haar smalle vorm verzacht het landschap: de horizon blijft zichtbaar, maar de rotspunten beschutten de baai gedeeltelijk.
+
+Bekijk de lagen van de stad rond het water. Steunmuren dragen de hogere straten; trappen dalen af naar het strand; de promenade volgt de natuurlijke kromming van de inham. Biarritz heeft zich niet beperkt tot bouwen aan de rand van de oceaan. Ze heeft haar reliëf omgevormd tot een opeenvolging van openbare niveaus, elk met een andere relatie tot de zee.
+
+Klim voor de laatste halte via de aangegeven wegen naar de Côte des Basques. De helling is reëel; loop in je eigen tempo. Zoek boven de aangelegde esplanade in plaats van een directe toegang tot de rotsen. Het panorama opent zich naar het zuiden, langs een veel uitgestrekter strand. Na de beschutting van de port Vieux zal deze schaalverandering de kracht van de kustlijn bijzonder voelbaar maken.
+@@SCENE=seed-100-biarritz-ocean-et-belvederes-scene-5
+@@STITLE=Perspective de la Côte des Basques
+Kijk vanaf het uitkijkpunt over de Côte des Basques hoe het strand zich naar het zuiden uitstrekt. Bij eb verschijnt een brede strook zand en rots; bij vloed kan de oceaan de voet van de kliffen bereiken en de beschikbare ruimte sterk verkleinen. Deze dagelijkse variatie herinnert eraan dat het landschap nooit vaststaat. Raadpleeg altijd de toegangen en getijtijden vóór elke afdaling, maar blijf hier voor de afsluiting.
+
+In de verte tekent de Baskische kust zich af tot aan de heuvels dicht bij de Spaanse grens, wanneer het zicht dat toelaat. Achter je steunt de stad op de top van de klif. Voor je wist de horizon bijna elke maatstaf uit. Het uitkijkpunt verbindt deze twee schalen: die van de gebouwde straten en die van een door de golven gevormde kustlijn.
+
+Denk terug aan Sainte-Eugénie, de port des Pêcheurs, de Atalaye, de rocher de la Vierge en de port Vieux. Deze plekken bieden niet zes keer hetzelfde uitzicht. Ze vertellen achtereenvolgens over een stedelijk terras, een schuilplaats, een wachtpost, een geïsoleerde rots, een inham en een lang strand. De wandeling eindigt hier, tegenover deze geografie die Biarritz haar vorm en haar identiteit heeft gegeven.

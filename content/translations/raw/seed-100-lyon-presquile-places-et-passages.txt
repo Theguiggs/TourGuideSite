@@ -1,0 +1,259 @@
+@@LANG=en
+@@TITLE=Lyon — Squares and Passages of the Presqu'île
+@@DESC=Urban history — linking squares, passages, and quays to understand the Presqu'île.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-0
+@@STITLE=Place des Terreaux
+Start on the place des Terreaux, between the hôtel de ville and the Musée des Beaux-Arts. The name recalls the old moats and earthworks once located at the foot of the Croix-Rousse. The square thus occupied a northern boundary of the city before becoming a monumental space. The Bartholdi fountain, installed at the end of the 19th century, brings powerful movement into the middle of the orderly façades.
+
+Turn slowly. The hôtel de ville asserts civic power, the former convent turned museum forms a calmer, longer front, and the streets lead either toward the heart of the Presqu'île or toward the hillsides. This position sums up Lyon: a flat space squeezed between two rivers, immediately overlooked by hills.
+
+Head toward the passage Thiaffait by reaching the base of the hillside through the public streets. The climb is noticeable. Notice how the streets change scale and how staircases sometimes replace regular roadways. The next stop is a 19th-century courtyard passage tied to the development of the silk workers' neighborhood. It will show how architecture absorbs a slope and distributes movement within a single block.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-1
+@@STITLE=Passage Thiaffait
+Enter the passage Thiaffait only if its public access points are open. Built in the early 19th century on the slopes of the Croix-Rousse, it's organized around a courtyard and a staircase. The tall buildings corresponded to the development of the canuts' neighborhood, whose looms required large volumes and tall windows.
+
+Notice how the staircase becomes the central axis. In the lower Presqu'île, passages often cross the blocks almost horizontally. Here, they also have to overcome a change in elevation. The interior façades, landings, and openings compose a space halfway between street and building. Respect the calm of the place and don't go through any private doors.
+
+Then go back down toward the place Sathonay. The passage will open onto a planted space at the foot of the hill. During the walk, look behind you: the staircases cut the slope into successive planes and quickly make the summit disappear. At the next stop, this topography will still be visible in the way the streets arrive, but the square will offer a horizontal pause. You'll see how Lyon carves out public landings between the hills and the more regular grid of the Presqu'île.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-2
+@@STITLE=Place Sathonay
+Stop at the place Sathonay, under the trees. Created in the early 19th century on the grounds of the former garden of the Bernardines, it forms a quiet space at the foot of the hillside. The regular façades and benches give it a neighborhood scale, while the streets climbing upward immediately recall the presence of the Croix-Rousse.
+
+Look toward the staircase extending the square. The flatness is only a brief pause before the slope. On the opposite side, the streets descend toward the hôtel de ville and the center of the Presqu'île. This layout explains the place's role: distributing several directions without the monumental scale of the Terreaux. The planting reinforces this sense of a calm threshold between two urban fabrics.
+
+Head back south, then make your way to the passage de l'Argue. The distance will take you across more regular streets, developed on the flat area between the Saône and the Rhône. Along the way, spot the side glimpses toward the two rivers, even when they remain out of sight. The passage de l'Argue belongs to a different story than Thiaffait: that of the covered galleries built in the 19th century to cross the blocks at the heart of the dense city.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-3
+@@STITLE=Passage de l'Argue
+Step into the passage de l'Argue through an open entrance. Built in the first half of the 19th century, this gallery links several streets of the Presqu'île through the interior of the blocks. Its glass roof brings in diffuse light, while the interior façades give the impression of a street sheltered from the weather.
+
+Look at the floor, the glazing, and the rhythm of the bays without lingering in front of any entrances. The passage shortens journeys, but it also produces a distinct atmosphere: sounds echo, the sky disappears, and each exit forms a bright rectangle. Unlike the passage Thiaffait, no grand staircase governs movement here. The topography is almost flat, and circulation follows a more direct line.
+
+Come back out heading toward the place Bellecour. A few streets are enough to go from this narrow gallery to an immense open expanse. Keep the width of the passage in mind; it will make the contrast more noticeable. Bellecour isn't an interior you pass through, but a void capable of linking several neighborhoods and offering distant views toward the hills. The next stop will show this change of scale in its full extent.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-4
+@@STITLE=Place Bellecour
+Walk out onto the place Bellecour and let the façades recede. This vast square occupies the center of the Presqu'île. At its middle, the equestrian statue of Louis XIV gives a fixed point to a space whose dimensions might otherwise seem hard to measure. In the distance, the hill of Fourvière and its basilica appear above the rooftops when visibility allows.
+
+Look at the axes running north and south. The rue de la République leads toward the Terreaux, while the rue Victor-Hugo continues the composition toward Perrache. Bellecour acts as a hinge at the scale of the whole city. It also offers a visual relationship between the flat Presqu'île and the hills that frame it.
+
+Head toward the place Antonin-Poncet, immediately next door. The transition happens without any narrow street: the two spaces seem to almost blend into each other, but their characters differ. Bellecour is mainly mineral and centered on a statue; Antonin-Poncet opens toward the Rhône and preserves the bell tower of the former hôpital de la Charité. This last stop will reconnect the squares you've crossed to the great landscape of the rivers.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-5
+@@STITLE=Place Antonin-Poncet
+Stop at the place Antonin-Poncet and look for the bell tower of the Charité. It's the main remnant of the hospital built in the 17th century and largely demolished in the 20th. Standing alone at the edge of the square, it recalls that a large built complex once occupied this space, now open and planted with greenery.
+
+Walk toward the view of the Rhône without leaving the public walkways. The river appears at the far end of the square, beyond the quays. Here, the Presqu'île reveals its geographic nature: an urban strip caught between the Saône to the west and the Rhône to the east. The squares and passages aren't scattered at random. They distribute movement across this constrained surface and connect the riverbanks to the hills.
+
+Think back to the Terreaux, the passage Thiaffait, Sathonay, the passage de l'Argue, and Bellecour. You've crossed a boundary square, an interior staircase, a planted landing, a covered gallery, then a monumental void. Each stage offered a different way of crossing or occupying the city. The walk ends in front of the Rhône, where the built fabric meets one of the natural lines that give Lyon its shape.
+
+@@LANG=es
+@@TITLE=Lyon — Plazas y pasajes de la Presqu'île
+@@DESC=Historia urbana — conectar plazas, pasajes y muelles para comprender la Presqu'île.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-0
+@@STITLE=Place des Terreaux
+Empieza en la place des Terreaux, entre el hôtel de ville y el musée des Beaux-Arts. El nombre recuerda los antiguos fosos y terraplenes situados al pie de la Croix-Rousse. La plaza ocupaba así un límite septentrional de la ciudad antes de convertirse en un espacio monumental. La fuente de Bartholdi, instalada a finales del siglo XIX, aporta un movimiento poderoso en medio de las fachadas ordenadas.
+
+Gírate lentamente. El hôtel de ville afirma el poder cívico, el antiguo convento convertido en museo forma un frente más largo y sereno, y las calles conducen bien hacia el corazón de la Presqu'île, bien hacia las laderas. Esta posición resume Lyon: un espacio llano encajado entre dos ríos, dominado de inmediato por colinas.
+
+Dirígete hacia el passage Thiaffait alcanzando la base de las laderas por las vías públicas. La subida se nota. Observa cómo las calles cambian de escala y cómo las escaleras a veces sustituyen a los ejes regulares. La próxima parada es un patio-pasaje del siglo XIX ligado al desarrollo del barrio de los obreros de la seda. Mostrará cómo la arquitectura absorbe la pendiente y distribuye los desplazamientos dentro de una misma manzana.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-1
+@@STITLE=Passage Thiaffait
+Entra en el passage Thiaffait solo si sus accesos públicos están abiertos. Construido a principios del siglo XIX en las laderas de la Croix-Rousse, se organiza en torno a un patio y una escalera. Los edificios altos correspondían al desarrollo del barrio de los canuts, cuyos telares requerían grandes volúmenes y ventanas altas.
+
+Observa cómo la escalera se convierte en el eje central. En la Presqu'île baja, los pasajes suelen atravesar las manzanas de forma casi horizontal. Aquí, también deben salvar un desnivel. Las fachadas interiores, los rellanos y las aberturas componen un espacio a medio camino entre calle y edificio. Respeta la calma del lugar y no cruces ninguna puerta privada.
+
+Baja luego de nuevo hacia la place Sathonay. El pasaje se abrirá a un espacio ajardinado al pie de la colina. Durante el trayecto, mira hacia atrás: las escaleras recortan la pendiente en planos sucesivos y hacen desaparecer rápidamente la cima. En la próxima parada, esta topografía seguirá visible en la llegada de las calles, pero la plaza ofrecerá una pausa horizontal. Verás cómo Lyon dispone rellanos públicos entre los relieves y la cuadrícula más regular de la Presqu'île.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-2
+@@STITLE=Place Sathonay
+Detente en la place Sathonay, bajo los árboles. Creada a principios del siglo XIX sobre los terrenos del antiguo jardín de las Bernardas, forma un espacio tranquilo al pie de las laderas. Las fachadas regulares y los bancos dan una escala de vecindario, mientras que las calles que suben recuerdan de inmediato la presencia de la Croix-Rousse.
+
+Mira hacia la escalera que prolonga la plaza. La horizontalidad es solo una breve pausa antes del relieve. En el lado opuesto, las vías descienden hacia el hôtel de ville y el centro de la Presqu'île. Esta articulación explica el papel del lugar: distribuir varias direcciones sin la amplitud monumental de los Terreaux. La vegetación refuerza esta sensación de umbral tranquilo entre dos tejidos urbanos.
+
+Vuelve hacia el sur, y luego dirígete al passage de l'Argue. La distancia te hará atravesar calles más regulares, desarrolladas en la zona llana entre el Saona y el Ródano. Por el camino, localiza las escapadas laterales hacia los dos ríos, incluso cuando permanecen invisibles. El passage de l'Argue pertenece a otra historia distinta de la de Thiaffait: la de las galerías cubiertas construidas en el siglo XIX para atravesar las manzanas en el corazón de la ciudad densa.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-3
+@@STITLE=Passage de l'Argue
+Adéntrate en el passage de l'Argue por una entrada abierta. Construida en la primera mitad del siglo XIX, esta galería conecta varias calles de la Presqu'île a través del interior de las manzanas. Su techumbre de cristal aporta una luz difusa, mientras que las fachadas interiores dan la impresión de una calle protegida de las inclemencias del tiempo.
+
+Observa el suelo, los acristalamientos y el ritmo de los tramos sin detenerte frente a los accesos. El pasaje acorta los trayectos, pero también produce un ambiente propio: los ruidos se repiten en eco, el cielo desaparece y cada salida forma un rectángulo luminoso. A diferencia del passage Thiaffait, aquí ninguna gran escalera dirige el movimiento. La topografía es casi llana y la circulación sigue una línea más directa.
+
+Sal de nuevo en dirección a la place Bellecour. Bastan unas pocas calles para pasar de esta galería estrecha a una inmensa superficie abierta. Guarda en la memoria la anchura del pasaje; hará el contraste más sensible. Bellecour no es un interior de paso, sino un vacío capaz de conectar varios barrios y de ofrecer vistas lejanas hacia las colinas. La próxima etapa mostrará este cambio de escala en toda su amplitud.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-4
+@@STITLE=Place Bellecour
+Avanza por la place Bellecour y deja que las fachadas se alejen. Esta vasta plaza ocupa el centro de la Presqu'île. En su centro, la estatua ecuestre de Luis XIV da un punto fijo a un espacio cuyas dimensiones podrían resultar, de otro modo, difíciles de medir. A lo lejos, la colina de Fourvière y su basílica aparecen sobre los tejados cuando la visibilidad lo permite.
+
+Mira los ejes que parten hacia el norte y el sur. La rue de la République conduce hacia los Terreaux, mientras que la rue Victor-Hugo prolonga la composición hacia Perrache. Bellecour desempeña el papel de bisagra a escala de toda la ciudad. Ofrece también una relación visual entre la Presqu'île llana y los relieves que la enmarcan.
+
+Dirígete hacia la place Antonin-Poncet, inmediatamente vecina. El paso se hace sin calle estrecha: los dos espacios parecen casi prolongarse el uno en el otro, pero sus caracteres difieren. Bellecour es principalmente mineral y centrada en una estatua; Antonin-Poncet se abre hacia el Ródano y conserva el campanario del antiguo hôpital de la Charité. Esta última parada reconectará las plazas recorridas con el gran paisaje de los ríos.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-5
+@@STITLE=Place Antonin-Poncet
+Detente en la place Antonin-Poncet y busca el campanario de la Charité. Es el principal vestigio del hospital construido en el siglo XVII y en gran parte demolido en el siglo XX. Aislado en el borde de la plaza, recuerda que un gran conjunto edificado ocupaba antaño este espacio hoy abierto y ajardinado.
+
+Avanza hacia la perspectiva del Ródano sin abandonar los caminos públicos. El río aparece al final de la plaza, más allá de los muelles. La Presqu'île revela aquí su naturaleza geográfica: una franja urbana atrapada entre el Saona al oeste y el Ródano al este. Las plazas y los pasajes no están dispersos al azar. Distribuyen los movimientos sobre esta superficie limitada y conectan las orillas con las colinas.
+
+Piensa de nuevo en los Terreaux, en el passage Thiaffait, en Sathonay, en el passage de l'Argue y en Bellecour. Has atravesado una plaza límite, una escalera interior, un rellano ajardinado, una galería cubierta y luego un vacío monumental. Cada etapa ha propuesto una manera distinta de cruzar u ocupar la ciudad. El paseo termina frente al Ródano, allí donde el tejido edificado reencuentra una de las líneas naturales que dan a Lyon su forma.
+
+@@LANG=de
+@@TITLE=Lyon — Plätze und Passagen der Presqu'île
+@@DESC=Stadtgeschichte — Plätze, Passagen und Kais verbinden, um die Presqu'île zu verstehen.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-0
+@@STITLE=Place des Terreaux
+Beginne auf der place des Terreaux, zwischen dem hôtel de ville und dem musée des Beaux-Arts. Der Name erinnert an die alten Gräben und Erdaufschüttungen am Fuß der Croix-Rousse. Der Platz markierte also einst eine nördliche Stadtgrenze, bevor er zu einem monumentalen Raum wurde. Der Bartholdi-Brunnen, Ende des 19. Jahrhunderts errichtet, bringt kraftvolle Bewegung inmitten der geordneten Fassaden.
+
+Dreh dich langsam um. Das hôtel de ville behauptet die städtische Macht, das ehemalige, zum Museum gewordene Kloster bildet eine ruhigere, längere Front, und die Straßen führen entweder ins Herz der Presqu'île oder zu den Hängen hinauf. Diese Lage fasst Lyon zusammen: ein flacher Raum, eingezwängt zwischen zwei Flüssen, unmittelbar von Hügeln überragt.
+
+Geh zur passage Thiaffait, indem du über die öffentlichen Straßen den Fuß der Hänge erreichst. Der Anstieg ist spürbar. Beobachte, wie sich die Straßen in ihrem Maßstab verändern und wie Treppen manchmal die regelmäßigen Achsen ersetzen. Der nächste Halt ist eine Hofpassage aus dem 19. Jahrhundert, verbunden mit der Entwicklung des Viertels der Seidenweber. Sie wird zeigen, wie Architektur ein Gefälle aufnimmt und Bewegungen innerhalb eines einzigen Häuserblocks verteilt.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-1
+@@STITLE=Passage Thiaffait
+Betritt die passage Thiaffait nur, wenn ihre öffentlichen Zugänge geöffnet sind. Zu Beginn des 19. Jahrhunderts an den Hängen der Croix-Rousse erbaut, ist sie um einen Innenhof und eine Treppe herum organisiert. Die hohen Gebäude entsprachen der Entwicklung des Viertels der canuts, deren Webstühle große Räume und hohe Fenster erforderten.
+
+Beobachte, wie die Treppe zur zentralen Achse wird. In der unteren Presqu'île durchqueren die Passagen die Häuserblocks oft fast horizontal. Hier müssen sie außerdem einen Höhenunterschied überwinden. Die Innenfassaden, die Treppenabsätze und die Öffnungen bilden einen Raum, der zwischen Straße und Gebäude liegt. Respektiere die Ruhe des Ortes, und geh durch keine private Tür.
+
+Steig dann wieder hinunter zur place Sathonay. Die Passage wird sich zu einem begrünten Raum am Fuß des Hügels öffnen. Schau während des Wegs zurück: die Treppen zerlegen den Hang in aufeinanderfolgende Ebenen und lassen den Gipfel schnell verschwinden. Beim nächsten Halt bleibt diese Topografie in der Art sichtbar, wie die Straßen ankommen, doch der Platz wird eine horizontale Pause bieten. Du wirst sehen, wie Lyon öffentliche Absätze zwischen den Höhenzügen und dem regelmäßigeren Raster der Presqu'île einrichtet.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-2
+@@STITLE=Place Sathonay
+Halt auf der place Sathonay an, unter den Bäumen. Zu Beginn des 19. Jahrhunderts auf dem Gelände des ehemaligen Gartens der Bernhardinerinnen angelegt, bildet sie einen ruhigen Raum am Fuß der Hänge. Die regelmäßigen Fassaden und Bänke geben ihr einen nachbarschaftlichen Maßstab, während die ansteigenden Straßen sofort an die Nähe der Croix-Rousse erinnern.
+
+Schau zur Treppe, die den Platz fortsetzt. Die Ebenheit ist nur eine kurze Pause vor dem Relief. Auf der gegenüberliegenden Seite führen die Wege hinunter zum hôtel de ville und zum Zentrum der Presqu'île. Diese Verbindung erklärt die Rolle des Ortes: mehrere Richtungen zu verteilen, ohne die monumentale Weite der Terreaux. Die Bepflanzung verstärkt dieses Gefühl einer ruhigen Schwelle zwischen zwei Stadtgeweben.
+
+Geh wieder nach Süden, dann weiter zur passage de l'Argue. Die Strecke führt dich über regelmäßigere Straßen, entwickelt auf dem flachen Gebiet zwischen Saône und Rhône. Entdecke unterwegs die seitlichen Ausblicke zu den beiden Flüssen, auch wenn sie unsichtbar bleiben. Die passage de l'Argue gehört zu einer anderen Geschichte als Thiaffait: der der überdachten Galerien, die im 19. Jahrhundert angelegt wurden, um die Häuserblocks mitten in der dichten Stadt zu durchqueren.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-3
+@@STITLE=Passage de l'Argue
+Betritt die passage de l'Argue durch einen offenen Eingang. In der ersten Hälfte des 19. Jahrhunderts angelegt, verbindet diese Galerie mehrere Straßen der Presqu'île durch das Innere der Häuserblocks. Ihr Glasdach bringt diffuses Licht, während die Innenfassaden den Eindruck einer vor Witterung geschützten Straße vermitteln.
+
+Betrachte den Boden, die Verglasung und den Rhythmus der Joche, ohne dich vor den Zugängen aufzuhalten. Die Passage verkürzt die Wege, erzeugt aber auch eine eigene Atmosphäre: Geräusche hallen wider, der Himmel verschwindet, und jeder Ausgang bildet ein leuchtendes Rechteck. Anders als bei der passage Thiaffait bestimmt hier keine große Treppe die Bewegung. Die Topografie ist fast eben, und der Verkehr folgt einer direkteren Linie.
+
+Geh wieder hinaus, Richtung place Bellecour. Wenige Straßen genügen, um von dieser engen Galerie zu einer riesigen offenen Fläche zu gelangen. Behalte die Breite der Passage im Gedächtnis; sie wird den Kontrast spürbarer machen. Bellecour ist kein durchquerbares Inneres, sondern eine Leere, die mehrere Viertel verbinden und weite Ausblicke zu den Hügeln bieten kann. Der nächste Schritt wird diesen Maßstabswechsel in seiner ganzen Tragweite zeigen.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-4
+@@STITLE=Place Bellecour
+Geh weiter auf die place Bellecour hinaus, und lass die Fassaden zurücktreten. Dieser weite Platz nimmt das Zentrum der Presqu'île ein. In seiner Mitte gibt die Reiterstatue Ludwigs XIV. einem Raum einen festen Punkt, dessen Ausmaße sonst schwer einzuschätzen wären. In der Ferne erscheinen der Hügel von Fourvière und seine Basilika über den Dächern, wenn die Sicht es zulässt.
+
+Schau auf die Achsen, die nach Norden und Süden verlaufen. Die rue de la République führt zu den Terreaux, während die rue Victor-Hugo die Komposition Richtung Perrache fortsetzt. Bellecour spielt die Rolle eines Scharniers im Maßstab der ganzen Stadt. Er bietet auch eine visuelle Beziehung zwischen der flachen Presqu'île und den sie einrahmenden Höhenzügen.
+
+Geh zur unmittelbar benachbarten place Antonin-Poncet. Der Übergang erfolgt ohne enge Straße: die beiden Räume scheinen sich fast ineinander fortzusetzen, doch ihr Charakter unterscheidet sich. Bellecour ist überwiegend steinern und auf eine Statue ausgerichtet; Antonin-Poncet öffnet sich zur Rhône hin und bewahrt den Glockenturm des ehemaligen hôpital de la Charité. Dieser letzte Halt wird die durchquerten Plätze wieder mit der großen Flusslandschaft verbinden.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-5
+@@STITLE=Place Antonin-Poncet
+Halt auf der place Antonin-Poncet an und such den Glockenturm der Charité. Er ist das wichtigste Überbleibsel des im 17. Jahrhundert erbauten und im 20. Jahrhundert größtenteils abgerissenen Hospitals. Allein am Rand des Platzes stehend, erinnert er daran, dass hier einst ein großer Gebäudekomplex stand, wo heute ein offener, begrünter Raum liegt.
+
+Geh weiter zur Aussicht auf die Rhône, ohne die öffentlichen Wege zu verlassen. Der Fluss erscheint am Ende des Platzes, jenseits der Kais. Hier zeigt die Presqu'île ihre geografische Natur: ein städtischer Streifen, eingeklemmt zwischen der Saône im Westen und der Rhône im Osten. Die Plätze und Passagen sind nicht zufällig verstreut. Sie verteilen die Bewegungen auf dieser begrenzten Fläche und verbinden die Ufer mit den Hügeln.
+
+Denk zurück an die Terreaux, die passage Thiaffait, Sathonay, die passage de l'Argue und Bellecour. Du hast einen Grenzplatz durchquert, eine Innentreppe, einen begrünten Absatz, eine überdachte Galerie und schließlich eine monumentale Leere. Jede Etappe bot eine andere Art, die Stadt zu durchqueren oder zu bewohnen. Der Spaziergang endet vor der Rhône, dort, wo das bebaute Gefüge auf eine der natürlichen Linien trifft, die Lyon seine Form geben.
+
+@@LANG=it
+@@TITLE=Lyon — Piazze e passaggi della Presqu'île
+@@DESC=Storia urbana — collegare piazze, passaggi e banchine per comprendere la Presqu'île.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-0
+@@STITLE=Place des Terreaux
+Inizia in place des Terreaux, tra l'hôtel de ville e il musée des Beaux-Arts. Il nome ricorda gli antichi fossati e terrapieni situati ai piedi della Croix-Rousse. La piazza occupava dunque un limite settentrionale della città prima di diventare uno spazio monumentale. La fontana di Bartholdi, installata alla fine del XIX secolo, porta un movimento potente in mezzo alle facciate ordinate.
+
+Girati lentamente. L'hôtel de ville afferma il potere civico, l'antico convento diventato museo forma un fronte più lungo e sereno, e le strade conducono sia verso il cuore della Presqu'île, sia verso i pendii. Questa posizione riassume Lyon: uno spazio piatto stretto tra due fiumi, immediatamente dominato da colline.
+
+Dirigiti verso il passage Thiaffait raggiungendo la base dei pendii attraverso le vie pubbliche. La salita si sente. Osserva come le strade cambiano scala e come le scale a volte sostituiscono gli assi regolari. La prossima tappa è un cortile-passaggio del XIX secolo legato allo sviluppo del quartiere degli operai della seta. Mostrerà come l'architettura assorbe la pendenza e distribuisce gli spostamenti all'interno di un unico isolato.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-1
+@@STITLE=Passage Thiaffait
+Entra nel passage Thiaffait solo se i suoi accessi pubblici sono aperti. Costruito all'inizio del XIX secolo sui pendii della Croix-Rousse, si organizza intorno a un cortile e a una scala. Gli edifici alti corrispondevano allo sviluppo del quartiere dei canuts, i cui telai richiedevano grandi volumi e finestre alte.
+
+Osserva come la scala diventi l'asse centrale. Nella Presqu'île bassa, i passaggi attraversano spesso gli isolati in modo quasi orizzontale. Qui, devono anche superare un dislivello. Le facciate interne, i pianerottoli e le aperture compongono uno spazio a metà strada tra strada e edificio. Rispetta la quiete del luogo e non attraversare nessuna porta privata.
+
+Scendi poi di nuovo verso la place Sathonay. Il passaggio si aprirà su uno spazio alberato ai piedi della collina. Durante il tragitto, guarda dietro di te: le scale ritagliano il pendio in piani successivi e fanno scomparire rapidamente la cima. Alla prossima tappa, questa topografia resterà visibile nell'arrivo delle strade, ma la piazza offrirà una pausa orizzontale. Vedrai come Lyon ricava pianerottoli pubblici tra i rilievi e la griglia più regolare della Presqu'île.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-2
+@@STITLE=Place Sathonay
+Fermati in place Sathonay, sotto gli alberi. Creata all'inizio del XIX secolo sui terreni dell'antico giardino delle Bernardine, forma uno spazio tranquillo ai piedi dei pendii. Le facciate regolari e le panchine danno una scala di vicinato, mentre le strade in salita ricordano immediatamente la presenza della Croix-Rousse.
+
+Guarda verso la scala che prolunga la piazza. L'orizzontalità è solo una breve pausa prima del rilievo. Sul lato opposto, le vie scendono verso l'hôtel de ville e il centro della Presqu'île. Questa articolazione spiega il ruolo del luogo: distribuire più direzioni senza l'ampiezza monumentale dei Terreaux. La vegetazione rafforza questa sensazione di soglia tranquilla tra due tessuti urbani.
+
+Torna verso sud, poi raggiungi il passage de l'Argue. La distanza ti farà attraversare strade più regolari, sviluppate sulla parte piana tra la Saône e il Rodano. Lungo il percorso, individua gli scorci laterali verso i due fiumi, anche quando restano invisibili. Il passage de l'Argue appartiene a una storia diversa da quella di Thiaffait: quella delle gallerie coperte realizzate nel XIX secolo per attraversare gli isolati nel cuore della città densa.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-3
+@@STITLE=Passage de l'Argue
+Entra nel passage de l'Argue da un ingresso aperto. Realizzata nella prima metà del XIX secolo, questa galleria collega diverse strade della Presqu'île attraverso l'interno degli isolati. La sua vetrata porta una luce diffusa, mentre le facciate interne danno l'impressione di una strada protetta dalle intemperie.
+
+Osserva il pavimento, le vetrate e il ritmo delle campate senza soffermarti davanti agli accessi. Il passaggio accorcia i tragitti, ma produce anche un'atmosfera propria: i rumori si ripercuotono, il cielo scompare e ogni uscita forma un rettangolo luminoso. A differenza del passage Thiaffait, qui nessuna grande scala governa il movimento. La topografia è quasi piatta e la circolazione segue una linea più diretta.
+
+Esci di nuovo in direzione di place Bellecour. Bastano poche strade per passare da questa galleria stretta a un'immensa superficie aperta. Tieni a mente la larghezza del passaggio; renderà il contrasto più sensibile. Bellecour non è un interno da attraversare, ma un vuoto capace di collegare più quartieri e di offrire vedute lontane verso le colline. La prossima tappa mostrerà questo cambio di scala in tutta la sua ampiezza.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-4
+@@STITLE=Place Bellecour
+Avanza sulla place Bellecour e lascia che le facciate si allontanino. Questa vasta piazza occupa il centro della Presqu'île. Al suo centro, la statua equestre di Luigi XIV dà un punto fisso a uno spazio le cui dimensioni potrebbero altrimenti sembrare difficili da misurare. In lontananza, la collina di Fourvière e la sua basilica appaiono sopra i tetti quando la visibilità lo permette.
+
+Guarda gli assi che partono verso nord e verso sud. La rue de la République conduce verso i Terreaux, mentre la rue Victor-Hugo prosegue la composizione verso Perrache. Bellecour svolge il ruolo di cerniera a scala dell'intera città. Offre anche una relazione visiva tra la Presqu'île piatta e i rilievi che la incorniciano.
+
+Dirigiti verso place Antonin-Poncet, immediatamente vicina. Il passaggio avviene senza strada stretta: i due spazi sembrano quasi prolungarsi l'uno nell'altro, ma i loro caratteri differiscono. Bellecour è principalmente minerale e centrata su una statua; Antonin-Poncet si apre verso il Rodano e conserva il campanile dell'antico hôpital de la Charité. Quest'ultima tappa riconnetterà le piazze percorse al grande paesaggio dei fiumi.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-5
+@@STITLE=Place Antonin-Poncet
+Fermati in place Antonin-Poncet e cerca il campanile della Charité. È il principale resto dell'ospedale costruito nel XVII secolo e in gran parte demolito nel XX. Isolato ai margini della piazza, ricorda che un grande complesso edilizio occupava un tempo questo spazio oggi aperto e alberato.
+
+Avanza verso la prospettiva del Rodano senza lasciare i percorsi pubblici. Il fiume appare in fondo alla piazza, oltre le banchine. La Presqu'île rivela qui la sua natura geografica: una fascia urbana stretta tra la Saône a ovest e il Rodano a est. Le piazze e i passaggi non sono sparsi a caso. Distribuiscono i movimenti su questa superficie limitata e collegano le rive alle colline.
+
+Ripensa ai Terreaux, al passage Thiaffait, a Sathonay, al passage de l'Argue e a Bellecour. Hai attraversato una piazza di confine, una scala interna, un pianerottolo alberato, una galleria coperta e poi un vuoto monumentale. Ogni tappa ha proposto un modo diverso di attraversare o occupare la città. La passeggiata si conclude davanti al Rodano, là dove il tessuto edificato ritrova una delle linee naturali che danno a Lyon la sua forma.
+
+@@LANG=nl
+@@TITLE=Lyon — Pleinen en passages van de Presqu'île
+@@DESC=Stadsgeschiedenis — pleinen, passages en kades met elkaar verbinden om de Presqu'île te begrijpen.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-0
+@@STITLE=Place des Terreaux
+Begin op de place des Terreaux, tussen het hôtel de ville en het musée des Beaux-Arts. De naam herinnert aan de oude grachten en aardwerken die ooit aan de voet van de Croix-Rousse lagen. Het plein bezette dus ooit een noordelijke stadsgrens voordat het een monumentale ruimte werd. De fontein van Bartholdi, geplaatst aan het eind van de 19e eeuw, brengt een krachtige beweging midden tussen de ordelijke gevels.
+
+Draai je langzaam om. Het hôtel de ville bevestigt de burgerlijke macht, het voormalige klooster dat een museum werd, vormt een rustiger, langer front, en de straten leiden ofwel naar het hart van de Presqu'île, ofwel naar de hellingen. Deze positie vat Lyon samen: een vlakke ruimte, ingeklemd tussen twee rivieren, meteen overschaduwd door heuvels.
+
+Ga naar de passage Thiaffait door via de openbare straten de voet van de helling te bereiken. De klim is voelbaar. Merk op hoe de straten van schaal veranderen en hoe trappen soms de regelmatige assen vervangen. De volgende halte is een 19e-eeuwse binnenplaatspassage, verbonden met de ontwikkeling van de wijk van de zijdewevers. Ze toont hoe architectuur een helling opvangt en de bewegingen binnen één enkel bouwblok verdeelt.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-1
+@@STITLE=Passage Thiaffait
+Ga de passage Thiaffait alleen binnen als de openbare toegangen open zijn. Gebouwd in het begin van de 19e eeuw op de hellingen van de Croix-Rousse, is ze georganiseerd rond een binnenplaats en een trap. De hoge gebouwen kwamen overeen met de ontwikkeling van de wijk van de canuts, wier weefgetouwen grote ruimtes en hoge ramen vereisten.
+
+Merk op hoe de trap de centrale as wordt. In de lagere Presqu'île doorkruisen de passages de bouwblokken vaak bijna horizontaal. Hier moeten ze ook een hoogteverschil overwinnen. De binnengevels, de overlopen en de openingen vormen een ruimte halverwege tussen straat en gebouw. Respecteer de rust van deze plek en ga door geen enkele privédeur.
+
+Ga dan weer naar beneden richting de place Sathonay. De passage zal uitkomen op een beplante ruimte aan de voet van de heuvel. Kijk tijdens de wandeling achterom: de trappen snijden de helling in opeenvolgende vlakken en laten de top snel verdwijnen. Bij de volgende halte blijft deze topografie zichtbaar in de manier waarop de straten aankomen, maar het plein biedt een horizontale pauze. Je zult zien hoe Lyon openbare rustpunten inricht tussen de heuvels en het regelmatigere raster van de Presqu'île.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-2
+@@STITLE=Place Sathonay
+Stop op de place Sathonay, onder de bomen. Aangelegd in het begin van de 19e eeuw op de terreinen van de voormalige tuin van de Bernardinessen, vormt ze een rustige ruimte aan de voet van de hellingen. De regelmatige gevels en banken geven haar een buurtschaal, terwijl de stijgende straten meteen de nabijheid van de Croix-Rousse in herinnering brengen.
+
+Kijk naar de trap die het plein verlengt. De horizontaliteit is slechts een korte pauze voor het reliëf. Aan de andere kant dalen de wegen af naar het hôtel de ville en het centrum van de Presqu'île. Deze schakeling verklaart de rol van deze plek: meerdere richtingen verdelen zonder de monumentale omvang van de Terreaux. De beplanting versterkt dit gevoel van een rustige drempel tussen twee stedelijke weefsels.
+
+Ga terug naar het zuiden, en ga dan naar de passage de l'Argue. De afstand laat je door regelmatiger straten lopen, ontwikkeld op het vlakke gebied tussen de Saône en de Rhône. Onderweg herken je de zijdelingse doorkijkjes naar de twee rivieren, ook al blijven ze onzichtbaar. De passage de l'Argue behoort tot een ander verhaal dan Thiaffait: dat van de overdekte galerijen die in de 19e eeuw werden aangelegd om de bouwblokken in het hart van de dichte stad te doorkruisen.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-3
+@@STITLE=Passage de l'Argue
+Ga de passage de l'Argue binnen via een open ingang. Aangelegd in de eerste helft van de 19e eeuw, verbindt deze galerij meerdere straten van de Presqu'île door het binnenste van de bouwblokken heen. Het glazen dak brengt diffuus licht, terwijl de binnengevels de indruk geven van een tegen het weer beschutte straat.
+
+Bekijk de vloer, de beglazing en het ritme van de traveeën zonder te blijven staan voor de toegangen. De passage verkort de trajecten, maar produceert ook een eigen sfeer: geluiden weerkaatsen, de hemel verdwijnt, en elke uitgang vormt een lichtend rechthoekje. In tegenstelling tot de passage Thiaffait bepaalt hier geen grote trap de beweging. De topografie is bijna vlak en de circulatie volgt een directere lijn.
+
+Ga weer naar buiten, richting de place Bellecour. Een paar straten zijn genoeg om van deze smalle galerij naar een immens open oppervlak te gaan. Onthoud de breedte van de passage; dat maakt het contrast voelbaarder. Bellecour is geen doorwaadbaar interieur, maar een leegte die verschillende wijken kan verbinden en verre uitzichten op de heuvels kan bieden. De volgende halte toont deze schaalverandering in haar volle omvang.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-4
+@@STITLE=Place Bellecour
+Loop verder de place Bellecour op en laat de gevels wegtrekken. Dit uitgestrekte plein neemt het centrum van de Presqu'île in. In het midden geeft het ruiterstandbeeld van Lodewijk XIV een vast punt aan een ruimte waarvan de afmetingen anders moeilijk te meten zouden lijken. In de verte verschijnen de heuvel van Fourvière en zijn basiliek boven de daken, wanneer het zicht dat toelaat.
+
+Kijk naar de assen die naar het noorden en het zuiden lopen. De rue de la République leidt naar de Terreaux, terwijl de rue Victor-Hugo de compositie voortzet richting Perrache. Bellecour speelt de rol van scharnier op de schaal van de hele stad. Het biedt ook een visuele relatie tussen de vlakke Presqu'île en de heuvels die haar omlijsten.
+
+Ga naar de onmiddellijk aangrenzende place Antonin-Poncet. De overgang verloopt zonder smalle straat: de twee ruimtes lijken bijna in elkaar over te lopen, maar hun karakter verschilt. Bellecour is voornamelijk stenig en gecentreerd op een standbeeld; Antonin-Poncet opent zich naar de Rhône en bewaart de klokkentoren van het voormalige hôpital de la Charité. Deze laatste halte zal de doorkruiste pleinen weer verbinden met het grote rivierlandschap.
+
+@@SCENE=seed-100-lyon-presquile-places-et-passages-scene-5
+@@STITLE=Place Antonin-Poncet
+Stop op de place Antonin-Poncet en zoek de klokkentoren van de Charité. Het is het belangrijkste overblijfsel van het in de 17e eeuw gebouwde en in de 20e eeuw grotendeels afgebroken ziekenhuis. Alleen staand aan de rand van het plein, herinnert hij eraan dat hier vroeger een groot bouwcomplex stond, waar nu een open, beplante ruimte is.
+
+Loop verder naar het uitzicht op de Rhône zonder de openbare wandelpaden te verlaten. De rivier verschijnt aan het einde van het plein, voorbij de kades. De Presqu'île onthult hier haar geografische aard: een stedelijke strook, gevangen tussen de Saône in het westen en de Rhône in het oosten. De pleinen en passages liggen niet willekeurig verspreid. Ze verdelen de bewegingen over dit begrensde oppervlak en verbinden de oevers met de heuvels.
+
+Denk terug aan de Terreaux, de passage Thiaffait, Sathonay, de passage de l'Argue en Bellecour. Je hebt een grensplein doorkruist, een binnentrap, een beplante overloop, een overdekte galerij en dan een monumentale leegte. Elke etappe bood een andere manier om de stad te doorkruisen of te bewonen. De wandeling eindigt voor de Rhône, daar waar het bebouwde weefsel een van de natuurlijke lijnen terugvindt die Lyon zijn vorm geven.

@@ -1,0 +1,394 @@
+@@LANG=en
+@@TITLE=Albi — The Fortress of Red Brick
+@@DESC=History & secrets — a cathedral-fortress of red brick, the Church's crushing answer to the Cathars.
+@@SCENE=seed-100-albi-cite-episcopale-scene-0
+@@STITLE=Place Sainte-Cécile
+Stop on the place Sainte-Cécile and raise your eyes. In front of you stands one of the most astonishing things in France: the cathédrale Sainte-Cécile of Albi. The largest brick cathedral in the world. A red mountain, smooth, with almost no window low down, and a bell tower climbing to nearly eighty metres, like the keep of a castle.
+
+Really look at it. It is like no other. No stone lacework, no great carved portals, no gargoyles. Bare walls, blind, almost terrifying. It does not look like a church. It looks like a fortress. And that is exactly what was wanted.
+
+Because here is the story I am going to tell you along this walk. In the thirteenth century this region was the stage of a dreadful drama. Part of its people had turned its back on the Church of Rome to follow another faith: that of the Cathars, also called the Albigensians — after this very town.
+
+Rome did not stand for it. It launched a crusade, a real one, not against foreigners but against Christians of the south. Twenty years of war, of sieges, of pyres. And when it was all over, when the heresy had been crushed, the Church wanted to mark minds for a thousand years.
+
+It built this. Not a welcoming house of prayer, but a threat in brick. A fist raised at the sky. Look closely, and follow me.
+@@SCENE=seed-100-albi-cite-episcopale-scene-1
+@@STITLE=Cathédrale Sainte-Cécile
+Walk round it, along these ramparts. Feel their thickness. The walls rise in a single sweep, reinforced by rounded buttresses like half-sunken towers. Almost no opening at head height. In case of revolt, the bishop could barricade himself in as in a castle. That was no figure of speech: the town often rumbled.
+
+One man launched this mad building site, in 1282: Bernard de Castanet, bishop of Albi. A man of iron. Not only a bishop but also an inquisitor, a hunter of heretics, feared and detested. By raising this red mass above the roofs, he sends everyone a clear message: see who is in charge here.
+
+Then stop in front of the entrance, on the side. And there, a surprise. Onto this brutal wall was grafted, two centuries later, a porch of white stone, a chiselled, openwork canopy, as airy as lace. The contrast is striking: the bare force of the brick, and over it, this delicate embroidery.
+
+As though the Church, once its victory was secure, had finally allowed itself to be beautiful. The fortress outside, the palace within. Push the door open, and get ready. Follow me.
+@@SCENE=seed-100-albi-cite-episcopale-scene-2
+@@STITLE=Intérieur de Sainte-Cécile
+Go in. And let the shock take hold of you. As bare and menacing as the outside is, the inside is an explosion. Raise your head: the whole vault is painted, blue and gold, sown with angels, saints and patterns. Metres and metres of colour, made at the beginning of the sixteenth century by artists who came from Italy. It is one of the vastest Renaissance paintings to be seen in France, and it has been there, above your head, for five hundred years.
+
+Walk on, and you come up against a marvel: the rood screen. An immense white stone screen, carved, worked, fretted to the point of vertigo, which separated the canons' choir from the rest of the church. Dozens of statues people it. It is hard to believe it is stone, so light does it seem.
+
+Then turn back towards the entrance. Across the whole end wall spreads an immense fresco: the Last Judgement. The elect rise to paradise, the damned topple into hell, tortured, howling. The message is crystal clear, and it is addressed to you: choose your side, obey, or this is what awaits you. After a crusade against heretics, the warning is anything but innocent.
+
+Come back out, and make for the neighbouring palace, the Berbie. Follow me.
+@@SCENE=seed-100-albi-cite-episcopale-scene-3
+@@STITLE=Palais de la Berbie
+Here you are at the foot of the palais de la Berbie. Its name already tells you everything: "Berbie" comes from an old Occitan word, bisbia, which simply means "the bishopric". The bishop's house. But what a house.
+
+Look at these walls, these towers, this keep. It is one of the best-preserved castles in France, also built in the thirteenth century, in the same terrible years as the cathedral. For the bishop of Albi, at that time, is not only a man of prayer. He is a lord. He raises taxes, he dispenses justice, he commands soldiers. He reigns.
+
+And he protects himself. From whom? From Albigensians subdued but resentful, from townspeople who bear his grip badly, from revolts always possible. So he lives entrenched here, behind these thick walls, above the river, safe from foul blows.
+
+A cathedral-fortress on one side, a palace-fortress on the other: the two fists of the triumphant Church, planted side by side on this red rock. The whole town, on raising its eyes, knew who held power.
+
+Move away to the north, towards the bell tower of a far older church. Follow me.
+@@SCENE=seed-100-albi-cite-episcopale-scene-4
+@@STITLE=Collégiale Saint-Salvi
+Here is the collégiale Saint-Salvi. Take the time to look at it: it is the oldest church in Albi, far older than the great red cathedral. A patchwork of stone and brick, of Romanesque and Gothic, endlessly reworked over the centuries.
+
+It bears the name of Salvi, the very first known bishop of the town, a man of the sixth century. It is around a memory like his that Albi was born, long before the Cathars, long before the crusades. Here lived a community of canons — priests who prayed together, in a college, hence the word "collegiate".
+
+Slip, if you can, into the cloister on the side. A square of calm, slender columns, carved capitals. The din of the town dies away at once. Close your eyes: you are in the Albi of before, the Albi of monks and merchants, before the inquisitor-bishop raised his fortress to dominate everyone.
+
+Two Albis face one another, in short. The gentle one, here, around Saint-Salvi. And the crushing one, over there, around Sainte-Cécile.
+
+Go back down towards the old quarter, on the river side. Follow me.
+@@SCENE=seed-100-albi-cite-episcopale-scene-5
+@@STITLE=Castelviel
+Go down into the lanes of old Albi, towards the Castelviel, the oldest quarter of the town, the one clinging to the mound above the Tarn. Here the houses press together, leaning, made of pink brick and brown timber, their upper floors jutting out over the street. Look for the Maison du Vieil Alby: a fine merchant's house, several centuries old.
+
+And ask yourself a question: where did the money that built all this come from? The brick, the palaces, the churches? A good part of it came from a small blue plant. Woad.
+
+Woad is a herb that was grown around here and all over the region, between Albi and Toulouse. Its leaves were crushed into balls, and from them a magnificent blue dye was drawn, one of the few that really knew how to dye cloth blue. All of Europe wanted it. The merchants of Albi grew rich, very rich. This blessed country was called the "pays de cocagne", the land of plenty — after the balls of woad, the coques.
+
+That blue fortune lasted a while, then indigo from the Indies ruined it. But the pink brick stayed.
+
+Now go down to the river, as far as the old bridge. Follow me.
+@@SCENE=seed-100-albi-cite-episcopale-scene-6
+@@STITLE=Pont Vieux
+Go down onto the Pont Vieux and walk to the middle. This bridge under your feet is an old man: nearly a thousand years spanning the Tarn, one of the oldest bridges in France still in service. Generations of Albigensians have crossed it, on foot, on horseback, by cart.
+
+Now turn round. Raise your eyes one last time towards the town. And look at what it is telling you.
+
+Up there, dominating everything, crushing everything: the cathedral-fortress and the bishops' palace. Two masses of red brick, enormous, planted at the edge of the drop, visible from everywhere, from every lane, from every bank. Wherever you go in Albi, they are there, above your head.
+
+That was the whole point. After the crusade, after the pyres, after the crushing of the Cathars, the Church had not merely won a war. It wanted no one, ever, to forget it. So it carved its victory into the landscape itself. For centuries every inhabitant lived under that gaze of brick.
+
+Today the anger has died down. We no longer see a threat but a marvel. In 2010 the whole ensemble — the cathedral, the palace, the bridge, the old streets — entered the world heritage of humanity. The episcopal city of Albi. The fortress of fear has become a treasure of beauty.
+
+Stay a moment longer on this bridge, between the water that passes and the brick that remains. Listen to the silence. And remember how much fury it took to raise so much splendour. See you soon, my friend.
+
+@@LANG=es
+@@TITLE=Albi — La fortaleza de ladrillo rojo
+@@DESC=Historia y secretos: una catedral-fortaleza de ladrillo rojo, la respuesta aplastante de la Iglesia a los cátaros.
+@@SCENE=seed-100-albi-cite-episcopale-scene-0
+@@STITLE=Place Sainte-Cécile
+Detente en la place Sainte-Cécile y levanta los ojos. Ante ti se alza una de las cosas más asombrosas de Francia: la cathédrale Sainte-Cécile de Albi. La mayor catedral de ladrillo del mundo. Una montaña roja, lisa, casi sin una ventana abajo, con un campanario que trepa hasta cerca de ochenta metros, como la torre del homenaje de un castillo.
+
+Mírala de verdad. No se parece a ninguna otra. Sin encaje de piedra, sin grandes portadas esculpidas, sin gárgolas. Muros desnudos, ciegos, casi terribles. No parece una iglesia. Parece una fortaleza. Y eso es exactamente lo que se quiso.
+
+Porque esta es la historia que voy a contarte a lo largo de este paseo. En el siglo XIII, esta región fue el escenario de un drama espantoso. Una parte de su pueblo había dado la espalda a la Iglesia de Roma para seguir otra fe: la de los cátaros, a los que también se llamó albigenses, por el nombre de esta misma ciudad.
+
+Roma no lo toleró. Lanzó una cruzada, una de verdad, no contra el extranjero, sino contra cristianos del Mediodía. Veinte años de guerra, de asedios, de hogueras. Y cuando todo terminó, cuando la herejía quedó aplastada, la Iglesia quiso marcar los espíritus por mil años.
+
+Construyó esto. No una casa de oración acogedora, sino una amenaza de ladrillo. Un puño alzado hacia el cielo. Mira bien, y sígueme.
+@@SCENE=seed-100-albi-cite-episcopale-scene-1
+@@STITLE=Cathédrale Sainte-Cécile
+Rodéala, recorre estas murallas. Siente su espesor. Los muros suben de un solo impulso, reforzados por contrafuertes redondeados como torres medio hundidas. Casi ninguna abertura a la altura de un hombre. En caso de revuelta, el obispo podía atrincherarse ahí como en un castillo. No era una imagen: la ciudad, a menudo, rugía.
+
+Un hombre lanza esta obra descomunal, en 1282: Bernard de Castanet, obispo de Albi. Un personaje de hierro. No solo obispo, sino también inquisidor, cazador de herejes, temido y detestado. Al levantar esta masa roja por encima de los tejados, envía a todos un mensaje claro: ved quién manda aquí.
+
+Detente después ante la entrada, en el costado. Y ahí, sorpresa. Sobre este muro brutal se injertó, dos siglos más tarde, un pórtico de piedra blanca, un baldaquino cincelado, calado, aéreo como un encaje. El contraste es sobrecogedor: la fuerza desnuda del ladrillo y, encima, ese bordado delicado.
+
+Como si la Iglesia, asegurada ya su victoria, se hubiera permitido por fin ser bella. Fuera la fortaleza, dentro el palacio. Empuja la puerta y prepárate. Sígueme.
+@@SCENE=seed-100-albi-cite-episcopale-scene-2
+@@STITLE=Intérieur de Sainte-Cécile
+Entra. Y deja que el choque te alcance. Tanto como el exterior es desnudo y amenazante, el interior es una explosión. Levanta la cabeza: la bóveda entera está pintada, azul y oro, sembrada de ángeles, de santos, de motivos. Metros y metros de colores, realizados a comienzos del siglo XVI por artistas venidos de Italia. Es una de las mayores pinturas del Renacimiento que pueden verse en Francia, y está ahí, sobre tu cabeza, desde hace quinientos años.
+
+Avanza y tropiezas con una maravilla: el jubé, el trascoro. Un inmenso cierre de piedra blanca, esculpido, labrado, calado hasta el vértigo, que separaba el coro de los canónigos del resto de la iglesia. Decenas de estatuas lo pueblan. Cuesta creer que sea piedra, de tan ligera que parece.
+
+Luego vuélvete hacia la entrada. Sobre todo el muro del fondo se despliega un fresco inmenso: el Juicio Final. Los elegidos suben al paraíso, los condenados se despeñan al infierno, torturados, aullando. El mensaje es diáfano, y va dirigido a ti: elige tu bando, obedece, o esto es lo que te espera. Tras una cruzada contra herejes, la advertencia no tiene nada de inocente.
+
+Sal de nuevo y llega al palacio vecino, la Berbie. Sígueme.
+@@SCENE=seed-100-albi-cite-episcopale-scene-3
+@@STITLE=Palais de la Berbie
+Aquí estás al pie del palais de la Berbie. Su nombre ya te lo dice todo: «Berbie» viene de una vieja palabra occitana, bisbia, que significa simplemente «el obispado». La casa del obispo. Pero vaya casa.
+
+Mira estos muros, estas torres, esta torre del homenaje. Es uno de los castillos mejor conservados de Francia, construido también en el siglo XIII, en los mismos años terribles que la catedral. Porque el obispo de Albi, en esa época, no es solo un hombre de oración. Es un señor. Recauda el impuesto, imparte justicia, manda soldados. Reina.
+
+Y se protege. ¿De quién? De unos albigenses sometidos pero rencorosos, de unos burgueses de la ciudad que soportan mal su mano dura, de revueltas siempre posibles. Así que vive atrincherado aquí, tras estas murallas espesas, sobre el río, al abrigo de los malos golpes.
+
+Catedral-fortaleza por un lado, palacio-fortaleza por otro: los dos puños de la Iglesia triunfante, plantados uno junto al otro sobre esta roca roja. Toda la ciudad, al levantar los ojos, sabía quién tenía el poder.
+
+Aléjate hacia el norte, hacia el campanario de una iglesia mucho más antigua. Sígueme.
+@@SCENE=seed-100-albi-cite-episcopale-scene-4
+@@STITLE=Collégiale Saint-Salvi
+Esta es la collégiale Saint-Salvi. Tómate el tiempo de mirarla: es la iglesia más vieja de Albi, mucho más antigua que la gran catedral roja. Un mosaico de piedra y ladrillo, de románico y gótico, remodelado sin cesar a lo largo de los siglos.
+
+Lleva el nombre de Salvi, el primer obispo conocido de la ciudad, un hombre del siglo VI. Es en torno a un recuerdo como el suyo donde nació Albi, mucho antes de los cátaros, mucho antes de las cruzadas. Aquí vivía una comunidad de canónigos, sacerdotes que rezaban juntos, en colegio, de donde viene la palabra «colegiata».
+
+Cuélate, si puedes, en el claustro, al costado. Un cuadrado de calma, columnas finas, capiteles esculpidos. El estruendo de la ciudad se apaga de golpe. Cierra los ojos: estás en el Albi de antes, el de los monjes y los mercaderes, antes de que el obispo inquisidor levantara su fortaleza para dominar a todos.
+
+Dos Albi se enfrentan, en suma. La dulce, aquí, en torno a Saint-Salvi. Y la aplastante, allá, en torno a Sainte-Cécile.
+
+Baja de nuevo hacia el barrio viejo, del lado del río. Sígueme.
+@@SCENE=seed-100-albi-cite-episcopale-scene-5
+@@STITLE=Castelviel
+Baja por las callejuelas del viejo Albi, hacia el Castelviel, el barrio más antiguo de la ciudad, el que se agarra al cerro sobre el Tarn. Aquí las casas se aprietan, inclinadas, hechas de ladrillo rosado y madera parda, con sus pisos que avanzan sobre la calle. Busca la Maison du Vieil Alby: una hermosa casa de mercader, de varios siglos.
+
+Y hazte una pregunta: ¿de dónde venía el dinero que construyó todo esto? ¿El ladrillo, los palacios, las iglesias? Buena parte venía de una pequeña planta azul. El pastel, la hierba pastel.
+
+El pastel es una hierba que se cultivaba por aquí y por toda la región, entre Albi y Toulouse. Se molían sus hojas en bolas y de ellas se sacaba un tinte de un azul magnífico, uno de los pocos que sabían teñir de veras las telas de azul. Toda Europa lo quería. Los mercaderes de Albi se hicieron ricos, muy ricos. A esta tierra bendita se la llamaba el «país de Jauja», por el nombre de aquellas bolas de pastel, las coques.
+
+Aquella fortuna azul duró un tiempo, y luego el índigo llegado de las Indias la arruinó. Pero el ladrillo rosado se quedó.
+
+Baja ahora hasta el río, hasta el puente viejo. Sígueme.
+@@SCENE=seed-100-albi-cite-episcopale-scene-6
+@@STITLE=Pont Vieux
+Baja al Pont Vieux y avanza hasta el medio. Este puente bajo tus pies es un anciano: casi mil años salvando el Tarn, uno de los puentes más viejos de Francia todavía en servicio. Generaciones de albigenses lo han cruzado, a pie, a caballo, en carreta.
+
+Ahora vuélvete. Levanta los ojos una última vez hacia la ciudad. Y mira lo que te dice.
+
+Allá arriba, dominándolo todo, aplastándolo todo: la catedral-fortaleza y el palacio de los obispos. Dos masas de ladrillo rojo, enormes, plantadas al borde del vacío, visibles desde todas partes, desde cada callejuela, desde cada orilla. Vayas donde vayas en Albi, están ahí, sobre tu cabeza.
+
+Ese era todo el objetivo. Tras la cruzada, tras las hogueras, tras el aplastamiento de los cátaros, la Iglesia no solo había ganado una guerra. Quiso que nadie, jamás, lo olvidara. Así que esculpió su victoria en el paisaje mismo. Durante siglos, cada habitante vivió bajo esa mirada de ladrillo.
+
+Hoy la cólera se ha apagado. Ya no se ve una amenaza, sino una maravilla. En 2010, todo este conjunto —la catedral, el palacio, el puente, las viejas calles— entró en el patrimonio mundial de la humanidad. La ciudad episcopal de Albi. La fortaleza del miedo se ha convertido en un tesoro de belleza.
+
+Quédate todavía un instante en este puente, entre el agua que pasa y el ladrillo que permanece. Escucha el silencio. Y recuerda cuánta furia hizo falta para levantar tanto esplendor. Hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Albi — Die Festung aus rotem Backstein
+@@DESC=Geschichte & Geheimnisse — eine Kathedralenfestung aus rotem Backstein, die erdrückende Antwort der Kirche auf die Katharer.
+@@SCENE=seed-100-albi-cite-episcopale-scene-0
+@@STITLE=Place Sainte-Cécile
+Halt auf der place Sainte-Cécile an und heb den Blick. Vor dir erhebt sich eines der erstaunlichsten Bauwerke Frankreichs: die cathédrale Sainte-Cécile von Albi. Die größte Backsteinkathedrale der Welt. Ein roter Berg, glatt, unten fast ohne ein Fenster, mit einem Glockenturm, der auf beinahe achtzig Meter klettert wie der Bergfried einer Burg.
+
+Sieh sie dir wirklich an. Sie gleicht keiner anderen. Kein Steinspitzenwerk, keine großen geschnitzten Portale, keine Wasserspeier. Nackte, blinde, fast furchterregende Mauern. Das sieht nicht nach einer Kirche aus. Das sieht nach einer Festung aus. Und genau das war gewollt.
+
+Denn das ist die Geschichte, die ich dir auf diesem Spaziergang erzählen werde. Im 13. Jahrhundert war diese Gegend Schauplatz eines entsetzlichen Dramas. Ein Teil ihrer Bevölkerung hatte der Kirche Roms den Rücken gekehrt, um einem anderen Glauben zu folgen: dem der Katharer, die man auch Albigenser nannte — nach eben dieser Stadt.
+
+Rom ertrug das nicht. Es rief einen Kreuzzug aus, einen echten, nicht gegen Fremde, sondern gegen Christen des Südens. Zwanzig Jahre Krieg, Belagerungen, Scheiterhaufen. Und als alles vorbei war, als die Ketzerei zerschlagen war, wollte die Kirche die Gemüter für tausend Jahre zeichnen.
+
+Sie baute dies. Kein einladendes Gotteshaus, sondern eine Drohung aus Backstein. Eine zum Himmel gereckte Faust. Sieh genau hin, und folge mir.
+@@SCENE=seed-100-albi-cite-episcopale-scene-1
+@@STITLE=Cathédrale Sainte-Cécile
+Geh um sie herum, an diesen Mauern entlang. Spür ihre Dicke. Die Wände steigen in einem Zug auf, verstärkt von runden Strebepfeilern wie halb versenkte Türme. Fast keine Öffnung in Kopfhöhe. Bei einem Aufstand konnte sich der Bischof darin verbarrikadieren wie in einer Burg. Das war kein Bild: Die Stadt grollte oft.
+
+Ein Mann setzt diese wahnwitzige Baustelle 1282 in Gang: Bernard de Castanet, Bischof von Albi. Eine eiserne Gestalt. Nicht nur Bischof, sondern auch Inquisitor, Ketzerjäger, gefürchtet und verhasst. Indem er diese rote Masse über die Dächer stellt, sendet er allen eine klare Botschaft: Seht, wer hier befiehlt.
+
+Halt dann vor dem Eingang an der Seite. Und da: eine Überraschung. Auf diese brutale Wand hat man zwei Jahrhunderte später eine Vorhalle aus weißem Stein gepfropft, einen ziselierten, durchbrochenen Baldachin, luftig wie Spitze. Der Kontrast ist verblüffend: die nackte Kraft des Backsteins und darüber diese zarte Stickerei.
+
+Als hätte sich die Kirche, ihres Sieges sicher, endlich erlaubt, schön zu sein. Draußen die Festung, drinnen der Palast. Stoß die Tür auf und mach dich bereit. Folge mir.
+@@SCENE=seed-100-albi-cite-episcopale-scene-2
+@@STITLE=Intérieur de Sainte-Cécile
+Geh hinein. Und lass den Schlag auf dich wirken. So nackt und drohend das Äußere ist, so sehr ist das Innere eine Explosion. Heb den Kopf: Das ganze Gewölbe ist bemalt, blau und golden, besät mit Engeln, Heiligen, Ornamenten. Meter um Meter Farbe, zu Beginn des 16. Jahrhunderts von Künstlern aus Italien geschaffen. Es ist eines der größten Renaissancegemälde, die man in Frankreich sehen kann, und es ist seit fünfhundert Jahren da, über deinem Kopf.
+
+Geh weiter, und du stößt auf ein Wunderwerk: den Lettner. Eine gewaltige Schranke aus weißem Stein, geschnitzt, durchgearbeitet, bis zum Schwindel durchbrochen, die den Chor der Domherren vom Rest der Kirche trennte. Dutzende Statuen bevölkern ihn. Man glaubt kaum, dass es Stein ist, so leicht wirkt er.
+
+Dann dreh dich zum Eingang um. Über die ganze Rückwand breitet sich ein riesiges Fresko: das Jüngste Gericht. Die Erwählten steigen ins Paradies, die Verdammten stürzen in die Hölle, gefoltert, schreiend. Die Botschaft ist glasklar und richtet sich an dich: Wähle deine Seite, gehorche, oder das erwartet dich. Nach einem Kreuzzug gegen Ketzer hat diese Warnung nichts Harmloses.
+
+Geh wieder hinaus und zum benachbarten Palast, der Berbie. Folge mir.
+@@SCENE=seed-100-albi-cite-episcopale-scene-3
+@@STITLE=Palais de la Berbie
+Da stehst du am Fuß des palais de la Berbie. Sein Name sagt dir schon alles: „Berbie" kommt von einem alten okzitanischen Wort, bisbia, das einfach „das Bistum" bedeutet. Das Haus des Bischofs. Aber was für ein Haus.
+
+Sieh dir diese Mauern an, diese Türme, diesen Bergfried. Es ist eine der besterhaltenen Burgen Frankreichs, ebenfalls im 13. Jahrhundert errichtet, in denselben furchtbaren Jahren wie die Kathedrale. Denn der Bischof von Albi ist zu jener Zeit nicht nur ein Mann des Gebets. Er ist ein Herr. Er erhebt Steuern, er spricht Recht, er befehligt Soldaten. Er herrscht.
+
+Und er schützt sich. Vor wem? Vor besiegten, aber nachtragenden Albigensern, vor Bürgern der Stadt, die seinen Griff schlecht ertragen, vor stets möglichen Aufständen. Also lebt er hier verschanzt, hinter diesen dicken Mauern, über dem Fluss, vor bösen Überraschungen sicher.
+
+Kathedralenfestung auf der einen, Palastfestung auf der anderen Seite: die beiden Fäuste der triumphierenden Kirche, nebeneinander auf diesen roten Felsen gepflanzt. Die ganze Stadt wusste, wenn sie den Blick hob, wer die Macht hatte.
+
+Entferne dich nach Norden, zum Glockenturm einer weit älteren Kirche. Folge mir.
+@@SCENE=seed-100-albi-cite-episcopale-scene-4
+@@STITLE=Collégiale Saint-Salvi
+Das ist die collégiale Saint-Salvi. Nimm dir Zeit, sie anzusehen: Sie ist die älteste Kirche von Albi, viel älter als die große rote Kathedrale. Ein Flickwerk aus Stein und Backstein, aus Romanik und Gotik, im Lauf der Jahrhunderte unablässig umgebaut.
+
+Sie trägt den Namen Salvi, des allerersten bekannten Bischofs der Stadt, eines Mannes des 6. Jahrhunderts. Um eine Erinnerung wie die seine ist Albi entstanden, lange vor den Katharern, lange vor den Kreuzzügen. Hier lebte eine Gemeinschaft von Domherren — Priester, die gemeinsam beteten, in einem Kollegium, daher das Wort „Kollegiatstift".
+
+Schlüpf, wenn du kannst, in den Kreuzgang an der Seite. Ein Karree der Ruhe, schlanke Säulen, geschnitzte Kapitelle. Der Lärm der Stadt erlischt schlagartig. Schließ die Augen: Du bist im Albi von vorher, dem der Mönche und Kaufleute, bevor der Inquisitorbischof seine Festung aufrichtete, um alle zu beherrschen.
+
+Zwei Albi stehen einander gegenüber. Das sanfte hier, um Saint-Salvi. Und das erdrückende dort, um Sainte-Cécile.
+
+Geh wieder hinunter ins alte Viertel, zur Flussseite. Folge mir.
+@@SCENE=seed-100-albi-cite-episcopale-scene-5
+@@STITLE=Castelviel
+Steig hinab in die Gassen des alten Albi, Richtung Castelviel, das älteste Viertel der Stadt, das sich an die Anhöhe über dem Tarn klammert. Hier drängen sich die Häuser, geneigt, aus rosa Backstein und braunem Holz, ihre Obergeschosse über die Straße vorkragend. Such das Maison du Vieil Alby: ein schönes Kaufmannshaus, mehrere Jahrhunderte alt.
+
+Und stell dir eine Frage: Woher kam das Geld, das all das gebaut hat? Der Backstein, die Paläste, die Kirchen? Ein guter Teil kam von einer kleinen blauen Pflanze. Vom Waid.
+
+Waid ist ein Kraut, das man hier und in der ganzen Gegend zwischen Albi und Toulouse anbaute. Man zerstampfte die Blätter zu Kugeln und gewann daraus einen prächtig blauen Farbstoff, einen der wenigen, die Stoffe wirklich blau färben konnten. Ganz Europa wollte ihn. Die Kaufleute von Albi wurden reich, sehr reich. Man nannte dieses gesegnete Land das „Schlaraffenland" — nach den Waidkugeln, den coques.
+
+Dieses blaue Vermögen hielt eine Weile, dann ruinierte es der Indigo aus Indien. Der rosa Backstein aber blieb.
+
+Geh jetzt hinunter zum Fluss, bis zur alten Brücke. Folge mir.
+@@SCENE=seed-100-albi-cite-episcopale-scene-6
+@@STITLE=Pont Vieux
+Steig auf den Pont Vieux hinab und geh bis in die Mitte. Diese Brücke unter deinen Füßen ist ein Greis: fast tausend Jahre überspannt sie den Tarn, eine der ältesten noch benutzten Brücken Frankreichs. Generationen von Albigensern haben sie überquert, zu Fuß, zu Pferd, mit dem Karren.
+
+Jetzt dreh dich um. Heb ein letztes Mal den Blick zur Stadt. Und sieh, was sie dir sagt.
+
+Dort oben, alles beherrschend, alles erdrückend: die Kathedralenfestung und der Bischofspalast. Zwei Massen aus rotem Backstein, gewaltig, an den Rand des Abgrunds gesetzt, von überall sichtbar, aus jeder Gasse, von jedem Ufer. Wohin du in Albi auch gehst, sie sind da, über deinem Kopf.
+
+Genau das war der Zweck. Nach dem Kreuzzug, nach den Scheiterhaufen, nach der Zerschlagung der Katharer hatte die Kirche nicht nur einen Krieg gewonnen. Sie wollte, dass es niemand je vergisst. Also meißelte sie ihren Sieg in die Landschaft selbst. Jahrhundertelang lebte jeder Einwohner unter diesem Blick aus Backstein.
+
+Heute ist der Zorn verraucht. Man sieht keine Drohung mehr, sondern ein Wunderwerk. 2010 wurde dieses ganze Ensemble — die Kathedrale, der Palast, die Brücke, die alten Straßen — Weltkulturerbe der Menschheit. Die Bischofsstadt Albi. Die Festung der Angst ist ein Schatz der Schönheit geworden.
+
+Bleib noch einen Augenblick auf dieser Brücke, zwischen dem Wasser, das vorbeizieht, und dem Backstein, der bleibt. Hör auf die Stille. Und denk daran, wie viel Wut es brauchte, um so viel Pracht aufzurichten. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Albi — La fortezza di mattoni rossi
+@@DESC=Storia e segreti: una cattedrale-fortezza di mattoni rossi, la risposta schiacciante della Chiesa ai catari.
+@@SCENE=seed-100-albi-cite-episcopale-scene-0
+@@STITLE=Place Sainte-Cécile
+Fermati in place Sainte-Cécile e alza gli occhi. Davanti a te si erge una delle cose più sbalorditive di Francia: la cathédrale Sainte-Cécile di Albi. La più grande cattedrale di mattoni del mondo. Una montagna rossa, liscia, quasi senza una finestra in basso, con un campanile che sale a quasi ottanta metri, come il mastio di un castello.
+
+Guardala davvero. Non somiglia a nessun'altra. Niente merletti di pietra, niente grandi portali scolpiti, niente gargoyle. Muri nudi, ciechi, quasi terribili. Non sembra una chiesa. Sembra una fortezza. Ed è esattamente ciò che si è voluto.
+
+Perché ecco la storia che ti racconterò lungo questa passeggiata. Nel Duecento questa regione fu teatro di un dramma spaventoso. Una parte del suo popolo aveva voltato le spalle alla Chiesa di Roma per seguire un'altra fede: quella dei catari, chiamati anche albigesi, dal nome di questa stessa città.
+
+Roma non lo tollerò. Lanciò una crociata, una vera, non contro lo straniero, ma contro cristiani del Mezzogiorno. Vent'anni di guerra, di assedi, di roghi. E quando tutto fu finito, quando l'eresia fu schiacciata, la Chiesa volle segnare gli animi per mille anni.
+
+Costruì questo. Non una casa di preghiera accogliente, ma una minaccia di mattoni. Un pugno alzato verso il cielo. Guarda bene, e seguimi.
+@@SCENE=seed-100-albi-cite-episcopale-scene-1
+@@STITLE=Cathédrale Sainte-Cécile
+Falle il giro, costeggia queste muraglie. Senti il loro spessore. I muri salgono in un solo slancio, rinforzati da contrafforti arrotondati come torri seminterrate. Quasi nessuna apertura ad altezza d'uomo. In caso di rivolta il vescovo poteva barricarvisi come in un castello. Non era un'immagine: la città, spesso, rumoreggiava.
+
+È un uomo a lanciare questo cantiere folle, nel 1282: Bernard de Castanet, vescovo di Albi. Un personaggio di ferro. Non solo vescovo, ma anche inquisitore, cacciatore di eretici, temuto e detestato. Innalzando questa massa rossa sopra i tetti, manda a tutti un messaggio chiaro: guardate chi comanda, qui.
+
+Poi fermati davanti all'ingresso, sul fianco. E lì, sorpresa. Su questo muro brutale è stato innestato, due secoli dopo, un portico di pietra bianca, un baldacchino cesellato, traforato, aereo come un merletto. Il contrasto è impressionante: la forza nuda del mattone e, sopra, questo ricamo delicato.
+
+Come se la Chiesa, assicurata la vittoria, si fosse finalmente concessa di essere bella. Fuori la fortezza, dentro il palazzo. Spingi la porta e preparati. Seguimi.
+@@SCENE=seed-100-albi-cite-episcopale-scene-2
+@@STITLE=Intérieur de Sainte-Cécile
+Entra. E lasciati cogliere dallo shock. Quanto l'esterno è nudo e minaccioso, tanto l'interno è un'esplosione. Alza la testa: l'intera volta è dipinta, azzurra e oro, seminata di angeli, di santi, di motivi. Metri e metri di colori, realizzati all'inizio del Cinquecento da artisti venuti dall'Italia. È una delle più vaste pitture del Rinascimento visibili in Francia, ed è lì, sopra la tua testa, da cinquecento anni.
+
+Avanza e t'imbatti in una meraviglia: il pontile, il jubé. Un'immensa chiusura di pietra bianca, scolpita, lavorata, traforata fino alla vertigine, che separava il coro dei canonici dal resto della chiesa. Decine di statue la popolano. Si stenta a credere che sia pietra, tanto sembra leggera.
+
+Poi voltati verso l'ingresso. Su tutta la parete di fondo si stende un affresco immenso: il Giudizio universale. Gli eletti salgono in paradiso, i dannati precipitano all'inferno, torturati, urlanti. Il messaggio è limpido e si rivolge a te: scegli la tua parte, obbedisci, oppure ecco ciò che ti attende. Dopo una crociata contro gli eretici, l'avvertimento non ha nulla di innocente.
+
+Esci e raggiungi il palazzo vicino, la Berbie. Seguimi.
+@@SCENE=seed-100-albi-cite-episcopale-scene-3
+@@STITLE=Palais de la Berbie
+Eccoti ai piedi del palais de la Berbie. Il suo nome ti dice già tutto: «Berbie» viene da un'antica parola occitana, bisbia, che significa semplicemente «il vescovado». La casa del vescovo. Ma che casa.
+
+Guarda questi muri, queste torri, questo mastio. È uno dei castelli meglio conservati di Francia, costruito anch'esso nel Duecento, negli stessi anni terribili della cattedrale. Perché il vescovo di Albi, a quell'epoca, non è solo un uomo di preghiera. È un signore. Riscuote le imposte, rende giustizia, comanda soldati. Regna.
+
+E si protegge. Da chi? Da albigesi domati ma rancorosi, dai borghesi della città che mal sopportano la sua stretta, da rivolte sempre possibili. Allora vive trincerato qui, dietro queste mura spesse, sopra il fiume, al riparo dai brutti colpi.
+
+Cattedrale-fortezza da un lato, palazzo-fortezza dall'altro: i due pugni della Chiesa trionfante, piantati fianco a fianco su questa rupe rossa. Tutta la città, alzando gli occhi, sapeva chi deteneva il potere.
+
+Allontanati verso nord, verso il campanile di una chiesa ben più antica. Seguimi.
+@@SCENE=seed-100-albi-cite-episcopale-scene-4
+@@STITLE=Collégiale Saint-Salvi
+Ecco la collégiale Saint-Salvi. Prenditi il tempo di guardarla: è la chiesa più vecchia di Albi, molto più antica della grande cattedrale rossa. Un patchwork di pietra e mattoni, di romanico e gotico, rimaneggiato senza sosta nei secoli.
+
+Porta il nome di Salvi, il primo vescovo conosciuto della città, un uomo del VI secolo. È attorno a un ricordo come il suo che Albi è nata, molto prima dei catari, molto prima delle crociate. Qui viveva una comunità di canonici, preti che pregavano insieme, in collegio, da cui la parola «collegiata».
+
+Infilati, se puoi, nel chiostro, sul fianco. Un quadrato di calma, colonne sottili, capitelli scolpiti. Il frastuono della città si spegne di colpo. Chiudi gli occhi: sei nell'Albi di prima, quella dei monaci e dei mercanti, prima che il vescovo inquisitore innalzasse la sua fortezza per dominare tutti.
+
+Due Albi si fronteggiano, in fondo. Quella dolce, qui, attorno a Saint-Salvi. E quella schiacciante, laggiù, attorno a Sainte-Cécile.
+
+Riscendi verso il quartiere vecchio, dal lato del fiume. Seguimi.
+@@SCENE=seed-100-albi-cite-episcopale-scene-5
+@@STITLE=Castelviel
+Scendi nei vicoli della vecchia Albi, verso il Castelviel, il quartiere più antico della città, quello aggrappato alla collina sopra il Tarn. Qui le case si stringono, inclinate, fatte di mattoni rosa e legno bruno, con i piani che avanzano sopra la strada. Cerca la Maison du Vieil Alby: una bella dimora di mercante, vecchia di secoli.
+
+E ponititi una domanda: da dove veniva il denaro che ha costruito tutto questo? I mattoni, i palazzi, le chiese? Buona parte veniva da una piccola pianta azzurra. Il guado.
+
+Il guado è un'erba che si coltivava da queste parti e in tutta la regione, tra Albi e Tolosa. Se ne pestavano le foglie in palle e se ne ricavava una tintura di un azzurro magnifico, una delle poche capaci di tingere davvero di blu le stoffe. Tutta l'Europa la voleva. I mercanti di Albi diventarono ricchi, ricchissimi. Questa terra benedetta era chiamata il «paese di Cuccagna», dal nome di quelle palle di guado, le coques.
+
+Quella fortuna azzurra durò un tempo, poi l'indaco venuto dalle Indie la rovinò. Ma il mattone rosa è rimasto.
+
+Scendi ora fino al fiume, fino al ponte vecchio. Seguimi.
+@@SCENE=seed-100-albi-cite-episcopale-scene-6
+@@STITLE=Pont Vieux
+Scendi sul Pont Vieux e avanza fino a metà. Questo ponte sotto i tuoi piedi è un vegliardo: quasi mille anni che scavalca il Tarn, uno dei ponti più antichi di Francia ancora in servizio. Generazioni di albigesi l'hanno attraversato, a piedi, a cavallo, in carro.
+
+Ora voltati. Alza gli occhi un'ultima volta verso la città. E guarda ciò che ti dice.
+
+Lassù, dominando tutto, schiacciando tutto: la cattedrale-fortezza e il palazzo dei vescovi. Due masse di mattoni rossi, enormi, piantate sull'orlo del vuoto, visibili da ovunque, da ogni vicolo, da ogni riva. Dovunque tu vada ad Albi, sono lì, sopra la tua testa.
+
+Era proprio questo lo scopo. Dopo la crociata, dopo i roghi, dopo lo schiacciamento dei catari, la Chiesa non aveva soltanto vinto una guerra. Volle che nessuno, mai, lo dimenticasse. Così scolpì la sua vittoria nel paesaggio stesso. Per secoli ogni abitante ha vissuto sotto quello sguardo di mattoni.
+
+Oggi la collera è scemata. Non si vede più una minaccia, ma una meraviglia. Nel 2010 tutto questo insieme — la cattedrale, il palazzo, il ponte, le vecchie strade — è entrato nel patrimonio mondiale dell'umanità. La città episcopale di Albi. La fortezza della paura è diventata un tesoro di bellezza.
+
+Resta ancora un istante su questo ponte, tra l'acqua che passa e il mattone che resta. Ascolta il silenzio. E ricordati quanta furia ci volle per innalzare tanto splendore. A presto, amico.
+
+@@LANG=nl
+@@TITLE=Albi — De vesting van rode baksteen
+@@DESC=Geschiedenis & geheimen — een kathedraalvesting van rode baksteen, het verpletterende antwoord van de Kerk op de katharen.
+@@SCENE=seed-100-albi-cite-episcopale-scene-0
+@@STITLE=Place Sainte-Cécile
+Blijf staan op de place Sainte-Cécile en kijk omhoog. Voor je verrijst een van de verbluffendste dingen van Frankrijk: de cathédrale Sainte-Cécile van Albi. De grootste bakstenen kathedraal ter wereld. Een rode berg, glad, beneden vrijwel zonder raam, met een klokkentoren die tot bijna tachtig meter klimt, als de donjon van een burcht.
+
+Kijk er echt naar. Ze lijkt op geen enkele andere. Geen stenen kantwerk, geen grote gebeeldhouwde portalen, geen waterspuwers. Kale, blinde, bijna angstaanjagende muren. Het lijkt geen kerk. Het lijkt een vesting. En dat is precies wat men wilde.
+
+Want dit is het verhaal dat ik je tijdens deze wandeling ga vertellen. In de dertiende eeuw was deze streek het toneel van een afschuwelijk drama. Een deel van haar bevolking had de Kerk van Rome de rug toegekeerd om een ander geloof te volgen: dat van de katharen, die ook albigenzen werden genoemd — naar deze stad zelf.
+
+Rome verdroeg dat niet. Het riep een kruistocht uit, een echte, niet tegen vreemden maar tegen christenen van het zuiden. Twintig jaar oorlog, belegeringen, brandstapels. En toen alles voorbij was, toen de ketterij was verpletterd, wilde de Kerk de geesten voor duizend jaar tekenen.
+
+Ze bouwde dit. Geen gastvrij huis van gebed, maar een dreiging van baksteen. Een vuist naar de hemel geheven. Kijk goed, en volg mij.
+@@SCENE=seed-100-albi-cite-episcopale-scene-1
+@@STITLE=Cathédrale Sainte-Cécile
+Loop eromheen, langs deze muren. Voel hun dikte. De wanden rijzen in één beweging op, versterkt met ronde steunberen als half verzonken torens. Vrijwel geen opening op ooghoogte. Bij een opstand kon de bisschop zich er verschansen als in een burcht. Dat was geen beeldspraak: de stad gromde vaak.
+
+Eén man start in 1282 dit waanzinnige bouwwerk: Bernard de Castanet, bisschop van Albi. Een ijzeren figuur. Niet alleen bisschop, maar ook inquisiteur, ketterjager, gevreesd en gehaat. Door deze rode massa boven de daken op te richten, stuurt hij iedereen een duidelijke boodschap: kijk wie hier het bevel voert.
+
+Blijf daarna staan voor de ingang, aan de zijkant. En daar: een verrassing. Op deze brute muur is twee eeuwen later een portaal van witte steen geënt, een geciseleerd, opengewerkt baldakijn, luchtig als kant. Het contrast is treffend: de naakte kracht van de baksteen, en daarboven dat fijne borduurwerk.
+
+Alsof de Kerk, eenmaal zeker van haar overwinning, zich eindelijk toestond mooi te zijn. Buiten de vesting, binnen het paleis. Duw de deur open en zet je schrap. Volg mij.
+@@SCENE=seed-100-albi-cite-episcopale-scene-2
+@@STITLE=Intérieur de Sainte-Cécile
+Ga naar binnen. En laat de schok je overvallen. Zo kaal en dreigend als de buitenkant is, zo zeer is de binnenkant een explosie. Kijk omhoog: het hele gewelf is beschilderd, blauw en goud, bezaaid met engelen, heiligen en motieven. Meters en meters kleur, aan het begin van de zestiende eeuw gemaakt door kunstenaars uit Italië. Het is een van de grootste renaissanceschilderingen die in Frankrijk te zien zijn, en ze hangt daar, boven je hoofd, al vijfhonderd jaar.
+
+Loop door en je stuit op een wonder: het doksaal. Een immens hek van witte steen, gebeeldhouwd, doorwerkt, opengewerkt tot duizelens toe, dat het koor van de kanunniken van de rest van de kerk scheidde. Tientallen beelden bevolken het. Je gelooft nauwelijks dat het steen is, zo licht lijkt het.
+
+Draai je dan om naar de ingang. Over de hele achterwand strekt zich een immense fresco uit: het Laatste Oordeel. De uitverkorenen stijgen op naar het paradijs, de verdoemden storten in de hel, gemarteld, krijsend. De boodschap is glashelder en richt zich tot jou: kies je kant, gehoorzaam, of dit staat je te wachten. Na een kruistocht tegen ketters is die waarschuwing allesbehalve onschuldig.
+
+Ga weer naar buiten en loop naar het naastgelegen paleis, de Berbie. Volg mij.
+@@SCENE=seed-100-albi-cite-episcopale-scene-3
+@@STITLE=Palais de la Berbie
+Daar sta je aan de voet van het palais de la Berbie. De naam zegt al alles: "Berbie" komt van een oud Occitaans woord, bisbia, dat eenvoudigweg "het bisdom" betekent. Het huis van de bisschop. Maar wat een huis.
+
+Kijk naar deze muren, deze torens, deze donjon. Het is een van de best bewaarde burchten van Frankrijk, ook gebouwd in de dertiende eeuw, in dezelfde verschrikkelijke jaren als de kathedraal. Want de bisschop van Albi is in die tijd niet alleen een man van gebed. Hij is een heer. Hij heft belasting, hij spreekt recht, hij voert soldaten aan. Hij regeert.
+
+En hij beschermt zich. Tegen wie? Tegen bedwongen maar wrokkige albigenzen, tegen stadsburgers die zijn greep slecht verdragen, tegen altijd mogelijke opstanden. Dus leeft hij hier verschanst, achter deze dikke muren, boven de rivier, veilig voor slagen in het duister.
+
+Kathedraalvesting aan de ene kant, paleisvesting aan de andere: de twee vuisten van de zegevierende Kerk, naast elkaar op deze rode rots geplant. De hele stad wist, als ze opkeek, wie de macht had.
+
+Loop weg naar het noorden, naar de klokkentoren van een veel oudere kerk. Volg mij.
+@@SCENE=seed-100-albi-cite-episcopale-scene-4
+@@STITLE=Collégiale Saint-Salvi
+Dit is de collégiale Saint-Salvi. Neem de tijd om ernaar te kijken: het is de oudste kerk van Albi, veel ouder dan de grote rode kathedraal. Een lappendeken van steen en baksteen, van romaans en gotisch, door de eeuwen heen onophoudelijk verbouwd.
+
+Ze draagt de naam van Salvi, de allereerste bekende bisschop van de stad, een man uit de zesde eeuw. Rond een herinnering als de zijne is Albi ontstaan, lang vóór de katharen, lang vóór de kruistochten. Hier woonde een gemeenschap van kanunniken — priesters die samen baden, in college, vandaar het woord "collegiale".
+
+Glip, als je kunt, de kloostergang aan de zijkant in. Een vierkant van rust, slanke zuilen, gebeeldhouwde kapitelen. Het lawaai van de stad valt in één klap weg. Sluit je ogen: je bent in het Albi van vroeger, dat van de monniken en de kooplieden, vóór de inquisiteur-bisschop zijn vesting oprichtte om iedereen te overheersen.
+
+Twee Albi's staan tegenover elkaar, kortom. Het zachte, hier, rond Saint-Salvi. En het verpletterende, daarginds, rond Sainte-Cécile.
+
+Daal weer af naar de oude wijk, aan de kant van de rivier. Volg mij.
+@@SCENE=seed-100-albi-cite-episcopale-scene-5
+@@STITLE=Castelviel
+Daal af in de steegjes van het oude Albi, richting Castelviel, de oudste wijk van de stad, die zich vastklampt aan de heuvel boven de Tarn. Hier dringen de huizen samen, scheef, van roze baksteen en bruin hout, met verdiepingen die over de straat uitsteken. Zoek het Maison du Vieil Alby: een mooi koopmanshuis, eeuwen oud.
+
+En stel jezelf een vraag: waar kwam het geld vandaan dat dit alles bouwde? De baksteen, de paleizen, de kerken? Een groot deel kwam van een klein blauw plantje. De wede.
+
+Wede is een kruid dat hier en in heel de streek tussen Albi en Toulouse werd verbouwd. De bladeren werden tot ballen gestampt, en daaruit won men een prachtig blauwe verfstof, een van de weinige die stoffen echt blauw konden verven. Heel Europa wilde ze. De kooplieden van Albi werden rijk, zeer rijk. Men noemde dit gezegende land het "luilekkerland" — naar die ballen wede, de coques.
+
+Dat blauwe fortuin duurde een tijd, en toen ruïneerde de indigo uit Indië het. Maar de roze baksteen bleef.
+
+Daal nu af naar de rivier, tot aan de oude brug. Volg mij.
+@@SCENE=seed-100-albi-cite-episcopale-scene-6
+@@STITLE=Pont Vieux
+Daal af naar de Pont Vieux en loop tot het midden. Deze brug onder je voeten is een grijsaard: bijna duizend jaar overspant ze de Tarn, een van de oudste bruggen van Frankrijk die nog in gebruik zijn. Generaties albigenzen zijn eroverheen gegaan, te voet, te paard, met de kar.
+
+Draai je nu om. Kijk een laatste keer omhoog naar de stad. En zie wat ze je zegt.
+
+Daarboven, alles overheersend, alles verpletterend: de kathedraalvesting en het bisschoppelijk paleis. Twee massa's rode baksteen, enorm, geplant aan de rand van de afgrond, van overal zichtbaar, vanuit elk steegje, vanaf elke oever. Waar je in Albi ook gaat, ze zijn er, boven je hoofd.
+
+Dat was precies de bedoeling. Na de kruistocht, na de brandstapels, na het verpletteren van de katharen had de Kerk niet alleen een oorlog gewonnen. Ze wilde dat niemand het ooit zou vergeten. Dus beitelde ze haar overwinning in het landschap zelf. Eeuwenlang leefde elke inwoner onder die blik van baksteen.
+
+Vandaag is de woede geluwd. Men ziet geen dreiging meer, maar een wonder. In 2010 werd dit hele geheel — de kathedraal, het paleis, de brug, de oude straten — werelderfgoed van de mensheid. De bisschopsstad Albi. De vesting van de angst is een schat van schoonheid geworden.
+
+Blijf nog een ogenblik op deze brug, tussen het water dat voorbijgaat en de baksteen die blijft. Luister naar de stilte. En bedenk hoeveel razernij er nodig was om zoveel pracht op te richten. Tot ziens, vriend.

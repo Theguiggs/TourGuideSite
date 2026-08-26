@@ -1,0 +1,499 @@
+@@LANG=en
+@@TITLE=Lyon — Lumière: The City Where Cinema Was Born
+@@DESC=Art — Workers Leaving the Factory, 1895: in Monplaisir, the eastern district where two brothers invented cinema.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-0
+@@STITLE=Place Ambroise Courtois
+Look around you. An ordinary square in eastern Lyon: shops, a cinema, the entrance to the metro. You're in Monplaisir, a neighborhood that was, a little over a century ago, a suburb of factories and chimneys, far from the old stones of the center. Nothing here shouts history. And yet.
+
+Come closer to the metro entrance and read the name of the station: Monplaisir-Lumière. Lumière, like "light," yes, but above all a family name. The name of two brothers who, just steps from here, invented something the whole world now does, every evening, without even thinking about it: cinema.
+
+Not in Hollywood. Not in Paris. Here, in this working-class district, between a photographic plate factory and a bourgeois garden. This is where, for the very first time, human beings in motion were filmed, and projected onto a sheet for others to watch.
+
+Louis and Auguste Lumière. Remember these two first names. One, Louis, would be the brilliant inventor; the other, Auguste, the businessman and scientist. Together, with the money from a small family factory, they would give the world a machine capable of capturing time, of forever freezing the movement of the living.
+
+Follow me. We're going to trace the thread back, from their father's house to the very wall where it all began. Take the street toward the institute: our story begins at the Lumière household.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-1
+@@STITLE=Avenue des Frères Lumière
+Here we are on the avenue des Frères Lumière, the street bearing their name. As we walk along it, let me introduce you to the family, because without the father, there would have been no cinema.
+
+Antoine Lumière, the father, is a painter and photographer. A flamboyant, ambitious man, who moves to Lyon and senses the future of photography. At the time, photography is a craft of patience: you have to prepare your own light-sensitive glass plates yourself, on the spot, under complicated conditions. Antoine opens a small photographic plate factory.
+
+And that's where the eldest son, Louis, a young man gifted in chemistry, comes in. He perfects a ready-to-use plate, dry, reliable, which he names the Blue Label. A revolutionary product that photographers snap up. The factory grows, prospers, employs hundreds of workers.
+
+Hold onto this point, because it explains everything: when the Lumière brothers invent cinema, they won't be penniless dreamers. They'll be wealthy industrialists, with workshops, mechanics, money to experiment with. Cinema will be born not out of an attic, but out of a thriving factory.
+
+Let's climb up toward the house this fortune built: the château Lumière.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-2
+@@STITLE=Château Lumière
+Look up at this residence. A grand bourgeois house, ornate, a bit showy, with its stone balconies and its winter garden of glass and iron. This is the château Lumière, the villa the family had built at the very end of the nineteenth century, when the money from the plates was flowing freely.
+
+Antoine, the father, wanted it to be in his own image: generous, theatrical, made for entertaining. You can picture the long conversations, the two already-grown sons talking chemistry and mechanics late into the evening. The house says everything about a family that had made it, proud of its success, and not yet done surprising the world.
+
+Today, this villa houses the Institut Lumière, guardian of their memory and a temple for film lovers. We'll come back to it at the end of our walk, because it's there that the heart of Lyon cinema still beats.
+
+But a beautiful house doesn't make a revolution. The revolution played out just behind it, in a much more modest building, without an upper floor or ornament. Come around the villa with me, toward the old factories. That's where the fortune was made, and that's where cinema was about to walk out the door.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-3
+@@STITLE=Entrée publique de l'Institut Lumière
+Look at this area, now redeveloped, where a few traces of the great Lumière factory remain. Here once stretched the workshops that manufactured photographic plates by the thousands, and soon film. Long buildings, chimneys, a large workforce: a true industry, one of the largest of its kind in Europe.
+
+This factory setting isn't a minor detail — it's the main character. Because the first film in history won't tell a love story or a battle. It will simply show workers leaving this factory at the end of their day. Cinema was born by filming itself, by filming the very place of its own birth.
+
+Picture the bustle of a place like this back then. The staff, mostly female workers in long skirts, pouring through the gate by the hundreds every evening. The Lumière brothers had this spectacle before their eyes every single day. One day in March 1895, Louis set up a strange wooden box in front of this gate, and turned a crank.
+
+Walk a few more steps, to the last wall that has survived. It's the most sacred spot on our walk: the Hangar du Premier-Film — the Hangar of the First Film.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-4
+@@STITLE=Hangar du Premier-Film
+Stop in front of this great wall of brick and iron: this is the hangar du Premier-Film, the last relic of the factory. It was saved, raised up like a monument, because it's here, exactly here, that cinema was born.
+
+One day in March 1895, Louis Lumière plants his camera facing the gate. The doors open. The workers come out: women in hats, a few men on bicycles, a running dog, a horse. Fifty seconds. Nothing more. It's called La Sortie de l'usine Lumière à Lyon — Workers Leaving the Lumière Factory — and it's the first film in history.
+
+Look closely, because there's a charming mystery here: three versions of this scene are known, filmed at different moments. In one, a horse passes; in another, two; in the last, none at all. Louis, a perfectionist, reshot his take, the way a director adjusts a shot. From the very first film, already, reality wasn't quite being filmed as it was: it was being chosen.
+
+That gate you're picturing, those female workers long since gone, they're there, alive, on the film, forever. Stay a moment. Then turn toward the small neighboring street, the one that took the name of this feat.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-5
+@@STITLE=Rue du Premier-Film
+Here is the rue du Premier-Film. It used to be called rue Saint-Victor, an unremarkable name. The city renamed it in honor of what took place at its far end. It might be the only street in the world whose name celebrates a single shot on film.
+
+Stand here and try to overlay, in your mind, the image you may already know: the gate, the stream of workers, the light of a spring afternoon. The factory is gone, the gate too, but the ground beneath you is the same. You're walking within the frame of the camera. In a way, you're inside the very first shot of cinema ever filmed.
+
+What moves me here is the modesty of the place. No set, no grand gesture. A suburban street, a wall, cobblestones. Great inventions don't always need grand theaters. This one walked out of a factory, through a service door, on an ordinary day.
+
+But how could this image ever have been born? Thanks to a machine, a single one, of astonishing ingenuity. Come closer: I'm going to tell you about the cinematograph.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-6
+@@STITLE=Entrée publique de l'Institut Lumière
+The secret behind it all is a box. A wooden box weighing barely a few kilos, one a man can carry under his arm. The Lumière brothers call it the Cinématographe, and they file its patent in February 1895, just weeks before shooting their first film.
+
+Its beauty lies in the fact that it does everything. The very same box films, develops the prints, and projects them. Three trades in a single object. Inside, a brilliant mechanism advances the film frame by frame, jolt after jolt, about fifteen per second: enough for the eye, deceived, to believe it's seeing continuous motion. The story goes that Louis got the idea for this mechanism while thinking about the sewing machine, which advances fabric in small, regular jerks.
+
+Compare that with America. Over there, Edison had indeed built a machine for moving images, but a heavy, stationary one, watched alone, eye pressed to a peephole. The Lumières, on the other hand, project. For an entire room. Cinema is born from that gesture: not each person watching in their own corner, but together, in the dark, in front of the same screen.
+
+This lightweight box would go on to travel. And it would cross the whole planet. Follow me: let's see how the entire world discovered moving images.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-7
+@@STITLE=Entrée publique de l'Institut Lumière
+The first film is shot in March 1895. But the real thunderclap comes at the end of that year, in Paris, in a room on the boulevard des Capucines. On December 28, 1895, for the first time, spectators pay for a seat to watch projected images. There are only a handful of them. They walk out stunned. Cinema has just become a public spectacle.
+
+So the Lumières do something visionary: they train operators and send them across the entire Earth. These men cross the seas with their wooden box, filming a coronation in Russia, pyramids in Egypt, a street in New York, a distant marketplace. They bring the world back in images and project it everywhere. Within a few years, the entire planet is watching itself for the very first time.
+
+And already, everything has been invented. The documentary, with these views of real life. The comedy film, with the famous scene of the gardener sprayed by a mischievous boy. It's even said that, faced with a train arriving head-on, some spectators supposedly recoiled, believing the locomotive was coming straight at them. True or not, the story does capture the shock of these first images.
+
+Let's go back toward the Lumière house. Our journey ends where their memory still keeps watch.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-8
+@@STITLE=Institut et Festival Lumière
+Here we are again in front of the Lumière villa, the one where we began. But this time, let's step inside what it has become: the Institut Lumière. Since 1982, this house has watched over the memory of the two brothers, preserving their films, their machines, and screening cinema every single evening, in a hall set up right next to the famous hangar.
+
+Because here's the most beautiful part. The place where cinema was born hasn't become a dusty mausoleum. It's a living theater, where people come to watch films, old and new, in the dark, together, exactly as the very first spectators did. The gesture invented here is repeated every evening, just a few meters from the original gate.
+
+And every autumn, the city lights up for the Lumière festival. The world of cinema makes the journey to Monplaisir, to this suburb of factories, to award a great prize to a legendary filmmaker. The greatest directors on the planet come here to bow before two brothers from Lyon. The very same men who, it's said, thought their invention had no future.
+
+They were magnificently wrong. What they lit, one day in March 1895, in front of their factory, has never gone out. At every screening, in every theater in the world, the light of the Lumières still shines.
+
+Thank you for following this thread with me. Tonight, wherever you are, go watch a film: it will be their finest tribute. This was Guillaume; see you soon.
+
+@@LANG=es
+@@TITLE=Lyon — Lumière: la ciudad donde nació el cine
+@@DESC=Arte — salida de la fábrica, 1895: en Monplaisir, el arrabal del este donde dos hermanos inventaron el cine.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-0
+@@STITLE=Place Ambroise Courtois
+Mira a tu alrededor. Una plaza corriente del este de Lyon: comercios, un cine, la entrada del metro. Estás en Monplaisir, un barrio que fue, hace poco más de un siglo, un suburbio de fábricas y chimeneas, lejos de las viejas piedras del centro. Nada, aquí, grita historia. Y sin embargo.
+
+Acércate a la boca de metro y lee el nombre de la estación: Monplaisir-Lumière. Lumière, como la luz, sí, pero sobre todo como un apellido. El nombre de dos hermanos que, a pocos pasos de aquí, inventaron algo que el mundo entero hace hoy, cada noche, sin pensarlo: el cine.
+
+No en Hollywood. No en París. Aquí, en este arrabal de obreros, entre una fábrica de placas fotográficas y un jardín burgués. Es aquí donde se filmó, por primera vez en la historia, a seres humanos que se mueven, y donde se proyectó sobre una sábana para que otros lo vieran.
+
+Louis y Auguste Lumière. Guarda estos dos nombres. Uno, Louis, será el inventor genial; el otro, Auguste, el hombre de negocios y el sabio. Juntos, con el dinero de una pequeña fábrica familiar, van a ofrecer al mundo una máquina para capturar el tiempo, para fijar para siempre el movimiento de los seres vivos.
+
+Sígueme. Vamos a remontar el hilo, desde la casa del padre hasta el muro exacto donde todo empezó. Toma la calle hacia el instituto: nuestra historia empieza en casa de los Lumière.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-1
+@@STITLE=Avenue des Frères Lumière
+Aquí estamos en la avenue des Frères Lumière, la arteria que lleva su nombre. Mientras la recorremos, déjame presentarte a la familia, porque sin el padre, no habría habido cine.
+
+Antoine Lumière, el padre, es pintor y fotógrafo. Un hombre llamativo, ambicioso, que se instala en Lyon y presiente el futuro de la fotografía. En la época, fotografiar es un oficio de paciencia: hay que preparar uno mismo sus placas de vidrio sensibles, en el momento, en condiciones complicadas. Antoine abre una pequeña fábrica de placas fotográficas.
+
+Y ahí es donde interviene el hijo mayor, Louis, un joven dotado para la química. Perfecciona una placa lista para usar, seca, fiable, que bautiza como la Etiqueta azul. Un producto revolucionario, que los fotógrafos se disputan. La fábrica crece, se enriquece, emplea a cientos de obreros.
+
+Guarda bien este punto, porque lo explica todo: cuando los hermanos Lumière inventen el cine, no serán soñadores sin blanca. Serán industriales ricos, con talleres, mecánicos, dinero para investigar. El cine va a nacer no de un desván, sino de una fábrica que funciona.
+
+Subamos hacia la casa que esa fortuna construyó: el château Lumière.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-2
+@@STITLE=Château Lumière
+Levanta la vista hacia esta vivienda. Una gran casa burguesa, adornada, un poco llamativa, con sus balcones de piedra y su jardín de invierno de cristal y hierro. Es el château Lumière, la villa que la familia se hace construir a finales del siglo diecinueve, cuando el dinero de las placas fluye a raudales.
+
+Antoine, el padre, la quiso a su imagen: generosa, teatral, hecha para recibir. Uno imagina las largas discusiones, los dos hijos ya maduros hablando de química y mecánica hasta bien entrada la noche. La casa lo dice todo de una familia que ha triunfado, orgullosa de su éxito, y que aún no ha terminado de sorprender al mundo.
+
+Hoy, esta villa alberga el Institut Lumière, guardián de su memoria y templo de los cinéfilos. Volveremos a ella al final de nuestro paseo, porque es ahí donde todavía late el corazón del cine lionés.
+
+Pero una bonita casa no hace una revolución. La revolución se jugó justo detrás, en un edificio mucho más modesto, sin piso y sin ornamento. Rodea la villa conmigo, hacia las antiguas fábricas. Ahí es donde se fabricaba la fortuna, y ahí es donde el cine iba a salir a la calle.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-3
+@@STITLE=Entrée publique de l'Institut Lumière
+Mira este sector, hoy remodelado, donde subsisten algunas huellas de la gran fábrica Lumière. Aquí se extendían los talleres que fabricaban las placas fotográficas por millares, y pronto la película. Edificios alargados, chimeneas, una mano de obra numerosa: una verdadera industria, una de las más importantes de su ramo en Europa.
+
+Este decorado de fábrica no es un detalle, es el personaje principal. Porque la primera película de la historia no contará una historia de amor ni una batalla. Mostrará, sencillamente, a obreros que salen de esta fábrica al final de su jornada. El cine nació filmándose a sí mismo, filmando el lugar de su propio nacimiento.
+
+Imagina la agitación de un lugar así en la época. El personal, sobre todo obreras con faldas largas, que cruzaba cada noche la verja por centenares. Los hermanos Lumière tenían ese espectáculo ante los ojos todos los días. Un día de marzo de 1895, Louis colocó una extraña caja de madera frente a esa verja, y le dio a una manivela.
+
+Avanza unos pasos, hasta el último muro que ha sobrevivido. Es el lugar más sagrado de nuestro paseo: el hangar du Premier-Film.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-4
+@@STITLE=Hangar du Premier-Film
+Detente frente a este gran muro de ladrillo y hierro: es el hangar du Premier-Film, la última reliquia de la fábrica. Se salvó, se erigió como un monumento, porque es aquí, exactamente aquí, donde nació el cine.
+
+Un día de marzo de 1895, Louis Lumière planta su cámara frente a la verja. Las puertas se abren. Los obreros salen: mujeres con sombrero, algunos hombres en bicicleta, un perro que corre, un caballo. Cincuenta segundos. Nada más. Se llama La Sortie de l'usine Lumière à Lyon, y es la primera película de la historia.
+
+Fíjate bien, porque hay un misterio encantador: se conocen tres versiones de esta escena, rodadas en momentos distintos. En una pasa un caballo, en otra dos, en la última ninguno. Louis, perfeccionista, repitió su toma, como un director de cine ajusta su plano. Ya desde la primera película, no se filma del todo la realidad tal cual: se elige.
+
+Esa verja que imaginas, esas obreras desaparecidas hace mucho tiempo, están ahí, vivas, en la película, para siempre. Quédate un instante. Luego gírate hacia la callecita vecina, la que tomó el nombre de esta hazaña.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-5
+@@STITLE=Rue du Premier-Film
+Aquí está la rue du Premier-Film. Antaño se llamaba rue Saint-Victor, un nombre cualquiera. La ciudad la rebautizó en honor a lo que se jugó en su extremo. Es quizás la única calle del mundo cuyo nombre celebra una simple toma de imágenes.
+
+Colócate aquí e intenta superponer, en tu mente, la imagen que quizás ya conoces: la verja, el flujo de obreros, la luz de una tarde de primavera. La fábrica ha desaparecido, la verja también, pero el suelo, ese, es el mismo. Caminas dentro del encuadre de la cámara. Estás, en cierto modo, dentro del primer plano de cine jamás rodado.
+
+Lo que me conmueve aquí es la modestia del lugar. Ningún decorado, ningún énfasis. Una calle de arrabal, un muro, un adoquinado. Los grandes inventos no siempre necesitan grandes teatros. Este salió de una fábrica, por una puerta de servicio, un día cualquiera.
+
+Pero ¿cómo pudo nacer esta imagen? Gracias a una máquina, una sola, de una inteligencia asombrosa. Acércate: voy a contarte la historia del cinematógrafo.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-6
+@@STITLE=Entrée publique de l'Institut Lumière
+El secreto de todo es una caja. Una caja de madera de apenas unos kilos, que un hombre puede llevar bajo el brazo. Los hermanos Lumière la llaman el Cinématographe, y registran su patente en febrero de 1895, unas semanas antes de rodar su primera película.
+
+Su belleza está en que lo hace todo. La misma caja filma, saca las copias, y proyecta. Tres oficios en un solo objeto. En su interior, un mecanismo genial hace avanzar la película fotograma a fotograma, sacudida tras sacudida, unos quince por segundo: suficiente para que el ojo, engañado, crea ver un movimiento continuo. Se cuenta que a Louis se le ocurrió este mecanismo pensando en la máquina de coser, que hace avanzar la tela a pequeños golpes regulares.
+
+Compara con América. Allí, Edison había fabricado ciertamente una máquina de imágenes animadas, pero pesada, inmóvil, y donde se miraba en solitario, el ojo pegado a una mirilla. Los Lumière, en cambio, proyectan. Para una sala entera. El cine nace de ese gesto: no mirar cada uno en su rincón, sino juntos, en la oscuridad, frente a la misma pantalla.
+
+Esta caja ligera va a poder viajar. Y va a recorrer el planeta. Sígueme: veamos cómo el mundo entero descubrió las imágenes que se mueven.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-7
+@@STITLE=Entrée publique de l'Institut Lumière
+La primera película se rueda en marzo de 1895. Pero el verdadero trueno tiene lugar a finales de ese año, en París, en una sala del boulevard des Capucines. El 28 de diciembre de 1895, por primera vez, unos espectadores pagan su entrada para ver imágenes proyectadas. Son un puñado. Salen atónitos. El cine acaba de convertirse en un espectáculo público.
+
+Entonces los Lumière hacen algo visionario: forman a operadores y los envían por toda la Tierra. Estos hombres cruzan los mares con su caja de madera, filman una coronación en Rusia, pirámides en Egipto, una calle en Nueva York, un mercado lejano. Traen el mundo en imágenes y lo proyectan en todas partes. En pocos años, el planeta entero se mira a sí mismo por primera vez.
+
+Y ya está todo inventado. El documental, con estas vistas de la realidad. La película cómica, con la famosa escena del jardinero regado por un chiquillo travieso. Se cuenta incluso que, ante la llegada de un tren filmado de frente, algunos espectadores habrían retrocedido, creyendo que la locomotora venía sobre ellos. Verdadera o no, la historia expresa bien el impacto de estas primeras imágenes.
+
+Volvamos hacia la casa Lumière. Nuestro viaje termina allí donde la memoria vela.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-8
+@@STITLE=Institut et Festival Lumière
+Aquí estamos de nuevo frente a la villa de los Lumière, aquella por donde empezamos. Pero esta vez, entremos en lo que se ha convertido: el Institut Lumière. Desde 1982, esta casa vela por la memoria de los dos hermanos, conserva sus películas, sus máquinas, y proyecta cine, cada noche, en una sala instalada junto al famoso hangar.
+
+Porque ahí está lo más bonito. El lugar donde nació el cine no se ha convertido en un mausoleo polvoriento. Es una sala viva, donde se viene a ver películas, antiguas y nuevas, en la oscuridad, juntos, exactamente como los primerísimos espectadores. El gesto inventado aquí se repite cada noche, a pocos metros de la verja original.
+
+Y cada otoño, la ciudad se enciende por el festival Lumière. El mundo del cine hace el viaje hasta Monplaisir, hasta este arrabal de fábricas, para entregar un gran premio a un cineasta de leyenda. Los mayores directores del planeta vienen, aquí, a inclinarse ante dos hermanos lioneses. Esos mismos que, se dice, pensaban que su invento no tenía ningún futuro.
+
+Se equivocaron magníficamente. Lo que encendieron un día de marzo de 1895, delante de su fábrica, nunca se ha apagado. En cada sesión, en cada sala del mundo, la luz de los Lumière sigue brillando.
+
+Gracias por remontar este hilo conmigo. Esta noche, dondequiera que estés, ve a ver una película: será su más bello homenaje. Era Guillaume; hasta pronto.
+
+@@LANG=de
+@@TITLE=Lyon — Lumière: die Stadt, in der das Kino geboren wurde
+@@DESC=Kunst — Arbeiter verlassen die Fabrik, 1895: in Monplaisir, dem östlichen Vorort, wo zwei Brüder das Kino erfanden.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-0
+@@STITLE=Place Ambroise Courtois
+Schau dich um. Ein gewöhnlicher Platz im Osten von Lyon: Geschäfte, ein Kino, der Eingang zur Metro. Du bist in Monplaisir, einem Viertel, das vor etwas mehr als einem Jahrhundert ein Vorort aus Fabriken und Schornsteinen war, weit weg von den alten Steinen des Zentrums. Nichts hier schreit Geschichte. Und doch.
+
+Tritt näher an den Metro-Eingang heran und lies den Namen der Station: Monplaisir-Lumière. Lumière, wie das Licht, ja, aber vor allem als Familienname. Der Name zweier Brüder, die, nur wenige Schritte von hier, etwas erfanden, das die ganze Welt heute jeden Abend tut, ohne darüber nachzudenken: das Kino.
+
+Nicht in Hollywood. Nicht in Paris. Hier, in diesem Arbeitervorort, zwischen einer Fabrik für Fotoplatten und einem bürgerlichen Garten. Hier wurden zum allerersten Mal Menschen in Bewegung gefilmt, und auf ein Tuch projiziert, damit andere es sehen konnten.
+
+Louis und Auguste Lumière. Behalte diese beiden Vornamen. Der eine, Louis, wird der geniale Erfinder sein; der andere, Auguste, der Geschäftsmann und Wissenschaftler. Gemeinsam, mit dem Geld einer kleinen Familienfabrik, werden sie der Welt eine Maschine schenken, die die Zeit einfängt, die Bewegung der Lebenden für immer festhält.
+
+Folge mir. Wir werden den Faden zurückverfolgen, vom Haus des Vaters bis zu genau der Mauer, an der alles begann. Nimm die Straße zum Institut: unsere Geschichte beginnt im Hause Lumière.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-1
+@@STITLE=Avenue des Frères Lumière
+Da sind wir nun auf der avenue des Frères Lumière, der Straße, die ihren Namen trägt. Während wir sie entlanggehen, lass mich dir die Familie vorstellen, denn ohne den Vater hätte es kein Kino gegeben.
+
+Antoine Lumière, der Vater, ist Maler und Fotograf. Ein schillernder, ehrgeiziger Mann, der nach Lyon zieht und die Zukunft der Fotografie erahnt. Zu jener Zeit ist Fotografieren ein Handwerk der Geduld: man muss seine lichtempfindlichen Glasplatten selbst vorbereiten, an Ort und Stelle, unter komplizierten Bedingungen. Antoine eröffnet eine kleine Fabrik für Fotoplatten.
+
+Und hier kommt der älteste Sohn ins Spiel, Louis, ein junger Mann mit Talent für Chemie. Er entwickelt eine gebrauchsfertige Platte, trocken, zuverlässig, die er die Blaue Etikette nennt. Ein revolutionäres Produkt, um das sich die Fotografen reißen. Die Fabrik wächst, wird wohlhabend, beschäftigt Hunderte von Arbeitern.
+
+Behalte diesen Punkt gut im Kopf, denn er erklärt alles: Als die Brüder Lumière das Kino erfinden, werden sie keine mittellosen Träumer sein. Sie werden reiche Industrielle sein, mit Werkstätten, Mechanikern, Geld zum Forschen. Das Kino wird nicht aus einer Dachkammer geboren, sondern aus einer florierenden Fabrik.
+
+Steigen wir hinauf zu dem Haus, das dieses Vermögen erbaut hat: das château Lumière.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-2
+@@STITLE=Château Lumière
+Heb den Blick zu diesem Anwesen. Ein großes, bürgerliches Haus, geschmückt, ein wenig auffällig, mit seinen steinernen Balkonen und seinem Wintergarten aus Glas und Eisen. Das ist das château Lumière, die Villa, die sich die Familie ganz am Ende des neunzehnten Jahrhunderts bauen ließ, als das Geld aus den Platten in Strömen floss.
+
+Antoine, der Vater, wollte sie nach seinem Ebenbild: großzügig, theatralisch, zum Empfangen gemacht. Man kann sich die langen Gespräche vorstellen, die beiden schon erwachsenen Söhne, die bis spät in den Abend über Chemie und Mechanik reden. Das Haus erzählt alles von einer erfolgreichen Familie, stolz auf ihren Erfolg, die die Welt noch lange nicht ausgehört hat zu überraschen.
+
+Heute beherbergt diese Villa das Institut Lumière, Hüter ihrer Erinnerung und Tempel der Kinoliebhaber. Wir kommen am Ende unseres Spaziergangs zu ihr zurück, denn dort schlägt noch immer das Herz des Lyoner Kinos.
+
+Aber ein schönes Haus macht noch keine Revolution. Die Revolution spielte sich direkt dahinter ab, in einem viel bescheideneren Gebäude, ohne Obergeschoss und ohne Verzierung. Umrunde die Villa mit mir, zu den alten Fabriken hin. Dort wurde das Vermögen erwirtschaftet, und dort sollte das Kino hinausgehen.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-3
+@@STITLE=Entrée publique de l'Institut Lumière
+Schau dir diesen heute umgestalteten Bereich an, in dem noch einige Spuren der großen Lumière-Fabrik erhalten sind. Hier erstreckten sich die Werkstätten, die zu Tausenden Fotoplatten und bald auch Filmmaterial herstellten. Lange Gebäude, Schornsteine, viele Arbeitskräfte: eine echte Industrie, eine der bedeutendsten ihres Bereichs in Europa.
+
+Dieses Fabrikszenario ist kein Nebendetail, es ist die Hauptfigur. Denn der erste Film der Geschichte wird keine Liebesgeschichte oder eine Schlacht erzählen. Er wird schlicht Arbeiter zeigen, die diese Fabrik am Ende ihres Arbeitstages verlassen. Das Kino wurde geboren, indem es sich selbst filmte, indem es den Ort seiner eigenen Geburt filmte.
+
+Stell dir die Geschäftigkeit eines solchen Ortes damals vor. Die Belegschaft, vor allem Arbeiterinnen in langen Röcken, die jeden Abend das Tor zu Hunderten durchquerten. Die Brüder Lumière hatten dieses Schauspiel täglich vor Augen. Eines Tages im März 1895 stellte Louis eine seltsame Holzkiste vor dieses Tor und drehte eine Kurbel.
+
+Geh noch ein paar Schritte weiter, bis zur letzten überlebenden Mauer. Es ist der heiligste Ort unseres Spaziergangs: der Hangar du Premier-Film — der Schuppen des ersten Films.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-4
+@@STITLE=Hangar du Premier-Film
+Halt vor dieser großen Mauer aus Backstein und Eisen an: das ist der hangar du Premier-Film, die letzte Reliquie der Fabrik. Man hat sie gerettet, wie ein Denkmal aufgerichtet, weil hier, genau hier, das Kino geboren wurde.
+
+Eines Tages im März 1895 stellt Louis Lumière seine Kamera dem Tor gegenüber auf. Die Türen öffnen sich. Die Arbeiter kommen heraus: Frauen mit Hut, ein paar Männer auf dem Fahrrad, ein rennender Hund, ein Pferd. Fünfzig Sekunden. Nicht mehr. Das nennt sich La Sortie de l'usine Lumière à Lyon, und es ist der erste Film der Geschichte.
+
+Schau genau hin, denn es gibt ein reizvolles Rätsel: man kennt drei Versionen dieser Szene, zu unterschiedlichen Zeitpunkten gedreht. In der einen läuft ein Pferd vorbei, in der anderen zwei, in der letzten keines. Louis, ein Perfektionist, drehte seine Aufnahme neu, so wie ein Regisseur seine Einstellung nachjustiert. Schon beim ersten Film wird die Wirklichkeit also nicht ganz einfach so gefilmt, wie sie ist: sie wird ausgewählt.
+
+Dieses Tor, das du dir vorstellst, diese längst verschwundenen Arbeiterinnen, sie sind da, lebendig, auf dem Film, für immer. Bleib noch einen Moment. Dann dreh dich zur kleinen Nachbarstraße um, jener, die den Namen dieser Großtat trägt.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-5
+@@STITLE=Rue du Premier-Film
+Hier ist die rue du Premier-Film. Früher hieß sie rue Saint-Victor, ein beliebiger Name. Die Stadt hat sie zu Ehren dessen umbenannt, was sich an ihrem Ende abspielte. Es ist vielleicht die einzige Straße der Welt, deren Name eine schlichte Filmaufnahme feiert.
+
+Stell dich hierhin und versuch, in Gedanken das Bild zu überlagern, das du vielleicht schon kennst: das Tor, der Strom der Arbeiter, das Licht eines Frühlingsnachmittags. Die Fabrik ist verschwunden, das Tor auch, aber der Boden, der ist derselbe. Du gehst durch den Bildausschnitt der Kamera. Du befindest dich, in gewisser Weise, innerhalb der allerersten Filmeinstellung, die jemals gedreht wurde.
+
+Was mich hier berührt, ist die Bescheidenheit des Ortes. Keine Kulisse, keine Betonung. Eine Vorstadtstraße, eine Mauer, ein Pflasterstein. Große Erfindungen brauchen nicht immer große Theater. Diese hier trat aus einer Fabrik heraus, durch eine Nebentür, an einem ganz gewöhnlichen Tag.
+
+Aber wie konnte dieses Bild überhaupt entstehen? Dank einer Maschine, einer einzigen, von verblüffender Intelligenz. Komm näher: ich erzähle dir vom Kinematographen.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-6
+@@STITLE=Entrée publique de l'Institut Lumière
+Das Geheimnis von allem ist eine Kiste. Eine Holzkiste von kaum ein paar Kilo, die ein Mann unter dem Arm tragen kann. Die Brüder Lumière nennen sie Cinématographe, und sie melden ihr Patent im Februar 1895 an, wenige Wochen bevor sie ihren ersten Film drehen.
+
+Ihre Schönheit besteht darin, dass sie alles kann. Dieselbe Kiste filmt, zieht die Kopien und projiziert. Drei Handwerke in einem einzigen Objekt. Im Inneren lässt ein genialer Mechanismus den Film Bild für Bild vorrücken, Ruck für Ruck, etwa fünfzehn pro Sekunde: genug, damit das getäuschte Auge glaubt, eine kontinuierliche Bewegung zu sehen. Man erzählt sich, Louis sei auf diesen Mechanismus gekommen, indem er an die Nähmaschine dachte, die den Stoff in kleinen, regelmäßigen Rucken vorschiebt.
+
+Vergleiche das mit Amerika. Dort hatte Edison zwar eine Maschine für bewegte Bilder gebaut, aber eine schwere, unbewegliche, bei der man allein zuschaute, das Auge an ein Guckloch gepresst. Die Lumières hingegen projizieren. Für einen ganzen Saal. Das Kino entsteht aus genau dieser Geste: nicht jeder für sich in seiner Ecke zusehen, sondern gemeinsam, im Dunkeln, vor derselben Leinwand.
+
+Diese leichte Kiste wird reisen können. Und sie wird den Planeten durchqueren. Folge mir: sehen wir, wie die ganze Welt die bewegten Bilder entdeckte.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-7
+@@STITLE=Entrée publique de l'Institut Lumière
+Der erste Film wird im März 1895 gedreht. Doch der eigentliche Donnerschlag ereignet sich am Ende jenes Jahres, in Paris, in einem Saal am boulevard des Capucines. Am 28. Dezember 1895 zahlen Zuschauer zum ersten Mal Eintritt, um projizierte Bilder zu sehen. Es sind eine Handvoll. Sie kommen fassungslos wieder heraus. Das Kino ist gerade zu einem öffentlichen Schauspiel geworden.
+
+Also tun die Lumières etwas Visionäres: sie bilden Kameraleute aus und schicken sie über die ganze Erde. Diese Männer durchqueren die Meere mit ihrer Holzkiste, filmen eine Krönung in Russland, Pyramiden in Ägypten, eine Straße in New York, einen fernen Markt. Sie bringen die Welt in Bildern mit und projizieren sie überall. Innerhalb weniger Jahre betrachtet sich der ganze Planet zum ersten Mal selbst.
+
+Und schon ist alles erfunden. Der Dokumentarfilm, mit diesen Ansichten der Wirklichkeit. Der Komödienfilm, mit der berühmten Szene des Gärtners, der von einem schelmischen Jungen bespritzt wird. Man erzählt sich sogar, dass beim Anblick eines frontal gefilmten, einfahrenden Zuges manche Zuschauer zurückgewichen sein sollen, weil sie glaubten, die Lokomotive käme auf sie zu. Ob wahr oder nicht, die Geschichte drückt gut den Schock dieser ersten Bilder aus.
+
+Kehren wir zum Haus der Lumières zurück. Unsere Reise endet dort, wo die Erinnerung wacht.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-8
+@@STITLE=Institut et Festival Lumière
+Da sind wir wieder vor der Villa der Lumières, jener, an der wir begonnen haben. Aber diesmal betreten wir das, was sie geworden ist: das Institut Lumière. Seit 1982 wacht dieses Haus über die Erinnerung der beiden Brüder, bewahrt ihre Filme, ihre Maschinen, und zeigt jeden Abend Kino, in einem Saal, der neben dem berühmten Schuppen eingerichtet wurde.
+
+Denn hier liegt das Schönste. Der Ort, an dem das Kino geboren wurde, ist kein verstaubtes Mausoleum geworden. Es ist ein lebendiger Saal, in dem man Filme sieht, alte und neue, im Dunkeln, gemeinsam, genau wie die allerersten Zuschauer. Die hier erfundene Geste wiederholt sich jeden Abend, nur wenige Meter vom ursprünglichen Tor entfernt.
+
+Und jeden Herbst entzündet sich die Stadt für das Lumière-Festival. Die Welt des Kinos macht sich auf den Weg nach Monplaisir, in diesen Fabrikvorort, um einem legendären Filmemacher einen großen Preis zu verleihen. Die größten Regisseure des Planeten kommen hierher, um sich vor zwei Brüdern aus Lyon zu verneigen. Genau jenen, die, wie man sagt, dachten, ihre Erfindung habe keine Zukunft.
+
+Sie irrten sich prachtvoll. Was sie an einem Tag im März 1895 vor ihrer Fabrik entzündet haben, ist nie erloschen. Bei jeder Vorstellung, in jedem Kinosaal der Welt, leuchtet das Licht der Lumières noch immer.
+
+Danke, dass du diesen Faden mit mir zurückverfolgt hast. Geh heute Abend, wo auch immer du bist, einen Film ansehen: es wird ihre schönste Hommage sein. Das war Guillaume; bis bald.
+
+@@LANG=it
+@@TITLE=Lyon — Lumière: la città dove nacque il cinema
+@@DESC=Arte — l'uscita dalla fabbrica, 1895: a Monplaisir, il sobborgo dell'est dove due fratelli inventarono il cinema.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-0
+@@STITLE=Place Ambroise Courtois
+Guardati intorno. Una piazza ordinaria dell'est lionese: negozi, un cinema, l'ingresso della metro. Sei a Monplaisir, un quartiere che fu, poco più di un secolo fa, una periferia di fabbriche e ciminiere, lontano dalle vecchie pietre del centro. Niente, qui, grida storia. Eppure.
+
+Avvicinati alla bocca della metro e leggi il nome della stazione: Monplaisir-Lumière. Lumière, come la luce, sì, ma soprattutto come cognome. Il nome di due fratelli che, a pochi passi da qui, inventarono qualcosa che il mondo intero fa oggi, ogni sera, senza pensarci: il cinema.
+
+Non a Hollywood. Non a Parigi. Qui, in questo sobborgo di operai, tra una fabbrica di lastre fotografiche e un giardino borghese. È qui che si filmarono, per la primissima volta, esseri umani in movimento, e li si proiettò su un lenzuolo perché altri li guardassero.
+
+Louis e Auguste Lumière. Ricorda questi due nomi. L'uno, Louis, sarà l'inventore geniale; l'altro, Auguste, l'uomo d'affari e lo scienziato. Insieme, con i soldi di una piccola fabbrica di famiglia, offriranno al mondo una macchina per catturare il tempo, per fissare per sempre il movimento dei viventi.
+
+Seguimi. Risaliremo il filo, dalla casa del padre fino al muro esatto dove tutto è cominciato. Prendi la via verso l'istituto: la nostra storia comincia in casa Lumière.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-1
+@@STITLE=Avenue des Frères Lumière
+Eccoci sull'avenue des Frères Lumière, l'arteria che porta il loro nome. Mentre la percorriamo, lasciami presentarti la famiglia, perché senza il padre, non ci sarebbe stato il cinema.
+
+Antoine Lumière, il padre, è pittore e fotografo. Un uomo appariscente, ambizioso, che si trasferisce a Lyon e fiuta il futuro della fotografia. All'epoca, fotografare è un mestiere di pazienza: bisogna preparare da sé le proprie lastre di vetro sensibili, sul momento, in condizioni complicate. Antoine apre una piccola fabbrica di lastre fotografiche.
+
+Ed è lì che interviene il figlio maggiore, Louis, un giovane dotato per la chimica. Mette a punto una lastra pronta all'uso, secca, affidabile, che battezza l'Etichetta blu. Un prodotto rivoluzionario, che i fotografi si contendono. La fabbrica cresce, si arricchisce, impiega centinaia di operai.
+
+Ricorda bene questo punto, perché spiega tutto: quando i fratelli Lumière inventeranno il cinema, non saranno sognatori squattrinati. Saranno ricchi industriali, con officine, meccanici, denaro per fare ricerca. Il cinema nascerà non da una soffitta, ma da una fabbrica in piena attività.
+
+Saliamo verso la casa che quella fortuna ha costruito: il château Lumière.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-2
+@@STITLE=Château Lumière
+Alza gli occhi verso questa dimora. Una grande casa borghese, ornata, un po' vistosa, con i suoi balconi di pietra e il suo giardino d'inverno di vetro e ferro. È il château Lumière, la villa che la famiglia si fa costruire alla fine del diciannovesimo secolo, quando il denaro delle lastre scorre a fiumi.
+
+Antoine, il padre, la volle a sua immagine: generosa, teatrale, fatta per ricevere. Si immaginano le lunghe discussioni, i due figli già maturi che parlano di chimica e meccanica fino a tarda sera. La casa dice tutto di una famiglia arrivata, fiera del proprio successo, e che non ha ancora finito di sorprendere il mondo.
+
+Oggi, questa villa ospita l'Institut Lumière, custode della loro memoria e tempio dei cinefili. Vi torneremo alla fine della nostra passeggiata, perché è lì che batte ancora il cuore del cinema lionese.
+
+Ma una bella casa non fa una rivoluzione. La rivoluzione si giocò proprio dietro, in un edificio molto più modesto, senza piano e senza ornamenti. Gira intorno alla villa con me, verso le vecchie fabbriche. È lì che si fabbricava la fortuna, ed è lì che il cinema stava per uscire.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-3
+@@STITLE=Entrée publique de l'Institut Lumière
+Guarda questo settore, oggi rimodellato, dove sussistono alcune tracce della grande fabbrica Lumière. Qui si estendevano gli opifici che fabbricavano le lastre fotografiche a migliaia, e presto la pellicola. Edifici lunghi, ciminiere, una manodopera numerosa: una vera industria, una delle più importanti del suo settore in Europa.
+
+Questo scenario di fabbrica non è un dettaglio, è il protagonista. Perché il primo film della storia non racconterà una storia d'amore né una battaglia. Mostrerà, semplicemente, degli operai che escono da questa fabbrica alla fine della loro giornata. Il cinema è nato filmando se stesso, filmando il luogo della propria nascita.
+
+Immagina l'agitazione di un posto simile all'epoca. Il personale, soprattutto operaie in lunghe gonne, che varcava ogni sera il cancello a centinaia. I fratelli Lumière avevano questo spettacolo sotto gli occhi tutti i giorni. Un giorno di marzo del 1895, Louis piazzò una strana scatola di legno davanti a quel cancello, e girò una manovella.
+
+Avanza di qualche passo, fino all'ultimo muro sopravvissuto. È il luogo più sacro della nostra passeggiata: il hangar du Premier-Film.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-4
+@@STITLE=Hangar du Premier-Film
+Fermati davanti a questo grande muro di mattoni e ferro: è il hangar du Premier-Film, l'ultima reliquia della fabbrica. Lo si è salvato, eretto come un monumento, perché è qui, esattamente qui, che è nato il cinema.
+
+Un giorno di marzo del 1895, Louis Lumière piazza la sua cinepresa di fronte al cancello. Le porte si aprono. Gli operai escono: donne con il cappello, alcuni uomini in bicicletta, un cane che corre, un cavallo. Cinquanta secondi. Niente di più. Si chiama La Sortie de l'usine Lumière à Lyon, ed è il primo film della storia.
+
+Guarda bene, perché c'è un mistero incantevole: si conoscono tre versioni di questa scena, girate in momenti diversi. In una passa un cavallo, in un'altra due, nell'ultima nessuno. Louis, perfezionista, rifece la sua ripresa, come un regista aggiusta la sua inquadratura. Già dal primo film, non si filma del tutto la realtà così com'è: la si sceglie.
+
+Quel cancello che immagini, quelle operaie scomparse da tempo, sono lì, vive, sulla pellicola, per sempre. Resta un istante. Poi voltati verso la stradina vicina, quella che ha preso il nome di questa impresa.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-5
+@@STITLE=Rue du Premier-Film
+Ecco la rue du Premier-Film. Un tempo si chiamava rue Saint-Victor, un nome qualunque. La città l'ha ribattezzata in onore di ciò che si è giocato alla sua estremità. È forse l'unica via al mondo il cui nome celebra una semplice ripresa cinematografica.
+
+Mettiti qui e prova a sovrapporre, nella mente, l'immagine che forse già conosci: il cancello, il flusso degli operai, la luce di un pomeriggio di primavera. La fabbrica è scomparsa, il cancello pure, ma il suolo, quello, è lo stesso. Cammini nel campo della cinepresa. Sei, in un certo senso, dentro il primo piano di cinema mai girato.
+
+Ciò che mi commuove qui è la modestia del luogo. Nessuna scenografia, nessuna enfasi. Una strada di periferia, un muro, un selciato. Le grandi invenzioni non hanno sempre bisogno di grandi teatri. Questa è uscita da una fabbrica, da una porta di servizio, in un giorno qualunque.
+
+Ma come ha potuto nascere questa immagine? Grazie a una macchina, una sola, di un'intelligenza sbalorditiva. Avvicinati: ti racconterò del cinematografo.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-6
+@@STITLE=Entrée publique de l'Institut Lumière
+Il segreto di tutto è una scatola. Una scatola di legno di appena qualche chilo, che un uomo può portare sotto il braccio. I fratelli Lumière la chiamano il Cinématographe, e ne depositano il brevetto nel febbraio 1895, poche settimane prima di girare il loro primo film.
+
+La sua bellezza sta nel fatto che fa tutto. La stessa scatola filma, stampa le copie e proietta. Tre mestieri in un solo oggetto. All'interno, un meccanismo geniale fa avanzare la pellicola fotogramma per fotogramma, scatto dopo scatto, una quindicina al secondo: abbastanza perché l'occhio, ingannato, creda di vedere un movimento continuo. Si racconta che a Louis venne l'idea di questo meccanismo pensando alla macchina da cucire, che fa avanzare il tessuto a piccoli scatti regolari.
+
+Confronta con l'America. Là, Edison aveva sì costruito una macchina per immagini animate, ma pesante, immobile, e dove si guardava da soli, l'occhio incollato a una feritoia. I Lumière, loro, proiettano. Per un'intera sala. Il cinema nasce proprio da questo gesto: non guardare ciascuno nel proprio angolo, ma insieme, al buio, davanti allo stesso schermo.
+
+Questa scatola leggera potrà viaggiare. E percorrerà il pianeta. Seguimi: vediamo come il mondo intero ha scoperto le immagini che si muovono.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-7
+@@STITLE=Entrée publique de l'Institut Lumière
+Il primo film viene girato nel marzo 1895. Ma il vero colpo di tuono ha luogo alla fine dell'anno, a Parigi, in una sala del boulevard des Capucines. Il 28 dicembre 1895, per la prima volta, degli spettatori pagano il biglietto per vedere immagini proiettate. Sono una manciata. Escono sbalorditi. Il cinema è appena diventato uno spettacolo pubblico.
+
+Allora i Lumière fanno una cosa visionaria: formano degli operatori e li mandano su tutta la Terra. Questi uomini attraversano i mari con la loro scatola di legno, filmano un'incoronazione in Russia, delle piramidi in Egitto, una strada a New York, un mercato lontano. Riportano il mondo in immagini e lo proiettano ovunque. In pochi anni, l'intero pianeta si guarda per la prima volta.
+
+E già, tutto è inventato. Il documentario, con queste vedute del reale. Il film comico, con la famosa scena del giardiniere innaffiato da un monello. Si racconta persino che, davanti all'arrivo di un treno filmato di fronte, alcuni spettatori sarebbero indietreggiati, credendo che la locomotiva stesse arrivando su di loro. Vera o no, la storia esprime bene lo shock di queste prime immagini.
+
+Torniamo verso la casa Lumière. Il nostro viaggio si conclude là dove la memoria veglia.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-8
+@@STITLE=Institut et Festival Lumière
+Rieccoci davanti alla villa dei Lumière, quella da cui siamo partiti. Ma questa volta, entriamo in ciò che è diventata: l'Institut Lumière. Dal 1982, questa casa veglia sulla memoria dei due fratelli, conserva i loro film, le loro macchine, e proietta cinema, ogni sera, in una sala allestita accanto al famoso hangar.
+
+Perché ecco la cosa più bella. Il luogo dove è nato il cinema non è diventato un mausoleo polveroso. È una sala viva, dove si viene a vedere film, antichi e nuovi, al buio, insieme, esattamente come i primissimi spettatori. Il gesto inventato qui si ripete ogni sera, a pochi metri dal cancello originale.
+
+E ogni autunno, la città si accende per il festival Lumière. Il mondo del cinema fa il viaggio fino a Monplaisir, fino a questo sobborgo di fabbriche, per consegnare un grande premio a un cineasta leggendario. I più grandi registi del pianeta vengono, qui, a inchinarsi davanti a due fratelli lionesi. Proprio quelli che, si dice, pensavano che la loro invenzione non avesse alcun futuro.
+
+Si sbagliavano magnificamente. Ciò che accesero un giorno di marzo del 1895, davanti alla loro fabbrica, non si è mai spento. A ogni proiezione, in ogni sala del mondo, la luce dei Lumière brilla ancora.
+
+Grazie per aver risalito questo filo con me. Stasera, ovunque tu sia, vai a vedere un film: sarà il loro omaggio più bello. Era Guillaume; a presto.
+
+@@LANG=nl
+@@TITLE=Lyon — Lumière: de stad waar de cinema werd geboren
+@@DESC=Kunst — het verlaten van de fabriek, 1895: in Monplaisir, de oostelijke voorstad waar twee broers de cinema uitvonden.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-0
+@@STITLE=Place Ambroise Courtois
+Kijk om je heen. Een gewoon plein in het oosten van Lyon: winkels, een bioscoop, de ingang van de metro. Je bent in Monplaisir, een wijk die iets meer dan een eeuw geleden een buitenwijk van fabrieken en schoorstenen was, ver van de oude stenen van het centrum. Niets hier schreeuwt geschiedenis. En toch.
+
+Kom dichter bij de metro-ingang en lees de naam van het station: Monplaisir-Lumière. Lumière, zoals het licht, ja, maar vooral als familienaam. De naam van twee broers die, op een paar passen hiervandaan, iets uitvonden dat de hele wereld vandaag elke avond doet, zonder erbij na te denken: cinema.
+
+Niet in Hollywood. Niet in Parijs. Hier, in deze arbeiderswijk, tussen een fabriek van fotografische platen en een burgerlijke tuin. Hier werden voor het allereerst mensen in beweging gefilmd, en op een laken geprojecteerd zodat anderen ernaar konden kijken.
+
+Louis en Auguste Lumière. Onthoud deze twee voornamen. De één, Louis, zal de geniale uitvinder zijn; de ander, Auguste, de zakenman en de wetenschapper. Samen, met het geld van een kleine familiefabriek, gaan ze de wereld een machine schenken die de tijd vastlegt, die de beweging van levende wezens voor altijd bevriest.
+
+Volg me. We gaan de draad terugvolgen, van het huis van de vader tot de exacte muur waar alles begon. Neem de straat naar het instituut: ons verhaal begint bij de Lumières thuis.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-1
+@@STITLE=Avenue des Frères Lumière
+Hier zijn we op de avenue des Frères Lumière, de straat die hun naam draagt. Terwijl we hem oplopen, laat me je de familie voorstellen, want zonder de vader zou er geen cinema zijn geweest.
+
+Antoine Lumière, de vader, is schilder en fotograaf. Een flamboyante, ambitieuze man, die naar Lyon verhuist en de toekomst van de fotografie aanvoelt. In die tijd is fotograferen een ambacht van geduld: je moet zelf je lichtgevoelige glasplaten voorbereiden, ter plekke, onder ingewikkelde omstandigheden. Antoine opent een kleine fabriek van fotografische platen.
+
+En daar komt de oudste zoon om de hoek kijken, Louis, een jongeman met talent voor scheikunde. Hij ontwikkelt een kant-en-klare plaat, droog, betrouwbaar, die hij het Blauwe Etiket noemt. Een revolutionair product, waar fotografen zich op storten. De fabriek groeit, wordt rijker, stelt honderden arbeiders tewerk.
+
+Onthoud dit punt goed, want het verklaart alles: wanneer de gebroeders Lumière de cinema uitvinden, zullen ze geen berooide dromers zijn. Ze zullen rijke industriëlen zijn, met werkplaatsen, monteurs, geld om te zoeken. De cinema wordt niet geboren op een zolder, maar in een draaiende fabriek.
+
+Laten we naar het huis lopen dat dit fortuin heeft gebouwd: het château Lumière.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-2
+@@STITLE=Château Lumière
+Kijk omhoog naar deze woning. Een groot burgerlijk huis, versierd, een beetje opzichtig, met zijn stenen balkons en zijn wintertuin van glas en ijzer. Dit is het château Lumière, de villa die de familie helemaal aan het einde van de negentiende eeuw laat bouwen, wanneer het geld van de platen rijkelijk stroomt.
+
+Antoine, de vader, wilde het naar zijn evenbeeld: gul, theatraal, gemaakt om te ontvangen. Je kunt je de lange gesprekken voorstellen, de twee al volwassen zonen die tot laat in de avond over scheikunde en mechaniek praten. Het huis vertelt alles over een geslaagde familie, trots op haar succes, en nog lang niet klaar met de wereld te verbazen.
+
+Vandaag herbergt deze villa het Institut Lumière, bewaker van hun herinnering en tempel van filmliefhebbers. We keren er terug aan het eind van onze wandeling, want daar klopt nog altijd het hart van de Lyonse cinema.
+
+Maar een mooi huis maakt nog geen revolutie. De revolutie speelde zich juist erachter af, in een veel bescheidener gebouw, zonder verdieping en zonder versiering. Loop met mij om de villa heen, naar de oude fabrieken. Daar werd het fortuin gemaakt, en daar zou de cinema naar buiten treden.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-3
+@@STITLE=Entrée publique de l'Institut Lumière
+Bekijk dit gebied, vandaag heringericht, waar nog enkele sporen van de grote Lumière-fabriek overblijven. Hier strekten zich de werkplaatsen uit die de fotografische platen bij duizenden vervaardigden, en weldra de film. Lange gebouwen, schoorstenen, veel arbeidskrachten: een echte industrie, een van de belangrijkste in haar vakgebied in Europa.
+
+Dit fabriekstoneel is geen detail, het is het hoofdpersonage. Want de eerste film uit de geschiedenis zal geen liefdesverhaal of veldslag vertellen. Hij zal, doodeenvoudig, arbeiders laten zien die deze fabriek verlaten aan het einde van hun werkdag. De cinema is geboren door zichzelf te filmen, door de plek van haar eigen geboorte te filmen.
+
+Stel je de drukte van zo'n plek voor in die tijd. Het personeel, vooral arbeidsters in lange rokken, die elke avond met honderden door de poort trokken. De gebroeders Lumière hadden dit schouwspel elke dag voor ogen. Op een dag in maart 1895 zette Louis een vreemd houten kistje voor die poort neer, en draaide een slinger rond.
+
+Loop nog een paar passen verder, tot de laatste overgebleven muur. Het is de heiligste plek van onze wandeling: de hangar du Premier-Film — de loods van de Eerste Film.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-4
+@@STITLE=Hangar du Premier-Film
+Stop voor deze grote muur van baksteen en ijzer: dit is de hangar du Premier-Film, het laatste relikwie van de fabriek. Men heeft hem gered, als een monument opgericht, omdat hier, precies hier, de cinema werd geboren.
+
+Op een dag in maart 1895 plaatst Louis Lumière zijn camera tegenover de poort. De deuren gaan open. De arbeiders komen naar buiten: vrouwen met een hoed, een paar mannen op de fiets, een rennende hond, een paard. Vijftig seconden. Meer niet. Het heet La Sortie de l'usine Lumière à Lyon, en het is de eerste film uit de geschiedenis.
+
+Kijk goed, want er is een charmant mysterie: er zijn drie versies van deze scène bekend, op verschillende momenten gefilmd. In de ene loopt een paard voorbij, in de andere twee, in de laatste geen enkel. Louis, een perfectionist, herhaalde zijn opname, zoals een regisseur zijn shot bijstelt. Al bij de eerste film wordt de werkelijkheid dus niet helemaal gefilmd zoals ze is: ze wordt gekozen.
+
+Die poort die je je voorstelt, die arbeidsters, al lang verdwenen, zijn er, levend, op de film, voor altijd. Blijf nog even. Draai je dan naar het naburige straatje, dat de naam van deze prestatie heeft gekregen.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-5
+@@STITLE=Rue du Premier-Film
+Hier is de rue du Premier-Film. Vroeger heette ze rue Saint-Victor, een willekeurige naam. De stad heeft haar herdoopt ter ere van wat er aan haar uiteinde gebeurde. Het is misschien de enige straat ter wereld waarvan de naam een eenvoudige filmopname viert.
+
+Ga hier staan en probeer, in gedachten, het beeld te overlappen dat je misschien al kent: de poort, de stroom arbeiders, het licht van een lentemiddag. De fabriek is verdwenen, de poort ook, maar de grond is dezelfde gebleven. Je loopt binnen het beeldkader van de camera. Je bent, in zekere zin, binnen het allereerste filmshot dat ooit werd gedraaid.
+
+Wat me hier raakt, is de bescheidenheid van de plek. Geen decor, geen nadruk. Een buitenwijkstraat, een muur, een kasseiensteen. Grote uitvindingen hebben niet altijd grote theaters nodig. Deze kwam uit een fabriek, door een dienstdeur, op een doodgewone dag.
+
+Maar hoe kon dit beeld ontstaan? Dankzij een machine, één enkele, van verbluffende ingenieusheid. Kom dichterbij: ik ga je vertellen over de cinematograaf.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-6
+@@STITLE=Entrée publique de l'Institut Lumière
+Het geheim van alles is een kist. Een houten kist van amper enkele kilo's, die een man onder zijn arm kan dragen. De gebroeders Lumière noemen hem de Cinématographe, en ze dienen het patent ervan in in februari 1895, enkele weken voordat ze hun eerste film draaien.
+
+Zijn schoonheid schuilt erin dat hij alles doet. Dezelfde kist filmt, trekt de kopieën en projecteert. Drie ambachten in één object. Vanbinnen laat een geniaal mechanisme de film beeld voor beeld vooruit gaan, schok na schok, een vijftiental per seconde: genoeg om het oog, misleid, te doen geloven dat het een doorlopende beweging ziet. Men vertelt dat Louis op dit mechanisme kwam door aan de naaimachine te denken, die de stof in kleine, regelmatige rukjes vooruit brengt.
+
+Vergelijk dit met Amerika. Daar had Edison inderdaad een machine voor bewegende beelden gebouwd, maar een zware, onbeweeglijke, waarbij men alleen keek, het oog tegen een kijkgaatje gedrukt. De Lumières daarentegen projecteren. Voor een hele zaal. De cinema wordt geboren uit precies dat gebaar: niet ieder in zijn eigen hoekje kijken, maar samen, in het donker, voor hetzelfde scherm.
+
+Deze lichte kist zal kunnen reizen. En hij zal de planeet doorkruisen. Volg me: laten we zien hoe de hele wereld de bewegende beelden ontdekte.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-7
+@@STITLE=Entrée publique de l'Institut Lumière
+De eerste film wordt in maart 1895 gedraaid. Maar de echte donderslag vindt aan het einde van dat jaar plaats, in Parijs, in een zaal aan de boulevard des Capucines. Op 28 december 1895 betalen toeschouwers voor het eerst hun plaats om geprojecteerde beelden te zien. Het zijn er een handjevol. Ze komen verbijsterd naar buiten. De cinema is zojuist een publiek spektakel geworden.
+
+Dan doen de Lumières iets visionairs: ze leiden operateurs op en sturen hen over de hele wereld. Deze mannen steken de zeeën over met hun houten kist, filmen een kroning in Rusland, piramides in Egypte, een straat in New York, een verre markt. Ze brengen de wereld terug in beelden en projecteren die overal. Binnen enkele jaren bekijkt de hele planeet zichzelf voor het eerst.
+
+En alles is al uitgevonden. De documentaire, met deze taferelen uit het echte leven. De komische film, met de beroemde scène van de tuinman die door een ondeugende jongen wordt natgespoten. Men vertelt zelfs dat, bij het zien van een frontaal gefilmde aankomende trein, sommige toeschouwers achteruit zouden zijn gedeinsd, in de veronderstelling dat de locomotief op hen af kwam. Waar of niet, het verhaal drukt de schok van deze eerste beelden goed uit.
+
+Laten we teruggaan naar het huis van de Lumières. Onze reis eindigt daar waar de herinnering waakt.
+
+@@SCENE=seed-100-lyon-lumiere-cinema-scene-8
+@@STITLE=Institut et Festival Lumière
+Hier staan we weer voor de villa van de Lumières, degene waar we begonnen zijn. Maar deze keer gaan we naar binnen in wat het geworden is: het Institut Lumière. Sinds 1982 waakt dit huis over de herinnering van de twee broers, bewaart hun films, hun machines, en vertoont elke avond cinema, in een zaal ingericht naast de beroemde loods.
+
+Want hier is het mooiste. De plek waar de cinema werd geboren, is geen stoffig mausoleum geworden. Het is een levende zaal, waar men komt om films te bekijken, oude en nieuwe, in het donker, samen, precies zoals de allereerste toeschouwers. Het hier uitgevonden gebaar herhaalt zich elke avond, op een paar meter van de oorspronkelijke poort.
+
+En elke herfst ontsteekt de stad zich voor het festival Lumière. De wereld van de cinema maakt de reis naar Monplaisir, naar deze fabrieksvoorstad, om een grote prijs uit te reiken aan een legendarische filmmaker. De grootste regisseurs ter wereld komen hierheen om te buigen voor twee broers uit Lyon. Diezelfden die, naar men zegt, dachten dat hun uitvinding geen enkele toekomst had.
+
+Ze hadden het schitterend mis. Wat zij op een dag in maart 1895, voor hun fabriek, hebben ontstoken, is nooit meer uitgedoofd. Bij elke vertoning, in elke zaal ter wereld, schijnt het licht van de Lumières nog altijd.
+
+Bedankt dat je deze draad met mij hebt teruggevolgd. Ga vanavond, waar je ook bent, een film kijken: het zal hun mooiste eerbetoon zijn. Dit was Guillaume; tot snel.

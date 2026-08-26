@@ -1,0 +1,259 @@
+@@LANG=en
+@@TITLE=Nice — Squares and Lanes of the Old Town
+@@DESC=Heritage — reading the old town through its squares, civic buildings, and passageways.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-0
+@@STITLE=Cours Saleya
+Stand in the middle of the cours Saleya and look at its shape before its façades. This long, open strip was laid out at the edge of the old town, running parallel to the shoreline. The sea is hidden today by buildings and the promenade, but its presence still governs the light, the wind, and the orientation of the streets. To the south, the chapelle de la Miséricorde unfolds its curved façade. Further on, the former palace of the Sardinian kings recalls that Nice belonged for a long time to the States of Savoy.
+
+The cours, then, is not simply a square. It's a seam between the tight fabric of the Vieux-Nice and a waterfront that has been reshaped many times. Notice the narrow passages opening onto its north side: each one compresses the view, then suddenly releases it into this elongated space. Our walk will follow that same movement, from opening to shadow, then back toward light.
+
+Leave the shoreline behind and reach the place du Palais-de-Justice via the rue de la Préfecture. Within a few steps, the city changes scale and reveals its civic face.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-1
+@@STITLE=Place du Palais-de-Justice
+The place du Palais-de-Justice looks almost geometric after the twists of the neighboring lanes. The large neoclassical building that gives it its name was built at the end of the nineteenth century. Its orderly façade, its front steps, and its columns assert a public authority quite different from that of the old aristocratic palaces. Opposite, the square opens up like an outdoor room, its façades standing in for walls.
+
+Pay particular attention to the entries. The rue de la Préfecture, the rue Alexandre-Mari, and the side passages arrive at different widths. They show how a square can absorb traffic flows without losing its unity. Here, the Vieux-Nice isn't only medieval or picturesque: it also bears the mark of the nineteenth century, when the city adapted its institutions and spaces to a new French framework.
+
+Cross without blocking the walkways, then take the rue de la Poissonnerie before climbing back toward the place Rossetti. The view narrows, the upper floors draw closer together, and the cathedral only appears at the very last moment. This delayed arrival is already a small piece of urban staging.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-2
+@@STITLE=Place Rossetti
+The place Rossetti leaves the cathédrale Sainte-Réparate almost no room to step back from. That's precisely what makes it interesting. Its baroque façade, completed in the seventeenth century and later reworked, rises in direct contact with the surrounding buildings. The bell tower, covered in glazed tiles, stands slightly apart, as though the overly narrow space had forced each element to find its own footing.
+
+Saint Reparata is the patron saint of Nice. The cathedral has carried her name since the Middle Ages, but the building you see today mostly dates from the great baroque reconstruction carried out when the city fell under the dukes of Savoy. Look at the pilasters, the curves, the niches: the stone composes a solemn façade without erasing the square's domestic scale.
+
+Turn slowly on the spot. The streets arrive at an angle, and no single view dominates for long. This is a square meant to be discovered on foot, not admired from a distance. Set off again along the rue Mascoïnat, heading north. The route passes beneath tall façades and soon reaches a space once tied to municipal life: the place Saint-François.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-3
+@@STITLE=Place Saint-François
+Above the place Saint-François, a square tower rises over the rooftops. It belonged to the former town hall, established here at the end of the sixteenth century. Its clock once kept a collective time, visible and audible to everyone. Before the municipal administration moved elsewhere, this square formed one of Nice's political centers, close to a former Franciscan convent.
+
+The tower's appearance has changed through successive restorations, but its position remains telling. It doesn't close off a grand avenue: it rises up within a dense fabric, at the crossing of modest streets. Notice how its vertical mass serves as a landmark where the ground itself refuses long straight lines. It's another way of orienting the city: not through a vista, but through a signal that rises above the houses.
+
+Continue toward the place Garibaldi via the rue Pairolière. This old street follows a historic commercial axis between the heart of the city and its eastern gate. Without lingering at the shopfronts, notice its arches, its narrow façades, and the way it leads almost naturally toward a broad, regular opening.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-4
+@@STITLE=Place Garibaldi
+The place Garibaldi marks a clean break. After the rue Pairolière, its scale and regular façades give the impression of entering another city. It was designed at the end of the eighteenth century by the architect Antonio Spinelli, as part of Nice's expansion eastward. Its arcades and trompe-l'œil painted façades answer to a single overall plan, conceived to welcome travelers and ceremonies.
+
+At its center stands the monument to Giuseppe Garibaldi, born in Nice in 1807. His presence is a reminder of how closely local history remains tied to both sides of the Alps and to shifting sovereignties. But look at the ground too: the square lies right alongside the former line of the fortifications. The compact city you've just walked through opens out here toward more recent districts.
+
+For the final stretch, skirt the old town along the rue Catherine-Ségurane, then reach the public entrance to the colline du Château. The climb to the tour Bellanda takes a bit of steady effort. It will offer the distance that's been missing so far, to read the whole route again.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-5
+@@STITLE=Tour Bellanda
+From the terrace of the tour Bellanda, the Vieux-Nice stops being a maze. Its rooftops form a compact mass between the hill, the Paillon, and the sea. The lookout sits on the base of a former defensive structure. The citadel that once crowned this height was destroyed on the orders of Louis XIV at the start of the eighteenth century; the hill later became a public promenade.
+
+Now look for the spaces you've walked through. The cours Saleya traces a long breath of open air near the shoreline. The bell tower of Sainte-Réparate rises out of the tight-knit fabric. Further on, the place Garibaldi signals a city extending beyond its vanished walls. What the lanes concealed, the height now connects: civic powers, religious buildings, old boundaries, and new openings all belong to the same story.
+
+The thread of this walk lies in that shift of perspective. Down below, Nice revealed itself in fragments, at the turn of a passage. Up here, it becomes a whole shape, constrained by its terrain and yet still capable of growing. Keep this map in mind as you go back down. Thank you for walking quietly through the old town. See you soon.
+
+@@LANG=es
+@@TITLE=Niza — Plazas y callejuelas del casco antiguo
+@@DESC=Patrimonio — leer la ciudad antigua en sus plazas, sus edificios civiles y sus pasajes.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-0
+@@STITLE=Cours Saleya
+Colócate en medio del cours Saleya y mira su forma antes que sus fachadas. Esta larga franja despejada se trazó al borde de la ciudad antigua, paralela a la orilla. El mar hoy queda oculto por las construcciones y el paseo marítimo, pero su presencia sigue regulando la luz, el viento y la orientación de las calles. Al sur, la chapelle de la Miséricorde despliega su fachada curva. Más allá, el antiguo palacio de los reyes sardos recuerda que Niza perteneció durante mucho tiempo a los Estados de Saboya.
+
+El cours, por tanto, no es una simple plaza. Es una costura entre la trama apretada del Vieux-Nice y un frente marítimo transformado varias veces. Fíjate en los pasajes estrechos que desembocan en su lado norte: cada uno comprime la mirada, y luego la libera de golpe en este espacio alargado. Nuestro paseo seguirá ese mismo movimiento, de la apertura hacia la sombra, y luego de nuevo hacia la luz.
+
+Deja atrás la orilla y llega a la place du Palais-de-Justice por la rue de la Préfecture. En pocos pasos, la ciudad cambia de escala y muestra su rostro cívico.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-1
+@@STITLE=Place du Palais-de-Justice
+La place du Palais-de-Justice parece casi geométrica después de los rodeos de las callejuelas vecinas. El gran edificio neoclásico que le da nombre se construyó a finales del siglo diecinueve. Su fachada ordenada, su escalinata y sus columnas afirman una autoridad pública muy distinta de la de los antiguos palacios aristocráticos. Enfrente, la plaza se abre como una sala al aire libre donde las fachadas hacen las veces de muros.
+
+Fíjate sobre todo en los accesos. La rue de la Préfecture, la rue Alexandre-Mari y los pasajes laterales llegan con anchuras diferentes. Muestran cómo una plaza puede absorber los flujos de circulación sin perder su unidad. Aquí, el Vieux-Nice no es solo medieval o pintoresco: también lleva la marca del siglo diecinueve, cuando la ciudad adaptó sus instituciones y sus espacios a un nuevo marco francés.
+
+Cruza sin entorpecer los pasos, y luego toma la rue de la Poissonnerie antes de subir hacia la place Rossetti. La perspectiva se estrecha, los pisos se acercan entre sí, y la catedral solo aparece en el último momento. Esta llegada tardía es ya una pequeña puesta en escena urbana.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-2
+@@STITLE=Place Rossetti
+La place Rossetti apenas deja perspectiva a la cathédrale Sainte-Réparate. Es precisamente eso lo que la hace interesante. Su fachada barroca, terminada en el siglo diecisiete y luego remodelada, surge en contacto directo con los edificios. El campanario, cubierto de tejas vidriadas, se eleva un poco apartado, como si el espacio demasiado estrecho hubiera obligado a cada elemento a encontrar su propio lugar.
+
+Santa Reparata es la patrona de Niza. La catedral lleva su nombre desde la Edad Media, pero el edificio que se ve hoy pertenece sobre todo a la gran reconstrucción barroca llevada a cabo en la época en que la ciudad dependía de los duques de Saboya. Observa los pilastras, las curvas y los nichos: la piedra compone una fachada solemne sin borrar la escala doméstica de la plaza.
+
+Gira lentamente sobre ti mismo. Las calles llegan en diagonal y ninguna perspectiva domina durante mucho tiempo. Es una plaza hecha para descubrirse a pie, no para mirarse de lejos. Reanuda la marcha por la rue Mascoïnat en dirección norte. El trayecto pasa bajo fachadas altas y pronto llega a un espacio antaño ligado a la vida municipal: la place Saint-François.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-3
+@@STITLE=Place Saint-François
+Por encima de la place Saint-François, una torre cuadrada domina los tejados. Pertenecía al antiguo ayuntamiento, instalado aquí a finales del siglo dieciséis. Su reloj marcaba un tiempo colectivo, visible y audible para todos. Antes de que la administración municipal se trasladara, esta plaza formaba, pues, uno de los centros políticos de Niza, cerca de un antiguo convento franciscano.
+
+La torre ha cambiado de aspecto a lo largo de las restauraciones, pero su posición sigue siendo elocuente. No cierra una gran avenida: surge en un tejido denso, en el cruce de calles modestas. Mira cómo su volumen vertical sirve de referencia cuando el suelo, por su parte, rechaza las líneas rectas largas. Es otra manera de orientar la ciudad: no mediante una perspectiva, sino mediante una señal que sobrepasa las casas.
+
+Continúa hacia la place Garibaldi por la rue Pairolière. Esta calle antigua sigue un eje comercial histórico entre el corazón de la ciudad y su puerta oriental. Sin detenerte en los escaparates, observa sus arcos, sus fachadas estrechas y la forma en que conduce casi de manera natural hacia una amplia apertura regular.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-4
+@@STITLE=Place Garibaldi
+La place Garibaldi marca una ruptura clara. Después de la rue Pairolière, su amplitud y sus fachadas regulares dan la impresión de entrar en otra ciudad. Fue diseñada a finales del siglo dieciocho por el arquitecto Antonio Spinelli, en el marco de la expansión de Niza hacia el este. Sus arcadas y sus fachadas pintadas en trampantojo responden a un proyecto de conjunto, concebido para acoger a viajeros y ceremonias.
+
+En el centro se alza el monumento a Giuseppe Garibaldi, nacido en Niza en 1807. Su presencia recuerda hasta qué punto la historia local sigue ligada a las dos vertientes de los Alpes y a los cambios de soberanía. Pero mira también el suelo: la plaza se encuentra en la inmediata vecindad del antiguo trazado de las fortificaciones. La ciudad compacta que acabas de atravesar se abre aquí hacia barrios más recientes.
+
+Para la última etapa, bordea la ciudad vieja por la rue Catherine-Ségurane, y luego llega al acceso público de la colline du Château. La subida hacia la tour Bellanda exige un esfuerzo tranquilo. Ofrecerá la distancia que ha faltado hasta ahora para releer todo el recorrido.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-5
+@@STITLE=Tour Bellanda
+Desde la terraza de la tour Bellanda, el Vieux-Nice deja de ser un laberinto. Sus tejados forman una masa compacta entre la colina, el Paillon y el mar. El mirador ocupa el basamento de una antigua obra defensiva. La ciudadela que dominaba esta altura fue destruida por orden de Luis XIV a principios del siglo dieciocho; la colina se convirtió después en un lugar de paseo público.
+
+Busca ahora los espacios recorridos. El cours Saleya traza una larga bocanada de aire cerca de la orilla. El campanario de Sainte-Réparate emerge del tejido apretado. Más allá, la place Garibaldi anuncia una ciudad que se extiende más allá de su recinto desaparecido. Lo que las callejuelas ocultaban, la altura lo conecta: poderes civiles, edificios religiosos, antiguos límites y aperturas nuevas pertenecen al mismo relato.
+
+El hilo de esta visita está en ese cambio de mirada. Abajo, Niza se revelaba por fragmentos, al doblar un pasaje. Aquí, se convierte en una forma entera, condicionada por su relieve y aun así siempre capaz de crecer. Guarda este mapa en la memoria cuando vuelvas a bajar. Gracias por caminar en voz baja por la ciudad antigua. Hasta pronto.
+
+@@LANG=de
+@@TITLE=Nizza — Plätze und Gassen der Altstadt
+@@DESC=Erbe — die Altstadt lesen anhand ihrer Plätze, öffentlichen Gebäude und Durchgänge.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-0
+@@STITLE=Cours Saleya
+Stell dich mitten auf den cours Saleya und betrachte seine Form, noch bevor du auf die Fassaden schaust. Dieser lange, offene Streifen wurde am Rand der Altstadt angelegt, parallel zur Küste. Das Meer ist heute durch Gebäude und die Promenade verdeckt, doch seine Nähe bestimmt weiterhin das Licht, den Wind und die Ausrichtung der Straßen. Im Süden entfaltet die chapelle de la Miséricorde ihre geschwungene Fassade. Weiter hinten erinnert der ehemalige Palast der sardischen Könige daran, dass Nizza lange zu den Staaten von Savoyen gehörte.
+
+Der cours ist also kein einfacher Platz. Er ist eine Naht zwischen dem dichten Gefüge des Vieux-Nice und einer mehrfach umgestalteten Uferfront. Beachte die schmalen Durchgänge, die auf seiner Nordseite münden: jeder von ihnen engt den Blick ein und gibt ihn dann plötzlich in diesen lang gestreckten Raum frei. Unser Spaziergang folgt genau dieser Bewegung, von der Öffnung zum Schatten, dann wieder zum Licht.
+
+Lass die Küste hinter dir und erreiche die place du Palais-de-Justice über die rue de la Préfecture. Nach wenigen Schritten wechselt die Stadt den Maßstab und zeigt ihr bürgerliches Gesicht.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-1
+@@STITLE=Place du Palais-de-Justice
+Die place du Palais-de-Justice wirkt nach den Umwegen der benachbarten Gassen fast geometrisch. Das große neoklassizistische Gebäude, das ihr den Namen gibt, wurde Ende des neunzehnten Jahrhunderts errichtet. Seine geordnete Fassade, seine Freitreppe und seine Säulen behaupten eine öffentliche Autorität, die sich deutlich von jener der alten aristokratischen Paläste unterscheidet. Gegenüber öffnet sich der Platz wie ein Außenraum, in dem die Fassaden die Rolle von Wänden übernehmen.
+
+Achte vor allem auf die Zugänge. Die rue de la Préfecture, die rue Alexandre-Mari und die seitlichen Durchgänge treffen mit unterschiedlichen Breiten ein. Sie zeigen, wie ein Platz Verkehrsströme aufnehmen kann, ohne seine Einheit zu verlieren. Hier ist der Vieux-Nice nicht nur mittelalterlich oder pittoresk: er trägt auch die Handschrift des neunzehnten Jahrhunderts, als die Stadt ihre Institutionen und Räume einem neuen französischen Rahmen anpasste.
+
+Überquere die Wege, ohne sie zu blockieren, und nimm dann die rue de la Poissonnerie, bevor du wieder zur place Rossetti aufsteigst. Die Perspektive verengt sich, die Stockwerke rücken näher zusammen, und die Kathedrale erscheint erst im allerletzten Moment. Diese verzögerte Ankunft ist bereits eine kleine städtebauliche Inszenierung.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-2
+@@STITLE=Place Rossetti
+Die place Rossetti lässt der cathédrale Sainte-Réparate kaum Abstand. Genau das macht sie interessant. Ihre barocke Fassade, im siebzehnten Jahrhundert vollendet und später umgestaltet, erhebt sich in direktem Kontakt mit den umliegenden Gebäuden. Der mit glasierten Ziegeln gedeckte Glockenturm steht etwas abseits, als hätte der zu enge Raum jedes Element gezwungen, seinen eigenen Platz zu finden.
+
+Die heilige Reparata ist die Schutzpatronin von Nizza. Die Kathedrale trägt ihren Namen seit dem Mittelalter, doch das heute sichtbare Gebäude stammt vor allem aus dem großen barocken Wiederaufbau, der zu der Zeit durchgeführt wurde, als die Stadt zu den Herzögen von Savoyen gehörte. Betrachte die Pilaster, die Rundungen und die Nischen: der Stein bildet eine feierliche Fassade, ohne den häuslichen Maßstab des Platzes zu verwischen.
+
+Dreh dich langsam auf der Stelle. Die Straßen treffen schräg ein, und keine Perspektive beherrscht lange das Bild. Dies ist ein Platz, der zu Fuß entdeckt werden will, nicht aus der Ferne betrachtet. Setz deinen Weg über die rue Mascoïnat in Richtung Norden fort. Die Strecke führt unter hohen Fassaden hindurch und erreicht bald einen Raum, der einst mit dem städtischen Leben verbunden war: die place Saint-François.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-3
+@@STITLE=Place Saint-François
+Über der place Saint-François erhebt sich ein quadratischer Turm über die Dächer. Er gehörte zum ehemaligen Rathaus, das hier Ende des sechzehnten Jahrhunderts eingerichtet wurde. Seine Uhr regelte eine gemeinsame Zeit, für alle sichtbar und hörbar. Bevor die städtische Verwaltung umzog, bildete dieser Platz also eines der politischen Zentren von Nizza, in der Nähe eines ehemaligen Franziskanerklosters.
+
+Der Turm hat im Lauf der Restaurierungen sein Aussehen verändert, doch seine Lage bleibt aufschlussreich. Er schließt keine große Allee ab: er erhebt sich in einem dichten Gefüge, an der Kreuzung bescheidener Straßen. Beachte, wie sein vertikales Volumen als Orientierungspunkt dient, wo der Boden selbst lange gerade Linien verweigert. Es ist eine andere Art, die Stadt zu orientieren: nicht durch eine Perspektive, sondern durch ein Signal, das über die Häuser hinausragt.
+
+Geh weiter zur place Garibaldi über die rue Pairolière. Diese alte Straße folgt einer historischen Handelsachse zwischen dem Herzen der Stadt und ihrem östlichen Tor. Ohne bei den Schaufenstern zu verweilen, beachte ihre Bögen, ihre schmalen Fassaden und die Art, wie sie fast natürlich zu einer weiten, regelmäßigen Öffnung führt.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-4
+@@STITLE=Place Garibaldi
+Die place Garibaldi markiert einen klaren Bruch. Nach der rue Pairolière erwecken ihre Weite und ihre regelmäßigen Fassaden den Eindruck, eine andere Stadt zu betreten. Sie wurde Ende des achtzehnten Jahrhunderts von dem Architekten Antonio Spinelli entworfen, im Rahmen der Ausdehnung von Nizza nach Osten. Ihre Arkaden und ihre in Trompe-l'œil bemalten Fassaden folgen einem einheitlichen Gesamtplan, der darauf ausgelegt war, Reisende und Zeremonien aufzunehmen.
+
+In der Mitte steht das Denkmal für Giuseppe Garibaldi, 1807 in Nizza geboren. Seine Präsenz erinnert daran, wie eng die lokale Geschichte mit beiden Seiten der Alpen und den wechselnden Herrschaftsverhältnissen verbunden bleibt. Doch schau auch auf den Boden: der Platz liegt in unmittelbarer Nähe des ehemaligen Verlaufs der Befestigungsanlagen. Die kompakte Stadt, die du gerade durchquert hast, öffnet sich hier zu jüngeren Vierteln hin.
+
+Für die letzte Etappe umgeh die Altstadt über die rue Catherine-Ségurane und erreiche dann den öffentlichen Zugang zur colline du Château. Der Aufstieg zum tour Bellanda erfordert eine ruhige Anstrengung. Er bietet den Abstand, der bis hierhin gefehlt hat, um die ganze Strecke noch einmal zu lesen.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-5
+@@STITLE=Tour Bellanda
+Von der Terrasse des tour Bellanda hört das Vieux-Nice auf, ein Labyrinth zu sein. Seine Dächer bilden eine kompakte Masse zwischen dem Hügel, dem Paillon und dem Meer. Der Aussichtspunkt liegt auf dem Sockel eines ehemaligen Verteidigungsbauwerks. Die Zitadelle, die einst diese Anhöhe krönte, wurde auf Befehl Ludwigs XIV. Anfang des achtzehnten Jahrhunderts zerstört; der Hügel wurde später zu einem öffentlichen Spazierort.
+
+Such nun nach den durchquerten Räumen. Der cours Saleya zeichnet einen langen Atemzug in der Nähe der Küste. Der Glockenturm von Sainte-Réparate ragt aus dem dichten Gefüge hervor. Weiter hinten kündigt die place Garibaldi eine Stadt an, die sich über ihre verschwundene Umfassung hinaus ausdehnt. Was die Gassen verbargen, verbindet die Höhe: bürgerliche Macht, religiöse Gebäude, alte Grenzen und neue Öffnungen gehören zur selben Erzählung.
+
+Der rote Faden dieses Spaziergangs liegt in diesem Blickwechsel. Unten offenbarte sich Nizza in Fragmenten, an der Biegung eines Durchgangs. Hier oben wird es zu einer ganzen Form, begrenzt durch sein Relief und doch stets fähig zu wachsen. Bewahre diese Karte im Gedächtnis, wenn du wieder hinabsteigst. Danke, dass du leise durch die Altstadt gegangen bist. Bis bald.
+
+@@LANG=it
+@@TITLE=Nizza — Piazze e vicoli della Città Vecchia
+@@DESC=Patrimonio — leggere la città antica nelle sue piazze, nei suoi edifici civili e nei suoi passaggi.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-0
+@@STITLE=Cours Saleya
+Mettiti in mezzo al cours Saleya e osserva la sua forma prima delle sue facciate. Questa lunga fascia libera fu tracciata al margine della città antica, parallelamente alla riva. Il mare oggi è nascosto dalle costruzioni e dalla passeggiata, ma la sua presenza continua a regolare la luce, il vento e l'orientamento delle strade. A sud, la chapelle de la Miséricorde dispiega la sua facciata curva. Più lontano, l'antico palazzo dei re sardi ricorda che Nizza appartenne a lungo agli Stati di Savoia.
+
+Il cours, dunque, non è una semplice piazza. È una cucitura tra il tessuto fitto del Vieux-Nice e un fronte marittimo trasformato più volte. Osserva i passaggi stretti che sbucano sul suo lato nord: ciascuno comprime lo sguardo, poi lo libera improvvisamente in questo spazio allungato. La nostra passeggiata seguirà lo stesso movimento, dall'apertura verso l'ombra, poi di nuovo verso la luce.
+
+Lascia alle spalle la riva e raggiungi la place du Palais-de-Justice tramite la rue de la Préfecture. In pochi passi, la città cambia scala e rivela il suo volto civico.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-1
+@@STITLE=Place du Palais-de-Justice
+La place du Palais-de-Justice appare quasi geometrica dopo i tortuosi vicoli vicini. Il grande edificio neoclassico che le dà il nome fu costruito alla fine del diciannovesimo secolo. La sua facciata ordinata, la sua scalinata e le sue colonne affermano un'autorità pubblica molto diversa da quella degli antichi palazzi aristocratici. Di fronte, la piazza si apre come una sala all'aperto in cui le facciate fanno le veci dei muri.
+
+Osserva soprattutto gli accessi. La rue de la Préfecture, la rue Alexandre-Mari e i passaggi laterali arrivano con larghezze diverse. Mostrano come una piazza possa assorbire i flussi di traffico senza perdere la propria unità. Qui, il Vieux-Nice non è solo medievale o pittoresco: porta anche l'impronta del diciannovesimo secolo, quando la città adattò le sue istituzioni e i suoi spazi a un nuovo assetto francese.
+
+Attraversa senza intralciare i passaggi, poi prendi la rue de la Poissonnerie prima di risalire verso la place Rossetti. La prospettiva si restringe, i piani si avvicinano tra loro, e la cattedrale appare solo all'ultimo momento. Questo arrivo tardivo è già una piccola messa in scena urbana.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-2
+@@STITLE=Place Rossetti
+La place Rossetti lascia quasi nessun distacco alla cathédrale Sainte-Réparate. È proprio questo a renderla interessante. La sua facciata barocca, completata nel diciassettesimo secolo e poi rimaneggiata, sorge a contatto diretto con gli edifici. Il campanile, coperto di tegole invetriate, si eleva un po' in disparte, come se lo spazio troppo stretto avesse costretto ogni elemento a trovare il proprio posto.
+
+Santa Reparata è la patrona di Nizza. La cattedrale porta il suo nome dal Medioevo, ma l'edificio visibile oggi appartiene soprattutto alla grande ricostruzione barocca condotta nell'epoca in cui la città dipendeva dai duchi di Savoia. Osserva i pilastri, le curve e le nicchie: la pietra compone una facciata solenne senza cancellare la scala domestica della piazza.
+
+Girati lentamente su te stesso. Le strade arrivano di sbieco e nessuna prospettiva domina a lungo. È una piazza fatta per essere scoperta a piedi, non guardata da lontano. Riprendi il cammino lungo la rue Mascoïnat in direzione nord. Il percorso passa sotto facciate alte e raggiunge presto uno spazio un tempo legato alla vita municipale: la place Saint-François.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-3
+@@STITLE=Place Saint-François
+Sopra la place Saint-François, una torre quadrata domina i tetti. Apparteneva all'antico municipio, insediato qui alla fine del sedicesimo secolo. Il suo orologio regolava un tempo collettivo, visibile e udibile da tutti. Prima che l'amministrazione municipale si trasferisse, questa piazza costituiva dunque uno dei centri politici di Nizza, nei pressi di un antico convento francescano.
+
+La torre ha cambiato aspetto nel corso dei restauri, ma la sua posizione resta eloquente. Non chiude un grande viale: sorge in un tessuto denso, all'incrocio di strade modeste. Osserva come il suo volume verticale funga da punto di riferimento quando il suolo, dal canto suo, rifiuta le lunghe linee rette. È un altro modo di orientare la città: non tramite una prospettiva, ma tramite un segnale che supera le case.
+
+Continua verso la place Garibaldi lungo la rue Pairolière. Questa via antica segue un asse commerciale storico tra il cuore della città e la sua porta orientale. Senza soffermarti sulle vetrine, osserva i suoi archi, le sue facciate strette e il modo in cui conduce quasi naturalmente verso un'ampia apertura regolare.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-4
+@@STITLE=Place Garibaldi
+La place Garibaldi segna una rottura netta. Dopo la rue Pairolière, la sua ampiezza e le sue facciate regolari danno l'impressione di entrare in un'altra città. Fu disegnata alla fine del diciottesimo secolo dall'architetto Antonio Spinelli, nell'ambito dell'espansione di Nizza verso est. I suoi portici e le sue facciate dipinte a trompe-l'œil rispondono a un progetto d'insieme, concepito per accogliere viaggiatori e cerimonie.
+
+Al centro si erge il monumento a Giuseppe Garibaldi, nato a Nizza nel 1807. La sua presenza ricorda quanto la storia locale resti legata a entrambi i versanti delle Alpi e ai cambiamenti di sovranità. Ma guarda anche il suolo: la piazza si trova nelle immediate vicinanze dell'antico tracciato delle fortificazioni. La città compatta che hai appena attraversato si apre qui verso quartieri più recenti.
+
+Per l'ultima tappa, costeggia la città vecchia lungo la rue Catherine-Ségurane, poi raggiungi l'accesso pubblico alla colline du Château. La salita verso la tour Bellanda richiede uno sforzo tranquillo. Offrirà il distacco che finora è mancato per rileggere l'intero percorso.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-5
+@@STITLE=Tour Bellanda
+Dalla terrazza della tour Bellanda, il Vieux-Nice smette di essere un labirinto. I suoi tetti formano una massa compatta tra la collina, il Paillon e il mare. Il belvedere occupa la base di un'antica opera difensiva. La cittadella che dominava questa altura fu distrutta per ordine di Luigi XIV all'inizio del diciottesimo secolo; la collina divenne poi un luogo di passeggio pubblico.
+
+Cerca ora gli spazi attraversati. Il cours Saleya disegna un lungo respiro vicino alla riva. Il campanile di Sainte-Réparate emerge dal tessuto fitto. Più lontano, la place Garibaldi annuncia una città che si estende oltre la sua cinta scomparsa. Ciò che i vicoli nascondevano, l'altezza lo collega: poteri civili, edifici religiosi, antichi limiti e nuove aperture appartengono alla stessa storia.
+
+Il filo di questa visita sta in questo cambio di sguardo. In basso, Nizza si rivelava per frammenti, alla svolta di un passaggio. Qui, diventa una forma intera, vincolata dal suo rilievo eppure sempre capace di crescere. Conserva questa mappa nella memoria quando ridiscenderai. Grazie per aver camminato a voce bassa nella città antica. A presto.
+
+@@LANG=nl
+@@TITLE=Nice — Pleinen en steegjes van de oude stad
+@@DESC=Erfgoed — de oude stad lezen in haar pleinen, haar openbare gebouwen en haar doorgangen.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-0
+@@STITLE=Cours Saleya
+Ga midden op de cours Saleya staan en kijk naar de vorm ervan, nog voor je naar de gevels kijkt. Deze lange, open strook werd aangelegd aan de rand van de oude stad, evenwijdig aan de kustlijn. De zee is vandaag verborgen achter gebouwen en de promenade, maar haar aanwezigheid bepaalt nog steeds het licht, de wind en de oriëntatie van de straten. In het zuiden ontvouwt de chapelle de la Miséricorde haar gebogen gevel. Verderop herinnert het voormalige paleis van de Sardijnse koningen eraan dat Nice lange tijd toebehoorde aan de Staten van Savoye.
+
+De cours is dus geen eenvoudig plein. Het is een naad tussen het dichte weefsel van het Vieux-Nice en een havenfront dat meermaals is omgevormd. Let op de smalle doorgangen die uitkomen op de noordkant: elk daarvan perst de blik samen, en laat hem dan plotseling los in deze langgerekte ruimte. Onze wandeling volgt diezelfde beweging, van openheid naar schaduw, en dan weer naar licht.
+
+Laat de kustlijn achter je en bereik de place du Palais-de-Justice via de rue de la Préfecture. Binnen enkele stappen verandert de stad van schaal en toont ze haar burgerlijke gezicht.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-1
+@@STITLE=Place du Palais-de-Justice
+De place du Palais-de-Justice oogt bijna geometrisch na de kronkels van de omliggende steegjes. Het grote neoclassicistische gebouw dat er zijn naam aan geeft, werd eind negentiende eeuw gebouwd. Zijn ordelijke gevel, zijn bordestrap en zijn zuilen bevestigen een publiek gezag dat sterk verschilt van dat van de oude aristocratische paleizen. Ertegenover opent het plein zich als een buitenkamer, waarin de gevels de rol van muren vervullen.
+
+Let vooral op de toegangen. De rue de la Préfecture, de rue Alexandre-Mari en de zijdoorgangen komen aan met verschillende breedtes. Ze tonen hoe een plein verkeersstromen kan opnemen zonder zijn eenheid te verliezen. Hier is het Vieux-Nice niet alleen middeleeuws of pittoresk: het draagt ook het stempel van de negentiende eeuw, toen de stad haar instellingen en ruimtes aanpaste aan een nieuw Frans kader.
+
+Steek over zonder de looproutes te hinderen, en neem dan de rue de la Poissonnerie voordat je weer omhoog gaat naar de place Rossetti. Het perspectief versmalt, de verdiepingen komen dichter bij elkaar, en de kathedraal verschijnt pas op het allerlaatste moment. Deze late aankomst is al een kleine stedelijke enscenering.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-2
+@@STITLE=Place Rossetti
+De place Rossetti laat de cathédrale Sainte-Réparate bijna geen afstand. Precies dat maakt het interessant. Haar barokke gevel, voltooid in de zeventiende eeuw en later verbouwd, rijst op in direct contact met de omliggende gebouwen. De klokkentoren, bedekt met geglazuurde dakpannen, staat wat apart, alsof de te krappe ruimte elk element had gedwongen zijn eigen plek te vinden.
+
+De heilige Reparata is de beschermheilige van Nice. De kathedraal draagt haar naam sinds de middeleeuwen, maar het gebouw dat je vandaag ziet, dateert vooral uit de grote barokke wederopbouw die werd uitgevoerd in de tijd dat de stad onder de hertogen van Savoye viel. Bekijk de pilasters, de rondingen en de nissen: het steen vormt een plechtige gevel zonder de huiselijke schaal van het plein uit te wissen.
+
+Draai langzaam om je as. De straten komen er schuin op uit, en geen enkel perspectief domineert lang. Dit is een plein dat bedoeld is om te voet te ontdekken, niet om van veraf te bekijken. Vervolg je weg via de rue Mascoïnat, in noordelijke richting. De route loopt onder hoge gevels door en bereikt al snel een ruimte die ooit verbonden was met het gemeentelijke leven: de place Saint-François.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-3
+@@STITLE=Place Saint-François
+Boven de place Saint-François rijst een vierkante toren uit boven de daken. Hij hoorde bij het voormalige stadhuis, dat hier eind zestiende eeuw werd gevestigd. De klok regelde een gezamenlijke tijd, zichtbaar en hoorbaar voor iedereen. Voordat het gemeentelijke bestuur verhuisde, vormde dit plein dus een van de politieke centra van Nice, vlak bij een voormalig franciscanenklooster.
+
+De toren is in de loop van de restauraties van uiterlijk veranderd, maar zijn positie blijft veelzeggend. Hij sluit geen grote laan af: hij rijst op in een dicht weefsel, op het kruispunt van bescheiden straten. Let op hoe zijn verticale volume als oriëntatiepunt dient, waar de grond zelf lange rechte lijnen weigert. Het is een andere manier om de stad te oriënteren: niet door een vergezicht, maar door een signaal dat boven de huizen uitstijgt.
+
+Ga verder naar de place Garibaldi via de rue Pairolière. Deze oude straat volgt een historische handelsas tussen het hart van de stad en haar oostelijke poort. Zonder te blijven hangen bij de etalages, let op de bogen, de smalle gevels en de manier waarop de straat bijna vanzelf leidt naar een brede, regelmatige opening.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-4
+@@STITLE=Place Garibaldi
+De place Garibaldi markeert een duidelijke breuk. Na de rue Pairolière wekken de ruimte en de regelmatige gevels de indruk dat je een andere stad binnenkomt. Het plein werd eind achttiende eeuw ontworpen door de architect Antonio Spinelli, in het kader van de uitbreiding van Nice naar het oosten. De arcaden en de in trompe-l'œil geschilderde gevels beantwoorden aan één geheel plan, bedoeld om reizigers en plechtigheden te ontvangen.
+
+In het midden staat het monument voor Giuseppe Garibaldi, geboren in Nice in 1807. Zijn aanwezigheid herinnert eraan hoezeer de lokale geschiedenis verbonden blijft met beide zijden van de Alpen en met wisselende soevereiniteit. Maar kijk ook naar de grond: het plein bevindt zich vlak naast het voormalige tracé van de vestingwerken. De compacte stad die je zojuist hebt doorkruist, opent zich hier naar nieuwere wijken.
+
+Voor de laatste etappe loop je langs de oude stad via de rue Catherine-Ségurane, en bereik je vervolgens de openbare toegang tot de colline du Château. De klim naar de tour Bellanda vergt een rustige inspanning. Hij biedt de afstand die tot nu toe ontbrak om de hele route opnieuw te lezen.
+
+@@SCENE=seed-100-nice-places-et-ruelles-du-vieux-nice-scene-5
+@@STITLE=Tour Bellanda
+Vanaf het terras van de tour Bellanda houdt het Vieux-Nice op een doolhof te zijn. De daken vormen een compacte massa tussen de heuvel, de Paillon en de zee. Het uitzichtpunt bevindt zich op de sokkel van een voormalig verdedigingswerk. De citadel die deze hoogte ooit bekroonde, werd begin achttiende eeuw op bevel van Lodewijk XIV vernietigd; de heuvel werd later een plek voor openbare wandelingen.
+
+Zoek nu de doorlopen ruimtes. De cours Saleya tekent een lange ademtocht nabij de kustlijn. De klokkentoren van Sainte-Réparate steekt boven het dichte weefsel uit. Verderop kondigt de place Garibaldi een stad aan die zich uitstrekt voorbij haar verdwenen ommuring. Wat de steegjes verborgen, verbindt de hoogte: burgerlijke machten, religieuze gebouwen, oude grenzen en nieuwe openingen horen bij hetzelfde verhaal.
+
+De rode draad van deze wandeling ligt in die verandering van blik. Beneden onthulde Nice zich in fragmenten, bij de bocht van een doorgang. Hier boven wordt het een geheel gestalte, beperkt door zijn reliëf en toch altijd nog in staat te groeien. Bewaar deze kaart in je geheugen wanneer je weer afdaalt. Dank je dat je zachtjes door de oude stad hebt gelopen. Tot snel.

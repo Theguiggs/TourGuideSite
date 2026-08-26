@@ -1,0 +1,127 @@
+{
+  "tourId": "seed-100-honfleur-port-des-explorateurs",
+  "sessionId": "seed-100-honfleur-port-des-explorateurs-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Honfleur",
+  "title": "Honfleur — Le vieux bassin des grands départs",
+  "description": "Histoire & secrets — de Champlain parti fonder Québec aux terre-neuvas, le port des grands départs.",
+  "themes": [
+    "Histoire & secrets — de Champlain parti fonder Québec aux terre-neuvas, le port des grands départs."
+  ],
+  "baseLanguage": "fr",
+  "chars": 8261,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "en": "History & secrets, de Champlain set out to found Quebec at the Newfoundlands, the port of major departures.",
+    "it": "Storia e segreti, de Champlain ha iniziato a trovare il Quebec nelle Terre di Terranova, il porto delle principali partenze.",
+    "es": "Historia & secretos, de Champlain se fundó Quebec en las tierras-neuvas, el puerto de los grandes salidas.",
+    "de": "Geschichte & Geheimnisse, von Champlain wollte Québec in den neuen Terre-neuvas gründen, der Hafen der großen Abfahrten."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-honfleur-port-des-explorateurs-scene-0",
+      "index": 0,
+      "title": "La Lieutenance",
+      "text": "Arrête-toi devant ce vieux bâtiment de pierre, à l'entrée du bassin, là où l'eau du port rejoint l'eau du large. C'est la Lieutenance. Un gros morceau de forteresse, trapu, percé d'une arche : c'est presque tout ce qui reste des remparts qui, autrefois, enfermaient Honfleur.\r\n\r\nIci logeait le lieutenant du roi, l'homme qui commandait la place au nom de Sa Majesté. Et cette arche, sous laquelle passaient les charrettes, c'était l'ancienne porte de Caen, l'une des entrées de la ville close.\r\n\r\nRegarde-la bien, parce que cette porte a un secret. Elle a été, pour des milliers d'hommes, la dernière image de la France. Le dernier mur du pays qu'ils voyaient avant des mois, parfois des années, parfois pour toujours.\r\n\r\nCar voilà l'histoire que je vais te raconter tout au long de cette balade. Ce petit port tranquille, avec ses barques et ses terrasses, a été l'un des grands ports de départ du monde. D'ici, des marins sont partis fonder des villes de l'autre côté de l'océan. D'ici, chaque année, des flottes entières mettaient le cap vers des mers glacées pour y pêcher la morue. Et bien avant eux, des découvreurs sans carte avaient déjà mis le cap vers des mondes que personne, en Europe, n'avait encore vus.\r\n\r\nDe ce bassin, un homme est parti fonder Québec. Il s'appelait Champlain. On va suivre sa trace, et celle de tous les autres.\r\n\r\nLonge le quai, à droite, le long du Vieux Bassin. Suis-moi.",
+      "hash": "93dddd9",
+      "chars": 1408,
+      "existingSegments": {
+        "en": "seed-100-honfleur-port-des-explorateurs-scene-0-seg-en",
+        "it": "seed-100-honfleur-port-des-explorateurs-scene-0-seg-it",
+        "es": "seed-100-honfleur-port-des-explorateurs-scene-0-seg-es",
+        "de": "seed-100-honfleur-port-des-explorateurs-scene-0-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-honfleur-port-des-explorateurs-scene-1",
+      "index": 1,
+      "title": "Le Vieux Bassin",
+      "text": "Te voilà le long du Vieux Bassin, avec ses hautes maisons qui se mirent dans l'eau. Ce décor de carte postale a une date de naissance. Nous sommes en 1681. Le roi, c'est Louis XIV, et son grand ministre, Colbert, veut faire de la France une puissance maritime. Il ordonne d'agrandir le port de Honfleur.\r\n\r\nOn abat une partie des remparts — c'est pour ça qu'il ne reste que la Lieutenance —, on creuse ce bassin, on le borde de quais. Et tout autour, les marchands, les armateurs se font bâtir ces maisons étroites, montant très haut, parfois jusqu'à six ou sept étages, coiffées d'ardoise. Étroites, parce que le terrain sur le quai coûtait cher. Hautes, pour loger sous le même toit la famille, les commis et les marchandises.\r\n\r\nCe que tu prends pour un joli port de plaisance était une machine à commercer. Du bois, du sel, du poisson, des peaux venues d'Amérique. Une ruche. Sur ces quais, ça criait, ça chargeait, ça marchandait dans toutes les langues.\r\n\r\nContinue le long du bassin, vers le fond, là où l'on garde la mémoire d'un homme parti très loin. Suis-moi.",
+      "hash": "b02f7c9b",
+      "chars": 1070,
+      "existingSegments": {
+        "en": "seed-100-honfleur-port-des-explorateurs-scene-1-seg-en",
+        "de": "seed-100-honfleur-port-des-explorateurs-scene-1-seg-de",
+        "es": "seed-100-honfleur-port-des-explorateurs-scene-1-seg-es",
+        "it": "seed-100-honfleur-port-des-explorateurs-scene-1-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-honfleur-port-des-explorateurs-scene-2",
+      "index": 2,
+      "title": "Vieux Bassin, mémoire du départ de Champlain",
+      "text": "C'est ici, quelque part sur ces quais, qu'a commencé l'aventure du Canada français. En 1608, un navigateur embarque à Honfleur sur un navire qu'on dit avoir eu pour nom le Don-de-Dieu. Il s'appelle Samuel de Champlain.\r\n\r\nIl traverse l'Atlantique, remonte un immense fleuve, le Saint-Laurent, et sur un promontoire, il fonde un poste qu'il baptise Québec. La ville existe toujours. Elle est aujourd'hui le cœur de tout un peuple francophone en Amérique du Nord. Et tout ça est parti d'ici, de ce bassin.\r\n\r\nChamplain n'a pas fait le voyage une fois, mais des dizaines. Honfleur était sa base, son point de départ, son port de retour. Là-bas, on troquait des couteaux et des étoffes contre des fourrures de castor — car c'est la mode des chapeaux de castor, en Europe, qui a financé la conquête du Canada.\r\n\r\nPense à ce que représentait un tel départ. Des semaines de mer sur une coque de bois, l'inconnu au bout, et une chance sur deux de ne jamais revenir. Il fallait une sacrée foi pour larguer les amarres.\r\n\r\nEnfonce-toi maintenant dans la vieille ville, derrière les quais, jusqu'à deux grands bâtiments de bois. Suis-moi.",
+      "hash": "51f0e44c",
+      "chars": 1127,
+      "existingSegments": {
+        "en": "seed-100-honfleur-port-des-explorateurs-scene-2-seg-en",
+        "de": "seed-100-honfleur-port-des-explorateurs-scene-2-seg-de",
+        "it": "seed-100-honfleur-port-des-explorateurs-scene-2-seg-it",
+        "es": "seed-100-honfleur-port-des-explorateurs-scene-2-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-honfleur-port-des-explorateurs-scene-3",
+      "index": 3,
+      "title": "Les Greniers à sel",
+      "text": "Regarde ces vastes bâtiments de pierre et de bois, presque des cathédrales sans clocher. Ce sont les greniers à sel. On les a construits sous Louis XIV pour y entreposer une seule chose, mais une chose vitale : le sel.\r\n\r\nPourquoi tant de sel ? À cause de la morue. Chaque année, des bateaux de Honfleur partaient vers Terre-Neuve, au large du Canada, sur les grands bancs de poissons. Ces marins-là, on les appelait les terre-neuvas. Ils s'absentaient des mois, dans le froid, le brouillard et la houle, à pêcher la morue à la ligne.\r\n\r\nMais un poisson, ça pourrit. Alors, à bord, on l'ouvrait, on le vidait, et on l'enfouissait dans le sel pour le conserver jusqu'au retour. Sans sel, pas de morue ; sans morue, pas de terre-neuvas. Ces greniers étaient donc le vrai trésor du port. On y gardait le sel sous clé, car il valait cher et le roi le taxait lourdement.\r\n\r\nLa pêche à la morue a nourri Honfleur pendant des siècles. Des générations de familles ont vécu au rythme des départs de printemps et des retours d'automne — quand ils revenaient.\r\n\r\nReviens vers les quais, jusqu'à une vieille église de pierre devenue musée. Suis-moi.",
+      "hash": "b8ea917e",
+      "chars": 1137,
+      "existingSegments": {
+        "it": "seed-100-honfleur-port-des-explorateurs-scene-3-seg-it",
+        "de": "seed-100-honfleur-port-des-explorateurs-scene-3-seg-de",
+        "es": "seed-100-honfleur-port-des-explorateurs-scene-3-seg-es",
+        "en": "seed-100-honfleur-port-des-explorateurs-scene-3-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-honfleur-port-des-explorateurs-scene-4",
+      "index": 4,
+      "title": "Église Saint-Étienne",
+      "text": "Cette église de pierre, la plus vieille de Honfleur, ne dit plus la messe. On l'a transformée en musée de la Marine. À l'intérieur : des maquettes de bateaux, des instruments de navigation, et le souvenir de tous ces marins du port.\r\n\r\nCar derrière les belles histoires de départs, il y a l'autre vérité. La mer prenait. Chaque hiver, des bateaux ne rentraient pas. Un coup de vent sur les bancs de Terre-Neuve, un récif, une voie d'eau, et un équipage entier disparaissait. Dans les familles de Honfleur, on comptait les veuves.\r\n\r\nC'est pour ça que la foi tenait tant de place. Avant de partir, les marins montaient là-haut, sur la colline, prier à la chapelle Notre-Dame-de-Grâce. Ils y laissaient une maquette de leur navire, comme une promesse : ramène-moi, et je t'offre mon bateau en miniature. Ces ex-voto pendent encore au plafond de la chapelle.\r\n\r\nPartir de Honfleur, ce n'était pas une aventure de carte postale. C'était un pari sur sa propre vie, renouvelé à chaque saison.\r\n\r\nSuis le quai vers la sortie du port, là où l'eau s'ouvre vers le grand large. Suis-moi.",
+      "hash": "c0c42c78",
+      "chars": 1077,
+      "existingSegments": {
+        "en": "seed-100-honfleur-port-des-explorateurs-scene-4-seg-en",
+        "it": "seed-100-honfleur-port-des-explorateurs-scene-4-seg-it",
+        "de": "seed-100-honfleur-port-des-explorateurs-scene-4-seg-de",
+        "es": "seed-100-honfleur-port-des-explorateurs-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-honfleur-port-des-explorateurs-scene-5",
+      "index": 5,
+      "title": "Le port des découvreurs",
+      "text": "Fais quelques pas encore vers l'avant-port, là où les bateaux gagnent la mer. Et regarde vers le large, parce que Champlain et les terre-neuvas ne sont pas les seuls à être partis d'ici.\r\n\r\nBien avant eux, Honfleur était déjà un port d'explorateurs. En 1503, un armateur d'ici, Binot Paulmier de Gonneville, met les voiles vers le sud, très loin, et atteint des terres inconnues — sans doute la côte du Brésil. Il en revient deux ans plus tard avec un jeune homme de là-bas, fils d'un chef, qu'il avait promis de ramener chez lui, et qu'il n'a jamais pu rendre.\r\n\r\nOn raconte même que, des siècles plus tôt, des marins de ce port auraient poussé jusqu'aux côtes d'Afrique. La preuve manque, les historiens en doutent, alors restons prudents. Mais cette vieille histoire dit bien quelque chose de vrai : ici, on n'avait pas peur de l'inconnu.\r\n\r\nPense à ces hommes. Pas de carte fiable, pas d'idée de ce qui les attendait au bout de l'eau. Juste une coque, une voile, et l'envie folle de voir ce qu'il y avait derrière l'horizon.\r\n\r\nMarche jusqu'au bout de la jetée, face à la mer et au grand pont. Notre histoire se termine là. Suis-moi.",
+      "hash": "781bf6a1",
+      "chars": 1137,
+      "existingSegments": {
+        "es": "seed-100-honfleur-port-des-explorateurs-scene-5-seg-es",
+        "en": "seed-100-honfleur-port-des-explorateurs-scene-5-seg-en",
+        "it": "seed-100-honfleur-port-des-explorateurs-scene-5-seg-it",
+        "de": "seed-100-honfleur-port-des-explorateurs-scene-5-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-honfleur-port-des-explorateurs-scene-6",
+      "index": 6,
+      "title": "L'avant-port et le Pont de Normandie",
+      "text": "Nous voici au bout du port, face au large. Devant toi, l'estuaire de la Seine s'ouvre en grand, et là, immense, ce pont blanc suspendu à ses câbles qui enjambe le fleuve d'un seul bond : le Pont de Normandie. On l'a ouvert en 1995. Longtemps, il a compté parmi les plus grands ponts de ce type au monde. Aujourd'hui, il relie Honfleur au Havre en quelques minutes.\r\n\r\nPrends la mesure de ce que tu vois. Ce même chenal, cette même eau qui file vers la mer, c'est la route qu'ont prise tous ceux dont je t'ai parlé. Champlain, cap sur Québec. Les terre-neuvas, cap sur les bancs de morue. De Gonneville, cap sur le Brésil. Tous sont passés par là, sous les yeux de la Lieutenance, pour se fondre dans cet horizon.\r\n\r\nC'est ça, le secret de Honfleur. Ce n'est pas seulement le plus joli port de Normandie. C'est un seuil. Une porte de sortie du monde connu. Pendant des siècles, des hommes ordinaires — des marins, des pêcheurs, des cadets sans fortune — ont largué les amarres ici pour aller redessiner la carte de la Terre. Certains ont fondé des villes. D'autres ne sont jamais revenus. Tous ont regardé, une dernière fois, cette même arche de pierre.\r\n\r\nLe pont a remplacé les grandes traversées. Mais l'eau, elle, coule toujours vers le large. Reste un moment à la regarder partir. Et à bientôt, l'ami.",
+      "hash": "662e9cf2",
+      "chars": 1305,
+      "existingSegments": {
+        "de": "seed-100-honfleur-port-des-explorateurs-scene-6-seg-de",
+        "es": "seed-100-honfleur-port-des-explorateurs-scene-6-seg-es",
+        "it": "seed-100-honfleur-port-des-explorateurs-scene-6-seg-it",
+        "en": "seed-100-honfleur-port-des-explorateurs-scene-6-seg-en"
+      }
+    }
+  ]
+}

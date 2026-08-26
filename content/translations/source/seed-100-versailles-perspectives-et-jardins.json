@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-versailles-perspectives-et-jardins",
+  "sessionId": "seed-100-versailles-perspectives-et-jardins-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Versailles",
+  "title": "Versailles — Perspectives et jardins",
+  "description": "Paysage urbain — lire les axes publics qui prolongent la ville royale hors du château.",
+  "themes": [
+    "Paysage urbain — lire les axes publics qui prolongent la ville royale hors du château."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6418,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "es": "Paisaje urbano, leer los ejes públicos que prolongan la ciudad real fuera del castillo.",
+    "en": "Urban landscape, read the public axes that extend the royal city out of the castle.",
+    "de": "Stadtlandschaft, lesen Sie die öffentlichen Achsen, die königlichen Ort aus dem Schloss zu verlängern.",
+    "it": "Paesaggio urbano, leggere gli assi pubblici che estendono la città reale fuori dal castello."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-versailles-perspectives-et-jardins-scene-0",
+      "index": 0,
+      "title": "Place d’Armes",
+      "text": "Depuis la place d’Armes, le château occupe tout l’horizon occidental. Retourne-toi maintenant vers la ville. Trois grandes avenues partent en éventail : l’avenue de Saint-Cloud, l’avenue de Paris et l’avenue de Sceaux. Cette patte d’oie organise Versailles autour d’une perspective royale et distribue les mouvements bien au-delà des grilles.\n\nLa place sert de vaste seuil entre palais et cité. Son ampleur permettait les arrivées, les cérémonies et les déploiements de la cour. Mais elle agit aussi comme un instrument visuel : plus tu t’éloignes, plus la façade du château reste présente dans l’axe. La ville entière semble mise en scène pour conduire vers elle.\n\nNotre parcours restera dans les espaces publics extérieurs. Il cherchera comment les avenues, les places et les jardins prolongent l’ordre du domaine sans lui appartenir complètement. Pars par l’avenue de Paris jusqu’à l’hôtel de ville. En marchant sur le cheminement autorisé, observe la largeur exceptionnelle de l’axe et les contre-allées qui séparent les rythmes de circulation.",
+      "hash": "71607c74",
+      "chars": 1048,
+      "existingSegments": {
+        "de": "seed-100-versailles-perspectives-et-jardins-scene-0-seg-de",
+        "es": "seed-100-versailles-perspectives-et-jardins-scene-0-seg-es",
+        "en": "seed-100-versailles-perspectives-et-jardins-scene-0-seg-en",
+        "it": "seed-100-versailles-perspectives-et-jardins-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-perspectives-et-jardins-scene-1",
+      "index": 1,
+      "title": "Hôtel de ville",
+      "text": "L’hôtel de ville de Versailles occupe un édifice dont l’histoire précède sa fonction municipale actuelle. L’ancien hôtel de Conti fut acquis par la ville au XIXe siècle puis profondément transformé à la fin de ce siècle. Sa façade monumentale répond à l’ampleur de l’avenue de Paris et affirme un pouvoir civique dans une composition héritée de la monarchie.\n\nPlace-toi de manière à garder le château dans ton dos. L’axe file vers l’est sur plusieurs kilomètres. Les alignements d’arbres, les chaussées et les contre-allées donnent une profondeur presque théâtrale à une infrastructure pourtant quotidienne. Versailles n’est pas seulement une ville entourant un palais ; c’est un plan urbain conçu par relations visuelles.\n\nReviens vers la place d’Armes puis engage-toi dans l’avenue de Saint-Cloud jusqu’à la place Hoche. Cette étape plus resserrée introduit une figure centrale dans le paysage. La statue du général Hoche, né à Versailles, transforme le carrefour en lieu de mémoire tout en maintenant les grandes directions du plan.",
+      "hash": "711d1e16",
+      "chars": 1035,
+      "existingSegments": {
+        "de": "seed-100-versailles-perspectives-et-jardins-scene-1-seg-de",
+        "it": "seed-100-versailles-perspectives-et-jardins-scene-1-seg-it",
+        "en": "seed-100-versailles-perspectives-et-jardins-scene-1-seg-en",
+        "es": "seed-100-versailles-perspectives-et-jardins-scene-1-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-perspectives-et-jardins-scene-2",
+      "index": 2,
+      "title": "Place Hoche",
+      "text": "La place Hoche forme une respiration circulaire au nord-est du château. Elle porte la statue de Lazare Hoche, général de la Révolution né à Versailles en 1768. Le monument fut élevé au XIXe siècle, lorsque la ville inscrit de nouvelles mémoires dans des espaces façonnés sous la monarchie.\n\nObserve les rues qui rayonnent autour de la place. Le cercle ne rompt pas la trame ; il redistribue les perspectives et donne un repère à l’échelle du quartier Notre-Dame. Les façades qui l’entourent restent mesurées, laissant la statue et le vide central organiser l’ensemble. Après l’immensité de la place d’Armes, tu découvres une composition plus intime mais fondée sur le même goût de l’axe.\n\nContourne le domaine par les rues publiques et rejoins le quartier Saint-Louis, au sud. Le trajet demande de respecter les accès et les horaires éventuels autour du château. Retrouve-moi devant l’un des carrés Saint-Louis. Ces ensembles réguliers montrent une autre manière de planifier la ville : non plus par une avenue lointaine, mais par de petites unités bâties autour d’espaces communs.",
+      "hash": "b4c3f4aa",
+      "chars": 1081,
+      "existingSegments": {
+        "it": "seed-100-versailles-perspectives-et-jardins-scene-2-seg-it",
+        "de": "seed-100-versailles-perspectives-et-jardins-scene-2-seg-de",
+        "es": "seed-100-versailles-perspectives-et-jardins-scene-2-seg-es",
+        "en": "seed-100-versailles-perspectives-et-jardins-scene-2-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-perspectives-et-jardins-scene-3",
+      "index": 3,
+      "title": "Carré à la Fontaine",
+      "text": "Les carrés Saint-Louis furent aménagés au XVIIIe siècle dans le quartier situé au sud du château. Ils se composent de petites maisons disposées autour de places régulières. Leur échelle basse contraste avec les grandes ordonnances royales, mais leur géométrie répond à la même volonté de maîtriser le plan.\n\nMarche autour d’un carré sans entrer dans les espaces privés. Les façades simples et répétées font sentir le module : une unité reproduite pour former un quartier. Les transformations ultérieures ont modifié certains bâtiments, pourtant la structure générale reste perceptible. Ici, la perspective n’est pas destinée à impressionner de loin. Elle organise une vie urbaine de proximité.\n\nPoursuis vers la cathédrale Saint-Louis, puis gagne la pièce d’Eau des Suisses par les voies publiques. Le bassin apparaîtra comme une ouverture immense au pied du quartier. Il prolonge un axe du domaine tout en offrant aujourd’hui une promenade distincte des jardins du château. Ce changement d’échelle sera radical : après les petits carrés, un miroir d’eau de plusieurs centaines de mètres.",
+      "hash": "ea0d46a6",
+      "chars": 1088,
+      "existingSegments": {
+        "es": "seed-100-versailles-perspectives-et-jardins-scene-3-seg-es",
+        "en": "seed-100-versailles-perspectives-et-jardins-scene-3-seg-en",
+        "de": "seed-100-versailles-perspectives-et-jardins-scene-3-seg-de",
+        "it": "seed-100-versailles-perspectives-et-jardins-scene-3-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-perspectives-et-jardins-scene-4",
+      "index": 4,
+      "title": "Pièce d’Eau des Suisses",
+      "text": "La pièce d’Eau des Suisses fut creusée à la fin du XVIIe siècle. Son nom rappelle les gardes suisses mobilisés pour les travaux. Le vaste bassin s’étend dans l’axe de l’Orangerie, au sud du château. Il recueillait notamment des eaux du secteur et participait à la composition paysagère du domaine.\n\nDepuis l’allée publique, laisse le regard parcourir toute sa longueur. Les arbres renforcent la fuite de la perspective et le plan d’eau réfléchit le ciel plus qu’il ne montre ses limites. Ce paysage monumental est pourtant construit par terrassements, alignements et maîtrise hydraulique. Rien n’y est laissé au hasard, même lorsque l’ensemble paraît calme et naturel.\n\nContinue vers l’extrémité sud et l’allée des Matelots, en respectant les conditions d’accès. Cet espace boisé s’inscrit dans le prolongement des terrains du domaine et conduit vers une sortie moins cérémonielle. La dernière halte permettra de voir comment une perspective royale se dissout progressivement dans un paysage de promenade, loin de la façade qui commandait notre départ.",
+      "hash": "89c0329b",
+      "chars": 1052,
+      "existingSegments": {
+        "es": "seed-100-versailles-perspectives-et-jardins-scene-4-seg-es",
+        "de": "seed-100-versailles-perspectives-et-jardins-scene-4-seg-de",
+        "en": "seed-100-versailles-perspectives-et-jardins-scene-4-seg-en",
+        "it": "seed-100-versailles-perspectives-et-jardins-scene-4-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-perspectives-et-jardins-scene-5",
+      "index": 5,
+      "title": "Allée des Matelots",
+      "text": "L’allée des Matelots prolonge au sud le paysage de la pièce d’Eau des Suisses. Son nom est lié aux hommes de marine présents à Versailles pour le service et les démonstrations nautiques du domaine. Aujourd’hui, selon les accès autorisés, elle se perçoit surtout comme une longue ligne plantée qui éloigne progressivement le promeneur du centre monumental.\n\nRetourne-toi. Le château n’occupe plus tout le regard. Les arbres, le bassin et les changements de niveau ont pris le relais de l’architecture. C’est l’aboutissement de notre fil rouge : à Versailles, une perspective ne se limite pas à une vue spectaculaire. Elle distribue des places, traverse des quartiers, ordonne des bassins et finit par devenir un simple chemin.\n\nLa place d’Armes lançait trois avenues depuis un seuil immense. L’hôtel de ville inscrivait la cité dans cet axe, la place Hoche créait un cercle, les carrés Saint-Louis réduisaient la géométrie à l’échelle du voisinage. Ici, le dessin rencontre enfin le paysage. Reviens à ton rythme, en vérifiant les horaires et itinéraires publics. Merci d’avoir suivi ces lignes avec moi. À bientôt.",
+      "hash": "fb8aa848",
+      "chars": 1114,
+      "existingSegments": {
+        "es": "seed-100-versailles-perspectives-et-jardins-scene-5-seg-es",
+        "en": "seed-100-versailles-perspectives-et-jardins-scene-5-seg-en",
+        "it": "seed-100-versailles-perspectives-et-jardins-scene-5-seg-it",
+        "de": "seed-100-versailles-perspectives-et-jardins-scene-5-seg-de"
+      }
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "tourId": "seed-100-marseille-cite-radieuse-modernites",
+  "sessionId": "seed-100-marseille-cite-radieuse-modernites-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Marseille",
+  "title": "Marseille — La Cité Radieuse et les Modernités",
+  "description": "Art & modernité — Le Corbusier, le MuCEM et les utopies bâties : Marseille, laboratoire de la modernité",
+  "themes": [
+    "Art & modernité — Le Corbusier, le MuCEM et les utopies bâties : Marseille, laboratoire de la modernité"
+  ],
+  "baseLanguage": "fr",
+  "chars": 10232,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Arte & modernità, Le Corbusier, il MuCEM e costruito utopie: Marsiglia, laboratorio della modernità",
+    "de": "Kunst & Moderne, Le Corbusier, das MuCEM und die bebauten Utopien: Marseille, Labor der modernen Technik",
+    "en": "Art & modernity, Le Corbusier, the MuCEM and built utopias: Marseille, laboratory of modernity",
+    "es": "Arte y modernidad, Le Corbusier, el MuCEM y las utopías construidas: Marsella, laboratorio de la modernitud"
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-marseille-cite-radieuse-modernites-scene-0",
+      "index": 0,
+      "title": "Entrée publique de la Cité Radieuse",
+      "text": "Lève les yeux. Devant toi, un immense bloc de béton posé sur d'énormes pattes, comme un paquebot qu'on aurait échoué au milieu d'un parc. Cent trente-sept mètres de long, dix-huit niveaux, une masse grise piquée de rouge, de bleu, de jaune. C'est la Cité Radieuse. Et pour beaucoup de Marseillais, longtemps, ça a été « la Maison du Fada » — la maison du fou.\r\n\r\nLe fou, c'est lui : Le Corbusier, l'architecte le plus influent du vingtième siècle. Au sortir de la guerre, la France manque de logements. On lui commande un immeuble. Il livre une utopie. Terminée en 1952, après cinq ans de chantier, son « unité d'habitation » n'est pas un immeuble : c'est un village vertical, trois cent trente-sept appartements pour environ mille six cents personnes, avec ses rues, ses commerces, son école, tout empilé sous un seul toit.\r\n\r\nRegarde les pieds du bâtiment. Ces gros piliers de béton, les pilotis, soulèvent toute la masse au-dessus du sol. Pourquoi ? Pour rendre la terre aux gens. Dessous, tu peux marcher, respirer, voir le parc filer sous l'immeuble. Le sol appartient à tous.\r\n\r\nEt ce béton laissé nu, brut, avec encore la marque des planches du coffrage : on l'a détesté, puis copié partout dans le monde. Une révolution est née ici, à Marseille. Fais le tour, touche la matière, et suis-moi vers l'entrée.",
+      "hash": "d795655a",
+      "chars": 1313,
+      "existingSegments": {
+        "en": "seed-100-marseille-cite-radieuse-modernites-scene-0-seg-en",
+        "de": "seed-100-marseille-cite-radieuse-modernites-scene-0-seg-de",
+        "it": "seed-100-marseille-cite-radieuse-modernites-scene-0-seg-it",
+        "es": "seed-100-marseille-cite-radieuse-modernites-scene-0-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-marseille-cite-radieuse-modernites-scene-1",
+      "index": 1,
+      "title": "Entrée publique de la Cité Radieuse",
+      "text": "Entre, et montons jusqu'au milieu du bâtiment. Là, une surprise : un couloir large, haut, éclairé — et des vitrines. Tu es dans une rue. Une vraie rue commerçante, mais à l'intérieur de l'immeuble, suspendue en l'air.\r\n\r\nLe Corbusier voulait que ses habitants n'aient presque pas besoin de descendre. Alors il a glissé, au cœur du bâtiment, une rue avec des boutiques : des services de proximité, une librairie et un petit hôtel qui existe toujours, où tu peux dormir dans un décor de 1952. Plus haut, sur le toit, une école. Tout un quartier tenait dans une seule barre de béton.\n\r\nMarche dans ce couloir et imagine la vie. Une utopie généreuse : loger dignement les familles ouvrières, leur donner la lumière, l'air, la mer à l'horizon, et une communauté sous le même toit. Certains ont adoré. D'autres ont trouvé ça froid, trop pensé, trop rigide. Le débat n'a jamais cessé.\r\n\r\nDepuis 2016, la Cité Radieuse et l'œuvre de Le Corbusier sont classées au patrimoine mondial de l'humanité. La maison du fou est devenue un trésor. Le temps a tranché.\r\n\r\nPoussons une porte, maintenant. On entre chez les gens. Suis-moi.",
+      "hash": "8f2ad23c",
+      "chars": 1117,
+      "existingSegments": {
+        "de": "seed-100-marseille-cite-radieuse-modernites-scene-1-seg-de",
+        "es": "seed-100-marseille-cite-radieuse-modernites-scene-1-seg-es",
+        "it": "seed-100-marseille-cite-radieuse-modernites-scene-1-seg-it",
+        "en": "seed-100-marseille-cite-radieuse-modernites-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-marseille-cite-radieuse-modernites-scene-2",
+      "index": 2,
+      "title": "Entrée publique de la Cité Radieuse",
+      "text": "Entrons dans un appartement — il y en a qu'on peut visiter. Et là, deuxième surprise. Vu de dehors, l'immeuble paraît écrasant ; à l'intérieur, chaque logement est étonnamment lumineux, fin, intelligent.\r\n\r\nLe secret, c'est l'appartement traversant. Il file d'un bord à l'autre du bâtiment, si bien que tu as le soleil du matin sur une façade et celui du soir sur l'autre. Un grand séjour s'ouvre sur deux étages, à double hauteur, prolongé par une loggia sur le paysage. On respire.\r\n\r\nRegarde les proportions, la hauteur, la largeur des pièces. Rien n'est décidé au hasard. Le Corbusier a inventé une règle de mesure fondée sur le corps humain, qu'il a appelée le Modulor : une silhouette d'homme, bras levé, qui fixe toutes les dimensions du bâtiment. L'idée est simple et radicale : bâtir à la mesure de l'homme, pas de la machine.\r\n\r\nLes couleurs, aussi, sont pensées. Dans les loggias, du rouge, du vert, du bleu profond, posés par l'architecte comme un peintre pose sa palette. Le béton gris s'illumine.\r\n\r\nRessors avec moi, et cherchons l'ascenseur. On monte tout en haut, sur le toit. Suis-moi.",
+      "hash": "b6a6eef",
+      "chars": 1103,
+      "existingSegments": {
+        "de": "seed-100-marseille-cite-radieuse-modernites-scene-2-seg-de",
+        "it": "seed-100-marseille-cite-radieuse-modernites-scene-2-seg-it",
+        "es": "seed-100-marseille-cite-radieuse-modernites-scene-2-seg-es",
+        "en": "seed-100-marseille-cite-radieuse-modernites-scene-2-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-marseille-cite-radieuse-modernites-scene-3",
+      "index": 3,
+      "title": "Entrée publique de la Cité Radieuse",
+      "text": "Nous voici sur le toit. Respire. Après la pénombre du béton, d'un coup, le ciel, la lumière, et tout autour, les montagnes sèches d'un côté, la mer devinée de l'autre.\r\n\r\nCe toit n'est pas un toit. C'est une place publique posée à cinquante-six mètres de haut. Le Corbusier y a tout mis : une pataugeoire pour les enfants, un gymnase, une scène de théâtre en plein air, une piste pour courir, des bancs. Et de grandes formes de béton sculptées, des cheminées d'aération qui ressemblent à des œuvres modernes, à des proues de navire.\r\n\r\nRegarde comme les murs bas découpent le paysage. Ici une échancrure sur la montagne, là une ouverture sur le large. L'architecte se fait peintre : il cadre le ciel comme un tableau. Rien n'est laissé au hasard.\r\n\r\nImagine les enfants du bâtiment montant nager là-haut, entre ciel et mer, pendant que leurs parents rentrent du travail. C'était ça, le rêve : une vie meilleure, littéralement élevée au-dessus de la ville.\r\n\r\nReste sur le toit. À l'autre bout, dans l'ancien gymnase, quelque chose de plus récent nous attend. Suis-moi.",
+      "hash": "3ae83d0e",
+      "chars": 1068,
+      "existingSegments": {
+        "es": "seed-100-marseille-cite-radieuse-modernites-scene-3-seg-es",
+        "it": "seed-100-marseille-cite-radieuse-modernites-scene-3-seg-it",
+        "de": "seed-100-marseille-cite-radieuse-modernites-scene-3-seg-de",
+        "en": "seed-100-marseille-cite-radieuse-modernites-scene-3-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-marseille-cite-radieuse-modernites-scene-4",
+      "index": 4,
+      "title": "Entrée publique de la Cité Radieuse",
+      "text": "Marche jusqu'à cette longue salle basse, au bout du toit. C'était le gymnase de Le Corbusier. Depuis 2013, c'est autre chose : le MAMO, pour « Marseille Modulor », un petit centre d'art contemporain perché sur le toit-terrasse.\r\n\r\nL'idée est belle. On y invite des artistes d'aujourd'hui à occuper ce lieu unique, avec la mer, la montagne et le béton du maître pour décor. De l'art vivant qui dialogue avec l'utopie d'hier. La machine à habiter devient une machine à regarder.\r\n\r\nEt il y a, dans cette histoire, quelque chose d'émouvant. En février 2012, un violent incendie a ravagé plusieurs étages de la Cité Radieuse, détruit des appartements et des chambres de l'hôtel. On a eu peur pour elle. Tout a été patiemment reconstruit à l'identique. L'année d'après, l'art s'installait sur le toit. Comme une façon de dire : elle est bien vivante.\r\n\r\nLe Corbusier, ici, n'est pas une relique poussiéreuse. C'est un lieu qui respire, qui a brûlé, qui a renaît, qui expose. Exactement l'esprit de cette ville.\r\n\r\nRedescendons. On quitte le paquebot de béton pour marcher vers un musée, plus bas. Suis-moi.",
+      "hash": "15a6a5e",
+      "chars": 1101,
+      "existingSegments": {
+        "en": "seed-100-marseille-cite-radieuse-modernites-scene-4-seg-en",
+        "it": "seed-100-marseille-cite-radieuse-modernites-scene-4-seg-it",
+        "de": "seed-100-marseille-cite-radieuse-modernites-scene-4-seg-de",
+        "es": "seed-100-marseille-cite-radieuse-modernites-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-marseille-cite-radieuse-modernites-scene-5",
+      "index": 5,
+      "title": "Entrée publique de la Cité Radieuse",
+      "text": "Reprenons la marche, tranquillement, vers le sud, en descendant vers le quartier de Bonneveine. Autour de toi, le Marseille du vingtième siècle : de grands immeubles, des avenues larges, des arbres, la lumière qui tape.\r\n\r\nProfite de ce trajet pour prendre du recul. Ce qu'on vient de voir tout en haut du boulevard, cette folie de béton, n'est pas un accident isolé. Marseille a toujours aimé le geste moderne, l'utopie bâtie, le pari sur l'avenir.\r\n\r\nTu connais peut-être son autre visage, tout au bord du port, à l'entrée de la ville : le MuCEM et sa résille de béton noir posée sur l'eau, ouvert en 2013, mais lui regarde la mer et l'histoire, et c'est une autre balade. Ici, au sud, la modernité est différente. Plus intime, plus quotidienne.\r\n\r\nC'est celle des immeubles où l'on vit, des musées cachés dans les pins, des artistes nés du pavé marseillais. C'est vers eux qu'on descend maintenant.\r\n\r\nEncore quelques minutes de marche. Le musée est là, tapi dans la verdure. Suis-moi.",
+      "hash": "8345bbc2",
+      "chars": 988,
+      "existingSegments": {
+        "es": "seed-100-marseille-cite-radieuse-modernites-scene-5-seg-es",
+        "it": "seed-100-marseille-cite-radieuse-modernites-scene-5-seg-it",
+        "de": "seed-100-marseille-cite-radieuse-modernites-scene-5-seg-de",
+        "en": "seed-100-marseille-cite-radieuse-modernites-scene-5-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-marseille-cite-radieuse-modernites-scene-6",
+      "index": 6,
+      "title": "Entrée publique du Musée d'art contemporain",
+      "text": "Nous voici devant le MAC, le Musée d'Art Contemporain de Marseille, posé dans une pinède du quartier de Bonneveine. Rien à voir avec un palais : un bâtiment bas, sobre, discret, presque effacé sous les arbres.\r\n\r\nIl a ouvert en 1994, et il vient de rouvrir en 2023 après de longs travaux. Dedans, c'est l'aventure de l'art depuis les années soixante jusqu'à nous. Le nouveau réalisme, l'art pauvre, les affiches lacérées, les objets du quotidien devenus œuvres, les mots peints en grand par l'artiste Ben.\r\n\r\nCe que je veux te faire remarquer, c'est le choix de Marseille. Beaucoup de villes gardent jalousement leur art ancien, leurs vieux maîtres, leurs ors. Marseille, elle, a voulu un grand musée pour l'art le plus contemporain, le plus déroutant, celui qui bouscule. Cohérent, pour une ville qui n'a jamais eu peur du neuf.\r\n\r\nPrends le temps d'entrer si tu peux, ou de longer les salles. Et garde de la place pour une dernière rencontre, dehors, dans le jardin : celle d'un enfant du pays devenu géant. Suis-moi vers les sculptures.",
+      "hash": "f68df9a8",
+      "chars": 1039,
+      "existingSegments": {
+        "it": "seed-100-marseille-cite-radieuse-modernites-scene-6-seg-it",
+        "en": "seed-100-marseille-cite-radieuse-modernites-scene-6-seg-en",
+        "de": "seed-100-marseille-cite-radieuse-modernites-scene-6-seg-de",
+        "es": "seed-100-marseille-cite-radieuse-modernites-scene-6-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-marseille-cite-radieuse-modernites-scene-7",
+      "index": 7,
+      "title": "Entrée publique du Musée d'art contemporain",
+      "text": "Sortons dans le jardin, parmi les sculptures. Et laisse-moi te présenter quelqu'un : César. César Baldaccini, né à Marseille en 1921, fils d'immigrés italiens, élevé pas très loin d'ici, du côté de la Belle de Mai. L'un des plus grands sculpteurs français du vingtième siècle.\r\n\r\nTu connais son œuvre sans le savoir. C'est lui qui a sculpté « le Pouce », ce pouce géant dressé vers le ciel qu'on voit dans plusieurs villes. C'est lui, aussi, dont une œuvre a donné sa forme aux récompenses du cinéma français : la statuette des César, c'est son travail.\r\n\r\nSa grande idée, c'est de prendre le rebut du monde moderne et d'en faire de l'art. Il compresse des voitures entières en blocs de métal tordu. Il fait « expanser » de la mousse qui déborde et se fige. La ferraille, le déchet, la matière brute des usines deviennent beauté.\r\n\r\nTu vois le lien ? Le Corbusier prend le béton nu et en fait une utopie. César prend la tôle broyée et en fait une sculpture. Deux Marseillais, deux façons de dire la même chose : la matière la plus pauvre peut devenir la plus noble.\r\n\r\nReste un instant. On va conclure ici même. Suis-moi de quelques pas.",
+      "hash": "90c44da2",
+      "chars": 1137,
+      "existingSegments": {
+        "it": "seed-100-marseille-cite-radieuse-modernites-scene-7-seg-it",
+        "en": "seed-100-marseille-cite-radieuse-modernites-scene-7-seg-en",
+        "es": "seed-100-marseille-cite-radieuse-modernites-scene-7-seg-es",
+        "de": "seed-100-marseille-cite-radieuse-modernites-scene-7-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-marseille-cite-radieuse-modernites-scene-8",
+      "index": 8,
+      "title": "Entrée publique du Musée d'art contemporain",
+      "text": "Arrêtons-nous là, dans ce jardin, entre les sculptures et les pins. C'est ici que je veux boucler notre histoire.\r\n\r\nRepense au chemin parcouru. Tout en haut du boulevard, un architecte pose sur des pilotis un village de béton et rêve d'une vie meilleure pour les ouvriers. Ici, en bas, un gamin de la Belle de Mai broie des voitures et les dresse en totems. Entre les deux, une ville qui a choisi de bâtir un grand musée pour l'art qui dérange, et qui, au bord de son port, a osé poser un cube de dentelle noire face à la mer.\r\n\r\nTu vois le fil ? Marseille n'a jamais été une ville-musée, figée dans son passé. C'est une ville-laboratoire. Elle prend des risques, elle se trompe parfois, elle bâtit des utopies qu'on moque avant de les classer trésors du monde. La « Maison du Fada » d'hier est le pèlerinage des architectes d'aujourd'hui.\r\n\r\nEt ce n'est pas fini. Cette ville continue de tester l'avenir, de construire, de casser, de recommencer. Elle brûle et elle renaît, comme sa Cité Radieuse.\r\n\r\nAlors, avant de partir, fais une chose. Retourne-toi vers le haut du boulevard, cherche des yeux la longue masse grise du paquebot de Le Corbusier, là-haut dans la lumière. Et dis-toi que tu viens de traverser soixante-dix ans d'audace, de béton et de rêve. Merci de m'avoir suivi jusqu'ici. Reste encore un peu sous les pins, et laisse l'idée infuser. À bientôt.",
+      "hash": "a94480b9",
+      "chars": 1366,
+      "existingSegments": {
+        "it": "seed-100-marseille-cite-radieuse-modernites-scene-8-seg-it",
+        "en": "seed-100-marseille-cite-radieuse-modernites-scene-8-seg-en",
+        "es": "seed-100-marseille-cite-radieuse-modernites-scene-8-seg-es",
+        "de": "seed-100-marseille-cite-radieuse-modernites-scene-8-seg-de"
+      }
+    }
+  ]
+}

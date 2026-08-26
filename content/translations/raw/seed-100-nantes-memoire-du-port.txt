@@ -1,0 +1,559 @@
+@@LANG=en
+@@TITLE=Nantes — Memory of the Port
+@@DESC=History & secrets — shipowners, the Atlantic slave trade, and a memorial: the city that finally faces its past.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-0
+@@STITLE=Château des ducs de Bretagne
+Stop at the edge of the moat. In front of you, a double city of stone. Below, a squat fortress, massive towers, granite walls cut for war. And above, rising over the ramparts, white, slender façades, carved windows, almost a palace. Two Nantes in a single monument. This is the château des ducs de Bretagne. Anne, Duchess of Brittany, twice Queen of France, was born here. Here, a king signed the Edict of Nantes. Centuries of power within these walls.
+
+But that isn't the story I'm going to tell you today. Because today, behind these ramparts, there's a museum. And this museum, in recent years, has done something rare, something difficult: it has opened whole rooms to speak a truth the city long kept silent.
+
+Nantes was France's leading slave-trading port. Throughout the eighteenth century, its ships set off from here to seek out men, women, and children on the coasts of Africa, to sell them on the other side of the ocean. That fortune is all around you. In the façades, the quays, the fountains. And for two hundred years, people preferred not to name it.
+
+This walk is the path of that money. And also the path of a city that has finally come to face its past.
+
+Follow the moat, go around the château, and climb toward the great stone spire looming over the rooftops. Follow me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-1
+@@STITLE=Cathédrale Saint-Pierre-et-Saint-Paul
+Look up. This white stone façade, these two towers, this Gothic lacework, this is the cathédrale Saint-Pierre-et-Saint-Paul. Go in, if the doors are open. Inside, the nave soars toward the sky, so tall, so bright, you forget to breathe. Look, in the transept, for a tomb of black and white marble. It belongs to François II, the last Duke of Brittany, and his wife. A masterpiece, watched over at its four corners by women carved in stone.
+
+François II is the father of Anne of Brittany. With him dies the dream of an independent Brittany. His daughter will have to marry two kings of France, one after the other, and the duchy will end up absorbed into the kingdom. That's old Nantes: a Breton capital, turned toward its lands, its fairs, its wool.
+
+And then the world turns on its axis. The great discoveries open up the Atlantic. Nantes finds itself at the mouth of France's longest river, a gateway wide open onto the ocean. Little by little, the city stops looking inward. It turns, entirely, toward the sea and the islands. And from now on, its fortune will come from there.
+
+Head back down toward the river, to a paved square surrounded by old wooden houses. Follow me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-2
+@@STITLE=Place du Bouffay
+Here you are on the place du Bouffay. Look at these tightly packed half-timbered houses, these narrow lanes branching out like a star. This is the oldest heart of Nantes, the medieval quarter, the one from before the great fortunes. Here beat the first port, back when the Loire still lapped against these cobblestones.
+
+On these now-vanished quays, salt from the marshes was unloaded, along with wheat, timber, and cloth. An honest, patient trade, on the scale of the river. Nantes merchants grew rich slowly, cargo after cargo, as they did everywhere else.
+
+What's going to change everything is the open sea. In the sixteenth and seventeenth centuries, Nantes ships start sailing farther and farther out. Spain, Portugal, then the Antilles. And over there, on the islands, sugar cane is planted. A white gold that brings in fortunes. But to cut cane under the sun, you need hands. Many hands. Hands no one intends to pay.
+
+It's here, in the minds of a few shipowners, that the idea takes root that will bring this city both its wealth and its shame. Head south, cross the great avenue, to an island that isn't one anymore. Follow me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-3
+@@STITLE=Île Feydeau
+You're walking on a former island. Hard to believe, isn't it? The Loire used to flow on both sides of here. This was the île Feydeau, a sandbank in the middle of the river. It was filled in a century ago, and the branches of the river became avenues. But the houses stayed.
+
+And what houses. Look up at these façades. Tall, opulent, adorned with wrought-iron balconies, garlands, mascarons — those carved stone faces above the windows. Look closely at them. Gods, women, old men. And sometimes, carved there as if a confession, the faces of African men.
+
+These homes belonged to the shipowners and merchants of the eighteenth century. The wealthiest in the city. They built on sand, so the houses have settled, tilted. Look: several of them lean quite noticeably, as if drunk. It's said that a glass set on a table there will slide off on its own.
+
+This leaning elegance is money from great trade. The trade in goods, but also the trade in human beings. Here, on the upper floors, lived a bourgeoisie that voted, danced, married, and signed the papers for slave-trading expeditions.
+
+Walk a few more steps, to the most richly carved façade on the whole island. Follow me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-4
+@@STITLE=Temple du Goût
+Stop in front of this one. It's nicknamed the Temple du Goût — the Temple of Taste. A façade carved from top to bottom, rising to a point toward the sky, the most sumptuous on the whole island. It was built in the mid-eighteenth century, and it belonged to one man: Guillaume Grou.
+
+Grou was one of the greatest shipowners in Nantes. One of those merchants who fit out ships, gather partners, advance the money, and reap the profits of a voyage lasting more than a year. His ships made the great Atlantic circuit, again and again. And this house, this lacework of stone, is the showcase of his success.
+
+It has to be said simply, without dodging around it. The beauty of this façade and the suffering of thousands of human beings are the same story. The same money. Eighteenth-century Nantais didn't hide it: being a shipowner was a respected trade, a title, almost a nobility of its own. Grou died rich and honored.
+
+For a long time, people admired these houses without saying where their gold came from. Today, an effort is made to look at everything together: the grace and the crime, in the same stone.
+
+Head toward the great open square, to the west, where the city once met the river. Follow me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-5
+@@STITLE=Place du Commerce
+Here we are on a vast square. Its name says it all: place du Commerce. Where you're standing, two centuries ago, was the water's edge. Ships used to moor almost at your feet. Look at this great colonnaded building: the former Bourse, the merchants' palace.
+
+This is where everything was decided. Not on the ships, not in Africa, not in the Antilles. Here, in hushed rooms, around tables. Expeditions were set up here the way you'd set up a company. Everyone took shares, a fraction of the ship, a fraction of the cargo. Risk was spread out, and so were profits. A storm, a revolt, an epidemic on board, and you lost your stake. But when everything succeeded, the fortune was immense.
+
+The words used were cold, accountant's words. Numbers were lined up, cargoes, columns. Words to avoid seeing the faces. A whole city of notaries, insurers, bankers, manufacturers lived off this trade, without ever touching a single chain.
+
+That quiet machinery is what I want you to keep in mind as you walk toward the water. Head west, along the river, on the great quay. Follow me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-6
+@@STITLE=Quai de la Fosse
+Here you are on the quai de la Fosse. Today, apartment buildings, cars, a tramway. But close your eyes for a second. Here, it was a forest: dozens of masts, sails, ropes, the smell of tar and the tide. The great port of Nantes. It's from this quay that the slave ships used to depart.
+
+Follow the voyage in your mind. A ship leaves this bank, loaded with goods: fabrics, muskets, iron bars, tools, and beads. It sails down the Loire, reaches the open sea, sets course south, toward the coasts of Africa. There, for weeks, these goods are traded for human beings. Then the ship crosses the ocean, its holds packed, toward the Antilles or the Americas. The survivors are sold there. And it sets off back for Nantes, loaded with cotton, indigo, and other colonial goods.
+
+Three coasts, three exchanges, one single circle. It was called the triangular trade. Every corner of it brought in money, and the apex of the triangle was here, this quay, this city.
+
+Keep walking west, along the water, to where the quay widens and warehouses once crowded together. Follow me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-7
+@@STITLE=Quai de la Fosse, aval
+Continue along the river. On this stretch of the quay, warehouses and manufactures once lined up. Because the ships didn't come back empty. They brought back raw materials produced across the Atlantic by those who had been deported. And Nantes set about transforming all of it.
+
+Cotton held a major place. It was spun, woven, then printed with bright colors. These are the famous "indiennes," those flowered fabrics people wore from Paris to Saint Petersburg. Indigo fed these workshops, while other materials filled the port's warehouses and stores.
+
+Understand this well: it wasn't only a handful of shipowners who lived off this system. It was an entire city. The manufacture workers, the weavers, the coopers, the carpenters, the sailors, the wives who kept the accounts. A shared prosperity, built on an injustice people preferred not to look in the eye.
+
+Then came the time when a few voices, at last, dared to say no. Walk toward this slender white footbridge spanning the river, right at water level. Follow me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-8
+@@STITLE=Passerelle Victor-Schœlcher
+This light footbridge, set just above the water, carries a name worth remembering: Victor Schœlcher. Watch it connect the two banks, like a line drawn taut just above the river.
+
+Schœlcher wasn't from Nantes. He was a man of struggle. In 1848, in a France caught up in revolution, he becomes Under-Secretary of State for the Navy. And he pushes, insists, drafts. On April 27 of that year, a decree abolishes slavery in all French colonies. This time, for good. Because France had already abolished, then reinstated slavery half a century earlier. This time, it's over.
+
+For Nantes, the page turns quietly. The slave trade had already been banned for years. The city had turned toward other industries. And above all, it falls silent. For more than a century and a half, no one speaks of any of this again. The mascarons remain, the fortunes remain, the fine mansions remain. But the history disappears from books and from mouths. It isn't taught. It's forgotten, almost deliberately.
+
+It will take until our own time for the city to open its eyes again. Go down there, at the water's edge, beneath the quay. That's where our path ends. Follow me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-9
+@@STITLE=Mémorial de l'abolition de l'esclavage
+Go down the steps. The noise of the city fades away, the light dims. Here you are beneath the quay, in a long passage of concrete and wood running along the river. On one side, the Loire, right there, almost within reach. On the other, the wall. And on the ground, under your feet, thousands of glass plaques.
+
+Bend down. Read. On nearly two thousand of these plaques, a name is engraved. These aren't the names of the men and women who were deported — theirs were never kept. These are the names of the ships. The name of every slave-trading expedition that left this port. Names sometimes gentle, names of saints, of flowers, of tenderness, carried by vessels of horror. They pass beneath your feet, one after another, endless. That's the vertigo of this place: seeing, at last, the true scale of the thing.
+
+Further on, a great sloped wall of glass lets the light of the river through, engraved with words, texts about freedom, in languages from all over the world.
+
+This memorial opened barely a decade ago. It took all that time for Nantes, the beautiful, the wealthy, to dare come down here and look at where its fortune came from. Not to punish itself. To remember. To say the names.
+
+Stay a moment. Listen to the Loire. It's the same water that carried it all: the wealth, the shame, and now the memory. When you climb back up into the light, you'll never look at those beautiful façades quite the same way again. See you soon, friend.
+
+@@LANG=es
+@@TITLE=Nantes — Memoria del puerto
+@@DESC=Historia y secretos — armadores, trata atlántica y memorial: la ciudad que por fin mira su pasado de frente.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-0
+@@STITLE=Château des ducs de Bretagne
+Detente al borde del foso. Delante de ti, una doble ciudad de piedra. Abajo, una fortaleza achaparrada, torres macizas, muros de granito tallados para la guerra. Y encima, sobresaliendo de las murallas, fachadas blancas y finas, ventanas esculpidas, casi un palacio. Dos Nantes en un solo monumento. Es el château des ducs de Bretagne. Aquí nació Ana, duquesa de Bretaña, dos veces reina de Francia. Aquí, un rey firmó el edicto de Nantes. Siglos de poder entre estos muros.
+
+Pero no es esa historia la que voy a contarte hoy. Porque hoy, tras estas murallas, hay un museo. Y ese museo, desde hace unos años, ha hecho algo raro, algo difícil: ha abierto salas enteras para decir una verdad que la ciudad calló durante mucho tiempo.
+
+Nantes fue el primer puerto negrero de Francia. Durante todo el siglo dieciocho, sus barcos partieron de aquí a buscar hombres, mujeres, niños en las costas de África, para venderlos al otro lado del océano. Esa fortuna está por todas partes a tu alrededor. En las fachadas, los muelles, las fuentes. Y durante doscientos años, se prefirió no nombrarla.
+
+Este paseo es el camino de ese dinero. Y también el camino de una ciudad que ha acabado por mirar su pasado de frente.
+
+Bordea el foso, rodea el castillo y sube hacia la gran aguja de piedra que domina los tejados. Sígueme.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-1
+@@STITLE=Cathédrale Saint-Pierre-et-Saint-Paul
+Levanta la cabeza. Esta fachada de piedra blanca, estas dos torres, este encaje gótico, es la cathédrale Saint-Pierre-et-Saint-Paul. Entra, si las puertas están abiertas. En el interior, la nave se eleva hacia el cielo, tan alta, tan clara, que se te olvida respirar. Busca, en el transepto, un sepulcro de mármol negro y blanco. Es el de Francisco II, el último duque de Bretaña, y su esposa. Una obra maestra, vigilada en sus cuatro esquinas por mujeres de piedra.
+
+Francisco II es el padre de Ana de Bretaña. Con él muere el sueño de una Bretaña independiente. Su hija tendrá que casarse con dos reyes de Francia, uno tras otro, y el ducado acabará unido al reino. Esa es la vieja Nantes: una capital bretona, vuelta hacia sus tierras, sus ferias, su lana.
+
+Y luego el mundo da un vuelco. Los grandes descubrimientos abren el Atlántico. Nantes se encuentra en la desembocadura del río más largo de Francia, una puerta abierta de par en par al océano. La ciudad deja poco a poco de mirar hacia el interior. Se vuelve, entera, hacia el mar y hacia las islas. Y su fortuna, de ahora en adelante, vendrá de ahí.
+
+Baja de nuevo hacia el río, hasta una plaza empedrada rodeada de viejas casas de madera. Sígueme.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-2
+@@STITLE=Place du Bouffay
+Aquí estás en la place du Bouffay. Mira estas casas apretadas, de entramado de madera, estas callejuelas estrechas que parten en estrella. Es el corazón más antiguo de Nantes, el barrio medieval, el de antes de las grandes fortunas. Aquí latía el primer puerto, cuando el Loira todavía lamía estos adoquines.
+
+En esos muelles desaparecidos, se descargaba la sal de las marismas, el trigo, la madera y las telas. Un comercio honesto, paciente, a la escala del río. Los comerciantes de Nantes se enriquecían despacio, cargamento tras cargamento, como en todas partes.
+
+Lo que va a cambiarlo todo es el mar abierto. En los siglos dieciséis y diecisiete, los barcos de Nantes empiezan a navegar cada vez más lejos. España, Portugal, luego las Antillas. Y allí, en las islas, se planta la caña de azúcar. Un oro blanco que da fortunas. Pero para cortar la caña, bajo el sol, hacen falta brazos. Muchos brazos. Brazos que no se pagarán.
+
+Es aquí, en la cabeza de algunos armadores, donde germina la idea que hará la riqueza y la vergüenza de esta ciudad. Baja hacia el sur, cruza la gran avenida, hasta una isla que ya no lo es. Sígueme.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-3
+@@STITLE=Île Feydeau
+Caminas sobre una antigua isla. Difícil de creer, ¿verdad? Antaño, el Loira corría por los dos lados de aquí. Era la île Feydeau, un banco de arena en medio del río. Se rellenó hace un siglo, los brazos del río se convirtieron en avenidas. Pero las casas se quedaron.
+
+Y qué casas. Levanta la vista hacia estas fachadas. Altas, opulentas, adornadas con balcones de hierro forjado, guirnaldas, mascarones, esos rostros de piedra esculpidos encima de las ventanas. Míralos bien. Dioses, mujeres, ancianos. Y a veces, esculpidos ahí como una confesión, rostros de hombres africanos.
+
+Estas viviendas son las de los armadores y comerciantes del siglo dieciocho. Los más ricos de la ciudad. Construían sobre arena, así que las casas se han asentado, inclinado. Mira: varias están claramente torcidas, como ebrias. Se cuenta que un vaso puesto sobre una mesa ahí resbala solo.
+
+Esta elegancia inclinada es dinero del gran comercio. El comercio de mercancías, pero también el de seres humanos. Aquí vivía, en los pisos, una burguesía que votaba, bailaba, se casaba, y firmaba los papeles de las expediciones negreras.
+
+Avanza unos pasos, hasta la fachada más ricamente esculpida de toda la isla. Sígueme.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-4
+@@STITLE=Temple du Goût
+Detente frente a esta. La apodan el Temple du Goût, el Templo del Gusto. Una fachada esculpida de arriba abajo, que sube en punta hacia el cielo, la más suntuosa de toda la isla. Se construyó a mediados del siglo dieciocho, y pertenecía a un hombre: Guillaume Grou.
+
+Grou era uno de los mayores armadores de Nantes. Uno de esos comerciantes que arman barcos, reúnen socios, adelantan el dinero, y recogen los beneficios de un viaje que dura más de un año. Sus barcos hicieron, una y otra vez, la gran vuelta del Atlántico. Y esta casa, este encaje de piedra, es el escaparate de su éxito.
+
+Hay que decirlo con sencillez, sin rodeos. La belleza de esta fachada y el sufrimiento de miles de seres humanos son la misma historia. El mismo dinero. Los habitantes de Nantes del siglo dieciocho no lo ocultaban: ser armador era un oficio respetado, un título, casi una nobleza. Grou murió rico y honrado.
+
+Durante mucho tiempo, se admiraron estas casas sin decir de dónde venía su oro. Hoy, se intenta mirar todo junto: la gracia y el crimen, en la misma piedra.
+
+Dirígete hacia la gran plaza abierta, hacia el oeste, ahí donde la ciudad se encontraba con el río. Sígueme.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-5
+@@STITLE=Place du Commerce
+Aquí estamos en una vasta plaza. Su nombre lo dice todo: la place du Commerce. Donde te encuentras, hace dos siglos, era la orilla del agua. Los barcos venían a amarrar casi a tus pies. Mira este gran edificio de columnas: la antigua Bolsa, el palacio de los comerciantes.
+
+Aquí es donde se decidía todo. No en los barcos, no en África, no en las Antillas. Aquí, en salas silenciosas, alrededor de mesas. Se organizaban las expediciones como se monta una empresa. Cada uno tomaba participaciones, una fracción del barco, una fracción del cargamento. Se repartía el riesgo, se repartían los beneficios. Una tormenta, una revuelta, una epidemia a bordo, y se perdía la apuesta. Pero cuando todo salía bien, la fortuna era inmensa.
+
+Las palabras que se empleaban eran frías, contables. Se alineaban cifras, cargamentos, columnas. Palabras para no ver los rostros. Toda una ciudad de notarios, aseguradores, banqueros, fabricantes vivía de este comercio, sin tocar jamás una cadena.
+
+Es esa mecánica tranquila la que quiero que guardes en mente, mientras caminas hacia el agua. Toma hacia el oeste, a lo largo del río, por el gran muelle. Sígueme.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-6
+@@STITLE=Quai de la Fosse
+Aquí estás en el quai de la Fosse. Hoy, edificios, coches, un tranvía. Pero cierra los ojos un segundo. Aquí era un bosque: decenas de mástiles, velas, cabos, el olor del alquitrán y de la marea. El gran puerto de Nantes. De este muelle partían los barcos negreros.
+
+Sigue el viaje con el pensamiento. Un barco sale de esta orilla, cargado de mercancías: telas, fusiles, barras de hierro, herramientas y cuentas. Baja por el Loira, llega a alta mar, pone rumbo al sur, hacia las costas de África. Allí, durante semanas, se intercambian estas mercancías por seres humanos. Luego el barco cruza el océano, con sus bodegas atestadas, hacia las Antillas o América. Ahí se venden los supervivientes. Y se vuelve a partir hacia Nantes, cargado de algodón, añil y otras materias coloniales.
+
+Tres costas, tres intercambios, un único círculo. Se le llamaba el comercio triangular. Cada ángulo daba dinero, y la cúspide del triángulo era aquí, este muelle, esta ciudad.
+
+Sigue caminando hacia el oeste, bordeando el agua, ahí donde el muelle se ensancha y se apretaban los almacenes. Sígueme.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-7
+@@STITLE=Quai de la Fosse, aval
+Continúa a lo largo del río. En este tramo del muelle, antaño, se alineaban los almacenes y las manufacturas. Porque los barcos no volvían vacíos. Traían materias producidas al otro lado del Atlántico por aquellos a quienes se había deportado. Y Nantes se puso a transformarlo todo.
+
+El algodón ocupaba un lugar importante. Se hilaba, se tejía, y luego se estampaba con colores vivos. Son las famosas «indianas», esas telas floreadas con las que se vestía de París a San Petersburgo. El añil alimentaba estos talleres, mientras otras materias llenaban las tiendas y los almacenes del puerto.
+
+Entiende bien: no era solo un puñado de armadores el que vivía de este sistema. Era toda una ciudad. Los obreros de las manufacturas, los tejedores, los toneleros, los carpinteros, los marineros, las esposas que llevaban las cuentas. Una prosperidad compartida, construida sobre una injusticia que se prefería no mirar de frente.
+
+Luego llegó el momento en que algunas voces, por fin, osaron decir no. Avanza hacia esa fina pasarela blanca que atraviesa el río, al ras del agua. Sígueme.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-8
+@@STITLE=Passerelle Victor-Schœlcher
+Esta pasarela ligera, colocada justo encima del agua, lleva un nombre que hay que recordar: Victor Schœlcher. Mírala unir las dos orillas, como un trazo tendido al ras del río.
+
+Schœlcher no era de Nantes. Era un hombre de combate. En 1848, en una Francia en revolución, se convierte en subsecretario de Estado de Marina. Y empuja, insiste, redacta. El 27 de abril de ese año, un decreto abole la esclavitud en todas las colonias francesas. Esta vez, para siempre. Porque Francia ya había abolido, y luego restablecido, la esclavitud medio siglo antes. Esta vez, se acabó.
+
+Para Nantes, la página se pasa sin ruido. La trata ya estaba prohibida desde hacía años. La ciudad se había volcado hacia otras industrias. Y sobre todo, calla. Durante más de siglo y medio, no se vuelve a hablar de todo esto. Los mascarones se quedan, las fortunas se quedan, los hermosos palacetes se quedan. Pero la historia desaparece de los libros y de las bocas. No se enseña. Se olvida, casi voluntariamente.
+
+Habrá que esperar a nuestra época para que la ciudad vuelva a abrir los ojos. Baja ahí, a la orilla del agua, bajo el muelle. Ahí es donde termina nuestro camino. Sígueme.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-9
+@@STITLE=Mémorial de l'abolition de l'esclavage
+Baja las escaleras. El ruido de la ciudad se aleja, la luz disminuye. Aquí estás bajo el muelle, en un largo pasaje de hormigón y madera que sigue el río. A un lado, el Loira, muy cerca, casi al alcance de la mano. Al otro, el muro. Y en el suelo, bajo tus pies, miles de placas de vidrio.
+
+Agáchate. Lee. En cerca de dos mil de esas placas está grabado un nombre. No son nombres de hombres ni de mujeres deportados, no se conservaron los suyos. Son los nombres de los barcos. El nombre de cada expedición negrera partida de este puerto. Nombres a veces dulces, nombres de santos, de flores, de ternura, llevados por barcos de horror. Desfilan bajo tus pasos, uno tras otro, interminables. Eso es el vértigo de este lugar: ver, por fin, la escala de la cosa.
+
+Más allá, un gran muro de vidrio inclinado deja pasar la claridad del río, con palabras grabadas, textos de libertad, en las lenguas del mundo entero.
+
+Este memorial abrió hace apenas una decena de años. Habrá hecho falta todo ese tiempo para que Nantes, la bella, la rica, se atreva a bajar aquí y mirar de dónde venía su fortuna. No para flagelarse. Para recordar. Para decir los nombres.
+
+Quédate un instante. Escucha el Loira. Es la misma agua que lo llevó todo: la riqueza, la vergüenza, y ahora la memoria. Cuando vuelvas a subir a la luz, ya no volverás a mirar las bellas fachadas exactamente de la misma manera. Hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Nantes — Erinnerung des Hafens
+@@DESC=Geschichte & Geheimnisse — Reeder, Atlantikhandel und ein Denkmal: die Stadt, die endlich ihrer Vergangenheit ins Auge blickt.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-0
+@@STITLE=Château des ducs de Bretagne
+Halt am Rand des Grabens an. Vor dir eine doppelte Stadt aus Stein. Unten eine gedrungene Festung, wuchtige Türme, Granitmauern, für den Krieg gehauen. Und darüber, über die Zinnen hinausragend, weiße, feine Fassaden, geschnitzte Fenster, fast ein Palast. Zwei Nantes in einem einzigen Bauwerk. Das ist das château des ducs de Bretagne. Hier wurde Anne, Herzogin der Bretagne, zweimal Königin von Frankreich, geboren. Hier unterzeichnete ein König das Edikt von Nantes. Jahrhunderte der Macht in diesen Mauern.
+
+Doch nicht diese Geschichte werde ich dir heute erzählen. Denn heute befindet sich hinter diesen Mauern ein Museum. Und dieses Museum hat in den letzten Jahren etwas Seltenes getan, etwas Schwieriges: es hat ganze Säle geöffnet, um eine Wahrheit auszusprechen, die die Stadt lange verschwiegen hat.
+
+Nantes war der bedeutendste Sklavenhafen Frankreichs. Während des gesamten achtzehnten Jahrhunderts fuhren seine Schiffe von hier aus, um Männer, Frauen, Kinder an den Küsten Afrikas zu holen und sie auf der anderen Seite des Ozeans zu verkaufen. Dieses Vermögen ist überall um dich herum. In den Fassaden, den Kais, den Brunnen. Und zweihundert Jahre lang zog man es vor, es nicht zu benennen.
+
+Dieser Spaziergang ist der Weg dieses Geldes. Und auch der Weg einer Stadt, die schließlich begann, ihrer Vergangenheit ins Auge zu blicken.
+
+Folge dem Graben, umrunde das Schloss und steig hinauf zur großen steinernen Turmspitze, die über den Dächern thront. Folge mir.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-1
+@@STITLE=Cathédrale Saint-Pierre-et-Saint-Paul
+Heb den Kopf. Diese weiße Steinfassade, diese beiden Türme, dieses gotische Spitzenwerk, das ist die cathédrale Saint-Pierre-et-Saint-Paul. Geh hinein, wenn die Türen offen sind. Im Inneren steigt das Kirchenschiff zum Himmel auf, so hoch, so hell, dass man vergisst zu atmen. Such im Querschiff nach einem Grabmal aus schwarzem und weißem Marmor. Es gehört François II., dem letzten Herzog der Bretagne, und seiner Gemahlin. Ein Meisterwerk, an seinen vier Ecken von steinernen Frauen bewacht.
+
+François II. ist der Vater von Anne der Bretagne. Mit ihm stirbt der Traum von einer unabhängigen Bretagne. Seine Tochter wird nacheinander zwei Könige von Frankreich heiraten müssen, und das Herzogtum wird schließlich dem Königreich einverleibt. Das ist das alte Nantes: eine bretonische Hauptstadt, ihren Ländereien, ihren Märkten, ihrer Wolle zugewandt.
+
+Und dann kippt die Welt. Die großen Entdeckungen öffnen den Atlantik. Nantes findet sich an der Mündung des längsten Flusses Frankreichs wieder, ein weit offenes Tor zum Ozean. Nach und nach hört die Stadt auf, nach innen zu blicken. Sie wendet sich ganz dem Meer und den Inseln zu. Und ihr Vermögen wird von nun an von dort kommen.
+
+Steig wieder hinunter zum Fluss, bis zu einem gepflasterten Platz, umgeben von alten Holzhäusern. Folge mir.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-2
+@@STITLE=Place du Bouffay
+Da bist du nun auf der place du Bouffay. Schau dir diese eng aneinandergedrängten Fachwerkhäuser an, diese engen Gassen, die sternförmig auseinandergehen. Das ist das älteste Herz von Nantes, das mittelalterliche Viertel, das aus der Zeit vor den großen Vermögen. Hier schlug der erste Hafen, als die Loire noch an diesen Pflastersteinen leckte.
+
+Auf diesen längst verschwundenen Kais wurde Salz aus den Sümpfen entladen, Weizen, Holz und Stoffe. Ein ehrlicher, geduldiger Handel, im Maßstab des Flusses. Die Kaufleute von Nantes wurden langsam reich, Ladung für Ladung, wie überall sonst auch.
+
+Was alles verändern wird, ist die hohe See. Im sechzehnten und siebzehnten Jahrhundert beginnen die Schiffe aus Nantes, immer weiter hinauszufahren, immer weiter. Spanien, Portugal, dann die Antillen. Und dort, auf den Inseln, pflanzt man Zuckerrohr. Ein weißes Gold, das Vermögen einbringt. Doch um das Rohr unter der Sonne zu schneiden, braucht es Hände. Viele Hände. Hände, die man nicht bezahlen wird.
+
+Hier, in den Köpfen einiger Reeder, keimt die Idee, die dieser Stadt sowohl Reichtum als auch Schande bringen wird. Geh nach Süden, überquere die große Allee, bis zu einer Insel, die keine mehr ist. Folge mir.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-3
+@@STITLE=Île Feydeau
+Du gehst über eine ehemalige Insel. Schwer zu glauben, oder? Früher floss die Loire an beiden Seiten hier vorbei. Das war die île Feydeau, eine Sandbank mitten im Fluss. Man hat sie vor einem Jahrhundert zugeschüttet, die Flussarme wurden zu Alleen. Doch die Häuser sind geblieben.
+
+Und was für Häuser. Heb den Blick zu diesen Fassaden. Hoch, wohlhabend, geschmückt mit schmiedeeisernen Balkonen, Girlanden, Mascarons, jenen steinernen Gesichtern, die über den Fenstern geschnitzt sind. Schau sie dir gut an. Götter, Frauen, Greise. Und manchmal, dort geschnitzt wie ein Geständnis, die Gesichter afrikanischer Männer.
+
+Diese Häuser gehörten den Reedern und Kaufleuten des achtzehnten Jahrhunderts. Den Reichsten der Stadt. Sie bauten auf Sand, also haben sich die Häuser gesetzt, sind schief geworden. Schau: mehrere stehen deutlich schräg, wie betrunken. Man erzählt sich, dass ein auf einem Tisch abgestelltes Glas dort von selbst rutscht.
+
+Diese schräge Eleganz ist Geld aus dem Großhandel. Der Handel mit Waren, aber auch mit Menschen. Hier, in den oberen Stockwerken, lebte ein Bürgertum, das wählte, tanzte, heiratete, und die Papiere für die Sklavenexpeditionen unterschrieb.
+
+Geh noch ein paar Schritte weiter, bis zur reichst geschnitzten Fassade der ganzen Insel. Folge mir.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-4
+@@STITLE=Temple du Goût
+Halt vor dieser hier an. Man nennt sie den Temple du Goût, den Tempel des Geschmacks. Eine von oben bis unten geschnitzte Fassade, die spitz zum Himmel aufsteigt, die prächtigste der ganzen Insel. Sie wurde Mitte des achtzehnten Jahrhunderts erbaut, und sie gehörte einem Mann: Guillaume Grou.
+
+Grou war einer der größten Reeder von Nantes. Einer jener Kaufleute, die Schiffe ausrüsten, Teilhaber versammeln, das Geld vorschießen und die Gewinne einer über ein Jahr dauernden Reise einstreichen. Seine Schiffe umrundeten immer wieder den Atlantik. Und dieses Haus, dieses Steinspitzenwerk, ist das Schaufenster seines Erfolgs.
+
+Man muss es einfach sagen, ohne Umwege. Die Schönheit dieser Fassade und das Leiden Tausender Menschen sind dieselbe Geschichte. Dasselbe Geld. Die Nantaiser des achtzehnten Jahrhunderts verbargen es nicht: Reeder zu sein war ein angesehener Beruf, ein Titel, fast ein Adelsstand. Grou starb reich und geehrt.
+
+Lange bewunderte man diese Häuser, ohne zu sagen, woher ihr Gold kam. Heute versucht man, alles zusammen zu betrachten: die Anmut und das Verbrechen, im selben Stein.
+
+Geh zum großen offenen Platz, nach Westen, dort, wo die Stadt einst auf den Fluss traf. Folge mir.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-5
+@@STITLE=Place du Commerce
+Da sind wir nun auf einem weiten Platz. Sein Name sagt alles: place du Commerce. Wo du stehst, war vor zwei Jahrhunderten der Wasserrand. Schiffe kamen fast an deinen Füßen zum Anlegen. Schau dir dieses große Gebäude mit Säulen an: die alte Börse, der Palast der Kaufleute.
+
+Hier wurde alles entschieden. Nicht auf den Schiffen, nicht in Afrika, nicht auf den Antillen. Hier, in gedämpften Sälen, an Tischen. Man setzte die Expeditionen auf, wie man ein Unternehmen gründet. Jeder übernahm Anteile, einen Bruchteil des Schiffs, einen Bruchteil der Ladung. Man verteilte das Risiko, man verteilte die Gewinne. Ein Sturm, ein Aufstand, eine Epidemie an Bord, und man verlor seinen Einsatz. Doch wenn alles gelang, war das Vermögen gewaltig.
+
+Die verwendeten Worte waren kalt, buchhalterisch. Man reihte Zahlen aneinander, Ladungen, Spalten. Worte, um die Gesichter nicht zu sehen. Eine ganze Stadt von Notaren, Versicherern, Bankiers, Fabrikanten lebte von diesem Handel, ohne jemals eine Kette zu berühren.
+
+Diese ruhige Mechanik ist es, die ich möchte, dass du im Kopf behältst, während du zum Wasser gehst. Nimm den Weg nach Westen, am Fluss entlang, auf dem großen Kai. Folge mir.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-6
+@@STITLE=Quai de la Fosse
+Da bist du nun am quai de la Fosse. Heute Gebäude, Autos, eine Straßenbahn. Doch schließ für einen Moment die Augen. Hier war ein Wald: Dutzende von Masten, Segel, Taue, der Geruch von Teer und Gezeit. Der große Hafen von Nantes. Von diesem Kai aus fuhren die Sklavenschiffe ab.
+
+Verfolge die Reise in Gedanken. Ein Schiff verlässt dieses Ufer, beladen mit Waren: Stoffen, Gewehren, Eisenstangen, Werkzeugen und Perlen. Es fährt die Loire hinab, erreicht die hohe See, nimmt Kurs nach Süden, zu den Küsten Afrikas. Dort werden diese Waren wochenlang gegen Menschen eingetauscht. Dann durchquert das Schiff den Ozean, seine Laderäume vollgepfercht, in Richtung Antillen oder Amerika. Dort verkauft man die Überlebenden. Und man fährt wieder zurück nach Nantes, beladen mit Baumwolle, Indigo und anderen Kolonialwaren.
+
+Drei Küsten, drei Tauschgeschäfte, ein einziger Kreis. Man nannte das den Dreieckshandel. Jede Ecke brachte Geld ein, und die Spitze des Dreiecks, das war hier, dieser Kai, diese Stadt.
+
+Geh weiter nach Westen, am Wasser entlang, dort, wo der Kai breiter wird und sich einst die Lagerhäuser drängten. Folge mir.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-7
+@@STITLE=Quai de la Fosse, aval
+Geh weiter am Fluss entlang. Auf diesem Teil des Kais reihten sich einst Lagerhäuser und Manufakturen aneinander. Denn die Schiffe kehrten nicht leer zurück. Sie brachten Rohstoffe mit, die jenseits des Atlantiks von denen produziert wurden, die man deportiert hatte. Und Nantes machte sich daran, alles zu verarbeiten.
+
+Baumwolle nahm einen bedeutenden Platz ein. Man spann sie, webte sie, dann bedruckte man sie mit leuchtenden Farben. Das sind die berühmten „Indiennes", jene geblümten Stoffe, mit denen man sich von Paris bis Sankt Petersburg kleidete. Indigo versorgte diese Werkstätten, während andere Materialien die Läden und Lagerhäuser des Hafens füllten.
+
+Versteh das gut: es war nicht nur eine Handvoll Reeder, die von diesem System lebte. Es war eine ganze Stadt. Die Arbeiter der Manufakturen, die Weber, die Fassbinder, die Zimmerleute, die Seeleute, die Ehefrauen, die die Bücher führten. Ein geteilter Wohlstand, aufgebaut auf einer Ungerechtigkeit, die man lieber nicht ansah.
+
+Dann kam die Zeit, in der einige wenige Stimmen endlich wagten, Nein zu sagen. Geh weiter zu diesem schmalen weißen Steg, der den Fluss überspannt, dicht über dem Wasser. Folge mir.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-8
+@@STITLE=Passerelle Victor-Schœlcher
+Dieser leichte Steg, direkt über dem Wasser errichtet, trägt einen Namen, den man sich merken sollte: Victor Schœlcher. Schau, wie er die beiden Ufer verbindet, wie ein straff gespannter Strich dicht über dem Fluss.
+
+Schœlcher war kein Nantaiser. Er war ein Kämpfer. 1848, in einem revolutionären Frankreich, wird er Unterstaatssekretär für die Marine. Und er drängt, besteht darauf, verfasst. Am 27. April dieses Jahres hebt ein Dekret die Sklaverei in allen französischen Kolonien auf. Diesmal endgültig. Denn Frankreich hatte die Sklaverei ein halbes Jahrhundert zuvor bereits abgeschafft, dann aber wiederhergestellt. Diesmal ist es vorbei.
+
+Für Nantes wird die Seite leise umgeblättert. Der Sklavenhandel war schon seit Jahren verboten. Die Stadt hatte sich anderen Industrien zugewandt. Und vor allem schweigt sie. Mehr als anderthalb Jahrhunderte lang spricht niemand mehr darüber. Die Mascarons bleiben, die Vermögen bleiben, die schönen Stadtpalais bleiben. Doch die Geschichte verschwindet aus den Büchern und aus den Mündern. Man lehrt sie nicht. Man vergisst sie, fast absichtlich.
+
+Man wird bis in unsere Zeit warten müssen, damit die Stadt wieder die Augen öffnet. Steig dort hinunter, an den Wasserrand, unter den Kai. Dort endet unser Weg. Folge mir.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-9
+@@STITLE=Mémorial de l'abolition de l'esclavage
+Steig die Stufen hinunter. Der Lärm der Stadt entfernt sich, das Licht wird schwächer. Da bist du nun unter dem Kai, in einem langen Gang aus Beton und Holz, der dem Fluss folgt. Auf der einen Seite die Loire, ganz nah, fast in Reichweite deiner Hand. Auf der anderen die Mauer. Und auf dem Boden, unter deinen Füßen, Tausende von Glasplatten.
+
+Beug dich hinunter. Lies. Auf fast zweitausend dieser Platten ist ein Name eingraviert. Das sind keine Namen von deportierten Männern oder Frauen, ihre wurden nicht bewahrt. Das sind die Namen der Schiffe. Der Name jeder Sklavenexpedition, die von diesem Hafen aus aufbrach. Manchmal sanfte Namen, Namen von Heiligen, von Blumen, von Zärtlichkeit, getragen von Schiffen des Grauens. Sie ziehen unter deinen Schritten vorbei, einer nach dem anderen, endlos. Das ist der Schwindel dieses Ortes: endlich das Ausmaß der Sache zu sehen.
+
+Weiter hinten lässt eine große geneigte Glaswand das Licht des Flusses hindurch, mit eingravierten Worten, Texten über Freiheit, in den Sprachen der ganzen Welt.
+
+Dieses Denkmal wurde erst vor etwa zehn Jahren eröffnet. Es hat all diese Zeit gebraucht, damit Nantes, die Schöne, die Reiche, es wagt, hier hinunterzusteigen und zu betrachten, woher ihr Vermögen kam. Nicht um sich selbst zu geißeln. Um sich zu erinnern. Um die Namen auszusprechen.
+
+Bleib noch einen Moment. Hör der Loire zu. Es ist dasselbe Wasser, das alles getragen hat: den Reichtum, die Schande, und jetzt die Erinnerung. Wenn du wieder ans Licht hinaufsteigst, wirst du die schönen Fassaden nie mehr ganz auf dieselbe Weise betrachten. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Nantes — Memoria del porto
+@@DESC=Storia e segreti — armatori, tratta atlantica e memoriale: la città che finalmente guarda in faccia il suo passato.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-0
+@@STITLE=Château des ducs de Bretagne
+Fermati sul bordo del fossato. Davanti a te, una doppia città di pietra. In basso, una fortezza tozza, torri massicce, mura di granito tagliate per la guerra. E sopra, superando i bastioni, facciate bianche e sottili, finestre scolpite, quasi un palazzo. Due Nantes in un solo monumento. È il château des ducs de Bretagne. Qui nacque Anna, duchessa di Bretagna, due volte regina di Francia. Qui, un re firmò l'editto di Nantes. Secoli di potere tra queste mura.
+
+Ma non è questa storia che ti racconterò oggi. Perché oggi, dietro queste mura, c'è un museo. E questo museo, da qualche anno, ha fatto una cosa rara, una cosa difficile: ha aperto sale intere per dire una verità che la città ha a lungo taciuto.
+
+Nantes è stato il primo porto negriero di Francia. Per tutto il diciottesimo secolo, le sue navi sono partite da qui a cercare uomini, donne, bambini sulle coste dell'Africa, per venderli dall'altra parte dell'oceano. Questa fortuna è ovunque intorno a te. Nelle facciate, nelle banchine, nelle fontane. E per duecento anni, si è preferito non nominarla.
+
+Questa passeggiata è il cammino di quel denaro. E anche il cammino di una città che ha finito per guardare in faccia il suo passato.
+
+Costeggia il fossato, gira intorno al castello e sali verso la grande guglia di pietra che domina i tetti. Seguimi.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-1
+@@STITLE=Cathédrale Saint-Pierre-et-Saint-Paul
+Alza la testa. Questa facciata di pietra bianca, queste due torri, questo merletto gotico, è la cathédrale Saint-Pierre-et-Saint-Paul. Entra, se le porte sono aperte. All'interno, la navata sale verso il cielo, così alta, così chiara, che ci si dimentica di respirare. Cerca, nel transetto, una tomba di marmo nero e bianco. È quella di Francesco II, l'ultimo duca di Bretagna, e di sua moglie. Un capolavoro, vegliato ai quattro angoli da donne di pietra.
+
+Francesco II è il padre di Anna di Bretagna. Con lui muore il sogno di una Bretagna indipendente. Sua figlia dovrà sposare due re di Francia, uno dopo l'altro, e il ducato finirà annesso al regno. Ecco la vecchia Nantes: una capitale bretone, rivolta verso le sue terre, le sue fiere, la sua lana.
+
+E poi il mondo si capovolge. Le grandi scoperte aprono l'Atlantico. Nantes si trova alla foce del fiume più lungo di Francia, una porta spalancata sull'oceano. La città smette poco a poco di guardare verso l'interno. Si volge, tutta intera, verso il mare e verso le isole. E la sua fortuna, d'ora in poi, verrà da lì.
+
+Scendi di nuovo verso il fiume, fino a una piazza acciottolata circondata da vecchie case di legno. Seguimi.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-2
+@@STITLE=Place du Bouffay
+Eccoti in place du Bouffay. Guarda queste case serrate, a graticcio, questi vicoli stretti che si diramano a stella. È il cuore più antico di Nantes, il quartiere medievale, quello di prima delle grandi fortune. Qui batteva il primo porto, quando la Loira lambiva ancora questi acciottolati.
+
+Su queste banchine scomparse, si scaricava il sale delle paludi, il grano, il legno e i tessuti. Un commercio onesto, paziente, alla scala del fiume. I mercanti di Nantes si arricchivano lentamente, carico dopo carico, come dappertutto altrove.
+
+Ciò che cambierà tutto è il mare aperto. Nel sedicesimo e diciassettesimo secolo, le navi di Nantes cominciano a spingersi sempre più lontano. La Spagna, il Portogallo, poi le Antille. E là, nelle isole, si pianta la canna da zucchero. Un oro bianco che rende fortune. Ma per tagliare la canna, sotto il sole, servono braccia. Molte braccia. Braccia che non si pagheranno.
+
+È qui, nella testa di alcuni armatori, che germoglia l'idea che farà la ricchezza e la vergogna di questa città. Scendi verso sud, attraversa il grande viale, fino a un'isola che non lo è più. Seguimi.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-3
+@@STITLE=Île Feydeau
+Cammini su un'antica isola. Difficile da credere, no? Un tempo, la Loira scorreva su entrambi i lati qui. Era l'île Feydeau, un banco di sabbia in mezzo al fiume. È stata colmata un secolo fa, i bracci del fiume sono diventati viali. Ma le case sono rimaste.
+
+E che case. Alza gli occhi verso queste facciate. Alte, opulente, ornate di balconi in ferro battuto, ghirlande, mascheroni, quei volti di pietra scolpiti sopra le finestre. Guardali bene. Dei, donne, vecchi. E a volte, scolpiti lì come una confessione, volti di uomini africani.
+
+Queste dimore sono quelle degli armatori e dei negozianti del diciottesimo secolo. I più ricchi della città. Costruivano sulla sabbia, così le case si sono assestate, inclinate. Guarda: parecchie sono decisamente storte, come ubriache. Si racconta che un bicchiere posato su un tavolo lì scivoli da solo.
+
+Questa eleganza inclinata è denaro del grande commercio. Il commercio di merci, ma anche quello di esseri umani. Qui viveva, ai piani, una borghesia che votava, ballava, si sposava, e firmava i documenti delle spedizioni negriere.
+
+Avanza di qualche passo, fino alla facciata più riccamente scolpita di tutta l'isola. Seguimi.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-4
+@@STITLE=Temple du Goût
+Fermati davanti a questa. La si soprannomina il Temple du Goût, il Tempio del Gusto. Una facciata scolpita da cima a fondo, che sale a punta verso il cielo, la più sontuosa di tutta l'isola. Fu costruita a metà del diciottesimo secolo, e apparteneva a un uomo: Guillaume Grou.
+
+Grou era uno dei più grandi armatori di Nantes. Uno di quei negozianti che armano navi, riuniscono soci, anticipano il denaro, e raccolgono i benefici di un viaggio che dura più di un anno. Le sue navi hanno fatto, ancora e ancora, il grande giro dell'Atlantico. E questa casa, questo merletto di pietra, è la vetrina del suo successo.
+
+Bisogna dirselo semplicemente, senza giri di parole. La bellezza di questa facciata e la sofferenza di migliaia di esseri umani sono la stessa storia. Lo stesso denaro. I nantesi del diciottesimo secolo non se ne nascondevano: essere armatore era un mestiere rispettato, un titolo, quasi una nobiltà. Grou morì ricco e onorato.
+
+A lungo, si sono ammirate queste case senza dire da dove venisse il loro oro. Oggi, si cerca di guardare tutto insieme: la grazia e il crimine, nella stessa pietra.
+
+Raggiungi la grande piazza aperta, verso ovest, là dove la città incontrava il fiume. Seguimi.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-5
+@@STITLE=Place du Commerce
+Eccoci in una vasta piazza. Il suo nome dice tutto: place du Commerce. Dove ti trovi, due secoli fa, era il bordo dell'acqua. Le navi venivano ad ormeggiarsi quasi ai tuoi piedi. Guarda questo grande edificio a colonne: l'antica Borsa, il palazzo dei mercanti.
+
+È qui che si decideva tutto. Non sulle navi, non in Africa, non alle Antille. Qui, in sale ovattate, intorno a tavoli. Si allestivano le spedizioni come si monta un'impresa. Ognuno prendeva delle quote, una frazione della nave, una frazione del carico. Si ripartiva il rischio, si ripartivano i profitti. Una tempesta, una rivolta, un'epidemia a bordo, e si perdeva la propria posta. Ma quando tutto riusciva, la fortuna era immensa.
+
+Le parole che si usavano erano fredde, contabili. Si allineavano cifre, carichi, colonne. Parole per non vedere i volti. Un'intera città di notai, assicuratori, banchieri, fabbricanti viveva di questo commercio, senza mai toccare una catena.
+
+È questa meccanica tranquilla che voglio tu tenga a mente, camminando verso l'acqua. Prendi verso ovest, lungo il fiume, sulla grande banchina. Seguimi.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-6
+@@STITLE=Quai de la Fosse
+Eccoti sul quai de la Fosse. Oggi, palazzi, macchine, un tram. Ma chiudi gli occhi un secondo. Qui era una foresta: decine di alberi, vele, cordami, l'odore del catrame e della marea. Il grande porto di Nantes. È da questa banchina che partivano le navi negriere.
+
+Segui il viaggio con il pensiero. Una nave lascia questa riva, carica di merci: tessuti, fucili, barre di ferro, attrezzi e perline. Scende la Loira, raggiunge il largo, punta a sud, verso le coste dell'Africa. Là, per settimane, si scambiano queste merci con esseri umani. Poi la nave attraversa l'oceano, le sue stive stipate, verso le Antille o l'America. Vi si vendono i sopravvissuti. E si riparte per Nantes, carichi di cotone, indaco e altre materie coloniali.
+
+Tre coste, tre scambi, un solo cerchio. Lo si chiamava il commercio triangolare. Ogni angolo rendeva denaro, e la punta del triangolo era qui, questa banchina, questa città.
+
+Continua verso ovest, costeggiando l'acqua, là dove la banchina si allarga e si affollavano i magazzini. Seguimi.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-7
+@@STITLE=Quai de la Fosse, aval
+Continua lungo il fiume. Su questo tratto della banchina, un tempo, si allineavano i magazzini e le manifatture. Perché le navi non tornavano vuote. Riportavano materie prodotte oltre l'Atlantico da coloro che erano stati deportati. E Nantes si mise a trasformare tutto.
+
+Il cotone occupava un posto importante. Lo si filava, tesseva, poi stampava con colori vivaci. Sono le famose «indiane», quelle tele fiorite con cui ci si vestiva da Parigi a San Pietroburgo. L'indaco alimentava questi laboratori, mentre altre materie riempivano negozi e magazzini del porto.
+
+Capisci bene: non era solo una manciata di armatori a vivere di questo sistema. Era un'intera città. Gli operai delle manifatture, i tessitori, i bottai, i falegnami, i marinai, le mogli che tenevano i conti. Una prosperità condivisa, costruita su un'ingiustizia che si preferiva non guardare in faccia.
+
+Poi venne il tempo in cui alcune voci, finalmente, osarono dire no. Avanza verso quella sottile passerella bianca che attraversa il fiume, a filo dell'acqua. Seguimi.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-8
+@@STITLE=Passerelle Victor-Schœlcher
+Questa passerella leggera, posata proprio sopra l'acqua, porta un nome da ricordare: Victor Schœlcher. Guardala collegare le due rive, come un tratto teso a filo del fiume.
+
+Schœlcher non era di Nantes. Era un uomo di lotta. Nel 1848, in una Francia in rivoluzione, diventa sottosegretario di Stato alla Marina. E spinge, insiste, redige. Il 27 aprile di quell'anno, un decreto abolisce la schiavitù in tutte le colonie francesi. Questa volta, per sempre. Perché la Francia aveva già abolito, e poi ristabilito, la schiavitù mezzo secolo prima. Questa volta, è finita.
+
+Per Nantes, la pagina si volta senza rumore. La tratta era già vietata da anni. La città si era rivolta verso altre industrie. E soprattutto, tace. Per più di un secolo e mezzo, non se ne parla più. I mascheroni restano, le fortune restano, i bei palazzi restano. Ma la storia scompare dai libri e dalle bocche. Non la si insegna. La si dimentica, quasi volontariamente.
+
+Bisognerà aspettare la nostra epoca perché la città riapra gli occhi. Scendi lì, sul bordo dell'acqua, sotto la banchina. È lì che finisce il nostro cammino. Seguimi.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-9
+@@STITLE=Mémorial de l'abolition de l'esclavage
+Scendi i gradini. Il rumore della città si allontana, la luce si abbassa. Eccoti sotto la banchina, in un lungo passaggio di cemento e legno che segue il fiume. Da un lato, la Loira, vicinissima, quasi a portata di mano. Dall'altro, il muro. E sul suolo, sotto i tuoi piedi, migliaia di lastre di vetro.
+
+Chinati. Leggi. Su quasi duemila di queste lastre è inciso un nome. Non sono nomi di uomini né di donne deportati, non si sono conservati i loro. Sono i nomi delle navi. Il nome di ogni spedizione negriera partita da questo porto. Nomi a volte dolci, nomi di santi, di fiori, di tenerezza, portati da navi d'orrore. Sfilano sotto i tuoi passi, uno dopo l'altro, interminabili. È questa la vertigine di questo luogo: vedere, finalmente, la scala della cosa.
+
+Più avanti, un grande muro di vetro inclinato lascia passare la chiarità del fiume, con parole incise, testi di libertà, nelle lingue di tutto il mondo.
+
+Questo memoriale ha aperto appena una decina di anni fa. Ci è voluto tutto questo tempo perché Nantes, la bella, la ricca, osasse scendere qui e guardare da dove venisse la sua fortuna. Non per flagellarsi. Per ricordare. Per dire i nomi.
+
+Resta un istante. Ascolta la Loira. È la stessa acqua che ha portato tutto: la ricchezza, la vergogna, e ora la memoria. Quando risalirai alla luce, non guarderai più le belle facciate esattamente allo stesso modo. A presto, amico.
+
+@@LANG=nl
+@@TITLE=Nantes — Herinnering van de haven
+@@DESC=Geschiedenis en geheimen — reders, de Atlantische slavenhandel en een gedenkteken: de stad die eindelijk haar verleden onder ogen ziet.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-0
+@@STITLE=Château des ducs de Bretagne
+Stop aan de rand van de gracht. Voor je een dubbele stad van steen. Beneden een gedrongen vesting, massieve torens, granieten muren, gehouwen voor oorlog. En daarboven, boven de kantelen uitstekend, witte, fijne gevels, gebeeldhouwde ramen, bijna een paleis. Twee Nantes in één enkel monument. Dit is het château des ducs de Bretagne. Hier werd Anna, hertogin van Bretagne, tweemaal koningin van Frankrijk, geboren. Hier ondertekende een koning het Edict van Nantes. Eeuwen van macht binnen deze muren.
+
+Maar dat is niet het verhaal dat ik je vandaag ga vertellen. Want vandaag bevindt zich achter deze muren een museum. En dit museum heeft de laatste jaren iets zeldzaams gedaan, iets moeilijks: het heeft hele zalen geopend om een waarheid uit te spreken die de stad lange tijd verzweeg.
+
+Nantes was de eerste slavenhaven van Frankrijk. De hele achttiende eeuw door vertrokken haar schepen van hier om mannen, vrouwen, kinderen te zoeken aan de kusten van Afrika, om ze aan de andere kant van de oceaan te verkopen. Dat fortuin is overal om je heen. In de gevels, de kades, de fonteinen. En tweehonderd jaar lang koos men ervoor het niet te benoemen.
+
+Deze wandeling is het pad van dat geld. En ook het pad van een stad die uiteindelijk haar verleden onder ogen is gaan zien.
+
+Volg de gracht, ga om het kasteel heen en klim naar de grote stenen torenspits die boven de daken uittorent. Volg me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-1
+@@STITLE=Cathédrale Saint-Pierre-et-Saint-Paul
+Kijk omhoog. Deze witte stenen gevel, deze twee torens, dit gotische kantwerk, dat is de cathédrale Saint-Pierre-et-Saint-Paul. Ga naar binnen, als de deuren open zijn. Binnen stijgt het schip op naar de hemel, zo hoog, zo licht, dat je vergeet adem te halen. Zoek, in het dwarsschip, naar een grafmonument van zwart en wit marmer. Het is dat van François II, de laatste hertog van Bretagne, en zijn echtgenote. Een meesterwerk, aan de vier hoeken bewaakt door stenen vrouwen.
+
+François II is de vader van Anna van Bretagne. Met hem sterft de droom van een onafhankelijk Bretagne. Zijn dochter zal, de een na de ander, met twee koningen van Frankrijk moeten trouwen, en het hertogdom zal uiteindelijk bij het koninkrijk gevoegd worden. Dat is het oude Nantes: een Bretonse hoofdstad, gericht op haar gronden, haar markten, haar wol.
+
+En dan kantelt de wereld. De grote ontdekkingen openen de Atlantische Oceaan. Nantes bevindt zich aan de monding van de langste rivier van Frankrijk, een wagenwijd openstaande poort naar de oceaan. Beetje bij beetje houdt de stad op naar binnen te kijken. Ze wendt zich helemaal naar de zee en naar de eilanden. En haar fortuin zal voortaan daarvandaan komen.
+
+Ga weer naar beneden richting de rivier, tot een geplaveid plein omringd door oude houten huizen. Volg me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-2
+@@STITLE=Place du Bouffay
+Hier ben je op de place du Bouffay. Kijk naar deze dicht op elkaar staande vakwerkhuizen, deze smalle steegjes die stervormig uiteenlopen. Dit is het oudste hart van Nantes, de middeleeuwse wijk, die van vóór de grote fortuinen. Hier klopte de eerste haven, toen de Loire nog tegen deze kasseien likte.
+
+Op deze verdwenen kades werd zout uit de moerassen gelost, samen met graan, hout en stoffen. Een eerlijke, geduldige handel, op de schaal van de rivier. De kooplieden van Nantes werden langzaam rijk, lading na lading, zoals overal elders.
+
+Wat alles gaat veranderen, is de open zee. In de zestiende en zeventiende eeuw beginnen de schepen van Nantes steeds verder te varen, steeds verder. Spanje, Portugal, dan de Antillen. En daar, op de eilanden, plant men suikerriet. Wit goud dat fortuinen oplevert. Maar om het riet onder de zon te kappen, heb je handen nodig. Veel handen. Handen die men niet zal betalen.
+
+Het is hier, in de hoofden van enkele reders, dat het idee ontkiemt dat de rijkdom en de schande van deze stad zal worden. Ga naar het zuiden, steek de grote laan over, tot een eiland dat er geen meer is. Volg me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-3
+@@STITLE=Île Feydeau
+Je loopt over een voormalig eiland. Moeilijk te geloven, niet? Vroeger stroomde de Loire aan beide kanten hier langs. Dit was het île Feydeau, een zandbank midden in de rivier. Ze is een eeuw geleden opgevuld, de armen van de rivier werden lanen. Maar de huizen zijn gebleven.
+
+En wat voor huizen. Kijk omhoog naar deze gevels. Hoog, weelderig, versierd met smeedijzeren balkons, guirlandes, mascarons, die stenen gezichten die boven de ramen zijn uitgehouwen. Bekijk ze goed. Goden, vrouwen, oude mannen. En soms, daar uitgehouwen als een bekentenis, gezichten van Afrikaanse mannen.
+
+Deze woningen zijn die van de reders en handelaars van de achttiende eeuw. De rijksten van de stad. Ze bouwden op zand, dus zijn de huizen verzakt, scheefgezakt. Kijk: verschillende ervan staan duidelijk scheef, als dronken. Men vertelt dat een glas dat er op een tafel wordt gezet, er vanzelf van afglijdt.
+
+Deze scheve elegantie is geld van de grote handel. De handel in goederen, maar ook die in mensen. Hier, op de verdiepingen, leefde een burgerij die stemde, danste, trouwde, en de papieren van de slavenhandelsexpedities ondertekende.
+
+Loop nog een paar stappen verder, tot de rijkst uitgehouwen gevel van het hele eiland. Volg me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-4
+@@STITLE=Temple du Goût
+Stop voor deze. Men noemt haar de Temple du Goût, de Tempel van de Smaak. Een van boven tot onder uitgehouwen gevel, die spits naar de hemel oprijst, de weelderigste van het hele eiland. Ze werd gebouwd halverwege de achttiende eeuw, en behoorde toe aan één man: Guillaume Grou.
+
+Grou was een van de grootste reders van Nantes. Een van die handelaars die schepen uitrusten, vennoten verzamelen, het geld voorschieten, en de winsten opstrijken van een reis die meer dan een jaar duurt. Zijn schepen maakten, keer op keer, de grote rondgang van de Atlantische Oceaan. En dit huis, dit stenen kantwerk, is de etalage van zijn succes.
+
+Men moet het eenvoudig zeggen, zonder omwegen. De schoonheid van deze gevel en het lijden van duizenden mensen zijn hetzelfde verhaal. Hetzelfde geld. De inwoners van Nantes in de achttiende eeuw verborgen het niet: reder zijn was een gerespecteerd beroep, een titel, bijna een adelstand. Grou stierf rijk en geëerd.
+
+Lange tijd bewonderde men deze huizen zonder te zeggen waar hun goud vandaan kwam. Vandaag probeert men alles samen te bekijken: de gratie en de misdaad, in dezelfde steen.
+
+Ga naar het grote open plein, naar het westen, daar waar de stad de rivier ontmoette. Volg me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-5
+@@STITLE=Place du Commerce
+Hier zijn we op een uitgestrekt plein. De naam ervan zegt alles: place du Commerce. Waar je staat, was twee eeuwen geleden de waterkant. Schepen kwamen bijna aan je voeten afmeren. Kijk naar dit grote gebouw met zuilen: de voormalige Beurs, het paleis van de kooplieden.
+
+Hier werd alles beslist. Niet op de schepen, niet in Afrika, niet op de Antillen. Hier, in gedempte zalen, rond tafels. Men zette de expedities op zoals men een onderneming opzet. Iedereen nam aandelen, een fractie van het schip, een fractie van de lading. Men verdeelde het risico, men verdeelde de winsten. Een storm, een opstand, een epidemie aan boord, en men verloor zijn inzet. Maar als alles lukte, was het fortuin immens.
+
+De woorden die men gebruikte waren koud, boekhoudkundig. Men lijnde cijfers op, ladingen, kolommen. Woorden om de gezichten niet te zien. Een hele stad van notarissen, verzekeraars, bankiers, fabrikanten leefde van deze handel, zonder ooit een ketting aan te raken.
+
+Dat rustige mechaniek is wat ik wil dat je in gedachten houdt, terwijl je naar het water loopt. Ga naar het westen, langs de rivier, over de grote kade. Volg me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-6
+@@STITLE=Quai de la Fosse
+Hier ben je op de quai de la Fosse. Vandaag, gebouwen, auto's, een tram. Maar sluit even je ogen. Hier was een woud: tientallen masten, zeilen, touwwerk, de geur van teer en getij. De grote haven van Nantes. Van deze kade vertrokken de slavenschepen.
+
+Volg de reis in gedachten. Een schip verlaat deze oever, geladen met goederen: stoffen, geweren, ijzeren staven, gereedschap en kralen. Het vaart de Loire af, bereikt de open zee, zet koers naar het zuiden, naar de kusten van Afrika. Daar worden deze goederen weken lang ingeruild tegen mensen. Dan steekt het schip de oceaan over, zijn ruimen volgepakt, richting de Antillen of Amerika. Daar worden de overlevenden verkocht. En het vertrekt weer naar Nantes, geladen met katoen, indigo en andere koloniale grondstoffen.
+
+Drie kusten, drie ruilhandels, één enkele cirkel. Men noemde het de driehoekshandel. Elke hoek bracht geld op, en de top van de driehoek, dat was hier, deze kade, deze stad.
+
+Loop verder naar het westen, langs het water, daar waar de kade breder wordt en waar vroeger de pakhuizen zich verdrongen. Volg me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-7
+@@STITLE=Quai de la Fosse, aval
+Loop verder langs de rivier. Op dit deel van de kade stonden vroeger pakhuizen en manufacturen op een rij. Want de schepen kwamen niet leeg terug. Ze brachten grondstoffen mee, geproduceerd aan de overkant van de Atlantische Oceaan door hen die gedeporteerd waren. En Nantes zette zich aan het verwerken van alles.
+
+Katoen nam een belangrijke plaats in. Het werd gesponnen, geweven, en vervolgens bedrukt met levendige kleuren. Dit zijn de beroemde "indiennes," die gebloemde stoffen waarmee men zich kleedde van Parijs tot Sint-Petersburg. Indigo voedde deze werkplaatsen, terwijl andere grondstoffen de winkels en pakhuizen van de haven vulden.
+
+Begrijp dit goed: het was niet alleen een handjevol reders dat van dit systeem leefde. Het was een hele stad. De arbeiders van de manufacturen, de wevers, de kuipers, de timmerlieden, de zeelieden, de echtgenotes die de boekhouding bijhielden. Een gedeelde welvaart, gebouwd op een onrecht dat men liever niet onder ogen zag.
+
+Toen kwam de tijd waarin enkele stemmen eindelijk durfden nee te zeggen. Loop naar die smalle witte loopbrug die de rivier overspant, vlak boven het water. Volg me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-8
+@@STITLE=Passerelle Victor-Schœlcher
+Deze lichte loopbrug, net boven het water geplaatst, draagt een naam die je moet onthouden: Victor Schœlcher. Kijk hoe hij de twee oevers verbindt, als een strakke lijn vlak boven de rivier.
+
+Schœlcher kwam niet uit Nantes. Hij was een strijder. In 1848, in een Frankrijk in revolutie, wordt hij onderstaatssecretaris van Marine. En hij duwt, dringt aan, schrijft. Op 27 april van dat jaar schaft een decreet de slavernij af in alle Franse koloniën. Deze keer voorgoed. Want Frankrijk had de slavernij al een halve eeuw eerder afgeschaft, en toen weer hersteld. Deze keer is het voorbij.
+
+Voor Nantes wordt de bladzijde stilletjes omgeslagen. De slavenhandel was al jarenlang verboden. De stad had zich naar andere industrieën gewend. En vooral: ze zwijgt. Meer dan anderhalve eeuw lang wordt er niet meer over gesproken. De mascarons blijven, de fortuinen blijven, de mooie herenhuizen blijven. Maar de geschiedenis verdwijnt uit de boeken en uit de monden. Men onderwijst haar niet. Men vergeet haar, bijna moedwillig.
+
+Men zal moeten wachten tot onze tijd voordat de stad haar ogen weer opent. Ga daar naar beneden, aan de waterkant, onder de kade. Daar eindigt onze weg. Volg me.
+
+@@SCENE=seed-100-nantes-memoire-du-port-scene-9
+@@STITLE=Mémorial de l'abolition de l'esclavage
+Ga de trap af. Het lawaai van de stad verdwijnt, het licht neemt af. Hier ben je onder de kade, in een lange gang van beton en hout die de rivier volgt. Aan de ene kant de Loire, vlakbij, bijna binnen handbereik. Aan de andere kant de muur. En op de grond, onder je voeten, duizenden glazen plaquettes.
+
+Buk je. Lees. Op bijna tweeduizend van deze plaquettes staat een naam gegraveerd. Dit zijn geen namen van gedeporteerde mannen of vrouwen, hun namen zijn niet bewaard. Dit zijn de namen van de schepen. De naam van elke slavenhandelsexpeditie die uit deze haven vertrok. Namen soms zacht, namen van heiligen, van bloemen, van tederheid, gedragen door schepen van gruwel. Ze trekken voorbij onder je voeten, de een na de ander, eindeloos. Dat is de duizeling van deze plek: eindelijk de schaal van het geheel te zien.
+
+Verderop laat een grote hellende glazen muur het licht van de rivier door, met gegraveerde woorden, teksten over vrijheid, in de talen van de hele wereld.
+
+Dit gedenkteken opende amper tien jaar geleden. Het heeft al die tijd geduurd voordat Nantes, het mooie, het rijke, het aandurfde om hier naar beneden te gaan en te kijken waar haar fortuin vandaan kwam. Niet om zichzelf te geselen. Om te herinneren. Om de namen te noemen.
+
+Blijf nog even. Luister naar de Loire. Het is hetzelfde water dat alles heeft gedragen: de rijkdom, de schande, en nu de herinnering. Wanneer je weer opklimt naar het licht, zul je de mooie gevels nooit meer helemaal op dezelfde manier bekijken. Tot snel, vriend.

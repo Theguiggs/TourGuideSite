@@ -1,0 +1,489 @@
+@@LANG=en
+@@TITLE=Nîmes — The City That Never Left Rome
+@@DESC=History & secrets — arena, Maison Carrée, crocodile: the city that never left the Roman Empire.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-0
+@@STITLE=Les Arènes
+Look up. In front of you, two tiers of arcades in pale golden stone, sixty below, sixty above, a perfect ring set at the heart of the city. This is the Roman amphitheater of Nîmes — les Arènes. It's nearly two thousand years old, and it's one of the best preserved in the entire former Empire.
+
+Close your eyes for a second. Beneath these tiers, twenty-four thousand people used to take their seats. Nîmois who came to watch gladiators fight and wild beasts die. You entered by your number, climbed through cleverly calculated corridors, sat according to your rank — the notables below, ordinary folk right at the top. A crowd machine, calibrated to the millimeter, twenty centuries ago.
+
+And here's the secret I want to tell you throughout this whole walk. This city, Nîmes, never really woke up from Rome. Elsewhere, amphitheaters are ruins, stones people visit. Not here. Les Arènes never closed. A fortress in the Middle Ages, an entire village housed inside it, then an arena returned to spectacle — two thousand years later, the crowd still comes back, and it still roars.
+
+Nemausus, that was its Roman name. A proud colony, wealthy, favored by the emperors. And that pride, we're going to read it in the stone, monument by monument, until we understand why Nîmes still calls itself, even today, the French Rome.
+
+Walk around the amphitheater to the right and head up toward the small square just to the north. Follow me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-1
+@@STITLE=Place du Marché
+Here you are on the place du Marché, in the shade of the plane trees. Look down at the fountain: a bronze crocodile, chained to a palm tree. That's the emblem of Nîmes. You'll see it everywhere — on street signs, flags, t-shirts. A crocodile, right in the middle of Languedoc. Why?
+
+Go back to the very beginning. After his victory over Egypt, over Mark Antony and Cleopatra, the emperor Augustus rewards his veterans. To these soldiers who fought along the Nile, he grants land, here, at Nemausus. And to strike the colony's coinage, an image is chosen: a crocodile chained to a palm tree. The crocodile is defeated Egypt. The palm tree, victory. The chain, submission.
+
+Two thousand years later, the city made it its emblem. It might be the oldest trademark still alive in France — a Roman logo, designed for retired soldiers.
+
+The story goes that it was King Francis I who, much later, officially authorized the city to bear this crocodile on its coat of arms. True or not, it has never left Nîmes since.
+
+Cross westward, through the lanes, up to a temple set on its terrace. Follow me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-2
+@@STITLE=Maison Carrée
+Stop in front of it. A façade of columns, a triangular pediment, the whole thing set on a tall base, clean, intact, as if it were built yesterday. This is the Maison Carrée. And yet it's two thousand years old — one of the best-preserved Roman temples in the world, perhaps the most complete of them all.
+
+It was built under Augustus, right at the start of our era, at the heart of the forum, the political center of the city. It was dedicated to two princes, Gaius and Lucius, the emperor's grandsons, who died young, and on whom all the dynasty's hopes rested. A temple for two children promised to the Empire, cut down before they could rule.
+
+Look at these fluted columns, these capitals carved with acanthus leaves. This perfection has survived the centuries because the Maison Carrée, too, never stopped being used: consular house, stable, church, museum. Always useful, so always standing.
+
+One man fell in love with it, once: Thomas Jefferson. Ambassador in Paris, future president of the United States, he drew on it to design a capitol in Virginia. The little Roman colony ended up traveling all the way to America.
+
+Now head east, up to the great ancient gate on the boulevard. Follow me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-3
+@@STITLE=Porte d'Auguste
+Look at this stone gate, with its two large passages for chariots and its two small ones for pedestrians. This is the Porte d'Auguste — one of the gates of the Roman ramparts. It's here that the Via Domitia entered, the great road linking Italy to Spain that cut straight across Nîmes.
+
+Look for the inscription carved into the stone, or its copy. It says that in the year sixteen before our era, the emperor Augustus gave the city its gates and its walls. Nearly seven kilometers of ramparts, eighty towers, about ten gates. Nemausus was then one of the largest cities in Gaul — a capital, protected by an emperor's generosity.
+
+In front of the gate, a statue of Augustus, in a toga, his arm raised. Not the original, of course. But it recalls who ruled here, and to whom the city owed everything: its arena, its temples, its pride.
+
+Pass through the gate, as travelers did in antiquity, then head due north, toward a small stone basin hidden near the gardens. Follow me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-4
+@@STITLE=Castellum aquae
+Here's one of the most discreet treasures of Nîmes, and one of the rarest in the world. A simple round basin, carved into the stone, barely wider than a bedroom. It's called the Castellum. And this was where the water finally arrived.
+
+Have you heard of the Pont du Gard? That giant bridge-aqueduct, a few kilometers from here, was never built to be admired. It was plumbing. A conduit some fifty kilometers long that brought water from a distant spring all the way to Nîmes — and it's here, in this basin, that it finally emerged.
+
+Look at the holes drilled all around it. Into each one fitted a lead pipe that ran back out toward the city: to the fountains, the baths, the houses of the wealthy. The Castellum was the water tower of Nemausus, the heart of the network. Very few this well preserved are known — one in Pompeii, this one, and that's about it.
+
+Two thousand years later, the water still flows down toward the city. Follow it. Head down to the great gardens and their spring. Follow me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-5
+@@STITLE=Les Jardins de la Fontaine
+Enter the gardens. Basins, balustrades, statues, water staircases: an eighteenth-century setting, one of the very first public gardens in Europe. But don't stop at the decor. Go to the great basin, where the water rises, dark and cold, from the foot of the hill.
+
+This spring is the true beginning of Nîmes. Long before the Romans, the Gauls worshipped a water god here. His name: Nemausus. He's the one who gave his name to the spring, then to the entire city. Nemausus, the god; Nemausus, the city. Nîmes was born from a spring and the god who dwelled within it.
+
+The Romans, on arriving, didn't chase this god away. They adopted him. Around the spring, they built a magnificent sanctuary — temples, porticoes, a theater, sacred basins. An entire holy site devoted to water and to the emperor.
+
+What you see today, these elegant terraces, covers this ancient sanctuary. Beneath the flowers, the city of the gods still sleeps.
+
+Follow the basin to the left, up to this large, half-ruined stone building. Follow me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-6
+@@STITLE=Temple de Diane
+It's called the Temple de Diane. Remember this name well, because it's wrong. No one really knows what this building was used for. What we do know is that it never had anything to do with the goddess Diana — this name was stuck onto it much later, out of habit, by mistake.
+
+Go in, if the entrance is open. Look at this vaulted room, these niches in the walls, this stone vault, its blocks fitted with extreme care. Some see a library here, others a hall for the imperial cult, still others a pavilion linked to the sacred waters. The mystery holds firm.
+
+What is certain is that it escaped the worst. Turned into a convent in the Middle Ages, it was half destroyed during the Wars of Religion. And yet it still stands, with its beautiful cracked vault, like a challenge thrown at time itself.
+
+That's perhaps the most beautiful thing about it: that Nîmes keeps even the monuments whose purpose it has forgotten. The mystery is preserved just as the stone is.
+
+Leave the gardens and take on the climb, through the pines, up to the tower overlooking the city. Follow me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-7
+@@STITLE=La Tour Magne
+Here you are at the top, out of breath perhaps, at the foot of the Tour Magne. The great tower. It has watched over Nîmes from the summit of the mont Cavalier, the highest point in the city, ever since.
+
+It's older than everything we've seen so far. Even before the Romans, the Gauls had raised a watchtower here. The Romans enveloped it, raised it higher, turned it into the highest point of their ramparts — a stone beacon visible from far away, telling everyone: Rome rules here.
+
+Climb the steps inside, up to the platform. And look.
+
+At your feet, the whole city. The tiled roofs, the round mass of les Arènes, the tiny Maison Carrée in the distance, the green gardens below. Two thousand years of history, in a single glance. You can see the spring that gave birth to the city, the sanctuary, the amphitheater, the ramparts. Nemausus is there, beneath Nîmes, almost intact.
+
+So come back to what I told you at the start. Everywhere else, Rome fell, faded away, left ruins behind. Here, it never quite left. People get married in the temples, applaud in the amphitheater, drink the water from the spring of the god Nemausus. The city hasn't preserved Rome: it has kept on living it.
+
+That's the secret of Nîmes. It isn't Rome's daughter. It's Rome's last living fragment. Stay up here a moment, let the wind whisper it to you. See you soon, friend.
+
+@@LANG=es
+@@TITLE=Nimes — La ciudad que nunca dejó Roma
+@@DESC=Historia y secretos — anfiteatro, Maison Carrée, cocodrilo: la ciudad que nunca dejó el Imperio romano.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-0
+@@STITLE=Les Arènes
+Levanta la vista. Delante de ti, dos pisos de arcadas de piedra dorada, sesenta abajo, sesenta arriba, un anillo perfecto asentado en el corazón de la ciudad. Es el anfiteatro romano de Nimes: las Arènes. Tiene casi dos mil años, y es uno de los mejor conservados de todo el antiguo Imperio.
+
+Cierra los ojos un segundo. Bajo estas gradas se sentaban veinticuatro mil personas. Nimeses venidos a ver combatir a los gladiadores y morir a las fieras. Se entraba por el número asignado, se subía por pasillos calculados con astucia, se sentaba uno según su rango: los notables abajo, el pueblo llano hasta arriba del todo. Una máquina de multitudes, ajustada al milímetro, hace veinte siglos.
+
+Y aquí está el secreto que quiero contarte durante todo este paseo. Esta ciudad, Nimes, nunca se despertó del todo de Roma. En otros lugares, los anfiteatros son ruinas, piedras que se visitan. Aquí no. Las Arènes nunca cerraron. Fortaleza en la Edad Media, un pueblo entero alojado dentro, y luego un anfiteatro devuelto al espectáculo: dos mil años después, la multitud sigue volviendo, y sigue rugiendo.
+
+Nemausus, ese era su nombre romano. Una colonia orgullosa, rica, mimada por los emperadores. Y ese orgullo lo vamos a leer en la piedra, monumento a monumento, hasta entender por qué Nimes se llama, todavía hoy, la Roma francesa.
+
+Rodea el anfiteatro por la derecha y sube hacia la pequeña plaza justo al norte. Sígueme.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-1
+@@STITLE=Place du Marché
+Aquí estás en la place du Marché, a la sombra de los plátanos. Baja la vista hacia la fuente: un cocodrilo de bronce, encadenado a una palmera. Ese es el emblema de Nimes. Lo verás por todas partes: en las placas de las calles, en las banderas, en las camisetas. Un cocodrilo, en pleno Languedoc. ¿Por qué?
+
+Vuelve al principio de todo. Tras su victoria sobre Egipto, sobre Marco Antonio y Cleopatra, el emperador Augusto recompensa a sus veteranos. A esos soldados que combatieron a orillas del Nilo, les da tierras, aquí, en Nemausus. Y para acuñar la moneda de la colonia, se elige una imagen: un cocodrilo encadenado a una palmera. El cocodrilo es Egipto derrotado. La palmera, la victoria. La cadena, la sumisión.
+
+Dos mil años después, la ciudad lo ha convertido en su emblema. Es quizá la marca de fábrica viva más antigua de Francia: un logo romano, diseñado para soldados retirados.
+
+Se cuenta que fue el rey Francisco I quien, mucho más tarde, autorizó oficialmente a la ciudad a llevar ese cocodrilo en su escudo. Verdad o no, no ha dejado Nimes desde entonces.
+
+Cruza hacia el oeste, por las callejuelas, hasta un templo asentado sobre su terraza. Sígueme.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-2
+@@STITLE=Maison Carrée
+Detente delante de ella. Una fachada de columnas, un frontón triangular, el conjunto asentado sobre un alto zócalo, limpio, intacto, como recién construido. Es la Maison Carrée. Y sin embargo tiene dos mil años: es uno de los templos romanos mejor conservados del mundo, quizá el más completo de todos.
+
+Se construyó bajo Augusto, justo al comienzo de nuestra era, en el corazón del foro, el centro político de la ciudad. Se dedicó a dos príncipes, Cayo y Lucio, los nietos del emperador, muertos jóvenes, sobre quienes descansaban todas las esperanzas de la dinastía. Un templo para dos niños prometidos al Imperio, y segados antes de reinar.
+
+Mira estas columnas acanaladas, estos capiteles esculpidos con hojas de acanto. Esta perfección ha atravesado los siglos porque la Maison Carrée, tampoco ella, dejó nunca de servir: casa consular, caballeriza, iglesia, museo. Siempre útil, por tanto siempre en pie.
+
+Un hombre, un día, se enamoró de ella: Thomas Jefferson. Embajador en París, futuro presidente de los Estados Unidos, se inspiró en ella para diseñar un capitolio en Virginia. La pequeña colonia romana acabó viajando hasta América.
+
+Ve ahora hacia el este, hasta la gran puerta antigua sobre el bulevar. Sígueme.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-3
+@@STITLE=Porte d'Auguste
+Mira esta puerta de piedra, con sus dos grandes pasos para los carros y sus dos pequeños para los peatones. Es la Porte d'Auguste, una de las puertas de la muralla romana. Por aquí entraba la vía Domicia, la gran ruta que unía Italia con España atravesando Nimes de lado a lado.
+
+Busca la inscripción grabada en la piedra, o su copia. Dice que en el año dieciséis antes de nuestra era, el emperador Augusto ofreció a la ciudad sus puertas y sus murallas. Cerca de siete kilómetros de murallas, ochenta torres, una decena de puertas. Nemausus era entonces una de las ciudades más vastas de la Galia: una capital, protegida por la generosidad de un emperador.
+
+Delante de la puerta, una estatua de Augusto, con toga, el brazo levantado. No es la original, claro. Pero recuerda quién mandaba aquí, y a quién lo debía todo la ciudad: sus arenas, sus templos, su orgullo.
+
+Cruza la puerta, como hacían los viajeros de la Antigüedad, y luego sube todo hacia el norte, hasta un pequeño estanque de piedra escondido cerca de los jardines. Sígueme.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-4
+@@STITLE=Castellum aquae
+He aquí uno de los tesoros más discretos de Nimes, y uno de los más raros del mundo. Un simple estanque redondo, excavado en la piedra, apenas más ancho que una habitación. Se le llama el Castellum. Y era el punto de llegada del agua.
+
+¿Has oído hablar del Pont du Gard? Ese gigantesco puente-acueducto, a unos kilómetros de aquí, nunca se construyó para ser admirado. Era fontanería. Una conducción de unos cincuenta kilómetros que traía el agua de un manantial lejano hasta Nimes, y es aquí, en este estanque, donde por fin desembocaba.
+
+Mira los agujeros perforados todo alrededor. En cada uno encajaba una tubería de plomo que volvía a partir hacia la ciudad: hacia las fuentes, las termas, las casas de los ricos. El Castellum era la torre de agua de Nemausus, el corazón de la red. Se conocen muy pocos tan bien conservados: uno en Pompeya, este, y poco más.
+
+Dos mil años después, el agua sigue bajando hacia la ciudad. Síguela. Baja hacia los grandes jardines y su manantial. Sígueme.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-5
+@@STITLE=Les Jardins de la Fontaine
+Entra en los jardines. Estanques, balaustradas, estatuas, escaleras de agua: un decorado del siglo dieciocho, uno de los primerísimos jardines públicos de Europa. Pero no te quedes en el decorado. Ve hasta el gran estanque, donde el agua brota, oscura y fría, del pie de la colina.
+
+Este manantial es el verdadero comienzo de Nimes. Mucho antes que los romanos, los galos veneraban aquí a un dios de las aguas. Su nombre: Nemausus. Él dio su nombre al manantial, y luego a la ciudad entera. Nemausus, el dios; Nemausus, la ciudad. Nimes nació de un manantial y del dios que lo habitaba.
+
+Los romanos, al llegar, no expulsaron a ese dios. Lo adoptaron. Alrededor del manantial, construyeron un santuario magnífico: templos, pórticos, un teatro, estanques sagrados. Un lugar santo entero consagrado al agua y al emperador.
+
+Lo que ves hoy, estas terrazas elegantes, cubre ese santuario antiguo. Bajo las flores, duerme la ciudad de los dioses.
+
+Bordea el estanque hacia la izquierda, hasta este gran edificio de piedra medio en ruinas. Sígueme.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-6
+@@STITLE=Temple de Diane
+Se le llama el temple de Diane. Retén bien este nombre, porque es falso. Nadie sabe realmente para qué servía este edificio. Lo que sí es seguro es que nunca tuvo nada que ver con la diosa Diana: este nombre se le pegó mucho más tarde, por costumbre, por error.
+
+Entra, si el acceso está abierto. Mira esta sala abovedada, estos nichos en los muros, esta bóveda de piedra labrada con un cuidado extremo. Algunos ven ahí una biblioteca, otros una sala del culto imperial, otros más un pabellón ligado a las aguas sagradas. El misterio se resiste.
+
+Lo que es seguro es que escapó de lo peor. Convertido en convento en la Edad Media, quedó medio destruido durante las guerras de Religión. Y sin embargo sigue en pie, con su hermosa bóveda agrietada, como un desafío lanzado al tiempo.
+
+Quizá esto sea lo más hermoso: que Nimes conserve incluso los monumentos cuyo uso ha olvidado. Se conserva el misterio igual que se conserva la piedra.
+
+Sal de los jardines y afronta la subida, entre los pinos, hasta la torre que domina la ciudad. Sígueme.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-7
+@@STITLE=La Tour Magne
+Aquí estás arriba, quizá sin aliento, al pie de la Tour Magne. La gran torre. Vela sobre Nimes desde la cima del mont Cavalier, el punto más alto de la ciudad.
+
+Es más antigua que todo lo que hemos visto. Incluso antes que los romanos, los galos habían levantado aquí una torre de vigilancia. Los romanos la envolvieron, la sobreelevaron, la convirtieron en el punto más alto de su muralla: un faro de piedra visible desde muy lejos, que decía a todos: aquí reina Roma.
+
+Sube los peldaños del interior, hasta la plataforma. Y mira.
+
+A tus pies, toda la ciudad. Los tejados de tejas, la masa redonda de las Arènes, la diminuta Maison Carrée a lo lejos, los jardines verdes debajo. Dos mil años de historia, de un solo vistazo. Ves el manantial que dio origen a la ciudad, el santuario, el anfiteatro, las murallas. Nemausus está ahí, bajo Nimes, casi intacta.
+
+Vuelve entonces a lo que te decía al principio. En todas partes, Roma cayó, se borró, dejó ruinas. Aquí, nunca se fue del todo. Uno se casa en los templos, aplaude en el anfiteatro, bebe el agua del manantial del dios Nemausus. La ciudad no ha conservado Roma: ha seguido viviéndola.
+
+Ese es el secreto de Nimes. No es la hija de Roma. Es su último fragmento vivo. Quédate ahí arriba un momento, deja que el viento te lo susurre. Hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Nîmes — Die Stadt, die Rom nie verlassen hat
+@@DESC=Geschichte & Geheimnisse — Arena, Maison Carrée, Krokodil: die Stadt, die das Römische Reich nie verlassen hat.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-0
+@@STITLE=Les Arènes
+Heb den Blick. Vor dir zwei Stockwerke von Arkaden aus goldenem Stein, sechzig unten, sechzig oben, ein perfekter Ring, mitten im Herzen der Stadt errichtet. Das ist das römische Amphitheater von Nîmes — les Arènes. Es ist fast zweitausend Jahre alt, und eines der bestbewahrten des gesamten antiken Reiches.
+
+Schließ eine Sekunde die Augen. Unter diesen Rängen saßen vierundzwanzigtausend Menschen. Bewohner von Nîmes, gekommen, um Gladiatoren kämpfen und wilde Tiere sterben zu sehen. Man betrat es über seine Nummer, stieg durch geschickt berechnete Gänge hinauf, setzte sich entsprechend seinem Rang — die Honoratioren unten, das einfache Volk ganz oben. Eine auf den Millimeter genau geregelte Menschenmaschine, vor zwanzig Jahrhunderten.
+
+Und hier ist das Geheimnis, das ich dir während dieses ganzen Spaziergangs erzählen möchte. Diese Stadt, Nîmes, ist nie wirklich aus Rom erwacht. Anderswo sind die Amphitheater Ruinen, Steine, die man besucht. Hier nicht. Les Arènes haben nie geschlossen. Festung im Mittelalter, ein ganzes Dorf darin untergebracht, dann eine dem Schauspiel zurückgegebene Arena — zweitausend Jahre später kehrt die Menge noch immer zurück, und sie brüllt noch immer.
+
+Nemausus, so lautete ihr römischer Name. Eine stolze Kolonie, wohlhabend, von den Kaisern verwöhnt. Und diesen Stolz werden wir im Stein lesen, Denkmal für Denkmal, bis wir verstehen, warum Nîmes sich noch heute das französische Rom nennt.
+
+Umrunde das Amphitheater rechts herum und steig hinauf zum kleinen Platz gleich im Norden. Folge mir.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-1
+@@STITLE=Place du Marché
+Da bist du nun auf der place du Marché, im Schatten der Platanen. Senk den Blick zum Brunnen: ein bronzenes Krokodil, an eine Palme gekettet. Das ist das Wappen von Nîmes. Du wirst es überall sehen — auf Straßenschildern, Flaggen, T-Shirts. Ein Krokodil, mitten im Languedoc. Warum?
+
+Kehr zum allerersten Anfang zurück. Nach seinem Sieg über Ägypten, über Antonius und Kleopatra, belohnt Kaiser Augustus seine Veteranen. Diesen Soldaten, die am Nil gekämpft haben, schenkt er Land, hier, in Nemausus. Und um die Münzen der Kolonie zu prägen, wählt man ein Bild: ein Krokodil, an eine Palme gekettet. Das Krokodil ist das besiegte Ägypten. Die Palme, der Sieg. Die Kette, die Unterwerfung.
+
+Zweitausend Jahre später hat die Stadt daraus ihr Wahrzeichen gemacht. Es ist vielleicht das älteste noch lebendige Markenzeichen Frankreichs — ein römisches Logo, entworfen für Soldaten im Ruhestand.
+
+Man erzählt, es sei König François I. gewesen, der der Stadt viel später offiziell erlaubte, dieses Krokodil in ihrem Wappen zu führen. Wahr oder nicht, es hat Nîmes seitdem nie mehr verlassen.
+
+Geh nach Westen, durch die Gassen, bis zu einem Tempel auf seiner Terrasse. Folge mir.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-2
+@@STITLE=Maison Carrée
+Bleib davor stehen. Eine Fassade aus Säulen, ein dreieckiger Giebel, das Ganze auf einem hohen Sockel, klar, unversehrt, als wäre es erst gestern gebaut worden. Das ist die Maison Carrée. Und doch ist sie zweitausend Jahre alt — einer der bestbewahrten römischen Tempel der Welt, vielleicht der vollständigste von allen.
+
+Sie wurde unter Augustus errichtet, ganz zu Beginn unserer Zeitrechnung, im Herzen des Forums, dem politischen Zentrum der Stadt. Sie war zwei Prinzen gewidmet, Gaius und Lucius, den Enkeln des Kaisers, die jung starben und auf denen alle Hoffnungen der Dynastie ruhten. Ein Tempel für zwei Kinder, dem Reich versprochen, und dahingerafft, bevor sie herrschen konnten.
+
+Schau dir diese kannelierten Säulen an, diese mit Akanthusblättern geschmückten Kapitelle. Diese Vollkommenheit hat die Jahrhunderte überdauert, weil auch die Maison Carrée nie aufgehört hat, gebraucht zu werden: Konsulatshaus, Stall, Kirche, Museum. Immer nützlich, also immer stehend.
+
+Ein Mann verliebte sich eines Tages in sie: Thomas Jefferson. Botschafter in Paris, künftiger Präsident der Vereinigten Staaten, ließ er sich von ihr inspirieren, um ein Kapitol in Virginia zu entwerfen. Die kleine römische Kolonie reiste am Ende bis nach Amerika.
+
+Geh nun nach Osten, bis zum großen antiken Tor am Boulevard. Folge mir.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-3
+@@STITLE=Porte d'Auguste
+Schau dir dieses Steintor an, mit seinen zwei großen Durchfahrten für Wagen und seinen zwei kleinen für Fußgänger. Das ist die Porte d'Auguste — eines der Tore der römischen Stadtmauer. Hier führte die Via Domitia hindurch, die große Straße, die Italien mit Spanien verband und dabei Nîmes quer durchzog.
+
+Such nach der in den Stein gemeißelten Inschrift oder ihrer Kopie. Sie besagt, dass Kaiser Augustus im Jahr sechzehn vor unserer Zeitrechnung der Stadt ihre Tore und ihre Mauern schenkte. Fast sieben Kilometer Stadtmauer, achtzig Türme, etwa zehn Tore. Nemausus war damals eine der größten Städte Galliens — eine Hauptstadt, geschützt durch die Großzügigkeit eines Kaisers.
+
+Vor dem Tor eine Statue des Augustus, in Toga, den Arm erhoben. Kein Original natürlich. Aber sie erinnert daran, wer hier befahl, und wem die Stadt alles verdankte: ihre Arena, ihre Tempel, ihren Stolz.
+
+Durchschreite das Tor, wie es die Reisenden der Antike taten, und steig dann direkt nach Norden, zu einem kleinen, in der Nähe der Gärten versteckten Steinbecken. Folge mir.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-4
+@@STITLE=Castellum aquae
+Hier ist einer der unauffälligsten Schätze von Nîmes, und einer der seltensten der Welt. Ein einfaches rundes Becken, in Stein gehauen, kaum breiter als ein Zimmer. Man nennt es das Castellum. Und hier kam das Wasser endlich an.
+
+Hast du vom Pont du Gard gehört? Diese riesige Aquäduktbrücke, wenige Kilometer von hier, wurde nie gebaut, um bewundert zu werden. Sie war Klempnerei. Eine etwa fünfzig Kilometer lange Leitung, die das Wasser einer fernen Quelle bis nach Nîmes brachte — und hier, in diesem Becken, kam es endlich an.
+
+Schau dir die rundherum gebohrten Löcher an. In jedes davon fügte sich ein Bleirohr, das wieder zurück in die Stadt führte: zu den Brunnen, den Thermen, den Häusern der Reichen. Das Castellum war der Wasserturm von Nemausus, das Herz des Netzes. Man kennt nur sehr wenige, die so gut erhalten sind — eines in Pompeji, dieses hier, und das ist so ziemlich alles.
+
+Zweitausend Jahre später fließt das Wasser immer noch hinab zur Stadt. Folge ihm. Steig hinunter zu den großen Gärten und ihrer Quelle. Folge mir.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-5
+@@STITLE=Les Jardins de la Fontaine
+Betritt die Gärten. Becken, Balustraden, Statuen, Wassertreppen: eine Kulisse aus dem achtzehnten Jahrhundert, einer der allerersten öffentlichen Gärten Europas. Doch bleib nicht bei der Kulisse stehen. Geh bis zum großen Becken, dort, wo das Wasser dunkel und kalt aus dem Fuß des Hügels quillt.
+
+Diese Quelle ist der wahre Ursprung von Nîmes. Lange vor den Römern verehrten die Gallier hier einen Wassergott. Sein Name: Nemausus. Er gab der Quelle seinen Namen, dann der ganzen Stadt. Nemausus, der Gott; Nemausus, die Stadt. Nîmes wurde aus einer Quelle und dem Gott geboren, der in ihr wohnte.
+
+Die Römer verjagten diesen Gott bei ihrer Ankunft nicht. Sie nahmen ihn auf. Um die Quelle herum errichteten sie ein prächtiges Heiligtum — Tempel, Portiken, ein Theater, heilige Becken. Ein ganzer heiliger Ort, dem Wasser und dem Kaiser gewidmet.
+
+Was du heute siehst, diese eleganten Terrassen, bedeckt dieses antike Heiligtum. Unter den Blumen schläft die Stadt der Götter.
+
+Folge dem Becken nach links, bis zu diesem großen, halb verfallenen Steingebäude. Folge mir.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-6
+@@STITLE=Temple de Diane
+Man nennt es den temple de Diane. Behalte diesen Namen gut im Kopf, denn er ist falsch. Niemand weiß wirklich, wofür dieses Gebäude diente. Sicher ist nur, dass es nie irgendetwas mit der Göttin Diana zu tun hatte — dieser Name wurde ihm viel später angeheftet, aus Gewohnheit, aus Irrtum.
+
+Geh hinein, wenn der Zugang offen ist. Schau dir diesen gewölbten Saal an, diese Nischen in den Mauern, dieses mit äußerster Sorgfalt gefügte Steingewölbe. Manche sehen darin eine Bibliothek, andere einen Saal des Kaiserkults, wieder andere einen mit den heiligen Wassern verbundenen Pavillon. Das Geheimnis hält stand.
+
+Sicher ist, dass es dem Schlimmsten entging. Im Mittelalter zum Kloster geworden, wurde es während der Religionskriege halb zerstört. Und dennoch steht es noch, mit seinem schönen gerissenen Gewölbe, wie eine der Zeit hingeworfene Herausforderung.
+
+Das ist vielleicht das Schönste daran: dass Nîmes sogar die Denkmäler bewahrt, deren Zweck es vergessen hat. Man bewahrt das Geheimnis, so wie man den Stein bewahrt.
+
+Verlass die Gärten und nimm den Aufstieg in Angriff, durch die Pinien, bis zum Turm, der über der Stadt thront. Folge mir.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-7
+@@STITLE=La Tour Magne
+Da bist du nun oben, vielleicht außer Atem, am Fuß des Tour Magne. Der große Turm. Er wacht seit dem Gipfel des mont Cavalier, dem höchsten Punkt der Stadt, über Nîmes.
+
+Er ist älter als alles, was wir gesehen haben. Schon vor den Römern hatten die Gallier hier einen Wachturm errichtet. Die Römer umhüllten ihn, erhöhten ihn, machten ihn zum höchsten Punkt ihrer Stadtmauer — ein steinerner Leuchtturm, von weit her sichtbar, der allen sagte: hier herrscht Rom.
+
+Steig die Stufen im Inneren hinauf, bis zur Plattform. Und schau.
+
+Zu deinen Füßen die ganze Stadt. Die Ziegeldächer, die runde Masse der Arènes, die winzige Maison Carrée in der Ferne, die grünen Gärten darunter. Zweitausend Jahre Geschichte, auf einen einzigen Blick. Du siehst die Quelle, die die Stadt hervorbrachte, das Heiligtum, das Amphitheater, die Stadtmauern. Nemausus ist da, unter Nîmes, fast unversehrt.
+
+Kehr also zu dem zurück, was ich dir am Anfang gesagt habe. Überall sonst ist Rom gefallen, verblasst, hat Ruinen hinterlassen. Hier ist es nie ganz gegangen. Man heiratet in den Tempeln, klatscht im Amphitheater, trinkt das Wasser aus der Quelle des Gottes Nemausus. Die Stadt hat Rom nicht bewahrt: sie hat es weiter gelebt.
+
+Das ist das Geheimnis von Nîmes. Sie ist nicht die Tochter Roms. Sie ist sein letztes lebendiges Stück. Bleib noch einen Moment hier oben, lass es dir vom Wind zuflüstern. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Nîmes — La città che non ha mai lasciato Roma
+@@DESC=Storia e segreti — arena, Maison Carrée, coccodrillo: la città che non ha mai lasciato l'Impero romano.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-0
+@@STITLE=Les Arènes
+Alza gli occhi. Davanti a te, due piani di arcate in pietra dorata, sessanta in basso, sessanta in alto, un anello perfetto posto nel cuore della città. È l'anfiteatro romano di Nîmes — les Arènes. Ha quasi duemila anni, ed è uno dei meglio conservati di tutto l'antico Impero.
+
+Chiudi gli occhi un secondo. Sotto queste gradinate prendevano posto ventiquattromila persone. Nimesini venuti a vedere combattere i gladiatori e morire le bestie feroci. Si entrava dal proprio numero, si saliva per corridoi calcolati con astuzia, ci si sedeva secondo il proprio rango — i notabili in basso, il popolo tutto in alto. Una macchina da folla, regolata al millimetro, venti secoli fa.
+
+Ed ecco il segreto che voglio raccontarti per tutta questa passeggiata. Questa città, Nîmes, non si è mai davvero svegliata da Roma. Altrove, gli anfiteatri sono rovine, pietre che si visitano. Qui no. Les Arènes non hanno mai chiuso. Fortezza nel Medioevo, un intero villaggio alloggiato dentro, poi un'arena restituita allo spettacolo — duemila anni dopo, la folla vi ritorna ancora, e ruggisce ancora.
+
+Nemausus, era questo il suo nome romano. Una colonia fiera, ricca, coccolata dagli imperatori. E questo orgoglio lo leggeremo nella pietra, monumento dopo monumento, fino a capire perché Nîmes si definisce, ancora oggi, la Roma francese.
+
+Gira intorno all'anfiteatro sulla destra e risali verso la piccola piazza subito a nord. Seguimi.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-1
+@@STITLE=Place du Marché
+Eccoti in place du Marché, all'ombra dei platani. Abbassa lo sguardo verso la fontana: un coccodrillo di bronzo, incatenato a una palma. Ecco lo stemma di Nîmes. Lo vedrai ovunque — sulle targhe delle strade, sulle bandiere, sulle magliette. Un coccodrillo, in pieno Linguadoca. Perché?
+
+Torna all'inizio di tutto. Dopo la sua vittoria sull'Egitto, su Antonio e Cleopatra, l'imperatore Augusto ricompensa i suoi veterani. A quei soldati che hanno combattuto sulle rive del Nilo, offre terre, qui, a Nemausus. E per coniare la moneta della colonia, si sceglie un'immagine: un coccodrillo incatenato a una palma. Il coccodrillo è l'Egitto sconfitto. La palma, la vittoria. La catena, la sottomissione.
+
+Duemila anni dopo, la città ne ha fatto il proprio emblema. È forse il marchio di fabbrica vivente più antico di Francia — un logo romano, disegnato per soldati in pensione.
+
+Si racconta che fu il re Francesco I, molto più tardi, ad autorizzare ufficialmente la città a portare questo coccodrillo sul proprio stemma. Vero o no, non ha più lasciato Nîmes da allora.
+
+Attraversa verso ovest, per i vicoli, fino a un tempio posato sulla sua terrazza. Seguimi.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-2
+@@STITLE=Maison Carrée
+Fermati davanti a lei. Una facciata di colonne, un frontone triangolare, l'insieme posato su un alto zoccolo, netto, intatto, come uscito da ieri. È la Maison Carrée. Eppure ha duemila anni — è uno dei templi romani meglio conservati al mondo, forse il più completo di tutti.
+
+Fu costruita sotto Augusto, proprio all'inizio della nostra era, nel cuore del foro, il centro politico della città. Fu dedicata a due principi, Gaio e Lucio, i nipoti dell'imperatore, morti giovani, su cui riposavano tutte le speranze della dinastia. Un tempio per due bambini promessi all'Impero, e stroncati prima di regnare.
+
+Guarda queste colonne scanalate, questi capitelli scolpiti con foglie d'acanto. Questa perfezione ha attraversato i secoli perché anche la Maison Carrée non ha mai smesso di servire: casa consolare, scuderia, chiesa, museo. Sempre utile, dunque sempre in piedi.
+
+Un uomo, un giorno, se ne innamorò: Thomas Jefferson. Ambasciatore a Parigi, futuro presidente degli Stati Uniti, se ne ispirò per disegnare un campidoglio in Virginia. La piccola colonia romana finì per viaggiare fino in America.
+
+Vai ora verso est, fino alla grande porta antica sul viale. Seguimi.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-3
+@@STITLE=Porte d'Auguste
+Guarda questa porta di pietra, con i suoi due grandi passaggi per i carri e i suoi due piccoli per i pedoni. È la Porte d'Auguste — una delle porte della cinta muraria romana. Di qui entrava la via Domizia, la grande strada che collegava l'Italia alla Spagna attraversando Nîmes da parte a parte.
+
+Cerca l'iscrizione incisa nella pietra, o la sua copia. Dice che nell'anno sedici avanti la nostra era, l'imperatore Augusto donò alla città le sue porte e le sue mura. Quasi sette chilometri di mura, ottanta torri, una decina di porte. Nemausus era allora una delle città più vaste della Gallia — una capitale, protetta dalla generosità di un imperatore.
+
+Davanti alla porta, una statua di Augusto, in toga, il braccio alzato. Non è l'originale, naturalmente. Ma ricorda chi comandava qui, e a chi la città doveva tutto: la sua arena, i suoi templi, il suo orgoglio.
+
+Attraversa la porta, come facevano i viaggiatori dell'Antichità, poi risali dritto verso nord, fino a una piccola vasca di pietra nascosta vicino ai giardini. Seguimi.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-4
+@@STITLE=Castellum aquae
+Ecco uno dei tesori più discreti di Nîmes, e uno dei più rari al mondo. Una semplice vasca rotonda, scavata nella pietra, appena più larga di una stanza. La si chiama il Castellum. Ed era il punto d'arrivo dell'acqua.
+
+Hai sentito parlare del Pont du Gard? Quel gigantesco ponte-acquedotto, a pochi chilometri da qui, non fu mai costruito per essere ammirato. Era idraulica. Una condotta di una cinquantina di chilometri che portava l'acqua da una sorgente lontana fino a Nîmes — ed è qui, in questa vasca, che sfociava finalmente.
+
+Guarda i fori praticati tutt'intorno. In ciascuno si incastrava un tubo di piombo che ripartiva verso la città: verso le fontane, le terme, le case dei ricchi. Il Castellum era la torre dell'acqua di Nemausus, il cuore della rete. Se ne conoscono pochissimi così ben conservati — uno a Pompei, questo, e poco più.
+
+Duemila anni dopo, l'acqua scende ancora verso la città. Seguila. Scendi verso i grandi giardini e la loro sorgente. Seguimi.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-5
+@@STITLE=Les Jardins de la Fontaine
+Entra nei giardini. Vasche, balaustre, statue, scalinate d'acqua: uno scenario del diciottesimo secolo, uno dei primissimi giardini pubblici d'Europa. Ma non fermarti allo scenario. Vai fino alla grande vasca, là dove l'acqua sgorga, scura e fredda, dal piede della collina.
+
+Questa sorgente è il vero inizio di Nîmes. Molto prima dei Romani, i Galli veneravano qui un dio delle acque. Il suo nome: Nemausus. Fu lui a dare il suo nome alla sorgente, poi all'intera città. Nemausus, il dio; Nemausus, la città. Nîmes nacque da una sorgente e dal dio che vi abitava.
+
+I Romani, arrivando, non scacciarono quel dio. Lo adottarono. Intorno alla sorgente, costruirono un santuario magnifico — templi, portici, un teatro, vasche sacre. Un luogo santo interamente consacrato all'acqua e all'imperatore.
+
+Ciò che vedi oggi, queste eleganti terrazze, ricopre quell'antico santuario. Sotto i fiori, dorme la città degli dei.
+
+Costeggia la vasca verso sinistra, fino a questo grande edificio di pietra semirovinato. Seguimi.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-6
+@@STITLE=Temple de Diane
+Lo si chiama temple de Diane. Ricorda bene questo nome, perché è sbagliato. Nessuno sa davvero a cosa servisse questo edificio. Ciò che è certo è che non ebbe mai nulla a che vedere con la dea Diana — questo nome gli fu appiccicato molto più tardi, per abitudine, per errore.
+
+Entra, se l'accesso è aperto. Guarda questa sala voltata, queste nicchie nei muri, questa volta di pietra intagliata con estrema cura. Alcuni vi vedono una biblioteca, altri una sala del culto imperiale, altri ancora un padiglione legato alle acque sacre. Il mistero resiste.
+
+Ciò che è certo è che è scampato al peggio. Diventato convento nel Medioevo, fu semidistrutto durante le guerre di Religione. E tuttavia resta ancora in piedi, con la sua bella volta incrinata, come una sfida lanciata al tempo.
+
+È forse questa la cosa più bella: che Nîmes conservi persino i monumenti di cui ha dimenticato l'uso. Si conserva il mistero come si conserva la pietra.
+
+Esci dai giardini e affronta la salita, tra i pini, fino alla torre che domina la città. Seguimi.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-7
+@@STITLE=La Tour Magne
+Eccoti in cima, forse senza fiato, ai piedi della Tour Magne. La grande torre. Veglia su Nîmes dalla cima del mont Cavalier, il punto più alto della città.
+
+È più antica di tutto ciò che abbiamo visto. Ancor prima dei Romani, i Galli avevano eretto qui una torre di guardia. I Romani l'hanno avvolta, sopraelevata, trasformata nel punto più alto della loro cinta muraria — un faro di pietra visibile da molto lontano, che diceva a tutti: qui regna Roma.
+
+Sali i gradini all'interno, fino alla piattaforma. E guarda.
+
+Ai tuoi piedi, tutta la città. I tetti di tegole, la massa rotonda delle Arènes, la minuscola Maison Carrée in lontananza, i giardini verdi sotto. Duemila anni di storia, in un solo colpo d'occhio. Vedi la sorgente che ha fatto nascere la città, il santuario, l'anfiteatro, le mura. Nemausus è lì, sotto Nîmes, quasi intatta.
+
+Allora torna a quello che ti dicevo all'inizio. Ovunque altrove, Roma è caduta, si è cancellata, ha lasciato rovine. Qui, non se n'è mai del tutto andata. Ci si sposa nei templi, si applaude nell'anfiteatro, si beve l'acqua della sorgente del dio Nemausus. La città non ha conservato Roma: ha continuato a viverla.
+
+Ecco il segreto di Nîmes. Non è la figlia di Roma. Ne è l'ultimo frammento vivente. Resta lassù ancora un momento, lascia che il vento te lo sussurri. A presto, amico.
+
+@@LANG=nl
+@@TITLE=Nîmes — De stad die Rome nooit heeft verlaten
+@@DESC=Geschiedenis en geheimen — arena, Maison Carrée, krokodil: de stad die het Romeinse Rijk nooit heeft verlaten.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-0
+@@STITLE=Les Arènes
+Kijk omhoog. Voor je twee verdiepingen arcaden van goudkleurige steen, zestig beneden, zestig boven, een perfecte ring midden in het hart van de stad. Dit is het Romeinse amfitheater van Nîmes — les Arènes. Het is bijna tweeduizend jaar oud, en een van de best bewaarde van het hele voormalige Rijk.
+
+Sluit even je ogen. Onder deze tribunes namen vierentwintigduizend mensen plaats. Inwoners van Nîmes die kwamen kijken hoe gladiatoren vochten en wilde dieren stierven. Je ging naar binnen via je nummer, klom via slim berekende gangen omhoog, ging zitten volgens je rang — de notabelen beneden, het gewone volk helemaal bovenaan. Een menigtenmachine, tot op de millimeter afgesteld, twintig eeuwen geleden.
+
+En hier is het geheim dat ik je tijdens deze hele wandeling wil vertellen. Deze stad, Nîmes, is nooit echt uit Rome ontwaakt. Elders zijn amfitheaters ruïnes, stenen die men bezoekt. Hier niet. Les Arènes zijn nooit gesloten geweest. Een vesting in de middeleeuwen, een heel dorp erin gehuisvest, en dan een arena teruggegeven aan het spektakel — tweeduizend jaar later komt de menigte er nog steeds terug, en ze brult nog steeds.
+
+Nemausus, dat was haar Romeinse naam. Een trotse kolonie, rijk, verwend door de keizers. En die trots gaan we lezen in de steen, monument na monument, tot we begrijpen waarom Nîmes zich vandaag nog steeds het Franse Rome noemt.
+
+Loop rechtsom rond het amfitheater en klim naar het kleine plein net ten noorden ervan. Volg me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-1
+@@STITLE=Place du Marché
+Hier ben je op de place du Marché, in de schaduw van de platanen. Kijk omlaag naar de fontein: een bronzen krokodil, geketend aan een palmboom. Dat is het embleem van Nîmes. Je ziet het overal — op straatnaamborden, vlaggen, t-shirts. Een krokodil, midden in de Languedoc. Waarom?
+
+Ga terug naar het allereerste begin. Na zijn overwinning op Egypte, op Antonius en Cleopatra, beloont keizer Augustus zijn veteranen. Aan deze soldaten die aan de oevers van de Nijl hebben gevochten, geeft hij land, hier, in Nemausus. En om de munt van de kolonie te slaan, kiest men een afbeelding: een krokodil geketend aan een palmboom. De krokodil is het verslagen Egypte. De palmboom, de overwinning. De keten, de onderwerping.
+
+Tweeduizend jaar later heeft de stad er haar embleem van gemaakt. Het is misschien het oudste nog levende handelsmerk van Frankrijk — een Romeins logo, ontworpen voor gepensioneerde soldaten.
+
+Men vertelt dat het koning Frans I was die, veel later, de stad officieel toestond deze krokodil op haar wapenschild te dragen. Waar of niet, ze heeft Nîmes sindsdien nooit meer verlaten.
+
+Steek naar het westen over, door de steegjes, tot een tempel op zijn terras. Volg me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-2
+@@STITLE=Maison Carrée
+Stop ervoor. Een gevel van zuilen, een driehoekig fronton, het geheel op een hoge sokkel, strak, intact, alsof het gisteren gebouwd is. Dit is de Maison Carrée. En toch is ze tweeduizend jaar oud — een van de best bewaarde Romeinse tempels ter wereld, misschien wel de meest complete van allemaal.
+
+Ze werd gebouwd onder Augustus, helemaal aan het begin van onze jaartelling, in het hart van het forum, het politieke centrum van de stad. Ze was gewijd aan twee prinsen, Gaius en Lucius, de kleinzonen van de keizer, jong gestorven, op wie alle hoop van de dynastie rustte. Een tempel voor twee kinderen, het Rijk beloofd, en weggemaaid voordat ze konden regeren.
+
+Kijk naar deze gecanneleerde zuilen, deze kapitelen versierd met acanthusbladeren. Deze perfectie heeft de eeuwen doorstaan omdat ook de Maison Carrée nooit is opgehouden nuttig te zijn: consulair huis, stal, kerk, museum. Altijd nuttig, dus altijd overeind.
+
+Op een dag werd een man verliefd op haar: Thomas Jefferson. Ambassadeur in Parijs, toekomstig president van de Verenigde Staten, liet hij zich erdoor inspireren om een capitool in Virginia te ontwerpen. De kleine Romeinse kolonie reisde uiteindelijk helemaal tot in Amerika.
+
+Ga nu naar het oosten, tot de grote antieke poort aan de boulevard. Volg me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-3
+@@STITLE=Porte d'Auguste
+Kijk naar deze stenen poort, met haar twee grote doorgangen voor wagens en haar twee kleine voor voetgangers. Dit is de Porte d'Auguste — een van de poorten van de Romeinse stadsmuur. Hier kwam de Via Domitia binnen, de grote weg die Italië met Spanje verbond en daarbij Nîmes van kant tot kant doorkruiste.
+
+Zoek de inscriptie die in de steen is gebeiteld, of de kopie ervan. Ze zegt dat keizer Augustus in het jaar zestien voor onze jaartelling de stad haar poorten en haar muren schonk. Bijna zeven kilometer stadsmuur, tachtig torens, een tiental poorten. Nemausus was toen een van de grootste steden van Gallië — een hoofdstad, beschermd door de vrijgevigheid van een keizer.
+
+Voor de poort, een standbeeld van Augustus, in toga, de arm geheven. Niet het origineel natuurlijk. Maar het herinnert eraan wie hier bevel voerde, en aan wie de stad alles te danken had: haar arena, haar tempels, haar trots.
+
+Ga door de poort, zoals de reizigers uit de oudheid deden, en klim dan pal naar het noorden, naar een klein stenen bassin verscholen bij de tuinen. Volg me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-4
+@@STITLE=Castellum aquae
+Hier is een van de meest onopvallende schatten van Nîmes, en een van de zeldzaamste ter wereld. Een eenvoudig rond bassin, uitgehouwen in de steen, nauwelijks breder dan een kamer. Men noemt het het Castellum. En dit was het eindpunt van het water.
+
+Heb je gehoord van de Pont du Gard? Die gigantische aquaductbrug, een paar kilometer hiervandaan, werd nooit gebouwd om bewonderd te worden. Het was loodgieterswerk. Een leiding van zo'n vijftig kilometer die water uit een verre bron helemaal naar Nîmes bracht — en hier, in dit bassin, kwam het eindelijk aan.
+
+Kijk naar de gaten die er overal in geboord zijn. In elk daarvan paste een loden buis die weer terug naar de stad liep: naar de fonteinen, de baden, de huizen van de rijken. Het Castellum was de watertoren van Nemausus, het hart van het netwerk. Er zijn er maar heel weinig zo goed bewaard bekend — een in Pompeii, deze, en dat is ongeveer alles.
+
+Tweeduizend jaar later stroomt het water nog steeds naar de stad. Volg het. Ga naar beneden naar de grote tuinen en hun bron. Volg me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-5
+@@STITLE=Les Jardins de la Fontaine
+Ga de tuinen binnen. Bassins, balustrades, standbeelden, watertrappen: een decor uit de achttiende eeuw, een van de allereerste openbare tuinen van Europa. Maar blijf niet bij het decor staan. Ga naar het grote bassin, daar waar het water opwelt, donker en koud, aan de voet van de heuvel.
+
+Deze bron is het echte begin van Nîmes. Lang vóór de Romeinen vereerden de Galliërs hier een watergod. Zijn naam: Nemausus. Hij gaf zijn naam aan de bron, en vervolgens aan de hele stad. Nemausus, de god; Nemausus, de stad. Nîmes werd geboren uit een bron en de god die erin woonde.
+
+De Romeinen verjoegen deze god bij hun aankomst niet. Ze namen hem over. Rond de bron bouwden ze een prachtig heiligdom — tempels, zuilengangen, een theater, heilige bassins. Een hele heilige plek, geheel gewijd aan het water en aan de keizer.
+
+Wat je vandaag ziet, deze elegante terrassen, bedekt dit antieke heiligdom. Onder de bloemen slaapt de stad van de goden.
+
+Volg het bassin naar links, tot dit grote, half vervallen stenen gebouw. Volg me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-6
+@@STITLE=Temple de Diane
+Men noemt het de temple de Diane. Onthoud deze naam goed, want hij klopt niet. Niemand weet echt waarvoor dit gebouw diende. Wat wel zeker is, is dat het nooit iets te maken heeft gehad met de godin Diana — deze naam is er veel later op geplakt, uit gewoonte, bij vergissing.
+
+Ga naar binnen, als de toegang open is. Bekijk deze gewelfde zaal, deze nissen in de muren, dit stenen gewelf, met uiterste zorg gemetseld. Sommigen zien er een bibliotheek in, anderen een zaal voor de keizerlijke cultus, weer anderen een paviljoen verbonden met de heilige wateren. Het mysterie houdt stand.
+
+Wat zeker is, is dat het aan het ergste ontsnapte. In de middeleeuwen tot klooster geworden, werd het tijdens de godsdienstoorlogen half verwoest. En toch staat het nog overeind, met zijn mooie gescheurde gewelf, als een uitdaging geworpen naar de tijd.
+
+Dat is misschien het mooiste eraan: dat Nîmes zelfs de monumenten bewaart waarvan ze het gebruik vergeten is. Men bewaart het mysterie zoals men de steen bewaart.
+
+Verlaat de tuinen en pak de klim aan, door de dennen, tot de toren die boven de stad uittorent. Volg me.
+
+@@SCENE=seed-100-nimes-rome-francaise-scene-7
+@@STITLE=La Tour Magne
+Hier ben je boven, misschien buiten adem, aan de voet van de Tour Magne. De grote toren. Ze waakt over Nîmes vanaf de top van de mont Cavalier, het hoogste punt van de stad.
+
+Ze is ouder dan alles wat we hebben gezien. Al vóór de Romeinen hadden de Galliërs hier een wachttoren opgericht. De Romeinen omhulden haar, verhoogden haar, maakten er het hoogste punt van hun stadsmuur van — een stenen baken, van ver zichtbaar, dat iedereen zei: hier heerst Rome.
+
+Beklim de trappen binnenin, tot aan het platform. En kijk.
+
+Aan je voeten, de hele stad. De pannendaken, de ronde massa van de Arènes, de piepkleine Maison Carrée in de verte, de groene tuinen eronder. Tweeduizend jaar geschiedenis, in één enkele blik. Je ziet de bron die de stad heeft doen ontstaan, het heiligdom, het amfitheater, de stadsmuren. Nemausus is daar, onder Nîmes, bijna intact.
+
+Kom dan terug op wat ik je in het begin vertelde. Overal elders is Rome gevallen, vervaagd, heeft ruïnes achtergelaten. Hier is het nooit helemaal weggegaan. Men trouwt in de tempels, applaudisseert in het amfitheater, drinkt het water uit de bron van de god Nemausus. De stad heeft Rome niet bewaard: ze is het blijven beleven.
+
+Dat is het geheim van Nîmes. Ze is niet de dochter van Rome. Ze is het laatste levende fragment ervan. Blijf nog even hier boven, laat de wind het je toefluisteren. Tot snel, vriend.

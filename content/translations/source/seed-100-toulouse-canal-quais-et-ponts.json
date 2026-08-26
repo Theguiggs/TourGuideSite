@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-toulouse-canal-quais-et-ponts",
+  "sessionId": "seed-100-toulouse-canal-quais-et-ponts-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Toulouse",
+  "title": "Toulouse — Canal, quais et ponts",
+  "description": "Patrimoine fluvial — relier le canal du Midi et la Garonne par leurs ouvrages publics.",
+  "themes": [
+    "Patrimoine fluvial — relier le canal du Midi et la Garonne par leurs ouvrages publics."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6373,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Patrimonio del fiume, collegano il Canal du Midi e la Garonna con le loro opere pubbliche.",
+    "de": "Flusserbe, verbinden den Kanal von Midi und die Garonne durch ihre öffentlichen Arbeiten.",
+    "es": "Patrimonio fluvial, conectar el canal del Mediodía y la Garona por sus obras públicas.",
+    "en": "River heritage, connect the Canal du Midi and the Garonne with their public works."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-toulouse-canal-quais-et-ponts-scene-0",
+      "index": 0,
+      "title": "Port Saint-Sauveur",
+      "text": "Le bassin du port Saint-Sauveur élargit soudain le canal du Midi. Cette halte urbaine permettait aux bateaux de stationner près du centre de Toulouse. Le canal, conçu par Pierre-Paul Riquet au XVIIe siècle, relie la Garonne à la Méditerranée par un système de biefs, d’écluses et d’ouvrages hydrauliques. Ici, il ne traverse pas un paysage rural : il devient une avenue d’eau bordée de quais.\n\nRegarde l’alignement des platanes, les berges maçonnées et les passerelles. La surface calme masque une infrastructure exigeante. Chaque niveau doit être maîtrisé pour permettre la navigation. La ville s’est développée autour de ce ruban sans l’effacer, transformant progressivement ses rives en promenade.\n\nNotre parcours cherchera la jonction entre cette voie construite et le fleuve naturel. Suis le canal vers le sud jusqu’à la passerelle des Soupirs. Le nom est poétique, mais observe surtout la différence d’échelle : un petit franchissement piéton peut suffire à relier deux quartiers séparés par un ouvrage qui, lui, appartient à un réseau de plusieurs centaines de kilomètres.",
+      "hash": "a2ea7c80",
+      "chars": 1079,
+      "existingSegments": {
+        "de": "seed-100-toulouse-canal-quais-et-ponts-scene-0-seg-de",
+        "en": "seed-100-toulouse-canal-quais-et-ponts-scene-0-seg-en",
+        "it": "seed-100-toulouse-canal-quais-et-ponts-scene-0-seg-it",
+        "es": "seed-100-toulouse-canal-quais-et-ponts-scene-0-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-canal-quais-et-ponts-scene-1",
+      "index": 1,
+      "title": "Passerelle des Soupirs",
+      "text": "La passerelle des Soupirs franchit le canal entre le jardin du Grand Rond et les quartiers situés à l’est. Depuis son tablier, regarde dans les deux directions. Les berges parallèles cadrent une perspective presque parfaite, interrompue seulement par les ponts et les courbes. Le canal apparaît comme une rue dont la chaussée serait devenue silencieuse.\n\nCette régularité est entièrement construite. Le tracé, les niveaux et l’alimentation en eau résultent d’un projet technique du XVIIe siècle, plusieurs fois adapté depuis. Les chemins latéraux servaient autrefois au halage avant la motorisation des bateaux. Leur continuité profite aujourd’hui aux déplacements à pied et à vélo.\n\nQuitte le canal par les allées Jules-Guesde et dirige-toi vers la Garonne en traversant le centre vers l’ouest. Le trajet est plus long que les précédents ; il fait partie du récit. Toulouse ne possède pas une seule rive. Entre le canal et le fleuve s’étend une ville dense qu’il faut franchir. Retrouve-moi au Pont-Neuf, là où l’architecture a dû affronter un courant bien plus puissant et irrégulier.",
+      "hash": "49d8a326",
+      "chars": 1086,
+      "existingSegments": {
+        "de": "seed-100-toulouse-canal-quais-et-ponts-scene-1-seg-de",
+        "es": "seed-100-toulouse-canal-quais-et-ponts-scene-1-seg-es",
+        "en": "seed-100-toulouse-canal-quais-et-ponts-scene-1-seg-en",
+        "it": "seed-100-toulouse-canal-quais-et-ponts-scene-1-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-canal-quais-et-ponts-scene-2",
+      "index": 2,
+      "title": "Pont-Neuf",
+      "text": "Malgré son nom, le Pont-Neuf est le plus ancien pont de Toulouse encore en service sur la Garonne. Sa construction s’étend du XVIe au XVIIe siècle. Observe ses arches inégales et les ouvertures ménagées dans les piles. Ces dégueuloirs permettent à l’eau de passer lorsque le niveau monte et réduisent la pression exercée sur l’ouvrage.\n\nLe pont répond donc au comportement du fleuve plutôt qu’à une symétrie parfaite. Ses piles portent aussi des avant-becs qui divisent le courant. Cette conception robuste lui a permis de traverser des crues qui ont emporté d’autres ouvrages toulousains. Depuis le trottoir, regarde vers l’Hôtel-Dieu Saint-Jacques et le dôme de La Grave : les deux rives composent une façade urbaine continue.\n\nTraverse vers la rive droite puis descends au quai de la Daurade par l’itinéraire public. Tu passeras du haut du pont au niveau plus bas des quais. Ce changement de hauteur révèle une autre stratégie face au fleuve : contenir la berge, ménager des accès et offrir un espace lorsque les eaux restent basses.",
+      "hash": "a942f7c",
+      "chars": 1036,
+      "existingSegments": {
+        "de": "seed-100-toulouse-canal-quais-et-ponts-scene-2-seg-de",
+        "en": "seed-100-toulouse-canal-quais-et-ponts-scene-2-seg-en",
+        "it": "seed-100-toulouse-canal-quais-et-ponts-scene-2-seg-it",
+        "es": "seed-100-toulouse-canal-quais-et-ponts-scene-2-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-canal-quais-et-ponts-scene-3",
+      "index": 3,
+      "title": "Quai de la Daurade",
+      "text": "Le quai de la Daurade forme une terrasse entre les façades du centre et la Garonne. Son nom vient de la basilique Notre-Dame de la Daurade, située à proximité. Les quais maçonnés ont progressivement fixé une rive autrefois plus irrégulière et vulnérable. Ils servent à la fois de soutènement, d’accès et de promenade.\n\nRegarde la couleur de la brique, différente selon l’humidité et la lumière. Les murs ne cachent pas complètement le risque des crues : les rampes, les escaliers et les niveaux successifs montrent que la ville doit composer avec une eau qui peut monter. Le fleuve paraît large et paisible, mais son histoire toulousaine est marquée par des débordements destructeurs, notamment au XIXe siècle.\n\nPoursuis vers le quai Saint-Pierre et le Bazacle. À mesure que tu remontes la rive, écoute le courant devenir plus présent. Un seuil rocheux naturel a permis d’y exploiter la force de l’eau pendant des siècles. Le prochain arrêt montrera que la Garonne n’était pas seulement franchie ou contenue : elle fournissait aussi une énergie au cœur de la ville.",
+      "hash": "5cdceb8d",
+      "chars": 1065,
+      "existingSegments": {
+        "en": "seed-100-toulouse-canal-quais-et-ponts-scene-3-seg-en",
+        "de": "seed-100-toulouse-canal-quais-et-ponts-scene-3-seg-de",
+        "it": "seed-100-toulouse-canal-quais-et-ponts-scene-3-seg-it",
+        "es": "seed-100-toulouse-canal-quais-et-ponts-scene-3-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-canal-quais-et-ponts-scene-4",
+      "index": 4,
+      "title": "Le Bazacle",
+      "text": "Le Bazacle occupe un passage rocheux de la Garonne où le courant s’accélère. Des moulins y sont attestés depuis le Moyen Âge. Le système reposait sur une chaussée qui dirigeait l’eau vers les installations. À la fin du XIXe siècle, le site fut converti à la production hydroélectrique, prolongeant par une technique nouvelle l’usage ancien de la force du fleuve.\n\nDepuis l’espace public, observe la rupture de niveau et le mouvement de l’eau. Le bâtiment industriel ne se pose pas au hasard sur la rive : il dépend exactement de cette géographie. Le Bazacle rappelle que la ville s’est construite avec le fleuve autant que contre ses crues.\n\nContinue vers l’embouchure du canal de Brienne, puis longe-le jusqu’au secteur des Ponts-Jumeaux. Cette courte voie d’eau fut créée au XVIIIe siècle pour relier le canal du Midi à la Garonne. Notre dernière halte sera donc une jonction : le point où plusieurs canaux et routes urbaines rendent visible le réseau que nous avons suivi depuis Saint-Sauveur.",
+      "hash": "c8fd63cb",
+      "chars": 996,
+      "existingSegments": {
+        "en": "seed-100-toulouse-canal-quais-et-ponts-scene-4-seg-en",
+        "it": "seed-100-toulouse-canal-quais-et-ponts-scene-4-seg-it",
+        "de": "seed-100-toulouse-canal-quais-et-ponts-scene-4-seg-de",
+        "es": "seed-100-toulouse-canal-quais-et-ponts-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-canal-quais-et-ponts-scene-5",
+      "index": 5,
+      "title": "Ponts-Jumeaux",
+      "text": "Le nom de Ponts-Jumeaux vient des deux ponts construits au XVIIIe siècle à la jonction du canal du Midi et du canal de Brienne. Un troisième ouvrage fut ensuite ajouté lors de la création du canal latéral à la Garonne. L’ensemble marque ainsi la rencontre de trois directions d’eau, même si les transformations routières rendent aujourd’hui sa lecture moins immédiate.\n\nCherche le bas-relief sculpté par François Lucas. Il célèbre la jonction des mers et donne une forme allégorique à l’ambition du réseau. Derrière cette image, il y a une réalité technique : le canal de Brienne permettait de gagner la Garonne en évitant certains obstacles, tandis que le canal latéral prolongera plus tard la navigation vers l’Atlantique.\n\nLe parcours se referme ici. Au port Saint-Sauveur, le canal entrait dans la ville avec une calme régularité. La passerelle le franchissait, le Pont-Neuf affrontait les crues, les quais tenaient la rive et le Bazacle captait le courant. Les Ponts-Jumeaux relient enfin ces histoires dans un même système. Merci d’avoir suivi l’eau construite et l’eau vive à travers Toulouse. À bientôt.",
+      "hash": "8957324e",
+      "chars": 1111,
+      "existingSegments": {
+        "it": "seed-100-toulouse-canal-quais-et-ponts-scene-5-seg-it",
+        "es": "seed-100-toulouse-canal-quais-et-ponts-scene-5-seg-es",
+        "de": "seed-100-toulouse-canal-quais-et-ponts-scene-5-seg-de",
+        "en": "seed-100-toulouse-canal-quais-et-ponts-scene-5-seg-en"
+      }
+    }
+  ]
+}

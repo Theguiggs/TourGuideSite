@@ -1,0 +1,539 @@
+@@LANG=en
+@@TITLE=Rouen — The Trial of Joan of Arc
+@@DESC=History & Secrets — 1431, place du Vieux-Marché: the trial that made a saint and haunted a city.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-0
+@@STITLE=Tour Jeanne-d'Arc
+Stop in front of this big round tower, capped with slate. It's all that remains of the castle Philip Augustus planted here when he took Normandy from the kings of England. And it's in this castle, at Christmas 1430, that an eighteen-year-old girl is locked up, sold by her captors for a king's ransom. Joan of Arc.
+
+Rouen is no accident. For ten years, the city has been English — the capital of occupied France, the safest stronghold of the House of Lancaster. Joan is tried here because no one will come looking for her.
+
+First secret: this tower wasn't her prison. She languished in another one, now gone, of which only a stretch of wall survives in a nearby courtyard. But it's here, on May 9, 1431, that she's dragged one morning. In the lower hall, they show her the instruments of torture, the executioner ready to serve. She looks at her judges and answers, in essence: you can tear off my limbs, and I'll only say afterward that you made me talk by force. The judges give up. This illiterate teenager has just disarmed an entire tribunal.
+
+Here's the story I'm going to tell you: the last five months of her life, step by step, in the streets where it all played out. And what this city made of that memory, for six centuries.
+
+Head south, toward the great abbey church. Six minutes on foot — and the day Joan broke.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-1
+@@STITLE=Abbatiale Saint-Ouen
+This immense church is Saint-Ouen, the abbey church of one of Normandy's most powerful monasteries. On May 24, 1431, in the cemetery bordering it, two platforms are set up facing each other. On one, the judges, prelates, notables. On the other, Joan, alone, worn out by three months of interrogation.
+
+A preacher lectures her in front of the crowd. Then they show her the executioner and his cart, ready. Recant, or burn this very day. She holds firm, argues, then something gives. She agrees to sign a schedule of abjuration — a few lines read to her, which she can't read back herself. She, who can't write, traces a cross at the bottom of the paper.
+
+In exchange, death recedes: life imprisonment, on the bread of sorrow and the water of anguish, as the formula goes. She's given a woman's dress, she gives up her men's clothing. The Church has just saved her.
+
+On paper.
+
+Because her judges send her back to her English cell, guarded by soldiers — exactly where everything can start over. Hold onto that detail. It's going to decide everything.
+
+Continue south, through the narrow streets. In six minutes, a place few visitors dare seek out: the courtyard of the dead.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-2
+@@STITLE=Aître Saint-Maclou
+Push open the gateway at 186, rue Martainville. You come out into a peaceful courtyard, lined with half-timbered galleries. Look up at the beams: skulls, shinbones, gravedigger's spades, coffins carved into the wood. Welcome to the aître Saint-Maclou, one of the last charnel-house cemeteries in Europe.
+
+It all starts with the great plague of 1348, which cuts down an enormous share of the city. The cemetery overflows. So this system is invented: bodies in the center, and when space runs out, the bones are moved up into the galleries, to the upper floor. A rotation of the dead, right in the heart of the neighborhood. The living walked through here every day. It's even said a cat was walled up alive in these panels, to drive off evil — you can see its dried remains, in a display case.
+
+This familiarity with death is the backdrop of the trial. Rouen, in 1431, has barely emerged from a horrific siege: an entire winter of famine before surrendering to the English, in 1419. A starved, occupied, resigned city. It's in front of this city that Joan will be tried.
+
+Come back out and head up west. Six minutes, and I'll introduce you to the street of the judges.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-3
+@@STITLE=Rue Saint-Romain
+Here you are on rue Saint-Romain, the canons' street. At the end, the cathedral rises like a cliff — Monet painted it again and again, but that's a different walk to tell you about. On your left, the archbishop's palace. It's within these walls and in the castle's chapel that the trial unfolds, from February to May 1431.
+
+A Church trial, led by Pierre Cauchon, bishop of Beauvais, surrounded by dozens of clergymen trained at the University of Paris. Facing them, a nineteen-year-old peasant girl, with no lawyer. And yet. One day, they set her the perfect trap: are you in a state of grace? If she says yes, pride, heresy. If she says no, confession. She answers: if I am not, may God put me there; if I am, may God keep me there. The notaries are left stunned — one of them will tell the story his whole life.
+
+Late May, three days after the abjuration, she's found in men's clothing in her cell. It's said that was all she'd been left. Relapsed: fallen back into error. This time, nothing can save her. A witness will swear he heard Cauchon call out to the English: eat well, it's done.
+
+Go down the lane to the right, three minutes. I have to show you this city's cruelest irony.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-4
+@@STITLE=Place de la Haute-Vieille-Tour
+This small stone pavilion, in the middle of the square, is the chapelle de la Fierte Saint-Romain. And it holds Rouen's strangest secret.
+
+The story goes that in Merovingian times, Bishop Romanus slew the Gargouille, a dragon of the Seine marshes, helped by one man alone: a man condemned to death, whom no one else had dared lend him. In memory of this, the city won a privilege unique in the whole kingdom: every year, on Ascension Day, the cathedral canons would choose a prisoner — thief, murderer, it didn't matter. He would lift the fierte, the saint's reliquary shrine, on this platform, before the crowd. And he would walk away free. Pardoned. Cleansed.
+
+This ritual worked for centuries, right up to the Revolution. Murderers were forgiven here, year after year, in the name of mercy.
+
+Joan, though, got nothing. Rouen knew how to forgive everyone — except her. That wasn't the city's justice, mind you: it was the occupier's, and a tribunal taking orders. But the remorse would remain Rouen's own.
+
+Head back up north. You'll pass under an archway with a golden clock face — it deserves a visit of its own, another time. Six minutes, toward the palace.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-5
+@@STITLE=Palais de Justice
+Look at this façade, bristling with pinnacles, gargoyles, stone lacework. The Palais de Justice, begun around 1499 for the Échiquier de Normandie, later the Parlement. For three centuries, the whole duchy was judged here — in the name of the king of France, this time.
+
+Come closer to the façade, on the rue aux Juifs side. See these pockmarked, eaten-away stones, as if bitten? Those are the scars of the fighting and bombing of the Second World War. They were left there on purpose, unrepaired. An open-air memorial.
+
+And beneath your feet, another secret. In 1976, excavations under the courtyard uncovered a Romanesque building from the early twelfth century, covered in Hebrew graffiti: the Maison sublime, France's oldest Jewish monument. A school or a house of study, buried there since the Jews were expelled from the kingdom, in 1306. Justice built its courtrooms on top of it, without knowing.
+
+This palace tells you one thing: human justice makes mistakes, destroys, forgets — then remembers and makes amends. Keep that in mind, we're nearing the end.
+
+Five minutes west, to a square with a nickname.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-6
+@@STITLE=Place de la Pucelle
+La Pucelle. No name, no first name needed: Joan's nickname is enough, and this square has carried it for generations. Because her story doesn't end at the stake — there was a second trial. The trial of the trial.
+
+1450: Normandy has just become French again, and Charles VII has a problem. He was crowned king thanks to a woman condemned for heresy. As long as the sentence stands, his crown carries a shadow. He orders an inquiry. Rome gets involved. And in 1455, an old peasant woman steps forward in Notre-Dame de Paris before the Church's judges: Isabelle Romée, Joan's mother, come to demand justice for her daughter. Her complaint, read aloud in public, brings the crowd to tears.
+
+So it's all done again, here, in Rouen. The witnesses of 1431 are re-questioned — the notaries, the clerks, those who saw. Their depositions, precise and damning, are our main source on Joan. On July 7, 1456, the verdict comes down: the trial tainted by fraud and errors, null and void. Cauchon, long dead, would never answer for any of it.
+
+Two more minutes to the great square, right there. Time to face May 30, 1431.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-7
+@@STITLE=Place du Vieux-Marché
+This is it. On the ground, paving and a garden mark the site of the stake; beside it, you can make out the foundations of the église Saint-Sauveur, which bordered the square that morning.
+
+May 30, 1431. A cart crosses the city, escorted by hundreds of English soldiers. On it, Joan, nineteen years old, wearing a paper mitre inscribed: heretic, relapsed, apostate, idolater. On the square, the crowd, the stands, the stake built high — too high, witnesses say, for the executioner to shorten her suffering.
+
+She asks for a cross. An English soldier breaks a stick in two, ties them into a cross, hands it to her — she slips it against her chest. A friar runs to fetch the processional cross from Saint-Sauveur and holds it up before her, through the flames. She dies crying out the name of Jesus.
+
+Then tongues loosen. A secretary to the king of England sobs: we are lost, we have burned a saint. The executioner, for his part, will say he was haunted, terrified for his soul. It's said her heart refused to burn. As for the ashes, they were thrown into the Seine — so that nothing would remain.
+
+Turn toward that strange grey roof, a few steps away. The end of the story awaits you underneath.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-8
+@@STITLE=Église Sainte-Jeanne-d'Arc
+Come closer to this church, set low against the square. Built in 1979, designed by Louis Arretche. Look closely at its roofline: some see frozen flames in it, others an upturned ship's hull — the stake and the Seine, reconciled in a single gesture.
+
+For centuries, Rouen didn't know what to do with this memory. A city doesn't boast about having watched a nineteen-year-old girl burn. The 1456 trial had cleared Joan's name, but the square simply remained a market, with its own life, its stalls, its forgetting. Then time did its work: in 1920, Joan is canonized in Rome. Saint Joan of Arc, secondary patron saint of France. Shame could become heritage.
+
+Go in, if it's open. An entire wall of the church is a dazzling Renaissance stained-glass window. This glass comes from the église Saint-Vincent, which once stood a few streets from here: taken down and put into safekeeping in 1939, it survived the 1944 bombs that pulverized its church. Light that passed through fire — no fitter setting existed for it.
+
+Outside, the great Cross of Rehabilitation rises above the site of the stake. Between the cross and this flame-shaped roof, the haunted city finally made its peace.
+
+That's it. You've walked through the last five months of a life, and six centuries of memory. Stay a moment on the square — the people of Rouen live here, quietly, above history. That was Rouen, that was Joan. Take care of yourself, and see you soon for another walk.
+
+@@LANG=es
+@@TITLE=Ruan — El proceso de Juana de Arco
+@@DESC=Historia y secretos — 1431, place du Vieux-Marché: el proceso que convirtió a una joven en santa y dejó embrujada a la ciudad.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-0
+@@STITLE=Tour Jeanne-d'Arc
+Detente frente a esta gran torre redonda, coronada de pizarra. Es todo lo que queda del castillo que Felipe Augusto plantó aquí cuando le arrebató Normandía a los reyes de Inglaterra. Y es en ese castillo, en la Navidad de 1430, donde encierran a una muchacha de dieciocho años, vendida por sus captores por un rescate de rey. Juana de Arco.
+
+Ruan no es casualidad. Desde hace diez años, la ciudad es inglesa: es la capital de la Francia ocupada, la plaza más segura del reino de Lancaster. Juzgan a Juana aquí porque nadie vendrá a buscarla.
+
+Primer secreto: esta torre no fue su prisión. Languidecía en otra, desaparecida, de la que solo queda un trozo de muro en un patio vecino. Pero es aquí, el 9 de mayo de 1431, adonde la arrastran una mañana. En la sala de abajo, le muestran los instrumentos de tortura, el verdugo listo para actuar. Ella mira a sus jueces y responde, en sustancia: podéis arrancarme los miembros, pero después diré que me hicisteis hablar por la fuerza. Los jueces renuncian. Esta chiquilla analfabeta acaba de desarmar a todo un tribunal.
+
+Esta es la historia que voy a contarte: los últimos cinco meses de su vida, paso a paso, por las calles donde todo sucedió. Y lo que esta ciudad hizo con ese recuerdo, durante seis siglos.
+
+Baja hacia el sur, en dirección a la gran abadía. Seis minutos a pie, y el día en que Juana cedió.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-1
+@@STITLE=Abbatiale Saint-Ouen
+Esta iglesia inmensa es Saint-Ouen, la abadía de uno de los monasterios más poderosos de Normandía. El 24 de mayo de 1431, en el cementerio que la bordea, se levantan dos tarimas, una frente a otra. En una, los jueces, los prelados, los notables. En la otra, Juana, sola, agotada por tres meses de interrogatorios.
+
+Un predicador la sermonea ante la multitud. Luego le muestran al verdugo y su carreta, listos. Abjura, o arde hoy mismo. Ella resiste, discute, y entonces algo cede. Acepta firmar una cédula de abjuración: unas líneas que le leen, que ella no puede releer. Ella, que no sabe escribir, traza una cruz al pie del papel.
+
+A cambio, la muerte se aleja: prisión perpetua, a pan de dolor y agua de angustia, como dice la fórmula. Le dan un vestido de mujer, deja sus ropas de hombre. La Iglesia acaba de salvarla.
+
+Sobre el papel.
+
+Porque sus jueces la devuelven a su celda inglesa, custodiada por soldados, exactamente el lugar donde todo puede volver a empezar. Retén este detalle: lo va a decidir todo.
+
+Sigue hacia el sur, por las callejuelas. En seis minutos, un lugar que pocos visitantes se atreven a buscar: el patio de los muertos.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-2
+@@STITLE=Aître Saint-Maclou
+Empuja el pórtico del 186 de la rue Martainville. Desembocas en un patio apacible, rodeado de galerías con entramado de madera. Levanta la vista hacia las vigas: cráneos, tibias, palas de sepulturero, ataúdes tallados en la madera. Bienvenido al aître Saint-Maclou, uno de los últimos cementerios osarios de Europa.
+
+Todo empieza con la gran peste de 1348, que siega una enorme parte de la ciudad. El cementerio desborda. Así que se inventa este sistema: los cuerpos en el centro, y cuando falta sitio, se suben los huesos a las galerías, al piso de arriba. Una rotación de los muertos, en pleno corazón del barrio. Los vivos pasaban por aquí todos los días. Se cuenta incluso que un gato fue emparedado vivo en estos paneles, para ahuyentar al maligno; te enseñan sus restos secos, en una vitrina.
+
+Esta familiaridad con la muerte es el decorado del proceso. Ruan, en 1431, apenas sale de un asedio atroz: un invierno entero de hambruna antes de rendirse a los ingleses, en 1419. Una ciudad hambrienta, ocupada, resignada. Es ante ella que van a juzgar a Juana.
+
+Sal de nuevo y sube hacia el oeste. Seis minutos, y te presento la calle de los jueces.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-3
+@@STITLE=Rue Saint-Romain
+Aquí estás en la rue Saint-Romain, la calle de los canónigos. Al fondo, la catedral se alza como un acantilado; Monet la pintó una y otra vez, pero esa es otra visita la que te lo contará. A tu izquierda, el palacio del arzobispo. En estos muros y en la capilla del castillo se desarrolla el proceso, de febrero a mayo de 1431.
+
+Un proceso eclesiástico, dirigido por Pierre Cauchon, obispo de Beauvais, rodeado de decenas de clérigos formados en la Universidad de París. Frente a ellos, una campesina de diecinueve años, sin abogado. Y sin embargo. Un día, le tienden la trampa perfecta: ¿estás en estado de gracia? Si dice que sí, orgullo, herejía. Si dice que no, confesión. Ella responde: si no lo estoy, que Dios me ponga en él; si lo estoy, que Dios me mantenga en él. Los notarios se quedan atónitos; uno de ellos lo contará toda su vida.
+
+A finales de mayo, tres días después de la abjuración, la encuentran vestida de hombre en su celda. Se cuenta que era lo único que le habían dejado. Reincidente: recaída en el error. Esta vez, ya nada puede salvarla. Un testigo jurará haber oído a Cauchon decirles a los ingleses: buen provecho, está hecho.
+
+Baja por la callejuela a la derecha, tres minutos. Debo mostrarte la ironía más cruel de esta ciudad.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-4
+@@STITLE=Place de la Haute-Vieille-Tour
+Este pequeño pabellón de piedra, en medio de la plaza, es la chapelle de la Fierte Saint-Romain. Y guarda el secreto más extraño de Ruan.
+
+Se cuenta que en tiempos merovingios, el obispo Romano venció a la Gargouille, un dragón de las marismas del Sena, ayudado por un solo hombre: un condenado a muerte, al que nadie más se había atrevido a prestarle. En su memoria, la ciudad obtuvo un privilegio único en todo el reino: cada año, en la Ascensión, los canónigos de la catedral elegían a un prisionero, ladrón, asesino, no importaba quién. Levantaba la fierte, el relicario del santo, sobre esta plataforma, ante la multitud. Y se marchaba libre. Indultado. Purificado.
+
+Este ritual funcionó durante siglos, hasta la Revolución. Asesinos fueron perdonados aquí, año tras año, en nombre de la misericordia.
+
+Juana, en cambio, no tuvo derecho a nada. Ruan sabía perdonar a todo el mundo, menos a ella. Eso sí, no era la justicia de la ciudad: era la del ocupante y la de un tribunal a sus órdenes. Pero el remordimiento sí quedaría, para siempre, rouanés.
+
+Sube hacia el norte. Pasarás bajo una bóveda con un reloj dorado; merece una visita aparte, otro día. Seis minutos, en dirección al palacio.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-5
+@@STITLE=Palais de Justice
+Mira esta fachada erizada de pináculos, gárgolas, encaje de piedra. El Palais de Justice, comenzado hacia 1499 para el Échiquier de Normandie, convertido después en Parlement. Durante tres siglos, aquí se juzgó todo el ducado, esta vez en nombre del rey de Francia.
+
+Acércate a la fachada, por el lado de la rue aux Juifs. ¿Ves estas piedras acribilladas, corroídas, como mordidas? Son las cicatrices de los combates y los bombardeos de la Segunda Guerra Mundial. Se dejaron a propósito, sin reparar. Un memorial a cielo abierto.
+
+Y bajo tus pies, otro secreto. En 1976, unas excavaciones bajo el patio sacaron a la luz un edificio románico de principios del siglo XII, cubierto de grafitos en hebreo: la Maison sublime, el monumento judío más antiguo de Francia. Una escuela o una casa de estudio, enterrada allí desde la expulsión de los judíos del reino, en 1306. La justicia construyó sus salas de audiencia encima, sin saberlo.
+
+Este palacio te dice algo: la justicia de los hombres se equivoca, destruye, olvida... y luego recuerda y repara. Guárdalo en mente, nos acercamos al final.
+
+Cinco minutos hacia el oeste, hasta una plaza que lleva un apodo.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-6
+@@STITLE=Place de la Pucelle
+La Pucelle. Sin nombre, sin apellido: basta el apodo de Juana, y esta plaza lo lleva desde hace generaciones. Porque su historia no termina en la hoguera; hubo un segundo proceso. El proceso del proceso.
+
+1450: Normandía acaba de volver a ser francesa, y Carlos VII tiene un problema. Fue coronado rey gracias a una mujer condenada por hereje. Mientras la sentencia se sostenga, su corona tiene una sombra. Ordena una investigación. Roma se involucra. Y en 1455, una anciana campesina se presenta en Notre-Dame de Paris ante los jueces de la Iglesia: Isabelle Romée, la madre de Juana, venida a pedir justicia para su hija. Su denuncia, leída en público, arranca lágrimas a la multitud.
+
+Así que todo se rehace, aquí, en Ruan. Se vuelve a interrogar a los testigos de 1431: los notarios, los escribanos, los que vieron. Sus declaraciones, precisas, contundentes, son nuestra principal fuente sobre Juana. El 7 de julio de 1456, cae la sentencia: proceso viciado de fraude y errores, nulo y sin efecto. Cauchon, muerto hacía tiempo, nunca respondería por nada.
+
+Dos minutos más hacia la gran plaza, justo ahí. Es hora de afrontar el 30 de mayo de 1431.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-7
+@@STITLE=Place du Vieux-Marché
+Es aquí. En el suelo, un enlosado y un jardín marcan el lugar de la hoguera; al lado, adivinas los cimientos de la église Saint-Sauveur, que bordeaba la plaza aquella mañana.
+
+30 de mayo de 1431. Una carreta cruza la ciudad, escoltada por cientos de soldados ingleses. Encima, Juana, diecinueve años, con una mitra de papel donde han escrito: hereje, reincidente, apóstata, idólatra. En la plaza, la multitud, las tribunas, la hoguera montada alta, demasiado alta, dicen los testigos, para que el verdugo pudiera abreviarle el sufrimiento.
+
+Pide una cruz. Un soldado inglés rompe un palo en dos, los ata en cruz, se la tiende; ella la desliza contra su pecho. Un fraile corre a buscar la cruz de procesión de Saint-Sauveur y la sostiene en alto ante ella, a través de las llamas. Muere gritando el nombre de Jesús.
+
+Entonces las lenguas se sueltan. Un secretario del rey de Inglaterra solloza: estamos perdidos, hemos quemado a una santa. El verdugo, por su parte, dirá que quedó atormentado, aterrado por su salvación. Se cuenta que el corazón se negó a arder. Las cenizas, por su parte, fueron arrojadas al Sena, para que no quedara nada.
+
+Gírate hacia ese extraño tejado gris, a unos pasos. El final de la historia te espera debajo.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-8
+@@STITLE=Église Sainte-Jeanne-d'Arc
+Acércate a esta iglesia asentada al ras de la plaza. Nacida en 1979, diseñada por Louis Arretche. Fíjate bien en su tejado: unos ven en él llamas congeladas, otros el casco de un barco volteado; la hoguera y el Sena, reconciliados en un mismo gesto.
+
+Durante siglos, Ruan no supo qué hacer con este recuerdo. Una ciudad no presume de haber visto arder a una muchacha de diecinueve años. El proceso de 1456 había limpiado el nombre de Juana, pero la plaza siguió siendo, simplemente, un mercado, con su vida propia, sus puestos, su olvido. Luego el tiempo hizo su obra: en 1920, Juana es canonizada en Roma. Santa Juana de Arco, patrona secundaria de Francia. La vergüenza podía convertirse en herencia.
+
+Entra, si está abierta. Todo un muro de la iglesia es una vidriera renacentista deslumbrante. Estos vitrales vienen de la église Saint-Vincent, que se alzaba a pocas calles de aquí: desmontados y puestos a salvo en 1939, sobrevivieron a las bombas de 1944 que pulverizaron su iglesia. Una luz que atravesó el fuego; no existía un estuche más justo para ella.
+
+Fuera, la gran cruz de la Rehabilitación se eleva sobre el lugar de la hoguera. Entre la cruz y este tejado en forma de llama, la ciudad embrujada terminó por hacer las paces.
+
+Eso es todo. Has caminado sobre los últimos cinco meses de una vida, y sobre seis siglos de memoria. Quédate un instante en la plaza; los rouaneses viven aquí, tranquilos, por encima de la historia. Eso era Ruan, eso era Juana. Cuídate, y hasta pronto para otro paseo.
+
+@@LANG=de
+@@TITLE=Rouen — Der Prozess gegen Jeanne d'Arc
+@@DESC=Geschichte & Geheimnisse — 1431, place du Vieux-Marché: der Prozess, der eine Heilige schuf und eine Stadt heimsuchte.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-0
+@@STITLE=Tour Jeanne-d'Arc
+Bleib vor diesem großen runden Turm stehen, mit Schiefer gedeckt. Es ist alles, was von der Burg übrig ist, die Philipp August hier errichtete, als er den Königen von England die Normandie entriss. Und in dieser Burg wird an Weihnachten 1430 ein achtzehnjähriges Mädchen eingesperrt, von ihren Entführern für ein königliches Lösegeld verkauft. Jeanne d'Arc.
+
+Rouen ist kein Zufall. Seit zehn Jahren ist die Stadt englisch — die Hauptstadt des besetzten Frankreichs, der sicherste Ort im Reich von Lancaster. Man richtet Jeanne hier, weil hier niemand sie holen kommen wird.
+
+Erstes Geheimnis: dieser Turm war nicht ihr Gefängnis. Sie schmachtete in einem anderen, längst verschwundenen, von dem nur ein Mauerstück in einem benachbarten Hof übrig ist. Aber genau hierher zerrt man sie am Morgen des 9. Mai 1431. Im unteren Saal zeigt man ihr die Folterinstrumente, den Henker bereit zum Dienst. Sie schaut ihre Richter an und antwortet, sinngemäß: Ihr könnt mir die Glieder ausreißen, ich werde danach sagen, dass ihr mich mit Gewalt zum Reden gebracht habt. Die Richter geben auf. Dieses ungebildete Mädchen hat gerade ein ganzes Tribunal entwaffnet.
+
+Das ist die Geschichte, die ich dir erzählen werde: die letzten fünf Monate ihres Lebens, Schritt für Schritt, in den Straßen, in denen sich alles abspielte. Und was diese Stadt sechs Jahrhunderte lang aus dieser Erinnerung gemacht hat.
+
+Geh nach Süden, in Richtung der großen Abteikirche. Sechs Minuten zu Fuß — und der Tag, an dem Jeanne nachgab.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-1
+@@STITLE=Abbatiale Saint-Ouen
+Diese gewaltige Kirche ist Saint-Ouen, die Abteikirche eines der mächtigsten Klöster der Normandie. Am 24. Mai 1431 werden auf dem angrenzenden Friedhof zwei Podeste einander gegenüber aufgestellt. Auf dem einen die Richter, die Prälaten, die Honoratioren. Auf dem anderen Jeanne, allein, erschöpft von drei Monaten Verhör.
+
+Ein Prediger hält ihr vor der Menge eine Standpauke. Dann zeigt man ihr den Henker und seinen Karren, bereit. Widerruf, oder du brennst noch heute. Sie hält stand, streitet, dann gibt etwas nach. Sie willigt ein, eine Widerrufsurkunde zu unterzeichnen — ein paar Zeilen, die man ihr vorliest, die sie nicht selbst nachlesen kann. Sie, die nicht schreiben kann, zeichnet unten auf das Papier ein Kreuz.
+
+Im Gegenzug entfernt sich der Tod: lebenslange Haft, bei Brot des Schmerzes und Wasser der Angst, wie es in der Formel heißt. Man gibt ihr ein Frauenkleid, sie legt ihre Männerkleidung ab. Die Kirche hat sie gerade gerettet.
+
+Auf dem Papier.
+
+Denn ihre Richter schicken sie zurück in ihre englische Zelle, von Soldaten bewacht — genau dort, wo alles wieder von vorne beginnen kann. Behalt dieses Detail im Kopf, es wird alles entscheiden.
+
+Geh weiter nach Süden, durch die kleinen Gassen. In sechs Minuten ein Ort, den sich nur wenige Besucher zu suchen trauen: der Hof der Toten.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-2
+@@STITLE=Aître Saint-Maclou
+Drück das Tor in der rue Martainville Nummer 186 auf. Du kommst in einen friedlichen Hof, umgeben von Fachwerkgalerien. Heb den Blick zu den Balken: Schädel, Schienbeine, Totengräberschaufeln, in das Holz geschnitzte Särge. Willkommen im aître Saint-Maclou, einem der letzten Beinhaus-Friedhöfe Europas.
+
+Alles beginnt mit der großen Pest von 1348, die einen riesigen Teil der Stadt dahinrafft. Der Friedhof läuft über. Also erfindet man dieses System: die Leichen in der Mitte, und wenn der Platz nicht reicht, bringt man die Knochen hoch in die Galerien, ins Obergeschoss. Eine Rotation der Toten, mitten im Herzen des Viertels. Die Lebenden gingen hier jeden Tag vorbei. Man erzählt sogar, eine Katze sei lebendig in diese Wände eingemauert worden, um den Bösen zu vertreiben — man zeigt dir ihre getrockneten Überreste, in einer Vitrine.
+
+Diese Vertrautheit mit dem Tod ist die Kulisse des Prozesses. Rouen kommt 1431 gerade erst aus einer grausamen Belagerung: ein ganzer Winter der Hungersnot, bevor man sich 1419 den Engländern ergab. Eine ausgehungerte, besetzte, resignierte Stadt. Vor ihr wird man Jeanne richten.
+
+Geh wieder hinaus und nach Westen. Sechs Minuten, und ich stelle dir die Straße der Richter vor.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-3
+@@STITLE=Rue Saint-Romain
+Da bist du in der rue Saint-Romain, der Straße der Domherren. Am Ende erhebt sich die Kathedrale wie eine Klippe — Monet hat sie immer wieder gemalt, aber das erzählt dir ein anderer Spaziergang. Auf deiner Linken der Palast des Erzbischofs. In diesen Mauern und in der Schlosskapelle findet der Prozess statt, von Februar bis Mai 1431.
+
+Ein Kirchenprozess, geleitet von Pierre Cauchon, Bischof von Beauvais, umgeben von Dutzenden an der Universität Paris ausgebildeten Klerikern. Ihnen gegenüber eine neunzehnjährige Bäuerin, ohne Anwalt. Und doch. Eines Tages stellt man ihr die perfekte Falle: bist du im Stand der Gnade? Sagt sie ja, Hochmut, Ketzerei. Sagt sie nein, Geständnis. Sie antwortet: bin ich es nicht, so möge Gott mich hineinsetzen; bin ich es, so möge Gott mich darin bewahren. Die Notare bleiben fassungslos zurück — einer von ihnen wird es sein Leben lang erzählen.
+
+Ende Mai, drei Tage nach dem Widerruf, findet man sie in Männerkleidung in ihrer Zelle. Man erzählt, man habe ihr nur das gelassen. Rückfällig: zurück in den Irrtum gefallen. Diesmal kann sie nichts mehr retten. Ein Zeuge wird schwören, Cauchon habe den Engländern zugerufen: lasst es euch schmecken, es ist erledigt.
+
+Geh die Gasse rechts hinunter, drei Minuten. Ich muss dir die grausamste Ironie dieser Stadt zeigen.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-4
+@@STITLE=Place de la Haute-Vieille-Tour
+Dieser kleine Steinpavillon in der Mitte des Platzes ist die chapelle de la Fierte Saint-Romain. Und er birgt Rouens seltsamstes Geheimnis.
+
+Man erzählt, dass zu merowingischer Zeit Bischof Romanus die Gargouille bezwang, einen Drachen der Seine-Sümpfe, mit Hilfe eines einzigen Mannes: eines zum Tode Verurteilten, den ihm sonst niemand hatte ausleihen wollen. Zur Erinnerung daran erhielt die Stadt ein im ganzen Königreich einzigartiges Privileg: jedes Jahr, an Christi Himmelfahrt, wählten die Domherren der Kathedrale einen Gefangenen aus — Dieb, Mörder, ganz gleich. Er hob die fierte, den Reliquienschrein des Heiligen, auf dieser Plattform, vor der Menge. Und ging frei davon. Begnadigt. Reingewaschen.
+
+Dieses Ritual funktionierte jahrhundertelang, bis zur Revolution. Mörder wurden hier vergeben, Jahr für Jahr, im Namen der Barmherzigkeit.
+
+Jeanne hingegen hatte auf nichts Anspruch. Rouen konnte jedem vergeben — außer ihr. Das war, wohlgemerkt, nicht die Gerechtigkeit der Stadt: es war die des Besatzers und eines Tribunals unter Befehl. Aber die Reue blieb Rouens eigene.
+
+Geh wieder nach Norden hinauf. Du gehst unter einem Torbogen mit einem goldenen Zifferblatt hindurch — er verdient einen eigenen Besuch, ein andermal. Sechs Minuten, Richtung Palast.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-5
+@@STITLE=Palais de Justice
+Schau dir diese mit Fialen, Wasserspeiern und steinerner Spitzenarbeit besetzte Fassade an. Der Palais de Justice, um 1499 begonnen für den Échiquier de Normandie, später zum Parlement geworden. Drei Jahrhunderte lang wurde hier über das ganze Herzogtum Recht gesprochen — diesmal im Namen des Königs von Frankreich.
+
+Komm näher an die Fassade heran, auf der Seite der rue aux Juifs. Siehst du diese narbigen, zerfressenen Steine, wie angebissen? Das sind die Narben der Kämpfe und Bombardierungen des Zweiten Weltkriegs. Man hat sie absichtlich so gelassen, ohne sie zu reparieren. Ein Mahnmal unter freiem Himmel.
+
+Und unter deinen Füßen ein weiteres Geheimnis. 1976 legten Ausgrabungen unter dem Hof ein romanisches Gebäude aus dem frühen zwölften Jahrhundert frei, bedeckt mit hebräischen Graffiti: die Maison sublime, das älteste jüdische Denkmal Frankreichs. Eine Schule oder ein Lehrhaus, dort vergraben seit der Vertreibung der Juden aus dem Königreich, 1306. Die Justiz baute ihre Gerichtssäle darüber, ohne es zu wissen.
+
+Dieser Palast sagt dir eines: die Gerechtigkeit der Menschen irrt, zerstört, vergisst — und erinnert sich dann und macht es wieder gut. Behalt das im Kopf, wir nähern uns dem Ende.
+
+Fünf Minuten nach Westen, zu einem Platz, der einen Spitznamen trägt.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-6
+@@STITLE=Place de la Pucelle
+La Pucelle. Kein Name, kein Vorname nötig: Jeannes Spitzname genügt, und dieser Platz trägt ihn seit Generationen. Denn ihre Geschichte endet nicht auf dem Scheiterhaufen — es gab einen zweiten Prozess. Den Prozess über den Prozess.
+
+1450: die Normandie ist gerade wieder französisch geworden, und Karl VII. hat ein Problem. Er wurde dank einer wegen Ketzerei verurteilten Frau zum König gekrönt. Solange das Urteil Bestand hat, trägt seine Krone einen Schatten. Er ordnet eine Untersuchung an. Rom mischt sich ein. Und 1455 tritt eine alte Bäuerin in Notre-Dame de Paris vor die Richter der Kirche: Isabelle Romée, Jeannes Mutter, gekommen, um Gerechtigkeit für ihre Tochter zu fordern. Ihre öffentlich verlesene Klage rührt die Menge zu Tränen.
+
+Also macht man hier, in Rouen, alles noch einmal. Man befragt die Zeugen von 1431 erneut — die Notare, die Schreiber, jene, die es gesehen haben. Ihre genauen, erdrückenden Aussagen sind unsere Hauptquelle über Jeanne. Am 7. Juli 1456 fällt das Urteil: der Prozess sei von Betrug und Irrtümern befleckt, nichtig und ohne Wirkung. Cauchon, längst tot, wird sich nie mehr verantworten müssen.
+
+Noch zwei Minuten zum großen Platz, gleich dort. Es ist Zeit, sich dem 30. Mai 1431 zu stellen.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-7
+@@STITLE=Place du Vieux-Marché
+Hier ist es. Am Boden markieren ein Pflaster und ein Garten die Stelle des Scheiterhaufens; daneben erahnst du die Fundamente der église Saint-Sauveur, die den Platz an jenem Morgen säumte.
+
+30. Mai 1431. Ein Karren durchquert die Stadt, eskortiert von Hunderten englischen Soldaten. Darauf Jeanne, neunzehn Jahre alt, mit einer Papiermitra, auf der steht: Ketzerin, Rückfällige, Abtrünnige, Götzendienerin. Auf dem Platz die Menge, die Tribünen, der hoch aufgebaute Scheiterhaufen — zu hoch, sagen die Zeugen, als dass der Henker ihr Leiden hätte verkürzen können.
+
+Sie bittet um ein Kreuz. Ein englischer Soldat bricht einen Stock entzwei, bindet die Stücke zu einem Kreuz zusammen, reicht es ihr — sie schiebt es sich an die Brust. Ein Mönch läuft los, um das Prozessionskreuz von Saint-Sauveur zu holen, und hält es vor ihr hoch, durch die Flammen hindurch. Sie stirbt, den Namen Jesu rufend.
+
+Dann lösen sich die Zungen. Ein Sekretär des Königs von England schluchzt: wir sind verloren, wir haben eine Heilige verbrannt. Der Henker seinerseits wird sagen, er sei heimgesucht gewesen, in Angst um sein Seelenheil. Man erzählt, das Herz habe sich geweigert zu brennen. Die Asche wiederum wurde in die Seine geworfen — damit nichts übrig bliebe.
+
+Dreh dich zu diesem seltsamen grauen Dach um, ein paar Schritte entfernt. Das Ende der Geschichte erwartet dich darunter.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-8
+@@STITLE=Église Sainte-Jeanne-d'Arc
+Komm näher an diese Kirche heran, flach an den Platz gesetzt. Entstanden 1979, entworfen von Louis Arretche. Schau dir ihr Dach genau an: manche sehen darin erstarrte Flammen, andere einen umgedrehten Schiffsrumpf — der Scheiterhaufen und die Seine, in einer einzigen Geste versöhnt.
+
+Jahrhundertelang wusste Rouen nicht, was es mit dieser Erinnerung anfangen sollte. Eine Stadt rühmt sich nicht damit, ein neunzehnjähriges Mädchen brennen gesehen zu haben. Der Prozess von 1456 hatte Jeannes Namen reingewaschen, aber der Platz blieb einfach ein Markt, mit seinem eigenen Leben, seinen Ständen, seinem Vergessen. Dann tat die Zeit ihr Werk: 1920 wird Jeanne in Rom heiliggesprochen. Die heilige Jeanne d'Arc, zweite Schutzpatronin Frankreichs. Aus Scham konnte Erbe werden.
+
+Geh hinein, falls geöffnet. Eine ganze Wand der Kirche ist ein blendendes Renaissance-Glasfenster. Diese Fenster stammen aus der église Saint-Vincent, die einige Straßen von hier entfernt stand: 1939 ausgebaut und in Sicherheit gebracht, überlebten sie die Bomben von 1944, die ihre Kirche zerstörten. Ein Licht, das durch das Feuer gegangen ist — es gab keine passendere Fassung dafür.
+
+Draußen erhebt sich das große Kreuz der Rehabilitation über der Stelle des Scheiterhaufens. Zwischen dem Kreuz und diesem flammenförmigen Dach hat die heimgesuchte Stadt endlich Frieden geschlossen.
+
+Das war's. Du bist die letzten fünf Monate eines Lebens abgegangen, und sechs Jahrhunderte Erinnerung. Bleib einen Moment auf dem Platz — die Rouenaiser leben hier, ruhig, oberhalb der Geschichte. Das war Rouen, das war Jeanne. Pass auf dich auf, und bis bald zu einem anderen Spaziergang.
+
+@@LANG=it
+@@TITLE=Rouen — Il processo di Giovanna d'Arco
+@@DESC=Storia e segreti — 1431, place du Vieux-Marché: il processo che fece di lei una santa e stregò una città.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-0
+@@STITLE=Tour Jeanne-d'Arc
+Fermati davanti a questa grande torre rotonda, coperta di ardesia. È tutto ciò che resta del castello che Filippo Augusto piantò qui quando strappò la Normandia ai re d'Inghilterra. Ed è in questo castello, a Natale del 1430, che viene rinchiusa una ragazza di diciotto anni, venduta dai suoi rapitori per un riscatto da re. Giovanna d'Arco.
+
+Rouen non è un caso. Da dieci anni la città è inglese: è la capitale della Francia occupata, il luogo più sicuro del regno di Lancaster. Giovanna viene processata qui perché nessuno verrà a cercarla.
+
+Primo segreto: questa torre non era la sua prigione. Languiva in un'altra, scomparsa, di cui resta solo un pezzo di muro in un cortile vicino. Ma è proprio qui, il 9 maggio 1431, che la trascinano una mattina. Nella sala in basso, le mostrano gli strumenti di tortura, il boia pronto a servire. Lei guarda i suoi giudici e risponde, in sostanza: potete strapparmi le membra, dirò poi che mi avete fatto parlare con la forza. I giudici rinunciano. Questa ragazzina analfabeta ha appena disarmato un intero tribunale.
+
+Ecco la storia che ti racconterò: gli ultimi cinque mesi della sua vita, passo dopo passo, nelle strade dove tutto si è giocato. E ciò che questa città ha fatto di quel ricordo, per sei secoli.
+
+Scendi verso sud, in direzione della grande abbazia. Sei minuti a piedi — e il giorno in cui Giovanna cedette.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-1
+@@STITLE=Abbatiale Saint-Ouen
+Questa chiesa immensa è Saint-Ouen, l'abbazia di uno dei monasteri più potenti della Normandia. Il 24 maggio 1431, nel cimitero che la costeggia, si alzano due tribune, una di fronte all'altra. Su una, i giudici, i prelati, i notabili. Sull'altra, Giovanna, sola, sfinita da tre mesi di interrogatori.
+
+Un predicatore la rimprovera davanti alla folla. Poi le mostrano il boia e il suo carro, pronti. Abiura, o brucia oggi stesso. Lei resiste, discute, poi qualcosa cede. Accetta di firmare una cedola di abiura: poche righe che le vengono lette, che lei non può rileggere. Lei, che non sa scrivere, traccia una croce in fondo al foglio.
+
+In cambio, la morte si allontana: prigione a vita, a pane del dolore e acqua dell'angoscia, come dice la formula. Le danno un abito da donna, lei lascia i suoi abiti da uomo. La Chiesa l'ha appena salvata.
+
+Sulla carta.
+
+Perché i suoi giudici la rimandano nella sua cella inglese, sorvegliata da soldati — esattamente il luogo dove tutto può ricominciare. Tieni a mente questo dettaglio, deciderà tutto.
+
+Continua verso sud, per le stradine. Tra sei minuti, un luogo che pochi visitatori osano cercare: il cortile dei morti.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-2
+@@STITLE=Aître Saint-Maclou
+Spingi il portico al 186 di rue Martainville. Sbuchi in un cortile tranquillo, circondato da gallerie a graticcio. Alza gli occhi verso le travi: teschi, tibie, badili da becchino, bare scolpite nel legno. Benvenuto all'aître Saint-Maclou, uno degli ultimi cimiteri-ossario d'Europa.
+
+Tutto comincia con la grande peste del 1348, che falcia una parte enorme della città. Il cimitero trabocca. Così si inventa questo sistema: i corpi al centro, e quando manca spazio, si portano le ossa nelle gallerie, al piano superiore. Una rotazione dei morti, nel pieno cuore del quartiere. I vivi passavano di qui ogni giorno. Si racconta persino che un gatto sia stato murato vivo in queste pareti, per scacciare il maligno — te ne mostrano la spoglia essiccata, in una vetrina.
+
+Questa familiarità con la morte è lo sfondo del processo. Rouen, nel 1431, esce appena da un assedio atroce: un intero inverno di carestia prima di arrendersi agli inglesi, nel 1419. Una città affamata, occupata, rassegnata. È davanti a lei che si processerà Giovanna.
+
+Esci di nuovo e risali verso ovest. Sei minuti, e ti presento la via dei giudici.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-3
+@@STITLE=Rue Saint-Romain
+Eccoti in rue Saint-Romain, la via dei canonici. In fondo, la cattedrale sale come una scogliera — Monet l'ha dipinta e ridipinta, ma è un'altra passeggiata a raccontartelo. Sulla tua sinistra, il palazzo dell'arcivescovo. È tra queste mura e nella cappella del castello che si svolge il processo, da febbraio a maggio 1431.
+
+Un processo ecclesiastico, guidato da Pierre Cauchon, vescovo di Beauvais, circondato da decine di chierici formati all'Università di Parigi. Di fronte a loro, una contadina di diciannove anni, senza avvocato. Eppure. Un giorno, le tendono la trappola perfetta: sei in stato di grazia? Se dice di sì, orgoglio, eresia. Se dice di no, confessione. Lei risponde: se non lo sono, che Dio ve mi metta; se lo sono, che Dio ve mi mantenga. I notai ne restano sbalorditi — uno di loro lo racconterà per tutta la vita.
+
+A fine maggio, tre giorni dopo l'abiura, la ritrovano vestita da uomo nella sua cella. Si racconta che fosse tutto ciò che le avevano lasciato. Recidiva: ricaduta nell'errore. Questa volta, nulla può più salvarla. Un testimone giurerà di aver sentito Cauchon gridare agli inglesi: buon appetito, è fatta.
+
+Scendi il vicolo a destra, tre minuti. Devo mostrarti l'ironia più crudele di questa città.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-4
+@@STITLE=Place de la Haute-Vieille-Tour
+Questo piccolo padiglione di pietra, in mezzo alla piazza, è la chapelle de la Fierte Saint-Romain. E custodisce il segreto più strano di Rouen.
+
+Si racconta che in epoca merovingia, il vescovo Romano sconfisse la Gargouille, un drago delle paludi della Senna, aiutato da un solo uomo: un condannato a morte, che nessun altro aveva osato prestargli. In memoria di ciò, la città ottenne un privilegio unico nel regno: ogni anno, all'Ascensione, i canonici della cattedrale sceglievano un prigioniero — ladro, assassino, non importava. Sollevava la fierte, il reliquiario del santo, su questa piattaforma, davanti alla folla. E se ne andava libero. Graziato. Purificato.
+
+Questo rituale funzionò per secoli, fino alla Rivoluzione. Assassini furono perdonati qui, anno dopo anno, in nome della misericordia.
+
+Giovanna, invece, non ebbe diritto a nulla. Rouen sapeva perdonare a tutti — tranne che a lei. Non era, bada bene, la giustizia della città: era quella dell'occupante e di un tribunale ai suoi ordini. Ma il rimorso, quello, sarebbe rimasto tutto rouennese.
+
+Risali verso nord. Passerai sotto una volta con un quadrante dorato — merita una visita a sé, un'altra volta. Sei minuti, in direzione del palazzo.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-5
+@@STITLE=Palais de Justice
+Guarda questa facciata irta di pinnacoli, gargolle, merletto di pietra. Il Palais de Justice, iniziato verso il 1499 per l'Échiquier de Normandie, diventato poi Parlement. Per tre secoli, qui si è giudicato tutto il ducato — questa volta in nome del re di Francia.
+
+Avvicinati alla facciata, sul lato di rue aux Juifs. Vedi queste pietre butterate, corrose, come morsicate? Sono le cicatrici dei combattimenti e dei bombardamenti della Seconda guerra mondiale. Sono state lasciate volutamente, senza ripararle. Un memoriale a cielo aperto.
+
+E sotto i tuoi piedi, un altro segreto. Nel 1976, degli scavi sotto il cortile hanno portato alla luce un edificio romanico dell'inizio del XII secolo, coperto di graffiti in ebraico: la Maison sublime, il più antico monumento ebraico di Francia. Una scuola o una casa di studio, sepolta lì dall'espulsione degli ebrei dal regno, nel 1306. La giustizia ha costruito le sue aule sopra, senza saperlo.
+
+Questo palazzo ti dice una cosa: la giustizia degli uomini sbaglia, distrugge, dimentica — poi si ricorda e ripara. Tienilo a mente, ci avviciniamo alla fine.
+
+Cinque minuti verso ovest, fino a una piazza che porta un soprannome.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-6
+@@STITLE=Place de la Pucelle
+La Pucelle. Nessun nome, nessun cognome: basta il soprannome di Giovanna, e questa piazza lo porta da generazioni. Perché la sua storia non finisce al rogo — ci fu un secondo processo. Il processo del processo.
+
+1450: la Normandia è appena tornata francese, e Carlo VII ha un problema. È stato incoronato re grazie a una donna condannata per eresia. Finché la sentenza regge, la sua corona porta un'ombra. Ordina un'inchiesta. Roma se ne occupa. E nel 1455, un'anziana contadina si presenta a Notre-Dame di Parigi davanti ai giudici della Chiesa: Isabelle Romée, la madre di Giovanna, venuta a chiedere giustizia per sua figlia. La sua denuncia, letta in pubblico, strappa lacrime alla folla.
+
+Così si rifà tutto, qui, a Rouen. Si reinterrogano i testimoni del 1431 — i notai, i cancellieri, quelli che hanno visto. Le loro deposizioni, precise, schiaccianti, sono la nostra fonte principale su Giovanna. Il 7 luglio 1456, cade la sentenza: processo viziato da frode ed errori, nullo e privo di effetto. Cauchon, morto da tempo, non risponderà mai di nulla.
+
+Ancora due minuti verso la grande piazza, proprio lì. È tempo di affrontare il 30 maggio 1431.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-7
+@@STITLE=Place du Vieux-Marché
+Eccoci. A terra, una pavimentazione e un giardino segnano il luogo del rogo; accanto, intuisci le fondamenta dell'église Saint-Sauveur, che costeggiava la piazza quella mattina.
+
+30 maggio 1431. Un carro attraversa la città, scortato da centinaia di soldati inglesi. Sopra, Giovanna, diciannove anni, con una mitria di carta su cui hanno scritto: eretica, recidiva, apostata, idolatra. Sulla piazza, la folla, le tribune, il rogo montato in alto — troppo alto, dicono i testimoni, perché il boia potesse abbreviarle le sofferenze.
+
+Chiede una croce. Un soldato inglese spezza un bastone in due, li lega a croce, gliela porge — lei la fa scivolare contro il petto. Un frate corre a cercare la croce processionale di Saint-Sauveur e la tiene alta davanti a lei, attraverso le fiamme. Muore gridando il nome di Gesù.
+
+Poi le lingue si sciolgono. Un segretario del re d'Inghilterra singhiozza: siamo perduti, abbiamo bruciato una santa. Il boia, dal canto suo, dirà di essere rimasto perseguitato, terrorizzato per la sua salvezza. Si racconta che il cuore si sia rifiutato di bruciare. Le ceneri, invece, furono gettate nella Senna — perché non restasse nulla.
+
+Girati verso quel tetto grigio e strano, a pochi passi. La fine della storia ti aspetta sotto.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-8
+@@STITLE=Église Sainte-Jeanne-d'Arc
+Avvicinati a questa chiesa posata a filo della piazza. Nata nel 1979, disegnata da Louis Arretche. Guarda bene il suo tetto: alcuni vi vedono fiamme congelate, altri uno scafo di nave rovesciato — il rogo e la Senna, riconciliati in un unico gesto.
+
+Per secoli, Rouen non ha saputo cosa fare di questo ricordo. Una città non si vanta di aver visto bruciare una ragazza di diciannove anni. Il processo del 1456 aveva lavato il nome di Giovanna, ma la piazza è rimasta semplicemente un mercato, con la sua vita, le sue bancarelle, il suo oblio. Poi il tempo ha fatto il suo lavoro: nel 1920, Giovanna viene canonizzata a Roma. Santa Giovanna d'Arco, patrona secondaria di Francia. La vergogna poteva diventare eredità.
+
+Entra, se è aperta. Un'intera parete della chiesa è una vetrata rinascimentale abbagliante. Queste vetrate vengono dalla église Saint-Vincent, che sorgeva a poche strade da qui: smontate e messe al riparo nel 1939, sopravvissero alle bombe del 1944 che polverizzarono la loro chiesa. Una luce che ha attraversato il fuoco — non esisteva scrigno più giusto per lei.
+
+Fuori, la grande croce della Riabilitazione si innalza sopra il luogo del rogo. Tra la croce e questo tetto a forma di fiamma, la città stregata ha finito per fare pace.
+
+Ecco. Hai camminato sugli ultimi cinque mesi di una vita, e su sei secoli di memoria. Resta un istante sulla piazza — i rouennesi vivono qui, tranquilli, sopra la storia. Questa era Rouen, questa era Giovanna. Abbi cura di te, e a presto per un'altra passeggiata.
+
+@@LANG=nl
+@@TITLE=Rouen — Het proces van Jeanne d'Arc
+@@DESC=Geschiedenis & geheimen — 1431, place du Vieux-Marché: het proces dat van haar een heilige maakte en een stad achtervolgde.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-0
+@@STITLE=Tour Jeanne-d'Arc
+Stop voor deze grote ronde toren, gedekt met leisteen. Het is alles wat overblijft van het kasteel dat Filips August hier neerzette toen hij Normandië van de koningen van Engeland afpakte. En in dat kasteel wordt met Kerstmis 1430 een meisje van achttien opgesloten, verkocht door haar ontvoerders voor een koningslosgeld. Jeanne d'Arc.
+
+Rouen is geen toeval. Al tien jaar is de stad Engels — de hoofdstad van het bezette Frankrijk, de veiligste plek van het koninkrijk Lancaster. Jeanne wordt hier berecht omdat niemand haar hier zal komen halen.
+
+Eerste geheim: deze toren was niet haar gevangenis. Ze kwijnde weg in een andere, verdwenen, waarvan alleen een stuk muur overblijft in een nabijgelegen binnenplaats. Maar het is hierheen dat men haar op een ochtend sleept, op 9 mei 1431. In de benedenzaal toont men haar de folterwerktuigen, de beul klaar om te dienen. Ze kijkt haar rechters aan en antwoordt, in essentie: jullie kunnen mijn ledematen eraf trekken, ik zal daarna zeggen dat jullie me met geweld hebben laten praten. De rechters geven het op. Dit ongeletterde meisje heeft zojuist een heel tribunaal ontwapend.
+
+Dit is het verhaal dat ik je ga vertellen: de laatste vijf maanden van haar leven, stap voor stap, in de straten waar alles zich afspeelde. En wat deze stad, zes eeuwen lang, van die herinnering heeft gemaakt.
+
+Ga naar het zuiden, richting de grote abdijkerk. Zes minuten lopen — en de dag waarop Jeanne bezweek.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-1
+@@STITLE=Abbatiale Saint-Ouen
+Deze immense kerk is Saint-Ouen, de abdijkerk van een van de machtigste kloosters van Normandië. Op 24 mei 1431 worden op de begraafplaats ernaast twee podia tegenover elkaar opgesteld. Op het ene de rechters, de prelaten, de notabelen. Op het andere Jeanne, alleen, uitgeput door drie maanden verhoor.
+
+Een prediker geeft haar een preek voor de menigte. Dan toont men haar de beul en zijn kar, gereed. Herroep, of je brandt vandaag nog. Ze houdt stand, discussieert, dan begeeft iets het. Ze stemt ermee in een herroepingsakte te ondertekenen — een paar regels die haar worden voorgelezen, die ze zelf niet kan nalezen. Zij, die niet kan schrijven, trekt onderaan het papier een kruis.
+
+In ruil daarvoor wijkt de dood: levenslange gevangenschap, op het brood van smart en het water van angst, zoals de formule luidt. Ze krijgt een vrouwenjurk, ze legt haar mannenkleren af. De Kerk heeft haar zojuist gered.
+
+Op papier.
+
+Want haar rechters sturen haar terug naar haar Engelse cel, bewaakt door soldaten — precies de plek waar alles opnieuw kan beginnen. Onthoud dat detail, het gaat alles bepalen.
+
+Ga verder naar het zuiden, door de smalle straatjes. Over zes minuten, een plek die maar weinig bezoekers durven op te zoeken: de hof van de doden.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-2
+@@STITLE=Aître Saint-Maclou
+Duw de poort open op nummer 186, rue Martainville. Je komt uit op een rustige binnenplaats, omgeven door vakwerkgalerijen. Kijk omhoog naar de balken: schedels, scheenbenen, doodgraversschoppen, in het hout gesneden doodskisten. Welkom bij het aître Saint-Maclou, een van de laatste knekelhof-begraafplaatsen van Europa.
+
+Alles begint met de grote pest van 1348, die een enorm deel van de stad wegmaait. De begraafplaats stroomt over. Dus bedenkt men dit systeem: de lichamen in het midden, en wanneer de ruimte ontbreekt, brengt men de botten naar boven, naar de galerijen, op de verdieping. Een rotatie van de doden, midden in het hart van de wijk. De levenden liepen hier elke dag doorheen. Er wordt zelfs verteld dat een kat levend in deze wanden werd ingemetseld, om het kwaad te verjagen — je krijgt de gedroogde overblijfselen ervan te zien, in een vitrine.
+
+Deze vertrouwdheid met de dood is het decor van het proces. Rouen komt in 1431 nauwelijks uit een gruwelijk beleg: een hele winter van hongersnood voordat men zich in 1419 aan de Engelsen overgaf. Een uitgehongerde, bezette, berustende stad. Voor haar ogen zal Jeanne berecht worden.
+
+Ga weer naar buiten en ga naar het westen. Zes minuten, en ik stel je voor aan de straat van de rechters.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-3
+@@STITLE=Rue Saint-Romain
+Hier ben je in de rue Saint-Romain, de straat van de kanunniken. Aan het einde rijst de kathedraal op als een klif — Monet heeft haar keer op keer geschilderd, maar dat vertelt je een andere wandeling. Aan je linkerhand, het paleis van de aartsbisschop. Binnen deze muren en in de kasteelkapel speelt het proces zich af, van februari tot mei 1431.
+
+Een kerkelijk proces, geleid door Pierre Cauchon, bisschop van Beauvais, omringd door tientallen geestelijken opgeleid aan de universiteit van Parijs. Tegenover hen, een negentienjarige boerenmeisje, zonder advocaat. En toch. Op een dag zetten ze haar de perfecte val: ben je in staat van genade? Zegt ze ja, hoogmoed, ketterij. Zegt ze nee, bekentenis. Ze antwoordt: als ik het niet ben, moge God me erin plaatsen; als ik het ben, moge God me erin bewaren. De notarissen blijven met stomheid geslagen achter — een van hen zal het zijn hele leven navertellen.
+
+Eind mei, drie dagen na de herroeping, treft men haar in mannenkleren aan in haar cel. Er wordt verteld dat dit het enige was wat men haar had gelaten. Terugvallig: opnieuw in de dwaling vervallen. Deze keer kan niets haar nog redden. Een getuige zal zweren Cauchon tegen de Engelsen te hebben horen roepen: eet smakelijk, het is gebeurd.
+
+Ga het steegje rechts af, drie minuten. Ik moet je de wreedste ironie van deze stad tonen.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-4
+@@STITLE=Place de la Haute-Vieille-Tour
+Dit kleine stenen paviljoen, midden op het plein, is de chapelle de la Fierte Saint-Romain. En het herbergt Rouens vreemdste geheim.
+
+Er wordt verteld dat in Merovingische tijden bisschop Romanus de Gargouille versloeg, een draak uit de moerassen van de Seine, geholpen door één enkele man: een ter dood veroordeelde, die niemand anders had durven uitlenen. Ter herinnering daaraan verkreeg de stad een privilege dat uniek was in het hele koninkrijk: elk jaar, met Hemelvaart, kozen de kanunniken van de kathedraal een gevangene — dief, moordenaar, het maakte niet uit. Hij tilde de fierte op, het relikwieënschrijn van de heilige, op dit platform, voor de menigte. En vertrok vrij. Begenadigd. Gezuiverd.
+
+Dit ritueel werkte eeuwenlang, tot aan de Revolutie. Moordenaars werden hier vergeven, jaar na jaar, in naam van de barmhartigheid.
+
+Jeanne daarentegen kreeg helemaal niets. Rouen kon iedereen vergeven — behalve haar. Dat was, let wel, niet de rechtvaardigheid van de stad: het was die van de bezetter en van een tribunaal dat bevelen opvolgde. Maar het berouw zou wél van Rouen blijven.
+
+Ga weer naar het noorden. Je loopt onder een gewelf met een gouden wijzerplaat door — het verdient een eigen bezoek, een andere keer. Zes minuten, richting het paleis.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-5
+@@STITLE=Palais de Justice
+Kijk naar deze gevel, vol pinakels, waterspuwers, stenen kantwerk. Het Palais de Justice, begonnen rond 1499 voor de Échiquier de Normandie, later het Parlement. Drie eeuwen lang werd hier over het hele hertogdom recht gesproken — deze keer in naam van de koning van Frankrijk.
+
+Kom dichter bij de gevel, aan de kant van de rue aux Juifs. Zie je deze gehavende, uitgevreten stenen, alsof erin gebeten is? Dat zijn de littekens van de gevechten en bombardementen van de Tweede Wereldoorlog. Ze zijn opzettelijk zo gelaten, ongerepareerd. Een openluchtmonument.
+
+En onder je voeten, nog een geheim. In 1976 brachten opgravingen onder de binnenplaats een romaans gebouw uit het begin van de twaalfde eeuw aan het licht, bedekt met Hebreeuwse graffiti: de Maison sublime, het oudste joodse monument van Frankrijk. Een school of een studiehuis, daar begraven sinds de verdrijving van de joden uit het koninkrijk, in 1306. De justitie bouwde er, zonder het te weten, haar rechtszalen bovenop.
+
+Dit paleis vertelt je één ding: de gerechtigheid van mensen vergist zich, vernietigt, vergeet — en herinnert zich dan en herstelt. Onthoud dat, we naderen het einde.
+
+Vijf minuten naar het westen, tot een plein met een bijnaam.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-6
+@@STITLE=Place de la Pucelle
+La Pucelle. Geen naam, geen voornaam nodig: Jeannes bijnaam volstaat, en dit plein draagt hem al generaties lang. Want haar verhaal eindigt niet bij de brandstapel — er was een tweede proces. Het proces van het proces.
+
+1450: Normandië is net weer Frans geworden, en Karel VII heeft een probleem. Hij werd tot koning gekroond dankzij een vrouw die voor ketterij was veroordeeld. Zolang het vonnis standhoudt, draagt zijn kroon een schaduw. Hij gelast een onderzoek. Rome bemoeit zich ermee. En in 1455 stapt een oude boerin naar voren in de Notre-Dame de Paris, voor de rechters van de Kerk: Isabelle Romée, Jeannes moeder, gekomen om gerechtigheid voor haar dochter te eisen. Haar klacht, in het openbaar voorgelezen, ontlokt de menigte tranen.
+
+Dus wordt alles opnieuw gedaan, hier, in Rouen. De getuigen van 1431 worden opnieuw ondervraagd — de notarissen, de griffiers, degenen die het zagen. Hun precieze, verpletterende verklaringen zijn onze belangrijkste bron over Jeanne. Op 7 juli 1456 valt het vonnis: het proces was aangetast door fraude en fouten, nietig en zonder gevolg. Cauchon, allang overleden, zou zich nooit meer ergens voor hoeven verantwoorden.
+
+Nog twee minuten naar het grote plein, daar vlakbij. Tijd om 30 mei 1431 onder ogen te zien.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-7
+@@STITLE=Place du Vieux-Marché
+Dit is het. Op de grond markeren een bestrating en een tuin de plek van de brandstapel; ernaast vermoed je de funderingen van de église Saint-Sauveur, die die ochtend het plein omzoomde.
+
+30 mei 1431. Een kar doorkruist de stad, geëscorteerd door honderden Engelse soldaten. Erop Jeanne, negentien jaar oud, met een papieren mijter waarop staat geschreven: ketter, terugvallig, afvallige, afgodendienares. Op het plein de menigte, de tribunes, de hoog opgebouwde brandstapel — te hoog, zeggen getuigen, om de beul haar lijden te laten bekorten.
+
+Ze vraagt om een kruis. Een Engelse soldaat breekt een stok in tweeën, bindt ze samen tot een kruis, reikt het haar aan — ze schuift het tegen haar borst. Een broeder rent weg om het processiekruis van Saint-Sauveur te halen en houdt het voor haar omhoog, door de vlammen heen. Ze sterft terwijl ze de naam van Jezus roept.
+
+Dan komen de tongen los. Een secretaris van de koning van Engeland snikt: we zijn verloren, we hebben een heilige verbrand. De beul op zijn beurt zal zeggen dat hij achtervolgd werd, doodsbang voor zijn zielenheil. Er wordt verteld dat het hart weigerde te branden. De as, op haar beurt, werd in de Seine gegooid — zodat er niets zou overblijven.
+
+Draai je om naar dat vreemde grijze dak, een paar stappen verderop. Het einde van het verhaal wacht je eronder.
+
+@@SCENE=seed-100-rouen-proces-jeanne-darc-scene-8
+@@STITLE=Église Sainte-Jeanne-d'Arc
+Kom dichter bij deze kerk, laag tegen het plein aan gebouwd. Geboren in 1979, ontworpen door Louis Arretche. Kijk goed naar het dak: sommigen zien er bevroren vlammen in, anderen een omgekeerde scheepsromp — de brandstapel en de Seine, verzoend in één en hetzelfde gebaar.
+
+Eeuwenlang wist Rouen niet wat het met deze herinnering aan moest. Een stad pronkt er niet mee een negentienjarig meisje te hebben zien branden. Het proces van 1456 had Jeannes naam gezuiverd, maar het plein bleef gewoon een markt, met zijn eigen leven, zijn kramen, zijn vergetelheid. Toen deed de tijd zijn werk: in 1920 wordt Jeanne heilig verklaard in Rome. De heilige Jeanne d'Arc, secundaire patrones van Frankrijk. Schaamte kon erfgoed worden.
+
+Ga naar binnen, als het open is. Een hele muur van de kerk is een verblindend renaissance-glasraam. Deze glas-in-loodramen komen uit de église Saint-Vincent, die enkele straten hiervandaan stond: in 1939 gedemonteerd en in veiligheid gebracht, overleefden ze de bommen van 1944 die hun kerk verpulverden. Licht dat door het vuur is gegaan — er bestond geen rechtvaardiger omlijsting voor.
+
+Buiten rijst het grote Kruis van de Rehabilitatie op boven de plek van de brandstapel. Tussen het kruis en dit vlamvormige dak heeft de achtervolgde stad eindelijk vrede gesloten.
+
+Dat is het. Je hebt over de laatste vijf maanden van een leven gelopen, en over zes eeuwen herinnering. Blijf nog even op het plein — de inwoners van Rouen leven hier, rustig, boven de geschiedenis. Dat was Rouen, dat was Jeanne. Zorg goed voor jezelf, en tot snel voor een andere wandeling.

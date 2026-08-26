@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-tours-loire-quais-et-passerelles",
+  "sessionId": "seed-100-tours-loire-quais-et-passerelles-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Tours",
+  "title": "Tours — Loire, quais et passerelles",
+  "description": "Paysage urbain — observer comment les ponts et les quais relient la ville à la Loire.",
+  "themes": [
+    "Paysage urbain — observer comment les ponts et les quais relient la ville à la Loire."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6127,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "es": "Paisaje urbano, observar cómo los puentes y muelles conectan la ciudad al Loira.",
+    "it": "Paesaggio urbano, osservare come ponti e attracchi collegano la città alla Loira.",
+    "de": "Stadtlandschaft, beobachten Sie, wie Brücken und Kais die Stadt mit der Loire verbinden.",
+    "en": "Urban landscape, observe how bridges and docks connect the city to the Loire."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-tours-loire-quais-et-passerelles-scene-0",
+      "index": 0,
+      "title": "Place Anatole-France",
+      "text": "La place Anatole-France ouvre la rue Nationale sur la Loire. Son dessin appartient aux grands réaménagements qui, à partir du XVIIIe siècle, ont créé un axe nord-sud plus régulier à travers Tours. Deux bâtiments symétriques, aujourd’hui occupés par des institutions culturelles, encadrent la perspective vers le pont Wilson.\n\nPlace-toi de façon à voir ensemble la rue, la place et le fleuve. L’effet est volontaire : la Loire n’apparaît pas comme une limite arrière, mais comme une étape majeure de la traversée urbaine. Les destructions de 1940 puis la reconstruction ont modifié ce secteur, pourtant l’axe monumental reste lisible.\n\nNotre promenade suivra les changements de relation entre ville et rivière. Certains ouvrages imposent une direction majestueuse ; d’autres offrent un passage plus léger, presque au niveau de l’eau. Avance vers le pont Wilson par le trottoir autorisé. Au milieu, sans gêner la circulation, tu percevras la largeur réelle du lit ligérien, bien différente de l’image cadrée depuis la place.",
+      "hash": "7d75e976",
+      "chars": 1022,
+      "existingSegments": {
+        "es": "seed-100-tours-loire-quais-et-passerelles-scene-0-seg-es",
+        "it": "seed-100-tours-loire-quais-et-passerelles-scene-0-seg-it",
+        "de": "seed-100-tours-loire-quais-et-passerelles-scene-0-seg-de",
+        "en": "seed-100-tours-loire-quais-et-passerelles-scene-0-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-loire-quais-et-passerelles-scene-1",
+      "index": 1,
+      "title": "Pont Wilson",
+      "text": "Le pont Wilson, longtemps appelé pont de pierre, fut construit au XVIIIe siècle. Ses arches régulières prolongent l’axe de la rue Nationale vers le nord. Il a connu plusieurs accidents, destructions et reconstructions. En 1978, l’effondrement de plusieurs arches rappela la puissance du fleuve et la complexité de ses fondations.\n\nRegarde vers l’amont puis vers l’aval. Bancs de sable, chenaux et îles changent selon les niveaux d’eau. La Loire n’occupe pas uniformément tout son lit ; elle déplace ses courants et ses dépôts. Le pont doit pourtant maintenir une ligne stable entre les rives. C’est ce contraste qui donne sa force au paysage.\n\nReviens sur la rive nord et descends vers le quai Paul-Bert par un accès public. Tu vas découvrir Tours depuis l’autre côté du fleuve. La façade de la ville, ses clochers et ses toits se rassembleront en une seule vue, tandis que le quai racontera l’ancien quartier de Saint-Symphorien et sa relation quotidienne avec la Loire.",
+      "hash": "4caeb048",
+      "chars": 971,
+      "existingSegments": {
+        "es": "seed-100-tours-loire-quais-et-passerelles-scene-1-seg-es",
+        "en": "seed-100-tours-loire-quais-et-passerelles-scene-1-seg-en",
+        "de": "seed-100-tours-loire-quais-et-passerelles-scene-1-seg-de",
+        "it": "seed-100-tours-loire-quais-et-passerelles-scene-1-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-loire-quais-et-passerelles-scene-2",
+      "index": 2,
+      "title": "Quai Paul-Bert",
+      "text": "Le quai Paul-Bert longe la rive nord, dans l’ancien faubourg de Saint-Symphorien. Depuis ce côté, le centre de Tours forme une ligne basse ponctuée de tours et de clochers. Le recul permet de comprendre que la ville historique s’est développée parallèlement au fleuve, tout en cherchant régulièrement à le franchir.\n\nObserve le mur de quai et les accès à la berge. Ils fixent une limite entre les rues et un lit majeur soumis aux variations de niveau. La Loire reste un fleuve largement non canalisé ; ses îles et ses bancs mobiles lui donnent une apparence différente selon la saison. Cette dynamique explique pourquoi les ouvrages doivent être entretenus et adaptés.\n\nContinue vers la passerelle Saint-Symphorien, souvent appelée pont de fil. Elle reprendra la direction du centre, mais sans la monumentalité du pont Wilson. Son tablier étroit et sa structure suspendue donnent une perception plus directe du vide, du vent et du courant. Traverse uniquement par l’espace réservé aux usagers autorisés.",
+      "hash": "7d46c6dc",
+      "chars": 1003,
+      "existingSegments": {
+        "es": "seed-100-tours-loire-quais-et-passerelles-scene-2-seg-es",
+        "de": "seed-100-tours-loire-quais-et-passerelles-scene-2-seg-de",
+        "en": "seed-100-tours-loire-quais-et-passerelles-scene-2-seg-en",
+        "it": "seed-100-tours-loire-quais-et-passerelles-scene-2-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-loire-quais-et-passerelles-scene-3",
+      "index": 3,
+      "title": "Pont de Fil",
+      "text": "La passerelle Saint-Symphorien occupe l’emplacement d’anciens franchissements entre le centre et la rive nord. Son surnom de « pont de fil » vient de son principe suspendu. L’ouvrage actuel a été reconstruit après les destructions de la Seconde Guerre mondiale, en conservant cette vocation de passage léger.\n\nAu milieu, le paysage n’est plus cadré par une grande chaussée. La finesse des éléments métalliques laisse voir l’eau presque partout. Tu ressens mieux la distance entre les rives et le mouvement du fleuve. Compare cette expérience à celle du pont Wilson : le premier ordonnait la ville dans un axe solennel ; celui-ci rapproche les quartiers à l’échelle du piéton et du cycle.\n\nRejoins la rive sud puis tourne vers le quai André-Malraux. Tu longeras le secteur du château et de la cathédrale. Les quais y portent la trace des ports anciens, des ouvrages de protection et des transformations routières. Notre prochaine halte se situera face au fleuve, là où la ville cherche aujourd’hui à retrouver un accès plus paisible à ses berges.",
+      "hash": "497398af",
+      "chars": 1045,
+      "existingSegments": {
+        "it": "seed-100-tours-loire-quais-et-passerelles-scene-3-seg-it",
+        "en": "seed-100-tours-loire-quais-et-passerelles-scene-3-seg-en",
+        "es": "seed-100-tours-loire-quais-et-passerelles-scene-3-seg-es",
+        "de": "seed-100-tours-loire-quais-et-passerelles-scene-3-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-loire-quais-et-passerelles-scene-4",
+      "index": 4,
+      "title": "Quai Malraux",
+      "text": "Le quai André-Malraux suit la Loire au pied du quartier de la cathédrale et du château. Comme beaucoup de quais urbains, il a changé de fonction avec le recul de la navigation commerciale et l’essor de la circulation routière. Ses murs, ses rampes et ses terre-pleins conservent les signes de ces adaptations.\n\nRegarde vers l’île Aucard et la rive opposée. Le paysage associe un fleuve vivant à des bords très construits. Les arbres et les cheminements adoucissent la limite sans la faire disparaître. En période de hautes eaux, la distance entre la surface et le sommet du quai rappelle immédiatement le rôle protecteur de l’ouvrage.\n\nAvance jusqu’aux abords publics du château de Tours. Sa position près de la Loire n’est pas accidentelle : elle contrôlait un secteur de franchissement et un accès stratégique à la ville. La dernière étape fera dialoguer cette implantation ancienne avec les ponts modernes que tu viens de traverser.",
+      "hash": "9cf713ae",
+      "chars": 935,
+      "existingSegments": {
+        "de": "seed-100-tours-loire-quais-et-passerelles-scene-4-seg-de",
+        "es": "seed-100-tours-loire-quais-et-passerelles-scene-4-seg-es",
+        "en": "seed-100-tours-loire-quais-et-passerelles-scene-4-seg-en",
+        "it": "seed-100-tours-loire-quais-et-passerelles-scene-4-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-tours-loire-quais-et-passerelles-scene-5",
+      "index": 5,
+      "title": "Château de Tours",
+      "text": "Le château de Tours se dresse près de la Loire, à l’est du noyau ancien. Ses tours visibles appartiennent à plusieurs campagnes de construction et de restauration. L’édifice a connu des fonctions militaires, administratives et culturelles. Depuis ses abords, sa proximité avec le fleuve révèle surtout une logique stratégique : surveiller la rive et les accès à la cité.\n\nTourne-toi vers le parcours. La place Anatole-France organisait une entrée monumentale. Le pont Wilson imposait une ligne stable sur un lit mobile. Le quai Paul-Bert donnait du recul sur la ville, tandis que la passerelle Saint-Symphorien proposait une traversée légère. Enfin, le quai André-Malraux montrait la transformation des usages du bord de Loire.\n\nCes ouvrages ne domestiquent jamais complètement le fleuve. Ils négocient avec ses niveaux, ses courants et la largeur de son lit. C’est peut-être la meilleure manière de regarder Tours : non comme une ville posée à côté de la Loire, mais comme une ville constamment dessinée par elle. Garde cette largeur dans ton regard lorsque tu retourneras dans les rues. Merci d’avoir marché d’une rive à l’autre avec moi. À bientôt.",
+      "hash": "d1e39023",
+      "chars": 1151,
+      "existingSegments": {
+        "en": "seed-100-tours-loire-quais-et-passerelles-scene-5-seg-en",
+        "de": "seed-100-tours-loire-quais-et-passerelles-scene-5-seg-de",
+        "it": "seed-100-tours-loire-quais-et-passerelles-scene-5-seg-it",
+        "es": "seed-100-tours-loire-quais-et-passerelles-scene-5-seg-es"
+      }
+    }
+  ]
+}

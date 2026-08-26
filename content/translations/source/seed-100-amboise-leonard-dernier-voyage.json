@@ -1,0 +1,127 @@
+{
+  "tourId": "seed-100-amboise-leonard-dernier-voyage",
+  "sessionId": "seed-100-amboise-leonard-dernier-voyage-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Amboise",
+  "title": "Amboise — Le dernier voyage de Léonard",
+  "description": "Art — 1516 : Léonard de Vinci traverse les Alpes avec la Joconde dans ses malles, pour mourir ici.",
+  "themes": [
+    "Art — 1516 : Léonard de Vinci traverse les Alpes avec la Joconde dans ses malles, pour mourir ici."
+  ],
+  "baseLanguage": "fr",
+  "chars": 8478,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Art, 1516: Leonardo da Vinci attraversa le Alpi con la Monna Lisa nei suoi tronchi per morire qui.",
+    "de": "Art, 1516: Leonardo da Vinci durchquert die Alpen mit der Joconde in ihren Koffern, um hier zu sterben.",
+    "es": "Art, 1516: Leonardo da Vinci cruza los Alpes con la Joconda en sus baúles para morir aquí.",
+    "en": "Art, 1516: Leonardo da Vinci crosses the Alps with the Mona Lisa in her trunks to die here."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-amboise-leonard-dernier-voyage-scene-0",
+      "index": 0,
+      "title": "Terrasse publique face à la Loire et au château royal",
+      "text": "Arrête-toi ici, au bord de la Loire, et regarde de l'autre côté du fleuve. Là-haut, dressé sur son éperon de roche blanche, le château d'Amboise domine l'eau et la ville. Garde cette image. C'est la dernière chose qu'un vieil homme épuisé a vue, un jour d'automne 1516, au terme d'un voyage long, difficile, presque insensé.\r\n\r\nCet homme, c'est Léonard de Vinci. Il a plus de soixante ans, une main qui commence à trembler, et il vient de faire une chose folle : traverser les Alpes à dos de mule, depuis l'Italie, avant que l'hiver ne ferme les cols. Dans ses bagages, soigneusement emballés, trois tableaux. L'un d'eux est le portrait d'une Florentine au sourire étrange. On l'appellera plus tard la Joconde.\r\n\r\nPourquoi ce voyage ? Parce qu'un jeune roi de France, François Ier, l'a supplié de venir. Pas pour un chantier précis. Pour l'avoir près de lui. Pour parler avec le plus grand esprit de son temps.\r\n\r\nVoilà l'histoire que je vais te raconter le long de cette balade : les trois dernières années d'un génie, ici, à Amboise. Comment il y a vécu, ce qu'il y a rêvé, ce qu'il y a inventé, où il repose — et pourquoi, à cause de ce voyage, le plus célèbre tableau du monde est aujourd'hui à Paris.\r\n\r\nTraverse vers le château et grimpe jusqu'à son entrée. Montons voir la cour qui l'a fait venir. Suis-moi.",
+      "hash": "699b2cd",
+      "chars": 1314,
+      "existingSegments": {
+        "de": "seed-100-amboise-leonard-dernier-voyage-scene-0-seg-de",
+        "it": "seed-100-amboise-leonard-dernier-voyage-scene-0-seg-it",
+        "en": "seed-100-amboise-leonard-dernier-voyage-scene-0-seg-en",
+        "es": "seed-100-amboise-leonard-dernier-voyage-scene-0-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-amboise-leonard-dernier-voyage-scene-1",
+      "index": 1,
+      "title": "Château Royal d'Amboise",
+      "text": "Te voilà à l'entrée du château royal d'Amboise. Prends la rampe qui monte, celle-là même où passaient les cavaliers. En haut, tu débouches sur une terrasse suspendue au-dessus de la Loire, avec le logis royal et ses grandes fenêtres. Ici battait le cœur de la France, il y a cinq cents ans.\r\n\r\nC'est un château de rois. Charles VIII y est né, et il y est mort, bêtement : en 1498, pressé, il se cogne la tête contre le linteau d'une porte basse en allant voir jouer à la paume, et il s'éteint dans la journée. Un roi de France tué par une porte.\r\n\r\nSurtout, un enfant a grandi ici, entre ces murs : le futur François Ier. Il garde de cette terrasse au-dessus du fleuve un goût du faste, de l'Italie, de la beauté. Devenu roi en 1515, à vingt ans, il descend guerroyer en Italie, y découvre la Renaissance, ses palais, ses peintres — et il en tombe amoureux.\r\n\r\nDe cette guerre, il rapporte un rêve : faire venir en France la lumière italienne. Et pour l'incarner, un nom, un seul, le plus grand. Il va faire venir Léonard.\r\n\r\nReste sur la terrasse. À l'angle, une petite chapelle de pierre blanche t'attend. Suis-moi.",
+      "hash": "77a71f1b",
+      "chars": 1117,
+      "existingSegments": {
+        "es": "seed-100-amboise-leonard-dernier-voyage-scene-1-seg-es",
+        "de": "seed-100-amboise-leonard-dernier-voyage-scene-1-seg-de",
+        "en": "seed-100-amboise-leonard-dernier-voyage-scene-1-seg-en",
+        "it": "seed-100-amboise-leonard-dernier-voyage-scene-1-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-amboise-leonard-dernier-voyage-scene-2",
+      "index": 2,
+      "title": "Chapelle Saint-Hubert",
+      "text": "Approche-toi de cette petite chapelle posée au bord du vide, comme un bijou de pierre blanche. C'est la chapelle Saint-Hubert, flamboyante, sculptée jusqu'à la dentelle. Regarde, au-dessus de la porte, le tympan : un chasseur agenouillé devant un cerf qui porte une croix entre ses bois. C'est la légende de saint Hubert.\r\n\r\nMais si les gens viennent ici du monde entier, c'est pour une dalle, à l'intérieur. Sur le sol, une pierre gravée d'un nom : Léonard de Vinci. C'est ici qu'il repose. Enfin… c'est ici qu'on pense qu'il repose.\r\n\r\nCar il faut te dire la vérité. Léonard fut d'abord enterré dans une autre église du château, aujourd'hui disparue, rasée après la Révolution. Sa tombe fut perdue, ses os dispersés. Bien plus tard, au XIXe siècle, on fouilla les ruines et l'on recueillit des ossements que l'on crut être les siens, pour les déposer ici. Mais nul ne peut le jurer.\r\n\r\nAlors on est là, devant une dalle, avec un doute. C'est troublant, et c'est juste : l'homme qui a peint le sourire le plus mystérieux du monde repose sous cette pierre… peut-être.\r\n\r\nSortons. Approchons-nous du bord de la terrasse, pour comprendre pourquoi il a aimé cet endroit. Suis-moi.",
+      "hash": "5d766d16",
+      "chars": 1177,
+      "existingSegments": {
+        "es": "seed-100-amboise-leonard-dernier-voyage-scene-2-seg-es",
+        "de": "seed-100-amboise-leonard-dernier-voyage-scene-2-seg-de",
+        "it": "seed-100-amboise-leonard-dernier-voyage-scene-2-seg-it",
+        "en": "seed-100-amboise-leonard-dernier-voyage-scene-2-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-amboise-leonard-dernier-voyage-scene-3",
+      "index": 3,
+      "title": "Terrasse du château",
+      "text": "Avance jusqu'au parapet de la terrasse, et respire. Sous toi, les toits d'ardoise d'Amboise, la Loire qui brille, et à perte de vue la vallée, ses jardins, ses coteaux de vigne. C'est ce panorama que Léonard avait devant lui, et que François Ier voulait partager avec lui.\r\n\r\nCar le vieux maître n'est pas venu ici seulement pour peindre. Le roi l'a nommé « premier peintre, ingénieur et architecte » et lui a versé une belle pension, juste pour le garder, pour l'écouter. Léonard dessine des projets de palais, rêve une ville idéale, imagine d'assécher des marais, de détourner des rivières.\r\n\r\nEt surtout, il enchante la cour. On raconte qu'il met en scène des fêtes somptueuses, des jeux de lumière, des automates — un lion mécanique, dit-on, qui s'avançait, puis s'ouvrait, laissant tomber une pluie de fleurs de lys. Le premier peintre du roi était aussi son metteur en scène, son magicien.\r\n\r\nCette terrasse fut son théâtre. Mais l'homme vieillit, se fatigue. Il vit un peu plus loin, dans une maison que le roi lui a offerte. C'est là qu'il faut aller maintenant. Redescends du château et prends la rue qui longe la falaise. Suis-moi.",
+      "hash": "bd462aa5",
+      "chars": 1141,
+      "existingSegments": {
+        "es": "seed-100-amboise-leonard-dernier-voyage-scene-3-seg-es",
+        "de": "seed-100-amboise-leonard-dernier-voyage-scene-3-seg-de",
+        "en": "seed-100-amboise-leonard-dernier-voyage-scene-3-seg-en",
+        "it": "seed-100-amboise-leonard-dernier-voyage-scene-3-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-amboise-leonard-dernier-voyage-scene-4",
+      "index": 4,
+      "title": "Rue Victor Hugo",
+      "text": "Nous descendons la rue qui file au pied du château, taillée entre la falaise et les maisons. Regarde le rocher, sur ta droite : par endroits, des portes et des fenêtres s'ouvrent en pleine pierre. Ce sont des habitations troglodytiques, creusées dans le tuffeau, cette roche blanche et tendre de la vallée. On y a vécu, on y a rangé des outils et des réserves, on y vit encore.\n\r\nCette même pierre a servi à bâtir les châteaux de toute la Loire. Tendre à la sortie de terre, elle durcit à l'air : facile à sculpter, parfaite pour les dentelles de pierre que tu as vues plus haut.\r\n\r\nOn raconte qu'un souterrain reliait le château, là-haut, à la maison de Léonard, où nous allons. Le roi, dit la légende, l'empruntait la nuit pour venir parler avec le vieux maître, à l'abri des regards. Vrai ou faux, l'histoire dit bien ce qui les unissait : une amitié rare entre un roi de vingt ans et un génie qui en avait plus de soixante.\r\n\r\nContinue la rue. Au bout, un manoir de brique rose et de pierre blanche t'attend, derrière sa grille. Le voilà. Suis-moi.",
+      "hash": "e62dc5c",
+      "chars": 1052,
+      "existingSegments": {
+        "it": "seed-100-amboise-leonard-dernier-voyage-scene-4-seg-it",
+        "de": "seed-100-amboise-leonard-dernier-voyage-scene-4-seg-de",
+        "es": "seed-100-amboise-leonard-dernier-voyage-scene-4-seg-es",
+        "en": "seed-100-amboise-leonard-dernier-voyage-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-amboise-leonard-dernier-voyage-scene-5",
+      "index": 5,
+      "title": "Château du Clos Lucé",
+      "text": "Nous y sommes : le Clos Lucé. Ce joli manoir de brique et de pierre, avec son jardin, c'est la dernière maison de Léonard de Vinci. François Ier la lui a donnée pour qu'il y vive à sa guise, libre, entouré de ses carnets et de ses élèves.\r\n\r\nEntre par la pensée dans ces pièces. C'est ici qu'il a passé ses trois dernières années. Il ne peint presque plus — sa main droite est affaiblie — mais il n'arrête jamais de penser. Il remplit des carnets de dessins : des machines volantes, des ponts, des engrenages, des tourbillons d'eau, le corps humain disséqué. Aujourd'hui, dans la maison et le parc, on a construit ses machines d'après ses croquis. Tu peux les voir, les toucher.\r\n\r\nEt sur un mur, quelque part, veillaient ses trois tableaux, ceux du grand voyage. La Joconde était là, dans cette maison, posée contre un mur d'Amboise. Imagine un instant.\r\n\r\nC'est ici qu'il s'éteint, le 2 mai 1519. Un tableau célèbre le montre mourant dans les bras du roi. C'est une belle image, mais sans doute une légende : ce jour-là, François Ier était probablement ailleurs. À son chevet, il y avait surtout Melzi, son élève fidèle, qui recueillera tous ses carnets.\r\n\r\nSortons dans le jardin. C'est là que se termine notre voyage. Suis-moi.",
+      "hash": "f995b769",
+      "chars": 1231,
+      "existingSegments": {
+        "de": "seed-100-amboise-leonard-dernier-voyage-scene-5-seg-de",
+        "es": "seed-100-amboise-leonard-dernier-voyage-scene-5-seg-es",
+        "en": "seed-100-amboise-leonard-dernier-voyage-scene-5-seg-en",
+        "it": "seed-100-amboise-leonard-dernier-voyage-scene-5-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-amboise-leonard-dernier-voyage-scene-6",
+      "index": 6,
+      "title": "Jardins du Clos Lucé",
+      "text": "Nous voici dans le jardin du Clos Lucé, sous les arbres, avec le manoir rose derrière nous et le château, tout là-haut, qui veille. C'est ici, dans cette douceur, que s'achève l'histoire d'un géant. Assieds-toi un instant.\r\n\r\nLéonard meurt ici, en mai 1519, loin de son Italie, mais entouré d'égards, aimé d'un roi. Il laisse ses carnets à son élève Melzi. Et il laisse ses trois tableaux au roi de France. Voilà pourquoi — souviens-toi de ma promesse du début — la Joconde n'est ni à Florence, ni à Rome, mais à Paris, au Louvre. Elle est arrivée en France dans les malles d'un vieil homme, par-dessus les Alpes, et elle n'est jamais repartie.\r\n\r\nMais Léonard laisse plus encore. Il laisse une graine. Le rêve italien de François Ier va fleurir dans toute la vallée : escaliers savants, façades ciselées, châteaux de rêve. Regarde l'escalier à double révolution de Chambord, tout près : beaucoup y voient une idée du vieux maître. La Renaissance française est née ici, sur ces bords de Loire, de la rencontre d'un roi et d'un génie.\r\n\r\nAlors lève les yeux vers le château, puis regarde ce jardin paisible. Un homme y a fini sa vie en beauté, en pensant jusqu'au dernier jour. Il a traversé les montagnes pour venir mourir dans la douceur, et il nous a laissé un sourire qui ne s'efface pas.\r\n\r\nReste encore un peu sous ces arbres. Puis va saluer la Joconde, un jour, à Paris — et pense à Amboise, à ce jardin, à ce vieil homme. À bientôt, l'ami.",
+      "hash": "e4c6a89a",
+      "chars": 1446,
+      "existingSegments": {
+        "de": "seed-100-amboise-leonard-dernier-voyage-scene-6-seg-de",
+        "it": "seed-100-amboise-leonard-dernier-voyage-scene-6-seg-it",
+        "en": "seed-100-amboise-leonard-dernier-voyage-scene-6-seg-en",
+        "es": "seed-100-amboise-leonard-dernier-voyage-scene-6-seg-es"
+      }
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+@@LANG=en
+@@TITLE=Carcassonne — The Bastide Saint-Louis
+@@DESC=Urban history — exploring the lower town, its regular plan, its squares and boulevards.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-0
+@@STITLE=Square Gambetta
+Start at the square Gambetta, on the left bank of the Aude. When the trees and buildings allow, look for the silhouette of the Cité up on the hill. Our walk will not climb towards its ramparts. It stays in the lower town, the Bastide Saint-Louis, founded in the thirteenth century after the upheavals of the crusade against the Albigensians.
+
+The square occupies a threshold position between the bridge, the boulevards and the regular grid of the Bastide. Look at the directions around you. To the east, the roads reach the Aude and the upper town. To the west, the streets are laid out in a grid pattern far more legible than the medieval network of the Cité. This contrast between fortified height and ordered plain gives Carcassonne its double structure.
+
+Enter the Bastide heading towards the place Carnot. As you walk, look at the right-angled crossings. They are not perfectly regular everywhere, since the town was rebuilt, fortified and then transformed over several centuries. But the original principle remains: blocks laid out around a central square. It is this plan, more than any single monument, that your steps will now reveal.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-1
+@@STITLE=Place Carnot
+Stop on the place Carnot, at the centre of the Bastide. Around the fontaine de Neptune, the façades form an urban enclosure opened by several streets. This square was the civic and commercial heart of the lower town. It remains today the best spot to understand its layout: the axes head off in different directions and distribute fairly regular blocks.
+
+The monumental fountain dates from the eighteenth century. Its basin forms a visible centre, but the true architecture of the square lies at its edges. Look at the fairly uniform height of the houses, the occasional arcades and the corners framing each exit. Unlike the Cité, organised by the terrain and the fortifications, the Bastide developed on flatter ground, favourable to a geometric design.
+
+Head towards the rue Chartran. Mentally count the crossings and notice how the view closes at each block, then opens again at the next junction. This repetition creates a calm, measurable rhythm. The next stop will show, however, that the grid is not uniform: a great religious building and its forecourt can locally distort the fabric and produce a different scale.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-2
+@@STITLE=Cathédrale Saint-Michel
+Stand in the public space in front of the cathédrale Saint-Michel. Built from the thirteenth century onward, it was incorporated into the Bastide's defensive system after the destruction caused by the Black Prince in the fourteenth century. Its southern architecture favours a vast interior volume, while its outer walls also played a part in protecting the town.
+
+Notice the relationship between the building and the streets. The cathedral takes up a significant footprint in the grid and forces traffic to go around it. Its bell tower serves as a landmark above the blocks, where views at street level stay short. It shows that the regular plan had to accommodate buildings able to concentrate religious, communal and sometimes military functions.
+
+Carry on towards the rue Georges-Clemenceau. Along the way, look for traces of the lower town's former enceinte in the orientation of the boulevards. The Bastide's fortifications have largely vanished, but their outline survives in the roads surrounding it. You will thus pass from a defence-related monument to an urban axis that today crosses the district freely and leads towards its northern gate.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-3
+@@STITLE=Rue Georges-Clemenceau
+The rue Georges-Clemenceau follows one of the great axes of the Bastide. Stop at a crossing and look in turn in the four directions. The repetition of the façades and the perpendicular streets makes the plan almost abstract. Yet small irregularities appear: a shifted corner, a width that changes, a view interrupted by an older building.
+
+This axis links the place Carnot to the sector of the porte des Jacobins then, heading north, to the canal and the station. It shows how the medieval grid has continued to structure modern movement. Names and uses have changed, but the street remains a line of passage through the centre. Look also at the upper floors: behind the alignments, the buildings belong to varied periods, proof that the regularity of the plan does not impose a uniform architecture.
+
+Carry on towards the porte des Jacobins, staying on the pedestrian routes. As you approach the boulevard, the space will widen out. This expansion marks the edge of the former enclosed town. The gate visible today is not medieval in its present state, but it still maintains a clear threshold between the inner fabric and the outer extensions.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-4
+@@STITLE=Portail des Jacobins
+Position yourself facing the porte des Jacobins from a sheltered spot. Built in the eighteenth century, it replaced an older entrance to the Bastide. Its classical lines and central passage give a monumental form to the urban boundary. Nearby, the boulevards follow the general course of the old fortifications, transformed once their military role disappeared.
+
+Look through the gate. On one side, the streets of the grid lead back to the place Carnot. On the other, the town stretches out beyond the old perimeter. This simple framing lets you sense the border without a continuous wall. The gate no longer serves to close the town, but it still announces the entrance into a specific historic district.
+
+For the last stage, head towards the canal du Midi north of the Bastide, using the laid-out crossings. The route is longer and crosses busy roads; stay alert. You will leave the system of streets and boulevards behind to meet another geometric line, that of the canal. Its arrival in the nineteenth century gave the lower town a new horizon of movement and reinforced its growth beyond the old walls.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-5
+@@STITLE=Port du Canal du Midi
+Stop on the public promenade at the edge of the canal du Midi. The structure, designed by Pierre-Paul Riquet in the seventeenth century, did not cross Carcassonne in its original route. It was diverted at the start of the nineteenth century to pass north of the Bastide, where a port and crossing structures were built. This late arrival added a new strong line to the urban plan.
+
+Look at the regularity of the canal, its banks and the bridges crossing it. After the grid of streets, you find here another constructed geometry, but this time meant for the movement of water and boats. The nearby station later reinforced this sector as a gateway into the modern town. The old Bastide, once contained by its walls, found itself linked to far wider networks.
+
+From the square Gambetta, you have crossed a central square, walked past a fortified cathedral, followed a regular axis and gone through a former gate before reaching the canal. The walk thus reveals a lower town built on lines: streets, walls, boulevards and a waterway. The Cité still dominates the horizon, but here, on the plain, Carcassonne tells another way of building and connecting.
+
+@@LANG=es
+@@TITLE=Carcasona — La Bastide Saint-Louis
+@@DESC=Historia urbana: recorrer la ciudad baja, su trazado regular, sus plazas y sus bulevares.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-0
+@@STITLE=Square Gambetta
+Empieza en el square Gambetta, en la orilla izquierda del Aude. Cuando los árboles y los edificios lo permitan, busca la silueta de la Cité en la altura. Nuestro paseo no subirá hacia sus murallas. Se queda en la ciudad baja, la Bastide Saint-Louis, fundada en el siglo XIII tras las convulsiones de la cruzada contra los albigenses.
+
+La plaza ocupa una posición de umbral entre el puente, los bulevares y la trama regular de la Bastide. Observa las direcciones a tu alrededor. Hacia el este, las vías llegan al Aude y a la ciudad alta. Hacia el oeste, las calles se organizan según una cuadrícula mucho más legible que la red medieval de la Cité. Esta oposición entre la altura fortificada y la llanura ordenada da a Carcasona su doble estructura.
+
+Entra en la Bastide en dirección a la place Carnot. Al caminar, observa los cruces en ángulo recto. No son perfectamente regulares en todas partes, porque la ciudad fue reconstruida, fortificada y luego transformada durante varios siglos. Pero el principio inicial permanece: manzanas distribuidas en torno a una plaza central. Es este trazado, más que los monumentos aislados, lo que tus pasos van a hacer visible ahora.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-1
+@@STITLE=Place Carnot
+Detente en la place Carnot, en el centro de la Bastide. En torno a la fontaine de Neptune, las fachadas componen un recinto urbano abierto por varias calles. Esta plaza fue el corazón cívico y comercial de la ciudad baja. Sigue siendo hoy el mejor lugar para comprender su trazado: los ejes parten en distintas direcciones y distribuyen manzanas bastante regulares.
+
+La fuente monumental data del siglo XVIII. Su estanque forma un centro visible, pero la verdadera arquitectura de la plaza se encuentra en sus bordes. Mira la altura bastante homogénea de las casas, las arcadas puntuales y los ángulos que enmarcan cada salida. A diferencia de la Cité, organizada por el relieve y las fortificaciones, la Bastide se desarrolla sobre un terreno más llano, propicio a un diseño geométrico.
+
+Dirígete hacia la rue Chartran. Cuenta mentalmente los cruces y observa cómo la perspectiva se cierra en cada manzana, para volver a abrirse en el siguiente cruce. Esta repetición crea un ritmo tranquilo y medible. La próxima parada mostrará, sin embargo, que la cuadrícula no es uniforme: un gran edificio religioso y su explanada pueden deformar localmente la trama y producir otra escala.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-2
+@@STITLE=Cathédrale Saint-Michel
+Sitúate en el espacio público ante la cathédrale Saint-Michel. Construida a partir del siglo XIII, se integró en el sistema defensivo de la Bastide tras las destrucciones provocadas por el Príncipe Negro en el siglo XIV. Su arquitectura meridional privilegia un vasto volumen interior, mientras que sus muros exteriores también participaron en la protección de la ciudad.
+
+Observa la relación entre el edificio y las calles. La catedral ocupa una superficie importante en la cuadrícula y obliga a la circulación a rodearla. Su campanario sirve de referencia por encima de las manzanas, allí donde las perspectivas a ras de suelo siguen siendo cortas. Muestra que el trazado regular tuvo que convivir con edificios capaces de concentrar funciones religiosas, colectivas y a veces militares.
+
+Continúa hacia la rue Georges-Clemenceau. En el camino, busca las huellas del antiguo recinto de la ciudad baja en la orientación de los bulevares. Las fortificaciones de la Bastide han desaparecido en gran parte, pero su contorno permanece en las vías que la rodean. Pasarás así de un monumento ligado a la defensa a un eje urbano que hoy atraviesa libremente el barrio y conduce hacia su puerta septentrional.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-3
+@@STITLE=Rue Georges-Clemenceau
+La rue Georges-Clemenceau sigue uno de los grandes ejes de la Bastide. Detente en un cruce y mira sucesivamente en las cuatro direcciones. La repetición de las fachadas y de las calles perpendiculares hace que el trazado resulte casi abstracto. Sin embargo, aparecen pequeñas irregularidades: un ángulo desplazado, una anchura que cambia, una perspectiva interrumpida por un edificio más antiguo.
+
+Este eje conecta la place Carnot con el sector de la porte des Jacobins y, después, hacia el norte, con el canal y la estación. Muestra cómo la cuadrícula medieval ha seguido estructurando los desplazamientos modernos. Los nombres y los usos han cambiado, pero la calle sigue siendo una línea de paso a través del centro. Mira también los pisos: tras las alineaciones, las construcciones pertenecen a períodos variados, prueba de que la regularidad del trazado no impone una arquitectura uniforme.
+
+Continúa hacia la porte des Jacobins manteniéndote en las vías peatonales. Al acercarte al bulevar, el espacio se ensanchará. Esta dilatación indica el borde de la antigua ciudad cerrada. La puerta visible hoy no es medieval en su estado actual, pero mantiene un umbral claro entre la trama interior y las extensiones exteriores.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-4
+@@STITLE=Portail des Jacobins
+Sitúate frente a la porte des Jacobins desde un espacio protegido. Construida en el siglo XVIII, sustituyó a una entrada más antigua de la Bastide. Sus líneas clásicas y su paso central dan una forma monumental al límite urbano. Cerca, los bulevares siguen el trazado general de las antiguas fortificaciones, transformadas cuando su papel militar desapareció.
+
+Mira a través de la puerta. De un lado, las calles de la cuadrícula llevan de vuelta a la place Carnot. Del otro, la ciudad se extiende más allá del antiguo perímetro. Este simple encuadre permite sentir la frontera sin muro continuo. La puerta ya no sirve para cerrar la ciudad, pero sigue anunciando la entrada a un barrio histórico preciso.
+
+Para la última etapa, dirígete hacia el canal du Midi al norte de la Bastide, utilizando los pasos habilitados. El trayecto es más largo y cruza vías transitadas; mantente atento. Vas a dejar el sistema de calles y bulevares para encontrarte con otra línea geométrica, la del canal. Su llegada en el siglo XIX dio a la ciudad baja un nuevo horizonte de circulación y reforzó su desarrollo más allá de los antiguos recintos.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-5
+@@STITLE=Port du Canal du Midi
+Detente en el paseo público a orillas del canal du Midi. La obra concebida por Pierre-Paul Riquet en el siglo XVII no atravesaba Carcasona en su trazado inicial. Fue desviada a comienzos del siglo XIX para pasar al norte de la Bastide, donde se acondicionaron un puerto y obras de paso. Esta llegada tardía añadió una nueva línea fuerte al trazado urbano.
+
+Mira la regularidad del canal, sus orillas y los puentes que lo cruzan. Tras la cuadrícula de las calles, encuentras aquí otra geometría construida, pero esta vez destinada al movimiento del agua y de las barcazas. La estación vecina reforzó después este sector como puerta de entrada de la ciudad moderna. La antigua Bastide, en su día contenida por sus murallas, se encontró conectada a redes mucho más amplias.
+
+Desde el square Gambetta, has atravesado una plaza central, bordeado una catedral fortificada, seguido un eje regular y cruzado una antigua puerta antes de llegar al canal. El paseo revela así una ciudad baja fundada sobre líneas: calles, recintos, bulevares y vía de agua. La Cité sigue dominando el horizonte, pero aquí, en la llanura, Carcasona cuenta otra manera de construir y de conectar.
+
+@@LANG=de
+@@TITLE=Carcassonne — Die Bastide Saint-Louis
+@@DESC=Stadtgeschichte — die Unterstadt erkunden, ihren regelmäßigen Grundriss, ihre Plätze und Boulevards.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-0
+@@STITLE=Square Gambetta
+Beginn auf dem square Gambetta, am linken Ufer der Aude. Wenn es die Bäume und Gebäude zulassen, such die Silhouette der Cité auf der Anhöhe. Unser Spaziergang wird nicht zu ihren Wällen hinaufsteigen. Er bleibt in der Unterstadt, der Bastide Saint-Louis, im 13. Jahrhundert nach den Umwälzungen des Kreuzzugs gegen die Albigenser gegründet.
+
+Der Platz nimmt eine Schwellenposition zwischen der Brücke, den Boulevards und dem regelmäßigen Raster der Bastide ein. Betrachte die Richtungen um dich herum. Nach Osten erreichen die Wege die Aude und die Oberstadt. Nach Westen ordnen sich die Straßen zu einem Raster, das weit lesbarer ist als das mittelalterliche Netz der Cité. Dieser Gegensatz zwischen befestigter Höhe und geordneter Ebene verleiht Carcassonne seine doppelte Struktur.
+
+Betritt die Bastide in Richtung place Carnot. Achte beim Gehen auf die rechtwinkligen Kreuzungen. Sie sind nicht überall vollkommen regelmäßig, da die Stadt im Lauf mehrerer Jahrhunderte wiederaufgebaut, befestigt und dann umgestaltet wurde. Doch das ursprüngliche Prinzip bleibt bestehen: Häuserblocks, um einen zentralen Platz verteilt. Es ist dieser Grundriss, mehr als einzelne Denkmäler, den deine Schritte jetzt sichtbar machen werden.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-1
+@@STITLE=Place Carnot
+Halt auf der place Carnot an, im Zentrum der Bastide. Rund um die fontaine de Neptune bilden die Fassaden eine städtische Umfriedung, die von mehreren Straßen geöffnet wird. Dieser Platz war das bürgerliche und geschäftliche Herz der Unterstadt. Er bleibt heute der beste Ort, um ihren Grundriss zu verstehen: Die Achsen laufen in verschiedene Richtungen und verteilen ziemlich regelmäßige Häuserblocks.
+
+Der monumentale Brunnen stammt aus dem 18. Jahrhundert. Sein Becken bildet ein sichtbares Zentrum, doch die eigentliche Architektur des Platzes liegt an seinen Rändern. Betrachte die recht einheitliche Höhe der Häuser, die vereinzelten Arkaden und die Ecken, die jeden Ausgang rahmen. Anders als die Cité, die durch das Relief und die Befestigungen geordnet ist, entwickelte sich die Bastide auf flacherem Gelände, günstig für einen geometrischen Entwurf.
+
+Geh zur rue Chartran. Zähl im Kopf die Kreuzungen und beobachte, wie sich die Perspektive an jedem Häuserblock schließt und sich an der nächsten Kreuzung wieder öffnet. Diese Wiederholung erzeugt einen ruhigen, messbaren Rhythmus. Die nächste Station wird jedoch zeigen, dass das Raster nicht einheitlich ist: Ein großes religiöses Bauwerk und sein Vorplatz können das Gewebe örtlich verzerren und einen anderen Maßstab erzeugen.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-2
+@@STITLE=Cathédrale Saint-Michel
+Stell dich auf den öffentlichen Platz vor der cathédrale Saint-Michel. Ab dem 13. Jahrhundert erbaut, wurde sie nach den vom Schwarzen Prinzen im 14. Jahrhundert verursachten Zerstörungen in das Verteidigungssystem der Bastide eingegliedert. Ihre südländische Architektur bevorzugt einen weiten Innenraum, während ihre Außenmauern ebenfalls zum Schutz der Stadt beitrugen.
+
+Beachte die Beziehung zwischen dem Gebäude und den Straßen. Die Kathedrale nimmt eine bedeutende Fläche im Raster ein und zwingt den Verkehr, sie zu umgehen. Ihr Glockenturm dient als Orientierungspunkt über den Häuserblocks, dort, wo die Ausblicke auf Straßenniveau kurz bleiben. Sie zeigt, dass der regelmäßige Grundriss mit Gebäuden zurechtkommen musste, die religiöse, gemeinschaftliche und manchmal militärische Funktionen bündeln konnten.
+
+Geh weiter zur rue Georges-Clemenceau. Such unterwegs in der Ausrichtung der Boulevards nach Spuren der früheren Umwallung der Unterstadt. Die Befestigungen der Bastide sind größtenteils verschwunden, doch ihr Umriss bleibt in den sie umgebenden Straßen erhalten. So gehst du von einem verteidigungsbezogenen Denkmal zu einer städtischen Achse über, die das Viertel heute frei durchquert und zu seinem Nordtor führt.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-3
+@@STITLE=Rue Georges-Clemenceau
+Die rue Georges-Clemenceau folgt einer der großen Achsen der Bastide. Halt an einer Kreuzung an und sieh nacheinander in die vier Richtungen. Die Wiederholung der Fassaden und der rechtwinkligen Straßen macht den Grundriss fast abstrakt. Dennoch tauchen kleine Unregelmäßigkeiten auf: eine verschobene Ecke, eine sich ändernde Breite, ein von einem älteren Gebäude unterbrochener Ausblick.
+
+Diese Achse verbindet die place Carnot mit dem Bereich der porte des Jacobins und dann, nach Norden hin, mit dem Kanal und dem Bahnhof. Sie zeigt, wie das mittelalterliche Raster weiterhin den modernen Verkehr strukturiert hat. Namen und Nutzungen haben sich geändert, doch die Straße bleibt eine Durchgangslinie durch das Zentrum. Betrachte auch die Obergeschosse: Hinter den Fluchtlinien gehören die Bauten unterschiedlichen Epochen an, ein Beweis, dass die Regelmäßigkeit des Grundrisses keine einheitliche Architektur erzwingt.
+
+Geh weiter zur porte des Jacobins und bleib dabei auf den Fußgängerwegen. Bei der Annäherung an den Boulevard wird sich der Raum weiten. Diese Ausdehnung markiert den Rand der ehemaligen geschlossenen Stadt. Das heute sichtbare Tor ist in seinem heutigen Zustand nicht mittelalterlich, doch es bewahrt weiterhin eine klare Schwelle zwischen dem inneren Gewebe und den äußeren Erweiterungen.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-4
+@@STITLE=Portail des Jacobins
+Stell dich der porte des Jacobins von einem geschützten Ort aus gegenüber. Im 18. Jahrhundert erbaut, ersetzte sie einen älteren Eingang der Bastide. Ihre klassischen Linien und ihr zentraler Durchgang verleihen der städtischen Grenze eine monumentale Form. In der Nähe folgen die Boulevards dem allgemeinen Verlauf der alten Befestigungen, umgestaltet, nachdem ihre militärische Rolle verschwunden war.
+
+Sieh durch das Tor hindurch. Auf der einen Seite führen die Straßen des Rasters zurück zur place Carnot. Auf der anderen dehnt sich die Stadt über den alten Umkreis hinaus aus. Dieser einfache Rahmen lässt die Grenze spüren, ohne durchgehende Mauer. Das Tor dient nicht mehr dazu, die Stadt abzuschließen, doch es kündigt weiterhin den Eintritt in ein bestimmtes historisches Viertel an.
+
+Für die letzte Etappe geh zum canal du Midi nördlich der Bastide, über die angelegten Übergänge. Der Weg ist länger und quert befahrene Straßen; bleib aufmerksam. Du wirst das System der Straßen und Boulevards verlassen, um auf eine andere geometrische Linie zu treffen, die des Kanals. Seine Ankunft im 19. Jahrhundert gab der Unterstadt einen neuen Verkehrshorizont und verstärkte ihr Wachstum über die alten Umwallungen hinaus.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-5
+@@STITLE=Port du Canal du Midi
+Halt auf der öffentlichen Promenade am Rand des canal du Midi an. Das im 17. Jahrhundert von Pierre-Paul Riquet entworfene Bauwerk durchquerte Carcassonne in seiner ursprünglichen Streckenführung nicht. Er wurde Anfang des 19. Jahrhunderts umgeleitet, um nördlich der Bastide vorbeizuführen, wo ein Hafen und Übergangsbauwerke angelegt wurden. Diese späte Ankunft fügte dem Stadtplan eine neue starke Linie hinzu.
+
+Betrachte die Regelmäßigkeit des Kanals, seine Ufer und die ihn überquerenden Brücken. Nach dem Straßenraster findest du hier eine weitere gebaute Geometrie, doch diesmal für die Bewegung von Wasser und Booten bestimmt. Der nahe Bahnhof verstärkte später diesen Bereich als Eingangstor zur modernen Stadt. Die alte Bastide, einst von ihren Mauern eingeschlossen, fand sich mit weit umfangreicheren Netzen verbunden.
+
+Vom square Gambetta aus hast du einen zentralen Platz durchquert, bist an einer befestigten Kathedrale entlanggegangen, einer regelmäßigen Achse gefolgt und durch ein ehemaliges Tor gegangen, bevor du den Kanal erreicht hast. Der Spaziergang offenbart so eine Unterstadt, die auf Linien aufgebaut ist: Straßen, Umwallungen, Boulevards und eine Wasserstraße. Die Cité beherrscht weiterhin den Horizont, doch hier, in der Ebene, erzählt Carcassonne eine andere Art zu bauen und zu verbinden.
+
+@@LANG=it
+@@TITLE=Carcassonne — La Bastide Saint-Louis
+@@DESC=Storia urbana: percorrere la città bassa, il suo impianto regolare, le sue piazze e i suoi viali.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-0
+@@STITLE=Square Gambetta
+Comincia allo square Gambetta, sulla riva sinistra dell'Aude. Quando gli alberi e gli edifici lo permettono, cerca la sagoma della Cité sull'altura. La nostra passeggiata non salirà verso le sue mura. Resta nella città bassa, la Bastide Saint-Louis, fondata nel Duecento dopo gli sconvolgimenti della crociata contro gli albigesi.
+
+La piazza occupa una posizione di soglia tra il ponte, i viali e la trama regolare della Bastide. Osserva le direzioni intorno a te. Verso est, le vie raggiungono l'Aude e la città alta. Verso ovest, le strade si organizzano secondo una griglia molto più leggibile della rete medievale della Cité. Questa opposizione tra altura fortificata e pianura ordinata dà a Carcassonne la sua doppia struttura.
+
+Entra nella Bastide in direzione di place Carnot. Camminando, osserva gli incroci ad angolo retto. Non sono perfettamente regolari ovunque, perché la città fu ricostruita, fortificata e poi trasformata nel corso di più secoli. Ma il principio iniziale permane: isolati distribuiti attorno a una piazza centrale. È questo impianto, più dei monumenti isolati, che i tuoi passi renderanno ora visibile.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-1
+@@STITLE=Place Carnot
+Fermati in place Carnot, al centro della Bastide. Attorno alla fontaine de Neptune, le facciate compongono una cinta urbana aperta da diverse strade. Questa piazza era il cuore civico e commerciale della città bassa. Resta oggi il punto migliore per capirne l'impianto: gli assi partono in direzioni diverse e distribuiscono isolati abbastanza regolari.
+
+La fontana monumentale risale al Settecento. La sua vasca forma un centro visibile, ma la vera architettura della piazza si trova ai suoi bordi. Guarda l'altezza abbastanza omogenea delle case, i portici puntuali e gli angoli che inquadrano ogni uscita. A differenza della Cité, organizzata dal rilievo e dalle fortificazioni, la Bastide si sviluppa su un terreno più piatto, favorevole a un disegno geometrico.
+
+Vai verso rue Chartran. Conta mentalmente gli incroci e osserva come la prospettiva si chiuda a ogni isolato, per poi riaprirsi all'incrocio successivo. Questa ripetizione crea un ritmo calmo e misurabile. La prossima tappa mostrerà tuttavia che la griglia non è uniforme: un grande edificio religioso e il suo sagrato possono deformare localmente la trama e produrre un'altra scala.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-2
+@@STITLE=Cathédrale Saint-Michel
+Mettiti nello spazio pubblico davanti alla cathédrale Saint-Michel. Costruita a partire dal Duecento, fu integrata nel sistema difensivo della Bastide dopo le distruzioni provocate dal Principe Nero nel Trecento. La sua architettura meridionale privilegia un vasto volume interno, mentre i suoi muri esterni parteciparono anch'essi alla protezione della città.
+
+Osserva la relazione tra l'edificio e le strade. La cattedrale occupa una superficie importante nella griglia e obbliga la circolazione ad aggirarla. Il suo campanile funge da punto di riferimento sopra gli isolati, là dove le prospettive a livello del suolo restano brevi. Mostra che l'impianto regolare doveva fare i conti con edifici capaci di concentrare funzioni religiose, collettive e talvolta militari.
+
+Prosegui verso rue Georges-Clemenceau. Lungo il percorso, cerca le tracce dell'antica cinta della città bassa nell'orientamento dei viali. Le fortificazioni della Bastide sono in gran parte scomparse, ma il loro contorno permane nelle vie che le circondano. Passerai così da un monumento legato alla difesa a un asse urbano che oggi attraversa liberamente il quartiere e conduce verso la sua porta settentrionale.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-3
+@@STITLE=Rue Georges-Clemenceau
+Rue Georges-Clemenceau segue uno dei grandi assi della Bastide. Fermati a un incrocio e guarda successivamente nelle quattro direzioni. La ripetizione delle facciate e delle strade perpendicolari rende l'impianto quasi astratto. Tuttavia, appaiono piccole irregolarità: un angolo spostato, una larghezza che cambia, una prospettiva interrotta da un edificio più antico.
+
+Questo asse collega place Carnot al settore della porte des Jacobins e poi, verso nord, al canale e alla stazione. Mostra come la griglia medievale abbia continuato a strutturare gli spostamenti moderni. I nomi e gli usi sono cambiati, ma la strada resta una linea di passaggio attraverso il centro. Guarda anche i piani: dietro gli allineamenti, le costruzioni appartengono a periodi diversi, prova che la regolarità dell'impianto non impone un'architettura uniforme.
+
+Prosegui verso la porte des Jacobins restando sui percorsi pedonali. Avvicinandoti al viale, lo spazio si allargherà. Questa dilatazione indica il bordo dell'antica città chiusa. La porta visibile oggi non è medievale nel suo stato attuale, ma mantiene una soglia chiara tra la trama interna e le estensioni esterne.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-4
+@@STITLE=Portail des Jacobins
+Mettiti di fronte alla porte des Jacobins da uno spazio protetto. Costruita nel Settecento, sostituì un ingresso più antico della Bastide. Le sue linee classiche e il suo passaggio centrale danno una forma monumentale al limite urbano. Nelle vicinanze, i viali seguono il tracciato generale delle antiche fortificazioni, trasformate quando il loro ruolo militare scomparve.
+
+Guarda attraverso la porta. Da un lato, le strade della griglia riportano a place Carnot. Dall'altro, la città si estende oltre l'antico perimetro. Questa semplice inquadratura permette di percepire il confine senza un muro continuo. La porta non serve più a chiudere la città, ma continua ad annunciare l'ingresso in un quartiere storico preciso.
+
+Per l'ultima tappa, dirigiti verso il canal du Midi a nord della Bastide, utilizzando gli attraversamenti allestiti. Il tragitto è più lungo e attraversa vie trafficate; resta attento. Lascerai il sistema di strade e viali per incontrare un'altra linea geometrica, quella del canale. Il suo arrivo nell'Ottocento ha dato alla città bassa un nuovo orizzonte di circolazione e ne ha rafforzato lo sviluppo oltre le antiche cinte.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-5
+@@STITLE=Port du Canal du Midi
+Fermati sulla passeggiata pubblica ai bordi del canal du Midi. L'opera concepita da Pierre-Paul Riquet nel Seicento non attraversava Carcassonne nel suo tracciato iniziale. Fu deviata all'inizio dell'Ottocento per passare a nord della Bastide, dove furono allestiti un porto e opere di attraversamento. Questo arrivo tardivo aggiunse una nuova linea forte all'impianto urbano.
+
+Guarda la regolarità del canale, le sue rive e i ponti che lo attraversano. Dopo la griglia delle strade, ritrovi qui un'altra geometria costruita, ma questa volta destinata al movimento dell'acqua e delle barche. La stazione vicina rafforzò poi questo settore come porta d'ingresso della città moderna. L'antica Bastide, un tempo contenuta dalle sue mura, si trovò collegata a reti molto più vaste.
+
+Dallo square Gambetta, hai attraversato una piazza centrale, costeggiato una cattedrale fortificata, seguito un asse regolare e varcato un'antica porta prima di raggiungere il canale. La passeggiata rivela così una città bassa fondata su linee: strade, cinte, viali e via d'acqua. La Cité domina ancora l'orizzonte, ma qui, nella pianura, Carcassonne racconta un altro modo di costruire e collegare.
+
+@@LANG=nl
+@@TITLE=Carcassonne — De Bastide Saint-Louis
+@@DESC=Stadsgeschiedenis — de benedenstad verkennen, haar regelmatige plattegrond, haar pleinen en boulevards.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-0
+@@STITLE=Square Gambetta
+Begin op de square Gambetta, op de linkeroever van de Aude. Wanneer de bomen en gebouwen het toelaten, zoek de silhouet van de Cité op de hoogte. Onze wandeling zal niet naar haar wallen klimmen. Ze blijft in de benedenstad, de Bastide Saint-Louis, gesticht in de dertiende eeuw na de omwentelingen van de kruistocht tegen de Albigenzen.
+
+Het plein neemt een drempelpositie in tussen de brug, de boulevards en het regelmatige raster van de Bastide. Kijk naar de richtingen om je heen. Naar het oosten bereiken de wegen de Aude en de bovenstad. Naar het westen zijn de straten georganiseerd volgens een rasterpatroon dat veel leesbaarder is dan het middeleeuwse netwerk van de Cité. Deze tegenstelling tussen versterkte hoogte en geordende vlakte geeft Carcassonne haar dubbele structuur.
+
+Betreed de Bastide in de richting van de place Carnot. Let tijdens het lopen op de haakse kruisingen. Ze zijn niet overal perfect regelmatig, want de stad werd in de loop van meerdere eeuwen herbouwd, versterkt en vervolgens omgevormd. Maar het oorspronkelijke principe blijft bestaan: bouwblokken verdeeld rond een centraal plein. Het is dit plan, meer dan geïsoleerde monumenten, dat je voetstappen nu zichtbaar zullen maken.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-1
+@@STITLE=Place Carnot
+Blijf staan op de place Carnot, in het centrum van de Bastide. Rond de fontaine de Neptune vormen de gevels een stedelijke omheining, geopend door meerdere straten. Dit plein was het burgerlijke en commerciële hart van de benedenstad. Het blijft vandaag de beste plek om haar plattegrond te begrijpen: de assen vertrekken in verschillende richtingen en verdelen vrij regelmatige bouwblokken.
+
+De monumentale fontein dateert uit de achttiende eeuw. Haar bekken vormt een zichtbaar middelpunt, maar de ware architectuur van het plein bevindt zich aan de randen ervan. Kijk naar de vrij gelijkmatige hoogte van de huizen, de plaatselijke arcaden en de hoeken die elke uitgang omkaderen. In tegenstelling tot de Cité, geordend door het reliëf en de vestingwerken, ontwikkelde de Bastide zich op een vlakker terrein, gunstig voor een geometrisch ontwerp.
+
+Ga richting de rue Chartran. Tel in gedachten de kruisingen en let op hoe het perspectief bij elk bouwblok sluit, om zich dan bij de volgende kruising weer te openen. Deze herhaling schept een rustig, meetbaar ritme. De volgende halte zal echter tonen dat het raster niet uniform is: een groot religieus gebouw en zijn voorplein kunnen het weefsel plaatselijk vervormen en een andere schaal opleveren.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-2
+@@STITLE=Cathédrale Saint-Michel
+Ga staan op de openbare ruimte voor de cathédrale Saint-Michel. Gebouwd vanaf de dertiende eeuw, werd ze in het verdedigingssysteem van de Bastide opgenomen na de verwoestingen veroorzaakt door de Zwarte Prins in de veertiende eeuw. Haar zuidelijke architectuur geeft de voorkeur aan een uitgestrekt binnenvolume, terwijl haar buitenmuren ook bijdroegen aan de bescherming van de stad.
+
+Let op de relatie tussen het gebouw en de straten. De kathedraal neemt een aanzienlijk deel van het raster in en dwingt het verkeer eromheen. Haar klokkentoren dient als oriëntatiepunt boven de bouwblokken, daar waar de vergezichten op straatniveau kort blijven. Ze toont dat de regelmatige plattegrond rekening moest houden met gebouwen die religieuze, gemeenschappelijke en soms militaire functies konden bundelen.
+
+Ga verder naar de rue Georges-Clemenceau. Zoek onderweg naar sporen van de vroegere omwalling van de benedenstad in de oriëntatie van de boulevards. De vestingwerken van de Bastide zijn grotendeels verdwenen, maar hun omtrek blijft bestaan in de wegen eromheen. Zo ga je van een verdedigingsgebonden monument over naar een stedelijke as die de wijk vandaag vrij doorkruist en naar haar noordelijke poort leidt.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-3
+@@STITLE=Rue Georges-Clemenceau
+De rue Georges-Clemenceau volgt een van de grote assen van de Bastide. Blijf staan op een kruising en kijk achtereenvolgens in de vier richtingen. De herhaling van de gevels en de loodrechte straten maakt het plan bijna abstract. Toch verschijnen er kleine onregelmatigheden: een verschoven hoek, een breedte die verandert, een vergezicht onderbroken door een ouder gebouw.
+
+Deze as verbindt de place Carnot met de sector van de porte des Jacobins en vervolgens, naar het noorden, met het kanaal en het station. Ze toont hoe het middeleeuwse raster het moderne verkeer is blijven structureren. De namen en het gebruik zijn veranderd, maar de straat blijft een doorgangslijn door het centrum. Kijk ook naar de verdiepingen: achter de rooilijnen behoren de gebouwen tot uiteenlopende periodes, bewijs dat de regelmaat van het plan geen uniforme architectuur oplegt.
+
+Ga verder naar de porte des Jacobins en blijf op de voetgangerspaden. Naarmate je de boulevard nadert, zal de ruimte zich verbreden. Deze uitzetting markeert de rand van de vroegere omsloten stad. De vandaag zichtbare poort is in haar huidige staat niet middeleeuws, maar ze bewaart nog altijd een duidelijke drempel tussen het binnenste weefsel en de buitenste uitbreidingen.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-4
+@@STITLE=Portail des Jacobins
+Ga tegenover de porte des Jacobins staan, vanaf een beschutte plek. Gebouwd in de achttiende eeuw, verving ze een oudere toegang van de Bastide. Haar klassieke lijnen en centrale doorgang geven de stedelijke grens een monumentale vorm. In de buurt volgen de boulevards het algemene tracé van de oude vestingwerken, omgevormd toen hun militaire rol verdween.
+
+Kijk door de poort heen. Aan de ene kant leiden de straten van het raster terug naar de place Carnot. Aan de andere kant strekt de stad zich uit voorbij de oude omtrek. Deze eenvoudige omkadering laat toe de grens te voelen zonder doorlopende muur. De poort dient niet meer om de stad af te sluiten, maar kondigt nog steeds de ingang aan van een specifieke historische wijk.
+
+Ga voor de laatste etappe richting het canal du Midi ten noorden van de Bastide, via de aangelegde oversteekplaatsen. Het traject is langer en kruist drukke wegen; blijf alert. Je zult het stelsel van straten en boulevards verlaten om een andere geometrische lijn te ontmoeten, die van het kanaal. De komst ervan in de negentiende eeuw gaf de benedenstad een nieuwe verkeershorizon en versterkte haar groei voorbij de oude omwallingen.
+@@SCENE=seed-100-carcassonne-bastide-saint-louis-scene-5
+@@STITLE=Port du Canal du Midi
+Blijf staan op de openbare promenade aan de rand van het canal du Midi. Het bouwwerk, ontworpen door Pierre-Paul Riquet in de zeventiende eeuw, doorkruiste Carcassonne niet in zijn oorspronkelijke tracé. Het werd begin negentiende eeuw omgeleid om ten noorden van de Bastide te passeren, waar een haven en oversteekconstructies werden aangelegd. Deze late komst voegde een nieuwe sterke lijn toe aan het stedelijke plan.
+
+Bekijk de regelmaat van het kanaal, zijn oevers en de bruggen die het overspannen. Na het raster van de straten vind je hier een andere gebouwde geometrie, maar deze keer bestemd voor de beweging van water en boten. Het nabijgelegen station versterkte later deze sector als toegangspoort tot de moderne stad. De oude Bastide, ooit ingesloten door haar muren, kwam verbonden te staan met veel uitgestrektere netwerken.
+
+Vanaf de square Gambetta ben je een centraal plein overgestoken, langs een versterkte kathedraal gelopen, een regelmatige as gevolgd en door een vroegere poort gegaan voordat je het kanaal bereikte. De wandeling onthult zo een benedenstad gebouwd op lijnen: straten, omwallingen, boulevards en een waterweg. De Cité beheerst nog altijd de horizon, maar hier, in de vlakte, vertelt Carcassonne een andere manier van bouwen en verbinden.

@@ -1,0 +1,489 @@
+@@LANG=en
+@@TITLE=Nantes — The Dreams of Jules Verne
+@@DESC=Art — from the île Feydeau to the Elephant: the city that taught Jules Verne to dream.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-0
+@@STITLE=Île Feydeau
+Look at this row of old stone houses, a little tilted, a little weary, with carved faces above the windows. You're on the île Feydeau, a former island in the Loire, now joined to the mainland. And in one of these houses, one morning in February 1828, a little boy was born who would go on to send humanity beneath the seas, to the center of the Earth, and all the way to the Moon. Jules Verne.
+
+He was born here, right by the water. At the time, the Loire still flowed on both sides of the island. The branches of the river are covered in boats. From the family window, the child sees masts, sails, sailors coming back from the Antilles with their mouths full of stories. Nantes is a great port, turned toward the whole world. And that port is his first school.
+
+That's what I want to tell you today. How a city made a dreamer. How the quays, the ships, the machines, and the workshops of Nantes lodged themselves in a child's head, and came back out, years later, as novels read the world over. Twenty Thousand Leagues Under the Sea. Around the World in Eighty Days.
+
+And the best part, you'll see at the end: these dreams of iron and steam, the city eventually built them for real.
+
+Head back north, to a lovely round square with a large fountain. Follow me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-1
+@@STITLE=Place Royale
+Here you are on the place Royale. A bright, harmonious square, with a great fountain of stone and bronze at its center. Come closer. At the very top, a seated woman, crowned: that's Nantes herself, the city, in majesty. At her feet, other figures pour water: these are the Loire and its tributaries, gathered here as statues. All the geography of the region, cast in bronze.
+
+This square took on its present look in the mid-nineteenth century, in Jules Verne's own lifetime. This is the Nantes he knew as a young man. A bourgeois city, elegant, self-assured, dreaming itself in pale stone and regular perspectives. Straight streets were cut through, theaters were raised, covered arcades were built.
+
+Verne grew up in that city. And he kept from it a taste for precise drawing, for engineering, for a world that could be ordered and mastered. His novels are full of scholars, plans, calculations, machines regulated to the millimeter. They almost look like architect's blueprints. That rigor comes from here too, from this geometric square.
+
+Leave the square and look, just steps away, for a discreet entrance sinking beneath the buildings. Follow me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-2
+@@STITLE=Passage Pommeraye
+Push the door open, and look up. You've just entered the passage Pommeraye, and I promise you a moment of wonder. A covered gallery, on three levels, connected by a monumental grand staircase. A glass roof lets golden light fall through. Everywhere, stone statues, lampposts, ornate balustrades, dark woodwork. It looks like a theater set, or the inside of a dream.
+
+This passage was cut into the slope of the city around 1840, by a man named Louis Pommeraye. The idea was wild: a street-gallery, sheltered from the rain, where people stroll, shop, and show themselves off. A piece of the city turned into a machine for wonders, all glass and cast iron, those new materials the century was so proud of.
+
+Jules Verne knew this passage. He walked through it as a boy, then as a young man. And how could you not already see one of his worlds here? An enclosed space, ingenious, lit from above, where technology becomes enchantment. His great novels are full of places like this: the Nautilus's salon, the balloon's basket, the projectile-car launched toward the Moon. Cocoons of iron and glass for endless voyaging.
+
+Go back down toward the river, to the great quay running along the Loire. Follow me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-3
+@@STITLE=Quai de la Fosse
+Here you are again by the water, on the quai de la Fosse. A major thoroughfare today, but picture it covered in ships, as in Verne's time. This is where the child used to come and linger, sometimes in secret, to watch the three-masters set off for the islands.
+
+There's a story people tell, charming, famous, and one historians still debate. Jules was supposedly eleven. Mad about the sea, he supposedly slipped aboard a departing ocean liner, a ship named the Coralie, signed on as a cabin boy, determined to sail for the Indies. His father, warned in time, is said to have jumped into a steamboat to catch him at the next port of call and drag him back by the ear. And little Jules, sheepish, is said to have sworn a phrase that became legendary: from now on, he would only travel in his dreams.
+
+True or embellished, this story tells a deep truth. Verne, as a young man, barely traveled at all. He traveled sitting down, with maps, books, shipping schedules, and a blazing imagination. He first saw the open sea from right here, from this quay, without ever casting off. His readers will do the same: a journey around the world from an armchair.
+
+Follow the river westward and climb the green hill overlooking the port. Follow me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-4
+@@STITLE=Butte Sainte-Anne
+Here you are atop the butte Sainte-Anne. Catch your breath, and turn around. The whole of the Loire opens at your feet, wide, silvery, flowing toward the estuary and the ocean. It's one of the finest viewpoints in Nantes. And it's no accident that the city placed the musée Jules Verne here, in a bourgeois house.
+
+Push the door open, if you have time. Inside are his manuscripts, his red-and-gold editions, posters, models of the Nautilus, globes, instruments. The whole apparatus of an organized dream. But the real museum, perhaps, is out here, in this view.
+
+Look at this river. This is what the child gazed upon. Boats leaving, boats returning, laden with distant worlds. A liquid frontier between the known and the unknown. Verne spent his life writing that line of horizon. His heroes descend rivers, climb out of craters, dive beneath the seas, rise into the sky. But it always begins with a man looking into the distance and wondering: what if I went there?
+
+Go back down toward the river and cross the bridge to the large island opposite, where the shipyards once smoked. Follow me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-5
+@@STITLE=Parc des Chantiers, site des anciens chantiers navals
+You're now on the île de Nantes, in the middle of the river. Look around you at this concrete ground, these rails, these immense metal cranes planted at the water's edge. You're on the former shipyards. For over a century, this is where ships were built, true giants of steel, launched into the Loire to cheering crowds.
+
+Thousands of workers toiled here. Boilermakers, riveters, welders, ship's carpenters. The din was deafening: the clang of iron, the sirens, the fire of welding torches. Nantes lived to the rhythm of its shipyards. And then, in 1987, the last ship departed. The shipyards closed. Silence fell over the island. A vast, rusting, abandoned wasteland right in the heart of the city.
+
+Look at these great cranes that were kept, standing like sentinels at the water's edge. They could have razed everything. Instead, they chose to keep the memory, and to turn this land of workers and machines into something Jules Verne would have loved.
+
+Head toward that great glass hall, the former shipyard workshop. Listen closely: you might already hear a trumpeting sound. Follow me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-6
+@@STITLE=Galerie des Machines
+Step into the great nave. This is the Galerie des Machines. You're in a workshop, a real one, but a workshop of creatures. Around you, suspended, standing, jointed: a giant ant, a squid with leather tentacles, a heron with outstretched wings, a spider. All made of wood and metal, all mechanical, all coming alive the moment a hand works their levers.
+
+These machines spring from the imagination of two dream-builders who set up their workshops here. Their idea is crystal clear: to marry three Nantes legacies. The world of Jules Verne and his extraordinary voyages. The notebooks of Leonardo da Vinci, his machines drawn five centuries too soon. And the know-how of the shipyard workers, those hands that knew how to bend steel.
+
+Watch an operator wake a beast. The joints creak, the eyelids blink, the neck unfolds. This isn't a cartoon, not a screen. It's matter, wood, pistons, gears you can see working. Technology laid bare, offered up as a spectacle. Exactly what Verne loved: showing the gears behind the marvel.
+
+Step back out into the light. On the esplanade, a creature awaits you, much bigger than the others. Follow me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-7
+@@STITLE=Parvis des Machines de l'île
+There it is. You can't miss it: it stands twelve meters tall. An elephant. A wooden and steel elephant that walks, for real, across the esplanade, carrying dozens of passengers on its back.
+
+Come closer. Watch it move forward, step by step, swinging its trunk. It lifts a leg, sets it back down, the ground trembles a little. Its great ears flap. Its eyes blink, huge, almost gentle. And sometimes, without warning, it trumpets, a great hoarse breath, and sprays a fine mist from its trunk over the laughing children below.
+
+Look closely at its skin: it isn't skin at all, it's pale wood, carved plank by plank. And beneath that wood, mechanics laid open to view, pistons, a steel frame, like the skeleton of a ship. A galleon on legs. An animal-machine straight out of a Verne novel, except it's right here in front of you, and it's really walking.
+
+Take a moment to follow it with your eyes. Then head down to the quay, right at the water's edge, where a strange three-tiered carousel is spinning. That's where our journey ends. Follow me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-8
+@@STITLE=Carrousel des Mondes Marins
+Here we are, by the Loire, in front of the Carrousel des Mondes Marins. From a distance, it looks like a fairground ride. Come closer, and it's an entire ocean spinning. Three levels of creatures: deep-sea fish, giant crabs, a squid, a submarine, a ray flapping its wings. You climb aboard, turn the cranks, and dive, without getting wet, all the way to the ocean floor. Twenty Thousand Leagues Under the Sea, turned into a carousel ride.
+
+Turn toward the river. Along the quay, a row of steel rings, eighteen of them, line the water's edge. In the evening, they light up in colors. This quay used to be called the quai des Antilles. This is where the great trading ships used to dock. The city hasn't erased anything: it has laid art over its memory.
+
+And that, I think, is the whole secret of Nantes. This city watched ships depart for centuries. It produced a child who turned those departures into printed dreams, read across the entire Earth. And one day, on the wasteland of its dead shipyards, it decided to build those dreams for real. A walking elephant, a spinning ocean, iron beasts that breathe.
+
+From the île Feydeau to this elephant, it's the same story. A city that never stopped believing the imaginary could become matter. Jules Verne wrote it. Nantes built it.
+
+Stay a little longer by the water. Watch the marine worlds turn. And the next time you open one of his books, you'll know where the dream came from. See you soon, friend.
+
+@@LANG=es
+@@TITLE=Nantes — Los sueños de Julio Verne
+@@DESC=Arte — de la île Feydeau al Elefante: la ciudad que le enseñó a soñar a Julio Verne.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-0
+@@STITLE=Île Feydeau
+Mira esta hilera de viejas casas de piedra, un poco inclinadas, un poco cansadas, con sus rostros esculpidos encima de las ventanas. Estás en la île Feydeau, una antigua isla del Loira, hoy unida a tierra firme. Y en una de estas casas, una mañana de febrero de 1828, nació un niño que llevaría a la humanidad bajo los mares, al centro de la Tierra y hasta la Luna. Julio Verne.
+
+Nace aquí, muy cerca del agua. En aquella época, el Loira todavía corre por los dos lados de la isla. Los brazos del río están cubiertos de barcos. Desde la ventana familiar, el niño ve mástiles, velas, marineros que regresan de las Antillas con la boca llena de historias. Nantes es un gran puerto, vuelto hacia el mundo entero. Y ese puerto es su primera escuela.
+
+Eso es lo que quiero contarte hoy. Cómo una ciudad fabricó a un soñador. Cómo los muelles, los barcos, las máquinas y los talleres de Nantes se alojaron en la cabeza de un niño, y salieron de ahí, años después, convertidos en novelas leídas por el mundo entero. Veinte mil leguas de viaje submarino. La vuelta al mundo en ochenta días.
+
+Y lo más bonito, lo verás al final: esos sueños de hierro y vapor, la ciudad acabó construyéndolos de verdad.
+
+Sube hacia el norte, hasta una hermosa plaza redonda con una gran fuente. Sígueme.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-1
+@@STITLE=Place Royale
+Aquí estás en la place Royale. Una plaza clara, armoniosa, con una gran fuente de piedra y bronce en su centro. Acércate. En lo más alto, una mujer sentada, coronada: es Nantes misma, la ciudad, en majestad. A sus pies, otras figuras vierten agua: son el Loira y sus afluentes, reunidos aquí en estatuas. Toda la geografía de la región, fundida en bronce.
+
+Esta plaza tomó su aspecto actual a mediados del siglo diecinueve, en vida de Julio Verne. Es el Nantes que él conoció de joven. Una ciudad burguesa, elegante, segura de sí misma, que se soñaba en piedra dorada y perspectivas regulares. Se abrían calles rectas, se levantaban teatros, se construían pasajes cubiertos.
+
+Verne creció en esa ciudad. Y de ella conservó el gusto por el dibujo preciso, por la ingeniería, por un mundo que se ordena y se domina. Sus novelas están llenas de sabios, de planos, de cálculos, de máquinas ajustadas al milímetro. Parecen casi planos de arquitecto. Ese rigor viene también de aquí, de esta plaza geométrica.
+
+Sal de la plaza y busca, a dos pasos, una entrada discreta que se hunde bajo los edificios. Sígueme.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-2
+@@STITLE=Passage Pommeraye
+Empuja la puerta, y levanta la mirada. Acabas de entrar en el passage Pommeraye, y te prometo un momento de asombro. Una galería cubierta, de tres niveles, unidos por una escalera de honor monumental. Una cristalera deja caer una luz dorada. Por todas partes, estatuas de piedra, farolas, balaustradas trabajadas, maderas oscuras. Parece un decorado de teatro, o el interior de un sueño.
+
+Este pasaje se abrió en la pendiente de la ciudad hacia 1840, por un hombre llamado Louis Pommeraye. La idea era una locura: una calle-galería, a salvo de la lluvia, donde pasear, comprar, dejarse ver. Un trozo de ciudad convertido en una máquina de maravillas, todo vidrio y hierro fundido, esos materiales nuevos de los que el siglo estaba tan orgulloso.
+
+Julio Verne conoció este pasaje. Lo recorrió de niño, y luego de joven. ¿Y cómo no ver ya aquí uno de sus universos? Un espacio cerrado, ingenioso, iluminado desde arriba, donde la técnica se vuelve maravilla. Sus grandes novelas están llenas de lugares como este: el salón del Nautilus, la barquilla del globo, el vagón-proyectil lanzado hacia la Luna. Capullos de hierro y vidrio para viajar sin fin.
+
+Baja de nuevo hacia el río, hasta el gran muelle que bordea el Loira. Sígueme.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-3
+@@STITLE=Quai de la Fosse
+Aquí estás de nuevo junto al agua, en el quai de la Fosse. Hoy una gran arteria, pero imagínala cubierta de barcos, como en tiempos de Verne. Aquí es donde el niño venía a rondar, a veces a escondidas, para ver partir los grandes veleros hacia las islas.
+
+Se cuenta una historia, bonita, famosa, y que los historiadores todavía discuten. Jules tendría once años. Loco por el mar, se habría colado a bordo de un barco de larga travesía a punto de zarpar, un buque llamado la Coralie, contratado como grumete, decidido a navegar hacia las Indias. Su padre, avisado, habría saltado a un barco de vapor para alcanzarlo en la siguiente escala y llevárselo tirando de la oreja. Y el pequeño Jules, avergonzado, habría jurado esa frase que se ha vuelto legendaria: de ahora en adelante, solo viajaría en sueños.
+
+Verdadera o adornada, esta historia cuenta una verdad profunda. Verne, de joven, apenas viajó. Viajó sentado, con mapas, libros, horarios de barcos, y una imaginación en llamas. El mar abierto lo vio primero desde aquí, desde este muelle, sin soltar amarras jamás. Sus lectores harán lo mismo: la vuelta al mundo desde un sillón.
+
+Sigue el río hacia el oeste y sube la colina verde que domina el puerto. Sígueme.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-4
+@@STITLE=Butte Sainte-Anne
+Aquí estás en lo alto de la butte Sainte-Anne. Recupera el aliento, y date la vuelta. Todo el Loira se abre a tus pies, ancho, plateado, corriendo hacia el estuario y el océano. Es uno de los miradores más bellos de Nantes. Y no es casualidad que la ciudad haya instalado aquí, en una casa burguesa, el musée Jules Verne.
+
+Empuja la puerta, si tienes tiempo. Dentro están sus manuscritos, sus ediciones rojas y doradas, carteles, maquetas del Nautilus, globos terráqueos, instrumentos. Todo el aparato del sueño organizado. Pero el verdadero museo, quizá, está fuera, en esta vista.
+
+Mira este río. Esto es lo que contemplaba el niño. Barcos que se van, que vuelven, cargados de mundos lejanos. Una frontera líquida entre lo conocido y lo desconocido. Verne pasó su vida escribiendo esa línea de horizonte. Sus héroes bajan por ríos, suben por cráteres, se sumergen bajo los mares, ascienden al cielo. Pero todo empieza siempre con un hombre que mira a lo lejos y se pregunta: ¿y si fuera?
+
+Baja de nuevo hacia el río y cruza el puente hacia la gran isla, enfrente, donde antaño humeaban los astilleros. Sígueme.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-5
+@@STITLE=Parc des Chantiers, site des anciens chantiers navals
+Ahora estás en la île de Nantes, en medio del río. Mira a tu alrededor este suelo de hormigón, estos raíles, estas inmensas grúas de metal plantadas al borde del agua. Estás en los antiguos astilleros. Durante más de un siglo, aquí se construyeron barcos, verdaderos gigantes de acero, botados al Loira entre aclamaciones.
+
+Miles de obreros trabajaban aquí. Caldereros, remachadores, soldadores, carpinteros de marina. El estruendo era ensordecedor: el choque del hierro, las sirenas, el fuego de los sopletes. Nantes vivía al ritmo de sus astilleros. Y luego, en 1987, partió el último barco. Los astilleros cerraron. El silencio cayó sobre la isla. Un enorme solar, oxidado, abandonado en pleno corazón de la ciudad.
+
+Mira estas grandes grúas que se han conservado, erguidas como centinelas al borde del agua. Se podría haberlo arrasado todo. Se eligió conservar la memoria, y hacer, de esta tierra de obreros y máquinas, algo que a Julio Verne le habría encantado.
+
+Avanza hacia esa gran nave acristalada, la antigua nave de los astilleros. Escucha bien: quizá ya oyes un barrito. Sígueme.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-6
+@@STITLE=Galerie des Machines
+Entra en la gran nave. Esta es la Galerie des Machines. Estás en un taller, uno de verdad, pero un taller de criaturas. A tu alrededor, suspendidas, apoyadas, articuladas: una hormiga gigante, un calamar de tentáculos de cuero, una garza con las alas desplegadas, una araña. Todas de madera y metal, todas mecánicas, todas cobrando vida en cuanto una mano acciona sus palancas.
+
+Estas máquinas salen de la imaginación de dos constructores de sueños que instalaron aquí sus talleres. Su idea es cristalina: casar tres herencias de Nantes. El universo de Julio Verne y sus viajes extraordinarios. Los cuadernos de Leonardo da Vinci, sus máquinas dibujadas cinco siglos demasiado pronto. Y el saber hacer de los obreros de los astilleros, esas manos que sabían doblar el acero.
+
+Mira a un operador despertar a una bestia. Las articulaciones crujen, los párpados parpadean, el cuello se despliega. No es un dibujo animado, no es una pantalla. Es materia, madera, pistones, engranajes que se ven funcionar. La técnica al desnudo, ofrecida como un espectáculo. Exactamente lo que le gustaba a Verne: mostrar los engranajes del prodigio.
+
+Sal de nuevo a la luz. En la explanada, una criatura te espera, mucho más grande que las demás. Sígueme.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-7
+@@STITLE=Parvis des Machines de l'île
+Ahí está. No puedes perdértelo: mide doce metros de altura. Un elefante. Un elefante de madera y acero que camina, de verdad, por la explanada, llevando a decenas de pasajeros sobre su lomo.
+
+Acércate. Míralo avanzar, paso a paso, balanceando su trompa. Levanta una pata, la vuelve a apoyar, el suelo tiembla un poco. Sus grandes orejas baten. Sus ojos parpadean, enormes, casi dulces. Y a veces, sin avisar, barrita, un gran soplido ronco, y suelta por la trompa una lluvia fina sobre los niños que ríen debajo.
+
+Fíjate bien en su piel: no es piel, es madera clara, esculpida tabla a tabla. Y bajo esa madera, una mecánica a la vista, pistones, una estructura de acero, como el esqueleto de un barco. Un galeón con patas. Un animal-máquina salido directamente de una novela de Verne, salvo que está ahí, delante de ti, y camina de verdad.
+
+Tómate un momento para seguirlo con la mirada. Luego baja hacia el muelle, justo al borde del agua, donde gira un extraño tiovivo de tres pisos. Ahí termina nuestro viaje. Sígueme.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-8
+@@STITLE=Carrousel des Mondes Marins
+Aquí estamos, junto al Loira, frente al Carrousel des Mondes Marins. De lejos, parece un tiovivo de feria. Acércate, y es todo un océano el que gira. Tres pisos de criaturas: peces abisales, cangrejos gigantes, un calamar, un barco de las profundidades, una raya que bate sus alas. Uno sube, acciona manivelas, y se sumerge, sin mojarse, hasta el fondo del mar. Veinte mil leguas de viaje submarino, convertido en una vuelta de tiovivo.
+
+Date la vuelta hacia el río. A lo largo del muelle, una hilera de anillos de acero, dieciocho, se alinean al borde del agua. Por la noche, se iluminan de colores. Este muelle, antaño, se llamaba el quai des Antilles. Ahí atracaban los grandes barcos del comercio. La ciudad no ha borrado nada: ha puesto arte sobre su memoria.
+
+Y ahí está, creo, todo el secreto de Nantes. Esta ciudad vio partir barcos durante siglos. Fabricó a un niño que convirtió esas partidas en sueños impresos, leídos en toda la Tierra. Y un día, sobre el solar de sus astilleros muertos, decidió construir esos sueños de verdad. Un elefante que camina, un océano que gira, bestias de hierro que respiran.
+
+De la île Feydeau a este elefante, es la misma historia. Una ciudad que nunca dejó de creer que lo imaginario podía volverse materia. Julio Verne lo escribió. Nantes lo construyó.
+
+Quédate un poco más junto al agua. Mira girar los mundos marinos. Y la próxima vez que abras uno de sus libros, sabrás de dónde venía el sueño. Hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Nantes — Die Träume von Jules Verne
+@@DESC=Kunst — von der île Feydeau bis zum Elefanten: die Stadt, die Jules Verne das Träumen lehrte.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-0
+@@STITLE=Île Feydeau
+Schau dir diese Reihe alter Steinhäuser an, ein wenig schief, ein wenig müde, mit ihren geschnitzten Gesichtern über den Fenstern. Du bist auf der île Feydeau, einer ehemaligen Insel in der Loire, heute mit dem Festland verbunden. Und in einem dieser Häuser wurde an einem Februarmorgen 1828 ein kleiner Junge geboren, der die Menschheit unter die Meere, ins Innere der Erde und bis zum Mond schicken sollte. Jules Verne.
+
+Er wird hier geboren, ganz nah am Wasser. Zu dieser Zeit fließt die Loire noch auf beiden Seiten der Insel. Die Flussarme sind voller Boote. Vom Fenster der Familie aus sieht das Kind Masten, Segel, Seeleute, die aus der Karibik zurückkehren, den Mund voller Geschichten. Nantes ist ein großer Hafen, der ganzen Welt zugewandt. Und dieser Hafen ist seine erste Schule.
+
+Genau das möchte ich dir heute erzählen. Wie eine Stadt einen Träumer geschaffen hat. Wie sich die Kais, die Schiffe, die Maschinen und die Werkstätten von Nantes im Kopf eines Kindes festsetzten und Jahre später wieder herauskamen, als Romane, die auf der ganzen Welt gelesen wurden. Zwanzigtausend Meilen unter dem Meer. In 80 Tagen um die Welt.
+
+Und das Schönste erfährst du am Ende: diese Träume aus Eisen und Dampf, die Stadt hat sie am Ende wirklich gebaut.
+
+Geh nach Norden zurück, bis zu einem hübschen runden Platz mit einem großen Brunnen. Folge mir.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-1
+@@STITLE=Place Royale
+Da bist du nun auf der place Royale. Ein heller, harmonischer Platz, mit einem großen Brunnen aus Stein und Bronze in seiner Mitte. Komm näher. Ganz oben eine sitzende, gekrönte Frau: das ist Nantes selbst, die Stadt, in Majestät. Zu ihren Füßen gießen weitere Figuren Wasser: das sind die Loire und ihre Nebenflüsse, hier als Statuen versammelt. Die ganze Geografie der Region, in Bronze gegossen.
+
+Dieser Platz erhielt sein heutiges Gesicht Mitte des neunzehnten Jahrhunderts, zu Lebzeiten von Jules Verne. Das ist das Nantes, das er als junger Mann kannte. Eine bürgerliche Stadt, elegant, selbstsicher, die sich in hellem Stein und regelmäßigen Perspektiven träumte. Man zog gerade Straßen durch, errichtete Theater, baute überdachte Passagen.
+
+Verne wuchs in dieser Stadt auf. Und er behielt von ihr die Vorliebe für präzises Zeichnen, für Ingenieurskunst, für eine Welt, die man ordnen und beherrschen kann. Seine Romane sind voller Gelehrter, Pläne, Berechnungen, Maschinen, die auf den Millimeter genau eingestellt sind. Man könnte sie fast für Architektenpläne halten. Diese Strenge kommt auch von hier, von diesem geometrischen Platz.
+
+Verlasse den Platz und such, nur wenige Schritte weiter, einen unauffälligen Eingang, der sich unter die Gebäude senkt. Folge mir.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-2
+@@STITLE=Passage Pommeraye
+Drück die Tür auf und blick nach oben. Du hast gerade den passage Pommeraye betreten, und ich verspreche dir einen Moment des Staunens. Eine überdachte Galerie, auf drei Ebenen, verbunden durch eine monumentale Ehrentreppe. Ein Glasdach lässt goldenes Licht hereinfallen. Überall Steinstatuen, Laternen, kunstvoll gearbeitete Balustraden, dunkles Holzwerk. Es sieht aus wie ein Theaterbühnenbild, oder wie das Innere eines Traums.
+
+Diese Passage wurde um 1840 in den Hang der Stadt gegraben, von einem Mann namens Louis Pommeraye. Die Idee war verrückt: eine Straßen-Galerie, geschützt vor Regen, in der man flaniert, einkauft, sich zeigt. Ein Stück Stadt, verwandelt in eine Wundermaschine, ganz aus Glas und Gusseisen, jenen neuen Materialien, auf die das Jahrhundert so stolz war.
+
+Jules Verne kannte diese Passage. Er durchstreifte sie als Junge, dann als junger Mann. Und wie sollte man hier nicht schon eine seiner Welten erkennen? Ein geschlossener, geistreicher Raum, von oben beleuchtet, in dem die Technik zur Zauberei wird. Seine großen Romane sind voller solcher Orte: der Salon der Nautilus, die Gondel des Ballons, der Projektilwagen, der zum Mond geschossen wird. Kokons aus Eisen und Glas für endlose Reisen.
+
+Steig wieder hinunter zum Fluss, zum großen Kai, der an der Loire entlangläuft. Folge mir.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-3
+@@STITLE=Quai de la Fosse
+Da bist du wieder am Wasser, auf dem quai de la Fosse. Heute eine große Verkehrsader, aber stell sie dir voller Schiffe vor, wie zu Vernes Zeiten. Hierhin kam das Kind, um sich herumzutreiben, manchmal heimlich, um die Dreimaster zu beobachten, die zu den Inseln aufbrachen.
+
+Man erzählt eine Geschichte, hübsch, berühmt, und über die Historiker noch immer diskutieren. Jules soll elf Jahre alt gewesen sein. Verrückt nach dem Meer, soll er sich an Bord eines auslaufenden Langstreckenschiffs geschlichen haben, ein Schiff namens Coralie, als Schiffsjunge angeheuert, entschlossen, nach Indien zu segeln. Sein Vater, benachrichtigt, soll auf ein Dampfschiff gesprungen sein, um ihn beim nächsten Halt einzuholen und ihn am Ohr zurückzuholen. Und der kleine Jules soll, kleinlaut, diesen Satz geschworen haben, der legendär geblieben ist: von nun an werde er nur noch im Traum reisen.
+
+Ob wahr oder ausgeschmückt, diese Geschichte erzählt eine tiefe Wahrheit. Verne reiste als junger Mann kaum. Er reiste im Sitzen, mit Karten, Büchern, Schiffsfahrplänen und einer glühenden Fantasie. Die hohe See sah er zuerst von hier, von diesem Kai, ohne je die Leinen zu lösen. Seine Leser werden es ihm gleichtun: die Weltreise vom Lehnstuhl aus.
+
+Folge dem Fluss nach Westen und steig den grünen Hügel hinauf, der über den Hafen blickt. Folge mir.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-4
+@@STITLE=Butte Sainte-Anne
+Da bist du nun oben auf der butte Sainte-Anne. Verschnauf kurz und dreh dich um. Die ganze Loire öffnet sich zu deinen Füßen, breit, silbern, dem Ästuar und dem Ozean entgegenströmend. Das ist einer der schönsten Aussichtspunkte von Nantes. Und es ist kein Zufall, dass die Stadt hier, in einem bürgerlichen Haus, das musée Jules Verne eingerichtet hat.
+
+Drück die Tür auf, wenn du Zeit hast. Drinnen findest du seine Manuskripte, seine rot-goldenen Ausgaben, Plakate, Modelle der Nautilus, Globen, Instrumente. Das ganze Instrumentarium des organisierten Traums. Doch das eigentliche Museum liegt vielleicht draußen, in diesem Blick.
+
+Schau auf diesen Fluss. Das ist es, was das Kind betrachtete. Boote, die aufbrechen, die zurückkehren, beladen mit fernen Welten. Eine flüssige Grenze zwischen dem Bekannten und dem Unbekannten. Verne verbrachte sein Leben damit, diese Horizontlinie zu beschreiben. Seine Helden fahren Flüsse hinab, steigen aus Kratern empor, tauchen unter die Meere, steigen in den Himmel auf. Doch alles beginnt immer mit einem Mann, der in die Ferne blickt und sich fragt: und wenn ich hinginge?
+
+Steig wieder hinunter zum Fluss und überquere die Brücke zur großen Insel gegenüber, dort, wo einst die Werften rauchten. Folge mir.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-5
+@@STITLE=Parc des Chantiers, site des anciens chantiers navals
+Du bist jetzt auf der île de Nantes, mitten im Fluss. Schau dich um: dieser Betonboden, diese Schienen, diese riesigen Metallkräne, aufgestellt am Wasserrand. Du bist auf den ehemaligen Schiffswerften. Über ein Jahrhundert lang wurden hier Schiffe gebaut, wahre Giganten aus Stahl, unter Jubel in die Loire abgelassen.
+
+Tausende Arbeiter arbeiteten hier. Kesselschmiede, Nieter, Schweißer, Schiffszimmerleute. Der Lärm war ohrenbetäubend: das Krachen des Eisens, die Sirenen, das Feuer der Schweißbrenner. Nantes lebte im Takt seiner Werften. Und dann, 1987, lief das letzte Schiff aus. Die Werften schlossen. Stille legte sich über die Insel. Eine riesige, verrostete, verlassene Brache mitten im Herzen der Stadt.
+
+Schau dir diese großen Kräne an, die man behalten hat, aufgerichtet wie Wachposten am Wasserrand. Man hätte alles abreißen können. Man entschied sich, die Erinnerung zu bewahren und aus diesem Land der Arbeiter und Maschinen etwas zu machen, das Jules Verne geliebt hätte.
+
+Geh weiter zu dieser großen verglasten Halle, der ehemaligen Werfthalle. Hör genau hin: du hörst vielleicht schon ein Trompeten. Folge mir.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-6
+@@STITLE=Galerie des Machines
+Betritt das große Hauptschiff. Hier ist die Galerie des Machines. Du bist in einer Werkstatt, einer echten, aber einer Werkstatt der Kreaturen. Um dich herum, aufgehängt, aufgestellt, gegliedert: eine riesige Ameise, ein Tintenfisch mit Lederfangarmen, ein Reiher mit ausgebreiteten Flügeln, eine Spinne. Alle aus Holz und Metall, alle mechanisch, alle lebendig, sobald eine Hand ihre Hebel betätigt.
+
+Diese Maschinen entspringen der Fantasie zweier Traumbauer, die hier ihre Werkstätten eingerichtet haben. Ihre Idee ist glasklar: drei Erbschaften von Nantes zu vereinen. Die Welt von Jules Verne und seine außergewöhnlichen Reisen. Die Notizbücher von Leonardo da Vinci, seine fünf Jahrhunderte zu früh gezeichneten Maschinen. Und das Können der Werftarbeiter, jene Hände, die wussten, wie man Stahl biegt.
+
+Sieh zu, wie ein Bediener ein Tier weckt. Die Gelenke knarren, die Lider blinzeln, der Hals entfaltet sich. Das ist kein Zeichentrickfilm, kein Bildschirm. Das ist Materie, Holz, Kolben, Zahnräder, die man arbeiten sieht. Die Technik entblößt, dargeboten als Schauspiel. Genau das, was Verne liebte: die Zahnräder des Wunders zu zeigen.
+
+Tritt wieder ans Licht. Auf der Esplanade wartet eine Kreatur auf dich, viel größer als die anderen. Folge mir.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-7
+@@STITLE=Parvis des Machines de l'île
+Da ist er. Du kannst ihn nicht verfehlen: er ist zwölf Meter hoch. Ein Elefant. Ein Elefant aus Holz und Stahl, der wirklich über die Esplanade läuft und dabei Dutzende Passagiere auf seinem Rücken trägt.
+
+Komm näher. Sieh ihn Schritt für Schritt voranschreiten, seinen Rüssel schwingend. Er hebt ein Bein, setzt es wieder ab, der Boden erzittert ein wenig. Seine großen Ohren schlagen. Seine Augen blinzeln, riesig, fast sanft. Und manchmal, ohne Vorwarnung, trompetet er, ein lauter, heiserer Atemstoß, und lässt durch den Rüssel einen feinen Regen auf die darunter lachenden Kinder herabregnen.
+
+Schau dir seine Haut genau an: es ist keine Haut, es ist helles Holz, Planke für Planke geschnitzt. Und unter diesem Holz eine offen sichtbare Mechanik, Kolben, ein Stahlgerüst, wie das Skelett eines Schiffes. Eine Galeone auf Beinen. Ein Tier-Maschine direkt aus einem Verne-Roman, nur dass er hier vor dir steht und wirklich läuft.
+
+Nimm dir die Zeit, ihm mit den Augen zu folgen. Geh dann hinunter zum Kai, ganz am Wasserrand, wo sich ein seltsames dreistöckiges Karussell dreht. Dort endet unsere Reise. Folge mir.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-8
+@@STITLE=Carrousel des Mondes Marins
+Da sind wir nun, an der Loire, vor dem Carrousel des Mondes Marins. Von Weitem sieht es aus wie ein Jahrmarktskarussell. Komm näher, und es ist ein ganzer Ozean, der sich dreht. Drei Ebenen voller Kreaturen: Tiefseefische, Riesenkrabben, ein Tintenfisch, ein Tiefsee-Boot, ein Rochen, der mit den Flügeln schlägt. Man steigt ein, betätigt Kurbeln, und taucht, ohne nass zu werden, bis auf den Meeresgrund. Zwanzigtausend Meilen unter dem Meer, verwandelt in eine Karussellfahrt.
+
+Dreh dich zum Fluss um. Entlang des Kais reiht sich eine Reihe stählerner Ringe, achtzehn an der Zahl, am Wasserrand auf. Abends leuchten sie in Farben. Dieser Kai hieß früher quai des Antilles. Hier legten die großen Handelsschiffe an. Die Stadt hat nichts ausgelöscht: sie hat Kunst über ihre Erinnerung gelegt.
+
+Und darin liegt, glaube ich, das ganze Geheimnis von Nantes. Diese Stadt sah jahrhundertelang Schiffe aufbrechen. Sie brachte ein Kind hervor, das diese Aufbrüche in gedruckte Träume verwandelte, gelesen auf der ganzen Erde. Und eines Tages, auf der Brache seiner toten Werften, beschloss sie, diese Träume wirklich zu bauen. Ein Elefant, der läuft, ein Ozean, der sich dreht, eiserne Tiere, die atmen.
+
+Von der île Feydeau bis zu diesem Elefanten ist es dieselbe Geschichte. Eine Stadt, die nie aufgehört hat zu glauben, dass das Vorgestellte zu Materie werden kann. Jules Verne hat es geschrieben. Nantes hat es gebaut.
+
+Bleib noch ein wenig am Wasser. Schau zu, wie sich die Meereswelten drehen. Und wenn du das nächste Mal eines seiner Bücher aufschlägst, wirst du wissen, woher der Traum kam. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Nantes — I sogni di Jules Verne
+@@DESC=Arte — dall'île Feydeau all'Elefante: la città che ha insegnato a Jules Verne a sognare.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-0
+@@STITLE=Île Feydeau
+Guarda questa fila di vecchie case di pietra, un po' inclinate, un po' stanche, con i loro volti scolpiti sopra le finestre. Sei sull'île Feydeau, un'antica isola della Loira, oggi collegata alla terraferma. E in una di queste case, una mattina di febbraio del 1828, nacque un bambino che avrebbe mandato l'umanità sotto i mari, al centro della Terra e fino alla Luna. Jules Verne.
+
+Nasce qui, vicinissimo all'acqua. All'epoca, la Loira scorre ancora sui due lati dell'isola. I bracci del fiume sono coperti di barche. Dalla finestra di famiglia, il bambino vede alberi maestri, vele, marinai che tornano dalle Antille con la bocca piena di storie. Nantes è un grande porto, rivolto verso il mondo intero. E quel porto è la sua prima scuola.
+
+Questo è ciò che voglio raccontarti oggi. Come una città ha fabbricato un sognatore. Come le banchine, le navi, le macchine e le officine di Nantes si sono depositate nella testa di un bambino, e ne sono uscite, anni dopo, in romanzi letti in tutto il mondo. Ventimila leghe sotto i mari. Il giro del mondo in ottanta giorni.
+
+E la cosa più bella la vedrai alla fine: quei sogni di ferro e vapore, la città ha finito per costruirli davvero.
+
+Risali verso nord, fino a una bella piazza rotonda con una grande fontana. Seguimi.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-1
+@@STITLE=Place Royale
+Eccoti in place Royale. Una piazza luminosa, armoniosa, con al centro una grande fontana di pietra e bronzo. Avvicinati. In cima, una donna seduta, incoronata: è Nantes stessa, la città, in maestà. Ai suoi piedi, altre figure versano acqua: sono la Loira e i suoi affluenti, riuniti qui in statue. Tutta la geografia della regione, colata nel bronzo.
+
+Questa piazza ha assunto l'aspetto attuale a metà del diciannovesimo secolo, negli anni di Jules Verne. È la Nantes che lui conobbe da giovane. Una città borghese, elegante, sicura di sé, che si sognava in pietra chiara e prospettive regolari. Si tracciavano strade dritte, si innalzavano teatri, si costruivano passaggi coperti.
+
+Verne crebbe in quella città. E ne conservò il gusto per il disegno preciso, per l'ingegneria, per un mondo che si può ordinare e dominare. I suoi romanzi sono pieni di scienziati, di piani, di calcoli, di macchine regolate al millimetro. Sembrano quasi progetti d'architetto. Anche questo rigore viene da qui, da questa piazza geometrica.
+
+Lascia la piazza e cerca, a due passi, un ingresso discreto che si inabissa sotto gli edifici. Seguimi.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-2
+@@STITLE=Passage Pommeraye
+Spingi la porta, e alza gli occhi. Sei appena entrato nel passage Pommeraye, e ti prometto uno stupore. Una galleria coperta, su tre livelli, collegati da una scalinata d'onore monumentale. Un lucernario lascia cadere una luce dorata. Ovunque, statue di pietra, lampioni, balaustre lavorate, legni scuri. Sembra la scenografia di un teatro, o l'interno di un sogno.
+
+Questo passaggio è stato scavato nel pendio della città verso il 1840, da un uomo di nome Louis Pommeraye. L'idea era folle: una strada-galleria, al riparo dalla pioggia, dove passeggiare, comprare, mostrarsi. Un pezzo di città trasformato in una macchina di meraviglie, tutta vetro e ghisa, quei materiali nuovi di cui il secolo era così fiero.
+
+Jules Verne conobbe questo passaggio. Lo percorse da bambino, poi da giovane. E come non vedervi già uno dei suoi universi? Uno spazio chiuso, ingegnoso, illuminato dall'alto, dove la tecnica diventa incanto. I suoi grandi romanzi sono pieni di luoghi come questo: il salone del Nautilus, la navicella del pallone, il vagone-proiettile lanciato verso la Luna. Bozzoli di ferro e vetro per viaggiare senza fine.
+
+Ridiscendi verso il fiume, fino al grande molo che costeggia la Loira. Seguimi.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-3
+@@STITLE=Quai de la Fosse
+Eccoti di nuovo in riva all'acqua, sul quai de la Fosse. Oggi una grande arteria, ma immaginala coperta di navi, come ai tempi di Verne. È qui che il bambino veniva a bighellonare, a volte di nascosto, per guardare partire i tre alberi verso le isole.
+
+Si racconta una storia, graziosa, celebre, che gli storici ancora discutono. Jules avrebbe undici anni. Pazzo per il mare, si sarebbe intrufolato a bordo di una nave di lungo corso in partenza, un vascello di nome Coralie, arruolato come mozzo, deciso a solcare le onde verso le Indie. Suo padre, avvertito, sarebbe saltato su un battello a vapore per raggiungerlo alla tappa successiva e riportarlo indietro tirandolo per l'orecchio. E il piccolo Jules, mortificato, avrebbe giurato quella frase rimasta leggendaria: d'ora in poi, avrebbe viaggiato solo in sogno.
+
+Vera o abbellita, questa storia racconta una verità profonda. Verne, da giovane, viaggiò pochissimo. Viaggiò seduto, con carte geografiche, libri, orari delle navi, e un'immaginazione in fiamme. Il mare aperto lo vide prima da qui, da questa banchina, senza mai mollare gli ormeggi. I suoi lettori faranno lo stesso: il giro del mondo da una poltrona.
+
+Costeggia il fiume verso ovest e sali sulla collina verde che domina il porto. Seguimi.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-4
+@@STITLE=Butte Sainte-Anne
+Eccoti in cima alla butte Sainte-Anne. Riprendi fiato, e voltati. Tutta la Loira si apre ai tuoi piedi, larga, argentea, che scorre verso l'estuario e l'oceano. È uno dei punti panoramici più belli di Nantes. E non è un caso se la città ha installato qui, in una casa borghese, il musée Jules Verne.
+
+Spingi la porta, se hai tempo. All'interno ci sono i suoi manoscritti, le sue edizioni rosse e oro, manifesti, modellini del Nautilus, mappamondi, strumenti. Tutto l'apparato del sogno organizzato. Ma il vero museo, forse, è fuori, in questa vista.
+
+Guarda questo fiume. Ecco cosa contemplava il bambino. Barche che partono, che tornano, cariche di mondi lontani. Una frontiera liquida tra il conosciuto e lo sconosciuto. Verne ha passato la vita a scrivere quella linea d'orizzonte. I suoi eroi scendono fiumi, risalgono crateri, si immergono sotto i mari, salgono in cielo. Ma tutto comincia sempre con un uomo che guarda lontano e si chiede: e se ci andassi?
+
+Ridiscendi verso il fiume e attraversa il ponte verso la grande isola, di fronte, là dove un tempo fumavano i cantieri. Seguimi.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-5
+@@STITLE=Parc des Chantiers, site des anciens chantiers navals
+Ora sei sull'île de Nantes, in mezzo al fiume. Guarda intorno a te questo suolo di cemento, queste rotaie, queste immense gru di metallo piantate sul bordo dell'acqua. Sei sugli antichi cantieri navali. Per più di un secolo, qui si costruivano navi, veri giganti d'acciaio, varati nella Loira tra le acclamazioni.
+
+Migliaia di operai lavoravano qui. Calderai, ribattitori, saldatori, carpentieri navali. Il frastuono era assordante: il colpo del ferro, le sirene, il fuoco dei cannelli. Nantes viveva al ritmo dei suoi cantieri. E poi, nel 1987, partì l'ultima nave. I cantieri chiusero. Il silenzio cadde sull'isola. Un'immensa area dismessa, arrugginita, abbandonata nel pieno cuore della città.
+
+Guarda queste grandi gru che sono state conservate, erette come sentinelle sul bordo dell'acqua. Si sarebbe potuto radere tutto al suolo. Si è scelto di conservare la memoria, e di fare, di questa terra di operai e macchine, qualcosa che Jules Verne avrebbe adorato.
+
+Avanza verso quel grande capannone vetrato, l'antica officina dei cantieri. Ascolta bene: forse senti già un barrito. Seguimi.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-6
+@@STITLE=Galerie des Machines
+Entra nella grande navata. Ecco la Galerie des Machines. Sei in un'officina, una vera, ma un'officina di creature. Intorno a te, sospese, appoggiate, articolate: una formica gigante, un calamaro dai tentacoli di cuoio, un airone dalle ali spiegate, un ragno. Tutte in legno e metallo, tutte meccaniche, tutte vive non appena una mano aziona le loro leve.
+
+Queste macchine nascono dall'immaginazione di due costruttori di sogni che qui hanno installato le loro officine. La loro idea è limpida: unire tre eredità di Nantes. L'universo di Jules Verne e i suoi viaggi straordinari. I quaderni di Leonardo da Vinci, le sue macchine disegnate cinque secoli troppo presto. E il saper fare degli operai dei cantieri, quelle mani che sapevano piegare l'acciaio.
+
+Guarda un operatore risvegliare una bestia. Le articolazioni scricchiolano, le palpebre sbattono, il collo si dispiega. Non è un cartone animato, non è uno schermo. È materia, legno, pistoni, ingranaggi che si vedono funzionare. La tecnica a nudo, offerta come uno spettacolo. Esattamente ciò che piaceva a Verne: mostrare gli ingranaggi del prodigio.
+
+Riesci alla luce. Sulla spianata, una creatura ti aspetta, molto più grande delle altre. Seguimi.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-7
+@@STITLE=Parvis des Machines de l'île
+Eccolo. Non puoi mancarlo: è alto dodici metri. Un elefante. Un elefante di legno e acciaio che cammina, per davvero, sulla spianata, portando decine di passeggeri sul dorso.
+
+Avvicinati. Guardalo avanzare, passo dopo passo, dondolando la proboscide. Alza una zampa, la riappoggia, il suolo trema un poco. Le sue grandi orecchie sbattono. I suoi occhi sbattono le palpebre, enormi, quasi dolci. E a volte, senza avvertire, barrisce, un grande soffio rauco, e lascia cadere dalla proboscide una pioggia fine sui bambini che ridono sotto.
+
+Osserva bene la sua pelle: non è pelle, è legno chiaro, scolpito asse per asse. E sotto quel legno, una meccanica offerta allo sguardo, pistoni, un'intelaiatura d'acciaio, come lo scheletro di una nave. Un galeone su zampe. Un animale-macchina uscito direttamente da un romanzo di Verne, solo che è lì, davanti a te, e cammina davvero.
+
+Prenditi il tempo di seguirlo con lo sguardo. Poi scendi verso la banchina, proprio sul bordo dell'acqua, dove gira una strana giostra a tre piani. È lì che finisce il nostro viaggio. Seguimi.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-8
+@@STITLE=Carrousel des Mondes Marins
+Eccoci qui, in riva alla Loira, davanti al Carrousel des Mondes Marins. Da lontano, sembra una giostra da luna park. Avvicinati, ed è tutto un oceano che gira. Tre piani di creature: pesci abissali, granchi giganti, un calamaro, una nave degli abissi, una razza che batte le ali. Si sale, si azionano manovelle, e ci si immerge, senza bagnarsi, fino in fondo al mare. Ventimila leghe sotto i mari, diventato un giro di giostra.
+
+Voltati verso il fiume. Lungo la banchina, una fila di anelli d'acciaio, diciotto, si allinea sul bordo dell'acqua. La sera, si accendono di colori. Questa banchina, un tempo, si chiamava quai des Antilles. È lì che attraccavano le grandi navi del commercio. La città non ha cancellato nulla: ha posato l'arte sulla sua memoria.
+
+Ed è qui, credo, tutto il segreto di Nantes. Questa città ha guardato partire navi per secoli. Ha fabbricato un bambino che ha trasformato quelle partenze in sogni stampati, letti su tutta la Terra. E un giorno, sull'area dismessa dei suoi cantieri morti, ha deciso di costruire quei sogni per davvero. Un elefante che cammina, un oceano che gira, bestie di ferro che respirano.
+
+Dall'île Feydeau a questo elefante, è la stessa storia. Una città che non ha mai smesso di credere che l'immaginario potesse diventare materia. Jules Verne l'ha scritto. Nantes l'ha costruito.
+
+Resta ancora un po' vicino all'acqua. Guarda girare i mondi marini. E la prossima volta che aprirai uno dei suoi libri, saprai da dove veniva il sogno. A presto, amico.
+
+@@LANG=nl
+@@TITLE=Nantes — De dromen van Jules Verne
+@@DESC=Kunst — van het île Feydeau tot de Olifant: de stad die Jules Verne leerde dromen.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-0
+@@STITLE=Île Feydeau
+Kijk naar deze rij oude stenen huizen, een beetje scheef, een beetje vermoeid, met hun gebeeldhouwde gezichten boven de ramen. Je bent op het île Feydeau, een voormalig eiland in de Loire, nu verbonden met het vasteland. En in een van deze huizen werd op een ochtend in februari 1828 een klein jongetje geboren dat de mensheid onder de zeeën, naar het middelpunt van de Aarde en tot aan de Maan zou sturen. Jules Verne.
+
+Hij wordt hier geboren, vlak bij het water. In die tijd stroomt de Loire nog aan beide kanten van het eiland. De rivierarmen liggen vol boten. Vanuit het familieraam ziet het kind masten, zeilen, zeelieden die terugkeren uit de Antillen met hun mond vol verhalen. Nantes is een grote haven, gericht op de hele wereld. En die haven is zijn eerste school.
+
+Dat is wat ik je vandaag wil vertellen. Hoe een stad een dromer heeft gemaakt. Hoe de kades, de schepen, de machines en de werkplaatsen van Nantes zich in het hoofd van een kind nestelden, en er jaren later weer uitkwamen, als romans die over de hele wereld werden gelezen. Twintigduizend mijlen onder zee. De reis om de wereld in tachtig dagen.
+
+En het mooiste zie je aan het einde: die dromen van ijzer en stoom, die heeft de stad uiteindelijk echt gebouwd.
+
+Ga terug naar het noorden, tot een mooi rond plein met een grote fontein. Volg me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-1
+@@STITLE=Place Royale
+Hier ben je op de place Royale. Een licht, harmonieus plein, met in het midden een grote fontein van steen en brons. Kom dichterbij. Helemaal bovenaan een zittende, gekroonde vrouw: dat is Nantes zelf, de stad, in majesteit. Aan haar voeten gieten andere figuren water: dat zijn de Loire en haar zijrivieren, hier verzameld als standbeelden. De hele geografie van de streek, gegoten in brons.
+
+Dit plein kreeg zijn huidige aanzicht halverwege de negentiende eeuw, tijdens het leven van Jules Verne. Dit is het Nantes dat hij als jongeman kende. Een burgerlijke stad, elegant, zelfverzekerd, die van zichzelf droomde in lichte steen en regelmatige perspectieven. Er werden rechte straten aangelegd, theaters opgetrokken, overdekte passages gebouwd.
+
+Verne groeide op in die stad. En hij hield eraan de smaak over voor precies tekenen, voor techniek, voor een wereld die je kunt ordenen en beheersen. Zijn romans zitten vol geleerden, plannen, berekeningen, machines afgesteld tot op de millimeter. Het lijken bijna architectenplannen. Die strengheid komt ook vandaan, van dit geometrische plein.
+
+Verlaat het plein en zoek, een paar passen verderop, een discrete ingang die onder de gebouwen wegzakt. Volg me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-2
+@@STITLE=Passage Pommeraye
+Duw de deur open, en kijk omhoog. Je bent net het passage Pommeraye binnengegaan, en ik beloof je een moment van verwondering. Een overdekte galerij, over drie niveaus, verbonden door een monumentale eretrap. Een glazen dak laat een gouden licht naar binnen vallen. Overal stenen beelden, lantaarnpalen, bewerkte balustrades, donker houtwerk. Het lijkt op een theaterdecor, of het binnenste van een droom.
+
+Deze passage werd rond 1840 uitgegraven in de helling van de stad, door een man genaamd Louis Pommeraye. Het idee was gek: een straat-galerij, beschut tegen de regen, waar je flaneert, koopt, jezelf laat zien. Een stuk stad omgetoverd in een wondermachine, helemaal van glas en gietijzer, die nieuwe materialen waar de eeuw zo trots op was.
+
+Jules Verne kende deze passage. Hij doorkruiste haar als jongetje, later als jongeman. En hoe kun je hier niet al een van zijn werelden in zien? Een gesloten, vernuftige ruimte, van bovenaf verlicht, waar techniek betovering wordt. Zijn grote romans zitten vol plekken zoals deze: de salon van de Nautilus, de gondel van de ballon, de projectielwagon gelanceerd naar de Maan. Cocons van ijzer en glas om eindeloos te reizen.
+
+Ga weer naar beneden richting de rivier, tot de grote kade langs de Loire. Volg me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-3
+@@STITLE=Quai de la Fosse
+Hier ben je weer bij het water, op de quai de la Fosse. Vandaag een grote verkeersader, maar stel je haar voor vol schepen, zoals in Vernes tijd. Hier kwam het kind rondhangen, soms stiekem, om de driemasters te zien vertrekken naar de eilanden.
+
+Er wordt een verhaal verteld, mooi, beroemd, waarover historici nog steeds discussiëren. Jules zou elf jaar oud zijn geweest. Gek van de zee, zou hij aan boord zijn geglipt van een vertrekkend langeafstandsschip, een schip genaamd de Coralie, aangemonsterd als scheepsjongen, vastbesloten naar Indië te varen. Zijn vader, gewaarschuwd, zou op een stoomboot zijn gesprongen om hem bij de volgende halte in te halen en hem bij het oor terug te brengen. En de kleine Jules zou, beteuterd, die inmiddels legendarische zin hebben gezworen: voortaan zou hij alleen nog in dromen reizen.
+
+Waar of verfraaid, dit verhaal vertelt een diepe waarheid. Verne reisde als jongeman nauwelijks. Hij reisde zittend, met kaarten, boeken, scheepsdienstregelingen, en een gloeiende verbeelding. De open zee zag hij eerst vanaf hier, vanaf deze kade, zonder ooit de trossen los te gooien. Zijn lezers zullen hetzelfde doen: de wereldreis vanuit een fauteuil.
+
+Volg de rivier naar het westen en beklim de groene heuvel die uitkijkt over de haven. Volg me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-4
+@@STITLE=Butte Sainte-Anne
+Hier ben je boven op de butte Sainte-Anne. Kom op adem, en draai je om. De hele Loire opent zich aan je voeten, breed, zilverkleurig, stromend naar de riviermonding en de oceaan. Het is een van de mooiste uitzichtpunten van Nantes. En het is geen toeval dat de stad hier, in een burgerhuis, het musée Jules Verne heeft gevestigd.
+
+Duw de deur open, als je tijd hebt. Binnen vind je zijn manuscripten, zijn rood-gouden edities, affiches, maquettes van de Nautilus, wereldbollen, instrumenten. Het hele apparaat van de georganiseerde droom. Maar het echte museum is misschien wel buiten, in dit uitzicht.
+
+Kijk naar deze rivier. Dit is wat het kind aanschouwde. Boten die vertrekken, die terugkeren, beladen met verre werelden. Een vloeibare grens tussen het bekende en het onbekende. Verne bracht zijn leven door met het beschrijven van die horizonlijn. Zijn helden dalen rivieren af, klimmen uit kraters, duiken onder de zeeën, stijgen op naar de hemel. Maar het begint altijd met een man die in de verte kijkt en zich afvraagt: en als ik erheen ging?
+
+Ga weer naar beneden richting de rivier en steek de brug over naar het grote eiland ertegenover, daar waar vroeger de scheepswerven rookten. Volg me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-5
+@@STITLE=Parc des Chantiers, site des anciens chantiers navals
+Je bent nu op het île de Nantes, midden in de rivier. Kijk om je heen naar deze betonnen grond, deze rails, deze immense metalen kranen geplant aan de waterkant. Je bent op de voormalige scheepswerven. Meer dan een eeuw lang werden hier schepen gebouwd, echte stalen reuzen, onder gejuich te water gelaten in de Loire.
+
+Duizenden arbeiders werkten hier. Ketelmakers, klinknagelmakers, lassers, scheepstimmerlieden. Het kabaal was oorverdovend: het gekletter van ijzer, de sirenes, het vuur van de lastoortsen. Nantes leefde op het ritme van zijn scheepswerven. En toen, in 1987, vertrok het laatste schip. De werven sloten. Stilte daalde neer op het eiland. Een enorm, verroest, verlaten braakliggend terrein midden in het hart van de stad.
+
+Kijk naar deze grote kranen die zijn behouden, rechtop als schildwachten aan de waterkant. Men had alles kunnen slopen. Men koos ervoor de herinnering te bewaren, en van dit land van arbeiders en machines iets te maken waar Jules Verne dol op zou zijn geweest.
+
+Ga verder naar die grote glazen hal, de voormalige werfloods. Luister goed: misschien hoor je al een getrompetter. Volg me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-6
+@@STITLE=Galerie des Machines
+Ga de grote hal binnen. Hier is de Galerie des Machines. Je bent in een werkplaats, een echte, maar een werkplaats van wezens. Om je heen, opgehangen, neergezet, gelede: een gigantische mier, een inktvis met leren tentakels, een reiger met uitgespreide vleugels, een spin. Allemaal van hout en metaal, allemaal mechanisch, allemaal levend zodra een hand hun hendels bedient.
+
+Deze machines komen voort uit de verbeelding van twee dromenbouwers die hier hun werkplaatsen hebben gevestigd. Hun idee is glashelder: drie erfenissen van Nantes samenbrengen. De wereld van Jules Verne en zijn buitengewone reizen. De notitieboekjes van Leonardo da Vinci, zijn machines die vijf eeuwen te vroeg werden getekend. En de vakkennis van de scheepswerfarbeiders, die handen die staal wisten te buigen.
+
+Kijk hoe een bediener een beest wekt. De gewrichten kraken, de oogleden knipperen, de nek ontvouwt zich. Dit is geen tekenfilm, geen scherm. Het is materie, hout, zuigers, tandwielen die je ziet werken. De techniek naakt, aangeboden als een schouwspel. Precies wat Verne graag deed: de raderwerken van het wonder tonen.
+
+Ga weer naar buiten, naar het licht. Op de esplanade wacht een wezen op je, veel groter dan de andere. Volg me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-7
+@@STITLE=Parvis des Machines de l'île
+Daar is hij. Je kunt hem niet missen: hij is twaalf meter hoog. Een olifant. Een olifant van hout en staal die echt loopt, over de esplanade, met tientallen passagiers op zijn rug.
+
+Kom dichterbij. Kijk hoe hij stap voor stap vooruitgaat, terwijl hij zijn slurf laat zwaaien. Hij tilt een poot op, zet hem weer neer, de grond trilt een beetje. Zijn grote oren klapperen. Zijn ogen knipperen, enorm, bijna zacht. En soms, zonder waarschuwing, trompettert hij, een luide, schorre ademstoot, en laat door zijn slurf een fijne regen neerdalen op de lachende kinderen eronder.
+
+Kijk goed naar zijn huid: het is geen huid, het is licht hout, plank voor plank gebeeldhouwd. En onder dat hout, een mechaniek dat voor iedereen zichtbaar is, zuigers, een stalen geraamte, als het skelet van een schip. Een galjoen op poten. Een dier-machine rechtstreeks uit een roman van Verne, alleen staat hij daar, voor je, en loopt hij echt.
+
+Neem de tijd om hem met je ogen te volgen. Ga dan naar beneden naar de kade, helemaal aan de waterkant, waar een vreemde draaimolen met drie verdiepingen draait. Daar eindigt onze reis. Volg me.
+
+@@SCENE=seed-100-nantes-jules-verne-machines-scene-8
+@@STITLE=Carrousel des Mondes Marins
+Daar zijn we dan, aan de Loire, voor het Carrousel des Mondes Marins. Van veraf lijkt het op een kermisattractie. Kom dichterbij, en het is een hele oceaan die draait. Drie verdiepingen vol wezens: diepzeevissen, reuzenkrabben, een inktvis, een boot uit de diepte, een rog die met zijn vleugels slaat. Je stapt in, bedient slingers, en duikt, zonder nat te worden, tot op de zeebodem. Twintigduizend mijlen onder zee, veranderd in een draaimolenrit.
+
+Draai je om naar de rivier. Langs de kade staat een rij stalen ringen, achttien, op een rij aan de waterkant. 's Avonds lichten ze op in kleuren. Deze kade heette vroeger de quai des Antilles. Hier legden de grote handelsschepen aan. De stad heeft niets uitgewist: ze heeft kunst over haar herinnering gelegd.
+
+En daarin, denk ik, zit het hele geheim van Nantes. Deze stad zag eeuwenlang schepen vertrekken. Ze bracht een kind voort dat die vertrekken veranderde in gedrukte dromen, gelezen over de hele Aarde. En op een dag, op het braakliggende terrein van haar dode scheepswerven, besloot ze die dromen echt te bouwen. Een olifant die loopt, een oceaan die draait, ijzeren beesten die ademen.
+
+Van het île Feydeau tot deze olifant, het is hetzelfde verhaal. Een stad die nooit is opgehouden te geloven dat het denkbeeldige materie kon worden. Jules Verne heeft het geschreven. Nantes heeft het gebouwd.
+
+Blijf nog even bij het water. Kijk naar de draaiende zeewerelden. En de volgende keer dat je een van zijn boeken opent, zul je weten waar de droom vandaan kwam. Tot snel, vriend.

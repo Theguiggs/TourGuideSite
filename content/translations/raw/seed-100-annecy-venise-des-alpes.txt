@@ -1,0 +1,389 @@
+@@LANG=en
+@@TITLE=Annecy — The Floating Town
+@@DESC=History & secrets — canals, prisons and a castle: the old town floating between lake and mountain.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-0
+@@STITLE=Pont Perrière
+Stop in the middle of the bridge. In front of you, this stone prow splitting the river, like a ship at anchor for eight centuries: the Palais de l'Île. You have already seen it a hundred times — on postcards, magnets, screen backgrounds. People often say it is one of the most photographed monuments in France.
+
+And that is a magnificent lie. Because that postcard is a prison.
+
+In the twelfth century it is a stronghold set on its island, in the middle of the Thiou. The counts of Geneva mint their coins there. Justice is dispensed there. And for centuries people are locked up there: thieves, debtors, condemned men waiting for sentence behind walls the water surrounds — no need for a moat, the river does the job. The prison only closes in the nineteenth century. And during the Second World War, people will be locked up there again.
+
+That is the secret of this walk. Annecy, the Venice of the Alps, the pastel town floating between lake and mountain — that gentleness is recent. For centuries the water here had nothing decorative about it: it turned the workshops, held the prisoners, carried the fugitives, separated kingdoms. I am going to show you the town beneath the postcard.
+
+Look once more at the prow of the old vessel. Then follow the river downstream, along the quay. Two minutes from here, a few metres of iron and wood hold back an entire lake. I'll wait for you there.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-1
+@@STITLE=Les vannes du Thiou
+These sluice gates before your eyes — this old mechanism of iron and wood still worked by hand. It looks like nothing much. It is the heart of the town.
+
+The Thiou is no ordinary river. It is the lake's outlet: all the water of Lac d'Annecy escapes this way. About three and a half kilometres of run before joining the Fier — it is often said to be one of the shortest rivers in France. And these sluice gates control the level of the whole lake, centimetre by centimetre, like the tap on a bath.
+
+For centuries this water was the engine of Annecy. Count the canals around you: they turned the mills, the blacksmiths' trip-hammers, the sawmills, then the spinning mills. Tanners soaked their hides here, dyers their cloth. It clattered, it stank, it worked. The Venice of the Alps was an industrial zone.
+
+Cross the footbridge and go back up the lane towards the great church, just above. A runaway teenager saw his life change there, one Sunday in spring.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-2
+@@STITLE=Cathédrale Saint-Pierre
+Here you are in front of the cathédrale Saint-Pierre. A plain façade, almost shy, wedged into its lane. Yet it is here that one of the most famous encounters in French literature took place.
+
+Palm Sunday, 1728. A sixteen-year-old boy arrives from Geneva, penniless, a runaway. His name is Jean-Jacques Rousseau. He is sent to knock at the door of a young convert who takes in fugitives from her town: Françoise-Louise de Warens. She is twenty-eight. He is struck still before her. Years later, in the Confessions, he will write that he would have liked to surround the exact spot of that meeting with a gilded balustrade. The town took him at his word: in the courtyard of the former bishopric, just next door, a gilded balustrade marks the place.
+
+Rousseau stays in Annecy, learns music there, perhaps sings under these vaults. And "Maman", as he will soon call her, will change his life.
+
+Go back down to the river, cross it, and take the long arcaded street to the right. It was the great trading street of former times.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-3
+@@STITLE=Place Sainte-Claire, devant la porte
+This massive gate in front of you, crowned with its clock: the porte Sainte-Claire, one of the last gates of Annecy's ramparts. For centuries everything entering the town passed under an archway like this one — goods, pedlars, news of the world.
+
+Turn round and look at the street you have just walked down. Those low arcades on each side: underneath, the merchants set up their stalls, sheltered from rain and snow. For Annecy, capital of the Genevois, was a town of fairs and markets. Livestock from the valleys, cloth, salt and craftsmen's wares: everything converged here, between these façades. And nothing has really changed — on market mornings the rue Sainte-Claire still shouts, haggles and spills over, just as it did five hundred years ago.
+
+Now for the climb. Just behind you, a paved ramp climbs towards the château. A few minutes' effort. At the top a family waits for you that lost everything — except Annecy.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-4
+@@STITLE=Château d'Annecy
+Catch your breath in the courtyard of the château. Look at these enormous walls — the tour de la Reine, the oldest, has walls several metres thick.
+
+Here is the story of a humiliated family. The counts of Geneva bore the name of one of the richest towns in the Alps. But in the thirteenth century they lose control of it, which passes into the hands of the bishops. Driven out of their own capital, they fall back here, onto this mound, and make Annecy their town of consolation. The old town owes almost everything to them.
+
+The château, for its part, has no luck. Fires ravage it more than once, the dukes rebuild it, then everyone forgets it. It ends up as a barracks: generations of soldiers lodge in the counts' halls. It takes until 1953 for the town to buy it back and save it. Today it is a museum.
+
+Walk to the edge of the esplanade: the roofs, the lake, the mountains. Then go back down the ramp and cross the Thiou at the foot of the old stone vessel. A church waits for you just opposite.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-5
+@@STITLE=Place Saint-François
+That slightly worn baroque façade is the église Saint-François-de-Sales. It bears the name of the man who gave Annecy its most unexpected nickname: the Rome of the Alps.
+
+Back to 1602. Geneva has gone over to the Reformation; its Catholic bishop can no longer set foot there. So the bishopric of Geneva settles... in Annecy. The new bishop is called François de Sales. A gentle, stubborn Savoyard aristocrat, a writer of genius — his Introduction to the Devout Life will be read across Europe. With a young widow, Jeanne de Chantal, he founds the order of the Visitation here. Convents multiply, the little town fills with bell towers and cassocks: the Rome of the Alps.
+
+It was in this church that François and Jeanne were first buried. Their relics now rest in the basilica watching over the town, up there on the hill.
+
+Now make for the lake, following the river. Where the water widens, a garden planted with giant trees awaits you.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-6
+@@STITLE=Jardins de l'Europe
+Look up: sequoias. Trees from America, immense, planted in an English-style garden set on the lake. The jardins de l'Europe. Their story begins with a vote.
+
+1860. Napoleon III and the kingdom of Piedmont-Sardinia strike a deal: France backs Italian unity and receives Savoy and Nice in exchange. The Savoyards are asked their opinion — a plebiscite, a massive yes. Annecy, subject to the House of Savoy for centuries, becomes French without a shot fired.
+
+And the newly arrived town starts to dream. This corner was a half-marshy island, between canals and reeds; it is joined up, laid out as a promenade, planted with species from all over the world, and given this name of Europe. For the first time, Annecy stops turning its back on its lake. It opens onto it. It shows itself there.
+
+Walk along the port to the left, as far as the small quiet canal where the boats sleep. A footbridge spans it. That is where this story ends — with a promise.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-7
+@@STITLE=Pont des Amours
+Walk to the middle of the footbridge. Under your feet, the canal du Vassé, still under its plane trees. To your right, the lake opens wide onto its mountains. You are on the pont des Amours, the bridge of lovers.
+
+They say that two lovers who kiss here, in the middle of the bridge, will stay together for life. No one quite knows any more when the legend was born, and every day couples come to test it. No one has filed a complaint yet.
+
+This little iron bridge looks eternal; it dates from 1907. And it may be the true ending of our story. Remember everything the water of Annecy has been: the machine-river that made the forges hammer, the dungeons of the old stone vessel, the border that separated a bishop from his town, the lake people turned their backs on. Centuries of useful water, of harsh water. Then Savoy becomes French, the ramparts fall, the workshops close — and the water is no longer good for anything. So it becomes beautiful. Gardens are drawn around it, footbridges are thrown over it, legends of lovers are invented for it.
+
+The floating town took eight centuries to turn back towards its lake. For you, a single walk was enough.
+
+Stay a moment. Watch the swans swim up the canal, the paragliders circling high above the opposite shore. And if you come back one day — at dawn, when the lake is steaming and the old town is still asleep — you will see that it is still floating. Thank you for walking with me. Take care of yourself.
+
+@@LANG=es
+@@TITLE=Annecy — La ciudad que flota
+@@DESC=Historia y secretos: canales, prisiones y castillo. La ciudad vieja que flota entre lago y montaña.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-0
+@@STITLE=Pont Perrière
+Detente en medio del puente. Ante ti, esa proa de piedra que hiende el río, como un barco fondeado desde hace ocho siglos: el Palais de l'Île. Ya lo has visto cien veces: en postales, imanes, fondos de pantalla. A menudo se dice que es uno de los monumentos más fotografiados de Francia.
+
+Y eso es una mentira magnífica. Porque esa postal es una prisión.
+
+En el siglo XII es una casa fuerte asentada en su isla, en medio del Thiou. Los condes de Ginebra acuñan ahí su moneda. Se imparte justicia. Y durante siglos se encierra ahí a ladrones, endeudados, condenados que esperan su sentencia tras unos muros que el agua rodea —no hace falta foso, el río hace el trabajo—. La prisión solo cierra en el siglo XIX. Y durante la Segunda Guerra Mundial se volverá a encerrar gente ahí.
+
+Ese es el secreto de este paseo. Annecy, la Venecia de los Alpes, la ciudad pastel que flota entre lago y montaña: esa dulzura es reciente. Durante siglos, el agua de aquí no tuvo nada de decorativo: hizo funcionar los talleres, guardó a los presos, llevó a los fugitivos, separó reinos. Voy a mostrarte la ciudad bajo la postal.
+
+Mira otra vez la proa del viejo navío. Luego sigue el río aguas abajo, por el muelle. A dos minutos de aquí, unos metros de hierro y madera contienen todo un lago. Te espero allí.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-1
+@@STITLE=Les vannes du Thiou
+Estas compuertas ante tus ojos, este viejo mecanismo de hierro y madera que todavía se maniobra a mano. No parece nada. Es el corazón de la ciudad.
+
+El Thiou no es un río como los demás. Es el emisario del lago: toda el agua del lago de Annecy escapa por aquí. Unos tres kilómetros y medio de recorrido antes de unirse al Fier; se dice a menudo que es uno de los ríos más cortos de Francia. Y estas compuertas regulan el nivel del lago entero, centímetro a centímetro, como el grifo de una bañera.
+
+Durante siglos, esta agua fue el motor de Annecy. Cuenta los canales a tu alrededor: hacían girar los molinos, los martinetes de los herreros, los aserraderos, luego las hilaturas. Los curtidores remojaban ahí sus pieles, los tintoreros sus telas. Golpeaba, apestaba, trabajaba. La Venecia de los Alpes era una zona industrial.
+
+Cruza la pasarela y sube por la callejuela hacia la gran iglesia, justo encima. Un adolescente fugado vio ahí cambiar su vida, un domingo de primavera.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-2
+@@STITLE=Cathédrale Saint-Pierre
+Aquí estás, ante la cathédrale Saint-Pierre. Fachada sobria, casi tímida, encajonada en su callejuela. Y sin embargo es aquí donde tuvo lugar uno de los encuentros más célebres de la literatura francesa.
+
+Domingo de Ramos de 1728. Un adolescente de dieciséis años llega desde Ginebra, sin un céntimo, huido. Se llama Jean-Jacques Rousseau. Lo mandan a llamar a la puerta de una joven conversa que acoge a los fugitivos de su ciudad: Françoise-Louise de Warens. Ella tiene veintiocho años. Él se queda paralizado ante ella. Años después, en las Confesiones, escribirá que habría querido rodear con una balaustrada dorada el lugar exacto de ese encuentro. La ciudad le tomó la palabra: en el patio del antiguo obispado, justo al lado, una balaustrada dorada marca el sitio.
+
+Rousseau se queda en Annecy, aprende música ahí, quizá canta bajo estas bóvedas. Y «Mamá», como pronto la llamará, cambiará su vida.
+
+Baja de nuevo hacia el río, crúzalo, y toma a la derecha la larga calle con soportales. Era la gran calle comercial de antaño.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-3
+@@STITLE=Place Sainte-Claire, devant la porte
+Esta puerta maciza ante ti, coronada por su reloj: la porte Sainte-Claire, una de las últimas puertas de las murallas de Annecy. Durante siglos, todo lo que entraba en la ciudad pasaba bajo una bóveda como esta: mercancías, buhoneros, noticias del mundo.
+
+Date la vuelta y mira la calle que acabas de bajar. Esos soportales bajos, a cada lado: debajo, los mercaderes instalaban sus puestos al abrigo de la lluvia y la nieve. Porque Annecy, capital del Genevois, era una ciudad de ferias y mercados. El ganado de los valles, las telas, la sal y las obras de los artesanos: todo confluía aquí, entre estas fachadas. Y nada ha cambiado en realidad: las mañanas de mercado, la rue Sainte-Claire grita, regatea y se desborda como hace quinientos años.
+
+Ahora, la subida. Justo detrás de ti, una rampa empedrada trepa hacia el castillo. Unos minutos de esfuerzo. Allá arriba te espera una familia que lo perdió todo, salvo Annecy.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-4
+@@STITLE=Château d'Annecy
+Recupera el aliento en el patio del castillo. Mira estos muros enormes: la tour de la Reine, la más antigua, tiene murallas de varios metros de grosor.
+
+He aquí la historia de una familia humillada. Los condes de Ginebra llevaban el nombre de una de las ciudades más ricas de los Alpes. Pero en el siglo XIII pierden su control, que pasa a manos de los obispos. Expulsados de su propia capital, se repliegan aquí, en este cerro, y hacen de Annecy su ciudad de consuelo. La ciudad vieja les debe casi todo.
+
+El castillo, por su parte, no tendrá suerte. Los incendios lo devastan varias veces, los duques lo reconstruyen, y luego todos lo olvidan. Acaba como cuartel: generaciones de soldados se alojan en las salas de los condes. Hay que esperar a 1953 para que la ciudad lo recompre y lo salve. Hoy es un museo.
+
+Avanza hacia el borde de la explanada: los tejados, el lago, las montañas. Luego baja de nuevo por la rampa y cruza el Thiou a los pies del viejo navío de piedra. Una iglesia te espera justo enfrente.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-5
+@@STITLE=Place Saint-François
+Esta fachada barroca, un poco cansada, es la église Saint-François-de-Sales. Lleva el nombre del hombre que le dio a Annecy su apodo más inesperado: la Roma de los Alpes.
+
+Volvamos a 1602. Ginebra se ha pasado a la Reforma; su obispo católico ya no puede pisarla. Así que el obispado de Ginebra se instala... en Annecy. El nuevo obispo se llama François de Sales. Un aristócrata saboyano dulce y testarudo, escritor de genio: su Introducción a la vida devota se leerá en toda Europa. Con una joven viuda, Jeanne de Chantal, funda aquí la orden de la Visitación. Los conventos se multiplican, la pequeña ciudad se llena de campanarios y sotanas: la Roma de los Alpes.
+
+Fue en esta iglesia donde François y Jeanne fueron enterrados primero. Sus reliquias reposan hoy en la basílica que vigila la ciudad, allá arriba, en la colina.
+
+Ve ahora hacia el lago siguiendo el río. Donde el agua se ensancha, te espera un jardín plantado de árboles gigantes.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-6
+@@STITLE=Jardins de l'Europe
+Levanta la cabeza: secuoyas. Árboles de América, inmensos, plantados en un jardín a la inglesa asentado sobre el lago. Los jardins de l'Europe. Su historia empieza con un voto.
+
+1860. Napoleón III y el reino de Piamonte-Cerdeña cierran un trato: Francia apoya la unidad italiana y recibe a cambio Saboya y Niza. Se pide su opinión a los saboyanos: un plebiscito, un sí masivo. Annecy, sujeta a la casa de Saboya durante siglos, se hace francesa sin un disparo.
+
+Y la ciudad recién llegada se pone a soñar. Este rincón era una isla medio pantanosa, entre canales y juncos; se une, se traza como paseo, se plantan especies del mundo entero, se le da este nombre de Europa. Por primera vez, Annecy deja de darle la espalda a su lago. Se abre a él. Se muestra ante él.
+
+Bordea el puerto hacia la izquierda, hasta el pequeño canal tranquilo donde duermen las barcas. Una pasarela lo cruza. Ahí termina esta historia, con una promesa.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-7
+@@STITLE=Pont des Amours
+Avanza hasta la mitad de la pasarela. Bajo tus pies, el canal du Vassé, inmóvil bajo sus plátanos. A tu derecha, el lago abre de par en par sus montañas. Estás en el pont des Amours.
+
+Se cuenta que dos enamorados que se besan aquí, en medio del puente, permanecerán unidos toda la vida. Ya nadie sabe cuándo nació la leyenda, y cada día vienen parejas a comprobarla. Nadie ha presentado todavía una reclamación.
+
+Este pequeño puente de hierro parece eterno; data de 1907. Y quizá sea él el verdadero final de nuestra historia. Recuerda todo lo que ha sido el agua de Annecy: el río-máquina que hacía golpear las forjas, los calabozos del viejo navío de piedra, la frontera que separaba a un obispo de su ciudad, el lago al que se le daba la espalda. Siglos de agua útil, de agua severa. Luego Saboya se hace francesa, las murallas caen, los talleres cierran... y el agua deja de servir para nada. Entonces se vuelve bella. Se le dibujan jardines, se le tienden pasarelas, se le inventan leyendas de enamorados.
+
+La ciudad que flota tardó ocho siglos en volverse hacia su lago. A ti te ha bastado un paseo.
+
+Quédate un momento. Mira a los cisnes remontar el canal, los parapentes girar muy alto sobre la orilla de enfrente. Y si un día vuelves —al amanecer, cuando el lago humea y la ciudad vieja todavía duerme—, verás que sigue flotando. Gracias por caminar conmigo. Cuídate.
+
+@@LANG=de
+@@TITLE=Annecy — Die schwimmende Stadt
+@@DESC=Geschichte & Geheimnisse — Kanäle, Gefängnisse und ein Schloss: die Altstadt, die zwischen See und Berg schwimmt.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-0
+@@STITLE=Pont Perrière
+Halt in der Mitte der Brücke an. Vor dir dieser steinerne Bug, der den Fluss durchschneidet, wie ein seit acht Jahrhunderten vor Anker liegendes Schiff: der Palais de l'Île. Du hast es schon hundertmal gesehen — auf Postkarten, Magneten, Bildschirmhintergründen. Man sagt oft, es sei eines der meistfotografierten Bauwerke Frankreichs.
+
+Und das ist eine großartige Lüge. Denn diese Postkarte ist ein Gefängnis.
+
+Im 12. Jahrhundert ist es ein Wehrhaus auf seiner Insel, mitten im Thiou. Die Grafen von Genf prägen dort ihre Münzen. Man spricht dort Recht. Und jahrhundertelang sperrt man dort ein: Diebe, Verschuldete, Verurteilte, die hinter Mauern, die das Wasser umgibt, auf ihr Urteil warten — kein Graben nötig, der Fluss erledigt die Arbeit. Das Gefängnis schließt erst im 19. Jahrhundert. Und während des Zweiten Weltkriegs wird man dort erneut Menschen einsperren.
+
+Das ist das Geheimnis dieses Spaziergangs. Annecy, das Venedig der Alpen, die pastellfarbene Stadt, die zwischen See und Berg schwimmt — diese Sanftheit ist neu. Jahrhundertelang hatte das Wasser hier nichts Dekoratives: Es trieb die Werkstätten an, hielt die Gefangenen fest, trug die Flüchtenden, trennte Königreiche. Ich zeige dir die Stadt unter der Postkarte.
+
+Sieh dir noch einmal den Bug des alten Schiffs an. Folge dann dem Fluss flussabwärts, auf dem Kai. Zwei Minuten von hier halten ein paar Meter Eisen und Holz einen ganzen See zurück. Ich warte dort auf dich.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-1
+@@STITLE=Les vannes du Thiou
+Diese Schleusen vor deinen Augen — dieser alte Mechanismus aus Eisen und Holz, den man noch von Hand bedient. Er sieht nach nichts aus. Er ist das Herz der Stadt.
+
+Der Thiou ist kein gewöhnlicher Fluss. Er ist der Abfluss des Sees: Das gesamte Wasser des Lac d'Annecy entweicht hier. Etwa dreieinhalb Kilometer Lauf, bevor er sich mit dem Fier vereint — man sagt oft, er sei einer der kürzesten Flüsse Frankreichs. Und diese Schleusen regeln den Pegel des ganzen Sees, Zentimeter für Zentimeter, wie der Hahn einer Badewanne.
+
+Jahrhundertelang war dieses Wasser der Motor von Annecy. Zähl die Kanäle um dich herum: Sie trieben die Mühlen an, die Hammerwerke der Schmiede, die Sägewerke, dann die Spinnereien. Die Gerber weichten dort ihre Häute ein, die Färber ihre Stoffe. Es klopfte, es stank, es arbeitete. Das Venedig der Alpen war ein Industriegebiet.
+
+Überquere den Steg und geh die Gasse hinauf zur großen Kirche, gleich darüber. Ein weggelaufener Jugendlicher sah dort sein Leben eine Wendung nehmen, an einem Frühlingssonntag.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-2
+@@STITLE=Cathédrale Saint-Pierre
+Da stehst du vor der cathédrale Saint-Pierre. Eine schlichte, fast schüchterne Fassade, eingeklemmt in ihre Gasse. Und doch fand hier eine der berühmtesten Begegnungen der französischen Literatur statt.
+
+Palmsonntag 1728. Ein sechzehnjähriger Junge kommt aus Genf, ohne einen Sou, auf der Flucht. Er heißt Jean-Jacques Rousseau. Man schickt ihn, an der Tür einer jungen Konvertitin zu klopfen, die Flüchtlinge aus ihrer Stadt aufnimmt: Françoise-Louise de Warens. Sie ist achtundzwanzig. Er bleibt wie erstarrt vor ihr stehen. Jahre später wird er in den Bekenntnissen schreiben, er hätte den genauen Ort dieser Begegnung gern mit einer goldenen Balustrade umgeben. Die Stadt nahm ihn beim Wort: Im Hof des ehemaligen Bischofssitzes, gleich nebenan, markiert eine vergoldete Balustrade den Platz.
+
+Rousseau bleibt in Annecy, lernt dort Musik, singt vielleicht unter diesen Gewölben. Und „Maman", wie er sie bald nennen wird, wird sein Leben verändern.
+
+Geh wieder hinunter zum Fluss, überquere ihn und nimm rechts die lange Arkadenstraße. Sie war einst die große Handelsstraße.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-3
+@@STITLE=Place Sainte-Claire, devant la porte
+Dieses massive Tor vor dir, gekrönt von seiner Uhr: die porte Sainte-Claire, eines der letzten Tore der Stadtmauern von Annecy. Jahrhundertelang zog alles, was in die Stadt kam, unter einem Bogen wie diesem hindurch — Waren, Hausierer, Nachrichten aus der Welt.
+
+Dreh dich um und sieh dir die Straße an, die du gerade hinuntergegangen bist. Diese niedrigen Arkaden auf beiden Seiten: Darunter bauten die Händler ihre Stände auf, geschützt vor Regen und Schnee. Denn Annecy, Hauptstadt des Genevois, war eine Stadt der Messen und Märkte. Vieh aus den Tälern, Stoffe, Salz und Handwerkserzeugnisse: Alles lief hier zusammen, zwischen diesen Fassaden. Und wirklich verändert hat sich nichts — an Markttagen schreit, feilscht und quillt die rue Sainte-Claire über, wie vor fünfhundert Jahren.
+
+Jetzt der Aufstieg. Direkt hinter dir klettert eine gepflasterte Rampe zum Schloss hinauf. Ein paar Minuten Anstrengung. Oben erwartet dich eine Familie, die alles verloren hat — außer Annecy.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-4
+@@STITLE=Château d'Annecy
+Verschnauf im Hof des Schlosses. Sieh dir diese gewaltigen Mauern an — die tour de la Reine, die älteste, hat Wände von mehreren Metern Dicke.
+
+Hier ist die Geschichte einer gedemütigten Familie. Die Grafen von Genf trugen den Namen einer der reichsten Städte der Alpen. Aber im 13. Jahrhundert verlieren sie die Kontrolle darüber, die in die Hände der Bischöfe übergeht. Aus ihrer eigenen Hauptstadt vertrieben, ziehen sie sich hierher zurück, auf diesen Hügel, und machen Annecy zu ihrer Trost-Stadt. Die Altstadt verdankt ihnen fast alles.
+
+Dem Schloss selbst wird kein Glück beschieden. Brände verwüsten es mehrfach, die Herzöge bauen es wieder auf, dann vergisst es jeder. Es endet als Kaserne: Generationen von Soldaten wohnen in den Sälen der Grafen. Erst 1953 kauft die Stadt es zurück und rettet es. Heute ist es ein Museum.
+
+Geh zum Rand der Esplanade: die Dächer, der See, die Berge. Steig dann die Rampe wieder hinunter und überquere den Thiou am Fuß des alten Steinschiffs. Eine Kirche wartet dir genau gegenüber.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-5
+@@STITLE=Place Saint-François
+Diese etwas müde barocke Fassade ist die église Saint-François-de-Sales. Sie trägt den Namen des Mannes, der Annecy seinen unerwartetsten Beinamen einbrachte: das Rom der Alpen.
+
+Zurück ins Jahr 1602. Genf ist zur Reformation übergetreten; sein katholischer Bischof kann dort keinen Fuß mehr auf den Boden setzen. Also lässt sich das Bistum Genf ... in Annecy nieder. Der neue Bischof heißt François de Sales. Ein sanfter, sturer savoyischer Aristokrat, ein genialer Schriftsteller — seine Anleitung zum frommen Leben wird in ganz Europa gelesen. Mit einer jungen Witwe, Jeanne de Chantal, gründet er hier den Orden der Heimsuchung. Die Klöster vermehren sich, die kleine Stadt füllt sich mit Glockentürmen und Soutanen: das Rom der Alpen.
+
+In dieser Kirche wurden François und Jeanne zuerst beigesetzt. Ihre Reliquien ruhen heute in der Basilika, die über der Stadt wacht, dort oben auf dem Hügel.
+
+Geh nun zum See, dem Fluss folgend. Dort, wo sich das Wasser weitet, erwartet dich ein Garten mit riesigen Bäumen.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-6
+@@STITLE=Jardins de l'Europe
+Heb den Kopf: Mammutbäume. Bäume aus Amerika, gewaltig, gepflanzt in einem englischen Garten, angelegt auf dem See. Die jardins de l'Europe. Ihre Geschichte beginnt mit einer Abstimmung.
+
+1860. Napoleon III. und das Königreich Piemont-Sardinien schließen einen Handel: Frankreich unterstützt die italienische Einheit und erhält im Gegenzug Savoyen und Nizza. Man fragt die Savoyer nach ihrer Meinung — eine Volksabstimmung, ein überwältigendes Ja. Annecy, jahrhundertelang dem Haus Savoyen untertan, wird französisch, ohne dass ein Schuss fällt.
+
+Und die neu hinzugekommene Stadt beginnt zu träumen. Diese Ecke war eine halb sumpfige Insel, zwischen Kanälen und Schilf; man verbindet sie, legt sie als Promenade an, pflanzt Baumarten aus aller Welt, gibt ihr diesen Namen Europa. Zum ersten Mal hört Annecy auf, seinem See den Rücken zu kehren. Es öffnet sich ihm. Es zeigt sich ihm.
+
+Geh am Hafen entlang nach links, bis zum kleinen ruhigen Kanal, in dem die Boote schlafen. Ein Steg überquert ihn. Dort endet diese Geschichte — mit einem Versprechen.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-7
+@@STITLE=Pont des Amours
+Geh bis zur Mitte des Stegs. Unter deinen Füßen der canal du Vassé, reglos unter seinen Platanen. Zu deiner Rechten öffnet der See weit seine Berge. Du stehst auf der pont des Amours.
+
+Man erzählt, zwei Liebende, die sich hier, in der Mitte der Brücke, küssen, blieben ihr Leben lang vereint. Niemand weiß mehr genau, wann die Legende entstand, und jeden Tag kommen Paare, um sie zu prüfen. Bisher hat noch niemand Beschwerde eingelegt.
+
+Diese kleine Eisenbrücke wirkt ewig; sie stammt von 1907. Und vielleicht ist sie das wahre Ende unserer Geschichte. Erinnere dich an alles, was das Wasser von Annecy war: der Fluss-Motor, der die Schmieden hämmern ließ, die Verliese des alten Steinschiffs, die Grenze, die einen Bischof von seiner Stadt trennte, der See, dem man den Rücken kehrte. Jahrhunderte nützlichen, strengen Wassers. Dann wird Savoyen französisch, die Mauern fallen, die Werkstätten schließen — und das Wasser ist zu nichts mehr nütze. Also wird es schön. Man zeichnet ihm Gärten, wirft ihm Stege über, erfindet ihm Liebeslegenden.
+
+Die schwimmende Stadt hat acht Jahrhunderte gebraucht, um sich ihrem See zuzuwenden. Dir hat ein einziger Spaziergang gereicht.
+
+Bleib einen Moment. Sieh den Schwänen zu, wie sie den Kanal hinaufziehen, den Gleitschirmen, die hoch über dem gegenüberliegenden Ufer kreisen. Und wenn du eines Tages zurückkommst — im Morgengrauen, wenn der See dampft und die Altstadt noch schläft —, wirst du sehen, dass sie immer noch schwimmt. Danke, dass du mit mir gegangen bist. Pass auf dich auf.
+
+@@LANG=it
+@@TITLE=Annecy — La città che galleggia
+@@DESC=Storia e segreti: canali, prigioni e castello. La città vecchia che galleggia tra lago e montagna.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-0
+@@STITLE=Pont Perrière
+Fermati a metà del ponte. Davanti a te, questa prua di pietra che fende il fiume, come una nave all'ancora da otto secoli: il Palais de l'Île. L'hai già visto cento volte — sulle cartoline, sui magneti, sugli sfondi dello schermo. Si dice spesso che sia uno dei monumenti più fotografati di Francia.
+
+Ed è una menzogna magnifica. Perché quella cartolina è una prigione.
+
+Nel Duecento è una casaforte posata sulla sua isola, in mezzo al Thiou. I conti di Ginevra vi coniano la loro moneta. Vi si amministra la giustizia. E per secoli vi si rinchiude: ladri, indebitati, condannati in attesa della sentenza dietro mura che l'acqua circonda — non serve un fossato, ci pensa il fiume. La prigione chiude solo nell'Ottocento. E durante la Seconda guerra mondiale vi si rinchiuderà ancora.
+
+Ecco il segreto di questa passeggiata. Annecy, la Venezia delle Alpi, la città pastello che galleggia tra lago e montagna: questa dolcezza è recente. Per secoli, l'acqua di qui non ha avuto nulla di decorativo: ha fatto girare le botteghe, custodito i prigionieri, portato i fuggitivi, separato regni. Ti mostrerò la città sotto la cartolina.
+
+Guarda ancora la prua della vecchia nave. Poi segui il fiume a valle, sulla banchina. A due minuti da qui, pochi metri di ferro e legno trattengono un intero lago. Ti aspetto lì.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-1
+@@STITLE=Les vannes du Thiou
+Queste paratoie sotto i tuoi occhi — questo vecchio meccanismo di ferro e legno ancora manovrato a mano. Non sembra niente. È il cuore della città.
+
+Il Thiou non è un fiume come gli altri. È l'emissario del lago: tutta l'acqua del lago di Annecy fugge di qui. Circa tre chilometri e mezzo di corso prima di unirsi al Fier — si dice spesso che sia uno dei fiumi più corti di Francia. E queste paratoie regolano il livello dell'intero lago, centimetro per centimetro, come il rubinetto di una vasca.
+
+Per secoli quest'acqua è stata il motore di Annecy. Conta i canali intorno a te: facevano girare i mulini, i magli dei fabbri, le segherie, poi le filature. I conciatori vi immergevano le pelli, i tintori le stoffe. Batteva, puzzava, lavorava. La Venezia delle Alpi era una zona industriale.
+
+Attraversa la passerella e risali il vicolo verso la grande chiesa, appena sopra. Un adolescente in fuga vi vide cambiare la propria vita, una domenica di primavera.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-2
+@@STITLE=Cathédrale Saint-Pierre
+Eccoti davanti alla cathédrale Saint-Pierre. Facciata sobria, quasi timida, incastrata nel suo vicolo. Eppure è qui che ebbe luogo uno degli incontri più celebri della letteratura francese.
+
+Domenica delle Palme del 1728. Un adolescente di sedici anni arriva da Ginevra, senza un soldo, in fuga. Si chiama Jean-Jacques Rousseau. Lo mandano a bussare da una giovane convertita che accoglie i fuggitivi della sua città: Françoise-Louise de Warens. Lei ha ventotto anni. Lui resta folgorato davanti a lei. Anni dopo, nelle Confessioni, scriverà che avrebbe voluto circondare con una balaustra dorata il punto esatto di quell'incontro. La città lo prese in parola: nel cortile dell'antico vescovado, proprio accanto, una balaustra dorata segna il posto.
+
+Rousseau resta ad Annecy, vi impara la musica, forse canta sotto queste volte. E «Mamma», come presto la chiamerà, cambierà la sua vita.
+
+Riscendi verso il fiume, attraversalo, e prendi a destra la lunga via porticata. Era la grande via commerciale di un tempo.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-3
+@@STITLE=Place Sainte-Claire, devant la porte
+Questa porta massiccia davanti a te, sormontata dal suo orologio: la porte Sainte-Claire, una delle ultime porte delle mura di Annecy. Per secoli, tutto ciò che entrava in città passava sotto una volta come questa — merci, venditori ambulanti, notizie dal mondo.
+
+Voltati e guarda la via che hai appena disceso. Questi portici bassi, su ciascun lato: sotto, i mercanti allestivano le loro bancarelle al riparo dalla pioggia e dalla neve. Perché Annecy, capitale del Genevese, era una città di fiere e mercati. Il bestiame delle valli, i tessuti, il sale e i manufatti degli artigiani: tutto convergeva qui, tra queste facciate. E in realtà nulla è cambiato — nelle mattine di mercato, rue Sainte-Claire grida, contratta e trabocca come cinquecento anni fa.
+
+Ora la salita. Proprio dietro di te, una rampa lastricata s'inerpica verso il castello. Qualche minuto di sforzo. Lassù ti aspetta una famiglia che ha perso tutto — tranne Annecy.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-4
+@@STITLE=Château d'Annecy
+Riprendi fiato nel cortile del castello. Guarda queste mura enormi — la tour de la Reine, la più antica, ha muraglie spesse diversi metri.
+
+Ecco la storia di una famiglia umiliata. I conti di Ginevra portavano il nome di una delle città più ricche delle Alpi. Ma nel Duecento ne perdono il controllo, passato nelle mani dei vescovi. Cacciati dalla loro stessa capitale, si ritirano qui, su questo colle, e fanno di Annecy la loro città di consolazione. La città vecchia deve loro quasi tutto.
+
+Il castello, dal canto suo, non avrà fortuna. Gli incendi lo devastano più volte, i duchi lo rialzano, poi tutti se ne dimenticano. Finisce caserma: generazioni di soldati alloggiano nelle sale dei conti. Bisogna attendere il 1953 perché la città lo riacquisti e lo salvi. Oggi è un museo.
+
+Avanza verso il bordo della spianata: i tetti, il lago, le montagne. Poi riscendi per la rampa e attraversa il Thiou ai piedi della vecchia nave di pietra. Una chiesa ti aspetta proprio di fronte.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-5
+@@STITLE=Place Saint-François
+Questa facciata barocca un po' stanca è la église Saint-François-de-Sales. Porta il nome dell'uomo che valse ad Annecy il suo soprannome più inaspettato: la Roma delle Alpi.
+
+Torniamo al 1602. Ginevra è passata alla Riforma; il suo vescovo cattolico non può più mettervi piede. Allora il vescovado di Ginevra si stabilisce... ad Annecy. Il nuovo vescovo si chiama François de Sales. Un aristocratico savoiardo dolce e testardo, scrittore geniale — la sua Introduzione alla vita devota sarà letta in tutta Europa. Con una giovane vedova, Jeanne de Chantal, fonda qui l'ordine della Visitazione. I conventi si moltiplicano, la piccola città si riempie di campanili e sottane: la Roma delle Alpi.
+
+È in questa chiesa che François e Jeanne furono dapprima sepolti. Le loro reliquie riposano oggi nella basilica che veglia sulla città, lassù, sulla collina.
+
+Vai ora verso il lago seguendo il fiume. Dove l'acqua si allarga, ti aspetta un giardino piantato di alberi giganti.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-6
+@@STITLE=Jardins de l'Europe
+Alza la testa: sequoie. Alberi d'America, immensi, piantati in un giardino all'inglese posato sul lago. I jardins de l'Europe. La loro storia comincia con un voto.
+
+1860. Napoleone III e il regno di Piemonte-Sardegna concludono un patto: la Francia sostiene l'unità italiana e riceve in cambio la Savoia e Nizza. Si chiede il parere dei Savoiardi — un plebiscito, un sì massiccio. Annecy, suddita della casa di Savoia da secoli, diventa francese senza uno sparo.
+
+E la città appena arrivata si mette a sognare. Questo angolo era un'isola semi-paludosa, tra canali e canne; la si collega, la si disegna a passeggiata, vi si piantano essenze da tutto il mondo, le si dà questo nome di Europa. Per la prima volta, Annecy smette di voltare le spalle al suo lago. Vi si apre. Vi si mostra.
+
+Costeggia il porto verso sinistra, fino al piccolo canale tranquillo dove dormono le barche. Una passerella lo scavalca. È lì che questa storia finisce — con una promessa.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-7
+@@STITLE=Pont des Amours
+Avanza fino a metà della passerella. Sotto i tuoi piedi, il canal du Vassé, immobile sotto i suoi platani. Alla tua destra, il lago apre largo le sue montagne. Sei sul pont des Amours.
+
+Si racconta che due innamorati che si baciano qui, in mezzo al ponte, resteranno uniti per la vita. Nessuno sa più bene quando nacque la leggenda, e ogni giorno arrivano coppie a verificarla. Nessuno ha ancora sporto reclamo.
+
+Questo piccolo ponte di ferro sembra eterno; risale al 1907. Ed è forse lui il vero finale della nostra storia. Ricorda tutto ciò che è stata l'acqua di Annecy: il fiume-macchina che faceva battere le fucine, le segrete della vecchia nave di pietra, la frontiera che separava un vescovo dalla sua città, il lago a cui si voltavano le spalle. Secoli di acqua utile, di acqua severa. Poi la Savoia diventa francese, le mura cadono, le botteghe chiudono — e l'acqua non serve più a nulla. Allora diventa bella. Le si disegnano giardini, le si gettano passerelle, le si inventano leggende d'amore.
+
+La città che galleggia ha impiegato otto secoli per voltarsi verso il suo lago. A te è bastata una passeggiata.
+
+Resta un momento. Guarda i cigni risalire il canale, i parapendii girare molto in alto sopra la riva di fronte. E se un giorno tornerai — all'alba, quando il lago fuma e la città vecchia dorme ancora — vedrai che galleggia ancora. Grazie per aver camminato con me. Abbi cura di te.
+
+@@LANG=nl
+@@TITLE=Annecy — De drijvende stad
+@@DESC=Geschiedenis & geheimen — kanalen, gevangenissen en een kasteel: de oude stad die drijft tussen meer en berg.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-0
+@@STITLE=Pont Perrière
+Blijf staan in het midden van de brug. Voor je die stenen boeg die de rivier doorklieft, als een schip dat al acht eeuwen voor anker ligt: het Palais de l'Île. Je hebt het al honderd keer gezien — op ansichtkaarten, magneten, schermachtergronden. Men zegt vaak dat het een van de meest gefotografeerde monumenten van Frankrijk is.
+
+En dat is een prachtige leugen. Want die ansichtkaart is een gevangenis.
+
+In de twaalfde eeuw is het een versterkt huis op zijn eiland, midden in de Thiou. De graven van Genève slaan er hun munten. Er wordt er recht gesproken. En eeuwenlang worden er mensen opgesloten: dieven, schuldenaars, veroordeelden die hun vonnis afwachten achter muren die het water omringt — geen slotgracht nodig, de rivier doet het werk. De gevangenis sluit pas in de negentiende eeuw. En tijdens de Tweede Wereldoorlog worden er weer mensen opgesloten.
+
+Dat is het geheim van deze wandeling. Annecy, het Venetië van de Alpen, de pastelkleurige stad die drijft tussen meer en berg — die zachtheid is recent. Eeuwenlang was het water hier allesbehalve decoratief: het dreef de werkplaatsen aan, hield de gevangenen vast, droeg de vluchtelingen, scheidde koninkrijken. Ik ga je de stad onder de ansichtkaart tonen.
+
+Kijk nog eens naar de boeg van het oude vaartuig. Volg dan de rivier stroomafwaarts, langs de kade. Twee minuten hiervandaan houden een paar meter ijzer en hout een heel meer tegen. Ik wacht je daar op.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-1
+@@STITLE=Les vannes du Thiou
+Deze sluisdeuren voor je ogen — dit oude mechanisme van ijzer en hout dat nog met de hand wordt bediend. Het lijkt nergens op. Het is het hart van de stad.
+
+De Thiou is geen gewone rivier. Het is de afvoer van het meer: al het water van het Lac d'Annecy ontsnapt hierlangs. Ongeveer drieënhalve kilometer loop voordat ze zich bij de Fier voegt — men noemt haar vaak een van de kortste rivieren van Frankrijk. En deze sluisdeuren regelen het peil van het hele meer, centimeter voor centimeter, als de kraan van een badkuip.
+
+Eeuwenlang was dit water de motor van Annecy. Tel de kanalen om je heen: ze dreven de molens aan, de smidshamers, de zagerijen, later de spinnerijen. Leerlooiers weekten er hun huiden, verfmakers hun stoffen. Het bonkte, het stonk, het werkte. Het Venetië van de Alpen was een industriegebied.
+
+Steek de loopbrug over en klim de steeg op naar de grote kerk, net erboven. Een weggelopen tiener zag daar op een lentezondag zijn leven veranderen.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-2
+@@STITLE=Cathédrale Saint-Pierre
+Daar sta je, voor de cathédrale Saint-Pierre. Een sobere, bijna verlegen gevel, geklemd in haar steeg. En toch vond hier een van de beroemdste ontmoetingen uit de Franse literatuur plaats.
+
+Palmzondag 1728. Een zestienjarige jongen komt uit Genève aan, zonder een cent, op de vlucht. Hij heet Jean-Jacques Rousseau. Men stuurt hem aankloppen bij een jonge bekeerlinge die vluchtelingen uit haar stad opvangt: Françoise-Louise de Warens. Zij is achtentwintig. Hij verstart voor haar. Jaren later zal hij in de Confessions schrijven dat hij de exacte plek van die ontmoeting graag met een gouden balustrade had omringd. De stad nam hem bij zijn woord: op de binnenplaats van het voormalige bisschopshuis, vlak ernaast, markeert een vergulde balustrade de plek.
+
+Rousseau blijft in Annecy, leert er muziek, zingt misschien onder deze gewelven. En "Maman", zoals hij haar weldra zal noemen, zal zijn leven veranderen.
+
+Ga weer af naar de rivier, steek haar over, en neem rechts de lange straat met arcaden. Het was vroeger de grote handelsstraat.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-3
+@@STITLE=Place Sainte-Claire, devant la porte
+Deze massieve poort voor je, bekroond met haar klok: de porte Sainte-Claire, een van de laatste poorten van de stadsmuren van Annecy. Eeuwenlang ging alles wat de stad binnenkwam onder een gewelf als dit door — waren, marskramers, nieuws uit de wereld.
+
+Draai je om en kijk naar de straat die je net hebt afgedaald. Die lage arcaden aan weerszijden: eronder zetten de kooplieden hun kraampjes op, beschut tegen regen en sneeuw. Want Annecy, hoofdstad van het Genevois, was een stad van jaarmarkten en markten. Het vee uit de dalen, de stoffen, het zout en het werk van de ambachtslieden: alles kwam hier samen, tussen deze gevels. En eigenlijk is er niets veranderd — op marktochtenden schreeuwt, dingt en golft de rue Sainte-Claire over, net als vijfhonderd jaar geleden.
+
+Nu de klim. Vlak achter je klimt een geplaveide helling naar het kasteel. Een paar minuten inspanning. Daarboven wacht een familie die alles verloor — behalve Annecy.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-4
+@@STITLE=Château d'Annecy
+Kom op adem op de binnenplaats van het kasteel. Kijk naar deze enorme muren — de tour de la Reine, de oudste, heeft muren van meerdere meters dik.
+
+Hier is het verhaal van een vernederde familie. De graven van Genève droegen de naam van een van de rijkste steden van de Alpen. Maar in de dertiende eeuw verliezen ze er de controle over, die overgaat naar de bisschoppen. Verdreven uit hun eigen hoofdstad trekken ze zich hier terug, op deze heuvel, en maken van Annecy hun troostplaats. De oude stad heeft bijna alles aan hen te danken.
+
+Het kasteel zelf krijgt geen geluk. Branden verwoesten het meermaals, de hertogen bouwen het weer op, en dan vergeet iedereen het. Het eindigt als kazerne: generaties soldaten wonen in de zalen van de graven. Pas in 1953 koopt de stad het terug en redt het. Vandaag is het een museum.
+
+Loop naar de rand van de esplanade: de daken, het meer, de bergen. Daal dan weer af via de helling en steek de Thiou over aan de voet van het oude stenen vaartuig. Een kerk wacht je recht tegenover.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-5
+@@STITLE=Place Saint-François
+Deze wat vermoeide barokke gevel is de église Saint-François-de-Sales. Ze draagt de naam van de man die Annecy haar meest onverwachte bijnaam gaf: het Rome van de Alpen.
+
+Terug naar 1602. Genève is overgegaan naar de Reformatie; haar katholieke bisschop kan er geen voet meer zetten. Dus vestigt het bisdom Genève zich... in Annecy. De nieuwe bisschop heet François de Sales. Een zachtaardige, koppige Savoyaardse aristocraat, een geniaal schrijver — zijn Introduction à la vie dévote zal in heel Europa gelezen worden. Met een jonge weduwe, Jeanne de Chantal, sticht hij hier de orde van de Visitatie. De kloosters vermenigvuldigen zich, het stadje vult zich met klokkentorens en soutanes: het Rome van de Alpen.
+
+In deze kerk werden François en Jeanne aanvankelijk begraven. Hun relieken rusten vandaag in de basiliek die over de stad waakt, daarboven, op de heuvel.
+
+Ga nu naar het meer, de rivier volgend. Waar het water breder wordt, wacht een tuin met reuzenbomen op je.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-6
+@@STITLE=Jardins de l'Europe
+Kijk omhoog: sequoia's. Bomen uit Amerika, immens, geplant in een Engelse tuin op het meer. De jardins de l'Europe. Hun verhaal begint met een stemming.
+
+1860. Napoleon III en het koninkrijk Piëmont-Sardinië sluiten een deal: Frankrijk steunt de Italiaanse eenheid en krijgt in ruil Savoye en Nice. Men vraagt de Savoyaarden om hun mening — een volksraadpleging, een overweldigend ja. Annecy, eeuwenlang onderdaan van het huis Savoye, wordt Frans zonder één schot.
+
+En de nieuw aangekomen stad begint te dromen. Deze hoek was een half moerassig eiland, tussen kanalen en riet; men verbindt het, tekent het uit als wandelpromenade, plant er soorten uit de hele wereld, geeft het deze naam Europa. Voor het eerst houdt Annecy op haar meer de rug toe te keren. Ze opent zich ernaar. Ze toont zich eraan.
+
+Loop langs de haven naar links, tot aan het kleine rustige kanaal waar de boten slapen. Een loopbrug overspant het. Daar eindigt dit verhaal — met een belofte.
+@@SCENE=seed-100-annecy-venise-des-alpes-scene-7
+@@STITLE=Pont des Amours
+Loop tot het midden van de loopbrug. Onder je voeten het canal du Vassé, roerloos onder zijn plataanbomen. Rechts van je opent het meer wijd zijn bergen. Je staat op de pont des Amours.
+
+Men vertelt dat twee geliefden die hier, midden op de brug, elkaar kussen, hun leven lang verenigd zullen blijven. Niemand weet meer precies wanneer de legende ontstond, en elke dag komen er stellen om het te controleren. Nog niemand heeft een klacht ingediend.
+
+Dit kleine ijzeren bruggetje lijkt eeuwig; het dateert uit 1907. En misschien is het wel het echte einde van ons verhaal. Denk terug aan alles wat het water van Annecy is geweest: de machinerivier die de smederijen deed beuken, de kerkers van het oude stenen vaartuig, de grens die een bisschop van zijn stad scheidde, het meer waaraan men de rug toekeerde. Eeuwen van nuttig, streng water. Dan wordt Savoye Frans, vallen de wallen, sluiten de werkplaatsen — en is het water nergens meer goed voor. Dus wordt het mooi. Er worden tuinen omheen getekend, loopbruggen overheen gegooid, liefdeslegendes voor bedacht.
+
+De drijvende stad heeft acht eeuwen nodig gehad om zich naar haar meer te keren. Voor jou was één wandeling genoeg.
+
+Blijf nog even. Kijk naar de zwanen die het kanaal opzwemmen, de parapenten die hoog boven de overkant cirkelen. En als je op een dag terugkomt — bij zonsopgang, wanneer het meer damp en de oude stad nog slaapt — zul je zien dat ze nog altijd drijft. Bedankt dat je met me hebt meegelopen. Zorg goed voor jezelf.

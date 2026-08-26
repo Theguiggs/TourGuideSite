@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-annecy-ponts-canaux-et-jardins",
+  "sessionId": "seed-100-annecy-ponts-canaux-et-jardins-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Annecy",
+  "title": "Annecy — Ponts, canaux et jardins",
+  "description": "Nature urbaine — suivre le Thiou entre ponts, canaux, jardins et ouverture sur le lac.",
+  "themes": [
+    "Nature urbaine — suivre le Thiou entre ponts, canaux, jardins et ouverture sur le lac."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6995,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "de": "Stadt Natur, folgen Sie dem Thiou zwischen Brücken, Kanälen, Gärten und Öffnung auf den See.",
+    "es": "Naturaleza urbana, seguir el Thiou entre puentes, canales, jardines y apertura en el lago.",
+    "en": "Urban nature, follow the Thiou between bridges, canals, gardens and opening on the lake.",
+    "it": "Natura urbana, seguire il Thiou tra ponti, canali, giardini e l'apertura sul lago."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-annecy-ponts-canaux-et-jardins-scene-0",
+      "index": 0,
+      "title": "Rue Sainte-Claire",
+      "text": "Commence sous les arcades de la rue Sainte-Claire. Elles prolongent les maisons au-dessus du trottoir et créent un passage couvert, régulier, presque intime. Cette rue suit l’axe principal de la vieille ville, reconstruite et transformée au fil des siècles après plusieurs incendies. Les façades colorées ne sont pas seulement pittoresques : leur alignement raconte une ville dense, contenue entre la pente du château et les bras du Thiou.\n\nAvance jusqu’à percevoir l’eau au bout d’une rue latérale. À Annecy, le canal apparaît souvent par fragments : une lueur sous une arche, un garde-corps, un bruit plus frais. Le Thiou est l’émissaire naturel du lac. Court mais puissant, il traverse la ville avant de rejoindre le Fier. Son débit a longtemps fourni l’énergie nécessaire aux ateliers et aux moulins installés sur ses rives.\n\nNotre parcours suivra cette eau vers le lac, en passant de pont en pont puis de jardin en jardin. Pour rejoindre le pont Perrière, descends doucement vers le Palais de l’Île. Observe comment les maisons se rapprochent du canal. Ici, la rue et la rivière ne sont pas deux mondes séparés : elles composent ensemble la trame de la vieille ville.",
+      "hash": "1e301e0b",
+      "chars": 1172,
+      "existingSegments": {
+        "de": "seed-100-annecy-ponts-canaux-et-jardins-scene-0-seg-de",
+        "en": "seed-100-annecy-ponts-canaux-et-jardins-scene-0-seg-en",
+        "es": "seed-100-annecy-ponts-canaux-et-jardins-scene-0-seg-es",
+        "it": "seed-100-annecy-ponts-canaux-et-jardins-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-annecy-ponts-canaux-et-jardins-scene-1",
+      "index": 1,
+      "title": "Pont Perrière",
+      "text": "Depuis le pont Perrière, le Palais de l’Île se place dans l’axe du canal comme la proue d’un navire de pierre. Le bâtiment occupe un îlot naturel du Thiou. Ses parties les plus anciennes remontent au Moyen Âge ; il servit notamment de maison forte, de prison et de siège judiciaire. Sa silhouette triangulaire vient directement de la rencontre entre l’architecture et les deux bras de l’eau.\n\nAppuie ton regard sur les détails : les arches basses, les murs épais, les façades qui descendent presque jusqu’au canal. Le pont n’est pas qu’un endroit d’où prendre une image. Il révèle la logique hydraulique du quartier. L’île partage le courant, tandis que les quais maintiennent un passage étroit entre eau et maisons. Selon le niveau du Thiou, la vitesse et la couleur du courant changent, mais la direction reste celle du lac vers l’aval.\n\nQuitte le pont en suivant le quai vers le pont Morens. Le trajet est court. Laisse le Palais de l’Île derrière toi et compare les deux points de vue. Au pont Perrière, le monument concentre l’attention. Au prochain arrêt, le canal lui-même prendra le premier rôle, encadré par les maisons et les passages de la vieille ville.",
+      "hash": "349a2064",
+      "chars": 1165,
+      "existingSegments": {
+        "en": "seed-100-annecy-ponts-canaux-et-jardins-scene-1-seg-en",
+        "es": "seed-100-annecy-ponts-canaux-et-jardins-scene-1-seg-es",
+        "de": "seed-100-annecy-ponts-canaux-et-jardins-scene-1-seg-de",
+        "it": "seed-100-annecy-ponts-canaux-et-jardins-scene-1-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-annecy-ponts-canaux-et-jardins-scene-2",
+      "index": 2,
+      "title": "Pont Morens",
+      "text": "Arrête-toi au pont Morens sans bloquer la traversée. Son nom rappelle un ancien pont de pierre établi sur le Thiou. Les façades, les parapets et les quais guident le regard vers l’aval. Sous le pont, le courant resserré accélère, puis s’élargit entre les bâtiments.\n\nCette eau a façonné le travail urbain. Pendant des siècles, des roues hydrauliques actionnaient des mécanismes pour différentes activités artisanales. Les canaux permettaient aussi d’évacuer et de transporter, au prix d’une relation parfois rude entre la ville et sa rivière. Aujourd’hui, les berges sont surtout des espaces de promenade, mais les différences de niveau et les ouvrages de régulation rappellent ce passé utile.\n\nPour continuer, remonte vers le lac en restant sur les cheminements publics. Tu vas rejoindre les jardins de l’Europe. Pendant la marche, observe un changement progressif : les murs qui encadraient étroitement le Thiou s’écartent, la lumière gagne, les arbres deviennent plus présents. La rivière urbaine approche de son origine. À mesure que le paysage s’ouvre, le pont cesse d’être seulement un passage entre deux rives ; il devient un belvédère sur l’eau et les reliefs.",
+      "hash": "e4083b15",
+      "chars": 1168,
+      "existingSegments": {
+        "en": "seed-100-annecy-ponts-canaux-et-jardins-scene-2-seg-en",
+        "de": "seed-100-annecy-ponts-canaux-et-jardins-scene-2-seg-de",
+        "es": "seed-100-annecy-ponts-canaux-et-jardins-scene-2-seg-es",
+        "it": "seed-100-annecy-ponts-canaux-et-jardins-scene-2-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-annecy-ponts-canaux-et-jardins-scene-3",
+      "index": 3,
+      "title": "Jardins de l’Europe",
+      "text": "Entre dans les jardins de l’Europe et ralentis sous les grands arbres. Le site fut aménagé en jardin public au XIXe siècle, à l’emplacement d’anciens terrains religieux puis privés. Son dessin paysager ménage des pelouses, des allées courbes et des vues vers le lac. Après les rues minérales du centre, cette composition produit une respiration nette, sans quitter le cœur d’Annecy.\n\nApproche de la rive. Les essences hautes cadrent tour à tour l’eau, les montagnes et les façades de la ville. Le jardin fonctionne comme une transition : derrière toi, le Thiou se glisse entre les maisons ; devant toi, le lac s’étend largement. L’eau est la même, mais son échelle change complètement. Les berges construites deviennent une promenade plantée, et l’horizon remplace les murs comme limite du regard.\n\nSuis maintenant l’allée vers le pont des Amours. Tu apercevras peut-être sa courbe métallique entre les feuillages. Ne coupe pas à travers les pelouses si le terrain est fermé ou humide ; reste sur les parcours aménagés. À l’approche du pont, écoute aussi les sons se déplacer : le vent et les oiseaux prennent la place du courant resserré entendu dans la vieille ville.",
+      "hash": "e13e22be",
+      "chars": 1169,
+      "existingSegments": {
+        "en": "seed-100-annecy-ponts-canaux-et-jardins-scene-3-seg-en",
+        "it": "seed-100-annecy-ponts-canaux-et-jardins-scene-3-seg-it",
+        "de": "seed-100-annecy-ponts-canaux-et-jardins-scene-3-seg-de",
+        "es": "seed-100-annecy-ponts-canaux-et-jardins-scene-3-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-annecy-ponts-canaux-et-jardins-scene-4",
+      "index": 4,
+      "title": "Pont des Amours",
+      "text": "Le pont des Amours franchit le canal du Vassé à l’endroit où celui-ci rejoint le lac. La passerelle métallique actuelle date du début du XXe siècle. Sa courbe légère relie les jardins de l’Europe au Pâquier tout en offrant deux paysages opposés. D’un côté, le canal s’enfonce sous une voûte de platanes et de bateaux amarrés. De l’autre, le lac ouvre un plan d’eau lumineux vers les montagnes.\n\nPlace-toi au milieu seulement si le passage reste fluide. Regarde alternativement dans les deux directions. Le contraste résume Annecy : une eau domestiquée, bordée et traversée, puis une étendue dont la rive paraît presque sans limite. Les alignements d’arbres du canal prolongent la perspective comme une avenue végétale. Les garde-corps du pont, eux, dessinent un premier plan fin devant le relief.\n\nTraverse vers le Pâquier. À chaque pas, le jardin devient moins dense et la grande pelouse prend de l’ampleur. Le pont agit ainsi comme un seuil entre deux espaces verts de caractères différents : le jardin composé et ombragé d’un côté, l’esplanade ouverte de l’autre. La dernière halte t’attend sur cette étendue, face au lac.",
+      "hash": "b10c1d20",
+      "chars": 1125,
+      "existingSegments": {
+        "en": "seed-100-annecy-ponts-canaux-et-jardins-scene-4-seg-en",
+        "es": "seed-100-annecy-ponts-canaux-et-jardins-scene-4-seg-es",
+        "de": "seed-100-annecy-ponts-canaux-et-jardins-scene-4-seg-de",
+        "it": "seed-100-annecy-ponts-canaux-et-jardins-scene-4-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-annecy-ponts-canaux-et-jardins-scene-5",
+      "index": 5,
+      "title": "Le Pâquier",
+      "text": "Avance de quelques pas sur le Pâquier, puis retourne-toi. Tu peux embrasser d’un seul regard les jardins de l’Europe, le pont des Amours et la lisière du centre ancien. Le nom de cette grande promenade vient d’un terme désignant un pâturage. L’espace, longtemps conservé libre de constructions, forme aujourd’hui une vaste pelouse publique au bord du lac.\n\nIci, aucun canal ne contraint plus ton regard. Les rives s’écartent, les sommets cadrent l’horizon et la ville reste en retrait. Pourtant, le chemin parcouru demeure lisible : l’eau du lac alimente le Thiou, qui passe sous les ponts puis entre dans le tissu serré des rues. Tu as simplement suivi ce système à contre-courant, depuis les arcades de Sainte-Claire jusqu’à sa source visible.\n\nReste un moment face au changement de lumière sur le lac. Les ponts ont servi de postes d’observation, les canaux de fil conducteur et les jardins de transition. Ensemble, ils montrent comment Annecy associe infrastructures hydrauliques et espaces communs. La promenade se termine sur cette largeur offerte à tous. Tu peux poursuivre le long de la rive, ou revenir vers la vieille ville : le même paysage racontera alors l’eau dans son sens naturel.",
+      "hash": "a5ce598b",
+      "chars": 1196,
+      "existingSegments": {
+        "de": "seed-100-annecy-ponts-canaux-et-jardins-scene-5-seg-de",
+        "en": "seed-100-annecy-ponts-canaux-et-jardins-scene-5-seg-en",
+        "es": "seed-100-annecy-ponts-canaux-et-jardins-scene-5-seg-es",
+        "it": "seed-100-annecy-ponts-canaux-et-jardins-scene-5-seg-it"
+      }
+    }
+  ]
+}

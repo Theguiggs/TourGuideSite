@@ -1,0 +1,449 @@
+@@LANG=en
+@@TITLE=Sarlat — France's Most Intact Medieval Town
+@@DESC=History & Secrets — saved by a 1962 law, France's most intact medieval town.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-0
+@@STITLE=Place de la Liberté
+Stop in the middle of this large square, the place de la Liberté. Look around you. Golden stone façades, ochre, almost honey-colored in the light. Heavy lauze roofs, those grey stone tiles stacked like scales. Turrets, pointed doorways, mullioned windows. It looks like a film set — and in fact, dozens of films have been shot here. But this isn't a set. It's all real, all five, six, seven centuries old.
+
+That's what makes Sarlat unique, and it's the story I'm going to tell you throughout this walk: this town should have disappeared. Like almost all the others.
+
+Because by the middle of the twentieth century, Sarlat was nothing more than a sleepy big market town in the Périgord, forgotten by the trains, forgotten by progress. Its old houses were falling into ruin. There was talk of razing them, widening the streets, building new. All over France, at the time, old town centers were being gutted.
+
+And then, in 1962, a law changed everything. A law championed by a writer turned minister, André Malraux. It introduced a brand-new idea: that you could protect not just a single isolated monument, but an entire town. A whole district, with its alleyways, its courtyards, its ordinary houses.
+
+Sarlat was the first. The model project. The showcase. And that's why you can walk today through the most intact medieval town in France.
+
+Head toward the cathedral. Take the lane going down, straight ahead. Follow me.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-1
+@@STITLE=Hôtel de Maleville
+Just steps from the square, look up at this façade, prouder than the others. This is the hôtel de Maleville, also called the hôtel de Vienne. See how it switches languages: no more Middle Ages here, this one speaks Renaissance. Regular windows, pilasters, and two carved medallions — a man, a woman, two busts that have been staring you down for nearly five hundred years.
+
+Behind this stone lies a fine story of social climbing. That of Jean de Vienne, a child of Sarlat born into a modest family, who rose and rose, until he became treasurer to the kings of France. Rich, powerful, he came back home and treated himself to the most modern thing the town could offer: he bought up several medieval houses crammed against one another, and merged them into a single Italian-style palace.
+
+That's Sarlat too. A small town, but great families. Lawyers, merchants, churchmen, wealthy enough to build in stone what their name was worth.
+
+Keep going down toward the place du Peyrou, in front of the great cathedral. Follow me.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-2
+@@STITLE=Maison de La Boétie
+Here we are on the place du Peyrou. Turn your back on the cathedral for a moment, and look at this house — probably the most famous in Sarlat. Its Renaissance façade, its tall mullioned windows, its pointed gable pierced with dormers: a jewel. This is the maison de La Boétie.
+
+It's here that Étienne de La Boétie was born, in 1530. Remember that name. Still a young man, he wrote a text that would cross the centuries: the Discourse on Voluntary Servitude. A very simple, formidable question: why do millions of men obey a single one, a tyrant, when all it would take to be free is to stop obeying? People still read it today.
+
+But La Boétie is remembered above all for a friendship. Perhaps the finest one in all of French literature. The one that bound him to Michel de Montaigne. When Montaigne was later asked why he loved this friend so much, he gave the answer that became legendary: "Because it was he; because it was I."
+
+La Boétie died young, at thirty-two, in Montaigne's arms. The town has never forgotten its prodigal son.
+
+Follow the cathedral to the right, toward a small sloping garden. Follow me.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-3
+@@STITLE=Cathédrale Saint-Sacerdos
+Here you are in front of Saint-Sacerdos, the cathedral. It looks a bit mismatched, and that's normal: it's been built, torn down, and rebuilt over more than a thousand years. Look at the base of the bell tower, those big round stones: that's Romanesque, the oldest part. The rest, the tall nave, was redone much later.
+
+But the essential thing lies elsewhere. This church is Sarlat's cradle. Before the town, there was the abbey. Benedictine monks, settled here more than a thousand years ago, in a valley set apart from everything. Around their monastery, little by little, came the houses, the merchants, the craftsmen. The town was born of prayer.
+
+Sarlat only became a bishopric quite late, at the start of the fourteenth century, by the will of a pope — John XXII, the one from Avignon. That's when the abbey church became a cathedral, and the small city of monks rose in rank.
+
+It's also said that a famous saint, Bernard of Clairvaux, passed through here while preaching. His visit left behind a stubborn legend, so much so that some wanted to link his memory to the strange monument waiting for us just behind.
+
+Go around the apse, climb the few steps toward the garden. Follow me.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-4
+@@STITLE=Lanterne des morts
+Here we are. This strange round tower, capped with a stone cone, like a medieval rocket set down in the garden. It's called the lanterne des morts — the lantern of the dead. It dates from the twelfth century. And no one — truly no one — knows for certain what it was for.
+
+Look at it closely. A big cylindrical tower, a small vaulted chamber at the base, and up there, right at the top, openings. Hence its name: it's thought that at night a flame was lit inside, visible from far off, a light to watch over the dead in the cemetery that once spread out right here.
+
+But that's only a hypothesis. Others see it as a funerary monument, a memorial. And then there's the legend. Remember Bernard of Clairvaux's visit? Some later accounts linked the tower to his preaching and to the healings attributed to him. A way of pinning a famous name onto a building whose true purpose already escaped later generations.
+
+The truth? It sleeps in these stones, and they aren't talking. It's one of Sarlat's oldest secrets, and it's holding firm.
+
+Go back down toward the heart of the town, and head up toward the rue des Consuls. Follow me.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-5
+@@STITLE=Rue des Consuls
+Here you are on the rue des Consuls. Take your time, look up, and let the façades go by. This is where the powerful of Sarlat used to live: the consuls — that is, those who governed the town — and the wealthy merchants. Every mansion is a page of architectural history, stacked on top of the one before it.
+
+Stop in front of the finest one, the hôtel Plamon. Look at it from bottom to top, and you'll see the centuries follow one another. On the ground floor, wide Gothic arcades, those of a medieval shop. Above, slender windows with multiple lights, as delicate as embroidery. Higher still, other windows, from another age, another taste.
+
+This was the house of the Selves de Plamon, a dynasty of cloth merchants. Cloth, fabric, textiles: that's what made the fortune of a town like Sarlat, far from the great roads but rich in its fairs and its craftsmen.
+
+And all of this — these arcades, these balconies, this fragile stone — you can see it intact because people refused to raze it. Remember 1962. Without that law, this street would likely have become just another ordinary avenue.
+
+Retrace your steps toward the place de la Liberté, all the way to the great transformed church. Follow me.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-6
+@@STITLE=Église Sainte-Marie
+We end here, in front of this great church that's no longer one. The église Sainte-Marie. Look at these two metal doors, immense, tall as giants, that slide open and shut. They have nothing medieval about them — and that's deliberate.
+
+After the Revolution, this church had been closed, sold, half ruined. It was turned into a warehouse, a post office. It was falling apart. And at the end of the twentieth century, its rebirth was entrusted to a son of this land who became one of the world's greatest architects: Jean Nouvel. He grew up around here. He knows this stone by heart.
+
+He didn't fake it. He didn't rebuild it as fake-old. He kept the old walls, and slipped in something resolutely modern: these steel doors, and inside, a covered market where, almost every day, the best of the Périgord is sold.
+
+And over there, in the old bell tower, a glass elevator lifts you above the rooftops. Go up, if you can. From up there, you'll see everything you've just walked through: a sea of lauze roofs, turrets, honey-colored stone, as far as the eye can see, without a false note.
+
+That's the secret of Sarlat. A town that should have died, that a law saved in 1962, and that a present-day architect knew how to wake without betraying it. The past here isn't embalmed. It's still alive.
+
+Stay up there a while. Let your eyes wander. And when you come back down into the lanes, you'll know how lucky you are to see them intact. See you soon, my friend.
+
+@@LANG=es
+@@TITLE=Sarlat — La ciudad medieval más intacta de Francia
+@@DESC=Historia y secretos — salvada por una ley de 1962, la ciudad medieval más intacta de Francia.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-0
+@@STITLE=Place de la Liberté
+Detente en el centro de esta gran plaza, la place de la Liberté. Mira a tu alrededor. Fachadas de piedra dorada, ocre, casi color miel bajo la luz. Tejados pesados de lauzas, esas tejas de piedra gris apiladas como escamas. Torrecillas, puertas ojivales, ventanas de parteluz. Parece un decorado de cine —y de hecho, aquí se han rodado decenas de películas. Pero no es un decorado. Todo es real, todo tiene cinco, seis, siete siglos de antigüedad.
+
+Eso es lo que hace único a Sarlat, y es la historia que voy a contarte a lo largo de este paseo: esta ciudad debería haber desaparecido. Como casi todas las demás.
+
+Porque a mediados del siglo XX, Sarlat no era más que un gran pueblo dormido del Périgord, olvidado por los trenes, olvidado por el progreso. Sus viejas casas se derrumbaban. Se hablaba de arrasarlas, de ensanchar las calles, de construir de nuevo. En toda Francia, por esa época, se destripaban los viejos centros.
+
+Y luego, en 1962, una ley lo cambió todo. Una ley impulsada por un escritor convertido en ministro, André Malraux. Introducía una idea nueva: que se podía proteger, no ya un monumento aislado, sino toda una ciudad. Todo un barrio, con sus callejuelas, sus patios, sus casas corrientes.
+
+Sarlat fue la primera. El proyecto piloto. El escaparate. Y por eso puedes caminar hoy por la ciudad medieval más intacta de Francia.
+
+Adéntrate hacia la catedral. Toma la callejuela que baja, todo recto. Sígueme.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-1
+@@STITLE=Hôtel de Maleville
+A dos pasos de la plaza, levanta la vista hacia esta fachada más orgullosa que las demás. Es el hôtel de Maleville, también llamado hôtel de Vienne. Mira cómo cambia de lenguaje: aquí se acabó la Edad Media, aquí se habla Renacimiento. Ventanas regulares, pilastras, y dos medallones esculpidos —un hombre, una mujer, dos bustos que te observan desde hace casi quinientos años.
+
+Detrás de esta piedra hay una hermosa historia de ascenso social. La de Jean de Vienne, un hijo de Sarlat nacido en una familia modesta, que asciende, asciende, hasta convertirse en tesorero de los reyes de Francia. Rico, poderoso, vuelve a su tierra y se permite lo más moderno que la ciudad podía ofrecer: compra varias casas medievales apretadas unas contra otras, y las funde en un único palacio a la italiana.
+
+Eso también es Sarlat. Una ciudad pequeña, pero grandes familias. Juristas, mercaderes, hombres de Iglesia, lo bastante ricos como para construir en piedra lo que valía su nombre.
+
+Sigue bajando hacia la place du Peyrou, frente a la gran catedral. Sígueme.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-2
+@@STITLE=Maison de La Boétie
+Henos aquí en la place du Peyrou. Da la espalda un segundo a la catedral, y mira esta casa —sin duda la más famosa de Sarlat. Su fachada renacentista, sus grandes ventanas de parteluz, su hastial puntiagudo perforado de buhardillas: una joya. Es la maison de La Boétie.
+
+Aquí nació, en 1530, Étienne de La Boétie. Retén este nombre. Siendo aún joven, este muchacho escribe un texto que atravesará los siglos: el Discurso de la servidumbre voluntaria. Una pregunta muy sencilla, y formidable: ¿por qué millones de hombres obedecen a uno solo, a un tirano, cuando les bastaría con dejar de obedecer para ser libres? Todavía se lee esto hoy en día.
+
+Pero a La Boétie se le recuerda sobre todo por una amistad. Quizá la más hermosa de toda la literatura francesa. La que lo unió a Michel de Montaigne. Cuando más tarde le preguntaron a Montaigne por qué quería tanto a este amigo, respondió con la frase que se ha vuelto legendaria: «Porque era él; porque era yo.»
+
+La Boétie muere joven, a los treinta y dos años, en brazos de Montaigne. La ciudad nunca ha olvidado a su hijo pródigo.
+
+Bordea la catedral por la derecha, hacia un pequeño jardín en pendiente. Sígueme.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-3
+@@STITLE=Cathédrale Saint-Sacerdos
+Aquí estás frente a Saint-Sacerdos, la catedral. Parece un poco desigual, y es normal: se construyó, se derribó, se reconstruyó a lo largo de más de mil años. Mira la base del campanario, esas grandes piedras redondas: es románico, lo más antiguo que hay. El resto, la alta nave, se rehizo mucho más tarde.
+
+Pero lo esencial está en otra parte. Esta iglesia es la cuna de Sarlat. Antes de la ciudad, estuvo la abadía. Monjes benedictinos, instalados aquí hace más de mil años, en un valle apartado de todo. Alrededor de su monasterio, poco a poco, llegaron las casas, los mercaderes, los artesanos. La ciudad nació de la oración.
+
+Sarlat solo se convirtió en sede episcopal tardíamente, a principios del siglo XIV, por voluntad de un papa —Juan XXII, el de Aviñón. A partir de ahí la abadía se convierte en catedral, y la pequeña ciudad de monjes gana galones.
+
+También se cuenta que un santo famoso, Bernardo de Claraval, pasó por aquí predicando. Su paso dejó una leyenda tenaz, hasta el punto de que algunos quisieron reconocer su memoria en el extraño monumento que nos espera justo detrás.
+
+Rodea la cabecera, sube los pocos escalones hacia el jardín. Sígueme.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-4
+@@STITLE=Lanterne des morts
+Aquí estamos. Esta extraña torre redonda, coronada por un cono de piedra, como un cohete medieval posado en el jardín. Se la llama la lanterne des morts, la linterna de los muertos. Data del siglo XII. Y nadie —de verdad, nadie— sabe con certeza para qué servía.
+
+Mírala bien. Una gran torre cilíndrica, una pequeña cámara abovedada en la base, y allá arriba, en lo más alto, unas aberturas. De ahí su nombre: se piensa que por la noche se encendía dentro una llama visible desde lejos, una luz para velar a los muertos del cementerio que se extendía justo aquí.
+
+Pero es solo una hipótesis. Otros ven en ella un monumento funerario, un memorial. Y luego está la leyenda. ¿Te acuerdas del paso de Bernardo de Claraval? Algunos relatos tardíos asociaron la torre a su predicación y a las curaciones que se le atribuían. Una manera de dar un nombre célebre a un edificio cuya función ya se les escapaba a las generaciones siguientes.
+
+¿La verdad? Duerme en estas piedras, y ellas no hablan. Es uno de los secretos más antiguos de Sarlat, y se mantiene firme.
+
+Baja de nuevo hacia el corazón de la ciudad, sube hacia la rue des Consuls. Sígueme.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-5
+@@STITLE=Rue des Consuls
+Aquí estás en la rue des Consuls. Tómate tu tiempo, levanta la cabeza, y deja que desfilen las fachadas. Aquí vivían los poderosos de Sarlat: los cónsules —es decir, los que gobernaban la ciudad— y los ricos mercaderes. Cada palacete es una página de historia de la arquitectura, apilada sobre la anterior.
+
+Detente ante el más bonito, el hôtel Plamon. Míralo de abajo arriba, y verás sucederse los siglos. En la planta baja, amplias arcadas góticas, las de una tienda medieval. Encima, finas ventanas de vanos múltiples, festoneadas como un bordado. Más arriba todavía, otras ventanas, de otra época, de otro gusto.
+
+Era la casa de los Selves de Plamon, una dinastía de comerciantes de paños. El paño, el tejido, la tela: eso es lo que hacía la fortuna de una ciudad como Sarlat, lejos de las grandes rutas pero rica en sus ferias y en sus artesanos.
+
+Y todo esto —estas arcadas, estos balcones, esta piedra frágil— puedes verlo intacto porque se negaron a arrasarlo. Recuerda 1962. Sin esa ley, esta calle probablemente se habría convertido en una avenida cualquiera.
+
+Vuelve sobre tus pasos hacia la place de la Liberté, hasta la gran iglesia transformada. Sígueme.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-6
+@@STITLE=Église Sainte-Marie
+Terminamos aquí, frente a esta gran iglesia que ya no lo es. La église Sainte-Marie. Mira estas dos puertas metálicas, inmensas, altas como gigantes, que se abren y se cierran deslizándose. No tienen nada de medieval —y es a propósito.
+
+Esta iglesia, tras la Revolución, había sido cerrada, vendida, medio en ruinas. Se convirtió en almacén, en oficina de correos. Se estaba cayendo. Y a finales del siglo XX, se confió su renacimiento a un hijo de la tierra convertido en uno de los mayores arquitectos del mundo: Jean Nouvel. Él creció por aquí. Conoce esta piedra de memoria.
+
+No fingió. No rehízo un falso antiguo. Conservó los viejos muros, y deslizó dentro algo resueltamente moderno: estas puertas de acero, y adentro, un mercado cubierto donde se vende, casi todos los días, lo mejor del Périgord.
+
+Y allí, en el antiguo campanario, un ascensor de cristal te sube por encima de los tejados. Sube, si puedes. Desde allá arriba verás todo lo que acabas de atravesar: el mar de tejados de lauzas, las torrecillas, la piedra dorada, hasta donde alcanza la vista, sin una nota falsa.
+
+Ese es el secreto de Sarlat. Una ciudad que debería haber muerto, que una ley salvó en 1962, y que un arquitecto de hoy supo despertar sin traicionarla. El pasado, aquí, no está embalsamado. Todavía vive.
+
+Quédate un momento allá arriba. Deja vagar tu mirada. Y cuando bajes de nuevo a las callejuelas, sabrás la suerte que tienes de verlas intactas. Hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Sarlat — Frankreichs am besten erhaltene mittelalterliche Stadt
+@@DESC=Geschichte & Geheimnisse — gerettet durch ein Gesetz von 1962, Frankreichs am besten erhaltene mittelalterliche Stadt.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-0
+@@STITLE=Place de la Liberté
+Bleib in der Mitte dieses großen Platzes stehen, der place de la Liberté. Schau dich um. Fassaden aus goldenem Stein, ockerfarben, im Licht fast honigfarben. Schwere Lauzes-Dächer, diese grauen Steinschindeln, aufgeschichtet wie Schuppen. Türmchen, Spitzbogentüren, Sprossenfenster. Es sieht aus wie eine Filmkulisse — und tatsächlich wurden hier Dutzende Filme gedreht. Aber das ist keine Kulisse. Alles ist echt, alles ist fünf, sechs, sieben Jahrhunderte alt.
+
+Das macht Sarlat einzigartig, und das ist die Geschichte, die ich dir während dieses ganzen Spaziergangs erzählen werde: diese Stadt hätte verschwinden sollen. Wie fast alle anderen.
+
+Denn Mitte des zwanzigsten Jahrhunderts war Sarlat nur noch ein verschlafenes großes Marktstädtchen im Périgord, von den Zügen vergessen, vom Fortschritt vergessen. Seine alten Häuser verfielen. Man sprach davon, sie abzureißen, die Straßen zu verbreitern, Neues zu bauen. Überall in Frankreich wurden zu dieser Zeit die alten Stadtkerne aufgerissen.
+
+Und dann, 1962, änderte ein Gesetz alles. Ein Gesetz, das von einem Schriftsteller getragen wurde, der Minister geworden war: André Malraux. Es brachte eine neue Idee ein: dass man nicht nur ein einzelnes, isoliertes Denkmal schützen konnte, sondern eine ganze Stadt. Ein ganzes Viertel, mit seinen Gassen, seinen Höfen, seinen gewöhnlichen Häusern.
+
+Sarlat war die erste. Das Modellprojekt. Das Schaufenster. Und deshalb kannst du heute durch die am besten erhaltene mittelalterliche Stadt Frankreichs gehen.
+
+Geh in Richtung Kathedrale. Nimm die Gasse, die geradeaus hinabführt. Folge mir.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-1
+@@STITLE=Hôtel de Maleville
+Nur wenige Schritte vom Platz entfernt, schau hinauf zu dieser Fassade, stolzer als die anderen. Das ist das hôtel de Maleville, auch hôtel de Vienne genannt. Schau, wie sie die Sprache wechselt: hier ist das Mittelalter vorbei, hier spricht man Renaissance. Regelmäßige Fenster, Pilaster, und zwei geschnitzte Medaillons — ein Mann, eine Frau, zwei Büsten, die dich seit fast fünfhundert Jahren mustern.
+
+Hinter diesem Stein steckt eine schöne Aufstiegsgeschichte. Die von Jean de Vienne, einem Kind von Sarlat, geboren in eine bescheidene Familie, der immer weiter aufstieg, bis er Schatzmeister der Könige von Frankreich wurde. Reich, mächtig, kehrt er in seine Heimat zurück und gönnt sich das Modernste, was die Stadt zu bieten hatte: er kauft mehrere eng aneinandergedrängte mittelalterliche Häuser auf und verschmilzt sie zu einem einzigen Palast im italienischen Stil.
+
+Auch das ist Sarlat. Eine kleine Stadt, aber große Familien. Juristen, Kaufleute, Kirchenmänner, wohlhabend genug, um in Stein zu bauen, was ihr Name wert war.
+
+Geh weiter hinunter zur place du Peyrou, vor der großen Kathedrale. Folge mir.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-2
+@@STITLE=Maison de La Boétie
+Da sind wir auf der place du Peyrou. Kehr der Kathedrale einen Moment den Rücken zu, und schau dir dieses Haus an — wohl das berühmteste in Sarlat. Seine Renaissancefassade, seine großen Sprossenfenster, sein spitzer, mit Gauben durchsetzter Giebel: ein Juwel. Das ist die maison de La Boétie.
+
+Hier wurde 1530 Étienne de La Boétie geboren. Behalt diesen Namen. Noch als junger Mann schreibt dieser Junge einen Text, der die Jahrhunderte überdauern wird: Von der freiwilligen Knechtschaft. Eine ganz einfache und zugleich gewaltige Frage: warum gehorchen Millionen Menschen einem Einzigen, einem Tyrannen, wenn es doch reichen würde, aufzuhören zu gehorchen, um frei zu sein? Man liest das noch heute.
+
+Aber an La Boétie erinnert man sich vor allem wegen einer Freundschaft. Vielleicht der schönsten der gesamten französischen Literatur. Der, die ihn mit Michel de Montaigne verband. Als man Montaigne später fragte, warum er diesen Freund so sehr liebte, gab er die legendär gewordene Antwort: „Weil er es war, weil ich es war."
+
+La Boétie stirbt jung, mit zweiunddreißig Jahren, in Montaignes Armen. Die Stadt hat ihr Wunderkind nie vergessen.
+
+Folge der Kathedrale nach rechts, zu einem kleinen abschüssigen Garten. Folge mir.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-3
+@@STITLE=Cathédrale Saint-Sacerdos
+Da bist du vor Saint-Sacerdos, der Kathedrale. Sie wirkt etwas uneinheitlich, und das ist normal: man hat sie über mehr als tausend Jahre gebaut, abgerissen, wiederaufgebaut. Schau dir den unteren Teil des Glockenturms an, diese großen runden Steine: das ist Romanik, das Älteste, was es hier gibt. Der Rest, das hohe Kirchenschiff, wurde viel später überarbeitet.
+
+Doch das Wesentliche liegt woanders. Diese Kirche ist die Wiege von Sarlat. Vor der Stadt gab es die Abtei. Benediktinermönche, hier vor mehr als tausend Jahren angesiedelt, in einem von allem abgelegenen Tal. Um ihr Kloster herum kamen nach und nach die Häuser, die Kaufleute, die Handwerker. Die Stadt ist aus dem Gebet geboren.
+
+Sarlat wurde erst spät zum Bischofssitz, zu Beginn des vierzehnten Jahrhunderts, durch den Willen eines Papstes — Johannes XXII., der von Avignon. Von da an wird die Abteikirche zur Kathedrale, und die kleine Mönchsstadt steigt im Rang.
+
+Man erzählt auch, dass ein berühmter Heiliger, Bernhard von Clairvaux, hier durchkam und predigte. Sein Besuch hinterließ eine hartnäckige Legende, so sehr, dass manche sein Andenken mit dem seltsamen Monument in Verbindung bringen wollten, das gleich hinter uns auf uns wartet.
+
+Umrunde den Chor, steig die paar Stufen zum Garten hinauf. Folge mir.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-4
+@@STITLE=Lanterne des morts
+Da sind wir. Dieser seltsame runde Turm, mit einem Steinkegel bedeckt, wie eine mittelalterliche Rakete, im Garten abgestellt. Man nennt ihn die lanterne des morts, die Totenlaterne. Er stammt aus dem zwölften Jahrhundert. Und niemand — wirklich niemand — weiß mit Sicherheit, wozu er diente.
+
+Schau ihn dir genau an. Ein großer zylindrischer Turm, eine kleine gewölbte Kammer am Fuß, und dort oben, ganz oben, Öffnungen. Daher der Name: man vermutet, dass dort nachts eine von Weitem sichtbare Flamme entzündet wurde, ein Licht, um über die Toten des Friedhofs zu wachen, der sich genau hier erstreckte.
+
+Aber das ist nur eine Hypothese. Andere sehen darin ein Grabmal, ein Mahnmal. Und dann gibt es die Legende. Erinnerst du dich an Bernhard von Clairvaux' Besuch? Manche spätere Erzählungen brachten den Turm mit seiner Predigt und den ihm zugeschriebenen Heilungen in Verbindung. Eine Art, einem Gebäude, dessen Funktion schon den nachfolgenden Generationen entging, einen berühmten Namen zu geben.
+
+Die Wahrheit? Sie schläft in diesen Steinen, und die sprechen nicht. Es ist eines der ältesten Geheimnisse von Sarlat, und es hält stand.
+
+Geh wieder hinunter zum Herzen der Stadt, dann hinauf zur rue des Consuls. Folge mir.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-5
+@@STITLE=Rue des Consuls
+Da bist du in der rue des Consuls. Lass dir Zeit, heb den Kopf, und lass die Fassaden vorbeiziehen. Hier lebten die Mächtigen von Sarlat: die Konsuln — also jene, die die Stadt regierten — und die reichen Kaufleute. Jedes Stadtpalais ist eine Seite Architekturgeschichte, aufgeschichtet auf der vorherigen.
+
+Bleib vor dem schönsten stehen, dem hôtel Plamon. Schau es von unten nach oben an, und du wirst die Jahrhunderte aufeinanderfolgen sehen. Im Erdgeschoss breite gotische Arkaden, die eines mittelalterlichen Ladens. Darüber feine Fenster mit mehreren Lichtern, gezackt wie Stickerei. Noch höher andere Fenster, aus einer anderen Zeit, einem anderen Geschmack.
+
+Das war das Haus der Selves de Plamon, einer Dynastie von Tuchhändlern. Tuch, Stoff, Gewebe: das war es, was das Vermögen einer Stadt wie Sarlat ausmachte, fern der großen Straßen, aber reich an ihren Märkten und ihren Handwerkern.
+
+Und all das — diese Arkaden, diese Balkone, dieser zerbrechliche Stein — kannst du intakt sehen, weil man sich weigerte, es abzureißen. Erinnere dich an 1962. Ohne dieses Gesetz wäre diese Straße wohl zu einer gewöhnlichen Allee geworden.
+
+Geh zurück zur place de la Liberté, bis zur großen, umgewandelten Kirche. Folge mir.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-6
+@@STITLE=Église Sainte-Marie
+Wir enden hier, vor dieser großen Kirche, die keine mehr ist. Die église Sainte-Marie. Schau dir diese beiden riesigen Metalltüren an, hoch wie Riesen, die sich gleitend öffnen und schließen. Sie haben nichts Mittelalterliches an sich — und das ist gewollt.
+
+Diese Kirche war nach der Revolution geschlossen, verkauft, halb verfallen worden. Man hatte ein Lagerhaus daraus gemacht, eine Post. Sie stürzte ein. Und Ende des zwanzigsten Jahrhunderts vertraute man ihre Wiedergeburt einem Sohn des Landes an, der zu einem der größten Architekten der Welt wurde: Jean Nouvel. Er ist hier in der Gegend aufgewachsen. Er kennt diesen Stein auswendig.
+
+Er hat nicht so getan als ob. Er hat kein Fake-Alt nachgebaut. Er behielt die alten Mauern, und schob etwas entschieden Modernes hinein: diese Stahltüren, und darin eine überdachte Markthalle, wo fast jeden Tag das Beste des Périgord verkauft wird.
+
+Und dort, im alten Glockenturm, hebt dich ein gläserner Aufzug über die Dächer. Steig hinauf, wenn du kannst. Von dort oben siehst du alles, was du gerade durchquert hast: das Meer der Lauzes-Dächer, die Türmchen, den honigfarbenen Stein, so weit das Auge reicht, ohne einen falschen Ton.
+
+Das ist das Geheimnis von Sarlat. Eine Stadt, die hätte sterben sollen, die ein Gesetz 1962 rettete, und die ein heutiger Architekt zu wecken wusste, ohne sie zu verraten. Die Vergangenheit ist hier nicht einbalsamiert. Sie lebt noch.
+
+Bleib eine Weile dort oben. Lass deinen Blick schweifen. Und wenn du wieder in die Gassen hinabsteigst, wirst du wissen, welches Glück du hast, sie intakt zu sehen. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Sarlat — La città medievale più intatta di Francia
+@@DESC=Storia e segreti — salvata da una legge del 1962, la città medievale più intatta di Francia.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-0
+@@STITLE=Place de la Liberté
+Fermati al centro di questa grande piazza, la place de la Liberté. Guardati intorno. Facciate di pietra dorata, ocra, quasi color miele sotto la luce. Tetti pesanti di lauzes, quelle tegole di pietra grigia impilate come scaglie. Torrette, porte ogivali, finestre a crociera. Sembra una scenografia cinematografica — e in effetti, qui sono stati girati decine di film. Ma non è una scenografia. Tutto è vero, tutto ha cinque, sei, sette secoli.
+
+Ecco cosa rende Sarlat unica, ed è la storia che ti racconterò lungo tutta questa passeggiata: questa città avrebbe dovuto scomparire. Come quasi tutte le altre.
+
+Perché verso la metà del ventesimo secolo, Sarlat non era altro che un grosso borgo assonnato del Périgord, dimenticato dai treni, dimenticato dal progresso. Le sue vecchie case cadevano in rovina. Si parlava di raderle al suolo, di allargare le strade, di costruire nuovo. In tutta la Francia, in quell'epoca, si sventravano i vecchi centri.
+
+E poi, nel 1962, una legge cambiò tutto. Una legge portata avanti da uno scrittore diventato ministro, André Malraux. Introduceva un'idea nuova: che si potesse proteggere non un monumento isolato, ma un'intera città. Un intero quartiere, con i suoi vicoli, i suoi cortili, le sue case ordinarie.
+
+Sarlat fu la prima. Il cantiere modello. La vetrina. Ed è per questo che oggi puoi camminare nella città medievale più intatta di Francia.
+
+Addentrati verso la cattedrale. Prendi il vicolo che scende, dritto davanti a te. Seguimi.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-1
+@@STITLE=Hôtel de Maleville
+A due passi dalla piazza, alza gli occhi su questa facciata più fiera delle altre. È l'hôtel de Maleville, chiamato anche hôtel de Vienne. Guarda come cambia linguaggio: qui il Medioevo è finito, qui si parla Rinascimento. Finestre regolari, lesene, e due medaglioni scolpiti — un uomo, una donna, due busti che ti scrutano da quasi cinquecento anni.
+
+Dietro questa pietra c'è una bella storia di ascesa sociale. Quella di Jean de Vienne, un figlio di Sarlat nato in una famiglia modesta, che sale, sale, fino a diventare tesoriere dei re di Francia. Ricco, potente, torna al paese natale e si concede ciò che di più moderno la città poteva offrire: riacquista diverse case medievali strette l'una contro l'altra, e le fonde in un unico palazzo all'italiana.
+
+Anche questo è Sarlat. Una piccola città, ma grandi famiglie. Giuristi, mercanti, uomini di Chiesa, abbastanza ricchi da costruire nella pietra ciò che valeva il loro nome.
+
+Continua a scendere verso la place du Peyrou, davanti alla grande cattedrale. Seguimi.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-2
+@@STITLE=Maison de La Boétie
+Eccoci sulla place du Peyrou. Volta le spalle un secondo alla cattedrale, e guarda questa casa — probabilmente la più celebre di Sarlat. La sua facciata rinascimentale, le sue grandi finestre a crociera, il suo timpano appuntito trafitto da abbaini: un gioiello. È la maison de La Boétie.
+
+È qui che nacque, nel 1530, Étienne de La Boétie. Ricorda questo nome. Ancora giovane, questo ragazzo scrive un testo che attraverserà i secoli: il Discorso sulla servitù volontaria. Una domanda semplicissima, e formidabile: perché milioni di uomini obbediscono a uno solo, un tiranno, quando basterebbe smettere di obbedire per essere liberi? Lo si legge ancora oggi.
+
+Ma di La Boétie ci si ricorda soprattutto per un'amicizia. Forse la più bella di tutta la letteratura francese. Quella che lo legò a Michel de Montaigne. Quando in seguito chiesero a Montaigne perché amasse così tanto quell'amico, rispose con la frase divenuta leggendaria: «Perché era lui, perché ero io.»
+
+La Boétie muore giovane, a trentadue anni, tra le braccia di Montaigne. La città non ha mai dimenticato il suo figlio prodigio.
+
+Costeggia la cattedrale sulla destra, verso un piccolo giardino in pendenza. Seguimi.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-3
+@@STITLE=Cathédrale Saint-Sacerdos
+Eccoti davanti a Saint-Sacerdos, la cattedrale. Sembra un po' disomogenea, ed è normale: è stata costruita, abbattuta, ricostruita nel corso di più di mille anni. Guarda la base del campanile, quelle grosse pietre rotonde: è romanico, ciò che c'è di più antico. Il resto, l'alta navata, è stato rifatto molto più tardi.
+
+Ma l'essenziale sta altrove. Questa chiesa è la culla di Sarlat. Prima della città, c'è stata l'abbazia. Monaci benedettini, insediati qui più di mille anni fa, in una valle appartata da tutto. Intorno al loro monastero, a poco a poco, sono arrivate le case, i mercanti, gli artigiani. La città è nata dalla preghiera.
+
+Sarlat divenne sede vescovile solo tardivamente, all'inizio del quattordicesimo secolo, per volontà di un papa — Giovanni XXII, quello di Avignone. Da lì l'abbaziale diventa cattedrale, e la piccola città di monaci sale di rango.
+
+Si racconta anche che un santo famoso, Bernardo di Chiaravalle, sia passato di qui predicando. Il suo passaggio ha lasciato una leggenda tenace, al punto che alcuni hanno voluto riconoscere la sua memoria nello strano monumento che ci aspetta proprio dietro.
+
+Aggira l'abside, sali i pochi gradini verso il giardino. Seguimi.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-4
+@@STITLE=Lanterne des morts
+Eccoci qui. Questa strana torre rotonda, coronata da un cono di pietra, come un razzo medievale posato nel giardino. La si chiama la lanterne des morts, la lanterna dei morti. Risale al dodicesimo secolo. E nessuno — davvero nessuno — sa con certezza a cosa servisse.
+
+Guardala bene. Una grande torre cilindrica, una piccola camera a volta alla base, e lassù, in cima, delle aperture. Da qui il nome: si pensa che di notte vi si accendesse una fiamma visibile da lontano, una luce per vegliare sui morti del cimitero che si estendeva proprio qui.
+
+Ma è solo un'ipotesi. Altri vi vedono un monumento funerario, un memoriale. E poi c'è la leggenda. Ti ricordi del passaggio di Bernardo di Chiaravalle? Alcuni racconti tardivi hanno associato la torre alla sua predicazione e alle guarigioni che gli venivano attribuite. Un modo di dare un nome celebre a un edificio la cui funzione già sfuggiva alle generazioni successive.
+
+La verità? Dorme in queste pietre, ed esse non parlano. È uno dei segreti più antichi di Sarlat, e tiene duro.
+
+Ridiscendi verso il cuore della città, risali verso la rue des Consuls. Seguimi.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-5
+@@STITLE=Rue des Consuls
+Eccoti in rue des Consuls. Prenditi il tuo tempo, alza la testa, e lascia sfilare le facciate. Qui vivevano i potenti di Sarlat: i consoli — cioè coloro che governavano la città — e i ricchi mercanti. Ogni palazzo è una pagina di storia dell'architettura, impilata sulla precedente.
+
+Fermati davanti al più bello, l'hôtel Plamon. Guardalo dal basso verso l'alto, e vedrai i secoli susseguirsi. Al piano terra, ampi archi gotici, quelli di una bottega medievale. Sopra, sottili finestre a bifore multiple, merlettate come un ricamo. Ancora più in alto, altre finestre, di un'altra epoca, di un altro gusto.
+
+Era la casa dei Selves de Plamon, una dinastia di mercanti di panni. Il panno, il tessuto, la stoffa: ecco cosa faceva la fortuna di una città come Sarlat, lontana dalle grandi vie ma ricca delle sue fiere e dei suoi artigiani.
+
+E tutto questo — questi archi, questi balconi, questa pietra fragile — puoi vederlo intatto perché ci si rifiutò di raderlo al suolo. Ricorda il 1962. Senza quella legge, questa strada sarebbe probabilmente diventata un viale qualunque.
+
+Torna sui tuoi passi verso la place de la Liberté, fino alla grande chiesa trasformata. Seguimi.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-6
+@@STITLE=Église Sainte-Marie
+Finiamo qui, davanti a questa grande chiesa che non lo è più. L'église Sainte-Marie. Guarda queste due porte di metallo, immense, alte come giganti, che si aprono e si chiudono scorrendo. Non hanno nulla di medievale — ed è voluto.
+
+Questa chiesa, dopo la Rivoluzione, era stata chiusa, venduta, mezza in rovina. Ne avevano fatto un magazzino, un ufficio postale. Stava crollando. E alla fine del ventesimo secolo, se ne affidò la rinascita a un figlio di questa terra diventato uno dei più grandi architetti del mondo: Jean Nouvel. Lui è cresciuto da queste parti. Conosce questa pietra a memoria.
+
+Non ha finto. Non ha rifatto del falso antico. Ha conservato i vecchi muri, e vi ha inserito qualcosa di risolutamente moderno: queste porte d'acciaio, e dentro, un mercato coperto dove si vende, quasi ogni giorno, il meglio del Périgord.
+
+E lì, nell'antico campanile, un ascensore di vetro ti solleva sopra i tetti. Sali, se puoi. Da lassù vedrai tutto ciò che hai appena attraversato: il mare dei tetti di lauzes, le torrette, la pietra dorata, a perdita d'occhio, senza una nota falsa.
+
+Ecco il segreto di Sarlat. Una città che sarebbe dovuta morire, che una legge ha salvato nel 1962, e che un architetto di oggi ha saputo risvegliare senza tradirla. Il passato, qui, non è imbalsamato. Vive ancora.
+
+Resta un momento lassù. Lascia vagare lo sguardo. E quando ridiscenderai nei vicoli, saprai la fortuna che hai di vederli intatti. A presto, amico mio.
+
+@@LANG=nl
+@@TITLE=Sarlat — De best bewaarde middeleeuwse stad van Frankrijk
+@@DESC=Geschiedenis & geheimen — gered door een wet uit 1962, de best bewaarde middeleeuwse stad van Frankrijk.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-0
+@@STITLE=Place de la Liberté
+Stop in het midden van dit grote plein, de place de la Liberté. Kijk om je heen. Gevels van gouden steen, oker, bijna honingkleurig in het licht. Zware lauzes-daken, die grijze stenen dakpannen, gestapeld als schubben. Torentjes, spitsboogdeuren, vensters met kruisstijlen. Het lijkt een filmdecor — en inderdaad, hier zijn tientallen films opgenomen. Maar het is geen decor. Alles is echt, alles is vijf, zes, zeven eeuwen oud.
+
+Dat maakt Sarlat uniek, en dat is het verhaal dat ik je tijdens deze hele wandeling ga vertellen: deze stad had moeten verdwijnen. Zoals bijna alle andere.
+
+Want halverwege de twintigste eeuw was Sarlat niets meer dan een groot, slapend marktstadje in de Périgord, vergeten door de treinen, vergeten door de vooruitgang. De oude huizen vervielen tot ruïnes. Men sprak erover ze met de grond gelijk te maken, de straten te verbreden, nieuw te bouwen. Overal in Frankrijk werden in die tijd de oude stadskernen opengereten.
+
+En toen, in 1962, veranderde een wet alles. Een wet gedragen door een schrijver die minister was geworden, André Malraux. Ze introduceerde een nieuw idee: dat je niet alleen een geïsoleerd monument kon beschermen, maar een hele stad. Een hele wijk, met haar steegjes, haar binnenplaatsen, haar gewone huizen.
+
+Sarlat was de eerste. Het modelproject. De etalage. En daarom kun je vandaag door de best bewaarde middeleeuwse stad van Frankrijk lopen.
+
+Ga richting de kathedraal. Neem het steegje dat naar beneden loopt, rechtdoor. Volg mij.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-1
+@@STITLE=Hôtel de Maleville
+Een paar passen van het plein, kijk omhoog naar deze gevel, trotser dan de andere. Dit is het hôtel de Maleville, ook wel hôtel de Vienne genoemd. Kijk hoe ze van taal verandert: hier is het geen Middeleeuwen meer, hier spreekt men Renaissance. Regelmatige ramen, pilasters, en twee gebeeldhouwde medaillons — een man, een vrouw, twee bustes die je al bijna vijfhonderd jaar aankijken.
+
+Achter deze steen schuilt een mooi verhaal van maatschappelijke stijging. Dat van Jean de Vienne, een kind van Sarlat, geboren in een bescheiden familie, die klimt en klimt, tot hij schatbewaarder van de koningen van Frankrijk wordt. Rijk, machtig, keert hij terug naar zijn geboortestreek en gunt zich het modernste wat de stad te bieden had: hij koopt verschillende tegen elkaar aan gedrukte middeleeuwse huizen op, en smelt ze samen tot één enkel paleis in Italiaanse stijl.
+
+Dat is ook Sarlat. Een kleine stad, maar grote families. Juristen, kooplieden, kerkelijke figuren, rijk genoeg om in steen te bouwen wat hun naam waard was.
+
+Ga verder naar beneden naar de place du Peyrou, voor de grote kathedraal. Volg mij.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-2
+@@STITLE=Maison de La Boétie
+Hier zijn we op de place du Peyrou. Draai je even om, met je rug naar de kathedraal, en kijk naar dit huis — waarschijnlijk het beroemdste van Sarlat. Zijn renaissancegevel, zijn grote vensters met kruisstijlen, zijn puntige geveltop doorboord met dakkapellen: een juweel. Dit is de maison de La Boétie.
+
+Hier werd in 1530 Étienne de La Boétie geboren. Onthoud die naam. Nog jong schrijft deze jongen een tekst die de eeuwen zal doorstaan: het Vertoog over de vrijwillige slavernij. Een heel eenvoudige, en formidabele vraag: waarom gehoorzamen miljoenen mensen aan één man, een tiran, terwijl het zou volstaan te stoppen met gehoorzamen om vrij te zijn? Men leest dit vandaag nog steeds.
+
+Maar aan La Boétie herinnert men zich vooral vanwege een vriendschap. Misschien wel de mooiste uit de hele Franse literatuur. Die welke hem verbond met Michel de Montaigne. Toen Montaigne later werd gevraagd waarom hij zoveel van deze vriend hield, gaf hij het antwoord dat legendarisch is geworden: "Omdat hij het was, omdat ik het was."
+
+La Boétie sterft jong, op tweeëndertigjarige leeftijd, in de armen van Montaigne. De stad heeft haar wonderkind nooit vergeten.
+
+Volg de kathedraal naar rechts, naar een kleine hellende tuin. Volg mij.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-3
+@@STITLE=Cathédrale Saint-Sacerdos
+Daar sta je voor Saint-Sacerdos, de kathedraal. Ze ziet er wat ongelijksoortig uit, en dat is normaal: ze werd gebouwd, afgebroken, herbouwd, over meer dan duizend jaar. Kijk naar de onderkant van de klokkentoren, die grote ronde stenen: dat is Romaans, het oudste wat er is. De rest, het hoge schip, werd veel later herbouwd.
+
+Maar het wezenlijke ligt elders. Deze kerk is de bakermat van Sarlat. Vóór de stad was er de abdij. Benedictijner monniken, hier meer dan duizend jaar geleden gevestigd, in een vallei afgezonderd van alles. Rond hun klooster kwamen, beetje bij beetje, de huizen, de kooplieden, de ambachtslieden. De stad is geboren uit gebed.
+
+Sarlat werd pas laat een bisschopszetel, aan het begin van de veertiende eeuw, door de wil van een paus — Johannes XXII, die van Avignon. Vanaf dat moment wordt de abdijkerk een kathedraal, en klimt de kleine monnikenstad in aanzien.
+
+Er wordt ook verteld dat een beroemde heilige, Bernardus van Clairvaux, hier voorbijkwam om te prediken. Zijn doortocht liet een hardnekkige legende na, zozeer zelfs dat sommigen zijn nagedachtenis wilden herkennen in het vreemde monument dat vlak achter ons op ons wacht.
+
+Loop om het koor heen, klim de paar treden naar de tuin op. Volg mij.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-4
+@@STITLE=Lanterne des morts
+Daar zijn we dan. Deze vreemde ronde toren, gedekt met een stenen kegel, als een middeleeuwse raket, neergezet in de tuin. Men noemt haar de lanterne des morts, de lantaarn van de doden. Ze dateert uit de twaalfde eeuw. En niemand — echt niemand — weet met zekerheid waarvoor ze diende.
+
+Bekijk haar goed. Een grote cilindervormige toren, een klein gewelfd vertrek aan de voet, en daarboven, helemaal boven, openingen. Vandaar de naam: men denkt dat er 's nachts een van verre zichtbare vlam werd aangestoken, een licht om te waken over de doden van het kerkhof dat zich precies hier uitstrekte.
+
+Maar het is slechts een hypothese. Anderen zien er een grafmonument in, een gedenkteken. En dan is er de legende. Herinner je je de doortocht van Bernardus van Clairvaux nog? Sommige latere verhalen brachten de toren in verband met zijn prediking en de genezingen die hem werden toegeschreven. Een manier om een beroemde naam te geven aan een gebouw waarvan de functie al aan de volgende generaties ontsnapte.
+
+De waarheid? Ze slaapt in deze stenen, en die spreken niet. Het is een van de oudste geheimen van Sarlat, en het houdt stand.
+
+Daal weer af naar het hart van de stad, klim naar de rue des Consuls. Volg mij.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-5
+@@STITLE=Rue des Consuls
+Daar sta je in de rue des Consuls. Neem je tijd, kijk omhoog, en laat de gevels voorbijtrekken. Hier woonden de machtigen van Sarlat: de consuls — dat wil zeggen zij die de stad bestuurden — en de rijke kooplieden. Elk herenhuis is een bladzijde architectuurgeschiedenis, gestapeld op de vorige.
+
+Stop voor het mooiste, het hôtel Plamon. Bekijk het van onder naar boven, en je zult de eeuwen elkaar zien opvolgen. Op de begane grond, brede gotische arcades, die van een middeleeuwse winkel. Erboven, fijne vensters met meerdere lichten, kanten als borduurwerk. Nog hoger, andere vensters, uit een ander tijdperk, een andere smaak.
+
+Dit was het huis van de Selves de Plamon, een dynastie van lakenhandelaren. Laken, stof, textiel: dat maakte de rijkdom uit van een stad als Sarlat, ver van de grote wegen maar rijk aan haar jaarmarkten en haar ambachtslieden.
+
+En dit alles — deze arcades, deze balkons, deze breekbare steen — kun je intact zien omdat men weigerde het met de grond gelijk te maken. Denk aan 1962. Zonder die wet zou deze straat waarschijnlijk een gewone laan zijn geworden.
+
+Ga terug naar de place de la Liberté, tot aan de grote, getransformeerde kerk. Volg mij.
+
+@@SCENE=seed-100-sarlat-perigord-medieval-scene-6
+@@STITLE=Église Sainte-Marie
+We eindigen hier, voor deze grote kerk die er geen meer is. De église Sainte-Marie. Kijk naar deze twee metalen deuren, immens, hoog als reuzen, die glijdend open- en dichtgaan. Ze hebben niets middeleeuws — en dat is bewust zo.
+
+Deze kerk was na de Revolutie gesloten, verkocht, half in puin. Er werd een pakhuis van gemaakt, een postkantoor. Ze viel uit elkaar. En aan het eind van de twintigste eeuw werd haar wedergeboorte toevertrouwd aan een zoon van deze streek die een van de grootste architecten ter wereld werd: Jean Nouvel. Hij is hier in de buurt opgegroeid. Hij kent deze steen van buiten.
+
+Hij deed niet alsof. Hij bouwde geen nep-oud na. Hij behield de oude muren, en schoof er iets resoluut moderns in: deze stalen deuren, en daarbinnen, een overdekte markt waar bijna elke dag het beste van de Périgord wordt verkocht.
+
+En daar, in de oude klokkentoren, tilt een glazen lift je boven de daken uit. Ga naar boven, als je kunt. Van daarboven zie je alles wat je zojuist doorkruist hebt: de zee van lauzes-daken, de torentjes, de honingkleurige steen, zover het oog reikt, zonder één valse noot.
+
+Dat is het geheim van Sarlat. Een stad die had moeten sterven, die een wet in 1962 redde, en die een hedendaagse architect wist te wekken zonder haar te verraden. Het verleden is hier niet gebalsemd. Het leeft nog.
+
+Blijf nog even daarboven. Laat je blik dwalen. En wanneer je weer afdaalt naar de steegjes, zul je weten hoeveel geluk je hebt om ze intact te zien. Tot snel, vriend.

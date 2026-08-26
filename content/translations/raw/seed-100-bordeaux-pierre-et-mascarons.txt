@@ -1,0 +1,424 @@
+@@LANG=en
+@@TITLE=Bordeaux — Golden Stone and Mascarons
+@@DESC=Art — learning to read the eighteenth century on the golden façades: mascarons, wrought iron, soft stone and the city's painters.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-0
+@@STITLE=Cours de l'Intendance
+Look up. No, higher, above the shop windows. There, on that pale stone façade, a face is watching you: carved into the stone, above a window, the head of a man, or a woman, or a god. It is called a mascaron. And it is not alone. In Bordeaux there are, it is said, several thousand — three thousand, people murmur. Hundreds of stone faces that, since the eighteenth century, have watched over passers-by without their ever suspecting it.
+
+Here is our walk: learning to see them. Reading these golden façades the way you read a book, and understanding this Age of Enlightenment that redrew Bordeaux in a single stroke. The town was grey, cramped, medieval; within a few decades it remade itself in pale stone, aligned, ornamented. And on every building, like a signature, these carved heads.
+
+We are on the cours de l'Intendance, one of the town's most elegant streets. One detail, before we set off: at number 57 of this street lived, old and deaf, one of the greatest painters of all time. Francisco de Goya, the Spanish master, ended his days in Bordeaux, in exile, and died here, in 1828. The town of golden façades was his last studio.
+
+So keep your eyes open. Throughout this walk, do not just look at the shops any more: look above. The faces are waiting for you. Take the street heading north, to a small square where an unusual church stands.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-1
+@@STITLE=Église Notre-Dame
+On this quiet square stands the église Notre-Dame, and it clashes with everything Bordeaux usually loves. Here, no plain straight lines: a baroque façade, undulating, laden with columns, curves, garlands of stone. It was built around 1700 by the Dominicans, and it is almost a page of Italy set down in the middle of Bordeaux.
+
+Come closer and look at the stonework. Everything is carved, worked, set in motion: the façade seems to breathe. That is because Bordeaux stone, this soft, golden limestone, cuts almost like butter. The sculptor carves into it whatever he wants. That is the secret behind all these ornaments: a docile stone, that yields to the chisel without resisting.
+
+To the side, glance into the cour Mably: it was the former convent of these same monks, a cloister of calm in the middle of the town.
+
+Remember this lesson of soft stone: it explains everything else, and above all our mascarons. Now let's head back north, towards a great open square bearing the name of the man who invented the Bordeaux you are looking at.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-2
+@@STITLE=Place Tourny
+Here we are on the place Tourny. In the centre, a statue: a man in a wig and eighteenth-century dress. This is him, the marquis de Tourny, and without him this walk would not exist.
+
+Tourny was intendant of Bordeaux in the middle of the eighteenth century — the king's envoy, given immense powers. He finds a town stifled within its old ramparts, dark and closed in on itself. He dreams of it otherwise: wide, airy, worthy of a great capital. So he cuts avenues through it, lays out squares, opens the town onto its river. Those fine shaded avenues leading away from here, that is him.
+
+But here is his strongest idea. He imposes rules on the façades: same heights, same lines, same golden stone. Each owner builds their own house, but all must be in harmony. The result: not isolated monuments, but whole streets forming a single setting. Bordeaux's beauty is not in one single masterpiece; it is in the whole, in the harmony of a thousand façades.
+
+Keep this name in mind: Tourny, the stage director of the town. Let's head now south-west, towards a mansion where the stone faces can finally be seen up close.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-3
+@@STITLE=Hôtel de Lalande
+Here we are on the rue Bouffard, in front of the hôtel de Lalande, a mansion built at the end of the eighteenth century for a wealthy magistrate. Today it houses the museum of decorative arts and design. But stay outside a moment, and look at the façade: this is where the vocabulary of mascarons is best read.
+
+For these faces have meaning. Some are gods: Bacchus crowned with foliage, a bearded Neptune for the river and the sea. Others are smiling women, grotesques poking out their tongues, lion's muzzles. It was once believed they protected the house, that they warded off bad luck. The wealthy owner, for his part, was mainly showing off his taste and his fortune: my mascaron is finer than yours.
+
+Now lower your eyes to the balconies. These wrought-iron railings, all in scrolls and curves, are the other treasure of Bordeaux's façades. The ironworker worked the metal the way the sculptor worked the stone: lace, but in hard metal.
+
+Stone and iron, faces and scrolls: you now hold the grammar. Let's go down to the neighbouring garden, where Bordeaux keeps its painters.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-4
+@@STITLE=Musée des Beaux-Arts
+Behind this peaceful garden, in two stone wings, hides the musée des Beaux-Arts. I am not going to list its paintings for you. I just want to tell you one thing few people know: Bordeaux, a town of merchants, gave France some very great painters.
+
+Three names, born here. Rosa Bonheur, at the start of the nineteenth century, one of the first women to live off her painting, famous the world over for her animals. Odilon Redon, the dreamer, the painter of strange flowers and visions, a magician of colour. And Albert Marquet, later, the man who painted water and quaysides better than anyone.
+
+Amusing, isn't it? A town thought to be entirely turned towards trade brought forth such eyes. As though the beauty of the façades, breathed in from childhood, ended up shaping the gaze of the town's children.
+
+Leave the garden to the south. We are going to leave the great squares for a more secretive street, where the powerful of the town once lived.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-5
+@@STITLE=Rue du Mirail
+Here we are on the rue du Mirail, a narrow street a little off the beaten track. Do not trust its discretion: behind these tall gateways hide some of the finest mansions in Bordeaux.
+
+Here lived the parlementaires — the magistrates of that court of justice which made the law across the region. They were the richest and most powerful men in the town, even before the great merchants of the port. And like all powerful people, they wanted a fine setting. So they built themselves residences with courtyards and gardens, hidden from the street.
+
+That is the whole secret of Bordeaux's building art: wealth is not put on display in the street, it is hidden behind. A plain façade, a closed porch — and, once through the door, a courtyard of honour, a majestic staircase, a garden. If you come across a gate left ajar, take a look, discreetly. You will discover another town, an inner one, invisible to passers-by.
+
+Let's carry on. It is time to understand where this golden stone comes from, and what it has watched pass by. But first, a very simple street, for one last lesson in looking.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-6
+@@STITLE=Rue du Loup
+Take the rue du Loup, one of the oldest streets in Bordeaux. It has nothing grand about it: shopkeepers' houses, small tight-packed façades. And yet, look up — again. Here too, mascarons. Here too, wrought-iron balconies. On ordinary houses, not only on palaces.
+
+That is what touches me most about this town. The mascaron was not reserved for the wealthy. The shopkeeper, the craftsman, wanted their own stone face above the door too. All of Bordeaux took up carving, from the grandest mansion to the humblest stall.
+
+And behind every face there is a hand: that of the stonecutter, a worker whose name is almost never known. There were many of them in Bordeaux, in the eighteenth century, chiselling these heads one after another, each a little different. Anonymous artists, whose work still watches you today, two and a half centuries later.
+
+Salute them as you go. Then let's go down south, towards the musée d'Aquitaine, to touch the oldest stone in the town.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-7
+@@STITLE=Musée d'Aquitaine
+In front of you, the musée d'Aquitaine, which tells two thousand years of the town's history. I am not sending you there for the history, but for the stone. For under this roof, Bordeaux keeps its oldest sculptures: Roman gods, tombs, stone saints torn from old churches.
+
+Look at them, and compare them with what we have been seeing outside since this morning. It is the same material — this pale local limestone — worked since Antiquity. The Romans were already carving faces in it; fifteen centuries later, the stonecutters of the eighteenth century did the same on the façades. Our mascarons have very, very old ancestors.
+
+And this stone, you know it now: soft, golden, easy to chisel. Its flaw is that it blackens with time, eaten away by grime and pollution. For a long time Bordeaux was a grey town, almost black with soot. Then it was cleaned, façade by façade, and the stone found its honey colour again — the one you see today.
+
+A few more steps south, to a great square. There the end of our story awaits — and a very modern surprise.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-8
+@@STITLE=Place de la Victoire
+Here we are on the place de la Victoire, at the end of our path. First look at the fine stone gate: the porte d'Aquitaine, an eighteenth-century triumphal arch, all in golden stone, plain and proud. Pure Tourny — a town adorning itself with majestic gates, the way a capital gives itself the airs of an empire.
+
+And now turn towards the centre of the square. There stands something quite different: a marble obelisk, modern, planted some twenty years ago by an artist, Ivan Theimer. Look at its base: bronze tortoises, enormous, calm, that seem to carry the monument on their backs. A mischievous nod to the town and its university.
+
+Do you see what is happening here? On one side, the golden stone of the eighteenth century and its solemn faces. On the other, today's bronze and its tortoises. Two centuries answering one another on the same square. For Bordeaux has never stopped carving, adorning itself, placing figures in public space. Yesterday's mascarons, today's tortoises: the same gesture, the same wish to leave the town a face.
+
+So here is what I leave you with. From now on, wherever you go in Bordeaux, you will no longer walk with your head down. You will look up, and three thousand stone faces will be watching you. You will know how to read them. And the golden town will, all at once, speak to you. Thank you for looking up with me. See you soon, in the streets of Bordeaux.
+
+@@LANG=es
+@@TITLE=Burdeos — Piedra dorada y mascarones
+@@DESC=Arte: aprender a leer el siglo XVIII en las fachadas doradas: mascarones, hierro forjado, piedra blanda y los pintores de la ciudad.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-0
+@@STITLE=Cours de l'Intendance
+Levanta la vista. No, más arriba, por encima de los escaparates. Ahí, en esa fachada de piedra clara, un rostro te observa: esculpida en la piedra, sobre una ventana, una cabeza de hombre, o de mujer, o de dios. Se le llama mascarón. Y no está solo. En Burdeos se cuentan, según dicen, varios miles —tres mil, se murmura. Cientos de rostros de piedra que, desde el siglo XVIII, velan por los transeúntes sin que estos lo sospechen.
+
+Este es nuestro paseo: aprender a verlos. Leer estas fachadas doradas como se lee un libro, y comprender ese Siglo de las Luces que rediseñó Burdeos de un solo trazo. La ciudad era gris, apretada, medieval; en pocas décadas se rehízo en piedra clara, alineada, ornamentada. Y en cada edificio, como una firma, estas cabezas esculpidas.
+
+Estamos en el cours de l'Intendance, una de las arterias más elegantes de la ciudad. Un detalle, antes de partir: en el número 57 de esta calle vivió, viejo y sordo, uno de los mayores pintores de todos los tiempos. Francisco de Goya, el maestro español, terminó sus días en Burdeos, en el exilio, y murió aquí, en 1828. La ciudad de las fachadas doradas fue su último taller.
+
+Así que abre bien los ojos. Durante todo este paseo, no mires solo los escaparates: mira hacia arriba. Los rostros te esperan. Toma la calle hacia el norte, hasta una pequeña plaza donde se alza una iglesia distinta a las demás.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-1
+@@STITLE=Église Notre-Dame
+En esta plaza discreta se alza la église Notre-Dame, y contrasta con todo lo que Burdeos suele apreciar. Aquí no hay líneas sobrias y rectas: una fachada barroca, ondulante, cargada de columnas, curvas, guirnaldas de piedra. Fue construida hacia 1700 por los dominicos, y es casi una página de Italia posada en pleno Burdeos.
+
+Acércate y mira el trabajo de la piedra. Todo está esculpido, labrado, puesto en movimiento: la fachada parece respirar. Es que la piedra de Burdeos, esa caliza blanda y dorada, se talla casi como mantequilla. El escultor excava en ella lo que quiere. Ese es el secreto de todos estos ornamentos: una piedra dócil, que acepta el cincel sin resistirse.
+
+A un lado, echa un vistazo a la cour Mably: era el antiguo convento de esos mismos monjes, un claustro de calma en el corazón de la ciudad.
+
+Retén esta lección de piedra blanda: explica todo lo demás, y sobre todo nuestros mascarones. Ahora, subamos hacia el norte, hacia una gran plaza abierta que lleva el nombre del hombre que inventó el Burdeos que estás contemplando.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-2
+@@STITLE=Place Tourny
+Aquí estamos, en la place Tourny. En el centro, una estatua: un hombre con peluca y traje del siglo XVIII. Es él, el marqués de Tourny, y sin él, este paseo no existiría.
+
+Tourny fue intendente de Burdeos a mediados del siglo XVIII —el enviado del rey, dotado de poderes inmensos. Encuentra una ciudad asfixiada en sus viejas murallas, oscura y replegada sobre sí misma. La sueña de otra manera: amplia, aireada, digna de una gran capital. Así que abre avenidas, traza plazas, abre la ciudad a su río. Esas hermosas alamedas sombreadas que salen de aquí, son obra suya.
+
+Pero he aquí su idea más fuerte. Impone reglas a las fachadas: mismas alturas, mismas líneas, misma piedra dorada. Cada propietario construye su casa, pero todas deben armonizar. Resultado: no monumentos aislados, sino calles enteras que forman un único decorado. La belleza de Burdeos no está en una obra maestra única; está en el conjunto, en la armonía de mil fachadas.
+
+Guarda este nombre en la memoria: Tourny, el director de escena de la ciudad. Vayamos ahora hacia el suroeste, hacia un palacete donde los rostros de piedra por fin se dejan ver de cerca.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-3
+@@STITLE=Hôtel de Lalande
+Aquí estamos, en la rue Bouffard, ante el hôtel de Lalande, un palacete construido a finales del siglo XVIII para un rico magistrado. Hoy alberga el museo de Artes Decorativas y Diseño. Pero quédate fuera un instante, y mira la fachada: aquí es donde mejor se lee el vocabulario de los mascarones.
+
+Porque estos rostros tienen un sentido. Algunos son dioses: Baco coronado de follaje, Neptuno barbudo para el río y el mar. Otros son mujeres sonrientes, grotescos que sacan la lengua, hocicos de león. Antaño se creía que protegían la casa, que ahuyentaban la mala suerte. El rico propietario, por su parte, mostraba sobre todo su gusto y su fortuna: mi mascarón es más bello que el tuyo.
+
+Baja ahora la vista hacia los balcones. Esas barandillas de hierro forjado, todas en volutas y curvas, son el otro tesoro de las fachadas bordelesas. El herrero trabajaba el metal como el escultor trabajaba la piedra: encaje, pero en material duro.
+
+Piedra y hierro, rostros y volutas: ya tienes la gramática. Bajemos hacia el jardín vecino, donde Burdeos guarda a sus pintores.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-4
+@@STITLE=Musée des Beaux-Arts
+Tras este jardín apacible, en dos alas de piedra, se esconde el musée des Beaux-Arts. No voy a hacerte la lista de sus cuadros. Solo quiero decirte algo que poca gente sabe: Burdeos, ciudad de comerciantes, dio a Francia grandísimos pintores.
+
+Tres nombres, nacidos aquí. Rosa Bonheur, a comienzos del siglo XIX, una de las primeras mujeres en vivir de su pintura, célebre en todo el mundo por sus animales. Odilon Redon, el soñador, el pintor de flores extrañas y visiones, un mago del color. Y Albert Marquet, más tarde, el hombre que pintó el agua y los muelles mejor que nadie.
+
+Curioso, ¿no? Una ciudad que se cree del todo volcada hacia el comercio hizo florecer semejantes miradas. Como si la belleza de las fachadas, respirada desde la infancia, acabara formando la mirada de los hijos del país.
+
+Sal del jardín por el sur. Vamos a dejar las grandes plazas por una calle más secreta, donde antaño vivían los poderosos de la ciudad.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-5
+@@STITLE=Rue du Mirail
+Aquí estamos, en la rue du Mirail, una calle estrecha y algo apartada. No te fíes de su discreción: tras estos altos portales se esconden algunos de los palacetes más bellos de Burdeos.
+
+Aquí vivían los parlamentarios —los magistrados de aquel tribunal de justicia que dictaba la ley en la región. Eran los hombres más ricos y más poderosos de la ciudad, incluso antes que los grandes negociantes del puerto. Y como todos los poderosos, querían un buen marco. Así que se construyeron residencias con patio y jardín, ocultas de la calle.
+
+Ese es todo el secreto del arte de construir bordelés: la riqueza no se exhibe en la calle, se oculta detrás. Una fachada sobria, un porche cerrado —y, una vez cruzada la puerta, un patio de honor, una escalinata majestuosa, un jardín. Si te cruzas con un portal entreabierto, échale un vistazo, con discreción. Descubrirás otra ciudad, interior, invisible para los transeúntes.
+
+Sigamos. Es hora de comprender de dónde viene esta piedra dorada, y qué ha visto pasar. Pero antes, una calle muy sencilla, para una última lección de mirada.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-6
+@@STITLE=Rue du Loup
+Toma la rue du Loup, una de las calles más antiguas de Burdeos. No tiene nada de grandioso: casas de comerciantes, fachadas pequeñas y apretadas. Y sin embargo, levanta la vista —otra vez. Aquí también hay mascarones. Aquí también, balcones de hierro forjado. En casas corrientes, no solo en palacios.
+
+Es lo que más me conmueve de esta ciudad. El mascarón no estaba reservado a los ricos. El tendero, el artesano querían también su rostro de piedra sobre la puerta. Todo Burdeos se puso a esculpir, desde el mayor palacete hasta el más modesto puesto.
+
+Y detrás de cada rostro hay una mano: la del picapedrero, un obrero cuyo nombre casi nunca se conoce. Eran numerosos en el Burdeos del siglo XVIII, cincelando estas cabezas una tras otra, cada una un poco distinta. Artistas anónimos, cuya obra todavía hoy te observa, dos siglos y medio después.
+
+Salúdalos al pasar. Luego bajemos hacia el sur, hacia el musée d'Aquitaine, para tocar la piedra más antigua de la ciudad.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-7
+@@STITLE=Musée d'Aquitaine
+Ante ti, el musée d'Aquitaine, que cuenta dos mil años de historia de la ciudad. No te envío ahí por la historia, sino por la piedra. Porque bajo este techo, Burdeos guarda sus esculturas más antiguas: dioses romanos, tumbas, santos de piedra arrancados de las viejas iglesias.
+
+Míralos, y compáralos con lo que hemos visto fuera desde esta mañana. Es la misma materia —esa caliza clara del país— trabajada desde la Antigüedad. Los romanos ya esculpían rostros en ella; quince siglos después, los canteros del XVIII hacían lo mismo en las fachadas. Nuestros mascarones tienen antepasados muy, muy antiguos.
+
+Y esa piedra, ya la conoces: blanda, dorada, fácil de cincelar. Su defecto es que se ennegrece con el tiempo, corroída por la mugre y la contaminación. Durante mucho tiempo, Burdeos fue una ciudad gris, casi negra de hollín. Luego se la limpió, fachada tras fachada, y la piedra recuperó su color de miel —el que ves hoy.
+
+Unos pasos más hacia el sur, hasta una gran plaza. Ahí nos espera el final de nuestra historia —y una sorpresa muy moderna.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-8
+@@STITLE=Place de la Victoire
+Aquí estamos, en la place de la Victoire, al final de nuestro camino. Mira primero la hermosa puerta de piedra: la porte d'Aquitaine, un arco de triunfo del siglo XVIII, todo en piedra dorada, sobrio y orgulloso. Es puro Tourny —la ciudad que se adorna con puertas majestuosas, como una capital se da aires de imperio.
+
+Y ahora, vuélvete hacia el centro de la plaza. Ahí se alza algo completamente distinto: un obelisco de mármol, moderno, plantado hace unos veinte años por un artista, Ivan Theimer. Mira a su pie: tortugas de bronce, enormes, tranquilas, que parecen llevar el monumento sobre su espalda. Un guiño travieso a la ciudad y a su universidad.
+
+¿Ves lo que se juega aquí? Por un lado, la piedra dorada del siglo XVIII y sus rostros graves. Por otro, el bronce de hoy y sus tortugas. Dos siglos se responden en la misma plaza. Porque Burdeos nunca ha dejado de esculpir, de adornarse, de colocar figuras en el espacio público. Los mascarones de ayer, las tortugas de hoy: el mismo gesto, el mismo deseo de dejar un rostro a la ciudad.
+
+Así que esto es lo que te dejo. De ahora en adelante, vayas donde vayas en Burdeos, ya no caminarás con la cabeza baja. Levantarás la vista, y tres mil rostros de piedra te observarán. Sabrás leerlos. Y la ciudad dorada, de golpe, te hablará. Gracias por levantar la vista conmigo. Hasta pronto, en las calles de Burdeos.
+
+@@LANG=de
+@@TITLE=Bordeaux — Goldener Stein und Mascarons
+@@DESC=Kunst — das 18. Jahrhundert auf den goldenen Fassaden lesen lernen: Mascarons, Schmiedeeisen, weicher Stein und die Maler der Stadt.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-0
+@@STITLE=Cours de l'Intendance
+Heb den Blick. Nein, noch höher, über die Schaufenster hinaus. Dort, an dieser hellen Steinfassade, sieht dich ein Gesicht an: in den Stein gemeißelt, über einem Fenster, der Kopf eines Mannes, einer Frau oder eines Gottes. Man nennt das ein Mascaron. Und es ist nicht allein. In Bordeaux zählt man, so heißt es, mehrere Tausend davon — dreitausend, munkelt man. Hunderte steinerne Gesichter, die seit dem 18. Jahrhundert über die Passanten wachen, ohne dass diese es ahnen.
+
+Das ist unser Spaziergang: sie sehen zu lernen. Diese goldenen Fassaden lesen wie ein Buch, und jenes Jahrhundert der Aufklärung verstehen, das Bordeaux mit einem einzigen Zug neu gezeichnet hat. Die Stadt war grau, eng, mittelalterlich; innerhalb weniger Jahrzehnte erneuerte sie sich in hellem Stein, ausgerichtet, verziert. Und an jedem Gebäude, wie eine Unterschrift, diese gemeißelten Köpfe.
+
+Wir stehen auf dem cours de l'Intendance, einer der elegantesten Straßen der Stadt. Ein Detail, bevor wir aufbrechen: In der Nummer 57 dieser Straße lebte, alt und taub, einer der größten Maler aller Zeiten. Francisco de Goya, der spanische Meister, beendete seine Tage in Bordeaux, im Exil, und starb hier, 1828. Die Stadt der goldenen Fassaden war sein letztes Atelier.
+
+Halt also die Augen offen. Während dieses ganzen Spaziergangs sieh dir nicht mehr nur die Läden an: sieh nach oben. Die Gesichter warten auf dich. Nimm die Straße nach Norden, bis zu einem kleinen Platz, wo eine ungewöhnliche Kirche steht.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-1
+@@STITLE=Église Notre-Dame
+Auf diesem stillen Platz steht die église Notre-Dame, und sie steht im Widerspruch zu allem, was Bordeaux normalerweise liebt. Hier keine schlichten, geraden Linien: eine barocke, wellenförmige Fassade, überladen mit Säulen, Kurven, Girlanden aus Stein. Sie wurde um 1700 von den Dominikanern erbaut, und sie ist fast eine Seite Italiens, mitten in Bordeaux abgelegt.
+
+Tritt näher und betrachte die Steinmetzarbeit. Alles ist geschnitzt, durchgearbeitet, in Bewegung versetzt: Die Fassade scheint zu atmen. Das liegt daran, dass der Stein von Bordeaux, dieser weiche, goldene Kalkstein, sich fast wie Butter schneiden lässt. Der Bildhauer meißelt hinein, was er will. Das ist das Geheimnis all dieses Schmucks: ein fügsamer Stein, der sich dem Meißel widerstandslos ergibt.
+
+Wirf seitlich einen Blick in die cour Mably: Es war das frühere Kloster derselben Mönche, ein Kreuzgang der Ruhe im Herzen der Stadt.
+
+Behalte diese Lehre vom weichen Stein: Sie erklärt alles Übrige, und vor allem unsere Mascarons. Gehen wir nun wieder nach Norden, zu einem großen, offenen Platz, der den Namen des Mannes trägt, der das Bordeaux erfunden hat, das du gerade betrachtest.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-2
+@@STITLE=Place Tourny
+Da sind wir, auf der place Tourny. In der Mitte eine Statue: ein Mann mit Perücke und Kleidung des 18. Jahrhunderts. Das ist er, der Marquis de Tourny, und ohne ihn gäbe es diesen Spaziergang nicht.
+
+Tourny war Mitte des 18. Jahrhunderts Intendant von Bordeaux — der Gesandte des Königs, mit ungeheuren Machtbefugnissen ausgestattet. Er findet eine Stadt vor, erstickt in ihren alten Wällen, dunkel und in sich gekehrt. Er träumt sie anders: weit, luftig, einer großen Hauptstadt würdig. Also durchbricht er Alleen, zieht Plätze, öffnet die Stadt zu ihrem Fluss. Diese schönen schattigen Alleen, die hier ausgehen, das ist sein Werk.
+
+Aber hier ist seine stärkste Idee. Er zwingt den Fassaden Regeln auf: gleiche Höhen, gleiche Linien, derselbe goldene Stein. Jeder Besitzer baut sein eigenes Haus, aber alle müssen miteinander harmonieren. Das Ergebnis: keine isolierten Denkmäler, sondern ganze Straßen, die eine einzige Kulisse bilden. Die Schönheit von Bordeaux liegt nicht in einem einzigen Meisterwerk; sie liegt im Ganzen, im Einklang von tausend Fassaden.
+
+Behalte diesen Namen im Kopf: Tourny, der Regisseur der Stadt. Gehen wir jetzt nach Südwesten, zu einem Stadtpalais, wo sich die steinernen Gesichter endlich aus der Nähe zeigen.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-3
+@@STITLE=Hôtel de Lalande
+Da sind wir, in der rue Bouffard, vor dem hôtel de Lalande, einem Stadtpalais, Ende des 18. Jahrhunderts für einen wohlhabenden Richter erbaut. Heute beherbergt es das Museum für Kunstgewerbe und Design. Doch bleib noch einen Moment draußen und betrachte die Fassade: Hier liest sich das Vokabular der Mascarons am besten.
+
+Denn diese Gesichter haben eine Bedeutung. Manche sind Götter: Bacchus, mit Laub bekränzt, ein bärtiger Neptun für den Fluss und das Meer. Andere sind lächelnde Frauen, Grotesken, die die Zunge herausstrecken, Löwenmäuler. Man glaubte einst, sie schützten das Haus, vertrieben das Unglück. Der reiche Besitzer aber zeigte vor allem seinen Geschmack und sein Vermögen: Mein Mascaron ist schöner als deins.
+
+Senk jetzt den Blick zu den Balkonen. Diese schmiedeeisernen Geländer, ganz aus Voluten und Kurven, sind der andere Schatz der Bordeauxer Fassaden. Der Schmied bearbeitete das Metall, wie der Bildhauer den Stein bearbeitete: Spitze, aber aus hartem Material.
+
+Stein und Eisen, Gesichter und Voluten: Jetzt hast du die Grammatik. Steigen wir hinunter zum benachbarten Garten, wo Bordeaux seine Maler bewahrt.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-4
+@@STITLE=Musée des Beaux-Arts
+Hinter diesem friedlichen Garten, in zwei Flügeln aus Stein, verbirgt sich das musée des Beaux-Arts. Ich werde dir nicht die Liste seiner Gemälde vortragen. Ich möchte dir nur eines sagen, das kaum jemand weiß: Bordeaux, eine Stadt der Kaufleute, hat Frankreich sehr große Maler geschenkt.
+
+Drei Namen, hier geboren. Rosa Bonheur, Anfang des 19. Jahrhunderts, eine der ersten Frauen, die von ihrer Malerei leben, weltberühmt für ihre Tiere. Odilon Redon, der Träumer, der Maler seltsamer Blumen und Visionen, ein Zauberer der Farbe. Und später Albert Marquet, der Mann, der Wasser und Kais besser malte als jeder andere.
+
+Amüsant, nicht wahr? Eine Stadt, die man ganz dem Handel zugewandt glaubt, hat solche Augen hervorgebracht. Als hätte die von Kindheit an eingeatmete Schönheit der Fassaden am Ende den Blick der Kinder des Landes geformt.
+
+Verlass den Garten nach Süden. Wir verlassen die großen Plätze für eine geheimnisvollere Straße, in der einst die Mächtigen der Stadt wohnten.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-5
+@@STITLE=Rue du Mirail
+Da sind wir, in der rue du Mirail, einer engen, etwas abseits gelegenen Straße. Trau ihrer Zurückhaltung nicht: Hinter diesen hohen Toren verbergen sich einige der schönsten Stadtpaläste von Bordeaux.
+
+Hier wohnten die Parlamentsräte — die Richter jenes Gerichtshofs, der in der Region das Recht setzte. Sie waren die reichsten und mächtigsten Männer der Stadt, noch vor den großen Kaufleuten des Hafens. Und wie alle Mächtigen wollten sie einen würdigen Rahmen. Also bauten sie sich Anwesen mit Hof und Garten, verborgen vor der Straße.
+
+Das ist das ganze Geheimnis der Bordeauxer Baukunst: Der Reichtum stellt sich nicht auf der Straße zur Schau, er verbirgt sich dahinter. Eine schlichte Fassade, ein geschlossener Torbogen — und, kaum ist die Tür durchschritten, ein Ehrenhof, eine prächtige Treppe, ein Garten. Wenn du auf ein angelehntes Tor stößt, wirf verstohlen einen Blick hinein. Du wirst eine andere Stadt entdecken, eine innere, für Passanten unsichtbare.
+
+Gehen wir weiter. Es ist Zeit zu verstehen, woher dieser goldene Stein kommt, und was er vorbeiziehen sah. Doch zuerst eine ganz einfache Straße, für eine letzte Lektion im Hinsehen.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-6
+@@STITLE=Rue du Loup
+Nimm die rue du Loup, eine der ältesten Straßen von Bordeaux. Sie hat nichts Prächtiges: Häuser von Geschäftsleuten, kleine, eng aneinandergedrängte Fassaden. Und doch, heb den Blick — wieder. Auch hier Mascarons. Auch hier schmiedeeiserne Balkone. An gewöhnlichen Häusern, nicht nur an Palästen.
+
+Das ist es, was mich an dieser Stadt am meisten berührt. Das Mascaron war nicht den Reichen vorbehalten. Auch der Ladenbesitzer, der Handwerker, wollte sein eigenes steinernes Gesicht über der Tür. Ganz Bordeaux begann zu meißeln, vom größten Stadtpalais bis zum bescheidensten Stand.
+
+Und hinter jedem Gesicht steckt eine Hand: die des Steinmetzen, eines Arbeiters, dessen Namen man fast nie kennt. Es waren viele in Bordeaux, im 18. Jahrhundert, die diese Köpfe einen nach dem anderen meißelten, jeder ein wenig anders. Anonyme Künstler, deren Werk dich noch heute ansieht, zweieinhalb Jahrhunderte später.
+
+Grüß sie im Vorbeigehen. Dann steigen wir nach Süden hinab, zum musée d'Aquitaine, um den ältesten Stein der Stadt zu berühren.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-7
+@@STITLE=Musée d'Aquitaine
+Vor dir das musée d'Aquitaine, das zweitausend Jahre Stadtgeschichte erzählt. Ich schicke dich nicht wegen der Geschichte dorthin, sondern wegen des Steins. Denn unter diesem Dach bewahrt Bordeaux seine ältesten Skulpturen: römische Götter, Grabmäler, steinerne Heilige, aus alten Kirchen gerissen.
+
+Sieh sie dir an, und vergleiche sie mit dem, was wir seit heute Morgen draußen sehen. Es ist dasselbe Material — dieser helle, einheimische Kalkstein — seit der Antike bearbeitet. Die Römer meißelten darin schon Gesichter; fünfzehn Jahrhunderte später taten die Steinmetze des 18. Jahrhunderts dasselbe an den Fassaden. Unsere Mascarons haben sehr, sehr alte Vorfahren.
+
+Und diesen Stein kennst du jetzt: weich, golden, leicht zu meißeln. Sein Makel ist, dass er mit der Zeit schwarz wird, von Schmutz und Verschmutzung zerfressen. Lange war Bordeaux eine graue, fast rußschwarze Stadt. Dann wurde sie gereinigt, Fassade um Fassade, und der Stein fand seine Honigfarbe wieder — die, die du heute siehst.
+
+Noch ein paar Schritte nach Süden, zu einem großen Platz. Dort erwartet uns das Ende unserer Geschichte — und eine sehr moderne Überraschung.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-8
+@@STITLE=Place de la Victoire
+Da sind wir, auf der place de la Victoire, am Ende unseres Weges. Sieh dir zuerst das schöne steinerne Tor an: die porte d'Aquitaine, ein Triumphbogen aus dem 18. Jahrhundert, ganz aus goldenem Stein, schlicht und stolz. Ganz Tourny — die Stadt, die sich mit majestätischen Toren schmückt, wie sich eine Hauptstadt den Anschein eines Reiches gibt.
+
+Und jetzt dreh dich zur Mitte des Platzes um. Dort steht etwas ganz anderes: ein Marmorobelisk, modern, vor etwa zwanzig Jahren von einem Künstler, Ivan Theimer, aufgestellt. Sieh dir seinen Sockel an: bronzene Schildkröten, riesig, ruhig, die das Denkmal auf dem Rücken zu tragen scheinen. Ein schelmisches Augenzwinkern an die Stadt und ihre Universität.
+
+Siehst du, was hier vor sich geht? Auf der einen Seite der goldene Stein des 18. Jahrhunderts mit seinen ernsten Gesichtern. Auf der anderen die heutige Bronze mit ihren Schildkröten. Zwei Jahrhunderte antworten einander auf demselben Platz. Denn Bordeaux hat nie aufgehört zu meißeln, sich zu schmücken, Figuren im öffentlichen Raum aufzustellen. Die Mascarons von gestern, die Schildkröten von heute: dieselbe Geste, derselbe Wunsch, der Stadt ein Gesicht zu hinterlassen.
+
+Also, das lasse ich dir mit auf den Weg. Von nun an wirst du, wo immer du in Bordeaux hingehst, nicht mehr mit gesenktem Kopf gehen. Du wirst nach oben schauen, und dreitausend steinerne Gesichter werden dich ansehen. Du wirst sie zu lesen wissen. Und die goldene Stadt wird plötzlich zu dir sprechen. Danke, dass du mit mir den Blick gehoben hast. Bis bald, in den Straßen von Bordeaux.
+
+@@LANG=it
+@@TITLE=Bordeaux — Pietra dorata e mascheroni
+@@DESC=Arte: imparare a leggere il Settecento sulle facciate dorate: mascheroni, ferro battuto, pietra tenera e i pittori della città.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-0
+@@STITLE=Cours de l'Intendance
+Alza gli occhi. No, più in alto, sopra le vetrine. Lì, su quella facciata di pietra chiara, un volto ti osserva: scolpita nella pietra, sopra una finestra, una testa d'uomo, o di donna, o di dio. Lo si chiama mascherone. E non è solo. A Bordeaux se ne contano, si dice, diverse migliaia — tremila, si mormora. Centinaia di volti di pietra che, dal Settecento, vegliano sui passanti senza che questi lo sospettino.
+
+Ecco la nostra passeggiata: imparare a vederli. Leggere queste facciate dorate come si legge un libro, e comprendere quel Secolo dei Lumi che ha ridisegnato Bordeaux con un solo gesto. La città era grigia, stretta, medievale; in pochi decenni si è rifatta in pietra chiara, allineata, ornata. E su ogni edificio, come una firma, queste teste scolpite.
+
+Siamo sul cours de l'Intendance, una delle arterie più eleganti della città. Un dettaglio, prima di partire: al numero 57 di questa via visse, vecchio e sordo, uno dei più grandi pittori di tutti i tempi. Francisco de Goya, il maestro spagnolo, finì i suoi giorni a Bordeaux, in esilio, e morì qui, nel 1828. La città dalle facciate dorate fu il suo ultimo atelier.
+
+Allora tieni gli occhi aperti. Per tutta questa passeggiata, non guardare più solo i negozi: guarda in alto. I volti ti aspettano. Prendi la strada verso nord, fino a una piccola piazza dove sorge una chiesa diversa dalle altre.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-1
+@@STITLE=Église Notre-Dame
+Su questa piazza discreta sorge la église Notre-Dame, e stona con tutto ciò che Bordeaux ama di solito. Qui niente linee sobrie e dritte: una facciata barocca, ondulata, carica di colonne, curve, ghirlande di pietra. Fu costruita attorno al 1700 dai domenicani, ed è quasi una pagina d'Italia posata in pieno centro di Bordeaux.
+
+Avvicinati e guarda il lavoro della pietra. Tutto è scolpito, lavorato, messo in movimento: la facciata sembra respirare. È che la pietra di Bordeaux, quel calcare tenero e dorato, si taglia quasi come il burro. Lo scultore vi scava ciò che vuole. Ecco il segreto di tutti questi ornamenti: una pietra docile, che accetta lo scalpello senza resistere.
+
+Di lato, dai un'occhiata alla cour Mably: era l'antico convento di quegli stessi monaci, un chiostro di calma nel cuore della città.
+
+Ricorda questa lezione di pietra tenera: spiega tutto il resto, e soprattutto i nostri mascheroni. Ora risaliamo verso nord, verso una grande piazza aperta che porta il nome dell'uomo che ha inventato la Bordeaux che stai guardando.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-2
+@@STITLE=Place Tourny
+Eccoci in place Tourny. Al centro, una statua: un uomo in parrucca e abito settecentesco. È lui, il marchese di Tourny, e senza di lui questa passeggiata non esisterebbe.
+
+Tourny fu intendente di Bordeaux a metà del Settecento — l'inviato del re, dotato di poteri immensi. Trova una città soffocata dentro le sue vecchie mura, buia e ripiegata su se stessa. La sogna diversa: ampia, arieggiata, degna di una grande capitale. Così apre viali, traccia piazze, apre la città sul suo fiume. Quei bei viali alberati che partono da qui sono opera sua.
+
+Ma ecco la sua idea più forte. Impone regole alle facciate: stesse altezze, stesse linee, stessa pietra dorata. Ogni proprietario costruisce la propria casa, ma tutte devono armonizzarsi. Risultato: non monumenti isolati, ma intere strade che formano un'unica scenografia. La bellezza di Bordeaux non sta in un capolavoro unico; sta nell'insieme, nell'armonia di mille facciate.
+
+Tieni a mente questo nome: Tourny, il regista della città. Andiamo ora verso sud-ovest, verso un palazzo dove i volti di pietra si lasciano finalmente vedere da vicino.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-3
+@@STITLE=Hôtel de Lalande
+Eccoci in rue Bouffard, davanti all'hôtel de Lalande, un palazzo costruito alla fine del Settecento per un ricco magistrato. Oggi ospita il museo delle Arti Decorative e del Design. Ma resta fuori un istante, e guarda la facciata: è qui che si legge meglio il vocabolario dei mascheroni.
+
+Perché questi volti hanno un senso. Alcuni sono dei: Bacco coronato di foglie, un Nettuno barbuto per il fiume e il mare. Altri sono donne sorridenti, grotteschi che tirano fuori la lingua, musi di leone. Un tempo si credeva che proteggessero la casa, che allontanassero la sfortuna. Il ricco proprietario, dal canto suo, mostrava soprattutto il proprio gusto e la propria fortuna: il mio mascherone è più bello del tuo.
+
+Abbassa ora lo sguardo verso i balconi. Queste ringhiere di ferro battuto, tutte volute e curve, sono l'altro tesoro delle facciate bordolesi. Il fabbro lavorava il metallo come lo scultore lavorava la pietra: merletto, ma in materiale duro.
+
+Pietra e ferro, volti e volute: ora hai la grammatica. Scendiamo verso il giardino vicino, dove Bordeaux custodisce i suoi pittori.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-4
+@@STITLE=Musée des Beaux-Arts
+Dietro questo giardino tranquillo, in due ali di pietra, si nasconde il musée des Beaux-Arts. Non ti farò l'elenco dei suoi quadri. Voglio solo dirti una cosa che pochi sanno: Bordeaux, città di mercanti, ha dato alla Francia grandissimi pittori.
+
+Tre nomi, nati qui. Rosa Bonheur, all'inizio dell'Ottocento, una delle prime donne a vivere della propria pittura, celebre in tutto il mondo per i suoi animali. Odilon Redon, il sognatore, il pittore di fiori strani e di visioni, un mago del colore. E Albert Marquet, più tardi, l'uomo che ha dipinto l'acqua e le banchine meglio di chiunque altro.
+
+Curioso, no? Una città che si crede tutta rivolta al commercio ha fatto sbocciare sguardi simili. Come se la bellezza delle facciate, respirata fin dall'infanzia, finisse per formare lo sguardo dei figli del paese.
+
+Esci dal giardino verso sud. Lasceremo le grandi piazze per una strada più segreta, dove un tempo abitavano i potenti della città.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-5
+@@STITLE=Rue du Mirail
+Eccoci in rue du Mirail, una strada stretta e un po' appartata. Non fidarti della sua discrezione: dietro questi alti portoni si nascondono alcuni dei più bei palazzi di Bordeaux.
+
+Qui vivevano i parlamentari — i magistrati di quella corte di giustizia che faceva legge nella regione. Erano gli uomini più ricchi e più potenti della città, ancor prima dei grandi negozianti del porto. E come tutti i potenti, volevano una cornice degna. Così si costruirono dimore con cortile e giardino, nascoste dalla strada.
+
+Ecco tutto il segreto dell'arte del costruire bordolese: la ricchezza non si esibisce sulla strada, si nasconde dietro. Una facciata sobria, un portico chiuso — e, una volta varcata la porta, un cortile d'onore, uno scalone maestoso, un giardino. Se ti imbatti in un portone socchiuso, dai un'occhiata, con discrezione. Scoprirai un'altra città, interiore, invisibile ai passanti.
+
+Proseguiamo. È tempo di capire da dove viene questa pietra dorata, e cosa ha visto passare. Ma prima, una strada semplicissima, per un'ultima lezione di sguardo.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-6
+@@STITLE=Rue du Loup
+Prendi rue du Loup, una delle strade più antiche di Bordeaux. Non ha nulla di grandioso: case di commercianti, piccole facciate serrate. Eppure, alza gli occhi — di nuovo. Anche qui, mascheroni. Anche qui, balconi di ferro battuto. Su case ordinarie, non solo sui palazzi.
+
+È questo che mi tocca di più in questa città. Il mascherone non era riservato ai ricchi. Anche il bottegaio, l'artigiano volevano il proprio volto di pietra sopra la porta. Tutta Bordeaux si mise a scolpire, dal palazzo più grande alla bottega più modesta.
+
+E dietro ogni volto c'è una mano: quella dello scalpellino, un operaio di cui quasi mai si conosce il nome. Erano numerosi a Bordeaux, nel Settecento, a cesellare queste teste una dopo l'altra, ciascuna un po' diversa. Artisti anonimi, la cui opera ti osserva ancora oggi, due secoli e mezzo dopo.
+
+Salutali passando. Poi scendiamo verso sud, verso il musée d'Aquitaine, per toccare la pietra più antica della città.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-7
+@@STITLE=Musée d'Aquitaine
+Davanti a te, il musée d'Aquitaine, che racconta duemila anni di storia della città. Non ti ci mando per la storia, ma per la pietra. Perché sotto questo tetto, Bordeaux custodisce le sue sculture più antiche: dei romani, tombe, santi di pietra strappati alle vecchie chiese.
+
+Guardali, e confrontali con ciò che vediamo fuori da questa mattina. È la stessa materia — quel calcare chiaro del paese — lavorata fin dall'Antichità. I Romani vi scolpivano già volti; quindici secoli dopo, gli scalpellini del Settecento facevano lo stesso sulle facciate. I nostri mascheroni hanno antenati molto, molto antichi.
+
+E questa pietra, ormai la conosci: tenera, dorata, facile da scolpire. Il suo difetto è che anneriva con il tempo, corrosa dallo sporco e dall'inquinamento. Per molto tempo, Bordeaux fu una città grigia, quasi nera di fuliggine. Poi la si è pulita, facciata dopo facciata, e la pietra ha ritrovato il suo colore di miele — quello che vedi oggi.
+
+Ancora qualche passo verso sud, fino a una grande piazza. Lì ci attende la fine della nostra storia — e una sorpresa molto moderna.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-8
+@@STITLE=Place de la Victoire
+Eccoci in place de la Victoire, in fondo al nostro cammino. Guarda prima la bella porta di pietra: la porte d'Aquitaine, un arco di trionfo settecentesco, tutto in pietra dorata, sobrio e fiero. È puro Tourny — la città che si adorna di porte maestose, come una capitale si dà arie da impero.
+
+E ora, voltati verso il centro della piazza. Lì si erge tutt'altro: un obelisco di marmo, moderno, piantato una ventina d'anni fa da un artista, Ivan Theimer. Guarda ai suoi piedi: tartarughe di bronzo, enormi, tranquille, che sembrano portare il monumento sul dorso. Una strizzata d'occhio maliziosa alla città e alla sua università.
+
+Vedi cosa si gioca qui? Da un lato, la pietra dorata del Settecento e i suoi volti gravi. Dall'altro, il bronzo di oggi e le sue tartarughe. Due secoli si rispondono sulla stessa piazza. Perché Bordeaux non ha mai smesso di scolpire, di adornarsi, di collocare figure nello spazio pubblico. I mascheroni di ieri, le tartarughe di oggi: lo stesso gesto, lo stesso desiderio di lasciare un volto alla città.
+
+Ecco dunque cosa ti lascio. D'ora in poi, ovunque tu vada a Bordeaux, non camminerai più a testa bassa. Alzerai gli occhi, e tremila volti di pietra ti guarderanno. Saprai leggerli. E la città dorata, all'improvviso, ti parlerà. Grazie per aver alzato gli occhi con me. A presto, nelle strade di Bordeaux.
+
+@@LANG=nl
+@@TITLE=Bordeaux — Gouden steen en mascarons
+@@DESC=Kunst — de achttiende eeuw leren lezen op de gouden gevels: mascarons, smeedijzer, zachte steen en de schilders van de stad.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-0
+@@STITLE=Cours de l'Intendance
+Kijk omhoog. Nee, hoger, boven de etalages. Daar, op die gevel van lichte steen, kijkt een gezicht je aan: uitgehouwen in de steen, boven een raam, een hoofd van een man, of een vrouw, of een god. Men noemt het een mascaron. En het staat er niet alleen. In Bordeaux telt men er, naar men zegt, verscheidene duizenden — drieduizend, fluistert men. Honderden stenen gezichten die sinds de achttiende eeuw over de voorbijgangers waken zonder dat die het vermoeden.
+
+Dit is onze wandeling: leren ze te zien. Deze gouden gevels lezen zoals je een boek leest, en die eeuw van de Verlichting begrijpen die Bordeaux in één beweging heeft hertekend. De stad was grijs, benauwd, middeleeuws; binnen enkele decennia herschiep ze zich in lichte steen, uitgelijnd, versierd. En op elk gebouw, als een handtekening, deze gebeeldhouwde hoofden.
+
+We bevinden ons op de cours de l'Intendance, een van de meest elegante straten van de stad. Nog één detail, voor we vertrekken: op nummer 57 van deze straat woonde, oud en doof, een van de grootste schilders aller tijden. Francisco de Goya, de Spaanse meester, bracht zijn laatste dagen door in Bordeaux, in ballingschap, en stierf hier, in 1828. De stad van de gouden gevels was zijn laatste atelier.
+
+Houd dus je ogen open. Kijk tijdens deze hele wandeling niet meer alleen naar de winkels: kijk omhoog. De gezichten wachten op je. Neem de straat naar het noorden, tot aan een klein plein waar een kerk staat die anders is dan de rest.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-1
+@@STITLE=Église Notre-Dame
+Op dit ingetogen plein staat de église Notre-Dame, en ze steekt schril af tegen alles wat Bordeaux gewoonlijk graag heeft. Hier geen sobere, rechte lijnen: een barokke, golvende gevel, beladen met zuilen, krommingen, stenen guirlandes. Ze werd rond 1700 gebouwd door de dominicanen, en het is bijna een bladzijde uit Italië, midden in Bordeaux neergelegd.
+
+Kom dichterbij en bekijk het steenhouwwerk. Alles is gebeeldhouwd, uitgewerkt, in beweging gezet: de gevel lijkt te ademen. Dat komt doordat de steen van Bordeaux, dit zachte, gouden kalksteen, zich bijna als boter laat snijden. De beeldhouwer holt erin uit wat hij wil. Dat is het geheim van al deze versieringen: een gedwee gesteente, dat zich zonder verzet aan de beitel overgeeft.
+
+Werp aan de zijkant een blik in de cour Mably: het was het vroegere klooster van diezelfde monniken, een kloostergang van rust midden in de stad.
+
+Onthoud deze les van zachte steen: ze verklaart al de rest, en vooral onze mascarons. Laten we nu weer naar het noorden gaan, naar een groot open plein dat de naam draagt van de man die het Bordeaux uitvond dat je nu bekijkt.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-2
+@@STITLE=Place Tourny
+Hier zijn we, op de place Tourny. In het midden een standbeeld: een man met pruik en achttiende-eeuwse kledij. Dat is hij, de markies de Tourny, en zonder hem zou deze wandeling niet bestaan.
+
+Tourny was intendant van Bordeaux halverwege de achttiende eeuw — de afgezant van de koning, met immense bevoegdheden bekleed. Hij treft een stad aan die verstikt raakt in haar oude wallen, donker en in zichzelf gekeerd. Hij droomt haar anders: breed, luchtig, een grote hoofdstad waardig. Dus doorbreekt hij lanen, trekt pleinen, opent de stad naar haar rivier. Die mooie beschaduwde lanen die hier vertrekken, dat is zijn werk.
+
+Maar hier is zijn sterkste idee. Hij legt de gevels regels op: dezelfde hoogtes, dezelfde lijnen, dezelfde gouden steen. Elke eigenaar bouwt zijn eigen huis, maar allemaal moeten ze in harmonie zijn. Resultaat: geen geïsoleerde monumenten, maar hele straten die één enkel decor vormen. De schoonheid van Bordeaux zit niet in één uniek meesterwerk; ze zit in het geheel, in de harmonie van duizend gevels.
+
+Onthoud deze naam: Tourny, de regisseur van de stad. Laten we nu naar het zuidwesten gaan, naar een herenhuis waar de stenen gezichten eindelijk van dichtbij te zien zijn.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-3
+@@STITLE=Hôtel de Lalande
+Hier zijn we, in de rue Bouffard, voor het hôtel de Lalande, een herenhuis gebouwd aan het eind van de achttiende eeuw voor een rijke magistraat. Vandaag herbergt het het museum voor Decoratieve Kunsten en Design. Maar blijf nog even buiten staan, en kijk naar de gevel: hier lees je het woordenboek van de mascarons het best.
+
+Want deze gezichten hebben een betekenis. Sommige zijn goden: Bacchus met een loofkroon, een gebaarde Neptunus voor de rivier en de zee. Andere zijn lachende vrouwen, groteske figuren die hun tong uitsteken, leeuwenmuilen. Men geloofde ooit dat ze het huis beschermden, dat ze ongeluk afwendden. De rijke eigenaar toonde vooral zijn smaak en zijn fortuin: mijn mascaron is mooier dan de jouwe.
+
+Laat je blik nu zakken naar de balkons. Deze smeedijzeren leuningen, helemaal in krullen en bochten, zijn de andere schat van de gevels van Bordeaux. De smid bewerkte het metaal zoals de beeldhouwer de steen bewerkte: kant, maar dan in hard materiaal.
+
+Steen en ijzer, gezichten en krullen: je hebt nu de grammatica. Laten we afdalen naar de naburige tuin, waar Bordeaux haar schilders bewaart.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-4
+@@STITLE=Musée des Beaux-Arts
+Achter deze vredige tuin, in twee vleugels van steen, schuilt het musée des Beaux-Arts. Ik ga je niet de lijst van zijn schilderijen opsommen. Ik wil je alleen iets vertellen dat weinig mensen weten: Bordeaux, een stad van kooplieden, heeft Frankrijk zeer grote schilders geschonken.
+
+Drie namen, hier geboren. Rosa Bonheur, aan het begin van de negentiende eeuw, een van de eerste vrouwen die van haar schilderkunst leefde, wereldberoemd om haar dieren. Odilon Redon, de dromer, de schilder van vreemde bloemen en visioenen, een tovenaar van de kleur. En later Albert Marquet, de man die water en kades beter schilderde dan wie ook.
+
+Grappig, niet? Een stad die men zich helemaal op handel gericht voorstelt, heeft zulke blikken doen ontluiken. Alsof de schoonheid van de gevels, van kindsbeen af ingeademd, uiteindelijk de blik van de kinderen van het land heeft gevormd.
+
+Verlaat de tuin naar het zuiden. We verlaten de grote pleinen voor een geheimzinniger straat, waar vroeger de machtigen van de stad woonden.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-5
+@@STITLE=Rue du Mirail
+Hier zijn we, in de rue du Mirail, een smalle en wat afgelegen straat. Vertrouw haar ingetogenheid niet: achter deze hoge poorten schuilen enkele van de mooiste herenhuizen van Bordeaux.
+
+Hier woonden de parlementariërs — de magistraten van dat gerechtshof dat de wet stelde in de regio. Het waren de rijkste en machtigste mannen van de stad, nog vóór de grote kooplieden van de haven. En zoals alle machtigen wilden ze een waardig kader. Dus bouwden ze zich woningen met binnenplaats en tuin, verborgen voor de straat.
+
+Dat is het hele geheim van de Bordeaux-bouwkunst: rijkdom pronkt niet op straat, ze verbergt zich erachter. Een sobere gevel, een gesloten poort — en, eenmaal door de deur, een erebinnenplaats, een statige trap, een tuin. Als je een op een kier staande poort tegenkomt, werp er discreet een blik in. Je zult een andere stad ontdekken, een innerlijke, onzichtbaar voor voorbijgangers.
+
+Laten we verdergaan. Het is tijd om te begrijpen waar deze gouden steen vandaan komt, en wat ze heeft zien voorbijtrekken. Maar eerst een heel eenvoudige straat, voor een laatste les in kijken.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-6
+@@STITLE=Rue du Loup
+Neem de rue du Loup, een van de oudste straten van Bordeaux. Ze heeft niets grandioos: huizen van winkeliers, kleine, dicht opeengepakte gevels. En toch, kijk omhoog — opnieuw. Ook hier mascarons. Ook hier smeedijzeren balkons. Op gewone huizen, niet alleen op paleizen.
+
+Dat is wat me het meest raakt aan deze stad. De mascaron was niet voorbehouden aan de rijken. Ook de winkelier, de ambachtsman wilde zijn eigen stenen gezicht boven de deur. Heel Bordeaux ging beeldhouwen, van het grootste herenhuis tot de bescheidenste kraam.
+
+En achter elk gezicht schuilt een hand: die van de steenhouwer, een arbeider wiens naam men bijna nooit kent. Er waren er velen in het achttiende-eeuwse Bordeaux, die deze hoofden de een na de ander uithakten, elk een beetje anders. Anonieme kunstenaars, wier werk je vandaag, tweeënhalve eeuw later, nog steeds aankijkt.
+
+Groet hen in het voorbijgaan. Laten we dan naar het zuiden afdalen, naar het musée d'Aquitaine, om de oudste steen van de stad aan te raken.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-7
+@@STITLE=Musée d'Aquitaine
+Voor je het musée d'Aquitaine, dat tweeduizend jaar stadsgeschiedenis vertelt. Ik stuur je er niet heen voor de geschiedenis, maar voor de steen. Want onder dit dak bewaart Bordeaux haar oudste beeldhouwwerken: Romeinse goden, graven, stenen heiligen, uit oude kerken gerukt.
+
+Bekijk ze, en vergelijk ze met wat we sinds vanochtend buiten hebben gezien. Het is hetzelfde materiaal — deze lichte, plaatselijke kalksteen — bewerkt sinds de oudheid. De Romeinen beeldhouwden er al gezichten in; vijftien eeuwen later deden de steenhouwers van de achttiende eeuw hetzelfde op de gevels. Onze mascarons hebben zeer, zeer oude voorouders.
+
+En deze steen, die ken je nu: zacht, goudkleurig, gemakkelijk te beitelen. Haar gebrek is dat ze met de tijd zwart wordt, aangevreten door vuil en vervuiling. Lange tijd was Bordeaux een grijze stad, bijna zwart van het roet. Toen werd ze schoongemaakt, gevel na gevel, en de steen vond haar honingkleur terug — die je vandaag ziet.
+
+Nog een paar stappen naar het zuiden, naar een groot plein. Daar wacht het einde van ons verhaal — en een zeer moderne verrassing.
+@@SCENE=seed-100-bordeaux-pierre-et-mascarons-scene-8
+@@STITLE=Place de la Victoire
+Hier zijn we, op de place de la Victoire, aan het eind van onze weg. Kijk eerst naar de mooie stenen poort: de porte d'Aquitaine, een achttiende-eeuwse triomfboog, helemaal in gouden steen, sober en trots. Zuiver Tourny — de stad die zich tooit met majestueuze poorten, zoals een hoofdstad zich de allures van een keizerrijk geeft.
+
+En draai je nu om naar het midden van het plein. Daar staat iets heel anders: een marmeren obelisk, modern, een jaar of twintig geleden geplant door een kunstenaar, Ivan Theimer. Kijk aan de voet ervan: bronzen schildpadden, enorm, kalm, die het monument op hun rug lijken te dragen. Een ondeugende knipoog naar de stad en haar universiteit.
+
+Zie je wat hier gebeurt? Aan de ene kant de gouden steen van de achttiende eeuw met haar ernstige gezichten. Aan de andere kant het brons van vandaag met zijn schildpadden. Twee eeuwen die elkaar antwoorden op hetzelfde plein. Want Bordeaux is nooit gestopt met beeldhouwen, zich tooien, figuren in de openbare ruimte plaatsen. De mascarons van gisteren, de schildpadden van vandaag: hetzelfde gebaar, hetzelfde verlangen om de stad een gezicht na te laten.
+
+Dus dit laat ik je achter. Voortaan zul je, waar je ook heen gaat in Bordeaux, niet meer met gebogen hoofd lopen. Je zult omhoogkijken, en drieduizend stenen gezichten zullen je aankijken. Je zult ze weten te lezen. En de gouden stad zal in één klap tot je spreken. Bedankt dat je met me omhoog hebt gekeken. Tot ziens, in de straten van Bordeaux.

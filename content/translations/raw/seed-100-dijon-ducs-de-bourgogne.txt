@@ -1,0 +1,549 @@
+@@LANG=en
+@@TITLE=Dijon — The Dazzling Century of the Great Dukes
+@@DESC=History & secrets — when Dijon rivaled Paris: the dazzling century of the Great Dukes of Burgundy.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-0
+@@STITLE=Place des Ducs de Bourgogne
+Look up. In front of you, this façade of golden stone, these mullioned windows, this square tower climbing into the sky: it's the heart of a palace. The Palace of the Dukes of Burgundy. You're standing on a small, discreet square, behind the great complex, where the stone has kept its age: the Middle Ages.
+
+And this is where our story begins — a wild, almost forgotten story. For a little over a century, between 1363 and 1477, this town, Dijon, was no peaceful provincial city. It was a capital. The capital of an immense, wealthy, ambitious state, stretching from Burgundy all the way to the North Sea, to the cloth-making towns of Flanders.
+
+Four men made this dream real. Four dukes, father to son. They were called the Great Dukes of the West. Remember their names, because we're going to follow them one by one: Philip the Bold, John the Fearless, Philip the Good, Charles the Bold. Four reigns, a little over a hundred years altogether. But what a hundred years. At their court, more gold was worn than in Paris. Painting was finer, singing was better, feasting was grander. And the King of France, over there, watched them with a mix of envy and fear.
+
+So throughout this whole walk, I'm going to tell you about these four men. How they built an empire of celebration and pride — and how it all collapsed in a single winter morning.
+
+Go around the palace to the left, to a paved courtyard and an old squat tower. Follow me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-1
+@@STITLE=Cour de Bar
+Here you are in a stone courtyard, at the foot of the palace's oldest tower: the Tour de Bar. Put your hand on this wall. It's over six hundred years old, and it saw it all begin.
+
+It all starts with a young man: Philip. He would be called Philip the Bold. The Bold, because at seventeen, at the battle of Poitiers, he fought like a lion beside his father, the King of France, until he was captured along with him. To reward him, his father gave him, in 1363, a royal gift: the Duchy of Burgundy.
+
+The younger son, the one who should never have ruled, becomes a prince. And he's a shrewd player. He marries Margaret of Flanders, the richest heiress in Europe. In one stroke, Burgundy and Flanders, the vineyards of the south and the cloth of the north, fall into the same hand. The Burgundian state is born.
+
+This tower carries the name of a prisoner. Duke René of Anjou, a king without a kingdom, was locked up here by a later duke, after a lost battle. Here, you see, rivals were kept under lock and key.
+
+Head back toward the heart of the palace, into the great courtyard, and look for the tall tower that dominates everything. Follow me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-2
+@@STITLE=Tour Philippe le Bon
+Look up. This tower, the tallest, almost fifty meters, belongs to Philip the Good. The third duke. And the most dazzling of them all.
+
+Under him, in the 15th century, the court of Burgundy becomes the most magnificent in Europe. Richer than that of the King of France, who is still struggling through the Hundred Years' War. Here, Flemish painters, musicians, and goldsmiths are welcomed. Ceremonies and spectacles are staged that remain legendary, where every detail asserts the dukes' power.
+
+It's Philip the Good who invents, in 1430, a chivalric order to celebrate his glory: the Order of the Golden Fleece. The collar with the golden ram, that the greatest princes of Europe would compete for over centuries. It was born here, from a duke of Dijon.
+
+From the top of this tower, the duke could see messengers coming from far off. A state stretching from Mâcon to the Netherlands needed eyes everywhere.
+
+But such splendor draws attention. And jealousy. The King of France never forgets that these dukes, however brilliant, are still only his vassals.
+
+Leave the palace on the east side, to the great open square in front of the colonnaded theater. Follow me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-3
+@@STITLE=Place du Théâtre
+This great open square, with its colonnaded theater, hides a ghost. Here once stood the Sainte-Chapelle of Dijon, the dukes' chapel. An elegant spire, stained glass, a jewel. It disappeared, razed after the Revolution. Almost nothing of it remains.
+
+And yet, what a place. This is where the Knights of the Golden Fleece gathered, in great ceremony, beneath embroidered banners. This is where, it's said, a treasured relic above all others was kept: a host said to be miraculous. The dukes came here to kneel before it.
+
+Close your eyes for a second. Picture the procession. Scarlet cloaks, gold collars, incense, rising chants. All the theater of Burgundian power fit inside this chapel, now erased.
+
+That's the strange fate of grandeur: palaces stay standing, chapels fall. The stage set of power has vanished, but the town still remembers what once shone here.
+
+Head back northwest, through the old streets, to rue des Forges, Dijon's oldest thoroughfare. Follow me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-4
+@@STITLE=Rue des Forges
+You're walking on Dijon's oldest street: rue des Forges. Look at these façades. Houses of stone and wood, ornate portals, courtyards hidden behind heavy doors. This was the main street of the wealthy: merchants, bankers, men of law.
+
+Because behind the dukes, there was money. A lot of money. A powerful bourgeoisie, lending, trading, building. Push a door if it gives: some hide spiral staircases carved in stone lace, tucked away from the eyes of the street.
+
+And I want to tell you a name, so you understand just how much Dijon played in the big leagues. Hugues Aubriot. A child of this town. He rose so high that he became provost of Paris, the great head of the capital, under King Charles V. It's he who had a fortress built there whose name you know: the Bastille.
+
+That's Burgundian pride, right there. A man from Dijon building Paris's most famous prison. Here, you see, no one felt inferior to anybody.
+
+Continue eastward; the street soon opens onto a great church bristling with figures. Follow me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-5
+@@STITLE=Notre-Dame de Dijon
+In front of you, the Notre-Dame church, its strange façade riddled with gargoyles in tight rows. But look higher still, right to the top, toward the clock. Do you see that little metal figure striking the bell every hour? He's called the Jacquemart. And he isn't from here.
+
+Listen to his story. In 1382, Philip the Bold, our first duke, crushes the rebellious Flemish at the battle of Roosebeke. As victor, he plunders the town of Kortrijk. And among his spoils, he carries off this automated clock. He brings it all the way to Dijon, by cart, and installs it here, like a trophy. An object stolen from Flanders, mounted on a Burgundian church: the whole ducal state summed up in one clock.
+
+The little fellow was alone, at first. Then the people of Dijon, growing fond of him, gave him a wife, Jacqueline. Then a son, then a daughter. Today, the little metal family strikes the hours, all four together, above the town.
+
+Head back down southeast, to the large building with a pointed gable that was once the province's law court. Follow me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-6
+@@STITLE=Cour d'honneur du palais, mémoire de la justice
+This handsome building, with its carved wooden gable and Renaissance façade, was the Parlement de Bourgogne. Not an elected parliament like today: a sovereign court of justice, the highest in the land. Here sat magistrates in red robes, who judged in the king's name.
+
+Because now we're past the dukes. When Burgundy becomes French, at the end of the 15th century, the king doesn't destroy the town: he keeps it, and he governs it. He installs this Parlement here, and confirms the Estates of Burgundy, the assembly that votes the province's taxes.
+
+Dijon thus remains a capital — but a capital of the robe, of magistrates, of counselors. A whole new nobility is born here, one that will build the town's finest private mansions. Grandeur has changed its face. Gone is the splendor of the ducal court; in its place, lawsuits, registers, wax seals.
+
+Push the door open if it's unlocked: the ceiling of the great hall is a masterpiece of painted wood. Then head back to the palace, into its broad courtyard of honor. Follow me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-7
+@@STITLE=Cour d'honneur du palais
+Here you are in the palace's courtyard of honor, facing these long, pale, regular, classical façades. Nothing like the old squat tower from earlier. This is the grand century, that of Louis XIV and Louis XV, which dressed the old dukes' palace in an entirely new coat.
+
+Because after the dukes, the palace doesn't fall asleep. It becomes the seat of the Estates of Burgundy, the assembly managing the province, and the residence of the governors — the Princes of Condé, cousins of the king. It's enlarged, aligned, given grand reception halls to receive guests fittingly, in His Majesty's name.
+
+Look closely: within these walls, two ages touch each other. The Middle Ages of the dukes and the classicism of the kings. The town that once dreamed of rivaling Paris ended up adopting its taste: columns, pediments, and elegant symmetry.
+
+One last question remains. How did this Burgundian dream die out? Leave the courtyard on the south side, onto the great semicircular square. That's where it all ends. Follow me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-8
+@@STITLE=Place de la Libération
+Here we are. This semicircular square, so perfect, so regal, is the final point of our story. It was designed under Louis XIV, by the king's great architect. It was meant to hold a statue of the Sun King, on horseback, at its center. The city of the dukes now bowed before the King of France.
+
+So let's go back to the last duke. Charles the Bold. The fourth. The most ambitious, the harshest. He no longer wants to be anyone's vassal: he wants a kingdom, a crown, he wants to link his southern lands to his northern ones and wipe the King of France off the map.
+
+He loses everything in three battles. And on January 5, 1477, before Nancy, in the snow, he is killed. His body is searched for over several days. It's found, they say, frozen in a pond, half devoured by wolves. The great Burgundian dream dies there, in the frozen mud, with him.
+
+The King of France, Louis XI, swoops down on Burgundy at once and takes it back. A century of glory ends in a single morning.
+
+So take one last look at this royal square. It's a magnificent tomb. The tomb of an ambition. Dijon dreamed of rivaling Paris; it became, forever, one of its most beautiful cities. And the palace, there, behind you, still keeps, like a beating heart, the memory of the four dukes who made kings tremble.
+
+Stay a moment on this square. Listen to it. And see you soon, friend.
+
+@@LANG=es
+@@TITLE=Dijon — El siglo deslumbrante de los Grandes Duques
+@@DESC=Historia y secretos — cuando Dijon rivalizaba con París: el siglo deslumbrante de los Grandes Duques de Borgoña.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-0
+@@STITLE=Place des Ducs de Bourgogne
+Levanta la vista. Delante de ti, esta fachada de piedra dorada, estas ventanas de parteluz, esta torre cuadrada que se eleva hacia el cielo: es el corazón de un palacio. El palacio de los duques de Borgoña. Estás en una pequeña plaza discreta, en la parte trasera del gran conjunto, donde la piedra ha conservado su edad: la Edad Media.
+
+Y es aquí donde empieza nuestra historia, una historia loca, casi olvidada. Durante poco más de un siglo, entre 1363 y 1477, esta ciudad, Dijon, no fue una plácida ciudad de provincias. Fue una capital. La capital de un Estado inmenso, rico, ambicioso, que se extendía desde Borgoña hasta el mar del Norte, hasta las ciudades paneras de Flandes.
+
+Cuatro hombres hicieron realidad este sueño. Cuatro duques, de padre a hijo. Se les llamó los Grandes Duques de Occidente. Recuerda sus nombres, porque los vamos a seguir uno a uno: Felipe el Atrevido, Juan sin Miedo, Felipe el Bueno, Carlos el Temerario. Cuatro reinados, poco más de cien años en total. Pero qué cien años. En su corte se llevaba más oro que en París. Se pintaba mejor, se cantaba mejor, se festejaba con más fuerza. Y el rey de Francia, allá lejos, los miraba con una mezcla de envidia y miedo.
+
+Así que, durante todo este paseo, voy a hablarte de estos cuatro hombres. Cómo construyeron un imperio de fiestas y orgullo, y cómo todo se derrumbó en una sola mañana de invierno.
+
+Rodea el palacio por la izquierda, hasta un patio empedrado y una vieja torre robusta. Sígueme.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-1
+@@STITLE=Cour de Bar
+Aquí estás, en un patio de piedra, al pie de la torre más antigua del palacio: la tour de Bar. Pon la mano sobre este muro. Tiene más de seiscientos años, y lo vio todo empezar.
+
+Todo empieza con un joven: Felipe. Se le llamará Felipe el Atrevido. El Atrevido, porque a los diecisiete años, en la batalla de Poitiers, luchó como un león junto a su padre, el rey de Francia, hasta caer prisionero con él. Para recompensarlo, su padre le regala, en 1363, un obsequio real: el ducado de Borgoña.
+
+El segundón, el hijo que nunca debería haber reinado, se convierte en príncipe. Y es un jugador astuto. Se casa con Margarita de Flandes, la heredera más rica de Europa. De golpe, Borgoña y Flandes, los viñedos del sur y los paños del norte, caen en la misma mano. Nace el Estado borgoñón.
+
+Esta torre lleva el nombre de un prisionero. El duque René de Anjou, rey sin reino, fue encerrado aquí por un duque posterior, después de una batalla perdida. Aquí, como ves, se tenía a los rivales bajo llave.
+
+Vuelve hacia el corazón del palacio, al gran patio, y busca la alta torre que domina todo. Sígueme.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-2
+@@STITLE=Tour Philippe le Bon
+Mira hacia arriba. Esta torre, la más alta, casi cincuenta metros, es la de Felipe el Bueno. El tercer duque. Y el más deslumbrante de todos.
+
+Bajo su reinado, en el siglo XV, la corte de Borgoña se convierte en la más fastuosa de Europa. Más rica que la del rey de Francia, que aún se debate en la guerra de los Cien Años. Aquí se recibe a pintores flamencos, músicos, orfebres. Se organizan ceremonias y espectáculos que han quedado como leyenda, donde cada detalle afirma el poder de los duques.
+
+Es Felipe el Bueno quien inventa, en 1430, una orden de caballería para celebrar su gloria: la orden del Toisón de Oro. El collar con el carnero de oro, que se disputarán los más grandes príncipes de Europa durante siglos. Nace aquí, de un duque de Dijon.
+
+Desde lo alto de esta torre, el duque podía ver llegar a los mensajeros desde muy lejos. Un Estado que se extendía desde Mâcon hasta los Países Bajos necesitaba ojos por todas partes.
+
+Pero tanto fasto atrae miradas. Y envidias. El rey de Francia nunca olvida que estos duques, por brillantes que sean, no son más que sus vasallos.
+
+Sal del palacio por el lado este, hasta la gran plaza abierta frente al teatro de columnas. Sígueme.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-3
+@@STITLE=Place du Théâtre
+Esta gran plaza abierta, con su teatro de columnas, esconde un fantasma. Aquí se alzaba antaño la Sainte-Chapelle de Dijon, la capilla de los duques. Una flecha elegante, vidrieras, una joya. Ha desaparecido, arrasada tras la Revolución. No queda nada de ella, o casi nada.
+
+Y, sin embargo, qué lugar. Aquí se reunían los caballeros del Toisón de Oro, en gran ceremonia, bajo los estandartes bordados. Aquí, dicen, se guardaba una reliquia preciosa entre todas: una hostia que se decía milagrosa. Los duques venían a arrodillarse ante ella.
+
+Cierra los ojos un segundo. Imagina la procesión. Los mantos de escarlata, los collares de oro, el incienso, los cantos que se elevan. Todo el teatro del poder borgoñón cabía en esta capilla hoy borrada.
+
+Es el destino extraño de la grandeza: los palacios permanecen en pie, las capillas caen. El decorado del poder ha desaparecido, pero la ciudad todavía recuerda lo que brillaba aquí.
+
+Retoma hacia el noroeste, por las calles antiguas, hasta la rue des Forges, la arteria más antigua de Dijon. Sígueme.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-4
+@@STITLE=Rue des Forges
+Caminas por la calle más antigua de Dijon: la rue des Forges. Mira estas fachadas. Casas de piedra y madera, portales labrados, patios ocultos tras pesadas puertas. Era la calle mayor de los ricos: comerciantes, banqueros, hombres de leyes.
+
+Porque detrás de los duques había dinero. Mucho dinero. Una burguesía poderosa, que prestaba, comerciaba, construía. Empuja una puerta si cede: algunas ocultan escaleras de caracol de encaje de piedra, sustraídas a la mirada de la calle.
+
+Y quiero decirte un nombre, para que entiendas hasta qué punto Dijon jugaba en la liga de los grandes. Hugues Aubriot. Un hijo de esta ciudad. Subió tan alto que llegó a preboste de París, el gran jefe de la capital, bajo el rey Carlos V. Fue él quien mandó construir, allá, una fortaleza cuyo nombre conoces: la Bastilla.
+
+He ahí todo el orgullo borgoñón. Un dijonés que construye la prisión más célebre de París. Aquí, como ves, no se sentía inferior a nadie.
+
+Continúa hacia el este; la calle desemboca pronto ante una gran iglesia erizada de figuras. Sígueme.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-5
+@@STITLE=Notre-Dame de Dijon
+Delante de ti, la iglesia Notre-Dame, con su extraña fachada, plagada de gárgolas en filas apretadas. Pero levanta la vista aún más arriba, hasta el reloj. ¿Ves a ese pequeño personaje de metal que golpea la campana cada hora? Se le llama el Jacquemart. Y no es de aquí.
+
+Escucha su historia. En 1382, Felipe el Atrevido, nuestro primer duque, aplasta a los flamencos sublevados en la batalla de Roosebeke. Como vencedor, saquea la ciudad de Courtrai. Y entre su botín, se lleva este reloj autómata. Lo trae hasta Dijon, en carro, y lo instala aquí, como un trofeo. Un objeto robado a Flandes, erigido sobre una iglesia de Borgoña: todo el Estado de los duques resumido en un reloj.
+
+El hombrecillo estaba solo, al principio. Luego los dijoneses, con cariño, le dieron una esposa, Jacqueline. Luego un hijo, luego una hija. Hoy, la pequeña familia de metal marca las horas, los cuatro juntos, sobre la ciudad.
+
+Baja hacia el sureste, hasta el gran edificio de hastial puntiagudo que fue el tribunal de la provincia. Sígueme.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-6
+@@STITLE=Cour d'honneur du palais, mémoire de la justice
+Este hermoso edificio, con su hastial de madera esculpida y su fachada renacentista, era el Parlamento de Borgoña. No un parlamento de electos como el de hoy: un tribunal de justicia soberano, el más alto del país. Aquí se sentaban los magistrados con toga roja, que juzgaban en nombre del rey.
+
+Porque ya hemos dejado atrás a los duques. Cuando Borgoña se vuelve francesa, a finales del siglo XV, el rey no destruye la ciudad: la conserva, y la gobierna. Instala aquí este Parlamento, y confirma los Estados de Borgoña, la asamblea que vota los impuestos de la provincia.
+
+Dijon sigue siendo, pues, una capital, pero una capital de toga, de magistrados, de consejeros. Toda una nueva nobleza nace ahí, que construirá las mansiones más hermosas de la ciudad. La grandeza ha cambiado de rostro. Se acabó el fasto de la corte ducal; llegan los pleitos, los registros, los sellos de cera.
+
+Empuja la puerta si está abierta: el techo de la gran sala es una obra maestra de madera pintada. Luego vuelve hacia el palacio, a su amplio patio de honor. Sígueme.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-7
+@@STITLE=Cour d'honneur du palais
+Aquí estás, en el patio de honor del palacio, frente a estas fachadas largas, claras, regulares, clásicas. Nada que ver con la vieja torre robusta de hace un rato. Aquí está el gran siglo, el de Luis XIV y Luis XV, que vistió el viejo palacio de los duques con un manto totalmente nuevo.
+
+Porque después de los duques, el palacio no se duerme. Se convierte en la sede de los Estados de Borgoña, esa asamblea que gestiona la provincia, y en la residencia de los gobernadores, los príncipes de Condé, primos del rey. Se amplía, se alinea, se añaden salas de gala para recibir dignamente, en nombre de Su Majestad.
+
+Mira bien: en estos muros, se tocan dos épocas. La Edad Media de los duques y el clasicismo de los reyes. La ciudad que soñaba con igualar a París terminó por adoptar su gusto: columnas, frontones y una hermosa simetría.
+
+Queda una última pregunta. ¿Cómo se apagó este sueño borgoñón? Sal del patio, por el lado sur, hacia la gran plaza en semicírculo. Ahí es donde todo termina. Sígueme.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-8
+@@STITLE=Place de la Libération
+Aquí estamos. Esta plaza en semicírculo, tan perfecta, tan regia, es el punto final de nuestra historia. Se diseñó bajo Luis XIV, por el gran arquitecto del rey. Se quiso para erigir en ella una estatua del Rey Sol, a caballo, en el centro. La ciudad de los duques, en adelante, se inclinaba ante el rey de Francia.
+
+Volvamos entonces al último duque. Carlos el Temerario. El cuarto. El más ambicioso, el más brusco. Él ya no quiere ser vasallo de nadie: quiere un reino, una corona, quiere unir sus tierras del sur con las del norte y borrar al rey de Francia del mapa.
+
+Lo pierde todo en tres batallas. Y el 5 de enero de 1477, ante Nancy, en la nieve, es asesinado. Se busca su cuerpo durante días. Se le encuentra, se cuenta, congelado en un estanque, medio devorado por los lobos. El gran sueño borgoñón muere ahí, en el barro helado, con él.
+
+El rey de Francia, Luis XI, se lanza de inmediato sobre Borgoña y la recupera. Un siglo de gloria se acaba en una sola mañana.
+
+Así que mira una última vez esta plaza real. Es una tumba magnífica. La tumba de una ambición. Dijon soñó con igualar a París; se convirtió, para siempre, en una de sus ciudades más hermosas. Y el palacio, ahí, detrás de ti, sigue guardando, como un corazón que late, la memoria de los cuatro duques que hicieron temblar a los reyes.
+
+Quédate un momento en esta plaza. Escúchala. Y hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Dijon — Das glanzvolle Jahrhundert der Großen Herzöge
+@@DESC=Geschichte & Geheimnisse — als Dijon mit Paris rivalisierte: das glanzvolle Jahrhundert der Großen Herzöge von Burgund.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-0
+@@STITLE=Place des Ducs de Bourgogne
+Heb den Blick. Vor dir diese Fassade aus goldgelbem Stein, diese Sprossenfenster, dieser quadratische Turm, der in den Himmel ragt: das ist das Herz eines Palastes. Der Palast der Herzöge von Burgund. Du stehst auf einem kleinen, unscheinbaren Platz, an der Rückseite des großen Komplexes, dort, wo der Stein sein Alter bewahrt hat: das Mittelalter.
+
+Und hier beginnt unsere Geschichte — eine wilde, fast vergessene Geschichte. Etwas mehr als ein Jahrhundert lang, zwischen 1363 und 1477, war diese Stadt, Dijon, keine friedliche Provinzstadt. Sie war eine Hauptstadt. Die Hauptstadt eines gewaltigen, reichen, ehrgeizigen Staates, der sich von Burgund bis zur Nordsee erstreckte, bis zu den Tuchstädten Flanderns.
+
+Vier Männer machten diesen Traum wahr. Vier Herzöge, vom Vater zum Sohn. Man nannte sie die Großen Herzöge des Abendlandes. Merke dir ihre Namen, denn wir werden ihnen einem nach dem anderen folgen: Philipp der Kühne, Johann Ohnefurcht, Philipp der Gute, Karl der Kühne. Vier Herrschaften, insgesamt etwas mehr als hundert Jahre. Aber was für hundert Jahre. An ihrem Hof trug man mehr Gold als in Paris. Man malte besser, sang besser, feierte prächtiger. Und der König von Frankreich, dort drüben, beobachtete sie mit einer Mischung aus Neid und Furcht.
+
+Also werde ich dir während dieses ganzen Spaziergangs von diesen vier Männern erzählen. Wie sie ein Reich aus Festen und Stolz aufbauten — und wie alles an einem einzigen Wintermorgen zusammenbrach.
+
+Umrunde den Palast auf der linken Seite, bis zu einem gepflasterten Hof und einem alten, gedrungenen Turm. Folge mir.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-1
+@@STITLE=Cour de Bar
+Da bist du nun in einem steinernen Hof, am Fuß des ältesten Turms des Palastes: dem Tour de Bar. Leg deine Hand auf diese Mauer. Sie ist über sechshundert Jahre alt und hat alles von Anfang an gesehen.
+
+Alles beginnt mit einem jungen Mann: Philipp. Man wird ihn Philipp den Kühnen nennen. Den Kühnen, weil er mit siebzehn Jahren, in der Schlacht von Poitiers, wie ein Löwe an der Seite seines Vaters, des Königs von Frankreich, kämpfte, bis er mit ihm gefangen genommen wurde. Um ihn zu belohnen, schenkt ihm sein Vater 1363 ein königliches Geschenk: das Herzogtum Burgund.
+
+Der Nachgeborene, der Sohn, der niemals hätte regieren sollen, wird Fürst. Und er ist ein geschickter Spieler. Er heiratet Margarete von Flandern, die reichste Erbin Europas. Mit einem Schlag fallen Burgund und Flandern, die Weinberge des Südens und die Tuche des Nordens, in dieselbe Hand. Der burgundische Staat ist geboren.
+
+Dieser Turm trägt den Namen eines Gefangenen. Herzog René von Anjou, ein König ohne Königreich, wurde hier von einem späteren Herzog eingesperrt, nach einer verlorenen Schlacht. Hier, siehst du, hielt man Rivalen unter Verschluss.
+
+Geh zurück zum Herzen des Palastes, in den großen Hof, und such den hohen Turm, der über allem thront. Folge mir.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-2
+@@STITLE=Tour Philippe le Bon
+Schau nach oben. Dieser Turm, der höchste, fast fünfzig Meter hoch, gehört Philipp dem Guten. Dem dritten Herzog. Und dem glanzvollsten von allen.
+
+Unter ihm wird der Hof von Burgund im 15. Jahrhundert zum prächtigsten Europas. Reicher als der des Königs von Frankreich, der noch im Hundertjährigen Krieg feststeckt. Hier empfängt man flämische Maler, Musiker, Goldschmiede. Man veranstaltet Zeremonien und Schauspiele, die legendär geblieben sind, bei denen jedes Detail die Macht der Herzöge bekräftigt.
+
+Philipp der Gute ist es, der 1430 einen Ritterorden erfindet, um seinen Ruhm zu feiern: den Orden vom Goldenen Vlies. Die Kette mit dem goldenen Widder, um die sich die größten Fürsten Europas jahrhundertelang streiten werden. Sie entsteht hier, bei einem Herzog von Dijon.
+
+Von der Spitze dieses Turms konnte der Herzog Boten von sehr weit her kommen sehen. Ein Staat, der sich von Mâcon bis in die Niederlande erstreckte, brauchte überall Augen.
+
+Doch solcher Pomp zieht Blicke auf sich. Und Neid. Der König von Frankreich vergisst nie, dass diese Herzöge, so glänzend sie auch sind, nur seine Vasallen sind.
+
+Verlass den Palast auf der Ostseite, bis zum großen offenen Platz vor dem Säulentheater. Folge mir.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-3
+@@STITLE=Place du Théâtre
+Dieser große offene Platz mit seinem Säulentheater birgt ein Gespenst. Hier erhob sich einst die Sainte-Chapelle von Dijon, die Kapelle der Herzöge. Eine elegante Turmspitze, Glasfenster, ein Juwel. Sie ist verschwunden, nach der Revolution dem Erdboden gleichgemacht. Es bleibt nichts oder fast nichts von ihr übrig.
+
+Und doch, was für ein Ort. Hier versammelten sich die Ritter vom Goldenen Vlies, in großer Zeremonie, unter bestickten Bannern. Hier, sagt man, wurde eine kostbare Reliquie über alle anderen bewahrt: eine Hostie, der man Wunderkraft zuschrieb. Die Herzöge kamen hierher, um vor ihr zu knien.
+
+Schließ einen Moment die Augen. Stell dir die Prozession vor. Scharlachrote Mäntel, goldene Ketten, Weihrauch, aufsteigende Gesänge. Das ganze Theater der burgundischen Macht fand in dieser heute ausgelöschten Kapelle Platz.
+
+Das ist das seltsame Schicksal der Größe: Paläste bleiben stehen, Kapellen fallen. Die Kulisse der Macht ist verschwunden, doch die Stadt erinnert sich noch, was hier einst glänzte.
+
+Geh weiter nach Nordwesten, durch die alten Straßen, bis zur rue des Forges, der ältesten Straße von Dijon. Folge mir.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-4
+@@STITLE=Rue des Forges
+Du gehst auf der ältesten Straße von Dijon: der rue des Forges. Schau dir diese Fassaden an. Häuser aus Stein und Holz, kunstvolle Portale, verborgene Höfe hinter schweren Türen. Das war die Hauptstraße der Reichen: Kaufleute, Bankiers, Rechtsgelehrte.
+
+Denn hinter den Herzögen stand Geld. Viel Geld. Ein mächtiges Bürgertum, das verlieh, handelte, baute. Schieb eine Tür auf, wenn sie nachgibt: manche verbergen Wendeltreppen aus steinerner Spitzenarbeit, den Blicken der Straße entzogen.
+
+Und ich will dir einen Namen nennen, damit du verstehst, in welcher Liga Dijon spielte. Hugues Aubriot. Ein Kind dieser Stadt. Er stieg so hoch auf, dass er unter König Karl V. Vogt von Paris wurde, der oberste Chef der Hauptstadt. Er war es, der dort eine Festung errichten ließ, deren Namen du kennst: die Bastille.
+
+Das ist der ganze burgundische Stolz. Ein Dijoner, der das berühmteste Gefängnis von Paris baut. Hier, siehst du, fühlte man sich niemandem unterlegen.
+
+Geh weiter nach Osten; die Straße mündet bald vor einer großen Kirche, gespickt mit Figuren. Folge mir.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-5
+@@STITLE=Notre-Dame de Dijon
+Vor dir die Kirche Notre-Dame, mit ihrer seltsamen Fassade, übersät mit Wasserspeiern in dichten Reihen. Doch heb den Blick noch höher, ganz nach oben, zur Uhr. Siehst du die kleine Metallfigur, die jede Stunde die Glocke schlägt? Man nennt sie den Jacquemart. Und er ist nicht von hier.
+
+Hör dir seine Geschichte an. 1382 zerschlägt Philipp der Kühne, unser erster Herzog, die aufständischen Flamen in der Schlacht von Roosebeke. Als Sieger plündert er die Stadt Kortrijk. Und unter seiner Beute nimmt er diese Automatenuhr mit. Er bringt sie bis nach Dijon, per Wagen, und stellt sie hier auf, wie eine Trophäe. Ein aus Flandern geraubtes Objekt, aufgestellt auf einer burgundischen Kirche: der ganze Herzogsstaat in einer Uhr zusammengefasst.
+
+Der kleine Mann war zunächst allein. Dann gaben ihm die Dijoner, von Zuneigung ergriffen, eine Ehefrau, Jacqueline. Dann einen Sohn, dann eine Tochter. Heute schlägt die kleine Metallfamilie die Stunden, alle vier zusammen, über der Stadt.
+
+Geh wieder nach Südosten hinunter, bis zum großen Gebäude mit spitzem Giebel, das das Gericht der Provinz war. Folge mir.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-6
+@@STITLE=Cour d'honneur du palais, mémoire de la justice
+Dieses schöne Gebäude, mit seinem geschnitzten Holzgiebel und seiner Renaissance-Fassade, war das Parlement de Bourgogne. Kein Parlament aus gewählten Vertretern wie heute: ein souveränes Gericht, das höchste des Landes. Hier saßen die Magistrate in roter Robe, die im Namen des Königs urteilten.
+
+Denn wir sind jetzt nach den Herzögen. Als Burgund Ende des 15. Jahrhunderts französisch wird, zerstört der König die Stadt nicht: er behält sie und regiert sie. Er richtet hier dieses Parlement ein und bestätigt die Stände von Burgund, die Versammlung, die über die Steuern der Provinz abstimmt.
+
+Dijon bleibt also eine Hauptstadt — aber eine Hauptstadt der Robe, der Magistrate, der Räte. Ein ganz neuer Adel entsteht hier, der die schönsten Stadtpalais der Stadt errichten wird. Die Größe hat ihr Gesicht gewechselt. Vorbei ist der Pomp des herzoglichen Hofes; an seine Stelle treten Prozesse, Register, Wachssiegel.
+
+Stoß die Tür auf, wenn sie offen ist: die Decke des großen Saals ist ein Meisterwerk aus bemaltem Holz. Kehr dann zum Palast zurück, in seinen weiten Ehrenhof. Folge mir.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-7
+@@STITLE=Cour d'honneur du palais
+Da bist du nun im Ehrenhof des Palastes, den langen, hellen, regelmäßigen, klassischen Fassaden gegenüber. Nichts mehr von dem alten gedrungenen Turm von vorhin. Hier ist das große Jahrhundert, das von Ludwig XIV. und Ludwig XV., das den alten Herzogspalast in ein völlig neues Gewand kleidete.
+
+Denn nach den Herzögen schläft der Palast nicht ein. Er wird zum Sitz der Stände von Burgund, jener Versammlung, die die Provinz verwaltet, und zur Residenz der Gouverneure — der Prinzen von Condé, Cousins des Königs. Man erweitert, richtet aus, fügt Prunksäle hinzu, um im Namen Seiner Majestät würdig zu empfangen.
+
+Schau genau hin: in diesen Mauern berühren sich zwei Zeitalter. Das Mittelalter der Herzöge und der Klassizismus der Könige. Die Stadt, die davon träumte, Paris gleichzukommen, hat schließlich dessen Geschmack übernommen: Säulen, Giebel und schöne Symmetrie.
+
+Es bleibt eine letzte Frage. Wie erlosch dieser burgundische Traum? Verlass den Hof auf der Südseite, auf den großen halbkreisförmigen Platz. Dort endet alles. Folge mir.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-8
+@@STITLE=Place de la Libération
+Da sind wir. Dieser halbkreisförmige Platz, so vollkommen, so königlich, ist der Schlusspunkt unserer Geschichte. Er wurde unter Ludwig XIV. vom großen Architekten des Königs entworfen. Man wollte dort eine Reiterstatue des Sonnenkönigs in der Mitte aufstellen. Die Stadt der Herzöge verneigte sich fortan vor dem König von Frankreich.
+
+Kehren wir also zum letzten Herzog zurück. Karl der Kühne. Der vierte. Der ehrgeizigste, der schroffste. Er will niemandes Vasall mehr sein: er will ein Königreich, eine Krone, er will seine südlichen Ländereien mit den nördlichen verbinden und den König von Frankreich von der Landkarte tilgen.
+
+Er verliert alles in drei Schlachten. Und am 5. Januar 1477, vor Nancy, im Schnee, wird er getötet. Man sucht tagelang nach seiner Leiche. Man findet ihn, so erzählt man, gefroren in einem Teich, halb von Wölfen zerfressen. Der große burgundische Traum stirbt dort, im gefrorenen Schlamm, mit ihm.
+
+Der König von Frankreich, Ludwig XI., fällt sogleich über Burgund her und nimmt es zurück. Ein Jahrhundert des Ruhms endet an einem einzigen Morgen.
+
+Schau also ein letztes Mal auf diesen königlichen Platz. Er ist ein prächtiges Grabmal. Das Grabmal eines Ehrgeizes. Dijon träumte davon, Paris gleichzukommen; es wurde für immer eine seiner schönsten Städte. Und der Palast dort hinter dir bewahrt noch immer, wie ein schlagendes Herz, die Erinnerung an die vier Herzöge, die Könige erzittern ließen.
+
+Bleib noch einen Moment auf diesem Platz. Hör ihm zu. Und bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Digione — Il secolo abbagliante dei Grandi Duchi
+@@DESC=Storia e segreti — quando Digione rivaleggiava con Parigi: il secolo abbagliante dei Grandi Duchi di Borgogna.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-0
+@@STITLE=Place des Ducs de Bourgogne
+Alza gli occhi. Davanti a te, questa facciata di pietra dorata, queste finestre a crociera, questa torre quadrata che sale verso il cielo: è il cuore di un palazzo. Il palazzo dei duchi di Borgogna. Sei su una piccola piazza discreta, sul retro del grande complesso, là dove la pietra ha conservato la sua età: il Medioevo.
+
+Ed è qui che comincia la nostra storia — una storia folle, quasi dimenticata. Per poco più di un secolo, tra il 1363 e il 1477, questa città, Digione, non fu una tranquilla città di provincia. Fu una capitale. La capitale di uno Stato immenso, ricco, ambizioso, che si estendeva dalla Borgogna fino al Mare del Nord, fino alle città dei drappi delle Fiandre.
+
+Quattro uomini realizzarono questo sogno. Quattro duchi, di padre in figlio. Furono chiamati i Grandi Duchi d'Occidente. Ricorda i loro nomi, perché li seguiremo uno per uno: Filippo l'Ardito, Giovanni Senza Paura, Filippo il Buono, Carlo il Temerario. Quattro regni, poco più di cento anni in tutto. Ma che cento anni. Alla loro corte si indossava più oro che a Parigi. Si dipingeva meglio, si cantava meglio, si festeggiava più forte. E il re di Francia, laggiù, li guardava con un misto di invidia e paura.
+
+Allora, durante tutta questa passeggiata, ti racconterò di questi quattro uomini. Come costruirono un impero di feste e orgoglio — e come tutto crollò in un'unica mattina d'inverno.
+
+Fai il giro del palazzo a sinistra, fino a un cortile lastricato e a una vecchia torre tozza. Seguimi.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-1
+@@STITLE=Cour de Bar
+Eccoti in un cortile di pietra, ai piedi della torre più antica del palazzo: la tour de Bar. Poggia la mano su questo muro. Ha più di seicento anni, e ha visto tutto cominciare.
+
+Tutto comincia con un giovane: Filippo. Lo si chiamerà Filippo l'Ardito. L'Ardito, perché a diciassette anni, nella battaglia di Poitiers, combatté come un leone al fianco di suo padre, il re di Francia, fino a essere fatto prigioniero insieme a lui. Per ricompensarlo, suo padre gli dona, nel 1363, un regalo regale: il ducato di Borgogna.
+
+Il cadetto, il figlio che non avrebbe mai dovuto regnare, diventa principe. Ed è un abile giocatore. Sposa Margherita di Fiandra, l'erede più ricca d'Europa. Di colpo, la Borgogna e le Fiandre, le vigne del sud e i drappi del nord, cadono nella stessa mano. Nasce lo Stato borgognone.
+
+Questa torre porta il nome di un prigioniero. Il duca René d'Angiò, re senza regno, vi fu rinchiuso da un duca successivo, dopo una battaglia persa. Qui, come vedi, si tenevano i rivali sotto chiave.
+
+Torna verso il cuore del palazzo, nel grande cortile, e cerca l'alta torre che domina tutto. Seguimi.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-2
+@@STITLE=Tour Philippe le Bon
+Guarda in alto. Questa torre, la più alta, quasi cinquanta metri, è quella di Filippo il Buono. Il terzo duca. E il più abbagliante di tutti.
+
+Sotto di lui, nel XV secolo, la corte di Borgogna diventa la più sfarzosa d'Europa. Più ricca di quella del re di Francia, che si dibatte ancora nella guerra dei Cent'anni. Qui si accolgono pittori fiamminghi, musicisti, orafi. Si organizzano cerimonie e spettacoli rimasti leggendari, dove ogni dettaglio afferma il potere dei duchi.
+
+È Filippo il Buono a inventare, nel 1430, un ordine cavalleresco per celebrare la sua gloria: l'ordine del Toson d'Oro. Il collare con il montone d'oro, che i più grandi principi d'Europa si contenderanno per secoli. Nasce qui, da un duca di Digione.
+
+Dalla cima di questa torre, il duca poteva vedere arrivare i messaggeri da molto lontano. Uno Stato che si estendeva da Mâcon ai Paesi Bassi aveva bisogno di occhi ovunque.
+
+Ma un tale sfarzo attira gli sguardi. E le gelosie. Il re di Francia non dimentica mai che questi duchi, per quanto brillanti, sono solo suoi vassalli.
+
+Esci dal palazzo dal lato est, fino alla grande piazza aperta davanti al teatro a colonne. Seguimi.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-3
+@@STITLE=Place du Théâtre
+Questa grande piazza aperta, con il suo teatro a colonne, nasconde un fantasma. Qui un tempo sorgeva la Sainte-Chapelle di Digione, la cappella dei duchi. Una guglia elegante, vetrate, un gioiello. È scomparsa, rasa al suolo dopo la Rivoluzione. Non ne resta nulla, o quasi.
+
+Eppure, che luogo. È qui che si riunivano i cavalieri del Toson d'Oro, in grande cerimonia, sotto gli stendardi ricamati. È qui, si dice, che si custodiva una reliquia preziosa fra tutte: un'ostia detta miracolosa. I duchi venivano a inginocchiarvisi.
+
+Chiudi gli occhi un secondo. Immagina la processione. I mantelli scarlatti, i collari d'oro, l'incenso, i canti che si levano. Tutto il teatro del potere borgognone stava in questa cappella oggi cancellata.
+
+È lo strano destino della grandezza: i palazzi restano in piedi, le cappelle cadono. Lo scenario del potere è scomparso, ma la città ricorda ancora ciò che qui brillava.
+
+Riprendi verso nord-ovest, per le vecchie strade, fino a rue des Forges, l'arteria più antica di Digione. Seguimi.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-4
+@@STITLE=Rue des Forges
+Cammini nella via più antica di Digione: rue des Forges. Guarda queste facciate. Case di pietra e legno, portali lavorati, cortili nascosti dietro pesanti porte. Era la via principale dei ricchi: mercanti, banchieri, uomini di legge.
+
+Perché dietro i duchi c'erano soldi. Molti soldi. Una borghesia potente, che prestava, commerciava, costruiva. Spingi una porta se cede: alcune nascondono scale a chiocciola in un merletto di pietra, sottratte allo sguardo della strada.
+
+E voglio dirti un nome, perché tu capisca fino a che punto Digione giocasse nella lega dei grandi. Hugues Aubriot. Un figlio di questa città. Salì così in alto da diventare preposto di Parigi, il grande capo della capitale, sotto il re Carlo V. Fu lui a far costruire, laggiù, una fortezza il cui nome conosci: la Bastiglia.
+
+Ecco tutto l'orgoglio borgognone. Un digionese che costruisce la prigione più celebre di Parigi. Qui, vedi, non ci si sentiva inferiori a nessuno.
+
+Continua verso est; la via sbocca presto davanti a una grande chiesa irta di figure. Seguimi.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-5
+@@STITLE=Notre-Dame de Dijon
+Davanti a te, la chiesa Notre-Dame, con la sua strana facciata, crivellata di doccioni in file serrate. Ma alza lo sguardo ancora più in alto, fino all'orologio. Vedi quel piccolo personaggio di metallo che batte la campana ogni ora? Lo si chiama il Jacquemart. E non è di qui.
+
+Ascolta la sua storia. Nel 1382, Filippo l'Ardito, il nostro primo duca, schiaccia i fiamminghi ribelli nella battaglia di Roosebeke. Da vincitore, saccheggia la città di Courtrai. E tra il suo bottino, porta via questo orologio automa. Lo riporta fino a Digione, su un carro, e lo installa qui, come un trofeo. Un oggetto rubato alle Fiandre, eretto su una chiesa di Borgogna: tutto lo Stato dei duchi riassunto in un orologio.
+
+Il piccolo omino era solo, all'inizio. Poi i digionesi, presi da tenerezza, gli diedero una sposa, Jacqueline. Poi un figlio, poi una figlia. Oggi, la piccola famiglia di metallo batte le ore, tutti e quattro insieme, sopra la città.
+
+Scendi verso sud-est, fino al grande edificio dal timpano a punta che fu il tribunale della provincia. Seguimi.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-6
+@@STITLE=Cour d'honneur du palais, mémoire de la justice
+Questo bell'edificio, con il suo timpano di legno scolpito e la sua facciata rinascimentale, era il Parlamento di Borgogna. Non un parlamento di eletti come quello di oggi: una corte di giustizia sovrana, la più alta del paese. Qui sedevano i magistrati in toga rossa, che giudicavano in nome del re.
+
+Perché ora siamo dopo i duchi. Quando la Borgogna diventa francese, alla fine del XV secolo, il re non distrugge la città: la mantiene, e la governa. Vi installa questo Parlamento, e conferma gli Stati di Borgogna, l'assemblea che vota le imposte della provincia.
+
+Digione resta dunque una capitale — ma una capitale di toga, di magistrati, di consiglieri. Tutta una nuova nobiltà nasce lì, che costruirà i più bei palazzi privati della città. La grandezza ha cambiato volto. Finito lo sfarzo della corte ducale; spazio ai processi, ai registri, ai sigilli di cera.
+
+Spingi la porta se è aperta: il soffitto della grande sala è un capolavoro di legno dipinto. Poi torna verso il palazzo, nel suo ampio cortile d'onore. Seguimi.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-7
+@@STITLE=Cour d'honneur du palais
+Eccoti nel cortile d'onore del palazzo, di fronte a queste lunghe facciate chiare, regolari, classiche. Nulla a che vedere con la vecchia torre tozza di poco fa. Qui c'è il grande secolo, quello di Luigi XIV e Luigi XV, che ha vestito il vecchio palazzo dei duchi con un mantello completamente nuovo.
+
+Perché dopo i duchi, il palazzo non si addormenta. Diventa la sede degli Stati di Borgogna, quell'assemblea che gestisce la provincia, e la residenza dei governatori — i principi di Condé, cugini del re. Si amplia, si allinea, si aggiungono sale di rappresentanza per ricevere degnamente, in nome di Sua Maestà.
+
+Guarda bene: in queste mura, si toccano due epoche. Il Medioevo dei duchi e il classicismo dei re. La città che sognava di eguagliare Parigi ha finito per sposarne il gusto: colonne, frontoni e bella simmetria.
+
+Resta un'ultima domanda. Come si spense questo sogno borgognone? Esci dal cortile, dal lato sud, sulla grande piazza a semicerchio. È lì che tutto finisce. Seguimi.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-8
+@@STITLE=Place de la Libération
+Ci siamo. Questa piazza a semicerchio, così perfetta, così regale, è il punto finale della nostra storia. Fu disegnata sotto Luigi XIV, dal grande architetto del re. La si volle per erigervi una statua del Re Sole, a cavallo, al centro. La città dei duchi, ormai, si inchinava davanti al re di Francia.
+
+Torniamo dunque all'ultimo duca. Carlo il Temerario. Il quarto. Il più ambizioso, il più brusco. Lui non vuole più essere vassallo di nessuno: vuole un regno, una corona, vuole collegare le sue terre del sud a quelle del nord e cancellare il re di Francia dalla carta geografica.
+
+Perde tutto in tre battaglie. E il 5 gennaio 1477, davanti a Nancy, nella neve, viene ucciso. Si cerca il suo corpo per giorni. Lo si ritrova, si racconta, gelato in uno stagno, per metà divorato dai lupi. Il grande sogno borgognone muore lì, nel fango gelato, con lui.
+
+Il re di Francia, Luigi XI, piomba subito sulla Borgogna e la riprende. Un secolo di gloria si conclude in una sola mattina.
+
+Allora guarda un'ultima volta questa piazza reale. È una tomba magnifica. La tomba di un'ambizione. Digione sognò di eguagliare Parigi; è diventata, per sempre, una delle sue città più belle. E il palazzo, lì, dietro di te, custodisce ancora, come un cuore che batte, la memoria dei quattro duchi che fecero tremare i re.
+
+Resta un momento su questa piazza. Ascoltala. E a presto, amico.
+
+@@LANG=nl
+@@TITLE=Dijon — De schitterende eeuw van de Grote Hertogen
+@@DESC=Geschiedenis & geheimen — toen Dijon met Parijs wedijverde: de schitterende eeuw van de Grote Hertogen van Bourgondië.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-0
+@@STITLE=Place des Ducs de Bourgogne
+Kijk omhoog. Voor je deze gevel van gouden steen, deze kruiskozijnen, deze vierkante toren die de hemel in klimt: het is het hart van een paleis. Het paleis van de hertogen van Bourgondië. Je staat op een klein, discreet plein, aan de achterkant van het grote geheel, waar de steen zijn ouderdom heeft bewaard: de middeleeuwen.
+
+En hier begint ons verhaal — een wild, bijna vergeten verhaal. Iets meer dan een eeuw lang, tussen 1363 en 1477, was deze stad, Dijon, geen vredige provinciestad. Ze was een hoofdstad. De hoofdstad van een immense, rijke, ambitieuze staat, die zich uitstrekte van Bourgondië tot aan de Noordzee, tot aan de lakensteden van Vlaanderen.
+
+Vier mannen maakten deze droom werkelijkheid. Vier hertogen, van vader op zoon. Men noemde hen de Grote Hertogen van het Westen. Onthoud hun namen, want we gaan hen een voor een volgen: Filips de Stoute, Jan zonder Vrees, Filips de Goede, Karel de Stoute. Vier regeringen, iets meer dan honderd jaar in totaal. Maar wat een honderd jaar. Aan hun hof droeg men meer goud dan in Parijs. Er werd beter geschilderd, beter gezongen, uitbundiger gefeest. En de koning van Frankrijk keek van veraf toe, met een mengeling van afgunst en angst.
+
+Dus tijdens deze hele wandeling ga ik je over deze vier mannen vertellen. Hoe ze een rijk van feesten en trots bouwden — en hoe alles op één enkele winterochtend instortte.
+
+Loop links om het paleis heen, tot aan een geplaveide binnenplaats en een oude gedrongen toren. Volg me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-1
+@@STITLE=Cour de Bar
+Hier ben je nu op een stenen binnenplaats, aan de voet van de oudste toren van het paleis: de tour de Bar. Leg je hand op deze muur. Hij is meer dan zeshonderd jaar oud, en heeft alles zien beginnen.
+
+Alles begint met een jonge man: Filips. Men zal hem Filips de Stoute noemen. De Stoute, omdat hij op zeventienjarige leeftijd, in de slag bij Poitiers, als een leeuw vocht naast zijn vader, de koning van Frankrijk, tot hij met hem gevangen werd genomen. Om hem te belonen, schenkt zijn vader hem in 1363 een koninklijk geschenk: het hertogdom Bourgondië.
+
+De jongere zoon, degene die nooit had moeten regeren, wordt vorst. En hij is een sluwe speler. Hij trouwt met Margaretha van Vlaanderen, de rijkste erfgename van Europa. In één klap vallen Bourgondië en Vlaanderen, de wijngaarden van het zuiden en de lakens van het noorden, in dezelfde hand. De Bourgondische staat is geboren.
+
+Deze toren draagt de naam van een gevangene. Hertog René van Anjou, een koning zonder koninkrijk, werd hier opgesloten door een latere hertog, na een verloren veldslag. Hier, zie je, hield men rivalen achter slot en grendel.
+
+Ga terug naar het hart van het paleis, naar de grote binnenplaats, en zoek de hoge toren die boven alles uittorent. Volg me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-2
+@@STITLE=Tour Philippe le Bon
+Kijk omhoog. Deze toren, de hoogste, bijna vijftig meter, is die van Filips de Goede. De derde hertog. En de meest schitterende van allemaal.
+
+Onder hem wordt het hof van Bourgondië in de 15e eeuw het meest weelderige van Europa. Rijker dan dat van de koning van Frankrijk, die nog worstelt met de Honderdjarige Oorlog. Hier worden Vlaamse schilders, muzikanten, edelsmeden ontvangen. Er worden ceremonies en schouwspelen georganiseerd die legendarisch zijn gebleven, waar elk detail de macht van de hertogen bevestigt.
+
+Het is Filips de Goede die in 1430 een ridderorde bedenkt om zijn roem te vieren: de Orde van het Gulden Vlies. De keten met de gouden ram, waar de grootste vorsten van Europa eeuwenlang om zullen strijden. Ze ontstaat hier, bij een hertog van Dijon.
+
+Vanaf de top van deze toren kon de hertog boodschappers van heel ver zien aankomen. Een staat die zich uitstrekte van Mâcon tot de Lage Landen had overal ogen nodig.
+
+Maar zoveel pracht trekt blikken. En jaloezie. De koning van Frankrijk vergeet nooit dat deze hertogen, hoe schitterend ook, slechts zijn vazallen zijn.
+
+Verlaat het paleis aan de oostkant, tot aan het grote open plein voor het zuilentheater. Volg me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-3
+@@STITLE=Place du Théâtre
+Dit grote open plein, met zijn zuilentheater, verbergt een spook. Hier stond ooit de Sainte-Chapelle van Dijon, de kapel van de hertogen. Een elegante spits, glasramen, een juweel. Ze is verdwenen, met de grond gelijk gemaakt na de Revolutie. Er blijft niets of bijna niets van over.
+
+En toch, wat een plek. Hier verzamelden de ridders van het Gulden Vlies zich, in grote plechtigheid, onder geborduurde vaandels. Hier, zo zegt men, werd een relikwie bewaard, kostbaarder dan alle andere: een hostie die wonderbaarlijk zou zijn. De hertogen kwamen er knielen.
+
+Sluit even je ogen. Stel je de processie voor. De scharlaken mantels, de gouden kettingen, de wierook, de opstijgende gezangen. Al het theater van de Bourgondische macht paste in deze inmiddels verdwenen kapel.
+
+Dat is het vreemde lot van grootsheid: paleizen blijven staan, kapellen vallen. Het decor van de macht is verdwenen, maar de stad herinnert zich nog wat hier ooit schitterde.
+
+Ga verder naar het noordwesten, door de oude straten, tot aan de rue des Forges, de oudste ader van Dijon. Volg me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-4
+@@STITLE=Rue des Forges
+Je loopt door de oudste straat van Dijon: de rue des Forges. Kijk naar deze gevels. Huizen van steen en hout, bewerkte portalen, binnenplaatsen verborgen achter zware deuren. Dit was de hoofdstraat van de rijken: kooplieden, bankiers, mannen van de wet.
+
+Want achter de hertogen zat geld. Veel geld. Een machtige burgerij, die leende, handelde, bouwde. Duw een deur open als hij meegeeft: sommige verbergen wenteltrappen in kant van steen, onttrokken aan het oog van de straat.
+
+En ik wil je een naam noemen, zodat je begrijpt hoezeer Dijon meespeelde in de hoogste kringen. Hugues Aubriot. Een kind van deze stad. Hij klom zo hoog dat hij schout van Parijs werd, de grote baas van de hoofdstad, onder koning Karel V. Hij was het die daar een vesting liet bouwen waarvan je de naam kent: de Bastille.
+
+Dat is heel de Bourgondische trots. Een Dijonees die de beroemdste gevangenis van Parijs bouwt. Hier, zie je, voelde men zich aan niemand minderwaardig.
+
+Ga verder naar het oosten; de straat komt weldra uit voor een grote kerk vol figuren. Volg me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-5
+@@STITLE=Notre-Dame de Dijon
+Voor je de kerk Notre-Dame, met haar vreemde gevel, bezaaid met waterspuwers in dichte rijen. Maar kijk nog hoger, helemaal boven, naar de klok. Zie je dat kleine metalen figuurtje dat elk uur de klok slaat? Men noemt hem de Jacquemart. En hij komt niet van hier.
+
+Luister naar zijn verhaal. In 1382 verplettert Filips de Stoute, onze eerste hertog, de opstandige Vlamingen in de slag bij Roosebeke. Als overwinnaar plundert hij de stad Kortrijk. En onder zijn buit voert hij dit automatische uurwerk mee. Hij brengt het helemaal naar Dijon, op een kar, en installeert het hier, als een trofee. Een uit Vlaanderen geroofd voorwerp, opgesteld op een Bourgondische kerk: heel de hertogelijke staat samengevat in één klok.
+
+Het mannetje was in het begin alleen. Toen gaven de Dijonezen, vertederd, hem een echtgenote, Jacqueline. Toen een zoon, toen een dochter. Vandaag slaat het kleine metalen gezin de uren, alle vier samen, boven de stad.
+
+Ga weer naar het zuidoosten, tot aan het grote gebouw met spitse geveltop dat het gerechtshof van de provincie was. Volg me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-6
+@@STITLE=Cour d'honneur du palais, mémoire de la justice
+Dit mooie gebouw, met zijn gesneden houten geveltop en zijn renaissancegevel, was het Parlement de Bourgogne. Geen parlement van gekozenen zoals vandaag: een soeverein gerechtshof, het hoogste van het land. Hier zetelden de magistraten in rode toga, die oordeelden in naam van de koning.
+
+Want we zijn nu voorbij de hertogen. Als Bourgondië eind 15e eeuw Frans wordt, vernietigt de koning de stad niet: hij houdt haar en bestuurt haar. Hij vestigt hier dit Parlement, en bevestigt de Staten van Bourgondië, de vergadering die de belastingen van de provincie stemt.
+
+Dijon blijft dus een hoofdstad — maar een hoofdstad van de toga, van magistraten, van raadsheren. Een hele nieuwe adel wordt hier geboren, die de mooiste herenhuizen van de stad zal bouwen. De grootsheid heeft van gezicht veranderd. Voorbij is de pracht van het hertogelijk hof; plaats voor processen, registers, wassen zegels.
+
+Duw de deur open als ze open is: het plafond van de grote zaal is een meesterwerk van beschilderd hout. Ga dan terug naar het paleis, naar zijn brede erehof. Volg me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-7
+@@STITLE=Cour d'honneur du palais
+Hier ben je nu op de erehof van het paleis, tegenover deze lange, lichte, regelmatige, klassieke gevels. Niets meer van de oude gedrongen toren van zonet. Hier is de grote eeuw, die van Lodewijk XIV en Lodewijk XV, die het oude paleis van de hertogen in een gloednieuwe mantel stak.
+
+Want na de hertogen valt het paleis niet in slaap. Het wordt de zetel van de Staten van Bourgondië, die vergadering die de provincie beheert, en de residentie van de gouverneurs — de prinsen van Condé, neven van de koning. Men breidt uit, lijnt uit, voegt praalzalen toe om waardig te ontvangen, in naam van Zijne Majesteit.
+
+Kijk goed: in deze muren raken twee tijdperken elkaar. De middeleeuwen van de hertogen en het classicisme van de koningen. De stad die droomde Parijs te evenaren, heeft uiteindelijk diens smaak overgenomen: zuilen, frontons en mooie symmetrie.
+
+Er blijft nog een laatste vraag over. Hoe is deze Bourgondische droom uitgedoofd? Verlaat de binnenplaats, aan de zuidkant, naar het grote halfronde plein. Daar eindigt alles. Volg me.
+
+@@SCENE=seed-100-dijon-ducs-de-bourgogne-scene-8
+@@STITLE=Place de la Libération
+Hier zijn we. Dit halfronde plein, zo volmaakt, zo koninklijk, is het eindpunt van ons verhaal. Het werd ontworpen onder Lodewijk XIV, door de grote architect van de koning. Men wilde er een standbeeld van de Zonnekoning te paard, in het midden, plaatsen. De stad van de hertogen boog voortaan voor de koning van Frankrijk.
+
+Laten we dus terugkeren naar de laatste hertog. Karel de Stoute. De vierde. De meest ambitieuze, de bruuskste. Hij wil niemands vazal meer zijn: hij wil een koninkrijk, een kroon, hij wil zijn zuidelijke landen verbinden met de noordelijke en de koning van Frankrijk van de kaart vegen.
+
+Hij verliest alles in drie veldslagen. En op 5 januari 1477, voor Nancy, in de sneeuw, wordt hij gedood. Men zoekt dagenlang naar zijn lichaam. Men vindt hem, zo vertelt men, bevroren in een vijver, half opgevreten door wolven. De grote Bourgondische droom sterft daar, in de bevroren modder, met hem.
+
+De koning van Frankrijk, Lodewijk XI, valt onmiddellijk over Bourgondië heen en neemt het terug. Een eeuw van roem eindigt op één ochtend.
+
+Werp dus nog een laatste blik op dit koninklijke plein. Het is een prachtig graf. Het graf van een ambitie. Dijon droomde Parijs te evenaren; het is voor altijd een van haar mooiste steden geworden. En het paleis, daar, achter je, bewaart nog steeds, als een kloppend hart, de herinnering aan de vier hertogen die koningen deden beven.
+
+Blijf nog even op dit plein. Luister ernaar. En tot ziens, vriend.

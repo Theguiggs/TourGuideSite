@@ -1,0 +1,259 @@
+@@LANG=en
+@@TITLE=Dijon — Mansions and Lanes
+@@DESC=Architecture — recognizing courtyards, private mansions, and lanes in the preserved center.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-0
+@@STITLE=Porte Guillaume
+Start at place Darcy, facing the Porte Guillaume. This 18th-century arch replaced an older gate in Dijon's ramparts. It bears the name of Guillaume de Volpiano, reformer of the abbey of Saint-Bénigne in the Middle Ages. Its position still marks the passage between the boulevards and rue de la Liberté, the historic center's main thoroughfare.
+
+Look through the arch. The perspective narrows quickly between the façades, as if the gate compressed the town before letting it unfold. Behind you, place Darcy and its garden belong to the more open developments of the 19th and 20th centuries. Ahead of you begins an older fabric where private mansions rarely reveal themselves in a single glance.
+
+Take rue de la Liberté, then head toward the Hôtel Chambellan. Stay alert to passageways and carriage gates. Many only offer a glimpse of a courtyard and may belong to private properties; observe them from the street without crossing closed thresholds. Our route will follow this alternation between public façades and suggested interior spaces, characteristic of urban dwellings built for great families or officers of ducal power.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-1
+@@STITLE=Hôtel Chambellan
+Stop in front of the entrance to the Hôtel Chambellan, on rue des Forges. This late-15th-century residence is known for its courtyard and its carved wooden gallery. When the courtyard is legally accessible, go in discreetly; otherwise, stay at the threshold. The passage from the street reveals an essential principle of the private mansion: a façade sometimes reserved for the town, followed by an interior space where the architecture becomes more demonstrative.
+
+Look at the staircase, the galleries, and the carved supports. The wood contrasts with the stone. The courtyard lights a deep plot and organizes several building wings behind a narrow façade.
+
+Now head to rue de la Chouette, near the Notre-Dame church. The route passes through narrow lanes where every corner reveals a different fragment: turret, roofline, portal, or party wall. Don't try to get into the closed courtyards. Their withdrawal is part of the story. Dijon protects part of its architecture behind thresholds, and the walk consists precisely of reading what shows itself, what gets framed, and what stays hidden.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-2
+@@STITLE=Rue de la Chouette
+Walk along rue de la Chouette, alongside the Notre-Dame church. Its north side bears a small sculpture that has become one of Dijon's familiar landmarks. Pay special attention to the scale of the lane: the church wall occupies one edge, the old houses the other, and the sky narrows to a thin strip above the rooftops.
+
+As you go around the church, you can observe the gargoyles and the richness of the west portal from the public spaces. The proximity makes the details almost tactile, but keep your gaze moving so as not to block the passage. This street shows how a great monument fits into a dense fabric without having a wide forecourt on every side.
+
+Continue toward the Hôtel de Vogüé. Its portal and courtyard belong to the 17th century and will introduce a different architectural language. As you walk, notice the changes in stone, the mullioned windows, and the glazed rooftops that sometimes appear above the walls. The lane functions like a montage: it never shows the whole, only a sequence of fragments. It's precisely this partial view that sets up the discovery of an orderly courtyard behind a monumental portal.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-3
+@@STITLE=Hôtel de Vogüé
+Stand facing the portal of the Hôtel de Vogüé. Built in the early 17th century for Étienne Bouhier, a magistrate at the parliament of Burgundy, the building combines late-Renaissance decoration with classical forms. The portal announces the owner's rank even before the courtyard becomes visible. Its rustication, its sculptures, and its proportions form a true threshold façade.
+
+If public access is open, look at the courtyard without entering the reserved spaces. The buildings are arranged around it with more regularity than at the Hôtel Chambellan. The glazed-tile roof adds a colorful pattern visible from several angles. Here too, the courtyard brings light and distance within a dense urban plot.
+
+Then head toward rue de la Verrerie. This street preserves several old houses and offers a contrast with the mansion's solemnity. Look at how the upper floors sometimes project out over the ground floor. The modest dwellings and the prestigious mansions belong to the same fabric: some set the rhythm of the street, others carve out breathing spaces behind their doors. The next stop will let you compare these two scales directly.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-4
+@@STITLE=Rue de la Verrerie
+Stop on rue de la Verrerie at a spot where the passage remains clear. Several timber-framed houses recall the techniques used before stone façades became widespread. The jettied upper floors gain surface area above a narrow roadway. Their beams trace a visible grid, both structure and decoration.
+
+Compare these houses with the private mansions encountered earlier. Here, no grand portal creates a setback. The façade sits directly against the street, and the repetition of the bays produces a tight continuity. Yet each building keeps its irregularities: a warped corner, a carved wall plate, a shifted window. The lane carries the memory of slow transformations rather than that of a single project.
+
+Head to place de la Libération, passing through the streets of the center. The space will open up abruptly in front of the Palace of the Dukes and Estates of Burgundy. This transition is one of the strongest contrasts of the route. After secret courtyards and narrow streets, you'll arrive at a square designed to give perspective to a vast seat of power and to order the town around its façade.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-5
+@@STITLE=Place de la Libération
+Walk out onto place de la Libération and look at the curved façade that follows your movement. The space was designed in the late 17th century by Jules Hardouin-Mansart in front of the Palais des États. Its semicircular shape stages the entrance to the palace and creates a majestic transition between the seat of power and the town.
+
+At the center of the ensemble stands the Tour Philippe le Bon, raised in the 15th century. It recalls the palace of the Dukes of Burgundy, incorporated and then transformed when Dijon became a provincial capital of the kingdom. Several architectural periods thus overlap behind a composition that seems unified when seen from the square.
+
+Think back to the Porte Guillaume, the courtyards of the Hôtel Chambellan and the Hôtel de Vogüé, then rue de la Chouette and rue de la Verrerie. The route has moved from an urban threshold to private thresholds, from hidden spaces to this vast public stage. The private mansions used the courtyard to withdraw from the street; here, by contrast, the square opens the palace up to the city. The walk ends in this reversal, where architecture is no longer discovered in fragments but unfolds all around you.
+
+@@LANG=es
+@@TITLE=Dijon — Mansiones y callejuelas
+@@DESC=Arquitectura — reconocer patios, mansiones privadas y callejuelas en el centro protegido.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-0
+@@STITLE=Porte Guillaume
+Empieza en la place Darcy, frente a la Porte Guillaume. Este arco del siglo XVIII sustituyó a una entrada más antigua en el recinto amurallado de Dijon. Lleva el nombre de Guillaume de Volpiano, reformador de la abadía de Saint-Bénigne en la Edad Media. Su posición sigue marcando el paso entre los bulevares y la rue de la Liberté, gran eje del centro histórico.
+
+Mira a través del arco. La perspectiva se estrecha rápidamente entre las fachadas, como si la puerta comprimiera la ciudad antes de dejarla desplegarse. Detrás de ti, la plaza y el jardín Darcy pertenecen a las ordenaciones más abiertas de los siglos XIX y XX. Delante de ti empieza un tejido antiguo donde las mansiones privadas rara vez se descubren de un solo vistazo.
+
+Toma la rue de la Liberté y luego dirígete hacia el hôtel Chambellan. Mantente atento a los pasajes y a las puertas cocheras. Muchas solo ofrecen un vistazo de un patio y pueden pertenecer a propiedades privadas; obsérvalas desde la calle sin cruzar los umbrales cerrados. Nuestro recorrido seguirá esta alternancia entre fachadas públicas y espacios interiores sugeridos, característica de las viviendas urbanas construidas para grandes familias u oficiales del poder ducal.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-1
+@@STITLE=Hôtel Chambellan
+Detente frente al acceso del hôtel Chambellan, en la rue des Forges. Esta residencia de finales del siglo XV es conocida por su patio y su galería de madera esculpida. Si el patio es legalmente accesible, entra con discreción; si no, quédate en el umbral. El paso desde la calle revela un principio esencial de la mansión privada: una fachada a veces reservada a la ciudad, seguida de un espacio interior donde la arquitectura se vuelve más demostrativa.
+
+Observa la escalera, las galerías y los soportes esculpidos. La madera contrasta con la piedra. El patio ilumina una parcela profunda y organiza varios cuerpos de edificio detrás de una fachada estrecha.
+
+Dirígete ahora a la rue de la Chouette, cerca de la iglesia Notre-Dame. El trayecto pasa por vías estrechas donde cada esquina revela un fragmento distinto: torrecilla, tejado, portal o muro medianero. No intentes entrar en los patios cerrados. Su retiro forma parte del relato. Dijon protege parte de su arquitectura tras umbrales, y el paseo consiste precisamente en leer lo que se muestra, lo que se enmarca y lo que permanece oculto.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-2
+@@STITLE=Rue de la Chouette
+Avanza por la rue de la Chouette bordeando la iglesia Notre-Dame. Su lado norte lleva una pequeña escultura convertida en uno de los referentes familiares de Dijon. Observa sobre todo la escala de la callejuela: el muro religioso ocupa un borde, las casas antiguas el otro, y el cielo se reduce a una franja estrecha por encima de los tejados.
+
+Al rodear la iglesia, puedes observar las gárgolas y la riqueza del pórtico occidental desde los espacios públicos. La proximidad hace que los detalles resulten casi táctiles, pero mantén la mirada en movimiento para no entorpecer el paso. Esta calle muestra cómo un gran monumento se inserta en un tejido denso sin disponer de un amplio atrio en todos sus lados.
+
+Continúa hacia el hôtel de Vogüé. Su portal y su patio pertenecen al siglo XVII y anunciarán un lenguaje arquitectónico distinto. Al caminar, fíjate en los cambios de piedra, las ventanas de parteluz y los tejados vidriados que a veces aparecen por encima de los muros. La callejuela funciona como un montaje: nunca muestra el conjunto, solo una sucesión de fragmentos. Es precisamente esta visión parcial la que prepara el descubrimiento de un patio ordenado tras un portal monumental.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-3
+@@STITLE=Hôtel de Vogüé
+Sitúate frente al portal del hôtel de Vogüé. Construido a principios del siglo XVII para Étienne Bouhier, magistrado del parlamento de Borgoña, el edificio combina una decoración renacentista tardía con formas clásicas. El portal anuncia el rango del propietario incluso antes de que el patio sea visible. Sus almohadillados, sus esculturas y sus proporciones componen una auténtica fachada de umbral.
+
+Si el acceso público está abierto, observa el patio sin entrar en los espacios reservados. Los edificios se organizan a su alrededor con más regularidad que en el hôtel Chambellan. El tejado de tejas vidriadas añade un motivo colorido visible desde varios ángulos. También aquí, el patio aporta luz y distancia dentro de una parcela urbana densa.
+
+Dirígete después hacia la rue de la Verrerie. Esta vía conserva varias casas antiguas y ofrece un contraste con la solemnidad de la mansión. Fíjate en cómo los pisos avanzan a veces sobre la planta baja. Las viviendas modestas y las mansiones prestigiosas pertenecen al mismo tejido: unas marcan el ritmo de la calle, otras excavan respiros tras sus puertas. La próxima parada permitirá comparar directamente estas dos escalas.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-4
+@@STITLE=Rue de la Verrerie
+Detente en la rue de la Verrerie en un punto donde el paso quede libre. Varias casas de entramado de madera recuerdan las técnicas utilizadas antes de la generalización de las fachadas de piedra. Los pisos en voladizo ganan superficie sobre una calzada estrecha. Sus vigas dibujan una trama visible, a la vez estructura y decoración.
+
+Compara estas casas con las mansiones privadas encontradas antes. Aquí, ningún gran portal crea un retranqueo. La fachada está en contacto directo con la calle, y la repetición de los tramos produce una continuidad apretada. Sin embargo, cada edificio conserva sus irregularidades: una esquina deformada, una viga tallada, una ventana desplazada. La callejuela lleva la memoria de transformaciones lentas más que la de un proyecto único.
+
+Dirígete a la place de la Libération pasando por las vías del centro. El espacio se abrirá bruscamente ante el palacio de los duques y de los Estados de Borgoña. Esta transición constituye uno de los contrastes más fuertes del recorrido. Tras patios secretos y calles estrechas, llegarás a una plaza concebida para dar perspectiva a un vasto conjunto de poder y para ordenar la ciudad en torno a su fachada.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-5
+@@STITLE=Place de la Libération
+Avanza por la place de la Libération y mira la fachada curva que acompaña tu movimiento. El espacio fue diseñado a finales del siglo XVII por Jules Hardouin-Mansart frente al palacio de los Estados. Su forma en hemiciclo escenifica la entrada del palacio y crea una transición majestuosa entre el edificio del poder y la ciudad.
+
+En el centro del conjunto se encuentra la tour Philippe le Bon, alzada en el siglo XV. Recuerda el palacio de los duques de Borgoña, integrado y luego transformado cuando Dijon se convirtió en capital provincial del reino. Varios periodos arquitectónicos se superponen, pues, tras una composición que parece unitaria desde la plaza.
+
+Vuelve a pensar en la Porte Guillaume, en los patios de los hôtels Chambellan y de Vogüé, y luego en las rues de la Chouette y de la Verrerie. El recorrido ha pasado de un umbral urbano a umbrales privados, de espacios ocultos a esta vasta escena pública. Las mansiones privadas usaban el patio para retirarse de la calle; aquí, en cambio, la plaza abre el palacio a la ciudad. El paseo termina en este vuelco, donde la arquitectura ya no se descubre por fragmentos sino que se despliega a tu alrededor.
+
+@@LANG=de
+@@TITLE=Dijon — Stadtpalais und Gassen
+@@DESC=Architektur — Innenhöfe, Stadtpalais und Gassen im geschützten Zentrum erkennen.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-0
+@@STITLE=Porte Guillaume
+Beginne auf der Place Darcy, gegenüber der Porte Guillaume. Dieser Bogen aus dem 18. Jahrhundert ersetzte einen älteren Eingang in der Stadtmauer von Dijon. Er trägt den Namen Guillaume de Volpianos, des Reformers der Abtei Saint-Bénigne im Mittelalter. Seine Lage markiert bis heute den Übergang zwischen den Boulevards und der rue de la Liberté, der großen Achse des historischen Zentrums.
+
+Schau durch den Bogen hindurch. Die Perspektive verengt sich rasch zwischen den Fassaden, als würde das Tor die Stadt zusammenpressen, bevor es sie sich entfalten lässt. Hinter dir gehören der Platz und der Garten Darcy zu den offeneren Anlagen des 19. und 20. Jahrhunderts. Vor dir beginnt ein altes Gefüge, in dem sich die Stadtpalais selten mit einem einzigen Blick erschließen.
+
+Nimm die rue de la Liberté und geh dann zum Hôtel Chambellan. Bleib aufmerksam gegenüber Durchgängen und Kutschtoren. Viele geben nur einen Einblick in einen Hof frei und können zu Privateigentum gehören; betrachte sie von der Straße aus, ohne geschlossene Schwellen zu überschreiten. Unser Weg wird diesem Wechsel zwischen öffentlichen Fassaden und angedeuteten Innenräumen folgen, typisch für Stadthäuser, die für große Familien oder Amtsträger der herzoglichen Macht gebaut wurden.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-1
+@@STITLE=Hôtel Chambellan
+Halte vor dem Zugang zum Hôtel Chambellan an, in der rue des Forges. Dieses Wohnhaus aus dem späten 15. Jahrhundert ist für seinen Hof und seine Galerie aus geschnitztem Holz bekannt. Wenn der Hof legal zugänglich ist, geh diskret hinein; andernfalls bleib an der Schwelle. Der Übergang von der Straße offenbart ein wesentliches Prinzip des Stadtpalais: eine Fassade, die manchmal der Stadt vorbehalten ist, gefolgt von einem Innenraum, in dem die Architektur ausdrucksstärker wird.
+
+Betrachte die Treppe, die Galerien und die geschnitzten Stützen. Das Holz kontrastiert mit dem Stein. Der Hof beleuchtet ein tiefes Grundstück und ordnet mehrere Gebäudeflügel hinter einer schmalen Fassade an.
+
+Geh nun zur rue de la Chouette, in der Nähe der Kirche Notre-Dame. Der Weg führt durch enge Gassen, in denen jede Ecke ein anderes Fragment offenbart: Türmchen, Dachlinie, Portal oder Brandmauer. Versuch nicht, in die geschlossenen Höfe einzudringen. Ihr Rückzug ist Teil der Erzählung. Dijon schützt einen Teil seiner Architektur hinter Schwellen, und der Spaziergang besteht genau darin, zu lesen, was sich zeigt, was gerahmt wird und was verborgen bleibt.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-2
+@@STITLE=Rue de la Chouette
+Geh die rue de la Chouette entlang, an der Kirche Notre-Dame vorbei. Ihre Nordseite trägt eine kleine Skulptur, die zu einem der vertrauten Wahrzeichen Dijons geworden ist. Achte besonders auf den Maßstab der Gasse: die Kirchenmauer nimmt die eine Seite ein, die alten Häuser die andere, und der Himmel schrumpft zu einem schmalen Streifen über den Dächern.
+
+Beim Umrunden der Kirche kannst du die Wasserspeier und den Reichtum des Westportals von den öffentlichen Räumen aus betrachten. Die Nähe macht die Details fast greifbar, doch behalte deinen Blick in Bewegung, um den Durchgang nicht zu behindern. Diese Straße zeigt, wie sich ein großes Bauwerk in ein dichtes Gefüge einfügt, ohne auf allen Seiten einen weiten Vorplatz zu haben.
+
+Geh weiter zum Hôtel de Vogüé. Sein Portal und sein Hof gehören dem 17. Jahrhundert an und kündigen eine andere architektonische Sprache an. Achte beim Gehen auf die wechselnden Steinarten, die Sprossenfenster und die glasierten Dächer, die manchmal über den Mauern auftauchen. Die Gasse funktioniert wie eine Montage: sie zeigt nie das Ganze, nur eine Abfolge von Fragmenten. Genau dieser fragmentarische Blick bereitet die Entdeckung eines geordneten Hofes hinter einem monumentalen Portal vor.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-3
+@@STITLE=Hôtel de Vogüé
+Stell dich vor das Portal des Hôtel de Vogüé. Zu Beginn des 17. Jahrhunderts für Étienne Bouhier, einen Magistrat des Parlaments von Burgund, erbaut, verbindet das Gebäude eine spätrenaissancehafte Ausschmückung mit klassischen Formen. Das Portal verkündet den Rang des Besitzers, noch bevor der Hof sichtbar wird. Seine Bossierungen, seine Skulpturen und seine Proportionen bilden eine wahre Schwellenfassade.
+
+Wenn der öffentliche Zugang geöffnet ist, betrachte den Hof, ohne die reservierten Bereiche zu betreten. Die Gebäude sind regelmäßiger um ihn herum angeordnet als beim Hôtel Chambellan. Das Dach aus glasierten Ziegeln fügt ein farbiges Muster hinzu, das aus mehreren Blickwinkeln sichtbar ist. Auch hier bringt der Hof Licht und Abstand innerhalb eines dichten städtischen Grundstücks.
+
+Geh anschließend zur rue de la Verrerie. Diese Straße bewahrt mehrere alte Häuser und bildet einen Kontrast zur Feierlichkeit des Stadtpalais. Schau, wie die oberen Stockwerke manchmal über das Erdgeschoss hinausragen. Die bescheidenen Wohnhäuser und die prächtigen Stadtpalais gehören zum selben Gefüge: die einen geben der Straße ihren Rhythmus, die anderen schaffen Atempausen hinter ihren Türen. Der nächste Halt erlaubt es, diese beiden Maßstäbe direkt zu vergleichen.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-4
+@@STITLE=Rue de la Verrerie
+Halte in der rue de la Verrerie an einer Stelle an, wo der Durchgang frei bleibt. Mehrere Fachwerkhäuser erinnern an die Bautechniken, die vor der allgemeinen Verbreitung von Steinfassaden verwendet wurden. Die vorkragenden Obergeschosse gewinnen Fläche über einer engen Fahrbahn. Ihre Balken zeichnen ein sichtbares Raster, zugleich Struktur und Zierde.
+
+Vergleiche diese Häuser mit den zuvor gesehenen Stadtpalais. Hier schafft kein großes Portal einen Rücksprung. Die Fassade steht in direktem Kontakt mit der Straße, und die Wiederholung der Gefache erzeugt eine dichte Kontinuität. Dennoch bewahrt jedes Gebäude seine Unregelmäßigkeiten: eine verzogene Ecke, einen geschnitzten Schwellbalken, ein verschobenes Fenster. Die Gasse trägt die Erinnerung an langsame Wandlungen statt an ein einziges Bauprojekt.
+
+Geh weiter zur Place de la Libération, über die Straßen des Zentrums. Der Raum wird sich abrupt vor dem Palast der Herzöge und Stände von Burgund öffnen. Dieser Übergang bildet einen der stärksten Kontraste des Rundgangs. Nach geheimen Höfen und engen Straßen kommst du auf einen Platz, der geschaffen wurde, um einem gewaltigen Machtkomplex Distanz zu verschaffen und die Stadt um seine Fassade herum zu ordnen.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-5
+@@STITLE=Place de la Libération
+Geh auf die Place de la Libération hinaus und schau dir die geschwungene Fassade an, die deiner Bewegung folgt. Der Raum wurde Ende des 17. Jahrhunderts von Jules Hardouin-Mansart vor dem Palais des États entworfen. Seine halbkreisförmige Gestalt inszeniert den Eingang des Palastes und schafft einen majestätischen Übergang zwischen dem Machtgebäude und der Stadt.
+
+In der Mitte des Ensembles steht der Tour Philippe le Bon, im 15. Jahrhundert errichtet. Er erinnert an den Palast der Herzöge von Burgund, der eingegliedert und dann umgestaltet wurde, als Dijon zur Provinzhauptstadt des Königreichs wurde. Mehrere architektonische Epochen überlagern sich also hinter einer Komposition, die vom Platz aus einheitlich wirkt.
+
+Denk zurück an die Porte Guillaume, die Höfe der Hôtels Chambellan und de Vogüé, dann an die rue de la Chouette und die rue de la Verrerie. Der Weg führte von einer städtischen Schwelle zu privaten Schwellen, von verborgenen Räumen zu dieser weiten öffentlichen Bühne. Die Stadtpalais nutzten den Hof, um sich von der Straße zurückzuziehen; hier hingegen öffnet der Platz den Palast zur Stadt hin. Der Spaziergang endet in dieser Umkehrung, dort, wo sich die Architektur nicht mehr in Fragmenten erschließt, sondern sich rings um dich entfaltet.
+
+@@LANG=it
+@@TITLE=Digione — Palazzi e vicoli
+@@DESC=Architettura — riconoscere cortili, palazzi privati e vicoli nel centro tutelato.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-0
+@@STITLE=Porte Guillaume
+Inizia in place Darcy, di fronte alla Porte Guillaume. Questo arco del XVIII secolo sostituì un ingresso più antico nella cinta muraria di Digione. Porta il nome di Guillaume de Volpiano, riformatore dell'abbazia di Saint-Bénigne nel Medioevo. La sua posizione segna ancora il passaggio tra i viali e la rue de la Liberté, grande asse del centro storico.
+
+Guarda attraverso l'arco. La prospettiva si restringe rapidamente tra le facciate, come se la porta comprimesse la città prima di lasciarla dispiegarsi. Alle tue spalle, la piazza e il giardino Darcy appartengono alle sistemazioni più aperte dei secoli XIX e XX. Davanti a te comincia un tessuto antico dove i palazzi privati si scoprono raramente con un solo sguardo.
+
+Prendi rue de la Liberté e poi dirigiti verso l'hôtel Chambellan. Resta attento ai passaggi e ai portoni carrai. Molti offrono solo uno scorcio di un cortile e possono appartenere a proprietà private; osservali dalla strada senza varcare le soglie chiuse. Il nostro percorso seguirà questa alternanza tra facciate pubbliche e spazi interni suggeriti, caratteristica delle dimore urbane costruite per grandi famiglie o funzionari del potere ducale.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-1
+@@STITLE=Hôtel Chambellan
+Fermati davanti all'accesso dell'hôtel Chambellan, in rue des Forges. Questa dimora della fine del XV secolo è nota per il suo cortile e la sua galleria in legno scolpito. Se il cortile è legalmente accessibile, entra con discrezione; altrimenti, resta sulla soglia. Il passaggio dalla strada rivela un principio essenziale del palazzo privato: una facciata talvolta riservata alla città, seguita da uno spazio interno dove l'architettura diventa più dimostrativa.
+
+Osserva la scala, le gallerie e i sostegni scolpiti. Il legno contrasta con la pietra. Il cortile illumina una parcella profonda e organizza vari corpi di fabbrica dietro una facciata stretta.
+
+Raggiungi ora rue de la Chouette, vicino alla chiesa Notre-Dame. Il tragitto passa per vie strette dove ogni angolo rivela un frammento diverso: torretta, tetto, portale o muro divisorio. Non cercare di entrare nei cortili chiusi. Il loro ritiro fa parte del racconto. Digione protegge parte della sua architettura dietro soglie, e la passeggiata consiste proprio nel leggere ciò che si mostra, ciò che si inquadra e ciò che resta nascosto.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-2
+@@STITLE=Rue de la Chouette
+Avanza lungo rue de la Chouette costeggiando la chiesa Notre-Dame. Il suo lato nord porta una piccola scultura diventata uno dei punti di riferimento familiari di Digione. Osserva soprattutto la scala del vicolo: il muro religioso occupa un bordo, le case antiche l'altro, e il cielo si riduce a una striscia stretta sopra i tetti.
+
+Girando intorno alla chiesa, puoi osservare i doccioni e la ricchezza del portale occidentale dagli spazi pubblici. La vicinanza rende i dettagli quasi tattili, ma mantieni lo sguardo in movimento per non ostacolare il passaggio. Questa via mostra come un grande monumento si inserisca in un tessuto denso senza disporre di un ampio sagrato su tutti i lati.
+
+Prosegui verso l'hôtel de Vogüé. Il suo portale e il suo cortile appartengono al XVII secolo e annunceranno un linguaggio architettonico diverso. Camminando, nota i cambi di pietra, le finestre a crociera e i tetti smaltati che a volte compaiono sopra i muri. Il vicolo funziona come un montaggio: non mostra mai l'insieme, solo una sequenza di frammenti. È proprio questa visione parziale a preparare la scoperta di un cortile ordinato dietro un portale monumentale.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-3
+@@STITLE=Hôtel de Vogüé
+Mettiti di fronte al portale dell'hôtel de Vogüé. Costruito all'inizio del XVII secolo per Étienne Bouhier, magistrato al parlamento di Borgogna, l'edificio associa una decorazione rinascimentale tarda a forme classiche. Il portale annuncia il rango del proprietario ancor prima che il cortile sia visibile. I suoi bugnati, le sue sculture e le sue proporzioni compongono una vera facciata di soglia.
+
+Se l'accesso pubblico è aperto, osserva il cortile senza entrare negli spazi riservati. Gli edifici si organizzano attorno ad esso con maggiore regolarità rispetto all'hôtel Chambellan. Il tetto di tegole smaltate aggiunge un motivo colorato visibile da diverse angolazioni. Anche qui, il cortile porta luce e distanza all'interno di una parcella urbana densa.
+
+Dirigiti poi verso rue de la Verrerie. Questa via conserva diverse case antiche e offre un contrasto con la solennità del palazzo. Guarda come i piani superiori a volte avanzano sopra il piano terra. Le dimore modeste e i palazzi prestigiosi appartengono allo stesso tessuto: gli uni danno il ritmo alla strada, gli altri scavano respiri dietro le loro porte. La prossima tappa permetterà di confrontare direttamente queste due scale.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-4
+@@STITLE=Rue de la Verrerie
+Fermati in rue de la Verrerie in un punto dove il passaggio resti libero. Diverse case a graticcio ricordano le tecniche utilizzate prima della generalizzazione delle facciate in pietra. I piani a sbalzo guadagnano superficie sopra una carreggiata stretta. Le loro travi disegnano una trama visibile, al tempo stesso struttura e decoro.
+
+Confronta queste case con i palazzi privati incontrati in precedenza. Qui, nessun grande portale crea un arretramento. La facciata è a diretto contatto con la strada, e la ripetizione delle campate produce una continuità serrata. Eppure, ogni edificio conserva le sue irregolarità: un angolo deformato, una trave scolpita, una finestra spostata. Il vicolo porta la memoria di trasformazioni lente piuttosto che quella di un unico progetto.
+
+Raggiungi place de la Libération passando per le vie del centro. Lo spazio si aprirà bruscamente davanti al palazzo dei duchi e degli Stati di Borgogna. Questa transizione costituisce uno dei contrasti più forti del percorso. Dopo cortili segreti e strade strette, arriverai su una piazza concepita per dare respiro a un vasto complesso di potere e per ordinare la città attorno alla sua facciata.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-5
+@@STITLE=Place de la Libération
+Avanza sulla place de la Libération e guarda la facciata curva che accompagna il tuo movimento. Lo spazio fu concepito alla fine del XVII secolo da Jules Hardouin-Mansart davanti al palazzo degli Stati. La sua forma a emiciclo mette in scena l'ingresso del palazzo e crea una transizione maestosa tra l'edificio del potere e la città.
+
+Al centro dell'insieme si trova la tour Philippe le Bon, eretta nel XV secolo. Ricorda il palazzo dei duchi di Borgogna, integrato e poi trasformato quando Digione divenne capitale provinciale del regno. Diversi periodi architettonici si sovrappongono dunque dietro una composizione che sembra unitaria vista dalla piazza.
+
+Ripensa alla Porte Guillaume, ai cortili degli hôtels Chambellan e de Vogüé, e poi a rue de la Chouette e rue de la Verrerie. Il percorso è passato da una soglia urbana a soglie private, da spazi nascosti a questa vasta scena pubblica. I palazzi privati usavano il cortile per ritirarsi dalla strada; qui, al contrario, la piazza apre il palazzo verso la città. La passeggiata si conclude in questo ribaltamento, là dove l'architettura non si scopre più per frammenti ma si dispiega tutt'intorno a te.
+
+@@LANG=nl
+@@TITLE=Dijon — Herenhuizen en steegjes
+@@DESC=Architectuur — binnenplaatsen, herenhuizen en steegjes herkennen in het beschermde centrum.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-0
+@@STITLE=Porte Guillaume
+Begin op place Darcy, tegenover de Porte Guillaume. Deze 18e-eeuwse boog verving een oudere toegang in de stadsmuur van Dijon. Hij draagt de naam van Guillaume de Volpiano, hervormer van de abdij Saint-Bénigne in de middeleeuwen. Zijn positie markeert nog steeds de overgang tussen de boulevards en de rue de la Liberté, de grote as van het historische centrum.
+
+Kijk door de boog heen. Het perspectief versmalt snel tussen de gevels, alsof de poort de stad samendrukt voordat ze zich laat ontvouwen. Achter je behoren het plein en de tuin Darcy tot de meer open aanleg van de 19e en 20e eeuw. Voor je begint een oud weefsel waar de herenhuizen zich zelden in één oogopslag laten zien.
+
+Neem de rue de la Liberté en ga dan richting het hôtel Chambellan. Blijf attent op doorgangen en koetspoorten. Veel ervan bieden slechts een glimp van een binnenplaats en kunnen tot privébezit behoren; bekijk ze vanaf de straat zonder gesloten drempels te overschrijden. Onze route volgt deze afwisseling tussen openbare gevels en gesuggereerde binnenruimtes, kenmerkend voor stadswoningen gebouwd voor grote families of ambtenaren van de hertogelijke macht.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-1
+@@STITLE=Hôtel Chambellan
+Stop voor de toegang van het hôtel Chambellan, in de rue des Forges. Deze woning uit het einde van de 15e eeuw staat bekend om haar binnenplaats en haar galerij van gesneden hout. Als de binnenplaats wettelijk toegankelijk is, ga discreet naar binnen; zo niet, blijf dan op de drempel staan. De overgang vanaf de straat onthult een essentieel principe van het herenhuis: een gevel soms voorbehouden aan de stad, gevolgd door een binnenruimte waar de architectuur demonstratiever wordt.
+
+Bekijk de trap, de galerijen en de gesneden steunen. Het hout contrasteert met de steen. De binnenplaats verlicht een diep perceel en organiseert meerdere bouwvleugels achter een smalle gevel.
+
+Ga nu naar de rue de la Chouette, bij de kerk Notre-Dame. De route loopt door smalle steegjes waar elke hoek een ander fragment onthult: torentje, dakrand, portaal of scheidingsmuur. Probeer niet in de gesloten binnenplaatsen te komen. Hun teruggetrokkenheid maakt deel uit van het verhaal. Dijon beschermt een deel van zijn architectuur achter drempels, en de wandeling bestaat er juist in te lezen wat zich toont, wat wordt omkaderd en wat verborgen blijft.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-2
+@@STITLE=Rue de la Chouette
+Loop verder door de rue de la Chouette, langs de kerk Notre-Dame. Haar noordzijde draagt een klein beeldhouwwerk dat een van de vertrouwde herkenningspunten van Dijon is geworden. Let vooral op de schaal van het steegje: de kerkmuur neemt de ene rand in, de oude huizen de andere, en de hemel versmalt tot een dunne strook boven de daken.
+
+Terwijl je om de kerk heen loopt, kun je de waterspuwers en de rijkdom van het westelijke portaal bekijken vanaf de openbare ruimtes. De nabijheid maakt de details bijna tastbaar, maar houd je blik in beweging om de doorgang niet te belemmeren. Deze straat toont hoe een groot monument zich in een dicht weefsel voegt zonder aan alle kanten een breed voorplein te hebben.
+
+Ga verder naar het hôtel de Vogüé. Het portaal en de binnenplaats ervan dateren uit de 17e eeuw en kondigen een andere architecturale taal aan. Let tijdens het lopen op de veranderingen in steensoort, de kruiskozijnen en de geglazuurde daken die soms boven de muren verschijnen. Het steegje functioneert als een montage: het toont nooit het geheel, alleen een opeenvolging van fragmenten. Precies dit gedeeltelijke zicht bereidt de ontdekking voor van een geordende binnenplaats achter een monumentaal portaal.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-3
+@@STITLE=Hôtel de Vogüé
+Ga tegenover het portaal van het hôtel de Vogüé staan. Gebouwd in het begin van de 17e eeuw voor Étienne Bouhier, magistraat bij het parlement van Bourgondië, combineert het gebouw laat-renaissancistische versiering met klassieke vormen. Het portaal kondigt de rang van de eigenaar aan nog voordat de binnenplaats zichtbaar wordt. De bewerkte blokken, de beeldhouwwerken en de verhoudingen ervan vormen een ware drempelgevel.
+
+Als de openbare toegang open is, bekijk dan de binnenplaats zonder de gereserveerde ruimtes te betreden. De gebouwen zijn er regelmatiger omheen georganiseerd dan bij het hôtel Chambellan. Het dak van geglazuurde dakpannen voegt een kleurrijk motief toe dat vanuit meerdere hoeken zichtbaar is. Ook hier brengt de binnenplaats licht en afstand binnen een dicht stedelijk perceel.
+
+Ga vervolgens naar de rue de la Verrerie. Deze straat behoudt verschillende oude huizen en biedt een contrast met de plechtstatigheid van het herenhuis. Let op hoe de verdiepingen soms boven de begane grond uitsteken. De bescheiden woningen en de prestigieuze herenhuizen behoren tot hetzelfde weefsel: de ene geven de straat haar ritme, de andere graven ademruimtes uit achter hun deuren. De volgende halte maakt het mogelijk deze twee schalen rechtstreeks te vergelijken.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-4
+@@STITLE=Rue de la Verrerie
+Stop in de rue de la Verrerie op een plek waar de doorgang vrij blijft. Verschillende vakwerkhuizen herinneren aan de technieken die werden gebruikt vóór de algemene verspreiding van stenen gevels. De overkragende verdiepingen winnen oppervlakte boven een smalle rijweg. Hun balken tekenen een zichtbaar raster, tegelijk structuur en versiering.
+
+Vergelijk deze huizen met de eerder aangetroffen herenhuizen. Hier creëert geen groot portaal een terugsprong. De gevel staat in direct contact met de straat, en de herhaling van de vakken produceert een strakke continuïteit. Toch behoudt elk gebouw zijn onregelmatigheden: een vervormde hoek, een gesneden muurplaat, een verplaatst raam. Het steegje draagt de herinnering aan langzame veranderingen eerder dan die van één enkel project.
+
+Ga naar de place de la Libération via de straten van het centrum. De ruimte zal zich abrupt openen voor het paleis van de hertogen en de Staten van Bourgondië. Deze overgang vormt een van de sterkste contrasten van de route. Na geheime binnenplaatsen en smalle straten kom je uit op een plein, ontworpen om een uitgestrekt machtscomplex afstand te geven en om de stad rond zijn gevel te ordenen.
+
+@@SCENE=seed-100-dijon-hotels-et-ruelles-scene-5
+@@STITLE=Place de la Libération
+Loop de place de la Libération op en kijk naar de gebogen gevel die je beweging volgt. De ruimte werd eind 17e eeuw ontworpen door Jules Hardouin-Mansart, voor het Palais des États. De halfronde vorm ensceneert de ingang van het paleis en creëert een majestueuze overgang tussen het machtsgebouw en de stad.
+
+In het midden van het geheel staat de tour Philippe le Bon, opgetrokken in de 15e eeuw. Ze herinnert aan het paleis van de hertogen van Bourgondië, opgenomen en later verbouwd toen Dijon een provinciehoofdstad van het koninkrijk werd. Verschillende architecturale periodes overlappen elkaar dus achter een compositie die vanaf het plein eenheid lijkt te vertonen.
+
+Denk terug aan de Porte Guillaume, de binnenplaatsen van de hôtels Chambellan en de Vogüé, en dan aan de rue de la Chouette en de rue de la Verrerie. De route ging van een stedelijke drempel naar private drempels, van verborgen ruimtes naar dit uitgestrekte openbare toneel. De herenhuizen gebruikten de binnenplaats om zich terug te trekken van de straat; hier daarentegen opent het plein het paleis juist naar de stad toe. De wandeling eindigt in deze omkering, daar waar de architectuur zich niet langer in fragmenten laat ontdekken maar zich helemaal om je heen ontvouwt.

@@ -1,0 +1,339 @@
+@@LANG=en
+@@TITLE=Deauville — The Kingdom of the Horse
+@@DESC=Sport — yearlings, polo, and sea bathing: sport as a Norman way of life.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-0
+@@STITLE=Entrée publique de l'hippodrome de Clairefontaine
+Welcome to Clairefontaine. In front of you, a rolling green track, wooden grandstands, the smell of hay, and horses everywhere. This racecourse was born in 1928, and it's the more down-to-earth of Deauville's two tracks. Here, you can slip behind the scenes: walk along the stables in the early morning, watch the stable lads groom the animals, get close to these athletes of blood and muscle before they take off. Flat races run here, jumps too, and on Sundays whole families come as neighbors.
+
+It's the right place to start, because it lets you touch what I want to tell you about. In this corner of Normandy, the horse isn't just one sport among others. It's a way of life. A gentle religion that sets the rhythm of the seasons.
+
+Picture a map in your mind. Around Deauville, everything revolves around the animal: two racecourses, stud farms as far as the eye can see, a market where the finest foals in the world are sold, polo grounds, and even a beach where horses go bathing. The gallop, here, is a way of life.
+
+That's our thread for this walk: follow the horse, from this quiet track all the way to the seashore. Because in Deauville, everything eventually comes back to the water.
+
+Now take the road into town. Count on a good quarter-hour's walk to the northeast, to the big racecourse, the one at La Touques. Follow me.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-1
+@@STITLE=Entrée publique de l'hippodrome de La Touques
+Here you are in front of the La Touques racecourse, the grand, prestigious one. Immaculate lawn, elegant grandstands, flags in the wind. This is where glory is won, not at Clairefontaine.
+
+And this is where it all began. The man who invented Deauville wanted a racecourse first. In 1864, the Duc de Morny, half-brother of the emperor, laid out this racecourse in the middle of the marshes he had just drained. The town would come afterward, built around the track. In Deauville, the horse didn't arrive with the holidaymakers: it was there before them. It's the very reason the town exists.
+
+Every summer, in August, what's called the grande semaine, the great week, is held here. The racing world crowds into the stands, hats and binoculars, for the finest races of the season. The Grand Prix de Deauville is run here, along with the Prix Morny — named after the founder — where tomorrow's champions face off.
+
+But before a horse can race, it has to be bought. And in Deauville, that's a spectacle all its own. Walk along the track to the large light-colored building nearby: the sales ring. Follow me.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-2
+@@STITLE=Les ventes de yearlings
+Go inside, if the doors are open, into this large covered rotunda: the sales ring. Tiered seats arranged in a circle, a sawdust-covered ring at the center, a rostrum for the auctioneer. This is where the yearlings are sold, every year.
+
+A yearling is a one-year-old thoroughbred, barely broken in, that has never yet raced. It's brought in there, to the center, under the spotlights. A man holds it on a lead, walks it in a circle. And the bids climb. All around, buyers from across the world — from Ireland, the Gulf, Japan — compete for these prospects with discreet signals.
+
+The sums are dizzying. For a foal that hasn't proven anything, that no one yet knows will run fast, the price sometimes exceeds that of a house. What's being bought is a dream, a bloodline, the promise of a future champion. Many will be ruined; a few will give birth to a legend.
+
+That's the horse of Deauville too: a trade in blue blood, a stock exchange of dreams where money flows like nowhere else. Go outside, and head to the large modern arena a little further south: the Pôle du Cheval. Follow me.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-3
+@@STITLE=Accès nord du Pôle International du Cheval
+Here we are in front of the Pôle International du Cheval, a large modern arena, its sand rings, its stands. Here, horses don't race: they dance and they jump.
+
+Because Deauville's horse doesn't just gallop in a straight line. On these tracks, dressage and show-jumping competitions are held, disciplines where horse and rider become one. In dressage, the horse moves forward in an extended trot, changes lead, pivots, as if dancing to a music only it can hear. Years of patience for a few minutes of grace.
+
+Watch a rider and their mount at work closely. There's a silent conversation happening there, a perfect harmony at every moment, almost a friendship. Sport, here, becomes an art.
+
+And that's what's special about Deauville: the horse is all of these things at once. A racing machine, a luxury commodity, a dance partner. And soon, you'll see, a playmate too. Move on to the neighboring grounds, these vast close-cropped lawns: the polo fields. Follow me.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-4
+@@STITLE=Le Polo de Deauville
+Wide, perfectly mown lawns stretch out before you: the polo fields. If you come in August, you might catch the scene — eight riders galloping at full speed, mallet in hand, fighting over a small wooden ball in a thunder of hooves.
+
+Polo is one of the oldest and fastest games in the world. In Deauville, it has earned its noble credentials. Every summer, the Coupe d'Or is played here, one of Europe's great tournaments, drawing teams from all over and exceptional horses — these "polo ponies," lightning-quick despite their name.
+
+Around the field, there's another spectacle: the crowd. Hats, light dresses, programs in hand. At halftime, as tradition dictates, spectators walk out onto the field to stamp back down the clumps of turf torn up by the hooves. Sport and high society, hand in hand.
+
+You've understood by now: here, the horse is as much a social creature as a sporting one. All that's left is to follow it where you'd least expect. Head back toward the town and the sea, a quarter-hour's walk to the north, to the beach. Follow me.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-5
+@@STITLE=Les Planches, au bord de la plage
+Here we are: Deauville's beach, the wide pale sand, the parasols, the English Channel stretching as far as the eye can see. You're wondering what the horse has to do with this, by the water's edge. Wait for the answer.
+
+Come back at dawn, before the bathers arrive. When the sun has barely risen, the beach belongs to the horses. They're brought down to the shore, and there, in the foam, right at the water's edge, the thoroughbreds train at a gentle canter. The cold water strengthens their legs, the sea relaxes them. Silhouettes racing through the mist, hooves in the salt water: it's one of the most beautiful sights in Normandy, and almost no one sees it.
+
+Because here, everything comes together. Deauville was born as a seaside bathing resort, a place where people once came to plunge into cold water to restore their health. Sea bathing for people, sea bathing for horses. The same beach, the same water, the same art of taking care of oneself and living slowly.
+
+That's the secret of this land. Here, the horse isn't a Sunday pastime. It's everywhere: on the tracks of La Touques, in the sales ring, on the polo lawns, and even in the waves at dawn. It sets the rhythm of the seasons, it gives people their livelihood, it shapes the elegance of the place. Sport, in Deauville, isn't a parenthesis. It's a way of inhabiting the world.
+
+Stay a moment facing the sea. If you happen to pass by early one morning, watch for the horses in the foam. You'll understand everything. See you soon, friend.
+
+@@LANG=es
+@@TITLE=Deauville — El reino del caballo
+@@DESC=Deporte — yearlings, polo y baños de mar: el deporte como arte de vivir normando.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-0
+@@STITLE=Entrée publique de l'hippodrome de Clairefontaine
+Bienvenido a Clairefontaine. Delante de ti, una pista verde y ondulante, tribunas de madera, el olor a heno, y caballos por todas partes. Este hipódromo nació en 1928, y es el más cercano de los dos que tiene Deauville. Aquí se puede pasar detrás del decorado: recorrer las cuadras al amanecer, ver a los mozos cepillar a los animales, acercarse a estos atletas de sangre y músculo antes de que salgan disparados. Se corre en llano, se saltan obstáculos, y los domingos vienen familias enteras, como vecinos.
+
+Es un buen lugar para empezar, porque te permite tocar con el dedo lo que quiero contarte. En este rincón de Normandía, el caballo no es un deporte más entre otros. Es una forma de vivir. Una religión suave que marca el ritmo de las estaciones.
+
+Imagina un mapa. Alrededor de Deauville, todo gira en torno al animal: dos hipódromos, criaderos hasta donde alcanza la vista, un mercado donde se venden los potrillos más hermosos del mundo, campos de polo, e incluso una playa donde los caballos van a bañarse. El galope, aquí, es un arte de vivir.
+
+Ese es nuestro hilo para este paseo: seguir al caballo, desde esta pista tranquila hasta la orilla del mar. Porque en Deauville, todo acaba volviendo al agua.
+
+Toma ahora el camino hacia la ciudad. Cuenta un buen cuarto de hora de caminata hacia el noreste, hasta el gran hipódromo, el de La Touques. Sígueme.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-1
+@@STITLE=Entrée publique de l'hippodrome de La Touques
+Aquí estás, frente al hipódromo de La Touques, el grande, el prestigioso. Césped impecable, tribunas elegantes, banderas al viento. Es aquí, y no en Clairefontaine, donde se juega la gloria.
+
+Y es aquí donde todo empezó. El hombre que inventó Deauville quiso primero un hipódromo. En 1864, el duque de Morny, hermanastro del emperador, traza este hipódromo en medio de los pantanos que acaba de desecar. La ciudad vendrá después, alrededor de la pista. En Deauville, el caballo no llegó con los veraneantes: ya estaba antes que ellos. Es la razón misma de la ciudad.
+
+Cada verano, en el mes de agosto, se celebra aquí lo que se llama la gran semana. El mundo de las carreras se apiña en las tribunas, con sombreros y prismáticos, para las mejores pruebas de la temporada. Se corre aquí el Grand Prix de Deauville, y el prix Morny —por el nombre del fundador— donde se enfrentan las estrellas del mañana.
+
+Pero antes de correr, un caballo se compra. Y eso, en Deauville, es un espectáculo en sí mismo. Bordea la pista hasta el gran edificio claro, muy cerca: el ring de ventas. Sígueme.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-2
+@@STITLE=Les ventes de yearlings
+Entra, si las puertas están abiertas, en este gran redondel cubierto: el ring de ventas. Gradas en círculo, una pista de serrín en el centro, un estrado para el subastador. Aquí es donde se venden, cada año, los yearlings.
+
+Un yearling es un purasangre de un año, apenas domado, que aún no ha corrido nunca. Se le hace entrar ahí, al centro, bajo los focos. Un hombre lo sujeta con un ronzal, lo hace dar vueltas. Y las pujas suben. Alrededor, compradores venidos de todo el mundo —de Irlanda, del Golfo, de Japón— se disputan estas promesas con gestos discretos.
+
+Las sumas dan vértigo. Por un potrillo que no ha demostrado nada, del que nadie sabe todavía si correrá rápido, se paga a veces más que por una casa. Se compra un sueño, un linaje, la promesa de un futuro campeón. Muchos se arruinarán; algunos harán nacer una leyenda.
+
+Eso es también el caballo de Deauville: un comercio de sangre azul, una bolsa del sueño donde el dinero corre como en ningún otro lugar. Sal, y dirígete al gran picadero moderno, un poco más al sur: el Pôle du Cheval. Sígueme.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-3
+@@STITLE=Accès nord du Pôle International du Cheval
+Aquí estamos, frente al Pôle International du Cheval, una gran arena moderna, con sus pistas de arena, sus gradas. Aquí no se corre: se baila y se salta.
+
+Porque el caballo de Deauville no se limita a galopar en línea recta. En estas pistas se celebran concursos de doma y de salto de obstáculos, esas disciplinas donde el hombre y el animal se convierten en uno solo. En la doma, el caballo avanza al trote elevado, cambia de mano, gira, como si bailara al son de una música que solo él escucha. Años de paciencia para unos minutos de gracia.
+
+Observa bien a un jinete y su montura trabajando. Hay ahí una conversación muda, una armonía de cada instante, casi una amistad. El deporte, aquí, se convierte en arte.
+
+Y eso es lo propio de Deauville: el caballo lo es todo a la vez. Una máquina de correr, una mercancía de lujo, un compañero de baile. Y pronto, lo verás, un compañero de juego. Pasa a los terrenos vecinos, esos vastos céspedes rasos: el polo. Sígueme.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-4
+@@STITLE=Le Polo de Deauville
+Ante ti se extienden amplios céspedes perfectamente rasos: los campos de polo. Si vienes en agosto, puede que veas la escena: ocho jinetes lanzados al galope, mazo en mano, disputándose una pequeña bola de madera en un estruendo de cascos.
+
+El polo es uno de los juegos más antiguos y más rápidos del mundo. En Deauville, tiene su carta de nobleza. Cada verano se disputa aquí la Coupe d'Or, uno de los grandes torneos de Europa, que atrae equipos de todas partes y caballos excepcionales, esos «ponis» de polo, veloces como el rayo pese a su nombre.
+
+Alrededor del campo, el otro espectáculo: el público. Sombreros, vestidos claros, programas en la mano. En el descanso, por tradición, los espectadores bajan al césped para colocar de nuevo los terrones de tierra arrancados por los cascos. El deporte y la alta sociedad, de la mano.
+
+Ya lo has entendido: aquí, el caballo es tan mundano como deportivo. Solo nos queda seguirlo donde menos se le espera. Vuelve hacia la ciudad y el mar, un cuarto de hora de camino hacia el norte, hasta la playa. Sígueme.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-5
+@@STITLE=Les Planches, au bord de la plage
+Ya estamos: la playa de Deauville, la gran arena clara, las sombrillas, el Canal de la Mancha hasta donde alcanza la vista. Te preguntas qué pinta el caballo aquí, a orillas del agua. Espera la respuesta.
+
+Vuelve al amanecer, antes de los bañistas. Cuando el sol apenas se levanta, la playa pertenece a los caballos. Se les baja hasta la orilla, y ahí, entre la espuma, a ras de las olas, los purasangres se entrenan al galope suave. El agua fría fortalece sus patas, el mar los relaja. Siluetas lanzadas en la bruma, cascos en el agua salada: es una de las imágenes más hermosas de Normandía, y casi nadie la ve.
+
+Porque aquí todo se une. Deauville nació como estación de baños de mar, ese lugar donde antaño se venía a sumergirse en agua fría para recuperar la salud. Baños de mar para las personas, baños de mar para los caballos. La misma playa, la misma agua, el mismo arte de cuidarse y de vivir despacio.
+
+Ese es el secreto de esta tierra. Aquí el caballo no es un pasatiempo dominical. Está en todas partes: en las pistas de La Touques, en el ring de ventas, en los céspedes de polo, y hasta en las olas al amanecer. Marca el ritmo de las estaciones, da de vivir a la gente, dibuja la elegancia del lugar. El deporte, en Deauville, no es un paréntesis. Es una manera de habitar el mundo.
+
+Quédate un momento frente al mar. Si pasas una madrugada temprano, guarda un ojo a los caballos entre la espuma. Lo entenderás todo. Hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Deauville — Das Königreich des Pferdes
+@@DESC=Sport — Jährlinge, Polo und Meerbäder: der Sport als normannische Lebenskunst.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-0
+@@STITLE=Entrée publique de l'hippodrome de Clairefontaine
+Willkommen in Clairefontaine. Vor dir eine wogende grüne Bahn, hölzerne Tribünen, der Geruch von Heu, und überall Pferde. Diese Rennbahn wurde 1928 geboren und ist die vertrautere der beiden, die Deauville besitzt. Hier kann man hinter die Kulissen blicken: am frühen Morgen an den Ställen entlanggehen, den Stallburschen beim Striegeln der Tiere zusehen, sich diesen Athleten aus Blut und Muskeln nähern, bevor sie loslegen. Man läuft auf der Flachbahn, man springt über Hindernisse, und sonntags kommen ganze Familien wie zu Nachbarn.
+
+Das ist der richtige Ort, um zu beginnen, denn er lässt dich mit den Fingern berühren, was ich dir erzählen möchte. In diesem Winkel der Normandie ist das Pferd nicht ein Sport unter anderen. Es ist eine Lebensweise. Eine sanfte Religion, die den Rhythmus der Jahreszeiten vorgibt.
+
+Stell dir eine Landkarte vor. Um Deauville dreht sich alles um das Tier: zwei Rennbahnen, Gestüte so weit das Auge reicht, ein Markt, auf dem die schönsten Fohlen der Welt verkauft werden, Polofelder, und sogar ein Strand, an dem Pferde baden gehen. Der Galopp ist hier eine Lebenskunst.
+
+Das ist unser roter Faden für diesen Spaziergang: dem Pferd folgen, von dieser ruhigen Bahn bis ans Meer. Denn in Deauville führt am Ende alles zum Wasser zurück.
+
+Nimm nun den Weg in die Stadt. Rechne mit einer guten Viertelstunde Fußweg Richtung Nordosten, bis zur großen Rennbahn, der von La Touques. Folge mir.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-1
+@@STITLE=Entrée publique de l'hippodrome de La Touques
+Da bist du nun vor der Rennbahn von La Touques, der großen, der prestigeträchtigen. Makelloser Rasen, elegante Tribünen, Fahnen im Wind. Hier, und nicht in Clairefontaine, wird der Ruhm entschieden.
+
+Und hier hat alles angefangen. Der Mann, der Deauville erfand, wollte zuerst eine Rennbahn. 1864 legt der Herzog von Morny, Halbbruder des Kaisers, diese Rennbahn mitten in den Sümpfen an, die er gerade trockengelegt hat. Die Stadt kommt erst danach, rund um die Bahn. In Deauville kam das Pferd nicht mit den Urlaubern: es war vor ihnen da. Es ist der eigentliche Grund für die Existenz der Stadt.
+
+Jeden Sommer, im August, findet hier die sogenannte grande semaine statt, die große Woche. Die Rennwelt drängt sich auf den Tribünen, mit Hüten und Ferngläsern, für die schönsten Prüfungen der Saison. Hier wird der Grand Prix de Deauville gelaufen, und der Prix Morny — benannt nach dem Gründer —, wo sich die Stars von morgen messen.
+
+Doch bevor ein Pferd läuft, wird es gekauft. Und das ist in Deauville ein Schauspiel für sich. Geh an der Bahn entlang bis zum großen, hellen Gebäude ganz in der Nähe: dem Verkaufsring. Folge mir.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-2
+@@STITLE=Les ventes de yearlings
+Betritt, wenn die Türen offen sind, diese große überdachte Rundhalle: den Verkaufsring. Im Kreis angeordnete Ränge, eine Sägemehlbahn in der Mitte, ein Podium für den Auktionator. Hier werden jedes Jahr die Jährlinge verkauft.
+
+Ein Jährling ist ein einjähriger Vollblüter, kaum eingeritten, der noch nie ein Rennen gelaufen ist. Man führt ihn dort in die Mitte, unter die Scheinwerfer. Ein Mann hält ihn am Führstrick und lässt ihn kreisen. Und die Gebote steigen. Ringsum bieten Käufer aus aller Welt — aus Irland, dem Golf, Japan — mit diskreten Zeichen um diese Talente.
+
+Die Summen machen schwindlig. Für ein Fohlen, das noch nichts bewiesen hat, von dem noch niemand weiß, ob es schnell laufen wird, wird manchmal mehr bezahlt als für ein Haus. Man kauft einen Traum, eine Blutlinie, das Versprechen eines künftigen Champions. Viele werden sich ruinieren; einige werden eine Legende hervorbringen.
+
+Auch das ist das Pferd von Deauville: ein Handel mit blauem Blut, eine Börse der Träume, wo das Geld fließt wie nirgendwo sonst. Geh hinaus und erreiche die große moderne Reithalle, etwas weiter südlich: den Pôle du Cheval. Folge mir.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-3
+@@STITLE=Accès nord du Pôle International du Cheval
+Da sind wir nun vor dem Pôle International du Cheval, einer großen modernen Arena, mit ihren Sandplätzen, ihren Tribünen. Hier läuft man nicht: hier tanzt und springt man.
+
+Denn das Pferd von Deauville galoppiert nicht nur geradeaus. Auf diesen Plätzen finden Dressur- und Springturniere statt, jene Disziplinen, in denen Mensch und Tier eins werden. In der Dressur schreitet das Pferd im erhöhten Trab, wechselt die Hand, dreht sich, als würde es zu einer Musik tanzen, die nur es allein hört. Jahre der Geduld für ein paar Minuten Anmut.
+
+Beobachte einen Reiter und sein Pferd bei der Arbeit genau. Da findet ein stummes Gespräch statt, eine Übereinstimmung in jedem Augenblick, fast eine Freundschaft. Der Sport wird hier zur Kunst.
+
+Und das ist das Besondere an Deauville: das Pferd ist alles zugleich. Eine Laufmaschine, eine Luxusware, ein Tanzpartner. Und bald, du wirst es sehen, ein Spielgefährte. Geh weiter zu den benachbarten Feldern, diesen weiten, kurzgeschorenen Rasenflächen: dem Polo. Folge mir.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-4
+@@STITLE=Le Polo de Deauville
+Vor dir erstrecken sich weite, perfekt kurzgeschorene Rasenflächen: die Polofelder. Wenn du im August kommst, siehst du vielleicht das Schauspiel — acht Reiter im vollen Galopp, den Schläger in der Hand, die sich um einen kleinen Holzball streiten, in einem Getöse von Hufen.
+
+Polo ist eines der ältesten und schnellsten Spiele der Welt. In Deauville hat es seinen Adelsbrief. Jeden Sommer wird hier die Coupe d'Or ausgetragen, eines der großen Turniere Europas, das Mannschaften aus aller Welt anzieht sowie außergewöhnliche Pferde — diese „Ponys" des Polos, blitzschnell trotz ihres Namens.
+
+Rund um das Spielfeld gibt es ein weiteres Schauspiel: das Publikum. Hüte, helle Kleider, Programme in der Hand. Zur Halbzeit steigt, wie es die Tradition verlangt, das Publikum auf den Rasen, um die von den Hufen aufgerissenen Grassoden wieder festzutreten. Sport und die feine Gesellschaft, Hand in Hand.
+
+Du hast es verstanden: hier ist das Pferd ebenso mondän wie sportlich. Es bleibt uns, ihm dorthin zu folgen, wo man es am wenigsten erwartet. Kehr zurück in Richtung Stadt und Meer, eine Viertelstunde Fußweg nach Norden, bis zum Strand. Folge mir.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-5
+@@STITLE=Les Planches, au bord de la plage
+Da sind wir: der Strand von Deauville, der große helle Sand, die Sonnenschirme, der Ärmelkanal bis zum Horizont. Du fragst dich, was das Pferd hier am Wasser zu suchen hat. Warte auf die Antwort.
+
+Komm bei Sonnenaufgang zurück, vor den Badenden. Wenn die Sonne kaum aufgegangen ist, gehört der Strand den Pferden. Man führt sie hinunter zum Ufer, und dort, im Schaum, dicht an den Wellen, trainieren die Vollblüter im leichten Galopp. Das kalte Wasser kräftigt ihre Beine, das Meer entspannt sie. Silhouetten, die durch den Nebel ziehen, Hufe im salzigen Wasser: eines der schönsten Bilder der Normandie, das fast niemand sieht.
+
+Denn hier trifft sich alles. Deauville wurde als Seebadeort geboren, jener Ort, an den man früher kam, um sich im kalten Wasser Gesundheit zu holen. Meerbäder für die Menschen, Meerbäder für die Pferde. Derselbe Strand, dasselbe Wasser, dieselbe Kunst, auf sich zu achten und langsam zu leben.
+
+Das ist das Geheimnis dieses Landstrichs. Das Pferd ist hier kein Sonntagsvergnügen. Es ist überall: auf den Bahnen von La Touques, im Verkaufsring, auf den Polorasen, und sogar in den Wellen bei Sonnenaufgang. Es gibt den Rhythmus der Jahreszeiten vor, es gibt den Menschen ihr Auskommen, es zeichnet die Eleganz des Ortes. Der Sport ist in Deauville keine Nebensache. Er ist eine Art, die Welt zu bewohnen.
+
+Bleib noch einen Moment vor dem Meer. Wenn du eines Morgens früh vorbeikommst, halt Ausschau nach den Pferden im Schaum. Du wirst alles verstehen. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Deauville — Il regno del cavallo
+@@DESC=Sport — yearling, polo e bagni di mare: lo sport come arte di vivere normanna.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-0
+@@STITLE=Entrée publique de l'hippodrome de Clairefontaine
+Benvenuto a Clairefontaine. Davanti a te, una pista verde e ondulata, tribune di legno, l'odore del fieno, e ovunque, cavalli. Questo ippodromo nacque nel 1928, ed è il più familiare dei due che Deauville possiede. Qui si può passare dietro le quinte: costeggiare le scuderie al mattino presto, vedere gli stallieri strigliare gli animali, avvicinarsi a questi atleti di sangue e muscoli prima che scattino. Si corre in piano, si saltano ostacoli, e la domenica intere famiglie vengono come vicini di casa.
+
+È il posto giusto per cominciare, perché ti fa toccare con mano ciò che voglio raccontarti. In questo angolo di Normandia, il cavallo non è uno sport tra tanti. È un modo di vivere. Una religione dolce che scandisce le stagioni.
+
+Immagina una mappa. Intorno a Deauville, tutto ruota attorno all'animale: due ippodromi, allevamenti a perdita d'occhio, un mercato dove si vendono i puledri più belli del mondo, campi da polo, e persino una spiaggia dove i cavalli vanno a fare il bagno. Il galoppo, qui, è un'arte di vivere.
+
+Ecco il filo conduttore di questa passeggiata: seguire il cavallo, da questa pista tranquilla fino alla riva del mare. Perché a Deauville, tutto finisce per tornare all'acqua.
+
+Prendi ora la strada verso la città. Conta un buon quarto d'ora di cammino verso nord-est, fino al grande ippodromo, quello di La Touques. Seguimi.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-1
+@@STITLE=Entrée publique de l'hippodrome de La Touques
+Eccoti davanti all'ippodromo di La Touques, il grande, il prestigioso. Prato impeccabile, tribune eleganti, bandiere al vento. È qui, e non a Clairefontaine, che si gioca la gloria.
+
+Ed è qui che tutto è cominciato. L'uomo che ha inventato Deauville voleva prima di tutto un ippodromo. Nel 1864, il duca di Morny, fratellastro dell'imperatore, traccia questo ippodromo in mezzo alle paludi che ha appena prosciugato. La città arriverà dopo, intorno alla pista. A Deauville, il cavallo non è arrivato con i vacanzieri: era lì prima di loro. È la ragione stessa dell'esistenza della città.
+
+Ogni estate, nel mese di agosto, si tiene qui quella che viene chiamata la grande semaine, la grande settimana. Il mondo delle corse si affolla sulle tribune, cappelli e binocoli, per le prove più belle della stagione. Qui si corre il Grand Prix de Deauville, e il prix Morny — dal nome del fondatore — dove si affrontano i campioni di domani.
+
+Ma prima di correre, un cavallo si compra. E questo, a Deauville, è uno spettacolo a sé. Costeggia la pista fino al grande edificio chiaro, lì vicino: l'anello delle vendite. Seguimi.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-2
+@@STITLE=Les ventes de yearlings
+Entra, se le porte sono aperte, in questo grande rotondo coperto: l'anello delle vendite. Gradinate a cerchio, una pista di segatura al centro, un podio per il banditore. È qui che, ogni anno, si vendono gli yearling.
+
+Uno yearling è un purosangue di un anno, appena domato, che non ha ancora mai corso. Lo si fa entrare lì, al centro, sotto i riflettori. Un uomo lo tiene per la longia, lo fa girare. E le offerte salgono. Intorno, acquirenti venuti da tutto il mondo — dall'Irlanda, dal Golfo, dal Giappone — si contendono queste promesse con segnali discreti.
+
+Le somme fanno venire le vertigini. Per un puledro che non ha ancora dimostrato nulla, di cui nessuno sa ancora se correrà veloce, si paga a volte più di una casa. Si compra un sogno, una discendenza, la promessa di un futuro campione. Molti si rovineranno; alcuni faranno nascere una leggenda.
+
+È anche questo, il cavallo di Deauville: un commercio di sangue blu, una borsa del sogno dove il denaro scorre come da nessun'altra parte. Esci, e raggiungi il grande maneggio moderno, un po' più a sud: il Pôle du Cheval. Seguimi.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-3
+@@STITLE=Accès nord du Pôle International du Cheval
+Eccoci davanti al Pôle International du Cheval, una grande arena moderna, con le sue piste di sabbia, le sue gradinate. Qui non si corre: si danza e si salta.
+
+Perché il cavallo di Deauville non si limita a galoppare in linea retta. Su queste piste si tengono concorsi di dressage e di salto ostacoli, quelle discipline in cui uomo e animale diventano una cosa sola. Nel dressage, il cavallo avanza al trotto sollevato, cambia piede, ruota, come se danzasse su una musica che solo lui sente. Anni di pazienza per pochi minuti di grazia.
+
+Osserva bene un cavaliere e la sua cavalcatura al lavoro. C'è lì una conversazione muta, un'intesa continua, quasi un'amicizia. Lo sport, qui, diventa arte.
+
+Ed è proprio questo il tratto distintivo di Deauville: il cavallo è tutto questo insieme. Una macchina da corsa, una merce di lusso, un compagno di danza. E presto, lo vedrai, un compagno di gioco. Passa ai terreni vicini, quei vasti prati rasati: il polo. Seguimi.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-4
+@@STITLE=Le Polo de Deauville
+Davanti a te si estendono ampi prati perfettamente rasati: i campi da polo. Se vieni in agosto, potresti vedere la scena — otto cavalieri lanciati al galoppo, mazza in mano, che si contendono una piccola palla di legno in un fragore di zoccoli.
+
+Il polo è uno dei giochi più antichi e più veloci del mondo. A Deauville, ha le sue credenziali nobiliari. Ogni estate vi si disputa la Coupe d'Or, uno dei grandi tornei d'Europa, che attira squadre da ogni dove e cavalli d'eccezione, questi "pony" da polo, veloci come il fulmine nonostante il nome.
+
+Intorno al campo, l'altro spettacolo: il pubblico. Cappelli, abiti chiari, programmi in mano. All'intervallo, per tradizione, gli spettatori scendono sul prato per rimettere a posto le zolle di terra strappate dagli zoccoli. Lo sport e il bel mondo, mano nella mano.
+
+Hai capito: qui, il cavallo è tanto mondano quanto sportivo. Non resta che seguirlo dove meno te lo aspetti. Torna verso la città e il mare, un quarto d'ora di cammino verso nord, fino alla spiaggia. Seguimi.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-5
+@@STITLE=Les Planches, au bord de la plage
+Eccoci: la spiaggia di Deauville, la grande sabbia chiara, gli ombrelloni, la Manica a perdita d'occhio. Ti chiedi cosa c'entri il cavallo qui, in riva al mare. Aspetta la risposta.
+
+Torna all'alba, prima dei bagnanti. Quando il sole è appena sorto, la spiaggia appartiene ai cavalli. Li si porta fino alla riva, e lì, nella schiuma, a filo delle onde, i purosangue si allenano al piccolo galoppo. L'acqua fredda rinforza le loro gambe, il mare li rilassa. Sagome lanciate nella nebbia, zoccoli nell'acqua salata: è una delle immagini più belle della Normandia, e quasi nessuno la vede.
+
+Perché qui tutto si ricongiunge. Deauville nacque come stazione di bagni di mare, quel luogo dove un tempo si veniva a immergersi nell'acqua fredda per rimettersi in salute. Bagni di mare per le persone, bagni di mare per i cavalli. La stessa spiaggia, la stessa acqua, la stessa arte di prendersi cura di sé e di vivere lentamente.
+
+Ecco il segreto di questa terra. Qui il cavallo non è un passatempo domenicale. È ovunque: sulle piste di La Touques, nell'anello delle vendite, sui prati del polo, e persino tra le onde all'alba. Detta il ritmo delle stagioni, fa vivere le persone, disegna l'eleganza dei luoghi. Lo sport, a Deauville, non è una parentesi. È un modo di abitare il mondo.
+
+Resta un momento di fronte al mare. Se passi presto una mattina, tieni d'occhio i cavalli nella schiuma. Capirai tutto. A presto, amico.
+
+@@LANG=nl
+@@TITLE=Deauville — Het koninkrijk van het paard
+@@DESC=Sport — yearlings, polo en zeebaden: sport als Normandische levenskunst.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-0
+@@STITLE=Entrée publique de l'hippodrome de Clairefontaine
+Welkom in Clairefontaine. Voor je een golvende groene baan, houten tribunes, de geur van hooi, en overal paarden. Deze renbaan werd geboren in 1928 en is de vertrouwdste van de twee die Deauville telt. Hier kun je achter de schermen kijken: 's ochtends vroeg langs de stallen lopen, de stalknechten de dieren zien verzorgen, dicht bij deze atleten van bloed en spieren komen voordat ze wegspurten. Er wordt vlak gelopen, er worden hindernissen gesprongen, en op zondag komen hele gezinnen als buren langs.
+
+Het is de juiste plek om te beginnen, want het laat je met je vingers aanraken wat ik je wil vertellen. In deze hoek van Normandië is het paard niet zomaar een sport naast andere. Het is een manier van leven. Een zachte religie die het ritme van de seizoenen bepaalt.
+
+Stel je een kaart voor. Rond Deauville draait alles om het dier: twee renbanen, stoeterijen zover het oog reikt, een markt waar de mooiste veulens ter wereld worden verkocht, poloterreinen, en zelfs een strand waar paarden gaan baden. De galop is hier een levenskunst.
+
+Dat is onze rode draad voor deze wandeling: het paard volgen, van deze rustige baan tot aan de zee. Want in Deauville komt uiteindelijk alles terug bij het water.
+
+Neem nu de weg naar de stad. Reken op een goed kwartier lopen naar het noordoosten, tot aan de grote renbaan, die van La Touques. Volg me.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-1
+@@STITLE=Entrée publique de l'hippodrome de La Touques
+Hier sta je voor de renbaan van La Touques, de grote, de prestigieuze. Onberispelijk gazon, elegante tribunes, vlaggen in de wind. Hier, en niet in Clairefontaine, wordt de roem beslist.
+
+En hier is alles begonnen. De man die Deauville uitvond, wilde eerst een renbaan. In 1864 legt de hertog van Morny, halfbroer van de keizer, deze renbaan aan midden in de moerassen die hij zojuist heeft drooggelegd. De stad zal later komen, rond de baan. In Deauville kwam het paard niet met de vakantiegangers mee: het was er al vóór hen. Het is de eigenlijke reden van bestaan van de stad.
+
+Elke zomer, in de maand augustus, vindt hier plaats wat men de grande semaine noemt, de grote week. De renwereld verdringt zich op de tribunes, hoeden en verrekijkers, voor de mooiste wedstrijden van het seizoen. Hier wordt de Grand Prix de Deauville gereden, en de prix Morny — genoemd naar de oprichter — waar de sterren van morgen elkaar bekampen.
+
+Maar voordat een paard kan rennen, moet het gekocht worden. En dat is in Deauville een schouwspel op zich. Loop langs de baan naar het grote lichte gebouw vlakbij: de verkoopring. Volg me.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-2
+@@STITLE=Les ventes de yearlings
+Ga naar binnen, als de deuren open zijn, in deze grote overdekte rotonde: de verkoopring. Tribunes in een kring, een zaagselbaan in het midden, een katheder voor de veilingmeester. Hier worden elk jaar de yearlings verkocht.
+
+Een yearling is een eenjarige volbloed, nauwelijks ingereden, die nog nooit heeft gerend. Hij wordt daar naar het midden gebracht, onder de schijnwerpers. Een man houdt hem aan de leidsel, laat hem rondlopen. En de biedingen stijgen. Rondom strijden kopers uit de hele wereld — uit Ierland, de Golf, Japan — met discrete gebaren om deze beloften.
+
+De bedragen zijn duizelingwekkend. Voor een veulen dat nog niets bewezen heeft, waarvan niemand nog weet of het snel zal lopen, wordt soms meer betaald dan voor een huis. Men koopt een droom, een bloedlijn, de belofte van een toekomstige kampioen. Velen zullen zich ruïneren; enkelen zullen een legende doen ontstaan.
+
+Ook dat is het paard van Deauville: een handel in blauw bloed, een beurs van dromen waar het geld stroomt als nergens anders. Ga naar buiten, en bereik de grote moderne rijhal, iets verder naar het zuiden: het Pôle du Cheval. Volg me.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-3
+@@STITLE=Accès nord du Pôle International du Cheval
+Hier zijn we, voor het Pôle International du Cheval, een grote moderne arena, met haar zandbanen, haar tribunes. Hier wordt niet gerend: hier wordt gedanst en gesprongen.
+
+Want het paard van Deauville galoppeert niet alleen in een rechte lijn. Op deze banen worden dressuur- en springwedstrijden gehouden, disciplines waarin mens en dier één worden. In de dressuur beweegt het paard voorwaarts in een verhoogde draf, wisselt van been, draait, alsof het danst op muziek die alleen het paard hoort. Jaren van geduld voor een paar minuten gratie.
+
+Kijk goed naar een ruiter en zijn paard aan het werk. Er vindt daar een stil gesprek plaats, een voortdurende harmonie, bijna een vriendschap. Sport wordt hier kunst.
+
+En dat is het eigene van Deauville: het paard is dit alles tegelijk. Een renmachine, een luxegoed, een danspartner. En binnenkort, dat zul je zien, een speelmaatje. Ga naar de naburige velden, die uitgestrekte kortgeschoren grasvelden: het polo. Volg me.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-4
+@@STITLE=Le Polo de Deauville
+Voor je strekken zich brede, perfect kortgeschoren grasvelden uit: de poloterreinen. Als je in augustus komt, zie je misschien het schouwspel — acht ruiters in volle galop, hamer in de hand, die vechten om een klein houten balletje in een donder van hoeven.
+
+Polo is een van de oudste en snelste spellen ter wereld. In Deauville heeft het zijn adelbrieven. Elke zomer wordt hier de Coupe d'Or gespeeld, een van de grote toernooien van Europa, dat teams van overal aantrekt en uitzonderlijke paarden — die "pony's" van het polo, bliksemsnel ondanks hun naam.
+
+Rond het veld is er nog een ander schouwspel: het publiek. Hoeden, lichte jurken, programma's in de hand. In de rust stappen, zoals de traditie het wil, de toeschouwers het veld op om de door de hoeven losgeslagen graszoden weer vast te trappen. Sport en de betere kringen, hand in hand.
+
+Je hebt het begrepen: hier is het paard evenzeer mondain als sportief. Ons rest nog het te volgen waar je het het minst verwacht. Ga terug naar de stad en de zee, een kwartier lopen naar het noorden, tot aan het strand. Volg me.
+
+@@SCENE=seed-100-deauville-hippodromes-et-polo-scene-5
+@@STITLE=Les Planches, au bord de la plage
+Hier zijn we: het strand van Deauville, het brede lichte zand, de parasols, het Kanaal zover het oog reikt. Je vraagt je af wat het paard hier komt doen, aan de rand van het water. Wacht op het antwoord.
+
+Kom terug bij zonsopgang, vóór de badgasten. Wanneer de zon amper is opgekomen, behoort het strand toe aan de paarden. Ze worden naar de kust gebracht, en daar, in het schuim, rakelings langs de golven, trainen de volbloeden in lichte galop. Het koude water versterkt hun benen, de zee ontspant hen. Silhouetten die door de nevel razen, hoeven in het zoute water: het is een van de mooiste beelden van Normandië, en bijna niemand ziet het.
+
+Want hier komt alles samen. Deauville is geboren als badplaats, die plek waar men vroeger kwam om in koud water te duiken om weer gezond te worden. Zeebaden voor mensen, zeebaden voor paarden. Hetzelfde strand, hetzelfde water, dezelfde kunst om voor jezelf te zorgen en langzaam te leven.
+
+Dat is het geheim van dit land. Het paard is hier geen zondagsvermaak. Het is overal: op de banen van La Touques, in de verkoopring, op de polovelden, en zelfs in de golven bij zonsopgang. Het geeft het ritme van de seizoenen aan, het geeft de mensen hun bestaan, het tekent de elegantie van de plek. Sport is in Deauville geen tussenspel. Het is een manier om de wereld te bewonen.
+
+Blijf nog even voor de zee staan. Als je vroeg op een ochtend langskomt, kijk dan uit naar de paarden in het schuim. Je zult alles begrijpen. Tot ziens, vriend.

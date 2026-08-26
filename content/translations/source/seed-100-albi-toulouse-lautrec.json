@@ -1,0 +1,127 @@
+{
+  "tourId": "seed-100-albi-toulouse-lautrec",
+  "sessionId": "seed-100-albi-toulouse-lautrec-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Albi",
+  "title": "Albi — Le comte brisé de Montmartre",
+  "description": "Art — le petit comte brisé devenu peintre de Montmartre, et le musée que sa mère a arraché.",
+  "themes": [
+    "Art — le petit comte brisé devenu peintre de Montmartre, et le musée que sa mère a arraché."
+  ],
+  "baseLanguage": "fr",
+  "chars": 8512,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "de": "Kunst, der gebrochene Graf wurde Maler von Montmartre und das Museum, das seine Mutter rausgerissen hat.",
+    "es": "Art, el pequeño conde roto que se convirtió en pintor de Montmartre y el museo que su madre arrancó.",
+    "it": "Arte, il piccolo conte rotto divenne pittore di Montmartre e il museo che sua madre strappò.",
+    "en": "Art, the little broken count became painter of Montmartre, and the museum that his mother ripped off."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-albi-toulouse-lautrec-scene-0",
+      "index": 0,
+      "title": "Maison natale de Toulouse-Lautrec",
+      "text": "Arrête-toi devant cette belle demeure de brique et de pierre, l'hôtel du Bosc. Une façade noble, discrète, des fenêtres hautes. Rien ne le crie, mais une plaque te le souffle : ici, le 24 novembre 1864, est né Henri de Toulouse-Lautrec.\r\n\r\nRegarde bien ce nom. Toulouse-Lautrec. C'est l'un des plus vieux, des plus fiers de tout le Midi. Une famille de comtes qui se rattachait, disait-on, aux comtes de Toulouse eux-mêmes, ceux du Moyen Âge. Le petit Henri naît prince de ce monde-là : châteaux, chevaux, chasses à courre, blasons.\r\n\r\nMais dans cette grande lignée, il y a une ombre. Pour garder les terres et le sang dans la famille, on se marie entre cousins. Les parents d'Henri sont eux-mêmes cousins germains. Et l'enfant qui naît là, derrière ces murs, porte dans ses os une fragilité terrible.\r\n\r\nVoilà l'histoire que je vais te raconter le long de cette balade. Celle d'un garçon né tout en haut, dans un château, et qui va tomber. Un petit comte au corps brisé, que le malheur va jeter, contre toute attente, dans les cabarets et les music-halls de Paris — et faire de lui l'un des plus grands peintres de son siècle.\r\n\r\nEt à la fin, je te dirai comment sa mère, une comtesse en deuil, a sauvé son œuvre et l'a ramenée ici, chez lui, à Albi.\r\n\r\nRemonte la rue de quelques pas. Suis-moi.",
+      "hash": "bd2e834b",
+      "chars": 1296,
+      "existingSegments": {
+        "it": "seed-100-albi-toulouse-lautrec-scene-0-seg-it",
+        "es": "seed-100-albi-toulouse-lautrec-scene-0-seg-es",
+        "de": "seed-100-albi-toulouse-lautrec-scene-0-seg-de",
+        "en": "seed-100-albi-toulouse-lautrec-scene-0-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-toulouse-lautrec-scene-1",
+      "index": 1,
+      "title": "Rue Toulouse-Lautrec",
+      "text": "Marche un peu dans ces rues où le petit Henri a couru, enfant. Un gamin vif, drôle, adoré, qui dessine déjà partout, dans les marges de ses cahiers, des chevaux, des chiens, des silhouettes attrapées au vol.\r\n\r\nEt puis vient le malheur. Il a treize ans. Un jour, dans le salon familial, il se lève d'une chaise basse, glisse, tombe. Une jambe se casse. L'année suivante, une promenade, une chute dans un fossé : l'autre jambe se brise à son tour. Chez un autre enfant, ce ne serait rien. Chez lui, les os ne se ressoudent pas, ou mal. Et surtout, ses jambes cessent de grandir.\r\n\r\nSon buste, lui, deviendra celui d'un homme. Mais ses jambes resteront courtes, celles d'un enfant. Adulte, Henri ne dépassera guère un mètre cinquante. Il marchera avec peine, appuyé sur une canne.\r\n\r\nAlors, cloué au lit pendant ses longues convalescences, que fait-il ? Il dessine. Sans cesse. Un ami de la famille, un peintre de chevaux, lui met de vrais crayons, de vrais pinceaux dans les mains. L'enfant infirme découvre que là, sur le papier, il est libre, agile, immense. Le dessin devient son évasion, puis sa raison de vivre.\r\n\r\nDescends maintenant vers la grande place et l'énorme masse rouge de la cathédrale. Suis-moi.",
+      "hash": "2dd22f06",
+      "chars": 1211,
+      "existingSegments": {
+        "it": "seed-100-albi-toulouse-lautrec-scene-1-seg-it",
+        "en": "seed-100-albi-toulouse-lautrec-scene-1-seg-en",
+        "de": "seed-100-albi-toulouse-lautrec-scene-1-seg-de",
+        "es": "seed-100-albi-toulouse-lautrec-scene-1-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-toulouse-lautrec-scene-2",
+      "index": 2,
+      "title": "Palais de la Berbie",
+      "text": "Te voilà sur la place Sainte-Cécile, écrasée par deux montagnes de brique rouge. À gauche, la cathédrale, cette forteresse de Dieu que je te raconterai une autre fois. À droite, plus trapu, hérissé de tours, le palais de la Berbie — l'ancien palais des évêques d'Albi.\r\n\r\nRegarde-le. Une vraie citadelle, bâtie au Moyen Âge par des évêques qui étaient aussi des seigneurs, et qui n'avaient pas que des amis. Des murs énormes, des tours massives, faits pour résister. On dirait tout sauf un musée.\r\n\r\nEt pourtant. C'est là-dedans, derrière ces murailles, que dort aujourd'hui la plus grande collection au monde des œuvres de Toulouse-Lautrec. Des centaines de dessins, de peintures, d'affiches. Presque tout ce qu'a produit le petit comte d'Albi, rassemblé dans le palais le plus imposant de sa ville natale.\r\n\r\nÉtrange destin, quand on y pense. Le garçon qui a passé sa vie à peindre la nuit, les filles, les cabarets, les lumières crues de Montmartre — le voilà pour l'éternité gardé par une forteresse d'évêques, sur les hauteurs de sa ville tranquille.\r\n\r\nFranchis le porche, entre dans la cour du palais. Suis-moi.",
+      "hash": "ea1fbad5",
+      "chars": 1118,
+      "existingSegments": {
+        "en": "seed-100-albi-toulouse-lautrec-scene-2-seg-en",
+        "de": "seed-100-albi-toulouse-lautrec-scene-2-seg-de",
+        "es": "seed-100-albi-toulouse-lautrec-scene-2-seg-es",
+        "it": "seed-100-albi-toulouse-lautrec-scene-2-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-toulouse-lautrec-scene-3",
+      "index": 3,
+      "title": "Musée Toulouse-Lautrec",
+      "text": "Entre dans le musée, ou imagine-le, si les portes sont closes. Car c'est ici que le petit comte d'Albi devient enfin lui-même.\r\n\r\nRemonte le fil de sa vie. À vingt ans, Henri file à Paris. Il s'installe à Montmartre, la colline des artistes, des moulins, des cabarets. Et là, ce corps difforme dont tout le monde se moque, plus personne n'y prête vraiment attention. Montmartre accueille tout le monde : les filles, les fêtards, les ratés magnifiques. Henri s'y sent enfin chez lui.\r\n\r\nIl plante son chevalet au Moulin Rouge, tout juste ouvert. Il peint les danseuses, La Goulue qui lève la jambe, Jane Avril longue et triste, le chanteur Bruant à l'écharpe rouge. Il peint les nuits, l'alcool, les coulisses, les filles de maison qu'il regarde sans jamais les juger, avec une tendresse d'écorché.\r\n\r\nEt il invente presque un art nouveau : l'affiche. Ces grandes images de couleurs plates, ces silhouettes tranchées comme au couteau, placardées sur les murs de Paris. On raconte que les gens les arrachaient déjà, la nuit, pour les garder. Aujourd'hui, elles valent des fortunes. Le musée les possède.\r\n\r\nRessors vers les jardins, à l'arrière du palais, au-dessus de la rivière. Suis-moi.",
+      "hash": "75084f53",
+      "chars": 1188,
+      "existingSegments": {
+        "de": "seed-100-albi-toulouse-lautrec-scene-3-seg-de",
+        "es": "seed-100-albi-toulouse-lautrec-scene-3-seg-es",
+        "it": "seed-100-albi-toulouse-lautrec-scene-3-seg-it",
+        "en": "seed-100-albi-toulouse-lautrec-scene-3-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-toulouse-lautrec-scene-4",
+      "index": 4,
+      "title": "Jardins de la Berbie",
+      "text": "Sors sur les jardins du palais. Des buis taillés au cordeau, des allées bien peignées, et cette terrasse superbe, suspendue au-dessus de la rivière, le Tarn, qui coule en bas, verte et lente. Prends le temps de respirer.\r\n\r\nRegarde ce calme. Ces jardins sages, cette ville de brique rose, cette rivière tranquille. C'est ça, Albi. C'est là qu'Henri a grandi. Et tu mesures, d'un coup, la distance qu'il a parcourue. De cette douceur de province aux nuits électriques de Montmartre, il y a un monde. Il l'a franchi tout entier.\r\n\r\nIl travaillait comme un forcené. Vite, beaucoup, sur le vif. Un carton, quelques traits, et une danseuse est là, vivante, saisie dans son mouvement. Il ne trichait pas, il ne flattait pas. Il montrait la fatigue sous le fard, la solitude derrière la fête.\r\n\r\nMais cette vie-là brûle vite. L'alcool, les nuits sans fin, la maladie. Le corps déjà fragile s'use à toute allure. Henri de Toulouse-Lautrec ne vivra pas vieux. Regarde encore ce jardin paisible : c'est ici, d'une certaine façon, qu'on le ramènera pour toujours.\r\n\r\nRedescends vers la rivière, vers le vieux pont de brique. Suis-moi.",
+      "hash": "259c206b",
+      "chars": 1123,
+      "existingSegments": {
+        "de": "seed-100-albi-toulouse-lautrec-scene-4-seg-de",
+        "it": "seed-100-albi-toulouse-lautrec-scene-4-seg-it",
+        "es": "seed-100-albi-toulouse-lautrec-scene-4-seg-es",
+        "en": "seed-100-albi-toulouse-lautrec-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-toulouse-lautrec-scene-5",
+      "index": 5,
+      "title": "Pont Vieux",
+      "text": "Engage-toi sur le Pont Vieux, ce vieux pont de brique qui enjambe le Tarn depuis près de mille ans. Arrête-toi au milieu. Derrière toi, la cathédrale et le palais montent la garde. Devant, l'eau file.\r\n\r\nC'est le moment de te dire la fin d'Henri. Elle vient vite, trop vite. À trente-cinq ans, le peintre n'est plus qu'une ombre. L'alcool l'a rongé, la maladie aussi. Ses jambes le portent à peine. Sa mère, toujours elle, vient le chercher, épuisé, et le ramène à la campagne, dans un château de famille, du côté de Bordeaux.\r\n\r\nIl y meurt à l'été 1901. Il a trente-six ans. Trente-six ans, et déjà des milliers de dessins, des centaines de toiles, des affiches qui ont changé le regard de toute une époque. Une vie de brûlé, courte et flamboyante.\r\n\r\nSa mère est là, à son chevet, comme au premier jour, elle qui l'avait mis au monde dans l'hôtel d'Albi. La boucle se referme. Le petit comte parti conquérir Paris revient, à jamais, du côté des siens.\r\n\r\nMais que va-t-il rester de lui ? C'est toute la question. Traverse le pont, gagne l'autre rive. Suis-moi.",
+      "hash": "a11934df",
+      "chars": 1062,
+      "existingSegments": {
+        "en": "seed-100-albi-toulouse-lautrec-scene-5-seg-en",
+        "es": "seed-100-albi-toulouse-lautrec-scene-5-seg-es",
+        "de": "seed-100-albi-toulouse-lautrec-scene-5-seg-de",
+        "it": "seed-100-albi-toulouse-lautrec-scene-5-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-toulouse-lautrec-scene-6",
+      "index": 6,
+      "title": "Pont Vieux, côté rive droite du Tarn",
+      "text": "Retourne-toi, depuis cette rive. Et regarde. Là-haut, sur la falaise de brique, la cathédrale et le palais de la Berbie se reflètent dans le Tarn. C'est la plus belle vue d'Albi. Et c'est le décor de la dernière scène.\r\n\r\nHenri est mort. Restent, dans son atelier de Paris, des centaines d'œuvres invendues, des affiches, des carnets. Que faire de tout ça ? Sa mère, la comtesse Adèle, veut les sauver. Elle rêve d'un grand musée, à Paris peut-être, pour son fils.\r\n\r\nMais on raconte que les grands musées de la capitale firent la fine bouche. Toulouse-Lautrec ? Ce peintre de filles et de cabarets, de maisons closes ? Trop sulfureux, pas assez sérieux. On hésite, on repousse, on n'en veut pas vraiment.\r\n\r\nAlors la comtesse se tourne vers Albi. Vers la ville natale d'Henri. Aidée d'un ami fidèle du peintre, Maurice Joyant, elle offre tout : les toiles, les dessins, les affiches. À une condition — qu'on les garde ensemble, et qu'on les montre. La ville accepte. On installe la collection dans le palais des évêques, la forteresse rouge que tu vois là-haut. Le musée ouvre ses portes en 1922.\r\n\r\nVoilà pourquoi c'est ici, et nulle part ailleurs, qu'on peut voir tout Toulouse-Lautrec. Parce qu'une mère n'a pas laissé oublier son fils. Elle lui a arraché, de haute lutte, un tombeau à sa mesure : un palais entier, au-dessus de la rivière, dans la ville où il était né.\r\n\r\nReste encore un peu face à cette falaise rouge. Pense au petit comte brisé qui, de là-haut, veille désormais sur Albi. À bientôt, l'ami.",
+      "hash": "cee0c230",
+      "chars": 1514,
+      "existingSegments": {
+        "es": "seed-100-albi-toulouse-lautrec-scene-6-seg-es",
+        "it": "seed-100-albi-toulouse-lautrec-scene-6-seg-it",
+        "en": "seed-100-albi-toulouse-lautrec-scene-6-seg-en",
+        "de": "seed-100-albi-toulouse-lautrec-scene-6-seg-de"
+      }
+    }
+  ]
+}

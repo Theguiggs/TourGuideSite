@@ -1,0 +1,127 @@
+{
+  "tourId": "seed-100-saint-malo-route-du-rhum",
+  "sessionId": "seed-100-saint-malo-route-du-rhum-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Saint-Malo",
+  "title": "Saint-Malo — Les Fous de l'Atlantique",
+  "description": "Sport — Tous les quatre ans, la ville regarde partir les fous de l'Atlantique en solitaire.",
+  "themes": [
+    "Sport — Tous les quatre ans, la ville regarde partir les fous de l'Atlantique en solitaire."
+  ],
+  "baseLanguage": "fr",
+  "chars": 9841,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "es": "Deportes, cada cuatro años la ciudad mira salir a los locos del Atlántico en solitario.",
+    "de": "Sport, Alle vier Jahre sieht die Stadt die verrückten Menschen vom Atlantik allein weg.",
+    "en": "Sport, Every four years the city watches the Atlantic madmen go solo.",
+    "it": "Sport, ogni quattro anni la città guarda i pazzi dell'Atlantico andare da soli."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-saint-malo-route-du-rhum-scene-0",
+      "index": 0,
+      "title": "Esplanade Saint-Vincent",
+      "text": "Mets-toi face aux bassins, dos aux remparts. Aujourd'hui, l'eau est calme, quelques mâts se balancent. Les coques frottent doucement leurs amarres, les façades se reflètent par plaques tremblées, et les remparts derrière toi ressemblent à un balcon de granit posé au-dessus du port. Mais un automne sur quatre, ce plan d'eau tranquille devient le centre du monde de la voile.\n\nTous les quatre ans, début novembre, des dizaines de voiliers de course s'amarrent ici, bord à bord : trimarans géants, monocoques de tour du monde, petits bateaux de passionnés. Autour d'eux pousse une ville dans la ville — pontons, écrans, odeur de crêpe et de résine — et une marée humaine descend des remparts pour venir les toucher des yeux. Les visiteurs avancent lentement, le nez levé vers les mâts, comme dans une cathédrale provisoire de carbone, de drisses et de voiles pliées. C'est la Route du Rhum. Dans quelques jours, tous ces marins partiront seuls, chacun sur son bateau, sans équipage, traverser l'Atlantique jusqu'à Pointe-à-Pitre, en Guadeloupe. Quelque 3 500 milles nautiques. Seuls, tu as bien entendu.\n\nD'où vient cette idée folle ? De 1978. À l'époque, la grande course transatlantique en solitaire est anglaise, et ses organisateurs viennent d'en restreindre les règles. Côté français, un homme de publicité, Michel Etevenon, flaire le coup du siècle : créer une transat française, libre, ouverte à tous les bateaux, soutenue par les producteurs de rhum de Guadeloupe qui veulent faire connaître leur produit. Le parcours reprend la vieille route du commerce entre les Antilles et les ports de la Manche. Le nom tombe tout seul : la Route du Rhum. Il dit à la fois la marchandise, le voyage, l'Atlantique, et cette part de fête qui colle à Saint-Malo même quand le ciel est bas.\n\nPersonne, ce jour-là, n'imagine que la première édition va accoucher de l'une des plus belles histoires du sport — et de l'une des plus tragiques. C'est ce mélange qui rend l'endroit si particulier : ici, le quai applaudit, mais il sait aussi que la mer ne signe aucune promesse. Regarde encore les amarres et les anneaux rouillés : tout semble prévu pour retenir, alors que la course ne parle que de lâcher. Je te garde les deux pour cette balade.\n\nMonte sur le rempart, juste au-dessus de la Grande Porte. On va regarder tout ça de plus haut.",
+      "hash": "98e8848e",
+      "chars": 2327,
+      "existingSegments": {
+        "en": "seed-100-saint-malo-route-du-rhum-scene-0-seg-en",
+        "de": "seed-100-saint-malo-route-du-rhum-scene-0-seg-de",
+        "es": "seed-100-saint-malo-route-du-rhum-scene-0-seg-es",
+        "it": "seed-100-saint-malo-route-du-rhum-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-route-du-rhum-scene-1",
+      "index": 1,
+      "title": "Esplanade Saint-Vincent",
+      "text": "D'ici, les années de course, tu dominerais une forêt de mâts. Prends une minute pour faire connaissance avec cette flotte, parce qu'elle raconte tout l'éventail de la folie humaine.\r\n\r\nIl y a les Ultims, d'abord : des trimarans immenses qui, portés par leurs foils, se soulèvent et volent littéralement au-dessus de l'eau — les plus rapides avalent l'Atlantique en une petite semaine. Puis les grands monocoques de course au large, ceux des tours du monde. Les Class40, plus modestes, où se côtoient professionnels et amateurs très sérieux. Et ma préférée : la classe Rhum, celle des bateaux anciens et des rêveurs, l'esprit de 1978 en personne.\r\n\r\nCe qui rend cette course unique, c'est que tout le monde se croise. Pendant la semaine du village, les skippers fendent la foule pour rejoindre leur bord ; tu peux voir les coques de tout près, discuter avec un marin en ciré, faire signer une casquette. Puis, la veille du départ, les bateaux passent un par un l'écluse qui ferme les bassins, applaudis comme des toreros à l'entrée de l'arène, et vont mouiller dans la rade.\r\n\r\nSuis le rempart vers l'ouest, au-dessus des toits. Je t'emmène voir la mer du départ.",
+      "hash": "1eb58feb",
+      "chars": 1162,
+      "existingSegments": {
+        "de": "seed-100-saint-malo-route-du-rhum-scene-1-seg-de",
+        "es": "seed-100-saint-malo-route-du-rhum-scene-1-seg-es",
+        "en": "seed-100-saint-malo-route-du-rhum-scene-1-seg-en",
+        "it": "seed-100-saint-malo-route-du-rhum-scene-1-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-route-du-rhum-scene-2",
+      "index": 2,
+      "title": "Remparts ouest, plage de Bon-Secours",
+      "text": "Penche-toi sur le parapet. En contrebas, la plage de Bon-Secours et sa piscine d'eau de mer. Devant toi, la rade, les îlots, puis le large.\r\n\r\nMaintenant, imagine ce paysage un dimanche de novembre, année de Rhum. Sur ces remparts, une foule compacte, emmitouflée, des drapeaux, des enfants sur les épaules. Au large, la flotte tire des bords en attendant l'heure. Et à l'ouest, cette silhouette sombre posée sur l'horizon, c'est le cap Fréhel : les concurrents iront le raser sous ses falaises avant de piquer vers le sud — là-bas aussi, la lande est noire de monde.\r\n\r\nLe canon claque. La ligne se libère, les étraves accélèrent, les hélicoptères tournent comme des mouches. C'est un moment étrange, quand on y pense : une ville entière massée pour regarder des gens s'en aller.\r\n\r\nUne heure plus tard, l'horizon a tout avalé. La ville se vide d'un coup, et pendant trois semaines, chacun ici suivra matin et soir les petites balises des bateaux sur la carte, comme on prend des nouvelles de la famille.\r\n\r\nDescends du rempart par la porte de Dinan, et marche jusqu'à la longue jetée qui ferme le port. C'est là que la solitude commence.",
+      "hash": "da31162c",
+      "chars": 1139,
+      "existingSegments": {
+        "it": "seed-100-saint-malo-route-du-rhum-scene-2-seg-it",
+        "en": "seed-100-saint-malo-route-du-rhum-scene-2-seg-en",
+        "de": "seed-100-saint-malo-route-du-rhum-scene-2-seg-de",
+        "es": "seed-100-saint-malo-route-du-rhum-scene-2-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-route-du-rhum-scene-3",
+      "index": 3,
+      "title": "Môle des Noires",
+      "text": "Avance sur le môle, aussi loin que le vent te le permet. Cette jetée, c'est la dernière poignée de main de la terre. Les jours de départ, les proches viennent ici, agitent les bras une dernière fois, et regardent une voile devenir un point.\r\n\r\nParlons de ce qui attend celui qui est à bord. Trois semaines seul, parfois beaucoup plus. On n'y dort jamais vraiment : des siestes de quelques minutes, réveillé par des alarmes, parce qu'un cargo ou un grain peut surgir à tout moment. On surveille les instruments, on répare la nuit à moitié dans l'eau, on parle tout seul, on pleure parfois. Et dans les coups de vent, on a peur — tous le disent, les plus grands champions d'abord.\n\r\nAlors pourquoi ? Chacun a sa réponse. Le goût du large, la gloire, le silence, une revanche à prendre sur la vie. Cette ville, en tout cas, les comprend sans qu'on lui explique : elle a toujours regardé ses marins partir loin et longtemps — ses cap-horniers d'autrefois s'absentaient des années entières.\r\n\r\nReviens vers les remparts, longe-les vers le nord, et monte jusqu'à la grosse tour ronde du coin nord-ouest. J'ai une histoire plus grave à te raconter là-haut.",
+      "hash": "b71fc882",
+      "chars": 1149,
+      "existingSegments": {
+        "de": "seed-100-saint-malo-route-du-rhum-scene-3-seg-de",
+        "it": "seed-100-saint-malo-route-du-rhum-scene-3-seg-it",
+        "es": "seed-100-saint-malo-route-du-rhum-scene-3-seg-es",
+        "en": "seed-100-saint-malo-route-du-rhum-scene-3-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-route-du-rhum-scene-4",
+      "index": 4,
+      "title": "Tour Bidouane",
+      "text": "Face au large, maintenant. Il faut que je te dise le prix de tout ça.\r\n\r\nNovembre 1978, première Route du Rhum. Parmi les concurrents, une immense vedette : Alain Colas. Vainqueur de la transat anglaise en 1972, premier marin à avoir bouclé un tour du monde en solitaire sur un multicoque. Trois ans plus tôt, un filin lui a presque arraché un pied lors d'une manœuvre ; on l'a dit fini. Il repart quand même, sur son trimaran Manureva — l'ancien bateau d'Éric Tabarly, rebaptisé d'un nom tahitien qui parle d'oiseau et de voyage.\r\n\r\nLe 16 novembre, en pleine tempête du côté des Açores, sa radio envoie un dernier message. Puis plus rien. Ni le bateau ni l'homme ne seront jamais retrouvés.\r\n\r\nLa France retient son souffle pendant des semaines. L'année suivante, une chanson portera le nom du bateau disparu — tu l'as peut-être déjà fredonnée sans savoir qu'elle parlait de lui.\r\n\r\nDepuis, chaque édition part avec cette mémoire à bord. La mer d'ici fabrique des légendes, et elle en garde quelques-unes pour elle.\r\n\r\nLonge maintenant le rempart nord, jusqu'à la porte qui ouvre sur la grande baie. Il est temps de parler de celles et ceux qui reviennent.",
+      "hash": "e579bcdd",
+      "chars": 1157,
+      "existingSegments": {
+        "de": "seed-100-saint-malo-route-du-rhum-scene-4-seg-de",
+        "it": "seed-100-saint-malo-route-du-rhum-scene-4-seg-it",
+        "en": "seed-100-saint-malo-route-du-rhum-scene-4-seg-en",
+        "es": "seed-100-saint-malo-route-du-rhum-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-route-du-rhum-scene-5",
+      "index": 5,
+      "title": "Porte Saint-Thomas, face à la baie",
+      "text": "Sous toi, la plage de l'Éventail et toute la baie où la flotte parade avant les départs. C'est une très vieille habitude : ceux qui veulent l'ouest partent d'ici. En 1534 déjà, Jacques Cartier quittait cette rade avec deux navires pour chercher un passage vers l'Asie — il trouvera le Canada et son grand fleuve.\r\n\r\nMais l'héritière que je veux te présenter s'appelle Florence Arthaud. Novembre 1990 : sur son trimaran Pierre 1er, elle tient tête aux tempêtes et à tous les favoris, et gagne la Route du Rhum. Une femme, seule, devant tous les hommes — une première dans une grande transat en solitaire. La presse la surnomme « la petite fiancée de l'Atlantique ». Le surnom est trop sage pour elle : c'est une sauvage magnifique, rescapée à dix-sept ans d'un terrible accident de la route, qui a choisi la mer contre tous les avis.\r\n\r\nDouze ans plus tard, une autre femme, Ellen MacArthur, s'imposera chez les monocoques. La porte que Florence a ouverte ne s'est jamais refermée.\r\n\r\nElle a disparu en 2015, loin de l'océan, dans un accident d'hélicoptère. Ici, son nom fait toujours baisser un peu la voix.\r\n\r\nFranchis la porte et descends sur la digue. La plus grande plage de la ville, pour la plus belle histoire.",
+      "hash": "7332dc6c",
+      "chars": 1217,
+      "existingSegments": {
+        "de": "seed-100-saint-malo-route-du-rhum-scene-5-seg-de",
+        "en": "seed-100-saint-malo-route-du-rhum-scene-5-seg-en",
+        "it": "seed-100-saint-malo-route-du-rhum-scene-5-seg-it",
+        "es": "seed-100-saint-malo-route-du-rhum-scene-5-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-saint-malo-route-du-rhum-scene-6",
+      "index": 6,
+      "title": "Plage du Sillon",
+      "text": "Marche un peu sur cette digue. Trois kilomètres de sable : la plage du Sillon. Les jours de grande marée, la mer saute par-dessus le parapet — mais ça, je te le raconte dans une autre balade.\r\n\r\nVoici l'histoire promise. Novembre 1978, première Route du Rhum. Après trois semaines d'Atlantique, tout se joue entre deux hommes que tout oppose. Michel Malinovsky, marin d'expérience, sur un grand monocoque effilé, taillé pour la vitesse : Kriter V. Et Mike Birch, un Canadien discret, ancien cow-boy devenu skipper, sur un petit trimaran jaune de onze mètres : Olympus. Le petit jaune ne devrait rien pouvoir contre le grand.\r\n\r\nAu petit matin, en vue de la Guadeloupe, Malinovsky se voit gagnant. Mais le vent mollit, et le trimaran, léger comme un insecte, glisse là où le monocoque s'enlise. Birch revient, mille après mille, et le déborde presque sur la ligne. Vingt-trois jours de course. Quatre-vingt-dix-huit secondes d'écart. L'une des arrivées les plus serrées de l'histoire de la voile, et la légende fondatrice de cette course : depuis ce jour, tout le monde sait qu'ici, rien n'est jamais joué.\r\n\r\nQuarante ans plus tard, en 2018, l'histoire bégaie magnifiquement : Francis Joyon déborde François Gabart dans les derniers milles et gagne pour sept petites minutes — après sept jours de mer seulement, sur ces trimarans volants dont je t'ai parlé.\r\n\r\nVoilà pourquoi, tous les quatre ans, cette ville regarde partir ses fous : parce qu'ils lui rapportent des histoires que personne d'autre ne sait fabriquer.\r\n\r\nMa balade s'achève ici, face à la baie. Si tu reviens un novembre de course, monte sur les remparts et crie avec les autres. Merci d'avoir marché avec moi. Garde le cap.",
+      "hash": "fcbf2edf",
+      "chars": 1690,
+      "existingSegments": {
+        "en": "seed-100-saint-malo-route-du-rhum-scene-6-seg-en",
+        "de": "seed-100-saint-malo-route-du-rhum-scene-6-seg-de",
+        "es": "seed-100-saint-malo-route-du-rhum-scene-6-seg-es",
+        "it": "seed-100-saint-malo-route-du-rhum-scene-6-seg-it"
+      }
+    }
+  ]
+}

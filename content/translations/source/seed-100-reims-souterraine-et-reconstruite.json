@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-reims-souterraine-et-reconstruite",
+  "sessionId": "seed-100-reims-souterraine-et-reconstruite-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Reims",
+  "title": "Reims — Souterraine et reconstruite",
+  "description": "Architecture — lire les niveaux antiques et la reconstruction du XXe siècle dans le centre.",
+  "themes": [
+    "Architecture — lire les niveaux antiques et la reconstruction du XXe siècle dans le centre."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6540,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "es": "Arquitectura, leer los niveles antiguos y la reconstrucción del siglo XX en el centro.",
+    "en": "Architecture, read the ancient levels and reconstruction of the twentieth century in the center.",
+    "it": "Architettura, leggere gli antichi livelli e la ricostruzione del Novecento al centro.",
+    "de": "Architektur, lesen Sie die antiken Ebenen und den Wiederaufbau des 20. Jahrhunderts in der Mitte."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-reims-souterraine-et-reconstruite-scene-0",
+      "index": 0,
+      "title": "Porte de Mars",
+      "text": "La Porte de Mars est un arc monumental romain élevé au début du IIIe siècle. Ses trois passages ouvraient sur l’une des entrées de Durocortorum, capitale de la cité des Rèmes. Regarde sous les voûtes : les reliefs très usés laissent encore deviner des scènes liées au calendrier agricole et aux récits fondateurs de Rome.\n\nLe monument n’a pas toujours été dégagé comme aujourd’hui. Au Moyen Âge, il fut intégré aux fortifications puis progressivement enseveli dans les ouvrages défensifs. Son dégagement au XIXe siècle restitua une antiquité longtemps cachée sous la ville. C’est ici que commence notre fil rouge : Reims se comprend par ses niveaux, ceux que l’on découvre sous le sol et ceux que les reconstructions ajoutent au paysage.\n\nTraverse les promenades vers les Halles du Boulingrin. En quelques minutes, tu passeras d’une architecture romaine massive à une coque de béton du XXe siècle. Les deux monuments ont pourtant un point commun : chacun démontre, à son époque, une maîtrise spectaculaire de la portée et de la couverture d’un vaste espace public.",
+      "hash": "137e054c",
+      "chars": 1064,
+      "existingSegments": {
+        "it": "seed-100-reims-souterraine-et-reconstruite-scene-0-seg-it",
+        "de": "seed-100-reims-souterraine-et-reconstruite-scene-0-seg-de",
+        "es": "seed-100-reims-souterraine-et-reconstruite-scene-0-seg-es",
+        "en": "seed-100-reims-souterraine-et-reconstruite-scene-0-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-souterraine-et-reconstruite-scene-1",
+      "index": 1,
+      "title": "Halles du Boulingrin",
+      "text": "Les Halles du Boulingrin déploient une voûte mince en béton armé conçue par l’ingénieur Eugène Freyssinet, sur les plans de l’architecte Émile Maigrot. Inauguré en 1929, l’édifice appartient à la reconstruction de Reims après la Première Guerre mondiale. Sa grande coque, portée sans forêt de piliers, crée un volume continu éclairé par les façades vitrées.\n\nRecule assez pour lire la courbe entière. Le béton n’est pas caché sous un décor historique : il devient lui-même l’expression du bâtiment. Cette audace faillit disparaître lorsque les halles, fragilisées et fermées, furent menacées. Leur classement puis leur restauration ont rendu au quartier un repère essentiel de l’entre-deux-guerres.\n\nLe contraste avec la Porte de Mars n’oppose pas simplement ancien et moderne. Il montre deux façons de franchir le temps par la structure : l’arc de pierre et la coque de béton. Rejoins maintenant l’hôtel de ville par la rue de Mars. Sa façade plus ancienne masque une histoire de destruction et de reconstruction qui concerne presque tout le centre rémois.",
+      "hash": "a1d21778",
+      "chars": 1057,
+      "existingSegments": {
+        "it": "seed-100-reims-souterraine-et-reconstruite-scene-1-seg-it",
+        "en": "seed-100-reims-souterraine-et-reconstruite-scene-1-seg-en",
+        "es": "seed-100-reims-souterraine-et-reconstruite-scene-1-seg-es",
+        "de": "seed-100-reims-souterraine-et-reconstruite-scene-1-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-souterraine-et-reconstruite-scene-2",
+      "index": 2,
+      "title": "Hôtel de ville",
+      "text": "L’hôtel de ville fut commencé au XVIIe siècle, sous Louis XIII, puis agrandi au XIXe. En 1917, un incendie provoqué par les bombardements ravage le bâtiment. Une partie des façades subsiste, tandis que l’intérieur doit être rebâti après la guerre. L’ensemble restauré est inauguré en 1928.\n\nObserve le pavillon central, son fronton et la statue équestre de Louis XIII. Leur langage classique donne une impression de continuité. Pourtant, derrière cette peau de pierre, l’édifice appartient aussi à la grande campagne de reconstruction. Reims a souvent choisi de conserver un visage ancien tout en renouvelant les structures, les distributions et parfois les décors.\n\nCette dualité invite à regarder la ville avec prudence. Une date gravée sur une façade ne suffit pas à raconter tout le bâtiment. Les ruines, les remplois et les restitutions se superposent. Poursuis vers la place du Forum par la rue Colbert. Sous cet espace animé se trouve un autre fragment de la ville antique : un cryptoportique qui supportait une partie du forum de Durocortorum.",
+      "hash": "889a0ed8",
+      "chars": 1051,
+      "existingSegments": {
+        "de": "seed-100-reims-souterraine-et-reconstruite-scene-2-seg-de",
+        "en": "seed-100-reims-souterraine-et-reconstruite-scene-2-seg-en",
+        "it": "seed-100-reims-souterraine-et-reconstruite-scene-2-seg-it",
+        "es": "seed-100-reims-souterraine-et-reconstruite-scene-2-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-souterraine-et-reconstruite-scene-3",
+      "index": 3,
+      "title": "Cryptoportique du forum",
+      "text": "Sur la place du Forum, le sol contemporain recouvre trois galeries antiques en U. Ce cryptoportique, construit vers la fin du Ier siècle, soutenait probablement une partie du forum romain. Une galerie a été dégagée et peut être aperçue selon les conditions d’ouverture du site ; les autres restent sous les bâtiments voisins.\n\nReste dans l’espace public et observe la différence de niveau. Les arcs et les voûtes ne formaient pas un passage secret : ils appartenaient à l’infrastructure monumentale du centre civique. Le mot « souterrain » peut faire rêver, mais la réalité est plus intéressante encore. Sous une place actuelle survit la charpente minérale d’une place vieille de près de deux millénaires.\n\nLe quartier moderne n’a pas effacé le forum ; il s’est installé au-dessus, en décalant ses rues et ses usages. Cette superposition est l’image la plus nette de notre parcours. Rejoins la cathédrale par la rue de l’Arbalète. Là, les dommages de la Grande Guerre ne se lisent pas sous le sol, mais dans une restauration immense devenue elle-même partie de l’histoire du monument.",
+      "hash": "ff2d109e",
+      "chars": 1084,
+      "existingSegments": {
+        "it": "seed-100-reims-souterraine-et-reconstruite-scene-3-seg-it",
+        "de": "seed-100-reims-souterraine-et-reconstruite-scene-3-seg-de",
+        "en": "seed-100-reims-souterraine-et-reconstruite-scene-3-seg-en",
+        "es": "seed-100-reims-souterraine-et-reconstruite-scene-3-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-souterraine-et-reconstruite-scene-4",
+      "index": 4,
+      "title": "Cathédrale Notre-Dame",
+      "text": "La cathédrale gothique de Reims fut gravement touchée dès 1914. L’incendie de sa toiture et les bombardements endommagèrent sculptures, charpente et maçonneries. La restauration, conduite sur plusieurs décennies, mobilisa architectes, artisans et mécènes. La charpente reconstruite employa notamment des éléments en béton armé, choix moderne dissimulé derrière la silhouette retrouvée du toit.\n\nRegarde la façade occidentale sans chercher une couleur uniforme. Certaines pierres ont traversé les siècles, d’autres appartiennent aux campagnes de remplacement. Les sculptures restaurées, déposées ou conservées portent des décisions différentes face à la ruine. Le monument visible est donc moins un retour exact au passé qu’un dialogue continu avec lui.\n\nContourne le parvis vers la bibliothèque Carnegie, toute proche. Son architecture affirme au contraire son époque sans détour. Construite grâce à une dotation de la fondation Carnegie, elle fut inaugurée à la fin des années 1920. Après l’immense façade gothique, ses lignes Art déco offriront la dernière strate de notre lecture de Reims.",
+      "hash": "ff100d06",
+      "chars": 1092,
+      "existingSegments": {
+        "it": "seed-100-reims-souterraine-et-reconstruite-scene-4-seg-it",
+        "en": "seed-100-reims-souterraine-et-reconstruite-scene-4-seg-en",
+        "de": "seed-100-reims-souterraine-et-reconstruite-scene-4-seg-de",
+        "es": "seed-100-reims-souterraine-et-reconstruite-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-reims-souterraine-et-reconstruite-scene-5",
+      "index": 5,
+      "title": "Bibliothèque Carnegie",
+      "text": "La bibliothèque Carnegie fut conçue par l’architecte Max Sainsaulieu et inaugurée en 1928. Sa façade sobre, son entrée géométrique et les décors de ferronnerie annoncent clairement l’Art déco. À l’intérieur, visible seulement selon les horaires d’accès, mosaïques, vitraux et mobilier composent un ensemble cohérent. Depuis l’espace public, la façade suffit déjà à comprendre le choix : reconstruire Reims sans copier tous les siècles précédents.\n\nCette dernière halte répond à la Porte de Mars. L’arc romain avait disparu sous les fortifications avant d’être dégagé. La bibliothèque, elle, surgit après les destructions et revendique une forme nouvelle. Entre les deux, les Halles montrent l’audace du béton, l’hôtel de ville la continuité recomposée, le cryptoportique les profondeurs antiques et la cathédrale le travail patient de la restauration.\n\nReims n’est donc ni une ville ancienne miraculeusement intacte, ni un décor entièrement neuf. Elle avance par couches, parfois cachées, parfois exposées avec fierté. En repartant, regarde les dates portées par les immeubles du centre : beaucoup prolongeront silencieusement ce récit. Merci d’avoir parcouru ces niveaux avec moi. À bientôt.",
+      "hash": "5f150883",
+      "chars": 1192,
+      "existingSegments": {
+        "es": "seed-100-reims-souterraine-et-reconstruite-scene-5-seg-es",
+        "en": "seed-100-reims-souterraine-et-reconstruite-scene-5-seg-en",
+        "it": "seed-100-reims-souterraine-et-reconstruite-scene-5-seg-it",
+        "de": "seed-100-reims-souterraine-et-reconstruite-scene-5-seg-de"
+      }
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "tourId": "seed-100-albi-cite-episcopale",
+  "sessionId": "seed-100-albi-cite-episcopale-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Albi",
+  "title": "Albi — La forteresse de brique rouge",
+  "description": "Histoire & secrets — une cathédrale-forteresse de brique rouge, la réponse écrasante de l'Église aux Cathares.",
+  "themes": [
+    "Histoire & secrets — une cathédrale-forteresse de brique rouge, la réponse écrasante de l'Église aux Cathares."
+  ],
+  "baseLanguage": "fr",
+  "chars": 8562,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "en": "History & secrets, a cathedral-fortress of red brick, the overwhelming response of the Church to the Cathars.",
+    "de": "Geschichte & Geheimnisse, eine Kathedrale-Festung aus rotem Ziegelstein, die überwältigende Antwort der Kirche auf die Katharer.",
+    "it": "Storia & segreti, una cattedrale-fortezza di mattoni rossi, la risposta schiacciante della Chiesa ai catari.",
+    "es": "Historia & secretos, una catedral-fortaleza de ladrillo rojo, la respuesta abrumadora de la Iglesia a los cátaros."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-albi-cite-episcopale-scene-0",
+      "index": 0,
+      "title": "Place Sainte-Cécile",
+      "text": "Arrête-toi sur la place Sainte-Cécile, et lève les yeux. Devant toi se dresse l'une des choses les plus stupéfiantes de France : la cathédrale Sainte-Cécile d'Albi. La plus grande cathédrale de brique du monde. Une montagne rouge, lisse, sans presque une fenêtre en bas, avec un clocher qui grimpe à près de quatre-vingts mètres, comme le donjon d'un château fort.\r\n\r\nRegarde-la vraiment. Elle ne ressemble à aucune autre. Pas de dentelle de pierre, pas de grands portails sculptés, pas de gargouilles. Des murs nus, aveugles, presque terribles. On ne dirait pas une église. On dirait une forteresse. Et c'est exactement ce qu'on a voulu.\r\n\r\nCar voici l'histoire que je vais te raconter le long de cette balade. Au XIIIᵉ siècle, cette région a été le théâtre d'un drame effroyable. Une part de son peuple avait tourné le dos à l'Église de Rome, pour suivre une autre foi : celle des Cathares, qu'on appela aussi les Albigeois — du nom de cette ville même.\r\n\r\nRome ne l'a pas supporté. Elle a lancé une croisade, une vraie, non pas contre l'étranger, mais contre des chrétiens du Midi. Vingt ans de guerre, de sièges, de bûchers. Et quand tout fut fini, quand l'hérésie fut écrasée, l'Église a voulu marquer les esprits pour mille ans.\r\n\r\nElle a bâti ceci. Non pas une maison de prière accueillante, mais une menace de brique. Un poing dressé vers le ciel. Regarde bien, et suis-moi.",
+      "hash": "da0a25c9",
+      "chars": 1382,
+      "existingSegments": {
+        "en": "seed-100-albi-cite-episcopale-scene-0-seg-en",
+        "de": "seed-100-albi-cite-episcopale-scene-0-seg-de",
+        "es": "seed-100-albi-cite-episcopale-scene-0-seg-es",
+        "it": "seed-100-albi-cite-episcopale-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-cite-episcopale-scene-1",
+      "index": 1,
+      "title": "Cathédrale Sainte-Cécile",
+      "text": "Fais le tour, longe ces murailles. Sens leur épaisseur. Les murs montent d'un seul jet, renforcés de contreforts arrondis comme des tours à demi enfoncées. Presque aucune ouverture à hauteur d'homme. En cas de révolte, l'évêque pouvait s'y barricader comme dans un château fort. Ce n'était pas une image : la ville, souvent, grondait.\r\n\r\nC'est un homme qui lance ce chantier fou, en 1282 : Bernard de Castanet, évêque d'Albi. Un personnage de fer. Non seulement évêque, mais aussi inquisiteur, chasseur d'hérétiques, redouté et détesté. En dressant cette masse rouge au-dessus des toits, il envoie un message clair à tous : voyez qui commande, ici.\r\n\r\nPuis arrête-toi devant l'entrée, sur le côté. Et là, surprise. Sur ce mur brutal, on a greffé, deux siècles plus tard, un porche de pierre blanche, un baldaquin ciselé, ajouré, aérien comme de la dentelle. Le contraste est saisissant : la force nue de la brique, et par-dessus, cette broderie délicate.\r\n\r\nComme si l'Église, une fois sa victoire assurée, s'était enfin permis d'être belle. Dehors la forteresse, dedans le palais. Pousse la porte, et prépare-toi. Suis-moi.",
+      "hash": "90170c0b",
+      "chars": 1124,
+      "existingSegments": {
+        "en": "seed-100-albi-cite-episcopale-scene-1-seg-en",
+        "es": "seed-100-albi-cite-episcopale-scene-1-seg-es",
+        "it": "seed-100-albi-cite-episcopale-scene-1-seg-it",
+        "de": "seed-100-albi-cite-episcopale-scene-1-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-cite-episcopale-scene-2",
+      "index": 2,
+      "title": "Intérieur de Sainte-Cécile",
+      "text": "Entre. Et laisse le choc te saisir. Autant le dehors est nu et menaçant, autant le dedans est une explosion. Lève la tête : la voûte tout entière est peinte, bleue et or, semée d'anges, de saints, de motifs. Des mètres et des mètres de couleurs, réalisés au début du XVIᵉ siècle par des artistes venus d'Italie. C'est l'une des plus vastes peintures de la Renaissance qu'on puisse voir en France, et elle est là, au-dessus de ta tête, depuis cinq cents ans.\r\n\r\nAvance, et tu butes sur une merveille : le jubé. Une immense clôture de pierre blanche, sculptée, fouillée, dentelée jusqu'au vertige, qui séparait le chœur des chanoines du reste de l'église. Des dizaines de statues la peuplent. On a du mal à croire que c'est de la pierre, tant elle semble légère.\r\n\r\nPuis retourne-toi vers l'entrée. Sur tout le mur du fond s'étale une fresque immense : le Jugement dernier. Les élus montent au paradis, les damnés basculent en enfer, torturés, hurlants. Le message est limpide, et il s'adresse à toi : choisis ton camp, obéis, ou voilà ce qui t'attend. Après une croisade contre des hérétiques, l'avertissement n'a rien d'innocent.\r\n\r\nRessors, et gagne le palais voisin, la Berbie. Suis-moi.",
+      "hash": "1d306307",
+      "chars": 1189,
+      "existingSegments": {
+        "en": "seed-100-albi-cite-episcopale-scene-2-seg-en",
+        "es": "seed-100-albi-cite-episcopale-scene-2-seg-es",
+        "it": "seed-100-albi-cite-episcopale-scene-2-seg-it",
+        "de": "seed-100-albi-cite-episcopale-scene-2-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-cite-episcopale-scene-3",
+      "index": 3,
+      "title": "Palais de la Berbie",
+      "text": "Te voici au pied du palais de la Berbie. Son nom te dit déjà tout : « Berbie » vient d'un vieux mot d'oc, bisbia, qui veut simplement dire « l'évêché ». La maison de l'évêque. Mais quelle maison.\r\n\r\nRegarde ces murs, ces tours, ce donjon. C'est l'un des châteaux forts les mieux conservés de France, bâti lui aussi au XIIIᵉ siècle, dans les mêmes années terribles que la cathédrale. Car l'évêque d'Albi, à cette époque, n'est pas seulement un homme de prière. Il est un seigneur. Il lève l'impôt, il rend la justice, il commande des soldats. Il règne.\r\n\r\nEt il se protège. De qui ? Des Albigeois matés mais rancuniers, des bourgeois de la ville qui supportent mal sa poigne, des révoltes toujours possibles. Alors il vit retranché, ici, derrière ces murailles épaisses, au-dessus de la rivière, à l'abri des mauvais coups.\r\n\r\nCathédrale-forteresse d'un côté, palais-forteresse de l'autre : les deux poings de l'Église triomphante, plantés côte à côte sur ce rocher rouge. Toute la ville, en levant les yeux, savait qui tenait le pouvoir.\r\n\r\nÉloigne-toi vers le nord, vers le clocher d'une église bien plus ancienne. Suis-moi.",
+      "hash": "89cd7080",
+      "chars": 1125,
+      "existingSegments": {
+        "it": "seed-100-albi-cite-episcopale-scene-3-seg-it",
+        "de": "seed-100-albi-cite-episcopale-scene-3-seg-de",
+        "es": "seed-100-albi-cite-episcopale-scene-3-seg-es",
+        "en": "seed-100-albi-cite-episcopale-scene-3-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-cite-episcopale-scene-4",
+      "index": 4,
+      "title": "Collégiale Saint-Salvi",
+      "text": "Voici la collégiale Saint-Salvi. Prends le temps de la regarder : c'est la plus vieille église d'Albi, bien plus ancienne que la grande cathédrale rouge. Un patchwork de pierre et de brique, de roman et de gothique, remanié sans cesse au fil des siècles.\r\n\r\nElle porte le nom de Salvi, le tout premier évêque connu de la ville, un homme du VIᵉ siècle. C'est autour d'un souvenir comme le sien qu'Albi est née, bien avant les Cathares, bien avant les croisades. Ici vivait une communauté de chanoines — des prêtres qui priaient ensemble, en collège, d'où le mot « collégiale ».\r\n\r\nGlisse-toi, si tu peux, dans le cloître, sur le côté. Un carré de calme, des colonnes fines, des chapiteaux sculptés. Le vacarme de la ville s'éteint d'un coup. Ferme les yeux : tu es dans l'Albi d'avant, celle des moines et des marchands, avant que l'évêque-inquisiteur ne dresse sa forteresse pour dominer tout le monde.\r\n\r\nDeux Albi se font face, en somme. La douce, ici, autour de Saint-Salvi. Et l'écrasante, là-bas, autour de Sainte-Cécile.\r\n\r\nRedescends vers le vieux quartier, du côté de la rivière. Suis-moi.",
+      "hash": "9c1d188e",
+      "chars": 1097,
+      "existingSegments": {
+        "es": "seed-100-albi-cite-episcopale-scene-4-seg-es",
+        "en": "seed-100-albi-cite-episcopale-scene-4-seg-en",
+        "de": "seed-100-albi-cite-episcopale-scene-4-seg-de",
+        "it": "seed-100-albi-cite-episcopale-scene-4-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-cite-episcopale-scene-5",
+      "index": 5,
+      "title": "Castelviel",
+      "text": "Descends dans les ruelles du vieil Albi, du côté du Castelviel, le plus ancien quartier de la ville, celui qui s'accroche à la butte au-dessus du Tarn. Ici, les maisons se serrent, penchées, faites de brique rose et de bois brun, leurs étages avançant au-dessus de la rue. Cherche la Maison du Vieil Alby : une belle bâtisse de marchand, vieille de plusieurs siècles.\r\n\r\nEt pose-toi une question : d'où venait l'argent qui a bâti tout ça ? La brique, les palais, les églises ? Une bonne part venait d'une petite plante bleue. Le pastel.\r\n\r\nLe pastel, c'est une herbe qu'on cultivait par ici et dans toute la région, entre Albi et Toulouse. On broyait ses feuilles en boules, et l'on en tirait une teinture d'un bleu magnifique, l'une des rares qui savaient vraiment teindre les étoffes en bleu. Toute l'Europe en voulait. Les marchands d'Albi devinrent riches, très riches. On appelait ce pays béni le « pays de cocagne » — du nom des boules de pastel, les « coques ».\r\n\r\nCette fortune bleue a duré un temps, puis l'indigo venu des Indes l'a ruinée. Mais la brique rose, elle, est restée.\r\n\r\nDescends maintenant jusqu'à la rivière, jusqu'au vieux pont. Suis-moi.",
+      "hash": "cfa16c74",
+      "chars": 1162,
+      "existingSegments": {
+        "es": "seed-100-albi-cite-episcopale-scene-5-seg-es",
+        "de": "seed-100-albi-cite-episcopale-scene-5-seg-de",
+        "it": "seed-100-albi-cite-episcopale-scene-5-seg-it",
+        "en": "seed-100-albi-cite-episcopale-scene-5-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-albi-cite-episcopale-scene-6",
+      "index": 6,
+      "title": "Pont Vieux",
+      "text": "Descends sur le Pont Vieux, et avance jusqu'au milieu. Ce pont sous tes pieds est un vieillard : près de mille ans qu'il enjambe le Tarn, l'un des plus vieux ponts de France encore en service. Des générations d'Albigeois l'ont franchi, à pied, à cheval, en charrette.\r\n\r\nMaintenant, retourne-toi. Lève les yeux une dernière fois vers la ville. Et regarde ce qu'elle te dit.\r\n\r\nLà-haut, dominant tout, écrasant tout : la cathédrale-forteresse et le palais des évêques. Deux masses de brique rouge, énormes, plantées au bord du vide, qui se voient de partout, de chaque ruelle, de chaque rive. Où que tu ailles dans Albi, elles sont là, au-dessus de ta tête.\r\n\r\nC'était tout le but. Après la croisade, après les bûchers, après l'écrasement des Cathares, l'Église n'a pas seulement gagné une guerre. Elle a voulu que personne, jamais, ne l'oublie. Alors elle a sculpté sa victoire dans le paysage lui-même. Pendant des siècles, chaque habitant a vécu sous ce regard de brique.\r\n\r\nAujourd'hui, la colère est retombée. On ne voit plus une menace, mais une merveille. En 2010, tout cet ensemble — la cathédrale, le palais, le pont, les vieilles rues — est entré au patrimoine mondial de l'humanité. La cité épiscopale d'Albi. La forteresse de la peur est devenue un trésor de la beauté.\r\n\r\nReste encore un instant sur ce pont, entre l'eau qui passe et la brique qui demeure. Écoute le silence. Et souviens-toi de ce qu'il a fallu de fureur pour dresser tant de splendeur. À bientôt, l'ami.",
+      "hash": "2e13de9b",
+      "chars": 1483,
+      "existingSegments": {
+        "de": "seed-100-albi-cite-episcopale-scene-6-seg-de",
+        "it": "seed-100-albi-cite-episcopale-scene-6-seg-it",
+        "en": "seed-100-albi-cite-episcopale-scene-6-seg-en",
+        "es": "seed-100-albi-cite-episcopale-scene-6-seg-es"
+      }
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "tourId": "seed-100-toulouse-ovalie",
+  "sessionId": "seed-100-toulouse-ovalie-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Toulouse",
+  "title": "Toulouse — La messe du dimanche",
+  "description": "Sport — le Stade Toulousain et la messe du dimanche : pourquoi ici, le rugby est une civilisation.",
+  "themes": [
+    "Sport — le Stade Toulousain et la messe du dimanche : pourquoi ici, le rugby est une civilisation."
+  ],
+  "baseLanguage": "fr",
+  "chars": 8902,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "de": "Sport, das Toulousain-Stadion und die Sonntagsmesse: Warum ist Rugby hier eine Zivilisation.",
+    "es": "Deporte, Estadio Toulousa y misa dominical: ¿por qué aquí el rugby es una civilización?",
+    "it": "Sport, Stadio Toulousain e Messa domenicale: perché il rugby è una civiltà qui.",
+    "en": "Sport, the Toulousain Stadium and Sunday Mass: why rugby is a civilization here."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-toulouse-ovalie-scene-0",
+      "index": 0,
+      "title": "Square de l'Héraclès",
+      "text": "Arrête-toi devant ce grand archer de bronze. Un homme nu, arc-bouté, qui bande un arc immense vers le ciel. C'est l'Héraklès archer, une œuvre du sculpteur Antoine Bourdelle, dressée ici en 1925. Regarde-le bien : ce n'est pas seulement une statue de héros grec. C'est un monument aux morts.\r\n\r\nAux morts d'une guerre, oui — mais des morts d'un genre particulier : des sportifs. Des rugbymen, surtout, tombés dans les tranchées de 14-18. Bourdelle avait même imaginé de l'abriter sous un temple sobre, huit colonnes sans base ni chapiteau. Un temple. Pour des joueurs de ballon.\r\n\r\nEt parmi eux, un nom revient toujours : Alfred Mayssonnié. Demi de mêlée, cerveau de la première grande équipe du Stade Toulousain, celle qui décrocha le premier titre de champion en 1912. En septembre 1914, il tombe sur la Marne. On le cite comme le tout premier rugbyman international au monde à mourir à la guerre. Chaque 11 novembre, des membres du club viennent encore se recueillir ici.\r\n\r\nVoilà pourquoi je t'ai donné rendez-vous devant ce bronze, et pas devant un stade. Parce qu'à Toulouse, le rugby n'est pas un simple sport du dimanche. C'est une mémoire, une fierté, presque une religion — avec ses martyrs, ses temples et ses grand-messes. Une civilisation à elle seule.\r\n\r\nSuis-moi. On va remonter vers le berceau de tout ça, le long de ce vieux canal. Prends la berge ombragée, sur ta droite. Quelques minutes de marche.",
+      "hash": "66af10ee",
+      "chars": 1417,
+      "existingSegments": {
+        "de": "seed-100-toulouse-ovalie-scene-0-seg-de",
+        "en": "seed-100-toulouse-ovalie-scene-0-seg-en",
+        "es": "seed-100-toulouse-ovalie-scene-0-seg-es",
+        "it": "seed-100-toulouse-ovalie-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-ovalie-scene-1",
+      "index": 1,
+      "title": "Le canal de Brienne",
+      "text": "Longe le canal. Ces platanes, cette eau calme, ce silence de faubourg : difficile d'imaginer qu'on est au berceau d'un géant du rugby mondial. Et pourtant, tout s'est joué à quelques pas d'ici, au tout début du XXᵉ siècle.\r\n\r\nÀ l'époque, le ballon ovale débarque d'Angleterre et enflamme la jeunesse toulousaine. Des clubs d'étudiants se disputent les terrains vagues. En 1907, plusieurs de ces cercles fusionnent et prennent un nom simple, promis à la gloire : le Stade Toulousain. Le maillot sera rouge et noir. Le rouge de la ville, le noir pour trancher.\r\n\r\nTrès vite, ce club-là ne ressemble à aucun autre. On lui prêtera une manière de jouer bien à lui : le jeu de mouvement, la passe, l'audace — une réputation de beau jeu qui colle encore à ses crampons aujourd'hui.\n\r\nMais avant les trophées, il a fallu un terrain, un vrai, avec des tribunes. Continue jusqu'à l'endroit où le canal en rejoint deux autres, là-bas, sous les ponts. C'est là qu'est né le premier stade. Deux minutes.",
+      "hash": "a6c884cf",
+      "chars": 990,
+      "existingSegments": {
+        "it": "seed-100-toulouse-ovalie-scene-1-seg-it",
+        "de": "seed-100-toulouse-ovalie-scene-1-seg-de",
+        "en": "seed-100-toulouse-ovalie-scene-1-seg-en",
+        "es": "seed-100-toulouse-ovalie-scene-1-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-ovalie-scene-2",
+      "index": 2,
+      "title": "Les Ponts-Jumeaux",
+      "text": "Nous voici aux Ponts-Jumeaux, là où trois canaux se rejoignent. Aujourd'hui, le vacarme du périphérique couvre presque l'eau. Mais tends l'oreille : c'est ici que le Stade Toulousain a planté ses premiers poteaux, en 1907.\r\n\r\nLe terrain, on le doit à un homme respectable : Ernest Wallon. Un professeur de droit, doyen de la faculté de Toulouse. Ce juriste sérieux tombe amoureux du rugby et devient le premier président du club — et son principal actionnaire. C'est lui qui met sa fortune et son nom au service de ces gamins en crampons. À sa mort, en 1921, le stade prendra son nom, qu'il porte encore.\r\n\r\nSur cette pelouse, le jeune club explose. Dès 1909, il accueille des finales du championnat de France devant des foules énormes, quinze mille personnes. Et en 1912, il décroche son premier bouclier de Brennus. Invaincu de toute la saison, il gagne un surnom superbe : « la Vierge rouge ».\r\n\r\nApproche-toi du grand pont de béton qui enjambe l'ancien terrain. Il cache une histoire triste — et une preuve d'amour. Une minute.",
+      "hash": "760d5c14",
+      "chars": 1031,
+      "existingSegments": {
+        "de": "seed-100-toulouse-ovalie-scene-2-seg-de",
+        "en": "seed-100-toulouse-ovalie-scene-2-seg-en",
+        "it": "seed-100-toulouse-ovalie-scene-2-seg-it",
+        "es": "seed-100-toulouse-ovalie-scene-2-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-ovalie-scene-3",
+      "index": 3,
+      "title": "Rue des Troènes, près de l’ancien stade",
+      "text": "Regarde vers les voies rapides et l’échangeur voisin. Tu ne le devinerais jamais, mais la pelouse mythique des Ponts-Jumeaux occupait ce secteur. Le stade fondateur du Stade Toulousain a disparu lors de la construction du périphérique.\n\r\nEn 1980, la ville a besoin de sa rocade, et le tracé passe pile sur le terrain. On exproprie. Le 30 mars 1980, les Toulousains disputent leur dernier match sur cette herbe historique, contre Aurillac. Une page se tourne.\r\n\r\nMais écoute la suite, elle est belle. Une vieille loi obligeait à reconstruire à l'identique tout équipement sportif détruit. La ville cède alors au club, pour un franc symbolique, un terrain un peu plus au nord, aux Sept-Deniers. Et par respect, on garde le nom du fondateur : le nouveau stade s'appellera lui aussi Ernest-Wallon. Le berceau disparaît sous le bitume, mais le nom, lui, ne meurt pas. Le rugby toulousain déménage sans jamais renier ses racines.\r\n\r\nSuis la rue des Troènes vers le nord, puis gagne le parc des Sept-Deniers. On marche vers le nouveau stade. Une dizaine de minutes, tranquille. Je t’explique en chemin ce qui se transmet ici.",
+      "hash": "375912dc",
+      "chars": 1118,
+      "existingSegments": {
+        "en": "seed-100-toulouse-ovalie-scene-3-seg-en",
+        "es": "seed-100-toulouse-ovalie-scene-3-seg-es",
+        "it": "seed-100-toulouse-ovalie-scene-3-seg-it",
+        "de": "seed-100-toulouse-ovalie-scene-3-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-ovalie-scene-4",
+      "index": 4,
+      "title": "Parc des Sept-Deniers",
+      "text": "Traverse le parc. Les soirs de match, les supporters convergent vers le stade des Sept-Deniers, en rouge et noir, parfois avec des enfants sur les épaules. Les rues et les allées deviennent un cortège. Une procession, presque.\n\r\nCar c'est ça, une civilisation du rugby : ça se transmet. Ici, on n'attend pas d'acheter des vedettes toutes faites. On les fabrique. L'école de rugby du club forme les gosses du quartier et de toute la région, leur apprend la passe et le sens du collectif avant même de savoir plaquer. Beaucoup des plus grands champions toulousains sont sortis de cette filière.\r\n\r\nLe stade, ce n'est pas seulement l'équipe première du samedi soir. C'est aussi les équipes de jeunes, les féminines, les vétérans, les bénévoles qui repeignent les vestiaires. Tout un peuple qui vit au rythme du ballon ovale, de septembre à juin, génération après génération.\r\n\r\nRegarde : les tribunes apparaissent déjà au-dessus des arbres. On approche du cœur du réacteur. Quelques minutes encore.",
+      "hash": "77cb3439",
+      "chars": 995,
+      "existingSegments": {
+        "de": "seed-100-toulouse-ovalie-scene-4-seg-de",
+        "es": "seed-100-toulouse-ovalie-scene-4-seg-es",
+        "en": "seed-100-toulouse-ovalie-scene-4-seg-en",
+        "it": "seed-100-toulouse-ovalie-scene-4-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-ovalie-scene-5",
+      "index": 5,
+      "title": "Le parvis d'Ernest-Wallon",
+      "text": "Nous y sommes : le stade Ernest-Wallon, la maison du Stade Toulousain. Inauguré en 1982, agrandi depuis, il tient près de vingt mille personnes — et les soirs de grand match, il tremble.\r\n\r\nPrends la mesure de ce que ce club a accompli. C'est, tout simplement, le club le plus titré de France, et le plus titré d'Europe. Une collection de boucliers de Brennus que personne n'égale, et plusieurs coupes d'Europe, ce Graal des nuits continentales. Aucune autre équipe n'a autant gagné.\r\n\r\nIl y a eu des générations dorées. Les « galactiques » des années deux mille, qui régnaient sur le continent. Et aujourd'hui encore, une bande de surdoués menée par un demi de mêlée que le monde entier nous envie : Antoine Dupont, gamin d'un village voisin, devenu l'un des meilleurs joueurs de la planète. La filière, toujours.\r\n\r\nMais les chiffres ne disent pas l'essentiel. Le vrai secret est ailleurs. Franchis encore quelques mètres, jusqu'aux terrains d'entraînement, derrière l'enceinte. Là se cache la matière première de tout cet or. Deux minutes.",
+      "hash": "e8acdae4",
+      "chars": 1042,
+      "existingSegments": {
+        "en": "seed-100-toulouse-ovalie-scene-5-seg-en",
+        "it": "seed-100-toulouse-ovalie-scene-5-seg-it",
+        "de": "seed-100-toulouse-ovalie-scene-5-seg-de",
+        "es": "seed-100-toulouse-ovalie-scene-5-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-ovalie-scene-6",
+      "index": 6,
+      "title": "Entrée publique du stade Ernest-Wallon",
+      "text": "Voici les terrains d'entraînement. Rien de spectaculaire : de l'herbe, des poteaux, des sacs de plaquage. Et pourtant, c'est peut-être le lieu le plus important de tout le club. C'est ici, loin des projecteurs, que se gagnent les matchs du samedi.\r\n\r\nSous la pluie, dans le froid, les professionnels répètent mille fois les mêmes gestes. La passe qui arrive juste, le soutien qui surgit, le ballon qui vit de main en main. Cette obsession du mouvement vient de loin. On ne défend pas seulement : on ose, on court, on offre du jeu. C'est une philosophie autant qu'une tactique.\n\r\nEt tout le monde s'entraîne ici : les hommes, mais aussi les féminines du club, qui portent les mêmes couleurs et la même ambition. Le rouge et noir, ce n'est pas un genre, c'est une famille. On y entre enfant, on y reste souvent pour la vie.\r\n\r\nReviens vers l'entrée principale du stade, devant les grilles. C'est là que je veux te dire l'essentiel. Deux minutes.",
+      "hash": "9744984d",
+      "chars": 943,
+      "existingSegments": {
+        "en": "seed-100-toulouse-ovalie-scene-6-seg-en",
+        "de": "seed-100-toulouse-ovalie-scene-6-seg-de",
+        "it": "seed-100-toulouse-ovalie-scene-6-seg-it",
+        "es": "seed-100-toulouse-ovalie-scene-6-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-toulouse-ovalie-scene-7",
+      "index": 7,
+      "title": "Entrée publique du stade Ernest-Wallon",
+      "text": "Arrête-toi devant les grilles du stade. Un jour de match, tu ne pourrais pas rester seul comme maintenant : tu serais pris dans une marée rouge et noir, portée par un même chant, une même impatience. On appelle ça, ici, la messe du dimanche. Et le mot n'est pas de trop.\r\n\r\nRepense au chemin qu'on vient de faire. Un temple de pierre pour les joueurs morts à la guerre. Un professeur de droit qui offre sa fortune à des gamins en crampons. Un berceau englouti sous le périphérique, mais dont on a sauvé le nom. Des enfants formés ici, qui deviennent les meilleurs du monde. À aucun moment on n'a parlé d'un simple sport. On a parlé de mémoire, de fidélité, de transmission, de foi. Tout ce qui fait une civilisation.\r\n\r\nEt quand le Stade gagne — ce qui arrive souvent, jusqu'à ce quatrième titre d'affilée décroché en 2026, du jamais-vu — la ville entière descend. Les joueurs brandissent le bouclier au balcon du Capitole, cette place que tu croiseras peut-être, et des dizaines de milliers de visages se lèvent vers eux, dans le rose du soir. Le rugby et la ville ne font plus qu'un.\r\n\r\nVoilà pourquoi, à Toulouse, on ne dit pas « j'aime le rugby ». On dit « je suis du Stade », comme on dirait d'où l'on vient. Garde ça en tête la prochaine fois que tu verras passer un maillot rouge et noir. Merci d'avoir marché avec moi — et à bientôt, dans une autre histoire.",
+      "hash": "667a8473",
+      "chars": 1366,
+      "existingSegments": {
+        "es": "seed-100-toulouse-ovalie-scene-7-seg-es",
+        "de": "seed-100-toulouse-ovalie-scene-7-seg-de",
+        "it": "seed-100-toulouse-ovalie-scene-7-seg-it",
+        "en": "seed-100-toulouse-ovalie-scene-7-seg-en"
+      }
+    }
+  ]
+}

@@ -1,0 +1,569 @@
+@@LANG=en
+@@TITLE=Rouen — Thirty Times the Same Façade
+@@DESC=Art — Thirty times the same façade: Monet, light, and the birth of a revolution.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-0
+@@STITLE=Musée des Beaux-Arts de Rouen
+Go in, and look for a small canvas full of flags. A narrow street, drowned in blue, white, red, a crowd you can barely make out beneath the flapping fabric. It's Claude Monet, rue Saint-Denis, June 30, 1878, national holiday. He painted this fast, standing in the crush of the crowd, the way you'd snatch a photo before the light changes.
+
+Remember these five words: before the light changes. This whole walk hinges on that.
+
+This museum was born from a decree. In 1801, the State distributed to fifteen cities the paintings piled up since the Revolution. Rouen was well served. A century later, the building you're walking through opened its doors, and the city began collecting painters people still booed: Monet, Sisley, Renoir, Pissarro. A collection many capitals envy.
+
+But something is missing here. The most famous paintings ever made in Rouen aren't in this museum. They're not even in Rouen. They're in Paris, in Washington, in Boston, in Moscow.
+
+Between 1892 and 1893, three hundred meters from where you're standing, a man shut himself behind a window and painted the same wall some thirty times. The same façade. Again. Again. Again. People thought he'd gone mad, worn out, finished. It was a revolution.
+
+I'm taking you to that window. But not right away. First, you need to understand why it had to happen here, in this particular city, and nowhere else.
+
+Leave the museum and head west. Four minutes on foot. We'll start with the light — the real one.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-1
+@@STITLE=Église Saint-Godard
+Push open the door of this squat church, wedged between two buildings as if the city had grown up around it without paying attention. Saint-Godard. Head to the right, and look up.
+
+A tree. A real tree of glass, growing out of the belly of a sleeping old man and carrying kings in its branches. It's a Tree of Jesse, the genealogy of Christ, rendered in stained glass at the start of the sixteenth century. Look at the blues. Look at the reds. They aren't laid on top of the glass, they're inside it, fired into the material — and they only exist if daylight is willing to pass through.
+
+That's the first craft of this city, four centuries before Monet. Rouen was a capital of stained glass: entire workshops, dynasties of glassmakers, masters fought over across all of Normandy. Their raw material wasn't pigment. It was light.
+
+Stay a minute, without moving. If a cloud passes, the tree goes out all at once. Come back at noon, it blazes. The same glass, two different paintings, and nothing has moved but the sky.
+
+A painter would eventually understand that stone, outside, does exactly the same thing.
+
+Come back out and head east. Seven minutes, and I'll introduce you to the most explosive family in Rouen.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-2
+@@STITLE=Lycée Pierre-Corneille
+These austere buildings behind the gate are the lycée Corneille, a former Jesuit college opened at the end of the sixteenth century. The list of its students is dizzying: Corneille, Fontenelle, Flaubert, Maupassant. And, right at the start of the twentieth century, three brothers from the same Norman family.
+
+The eldest will sign his canvases Jacques Villon. The second will sculpt under the name Duchamp-Villon. The youngest is called Marcel Duchamp. He wears out the seat of his pants on these benches, wins a drawing prize here, and no one suspects he's going to blow up modern art.
+
+1912. Marcel presents a painting: Nude Descending a Staircase. A body broken down into dozens of superimposed instants, like a film flattened onto a single canvas. His painter friends find it inappropriate, off the rails. And it's his own brothers who are sent to ask him to withdraw the work from the Salon. He withdraws it, without a word. He'll never quite forgive them for it. The following year, New York discovers the painting and screams scandal. He becomes famous overnight.
+
+Keep that warm. One man from here will paint time in a single painting. Another will paint it thirty times. Two ways of winning the same war.
+
+Head southeast. Six minutes, to a lace-work church.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-3
+@@STITLE=Église Saint-Maclou
+Stop in front of this porch. Five fan-shaped arcades, stone that looks embroidered rather than carved. Saint-Maclou, Flamboyant Gothic, a building site opened around 1437 and carried on for eighty years. The carved door panels have always been attributed to Jean Goujon — without proof, but the idea is too beautiful to die.
+
+In the nineteenth century, a young Englishman sits here, notebook on his knees, and draws these details for hours. John Ruskin. He'll become the most listened-to critic of his century, the one who'll teach all of Europe how to look at the Middle Ages. He'll write that three cities are the centers of his thought: Rouen, Geneva, and Pisa. Rouen first.
+
+And he rages. All around him, they're restoring, scraping, replacing tired stones with new, clean ones. To him, it's murder: restoring, he says, is the most total destruction a building can suffer. What you're looking at, he wanted people to let it age, hollow out, and die in peace.
+
+Ruskin had a French reader. A thirty-year-old asthmatic who would come all the way here, on purpose, to verify a single one of his sentences.
+
+Head back up west, six minutes. Meet me in the courtyard of the booksellers.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-4
+@@STITLE=Portail des Libraires
+Enter this courtyard through the ornate gate. In front of you, the portail des Libraires. It's named that because book merchants used to keep shop right here, backed against the flank of the cathedral.
+
+Come closer to the medallions at the bottom, at eye level. Look at what's swarming in the stone: men with dogs' heads, fish with legs, monsters biting each other, a delirious bestiary carved by craftsmen whose names no one remembers.
+
+Ruskin had described one of them, tiny, in one of his books. A small grimacing figure, cheek resting on hand.
+
+Years later, Marcel Proust, who was translating Ruskin without knowing English, came here with his friends. He searched for this little fellow, in the cold, coughing, among hundreds of others. He found it. And he drew from it an idea I'll leave you with: this little figure was nothing at all, absolutely nothing — except that Ruskin had looked at it. A single glance is enough to make a stone immortal.
+
+Hold onto that too. We'll come back to it at the end.
+
+Leave the courtyard, head east then go straight south along the rue de la République. Skip the main square, we're saving that. Six minutes, to the quays.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-5
+@@STITLE=Quais de Seine
+Here you are on the banks of the Seine, facing the pont Boieldieu. This bridge is young: the one before it was blown up during the war. But the water, the damp air, the smoke, the low light — that's the same setting.
+
+For a long time, Rouen was an immense port, the last one before the sea, bristling with masts, drowned in steam and coal. The English arrive first. Turner stops here in the 1820s and 1830s, sets his notebook up on the quay and brings back watercolors of mist: a grey and gold river where you can barely make anything out anymore. No one, at the time, painted like that.
+
+Half a century later, Camille Pissarro takes a hotel room on these quays, opens the window and paints the port without ever going down. His eyesight is failing him, he can no longer bear the drafts, so he works sheltered, up high. The crane, the bridge, the smoke, the backlight. He writes to his son Lucien that it's as beautiful as Venice.
+
+Do you see where I'm going with this? A room. A window. A subject you never take your eyes off again.
+
+Head up the rue du Grand-Pont, due north. Five minutes. We're almost there.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-6
+@@STITLE=Pont Boieldieu, au débouché de la rue du Grand-Pont
+Stop and look up at those upper floors, above the shops, the ones facing the square.
+
+February 1892. Monet is fifty-one years old. He rents an empty room up there, presses his easel against the window and begins. He comes back the following winter, changes windows, starts again. It's said he even worked out of a lingerie shop, hidden behind a screen so as not to bother customers trying things on.
+
+He isn't painting one painting. He's painting about ten at once, lined up around him. The sun turns, the façade changes color, he sets one canvas down, grabs another, chases the day from morning to night. In the evening, he's drained. He writes to his wife Alice that he's exhausted, that he'll never manage it, that he had a nightmare: the cathedral was falling on him, and it was blue, or pink, or yellow.
+
+And he finishes nothing on site. He takes it all back to Giverny, retouches it for months, from memory, in his studio — he, the painter of the open air. That part, he doesn't say so loudly.
+
+Some thirty canvases. Twenty will be hung in Paris, in May 1895.
+
+Three minutes. Cross the square, walk to the middle, and finally turn around.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-7
+@@STITLE=Parvis de la cathédrale Notre-Dame
+There. Look at it.
+
+Three portals, and two towers that don't match each other. On the left, the tour Saint-Romain, the old one, the stubborn one. On the right, the tour de Beurre, completed at the start of the sixteenth century thanks to an indulgence granted during Lent. And up there, that cast-iron spire finished in 1876 — for four years, the tallest structure in the world.
+
+Now, forget everything I just told you. Because that's exactly what Monet did.
+
+He didn't paint the architecture, or the Gothic style, or God, or Normandy. He painted what lies between this façade and the window, over there: the air, the mist, the hour passing. The stone is only a screen stretched out to catch the daylight. The real subject is the moment. A moment that will never return.
+
+May 1895, Galerie Durand-Ruel, in Paris. Twenty cathedrals lined up on the walls, from the blue of dawn to the red of sunset. He asks fifteen thousand francs apiece, a price that leaves all of Paris gasping. A journalist walks out of there shaken and publishes a furious article: he begs the President of the Republic to buy all twenty as a single block, for the nation, because otherwise they'll never be seen together again. That journalist's name is Georges Clemenceau.
+
+The State didn't buy them. The canvases left one by one, to the four corners of the world. In 1994, the museum where you started brought several of them back, borrowed from everywhere, for the length of one exhibition. Then they scattered again.
+
+So all you have left is the original, and by far it's the best. Come back tomorrow, at a different hour: it won't be the same. That was Rouen, that was the light. Take care of yourself, and see you soon for another walk.
+
+@@LANG=es
+@@TITLE=Ruan — Treinta veces la misma fachada
+@@DESC=Arte — Treinta veces la misma fachada: Monet, la luz y el nacimiento de una revolución.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-0
+@@STITLE=Musée des Beaux-Arts de Rouen
+Entra, y busca un pequeño lienzo lleno de banderas. Una calle estrecha, anegada de azul, blanco, rojo, una multitud que apenas se adivina bajo las telas que ondean. Es Claude Monet, la rue Saint-Denis, el 30 de junio de 1878, día de fiesta nacional. Lo pintó deprisa, de pie entre el gentío, como quien roba una foto antes de que la luz cambie.
+
+Retén estas cinco palabras: antes de que la luz cambie. Todo este paseo se sostiene en eso.
+
+Este museo nació de un decreto. En 1801, el Estado repartió entre quince ciudades los cuadros amontonados desde la Revolución. A Ruan le tocó bien. Un siglo después, el edificio que atraviesas abre sus puertas, y la ciudad se pone a coleccionar a pintores a los que todavía se abucheaba: Monet, Sisley, Renoir, Pissarro. Un conjunto que muchas capitales le envidian.
+
+Pero aquí falta algo. Los cuadros más famosos jamás pintados en Ruan no están en este museo. Ni siquiera están en Ruan. Están en París, en Washington, en Boston, en Moscú.
+
+Entre 1892 y 1893, a trescientos metros de donde estás, un hombre se encerró detrás de una ventana y pintó una treintena de veces el mismo muro. La misma fachada. Otra vez. Otra vez. Otra vez. Se le creyó loco, agotado, acabado. Era una revolución.
+
+Te llevo hasta esa ventana. Pero no todavía. Primero hay que entender por qué esto tenía que ocurrir aquí, en esta ciudad, y en ninguna otra.
+
+Sal del museo y toma hacia el oeste. Cuatro minutos a pie. Empezamos por la luz, la de verdad.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-1
+@@STITLE=Église Saint-Godard
+Empuja la puerta de esta iglesia achaparrada, encajada entre dos edificios como si la ciudad hubiera crecido a su alrededor sin prestar atención. Saint-Godard. Ve hacia la derecha, y levanta la vista.
+
+Un árbol. Un árbol de verdad, de vidrio, que sale del vientre de un anciano dormido y lleva reyes entre sus ramas. Es un árbol de Jesé, la genealogía de Cristo, montado en vidriera a principios del siglo dieciséis. Mira los azules. Mira los rojos. No están posados sobre el vidrio, están dentro, cocidos en la materia, y solo existen si el día quiere pasar a través.
+
+Ahí está el primer saber hacer de esta ciudad, cuatro siglos antes de Monet. Ruan fue una capital de la vidriera: talleres enteros, dinastías de vidrieros, maestros que se disputaban por toda Normandía. Su materia prima no era el pigmento. Era la luz.
+
+Quédate un minuto, sin moverte. Si pasa una nube, el árbol se apaga de golpe. Vuelve al mediodía, arde. El mismo vidrio, dos cuadros distintos, y nada se ha movido salvo el cielo.
+
+Un pintor acabará por comprender que la piedra, fuera, hace exactamente lo mismo.
+
+Sal de nuevo y toma hacia el este. Siete minutos, y te presento a la familia más explosiva de Ruan.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-2
+@@STITLE=Lycée Pierre-Corneille
+Esos edificios austeros detrás de la verja son el lycée Corneille, antiguo colegio de jesuitas abierto a finales del siglo dieciséis. La lista de sus alumnos marea: Corneille, Fontenelle, Flaubert, Maupassant. Y, a principios del siglo veinte, tres hermanos de una misma familia normanda.
+
+El mayor firmará sus lienzos como Jacques Villon. El mediano esculpirá bajo el nombre de Duchamp-Villon. El pequeño se llama Marcel Duchamp. Se sienta en estos bancos, gana aquí un premio de dibujo, y nadie sospecha que va a hacer estallar el arte moderno.
+
+1912. Marcel presenta un cuadro: Desnudo bajando una escalera. Un cuerpo descompuesto en decenas de instantes superpuestos, como una película aplastada sobre un solo lienzo. Sus amigos pintores lo encuentran fuera de lugar, fuera de norma. Y son sus propios hermanos a quienes se envía para pedirle que retire la obra del Salón. Él la retira, sin decir palabra. Nunca se lo perdonará del todo. Al año siguiente, Nueva York descubre el cuadro y grita al escándalo. Se hace famoso en una noche.
+
+Guarda eso en caliente. Un hombre de aquí pintará el tiempo en un solo cuadro. Otro lo pintará en treinta. Dos maneras de ganar la misma guerra.
+
+Baja hacia el sureste. Seis minutos, hasta una iglesia de encaje.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-3
+@@STITLE=Église Saint-Maclou
+Detente frente a este pórtico. Cinco arcadas en abanico, una piedra que parece bordada más que tallada. Saint-Maclou, gótico flamígero, una obra abierta hacia 1437 y proseguida durante ochenta años. Las hojas talladas se atribuyen desde siempre a Jean Goujon, sin pruebas, pero la idea es demasiado hermosa para morir.
+
+En el siglo diecinueve, un joven inglés se sienta aquí, cuaderno sobre las rodillas, y dibuja estos detalles durante horas. John Ruskin. Se convertirá en el crítico más escuchado de su siglo, el que enseñará a toda Europa a mirar la Edad Media. Escribirá que tres ciudades son los centros de su pensamiento: Ruan, Ginebra y Pisa. Ruan la primera.
+
+Y se enfurece. A su alrededor se restaura, se rasca, se sustituyen las piedras cansadas por otras nuevas, bien limpias. Para él es un asesinato: restaurar, dice, es la destrucción más total que puede sufrir un edificio. Lo que estás mirando, él quería que se dejara envejecer, hundirse, y morir en paz.
+
+Ruskin tuvo un lector francés. Un asmático de treinta años que vendrá hasta aquí, a propósito, para verificar una sola de sus frases.
+
+Sube de nuevo hacia el oeste, seis minutos. Cita en el patio de los libreros.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-4
+@@STITLE=Portail des Libraires
+Entra en este patio por la verja labrada. Delante de ti, el portail des Libraires. Se llama así porque unos libreros tenían tienda justo aquí, adosados al flanco de la catedral.
+
+Acércate a los medallones de abajo, a la altura de un hombre. Mira lo que bulle en la piedra: hombres con cabeza de perro, peces con patas, monstruos que se muerden, un bestiario delirante tallado por artesanos de los que nadie recordó los nombres.
+
+Ruskin había descrito uno, minúsculo, en uno de sus libros. Una pequeña figura que hace una mueca, la mejilla apoyada en la mano.
+
+Años después, Marcel Proust, que traducía a Ruskin sin saber inglés, vino aquí con sus amigos. Buscó a ese hombrecillo, con frío, tosiendo, entre cientos de otros. Lo encontró. Y de ahí sacó una idea que te dejo: esta figurilla no era nada en absoluto, absolutamente nada, salvo que Ruskin la había mirado. Una mirada basta para hacer inmortal a una piedra.
+
+Guarda eso también. Volvemos a ello al final.
+
+Sal del patio, ve hacia el este y luego baja todo recto hacia el sur por la rue de la République. Evita la gran plaza, la guardamos para después. Seis minutos, hasta los muelles.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-5
+@@STITLE=Quais de Seine
+Aquí estás a orillas del Sena, frente al pont Boieldieu. Ese puente es joven: el de antes saltó por los aires durante la guerra. Pero el agua, el aire húmedo, los humos, la luz baja, es el mismo decorado.
+
+Durante mucho tiempo, Ruan fue un puerto inmenso, el último antes del mar, erizado de mástiles, anegado de vapor y de carbón. Los ingleses llegan primero. Turner se detiene aquí en los años 1820 y 1830, planta su cuaderno en el muelle y trae acuarelas de bruma: un río gris y dorado donde apenas se distingue nada. Nadie, entonces, pintaba así.
+
+Medio siglo después, Camille Pissarro toma una habitación de hotel en estos muelles, abre la ventana y pinta el puerto sin bajar nunca. Sus ojos le fallan, ya no soporta las corrientes de aire, así que trabaja resguardado, en altura. La grúa, el puente, el humo, el contraluz. Le escribe a su hijo Lucien que es tan hermoso como Venecia.
+
+¿Ves adónde quiero llegar? Una habitación. Una ventana. Un motivo del que ya no se apartan los ojos.
+
+Sube por la rue du Grand-Pont, todo hacia el norte. Cinco minutos. Ya casi llegamos.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-6
+@@STITLE=Pont Boieldieu, au débouché de la rue du Grand-Pont
+Detente y levanta la vista hacia esos pisos, encima de las tiendas, los que dan a la plaza.
+
+Febrero de 1892. Monet tiene cincuenta y un años. Alquila una habitación vacía ahí arriba, pega su caballete al cristal y empieza. Vuelve al invierno siguiente, cambia de ventana, vuelve a empezar. Se cuenta que hasta trabajó en una tienda de lencería, escondido detrás de un biombo para no molestar a las clientas que se estaban probando ropa.
+
+No pinta un solo cuadro. Pinta una decena a la vez, alineados a su alrededor. El sol gira, la fachada cambia de color, deja un lienzo, agarra otro, persigue el día de la mañana a la noche. Por la noche, precisamente, está agotado. Le escribe a su mujer Alice que está molido, que nunca lo conseguirá, que ha tenido una pesadilla: la catedral le caía encima, y era azul, o rosa, o amarilla.
+
+Y no termina nada allí mismo. Se lo lleva todo a Giverny, lo retoca durante meses, de memoria, en su taller, él, el pintor del aire libre. Eso lo dice menos alto.
+
+Una treintena de lienzos. Veinte se colgarán en París, en mayo de 1895.
+
+Tres minutos. Cruza la plaza, ve hasta el medio, y date la vuelta por fin.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-7
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Ahí está. Mírala.
+
+Tres portadas, y dos torres que no se parecen. A la izquierda la tour Saint-Romain, la vieja, la testaruda. A la derecha la tour de Beurre, terminada a principios del siglo dieciséis gracias a una indulgencia concedida durante la Cuaresma. Y ahí arriba, esa flecha de fundición terminada en 1876: durante cuatro años, el edificio más alto del mundo.
+
+Ahora, olvida todo lo que acabo de decirte. Porque eso es exactamente lo que hizo Monet.
+
+No pintó ni la arquitectura, ni el gótico, ni a Dios, ni Normandía. Pintó lo que hay entre esta fachada y la ventana, allá: el aire, la bruma, la hora que pasa. La piedra no es más que una pantalla tendida para recibir el día. El verdadero tema es el instante. Un instante que no volverá.
+
+Mayo de 1895, galerie Durand-Ruel, en París. Veinte catedrales alineadas en las paredes, del azul del amanecer al rojo del ocaso. Pide quince mil francos por pieza, un precio que deja sin aliento a todo París. Un periodista sale de ahí conmovido y publica un artículo furioso: suplica al presidente de la República que compre las veinte de un bloque, para la nación, porque de lo contrario nunca volverán a verse juntas. Ese periodista se llama Georges Clemenceau.
+
+El Estado no compró. Los lienzos partieron uno a uno, a los cuatro rincones del mundo. En 1994, el museo donde empezaste hizo volver a varios de ellos, prestados de todas partes, el tiempo de una exposición. Luego volvieron a dispersarse.
+
+Así que te queda la original, y con diferencia es la mejor. Vuelve mañana, a otra hora: no será la misma. Eso era Ruan, eso era la luz. Cuídate, y hasta pronto para otro paseo.
+
+@@LANG=de
+@@TITLE=Rouen — Dreißigmal dieselbe Fassade
+@@DESC=Kunst — Dreißigmal dieselbe Fassade: Monet, das Licht und die Geburt einer Revolution.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-0
+@@STITLE=Musée des Beaux-Arts de Rouen
+Geh hinein, und such nach einer kleinen Leinwand voller Flaggen. Eine enge Straße, ertränkt in Blau, Weiß, Rot, eine Menschenmenge, die man kaum unter den flatternden Stoffen erahnen kann. Es ist Claude Monet, die rue Saint-Denis, der 30. Juni 1878, Nationalfeiertag. Er hat das schnell gemalt, stehend im Gedränge, so wie man ein Foto stiehlt, bevor sich das Licht ändert.
+
+Behalt diese fünf Worte: bevor sich das Licht ändert. Dieser ganze Spaziergang hängt daran.
+
+Dieses Museum entstand aus einem Erlass. 1801 verteilte der Staat an fünfzehn Städte die seit der Revolution aufgehäuften Gemälde. Rouen wurde gut bedacht. Ein Jahrhundert später öffnet das Gebäude, das du durchquerst, seine Türen, und die Stadt beginnt, Maler zu sammeln, die man damals noch ausbuhte: Monet, Sisley, Renoir, Pissarro. Eine Sammlung, um die sie manche Hauptstadt beneidet.
+
+Doch hier fehlt etwas. Die berühmtesten Gemälde, die je in Rouen gemalt wurden, sind nicht in diesem Museum. Sie sind nicht einmal in Rouen. Sie sind in Paris, in Washington, in Boston, in Moskau.
+
+Zwischen 1892 und 1893, dreihundert Meter von dem Ort, an dem du stehst, schloss sich ein Mann hinter einem Fenster ein und malte rund dreißigmal dieselbe Wand. Dieselbe Fassade. Wieder. Wieder. Wieder. Man hielt ihn für verrückt, erschöpft, am Ende. Es war eine Revolution.
+
+Ich bringe dich zu diesem Fenster. Doch nicht sofort. Zuerst muss man verstehen, warum es genau hier geschehen musste, in genau dieser Stadt, und nirgendwo sonst.
+
+Verlass das Museum und geh nach Westen. Vier Minuten zu Fuß. Wir beginnen mit dem Licht — dem echten.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-1
+@@STITLE=Église Saint-Godard
+Drück die Tür dieser gedrungenen Kirche auf, eingezwängt zwischen zwei Gebäuden, als sei die Stadt um sie herumgewachsen, ohne aufzupassen. Saint-Godard. Geh nach rechts, und heb den Blick.
+
+Ein Baum. Ein echter Baum aus Glas, der aus dem Bauch eines schlafenden alten Mannes wächst und Könige in seinen Zweigen trägt. Es ist ein Wurzel-Jesse-Baum, die Genealogie Christi, zu Beginn des sechzehnten Jahrhunderts in Glasmalerei gefasst. Schau dir die Blautöne an. Schau dir die Rottöne an. Sie liegen nicht auf dem Glas, sie sind darin, in die Materie eingebrannt — und sie existieren nur, wenn das Tageslicht hindurchscheinen will.
+
+Das ist das erste Handwerk dieser Stadt, vier Jahrhunderte vor Monet. Rouen war eine Hauptstadt der Glasmalerei: ganze Werkstätten, Dynastien von Glasmalern, Meister, um die man sich in ganz der Normandie riss. Ihr Rohstoff war nicht das Pigment. Es war das Licht.
+
+Bleib eine Minute stehen, ohne dich zu bewegen. Zieht eine Wolke vorbei, erlischt der Baum auf einmal. Komm um die Mittagszeit zurück, dann lodert er. Dasselbe Glas, zwei verschiedene Bilder, und nichts hat sich bewegt außer dem Himmel.
+
+Ein Maler wird schließlich verstehen, dass der Stein draußen genau dasselbe tut.
+
+Geh wieder hinaus und geh nach Osten. Sieben Minuten, und ich stelle dir die explosivste Familie von Rouen vor.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-2
+@@STITLE=Lycée Pierre-Corneille
+Diese strengen Gebäude hinter dem Gitter sind das lycée Corneille, ein ehemaliges Jesuitenkolleg, Ende des sechzehnten Jahrhunderts eröffnet. Die Liste seiner Schüler macht schwindelig: Corneille, Fontenelle, Flaubert, Maupassant. Und, ganz zu Beginn des zwanzigsten Jahrhunderts, drei Brüder derselben normannischen Familie.
+
+Der Älteste wird seine Leinwände mit Jacques Villon signieren. Der Mittlere wird unter dem Namen Duchamp-Villon Skulpturen schaffen. Der Jüngste heißt Marcel Duchamp. Er drückt hier die Schulbank, gewinnt einen Zeichenpreis, und niemand ahnt, dass er die moderne Kunst zum Explodieren bringen wird.
+
+1912. Marcel stellt ein Gemälde vor: Akt, eine Treppe herabsteigend. Ein Körper, zerlegt in Dutzende überlagerte Momente, wie ein Film, zusammengepresst auf eine einzige Leinwand. Seine Malerfreunde finden das unpassend, außerhalb der Norm. Und es sind seine eigenen Brüder, die man schickt, um ihn zu bitten, das Werk aus dem Salon zurückzuziehen. Er zieht es zurück, ohne ein Wort. Er wird es ihnen nie ganz verzeihen. Im folgenden Jahr entdeckt New York das Gemälde und schreit Skandal. Über Nacht ist er berühmt.
+
+Behalt das im Hinterkopf. Ein Mann von hier wird die Zeit in einem einzigen Gemälde malen. Ein anderer wird sie dreißigmal malen. Zwei Wege, denselben Krieg zu gewinnen.
+
+Steig nach Südosten hinab. Sechs Minuten, zu einer Kirche aus Spitzenwerk.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-3
+@@STITLE=Église Saint-Maclou
+Bleib vor diesem Portal stehen. Fünf fächerförmige Arkaden, Stein, der eher gestickt als gemeißelt wirkt. Saint-Maclou, Flamboyant-Gotik, eine um 1437 begonnene und über achtzig Jahre fortgeführte Baustelle. Die geschnitzten Türflügel werden seit jeher Jean Goujon zugeschrieben — ohne Beweis, aber die Idee ist zu schön, um zu sterben.
+
+Im neunzehnten Jahrhundert sitzt hier ein junger Engländer, Notizbuch auf den Knien, und zeichnet diese Details stundenlang. John Ruskin. Er wird zum meistgehörten Kritiker seines Jahrhunderts werden, jener, der ganz Europa beibringen wird, wie man das Mittelalter betrachtet. Er wird schreiben, dass drei Städte die Zentren seines Denkens seien: Rouen, Genf und Pisa. Rouen zuerst.
+
+Und er wütet. Ringsum wird restauriert, abgeschabt, werden müde Steine durch neue, saubere ersetzt. Für ihn ist das ein Mord: Restaurieren, sagt er, sei die vollständigste Zerstörung, die ein Bauwerk erleiden könne. Was du gerade betrachtest, wollte er alt werden, sich aushöhlen und in Frieden sterben lassen.
+
+Ruskin hatte einen französischen Leser. Einen dreißigjährigen Asthmatiker, der eigens hierher kommen wird, um einen einzigen seiner Sätze zu überprüfen.
+
+Steig wieder nach Westen hinauf, sechs Minuten. Treffpunkt im Hof der Buchhändler.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-4
+@@STITLE=Portail des Libraires
+Betritt diesen Hof durch das verzierte Gitter. Vor dir das portail des Libraires. Es trägt diesen Namen, weil Buchhändler genau hier, an die Flanke der Kathedrale gelehnt, ihre Läden hatten.
+
+Nähere dich den Medaillons ganz unten, auf Augenhöhe. Schau, was in dem Stein wimmelt: Männer mit Hundekopf, Fische mit Beinen, Ungeheuer, die sich beißen, ein irrwitziges Bestiarium, geschnitzt von Handwerkern, deren Namen niemand behalten hat.
+
+Ruskin hatte eines davon beschrieben, winzig klein, in einem seiner Bücher. Eine kleine grinsende Figur, die Wange auf der Hand ruhend.
+
+Jahre später kam Marcel Proust, der Ruskin übersetzte, ohne Englisch zu können, mit seinen Freunden hierher. Er suchte diesen kleinen Kerl, fror, hustete, unter Hunderten anderer. Er fand ihn. Und er zog daraus eine Idee, die ich dir überlasse: diese Figur war überhaupt nichts, absolut nichts — außer, dass Ruskin sie angeschaut hatte. Ein Blick genügt, um einen Stein unsterblich zu machen.
+
+Behalt das auch. Wir kommen am Ende darauf zurück.
+
+Verlass den Hof, geh nach Osten und dann direkt nach Süden über die rue de la République. Vermeide den großen Platz, den heben wir uns auf. Sechs Minuten, bis zu den Kais.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-5
+@@STITLE=Quais de Seine
+Da bist du nun am Ufer der Seine, gegenüber der pont Boieldieu. Diese Brücke ist jung: die davor wurde während des Krieges gesprengt. Doch das Wasser, die feuchte Luft, der Rauch, das flache Licht — das ist dieselbe Kulisse.
+
+Lange Zeit war Rouen ein riesiger Hafen, der letzte vor dem Meer, gespickt mit Masten, ertränkt in Dampf und Kohle. Die Engländer kommen zuerst. Turner hält hier in den 1820er- und 1830er-Jahren an, stellt sein Skizzenbuch auf dem Kai auf und bringt Aquarelle aus Nebel mit: ein grauer und goldener Fluss, in dem man fast nichts mehr erkennen kann. Niemand malte damals so.
+
+Ein halbes Jahrhundert später nimmt Camille Pissarro sich ein Hotelzimmer an diesen Kais, öffnet das Fenster und malt den Hafen, ohne je hinunterzugehen. Seine Augen lassen ihn im Stich, er erträgt Zugluft nicht mehr, also arbeitet er geschützt, in der Höhe. Der Kran, die Brücke, der Rauch, das Gegenlicht. Er schreibt seinem Sohn Lucien, dass es so schön sei wie Venedig.
+
+Siehst du, worauf ich hinauswill? Ein Zimmer. Ein Fenster. Ein Motiv, von dem man die Augen nicht mehr lässt.
+
+Steig die rue du Grand-Pont hinauf, direkt nach Norden. Fünf Minuten. Wir sind fast da.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-6
+@@STITLE=Pont Boieldieu, au débouché de la rue du Grand-Pont
+Bleib stehen und heb den Blick zu diesen Stockwerken, über den Läden, jenen, die zum Platz hin liegen.
+
+Februar 1892. Monet ist einundfünfzig Jahre alt. Er mietet dort oben ein leeres Zimmer, drückt seine Staffelei ans Fenster und beginnt. Er kommt im folgenden Winter zurück, wechselt das Fenster, fängt von vorne an. Man erzählt, er habe sogar in einem Dessousladen gearbeitet, versteckt hinter einem Wandschirm, um die Kundinnen beim Anprobieren nicht zu stören.
+
+Er malt nicht ein Bild. Er malt zehn zugleich, um sich herum aufgereiht. Die Sonne wandert, die Fassade wechselt die Farbe, er stellt eine Leinwand ab, greift nach der nächsten, jagt dem Tag von morgens bis abends hinterher. Am Abend, genau dann, ist er ausgelaugt. Er schreibt seiner Frau Alice, er sei erschöpft, er werde es nie schaffen, er habe einen Albtraum gehabt: die Kathedrale sei über ihm eingestürzt, und sie sei blau gewesen, oder rosa, oder gelb.
+
+Und er beendet nichts vor Ort. Er nimmt alles mit nach Giverny, überarbeitet es monatelang, aus dem Gedächtnis, in seinem Atelier — er, der Maler des Freilichts. Das sagt er weniger laut.
+
+Rund dreißig Leinwände. Zwanzig werden im Mai 1895 in Paris ausgestellt.
+
+Drei Minuten. Überquere den Platz, geh bis zur Mitte, und dreh dich endlich um.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-7
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Da. Sieh sie dir an.
+
+Drei Portale, und zwei Türme, die sich nicht ähneln. Links der tour Saint-Romain, der alte, der störrische. Rechts der tour de Beurre, vollendet zu Beginn des sechzehnten Jahrhunderts dank eines während der Fastenzeit gewährten Ablasses. Und dort oben diese 1876 fertiggestellte gusseiserne Turmspitze — vier Jahre lang das höchste Bauwerk der Welt.
+
+Vergiss nun alles, was ich dir gerade erzählt habe. Denn genau das hat Monet getan.
+
+Er hat weder die Architektur gemalt, noch die Gotik, noch Gott, noch die Normandie. Er hat gemalt, was zwischen dieser Fassade und dem Fenster dort drüben liegt: die Luft, den Nebel, die vergehende Stunde. Der Stein ist nur eine Leinwand, gespannt, um den Tag zu empfangen. Das eigentliche Thema ist der Augenblick. Ein Augenblick, der nicht wiederkehren wird.
+
+Mai 1895, galerie Durand-Ruel, in Paris. Zwanzig Kathedralen an den Wänden aufgereiht, vom Blau der Morgendämmerung bis zum Rot des Sonnenuntergangs. Er verlangt fünfzehntausend Francs pro Stück, ein Preis, der ganz Paris den Atem raubt. Ein Journalist verlässt den Ort erschüttert und veröffentlicht einen wütenden Artikel: er fleht den Präsidenten der Republik an, alle zwanzig auf einmal zu kaufen, für die Nation, denn sonst würden sie sich nie wieder gemeinsam sehen lassen. Dieser Journalist heißt Georges Clemenceau.
+
+Der Staat hat nicht gekauft. Die Leinwände gingen einzeln fort, in alle vier Ecken der Welt. 1994 holte das Museum, in dem du begonnen hast, mehrere von ihnen zurück, von überall her ausgeliehen, für die Dauer einer Ausstellung. Dann zerstreuten sie sich wieder.
+
+Also bleibt dir das Original, und das ist bei Weitem das Beste. Komm morgen wieder, zu einer anderen Stunde: es wird nicht dasselbe sein. Das war Rouen, das war das Licht. Pass auf dich auf, und bis bald zu einem anderen Spaziergang.
+
+@@LANG=it
+@@TITLE=Rouen — Trenta volte la stessa facciata
+@@DESC=Arte — Trenta volte la stessa facciata: Monet, la luce e la nascita di una rivoluzione.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-0
+@@STITLE=Musée des Beaux-Arts de Rouen
+Entra, e cerca una piccola tela piena di bandiere. Una via stretta, annegata nel blu, nel bianco, nel rosso, una folla che si intuisce appena sotto i tessuti che sbattono. È Claude Monet, la rue Saint-Denis, il 30 giugno 1878, giorno di festa nazionale. L'ha dipinta in fretta, in piedi tra la calca, come si ruba una foto prima che la luce cambi.
+
+Ricorda queste cinque parole: prima che la luce cambi. Tutta questa passeggiata sta lì dentro.
+
+Questo museo è nato da un decreto. Nel 1801, lo Stato distribuì a quindici città i quadri accumulati dalla Rivoluzione in poi. Rouen fu servita bene. Un secolo dopo, l'edificio che stai attraversando apre le sue porte, e la città comincia a collezionare pittori ancora fischiati: Monet, Sisley, Renoir, Pissarro. Un insieme che molte capitali le invidiano.
+
+Ma qui manca qualcosa. I quadri più celebri mai dipinti a Rouen non sono in questo museo. Non sono nemmeno a Rouen. Sono a Parigi, a Washington, a Boston, a Mosca.
+
+Tra il 1892 e il 1893, a trecento metri dal punto in cui ti trovi, un uomo si è rinchiuso dietro una finestra e ha dipinto una trentina di volte lo stesso muro. La stessa facciata. Ancora. Ancora. Ancora. Lo si credette pazzo, esausto, finito. Era una rivoluzione.
+
+Ti porto fino a quella finestra. Ma non subito. Prima bisogna capire perché doveva accadere qui, in questa città, e non altrove.
+
+Esci dal museo e prendi verso ovest. Quattro minuti a piedi. Cominciamo dalla luce — quella vera.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-1
+@@STITLE=Église Saint-Godard
+Spingi la porta di questa chiesa tozza, incastrata tra due edifici come se la città fosse cresciuta intorno a lei senza farci caso. Saint-Godard. Vai verso destra, e alza gli occhi.
+
+Un albero. Un vero albero di vetro, che esce dal ventre di un vecchio addormentato e porta re tra i suoi rami. È un albero di Jesse, la genealogia di Cristo, montato in vetrata all'inizio del sedicesimo secolo. Guarda i blu. Guarda i rossi. Non sono posati sul vetro, sono dentro, cotti nella materia — ed esistono solo se il giorno vuole attraversarli.
+
+Ecco il primo saper fare di questa città, quattro secoli prima di Monet. Rouen è stata una capitale della vetrata: interi laboratori, dinastie di vetrai, maestri che si contendevano in tutta la Normandia. La loro materia prima non era il pigmento. Era la luce.
+
+Resta un minuto, senza muoverti. Se passa una nuvola, l'albero si spegne di colpo. Torna a mezzogiorno, divampa. Lo stesso vetro, due quadri diversi, e nulla si è mosso tranne il cielo.
+
+Un pittore finirà per capire che la pietra, fuori, fa esattamente lo stesso.
+
+Esci di nuovo e prendi verso est. Sette minuti, e ti presento la famiglia più esplosiva di Rouen.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-2
+@@STITLE=Lycée Pierre-Corneille
+Questi edifici austeri dietro il cancello sono il lycée Corneille, antico collegio gesuita aperto alla fine del sedicesimo secolo. La lista dei suoi allievi fa venire le vertigini: Corneille, Fontenelle, Flaubert, Maupassant. E, all'inizio del ventesimo secolo, tre fratelli di una stessa famiglia normanna.
+
+Il maggiore firmerà le sue tele Jacques Villon. Il secondo scolpirà sotto il nome di Duchamp-Villon. Il più piccolo si chiama Marcel Duchamp. Consuma i fondi dei pantaloni su questi banchi, vi vince un premio di disegno, e nessuno sospetta che farà esplodere l'arte moderna.
+
+1912. Marcel presenta un quadro: Nudo che scende le scale. Un corpo scomposto in decine di istanti sovrapposti, come un film schiacciato su un'unica tela. I suoi amici pittori lo trovano fuori luogo, fuori dalle righe. E sono i suoi stessi fratelli a essere mandati a chiedergli di ritirare l'opera dal Salon. Lui la ritira, senza una parola. Non glielo perdonerà mai del tutto. L'anno seguente, New York scopre il quadro e grida allo scandalo. Diventa celebre in una notte.
+
+Tieni questo da parte. Un uomo di qui dipingerà il tempo in un solo quadro. Un altro lo dipingerà in trenta. Due modi di vincere la stessa guerra.
+
+Scendi verso sud-est. Sei minuti, fino a una chiesa di merletto.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-3
+@@STITLE=Église Saint-Maclou
+Fermati davanti a questo portico. Cinque arcate a ventaglio, una pietra che sembra ricamata più che scolpita. Saint-Maclou, gotico fiammeggiante, un cantiere aperto verso il 1437 e proseguito per ottant'anni. I battenti scolpiti sono da sempre attribuiti a Jean Goujon — senza prove, ma l'idea è troppo bella per morire.
+
+Nel diciannovesimo secolo, un giovane inglese si siede qui, taccuino sulle ginocchia, e disegna questi dettagli per ore. John Ruskin. Diventerà il critico più ascoltato del suo secolo, quello che insegnerà a tutta l'Europa a guardare il Medioevo. Scriverà che tre città sono i centri del suo pensiero: Rouen, Ginevra e Pisa. Rouen per prima.
+
+E si infuria. Tutt'intorno a lui si restaura, si raschia, si sostituiscono le pietre stanche con altre nuove, ben pulite. Per lui è un assassinio: restaurare, dice, è la distruzione più totale che un edificio possa subire. Ciò che stai guardando, lui voleva che lo si lasciasse invecchiare, scavarsi, e morire in pace.
+
+Ruskin ebbe un lettore francese. Un asmatico di trent'anni che verrà fin qui, apposta, per verificare una sola delle sue frasi.
+
+Risali verso ovest, sei minuti. Appuntamento nel cortile dei librai.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-4
+@@STITLE=Portail des Libraires
+Entra in questo cortile attraverso il cancello lavorato. Davanti a te, il portail des Libraires. Si chiama così perché dei mercanti di libri avevano bottega proprio qui, addossati al fianco della cattedrale.
+
+Avvicinati ai medaglioni in basso, all'altezza d'uomo. Guarda cosa brulica nella pietra: uomini con testa di cane, pesci con le zampe, mostri che si mordono, un bestiario delirante scolpito da artigiani di cui nessuno ha ricordato i nomi.
+
+Ruskin ne aveva descritto uno, minuscolo, in uno dei suoi libri. Una piccola figura smorfiosa, la guancia posata sulla mano.
+
+Anni dopo, Marcel Proust, che traduceva Ruskin senza sapere l'inglese, venne qui con i suoi amici. Cercò quell'ometto, al freddo, tossendo, tra centinaia di altri. Lo trovò. E ne trasse un'idea che ti lascio: questa figurina non era nulla, assolutamente nulla — se non che Ruskin l'aveva guardata. Uno sguardo basta a rendere immortale un sasso.
+
+Tieni anche questo. Ci torneremo alla fine.
+
+Esci dal cortile, vai verso est e poi scendi tutto dritto verso sud lungo rue de la République. Evita la grande piazza, la teniamo da parte. Sei minuti, fino alle banchine.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-5
+@@STITLE=Quais de Seine
+Eccoti sulla riva della Senna, di fronte al pont Boieldieu. Questo ponte è giovane: quello di prima è saltato durante la guerra. Ma l'acqua, l'aria umida, i fumi, la luce bassa — è la stessa scenografia.
+
+Per molto tempo, Rouen è stato un porto immenso, l'ultimo prima del mare, irto di alberi maestri, annegato di vapore e di carbone. Gli inglesi arrivano per primi. Turner si ferma qui negli anni 1820 e 1830, pianta il suo taccuino sulla banchina e riporta acquerelli di nebbia: un fiume grigio e oro dove non si distingue quasi più nulla. Nessuno, allora, dipingeva così.
+
+Mezzo secolo dopo, Camille Pissarro prende una camera d'albergo su queste banchine, apre la finestra e dipinge il porto senza mai scendere. I suoi occhi lo abbandonano, non sopporta più le correnti d'aria, così lavora al riparo, in alto. La gru, il ponte, il fumo, il controluce. Scrive a suo figlio Lucien che è bello quanto Venezia.
+
+Vedi dove voglio arrivare? Una stanza. Una finestra. Un motivo da cui non si distolgono più gli occhi.
+
+Risali rue du Grand-Pont, dritto verso nord. Cinque minuti. Ci siamo quasi.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-6
+@@STITLE=Pont Boieldieu, au débouché de la rue du Grand-Pont
+Fermati e alza gli occhi verso quei piani, sopra i negozi, quelli che affacciano sulla piazza.
+
+Febbraio 1892. Monet ha cinquantun anni. Affitta una stanza vuota lassù, incolla il cavalletto al vetro e comincia. Torna l'inverno successivo, cambia finestra, ricomincia. Si racconta che abbia persino lavorato in un negozio di biancheria intima, nascosto dietro un paravento per non disturbare le clienti mentre si provavano gli abiti.
+
+Non dipinge un quadro. Ne dipinge una decina alla volta, allineati intorno a sé. Il sole gira, la facciata cambia colore, posa una tela, ne afferra un'altra, insegue il giorno dalla mattina alla sera. La sera, proprio allora, è sfinito. Scrive a sua moglie Alice che è distrutto, che non ce la farà mai, che ha fatto un incubo: la cattedrale gli crollava addosso, ed era blu, o rosa, o gialla.
+
+E non finisce nulla sul posto. Riporta tutto a Giverny, ritocca per mesi, a memoria, nel suo atelier — lui, il pittore dell'aria aperta. Questo lo dice meno forte.
+
+Una trentina di tele. Venti verranno appese a Parigi, nel maggio 1895.
+
+Tre minuti. Attraversa la piazza, vai fino al centro, e voltati finalmente.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-7
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Ecco. Guardala.
+
+Tre portali, e due torri che non si assomigliano. A sinistra la tour Saint-Romain, la vecchia, la testarda. A destra la tour de Beurre, completata all'inizio del sedicesimo secolo grazie a un'indulgenza concessa durante la Quaresima. E lassù, quella guglia in ghisa terminata nel 1876 — per quattro anni, l'edificio più alto del mondo.
+
+Ora, dimentica tutto quello che ti ho appena detto. Perché è esattamente quello che ha fatto Monet.
+
+Non ha dipinto né l'architettura, né il gotico, né Dio, né la Normandia. Ha dipinto ciò che c'è tra questa facciata e la finestra, laggiù: l'aria, la nebbia, l'ora che passa. La pietra non è che uno schermo teso per ricevere il giorno. Il vero soggetto è l'istante. Un istante che non tornerà.
+
+Maggio 1895, galerie Durand-Ruel, a Parigi. Venti cattedrali allineate sui muri, dal blu dell'alba al rosso del tramonto. Ne chiede quindicimila franchi l'una, un prezzo che fa soffocare tutta Parigi. Un giornalista ne esce sconvolto e pubblica un articolo furioso: supplica il presidente della Repubblica di comprarle tutte e venti in blocco, per la nazione, perché altrimenti non si rivedranno mai più insieme. Questo giornalista si chiama Georges Clemenceau.
+
+Lo Stato non ha comprato. Le tele sono partite una a una, ai quattro angoli del mondo. Nel 1994, il museo dove hai iniziato ne ha fatte tornare diverse, prese in prestito da ovunque, per la durata di una mostra. Poi si sono ridisperse.
+
+Allora ti resta l'originale, e di gran lunga è la migliore. Torna domani, a un'altra ora: non sarà la stessa. Questo era Rouen, questa era la luce. Abbi cura di te, e a presto per un'altra passeggiata.
+
+@@LANG=nl
+@@TITLE=Rouen — Dertig keer dezelfde gevel
+@@DESC=Kunst — Dertig keer dezelfde gevel: Monet, het licht en de geboorte van een revolutie.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-0
+@@STITLE=Musée des Beaux-Arts de Rouen
+Ga naar binnen, en zoek een klein doek vol vlaggen. Een smalle straat, verzonken in blauw, wit, rood, een menigte die je nauwelijks kunt onderscheiden onder de wapperende stoffen. Het is Claude Monet, de rue Saint-Denis, 30 juni 1878, nationale feestdag. Hij schilderde het snel, staand in de drukte, zoals je een foto steelt voordat het licht verandert.
+
+Onthoud deze vijf woorden: voordat het licht verandert. Deze hele wandeling draait daarom.
+
+Dit museum is ontstaan uit een decreet. In 1801 verdeelde de Staat over vijftien steden de schilderijen die sinds de Revolutie waren opgestapeld. Rouen kreeg een goede beurt. Een eeuw later opent het gebouw dat je nu doorkruist zijn deuren, en de stad begint schilders te verzamelen die men nog uitjouwde: Monet, Sisley, Renoir, Pissarro. Een collectie die menige hoofdstad haar benijdt.
+
+Maar hier ontbreekt iets. De beroemdste schilderijen ooit in Rouen geschilderd, staan niet in dit museum. Ze staan niet eens in Rouen. Ze zijn in Parijs, in Washington, in Boston, in Moskou.
+
+Tussen 1892 en 1893, driehonderd meter van de plek waar je nu staat, sloot een man zich op achter een raam en schilderde zo'n dertig keer dezelfde muur. Dezelfde gevel. Nog eens. Nog eens. Nog eens. Men dacht dat hij gek was geworden, uitgeput, op. Het was een revolutie.
+
+Ik neem je mee naar dat raam. Maar niet meteen. Eerst moet je begrijpen waarom dit hier moest gebeuren, in precies deze stad, en nergens anders.
+
+Verlaat het museum en ga naar het westen. Vier minuten lopen. We beginnen met het licht — het echte.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-1
+@@STITLE=Église Saint-Godard
+Duw de deur open van deze gedrongen kerk, ingeklemd tussen twee gebouwen alsof de stad eromheen was gegroeid zonder erop te letten. Saint-Godard. Ga naar rechts, en kijk omhoog.
+
+Een boom. Een echte boom van glas, die uit de buik van een slapende oude man groeit en koningen in zijn takken draagt. Het is een Boom van Jesse, de geslachtslijn van Christus, aan het begin van de zestiende eeuw in glas-in-lood gevat. Kijk naar de blauwtinten. Kijk naar de roodtinten. Ze liggen niet op het glas, ze zitten erin, gebakken in het materiaal — en ze bestaan alleen als het daglicht erdoorheen wil schijnen.
+
+Dat is het eerste vakmanschap van deze stad, vier eeuwen vóór Monet. Rouen was een hoofdstad van het glas-in-lood: hele werkplaatsen, dynastieën van glazeniers, meesters om wie in heel Normandië werd gevochten. Hun grondstof was geen pigment. Het was licht.
+
+Blijf een minuut staan, zonder te bewegen. Als er een wolk voorbijtrekt, dooft de boom in één klap. Kom terug rond de middag, dan gloeit hij. Hetzelfde glas, twee verschillende schilderijen, en er is niets bewogen behalve de lucht.
+
+Een schilder zal uiteindelijk begrijpen dat de steen, buiten, precies hetzelfde doet.
+
+Ga weer naar buiten en ga naar het oosten. Zeven minuten, en ik stel je voor aan de meest explosieve familie van Rouen.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-2
+@@STITLE=Lycée Pierre-Corneille
+Deze sobere gebouwen achter het hek zijn het lycée Corneille, voormalig jezuïetencollege, geopend eind zestiende eeuw. De lijst van zijn leerlingen is duizelingwekkend: Corneille, Fontenelle, Flaubert, Maupassant. En, helemaal aan het begin van de twintigste eeuw, drie broers uit eenzelfde Normandische familie.
+
+De oudste zal zijn doeken signeren met Jacques Villon. De middelste zal beeldhouwen onder de naam Duchamp-Villon. De jongste heet Marcel Duchamp. Hij slijt zijn broekzitvlak op deze banken, wint hier een tekenprijs, en niemand vermoedt dat hij de moderne kunst zal doen ontploffen.
+
+1912. Marcel presenteert een schilderij: Naakt dat een trap afdaalt. Een lichaam ontleed in tientallen elkaar overlappende momenten, als een film platgedrukt op één enkel doek. Zijn schildersvrienden vinden het misplaatst, buiten de lijnen. En het zijn zijn eigen broers die worden gestuurd om hem te vragen het werk uit de Salon terug te trekken. Hij trekt het terug, zonder een woord. Hij zal het hun nooit helemaal vergeven. Het jaar daarop ontdekt New York het schilderij en schreeuwt schandaal. Hij is in één nacht beroemd.
+
+Houd dat warm. Een man van hier zal de tijd in één schilderij schilderen. Een ander zal het in dertig schilderen. Twee manieren om dezelfde oorlog te winnen.
+
+Ga naar het zuidoosten. Zes minuten, tot een kerk van kant.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-3
+@@STITLE=Église Saint-Maclou
+Stop voor dit portaal. Vijf waaiervormige boogvelden, steen die eerder geborduurd dan gehouwen lijkt. Saint-Maclou, flamboyante gotiek, een bouwplaats geopend rond 1437 en tachtig jaar voortgezet. De gesneden deurpanelen worden al sinds jaar en dag toegeschreven aan Jean Goujon — zonder bewijs, maar het idee is te mooi om te sterven.
+
+In de negentiende eeuw gaat een jonge Engelsman hier zitten, notitieboek op zijn knieën, en tekent deze details urenlang. John Ruskin. Hij zal de meest gehoorde criticus van zijn eeuw worden, degene die heel Europa zal leren kijken naar de middeleeuwen. Hij zal schrijven dat drie steden de centra van zijn denken zijn: Rouen, Genève en Pisa. Rouen als eerste.
+
+En hij raast. Overal om hem heen wordt gerestaureerd, geschraapt, worden vermoeide stenen vervangen door nieuwe, keurig schone. Voor hem is dat moord: restaureren, zegt hij, is de meest totale vernietiging die een gebouw kan ondergaan. Wat je nu bekijkt, wilde hij laten verouderen, uithollen, en in vrede laten sterven.
+
+Ruskin had een Franse lezer. Een dertigjarige astmapatiënt die helemaal hierheen zou komen, expres, om één enkele van zijn zinnen te controleren.
+
+Ga weer omhoog naar het westen, zes minuten. Afspraak op de binnenplaats van de boekverkopers.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-4
+@@STITLE=Portail des Libraires
+Ga deze binnenplaats binnen door het bewerkte hek. Voor je, het portail des Libraires. Zo heet het omdat boekhandelaren hier precies hun winkel hadden, geleund tegen de flank van de kathedraal.
+
+Kom dichter bij de medaillons onderaan, op ooghoogte. Kijk wat er in de steen krioelt: mannen met een hondenkop, vissen met poten, monsters die elkaar bijten, een dolzinnig bestiarium, gesneden door ambachtslieden van wie niemand de namen heeft onthouden.
+
+Ruskin had er een beschreven, piepklein, in een van zijn boeken. Een klein grijnzend figuurtje, de wang op de hand rustend.
+
+Jaren later kwam Marcel Proust, die Ruskin vertaalde zonder Engels te kennen, hierheen met zijn vrienden. Hij zocht dit mannetje op, in de kou, hoestend, tussen honderden andere. Hij vond het. En hij haalde er een idee uit dat ik je meegeef: dit figuurtje was helemaal niets, absoluut niets — behalve dat Ruskin ernaar had gekeken. Eén blik volstaat om een steen onsterfelijk te maken.
+
+Onthoud dat ook. We komen erop terug aan het einde.
+
+Verlaat de binnenplaats, ga naar het oosten en dan helemaal recht naar het zuiden via de rue de la République. Vermijd het grote plein, dat bewaren we. Zes minuten, tot aan de kades.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-5
+@@STITLE=Quais de Seine
+Hier ben je aan de oever van de Seine, tegenover de pont Boieldieu. Die brug is jong: die van daarvoor is tijdens de oorlog opgeblazen. Maar het water, de vochtige lucht, de rook, het lage licht — dat is hetzelfde decor.
+
+Lange tijd was Rouen een enorme haven, de laatste vóór de zee, vol masten, verzonken in stoom en kolen. De Engelsen komen als eerste. Turner stopt hier in de jaren 1820 en 1830, zet zijn notitieboek op de kade en brengt aquarellen van nevel mee: een grijze en gouden rivier waarin je bijna niets meer kunt onderscheiden. Niemand schilderde toen zo.
+
+Een halve eeuw later neemt Camille Pissarro een hotelkamer aan deze kades, opent het raam en schildert de haven zonder ooit naar beneden te gaan. Zijn ogen laten hem in de steek, hij kan tocht niet meer verdragen, dus werkt hij beschut, hoog boven. De kraan, de brug, de rook, het tegenlicht. Hij schrijft aan zijn zoon Lucien dat het even mooi is als Venetië.
+
+Zie je waar ik naartoe wil? Een kamer. Een raam. Een onderwerp waar je nooit meer je ogen van afhoudt.
+
+Ga de rue du Grand-Pont op, recht naar het noorden. Vijf minuten. We zijn er bijna.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-6
+@@STITLE=Pont Boieldieu, au débouché de la rue du Grand-Pont
+Stop en kijk omhoog naar die verdiepingen, boven de winkels, degene die uitkijken op het plein.
+
+Februari 1892. Monet is eenenvijftig jaar oud. Hij huurt daarboven een lege kamer, drukt zijn ezel tegen het raam en begint. Hij komt de volgende winter terug, verandert van raam, begint opnieuw. Er wordt verteld dat hij zelfs in een lingeriewinkel heeft gewerkt, verstopt achter een kamerscherm om de klanten die kleren pasten niet te storen.
+
+Hij schildert niet één schilderij. Hij schildert er zo'n tien tegelijk, om zich heen opgesteld. De zon draait, de gevel verandert van kleur, hij zet een doek weg, pakt een ander, jaagt de dag na van 's ochtends tot 's avonds. 's Avonds, juist dan, is hij uitgeput. Hij schrijft aan zijn vrouw Alice dat hij afgemat is, dat hij het nooit zal redden, dat hij een nachtmerrie heeft gehad: de kathedraal viel op hem, en ze was blauw, of roze, of geel.
+
+En hij maakt ter plekke niets af. Hij neemt alles mee terug naar Giverny, retoucheert maandenlang, uit het geheugen, in zijn atelier — hij, de schilder van de open lucht. Dat zegt hij minder hard.
+
+Zo'n dertig doeken. Twintig zullen worden opgehangen in Parijs, in mei 1895.
+
+Drie minuten. Steek het plein over, ga tot het midden, en draai je eindelijk om.
+
+@@SCENE=seed-100-rouen-cathedrale-de-monet-scene-7
+@@STITLE=Parvis de la cathédrale Notre-Dame
+Daar. Kijk ernaar.
+
+Drie portalen, en twee torens die niet op elkaar lijken. Links de tour Saint-Romain, de oude, de koppige. Rechts de tour de Beurre, voltooid aan het begin van de zestiende eeuw dankzij een aflaat verleend tijdens de vasten. En daarboven, die gietijzeren torenspits, voltooid in 1876 — vier jaar lang het hoogste bouwwerk ter wereld.
+
+Vergeet nu alles wat ik je zojuist heb verteld. Want dat is precies wat Monet heeft gedaan.
+
+Hij heeft noch de architectuur geschilderd, noch de gotiek, noch God, noch Normandië. Hij heeft geschilderd wat er tussen deze gevel en het raam daarginds ligt: de lucht, de nevel, het uur dat voorbijgaat. De steen is slechts een scherm, opgespannen om het daglicht te ontvangen. Het echte onderwerp is het moment. Een moment dat niet zal terugkeren.
+
+Mei 1895, galerie Durand-Ruel, in Parijs. Twintig kathedralen naast elkaar aan de muren, van het blauw van de dageraad tot het rood van de zonsondergang. Hij vraagt vijftienduizend frank per stuk, een prijs die heel Parijs doet stikken. Een journalist komt er ontdaan uit en publiceert een woedend artikel: hij smeekt de president van de Republiek om alle twintig in één keer te kopen, voor de natie, want anders zullen ze elkaar nooit meer samen zien. Die journalist heet Georges Clemenceau.
+
+De Staat heeft niet gekocht. De doeken vertrokken één voor één, naar de vier hoeken van de wereld. In 1994 haalde het museum waar je begon er verschillende terug, overal vandaan geleend, voor de duur van één tentoonstelling. Daarna verspreidden ze zich weer.
+
+Dus rest je het origineel, en dat is verreweg het beste. Kom morgen terug, op een ander uur: het zal niet hetzelfde zijn. Dat was Rouen, dat was het licht. Zorg goed voor jezelf, en tot snel voor een andere wandeling.

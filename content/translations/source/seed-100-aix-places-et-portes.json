@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-aix-places-et-portes",
+  "sessionId": "seed-100-aix-places-et-portes-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Aix-en-Provence",
+  "title": "Aix-en-Provence — Places et portes",
+  "description": "Histoire urbaine — comprendre Aix par ses places, ses anciennes portes et ses perspectives.",
+  "themes": [
+    "Histoire urbaine — comprendre Aix par ses places, ses anciennes portes et ses perspectives."
+  ],
+  "baseLanguage": "fr",
+  "chars": 7106,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Storia urbana, capire Aix dalle sue piazze, porte antiche e prospettive.",
+    "de": "Stadtgeschichte, verstehen Aix durch seine Plätze, seine alten Türen und Perspektiven.",
+    "en": "Urban history, understand Aix by its squares, ancient doors and perspectives.",
+    "es": "Historia urbana, entender Aix por sus plazas, antiguas puertas y perspectivas."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-aix-places-et-portes-scene-0",
+      "index": 0,
+      "title": "Fontaine du Roi René",
+      "text": "Place-toi près de la fontaine, là où le cours Mirabeau commence à se déployer vers l’ouest. La statue de René d’Anjou domine un axe urbain large, régulier, planté de platanes. Regarde surtout la manière dont sa position commande la perspective. Le monument date du début du XIXe siècle et occupe un ancien seuil de la ville. À proximité se trouvait autrefois la porte des Augustins, l’une des entrées du rempart médiéval.\n\nCette limite a disparu, pourtant sa trace demeure dans la forme des lieux. Derrière toi, les rues se resserrent vers le quartier Mazarin. Devant toi, le cours ouvre une perspective composée, née au XVIIe siècle quand Aix s’étend au-delà de ses enceintes. La fontaine fait donc davantage que décorer une place : elle marque le passage entre plusieurs âges de la ville.\n\nÉcoute quelques secondes le bruit de l’eau au milieu de la circulation. Puis avance sur le cours Mirabeau, du côté piéton. À mesure que tu t’éloignes, retourne-toi une fois vers le roi René. Sa silhouette devient un point de repère et te montre comment Aix transforme une ancienne porte en entrée symbolique.",
+      "hash": "58e51476",
+      "chars": 1100,
+      "existingSegments": {
+        "it": "seed-100-aix-places-et-portes-scene-0-seg-it",
+        "es": "seed-100-aix-places-et-portes-scene-0-seg-es",
+        "de": "seed-100-aix-places-et-portes-scene-0-seg-de",
+        "en": "seed-100-aix-places-et-portes-scene-0-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-aix-places-et-portes-scene-1",
+      "index": 1,
+      "title": "Cours Mirabeau",
+      "text": "Arrête-toi sous les platanes du cours Mirabeau. Cet axe fut aménagé à partir de 1649 sur l’emplacement d’anciens fossés. Il sépare encore deux ensembles très lisibles : au nord, la vieille ville aux rues irrégulières ; au sud, le quartier Mazarin, dessiné selon un plan plus ordonné. Tu peux sentir cette frontière sans consulter de carte. Observe les débouchés des rues de part et d’autre : ils n’offrent ni le même rythme ni les mêmes perspectives.\n\nLes façades des hôtels particuliers forment une suite presque continue. Leurs portes monumentales, leurs balcons de fer et leurs pierres blondes racontent l’affirmation d’une élite parlementaire dans l’Aix des XVIIe et XVIIIe siècles. Au centre, les fontaines ponctuent la marche et empêchent la longue avenue de devenir monotone. La fontaine d’Eau Chaude, alimentée par une source thermale, se reconnaît parfois à la légère vapeur qui l’entoure par temps frais.\n\nContinue vers la grande fontaine de la Rotonde. Laisse les façades glisser à la limite de ton regard et concentre-toi sur l’élargissement progressif de l’espace. Au bout du cours, tu ne rencontreras pas un mur, mais un vaste carrefour : une autre manière, plus moderne, de franchir la ville.",
+      "hash": "49853f70",
+      "chars": 1207,
+      "existingSegments": {
+        "en": "seed-100-aix-places-et-portes-scene-1-seg-en",
+        "es": "seed-100-aix-places-et-portes-scene-1-seg-es",
+        "it": "seed-100-aix-places-et-portes-scene-1-seg-it",
+        "de": "seed-100-aix-places-et-portes-scene-1-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-aix-places-et-portes-scene-2",
+      "index": 2,
+      "title": "Fontaine de la Rotonde",
+      "text": "Reste sur le pourtour piéton de la Rotonde et regarde la fontaine au centre du mouvement. Inaugurée en 1860, elle accompagne l’arrivée d’un nouveau paysage urbain : boulevards, avenues et circulations convergent ici autour d’un bassin monumental. Trois statues dominent l’ensemble. Elles figurent la Justice, l’Agriculture et les Beaux-Arts, valeurs que la ville voulait placer à son seuil.\n\nCe rond-point s’étend près de l’ancienne porte des Augustins, démolie lorsque les remparts cessèrent de contenir Aix. La différence avec le cours Mirabeau est nette. Là-bas, les façades conduisent le regard dans une seule direction. Ici, l’espace distribue plusieurs chemins : vers la vieille ville, la gare, les quartiers occidentaux ou le cours lui-même. La porte n’est plus une ouverture étroite contrôlée par un mur ; elle devient une place qui organise les flux.\n\nCherche la perspective du cours derrière les jets d’eau. La fontaine sert de pivot entre la ville ancienne et ses extensions du XIXe siècle. Pour poursuivre, remonte le cours puis gagne la place Richelme par les rues piétonnes. Le passage se fera presque sans monument. Tu verras pourtant la trame changer : l’ample avenue cède peu à peu devant un réseau de rues plus anciennes et plus serrées.",
+      "hash": "c8f9bc93",
+      "chars": 1255,
+      "existingSegments": {
+        "es": "seed-100-aix-places-et-portes-scene-2-seg-es",
+        "en": "seed-100-aix-places-et-portes-scene-2-seg-en",
+        "it": "seed-100-aix-places-et-portes-scene-2-seg-it",
+        "de": "seed-100-aix-places-et-portes-scene-2-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-aix-places-et-portes-scene-3",
+      "index": 3,
+      "title": "Place Richelme",
+      "text": "Entre sur la place Richelme et trouve un point qui laisse libre le passage. Sa petite échelle contraste avec la Rotonde. Ici, les façades proches composent une enceinte irrégulière, percée par plusieurs rues étroites. La place porte le nom de Marie-Rose Richelme, cantatrice aixoise du XIXe siècle, mais son histoire urbaine est plus ancienne : elle formait autrefois un ensemble avec la place de l’Hôtel-de-Ville voisine.\n\nObserve la fontaine adossée au mur. Son bassin et son mascaron rappellent combien l’eau structure les espaces publics d’Aix. Elle ne domine pas la place comme la Rotonde ; elle s’insère dans son bord, à l’échelle du quartier. Regarde ensuite les ouvertures autour de toi. Chacune cadre un fragment de rue et donne l’impression que la place respire par plusieurs passages.\n\nPour rejoindre l’Hôtel de Ville, emprunte la courte rue qui relie les deux places. Cette transition est essentielle : en quelques pas, tu passes d’un espace presque intime à une scène civique. Avant de partir, retourne-toi vers le cours invisible derrière les maisons. La succession Rotonde, rues, Richelme montre comment une ville peut changer d’échelle sans jamais rompre complètement son réseau de places.",
+      "hash": "e0c4877b",
+      "chars": 1205,
+      "existingSegments": {
+        "en": "seed-100-aix-places-et-portes-scene-3-seg-en",
+        "es": "seed-100-aix-places-et-portes-scene-3-seg-es",
+        "de": "seed-100-aix-places-et-portes-scene-3-seg-de",
+        "it": "seed-100-aix-places-et-portes-scene-3-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-aix-places-et-portes-scene-4",
+      "index": 4,
+      "title": "Place de l’Hôtel-de-Ville",
+      "text": "La place de l’Hôtel-de-Ville rassemble plusieurs pouvoirs dans un même décor. Face à toi, l’hôtel de ville reconstruit au XVIIe siècle présente une façade ordonnée et une porte sculptée. À son côté s’élève la tour de l’Horloge, héritière du beffroi communal. Son horloge astronomique et ses figures saisonnières rappellent qu’ici la ville rendait le temps public, visible et partagé.\n\nTourne doucement sur toi-même. La halle aux grains ferme un autre côté de la place avec son fronton allégorique. Entre ces bâtiments, le pavage accueille cérémonies, rassemblements et circulations quotidiennes.\n\nLa prochaine étape se trouve place des Prêcheurs. Rejoins-la par les voies piétonnes en observant les seuils : portes cochères, passages étroits, angles qui cachent puis révèlent une façade. Le trajet relie deux places publiques conçues pour des fonctions différentes. Ici, la représentation municipale domine. Là-bas, tu retrouveras l’empreinte d’une porte orientale et d’un grand édifice religieux. Garde en mémoire la tour de l’Horloge ; son verticalisme répondra bientôt à une autre façade de pierre.",
+      "hash": "65d32041",
+      "chars": 1101,
+      "existingSegments": {
+        "de": "seed-100-aix-places-et-portes-scene-4-seg-de",
+        "es": "seed-100-aix-places-et-portes-scene-4-seg-es",
+        "it": "seed-100-aix-places-et-portes-scene-4-seg-it",
+        "en": "seed-100-aix-places-et-portes-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-aix-places-et-portes-scene-5",
+      "index": 5,
+      "title": "Place des Prêcheurs",
+      "text": "Te voici place des Prêcheurs, devant l’église de la Madeleine. La façade actuelle, élevée au XVIIIe siècle, donne à la place un fond monumental. Pourtant, l’histoire la plus discrète se lit dans l’orientation des rues. À l’est se trouvait la porte Saint-Louis, passage du rempart médiéval vers les routes extérieures. La place s’est développée au voisinage de ce seuil, puis s’est agrandie quand les fortifications ont perdu leur fonction.\n\nRegarde la fontaine et les façades qui bordent l’espace. Elles ne forment pas un rectangle parfait. Les rues anciennes arrivent selon des angles différents, comme si plusieurs époques négociaient encore leur place. Depuis le roi René, tu as traversé une ancienne porte, une avenue du XVIIe siècle, un carrefour du XIXe, puis deux places du centre ancien. Chaque étape a transformé la manière d’entrer, de sortir ou de se rassembler.\n\nReste un instant face à la Madeleine. Puis retourne-toi vers les rues qui repartent vers l’Hôtel de Ville et le cours Mirabeau. Aix ne conserve presque plus ses murs, mais elle en garde les articulations. Les portes survivent sous forme de perspectives, de places et de changements de largeur. La promenade s’achève ici, sur cette frontière devenue espace commun.",
+      "hash": "a12b394e",
+      "chars": 1238,
+      "existingSegments": {
+        "it": "seed-100-aix-places-et-portes-scene-5-seg-it",
+        "en": "seed-100-aix-places-et-portes-scene-5-seg-en",
+        "es": "seed-100-aix-places-et-portes-scene-5-seg-es",
+        "de": "seed-100-aix-places-et-portes-scene-5-seg-de"
+      }
+    }
+  ]
+}

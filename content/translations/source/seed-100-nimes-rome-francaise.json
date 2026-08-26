@@ -1,0 +1,141 @@
+{
+  "tourId": "seed-100-nimes-rome-francaise",
+  "sessionId": "seed-100-nimes-rome-francaise-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Nîmes",
+  "title": "Nîmes — La ville qui n'a jamais quitté Rome",
+  "description": "Histoire & secrets — arènes, Maison carrée, crocodile : la ville qui n'a jamais quitté l'Empire romain.",
+  "themes": [
+    "Histoire & secrets — arènes, Maison carrée, crocodile : la ville qui n'a jamais quitté l'Empire romain."
+  ],
+  "baseLanguage": "fr",
+  "chars": 9358,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "es": "Historia & secretos, arenas, Casa cuadrada, cocodrilo: la ciudad que nunca ha dejado el Imperio Romano.",
+    "de": "Geschichte & Geheimnisse, Arena, Quadratisches Haus, Krokodil: die Stadt, die das Römische Reich nie verlassen hat.",
+    "en": "History & secrets, arenas, Square house, crocodile: the city that never left the Roman Empire.",
+    "it": "Storia & segreti, arene, casa di piazza, coccodrillo: la città che non ha mai lasciato l'Impero Romano."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-nimes-rome-francaise-scene-0",
+      "index": 0,
+      "title": "Les Arènes",
+      "text": "Lève les yeux. Devant toi, deux étages d'arcades de pierre blonde, soixante en bas, soixante en haut, un anneau parfait posé au cœur de la ville. C'est l'amphithéâtre romain de Nîmes — les Arènes. Il a près de deux mille ans, et c'est l'un des mieux conservés de tout l'ancien Empire.\r\n\r\nFerme les yeux une seconde. Sous ces gradins, vingt-quatre mille personnes prenaient place. Des Nîmois venus voir combattre les gladiateurs et mourir les bêtes fauves. On entrait par son numéro, on montait par des couloirs savamment calculés, on s'asseyait selon son rang — les notables en bas, le petit peuple tout en haut. Une machine à foule, réglée au millimètre, il y a vingt siècles.\r\n\r\nEt voilà le secret que je veux te raconter pendant toute cette balade. Cette ville-là, Nîmes, ne s'est jamais vraiment réveillée de Rome. Ailleurs, les amphithéâtres sont des ruines, des cailloux qu'on visite. Ici, non. Les Arènes n'ont jamais fermé. Forteresse au Moyen Âge, village entier logé dedans, puis arène rendue au spectacle — deux mille ans plus tard, la foule y revient encore, et elle rugit.\r\n\r\nNemausus, c'était son nom romain. Une colonie fière, riche, choyée par les empereurs. Et cette fierté-là, on va la lire dans la pierre, monument par monument, jusqu'à comprendre pourquoi Nîmes se dit, encore aujourd'hui, la Rome française.\r\n\r\nFais le tour de l'amphithéâtre par la droite et remonte vers la petite place juste au nord. Suis-moi.",
+      "hash": "b6169336",
+      "chars": 1433,
+      "existingSegments": {
+        "de": "seed-100-nimes-rome-francaise-scene-0-seg-de",
+        "it": "seed-100-nimes-rome-francaise-scene-0-seg-it",
+        "es": "seed-100-nimes-rome-francaise-scene-0-seg-es",
+        "en": "seed-100-nimes-rome-francaise-scene-0-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-nimes-rome-francaise-scene-1",
+      "index": 1,
+      "title": "Place du Marché",
+      "text": "Te voilà sur la place du Marché, à l'ombre des platanes. Baisse les yeux vers la fontaine : un crocodile de bronze, enchaîné à un palmier. Voilà le blason de Nîmes. Tu le verras partout — sur les plaques de rue, les drapeaux, les tee-shirts. Un crocodile, en plein Languedoc. Pourquoi ?\r\n\r\nReviens au tout début. Après sa victoire sur l'Égypte, sur Antoine et Cléopâtre, l'empereur Auguste récompense ses vétérans. À ces soldats qui ont combattu au bord du Nil, il offre des terres, ici, à Nemausus. Et pour frapper la monnaie de la colonie, on choisit une image : un crocodile enchaîné à un palmier. Le crocodile, c'est l'Égypte vaincue. Le palmier, la victoire. La chaîne, la soumission.\r\n\r\nDeux mille ans plus tard, la ville en a fait son emblème. C'est peut-être la plus vieille marque de fabrique encore vivante de France — un logo romain, dessiné pour des soldats à la retraite.\r\n\r\nOn raconte que c'est le roi François Ier qui, bien plus tard, autorisa officiellement la ville à porter ce crocodile sur ses armes. Vrai ou pas, il n'a jamais quitté Nîmes depuis.\r\n\r\nTraverse vers l'ouest, par les ruelles, jusqu'à un temple posé sur sa terrasse. Suis-moi.",
+      "hash": "1bbac109",
+      "chars": 1160,
+      "existingSegments": {
+        "en": "seed-100-nimes-rome-francaise-scene-1-seg-en",
+        "de": "seed-100-nimes-rome-francaise-scene-1-seg-de",
+        "es": "seed-100-nimes-rome-francaise-scene-1-seg-es",
+        "it": "seed-100-nimes-rome-francaise-scene-1-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-nimes-rome-francaise-scene-2",
+      "index": 2,
+      "title": "Maison Carrée",
+      "text": "Arrête-toi devant elle. Une façade de colonnes, un fronton triangulaire, l'ensemble posé sur un haut socle, net, intact, comme sorti d'hier. C'est la Maison Carrée. Et pourtant elle a deux mille ans — c'est l'un des temples romains les mieux conservés au monde, peut-être le plus complet de tous.\r\n\r\nOn l'a bâtie sous Auguste, tout au début de notre ère, au cœur du forum, le centre politique de la cité. On l'a dédiée à deux princes, Caius et Lucius, les petits-fils de l'empereur, morts jeunes, sur qui reposaient tous les espoirs de la dynastie. Un temple pour deux enfants promis à l'Empire, et fauchés avant de régner.\r\n\r\nRegarde ces colonnes cannelées, ces chapiteaux sculptés de feuilles d'acanthe. Cette perfection a traversé les siècles parce que la Maison Carrée n'a, elle non plus, jamais cessé de servir : maison consulaire, écurie, église, musée. Toujours utile, donc toujours debout.\r\n\r\nUn homme, un jour, en est tombé amoureux : Thomas Jefferson. Ambassadeur à Paris, futur président des États-Unis, il s'en inspira pour dessiner un capitole en Virginie. La petite colonie romaine a fini par voyager jusqu'en Amérique.\r\n\r\nVa maintenant vers l'est, jusqu'à la grande porte antique sur le boulevard. Suis-moi.",
+      "hash": "24d197ae",
+      "chars": 1222,
+      "existingSegments": {
+        "de": "seed-100-nimes-rome-francaise-scene-2-seg-de",
+        "en": "seed-100-nimes-rome-francaise-scene-2-seg-en",
+        "it": "seed-100-nimes-rome-francaise-scene-2-seg-it",
+        "es": "seed-100-nimes-rome-francaise-scene-2-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-nimes-rome-francaise-scene-3",
+      "index": 3,
+      "title": "Porte d'Auguste",
+      "text": "Regarde cette porte de pierre, avec ses deux grands passages pour les chars et ses deux petits pour les piétons. C'est la Porte d'Auguste — l'une des portes de l'enceinte romaine. Par ici entrait la Voie Domitienne, la grande route qui reliait l'Italie à l'Espagne en traversant Nîmes de part en part.\r\n\r\nCherche l'inscription gravée dans la pierre, ou sa copie. Elle dit qu'en l'an seize avant notre ère, l'empereur Auguste offrit à la ville ses portes et ses murailles. Près de sept kilomètres de remparts, quatre-vingts tours, une dizaine de portes. Nemausus était alors l'une des plus vastes cités de la Gaule — une capitale, protégée par la générosité d'un empereur.\r\n\r\nDevant la porte, une statue d'Auguste, en toge, le bras levé. Ce n'est pas l'original, bien sûr. Mais elle rappelle qui commandait ici, et à qui la ville devait tout : ses arènes, ses temples, sa fierté.\r\n\r\nFranchis la porte, comme le faisaient les voyageurs de l'Antiquité, puis remonte plein nord, vers un petit bassin de pierre caché près des jardins. Suis-moi.",
+      "hash": "a91f2724",
+      "chars": 1039,
+      "existingSegments": {
+        "en": "seed-100-nimes-rome-francaise-scene-3-seg-en",
+        "de": "seed-100-nimes-rome-francaise-scene-3-seg-de",
+        "es": "seed-100-nimes-rome-francaise-scene-3-seg-es",
+        "it": "seed-100-nimes-rome-francaise-scene-3-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-nimes-rome-francaise-scene-4",
+      "index": 4,
+      "title": "Castellum aquae",
+      "text": "Voici l'un des trésors les plus discrets de Nîmes, et l'un des plus rares au monde. Un simple bassin rond, creusé dans la pierre, à peine plus large qu'une chambre. On l'appelle le Castellum. Et c'était le point d'arrivée de l'eau.\r\n\r\nTu as entendu parler du Pont du Gard ? Ce pont-aqueduc géant, à quelques kilomètres d'ici, n'a jamais été construit pour être admiré. C'était une plomberie. Une conduite d'une cinquantaine de kilomètres qui apportait l'eau d'une source lointaine jusqu'à Nîmes — et c'est ici, dans ce bassin, qu'elle débouchait enfin.\r\n\r\nRegarde les trous percés tout autour. Dans chacun s'emboîtait un tuyau de plomb qui repartait vers la ville : vers les fontaines, les thermes, les maisons des riches. Le Castellum, c'était le château d'eau de Nemausus, le cœur du réseau. On en connaît très peu d'aussi bien conservés — un à Pompéi, celui-ci, et c'est à peu près tout.\r\n\r\nDeux mille ans plus tard, l'eau descend toujours vers la ville. Suis-la. Descends vers les grands jardins et leur source. Suis-moi.",
+      "hash": "bea34967",
+      "chars": 1025,
+      "existingSegments": {
+        "en": "seed-100-nimes-rome-francaise-scene-4-seg-en",
+        "de": "seed-100-nimes-rome-francaise-scene-4-seg-de",
+        "it": "seed-100-nimes-rome-francaise-scene-4-seg-it",
+        "es": "seed-100-nimes-rome-francaise-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-nimes-rome-francaise-scene-5",
+      "index": 5,
+      "title": "Les Jardins de la Fontaine",
+      "text": "Entre dans les jardins. Bassins, balustrades, statues, escaliers d'eau : un décor du dix-huitième siècle, l'un des tout premiers jardins publics d'Europe. Mais ne t'arrête pas au décor. Va jusqu'au grand bassin, là où l'eau sourd, sombre et froide, du pied de la colline.\r\n\r\nCette source, c'est le vrai commencement de Nîmes. Bien avant les Romains, les Gaulois vénéraient ici un dieu des eaux. Son nom : Nemausus. C'est lui qui a donné son nom à la source, puis à la ville tout entière. Nemausus, le dieu ; Nemausus, la cité. Nîmes est née d'une source et du dieu qui l'habitait.\r\n\r\nLes Romains, en arrivant, n'ont pas chassé ce dieu. Ils l'ont adopté. Autour de la source, ils ont bâti un sanctuaire magnifique — des temples, des portiques, un théâtre, des bassins sacrés. Un lieu saint tout entier consacré à l'eau et à l'empereur.\r\n\r\nCe que tu vois aujourd'hui, ces terrasses élégantes, recouvre ce sanctuaire antique. Sous les fleurs, dort la ville des dieux.\r\n\r\nLonge le bassin vers la gauche, jusqu'à ce grand bâtiment de pierre à demi ruiné. Suis-moi.",
+      "hash": "2656f46c",
+      "chars": 1059,
+      "existingSegments": {
+        "es": "seed-100-nimes-rome-francaise-scene-5-seg-es",
+        "de": "seed-100-nimes-rome-francaise-scene-5-seg-de",
+        "it": "seed-100-nimes-rome-francaise-scene-5-seg-it",
+        "en": "seed-100-nimes-rome-francaise-scene-5-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-nimes-rome-francaise-scene-6",
+      "index": 6,
+      "title": "Temple de Diane",
+      "text": "On l'appelle le Temple de Diane. Retiens bien ce nom, car il est faux. Personne ne sait vraiment à quoi servait ce bâtiment. Ce dont on est sûr, c'est qu'il n'a jamais rien eu à voir avec la déesse Diane — ce nom lui a été collé bien plus tard, par habitude, par erreur.\r\n\r\nEntre, si l'accès est ouvert. Regarde cette salle voûtée, ces niches dans les murs, cette voûte de pierre appareillée avec un soin extrême. Certains y voient une bibliothèque, d'autres une salle du culte impérial, d'autres encore un pavillon lié aux eaux sacrées. Le mystère tient bon.\r\n\r\nCe qui est sûr, c'est qu'il a échappé au pire. Devenu couvent au Moyen Âge, il fut à demi détruit lors des guerres de Religion. Et pourtant il tient encore, avec sa belle voûte fendue, comme un défi lancé au temps.\r\n\r\nC'est peut-être ça, le plus beau : que Nîmes garde même les monuments dont elle a oublié l'usage. On conserve le mystère comme on conserve la pierre.\r\n\r\nSors des jardins et attaque la montée, à travers les pins, jusqu'à la tour qui domine la ville. Suis-moi.",
+      "hash": "974458ae",
+      "chars": 1039,
+      "existingSegments": {
+        "it": "seed-100-nimes-rome-francaise-scene-6-seg-it",
+        "es": "seed-100-nimes-rome-francaise-scene-6-seg-es",
+        "en": "seed-100-nimes-rome-francaise-scene-6-seg-en",
+        "de": "seed-100-nimes-rome-francaise-scene-6-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-nimes-rome-francaise-scene-7",
+      "index": 7,
+      "title": "La Tour Magne",
+      "text": "Te voilà en haut, essoufflé peut-être, au pied de la Tour Magne. La grande tour. Elle veille sur Nîmes depuis le sommet du mont Cavalier, le point le plus haut de la ville.\r\n\r\nElle est plus vieille que tout ce qu'on a vu. Avant même les Romains, les Gaulois avaient dressé ici une tour de guet. Les Romains l'ont enveloppée, surélevée, transformée en le plus haut sommet de leur enceinte — un phare de pierre visible de très loin, qui disait à tous : ici règne Rome.\r\n\r\nMonte les marches à l'intérieur, jusqu'à la plateforme. Et regarde.\r\n\r\nÀ tes pieds, toute la ville. Les toits de tuiles, la masse ronde des Arènes, la Maison Carrée minuscule au loin, les jardins verts en dessous. Deux mille ans d'histoire, d'un seul coup d'œil. Tu vois la source qui a fait naître la cité, le sanctuaire, l'amphithéâtre, les remparts. Nemausus est là, sous Nîmes, presque intacte.\r\n\r\nAlors reviens à ce que je te disais au départ. Partout ailleurs, Rome est tombée, s'est effacée, a laissé des ruines. Ici, elle n'est jamais tout à fait partie. On se marie dans les temples, on applaudit dans l'amphithéâtre, on boit l'eau de la source du dieu Nemausus. La ville n'a pas conservé Rome : elle a continué de la vivre.\r\n\r\nVoilà le secret de Nîmes. Elle n'est pas la fille de Rome. Elle en est le dernier morceau vivant. Reste là-haut un moment, laisse le vent te le murmurer. Et à bientôt, l'ami.",
+      "hash": "5d21607d",
+      "chars": 1381,
+      "existingSegments": {
+        "en": "seed-100-nimes-rome-francaise-scene-7-seg-en",
+        "it": "seed-100-nimes-rome-francaise-scene-7-seg-it",
+        "de": "seed-100-nimes-rome-francaise-scene-7-seg-de",
+        "es": "seed-100-nimes-rome-francaise-scene-7-seg-es"
+      }
+    }
+  ]
+}

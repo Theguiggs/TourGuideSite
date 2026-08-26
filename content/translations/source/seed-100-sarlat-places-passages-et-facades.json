@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-sarlat-places-passages-et-facades",
+  "sessionId": "seed-100-sarlat-places-passages-et-facades-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Sarlat",
+  "title": "Sarlat — Places, passages et façades",
+  "description": "Architecture — lire la pierre blonde du centre ancien, de la place publique aux passages étroits.",
+  "themes": [
+    "Architecture — lire la pierre blonde du centre ancien, de la place publique aux passages étroits."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6401,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "it": "Architettura, leggere la bionda pietra del centro antico, dalla piazza pubblica ai passaggi stretti.",
+    "en": "Architecture, read the blonde stone of the old center, from public square to narrow passages.",
+    "es": "Arquitectura, leer la piedra rubia del centro antiguo, desde la plaza pública hasta los pasos estrechos.",
+    "de": "Architektur, lesen Sie den blonden Stein aus dem Alten Zentrum, vom öffentlichen Platz bis zu engen Passagen."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-sarlat-places-passages-et-facades-scene-0",
+      "index": 0,
+      "title": "Place de la Liberté",
+      "text": "Place-toi au bord de la place de la Liberté et regarde ses façades comme un décor qui n’aurait pas été dessiné d’un seul trait. Les hauteurs varient, les fenêtres ne suivent pas toujours les mêmes axes, les toits se répondent sans être identiques. Cette diversité vient d’une longue accumulation de maisons et d’hôtels particuliers autour du principal espace public de Sarlat.\n\nLa pierre calcaire donne pourtant une unité puissante à l’ensemble. Selon la lumière, elle passe du gris blond à l’ocre. Observe les rez-de-chaussée, les étages nobles, puis les hautes toitures : chaque niveau indique un usage et une période de transformation. Le beffroi de l’ancienne église Sainte-Marie domine l’un des côtés de la place et sert de repère vertical.\n\nNotre promenade cherchera moins une époque unique que la manière dont Sarlat assemble ses fragments. Passe vers l’ancienne église Sainte-Marie. Son bâtiment médiéval a reçu une intervention contemporaine très visible. Ce contraste ouvre parfaitement le parcours : ici, préserver ne signifie pas toujours figer.",
+      "hash": "affaee2a",
+      "chars": 1057,
+      "existingSegments": {
+        "de": "seed-100-sarlat-places-passages-et-facades-scene-0-seg-de",
+        "it": "seed-100-sarlat-places-passages-et-facades-scene-0-seg-it",
+        "en": "seed-100-sarlat-places-passages-et-facades-scene-0-seg-en",
+        "es": "seed-100-sarlat-places-passages-et-facades-scene-0-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-places-passages-et-facades-scene-1",
+      "index": 1,
+      "title": "Ancienne église Sainte-Marie",
+      "text": "L’ancienne église Sainte-Marie fut désaffectée au XIXe siècle et connut plusieurs usages. À la fin du XXe siècle, l’architecte Jean Nouvel, né à Fumel dans le Lot-et-Garonne voisin, conduisit sa transformation. Deux immenses portes métalliques occupent désormais l’ancien portail et s’ouvrent sur le volume de la nef.\n\nRegarde la rencontre entre la pierre ancienne et les panneaux sombres. L’intervention ne cherche pas à imiter le gothique. Elle affirme une époque nouvelle tout en conservant la silhouette de l’église. Le clocher accueille également un belvédère accessible selon les conditions d’ouverture ; depuis la place, sa hauteur continue surtout de structurer le quartier.\n\nContourne l’édifice par le passage étroit qui mène vers la place du Marché-aux-Oies, puis poursuis jusqu’à l’hôtel de Plamon, rue des Consuls. Dans cette rue, les façades se rapprochent et les perspectives deviennent courtes. Tu verras comment une demeure urbaine pouvait afficher le rang de ses propriétaires sans disposer du recul d’une grande place.",
+      "hash": "782808cf",
+      "chars": 1036,
+      "existingSegments": {
+        "de": "seed-100-sarlat-places-passages-et-facades-scene-1-seg-de",
+        "es": "seed-100-sarlat-places-passages-et-facades-scene-1-seg-es",
+        "en": "seed-100-sarlat-places-passages-et-facades-scene-1-seg-en",
+        "it": "seed-100-sarlat-places-passages-et-facades-scene-1-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-places-passages-et-facades-scene-2",
+      "index": 2,
+      "title": "Maison des Consuls",
+      "text": "La maison des Consuls, aussi appelée hôtel de Plamon, présente une façade où plusieurs siècles restent lisibles. La demeure conserve des parties médiévales, notamment des ouvertures et un décor sculpté, puis des transformations de la Renaissance. Son second nom vient d’une famille qui l’occupa, tandis que le premier rappelle la rue des Consuls.\n\nRecule autant que l’espace public le permet. Tu remarqueras que la façade ne se livre jamais en une seule vue. Il faut lever la tête, se décaler, laisser apparaître une fenêtre puis une autre. Les meneaux, les arcs et les sculptures composent un langage de prestige adapté à une parcelle étroite. Dans Sarlat, l’architecture se découvre souvent par morceaux, exactement comme le tracé des rues.\n\nContinue vers la rue de la Liberté puis gagne la maison de La Boétie, face à la cathédrale. Le chemin élargit progressivement le regard. La prochaine façade appartient pleinement à la Renaissance et organise son décor avec une régularité nouvelle. Elle rappelle aussi une figure née ici, l’écrivain Étienne de La Boétie.",
+      "hash": "2ce4c463",
+      "chars": 1064,
+      "existingSegments": {
+        "en": "seed-100-sarlat-places-passages-et-facades-scene-2-seg-en",
+        "es": "seed-100-sarlat-places-passages-et-facades-scene-2-seg-es",
+        "it": "seed-100-sarlat-places-passages-et-facades-scene-2-seg-it",
+        "de": "seed-100-sarlat-places-passages-et-facades-scene-2-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-places-passages-et-facades-scene-3",
+      "index": 3,
+      "title": "Maison de La Boétie",
+      "text": "Cette maison fut construite au début du XVIe siècle par Antoine de La Boétie. Son fils Étienne y naquit en 1530. Humaniste et ami de Montaigne, il est notamment connu pour son Discours de la servitude volontaire. Mais reste d’abord devant l’architecture : la façade ordonne fenêtres, pilastres et médaillons selon un vocabulaire de Renaissance.\n\nLa pierre sculptée crée des lignes horizontales et verticales plus régulières que celles observées rue des Consuls. Le bâtiment affirme ainsi une culture nouvelle, nourrie par les modèles antiques, au cœur d’une ville encore structurée par ses rues médiévales. Cette coexistence produit le caractère singulier de Sarlat : les styles changent sans effacer totalement les parcelles anciennes.\n\nTraverse vers la cathédrale Saint-Sacerdos et longe son côté sud jusqu’à la lanterne des morts. Ce court passage quitte la façade civile pour un ensemble religieux formé autour de l’ancienne abbaye. La masse de l’église, le jardin et la tour énigmatique vont modifier une nouvelle fois l’échelle du parcours.",
+      "hash": "70597c0b",
+      "chars": 1046,
+      "existingSegments": {
+        "en": "seed-100-sarlat-places-passages-et-facades-scene-3-seg-en",
+        "de": "seed-100-sarlat-places-passages-et-facades-scene-3-seg-de",
+        "es": "seed-100-sarlat-places-passages-et-facades-scene-3-seg-es",
+        "it": "seed-100-sarlat-places-passages-et-facades-scene-3-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-places-passages-et-facades-scene-4",
+      "index": 4,
+      "title": "Lanterne des morts",
+      "text": "La lanterne des morts se dresse derrière la cathédrale. Cette tour cylindrique du XIIe siècle, coiffée d’une couverture conique, reste l’un des monuments les plus singuliers de Sarlat. Son nom traditionnel suggère un usage lié aux défunts, mais sa fonction exacte n’est pas établie avec certitude. Plusieurs interprétations ont été proposées ; aucune ne mérite d’être transformée en vérité définitive.\n\nCette incertitude fait partie du lieu. Observe la sobriété du volume, les ouvertures hautes et la façon dont la tour se détache des masses plus complexes de la cathédrale. Après les façades très ornées, elle agit presque comme un signe réduit à l’essentiel. Le petit espace qui l’entoure ménage aussi une pause dans le tissu dense.\n\nReviens vers la cathédrale puis descends jusqu’à la cour des Fontaines et au passage Henri-de-Ségogne. Cet itinéraire porte la mémoire de la sauvegarde du centre ancien au XXe siècle. La dernière halte permettra de comprendre pourquoi tant de rues et de façades ont échappé à une transformation plus brutale.",
+      "hash": "24ef6176",
+      "chars": 1044,
+      "existingSegments": {
+        "it": "seed-100-sarlat-places-passages-et-facades-scene-4-seg-it",
+        "en": "seed-100-sarlat-places-passages-et-facades-scene-4-seg-en",
+        "de": "seed-100-sarlat-places-passages-et-facades-scene-4-seg-de",
+        "es": "seed-100-sarlat-places-passages-et-facades-scene-4-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-places-passages-et-facades-scene-5",
+      "index": 5,
+      "title": "Passage Henri-de-Ségogne",
+      "text": "Le nom d’Henri de Ségogne est associé à la protection de Sarlat. Alpiniste, haut fonctionnaire et défenseur du patrimoine, il joua un rôle important dans la prise de conscience qui précéda la loi Malraux de 1962 sur les secteurs sauvegardés. Sarlat devint l’un des premiers terrains majeurs de restauration menés dans ce nouveau cadre.\n\nRegarde autour de toi sans imaginer que tout serait resté intact par miracle. Les façades noircies ont été nettoyées, des bâtiments restaurés, des réseaux et des usages adaptés. La sauvegarde est une action, faite de choix et de techniques. Elle explique pourquoi les relations entre places, passages et demeures anciennes restent aujourd’hui lisibles.\n\nLa place de la Liberté montrait une ville composée par strates. Sainte-Marie ajoutait un geste contemporain, l’hôtel de Plamon et la maison de La Boétie révélaient deux façons d’habiter la pierre, tandis que la lanterne conservait son mystère. Ici, le parcours se referme sur la décision collective de transmettre cet ensemble. Poursuis à ton rythme dans les ruelles : leur meilleur récit tient désormais dans ton regard. Merci d’avoir marché avec moi. À bientôt.",
+      "hash": "2347196f",
+      "chars": 1154,
+      "existingSegments": {
+        "es": "seed-100-sarlat-places-passages-et-facades-scene-5-seg-es",
+        "en": "seed-100-sarlat-places-passages-et-facades-scene-5-seg-en",
+        "it": "seed-100-sarlat-places-passages-et-facades-scene-5-seg-it",
+        "de": "seed-100-sarlat-places-passages-et-facades-scene-5-seg-de"
+      }
+    }
+  ]
+}

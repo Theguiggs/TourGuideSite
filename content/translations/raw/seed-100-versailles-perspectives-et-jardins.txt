@@ -1,0 +1,259 @@
+@@LANG=en
+@@TITLE=Versailles — Vistas and Gardens
+@@DESC=Urban landscape — reading the public axes that extend the royal town beyond the château.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-0
+@@STITLE=Place d'Armes
+From the place d'Armes, the château fills the entire western horizon. Now turn around toward the town. Three great avenues fan out: the avenue de Saint-Cloud, the avenue de Paris, and the avenue de Sceaux. This "goose foot" (patte d'oie) layout organizes Versailles around a royal vista and distributes movement well beyond the gates.
+
+The square serves as a vast threshold between palace and town. Its scale allowed for arrivals, ceremonies, and the deployment of the court. But it also acts as a visual instrument: the farther you move away, the more the château's façade remains present along the axis. The whole town seems staged to lead toward it.
+
+Our route will stay within the outdoor public spaces. It will look at how the avenues, squares, and gardens extend the order of the estate without fully belonging to it. Set off along the avenue de Paris toward the hôtel de ville. As you walk the permitted path, notice the exceptional width of the axis and the side lanes that separate the different rhythms of traffic.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-1
+@@STITLE=Hôtel de ville
+The hôtel de ville of Versailles occupies a building whose history predates its current municipal role. The former hôtel de Conti was acquired by the town in the nineteenth century, then thoroughly transformed at the end of that century. Its monumental façade matches the scale of the avenue de Paris and asserts civic power within a composition inherited from the monarchy.
+
+Position yourself so the château stays behind you. The axis runs east for several kilometers. The rows of trees, roadways, and side lanes give an almost theatrical depth to what is, in fact, everyday infrastructure. Versailles isn't just a town surrounding a palace; it's an urban plan designed through visual relationships.
+
+Head back to the place d'Armes, then take the avenue de Saint-Cloud to the place Hoche. This more tightly framed stop introduces a central figure into the landscape. The statue of General Hoche, born in Versailles, turns the intersection into a place of memory while still keeping the plan's grand directions intact.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-2
+@@STITLE=Place Hoche
+The place Hoche forms a circular breathing space northeast of the château. It bears the statue of Lazare Hoche, a general of the Revolution born in Versailles in 1768. The monument was erected in the nineteenth century, when the town wrote new memories into spaces shaped under the monarchy.
+
+Look at the streets radiating around the square. The circle doesn't break the grid; it redistributes the vistas and gives a landmark at the scale of the quartier Notre-Dame. The façades surrounding it stay measured, letting the statue and the central open space organize the whole. After the vastness of the place d'Armes, you find a more intimate composition, but one built on the same taste for the axis.
+
+Skirt the estate along the public streets and make your way to the quartier Saint-Louis, to the south. The route requires respecting the access points and any posted hours around the château. Meet me in front of one of the carrés Saint-Louis. These regular ensembles show another way of planning a town: not through a distant avenue, but through small units built around shared spaces.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-3
+@@STITLE=Carré à la Fontaine
+The carrés Saint-Louis were laid out in the eighteenth century in the district south of the château. They consist of small houses arranged around regular squares. Their low scale contrasts with the great royal orderings, yet their geometry answers the same desire to master the plan.
+
+Walk around one of the carrés without entering the private spaces. The simple, repeated façades let you feel the module: a unit reproduced to form a neighborhood. Later alterations have changed some of the buildings, yet the overall structure remains perceptible. Here, the vista isn't meant to impress from afar. It organizes a life of everyday proximity.
+
+Continue toward the cathédrale Saint-Louis, then reach the pièce d'Eau des Suisses by the public streets. The basin will appear as an immense opening at the foot of the district. It extends one of the estate's axes while today offering a stroll distinct from the château's gardens. The change of scale will be radical: after the small carrés, a water mirror several hundred meters long.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-4
+@@STITLE=Pièce d'Eau des Suisses
+The pièce d'Eau des Suisses was dug at the end of the seventeenth century. Its name recalls the Swiss guards mobilized for the works. The vast basin stretches along the axis of the Orangerie, south of the château. It notably collected water from the area and took part in the estate's landscape composition.
+
+From the public path, let your gaze travel its whole length. The trees reinforce the vanishing perspective, and the sheet of water reflects the sky more than it shows its own edges. Yet this monumental landscape is built through earthworks, alignments, and hydraulic mastery. Nothing here is left to chance, even when the whole appears calm and natural.
+
+Continue toward the southern end and the allée des Matelots, respecting the access conditions. This wooded space forms an extension of the estate's grounds and leads toward a less ceremonial exit. The final stop will show how a royal vista gradually dissolves into a landscape for strolling, far from the façade that set us off at the start.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-5
+@@STITLE=Allée des Matelots
+The allée des Matelots extends the landscape of the pièce d'Eau des Suisses to the south. Its name is linked to the navy men present in Versailles for the estate's nautical service and displays. Today, depending on the permitted access, it reads above all as a long planted line that gradually moves the walker away from the monumental center.
+
+Turn around. The château no longer fills your whole gaze. The trees, the basin, and the changes in level have taken over from the architecture. This is where our thread ends: in Versailles, a vista isn't limited to a spectacular view. It distributes squares, crosses neighborhoods, orders basins, and ends up becoming a simple path.
+
+The place d'Armes launched three avenues from an immense threshold. The hôtel de ville wrote the town into that axis, the place Hoche created a circle, and the carrés Saint-Louis scaled the geometry down to neighborhood size. Here, the design finally meets the landscape. Head back at your own pace, checking the public hours and routes. Thanks for following these lines with me. See you soon.
+
+@@LANG=es
+@@TITLE=Versalles — Perspectivas y jardines
+@@DESC=Paisaje urbano — leer los ejes públicos que prolongan la ciudad real más allá del palacio.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-0
+@@STITLE=Place d'Armes
+Desde la place d'Armes, el palacio ocupa todo el horizonte occidental. Date la vuelta ahora hacia la ciudad. Tres grandes avenidas parten en abanico: la avenue de Saint-Cloud, la avenue de Paris y la avenue de Sceaux. Esta «pata de oca» organiza Versalles en torno a una perspectiva real y distribuye los movimientos mucho más allá de las verjas.
+
+La plaza sirve de vasto umbral entre palacio y ciudad. Su amplitud permitía las llegadas, las ceremonias y los despliegues de la corte. Pero también actúa como un instrumento visual: cuanto más te alejas, más presente permanece la fachada del palacio en el eje. Toda la ciudad parece puesta en escena para conducir hacia él.
+
+Nuestro recorrido se mantendrá en los espacios públicos exteriores. Buscará cómo las avenidas, las plazas y los jardines prolongan el orden del dominio sin pertenecerle del todo. Sal por la avenue de Paris hasta el hôtel de ville. Caminando por el trayecto autorizado, observa la anchura excepcional del eje y las contraalamedas que separan los ritmos de circulación.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-1
+@@STITLE=Hôtel de ville
+El hôtel de ville de Versalles ocupa un edificio cuya historia precede a su función municipal actual. El antiguo hôtel de Conti fue adquirido por la ciudad en el siglo XIX y luego profundamente transformado a finales de ese siglo. Su fachada monumental responde a la amplitud de la avenue de Paris y afirma un poder cívico en una composición heredada de la monarquía.
+
+Colócate de manera que dejes el palacio a tu espalda. El eje se prolonga hacia el este durante varios kilómetros. Las alineaciones de árboles, las calzadas y las contraalamedas dan una profundidad casi teatral a una infraestructura, sin embargo, cotidiana. Versalles no es solo una ciudad que rodea un palacio; es un plan urbano concebido mediante relaciones visuales.
+
+Vuelve hacia la place d'Armes y luego toma la avenue de Saint-Cloud hasta la place Hoche. Esta etapa más recogida introduce una figura central en el paisaje. La estatua del general Hoche, nacido en Versalles, transforma el cruce en un lugar de memoria sin dejar de mantener las grandes direcciones del plano.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-2
+@@STITLE=Place Hoche
+La place Hoche forma una pausa circular al noreste del palacio. Lleva la estatua de Lazare Hoche, general de la Revolución nacido en Versalles en 1768. El monumento se erigió en el siglo XIX, cuando la ciudad inscribía nuevas memorias en espacios modelados bajo la monarquía.
+
+Observa las calles que irradian alrededor de la plaza. El círculo no rompe la trama; redistribuye las perspectivas y da una referencia a la escala del quartier Notre-Dame. Las fachadas que la rodean se mantienen mesuradas, dejando que la estatua y el vacío central organicen el conjunto. Tras la inmensidad de la place d'Armes, descubres una composición más íntima, pero fundada en el mismo gusto por el eje.
+
+Bordea el dominio por las calles públicas y llega al quartier Saint-Louis, al sur. El trayecto exige respetar los accesos y los horarios eventuales alrededor del palacio. Encuéntrame frente a uno de los carrés Saint-Louis. Estos conjuntos regulares muestran otra manera de planificar la ciudad: ya no mediante una avenida lejana, sino con pequeñas unidades construidas alrededor de espacios comunes.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-3
+@@STITLE=Carré à la Fontaine
+Los carrés Saint-Louis se trazaron en el siglo XVIII en el barrio situado al sur del palacio. Se componen de pequeñas casas dispuestas alrededor de plazas regulares. Su escala baja contrasta con las grandes ordenaciones reales, pero su geometría responde a la misma voluntad de dominar el plano.
+
+Camina alrededor de uno de los carrés sin entrar en los espacios privados. Las fachadas sencillas y repetidas hacen sentir el módulo: una unidad reproducida para formar un barrio. Las transformaciones posteriores han modificado algunos edificios, y sin embargo la estructura general sigue siendo perceptible. Aquí, la perspectiva no está destinada a impresionar desde lejos. Organiza una vida urbana de proximidad.
+
+Continúa hacia la cathédrale Saint-Louis, luego llega a la pièce d'Eau des Suisses por las vías públicas. El estanque aparecerá como una abertura inmensa al pie del barrio. Prolonga un eje del dominio, ofreciendo hoy un paseo distinto de los jardines del palacio. Este cambio de escala será radical: tras los pequeños carrés, un espejo de agua de varios cientos de metros.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-4
+@@STITLE=Pièce d'Eau des Suisses
+La pièce d'Eau des Suisses se excavó a finales del siglo XVII. Su nombre recuerda a los guardias suizos movilizados para las obras. El vasto estanque se extiende en el eje de la Orangerie, al sur del palacio. Recogía en particular aguas de la zona y participaba en la composición paisajística del dominio.
+
+Desde el paseo público, deja que la mirada recorra toda su longitud. Los árboles refuerzan la fuga de la perspectiva y la lámina de agua refleja el cielo más de lo que muestra sus propios límites. Este paisaje monumental está, sin embargo, construido mediante movimientos de tierra, alineaciones y dominio hidráulico. Nada se deja al azar aquí, aunque el conjunto parezca tranquilo y natural.
+
+Continúa hacia el extremo sur y la allée des Matelots, respetando las condiciones de acceso. Este espacio boscoso se inscribe en la prolongación de los terrenos del dominio y conduce hacia una salida menos ceremoniosa. La última parada permitirá ver cómo una perspectiva real se disuelve progresivamente en un paisaje de paseo, lejos de la fachada que motivó nuestra salida.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-5
+@@STITLE=Allée des Matelots
+La allée des Matelots prolonga hacia el sur el paisaje de la pièce d'Eau des Suisses. Su nombre está ligado a los hombres de marina presentes en Versalles para el servicio y las demostraciones náuticas del dominio. Hoy, según los accesos autorizados, se percibe sobre todo como una larga línea plantada que aleja progresivamente al paseante del centro monumental.
+
+Date la vuelta. El palacio ya no ocupa toda la mirada. Los árboles, el estanque y los cambios de nivel han tomado el relevo de la arquitectura. Es el desenlace de nuestro hilo conductor: en Versalles, una perspectiva no se limita a una vista espectacular. Distribuye plazas, atraviesa barrios, ordena estanques y acaba convirtiéndose en un simple camino.
+
+La place d'Armes lanzaba tres avenidas desde un umbral inmenso. El hôtel de ville inscribía la ciudad en ese eje, la place Hoche creaba un círculo, los carrés Saint-Louis reducían la geometría a la escala del vecindario. Aquí, el trazado se encuentra por fin con el paisaje. Vuelve a tu ritmo, comprobando los horarios e itinerarios públicos. Gracias por seguir estas líneas conmigo. Hasta pronto.
+
+@@LANG=de
+@@TITLE=Versailles — Perspektiven und Gärten
+@@DESC=Stadtlandschaft — die öffentlichen Achsen lesen, die die königliche Stadt über das Schloss hinaus fortsetzen.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-0
+@@STITLE=Place d'Armes
+Von der place d'Armes aus füllt das Schloss den gesamten westlichen Horizont. Dreh dich nun zur Stadt um. Drei große Alleen fächern sich auf: die avenue de Saint-Cloud, die avenue de Paris und die avenue de Sceaux. Dieser „Gänsefuß" (patte d'oie) ordnet Versailles um eine königliche Perspektive und verteilt die Bewegungen weit über die Gitter hinaus.
+
+Der Platz dient als weite Schwelle zwischen Schloss und Stadt. Sein Ausmaß erlaubte Ankünfte, Zeremonien und die Entfaltungen des Hofes. Aber er wirkt auch als visuelles Instrument: Je weiter du dich entfernst, desto präsenter bleibt die Schlossfassade in der Achse. Die ganze Stadt scheint darauf inszeniert, dorthin zu führen.
+
+Unser Weg bleibt in den öffentlichen Außenräumen. Er wird untersuchen, wie die Alleen, Plätze und Gärten die Ordnung des Anwesens fortsetzen, ohne ganz zu ihm zu gehören. Brich über die avenue de Paris zum hôtel de ville auf. Achte beim Gehen auf dem erlaubten Weg auf die außergewöhnliche Breite der Achse und die Nebenalleen, die die verschiedenen Verkehrsrhythmen trennen.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-1
+@@STITLE=Hôtel de ville
+Das hôtel de ville von Versailles befindet sich in einem Gebäude, dessen Geschichte seiner heutigen kommunalen Funktion vorausgeht. Das ehemalige hôtel de Conti wurde im neunzehnten Jahrhundert von der Stadt erworben und dann Ende jenes Jahrhunderts gründlich umgestaltet. Seine monumentale Fassade entspricht der Weite der avenue de Paris und bekräftigt eine bürgerliche Macht in einer von der Monarchie ererbten Komposition.
+
+Stell dich so hin, dass das Schloss hinter dir bleibt. Die Achse zieht sich mehrere Kilometer nach Osten. Die Baumreihen, Fahrbahnen und Nebenalleen verleihen einer eigentlich alltäglichen Infrastruktur eine fast theatralische Tiefe. Versailles ist nicht nur eine Stadt, die ein Schloss umgibt; es ist ein Stadtplan, der durch visuelle Beziehungen entworfen wurde.
+
+Geh zurück zur place d'Armes und dann die avenue de Saint-Cloud entlang bis zur place Hoche. Diese engere Etappe führt eine zentrale Figur in die Landschaft ein. Die Statue von General Hoche, geboren in Versailles, verwandelt die Kreuzung in einen Ort der Erinnerung, während sie die großen Richtungen des Plans bewahrt.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-2
+@@STITLE=Place Hoche
+Die place Hoche bildet nordöstlich des Schlosses eine kreisförmige Atempause. Sie trägt die Statue von Lazare Hoche, einem General der Revolution, der 1768 in Versailles geboren wurde. Das Denkmal wurde im neunzehnten Jahrhundert errichtet, als die Stadt neue Erinnerungen in Räume einschrieb, die unter der Monarchie geformt worden waren.
+
+Betrachte die Straßen, die um den Platz herum ausstrahlen. Der Kreis durchbricht das Raster nicht; er verteilt die Perspektiven neu und gibt einen Orientierungspunkt im Maßstab des quartier Notre-Dame. Die umliegenden Fassaden bleiben zurückhaltend und lassen die Statue und die zentrale Leere das Ganze ordnen. Nach der Weite der place d'Armes entdeckst du eine intimere Komposition, die jedoch auf demselben Vorliebe für die Achse beruht.
+
+Umgehe das Anwesen über die öffentlichen Straßen und erreiche im Süden das quartier Saint-Louis. Der Weg erfordert, die Zugänge und mögliche Öffnungszeiten rund um das Schloss zu beachten. Triff mich vor einem der carrés Saint-Louis. Diese regelmäßigen Ensembles zeigen eine andere Art, eine Stadt zu planen: nicht mehr durch eine ferne Allee, sondern durch kleine Einheiten, die um gemeinsame Räume herum gebaut wurden.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-3
+@@STITLE=Carré à la Fontaine
+Die carrés Saint-Louis wurden im achtzehnten Jahrhundert im Viertel südlich des Schlosses angelegt. Sie bestehen aus kleinen Häusern, die um regelmäßige Plätze herum angeordnet sind. Ihr niedriger Maßstab kontrastiert mit den großen königlichen Ordnungen, doch ihre Geometrie folgt demselben Willen, den Plan zu beherrschen.
+
+Geh um einen der carrés herum, ohne die privaten Räume zu betreten. Die einfachen, sich wiederholenden Fassaden lassen das Modul spüren: eine Einheit, die vervielfältigt wird, um ein Viertel zu bilden. Spätere Umbauten haben einige Gebäude verändert, dennoch bleibt die Gesamtstruktur wahrnehmbar. Hier soll die Perspektive nicht aus der Ferne beeindrucken. Sie ordnet ein Leben in unmittelbarer Nähe.
+
+Geh weiter zur cathédrale Saint-Louis und erreiche dann über die öffentlichen Wege die pièce d'Eau des Suisses. Das Becken wird sich als eine gewaltige Öffnung am Fuß des Viertels zeigen. Es setzt eine Achse des Anwesens fort und bietet heute zugleich einen Spaziergang, der sich von den Schlossgärten unterscheidet. Dieser Maßstabswechsel wird radikal sein: nach den kleinen carrés ein mehrere hundert Meter langer Wasserspiegel.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-4
+@@STITLE=Pièce d'Eau des Suisses
+Die pièce d'Eau des Suisses wurde Ende des siebzehnten Jahrhunderts ausgehoben. Ihr Name erinnert an die für die Arbeiten mobilisierten Schweizergarden. Das weite Becken erstreckt sich in der Achse der Orangerie, südlich des Schlosses. Es sammelte insbesondere Wasser aus der Umgebung und war Teil der landschaftlichen Komposition des Anwesens.
+
+Lass deinen Blick vom öffentlichen Weg aus über seine ganze Länge schweifen. Die Bäume verstärken die Fluchtlinie der Perspektive, und die Wasserfläche spiegelt eher den Himmel, als dass sie ihre eigenen Grenzen zeigt. Diese monumentale Landschaft ist jedoch durch Erdarbeiten, Alleen und wasserbauliche Beherrschung konstruiert. Nichts bleibt hier dem Zufall überlassen, selbst wenn das Ganze ruhig und natürlich wirkt.
+
+Geh weiter zum südlichen Ende und zur allée des Matelots, unter Beachtung der Zugangsbedingungen. Dieser bewaldete Raum setzt die Ländereien des Anwesens fort und führt zu einem weniger feierlichen Ausgang. Der letzte Halt zeigt, wie sich eine königliche Perspektive allmählich in eine Spaziergangslandschaft auflöst, fernab der Fassade, die uns zu Beginn aufbrechen ließ.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-5
+@@STITLE=Allée des Matelots
+Die allée des Matelots setzt im Süden die Landschaft der pièce d'Eau des Suisses fort. Ihr Name ist mit den Marinesoldaten verbunden, die in Versailles für den Dienst und die nautischen Vorführungen des Anwesens anwesend waren. Heute wirkt sie, je nach zugelassenem Zugang, vor allem als eine lange bepflanzte Linie, die den Spaziergänger allmählich vom monumentalen Zentrum entfernt.
+
+Dreh dich um. Das Schloss füllt nicht mehr deinen ganzen Blick. Die Bäume, das Becken und die Höhenunterschiede haben die Rolle der Architektur übernommen. Das ist der Ausklang unseres roten Fadens: In Versailles beschränkt sich eine Perspektive nicht auf einen spektakulären Anblick. Sie verteilt Plätze, durchquert Viertel, ordnet Becken und wird schließlich zu einem einfachen Weg.
+
+Die place d'Armes ließ drei Alleen von einer gewaltigen Schwelle aus starten. Das hôtel de ville schrieb die Stadt in diese Achse ein, die place Hoche schuf einen Kreis, die carrés Saint-Louis verkleinerten die Geometrie auf Nachbarschaftsmaßstab. Hier trifft der Entwurf endlich auf die Landschaft. Kehr in deinem eigenen Tempo zurück und achte dabei auf die öffentlichen Öffnungszeiten und Wege. Danke, dass du diese Linien mit mir verfolgt hast. Bis bald.
+
+@@LANG=it
+@@TITLE=Versailles — Prospettive e giardini
+@@DESC=Paesaggio urbano — leggere gli assi pubblici che prolungano la città reale oltre la reggia.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-0
+@@STITLE=Place d'Armes
+Dalla place d'Armes, la reggia occupa tutto l'orizzonte occidentale. Voltati ora verso la città. Tre grandi viali si aprono a ventaglio: l'avenue de Saint-Cloud, l'avenue de Paris e l'avenue de Sceaux. Questa «zampa d'oca» organizza Versailles attorno a una prospettiva reale e distribuisce i movimenti ben oltre i cancelli.
+
+La piazza funge da vasta soglia tra reggia e città. La sua ampiezza permetteva gli arrivi, le cerimonie e gli schieramenti della corte. Ma agisce anche come uno strumento visivo: più ti allontani, più la facciata della reggia resta presente nell'asse. L'intera città sembra messa in scena per condurre verso di essa.
+
+Il nostro percorso resterà negli spazi pubblici esterni. Cercherà come i viali, le piazze e i giardini prolunghino l'ordine del dominio senza appartenergli del tutto. Parti lungo l'avenue de Paris fino all'hôtel de ville. Camminando sul percorso autorizzato, osserva la larghezza eccezionale dell'asse e i controviali che separano i ritmi della circolazione.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-1
+@@STITLE=Hôtel de ville
+L'hôtel de ville di Versailles occupa un edificio la cui storia precede la sua attuale funzione municipale. L'antico hôtel de Conti fu acquisito dalla città nel diciannovesimo secolo e poi profondamente trasformato alla fine di quel secolo. La sua facciata monumentale risponde all'ampiezza dell'avenue de Paris e afferma un potere civico in una composizione ereditata dalla monarchia.
+
+Mettiti in modo da lasciare la reggia alle spalle. L'asse corre verso est per diversi chilometri. I filari di alberi, le carreggiate e i controviali danno una profondità quasi teatrale a un'infrastruttura in realtà quotidiana. Versailles non è solo una città che circonda una reggia; è un piano urbano concepito attraverso relazioni visive.
+
+Torna verso la place d'Armes e poi imbocca l'avenue de Saint-Cloud fino alla place Hoche. Questa tappa più raccolta introduce una figura centrale nel paesaggio. La statua del generale Hoche, nato a Versailles, trasforma l'incrocio in un luogo della memoria pur mantenendo le grandi direttrici del piano.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-2
+@@STITLE=Place Hoche
+La place Hoche forma una pausa circolare a nordest della reggia. Porta la statua di Lazare Hoche, generale della Rivoluzione nato a Versailles nel 1768. Il monumento fu eretto nel diciannovesimo secolo, quando la città iscriveva nuove memorie in spazi plasmati sotto la monarchia.
+
+Osserva le strade che si irradiano intorno alla piazza. Il cerchio non spezza la trama; ridistribuisce le prospettive e offre un punto di riferimento alla scala del quartier Notre-Dame. Le facciate che la circondano restano misurate, lasciando che la statua e il vuoto centrale organizzino l'insieme. Dopo l'immensità della place d'Armes, scopri una composizione più intima, ma fondata sullo stesso gusto per l'asse.
+
+Aggira il dominio lungo le strade pubbliche e raggiungi il quartier Saint-Louis, a sud. Il percorso richiede di rispettare gli accessi e gli eventuali orari attorno alla reggia. Ritrovami davanti a uno dei carrés Saint-Louis. Questi insiemi regolari mostrano un altro modo di pianificare la città: non più tramite un viale lontano, ma con piccole unità costruite attorno a spazi comuni.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-3
+@@STITLE=Carré à la Fontaine
+I carrés Saint-Louis furono realizzati nel diciottesimo secolo nel quartiere a sud della reggia. Sono composti da piccole case disposte attorno a piazze regolari. La loro scala bassa contrasta con le grandi ordinazioni reali, ma la loro geometria risponde alla stessa volontà di dominare il piano.
+
+Cammina intorno a un carré senza entrare negli spazi privati. Le facciate semplici e ripetute fanno percepire il modulo: un'unità riprodotta per formare un quartiere. Le trasformazioni successive hanno modificato alcuni edifici, eppure la struttura generale resta percepibile. Qui, la prospettiva non è destinata a impressionare da lontano. Organizza una vita urbana di prossimità.
+
+Prosegui verso la cathédrale Saint-Louis, poi raggiungi la pièce d'Eau des Suisses per le vie pubbliche. Il bacino apparirà come un'apertura immensa ai piedi del quartiere. Prolunga un asse del dominio offrendo oggi una passeggiata distinta dai giardini della reggia. Questo cambio di scala sarà radicale: dopo i piccoli carrés, uno specchio d'acqua di diverse centinaia di metri.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-4
+@@STITLE=Pièce d'Eau des Suisses
+La pièce d'Eau des Suisses fu scavata alla fine del diciassettesimo secolo. Il suo nome ricorda le guardie svizzere mobilitate per i lavori. Il vasto bacino si estende sull'asse dell'Orangerie, a sud della reggia. Raccoglieva in particolare le acque della zona e partecipava alla composizione paesaggistica del dominio.
+
+Dal viale pubblico, lascia che lo sguardo percorra tutta la sua lunghezza. Gli alberi rafforzano la fuga della prospettiva e lo specchio d'acqua riflette il cielo più di quanto mostri i propri limiti. Questo paesaggio monumentale è tuttavia costruito tramite sterri, allineamenti e dominio idraulico. Nulla è lasciato al caso, anche quando l'insieme appare calmo e naturale.
+
+Continua verso l'estremità sud e l'allée des Matelots, rispettando le condizioni di accesso. Questo spazio boschivo si inserisce nel prolungamento dei terreni del dominio e conduce verso un'uscita meno cerimoniale. L'ultima tappa permetterà di vedere come una prospettiva reale si dissolva progressivamente in un paesaggio da passeggio, lontano dalla facciata che aveva dato avvio al nostro cammino.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-5
+@@STITLE=Allée des Matelots
+L'allée des Matelots prolunga a sud il paesaggio della pièce d'Eau des Suisses. Il suo nome è legato agli uomini di marina presenti a Versailles per il servizio e le dimostrazioni nautiche del dominio. Oggi, secondo gli accessi autorizzati, si percepisce soprattutto come una lunga linea alberata che allontana progressivamente il passeggiatore dal centro monumentale.
+
+Voltati. La reggia non occupa più tutto lo sguardo. Gli alberi, il bacino e i cambi di livello hanno preso il posto dell'architettura. È l'esito del nostro filo conduttore: a Versailles, una prospettiva non si limita a una vista spettacolare. Distribuisce piazze, attraversa quartieri, ordina bacini e finisce per diventare un semplice sentiero.
+
+La place d'Armes lanciava tre viali da una soglia immensa. L'hôtel de ville iscriveva la città in quell'asse, la place Hoche creava un cerchio, i carrés Saint-Louis riducevano la geometria alla scala del vicinato. Qui, il disegno incontra finalmente il paesaggio. Torna al tuo ritmo, verificando gli orari e gli itinerari pubblici. Grazie per aver seguito queste linee con me. A presto.
+
+@@LANG=nl
+@@TITLE=Versailles — Perspectieven en tuinen
+@@DESC=Stadslandschap — de openbare assen lezen die de koninklijke stad voorbij het paleis verlengen.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-0
+@@STITLE=Place d'Armes
+Vanaf de place d'Armes vult het paleis de hele westelijke horizon. Draai je nu om naar de stad. Drie grote lanen waaieren uit: de avenue de Saint-Cloud, de avenue de Paris en de avenue de Sceaux. Deze "ganzenpoot" (patte d'oie) organiseert Versailles rond een koninklijk perspectief en verdeelt de bewegingen ver voorbij de hekken.
+
+Het plein dient als een uitgestrekte drempel tussen paleis en stad. De omvang ervan maakte aankomsten, ceremonies en de ontplooiingen van het hof mogelijk. Maar het werkt ook als een visueel instrument: hoe verder je je verwijdert, hoe aanwezig de gevel van het paleis in de as blijft. De hele stad lijkt in scène gezet om ernaartoe te leiden.
+
+Onze route blijft in de openbare buitenruimtes. Ze zal onderzoeken hoe de lanen, pleinen en tuinen de orde van het domein verlengen zonder er volledig bij te horen. Vertrek via de avenue de Paris naar het hôtel de ville. Let tijdens het lopen op het toegestane pad op de uitzonderlijke breedte van de as en de zijlanen die de verschillende verkeersritmes scheiden.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-1
+@@STITLE=Hôtel de ville
+Het hôtel de ville van Versailles bevindt zich in een gebouw waarvan de geschiedenis aan zijn huidige gemeentelijke functie voorafgaat. Het voormalige hôtel de Conti werd in de negentiende eeuw door de stad verworven en aan het einde van die eeuw grondig verbouwd. De monumentale gevel beantwoordt aan de omvang van de avenue de Paris en bevestigt een burgerlijke macht in een compositie die van de monarchie is geërfd.
+
+Ga zo staan dat je het paleis achter je laat. De as loopt over verschillende kilometers naar het oosten. De bomenrijen, de rijbanen en de zijlanen geven een bijna theatrale diepte aan een infrastructuur die eigenlijk alledaags is. Versailles is niet alleen een stad rond een paleis; het is een stedenbouwkundig plan ontworpen via visuele relaties.
+
+Ga terug naar de place d'Armes en sla dan de avenue de Saint-Cloud in naar de place Hoche. Deze meer besloten etappe brengt een centrale figuur in het landschap. Het standbeeld van generaal Hoche, geboren in Versailles, verandert het kruispunt in een herinneringsplek, terwijl de grote richtingen van het plan behouden blijven.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-2
+@@STITLE=Place Hoche
+De place Hoche vormt een ronde adempauze ten noordoosten van het paleis. Ze draagt het standbeeld van Lazare Hoche, generaal van de Revolutie, geboren in Versailles in 1768. Het monument werd opgericht in de negentiende eeuw, toen de stad nieuwe herinneringen inschreef in ruimtes die onder de monarchie waren vormgegeven.
+
+Bekijk de straten die rond het plein uitstralen. De cirkel doorbreekt het raster niet; ze verdeelt de perspectieven opnieuw en geeft een oriëntatiepunt op de schaal van de quartier Notre-Dame. De omliggende gevels blijven ingetogen en laten het standbeeld en de centrale leegte het geheel ordenen. Na de onmetelijkheid van de place d'Armes ontdek je een intiemere compositie, maar wel gebaseerd op dezelfde voorliefde voor de as.
+
+Omzeil het domein via de openbare straten en bereik het quartier Saint-Louis, in het zuiden. De route vereist dat je de toegangen en eventuele openingstijden rond het paleis respecteert. Ontmoet me voor een van de carrés Saint-Louis. Deze regelmatige ensembles tonen een andere manier om een stad te plannen: niet meer via een verre laan, maar met kleine eenheden gebouwd rond gedeelde ruimtes.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-3
+@@STITLE=Carré à la Fontaine
+De carrés Saint-Louis werden in de achttiende eeuw aangelegd in de wijk ten zuiden van het paleis. Ze bestaan uit kleine huizen die rond regelmatige pleintjes zijn gerangschikt. Hun lage schaal contrasteert met de grote koninklijke ordeningen, maar hun geometrie beantwoordt aan dezelfde wil om het plan te beheersen.
+
+Loop om een carré heen zonder de privéruimtes te betreden. De eenvoudige, herhaalde gevels laten je de module voelen: een eenheid die wordt herhaald om een buurt te vormen. Latere verbouwingen hebben sommige gebouwen veranderd, toch blijft de algemene structuur waarneembaar. Hier is het perspectief niet bedoeld om van veraf indruk te maken. Het organiseert een leven van dagelijkse nabijheid.
+
+Ga verder naar de cathédrale Saint-Louis en bereik dan via de openbare wegen de pièce d'Eau des Suisses. Het bassin zal verschijnen als een immense opening aan de voet van de wijk. Het verlengt een as van het domein en biedt vandaag tegelijk een wandeling die zich onderscheidt van de tuinen van het paleis. Deze schaalverandering zal radicaal zijn: na de kleine carrés, een waterspiegel van meerdere honderden meters.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-4
+@@STITLE=Pièce d'Eau des Suisses
+De pièce d'Eau des Suisses werd eind zeventiende eeuw uitgegraven. De naam herinnert aan de Zwitserse garde die voor de werkzaamheden werd ingezet. Het uitgestrekte bassin strekt zich uit in de as van de Orangerie, ten zuiden van het paleis. Het ving met name water uit de omgeving op en maakte deel uit van de landschappelijke compositie van het domein.
+
+Laat je blik vanaf het openbare pad over de hele lengte gaan. De bomen versterken de vluchtlijn van het perspectief en het watervlak weerspiegelt eerder de lucht dan dat het zijn eigen grenzen toont. Toch is dit monumentale landschap gebouwd door grondwerken, boomrijen en waterbeheersing. Niets is hier aan het toeval overgelaten, ook al lijkt het geheel rustig en natuurlijk.
+
+Ga verder naar het zuidelijke uiteinde en de allée des Matelots, met inachtneming van de toegangsvoorwaarden. Deze beboste ruimte vormt een verlenging van de gronden van het domein en leidt naar een minder plechtstatige uitgang. De laatste halte laat zien hoe een koninklijk perspectief geleidelijk oplost in een wandellandschap, ver van de gevel die ons bij het begin op weg stuurde.
+
+@@SCENE=seed-100-versailles-perspectives-et-jardins-scene-5
+@@STITLE=Allée des Matelots
+De allée des Matelots verlengt in het zuiden het landschap van de pièce d'Eau des Suisses. De naam is verbonden met de marinemannen die in Versailles aanwezig waren voor de dienst en de nautische demonstraties van het domein. Vandaag wordt ze, afhankelijk van de toegestane toegang, vooral ervaren als een lange beplante lijn die de wandelaar geleidelijk van het monumentale centrum verwijdert.
+
+Draai je om. Het paleis vult niet langer je hele blik. De bomen, het bassin en de niveauverschillen hebben de rol van de architectuur overgenomen. Dit is het sluitstuk van onze rode draad: in Versailles beperkt een perspectief zich niet tot een spectaculair uitzicht. Het verdeelt pleinen, doorkruist wijken, ordent bassins en eindigt als een eenvoudig pad.
+
+De place d'Armes lanceerde drie lanen vanaf een immense drempel. Het hôtel de ville schreef de stad in die as in, de place Hoche creëerde een cirkel, de carrés Saint-Louis verkleinden de geometrie tot de schaal van de buurt. Hier ontmoet het ontwerp eindelijk het landschap. Keer terug in je eigen tempo, met aandacht voor de openbare openingstijden en routes. Bedankt dat je deze lijnen met mij hebt gevolgd. Tot snel.

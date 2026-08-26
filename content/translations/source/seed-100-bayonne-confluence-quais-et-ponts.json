@@ -1,0 +1,113 @@
+{
+  "tourId": "seed-100-bayonne-confluence-quais-et-ponts",
+  "sessionId": "seed-100-bayonne-confluence-quais-et-ponts-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Bayonne",
+  "title": "Bayonne — Confluence, quais et ponts",
+  "description": "Histoire urbaine — suivre l’Adour et la Nive pour comprendre les quartiers et leurs ponts.",
+  "themes": [
+    "Histoire urbaine — suivre l’Adour et la Nive pour comprendre les quartiers et leurs ponts."
+  ],
+  "baseLanguage": "fr",
+  "chars": 6902,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "en": "Urban history, follow Adour and the Nive to understand neighborhoods and their bridges.",
+    "es": "Historia urbana, seguir el Adour y la Nive para comprender los barrios y sus puentes.",
+    "de": "Stadtgeschichte, der Adour und dem Nive folgen, um die Nachbarschaften und ihre Brücken zu verstehen.",
+    "it": "Storia urbana, seguire Adour e il Nive per capire i quartieri ei loro ponti."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-bayonne-confluence-quais-et-ponts-scene-0",
+      "index": 0,
+      "title": "Place de la Liberté",
+      "text": "Commence sur la place de la Liberté, devant l’hôtel de ville. Ce bâtiment monumental du XIXe siècle abrite aussi un théâtre. Sa façade regarde la Nive, comme si la représentation civique de Bayonne devait d’abord se présenter au fleuve. La place forme une terrasse ouverte entre le Grand Bayonne et l’eau. Derrière toi, les rues conduisent vers la cathédrale ; devant toi, les ponts annoncent le Petit Bayonne.\n\nApproche prudemment du quai et observe la Nive. Son niveau varie avec les marées, car l’influence de l’Atlantique remonte jusqu’ici. Les façades hautes et étroites de l’autre rive composent un front presque continu. Leurs couleurs soulignent le parcellaire ancien : des maisons serrées, disposées perpendiculairement au cours d’eau.\n\nNotre promenade va suivre cette relation entre deux rivières et trois quartiers. Emprunte les cheminements publics vers le pont Marengo. En avançant, regarde comment chaque pont prolonge une rue et distribue les déplacements. À Bayonne, traverser l’eau n’est jamais un simple raccourci. C’est passer d’une histoire urbaine à une autre, tout en gardant la confluence comme point d’orientation invisible.",
+      "hash": "23fe8249",
+      "chars": 1148,
+      "existingSegments": {
+        "de": "seed-100-bayonne-confluence-quais-et-ponts-scene-0-seg-de",
+        "en": "seed-100-bayonne-confluence-quais-et-ponts-scene-0-seg-en",
+        "es": "seed-100-bayonne-confluence-quais-et-ponts-scene-0-seg-es",
+        "it": "seed-100-bayonne-confluence-quais-et-ponts-scene-0-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-bayonne-confluence-quais-et-ponts-scene-1",
+      "index": 1,
+      "title": "Pont Marengo",
+      "text": "Arrête-toi sur le pont Marengo sans gêner les passants. Il franchit la Nive entre le Grand Bayonne et le Petit Bayonne. Son nom commémore une victoire napoléonienne, mais son intérêt ici tient surtout à sa position. Regarde vers l’amont : les quais resserrent la rivière entre les façades. Vers l’aval, l’espace commence à s’ouvrir en direction de l’Adour.\n\nLes ponts de la Nive ont longtemps été essentiels à la vie quotidienne et à la défense de la cité. Leur nombre, leur forme et leurs matériaux ont évolué avec les crues, les besoins de circulation et les transformations militaires. Depuis ce tablier, tu peux lire le contraste entre les deux rives. Le Grand Bayonne rassemble les principaux édifices civils et religieux ; le Petit Bayonne conserve une trame dense, longtemps liée aux activités portuaires et artisanales.\n\nTraverse vers le Petit Bayonne, puis descends vers le quai Galuperie. Observe l’alignement du pont avec les rues : l’ouvrage ne flotte pas isolément au-dessus de l’eau, il prolonge tout un réseau. En quittant le milieu du fleuve, retourne-toi un instant. La place de la Liberté paraît déjà différente, cadrée par les façades et le garde-corps.",
+      "hash": "9244503d",
+      "chars": 1172,
+      "existingSegments": {
+        "de": "seed-100-bayonne-confluence-quais-et-ponts-scene-1-seg-de",
+        "it": "seed-100-bayonne-confluence-quais-et-ponts-scene-1-seg-it",
+        "es": "seed-100-bayonne-confluence-quais-et-ponts-scene-1-seg-es",
+        "en": "seed-100-bayonne-confluence-quais-et-ponts-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-bayonne-confluence-quais-et-ponts-scene-2",
+      "index": 2,
+      "title": "Quai Galuperie",
+      "text": "Depuis le quai Galuperie, reste du côté protégé et regarde les maisons de la rive opposée. Leurs étages se superposent au-dessus de parcelles étroites. Cette verticalité donne aux quais de la Nive leur rythme particulier. Les rez-de-chaussée ont changé d’usage au fil du temps, mais l’organisation générale rappelle l’importance de la rivière pour les échanges et le travail urbain.\n\nRegarde ensuite le mur du quai. Il fixe une limite nette entre la rue et un cours d’eau soumis à la marée. À certaines heures, l’eau monte haut contre la maçonnerie ; à d’autres, elle découvre davantage les parties basses. La ville doit donc composer avec un niveau mobile, bien différent d’un canal régulier. Les escaliers, cales et ouvertures anciennes montrent comment on accédait autrefois directement à la Nive.\n\nContinue vers l’aval jusqu’au point où la perspective s’élargit. L’Adour approche, même si la rencontre des eaux reste encore masquée par les ponts et les bâtiments. Au passage, compare le bruit des rues à celui du courant. Le quai est une frontière habitée : assez solide pour porter la ville, assez ouvert pour maintenir un lien visuel constant avec la rivière.",
+      "hash": "7d7399",
+      "chars": 1165,
+      "existingSegments": {
+        "de": "seed-100-bayonne-confluence-quais-et-ponts-scene-2-seg-de",
+        "it": "seed-100-bayonne-confluence-quais-et-ponts-scene-2-seg-it",
+        "en": "seed-100-bayonne-confluence-quais-et-ponts-scene-2-seg-en",
+        "es": "seed-100-bayonne-confluence-quais-et-ponts-scene-2-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-bayonne-confluence-quais-et-ponts-scene-3",
+      "index": 3,
+      "title": "Quai Amiral-Lespes",
+      "text": "Place-toi sur un espace public autorisé offrant une vue vers la rencontre de la Nive et de l’Adour. La première arrive du sud, après avoir traversé le Pays basque intérieur. Le second vient de l’est et poursuit sa course vers l’océan. Leur confluence explique en grande partie la position de Bayonne : un site de circulation, de défense et d’échanges établi autour de deux voies d’eau.\n\nObserve la différence d’échelle. La Nive, étroitement encadrée par les quartiers anciens, rejoint ici un fleuve plus large. Les façades cessent de former un couloir continu ; le ciel et les horizons prennent davantage de place. Ce changement se répercute dans la ville. Le Grand Bayonne et le Petit Bayonne se font face de part et d’autre de la Nive, tandis que Saint-Esprit s’étend au nord de l’Adour.\n\nDirige-toi vers le pont Saint-Esprit par les quais et passages ouverts. Ne cherche pas à t’approcher des zones techniques ou portuaires. Pendant la marche, garde la confluence en mémoire : elle fonctionne comme une charnière naturelle. Le prochain pont franchit le plus large des deux cours d’eau et relie le centre ancien à un quartier longtemps distinct.",
+      "hash": "76f2bb8f",
+      "chars": 1147,
+      "existingSegments": {
+        "es": "seed-100-bayonne-confluence-quais-et-ponts-scene-3-seg-es",
+        "it": "seed-100-bayonne-confluence-quais-et-ponts-scene-3-seg-it",
+        "de": "seed-100-bayonne-confluence-quais-et-ponts-scene-3-seg-de",
+        "en": "seed-100-bayonne-confluence-quais-et-ponts-scene-3-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-bayonne-confluence-quais-et-ponts-scene-4",
+      "index": 4,
+      "title": "Pont Saint-Esprit",
+      "text": "Engage-toi sur le pont Saint-Esprit et arrête-toi seulement à un emplacement où tu restes à l’écart des circulations. Ce franchissement relie le centre de Bayonne au quartier Saint-Esprit. Plusieurs ouvrages se sont succédé ici. Pendant longtemps, le pont fut un passage stratégique sur la route vers le nord et une entrée majeure de la ville.\n\nDepuis l’ouvrage, l’Adour révèle une ampleur que la Nive ne laissait pas deviner. Regarde vers la confluence, puis vers l’amont. Les quais, les lignes ferroviaires et les bâtiments de différentes époques racontent une ville qui s’est développée autour du fleuve sans lui tourner le dos. L’eau demeure soumise aux marées et rappelle la proximité de l’océan, même lorsqu’il reste hors de vue.\n\nPoursuis jusqu’à la rive de Saint-Esprit. La traversée te fait changer de quartier, mais aussi de perspective. Derrière toi, les deux Bayonne anciennes se rassemblent en un seul front urbain. Devant toi, les rues montent vers la citadelle et s’organisent autour de la place de la République. Quelques minutes suffisent pour rejoindre cette dernière halte, juste au-delà du débouché du pont.",
+      "hash": "60acdfb9",
+      "chars": 1127,
+      "existingSegments": {
+        "de": "seed-100-bayonne-confluence-quais-et-ponts-scene-4-seg-de",
+        "es": "seed-100-bayonne-confluence-quais-et-ponts-scene-4-seg-es",
+        "it": "seed-100-bayonne-confluence-quais-et-ponts-scene-4-seg-it",
+        "en": "seed-100-bayonne-confluence-quais-et-ponts-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-bayonne-confluence-quais-et-ponts-scene-5",
+      "index": 5,
+      "title": "Place de la République",
+      "text": "Arrête-toi place de la République et retourne-toi vers le pont. Le quartier Saint-Esprit fut longtemps une commune distincte avant son rattachement à Bayonne au XIXe siècle. Sa situation au nord de l’Adour en faisait un faubourg de passage, marqué par les routes, puis par l’arrivée du chemin de fer. La place et les voies alentour gardent cette fonction d’accueil et de distribution.\n\nDepuis ce côté, le pont Saint-Esprit devient une véritable porte urbaine. Au-delà de l’Adour, tu peux distinguer le centre ancien et parfois les flèches de la cathédrale. Le fleuve ne sépare pas seulement deux rives : il met en scène la silhouette de Bayonne. Repense aux façades serrées de la Nive, au quai Galuperie et à l’ouverture de la confluence. Chaque étape a donné à l’eau une largeur et un rôle différents.\n\nLa promenade s’achève ici, mais son dessin reste simple à retenir : une place civique, un pont sur la Nive, un quai, la rencontre des eaux, puis un pont sur l’Adour. Ce parcours montre que Bayonne n’est pas posée à côté de ses rivières. Elle s’est construite avec elles, par ses passages, ses protections et les quartiers qu’elles relient.",
+      "hash": "f93f69ca",
+      "chars": 1143,
+      "existingSegments": {
+        "it": "seed-100-bayonne-confluence-quais-et-ponts-scene-5-seg-it",
+        "es": "seed-100-bayonne-confluence-quais-et-ponts-scene-5-seg-es",
+        "de": "seed-100-bayonne-confluence-quais-et-ponts-scene-5-seg-de",
+        "en": "seed-100-bayonne-confluence-quais-et-ponts-scene-5-seg-en"
+      }
+    }
+  ]
+}

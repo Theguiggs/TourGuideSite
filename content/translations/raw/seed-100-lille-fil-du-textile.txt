@@ -1,0 +1,479 @@
+@@LANG=en
+@@TITLE=Lille — The Thread of Textiles
+@@DESC=The city's specialty — From medieval cloth to mail order: the city that thread wove, mill after mill.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-0
+@@STITLE=Place Louise-de-Bettignies, devant la maison Gilles-de-la-Boë
+Look up at this façade, on the corner of the square, near the old harbor. Honey-colored stone, brick, basket-handle arches, heavy carved garlands of fruit. A house built in 1636 for a wealthy man, Gilles de la Boë, a merchant of spices and fabrics. A good part of his fortune, he owed to cloth.
+
+Because Lille was born from a thread, and I want to tell you this story from the beginning. In the Middle Ages, the city lived off wool cloth: wool was spun, woven, dyed, and sold across the whole of Europe. Then, at the turn of the 15th century, a stroke of genius. The old heavy cloth was set aside for a new fabric, lighter, finer, cheaper: the "sayette." This "new drapery" made the city's fortune, turning it into one of the continent's great textile centers. Houses like this one are its gilded froth.
+
+Remember this word, thread. It will take us far. From this well-off merchant's façade, we're going to go down, step by step: toward the avenue of the mill owners, then toward the working-class outskirts, all the way to the great brick mills and their rebirth. A single material — wool, then linen, then cotton — and a whole city bound to it.
+
+Leave Vieux-Lille and head south, toward the great straight avenue crossing the center. Follow me to the rue Nationale.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-1
+@@STITLE=Rue Nationale
+Look at this long, dead-straight avenue, its tall, well-off buildings, their stone balconies. In the 19th century, when textiles became industrialized and gold began to flow, it's here, in the center, that the bourgeoisie of thread liked to live and show off their success. The mill owners lived in the beautiful, bright, airy town.
+
+And now it's time to tell you something uncomfortable. This textile fortune has two faces. There's the elegant avenue we're standing on. And there's, just a few streets away, another world — that of the working-class outskirts, where people spun and wove in noise and dust. Two Lilles in the same city, separated by a short distance and a gulf in living conditions.
+
+Don't judge too quickly, though. This textile revolution turned the small cloth-making town into a great industrial metropolis, drawing tens of thousands of people from the countryside looking for work. It built streets, train stations, fortunes. It also crushed lives. Both are true at the same time.
+
+So let's cross over into the other Lille. Continue southwest, cross the old boundary of the ramparts, and enter the most working-class district of the city. Follow me to Wazemmes.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-2
+@@STITLE=Église Saint-Pierre-Saint-Paul de Wazemmes
+In front of you, the large church of Wazemmes, too vast, too tall for a simple neighborhood. It tells a story of explosion. Because Wazemmes wasn't always part of Lille. It was a village, a separate town, with its fields and its linen bleaching yards, which made use of the clear water from the streams.
+
+Then came industry. Within a few decades, the fields were covered with factories and workers' houses. The village swelled with a crowd of weavers and spinners looking for work. In 1858, under Napoleon III, Lille, hemmed in by its ramparts, simply swallowed up Wazemmes and its neighbors: the city grew abruptly, all at once. This immense church was then built for an immense, crowded, poor population.
+
+Look around you today: the neighborhood has kept its working-class soul — mixed, alive, cosmopolitan. The factories have closed, the population has changed, but Wazemmes remains the people's district, the one that works and gets by.
+
+Head down toward the center of the neighborhood, toward the joyful clamor of the market stalls. Just steps away beats the heart of Wazemmes. Follow me to its market.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-3
+@@STITLE=Marché de Wazemmes
+Here's the Wazemmes market, one of the liveliest in the North. A covered hall, stalls spilling out onto the square, vendors calling out, smells from every continent. Take a moment to listen to this din: it's the sound of a neighborhood that has never stopped being working-class.
+
+This market is the direct continuation of the working-class story. When tens of thousands of textile workers were crammed in here, accessible meeting places were needed, close to homes and workshops. The market became one of these great popular gathering points. It still partly carries the name of a former pleasure garden: La Nouvelle Aventure. The people of the textile trade used to meet up there, between two endless factory days.
+
+Today, the mill workers are gone, but the spirit remains. Modest families, students, residents from all over the world cross paths here on Sunday mornings, just as they did back then. People come for a roast chicken, a bunch of flowers, next to nothing, and above all for the atmosphere. A people changes face, not character.
+
+Now, slip into the small streets around here, the ones where those who spun linen used to live. I want to show you where they lived. Follow me.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-4
+@@STITLE=Marché de Wazemmes, mémoire des courées
+Look, in these streets, for a narrow passage between two houses, a porch opening onto a small courtyard lined with tiny dwellings. If you find one, you're standing in front of a "courée" — a courtyard row. This is where the people of the textile trade lived.
+
+Picture it. Around a shared courtyard, without light or air, rows of one- or two-room houses. A single water pump shared by everyone, toilets at the back, shared by several families. People were packed in. Disease spread fast. Factory days lasted twelve hours, sometimes fourteen, and women and children were put to work there too, because a single wage was never enough.
+
+I'm not telling you this to paint a grim picture, but to be fair. The cloth that made the fortunes of the fine avenues was also spun out of this harshness. And yet, in these courtyards, there was an intense kind of life: people lent to each other, watched over each other, shared the soup. It's out of this crowded closeness that a stubborn solidarity was born — the famous warmth of the North, the one you still hear when someone from Lille welcomes you in.
+
+Let's leave the courtyard and finally go see the machine itself, the place of work. Its tall chimney is waving to us. Follow me to the old spinning mill.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-5
+@@STITLE=Maison Folie de Wazemmes, ancienne filature
+Look up at this tall brick chimney. There used to be hundreds like it, planted across the sky of the North — the neighboring towns were nicknamed the "towns of a thousand chimneys." Each one signaled a factory, and most often a spinning mill, the workshop where raw fiber was turned into thread.
+
+Close your eyes and fill in the picture. A huge hall, rows of machines running without pause, a deafening din that made you deaf over time. In the air, a fine dust of linen or cotton breathed in all day long, eating away at the lungs. A damp heat, because linen thread was worked wet. And everywhere, mostly women, and children, bent over the thread that kept breaking and had to be tied back together, again and again.
+
+That's the truth behind this pretty word, spinning. Thread, yes, but wrung out of bodies. The city that thread wove was built in there, spindle after spindle, chimney after chimney.
+
+The thread, though, didn't stop. It changed, it became something else. Stay here a moment, and turn your gaze northeast, toward the sister towns. Follow me in thought, all the way to Roubaix.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-6
+@@STITLE=Maison Folie de Wazemmes, du fil au catalogue
+Stay here, in Wazemmes, but picture the neighboring towns, Roubaix and Tourcoing, a few kilometers to the northeast, linked to Lille by a long avenue and by the tramway. They were the world capitals of wool, bristling with even more spinning mills.
+
+And that's where the thread made an unexpected leap. After the First World War, the textile trade was struggling, wool stocks were piling up. In Roubaix, a family of spinners settled on the rue de la Redoute had an idea to move their goods: sell them by small ad, then by catalogue, mailed out all the way to the countryside. The story goes that this is how mail order — VPC, vente par correspondance — was born, in the 1920s. The brand took the name of its street: La Redoute. Others followed, like Les Trois Suisses.
+
+Take stock of the journey. The very same thread that used to spin amid the noise of the factories turned into a catalogue leafed through by the fireside, then, much later, into pages sold online. The North didn't just spin the fabric: it invented a way to sell it to the whole world.
+
+Now come back toward the tall chimney nearby. It houses the last stage of our story, the finest one. Follow me one last time.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-7
+@@STITLE=Maison Folie de Wazemmes
+Go through the porch. In front of you, a former spinning mill turned into something new: the Maison Folie de Wazemmes. Take in the scale of the place, its brick volumes, its glass roofs, its chimney kept standing like a totem. No one spins linen here anymore. Instead, there's art, exhibitions, concerts, workshops.
+
+Listen to its story, because it's the story of the whole North. The building was first a linen spinning mill, bought in the mid-19th century by a merchant named Leclercq, and run by three generations of his family. Then, as everywhere, came the crisis: the textile trade collapsed, the factory eventually closed, the machines fell silent. It could have been torn down, like so many others.
+
+Instead, the city bought it back and transformed it. In 2004, when Lille was European Capital of Culture, this dead factory reopened its doors, turned into a house for everyone. The place of sweat became a place of celebration. It's this stubbornness, this refusal to let it die, that best defines the North.
+
+Go into the courtyard, sit down for a moment. This is where I want to bring our thread to a close.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-8
+@@STITLE=Cour publique de la Maison Folie de Wazemmes
+Sit in this courtyard, against the warm brick, and let's untangle together the thread we've followed since this morning.
+
+We started at a merchant's gilded façade, in Vieux-Lille, built on wool and sayette. We walked along the avenue of the mill owners, then went down into the working-class outskirts, to the people's market, deep into the airless courtyard rows, under the chimney of a spinning mill where women and children tied the thread back together amid the noise. We saw that same thread become a catalogue, then a screen page. And now here we are, in a factory brought back to life as a house of culture.
+
+A single material, fiber, and a whole city bound to it for eight centuries. The thread made some people's fortunes and broke others' backs. It built palaces and dug out courtyard slums. Then it nearly disappeared entirely — and yet Lille is still here, standing, reinvented.
+
+Maybe that's the true fabric of this city: not linen, not cotton, but this ability to come undone and reweave itself differently, without ever stopping. Look around you at this factory turned celebration: it's the last knot in our thread, and the proudest one.
+
+Next time you put on a shirt, spare a thought for all the hands that, here, held the thread. Thank you for pulling this thread with me all the way to the end. See you soon on the cobblestones of Lille.
+
+@@LANG=es
+@@TITLE=Lille — El hilo del textil
+@@DESC=Especialidad de la ciudad — Del paño medieval a la venta por catálogo: la ciudad que el hilo tejió, hilandería tras hilandería.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-0
+@@STITLE=Place Louise-de-Bettignies, devant la maison Gilles-de-la-Boë
+Levanta la vista hacia esta fachada, en la esquina de la plaza, cerca del antiguo puerto. Piedra dorada, ladrillo, arcos rebajados, pesadas guirnaldas de frutas esculpidas. Una casa construida en 1636 para un hombre rico, Gilles de la Boë, comerciante de especias y de telas. Buena parte de su riqueza se la debe al tejido.
+
+Porque Lille nació de un hilo, y quiero contarte esta historia desde el principio. En la Edad Media, la ciudad vive del paño: se hila la lana, se teje, se tiñe, se vende hasta el otro extremo de Europa. Luego, en el cambio del siglo XV, un giro genial. Se abandona el viejo paño pesado por una tela nueva, más ligera, más fina, más barata: la sayeta. Esta «nueva pañería» hace la fortuna de la ciudad, que se convierte en uno de los grandes centros textiles del continente. Casas como esta son su espuma dorada.
+
+Guarda esta palabra, el hilo. Nos va a llevar lejos. Desde esta fachada acomodada de comerciante, vamos a bajar escalón a escalón: hacia la avenida de los patronos, luego hacia los arrabales obreros, hasta las grandes hilanderías de ladrillo y su renacimiento. Una sola materia, la lana, luego el lino, luego el algodón, y toda una ciudad enganchada a ella.
+
+Sal del Vieux-Lille y baja hacia el sur, en dirección a la gran arteria recta que atraviesa el centro. Sígueme hacia la rue Nationale.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-1
+@@STITLE=Rue Nationale
+Mira esta larga avenida rectilínea, sus edificios altos y acomodados, sus balcones de piedra. En el siglo XIX, cuando el textil se industrializa y hace correr el oro, es aquí, en el centro, donde a la burguesía del hilo le gusta vivir y mostrar su éxito. Los patronos de las hilanderías viven en la ciudad bella, clara y aireada.
+
+Y este es el momento de decirte algo incómodo. Esta fortuna del textil tiene dos caras. Está la avenida elegante donde nos encontramos. Y está, a pocas calles de aquí, otro mundo, el de los arrabales obreros donde se hila y se teje entre el ruido y el polvo. Dos Lilles en la misma ciudad, separadas por una corta distancia y un abismo de condiciones.
+
+No juzgues demasiado rápido, sin embargo. Esta revolución del textil convirtió la pequeña ciudad pañera en una gran metrópolis industrial, atrayendo a decenas de miles de personas venidas del campo en busca de trabajo. Construyó calles, estaciones, riquezas. También trituró vidas. Ambas cosas son ciertas a la vez.
+
+Así que pasemos a la otra Lille. Continúa hacia el suroeste, cruza el antiguo límite de las murallas, y entra en el arrabal más popular de la ciudad. Sígueme hacia Wazemmes.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-2
+@@STITLE=Église Saint-Pierre-Saint-Paul de Wazemmes
+Delante de ti, la gran iglesia de Wazemmes, demasiado vasta, demasiado alta para un simple barrio. Cuenta una historia de explosión. Porque Wazemmes no siempre fue Lille. Era un pueblo, un municipio aparte, con sus campos y sus blanqueadurías de lino, que aprovechaban el agua clara de los arroyos.
+
+Luego llegó la industria. En pocas décadas, los campos se cubren de fábricas y de casas obreras. El pueblo se hincha con una multitud de tejedores y de hilanderos venidos a buscar trabajo. En 1858, bajo Napoleón III, Lille, apretada dentro de sus murallas, se traga sin más a Wazemmes y a sus vecinas: la ciudad se agranda bruscamente, de golpe. Se construye entonces esta iglesia inmensa para un pueblo inmenso, hacinado y pobre.
+
+Mira a tu alrededor hoy: el barrio ha conservado su alma popular, mezclada, viva, cosmopolita. Las fábricas han cerrado, las poblaciones han cambiado, pero Wazemmes sigue siendo el arrabal del pueblo, el que trabaja y se las arregla.
+
+Baja hacia el centro del barrio, hacia el bullicio alegre de los puestos. A dos pasos late el corazón de Wazemmes. Sígueme hacia su mercado.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-3
+@@STITLE=Marché de Wazemmes
+Aquí está el mercado de Wazemmes, uno de los más vivos del Norte. Nave cubierta, puestos que se desbordan hacia la plaza, gritos de los vendedores, olores de todos los continentes. Tómate el tiempo de escuchar este bullicio: es el sonido de un barrio que nunca ha dejado de ser popular.
+
+Este mercado es la prolongación directa de la historia obrera. Cuando decenas de miles de trabajadores del textil se hacinaban aquí, hacían falta lugares de intercambio accesibles, cercanos a las viviendas y a los talleres. El mercado se convirtió en uno de esos grandes puntos de encuentro popular. Todavía lleva, en parte, el nombre de un antiguo jardín de recreo: la Nouvelle Aventure. El pueblo del textil venía a encontrarse allí, entre dos jornadas sin fin en la fábrica.
+
+Hoy, los obreros de las hilanderías han desaparecido, pero el espíritu sigue ahí. Familias modestas, estudiantes, habitantes venidos de todo el mundo se cruzan aquí los domingos por la mañana, como antaño. Se viene a por un pollo asado, un ramo de flores, casi nada, y sobre todo por el ambiente. Un pueblo cambia de rostro, no de carácter.
+
+Ahora, deslízate por las callejuelas de alrededor, aquellas donde vivían los que hilaban el lino. Quiero mostrarte dónde vivían. Sígueme.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-4
+@@STITLE=Marché de Wazemmes, mémoire des courées
+Busca, en estas calles, un pasaje estrecho entre dos casas, un porche que se abre a un pequeño patio bordeado de viviendas minúsculas. Si encuentras uno, tienes delante de ti una «courée». Ahí es donde vivía el pueblo del textil.
+
+Imagina. Alrededor de un patio común, sin luz ni aire, hileras de casas de una o dos habitaciones. Una bomba de agua compartida por todos, retretes al fondo, para varias familias. Se hacinaban. La enfermedad corría. Las jornadas en la fábrica duraban doce horas, catorce a veces, y se veía trabajar allí a mujeres y niños, porque un solo salario nunca bastaba.
+
+No te cuento esto para ennegrecer el cuadro, sino para ser justo. El tejido que hizo la fortuna de las bellas avenidas también se hiló en esta dureza. Y sin embargo, en estos patios, una vida intensa: se prestaban cosas, se velaban unos a otros, se compartía la sopa. De esta proximidad nació una solidaridad tenaz, la famosa calidez del Norte, esa que todavía se nota cuando un habitante de Lille te da la bienvenida.
+
+Salgamos del patio y vayamos por fin a ver la máquina misma, el lugar de trabajo. Su alta chimenea nos hace señas. Sígueme hacia la antigua hilandería.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-5
+@@STITLE=Maison Folie de Wazemmes, ancienne filature
+Levanta la cabeza hacia esta alta chimenea de ladrillo. Había cientos como ella, plantadas en el cielo del Norte —a las ciudades vecinas se las apodó las «ciudades de las mil chimeneas». Cada una señalaba una fábrica, y la mayoría de las veces una hilandería, el taller donde se transforma la fibra bruta en hilo.
+
+Cierra los ojos y llena el cuadro. Una sala inmensa, hileras de máquinas que giran sin descanso, un estruendo ensordecedor que a la larga deja sordo. En el aire, un polvo fino de lino o de algodón que se respira todo el día y que corroe los pulmones. Un calor húmedo, porque el hilo de lino se trabajaba mojado. Y por todas partes, sobre todo mujeres, y niños, inclinados sobre el hilo que se rompe y que hay que reanudar, una y otra vez.
+
+Ahí está la verdad de esta palabra bonita, hilandería. Hilo, sí, pero arrancado a los cuerpos. La ciudad que el hilo tejió se construyó ahí dentro, vuelta tras vuelta, chimenea tras chimenea.
+
+El hilo, sin embargo, no se detuvo. Mutó, se convirtió en otra cosa. Quédate aquí un instante, y vuelve la mirada hacia el noreste, hacia las ciudades hermanas. Sígueme con el pensamiento hasta Roubaix.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-6
+@@STITLE=Maison Folie de Wazemmes, du fil au catalogue
+Quédate aquí, en Wazemmes, pero imagina las ciudades vecinas, Roubaix y Tourcoing, a pocos kilómetros al noreste, conectadas con Lille por una larga avenida y por el tranvía. Eran las capitales mundiales de la lana, erizadas de hilanderías todavía más numerosas.
+
+Y ahí es donde el hilo dio un salto inesperado. Después de la Primera Guerra Mundial, el textil va mal, las existencias de lana se acumulan. En Roubaix, una familia de hilanderos instalada en la rue de la Redoute tiene una idea para dar salida a su mercancía: venderla por anuncio, luego por catálogo, enviado por correo hasta el campo. Se cuenta que así nació, en los años 1920, la venta por correspondencia. La marca tomó el nombre de su calle: La Redoute. Otras la siguieron, como Les Trois Suisses.
+
+Mide el camino recorrido. El mismo hilo que se hilaba entre el ruido de las fábricas se transformó en un catálogo que se hojea junto al fuego, y luego, mucho más tarde, en páginas de venta en internet. El Norte no solo hiló el tejido: inventó una manera de venderlo al mundo entero.
+
+Vuelve ahora hacia la gran chimenea vecina. Alberga la última etapa de nuestra historia, la más hermosa. Sígueme una última vez.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-7
+@@STITLE=Maison Folie de Wazemmes
+Cruza el porche. Delante de ti, una antigua hilandería reconvertida: la Maison Folie de Wazemmes. Toma la medida del lugar, sus volúmenes de ladrillo, sus techos acristalados, su chimenea conservada como un tótem. Aquí ya no se hila el lino. Se hace arte, exposiciones, conciertos, talleres.
+
+Escucha su historia, porque es la de todo el Norte. El edificio fue primero una hilandería de lino, comprada a mediados del siglo XIX por un comerciante llamado Leclercq, gestionada durante tres generaciones por su familia. Luego, como en todas partes, la crisis: el textil se derrumba, la fábrica termina cerrando, las máquinas enmudecen. Podría haber sido derribada, como tantas otras.
+
+En lugar de eso, la ciudad la recompró y la transformó. En 2004, cuando Lille fue Capital Europea de la Cultura, esta fábrica muerta reabrió sus puertas, convertida en una casa para todos. El lugar del sudor se convirtió en un lugar de fiesta. Es esa obstinación, esa negativa a dejarla morir, la que mejor define al Norte.
+
+Entra en el patio, siéntate un instante. Ahí es donde quiero concluir nuestro hilo.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-8
+@@STITLE=Cour publique de la Maison Folie de Wazemmes
+Siéntate en este patio, contra el ladrillo tibio, y deshagamos juntos el hilo que hemos seguido desde esta mañana.
+
+Partimos de una fachada dorada de comerciante, en el Vieux-Lille, construida sobre la lana y la sayeta. Bordeamos la avenida de los patronos, luego bajamos a los arrabales obreros, al mercado del pueblo, al fondo de las courées sin aire, bajo la chimenea de una hilandería donde mujeres y niños reanudaban el hilo entre el ruido. Vimos ese mismo hilo convertirse en catálogo, luego en página de pantalla. Y henos aquí, en una fábrica resucitada como casa de cultura.
+
+Una sola materia, la fibra, y toda una ciudad enganchada a ella durante ocho siglos. El hilo hizo la fortuna de unos y quebró la espalda de otros. Construyó palacios y excavó courées. Luego desapareció casi por completo —y sin embargo Lille sigue ahí, en pie, reinventada.
+
+Puede que ese sea el verdadero tejido de esta ciudad: no el lino, no el algodón, sino esta capacidad de deshacerse y de volver a tejerse de otra manera, sin detenerse jamás. Mira a tu alrededor esta fábrica convertida en fiesta: es el último nudo de nuestro hilo, y el más orgulloso.
+
+La próxima vez que te pongas una camisa, ten un pensamiento para todas las manos que, aquí, sostuvieron el hilo. Gracias por tirar de este hilo conmigo hasta el final. Hasta pronto en los adoquines de Lille.
+
+@@LANG=de
+@@TITLE=Lille — Der Faden der Textilindustrie
+@@DESC=Die Spezialität der Stadt — Vom mittelalterlichen Tuch zum Versandhandel: die Stadt, die der Faden gewoben hat, Spinnerei für Spinnerei.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-0
+@@STITLE=Place Louise-de-Bettignies, devant la maison Gilles-de-la-Boë
+Blick hoch zu dieser Fassade, an der Ecke des Platzes, nahe dem alten Hafen. Honigfarbener Stein, Ziegel, Korbbogenarkaden, schwere geschnitzte Fruchtgirlanden. Ein Haus, erbaut 1636 für einen reichen Mann, Gilles de la Boë, Gewürz- und Stoffhändler. Einen guten Teil seines Reichtums verdankt er dem Tuch.
+
+Denn Lille wurde aus einem Faden geboren, und ich möchte dir diese Geschichte von Anfang an erzählen. Im Mittelalter lebt die Stadt vom Tuch: Man spinnt Wolle, webt sie, färbt sie, verkauft sie bis ans andere Ende Europas. Dann, an der Wende zum 15. Jahrhundert, eine geniale Wende. Man verlässt das alte, schwere Tuch für einen neuen Stoff, leichter, feiner, billiger: die Sayette. Diese „neue Tuchmacherei" macht das Vermögen der Stadt aus, die zu einem der großen Textilzentren des Kontinents wird. Häuser wie dieses sind ihr goldener Schaum.
+
+Behalte dieses Wort, den Faden. Er wird uns weit führen. Von dieser wohlhabenden Kaufmannsfassade werden wir Stufe für Stufe hinabsteigen: zur Allee der Fabrikherren, dann zu den Arbeitervierteln, bis zu den großen Ziegelspinnereien und ihrer Wiedergeburt. Ein einziger Stoff — Wolle, dann Leinen, dann Baumwolle — und eine ganze Stadt an ihn gebunden.
+
+Verlass das Vieux-Lille und geh nach Süden, Richtung der großen geraden Achse, die das Zentrum durchquert. Folge mir zur rue Nationale.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-1
+@@STITLE=Rue Nationale
+Schau dir diese lange, schnurgerade Allee an, ihre hohen, wohlhabenden Gebäude, ihre steinernen Balkone. Im 19. Jahrhundert, als sich die Textilindustrie industrialisiert und das Gold fließen lässt, ist es hier, im Zentrum, wo das Bürgertum des Fadens gerne lebt und seinen Erfolg zur Schau stellt. Die Fabrikherren der Spinnereien wohnen in der schönen, hellen, luftigen Stadt.
+
+Und jetzt ist es an der Zeit, dir etwas Unangenehmes zu sagen. Dieses Textilvermögen hat zwei Gesichter. Da ist die elegante Allee, auf der wir stehen. Und da ist, nur ein paar Straßen weiter, eine andere Welt, die der Arbeiterviertel, wo man im Lärm und im Staub spinnt und webt. Zwei Lilles in derselben Stadt, getrennt durch eine kurze Distanz und einen Abgrund an Lebensbedingungen.
+
+Urteile trotzdem nicht zu schnell. Diese Textilrevolution machte aus der kleinen Tuchmacherstadt eine große Industriemetropole, die Zehntausende Menschen vom Land anzog, auf der Suche nach Arbeit. Sie baute Straßen, Bahnhöfe, Reichtümer. Sie zermalmte auch Leben. Beides ist gleichzeitig wahr.
+
+Wechseln wir also in das andere Lille. Geh weiter nach Südwesten, überquere die alte Grenze der Stadtmauern, und betritt das volkstümlichste Viertel der Stadt. Folge mir nach Wazemmes.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-2
+@@STITLE=Église Saint-Pierre-Saint-Paul de Wazemmes
+Vor dir die große Kirche von Wazemmes, zu weitläufig, zu hoch für ein einfaches Viertel. Sie erzählt eine Geschichte der Explosion. Denn Wazemmes war nicht immer Teil von Lille. Es war ein Dorf, eine eigenständige Gemeinde, mit seinen Feldern und seinen Leinenbleichereien, die das klare Wasser der Bäche nutzten.
+
+Dann kam die Industrie. Innerhalb weniger Jahrzehnte bedecken sich die Felder mit Fabriken und Arbeiterhäusern. Das Dorf schwillt an mit einer Menge von Webern und Spinnern, die Arbeit suchen. 1858, unter Napoleon III., schluckt Lille, beengt innerhalb seiner Stadtmauern, kurzerhand Wazemmes und seine Nachbarn: die Stadt vergrößert sich schlagartig, auf einen Schlag. Man baut daraufhin diese riesige Kirche für ein riesiges, zusammengepferchtes, armes Volk.
+
+Schau dich heute um: das Viertel hat seine volkstümliche Seele bewahrt, gemischt, lebendig, kosmopolitisch. Die Fabriken haben geschlossen, die Bevölkerung hat sich verändert, aber Wazemmes bleibt das Viertel des Volkes, das arbeitet und sich durchschlägt.
+
+Geh hinunter zum Zentrum des Viertels, zum fröhlichen Getöse der Marktstände. Nur wenige Schritte entfernt schlägt das Herz von Wazemmes. Folge mir zu seinem Markt.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-3
+@@STITLE=Marché de Wazemmes
+Da ist der Markt von Wazemmes, einer der lebendigsten im Norden. Überdachte Halle, Stände, die auf den Platz überschwappen, Rufe der Händler, Gerüche von allen Kontinenten. Nimm dir die Zeit, diesem Stimmengewirr zuzuhören: es ist der Klang eines Viertels, das nie aufgehört hat, volkstümlich zu sein.
+
+Dieser Markt ist die unmittelbare Fortsetzung der Arbeitergeschichte. Als sich hier Zehntausende Textilarbeiter drängten, brauchte es zugängliche Handelsplätze, in der Nähe der Wohnungen und Werkstätten. Der Markt wurde zu einem dieser großen volkstümlichen Treffpunkte. Er trägt noch heute, teilweise, den Namen eines ehemaligen Vergnügungsgartens: die Nouvelle Aventure. Das Volk der Textilarbeit kam hierher, zwischen zwei endlosen Fabriktagen.
+
+Heute sind die Spinnereiarbeiter verschwunden, aber der Geist ist noch da. Bescheidene Familien, Studenten, Bewohner aus aller Welt kreuzen sich hier am Sonntagmorgen, wie einst. Man kommt für ein gebratenes Hähnchen, einen Blumenstrauß, für fast nichts, und vor allem für die Atmosphäre. Ein Volk wechselt sein Gesicht, nicht seinen Charakter.
+
+Schlüpf jetzt in die kleinen Straßen ringsum, jene, in denen die Leinenspinner wohnten. Ich möchte dir zeigen, wo man lebte. Folge mir.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-4
+@@STITLE=Marché de Wazemmes, mémoire des courées
+Such in diesen Straßen nach einem schmalen Durchgang zwischen zwei Häusern, einem Torbogen, der sich zu einem kleinen Hof öffnet, gesäumt von winzigen Wohnungen. Wenn du einen findest, hast du eine „courée" vor dir. Dort lebte das Volk der Textilarbeit.
+
+Stell es dir vor. Rund um einen gemeinsamen Hof, ohne Licht oder Luft, Reihen von Ein- oder Zweizimmerhäusern. Eine Wasserpumpe, die von allen geteilt wird, Toiletten im Hintergrund, für mehrere Familien. Man drängte sich zusammen. Krankheit verbreitete sich schnell. Die Fabriktage dauerten zwölf Stunden, manchmal vierzehn, und man sah dort Frauen und Kinder arbeiten, weil ein einziger Lohn nie ausreichte.
+
+Ich erzähle dir das nicht, um das Bild zu schwärzen, sondern um gerecht zu sein. Der Stoff, der das Vermögen der schönen Alleen begründete, wurde auch in dieser Härte gesponnen. Und doch, in diesen Höfen, ein intensives Leben: man lieh sich Dinge, wachte übereinander, teilte die Suppe. Aus dieser Enge entstand eine hartnäckige Solidarität, die berühmte Wärme des Nordens, jene, die noch spürbar ist, wenn dich jemand aus Lille willkommen heißt.
+
+Verlassen wir den Hof und gehen wir endlich, die Maschine selbst zu sehen, den Ort der Arbeit. Ihr hoher Schornstein winkt uns zu. Folge mir zur alten Spinnerei.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-5
+@@STITLE=Maison Folie de Wazemmes, ancienne filature
+Heb den Kopf zu diesem hohen Backsteinschornstein. Es gab hunderte wie ihn, gepflanzt in den Himmel des Nordens — man nannte die benachbarten Städte die „Städte der tausend Schornsteine". Jeder zeigte eine Fabrik an, und meistens eine Spinnerei, die Werkstatt, in der die Rohfaser zu Faden wird.
+
+Schließ die Augen und fülle das Bild. Ein riesiger Saal, Reihen von Maschinen, die pausenlos laufen, ein ohrenbetäubender Lärm, der auf Dauer taub macht. In der Luft ein feiner Staub aus Leinen oder Baumwolle, den man den ganzen Tag einatmet und der die Lungen zerfrisst. Eine feuchte Hitze, denn der Leinenfaden wurde nass verarbeitet. Und überall, vor allem Frauen, und Kinder, gebeugt über den Faden, der reißt und den man immer wieder neu verknoten muss.
+
+Das ist die Wahrheit hinter diesem hübschen Wort, Spinnerei. Faden, ja, aber Körpern abgerungen. Die Stadt, die der Faden gewoben hat, wurde dort drinnen erbaut, Umdrehung für Umdrehung, Schornstein für Schornstein.
+
+Der Faden aber hielt nicht an. Er wandelte sich, wurde zu etwas anderem. Bleib hier noch einen Moment, und wende deinen Blick nach Nordosten, zu den Schwesterstädten. Folge mir in Gedanken bis nach Roubaix.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-6
+@@STITLE=Maison Folie de Wazemmes, du fil au catalogue
+Bleib hier, in Wazemmes, aber stell dir die Nachbarstädte vor, Roubaix und Tourcoing, wenige Kilometer nordöstlich, mit Lille durch eine lange Allee und durch die Straßenbahn verbunden. Sie waren die Weltmetropolen der Wolle, gespickt mit noch mehr Spinnereien.
+
+Und genau dort machte der Faden einen unerwarteten Sprung. Nach dem Ersten Weltkrieg geht es der Textilbranche schlecht, die Wollvorräte häufen sich an. In Roubaix hat eine Spinnerfamilie, in der rue de la Redoute ansässig, eine Idee, um ihre Ware loszuwerden: sie per Kleinanzeige zu verkaufen, dann per Katalog, bis aufs Land per Post versandt. Man erzählt sich, dass so, in den 1920er Jahren, der Versandhandel entstand. Die Marke übernahm den Namen ihrer Straße: La Redoute. Andere folgten, wie Les Trois Suisses.
+
+Miss den zurückgelegten Weg. Derselbe Faden, der im Lärm der Fabriken gesponnen wurde, verwandelte sich in einen Katalog, den man am Kamin durchblättert, dann, viel später, in Verkaufsseiten im Internet. Der Norden hat nicht nur den Stoff gesponnen: er hat eine Art erfunden, ihn der ganzen Welt zu verkaufen.
+
+Komm nun zurück zu dem großen benachbarten Schornstein. Er beherbergt die letzte Etappe unserer Geschichte, die schönste. Folge mir ein letztes Mal.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-7
+@@STITLE=Maison Folie de Wazemmes
+Durchquere den Torbogen. Vor dir eine ehemalige Spinnerei, umgewandelt: die Maison Folie de Wazemmes. Nimm das Maß des Ortes, seine Backsteinvolumen, seine Glasdächer, seinen Schornstein, erhalten wie ein Totem. Hier wird kein Leinen mehr gesponnen. Hier macht man Kunst, Ausstellungen, Konzerte, Workshops.
+
+Hör dir seine Geschichte an, denn sie ist die des ganzen Nordens. Das Gebäude war zunächst eine Leinenspinnerei, Mitte des 19. Jahrhunderts von einem Händler namens Leclercq gekauft, von drei Generationen seiner Familie geführt. Dann, wie überall, die Krise: die Textilindustrie bricht zusammen, die Fabrik schließt schließlich, die Maschinen verstummen. Sie hätte abgerissen werden können, wie so viele andere.
+
+Stattdessen kaufte die Stadt sie zurück und verwandelte sie. 2004, als Lille Kulturhauptstadt Europas war, öffnete diese tote Fabrik wieder ihre Türen, geworden zu einem Haus für alle. Der Ort des Schweißes wurde zu einem Ort des Feierns. Es ist diese Hartnäckigkeit, diese Weigerung, sie sterben zu lassen, die den Norden am besten definiert.
+
+Geh in den Hof, setz dich einen Moment. Dort möchte ich unseren Faden zu Ende führen.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-8
+@@STITLE=Cour publique de la Maison Folie de Wazemmes
+Setz dich in diesen Hof, an den warmen Backstein gelehnt, und lass uns gemeinsam den Faden entwirren, dem wir seit heute Morgen gefolgt sind.
+
+Wir sind von einer goldenen Kaufmannsfassade aufgebrochen, im Vieux-Lille, erbaut auf Wolle und Sayette. Wir sind die Allee der Fabrikherren entlanggegangen, dann hinabgestiegen in die Arbeiterviertel, zum Markt des Volkes, bis in die luftlosen courées, unter den Schornstein einer Spinnerei, wo Frauen und Kinder den Faden im Lärm neu verknoteten. Wir haben gesehen, wie derselbe Faden zu einem Katalog wurde, dann zu einer Bildschirmseite. Und nun stehen wir in einer Fabrik, wiederauferstanden als Haus der Kultur.
+
+Ein einziger Stoff, die Faser, und eine ganze Stadt, acht Jahrhunderte lang an ihn gebunden. Der Faden machte das Vermögen der einen und brach den Rücken der anderen. Er baute Paläste und grub courées. Dann verschwand er fast vollständig — und dennoch ist Lille immer noch da, aufrecht, neu erfunden.
+
+Vielleicht ist das der wahre Stoff dieser Stadt: nicht Leinen, nicht Baumwolle, sondern diese Fähigkeit, sich aufzulösen und sich anders neu zu weben, ohne jemals aufzuhören. Schau dich um in dieser Fabrik, geworden zum Fest: das ist der letzte Knoten unseres Fadens, und der stolzeste.
+
+Wenn du das nächste Mal ein Hemd anziehst, denk an all die Hände, die hier den Faden gehalten haben. Danke, dass du diesen Faden mit mir bis zum Ende gezogen hast. Bis bald auf dem Pflaster von Lille.
+
+@@LANG=it
+@@TITLE=Lille — Il filo del tessile
+@@DESC=La specialità della città — Dal panno medievale alla vendita per corrispondenza: la città che il filo ha tessuto, filatura dopo filatura.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-0
+@@STITLE=Place Louise-de-Bettignies, devant la maison Gilles-de-la-Boë
+Alza lo sguardo verso questa facciata, all'angolo della piazza, vicino all'antico porto. Pietra dorata, mattoni, archi a sesto ribassato, pesanti ghirlande di frutta scolpite. Una casa costruita nel 1636 per un uomo ricco, Gilles de la Boë, mercante di spezie e di stoffe. Buona parte della sua ricchezza la deve al tessuto.
+
+Perché Lille è nata da un filo, e voglio raccontarti questa storia dall'inizio. Nel Medioevo, la città vive del panno: si fila la lana, si tesse, si tinge, si vende fino all'altro capo d'Europa. Poi, alla svolta del XV secolo, una svolta geniale. Si abbandona il vecchio panno pesante per un tessuto nuovo, più leggero, più fine, più economico: la sagetta. Questa «nuova drapperia» fa la fortuna della città, che diventa uno dei grandi centri tessili del continente. Case come questa ne sono la spuma dorata.
+
+Ricorda questa parola, il filo. Ci porterà lontano. Da questa facciata agiata di un mercante, scenderemo gradino dopo gradino: verso il viale dei padroni, poi verso i sobborghi operai, fino alle grandi filature di mattoni e alla loro rinascita. Un'unica materia, la lana, poi il lino, poi il cotone, e un'intera città legata a essa.
+
+Lascia il Vieux-Lille e scendi verso sud, in direzione della grande arteria diritta che attraversa il centro. Seguimi verso la rue Nationale.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-1
+@@STITLE=Rue Nationale
+Guarda questo lungo viale rettilineo, i suoi palazzi alti e agiati, i loro balconi di pietra. Nel XIX secolo, quando il tessile si industrializza e fa scorrere l'oro, è qui, nel centro, che la borghesia del filo ama vivere e mostrare il proprio successo. I padroni delle filature abitano nella città bella, chiara e arieggiata.
+
+Ed è il momento di dirti una cosa scomoda. Questa fortuna del tessile ha due facce. C'è il viale elegante dove ci troviamo. E c'è, a poche vie da qui, un altro mondo, quello dei sobborghi operai dove si fila e si tesse nel rumore e nella polvere. Due Lille nella stessa città, separate da una breve distanza e da un abisso di condizioni.
+
+Non giudicare troppo in fretta, però. Questa rivoluzione del tessile ha trasformato la piccola città pannaia in una grande metropoli industriale, attirando decine di migliaia di persone venute dalle campagne in cerca di lavoro. Ha costruito strade, stazioni, ricchezze. Ha anche stritolato vite. Entrambe le cose sono vere allo stesso tempo.
+
+Allora passiamo all'altra Lille. Continua verso sud-ovest, attraversa l'antico limite delle mura, ed entra nel sobborgo più popolare della città. Seguimi verso Wazemmes.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-2
+@@STITLE=Église Saint-Pierre-Saint-Paul de Wazemmes
+Davanti a te, la grande chiesa di Wazemmes, troppo vasta, troppo alta per un semplice quartiere. Racconta una storia di esplosione. Perché Wazemmes non è sempre stata Lille. Era un villaggio, un comune a parte, con i suoi campi e le sue candeggerie di lino, che sfruttavano l'acqua limpida dei ruscelli.
+
+Poi arrivò l'industria. In pochi decenni, i campi si coprono di fabbriche e di case operaie. Il villaggio si gonfia di una folla di tessitori e filatori venuti in cerca di lavoro. Nel 1858, sotto Napoleone III, Lille, stretta nelle sue mura, ingoia semplicemente Wazemmes e i suoi vicini: la città si allarga bruscamente, in un colpo solo. Si costruisce allora questa chiesa immensa per un popolo immenso, ammassato e povero.
+
+Guardati intorno oggi: il quartiere ha conservato la sua anima popolare, mescolata, viva, cosmopolita. Le fabbriche hanno chiuso, le popolazioni sono cambiate, ma Wazemmes resta il sobborgo del popolo, quello che lavora e si arrangia.
+
+Scendi verso il centro del quartiere, verso il chiasso gioioso delle bancarelle. A due passi batte il cuore di Wazemmes. Seguimi verso il suo mercato.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-3
+@@STITLE=Marché de Wazemmes
+Ecco il mercato di Wazemmes, uno dei più vivaci del Nord. Mercato coperto, bancarelle che traboccano sulla piazza, grida dei venditori, odori di tutti i continenti. Prenditi il tempo di ascoltare questo brusio: è il suono di un quartiere che non ha mai smesso di essere popolare.
+
+Questo mercato è la prosecuzione diretta della storia operaia. Quando decine di migliaia di lavoratori del tessile si ammassavano qui, servivano luoghi di scambio accessibili, vicini alle abitazioni e alle officine. Il mercato è diventato uno di questi grandi ritrovi popolari. Porta ancora, in parte, il nome di un antico giardino di piacere: la Nouvelle Aventure. Il popolo del tessile veniva a ritrovarsi lì, tra due giornate di fabbrica senza fine.
+
+Oggi, gli operai delle filature sono scomparsi, ma lo spirito è là. Famiglie modeste, studenti, abitanti venuti da tutto il mondo si incrociano qui la domenica mattina, come un tempo. Si viene per un pollo arrosto, un mazzo di fiori, quasi niente, e soprattutto per l'atmosfera. Un popolo cambia volto, non carattere.
+
+Ora, infilati nelle stradine intorno, quelle dove abitavano coloro che filavano il lino. Voglio mostrarti dove si viveva. Seguimi.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-4
+@@STITLE=Marché de Wazemmes, mémoire des courées
+Cerca, in queste strade, uno stretto passaggio tra due case, un portico che si apre su un piccolo cortile fiancheggiato da abitazioni minuscole. Se ne trovi uno, hai davanti a te una «courée». È lì che viveva il popolo del tessile.
+
+Immagina. Intorno a un cortile comune, senza luce né aria, file di case di una o due stanze. Una pompa d'acqua condivisa da tutti, gabinetti in fondo, per più famiglie. Ci si ammassava. La malattia correva. Le giornate in fabbrica duravano dodici ore, a volte quattordici, e vi si vedevano lavorare donne e bambini, perché un solo salario non bastava mai.
+
+Non ti racconto questo per annerire il quadro, ma per essere giusto. Il tessuto che ha fatto la fortuna dei bei viali si è anche filato in questa durezza. Eppure, in questi cortili, una vita intensa: ci si prestava le cose, ci si vegliava, si condivideva la zuppa. È da questa promiscuità che è nata una solidarietà tenace, la famosa calore del Nord, quella che si sente ancora quando un abitante di Lille ti accoglie.
+
+Usciamo dal cortile e andiamo finalmente a vedere la macchina stessa, il luogo di lavoro. Il suo alto camino ci fa cenno. Seguimi verso l'antica filatura.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-5
+@@STITLE=Maison Folie de Wazemmes, ancienne filature
+Alza la testa verso questo alto camino di mattoni. Ce n'erano centinaia come lui, piantati nel cielo del Nord — le città vicine sono state soprannominate le «città dai mille camini». Ognuno segnalava una fabbrica, e più spesso una filatura, l'officina dove la fibra grezza si trasforma in filo.
+
+Chiudi gli occhi e riempi il quadro. Una sala immensa, file di macchine che girano senza sosta, un frastuono assordante che alla lunga rende sordi. Nell'aria, una polvere fine di lino o di cotone che si respira tutto il giorno e che corrode i polmoni. Un calore umido, perché il filo di lino si lavorava bagnato. E ovunque, soprattutto donne, e bambini, chini sul filo che si rompe e che bisogna riannodare, ancora e ancora.
+
+Ecco la verità di questa bella parola, filatura. Filo, sì, ma strappato ai corpi. La città che il filo ha tessuto si è costruita lì dentro, giro dopo giro, camino dopo camino.
+
+Il filo, però, non si è fermato. È mutato, è diventato altro. Resta qui un istante, e volgi lo sguardo verso nord-est, verso le città sorelle. Seguimi con il pensiero fino a Roubaix.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-6
+@@STITLE=Maison Folie de Wazemmes, du fil au catalogue
+Resta qui, a Wazemmes, ma immagina le città vicine, Roubaix e Tourcoing, a pochi chilometri a nord-est, collegate a Lille da un lungo viale e dal tram. Erano le capitali mondiali della lana, irte di filature ancora più numerose.
+
+Ed è lì che il filo ha fatto un balzo inatteso. Dopo la Prima guerra mondiale, il tessile va male, le scorte di lana si accumulano. A Roubaix, una famiglia di filatori insediata in rue de la Redoute ha un'idea per smaltire la propria merce: venderla tramite piccoli annunci, poi tramite catalogo, spedito per posta fino alle campagne. Si racconta che sia nata così, negli anni '20, la vendita per corrispondenza. Il marchio prese il nome della sua via: La Redoute. Altri seguirono, come Les Trois Suisses.
+
+Misura il cammino percorso. Lo stesso filo che si filava nel rumore delle fabbriche si è trasformato in un catalogo che si sfoglia accanto al fuoco, e poi, molto più tardi, in pagine di vendita su internet. Il Nord non ha solo filato il tessuto: ha inventato un modo di venderlo al mondo intero.
+
+Torna ora verso il grande camino vicino. Ospita l'ultima tappa della nostra storia, la più bella. Seguimi un'ultima volta.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-7
+@@STITLE=Maison Folie de Wazemmes
+Attraversa il portico. Davanti a te, un'antica filatura riconvertita: la Maison Folie de Wazemmes. Prendi la misura del luogo, i suoi volumi di mattoni, le sue vetrate, il suo camino conservato come un totem. Qui non si fila più il lino. Ci si fa arte, mostre, concerti, laboratori.
+
+Ascolta la sua storia, perché è quella di tutto il Nord. L'edificio fu prima una filatura di lino, comprata a metà del XIX secolo da un commerciante di nome Leclercq, gestita per tre generazioni dalla sua famiglia. Poi, come ovunque, la crisi: il tessile crolla, la fabbrica finisce per chiudere, le macchine tacciono. Avrebbe potuto essere rasa al suolo, come tante altre.
+
+Invece, la città l'ha riacquistata e trasformata. Nel 2004, quando Lille fu Capitale europea della cultura, questa fabbrica morta riaprì le sue porte, diventata una casa per tutti. Il luogo del sudore divenne un luogo di festa. È questa ostinazione, questo rifiuto di lasciarla morire, che meglio definisce il Nord.
+
+Entra nel cortile, siediti un istante. È lì che voglio concludere il nostro filo.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-8
+@@STITLE=Cour publique de la Maison Folie de Wazemmes
+Siediti in questo cortile, contro il mattone tiepido, e sciogliamo insieme il filo che abbiamo seguito da stamattina.
+
+Siamo partiti da una facciata dorata di mercante, nel Vieux-Lille, costruita sulla lana e la sagetta. Abbiamo costeggiato il viale dei padroni, poi siamo scesi nei sobborghi operai, al mercato del popolo, in fondo alle courées senz'aria, sotto il camino di una filatura dove donne e bambini riannodavano il filo nel rumore. Abbiamo visto quello stesso filo diventare catalogo, poi pagina di schermo. Ed eccoci qui, in una fabbrica risorta come casa di cultura.
+
+Un'unica materia, la fibra, e un'intera città legata ad essa per otto secoli. Il filo ha fatto la fortuna degli uni e spezzato la schiena degli altri. Ha costruito palazzi e scavato courées. Poi è quasi del tutto scomparso — eppure Lille è ancora lì, in piedi, reinventata.
+
+Forse è questo il vero tessuto di questa città: non il lino, non il cotone, ma questa capacità di disfarsi e di ritessersi diversamente, senza mai fermarsi. Guarda intorno a te questa fabbrica diventata festa: è l'ultimo nodo del nostro filo, e il più fiero.
+
+La prossima volta che indosserai una camicia, pensa a tutte le mani che, qui, hanno tenuto il filo. Grazie per aver tirato questo filo con me fino alla fine. A presto sui ciottoli di Lille.
+
+@@LANG=nl
+@@TITLE=Lille — De draad van het textiel
+@@DESC=De specialiteit van de stad — Van middeleeuws laken tot postorderverkoop: de stad die de draad heeft geweven, spinnerij na spinnerij.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-0
+@@STITLE=Place Louise-de-Bettignies, devant la maison Gilles-de-la-Boë
+Kijk omhoog naar deze gevel, op de hoek van het plein, vlakbij de oude haven. Okerkleurige steen, baksteen, korfbogen, zware gebeeldhouwde vruchtenslingers. Een huis gebouwd in 1636 voor een rijke man, Gilles de la Boë, handelaar in specerijen en stoffen. Een groot deel van zijn rijkdom dankt hij aan textiel.
+
+Want Lille is geboren uit een draad, en ik wil je dit verhaal vanaf het begin vertellen. In de middeleeuwen leeft de stad van het laken: men spint wol, weeft het, verft het, verkoopt het tot aan het andere eind van Europa. Dan, aan het begin van de 15e eeuw, een geniale wending. Men verlaat het oude zware laken voor een nieuwe stof, lichter, fijner, goedkoper: de saai. Deze "nieuwe drapering" maakt het fortuin van de stad, die uitgroeit tot een van de grote textielcentra van het continent. Huizen zoals dit zijn het gouden schuim ervan.
+
+Onthoud dit woord, de draad. Hij zal ons ver brengen. Vanaf deze welvarende koopmansgevel dalen we trede voor trede af: naar de laan van de fabriekseigenaren, dan naar de arbeidersbuitenwijken, tot aan de grote bakstenen spinnerijen en hun wedergeboorte. Eén enkele grondstof, wol, dan linnen, dan katoen, en een hele stad eraan verbonden.
+
+Verlaat Vieux-Lille en ga naar het zuiden, richting de grote rechte hoofdstraat die het centrum doorkruist. Volg me naar de rue Nationale.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-1
+@@STITLE=Rue Nationale
+Kijk naar deze lange, kaarsrechte laan, haar hoge, welvarende gebouwen, hun stenen balkons. In de 19e eeuw, toen het textiel industrialiseerde en het goud liet stromen, is het hier, in het centrum, dat de burgerij van de draad graag woont en haar succes toont. De fabriekseigenaren van de spinnerijen wonen in de mooie, lichte, luchtige stad.
+
+En dit is het moment om je iets ongemakkelijks te vertellen. Dit textielfortuin heeft twee gezichten. Er is de elegante laan waar we nu staan. En er is, een paar straten verderop, een andere wereld, die van de arbeidersbuitenwijken waar men spint en weeft in lawaai en stof. Twee Lilles in dezelfde stad, gescheiden door een korte afstand en een afgrond aan levensomstandigheden.
+
+Oordeel echter niet te snel. Deze textielrevolutie maakte van de kleine lakenstad een grote industriële metropool, die tienduizenden mensen uit het platteland aantrok, op zoek naar werk. Ze bouwde straten, stations, rijkdommen. Ze verpletterde ook levens. Beide zijn tegelijk waar.
+
+Laten we dus overstappen naar het andere Lille. Ga verder naar het zuidwesten, steek de oude grens van de stadsmuren over, en betreed de meest volkse buitenwijk van de stad. Volg me naar Wazemmes.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-2
+@@STITLE=Église Saint-Pierre-Saint-Paul de Wazemmes
+Voor je de grote kerk van Wazemmes, te uitgestrekt, te hoog voor een gewone wijk. Ze vertelt een verhaal van explosie. Want Wazemmes was niet altijd Lille. Het was een dorp, een aparte gemeente, met haar velden en haar linnenbleekvelden, die het heldere water van de beken benutten.
+
+Toen kwam de industrie. Binnen enkele decennia raken de velden bedekt met fabrieken en arbeidershuizen. Het dorp zwelt op met een menigte wevers en spinners die werk zoeken. In 1858, onder Napoleon III, verslindt Lille, ingeklemd binnen haar stadsmuren, kortweg Wazemmes en haar buren: de stad groeit abrupt, in één klap. Men bouwt dan deze immense kerk voor een immens, opeengepakt, arm volk.
+
+Kijk vandaag om je heen: de wijk heeft haar volkse ziel behouden, gemengd, levendig, kosmopolitisch. De fabrieken zijn gesloten, de bevolking is veranderd, maar Wazemmes blijft de wijk van het volk, dat werkt en zich redt.
+
+Ga naar het centrum van de wijk, naar het vrolijke rumoer van de kraampjes. Vlakbij klopt het hart van Wazemmes. Volg me naar haar markt.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-3
+@@STITLE=Marché de Wazemmes
+Daar is de markt van Wazemmes, een van de levendigste van het Noorden. Overdekte hal, kraampjes die overlopen naar het plein, kreten van de kooplui, geuren van alle continenten. Neem de tijd om naar dit rumoer te luisteren: het is het geluid van een wijk die nooit is opgehouden volks te zijn.
+
+Deze markt is het rechtstreekse vervolg op de arbeidersgeschiedenis. Toen tienduizenden textielarbeiders hier opeengepakt zaten, waren er toegankelijke ontmoetingsplekken nodig, dicht bij de woningen en werkplaatsen. De markt werd een van die grote volkse trefpunten. Ze draagt nog altijd, deels, de naam van een voormalige plezierhof: de Nouvelle Aventure. Het volk van het textiel kwam hier samen, tussen twee eindeloze fabrieksdagen in.
+
+Vandaag zijn de spinnerijarbeiders verdwenen, maar de geest is er nog. Bescheiden gezinnen, studenten, bewoners uit de hele wereld kruisen hier elkaars pad op zondagochtend, zoals vroeger. Men komt voor een gebraden kip, een bos bloemen, bijna niets, en vooral voor de sfeer. Een volk verandert van gezicht, niet van karakter.
+
+Glip nu de kleine straatjes eromheen in, die waar de linnenspinners woonden. Ik wil je laten zien waar men leefde. Volg me.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-4
+@@STITLE=Marché de Wazemmes, mémoire des courées
+Zoek, in deze straten, naar een smalle doorgang tussen twee huizen, een poort die uitkomt op een kleine binnenplaats omzoomd met piepkleine woningen. Als je er een vindt, sta je voor een "courée". Daar leefde het volk van het textiel.
+
+Stel je voor. Rond een gemeenschappelijke binnenplaats, zonder licht of lucht, rijen huizen van één of twee kamers. Een waterpomp die door iedereen gedeeld wordt, toiletten achterin, voor meerdere gezinnen samen. Men zat opeengepakt. Ziekte verspreidde zich snel. De fabrieksdagen duurden twaalf uur, soms veertien, en men zag er vrouwen en kinderen werken, omdat één enkel loon nooit genoeg was.
+
+Ik vertel je dit niet om het beeld zwart te maken, maar om eerlijk te zijn. De stof die het fortuin van de mooie lanen maakte, werd ook gesponnen in deze hardheid. En toch, in deze binnenplaatsen, een intens leven: men leende elkaar spullen, waakte over elkaar, deelde de soep. Uit deze nabijheid ontstond een hardnekkige solidariteit, de beroemde warmte van het Noorden, die je nog voelt wanneer iemand uit Lille je verwelkomt.
+
+Laten we de binnenplaats verlaten en eindelijk de machine zelf gaan bekijken, de plek van het werk. Haar hoge schoorsteen wenkt ons. Volg me naar de oude spinnerij.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-5
+@@STITLE=Maison Folie de Wazemmes, ancienne filature
+Kijk omhoog naar deze hoge bakstenen schoorsteen. Er waren er honderden zoals deze, geplant in de hemel van het Noorden — de naburige steden kregen de bijnaam "steden met duizend schoorstenen". Elke schoorsteen wees op een fabriek, en meestal op een spinnerij, de werkplaats waar de ruwe vezel tot draad wordt verwerkt.
+
+Sluit je ogen en vul het beeld in. Een enorme zaal, rijen machines die zonder ophouden draaien, een oorverdovend lawaai dat je op den duur doof maakt. In de lucht, een fijn stof van linnen of katoen dat de hele dag wordt ingeademd en de longen aantast. Een klamme hitte, want de linnendraad werd nat verwerkt. En overal, vooral vrouwen, en kinderen, gebogen over de draad die breekt en steeds opnieuw geknoopt moet worden.
+
+Dat is de waarheid achter dit mooie woord, spinnerij. Draad, ja, maar aan lichamen ontrukt. De stad die de draad heeft geweven, is daarbinnen gebouwd, slag na slag, schoorsteen na schoorsteen.
+
+De draad stopte echter niet. Hij veranderde, werd iets anders. Blijf hier nog even, en wend je blik naar het noordoosten, naar de zusterssteden. Volg me in gedachten tot aan Roubaix.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-6
+@@STITLE=Maison Folie de Wazemmes, du fil au catalogue
+Blijf hier, in Wazemmes, maar stel je de naburige steden voor, Roubaix en Tourcoing, een paar kilometer naar het noordoosten, verbonden met Lille door een lange laan en door de tram. Zij waren de wereldhoofdsteden van de wol, doorspekt met nog meer spinnerijen.
+
+En daar maakte de draad een onverwachte sprong. Na de Eerste Wereldoorlog gaat het slecht met het textiel, de wolvoorraden stapelen zich op. In Roubaix heeft een familie van spinners, gevestigd in de rue de la Redoute, een idee om hun waar te verkopen: via kleine advertenties, dan via catalogus, per post verstuurd tot ver op het platteland. Men vertelt dat zo, in de jaren 1920, de postorderverkoop is ontstaan. Het merk nam de naam van haar straat aan: La Redoute. Andere volgden, zoals Les Trois Suisses.
+
+Meet de afgelegde weg. Dezelfde draad die spon in het lawaai van de fabrieken veranderde in een catalogus die men bij de haard doorbladert, en dan, veel later, in verkooppagina's op internet. Het Noorden heeft niet alleen de stof gesponnen: het heeft een manier uitgevonden om die aan de hele wereld te verkopen.
+
+Kom nu terug naar de grote schoorsteen ernaast. Ze herbergt de laatste etappe van ons verhaal, de mooiste. Volg me nog een laatste keer.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-7
+@@STITLE=Maison Folie de Wazemmes
+Loop door de poort. Voor je een voormalige spinnerij, omgevormd: de Maison Folie de Wazemmes. Neem de maat van de plek, haar bakstenen volumes, haar glazen daken, haar schoorsteen bewaard als een totem. Hier wordt geen linnen meer gesponnen. Hier maakt men kunst, tentoonstellingen, concerten, workshops.
+
+Luister naar haar verhaal, want het is dat van heel het Noorden. Het gebouw was eerst een linnenspinnerij, halverwege de 19e eeuw gekocht door een handelaar genaamd Leclercq, gerund door drie generaties van zijn familie. Toen kwam, zoals overal, de crisis: het textiel stort in, de fabriek sluit uiteindelijk, de machines vallen stil. Ze had gesloopt kunnen worden, zoals zovele andere.
+
+In plaats daarvan kocht de stad haar terug en vormde haar om. In 2004, toen Lille Culturele Hoofdstad van Europa was, heropende deze dode fabriek haar deuren, geworden tot een huis voor iedereen. De plek van het zweet werd een plek van feest. Het is die vasthoudendheid, die weigering om haar te laten sterven, die het Noorden het best kenmerkt.
+
+Ga de binnenplaats in, ga even zitten. Daar wil ik onze draad tot een einde brengen.
+
+@@SCENE=seed-100-lille-fil-du-textile-scene-8
+@@STITLE=Cour publique de la Maison Folie de Wazemmes
+Ga zitten in deze binnenplaats, tegen de warme baksteen, en laten we samen de draad ontwarren die we sinds vanmorgen hebben gevolgd.
+
+We vertrokken bij een gouden koopmansgevel, in Vieux-Lille, gebouwd op wol en saai. We liepen langs de laan van de fabriekseigenaren, daalden dan af naar de arbeidersbuitenwijken, naar de markt van het volk, tot diep in de luchtloze courées, onder de schoorsteen van een spinnerij waar vrouwen en kinderen de draad opnieuw knoopten temidden van het lawaai. We zagen diezelfde draad een catalogus worden, dan een schermpagina. En nu staan we in een fabriek, herrezen als huis van cultuur.
+
+Eén enkele grondstof, de vezel, en een hele stad, acht eeuwen lang eraan verbonden. De draad maakte het fortuin van de enen en brak de rug van de anderen. Hij bouwde paleizen en groef courées. Toen verdween hij bijna volledig — en toch staat Lille er nog, rechtop, opnieuw uitgevonden.
+
+Misschien is dat de ware stof van deze stad: niet linnen, niet katoen, maar dit vermogen om zichzelf te ontrafelen en zich anders opnieuw te weven, zonder ooit te stoppen. Kijk om je heen naar deze fabriek, geworden tot feest: dat is de laatste knoop in onze draad, en de trotste.
+
+De volgende keer dat je een overhemd aantrekt, denk dan even aan alle handen die hier de draad hebben vastgehouden. Bedankt dat je deze draad met mij tot het einde toe hebt gevolgd. Tot snel op de keien van Lille.

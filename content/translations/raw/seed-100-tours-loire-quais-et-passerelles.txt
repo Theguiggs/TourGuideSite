@@ -1,0 +1,259 @@
+@@LANG=en
+@@TITLE=Tours — Loire, Quays, and Footbridges
+@@DESC=Urban landscape — observing how bridges and quays connect the city to the Loire.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-0
+@@STITLE=Place Anatole-France
+The place Anatole-France opens the rue Nationale onto the Loire. Its layout belongs to the great redevelopments that, from the eighteenth century onward, created a more regular north-south axis through Tours. Two symmetrical buildings, now home to cultural institutions, frame the vista toward the pont Wilson.
+
+Position yourself so you can see the street, the square, and the river together. The effect is deliberate: the Loire doesn't appear as a rear boundary, but as a major stage in the urban crossing. The destructions of 1940 and the subsequent reconstruction altered this area, yet the monumental axis remains legible.
+
+Our walk will follow the changing relationship between city and river. Some structures impose a stately direction; others offer a lighter passage, almost at water level. Head toward the pont Wilson along the permitted sidewalk. In the middle, without obstructing traffic, you'll sense the real width of the Loire's bed, quite different from the framed image seen from the square.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-1
+@@STITLE=Pont Wilson
+The pont Wilson, long known as the pont de pierre (stone bridge), was built in the eighteenth century. Its regular arches extend the axis of the rue Nationale northward. It has suffered several accidents, destructions, and reconstructions. In 1978, the collapse of several arches was a stark reminder of the river's power and the complexity of its foundations.
+
+Look upstream, then downstream. Sandbanks, channels, and islands shift with the water level. The Loire doesn't occupy its whole bed uniformly; it moves its currents and its sediments around. Yet the bridge must maintain a stable line between the banks. It's this contrast that gives the landscape its force.
+
+Come back to the north bank and go down to the quai Paul-Bert by a public access point. You're about to discover Tours from the other side of the river. The city's skyline, its towers and rooftops, will gather into a single view, while the quay will tell the story of the old district of Saint-Symphorien and its everyday relationship with the Loire.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-2
+@@STITLE=Quai Paul-Bert
+The quai Paul-Bert runs along the north bank, in the former suburb of Saint-Symphorien. From this side, the center of Tours forms a low line punctuated by towers and steeples. The distance lets you see that the historic city grew up parallel to the river, all the while regularly seeking to cross it.
+
+Look at the quay wall and the accesses to the riverbank. They set a boundary between the streets and a floodplain subject to changing water levels. The Loire remains a largely uncontrolled river; its islands and shifting sandbanks give it a different look depending on the season. This dynamic is why these structures have to be maintained and adapted.
+
+Continue toward the passerelle Saint-Symphorien, often called the pont de fil (wire bridge). It will pick up the direction toward the center again, but without the monumentality of the pont Wilson. Its narrow deck and suspended structure give a more direct sense of the void, the wind, and the current. Cross only within the space reserved for authorized users.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-3
+@@STITLE=Pont de Fil
+The passerelle Saint-Symphorien occupies the site of former crossings between the center and the north bank. Its nickname, "pont de fil," comes from its suspended design. The current structure was rebuilt after the destructions of the Second World War, keeping this function as a light crossing.
+
+In the middle, the landscape is no longer framed by a large roadway. The slenderness of the metal elements lets you see the water almost everywhere. You feel the distance between the banks and the movement of the river more directly. Compare this experience to that of the pont Wilson: the first ordered the city along a solemn axis; this one brings the districts closer, at the scale of a pedestrian or a cyclist.
+
+Rejoin the south bank, then head toward the quai André-Malraux. You'll follow the area around the château and the cathedral. The quays here bear the mark of former harbors, protective structures, and road transformations. Our next stop will be facing the river, where the city is now working to regain calmer access to its banks.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-4
+@@STITLE=Quai Malraux
+The quai André-Malraux follows the Loire at the foot of the cathedral and château district. Like many urban quays, its function has changed with the decline of commercial navigation and the rise of road traffic. Its walls, ramps, and embankments still bear the marks of these adaptations.
+
+Look toward the île Aucard and the opposite bank. The landscape combines a living river with heavily built-up edges. Trees and walkways soften the boundary without erasing it. During high water, the distance between the surface and the top of the quay is an immediate reminder of the structure's protective role.
+
+Walk on to the public grounds around the château de Tours. Its position near the Loire is no accident: it once controlled a crossing point and a strategic access to the city. The final stop will bring this old settlement into dialogue with the modern bridges you've just crossed.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-5
+@@STITLE=Château de Tours
+The château de Tours stands near the Loire, east of the old core. Its visible towers belong to several phases of construction and restoration. The building has served military, administrative, and cultural functions. Seen from its grounds, its closeness to the river reveals above all a strategic logic: watching over the bank and the approaches to the city.
+
+Turn back over the route. The place Anatole-France organized a monumental entrance. The pont Wilson imposed a stable line over a shifting riverbed. The quai Paul-Bert gave you distance on the city, while the passerelle Saint-Symphorien offered a light crossing. Finally, the quai André-Malraux showed how the uses of the Loire's edge have changed.
+
+These structures never fully tame the river. They negotiate with its levels, its currents, and the width of its bed. That's perhaps the best way to look at Tours: not as a city set beside the Loire, but as a city constantly shaped by it. Keep that breadth in your eye when you head back into the streets. Thanks for walking from one bank to the other with me. See you soon.
+
+@@LANG=es
+@@TITLE=Tours — El Loira, muelles y pasarelas
+@@DESC=Paisaje urbano — observar cómo los puentes y los muelles conectan la ciudad con el Loira.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-0
+@@STITLE=Place Anatole-France
+La place Anatole-France abre la rue Nationale hacia el Loira. Su trazado pertenece a las grandes remodelaciones que, a partir del siglo XVIII, crearon un eje norte-sur más regular a través de Tours. Dos edificios simétricos, hoy ocupados por instituciones culturales, enmarcan la perspectiva hacia el pont Wilson.
+
+Colócate de manera que veas juntos la calle, la plaza y el río. El efecto es deliberado: el Loira no aparece como un límite trasero, sino como una etapa mayor de la travesía urbana. Las destrucciones de 1940 y la posterior reconstrucción modificaron este sector, y sin embargo el eje monumental sigue siendo legible.
+
+Nuestro paseo seguirá los cambios en la relación entre la ciudad y el río. Algunas obras imponen una dirección majestuosa; otras ofrecen un paso más ligero, casi a ras del agua. Avanza hacia el pont Wilson por la acera autorizada. En medio, sin entorpecer la circulación, percibirás la anchura real del cauce del Loira, muy distinta de la imagen encuadrada desde la plaza.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-1
+@@STITLE=Pont Wilson
+El pont Wilson, llamado durante mucho tiempo pont de pierre (puente de piedra), se construyó en el siglo XVIII. Sus arcos regulares prolongan el eje de la rue Nationale hacia el norte. Ha sufrido varios accidentes, destrucciones y reconstrucciones. En 1978, el derrumbe de varios arcos recordó la fuerza del río y la complejidad de sus cimientos.
+
+Mira hacia aguas arriba y luego hacia aguas abajo. Bancos de arena, canales e islas cambian según el nivel del agua. El Loira no ocupa uniformemente todo su cauce; desplaza sus corrientes y sus sedimentos. El puente debe, sin embargo, mantener una línea estable entre las orillas. Es ese contraste el que da fuerza al paisaje.
+
+Vuelve a la orilla norte y baja hacia el quai Paul-Bert por un acceso público. Vas a descubrir Tours desde el otro lado del río. La fachada de la ciudad, sus torres y sus tejados se reunirán en una sola vista, mientras que el muelle contará la historia del antiguo barrio de Saint-Symphorien y su relación cotidiana con el Loira.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-2
+@@STITLE=Quai Paul-Bert
+El quai Paul-Bert bordea la orilla norte, en el antiguo arrabal de Saint-Symphorien. Desde este lado, el centro de Tours forma una línea baja jalonada de torres y campanarios. La distancia permite comprender que la ciudad histórica se desarrolló paralela al río, buscando a la vez cruzarlo con regularidad.
+
+Observa el muro del muelle y los accesos a la orilla. Fijan un límite entre las calles y un lecho mayor sometido a variaciones de nivel. El Loira sigue siendo un río en gran parte no canalizado; sus islas y sus bancos móviles le dan un aspecto distinto según la estación. Esta dinámica explica por qué las obras deben mantenerse y adaptarse.
+
+Continúa hacia la passerelle Saint-Symphorien, a menudo llamada pont de fil (puente de hilo). Retomará la dirección hacia el centro, pero sin la monumentalidad del pont Wilson. Su tablero estrecho y su estructura suspendida dan una percepción más directa del vacío, del viento y de la corriente. Cruza únicamente por el espacio reservado a los usuarios autorizados.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-3
+@@STITLE=Pont de Fil
+La passerelle Saint-Symphorien ocupa el lugar de antiguos pasos entre el centro y la orilla norte. Su apodo de «pont de fil» viene de su principio suspendido. La obra actual se reconstruyó tras las destrucciones de la Segunda Guerra Mundial, conservando esta vocación de paso ligero.
+
+En medio, el paisaje ya no está encuadrado por una gran calzada. La finura de los elementos metálicos deja ver el agua casi por todas partes. Sientes mejor la distancia entre las orillas y el movimiento del río. Compara esta experiencia con la del pont Wilson: el primero ordenaba la ciudad en un eje solemne; este acerca los barrios a la escala del peatón y de la bicicleta.
+
+Vuelve a la orilla sur y luego gira hacia el quai André-Malraux. Bordearás el sector del castillo y de la catedral. Los muelles conservan allí la huella de los antiguos puertos, de las obras de protección y de las transformaciones viarias. Nuestra próxima parada estará frente al río, donde la ciudad busca hoy recuperar un acceso más apacible a sus orillas.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-4
+@@STITLE=Quai Malraux
+El quai André-Malraux sigue el Loira al pie del barrio de la catedral y del castillo. Como muchos muelles urbanos, ha cambiado de función con el retroceso de la navegación comercial y el auge de la circulación viaria. Sus muros, sus rampas y sus explanadas conservan las señales de estas adaptaciones.
+
+Mira hacia la île Aucard y la orilla opuesta. El paisaje asocia un río vivo con bordes muy construidos. Los árboles y los senderos suavizan el límite sin hacerlo desaparecer. En época de aguas altas, la distancia entre la superficie y lo alto del muelle recuerda de inmediato el papel protector de la obra.
+
+Avanza hasta los alrededores públicos del château de Tours. Su posición cerca del Loira no es casual: controlaba un sector de paso y un acceso estratégico a la ciudad. La última etapa hará dialogar este antiguo emplazamiento con los puentes modernos que acabas de cruzar.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-5
+@@STITLE=Château de Tours
+El château de Tours se alza cerca del Loira, al este del núcleo antiguo. Sus torres visibles pertenecen a varias campañas de construcción y restauración. El edificio ha tenido funciones militares, administrativas y culturales. Desde sus alrededores, su cercanía con el río revela sobre todo una lógica estratégica: vigilar la orilla y los accesos a la ciudad.
+
+Repasa el recorrido. La place Anatole-France organizaba una entrada monumental. El pont Wilson imponía una línea estable sobre un cauce móvil. El quai Paul-Bert daba perspectiva sobre la ciudad, mientras que la passerelle Saint-Symphorien proponía una travesía ligera. Por último, el quai André-Malraux mostraba la transformación de los usos de la orilla del Loira.
+
+Estas obras nunca domestican por completo el río. Negocian con sus niveles, sus corrientes y la anchura de su cauce. Es quizá la mejor manera de mirar Tours: no como una ciudad situada junto al Loira, sino como una ciudad constantemente dibujada por él. Guarda esa amplitud en tu mirada cuando vuelvas a las calles. Gracias por caminar de una orilla a otra conmigo. Hasta pronto.
+
+@@LANG=de
+@@TITLE=Tours — Loire, Kais und Stege
+@@DESC=Stadtlandschaft — beobachten, wie Brücken und Kais die Stadt mit der Loire verbinden.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-0
+@@STITLE=Place Anatole-France
+Die place Anatole-France öffnet die rue Nationale zur Loire hin. Ihre Anlage gehört zu den großen Umgestaltungen, die ab dem achtzehnten Jahrhundert eine regelmäßigere Nord-Süd-Achse durch Tours schufen. Zwei symmetrische Gebäude, heute von kulturellen Einrichtungen genutzt, rahmen die Perspektive zur pont Wilson.
+
+Stell dich so hin, dass du Straße, Platz und Fluss zusammen siehst. Der Effekt ist beabsichtigt: Die Loire erscheint nicht als hintere Grenze, sondern als bedeutende Etappe der städtischen Durchquerung. Die Zerstörungen von 1940 und der anschließende Wiederaufbau haben dieses Viertel verändert, dennoch bleibt die monumentale Achse ablesbar.
+
+Unser Spaziergang folgt den Veränderungen im Verhältnis zwischen Stadt und Fluss. Manche Bauwerke geben eine majestätische Richtung vor; andere bieten einen leichteren Übergang, fast auf Wasserhöhe. Geh auf dem erlaubten Gehweg zur pont Wilson. In der Mitte, ohne den Verkehr zu behindern, wirst du die tatsächliche Breite des Loirebetts wahrnehmen, ganz anders als das gerahmte Bild vom Platz aus.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-1
+@@STITLE=Pont Wilson
+Die pont Wilson, lange pont de pierre (Steinbrücke) genannt, wurde im achtzehnten Jahrhundert erbaut. Ihre regelmäßigen Bögen setzen die Achse der rue Nationale nach Norden fort. Sie erlebte mehrere Unfälle, Zerstörungen und Wiederaufbauten. 1978 erinnerte der Einsturz mehrerer Bögen an die Kraft des Flusses und die Komplexität seiner Fundamente.
+
+Schau flussaufwärts, dann flussabwärts. Sandbänke, Rinnen und Inseln verändern sich je nach Wasserstand. Die Loire füllt ihr Bett nicht gleichmäßig aus; sie verlagert ihre Strömungen und Ablagerungen. Die Brücke muss dennoch eine stabile Linie zwischen den Ufern halten. Genau dieser Kontrast verleiht der Landschaft ihre Kraft.
+
+Kehr zum Nordufer zurück und geh über einen öffentlichen Zugang hinunter zum quai Paul-Bert. Du wirst Tours nun von der anderen Flussseite aus entdecken. Die Stadtfront, ihre Türme und Dächer fügen sich zu einem einzigen Bild zusammen, während der Kai vom alten Viertel Saint-Symphorien und seiner alltäglichen Beziehung zur Loire erzählt.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-2
+@@STITLE=Quai Paul-Bert
+Der quai Paul-Bert verläuft am Nordufer, im ehemaligen Vorort Saint-Symphorien. Von dieser Seite aus bildet das Zentrum von Tours eine niedrige, von Türmen und Kirchtürmen unterbrochene Linie. Der Abstand lässt erkennen, dass die historische Stadt sich parallel zum Fluss entwickelte, während sie zugleich regelmäßig versuchte, ihn zu überqueren.
+
+Betrachte die Kaimauer und die Zugänge zum Ufer. Sie ziehen eine Grenze zwischen den Straßen und einem Flussbett, das Pegelschwankungen unterworfen ist. Die Loire bleibt ein weitgehend unregulierter Fluss; ihre Inseln und wandernden Sandbänke geben ihr je nach Jahreszeit ein anderes Aussehen. Diese Dynamik erklärt, warum die Bauwerke unterhalten und angepasst werden müssen.
+
+Geh weiter zur passerelle Saint-Symphorien, oft pont de fil (Drahtbrücke) genannt. Sie nimmt die Richtung zum Zentrum wieder auf, jedoch ohne die Monumentalität der pont Wilson. Ihr schmales Deck und ihre Hängekonstruktion vermitteln ein unmittelbareres Gefühl für die Leere, den Wind und die Strömung. Überquere sie nur im für zugelassene Nutzer vorgesehenen Bereich.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-3
+@@STITLE=Pont de Fil
+Die passerelle Saint-Symphorien liegt an der Stelle früherer Übergänge zwischen dem Zentrum und dem Nordufer. Ihr Spitzname „pont de fil" rührt von ihrer Hängekonstruktion her. Das heutige Bauwerk wurde nach den Zerstörungen des Zweiten Weltkriegs wieder aufgebaut, wobei diese Funktion als leichter Übergang erhalten blieb.
+
+In der Mitte wird die Landschaft nicht mehr von einer breiten Fahrbahn eingerahmt. Die Feinheit der Metallelemente lässt fast überall das Wasser durchscheinen. Du spürst die Entfernung zwischen den Ufern und die Bewegung des Flusses unmittelbarer. Vergleiche dieses Erlebnis mit dem der pont Wilson: Die eine ordnete die Stadt entlang einer feierlichen Achse; diese hier bringt die Viertel im Maßstab von Fußgängern und Radfahrern näher zusammen.
+
+Kehr zum Südufer zurück und wende dich dann zum quai André-Malraux. Du folgst dem Bereich rund um das Schloss und die Kathedrale. Die Kais tragen dort die Spuren alter Häfen, von Schutzbauten und Straßenumbauten. Unser nächster Halt liegt dem Fluss gegenüber, dort, wo die Stadt heute versucht, einen ruhigeren Zugang zu ihren Ufern zurückzugewinnen.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-4
+@@STITLE=Quai Malraux
+Der quai André-Malraux folgt der Loire am Fuß des Kathedral- und Schlossviertels. Wie viele städtische Kais hat er mit dem Rückgang der Handelsschifffahrt und dem Aufschwung des Straßenverkehrs seine Funktion verändert. Seine Mauern, Rampen und Freiflächen tragen noch die Spuren dieser Anpassungen.
+
+Schau zur île Aucard und zum gegenüberliegenden Ufer. Die Landschaft verbindet einen lebendigen Fluss mit stark bebauten Rändern. Bäume und Wege mildern die Grenze, ohne sie verschwinden zu lassen. Bei Hochwasser erinnert der Abstand zwischen der Wasseroberfläche und der Kaikrone unmittelbar an die Schutzfunktion des Bauwerks.
+
+Geh weiter bis zum öffentlichen Vorfeld des château de Tours. Seine Lage nahe der Loire ist kein Zufall: Sie kontrollierte einst eine Flussquerung und einen strategischen Zugang zur Stadt. Die letzte Etappe wird diese alte Anlage mit den modernen Brücken in Beziehung setzen, die du gerade überquert hast.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-5
+@@STITLE=Château de Tours
+Das château de Tours erhebt sich nahe der Loire, östlich des alten Stadtkerns. Seine sichtbaren Türme stammen aus mehreren Bau- und Restaurierungsphasen. Das Gebäude hatte militärische, administrative und kulturelle Funktionen. Von seinem Umfeld aus offenbart seine Nähe zum Fluss vor allem eine strategische Logik: das Ufer und die Zugänge zur Stadt zu überwachen.
+
+Blick auf die Strecke zurück. Die place Anatole-France gestaltete einen monumentalen Eingang. Die pont Wilson zog eine stabile Linie über ein bewegliches Flussbett. Der quai Paul-Bert gab dir Abstand zur Stadt, während die passerelle Saint-Symphorien einen leichten Übergang bot. Der quai André-Malraux schließlich zeigte den Wandel in der Nutzung des Loireufers.
+
+Diese Bauwerke bändigen den Fluss nie ganz. Sie verhandeln mit seinen Pegeln, seinen Strömungen und der Breite seines Bettes. Das ist vielleicht die beste Art, Tours zu betrachten: nicht als eine Stadt, die neben der Loire liegt, sondern als eine Stadt, die ständig von ihr geformt wird. Behalte diese Weite im Blick, wenn du in die Straßen zurückkehrst. Danke, dass du mit mir von einem Ufer zum anderen gegangen bist. Bis bald.
+
+@@LANG=it
+@@TITLE=Tours — Loira, banchine e passerelle
+@@DESC=Paesaggio urbano — osservare come ponti e banchine collegano la città alla Loira.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-0
+@@STITLE=Place Anatole-France
+La place Anatole-France apre la rue Nationale sulla Loira. Il suo disegno appartiene alle grandi riqualificazioni che, a partire dal diciottesimo secolo, hanno creato un asse nord-sud più regolare attraverso Tours. Due edifici simmetrici, oggi occupati da istituzioni culturali, incorniciano la prospettiva verso il pont Wilson.
+
+Mettiti in modo da vedere insieme la strada, la piazza e il fiume. L'effetto è voluto: la Loira non appare come un limite posteriore, ma come una tappa importante dell'attraversamento urbano. Le distruzioni del 1940 e la successiva ricostruzione hanno modificato questo settore, eppure l'asse monumentale resta leggibile.
+
+La nostra passeggiata seguirà i cambiamenti nel rapporto tra città e fiume. Alcune opere impongono una direzione maestosa; altre offrono un passaggio più leggero, quasi a livello dell'acqua. Avanza verso il pont Wilson sul marciapiede autorizzato. Nel mezzo, senza intralciare la circolazione, percepirai la larghezza reale del letto della Loira, molto diversa dall'immagine inquadrata dalla piazza.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-1
+@@STITLE=Pont Wilson
+Il pont Wilson, a lungo chiamato pont de pierre (ponte di pietra), fu costruito nel diciottesimo secolo. Le sue arcate regolari prolungano l'asse della rue Nationale verso nord. Ha conosciuto diversi incidenti, distruzioni e ricostruzioni. Nel 1978, il crollo di più arcate ricordò la potenza del fiume e la complessità delle sue fondamenta.
+
+Guarda verso monte e poi verso valle. Banchi di sabbia, canali e isole cambiano a seconda dei livelli dell'acqua. La Loira non occupa uniformemente tutto il suo letto; sposta le sue correnti e i suoi depositi. Il ponte deve tuttavia mantenere una linea stabile tra le rive. È questo contrasto a dare forza al paesaggio.
+
+Torna sulla riva nord e scendi verso il quai Paul-Bert da un accesso pubblico. Scoprirai Tours dall'altro lato del fiume. La facciata della città, le sue torri e i suoi tetti si raccoglieranno in un'unica veduta, mentre la banchina racconterà l'antico quartiere di Saint-Symphorien e il suo rapporto quotidiano con la Loira.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-2
+@@STITLE=Quai Paul-Bert
+Il quai Paul-Bert costeggia la riva nord, nell'antico sobborgo di Saint-Symphorien. Da questo lato, il centro di Tours forma una linea bassa punteggiata di torri e campanili. La distanza permette di capire che la città storica si è sviluppata parallelamente al fiume, cercando allo stesso tempo regolarmente di attraversarlo.
+
+Osserva il muro della banchina e gli accessi alla riva. Fissano un limite tra le strade e un letto maggiore soggetto a variazioni di livello. La Loira resta un fiume in gran parte non arginato; le sue isole e i suoi banchi mobili le danno un aspetto diverso a seconda della stagione. Questa dinamica spiega perché le opere devono essere mantenute e adattate.
+
+Continua verso la passerelle Saint-Symphorien, spesso chiamata pont de fil (ponte di filo). Riprenderà la direzione verso il centro, ma senza la monumentalità del pont Wilson. Il suo impalcato stretto e la sua struttura sospesa danno una percezione più diretta del vuoto, del vento e della corrente. Attraversa solo nello spazio riservato agli utenti autorizzati.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-3
+@@STITLE=Pont de Fil
+La passerelle Saint-Symphorien occupa il luogo di antichi attraversamenti tra il centro e la riva nord. Il suo soprannome «pont de fil» deriva dal suo principio sospeso. L'opera attuale è stata ricostruita dopo le distruzioni della Seconda guerra mondiale, conservando questa vocazione di passaggio leggero.
+
+Nel mezzo, il paesaggio non è più inquadrato da una grande carreggiata. La sottigliezza degli elementi metallici lascia vedere l'acqua quasi ovunque. Percepisci meglio la distanza tra le rive e il movimento del fiume. Confronta questa esperienza con quella del pont Wilson: il primo ordinava la città lungo un asse solenne; questo avvicina i quartieri alla scala del pedone e della bicicletta.
+
+Raggiungi la riva sud e poi svolta verso il quai André-Malraux. Costeggerai il settore del castello e della cattedrale. Le banchine conservano qui la traccia degli antichi porti, delle opere di protezione e delle trasformazioni stradali. La nostra prossima tappa si troverà di fronte al fiume, dove la città cerca oggi di ritrovare un accesso più tranquillo alle sue rive.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-4
+@@STITLE=Quai Malraux
+Il quai André-Malraux segue la Loira ai piedi del quartiere della cattedrale e del castello. Come molte banchine urbane, ha cambiato funzione con il declino della navigazione commerciale e la crescita del traffico stradale. I suoi muri, le sue rampe e i suoi terrapieni conservano i segni di questi adattamenti.
+
+Guarda verso l'île Aucard e la riva opposta. Il paesaggio unisce un fiume vivo a bordi molto costruiti. Gli alberi e i percorsi addolciscono il limite senza farlo scomparire. In periodo di piena, la distanza tra la superficie e la sommità della banchina ricorda immediatamente il ruolo protettivo dell'opera.
+
+Avanza fino agli spazi pubblici intorno al château de Tours. La sua posizione vicino alla Loira non è casuale: controllava un settore di attraversamento e un accesso strategico alla città. L'ultima tappa metterà in dialogo questo antico insediamento con i ponti moderni che hai appena attraversato.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-5
+@@STITLE=Château de Tours
+Il château de Tours si erge vicino alla Loira, a est del nucleo antico. Le sue torri visibili appartengono a diverse campagne di costruzione e restauro. L'edificio ha avuto funzioni militari, amministrative e culturali. Visto dai suoi dintorni, la sua vicinanza al fiume rivela soprattutto una logica strategica: sorvegliare la riva e gli accessi alla città.
+
+Ripensa al percorso. La place Anatole-France organizzava un ingresso monumentale. Il pont Wilson imponeva una linea stabile su un letto mobile. Il quai Paul-Bert dava distacco sulla città, mentre la passerelle Saint-Symphorien proponeva un attraversamento leggero. Infine, il quai André-Malraux mostrava la trasformazione degli usi del bordo della Loira.
+
+Queste opere non domano mai completamente il fiume. Negoziano con i suoi livelli, le sue correnti e la larghezza del suo letto. Questo è forse il modo migliore di guardare Tours: non come una città posta accanto alla Loira, ma come una città costantemente disegnata da essa. Conserva questa ampiezza nello sguardo quando tornerai per le strade. Grazie per aver camminato da una riva all'altra con me. A presto.
+
+@@LANG=nl
+@@TITLE=Tours — Loire, kades en voetgangersbruggen
+@@DESC=Stadslandschap — observeren hoe bruggen en kades de stad met de Loire verbinden.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-0
+@@STITLE=Place Anatole-France
+De place Anatole-France opent de rue Nationale naar de Loire. De aanleg ervan hoort bij de grote herinrichtingen die vanaf de achttiende eeuw een regelmatiger noord-zuidas door Tours creëerden. Twee symmetrische gebouwen, tegenwoordig in gebruik bij culturele instellingen, omlijsten het perspectief naar de pont Wilson.
+
+Ga zo staan dat je de straat, het plein en de rivier samen ziet. Het effect is bewust: de Loire verschijnt niet als een achterliggende grens, maar als een belangrijke etappe van de stedelijke doorsteek. De verwoestingen van 1940 en de daaropvolgende wederopbouw hebben dit gebied veranderd, toch blijft de monumentale as leesbaar.
+
+Onze wandeling volgt de veranderende relatie tussen stad en rivier. Sommige bouwwerken leggen een statige richting op; andere bieden een lichtere doorgang, bijna op waterniveau. Loop over het toegestane trottoir naar de pont Wilson. In het midden, zonder het verkeer te hinderen, voel je de werkelijke breedte van de bedding van de Loire, heel anders dan het beeld dat vanaf het plein wordt ingekaderd.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-1
+@@STITLE=Pont Wilson
+De pont Wilson, lang pont de pierre (stenen brug) genoemd, werd in de achttiende eeuw gebouwd. De regelmatige bogen zetten de as van de rue Nationale voort naar het noorden. De brug kende meerdere ongelukken, verwoestingen en wederopbouwen. In 1978 herinnerde de instorting van meerdere bogen aan de kracht van de rivier en de complexiteit van haar funderingen.
+
+Kijk stroomopwaarts en dan stroomafwaarts. Zandbanken, geulen en eilanden veranderen met het waterpeil. De Loire vult haar bedding niet gelijkmatig; ze verplaatst haar stromingen en afzettingen. De brug moet echter een stabiele lijn tussen de oevers behouden. Dat contrast geeft het landschap zijn kracht.
+
+Ga terug naar de noordoever en daal via een openbare toegang af naar de quai Paul-Bert. Je gaat Tours nu ontdekken vanaf de andere kant van de rivier. Het silhouet van de stad, haar torens en daken, komt samen in één enkel beeld, terwijl de kade het verhaal vertelt van de oude wijk Saint-Symphorien en haar dagelijkse band met de Loire.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-2
+@@STITLE=Quai Paul-Bert
+De quai Paul-Bert loopt langs de noordoever, in de voormalige voorstad Saint-Symphorien. Vanaf deze kant vormt het centrum van Tours een lage lijn, doorspekt met torens en klokkentorens. De afstand laat zien dat de historische stad zich parallel aan de rivier ontwikkelde, terwijl ze er tegelijk regelmatig naar streefde die over te steken.
+
+Bekijk de kademuur en de toegangen tot de oever. Ze bepalen een grens tussen de straten en een hoofdbedding die onderhevig is aan peilschommelingen. De Loire blijft een grotendeels ongekanaliseerde rivier; haar eilanden en verplaatsende zandbanken geven haar een ander uiterlijk naargelang het seizoen. Deze dynamiek verklaart waarom de bouwwerken onderhouden en aangepast moeten worden.
+
+Loop verder naar de passerelle Saint-Symphorien, vaak pont de fil (draadbrug) genoemd. Ze pakt de richting naar het centrum weer op, maar zonder de monumentaliteit van de pont Wilson. Het smalle dek en de hangconstructie geven een directer gevoel van de leegte, de wind en de stroming. Steek alleen over binnen de ruimte die voor bevoegde gebruikers is voorbehouden.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-3
+@@STITLE=Pont de Fil
+De passerelle Saint-Symphorien ligt op de plek van vroegere overtochten tussen het centrum en de noordoever. Haar bijnaam "pont de fil" komt van haar hangconstructie. Het huidige bouwwerk werd na de verwoestingen van de Tweede Wereldoorlog herbouwd, met behoud van deze functie als lichte doorgang.
+
+In het midden wordt het landschap niet meer omlijst door een brede rijbaan. De fijnheid van de metalen elementen laat bijna overal het water zien. Je voelt de afstand tussen de oevers en de beweging van de rivier directer aan. Vergelijk deze ervaring met die van de pont Wilson: de eerste ordende de stad langs een plechtige as; deze brengt de wijken dichter bij elkaar, op de schaal van voetganger en fietser.
+
+Ga terug naar de zuidoever en sla dan af naar de quai André-Malraux. Je volgt het gebied rond het kasteel en de kathedraal. De kades dragen daar de sporen van oude havens, beschermingswerken en wegtransformaties. Onze volgende halte ligt tegenover de rivier, waar de stad vandaag probeert een rustiger toegang tot haar oevers terug te vinden.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-4
+@@STITLE=Quai Malraux
+De quai André-Malraux volgt de Loire aan de voet van de kathedraal- en kasteelwijk. Zoals veel stadskades is haar functie veranderd door de teruggang van de handelsvaart en de opkomst van het wegverkeer. De muren, hellingen en pleinen dragen nog de sporen van deze aanpassingen.
+
+Kijk naar de île Aucard en de overliggende oever. Het landschap combineert een levende rivier met sterk bebouwde randen. Bomen en wandelpaden verzachten de grens zonder haar te laten verdwijnen. Bij hoogwater herinnert de afstand tussen het wateroppervlak en de bovenkant van de kade meteen aan de beschermende rol van het bouwwerk.
+
+Loop door tot de openbare omgeving van het château de Tours. De ligging bij de Loire is geen toeval: het kasteel bewaakte ooit een oversteekpunt en een strategische toegang tot de stad. De laatste halte laat deze oude vestiging in dialoog gaan met de moderne bruggen die je zojuist bent overgestoken.
+
+@@SCENE=seed-100-tours-loire-quais-et-passerelles-scene-5
+@@STITLE=Château de Tours
+Het château de Tours staat bij de Loire, ten oosten van de oude kern. De zichtbare torens horen bij verschillende bouw- en restauratiefases. Het gebouw heeft militaire, bestuurlijke en culturele functies gehad. Vanaf zijn omgeving onthult de nabijheid van de rivier vooral een strategische logica: het bewaken van de oever en de toegangen tot de stad.
+
+Kijk terug op de route. De place Anatole-France organiseerde een monumentale entree. De pont Wilson legde een stabiele lijn op over een bewegende rivierbedding. De quai Paul-Bert gaf je afstand tot de stad, terwijl de passerelle Saint-Symphorien een lichte oversteek bood. Ten slotte toonde de quai André-Malraux de verandering in het gebruik van de oever van de Loire.
+
+Deze bouwwerken temmen de rivier nooit helemaal. Ze onderhandelen met haar peilen, haar stromingen en de breedte van haar bedding. Dat is misschien de beste manier om naar Tours te kijken: niet als een stad die naast de Loire ligt, maar als een stad die voortdurend door haar wordt vormgegeven. Bewaar die breedte in je blik wanneer je terugkeert naar de straten. Bedankt dat je met mij van de ene oever naar de andere bent gelopen. Tot snel.

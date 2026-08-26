@@ -1,0 +1,404 @@
+@@LANG=en
+@@TITLE=Arles — Little Rome of Gaul
+@@DESC=History & secrets — ancient Arles: arena, theatre, cryptoporticus, necropolis.
+@@SCENE=seed-100-arles-rome-en-provence-scene-0
+@@STITLE=Les Arènes
+Look up. Two storeys of arcades, honey-coloured stones stacked by Roman hands nearly two thousand years ago. The amphitheatre of Arles. Tens of thousands of spectators were once packed in here to watch the blood of gladiators and beasts flow. The largest monument in the town. It is still standing.
+
+But here is the secret I want to share with you first. If this arena survived, it is because people stopped playing in it and started living in it. In the Middle Ages, when invasions set Provence trembling, the people of Arles took refuge inside it. They blocked up the arcades, raised watchtowers, built a small walled town inside the amphitheatre: over two hundred houses, lanes, two chapels, a square. A fortress-village nested in the belly of the monument. For centuries people were born and died in there.
+
+It took until the early nineteenth century for all of that to be cleared out, the hovels torn down, and the arena given back its bare stone. Today it is still in use: bulls are run there, shows are held there.
+
+That is the thread of this walk. Arles was a little Rome, an imperial capital set on the Rhône. And under every square, under every church, the ancient town sleeps. Follow me. We go down towards the river, to an emperor's house.
+@@SCENE=seed-100-arles-rome-en-provence-scene-1
+@@STITLE=Thermes de Constantin
+Here we are in front of the thermes de Constantin, near the Rhône. Walls of pink brick and stone, a fine apse pierced with windows: these are the public baths of the Roman town, and the largest still standing in Provence. Imagine the steam, the hot water, the cold water, the bodies, the business done between two pools. In Rome you did not wash alone: you washed in company.
+
+These baths bear the name of Constantine, and that is no accident. At the start of the fourth century, the emperor Constantine the Great loves Arles enough to stay there, to build a palace there, which these baths may well have belonged to. His son, the future Constantine II, is born here in the year 316. An emperor born in Arles: the town is then so powerful that it is called "the little Rome of Gaul", and dreams for a while of crowning the whole West.
+
+You are walking on the remains of an imperial capital. Keep that in mind. Now head back up towards the centre, towards the beating heart of the Roman city: its forum.
+@@SCENE=seed-100-arles-rome-en-provence-scene-2
+@@STITLE=Place du Forum
+Place du Forum. Café terraces, plane trees, the bustle of the evening. But read the name of the square: the Forum. This was, exactly, the centre of Roman life — the great public square where business, politics and justice were discussed, where the pulse of Arelate beat.
+
+Now look, at the corner, at the façade of the hôtel Nord-Pinus. Look closely: two fluted columns and a fragment of pediment are set into the wall, as if imprisoned in stone. These are not decorations. They are the remains of a Roman temple, left standing in place while the town rebuilt itself all around it, century after century. The temple was not moved: it was built on top of.
+
+That is Arles. A town that never wiped the slate clean. Every age laid its stones on top of the ones before, without throwing them away. The forum is still there, under your feet. And to truly meet it, you must go down. A few steps away, a staircase plunges under the town. Follow me into the dark.
+@@SCENE=seed-100-arles-rome-en-provence-scene-3
+@@STITLE=Cryptoportiques
+Go down. The noise of the square dies away at once. Here we are in the cryptoportiques, an immense horseshoe-shaped corridor dug under the forum more than two thousand years ago. Three vaulted galleries, dark, cool, running under the town. Almost intact underground architecture.
+
+What were they for? The Romans had a problem: the ground slopes towards the river. So, to lay out their great square perfectly level, they built these galleries beneath it as hollow foundations, a gigantic base. Perhaps also to store grain there, sheltered from the heat. No one is entirely sure.
+
+Listen to the silence. Touch the damp stone. Above your head there are the façades, the tourists, the light. Down here there is only the skeleton of the Roman town, poured as it was under Augustus. Few towns let you descend like this into their own foundations.
+
+Climb back up to the light. We come out onto the finest square in Arles, where a stone needle from very far away is waiting for you.
+@@SCENE=seed-100-arles-rome-en-provence-scene-4
+@@STITLE=Place de la République
+Place de la République. Take it in with a single glance: the town hall on one side, a cathedral on the other, and in the middle, rising towards the sky, an obelisk. Go closer to it.
+
+This is not an Egyptian souvenir like the one in Paris. This monolith of red granite was cut in Antiquity and once planted in the middle of the Roman circus of Arles — the long track where chariots raced, somewhere to the south-west of the town. The circus has vanished, eaten away by the centuries. The obelisk lay buried in the earth for over a thousand years.
+
+Then, in 1676, the people of Arles dug it up, raised it, set it up here, in the very heart of their town, like a trophy. A Roman stone put back on its feet by much later hands, to say: we are the heirs of Rome. Look at the gilded globe at its top, added later still. Every century has signed its name.
+
+Turn towards the cathedral. Its porch is a masterpiece, and it tells you the next part of the story.
+@@SCENE=seed-100-arles-rome-en-provence-scene-5
+@@STITLE=Saint-Trophime
+Here is Saint-Trophime, and above all its portal. Take the time to read it like a page. Around the door, carved in stone in the twelfth century, Christ in majesty, the apostles lined up, the elect being led to paradise and the damned being carried off, chained, towards the fire. One of the finest Romanesque portals in the south of France.
+
+But look how much it resembles a Roman triumphal arch: the columns, the pediment, the friezes. The medieval stonecutters had the ancient monuments of the town before their eyes. They drew on them for inspiration, and even stole blocks from them. Rome was not dead: it served as a model and as a quarry.
+
+Here beats the Christian heart of Arles. As early as the year 314 the town hosts a great council of bishops, convened by Constantine himself: Arles already counts within the Church. Go through the door if it is open, go and see the cloister, one of the most peaceful there is.
+
+Then come back, and let's walk east. The most elegant of the Roman monuments awaits us, half collapsed.
+@@SCENE=seed-100-arles-rome-en-provence-scene-6
+@@STITLE=Théâtre antique
+The ancient theatre. Not much is left, and yet it is moving. The semicircular tiers, cut into the slope, where thousands of spectators once sat. And over there, standing alone in the empty space, two tall columns that once held up the great stage wall. They are called "the two widows". All their sisters have vanished.
+
+For this theatre, built under the emperor Augustus, served for centuries as a quarry. People came here looking for columns, marble, cut stone, to build churches and ramparts. The ancient world helped build the world that replaced it. The two widows are what resisted the plundering.
+
+It was here, in 1651, that a marvel was dug up: a statue of Venus, the Venus of Arles. It was given to king Louis XIV, who carried it off. It is in the Louvre today. Another treasure of Arles gone elsewhere.
+
+In summer, on these tiers, plays and songs are performed again, just as on the first day. Now go down towards the south. Our last stop is the strangest: an avenue of tombs.
+@@SCENE=seed-100-arles-rome-en-provence-scene-7
+@@STITLE=Les Alyscamps
+Go through the gate: here are the Alyscamps. A long straight avenue, lined with stone sarcophagi, under a vault of trees. The name comes from Latin: the Elysian Fields, the resting place of the happy dead. It was the great necropolis of Arles, along the ancient road leading out of the town.
+
+The Romans did not bury their dead within the city: they lined the roads with tombs, so that travellers, arriving, would greet the dead. Then the Christians took it over. It is said that Christ himself appeared here to bless the place, and that being laid to rest here opened the gates of heaven. So people from all over Provence had themselves buried here. Bodies were sent down the Rhône, with a coin for the ferryman, to this blessed cemetery.
+
+Thousands of graves, row after row. There were so many that, over the centuries, the finest sarcophagi were given away, sold, scattered. Those that remain have lost their neighbours.
+
+Walk slowly on down the avenue, to the end. A ruined church awaits us, and that is where I will say goodbye.
+@@SCENE=seed-100-arles-rome-en-provence-scene-8
+@@STITLE=Saint-Honorat
+Here we are at the end of the path, in front of Saint-Honorat, the stone church that closes the avenue. A massive bell tower, a nave half open to the sky, tombs right up to the walls. Sit for a minute. Listen. This place set the greatest minds dreaming: Dante, in his Inferno, compared a field of the damned to the tombs of Arles; Ariosto, later, made it a setting for chivalry. This avenue was famous across all of Europe.
+
+And think of everything you have just walked through. The amphitheatre where people were still living only yesterday, the forum under your feet, the emperor born by the river, the obelisk from the circus, the theatre plundered stone by stone, and now this avenue of the dead. A whole town built on Rome, which never stopped recycling its past to build its present.
+
+That is the secret of Arles. It did not keep Rome like a museum piece under glass. It lived in it, wore it down, plundered it, reused it — and in doing so, kept it alive. Every generation walked on top of the last, without ever wiping it away entirely.
+
+Rome fell fifteen centuries ago. Here, it is still standing, under your soles. Thank you for walking down through time with me. Stay a moment in the silence of the Alyscamps. You have earned it.
+
+@@LANG=es
+@@TITLE=Arles — La pequeña Roma de las Galias
+@@DESC=Historia y secretos: la Arles antigua, anfiteatro, teatro, criptopórticos, necrópolis.
+@@SCENE=seed-100-arles-rome-en-provence-scene-0
+@@STITLE=Les Arènes
+Levanta la vista. Dos pisos de arcadas, piedras doradas apiladas por manos romanas hace casi dos mil años. El anfiteatro de Arles. Aquí se amontonaban decenas de miles de espectadores para ver correr la sangre de gladiadores y bestias. El monumento más grande de la ciudad. Sigue en pie.
+
+Pero he aquí el secreto que quiero confiarte primero. Si este anfiteatro ha sobrevivido, es porque se dejó de jugar en él y se empezó a vivir en él. En la Edad Media, cuando las invasiones hacen temblar la Provenza, los habitantes de Arles se refugian en su interior. Tapan las arcadas, levantan torres de vigilancia, construyen un pequeño pueblo amurallado dentro del anfiteatro: más de doscientas casas, callejuelas, dos capillas, una plaza. Un pueblo-fortaleza anidado en el vientre del monumento. Durante siglos, se nació y se murió ahí dentro.
+
+Hubo que esperar a principios del siglo XIX para que se vaciara todo eso, se derribaran las casuchas y se devolviera al anfiteatro su desnudez de piedra. Hoy todavía se usa: se corren toros, se dan espectáculos.
+
+Este es el hilo de esta visita. Arles fue una pequeña Roma, una capital de imperio asentada en el Ródano. Y bajo cada plaza, bajo cada iglesia, duerme la ciudad antigua. Sígueme. Bajamos hacia el río, a la casa de un emperador.
+@@SCENE=seed-100-arles-rome-en-provence-scene-1
+@@STITLE=Thermes de Constantin
+Aquí estamos frente a los thermes de Constantin, cerca del Ródano. Muros de ladrillo rosado y piedra, una hermosa ábside horadada de ventanas: son los baños públicos de la ciudad romana, y los más grandes que subsisten en la Provenza. Imagina el vapor, el agua caliente, el agua fría, los cuerpos, los negocios que se trataban entre dos piscinas. En Roma no se bañaba uno solo: se bañaba en sociedad.
+
+Estas termas llevan el nombre de Constantino, y no es casualidad. A comienzos del siglo IV, el emperador Constantino el Grande ama Arles hasta el punto de residir ahí, de construir un palacio del que quizá dependían estos baños. Su hijo, el futuro Constantino II, nace aquí en el año 316. Un emperador nacido en Arles: la ciudad es entonces tan poderosa que se la llama «la pequeña Roma de las Galias», y sueña por un momento con coronar todo el Occidente.
+
+Caminas sobre los vestigios de una capital imperial. Guárdalo en la memoria. Sube ahora hacia el centro, hacia el corazón palpitante de la ciudad romana: su foro.
+@@SCENE=seed-100-arles-rome-en-provence-scene-2
+@@STITLE=Place du Forum
+Place du Forum. Terrazas, plátanos, el bullicio de la tarde. Pero lee el nombre de la plaza: el Foro. Aquí estaba, exactamente, el centro de la vida romana —la gran plaza pública donde se hablaba de negocios, de política, de justicia, donde latía el pulso de Arelate.
+
+Busca ahora, en la esquina, la fachada del hôtel Nord-Pinus. Mira bien: dos columnas acanaladas y un trozo de frontón están encajados en el muro, como prisioneros de la piedra. No son adornos. Son los restos de un templo romano, que quedó en pie en su sitio mientras la ciudad se reconstruía a su alrededor, siglo tras siglo. No se trasladó el templo: se construyó encima.
+
+Eso es Arles. Una ciudad que nunca hizo tabla rasa. Cada época puso sus piedras sobre las de antes, sin tirarlas. El foro sigue ahí, bajo tus pies. Y precisamente para conocerlo de verdad hay que bajar. A pocos pasos, una escalera se hunde bajo la ciudad. Sígueme en la oscuridad.
+@@SCENE=seed-100-arles-rome-en-provence-scene-3
+@@STITLE=Cryptoportiques
+Baja. El rumor de la plaza se apaga de golpe. Estamos en los cryptoportiques, un inmenso pasillo en herradura excavado bajo el foro hace más de dos mil años. Tres galerías abovedadas, oscuras, frescas, que corren bajo la ciudad. Una arquitectura subterránea casi intacta.
+
+¿Para qué servían? Los romanos tenían un problema: el terreno se inclina hacia el río. Así que, para asentar su gran plaza bien horizontal, construyeron debajo estas galerías como cimientos huecos, un zócalo gigantesco. Quizá también para guardar el grano, al abrigo del calor. Nadie está del todo seguro.
+
+Escucha el silencio. Toca la piedra rezumante. Sobre tu cabeza están las fachadas, los turistas, la luz. Aquí solo está el esqueleto de la ciudad romana, tal como se vertió bajo Augusto. Pocas ciudades te dejan bajar así a sus propios cimientos.
+
+Sube de nuevo a la luz. Salimos a la plaza más hermosa de Arles, donde te espera una aguja de piedra venida de muy lejos.
+@@SCENE=seed-100-arles-rome-en-provence-scene-4
+@@STITLE=Place de la République
+Place de la République. Ábarcala de un vistazo: el ayuntamiento a un lado, una catedral al otro, y en el medio, alzado hacia el cielo, un obelisco. Acércate a él.
+
+No es un recuerdo de Egipto como el de París. Este monolito de granito rojo se talló en la Antigüedad y se plantó, en su día, en medio del circo romano de Arles —la larga pista donde se enfrentaban los carros, en algún lugar al suroeste de la ciudad. El circo ha desaparecido, devorado por los siglos. El obelisco quedó tumbado en la tierra durante más de mil años.
+
+Luego, en 1676, los habitantes de Arles lo exhumaron, lo levantaron, lo erigieron aquí, en pleno corazón de su ciudad, como un trofeo. Una piedra romana puesta en pie de nuevo por manos mucho más tardías, para decir: somos los herederos de Roma. Mira el globo dorado en su cima, añadido más tarde todavía. Cada siglo ha firmado.
+
+Gírate hacia la catedral. Su pórtico es una obra maestra, y te cuenta lo que sigue de la historia.
+@@SCENE=seed-100-arles-rome-en-provence-scene-5
+@@STITLE=Saint-Trophime
+Aquí está Saint-Trophime, y sobre todo su portada. Tómate el tiempo de leerla como una página. Alrededor de la puerta, esculpidos en piedra en el siglo XII, Cristo en majestad, los apóstoles alineados, los elegidos que son llevados al paraíso y los condenados que se llevan, encadenados, hacia el fuego. Una de las portadas románicas más bellas del Mediodía.
+
+Pero mira cuánto se parece a un arco de triunfo romano: las columnas, el frontón, los frisos. Los canteros medievales tenían ante sus ojos los monumentos antiguos de la ciudad. Se inspiraron en ellos, e incluso les robaron bloques. Roma no había muerto: servía de modelo y de cantera.
+
+Aquí late el corazón cristiano de Arles. Ya en el año 314, la ciudad acoge un gran concilio de obispos, convocado por el propio Constantino: Arles ya cuenta dentro de la Iglesia. Cruza la puerta si está abierta, ve a ver el claustro, uno de los más apacibles que existen.
+
+Luego vuelve, y caminemos hacia el este. Nos espera el más elegante de los monumentos romanos, medio derruido.
+@@SCENE=seed-100-arles-rome-en-provence-scene-6
+@@STITLE=Théâtre antique
+El teatro antiguo. No queda gran cosa, y sin embargo es conmovedor. Las gradas en semicírculo, talladas en la ladera, donde miles de espectadores tomaban asiento. Y allá, plantadas solas en medio del vacío, dos altas columnas que sostenían antaño el gran muro escénico. Se las llama «las dos viudas». Todas sus hermanas han desaparecido.
+
+Porque este teatro, construido bajo el emperador Augusto, sirvió de cantera durante siglos. Se venía aquí a buscar columnas, mármoles, piedras talladas, para construir iglesias y murallas. El mundo antiguo sirvió para construir el mundo que lo reemplazó. Las dos viudas son lo que resistió el saqueo.
+
+Fue aquí, en 1651, donde se desenterró una maravilla: una estatua de Venus, la Venus de Arles. Se ofreció al rey Luis XIV, que se la llevó. Hoy está en el Louvre. Otro tesoro de Arles que se fue a otra parte.
+
+En verano, en estas gradas, se vuelve a actuar, a cantar, como el primer día. Baja ahora hacia el sur. Nuestro último lugar es el más extraño: una avenida de tumbas.
+@@SCENE=seed-100-arles-rome-en-provence-scene-7
+@@STITLE=Les Alyscamps
+Pasa la verja: aquí están los Alyscamps. Una larga avenida recta, bordeada de sarcófagos de piedra, bajo una bóveda de árboles. El nombre viene del latín: los Campos Elíseos, la morada de los muertos felices. Era la gran necrópolis de Arles, a lo largo del antiguo camino que salía de la ciudad.
+
+Entre los romanos, no se enterraba dentro de la ciudad: se bordeaban los caminos de tumbas, para que el viajero, al llegar, saludara a los muertos. Luego los cristianos se apropiaron de él. Se cuenta que el propio Cristo se habría aparecido aquí para bendecir el lugar, y que reposar aquí abría las puertas del cielo. Así que la gente se hacía enterrar aquí desde toda la Provenza. Se enviaban los cuerpos por el Ródano, con una moneda para el barquero, hasta este cementerio bendito.
+
+Miles de tumbas, en filas y más filas. Había tantas que, con el paso de los siglos, se regalaron, vendieron, dispersaron los sarcófagos más hermosos. Los que quedan han perdido a sus vecinos.
+
+Avanza por la avenida, despacio, hasta el final. Una iglesia en ruinas nos espera, y ahí es donde me despediré de ti.
+@@SCENE=seed-100-arles-rome-en-provence-scene-8
+@@STITLE=Saint-Honorat
+Aquí estamos al final del camino, ante Saint-Honorat, la iglesia de piedra que cierra la avenida. Un campanario macizo, una nave medio abierta al cielo, tumbas hasta debajo de los muros. Siéntate un minuto. Escucha. Este lugar hizo soñar a los más grandes: Dante, en su Infierno, comparó un campo de condenados con las tumbas de Arles; Ariosto, más tarde, hizo de él un escenario de caballería. Esta avenida fue célebre en toda Europa.
+
+Y piensa en todo lo que acabas de atravesar. El anfiteatro donde ayer mismo todavía se vivía, el foro bajo tus pies, el emperador nacido junto al río, el obelisco del circo, el teatro saqueado piedra a piedra, y ahora esta avenida de muertos. Una ciudad entera asentada sobre Roma, que nunca dejó de reciclar su pasado para construir su presente.
+
+Ese es el secreto de Arles. No conservó Roma como un museo bajo una campana de cristal. La habitó, la desgastó, la saqueó, la reutilizó —y, con ello, la mantuvo viva. Cada generación caminó sobre la anterior, sin borrarlo nunca todo.
+
+Roma cayó hace quince siglos. Aquí, sigue en pie, bajo tus suelas. Gracias por descender el tiempo conmigo. Quédate un momento en el silencio de los Alyscamps. Te lo has ganado.
+
+@@LANG=de
+@@TITLE=Arles — Das kleine Rom Galliens
+@@DESC=Geschichte & Geheimnisse — das antike Arles: Arena, Theater, Kryptoportikus, Nekropole.
+@@SCENE=seed-100-arles-rome-en-provence-scene-0
+@@STITLE=Les Arènes
+Heb den Blick. Zwei Stockwerke Arkaden, honigfarbene Steine, vor fast zweitausend Jahren von römischen Händen aufgeschichtet. Das Amphitheater von Arles. Hier drängten sich einst Zehntausende von Zuschauern, um das Blut von Gladiatoren und Bestien fließen zu sehen. Das größte Bauwerk der Stadt. Es steht immer noch.
+
+Aber hier ist das Geheimnis, das ich dir zuerst anvertrauen will. Diese Arena hat überlebt, weil man aufhörte, in ihr zu spielen, und begann, in ihr zu leben. Im Mittelalter, als Invasionen die Provence erzittern lassen, flüchten sich die Leute von Arles in ihr Inneres. Sie vermauern die Arkaden, errichten Wachtürme, bauen eine kleine ummauerte Stadt in den Zirkus: über zweihundert Häuser, Gassen, zwei Kapellen, einen Platz. Ein Festungsdorf, genistet im Bauch des Monuments. Jahrhundertelang wurde man dort geboren und starb dort.
+
+Erst zu Beginn des 19. Jahrhunderts wurde all das geräumt, die Hütten abgerissen und der Arena ihre nackte Steinhaftigkeit zurückgegeben. Heute wird sie noch genutzt: Man treibt dort Stiere, gibt Vorstellungen.
+
+Das ist der rote Faden dieses Spaziergangs. Arles war ein kleines Rom, eine Reichshauptstadt an der Rhône. Und unter jedem Platz, unter jeder Kirche, schläft die antike Stadt. Folge mir. Wir steigen hinab zum Fluss, zu einem Kaiser.
+@@SCENE=seed-100-arles-rome-en-provence-scene-1
+@@STITLE=Thermes de Constantin
+Da stehen wir vor den thermes de Constantin, nahe der Rhône. Mauern aus rosa Backstein und Stein, eine schöne, mit Fenstern durchbrochene Apsis: Das sind die öffentlichen Bäder der römischen Stadt, die größten, die in der Provence erhalten sind. Stell dir den Dampf vor, das heiße Wasser, das kalte Wasser, die Körper, die Geschäfte, die zwischen zwei Becken abgeschlossen wurden. In Rom wusch man sich nicht allein: Man wusch sich in Gesellschaft.
+
+Diese Thermen tragen den Namen Konstantins, und das ist kein Zufall. Zu Beginn des 4. Jahrhunderts liebt Kaiser Konstantin der Große Arles so sehr, dass er sich dort aufhält, einen Palast baut, dem diese Bäder vielleicht angehörten. Sein Sohn, der spätere Konstantin II., wird hier im Jahr 316 geboren. Ein in Arles geborener Kaiser: Die Stadt ist damals so mächtig, dass man sie „das kleine Rom Galliens" nennt und sie eine Zeit lang davon träumt, ganz den Westen zu krönen.
+
+Du gehst über die Überreste einer Reichshauptstadt. Behalte das im Kopf. Steig jetzt wieder hinauf zum Zentrum, zum schlagenden Herzen der römischen Stadt: ihrem Forum.
+@@SCENE=seed-100-arles-rome-en-provence-scene-2
+@@STITLE=Place du Forum
+Place du Forum. Terrassen, Platanen, das abendliche Treiben. Aber lies den Namen des Platzes: das Forum. Genau hier war das Zentrum des römischen Lebens — der große öffentliche Platz, an dem man Geschäfte, Politik und Recht verhandelte, wo der Puls von Arelate schlug.
+
+Such jetzt an der Ecke die Fassade des hôtel Nord-Pinus. Sieh genau hin: Zwei kannelierte Säulen und ein Stück Giebel sind in die Mauer eingelassen, wie im Stein gefangen. Das sind keine Verzierungen. Es sind die Reste eines römischen Tempels, der an seinem Platz stehen blieb, während sich die Stadt Jahrhundert um Jahrhundert um ihn herum neu aufbaute. Man hat den Tempel nicht versetzt: Man hat auf ihm gebaut.
+
+Das ist Arles. Eine Stadt, die nie reinen Tisch gemacht hat. Jede Epoche hat ihre Steine auf die vorherigen gelegt, ohne sie wegzuwerfen. Das Forum ist immer noch da, unter deinen Füßen. Und um es wirklich kennenzulernen, muss man hinabsteigen. Wenige Schritte entfernt taucht eine Treppe unter die Stadt. Folge mir ins Dunkel.
+@@SCENE=seed-100-arles-rome-en-provence-scene-3
+@@STITLE=Cryptoportiques
+Steig hinab. Der Lärm des Platzes verstummt schlagartig. Da sind wir in den cryptoportiques, einem gewaltigen hufeisenförmigen Gang, der vor über zweitausend Jahren unter dem Forum gegraben wurde. Drei gewölbte Galerien, dunkel, kühl, die unter der Stadt verlaufen. Eine fast unversehrte unterirdische Architektur.
+
+Wozu dienten sie? Die Römer hatten ein Problem: Das Gelände neigt sich zum Fluss hin. Um ihren großen Platz schön waagerecht anzulegen, bauten sie darunter diese Galerien als hohle Fundamente, einen gigantischen Sockel. Vielleicht auch, um dort Getreide zu lagern, vor der Hitze geschützt. Niemand ist sich ganz sicher.
+
+Hör auf die Stille. Berühr den feuchten Stein. Über deinem Kopf sind die Fassaden, die Touristen, das Licht. Hier unten gibt es nur das Skelett der römischen Stadt, so, wie man es unter Augustus gegossen hat. Wenige Städte lassen dich so in ihre eigenen Fundamente hinabsteigen.
+
+Steig zurück ins Licht. Wir treten auf den schönsten Platz von Arles hinaus, wo eine steinerne Nadel von sehr weit her auf dich wartet.
+@@SCENE=seed-100-arles-rome-en-provence-scene-4
+@@STITLE=Place de la République
+Place de la République. Erfass ihn mit einem Blick: das Rathaus auf der einen Seite, eine Kathedrale auf der anderen, und in der Mitte, zum Himmel aufragend, ein Obelisk. Geh näher heran.
+
+Das ist kein ägyptisches Souvenir wie das in Paris. Dieser Monolith aus rotem Granit wurde in der Antike behauen und einst mitten im römischen Zirkus von Arles aufgestellt — der langen Bahn, auf der die Wagen gegeneinander antraten, irgendwo südwestlich der Stadt. Der Zirkus ist verschwunden, von den Jahrhunderten aufgezehrt. Der Obelisk blieb über tausend Jahre lang in der Erde liegen.
+
+Dann, 1676, gruben die Leute von Arles ihn aus, richteten ihn auf, stellten ihn hier auf, mitten im Herzen ihrer Stadt, wie eine Trophäe. Ein römischer Stein, von weit späteren Händen wieder aufgerichtet, um zu sagen: Wir sind die Erben Roms. Sieh dir die vergoldete Kugel an seiner Spitze an, noch später hinzugefügt. Jedes Jahrhundert hat unterschrieben.
+
+Dreh dich zur Kathedrale. Ihr Portal ist ein Meisterwerk, und es erzählt dir den nächsten Teil der Geschichte.
+@@SCENE=seed-100-arles-rome-en-provence-scene-5
+@@STITLE=Saint-Trophime
+Hier ist Saint-Trophime, und vor allem sein Portal. Nimm dir Zeit, es wie eine Seite zu lesen. Rund um die Tür, im 12. Jahrhundert in Stein gemeißelt: der thronende Christus, die aufgereihten Apostel, die Erwählten, die ins Paradies geführt werden, und die Verdammten, die angekettet ins Feuer getragen werden. Eines der schönsten romanischen Portale Südfrankreichs.
+
+Aber sieh, wie sehr es einem römischen Triumphbogen ähnelt: die Säulen, der Giebel, die Friese. Die mittelalterlichen Steinmetze hatten die antiken Monumente der Stadt vor Augen. Sie ließen sich von ihnen inspirieren, ja, stahlen ihnen sogar Blöcke. Rom war nicht tot: Es diente als Vorbild und als Steinbruch.
+
+Hier schlägt das christliche Herz von Arles. Bereits im Jahr 314 beherbergt die Stadt ein großes Bischofskonzil, von Konstantin selbst einberufen: Arles zählt schon in der Kirche mit. Geh durch die Tür, wenn sie offen ist, sieh dir den Kreuzgang an, einen der friedlichsten, die es gibt.
+
+Komm dann zurück, und lass uns nach Osten gehen. Das eleganteste der römischen Bauwerke erwartet uns, halb eingestürzt.
+@@SCENE=seed-100-arles-rome-en-provence-scene-6
+@@STITLE=Théâtre antique
+Das antike Theater. Es ist nicht mehr viel übrig, und doch ist es bewegend. Die halbrunden Ränge, in den Hang geschnitten, wo einst Tausende von Zuschauern Platz nahmen. Und dort, allein inmitten der Leere, zwei hohe Säulen, die einst die große Bühnenwand trugen. Man nennt sie „die beiden Witwen". Alle ihre Schwestern sind verschwunden.
+
+Denn dieses Theater, unter Kaiser Augustus erbaut, diente jahrhundertelang als Steinbruch. Man kam hierher, um Säulen, Marmor, behauene Steine zu holen, um Kirchen und Stadtmauern zu bauen. Die antike Welt half, die Welt zu bauen, die sie ersetzte. Die beiden Witwen sind, was der Plünderung widerstanden hat.
+
+Hier grub man 1651 ein Wunderwerk aus: eine Venusstatue, die Vénus d'Arles. Man schenkte sie König Ludwig XIV., der sie mitnahm. Heute steht sie im Louvre. Noch ein Schatz von Arles, der anderswohin ging.
+
+Im Sommer wird auf diesen Rängen wieder Theater gespielt, gesungen, wie am ersten Tag. Steig jetzt nach Süden hinab. Unser letzter Ort ist der seltsamste: eine Allee von Gräbern.
+@@SCENE=seed-100-arles-rome-en-provence-scene-7
+@@STITLE=Les Alyscamps
+Geh durch das Tor: Da sind die Alyscamps. Eine lange gerade Allee, gesäumt von steinernen Sarkophagen, unter einem Gewölbe aus Bäumen. Der Name kommt aus dem Lateinischen: die Elysischen Felder, der Aufenthaltsort der glücklichen Toten. Es war die große Nekropole von Arles, entlang der antiken Straße, die aus der Stadt hinausführte.
+
+Bei den Römern wurde nicht in der Stadt begraben: Man säumte die Straßen mit Gräbern, damit der Reisende bei seiner Ankunft die Toten grüßte. Dann eigneten sich die Christen den Ort an. Man erzählt, Christus selbst sei hier erschienen, um den Ort zu segnen, und wer hier ruhe, dem öffneten sich die Tore des Himmels. So ließ man sich aus der ganzen Provence hier bestatten. Man schickte die Leichname die Rhône hinunter, mit einer Münze für den Fährmann, zu diesem gesegneten Friedhof.
+
+Tausende Gräber, Reihe um Reihe. Es gab so viele, dass man im Lauf der Jahrhunderte die schönsten Sarkophage verschenkte, verkaufte, verstreute. Was übrig blieb, hat seine Nachbarn verloren.
+
+Geh langsam die Allee entlang, bis zum Ende. Eine verfallene Kirche erwartet uns, und dort werde ich mich von dir verabschieden.
+@@SCENE=seed-100-arles-rome-en-provence-scene-8
+@@STITLE=Saint-Honorat
+Da sind wir am Ende des Weges, vor Saint-Honorat, der steinernen Kirche, die die Allee abschließt. Ein wuchtiger Glockenturm, ein halb zum Himmel offenes Schiff, Gräber bis unter die Mauern. Setz dich eine Minute hin. Hör hin. Dieser Ort ließ die Größten träumen: Dante verglich in seinem Inferno ein Feld der Verdammten mit den Gräbern von Arles; Ariost machte später eine Kulisse für Ritterlichkeit daraus. Diese Allee war in ganz Europa berühmt.
+
+Und denk an alles, was du gerade durchquert hast. Das Amphitheater, in dem man noch gestern lebte, das Forum unter deinen Füßen, der am Fluss geborene Kaiser, der Obelisk aus dem Zirkus, das Stein für Stein geplünderte Theater, und jetzt diese Allee der Toten. Eine ganze Stadt, auf Rom errichtet, die nie aufgehört hat, ihre Vergangenheit zu recyceln, um ihre Gegenwart zu bauen.
+
+Das ist das Geheimnis von Arles. Es hat Rom nicht wie ein Museumsstück unter einer Glasglocke bewahrt. Es hat darin gewohnt, es abgenutzt, geplündert, wiederverwendet — und es dadurch am Leben erhalten. Jede Generation ist auf der vorherigen gegangen, ohne sie je ganz auszulöschen.
+
+Rom fiel vor fünfzehn Jahrhunderten. Hier steht es noch, unter deinen Sohlen. Danke, dass du mit mir durch die Zeit hinabgestiegen bist. Bleib einen Moment in der Stille der Alyscamps. Du hast es dir verdient.
+
+@@LANG=it
+@@TITLE=Arles — La piccola Roma delle Gallie
+@@DESC=Storia e segreti: l'Arles antica, anfiteatro, teatro, criptoportici, necropoli.
+@@SCENE=seed-100-arles-rome-en-provence-scene-0
+@@STITLE=Les Arènes
+Alza gli occhi. Due piani di arcate, pietre dorate impilate da mani romane quasi duemila anni fa. L'anfiteatro di Arles. Vi si ammassavano decine di migliaia di spettatori per veder scorrere il sangue di gladiatori e belve. Il monumento più grande della città. È ancora in piedi.
+
+Ma ecco il segreto che voglio confidarti per primo. Se questo anfiteatro è sopravvissuto, è perché si è smesso di giocarvi e si è cominciato a viverci. Nel Medioevo, quando le invasioni fanno tremare la Provenza, gli arlesiani vi si rifugiano. Chiudono le arcate, innalzano torri di guardia, costruiscono un piccolo borgo murato dentro l'anfiteatro: oltre duecento case, vicoli, due cappelle, una piazza. Un villaggio-fortezza annidato nel ventre del monumento. Per secoli vi si è nati e morti.
+
+Bisognerà aspettare l'inizio dell'Ottocento perché tutto ciò venga svuotato, le case abbattute e all'anfiteatro restituita la sua nudità di pietra. Oggi serve ancora: vi si corrono i tori, vi si danno spettacoli.
+
+Ecco il filo di questa visita. Arles fu una piccola Roma, una capitale d'impero posata sul Rodano. E sotto ogni piazza, sotto ogni chiesa, dorme la città antica. Seguimi. Scendiamo verso il fiume, da un imperatore.
+@@SCENE=seed-100-arles-rome-en-provence-scene-1
+@@STITLE=Thermes de Constantin
+Eccoci davanti alle thermes de Constantin, vicino al Rodano. Muri di mattoni rosa e pietra, una bella abside forata di finestre: sono le terme pubbliche della città romana, e le più grandi rimaste in Provenza. Immagina il vapore, l'acqua calda, l'acqua fredda, i corpi, gli affari che si trattavano tra due vasche. A Roma non ci si lavava da soli: ci si lavava in società.
+
+Queste terme portano il nome di Costantino, e non è un caso. All'inizio del IV secolo, l'imperatore Costantino il Grande ama Arles al punto da soggiornarvi, da costruirvi un palazzo a cui forse appartenevano queste terme. Suo figlio, il futuro Costantino II, vi nasce nell'anno 316. Un imperatore nato ad Arles: la città è allora così potente che la si chiama «la piccola Roma delle Gallie», e sogna per un momento di dominare tutto l'Occidente.
+
+Cammini sui resti di una capitale imperiale. Tienilo a mente. Risali ora verso il centro, verso il cuore pulsante della città romana: il suo foro.
+@@SCENE=seed-100-arles-rome-en-provence-scene-2
+@@STITLE=Place du Forum
+Place du Forum. Terrazze, platani, l'animazione della sera. Ma leggi il nome della piazza: il Foro. Era qui, esattamente, il centro della vita romana — la grande piazza pubblica dove si parlava di affari, di politica, di giustizia, dove batteva il polso di Arelate.
+
+Cerca ora, all'angolo, la facciata dell'hôtel Nord-Pinus. Guarda bene: due colonne scanalate e un pezzo di frontone sono incastrati nel muro, come prigionieri della pietra. Non sono decorazioni. Sono i resti di un tempio romano, rimasto in piedi al suo posto mentre la città si ricostruiva tutt'intorno, secolo dopo secolo. Non si è spostato il tempio: ci si è costruito sopra.
+
+Questo è Arles. Una città che non ha mai fatto tabula rasa. Ogni epoca ha posato le proprie pietre su quelle precedenti, senza gettarle. Il foro è ancora lì, sotto i tuoi piedi. E proprio per incontrarlo davvero, bisogna scendere. A pochi passi, una scala si tuffa sotto la città. Seguimi nel buio.
+@@SCENE=seed-100-arles-rome-en-provence-scene-3
+@@STITLE=Cryptoportiques
+Scendi. Il rumore della piazza si spegne di colpo. Eccoci nei cryptoportiques, un immenso corridoio a ferro di cavallo scavato sotto il foro più di duemila anni fa. Tre gallerie a volta, buie, fresche, che corrono sotto la città. Un'architettura sotterranea quasi intatta.
+
+A cosa servivano? I Romani avevano un problema: il terreno pende verso il fiume. Allora, per posare la loro grande piazza ben orizzontale, vi costruirono sotto queste gallerie come fondamenta cave, uno zoccolo gigantesco. Forse anche per conservarvi il grano, al riparo dal calore. Nessuno ne è del tutto certo.
+
+Ascolta il silenzio. Tocca la pietra stillante. Sopra la tua testa ci sono le facciate, i turisti, la luce. Qui c'è solo lo scheletro della città romana, così come fu colato sotto Augusto. Poche città ti lasciano scendere così nelle proprie fondamenta.
+
+Risali alla luce. Usciamo sulla piazza più bella di Arles, dove ti aspetta un ago di pietra venuto da molto lontano.
+@@SCENE=seed-100-arles-rome-en-provence-scene-4
+@@STITLE=Place de la République
+Place de la République. Abbraccala con uno sguardo: il municipio da un lato, una cattedrale dall'altro, e in mezzo, eretto verso il cielo, un obelisco. Avvicinati.
+
+Non è un souvenir d'Egitto come quello di Parigi. Questo monolite di granito rosso fu tagliato nell'Antichità e piantato, un tempo, in mezzo al circo romano di Arles — la lunga pista dove si sfidavano i carri, da qualche parte a sud-ovest della città. Il circo è scomparso, divorato dai secoli. L'obelisco è rimasto disteso nella terra per oltre mille anni.
+
+Poi, nel 1676, gli arlesiani lo hanno riesumato, rialzato, eretto qui, nel pieno cuore della loro città, come un trofeo. Una pietra romana rimessa in piedi da mani molto più tarde, per dire: siamo gli eredi di Roma. Guarda il globo dorato sulla sua sommità, aggiunto ancora più tardi. Ogni secolo ha firmato.
+
+Voltati verso la cattedrale. Il suo portale è un capolavoro, e ti racconta il seguito della storia.
+@@SCENE=seed-100-arles-rome-en-provence-scene-5
+@@STITLE=Saint-Trophime
+Ecco Saint-Trophime, e soprattutto il suo portale. Prenditi il tempo di leggerlo come una pagina. Intorno alla porta, scolpiti nella pietra nel XII secolo, il Cristo in maestà, gli apostoli allineati, gli eletti condotti in paradiso e i dannati trascinati, incatenati, verso il fuoco. Uno dei più bei portali romanici del Mezzogiorno.
+
+Ma guarda quanto somiglia a un arco di trionfo romano: le colonne, il frontone, i fregi. Gli scalpellini medievali avevano sotto gli occhi i monumenti antichi della città. Se ne sono ispirati, e hanno persino rubato loro dei blocchi. Roma non era morta: serviva da modello e da cava.
+
+Qui batte il cuore cristiano di Arles. Già nell'anno 314 la città accoglie un grande concilio di vescovi, convocato dallo stesso Costantino: Arles conta già nella Chiesa. Varca la porta se è aperta, va' a vedere il chiostro, uno dei più pacifici che ci siano.
+
+Poi torna, e camminiamo verso est. Ci aspetta il più elegante dei monumenti romani, mezzo crollato.
+@@SCENE=seed-100-arles-rome-en-provence-scene-6
+@@STITLE=Théâtre antique
+Il teatro antico. Non ne resta molto, eppure è commovente. Le gradinate a semicerchio, tagliate nel pendio, dove migliaia di spettatori prendevano posto. E laggiù, piantate sole in mezzo al vuoto, due alte colonne che un tempo reggevano il grande muro di scena. Le chiamano «le due vedove». Tutte le loro sorelle sono scomparse.
+
+Perché questo teatro, costruito sotto l'imperatore Augusto, è servito da cava per secoli. Vi si veniva a cercare colonne, marmi, pietre tagliate, per costruire chiese e mura. Il mondo antico è servito a costruire il mondo che lo ha sostituito. Le due vedove sono ciò che ha resistito al saccheggio.
+
+È qui, nel 1651, che si è dissotterrata una meraviglia: una statua di Venere, la Vénus d'Arles. È stata offerta al re Luigi XIV, che se la portò via. Oggi è al Louvre. Un altro tesoro di Arles finito altrove.
+
+D'estate, su queste gradinate, si recita di nuovo, si canta, come il primo giorno. Scendi ora verso sud. Il nostro ultimo luogo è il più strano: un viale di tombe.
+@@SCENE=seed-100-arles-rome-en-provence-scene-7
+@@STITLE=Les Alyscamps
+Varca il cancello: ecco gli Alyscamps. Un lungo viale diritto, fiancheggiato da sarcofagi di pietra, sotto una volta di alberi. Il nome viene dal latino: i Campi Elisi, il soggiorno dei morti felici. Era la grande necropoli di Arles, lungo l'antica strada che usciva dalla città.
+
+Presso i Romani, non si seppelliva dentro la città: si costeggiavano le strade di tombe, perché il viaggiatore, arrivando, salutasse i morti. Poi i cristiani se ne impadronirono. Si racconta che Cristo stesso sarebbe apparso qui per benedire il luogo, e che riposarvi aprisse le porte del cielo. Così ci si faceva seppellire qui da tutta la Provenza. Si spedivano i corpi lungo il Rodano, con una moneta per il traghettatore, fino a questo cimitero benedetto.
+
+Migliaia di tombe, in file su file. Ce n'erano tante che, nel corso dei secoli, si sono regalati, venduti, dispersi i sarcofagi più belli. Quelli rimasti hanno perso i loro vicini.
+
+Avanza nel viale, lentamente, fino in fondo. Una chiesa in rovina ci aspetta, ed è lì che ti dirò addio.
+@@SCENE=seed-100-arles-rome-en-provence-scene-8
+@@STITLE=Saint-Honorat
+Eccoci in fondo al cammino, davanti a Saint-Honorat, la chiesa di pietra che chiude il viale. Un campanile massiccio, una navata mezza aperta al cielo, tombe fin sotto i muri. Siediti un minuto. Ascolta. Questo luogo ha fatto sognare i più grandi: Dante, nel suo Inferno, ha paragonato un campo di dannati alle tombe di Arles; l'Ariosto, più tardi, ne ha fatto uno scenario di cavalleria. Questo viale era celebre in tutta Europa.
+
+E pensa a tutto ciò che hai appena attraversato. L'anfiteatro dove si viveva ancora ieri, il foro sotto i tuoi piedi, l'imperatore nato vicino al fiume, l'obelisco del circo, il teatro saccheggiato pietra su pietra, e ora questo viale di morti. Una città intera posata su Roma, che non ha mai smesso di riciclare il proprio passato per costruire il proprio presente.
+
+È questo il segreto di Arles. Non ha conservato Roma come un pezzo da museo sotto una campana di vetro. L'ha abitata, consumata, saccheggiata, riutilizzata — e così facendo, l'ha mantenuta viva. Ogni generazione ha camminato sulla precedente, senza mai cancellarla del tutto.
+
+Roma è caduta quindici secoli fa. Qui, è ancora in piedi, sotto le tue suole. Grazie per essere sceso nel tempo con me. Resta un momento nel silenzio degli Alyscamps. Te lo sei meritato.
+
+@@LANG=nl
+@@TITLE=Arles — Het kleine Rome van Gallië
+@@DESC=Geschiedenis & geheimen — het antieke Arles: arena, theater, cryptoporticus, necropolis.
+@@SCENE=seed-100-arles-rome-en-provence-scene-0
+@@STITLE=Les Arènes
+Kijk omhoog. Twee verdiepingen arcaden, honingkleurige stenen, bijna tweeduizend jaar geleden door Romeinse handen opgestapeld. Het amfitheater van Arles. Hier werden tienduizenden toeschouwers samengeperst om het bloed van gladiatoren en beesten te zien vloeien. Het grootste bouwwerk van de stad. Het staat er nog steeds.
+
+Maar hier is het geheim dat ik je eerst wil toevertrouwen. Als deze arena heeft overleefd, is dat omdat men er stopte mee te spelen en er begon te wonen. In de middeleeuwen, toen invasies de Provence deden beven, zochten de inwoners van Arles er hun toevlucht. Ze metselden de arcaden dicht, richtten wachttorens op, bouwden een klein ommuurd stadje in het circus: meer dan tweehonderd huizen, steegjes, twee kapellen, een plein. Een vestingdorp genesteld in de buik van het monument. Eeuwenlang werd men daarbinnen geboren en stierf men er.
+
+Pas begin negentiende eeuw werd dat alles ontruimd, de krotten afgebroken en de arena haar naakte steen teruggegeven. Vandaag wordt ze nog gebruikt: er worden stieren gedreven, er worden voorstellingen gegeven.
+
+Dat is de rode draad van deze wandeling. Arles was een klein Rome, een keizerlijke hoofdstad aan de Rhône. En onder elk plein, onder elke kerk, sluimert de antieke stad. Volg mij. We dalen af naar de rivier, naar het huis van een keizer.
+@@SCENE=seed-100-arles-rome-en-provence-scene-1
+@@STITLE=Thermes de Constantin
+Daar staan we voor de thermes de Constantin, dicht bij de Rhône. Muren van roze baksteen en steen, een mooie apsis doorboord met vensters: dit zijn de openbare baden van de Romeinse stad, en de grootste die in de Provence bewaard zijn gebleven. Stel je de stoom voor, het warme water, het koude water, de lichamen, de zaken die tussen twee baden werden beklonken. In Rome waste men zich niet alleen: men waste zich in gezelschap.
+
+Deze thermen dragen de naam van Constantijn, en dat is geen toeval. Aan het begin van de vierde eeuw houdt keizer Constantijn de Grote zoveel van Arles dat hij er verblijft, er een paleis bouwt waar deze baden misschien bij hoorden. Zijn zoon, de latere Constantijn II, wordt hier geboren in het jaar 316. Een in Arles geboren keizer: de stad is dan zo machtig dat men haar "het kleine Rome van Gallië" noemt, en ze droomt er even van heel het Westen te bekronen.
+
+Je loopt over de resten van een keizerlijke hoofdstad. Onthoud dat. Klim nu weer op naar het centrum, naar het kloppende hart van de Romeinse stad: haar forum.
+@@SCENE=seed-100-arles-rome-en-provence-scene-2
+@@STITLE=Place du Forum
+Place du Forum. Terrassen, plataanbomen, de drukte van de avond. Maar lees de naam van het plein: het Forum. Hier was, precies hier, het centrum van het Romeinse leven — het grote openbare plein waar over zaken, politiek en recht werd gesproken, waar de pols van Arelate klopte.
+
+Zoek nu, op de hoek, de gevel van het hôtel Nord-Pinus. Kijk goed: twee gecanneleerde zuilen en een stuk fronton zitten ingemetseld in de muur, als gevangenen van de steen. Dit zijn geen versieringen. Het zijn de resten van een Romeinse tempel, die op zijn plaats bleef staan terwijl de stad zich er eeuw na eeuw omheen herbouwde. Men heeft de tempel niet verplaatst: men heeft erop gebouwd.
+
+Dat is Arles. Een stad die nooit schoon schip maakte. Elk tijdperk legde zijn stenen op die van ervoor, zonder ze weg te gooien. Het forum ligt er nog steeds, onder je voeten. En om het echt te ontmoeten, moet je afdalen. Een paar stappen verderop duikt een trap onder de stad. Volg mij het donker in.
+@@SCENE=seed-100-arles-rome-en-provence-scene-3
+@@STITLE=Cryptoportiques
+Daal af. Het rumoer van het plein sterft in één klap weg. Hier zijn we in de cryptoportiques, een immense hoefijzervormige gang, meer dan tweeduizend jaar geleden onder het forum uitgegraven. Drie gewelfde galerijen, donker, koel, die onder de stad doorlopen. Een bijna intacte ondergrondse architectuur.
+
+Waar dienden ze voor? De Romeinen hadden een probleem: het terrein helt naar de rivier toe. Om hun grote plein mooi horizontaal aan te leggen, bouwden ze er deze galerijen onder als holle funderingen, een gigantische sokkel. Misschien ook om er graan te bewaren, beschut tegen de hitte. Niemand weet het helemaal zeker.
+
+Luister naar de stilte. Raak de vochtige steen aan. Boven je hoofd zijn de gevels, de toeristen, het licht. Hier beneden is er alleen het skelet van de Romeinse stad, zoals het onder Augustus is gegoten. Weinig steden laten je zo in hun eigen funderingen afdalen.
+
+Klim terug naar het licht. We komen uit op het mooiste plein van Arles, waar een stenen naald van heel ver weg op je wacht.
+@@SCENE=seed-100-arles-rome-en-provence-scene-4
+@@STITLE=Place de la République
+Place de la République. Neem het in één oogopslag op: het stadhuis aan de ene kant, een kathedraal aan de andere, en in het midden, oprijzend naar de hemel, een obelisk. Kom dichterbij.
+
+Dit is geen Egyptisch souvenir zoals dat van Parijs. Deze monoliet van rode graniet werd in de oudheid gehouwen en ooit midden in het Romeinse circus van Arles geplant — de lange baan waar de wagenrennen werden gehouden, ergens ten zuidwesten van de stad. Het circus is verdwenen, opgevreten door de eeuwen. De obelisk bleef ruim duizend jaar in de aarde liggen.
+
+Toen, in 1676, groeven de inwoners van Arles hem op, richtten hem op, plaatsten hem hier, in het hart van hun stad, als een trofee. Een Romeinse steen weer overeind gezet door veel latere handen, om te zeggen: wij zijn de erfgenamen van Rome. Kijk naar de vergulde bol op zijn top, nog later toegevoegd. Elke eeuw heeft getekend.
+
+Draai je naar de kathedraal. Haar portaal is een meesterwerk, en het vertelt je het vervolg van het verhaal.
+@@SCENE=seed-100-arles-rome-en-provence-scene-5
+@@STITLE=Saint-Trophime
+Hier is Saint-Trophime, en vooral haar portaal. Neem de tijd om het als een bladzijde te lezen. Rond de deur, in de twaalfde eeuw in steen gebeeldhouwd: Christus in majesteit, de apostelen op een rij, de uitverkorenen die naar het paradijs worden geleid en de verdoemden die geketend naar het vuur worden gevoerd. Een van de mooiste romaanse portalen van Zuid-Frankrijk.
+
+Maar kijk hoe erg het op een Romeinse triomfboog lijkt: de zuilen, het fronton, de friezen. De middeleeuwse steenhouwers hadden de antieke monumenten van de stad voor ogen. Ze lieten zich erdoor inspireren, en stalen er zelfs blokken van. Rome was niet dood: het diende als voorbeeld en als steengroeve.
+
+Hier klopt het christelijke hart van Arles. Al in het jaar 314 ontvangt de stad een groot concilie van bisschoppen, bijeengeroepen door Constantijn zelf: Arles telt al mee binnen de Kerk. Ga door de deur als ze open is, ga de kloostergang bekijken, een van de vredigste die er zijn.
+
+Kom dan terug, en laten we naar het oosten lopen. Het elegantste van de Romeinse monumenten wacht op ons, half ingestort.
+@@SCENE=seed-100-arles-rome-en-provence-scene-6
+@@STITLE=Théâtre antique
+Het antieke theater. Er blijft niet veel over, en toch is het aangrijpend. De halfronde zitrijen, in de helling gehakt, waar duizenden toeschouwers plaatsnamen. En daarginds, alleen midden in de leegte, twee hoge zuilen die vroeger de grote toneelmuur droegen. Men noemt ze "de twee weduwen". Al hun zusters zijn verdwenen.
+
+Want dit theater, gebouwd onder keizer Augustus, diende eeuwenlang als steengroeve. Men kwam er zuilen, marmer, gehouwen steen zoeken, om kerken en wallen te bouwen. De antieke wereld hielp de wereld bouwen die haar verving. De twee weduwen zijn wat de plundering heeft doorstaan.
+
+Het was hier, in 1651, dat men een wonder opgroef: een Venusbeeld, de Vénus d'Arles. Men schonk het aan koning Lodewijk XIV, die het meenam. Vandaag staat het in het Louvre. Nog een schat van Arles die elders belandde.
+
+'s Zomers wordt op deze zitrijen weer toneel gespeeld, gezongen, als op de eerste dag. Daal nu af naar het zuiden. Onze laatste plek is de vreemdste: een laan van graven.
+@@SCENE=seed-100-arles-rome-en-provence-scene-7
+@@STITLE=Les Alyscamps
+Ga door het hek: hier zijn de Alyscamps. Een lange rechte laan, omzoomd met stenen sarcofagen, onder een gewelf van bomen. De naam komt uit het Latijn: de Elyzeese Velden, de verblijfplaats van de gelukkige doden. Het was de grote necropolis van Arles, langs de antieke weg die de stad uit leidde.
+
+Bij de Romeinen begroef men niet binnen de stad: men zoomde de wegen af met graven, zodat de reiziger bij aankomst de doden begroette. Later namen de christenen het over. Men vertelt dat Christus zelf hier zou zijn verschenen om de plek te zegenen, en dat er rusten de poorten van de hemel opende. Dus liet men zich hier begraven, uit heel de Provence. Men stuurde de lichamen de Rhône af, met een muntstuk voor de veerman, naar deze gezegende begraafplaats.
+
+Duizenden graven, rij na rij. Er waren er zoveel dat men in de loop der eeuwen de mooiste sarcofagen weggaf, verkocht, verspreidde. Wat overblijft heeft zijn buren verloren.
+
+Loop langzaam de laan af, tot het eind. Een vervallen kerk wacht ons, en daar zal ik afscheid van je nemen.
+@@SCENE=seed-100-arles-rome-en-provence-scene-8
+@@STITLE=Saint-Honorat
+Hier zijn we aan het einde van het pad, voor Saint-Honorat, de stenen kerk die de laan afsluit. Een massieve klokkentoren, een schip half open naar de hemel, graven tot onder de muren. Ga even zitten. Luister. Deze plek deed de grootsten dromen: Dante vergeleek in zijn Inferno een veld van verdoemden met de graven van Arles; Ariosto maakte er later een ridderlijk decor van. Deze laan was beroemd in heel Europa.
+
+En denk aan alles wat je zojuist hebt doorkruist. Het amfitheater waar gisteren nog werd gewoond, het forum onder je voeten, de bij de rivier geboren keizer, de obelisk van het circus, het steen voor steen geplunderde theater, en nu deze laan van doden. Een hele stad gebouwd op Rome, die nooit ophield haar verleden te hergebruiken om haar heden te bouwen.
+
+Dat is het geheim van Arles. Ze bewaarde Rome niet als een museumstuk onder een glazen stolp. Ze bewoonde het, sleet het, plunderde het, hergebruikte het — en hield het daardoor levend. Elke generatie liep over de vorige, zonder haar ooit helemaal uit te wissen.
+
+Rome viel vijftien eeuwen geleden. Hier staat het nog overeind, onder je zolen. Bedankt dat je met me door de tijd bent afgedaald. Blijf nog even in de stilte van de Alyscamps. Je hebt het verdiend.

@@ -1,0 +1,259 @@
+@@LANG=en
+@@TITLE=Paris — Streets and Passages of Les Halles
+@@DESC=Urban history — tracing the former boundaries of Les Halles through streets, monuments, and passages.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-0
+@@STITLE=Bourse de Commerce
+Start by slowly walking around the building. Its circular shape isn't a contemporary whim. In the eighteenth century, a grain market was built here around a round courtyard. The monument was later covered over, transformed, and given over to commerce before becoming the Bourse de Commerce. The dome and the façades preserve the layers of these successive uses.
+
+Beside it stands the colonne Médicis, raised in the sixteenth century for the mansion of Catherine de' Medici, which once occupied the site. It's one of the few visible witnesses of that vanished complex. Two eras thus meet within a few meters: an aristocratic Renaissance domain and an Enlightenment-era piece of urban infrastructure.
+
+Our walk won't tell the story of what used to be sold at Les Halles. Instead, it will look at how this vast neighborhood organized its streets, thresholds, and passages. Look eastward: the jardin Nelson-Mandela occupies part of the former territory of the market pavilions. Cross it along the public paths and reach the église Saint-Eustache. Its mass reveals the scale of the neighborhood well before the modern transformations.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-1
+@@STITLE=Église Saint-Eustache
+Saint-Eustache seems almost too large for the streets surrounding it. Its construction begins in the sixteenth century and continues for over a century. The plan and elevation remain tied to the Gothic, while the decoration adopts the vocabulary of the Renaissance. This encounter explains the building's odd familiarity: slender arches, superimposed columns, a later western façade.
+
+Look at the chevet from the garden. The chapels form a crown of volumes that engages in dialogue with the contemporary walkways. The church wasn't isolated on an esplanade; it grew in contact with a dense neighborhood. Today's open spaces let you see its proportions, but they belong to a recent history, tied to the disappearance of the central market pavilions in the twentieth century.
+
+Skirt the building toward the rue du Jour, then reach the rue Montorgueil. You're about to move from a massive monument to an old thoroughfare whose gentle rise gave it its name. Don't look for a perfectly straight line. Instead, notice the narrow façades and the cross streets: they preserve the scale of a Paris that predates the great nineteenth-century boulevards.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-2
+@@STITLE=Rue Montorgueil
+The rue Montorgueil follows an old route that once extended the exit from Paris toward the north. Its name is generally linked to the "mont Orgueilleux," the Proud Hill, the rise the road climbed. Walking along it, you can still feel a discreet slope. It's enough to remind you that the plan of Paris also responds to the terrain, even in a neighborhood that's now heavily built up.
+
+Look at the house numbers, the widths of the plots, and the façades from different periods. The street wasn't rebuilt in a single stroke. It gathers together modest buildings, alterations, and a few more ambitious decorative schemes. This continuity explains its slight curve and its irregular rhythm. At every intersection, a vista opens onto another direction of the neighborhood.
+
+Stop near the rue Étienne-Marcel, then continue toward the rue Saint-Denis. You're about to leave the open thoroughfare and enter a covered passage. This contrast matters. At the start of the nineteenth century, passages offered a new way of moving through city blocks, sheltered and lit by glass roofs. The passage du Grand-Cerf offers a spectacular example, thanks to its height.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-3
+@@STITLE=Passage du Grand-Cerf
+Enter the passage du Grand-Cerf through its public entrance and look up. Its glass roof rises well above the two levels of interior façades. The present-day passage dates from the first third of the nineteenth century. It takes its name from a former inn, but its architecture belongs entirely to the Paris of cast iron, glass, and new ways of moving through the city.
+
+The footbridges, handrails, and metal structures make visible the technology holding up this covered street. Light falls from the roof rather than arriving from a square or a wide roadway. Notice too the perfectly framed vista between the two doorways. The passage cuts through the block and shortens the route, while forming a space distinct from the street.
+
+Come back out on the rue Dussoubs side and continue northeast to the passage du Caire. The neighborhood's texture changes again. The next network is less monumental, more branching, and its name keeps the trace of the Egyptian campaign led at the end of the eighteenth century. You'll see how a distant event left its mark on a very concrete piece of the Parisian street plan.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-4
+@@STITLE=Passage du Caire
+The passage du Caire was opened in 1798, during the Egyptian campaign. Its galleries bear names like Sainte-Foy, Saint-Denis, or Caire, and together form one of the most extensive covered complexes in Paris. At the entrance from the place du Caire, the façade carries decoration inspired by Egypt, with figures of the goddess Hathor. This learned, popular fashion followed the discoveries being spread across France at the time.
+
+Here, the walk becomes almost an exercise in orientation. The branches don't all lead to the same street, and the vistas end quickly. Look at the glazed structures, the shop signs built into the façades, and the differences in width. The passage works like a miniature city inside the block.
+
+Head south again along the rue Saint-Denis to the fontaine des Innocents. The route rejoins the old heart of Les Halles and crosses a thoroughfare that was for a long time one of the great northern gateways of Paris. On arrival, you'll discover a monument that has been moved and reassembled several times, a perfect witness to a neighborhood that has never stopped changing around it.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-5
+@@STITLE=Fontaine des Innocents
+The fontaine des Innocents was designed in the sixteenth century by Pierre Lescot and decorated by Jean Goujon. It didn't originally have the isolated look it has today. Set against a building, it celebrated, among other things, the entry of Henri II into Paris. The removal of the cimetière des Innocents at the end of the eighteenth century led to its relocation and its transformation into a freestanding pavilion. It was moved again in the nineteenth century when the square was redesigned.
+
+Approach the reliefs without crossing the barriers. The carved nymphs retain the delicacy of the Renaissance, while the base and the overall composition tell the story of successive adaptations. Few monuments sum up the neighborhood's mobility so clearly: what seems unchanging has in fact followed the demolitions, the new thoroughfares, and the new uses of public space.
+
+From the fountain, think back on the circle of the Bourse, the mass of Saint-Eustache, the old street, and the glass-roofed galleries. Les Halles doesn't form a single backdrop. It's a palimpsest of passages, erased or preserved, that still guide your steps. Thank you for following these discreet lines with me. See you soon for another walk.
+
+@@LANG=es
+@@TITLE=París — Calles y pasajes de Les Halles
+@@DESC=Historia urbana — reencontrar los antiguos límites de Les Halles en las calles, monumentos y pasajes.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-0
+@@STITLE=Bourse de Commerce
+Empieza dando lentamente la vuelta al edificio. Su forma circular no responde a un capricho contemporáneo. En el siglo dieciocho, se construyó aquí un mercado de trigo alrededor de un patio redondo. El monumento fue después cubierto, transformado y destinado al comercio antes de convertirse en la Bourse de Commerce. La cúpula y las fachadas conservan los estratos de esos usos sucesivos.
+
+Al lado se alza la colonne Médicis, erigida en el siglo dieciséis para el palacete de Catalina de Médici, que antaño ocupaba el sitio. Es uno de los pocos testigos visibles de ese conjunto desaparecido. Dos épocas se tocan así en unos pocos metros: un dominio aristocrático del Renacimiento y un equipamiento urbano de la Ilustración.
+
+Nuestro paseo no contará lo que se vendía antaño en Les Halles. Buscará más bien cómo este vasto barrio organizó sus calles, sus umbrales y sus pasajes. Mira hacia el este: el jardin Nelson-Mandela ocupa parte del antiguo territorio de los pabellones. Atraviésalo por los caminos públicos y llega hasta la église Saint-Eustache. Su masa revela la escala del barrio mucho antes de las transformaciones modernas.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-1
+@@STITLE=Église Saint-Eustache
+Saint-Eustache parece casi demasiado grande para las calles que la rodean. Su construcción empieza en el siglo dieciséis y se prolonga durante más de un siglo. La planta y el alzado siguen ligados al gótico, mientras que la decoración adopta el vocabulario del Renacimiento. Este encuentro explica la extraña familiaridad del edificio: arcos esbeltos, columnas superpuestas, fachada occidental más tardía.
+
+Observa la cabecera desde el jardín. Las capillas forman una corona de volúmenes que dialoga con los recorridos contemporáneos. La iglesia no estaba aislada en una explanada; crecía en contacto con un barrio denso. Los espacios abiertos actuales permiten ver sus proporciones, pero pertenecen a una historia reciente, ligada a la desaparición de los pabellones centrales en el siglo veinte.
+
+Rodea el edificio hacia la rue du Jour, y luego llega a la rue Montorgueil. Vas a pasar de un monumento macizo a un eje antiguo cuya ligera subida le dio el nombre. No busques una línea perfectamente recta. Observa más bien las fachadas estrechas y las calles transversales: conservan la medida de un París anterior a las grandes aperturas del siglo diecinueve.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-2
+@@STITLE=Rue Montorgueil
+La rue Montorgueil sigue un itinerario antiguo que prolongaba la salida de París hacia el norte. Su nombre suele relacionarse con el «mont Orgueilleux», la altura que la vía ascendía. Al caminar, todavía se percibe una pendiente discreta. Basta para recordar que el trazado de París también responde al relieve, incluso en un barrio hoy muy edificado.
+
+Mira los números, las anchuras de las parcelas y las fachadas de distintas épocas. La calle no se reconstruyó de un solo gesto. Reúne edificios modestos, remodelaciones y algunos decorados más ambiciosos. Esta continuidad explica su leve curva y su ritmo irregular. En cada cruce, una perspectiva revela otra dirección del barrio.
+
+Detente cerca de la rue Étienne-Marcel, y luego continúa hacia la rue Saint-Denis. Vas a dejar el eje abierto para entrar en un pasaje cubierto. Este contraste es importante. A principios del siglo diecinueve, los pasajes proponían una nueva manera de circular a través de las manzanas, protegida e iluminada por vidrieras. El passage du Grand-Cerf ofrece un ejemplo espectacular por su altura.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-3
+@@STITLE=Passage du Grand-Cerf
+Entra en el passage du Grand-Cerf por su acceso público y levanta la vista. Su vidriera culmina bien por encima de los dos niveles de fachadas interiores. El pasaje actual data del primer tercio del siglo diecinueve. Retoma el nombre de una antigua posada, pero su arquitectura pertenece plenamente al París del hierro fundido, del vidrio y de las circulaciones nuevas.
+
+Las pasarelas, los pasamanos y las estructuras metálicas hacen visible la técnica que sostiene esta calle cubierta. La luz cae del techo en lugar de llegar desde una plaza o una calzada ancha. Observa también la perspectiva perfectamente encuadrada entre las dos puertas. El pasaje atraviesa la manzana y acorta el camino, componiendo a la vez un espacio distinto de la calle.
+
+Sal por el lado de la rue Dussoubs y continúa hacia el noreste hasta el passage du Caire. El barrio cambia de nuevo de textura. La siguiente red es menos monumental, más ramificada, y su nombre conserva el rastro de la expedición a Egipto llevada a cabo a finales del siglo dieciocho. Verás cómo un acontecimiento lejano dejó sus señas en un trozo muy concreto del trazado parisino.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-4
+@@STITLE=Passage du Caire
+El passage du Caire se abrió en 1798, durante la campaña de Egipto. Sus galerías llevan nombres como Sainte-Foy, Saint-Denis o Caire y forman uno de los conjuntos cubiertos más extensos de París. En la entrada de la place du Caire, la fachada recibe una decoración de inspiración egipcia con figuras de la diosa Hathor. Esta moda erudita y popular siguió a los descubrimientos difundidos en Francia en esa época.
+
+Aquí, el paseo se convierte casi en un ejercicio de orientación. Las ramificaciones no dan todas a la misma calle y las perspectivas terminan enseguida. Mira las estructuras acristaladas, los rótulos integrados a las fachadas y las diferencias de anchura. El pasaje funciona como una ciudad reducida en el interior de la manzana.
+
+Vuelve hacia el sur por la rue Saint-Denis hasta la fontaine des Innocents. El trayecto se reúne con el antiguo corazón de Les Halles y atraviesa una vía que fue durante mucho tiempo una de las grandes entradas septentrionales de París. Al llegar, descubrirás un monumento desplazado y recompuesto varias veces, testigo perfecto de un barrio que no ha dejado de cambiar a su alrededor.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-5
+@@STITLE=Fontaine des Innocents
+La fontaine des Innocents fue concebida en el siglo dieciséis por Pierre Lescot y decorada por Jean Goujon. No tenía entonces el aspecto aislado que ves. Adosada a un edificio, celebraba en particular la entrada de Enrique II en París. La supresión del cimetière des Innocents a finales del siglo dieciocho provocó su traslado y su transformación en pabellón. Volvió a desplazarse en el siglo diecinueve durante la remodelación de la plaza.
+
+Acércate a los relieves sin cruzar las protecciones. Las ninfas esculpidas conservan la delicadeza del Renacimiento, mientras que el zócalo y la composición general cuentan las sucesivas adaptaciones. Pocos monumentos resumen tan claramente la movilidad del barrio: lo que parece inmutable ha seguido las demoliciones, las aperturas y los nuevos usos del espacio público.
+
+Desde la fuente, repasa mentalmente el círculo de la Bourse, la masa de Saint-Eustache, la calle antigua y las galerías bajo vidrio. Les Halles no forman un decorado único. Son un palimpsesto de pasajes, borrados o conservados, que todavía orientan tus pasos. Gracias por seguir estas líneas discretas conmigo. Hasta pronto para otro paseo.
+
+@@LANG=de
+@@TITLE=Paris — Straßen und Passagen von Les Halles
+@@DESC=Stadtgeschichte — die früheren Grenzen von Les Halles in Straßen, Denkmälern und Passagen wiederfinden.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-0
+@@STITLE=Bourse de Commerce
+Beginn damit, langsam um das Gebäude herumzugehen. Seine kreisförmige Gestalt entspringt keiner zeitgenössischen Laune. Im achtzehnten Jahrhundert baute man hier eine Getreidehalle um einen runden Hof herum. Das Bauwerk wurde später überdacht, umgestaltet und dem Handel zugeführt, bevor es zur Bourse de Commerce wurde. Die Kuppel und die Fassaden bewahren die Schichten dieser aufeinanderfolgenden Nutzungen.
+
+Daneben erhebt sich die colonne Médicis, im sechzehnten Jahrhundert für den Palast von Katharina von Medici errichtet, der einst diesen Ort einnahm. Sie ist einer der wenigen sichtbaren Zeugen dieses verschwundenen Ensembles. Zwei Epochen berühren sich also auf wenigen Metern: ein aristokratisches Anwesen der Renaissance und eine städtische Anlage der Aufklärung.
+
+Unser Spaziergang wird nicht erzählen, was einst auf den Halles verkauft wurde. Er wird vielmehr untersuchen, wie dieses weite Viertel seine Straßen, Schwellen und Passagen organisiert hat. Schau nach Osten: der jardin Nelson-Mandela nimmt einen Teil des ehemaligen Geländes der Markthallen ein. Durchquere ihn über die öffentlichen Wege und erreiche die église Saint-Eustache. Ihre Masse offenbart den Maßstab des Viertels weit vor den modernen Umgestaltungen.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-1
+@@STITLE=Église Saint-Eustache
+Saint-Eustache wirkt fast zu groß für die sie umgebenden Straßen. Ihr Bau beginnt im sechzehnten Jahrhundert und zieht sich über mehr als ein Jahrhundert hin. Grundriss und Aufriss bleiben der Gotik verhaftet, während der Dekor das Vokabular der Renaissance übernimmt. Diese Begegnung erklärt die eigentümliche Vertrautheit des Bauwerks: schlanke Bögen, übereinandergestellte Säulen, eine spätere Westfassade.
+
+Betrachte den Chor vom Garten aus. Die Kapellen bilden einen Kranz von Baukörpern, der mit den heutigen Wegen in Dialog tritt. Die Kirche stand nicht isoliert auf einer Esplanade; sie wuchs im Kontakt mit einem dichten Viertel. Die heutigen offenen Räume lassen ihre Proportionen erkennen, doch sie gehören einer jüngeren Geschichte an, verbunden mit dem Verschwinden der zentralen Markthallen im zwanzigsten Jahrhundert.
+
+Umgeh das Gebäude zur rue du Jour hin, dann erreiche die rue Montorgueil. Du gehst nun von einem massiven Denkmal über zu einer alten Achse, deren leichter Anstieg ihr den Namen gab. Such nicht nach einer perfekt geraden Linie. Beachte stattdessen die schmalen Fassaden und die Querstraßen: sie bewahren den Maßstab eines Paris vor den großen Durchbrüchen des neunzehnten Jahrhunderts.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-2
+@@STITLE=Rue Montorgueil
+Die rue Montorgueil folgt einer alten Route, die einst den Ausgang von Paris nach Norden verlängerte. Ihr Name wird gewöhnlich mit dem „mont Orgueilleux", dem Stolzen Hügel, verbunden, den die Straße erklomm. Beim Gehen spürst du noch immer ein diskretes Gefälle. Es genügt, um daran zu erinnern, dass der Grundriss von Paris auch auf das Relief reagiert, selbst in einem heute sehr dicht bebauten Viertel.
+
+Schau dir die Hausnummern, die Parzellenbreiten und die Fassaden verschiedener Epochen an. Die Straße wurde nicht in einem einzigen Zug neu gebaut. Sie versammelt bescheidene Gebäude, Umbauten und einige ambitioniertere Fassadengestaltungen. Diese Kontinuität erklärt ihre leichte Krümmung und ihren unregelmäßigen Rhythmus. An jeder Kreuzung eröffnet sich ein Ausblick auf eine andere Richtung des Viertels.
+
+Halte bei der rue Étienne-Marcel an, dann geh weiter zur rue Saint-Denis. Du wirst die offene Achse verlassen, um eine überdachte Passage zu betreten. Dieser Kontrast ist wichtig. Zu Beginn des neunzehnten Jahrhunderts boten die Passagen eine neue Art, sich durch die Häuserblöcke zu bewegen, geschützt und beleuchtet durch Glasdächer. Die passage du Grand-Cerf bietet dafür durch ihre Höhe ein eindrucksvolles Beispiel.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-3
+@@STITLE=Passage du Grand-Cerf
+Betritt die passage du Grand-Cerf durch ihren öffentlichen Zugang und heb den Blick. Ihr Glasdach ragt weit über die beiden Ebenen der Innenfassaden hinaus. Die heutige Passage stammt aus dem ersten Drittel des neunzehnten Jahrhunderts. Sie übernimmt den Namen eines ehemaligen Gasthauses, doch ihre Architektur gehört ganz dem Paris des Gusseisens, des Glases und der neuen Wegeführungen an.
+
+Die Stege, Geländer und Metallkonstruktionen machen die Technik sichtbar, die diese überdachte Straße trägt. Das Licht fällt vom Dach herab, statt von einem Platz oder einer breiten Fahrbahn her einzudringen. Beachte auch die perfekt gerahmte Perspektive zwischen den beiden Toren. Die Passage durchquert den Häuserblock und verkürzt den Weg, während sie zugleich einen von der Straße unterschiedenen Raum bildet.
+
+Tritt auf der Seite der rue Dussoubs wieder hinaus und geh weiter nach Nordosten bis zur passage du Caire. Das Viertel wechselt erneut seine Körnung. Das nächste Netz ist weniger monumental, stärker verzweigt, und sein Name bewahrt die Spur des Ende des achtzehnten Jahrhunderts geführten Ägyptenfeldzugs. Du wirst sehen, wie ein fernes Ereignis seine Zeichen in einem sehr konkreten Stück des Pariser Stadtplans hinterlassen hat.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-4
+@@STITLE=Passage du Caire
+Die passage du Caire wurde 1798, während des Ägyptenfeldzugs, eröffnet. Ihre Galerien tragen Namen wie Sainte-Foy, Saint-Denis oder Caire und bilden eines der ausgedehntesten überdachten Ensembles von Paris. Am Eingang zur place du Caire trägt die Fassade einen von Ägypten inspirierten Dekor mit Figuren der Göttin Hathor. Diese gelehrte und zugleich volkstümliche Mode folgte den Entdeckungen, die zu jener Zeit in Frankreich verbreitet wurden.
+
+Hier wird der Spaziergang fast zu einer Orientierungsübung. Die Zweige führen nicht alle zur selben Straße, und die Perspektiven enden schnell. Betrachte die verglasten Strukturen, die in die Fassaden integrierten Ladenschilder und die Breitenunterschiede. Die Passage funktioniert wie eine verkleinerte Stadt im Inneren des Häuserblocks.
+
+Geh wieder nach Süden über die rue Saint-Denis bis zur fontaine des Innocents. Die Strecke trifft auf das alte Herz der Halles und durchquert eine Achse, die lange eines der großen nördlichen Tore von Paris war. Bei der Ankunft entdeckst du ein Denkmal, das mehrfach versetzt und neu zusammengesetzt wurde, ein perfekter Zeuge eines Viertels, das sich um es herum nie aufgehört hat zu verändern.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-5
+@@STITLE=Fontaine des Innocents
+Die fontaine des Innocents wurde im sechzehnten Jahrhundert von Pierre Lescot entworfen und von Jean Goujon geschmückt. Sie hatte damals nicht das isolierte Erscheinungsbild, das du heute siehst. An ein Gebäude gelehnt, feierte sie unter anderem den Einzug Heinrichs II. in Paris. Die Auflösung des cimetière des Innocents Ende des achtzehnten Jahrhunderts führte zu ihrer Versetzung und ihrer Umwandlung in einen freistehenden Pavillon. Sie wurde im neunzehnten Jahrhundert bei der Umgestaltung des Platzes erneut versetzt.
+
+Nähere dich den Reliefs, ohne die Absperrungen zu überschreiten. Die geschnitzten Nymphen bewahren die Zartheit der Renaissance, während der Sockel und die Gesamtkomposition von den aufeinanderfolgenden Anpassungen erzählen. Nur wenige Denkmäler fassen die Beweglichkeit des Viertels so klar zusammen: was unveränderlich erscheint, hat den Abrissen, den Durchbrüchen und den neuen Nutzungen des öffentlichen Raums gefolgt.
+
+Denk von diesem Brunnen aus zurück an den Kreis der Bourse, an die Masse von Saint-Eustache, an die alte Straße und an die verglasten Galerien. Les Halles bilden keine einheitliche Kulisse. Sie sind ein Palimpsest aus Passagen, gelöscht oder bewahrt, die deine Schritte noch immer lenken. Danke, dass du diesen diskreten Linien mit mir gefolgt bist. Bis bald zu einem anderen Spaziergang.
+
+@@LANG=it
+@@TITLE=Parigi — Vie e passaggi delle Halles
+@@DESC=Storia urbana — ritrovare gli antichi confini delle Halles nelle strade, nei monumenti e nei passaggi.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-0
+@@STITLE=Bourse de Commerce
+Comincia facendo lentamente il giro dell'edificio. La sua forma circolare non nasce da un capriccio contemporaneo. Nel diciottesimo secolo, si costruì qui un mercato del grano intorno a un cortile rotondo. Il monumento fu poi coperto, trasformato e destinato al commercio prima di diventare la Bourse de Commerce. La cupola e le facciate conservano gli strati di questi usi successivi.
+
+Accanto si erge la colonne Médicis, innalzata nel sedicesimo secolo per il palazzo di Caterina de' Medici, che un tempo occupava il sito. È una delle poche testimonianze visibili di quel complesso scomparso. Due epoche si toccano dunque in pochi metri: un dominio aristocratico del Rinascimento e un'attrezzatura urbana dell'Illuminismo.
+
+La nostra passeggiata non racconterà ciò che si vendeva un tempo alle Halles. Cercherà piuttosto come questo vasto quartiere abbia organizzato le sue strade, le sue soglie e i suoi passaggi. Guarda verso est: il jardin Nelson-Mandela occupa parte dell'antico territorio dei padiglioni. Attraversalo lungo i percorsi pubblici e raggiungi l'église Saint-Eustache. La sua mole rivela la scala del quartiere ben prima delle trasformazioni moderne.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-1
+@@STITLE=Église Saint-Eustache
+Saint-Eustache sembra quasi troppo grande per le strade che la circondano. La sua costruzione inizia nel sedicesimo secolo e si prolunga per oltre un secolo. La pianta e l'alzato restano legati al gotico, mentre la decorazione adotta il vocabolario del Rinascimento. Questo incontro spiega la strana familiarità dell'edificio: archi slanciati, colonne sovrapposte, facciata occidentale più tarda.
+
+Osserva l'abside dal giardino. Le cappelle formano una corona di volumi che dialoga con i percorsi contemporanei. La chiesa non era isolata su una spianata; cresceva a contatto con un quartiere denso. Gli spazi liberi attuali permettono di vederne le proporzioni, ma appartengono a una storia recente, legata alla scomparsa dei padiglioni centrali nel ventesimo secolo.
+
+Costeggia l'edificio verso rue du Jour, poi raggiungi rue Montorgueil. Passerai da un monumento massiccio a un asse antico la cui leggera salita gli ha dato il nome. Non cercare una linea perfettamente dritta. Osserva piuttosto le facciate strette e le vie trasversali: conservano la misura di una Parigi anteriore ai grandi sventramenti del diciannovesimo secolo.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-2
+@@STITLE=Rue Montorgueil
+La rue Montorgueil segue un itinerario antico che prolungava l'uscita di Parigi verso nord. Il suo nome è generalmente ricollegato al «mont Orgueilleux», l'altura che la via risaliva. Camminando, si percepisce ancora una pendenza discreta. Basta a ricordare che la pianta di Parigi risponde anche al rilievo, persino in un quartiere oggi molto costruito.
+
+Guarda i numeri civici, le larghezze delle particelle e le facciate di diverse epoche. La via non è stata ricostruita con un gesto unico. Riunisce edifici modesti, rimaneggiamenti e alcuni decori più ambiziosi. Questa continuità spiega la sua leggera curva e il suo ritmo irregolare. A ogni incrocio, uno scorcio rivela un'altra direzione del quartiere.
+
+Fermati vicino a rue Étienne-Marcel, poi prosegui verso rue Saint-Denis. Lascerai l'asse aperto per entrare in un passaggio coperto. Questo contrasto è importante. All'inizio del diciannovesimo secolo, i passaggi proponevano un nuovo modo di circolare attraverso gli isolati, protetto e illuminato da vetrate. Il passage du Grand-Cerf ne offre un esempio spettacolare per la sua altezza.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-3
+@@STITLE=Passage du Grand-Cerf
+Entra nel passage du Grand-Cerf dal suo accesso pubblico e alza gli occhi. La sua vetrata culmina ben al di sopra dei due livelli di facciate interne. Il passaggio attuale risale al primo terzo del diciannovesimo secolo. Riprende il nome di un'antica locanda, ma la sua architettura appartiene pienamente alla Parigi della ghisa, del vetro e delle nuove circolazioni.
+
+Le passerelle, i parapetti e le strutture metalliche rendono visibile la tecnica che sorregge questa strada coperta. La luce cade dal tetto invece di arrivare da una piazza o da una carreggiata larga. Osserva anche la prospettiva perfettamente inquadrata tra le due porte. Il passaggio attraversa l'isolato e accorcia il cammino, componendo al tempo stesso uno spazio distinto dalla strada.
+
+Esci dal lato di rue Dussoubs e continua verso nord-est fino al passage du Caire. Il quartiere cambia ancora grana. La rete successiva è meno monumentale, più ramificata, e il suo nome conserva la traccia della spedizione d'Egitto condotta alla fine del diciottesimo secolo. Vedrai come un evento lontano abbia lasciato i suoi segni in un pezzo molto concreto della pianta parigina.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-4
+@@STITLE=Passage du Caire
+Il passage du Caire fu aperto nel 1798, durante la campagna d'Egitto. Le sue gallerie portano nomi come Sainte-Foy, Saint-Denis o Caire e formano uno degli insiemi coperti più estesi di Parigi. All'ingresso della place du Caire, la facciata riceve una decorazione di ispirazione egizia con figure della dea Hathor. Questa moda erudita e popolare seguì le scoperte diffuse in Francia in quell'epoca.
+
+Qui, la passeggiata diventa quasi un esercizio di orientamento. I rami non danno tutti sulla stessa strada e le prospettive finiscono presto. Guarda le strutture vetrate, le insegne integrate nelle facciate e le differenze di larghezza. Il passaggio funziona come una città ridotta all'interno dell'isolato.
+
+Riparti verso sud lungo rue Saint-Denis fino alla fontaine des Innocents. Il tragitto si ricongiunge con l'antico cuore delle Halles e attraversa una via che fu a lungo uno dei grandi ingressi settentrionali di Parigi. All'arrivo, scoprirai un monumento spostato e ricomposto più volte, testimone perfetto di un quartiere che non ha mai smesso di cambiare intorno a esso.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-5
+@@STITLE=Fontaine des Innocents
+La fontaine des Innocents fu concepita nel sedicesimo secolo da Pierre Lescot e decorata da Jean Goujon. Non aveva allora l'aspetto isolato che vedi oggi. Addossata a un edificio, celebrava in particolare l'ingresso di Enrico II a Parigi. La soppressione del cimetière des Innocents alla fine del diciottesimo secolo ne comportò lo spostamento e la trasformazione in padiglione. Fu spostata di nuovo nel diciannovesimo secolo durante il riassetto della piazza.
+
+Avvicinati ai rilievi senza oltrepassare le protezioni. Le ninfe scolpite conservano la delicatezza del Rinascimento, mentre lo zoccolo e la composizione generale raccontano gli adattamenti successivi. Pochi monumenti riassumono così chiaramente la mobilità del quartiere: ciò che sembra immutabile ha seguito le demolizioni, gli sventramenti e i nuovi usi dello spazio pubblico.
+
+Dalla fontana, ripensa al cerchio della Bourse, alla mole di Saint-Eustache, alla via antica e alle gallerie sotto vetro. Le Halles non formano uno scenario unico. Sono un palinsesto di passaggi, cancellati o conservati, che orientano ancora i tuoi passi. Grazie per aver seguito queste linee discrete con me. A presto per un'altra passeggiata.
+
+@@LANG=nl
+@@TITLE=Parijs — Straten en passages van Les Halles
+@@DESC=Stadsgeschiedenis — de vroegere grenzen van Les Halles terugvinden in straten, monumenten en passages.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-0
+@@STITLE=Bourse de Commerce
+Begin met langzaam om het gebouw heen te lopen. De ronde vorm komt niet voort uit een hedendaagse gril. In de achttiende eeuw bouwde men hier een graanhal rond een ronde binnenplaats. Het monument werd later overdekt, omgevormd en aan de handel toegewezen voordat het de Bourse de Commerce werd. De koepel en de gevels bewaren de lagen van deze opeenvolgende gebruiken.
+
+Ernaast staat de colonne Médicis, opgericht in de zestiende eeuw voor het herenhuis van Catharina de' Medici, dat ooit deze plek innam. Ze is een van de weinige zichtbare getuigen van dit verdwenen geheel. Twee tijdperken raken elkaar zo binnen enkele meters: een aristocratisch domein uit de Renaissance en een stedelijke voorziening uit de Verlichting.
+
+Onze wandeling zal niet vertellen wat er vroeger op Les Halles werd verkocht. Ze zal eerder onderzoeken hoe deze uitgestrekte wijk haar straten, drempels en passages heeft georganiseerd. Kijk naar het oosten: de jardin Nelson-Mandela beslaat een deel van het voormalige gebied van de marktpaviljoenen. Steek hem over via de openbare paden en bereik de église Saint-Eustache. Haar massa onthult de schaal van de wijk lang vóór de moderne veranderingen.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-1
+@@STITLE=Église Saint-Eustache
+Saint-Eustache lijkt bijna te groot voor de straten die haar omringen. De bouw begint in de zestiende eeuw en duurt meer dan een eeuw voort. De plattegrond en opstand blijven verbonden met de gotiek, terwijl de decoratie het vocabulaire van de Renaissance overneemt. Deze ontmoeting verklaart de vreemde vertrouwdheid van het gebouw: slanke bogen, opeengestapelde zuilen, een latere westgevel.
+
+Bekijk het koor vanuit de tuin. De kapellen vormen een kroon van volumes die in dialoog treedt met de hedendaagse looproutes. De kerk stond niet geïsoleerd op een esplanade; ze groeide in contact met een dichte wijk. De huidige open ruimtes laten haar verhoudingen zien, maar behoren tot een recente geschiedenis, verbonden met het verdwijnen van de centrale marktpaviljoenen in de twintigste eeuw.
+
+Loop om het gebouw heen richting de rue du Jour, en bereik dan de rue Montorgueil. Je gaat van een massief monument naar een oude as waarvan de lichte helling de naam heeft gegeven. Zoek geen perfect rechte lijn. Let liever op de smalle gevels en de dwarsstraten: ze bewaren de maat van een Parijs van vóór de grote negentiende-eeuwse doorbraken.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-2
+@@STITLE=Rue Montorgueil
+De rue Montorgueil volgt een oude route die de uitgang van Parijs naar het noorden verlengde. De naam wordt doorgaans in verband gebracht met de "mont Orgueilleux", de Trotse Heuvel, die de weg beklom. Al lopend voel je nog steeds een discrete helling. Dat is genoeg om te herinneren dat de plattegrond van Parijs ook reageert op het reliëf, zelfs in een wijk die vandaag zwaar bebouwd is.
+
+Kijk naar de huisnummers, de breedtes van de percelen en de gevels uit verschillende periodes. De straat is niet in één keer herbouwd. Ze verzamelt bescheiden gebouwen, verbouwingen en enkele ambitieuzere decors. Deze continuïteit verklaart haar lichte kromming en haar onregelmatige ritme. Bij elk kruispunt onthult een doorkijk een andere richting van de wijk.
+
+Stop bij de rue Étienne-Marcel, en ga dan verder naar de rue Saint-Denis. Je verlaat de open as om een overdekte passage binnen te gaan. Dit contrast is belangrijk. Aan het begin van de negentiende eeuw boden de passages een nieuwe manier om door de bouwblokken te lopen, beschut en verlicht door glazen daken. De passage du Grand-Cerf biedt daar door haar hoogte een spectaculair voorbeeld van.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-3
+@@STITLE=Passage du Grand-Cerf
+Ga de passage du Grand-Cerf binnen via haar openbare toegang en kijk omhoog. Het glazen dak reikt ver boven de twee niveaus van binnengevels uit. De huidige passage dateert uit het eerste derde deel van de negentiende eeuw. Ze neemt de naam over van een voormalige herberg, maar haar architectuur behoort volledig tot het Parijs van gietijzer, glas en nieuwe verplaatsingswijzen.
+
+De loopbruggen, leuningen en metalen constructies maken de techniek zichtbaar die deze overdekte straat draagt. Het licht valt van het dak in plaats van vanaf een plein of een brede rijweg. Let ook op het perfect ingekaderde vergezicht tussen de twee deuren. De passage doorkruist het bouwblok en verkort de weg, terwijl ze tegelijk een van de straat onderscheiden ruimte vormt.
+
+Ga weer naar buiten aan de kant van de rue Dussoubs en ga verder naar het noordoosten tot de passage du Caire. De wijk verandert opnieuw van korrel. Het volgende netwerk is minder monumentaal, meer vertakt, en de naam ervan bewaart het spoor van de Egyptische veldtocht die eind achttiende eeuw werd gevoerd. Je zult zien hoe een ver gebeurtenis haar sporen heeft achtergelaten in een heel concreet stuk van de Parijse plattegrond.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-4
+@@STITLE=Passage du Caire
+De passage du Caire werd geopend in 1798, tijdens de Egyptische veldtocht. De galerijen dragen namen als Sainte-Foy, Saint-Denis of Caire en vormen een van de meest uitgestrekte overdekte complexen van Parijs. Bij de ingang vanaf de place du Caire draagt de gevel een decor geïnspireerd op Egypte, met figuren van de godin Hathor. Deze geleerde, populaire mode volgde de ontdekkingen die destijds in Frankrijk werden verspreid.
+
+Hier wordt de wandeling bijna een oriëntatie-oefening. De takken komen niet allemaal op dezelfde straat uit en de vergezichten eindigen snel. Kijk naar de glazen structuren, de in de gevels geïntegreerde uithangborden en de verschillen in breedte. De passage werkt als een miniatuurstad binnen het bouwblok.
+
+Ga weer naar het zuiden via de rue Saint-Denis tot aan de fontaine des Innocents. De route sluit weer aan bij het oude hart van Les Halles en doorkruist een as die lange tijd een van de grote noordelijke toegangspoorten van Parijs was. Bij aankomst ontdek je een monument dat meerdere keren is verplaatst en opnieuw samengesteld, een perfecte getuige van een wijk die er nooit mee is opgehouden om zich eromheen te veranderen.
+
+@@SCENE=seed-100-paris-rues-et-passages-des-halles-scene-5
+@@STITLE=Fontaine des Innocents
+De fontaine des Innocents werd in de zestiende eeuw ontworpen door Pierre Lescot en versierd door Jean Goujon. Ze had toen niet het geïsoleerde uiterlijk dat je nu ziet. Tegen een gebouw aangeleund, vierde ze onder meer de intocht van Hendrik II in Parijs. De opheffing van het cimetière des Innocents eind achttiende eeuw leidde tot haar verplaatsing en haar omvorming tot vrijstaand paviljoen. Ze werd in de negentiende eeuw opnieuw verplaatst tijdens de herinrichting van het plein.
+
+Nader de reliëfs zonder de afzettingen te overschrijden. De gebeeldhouwde nimfen bewaren de verfijning van de Renaissance, terwijl de sokkel en de algemene compositie de opeenvolgende aanpassingen vertellen. Weinig monumenten vatten de mobiliteit van de wijk zo duidelijk samen: wat onveranderlijk lijkt, heeft de sloop, de doorbraken en de nieuwe gebruiken van de openbare ruimte gevolgd.
+
+Denk vanaf de fontein terug aan de cirkel van de Bourse, de massa van Saint-Eustache, de oude straat en de galerijen onder glas. Les Halles vormen geen eenduidig decor. Ze zijn een palimpsest van passages, uitgewist of bewaard, die je stappen nog steeds sturen. Dank je dat je deze discrete lijnen met me hebt gevolgd. Tot snel voor een andere wandeling.

@@ -1,0 +1,155 @@
+{
+  "tourId": "seed-100-versailles-ville-du-roi-soleil",
+  "sessionId": "seed-100-versailles-ville-du-roi-soleil-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Versailles",
+  "title": "Versailles — La ville-machine du Roi-Soleil",
+  "description": "Histoire & secrets — hors du château, la ville-machine inventée pour servir la cour du Roi-Soleil.",
+  "themes": [
+    "Histoire & secrets — hors du château, la ville-machine inventée pour servir la cour du Roi-Soleil."
+  ],
+  "baseLanguage": "fr",
+  "chars": 12001,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "en": "History & secrets, outside the castle, the machine-city invented to serve the court of Sun King.",
+    "de": "Geschichte & Geheimnisse, außerhalb des Schlosses, die Stadt-Maschine erfunden, um den Hof König Sonnen zu dienen.",
+    "it": "Storia & segreti, fuori dal castello, la macchina-città inventata per servire il tribunale di Re Sole.",
+    "es": "Historia & secretos, fuera del castillo, la ciudad-maquina inventada para servir al patio del Rey Sol."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-versailles-ville-du-roi-soleil-scene-0",
+      "index": 0,
+      "title": "Place d'Armes",
+      "text": "Plante-toi là, au milieu de cette esplanade immense, le dos aux grilles dorées du château. Ne regarde pas le palais — pas aujourd'hui. Retourne-toi, et regarde la ville. Trois avenues énormes s'ouvrent devant toi, larges comme des fleuves, et elles filent droit dans trois directions. Celle du milieu, la plus large, part vers Paris. Les deux autres, vers Saint-Cloud et vers Sceaux. Et toutes les trois convergent ici, exactement ici, sous tes pieds, vers un seul point : la chambre du roi.\r\n\r\nVoilà le secret que je vais te raconter pendant toute cette balade. Ce dessin n'est pas un hasard. C'est un manifeste. Toute une ville, tracée à la règle, pour qu'elle pointe vers un seul homme.\r\n\r\nParce qu'avant Louis XIV, Versailles n'était rien. Un village de quelques centaines d'âmes, une église, un moulin, un petit château de brique où le roi venait chasser. Et puis en 1682, le Roi-Soleil prend une décision folle : il installe ici, dans les bois, le gouvernement du royaume. La cour, les ministres, les archives, tout déménage. Des milliers de personnes suivent le roi.\r\n\r\nMais où les loger, les employer, les soigner, tenir leurs registres ? Le château ne suffit pas. Alors on invente autre chose, autour : une ville neuve, sortie de terre en quelques années, dessinée pour une seule fonction — servir la cour.\n\r\nCette ville, c'est une machine. Une immense machine à faire vivre le roi et son monde. Et pendant deux heures, on va la démonter, pièce par pièce, rue par rue.\r\n\r\nCommence par le plus bruyant, le plus vivant. Traverse l'esplanade vers ces longs bâtiments coiffés de dômes, face au château. Suis-moi.",
+      "hash": "a6b3ce79",
+      "chars": 1617,
+      "existingSegments": {
+        "en": "seed-100-versailles-ville-du-roi-soleil-scene-0-seg-en",
+        "de": "seed-100-versailles-ville-du-roi-soleil-scene-0-seg-de",
+        "it": "seed-100-versailles-ville-du-roi-soleil-scene-0-seg-it",
+        "es": "seed-100-versailles-ville-du-roi-soleil-scene-0-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-ville-du-roi-soleil-scene-1",
+      "index": 1,
+      "title": "Grandes et Petites Écuries",
+      "text": "Te voilà devant les Écuries royales. Deux bâtiments jumeaux, en fer à cheval, qui encadrent l'avenue de Paris comme deux gardes d'honneur. À gauche, la Petite Écurie ; à droite, la Grande. Ne te fie pas aux mots : « petite » et « grande » ne parlent pas de la taille, mais du service. La Grande abritait les chevaux de selle, ceux que le roi montait ; la Petite, les chevaux d'attelage et les carrosses.\r\n\r\nJules Hardouin-Mansart, l'architecte du roi, les a bâties en quelques années à peine, face au château. Regarde la pierre, les frontons sculptés, la cour immense : on a logé des bêtes dans des palais. Et il en fallait, des palais. Plusieurs centaines de chevaux vivaient là, avec les écuyers, les pages, les palefreniers, les selliers, les maréchaux-ferrants. Une ville dans la ville, rien que pour le cheval.\r\n\r\nCar sans cheval, la cour ne bouge pas. Pas de chasse, pas de guerre, pas de courrier, pas de carrosses vers Paris. Le cheval, c'est le moteur du règne, son énergie, sa vitesse.\r\n\r\nAujourd'hui, les chevaux sont revenus dans la Grande Écurie : une académie y dresse encore des cavaliers sous les mêmes voûtes.\r\n\r\nMaintenant, quitte les avenues. File vers le nord, derrière la Petite Écurie, dans les petites rues. On va voir comment le premier quartier neuf a été ordonné. Suis-moi.",
+      "hash": "90d6978a",
+      "chars": 1299,
+      "existingSegments": {
+        "es": "seed-100-versailles-ville-du-roi-soleil-scene-1-seg-es",
+        "de": "seed-100-versailles-ville-du-roi-soleil-scene-1-seg-de",
+        "it": "seed-100-versailles-ville-du-roi-soleil-scene-1-seg-it",
+        "en": "seed-100-versailles-ville-du-roi-soleil-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-ville-du-roi-soleil-scene-2",
+      "index": 2,
+      "title": "Marché Notre-Dame",
+      "text": "Te voilà au cœur du quartier Notre-Dame, sur la grande place du marché. Quatre halles carrées, ouvertes, composent un ensemble symétrique autour d'un espace animé. Le marché de Versailles est là depuis les origines de la ville neuve, et il n'a jamais cessé de battre. Encore aujourd'hui, les passants redonnent à la place sa fonction de carrefour urbain.\n\r\nRéfléchis une seconde. Le roi décide d'installer des milliers de personnes dans un ancien village. Il faut créer des logements, des ateliers, des lieux d'échange, une paroisse et des voies capables d'absorber ce monde nouveau. Alors on trace au nord le quartier Notre-Dame, le premier des deux grands quartiers neufs, avec sa place, ses halles et ses rues à angle droit.\n\r\nC'est ça, une ville dessinée à la règle. Pas de ruelles tortueuses comme dans les vieilles cités. Ici, tout est droit, quadrillé, logique. On a posé une ville sur le papier, puis on l'a bâtie.\r\n\r\nCette place règle alors les circulations du quartier. Les convois arrivent de toute l'Île-de-France, les charrettes se croisent, les artisans ouvrent leurs échoppes et les nouvelles rues convergent vers les halles. Un centre pratique, lisible, qui devait toujours rester en mouvement.\n\r\nQuitte la place par le nord, et va vers le clocher que tu aperçois. Deux minutes. Suis-moi.",
+      "hash": "b0539c27",
+      "chars": 1304,
+      "existingSegments": {
+        "it": "seed-100-versailles-ville-du-roi-soleil-scene-2-seg-it",
+        "en": "seed-100-versailles-ville-du-roi-soleil-scene-2-seg-en",
+        "de": "seed-100-versailles-ville-du-roi-soleil-scene-2-seg-de",
+        "es": "seed-100-versailles-ville-du-roi-soleil-scene-2-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-ville-du-roi-soleil-scene-3",
+      "index": 3,
+      "title": "Église Notre-Dame",
+      "text": "Cette église un peu sévère, aux lignes classiques, c'est Notre-Dame. Rien à voir avec une cathédrale gothique : ni flèche, ni dentelle de pierre. Une façade droite, sobre, presque austère. C'est encore Hardouin-Mansart qui l'a dessinée, sur ordre du roi, dans les mêmes années que les Écuries.\r\n\r\nEt ce n'est pas une paroisse comme les autres. C'est la paroisse du roi. Officiellement, Louis XIV et sa cour dépendaient de cette église. On y tenait les registres de la famille royale — les baptêmes, les mariages, les enterrements des grands du royaume s'inscrivaient ici, dans ce quartier neuf.\r\n\r\nPrends la mesure de la chose. Le roi le plus puissant d'Europe, le maître de Versailles, était, sur le papier, un paroissien de cette église de quartier. La ville-machine avait tout prévu, même le salut des âmes. Naître, se marier, mourir : pour tout cela aussi, il fallait une administration, un lieu, des archives.\r\n\r\nRegarde comme tout se tient. Les Écuries organisent les déplacements, la place structure les échanges, l'église rassemble la paroisse et tient les registres des vivants et des morts. Chaque élément a sa fonction, comme un rouage taillé pour un seul mouvement.\n\r\nRedescends maintenant vers le château, puis oblique au sud, de l'autre côté de l'avenue de Paris. On change de quartier. Suis-moi.",
+      "hash": "cf69bf77",
+      "chars": 1310,
+      "existingSegments": {
+        "es": "seed-100-versailles-ville-du-roi-soleil-scene-3-seg-es",
+        "de": "seed-100-versailles-ville-du-roi-soleil-scene-3-seg-de",
+        "en": "seed-100-versailles-ville-du-roi-soleil-scene-3-seg-en",
+        "it": "seed-100-versailles-ville-du-roi-soleil-scene-3-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-ville-du-roi-soleil-scene-4",
+      "index": 4,
+      "title": "Le Grand Commun",
+      "text": "Regarde cet énorme bâtiment carré, massif, percé de rangées de fenêtres identiques, juste au flanc du château. On dirait une caserne. C'est le Grand Commun. Si le château était le visage de la monarchie, ce bloc-là en était la mécanique invisible.\n\r\nHardouin-Mansart, encore lui, l'a élevé pour une raison très concrète : loger et faire tourner une partie du personnel de la cour. Ici travaillaient des officiers, des intendants et de nombreux serviteurs. Et au-dessus, dans des chambres serrées, dormait tout un monde, installé au plus près de son service.\n\r\nImagine la scène. Les ordres partaient d'ici, franchissaient la rue, traversaient les cours et de longs couloirs avant d’atteindre le château. Le luxe visible cachait une logistique de fourmilière : du bois, de l'eau, des convois, des horaires et des centaines de gestes coordonnés.\n\r\nVoilà le vrai secret de Versailles. Derrière la façade dorée, une armée invisible portait, lavait, classait, réparait et transmettait les ordres du matin jusqu'à la nuit. Le cérémonial ne s'arrêtait jamais parce que la machine, elle, ne s'arrêtait jamais.\n\r\nLonge maintenant la rue qui part vers le sud-est, la rue de l'Indépendance-Américaine. On entre dans le second quartier. Suis-moi.",
+      "hash": "2e1cb3cd",
+      "chars": 1233,
+      "existingSegments": {
+        "it": "seed-100-versailles-ville-du-roi-soleil-scene-4-seg-it",
+        "en": "seed-100-versailles-ville-du-roi-soleil-scene-4-seg-en",
+        "es": "seed-100-versailles-ville-du-roi-soleil-scene-4-seg-es",
+        "de": "seed-100-versailles-ville-du-roi-soleil-scene-4-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-ville-du-roi-soleil-scene-5",
+      "index": 5,
+      "title": "Rue de l'Indépendance-Américaine",
+      "text": "Marche le long de cette rue au nom étonnant : rue de l'Indépendance-Américaine. Elle te le dit déjà — quelque chose d'important s'est joué ici. Regarde ces grands hôtels réguliers, aux façades de pierre claire. Ce n'étaient pas des logements ordinaires. C'étaient les ministères.\r\n\r\nCar le gouvernement de la France, lui aussi, avait déménagé à Versailles. La Guerre, la Marine, les Affaires étrangères : chacun avait son hôtel, en ville, hors du château. Dans l'un d'eux, devenu aujourd'hui la bibliothèque de la ville, on a préparé et négocié des traités qui ont pesé sur le monde entier — dont celui qui reconnaissait l'indépendance des États-Unis d'Amérique. De là, le nom de la rue.\r\n\r\nMesure ce que ça veut dire. La ville-machine ne servait pas seulement à loger et à encadrer la cour. Elle abritait le cerveau du royaume. Les commis, les secrétaires, les diplomates vivaient et travaillaient dans ces rues, à quelques pas du roi. On pouvait, en une petite marche, aller du bureau de la Guerre jusqu'à la chambre du monarque.\n\r\nUne ville où l'on gouvernait un continent entre deux hôtels particuliers, sans jamais quitter le quartier.\r\n\r\nContinue vers le sud, jusqu'à la place dominée par une grande église à deux clochers. Suis-moi.",
+      "hash": "4928653c",
+      "chars": 1239,
+      "existingSegments": {
+        "de": "seed-100-versailles-ville-du-roi-soleil-scene-5-seg-de",
+        "es": "seed-100-versailles-ville-du-roi-soleil-scene-5-seg-es",
+        "it": "seed-100-versailles-ville-du-roi-soleil-scene-5-seg-it",
+        "en": "seed-100-versailles-ville-du-roi-soleil-scene-5-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-ville-du-roi-soleil-scene-6",
+      "index": 6,
+      "title": "Cathédrale Saint-Louis",
+      "text": "Nous voici sur la place Saint-Louis, devant la cathédrale. Prends le temps de comparer. Là-haut, au nord, Notre-Dame était sobre et sévère. Ici, tout est plus léger, plus tardif — deux clochers, des courbes, la grâce du XVIIIe siècle. C'est qu'on l'a bâtie deux générations plus tard, par un Hardouin-Mansart lui aussi, petit-fils du premier.\r\n\r\nCette église raconte la deuxième vague de la ville. Le quartier Notre-Dame, au nord, ne suffisait plus. Versailles débordait. Alors on a tracé, au sud de l'avenue de Paris, un second quartier neuf : le quartier Saint-Louis. Encore des rues droites, encore une grille sur le plan, encore une église pour tenir les âmes et les registres.\r\n\r\nLa ville avait grandi si vite qu'elle était devenue l'une des plus peuplées du royaume — une cité entière née d'une volonté royale, en quelques décennies, là où il n'y avait que des marais et des bois.\r\n\r\nEt cette église deviendra cathédrale bien plus tard, quand Versailles ne sera plus la ville du roi mais une préfecture ordinaire. Le nom du saint roi, Louis, veillait déjà sur ce quartier du sud.\r\n\r\nPrends la petite rue au nord de la place, vers de curieux pavillons bas rangés autour de placettes. Suis-moi.",
+      "hash": "6e86d041",
+      "chars": 1198,
+      "existingSegments": {
+        "es": "seed-100-versailles-ville-du-roi-soleil-scene-6-seg-es",
+        "en": "seed-100-versailles-ville-du-roi-soleil-scene-6-seg-en",
+        "it": "seed-100-versailles-ville-du-roi-soleil-scene-6-seg-it",
+        "de": "seed-100-versailles-ville-du-roi-soleil-scene-6-seg-de"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-ville-du-roi-soleil-scene-7",
+      "index": 7,
+      "title": "Rue d'Anjou, Carré à la Fontaine",
+      "text": "Regarde ces drôles de petites maisons basses, à un étage, alignées autour de quatre placettes carrées. On les appelle les Carrés Saint-Louis. Le roi Louis XV les a fait bâtir au milieu du XVIIIe siècle pour une raison très simple : il fallait, dans ce quartier neuf, des boutiques, des ateliers et des logements de plus.\n\r\nPrends-les pour ce qu'elles sont : le décor du petit peuple de Versailles. Pas les courtisans en dentelle, non — les autres. Les artisans, les marchands, les perruquiers, les tailleurs et les relieurs qui vivaient de la cour sans jamais en franchir les grilles. La ville-machine avait besoin d'eux autant que de ses ministres.\n\r\nChaque petit ensemble avait son identité : le Carré à la Fontaine, où tu te trouves, répondait au Carré au Puits. On y vendait, on y logeait, on travaillait en bas et on dormait en haut, comme dans toutes les villes du monde.\n\r\nAujourd'hui, ce sont surtout des antiquaires qui ont pris la place des marchands. Le quartier est calme, un peu secret. Mais l'esprit tient : une ville de gens de métier, à l'ombre du palais.\r\n\r\nPrends maintenant vers l'est, jusqu'à une rue tranquille et un long bâtiment presque aveugle. C'est là que finit notre histoire. Suis-moi.",
+      "hash": "b2d9071d",
+      "chars": 1213,
+      "existingSegments": {
+        "it": "seed-100-versailles-ville-du-roi-soleil-scene-7-seg-it",
+        "de": "seed-100-versailles-ville-du-roi-soleil-scene-7-seg-de",
+        "es": "seed-100-versailles-ville-du-roi-soleil-scene-7-seg-es",
+        "en": "seed-100-versailles-ville-du-roi-soleil-scene-7-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-versailles-ville-du-roi-soleil-scene-8",
+      "index": 8,
+      "title": "Salle du Jeu de Paume",
+      "text": "Nous y sommes. Un bâtiment long, nu, presque sans fenêtres. De l'extérieur, on ne devine rien. C'était une salle de jeu de paume — l'ancêtre du tennis — bâtie sous Louis XIV pour que les nobles s'y renvoient la balle. Un lieu de sport, de sueur, de paris. Rien de plus.\r\n\r\nEt pourtant, c'est ici que tout a basculé.\r\n\r\nReviens au 20 juin 1789. La France traverse une crise profonde, financière, sociale et politique. Le roi a convoqué les états généraux dans la ville, et les députés du tiers état, ceux du peuple, se réunissent. Un matin, ils trouvent leur salle habituelle fermée, gardée par des soldats. On veut les faire taire. Alors, furieux, ils cherchent un abri et se ruent ici, dans cette salle de jeu de paume.\n\r\nDebout, serrés, la main levée, ils prêtent un serment : ne jamais se séparer avant d'avoir donné une constitution à la France. Ce jour-là, dans cette salle de sport de la ville du roi, l'ancien monde se fissure.\r\n\r\nTu vois l'ironie ? Louis XIV avait bâti Versailles pour concentrer tout le pouvoir dans une seule main, la sienne. Il avait tracé les avenues, les quartiers, les écuries, les services, les ministères — une ville entière tournée vers un seul homme. Et c'est dans cette même ville, à quelques rues de sa chambre, que le pouvoir absolu a reçu son premier grand coup.\n\r\nLa machine construite pour servir le roi s'est retournée contre lui.\r\n\r\nReste un instant devant cette porte modeste. Puis remonte vers les avenues, et regarde-les autrement. Elles pointent toujours vers le château — mais toi, maintenant, tu sais ce qu'elles cachent. À bientôt, l'ami.",
+      "hash": "a8cefcd8",
+      "chars": 1588,
+      "existingSegments": {
+        "it": "seed-100-versailles-ville-du-roi-soleil-scene-8-seg-it",
+        "es": "seed-100-versailles-ville-du-roi-soleil-scene-8-seg-es",
+        "en": "seed-100-versailles-ville-du-roi-soleil-scene-8-seg-en",
+        "de": "seed-100-versailles-ville-du-roi-soleil-scene-8-seg-de"
+      }
+    }
+  ]
+}

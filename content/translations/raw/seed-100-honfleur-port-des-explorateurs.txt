@@ -1,0 +1,429 @@
+@@LANG=en
+@@TITLE=Honfleur — The Old Basin of Great Departures
+@@DESC=History & secrets — from Champlain setting off to found Quebec to the Newfoundland fishermen: the port of great departures.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-0
+@@STITLE=La Lieutenance
+Stop in front of this old stone building, at the entrance to the basin, where the harbor water meets the water of the open sea. This is the Lieutenance. A big chunk of fortress, squat, pierced by an arch: it's almost all that remains of the ramparts that once enclosed Honfleur.
+
+Here lived the king's lieutenant, the man who commanded the town in His Majesty's name. And this arch, under which carts used to pass, was the old Caen gate, one of the entrances to the walled town.
+
+Look at it closely, because this gate has a secret. It was, for thousands of men, the last image of France. The last wall of the country they saw before months, sometimes years, sometimes forever.
+
+Because here's the story I'm going to tell you throughout this walk. This small, quiet harbor, with its boats and its terraces, was one of the great departure ports of the world. From here, sailors set off to found towns on the other side of the ocean. From here, every year, whole fleets set course for icy seas to fish for cod. And long before them, mapless discoverers had already set course for worlds no one in Europe had yet seen.
+
+From this basin, a man left to found Quebec. His name was Champlain. We're going to follow his trail, and that of all the others.
+
+Walk along the quay, to the right, along the Vieux Bassin. Follow me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-1
+@@STITLE=Le Vieux Bassin
+Here you are along the Vieux Bassin, with its tall houses mirrored in the water. This postcard setting has a birth date. We're in 1681. The king is Louis XIV, and his great minister, Colbert, wants to make France a maritime power. He orders the port of Honfleur to be enlarged.
+
+Part of the ramparts is torn down — that's why only the Lieutenance remains — this basin is dug out, lined with quays. And all around, merchants and shipowners have these narrow houses built, rising very high, sometimes six or seven stories, capped with slate. Narrow, because land on the quay was expensive. Tall, to house the family, the clerks, and the goods all under the same roof.
+
+What you take for a pretty pleasure harbor was a trading machine. Wood, salt, fish, hides from America. A beehive. On these quays, there was shouting, loading, haggling in every language.
+
+Continue along the basin, toward the far end, where the memory of a man who went very far is kept. Follow me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-2
+@@STITLE=Vieux Bassin, mémoire du départ de Champlain
+It's here, somewhere on these quays, that the adventure of French Canada began. In 1608, a navigator boards a ship in Honfleur said to have been named the Don-de-Dieu. His name is Samuel de Champlain.
+
+He crosses the Atlantic, sails up an immense river, the St. Lawrence, and on a promontory, founds an outpost he names Quebec. The town still exists today. It's now the heart of an entire French-speaking people in North America. And it all began here, from this basin.
+
+Champlain didn't make the crossing once, but dozens of times. Honfleur was his base, his starting point, his port of return. There, they traded knives and cloth for beaver furs — because it was the European fashion for beaver hats that financed the conquest of Canada.
+
+Think of what a departure like that meant. Weeks at sea on a wooden hull, the unknown at the end of it, and a fifty-fifty chance of never coming back. It took a fierce kind of faith to cast off the moorings.
+
+Now head into the old town, behind the quays, to two great wooden buildings. Follow me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-3
+@@STITLE=Les Greniers à sel
+Look at these vast buildings of stone and wood, almost cathedrals without a bell tower. These are the salt granaries. They were built under Louis XIV to store a single thing — but a vital one: salt.
+
+Why so much salt? Because of cod. Every year, boats from Honfleur set off for Newfoundland, off the coast of Canada, onto the great fishing banks. These sailors were called the terre-neuvas — the Newfoundlanders. They'd be away for months, in the cold, the fog, and the swell, fishing for cod with a line.
+
+But fish rots. So, on board, they'd gut it, clean it out, and bury it in salt to preserve it until they returned. No salt, no cod; no cod, no terre-neuvas. These granaries were therefore the real treasure of the port. Salt was kept under lock and key, because it was expensive, and the king taxed it heavily.
+
+Cod fishing fed Honfleur for centuries. Generations of families lived by the rhythm of spring departures and autumn returns — when they came back.
+
+Head back toward the quays, to an old stone church turned museum. Follow me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-4
+@@STITLE=Église Saint-Étienne
+This stone church, the oldest in Honfleur, no longer holds mass. It's been turned into a maritime museum. Inside: ship models, navigation instruments, and the memory of all these harbor sailors.
+
+Because behind the fine stories of departures lies the other truth. The sea took its share. Every winter, some boats didn't come back. A gale on the Newfoundland banks, a reef, a leak, and an entire crew would vanish. In the families of Honfleur, they counted the widows.
+
+That's why faith held such a place. Before leaving, the sailors climbed up there, on the hill, to pray at the Notre-Dame-de-Grâce chapel. They'd leave a model of their ship there, as a promise: bring me back, and I'll offer you my ship in miniature. These ex-votos still hang from the chapel ceiling.
+
+Leaving Honfleur wasn't a postcard adventure. It was a bet on your own life, renewed every season.
+
+Follow the quay toward the harbor exit, where the water opens onto the open sea. Follow me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-5
+@@STITLE=Le port des découvreurs
+Take a few more steps toward the outer harbor, where the boats head out to sea. And look out toward the open water, because Champlain and the terre-neuvas aren't the only ones who set off from here.
+
+Long before them, Honfleur was already a port of explorers. In 1503, a local shipowner, Binot Paulmier de Gonneville, sets sail southward, very far, and reaches unknown lands — probably the coast of Brazil. He returns two years later with a young man from over there, a chief's son, whom he had promised to bring back home, and whom he was never able to return.
+
+It's even said that, centuries earlier, sailors from this port pushed as far as the coasts of Africa. Proof is lacking, historians doubt it, so let's stay cautious. But this old story does say something true: here, people weren't afraid of the unknown.
+
+Think of these men. No reliable map, no idea what awaited them at the end of the water. Just a hull, a sail, and the wild urge to see what lay beyond the horizon.
+
+Walk to the end of the jetty, facing the sea and the great bridge. Our story ends there. Follow me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-6
+@@STITLE=L'avant-port et le Pont de Normandie
+Here we are at the end of the port, facing the open sea. In front of you, the Seine estuary opens up wide, and there, immense, this white bridge suspended from its cables, spanning the river in a single leap: the Pont de Normandie. It opened in 1995. For a long time, it was among the largest bridges of its kind in the world. Today, it links Honfleur to Le Havre in a few minutes.
+
+Take the measure of what you're looking at. This same channel, this same water flowing out to sea, is the route taken by everyone I've told you about. Champlain, heading for Quebec. The terre-neuvas, heading for the cod banks. De Gonneville, heading for Brazil. All of them passed through here, under the eyes of the Lieutenance, to melt into this horizon.
+
+That's the secret of Honfleur. It isn't just the prettiest harbor in Normandy. It's a threshold. A gateway out of the known world. For centuries, ordinary men — sailors, fishermen, cadets without fortune — cast off their moorings here to go redraw the map of the Earth. Some founded cities. Others never came back. All of them looked, one last time, at this same stone arch.
+
+The bridge has replaced the great crossings. But the water still flows out to the open sea. Stay a moment and watch it go. See you soon, friend.
+
+@@LANG=es
+@@TITLE=Honfleur — La vieja dársena de las grandes partidas
+@@DESC=Historia y secretos — de Champlain partiendo a fundar Quebec a los pescadores de Terranova: el puerto de las grandes partidas.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-0
+@@STITLE=La Lieutenance
+Detente frente a este viejo edificio de piedra, en la entrada de la dársena, donde el agua del puerto se une al agua del mar abierto. Es la Lieutenance. Un gran trozo de fortaleza, robusto, perforado por un arco: es casi todo lo que queda de las murallas que antaño rodeaban Honfleur.
+
+Aquí vivía el teniente del rey, el hombre que mandaba la plaza en nombre de Su Majestad. Y ese arco, bajo el cual pasaban las carretas, era la antigua puerta de Caen, una de las entradas de la ciudad amurallada.
+
+Mírala bien, porque esta puerta tiene un secreto. Fue, para miles de hombres, la última imagen de Francia. El último muro del país que veían antes de meses, a veces años, a veces para siempre.
+
+Porque esta es la historia que voy a contarte a lo largo de este paseo. Este pequeño puerto tranquilo, con sus barcas y sus terrazas, fue uno de los grandes puertos de partida del mundo. Desde aquí, marineros partieron a fundar ciudades al otro lado del océano. Desde aquí, cada año, flotas enteras ponían rumbo hacia mares helados para pescar el bacalao. Y mucho antes que ellos, descubridores sin mapa ya habían puesto rumbo hacia mundos que nadie, en Europa, había visto todavía.
+
+De esta dársena, un hombre partió a fundar Quebec. Se llamaba Champlain. Vamos a seguir su huella, y la de todos los demás.
+
+Bordea el muelle, a la derecha, a lo largo del Vieux Bassin. Sígueme.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-1
+@@STITLE=Le Vieux Bassin
+Aquí estás, a lo largo del Vieux Bassin, con sus altas casas que se reflejan en el agua. Este decorado de postal tiene una fecha de nacimiento. Estamos en 1681. El rey es Luis XIV, y su gran ministro, Colbert, quiere convertir a Francia en una potencia marítima. Ordena ampliar el puerto de Honfleur.
+
+Se derriba parte de las murallas —por eso solo queda la Lieutenance—, se excava esta dársena, se bordea de muelles. Y alrededor, los comerciantes, los armadores mandan construirse estas casas estrechas, que suben muy alto, a veces hasta seis o siete pisos, coronadas de pizarra. Estrechas, porque el terreno en el muelle costaba caro. Altas, para alojar bajo el mismo techo a la familia, a los empleados y a las mercancías.
+
+Lo que tomas por un bonito puerto deportivo era una máquina de comerciar. Madera, sal, pescado, pieles venidas de América. Una colmena. En estos muelles, se gritaba, se cargaba, se regateaba en todos los idiomas.
+
+Continúa a lo largo de la dársena, hacia el fondo, allí donde se guarda la memoria de un hombre que partió muy lejos. Sígueme.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-2
+@@STITLE=Vieux Bassin, mémoire du départ de Champlain
+Es aquí, en algún lugar de estos muelles, donde comenzó la aventura del Canadá francés. En 1608, un navegante embarca en Honfleur en un buque que se dice llamado Don-de-Dieu. Se llama Samuel de Champlain.
+
+Cruza el Atlántico, remonta un inmenso río, el San Lorenzo, y en un promontorio, funda un puesto que bautiza Quebec. La ciudad todavía existe. Es hoy el corazón de todo un pueblo francófono en América del Norte. Y todo eso partió de aquí, de esta dársena.
+
+Champlain no hizo el viaje una sola vez, sino decenas. Honfleur era su base, su punto de partida, su puerto de regreso. Allá, se trocaban cuchillos y telas por pieles de castor —porque es la moda de los sombreros de castor, en Europa, la que financió la conquista de Canadá.
+
+Piensa en lo que representaba una partida así. Semanas de mar sobre un casco de madera, lo desconocido al final, y una posibilidad entre dos de no volver jamás. Hacía falta una fe tremenda para soltar amarras.
+
+Adéntrate ahora en el casco antiguo, detrás de los muelles, hasta dos grandes edificios de madera. Sígueme.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-3
+@@STITLE=Les Greniers à sel
+Mira estos vastos edificios de piedra y madera, casi catedrales sin campanario. Son los graneros de sal. Se construyeron bajo Luis XIV para almacenar una sola cosa, pero una cosa vital: la sal.
+
+¿Por qué tanta sal? Por culpa del bacalao. Cada año, barcos de Honfleur partían hacia Terranova, frente a las costas de Canadá, hacia los grandes bancos de peces. A esos marineros se les llamaba los terranovas. Se ausentaban meses, en el frío, la niebla y el oleaje, pescando bacalao con caña.
+
+Pero un pescado se pudre. Así que, a bordo, lo abrían, lo vaciaban, y lo enterraban en sal para conservarlo hasta el regreso. Sin sal, no hay bacalao; sin bacalao, no hay terranovas. Estos graneros eran, pues, el verdadero tesoro del puerto. Se guardaba la sal bajo llave, porque valía cara y el rey la gravaba con fuerza.
+
+La pesca del bacalao alimentó a Honfleur durante siglos. Generaciones de familias vivieron al ritmo de las partidas de primavera y los regresos de otoño —cuando regresaban.
+
+Vuelve hacia los muelles, hasta una vieja iglesia de piedra convertida en museo. Sígueme.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-4
+@@STITLE=Église Saint-Étienne
+Esta iglesia de piedra, la más antigua de Honfleur, ya no oficia misa. Se ha convertido en museo de la Marina. En el interior: maquetas de barcos, instrumentos de navegación, y el recuerdo de todos esos marineros del puerto.
+
+Porque detrás de las bellas historias de partidas, está la otra verdad. El mar se cobraba su parte. Cada invierno, algunos barcos no regresaban. Un golpe de viento en los bancos de Terranova, un arrecife, una vía de agua, y toda una tripulación desaparecía. En las familias de Honfleur, se contaban las viudas.
+
+Por eso la fe ocupaba tanto lugar. Antes de partir, los marineros subían allá arriba, a la colina, a rezar en la capilla Notre-Dame-de-Grâce. Dejaban ahí una maqueta de su navío, como una promesa: tráeme de vuelta, y te ofrezco mi barco en miniatura. Estos exvotos todavía cuelgan del techo de la capilla.
+
+Partir de Honfleur no era una aventura de postal. Era una apuesta por la propia vida, renovada cada temporada.
+
+Sigue el muelle hacia la salida del puerto, allí donde el agua se abre hacia el mar abierto. Sígueme.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-5
+@@STITLE=Le port des découvreurs
+Da unos pasos más hacia el antepuerto, allí donde los barcos ganan el mar. Y mira hacia el mar abierto, porque Champlain y los terranovas no son los únicos que partieron de aquí.
+
+Mucho antes que ellos, Honfleur ya era un puerto de exploradores. En 1503, un armador de aquí, Binot Paulmier de Gonneville, levó velas hacia el sur, muy lejos, y alcanzó tierras desconocidas —sin duda la costa de Brasil. Regresó dos años después con un joven de allá, hijo de un jefe, a quien había prometido devolver a su casa, y a quien nunca pudo devolver.
+
+Se cuenta incluso que, siglos antes, marineros de este puerto habrían llegado hasta las costas de África. Faltan pruebas, los historiadores lo dudan, así que seamos prudentes. Pero esta vieja historia sí dice algo verdadero: aquí, no se tenía miedo a lo desconocido.
+
+Piensa en estos hombres. Sin mapa fiable, sin idea de lo que les esperaba al final del agua. Solo un casco, una vela, y las ganas locas de ver qué había detrás del horizonte.
+
+Camina hasta el final del espigón, frente al mar y al gran puente. Nuestra historia termina ahí. Sígueme.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-6
+@@STITLE=L'avant-port et le Pont de Normandie
+Aquí estamos, al final del puerto, frente al mar abierto. Delante de ti, el estuario del Sena se abre de par en par, y ahí, inmenso, ese puente blanco suspendido de sus cables que salta el río de un solo tramo: el Pont de Normandie. Se inauguró en 1995. Durante mucho tiempo, estuvo entre los puentes más grandes de este tipo del mundo. Hoy, une Honfleur con Le Havre en pocos minutos.
+
+Toma la medida de lo que ves. Este mismo canal, esta misma agua que corre hacia el mar, es la ruta que tomaron todos aquellos de quienes te he hablado. Champlain, rumbo a Quebec. Los terranovas, rumbo a los bancos de bacalao. De Gonneville, rumbo a Brasil. Todos pasaron por aquí, bajo la mirada de la Lieutenance, para fundirse en ese horizonte.
+
+Ese es el secreto de Honfleur. No es solo el puerto más bonito de Normandía. Es un umbral. Una puerta de salida del mundo conocido. Durante siglos, hombres corrientes —marineros, pescadores, segundones sin fortuna— soltaron amarras aquí para ir a redibujar el mapa de la Tierra. Algunos fundaron ciudades. Otros nunca regresaron. Todos miraron, una última vez, este mismo arco de piedra.
+
+El puente ha reemplazado las grandes travesías. Pero el agua sigue fluyendo hacia el mar abierto. Quédate un momento mirándola partir. Y hasta pronto, amigo.
+
+@@LANG=de
+@@TITLE=Honfleur — Das alte Hafenbecken der großen Aufbrüche
+@@DESC=Geschichte & Geheimnisse — von Champlain, der auszog, um Québec zu gründen, bis zu den Neufundlandfischern: der Hafen der großen Aufbrüche.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-0
+@@STITLE=La Lieutenance
+Halt vor diesem alten Steingebäude an, am Eingang des Hafenbeckens, dort, wo das Hafenwasser auf das offene Meer trifft. Das ist die Lieutenance. Ein großes Stück Festung, gedrungen, von einem Bogen durchbrochen: das ist fast alles, was von den Stadtmauern übrig ist, die Honfleur einst umschlossen.
+
+Hier wohnte der Leutnant des Königs, der Mann, der die Stadt im Namen Seiner Majestät befehligte. Und dieser Bogen, unter dem die Karren hindurchfuhren, war das alte Caen-Tor, einer der Eingänge der ummauerten Stadt.
+
+Schau es dir genau an, denn dieses Tor birgt ein Geheimnis. Es war, für Tausende von Männern, das letzte Bild Frankreichs. Die letzte Mauer des Landes, die sie sahen, bevor Monate, manchmal Jahre, manchmal für immer vergingen.
+
+Denn das ist die Geschichte, die ich dir während dieses ganzen Spaziergangs erzählen werde. Dieser kleine, ruhige Hafen, mit seinen Booten und seinen Terrassen, war einer der großen Aufbruchshäfen der Welt. Von hier aus zogen Seeleute los, um Städte auf der anderen Seite des Ozeans zu gründen. Von hier aus setzten jedes Jahr ganze Flotten Kurs auf eisige Meere, um dort Kabeljau zu fischen. Und lange vor ihnen hatten kartenlose Entdecker bereits Kurs auf Welten genommen, die in Europa noch niemand gesehen hatte.
+
+Von diesem Hafenbecken aus zog ein Mann los, um Québec zu gründen. Er hieß Champlain. Wir werden seiner Spur folgen, und der aller anderen.
+
+Geh am Kai entlang, nach rechts, entlang des Vieux Bassin. Folge mir.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-1
+@@STITLE=Le Vieux Bassin
+Da bist du nun am Vieux Bassin, mit seinen hohen Häusern, die sich im Wasser spiegeln. Diese Postkartenkulisse hat ein Geburtsdatum. Wir schreiben 1681. Der König ist Ludwig XIV., und sein großer Minister Colbert will Frankreich zu einer Seemacht machen. Er ordnet an, den Hafen von Honfleur zu erweitern.
+
+Ein Teil der Stadtmauern wird abgerissen — deshalb bleibt nur die Lieutenance übrig —, dieses Hafenbecken wird ausgehoben, mit Kais gesäumt. Und ringsum lassen sich Kaufleute und Reeder diese schmalen Häuser bauen, die sehr hoch aufragen, manchmal sechs oder sieben Stockwerke, mit Schiefer gedeckt. Schmal, weil das Grundstück am Kai teuer war. Hoch, um Familie, Angestellte und Waren unter demselben Dach unterzubringen.
+
+Was du für einen hübschen Yachthafen hältst, war eine Handelsmaschine. Holz, Salz, Fisch, Häute aus Amerika. Ein Bienenstock. Auf diesen Kais wurde geschrien, geladen, in allen Sprachen gefeilscht.
+
+Geh weiter am Hafenbecken entlang, zum hinteren Ende, wo die Erinnerung an einen Mann bewahrt wird, der sehr weit fortging. Folge mir.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-2
+@@STITLE=Vieux Bassin, mémoire du départ de Champlain
+Hier, irgendwo auf diesen Kais, begann das Abenteuer des französischen Kanada. 1608 geht ein Seefahrer in Honfleur an Bord eines Schiffes, das den Namen Don-de-Dieu getragen haben soll. Er heißt Samuel de Champlain.
+
+Er überquert den Atlantik, fährt einen gewaltigen Fluss hinauf, den Sankt-Lorenz-Strom, und gründet auf einem Vorgebirge einen Posten, den er Québec tauft. Die Stadt existiert noch heute. Sie ist heute das Herz eines ganzen frankophonen Volkes in Nordamerika. Und all das nahm hier seinen Anfang, von diesem Hafenbecken aus.
+
+Champlain unternahm die Reise nicht nur einmal, sondern Dutzende Male. Honfleur war seine Basis, sein Ausgangspunkt, sein Rückkehrhafen. Dort tauschte man Messer und Stoffe gegen Biberfelle — denn es war die europäische Mode der Biberhüte, die die Eroberung Kanadas finanzierte.
+
+Denk daran, was ein solcher Aufbruch bedeutete. Wochen auf See auf einem hölzernen Rumpf, das Unbekannte am Ende, und eine Fünfzig-zu-fünfzig-Chance, nie zurückzukehren. Es brauchte einen gewaltigen Glauben, um die Taue zu lösen.
+
+Geh nun in die Altstadt hinein, hinter den Kais, bis zu zwei großen Holzgebäuden. Folge mir.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-3
+@@STITLE=Les Greniers à sel
+Schau dir diese weitläufigen Gebäude aus Stein und Holz an, fast Kathedralen ohne Glockenturm. Das sind die Salzspeicher. Sie wurden unter Ludwig XIV. gebaut, um dort eine einzige Sache zu lagern — aber eine lebenswichtige: Salz.
+
+Warum so viel Salz? Wegen des Kabeljaus. Jedes Jahr fuhren Boote aus Honfleur nach Neufundland, vor der Küste Kanadas, auf die großen Fischbänke. Diese Seeleute nannte man die terre-neuvas, die Neufundlandfahrer. Sie blieben monatelang fort, in Kälte, Nebel und Dünung, um mit der Angel Kabeljau zu fangen.
+
+Doch Fisch verdirbt. Also öffnete man ihn an Bord, entfernte die Eingeweide und vergrub ihn in Salz, um ihn bis zur Rückkehr haltbar zu machen. Ohne Salz kein Kabeljau; ohne Kabeljau keine Neufundlandfahrer. Diese Speicher waren also der wahre Schatz des Hafens. Man bewahrte das Salz unter Verschluss, denn es war teuer, und der König besteuerte es schwer.
+
+Der Kabeljaufang ernährte Honfleur jahrhundertelang. Generationen von Familien lebten im Rhythmus der Frühjahrsaufbrüche und der Herbstrückkehr — wenn sie zurückkamen.
+
+Kehr zurück zu den Kais, bis zu einer alten Steinkirche, die zum Museum wurde. Folge mir.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-4
+@@STITLE=Église Saint-Étienne
+Diese Steinkirche, die älteste von Honfleur, hält keine Messe mehr. Man hat sie in ein Marinemuseum verwandelt. Im Inneren: Schiffsmodelle, Navigationsinstrumente, und die Erinnerung an all diese Seeleute des Hafens.
+
+Denn hinter den schönen Geschichten der Aufbrüche steckt die andere Wahrheit. Das Meer forderte seinen Tribut. Jeden Winter kehrten manche Boote nicht zurück. Ein Sturm auf den Bänken von Neufundland, ein Riff, ein Leck, und eine ganze Besatzung verschwand. In den Familien von Honfleur zählte man die Witwen.
+
+Deshalb nahm der Glaube so viel Raum ein. Vor der Abfahrt stiegen die Seeleute dort oben hinauf, auf den Hügel, um in der Kapelle Notre-Dame-de-Grâce zu beten. Sie hinterließen dort ein Modell ihres Schiffes, als Versprechen: bring mich zurück, und ich schenke dir mein Boot in Miniatur. Diese Votivgaben hängen noch heute von der Kapellendecke.
+
+Von Honfleur aufzubrechen war kein Postkartenabenteuer. Es war eine Wette auf das eigene Leben, jede Saison aufs Neue eingegangen.
+
+Folge dem Kai zum Hafenausgang, dort, wo sich das Wasser zur offenen See hin öffnet. Folge mir.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-5
+@@STITLE=Le port des découvreurs
+Geh noch ein paar Schritte weiter zum Vorhafen, dort, wo die Boote aufs Meer hinausfahren. Und schau hinaus aufs offene Wasser, denn Champlain und die Neufundlandfahrer sind nicht die Einzigen, die von hier aufgebrochen sind.
+
+Lange vor ihnen war Honfleur bereits ein Hafen der Entdecker. 1503 setzt ein hiesiger Reeder, Binot Paulmier de Gonneville, die Segel nach Süden, sehr weit, und erreicht unbekannte Länder — vermutlich die Küste Brasiliens. Er kehrt zwei Jahre später zurück, mit einem jungen Mann von dort, dem Sohn eines Häuptlings, den er versprochen hatte, nach Hause zu bringen, und den er nie zurückgeben konnte.
+
+Man erzählt sogar, dass Seeleute dieses Hafens Jahrhunderte zuvor bis an die Küsten Afrikas vorgestoßen seien. Der Beweis fehlt, Historiker bezweifeln es, also bleiben wir vorsichtig. Doch diese alte Geschichte sagt etwas Wahres aus: hier hatte man keine Angst vor dem Unbekannten.
+
+Denk an diese Männer. Keine verlässliche Karte, keine Ahnung, was sie am Ende des Wassers erwartete. Nur ein Rumpf, ein Segel, und der wilde Wunsch, zu sehen, was hinter dem Horizont lag.
+
+Geh bis ans Ende der Mole, dem Meer und der großen Brücke zugewandt. Unsere Geschichte endet dort. Folge mir.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-6
+@@STITLE=L'avant-port et le Pont de Normandie
+Da sind wir nun, am Ende des Hafens, dem offenen Meer zugewandt. Vor dir öffnet sich die Seine-Mündung weit, und dort, gewaltig, diese weiße, an ihren Kabeln hängende Brücke, die den Fluss in einem einzigen Sprung überspannt: die Pont de Normandie. Sie wurde 1995 eröffnet. Lange Zeit zählte sie zu den größten Brücken dieser Art weltweit. Heute verbindet sie Honfleur mit Le Havre in wenigen Minuten.
+
+Miss dir aus, was du siehst. Derselbe Kanal, dasselbe Wasser, das zum Meer hinausströmt, ist die Route, die alle genommen haben, von denen ich dir erzählt habe. Champlain, Kurs auf Québec. Die Neufundlandfahrer, Kurs auf die Kabeljaubänke. De Gonneville, Kurs auf Brasilien. Alle sind hier vorbeigekommen, unter den Augen der Lieutenance, um sich in diesen Horizont aufzulösen.
+
+Das ist das Geheimnis von Honfleur. Es ist nicht nur der schönste Hafen der Normandie. Es ist eine Schwelle. Ein Ausgangstor aus der bekannten Welt. Jahrhundertelang haben gewöhnliche Männer — Seeleute, Fischer, mittellose jüngere Söhne — hier ihre Taue gelöst, um die Landkarte der Erde neu zu zeichnen. Manche gründeten Städte. Andere kehrten nie zurück. Alle warfen einen letzten Blick auf denselben steinernen Bogen.
+
+Die Brücke hat die großen Überfahrten ersetzt. Doch das Wasser fließt noch immer aufs offene Meer hinaus. Bleib einen Moment und schau ihm beim Fortziehen zu. Bis bald, mein Freund.
+
+@@LANG=it
+@@TITLE=Honfleur — Il vecchio bacino delle grandi partenze
+@@DESC=Storia e segreti — da Champlain partito a fondare Québec ai pescatori di Terranova: il porto delle grandi partenze.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-0
+@@STITLE=La Lieutenance
+Fermati davanti a questo vecchio edificio di pietra, all'ingresso del bacino, là dove l'acqua del porto incontra l'acqua del mare aperto. È la Lieutenance. Un grosso pezzo di fortezza, tozzo, forato da un arco: è quasi tutto ciò che resta delle mura che un tempo racchiudevano Honfleur.
+
+Qui abitava il luogotenente del re, l'uomo che comandava la piazza in nome di Sua Maestà. E quell'arco, sotto il quale passavano i carri, era l'antica porta di Caen, uno degli ingressi della città murata.
+
+Guardala bene, perché questa porta ha un segreto. È stata, per migliaia di uomini, l'ultima immagine della Francia. L'ultimo muro del paese che vedevano prima di mesi, a volte anni, a volte per sempre.
+
+Perché ecco la storia che ti racconterò lungo tutta questa passeggiata. Questo piccolo porto tranquillo, con le sue barche e le sue terrazze, è stato uno dei grandi porti di partenza del mondo. Da qui, marinai sono partiti per fondare città dall'altra parte dell'oceano. Da qui, ogni anno, intere flotte facevano rotta verso mari ghiacciati per pescarvi il merluzzo. E molto prima di loro, scopritori senza mappa avevano già fatto rotta verso mondi che nessuno, in Europa, aveva ancora visto.
+
+Da questo bacino, un uomo è partito per fondare Québec. Si chiamava Champlain. Seguiremo la sua traccia, e quella di tutti gli altri.
+
+Costeggia la banchina, a destra, lungo il Vieux Bassin. Seguimi.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-1
+@@STITLE=Le Vieux Bassin
+Eccoti lungo il Vieux Bassin, con le sue alte case che si specchiano nell'acqua. Questa scenografia da cartolina ha una data di nascita. Siamo nel 1681. Il re è Luigi XIV, e il suo grande ministro, Colbert, vuole fare della Francia una potenza marittima. Ordina di ampliare il porto di Honfleur.
+
+Si abbatte parte delle mura — per questo resta solo la Lieutenance —, si scava questo bacino, lo si costeggia di banchine. E tutt'intorno, i mercanti, gli armatori si fanno costruire queste case strette, che salgono molto in alto, a volte fino a sei o sette piani, coperte di ardesia. Strette, perché il terreno sulla banchina costava caro. Alte, per alloggiare sotto lo stesso tetto la famiglia, i commessi e le merci.
+
+Ciò che scambi per un grazioso porticciolo turistico era una macchina commerciale. Legno, sale, pesce, pelli venute dall'America. Un alveare. Su queste banchine, si gridava, si caricava, si contrattava in tutte le lingue.
+
+Prosegui lungo il bacino, verso il fondo, là dove si custodisce la memoria di un uomo partito molto lontano. Seguimi.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-2
+@@STITLE=Vieux Bassin, mémoire du départ de Champlain
+È qui, da qualche parte su queste banchine, che è iniziata l'avventura del Canada francese. Nel 1608, un navigatore si imbarca a Honfleur su una nave che si dice si chiamasse Don-de-Dieu. Si chiama Samuel de Champlain.
+
+Attraversa l'Atlantico, risale un immenso fiume, il San Lorenzo, e su un promontorio, fonda un avamposto che battezza Québec. La città esiste ancora oggi. È oggi il cuore di tutto un popolo francofono in America del Nord. E tutto questo è partito da qui, da questo bacino.
+
+Champlain non fece il viaggio una sola volta, ma decine di volte. Honfleur era la sua base, il suo punto di partenza, il suo porto di ritorno. Laggiù, si scambiavano coltelli e stoffe con pelli di castoro — perché è stata la moda dei cappelli di castoro, in Europa, a finanziare la conquista del Canada.
+
+Pensa a cosa rappresentava una partenza simile. Settimane di mare su uno scafo di legno, l'ignoto in fondo, e una possibilità su due di non tornare mai. Ci voleva una fede tremenda per mollare gli ormeggi.
+
+Addentrati ora nella città vecchia, dietro le banchine, fino a due grandi edifici di legno. Seguimi.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-3
+@@STITLE=Les Greniers à sel
+Guarda questi vasti edifici di pietra e legno, quasi cattedrali senza campanile. Sono i granai del sale. Furono costruiti sotto Luigi XIV per immagazzinarvi una sola cosa, ma una cosa vitale: il sale.
+
+Perché tanto sale? A causa del merluzzo. Ogni anno, barche di Honfleur partivano verso Terranova, al largo del Canada, sui grandi banchi di pesci. Questi marinai venivano chiamati i terre-neuvas. Si assentavano mesi, nel freddo, nella nebbia e nel mare grosso, a pescare il merluzzo con la lenza.
+
+Ma un pesce marcisce. Allora, a bordo, lo si apriva, lo si svuotava, e lo si seppelliva nel sale per conservarlo fino al ritorno. Senza sale, niente merluzzo; senza merluzzo, niente terre-neuvas. Questi granai erano dunque il vero tesoro del porto. Vi si custodiva il sale sotto chiave, perché valeva caro e il re lo tassava pesantemente.
+
+La pesca del merluzzo ha nutrito Honfleur per secoli. Generazioni di famiglie hanno vissuto al ritmo delle partenze di primavera e dei ritorni d'autunno — quando tornavano.
+
+Torna verso le banchine, fino a una vecchia chiesa di pietra diventata museo. Seguimi.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-4
+@@STITLE=Église Saint-Étienne
+Questa chiesa di pietra, la più antica di Honfleur, non celebra più messa. È stata trasformata in museo della Marina. All'interno: modellini di navi, strumenti di navigazione, e il ricordo di tutti questi marinai del porto.
+
+Perché dietro le belle storie di partenze, c'è l'altra verità. Il mare si prendeva la sua parte. Ogni inverno, alcune barche non tornavano. Un colpo di vento sui banchi di Terranova, uno scoglio, una falla, e un intero equipaggio scompariva. Nelle famiglie di Honfleur, si contavano le vedove.
+
+Per questo la fede occupava tanto spazio. Prima di partire, i marinai salivano lassù, sulla collina, a pregare nella cappella Notre-Dame-de-Grâce. Vi lasciavano un modellino della loro nave, come una promessa: riportami indietro, e ti offro la mia barca in miniatura. Questi ex-voto pendono ancora dal soffitto della cappella.
+
+Partire da Honfleur non era un'avventura da cartolina. Era una scommessa sulla propria vita, rinnovata ogni stagione.
+
+Segui la banchina verso l'uscita del porto, là dove l'acqua si apre verso il mare aperto. Seguimi.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-5
+@@STITLE=Le port des découvreurs
+Fai ancora qualche passo verso l'avamporto, là dove le barche guadagnano il mare. E guarda verso il largo, perché Champlain e i terre-neuvas non sono gli unici a essere partiti da qui.
+
+Molto prima di loro, Honfleur era già un porto di esploratori. Nel 1503, un armatore di qui, Binot Paulmier de Gonneville, alza le vele verso sud, molto lontano, e raggiunge terre sconosciute — probabilmente la costa del Brasile. Ne torna due anni dopo con un giovane di laggiù, figlio di un capo, che aveva promesso di riportare a casa, e che non poté mai restituire.
+
+Si racconta persino che, secoli prima, marinai di questo porto si fossero spinti fino alle coste dell'Africa. Mancano le prove, gli storici ne dubitano, restiamo dunque prudenti. Ma questa vecchia storia dice comunque qualcosa di vero: qui, non si aveva paura dell'ignoto.
+
+Pensa a questi uomini. Nessuna mappa affidabile, nessuna idea di cosa li aspettasse in fondo all'acqua. Solo uno scafo, una vela, e la voglia folle di vedere cosa ci fosse dietro l'orizzonte.
+
+Cammina fino alla fine del molo, di fronte al mare e al grande ponte. La nostra storia finisce lì. Seguimi.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-6
+@@STITLE=L'avant-port et le Pont de Normandie
+Eccoci alla fine del porto, di fronte al mare aperto. Davanti a te, l'estuario della Senna si apre tutto, e là, immenso, quel ponte bianco sospeso ai suoi cavi che scavalca il fiume in un solo balzo: il Pont de Normandie. Fu aperto nel 1995. A lungo, è stato tra i più grandi ponti di questo tipo al mondo. Oggi, collega Honfleur a Le Havre in pochi minuti.
+
+Prendi la misura di ciò che vedi. Questo stesso canale, questa stessa acqua che corre verso il mare, è la rotta che hanno preso tutti coloro di cui ti ho parlato. Champlain, rotta su Québec. I terre-neuvas, rotta sui banchi di merluzzo. De Gonneville, rotta sul Brasile. Tutti sono passati di qui, sotto gli occhi della Lieutenance, per fondersi in quell'orizzonte.
+
+Ecco il segreto di Honfleur. Non è solo il porto più bello della Normandia. È una soglia. Una porta d'uscita dal mondo conosciuto. Per secoli, uomini comuni — marinai, pescatori, cadetti senza fortuna — hanno mollato gli ormeggi qui per andare a ridisegnare la mappa della Terra. Alcuni hanno fondato città. Altri non sono mai tornati. Tutti hanno guardato, un'ultima volta, questo stesso arco di pietra.
+
+Il ponte ha sostituito le grandi traversate. Ma l'acqua continua a scorrere verso il mare aperto. Resta un momento a guardarla partire. E a presto, amico.
+
+@@LANG=nl
+@@TITLE=Honfleur — Het oude bekken van de grote vertrekken
+@@DESC=Geschiedenis & geheimen — van Champlain die vertrok om Québec te stichten tot de Newfoundlandvissers: de haven van de grote vertrekken.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-0
+@@STITLE=La Lieutenance
+Stop voor dit oude stenen gebouw, aan de ingang van het havenbekken, daar waar het water van de haven het water van de open zee ontmoet. Dit is de Lieutenance. Een groot brok vesting, gedrongen, doorboord door een boog: het is bijna alles wat overblijft van de stadsmuren die Honfleur ooit omsloten.
+
+Hier woonde de luitenant van de koning, de man die de stad bevelvoerde in naam van Zijne Majesteit. En deze boog, waaronder de karren doorreden, was de oude poort van Caen, een van de toegangen tot de ommuurde stad.
+
+Bekijk hem goed, want deze poort heeft een geheim. Hij was, voor duizenden mannen, het laatste beeld van Frankrijk. De laatste muur van het land die ze zagen vóór maanden, soms jaren, soms voor altijd.
+
+Want dit is het verhaal dat ik je tijdens deze hele wandeling ga vertellen. Deze kleine, rustige haven, met haar bootjes en terrassen, was een van de grote vertrekhavens van de wereld. Vanaf hier vertrokken zeelieden om steden te stichten aan de andere kant van de oceaan. Vanaf hier zetten elk jaar hele vloten koers naar ijskoude zeeën om er kabeljauw te vissen. En lang vóór hen hadden ontdekkers zonder kaart al koers gezet naar werelden die niemand in Europa nog had gezien.
+
+Vanuit dit bekken vertrok een man om Québec te stichten. Hij heette Champlain. We gaan zijn spoor volgen, en dat van al de anderen.
+
+Loop langs de kade, naar rechts, langs het Vieux Bassin. Volg me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-1
+@@STITLE=Le Vieux Bassin
+Hier ben je nu, langs het Vieux Bassin, met zijn hoge huizen die zich spiegelen in het water. Dit ansichtkaartdecor heeft een geboortedatum. We zijn in 1681. De koning is Lodewijk XIV, en zijn grote minister, Colbert, wil van Frankrijk een zeemacht maken. Hij beveelt de haven van Honfleur uit te breiden.
+
+Een deel van de stadsmuren wordt afgebroken — daarom blijft alleen de Lieutenance over —, dit bekken wordt uitgegraven, omzoomd met kades. En rondom laten kooplieden en reders deze smalle huizen bouwen, die heel hoog oprijzen, soms zes of zeven verdiepingen, gedekt met leisteen. Smal, omdat de grond aan de kade duur was. Hoog, om de familie, de bedienden en de goederen onder hetzelfde dak te huisvesten.
+
+Wat je aanziet voor een mooie jachthaven, was een handelsmachine. Hout, zout, vis, huiden uit Amerika. Een bijenkorf. Op deze kades werd geroepen, geladen, onderhandeld in alle talen.
+
+Ga verder langs het bekken, naar het achterste deel, waar de herinnering wordt bewaard aan een man die zeer ver vertrok. Volg me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-2
+@@STITLE=Vieux Bassin, mémoire du départ de Champlain
+Hier, ergens op deze kades, begon het avontuur van het Franse Canada. In 1608 gaat een zeevaarder in Honfleur aan boord van een schip waarvan men zegt dat het de Don-de-Dieu heette. Hij heet Samuel de Champlain.
+
+Hij steekt de Atlantische Oceaan over, vaart een immense rivier op, de Saint-Laurent, en sticht op een landtong een post die hij Québec doopt. De stad bestaat nog steeds. Ze is vandaag het hart van een heel Franstalig volk in Noord-Amerika. En dat alles begon hier, vanuit dit bekken.
+
+Champlain maakte de reis niet één keer, maar tientallen keren. Honfleur was zijn basis, zijn vertrekpunt, zijn thuishaven. Daar ruilde men messen en stoffen voor bevervellen — want het was de Europese mode van de beverhoeden die de verovering van Canada financierde.
+
+Denk aan wat zo'n vertrek betekende. Weken op zee op een houten romp, het onbekende aan het einde, en een kans van vijftig procent om nooit meer terug te keren. Er was een geweldig geloof voor nodig om de trossen los te gooien.
+
+Trek nu de oude stad in, achter de kades, tot aan twee grote houten gebouwen. Volg me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-3
+@@STITLE=Les Greniers à sel
+Kijk naar deze uitgestrekte gebouwen van steen en hout, bijna kathedralen zonder klokkentoren. Dit zijn de zoutschuren. Ze werden gebouwd onder Lodewijk XIV om er één enkele zaak op te slaan, maar een essentiële zaak: zout.
+
+Waarom zoveel zout? Vanwege de kabeljauw. Elk jaar vertrokken boten uit Honfleur naar Newfoundland, voor de kust van Canada, naar de grote visbanken. Deze zeelieden werden de terre-neuvas genoemd. Ze bleven maanden weg, in de kou, de mist en de deining, om met de lijn kabeljauw te vissen.
+
+Maar vis rot. Dus aan boord opende men hem, maakte hem leeg, en begroef hem in zout om hem te bewaren tot de terugkeer. Zonder zout geen kabeljauw; zonder kabeljauw geen terre-neuvas. Deze schuren waren dus de echte schat van de haven. Men bewaarde het zout onder slot, want het was duur en de koning belastte het zwaar.
+
+De kabeljauwvangst voedde Honfleur eeuwenlang. Generaties families leefden op het ritme van de lentevertrekken en de herfstterugkeer — wanneer ze terugkwamen.
+
+Ga terug naar de kades, tot aan een oude stenen kerk die een museum is geworden. Volg me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-4
+@@STITLE=Église Saint-Étienne
+Deze stenen kerk, de oudste van Honfleur, viert geen mis meer. Ze is omgevormd tot een marinemuseum. Binnen: scheepsmodellen, navigatie-instrumenten, en de herinnering aan al deze havenzeelieden.
+
+Want achter de mooie verhalen van vertrekken schuilt de andere waarheid. De zee nam haar deel. Elke winter kwamen sommige boten niet terug. Een storm op de banken van Newfoundland, een rif, een lek, en een hele bemanning verdween. In de families van Honfleur telde men de weduwen.
+
+Daarom nam het geloof zo'n grote plaats in. Voor hun vertrek klommen de zeelieden daarboven, de heuvel op, om te bidden in de kapel Notre-Dame-de-Grâce. Ze lieten er een model van hun schip achter, als een belofte: breng me terug, en ik schenk je mijn boot in miniatuur. Deze ex-voto's hangen nog steeds aan het plafond van de kapel.
+
+Vertrekken uit Honfleur was geen ansichtkaartavontuur. Het was een gok op je eigen leven, elk seizoen opnieuw aangegaan.
+
+Volg de kade naar de uitgang van de haven, daar waar het water zich opent naar de open zee. Volg me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-5
+@@STITLE=Le port des découvreurs
+Zet nog een paar stappen naar de voorhaven, daar waar de boten de zee bereiken. En kijk naar de open zee, want Champlain en de terre-neuvas zijn niet de enigen die van hier vertrokken.
+
+Lang vóór hen was Honfleur al een havenstad van ontdekkers. In 1503 zet een plaatselijke reder, Binot Paulmier de Gonneville, de zeilen naar het zuiden, heel ver weg, en bereikt onbekende landen — waarschijnlijk de kust van Brazilië. Hij keert twee jaar later terug met een jongeman van daar, de zoon van een opperhoofd, die hij had beloofd naar huis terug te brengen, en die hij nooit heeft kunnen teruggeven.
+
+Men vertelt zelfs dat, eeuwen eerder, zeelieden van deze haven tot aan de kusten van Afrika zouden zijn doorgedrongen. Het bewijs ontbreekt, historici betwijfelen het, dus blijven we voorzichtig. Maar dit oude verhaal zegt wel iets waars: hier was men niet bang voor het onbekende.
+
+Denk aan deze mannen. Geen betrouwbare kaart, geen idee wat hen wachtte aan het einde van het water. Alleen een romp, een zeil, en de dolle zin om te zien wat er achter de horizon lag.
+
+Loop tot het einde van de pier, met uitzicht op de zee en de grote brug. Ons verhaal eindigt daar. Volg me.
+
+@@SCENE=seed-100-honfleur-port-des-explorateurs-scene-6
+@@STITLE=L'avant-port et le Pont de Normandie
+Hier zijn we, aan het einde van de haven, met uitzicht op de open zee. Voor je opent de monding van de Seine zich wijd, en daar, immens, die witte brug, opgehangen aan haar kabels, die de rivier in één sprong overspant: de Pont de Normandie. Ze werd geopend in 1995. Lange tijd behoorde ze tot de grootste bruggen van dit type ter wereld. Vandaag verbindt ze Honfleur met Le Havre in enkele minuten.
+
+Neem de maat van wat je ziet. Datzelfde vaargeul, datzelfde water dat naar zee stroomt, is de route die iedereen nam over wie ik je heb verteld. Champlain, koers naar Québec. De terre-neuvas, koers naar de kabeljauwbanken. De Gonneville, koers naar Brazilië. Allen zijn hier voorbijgekomen, onder de ogen van de Lieutenance, om op te gaan in deze horizon.
+
+Dat is het geheim van Honfleur. Het is niet alleen de mooiste haven van Normandië. Het is een drempel. Een uitgangspoort van de bekende wereld. Eeuwenlang hebben gewone mannen — zeelieden, vissers, jongere zonen zonder fortuin — hier hun trossen losgegooid om de kaart van de Aarde opnieuw te tekenen. Sommigen stichtten steden. Anderen kwamen nooit terug. Allen wierpen een laatste blik op diezelfde stenen boog.
+
+De brug heeft de grote overtochten vervangen. Maar het water stroomt nog steeds naar de open zee. Blijf nog even kijken hoe het wegstroomt. Tot ziens, vriend.

@@ -1,0 +1,127 @@
+{
+  "tourId": "seed-100-sarlat-perigord-medieval",
+  "sessionId": "seed-100-sarlat-perigord-medieval-session",
+  "guideId": "159473d2-8509-4d01-aa14-180d87772225",
+  "owner": "4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c",
+  "city": "Sarlat",
+  "title": "Sarlat — La ville médiévale la plus intacte de France",
+  "description": "Histoire & secrets — sauvée par une loi de 1962, la ville médiévale la plus intacte de France.",
+  "themes": [
+    "Histoire & secrets — sauvée par une loi de 1962, la ville médiévale la plus intacte de France."
+  ],
+  "baseLanguage": "fr",
+  "chars": 8718,
+  "targetLangs": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "previousTranslatedDescriptions": {
+    "es": "Historia y secretos, salvado por una ley de 1962, la ciudad medieval más intacta de Francia.",
+    "de": "Geschichte & Geheimnisse, gerettet durch ein Gesetz von 1962, die intaktste mittelalterliche Stadt Frankreichs.",
+    "en": "History & secrets, saved by a 1962 law, the most intact medieval city in France.",
+    "it": "Storia & segreti, salvata da una legge del 1962, la città medievale più intatta della Francia."
+  },
+  "scenes": [
+    {
+      "sceneId": "seed-100-sarlat-perigord-medieval-scene-0",
+      "index": 0,
+      "title": "Place de la Liberté",
+      "text": "Arrête-toi au centre de cette grande place, la place de la Liberté. Regarde autour de toi. Des façades de pierre dorée, ocre, presque miel sous la lumière. Des toits de lauzes lourdes, ces tuiles de pierre grise empilées comme des écailles. Des tourelles, des portes en ogive, des fenêtres à meneaux. On dirait un décor de cinéma — et d'ailleurs, on a tourné ici des dizaines de films. Mais ce n'est pas un décor. Tout est vrai, tout est vieux de cinq, six, sept siècles.\r\n\r\nVoilà ce qui rend Sarlat unique, et c'est l'histoire que je vais te raconter tout au long de cette balade : cette ville aurait dû disparaître. Comme presque toutes les autres.\r\n\r\nParce qu'au milieu du XXᵉ siècle, Sarlat n'était plus qu'un gros bourg endormi du Périgord, oublié des trains, oublié du progrès. Ses vieilles maisons tombaient en ruine. On parlait de les raser, d'élargir les rues, de faire du neuf. Partout en France, à cette époque, on éventrait les vieux centres.\r\n\r\nEt puis, en 1962, une loi a tout changé. Une loi portée par un écrivain devenu ministre, André Malraux. Elle inventait une idée neuve : qu'on pouvait protéger, non pas un monument isolé, mais une ville entière. Un quartier tout entier, avec ses ruelles, ses cours, ses maisons ordinaires.\r\n\r\nSarlat fut la première. Le chantier-modèle. La vitrine. Et c'est pour ça que tu peux marcher, aujourd'hui, dans la ville médiévale la plus intacte de France.\r\n\r\nEnfonce-toi vers la cathédrale. Prends la ruelle qui descend, droit devant. Suis-moi.",
+      "hash": "4b8ab1b0",
+      "chars": 1496,
+      "existingSegments": {
+        "de": "seed-100-sarlat-perigord-medieval-scene-0-seg-de",
+        "en": "seed-100-sarlat-perigord-medieval-scene-0-seg-en",
+        "it": "seed-100-sarlat-perigord-medieval-scene-0-seg-it",
+        "es": "seed-100-sarlat-perigord-medieval-scene-0-seg-es"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-perigord-medieval-scene-1",
+      "index": 1,
+      "title": "Hôtel de Maleville",
+      "text": "À deux pas de la place, lève les yeux sur cette façade plus fière que les autres. C'est l'hôtel de Maleville, qu'on appelle aussi l'hôtel de Vienne. Regarde comme elle change de langage : fini le Moyen Âge, ici on parle Renaissance. Des fenêtres régulières, des pilastres, et deux médaillons sculptés — un homme, une femme, deux bustes qui te toisent depuis presque cinq cents ans.\r\n\r\nDerrière cette pierre, il y a une belle histoire d'ascension. Celle de Jean de Vienne, un enfant de Sarlat né dans une famille modeste, qui grimpe, grimpe, jusqu'à devenir trésorier des rois de France. Riche, puissant, il revient au pays et s'offre ce que la ville pouvait faire de plus moderne : il rachète plusieurs maisons médiévales serrées les unes contre les autres, et les fond en un seul palais à l'italienne.\r\n\r\nC'est ça aussi, Sarlat. Une petite ville, mais de grandes familles. Des juristes, des marchands, des hommes d'Église, assez fortunés pour bâtir dans la pierre ce que leur nom valait.\r\n\r\nContinue de descendre vers la place du Peyrou, devant la grande cathédrale. Suis-moi.",
+      "hash": "35f7fc2b",
+      "chars": 1077,
+      "existingSegments": {
+        "de": "seed-100-sarlat-perigord-medieval-scene-1-seg-de",
+        "es": "seed-100-sarlat-perigord-medieval-scene-1-seg-es",
+        "it": "seed-100-sarlat-perigord-medieval-scene-1-seg-it",
+        "en": "seed-100-sarlat-perigord-medieval-scene-1-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-perigord-medieval-scene-2",
+      "index": 2,
+      "title": "Maison de La Boétie",
+      "text": "Nous voici sur la place du Peyrou. Tourne le dos une seconde à la cathédrale, et regarde cette maison — sans doute la plus célèbre de Sarlat. Sa façade Renaissance, ses grandes fenêtres à meneaux, son pignon pointu percé de lucarnes : un bijou. C'est la maison de La Boétie.\r\n\r\nC'est ici qu'est né, en 1530, Étienne de La Boétie. Retiens ce nom. Encore jeune, ce garçon écrit un texte qui va traverser les siècles : le Discours de la servitude volontaire. Une question toute simple, et redoutable : pourquoi des millions d'hommes obéissent-ils à un seul, un tyran, alors qu'il leur suffirait de cesser d'obéir pour être libres ? On lit encore ça aujourd'hui.\r\n\r\nMais La Boétie, on s'en souvient surtout pour une amitié. La plus belle, peut-être, de toute la littérature française. Celle qui le lia à Michel de Montaigne. Quand on demanda plus tard à Montaigne pourquoi il aimait tant cet ami, il répondit cette phrase devenue légendaire : « Parce que c'était lui, parce que c'était moi. »\r\n\r\nLa Boétie meurt jeune, à trente-deux ans, dans les bras de Montaigne. La ville n'a jamais oublié son enfant prodige.\r\n\r\nLonge la cathédrale par la droite, vers un petit jardin en pente. Suis-moi.",
+      "hash": "576db45",
+      "chars": 1187,
+      "existingSegments": {
+        "de": "seed-100-sarlat-perigord-medieval-scene-2-seg-de",
+        "es": "seed-100-sarlat-perigord-medieval-scene-2-seg-es",
+        "en": "seed-100-sarlat-perigord-medieval-scene-2-seg-en",
+        "it": "seed-100-sarlat-perigord-medieval-scene-2-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-perigord-medieval-scene-3",
+      "index": 3,
+      "title": "Cathédrale Saint-Sacerdos",
+      "text": "Te voilà devant Saint-Sacerdos, la cathédrale. Elle paraît un peu dépareillée, et c'est normal : on l'a bâtie, abattue, rebâtie sur plus de mille ans. Regarde le bas du clocher, ces grosses pierres rondes : c'est du roman, ce qu'il y a de plus vieux. Le reste, la haute nef, on l'a repris bien plus tard.\r\n\r\nMais l'essentiel est ailleurs. Cette église est le berceau de Sarlat. Avant la ville, il y a eu l'abbaye. Des moines bénédictins, installés là il y a plus de mille ans, dans une vallée à l'écart de tout. Autour de leur monastère, peu à peu, sont venues les maisons, les marchands, les artisans. La ville est née de la prière.\r\n\r\nSarlat n'est devenue évêché que tardivement, au début du XIVᵉ siècle, par la volonté d'un pape — Jean XXII, celui d'Avignon. C'est de là que l'abbatiale devient cathédrale, et que la petite cité de moines prend du galon.\r\n\r\nOn raconte aussi qu'un saint fameux, Bernard de Clairvaux, passa ici en prêchant. Son passage a laissé une légende tenace, au point que certains ont voulu reconnaître sa mémoire dans l'étrange monument qui nous attend juste derrière.\n\r\nContourne le chevet, monte les quelques marches vers le jardin. Suis-moi.",
+      "hash": "b134a97",
+      "chars": 1170,
+      "existingSegments": {
+        "es": "seed-100-sarlat-perigord-medieval-scene-3-seg-es",
+        "it": "seed-100-sarlat-perigord-medieval-scene-3-seg-it",
+        "de": "seed-100-sarlat-perigord-medieval-scene-3-seg-de",
+        "en": "seed-100-sarlat-perigord-medieval-scene-3-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-perigord-medieval-scene-4",
+      "index": 4,
+      "title": "Lanterne des morts",
+      "text": "Nous y voilà. Cette étrange tour ronde, coiffée d'un cône de pierre, comme une fusée médiévale posée dans le jardin. On l'appelle la lanterne des morts. Elle date du XIIᵉ siècle. Et personne — vraiment personne — ne sait avec certitude à quoi elle servait.\r\n\r\nRegarde-la bien. Une grosse tour cylindrique, une petite chambre voûtée à la base, et là-haut, tout en haut, des ouvertures. D'où son nom : on pense qu'on y allumait, la nuit, une flamme visible de loin, une lumière pour veiller sur les morts du cimetière qui s'étendait ici même.\r\n\r\nMais ce n'est qu'une hypothèse. D'autres y voient un monument funéraire, un mémorial. Et puis il y a la légende. Tu te souviens du passage de Bernard de Clairvaux ? Certains récits tardifs ont associé la tour à sa prédication et aux guérisons qu'on lui attribuait. Une manière de donner un nom célèbre à un édifice dont la fonction échappait déjà aux générations suivantes.\n\r\nLa vérité ? Elle dort dans ces pierres, et elles ne parlent pas. C'est l'un des plus vieux secrets de Sarlat, et il tient bon.\r\n\r\nRedescends vers le cœur de la ville, remonte vers la rue des Consuls. Suis-moi.",
+      "hash": "afc81c8b",
+      "chars": 1129,
+      "existingSegments": {
+        "it": "seed-100-sarlat-perigord-medieval-scene-4-seg-it",
+        "es": "seed-100-sarlat-perigord-medieval-scene-4-seg-es",
+        "de": "seed-100-sarlat-perigord-medieval-scene-4-seg-de",
+        "en": "seed-100-sarlat-perigord-medieval-scene-4-seg-en"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-perigord-medieval-scene-5",
+      "index": 5,
+      "title": "Rue des Consuls",
+      "text": "Te voilà rue des Consuls. Prends ton temps, lève la tête, et laisse défiler les façades. Ici vivaient les puissants de Sarlat : les consuls — c'est-à-dire ceux qui gouvernaient la ville — et les riches marchands. Chaque hôtel est une page d'histoire de l'architecture, empilée sur la précédente.\r\n\r\nArrête-toi devant le plus beau, l'hôtel Plamon. Regarde-le de bas en haut, et tu verras les siècles se succéder. Au rez-de-chaussée, de larges arcades gothiques, celles d'une boutique médiévale. Au-dessus, de fines fenêtres à baies multiples, dentelées comme de la broderie. Plus haut encore, d'autres fenêtres, d'un autre âge, d'un autre goût.\r\n\r\nC'était la maison des Selves de Plamon, une dynastie de marchands drapiers. Le drap, le tissu, l'étoffe : voilà ce qui faisait la fortune d'une ville comme Sarlat, loin des grandes routes mais riche de ses foires et de ses artisans.\r\n\r\nEt tout ça — ces arcades, ces balcons, ces pierres fragiles — tu peux le voir intact parce qu'on a refusé de le raser. Souviens-toi de 1962. Sans cette loi, cette rue serait sans doute devenue une avenue banale.\r\n\r\nReviens sur tes pas vers la place de la Liberté, jusqu'à la grande église transformée. Suis-moi.",
+      "hash": "a28b723a",
+      "chars": 1194,
+      "existingSegments": {
+        "es": "seed-100-sarlat-perigord-medieval-scene-5-seg-es",
+        "de": "seed-100-sarlat-perigord-medieval-scene-5-seg-de",
+        "en": "seed-100-sarlat-perigord-medieval-scene-5-seg-en",
+        "it": "seed-100-sarlat-perigord-medieval-scene-5-seg-it"
+      }
+    },
+    {
+      "sceneId": "seed-100-sarlat-perigord-medieval-scene-6",
+      "index": 6,
+      "title": "Église Sainte-Marie",
+      "text": "Nous finissons ici, devant cette grande église qui n'en est plus une. L'église Sainte-Marie. Regarde ces deux portes de métal, immenses, hautes comme des géants, qui s'ouvrent et se ferment en glissant. Elles n'ont rien de médiéval — et c'est voulu.\r\n\r\nCette église, après la Révolution, avait été fermée, vendue, à moitié ruinée. On en avait fait un entrepôt, une poste. Elle tombait. Et à la fin du XXᵉ siècle, on a confié sa renaissance à un enfant du pays devenu l'un des plus grands architectes du monde : Jean Nouvel. Lui a grandi par ici. Il connaît cette pierre par cœur.\r\n\r\nIl n'a pas fait semblant. Il n'a pas refait du faux-vieux. Il a gardé les vieux murs, et il y a glissé quelque chose de résolument moderne : ces portes d'acier, et dedans, un marché couvert où l'on vend, presque chaque jour, le meilleur du Périgord.\r\n\r\nEt là, dans l'ancien clocher, un ascenseur de verre te hisse au-dessus des toits. Monte, si tu peux. De là-haut, tu verras tout ce que tu viens de traverser : la mer des toits de lauzes, les tourelles, la pierre blonde, à perte de vue, sans une fausse note.\r\n\r\nVoilà le secret de Sarlat. Une ville qui aurait dû mourir, qu'une loi a sauvée en 1962, et qu'un architecte d'aujourd'hui a su réveiller sans la trahir. Le passé, ici, n'est pas embaumé. Il vit encore.\r\n\r\nReste un moment là-haut. Laisse courir ton regard. Et quand tu redescendras dans les ruelles, tu sauras la chance que tu as de les voir intactes. À bientôt, l'ami.",
+      "hash": "f949e649",
+      "chars": 1465,
+      "existingSegments": {
+        "en": "seed-100-sarlat-perigord-medieval-scene-6-seg-en",
+        "it": "seed-100-sarlat-perigord-medieval-scene-6-seg-it",
+        "de": "seed-100-sarlat-perigord-medieval-scene-6-seg-de",
+        "es": "seed-100-sarlat-perigord-medieval-scene-6-seg-es"
+      }
+    }
+  ]
+}
