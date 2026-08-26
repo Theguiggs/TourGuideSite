@@ -75,12 +75,19 @@ function parseEnvelope<T>(raw: unknown, fallbackCode: number): Result<T> {
  * `UserEntitlement` est lisible par son propriétaire (`ownerDefinedIn('userId')`),
  * donc le client lit le sien sans passer par un Lambda. On accepte n'importe quel
  * entitlement actif et non expiré : le forfait acheté sur le web (`ai_tours_pass`)
- * comme celui venu de Play via RevenueCat (`premium_access`) — exactement la même
- * règle que `isEntitled` côté serveur.
+ * comme celui venu de Play via RevenueCat (`premium_access`) — même règle d'ÉTAT
+ * que `isEntitled` côté serveur.
  *
- * Ne décide d'aucun accès : ça masque le bouton d'achat et allume le badge. Ce
- * que le visiteur peut lire reste accordé ou tronqué par le serveur, sur
- * l'identité de la requête.
+ * MAIS PLUS LA MÊME RÈGLE TOUT COURT. Le serveur exige désormais en plus que
+ * l'achat vienne de SA pile (`environment`, voir
+ * `TourGuideApp/amplify/shared/purchase-environment.ts`) : un droit `SANDBOX` lu
+ * sur la production y est refusé, alors qu'il rend `true` ici. Conséquence
+ * visible : un testeur en bac à sable voit « Forfait actif » sur du contenu que le
+ * serveur lui sert tronqué.
+ *
+ * Écart assumé, parce que cette lecture ne décide d'aucun accès : elle masque le
+ * bouton d'achat et allume le badge. Ce que le visiteur peut lire reste accordé ou
+ * tronqué par le serveur, sur l'identité de la requête.
  */
 export async function hasActiveForfait(): Promise<boolean> {
   if (shouldUseStubs()) return false;

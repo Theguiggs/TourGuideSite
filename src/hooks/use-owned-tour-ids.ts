@@ -104,9 +104,17 @@ export function useOwnedTourIds(): Set<string> {
 /**
  * Le visiteur porte-t-il un droit permanent actif (forfait annuel, abonnement) ?
  *
- * `hasActiveForfait()` applique la règle même de `isEntitled` côté serveur :
+ * `hasActiveForfait()` applique l'état du droit comme `isEntitled` côté serveur :
  * `active === true` et non expiré. Un forfait expiré retombe donc à `false`,
  * comme un visiteur sans droit.
+ *
+ * LA PARITÉ S'ARRÊTE LÀ. Depuis l'environnement des droits, le serveur exige en
+ * plus que l'achat vienne de SA pile : un droit `SANDBOX` lu sur la production
+ * ne déverrouille plus rien côté serveur, alors qu'il rend `true` ici. Un
+ * testeur en bac à sable verra donc « Forfait actif » sur du contenu que le
+ * serveur sert tronqué. Écart assumé : cette lecture ne décide d'aucun accès —
+ * elle masque le bouton d'achat et allume le badge. Le jour où on veut la parité,
+ * c'est `environment` qu'il faut projeter et comparer ici aussi.
  */
 export function useHasActiveEntitlement(): boolean {
   const { isAuthenticated, user } = useAuth();
