@@ -288,6 +288,13 @@
               "isRequired": false,
               "attributes": []
             },
+            "translatedTitles": {
+              "name": "translatedTitles",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
             "translatedDescriptions": {
               "name": "translatedDescriptions",
               "isArray": false,

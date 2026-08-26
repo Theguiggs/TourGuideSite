@@ -374,7 +374,19 @@ export async function updateGuideProfileMutation(
 // reconstruit les trois cartes de zéro et les remplace en bloc, sans fusion :
 // l'activer ferait passer « rien ne s'écrit » à « tout est écrasé ». À réactiver
 // en même temps que la fusion, pas avant. Voir deferred-work.md.
-const GUIDE_TOUR_JSON_FIELDS = ['translatedDescriptions', 'languageAudioTypes'];
+//
+// MISE À JOUR : l'outil de fusion existe désormais (`translated-metadata.ts`),
+// mais ce qui manque n'est pas l'outil — c'est son adoption SUR LE SITE d'appel
+// de `language-purchase.ts`, qui reconstruit encore ses cartes de zéro. Tant
+// que ce site n'a pas basculé, la ligne reste telle quelle.
+export const GUIDE_TOUR_JSON_FIELDS = ['translatedTitles', 'translatedDescriptions', 'languageAudioTypes'];
+
+/**
+ * Champs AWSJSON de `GuideTour` volontairement HORS de la liste ci-dessus.
+ * Exporté pour que l'épreuve de cohérence schéma ↔ liste distingue un oubli
+ * d'une exclusion assumée, au lieu de traiter les deux pareil.
+ */
+export const GUIDE_TOUR_JSON_FIELDS_EXCLUS = ['translatedAudioKeys'];
 
 /** @param updates Unvalidated — callers must ensure keys match schema fields */
 export async function updateGuideTourMutation(

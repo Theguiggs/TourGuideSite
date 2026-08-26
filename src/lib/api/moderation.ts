@@ -23,6 +23,7 @@ import {
   type AudioSourceScene,
   type LanguageAudioTypes,
 } from './audio-source-policy';
+import { translatedMetadataUpdate } from './translated-metadata';
 
 /**
  * Moderation data access layer.
@@ -582,8 +583,12 @@ type DisclosureOutcome =
   | { ok: false; error: string };
 
 /**
- * Dérive la mention de source pour la langue source, la fusionne dans la carte
- * déjà persistée, et renvoie la charge utile de publication.
+ * Construit la charge utile de publication : la mention de source pour la langue
+ * source, fusionnée dans la carte déjà persistée, ET les métadonnées traduites
+ * projetées depuis la StudioSession. Le nom dit « disclosure » par héritage ; la
+ * fonction est le point d'assemblage de tout ce qui doit voyager avec
+ * `status: 'published'` sur le chemin d'approbation. Le second chemin de
+ * publication, `adminSetTourStatus`, applique les mêmes règles sans dériver.
  *
  * Toute lecture en échec REFUSE (29xx) au lieu de retomber sur le défaut :
  *  - `getGuideTourResult` distingue « absente » de « lecture en échec » ; sans la
@@ -639,6 +644,25 @@ async function deriveSourceDisclosure(
   if (Array.isArray(existingLangs)) {
     updates.availableLanguages = Array.from(new Set([sourceLang, ...(existingLangs as string[])]));
   }
+
+  // CAP-2 — les métadonnées traduites voyagent dans la MÊME mutation que la
+  // publication, comme la mention de source. Elles vivent sur la `StudioSession`,
+  // que le Studio édite ; `GuideTour` est ce que lit le catalogue, et rien ne les
+  // y portait : une Visite publiée par le Studio n'emportait ni titre ni
+  // description traduits. La session est déjà lue ci-dessus — aucun aller-retour
+  // supplémentaire. Le même bloc vit dans `adminSetTourStatus` : DEUX chemins
+  // mènent à `published`, et la règle doit tenir sur les deux.
+  //
+  // La fusion est ce qui rend l'opération sûre : une publication qui n'apporte
+  // qu'une langue ne peut pas effacer les autres. `undefined` fait omettre la
+  // clé plutôt qu'écrire une carte vide sur une Visite qui n'en a pas.
+  const titles = translatedMetadataUpdate(tour.translatedTitles, session?.translatedTitles);
+  if (titles) updates.translatedTitles = titles;
+  const descriptions = translatedMetadataUpdate(
+    tour.translatedDescriptions,
+    session?.translatedDescriptions,
+  );
+  if (descriptions) updates.translatedDescriptions = descriptions;
 
   return { ok: true, sourceLang, updates };
 }
@@ -895,6 +919,19 @@ export async function adminSetTourStatus(
     // domaine — une ligne héritée `{fr:'tts', en:'human'}` perdrait `en` sur une
     // simple réactivation.
     updates.languageAudioTypes = tour.languageAudioTypes;
+
+    // CAP-2 — second chemin de publication, même règle. La session et la Visite
+    // sont déjà lues ci-dessus : aucun aller-retour de plus. Sans ce bloc, une
+    // Visite archivée puis réactivée repartait publiée sans les traductions que
+    // sa session avait acquises entre-temps — l'invariant « les métadonnées
+    // voyagent avec la publication » n'aurait tenu que sur l'un des deux sites.
+    const titles = translatedMetadataUpdate(tour.translatedTitles, session?.translatedTitles);
+    if (titles) updates.translatedTitles = titles;
+    const descriptions = translatedMetadataUpdate(
+      tour.translatedDescriptions,
+      session?.translatedDescriptions,
+    );
+    if (descriptions) updates.translatedDescriptions = descriptions;
   }
 
   const result = await appsync.updateGuideTourMutation(tourId, updates);

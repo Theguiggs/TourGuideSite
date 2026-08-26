@@ -31,7 +31,15 @@ jest.mock('aws-amplify', () => ({
 
 jest.mock('@/lib/amplify/config', () => ({ configureAmplify: jest.fn() }));
 
-import { getGuideTourById, getGuideTourResult, updateGuideTourMutation } from '../appsync-client';
+import fs from 'node:fs';
+import path from 'node:path';
+import {
+  GUIDE_TOUR_JSON_FIELDS,
+  GUIDE_TOUR_JSON_FIELDS_EXCLUS,
+  getGuideTourById,
+  getGuideTourResult,
+  updateGuideTourMutation,
+} from '../appsync-client';
 import { AUDIO_DISCLOSURE_ERR } from '../audio-source-policy';
 
 /** Ce que le résolveur AWSJSON fait de la valeur reçue : il exige une chaîne. */
@@ -75,6 +83,33 @@ describe('updateGuideTourMutation — sérialisation des champs AWSJSON', () => 
     const sent = mockGuideTourUpdate.mock.calls[0][0];
     expect(sent.languageAudioTypes).toBe(already);
     expect(appsyncAwsJsonRoundTrip(sent.languageAudioTypes)).toEqual({ fr: 'tts' });
+  });
+
+  it('envoie translatedTitles en chaîne JSON — story 3', async () => {
+    // Le champ est de l'AWSJSON au même titre que `languageAudioTypes`. Non
+    // sérialisé, il ferait rejeter la mutation ENTIÈRE : la Visite ne serait
+    // alors pas publiée du tout, pas seulement privée de ses titres.
+    const titles = { en: 'Aix — Squares and Gates', de: 'Aix — Plätze und Tore' };
+    const result = await updateGuideTourMutation('tour-1', {
+      status: 'published',
+      languageAudioTypes: { fr: 'tts' },
+      translatedTitles: titles,
+    });
+
+    expect(result.ok).toBe(true);
+    const sent = mockGuideTourUpdate.mock.calls[0][0];
+    expect(typeof sent.translatedTitles).toBe('string');
+    expect(appsyncAwsJsonRoundTrip(sent.translatedTitles)).toEqual(titles);
+  });
+
+  it('laisse translatedAudioKeys NON sérialisé — délibérément', async () => {
+    // Le sérialiser rendrait vivante l'écriture d'approbation de langue, qui
+    // remplace ses cartes en bloc : on passerait de « rien ne s'écrit » à
+    // « tout est écrasé ». À réactiver avec la fusion, pas avant.
+    await updateGuideTourMutation('tour-1', { translatedAudioKeys: { en: { s1: 'k.mp3' } } });
+
+    const sent = mockGuideTourUpdate.mock.calls[0][0];
+    expect(typeof sent.translatedAudioKeys).toBe('object');
   });
 
   it('laisse les champs non-JSON intacts', async () => {
@@ -229,5 +264,45 @@ describe('champs de publication réservés à la modération', () => {
     // l'écriture d'approbation — laquelle remplace les trois cartes en bloc
     // sans fusionner. À sérialiser en même temps que la fusion, pas avant.
     expect(typeof sent.translatedAudioKeys).toBe('object');
+  });
+});
+
+describe('coherence schema <-> liste de serialisation', () => {
+  /**
+   * La liste est tenue A LA MAIN, dans un dépôt, pour un schéma qui vit dans un
+   * AUTRE dépôt. Un champ `a.json()` ajouté sans y être inscrit fait rejeter la
+   * mutation ENTIÈRE par AppSync — donc, sur le chemin de publication, la Visite
+   * n'est pas publiée du tout. Cette épreuve remplace la convention par un
+   * contrôle : elle lit l'introspection réellement déployée.
+   */
+  const champsAwsJson = (): string[] => {
+    const p = path.join(process.cwd(), 'amplify_outputs.json');
+    if (!fs.existsSync(p)) return [];
+    const outputs = JSON.parse(fs.readFileSync(p, 'utf8'));
+    const fields = outputs?.data?.model_introspection?.models?.GuideTour?.fields ?? {};
+    return Object.values(fields as Record<string, { name: string; type: unknown }>)
+      .filter((f) => f.type === 'AWSJSON')
+      .map((f) => f.name);
+  };
+
+  it("tout champ AWSJSON de GuideTour est serialise, ou exclu deliberement", () => {
+    const champs = champsAwsJson();
+    // Sans amplify_outputs.json (poste non configuré), l'épreuve ne peut rien
+    // affirmer — mais elle doit le DIRE plutôt que passer en silence.
+    expect(champs.length).toBeGreaterThan(0);
+    const oublies = champs.filter(
+      (f) => !GUIDE_TOUR_JSON_FIELDS.includes(f) && !GUIDE_TOUR_JSON_FIELDS_EXCLUS.includes(f),
+    );
+    expect(oublies).toEqual([]);
+  });
+
+  it("aucun champ de la liste n'a disparu du schema", () => {
+    const champs = champsAwsJson();
+    expect(champs.length).toBeGreaterThan(0);
+    for (const f of GUIDE_TOUR_JSON_FIELDS) expect(champs).toContain(f);
+  });
+
+  it('translatedTitles est bien present dans le schema deploye', () => {
+    expect(champsAwsJson()).toContain('translatedTitles');
   });
 });
