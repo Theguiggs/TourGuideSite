@@ -1,0 +1,3588 @@
+{
+  "certifieLe": "2026-08-26T21:38:59.838Z",
+  "backend": {
+    "apiId": "yvupc5stqzaxrgz6wv2wz7he5y",
+    "hote": "ncwhqefs5rhhbpwz76xiw3qfle.appsync-api.us-east-1.amazonaws.com",
+    "bucket": "amplify-dieqe5vfmuc69-mai-tourguideassetsbucket8b8-qyql7idkrnkr",
+    "resolutionPar": "appsync"
+  },
+  "perimetre": {
+    "partiel": false
+  },
+  "environnement": {
+    "E2E_ALLOW_TEST_TOURS": null
+  },
+  "corpus": {
+    "source": "content\\translations\\source",
+    "traductions": "content\\translations\\out",
+    "visites": 101,
+    "empreinteSha256": "2eb1a59bc6c9222a3fa18d2a03b880e8"
+  },
+  "langues": [
+    "en",
+    "es",
+    "de",
+    "it",
+    "nl"
+  ],
+  "verdict": "conforme",
+  "motif": null,
+  "totaux": {
+    "visitesCertifiees": 101,
+    "visitesDuCatalogue": 101,
+    "visitesEnDefaut": 0,
+    "segmentsControles": 3810,
+    "segmentsConcordants": 3810
+  },
+  "catalogueNonCouvert": [],
+  "corpusEnDefaut": [],
+  "segmentsDupliques": [],
+  "horsPerimetre": {
+    "segments": 116,
+    "marianmt": 55,
+    "ttsGenerated": 18,
+    "avecAudio": 0
+  },
+  "nonAtteste": [
+    "L'absence de pivot par une langue intermédiaire est une propriété du procédé, pas des données : aucun contrôle ne la lit dans un texte. Ce qui est établi ici, c'est qu'aucun segment de catalogue ne porte plus le marqueur marianmt et que le texte en base est bien le corpus relu sous CONSIGNES.md, qui interdit le pivot.",
+    "La qualité de la traduction — registre, tutoiement, toponymes laissés en français — n'est pas contrôlable par programme. Elle relève de la relecture humaine consignée dans CONSIGNES.md.",
+    "L'ARCHIVAGE de l'ancien audio n'est pas vérifié : le contrôle constate qu'aucun segment ne RÉFÉRENCE plus d'audio traduit, pas que les objets S3 ont été copiés sous archive-tts-marianmt/."
+  ],
+  "visites": [
+    {
+      "tourId": "78e3f3cc-7c1d-4a88-a274-8690e9411fc2",
+      "titre": "Grasse — Les Routes du Parfum",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-aix-fontaines-et-comtes",
+      "titre": "Aix-en-Provence — Fontaines et comtes",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-aix-places-et-portes",
+      "titre": "Aix-en-Provence — Places et portes",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-aix-sur-les-pas-de-cezanne",
+      "titre": "Aix-en-Provence — Sur les pas de Cézanne",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-albi-cite-episcopale",
+      "titre": "Albi — La forteresse de brique rouge",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-albi-toulouse-lautrec",
+      "titre": "Albi — Le comte brisé de Montmartre",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-amboise-leonard-dernier-voyage",
+      "titre": "Amboise — Le dernier voyage de Léonard",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-annecy-lac-des-defis",
+      "titre": "Annecy — Le lac des défis",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-annecy-ponts-canaux-et-jardins",
+      "titre": "Annecy — Ponts, canaux et jardins",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-annecy-venise-des-alpes",
+      "titre": "Annecy — La ville qui flotte",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-arles-camargue-et-gardians",
+      "titre": "Arles — La capitale d'une nation Camargue",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-arles-rome-en-provence",
+      "titre": "Arles — la petite Rome des Gaules",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-arles-van-gogh-la-lumiere",
+      "titre": "Arles — Van Gogh, embrasé par la lumière",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-avignon-palais-des-papes",
+      "titre": "Avignon — Neuf papes, un palais-forteresse",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-avignon-places-couvents-et-cloitres",
+      "titre": "Avignon — Places, couvents et cloîtres",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-avignon-ville-theatre",
+      "titre": "Avignon — La cité des papes devenue la plus grande scène du monde",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-bayonne-confluence-quais-et-ponts",
+      "titre": "Bayonne — Confluence, quais et ponts",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-bayonne-pelote-basque",
+      "titre": "Bayonne — Le jeu le plus rapide du monde",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-bayonne-petit-bayonne",
+      "titre": "Bayonne — La forteresse qui danse",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-beaune-hospices-et-charite",
+      "titre": "Beaune — Les Hospices et le paradis d'un chancelier",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-beaune-remparts-et-bastions",
+      "titre": "Beaune — Remparts et bastions",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-biarritz-berceau-du-surf",
+      "titre": "Biarritz — Le berceau du surf",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-biarritz-ocean-et-belvederes",
+      "titre": "Biarritz — Océan et belvédères",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-biarritz-villas-et-architectes",
+      "titre": "Biarritz — Villas et architectes",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-bordeaux-chartrons-entrepots-et-bassins",
+      "titre": "Bordeaux — Chartrons, entrepôts et bassins",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-bordeaux-pierre-et-mascarons",
+      "titre": "Bordeaux — Pierre blonde et mascarons",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-bordeaux-places-et-jardins-du-centre",
+      "titre": "Bordeaux — Places et jardins du centre",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-carcassonne-bastide-saint-louis",
+      "titre": "Carcassonne — La Bastide Saint-Louis",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-carcassonne-cite-assiegee",
+      "titre": "Carcassonne — La Cité assiégée",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-carcassonne-resurrection-viollet-le-duc",
+      "titre": "Carcassonne — La résurrection de Viollet-le-Duc",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-cassis-port-falaises-et-calanques",
+      "titre": "Cassis — Port, falaises et calanques",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-chamonix-conquete-du-mont-blanc",
+      "titre": "Chamonix-Mont-Blanc — La conquête du Mont-Blanc",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-chamonix-guides-et-cimes",
+      "titre": "Chamonix-Mont-Blanc — Guides et cimes",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-chamonix-village-et-panoramas",
+      "titre": "Chamonix — Village et panoramas",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-chartres-cathedrale-de-lumiere",
+      "titre": "Chartres — La cathédrale de lumière",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-colmar-enseignes-et-facades",
+      "titre": "Colmar — Enseignes et façades",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-colmar-petite-venise",
+      "titre": "Colmar — La ville-décor qui a failli disparaître",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-colmar-retable-et-bartholdi",
+      "titre": "Colmar — Du retable à la Liberté",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-deauville-hippodromes-et-polo",
+      "titre": "Deauville — Le royaume du cheval",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-deauville-planches-et-cinema",
+      "titre": "Deauville — Les Planches, écran de sable",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-dijon-chouette-et-sculpteurs",
+      "titre": "Dijon — Sculpter la ville",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-dijon-ducs-de-bourgogne",
+      "titre": "Dijon — Le siècle éblouissant des Grands Ducs",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-dijon-hotels-et-ruelles",
+      "titre": "Dijon — Hôtels et ruelles",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-etretat-falaises-des-peintres",
+      "titre": "Étretat — La falaise la plus romanesque de France",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-giverny-jardins-de-monet",
+      "titre": "Giverny — Le jardin d'un seul homme",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-honfleur-berceau-impressionniste",
+      "titre": "Honfleur — Le port qui a appris aux peintres à sortir",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-honfleur-port-des-explorateurs",
+      "titre": "Honfleur — Le vieux bassin des grands départs",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-la-rochelle-arcades-quais-et-tours",
+      "titre": "La Rochelle — Arcades, quais et tours",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-la-rochelle-capitale-de-la-voile",
+      "titre": "La Rochelle — Capitale de la voile",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-la-rochelle-tours-et-siege",
+      "titre": "La Rochelle — Les tours et le siège",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-lille-beaux-arts-et-geants",
+      "titre": "Lille — Beaux-Arts et géants",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-lille-fil-du-textile",
+      "titre": "Lille — Le fil du textile",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-lille-places-et-facades-du-vieux-lille",
+      "titre": "Lille — Places et façades du Vieux-Lille",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-lyon-capitale-resistance",
+      "titre": "Lyon — Capitale de la Résistance",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 10,
+      "parLangue": {
+        "en": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "es": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "de": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "it": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "nl": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-lyon-lumiere-cinema",
+      "titre": "Lyon — Lumière : la ville où naquit le cinéma",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-lyon-presquile-places-et-passages",
+      "titre": "Lyon — Places et passages de la Presqu’île",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-marseille-cite-radieuse-modernites",
+      "titre": "Marseille — La Cité Radieuse et les Modernités",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-marseille-quais-et-forts-du-vieux-port",
+      "titre": "Marseille — Quais et forts du Vieux-Port",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-marseille-ville-stade",
+      "titre": "Marseille — La Ville-Stade",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-mont-saint-michel-la-merveille",
+      "titre": "Mont-Saint-Michel — La Merveille de l'Occident",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-mont-saint-michel-remparts-et-baie",
+      "titre": "Mont-Saint-Michel — Remparts et baie",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-montpellier-ecusson-secret",
+      "titre": "Montpellier — L'Écusson à double fond",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-montpellier-mille-ans-de-medecine",
+      "titre": "Montpellier — Mille ans de médecine",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-montpellier-places-et-passages-de-lecusson",
+      "titre": "Montpellier — Places et passages de l’Écusson",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-nantes-ile-et-chantiers",
+      "titre": "Nantes — L’île et les chantiers",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-nantes-jules-verne-machines",
+      "titre": "Nantes — Les rêves de Jules Verne",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-nantes-memoire-du-port",
+      "titre": "Nantes — Mémoire du port",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 10,
+      "parLangue": {
+        "en": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "es": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "de": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "it": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "nl": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-nice-matisse-chagall-collines",
+      "titre": "Nice — Sous la même lumière",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-nice-nissa-la-bella",
+      "titre": "Nice — Nissa la Bella",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 10,
+      "parLangue": {
+        "en": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "es": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "de": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "it": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "nl": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-nice-places-et-ruelles-du-vieux-nice",
+      "titre": "Nice — Places et ruelles du Vieux-Nice",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-nimes-portes-et-jardins",
+      "titre": "Nîmes — Portes et jardins",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-nimes-rome-francaise",
+      "titre": "Nîmes — La ville qui n'a jamais quitté Rome",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-paris-montmartre-des-peintres",
+      "titre": "Paris — Montmartre des peintres : la butte qui a inventé l'art moderne",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 11,
+      "parLangue": {
+        "en": {
+          "attendus": 11,
+          "presents": 11,
+          "concordants": 11
+        },
+        "es": {
+          "attendus": 11,
+          "presents": 11,
+          "concordants": 11
+        },
+        "de": {
+          "attendus": 11,
+          "presents": 11,
+          "concordants": 11
+        },
+        "it": {
+          "attendus": 11,
+          "presents": 11,
+          "concordants": 11
+        },
+        "nl": {
+          "attendus": 11,
+          "presents": 11,
+          "concordants": 11
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-paris-rive-gauche-des-ecrivains",
+      "titre": "Paris — La rive gauche des écrivains : livres, mansardes et scandales",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 11,
+      "parLangue": {
+        "en": {
+          "attendus": 11,
+          "presents": 11,
+          "concordants": 11
+        },
+        "es": {
+          "attendus": 11,
+          "presents": 11,
+          "concordants": 11
+        },
+        "de": {
+          "attendus": 11,
+          "presents": 11,
+          "concordants": 11
+        },
+        "it": {
+          "attendus": 11,
+          "presents": 11,
+          "concordants": 11
+        },
+        "nl": {
+          "attendus": 11,
+          "presents": 11,
+          "concordants": 11
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-paris-rues-et-passages-des-halles",
+      "titre": "Paris — Rues et passages des Halles",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-reims-art-deco-renaissance",
+      "titre": "Reims — La ville-manifeste, reconstruite en Art déco",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-reims-souterraine-et-reconstruite",
+      "titre": "Reims — Souterraine et reconstruite",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-reims-ville-des-sacres",
+      "titre": "Reims — Là où la France se couronnait",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-rennes-murs-qui-parlent",
+      "titre": "Rennes — Les murs qui parlent",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-rennes-parlement-et-incendies",
+      "titre": "Rennes — Le feu et la pierre",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-rennes-portes-et-places-du-centre",
+      "titre": "Rennes — Portes et places du centre",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-rouen-cathedrale-de-monet",
+      "titre": "Rouen — Trente fois la même façade",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-rouen-faience-et-gros-horloge",
+      "titre": "Rouen — Bleu de Rouen et aiguilles d'or",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-rouen-proces-jeanne-darc",
+      "titre": "Rouen — Le procès de Jeanne d'Arc",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-saint-malo-cite-corsaire",
+      "titre": "Saint-Malo — La République des corsaires",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-saint-malo-remparts-plages-et-marees",
+      "titre": "Saint-Malo — Remparts, plages et marées",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-saint-malo-route-du-rhum",
+      "titre": "Saint-Malo — Les Fous de l'Atlantique",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-sarlat-perigord-medieval",
+      "titre": "Sarlat — La ville médiévale la plus intacte de France",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 7,
+      "parLangue": {
+        "en": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "es": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "de": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "it": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        },
+        "nl": {
+          "attendus": 7,
+          "presents": 7,
+          "concordants": 7
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-sarlat-places-passages-et-facades",
+      "titre": "Sarlat — Places, passages et façades",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-strasbourg-capitale-de-noel",
+      "titre": "Strasbourg — Capitale de Noël",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-strasbourg-cathedrale-des-batisseurs",
+      "titre": "Strasbourg — La cathédrale des bâtisseurs",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-strasbourg-entre-deux-mondes",
+      "titre": "Strasbourg — Entre deux mondes",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 10,
+      "parLangue": {
+        "en": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "es": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "de": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "it": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "nl": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-strasbourg-quais-et-ponts-de-lill",
+      "titre": "Strasbourg — Quais et ponts de l’Ill",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-toulouse-aeropostale-et-espace",
+      "titre": "Toulouse — De Mermoz à Ariane",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-toulouse-canal-quais-et-ponts",
+      "titre": "Toulouse — Canal, quais et ponts",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-toulouse-capitole-et-siecles-d-or",
+      "titre": "Toulouse — Capitole et siècles d'or",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 10,
+      "parLangue": {
+        "en": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "es": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "de": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "it": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        },
+        "nl": {
+          "attendus": 10,
+          "presents": 10,
+          "concordants": 10
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-toulouse-ovalie",
+      "titre": "Toulouse — La messe du dimanche",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 8,
+      "parLangue": {
+        "en": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "es": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "de": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "it": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        },
+        "nl": {
+          "attendus": 8,
+          "presents": 8,
+          "concordants": 8
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-tours-cite-royale",
+      "titre": "Tours — Quand la Loire était le centre de la France",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-tours-loire-quais-et-passerelles",
+      "titre": "Tours — Loire, quais et passerelles",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-versailles-perspectives-et-jardins",
+      "titre": "Versailles — Perspectives et jardins",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 6,
+      "parLangue": {
+        "en": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "es": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "de": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "it": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        },
+        "nl": {
+          "attendus": 6,
+          "presents": 6,
+          "concordants": 6
+        }
+      },
+      "griefs": []
+    },
+    {
+      "tourId": "seed-100-versailles-ville-du-roi-soleil",
+      "titre": "Versailles — La ville-machine du Roi-Soleil",
+      "catalogue": true,
+      "statut": "published",
+      "scenes": 9,
+      "parLangue": {
+        "en": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "es": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "de": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "it": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        },
+        "nl": {
+          "attendus": 9,
+          "presents": 9,
+          "concordants": 9
+        }
+      },
+      "griefs": []
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# Corpus de traduction et preuves de certification : fins de ligne figées en LF.
+#
+# `core.autocrlf` vaut `true` sur les postes Windows du projet. Sans cette
+# règle, une copie de travail fraîche recevrait `content/translations/` en CRLF
+# pendant que DynamoDB rend du LF — et `certifie-retraduction.mjs` déclarerait
+# les 3 810 segments divergents sur des données parfaitement saines.
+#
+# Le contrôleur normalise déjà les fins de ligne à la comparaison ; cette règle
+# ferme le même trou en amont, et garde surtout les preuves versionnées
+# identiques octet pour octet d'une machine à l'autre — sans quoi l'empreinte
+# du corpus inscrite dans chaque journal ne voudrait rien dire.
+content/translations/** text eol=lf

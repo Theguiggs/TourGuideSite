@@ -91,20 +91,20 @@ export async function scanAll(model) {
 }
 
 /**
- * Hash de fraîcheur du texte source — COPIE EXACTE de hashSourceText()
- * (src/types/studio.ts). Le Studio compare cette valeur au hash courant pour
- * marquer une traduction périmée : toute divergence d'algorithme afficherait
- * les 101 visites comme périmées le lendemain de la retraduction.
+ * Hash de fraîcheur du texte source, réexporté depuis `source-hash.cjs`.
+ *
+ * Il y avait ici une copie annoncée « EXACTE » de `hashSourceText`
+ * (src/types/studio.ts) qui ne l'était pas : elle joignait le texte et le titre
+ * par une ESPACE, là où l'application les concatène sans séparateur. Les 3 810
+ * segments semés le 2026-08-23 ont donc reçu une empreinte qu'aucune lecture
+ * applicative ne retrouve, et le Studio a affiché les 101 Visites comme
+ * périmées dans les cinq langues — précisément l'accident que le commentaire
+ * d'origine disait vouloir éviter.
+ *
+ * Une seule implémentation désormais, épinglée à celle de l'application par une
+ * épreuve Jest. Ne pas la recopier ici.
  */
-export function hashSourceText(transcriptText, title) {
-  const s = `${transcriptText ?? ''} ${title ?? ''}`;
-  let h = 2166136261;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return (h >>> 0).toString(16);
-}
+export { hashSourceText } from './source-hash.cjs';
 
 /** AppSync renvoie les champs a.json() comme CHAÎNE ; DynamoDB direct comme Map. */
 export function asMap(value) {
