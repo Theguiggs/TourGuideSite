@@ -15,6 +15,8 @@ import asyncio
 import os
 import sys
 
+import pathlib
+
 import pytest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -516,3 +518,64 @@ class TestEchappement:
     def test_un_document_deja_enveloppe_n_est_pas_reenveloppe(self, azure):
         deja = '<speak><voice name="v">Deja.</voice></speak>'
         assert azure._wrap(deja, "fr-FR-HenriNeural").count("<speak") == 1
+
+
+# ══════ Ce que l'exploitant lit au demarrage ══════
+
+
+class TestJournalDeDemarrage:
+    """`deploy/docker-compose.yml` promet que le repli sur le service gratuit
+    est « journalise en avertissement a chaque demarrage ». La fabrique ne
+    tournait qu'a la demande de synthese : qui demarrait en mode degrade ne
+    lisait rien avant la premiere visite fabriquee."""
+
+    @pytest.fixture
+    def serveur(self, monkeypatch):
+        """Le module exige sa cle d'API DES L'IMPORT : on le recharge sous une
+        cle de test, comme le fait deja `test_security_contract.py`."""
+        import importlib
+        import sys
+
+        racine = str(pathlib.Path(__file__).resolve().parents[1])
+        monkeypatch.setenv("MICROSERVICE_API_KEY", "test-secret")
+        sys.path.insert(0, racine)
+        sys.modules.pop("local_server", None)
+        module = importlib.import_module("local_server")
+        yield module
+        sys.modules.pop("local_server", None)
+        sys.path.remove(racine)
+
+    def test_le_fournisseur_se_nomme_au_demarrage(self, serveur, monkeypatch, caplog):
+        from fastapi.testclient import TestClient
+
+        monkeypatch.delenv("AZURE_SPEECH_KEY", raising=False)
+        monkeypatch.delenv("AZURE_SPEECH_REGION", raising=False)
+        monkeypatch.delenv("TTS_PROVIDER", raising=False)
+        with caplog.at_level("INFO"):
+            with TestClient(serveur.app):
+                pass
+        assert "edge" in caplog.text
+        # Et le MOTIF du repli, pas seulement son constat.
+        assert "AZURE_SPEECH_KEY" in caplog.text
+
+    def test_une_configuration_fautive_n_empeche_pas_le_service_de_repondre(
+        self, serveur, monkeypatch, caplog
+    ):
+        from fastapi.testclient import TestClient
+
+        # Une region invalide fait lever la fabrique. Les autres routes —
+        # traduction, sante — n'ont rien a voir avec la synthese : les abattre
+        # au demarrage pour cela serait disproportionne.
+        monkeypatch.setenv("AZURE_SPEECH_KEY", "cle")
+        monkeypatch.setenv("AZURE_SPEECH_REGION", "evil.example.com")
+        with caplog.at_level("ERROR"):
+            with TestClient(serveur.app) as client:
+                reponse = client.get("/health")
+        assert "indisponible au demarrage" in caplog.text
+        # La sonde Docker interroge cet endpoint : le faire tomber en 500 pour
+        # un reglage de synthese abattrait aussi la moitie TRADUCTION.
+        assert reponse.status_code == 200
+        corps = reponse.json()
+        # Et la sante ne PROMET pas une synthese qu'elle ne peut pas rendre.
+        assert corps["tts"] is False
+        assert "indisponible" in corps["tts_mode"]

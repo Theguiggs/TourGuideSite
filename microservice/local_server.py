@@ -185,11 +185,24 @@ async def lifespan(app: FastAPI):
         concurrency={
             # MarianMT inference is GIL-bound + not thread-safe -> serialize to 1.
             "translate": int(os.getenv("TRANSLATE_CONCURRENCY", "1")),
-            # edge-tts hits the FREE Azure endpoint -> keep low to avoid rate-limits.
+            # Le fournisseur est desormais choisi a l'execution ; la borne
+            # basse reste calee sur le mode degrade, le plus fragile des deux.
             "tts": int(os.getenv("TTS_CONCURRENCY", "2")),
         },
     )
     job_manager.start()
+    # `deploy/docker-compose.yml` promet a l'exploitant que le repli sur le
+    # service gratuit est « journalise en avertissement a chaque demarrage ».
+    # `build_provider()` ne s'executait qu'a la demande de synthese : celui qui
+    # demarrait en mode degrade ne lisait rien avant la premiere visite
+    # fabriquee. On honore la promesse ici — la fabrique journalise son choix,
+    # il suffit de l'appeler une fois au demarrage.
+    try:
+        logger.info("Fournisseur de synthese : %s", build_provider().name)
+    except Exception as exc:  # une configuration fautive ne doit pas empecher
+        # le service de repondre : les autres routes (traduction, sante) n'ont
+        # rien a voir avec la synthese.
+        logger.error("Fournisseur de synthese indisponible au demarrage : %s", exc)
     logger.info(
         "Job manager started (max_inflight=%d, translate=%s, tts=%s)",
         job_manager._max_inflight,
@@ -253,15 +266,35 @@ class SilenceRequest(BaseModel):
 
 
 # -- Endpoints --
+def _nom_du_fournisseur() -> str:
+    """Le fournisseur en service, ou le motif de son absence.
+
+    Une configuration fautive — une region mal saisie, par exemple — fait lever
+    la fabrique. Laisser l'exception remonter jusqu'a `/health` rendrait 500 sur
+    l'endpoint meme que la sonde Docker interroge : le conteneur passerait
+    « unhealthy » sans qu'un mot n'explique pourquoi, et la moitie TRADUCTION du
+    service, etrangere a la synthese, deviendrait inatteignable derriere la
+    sonde. La sante se DIT degradee, elle ne se tait pas en tombant.
+    """
+    try:
+        return build_provider().name
+    except Exception as exc:
+        logger.error("Fournisseur de synthese indisponible : %s", exc)
+        return f"indisponible: {exc}"
+
+
 @app.get("/health")
 async def health():
+    fournisseur = _nom_du_fournisseur()
     return {
         "status": "ok",
-        "tts": True,
+        # La synthese est annoncee HORS SERVICE quand elle l'est. Un `true`
+        # inconditionnel promettait une capacite que le service n'avait pas.
+        "tts": not fournisseur.startswith("indisponible"),
         # Le fournisseur REELLEMENT en service, et non une constante. C'est le
         # seul point qu'un exploitant peut interroger sans cle : l'y faire mentir
         # rendait la declaration du mode degrade illisible dans les deux sens.
-        "tts_mode": build_provider().name,
+        "tts_mode": fournisseur,
         "translation": True,
         "silence_detection": True,
         "inflight_jobs": job_manager.inflight_count() if job_manager else 0,
