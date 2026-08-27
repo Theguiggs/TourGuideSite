@@ -70,9 +70,13 @@ l'offre payante servent les mêmes timbres. La bascule change le rendu — un ap
 au lieu de vingt, les pauses rendues par le moteur — jamais l'identité vocale.
 Un visiteur qui a déjà écouté une visite ne doit rien entendre de neuf.
 
-Le palier `hd` change le timbre, lui. C'est pourquoi il est un réglage et non un
-défaut : le SPEC demande de trancher **à l'écoute comparative sur une visite
-réelle**, pas sur catalogue.
+Le palier `hd` change le timbre, lui — et davantage. Tranché à l'écoute le
+2026-08-27 : **`standard` est retenu, `hd` écarté.** Le palier ne change pas que
+le rendu, il change de LOCUTEUR — `fr-FR-VivienneMultilingualNeural` est féminine
+là où le catalogue parle avec Henri, et le français serait la seule des cinq
+langues au féminin. Le réglage reste, parce que rouvrir la question un jour
+suppose de pouvoir écouter ; il n'est pas un défaut, et il ne doit pas le
+devenir sans un choix de voix masculine française.
 
 ## Ce que la bascule a supprimé
 

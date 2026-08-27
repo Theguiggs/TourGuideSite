@@ -417,8 +417,6 @@ class TestRequeteAzure:
         # Aucune epreuve ne verifiait les en-tetes. Le format de sortie est
         # pourtant l'hypothese qui permet d'affirmer qu'`audio_post` et le
         # stockage S3 ne changent pas.
-        from services.tts_azure import OUTPUT_FORMAT
-
         appels = _capture_appels(monkeypatch, _Reponse())
         monkeypatch.setattr("pydub.AudioSegment.from_file", lambda *a, **k: _FauxSegment(500))
 
@@ -427,7 +425,11 @@ class TestRequeteAzure:
         entetes = appels[0]["headers"]
         assert entetes["Ocp-Apim-Subscription-Key"] == "cle-de-test"
         assert entetes["Content-Type"] == "application/ssml+xml"
-        assert entetes["X-Microsoft-OutputFormat"] == OUTPUT_FORMAT
+        # La VALEUR ATTENDUE PAR AZURE, pas la constante. Comparer l'en-tete a
+        # OUTPUT_FORMAT etait vrai quelle que soit sa valeur : c'est ainsi que le
+        # nom d'enum du SDK est parti en production et a fait echouer toute
+        # synthese en HTTP 400. Ce litteral EST le contrat avec le fournisseur.
+        assert entetes["X-Microsoft-OutputFormat"] == "riff-24khz-16bit-mono-pcm"
         assert "westeurope" in appels[0]["url"]
 
     def test_reessaie_une_limitation_de_debit_puis_reussit(self, azure, monkeypatch):

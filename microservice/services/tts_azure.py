@@ -82,7 +82,14 @@ def _echappe_fragment(texte: str) -> str:
 # Format de sortie. 24 kHz mono 16 bits : celui que le reste de la chaîne attend
 # déjà (`tests/test_audio_post.py` décrit sa doublure de parole dans ce format),
 # donc `audio_post` et le stockage S3 ne changent pas.
-OUTPUT_FORMAT = "Riff24Khz16BitMonoPcm"
+#
+# La GRAPHIE fait partie du contrat. `Riff24Khz16BitMonoPcm` est le nom de l'enum
+# du SDK ; l'API REST n'accepte que la forme en minuscules à traits d'union. La
+# première version envoyait le nom d'enum : Azure répondait HTTP 400 sur CHAQUE
+# synthèse, dans les cinq langues, avec une clé et une région pourtant valides.
+# L'épreuve ne pouvait pas le voir — elle comparait l'en-tête à cette constante,
+# ce qui reste vrai quelle que soit sa valeur.
+OUTPUT_FORMAT = "riff-24khz-16bit-mono-pcm"
 
 # Azure borne une requete de synthese a 10 minutes d'audio. La Scene la plus
 # longue du corpus fait 7 308 caracteres, soit ~8 minutes de parole : elle passe,
