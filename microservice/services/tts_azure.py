@@ -159,6 +159,14 @@ class AzureTTSProvider:
         # sinon envelopper un document déjà enveloppé — double `<speak>`, HTTP 400.
         blancs = "\ufeff \t\r\n"
         if corps.lstrip(blancs).lower().startswith(("<speak", "<?xml")):
+            if voice and voice not in corps:
+                # La reponse annoncerait sinon une voix qui n'a jamais parle :
+                # la metadonnee divergerait de l'audio, ce qui est pire que de
+                # ne rien annoncer.
+                logger.warning(
+                    "Voix %s ignoree : le document est deja enveloppe et porte la sienne.",
+                    voice,
+                )
             return corps
         lang = "-".join(voice.split("-")[:2]) if voice.count("-") >= 2 else "fr-FR"
         return (
@@ -189,6 +197,7 @@ class AzureTTSProvider:
 
         from pydub import AudioSegment
 
+        from services.audio_post import trim_silence
         from services.tts_provider import billed_characters
 
         if not _VOIX_RE.match(voice or ""):
@@ -259,6 +268,12 @@ class AzureTTSProvider:
                         # reduit a son en-tete publierait une Scene de 0 ms
                         # comme un succes.
                         raise ProviderError("Azure Speech a rendu un audio vide")
+                    # `SpeechJoiner` rognait le silence de bord sur l'ancien
+                    # chemin ; sans lui, le silence de tete et de queue rendu
+                    # par le fournisseur reste colle a la Scene. `trim_silence`
+                    # conserve une respiration (`keep_ms`) : il degrossit sans
+                    # couper la parole.
+                    segment = trim_silence(segment)
                     logger.info(
                         "Synthese Azure : voix=%s palier=%s factures=%d, %d Ko rendus",
                         voice, tier, facturables, len(reponse.content) // 1024,

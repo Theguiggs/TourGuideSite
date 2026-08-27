@@ -291,14 +291,18 @@ class TestFournisseurSousContrat:
         assert envoye.count("<speak") == 1
 
 
-class _FauxSegment:
-    """Doublure d'AudioSegment : seule sa durée est lue par le chemin testé."""
+def _FauxSegment(duree_ms: int):
+    """Doublure de PAROLE, pas un objet-jouet.
 
-    def __init__(self, duree_ms: int):
-        self._duree = duree_ms
+    Une fausse classe ne suffisait plus : le chemin nominal rogne desormais le
+    silence de bord, ce qui demande un vrai AudioSegment. Un silence ne
+    conviendrait pas davantage — `trim_silence` le reduirait a rien.
+    """
+    if duree_ms <= 0:
+        from pydub import AudioSegment
 
-    def __len__(self):
-        return self._duree
+        return AudioSegment.silent(duration=0, frame_rate=24000).set_channels(1)
+    return _wav_minimal(duree_ms)
 
 
 # ══════ Le chemin DEGRADE — aucune epreuve ne l'exercait ══════
