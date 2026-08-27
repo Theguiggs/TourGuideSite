@@ -579,3 +579,109 @@ class TestJournalDeDemarrage:
         # Et la sante ne PROMET pas une synthese qu'elle ne peut pas rendre.
         assert corps["tts"] is False
         assert "indisponible" in corps["tts_mode"]
+
+
+# ══════ Ce que le job rend vraiment ══════
+
+
+class TestChargeUtileDuJob:
+    """`_tts_work` porte le critere d'acceptation de cette story — « la reponse
+    porte le nombre de caracteres factures, calcule hors <speak> et <voice> » —
+    et n'etait exerce par AUCUNE epreuve. Les seules qui touchent au contrat de
+    scrutation remplacent `job_manager` par un double dont le `result` est ecrit
+    a la main : retirer `billed_characters` ou `provider` du dictionnaire, ou
+    supprimer la passe de normalisation, laissait la suite entierement verte."""
+
+    @pytest.fixture
+    def serveur(self, monkeypatch):
+        import importlib
+        import sys
+
+        racine = str(pathlib.Path(__file__).resolve().parents[1])
+        monkeypatch.setenv("MICROSERVICE_API_KEY", "test-secret")
+        sys.path.insert(0, racine)
+        sys.modules.pop("local_server", None)
+        module = importlib.import_module("local_server")
+        yield module
+        sys.modules.pop("local_server", None)
+        sys.path.remove(racine)
+
+    def _double_fournisseur(self, serveur, monkeypatch, nom, duree_ms=800):
+        class _Double:
+            name = nom
+
+            async def synthesize(self, ssml, voice, tier):
+                return _wav_minimal(duree_ms)
+
+        monkeypatch.setattr(serveur, "build_provider", lambda: _Double())
+
+    def test_sous_contrat_la_reponse_nomme_et_compte(self, serveur, monkeypatch):
+        self._double_fournisseur(serveur, monkeypatch, "azure")
+        monkeypatch.setenv("TTS_VOICE_TIER", "standard")
+
+        r = asyncio.run(serveur._tts_work("Bonjour Biarritz.", "fr", None))
+
+        assert r["provider"] == "azure"
+        assert r["voice"] == "fr-FR-HenriNeural"
+        assert r["tier"] == "standard"
+        assert r["billed_characters"] == len("Bonjour Biarritz.")
+        assert r["duration_ms"] > 0
+        assert r["audio_base64"]
+
+    def test_l_enveloppe_ssml_n_est_pas_facturee(self, serveur, monkeypatch):
+        self._double_fournisseur(serveur, monkeypatch, "azure")
+        nu = 'Arrete-toi.<break time="1s"/>Regarde.'
+        enveloppe = f'<speak version="1.0"><voice name="fr-FR-HenriNeural">{nu}</voice></speak>'
+
+        a = asyncio.run(serveur._tts_work(nu, "fr", None))
+        b = asyncio.run(serveur._tts_work(enveloppe, "fr", None))
+
+        # Azure facture le balisage SSML SAUF <speak> et <voice> : les deux
+        # formes du meme texte doivent couter le meme prix. `<break>`, lui, est
+        # bien facture — c'est la regle du fournisseur, pas la notre.
+        assert a["billed_characters"] == b["billed_characters"] == len(nu)
+
+    def test_le_mode_degrade_ne_facture_rien(self, serveur, monkeypatch):
+        self._double_fournisseur(serveur, monkeypatch, "edge")
+
+        r = asyncio.run(serveur._tts_work("Bonjour Biarritz.", "fr", None))
+
+        # Compter comme si l'endpoint gratuit facturait fausserait l'agregat de
+        # couts que CAP-9 doit rendre.
+        assert r["provider"] == "edge"
+        assert r["billed_characters"] == 0
+
+    def test_un_audio_vide_leve_plutot_que_publier_une_scene_de_zero_ms(
+        self, serveur, monkeypatch
+    ):
+        self._double_fournisseur(serveur, monkeypatch, "azure", duree_ms=0)
+        with pytest.raises(RuntimeError):
+            asyncio.run(serveur._tts_work("Bonjour.", "fr", None))
+
+    def test_le_niveau_est_normalise_quel_que_soit_le_fournisseur(
+        self, serveur, monkeypatch
+    ):
+        from pydub import AudioSegment
+
+        from services.audio_post import TARGET_DBFS
+
+        # Un segment nettement trop faible : CAP-5 exige que l'ecart entre deux
+        # Scenes consecutives n'excede pas 1 dB, quel que soit le moteur.
+        faible = _wav_minimal(800) - 18
+
+        class _Double:
+            name = "azure"
+
+            async def synthesize(self, ssml, voice, tier):
+                return faible
+
+        monkeypatch.setattr(serveur, "build_provider", lambda: _Double())
+        r = asyncio.run(serveur._tts_work("Bonjour.", "fr", None))
+
+        import base64
+        import io as _io
+
+        rendu = AudioSegment.from_file(
+            _io.BytesIO(base64.b64decode(r["audio_base64"])), format="wav"
+        )
+        assert abs(rendu.dBFS - TARGET_DBFS) < 1.0
