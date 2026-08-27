@@ -24,7 +24,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pydub import AudioSegment  # noqa: E402
 from pydub.silence import detect_silence  # noqa: E402
 
-import local_server as ls  # noqa: E402
+# Le contournement du SSML vit desormais dans `services/tts_edge.py` : ce banc
+# le visait via `local_server`, ou il n'existe plus. Il levait donc un
+# AttributeError des le premier rendu — et c'est precisement l'instrument que la
+# comparaison a l'ecoute standard/HD reclame.
+import services.tts_edge as ls  # noqa: E402
 
 SAMPLES = {}
 
