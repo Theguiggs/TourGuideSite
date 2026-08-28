@@ -1,10 +1,15 @@
 import type { StudioScene, QualityTier, TranslationProvider, SceneSegment } from '@/types/studio';
 import { hashSourceText } from '@/types/studio';
-import { requestTranslation, getTranslationStatus } from '@/lib/api/translation';
+import {
+  forgetJob,
+  getTranslationStatus,
+  providerForJob,
+  requestTranslation,
+} from '@/lib/api/translation';
 import type { TranslationResult } from '@/lib/api/translation';
 import { requestTTS, getTTSStatus } from '@/lib/api/tts';
 import type { TTSResult } from '@/lib/api/tts';
-import { getProviderForTier } from '@/lib/multilang/provider-router';
+import { BUDGET_OUVRIER_MS, getProviderForTier } from '@/lib/multilang/provider-router';
 import { updateSceneSegment, listSegmentsByScene, getStudioSession, updateStudioSession } from '@/lib/api/studio';
 import { logger } from '@/lib/logger';
 
@@ -16,8 +21,21 @@ export const BATCH_TRANSLATION_FAILED = 2604;
 export const BATCH_TTS_FAILED = 2605;
 export const PROVIDER_UNAVAILABLE = 2609;
 
+// Les codes que la Lambda du chemin « claude » rend, nommés ici pour que
+// `getErrorMessage` sache les traduire en français plutôt qu'en « erreur
+// inconnue ». Miroir de `TourGuideApp/amplify/functions/translate-claude/contrat.ts`.
+export const TRANSLATION_REJECTED = 2401;
+export const TRANSLATION_TEXT_EMPTY = 2403;
+export const TRANSLATION_PROVIDER_REFUSED = 2404;
+export const TRANSLATION_OUT_OF_SCOPE = 2406;
+export const TRANSLATION_NOT_OWNED = 2624;
+
 const POLL_INTERVAL_MS = 1000;
-const POLL_TIMEOUT_MS = 60000;
+// Le sondage doit survivre à l'ouvrier, pas l'inverse : 60 s contre les 300 s
+// que la Lambda s'autorise, et une seule reprise sur 429 faisait annoncer
+// « fournisseur indisponible » pendant que la traduction se payait. La marge
+// couvre le réveil et le premier sondage.
+const POLL_TIMEOUT_MS = BUDGET_OUVRIER_MS + 30_000;
 
 // --- Types ---
 
@@ -56,22 +74,42 @@ export type OnProgressCallback = (
 
 // --- Polling helpers ---
 
-async function pollTranslation(jobId: string): Promise<TranslationResult> {
+/**
+ * Sonde jusqu'à l'issue, ou jusqu'à l'expiration.
+ *
+ * `moteurDemande` n'est pas décoratif : à l'expiration, l'ancienne version
+ * écrivait `provider: 'marianmt'` EN DUR, quel que soit le moteur réel — une
+ * fausse étiquette posée sur la route d'échec du nouveau chemin, exactement ce
+ * que la story interdit ailleurs. Le moteur rendu est désormais, dans l'ordre :
+ * celui que le serveur a nommé, celui que le registre de jobs connaît, celui
+ * que l'appelant a demandé.
+ */
+async function pollTranslation(
+  jobId: string,
+  moteurDemande: TranslationProvider,
+): Promise<TranslationResult> {
   const start = Date.now();
+  let moteurVu: TranslationProvider = providerForJob(jobId) ?? moteurDemande;
   while (Date.now() - start < POLL_TIMEOUT_MS) {
-    const status = await getTranslationStatus(jobId);
+    const status = await getTranslationStatus(jobId, moteurDemande);
+    if (status?.provider) moteurVu = status.provider;
     if (status && status.status !== 'processing' && status.status !== 'pending') {
       return status;
     }
     await new Promise((r) => setTimeout(r, POLL_INTERVAL_MS));
   }
+  logger.error(SERVICE_NAME, 'Translation polling timed out', { jobId, provider: moteurVu });
+  // Personne ne sondera plus ce job : sans cet oubli, l'entrée restait dans la
+  // carte de suivi pour toujours.
+  forgetJob(jobId);
   return {
     jobId,
     status: 'failed',
     translatedText: null,
-    provider: 'marianmt',
+    provider: moteurVu,
     costProvider: null,
     costCharged: null,
+    errorCode: PROVIDER_UNAVAILABLE,
   };
 }
 
@@ -118,7 +156,7 @@ async function translateSessionInfo(
     );
     let finalTitleResult = titleResult;
     if (finalTitleResult.status === 'processing' || finalTitleResult.status === 'pending') {
-      finalTitleResult = await pollTranslation(finalTitleResult.jobId);
+      finalTitleResult = await pollTranslation(finalTitleResult.jobId, finalTitleResult.provider);
     }
     if (finalTitleResult.status === 'completed') {
       translatedTitle = finalTitleResult.translatedText;
@@ -137,7 +175,7 @@ async function translateSessionInfo(
     );
     let finalDescResult = descResult;
     if (finalDescResult.status === 'processing' || finalDescResult.status === 'pending') {
-      finalDescResult = await pollTranslation(finalDescResult.jobId);
+      finalDescResult = await pollTranslation(finalDescResult.jobId, finalDescResult.provider);
     }
     if (finalDescResult.status === 'completed') {
       translatedDescription = finalDescResult.translatedText;
@@ -257,7 +295,7 @@ export async function executeBatch(
 
         // Poll if not yet completed
         if (translationResult.status === 'processing' || translationResult.status === 'pending') {
-          translationResult = await pollTranslation(translationResult.jobId);
+          translationResult = await pollTranslation(translationResult.jobId, translationResult.provider);
         }
       } catch (err) {
         logger.error(SERVICE_NAME, 'Translation request threw', {
@@ -330,7 +368,7 @@ export async function executeBatch(
             qualityTier,
           );
           if (titleResult.status === 'processing' || titleResult.status === 'pending') {
-            titleResult = await pollTranslation(titleResult.jobId);
+            titleResult = await pollTranslation(titleResult.jobId, titleResult.provider);
           }
           if (titleResult.status === 'completed') {
             translatedSceneTitle = titleResult.translatedText;
@@ -417,6 +455,12 @@ export async function executeBatch(
           sourceTextHash: hashSourceText(scene.transcriptText, scene.title),
           language: lang.code,
           translationProvider: translationResult.provider,
+          // La DÉPENSE, persistée. Elle ne l'était pas : hors CloudWatch, la
+          // seule trace du coût était la ligne de job, que le TTL efface. La
+          // thèse centrale de la story — le coût vient des jetons rendus —
+          // tenait dans la Lambda et se perdait à la sortie.
+          costProvider: translationResult.costProvider,
+          costCharged: translationResult.costCharged,
           status: 'tts_generated',
           ttsGenerated: true,
           manuallyEdited: false,
@@ -501,7 +545,7 @@ export async function retryScene(
   try {
     translationResult = await requestTranslation(segmentId, sourceText, sourceLang, lang, qualityTier);
     if (translationResult.status === 'processing' || translationResult.status === 'pending') {
-      translationResult = await pollTranslation(translationResult.jobId);
+      translationResult = await pollTranslation(translationResult.jobId, translationResult.provider);
     }
   } catch (err) {
     logger.error(SERVICE_NAME, 'Retry translation threw', { sceneId: scene.id, lang, error: String(err) });
@@ -582,6 +626,8 @@ export async function retryScene(
       sourceTextHash: hashSourceText(scene.transcriptText, scene.title),
       language: lang,
       translationProvider: translationResult.provider,
+      costProvider: translationResult.costProvider,
+      costCharged: translationResult.costCharged,
       status: 'tts_generated',
       ttsGenerated: true,
       manuallyEdited: false,
@@ -666,6 +712,19 @@ export function getErrorMessage(errorCode: number): string {
       return 'La generation audio a echoue pour cette scene.';
     case PROVIDER_UNAVAILABLE:
       return 'Le service de traduction est temporairement indisponible.';
+    // Les codes nommés par le chemin « claude ». Sans ces cas, chacun retombait
+    // sur « une erreur inconnue est survenue » — et le guide qui lit l'écran ne
+    // savait pas distinguer une langue hors périmètre d'une panne.
+    case TRANSLATION_REJECTED:
+      return "La traduction rendue n'a pas passe les controles (balisage, longueur ou fidelite). Rien n'a ete enregistre.";
+    case TRANSLATION_TEXT_EMPTY:
+      return 'Cette scene ne contient aucun texte a traduire.';
+    case TRANSLATION_PROVIDER_REFUSED:
+      return "Le moteur de traduction demande n'est pas disponible pour cette langue.";
+    case TRANSLATION_OUT_OF_SCOPE:
+      return "Cette langue n'est pas au perimetre du moteur de traduction, ou le texte depasse la taille acceptee.";
+    case TRANSLATION_NOT_OWNED:
+      return "Cette scene ne vous appartient pas : aucune traduction n'a ete demandee.";
     default:
       return 'Une erreur inconnue est survenue.';
   }
