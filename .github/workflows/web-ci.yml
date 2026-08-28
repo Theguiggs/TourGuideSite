@@ -83,6 +83,39 @@ jobs:
           grep -E "Tests:|Test Suites:|Statements|Branches|Functions|Lines" TourGuideWeb/test-output.txt >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "See logs" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
 
+  microservice-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository }}
+          path: TourGuideWeb
+      # Le depot frere n'est pas un confort : `verifier_anchor` du banc de mesure
+      # resout ses anchors depuis microservice/../.., et l'un d'eux pointe dans
+      # TourGuideApp (FREE_PREVIEW_SCENE_COUNT). Sans ce checkout, l'alarme de
+      # derive se desactive au lieu d'echouer.
+      - uses: actions/checkout@v6
+        with:
+          repository: Theguiggs/TourGuideApp
+          path: TourGuideApp
+          token: ${{ secrets.TOURGUIDE_REPO_PAT }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: TourGuideWeb/microservice/requirements-local.txt
+      # pydub delegue a ffmpeg des qu'un format sort du wav.
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+      - name: Install microservice dependencies
+        run: cd TourGuideWeb/microservice && pip install -r requirements-local.txt pytest httpx
+      # AUCUNE cle n'est posee, et c'est le contrat : la suite doit passer sans
+      # reseau et sans fournisseur. Une epreuve qui exigerait une cle serait une
+      # epreuve qui ne tournerait jamais ici.
+      - name: Run microservice tests
+        run: cd TourGuideWeb/microservice && python -m pytest tests/ -q
+
   e2e-tests:
     # Red Team hardening: skip E2E on fork PRs (secrets not available)
     if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push'
