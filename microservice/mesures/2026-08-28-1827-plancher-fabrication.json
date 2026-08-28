@@ -1,0 +1,2104 @@
+{
+  "titre": "Plancher de fabrication — traduction et synthèse",
+  "story": "8 — Banc de mesure du plancher de fabrication",
+  "date": "2026-08-28T18:27:29+02:00",
+  "serie_executee": true,
+  "legende_des_methodes": {
+    "mesuré": "chronométré par ce banc, sur le fournisseur sous contrat",
+    "constaté": "lu dans le code ou dans le corpus, sans chronomètre",
+    "estimé": "calculé à partir d'un tarif ou d'une hypothèse nommée"
+  },
+  "ce_que_ce_banc_ne_mesure_pas": {
+    "delai": "paiement confirmé → première Scène écoutable",
+    "cible_du_spec": "p50 ≤ 30 s, p95 ≤ 60 s",
+    "pourquoi": "Ce délai vaut structurellement ZÉRO aujourd'hui : les deux premières Scènes d'une Visite payante sont écoutables sans paiement (FREE_PREVIEW_SCENE_COUNT = 2). S'y ajoute que le pipeline de fabrication n'existe pas encore (stories 9 à 14) et que la chaîne actuelle transite par le navigateur du guide puis par une approbation humaine de durée non bornée. Un chiffre produit ici serait un chiffre trompeur ; ce rapport nomme les postes à la place."
+  },
+  "protocole": {
+    "sequentiel": "Une requête à la fois. `_INFERENCE_EXECUTOR(max_workers=1)` sérialise toute inférence (local_server.py:136-141) et `GET /v1/jobs/{id}` n'expose ni `created_at` ni `started_at` : le temps d'attente en file n'est pas soustractible de l'extérieur. Toute mesure concurrente mélangerait inférence et file.",
+    "resolution_du_sondage_s": {
+      "valeur": 0.4,
+      "methode": "constaté",
+      "unite": "s",
+      "note": "`loadtest.poll` sonde toutes les 400 ms — toute durée est un majorant, exact à +0/+400 ms près"
+    },
+    "lecture_seule": "Quatre routes du microservice seulement. Les routes inscrites plus bas sont OBSERVÉES par un crochet HTTP, pas déclarées. Aucun SDK AWS n'est importé. Les octets audio rendus sont mesurés puis jetés.",
+    "corpus": "C:\\Projects\\Bmad\\TourGuideWeb\\content\\translations\\source",
+    "corpus_traduit": "C:\\Projects\\Bmad\\TourGuideWeb\\content\\translations\\out",
+    "hypotheses": [
+      "Le plafond de facturation (9000 caractères) est lu dans l'environnement DU BANC, via `services.tts_azure.MAX_BILLABLE_CHARS`. Si le service mesuré tourne avec un autre `AZURE_MAX_CHARS`, c'est le sien qui s'applique, et ce rapport annonce alors un plafond qui n'est pas celui-là.",
+      "Une seconde limite, indépendante, s'applique en amont : `TTSRequest.text` est borné à 10000 caractères BRUTS. Sur un texte sans balisage, c'est elle qui se déclenche la première.",
+      "Le tarif de synthèse (16 $/M) n'est pas mesuré : il vient de l'addendum du PRD §2, tarif relevé le 2026-08-22."
+    ]
+  },
+  "corpus": {
+    "nb_visites": {
+      "valeur": 101,
+      "methode": "constaté"
+    },
+    "nb_scenes": {
+      "valeur": 762,
+      "methode": "constaté"
+    },
+    "scene_chars_min": {
+      "valeur": 922,
+      "methode": "constaté",
+      "unite": "car."
+    },
+    "scene_chars_median": {
+      "valeur": 1148.0,
+      "methode": "constaté",
+      "unite": "car."
+    },
+    "scene_chars_max": {
+      "valeur": 7308,
+      "methode": "constaté",
+      "unite": "car."
+    },
+    "visite_chars_min": {
+      "valeur": 5975,
+      "methode": "constaté",
+      "unite": "car."
+    },
+    "visite_chars_median": {
+      "valeur": 8968.0,
+      "methode": "constaté",
+      "unite": "car.",
+      "note": "c'est cette distribution-là, et non celle par Scène, qui porte le coût de fabrication d'une Visite"
+    },
+    "visite_chars_max": {
+      "valeur": 44857,
+      "methode": "constaté",
+      "unite": "car."
+    }
+  },
+  "cibles": {
+    "mediane": {
+      "tour_id": "seed-100-reims-art-deco-renaissance",
+      "titre": "Reims — La ville-manifeste, reconstruite en Art déco",
+      "ville": "Reims",
+      "nb_scenes": {
+        "valeur": 8,
+        "methode": "constaté"
+      },
+      "chars": {
+        "valeur": 8968,
+        "methode": "constaté",
+        "unite": "car."
+      },
+      "medianite": {
+        "verifiee": true,
+        "rang": {
+          "valeur": 50,
+          "methode": "constaté"
+        },
+        "sur": {
+          "valeur": 101,
+          "methode": "constaté"
+        },
+        "percentile": {
+          "valeur": 50.0,
+          "methode": "constaté",
+          "unite": "%"
+        },
+        "chars_median_du_corpus": {
+          "valeur": 8968.0,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "ecart_a_la_mediane": {
+          "valeur": 1.0,
+          "methode": "constaté",
+          "unite": "×"
+        },
+        "lecture": "La médianité de cette cible est DÉRIVÉE du corpus à chaque exécution, pas recopiée de la story."
+      }
+    },
+    "hors_norme": {
+      "tour_id": "78e3f3cc-7c1d-4a88-a274-8690e9411fc2",
+      "titre": "Grasse — Les Routes du Parfum",
+      "ville": "Grasse",
+      "nb_scenes": {
+        "valeur": 7,
+        "methode": "constaté"
+      },
+      "chars": {
+        "valeur": 44857,
+        "methode": "constaté",
+        "unite": "car."
+      },
+      "visite_ecart_a_la_mediane": {
+        "valeur": 5.0,
+        "methode": "constaté",
+        "unite": "×",
+        "note": "la VISITE rapportée à la Visite médiane du corpus — c'est ce rapport-là, et non celui de la Scène, qui détermine le coût de fabrication de cette visite"
+      },
+      "scene_mesuree": "5476cf5b-ce08-4fd3-9ea1-67cef1335b58",
+      "scene_chars": {
+        "valeur": 7308,
+        "methode": "constaté",
+        "unite": "car."
+      },
+      "scene_chars_factures_fr": {
+        "valeur": 7308,
+        "methode": "constaté",
+        "unite": "car.",
+        "note": "égal au nombre de caractères bruts : la Scène ne porte aucun balisage SSML facturable"
+      },
+      "plafond_facturable": {
+        "valeur": 9000,
+        "methode": "constaté",
+        "unite": "car.",
+        "note": "services/tts_azure.py — MAX_BILLABLE_CHARS, lu dans l'environnement du banc (voir hypothèses)"
+      },
+      "part_du_plafond_fr": {
+        "valeur": 81.2,
+        "methode": "constaté",
+        "unite": "%"
+      },
+      "rapport_a_la_mediane_du_corpus": {
+        "valeur": 6.4,
+        "methode": "constaté",
+        "unite": "×",
+        "note": "la Scène hors norme rapportée à la médiane des 762 Scènes du corpus"
+      },
+      "singularite": {
+        "hors_seed": true,
+        "nb_visites_hors_seed_dans_le_corpus": {
+          "valeur": 1,
+          "methode": "constaté"
+        },
+        "possede_les_n_plus_longues_scenes": true,
+        "n": {
+          "valeur": 7,
+          "methode": "constaté"
+        },
+        "chars_de_la_plus_longue_scene_hors_cible": {
+          "valeur": 2327,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "scenes_mesurees": {
+          "valeur": 1,
+          "methode": "constaté",
+          "note": "une seule des 7 Scènes de cette Visite est mesurée : le coût de la Visite entière ne s'en déduit pas par simple multiplication"
+        },
+        "lecture": "Ce n'est PAS « une Visite ordinaire avec une Scène longue ». Ses Scènes les plus longues lui appartiennent toutes, c'est la seule Visite hors seed du corpus, et la VISITE elle-même pèse plusieurs fois la Visite médiane (voir l'écart ci-dessus). Ce qu'elle mesure ne se généralise pas au catalogue."
+      }
+    }
+  },
+  "profil_par_langue": {
+    "base_fr": {
+      "valeur": 8968,
+      "methode": "constaté",
+      "unite": "car."
+    },
+    "langues": {
+      "fr": {
+        "traduisible_par_le_microservice": true,
+        "synthetisable_par_le_microservice": true,
+        "chars_visite_mediane": {
+          "valeur": 8968,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "expansion": {
+          "valeur": 1.0,
+          "methode": "constaté",
+          "note": "rapport à la source française, sur les longueurs réelles"
+        },
+        "cout_visite_mediane": {
+          "valeur": 0.1435,
+          "methode": "estimé",
+          "unite": "USD",
+          "note": "Azure Neural standard, 16 $/M caractères (addendum du PRD §2, tarif relevé le 2026-08-22). Coût de la synthèse SI cette langue était fabriquée — la série n'a mesuré qu'une seule langue."
+        },
+        "scene_hors_norme_facturables": {
+          "valeur": 7308,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "scene_hors_norme_part_du_plafond": {
+          "valeur": 81.2,
+          "methode": "constaté",
+          "unite": "%",
+          "note": "plafond MAX_BILLABLE_CHARS = 9000"
+        }
+      },
+      "en": {
+        "traduisible_par_le_microservice": true,
+        "synthetisable_par_le_microservice": true,
+        "chars_visite_mediane": {
+          "valeur": 8743,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "expansion": {
+          "valeur": 0.975,
+          "methode": "constaté",
+          "note": "rapport à la source française, sur les longueurs réelles"
+        },
+        "cout_visite_mediane": {
+          "valeur": 0.1399,
+          "methode": "estimé",
+          "unite": "USD",
+          "note": "Azure Neural standard, 16 $/M caractères (addendum du PRD §2, tarif relevé le 2026-08-22). Coût de la synthèse SI cette langue était fabriquée — la série n'a mesuré qu'une seule langue."
+        },
+        "scene_hors_norme_facturables": {
+          "valeur": 6986,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "scene_hors_norme_part_du_plafond": {
+          "valeur": 77.6,
+          "methode": "constaté",
+          "unite": "%",
+          "note": "plafond MAX_BILLABLE_CHARS = 9000"
+        }
+      },
+      "es": {
+        "traduisible_par_le_microservice": true,
+        "synthetisable_par_le_microservice": true,
+        "chars_visite_mediane": {
+          "valeur": 8700,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "expansion": {
+          "valeur": 0.97,
+          "methode": "constaté",
+          "note": "rapport à la source française, sur les longueurs réelles"
+        },
+        "cout_visite_mediane": {
+          "valeur": 0.1392,
+          "methode": "estimé",
+          "unite": "USD",
+          "note": "Azure Neural standard, 16 $/M caractères (addendum du PRD §2, tarif relevé le 2026-08-22). Coût de la synthèse SI cette langue était fabriquée — la série n'a mesuré qu'une seule langue."
+        },
+        "scene_hors_norme_facturables": {
+          "valeur": 6978,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "scene_hors_norme_part_du_plafond": {
+          "valeur": 77.5,
+          "methode": "constaté",
+          "unite": "%",
+          "note": "plafond MAX_BILLABLE_CHARS = 9000"
+        }
+      },
+      "de": {
+        "traduisible_par_le_microservice": true,
+        "synthetisable_par_le_microservice": true,
+        "chars_visite_mediane": {
+          "valeur": 9704,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "expansion": {
+          "valeur": 1.082,
+          "methode": "constaté",
+          "note": "rapport à la source française, sur les longueurs réelles"
+        },
+        "cout_visite_mediane": {
+          "valeur": 0.1553,
+          "methode": "estimé",
+          "unite": "USD",
+          "note": "Azure Neural standard, 16 $/M caractères (addendum du PRD §2, tarif relevé le 2026-08-22). Coût de la synthèse SI cette langue était fabriquée — la série n'a mesuré qu'une seule langue."
+        },
+        "scene_hors_norme_facturables": {
+          "valeur": 7596,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "scene_hors_norme_part_du_plafond": {
+          "valeur": 84.4,
+          "methode": "constaté",
+          "unite": "%",
+          "note": "plafond MAX_BILLABLE_CHARS = 9000"
+        }
+      },
+      "it": {
+        "traduisible_par_le_microservice": true,
+        "synthetisable_par_le_microservice": true,
+        "chars_visite_mediane": {
+          "valeur": 8697,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "expansion": {
+          "valeur": 0.97,
+          "methode": "constaté",
+          "note": "rapport à la source française, sur les longueurs réelles"
+        },
+        "cout_visite_mediane": {
+          "valeur": 0.1392,
+          "methode": "estimé",
+          "unite": "USD",
+          "note": "Azure Neural standard, 16 $/M caractères (addendum du PRD §2, tarif relevé le 2026-08-22). Coût de la synthèse SI cette langue était fabriquée — la série n'a mesuré qu'une seule langue."
+        },
+        "scene_hors_norme_facturables": {
+          "valeur": 6959,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "scene_hors_norme_part_du_plafond": {
+          "valeur": 77.3,
+          "methode": "constaté",
+          "unite": "%",
+          "note": "plafond MAX_BILLABLE_CHARS = 9000"
+        }
+      },
+      "nl": {
+        "traduisible_par_le_microservice": false,
+        "synthetisable_par_le_microservice": true,
+        "chars_visite_mediane": {
+          "valeur": 9238,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "expansion": {
+          "valeur": 1.03,
+          "methode": "constaté",
+          "note": "rapport à la source française, sur les longueurs réelles"
+        },
+        "cout_visite_mediane": {
+          "valeur": 0.1478,
+          "methode": "estimé",
+          "unite": "USD",
+          "note": "Azure Neural standard, 16 $/M caractères (addendum du PRD §2, tarif relevé le 2026-08-22). Coût de la synthèse SI cette langue était fabriquée — la série n'a mesuré qu'une seule langue."
+        },
+        "scene_hors_norme_facturables": {
+          "valeur": 7107,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "scene_hors_norme_part_du_plafond": {
+          "valeur": 79.0,
+          "methode": "constaté",
+          "unite": "%",
+          "note": "plafond MAX_BILLABLE_CHARS = 9000"
+        }
+      }
+    },
+    "note_langues": "Les deux API du microservice n'acceptent pas les mêmes langues. Traduction : ['de', 'en', 'es', 'fr', 'it']. Synthèse : ['de', 'en', 'es', 'fr', 'it', 'ja', 'ko', 'nl', 'ru', 'zh']. `nl` est donc synthétisable mais PAS traduisible par ce service — son corpus vient d'ailleurs. `ja`, `ko` et `zh` sont synthétisables et absents du corpus ; le jour où ils y entreront, la règle des idéogrammes comptés double (voir `billed_characters`) doublera leur ligne de coût."
+  },
+  "postes_constates": [
+    {
+      "nom": "Sondage du portail — plancher dur de 15 s",
+      "anchor": "TourGuideWeb/src/lib/stores/tts-store.ts:7",
+      "anchor_verifie": true,
+      "cout": {
+        "valeur": 15.0,
+        "methode": "constaté",
+        "unite": "s",
+        "note": "`startPolling` arme un `setInterval` SANS appel immédiat (tts-store.ts:62-85) : le premier sondage tombe à t+15 s quoi qu'il arrive. Ce n'est pas une espérance de 7,5 s — c'est un plancher dur, et tout ce qui suit est quantifié par multiples de 15 s."
+      },
+      "cout_texte": null,
+      "pourquoi_non_mesurable": "Purement paramétrique : la valeur ne dépend d'aucun fournisseur et se lit dans le code. La mesurer reviendrait à mesurer une constante.",
+      "levier": "Un réglage, pas un chantier. Une fabrication qui aboutit en 9 s est annoncée au visiteur à 15 s ; une qui aboutit en 16 s l'est à 30 s — soit la cible p50 du SPEC consommée en entier par l'attente d'un timer."
+    },
+    {
+      "nom": "Miroir N Scènes × M langues, en série",
+      "anchor": "TourGuideWeb/src/lib/api/language-purchase.ts:818",
+      "anchor_verifie": true,
+      "cout": {
+        "valeur": 32,
+        "methode": "estimé",
+        "unite": "allers-retours AppSync",
+        "note": "Reims : 8 Scènes × 4 langues traduites, un `listSegmentsByScene` attendu par Scène et par langue, en série"
+      },
+      "cout_texte": null,
+      "pourquoi_non_mesurable": "Le pipeline de fabrication n'existe pas encore (stories 9 à 14) et cette boucle vit dans le portail du guide, pas dans le chemin visiteur. La chronométrer supposerait d'instrumenter du code de production.",
+      "levier": "Chaque aller-retour AppSync coûte des dizaines à des centaines de millisecondes ; en série, l'addition est linéaire en N×M."
+    },
+    {
+      "nom": "Deux Scènes gratuites avant tout paiement",
+      "anchor": "TourGuideApp/amplify/functions/get-published-tour-content/handler.ts:28",
+      "anchor_verifie": true,
+      "cout": {
+        "valeur": 2,
+        "methode": "constaté",
+        "unite": "Scènes",
+        "note": "écoutables sans achat sur une Visite payante"
+      },
+      "cout_texte": null,
+      "pourquoi_non_mesurable": "Ce n'est pas une durée. C'est la RAISON pour laquelle le délai « paiement → première Scène écoutable » vaut structurellement zéro aujourd'hui : le visiteur écoute avant d'avoir payé.",
+      "levier": "Tant que cette constante vaut 2, la cible p50 ≤ 30 s ne porte sur rien d'observable. Elle deviendra mesurable quand la fabrication à la demande conditionnera l'écoute."
+    },
+    {
+      "nom": "Approbation humaine dans la chaîne actuelle",
+      "anchor": "TourGuideWeb/src/lib/api/moderation.ts:670",
+      "anchor_verifie": true,
+      "cout": null,
+      "cout_texte": "durée NON BORNÉE — aucun majorant n'existe",
+      "pourquoi_non_mesurable": "Une durée humaine n'a pas de p95. La chronométrer produirait la disponibilité d'une personne, pas le coût d'une fabrication. La chaîne actuelle transite par le navigateur du guide, puis attend cette approbation avant qu'une narration soit publiée.",
+      "levier": "Le pipeline des stories 9 à 14 retire ce poste par construction."
+    }
+  ],
+  "postes_mesures": {
+    "serie_valide": true,
+    "langue_de_synthese": "de",
+    "langues_traduites": [
+      "de",
+      "en",
+      "es",
+      "it"
+    ],
+    "sante_avant": {
+      "tts_mode": "azure",
+      "inflight_jobs": {
+        "valeur": 0,
+        "methode": "mesuré"
+      },
+      "cache_size": {
+        "valeur": 0,
+        "methode": "mesuré"
+      }
+    },
+    "sante_apres": {
+      "tts_mode": "azure",
+      "inflight_jobs": {
+        "valeur": 0,
+        "methode": "mesuré"
+      },
+      "cache_size": {
+        "valeur": 0,
+        "methode": "mesuré"
+      }
+    },
+    "provenance_du_cache": {
+      "etat": "neutralisé",
+      "serie_valide": true,
+      "phrases_distinctes_soumises": {
+        "valeur": 972,
+        "methode": "mesuré"
+      },
+      "delta_cache": {
+        "valeur": 0,
+        "methode": "mesuré",
+        "unite": "entrées"
+      },
+      "lecture": "Le cache n'a rien retenu : `TRANSLATION_CACHE_MAX=0` a bien été posé. Chaque phrase a payé son inférence."
+    },
+    "contre_pression_429": {
+      "valeur": 0,
+      "methode": "mesuré"
+    },
+    "erreurs_5xx": {
+      "valeur": 0,
+      "methode": "mesuré"
+    },
+    "submits_epuises": {
+      "valeur": 0,
+      "methode": "mesuré"
+    },
+    "routes_appelees": [
+      "GET /health",
+      "GET /v1/jobs/{id}",
+      "POST /v1/translate/batch",
+      "POST /v1/tts/generate"
+    ],
+    "amorcage": {
+      "paire": "fr→de",
+      "duree_s": {
+        "valeur": 13.95,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "ecarte": true,
+      "pourquoi": "Éveil du processus (imports paresseux, pool d'inférence). Jeté : il n'appartient ni au démarrage à froid d'une paire ni à la série.",
+      "issue": "aboutie"
+    },
+    "demarrage_a_froid": {
+      "note": "Premier appel d'une paire, modèles non chargés. Poste DISTINCT, EXCLU de tout percentile. Une paire pivotée fait charger deux modèles. Un amorçage jeté précède la boucle : sans lui, la première paire payait l'éveil du processus et sortait du lot d'un facteur trois ou quatre.",
+      "paires": [
+        {
+          "paire": "fr→de",
+          "pivot": null,
+          "modeles_requis": [
+            "fr-de"
+          ],
+          "modeles_charges_par_cet_appel": [],
+          "exclu_des_percentiles": true,
+          "issue": "aboutie",
+          "duree_s": {
+            "valeur": 0.44,
+            "methode": "mesuré",
+            "unite": "s"
+          }
+        },
+        {
+          "paire": "fr→en",
+          "pivot": null,
+          "modeles_requis": [
+            "fr-en"
+          ],
+          "modeles_charges_par_cet_appel": [
+            "fr-en"
+          ],
+          "exclu_des_percentiles": true,
+          "issue": "aboutie",
+          "duree_s": {
+            "valeur": 3.22,
+            "methode": "mesuré",
+            "unite": "s"
+          }
+        },
+        {
+          "paire": "fr→es",
+          "pivot": null,
+          "modeles_requis": [
+            "fr-es"
+          ],
+          "modeles_charges_par_cet_appel": [
+            "fr-es"
+          ],
+          "exclu_des_percentiles": true,
+          "issue": "aboutie",
+          "duree_s": {
+            "valeur": 3.67,
+            "methode": "mesuré",
+            "unite": "s"
+          }
+        },
+        {
+          "paire": "fr→it",
+          "pivot": "en",
+          "modeles_requis": [
+            "fr-en",
+            "en-it"
+          ],
+          "modeles_charges_par_cet_appel": [
+            "en-it"
+          ],
+          "exclu_des_percentiles": true,
+          "issue": "aboutie",
+          "duree_s": {
+            "valeur": 4.09,
+            "methode": "mesuré",
+            "unite": "s"
+          }
+        }
+      ]
+    },
+    "traduction": {
+      "provisoire": true,
+      "moteur": "MarianMT (local_server.py — MARIAN_MODELS)",
+      "raison_du_caractere_provisoire": "La story 4 remplace ce moteur par un modèle de langue. Cette mesure vaut pour le moteur du jour où elle a été prise.",
+      "date_de_mesure": "2026-08-28",
+      "paires_directes": {
+        "fr→de": {
+          "visite_mediane": {
+            "n_abouties": {
+              "valeur": 8,
+              "methode": "constaté"
+            },
+            "n_echecs": {
+              "valeur": 0,
+              "methode": "constaté"
+            },
+            "n_limites": {
+              "valeur": 0,
+              "methode": "constaté",
+              "note": "plafond atteint — limite, pas panne"
+            },
+            "base_de_normalisation": "caractères source",
+            "taux_aboutissement": {
+              "valeur": 100.0,
+              "methode": "mesuré",
+              "unite": "%"
+            },
+            "p50_s": {
+              "valeur": 3.99,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "p95_s": {
+              "valeur": 5.33,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "max_s": {
+              "valeur": 5.47,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "total_s": {
+              "valeur": 32.0,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "chars_total": {
+              "valeur": 8968,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "ms_par_caractere": {
+              "valeur": 3.568,
+              "methode": "mesuré",
+              "unite": "ms/car.",
+              "note": "somme des durées / somme des caractères de la base ci-dessus"
+            },
+            "reserve_echantillon": "n = 8, chaque Scène mesurée une seule fois. Les percentiles décrivent la variation de LONGUEUR des Scènes, pas la dispersion des latences du fournisseur — qui demanderait des répétitions."
+          },
+          "scene_hors_norme": {
+            "n_abouties": {
+              "valeur": 1,
+              "methode": "constaté"
+            },
+            "n_echecs": {
+              "valeur": 0,
+              "methode": "constaté"
+            },
+            "n_limites": {
+              "valeur": 0,
+              "methode": "constaté",
+              "note": "plafond atteint — limite, pas panne"
+            },
+            "base_de_normalisation": "caractères source",
+            "taux_aboutissement": {
+              "valeur": 100.0,
+              "methode": "mesuré",
+              "unite": "%"
+            },
+            "p50_s": {
+              "valeur": 22.69,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "p95_s": {
+              "valeur": 22.69,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "max_s": {
+              "valeur": 22.69,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "total_s": {
+              "valeur": 22.69,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "chars_total": {
+              "valeur": 7308,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "ms_par_caractere": {
+              "valeur": 3.104,
+              "methode": "mesuré",
+              "unite": "ms/car.",
+              "note": "somme des durées / somme des caractères de la base ci-dessus"
+            },
+            "reserve_echantillon": "n = 1 : p50, p95 et max sont la même et unique mesure. Ce n'est pas une distribution."
+          }
+        },
+        "fr→en": {
+          "visite_mediane": {
+            "n_abouties": {
+              "valeur": 8,
+              "methode": "constaté"
+            },
+            "n_echecs": {
+              "valeur": 0,
+              "methode": "constaté"
+            },
+            "n_limites": {
+              "valeur": 0,
+              "methode": "constaté",
+              "note": "plafond atteint — limite, pas panne"
+            },
+            "base_de_normalisation": "caractères source",
+            "taux_aboutissement": {
+              "valeur": 100.0,
+              "methode": "mesuré",
+              "unite": "%"
+            },
+            "p50_s": {
+              "valeur": 3.78,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "p95_s": {
+              "valeur": 5.44,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "max_s": {
+              "valeur": 5.86,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "total_s": {
+              "valeur": 31.56,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "chars_total": {
+              "valeur": 8968,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "ms_par_caractere": {
+              "valeur": 3.52,
+              "methode": "mesuré",
+              "unite": "ms/car.",
+              "note": "somme des durées / somme des caractères de la base ci-dessus"
+            },
+            "reserve_echantillon": "n = 8, chaque Scène mesurée une seule fois. Les percentiles décrivent la variation de LONGUEUR des Scènes, pas la dispersion des latences du fournisseur — qui demanderait des répétitions."
+          },
+          "scene_hors_norme": {
+            "n_abouties": {
+              "valeur": 1,
+              "methode": "constaté"
+            },
+            "n_echecs": {
+              "valeur": 0,
+              "methode": "constaté"
+            },
+            "n_limites": {
+              "valeur": 0,
+              "methode": "constaté",
+              "note": "plafond atteint — limite, pas panne"
+            },
+            "base_de_normalisation": "caractères source",
+            "taux_aboutissement": {
+              "valeur": 100.0,
+              "methode": "mesuré",
+              "unite": "%"
+            },
+            "p50_s": {
+              "valeur": 23.45,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "p95_s": {
+              "valeur": 23.45,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "max_s": {
+              "valeur": 23.45,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "total_s": {
+              "valeur": 23.45,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "chars_total": {
+              "valeur": 7308,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "ms_par_caractere": {
+              "valeur": 3.209,
+              "methode": "mesuré",
+              "unite": "ms/car.",
+              "note": "somme des durées / somme des caractères de la base ci-dessus"
+            },
+            "reserve_echantillon": "n = 1 : p50, p95 et max sont la même et unique mesure. Ce n'est pas une distribution."
+          }
+        },
+        "fr→es": {
+          "visite_mediane": {
+            "n_abouties": {
+              "valeur": 8,
+              "methode": "constaté"
+            },
+            "n_echecs": {
+              "valeur": 0,
+              "methode": "constaté"
+            },
+            "n_limites": {
+              "valeur": 0,
+              "methode": "constaté",
+              "note": "plafond atteint — limite, pas panne"
+            },
+            "base_de_normalisation": "caractères source",
+            "taux_aboutissement": {
+              "valeur": 100.0,
+              "methode": "mesuré",
+              "unite": "%"
+            },
+            "p50_s": {
+              "valeur": 4.63,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "p95_s": {
+              "valeur": 6.28,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "max_s": {
+              "valeur": 6.72,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "total_s": {
+              "valeur": 38.3,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "chars_total": {
+              "valeur": 8968,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "ms_par_caractere": {
+              "valeur": 4.27,
+              "methode": "mesuré",
+              "unite": "ms/car.",
+              "note": "somme des durées / somme des caractères de la base ci-dessus"
+            },
+            "reserve_echantillon": "n = 8, chaque Scène mesurée une seule fois. Les percentiles décrivent la variation de LONGUEUR des Scènes, pas la dispersion des latences du fournisseur — qui demanderait des répétitions."
+          },
+          "scene_hors_norme": {
+            "n_abouties": {
+              "valeur": 1,
+              "methode": "constaté"
+            },
+            "n_echecs": {
+              "valeur": 0,
+              "methode": "constaté"
+            },
+            "n_limites": {
+              "valeur": 0,
+              "methode": "constaté",
+              "note": "plafond atteint — limite, pas panne"
+            },
+            "base_de_normalisation": "caractères source",
+            "taux_aboutissement": {
+              "valeur": 100.0,
+              "methode": "mesuré",
+              "unite": "%"
+            },
+            "p50_s": {
+              "valeur": 26.05,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "p95_s": {
+              "valeur": 26.05,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "max_s": {
+              "valeur": 26.05,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "total_s": {
+              "valeur": 26.05,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "chars_total": {
+              "valeur": 7308,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "ms_par_caractere": {
+              "valeur": 3.564,
+              "methode": "mesuré",
+              "unite": "ms/car.",
+              "note": "somme des durées / somme des caractères de la base ci-dessus"
+            },
+            "reserve_echantillon": "n = 1 : p50, p95 et max sont la même et unique mesure. Ce n'est pas une distribution."
+          }
+        }
+      },
+      "paires_pivotees": {
+        "fr→it": {
+          "visite_mediane": {
+            "n_abouties": {
+              "valeur": 8,
+              "methode": "constaté"
+            },
+            "n_echecs": {
+              "valeur": 0,
+              "methode": "constaté"
+            },
+            "n_limites": {
+              "valeur": 0,
+              "methode": "constaté",
+              "note": "plafond atteint — limite, pas panne"
+            },
+            "base_de_normalisation": "caractères source",
+            "taux_aboutissement": {
+              "valeur": 100.0,
+              "methode": "mesuré",
+              "unite": "%"
+            },
+            "p50_s": {
+              "valeur": 8.18,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "p95_s": {
+              "valeur": 12.12,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "max_s": {
+              "valeur": 13.0,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "total_s": {
+              "valeur": 69.73,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "chars_total": {
+              "valeur": 8968,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "ms_par_caractere": {
+              "valeur": 7.776,
+              "methode": "mesuré",
+              "unite": "ms/car.",
+              "note": "somme des durées / somme des caractères de la base ci-dessus"
+            },
+            "reserve_echantillon": "n = 8, chaque Scène mesurée une seule fois. Les percentiles décrivent la variation de LONGUEUR des Scènes, pas la dispersion des latences du fournisseur — qui demanderait des répétitions."
+          },
+          "scene_hors_norme": {
+            "n_abouties": {
+              "valeur": 1,
+              "methode": "constaté"
+            },
+            "n_echecs": {
+              "valeur": 0,
+              "methode": "constaté"
+            },
+            "n_limites": {
+              "valeur": 0,
+              "methode": "constaté",
+              "note": "plafond atteint — limite, pas panne"
+            },
+            "base_de_normalisation": "caractères source",
+            "taux_aboutissement": {
+              "valeur": 100.0,
+              "methode": "mesuré",
+              "unite": "%"
+            },
+            "p50_s": {
+              "valeur": 51.22,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "p95_s": {
+              "valeur": 51.22,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "max_s": {
+              "valeur": 51.22,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "total_s": {
+              "valeur": 51.22,
+              "methode": "mesuré",
+              "unite": "s"
+            },
+            "chars_total": {
+              "valeur": 7308,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "ms_par_caractere": {
+              "valeur": 7.009,
+              "methode": "mesuré",
+              "unite": "ms/car.",
+              "note": "somme des durées / somme des caractères de la base ci-dessus"
+            },
+            "reserve_echantillon": "n = 1 : p50, p95 et max sont la même et unique mesure. Ce n'est pas une distribution."
+          },
+          "pivot": "en",
+          "note": "Chronométrée À PART des paires directes : deux inférences au lieu d'une, la comparer aux directes serait comparer deux choses."
+        }
+      },
+      "detail": {
+        "fr→de": [
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#0",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1516,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 5.47,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#1",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1021,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 4.19,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#2",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 977,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 2.53,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#3",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 998,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 3.8,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#4",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1013,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 3.38,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#5",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 980,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 4.2,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#6",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1008,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 3.38,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#7",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1455,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 5.06,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "78e3f3cc-7c1d-4a88-a274-8690e9411fc2#1",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 7308,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 22.69,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          }
+        ],
+        "fr→en": [
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#0",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1516,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 5.86,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#1",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1021,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 3.8,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#2",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 977,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 2.97,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#3",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 998,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 3.78,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#4",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1013,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 3.77,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#5",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 980,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 3.78,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#6",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1008,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 2.95,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#7",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1455,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 4.66,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "78e3f3cc-7c1d-4a88-a274-8690e9411fc2#1",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 7308,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 23.45,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          }
+        ],
+        "fr→es": [
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#0",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1516,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 6.72,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#1",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1021,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 5.08,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#2",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 977,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 3.78,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#3",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 998,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 4.2,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#4",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1013,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 4.2,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#5",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 980,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 5.06,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#6",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1008,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 3.8,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#7",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1455,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 5.45,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "78e3f3cc-7c1d-4a88-a274-8690e9411fc2#1",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 7308,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 26.05,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          }
+        ],
+        "fr→it": [
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#0",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1516,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 13.0,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#1",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1021,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 8.83,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#2",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 977,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 6.73,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#3",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 998,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 7.97,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#4",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1013,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 7.58,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#5",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 980,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 8.39,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#6",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1008,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 6.73,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "seed-100-reims-art-deco-renaissance#7",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 1455,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 10.5,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          },
+          {
+            "cle": "78e3f3cc-7c1d-4a88-a274-8690e9411fc2#1",
+            "issue": "aboutie",
+            "chars": {
+              "valeur": 7308,
+              "methode": "constaté",
+              "unite": "car."
+            },
+            "duree_s": {
+              "valeur": 51.22,
+              "methode": "mesuré",
+              "unite": "s"
+            }
+          }
+        ]
+      }
+    },
+    "synthese": {
+      "fournisseur": "azure",
+      "visite_mediane": {
+        "n_abouties": {
+          "valeur": 8,
+          "methode": "constaté"
+        },
+        "n_echecs": {
+          "valeur": 0,
+          "methode": "constaté"
+        },
+        "n_limites": {
+          "valeur": 0,
+          "methode": "constaté",
+          "note": "plafond atteint — limite, pas panne"
+        },
+        "base_de_normalisation": "caractères facturés",
+        "taux_aboutissement": {
+          "valeur": 100.0,
+          "methode": "mesuré",
+          "unite": "%"
+        },
+        "p50_s": {
+          "valeur": 1.55,
+          "methode": "mesuré",
+          "unite": "s"
+        },
+        "p95_s": {
+          "valeur": 2.04,
+          "methode": "mesuré",
+          "unite": "s"
+        },
+        "max_s": {
+          "valeur": 2.2,
+          "methode": "mesuré",
+          "unite": "s"
+        },
+        "total_s": {
+          "valeur": 12.78,
+          "methode": "mesuré",
+          "unite": "s"
+        },
+        "chars_total": {
+          "valeur": 9704,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "ms_par_caractere": {
+          "valeur": 1.317,
+          "methode": "mesuré",
+          "unite": "ms/car.",
+          "note": "somme des durées / somme des caractères de la base ci-dessus"
+        },
+        "audio_total_ms": {
+          "valeur": 637695,
+          "methode": "mesuré",
+          "unite": "ms"
+        },
+        "facteur_temps_reel": {
+          "valeur": 49.89,
+          "methode": "mesuré",
+          "unite": "×",
+          "note": "millisecondes d'audio produites par milliseconde de fabrication — au-dessus de 1, la fabrication va plus vite que l'écoute"
+        },
+        "reserve_echantillon": "n = 8, chaque Scène mesurée une seule fois. Les percentiles décrivent la variation de LONGUEUR des Scènes, pas la dispersion des latences du fournisseur — qui demanderait des répétitions."
+      },
+      "scene_hors_norme": {
+        "n_abouties": {
+          "valeur": 1,
+          "methode": "constaté"
+        },
+        "n_echecs": {
+          "valeur": 0,
+          "methode": "constaté"
+        },
+        "n_limites": {
+          "valeur": 0,
+          "methode": "constaté",
+          "note": "plafond atteint — limite, pas panne"
+        },
+        "base_de_normalisation": "caractères facturés",
+        "taux_aboutissement": {
+          "valeur": 100.0,
+          "methode": "mesuré",
+          "unite": "%"
+        },
+        "p50_s": {
+          "valeur": 2.89,
+          "methode": "mesuré",
+          "unite": "s"
+        },
+        "p95_s": {
+          "valeur": 2.89,
+          "methode": "mesuré",
+          "unite": "s"
+        },
+        "max_s": {
+          "valeur": 2.89,
+          "methode": "mesuré",
+          "unite": "s"
+        },
+        "total_s": {
+          "valeur": 2.89,
+          "methode": "mesuré",
+          "unite": "s"
+        },
+        "chars_total": {
+          "valeur": 7596,
+          "methode": "constaté",
+          "unite": "car."
+        },
+        "ms_par_caractere": {
+          "valeur": 0.381,
+          "methode": "mesuré",
+          "unite": "ms/car.",
+          "note": "somme des durées / somme des caractères de la base ci-dessus"
+        },
+        "audio_total_ms": {
+          "valeur": 556865,
+          "methode": "mesuré",
+          "unite": "ms"
+        },
+        "facteur_temps_reel": {
+          "valeur": 192.62,
+          "methode": "mesuré",
+          "unite": "×",
+          "note": "millisecondes d'audio produites par milliseconde de fabrication — au-dessus de 1, la fabrication va plus vite que l'écoute"
+        },
+        "reserve_echantillon": "n = 1 : p50, p95 et max sont la même et unique mesure. Ce n'est pas une distribution."
+      },
+      "detail_visite_mediane": [
+        {
+          "cle": "seed-100-reims-art-deco-renaissance#0",
+          "issue": "aboutie",
+          "chars": {
+            "valeur": 1649,
+            "methode": "constaté",
+            "unite": "car."
+          },
+          "duree_s": {
+            "valeur": 2.2,
+            "methode": "mesuré",
+            "unite": "s"
+          },
+          "chars_factures": {
+            "valeur": 1649,
+            "methode": "mesuré",
+            "unite": "car."
+          },
+          "duree_audio_ms": {
+            "valeur": 109935,
+            "methode": "mesuré",
+            "unite": "ms"
+          }
+        },
+        {
+          "cle": "seed-100-reims-art-deco-renaissance#1",
+          "issue": "aboutie",
+          "chars": {
+            "valeur": 1118,
+            "methode": "constaté",
+            "unite": "car."
+          },
+          "duree_s": {
+            "valeur": 1.38,
+            "methode": "mesuré",
+            "unite": "s"
+          },
+          "chars_factures": {
+            "valeur": 1118,
+            "methode": "mesuré",
+            "unite": "car."
+          },
+          "duree_audio_ms": {
+            "valeur": 75800,
+            "methode": "mesuré",
+            "unite": "ms"
+          }
+        },
+        {
+          "cle": "seed-100-reims-art-deco-renaissance#2",
+          "issue": "aboutie",
+          "chars": {
+            "valeur": 1097,
+            "methode": "constaté",
+            "unite": "car."
+          },
+          "duree_s": {
+            "valeur": 1.31,
+            "methode": "mesuré",
+            "unite": "s"
+          },
+          "chars_factures": {
+            "valeur": 1097,
+            "methode": "mesuré",
+            "unite": "car."
+          },
+          "duree_audio_ms": {
+            "valeur": 73755,
+            "methode": "mesuré",
+            "unite": "ms"
+          }
+        },
+        {
+          "cle": "seed-100-reims-art-deco-renaissance#3",
+          "issue": "aboutie",
+          "chars": {
+            "valeur": 1095,
+            "methode": "constaté",
+            "unite": "car."
+          },
+          "duree_s": {
+            "valeur": 1.75,
+            "methode": "mesuré",
+            "unite": "s"
+          },
+          "chars_factures": {
+            "valeur": 1095,
+            "methode": "mesuré",
+            "unite": "car."
+          },
+          "duree_audio_ms": {
+            "valeur": 69553,
+            "methode": "mesuré",
+            "unite": "ms"
+          }
+        },
+        {
+          "cle": "seed-100-reims-art-deco-renaissance#4",
+          "issue": "aboutie",
+          "chars": {
+            "valeur": 1094,
+            "methode": "constaté",
+            "unite": "car."
+          },
+          "duree_s": {
+            "valeur": 1.33,
+            "methode": "mesuré",
+            "unite": "s"
+          },
+          "chars_factures": {
+            "valeur": 1094,
+            "methode": "mesuré",
+            "unite": "car."
+          },
+          "duree_audio_ms": {
+            "valeur": 68720,
+            "methode": "mesuré",
+            "unite": "ms"
+          }
+        },
+        {
+          "cle": "seed-100-reims-art-deco-renaissance#5",
+          "issue": "aboutie",
+          "chars": {
+            "valeur": 1088,
+            "methode": "constaté",
+            "unite": "car."
+          },
+          "duree_s": {
+            "valeur": 1.34,
+            "methode": "mesuré",
+            "unite": "s"
+          },
+          "chars_factures": {
+            "valeur": 1088,
+            "methode": "mesuré",
+            "unite": "car."
+          },
+          "duree_audio_ms": {
+            "valeur": 69598,
+            "methode": "mesuré",
+            "unite": "ms"
+          }
+        },
+        {
+          "cle": "seed-100-reims-art-deco-renaissance#6",
+          "issue": "aboutie",
+          "chars": {
+            "valeur": 1007,
+            "methode": "constaté",
+            "unite": "car."
+          },
+          "duree_s": {
+            "valeur": 1.72,
+            "methode": "mesuré",
+            "unite": "s"
+          },
+          "chars_factures": {
+            "valeur": 1007,
+            "methode": "mesuré",
+            "unite": "car."
+          },
+          "duree_audio_ms": {
+            "valeur": 66627,
+            "methode": "mesuré",
+            "unite": "ms"
+          }
+        },
+        {
+          "cle": "seed-100-reims-art-deco-renaissance#7",
+          "issue": "aboutie",
+          "chars": {
+            "valeur": 1556,
+            "methode": "constaté",
+            "unite": "car."
+          },
+          "duree_s": {
+            "valeur": 1.75,
+            "methode": "mesuré",
+            "unite": "s"
+          },
+          "chars_factures": {
+            "valeur": 1556,
+            "methode": "mesuré",
+            "unite": "car."
+          },
+          "duree_audio_ms": {
+            "valeur": 103707,
+            "methode": "mesuré",
+            "unite": "ms"
+          }
+        }
+      ],
+      "detail_scene_hors_norme": [
+        {
+          "cle": "78e3f3cc-7c1d-4a88-a274-8690e9411fc2#1",
+          "issue": "aboutie",
+          "chars": {
+            "valeur": 7596,
+            "methode": "constaté",
+            "unite": "car."
+          },
+          "duree_s": {
+            "valeur": 2.89,
+            "methode": "mesuré",
+            "unite": "s"
+          },
+          "chars_factures": {
+            "valeur": 7596,
+            "methode": "mesuré",
+            "unite": "car."
+          },
+          "duree_audio_ms": {
+            "valeur": 556865,
+            "methode": "mesuré",
+            "unite": "ms"
+          }
+        }
+      ],
+      "cout_de_la_serie": {
+        "valeur": 0.2768,
+        "methode": "estimé",
+        "unite": "USD",
+        "note": "Azure Neural standard, 16 $/M caractères (addendum du PRD §2, tarif relevé le 2026-08-22)"
+      }
+    }
+  },
+  "conclusion": {
+    "paire_chainee": "fr→de",
+    "cibles_du_spec": {
+      "p50_s": {
+        "valeur": 30.0,
+        "methode": "constaté",
+        "unite": "s"
+      },
+      "p95_s": {
+        "valeur": 60.0,
+        "methode": "constaté",
+        "unite": "s"
+      }
+    },
+    "premiere_scene_mesuree": {
+      "traduction_s": {
+        "valeur": 5.47,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "synthese_s": {
+        "valeur": 2.2,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "total_s": {
+        "valeur": 7.67,
+        "methode": "mesuré",
+        "unite": "s",
+        "note": "somme de deux mesures prises sur la MÊME Scène #0, chaînées comme le ferait une fabrication séquentielle"
+      },
+      "verdict_p50": "tient",
+      "avec_le_sondage_a_15_s": {
+        "valeur": 22.67,
+        "methode": "estimé",
+        "unite": "s",
+        "note": "le portail n'annonce rien avant t+15 s : le plancher fournisseur est arrondi au multiple de 15 s supérieur dans le vécu du visiteur"
+      },
+      "verdict_p50_avec_sondage": "tient"
+    },
+    "enveloppe_p50": {
+      "traduction_s": {
+        "valeur": 3.99,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "synthese_s": {
+        "valeur": 1.55,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "total_s": {
+        "valeur": 5.54,
+        "methode": "estimé",
+        "unite": "s",
+        "note": "somme des p50 de deux postes — ce n'est pas le p50 de la somme, qui demanderait de chaîner les deux mesures Scène par Scène"
+      },
+      "cible_s": {
+        "valeur": 30.0,
+        "methode": "constaté",
+        "unite": "s"
+      },
+      "verdict": "tient",
+      "avec_le_sondage_a_15_s": {
+        "valeur": 20.54,
+        "methode": "estimé",
+        "unite": "s"
+      },
+      "verdict_avec_sondage": "tient"
+    },
+    "enveloppe_p95": {
+      "traduction_s": {
+        "valeur": 5.33,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "synthese_s": {
+        "valeur": 2.04,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "total_s": {
+        "valeur": 7.37,
+        "methode": "estimé",
+        "unite": "s",
+        "note": "somme des p95 de deux postes — ce n'est pas le p95 de la somme, qui demanderait de chaîner les deux mesures Scène par Scène"
+      },
+      "cible_s": {
+        "valeur": 60.0,
+        "methode": "constaté",
+        "unite": "s"
+      },
+      "verdict": "tient",
+      "avec_le_sondage_a_15_s": {
+        "valeur": 22.37,
+        "methode": "estimé",
+        "unite": "s"
+      },
+      "verdict_avec_sondage": "tient"
+    },
+    "scene_hors_norme": {
+      "traduction_s": {
+        "valeur": 22.69,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "synthese_s": {
+        "valeur": 2.89,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "total_s": {
+        "valeur": 25.58,
+        "methode": "mesuré",
+        "unite": "s",
+        "note": "une seule Scène, mesurée une fois : une valeur, pas une distribution"
+      },
+      "verdict_p50": "tient de justesse",
+      "verdict_p95": "tient",
+      "avec_le_sondage_a_15_s": {
+        "valeur": 40.58,
+        "methode": "estimé",
+        "unite": "s"
+      }
+    }
+  },
+  "agregat_une_visite": {
+    "perimetre": "Visite médiane × 4 langues, en séquentiel",
+    "traduction_par_paire": {
+      "fr→de": {
+        "valeur": 32.0,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "fr→en": {
+        "valeur": 31.56,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "fr→es": {
+        "valeur": 38.3,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "fr→it": {
+        "valeur": 69.73,
+        "methode": "mesuré",
+        "unite": "s"
+      }
+    },
+    "traduction_total_s": {
+      "valeur": 171.59,
+      "methode": "mesuré",
+      "unite": "s"
+    },
+    "synthese_par_langue": {
+      "de": {
+        "valeur": 12.78,
+        "methode": "mesuré",
+        "unite": "s"
+      },
+      "en": {
+        "valeur": 11.52,
+        "methode": "estimé",
+        "unite": "s",
+        "note": "synthèse mesurée en de, mise à l'échelle au prorata des caractères réels de cette langue"
+      },
+      "es": {
+        "valeur": 11.46,
+        "methode": "estimé",
+        "unite": "s",
+        "note": "synthèse mesurée en de, mise à l'échelle au prorata des caractères réels de cette langue"
+      },
+      "it": {
+        "valeur": 11.45,
+        "methode": "estimé",
+        "unite": "s",
+        "note": "synthèse mesurée en de, mise à l'échelle au prorata des caractères réels de cette langue"
+      }
+    },
+    "synthese_total_s": {
+      "valeur": 47.21,
+      "methode": "estimé",
+      "unite": "s",
+      "note": "une langue mesurée, les autres mises à l'échelle par leur longueur"
+    },
+    "demarrages_a_froid_total_s": {
+      "valeur": 11.42,
+      "methode": "mesuré",
+      "unite": "s",
+      "note": "coût unique par service démarré, pas par Visite"
+    },
+    "total_s": {
+      "valeur": 230.22,
+      "methode": "estimé",
+      "unite": "s",
+      "note": "traduction mesurée + synthèse mise à l'échelle + démarrages à froid ; hors sondage du portail et hors miroir AppSync, qui s'y ajoutent"
+    },
+    "total_min": {
+      "valeur": 3.84,
+      "methode": "estimé",
+      "unite": "min"
+    }
+  }
+}
