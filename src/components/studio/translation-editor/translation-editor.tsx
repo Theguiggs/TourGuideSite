@@ -14,6 +14,36 @@ const LANG_FLAGS: Record<string, string> = {
   fr: '🇫🇷', en: '🇬🇧', it: '🇮🇹', de: '🇩🇪', es: '🇪🇸',
 };
 
+/**
+ * Le champ `costProvider` est un entier de CENTIMES sans monnaie déclarée, et
+ * les moteurs n'y écrivent pas tous la même : DeepL et MarianMT facturent en
+ * euros, le moteur de langue en dollars (tarif Anthropic). Afficher « EUR »
+ * pour tous, comme ici jusqu'à présent, faisait porter au champ deux monnaies
+ * sous une seule étiquette.
+ *
+ * Aucune conversion n'est faite : il faudrait un taux de change, donc une
+ * source de vérité qui n'existe pas dans ce périmètre. On nomme la monnaie
+ * réelle, on ne la traduit pas.
+ */
+function deviseDuMoteur(provider: SceneSegment['translationProvider']): string {
+  return provider === 'claude' ? 'USD' : 'EUR';
+}
+
+/**
+ * Le moteur qui a produit le MONTANT affiché.
+ *
+ * Le montant vient du job en cours (`translationState`), l étiquette venait du
+ * champ PERSISTÉ du segment — écrit seulement après le lot. Une traduction
+ * Claude fraîche affichait donc des cents de dollar libellés EUR. Les deux
+ * viennent désormais de la même source, le job d abord.
+ */
+function moteurDuMontant(
+  jobProvider: SceneSegment['translationProvider'] | undefined,
+  segmentProvider: SceneSegment['translationProvider'],
+): SceneSegment['translationProvider'] {
+  return jobProvider ?? segmentProvider;
+}
+
 interface TranslationEditorProps {
   segment: SceneSegment;
   sessionId: string;
@@ -131,9 +161,9 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
       {/* Cost display */}
       {translationState?.costCharged !== null && translationState?.costCharged !== undefined && translationState.costCharged > 0 && (
         <div className="text-xs text-ink-60" data-testid="translation-cost">
-          Coût : {(translationState.costCharged / 100).toFixed(2)} EUR
+          Coût : {(translationState.costCharged / 100).toFixed(2)} {deviseDuMoteur(moteurDuMontant(translationState?.provider, segment.translationProvider))}
           {translationState.costProvider !== null && (
-            <span className="text-ink-40"> (coût fournisseur : {(translationState.costProvider / 100).toFixed(2)} EUR)</span>
+            <span className="text-ink-40"> (coût fournisseur : {(translationState.costProvider / 100).toFixed(2)} {deviseDuMoteur(moteurDuMontant(translationState?.provider, segment.translationProvider))})</span>
           )}
         </div>
       )}

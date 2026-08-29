@@ -264,7 +264,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
                 {cost.isFree ? (
                   <span className="text-success font-medium">Gratuit</span>
                 ) : (
-                  <>Estimation : <span className="font-medium">{(cost.costCharged / 100).toFixed(2)} EUR</span> ({cost.provider.toUpperCase()})</>
+                  <>Estimation : <span className="font-medium">{(cost.costCharged / 100).toFixed(2)} {cost.provider === 'claude' ? 'USD' : 'EUR'}</span> ({cost.provider.toUpperCase()})</>
                 )}
               </p>
               <p className="text-xs text-ink-40 mt-0.5">{cost.charCount} caractères</p>

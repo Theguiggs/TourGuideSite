@@ -6,6 +6,11 @@ import type { StudioScene } from '@/types/studio';
 jest.mock('@/lib/api/translation', () => ({
   requestTranslation: jest.fn(),
   getTranslationStatus: jest.fn(),
+  // `pollTranslation` demande le moteur réel du job avant de sonder : à
+  // l'expiration, il écrivait « marianmt » en dur quel que soit le moteur
+  // employé. Ici, le job n'est pas suivi — le moteur DEMANDÉ fait foi.
+  providerForJob: jest.fn(() => null),
+  forgetJob: jest.fn(),
 }));
 
 jest.mock('@/lib/api/tts', () => ({
@@ -16,6 +21,9 @@ jest.mock('@/lib/api/tts', () => ({
 jest.mock('@/lib/multilang/provider-router', () => ({
   getProviderForTier: jest.fn(),
   isLanguagePremium: jest.fn(),
+  // Le budget de sondage en dérive : sans lui, POLL_TIMEOUT_MS valait NaN et la
+  // boucle sortait au premier tour — chaque scène expirait sans avoir sondé.
+  BUDGET_OUVRIER_MS: 300000,
 }));
 
 jest.mock('@/lib/api/studio', () => ({
@@ -29,14 +37,15 @@ jest.mock('@/lib/logger', () => ({
   logger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
 }));
 
-import { requestTranslation, getTranslationStatus } from '@/lib/api/translation';
+import { requestTranslation, getTranslationStatus, providerForJob, forgetJob } from '@/lib/api/translation';
 import { requestTTS, getTTSStatus } from '@/lib/api/tts';
-import { getProviderForTier, isLanguagePremium } from '@/lib/multilang/provider-router';
+import { BUDGET_OUVRIER_MS, getProviderForTier, isLanguagePremium } from '@/lib/multilang/provider-router';
 import { updateSceneSegment, getStudioSession, updateStudioSession } from '@/lib/api/studio';
 import {
   executeBatch,
   BATCH_TRANSLATION_FAILED,
   BATCH_TTS_FAILED,
+  PROVIDER_UNAVAILABLE,
 } from '../batch-translation-service';
 import type { LanguageConfig, OnProgressCallback } from '../batch-translation-service';
 
@@ -415,6 +424,53 @@ describe('BatchTranslationService', () => {
       transcriptText: 'polled text',
     }));
   });
+
+  it('6.12 - expiration du sondage : le moteur RÉEL, jamais « marianmt » en dur', async () => {
+    // La route d'expiration écrivait `provider: 'marianmt'` quel que soit le
+    // moteur employé — une fausse étiquette posée sur le chemin d'échec du
+    // nouveau moteur, et c'est `translationProvider` qui l'aurait reçue.
+    // La correction était livrée SANS épreuve : la restaurer ne faisait rien
+    // tomber.
+    mockGetProvider.mockReturnValue('claude');
+    mockRequestTranslation.mockResolvedValue({
+      jobId: 'tj-timeout',
+      status: 'processing',
+      translatedText: null,
+      provider: 'claude',
+      costProvider: null,
+      costCharged: null,
+    });
+    mockGetTranslationStatus.mockResolvedValue(null);
+    (providerForJob as jest.Mock).mockReturnValue(null);
+
+    // Le budget de sondage suit désormais celui de l'ouvrier (5 min) : on fait
+    // sauter l'horloge plutôt que d'attendre.
+    const vraiNow = Date.now;
+    let appels = 0;
+    jest.spyOn(Date, 'now').mockImplementation(() => {
+      appels += 1;
+      return appels === 1 ? 0 : BUDGET_OUVRIER_MS + 60_000;
+    });
+
+    try {
+      const result = await executeBatch(
+        'sess-1',
+        [makeScene('s1', 'Hello')],
+        [{ code: 'en', label: 'English' }],
+        'pro',
+      );
+      expect(result.ok).toBe(true);
+      if (!result.ok) return;
+      expect(result.value.failedScenes).toHaveLength(1);
+      expect(result.value.failedScenes[0].errorCode).toBe(PROVIDER_UNAVAILABLE);
+      // Le job n'est plus suivi : sans cet oubli, l'entrée restait à jamais.
+      expect(forgetJob).toHaveBeenCalledWith('tj-timeout');
+    } finally {
+      (Date.now as unknown as jest.Mock).mockRestore?.();
+      Date.now = vraiNow;
+    }
+  });
+
 
   it('6.11 - polling: TTS returns pending then completed', async () => {
     mockGetProvider.mockReturnValue('marianmt');

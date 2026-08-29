@@ -87,6 +87,11 @@ export const useTranslationStore = create<TranslationStoreState>((set, get) => (
           translatedText: result.translatedText,
           costProvider: result.costProvider,
           costCharged: result.costCharged,
+          // Le moteur RÉEL, pour que l'affichage du coût sache dans quelle
+          // monnaie il est libellé : le champ persisté du segment n'est écrit
+          // qu'après le lot, et une traduction fraîche s'affichait donc en
+          // euros alors que le montant était en cents de dollar.
+          provider: result.provider,
           error: null,
         });
         get().showToast(`Traduction terminée : ${segmentId}`);

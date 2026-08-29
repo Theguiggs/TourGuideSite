@@ -10,3 +10,27 @@
 # identiques octet pour octet d'une machine à l'autre — sans quoi l'empreinte
 # du corpus inscrite dans chaque journal ne voudrait rien dire.
 content/translations/** text eol=lf
+
+# Sources TypeScript : TOUJOURS diffées comme du texte.
+#
+# `src/types/studio.ts` portait un octet NUL littéral (le séparateur de
+# `hashSourceText`). git le classait donc BINAIRE : le fichier ne diffait plus,
+# et toute relecture de ce module était aveugle — un élargissement de type y est
+# passé inaperçu en revue. L'octet est désormais échappé dans la source ; cette
+# règle ferme le trou pour de bon.
+#
+# Attribut `diff` SEUL, jamais `text` : `text` déclencherait la normalisation des
+# fins de ligne sur tout le dépôt, et `core.autocrlf` vaut `true` sur les postes
+# Windows du projet.
+*.ts diff
+*.tsx diff
+*.cjs diff
+*.mjs diff
+
+# Cas particulier : le blob de `src/types/studio.ts` est stocké en CRLF, parce
+# que git l'a longtemps classé BINAIRE (l'octet NUL) et n'y a donc jamais
+# appliqué de normalisation. Maintenant que l'octet est échappé, `core.autocrlf`
+# voudrait renormaliser les 374 lignes d'un coup — et noyer le changement réel
+# dans une réécriture intégrale. `-text` fige le stockage tel qu'il est ; `diff`
+# garde le fichier lisible en revue.
+src/types/studio.ts -text diff
