@@ -5,15 +5,9 @@
     "user_pool_client_id": "12le9tggg5o36ud050bcrb75uk",
     "identity_pool_id": "us-east-1:ffb33b7c-189d-4d67-be33-2b8aec288844",
     "mfa_methods": [],
-    "standard_required_attributes": [
-      "email"
-    ],
-    "username_attributes": [
-      "email"
-    ],
-    "user_verification_types": [
-      "email"
-    ],
+    "standard_required_attributes": ["email"],
+    "username_attributes": ["email"],
+    "user_verification_types": ["email"],
     "groups": [],
     "mfa_configuration": "NONE",
     "password_policy": {
@@ -29,9 +23,7 @@
     "url": "https://ncwhqefs5rhhbpwz76xiw3qfle.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_region": "us-east-1",
     "default_authorization_type": "AWS_IAM",
-    "authorization_types": [
-      "AMAZON_COGNITO_USER_POOLS"
-    ],
+    "authorization_types": ["AMAZON_COGNITO_USER_POOLS"],
     "model_introspection": {
       "version": 1,
       "models": {
@@ -176,9 +168,7 @@
               "properties": {
                 "name": "guideProfilesByUserId",
                 "queryField": "listGuideProfileByUserId",
-                "fields": [
-                  "userId"
-                ]
+                "fields": ["userId"]
               }
             },
             {
@@ -186,9 +176,7 @@
               "properties": {
                 "name": "guideProfilesByCity",
                 "queryField": "listGuideProfileByCity",
-                "fields": [
-                  "city"
-                ]
+                "fields": ["city"]
               }
             },
             {
@@ -199,39 +187,24 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update"
-                    ],
+                    "operations": ["create", "read", "update"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["create", "read", "update", "delete"],
+                    "groups": ["admin"]
                   },
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   },
                   {
                     "allow": "public",
                     "provider": "iam",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -306,6 +279,20 @@
               "name": "version",
               "isArray": false,
               "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "sourceVersion": {
+              "name": "sourceVersion",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "sourceTextFingerprint": {
+              "name": "sourceTextFingerprint",
+              "isArray": false,
+              "type": "String",
               "isRequired": false,
               "attributes": []
             },
@@ -446,9 +433,7 @@
               "properties": {
                 "name": "guideToursByGuideId",
                 "queryField": "listGuideTourByGuideId",
-                "fields": [
-                  "guideId"
-                ]
+                "fields": ["guideId"]
               }
             },
             {
@@ -456,9 +441,7 @@
               "properties": {
                 "name": "guideToursByCity",
                 "queryField": "listGuideTourByCity",
-                "fields": [
-                  "city"
-                ]
+                "fields": ["city"]
               }
             },
             {
@@ -469,39 +452,24 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update"
-                    ],
+                    "operations": ["create", "read", "update"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["create", "read", "update", "delete"],
+                    "groups": ["admin"]
                   },
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   },
                   {
                     "allow": "public",
                     "provider": "iam",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -680,9 +648,7 @@
               "isArrayNullable": true,
               "association": {
                 "connectionType": "HAS_MANY",
-                "associatedWith": [
-                  "sessionId"
-                ]
+                "associatedWith": ["sessionId"]
               }
             },
             "walkSegments": {
@@ -696,9 +662,7 @@
               "isArrayNullable": true,
               "association": {
                 "connectionType": "HAS_MANY",
-                "associatedWith": [
-                  "sessionId"
-                ]
+                "associatedWith": ["sessionId"]
               }
             },
             "createdAt": {
@@ -730,9 +694,7 @@
               "properties": {
                 "name": "studioSessionsByGuideId",
                 "queryField": "listStudioSessionByGuideId",
-                "fields": [
-                  "guideId"
-                ]
+                "fields": ["guideId"]
               }
             },
             {
@@ -743,38 +705,24 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
+                    "operations": ["create", "read", "update", "delete"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "read",
-                      "update"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["read", "update"],
+                    "groups": ["admin"]
                   },
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   },
                   {
                     "allow": "public",
                     "provider": "iam",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -985,9 +933,7 @@
               "attributes": [],
               "association": {
                 "connectionType": "BELONGS_TO",
-                "targetNames": [
-                  "sessionId"
-                ]
+                "targetNames": ["sessionId"]
               }
             },
             "segments": {
@@ -1001,9 +947,7 @@
               "isArrayNullable": true,
               "association": {
                 "connectionType": "HAS_MANY",
-                "associatedWith": [
-                  "sceneId"
-                ]
+                "associatedWith": ["sceneId"]
               }
             },
             "createdAt": {
@@ -1035,9 +979,7 @@
               "properties": {
                 "name": "studioScenesBySessionId",
                 "queryField": "listStudioSceneBySessionId",
-                "fields": [
-                  "sessionId"
-                ]
+                "fields": ["sessionId"]
               }
             },
             {
@@ -1048,38 +990,24 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
+                    "operations": ["create", "read", "update", "delete"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "read",
-                      "update"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["read", "update"],
+                    "groups": ["admin"]
                   },
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   },
                   {
                     "allow": "public",
                     "provider": "iam",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -1183,9 +1111,7 @@
               "attributes": [],
               "association": {
                 "connectionType": "BELONGS_TO",
-                "targetNames": [
-                  "sessionId"
-                ]
+                "targetNames": ["sessionId"]
               }
             },
             "createdAt": {
@@ -1217,9 +1143,7 @@
               "properties": {
                 "name": "walkSegmentsBySessionId",
                 "queryField": "listWalkSegmentBySessionId",
-                "fields": [
-                  "sessionId"
-                ]
+                "fields": ["sessionId"]
               }
             },
             {
@@ -1230,37 +1154,24 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
+                    "operations": ["create", "read", "update", "delete"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "read"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["read"],
+                    "groups": ["admin"]
                   },
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   },
                   {
                     "allow": "public",
                     "provider": "iam",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -1424,9 +1335,7 @@
               "attributes": [],
               "association": {
                 "connectionType": "BELONGS_TO",
-                "targetNames": [
-                  "sceneId"
-                ]
+                "targetNames": ["sceneId"]
               }
             },
             "createdAt": {
@@ -1458,9 +1367,7 @@
               "properties": {
                 "name": "sceneSegmentsBySceneId",
                 "queryField": "listSceneSegmentBySceneId",
-                "fields": [
-                  "sceneId"
-                ]
+                "fields": ["sceneId"]
               }
             },
             {
@@ -1471,25 +1378,15 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
+                    "operations": ["create", "read", "update", "delete"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "read",
-                      "update"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["read", "update"],
+                    "groups": ["admin"]
                   }
                 ]
               }
@@ -1623,9 +1520,7 @@
               "properties": {
                 "name": "tourLanguagePurchasesByGuideId",
                 "queryField": "listTourLanguagePurchaseByGuideId",
-                "fields": [
-                  "guideId"
-                ]
+                "fields": ["guideId"]
               }
             },
             {
@@ -1633,9 +1528,7 @@
               "properties": {
                 "name": "tourLanguagePurchasesBySessionId",
                 "queryField": "listTourLanguagePurchaseBySessionId",
-                "fields": [
-                  "sessionId"
-                ]
+                "fields": ["sessionId"]
               }
             },
             {
@@ -1646,25 +1539,15 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
+                    "operations": ["create", "read", "update", "delete"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "read",
-                      "update"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["read", "update"],
+                    "groups": ["admin"]
                   }
                 ]
               }
@@ -1768,9 +1651,7 @@
               "properties": {
                 "name": "tourPurchasesByUserId",
                 "queryField": "listTourPurchaseByUserId",
-                "fields": [
-                  "userId"
-                ]
+                "fields": ["userId"]
               }
             },
             {
@@ -1778,9 +1659,7 @@
               "properties": {
                 "name": "tourPurchasesByTourId",
                 "queryField": "listTourPurchaseByTourId",
-                "fields": [
-                  "tourId"
-                ]
+                "fields": ["tourId"]
               }
             },
             {
@@ -1791,24 +1670,15 @@
                     "provider": "userPools",
                     "ownerField": "userId",
                     "allow": "owner",
-                    "operations": [
-                      "read"
-                    ],
+                    "operations": ["read"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["create", "read", "update", "delete"],
+                    "groups": ["admin"]
                   }
                 ]
               }
@@ -1931,9 +1801,7 @@
               "properties": {
                 "name": "userEntitlementsByUserId",
                 "queryField": "listUserEntitlementByUserId",
-                "fields": [
-                  "userId"
-                ]
+                "fields": ["userId"]
               }
             },
             {
@@ -1944,24 +1812,15 @@
                     "provider": "userPools",
                     "ownerField": "userId",
                     "allow": "owner",
-                    "operations": [
-                      "read"
-                    ],
+                    "operations": ["read"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["create", "read", "update", "delete"],
+                    "groups": ["admin"]
                   }
                 ]
               }
@@ -2056,9 +1915,7 @@
               "properties": {
                 "name": "tourAccessCodesByCode",
                 "queryField": "listTourAccessCodeByCode",
-                "fields": [
-                  "code"
-                ]
+                "fields": ["code"]
               }
             },
             {
@@ -2066,9 +1923,7 @@
               "properties": {
                 "name": "tourAccessCodesByTourId",
                 "queryField": "listTourAccessCodeByTourId",
-                "fields": [
-                  "tourId"
-                ]
+                "fields": ["tourId"]
               }
             },
             {
@@ -2079,15 +1934,8 @@
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["create", "read", "update", "delete"],
+                    "groups": ["admin"]
                   }
                 ]
               }
@@ -2266,9 +2114,7 @@
               "properties": {
                 "name": "moderationItemsByGuideId",
                 "queryField": "listModerationItemByGuideId",
-                "fields": [
-                  "guideId"
-                ]
+                "fields": ["guideId"]
               }
             },
             {
@@ -2276,9 +2122,7 @@
               "properties": {
                 "name": "moderationItemsByStatus",
                 "queryField": "listModerationItemByStatus",
-                "fields": [
-                  "status"
-                ]
+                "fields": ["status"]
               }
             },
             {
@@ -2289,26 +2133,15 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update"
-                    ],
+                    "operations": ["create", "read", "update"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["create", "read", "update", "delete"],
+                    "groups": ["admin"]
                   }
                 ]
               }
@@ -2394,9 +2227,7 @@
               "properties": {
                 "name": "guideDashboardStatsByGuideId",
                 "queryField": "listGuideDashboardStatsByGuideId",
-                "fields": [
-                  "guideId"
-                ]
+                "fields": ["guideId"]
               }
             },
             {
@@ -2407,18 +2238,12 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update"
-                    ],
+                    "operations": ["create", "read", "update"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -2506,9 +2331,7 @@
               "properties": {
                 "name": "userProfilesByUserId",
                 "queryField": "listUserProfileByUserId",
-                "fields": [
-                  "userId"
-                ]
+                "fields": ["userId"]
               }
             },
             {
@@ -2519,18 +2342,12 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update"
-                    ],
+                    "operations": ["create", "read", "update"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -2646,9 +2463,7 @@
               "properties": {
                 "name": "tourHistoriesByUserId",
                 "queryField": "listTourHistoryByUserId",
-                "fields": [
-                  "userId"
-                ]
+                "fields": ["userId"]
               }
             },
             {
@@ -2656,9 +2471,7 @@
               "properties": {
                 "name": "tourHistoriesByTourId",
                 "queryField": "listTourHistoryByTourId",
-                "fields": [
-                  "tourId"
-                ]
+                "fields": ["tourId"]
               }
             },
             {
@@ -2669,11 +2482,7 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update"
-                    ],
+                    "operations": ["create", "read", "update"],
                     "identityClaim": "cognito:username"
                   }
                 ]
@@ -2797,9 +2606,7 @@
               "properties": {
                 "name": "tourReviewsByTourId",
                 "queryField": "listTourReviewByTourId",
-                "fields": [
-                  "tourId"
-                ]
+                "fields": ["tourId"]
               }
             },
             {
@@ -2807,9 +2614,7 @@
               "properties": {
                 "name": "tourReviewsByUserId",
                 "queryField": "listTourReviewByUserId",
-                "fields": [
-                  "userId"
-                ]
+                "fields": ["userId"]
               }
             },
             {
@@ -2820,25 +2625,17 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update"
-                    ],
+                    "operations": ["create", "read", "update"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   },
                   {
                     "allow": "public",
                     "provider": "iam",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -2917,9 +2714,7 @@
               "properties": {
                 "name": "tourStatsByTourId",
                 "queryField": "listTourStatsByTourId",
-                "fields": [
-                  "tourId"
-                ]
+                "fields": ["tourId"]
               }
             },
             {
@@ -2928,16 +2723,12 @@
                 "rules": [
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   },
                   {
                     "allow": "public",
                     "provider": "iam",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -3048,9 +2839,7 @@
               "properties": {
                 "name": "tourCommentsByTourId",
                 "queryField": "listTourCommentByTourId",
-                "fields": [
-                  "tourId"
-                ]
+                "fields": ["tourId"]
               }
             },
             {
@@ -3061,30 +2850,19 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read"
-                    ],
+                    "operations": ["create", "read"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "groupClaim": "cognito:groups",
                     "provider": "userPools",
                     "allow": "groups",
-                    "operations": [
-                      "create",
-                      "read",
-                      "delete"
-                    ],
-                    "groups": [
-                      "admin"
-                    ]
+                    "operations": ["create", "read", "delete"],
+                    "groups": ["admin"]
                   },
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -3163,9 +2941,7 @@
               "properties": {
                 "name": "reviewRepliesByReviewId",
                 "queryField": "listReviewReplyByReviewId",
-                "fields": [
-                  "reviewId"
-                ]
+                "fields": ["reviewId"]
               }
             },
             {
@@ -3173,9 +2949,7 @@
               "properties": {
                 "name": "reviewRepliesByTourId",
                 "queryField": "listReviewReplyByTourId",
-                "fields": [
-                  "tourId"
-                ]
+                "fields": ["tourId"]
               }
             },
             {
@@ -3186,26 +2960,17 @@
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
-                    "operations": [
-                      "create",
-                      "read",
-                      "update",
-                      "delete"
-                    ],
+                    "operations": ["create", "read", "update", "delete"],
                     "identityClaim": "cognito:username"
                   },
                   {
                     "allow": "private",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   },
                   {
                     "allow": "public",
                     "provider": "iam",
-                    "operations": [
-                      "read"
-                    ]
+                    "operations": ["read"]
                   }
                 ]
               }
@@ -3216,33 +2981,498 @@
             "primaryKeyFieldName": "id",
             "sortKeyFieldNames": []
           }
+        },
+        "Pair": {
+          "name": "Pair",
+          "fields": {
+            "tourId": {
+              "name": "tourId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "language": {
+              "name": "language",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "state": {
+              "name": "state",
+              "isArray": false,
+              "type": {
+                "enum": "PairState"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "sourceVersion": {
+              "name": "sourceVersion",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "sceneCount": {
+              "name": "sceneCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "readySceneCount": {
+              "name": "readySceneCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "firstSceneReadyAt": {
+              "name": "firstSceneReadyAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "readyAt": {
+              "name": "readyAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "lastTransitionAt": {
+              "name": "lastTransitionAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "failureCode": {
+              "name": "failureCode",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "failureMessage": {
+              "name": "failureMessage",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "Pairs",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": ["tourId", "language"]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "operations": ["read"],
+                    "groups": ["admin"]
+                  },
+                  {
+                    "allow": "private",
+                    "operations": ["read"]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "iam",
+                    "operations": ["read"]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": true,
+            "primaryKeyFieldName": "tourId",
+            "sortKeyFieldNames": ["language"]
+          }
+        },
+        "FabricationRequest": {
+          "name": "FabricationRequest",
+          "fields": {
+            "requestId": {
+              "name": "requestId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "tourId": {
+              "name": "tourId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "language": {
+              "name": "language",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "sourceVersion": {
+              "name": "sourceVersion",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true,
+              "attributes": []
+            },
+            "admissionEventId": {
+              "name": "admissionEventId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "requestedAt": {
+              "name": "requestedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": true,
+              "attributes": []
+            },
+            "admittedAt": {
+              "name": "admittedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "pendingAdmission": {
+              "name": "pendingAdmission",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "FabricationRequests",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": ["requestId"]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "fabricationRequestsByTourIdAndLanguage",
+                "queryField": "listFabricationRequestByTourIdAndLanguage",
+                "fields": ["tourId", "language"]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "fabricationRequestsByPendingAdmissionAndRequestedAt",
+                "queryField": "listFabricationRequestByPendingAdmissionAndRequestedAt",
+                "fields": ["pendingAdmission", "requestedAt"]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "operations": ["read"],
+                    "groups": ["admin"]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": true,
+            "primaryKeyFieldName": "requestId",
+            "sortKeyFieldNames": []
+          }
+        },
+        "SystemPhrase": {
+          "name": "SystemPhrase",
+          "fields": {
+            "language": {
+              "name": "language",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "phraseKey": {
+              "name": "phraseKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "text": {
+              "name": "text",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "audioKey": {
+              "name": "audioKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "producedAt": {
+              "name": "producedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "SystemPhrases",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": ["language", "phraseKey"]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "operations": ["read"],
+                    "groups": ["admin"]
+                  },
+                  {
+                    "allow": "private",
+                    "operations": ["read"]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "iam",
+                    "operations": ["read"]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": true,
+            "primaryKeyFieldName": "language",
+            "sortKeyFieldNames": ["phraseKey"]
+          }
+        },
+        "LanguageScope": {
+          "name": "LanguageScope",
+          "fields": {
+            "language": {
+              "name": "language",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "inScope": {
+              "name": "inScope",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "firstOpenedAt": {
+              "name": "firstOpenedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "openedAt": {
+              "name": "openedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "closedAt": {
+              "name": "closedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedBy": {
+              "name": "updatedBy",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "note": {
+              "name": "note",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "LanguageScopes",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": ["language"]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "operations": ["read"],
+                    "groups": ["admin"]
+                  },
+                  {
+                    "allow": "private",
+                    "operations": ["read"]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "iam",
+                    "operations": ["read"]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": true,
+            "primaryKeyFieldName": "language",
+            "sortKeyFieldNames": []
+          }
         }
       },
       "enums": {
         "CreatePaymentIntentQualityTier": {
           "name": "CreatePaymentIntentQualityTier",
-          "values": [
-            "standard",
-            "pro",
-            "manual"
-          ]
+          "values": ["standard", "pro", "manual"]
         },
         "GuideProfileProfileStatus": {
           "name": "GuideProfileProfileStatus",
-          "values": [
-            "pending_moderation",
-            "active",
-            "suspended",
-            "rejected"
-          ]
+          "values": ["pending_moderation", "active", "suspended", "rejected"]
         },
         "GuideTourPurchaseType": {
           "name": "GuideTourPurchaseType",
-          "values": [
-            "free",
-            "paid",
-            "subscription_only"
-          ]
+          "values": ["free", "paid", "subscription_only"]
         },
         "StudioSessionStatus": {
           "name": "StudioSessionStatus",
@@ -3262,186 +3492,95 @@
         },
         "StudioSessionCaptureMode": {
           "name": "StudioSessionCaptureMode",
-          "values": [
-            "scene_builder",
-            "phased_capture"
-          ]
+          "values": ["scene_builder", "phased_capture"]
         },
         "StudioSceneBaseAudioSource": {
           "name": "StudioSceneBaseAudioSource",
-          "values": [
-            "tts",
-            "recording"
-          ]
+          "values": ["tts", "recording"]
         },
         "StudioSceneTranscriptionStatus": {
           "name": "StudioSceneTranscriptionStatus",
-          "values": [
-            "pending",
-            "processing",
-            "completed",
-            "failed"
-          ]
+          "values": ["pending", "processing", "completed", "failed"]
         },
         "StudioSceneQualityScore": {
           "name": "StudioSceneQualityScore",
-          "values": [
-            "good",
-            "needs_improvement"
-          ]
+          "values": ["good", "needs_improvement"]
         },
         "StudioSceneCodecStatus": {
           "name": "StudioSceneCodecStatus",
-          "values": [
-            "native_aac",
-            "pending_conversion",
-            "converted",
-            "conversion_failed"
-          ]
+          "values": ["native_aac", "pending_conversion", "converted", "conversion_failed"]
         },
         "StudioSceneStatus": {
           "name": "StudioSceneStatus",
-          "values": [
-            "empty",
-            "has_original",
-            "transcribed",
-            "edited",
-            "recorded",
-            "finalized"
-          ]
+          "values": ["empty", "has_original", "transcribed", "edited", "recorded", "finalized"]
         },
         "SceneSegmentTranslationProvider": {
           "name": "SceneSegmentTranslationProvider",
-          "values": [
-            "marianmt",
-            "deepl",
-            "openai"
-          ]
+          "values": ["marianmt", "deepl", "openai", "claude"]
         },
         "SceneSegmentStatus": {
           "name": "SceneSegmentStatus",
-          "values": [
-            "empty",
-            "transcribed",
-            "translated",
-            "tts_generated",
-            "finalized"
-          ]
+          "values": ["empty", "transcribed", "translated", "tts_generated", "finalized"]
         },
         "SceneSegmentAudioSource": {
           "name": "SceneSegmentAudioSource",
-          "values": [
-            "tts",
-            "recording"
-          ]
+          "values": ["tts", "recording"]
         },
         "TourLanguagePurchaseQualityTier": {
           "name": "TourLanguagePurchaseQualityTier",
-          "values": [
-            "standard",
-            "pro",
-            "manual"
-          ]
+          "values": ["standard", "pro", "manual"]
         },
         "TourLanguagePurchaseProvider": {
           "name": "TourLanguagePurchaseProvider",
-          "values": [
-            "marianmt",
-            "deepl"
-          ]
+          "values": ["marianmt", "deepl"]
         },
         "TourLanguagePurchasePurchaseType": {
           "name": "TourLanguagePurchasePurchaseType",
-          "values": [
-            "single",
-            "pack_3",
-            "pack_all",
-            "free_first",
-            "manual"
-          ]
+          "values": ["single", "pack_3", "pack_all", "free_first", "manual"]
         },
         "TourPurchaseSource": {
           "name": "TourPurchaseSource",
-          "values": [
-            "web",
-            "code",
-            "iap"
-          ]
+          "values": ["web", "code", "iap"]
         },
         "TourPurchaseStatus": {
           "name": "TourPurchaseStatus",
-          "values": [
-            "active",
-            "refunded"
-          ]
+          "values": ["active", "refunded"]
         },
         "UserEntitlementSpendQualification": {
           "name": "UserEntitlementSpendQualification",
-          "values": [
-            "annual_pass",
-            "legacy_subscription",
-            "unqualified"
-          ]
+          "values": ["annual_pass", "legacy_subscription", "unqualified"]
         },
         "TourAccessCodeStatus": {
           "name": "TourAccessCodeStatus",
-          "values": [
-            "unused",
-            "redeemed",
-            "void"
-          ]
+          "values": ["unused", "redeemed", "void"]
         },
         "ModerationItemStatus": {
           "name": "ModerationItemStatus",
-          "values": [
-            "pending",
-            "resubmitted",
-            "in_review",
-            "approved",
-            "rejected"
-          ]
+          "values": ["pending", "resubmitted", "in_review", "approved", "rejected"]
         },
         "UserProfileAccountType": {
           "name": "UserProfileAccountType",
-          "values": [
-            "visitor",
-            "guide",
-            "both"
-          ]
+          "values": ["visitor", "guide", "both"]
         },
         "TourHistoryStatus": {
           "name": "TourHistoryStatus",
-          "values": [
-            "in_progress",
-            "completed",
-            "abandoned"
-          ]
+          "values": ["in_progress", "completed", "abandoned"]
         },
         "TourReviewStatus": {
           "name": "TourReviewStatus",
-          "values": [
-            "visible",
-            "flagged",
-            "removed"
-          ]
+          "values": ["visible", "flagged", "removed"]
         },
         "TourCommentAuthor": {
           "name": "TourCommentAuthor",
-          "values": [
-            "admin",
-            "guide"
-          ]
+          "values": ["admin", "guide"]
         },
         "TourCommentAction": {
           "name": "TourCommentAction",
-          "values": [
-            "approved",
-            "rejected",
-            "revision",
-            "comment",
-            "resubmitted",
-            "submitted"
-          ]
+          "values": ["approved", "rejected", "revision", "comment", "resubmitted", "submitted"]
+        },
+        "PairState": {
+          "name": "PairState",
+          "values": ["absent", "queued", "fabricating", "partially_ready", "ready", "failed"]
         }
       },
       "nonModels": {
@@ -3555,6 +3694,74 @@
               "isRequired": true,
               "attributes": [],
               "isArrayNullable": false
+            }
+          }
+        },
+        "TranslationResult": {
+          "name": "TranslationResult",
+          "fields": {
+            "jobId": {
+              "name": "jobId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "translatedText": {
+              "name": "translatedText",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "provider": {
+              "name": "provider",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "costProvider": {
+              "name": "costProvider",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "costCharged": {
+              "name": "costCharged",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "marge": {
+              "name": "marge",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "errorCode": {
+              "name": "errorCode",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
             }
           }
         },
@@ -3783,6 +3990,94 @@
               "attributes": []
             }
           }
+        },
+        "EvaluateTourSourceVersionReturnType": {
+          "name": "EvaluateTourSourceVersionReturnType",
+          "fields": {
+            "ok": {
+              "name": "ok",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "sourceVersion": {
+              "name": "sourceVersion",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "advanced": {
+              "name": "advanced",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "SetLanguageScopeReturnType": {
+          "name": "SetLanguageScopeReturnType",
+          "fields": {
+            "ok": {
+              "name": "ok",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "language": {
+              "name": "language",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "inScope": {
+              "name": "inScope",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "missingSystemPhraseKeys": {
+              "name": "missingSystemPhraseKeys",
+              "isArray": true,
+              "type": "String",
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
         }
       },
       "queries": {
@@ -3823,6 +4118,22 @@
               "isRequired": true
             }
           }
+        },
+        "checkTranslation": {
+          "name": "checkTranslation",
+          "isArray": false,
+          "type": {
+            "nonModel": "TranslationResult"
+          },
+          "isRequired": false,
+          "arguments": {
+            "jobId": {
+              "name": "jobId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
         }
       },
       "mutations": {
@@ -3850,6 +4161,88 @@
               "name": "languageCode",
               "isArray": false,
               "type": "String",
+              "isRequired": false
+            }
+          }
+        },
+        "requestTranslation": {
+          "name": "requestTranslation",
+          "isArray": false,
+          "type": {
+            "nonModel": "TranslationResult"
+          },
+          "isRequired": false,
+          "arguments": {
+            "segmentId": {
+              "name": "segmentId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "sceneId": {
+              "name": "sceneId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "text": {
+              "name": "text",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "sourceLang": {
+              "name": "sourceLang",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "targetLang": {
+              "name": "targetLang",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "provider": {
+              "name": "provider",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "kind": {
+              "name": "kind",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "tourTitle": {
+              "name": "tourTitle",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "city": {
+              "name": "city",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "sceneTitle": {
+              "name": "sceneTitle",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "sceneIndex": {
+              "name": "sceneIndex",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false
+            },
+            "sceneCount": {
+              "name": "sceneCount",
+              "isArray": false,
+              "type": "Int",
               "isRequired": false
             }
           }
@@ -4002,6 +4395,50 @@
               "isRequired": true
             }
           }
+        },
+        "evaluateTourSourceVersion": {
+          "name": "evaluateTourSourceVersion",
+          "isArray": false,
+          "type": {
+            "nonModel": "EvaluateTourSourceVersionReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "tourId": {
+              "name": "tourId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
+        },
+        "setLanguageScope": {
+          "name": "setLanguageScope",
+          "isArray": false,
+          "type": {
+            "nonModel": "SetLanguageScopeReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "language": {
+              "name": "language",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "inScope": {
+              "name": "inScope",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true
+            },
+            "note": {
+              "name": "note",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
         }
       }
     }
@@ -4016,54 +4453,24 @@
         "aws_region": "us-east-1",
         "paths": {
           "guide-photos/${cognito-identity.amazonaws.com:sub}/*": {
-            "entityidentity": [
-              "get",
-              "list",
-              "write",
-              "delete"
-            ]
+            "entityidentity": ["get", "list", "write", "delete"]
           },
           "guide-photos/*": {
-            "guest": [
-              "get",
-              "list"
-            ],
-            "authenticated": [
-              "get",
-              "list"
-            ]
+            "guest": ["get", "list"],
+            "authenticated": ["get", "list"]
           },
           "tour-audio/${cognito-identity.amazonaws.com:sub}/*": {
-            "entityidentity": [
-              "get",
-              "list",
-              "write",
-              "delete"
-            ]
+            "entityidentity": ["get", "list", "write", "delete"]
           },
           "tour-audio/*": {
-            "authenticated": [
-              "get",
-              "list"
-            ]
+            "authenticated": ["get", "list"]
           },
           "guide-studio/${cognito-identity.amazonaws.com:sub}/*": {
-            "entityidentity": [
-              "get",
-              "list",
-              "write",
-              "delete"
-            ]
+            "entityidentity": ["get", "list", "write", "delete"]
           },
           "guide-studio/*": {
-            "authenticated": [
-              "get",
-              "list"
-            ],
-            "guest": [
-              "get",
-              "list"
-            ]
+            "authenticated": ["get", "list"],
+            "guest": ["get", "list"]
           }
         }
       }
