@@ -289,49 +289,19 @@ export function onProgress(uploadId: string, callback: ProgressCallback): () => 
   };
 }
 
-export async function uploadTTSAudio(
-  blob: Blob,
-  sessionId: string,
-  sceneId: string,
-  segmentId: string,
-  language: string,
-): Promise<{ ok: true; s3Key: string } | { ok: false; error: string }> {
-  // Validate MIME — TTS generates WAV audio
-  const baseMime = blob.type.split(';')[0].trim();
-  if (baseMime && !baseMime.startsWith('audio/')) {
-    return { ok: false, error: `Type non supporté pour audio TTS : ${blob.type}` };
-  }
-  if (blob.size > MAX_AUDIO_SIZE) {
-    return { ok: false, error: `Audio TTS trop volumineux (${Math.round(blob.size / 1024 / 1024)}MB > 50MB)` };
-  }
-
-  const ts = Date.now();
-  const uploadId = `${sessionId}-scene-${sceneId}-seg-${segmentId}-${language}-tts`;
-
-  try {
-    const result = await withRetry(() =>
-      uploadData({
-        path: ({ identityId }) =>
-          `guide-studio/${identityId}/${sessionId}/audio/scene_${sceneId}_seg_${segmentId}_${language}_${ts}.wav`,
-        data: blob,
-        options: {
-          onProgress: (event) => {
-            notifyProgress(uploadId, event.transferredBytes, event.totalBytes ?? blob.size);
-          },
-        },
-      }).result,
-    );
-
-    const s3Key = result.path;
-    logger.info(SERVICE_NAME, 'TTS audio uploaded', { sessionId, sceneId, segmentId, language, s3Key });
-    return { ok: true, s3Key };
-  } catch (error) {
-    logger.error(SERVICE_NAME, 'TTS audio upload failed after retries', {
-      sessionId, sceneId, segmentId, language, error: String(error),
-    });
-    return { ok: false, error: 'Upload audio TTS échoué après 3 tentatives.' };
-  }
-}
+// `uploadTTSAudio` a été RETIRÉE (AD-3).
+//
+// C'était le SEUL constructeur de clé portant la langue, et il était mort :
+// aucun appelant, nulle part. Le laisser en place entretenait un troisième
+// univers de clés à côté des deux réels — la forme du Studio ci-dessus, qui
+// sert la langue de base ET les traductions sans les distinguer autrement que
+// par l'horodatage, et l'absence totale de segment de version.
+//
+// Le constructeur canonique du triplet (Visite, Langue, Version) vit désormais
+// en UN SEUL endroit, côté backend :
+// `TourGuideApp/amplify/shared/narration-keys.ts`. Il porte la règle de
+// compatibilité — Version 1 sans segment de version, Version >= 2 avec — pour
+// que les clés héritées restent valides sans être touchées.
 
 /**
  * Upload a custom ambiance sound to the guide's personal sound bank.
