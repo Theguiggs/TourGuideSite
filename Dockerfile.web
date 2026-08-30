@@ -34,10 +34,17 @@ RUN if [ ! -f ../TourGuideApp/amplify/data/resource.ts ]; then \
 # redéploiement a atterri ; le SHA, lui, doit être fourni par l'appelant, faute
 # de quoi il vaut « dev » (le contexte Docker exclut .git, cf. .dockerignore).
 ARG BUILD_SHA=dev
-RUN printf '
-NEXT_PUBLIC_BUILD_SHA=%s
-NEXT_PUBLIC_BUILD_TIME=%s
-'       "$BUILD_SHA" "$(date -u +%Y-%m-%dT%H:%MZ)" >> .env.production
+# UNE SEULE LIGNE PHYSIQUE, ET C'EST LA RAISON D'ÊTRE DE CE COMMENTAIRE.
+# La rédaction d'origine étalait ce `printf` sur quatre lignes, en comptant sur
+# les apostrophes pour les tenir ensemble. Le parseur de Docker ne lit pas le
+# shell : sans `\` final, il traite chaque ligne physique comme une INSTRUCTION,
+# et rendait « unknown instruction: NEXT_PUBLIC_BUILD_SHA=%s ».
+#
+# Conséquence, mesurée : ce fichier n'a plus construit du 2026-08-24 08:22 au
+# 2026-08-30 — 23 commits bloqués, et le portail de production figé six jours.
+# L'ironie mérite d'être écrite : c'est l'empreinte censée RÉVÉLER quel code
+# tourne qui a empêché tout code de partir, et masqué son propre échec.
+RUN printf 'NEXT_PUBLIC_BUILD_SHA=%s\nNEXT_PUBLIC_BUILD_TIME=%s\n' "$BUILD_SHA" "$(date -u +%Y-%m-%dT%H:%MZ)" >> .env.production
 
 RUN npm run build
 
