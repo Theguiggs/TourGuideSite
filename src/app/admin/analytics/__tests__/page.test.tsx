@@ -83,9 +83,12 @@ describe('AdminAnalyticsPage', () => {
     render(<AdminAnalyticsPage />);
     const bloc = await screen.findByTestId('depense-indisponible');
 
-    expect(bloc.textContent).toContain('—');
     expect(bloc.textContent).toContain('Le grand livre n’est pas encore lisible ici.');
     expect(bloc.textContent).toMatch(/honnête vaut mieux/);
+    // LE POINT DE L'ÉPREUVE : aucun MONTANT n'est affiché à la place. Chercher
+    // un « — » ne suffisait pas — le paragraphe explicatif en porte un, et la
+    // garde survivait au remplacement du chiffre de tête par « $0.00 ».
+    expect(bloc.textContent).not.toMatch(/\$\s*\d/);
   });
 
   it('grand livre vierge : le DIT, et n’affiche pas 0 $', async () => {
@@ -114,7 +117,7 @@ describe('AdminAnalyticsPage', () => {
 
     expect(bloc.textContent).toMatch(/aucun débit/);
     expect(bloc.textContent).toMatch(/rien de mesuré à ce jour/);
-    expect(bloc.textContent).not.toMatch(/\$0/);
+    expect(bloc.textContent).not.toMatch(/\$\s*\d/);
   });
 
   it('grand livre garni : rend le mesuré, le provisionné et le relâché, jamais leur somme', async () => {
