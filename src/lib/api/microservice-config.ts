@@ -13,6 +13,7 @@
 
 import { logger } from '@/lib/logger';
 import { fetchAuthSession } from 'aws-amplify/auth';
+import { ENTETE_REFUS_DEPENSE } from './internal-spend';
 
 const SERVICE_NAME = 'MicroserviceClient';
 const SUBMIT_MAX_ATTEMPTS = 5;
@@ -57,6 +58,17 @@ export async function submitMicroserviceJob(path: string, body: unknown): Promis
       body: JSON.stringify(body),
     });
     if (response.status !== 429) return response;
+    // UN PLAFOND N'EST PAS UNE FILE D'ATTENTE. La contre-pression du
+    // microservice se vide toute seule, une enveloppe de dépense épuisée non :
+    // réessayer lui coûterait vingt secondes et cinq débits refusés pour
+    // aboutir au même refus. Le proxy marque ces 429-là (story 16, tâche 5).
+    if (response.headers.get(ENTETE_REFUS_DEPENSE)) {
+      logger.error(SERVICE_NAME, 'refus de dépense — aucune reprise', {
+        path,
+        motif: response.headers.get(ENTETE_REFUS_DEPENSE),
+      });
+      return response;
+    }
     last = response;
     const retryAfter = Number(response.headers.get('Retry-After')) || attempt * 2;
     logger.warn(SERVICE_NAME, 'Microservice busy (429), backing off', { path, attempt, retryAfter });
