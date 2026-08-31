@@ -229,7 +229,9 @@ describe('/api/microservice proxy', () => {
   });
 
   it('ok: true : relaie, et le corps relayé est INCHANGÉ', async () => {
-    const corps = JSON.stringify({ text: 'Été à Biarritz — 3 €', language: 'fr' });
+    // INDENTÉ ET ACCENTUÉ À DESSEIN : une comparaison sémantique passerait sur
+    // un corps re-sérialisé ; celle-ci exige les MÊMES OCTETS.
+    const corps = JSON.stringify({ text: 'Été à Biarritz — 3 €', language: 'fr' }, null, 2);
     mockMesurer.mockReturnValue({ ok: true, caracteres: 20, langue: 'fr' });
 
     const response = await posterSynthese(corps);
