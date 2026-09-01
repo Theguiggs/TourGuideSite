@@ -44,8 +44,10 @@
  *     de la règle `owner` les constantes du juge, puis on éprouve les DEUX ères ;
  *   - si le fichier est POSTÉRIEUR, l'ère « future » EST l'ère réelle et rien
  *     n'est simulé.
- * Une troisième forme de règle fait TOMBER l'épreuve : c'est la condition pour
- * qu'un changement du modèle de propriété ne passe pas en silence.
+ * Une troisième forme de règle fait TOMBER une épreuve NOMMÉE, la première du
+ * fichier — pas une exception au chargement du module, dont le message se
+ * perdrait dans une trace. C'est la condition pour qu'un changement du modèle de
+ * propriété ne passe pas en silence.
  *
  * CE QUE CETTE ÉPREUVE NE PROUVE PAS
  * -----------------------------------
@@ -144,10 +146,16 @@ function introspectionApresBascule(modele: ModeleIntrospecte): ModeleIntrospecte
   return copie;
 }
 
-/** L'ère du fichier `amplify_outputs.json` embarqué, lue dans ses règles d'auth. */
-function ereDuFichier(): 'avant-bascule' | 'apres-bascule' {
+/**
+ * L'ère du fichier `amplify_outputs.json` embarqué, lue dans ses règles d'auth.
+ *
+ * Une TROISIÈME forme rend `'inconnue'` plutôt que de jeter : une exception au
+ * chargement du module ferait tomber la SUITE ENTIÈRE avec un message noyé dans
+ * une trace, au lieu d'une épreuve nommée qui dit ce qui ne va pas.
+ */
+function ereDuFichier(): 'avant-bascule' | 'apres-bascule' | 'inconnue' {
   const regle = reglePropriete(MODELE_REEL);
-  if (!regle) throw new Error('aucune règle `owner` dans la model_introspection');
+  if (!regle) return 'inconnue';
   if (regle.ownerField === 'owner' && regle.identityClaim === 'cognito:username') {
     return 'avant-bascule';
   }
@@ -157,13 +165,7 @@ function ereDuFichier(): 'avant-bascule' | 'apres-bascule' {
   ) {
     return 'apres-bascule';
   }
-  throw new Error(
-    '`amplify_outputs.json` porte une règle de propriété INCONNUE : ' +
-      `ownerField=${String(regle.ownerField)} identityClaim=${String(regle.identityClaim)}. ` +
-      'Ni l’ancienne (owner/cognito:username), ni celle du correctif ' +
-      `(${CHAMP_PROPRIETE_PROFIL}/${REVENDICATION_PROPRIETE_PROFIL}). ` +
-      'Le juge du portail ne peut plus être supposé juste : vérifier le schéma.',
-  );
+  return 'inconnue';
 }
 
 const ERE = ereDuFichier();
@@ -172,9 +174,26 @@ const SELECTION_APRES = jeuDeSelection(MODELE_APRES);
 
 describe('le jeu de sélection que la règle d’auth impose au client', () => {
   it('est dérivé d’un `amplify_outputs.json` dont la règle de propriété est CONNUE', () => {
-    // `ereDuFichier()` a déjà jeté si la règle est d'une troisième forme. On fige
-    // ici l'ère constatée pour que la lecture du rapport de suite dise laquelle.
-    expect(['avant-bascule', 'apres-bascule']).toContain(ERE);
+    // Deux formes seulement sont admises : celle d'AVANT la bascule (le fichier
+    // est une copie manuelle, il reste périmé jusqu'au redéploiement) et celle du
+    // correctif. Toute autre forme rend cette épreuve rouge AVANT les autres :
+    // si le modèle de propriété n'est ni l'un ni l'autre, le juge du portail ne
+    // peut plus être supposé juste, et la projection ci-dessous ne veut plus rien
+    // dire.
+    const regle = reglePropriete(MODELE_REEL);
+    expect({
+      ere: ERE,
+      ownerField: regle?.ownerField,
+      identityClaim: regle?.identityClaim,
+    }).toEqual(
+      ERE === 'apres-bascule'
+        ? {
+            ere: 'apres-bascule',
+            ownerField: CHAMP_PROPRIETE_PROFIL,
+            identityClaim: REVENDICATION_PROPRIETE_PROFIL,
+          }
+        : { ere: 'avant-bascule', ownerField: 'owner', identityClaim: 'cognito:username' },
+    );
   });
 
   it('désigne `userId` comme champ de propriété — donc il est TOUJOURS sélectionné', () => {
