@@ -9,12 +9,10 @@ jest.mock('aws-amplify/auth', () => ({
 import { submitMicroserviceJob } from '../microservice-config';
 import { ENTETE_REFUS_DEPENSE } from '../spend-refusal';
 
-function refus429(marque: boolean): Response {
-  return new Response(JSON.stringify({ ok: false, motif: 'enveloppe-interne-epuisee' }), {
+function refus429(marque: boolean, motif = 'enveloppe-interne-epuisee'): Response {
+  return new Response(JSON.stringify({ ok: false, motif }), {
     status: 429,
-    headers: marque
-      ? { [ENTETE_REFUS_DEPENSE]: 'enveloppe-interne-epuisee' }
-      : { 'Retry-After': '1' },
+    headers: marque ? { [ENTETE_REFUS_DEPENSE]: motif } : { 'Retry-After': '1' },
   });
 }
 
@@ -34,6 +32,17 @@ describe('submitMicroserviceJob face à un refus de dépense', () => {
   // cinq débits refusés pour aboutir au même refus.
   it('ne réessaie PAS un 429 marqué « refus de dépense »', async () => {
     global.fetch = jest.fn().mockResolvedValue(refus429(true));
+
+    const response = await submitMicroserviceJob('/v1/tts/generate', { text: 'Bonjour' });
+
+    expect(response.status).toBe(429);
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
+
+  // Le seau horaire du compte ne se vide pas plus vite qu'une enveloppe : il
+  // attend l'heure suivante. Le marqueur vaut donc pour lui aussi.
+  it('ne réessaie PAS non plus un 429 « quota horaire du compte »', async () => {
+    global.fetch = jest.fn().mockResolvedValue(refus429(true, 'quota-horaire-compte'));
 
     const response = await submitMicroserviceJob('/v1/tts/generate', { text: 'Bonjour' });
 

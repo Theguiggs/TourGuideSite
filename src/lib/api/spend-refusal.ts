@@ -18,9 +18,19 @@
  */
 export const ENTETE_REFUS_DEPENSE = 'x-murmure-refus-depense';
 
-/** Les motifs que le proxy sait produire — un vocabulaire fermé, journalisable. */
+/**
+ * Les motifs que le proxy sait produire — un vocabulaire fermé, journalisable.
+ *
+ * DEUX PLAFONDS, DEUX MOTIFS, ET C'EST DÉLIBÉRÉ. Ils rendent tous deux 429 et
+ * tous deux le marqueur terminal, mais le remède n'est PAS le même :
+ * `enveloppe-interne-epuisee` (2823) demande un `setSpendEnvelope` à
+ * l'exploitant ; `quota-horaire-compte` (2814) ne demande rien à personne — le
+ * seau du compte se vide à l'heure suivante. Les fondre aurait envoyé
+ * l'exploitant relever un plafond qui n'était pas atteint.
+ */
 export type MotifDeRefus =
   | 'enveloppe-interne-epuisee'
+  | 'quota-horaire-compte'
   | 'corps-non-mesurable'
   | 'caracteres-refuses'
   | 'identite-refusee'

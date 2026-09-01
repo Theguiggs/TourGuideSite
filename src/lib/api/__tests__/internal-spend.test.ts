@@ -136,6 +136,53 @@ describe('debiterSyntheseInterne', () => {
     expect(verdict.message).toMatch(/exhausted/i);
   });
 
+  // ─── DEUX PLAFONDS, DEUX 429, DEUX REMÈDES ───
+  it('2814 ⇒ 429 nommé, jamais de relais', async () => {
+    global.fetch = jest.fn().mockResolvedValue(
+      debit({
+        ok: false,
+        code: CODES_DEPENSE.QUOTA_EXCEEDED,
+        error:
+          'Hourly studio synthesis quota reached for this account (120000 characters or 300 ' +
+          'calls per hour). Nothing was debited and nothing was relayed. ' +
+          'Resets at 2026-09-01T12:00:00.000Z.',
+      }),
+    );
+
+    const verdict = await debiterSyntheseInterne(appel);
+    expect(verdict.relayer).toBe(false);
+    if (verdict.relayer) throw new Error('unreachable');
+    expect(verdict.status).toBe(429);
+    expect(verdict.motif).toBe('quota-horaire-compte');
+    expect(verdict.code).toBe(2814);
+    // Le refus PORTE son remède, et ce n'est PAS celui de 2823 : le seau se vide
+    // tout seul, relever l'enveloppe n'y changerait rien.
+    expect(verdict.message).toMatch(/hourly/i);
+    expect(verdict.message).toMatch(/next hourly window/i);
+    // Le détail du backend — dont l'heure de remise à zéro — est conservé.
+    expect(verdict.message).toMatch(/Resets at 2026-09-01T12:00:00\.000Z/);
+  });
+
+  it("le message de 2814 ne se confond pas avec celui de 2823", async () => {
+    const message = async (code: number) => {
+      global.fetch = jest.fn().mockResolvedValue(debit({ ok: false, code, error: 'peu importe' }));
+      const verdict = await debiterSyntheseInterne(appel);
+      if (verdict.relayer) throw new Error('unreachable');
+      return verdict;
+    };
+
+    const quota = await message(CODES_DEPENSE.QUOTA_EXCEEDED);
+    const enveloppe = await message(CODES_DEPENSE.INTERNAL_SPEND_SUSPENDED);
+
+    // Même statut, même caractère terminal — mais jamais le même remède.
+    expect(quota.status).toBe(enveloppe.status);
+    expect(quota.motif).not.toBe(enveloppe.motif);
+    expect(quota.message).not.toBe(enveloppe.message);
+    // 2823 envoie relever l'enveloppe ; 2814 ne le fait PAS, il l'écarte.
+    expect(enveloppe.message).toMatch(/Raise the internal cap \(setSpendEnvelope\)/);
+    expect(quota.message).toMatch(/raising it \(setSpendEnvelope\) changes nothing here/i);
+  });
+
   it('2801 ⇒ pas de relais', async () => {
     global.fetch = jest
       .fn()

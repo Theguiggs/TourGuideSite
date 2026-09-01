@@ -228,6 +228,28 @@ describe('/api/microservice proxy', () => {
     expect(response.headers.get('x-murmure-refus-depense')).toBe('enveloppe-interne-epuisee');
   });
 
+  it('quota horaire du compte atteint : ne relaie pas, et rend 429 nommé', async () => {
+    mockDebiter.mockResolvedValue({
+      relayer: false,
+      status: 429,
+      motif: 'quota-horaire-compte',
+      code: 2814,
+      message:
+        'Hourly synthesis quota reached for this account — synthesis refused, nothing was sent.',
+    });
+
+    const response = await posterSynthese();
+
+    expect(response.status).toBe(429);
+    expect(global.fetch).not.toHaveBeenCalled();
+    const body = await response.json();
+    expect(body).toMatchObject({ ok: false, motif: 'quota-horaire-compte', code: 2814 });
+    expect(body.error).toMatch(/hourly/i);
+    // LE MARQUEUR TERMINAL : sans lui, `submitMicroserviceJob` réessaierait cinq
+    // fois un plafond qui ne se vide pas avant l'heure suivante.
+    expect(response.headers.get('x-murmure-refus-depense')).toBe('quota-horaire-compte');
+  });
+
   it('ok: true : relaie, et le corps relayé est INCHANGÉ', async () => {
     // INDENTÉ ET ACCENTUÉ À DESSEIN : une comparaison sémantique passerait sur
     // un corps re-sérialisé ; celle-ci exige les MÊMES OCTETS.

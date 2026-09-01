@@ -71,7 +71,13 @@ export const CODES_DEPENSE = {
   FORBIDDEN: 2803,
   /** 2804 — panne du registre. « Un appel qui n'a pas débité ne part pas. » */
   FAILED: 2804,
-  /** 2823 — enveloppe interne épuisée : le seul refus qui vaut 429. */
+  /**
+   * 2814 — quota HORAIRE de ce compte atteint sur le guichet (120 000
+   * caractères ou 300 appels par heure, `debit-internal-spend/quota.ts`).
+   * Rien n'a été débité, rien ne doit être relayé.
+   */
+  QUOTA_EXCEEDED: 2814,
+  /** 2823 — enveloppe interne épuisée. */
   INTERNAL_SPEND_SUSPENDED: 2823,
 } as const;
 
@@ -317,6 +323,35 @@ export async function debiterSyntheseInterne(params: {
       message:
         'Internal spend envelope exhausted — synthesis refused, nothing was sent to the provider. ' +
         'Raise the internal cap (setSpendEnvelope) or wait for the next period. ' +
+        (detail ?? ''),
+    };
+  }
+
+  // 2814 — L'AUTRE REFUS QUI VAUT 429, ET IL NE SE CONFOND PAS AVEC 2823.
+  //
+  // Le seau horaire du guichet borne ce qu'UN COMPTE peut soumettre par heure ;
+  // l'enveloppe borne ce que TOUS les producteurs peuvent dépenser sur la
+  // période. Sans cette branche, 2814 tombait dans le fourre-tout d'en bas et
+  // sortait en 503 « registre-en-panne » : l'exploitant serait allé chercher une
+  // panne DynamoDB inexistante, alors que rien n'est en panne et que le remède
+  // ne lui appartient même pas — le seau se vide tout seul à l'heure suivante.
+  //
+  // Le marqueur terminal est posé pour la même raison que 2823 : un plafond
+  // n'est pas une file d'attente, et `submitMicroserviceJob` réessaierait cinq
+  // fois pour aboutir au même refus.
+  if (code === CODES_DEPENSE.QUOTA_EXCEEDED) {
+    logger.warn(SERVICE_NAME, 'quota horaire du compte atteint — aucun relais', {
+      code,
+    });
+    return {
+      relayer: false,
+      status: 429,
+      motif: 'quota-horaire-compte',
+      code,
+      message:
+        'Hourly synthesis quota reached for this account — synthesis refused, nothing was sent to the provider. ' +
+        'This is not the internal spend cap: raising it (setSpendEnvelope) changes nothing here. ' +
+        'Wait for the next hourly window. ' +
         (detail ?? ''),
     };
   }
