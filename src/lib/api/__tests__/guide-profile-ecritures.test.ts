@@ -282,6 +282,23 @@ describe('updateGuideProfileMutation — les champs de MODÉRATION ne partent ja
     expect(typeof interdits).toBe('function');
   });
 
+  it("l’union littérale d’`adminUpdateGuideProfileStatus` est la DERNIÈRE garde du domaine", () => {
+    // `profileStatus` est passé d'`a.enum()` à `a.string()` au schéma (Gen 2
+    // refuse une autorisation de champ sur un enum, et c'est cette autorisation
+    // qui retire `update` au propriétaire). Le type dérivé du schéma est donc
+    // `string | null` : il n'écarte plus rien.
+    //
+    // Ce qui écarte encore une valeur hors domaine est cette union-ci, écrite à
+    // la main. L'élargir en `string` ferait passer `'actif'`, `'Suspended'` ou
+    // n'importe quoi — sans erreur nulle part, et avec pour seul effet visible un
+    // guide dont le statut ne veut plus rien dire pour le juge.
+    const horsDomaine = () =>
+      // @ts-expect-error `'actif'` n'est pas un statut : le domaine est
+      // `pending_moderation | active | suspended | rejected`.
+      adminUpdateGuideProfileStatus('profil-1', 'actif');
+    expect(typeof horsDomaine).toBe('function');
+  });
+
   it("le passage ADMIN, lui, continue de passer — il ne traverse pas ce filtre", async () => {
     // C'est la contrepartie indispensable : une garde qui casserait la modération
     // ne serait pas une garde, mais une panne. `adminUpdateGuideProfileStatus`

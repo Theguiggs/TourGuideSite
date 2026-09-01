@@ -85,6 +85,64 @@ describe('le TYPE des lignes jugées', () => {
   });
 });
 
+describe('le TYPE de `profileStatus` — l’enum est parti, plus rien ne rattrape une faute', () => {
+  /**
+   * CE QUI A CHANGÉ AU SCHÉMA, ET CE QUE ÇA COÛTE ICI.
+   *
+   * `profileStatus` est passé d'`a.enum()` à `a.string()` : Amplify Gen 2 refuse
+   * une autorisation AU NIVEAU DU CHAMP sur un champ enum, et c'est cette
+   * autorisation qui retire `update` au propriétaire (sans quoi un guide suspendu
+   * se remet `active` en une mutation sur sa propre ligne).
+   *
+   * SUR LE FIL, RIEN NE BOUGE : une valeur d'énumération GraphQL voyage déjà
+   * comme une chaîne JSON, les quatre valeurs restent
+   * `pending_moderation | active | suspended | rejected`, et les binaires déjà
+   * distribués ne s'en aperçoivent pas.
+   *
+   * DANS LE TYPE, SI : `Schema['GuideProfile']['type']['profileStatus']` était
+   * une UNION, il devient `string | null`. Le compilateur ne refuse donc plus une
+   * faute de frappe (`'suspend'`, `'Active'`), et il ne le fera plus jamais. Ce
+   * qui doit rattraper à sa place :
+   *   - `STATUTS_DISQUALIFIANTS`, ici, pour la LECTURE ;
+   *   - l'union littérale d'`adminUpdateGuideProfileStatus` et celles des écrans
+   *     d'administration, pour l'ÉCRITURE (épinglées dans
+   *     `src/lib/api/__tests__/guide-profile-ecritures.test.ts`).
+   */
+  it('accepte n’importe quelle chaîne — la preuve que l’union a disparu', () => {
+    // Assertion de COMPILATION. Si le backend re-narrowait `profileStatus` en
+    // enum, cette ligne cesserait de compiler et `tsc --noEmit` tomberait ICI —
+    // ce qui force à repasser par ce commentaire au lieu de croire l'union
+    // revenue toute seule.
+    const horsDomaine: Schema['GuideProfile']['type']['profileStatus'] = 'ce-statut-nexiste-pas';
+    expect(typeof horsDomaine).toBe('string');
+  });
+
+  it('le domaine reste les QUATRE valeurs, et le juge les partage en deux', () => {
+    // Le domaine n'est plus porté par le type : il est porté par ceci, et par le
+    // commentaire du schéma. Une cinquième valeur qui apparaîtrait en base serait
+    // traitée comme qualifiante — c'est le sens sûr (elle ne retire rien), mais
+    // il faut le savoir.
+    const domaine = ['pending_moderation', 'active', 'suspended', 'rejected'];
+    expect(domaine.filter(statutDisqualifie)).toEqual(['suspended', 'rejected']);
+    expect(domaine.filter((v) => !statutDisqualifie(v))).toEqual([
+      'pending_moderation',
+      'active',
+    ]);
+  });
+
+  it('une faute de frappe ne disqualifie plus personne — et personne ne la signale', () => {
+    // Le coût exact de la perte de l'enum, écrit noir sur blanc : `'suspend'`
+    // (sans le `ed`) rendrait son rôle à un suspendu, sans erreur de compilation
+    // ni erreur d'exécution. C'est pourquoi l'écriture passe par des unions
+    // littérales, et jamais par une chaîne libre.
+    expect(statutDisqualifie('suspend')).toBe(false);
+    expect(statutDisqualifie('Suspended')).toBe(false);
+    expect(
+      qualifieGuide({ sub: GUIDE, lignes: [ligne(GUIDE, 'suspend')], tronquee: false }),
+    ).toEqual({ role: 'guide' });
+  });
+});
+
 describe('profilAppartientAuSub — ÉGALITÉ STRICTE', () => {
   it('accepte la seule forme que le résolveur peut écrire : le `sub` NU', () => {
     expect(profilAppartientAuSub(GUIDE, GUIDE)).toBe(true);
