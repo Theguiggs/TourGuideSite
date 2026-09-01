@@ -125,7 +125,14 @@ async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerR
 
   // Même règle pour la vue tronquée : lecture incomplète, donc rien à mémoriser.
   // Seuls les vrais verdicts (`guide`, `aucun-profil`, `disqualifie`) sont mis
-  // en cache.
+  // en cache. Figer une minute ce qui n'a rien prouvé transformerait un incident
+  // de lecture en perte de rôle — et pour un admin, en perte d'accès à la
+  // modération au moment précis où AppSync va mal.
+  //
+  // LE MOBILE APPLIQUE LA MÊME RÈGLE DEPUIS LE 2026-09-01, et il ne le faisait
+  // pas : `detectAccountType` rendait `'visitor'` sur vue tronquée et
+  // `storeSetAccountType` le PERSISTAIT sur disque — pas 60 s, jusqu'au prochain
+  // verdict. Il rend désormais `null` (« je ne sais pas ») et n'écrit rien.
   if (qualification.role === null && qualification.refus === 'vue-tronquee') {
     return roles;
   }
