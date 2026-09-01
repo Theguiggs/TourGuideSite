@@ -414,14 +414,29 @@ export async function createGuideProfileMutation(data: {
 }) {
   try {
     const client = getClient();
-    // owner-based auth requires userPool auth mode (not the default IAM)
+    // `userPool` est OBLIGATOIRE : en IAM le bloc de propriété du résolveur est
+    // court-circuité, et `input.userId == claims.sub` ne serait pas vérifié.
     const result = await client.models.GuideProfile.create(
       {
         ...data,
+        // SÉCURITÉ (modération) — `profileStatus` est envoyé, `verified` NE L'EST
+        // PLUS. Les deux gardent `create` au schéma, mais pas pour les mêmes
+        // raisons :
+        //  - `profileStatus: 'pending_moderation'` est le sens même de
+        //    l'inscription : elle est ouverte par conception, et c'est la
+        //    modération qui la borne. Le poser ici est ce qui l'empêche de
+        //    s'auto-approuver ;
+        //  - `verified: false` n'apportait RIEN — le champ est nullable et tous
+        //    ses lecteurs font `?? false`, donc l'absence et le `false` se lisent
+        //    pareil. Il n'était là que par habitude, et c'est lui qui OBLIGEAIT
+        //    le backend à laisser `create` ouvert sur un signal de confiance
+        //    public. Cesser de l'envoyer est la condition, explicitement posée
+        //    dans `amplify/data/guide-profile-model.ts`, pour retirer ce `create`
+        //    et ne laisser `verified` qu'à l'admin, à la création comme à la
+        //    modification. NE PAS LE REMETTRE.
         profileStatus: 'pending_moderation',
         rating: 0,
         tourCount: 0,
-        verified: false,
       },
       { authMode: 'userPool' },
     );
@@ -449,6 +464,34 @@ export async function adminUpdateGuideProfileStatus(id: string, profileStatus: '
   }
 }
 
+/**
+ * Les champs qu'un PROPRIÉTAIRE ne peut plus modifier — le backend les a sortis
+ * de `$ownerAllowedFields0` de l'update, chacun pour sa raison :
+ *
+ *  - `userId` PORTE la propriété. Laissé modifiable, son titulaire le
+ *    RÉASSIGNAIT au `sub` d'un tiers après coup, ce qui reconstruisait
+ *    l'inondation de l'index en deux mutations au lieu d'une ;
+ *  - `profileStatus` est LE champ dont dépend `STATUTS_DISQUALIFIANTS` : un
+ *    guide suspendu se remettait `active` en une mutation sur SA PROPRE ligne.
+ *    « Un suspendu reste suspendu » n'était donc pas une garde, mais une
+ *    convention que le suspendu contournait seul ;
+ *  - `verified` est le signal de confiance PUBLIC : n'importe quel guide se
+ *    décernait le badge en une mutation.
+ *
+ * Les envoyer fait répondre `Unauthorized on [...]` — MÊME avec la bonne valeur,
+ * et la mutation entière échoue. On refuse donc ICI, franchement, plutôt que de
+ * laisser un écran casser sur une erreur backend illisible. Le passage admin
+ * (`adminUpdateGuideProfileStatus`) n'emprunte PAS cette fonction : le groupe
+ * `admin` garde l'écriture, et c'est le seul chemin de modération.
+ *
+ * La barrière est double À DESSEIN : le TYPE ci-dessous exclut ces champs (c'est
+ * ce qui protège les appelants typés, cf. les `@ts-expect-error` de
+ * `guide-profile-ecritures.test.ts`), et ce filtre-ci protège le chemin non typé
+ * — `guide.ts:updateGuideProfile` reconstruit son entrée par
+ * `Object.fromEntries`, qui efface le type.
+ */
+const CHAMPS_INTERDITS_EN_MODIFICATION = ['userId', 'profileStatus', 'verified'] as const;
+
 export async function updateGuideProfileMutation(
   id: string,
   updates: Partial<{
@@ -461,6 +504,19 @@ export async function updateGuideProfileMutation(
     photoUrl: string | null;
   }>,
 ) {
+  const interdits = CHAMPS_INTERDITS_EN_MODIFICATION.filter(
+    (champ) => champ in (updates as Record<string, unknown>),
+  );
+  if (interdits.length > 0) {
+    logger.error(SERVICE_NAME, 'updateGuideProfile refuse un champ non modifiable', {
+      id,
+      champs: interdits.join(', '),
+    });
+    return {
+      ok: false as const,
+      error: `Champs non modifiables : ${interdits.join(', ')}`,
+    };
+  }
   try {
     const client = getClient();
     const result = await client.models.GuideProfile.update(
