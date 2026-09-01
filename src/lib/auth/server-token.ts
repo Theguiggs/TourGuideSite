@@ -1,7 +1,8 @@
 import { CognitoJwtVerifier } from 'aws-jwt-verify';
 import type { CognitoAccessTokenPayload } from 'aws-jwt-verify/jwt-model';
 import outputs from '../../../amplify_outputs.json';
-import { getGuideProfileByUserId } from '@/lib/api/appsync-client';
+import { listGuideProfilePageByUserId } from '@/lib/api/appsync-client';
+import { qualifieGuide, roleGuide } from './guide-qualification';
 
 const authConfig = (outputs as {
   auth: { user_pool_id: string; user_pool_client_id: string };
@@ -48,6 +49,16 @@ function tokenGroups(payload: CognitoAccessTokenPayload): string[] {
   return Array.isArray(groups) ? groups.filter((group): group is string => typeof group === 'string') : [];
 }
 
+/**
+ * Le rôle d'un porteur de jeton.
+ *
+ * SÉCURITÉ — `GuideProfile.userId` est un champ LIBRE : n'importe quel compte
+ * connecté peut planter une ligne sous le `sub` d'un tiers. La seule présence
+ * d'une ligne ne prouve donc RIEN, ni pour accorder le rôle (élévation), ni pour
+ * le retirer (révocation croisée). Le juge est `./guide-qualification.ts` : il
+ * exige un `owner` qui appartienne au `sub`, disqualifie dès qu'UNE ligne à soi
+ * est suspendue même noyée dans des doublons actifs, et refuse sur vue tronquée.
+ */
 async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerRole[]> {
   const groups = tokenGroups(payload);
   if (groups.includes('admin')) return ['admin', 'guide'];
@@ -56,16 +67,30 @@ async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerR
   if (cached && cached.expiresAt > Date.now()) return cached.roles;
   guideRoleCache.delete(payload.sub);
 
-  // Existing guide accounts are identified by their GuideProfile rather than a
-  // Cognito group. Bind the verified token sub to that profile so tourists
-  // cannot use privileged Studio endpoints.
-  const profile = await getGuideProfileByUserId(payload.sub, 'iam');
-  const disabled = profile?.profileStatus === 'suspended' || profile?.profileStatus === 'rejected';
-  const roles: ServerRole[] = disabled
-    ? []
-    : groups.includes('guide') || profile
-      ? ['guide']
-      : [];
+  // `payload.sub` sort du jeton VÉRIFIÉ — jamais d'une entrée de requête.
+  const lecture = await listGuideProfilePageByUserId(payload.sub, 'iam');
+
+  // Une lecture RATÉE n'est pas un verdict : elle refuse ce qu'elle n'a pas pu
+  // prouver, mais elle n'est JAMAIS mémorisée. La figer 60 s transformerait un
+  // incident de lecture en perte de rôle d'une minute pour un guide légitime.
+  if (!lecture.ok) {
+    return groups.includes('guide') ? ['guide'] : [];
+  }
+
+  const qualification = qualifieGuide({
+    sub: payload.sub,
+    lignes: lecture.lignes,
+    tronquee: lecture.tronquee,
+  });
+  const roles: ServerRole[] = roleGuide({ qualification, groupes: groups }) ? ['guide'] : [];
+
+  // Même règle pour la vue tronquée : lecture incomplète, donc rien à mémoriser.
+  // Seuls les vrais verdicts (`guide`, `aucun-profil`, `disqualifie`) sont mis
+  // en cache.
+  if (qualification.role === null && qualification.refus === 'vue-tronquee') {
+    return roles;
+  }
+
   if (guideRoleCache.size >= GUIDE_ROLE_CACHE_MAX_ENTRIES) {
     const oldestSub = guideRoleCache.keys().next().value;
     if (oldestSub) guideRoleCache.delete(oldestSub);

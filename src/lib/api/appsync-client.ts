@@ -15,6 +15,10 @@ import { logger } from '@/lib/logger';
 import { isPublicCatalogueTour } from './public-tour-policy';
 import { isPublicCatalogueGuide } from './public-guide-policy';
 import { disclosureWriteViolation } from './audio-source-policy';
+import {
+  BORNE_LECTURE_PROFILS,
+  type LigneProfilGuide,
+} from '@/lib/auth/guide-qualification';
 
 const SERVICE_NAME = 'AppSyncClient';
 
@@ -150,6 +154,66 @@ export async function getGuideProfileByUserId(userId: string, authMode?: 'userPo
   } catch (error) {
     logger.error(SERVICE_NAME, 'getGuideProfileByUserId failed', { error: String(error) });
     return null;
+  }
+}
+
+/**
+ * Lecture d'AUTORISATION : toutes les lignes `GuideProfile` de ce `sub`, lues
+ * par l'INDEX `guideProfilesByUserId` (champ de requête `listGuideProfileByUserId`).
+ *
+ * POURQUOI PAS `getGuideProfileByUserId` CI-DESSUS : celui-là fait un
+ * `list({filter})`, c'est-à-dire un BALAYAGE de table. Son `nextToken` est non
+ * nul dès que la TABLE dépasse une page de 1 Mo, sans aucun rapport avec les
+ * doublons — il ne peut donc pas nourrir la règle de vue tronquée. Pire, son
+ * `data?.[0]` rend déjà `null` pour un guide parfaitement légitime dont la ligne
+ * tombe dans une page non lue. L'index, lui, est une REQUÊTE sur clé de
+ * partition : sa page ne contient que les lignes de ce `sub`, et son `nextToken`
+ * signifie exactement « il reste des lignes À CE SUB ».
+ *
+ * PIÈGE DORMANT — `owner` n'est PAS dans
+ * `model_introspection.models.GuideProfile.fields` : il n'arrive que parce que
+ * `defaultSelectionSetForModel` (aws-amplify/data-schema) y ajoute le
+ * `ownerField` tiré des règles d'auth. Ne JAMAIS passer de `selectionSet`
+ * explicite ici sans y remettre `owner` — la comparaison porterait alors sur
+ * `undefined` et verrouillerait TOUT LE MONDE, silencieusement. Une épreuve
+ * tient ce piège.
+ *
+ * Le chemin IAM du portail lit TOUT, lignes plantées par des tiers comprises :
+ * c'est précisément pourquoi le tri par `owner` se fait ici, dans le code du
+ * portail (`qualifieGuide`), et ne se délègue pas au backend.
+ *
+ * `ok: false` = lecture RATÉE. À ne surtout pas confondre avec « aucun profil » :
+ * l'appelant doit refuser SANS mémoriser le refus.
+ */
+export async function listGuideProfilePageByUserId(
+  userId: string,
+  authMode?: 'userPool' | 'iam',
+): Promise<
+  { ok: true; lignes: LigneProfilGuide[]; tronquee: boolean } | { ok: false; erreur: string }
+> {
+  try {
+    const client = getClient();
+    const result = await client.models.GuideProfile.listGuideProfileByUserId(
+      { userId },
+      { limit: BORNE_LECTURE_PROFILS, ...(authMode ? { authMode } : {}) },
+    );
+    const errs = result.errors;
+    if (errs && errs.length > 0) {
+      const msg = errs.map((e) => e.message).join('; ');
+      logger.error(SERVICE_NAME, 'listGuideProfilePageByUserId returned errors', {
+        userId,
+        errors: msg,
+      });
+      return { ok: false, erreur: msg };
+    }
+    return {
+      ok: true,
+      lignes: (result.data ?? []) as LigneProfilGuide[],
+      tronquee: result.nextToken != null,
+    };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'listGuideProfilePageByUserId failed', { error: String(error) });
+    return { ok: false, erreur: String(error) };
   }
 }
 
