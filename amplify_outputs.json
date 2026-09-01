@@ -4170,6 +4170,177 @@
             }
           }
         },
+        "SpendAxisRow": {
+          "name": "SpendAxisRow",
+          "fields": {
+            "envelope": {
+              "name": "envelope",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "key": {
+              "name": "key",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "measuredMicros": {
+              "name": "measuredMicros",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "openProvisionMicros": {
+              "name": "openProvisionMicros",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "releasedMicros": {
+              "name": "releasedMicros",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "expiredMicros": {
+              "name": "expiredMicros",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "closedDebits": {
+              "name": "closedDebits",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "openDebits": {
+              "name": "openDebits",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "releasedDebits": {
+              "name": "releasedDebits",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "expiredDebits": {
+              "name": "expiredDebits",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "submittedCharacters": {
+              "name": "submittedCharacters",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "billedCharacters": {
+              "name": "billedCharacters",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "sourceCharacters": {
+              "name": "sourceCharacters",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "inputTokens": {
+              "name": "inputTokens",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "outputTokens": {
+              "name": "outputTokens",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "cacheWriteTokens": {
+              "name": "cacheWriteTokens",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "cacheReadTokens": {
+              "name": "cacheReadTokens",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            }
+          }
+        },
+        "SpendEnvelopeState": {
+          "name": "SpendEnvelopeState",
+          "fields": {
+            "envelope": {
+              "name": "envelope",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "armed": {
+              "name": "armed",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "reason": {
+              "name": "reason",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "capMicros": {
+              "name": "capMicros",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "engagedMicros": {
+              "name": "engagedMicros",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "fillPercent": {
+              "name": "fillPercent",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
         "TriggerTranscriptionReturnType": {
           "name": "TriggerTranscriptionReturnType",
           "fields": {
@@ -4480,6 +4651,259 @@
               "name": "verifiedTourCount",
               "isArray": false,
               "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "SetSpendEnvelopeReturnType": {
+          "name": "SetSpendEnvelopeReturnType",
+          "fields": {
+            "ok": {
+              "name": "ok",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "envelope": {
+              "name": "envelope",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "capMicros": {
+              "name": "capMicros",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "engagedMicros": {
+              "name": "engagedMicros",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "SpendLedgerReportReturnType": {
+          "name": "SpendLedgerReportReturnType",
+          "fields": {
+            "ok": {
+              "name": "ok",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "complete": {
+              "name": "complete",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "rowsRead": {
+              "name": "rowsRead",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "periods": {
+              "name": "periods",
+              "isArray": true,
+              "type": "String",
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "envelopes": {
+              "name": "envelopes",
+              "isArray": true,
+              "type": {
+                "nonModel": "SpendEnvelopeState"
+              },
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "byEnvelope": {
+              "name": "byEnvelope",
+              "isArray": true,
+              "type": {
+                "nonModel": "SpendAxisRow"
+              },
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "byPeriod": {
+              "name": "byPeriod",
+              "isArray": true,
+              "type": {
+                "nonModel": "SpendAxisRow"
+              },
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "byLanguage": {
+              "name": "byLanguage",
+              "isArray": true,
+              "type": {
+                "nonModel": "SpendAxisRow"
+              },
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "byTour": {
+              "name": "byTour",
+              "isArray": true,
+              "type": {
+                "nonModel": "SpendAxisRow"
+              },
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "DebitInternalSpendReturnType": {
+          "name": "DebitInternalSpendReturnType",
+          "fields": {
+            "ok": {
+              "name": "ok",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "debitId": {
+              "name": "debitId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "microsDebited": {
+              "name": "microsDebited",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "remainingMicros": {
+              "name": "remainingMicros",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "armed": {
+              "name": "armed",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "capMicros": {
+              "name": "capMicros",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "error": {
+              "name": "error",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "code": {
+              "name": "code",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "NarrationSpendStatusReturnType": {
+          "name": "NarrationSpendStatusReturnType",
+          "fields": {
+            "ok": {
+              "name": "ok",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "suspended": {
+              "name": "suspended",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "armed": {
+              "name": "armed",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reason": {
+              "name": "reason",
+              "isArray": false,
+              "type": "String",
               "isRequired": false,
               "attributes": []
             },
@@ -4810,6 +5234,42 @@
               "isRequired": true
             }
           }
+        },
+        "spendLedgerReport": {
+          "name": "spendLedgerReport",
+          "isArray": false,
+          "type": {
+            "nonModel": "SpendLedgerReportReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "envelope": {
+              "name": "envelope",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "months": {
+              "name": "months",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false
+            },
+            "maxRows": {
+              "name": "maxRows",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false
+            }
+          }
+        },
+        "narrationSpendStatus": {
+          "name": "narrationSpendStatus",
+          "isArray": false,
+          "type": {
+            "nonModel": "NarrationSpendStatusReturnType"
+          },
+          "isRequired": false
         }
       },
       "mutations": {
@@ -5118,6 +5578,62 @@
               "name": "force",
               "isArray": false,
               "type": "Boolean",
+              "isRequired": false
+            }
+          }
+        },
+        "setSpendEnvelope": {
+          "name": "setSpendEnvelope",
+          "isArray": false,
+          "type": {
+            "nonModel": "SetSpendEnvelopeReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "envelope": {
+              "name": "envelope",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "capMicros": {
+              "name": "capMicros",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false
+            },
+            "note": {
+              "name": "note",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        },
+        "debitInternalSpend": {
+          "name": "debitInternalSpend",
+          "isArray": false,
+          "type": {
+            "nonModel": "DebitInternalSpendReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "characters": {
+              "name": "characters",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true
+            },
+            "language": {
+              "name": "language",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "reference": {
+              "name": "reference",
+              "isArray": false,
+              "type": "String",
               "isRequired": false
             }
           }
