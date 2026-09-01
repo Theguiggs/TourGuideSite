@@ -15,6 +15,12 @@ import { logger } from '@/lib/logger';
 import { isPublicCatalogueTour } from './public-tour-policy';
 import { isPublicCatalogueGuide } from './public-guide-policy';
 import { disclosureWriteViolation } from './audio-source-policy';
+import {
+  BORNE_LECTURE_PROFILS,
+  profilAppartientAuSub,
+  statutDisqualifie,
+  type LigneProfilGuide,
+} from '@/lib/auth/guide-qualification';
 
 const SERVICE_NAME = 'AppSyncClient';
 
@@ -137,20 +143,142 @@ export async function getGuideProfileById(id: string, authMode?: 'userPool' | 'i
   }
 }
 
-export async function getGuideProfileByUserId(userId: string, authMode?: 'userPool' | 'iam') {
+/**
+ * Lecture d'AUTORISATION : toutes les lignes `GuideProfile` de ce `sub`, lues
+ * par l'INDEX `guideProfilesByUserId` (champ de requête `listGuideProfileByUserId`).
+ *
+ * POURQUOI PAS UN `list({filter:{userId}})` — le lecteur par balayage qui
+ * tenait ici, `getGuideProfileByUserId`, est SUPPRIMÉ : ne le réintroduisez pas,
+ * sous aucun nom. Un `list({filter})` est un BALAYAGE de table, et il ment dans
+ * les DEUX sens. Il rend `null` pour un guide parfaitement légitime dont la ligne
+ * tombe dans une page non lue, car DynamoDB filtre APRÈS avoir lu sa page de
+ * 1 Mo. Et son `data?.[0]` ne PROUVE pas la propriété : il la délègue au filtre
+ * serveur, qui n'est pas la règle de propriété mais lui ressemble tant que le
+ * schéma dit `ownerDefinedIn('userId')` — le jour où les deux s'écartent, il rend
+ * une ligne que le juge refuse. Son `nextToken`, enfin, est non nul dès
+ * que la TABLE dépasse une page, sans aucun rapport avec les doublons — il ne
+ * peut donc pas nourrir la règle de vue tronquée. L'index, lui, est une REQUÊTE
+ * sur clé de partition : sa page ne contient que les lignes de ce `sub`, et son
+ * `nextToken` signifie exactement « il reste des lignes À CE SUB ».
+ *
+ * LE JEU DE SÉLECTION — CE QUI A CHANGÉ, ET CE QU'IL FAUT EN FAIRE
+ * ----------------------------------------------------------------
+ * DEUX rédactions successives se sont trompées ici, en sens inverse. La première
+ * disait « ne jamais retirer `owner` du jeu de sélection » ; la seconde, « `owner`
+ * n'y est plus DU TOUT ». Les deux étaient fausses. L'état réel :
+ * `resolveOwnerFields` tire les champs de propriété des règles d'auth, le modèle
+ * en porte DEUX — l'autorité `ownerDefinedIn('userId').identityClaim('sub')` et
+ * une TRANSITION `allow.owner().to(['read'])` — et il rend donc
+ * `['userId', 'owner']`.
+ *
+ * `owner` est ainsi MORT SANS ÊTRE ABSENT : toujours dans le type, toujours
+ * sélectionné, plus jamais écrit. Il vaut son composite `"<sub>::<sub>"` sur les
+ * lignes antérieures à la bascule et `null` sur toutes les suivantes. Un tri
+ * resté sur `ligne.owner` compilerait, passerait les contrôles négatifs du parc
+ * vivant, et verrouillerait chaque NOUVEAU guide. Ne le lisez pas.
+ *
+ * Ce sur quoi on trie désormais, `userId`, est un champ EXPLICITE du modèle
+ * (`model_introspection.models.GuideProfile.fields`) : il est sélectionné par
+ * défaut quelles que soient les règles d'auth, avant comme après le déploiement
+ * du schéma. LA RÈGLE QUI RESTE : ne JAMAIS passer ici de `selectionSet`
+ * explicite qui omette `userId` ou `profileStatus` — la comparaison porterait sur
+ * `undefined` et le juge refuserait tout le monde en silence. Deux épreuves
+ * tiennent ce piège : `guide-profile-authz-read.test.ts` interdit le
+ * `selectionSet` amputé, et `guide-qualification-jeu-de-selection.test.ts`
+ * DÉRIVE le jeu de sélection des règles d'auth réelles pour que tout changement
+ * du modèle de propriété fasse tomber quelque chose.
+ *
+ * Le chemin IAM du portail lit TOUT : `allow.authenticated().to(['read'])` et le
+ * rôle IAM du portail voient la table entière. C'est pourquoi le tri par `userId`
+ * se fait ici, dans le code du portail (`qualifieGuide`), et ne se délègue pas au
+ * backend — même si, depuis la bascule, aucune ligne étrangère ne peut plus
+ * apparaître dans la page d'un `sub` donné.
+ *
+ * `ok: false` = lecture RATÉE. À ne surtout pas confondre avec « aucun profil » :
+ * l'appelant doit refuser SANS mémoriser le refus.
+ */
+/**
+ * La ligne telle que le client la rend.
+ *
+ * ATTENTION — `Schema['GuideProfile']['type']` PORTE ENCORE `owner` : la règle de
+ * transition `allow.owner().to(['read'])` l'y maintient, le temps que les
+ * binaires distribués cessent de le réclamer. Cette intersection le porte donc,
+ * et `ligne.owner` COMPILE. Le compilateur ne dira rien.
+ *
+ * `LigneProfilGuide` n'en déclare pas, et il ne faut pas l'y remettre « au cas
+ * où » — mais ne comptez plus là-dessus : ce qui interdit la lecture est
+ * `src/lib/auth/__tests__/owner-champ-mort.test.ts`, qui relit les sources.
+ */
+export type LigneProfilLue = Schema['GuideProfile']['type'] & LigneProfilGuide;
+
+export async function listGuideProfilePageByUserId(
+  userId: string,
+  authMode?: 'userPool' | 'iam',
+): Promise<
+  { ok: true; lignes: LigneProfilLue[]; tronquee: boolean } | { ok: false; erreur: string }
+> {
   try {
     const client = getClient();
-    // authMode must be in the SAME options object as filter for list() in Amplify Gen2
-    const result = await client.models.GuideProfile.list({
-      filter: { userId: { eq: userId } },
-      ...(authMode ? { authMode } : {}),
-    });
-    logger.info(SERVICE_NAME, 'getGuideProfileByUserId result', { userId, authMode, hasData: !!result.data, hasErrors: !!result.errors });
-    return result.data?.[0] ?? null;
+    const result = await client.models.GuideProfile.listGuideProfileByUserId(
+      { userId },
+      { limit: BORNE_LECTURE_PROFILS, ...(authMode ? { authMode } : {}) },
+    );
+    const errs = result.errors;
+    if (errs && errs.length > 0) {
+      const msg = errs.map((e) => e.message).join('; ');
+      logger.error(SERVICE_NAME, 'listGuideProfilePageByUserId returned errors', {
+        userId,
+        errors: msg,
+      });
+      return { ok: false, erreur: msg };
+    }
+    return {
+      ok: true,
+      lignes: (result.data ?? []) as LigneProfilLue[],
+      tronquee: result.nextToken != null,
+    };
   } catch (error) {
-    logger.error(SERVICE_NAME, 'getGuideProfileByUserId failed', { error: String(error) });
-    return null;
+    logger.error(SERVICE_NAME, 'listGuideProfilePageByUserId failed', { error: String(error) });
+    return { ok: false, erreur: String(error) };
   }
+}
+
+/**
+ * Le profil de CE compte, et de lui seul — pour les écrans, et pour le test
+ * d'idempotence du signup. Jamais pour juger le rôle : ça, c'est `qualifieGuide`.
+ *
+ * Même défaut que le juge, autre conséquence : quand `userId` était un champ
+ * LIBRE, une ligne plantée par un tiers sous le `userId` d'un guide pouvait
+ * SORTIR à la place de la sienne. Le guide voyait alors le profil de l'attaquant
+ * sur ses propres écrans, et toute écriture visait l'`id` de l'attaquant —
+ * refusée par le backend, donc profil définitivement inéditable. Le filtre reste
+ * en place après la bascule : il ne coûte rien, il couvre les lignes héritées
+ * d'avant, et il garde ce chemin juste si le schéma reculait.
+ *
+ * CE QUE `null` VEUT DIRE, ET CE QUE L'APPELANT DOIT EN FAIRE. Une lecture ratée
+ * rend `null`, indistinctement d'« aucun profil » : c'est voulu pour les
+ * appelants qui dégradent gracieusement, et ils ne décident d'AUCUNE
+ * autorisation — le rôle se juge par `qualifieGuide`, qui reçoit `ok:false` et
+ * refuse SANS mémoriser le refus.
+ *
+ * Le signup (`/guide/signup`) s'en sert aussi, pour un autre usage : décider s'il
+ * doit créer le profil. Là, `null` fait CRÉER, et c'est le bon sens d'erreur — au
+ * pire un doublon, jamais un compte sans profil. Tout appelant qui, lui, doit
+ * distinguer « rien lu » de « rien à lire » passe par
+ * `listGuideProfilePageByUserId` et lit son `ok`.
+ */
+export async function getOwnGuideProfile(sub: string, authMode?: 'userPool' | 'iam') {
+  const lecture = await listGuideProfilePageByUserId(sub, authMode);
+  if (!lecture.ok) return null;
+
+  const miennes = lecture.lignes.filter((ligne) => profilAppartientAuSub(ligne.userId, sub));
+  if (miennes.length === 0) return null;
+  if (lecture.tronquee) {
+    logger.warn(SERVICE_NAME, 'Page de profils tronquée — doublons possibles', { sub });
+  }
+  // Une ligne disqualifiante prime : le guide doit VOIR sa suspension plutôt
+  // qu'un doublon actif qui la masquerait.
+  return miennes.find((ligne) => statutDisqualifie(ligne.profileStatus)) ?? miennes[0];
 }
 
 export async function listTourReviews(tourId: string) {
@@ -293,14 +421,29 @@ export async function createGuideProfileMutation(data: {
 }) {
   try {
     const client = getClient();
-    // owner-based auth requires userPool auth mode (not the default IAM)
+    // `userPool` est OBLIGATOIRE : en IAM le bloc de propriété du résolveur est
+    // court-circuité, et `input.userId == claims.sub` ne serait pas vérifié.
     const result = await client.models.GuideProfile.create(
       {
         ...data,
+        // SÉCURITÉ (modération) — `profileStatus` est envoyé, `verified` NE L'EST
+        // PLUS. Les deux gardent `create` au schéma, mais pas pour les mêmes
+        // raisons :
+        //  - `profileStatus: 'pending_moderation'` est le sens même de
+        //    l'inscription : elle est ouverte par conception, et c'est la
+        //    modération qui la borne. Le poser ici est ce qui l'empêche de
+        //    s'auto-approuver ;
+        //  - `verified: false` n'apportait RIEN — le champ est nullable et tous
+        //    ses lecteurs font `?? false`, donc l'absence et le `false` se lisent
+        //    pareil. Il n'était là que par habitude, et c'est lui qui OBLIGEAIT
+        //    le backend à laisser `create` ouvert sur un signal de confiance
+        //    public. Cesser de l'envoyer est la condition, explicitement posée
+        //    dans `amplify/data/guide-profile-model.ts`, pour retirer ce `create`
+        //    et ne laisser `verified` qu'à l'admin, à la création comme à la
+        //    modification. NE PAS LE REMETTRE.
         profileStatus: 'pending_moderation',
         rating: 0,
         tourCount: 0,
-        verified: false,
       },
       { authMode: 'userPool' },
     );
@@ -328,6 +471,34 @@ export async function adminUpdateGuideProfileStatus(id: string, profileStatus: '
   }
 }
 
+/**
+ * Les champs qu'un PROPRIÉTAIRE ne peut plus modifier — le backend les a sortis
+ * de `$ownerAllowedFields0` de l'update, chacun pour sa raison :
+ *
+ *  - `userId` PORTE la propriété. Laissé modifiable, son titulaire le
+ *    RÉASSIGNAIT au `sub` d'un tiers après coup, ce qui reconstruisait
+ *    l'inondation de l'index en deux mutations au lieu d'une ;
+ *  - `profileStatus` est LE champ dont dépend `STATUTS_DISQUALIFIANTS` : un
+ *    guide suspendu se remettait `active` en une mutation sur SA PROPRE ligne.
+ *    « Un suspendu reste suspendu » n'était donc pas une garde, mais une
+ *    convention que le suspendu contournait seul ;
+ *  - `verified` est le signal de confiance PUBLIC : n'importe quel guide se
+ *    décernait le badge en une mutation.
+ *
+ * Les envoyer fait répondre `Unauthorized on [...]` — MÊME avec la bonne valeur,
+ * et la mutation entière échoue. On refuse donc ICI, franchement, plutôt que de
+ * laisser un écran casser sur une erreur backend illisible. Le passage admin
+ * (`adminUpdateGuideProfileStatus`) n'emprunte PAS cette fonction : le groupe
+ * `admin` garde l'écriture, et c'est le seul chemin de modération.
+ *
+ * La barrière est double À DESSEIN : le TYPE ci-dessous exclut ces champs (c'est
+ * ce qui protège les appelants typés, cf. les `@ts-expect-error` de
+ * `guide-profile-ecritures.test.ts`), et ce filtre-ci protège le chemin non typé
+ * — `guide.ts:updateGuideProfile` reconstruit son entrée par
+ * `Object.fromEntries`, qui efface le type.
+ */
+const CHAMPS_INTERDITS_EN_MODIFICATION = ['userId', 'profileStatus', 'verified'] as const;
+
 export async function updateGuideProfileMutation(
   id: string,
   updates: Partial<{
@@ -340,6 +511,19 @@ export async function updateGuideProfileMutation(
     photoUrl: string | null;
   }>,
 ) {
+  const interdits = CHAMPS_INTERDITS_EN_MODIFICATION.filter(
+    (champ) => champ in (updates as Record<string, unknown>),
+  );
+  if (interdits.length > 0) {
+    logger.error(SERVICE_NAME, 'updateGuideProfile refuse un champ non modifiable', {
+      id,
+      champs: interdits.join(', '),
+    });
+    return {
+      ok: false as const,
+      error: `Champs non modifiables : ${interdits.join(', ')}`,
+    };
+  }
   try {
     const client = getClient();
     const result = await client.models.GuideProfile.update(

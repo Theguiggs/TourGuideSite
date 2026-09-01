@@ -1125,7 +1125,7 @@ POSTES_CONSTATES = (
     },
     {
         "nom": "Deux Scènes gratuites avant tout paiement",
-        "anchor": "TourGuideApp/amplify/functions/get-published-tour-content/handler.ts:28",
+        "anchor": "TourGuideApp/amplify/shared/preview-scenes.ts:25",
         "jeton": "FREE_PREVIEW_SCENE_COUNT",
         "cout": chiffre(
             2, CONSTAT, unite="Scènes",

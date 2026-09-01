@@ -980,7 +980,7 @@ class TestRapport:
         assert "TourGuideWeb/src/lib/stores/tts-store.ts:7" in anchors
         assert "TourGuideWeb/src/lib/api/language-purchase.ts:818" in anchors
         assert (
-            "TourGuideApp/amplify/functions/get-published-tour-content/handler.ts:28" in anchors
+            "TourGuideApp/amplify/shared/preview-scenes.ts:25" in anchors
         )
         for poste in rapport["postes_constates"]:
             if poste["cout"] is None:

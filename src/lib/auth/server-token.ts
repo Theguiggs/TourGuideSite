@@ -1,7 +1,8 @@
 import { CognitoJwtVerifier } from 'aws-jwt-verify';
 import type { CognitoAccessTokenPayload } from 'aws-jwt-verify/jwt-model';
 import outputs from '../../../amplify_outputs.json';
-import { getGuideProfileByUserId } from '@/lib/api/appsync-client';
+import { listGuideProfilePageByUserId } from '@/lib/api/appsync-client';
+import { qualifieGuide, roleGuide, type Qualification } from './guide-qualification';
 
 const authConfig = (outputs as {
   auth: { user_pool_id: string; user_pool_client_id: string };
@@ -15,7 +16,27 @@ const verifier = CognitoJwtVerifier.create({
 
 const GUIDE_ROLE_CACHE_TTL_MS = 60_000;
 const GUIDE_ROLE_CACHE_MAX_ENTRIES = 1_000;
-const guideRoleCache = new Map<string, { roles: ServerRole[]; expiresAt: number }>();
+
+/**
+ * CE QUI EST MÉMORISÉ EST LE VERDICT DU PROFIL, PAS LE RÔLE — et la distinction
+ * est devenue indispensable en retirant le court-circuit `admin`.
+ *
+ * Ce cache existe pour épargner une LECTURE APPSYNC, la seule chose coûteuse
+ * ici. Les groupes, eux, sortent du jeton VÉRIFIÉ à chaque requête : ils ne
+ * coûtent rien et ne doivent donc jamais être figés.
+ *
+ * LE TROU QUE ÇA FERME. Tant qu'`admin` court-circuitait avant le cache, un
+ * admin ne le traversait pas et ses groupes étaient relus à chaque requête. En
+ * faisant passer `admin` par le juge, on l'a fait entrer dans le cache : mémoriser
+ * `['admin','guide']` aurait servi `admin` pendant 60 s à un compte qui vient
+ * d'être RETIRÉ du groupe. Une élévation d'une minute, introduite par un
+ * correctif de sécurité — inacceptable.
+ *
+ * En ne gardant que la `Qualification` et en recomposant le rôle à partir des
+ * groupes du jeton courant, la révocation d'un groupe prend effet à la requête
+ * SUIVANTE, sans attendre l'expiration.
+ */
+const guideRoleCache = new Map<string, { qualification: Qualification; expiresAt: number }>();
 
 export type ServerRole = 'guide' | 'admin';
 
@@ -48,30 +69,102 @@ function tokenGroups(payload: CognitoAccessTokenPayload): string[] {
   return Array.isArray(groups) ? groups.filter((group): group is string => typeof group === 'string') : [];
 }
 
+/**
+ * Le NON-VERDICT : ce que le juge reçoit quand la lecture n'a rien prouvé.
+ *
+ * Une lecture RATÉE (réseau, `$util.unauthorized()`, panne) et une vue TRONQUÉE
+ * sont la même chose du point de vue du juge : aucune ligne ne l'a convaincu, et
+ * aucune ne l'a détrompé. On le lui dit avec la MÊME valeur, pour qu'il n'y ait
+ * qu'une seule règle — `roleGuide` laisse alors le groupe se suffire à lui-même
+ * (`admin` et `guide` gardent leur rôle) et refuse à qui n'a rien d'autre.
+ *
+ * Ni l'un ni l'autre n'est mémorisé : figer 60 s un incident de lecture
+ * transformerait une panne en perte de rôle.
+ */
+const NON_VERDICT: Qualification = { role: null, refus: 'vue-tronquee' };
+
+/**
+ * Le rôle d'un porteur de jeton.
+ *
+ * SÉCURITÉ — `GuideProfile.userId` A ÉTÉ un champ LIBRE : n'importe quel compte
+ * connecté pouvait planter une ligne sous le `sub` d'un tiers, donc la seule
+ * présence d'une ligne ne prouvait RIEN, ni pour accorder le rôle (élévation),
+ * ni pour le retirer (révocation croisée). Le schéma le CONTRAINT désormais
+ * (`ownerDefinedIn('userId').identityClaim('sub')` + verrou de champ sans
+ * `update`), mais le portail juge quand même : le chemin IAM lit toute la table,
+ * les lignes héritées d'avant la bascule sont encore là, et un portail qui
+ * partirait avant le schéma n'aurait rien fermé.
+ *
+ * Le juge est `./guide-qualification.ts` : il exige un `userId` STRICTEMENT égal
+ * au `sub` du jeton, disqualifie dès qu'UNE ligne à soi est suspendue même noyée
+ * dans des doublons actifs, et refuse sur vue tronquée.
+ *
+ * `admin` NE COURT-CIRCUITE PLUS LE JUGE. Un `if (groups.includes('admin'))
+ * return ['admin','guide']` tenait ici, AVANT toute lecture : le rôle `guide`
+ * s'y prononçait donc à un autre endroit que sur mobile, et les deux surfaces
+ * ont divergé sans que personne ne le voie (chacune avait une épreuve qui
+ * épinglait SA version). La règle a déménagé DANS le juge — `GROUPE_PERSONNEL`,
+ * appliqué avant la disqualification. Le résultat pour un admin est identique
+ * (`['admin','guide']`, profil ou pas, suspendu ou pas) ; ce qui change, c'est
+ * qu'il n'y a plus qu'un seul endroit qui le dit. Le prix est une lecture de
+ * profil de plus pour les admins — bornée par le même cache de 60 s.
+ */
+function composeRoles(
+  groupes: readonly string[],
+  qualification: Qualification,
+): ServerRole[] {
+  return [
+    ...(groupes.includes('admin') ? (['admin'] as const) : []),
+    ...(roleGuide({ qualification, groupes }) ? (['guide'] as const) : []),
+  ];
+}
+
 async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerRole[]> {
   const groups = tokenGroups(payload);
-  if (groups.includes('admin')) return ['admin', 'guide'];
 
   const cached = guideRoleCache.get(payload.sub);
-  if (cached && cached.expiresAt > Date.now()) return cached.roles;
+  // Le verdict du PROFIL est mémorisé ; les groupes sont relus dans le jeton à
+  // chaque fois. Voir le commentaire du cache.
+  if (cached && cached.expiresAt > Date.now()) return composeRoles(groups, cached.qualification);
   guideRoleCache.delete(payload.sub);
 
-  // Existing guide accounts are identified by their GuideProfile rather than a
-  // Cognito group. Bind the verified token sub to that profile so tourists
-  // cannot use privileged Studio endpoints.
-  const profile = await getGuideProfileByUserId(payload.sub, 'iam');
-  const disabled = profile?.profileStatus === 'suspended' || profile?.profileStatus === 'rejected';
-  const roles: ServerRole[] = disabled
-    ? []
-    : groups.includes('guide') || profile
-      ? ['guide']
-      : [];
+  // `payload.sub` sort du jeton VÉRIFIÉ — jamais d'une entrée de requête.
+  const lecture = await listGuideProfilePageByUserId(payload.sub, 'iam');
+
+  // Une lecture RATÉE n'est pas un verdict : elle refuse ce qu'elle n'a pas pu
+  // prouver, mais elle n'est JAMAIS mémorisée. La figer 60 s transformerait un
+  // incident de lecture en perte de rôle d'une minute pour un guide légitime.
+  if (!lecture.ok) {
+    return composeRoles(groups, NON_VERDICT);
+  }
+
+  const qualification = qualifieGuide({
+    sub: payload.sub,
+    lignes: lecture.lignes,
+    tronquee: lecture.tronquee,
+  });
+  const roles: ServerRole[] = composeRoles(groups, qualification);
+
+  // Même règle pour la vue tronquée : lecture incomplète, donc rien à mémoriser.
+  // Seuls les vrais verdicts (`guide`, `aucun-profil`, `disqualifie`) sont mis
+  // en cache. Figer une minute ce qui n'a rien prouvé transformerait un incident
+  // de lecture en perte de rôle — et pour un admin, en perte d'accès à la
+  // modération au moment précis où AppSync va mal.
+  //
+  // LE MOBILE APPLIQUE LA MÊME RÈGLE DEPUIS LE 2026-09-01, et il ne le faisait
+  // pas : `detectAccountType` rendait `'visitor'` sur vue tronquée et
+  // `storeSetAccountType` le PERSISTAIT sur disque — pas 60 s, jusqu'au prochain
+  // verdict. Il rend désormais `null` (« je ne sais pas ») et n'écrit rien.
+  if (qualification.role === null && qualification.refus === 'vue-tronquee') {
+    return roles;
+  }
+
   if (guideRoleCache.size >= GUIDE_ROLE_CACHE_MAX_ENTRIES) {
     const oldestSub = guideRoleCache.keys().next().value;
     if (oldestSub) guideRoleCache.delete(oldestSub);
   }
   guideRoleCache.set(payload.sub, {
-    roles,
+    qualification,
     expiresAt: Date.now() + GUIDE_ROLE_CACHE_TTL_MS,
   });
   return roles;
