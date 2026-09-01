@@ -54,14 +54,19 @@ describe('le TYPE des lignes jugées', () => {
   // l'exécution mais sous `tsc --noEmit`. C'est le seul endroit où le défaut
   // d'origine était visible — et il ne l'était pas, justement parce que
   // `LigneProfilGuide` déclarait un `owner?` optionnel.
-  it('n’a PAS de champ `owner` — le remettre rendrait le défaut invisible', () => {
-    // `LigneProfilLue` croise ce type avec `Schema['GuideProfile']['type']`, d'où
-    // `owner` a déjà disparu. Un `owner?` optionnel ICI le ferait revivre dans
-    // l'intersection, et `ligne.owner` redeviendrait typé — donc compilable, donc
-    // silencieux. Si ce `@ts-expect-error` devient inutile, c'est que le champ
-    // est revenu : le retirer, ne pas retirer la directive.
+  it('n’a PAS de champ `owner` — mais ce n’est plus ce qui protège le portail', () => {
+    // CE QUE CETTE DIRECTIVE COUVRE ENCORE, ET CE QU'ELLE NE COUVRE PLUS.
+    // Elle empêche de rendre la lecture d'`owner` délibérée DANS LE TYPE DU JUGE,
+    // et à ce titre elle reste utile : la retirer serait un choix, pas un oubli.
+    //
+    // Mais elle ne protège plus le portail. `LigneProfilLue`
+    // (`src/lib/api/appsync-client.ts`) croise ce type avec
+    // `Schema['GuideProfile']['type']`, où la règle de transition
+    // `allow.owner().to(['read'])` REMET `owner` — l'intersection le porte donc,
+    // et `ligne.owner` compile ailleurs quoi qu'on écrive ici. Ce qui interdit la
+    // lecture est `owner-champ-mort.test.ts`, qui relit les sources.
     const interdit = () => {
-      // @ts-expect-error `owner` n'appartient plus à `LigneProfilGuide`.
+      // @ts-expect-error `owner` n'appartient pas à `LigneProfilGuide`.
       const ligneAvecOwner: LigneProfilGuide = { owner: 'x', profileStatus: 'active' };
       return ligneAvecOwner;
     };
@@ -71,9 +76,10 @@ describe('le TYPE des lignes jugées', () => {
   it('`userId` est bien un champ du type que le backend expose', () => {
     // La seule chose que le portail doive exiger du type backend, et qui vaut
     // AVANT comme APRÈS le déploiement du schéma : `userId` est un champ explicite
-    // du modèle. `owner`, lui, n'est volontairement pas contrôlé ici — il est
-    // présent ou absent selon l'ère du dépôt voisin, et le juge est juste dans les
-    // deux cas.
+    // du modèle. `owner`, lui, n'est volontairement pas contrôlé ici — il y est
+    // aujourd'hui (règle de transition) et en sortira un jour, sans que le juge en
+    // soit affecté ni dans un cas ni dans l'autre. C'est tout l'intérêt d'avoir
+    // déplacé l'autorité sur un champ EXPLICITE du modèle.
     const ligneTypee: Pick<Schema['GuideProfile']['type'], 'userId'> = { userId: 'un-sub' };
     expect(profilAppartientAuSub(ligneTypee.userId, 'un-sub')).toBe(true);
   });
@@ -203,22 +209,27 @@ describe('qualifieGuide — les épreuves du correctif chaud', () => {
       'le disqualifie, et rien ici ne peut plus la distinguer de la sienne',
     () => {
       // CE POINT CONTREDIT LE CONTRAT REÇU, qui demandait qu'une telle ligne « ne
-      // le disqualifie pas à tort ». C'est IMPOSSIBLE depuis la bascule :
+      // le disqualifie pas à tort ». C'est un choix, et il est délibéré :
       //   - l'ancien juge distinguait la ligne plantée par son `owner` (celui de
       //     l'attaquant), champ que le résolveur bornait ;
-      //   - `owner` a disparu du type GraphQL ET du jeu de sélection. Le portail
-      //     ne peut plus le lire, ni par défaut ni par `selectionSet` explicite.
-      // Une ligne héritée `{userId: <sub du guide>, owner: <attaquant>}` est donc
-      // désormais INDISCERNABLE d'une ligne légitime du guide, et le juge la
-      // compte comme sienne. Le correctif est plus permissif que son prédécesseur
-      // SUR CE SEUL POINT, et seulement sur les données antérieures au
-      // déploiement.
+      //   - `owner` EXISTE toujours (règle de transition `allow.owner()
+      //     .to(['read'])`, pour ne pas casser les binaires distribués) et le
+      //     portail POURRAIT donc encore le lire. Mais il ne le doit pas : plus
+      //     aucun résolveur ne l'écrit, il vaut `null` sur toute ligne créée après
+      //     la bascule, et un juge qui s'y fierait qualifierait les deux guides
+      //     antérieurs tout en verrouillant chaque nouvelle inscription. Le lire
+      //     « juste pour les lignes héritées » serait donc rouvrir un chemin qui
+      //     ment sur la moitié du parc à venir.
+      // Une ligne héritée `{userId: <sub du guide>, owner: <attaquant>}` est ainsi
+      // INDISCERNABLE d'une ligne légitime du guide, et le juge la compte comme
+      // sienne. Le correctif est plus permissif que son prédécesseur SUR CE SEUL
+      // POINT, et seulement sur les données antérieures au déploiement.
       //
-      // PRÉREQUIS DE DÉPLOIEMENT qui en découle : auditer la table avant de
-      // basculer, et supprimer toute ligne dont l'attribut `owner` ne commence
-      // pas par son propre `userId`. Sur le parc relevé, il n'y en a aucune — les
-      // deux guides et la ligne orpheline portent tous un `owner` cohérent avec
-      // leur `userId`.
+      // L'AUDIT DU PARC, qui en découle, A ÉTÉ EXÉCUTÉ le 2026-09-01 par
+      // `aws dynamodb scan` (l'attribut BRUT ; AppSync, lui, rend le DERNIER
+      // segment et mentirait) : 3 lignes, AUCUNE anomalie — pour les trois, le
+      // segment d'`owner` avant le PREMIER `::` est égal à `userId`. Deux comptes
+      // seulement existent au pool ; la troisième ligne est orpheline.
       expect(
         qualifieGuide({ sub: GUIDE, lignes: [ligne(GUIDE, 'suspended')], tronquee: false }),
       ).toEqual({ role: null, refus: 'disqualifie' });

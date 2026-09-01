@@ -28,10 +28,15 @@ import { PARC_VIVANT } from './parc-vivant';
 const ATTAQUANT = 'attaquant-sub-2222-3333';
 
 /**
- * Une ligne telle que le client la rend DEPUIS LA BASCULE : `userId` nu, et pas
- * de `owner` — `resolveOwnerFields` rend `['userId']`, donc `owner` n'est plus
- * dans le jeu de sélection par défaut. Une ligne qui en porterait un ici
- * mentirait sur la production.
+ * Une ligne telle que le juge la LIT : `userId` et `profileStatus`, rien d'autre.
+ *
+ * Le client, lui, rend AUSSI `owner` — la règle de transition
+ * `allow.owner().to(['read'])` le garde dans le jeu de sélection. On ne le met
+ * pas ici parce que le juge ne le lit pas, et c'est justement la limite de ce
+ * fichier : il fabrique ses lignes à la main, donc il ne peut pas voir un juge
+ * qui lirait un champ non rendu. Cette moitié-là est tenue par
+ * `guide-qualification-jeu-de-selection.test.ts`, qui PROJETTE de vraies lignes
+ * sur le jeu de sélection réel — `owner` compris.
  */
 const propre = (sub: string, profileStatus = 'active') => ({
   userId: sub,

@@ -18,24 +18,40 @@
  * FORME DES LIGNES EN BASE (table `GuideProfile-yvupc5stqzaxrgz6wv2wz7he5y-NONE`) :
  * `userId` NU, plus un attribut `owner` composite `"<sub>::<sub>"` hérité
  * d'`allow.owner()` — le pool est en `UsernameAttributes:["email"]`, donc Cognito
- * ENGENDRE le `username` et il vaut le `sub`. Depuis la bascule vers
- * `ownerDefinedIn('userId').identityClaim('sub')`, `owner` n'est plus ni lu ni
- * écrit ni SÉLECTIONNABLE : il est laissé ici EXPRÈS, pour que la projection sur
- * le jeu de sélection réel ait quelque chose à retirer.
+ * ENGENDRE le `username` et il vaut le `sub`.
+ *
+ * `owner` N'EST PAS PARTI, ET C'EST TOUT LE PIÈGE. La bascule vers
+ * `ownerDefinedIn('userId').identityClaim('sub')` lui retire l'AUTORITÉ, pas
+ * l'existence : une règle de transition `allow.owner().to(['read'])` le garde
+ * dans le TYPE GraphQL, sans quoi l'APK v1.3.3 en magasin — dont l'artefact
+ * embarqué le réclame dans chaque requête — recevrait `data: null` +
+ * « Validation error of type FieldUndefined ». Le champ reste donc SÉLECTIONNÉ
+ * (`resolveOwnerFields` rend `['userId','owner']`), il est simplement mort :
+ * plus aucun résolveur ne l'écrit.
+ *
+ * D'OÙ LA LIGNE NEUVE ci-dessous. Les trois lignes du relevé sont ANTÉRIEURES à
+ * la bascule : elles portent encore leur `owner` composite en base. Une ligne
+ * créée APRÈS n'en portera aucun, et le client y lira `owner: null`. Un juge
+ * resté sur `owner` marcherait donc sur le parc actuel et s'effondrerait sur
+ * chaque nouvelle inscription — la pire des pannes, celle qui ne se voit pas.
  *
  * Aucune des trois lignes n'est « plantée » : chacune porte un `owner` cohérent
  * avec son propre `userId`. C'est ce qui permet d'affirmer que le résidu
  * documenté dans `guide-qualification.test.ts` (une ligne héritée `suspended`
  * sous le `userId` d'autrui devient indiscernable) n'a aujourd'hui aucune
- * victime en base.
+ * victime en base. Vérifié par `aws dynamodb scan` le 2026-09-01 : pour les
+ * trois, le segment d'`owner` avant le PREMIER `::` est égal à `userId`.
  */
 
 /** Une ligne DynamoDB entière, avant toute projection. */
 export interface LigneDynamo {
   readonly id: string;
   readonly userId: string;
-  /** Poids mort depuis la bascule — conservé pour que la projection le retire. */
-  readonly owner: string;
+  /**
+   * Poids mort depuis la bascule — mais TOUJOURS SÉLECTIONNÉ, et c'est ce qui
+   * rend l'erreur silencieuse. `null` sur toute ligne créée après la bascule.
+   */
+  readonly owner: string | null;
   readonly displayName: string;
   readonly profileStatus: string;
 }
@@ -81,6 +97,33 @@ export const PARC_VIVANT: ReadonlyArray<{
  * d'autorisation ne la demandera. On l'éprouve quand même : si elle sortait, elle
  * ne doit qualifier personne.
  */
+/**
+ * UNE LIGNE CRÉÉE APRÈS LA BASCULE — celle qu'aucun relevé ne peut encore
+ * contenir, et qui décide pourtant du sort de chaque nouvelle inscription.
+ *
+ * Elle n'est PAS une lecture : c'est ce que le schéma écrira. Aucun résolveur
+ * n'écrit plus `owner` (la règle de transition est en LECTURE seule), donc
+ * l'attribut sera absent en base et le client, qui le sélectionne toujours, y
+ * lira `null`.
+ *
+ * Elle existe pour une seule épreuve, la décisive : un juge resté sur `owner`
+ * qualifie encore les DEUX guides du relevé — leurs lignes sont antérieures et
+ * portent leur composite — et s'effondre sur celle-ci. Un contrôle négatif qui
+ * ne regarderait que le parc actuel le laisserait passer.
+ */
+export const LIGNE_NEUVE = {
+  nom: 'Guide inscrit APRÈS la bascule',
+  sub: '9f0c1d2e-3456-4789-abcd-ef0123456789',
+  ligne: {
+    id: 'p-neuve',
+    userId: '9f0c1d2e-3456-4789-abcd-ef0123456789',
+    // Jamais écrit par aucun résolveur depuis la bascule.
+    owner: null,
+    displayName: 'Guide Neuf',
+    profileStatus: 'active',
+  },
+} as const;
+
 export const LIGNE_ORPHELINE = {
   nom: 'E2E Guide (2) — ligne orpheline',
   sub: 'a4e854b8-0001-70c8-fb8d-a8199917905e',

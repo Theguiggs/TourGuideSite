@@ -77,9 +77,11 @@ async function resolveAuthUser(): Promise<AuthUser | null> {
   // quand `userId` était un champ LIBRE, une ligne plantée par un tiers sous le
   // `userId` d'un guide pouvait sortir à sa place (profil affiché faux, `id`
   // d'autrui dans toutes les écritures suivantes). Ce qui prouve l'appartenance
-  // est `userId === sub`, en ÉGALITÉ STRICTE — `owner` a disparu du modèle avec
-  // la bascule vers `ownerDefinedIn('userId').identityClaim('sub')`, il n'est
-  // même plus sélectionné. Voir `@/lib/auth/guide-qualification`.
+  // est `userId === sub`, en ÉGALITÉ STRICTE. Le champ `owner` n'a PAS disparu du
+  // modèle — une règle de transition l'y garde en lecture pour les binaires déjà
+  // distribués — mais il n'est plus écrit par personne, donc `null` sur toute
+  // ligne neuve : il ne prouve plus rien et ne doit plus être lu. Voir
+  // `@/lib/auth/guide-qualification`.
   const profile = await getOwnGuideProfile(userId, 'userPool');
   if (!profile) {
     // No guide profile → authenticated TOURIST (mon-1.3b: app user buying on web).

@@ -163,14 +163,19 @@ export async function getGuideProfileById(id: string, authMode?: 'userPool' | 'i
  *
  * LE JEU DE SÉLECTION — CE QUI A CHANGÉ, ET CE QU'IL FAUT EN FAIRE
  * ----------------------------------------------------------------
- * Le bloc qui tenait ici disait « ne jamais retirer `owner` du jeu de
- * sélection ». Sa conclusion est FAUSSE depuis le correctif : `owner` n'est plus
- * dans le jeu de sélection DU TOUT. `resolveOwnerFields` tire le champ de
- * propriété des règles d'auth, et
- * `ownerDefinedIn('userId').identityClaim('sub')` lui fait rendre `['userId']` —
- * `owner` sort donc du type GraphQL et du jeu de sélection par défaut, sur tous
- * les chemins d'auth. Un tri resté sur `ligne.owner` verrouillerait TOUT LE
- * MONDE.
+ * DEUX rédactions successives se sont trompées ici, en sens inverse. La première
+ * disait « ne jamais retirer `owner` du jeu de sélection » ; la seconde, « `owner`
+ * n'y est plus DU TOUT ». Les deux étaient fausses. L'état réel :
+ * `resolveOwnerFields` tire les champs de propriété des règles d'auth, le modèle
+ * en porte DEUX — l'autorité `ownerDefinedIn('userId').identityClaim('sub')` et
+ * une TRANSITION `allow.owner().to(['read'])` — et il rend donc
+ * `['userId', 'owner']`.
+ *
+ * `owner` est ainsi MORT SANS ÊTRE ABSENT : toujours dans le type, toujours
+ * sélectionné, plus jamais écrit. Il vaut son composite `"<sub>::<sub>"` sur les
+ * lignes antérieures à la bascule et `null` sur toutes les suivantes. Un tri
+ * resté sur `ligne.owner` compilerait, passerait les contrôles négatifs du parc
+ * vivant, et verrouillerait chaque NOUVEAU guide. Ne le lisez pas.
  *
  * Ce sur quoi on trie désormais, `userId`, est un champ EXPLICITE du modèle
  * (`model_introspection.models.GuideProfile.fields`) : il est sélectionné par
@@ -195,12 +200,14 @@ export async function getGuideProfileById(id: string, authMode?: 'userPool' | 'i
 /**
  * La ligne telle que le client la rend.
  *
- * `Schema['GuideProfile']['type']` N'A PLUS de `owner` depuis la bascule du
- * schéma. `LigneProfilGuide` n'en déclare plus non plus — et il ne faut pas l'y
- * remettre « au cas où » : un `owner?: string | null` optionnel dans
- * l'intersection redonnerait un type à `ligne.owner` et rendrait de nouveau le
- * défaut invisible à la compilation. C'est ce qui l'a rendu invisible la
- * première fois.
+ * ATTENTION — `Schema['GuideProfile']['type']` PORTE ENCORE `owner` : la règle de
+ * transition `allow.owner().to(['read'])` l'y maintient, le temps que les
+ * binaires distribués cessent de le réclamer. Cette intersection le porte donc,
+ * et `ligne.owner` COMPILE. Le compilateur ne dira rien.
+ *
+ * `LigneProfilGuide` n'en déclare pas, et il ne faut pas l'y remettre « au cas
+ * où » — mais ne comptez plus là-dessus : ce qui interdit la lecture est
+ * `src/lib/auth/__tests__/owner-champ-mort.test.ts`, qui relit les sources.
  */
 export type LigneProfilLue = Schema['GuideProfile']['type'] & LigneProfilGuide;
 

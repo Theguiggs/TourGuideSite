@@ -40,23 +40,41 @@
  * sub, puis les réassigner au sub de la victime). Le transformateur Amplify
  * émettait lui-même l'avertissement « owners may reassign ownership ».
  *
- * `owner` DISPARAÎT — CE N'EST PAS UN DÉTAIL
- * ------------------------------------------
- * `resolveOwnerFields` (aws-amplify/data-schema) tire le champ de propriété des
- * RÈGLES D'AUTH, et c'est lui qui alimente `defaultSelectionSetForModel`. Il rend
- * maintenant `['userId']`. Donc `owner` sort du type GraphQL ET du JEU DE
- * SÉLECTION PAR DÉFAUT de tout appel `client.models.GuideProfile.*`, sur TOUS les
- * chemins d'auth. Pas « parfois absent » : ABSENT. Un juge resté sur
- * `ligne.owner` lirait `undefined` partout et rendrait `aucun-profil` pour TOUT
- * LE MONDE — les guides réels compris — sans qu'aucune épreuve fabriquant ses
- * lignes à la main ne puisse le voir. C'est le mode de panne que
- * `__tests__/guide-qualification-jeu-de-selection.test.ts` existe pour rendre
- * visible : il PROJETTE ses lignes sur le jeu de sélection dérivé des règles
- * d'auth réelles avant de les donner au juge.
+ * `owner` MEURT SANS DISPARAÎTRE — ET C'EST PIRE
+ * ----------------------------------------------
+ * Une première rédaction de ce bloc disait qu'`owner` sortait du type et du jeu
+ * de sélection. C'ÉTAIT FAUX, et il faut le dire ici plutôt que le corriger en
+ * silence : le modèle déployé porte EN PLUS une règle de TRANSITION
+ * `allow.owner().to(['read'])`. Sans elle, tout binaire déjà distribué — l'APK
+ * v1.3.3 en magasin, ce portail en production — recevrait `data: null` +
+ * « Validation error of type FieldUndefined » sur CHAQUE requête
+ * `GuideProfile`, son `amplify_outputs.json` embarqué réclamant `owner`
+ * automatiquement (`resolveOwnerFields` → `defaultSelectionSetForModel`).
  *
- * L'attribut `owner` reste physiquement présent sur les lignes DynamoDB écrites
- * avant la bascule (elles portent `"<sub>::<sub>"`). Il devient du poids mort :
- * plus sélectionné, plus lu, plus écrit.
+ * DONC : `resolveOwnerFields` rend `['userId', 'owner']`, le champ RESTE dans le
+ * type GraphQL et RESTE sélectionné. Ce qu'il perd est l'AUTORITÉ, et l'écriture :
+ * plus aucun résolveur ne l'écrit. Il vaut donc `"<sub>::<sub>"` sur les lignes
+ * antérieures à la bascule, et `null` sur TOUTES LES SUIVANTES.
+ *
+ * LE MODE DE PANNE QUE ÇA CRÉE, ET QUI EST LE PIRE DES DEUX. Un juge resté sur
+ * `ligne.owner` :
+ *   - COMPILE, puisque le type déclare toujours le champ ;
+ *   - QUALIFIE ENCORE les deux guides du parc vivant, dont les lignes sont
+ *     antérieures et portent leur composite ;
+ *   - et s'effondre sur CHAQUE NOUVELLE INSCRIPTION.
+ * Ni `tsc`, ni un contrôle négatif borné au parc actuel ne le verraient. Trois
+ * épreuves tiennent ce piège : `guide-qualification-jeu-de-selection.test.ts`
+ * (qui projette ses lignes sur le jeu de sélection RÉEL et éprouve une ligne
+ * créée APRÈS la bascule), `owner-champ-mort.test.ts` (qui relit les sources de
+ * production : aucune lecture d'`owner` n'y subsiste) et le `@ts-expect-error`
+ * de `guide-qualification.test.ts` sur `LigneProfilGuide`.
+ *
+ * LA RÈGLE, DONC : ne JAMAIS lire `owner`, ne jamais le comparer, ne jamais le
+ * typer. Ce qui le remplace est `userId`, comparé au `sub` VÉRIFIÉ du jeton par
+ * ÉGALITÉ STRICTE. Sa condition de retrait du schéma n'est PAS « une release de
+ * plus » — tant que la règle est là, tout artefact régénéré la contient, donc
+ * toute release continue de le demander. Voir
+ * `TourGuideApp/amplify/data/guide-profile-model.ts`.
  *
  * POURQUOI LE JUGE EST SÛR DANS LES DEUX SENS DU DÉPLOIEMENT
  * ----------------------------------------------------------
@@ -77,9 +95,37 @@
  * --------------------------------------------------------
  * Un compte quelconque peut TOUJOURS se créer un profil À SON NOM et devenir
  * `guide` : c'est le parcours d'inscription guide, ouvert PAR CONCEPTION. Ce qui
- * doit le borner est la modération (`profileStatus`) et le plafond de dépense du
- * proxy `v1/tts/generate` — pas ce juge. Le juge ferme l'USURPATION, pas
- * l'inscription.
+ * doit le borner est la modération (`profileStatus`, désormais réservée à
+ * l'admin EN MODIFICATION) et le plafond de dépense du proxy `v1/tts/generate` —
+ * pas ce juge. Le juge ferme l'USURPATION, pas l'inscription.
+ *
+ * L'ÉCART AVEC LE MOBILE — CE QUI EST IDENTIQUE, CE QUI NE L'EST PAS, ET POURQUOI
+ * ------------------------------------------------------------------------------
+ * NE JAMAIS ÉCRIRE QUE « L'ÉCART DE SÉMANTIQUE ENTRE LES DEUX SURFACES EST
+ * FERMÉ ». Il ne l'est que sur une moitié, et l'autre moitié est STRUCTURELLE.
+ *
+ * CE QUI EST IDENTIQUE — LE JUGE. `qualifieGuide` et `roleGuide` rendent le même
+ * verdict pour les mêmes entrées, groupes compris, sur les deux surfaces :
+ * égalité stricte sur `userId`, disqualification dès qu'UNE ligne à soi est
+ * suspendue, refus sur vue tronquée, et `GROUPE_PERSONNEL` (`admin`) qui qualifie
+ * seul et AVANT la disqualification. C'est ce que ce fichier copie, et c'est ce
+ * que ses épreuves épinglent.
+ *
+ * CE QUI DIFFÈRE — CE QUE CHAQUE SURFACE FAIT D'UN NON-VERDICT. Sur une lecture
+ * qui n'a RIEN prouvé (réseau coupé, `$util.unauthorized()`, panne AppSync) :
+ *   - LE PORTAIL RÉTROGRADE. Il juge à chaque requête, n'a aucun état durable —
+ *     « garder » n'y voudrait rien dire — et `guide` y est une VRAIE capacité
+ *     (le Studio, la modération, la facturation TTS). Refuser ce qu'on n'a pas pu
+ *     prouver est le sens sûr ;
+ *   - LE MOBILE GARDE son état. Il a un rôle PERSISTÉ et fonctionne hors ligne ;
+ *     rétrograder sur une coupure transformerait une panne réseau en perte de
+ *     rôle, et `guide` n'y est qu'une préférence d'affichage (quels onglets
+ *     montrer) — aucune opération backend n'est gardée par elle. `detectAccountType`
+ *     rend donc `null` (« je ne sais pas ») au lieu de `'visitor'`, et n'écrit
+ *     rien sur disque. Aligné le 2026-09-01.
+ * Ces deux choix sont OPPOSÉS et tous deux justes, parce que les deux surfaces
+ * n'ont ni le même état ni le même enjeu. C'est assumé, pas en attente de
+ * correction.
  */
 
 /**
@@ -126,12 +172,17 @@ export const BORNE_LECTURE_PROFILS = 25;
 /**
  * Le strict nécessaire à juger : tout le reste du profil est hors sujet ici.
  *
- * `userId` est le champ CONTRAINT (voir l'en-tête). Il N'Y A PLUS de champ
- * `owner` à lire, et il ne faut surtout pas en réintroduire un : `LigneProfilLue`
- * (`src/lib/api/appsync-client.ts`) croise ce type avec
- * `Schema['GuideProfile']['type']`, d'où `owner` a déjà disparu. Un `owner?`
- * optionnel rendu ici le ferait REVENIR dans l'intersection, et l'erreur
- * redeviendrait invisible à la compilation.
+ * `userId` est le champ CONTRAINT (voir l'en-tête). N'AJOUTEZ PAS de champ
+ * `owner` ici — mais sachez que ne pas l'ajouter ne suffit plus.
+ *
+ * CE QUI A CHANGÉ. `LigneProfilLue` (`src/lib/api/appsync-client.ts`) croise ce
+ * type avec `Schema['GuideProfile']['type']`, où la règle de transition
+ * `allow.owner().to(['read'])` REMET `owner`. L'intersection le porte donc, et
+ * `ligne.owner` COMPILE, quoi que déclare ce type-ci. Le `@ts-expect-error` de
+ * `guide-qualification.test.ts` ne protège plus que `LigneProfilGuide` lui-même :
+ * il reste utile — il empêche de rendre la lecture délibérée ici — mais il ne
+ * couvre plus le portail. Ce qui le couvre est `owner-champ-mort.test.ts`, qui
+ * relit les sources de production.
  */
 export interface LigneProfilGuide {
   readonly userId?: string | null;

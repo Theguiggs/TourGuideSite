@@ -7,11 +7,12 @@
  *  1. la lecture passe par l'INDEX, pas par un balayage filtré — seul l'index
  *     rend le `nextToken` interprétable comme « il reste des lignes À CE SUB » ;
  *  2. AUCUN `selectionSet` explicite n'est passé — c'est le piège DORMANT. Il a
- *     changé de forme avec le correctif : ce n'est plus `owner` qu'un
- *     `selectionSet` amputé ferait disparaître (`owner` a quitté le modèle), mais
- *     `userId`, sur lequel porte désormais la comparaison. Le coût est le même :
- *     la comparaison porterait sur `undefined` et le juge verrouillerait TOUT LE
- *     MONDE, silencieusement ;
+ *     changé de CIBLE avec le correctif : le champ qu'un `selectionSet` amputé
+ *     ferait disparaître n'est plus `owner` mais `userId`, sur lequel porte
+ *     désormais la comparaison. Le coût est le même : la comparaison porterait sur
+ *     `undefined` et le juge verrouillerait TOUT LE MONDE, silencieusement.
+ *     (`owner`, lui, n'a PAS quitté le modèle : une règle de transition l'y garde
+ *     en lecture. Il est mort, pas absent — voir `owner-champ-mort.test.ts`.) ;
  *  3. une lecture en échec se distingue d'une lecture vide.
  *
  * CE QUE CE FICHIER NE PROUVE PAS : il vérifie les OPTIONS transmises au client
@@ -98,9 +99,9 @@ describe('listGuideProfilePageByUserId — la lecture qui nourrit le juge', () =
   });
 
   it("`userId` EST un champ explicite du modèle : il ne tient pas aux règles d'auth", () => {
-    // C'est ce qui distingue le juge actuel de son prédécesseur. `owner` n'était
-    // dans le jeu de sélection QUE par `resolveOwnerFields` ; le retirer des
-    // règles d'auth le faisait disparaître en silence. `userId` est dans
+    // C'est ce qui distingue le juge actuel de son prédécesseur. `owner` n'est
+    // dans le jeu de sélection QUE par `resolveOwnerFields` : il y entre et en
+    // sort au gré des règles d'auth, en silence. `userId` est dans
     // `model_introspection.fields`, donc sélectionné par défaut quelle que soit
     // la règle de propriété — avant comme après le déploiement du schéma.
     const modele = (
@@ -120,7 +121,9 @@ describe('listGuideProfilePageByUserId — la lecture qui nourrit le juge', () =
 
     expect(Object.keys(modele.fields)).toContain(CHAMP_PROPRIETE_PROFIL);
     expect(Object.keys(modele.fields)).toContain('profileStatus');
-    // `owner` n'a jamais été un champ du modèle : il n'existait que par la règle.
+    // `owner` n'a jamais été un champ du modèle, et ne l'est toujours pas : il
+    // n'entre dans la sélection que par une règle d'auth. C'est pour cela qu'il
+    // peut apparaître et disparaître sans qu'aucune ligne de code ne le nomme.
     expect(Object.keys(modele.fields)).not.toContain('owner');
   });
 
