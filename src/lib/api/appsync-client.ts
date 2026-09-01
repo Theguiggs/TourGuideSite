@@ -17,6 +17,8 @@ import { isPublicCatalogueGuide } from './public-guide-policy';
 import { disclosureWriteViolation } from './audio-source-policy';
 import {
   BORNE_LECTURE_PROFILS,
+  ownerAppartientAuSub,
+  statutDisqualifie,
   type LigneProfilGuide,
 } from '@/lib/auth/guide-qualification';
 
@@ -185,11 +187,13 @@ export async function getGuideProfileByUserId(userId: string, authMode?: 'userPo
  * `ok: false` = lecture RATÉE. À ne surtout pas confondre avec « aucun profil » :
  * l'appelant doit refuser SANS mémoriser le refus.
  */
+export type LigneProfilLue = Schema['GuideProfile']['type'] & LigneProfilGuide;
+
 export async function listGuideProfilePageByUserId(
   userId: string,
   authMode?: 'userPool' | 'iam',
 ): Promise<
-  { ok: true; lignes: LigneProfilGuide[]; tronquee: boolean } | { ok: false; erreur: string }
+  { ok: true; lignes: LigneProfilLue[]; tronquee: boolean } | { ok: false; erreur: string }
 > {
   try {
     const client = getClient();
@@ -208,13 +212,40 @@ export async function listGuideProfilePageByUserId(
     }
     return {
       ok: true,
-      lignes: (result.data ?? []) as LigneProfilGuide[],
+      lignes: (result.data ?? []) as LigneProfilLue[],
       tronquee: result.nextToken != null,
     };
   } catch (error) {
     logger.error(SERVICE_NAME, 'listGuideProfilePageByUserId failed', { error: String(error) });
     return { ok: false, erreur: String(error) };
   }
+}
+
+/**
+ * Le profil de CE compte, et de lui seul — pour les écrans, pas pour le rôle.
+ *
+ * Même défaut que le juge, autre conséquence : avec un `userId` libre, une ligne
+ * plantée par un tiers sous le `userId` d'un guide pouvait SORTIR à la place de
+ * la sienne. Le guide voyait alors le profil de l'attaquant sur ses propres
+ * écrans, et toute écriture visait l'`id` de l'attaquant — refusée par le
+ * backend, donc profil définitivement inéditable. Seul `owner` prouve
+ * l'appartenance.
+ *
+ * Une lecture ratée rend `null`, comme l'ancienne fonction : ces appelants-là
+ * dégradent gracieusement, ils ne décident d'aucune autorisation.
+ */
+export async function getOwnGuideProfile(sub: string, authMode?: 'userPool' | 'iam') {
+  const lecture = await listGuideProfilePageByUserId(sub, authMode);
+  if (!lecture.ok) return null;
+
+  const miennes = lecture.lignes.filter((ligne) => ownerAppartientAuSub(ligne.owner, sub));
+  if (miennes.length === 0) return null;
+  if (lecture.tronquee) {
+    logger.warn(SERVICE_NAME, 'Page de profils tronquée — doublons possibles', { sub });
+  }
+  // Une ligne disqualifiante prime : le guide doit VOIR sa suspension plutôt
+  // qu'un doublon actif qui la masquerait.
+  return miennes.find((ligne) => statutDisqualifie(ligne.profileStatus)) ?? miennes[0];
 }
 
 export async function listTourReviews(tourId: string) {

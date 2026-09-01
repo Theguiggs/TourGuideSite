@@ -43,7 +43,7 @@ jest.mock('@/lib/logger', () => ({
 }));
 
 import outputs from '../../../../amplify_outputs.json';
-import { listGuideProfilePageByUserId } from '../appsync-client';
+import { getOwnGuideProfile, listGuideProfilePageByUserId } from '../appsync-client';
 import { BORNE_LECTURE_PROFILS } from '@/lib/auth/guide-qualification';
 
 const SUB = '4418d408-8091-7086-42d5-ff563a43379c';
@@ -177,5 +177,60 @@ describe('listGuideProfilePageByUserId — la lecture qui nourrit le juge', () =
     mockIndexQuery.mockRejectedValue(new Error('ECONNRESET'));
 
     await expect(listGuideProfilePageByUserId(SUB, 'iam')).resolves.toMatchObject({ ok: false });
+  });
+});
+
+describe('getOwnGuideProfile — le profil affiché aux écrans', () => {
+  const ATTAQUANT = 'attaquant-sub-2222-3333';
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockIndexQuery.mockResolvedValue({ data: [], nextToken: null });
+  });
+
+  it("ne rend jamais la ligne d'un tiers, même seule dans la page", async () => {
+    // Avant le correctif : `data[0]` sortait telle quelle. Le guide voyait le
+    // profil de l'attaquant, et ses écritures visaient l'`id` d'autrui.
+    mockIndexQuery.mockResolvedValue({
+      data: [{ id: 'profil-attaquant', owner: `${ATTAQUANT}::${ATTAQUANT}`, displayName: 'Faux' }],
+      nextToken: null,
+    });
+
+    await expect(getOwnGuideProfile(SUB, 'userPool')).resolves.toBeNull();
+  });
+
+  it('rend la SIENNE quand la ligne plantée arrive en premier', async () => {
+    mockIndexQuery.mockResolvedValue({
+      data: [
+        { id: 'profil-attaquant', owner: `${ATTAQUANT}::${ATTAQUANT}`, profileStatus: 'active' },
+        { id: 'profil-legitime', owner: `${SUB}::${SUB}`, profileStatus: 'active' },
+      ],
+      nextToken: null,
+    });
+
+    await expect(getOwnGuideProfile(SUB, 'userPool')).resolves.toMatchObject({
+      id: 'profil-legitime',
+    });
+  });
+
+  it('préfère la ligne disqualifiante au doublon actif qui la masquerait', async () => {
+    // Le guide doit VOIR sa suspension, pas un second profil qu'il se serait créé.
+    mockIndexQuery.mockResolvedValue({
+      data: [
+        { id: 'doublon-actif', owner: `${SUB}::${SUB}`, profileStatus: 'active' },
+        { id: 'vrai-suspendu', owner: `${SUB}::${SUB}`, profileStatus: 'suspended' },
+      ],
+      nextToken: null,
+    });
+
+    await expect(getOwnGuideProfile(SUB, 'userPool')).resolves.toMatchObject({
+      id: 'vrai-suspendu',
+    });
+  });
+
+  it("rend null sur lecture ratée — ces appelants dégradent, ils n'autorisent rien", async () => {
+    mockIndexQuery.mockRejectedValue(new Error('ECONNRESET'));
+
+    await expect(getOwnGuideProfile(SUB, 'userPool')).resolves.toBeNull();
   });
 });

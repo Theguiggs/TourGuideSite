@@ -15,7 +15,7 @@ import {
   fetchUserAttributes,
   fetchAuthSession,
 } from 'aws-amplify/auth';
-import { getGuideProfileByUserId } from '@/lib/api/appsync-client';
+import { getOwnGuideProfile } from '@/lib/api/appsync-client';
 
 // 'tourist' = an authenticated Cognito user WITHOUT a GuideProfile (e.g. an app
 // user logging in on the web to buy a tour, mon-1.3b). Tourists are NOT guides:
@@ -71,8 +71,14 @@ async function resolveAuthUser(): Promise<AuthUser | null> {
     return { id: userId, email, displayName, role: 'admin', guideId: null };
   }
 
-  // Look up GuideProfile by Cognito userId — use userPool auth since user is authenticated
-  const profile = await getGuideProfileByUserId(userId, 'userPool');
+  // Look up GuideProfile by Cognito userId — use userPool auth since user is authenticated.
+  //
+  // SÉCURITÉ — `getOwnGuideProfile`, jamais un `list({filter:{userId}})` brut :
+  // `userId` est un champ LIBRE, une ligne plantée par un tiers sous le `userId`
+  // d'un guide pouvait sortir à sa place (profil affiché faux, `id` d'autrui
+  // dans toutes les écritures suivantes). Seul `owner` prouve l'appartenance.
+  // Voir `@/lib/auth/guide-qualification`.
+  const profile = await getOwnGuideProfile(userId, 'userPool');
   if (!profile) {
     // No guide profile → authenticated TOURIST (mon-1.3b: app user buying on web).
     return { id: userId, email, displayName, role: 'tourist', guideId: null };
