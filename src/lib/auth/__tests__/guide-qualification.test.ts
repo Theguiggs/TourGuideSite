@@ -13,6 +13,8 @@
  * qui PROJETTE ses lignes sur le jeu de sélection dérivé des règles d'auth.
  */
 
+import outputs from '../../../../amplify_outputs.json';
+
 import {
   BORNE_LECTURE_PROFILS,
   CHAMP_PROPRIETE_PROFIL,
@@ -108,13 +110,45 @@ describe('le TYPE de `profileStatus` — l’enum est parti, plus rien ne rattra
    *     d'administration, pour l'ÉCRITURE (épinglées dans
    *     `src/lib/api/__tests__/guide-profile-ecritures.test.ts`).
    */
-  it('accepte n’importe quelle chaîne — la preuve que l’union a disparu', () => {
-    // Assertion de COMPILATION. Si le backend re-narrowait `profileStatus` en
-    // enum, cette ligne cesserait de compiler et `tsc --noEmit` tomberait ICI —
-    // ce qui force à repasser par ce commentaire au lieu de croire l'union
-    // revenue toute seule.
-    const horsDomaine: Schema['GuideProfile']['type']['profileStatus'] = 'ce-statut-nexiste-pas';
-    expect(typeof horsDomaine).toBe('string');
+  it('l’union a disparu — constaté sur l’ARTEFACT, pas sur le type', () => {
+    // POURQUOI PAS UNE ASSERTION DE COMPILATION.
+    //
+    // La forme naturelle était d'écrire
+    // `const x: Schema[…]['profileStatus'] = 'ce-statut-nexiste-pas'` et de
+    // laisser `tsc` tomber si l'union revenait. Elle ne tient pas ICI, et
+    // l'intégration continue l'a prouvée fausse : le type vient de
+    // `@amplify-schema`, qui se résout sur l'AUTRE dépôt — sur `main`, où le
+    // champ est encore un enum tant que le backend n'est pas déployé. En local
+    // la ligne compilait (branche de correctif), en CI elle échouait.
+    // UNE GARDE DONT LE VERDICT DÉPEND DE LA BRANCHE D'UN AUTRE DÉPÔT NE GARDE
+    // RIEN : elle date.
+    //
+    // On lit donc l'ARTEFACT que ce portail embarque réellement — même source
+    // que `guide-qualification-jeu-de-selection.test.ts` — et on décrit les
+    // DEUX ères. Une troisième forme tombe, avec son diff.
+    const champ = (
+      outputs as unknown as {
+        data: {
+          model_introspection: {
+            models: {GuideProfile: {fields: {profileStatus: {type: unknown}}}};
+          };
+        };
+      }
+    ).data.model_introspection.models.GuideProfile.fields.profileStatus.type;
+
+    const enumere =
+      typeof champ === 'object' && champ !== null && 'enum' in (champ as Record<string, unknown>);
+
+    if (enumere) {
+      // ÈRE D'AVANT : le domaine est encore porté par le schéma.
+      expect(champ).toEqual({enum: 'GuideProfileProfileStatus'});
+    } else {
+      // ÈRE D'APRÈS : le compilateur ne refuse plus une faute de frappe, et il
+      // ne le fera plus jamais. `STATUTS_DISQUALIFIANTS` (lecture) et les
+      // unions littérales d'écriture sont désormais les SEULES gardes du
+      // domaine.
+      expect(champ).toBe('String');
+    }
   });
 
   it('le domaine reste les QUATRE valeurs, et le juge les partage en deux', () => {
