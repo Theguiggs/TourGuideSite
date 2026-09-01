@@ -143,34 +143,23 @@ export async function getGuideProfileById(id: string, authMode?: 'userPool' | 'i
   }
 }
 
-export async function getGuideProfileByUserId(userId: string, authMode?: 'userPool' | 'iam') {
-  try {
-    const client = getClient();
-    // authMode must be in the SAME options object as filter for list() in Amplify Gen2
-    const result = await client.models.GuideProfile.list({
-      filter: { userId: { eq: userId } },
-      ...(authMode ? { authMode } : {}),
-    });
-    logger.info(SERVICE_NAME, 'getGuideProfileByUserId result', { userId, authMode, hasData: !!result.data, hasErrors: !!result.errors });
-    return result.data?.[0] ?? null;
-  } catch (error) {
-    logger.error(SERVICE_NAME, 'getGuideProfileByUserId failed', { error: String(error) });
-    return null;
-  }
-}
-
 /**
  * Lecture d'AUTORISATION : toutes les lignes `GuideProfile` de ce `sub`, lues
  * par l'INDEX `guideProfilesByUserId` (champ de requête `listGuideProfileByUserId`).
  *
- * POURQUOI PAS `getGuideProfileByUserId` CI-DESSUS : celui-là fait un
- * `list({filter})`, c'est-à-dire un BALAYAGE de table. Son `nextToken` est non
- * nul dès que la TABLE dépasse une page de 1 Mo, sans aucun rapport avec les
- * doublons — il ne peut donc pas nourrir la règle de vue tronquée. Pire, son
- * `data?.[0]` rend déjà `null` pour un guide parfaitement légitime dont la ligne
- * tombe dans une page non lue. L'index, lui, est une REQUÊTE sur clé de
- * partition : sa page ne contient que les lignes de ce `sub`, et son `nextToken`
- * signifie exactement « il reste des lignes À CE SUB ».
+ * POURQUOI PAS UN `list({filter:{userId}})` — le lecteur par balayage qui
+ * tenait ici, `getGuideProfileByUserId`, est SUPPRIMÉ : ne le réintroduisez pas,
+ * sous aucun nom. Un `list({filter})` est un BALAYAGE de table, et il ment dans
+ * les DEUX sens. Il rend `null` pour un guide parfaitement légitime dont la ligne
+ * tombe dans une page non lue, car DynamoDB filtre APRÈS avoir lu sa page de
+ * 1 Mo. Et son `data?.[0]` ne PROUVE pas la propriété : il la délègue au filtre
+ * serveur, qui n'est pas la règle de propriété mais lui ressemble tant que le
+ * schéma dit `ownerDefinedIn('userId')` — le jour où les deux s'écartent, il rend
+ * une ligne que le juge refuse. Son `nextToken`, enfin, est non nul dès
+ * que la TABLE dépasse une page, sans aucun rapport avec les doublons — il ne
+ * peut donc pas nourrir la règle de vue tronquée. L'index, lui, est une REQUÊTE
+ * sur clé de partition : sa page ne contient que les lignes de ce `sub`, et son
+ * `nextToken` signifie exactement « il reste des lignes À CE SUB ».
  *
  * LE JEU DE SÉLECTION — CE QUI A CHANGÉ, ET CE QU'IL FAUT EN FAIRE
  * ----------------------------------------------------------------
@@ -248,7 +237,8 @@ export async function listGuideProfilePageByUserId(
 }
 
 /**
- * Le profil de CE compte, et de lui seul — pour les écrans, pas pour le rôle.
+ * Le profil de CE compte, et de lui seul — pour les écrans, et pour le test
+ * d'idempotence du signup. Jamais pour juger le rôle : ça, c'est `qualifieGuide`.
  *
  * Même défaut que le juge, autre conséquence : quand `userId` était un champ
  * LIBRE, une ligne plantée par un tiers sous le `userId` d'un guide pouvait
@@ -258,8 +248,17 @@ export async function listGuideProfilePageByUserId(
  * en place après la bascule : il ne coûte rien, il couvre les lignes héritées
  * d'avant, et il garde ce chemin juste si le schéma reculait.
  *
- * Une lecture ratée rend `null`, comme l'ancienne fonction : ces appelants-là
- * dégradent gracieusement, ils ne décident d'aucune autorisation.
+ * CE QUE `null` VEUT DIRE, ET CE QUE L'APPELANT DOIT EN FAIRE. Une lecture ratée
+ * rend `null`, indistinctement d'« aucun profil » : c'est voulu pour les
+ * appelants qui dégradent gracieusement, et ils ne décident d'AUCUNE
+ * autorisation — le rôle se juge par `qualifieGuide`, qui reçoit `ok:false` et
+ * refuse SANS mémoriser le refus.
+ *
+ * Le signup (`/guide/signup`) s'en sert aussi, pour un autre usage : décider s'il
+ * doit créer le profil. Là, `null` fait CRÉER, et c'est le bon sens d'erreur — au
+ * pire un doublon, jamais un compte sans profil. Tout appelant qui, lui, doit
+ * distinguer « rien lu » de « rien à lire » passe par
+ * `listGuideProfilePageByUserId` et lit son `ok`.
  */
 export async function getOwnGuideProfile(sub: string, authMode?: 'userPool' | 'iam') {
   const lecture = await listGuideProfilePageByUserId(sub, authMode);

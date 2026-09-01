@@ -12,7 +12,7 @@ import { useState, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { signUp, confirmSignUp, signIn as amplifySignIn, fetchAuthSession, signOut as amplifySignOut } from 'aws-amplify/auth';
-import { createGuideProfileMutation, getGuideProfileByUserId } from '@/lib/api/appsync-client';
+import { createGuideProfileMutation, getOwnGuideProfile } from '@/lib/api/appsync-client';
 import { useAuth } from '@/lib/auth/auth-context';
 import { trackEvent, GuideAnalyticsEvents } from '@/lib/analytics';
 
@@ -152,8 +152,36 @@ export default function GuideSignupPage() {
           return;
         }
 
-        // 4. Create GuideProfile (idempotent — skip if already exists)
-        const existing = await getGuideProfileByUserId(userId, 'userPool');
+        // 4. Créer le GuideProfile — idempotent pour SON propriétaire, et pour lui seul.
+        //
+        // `getOwnGuideProfile`, jamais un `list({filter:{userId}})` — pour DEUX
+        // raisons, et la première est celle qui mord aujourd'hui.
+        //
+        // 1. LE BALAYAGE FILTRÉ MENT SUR LA PRÉSENCE. DynamoDB lit une page de
+        //    1 Mo PUIS applique le filtre : `list({filter:{userId}})` rend
+        //    `data: []` avec un `nextToken` non nul dès que la ligne du guide
+        //    tombe au-delà de la première page, et Amplify ne suit pas le
+        //    `nextToken`. `data?.[0] ?? null` valait donc `null` pour un guide
+        //    parfaitement légitime, et ce test lui fabriquait un SECOND profil —
+        //    l'idempotence qu'il est censé garantir. L'index, lui, a `userId`
+        //    pour clé de partition : sa page contient ses lignes, et elles seules.
+        //
+        // 2. IL DÉLÈGUE LA PREUVE DE PROPRIÉTÉ À UN FILTRE QUI N'EST PAS LA RÈGLE.
+        //    Que « `userId` égale le `sub` » soit aujourd'hui à la fois le filtre
+        //    du balayage ET la règle de propriété est une COÏNCIDENCE du schéma
+        //    courant (`ownerDefinedIn('userId').identityClaim('sub')`), pas une
+        //    garantie : le jour où les deux s'écartent, le balayage rendrait une
+        //    ligne que `profilAppartientAuSub` refuse, ce test sauterait la
+        //    création, et le guide repartirait SANS profil — donc en `tourist` au
+        //    prochain `getCurrentUserWithProfile`, sans qu'aucune erreur ne le
+        //    signale. `getOwnGuideProfile` applique la règle elle-même.
+        //
+        // LE SENS DE L'ERREUR EST DÉLIBÉRÉ. Une lecture qui ne voit rien (échec
+        // réseau, ligne pas encore propagée dans l'index) fait CRÉER : au pire un
+        // doublon, que `getOwnGuideProfile` et `qualifieGuide` savent tous deux
+        // absorber. L'inverse — sauter la création sur une lecture douteuse —
+        // produirait un compte sans profil, silencieux et invisible.
+        const existing = await getOwnGuideProfile(userId, 'userPool');
         if (!existing) {
           const profileResult = await createGuideProfileMutation({
             userId,
