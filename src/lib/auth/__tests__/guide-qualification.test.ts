@@ -26,6 +26,7 @@ import {
 // Le relevé du vivant est UNIQUE et partagé : le précédent, recopié dans trois
 // fichiers, s'était trompé dans les trois de la même façon (trois guides au lieu
 // de deux). Voir `./parc-vivant.ts`.
+import type { Schema } from '@amplify-schema';
 import { LIGNE_ORPHELINE, PARC_VIVANT } from './parc-vivant';
 
 const GUIDE = 'guide-sub-0000-1111';
@@ -45,6 +46,36 @@ describe('les constantes du modèle de propriété', () => {
   it('désignent `userId` et la revendication `sub`', () => {
     expect(CHAMP_PROPRIETE_PROFIL).toBe('userId');
     expect(REVENDICATION_PROPRIETE_PROFIL).toBe('sub');
+  });
+});
+
+describe('le TYPE des lignes jugées', () => {
+  // Ces deux épreuves sont de nature COMPILATION : elles ne tombent pas à
+  // l'exécution mais sous `tsc --noEmit`. C'est le seul endroit où le défaut
+  // d'origine était visible — et il ne l'était pas, justement parce que
+  // `LigneProfilGuide` déclarait un `owner?` optionnel.
+  it('n’a PAS de champ `owner` — le remettre rendrait le défaut invisible', () => {
+    // `LigneProfilLue` croise ce type avec `Schema['GuideProfile']['type']`, d'où
+    // `owner` a déjà disparu. Un `owner?` optionnel ICI le ferait revivre dans
+    // l'intersection, et `ligne.owner` redeviendrait typé — donc compilable, donc
+    // silencieux. Si ce `@ts-expect-error` devient inutile, c'est que le champ
+    // est revenu : le retirer, ne pas retirer la directive.
+    const interdit = () => {
+      // @ts-expect-error `owner` n'appartient plus à `LigneProfilGuide`.
+      const ligneAvecOwner: LigneProfilGuide = { owner: 'x', profileStatus: 'active' };
+      return ligneAvecOwner;
+    };
+    expect(typeof interdit).toBe('function');
+  });
+
+  it('`userId` est bien un champ du type que le backend expose', () => {
+    // La seule chose que le portail doive exiger du type backend, et qui vaut
+    // AVANT comme APRÈS le déploiement du schéma : `userId` est un champ explicite
+    // du modèle. `owner`, lui, n'est volontairement pas contrôlé ici — il est
+    // présent ou absent selon l'ère du dépôt voisin, et le juge est juste dans les
+    // deux cas.
+    const ligneTypee: Pick<Schema['GuideProfile']['type'], 'userId'> = { userId: 'un-sub' };
+    expect(profilAppartientAuSub(ligneTypee.userId, 'un-sub')).toBe(true);
   });
 });
 
