@@ -52,12 +52,18 @@ function tokenGroups(payload: CognitoAccessTokenPayload): string[] {
 /**
  * Le rôle d'un porteur de jeton.
  *
- * SÉCURITÉ — `GuideProfile.userId` est un champ LIBRE : n'importe quel compte
- * connecté peut planter une ligne sous le `sub` d'un tiers. La seule présence
- * d'une ligne ne prouve donc RIEN, ni pour accorder le rôle (élévation), ni pour
- * le retirer (révocation croisée). Le juge est `./guide-qualification.ts` : il
- * exige un `owner` qui appartienne au `sub`, disqualifie dès qu'UNE ligne à soi
- * est suspendue même noyée dans des doublons actifs, et refuse sur vue tronquée.
+ * SÉCURITÉ — `GuideProfile.userId` A ÉTÉ un champ LIBRE : n'importe quel compte
+ * connecté pouvait planter une ligne sous le `sub` d'un tiers, donc la seule
+ * présence d'une ligne ne prouvait RIEN, ni pour accorder le rôle (élévation),
+ * ni pour le retirer (révocation croisée). Le schéma le CONTRAINT désormais
+ * (`ownerDefinedIn('userId').identityClaim('sub')` + verrou de champ sans
+ * `update`), mais le portail juge quand même : le chemin IAM lit toute la table,
+ * les lignes héritées d'avant la bascule sont encore là, et un portail qui
+ * partirait avant le schéma n'aurait rien fermé.
+ *
+ * Le juge est `./guide-qualification.ts` : il exige un `userId` STRICTEMENT égal
+ * au `sub` du jeton, disqualifie dès qu'UNE ligne à soi est suspendue même noyée
+ * dans des doublons actifs, et refuse sur vue tronquée.
  */
 async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerRole[]> {
   const groups = tokenGroups(payload);

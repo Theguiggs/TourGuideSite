@@ -21,17 +21,20 @@ import {
   verifyServerToken,
 } from '../server-token';
 
-/** Le parc vivant, relevé le 2026-09-01 (cf. guide-qualification.test.ts). */
-const PARC_VIVANT = [
-  { nom: 'E2E Guide (1)', sub: '34385438-f0c1-708d-edb6-7254fdf3c203' },
-  { nom: 'E2E Guide (2)', sub: 'a4e854b8-0001-70c8-fb8d-a8199917905e' },
-  { nom: 'Guillaume STEFFEN', sub: '4418d408-8091-7086-42d5-ff563a43379c' },
-] as const;
+// Le relevé du vivant est UNIQUE et partagé — DEUX guides, pas trois.
+// Voir `./parc-vivant.ts`.
+import { PARC_VIVANT } from './parc-vivant';
 
 const ATTAQUANT = 'attaquant-sub-2222-3333';
 
+/**
+ * Une ligne telle que le client la rend DEPUIS LA BASCULE : `userId` nu, et pas
+ * de `owner` — `resolveOwnerFields` rend `['userId']`, donc `owner` n'est plus
+ * dans le jeu de sélection par défaut. Une ligne qui en porterait un ici
+ * mentirait sur la production.
+ */
 const propre = (sub: string, profileStatus = 'active') => ({
-  owner: `${sub}::${sub}`,
+  userId: sub,
   profileStatus,
 });
 const page = (lignes: unknown[], tronquee = false) => ({ ok: true, lignes, tronquee });
@@ -103,17 +106,36 @@ describe('server Cognito token verification', () => {
   // ------------------------------------------------------------------
   // ATTAQUE 1 — révocation croisée.
   // ------------------------------------------------------------------
-  it("un profil 'suspended' planté sous le sub d'un guide ne lui retire rien", async () => {
-    const sub = PARC_VIVANT[2].sub;
+  it("une ligne 'suspended' au `userId` d'un ATTAQUANT ne retire rien au guide", async () => {
+    const sub = PARC_VIVANT[1].sub;
     mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': [] });
-    // Le chemin IAM du portail lit TOUT : la ligne plantée SORT de la lecture.
-    // Elle porte l'`owner` de l'attaquant, seul champ que le résolveur borne.
+    // Le chemin IAM du portail lit TOUT. Depuis la bascule, une telle ligne ne
+    // peut plus apparaître dans la page d'un autre `sub` (clé de partition), mais
+    // le tri se fait quand même ici — il couvre les lignes héritées et garde ce
+    // chemin juste si le schéma reculait.
     mockListGuideProfilePageByUserId.mockResolvedValue(
       page([propre(ATTAQUANT, 'suspended'), propre(sub)]),
     );
 
     const verified = await requireServerRole(requete(), ['guide', 'admin']);
     expect(verified.roles).toEqual(['guide']);
+  });
+
+  // ------------------------------------------------------------------
+  // LA COMPARAISON EST STRICTE — la forme composite ne qualifie PLUS.
+  // ------------------------------------------------------------------
+  it("une ligne au `userId` composite `sub::…` ne qualifie plus personne", async () => {
+    const sub = PARC_VIVANT[0].sub;
+    mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': [] });
+    // L'ancien juge, qui comparait `owner`, acceptait cette forme : Amplify
+    // l'écrivait dans `owner`. Le résolveur ne peut plus l'écrire dans `userId`
+    // (`$ownerClaimsList0` est VIDE et la revendication est `sub`), donc une
+    // ligne de cette forme n'a plus aucune provenance légitime.
+    mockListGuideProfilePageByUserId.mockResolvedValue(page([propre(`${sub}::${sub}`)]));
+
+    await expect(requireServerRole(requete(), ['guide', 'admin'])).rejects.toMatchObject<
+      Partial<ServerAuthError>
+    >({ status: 403 });
   });
 
   // ------------------------------------------------------------------
@@ -201,7 +223,7 @@ describe('server Cognito token verification', () => {
   // LE CACHE — il sert toujours les VRAIS verdicts.
   // ------------------------------------------------------------------
   it('caches a guide role across job polling requests', async () => {
-    const sub = PARC_VIVANT[2].sub;
+    const sub = PARC_VIVANT[1].sub;
     mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': [] });
     mockListGuideProfilePageByUserId.mockResolvedValue(page([propre(sub)]));
 

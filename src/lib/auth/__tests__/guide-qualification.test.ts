@@ -2,83 +2,92 @@
  * Épreuves de la qualification d'un guide, côté portail.
  *
  * Chaque épreuve d'attaque POSE la mutation et constate la chute ; le contrôle
- * négatif (les trois profils RÉELS du parc vivant) constate qu'ils qualifient
+ * négatif (les profils RÉELS du parc vivant) constate qu'ils qualifient
  * toujours. Une garde que rien ne fait tomber ne prouve rien : les deux moitiés
  * sont ici.
+ *
+ * CE FICHIER FABRIQUE SES LIGNES À LA MAIN, ET C'EST SA LIMITE. Il ne peut pas
+ * voir qu'un champ lu n'est pas un champ rendu — c'est précisément ainsi que le
+ * juge `owner` est resté vert pendant que le backend le retirait du jeu de
+ * sélection. Ce trou-là est fermé par `guide-qualification-jeu-de-selection.test.ts`,
+ * qui PROJETTE ses lignes sur le jeu de sélection dérivé des règles d'auth.
  */
 
 import {
   BORNE_LECTURE_PROFILS,
-  ownerAppartientAuSub,
+  CHAMP_PROPRIETE_PROFIL,
+  profilAppartientAuSub,
   qualifieGuide,
+  REVENDICATION_PROPRIETE_PROFIL,
   roleGuide,
   statutDisqualifie,
   type LigneProfilGuide,
 } from '../guide-qualification';
-
-/**
- * Le parc vivant, relevé le 2026-09-01 par balayage complet de
- * `GuideProfile-yvupc5stqzaxrgz6wv2wz7he5y-NONE` : 3 lignes, toutes `active`,
- * toutes en `owner === "<sub>::<sub>"`, aucun doublon de `userId`.
- *
- * C'EST LE CONTRÔLE NÉGATIF ET C'EST LE PLUS IMPORTANT : un correctif de
- * sécurité qui casse les comptes légitimes est un incident, pas un correctif.
- */
-const PARC_VIVANT = [
-  {
-    nom: 'E2E Guide (1)',
-    sub: '34385438-f0c1-708d-edb6-7254fdf3c203',
-    owner: '34385438-f0c1-708d-edb6-7254fdf3c203::34385438-f0c1-708d-edb6-7254fdf3c203',
-  },
-  {
-    nom: 'E2E Guide (2)',
-    sub: 'a4e854b8-0001-70c8-fb8d-a8199917905e',
-    owner: 'a4e854b8-0001-70c8-fb8d-a8199917905e::a4e854b8-0001-70c8-fb8d-a8199917905e',
-  },
-  {
-    nom: 'Guillaume STEFFEN',
-    sub: '4418d408-8091-7086-42d5-ff563a43379c',
-    owner: '4418d408-8091-7086-42d5-ff563a43379c::4418d408-8091-7086-42d5-ff563a43379c',
-  },
-] as const;
+// Le relevé du vivant est UNIQUE et partagé : le précédent, recopié dans trois
+// fichiers, s'était trompé dans les trois de la même façon (trois guides au lieu
+// de deux). Voir `./parc-vivant.ts`.
+import { LIGNE_ORPHELINE, PARC_VIVANT } from './parc-vivant';
 
 const GUIDE = 'guide-sub-0000-1111';
 const ATTAQUANT = 'attaquant-sub-2222-3333';
 
-/** Ce que le résolveur laisse écrire à un compte : sa propre identité, 3 formes. */
-const formesLegitimes = (sub: string): string[] => [
-  sub,
-  `${sub}::${sub}`,
-  `${sub}::un-username-quelconque`,
-];
+/** Une ligne telle que le client la rend depuis la bascule : `userId` nu. */
+const ligne = (sub: string, profileStatus = 'active'): LigneProfilGuide => ({
+  userId: sub,
+  profileStatus,
+});
 
-describe('ownerAppartientAuSub', () => {
-  it('accepte les trois formes que le résolveur autorise pour son PROPRE sub', () => {
-    for (const owner of formesLegitimes(GUIDE)) {
-      expect(ownerAppartientAuSub(owner, GUIDE)).toBe(true);
-    }
+describe('les constantes du modèle de propriété', () => {
+  // Elles ne sont pas décoratives : `guide-qualification-jeu-de-selection.test.ts`
+  // les relit pour DÉRIVER le jeu de sélection, et `amplify/data/resource.ts`
+  // (côté backend) les lit pour écrire ses règles d'auth. Les figer ici fait
+  // tomber quelque chose si le modèle de propriété change d'un seul côté.
+  it('désignent `userId` et la revendication `sub`', () => {
+    expect(CHAMP_PROPRIETE_PROFIL).toBe('userId');
+    expect(REVENDICATION_PROPRIETE_PROFIL).toBe('sub');
+  });
+});
+
+describe('profilAppartientAuSub — ÉGALITÉ STRICTE', () => {
+  it('accepte la seule forme que le résolveur peut écrire : le `sub` NU', () => {
+    expect(profilAppartientAuSub(GUIDE, GUIDE)).toBe(true);
   });
 
-  it("refuse l'owner d'un tiers, sous toutes ses formes", () => {
-    for (const owner of formesLegitimes(ATTAQUANT)) {
-      expect(ownerAppartientAuSub(owner, GUIDE)).toBe(false);
-    }
+  // ------------------------------------------------------------------
+  // LA STRICTESSE — ce que l'ancien juge acceptait et que celui-ci refuse.
+  // ------------------------------------------------------------------
+  it('REFUSE la forme composite `sub::…`, que le backend ne peut plus écrire', () => {
+    // L'ancienne tolérance (`startsWith(sub + '::')`) existait parce que le champ
+    // de propriété était `owner`, qu'Amplify écrivait en `"<sub>::<username>"`.
+    // Depuis `.identityClaim('sub')`, la SEULE valeur acceptée par le résolveur
+    // est le `sub` nu — et `$ownerClaimsList0` reste VIDE. Garder la tolérance
+    // rouvrirait un écart entre ce que le backend permet d'écrire et ce que le
+    // juge accepte de lire : l'écart même qui a produit le trou d'origine.
+    expect(profilAppartientAuSub(`${GUIDE}::${GUIDE}`, GUIDE)).toBe(false);
+    expect(profilAppartientAuSub(`${GUIDE}::un-username-quelconque`, GUIDE)).toBe(false);
+    expect(profilAppartientAuSub(`${GUIDE}::`, GUIDE)).toBe(false);
   });
 
-  it('refuse un préfixe qui ressemble sans être une frontière `::`', () => {
-    // Le danger d'un `startsWith` naïf sans le séparateur.
-    expect(ownerAppartientAuSub(`${GUIDE}-bis`, GUIDE)).toBe(false);
-    expect(ownerAppartientAuSub(`${GUIDE}:autre`, GUIDE)).toBe(false);
-    expect(ownerAppartientAuSub(`x${GUIDE}`, GUIDE)).toBe(false);
+  it("refuse le `userId` d'un tiers, sous toutes ses formes", () => {
+    expect(profilAppartientAuSub(ATTAQUANT, GUIDE)).toBe(false);
+    expect(profilAppartientAuSub(`${ATTAQUANT}::${ATTAQUANT}`, GUIDE)).toBe(false);
+  });
+
+  it('refuse un préfixe qui ressemble sans être une égalité', () => {
+    expect(profilAppartientAuSub(`${GUIDE}-bis`, GUIDE)).toBe(false);
+    expect(profilAppartientAuSub(`${GUIDE} `, GUIDE)).toBe(false);
+    expect(profilAppartientAuSub(`x${GUIDE}`, GUIDE)).toBe(false);
+    expect(profilAppartientAuSub(GUIDE, `${GUIDE}-bis`)).toBe(false);
   });
 
   it('refuse le vide, le nul et le non-chaîne — jamais de joker', () => {
-    expect(ownerAppartientAuSub('', '')).toBe(false);
-    expect(ownerAppartientAuSub('::truc', '')).toBe(false);
-    expect(ownerAppartientAuSub(null, GUIDE)).toBe(false);
-    expect(ownerAppartientAuSub(undefined, GUIDE)).toBe(false);
-    expect(ownerAppartientAuSub(GUIDE, undefined)).toBe(false);
-    expect(ownerAppartientAuSub({ toString: () => GUIDE }, GUIDE)).toBe(false);
+    expect(profilAppartientAuSub('', '')).toBe(false);
+    expect(profilAppartientAuSub('', GUIDE)).toBe(false);
+    expect(profilAppartientAuSub(GUIDE, '')).toBe(false);
+    expect(profilAppartientAuSub(null, GUIDE)).toBe(false);
+    expect(profilAppartientAuSub(undefined, GUIDE)).toBe(false);
+    expect(profilAppartientAuSub(GUIDE, undefined)).toBe(false);
+    expect(profilAppartientAuSub({ toString: () => GUIDE }, GUIDE)).toBe(false);
   });
 });
 
@@ -95,35 +104,44 @@ describe('statutDisqualifie', () => {
 
 describe('qualifieGuide — les épreuves du correctif chaud', () => {
   // ------------------------------------------------------------------
-  // CONTRÔLE NÉGATIF : les trois guides réels continuent de qualifier.
+  // CONTRÔLE NÉGATIF : les guides réels continuent de qualifier.
   // ------------------------------------------------------------------
   describe('contrôle négatif — le parc vivant', () => {
-    it.each(PARC_VIVANT)('le profil réel de $nom qualifie toujours son guide', ({ sub, owner }) => {
-      expect(qualifieGuide({ sub, lignes: [{ owner, profileStatus: 'active' }], tronquee: false })).toEqual({
+    it.each(PARC_VIVANT)('le profil réel de $nom qualifie toujours son guide', ({ sub }) => {
+      expect(qualifieGuide({ sub, lignes: [ligne(sub)], tronquee: false })).toEqual({
         role: 'guide',
       });
     });
 
-    it('les trois lignes lues ENSEMBLE qualifient chacun leur guide, et eux seuls', () => {
-      const toutes: LigneProfilGuide[] = PARC_VIVANT.map((p) => ({
-        owner: p.owner,
-        profileStatus: 'active',
-      }));
+    it('les deux lignes lues ENSEMBLE qualifient chacune leur guide, et eux seuls', () => {
+      const toutes = PARC_VIVANT.map((p) => ligne(p.sub));
       for (const { sub } of PARC_VIVANT) {
         expect(qualifieGuide({ sub, lignes: toutes, tronquee: false })).toEqual({ role: 'guide' });
       }
-      // Un quatrième compte qui lirait les mêmes lignes n'en tire rien.
+      // Un troisième compte qui lirait les mêmes lignes n'en tire rien.
       expect(qualifieGuide({ sub: ATTAQUANT, lignes: toutes, tronquee: false })).toEqual({
         role: null,
         refus: 'aucun-profil',
       });
     });
 
+    it("la ligne ORPHELINE ne qualifie aucun des deux guides vivants", () => {
+      // Elle n'apparaîtra jamais dans leur page (clé de partition différente),
+      // mais si elle y était, elle ne leur donnerait rien.
+      const orpheline = [ligne(LIGNE_ORPHELINE.sub)];
+      for (const { sub } of PARC_VIVANT) {
+        expect(qualifieGuide({ sub, lignes: orpheline, tronquee: false })).toEqual({
+          role: null,
+          refus: 'aucun-profil',
+        });
+      }
+    });
+
     it("un profil en modération (pending_moderation) qualifie — ce n'est pas un statut disqualifiant", () => {
       expect(
         qualifieGuide({
           sub: GUIDE,
-          lignes: [{ owner: `${GUIDE}::${GUIDE}`, profileStatus: 'pending_moderation' }],
+          lignes: [ligne(GUIDE, 'pending_moderation')],
           tronquee: false,
         }),
       ).toEqual({ role: 'guide' });
@@ -131,36 +149,62 @@ describe('qualifieGuide — les épreuves du correctif chaud', () => {
   });
 
   // ------------------------------------------------------------------
-  // ATTAQUE 1 — révocation croisée : la ligne plantée ne retire RIEN.
+  // ATTAQUE 1 — révocation croisée. Elle est MORTE À LA SOURCE : le schéma
+  // n'autorise plus personne à écrire, ni à faire dériver, une ligne vers le
+  // `userId` d'un tiers. Restent les DONNÉES HÉRITÉES, écrites avant la
+  // bascule, et il faut dire exactement ce qu'elles produisent.
   // ------------------------------------------------------------------
-  it("une ligne 'suspended' plantée sous le userId d'un guide ne lui retire pas son rôle", () => {
-    const lignes: LigneProfilGuide[] = [
-      { owner: `${GUIDE}::${GUIDE}`, profileStatus: 'active' },
-      // Plantée par l'attaquant sous `userId: <sub du guide>` : le résolveur l'a
-      // forcée à porter l'`owner` de l'ATTAQUANT.
-      { owner: `${ATTAQUANT}::${ATTAQUANT}`, profileStatus: 'suspended' },
-    ];
+  it("une ligne héritée portant le `userId` d'un ATTAQUANT ne retire rien au guide", () => {
+    const lignes: LigneProfilGuide[] = [ligne(GUIDE), ligne(ATTAQUANT, 'suspended')];
     expect(qualifieGuide({ sub: GUIDE, lignes, tronquee: false })).toEqual({ role: 'guide' });
   });
 
-  it("une ligne 'active' plantée sous le userId d'un tiers ne qualifie pas non plus la victime", () => {
-    // Le miroir : ne pas qualifier quelqu'un avec la ligne d'un autre.
-    const lignes: LigneProfilGuide[] = [{ owner: `${ATTAQUANT}::${ATTAQUANT}`, profileStatus: 'active' }];
+  it("et elle ne le qualifie pas non plus s'il n'a rien à lui", () => {
+    const lignes: LigneProfilGuide[] = [ligne(ATTAQUANT, 'active')];
     expect(qualifieGuide({ sub: GUIDE, lignes, tronquee: false })).toEqual({
       role: null,
       refus: 'aucun-profil',
     });
   });
 
+  it(
+    "RÉSIDU ASSUMÉ — une ligne héritée `suspended` portant le `userId` DU GUIDE " +
+      'le disqualifie, et rien ici ne peut plus la distinguer de la sienne',
+    () => {
+      // CE POINT CONTREDIT LE CONTRAT REÇU, qui demandait qu'une telle ligne « ne
+      // le disqualifie pas à tort ». C'est IMPOSSIBLE depuis la bascule :
+      //   - l'ancien juge distinguait la ligne plantée par son `owner` (celui de
+      //     l'attaquant), champ que le résolveur bornait ;
+      //   - `owner` a disparu du type GraphQL ET du jeu de sélection. Le portail
+      //     ne peut plus le lire, ni par défaut ni par `selectionSet` explicite.
+      // Une ligne héritée `{userId: <sub du guide>, owner: <attaquant>}` est donc
+      // désormais INDISCERNABLE d'une ligne légitime du guide, et le juge la
+      // compte comme sienne. Le correctif est plus permissif que son prédécesseur
+      // SUR CE SEUL POINT, et seulement sur les données antérieures au
+      // déploiement.
+      //
+      // PRÉREQUIS DE DÉPLOIEMENT qui en découle : auditer la table avant de
+      // basculer, et supprimer toute ligne dont l'attribut `owner` ne commence
+      // pas par son propre `userId`. Sur le parc relevé, il n'y en a aucune — les
+      // deux guides et la ligne orpheline portent tous un `owner` cohérent avec
+      // leur `userId`.
+      expect(
+        qualifieGuide({ sub: GUIDE, lignes: [ligne(GUIDE, 'suspended')], tronquee: false }),
+      ).toEqual({ role: null, refus: 'disqualifie' });
+    },
+  );
+
   // ------------------------------------------------------------------
-  // ATTAQUE 2 — le suspendu qui se re-qualifie par un doublon actif.
+  // ATTAQUE 2 — le suspendu qui se re-qualifie par un doublon actif À SON NOM.
+  // Celle-ci reste entièrement ouverte côté schéma : rien n'impose l'unicité de
+  // `userId`, et l'inscription guide est ouverte par conception.
   // ------------------------------------------------------------------
-  it('un guide suspendu ne se re-qualifie pas en se créant un second profil actif', () => {
+  it('un guide suspendu ne se re-qualifie pas en se créant un second profil actif à SON nom', () => {
     const lignes: LigneProfilGuide[] = [
       // L'ordre est celui du pire cas : l'actif arrive EN PREMIER, donc un
       // `data?.[0]` ou un `find` s'y arrêterait et accorderait le rôle.
-      { owner: `${GUIDE}::${GUIDE}`, profileStatus: 'active' },
-      { owner: `${GUIDE}::${GUIDE}`, profileStatus: 'suspended' },
+      ligne(GUIDE, 'active'),
+      ligne(GUIDE, 'suspended'),
     ];
     expect(qualifieGuide({ sub: GUIDE, lignes, tronquee: false })).toEqual({
       role: null,
@@ -170,11 +214,8 @@ describe('qualifieGuide — les épreuves du correctif chaud', () => {
 
   it('un rejeté ne se re-qualifie pas davantage, quel que soit le nombre de doublons actifs', () => {
     const lignes: LigneProfilGuide[] = [
-      ...Array.from({ length: BORNE_LECTURE_PROFILS - 1 }, () => ({
-        owner: `${GUIDE}::${GUIDE}`,
-        profileStatus: 'active',
-      })),
-      { owner: `${GUIDE}::${GUIDE}`, profileStatus: 'rejected' },
+      ...Array.from({ length: BORNE_LECTURE_PROFILS - 1 }, () => ligne(GUIDE, 'active')),
+      ligne(GUIDE, 'rejected'),
     ];
     expect(qualifieGuide({ sub: GUIDE, lignes, tronquee: false })).toEqual({
       role: null,
@@ -183,35 +224,27 @@ describe('qualifieGuide — les épreuves du correctif chaud', () => {
   });
 
   // ------------------------------------------------------------------
-  // LA BORNE — une vue tronquée REFUSE, jamais un repli permissif.
+  // LA BORNE — ce qu'elle protège a changé : plus l'inondation par un tiers
+  // (impossible), mais l'AUTO-INONDATION. Le refus reste le même.
   // ------------------------------------------------------------------
   it('une vue tronquée refuse, même quand toutes les lignes VUES sont actives et à soi', () => {
     expect(
-      qualifieGuide({
-        sub: GUIDE,
-        lignes: [{ owner: `${GUIDE}::${GUIDE}`, profileStatus: 'active' }],
-        tronquee: true,
-      }),
+      qualifieGuide({ sub: GUIDE, lignes: [ligne(GUIDE)], tronquee: true }),
     ).toEqual({ role: null, refus: 'vue-tronquee' });
   });
 
   it('une suspension VUE reste décisive même sur une vue tronquée', () => {
     expect(
-      qualifieGuide({
-        sub: GUIDE,
-        lignes: [{ owner: `${GUIDE}::${GUIDE}`, profileStatus: 'suspended' }],
-        tronquee: true,
-      }),
+      qualifieGuide({ sub: GUIDE, lignes: [ligne(GUIDE, 'suspended')], tronquee: true }),
     ).toEqual({ role: null, refus: 'disqualifie' });
   });
 
-  it("noyer sa suspension hors de la page ne la contourne pas : la troncature refuse", () => {
-    // L'attaque exacte contre laquelle la règle existe — se créer assez de
-    // doublons actifs pour repousser la ligne suspendue hors de la page lue.
-    const lignes: LigneProfilGuide[] = Array.from({ length: BORNE_LECTURE_PROFILS }, () => ({
-      owner: `${GUIDE}::${GUIDE}`,
-      profileStatus: 'active',
-    }));
+  it('noyer SA PROPRE suspension hors de la page ne la contourne pas : la troncature refuse', () => {
+    // L'attaque exacte contre laquelle la règle existe encore : la GSI
+    // `guideProfilesByUserId` n'a pas de clé de tri, elle ordonne par `id`, et
+    // `id` est dans `CreateGuideProfileInput`. Un suspendu pourrait donc choisir
+    // des `id` qui repoussent sa ligne suspendue hors de la page lue.
+    const lignes = Array.from({ length: BORNE_LECTURE_PROFILS }, () => ligne(GUIDE, 'active'));
     expect(qualifieGuide({ sub: GUIDE, lignes, tronquee: true })).toEqual({
       role: null,
       refus: 'vue-tronquee',
@@ -219,25 +252,26 @@ describe('qualifieGuide — les épreuves du correctif chaud', () => {
   });
 
   // ------------------------------------------------------------------
-  // LE PIÈGE DORMANT — un `owner` absent du jeu de sélection.
+  // LE PIÈGE DORMANT — un `userId` absent du jeu de sélection.
   // ------------------------------------------------------------------
-  it("des lignes sans `owner` ne qualifient PERSONNE (le piège du selectionSet explicite)", () => {
-    // Si un `selectionSet` explicite retirait `owner`, la comparaison porterait
+  it('des lignes sans `userId` ne qualifient PERSONNE (le piège du selectionSet amputé)', () => {
+    // Si un `selectionSet` explicite retirait `userId`, la comparaison porterait
     // sur `undefined` : la règle refuserait tout le monde. On le constate ici
     // pour que le coût du piège soit écrit ; `appsync-client` en interdit la
-    // cause par une épreuve dédiée.
+    // cause par une épreuve dédiée, et `guide-qualification-jeu-de-selection`
+    // vérifie que `userId` est bien dans le jeu de sélection RÉEL.
     expect(
       qualifieGuide({
         sub: GUIDE,
-        lignes: [{ profileStatus: 'active' }, { owner: null, profileStatus: 'active' }],
+        lignes: [{ profileStatus: 'active' }, { userId: null, profileStatus: 'active' }],
         tronquee: false,
       }),
     ).toEqual({ role: null, refus: 'aucun-profil' });
   });
 
-  it("un `sub` vide ne qualifie rien, même face à un owner qui commence par '::'", () => {
+  it("un `sub` vide ne qualifie rien, même face à une ligne au `userId` vide", () => {
     expect(
-      qualifieGuide({ sub: '', lignes: [{ owner: '::x', profileStatus: 'active' }], tronquee: false }),
+      qualifieGuide({ sub: '', lignes: [{ userId: '', profileStatus: 'active' }], tronquee: false }),
     ).toEqual({ role: null, refus: 'aucun-profil' });
   });
 });
@@ -257,7 +291,7 @@ describe('roleGuide — la revendication de groupe', () => {
       roleGuide({
         qualification: qualifieGuide({
           sub: GUIDE,
-          lignes: [{ owner: `${GUIDE}::${GUIDE}`, profileStatus: 'suspended' }],
+          lignes: [ligne(GUIDE, 'suspended')],
           tronquee: false,
         }),
         groupes: ['guide'],
@@ -268,22 +302,18 @@ describe('roleGuide — la revendication de groupe', () => {
   it("une vue tronquée ne renverse PAS le groupe : elle n'a rien prouvé", () => {
     expect(
       roleGuide({
-        qualification: qualifieGuide({
-          sub: GUIDE,
-          lignes: [{ owner: `${GUIDE}::${GUIDE}`, profileStatus: 'active' }],
-          tronquee: true,
-        }),
+        qualification: qualifieGuide({ sub: GUIDE, lignes: [ligne(GUIDE)], tronquee: true }),
         groupes: ['guide'],
       }),
     ).toBe('guide');
   });
 
-  it("sans groupe ni profil à soi, aucun rôle", () => {
+  it('sans groupe ni profil à soi, aucun rôle', () => {
     expect(
       roleGuide({
         qualification: qualifieGuide({
           sub: GUIDE,
-          lignes: [{ owner: `${ATTAQUANT}::${ATTAQUANT}`, profileStatus: 'active' }],
+          lignes: [ligne(ATTAQUANT, 'active')],
           tronquee: false,
         }),
         groupes: [],

@@ -6,12 +6,17 @@
  *
  *  1. la lecture passe par l'INDEX, pas par un balayage filtré — seul l'index
  *     rend le `nextToken` interprétable comme « il reste des lignes À CE SUB » ;
- *  2. AUCUN `selectionSet` explicite n'est passé — c'est le piège DORMANT :
- *     `owner` n'est pas dans `model_introspection.fields`, il n'arrive que par
- *     le jeu de sélection PAR DÉFAUT (`resolveOwnerFields`). Un `selectionSet`
- *     explicite le retirerait en silence et la comparaison porterait sur
- *     `undefined` — le juge verrouillerait TOUT LE MONDE ;
+ *  2. AUCUN `selectionSet` explicite n'est passé — c'est le piège DORMANT. Il a
+ *     changé de forme avec le correctif : ce n'est plus `owner` qu'un
+ *     `selectionSet` amputé ferait disparaître (`owner` a quitté le modèle), mais
+ *     `userId`, sur lequel porte désormais la comparaison. Le coût est le même :
+ *     la comparaison porterait sur `undefined` et le juge verrouillerait TOUT LE
+ *     MONDE, silencieusement ;
  *  3. une lecture en échec se distingue d'une lecture vide.
+ *
+ * CE QUE CE FICHIER NE PROUVE PAS : il vérifie les OPTIONS transmises au client
+ * Amplify, pas le jeu de sélection que le client en dérive. Cette moitié-là est
+ * tenue par `src/lib/auth/__tests__/guide-qualification-jeu-de-selection.test.ts`.
  */
 
 jest.unmock('@/lib/api/appsync-client');
@@ -44,7 +49,7 @@ jest.mock('@/lib/logger', () => ({
 
 import outputs from '../../../../amplify_outputs.json';
 import { getOwnGuideProfile, listGuideProfilePageByUserId } from '../appsync-client';
-import { BORNE_LECTURE_PROFILS } from '@/lib/auth/guide-qualification';
+import { BORNE_LECTURE_PROFILS, CHAMP_PROPRIETE_PROFIL } from '@/lib/auth/guide-qualification';
 
 const SUB = '4418d408-8091-7086-42d5-ff563a43379c';
 
@@ -76,23 +81,28 @@ describe('listGuideProfilePageByUserId — la lecture qui nourrit le juge', () =
   });
 
   // ------------------------------------------------------------------
-  // LE PIÈGE DORMANT — `owner` doit rester dans le jeu de sélection.
+  // LE PIÈGE DORMANT — `userId` et `profileStatus` doivent rester sélectionnés.
   // ------------------------------------------------------------------
-  it("ne passe AUCUN `selectionSet` explicite — sinon `owner` disparaîtrait", async () => {
+  it("ne passe AUCUN `selectionSet` explicite — sinon `userId` pourrait disparaître", async () => {
     await listGuideProfilePageByUserId(SUB, 'iam');
 
     const options = dernieresOptions();
     if ('selectionSet' in options) {
-      // Un `selectionSet` explicite reste permis, mais UNIQUEMENT s'il remet
-      // `owner` : sans lui, le juge ne compare plus rien.
-      expect(options.selectionSet).toContain('owner');
+      // Un `selectionSet` explicite reste permis, mais UNIQUEMENT s'il porte les
+      // deux champs que le juge lit : sans eux, il ne compare plus rien.
+      expect(options.selectionSet).toContain(CHAMP_PROPRIETE_PROFIL);
+      expect(options.selectionSet).toContain('profileStatus');
     } else {
       expect(options).not.toHaveProperty('selectionSet');
     }
   });
 
-  it("`owner` n'est PAS un champ du modèle : il ne tient qu'à la règle d'auth", () => {
-    // Les deux moitiés du piège, constatées sur le contrat réel du backend.
+  it("`userId` EST un champ explicite du modèle : il ne tient pas aux règles d'auth", () => {
+    // C'est ce qui distingue le juge actuel de son prédécesseur. `owner` n'était
+    // dans le jeu de sélection QUE par `resolveOwnerFields` ; le retirer des
+    // règles d'auth le faisait disparaître en silence. `userId` est dans
+    // `model_introspection.fields`, donc sélectionné par défaut quelle que soit
+    // la règle de propriété — avant comme après le déploiement du schéma.
     const modele = (
       outputs as unknown as {
         data: {
@@ -108,17 +118,10 @@ describe('listGuideProfilePageByUserId — la lecture qui nourrit le juge', () =
       }
     ).data.model_introspection.models.GuideProfile;
 
-    // 1. Un `selectionSet` bâti sur les champs du modèle n'aurait PAS `owner`.
+    expect(Object.keys(modele.fields)).toContain(CHAMP_PROPRIETE_PROFIL);
+    expect(Object.keys(modele.fields)).toContain('profileStatus');
+    // `owner` n'a jamais été un champ du modèle : il n'existait que par la règle.
     expect(Object.keys(modele.fields)).not.toContain('owner');
-
-    // 2. Il n'arrive dans le jeu de sélection par défaut que parce que
-    //    `resolveOwnerFields` lit ce `ownerField` dans les règles d'auth.
-    const reglesAuth = modele.attributes.find((a) => a.type === 'auth')?.properties as
-      | { rules: Array<{ allow: string; ownerField?: string }> }
-      | undefined;
-    expect(reglesAuth?.rules.some((r) => r.allow === 'owner' && r.ownerField === 'owner')).toBe(
-      true,
-    );
   });
 
   it("l'index interrogé est bien celui que le backend expose", () => {
@@ -149,7 +152,7 @@ describe('listGuideProfilePageByUserId — la lecture qui nourrit le juge', () =
   // ------------------------------------------------------------------
   it('déclare la vue tronquée dès que le nextToken est non nul', async () => {
     mockIndexQuery.mockResolvedValue({
-      data: [{ owner: `${SUB}::${SUB}`, profileStatus: 'active' }],
+      data: [{ userId: SUB, profileStatus: 'active' }],
       nextToken: 'encore-des-lignes',
     });
 
@@ -192,7 +195,7 @@ describe('getOwnGuideProfile — le profil affiché aux écrans', () => {
     // Avant le correctif : `data[0]` sortait telle quelle. Le guide voyait le
     // profil de l'attaquant, et ses écritures visaient l'`id` d'autrui.
     mockIndexQuery.mockResolvedValue({
-      data: [{ id: 'profil-attaquant', owner: `${ATTAQUANT}::${ATTAQUANT}`, displayName: 'Faux' }],
+      data: [{ id: 'profil-attaquant', userId: ATTAQUANT, displayName: 'Faux' }],
       nextToken: null,
     });
 
@@ -202,8 +205,8 @@ describe('getOwnGuideProfile — le profil affiché aux écrans', () => {
   it('rend la SIENNE quand la ligne plantée arrive en premier', async () => {
     mockIndexQuery.mockResolvedValue({
       data: [
-        { id: 'profil-attaquant', owner: `${ATTAQUANT}::${ATTAQUANT}`, profileStatus: 'active' },
-        { id: 'profil-legitime', owner: `${SUB}::${SUB}`, profileStatus: 'active' },
+        { id: 'profil-attaquant', userId: ATTAQUANT, profileStatus: 'active' },
+        { id: 'profil-legitime', userId: SUB, profileStatus: 'active' },
       ],
       nextToken: null,
     });
@@ -217,8 +220,8 @@ describe('getOwnGuideProfile — le profil affiché aux écrans', () => {
     // Le guide doit VOIR sa suspension, pas un second profil qu'il se serait créé.
     mockIndexQuery.mockResolvedValue({
       data: [
-        { id: 'doublon-actif', owner: `${SUB}::${SUB}`, profileStatus: 'active' },
-        { id: 'vrai-suspendu', owner: `${SUB}::${SUB}`, profileStatus: 'suspended' },
+        { id: 'doublon-actif', userId: SUB, profileStatus: 'active' },
+        { id: 'vrai-suspendu', userId: SUB, profileStatus: 'suspended' },
       ],
       nextToken: null,
     });

@@ -17,7 +17,7 @@ import { isPublicCatalogueGuide } from './public-guide-policy';
 import { disclosureWriteViolation } from './audio-source-policy';
 import {
   BORNE_LECTURE_PROFILS,
-  ownerAppartientAuSub,
+  profilAppartientAuSub,
   statutDisqualifie,
   type LigneProfilGuide,
 } from '@/lib/auth/guide-qualification';
@@ -172,20 +172,46 @@ export async function getGuideProfileByUserId(userId: string, authMode?: 'userPo
  * partition : sa page ne contient que les lignes de ce `sub`, et son `nextToken`
  * signifie exactement « il reste des lignes À CE SUB ».
  *
- * PIÈGE DORMANT — `owner` n'est PAS dans
- * `model_introspection.models.GuideProfile.fields` : il n'arrive que parce que
- * `defaultSelectionSetForModel` (aws-amplify/data-schema) y ajoute le
- * `ownerField` tiré des règles d'auth. Ne JAMAIS passer de `selectionSet`
- * explicite ici sans y remettre `owner` — la comparaison porterait alors sur
- * `undefined` et verrouillerait TOUT LE MONDE, silencieusement. Une épreuve
- * tient ce piège.
+ * LE JEU DE SÉLECTION — CE QUI A CHANGÉ, ET CE QU'IL FAUT EN FAIRE
+ * ----------------------------------------------------------------
+ * Le bloc qui tenait ici disait « ne jamais retirer `owner` du jeu de
+ * sélection ». Sa conclusion est FAUSSE depuis le correctif : `owner` n'est plus
+ * dans le jeu de sélection DU TOUT. `resolveOwnerFields` tire le champ de
+ * propriété des règles d'auth, et
+ * `ownerDefinedIn('userId').identityClaim('sub')` lui fait rendre `['userId']` —
+ * `owner` sort donc du type GraphQL et du jeu de sélection par défaut, sur tous
+ * les chemins d'auth. Un tri resté sur `ligne.owner` verrouillerait TOUT LE
+ * MONDE.
  *
- * Le chemin IAM du portail lit TOUT, lignes plantées par des tiers comprises :
- * c'est précisément pourquoi le tri par `owner` se fait ici, dans le code du
- * portail (`qualifieGuide`), et ne se délègue pas au backend.
+ * Ce sur quoi on trie désormais, `userId`, est un champ EXPLICITE du modèle
+ * (`model_introspection.models.GuideProfile.fields`) : il est sélectionné par
+ * défaut quelles que soient les règles d'auth, avant comme après le déploiement
+ * du schéma. LA RÈGLE QUI RESTE : ne JAMAIS passer ici de `selectionSet`
+ * explicite qui omette `userId` ou `profileStatus` — la comparaison porterait sur
+ * `undefined` et le juge refuserait tout le monde en silence. Deux épreuves
+ * tiennent ce piège : `guide-profile-authz-read.test.ts` interdit le
+ * `selectionSet` amputé, et `guide-qualification-jeu-de-selection.test.ts`
+ * DÉRIVE le jeu de sélection des règles d'auth réelles pour que tout changement
+ * du modèle de propriété fasse tomber quelque chose.
+ *
+ * Le chemin IAM du portail lit TOUT : `allow.authenticated().to(['read'])` et le
+ * rôle IAM du portail voient la table entière. C'est pourquoi le tri par `userId`
+ * se fait ici, dans le code du portail (`qualifieGuide`), et ne se délègue pas au
+ * backend — même si, depuis la bascule, aucune ligne étrangère ne peut plus
+ * apparaître dans la page d'un `sub` donné.
  *
  * `ok: false` = lecture RATÉE. À ne surtout pas confondre avec « aucun profil » :
  * l'appelant doit refuser SANS mémoriser le refus.
+ */
+/**
+ * La ligne telle que le client la rend.
+ *
+ * `Schema['GuideProfile']['type']` N'A PLUS de `owner` depuis la bascule du
+ * schéma. `LigneProfilGuide` n'en déclare plus non plus — et il ne faut pas l'y
+ * remettre « au cas où » : un `owner?: string | null` optionnel dans
+ * l'intersection redonnerait un type à `ligne.owner` et rendrait de nouveau le
+ * défaut invisible à la compilation. C'est ce qui l'a rendu invisible la
+ * première fois.
  */
 export type LigneProfilLue = Schema['GuideProfile']['type'] & LigneProfilGuide;
 
@@ -224,12 +250,13 @@ export async function listGuideProfilePageByUserId(
 /**
  * Le profil de CE compte, et de lui seul — pour les écrans, pas pour le rôle.
  *
- * Même défaut que le juge, autre conséquence : avec un `userId` libre, une ligne
- * plantée par un tiers sous le `userId` d'un guide pouvait SORTIR à la place de
- * la sienne. Le guide voyait alors le profil de l'attaquant sur ses propres
- * écrans, et toute écriture visait l'`id` de l'attaquant — refusée par le
- * backend, donc profil définitivement inéditable. Seul `owner` prouve
- * l'appartenance.
+ * Même défaut que le juge, autre conséquence : quand `userId` était un champ
+ * LIBRE, une ligne plantée par un tiers sous le `userId` d'un guide pouvait
+ * SORTIR à la place de la sienne. Le guide voyait alors le profil de l'attaquant
+ * sur ses propres écrans, et toute écriture visait l'`id` de l'attaquant —
+ * refusée par le backend, donc profil définitivement inéditable. Le filtre reste
+ * en place après la bascule : il ne coûte rien, il couvre les lignes héritées
+ * d'avant, et il garde ce chemin juste si le schéma reculait.
  *
  * Une lecture ratée rend `null`, comme l'ancienne fonction : ces appelants-là
  * dégradent gracieusement, ils ne décident d'aucune autorisation.
@@ -238,7 +265,7 @@ export async function getOwnGuideProfile(sub: string, authMode?: 'userPool' | 'i
   const lecture = await listGuideProfilePageByUserId(sub, authMode);
   if (!lecture.ok) return null;
 
-  const miennes = lecture.lignes.filter((ligne) => ownerAppartientAuSub(ligne.owner, sub));
+  const miennes = lecture.lignes.filter((ligne) => profilAppartientAuSub(ligne.userId, sub));
   if (miennes.length === 0) return null;
   if (lecture.tronquee) {
     logger.warn(SERVICE_NAME, 'Page de profils tronquée — doublons possibles', { sub });
