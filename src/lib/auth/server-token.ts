@@ -16,7 +16,27 @@ const verifier = CognitoJwtVerifier.create({
 
 const GUIDE_ROLE_CACHE_TTL_MS = 60_000;
 const GUIDE_ROLE_CACHE_MAX_ENTRIES = 1_000;
-const guideRoleCache = new Map<string, { roles: ServerRole[]; expiresAt: number }>();
+
+/**
+ * CE QUI EST MÉMORISÉ EST LE VERDICT DU PROFIL, PAS LE RÔLE — et la distinction
+ * est devenue indispensable en retirant le court-circuit `admin`.
+ *
+ * Ce cache existe pour épargner une LECTURE APPSYNC, la seule chose coûteuse
+ * ici. Les groupes, eux, sortent du jeton VÉRIFIÉ à chaque requête : ils ne
+ * coûtent rien et ne doivent donc jamais être figés.
+ *
+ * LE TROU QUE ÇA FERME. Tant qu'`admin` court-circuitait avant le cache, un
+ * admin ne le traversait pas et ses groupes étaient relus à chaque requête. En
+ * faisant passer `admin` par le juge, on l'a fait entrer dans le cache : mémoriser
+ * `['admin','guide']` aurait servi `admin` pendant 60 s à un compte qui vient
+ * d'être RETIRÉ du groupe. Une élévation d'une minute, introduite par un
+ * correctif de sécurité — inacceptable.
+ *
+ * En ne gardant que la `Qualification` et en recomposant le rôle à partir des
+ * groupes du jeton courant, la révocation d'un groupe prend effet à la requête
+ * SUIVANTE, sans attendre l'expiration.
+ */
+const guideRoleCache = new Map<string, { qualification: Qualification; expiresAt: number }>();
 
 export type ServerRole = 'guide' | 'admin';
 
@@ -103,7 +123,9 @@ async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerR
   const groups = tokenGroups(payload);
 
   const cached = guideRoleCache.get(payload.sub);
-  if (cached && cached.expiresAt > Date.now()) return cached.roles;
+  // Le verdict du PROFIL est mémorisé ; les groupes sont relus dans le jeton à
+  // chaque fois. Voir le commentaire du cache.
+  if (cached && cached.expiresAt > Date.now()) return composeRoles(groups, cached.qualification);
   guideRoleCache.delete(payload.sub);
 
   // `payload.sub` sort du jeton VÉRIFIÉ — jamais d'une entrée de requête.
@@ -142,7 +164,7 @@ async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerR
     if (oldestSub) guideRoleCache.delete(oldestSub);
   }
   guideRoleCache.set(payload.sub, {
-    roles,
+    qualification,
     expiresAt: Date.now() + GUIDE_ROLE_CACHE_TTL_MS,
   });
   return roles;

@@ -303,6 +303,59 @@ describe('server Cognito token verification', () => {
     expect(mockListGuideProfilePageByUserId).toHaveBeenCalledTimes(1);
   });
 
+  // ------------------------------------------------------------------
+  // LE CACHE NE FIGE QUE LE PROFIL — jamais les groupes du jeton.
+  //
+  // Conséquence directe du retrait du court-circuit `admin` : avant, un admin ne
+  // traversait pas le cache du tout. Maintenant qu'il passe par le juge, y
+  // mémoriser le RÔLE aurait servi `admin` 60 s de plus à un compte qui vient
+  // d'en être retiré — une élévation d'une minute introduite par un correctif de
+  // sécurité.
+  // ------------------------------------------------------------------
+  it("le retrait du groupe `admin` prend effet à la requête SUIVANTE, sans attendre le cache", async () => {
+    const sub = PARC_VIVANT[0].sub;
+    mockListGuideProfilePageByUserId.mockResolvedValue(page([propre(sub)]));
+
+    mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': ['admin'] });
+    expect((await verifyServerToken(requete())).roles).toEqual(['admin', 'guide']);
+
+    // Même `sub`, même minute : seul le jeton a changé. LA MUTATION QUI FAIT
+    // TOMBER CECI : remettre `roles` dans le cache au lieu de la `Qualification`.
+    mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': [] });
+    expect((await verifyServerToken(requete())).roles).toEqual(['guide']);
+
+    // Et la lecture AppSync n'a bien eu lieu qu'une fois : le cache a servi, il
+    // n'a simplement pas figé le groupe.
+    expect(mockListGuideProfilePageByUserId).toHaveBeenCalledTimes(1);
+  });
+
+  it("l'ajout au groupe `admin` prend effet tout aussi vite", async () => {
+    const sub = PARC_VIVANT[1].sub;
+    mockListGuideProfilePageByUserId.mockResolvedValue(page([propre(sub)]));
+
+    mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': [] });
+    expect((await verifyServerToken(requete())).roles).toEqual(['guide']);
+
+    mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': ['admin'] });
+    expect((await verifyServerToken(requete())).roles).toEqual(['admin', 'guide']);
+    expect(mockListGuideProfilePageByUserId).toHaveBeenCalledTimes(1);
+  });
+
+  it("un refus `disqualifie` mémorisé ne prive PAS un admin fraîchement nommé", async () => {
+    // Le croisement des deux règles : le verdict figé est `disqualifie`, et la
+    // précédence du groupe le renverse quand même — parce que le rôle est
+    // RECOMPOSÉ, pas relu.
+    const sub = PARC_VIVANT[0].sub;
+    mockListGuideProfilePageByUserId.mockResolvedValue(page([propre(sub, 'suspended')]));
+
+    mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': [] });
+    expect((await verifyServerToken(requete())).roles).toEqual([]);
+
+    mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': ['admin'] });
+    expect((await verifyServerToken(requete())).roles).toEqual(['admin', 'guide']);
+    expect(mockListGuideProfilePageByUserId).toHaveBeenCalledTimes(1);
+  });
+
   it('mémorise aussi le refus `disqualifie` — c\'est un verdict, lui', async () => {
     const sub = PARC_VIVANT[0].sub;
     mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': [] });
