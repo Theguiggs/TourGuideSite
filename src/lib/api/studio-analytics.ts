@@ -4,11 +4,19 @@ import * as appsync from './appsync-client';
 
 const SERVICE_NAME = 'StudioAnalyticsAPI';
 
-// Cost estimates (NFR15 cap: < $1 / tour)
-const WHISPER_USD_PER_MIN = 0.006;
-const S3_USD_PER_GB_MONTH = 0.023;
-const ESTIMATED_MIN_PER_SCENE = 1.5;   // average POI narration length
-const ESTIMATED_MB_PER_SCENE = 3;      // AAC ~96kbps × 1.5min
+// ─── LES QUATRE CONSTANTES ONT ÉTÉ RETIRÉES — AD-16 §6, story 16, tâche 6 ───
+//
+// `WHISPER_USD_PER_MIN`, `S3_USD_PER_GB_MONTH`, `ESTIMATED_MIN_PER_SCENE` et
+// `ESTIMATED_MB_PER_SCENE` multipliaient un nombre de Scènes pour produire un
+// « Coût unitaire par tour » affiché à l'écran. Aucune des quatre n'a jamais été
+// mesurée sur ce système : c'était le « coût supposé » qu'AD-16 §6 interdit.
+//
+// Les deux colonnes qu'elles alimentaient — « Transcribe (min) » et « S3 (Mo) »
+// — étaient inventées de la même façon, et sont parties avec elles. Ce qui
+// reste ici est ce que ce module SAIT : combien de Scènes portent un audio.
+//
+// Le coût RÉEL se lit dans `spend-ledger-report.ts`, qui interroge le grand
+// livre. Soit la page lit le réel, soit elle ne dit rien.
 
 export interface StudioFunnelData {
   fieldSessions: number;
@@ -25,20 +33,18 @@ export interface StatusDistribution {
   percentage: number;
 }
 
-export interface TourCost {
+/** Ce que le Studio a réellement produit par Visite. Aucun coût : voir le grand livre. */
+export interface TourProduction {
   tourId: string;
   tourTitle: string;
-  transcribeMinutes: number;
-  s3StorageMB: number;
-  estimatedCostUSD: number;
+  /** Nombre de Scènes portant un audio — un FAIT, compté, pas estimé. */
+  scenesWithAudio: number;
 }
 
 export interface StudioAnalyticsSummary {
   funnel: StudioFunnelData;
   statusDistribution: StatusDistribution[];
-  tourCosts: TourCost[];
-  totalCostUSD: number;
-  averageCostPerTourUSD: number;
+  tourProduction: TourProduction[];
 }
 
 const MOCK_ANALYTICS: StudioAnalyticsSummary = {
@@ -59,13 +65,11 @@ const MOCK_ANALYTICS: StudioAnalyticsSummary = {
     { status: 'revision_requested', count: 2, percentage: 8 },
     { status: 'rejected', count: 1, percentage: 4 },
   ],
-  tourCosts: [
-    { tourId: 't1', tourTitle: 'Grasse — Les Parfumeurs', transcribeMinutes: 22, s3StorageMB: 45, estimatedCostUSD: 0.68 },
-    { tourId: 't2', tourTitle: 'Nice — Promenade', transcribeMinutes: 35, s3StorageMB: 78, estimatedCostUSD: 0.92 },
-    { tourId: 't3', tourTitle: 'Cannes — Croisette', transcribeMinutes: 18, s3StorageMB: 32, estimatedCostUSD: 0.55 },
+  tourProduction: [
+    { tourId: 't1', tourTitle: 'Grasse — Les Parfumeurs', scenesWithAudio: 15 },
+    { tourId: 't2', tourTitle: 'Nice — Promenade', scenesWithAudio: 23 },
+    { tourId: 't3', tourTitle: 'Cannes — Croisette', scenesWithAudio: 12 },
   ],
-  totalCostUSD: 2.15,
-  averageCostPerTourUSD: 0.72,
 };
 
 async function getRealStudioAnalytics(): Promise<StudioAnalyticsSummary> {
@@ -138,32 +142,22 @@ async function getRealStudioAnalytics(): Promise<StudioAnalyticsSummary> {
     }))
     .sort((a, b) => b.count - a.count);
 
-  // --- Tour costs ---
-  // Estimate per-scene transcription minutes + storage. Whisper $0.006/min, S3 $0.023/GB/mo.
-  const tourCosts: TourCost[] = (tours as unknown as Array<Record<string, unknown>>)
+  // --- Production par Visite ---
+  // CE QUE CE MODULE SAIT, ET RIEN DE PLUS : le nombre de Scènes qui portent un
+  // audio. Le coût de fabrication ne se déduit pas de ce nombre — il se lit au
+  // grand livre (`spend-ledger-report.ts`), où il a été ÉCRIT par les points de
+  // sortie après avoir appelé un fournisseur.
+  const tourProduction: TourProduction[] = (tours as unknown as Array<Record<string, unknown>>)
     .map((t) => {
       const sessionId = t.sessionId as string | undefined;
       const sceneList = sessionId ? (scenesBySession.get(sessionId) ?? []) : [];
-      const sceneCountWithAudio = sceneList.filter(
-        (sc) => sc.studioAudioKey || sc.originalAudioKey,
-      ).length;
-      const transcribeMinutes = Math.round(sceneCountWithAudio * ESTIMATED_MIN_PER_SCENE);
-      const s3StorageMB = sceneCountWithAudio * ESTIMATED_MB_PER_SCENE;
-      const estimatedCostUSD =
-        transcribeMinutes * WHISPER_USD_PER_MIN +
-        (s3StorageMB / 1024) * S3_USD_PER_GB_MONTH;
       return {
         tourId: t.id as string,
         tourTitle: (t.title as string) || 'Sans titre',
-        transcribeMinutes,
-        s3StorageMB,
-        estimatedCostUSD,
+        scenesWithAudio: sceneList.filter((sc) => sc.studioAudioKey || sc.originalAudioKey).length,
       };
     })
-    .sort((a, b) => b.estimatedCostUSD - a.estimatedCostUSD);
-
-  const totalCostUSD = tourCosts.reduce((sum, t) => sum + t.estimatedCostUSD, 0);
-  const averageCostPerTourUSD = tourCosts.length > 0 ? totalCostUSD / tourCosts.length : 0;
+    .sort((a, b) => b.scenesWithAudio - a.scenesWithAudio);
 
   logger.info(SERVICE_NAME, 'Real analytics computed', {
     sessions: sessionsTyped.length,
@@ -175,9 +169,7 @@ async function getRealStudioAnalytics(): Promise<StudioAnalyticsSummary> {
   return {
     funnel,
     statusDistribution,
-    tourCosts,
-    totalCostUSD,
-    averageCostPerTourUSD,
+    tourProduction,
   };
 }
 
