@@ -73,12 +73,76 @@ describe('server Cognito token verification', () => {
     expect(mockListGuideProfilePageByUserId).toHaveBeenCalledWith('tourist-1', 'iam');
   });
 
-  it('recognizes an admin group without a profile lookup', async () => {
+  // ------------------------------------------------------------------
+  // LE GROUPE `admin` — LE COURT-CIRCUIT A DISPARU, PAS SON RÉSULTAT.
+  //
+  // L'épreuve qui tenait ici s'appelait « recognizes an admin group WITHOUT a
+  // profile lookup » et ÉPINGLAIT le court-circuit
+  // `if (groups.includes('admin')) return ['admin','guide']`, placé avant le
+  // juge. C'est ce court-circuit qui faisait prononcer `guide` à un autre
+  // endroit que sur mobile, et diverger les deux surfaces sans que rien ne
+  // tombe. Il est parti ; la règle vit désormais DANS le juge
+  // (`GROUPE_PERSONNEL`, avant la disqualification).
+  //
+  // L'épreuve est donc RÉEXPRIMÉE, pas supprimée : ce qui est épinglé n'est plus
+  // « on ne lit pas le profil », c'est « on le lit, et le verdict est le même ».
+  // ------------------------------------------------------------------
+  it('un admin SANS `GuideProfile` obtient `admin` ET `guide` — par le juge, pas avant lui', async () => {
     mockVerifyJwt.mockResolvedValue({ sub: 'admin-1', 'cognito:groups': ['admin'] });
+    mockListGuideProfilePageByUserId.mockResolvedValue(page([]));
+
     const verified = await requireServerRole(requete(), ['admin']);
 
     expect(verified.roles).toEqual(['admin', 'guide']);
-    expect(mockListGuideProfilePageByUserId).not.toHaveBeenCalled();
+    // LA MUTATION QUI FAIT TOMBER CETTE LIGNE : remettre le court-circuit. Le
+    // profil ne serait plus lu, `guide` serait prononcé hors du juge, et la
+    // divergence avec le mobile se rouvrirait en silence.
+    expect(mockListGuideProfilePageByUserId).toHaveBeenCalledWith('admin-1', 'iam');
+  });
+
+  it('un admin DISQUALIFIÉ garde `admin` ET `guide` — la précédence est dans le juge', async () => {
+    // `admin` est une appartenance posée par Cognito, pas un statut de profil :
+    // un admin qui modère sa propre ligne ne doit pas se retirer ses fonctions.
+    // La mutation qui fait tomber ceci : déplacer `GROUPE_PERSONNEL` APRÈS le
+    // test de disqualification dans `roleGuide`.
+    mockVerifyJwt.mockResolvedValue({ sub: 'admin-1', 'cognito:groups': ['admin'] });
+    mockListGuideProfilePageByUserId.mockResolvedValue(page([propre('admin-1', 'suspended')]));
+
+    const verified = await requireServerRole(requete(), ['admin']);
+    expect(verified.roles).toEqual(['admin', 'guide']);
+  });
+
+  it('un admin garde ses deux rôles même sur lecture RATÉE', async () => {
+    // Le non-verdict ne renverse rien : le groupe se suffit à lui-même. C'est ce
+    // que faisait le court-circuit, et il ne faut pas le perdre en le retirant.
+    mockVerifyJwt.mockResolvedValue({ sub: 'admin-1', 'cognito:groups': ['admin'] });
+    mockListGuideProfilePageByUserId.mockResolvedValue({ ok: false, erreur: 'AppSync 5xx' });
+
+    const verified = await requireServerRole(requete(), ['admin']);
+    expect(verified.roles).toEqual(['admin', 'guide']);
+  });
+
+  it("un admin qui EST aussi un guide réel n'obtient pas `guide` en double", async () => {
+    const sub = PARC_VIVANT[1].sub;
+    mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': ['admin'] });
+    mockListGuideProfilePageByUserId.mockResolvedValue(page([propre(sub)]));
+
+    const verified = await requireServerRole(requete(), ['admin']);
+    expect(verified.roles).toEqual(['admin', 'guide']);
+  });
+
+  it("le groupe `admin` NE se déduit PAS d'un profil : un guide réel n'est pas admin", async () => {
+    // Le sens inverse de la précédence — sans quoi `composeRoles` accorderait
+    // l'administration à quiconque possède une ligne active.
+    const sub = PARC_VIVANT[0].sub;
+    mockVerifyJwt.mockResolvedValue({ sub, 'cognito:groups': [] });
+    mockListGuideProfilePageByUserId.mockResolvedValue(page([propre(sub)]));
+
+    const verified = await verifyServerToken(requete());
+    expect(verified.roles).toEqual(['guide']);
+    await expect(requireServerRole(requete(), ['admin'])).rejects.toMatchObject<
+      Partial<ServerAuthError>
+    >({ status: 403 });
   });
 
   // ------------------------------------------------------------------

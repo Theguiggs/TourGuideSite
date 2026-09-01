@@ -223,21 +223,49 @@ export function qualifieGuide({
 }
 
 /**
+ * Le groupe du personnel. Il accorde le rôle guide À LUI SEUL, et AVANT le juge.
+ *
+ * ARBITRAGE DU 2026-09-01 — les deux surfaces divergeaient, et chacune avait une
+ * épreuve qui épinglait SA version : le portail rendait `['admin','guide']` par
+ * un COURT-CIRCUIT placé avant toute lecture de profil (`server-token.ts`), le
+ * mobile ne regardait que le groupe `guide` et une épreuve affirmait noir sur
+ * blanc que « le groupe `admin` seul n'accorde PAS le rôle guide ». Sur le parc
+ * vivant, deux admins sans `GuideProfile` étaient donc `guide` sur le portail et
+ * `visitor` sur mobile.
+ *
+ * LE PORTAIL A ÉTÉ PRIS POUR RÉFÉRENCE — c'est la surface où `guide` est une
+ * VRAIE capacité (le Studio, la modération) ; aligner vers le bas aurait retiré
+ * cet accès à deux comptes de production au milieu d'un correctif de sécurité.
+ * Mais la RÈGLE déménage : elle n'est plus un court-circuit d'appelant, elle est
+ * DANS le juge, donc au même endroit sur les deux surfaces. Le résultat pour un
+ * admin est inchangé (`['admin','guide']`) ; ce qui change, c'est qu'il n'y a
+ * plus deux règles pour le dire.
+ *
+ * ET IL PASSE AVANT LA DISQUALIFICATION : `admin` est une appartenance posée par
+ * Cognito, pas un statut de profil. Un `GuideProfile` suspendu ne retire pas ses
+ * fonctions au personnel — sans quoi un admin qui modère sa propre ligne se
+ * retirerait ses propres droits.
+ *
+ * Miroir exact de `GROUPE_PERSONNEL` dans
+ * `TourGuideApp/amplify/shared/guide-qualification.ts`.
+ */
+const GROUPE_PERSONNEL = 'admin';
+
+/**
  * Le rôle final, revendication de groupe COMPRISE.
  *
  * `cognito:groups` est posé par Cognito, donc digne de foi : il qualifie seul.
- * Mais une DISQUALIFICATION le renverse — un guide suspendu reste suspendu, même
- * membre du groupe ; c'est la sémantique qui existait déjà, on ne fait que la
- * rendre insensible aux lignes d'autrui.
+ * Mais une DISQUALIFICATION renverse le groupe `guide` — un guide suspendu reste
+ * suspendu, même membre du groupe. Elle ne renverse PAS `admin` (voir
+ * `GROUPE_PERSONNEL` ci-dessus).
  *
- * Une `vue-tronquee`, elle, ne renverse PAS le groupe : elle n'a rien prouvé, et
- * le groupe se suffit à lui-même.
+ * Une `vue-tronquee`, elle, ne renverse RIEN : elle n'a rien prouvé, et le
+ * groupe se suffit à lui-même.
  *
- * ÉTAT DU PARC — À NE PAS PRENDRE POUR UN REPLI : le pool vivant
+ * ÉTAT DU PARC — À LIRE AVANT DE RAISONNER DESSUS : le pool vivant
  * `us-east-1_6LLCychLP` n'a qu'un seul groupe, `admin` ; le groupe `guide`
- * N'EXISTE PAS. Cette branche est donc INERTE en production aujourd'hui. Elle
- * existe pour que mobile et portail rendent le MÊME verdict le jour où le groupe
- * sera créé.
+ * N'EXISTE PAS. La branche `guide` est donc INERTE en production aujourd'hui.
+ * La branche `admin`, elle, NE L'EST PAS : deux comptes la portent.
  */
 export function roleGuide({
   qualification,
@@ -246,6 +274,7 @@ export function roleGuide({
   readonly qualification: Qualification;
   readonly groupes: readonly string[];
 }): 'guide' | null {
+  if (groupes.includes(GROUPE_PERSONNEL)) return 'guide';
   if (qualification.role === null && qualification.refus === 'disqualifie') {
     return null;
   }

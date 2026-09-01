@@ -351,4 +351,64 @@ describe('roleGuide — la revendication de groupe', () => {
       }),
     ).toBeNull();
   });
+
+  // ------------------------------------------------------------------
+  // LE GROUPE DU PERSONNEL — `admin`, ET SA PRÉCÉDENCE.
+  //
+  // Arbitrage du 2026-09-01 : le portail rendait `['admin','guide']` par un
+  // court-circuit placé AVANT le juge, le mobile ne connaissait que le groupe
+  // `guide`. La règle a déménagé DANS le juge, ce qui la rend identique sur les
+  // deux surfaces. Ces trois épreuves tiennent les deux moitiés : le groupe
+  // qualifie seul, ET il passe avant la disqualification.
+  // ------------------------------------------------------------------
+  it('le groupe `admin` qualifie seul, sans le moindre profil', () => {
+    expect(
+      roleGuide({
+        qualification: qualifieGuide({ sub: GUIDE, lignes: [], tronquee: false }),
+        groupes: ['admin'],
+      }),
+    ).toBe('guide');
+  });
+
+  it("une DISQUALIFICATION ne renverse PAS `admin` — c'est la précédence, et elle est délibérée", () => {
+    // LA MUTATION : déplacer `if (groupes.includes(GROUPE_PERSONNEL))` sous le
+    // test de disqualification dans `roleGuide`. Cette épreuve tombe, et avec
+    // elle l'accès Studio d'un admin qui aurait modéré sa propre ligne.
+    expect(
+      roleGuide({
+        qualification: qualifieGuide({
+          sub: GUIDE,
+          lignes: [ligne(GUIDE, 'suspended')],
+          tronquee: false,
+        }),
+        groupes: ['admin'],
+      }),
+    ).toBe('guide');
+  });
+
+  it("le groupe `guide`, lui, RESTE renversé par la disqualification", () => {
+    // Le contraste qui donne son sens à la précédence : les deux groupes ne sont
+    // pas traités pareil, et c'est voulu. Si `admin` passait après, cette
+    // épreuve-ci et la précédente rendraient le même verdict — la distinction
+    // aurait disparu sans bruit.
+    expect(
+      roleGuide({
+        qualification: qualifieGuide({
+          sub: GUIDE,
+          lignes: [ligne(GUIDE, 'rejected')],
+          tronquee: false,
+        }),
+        groupes: ['guide'],
+      }),
+    ).toBeNull();
+  });
+
+  it('un non-verdict (vue tronquée, lecture ratée) laisse `admin` intact', () => {
+    expect(
+      roleGuide({
+        qualification: qualifieGuide({ sub: GUIDE, lignes: [], tronquee: true }),
+        groupes: ['admin'],
+      }),
+    ).toBe('guide');
+  });
 });

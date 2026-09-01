@@ -2,7 +2,7 @@ import { CognitoJwtVerifier } from 'aws-jwt-verify';
 import type { CognitoAccessTokenPayload } from 'aws-jwt-verify/jwt-model';
 import outputs from '../../../amplify_outputs.json';
 import { listGuideProfilePageByUserId } from '@/lib/api/appsync-client';
-import { qualifieGuide, roleGuide } from './guide-qualification';
+import { qualifieGuide, roleGuide, type Qualification } from './guide-qualification';
 
 const authConfig = (outputs as {
   auth: { user_pool_id: string; user_pool_client_id: string };
@@ -50,6 +50,20 @@ function tokenGroups(payload: CognitoAccessTokenPayload): string[] {
 }
 
 /**
+ * Le NON-VERDICT : ce que le juge reçoit quand la lecture n'a rien prouvé.
+ *
+ * Une lecture RATÉE (réseau, `$util.unauthorized()`, panne) et une vue TRONQUÉE
+ * sont la même chose du point de vue du juge : aucune ligne ne l'a convaincu, et
+ * aucune ne l'a détrompé. On le lui dit avec la MÊME valeur, pour qu'il n'y ait
+ * qu'une seule règle — `roleGuide` laisse alors le groupe se suffire à lui-même
+ * (`admin` et `guide` gardent leur rôle) et refuse à qui n'a rien d'autre.
+ *
+ * Ni l'un ni l'autre n'est mémorisé : figer 60 s un incident de lecture
+ * transformerait une panne en perte de rôle.
+ */
+const NON_VERDICT: Qualification = { role: null, refus: 'vue-tronquee' };
+
+/**
  * Le rôle d'un porteur de jeton.
  *
  * SÉCURITÉ — `GuideProfile.userId` A ÉTÉ un champ LIBRE : n'importe quel compte
@@ -64,10 +78,29 @@ function tokenGroups(payload: CognitoAccessTokenPayload): string[] {
  * Le juge est `./guide-qualification.ts` : il exige un `userId` STRICTEMENT égal
  * au `sub` du jeton, disqualifie dès qu'UNE ligne à soi est suspendue même noyée
  * dans des doublons actifs, et refuse sur vue tronquée.
+ *
+ * `admin` NE COURT-CIRCUITE PLUS LE JUGE. Un `if (groups.includes('admin'))
+ * return ['admin','guide']` tenait ici, AVANT toute lecture : le rôle `guide`
+ * s'y prononçait donc à un autre endroit que sur mobile, et les deux surfaces
+ * ont divergé sans que personne ne le voie (chacune avait une épreuve qui
+ * épinglait SA version). La règle a déménagé DANS le juge — `GROUPE_PERSONNEL`,
+ * appliqué avant la disqualification. Le résultat pour un admin est identique
+ * (`['admin','guide']`, profil ou pas, suspendu ou pas) ; ce qui change, c'est
+ * qu'il n'y a plus qu'un seul endroit qui le dit. Le prix est une lecture de
+ * profil de plus pour les admins — bornée par le même cache de 60 s.
  */
+function composeRoles(
+  groupes: readonly string[],
+  qualification: Qualification,
+): ServerRole[] {
+  return [
+    ...(groupes.includes('admin') ? (['admin'] as const) : []),
+    ...(roleGuide({ qualification, groupes }) ? (['guide'] as const) : []),
+  ];
+}
+
 async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerRole[]> {
   const groups = tokenGroups(payload);
-  if (groups.includes('admin')) return ['admin', 'guide'];
 
   const cached = guideRoleCache.get(payload.sub);
   if (cached && cached.expiresAt > Date.now()) return cached.roles;
@@ -80,7 +113,7 @@ async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerR
   // prouver, mais elle n'est JAMAIS mémorisée. La figer 60 s transformerait un
   // incident de lecture en perte de rôle d'une minute pour un guide légitime.
   if (!lecture.ok) {
-    return groups.includes('guide') ? ['guide'] : [];
+    return composeRoles(groups, NON_VERDICT);
   }
 
   const qualification = qualifieGuide({
@@ -88,7 +121,7 @@ async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerR
     lignes: lecture.lignes,
     tronquee: lecture.tronquee,
   });
-  const roles: ServerRole[] = roleGuide({ qualification, groupes: groups }) ? ['guide'] : [];
+  const roles: ServerRole[] = composeRoles(groups, qualification);
 
   // Même règle pour la vue tronquée : lecture incomplète, donc rien à mémoriser.
   // Seuls les vrais verdicts (`guide`, `aucun-profil`, `disqualifie`) sont mis
