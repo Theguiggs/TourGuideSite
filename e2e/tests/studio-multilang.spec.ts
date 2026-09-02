@@ -146,10 +146,15 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
   });
 
   test.afterAll(async () => {
-    // TEMP: skip cleanup to keep seeded data for manual verification
-    // await cleanupByPrefix(PREFIX);
-    // await deleteItemsById('TourLanguagePurchase', purchaseIds);
-    // await deleteItemsById('SceneSegment', segmentIds);
+    // Le nettoyage a ete commente le 2026-08-24 (« TEMP: skip cleanup to keep
+    // seeded data for manual verification ») et jamais remis. Consequence
+    // mesuree : DEUX Visites Grasse publiees fuyaient par execution de CI, soit
+    // 58 lignes au 2026-09-01 — assez pour faire depasser le budget de latence
+    // du test de catalogue, et pour que des visites de test apparaissent dans le
+    // catalogue VIVANT vu depuis l'application.
+    await cleanupByPrefix(PREFIX);
+    await deleteItemsById('TourLanguagePurchase', purchaseIds);
+    await deleteItemsById('SceneSegment', segmentIds);
   });
 
   // ──────────────────────────────────────────────────────────
