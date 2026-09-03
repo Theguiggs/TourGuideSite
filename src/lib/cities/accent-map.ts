@@ -38,6 +38,8 @@ export const CITY_ACCENT_MAP: Record<string, CityAccent> = {
   'menton': 'mer',
   'antibes': 'mer',
   'marseille': 'mer',
+  'barcelone': 'mer',
+  'barcelona': 'mer',
 
   // Nature / vert — fallback villes hors Sud
   'lyon': 'olive',
