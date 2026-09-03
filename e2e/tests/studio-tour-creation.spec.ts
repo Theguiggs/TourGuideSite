@@ -64,8 +64,9 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
   });
 
   test.afterAll(async () => {
-    // TEMP: skip cleanup to keep seeded data for manual verification
-    // await cleanupByPrefix(PREFIX);
+    // Meme fuite que `studio-multilang.spec.ts` : nettoyage commente le
+    // 2026-08-24 pour une verification manuelle, jamais remis.
+    await cleanupByPrefix(PREFIX);
   });
 
   // ---------------------------------------------------------------------------
