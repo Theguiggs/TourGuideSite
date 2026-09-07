@@ -320,10 +320,12 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
       } else if (raw.sessionId) {
         try {
           const contentResult = await appsync.getPublishedTourContent(t.id);
-          if (contentResult.ok && contentResult.data.scenes.length > 0) {
+          if (contentResult.ok) {
             const firstScene = contentResult.data.scenes[0];
-            const photos = firstScene.photos;
-            if (photos?.[0]) imageUrl = photos[0];
+            imageUrl =
+              contentResult.data.coverUrl ??
+              firstScene?.photoUrls?.[0] ??
+              firstScene?.photos?.[0];
           }
         } catch { /* non-blocking */ }
       }
@@ -394,6 +396,9 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     availableLanguages: await resolveAvailableLanguages(tour),
     createdAt: ((tour as Record<string, unknown>).createdAt as string) ?? '',
     languageAudioTypes: publishedLanguageAudioTypes(tour as Record<string, unknown>),
+    imageUrl:
+      contentResult.data.coverUrl ??
+      contentResult.data.scenes.find((scene) => scene.photoUrls?.[0])?.photoUrls?.[0],
     pois,
     reviews: reviews.map((r: { id: string; userId: string; rating: number; comment?: string | null; visitedAt?: number | null; language?: string | null; createdAt: string }) => ({
       id: r.id,
@@ -505,7 +510,11 @@ export async function getAllToursWithCoords(): Promise<Tour[]> {
         ...tour,
         latitude: first?.latitude,
         longitude: first?.longitude,
-        imageUrl: (tour as Tour).imageUrl ?? first?.photos[0],
+        imageUrl:
+          content.data.coverUrl ??
+          first?.photoUrls?.[0] ??
+          (tour as Tour).imageUrl ??
+          first?.photos[0],
       };
     },
   );

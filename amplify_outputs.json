@@ -719,15 +719,6 @@
                     "allow": "groups",
                     "operations": ["read", "update"],
                     "groups": ["admin"]
-                  },
-                  {
-                    "allow": "private",
-                    "operations": ["read"]
-                  },
-                  {
-                    "allow": "public",
-                    "provider": "iam",
-                    "operations": ["read"]
                   }
                 ]
               }
@@ -1004,15 +995,6 @@
                     "allow": "groups",
                     "operations": ["read", "update"],
                     "groups": ["admin"]
-                  },
-                  {
-                    "allow": "private",
-                    "operations": ["read"]
-                  },
-                  {
-                    "allow": "public",
-                    "provider": "iam",
-                    "operations": ["read"]
                   }
                 ]
               }
@@ -1168,15 +1150,6 @@
                     "allow": "groups",
                     "operations": ["read"],
                     "groups": ["admin"]
-                  },
-                  {
-                    "allow": "private",
-                    "operations": ["read"]
-                  },
-                  {
-                    "allow": "public",
-                    "provider": "iam",
-                    "operations": ["read"]
                   }
                 ]
               }
@@ -1302,6 +1275,13 @@
             },
             "translatedTitle": {
               "name": "translatedTitle",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "translatedDescription": {
+              "name": "translatedDescription",
               "isArray": false,
               "type": "String",
               "isRequired": false,
@@ -3642,6 +3622,13 @@
               "isRequired": false,
               "attributes": []
             },
+            "audioUrl": {
+              "name": "audioUrl",
+              "isArray": false,
+              "type": "AWSURL",
+              "isRequired": false,
+              "attributes": []
+            },
             "photos": {
               "name": "photos",
               "isArray": true,
@@ -3649,6 +3636,21 @@
               "isRequired": false,
               "attributes": [],
               "isArrayNullable": false
+            },
+            "photoUrls": {
+              "name": "photoUrls",
+              "isArray": true,
+              "type": "AWSURL",
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "translatedAudioUrls": {
+              "name": "translatedAudioUrls",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
             },
             "latitude": {
               "name": "latitude",
@@ -3663,6 +3665,20 @@
               "type": "Float",
               "isRequired": false,
               "attributes": []
+            },
+            "translatedTitles": {
+              "name": "translatedTitles",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
+            "translatedDescriptions": {
+              "name": "translatedDescriptions",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
             }
           }
         },
@@ -3674,6 +3690,13 @@
               "isArray": false,
               "type": "ID",
               "isRequired": true,
+              "attributes": []
+            },
+            "coverUrl": {
+              "name": "coverUrl",
+              "isArray": false,
+              "type": "AWSURL",
+              "isRequired": false,
               "attributes": []
             },
             "scenes": {
@@ -3695,6 +3718,13 @@
               "isRequired": true,
               "attributes": [],
               "isArrayNullable": false
+            },
+            "mediaExpiresAt": {
+              "name": "mediaExpiresAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
             }
           }
         },

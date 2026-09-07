@@ -4,6 +4,7 @@ import {
   queryPublishedTourContent,
   type PublishedTourContentQueryClient,
 } from '../published-tour-content';
+import outputs from '../../../../amplify_outputs.json';
 
 describe('parsePublishedTourContent', () => {
   it('normalizes the allowlisted public contract', () => {
@@ -139,5 +140,57 @@ describe('parsePublishedTourContent', () => {
 
     expect(result).toEqual([2, 4, 6, 8, 10]);
     expect(maxActive).toBe(2);
+  });
+});
+
+describe('published media URL parsing', () => {
+  it('keeps only valid HTTPS media URLs from the facade', () => {
+    expect(
+      parsePublishedTourContent({
+        tourId: 'tour-media',
+        coverUrl: 'https://media.example/cover.jpg?signature=server',
+        mediaExpiresAt: '2026-09-07T12:15:00.000Z',
+        scenes: [
+          {
+            id: 'scene-1',
+            order: 1,
+            title: 'Place',
+            description: 'Description',
+            audioKey: 'guide-studio/guide/audio.wav',
+            audioUrl: 'https://media.example/audio.wav?signature=server',
+            photos: ['guide-photos/guide/photo.jpg'],
+            photoUrls: [
+              'https://media.example/photo.jpg?signature=server',
+              'javascript:alert(1)',
+            ],
+            translatedAudioUrls: JSON.stringify({
+              de: 'https://media.example/de.wav?signature=server',
+              en: 'http://media.example/insecure.wav',
+            }),
+          },
+        ],
+        walkPath: [],
+      }),
+    ).toMatchObject({
+      coverUrl: 'https://media.example/cover.jpg?signature=server',
+      mediaExpiresAt: '2026-09-07T12:15:00.000Z',
+      scenes: [
+        expect.objectContaining({
+          audioUrl: 'https://media.example/audio.wav?signature=server',
+          photoUrls: ['https://media.example/photo.jpg?signature=server'],
+          translatedAudioUrls: { de: 'https://media.example/de.wav?signature=server' },
+        }),
+      ],
+    });
+  });
+
+  it('includes the media fields in the generated client selection model', () => {
+    const nonModels = outputs.data.model_introspection.nonModels;
+    expect(Object.keys(nonModels.PublicTourScene.fields)).toEqual(
+      expect.arrayContaining(['audioUrl', 'photoUrls', 'translatedAudioUrls']),
+    );
+    expect(Object.keys(nonModels.PublishedTourContent.fields)).toEqual(
+      expect.arrayContaining(['coverUrl', 'mediaExpiresAt']),
+    );
   });
 });

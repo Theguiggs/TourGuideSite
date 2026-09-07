@@ -174,20 +174,21 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
     const raw = t as Record<string, unknown>;
     // Prefer the guide's cover photo (from Général); fall back to the first
     // scene photo. Both are guide-studio/* S3 keys resolved by <S3Image>.
-    if (raw.coverPhotoKey) {
-      imageUrl = raw.coverPhotoKey as string;
-    } else if (raw.heroImageUrl) {
+    if (raw.heroImageUrl) {
       imageUrl = raw.heroImageUrl as string;
     } else if (raw.sessionId) {
       try {
         const contentResult = await getPublishedTourContentServer(t.id);
-        if (contentResult.ok && contentResult.data.scenes.length > 0) {
+        if (contentResult.ok) {
           const firstScene = contentResult.data.scenes[0];
-          const photos = firstScene.photos;
-          if (photos?.[0]) imageUrl = photos[0];
+          imageUrl =
+            contentResult.data.coverUrl ??
+            firstScene?.photoUrls?.[0] ??
+            firstScene?.photos?.[0];
         }
       } catch { /* non-blocking */ }
     }
+    if (!imageUrl && raw.coverPhotoKey) imageUrl = raw.coverPhotoKey as string;
     return {
       id: t.id, title: t.title, slug: generateSlug(t.title),
       city: t.city, citySlug: generateSlug(t.city),
@@ -243,7 +244,11 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     availableLanguages: await resolveAvailableLanguages(tour as unknown as Record<string, unknown>),
     createdAt: ((tour as unknown as Record<string, unknown>).createdAt as string) ?? '',
     languageAudioTypes: publishedLanguageAudioTypes(tour as unknown as Record<string, unknown>),
-    imageUrl: ((tour as unknown as Record<string, unknown>).coverPhotoKey as string) ?? undefined,
+    imageUrl:
+      contentResult.data.coverUrl ??
+      contentResult.data.scenes.find((scene) => scene.photoUrls?.[0])?.photoUrls?.[0] ??
+      ((tour as unknown as Record<string, unknown>).coverPhotoKey as string) ??
+      undefined,
     pois,
     reviews: reviews.map((r) => ({
       id: r.id, userId: r.userId, rating: r.rating,
@@ -320,7 +325,11 @@ export async function getAllToursWithCoords(): Promise<Tour[]> {
         ...tour,
         latitude: first?.latitude,
         longitude: first?.longitude,
-        imageUrl: tour.imageUrl ?? first?.photos[0],
+        imageUrl:
+          content.data.coverUrl ??
+          first?.photoUrls?.[0] ??
+          tour.imageUrl ??
+          first?.photos[0],
       };
     },
   );

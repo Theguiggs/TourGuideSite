@@ -37,6 +37,7 @@ export function mapScenesToPois(scenes: readonly PublicTourScene[]): POI[] {
     // Studio, compté à partir de zéro et troué par les scènes archivées. Le
     // visiteur lit « Étape 1, 2, 3 », dans l'ordre déjà trié par le serveur.
     order: index + 1,
+    photoKey: scene.photoUrls?.[0] ?? scene.photos?.[0],
   }));
 }
 

@@ -4,15 +4,49 @@ export interface PublicTourScene {
   title: string;
   description: string;
   audioKey?: string;
+  audioUrl?: string;
   photos: string[];
+  photoUrls?: string[];
+  translatedAudioUrls?: Record<string, string>;
   latitude?: number;
   longitude?: number;
 }
 
 export interface PublishedTourContent {
   tourId: string;
+  coverUrl?: string;
   scenes: PublicTourScene[];
   walkPath: { latitude: number; longitude: number }[];
+  mediaExpiresAt?: string;
+}
+
+function httpsUrl(value: unknown): string | undefined {
+  if (typeof value !== 'string' || value.length > 8192 || !value.startsWith('https://')) {
+    return undefined;
+  }
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' && url.hostname.length > 0 ? value : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function urlMap(value: unknown): Record<string, string> | undefined {
+  let parsed = value;
+  if (typeof parsed === 'string') {
+    try {
+      parsed = JSON.parse(parsed) as unknown;
+    } catch {
+      return undefined;
+    }
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return undefined;
+  const entries = Object.entries(parsed as Record<string, unknown>).flatMap(([language, raw]) => {
+    const url = httpsUrl(raw);
+    return url ? [[language, url] as const] : [];
+  });
+  return entries.length > 0 ? Object.fromEntries(entries) : undefined;
 }
 
 /**
@@ -122,6 +156,14 @@ export function parsePublishedTourContent(value: unknown): PublishedTourContent 
     ) {
       return null;
     }
+    const audioUrl = httpsUrl(scene.audioUrl);
+    const photoUrls = Array.isArray(scene.photoUrls)
+      ? scene.photoUrls.flatMap((raw) => {
+          const url = httpsUrl(raw);
+          return url ? [url] : [];
+        })
+      : [];
+    const translatedAudioUrls = urlMap(scene.translatedAudioUrls);
     scenes.push({
       id: scene.id,
       order: scene.order,
@@ -129,6 +171,9 @@ export function parsePublishedTourContent(value: unknown): PublishedTourContent 
       description: scene.description,
       photos: scene.photos as string[],
       ...(typeof scene.audioKey === 'string' ? { audioKey: scene.audioKey } : {}),
+      ...(audioUrl ? { audioUrl } : {}),
+      ...(photoUrls.length > 0 ? { photoUrls } : {}),
+      ...(translatedAudioUrls ? { translatedAudioUrls } : {}),
       ...(typeof scene.latitude === 'number' ? { latitude: scene.latitude } : {}),
       ...(typeof scene.longitude === 'number' ? { longitude: scene.longitude } : {}),
     });
@@ -153,9 +198,17 @@ export function parsePublishedTourContent(value: unknown): PublishedTourContent 
     walkPath.push({ latitude: point.latitude, longitude: point.longitude });
   }
 
+  const coverUrl = httpsUrl(candidate.coverUrl);
+  const mediaExpiresAt =
+    typeof candidate.mediaExpiresAt === 'string' &&
+    Number.isFinite(Date.parse(candidate.mediaExpiresAt))
+      ? candidate.mediaExpiresAt
+      : undefined;
   return {
     tourId: candidate.tourId,
+    ...(coverUrl ? { coverUrl } : {}),
     scenes,
     walkPath,
+    ...(mediaExpiresAt ? { mediaExpiresAt } : {}),
   };
 }

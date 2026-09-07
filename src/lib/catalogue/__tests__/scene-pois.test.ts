@@ -65,6 +65,19 @@ describe('mapScenesToPois', () => {
   });
 });
 
+describe('scene media projection', () => {
+  it('projects the facade photo URL before the legacy storage key', () => {
+    const [poi] = mapScenesToPois([
+      scene({
+        photos: ['guide-studio/guide/legacy.jpg'],
+        photoUrls: ['https://media.example/photo.jpg?signature=server'],
+      }),
+    ]);
+
+    expect(poi.photoKey).toBe('https://media.example/photo.jpg?signature=server');
+  });
+});
+
 describe('isFullContent — ce que le serveur a accordé', () => {
   const preview = [
     scene({ id: 's1' }),
