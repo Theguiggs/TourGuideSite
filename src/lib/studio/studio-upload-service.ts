@@ -215,7 +215,7 @@ export async function uploadCoverPhoto(
 }
 
 /**
- * Upload a guide's profile photo. Keyed under `guide-photos/{identityId}/…`,
+ * Upload a guide's profile photo under the narrow public profile prefix,
  * which is guest-readable so tourists (logged-in or not) can see it on the
  * public catalogue + app. A timestamp token makes each (re)upload a distinct
  * object so a fresh signed URL is issued — neither the URL cache nor the
@@ -239,7 +239,7 @@ export async function uploadGuideProfilePhoto(
   try {
     const result = await withRetry(() =>
       uploadData({
-        path: ({ identityId }) => `guide-photos/${identityId}/${objectName}`,
+        path: ({ identityId }) => `public/guide-profiles/${identityId}/${objectName}`,
         data: file,
         options: {
           onProgress: (event) => {

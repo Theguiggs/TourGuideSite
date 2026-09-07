@@ -324,8 +324,7 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
             const firstScene = contentResult.data.scenes[0];
             imageUrl =
               contentResult.data.coverUrl ??
-              firstScene?.photoUrls?.[0] ??
-              firstScene?.photos?.[0];
+              firstScene?.photoUrls?.[0];
           }
         } catch { /* non-blocking */ }
       }
@@ -513,8 +512,7 @@ export async function getAllToursWithCoords(): Promise<Tour[]> {
         imageUrl:
           content.data.coverUrl ??
           first?.photoUrls?.[0] ??
-          (tour as Tour).imageUrl ??
-          first?.photos[0],
+          (tour as Tour).imageUrl,
       };
     },
   );

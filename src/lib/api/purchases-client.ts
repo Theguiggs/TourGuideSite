@@ -43,7 +43,7 @@ function mapRawTourLight(raw: Record<string, unknown>): Tour {
     priceCents: (raw.priceCents as number | undefined) ?? undefined,
     purchaseType: (raw.purchaseType as Tour['purchaseType']) ?? undefined,
     status: (String(raw.status ?? 'draft')) as Tour['status'],
-    imageUrl: (raw.coverPhotoKey as string) ?? (raw.heroImageUrl as string) ?? undefined,
+    imageUrl: (raw.heroImageUrl as string) ?? undefined,
     availableLanguages: Array.isArray(raw.availableLanguages)
       ? (raw.availableLanguages as string[])
       : ['fr'],

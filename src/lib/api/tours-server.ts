@@ -172,8 +172,7 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
   const mapped = await mapWithConcurrency(filtered, 5, async (t) => {
     let imageUrl: string | undefined;
     const raw = t as Record<string, unknown>;
-    // Prefer the guide's cover photo (from Général); fall back to the first
-    // scene photo. Both are guide-studio/* S3 keys resolved by <S3Image>.
+    // Prefer media signed by the publication facade.
     if (raw.heroImageUrl) {
       imageUrl = raw.heroImageUrl as string;
     } else if (raw.sessionId) {
@@ -183,12 +182,10 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
           const firstScene = contentResult.data.scenes[0];
           imageUrl =
             contentResult.data.coverUrl ??
-            firstScene?.photoUrls?.[0] ??
-            firstScene?.photos?.[0];
+            firstScene?.photoUrls?.[0];
         }
       } catch { /* non-blocking */ }
     }
-    if (!imageUrl && raw.coverPhotoKey) imageUrl = raw.coverPhotoKey as string;
     return {
       id: t.id, title: t.title, slug: generateSlug(t.title),
       city: t.city, citySlug: generateSlug(t.city),
@@ -247,7 +244,6 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     imageUrl:
       contentResult.data.coverUrl ??
       contentResult.data.scenes.find((scene) => scene.photoUrls?.[0])?.photoUrls?.[0] ??
-      ((tour as unknown as Record<string, unknown>).coverPhotoKey as string) ??
       undefined,
     pois,
     reviews: reviews.map((r) => ({
@@ -328,8 +324,7 @@ export async function getAllToursWithCoords(): Promise<Tour[]> {
         imageUrl:
           content.data.coverUrl ??
           first?.photoUrls?.[0] ??
-          tour.imageUrl ??
-          first?.photos[0],
+          tour.imageUrl,
       };
     },
   );

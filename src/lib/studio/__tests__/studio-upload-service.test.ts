@@ -8,7 +8,7 @@ jest.mock('aws-amplify/storage', () => ({
 }));
 
 import { uploadData, getUrl } from 'aws-amplify/storage';
-import { uploadAudio, uploadPhoto, getPlayableUrl, clearCache, _testExports } from '../studio-upload-service';
+import { uploadAudio, uploadPhoto, uploadGuideProfilePhoto, getPlayableUrl, clearCache, _testExports } from '../studio-upload-service';
 
 const mockUploadData = uploadData as jest.Mock;
 const mockGetUrl = getUrl as jest.Mock;
@@ -109,6 +109,22 @@ describe('uploadPhoto', () => {
     const result = await uploadPhoto(file, 'session-1', 'scene-1');
     expect(result.ok).toBe(false);
     expect(mockUploadData).not.toHaveBeenCalled();
+  });
+});
+
+describe('uploadGuideProfilePhoto', () => {
+  it('uses the narrow public profile prefix owned by the current identity', async () => {
+    const file = new File(['photo'], 'profile.jpg', { type: 'image/jpeg' });
+    mockUploadData.mockReturnValue({
+      result: Promise.resolve({ path: 'public/guide-profiles/sub/profile_1.jpg' }),
+    });
+
+    const result = await uploadGuideProfilePhoto(file);
+    expect(result).toEqual({ ok: true, s3Key: 'public/guide-profiles/sub/profile_1.jpg' });
+    const resolvePath = mockUploadData.mock.calls[0][0].path as (input: { identityId: string }) => string;
+    expect(resolvePath({ identityId: 'sub' })).toMatch(
+      /^public\/guide-profiles\/sub\/profile_\d+\.jpg$/,
+    );
   });
 });
 
