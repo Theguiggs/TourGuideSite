@@ -48,8 +48,6 @@ jobs:
       - run: cd TourGuideWeb && npm ci
       - name: Install TourGuide amplify types
         run: cd TourGuideApp && npm install --no-save @aws-amplify/backend
-      - name: Stub amplify_outputs.json for typecheck
-        run: echo '{"auth":{"user_pool_id":"us-east-1_ci0000000","user_pool_client_id":"00000000000000000000000000","identity_pool_id":"us-east-1:00000000-0000-4000-8000-000000000000","aws_region":"us-east-1"},"data":{"url":"https://aaaaaaaaaaaaaaaaaaaaaaaaaa.appsync-api.us-east-1.amazonaws.com/graphql","aws_region":"us-east-1","default_authorization_type":"AWS_IAM","model_introspection":{}}}' > TourGuideWeb/amplify_outputs.json
       - run: cd TourGuideWeb && npm run typecheck
 
   unit-tests:
@@ -71,8 +69,6 @@ jobs:
           cache: npm
           cache-dependency-path: TourGuideWeb/package-lock.json
       - run: cd TourGuideWeb && npm ci
-      - name: Stub amplify_outputs.json
-        run: echo '{"auth":{"user_pool_id":"us-east-1_ci0000000","user_pool_client_id":"00000000000000000000000000","identity_pool_id":"us-east-1:00000000-0000-4000-8000-000000000000","aws_region":"us-east-1"},"data":{"url":"https://aaaaaaaaaaaaaaaaaaaaaaaaaa.appsync-api.us-east-1.amazonaws.com/graphql","aws_region":"us-east-1","default_authorization_type":"AWS_IAM","model_introspection":{}}}' > TourGuideWeb/amplify_outputs.json
       - name: Run unit tests with coverage
         run: cd TourGuideWeb && npm test -- --coverage --coverageReporters=text --coverageReporters=json-summary 2>&1 | tee test-output.txt
       - name: Unit test summary
@@ -248,6 +244,4 @@ jobs:
       - run: cd TourGuideWeb && npm ci
       - name: Install TourGuide amplify types
         run: cd TourGuideApp && npm install --no-save @aws-amplify/backend
-      - name: Stub amplify_outputs.json
-        run: echo '{"auth":{"user_pool_id":"us-east-1_ci0000000","user_pool_client_id":"00000000000000000000000000","identity_pool_id":"us-east-1:00000000-0000-4000-8000-000000000000","aws_region":"us-east-1"},"data":{"url":"https://aaaaaaaaaaaaaaaaaaaaaaaaaa.appsync-api.us-east-1.amazonaws.com/graphql","aws_region":"us-east-1","default_authorization_type":"AWS_IAM","model_introspection":{}}}' > TourGuideWeb/amplify_outputs.json
       - run: cd TourGuideWeb && npm run build
