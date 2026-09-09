@@ -71,6 +71,10 @@ const ENRICHED_DEFAULTS = {
   scenes: [] as ModerationScene[],
   adminComments: [] as ModerationAdminComment[],
   heroImageUrl: null,
+  coverPhotoKey: null,
+  contentProvenance: null,
+  purchaseType: null,
+  priceCents: null,
   guideBio: null as string | null,
   guideLanguages: [] as string[],
   guideTourCount: 0,
@@ -88,6 +92,10 @@ const MOCK_DETAIL: Record<string, ModerationDetail> = {
     scenes: MOCK_SCENES,
     adminComments: [],
     heroImageUrl: null,
+    coverPhotoKey: 'guide-photos/grasse-parfums-modernes/cover.jpg',
+    contentProvenance: 'ai',
+    purchaseType: 'free',
+    priceCents: 0,
     guideBio: 'Guide touristique passionnee par Grasse et son patrimoine parfumier. 15 ans d\'experience.',
     guideLanguages: ['Francais', 'Anglais', 'Italien'],
     guideTourCount: 2,
@@ -401,22 +409,25 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
   // Map StudioScenes to ModerationScene format
   let scenes: ModerationScene[] = [];
   if (studioScenesResult.ok && studioScenesResult.data.length > 0) {
-    scenes = studioScenesResult.data.map((s: Record<string, unknown>) => {
+    scenes = studioScenesResult.data.filter(
+      (scene: Record<string, unknown>) =>
+        scene.archived !== true && scene.archived !== 'true' && scene.archived !== 1,
+    ).map((s: Record<string, unknown>) => {
       const raw = s as Record<string, unknown>;
       return {
         id: raw.id as string,
-        title: (raw.title as string) || `Scène ${((raw.sceneIndex as number) ?? 0) + 1}`,
+        title: (raw.title as string) || '',
         order: ((raw.sceneIndex as number) ?? 0) + 1,
         audioRef: (raw.studioAudioKey as string) || (raw.originalAudioKey as string) || '',
         photosRefs: (raw.photosRefs as string[]) ?? [],
-        durationSeconds: 0,
+        durationSeconds: (raw.durationSeconds as number) ?? 0,
         latitude: (raw.latitude as number) ?? null,
         longitude: (raw.longitude as number) ?? null,
         poiDescription: (raw.poiDescription as string) ?? null,
         transcriptText: (raw.transcriptText as string) ?? null,
       };
     });
-  } else if (t) {
+  } else if (studioScenesResult.ok && t) {
     // Fallback: try legacy scenesJson on GuideTour
     try {
       const legacy = JSON.parse((t.scenesJson as string) ?? '[]') as ModerationScene[];
@@ -430,7 +441,7 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
   }
 
   return {
-    id: item.id, tourId: item.tourId, sessionId: (item as Record<string, unknown>).sessionId as string ?? '', tourTitle: item.tourTitle,
+    id: item.id, tourId: item.tourId, sessionId: sessionId ?? '', tourTitle: item.tourTitle,
     guideId: item.guideId, guideName: item.guideName, guidePhotoUrl: null,
     city: item.city, submissionDate: new Date(item.submissionDate).toISOString(),
     status: item.status as ModerationDetail['status'],
@@ -446,6 +457,13 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
     scenes,
     adminComments,
     heroImageUrl: (t?.heroImageUrl as string) ?? null,
+    coverPhotoKey: (t?.coverPhotoKey as string) ?? null,
+    contentProvenance:
+      t?.contentProvenance === 'human' || t?.contentProvenance === 'ai' || t?.contentProvenance === 'mixed'
+        ? t.contentProvenance
+        : null,
+    purchaseType: (t?.purchaseType as string) ?? null,
+    priceCents: (t?.priceCents as number) ?? null,
     guideBio: guideProfile?.bio ?? null,
     guideLanguages: (guideProfile?.languages as string[]) ?? [],
     guideTourCount: guideProfile?.tourCount ?? 0,

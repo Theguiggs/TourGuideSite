@@ -33,9 +33,28 @@ export interface ModerationDetail extends ModerationItem {
   scenes: ModerationScene[];
   adminComments: ModerationAdminComment[];
   heroImageUrl: string | null;
+  coverPhotoKey: string | null;
+  contentProvenance: ContentProvenance | null;
+  purchaseType: string | null;
+  priceCents: number | null;
   guideBio: string | null;
   guideLanguages: string[];
   guideTourCount: number;
+}
+
+export type ContentProvenance = 'human' | 'ai' | 'mixed';
+
+export interface AdminValidationCheck {
+  id: string;
+  label: string;
+  passed: boolean;
+  evidence: string;
+}
+
+export interface AdminValidationReport {
+  ready: boolean;
+  blockingCount: number;
+  checks: AdminValidationCheck[];
 }
 
 export interface ModerationPOI {
@@ -67,6 +86,14 @@ export const QUALITY_CHECKLIST_TEMPLATE: Omit<QualityChecklistItem, 'checked' | 
   { id: 'gps_walkable', label: 'Parcours GPS praticable', description: 'Le parcours est accessible a pied et securise' },
   { id: 'translation_quality', label: 'Qualite de traduction', description: 'La traduction FR/EN est naturelle et fidele' },
 ];
+
+export function getQualityChecklistTemplate(
+  isTranslation: boolean,
+): Omit<QualityChecklistItem, 'checked' | 'note'>[] {
+  return QUALITY_CHECKLIST_TEMPLATE.filter(
+    (item) => isTranslation || item.id !== 'translation_quality',
+  );
+}
 
 export type RejectionCategory = 'audio_quality' | 'content_accuracy' | 'inappropriate' | 'gps_issues' | 'translation' | 'other';
 

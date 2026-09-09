@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -34,8 +34,15 @@ import { shouldUseStubs } from '@/config/api-mode';
 import type { TourLanguagePurchase, SceneSegment } from '@/types/studio';
 import { trackEvent, AdminAnalyticsEvents } from '@/lib/analytics';
 import { sendGuideNotification } from '@/lib/api/guide-notifications';
+import { logger } from '@/lib/logger';
 import {
-  QUALITY_CHECKLIST_TEMPLATE,
+  buildAdminValidationReport,
+  canApproveAdminReview,
+  getModerationScenePresentation,
+  hasValidCoordinates,
+} from '@/lib/moderation/admin-validation';
+import {
+  getQualityChecklistTemplate,
   REJECTION_CATEGORIES,
 } from '@/types/moderation';
 import type {
@@ -48,6 +55,8 @@ import type {
 const LANG_FLAGS: Record<string, string> = {
   fr: 'FR', en: 'EN', es: 'ES', it: 'IT', de: 'DE',
 };
+
+const SERVICE_NAME = 'ModerationReviewPage';
 
 function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; photosRefs: string[]; order: number }> }) {
   const [lightbox, setLightbox] = useState<{ s3Key: string; title: string } | null>(null);
@@ -146,6 +155,21 @@ function formatDuration(seconds: number): string {
   return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
+function parseTranslationMap(value: unknown): Record<string, string> {
+  let parsed = value;
+  if (typeof parsed === 'string') {
+    try {
+      parsed = JSON.parse(parsed) as unknown;
+    } catch {
+      return {};
+    }
+  }
+  if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+  return Object.fromEntries(
+    Object.entries(parsed).filter((entry): entry is [string, string] => typeof entry[1] === 'string'),
+  );
+}
+
 export default function ModerationReviewPage() {
   const router = useRouter();
   const params = useParams();
@@ -184,120 +208,156 @@ export default function ModerationReviewPage() {
   const [, setLanguagePurchases] = useState<TourLanguagePurchase[]>([]);
   const [segmentsByScene, setSegmentsByScene] = useState<Record<string, SceneSegment[]>>({});
   // Fixed to the language from ?lang= param — no toggle, one language at a time
-  const activePreviewLang = initialLang || 'fr';
+  const activePreviewLang = initialLang || detail?.languePrincipale || 'fr';
   const [loadingSegments, setLoadingSegments] = useState(false);
   const [translatedDescriptions, setTranslatedDescriptions] = useState<Record<string, string>>({});
   const [translatedTitles, setTranslatedTitles] = useState<Record<string, string>>({});
   const [guideRoutePath, setGuideRoutePath] = useState<Array<{ lat: number; lng: number }> | null>(null);
   // mon-1.2/1.3b : monétisation de la visite (lue sur GuideTour) pour la revue admin.
-  const [monetization, setMonetization] = useState<{ purchaseType?: string; priceCents?: number } | null>(null);
+  const [routeLoaded, setRouteLoaded] = useState(false);
+  const [segmentsLoaded, setSegmentsLoaded] = useState(false);
+  const [metadataLoaded, setMetadataLoaded] = useState(false);
 
   useEffect(() => {
-    Promise.all([
-      getModerationDetail(moderationId),
-      getQueueItemIds(),
-    ]).then(([d, ids]) => {
-      setDetail(d);
-      setQueueIds(ids);
-      setLocalComments(d?.adminComments ?? []);
-      setChecklist(
-        QUALITY_CHECKLIST_TEMPLATE.map((item) => ({
-          ...item,
-          checked: false,
-          note: '',
-        })),
-      );
-      setLoading(false);
+    let cancelled = false;
+    setLoading(true);
+    setErrorMessage(null);
+    setRouteLoaded(false);
+    setSegmentsLoaded(false);
+    setMetadataLoaded(false);
+    setGuideRoutePath(null);
+    setSegmentsByScene({});
+    setTranslatedTitles({});
+    setTranslatedDescriptions({});
 
-      // Load translated descriptions from StudioSession + GuideTour (merge both sources)
-      if (d?.sessionId) {
-        getStudioSession(d.sessionId).then((sess) => {
-          // Guide's persisted route — what they drew on the map
-          if (sess?.routePath?.computedPath && sess.routePath.computedPath.length > 1) {
-            setGuideRoutePath(sess.routePath.computedPath);
-          }
-          let sessDescs = sess?.translatedDescriptions;
-          if (typeof sessDescs === 'string') { try { sessDescs = JSON.parse(sessDescs); } catch { sessDescs = null; } }
-          if (sessDescs && typeof sessDescs === 'object') {
-            setTranslatedDescriptions((prev) => ({ ...prev, ...sessDescs as Record<string, string> }));
-          }
-          let sessTitles = sess?.translatedTitles;
-          if (typeof sessTitles === 'string') { try { sessTitles = JSON.parse(sessTitles); } catch { sessTitles = null; } }
-          if (sessTitles && typeof sessTitles === 'object') {
-            setTranslatedTitles((prev) => ({ ...prev, ...sessTitles as Record<string, string> }));
-          }
-        });
-      }
-      if (d?.tourId) {
-        import('@/lib/api/appsync-client').then(({ getGuideTourById }) => {
-          getGuideTourById(d.tourId).then((tour) => {
-            const t = tour as Record<string, unknown> | null;
-            let descs = t?.translatedDescriptions;
-            if (typeof descs === 'string') { try { descs = JSON.parse(descs); } catch { descs = null; } }
-            if (descs && typeof descs === 'object') {
-              setTranslatedDescriptions((prev) => ({ ...prev, ...descs as Record<string, string> }));
-            }
-            // mon-1.2/1.3b : exposer la monétisation à l'admin.
-            setMonetization({
-              purchaseType: t?.purchaseType as string | undefined,
-              priceCents: t?.priceCents as number | undefined,
-            });
-          });
-        });
-      }
+    const loadReview = async () => {
+      try {
+        const [d, ids] = await Promise.all([
+          getModerationDetail(moderationId),
+          getQueueItemIds(),
+        ]);
+        if (cancelled) return;
 
-      // Load language purchases and segments for the tour preview
-      if (d?.sessionId) {
-        listLanguagePurchases(d.sessionId).then((result) => {
-          if (result.ok) {
-            setLanguagePurchases(result.value);
-          }
-        });
+        setDetail(d);
+        setQueueIds(ids);
+        setLocalComments(d?.adminComments ?? []);
+        const reviewLanguage = initialLang || d?.languePrincipale || 'fr';
+        setChecklist(
+          getQualityChecklistTemplate(
+            d !== null && reviewLanguage !== d.languePrincipale,
+          ).map((item) => ({ ...item, checked: false, note: '' })),
+        );
 
-        // Load segments for all scenes (for translated content)
-        console.log('[ModerationDetail] Loading segments for', d.scenes.length, 'scenes, sessionId:', d.sessionId);
-        if (d.scenes.length > 0) {
-          setLoadingSegments(true);
-          Promise.all(
-            d.scenes.map(async (scene) => {
-              try {
-                const segments = await listSegmentsByScene(scene.id);
-                console.log('[ModerationDetail] Scene', scene.id, '→', segments.length, 'segments', segments.map((s) => s.language));
-                return { sceneId: scene.id, segments };
-              } catch (err) {
-                console.error('[ModerationDetail] Failed to load segments for', scene.id, err);
-                return { sceneId: scene.id, segments: [] };
-              }
-            }),
-          ).then((results) => {
-            const map: Record<string, SceneSegment[]> = {};
-            for (const r of results) {
-              map[r.sceneId] = r.segments;
-            }
-            // Debug: log loaded segments
-            const totalSegs = Object.values(map).flat();
-            const langs = [...new Set(totalSegs.map((s) => s.language))];
-            console.log('[ModerationDetail] Segments loaded:', {
-              scenes: Object.keys(map).length,
-              totalSegments: totalSegs.length,
-              languages: langs,
-              sample: totalSegs[0] ? { id: totalSegs[0].id, lang: totalSegs[0].language, hasText: !!totalSegs[0].transcriptText, hasAudio: !!totalSegs[0].audioKey } : 'none',
-            });
-            setSegmentsByScene(map);
-            setLoadingSegments(false);
-          });
+        if (!d) {
+          setRouteLoaded(true);
+          setSegmentsLoaded(true);
+          setMetadataLoaded(true);
+          return;
         }
+
+        setLoadingSegments(d.scenes.length > 0 && reviewLanguage !== d.languePrincipale);
+        const sessionPromise = d.sessionId
+          ? getStudioSession(d.sessionId).catch((error: unknown) => {
+              logger.error(SERVICE_NAME, 'Chargement de la session impossible', { error: String(error) });
+              return null;
+            })
+          : Promise.resolve(null);
+        const tourPromise = import('@/lib/api/appsync-client')
+          .then(({ getGuideTourById }) => getGuideTourById(d.tourId))
+          .catch((error: unknown) => {
+            logger.error(SERVICE_NAME, 'Chargement des métadonnées traduites impossible', { error: String(error) });
+            return null;
+          });
+        const segmentsPromise = d.sessionId && d.scenes.length > 0
+          ? Promise.all(d.scenes.map(async (scene) => {
+              try {
+                return { sceneId: scene.id, segments: await listSegmentsByScene(scene.id) };
+              } catch (error) {
+                logger.error(SERVICE_NAME, 'Chargement des segments impossible', {
+                  sceneId: scene.id,
+                  error: String(error),
+                });
+                return { sceneId: scene.id, segments: [] as SceneSegment[] };
+              }
+            }))
+          : Promise.resolve([]);
+        const purchasesPromise = d.sessionId
+          ? listLanguagePurchases(d.sessionId).catch((error: unknown) => {
+              logger.warn(SERVICE_NAME, 'Chargement des achats de langue impossible', { error: String(error) });
+              return null;
+            })
+          : Promise.resolve(null);
+
+        const [session, tour, segmentResults, purchases] = await Promise.all([
+          sessionPromise,
+          tourPromise,
+          segmentsPromise,
+          purchasesPromise,
+        ]);
+        if (cancelled) return;
+
+        const tourData = tour as Record<string, unknown> | null;
+        setGuideRoutePath(
+          session?.routePath?.computedPath && session.routePath.computedPath.length > 1
+            ? session.routePath.computedPath
+            : null,
+        );
+        setTranslatedDescriptions({
+          ...parseTranslationMap(tourData?.translatedDescriptions),
+          ...parseTranslationMap(session?.translatedDescriptions),
+        });
+        setTranslatedTitles({
+          ...parseTranslationMap(tourData?.translatedTitles),
+          ...parseTranslationMap(session?.translatedTitles),
+        });
+        setSegmentsByScene(Object.fromEntries(
+          segmentResults.map((result) => [result.sceneId, result.segments]),
+        ));
+        if (purchases?.ok) setLanguagePurchases(purchases.value);
+        setRouteLoaded(true);
+        setSegmentsLoaded(true);
+        setMetadataLoaded(true);
+        setLoadingSegments(false);
+      } catch (error) {
+        if (!cancelled) {
+          logger.error(SERVICE_NAME, 'Chargement de la revue impossible', { error: String(error) });
+          setDetail(null);
+          setErrorMessage('Impossible de charger les données de modération. Réessayez.');
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
       }
-    });
+    };
+
+    void loadReview();
     trackEvent(AdminAnalyticsEvents.ADMIN_MODERATION_REVIEW_START, { moderation_id: moderationId });
-  }, [moderationId]);
+    return () => {
+      cancelled = true;
+    };
+  }, [initialLang, moderationId]);
 
   useEffect(() => {
     const interval = setInterval(() => setElapsedMinutes(Math.round((Date.now() - reviewStartTime) / 60000)), 60000);
     return () => clearInterval(interval);
   }, [reviewStartTime]);
 
-  const allChecked = checklist.every((item) => item.checked);
+  const allChecked = checklist.length > 0 && checklist.every((item) => item.checked);
+  const isTranslation = detail !== null && activePreviewLang !== detail.languePrincipale;
+  const validationReport = useMemo(
+    () => detail
+      ? buildAdminValidationReport({
+          detail,
+          language: activePreviewLang,
+          segmentsByScene,
+          routePath: guideRoutePath,
+          dependentDataLoaded: routeLoaded && metadataLoaded && (!isTranslation || segmentsLoaded),
+          translatedTourTitle: translatedTitles[activePreviewLang] ?? null,
+          translatedTourDescription: translatedDescriptions[activePreviewLang] ?? null,
+        })
+      : null,
+    [activePreviewLang, detail, guideRoutePath, isTranslation, metadataLoaded, routeLoaded, segmentsByScene, segmentsLoaded, translatedDescriptions, translatedTitles],
+  );
+  const canApprove = canApproveAdminReview(validationReport, checklist);
   const currentIndex = queueIds.indexOf(moderationId);
   const prevId = currentIndex > 0 ? queueIds[currentIndex - 1] : null;
   const nextId = currentIndex < queueIds.length - 1 ? queueIds[currentIndex + 1] : null;
@@ -319,7 +379,7 @@ export default function ModerationReviewPage() {
   }, []);
 
   const handleApprove = async () => {
-    if (!allChecked || !detail) return;
+    if (!canApprove || !detail) return;
     setSubmitting(true);
     setErrorMessage(null);
 
@@ -359,7 +419,7 @@ export default function ModerationReviewPage() {
         action: 'validate', tourId: detail.tourId,
       });
       sendGuideNotification(detail.guideId, detail.tourId, detail.tourTitle, 'validate')
-        .catch(() => console.warn('[Notification] Failed to notify guide on validate'));
+        .catch((error: unknown) => logger.warn(SERVICE_NAME, 'Notification de validation impossible', { error: String(error) }));
       setSuccessMessage('Parcours approuve et publie !');
       setTimeout(() => router.push('/admin/moderation'), 2000);
     } else {
@@ -403,7 +463,7 @@ export default function ModerationReviewPage() {
         review_time_minutes: reviewTime,
       });
       sendGuideNotification(detail.guideId, detail.tourId, detail.tourTitle, 'reject', rejectFeedback)
-        .catch(() => console.warn('[Notification] Failed to notify guide on reject'));
+        .catch((error: unknown) => logger.warn(SERVICE_NAME, 'Notification de refus impossible', { error: String(error) }));
       setSuccessMessage('Retour envoye au guide.');
       setTimeout(() => router.push('/admin/moderation'), 2000);
     } else {
@@ -443,7 +503,7 @@ export default function ModerationReviewPage() {
         action: 'revision', tourId: detail.tourId, commentCount: localComments.length,
       });
       sendGuideNotification(detail.guideId, detail.tourId, detail.tourTitle, 'revision', revisionFeedback)
-        .catch(() => console.warn('[Notification] Failed to notify guide on revision'));
+        .catch((error: unknown) => logger.warn(SERVICE_NAME, 'Notification de révision impossible', { error: String(error) }));
       setSuccessMessage('Renvoyé au guide pour corrections.');
       setTimeout(() => router.push('/admin/moderation'), 2000);
     } else {
@@ -669,9 +729,10 @@ export default function ModerationReviewPage() {
                 {detail.scenes.map((scene) => {
                   const langSegs = (segmentsByScene[scene.id] ?? []).filter((s) => s.language === activePreviewLang);
                   const seg = langSegs[0];
-                  const displayTitle = seg?.translatedTitle || scene.title;
-                  const displayText = seg?.transcriptText ?? null;
-                  const displayAudio = seg?.audioKey || null;
+                  const presentation = getModerationScenePresentation(scene, seg, true);
+                  const displayTitle = presentation.title;
+                  const displayText = presentation.text;
+                  const displayAudio = presentation.audioKey;
 
                   return (
                     <div key={scene.id} className="grid grid-cols-1 lg:grid-cols-2 gap-3 border border-line rounded-md overflow-hidden" data-testid={`tourist-scene-${scene.id}`}>
@@ -752,7 +813,7 @@ export default function ModerationReviewPage() {
                     : 'text-ink-60 hover:text-ink-80'
                 }`}
               >
-                {tab === 'tourist' ? '👁 Aperçu touriste' : tab === 'overview' ? 'Général' : tab === 'scenes' ? `Scènes (${detail.scenes.length})` : `POIs (${detail.scenes.filter((s) => s.latitude).length}/${detail.scenes.length})`}
+                {tab === 'tourist' ? '👁 Aperçu touriste' : tab === 'overview' ? 'Général' : tab === 'scenes' ? `Scènes (${detail.scenes.length})` : `POIs (${detail.scenes.filter((s) => hasValidCoordinates(s.latitude, s.longitude)).length}/${detail.scenes.length})`}
               </button>
             ))}
           </div>
@@ -764,15 +825,23 @@ export default function ModerationReviewPage() {
             <div className="space-y-6">
               {/* Hero + Cover Photo + Title — like catalogue tour detail */}
               <div className="bg-grenadine rounded-md overflow-hidden text-white">
-                {detail.heroImageUrl && (
+                {(detail.coverPhotoKey || detail.heroImageUrl) && (
                   <div className="relative h-48 w-full">
-                    <S3Image s3Key={detail.heroImageUrl} alt={`Couverture: ${detail.tourTitle}`} className="w-full h-full object-cover" fallback="" />
+                    <S3Image s3Key={detail.coverPhotoKey || detail.heroImageUrl || ''} alt={`Couverture: ${detail.tourTitle}`} className="w-full h-full object-cover" fallback="" />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
                   </div>
                 )}
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="bg-olive text-olive text-xs font-bold px-2 py-0.5 rounded">GRATUIT</span>
+                    <span className={`text-xs font-bold px-2 py-0.5 rounded ${detail.purchaseType === 'free' ? 'bg-olive text-olive' : 'bg-ocre-soft text-ocre'}`}>
+                      {detail.purchaseType === 'free'
+                        ? 'GRATUIT'
+                        : detail.purchaseType === 'paid'
+                          ? 'PAYANT'
+                          : detail.purchaseType === 'subscription_only'
+                            ? 'ABONNEMENT'
+                            : 'ACCÈS NON RENSEIGNÉ'}
+                    </span>
                     <span className="bg-card/30 text-white text-xs font-bold px-2 py-0.5 rounded">
                       {LANG_FLAGS[activePreviewLang] ?? ''} {activePreviewLang.toUpperCase()}
                     </span>
@@ -781,26 +850,29 @@ export default function ModerationReviewPage() {
                     ))}
                   </div>
                   <h2 className="text-2xl font-bold mb-1">
-                    {(activePreviewLang !== detail.languePrincipale && translatedTitles[activePreviewLang]) ? translatedTitles[activePreviewLang] : detail.tourTitle}
+                    {activePreviewLang === detail.languePrincipale
+                      ? detail.tourTitle
+                      : translatedTitles[activePreviewLang] || 'Titre non traduit'}
                   </h2>
                   <p className="text-grenadine-soft text-sm">
                     {detail.city} &middot; {detail.duration} min &middot; {detail.distance} km &middot; {detail.poiCount} points d&apos;interet
                     &middot; Difficulte : {detail.difficulty}
                   </p>
-                  {monetization && (
-                    <p className="text-white text-sm mt-1 font-semibold" data-testid="moderation-monetization">
-                      Monétisation :{' '}
-                      {monetization.purchaseType === 'paid'
-                        ? `Payante — ${
-                            typeof monetization.priceCents === 'number'
-                              ? (monetization.priceCents / 100).toFixed(2).replace('.', ',') + ' €'
-                              : 'prix non défini ⚠️'
-                          }`
-                        : monetization.purchaseType === 'subscription_only'
+                  <p className="text-white text-sm mt-1 font-semibold" data-testid="moderation-monetization">
+                    Accès : {detail.purchaseType === 'free'
+                      ? 'Gratuite'
+                      : detail.purchaseType === 'paid'
+                        ? `Payante — ${typeof detail.priceCents === 'number' ? `${(detail.priceCents / 100).toFixed(2).replace('.', ',')} €` : 'prix non défini'}`
+                        : detail.purchaseType === 'subscription_only'
                           ? 'Abonnés uniquement'
-                          : 'Gratuite'}
-                    </p>
-                  )}
+                          : 'non renseigné'}
+                  </p>
+                  <p className="text-white text-sm mt-1" data-testid="moderation-provenance">
+                    Provenance : {detail.contentProvenance ?? 'non renseignée'}
+                    {(detail.contentProvenance === 'ai' || detail.contentProvenance === 'mixed') && (
+                      <span className="ml-2 font-semibold">Developed with AI</span>
+                    )}
+                  </p>
                 </div>
               </div>
 
@@ -820,7 +892,7 @@ export default function ModerationReviewPage() {
               </div>
 
               {/* Description — shows translated version when available */}
-              {(detail.descriptionLongue || detail.description) && (
+              {(detail.descriptionLongue || detail.description || activePreviewLang !== detail.languePrincipale) && (
                 <div className="bg-card rounded-md border border-line p-5">
                   <h3 className="text-lg font-semibold text-ink mb-2">
                     À propos de cette visite ({activePreviewLang.toUpperCase()})
@@ -833,19 +905,20 @@ export default function ModerationReviewPage() {
                         <p className="text-sm text-ink-40 mt-1 italic">{detail.descriptionLongue || detail.description}</p>
                       </details>
                     </>
-                  ) : (
+                  ) : activePreviewLang === detail.languePrincipale ? (
                     <>
                       <p className="text-ink-80 leading-relaxed">{detail.descriptionLongue || detail.description}</p>
-                      {activePreviewLang !== detail.languePrincipale && (
-                        <p className="text-xs text-ocre mt-2">Description non traduite en {activePreviewLang.toUpperCase()} — affichage de l&apos;original</p>
-                      )}
                     </>
+                  ) : (
+                    <div className="rounded-lg border border-ocre bg-ocre-soft p-3 text-sm text-ocre">
+                      Description non traduite en {activePreviewLang.toUpperCase()}. Aucun texte source n’est utilisé comme traduction.
+                    </div>
                   )}
                 </div>
               )}
 
               {/* Interactive map — like catalogue TourMap */}
-              {detail.scenes.some((s) => s.latitude && s.longitude) && (
+              {detail.scenes.some((s) => hasValidCoordinates(s.latitude, s.longitude)) && (
                 <div className="bg-card rounded-md border border-line overflow-hidden">
                   <h3 className="text-lg font-semibold text-ink p-4 pb-0">
                     Itinéraire
@@ -858,7 +931,7 @@ export default function ModerationReviewPage() {
                   <div className="h-80">
                     <TourMap
                       pois={detail.scenes
-                        .filter((s) => s.latitude && s.longitude)
+                        .filter((s) => hasValidCoordinates(s.latitude, s.longitude))
                         .map((s) => ({
                           id: s.id,
                           order: s.order,
@@ -913,15 +986,11 @@ export default function ModerationReviewPage() {
                     const seg = langSegs[0];
 
                     // Resolve content for active language
-                    const displayTitle = isSourceLang ? scene.title : (seg?.translatedTitle || scene.title);
-                    const displayText = isSourceLang ? (scene.transcriptText ?? null) : (seg?.transcriptText ?? null);
-                    const displayAudio = isSourceLang ? scene.audioRef : (seg?.audioKey || null);
+                    const presentation = getModerationScenePresentation(scene, seg, !isSourceLang);
+                    const displayTitle = presentation.title;
+                    const displayText = presentation.text;
+                    const displayAudio = presentation.audioKey;
                     const hasTranslation = !isSourceLang && seg != null;
-
-                    // --- Temporary debug per scene ---
-                    if (typeof window !== 'undefined') {
-                      console.log(`[Scene ${scene.order}] id=${scene.id}, allSegs=${allSegsForScene.length}, langSegs(${activePreviewLang})=${langSegs.length}, seg?.lang=${seg?.language}, hasText=${!!seg?.transcriptText}, hasAudio=${!!seg?.audioKey}`);
-                    }
 
                     return (
                       <div
@@ -1086,7 +1155,7 @@ export default function ModerationReviewPage() {
               )}
 
               {/* Map */}
-              {detail.scenes.some((s) => s.latitude && s.longitude) && (
+              {detail.scenes.some((s) => hasValidCoordinates(s.latitude, s.longitude)) && (
                 <div className="rounded-lg overflow-hidden border border-line">
                   <PreviewMap
                     scenes={detail.scenes.map((s) => ({
@@ -1117,8 +1186,9 @@ export default function ModerationReviewPage() {
                   const isSourceLang = activePreviewLang === detail.languePrincipale;
                   const sceneLangSegs = (segmentsByScene[scene.id] ?? []).filter((s) => s.language === activePreviewLang);
                   const sceneSeg = sceneLangSegs[0];
-                  const sceneDisplayTitle = isSourceLang ? scene.title : (sceneSeg?.translatedTitle ?? scene.title);
-                  const sceneDisplayAudio = isSourceLang ? scene.audioRef : (sceneSeg?.audioKey ?? scene.audioRef);
+                  const presentation = getModerationScenePresentation(scene, sceneSeg, !isSourceLang);
+                  const sceneDisplayTitle = presentation.title;
+                  const sceneDisplayAudio = presentation.audioKey;
                   return (
                     <div key={scene.id} className="bg-card border border-line rounded-md p-5">
                       <div className="flex items-center gap-3 mb-3">
@@ -1193,7 +1263,7 @@ export default function ModerationReviewPage() {
               <h2 className="text-lg font-semibold text-ink mb-4">Points d&apos;intérêt</h2>
 
               {/* Map */}
-              {detail.scenes.some((s) => s.latitude && s.longitude) && (
+              {detail.scenes.some((s) => hasValidCoordinates(s.latitude, s.longitude)) && (
                 <div className="rounded-lg overflow-hidden border border-line mb-4">
                   <PreviewMap
                     scenes={detail.scenes.map((s) => ({
@@ -1218,12 +1288,12 @@ export default function ModerationReviewPage() {
                         {scene.order}
                       </span>
                       <h3 className="font-medium text-ink">{scene.title}</h3>
-                      {scene.latitude && scene.longitude && (
+                      {hasValidCoordinates(scene.latitude, scene.longitude) && (
                         <span className="text-xs text-ink-40 ml-auto">
-                          📍 {scene.latitude.toFixed(4)}, {scene.longitude.toFixed(4)}
+                          📍 {scene.latitude!.toFixed(4)}, {scene.longitude!.toFixed(4)}
                         </span>
                       )}
-                      {!scene.latitude && (
+                      {!hasValidCoordinates(scene.latitude, scene.longitude) && (
                         <span className="text-xs text-ocre ml-auto">⚠ Pas de GPS</span>
                       )}
                     </div>
@@ -1257,6 +1327,28 @@ export default function ModerationReviewPage() {
               reach the checklist + Valider/Rejeter actions without scrolling
               the long left column of translations and audio players. */}
           <div className="sticky top-24 space-y-4 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pr-1">
+            <div className="bg-card rounded-md border border-line p-4" data-testid="admin-validation-report">
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <div>
+                  <h2 className="text-lg font-semibold text-ink">Contrôles automatiques</h2>
+                  <p className="text-xs text-ink-60">Contrôle d’interface — l’autorité serveur sera ajoutée séparément.</p>
+                </div>
+                <span className={`text-xs font-semibold px-2 py-1 rounded-full ${validationReport?.ready ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
+                  {validationReport?.ready ? 'Conforme' : `${validationReport?.blockingCount ?? 1} blocage(s)`}
+                </span>
+              </div>
+              <div className="space-y-2">
+                {validationReport?.checks.map((item) => (
+                  <div key={item.id} className={`rounded-lg border p-2 ${item.passed ? 'border-olive bg-olive-soft' : 'border-grenadine bg-grenadine-soft'}`}>
+                    <p className={`text-sm font-medium ${item.passed ? 'text-olive' : 'text-danger'}`}>
+                      {item.passed ? '✓' : '✕'} {item.label}
+                    </p>
+                    <p className="text-xs text-ink-60 mt-0.5">{item.evidence}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Quality Checklist */}
             <div className="bg-card rounded-md border border-line p-4">
               <h2 className="text-lg font-semibold text-ink mb-4">Checklist qualite</h2>
@@ -1310,13 +1402,18 @@ export default function ModerationReviewPage() {
               {/* Validate */}
               <button
                 onClick={handleApprove}
-                disabled={!allChecked || submitting}
+                disabled={!canApprove || submitting}
                 data-testid="approve-btn"
                 className="w-full bg-olive text-white font-bold py-3 rounded-md hover:bg-olive disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {submitting ? 'En cours...' : 'Valider et publier'}
               </button>
-              {!allChecked && (
+              {!validationReport?.ready && (
+                <p className="text-xs text-danger text-center">
+                  Corrigez tous les blocages automatiques avant de valider
+                </p>
+              )}
+              {validationReport?.ready && !allChecked && (
                 <p className="text-xs text-ink-40 text-center">
                   Cochez tous les items de la checklist pour valider
                 </p>
