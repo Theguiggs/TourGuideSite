@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { href: '/admin/moderation/history', label: 'Historique', icon: '📜' },
   { href: '/admin/tours', label: 'Tous les parcours', icon: '🗺️' },
   { href: '/admin/guides', label: 'Tous les guides', icon: '👥' },
+  { href: '/admin/narration', label: 'Narrations demandées', icon: '🎧' },
   { href: '/admin/analytics', label: 'Analytics', icon: '📊' },
 ];
 
