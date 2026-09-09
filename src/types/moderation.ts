@@ -1,6 +1,7 @@
 /** Moderation types — mirrors Story 4.5 backend schema */
 
 export type ModerationStatus = 'pending' | 'resubmitted' | 'in_review' | 'approved' | 'rejected';
+export type NarrationMode = 'recording' | 'tts_on_demand';
 
 export interface ModerationItem {
   id: string;
@@ -17,6 +18,8 @@ export interface ModerationItem {
   poiCount: number;
   duration: number; // minutes
   distance: number; // km
+  narrationMode?: NarrationMode | null;
+  sourceLanguage?: string | null;
 }
 
 export interface ModerationDetail extends ModerationItem {
@@ -89,10 +92,22 @@ export const QUALITY_CHECKLIST_TEMPLATE: Omit<QualityChecklistItem, 'checked' | 
 
 export function getQualityChecklistTemplate(
   isTranslation: boolean,
+  narrationMode: NarrationMode | null = 'recording',
 ): Omit<QualityChecklistItem, 'checked' | 'note'>[] {
-  return QUALITY_CHECKLIST_TEMPLATE.filter(
+  const common = QUALITY_CHECKLIST_TEMPLATE.filter(
     (item) => isTranslation || item.id !== 'translation_quality',
   );
+  if (narrationMode === 'tts_on_demand') {
+    return [
+      ...common.filter((item) => item.id !== 'audio_clarity'),
+      {
+        id: 'text_pronounceability',
+        label: 'Prononçabilité du texte',
+        description: 'Le texte est final, naturel à l’oral et ne contient aucune instruction technique',
+      },
+    ];
+  }
+  return common;
 }
 
 export type RejectionCategory = 'audio_quality' | 'content_accuracy' | 'inappropriate' | 'gps_issues' | 'translation' | 'other';
@@ -118,6 +133,7 @@ export interface ModerationScene {
   title: string;
   order: number;
   audioRef: string;
+  baseAudioSource?: 'tts' | 'recording' | null;
   photosRefs: string[];
   durationSeconds: number;
   latitude: number | null;
@@ -150,6 +166,7 @@ export interface LanguageModerationItem {
   moderationStatus: ModerationStatus;
   purchaseId: string;
   isSourceLanguage?: boolean; // true for tour-level rows synthesized from ModerationItem (no purchase)
+  narrationMode?: NarrationMode | null;
 }
 
 export interface ModerationHistoryItem {

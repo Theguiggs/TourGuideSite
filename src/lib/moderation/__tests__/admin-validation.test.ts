@@ -23,6 +23,7 @@ const detail: ModerationDetail = {
   poiCount: 2,
   duration: 20,
   distance: 1.2,
+  narrationMode: 'recording',
   description: 'Une visite historique.',
   descriptionLongue: '',
   pois: [],
@@ -35,11 +36,13 @@ const detail: ModerationDetail = {
   scenes: [
     {
       id: 'scene-1', title: 'Porte basse', order: 1, audioRef: 'audio/fr/1.mp3',
+      baseAudioSource: 'recording',
       photosRefs: [], durationSeconds: 60, latitude: 0, longitude: 0,
       poiDescription: null, transcriptText: 'Texte un.',
     },
     {
       id: 'scene-2', title: 'Porte haute', order: 2, audioRef: 'audio/fr/2.mp3',
+      baseAudioSource: 'recording',
       photosRefs: [], durationSeconds: 60, latitude: 47.2, longitude: 1.8,
       poiDescription: null, transcriptText: 'Texte deux.',
     },

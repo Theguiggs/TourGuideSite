@@ -2,13 +2,12 @@
 
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import Link from 'next/link';
-import { CircleDollarSign, Map, MessageSquareText, Plus, Sparkles, Star } from 'lucide-react';
+import { CircleDollarSign, Map, MessageSquareText, Plus, Star } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
 import { trackEvent, StudioAnalyticsEvents } from '@/lib/analytics';
 import { listStudioSessions, listStudioScenes } from '@/lib/api/studio';
-import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import { listTourComments, type TourComment } from '@/lib/api/tour-comments';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
 import { withPublishedStatus } from '@/lib/studio/published-status';
@@ -16,18 +15,15 @@ import {
   selectResumableSession,
   selectTopTours,
   selectRecentReviews,
-  selectSuggestion,
   type DashboardReview,
-  type DashboardSuggestion,
 } from '@/lib/studio/dashboard-helpers';
 import {
   KpiCard,
   ResumeHero,
   TopTourRow,
   ReviewItem,
-  SuggestionCard,
 } from '@/components/studio/dashboard';
-import type { StudioSession, TourLanguagePurchase } from '@/types/studio';
+import type { StudioSession } from '@/types/studio';
 import { useStudioLocale, type StudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'StudioDashboardPage';
@@ -35,9 +31,7 @@ const SERVICE_NAME = 'StudioDashboardPage';
 interface DashboardData {
   sessions: StudioSession[];
   scenesPerSession: Record<string, { total: number; done: number }>;
-  purchasesBySession: Record<string, TourLanguagePurchase[]>;
   recentReviews: DashboardReview[];
-  suggestion: DashboardSuggestion | null;
   resumable: StudioSession | null;
 }
 
@@ -65,13 +59,11 @@ export default function StudioDashboardPage() {
     welcome: 'Welcome to your Studio', empty: 'You have not created a tour yet. Record a route with the mobile app, then return here to turn it into an audio tour.', create: 'Create a new tour',
     month: 'This month', numbers: 'Your figures.', allRevenue: 'View all revenue', published: 'Published tours', netRevenue: 'Net revenue', thisMonth: 'this month', average: 'Average rating', reviews: 'Recent reviews',
     top: 'Tours performing well', noPublished: 'No published tours yet.', untitled: 'Untitled tour', noReviews: 'No reviews yet.',
-    suggestionEyebrow: 'Suggestion · recommended action', suggestionBody: 'An English version could expand your audience. Many international visitors prefer listening in English.', suggestionCta: 'Start translation',
   } : {
     loadError: 'Impossible de charger le tableau de bord.', loading: 'Chargement du tableau de bord...', guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.', retry: 'Réessayer',
     welcome: 'Bienvenue dans votre Studio', empty: "Vous n'avez pas encore créé de visite. Enregistrez un parcours avec l'app mobile, puis revenez ici pour le transformer en visite audio.", create: 'Créer une nouvelle visite',
     month: 'Le mois en bref', numbers: 'Vos chiffres.', allRevenue: 'Voir tous les revenus', published: 'Visites publiées', netRevenue: 'Revenus nets', thisMonth: 'ce mois', average: 'Note moyenne', reviews: 'Avis récents',
     top: 'Visites qui marchent', noPublished: 'Aucune visite publiée pour le moment.', untitled: 'Visite sans titre', noReviews: 'Aucun avis pour le moment.',
-    suggestionEyebrow: 'Suggestion · une action recommandée', suggestionBody: "Une version EN pourrait étendre votre audience. Beaucoup de visiteurs internationaux préfèrent écouter en anglais.", suggestionCta: 'Démarrer la traduction',
   }, [locale]);
 
   const loadDashboard = useCallback(async (guideId: string) => {
@@ -93,19 +85,6 @@ export default function StudioDashboardPage() {
         };
       });
 
-      // Language purchases per session — for suggestion engine
-      const purchaseResults = await Promise.all(
-        sessions.map(async (s) => {
-          const r = await listLanguagePurchases(s.id);
-          return {
-            sessionId: s.id,
-            purchases: r.ok ? r.value.filter((p) => p.status === 'active') : [],
-          };
-        }),
-      );
-      const purchasesBySession: Record<string, TourLanguagePurchase[]> = {};
-      for (const r of purchaseResults) purchasesBySession[r.sessionId] = r.purchases;
-
       // Comments per session (admin/guide) — for recent reviews block
       const commentsBySession: Record<string, TourComment[]> = {};
       for (const s of sessions) {
@@ -121,14 +100,10 @@ export default function StudioDashboardPage() {
       const lastSessionId = studioPersistenceService.getLastSessionId();
       const resumable = selectResumableSession(sessions, lastSessionId);
       const recentReviews = selectRecentReviews(sessions, commentsBySession);
-      const suggestion = selectSuggestion(sessions, purchasesBySession);
-
       setData({
         sessions,
         scenesPerSession,
-        purchasesBySession,
         recentReviews,
-        suggestion,
         resumable,
       });
       logger.info(SERVICE_NAME, 'Dashboard loaded', { sessions: sessions.length });
@@ -205,7 +180,7 @@ export default function StudioDashboardPage() {
 
   if (!data) return null;
 
-  const { sessions, scenesPerSession, recentReviews, suggestion, resumable } = data;
+  const { sessions, scenesPerSession, recentReviews, resumable } = data;
 
   // ─── Empty state (no sessions yet) ───
   if (sessions.length === 0) {
@@ -337,20 +312,6 @@ export default function StudioDashboardPage() {
         </div>
       </section>
 
-      {/* ───── Suggestion contextuelle ───── */}
-      {suggestion && (
-        <section>
-          <SuggestionCard
-            eyebrow={locale === 'en' ? copy.suggestionEyebrow : suggestion.eyebrow}
-            title={locale === 'en' ? `Your tour ${sessions.find((session) => suggestion.ctaHref.includes(session.id))?.title ?? copy.untitled} has no English version.` : suggestion.title}
-            body={locale === 'en' ? copy.suggestionBody : suggestion.body}
-            ctaLabel={locale === 'en' ? copy.suggestionCta : suggestion.ctaLabel}
-            ctaHref={suggestion.ctaHref}
-            color={suggestion.color}
-            icon={<Sparkles size={20} />}
-          />
-        </section>
-      )}
     </div>
   );
 }

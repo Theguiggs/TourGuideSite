@@ -5,11 +5,11 @@ import { StudioProgressBar } from '../progress-bar';
 describe('StudioProgressBar', () => {
   it('renders all 5 workflow steps', () => {
     render(<StudioProgressBar />);
-    expect(screen.getByText('Général')).toBeInTheDocument();
+    expect(screen.getByText('Informations')).toBeInTheDocument();
     expect(screen.getByText('Itinéraire')).toBeInTheDocument();
     expect(screen.getByText('Scènes')).toBeInTheDocument();
-    expect(screen.getByText('Preview')).toBeInTheDocument();
-    expect(screen.getByText('Publication')).toBeInTheDocument();
+    expect(screen.getByText('Aperçu')).toBeInTheDocument();
+    expect(screen.getByText('Envoyer')).toBeInTheDocument();
   });
 
   it('highlights current step with aria-current', () => {
@@ -26,7 +26,7 @@ describe('StudioProgressBar', () => {
 
   it('applies completed styles to completed steps', () => {
     render(<StudioProgressBar currentStep="scenes" completedSteps={['general', 'itinerary']} />);
-    const generalStep = screen.getByText('Général').closest('div');
+    const generalStep = screen.getByText('Informations').closest('div');
     expect(generalStep?.className).toContain('grenadine');
   });
 

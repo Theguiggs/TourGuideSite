@@ -28,6 +28,7 @@ const MOCK_SESSIONS: StudioSession[] = [
     translatedDescriptions: null,
     version: 1,
     consentRGPD: true,
+    narrationMode: 'recording',
     createdAt: '2026-03-10T14:30:00.000Z',
     updatedAt: '2026-03-10T14:30:00.000Z',
   },
@@ -46,6 +47,7 @@ const MOCK_SESSIONS: StudioSession[] = [
     translatedDescriptions: null,
     version: 1,
     consentRGPD: true,
+    narrationMode: 'recording',
     createdAt: '2026-03-08T09:15:00.000Z',
     updatedAt: '2026-03-12T16:45:00.000Z',
   },
@@ -66,6 +68,7 @@ const MOCK_SESSIONS: StudioSession[] = [
     consentRGPD: true,
     captureMode: 'phased_capture',
     captureSessionRef: 'mobile-phased-001',
+    narrationMode: 'recording',
     createdAt: '2026-04-01T10:00:00.000Z',
     updatedAt: '2026-04-01T10:00:00.000Z',
   },
@@ -84,6 +87,7 @@ const MOCK_SESSIONS: StudioSession[] = [
     translatedDescriptions: null,
     version: 1,
     consentRGPD: true,
+    narrationMode: 'recording',
     createdAt: '2026-02-20T11:00:00.000Z',
     updatedAt: '2026-03-05T10:00:00.000Z',
   },
@@ -212,6 +216,10 @@ function mapAppSyncSession(raw: Record<string, unknown>): StudioSession {
     consentRGPD: (raw.consentRGPD as boolean) ?? true,
     captureMode: (raw.captureMode as StudioSession['captureMode']) ?? null,
     captureSessionRef: (raw.captureSessionRef as string) ?? null,
+    narrationMode:
+      raw.narrationMode === 'recording' || raw.narrationMode === 'tts_on_demand'
+        ? raw.narrationMode
+        : null,
     description: (raw.description as string) ?? null,
     themes: (raw.themes as string[]) ?? null,
     durationMinutes: (raw.durationMinutes as number) ?? null,
@@ -387,6 +395,7 @@ export async function updateStudioSession(
     | 'themes'
     | 'language'
     | 'durationMinutes'
+    | 'narrationMode'
     | 'status'
     | 'cleanedAt'
   >>,
@@ -441,6 +450,7 @@ export async function createStudioSession(
       translatedDescriptions: null,
       version: 1,
       consentRGPD: true,
+      narrationMode: source?.narrationMode ?? null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
@@ -460,7 +470,11 @@ export async function createStudioSession(
         return { ok: false, error: 'Une session studio existe déjà pour cette session terrain.', existingSessionId: (dupe as Record<string, unknown>).id as string };
       }
     }
-    const result = await appsync.createStudioSessionMutation({ guideId, sourceSessionId, status: 'draft' });
+    const result = await appsync.createStudioSessionMutation({
+      guideId,
+      sourceSessionId,
+      status: 'draft',
+    });
     if (!result.ok) return { ok: false, error: result.error };
     return { ok: true, session: mapAppSyncSession(result.data as unknown as Record<string, unknown>) };
   } catch (e) {
@@ -520,6 +534,7 @@ export async function cloneSessionAsV2(
       sourceSessionId: parentSessionId,
       version: newVersion,
       consentRGPD: true,
+      narrationMode: parentSession.narrationMode ?? undefined,
     });
     if (!sessResult.ok) return { ok: false, error: sessResult.error };
     const newSessionId = sessResult.data.id;
@@ -636,6 +651,7 @@ export async function createTourWithSession(
       translatedDescriptions: null,
       version: 1,
       consentRGPD: true,
+      narrationMode: null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
@@ -671,6 +687,7 @@ export async function createTourWithSession(
       tourId,
       title,
       status: 'draft',
+      narrationMode: undefined,
     });
     if (!sessionResult.ok) {
       // Tour created but session failed — rollback: soft-archive the orphan tour

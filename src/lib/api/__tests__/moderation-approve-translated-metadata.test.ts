@@ -23,6 +23,7 @@ jest.mock('../appsync-client', () => ({
   updateModerationItemMutation: jest.fn(),
   updateGuideTourMutation: jest.fn(),
   updateStudioSessionMutation: jest.fn(),
+  setTourWorkflowStatusMutation: jest.fn(),
 }));
 
 jest.mock('../studio', () => ({
@@ -49,6 +50,7 @@ const mockListScenesBySession = appsyncModule.listStudioScenesBySession as jest.
 const mockUpdateModerationItem = appsyncModule.updateModerationItemMutation as jest.Mock;
 const mockUpdateGuideTour = appsyncModule.updateGuideTourMutation as jest.Mock;
 const mockUpdateStudioSession = appsyncModule.updateStudioSessionMutation as jest.Mock;
+const mockSetTourWorkflowStatus = appsyncModule.setTourWorkflowStatusMutation as jest.Mock;
 const mockGetStudioSession = studioModule.getStudioSession as jest.Mock;
 
 const scenesRead = (scenes: unknown[]) => ({ ok: true, data: scenes });
@@ -65,8 +67,11 @@ const CINQ_TITRES = {
 
 /** La charge de la mutation qui publie — la PREMIÈRE, celle qui porte `status`. */
 const chargeDePublication = () => {
-  expect(mockUpdateGuideTour).toHaveBeenCalled();
-  return mockUpdateGuideTour.mock.calls[0][1] as Record<string, unknown>;
+  const updates = mockUpdateGuideTour.mock.calls.map((call) => call[1] as Record<string, unknown>);
+  const charge = Object.assign({}, ...updates) as Record<string, unknown>;
+  const workflow = mockSetTourWorkflowStatus.mock.calls.at(-1);
+  if (workflow) charge.status = workflow[1];
+  return charge;
 };
 
 const STUBS_AVANT = process.env.NEXT_PUBLIC_USE_STUBS;
@@ -88,11 +93,14 @@ beforeEach(() => {
   mockUpdateModerationItem.mockResolvedValue({ ok: true });
   mockUpdateGuideTour.mockResolvedValue({ ok: true });
   mockUpdateStudioSession.mockResolvedValue({ ok: true });
-  mockGetStudioSession.mockResolvedValue({ id: 'session-1', language: 'fr', version: 1 });
+  mockSetTourWorkflowStatus.mockResolvedValue({ ok: true });
+  mockGetStudioSession.mockResolvedValue({ id: 'session-1', language: 'fr', sourceLanguage: 'fr', narrationMode: 'recording', version: 1 });
   mockGetGuideTourResult.mockResolvedValue(
-    tourRead({ id: 'tour-1', sessionId: 'session-1', languageAudioTypes: null, availableLanguages: [] }),
+    tourRead({ id: 'tour-1', sessionId: 'session-1', narrationMode: 'recording', sourceLanguage: 'fr', languageAudioTypes: { fr: 'recording' }, availableLanguages: ['fr'] }),
   );
-  mockListScenesBySession.mockResolvedValue(scenesRead([]));
+  mockListScenesBySession.mockResolvedValue(scenesRead([
+    { id: 'scene-1', title: 'Scene', transcriptText: 'Texte source.', studioAudioKey: 'scene-1-fr.mp3', baseAudioSource: 'recording', archived: false },
+  ]));
 });
 
 describe('matrice — approbation, session complète', () => {
@@ -100,6 +108,8 @@ describe('matrice — approbation, session complète', () => {
     mockGetStudioSession.mockResolvedValue({
       id: 'session-1',
       language: 'fr',
+      sourceLanguage: 'fr',
+      narrationMode: 'recording',
       version: 1,
       translatedTitles: CINQ_TITRES,
       translatedDescriptions: { en: 'Urban history.', es: 'Historia urbana.' },
@@ -110,7 +120,6 @@ describe('matrice — approbation, session complète', () => {
     expect(result.ok).toBe(true);
     const charge = chargeDePublication();
     expect(charge.status).toBe('published');
-    expect(charge.languageAudioTypes).toBeDefined();
     expect(charge.translatedTitles).toEqual(CINQ_TITRES);
     expect(charge.translatedDescriptions).toEqual({ en: 'Urban history.', es: 'Historia urbana.' });
     // Ce qui compte n'est pas le nombre d'appels — approveTour en émet d'autres
@@ -125,6 +134,8 @@ describe('matrice — approbation, session complète', () => {
     mockGetStudioSession.mockResolvedValue({
       id: 'session-1',
       language: 'fr',
+      sourceLanguage: 'fr',
+      narrationMode: 'recording',
       version: 1,
       translatedTitles: JSON.stringify(CINQ_TITRES),
     });
@@ -145,6 +156,8 @@ describe('matrice — approbation, session muette', () => {
     mockGetStudioSession.mockResolvedValue({
       id: 'session-1',
       language: 'fr',
+      sourceLanguage: 'fr',
+      narrationMode: 'recording',
       version: 1,
       translatedTitles: valeur,
     });
@@ -167,7 +180,7 @@ describe('matrice — approbation, session muette', () => {
         translatedTitles: { de: 'Plätze und Tore' },
       }),
     );
-    mockGetStudioSession.mockResolvedValue({ id: 'session-1', language: 'fr', version: 1 });
+    mockGetStudioSession.mockResolvedValue({ id: 'session-1', language: 'fr', sourceLanguage: 'fr', narrationMode: 'recording', version: 1 });
 
     await approveTour('mod-1', {}, 'ok');
 
@@ -190,6 +203,8 @@ describe('matrice — fusion', () => {
     mockGetStudioSession.mockResolvedValue({
       id: 'session-1',
       language: 'fr',
+      sourceLanguage: 'fr',
+      narrationMode: 'recording',
       version: 1,
       translatedTitles: { en: 'Squares and Gates' },
     });
@@ -282,6 +297,8 @@ describe('matrice — ré-exécution', () => {
     mockGetStudioSession.mockResolvedValue({
       id: 'session-1',
       language: 'fr',
+      sourceLanguage: 'fr',
+      narrationMode: 'recording',
       version: 1,
       translatedTitles: CINQ_TITRES,
     });
@@ -297,6 +314,8 @@ describe('publication refusée', () => {
     mockGetStudioSession.mockResolvedValue({
       id: 'session-1',
       language: 'fr',
+      sourceLanguage: 'fr',
+      narrationMode: 'recording',
       version: 1,
       translatedTitles: CINQ_TITRES,
     });
@@ -325,7 +344,7 @@ describe('adminSetTourStatus — le second chemin de publication', () => {
   it('emporte les métadonnées traduites de la session, comme approveTour', async () => {
     mockGetGuideTourResult.mockResolvedValue(tourPublie());
     mockGetStudioSession.mockResolvedValue({
-      id: 'session-1', language: 'fr', version: 1,
+      id: 'session-1', language: 'fr', sourceLanguage: 'fr', narrationMode: 'recording', version: 1,
       translatedTitles: CINQ_TITRES,
       translatedDescriptions: { en: 'Urban history.' },
     });
@@ -335,7 +354,6 @@ describe('adminSetTourStatus — le second chemin de publication', () => {
     expect(result.ok).toBe(true);
     const charge = chargeDePublication();
     expect(charge.status).toBe('published');
-    expect(charge.languageAudioTypes).toEqual({ fr: 'tts' });
     expect(charge.translatedTitles).toEqual(CINQ_TITRES);
     expect(charge.translatedDescriptions).toEqual({ en: 'Urban history.' });
   });
@@ -343,7 +361,7 @@ describe('adminSetTourStatus — le second chemin de publication', () => {
   it('fusionne au lieu de remplacer sur ce chemin aussi', async () => {
     mockGetGuideTourResult.mockResolvedValue(tourPublie({ translatedTitles: { de: 'Plätze und Tore' } }));
     mockGetStudioSession.mockResolvedValue({
-      id: 'session-1', language: 'fr', version: 1,
+      id: 'session-1', language: 'fr', sourceLanguage: 'fr', narrationMode: 'recording', version: 1,
       translatedTitles: { en: 'Squares and Gates' },
     });
 
@@ -358,7 +376,7 @@ describe('adminSetTourStatus — le second chemin de publication', () => {
   it("n'écrit aucune clé quand rien de neuf n'est apporté", async () => {
     mockGetGuideTourResult.mockResolvedValue(tourPublie({ translatedTitles: CINQ_TITRES }));
     mockGetStudioSession.mockResolvedValue({
-      id: 'session-1', language: 'fr', version: 1, translatedTitles: CINQ_TITRES,
+      id: 'session-1', language: 'fr', sourceLanguage: 'fr', narrationMode: 'recording', version: 1, translatedTitles: CINQ_TITRES,
     });
 
     await adminSetTourStatus('tour-1', 'published');

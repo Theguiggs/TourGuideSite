@@ -1,4 +1,5 @@
 import { checkLanguageReadiness } from '@/lib/api/language-purchase';
+import { evaluateVisitCompleteness } from '@/lib/studio/visit-completeness';
 import { hashSourceText, type SceneSegment } from '@/types/studio';
 import type {
   AdminValidationCheck,
@@ -140,6 +141,19 @@ export function buildAdminValidationReport({
 
   const flattenedSegments = Object.values(segmentsByScene).flat();
   const readiness = checkLanguageReadiness(detail.scenes, flattenedSegments, language);
+  const sourceCompleteness = evaluateVisitCompleteness({
+    narrationMode: detail.narrationMode,
+    sourceLanguage: detail.languePrincipale,
+    scenes: detail.scenes.map((scene) => ({
+      id: scene.id,
+      title: scene.title,
+      transcriptText: scene.transcriptText,
+      studioAudioKey: scene.audioRef || null,
+      originalAudioKey: null,
+      baseAudioSource: scene.baseAudioSource ?? null,
+      archived: false,
+    })),
+  });
   const missingContent = detail.scenes.flatMap((scene) => {
     const fields: string[] = [];
     if (isTranslation) {
@@ -164,12 +178,20 @@ export function buildAdminValidationReport({
     } else {
       if (!textPresent(scene.title)) fields.push('titre source');
       if (!textPresent(scene.transcriptText)) fields.push('texte source');
-      if (!textPresent(scene.audioRef)) fields.push('audio source');
+      if (detail.narrationMode === 'recording' && !textPresent(scene.audioRef)) {
+        fields.push('audio source');
+      }
+      if (detail.narrationMode === 'tts_on_demand' && textPresent(scene.audioRef)) {
+        fields.push('audio inattendu en mode TTS');
+      }
     }
     return fields.length > 0 ? [{ title: scene.title, fields }] : [];
   });
 
   const checks: AdminValidationCheck[] = [
+    ...sourceCompleteness.checks.map((item) =>
+      check(item.id, item.id.replaceAll('_', ' '), item.passed, item.evidence),
+    ),
     check(
       'identity',
       'Titre et description',
@@ -250,6 +272,9 @@ export function buildAdminValidationReport({
     ),
   ];
 
-  const blockingCount = checks.filter((item) => !item.passed).length;
-  return { ready: blockingCount === 0, blockingCount, checks };
+  const uniqueChecks = checks.filter(
+    (item, index, all) => all.findIndex((candidate) => candidate.id === item.id) === index,
+  );
+  const blockingCount = uniqueChecks.filter((item) => !item.passed).length;
+  return { ready: blockingCount === 0, blockingCount, checks: uniqueChecks };
 }

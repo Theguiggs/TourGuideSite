@@ -57,6 +57,7 @@ const detail: ModerationDetail = {
   id: 'moderation-1', tourId: 'tour-1', sessionId: 'session-1', tourTitle: 'Les remparts',
   guideId: 'guide-1', guideName: 'Guide', guidePhotoUrl: null, city: 'Mennetou-sur-Cher',
   submissionDate: '2026-09-09T08:00:00.000Z', status: 'pending', isResubmission: false,
+  narrationMode: 'recording',
   poiCount: 2, duration: 20, distance: 1.2, description: 'Description source.',
   descriptionLongue: '', pois: [], guideSubmissionCount: 0, guideApprovalRate: 0,
   isFirstSubmission: true, themes: ['patrimoine'], languePrincipale: 'fr', difficulty: 'facile',
@@ -85,6 +86,8 @@ describe('ModerationReviewPage', () => {
     mockGetModerationDetail.mockResolvedValue(detail);
     mockGetQueueItemIds.mockResolvedValue(['moderation-1']);
     mockGetStudioSession.mockResolvedValue({
+      narrationMode: 'recording',
+      sourceLanguage: 'fr',
       routePath: { computedPath: [{ lat: 0, lng: 0 }, { lat: 47, lng: 1 }] },
       translatedTitles: { en: 'The ramparts' },
       translatedDescriptions: { en: 'Translated description.' },

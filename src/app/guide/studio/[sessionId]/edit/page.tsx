@@ -214,7 +214,7 @@ export default function EditPage() {
           value={editorText}
           onChange={(e) => setEditorText(e.target.value)}
           placeholder="Saisissez ou modifiez le texte de cette scène..."
-          maxLength={50000}
+          maxLength={10000}
           className="w-full min-h-[300px] p-4 border border-line rounded-lg text-ink text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine focus:border-transparent"
           data-testid="scene-editor"
           aria-label={`Texte de la scène ${activeScene?.title || ''}`}

@@ -245,6 +245,7 @@ export default function ModerationReviewPage() {
         setChecklist(
           getQualityChecklistTemplate(
             d !== null && reviewLanguage !== d.languePrincipale,
+            d?.narrationMode ?? null,
           ).map((item) => ({ ...item, checked: false, note: '' })),
         );
 
@@ -628,6 +629,22 @@ export default function ModerationReviewPage() {
                 {LANG_FLAGS[detail.languePrincipale] ?? detail.languePrincipale}
               </span>
             )}
+            <span
+              className={`text-xs font-medium px-2 py-0.5 rounded ${
+                detail.narrationMode === 'recording'
+                  ? 'bg-mer-soft text-mer'
+                  : detail.narrationMode === 'tts_on_demand'
+                    ? 'bg-olive-soft text-olive'
+                    : 'bg-grenadine-soft text-danger'
+              }`}
+              data-testid="moderation-narration-mode"
+            >
+              {detail.narrationMode === 'recording'
+                ? 'Voix humaine'
+                : detail.narrationMode === 'tts_on_demand'
+                  ? 'TTS à la demande'
+                  : 'Mode à migrer'}
+            </span>
             {detail.themes.length > 0 && detail.themes.map((t) => (
               <span key={t} className="bg-grenadine-soft text-grenadine text-xs px-2 py-0.5 rounded-full">{t}</span>
             ))}

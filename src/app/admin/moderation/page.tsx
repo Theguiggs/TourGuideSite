@@ -150,6 +150,7 @@ export default function ModerationQueuePage() {
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Guide</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Parcours</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Langue</th>
+                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Narration</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-60 hidden sm:table-cell">Ville</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-60 hidden md:table-cell">Soumis le</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Statut</th>
@@ -181,6 +182,21 @@ export default function ModerationQueuePage() {
                           Source
                         </span>
                       )}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${
+                        item.narrationMode === 'recording'
+                          ? 'bg-mer-soft text-mer'
+                          : item.narrationMode === 'tts_on_demand'
+                            ? 'bg-olive-soft text-olive'
+                            : 'bg-grenadine-soft text-danger'
+                      }`} data-testid={`narration-mode-${item.id}`}>
+                        {item.narrationMode === 'recording'
+                          ? 'Voix humaine'
+                          : item.narrationMode === 'tts_on_demand'
+                            ? 'TTS à la demande'
+                            : 'Mode à migrer'}
+                      </span>
                     </td>
                     <td className="px-4 py-3 hidden sm:table-cell text-sm text-ink-60">{item.city}</td>
                     <td className="px-4 py-3 hidden md:table-cell text-sm text-ink-60">

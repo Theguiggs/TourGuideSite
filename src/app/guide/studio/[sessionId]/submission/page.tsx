@@ -3,22 +3,17 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { StepNav } from '@/components/studio/wizard';
-import { getStudioSession, getSessionStatusConfig, listStudioScenes, listSegmentsByScene, cloneSessionAsV2, listStudioSessions } from '@/lib/api/studio';
+import { getStudioSession, getSessionStatusConfig, listStudioScenes, cloneSessionAsV2, listStudioSessions } from '@/lib/api/studio';
 import { withPublishedStatus } from '@/lib/studio/published-status';
 import { submitForReview, retractSubmission, updateSessionStatus } from '@/lib/api/studio-submission';
-import { listLanguagePurchases, checkLanguageReadiness, submitLanguageForModeration, retractLanguageSubmission } from '@/lib/api/language-purchase';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
 import { TourCommentThread } from '@/components/studio/tour-comment-thread';
 import { Collapsible } from '@/components/ui/collapsible';
 import { shouldUseStubs } from '@/config/api-mode';
 import { useAuth } from '@/lib/auth/auth-context';
-import type { StudioSession, StudioSessionStatus, TourLanguagePurchase, StudioScene, SceneSegment } from '@/types/studio';
+import type { StudioSession, StudioSessionStatus, StudioScene } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
-
-const LANG_FLAGS: Record<string, string> = {
-  fr: '\u{1F1EB}\u{1F1F7}', en: '\u{1F1EC}\u{1F1E7}', es: '\u{1F1EA}\u{1F1F8}', it: '\u{1F1EE}\u{1F1F9}', de: '\u{1F1E9}\u{1F1EA}', ja: '\u{1F1EF}\u{1F1F5}', zh: '\u{1F1E8}\u{1F1F3}', pt: '\u{1F1F5}\u{1F1F9}',
-};
 
 export default function PublicationPage() {
   const params = useParams<{ sessionId: string }>();
@@ -30,12 +25,9 @@ export default function PublicationPage() {
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [siblingVersions, setSiblingVersions] = useState<StudioSession[]>([]);
-  const [purchases, setPurchases] = useState<TourLanguagePurchase[]>([]);
   const [scenes, setScenes] = useState<StudioScene[]>([]);
-  const [segments, setSegments] = useState<SceneSegment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isActioning, setIsActioning] = useState(false);
-  const [langActioning, setLangActioning] = useState<string | null>(null);
   const [message, setMessage] = useState<{ text: string; success: boolean } | null>(null);
   const [confirmAction, setConfirmAction] = useState<{ label: string; warning: string; fn: () => Promise<{ ok: boolean; error?: string }> } | null>(null);
 
@@ -48,8 +40,6 @@ export default function PublicationPage() {
     // lag at 'submitted' after an admin approval. See withPublishedStatus.
     const sess = raw ? (await withPublishedStatus([raw]))[0] : raw;
     if (sess) { setSession(sess); setActiveSession(sess); }
-    const purchaseResult = await listLanguagePurchases(sessionId);
-    if (purchaseResult.ok) setPurchases(purchaseResult.value.filter((p) => p.status === 'active'));
     // Reload siblings
     if (guideId) {
       const all = await withPublishedStatus(await listStudioSessions(guideId));
@@ -73,12 +63,6 @@ export default function PublicationPage() {
         if (sess) setActiveSession(sess);
         const activeScenes = scns.filter((s) => !s.archived);
         setScenes(activeScenes);
-        const purchaseResult = await listLanguagePurchases(sessionId);
-        if (!cancelled && purchaseResult.ok) setPurchases(purchaseResult.value.filter((p) => p.status === 'active'));
-        try {
-          const segResults = await Promise.all(activeScenes.map((s) => listSegmentsByScene(s.id)));
-          if (!cancelled) setSegments(segResults.flat());
-        } catch { /* non-blocking */ }
         // Load sibling versions
         if (guideId && sess?.tourId) {
           const all = await withPublishedStatus(await listStudioSessions(guideId));
@@ -186,6 +170,19 @@ export default function PublicationPage() {
       <div className="bg-white rounded-lg border border-line p-3 mb-3 flex items-center gap-3 flex-wrap">
         <span className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium ${statusConfig.color}`}>{translatedStatusLabel}</span>
         <span className="text-xs text-ink-40">V{version}</span>
+        <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${
+          session.narrationMode === 'recording'
+            ? 'bg-mer-soft text-mer'
+            : session.narrationMode === 'tts_on_demand'
+              ? 'bg-olive-soft text-olive'
+              : 'bg-grenadine-soft text-danger'
+        }`} data-testid="submission-narration-mode">
+          {session.narrationMode === 'recording'
+            ? 'Voix humaine'
+            : session.narrationMode === 'tts_on_demand'
+              ? 'TTS à la demande'
+              : 'Mode à choisir'}
+        </span>
         <span className="text-xs text-ink-80 flex-1 min-w-0">{statusMessages[session.status] ?? ''}</span>
       </div>
 
@@ -295,8 +292,7 @@ export default function PublicationPage() {
                   {t('Mettre à jour la visite', 'Update the tour')} ({t('nouvelle version', 'new version')} V{version + 1})
                 </p>
                 <p className="text-xs text-grenadine">
-                  Crée un brouillon V{version + 1} à partir du contenu actuel — vos langues/traductions
-                  sont reportées. Éditez puis re-soumettez. {isPublished ? 'V' + version + ' reste publiée pendant le travail.' : 'Rien n\'est visible tant que V' + (version + 1) + ' n\'est pas publiée.'}
+                  Crée un brouillon V{version + 1} à partir du contenu source actuel. Éditez puis re-soumettez. {isPublished ? 'V' + version + ' reste publiée pendant le travail.' : 'Rien n\'est visible tant que V' + (version + 1) + ' n\'est pas publiée.'}
                 </p>
               </div>
             </button>
@@ -333,9 +329,6 @@ export default function PublicationPage() {
                   // Delete scenes first, then session, then tour if no other sessions reference it
                   for (const sc of scenes) {
                     await appsync.deleteItem('StudioScene', sc.id);
-                  }
-                  for (const p of purchases) {
-                    await appsync.deleteItem('TourLanguagePurchase', p.id);
                   }
                   await appsync.deleteStudioSessionMutation(sessionId);
                   // Delete tour only if no sibling sessions remain
@@ -459,130 +452,6 @@ export default function PublicationPage() {
           </Collapsible>
         </div>
       )}
-
-      {/* === LANGUAGE TABLE (collapsible — open by default if has purchases) === */}
-      <Collapsible
-        storageKey={`submission-langtable-${sessionId}`}
-        defaultOpen={purchases.length > 0}
-        icon={<span>🌍</span>}
-        title="Langues"
-        subtitle={purchases.length > 0 ? `${purchases.length + 1} langue${purchases.length > 0 ? 's' : ''} (FR + ${purchases.length})` : 'FR uniquement'}
-        compact
-        className="mb-3"
-        testId="language-submissions-section"
-      >
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="bg-paper-soft border-b border-line">
-              <tr>
-                <th className="text-left px-3 py-2 font-medium text-ink-60">Langue</th>
-                <th className="text-left px-3 py-2 font-medium text-ink-60">Statut</th>
-                <th className="text-center px-3 py-2 font-medium text-ink-60">Scenes</th>
-                <th className="text-center px-3 py-2 font-medium text-ink-60">Audio</th>
-                <th className="text-right px-3 py-2 font-medium text-ink-60">Mots</th>
-                <th className="text-right px-3 py-2 font-medium text-ink-60"></th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-line">
-              {/* Base language */}
-              {(() => {
-                const baseLang = session.language || 'fr';
-                const baseFlag = LANG_FLAGS[baseLang] ?? '';
-                const ct = scenes.length;
-                const audio = scenes.filter((s) => s.studioAudioKey).length;
-                const words = scenes.reduce((sum, s) => sum + (s.transcriptText ?? '').split(/\s+/).filter(Boolean).length, 0);
-                return (
-                  <tr className="bg-paper-soft">
-                    <td className="px-3 py-2 font-medium text-ink">{baseFlag} {baseLang.toUpperCase()} <span className="text-xs text-ink-40">(source)</span></td>
-                    <td className="px-3 py-2"><span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${statusConfig.color}`}>{statusConfig.label}</span></td>
-                    <td className="px-3 py-2 text-center text-ink-80">{ct}/{ct}</td>
-                    <td className="px-3 py-2 text-center text-ink-80">{audio}/{ct}</td>
-                    <td className="px-3 py-2 text-right text-ink-80">{words.toLocaleString()}</td>
-                    <td className="px-3 py-2"></td>
-                  </tr>
-                );
-              })()}
-
-              {/* Purchased languages */}
-              {purchases.map((purchase) => {
-                const langFlag = LANG_FLAGS[purchase.language] ?? '';
-                const langLabel = purchase.language.toUpperCase();
-                const readiness = checkLanguageReadiness(scenes, segments, purchase.language);
-                const langSegments = segments.filter((s) => s.language === purchase.language);
-                const audioCount = langSegments.filter((s) => s.audioKey && !s.audioKey.startsWith('tts-')).length;
-                const wordCount = langSegments.reduce((sum, s) => sum + (s.transcriptText ?? '').split(/\s+/).filter(Boolean).length, 0);
-                const moderationBadge: Record<string, { label: string; className: string }> = {
-                  draft: { label: 'Brouillon', className: 'bg-paper-soft text-ink-80' },
-                  submitted: { label: 'Soumis', className: 'bg-ocre-soft text-ocre' },
-                  approved: { label: 'Approuve', className: 'bg-olive-soft text-success' },
-                  rejected: { label: 'Refuse', className: 'bg-grenadine-soft text-danger' },
-                  revision_requested: { label: 'Revision', className: 'bg-ocre-soft text-ocre' },
-                };
-                const badge = moderationBadge[purchase.moderationStatus] ?? moderationBadge.draft;
-                const canSubmitLang = purchase.moderationStatus === 'draft' || purchase.moderationStatus === 'revision_requested' || purchase.moderationStatus === 'rejected';
-
-                return (
-                  <tr key={purchase.id} data-testid={`lang-submission-${purchase.language}`}>
-                    <td className="px-3 py-2 font-medium text-ink">{langFlag} {langLabel}</td>
-                    <td className="px-3 py-2"><span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${badge.className}`}>{badge.label}</span></td>
-                    <td className="px-3 py-2 text-center"><span className={readiness.ready ? 'text-success' : 'text-ocre'}>{readiness.complete}/{readiness.total}</span></td>
-                    <td className="px-3 py-2 text-center"><span className={audioCount >= scenes.length ? 'text-success' : 'text-ocre'}>{audioCount}/{scenes.length}</span></td>
-                    <td className="px-3 py-2 text-right text-ink-80">{wordCount.toLocaleString()}</td>
-                    <td className="px-3 py-2 text-right space-x-1">
-                      {canSubmitLang && readiness.ready && (
-                        <button
-                          data-testid={`submit-lang-${purchase.language}`}
-                          onClick={() => doAction(`${langLabel} soumis !`, async () => {
-                            setLangActioning(purchase.language);
-                            const result = await submitLanguageForModeration(sessionId, purchase.language, scenes, segments);
-                            setLangActioning(null);
-                            return result.ok ? { ok: true } : { ok: false, error: result.error.message };
-                          })}
-                          disabled={isActioning || langActioning === purchase.language}
-                          className="bg-mer hover:opacity-90 disabled:bg-ink-40 text-white text-xs font-medium py-1 px-2.5 rounded transition"
-                        >
-                          {langActioning === purchase.language ? '...' : t('Publier', 'Publish')}
-                        </button>
-                      )}
-                      {canSubmitLang && !readiness.ready && <span className="text-xs text-ocre">Incomplet</span>}
-                      {purchase.moderationStatus === 'submitted' && (
-                        <button
-                          data-testid={`retract-lang-${purchase.language}`}
-                          onClick={() => doAction(`${langLabel} retire`, async () => {
-                            setLangActioning(purchase.language);
-                            const result = await retractLanguageSubmission(sessionId, purchase.language);
-                            setLangActioning(null);
-                            return result.ok ? { ok: true } : { ok: false, error: result.error.message };
-                          })}
-                          disabled={isActioning || langActioning === purchase.language}
-                          className="bg-ocre hover:opacity-90 disabled:bg-ink-40 text-white text-xs font-medium py-1 px-2.5 rounded transition"
-                        >
-                          {langActioning === purchase.language ? '...' : 'Retirer'}
-                        </button>
-                      )}
-                      {purchase.moderationStatus === 'approved' && (
-                        <button
-                          data-testid={`unpublish-lang-${purchase.language}`}
-                          onClick={() => doAction(`${langLabel} depublie`, async () => {
-                            setLangActioning(purchase.language);
-                            const result = await retractLanguageSubmission(sessionId, purchase.language);
-                            setLangActioning(null);
-                            return result.ok ? { ok: true } : { ok: false, error: result.error.message };
-                          })}
-                          disabled={isActioning || langActioning === purchase.language}
-                          className="bg-danger hover:opacity-90 disabled:bg-ink-40 text-white text-xs font-medium py-1 px-2.5 rounded transition"
-                        >
-                          {langActioning === purchase.language ? '...' : 'Depublier'}
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </Collapsible>
 
       <StepNav
         prevHref={`/guide/studio/${sessionId}/preview`}

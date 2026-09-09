@@ -1,18 +1,7 @@
-import { submitSessionForModeration, resubmitSession, deleteSession, updateSessionStatus, addModerationFeedback, submitForReview, retractSubmission } from '../studio-submission';
+import { resubmitSession, deleteSession, updateSessionStatus, addModerationFeedback, submitForReview, retractSubmission } from '../studio-submission';
 
 beforeAll(() => {
   process.env.NEXT_PUBLIC_USE_STUBS = 'true';
-});
-
-describe('submitSessionForModeration', () => {
-  it('returns ok in stub mode', async () => {
-    jest.useFakeTimers();
-    const p = submitSessionForModeration('session-1');
-    jest.advanceTimersByTime(1000);
-    const result = await p;
-    expect(result.ok).toBe(true);
-    jest.useRealTimers();
-  });
 });
 
 describe('resubmitSession', () => {
@@ -52,13 +41,9 @@ describe('addModerationFeedback', () => {
 });
 
 describe('submitForReview', () => {
-  it('returns ok in stub mode', async () => {
-    jest.useFakeTimers();
-    const p = submitForReview('session-1', 'tour-1');
-    jest.advanceTimersByTime(1000);
-    const result = await p;
-    expect(result.ok).toBe(true);
-    jest.useRealTimers();
+  it('blocks an unknown historical version instead of submitting blindly', async () => {
+    const result = await submitForReview('session-1', 'tour-1');
+    expect(result).toEqual({ ok: false, error: 'Version de visite introuvable.' });
   });
 });
 

@@ -391,6 +391,8 @@ export async function createModerationItemMutation(data: {
   poiCount?: number;
   duration?: number;
   distance?: number;
+  narrationMode?: 'recording' | 'tts_on_demand';
+  sourceLanguage?: string;
 }) {
   try {
     const client = getClient();
@@ -625,12 +627,19 @@ export async function updateGuideTourMutation(
 export async function setTourWorkflowStatusMutation(
   tourId: string,
   status: string,
+  sessionId?: string,
+  approval?: {
+    moderationId: string;
+    checklistJson: string;
+    feedbackJson: string;
+    reviewDate: number;
+  },
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   try {
     const client = getClient();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result = await (client as any).mutations.setTourWorkflowStatus(
-      { tourId, status },
+      { tourId, status, ...(sessionId ? { sessionId } : {}), ...(approval ?? {}) },
       { authMode: 'userPool' },
     );
     if (result?.errors?.length) {
@@ -680,7 +689,7 @@ export async function getModerationItemById(id: string) {
 
 export async function updateModerationItemMutation(
   id: string,
-  updates: { status: 'pending' | 'resubmitted' | 'in_review' | 'approved' | 'rejected'; reviewerId?: string; reviewDate?: number; feedbackJson?: string; checklistJson?: string; submissionDate?: number; isResubmission?: boolean; sessionId?: string; poiCount?: number; duration?: number; distance?: number },
+  updates: { status: 'pending' | 'resubmitted' | 'in_review' | 'approved' | 'rejected'; reviewerId?: string; reviewDate?: number; feedbackJson?: string; checklistJson?: string; submissionDate?: number; isResubmission?: boolean; sessionId?: string; poiCount?: number; duration?: number; distance?: number; narrationMode?: 'recording' | 'tts_on_demand'; sourceLanguage?: string },
 ) {
   try {
     const client = getClient();
@@ -820,6 +829,7 @@ export async function createStudioSessionMutation(data: {
   language?: string;
   version?: number;
   consentRGPD?: boolean;
+  narrationMode?: 'recording' | 'tts_on_demand';
 }) {
   try {
     const client = getClient();

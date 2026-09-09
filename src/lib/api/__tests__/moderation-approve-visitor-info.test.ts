@@ -13,6 +13,7 @@ jest.mock('../appsync-client', () => ({
   updateModerationItemMutation: jest.fn(),
   updateGuideTourMutation: jest.fn(),
   updateStudioSessionMutation: jest.fn(),
+  setTourWorkflowStatusMutation: jest.fn(),
 }));
 
 jest.mock('../studio', () => ({
@@ -34,6 +35,7 @@ const mockListScenesBySession = appsyncModule.listStudioScenesBySession as jest.
 const mockUpdateModerationItem = appsyncModule.updateModerationItemMutation as jest.Mock;
 const mockUpdateGuideTour = appsyncModule.updateGuideTourMutation as jest.Mock;
 const mockUpdateStudioSession = appsyncModule.updateStudioSessionMutation as jest.Mock;
+const mockSetTourWorkflowStatus = appsyncModule.setTourWorkflowStatusMutation as jest.Mock;
 const mockGetStudioSession = studioModule.getStudioSession as jest.Mock;
 const mockListStudioScenes = studioModule.listStudioScenes as jest.Mock;
 
@@ -54,11 +56,14 @@ beforeEach(() => {
   mockUpdateModerationItem.mockResolvedValue({ ok: true });
   mockUpdateGuideTour.mockResolvedValue({ ok: true });
   mockUpdateStudioSession.mockResolvedValue({ ok: true });
+  mockSetTourWorkflowStatus.mockResolvedValue({ ok: true });
   mockGetGuideTourResult.mockResolvedValue({
     ok: true,
-    data: { id: 'tour-1', languageAudioTypes: null, availableLanguages: [] },
+    data: { id: 'tour-1', narrationMode: 'recording', sourceLanguage: 'fr', languageAudioTypes: { fr: 'recording' }, availableLanguages: ['fr'] },
   });
-  mockListScenesBySession.mockResolvedValue({ ok: true, data: [] });
+  mockListScenesBySession.mockResolvedValue({ ok: true, data: [
+    { id: 'scene-1', title: 'Scene', transcriptText: 'Texte source.', studioAudioKey: 'scene-1-fr.mp3', baseAudioSource: 'recording', archived: false },
+  ] });
   mockListStudioScenes.mockResolvedValue([]);
   global.fetch = jest.fn();
 });
@@ -68,6 +73,8 @@ describe('approveTour — BTU-8 visitor info', () => {
     mockGetStudioSession.mockResolvedValue({
       id: 'session-1',
       language: 'fr',
+      sourceLanguage: 'fr',
+      narrationMode: 'recording',
       version: 1,
       routePath: {
         computedPath: [
@@ -97,6 +104,8 @@ describe('approveTour — BTU-8 visitor info', () => {
     mockGetStudioSession.mockResolvedValue({
       id: 'session-1',
       language: 'fr',
+      sourceLanguage: 'fr',
+      narrationMode: 'recording',
       version: 1,
       routePath: {
         computedPath: [
@@ -125,6 +134,8 @@ describe('approveTour — BTU-8 visitor info', () => {
     mockGetStudioSession.mockResolvedValue({
       id: 'session-1',
       language: 'fr',
+      sourceLanguage: 'fr',
+      narrationMode: 'recording',
       version: 1,
       routePath: { computedPath: [{ lat: 43.7, lng: 7.25 }] },
     });
@@ -140,6 +151,8 @@ describe('approveTour — BTU-8 visitor info', () => {
     mockGetStudioSession.mockResolvedValue({
       id: 'session-1',
       language: 'fr',
+      sourceLanguage: 'fr',
+      narrationMode: 'recording',
       version: 1,
       routePath: {
         computedPath: [

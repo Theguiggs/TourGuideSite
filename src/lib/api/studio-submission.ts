@@ -1,7 +1,8 @@
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
+import { evaluateStudioVisit } from '@/lib/studio/visit-completeness';
 import { remove } from 'aws-amplify/storage';
-import { __updateStubSessionStatus } from './studio';
+import { __updateStubSessionStatus, getStudioSession, listStudioScenes } from './studio';
 import type { StudioSessionStatus } from '@/types/studio';
 
 const SERVICE_NAME = 'StudioSubmissionAPI';
@@ -10,24 +11,23 @@ export type SubmissionResult =
   | { ok: true }
   | { ok: false; error: string };
 
-export async function submitSessionForModeration(
-  sessionId: string,
-): Promise<{ ok: true } | { ok: false; error: string }> {
-  if (shouldUseStubs()) {
-    await new Promise((r) => setTimeout(r, 800));
-    logger.info(SERVICE_NAME, 'Session submitted (stub)', { sessionId });
-    return { ok: true };
+async function validateVisitBeforeSubmission(sessionId: string): Promise<SubmissionResult> {
+  const [session, scenes] = await Promise.all([
+    getStudioSession(sessionId),
+    listStudioScenes(sessionId),
+  ]);
+  if (!session) {
+    return { ok: false, error: 'Version de visite introuvable.' };
   }
-  try {
-    const { updateStudioSessionMutation } = await import('./appsync-client');
-    const result = await updateStudioSessionMutation(sessionId, { status: 'submitted' });
-    if (!result.ok) return { ok: false, error: result.error };
-    logger.info(SERVICE_NAME, 'Session submitted (AppSync)', { sessionId });
-    return { ok: true };
-  } catch (e) {
-    logger.error(SERVICE_NAME, 'submitSessionForModeration failed', { error: String(e) });
-    return { ok: false, error: 'Erreur lors de la soumission.' };
+  const report = evaluateStudioVisit(session, scenes);
+  if (!report.ready) {
+    const evidence = report.checks
+      .filter((check) => !check.passed)
+      .map((check) => check.evidence)
+      .join(' ');
+    return { ok: false, error: `Soumission bloquée : ${evidence}` };
   }
+  return { ok: true };
 }
 
 export async function resubmitSession(
@@ -61,6 +61,7 @@ export async function deleteSession(
   // Real mode: cascade-delete S3 files, scenes, then session
   try {
     const appsync = await import('./appsync-client');
+    const {listLanguagePurchases} = await import('./language-purchase');
     const scenesResult = await appsync.listStudioScenesBySession(sessionId);
     if (scenesResult.ok) {
       // Collect S3 keys from all scenes for best-effort deletion
@@ -92,6 +93,11 @@ export async function deleteSession(
           logger.warn(SERVICE_NAME, 'Scene delete failed (continuing)', { sceneId: (scene as Record<string, unknown>).id, error: delResult.error });
         }
       }
+    }
+    const purchases = await listLanguagePurchases(sessionId);
+    if (!purchases.ok) return {ok: false, error: purchases.error.message};
+    for (const purchase of purchases.value) {
+      await appsync.deleteItem('TourLanguagePurchase', purchase.id);
     }
     const result = await appsync.deleteStudioSessionMutation(sessionId);
     if (!result.ok) return { ok: false, error: result.error };
@@ -127,6 +133,12 @@ export async function submitForReview(
   sessionId: string,
   tourId: string,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
+  const validation = await validateVisitBeforeSubmission(sessionId);
+  if (!validation.ok) return validation;
+  const submittedSession = await getStudioSession(sessionId);
+  const narrationMode = submittedSession?.narrationMode ?? undefined;
+  const sourceLanguage = submittedSession?.language ?? 'fr';
+
   if (shouldUseStubs()) {
     await new Promise((r) => setTimeout(r, 800));
     __updateStubSessionStatus(sessionId, 'submitted');
@@ -154,7 +166,7 @@ export async function submitForReview(
     // C2 — the status transition goes through the guarded Lambda mutation (the
     // guide can no longer write GuideTour.status directly). The cover mirror is a
     // non-status field and stays a normal owner update below.
-    const tourResult = await appsync.setTourWorkflowStatusMutation(tourId, 'review');
+    const tourResult = await appsync.setTourWorkflowStatusMutation(tourId, 'review', sessionId);
     if (!tourResult.ok) {
       logger.error(SERVICE_NAME, 'Tour status transition failed, rolling back session', { tourId, error: tourResult.error });
       await appsync.updateStudioSessionMutation(sessionId, { status: 'editing' });
@@ -179,7 +191,7 @@ export async function submitForReview(
 
         if (existing) {
           // Update existing item (resubmission)
-          await appsync.updateModerationItemMutation(existing.id, {
+          const moderationResult = await appsync.updateModerationItemMutation(existing.id, {
             status: 'resubmitted',
             submissionDate: Date.now(),
             isResubmission: true,
@@ -187,11 +199,14 @@ export async function submitForReview(
             poiCount: tour.poiCount ?? 0,
             duration: tour.duration ?? 0,
             distance: tour.distance ?? 0,
+            narrationMode,
+            sourceLanguage,
           });
+          if (!moderationResult.ok) throw new Error(moderationResult.error);
           logger.info(SERVICE_NAME, 'ModerationItem updated (resubmission)', { id: existing.id });
         } else {
           // Create new item
-          await appsync.createModerationItemMutation({
+          const moderationResult = await appsync.createModerationItemMutation({
             tourId,
             guideId: tour.guideId,
             guideName: profile?.displayName ?? 'Guide',
@@ -202,12 +217,20 @@ export async function submitForReview(
             poiCount: tour.poiCount ?? 0,
             duration: tour.duration ?? 0,
             distance: tour.distance ?? 0,
+            narrationMode,
+            sourceLanguage,
           });
+          if (!moderationResult.ok) throw new Error(moderationResult.error);
           logger.info(SERVICE_NAME, 'ModerationItem created', { tourId });
         }
-      }
+      } else throw new Error('Visite introuvable pour la modération.');
     } catch (modErr) {
       logger.error(SERVICE_NAME, 'ModerationItem creation/update failed', { tourId, error: String(modErr) });
+      await Promise.all([
+        appsync.updateStudioSessionMutation(sessionId, {status: 'editing'}),
+        appsync.setTourWorkflowStatusMutation(tourId, 'editing'),
+      ]);
+      return {ok: false, error: 'Création de la demande de modération impossible.'};
     }
 
     logger.info(SERVICE_NAME, 'Submitted for review (AppSync)', { sessionId, tourId });

@@ -17,6 +17,7 @@ export type StudioSessionStatus =
   | 'ready_for_cleanup';
 
 export type CaptureMode = 'scene_builder' | 'phased_capture';
+export type NarrationMode = 'recording' | 'tts_on_demand';
 
 export type SceneStatus =
   | 'empty'
@@ -59,6 +60,7 @@ export interface StudioSession {
   consentRGPD: boolean;
   captureMode?: CaptureMode | null;
   captureSessionRef?: string | null;
+  narrationMode?: NarrationMode | null;
   // GCI-4.2: global tour metadata captured during /cleanup
   description?: string | null;
   themes?: string[] | null;
@@ -198,11 +200,11 @@ export function Err<T>(error: StudioError): StudioResult<T> {
 // --- Progress steps ---
 
 export const STUDIO_WORKFLOW_STEPS = [
-  { key: 'general', label: 'Général', icon: '📋' },
+  { key: 'general', label: 'Informations', icon: '📋' },
   { key: 'itinerary', label: 'Itinéraire', icon: '🗺️' },
   { key: 'scenes', label: 'Scènes', icon: '🎬' },
-  { key: 'preview', label: 'Preview', icon: '👁️' },
-  { key: 'submission', label: 'Publication', icon: '📤' },
+  { key: 'preview', label: 'Aperçu', icon: '👁️' },
+  { key: 'submission', label: 'Envoyer', icon: '📤' },
 ] as const;
 
 export type StudioWorkflowStep = (typeof STUDIO_WORKFLOW_STEPS)[number]['key'];

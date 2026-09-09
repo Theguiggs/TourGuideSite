@@ -16,14 +16,13 @@ import { addTourComment } from './tour-comments';
 import {
   AUDIO_DISCLOSURE_ERR,
   coversLanguage,
-  deriveSourceAudioType,
   disclosureWriteViolation,
   mergeLanguageAudioType,
   normalizeLanguageTag,
-  type AudioSourceScene,
   type LanguageAudioTypes,
 } from './audio-source-policy';
 import { translatedMetadataUpdate } from './translated-metadata';
+import { evaluateVisitCompleteness } from '@/lib/studio/visit-completeness';
 
 /**
  * Moderation data access layer.
@@ -167,6 +166,15 @@ async function getRealQueue(): Promise<ModerationItem[]> {
       poiCount: (i as Record<string, unknown>).poiCount as number ?? 0,
       duration: (i as Record<string, unknown>).duration as number ?? 0,
       distance: (i as Record<string, unknown>).distance as number ?? 0,
+      narrationMode:
+        (i as Record<string, unknown>).narrationMode === 'recording' ||
+        (i as Record<string, unknown>).narrationMode === 'tts_on_demand'
+          ? ((i as Record<string, unknown>).narrationMode as 'recording' | 'tts_on_demand')
+          : null,
+      sourceLanguage:
+        typeof (i as Record<string, unknown>).sourceLanguage === 'string'
+          ? ((i as Record<string, unknown>).sourceLanguage as string)
+          : null,
     }))
     .sort((a, b) => {
       if (a.isResubmission !== b.isResubmission) return a.isResubmission ? -1 : 1;
@@ -253,6 +261,7 @@ export async function getLanguageModerationQueue(): Promise<LanguageModerationIt
         moderationStatus: m.status,
         purchaseId: '',
         isSourceLanguage: true,
+        narrationMode: m.narrationMode ?? null,
       }));
     return [...sourceRows, ...MOCK_LANGUAGE_QUEUE].sort(
       (a, b) => new Date(a.submissionDate).getTime() - new Date(b.submissionDate).getTime(),
@@ -273,7 +282,7 @@ export async function getLanguageModerationQueue(): Promise<LanguageModerationIt
     appsync.listModerationItems({ status: 'approved' }),
   ]);
   const allModItems = [...pendingItems, ...resubmittedItems, ...approvedItems];
-  const modItemByTourId = new Map(allModItems.map((m) => [m.tourId, m.id]));
+  const modItemByTourId = new Map(allModItems.map((m) => [m.tourId, m]));
 
   // Filter tours that have a sessionId (needed for purchase lookup)
   const toursWithSessions = allTours.filter((t) => (t as Record<string, unknown>).sessionId);
@@ -281,13 +290,16 @@ export async function getLanguageModerationQueue(): Promise<LanguageModerationIt
   const purchaseResults = await Promise.all(
     toursWithSessions.map(async (tour) => {
       const sessionId = (tour as Record<string, unknown>).sessionId as string;
-      const result = await listLanguagePurchases(sessionId);
-      return { tour, sessionId, purchases: result };
+      const [result, session] = await Promise.all([
+        listLanguagePurchases(sessionId),
+        loadStudioSession(sessionId, 'getLanguageModerationQueue'),
+      ]);
+      return { tour, sessionId, session, purchases: result };
     }),
   );
 
   const allLangItems: LanguageModerationItem[] = [];
-  for (const { tour, sessionId, purchases: purchasesResult } of purchaseResults) {
+  for (const { tour, sessionId, session, purchases: purchasesResult } of purchaseResults) {
     if (!purchasesResult.ok) continue;
 
     const submitted = purchasesResult.value.filter(
@@ -299,7 +311,7 @@ export async function getLanguageModerationQueue(): Promise<LanguageModerationIt
         id: `lmod-${tour.id}-${purchase.language}`,
         tourId: tour.id,
         sessionId,
-        moderationItemId: modItemByTourId.get(tour.id) ?? tour.id,
+        moderationItemId: modItemByTourId.get(tour.id)?.id ?? tour.id,
         tourTitle: tour.title,
         guideName: guideNames.get(tour.guideId) ?? '',
         guidePhotoUrl: null,
@@ -309,6 +321,7 @@ export async function getLanguageModerationQueue(): Promise<LanguageModerationIt
         submissionDate: purchase.createdAt ?? new Date().toISOString(),
         moderationStatus: purchase.moderationStatus as LanguageModerationItem['moderationStatus'],
         purchaseId: purchase.id,
+        narrationMode: modItemByTourId.get(tour.id)?.narrationMode ?? session?.narrationMode ?? null,
       });
     }
   }
@@ -322,13 +335,15 @@ export async function getLanguageModerationQueue(): Promise<LanguageModerationIt
     const tour = tourById.get(modItem.tourId);
     if (!tour) continue;
     const tourRaw = tour as Record<string, unknown>;
-    const sourceLang = (tourRaw.languePrincipale as string) ?? 'fr';
-    const key = `${tour.id}:${sourceLang}`;
-    if (purchaseKeys.has(key)) continue; // Already covered by a purchase row for that language
-
     const sessionId = (modItem as Record<string, unknown>).sessionId as string
       ?? (tourRaw.sessionId as string)
       ?? '';
+    const session = await loadStudioSession(sessionId, 'getLanguageModerationQueue:source');
+    const sourceLang = normalizeLanguageTag(
+      (modItem as Record<string, unknown>).sourceLanguage ?? session?.language,
+    ) ?? DEFAULT_SOURCE_LANGUAGE;
+    const key = `${tour.id}:${sourceLang}`;
+    if (purchaseKeys.has(key)) continue; // Already covered by a purchase row for that language
 
     allLangItems.push({
       id: `source-${modItem.id}`,
@@ -345,6 +360,11 @@ export async function getLanguageModerationQueue(): Promise<LanguageModerationIt
       moderationStatus: modItem.status as LanguageModerationItem['moderationStatus'],
       purchaseId: '',
       isSourceLanguage: true,
+      narrationMode:
+        (modItem as Record<string, unknown>).narrationMode === 'recording' ||
+        (modItem as Record<string, unknown>).narrationMode === 'tts_on_demand'
+          ? ((modItem as Record<string, unknown>).narrationMode as 'recording' | 'tts_on_demand')
+          : session?.narrationMode ?? null,
     });
   }
 
@@ -395,9 +415,10 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
     hasTour: !!tourData,
   });
 
-  const [guideProfile, studioScenesResult] = await Promise.all([
+  const [guideProfile, studioScenesResult, studioSession] = await Promise.all([
     appsync.getGuideProfileById(item.guideId, 'userPool'),
     sessionId ? appsync.listStudioScenesBySession(sessionId) : Promise.resolve({ ok: false as const, data: [], error: 'no session' }),
+    loadStudioSession(sessionId ?? undefined, 'getModerationDetail'),
   ]);
 
   logger.info('ModerationAPI', 'getModerationDetail: scenes loaded', {
@@ -419,6 +440,10 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
         title: (raw.title as string) || '',
         order: ((raw.sceneIndex as number) ?? 0) + 1,
         audioRef: (raw.studioAudioKey as string) || (raw.originalAudioKey as string) || '',
+        baseAudioSource:
+          raw.baseAudioSource === 'recording' || raw.baseAudioSource === 'tts'
+            ? raw.baseAudioSource
+            : null,
         photosRefs: (raw.photosRefs as string[]) ?? [],
         durationSeconds: (raw.durationSeconds as number) ?? 0,
         latitude: (raw.latitude as number) ?? null,
@@ -447,12 +472,18 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
     status: item.status as ModerationDetail['status'],
     isResubmission: item.status === 'resubmitted',
     poiCount: scenes.length, duration: tourData?.duration ?? 0, distance: tourData?.distance ?? 0,
+    narrationMode:
+      item.narrationMode === 'recording' || item.narrationMode === 'tts_on_demand'
+        ? item.narrationMode
+        : studioSession?.narrationMode ?? null,
     description: tourData?.description ?? '',
     descriptionLongue: (t?.descriptionLongue as string) ?? '',
     pois: [],
     guideSubmissionCount: 0, guideApprovalRate: 0, isFirstSubmission: false,
     themes: (t?.themes as string[]) ?? [],
-    languePrincipale: (t?.languePrincipale as string) ?? 'fr',
+    languePrincipale: normalizeLanguageTag(
+      (item as Record<string, unknown>).sourceLanguage ?? studioSession?.language,
+    ) ?? DEFAULT_SOURCE_LANGUAGE,
     difficulty: (t?.difficulty as string) ?? 'facile',
     scenes,
     adminComments,
@@ -575,8 +606,11 @@ const ERR_TOUR_NOT_FOUND = `[${AUDIO_DISCLOSURE_ERR.TOUR_NOT_FOUND}] Parcours in
  * garde l'accepterait puisque la clé existe. `'FR'` et `'fr-FR'` se replient
  * aussi sur `'fr'`.
  */
-function sourceLanguageOf(session: { language?: string | null } | null): string {
-  return normalizeLanguageTag(session?.language) ?? DEFAULT_SOURCE_LANGUAGE;
+function sourceLanguageOf(
+  session: {language?: string | null} | null,
+  moderation?: {sourceLanguage?: unknown} | null,
+): string {
+  return normalizeLanguageTag(moderation?.sourceLanguage ?? session?.language) ?? DEFAULT_SOURCE_LANGUAGE;
 }
 
 /**
@@ -616,14 +650,16 @@ type DisclosureOutcome =
  *    une lecture ratée. Publier une visite humaine en « voix de synthèse » sur
  *    une panne de lecture serait un mensonge sans correction ultérieure possible.
  *
- * `sessionId` absent est en revanche un cas légitime, pas une panne : un
- * ModerationItem auto-créé par `resolveModerationItem` n'en porte pas, les scènes
- * sont alors inatteignables et l'absence de preuve vaut `'tts'`.
+ * `sessionId` absent reste bloquant : une ligne historique sans version source
+ * ne permet ni de constater le mode ni de vérifier sa matrice de complétude.
+ * La migration doit écrire le mode explicitement ; aucune clé audio ne sert de
+ * valeur de repli.
  */
 async function deriveSourceDisclosure(
   tourId: string,
   sessionId: string | undefined,
   sessionRead: Promise<LoadedStudioSession>,
+  moderation: {narrationMode?: unknown; sourceLanguage?: unknown},
 ): Promise<DisclosureOutcome> {
   // Les trois lectures partent ensemble — la Visite, ses scènes et sa session —
   // là où trois allers-retours se succédaient.
@@ -646,19 +682,57 @@ async function deriveSourceDisclosure(
   }
 
   const tour = tourRead.data as unknown as Record<string, unknown>;
-  const sourceLang = sourceLanguageOf(session);
-  const scenes = scenesRead.data as unknown as AudioSourceScene[];
+  const sourceLang = sourceLanguageOf(session, moderation);
+  const narrationMode =
+    moderation.narrationMode === 'recording' || moderation.narrationMode === 'tts_on_demand'
+      ? moderation.narrationMode
+      : session?.narrationMode;
+  if (!narrationMode) {
+    return {
+      ok: false,
+      error: 'Mode de narration manquant : migration explicite requise avant publication.',
+    };
+  }
+  const completeness = evaluateVisitCompleteness({
+    narrationMode,
+    sourceLanguage: sourceLang,
+    scenes: (scenesRead.data as unknown as Array<Record<string, unknown>>).map((scene) => ({
+      id: String(scene.id ?? ''),
+      title: typeof scene.title === 'string' ? scene.title : null,
+      transcriptText: typeof scene.transcriptText === 'string' ? scene.transcriptText : null,
+      studioAudioKey: typeof scene.studioAudioKey === 'string' ? scene.studioAudioKey : null,
+      originalAudioKey: typeof scene.originalAudioKey === 'string' ? scene.originalAudioKey : null,
+      baseAudioSource:
+        scene.baseAudioSource === 'recording' || scene.baseAudioSource === 'tts'
+          ? scene.baseAudioSource
+          : null,
+      archived: scene.archived === true,
+    })),
+  });
+  if (!completeness.ready) {
+    const reasons = completeness.checks
+      .filter((check) => !check.passed)
+      .map((check) => check.evidence)
+      .join(' ');
+    return { ok: false, error: `Version incomplète : ${reasons}` };
+  }
+  const sourceAudioType = narrationMode === 'recording' ? 'recording' : 'tts';
   const languageAudioTypes: LanguageAudioTypes = mergeLanguageAudioType(
     tour.languageAudioTypes,
     sourceLang,
-    deriveSourceAudioType(scenes),
+    sourceAudioType,
   );
 
   // `availableLanguages` n'est joint QUE si la valeur lue est exploitable : la
   // réécrire depuis un `null` (champ non projeté, lecture partielle) écraserait
   // les langues déjà approuvées avec la seule langue source.
   const existingLangs = tour.availableLanguages;
-  const updates: Record<string, unknown> = { status: 'published', languageAudioTypes };
+  const updates: Record<string, unknown> = {
+    status: 'published',
+    languageAudioTypes,
+    narrationMode,
+    sourceLanguage: sourceLang,
+  };
   if (Array.isArray(existingLangs)) {
     updates.availableLanguages = Array.from(new Set([sourceLang, ...(existingLangs as string[])]));
   }
@@ -710,7 +784,7 @@ export async function approveTour(
   // `status: 'published'` : publication et mention atterrissent ensemble, ou
   // aucune des deux. (Auparavant la publication précédait une écriture séparée
   // dont le retour était ignoré — une panne laissait la Visite publiée nue.)
-  const disclosure = await deriveSourceDisclosure(item.tourId, sessionId, sessionRead);
+  const disclosure = await deriveSourceDisclosure(item.tourId, sessionId, sessionRead, item);
   if (!disclosure.ok) return { ok: false, error: disclosure.error };
 
   const session = await sessionRead;
@@ -721,44 +795,41 @@ export async function approveTour(
     return { ok: false, error: violation };
   }
 
-  // La publication de la Visite passe EN PREMIER, seule. Les deux écritures
-  // suivantes font sortir l'item de la file de modération : groupées avec
-  // celle-ci, un refus serveur sur GuideTour laissait une Visite non publiée ET
-  // un item déjà approuvé — donc sans recours, `adminSetTourStatus` renvoyant
-  // ensuite vers une modération qui n'existe plus.
-  // `updateGuideTourMutation` ne lève jamais : elle retourne { ok: false }.
-  const tourResult = await appsync.updateGuideTourMutation(item.tourId, disclosure.updates);
+  // Les métadonnées non critiques sont projetées avant la transition. La
+  // Lambda revalide ensuite la version et écrit atomiquement statut, mode,
+  // langue source et déclaration audio : aucun appel direct AppSync ne peut
+  // publier une version incohérente.
+  const companionUpdates = Object.fromEntries(
+    Object.entries(disclosure.updates).filter(
+      ([key]) => !['status', 'narrationMode', 'sourceLanguage', 'languageAudioTypes'].includes(key),
+    ),
+  );
+  if (Object.keys(companionUpdates).length > 0) {
+    const companionResult = await appsync.updateGuideTourMutation(item.tourId, companionUpdates);
+    if (!companionResult.ok) {
+      return {ok: false, error: companionResult.error};
+    }
+  }
+  if (!sessionId) {
+    return {ok: false, error: 'Version source absente : migration requise avant publication.'};
+  }
+  const tourResult = await appsync.setTourWorkflowStatusMutation(
+    item.tourId,
+    'published',
+    sessionId,
+    {
+      moderationId: item.id,
+      checklistJson: JSON.stringify(checklist),
+      feedbackJson: JSON.stringify({notes}),
+      reviewDate: Date.now(),
+    },
+  );
   if (!tourResult.ok) {
     logger.error('ModerationAPI', 'approveTour: GuideTour publish refused', { tourId: item.tourId, error: tourResult.error });
     return {
       ok: false,
       error: `[${AUDIO_DISCLOSURE_ERR.PUBLISH_WRITE_REFUSED}] Publication refusée : ${tourResult.error}`,
     };
-  }
-
-  const [modResult, sessionResult] = await Promise.all([
-    appsync.updateModerationItemMutation(item.id, {
-      status: 'approved',
-      reviewDate: Date.now(),
-      checklistJson: JSON.stringify(checklist),
-      feedbackJson: JSON.stringify({ notes }),
-    }),
-    sessionId
-      ? appsync.updateStudioSessionMutation(sessionId, { status: 'published' })
-      : Promise.resolve({ ok: true as const }),
-  ]);
-  if (!modResult.ok) return { ok: false, error: modResult.error };
-  if (!sessionResult.ok) {
-    logger.warn('ModerationAPI', 'approveTour: StudioSession publish sync failed (non-fatal)', { tourId: item.tourId, sessionId });
-  }
-
-  // pub-1: persist the published content version onto GuideTour (best-effort —
-  // don't block approval if the version field isn't deployed on AppSync yet).
-  if (session && session.version > 1) {
-    const versionResult = await appsync.updateGuideTourMutation(item.tourId, { version: session.version });
-    if (!versionResult.ok) {
-      logger.warn('ModerationAPI', 'approveTour: GuideTour version sync failed (non-fatal)', { tourId: item.tourId, error: versionResult.error });
-    }
   }
 
   // BTU-8: derive startAddress/endAddress/isLoop from the guide's traced route
@@ -904,6 +975,7 @@ export async function adminSetTourStatus(
   if (shouldUseStubs()) return { ok: true };
 
   const updates: Record<string, unknown> = { status };
+  let publishSessionId: string | undefined;
 
   // CAP-8 — le chemin admin (« Réactiver » sur /admin/tours) publiait en n'écrivant
   // que { status }. Il ne dérive rien : il exige que la mention soit DÉJÀ portée
@@ -920,6 +992,7 @@ export async function adminSetTourStatus(
     if (!tourRead.data) return { ok: false, error: ERR_TOUR_NOT_FOUND };
 
     const tour = tourRead.data as unknown as Record<string, unknown>;
+    publishSessionId = typeof tour.sessionId === 'string' ? tour.sessionId : undefined;
     const session = await loadStudioSession(
       (tour.sessionId as string | null) ?? undefined,
       'adminSetTourStatus',
@@ -952,7 +1025,19 @@ export async function adminSetTourStatus(
     if (descriptions) updates.translatedDescriptions = descriptions;
   }
 
-  const result = await appsync.updateGuideTourMutation(tourId, updates);
+  const result =
+    status === 'published'
+      ? await (async () => {
+          const companionUpdates = Object.fromEntries(
+            Object.entries(updates).filter(([key]) => key !== 'status' && key !== 'languageAudioTypes'),
+          );
+          if (Object.keys(companionUpdates).length > 0) {
+            const companion = await appsync.updateGuideTourMutation(tourId, companionUpdates);
+            if (!companion.ok) return companion;
+          }
+          return appsync.setTourWorkflowStatusMutation(tourId, 'published', publishSessionId);
+        })()
+      : await appsync.updateGuideTourMutation(tourId, updates);
   if (!result.ok) {
     // Le retour est vérifié : `updateGuideTourMutation` ne lève jamais.
     const prefix = status === 'published' ? `[${AUDIO_DISCLOSURE_ERR.PUBLISH_WRITE_REFUSED}] ` : '';

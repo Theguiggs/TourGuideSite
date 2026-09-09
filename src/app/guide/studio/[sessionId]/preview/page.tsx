@@ -7,7 +7,7 @@ import { logger } from '@/lib/logger';
 import { getStudioSession, listStudioScenes } from '@/lib/api/studio';
 import { withPublishedStatus } from '@/lib/studio/published-status';
 import { StepNav } from '@/components/studio/wizard';
-import { submitSessionForModeration, submitForReview, retractSubmission, deleteSession } from '@/lib/api/studio-submission';
+import { submitForReview, retractSubmission, deleteSession } from '@/lib/api/studio-submission';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { shouldUseStubs } from '@/config/api-mode';
@@ -16,10 +16,7 @@ import { S3Image } from '@/components/studio/s3-image';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
 import dynamic from 'next/dynamic';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
-import { LanguagePreviewPlayer } from '@/components/studio/language-preview';
-import { listSegmentsByScene } from '@/lib/api/studio';
-import { listLanguagePurchases } from '@/lib/api/language-purchase';
-import type { StudioSession, StudioScene, SceneSegment } from '@/types/studio';
+import type { StudioSession, StudioScene } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 // Dynamic import for Leaflet map (no SSR — browser-only)
@@ -49,9 +46,6 @@ export default function PreviewPage() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isRetracting, setIsRetracting] = useState(false);
   const [viewMode, setViewMode] = useState<'studio' | 'catalogue'>('studio');
-  const [allSegments, setAllSegments] = useState<SceneSegment[]>([]);
-  const [purchasedLangs, setPurchasedLangs] = useState<string[]>([]);
-  const [previewLang, setPreviewLang] = useState<string>('fr');
   // Refs mirror the playlist state so the audio-service subscriber reads the
   // latest values (not stale closures) when it fires synchronously inside play().
   const isPlayingAllRef = useRef(false);
@@ -90,30 +84,6 @@ export default function PreviewPage() {
           setScenes(activeScenes);
           if (sess) {
             setActiveSession(sess);
-            setPreviewLang(sess.language || 'fr');
-          }
-          // Load segments for all scenes (for multilang preview)
-          try {
-            const segResults = await Promise.all(
-              activeScenes.map((s) => listSegmentsByScene(s.id)),
-            );
-            if (!cancelled) {
-              setAllSegments(segResults.flat());
-            }
-          } catch {
-            // Non-blocking — segments are optional for preview
-          }
-          // Purchased languages — so the preview selector lists every language
-          // the guide bought, even one not yet translated (parity with Scenes).
-          try {
-            const purchaseResult = await listLanguagePurchases(sessionId);
-            if (!cancelled && purchaseResult.ok) {
-              setPurchasedLangs(
-                purchaseResult.value.filter((p) => p.status === 'active').map((p) => p.language),
-              );
-            }
-          } catch {
-            // Non-blocking — purchases are optional for preview
           }
           logger.info(SERVICE_NAME, 'Preview loaded', { sessionId, scenesCount: scns.length });
         }
@@ -159,8 +129,6 @@ export default function PreviewPage() {
     if (!key) return '';
     // Data URLs are playable directly
     if (key.startsWith('data:')) return key;
-    // TTS markers are not playable (audio needs to be regenerated)
-    if (key.startsWith('tts-')) return '';
     if (shouldUseStubs()) return key;
     try {
       return await getPlayableUrl(key);
@@ -169,44 +137,20 @@ export default function PreviewPage() {
     }
   }, []);
 
-  // --- Multilang preview resolution ---
-  // The whole preview follows `previewLang`: title, scene titles/text and the
-  // played audio. When a scene has no usable translated audio yet, we fall back
-  // to the base-language scene audio so playback still works.
-  const segForScene = useCallback(
-    (sceneId: string): SceneSegment | null =>
-      allSegments.find((s) => s.sceneId === sceneId && s.language === previewLang) ?? null,
-    [allSegments, previewLang],
-  );
-
   const getSceneAudioKey = useCallback((scene: StudioScene): string => {
-    const baseKey = scene.studioAudioKey || scene.originalAudioKey || '';
-    const baseLang = session?.language || 'fr';
-    if (previewLang === baseLang) return baseKey;
-    const langKey = segForScene(scene.id)?.audioKey ?? '';
-    // Only use the translated key if it's a real playable ref (not a tts- marker).
-    return langKey && !langKey.startsWith('tts-') ? langKey : baseKey;
-  }, [segForScene, previewLang, session]);
+    return scene.studioAudioKey || scene.originalAudioKey || '';
+  }, []);
 
   const getSceneTitle = useCallback((scene: StudioScene): string | null => {
-    if (previewLang !== (session?.language || 'fr')) {
-      const t = segForScene(scene.id)?.translatedTitle;
-      if (t) return t;
-    }
     return scene.title ?? null;
-  }, [segForScene, previewLang, session]);
+  }, []);
 
   const getSceneTranscript = useCallback((scene: StudioScene): string | null => {
-    if (previewLang !== (session?.language || 'fr')) {
-      const seg = segForScene(scene.id);
-      if (seg?.transcriptText) return seg.transcriptText;
-    }
     return scene.transcriptText ?? null;
-  }, [segForScene, previewLang, session]);
+  }, []);
 
   // Find the next scene with a playable audio URL, starting at `fromIndex`.
-  // Skips scenes whose audio key resolves to an empty string (e.g. unresolved
-  // TTS markers, missing S3 keys, or scenes with no audio at all).
+  // Skips scenes whose source audio key resolves to an empty string.
   const findNextPlayable = useCallback(
     async (fromIndex: number): Promise<{ index: number; url: string } | null> => {
       for (let i = fromIndex; i < scenes.length; i++) {
@@ -301,27 +245,6 @@ export default function PreviewPage() {
     setPlayingIndex(first.index);
     audioPlayerService.play(first.url);
   }, [isPlayingAll, findNextPlayable]);
-
-  const handleSubmit = useCallback(async () => {
-    setIsSubmitting(true);
-    setSubmitMessage(null);
-    setIsSubmitSuccess(false);
-    try {
-      const result = await submitSessionForModeration(sessionId);
-      if (result.ok) {
-        setIsSubmitSuccess(true);
-        setSubmitMessage(t('Tour soumis pour modération !', 'Tour submitted for review!'));
-        logger.info(SERVICE_NAME, 'Submitted', { sessionId });
-      } else {
-        setSubmitMessage(result.error);
-      }
-    } catch (e) {
-      setSubmitMessage('Erreur inattendue.');
-      logger.error(SERVICE_NAME, 'Submit failed', { error: String(e) });
-    } finally {
-      setIsSubmitting(false);
-    }
-  }, [sessionId, t]);
 
   const handleSubmitForReview = useCallback(async () => {
     if (!session?.tourId) return;
@@ -422,25 +345,10 @@ export default function PreviewPage() {
   const canArchive = isPublished;
   const canSuspend = ['draft', 'editing', 'recording', 'ready', 'revision_requested', 'rejected'].includes(session.status);
 
-  // Tour title in the active preview language (falls back to the base title).
-  const displayTitle =
-    (previewLang !== (session.language || 'fr') && session.translatedTitles?.[previewLang]) ||
-    session.title || 'Mon tour';
+  const displayTitle = session.title || 'Mon tour';
 
-  // Languages offered in the preview selector. Auto-detected (not just the
-  // General-page `availableLanguages`, which is easily out of sync): union of
-  // the base language, the declared availableLanguages, and any language that
-  // actually has translated content in the segments. This keeps the preview in
-  // step with the Scenes tabs so e.g. a translated German never goes missing.
-  const baseLanguage = session.language || 'fr';
-  const previewLanguages = (() => {
-    const set = new Set<string>([baseLanguage, ...(session.availableLanguages ?? []), ...purchasedLangs]);
-    for (const seg of allSegments) {
-      if (seg.language && (seg.transcriptText || seg.audioKey)) set.add(seg.language);
-    }
-    return [baseLanguage, ...[...set].filter((l) => l !== baseLanguage)];
-  })();
-
+  // Le Studio travaille uniquement la source. Les langues visiteurs sont
+  // fabriquées hors Studio et ne sont jamais éditables ici.
   return (
     <div className="p-6 max-w-3xl">
       <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
@@ -448,11 +356,13 @@ export default function PreviewPage() {
       </Link>
 
       <h1 className="text-2xl font-bold text-ink mb-1">Preview — {session.title || 'Session'}</h1>
-      {previewLanguages.length > 1 && (
-        <p className="text-sm text-ink-60 mb-2" data-testid="preview-lang-indicator">
-          {t('Langue affichée', 'Display language')} : <span className="font-medium text-ink-80">{previewLang.toUpperCase()}</span>
-        </p>
-      )}
+      <p className="text-sm text-ink-60 mb-2" data-testid="preview-narration-mode">
+        {session.narrationMode === 'recording'
+          ? 'Voix humaine — les audios source sont prévisualisés.'
+          : session.narrationMode === 'tts_on_demand'
+            ? 'TTS à la demande — le Studio prévisualise les textes source, sans fabriquer d’audio.'
+            : 'Mode de narration à choisir avant soumission.'}
+      </p>
 
       {/* View mode toggle */}
       <div className="flex gap-2 mb-4">
@@ -506,7 +416,7 @@ export default function PreviewPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-grenadine to-ink" />
             )}
             <div className="relative">
-              <p className="text-paper text-xs font-medium uppercase tracking-wider">{previewLang.toUpperCase()}</p>
+              <p className="text-paper text-xs font-medium uppercase tracking-wider">{session.language.toUpperCase()}</p>
               <h2 className="text-xl font-bold">{displayTitle}</h2>
               <div className="flex items-center gap-3 mt-1 text-sm text-paper-soft">
                 <span>{scenes.length} etapes</span>
@@ -517,16 +427,24 @@ export default function PreviewPage() {
 
           {/* Mini player */}
           <div className="p-4">
-            <button
-              onClick={handlePlayAll}
-              className={`w-full py-3 rounded-xl text-sm font-semibold transition ${
-                isPlayingAll ? 'bg-ocre text-white' : 'bg-grenadine text-white'
-              }`}
-              data-testid="play-all-btn"
-            >
-              {isPlayingAll ? t('Arrêter', 'Stop') : t('Écouter la visite', 'Play tour')}
-            </button>
-            <AudioPlayerBar compact />
+            {session.narrationMode === 'recording' ? (
+              <>
+                <button
+                  onClick={handlePlayAll}
+                  className={`w-full py-3 rounded-xl text-sm font-semibold transition ${
+                    isPlayingAll ? 'bg-ocre text-white' : 'bg-grenadine text-white'
+                  }`}
+                  data-testid="play-all-btn"
+                >
+                  {isPlayingAll ? t('Arrêter', 'Stop') : t('Écouter la visite', 'Play tour')}
+                </button>
+                <AudioPlayerBar compact />
+              </>
+            ) : (
+              <p className="rounded-xl bg-white/10 p-3 text-sm text-paper-soft">
+                L’audio sera créé à la première écoute connectée, après publication.
+              </p>
+            )}
           </div>
 
           {/* Scenes list (mobile style) */}
@@ -600,6 +518,7 @@ export default function PreviewPage() {
           )}
 
           {/* Playlist controls + player */}
+          {session.narrationMode === 'recording' ? (
           <div className="mb-4 p-3 bg-ink rounded-xl">
             <div className="flex items-center justify-between mb-2">
               <button
@@ -621,35 +540,11 @@ export default function PreviewPage() {
             </div>
             <AudioPlayerBar compact />
           </div>
-
-      {/* Language preview selector */}
-      {previewLanguages.length > 1 && (
-        <div className="mb-4 p-3 bg-paper-soft rounded-lg border border-line" data-testid="language-preview-section">
-          <div className="flex items-center gap-3 mb-2">
-            <label htmlFor="preview-lang-select" className="text-sm font-medium text-ink-80">
-              Langue du preview :
-            </label>
-            <select
-              id="preview-lang-select"
-              value={previewLang}
-              onChange={(e) => setPreviewLang(e.target.value)}
-              className="border border-line rounded-lg px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-grenadine"
-              data-testid="preview-lang-select"
-            >
-              {previewLanguages.map((lang) => (
-                <option key={lang} value={lang}>
-                  {lang.toUpperCase()}
-                </option>
-              ))}
-            </select>
-          </div>
-          <LanguagePreviewPlayer
-            scenes={scenes}
-            segments={allSegments}
-            language={previewLang}
-          />
-        </div>
-      )}
+          ) : (
+            <div className="mb-4 p-3 bg-olive-soft text-olive rounded-xl text-sm">
+              Aucun audio n’est fabriqué dans le Studio. Les textes ci-dessous sont ceux qui seront synthétisés à la demande.
+            </div>
+          )}
 
       {/* Scenes list */}
       <div className="space-y-2 mb-6" data-testid="preview-scenes">
@@ -697,7 +592,7 @@ export default function PreviewPage() {
                     </div>
                   )}
 
-                  {/* Transcribed text preview (translated when previewing a non-base language) */}
+                  {/* Source transcript preview */}
                   {sceneTranscript && (
                     <p className="text-sm text-ink-80 line-clamp-2 mb-2 italic">
                       &ldquo;{sceneTranscript}&rdquo;
@@ -747,14 +642,9 @@ export default function PreviewPage() {
           </button>
         )}
         {canSubmit && !session.tourId && (
-          <button
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            className="bg-mer hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2.5 px-6 rounded-lg transition"
-            data-testid="submit-btn"
-          >
-            {isSubmitting ? t('Publication...', 'Publishing...') : hasRevisionFeedback ? t('📤 Republier', '📤 Republish') : t('📤 Publier', '📤 Publish')}
-          </button>
+          <p className="text-sm text-danger" role="alert">
+            {t('Cette version doit être rattachée à une visite avant soumission.', 'This version must be linked to a tour before submission.')}
+          </p>
         )}
 
         {/* Retract — only when submitted, not yet reviewed */}

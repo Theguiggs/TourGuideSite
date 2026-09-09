@@ -13,11 +13,6 @@ import {
 } from '@/lib/stores/studio-session-store';
 import { S3Image } from '@/components/studio/s3-image';
 import * as studioUploadService from '@/lib/studio/studio-upload-service';
-import { OpenMultilangModal } from '@/components/studio/open-multilang-modal';
-import { LANGUAGE_CONFIG } from '@/components/studio/language-checkout/language-checkbox-card';
-import { useLanguagePurchaseStore } from '@/lib/stores/language-purchase-store';
-import { listLanguagePurchases } from '@/lib/api/language-purchase';
-import { Collapsible } from '@/components/ui/collapsible';
 import {
   StepNav,
   WizField,
@@ -30,7 +25,7 @@ import {
   CityFamilyBadge,
   SessionTerrainCard,
 } from '@/components/studio/wizard-general';
-import type { StudioSession } from '@/types/studio';
+import type { NarrationMode, StudioSession } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'GeneralPage';
@@ -84,17 +79,20 @@ export default function GeneralPage() {
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenesCount, setScenesCount] = useState(0);
+  const [hasExistingAudio, setHasExistingAudio] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSaved, setIsSaved] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [modeError, setModeError] = useState<string | null>(null);
 
   // Form state
   const [title, setTitle] = useState('');
   const [city, setCity] = useState('');
   const [description, setDescription] = useState('');
   const [language, setLanguage] = useState('fr');
+  const [narrationMode, setNarrationMode] = useState<NarrationMode | null>(null);
   const [difficulty, setDifficulty] = useState('facile');
   const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
   const [duration, setDuration] = useState(0);
@@ -115,33 +113,6 @@ export default function GeneralPage() {
   const [coverError, setCoverError] = useState<string | null>(null);
   const coverInputRef = useRef<HTMLInputElement>(null);
 
-  // Multilang
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(['fr']);
-  const [isMultilangModalOpen, setIsMultilangModalOpen] = useState(false);
-
-  const allPurchases = useLanguagePurchaseStore((s) => s.purchases);
-  const setPurchases = useLanguagePurchaseStore((s) => s.setPurchases);
-  const purchasedLanguages = useMemo(() => {
-    const prefix = `${sessionId}_`;
-    return Object.entries(allPurchases)
-      .filter(([key]) => key.startsWith(prefix))
-      .map(([, value]) => value)
-      .filter((p) => p.status === 'active');
-  }, [allPurchases, sessionId]);
-
-  useEffect(() => {
-    if (!session) return;
-    const prefix = `${sessionId}_`;
-    const hasStoreData = Object.keys(allPurchases).some((k) => k.startsWith(prefix));
-    if (hasStoreData) return;
-
-    listLanguagePurchases(sessionId).then((result) => {
-      if (result.ok && result.value.length > 0) {
-        setPurchases(result.value);
-      }
-    });
-  }, [session, sessionId, allPurchases, setPurchases]);
-
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
 
@@ -158,16 +129,13 @@ export default function GeneralPage() {
         if (cancelled) return;
         setSession(sess);
         setScenesCount(scenesList.length);
+        setHasExistingAudio(scenesList.some((scene) => Boolean(scene.originalAudioKey || scene.studioAudioKey)));
         if (sess) {
           setActiveSession(sess);
           setTitle(sess.title || '');
           setLanguage(sess.language || 'fr');
+          setNarrationMode(sess.narrationMode ?? null);
           setCoverPhotoKey(sess.coverPhotoKey);
-          setSelectedLanguages(
-            sess.availableLanguages.length > 0
-              ? sess.availableLanguages
-              : [sess.language || 'fr'],
-          );
 
           if (sess.tourId) {
             try {
@@ -286,8 +254,24 @@ export default function GeneralPage() {
   const canEditPracticalTips = !isLocked || session?.status === 'published';
   const canSave = !isLocked || canEditMonetization || canEditPracticalTips;
 
+  const chooseNarrationMode = useCallback((nextMode: NarrationMode) => {
+    if (narrationMode === 'recording' && nextMode === 'tts_on_demand' && hasExistingAudio) {
+      setModeError(t(
+        'Des audios sont déjà attachés. Créez une nouvelle version ou demandez leur retrait avant de choisir la voix de synthèse.',
+        'Audio is already attached. Create a new version or have the audio removed before choosing text-to-speech.',
+      ));
+      return;
+    }
+    setModeError(null);
+    setNarrationMode(nextMode);
+  }, [hasExistingAudio, narrationMode, t]);
+
   const handleSave = useCallback(async () => {
     if (!session) return;
+    if (!narrationMode && !isLocked) {
+      setSaveError('Choisissez comment cette version sera racontée.');
+      return;
+    }
 
     // mon-1.2 (parité web) — validate price for a paid tour before saving.
     // AppSync rejects `null` for owner updates on this optional field. Zero also
@@ -314,8 +298,9 @@ export default function GeneralPage() {
         const sessionResult = await appsync.updateStudioSessionMutation(sessionId, {
           title,
           language,
+          narrationMode,
           coverPhotoKey,
-          availableLanguages: selectedLanguages,
+          availableLanguages: [language],
         });
         if (!sessionResult.ok) throw new Error(sessionResult.error);
       }
@@ -366,7 +351,7 @@ export default function GeneralPage() {
     duration,
     distance,
     coverPhotoKey,
-    selectedLanguages,
+    narrationMode,
     selectedThemes,
     scenesCount,
     purchaseType,
@@ -416,7 +401,7 @@ export default function GeneralPage() {
           {t(
             session.status === 'published'
               ? 'Visite publiée — le contenu est en lecture seule. Vous pouvez modifier son accès et son tarif.'
-              : 'Visite soumise — les informations sont en lecture seule. Vous pouvez ajouter des langues.',
+              : 'Visite soumise — les informations sont en lecture seule.',
             session.status === 'published'
               ? 'Published tour — content is read-only. You can still change access and pricing.'
               : 'Submitted tour — information is read-only. You can still add languages.',
@@ -612,6 +597,46 @@ export default function GeneralPage() {
         </WizField>
       </div>
 
+      <WizField
+        label={t('Comment sera racontée cette visite ?', 'How will this tour be narrated?')}
+        helper={t(
+          'Ce choix vaut pour toute cette version et ne peut pas être mélangé scène par scène.',
+          'This choice applies to the whole version and cannot be mixed scene by scene.',
+        )}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3" data-testid="narration-mode-picker">
+          {([
+            ['recording', 'Ma voix', 'Ajoutez un texte final et un enregistrement humain à chaque scène.'],
+            ['tts_on_demand', 'Voix de synthèse à la demande', 'Finalisez uniquement les textes. Murmure fabriquera une narration mutualisée à la première écoute.'],
+          ] as const).map(([value, label, descriptionText]) => (
+            <button
+              key={value}
+              type="button"
+              disabled={isLocked}
+              aria-pressed={narrationMode === value}
+              data-testid={`narration-mode-${value}`}
+              onClick={() => chooseNarrationMode(value)}
+              className={`rounded-md border p-4 text-left transition ${
+                narrationMode === value
+                  ? 'border-grenadine bg-grenadine-soft'
+                  : 'border-line bg-paper hover:border-ink-40'
+              } disabled:opacity-60`}
+            >
+              <span className="block text-caption font-bold text-ink">{label}</span>
+              <span className="mt-1 block text-meta text-ink-60">{descriptionText}</span>
+            </button>
+          ))}
+        </div>
+        {modeError && (
+          <div className="mt-3 rounded-md border border-grenadine bg-grenadine-soft p-3 text-sm text-danger" role="alert">
+            <p>{modeError}</p>
+            <Link href={`/guide/studio/${sessionId}/submission`} className="mt-2 inline-block font-semibold underline">
+              {t('Créer une nouvelle version', 'Create a new version')}
+            </Link>
+          </div>
+        )}
+      </WizField>
+
       {/* ───── Thèmes ───── */}
       <WizField
         label={t('Thèmes', 'Themes')}
@@ -667,81 +692,6 @@ export default function GeneralPage() {
       {priceError && (
         <div className="text-meta text-danger mb-3" role="alert" data-testid="price-error">
           {priceError}
-        </div>
-      )}
-
-      {/* ───── Multilang (visible quand soumis/publié) ───── */}
-      {(session.status === 'submitted' ||
-        session.status === 'published' ||
-        session.status === 'revision_requested') && (
-        <div className="mb-5">
-          <Collapsible
-            storageKey={`general-multilang-${sessionId}`}
-            defaultOpen={purchasedLanguages.length > 0}
-            icon={<span aria-hidden="true">✦</span>}
-            title={t('Langues additionnelles', 'Additional languages')}
-            subtitle={
-              purchasedLanguages.length > 0
-                ? `${purchasedLanguages.length} langue${purchasedLanguages.length > 1 ? 's' : ''} ajoutée${purchasedLanguages.length > 1 ? 's' : ''}`
-                : t('Aucune', 'None')
-            }
-            compact
-            testId="multilang-section"
-          >
-            <button
-              type="button"
-              onClick={() => setIsMultilangModalOpen(true)}
-              className="w-full rounded-md border-2 border-dashed border-grenadine bg-grenadine-soft px-3 py-3 text-center hover:opacity-90 transition mb-2"
-              data-testid="open-multilang-btn"
-            >
-              <span className="block text-caption font-bold text-grenadine">
-                {t('Ouvrir le multilangue', 'Open multilingual tools')}
-              </span>
-              <span className="block text-meta text-grenadine mt-0.5">
-                {t('Traduisez vous-même ou utilisez la traduction automatique.', 'Translate it yourself or use automatic translation.')}
-              </span>
-            </button>
-
-            {purchasedLanguages.length > 0 && (
-              <ul className="space-y-1" data-testid="purchased-languages-list">
-                {purchasedLanguages.map((p) => {
-                  const langConfig = LANGUAGE_CONFIG.find((l) => l.code === p.language);
-                  return (
-                    <li
-                      key={p.language}
-                      className="flex items-center gap-2 text-caption text-ink-80"
-                      data-testid={`purchased-lang-${p.language}`}
-                    >
-                      <span className="text-meta font-bold tracking-wider text-ink-60">
-                        {p.language.toUpperCase()}
-                      </span>
-                      <span>{langConfig?.label ?? p.language}</span>
-                      <span className="text-meta text-ink-40 ml-auto capitalize">
-                        {p.purchaseType === 'manual'
-                          ? 'Manuel'
-                          : p.qualityTier === 'pro'
-                            ? 'Pro'
-                            : 'Standard'}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-
-            <OpenMultilangModal
-              sessionId={sessionId}
-              baseLanguage={language}
-              isOpen={isMultilangModalOpen}
-              onClose={() => setIsMultilangModalOpen(false)}
-              onBatchTranslationNeeded={(languages, qualityTier) => {
-                logger.info(SERVICE_NAME, 'Batch will auto-run on Scenes tab', {
-                  languages,
-                  qualityTier,
-                });
-              }}
-            />
-          </Collapsible>
         </div>
       )}
 

@@ -11,6 +11,7 @@ interface StepNavProps {
   nextLabel?: string;
   /** Disable the next button (e.g. validation incomplete). */
   nextDisabled?: boolean;
+  prevDisabled?: boolean;
   /** Optional click handler — if provided, renders <button> instead of <Link>. */
   onNextClick?: () => void;
 }
@@ -26,6 +27,7 @@ export function StepNav({
   nextHref,
   nextLabel,
   nextDisabled = false,
+  prevDisabled = false,
   onNextClick,
 }: StepNavProps) {
   const { locale } = useStudioLocale();
@@ -40,7 +42,8 @@ export function StepNav({
         <Link
           href={prevHref}
           data-testid="step-nav-prev"
-          className="text-ink-60 hover:text-ink text-caption font-semibold py-2 no-underline transition"
+          aria-disabled={prevDisabled || undefined}
+          className={`text-ink-60 hover:text-ink text-caption font-semibold py-2 no-underline transition ${prevDisabled ? 'opacity-40 pointer-events-none' : ''}`}
         >
           <span className="inline-flex items-center gap-2"><ArrowLeft size={16} aria-hidden="true" />{resolvedPrevLabel}</span>
         </Link>

@@ -18,6 +18,8 @@ export type GuideTourStatus =
   | 'rejected'
   | 'archived';
 
+export type NarrationMode = 'recording' | 'tts_on_demand';
+
 export interface GuideTourSummary {
   id: string;
   title: string;
@@ -29,6 +31,7 @@ export interface GuideTourSummary {
   lastListenDate: string | null;
   rejectionFeedback: string | null;
   sessionId: string | null;
+  narrationMode?: NarrationMode | null;
 }
 
 /** Scene data within a tour — audio recorded on mobile */
@@ -67,6 +70,7 @@ export interface GuideTourDetail {
   difficulty: TourDifficulty;
   themes: string[];
   languePrincipale: string;
+  narrationMode?: NarrationMode | null;
   scenes: TourScene[];
   adminComments: AdminComment[];
   heroImageUrl: string | null;
