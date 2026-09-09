@@ -1,0 +1,13 @@
+{
+  "tourId": "mennetou-sur-cher-vie-derriere-les-remparts",
+  "title": "Mennetou-sur-Cher — La vie derrière les remparts",
+  "guide": "Guillaume STEFFEN",
+  "status": "draft",
+  "records": 10,
+  "pois": 8,
+  "durationMinutes": 60,
+  "distanceMeters": 611,
+  "tableSuffix": "yvupc5stqzaxrgz6wv2wz7he5y-NONE",
+  "verifiedAt": "2026-09-07T20:52:03.626Z",
+  "verification": "All 10 records read back consistently and compared field by field."
+}
