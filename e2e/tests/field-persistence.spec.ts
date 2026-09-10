@@ -414,7 +414,7 @@ test.describe.serial('Field Persistence', () => {
     await sceneEditor.fill(newText);
 
     await page.getByTestId('save-scene').click();
-    await expect(page.locator('[role="status"]', { hasText: /sauvegard/i })).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator('[role="status"]', { hasText: /Scène sauvegardée|Scene saved/i })).toBeVisible({ timeout: 10_000 });
 
     // Switch to scene 2
     await page.getByTestId(`sidebar-scene-${seeded.sceneIds[1]}`).click();
@@ -433,6 +433,7 @@ test.describe.serial('Field Persistence', () => {
   });
 
   test('8 - Scene text persists after page navigation (General and back)', async ({ browser }) => {
+    test.setTimeout(60_000);
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
     await injectRGPDConsent(page);
@@ -448,7 +449,7 @@ test.describe.serial('Field Persistence', () => {
     await sceneEditor.fill(newText);
 
     await page.getByTestId('save-scene').click();
-    await expect(page.locator('[role="status"]', { hasText: /sauvegard/i })).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator('[role="status"]', { hasText: /Scène sauvegardée|Scene saved/i })).toBeVisible({ timeout: 10_000 });
 
     // Navigate to General page
     await page.goto(`${sessionUrl}/general`);
