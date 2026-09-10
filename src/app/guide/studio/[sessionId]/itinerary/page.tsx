@@ -119,16 +119,21 @@ export default function ItineraryPage() {
   const clearSession = useStudioSessionStore(selectClearSession);
 
   const persistSceneUpdate = useCallback(
-    (sceneId: string, updates: Record<string, unknown>) => {
-      if (shouldUseStubs()) return;
-      import('@/lib/api/appsync-client').then(({ updateStudioSceneMutation }) => {
-        updateStudioSceneMutation(sceneId, updates).catch((err) => {
-          logger.error(SERVICE_NAME, 'Failed to persist scene update', {
-            sceneId,
-            error: String(err),
-          });
-        });
-      });
+    async (sceneId: string, updates: Record<string, unknown>): Promise<{ ok: true } | { ok: false; error: string }> => {
+      if (shouldUseStubs()) return { ok: true };
+      try {
+        const { updateStudioSceneMutation } = await import('@/lib/api/appsync-client');
+        const result = await updateStudioSceneMutation(sceneId, updates);
+        if (!result.ok) {
+          logger.error(SERVICE_NAME, 'Failed to persist scene update', { sceneId, error: result.error });
+          return { ok: false, error: result.error };
+        }
+        return { ok: true };
+      } catch (err) {
+        const error = err instanceof Error ? err.message : String(err);
+        logger.error(SERVICE_NAME, 'Failed to persist scene update', { sceneId, error });
+        return { ok: false, error };
+      }
     },
     [],
   );
@@ -357,13 +362,19 @@ export default function ItineraryPage() {
     [clickToPlaceId, editForm, persistSceneUpdate],
   );
 
-  const saveEdit = useCallback(() => {
+  const saveEdit = useCallback(async () => {
     if (!editForm) return;
     const updates: Record<string, unknown> = {};
     if (editForm.title) updates.title = editForm.title;
     if (editForm.description) updates.poiDescription = editForm.description;
     if (editForm.latitude) updates.latitude = parseFloat(editForm.latitude);
     if (editForm.longitude) updates.longitude = parseFloat(editForm.longitude);
+    setSaveStatus('saving');
+    const result = await persistSceneUpdate(editForm.id, updates);
+    if (!result.ok) {
+      setSaveStatus({ error: result.error });
+      return;
+    }
     setScenes((prev) =>
       prev.map((s) => {
         if (s.id !== editForm.id) return s;
@@ -376,9 +387,10 @@ export default function ItineraryPage() {
         };
       }),
     );
-    persistSceneUpdate(editForm.id, updates);
     setEditingId(null);
     setEditForm(null);
+    setSaveStatus('saved');
+    setTimeout(() => setSaveStatus((status) => (status === 'saved' ? 'idle' : status)), 2000);
   }, [editForm, persistSceneUpdate]);
 
   const cancelEdit = useCallback(() => {
