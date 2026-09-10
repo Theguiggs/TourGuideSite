@@ -57,7 +57,10 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
     token = getAccessTokenFromStorageState(guidePath);
     // Seed in 'editing' so tests 1.2 and 1.4 can edit fields.
     // Test 1.10 will switch to 'submitted' when it needs to see the multilang section.
-    seeded = await seedMultilangReadyTour(PREFIX, token, { sessionStatus: 'editing' });
+    seeded = await seedMultilangReadyTour(PREFIX, token, {
+      sessionStatus: 'editing',
+      narrationMode: 'recording',
+    });
     sessionUrl = `${STUDIO_BASE}/${seeded.sessionId}`;
 
     console.log(`[studio-tour-creation] Seeded tour=${seeded.tourId}, session=${seeded.sessionId}, scenes=${seeded.sceneIds.length}`);
@@ -224,49 +227,14 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
     await page.goto('/');
     await injectRGPDConsent(page);
     await page.goto(`${sessionUrl}/scenes`);
+    const recordVoiceLink = page.getByRole('link', { name: /Enregistrer la voix|Record voice/i });
+    await expect(recordVoiceLink).toBeVisible({ timeout: 15_000 });
+    await recordVoiceLink.click();
 
-    await page.waitForSelector('[data-testid^="tab-"], [data-testid="audio-recorder"], [role="tablist"]', {
-      timeout: 15_000,
-    }).catch(() => {});
-
-    const recordTool = page.getByTestId('tool-record');
-    const audioTab = page.locator('[role="tab"]', { hasText: /Audio/i });
-    if (await recordTool.isVisible().catch(() => false)) {
-      await recordTool.click();
-    } else if (await audioTab.isVisible().catch(() => false)) {
-      await audioTab.click();
-    }
-
-    const audioRecorder = page.getByTestId('audio-recorder');
-    if (await audioRecorder.isVisible().catch(() => false)) {
-      const permissionBtn = page.getByTestId('permission-btn');
-      const recordBtn = page.getByTestId('record-btn');
-
-      const hasPermBtn = await permissionBtn.isVisible().catch(() => false);
-      const hasRecordBtn = await recordBtn.isVisible().catch(() => false);
-
-      expect(hasPermBtn || hasRecordBtn).toBeTruthy();
-
-      const deviceSelect = page.getByTestId('device-select');
-      if (await deviceSelect.isVisible().catch(() => false)) {
-        await expect(deviceSelect).toBeVisible();
-      }
-
-      await page.screenshot({ path: 'test-results/1.6-audio-recorder.png' });
-    } else {
-      const toggleRecorderBtn = page.getByTestId('toggle-recorder-btn');
-      if (await toggleRecorderBtn.isVisible().catch(() => false)) {
-        await toggleRecorderBtn.click();
-        await expect(page.getByTestId('audio-recorder')).toBeVisible({ timeout: 5_000 });
-        await page.screenshot({ path: 'test-results/1.6-audio-recorder-toggled.png' });
-      } else {
-        await page.goto(`${sessionUrl}/record`);
-        await page.waitForSelector('[data-testid="audio-recorder"], [data-testid="teleprompter"], [data-testid="no-text"]', {
-          timeout: 15_000,
-        }).catch(() => {});
-        await page.screenshot({ path: 'test-results/1.6-record-page.png' });
-      }
-    }
+    await expect(page.getByTestId('teleprompter')).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByTestId('audio-recorder')).toBeVisible();
+    await expect(page.getByTestId('permission-btn').or(page.getByTestId('record-btn'))).toBeVisible();
+    await page.screenshot({ path: 'test-results/1.6-audio-recorder.png' });
 
     await context.close();
   });

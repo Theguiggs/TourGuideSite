@@ -139,6 +139,7 @@ export default function ScenesPage() {
               key={scene.id}
               type="button"
               onClick={() => selectScene(scene)}
+              data-testid={`sidebar-scene-${scene.id}`}
               className={`w-full rounded-lg border p-3 text-left ${scene.id === activeSceneId ? 'border-grenadine bg-grenadine-soft' : 'border-line bg-card'}`}
             >
               <span className="block text-xs text-ink-40">{t('Scène', 'Scene')} {scene.sceneIndex + 1}</span>
