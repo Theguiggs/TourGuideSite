@@ -1,0 +1,90 @@
+{
+  "slug": "grasse-ombres-et-legendes",
+  "titre": "Grasse — Ombres & Légendes",
+  "ville": "Grasse",
+  "boite": [43.645, 6.905, 43.672, 6.94],
+  "note": "boite = [lat_min, lng_min, lat_max, lng_max] — borne la recherche OSM au vieux Grasse.",
+  "pois": [
+    {
+      "n": 1,
+      "titre": "Place aux Aires",
+      "fichier": "01-place-aux-aires-nuit.md",
+      "position": "au centre de la place, près de la fontaine, en fin de journée",
+      "desc": "La place du marché aux fleurs, qui fut celle des tanneurs : la thèse posée d'entrée.",
+      "osm": { "nominatim": ["Place aux Aires, Grasse", "Place aux Aires, 06130 Grasse"], "nom": "Place aux Aires" },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 2,
+      "titre": "Rue Droite",
+      "fichier": "02-ruelle-tanneurs-peste.md",
+      "position": "dans la partie la plus étroite de la rue, là où l'on touche les deux murs",
+      "desc": "La ruelle médiévale du tannage, et la peste noire de 1348 combattue par l'odeur.",
+      "osm": { "nominatim": ["Rue Droite, Grasse", "Rue Droite, 06130 Grasse"], "nom": "Rue Droite" },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 3,
+      "titre": "Cathédrale Notre-Dame-du-Puy",
+      "fichier": "03-penitents-noirs.md",
+      "position": "sur le parvis, place du Petit Puy, face à la façade nue",
+      "desc": "Les confréries de pénitents, et la charge la plus lourde : escorter les morts.",
+      "osm": {
+        "nominatim": ["Cathédrale Notre-Dame-du-Puy, Grasse", "Cathédrale Notre-Dame du Puy, 06130 Grasse"],
+        "nom": "Cathédrale Notre-Dame-du-Puy"
+      },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 4,
+      "titre": "Place du 24-Août",
+      "fichier": "04-masco-et-drac.md",
+      "position": "devant la fontaine, au centre de la place",
+      "desc": "L'eau habitée du folklore provençal : le Drac, et la masco qu'on brûlait pour son savoir.",
+      "osm": { "nominatim": ["Place du 24 Août, Grasse", "Place du 24 Août 1944, Grasse"], "nom": "Place du 24 Août" },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 5,
+      "titre": "Place du Cours — parvis du Musée International de la Parfumerie",
+      "fichier": "05-le-parfum-assassin.md",
+      "position": "sur le parvis du musée, dos à l'entrée, face à la place",
+      "desc": "Le crime parfait que Süskind a situé ici : l'enfleurage poussé jusqu'à son terme.",
+      "osm": {
+        "nominatim": [
+          "Musée International de la Parfumerie, Grasse",
+          "Place du Cours, Grasse"
+        ],
+        "nom": "Musée International de la Parfumerie"
+      },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 6,
+      "titre": "Cours Honoré Cresp — terrasse sud",
+      "fichier": "06-belvedere-nocturne.md",
+      "position": "au parapet de la terrasse, côté sud du cours, face à la plaine",
+      "desc": "Le belvédère de clôture : les vivants au-dessus, les morts en contrebas, le parfum au milieu.",
+      "osm": { "nominatim": ["Cours Honoré Cresp, Grasse"], "nom": "Cours Honoré Cresp" },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    }
+  ]
+}
