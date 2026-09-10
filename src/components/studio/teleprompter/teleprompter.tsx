@@ -18,6 +18,7 @@ function formatElapsed(ms: number): string {
 export function Teleprompter({ text, onComplete }: TeleprompterProps) {
   const engineRef = useRef<PrompterEngine | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [autoFollow, setAutoFollow] = useState(true);
   const [state, setState] = useState<PrompterState>({
     isScrolling: false,
     isPaused: false,
@@ -38,13 +39,6 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
 
     const unsub = engine.subscribe((s) => {
       setState(s);
-      // Auto-scroll: keep highlighted word visible
-      if (scrollRef.current && s.isScrolling) {
-        const wordEl = scrollRef.current.querySelector(`[data-word-index="${s.currentWordIndex}"]`);
-        if (wordEl) {
-          wordEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
-        }
-      }
       // Notify completion
       if (!s.isScrolling && !s.isPaused && s.currentWordIndex >= words.length - 1 && s.elapsedMs > 0) {
         onCompleteRef.current?.();
@@ -57,9 +51,37 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
     };
   }, [words.length]);
 
+  // Keep the active word inside the comfortable reading area without moving
+  // the whole page. This runs only when the highlighted word changes, rather
+  // than on every animation frame.
+  const bringActiveWordIntoView = useCallback((wordIndex: number, behavior: ScrollBehavior = 'smooth') => {
+    const container = scrollRef.current;
+    const word = container?.querySelector<HTMLElement>(`[data-word-index="${wordIndex}"]`);
+    if (!container || !word) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const wordRect = word.getBoundingClientRect();
+    const readingMargin = containerRect.height * 0.25;
+    const safeTop = containerRect.top + readingMargin;
+    const safeBottom = containerRect.bottom - readingMargin;
+
+    if (wordRect.bottom > safeBottom) {
+      container.scrollBy({ top: wordRect.bottom - safeBottom, behavior });
+    } else if (wordRect.top < safeTop) {
+      container.scrollBy({ top: wordRect.top - safeTop, behavior });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (state.isScrolling && !state.isPaused && autoFollow) {
+      bringActiveWordIntoView(state.currentWordIndex);
+    }
+  }, [autoFollow, bringActiveWordIntoView, state.currentWordIndex, state.isPaused, state.isScrolling]);
+
   const handleStartResume = useCallback(() => {
+    if (!state.isScrolling && !state.isPaused) setAutoFollow(true);
     engineRef.current?.start(words.length);
-  }, [words.length]);
+  }, [state.isPaused, state.isScrolling, words.length]);
 
   const handlePause = useCallback(() => {
     engineRef.current?.pause();
@@ -72,6 +94,21 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
   const handleSpeedChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     engineRef.current?.setSpeed(Number(e.target.value));
   }, []);
+
+  const releaseAutoFollow = useCallback(() => {
+    if (state.isScrolling) setAutoFollow(false);
+  }, [state.isScrolling]);
+
+  const resumeAutoFollow = useCallback(() => {
+    setAutoFollow(true);
+    bringActiveWordIntoView(state.currentWordIndex);
+  }, [bringActiveWordIntoView, state.currentWordIndex]);
+
+  const handlePrompterKeyDown = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'].includes(event.key)) {
+      releaseAutoFollow();
+    }
+  }, [releaseAutoFollow]);
 
   // Keyboard: Space = toggle pause, Escape = stop
   useEffect(() => {
@@ -98,21 +135,27 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
       {/* Teleprompter display */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-hidden bg-ink rounded-lg p-8 relative"
-        style={{ willChange: 'scroll-position' }}
+        className="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-ink rounded-lg p-8 relative focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ocre"
+        tabIndex={0}
+        role="region"
+        aria-label="Texte du prompteur"
+        onWheel={releaseAutoFollow}
+        onTouchStart={releaseAutoFollow}
+        onPointerDown={releaseAutoFollow}
+        onKeyDown={handlePrompterKeyDown}
+        data-testid="prompter-scroll-area"
       >
         <div className="max-w-2xl mx-auto leading-[2.5] text-2xl lg:text-3xl font-medium">
           {words.map((word, i) => (
             <span
               key={i}
-              className={`inline-block mr-2 transition-all duration-150 ${
+              className={`inline-block mr-2 rounded px-0.5 text-paper transition-colors duration-150 ${
                 i === state.currentWordIndex
-                  ? 'text-ocre scale-105'
-                  : i < state.currentWordIndex
-                    ? 'text-ink-40'
-                    : 'text-paper'
+                  ? 'bg-ocre text-ink'
+                  : ''
               }`}
               data-word-index={i}
+              aria-current={i === state.currentWordIndex ? 'true' : undefined}
             >
               {word}
             </span>
@@ -121,7 +164,7 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
       </div>
 
       {/* Controls bar */}
-      <div className="flex items-center gap-4 p-4 bg-ink rounded-b-lg" data-testid="prompter-controls">
+      <div className="flex flex-wrap items-center gap-4 p-4 bg-ink rounded-b-lg" data-testid="prompter-controls">
         {/* Play/Pause/Resume */}
         {!isActive ? (
           <button
@@ -156,6 +199,17 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
             data-testid="prompter-stop"
           >
             ⏹ Stop
+          </button>
+        )}
+
+        {state.isScrolling && !state.isPaused && !autoFollow && (
+          <button
+            type="button"
+            onClick={resumeAutoFollow}
+            className="border border-ocre text-ocre hover:bg-ocre hover:text-ink font-medium py-2 px-4 rounded-lg transition-colors"
+            data-testid="prompter-follow"
+          >
+            Suivre le texte
           </button>
         )}
 

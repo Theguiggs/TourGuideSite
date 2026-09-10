@@ -1,12 +1,13 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { Teleprompter } from '../teleprompter';
 
-// Mock scrollIntoView (not available in jsdom)
-Element.prototype.scrollIntoView = jest.fn();
+// Mock scrolling methods (not available in jsdom)
+Element.prototype.scrollBy = jest.fn();
 
 // Mock requestAnimationFrame
 beforeEach(() => {
+  jest.useFakeTimers();
   jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
     return setTimeout(() => cb(performance.now()), 16) as unknown as number;
   });
@@ -15,6 +16,7 @@ beforeEach(() => {
 
 afterEach(() => {
   jest.restoreAllMocks();
+  jest.useRealTimers();
 });
 
 const SAMPLE_TEXT = 'Bienvenue sur la Place aux Aires ancien marché aux herbes de Grasse';
@@ -24,6 +26,43 @@ describe('Teleprompter', () => {
     render(<Teleprompter text={SAMPLE_TEXT} />);
     expect(screen.getByText('Bienvenue')).toBeInTheDocument();
     expect(screen.getByText('Grasse')).toBeInTheDocument();
+  });
+
+  it('keeps already-read words visible while moving the highlight', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    const firstWord = screen.getByText('Bienvenue');
+
+    expect(firstWord).toHaveClass('text-paper', 'bg-ocre');
+    fireEvent.click(screen.getByTestId('prompter-start'));
+
+    act(() => {
+      jest.advanceTimersByTime(1_000);
+    });
+
+    expect(firstWord).toHaveClass('text-paper');
+    expect(firstWord).not.toHaveClass('text-ink-40');
+  });
+
+  it('lets the user scroll manually and offers to resume automatic follow', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    fireEvent.click(screen.getByTestId('prompter-start'));
+
+    fireEvent.wheel(screen.getByTestId('prompter-scroll-area'), { deltaY: 100 });
+    expect(screen.getByTestId('prompter-follow')).toHaveTextContent('Suivre le texte');
+
+    fireEvent.click(screen.getByTestId('prompter-follow'));
+    expect(screen.queryByTestId('prompter-follow')).not.toBeInTheDocument();
+  });
+
+  it('keeps manual control after scrolling while paused', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    fireEvent.click(screen.getByTestId('prompter-start'));
+    fireEvent.click(screen.getByTestId('prompter-pause'));
+
+    fireEvent.wheel(screen.getByTestId('prompter-scroll-area'), { deltaY: 100 });
+    fireEvent.click(screen.getByTestId('prompter-resume'));
+
+    expect(screen.getByTestId('prompter-follow')).toBeInTheDocument();
   });
 
   it('renders start button', () => {
