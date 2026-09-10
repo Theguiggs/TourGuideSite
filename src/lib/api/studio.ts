@@ -866,6 +866,7 @@ export async function updateSceneData(
     const { updateStudioSceneMutation } = await import('./appsync-client');
     const result = await updateStudioSceneMutation(sceneId, updates);
     if (!result.ok) return { ok: false, error: result.error };
+    __setLocalSceneOverride(sceneId, updates as Partial<StudioScene>);
     logger.info(SERVICE_NAME, 'Scene data updated (AppSync)', { sceneId, fields: Object.keys(updates) });
     return { ok: true };
   } catch (e) {

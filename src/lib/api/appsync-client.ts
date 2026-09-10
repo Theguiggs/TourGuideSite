@@ -931,6 +931,12 @@ export async function updateStudioSceneMutation(id: string, updates: Record<stri
       { id, ...updates } as Parameters<typeof client.models.StudioScene.update>[0],
       { authMode: 'userPool' },
     );
+    if (result.errors?.length || !result.data) {
+      const msg = result.errors?.map((e) => e.message).join('; ')
+        || 'aucune donnée retournée (autorisation refusée ou session expirée ?)';
+      logger.error(SERVICE_NAME, 'updateStudioScene rejected', { id, errors: msg });
+      return { ok: false as const, error: `Mise à jour refusée : ${msg}` };
+    }
     return { ok: true as const, data: result.data };
   } catch (error) {
     logger.error(SERVICE_NAME, 'updateStudioScene failed', { error: String(error) });

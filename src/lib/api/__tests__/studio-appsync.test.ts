@@ -14,7 +14,7 @@ jest.mock('../appsync-client', () => ({
   updateGuideTourMutation: jest.fn(),
 }));
 
-import { listStudioSessions, getStudioSession, createStudioSession, createTourWithSession, listStudioScenes, createScene, updateSceneText, updateSceneAudio } from '../studio';
+import { listStudioSessions, getStudioSession, createStudioSession, createTourWithSession, listStudioScenes, createScene, updateSceneText, updateSceneData, updateSceneAudio } from '../studio';
 import * as appsyncModule from '../appsync-client';
 
 const mockListSessionsByGuide = appsyncModule.listStudioSessionsByGuide as jest.Mock;
@@ -111,6 +111,34 @@ describe('updateSceneText (real mode)', () => {
     const result = await updateSceneText('sc1', 'Hello world');
     expect(result.ok).toBe(true);
     expect(mockUpdateSceneMutation).toHaveBeenCalledWith('sc1', { transcriptText: 'Hello world' });
+  });
+});
+
+describe('updateSceneData (real mode)', () => {
+  it('keeps successful updates visible across an immediate indexed reload', async () => {
+    mockUpdateSceneMutation.mockResolvedValue({ ok: true, data: { id: 'sc-data' } });
+    mockListScenesBySession.mockResolvedValue({ ok: true, data: [
+      { id: 'sc-data', sessionId: 's-data', sceneIndex: 0, status: 'edited', transcriptText: 'stale', photosRefs: [], archived: false, createdAt: '', updatedAt: '' },
+    ] });
+
+    const result = await updateSceneData('sc-data', { transcriptText: 'fresh' });
+    const scenes = await listStudioScenes('s-data');
+
+    expect(result.ok).toBe(true);
+    expect(scenes[0].transcriptText).toBe('fresh');
+  });
+
+  it('does not expose an update rejected by AppSync', async () => {
+    mockUpdateSceneMutation.mockResolvedValue({ ok: false, error: 'rejected' });
+    mockListScenesBySession.mockResolvedValue({ ok: true, data: [
+      { id: 'sc-data-fail', sessionId: 's-data', sceneIndex: 0, status: 'edited', transcriptText: 'original', photosRefs: [], archived: false, createdAt: '', updatedAt: '' },
+    ] });
+
+    const result = await updateSceneData('sc-data-fail', { transcriptText: 'not-persisted' });
+    const scenes = await listStudioScenes('s-data');
+
+    expect(result.ok).toBe(false);
+    expect(scenes[0].transcriptText).toBe('original');
   });
 });
 
