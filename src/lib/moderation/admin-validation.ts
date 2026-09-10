@@ -218,11 +218,15 @@ export function buildAdminValidationReport({
     ),
     check(
       'provenance',
-      'Provenance du contenu',
+      'Origine éditoriale',
       detail.contentProvenance !== null,
       detail.contentProvenance === null
-        ? 'La provenance du contenu n’est pas renseignée.'
-        : `Provenance : ${detail.contentProvenance}.`,
+        ? 'Le guide doit indiquer si le contenu a été écrit par lui, avec l’aide de l’IA, ou principalement avec l’IA.'
+        : detail.contentProvenance === 'human'
+          ? 'Contenu écrit par le guide.'
+          : detail.contentProvenance === 'mixed'
+            ? 'Contenu créé avec l’aide de l’IA — mention « Developed with AI » requise.'
+            : 'Contenu créé principalement avec l’IA — mention « Developed with AI » requise.',
     ),
     check(
       'access',

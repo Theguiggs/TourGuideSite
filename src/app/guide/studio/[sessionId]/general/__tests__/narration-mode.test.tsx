@@ -5,6 +5,8 @@ import GeneralPage from '../page';
 const mockGetStudioSession = jest.fn();
 const mockListStudioScenes = jest.fn();
 const mockUpdateStudioSession = jest.fn();
+const mockGetGuideTour = jest.fn();
+const mockUpdateGuideTour = jest.fn();
 const mockUpdateSceneData = jest.fn();
 const mockRemoveStoredAudio = jest.fn();
 
@@ -16,15 +18,39 @@ jest.mock('@/lib/api/studio', () => ({
 }));
 jest.mock('@/lib/api/appsync-client', () => ({
   updateStudioSessionMutation: (...args: unknown[]) => mockUpdateStudioSession(...args),
-  updateGuideTourMutation: jest.fn(async () => ({ ok: true })),
-  getGuideTourById: jest.fn(async () => null),
+  updateGuideTourMutation: (...args: unknown[]) => mockUpdateGuideTour(...args),
+  getGuideTourById: (...args: unknown[]) => mockGetGuideTour(...args),
 }));
 jest.mock('@/lib/studio/studio-upload-service', () => ({
   removeStoredAudio: (...args: unknown[]) => mockRemoveStoredAudio(...args),
 }));
 jest.mock('@/components/studio/s3-image', () => ({ S3Image: () => null }));
 jest.mock('@/components/studio/wizard-general', () => ({
-  ThemeChips: () => null,
+  ThemeChips: ({
+    options,
+    value,
+    onChange,
+  }: {
+    options: Array<{ value: string; label: string }>;
+    value: string[];
+    onChange: (value: string[]) => void;
+  }) => (
+    <div>
+      {options.map((option) => (
+        <button
+          key={option.value}
+          type="button"
+          aria-pressed={value.includes(option.value)}
+          data-testid={`theme-chip-${option.value}`}
+          onClick={() => onChange(value.includes(option.value)
+            ? value.filter((theme) => theme !== option.value)
+            : [...value, option.value])}
+        >
+          {option.label}
+        </button>
+      ))}
+    </div>
+  ),
   CityFamilyBadge: () => null,
   SessionTerrainCard: () => null,
 }));
@@ -35,7 +61,14 @@ jest.mock('@/components/studio/wizard', () => ({
   WizField: ({ children }: { children: React.ReactNode }) => <section>{children}</section>,
   WizInput: (props: React.InputHTMLAttributes<HTMLInputElement>) => <input {...props} />,
   WizTextarea: (props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) => <textarea {...props} />,
-  WizSelect: (props: React.SelectHTMLAttributes<HTMLSelectElement>) => <select {...props} />,
+  WizSelect: ({
+    options,
+    ...props
+  }: React.SelectHTMLAttributes<HTMLSelectElement> & { options?: Array<{ value: string; label: string }> }) => (
+    <select {...props}>
+      {options?.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+    </select>
+  ),
 }));
 
 const baseSession = {
@@ -52,6 +85,8 @@ describe('GeneralPage narration mode persistence', () => {
     jest.clearAllMocks();
     mockListStudioScenes.mockResolvedValue([]);
     mockGetStudioSession.mockResolvedValue({ ...baseSession });
+    mockGetGuideTour.mockResolvedValue(null);
+    mockUpdateGuideTour.mockResolvedValue({ ok: true, data: { id: 'tour-1' } });
     mockUpdateStudioSession.mockResolvedValue({ ok: true, data: { ...baseSession, narrationMode: 'recording' } });
     mockUpdateSceneData.mockResolvedValue({ ok: true });
     mockRemoveStoredAudio.mockResolvedValue({ ok: true });
@@ -139,5 +174,44 @@ describe('GeneralPage narration mode persistence', () => {
     }));
     expect(mockRemoveStoredAudio).not.toHaveBeenCalled();
     expect(await screen.findByText(/Session refusée/i)).toBeInTheDocument();
+  });
+
+  it('loads the theme and editorial origin from the database', async () => {
+    mockGetStudioSession.mockResolvedValue({ ...baseSession, narrationMode: 'recording' });
+    mockGetGuideTour.mockResolvedValue({
+      id: 'tour-1',
+      city: 'Vence',
+      themes: ['architecture'],
+      difficulty: 'moyen',
+      contentProvenance: 'mixed',
+    });
+
+    render(<GeneralPage />);
+
+    expect(await screen.findByTestId('theme-chip-architecture')).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByTestId('difficulty-select')).toHaveValue('moyen');
+    expect(screen.getByTestId('content-provenance-mixed')).toHaveAttribute('aria-checked', 'true');
+  });
+
+  it('persists the theme and editorial origin on both durable models', async () => {
+    mockGetStudioSession.mockResolvedValue({ ...baseSession, narrationMode: 'recording' });
+    render(<GeneralPage />);
+
+    fireEvent.click(await screen.findByTestId('theme-chip-histoire'));
+    fireEvent.click(screen.getByTestId('content-provenance-ai'));
+    fireEvent.click(screen.getByTestId('save-general-btn'));
+
+    await waitFor(() => expect(mockUpdateStudioSession).toHaveBeenCalledWith(
+      'session-1',
+      expect.objectContaining({ themes: ['histoire'] }),
+    ));
+    await waitFor(() => expect(mockUpdateGuideTour).toHaveBeenCalledWith(
+      'tour-1',
+      expect.objectContaining({
+        themes: ['histoire'],
+        difficulty: 'facile',
+        contentProvenance: 'ai',
+      }),
+    ));
   });
 });

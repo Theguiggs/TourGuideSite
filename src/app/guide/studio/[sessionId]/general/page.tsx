@@ -26,13 +26,13 @@ import {
   SessionTerrainCard,
 } from '@/components/studio/wizard-general';
 import type { NarrationMode, StudioScene, StudioSession } from '@/types/studio';
+import type { ContentProvenance } from '@/types/moderation';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'GeneralPage';
 
 const TOUR_THEMES_OPTIONS = [
   { value: 'histoire', label: 'Histoire' },
-  { value: 'gastronomie', label: 'Gastronomie' },
   { value: 'art', label: 'Art' },
   { value: 'nature', label: 'Nature' },
   { value: 'architecture', label: 'Architecture' },
@@ -55,7 +55,7 @@ export default function GeneralPage() {
   const themeOptions = useMemo(
     () => TOUR_THEMES_OPTIONS.map((option) => ({
       ...option,
-      label: locale === 'en' ? ({ histoire: 'History', gastronomie: 'Food', art: 'Art', nature: 'Nature', architecture: 'Architecture', culture: 'Culture', insolite: 'Unusual', romantique: 'Romantic', famille: 'Family', sportif: 'Sports' } as Record<string, string>)[option.value] : option.label,
+      label: locale === 'en' ? ({ histoire: 'History', art: 'Art', nature: 'Nature', architecture: 'Architecture', culture: 'Culture', insolite: 'Unusual', romantique: 'Romantic', famille: 'Family', sportif: 'Sports' } as Record<string, string>)[option.value] : option.label,
     })),
     [locale],
   );
@@ -96,6 +96,7 @@ export default function GeneralPage() {
   const [narrationMode, setNarrationMode] = useState<NarrationMode | null>(null);
   const [difficulty, setDifficulty] = useState('facile');
   const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
+  const [contentProvenance, setContentProvenance] = useState<ContentProvenance | null>(null);
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0);
   // BTU-8 — conseils pratiques libres du guide (météo locale, horaires, marées…),
@@ -138,6 +139,10 @@ export default function GeneralPage() {
           setNarrationMode(sess.narrationMode ?? null);
           setCoverPhotoKey(sess.coverPhotoKey);
 
+          let databaseThemes = (sess.themes ?? []).filter((theme) => theme !== 'gastronomie');
+          let databaseDifficulty: string | null = null;
+          if (databaseThemes.length > 0) setSelectedThemes(databaseThemes);
+
           if (sess.tourId) {
             try {
               const { getGuideTourById } = await import('@/lib/api/appsync-client');
@@ -147,6 +152,19 @@ export default function GeneralPage() {
                 setSupportsMonetization('purchaseType' in tour || 'priceCents' in tour);
                 setCity((tour.city as string) || '');
                 setDescription((tour.description as string) || '');
+                databaseThemes = Array.isArray(tour.themes)
+                  ? (tour.themes as string[]).filter((theme) => theme !== 'gastronomie')
+                  : databaseThemes;
+                if (databaseThemes.length > 0) setSelectedThemes(databaseThemes);
+                databaseDifficulty = typeof tour.difficulty === 'string' ? tour.difficulty : null;
+                if (databaseDifficulty) setDifficulty(databaseDifficulty);
+                if (
+                  tour.contentProvenance === 'human'
+                  || tour.contentProvenance === 'ai'
+                  || tour.contentProvenance === 'mixed'
+                ) {
+                  setContentProvenance(tour.contentProvenance);
+                }
                 setDuration((tour.duration as number) || 0);
                 setDistance((tour.distance as number) || 0);
                 setPracticalTips((tour.practicalTips as string) || '');
@@ -168,8 +186,12 @@ export default function GeneralPage() {
             const stored = localStorage.getItem(`tour-meta-${sess.tourId ?? sessionId}`);
             if (stored) {
               const meta = JSON.parse(stored) as { difficulty?: string; themes?: string[] };
-              if (meta.difficulty) setDifficulty(meta.difficulty);
-              if (meta.themes) setSelectedThemes(meta.themes);
+              // Migration douce des anciennes saisies stockées uniquement dans
+              // le navigateur. La base reste désormais la source de vérité.
+              if (!databaseDifficulty && meta.difficulty) setDifficulty(meta.difficulty);
+              if (databaseThemes.length === 0 && meta.themes) {
+                setSelectedThemes(meta.themes.filter((theme) => theme !== 'gastronomie'));
+              }
             }
           } catch {
             // ignore
@@ -332,6 +354,17 @@ export default function GeneralPage() {
       setSaveError('Choisissez comment cette version sera racontée.');
       return;
     }
+    if (!isLocked && selectedThemes.length === 0) {
+      setSaveError(t('Choisissez au moins un thème.', 'Choose at least one theme.'));
+      return;
+    }
+    if (!isLocked && contentProvenance === null) {
+      setSaveError(t(
+        'Indiquez comment le contenu de la visite a été créé.',
+        'Tell us how the tour content was created.',
+      ));
+      return;
+    }
 
     // mon-1.2 (parité web) — validate price for a paid tour before saving.
     // AppSync rejects `null` for owner updates on this optional field. Zero also
@@ -361,9 +394,21 @@ export default function GeneralPage() {
           narrationMode,
           coverPhotoKey,
           availableLanguages: [language],
+          description,
+          themes: selectedThemes,
+          durationMinutes: duration,
         });
         if (!sessionResult.ok) throw new Error(sessionResult.error);
-        const updatedSession = { ...session, title, language, narrationMode, coverPhotoKey };
+        const updatedSession = {
+          ...session,
+          title,
+          language,
+          narrationMode,
+          coverPhotoKey,
+          description,
+          themes: selectedThemes,
+          durationMinutes: duration,
+        };
         setSession(updatedSession);
         setActiveSession(updatedSession);
       }
@@ -376,6 +421,10 @@ export default function GeneralPage() {
           title,
           city,
           description,
+          themes: selectedThemes,
+          difficulty,
+          contentProvenance,
+          coverPhotoKey,
           duration,
           distance,
           poiCount: scenesCount,
@@ -417,6 +466,7 @@ export default function GeneralPage() {
     coverPhotoKey,
     narrationMode,
     selectedThemes,
+    contentProvenance,
     scenesCount,
     purchaseType,
     priceEuros,
@@ -719,6 +769,46 @@ export default function GeneralPage() {
           onChange={setSelectedThemes}
           max={3}
         />
+      </WizField>
+
+      <WizField
+        label={t('Comment le contenu a-t-il été créé ?', 'How was the content created?')}
+        helper={t(
+          "Ce choix concerne les textes et le parcours, pas la voix audio. Il permet d'afficher correctement la mention « Developed with AI ».",
+          'This choice concerns the text and itinerary, not the audio voice. It ensures the “Developed with AI” label is shown correctly.',
+        )}
+        required
+      >
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 gap-3"
+          role="radiogroup"
+          aria-label={t('Origine du contenu', 'Content origin')}
+          data-testid="content-provenance-picker"
+        >
+          {([
+            ['human', t('Écrit par moi', 'Written by me'), t('Le contenu a été créé sans IA.', 'The content was created without AI.')],
+            ['mixed', t("Avec l'aide de l'IA", 'With AI assistance'), t("J'ai vérifié et adapté le contenu proposé par l'IA.", 'I reviewed and adapted AI-assisted content.')],
+            ['ai', t("Créé principalement avec l'IA", 'Created mainly with AI'), t('La mention « Developed with AI » sera affichée.', 'The “Developed with AI” label will be shown.')],
+          ] as const).map(([value, label, explanation]) => (
+            <button
+              key={value}
+              type="button"
+              role="radio"
+              aria-checked={contentProvenance === value}
+              disabled={isLocked}
+              data-testid={`content-provenance-${value}`}
+              onClick={() => setContentProvenance(value)}
+              className={`rounded-md border p-4 text-left transition ${
+                contentProvenance === value
+                  ? 'border-grenadine bg-grenadine-soft'
+                  : 'border-line bg-paper hover:border-ink-40'
+              } disabled:opacity-60`}
+            >
+              <span className="block text-caption font-bold text-ink">{label}</span>
+              <span className="mt-1 block text-meta text-ink-60">{explanation}</span>
+            </button>
+          ))}
+        </div>
       </WizField>
 
       {/* ───── Monétisation (mon-1.2 parité web) ───── */}

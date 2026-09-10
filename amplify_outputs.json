@@ -295,6 +295,30 @@
               "isRequired": false,
               "attributes": []
             },
+            "themes": {
+              "name": "themes",
+              "isArray": true,
+              "type": "String",
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "difficulty": {
+              "name": "difficulty",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "contentProvenance": {
+              "name": "contentProvenance",
+              "isArray": false,
+              "type": {
+                "enum": "GuideTourContentProvenance"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
             "translatedTitles": {
               "name": "translatedTitles",
               "isArray": false,
@@ -3791,6 +3815,14 @@
             "standard",
             "pro",
             "manual"
+          ]
+        },
+        "GuideTourContentProvenance": {
+          "name": "GuideTourContentProvenance",
+          "values": [
+            "human",
+            "ai",
+            "mixed"
           ]
         },
         "GuideTourPurchaseType": {

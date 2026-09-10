@@ -480,7 +480,11 @@ export async function getModerationDetail(moderationId: string): Promise<Moderat
     descriptionLongue: (t?.descriptionLongue as string) ?? '',
     pois: [],
     guideSubmissionCount: 0, guideApprovalRate: 0, isFirstSubmission: false,
-    themes: (t?.themes as string[]) ?? [],
+    // GuideTour is the durable source. StudioSession remains a fallback for
+    // visits created before editorial metadata was added to GuideTour.
+    themes: Array.isArray(t?.themes) && t.themes.length > 0
+      ? (t.themes as string[])
+      : (studioSession?.themes ?? []),
     languePrincipale: normalizeLanguageTag(
       (item as Record<string, unknown>).sourceLanguage ?? studioSession?.language,
     ) ?? DEFAULT_SOURCE_LANGUAGE,
