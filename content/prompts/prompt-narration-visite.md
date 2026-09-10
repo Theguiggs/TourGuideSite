@@ -199,3 +199,36 @@ listé à part comme candidat « chapitre En savoir plus ».
 
 Règle : une thématique = une visite = un parcours distinct. Ne jamais
 mélanger deux thématiques dans une même visite.
+
+---
+
+## ANNEXE — Chaîne de production (2026-09)
+
+Ce prompt produit du texte. Le texte ne va pas seul en base : il passe par un
+gabarit, deux contrôles et un semis. Les règles ci-dessus sont mesurées, pas
+seulement énoncées.
+
+| Étape | Commande | Ce qu'elle garantit |
+|---|---|---|
+| Gabarit | — | `content/tours/{slug}/` : `tour.md`, `pois.json`, `scenes/NN-slug.md` |
+| Contrôle | `node scripts/verifie-format-visites.mjs` | budget, en-tête, SSML, tutoiement, pièges TTS, cohérence scènes/POIs |
+| Coordonnées | `node scripts/resout-gps-pois.mjs --ecris` | chaque POI résolu contre OpenStreetMap, avec type et id de l'objet |
+| Semis | `node scripts/seme-riviera.mjs --confirm` | DRAFT, owner lu dans GuideProfile, refus si un POI n'a pas de coordonnée sourcée |
+
+Les conventions transversales — un seul narrateur, tutoiement sans exception,
+véracité forte, distance annoncée égale à la distance réelle — sont dans
+`content/tours/CONVENTIONS-MURMURE.md`.
+
+**Sur le §6 (exigences factuelles).** La règle « n'invente jamais » a été
+appliquée rétroactivement au lot Riviera en septembre 2026, et elle a coûté une
+visite entière plus une dizaine de citations et d'anecdotes réparties sur les
+autres. Le compte rendu est dans
+`content/tours/archive/crimes-scandales-riviera/POURQUOI-RETIREE.md`. Deux
+leçons pratiques :
+
+- Une citation attribuée à une personne réelle **avec une date et un
+  destinataire** est la plus dangereuse de toutes : c'est celle qu'on recopie.
+  À défaut de source, on ne l'atténue pas — on la retire.
+- Un narrateur qui garantit l'exactitude de ce qu'il raconte (« j'ai consulté
+  les archives », « c'est moi qui ai traité l'affaire ») transforme chaque
+  approximation en mensonge. Le catalogue n'a plus de persona garant.

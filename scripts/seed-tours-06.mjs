@@ -23,6 +23,49 @@ import {
 } from '@aws-sdk/lib-dynamodb';
 import { randomUUID } from 'crypto';
 
+// ⛔ SCRIPT PÉRIMÉ — NE PLUS LANCER
+//
+// Remplacé le 2026-09-10 par `scripts/seme-riviera.mjs`.
+//
+// Deux raisons, dont une silencieuse :
+//
+//   1. Il porte des valeurs mortes. L'owner `84a88428-…` et la pile
+//      `t5nxxao3orh6za2bjj6uegulru` sont périmés depuis la migration hors bac
+//      à sable. Le relancer ne lèverait AUCUNE erreur : DynamoDB accepte
+//      n'importe quel `owner`, et le Studio filtre dessus. Les visites
+//      seraient simplement invisibles, sans rien pour le signaler.
+//
+//   2. Il sème la version longue des narrations, dont les scènes font 520 à
+//      1 378 mots — jusqu'à neuf minutes d'audio pour un seul POI, debout dans
+//      la rue. C'est le format que le catalogue a quitté.
+//
+// Le remplaçant lit le gabarit (`tour.md` + `pois.json` + `scenes/`), lit
+// l'owner dans GuideProfile, et refuse de semer un POI sans coordonnée
+// résolue ET sourcée.
+//
+//   node scripts/resout-gps-pois.mjs --ecris     # d'abord les coordonnées
+//   node scripts/seme-riviera.mjs                # aperçu
+//   node scripts/seme-riviera.mjs --confirm      # écrit, en DRAFT
+//
+// Conservé pour mémoire. Le garde ci-dessous empêche un lancement distrait.
+
+if (!process.argv.includes('--je-sais-que-ce-script-est-perime')) {
+  console.error([
+    '',
+    '  ⛔ Ce script est périmé et ne doit plus être lancé.',
+    '',
+    '     Il vise une pile morte et un owner périmé : les visites seraient',
+    '     écrites sans erreur, et invisibles dans le Studio.',
+    '',
+    '     Utilise à la place :',
+    '       node scripts/resout-gps-pois.mjs --ecris',
+    '       node scripts/seme-riviera.mjs --confirm',
+    '',
+  ].join('\n'));
+  process.exit(2);
+}
+
+
 // ═══════════════════════════════════════════════════════════
 // Configuration
 // ═══════════════════════════════════════════════════════════
