@@ -6,6 +6,11 @@ import { PrompterEngine, type PrompterState } from '@/lib/studio/prompter-engine
 interface TeleprompterProps {
   text: string;
   onComplete?: () => void;
+  onStartRequested?: () => boolean | Promise<boolean>;
+  onPauseRequested?: () => void;
+  onResumeRequested?: () => boolean | Promise<boolean>;
+  onStopRequested?: () => void | Promise<void>;
+  startLabel?: string;
 }
 
 function formatElapsed(ms: number): string {
@@ -15,10 +20,19 @@ function formatElapsed(ms: number): string {
   return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
 }
 
-export function Teleprompter({ text, onComplete }: TeleprompterProps) {
+export function Teleprompter({
+  text,
+  onComplete,
+  onStartRequested,
+  onPauseRequested,
+  onResumeRequested,
+  onStopRequested,
+  startLabel = 'Démarrer',
+}: TeleprompterProps) {
   const engineRef = useRef<PrompterEngine | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [autoFollow, setAutoFollow] = useState(true);
+  const [pendingAction, setPendingAction] = useState<'starting' | 'stopping' | null>(null);
   const [state, setState] = useState<PrompterState>({
     isScrolling: false,
     isPaused: false,
@@ -78,22 +92,52 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
     }
   }, [autoFollow, bringActiveWordIntoView, state.currentWordIndex, state.isPaused, state.isScrolling]);
 
-  const handleStartResume = useCallback(() => {
+  const handleStartResume = useCallback(async () => {
+    if (pendingAction) return;
     const isFreshStart = !state.isScrolling && !state.isPaused;
     if (isFreshStart) {
-      setAutoFollow(true);
-      scrollRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+      const beginPrompter = () => {
+        setAutoFollow(true);
+        scrollRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+        engineRef.current?.start(words.length);
+      };
+      if (!onStartRequested) {
+        beginPrompter();
+        return;
+      }
+      setPendingAction('starting');
+      try {
+        const canStart = await onStartRequested();
+        if (!canStart) return;
+        beginPrompter();
+      } finally {
+        setPendingAction(null);
+      }
+      return;
+    }
+    if (state.isPaused && onResumeRequested) {
+      const canResume = await onResumeRequested();
+      if (!canResume) return;
     }
     engineRef.current?.start(words.length);
-  }, [state.isPaused, state.isScrolling, words.length]);
+  }, [onResumeRequested, onStartRequested, pendingAction, state.isPaused, state.isScrolling, words.length]);
 
   const handlePause = useCallback(() => {
+    onPauseRequested?.();
     engineRef.current?.pause();
-  }, []);
+  }, [onPauseRequested]);
 
-  const handleStop = useCallback(() => {
+  const handleStop = useCallback(async () => {
+    if (pendingAction) return;
     engineRef.current?.stop();
-  }, []);
+    if (!onStopRequested) return;
+    setPendingAction('stopping');
+    try {
+      await onStopRequested();
+    } finally {
+      setPendingAction(null);
+    }
+  }, [onStopRequested, pendingAction]);
 
   const handleSpeedChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     engineRef.current?.setSpeed(Number(e.target.value));
@@ -119,18 +163,26 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
     const handleKey = (e: KeyboardEvent) => {
       // Don't intercept Space in text inputs
       const target = e.target as HTMLElement;
-      if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) return;
+      if (
+        target instanceof HTMLInputElement
+        || target instanceof HTMLTextAreaElement
+        || target instanceof HTMLButtonElement
+        || target instanceof HTMLSelectElement
+        || target instanceof HTMLAnchorElement
+        || target.isContentEditable
+      ) return;
 
       if (e.code === 'Space') {
         e.preventDefault();
-        engineRef.current?.togglePause();
+        if (state.isPaused) void handleStartResume();
+        else if (state.isScrolling) handlePause();
       } else if (e.code === 'Escape') {
-        engineRef.current?.stop();
+        if (state.isScrolling || state.isPaused) void handleStop();
       }
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, []);
+  }, [handlePause, handleStartResume, handleStop, state.isPaused, state.isScrolling]);
 
   const isActive = state.isScrolling || state.isPaused;
   const progress = words.length > 1
@@ -138,6 +190,10 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
     : 0;
   const readingStatus = state.isPaused
     ? 'En pause'
+    : pendingAction === 'starting'
+      ? 'Activation du micro…'
+      : pendingAction === 'stopping'
+        ? 'Finalisation de la prise…'
     : state.isScrolling
       ? autoFollow ? 'Lecture guidée' : 'Défilement libre'
       : 'Prêt à lire';
@@ -156,15 +212,21 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
           <button
             type="button"
             onClick={handleStartResume}
+            disabled={pendingAction !== null}
             className="rounded-lg bg-grenadine px-5 py-2.5 font-semibold text-white transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
             data-testid="prompter-start"
           >
-            ▶ Démarrer
+            {pendingAction === 'starting'
+              ? 'Activation du micro…'
+              : pendingAction === 'stopping'
+                ? 'Finalisation…'
+                : `● ${startLabel}`}
           </button>
         ) : state.isPaused ? (
           <button
             type="button"
             onClick={handleStartResume}
+            disabled={pendingAction !== null}
             className="rounded-lg bg-grenadine px-5 py-2.5 font-semibold text-white transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
             data-testid="prompter-resume"
           >
@@ -185,6 +247,7 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
           <button
             type="button"
             onClick={handleStop}
+            disabled={pendingAction !== null}
             className="rounded-lg bg-ink-80 px-4 py-2.5 font-semibold text-white transition hover:bg-ink-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
             data-testid="prompter-stop"
           >

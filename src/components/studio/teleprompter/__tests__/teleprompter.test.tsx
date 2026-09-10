@@ -98,6 +98,68 @@ describe('Teleprompter', () => {
     expect(screen.getByTestId('prompter-status')).toHaveTextContent('Lecture guidée');
   });
 
+  it('starts recording and prompter from the same action', async () => {
+    const onStartRequested = jest.fn().mockResolvedValue(true);
+    render(
+      <Teleprompter
+        text={SAMPLE_TEXT}
+        startLabel="Enregistrer avec le prompteur"
+        onStartRequested={onStartRequested}
+      />,
+    );
+
+    expect(screen.getByTestId('prompter-start')).toHaveTextContent('Enregistrer avec le prompteur');
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('prompter-start'));
+    });
+
+    expect(onStartRequested).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId('prompter-pause')).toBeInTheDocument();
+  });
+
+  it('does not start the prompter when microphone access fails', async () => {
+    render(
+      <Teleprompter
+        text={SAMPLE_TEXT}
+        onStartRequested={jest.fn().mockResolvedValue(false)}
+      />,
+    );
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('prompter-start'));
+    });
+
+    expect(screen.getByTestId('prompter-start')).toBeInTheDocument();
+    expect(screen.queryByTestId('prompter-pause')).not.toBeInTheDocument();
+  });
+
+  it('synchronizes pause, resume and stop with the recorder', async () => {
+    const onPauseRequested = jest.fn();
+    const onResumeRequested = jest.fn().mockResolvedValue(true);
+    const onStopRequested = jest.fn().mockResolvedValue(undefined);
+    render(
+      <Teleprompter
+        text={SAMPLE_TEXT}
+        onPauseRequested={onPauseRequested}
+        onResumeRequested={onResumeRequested}
+        onStopRequested={onStopRequested}
+      />,
+    );
+    fireEvent.click(screen.getByTestId('prompter-start'));
+    fireEvent.click(screen.getByTestId('prompter-pause'));
+    expect(onPauseRequested).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('prompter-resume'));
+    });
+    expect(onResumeRequested).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('prompter-stop'));
+    });
+    expect(onStopRequested).toHaveBeenCalledTimes(1);
+  });
+
   it('shows pause button after start', () => {
     render(<Teleprompter text={SAMPLE_TEXT} />);
     fireEvent.click(screen.getByTestId('prompter-start'));

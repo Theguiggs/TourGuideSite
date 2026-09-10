@@ -233,7 +233,9 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
 
     await expect(page.getByTestId('teleprompter')).toBeVisible({ timeout: 15_000 });
     await expect(page.getByTestId('audio-recorder')).toBeVisible();
-    await expect(page.getByTestId('permission-btn').or(page.getByTestId('record-btn'))).toBeVisible();
+    await expect(page.getByTestId('prompter-start')).toHaveText(/Enregistrer avec le prompteur/i);
+    await expect(page.getByTestId('recorder-status')).toContainText(/micro/i);
+    await expect(page.getByTestId('permission-btn')).toHaveCount(0);
     await page.screenshot({ path: 'test-results/1.6-audio-recorder.png' });
 
     await context.close();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { AudioRecorder } from '../audio-recorder';
 import { useRecordingStore } from '@/lib/stores/recording-store';
 import { mediaRecorderService } from '@/lib/studio/media-recorder-service';
@@ -10,10 +10,10 @@ describe('AudioRecorder', () => {
     useRecordingStore.getState().resetStore();
   });
 
-  it('shows permission button in idle state', () => {
+  it('offers a single recording action in idle state', () => {
     render(<AudioRecorder sceneId="scene-1" onRecordingComplete={jest.fn()} />);
-    expect(screen.getByTestId('permission-btn')).toBeInTheDocument();
-    expect(screen.getByTestId('permission-btn')).toHaveTextContent('Autoriser le micro');
+    expect(screen.getByTestId('record-btn')).toHaveTextContent('Enregistrer');
+    expect(screen.queryByTestId('permission-btn')).not.toBeInTheDocument();
   });
 
   it('shows record button in ready state', () => {
@@ -53,13 +53,37 @@ describe('AudioRecorder', () => {
     expect(screen.queryByTestId('device-select')).not.toBeInTheDocument();
   });
 
-  it('shows a precise error without entering a false recording state when the microphone API is unavailable', () => {
+  it('shows a precise error without entering a false recording state when the microphone API is unavailable', async () => {
     Object.defineProperty(globalThis, 'isSecureContext', { configurable: true, value: false });
     render(<AudioRecorder sceneId="scene-1" onRecordingComplete={jest.fn()} />);
-    fireEvent.click(screen.getByTestId('permission-btn'));
-    expect(screen.getByTestId('recorder-error')).toHaveTextContent(/HTTPS|localhost/);
+    fireEvent.click(screen.getByTestId('record-btn'));
+    expect(await screen.findByTestId('recorder-error')).toHaveTextContent(/HTTPS|localhost/);
     expect(useRecordingStore.getState().recorderState).toBe('idle');
     expect(screen.queryByText('Enregistrement...')).not.toBeInTheDocument();
+  });
+
+  it('requests permission and starts recording from the same click', async () => {
+    Object.defineProperty(globalThis, 'isSecureContext', { configurable: true, value: true });
+    Object.defineProperty(navigator, 'mediaDevices', {
+      configurable: true,
+      value: { getUserMedia: jest.fn(), enumerateDevices: jest.fn() },
+    });
+    jest.spyOn(mediaRecorderService, 'getState').mockReturnValue('idle');
+    jest.spyOn(mediaRecorderService, 'requestPermission').mockResolvedValue({ ok: true });
+    jest.spyOn(mediaRecorderService, 'enumerateDevices').mockResolvedValue({ ok: true, devices: [] });
+    const startRecording = jest.spyOn(mediaRecorderService, 'startRecording').mockReturnValue({ ok: true });
+    render(<AudioRecorder sceneId="scene-1" onRecordingComplete={jest.fn()} />);
+
+    fireEvent.click(screen.getByTestId('record-btn'));
+
+    await waitFor(() => expect(startRecording).toHaveBeenCalledTimes(1));
+    expect(useRecordingStore.getState().recorderState).toBe('recording');
+  });
+
+  it('can expose status only when the prompter owns the controls', () => {
+    render(<AudioRecorder sceneId="scene-1" onRecordingComplete={jest.fn()} showControls={false} />);
+    expect(screen.getByTestId('recorder-status')).toHaveTextContent(/activé au démarrage/i);
+    expect(screen.queryByTestId('record-btn')).not.toBeInTheDocument();
   });
 
   it('stores, selects and returns the exact completed take', async () => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useRecordingStore, selectRecorderState, selectDevices, selectSelectedDeviceId } from '@/lib/stores/recording-store';
 import { mediaRecorderService } from '@/lib/studio/media-recorder-service';
 import { logger } from '@/lib/logger';
@@ -12,9 +12,21 @@ const SERVICE_NAME = 'AudioRecorder';
 interface AudioRecorderProps {
   sceneId: string;
   onRecordingComplete: (sceneId: string, take: Take) => void;
+  showControls?: boolean;
 }
 
-export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderProps) {
+export interface AudioRecorderHandle {
+  start: () => Promise<boolean>;
+  pause: () => void;
+  resume: () => boolean;
+  stop: () => Promise<void>;
+}
+
+export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>(function AudioRecorder({
+  sceneId,
+  onRecordingComplete,
+  showControls = true,
+}, ref) {
   const { t } = useStudioLocale();
   const recorderState = useRecordingStore(selectRecorderState);
   const devices = useRecordingStore(selectDevices);
@@ -42,7 +54,7 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
     };
   }, [setRecorderState]);
 
-  const handleRequestPermission = useCallback(async () => {
+  const handleRequestPermission = useCallback(async (): Promise<boolean> => {
     setError(null);
     setRecorderState('requesting_permission');
     if (!globalThis.isSecureContext || !navigator.mediaDevices?.getUserMedia) {
@@ -51,39 +63,58 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
         'Le microphone est indisponible. Ouvrez le Studio en HTTPS ou sur localhost avec un navigateur compatible.',
         'The microphone is unavailable. Open Studio over HTTPS or on localhost with a compatible browser.',
       ));
-      return;
+      return false;
     }
     const result = await mediaRecorderService.requestPermission(selectedDeviceId ?? undefined);
     if (result.ok) {
       setRecorderState('ready');
-      const devResult = await mediaRecorderService.enumerateDevices();
-      if (devResult.ok) setDevices(devResult.devices);
+      void mediaRecorderService.enumerateDevices().then((devResult) => {
+        if (devResult.ok) setDevices(devResult.devices);
+      });
+      return true;
     } else {
       setRecorderState('idle');
       setError(result.error.message);
       logger.warn(SERVICE_NAME, 'Permission denied');
+      return false;
     }
   }, [selectedDeviceId, setRecorderState, setDevices, t]);
 
-  const handleStartRecording = useCallback(() => {
+  const handleStartRecording = useCallback((): boolean => {
     setError(null);
     const result = mediaRecorderService.startRecording();
     if (result.ok) {
       setRecorderState('recording');
+      return true;
     } else {
       setRecorderState(mediaRecorderService.getState());
       setError(result.error.message);
+      return false;
     }
   }, [setRecorderState]);
+
+  const handleStartWithPermission = useCallback(async (): Promise<boolean> => {
+    const currentState = mediaRecorderService.getState();
+    if (currentState === 'recording') return true;
+    if (currentState === 'paused') {
+      mediaRecorderService.resumeRecording();
+      setRecorderState('recording');
+      return true;
+    }
+    if (currentState === 'idle' && !await handleRequestPermission()) return false;
+    return handleStartRecording();
+  }, [handleRequestPermission, handleStartRecording, setRecorderState]);
 
   const handlePauseRecording = useCallback(() => {
     mediaRecorderService.pauseRecording();
     setRecorderState('paused');
   }, [setRecorderState]);
 
-  const handleResumeRecording = useCallback(() => {
+  const handleResumeRecording = useCallback((): boolean => {
     mediaRecorderService.resumeRecording();
-    setRecorderState('recording');
+    const resumed = mediaRecorderService.getState() === 'recording';
+    setRecorderState(mediaRecorderService.getState());
+    return resumed;
   }, [setRecorderState]);
 
   const handleStopRecording = useCallback(async () => {
@@ -120,6 +151,23 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
     }
   }, [selectDevice, setRecorderState]);
 
+  useImperativeHandle(ref, () => ({
+    start: handleStartWithPermission,
+    pause: handlePauseRecording,
+    resume: handleResumeRecording,
+    stop: handleStopRecording,
+  }), [handlePauseRecording, handleResumeRecording, handleStartWithPermission, handleStopRecording]);
+
+  const recorderStatus = recorderState === 'requesting_permission'
+    ? t('Autorisation du micro…', 'Requesting microphone access…')
+    : recorderState === 'recording'
+      ? t('Enregistrement en cours', 'Recording in progress')
+      : recorderState === 'paused'
+        ? t('Enregistrement en pause', 'Recording paused')
+        : recorderState === 'ready' || recorderState === 'stopped'
+          ? t('Micro prêt', 'Microphone ready')
+          : t('Le micro sera activé au démarrage', 'The microphone will be enabled when you start');
+
   return (
     <div className="p-4 bg-paper-soft rounded-lg border border-line" data-testid="audio-recorder">
       {/* Device selector */}
@@ -142,30 +190,20 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
         </div>
       )}
 
-      {/* Recording controls */}
+      {showControls ? (
       <div className="flex items-center gap-3">
-        {recorderState === 'idle' && (
+        {(recorderState === 'idle' || recorderState === 'ready' || recorderState === 'stopped') && (
           <button
-            onClick={handleRequestPermission}
-            className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-4 rounded-lg text-sm transition"
-            data-testid="permission-btn"
+            onClick={handleStartWithPermission}
+            className="bg-danger hover:opacity-90 text-white font-medium py-2 px-4 rounded-lg text-sm transition"
+            data-testid="record-btn"
           >
-            🎙️ Autoriser le micro
+            🔴 {recorderState === 'stopped' ? t('Nouvelle prise', 'New take') : t('Enregistrer', 'Record')}
           </button>
         )}
 
         {recorderState === 'requesting_permission' && (
           <span className="text-sm text-ink-60" role="status">{t('Autorisation du micro…', 'Requesting microphone access…')}</span>
-        )}
-
-        {recorderState === 'ready' && (
-          <button
-            onClick={handleStartRecording}
-            className="bg-danger hover:opacity-90 text-white font-medium py-2 px-4 rounded-lg text-sm transition"
-            data-testid="record-btn"
-          >
-            🔴 {t('Enregistrer', 'Record')}
-          </button>
         )}
 
         {recorderState === 'recording' && (
@@ -213,19 +251,19 @@ export function AudioRecorder({ sceneId, onRecordingComplete }: AudioRecorderPro
           </>
         )}
 
-        {recorderState === 'stopped' && (
-          <button
-            onClick={handleStartRecording}
-            className="bg-danger hover:opacity-90 text-white font-medium py-2 px-4 rounded-lg text-sm transition"
-            data-testid="record-again-btn"
-          >
-            🔴 Nouvelle prise
-          </button>
-        )}
       </div>
+      ) : (
+        <div className="flex items-center gap-2 text-sm text-ink-60" role="status" data-testid="recorder-status">
+          <span
+            className={`h-2.5 w-2.5 rounded-full ${recorderState === 'recording' ? 'animate-pulse bg-danger' : recorderState === 'paused' ? 'bg-ocre' : 'bg-ink-40'}`}
+            aria-hidden="true"
+          />
+          {recorderStatus}
+        </div>
+      )}
       {error && (
         <p className="mt-3 text-sm text-danger" role="alert" data-testid="recorder-error">{error}</p>
       )}
     </div>
   );
-}
+});

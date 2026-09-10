@@ -7,6 +7,10 @@ const mockGetStudioSession = jest.fn();
 const mockListStudioScenes = jest.fn();
 const mockUpdateSceneAudio = jest.fn();
 const mockUploadAudio = jest.fn();
+const mockRecorderStart = jest.fn(async () => true);
+const mockRecorderPause = jest.fn();
+const mockRecorderResume = jest.fn(() => true);
+const mockRecorderStop = jest.fn(async () => undefined);
 let mockLanguage: string | null = null;
 let mockLegacyLanguage: string | null = null;
 
@@ -24,7 +28,11 @@ jest.mock('next/navigation', () => ({
 }));
 
 jest.mock('next/dynamic', () => () => {
-  const Prompter = () => <div data-testid="teleprompter" />;
+  const Prompter = ({ onStartRequested, startLabel }: { onStartRequested?: () => Promise<boolean>; startLabel?: string }) => (
+    <button data-testid="teleprompter" onClick={() => void onStartRequested?.()}>
+      {startLabel ?? 'Prompteur'}
+    </button>
+  );
   return Prompter;
 });
 
@@ -52,22 +60,34 @@ jest.mock('@/components/studio/takes-list', () => ({ TakesList: () => <div data-
 jest.mock('@/components/studio/file-import', () => ({ FileImport: () => <div data-testid="file-import" /> }));
 
 jest.mock('@/components/studio/audio-recorder', () => ({
-  AudioRecorder: ({ sceneId, onRecordingComplete }: { sceneId: string; onRecordingComplete: (id: string, take: unknown) => void }) => (
-    <button
-      data-testid="complete-recording"
-      onClick={() => {
-        const take = useRecordingStore.getState().addTake(sceneId, {
-          blob: new Blob(['voice'], { type: 'audio/webm' }),
-          mimeType: 'audio/webm',
-          durationMs: 1200,
-        });
-        useRecordingStore.getState().selectTake(sceneId, take.id);
-        onRecordingComplete(sceneId, take);
-      }}
-    >
-      Complete recording
-    </button>
-  ),
+  AudioRecorder: jest.requireActual<typeof import('react')>('react').forwardRef((
+    { sceneId, onRecordingComplete }: { sceneId: string; onRecordingComplete: (id: string, take: unknown) => void },
+    ref,
+  ) => {
+    const ReactRuntime = jest.requireActual<typeof import('react')>('react');
+    ReactRuntime.useImperativeHandle(ref, () => ({
+      start: mockRecorderStart,
+      pause: mockRecorderPause,
+      resume: mockRecorderResume,
+      stop: mockRecorderStop,
+    }));
+    return (
+      <button
+        data-testid="complete-recording"
+        onClick={() => {
+          const take = useRecordingStore.getState().addTake(sceneId, {
+            blob: new Blob(['voice'], { type: 'audio/webm' }),
+            mimeType: 'audio/webm',
+            durationMs: 1200,
+          });
+          useRecordingStore.getState().selectTake(sceneId, take.id);
+          onRecordingComplete(sceneId, take);
+        }}
+      >
+        Complete recording
+      </button>
+    );
+  }),
 }));
 
 const scene = {
@@ -153,6 +173,17 @@ describe('RecordPage guide recording pipeline', () => {
     ));
     expect(await screen.findByText(/associée à la scène/i)).toBeInTheDocument();
     expect(screen.getByTestId('play-saved-audio')).toBeInTheDocument();
+  });
+
+  it('wires the prompter primary action directly to microphone recording', async () => {
+    mockGetStudioSession.mockResolvedValue(session('recording'));
+    render(<RecordPage />);
+
+    const prompter = await screen.findByTestId('teleprompter');
+    expect(prompter).toHaveTextContent('Enregistrer avec le prompteur');
+    fireEvent.click(prompter);
+
+    await waitFor(() => expect(mockRecorderStart).toHaveBeenCalledTimes(1));
   });
 
   it('reuses the uploaded key and the same take when AppSync retry succeeds', async () => {

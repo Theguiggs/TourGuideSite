@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import { logger } from '@/lib/logger';
 import { getStudioSession, listStudioScenes, updateSceneAudio } from '@/lib/api/studio';
 import { SceneSidebar } from '@/components/studio/scene-sidebar';
-import { AudioRecorder } from '@/components/studio/audio-recorder';
+import { AudioRecorder, type AudioRecorderHandle } from '@/components/studio/audio-recorder';
 import { TakesList } from '@/components/studio/takes-list';
 import { FileImport } from '@/components/studio/file-import';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
@@ -47,6 +47,7 @@ export default function RecordPage() {
   const uploadedKeysRef = useRef(new Map<string, string>());
   const replacementConfirmedRef = useRef(new Set<string>());
   const persistenceInFlightRef = useRef(false);
+  const audioRecorderRef = useRef<AudioRecorderHandle>(null);
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
@@ -234,6 +235,22 @@ export default function RecordPage() {
     }
   }, [activeScene]);
 
+  const startSynchronizedRecording = useCallback(async () => {
+    return audioRecorderRef.current?.start() ?? false;
+  }, []);
+
+  const pauseSynchronizedRecording = useCallback(() => {
+    audioRecorderRef.current?.pause();
+  }, []);
+
+  const resumeSynchronizedRecording = useCallback(() => {
+    return audioRecorderRef.current?.resume() ?? false;
+  }, []);
+
+  const stopSynchronizedRecording = useCallback(async () => {
+    await audioRecorderRef.current?.stop();
+  }, []);
+
   if (isLoading) {
     return (
       <div className="p-6" aria-busy="true">
@@ -332,6 +349,11 @@ export default function RecordPage() {
             <Teleprompter
               text={sceneText}
               onComplete={() => logger.info(SERVICE_NAME, 'Prompter completed', { sceneId: activeSceneId })}
+              onStartRequested={startSynchronizedRecording}
+              onPauseRequested={pauseSynchronizedRecording}
+              onResumeRequested={resumeSynchronizedRecording}
+              onStopRequested={stopSynchronizedRecording}
+              startLabel="Enregistrer avec le prompteur"
             />
           </div>
         ) : (
@@ -354,8 +376,10 @@ export default function RecordPage() {
           <div className="space-y-3">
             <fieldset disabled={isSavingAudio} className="contents">
               <AudioRecorder
+                ref={audioRecorderRef}
                 sceneId={activeSceneId}
                 onRecordingComplete={handleRecordingComplete}
+                showControls={false}
               />
               <TakesList sceneId={activeSceneId} />
               <FileImport sceneId={activeSceneId} />
