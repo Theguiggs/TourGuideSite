@@ -354,18 +354,6 @@ export default function GeneralPage() {
       setSaveError('Choisissez comment cette version sera racontée.');
       return;
     }
-    if (!isLocked && selectedThemes.length === 0) {
-      setSaveError(t('Choisissez au moins un thème.', 'Choose at least one theme.'));
-      return;
-    }
-    if (!isLocked && contentProvenance === null) {
-      setSaveError(t(
-        'Indiquez comment le contenu de la visite a été créé.',
-        'Tell us how the tour content was created.',
-      ));
-      return;
-    }
-
     // mon-1.2 (parité web) — validate price for a paid tour before saving.
     // AppSync rejects `null` for owner updates on this optional field. Zero also
     // clears any stale paid price while purchaseType remains the access source of truth.
