@@ -15,7 +15,7 @@ Récupère. Et regarde la façade devant toi.
 
 <break time="3s"/>
 
-C'est austère, hein ? Tu attendais quelque chose de plus ornementé. Du gothique flamboyant, des gargouilles, une rosace. Tu as devant toi un gros bloc de pierre rectangulaire, percé de trois portails, surmonté d'un clocher carré. Roman pur. XIIe siècle. Aucune décoration.
+C'est austère, hein ? Tu attendais quelque chose de plus ornementé. Du gothique flamboyant, des gargouilles, une rosace. Tu as devant toi un gros bloc de pierre rectangulaire, percé de trois portails, surmonté d'un clocher carré. Roman pur. douzième siècle. Aucune décoration.
 
 C'est qu'à Grasse, on n'a jamais aimé les fioritures. Ni dans les maisons, ni dans les églises. La sobriété est une vertu provençale, presque protestante avant l'heure. Le luxe, ici, se cache à l'intérieur.
 
@@ -67,7 +67,7 @@ Maintenant avance dans la nef. Tu vas voir, à mi-chemin, à droite, dans la cha
 
 Tu les as ?
 
-Ces trois tableaux sont l'une des plus grandes surprises de Grasse. Ils sont de Pierre-Paul Rubens. Le peintre flamand du XVIIe siècle. Mêmes mains qui ont peint la galerie des Médicis au Louvre. Mêmes mains qui ont peint les plafonds du palais Pitti à Florence.
+Ces trois tableaux sont l'une des plus grandes surprises de Grasse. Ils sont de Pierre-Paul Rubens. Le peintre flamand du dix-septième siècle. Mêmes mains qui ont peint la galerie des Médicis au Louvre. Mêmes mains qui ont peint les plafonds du palais Pitti à Florence.
 
 Et ils sont là. Dans une cathédrale de petite ville de province. Trois Rubens originaux. Personne devant. Aucune queue.
 
@@ -87,7 +87,7 @@ Une dernière chose, avant de ressortir.
 
 À l'époque médiévale, plusieurs ordres religieux de la région se sont spécialisés dans la composition de remèdes parfumés. Les Franciscains de Grasse. Les Dominicaines de Vence. Les Bénédictines de Lérins. Ils cultivaient des herbes, distillaient des élixirs, fabriquaient des onguents.
 
-L'un de ces moines, frère Pierre, au XIVe siècle, écrit dans son carnet — qu'on a retrouvé — une formule pour un baume contre les maux de tête. Romarin, lavande, cèdre, encens. Quand des chimistes modernes ont reconstitué ce baume il y a quinze ans, ils ont découvert qu'il marchait. Vraiment. Les huiles essentielles ont un effet vasoconstricteur prouvé.
+L'un de ces moines, frère Pierre, au quatorzième siècle, écrit dans son carnet — qu'on a retrouvé — une formule pour un baume contre les maux de tête. Romarin, lavande, cèdre, encens. Quand des chimistes modernes ont reconstitué ce baume il y a quinze ans, ils ont découvert qu'il marchait. Vraiment. Les huiles essentielles ont un effet vasoconstricteur prouvé.
 
 Ces moines savaient. Avant les chimistes. Avant les nez. Avant les marques.
 

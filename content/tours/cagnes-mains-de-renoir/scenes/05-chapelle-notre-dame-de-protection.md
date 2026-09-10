@@ -19,11 +19,11 @@ Pendant des siècles, l'intérieur de cette chapelle a été blanc. De la chaux,
 
 <break time="4s"/>
 
-En 1936, on décide de restaurer. On gratte. Et sous la chaux apparaissent des fresques du XVIe siècle : une Vierge qui ouvre son manteau pour abriter les fidèles, des scènes peintes à même l'enduit par un atelier dont on ne sait presque rien. Quatre cents ans passés sous une couche de blanc, à trois mètres de gens qui venaient prier là toutes les semaines.
+En 1936, on décide de restaurer. On gratte. Et sous la chaux apparaissent des fresques du seizième siècle : une Vierge qui ouvre son manteau pour abriter les fidèles, des scènes peintes à même l'enduit par un atelier dont on ne sait presque rien. Quatre cents ans passés sous une couche de blanc, à trois mètres de gens qui venaient prier là toutes les semaines.
 
 <break time="5s"/>
 
-Si elle est ouverte, entre. Sinon, ce n'est pas grave : garde l'idée. Une main a peint ça au XVIe siècle, d'autres mains l'ont recouverte, d'autres encore l'ont retrouvée. Le geste a survécu à tout le monde. C'est exactement ce qui se passait aux Collettes, quatre siècles plus tard.
+Si elle est ouverte, entre. Sinon, ce n'est pas grave : garde l'idée. Une main a peint ça au seizième siècle, d'autres mains l'ont recouverte, d'autres encore l'ont retrouvée. Le geste a survécu à tout le monde. C'est exactement ce qui se passait aux Collettes, quatre siècles plus tard.
 
 <break time="4s"/>
 

@@ -21,7 +21,7 @@ Reviens en arrière.
 
 1500. Grasse est une ville médiévale, sale, tannière, populeuse. Quinze mille habitants. La principale industrie, c'est le cuir. Les peaux arrivent par les ports — Toulon, Antibes — et montent jusqu'ici parce que la ville a deux choses indispensables : de l'eau pure pour le rinçage, et un soleil sec pour le séchage. La rue d'à côté, juste derrière toi, s'appelle encore "rue des Maccaronis" — du nom des battoirs en bois qu'on utilisait pour assouplir le cuir.
 
-À cette époque, Grasse pue. Sincèrement. Les voyageurs italiens du XVIe siècle écrivent, dans leurs carnets, qu'ils sentent la ville à plusieurs lieues de distance. Et ce n'est pas un compliment. Le tannage, ça utilise de l'urine, du fiente, de la chaux vive. Une odeur acide, qui pique les yeux, qui imprègne tout. Les rues sont jonchées de carcasses, de poils, de morceaux de peau qu'on laisse au caniveau.
+À cette époque, Grasse pue. Sincèrement. Les voyageurs italiens du seizième siècle écrivent, dans leurs carnets, qu'ils sentent la ville à plusieurs lieues de distance. Et ce n'est pas un compliment. Le tannage, ça utilise de l'urine, du fiente, de la chaux vive. Une odeur acide, qui pique les yeux, qui imprègne tout. Les rues sont jonchées de carcasses, de poils, de morceaux de peau qu'on laisse au caniveau.
 
 <break time="3s"/>
 
@@ -73,7 +73,7 @@ Voilà pourquoi je voulais te raconter ça ici. Parce que la Place aux Aires, o�
 
 Une dernière chose avant qu'on bouge.
 
-Au XIXe siècle, Grasse va connaître son apogée. L'industrialisation arrive. Les distilleries se mécanisent. La ville passe de quelques milliers à plus de vingt mille habitants. Toutes les grandes maisons que tu connais aujourd'hui — Roure, Chiris, Robertet, Givaudan — fondent ici leurs ateliers. Les grandes marques parisiennes, Guerlain, Houbigant, Coty, n'ont pas leur propre champ ; elles achètent leurs essences ici. Sans Grasse, pas de Guerlain. Sans Grasse, pas de Chanel N°5.
+Au dix-neuvième siècle, Grasse va connaître son apogée. L'industrialisation arrive. Les distilleries se mécanisent. La ville passe de quelques milliers à plus de vingt mille habitants. Toutes les grandes maisons que tu connais aujourd'hui — Roure, Chiris, Robertet, Givaudan — fondent ici leurs ateliers. Les grandes marques parisiennes, Guerlain, Houbigant, Coty, n'ont pas leur propre champ ; elles achètent leurs essences ici. Sans Grasse, pas de Guerlain. Sans Grasse, pas de Chanel N°5.
 
 Et aujourd'hui encore — c'est ce qui est presque incroyable — alors que l'industrie chimique a permis de fabriquer du parfum synthétique partout, alors que la concurrence est venue d'Inde, de Bulgarie, du Maroc — Grasse reste le centre mondial du parfum naturel. Sept cents personnes y travaillent encore dans le secteur. Le savoir-faire est inscrit, depuis 2018, au patrimoine immatériel de l'UNESCO.
 

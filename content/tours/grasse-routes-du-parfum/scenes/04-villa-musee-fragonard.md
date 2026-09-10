@@ -9,7 +9,7 @@
 
 Tu es devant. Lève les yeux sur la façade.
 
-Un hôtel particulier provençal, simple en apparence. Crépi ocre, volets bleu fanés, six fenêtres au premier étage. Rien d'extravagant. On dirait une maison de notable de province. Et pourtant, à l'intérieur, il y a quelques-uns des plus beaux tableaux du XVIIIe siècle français.
+Un hôtel particulier provençal, simple en apparence. Crépi ocre, volets bleu fanés, six fenêtres au premier étage. Rien d'extravagant. On dirait une maison de notable de province. Et pourtant, à l'intérieur, il y a quelques-uns des plus beaux tableaux du dix-huitième siècle français.
 
 <break time="3s"/>
 
@@ -49,7 +49,7 @@ Ces toiles sont les originales. Pas des copies. Quand tu te tiendras à un mètr
 
 Il y a une chose qu'il faut savoir avant d'entrer.
 
-Quand Fragonard meurt à Paris, en 1806, il est complètement oublié. Personne ne va à son enterrement. Pendant tout le XIXe siècle, on le considère comme un peintre frivole, démodé, indigne. Ce n'est qu'au début du XXe siècle qu'on le redécouvre. Et aujourd'hui, ses tableaux valent des fortunes — un seul, Le Verrou, a été acheté par le Louvre il y a quelques années pour quarante millions d'euros.
+Quand Fragonard meurt à Paris, en 1806, il est complètement oublié. Personne ne va à son enterrement. Pendant tout le dix-neuvième siècle, on le considère comme un peintre frivole, démodé, indigne. Ce n'est qu'au début du vingtième siècle qu'on le redécouvre. Et aujourd'hui, ses tableaux valent des fortunes — un seul, Le Verrou, a été acheté par le Louvre il y a quelques années pour quarante millions d'euros.
 
 Et toi, là, ici, gratuitement, tu vas voir quatorze tableaux de lui. Sans foule. Sans queue. Dans la maison où ils ont été accrochés par sa main.
 

@@ -51,7 +51,7 @@ Pas une odeur de boutique — chargée, mélangée. Une odeur de matière brute.
 
 Et puis tu sentiras autre chose, dans la pièce d'à côté. Quelque chose de beaucoup plus rare. L'enfleurage à froid.
 
-L'enfleurage à froid, c'est une technique qui date du XVIIIe siècle. Elle ne se pratique presque plus nulle part. À Grasse, on la garde vivante, comme on garderait une langue ancienne.
+L'enfleurage à froid, c'est une technique qui date du dix-huitième siècle. Elle ne se pratique presque plus nulle part. À Grasse, on la garde vivante, comme on garderait une langue ancienne.
 
 Voilà comment ça marche. Certaines fleurs — le jasmin, la tubéreuse, la jonquille — sont trop fragiles pour la distillation. La chaleur tue leur parfum. Alors les anciens ont trouvé autre chose. Ils prenaient une plaque de verre. Ils l'enduisaient d'une couche de graisse — de la graisse animale, propre et inodore. Et chaque matin, sur cette graisse, ils posaient à la main, fleur par fleur, les pétales cueillis dans la nuit.
 

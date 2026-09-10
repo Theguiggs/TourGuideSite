@@ -1,0 +1,87 @@
+{
+  "slug": "vence-matisse-lumiere",
+  "titre": "Vence — Matisse et la Lumière Ultime",
+  "ville": "Vence",
+  "boite": [43.715, 7.095, 43.735, 7.125],
+  "note": "boite = [lat_min, lng_min, lat_max, lng_max] — vieille ville et avenue Henri-Matisse.",
+  "pois": [
+    {
+      "n": 1,
+      "titre": "Place du Grand Jardin",
+      "fichier": "01-place-du-grand-jardin.md",
+      "position": "sous les platanes de la place, face à l'entrée de la vieille ville",
+      "desc": "L'altitude, l'air sec, et la ville de convalescence où l'on venait respirer.",
+      "osm": { "nominatim": ["Place du Grand Jardin, Vence"], "nom": "Place du Grand Jardin" },
+      "lat": null, "lng": null, "precision": null, "source": null
+    },
+    {
+      "n": 2,
+      "titre": "Château de Villeneuve",
+      "fichier": "02-chateau-de-villeneuve.md",
+      "position": "devant la façade, assez en arrière pour voir la tour de guet à côté",
+      "desc": "Une tour médiévale, une demeure adossée, et de l'art moderne accroché dessus : la ville qui s'en sert.",
+      "osm": {
+        "nominatim": ["Château de Villeneuve, Vence", "Fondation Émile Hugues, Vence"],
+        "nom": "Château de Villeneuve"
+      },
+      "lat": null, "lng": null, "precision": null, "source": null
+    },
+    {
+      "n": 3,
+      "titre": "Place du Peyra",
+      "fichier": "03-place-du-peyra.md",
+      "position": "près de la fontaine, au centre de la place",
+      "desc": "Le forum romain devenu place de marché, et le banc d'où Matisse regardait.",
+      "osm": { "nominatim": ["Place du Peyra, Vence"], "nom": "Place du Peyra" },
+      "lat": null, "lng": null, "precision": null, "source": null
+    },
+    {
+      "n": 4,
+      "titre": "Cathédrale de la Nativité-de-Marie",
+      "fichier": "04-cathedrale-de-la-nativite.md",
+      "position": "dans la nef, puis dans le baptistère sur le côté",
+      "desc": "Les miséricordes moqueuses des stalles, et la mosaïque de Chagall dans une église catholique.",
+      "osm": {
+        "nominatim": ["Cathédrale de la Nativité-de-Marie, Vence", "Cathédrale de Vence"],
+        "nom": "Cathédrale de la Nativité-de-Marie de Vence"
+      },
+      "lat": null, "lng": null, "precision": null, "source": null
+    },
+    {
+      "n": 5,
+      "titre": "Porte du Signadour",
+      "fichier": "05-porte-du-signadour.md",
+      "position": "sous la voûte de la porte, une main sur la pierre",
+      "desc": "Deux mille ans dans le même périmètre, et le seuil comme sujet de peinture.",
+      "osm": {
+        "nominatim": ["Porte du Signadour, Vence", "Portail du Signadour, Vence"],
+        "nom": "Porte du Signadour"
+      },
+      "lat": null, "lng": null, "precision": null, "source": null
+    },
+    {
+      "n": 6,
+      "titre": "Villa Le Rêve",
+      "fichier": "06-villa-le-reve.md",
+      "position": "sur le trottoir devant la villa — l'intérieur ne se visite pas librement",
+      "desc": "Six années noires, et la demande d'une dominicaine à laquelle il a fini par dire oui.",
+      "osm": {
+        "nominatim": ["Villa Le Rêve, Vence", "261 Avenue Henri Matisse, Vence"],
+        "nom": "Villa Le Rêve"
+      },
+      "lat": null, "lng": null, "precision": null, "source": null
+    },
+    {
+      "n": 7,
+      "titre": "Chapelle du Rosaire",
+      "fichier": "07-chapelle-du-rosaire.md",
+      "position": "dehors face à la façade blanche, puis assis à l'intérieur si elle est ouverte",
+      "desc": "Le charbon au bout d'une perche de bambou, et une machine à lumière signée par un athée.",
+      "osm": {
+        "nominatim": ["Chapelle du Rosaire, Vence", "Chapelle Matisse, Vence"],
+        "nom": "Chapelle du Rosaire"
+      },
+      "lat": null, "lng": null, "precision": null, "source": null
+    }
+  ]
+}

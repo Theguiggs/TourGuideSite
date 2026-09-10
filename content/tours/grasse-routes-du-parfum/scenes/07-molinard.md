@@ -41,7 +41,7 @@ C'était un geste rare. Beaucoup de patrons traitaient les paysans avec mépris.
 
 Deuxième point. Coco Chanel.
 
-Au début du XXe siècle, une jeune couturière encore peu connue, qui s'appelle Gabrielle Chanel, prend un train pour venir à Grasse. Elle veut créer un parfum. Elle visite plusieurs maisons. Et c'est ici, chez Molinard, qu'elle commande son tout premier essai — pas le N°5, c'est venu après — mais le tout premier parfum estampillé Chanel, un truc qui s'appelait Bois des Îles. La formule originale, signée par le nez Molinard de l'époque, est encore conservée dans les archives. Quelque part, dans un coffre, à dix mètres au-dessus de ta tête, il y a une feuille de papier où c'est écrit à la plume.
+Au début du vingtième siècle, une jeune couturière encore peu connue, qui s'appelle Gabrielle Chanel, prend un train pour venir à Grasse. Elle veut créer un parfum. Elle visite plusieurs maisons. Et c'est ici, chez Molinard, qu'elle commande son tout premier essai — pas le N°5, c'est venu après — mais le tout premier parfum estampillé Chanel, un truc qui s'appelait Bois des Îles. La formule originale, signée par le nez Molinard de l'époque, est encore conservée dans les archives. Quelque part, dans un coffre, à dix mètres au-dessus de ta tête, il y a une feuille de papier où c'est écrit à la plume.
 
 <break time="3s"/>
 

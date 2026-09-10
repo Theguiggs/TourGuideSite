@@ -12,6 +12,7 @@
 //              au maximum par visite
 //   en-tête    chaque scène déclare durée, position d'écoute, ton, format
 //   ssml       seul `<break time="Xs"/>` est admis, et jamais plus de 10 s
+//   ttsn       ni chiffre romain ni balise HTML dans le corps : le TTS lit tout
 //   tutoiement le vouvoiement dans le corps d'une scène est une erreur
 //   gps        chaque POI a une coordonnée résolue ET sa provenance OSM
 //   cohérence  autant de scènes que de POIs, et les mêmes noms de fichier
@@ -99,6 +100,18 @@ function verifieScene(chemin, nomFichier) {
     } else if (Number(m[1]) > 10) {
       pbs.push(['erreur', `pause de ${m[1]} s : Azure tronque au-delà de 10 s`]);
     }
+  }
+
+  // ── Pièges TTS ──
+  // Le TTS lit tout ce qui est dans le corps. Un siècle en chiffres romains
+  // sort en « X V I e siècle », et une balise HTML sort en toutes lettres.
+  const romain = corps.match(/\b[IVX]{1,5}(?:e|ème|ᵉ)\b/);
+  if (romain) {
+    pbs.push(['erreur', `chiffre romain « ${romain[0]} » : à écrire en toutes lettres, le TTS l'épellerait`]);
+  }
+  const siecleChiffre = corps.match(/\b\d{1,2}(?:e|ème)\s+siècle\b/i);
+  if (siecleChiffre) {
+    pbs.push(['erreur', `« ${siecleChiffre[0]} » : à écrire en toutes lettres`]);
   }
 
   // ── Tutoiement ──

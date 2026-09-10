@@ -49,11 +49,11 @@ Souviens-toi de ça, parce que ça change tout. Le parfum n'a pas commencé dans
 
 <break time="5s"/>
 
-Le deuxième objet — tu le trouveras au second étage. C'est une cassette à parfum du XVIIIe siècle.
+Le deuxième objet — tu le trouveras au second étage. C'est une cassette à parfum du dix-huitième siècle.
 
 Imagine. Un petit coffret en cuir rouge, doublé de velours, avec une douzaine de fioles encastrées à l'intérieur. Chaque fiole a son bouchon ciselé, son étiquette manuscrite. C'est l'objet d'une grande dame. Madame de Pompadour, par exemple. Ou la reine Marie-Antoinette.
 
-Au XVIIIe siècle, à Versailles, on ne se lave pas. Ou alors très peu, et toujours avec méfiance. L'eau, croit-on, ouvre les pores et fait entrer la maladie. Alors les dames se nettoient à sec — avec du linge, des poudres. Et elles se noient dans le parfum. Plusieurs fois par jour. Sur la peau, sur les vêtements, dans les cheveux, dans les éventails. Une duchesse de Bourbon disait qu'elle se changeait de parfum comme on change de robe — sept fois entre le matin et le soir.
+Au dix-huitième siècle, à Versailles, on ne se lave pas. Ou alors très peu, et toujours avec méfiance. L'eau, croit-on, ouvre les pores et fait entrer la maladie. Alors les dames se nettoient à sec — avec du linge, des poudres. Et elles se noient dans le parfum. Plusieurs fois par jour. Sur la peau, sur les vêtements, dans les cheveux, dans les éventails. Une duchesse de Bourbon disait qu'elle se changeait de parfum comme on change de robe — sept fois entre le matin et le soir.
 
 <break time="3s"/>
 
@@ -63,7 +63,7 @@ Et où vient le contenu de toutes ces fioles ? Ici. De ces collines que tu as vu
 
 <break time="4s"/>
 
-Tu as remarqué, dans les peintures de cette époque, ces dames qui tiennent toujours à la main un petit objet rond, qu'elles approchent de leur visage ? On appelle ça une pomme d'ambre, ou une vinaigrette. C'est un médaillon ajouré, qui contient une éponge imprégnée de parfum fort. Quand on traverse une rue qui sent mauvais — et au XVIIIe siècle, toutes les rues sentent mauvais — on porte ça sous le nez. C'est le précurseur du masque chirurgical. Sauf qu'au lieu de filtrer, ça remplace.
+Tu as remarqué, dans les peintures de cette époque, ces dames qui tiennent toujours à la main un petit objet rond, qu'elles approchent de leur visage ? On appelle ça une pomme d'ambre, ou une vinaigrette. C'est un médaillon ajouré, qui contient une éponge imprégnée de parfum fort. Quand on traverse une rue qui sent mauvais — et au dix-huitième siècle, toutes les rues sentent mauvais — on porte ça sous le nez. C'est le précurseur du masque chirurgical. Sauf qu'au lieu de filtrer, ça remplace.
 
 <break time="5s"/>
 
