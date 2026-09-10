@@ -162,17 +162,35 @@ describe('RecordPage guide recording pipeline', () => {
     },
   );
 
-  it('uploads once, persists the S3 key as recording, and refreshes playback', async () => {
+  it('keeps the take as a draft until the guide explicitly saves it for the scene', async () => {
     mockGetStudioSession.mockResolvedValue(session('recording'));
     render(<RecordPage />);
     fireEvent.click(await screen.findByTestId('complete-recording'));
 
+    expect(await screen.findByText(/Prise 1 prête/i)).toBeInTheDocument();
+    expect(mockUploadAudio).not.toHaveBeenCalled();
+    expect(mockUpdateSceneAudio).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByTestId('save-selected-take'));
     await waitFor(() => expect(mockUploadAudio).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(mockUpdateSceneAudio).toHaveBeenCalledWith(
       'scene-1', 'guide-studio/id/session-1/audio/scene-1.webm', 'session-1', 0, 'recording',
     ));
     expect(await screen.findByText(/associée à la scène/i)).toBeInTheDocument();
     expect(screen.getByTestId('play-saved-audio')).toBeInTheDocument();
+  });
+
+  it('keeps several recordings available before the selected take is saved', async () => {
+    mockGetStudioSession.mockResolvedValue(session('recording'));
+    render(<RecordPage />);
+    const completeRecording = await screen.findByTestId('complete-recording');
+
+    fireEvent.click(completeRecording);
+    fireEvent.click(completeRecording);
+
+    expect(useRecordingStore.getState().getSceneTakes('scene-1')).toHaveLength(2);
+    expect(await screen.findByText(/Prise 2 prête/i)).toBeInTheDocument();
+    expect(mockUploadAudio).not.toHaveBeenCalled();
   });
 
   it('wires the prompter primary action directly to microphone recording', async () => {
@@ -193,6 +211,7 @@ describe('RecordPage guide recording pipeline', () => {
       .mockResolvedValueOnce({ ok: true });
     render(<RecordPage />);
     fireEvent.click(await screen.findByTestId('complete-recording'));
+    fireEvent.click(screen.getByTestId('save-selected-take'));
 
     expect(await screen.findByText('AppSync indisponible')).toBeInTheDocument();
     fireEvent.click(screen.getByTestId('save-selected-take'));
@@ -207,6 +226,7 @@ describe('RecordPage guide recording pipeline', () => {
     jest.spyOn(window, 'confirm').mockReturnValueOnce(false);
     render(<RecordPage />);
     fireEvent.click(await screen.findByTestId('complete-recording'));
+    fireEvent.click(screen.getByTestId('save-selected-take'));
 
     expect(await screen.findByText(/Audio existant conservé/i)).toBeInTheDocument();
     expect(mockUploadAudio).not.toHaveBeenCalled();
@@ -221,6 +241,7 @@ describe('RecordPage guide recording pipeline', () => {
     }));
     render(<RecordPage />);
     fireEvent.click(await screen.findByTestId('complete-recording'));
+    fireEvent.click(screen.getByTestId('save-selected-take'));
 
     await waitFor(() => expect(mockUploadAudio).toHaveBeenCalledTimes(1));
     const returnLink = screen.getByRole('link', { name: /Retour à la session/i });
@@ -236,6 +257,7 @@ describe('RecordPage guide recording pipeline', () => {
     mockUploadAudio.mockRejectedValueOnce(new Error('network crash'));
     render(<RecordPage />);
     fireEvent.click(await screen.findByTestId('complete-recording'));
+    fireEvent.click(screen.getByTestId('save-selected-take'));
 
     expect(await screen.findByText(/prise est conservée pour réessayer/i)).toBeInTheDocument();
     expect(screen.getByTestId('save-selected-take')).toBeInTheDocument();

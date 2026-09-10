@@ -44,6 +44,7 @@ export default function RecordPage() {
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [uploadPercent, setUploadPercent] = useState(0);
   const [persistedTakeIds, setPersistedTakeIds] = useState<Set<string>>(() => new Set());
+  const [savedTakeIdByScene, setSavedTakeIdByScene] = useState<Record<string, string>>({});
   const uploadedKeysRef = useRef(new Map<string, string>());
   const replacementConfirmedRef = useRef(new Set<string>());
   const persistenceInFlightRef = useRef(false);
@@ -52,6 +53,7 @@ export default function RecordPage() {
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
   const takes = useRecordingStore((state) => state.takes);
+  const selectedTakeId = useRecordingStore((state) => activeSceneId ? state.selectedTakeId[activeSceneId] : null);
   const recorderState = useRecordingStore((state) => state.recorderState);
 
   const activeScene = scenes.find((s) => s.id === activeSceneId) ?? null;
@@ -190,6 +192,7 @@ export default function RecordPage() {
         updatedAt: new Date().toISOString(),
       } : item));
       setPersistedTakeIds((current) => new Set(current).add(take.id));
+      setSavedTakeIdByScene((current) => ({ ...current, [scene.id]: take.id }));
       setSaveState('saved');
       setSaveMessage('Prise enregistrée et associée à la scène.');
     } catch (e) {
@@ -203,16 +206,14 @@ export default function RecordPage() {
   }, [persistedTakeIds, sessionId]);
 
   const handleRecordingComplete = useCallback((sceneId: string, take: Take) => {
-    const scene = scenes.find((item) => item.id === sceneId);
-    if (!scene) {
-      setSaveState('error');
-      setSaveMessage('Scène introuvable. La prise est conservée pour réessayer.');
-      return;
-    }
-    void persistTake(scene, take);
-  }, [persistTake, scenes]);
+    const sceneTakes = useRecordingStore.getState().getSceneTakes(sceneId);
+    const takeNumber = sceneTakes.findIndex((item) => item.id === take.id) + 1;
+    setSaveState('idle');
+    setUploadPercent(0);
+    setSaveMessage(`Prise ${takeNumber || sceneTakes.length} prête. Écoutez vos essais puis choisissez celle à enregistrer pour la scène.`);
+  }, []);
 
-  const retrySelectedTake = useCallback(() => {
+  const saveSelectedTake = useCallback(() => {
     if (!activeScene) return;
     const take = useRecordingStore.getState().getSelectedTake(activeScene.id);
     if (!take) {
@@ -381,18 +382,22 @@ export default function RecordPage() {
                 onRecordingComplete={handleRecordingComplete}
                 showControls={false}
               />
-              <TakesList sceneId={activeSceneId} />
+              <TakesList sceneId={activeSceneId} savedTakeId={savedTakeIdByScene[activeSceneId]} />
               <FileImport sceneId={activeSceneId} />
             </fieldset>
             {(takes[activeSceneId]?.length ?? 0) > 0 && (
               <button
                 type="button"
-                onClick={retrySelectedTake}
-                disabled={isSavingAudio || isRecording}
+                onClick={saveSelectedTake}
+                disabled={isSavingAudio || isRecording || selectedTakeId === savedTakeIdByScene[activeSceneId]}
                 className="rounded-full bg-grenadine px-4 py-2 text-sm font-semibold text-paper disabled:opacity-50"
                 data-testid="save-selected-take"
               >
-                {saveState === 'error' ? 'Réessayer avec la même prise' : 'Enregistrer la prise sélectionnée'}
+                {selectedTakeId === savedTakeIdByScene[activeSceneId]
+                  ? 'Cette prise est enregistrée pour la scène'
+                  : saveState === 'error'
+                    ? 'Réessayer avec la prise sélectionnée'
+                    : 'Enregistrer la prise sélectionnée pour la scène'}
               </button>
             )}
             {saveState === 'uploading' && (
