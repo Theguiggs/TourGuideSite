@@ -1,0 +1,129 @@
+{
+  "slug": "cagnes-mains-de-renoir",
+  "titre": "Cagnes — Les Mains de Renoir",
+  "ville": "Cagnes-sur-Mer",
+  "boite": [43.655, 7.135, 43.675, 7.165],
+  "note": "boite = [lat_min, lng_min, lat_max, lng_max] — des Collettes au Haut-de-Cagnes.",
+  "pois": [
+    {
+      "n": 1,
+      "titre": "Chemin des Collettes — la grille du domaine",
+      "fichier": "01-grille-des-collettes.md",
+      "position": "devant la grille d'entrée du domaine, sur le chemin, avant d'acheter le billet",
+      "desc": "Un homme de soixante-six ans achète un champ pour empêcher qu'on abatte ses oliviers.",
+      "osm": {
+        "nominatim": ["Musée Renoir, Cagnes-sur-Mer", "Chemin des Collettes, Cagnes-sur-Mer"],
+        "nom": "Musée Renoir"
+      },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 2,
+      "titre": "L'oliveraie des Collettes",
+      "fichier": "02-oliveraie.md",
+      "position": "dans l'oliveraie, sous les arbres, à mi-chemin entre la grille et la maison",
+      "desc": "Les arbres qu'il a sauvés, et la lumière qui passe au travers : le motif, littéralement.",
+      "osm": {
+        "nominatim": ["Domaine des Collettes, Cagnes-sur-Mer", "Musée Renoir, Cagnes-sur-Mer"],
+        "nom": "Musée Renoir"
+      },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 3,
+      "titre": "L'atelier de Renoir",
+      "fichier": "03-atelier.md",
+      "position": "dans l'atelier du premier étage, devant le fauteuil roulant et le chevalet",
+      "desc": "Les mains déformées, le pinceau glissé entre les doigts, et douze ans de travail quand même.",
+      "osm": { "nominatim": ["Musée Renoir, Cagnes-sur-Mer"], "nom": "Musée Renoir" },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 4,
+      "titre": "Les sculptures — Renoir et Richard Guino",
+      "fichier": "04-guino-sculptures.md",
+      "position": "devant les sculptures exposées dans le domaine, au rez-de-chaussée ou au jardin",
+      "desc": "Sculpter par mains interposées : Renoir dirige, Guino exécute, et la justice tranchera.",
+      "osm": { "nominatim": ["Musée Renoir, Cagnes-sur-Mer"], "nom": "Musée Renoir" },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 5,
+      "titre": "Chapelle Notre-Dame-de-Protection",
+      "fichier": "05-chapelle-notre-dame-de-protection.md",
+      "position": "sur le petit parvis de la chapelle, face à la porte, avant d'attaquer la montée",
+      "desc": "Des fresques du XVIe siècle retrouvées sous la chaux en 1936 : la ville qui ne jette rien.",
+      "osm": {
+        "nominatim": [
+          "Chapelle Notre-Dame-de-Protection, Cagnes-sur-Mer",
+          "Chapelle Notre Dame de Protection, Cagnes-sur-Mer"
+        ],
+        "nom": "Chapelle Notre-Dame-de-Protection"
+      },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 6,
+      "titre": "Montée de la Bourgade",
+      "fichier": "06-montee-de-la-bourgade.md",
+      "position": "à mi-pente de la montée, sur les marches, dos au bas du village",
+      "desc": "La calade qui monte au château : un village bâti pour qu'on y monte lentement.",
+      "osm": {
+        "nominatim": ["Montée de la Bourgade, Cagnes-sur-Mer"],
+        "nom": "Montée de la Bourgade"
+      },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 7,
+      "titre": "Place du Château — la façade",
+      "fichier": "07-place-du-chateau.md",
+      "position": "sur la place, à une dizaine de mètres de la façade, pour l'embrasser en entier",
+      "desc": "Une forteresse d'amiral devenue palais : Rainier Grimaldi vers 1300, Jean-Henri en 1620.",
+      "osm": {
+        "nominatim": [
+          "Château-musée Grimaldi, Cagnes-sur-Mer",
+          "Château Grimaldi, Haut-de-Cagnes"
+        ],
+        "nom": "Château-musée Grimaldi"
+      },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    },
+    {
+      "n": 8,
+      "titre": "Le château — Phaéton et les quarante Suzy Solidor",
+      "fichier": "08-phaeton-et-solidor.md",
+      "position": "dans la grande salle, sous le plafond peint, puis dans la salle des portraits",
+      "desc": "Un ciel en trompe-l'œil de 1624, et quarante fois le même visage par quarante mains.",
+      "osm": {
+        "nominatim": ["Château-musée Grimaldi, Cagnes-sur-Mer"],
+        "nom": "Château-musée Grimaldi"
+      },
+      "lat": null,
+      "lng": null,
+      "precision": null,
+      "source": null
+    }
+  ]
+}
