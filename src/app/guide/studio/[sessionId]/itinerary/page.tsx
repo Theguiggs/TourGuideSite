@@ -752,8 +752,9 @@ export default function ItineraryPage() {
                 )}
               </div>
               <div className="grid grid-cols-2 gap-2">
-                <WizField label="Latitude">
+                <WizField label="Latitude" htmlFor={`edit-latitude-${scene.id}`}>
                   <WizInput
+                    id={`edit-latitude-${scene.id}`}
                     type="text"
                     value={editForm.latitude}
                     onChange={(e) =>
@@ -762,8 +763,9 @@ export default function ItineraryPage() {
                     placeholder="ex : 43.7220"
                   />
                 </WizField>
-                <WizField label="Longitude">
+                <WizField label="Longitude" htmlFor={`edit-longitude-${scene.id}`}>
                   <WizInput
+                    id={`edit-longitude-${scene.id}`}
                     type="text"
                     value={editForm.longitude}
                     onChange={(e) =>
