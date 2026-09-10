@@ -18,6 +18,8 @@ jobs:
         with:
           node-version: 24
       - run: npm ci --ignore-scripts
-      - name: Write amplify_outputs.json
-        run: echo "${{ secrets.AMPLIFY_OUTPUTS_B64 }}" | base64 -d > amplify_outputs.json
+      - name: Validate committed Amplify outputs
+        run: |
+          test -s amplify_outputs.json
+          node -e "const d=require('./amplify_outputs.json'); if (!d.data?.url) process.exit(1)"
       - run: node scripts/cleanup-e2e-data.mjs

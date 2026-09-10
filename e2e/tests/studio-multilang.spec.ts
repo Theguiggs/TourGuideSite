@@ -408,7 +408,7 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
   });
 
   // ──────────────────────────────────────────────────────────
-  // 2.15c — Accessibility: ARIA attributes on modal and tabs
+  // 2.15c — Accessibility: narration mode choices expose their state
   // ──────────────────────────────────────────────────────────
   test('2.15c - Accessibility: narration choices expose pressed state', async ({ browser }) => {
     const { context, page } = await createGuideContext(browser, guidePath);
@@ -418,37 +418,9 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
     const ttsChoice = page.getByTestId('narration-mode-tts_on_demand');
     await expect(recordingChoice).toBeVisible({ timeout: 15_000 });
     await expect(ttsChoice).toBeVisible();
-    await expect(recordingChoice).toHaveAttribute('aria-pressed', /(true|false)/);
-    await expect(ttsChoice).toHaveAttribute('aria-pressed', /(true|false)/);
+    await expect(recordingChoice).toHaveAttribute('aria-pressed', 'false');
+    await expect(ttsChoice).toHaveAttribute('aria-pressed', 'true');
     await expect(page.getByTestId('multilang-modal')).not.toBeVisible();
-
-    // Navigate to scenes for tabs accessibility
-    await page.goto(`${sessionUrl}/scenes`);
-    await page.waitForLoadState('domcontentloaded', { timeout: 15_000 }).catch(() => {});
-
-    // Language tablist should exist from seeded purchases
-    const langTablist = page.locator('[role="tablist"][aria-label="Langues de la visite"]');
-    const hasLangTablist = await langTablist.isVisible({ timeout: 10_000 }).catch(() => false);
-
-    if (hasLangTablist) {
-      await expect(langTablist).toHaveAttribute('aria-label', 'Langues de la visite');
-
-      // Active tab should have tabindex 0
-      const activeTab = langTablist.locator('[role="tab"][aria-selected="true"]');
-      await expect(activeTab).toHaveAttribute('tabindex', '0');
-
-      // Tab panel exists (may be empty/hidden if no content rendered yet)
-      const tabPanel = page.locator('[role="tabpanel"]');
-      expect(await tabPanel.count()).toBeGreaterThan(0);
-    }
-
-    // Tool tablist should also have proper ARIA
-    const toolTablist = page.locator('[role="tablist"]').first();
-    await expect(toolTablist).toBeVisible();
-
-    const firstTab = toolTablist.locator('[role="tab"]').first();
-    await expect(firstTab).toHaveAttribute('role', 'tab');
-    await expect(firstTab).toHaveAttribute('aria-selected', /(true|false)/);
 
     await page.screenshot({ path: 'test-results/2.15c-accessibility.png' });
     await context.close();

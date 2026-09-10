@@ -10,9 +10,9 @@ frontend:
         - "git clone --depth 1 https://${GITHUB_PAT}@github.com/Theguiggs/TourGuideApp.git /tmp/TourGuideApp"
         - "(cd /tmp/TourGuideApp && npm install --no-save @aws-amplify/backend 2>/dev/null || true)"
         - "ln -sf /tmp/TourGuideApp ../TourGuideApp"
-        - "echo === Writing amplify_outputs.json ==="
-        - "printf '%s' \"$AMPLIFY_OUTPUTS_B64\" | base64 -d | gunzip > amplify_outputs.json"
-        - "echo amplify_outputs.json written"
+        - "echo === Validating versioned amplify_outputs.json ==="
+        - "test -s amplify_outputs.json"
+        - "node -e \"const d=require('./amplify_outputs.json'); if (!d.data?.url || !d.data?.model_introspection?.models?.StudioSession?.fields?.narrationMode) process.exit(1)\""
         - "npm install"
     build:
       commands:
