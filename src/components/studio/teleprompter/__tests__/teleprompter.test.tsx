@@ -4,6 +4,7 @@ import { Teleprompter } from '../teleprompter';
 
 // Mock scrolling methods (not available in jsdom)
 Element.prototype.scrollBy = jest.fn();
+Element.prototype.scrollTo = jest.fn();
 
 // Mock requestAnimationFrame
 beforeEach(() => {
@@ -68,6 +69,33 @@ describe('Teleprompter', () => {
   it('renders start button', () => {
     render(<Teleprompter text={SAMPLE_TEXT} />);
     expect(screen.getByTestId('prompter-start')).toBeInTheDocument();
+  });
+
+  it('places the controls before the reading area', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    const controls = screen.getByTestId('prompter-controls');
+    const readingArea = screen.getByTestId('prompter-scroll-area');
+
+    expect(controls.compareDocumentPosition(readingArea) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it('returns to the beginning on every fresh start', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    const readingArea = screen.getByTestId('prompter-scroll-area');
+
+    fireEvent.click(screen.getByTestId('prompter-start'));
+
+    expect(readingArea.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'auto' });
+    expect(screen.getByText('Bienvenue')).toHaveAttribute('aria-current', 'true');
+  });
+
+  it('shows reading status and progress', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    expect(screen.getByTestId('prompter-status')).toHaveTextContent('Prêt à lire');
+    expect(screen.getByTestId('prompter-progress')).toHaveStyle({ width: '0%' });
+
+    fireEvent.click(screen.getByTestId('prompter-start'));
+    expect(screen.getByTestId('prompter-status')).toHaveTextContent('Lecture guidée');
   });
 
   it('shows pause button after start', () => {

@@ -79,7 +79,11 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
   }, [autoFollow, bringActiveWordIntoView, state.currentWordIndex, state.isPaused, state.isScrolling]);
 
   const handleStartResume = useCallback(() => {
-    if (!state.isScrolling && !state.isPaused) setAutoFollow(true);
+    const isFreshStart = !state.isScrolling && !state.isPaused;
+    if (isFreshStart) {
+      setAutoFollow(true);
+      scrollRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+    }
     engineRef.current?.start(words.length);
   }, [state.isPaused, state.isScrolling, words.length]);
 
@@ -129,13 +133,121 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
   }, []);
 
   const isActive = state.isScrolling || state.isPaused;
+  const progress = words.length > 1
+    ? Math.round((state.currentWordIndex / (words.length - 1)) * 100)
+    : 0;
+  const readingStatus = state.isPaused
+    ? 'En pause'
+    : state.isScrolling
+      ? autoFollow ? 'Lecture guidée' : 'Défilement libre'
+      : 'Prêt à lire';
 
   return (
-    <div className="flex flex-col h-full" data-testid="teleprompter">
+    <div
+      className="flex h-full flex-col overflow-hidden rounded-xl border border-ink-80 bg-ink shadow-lg"
+      data-testid="teleprompter"
+    >
+      {/* Controls stay above the script so the first line remains visible. */}
+      <div
+        className="flex flex-wrap items-center gap-3 border-b border-paper/10 bg-ink px-4 py-3 sm:px-5"
+        data-testid="prompter-controls"
+      >
+        {!isActive ? (
+          <button
+            type="button"
+            onClick={handleStartResume}
+            className="rounded-lg bg-grenadine px-5 py-2.5 font-semibold text-white transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
+            data-testid="prompter-start"
+          >
+            ▶ Démarrer
+          </button>
+        ) : state.isPaused ? (
+          <button
+            type="button"
+            onClick={handleStartResume}
+            className="rounded-lg bg-grenadine px-5 py-2.5 font-semibold text-white transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
+            data-testid="prompter-resume"
+          >
+            ▶ Reprendre
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={handlePause}
+            className="rounded-lg bg-ocre px-5 py-2.5 font-semibold text-ink transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
+            data-testid="prompter-pause"
+          >
+            ⏸ Pause
+          </button>
+        )}
+
+        {isActive && (
+          <button
+            type="button"
+            onClick={handleStop}
+            className="rounded-lg bg-ink-80 px-4 py-2.5 font-semibold text-white transition hover:bg-ink-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
+            data-testid="prompter-stop"
+          >
+            ⏹ Stop
+          </button>
+        )}
+
+        {state.isScrolling && !state.isPaused && !autoFollow && (
+          <button
+            type="button"
+            onClick={resumeAutoFollow}
+            className="rounded-lg border border-ocre px-4 py-2.5 font-semibold text-ocre transition-colors hover:bg-ocre hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
+            data-testid="prompter-follow"
+          >
+            Suivre le texte
+          </button>
+        )}
+
+        <div className="order-last flex w-full items-center gap-3 sm:order-none sm:ml-auto sm:w-auto">
+          <label htmlFor="speed-slider" className="text-sm text-paper-soft">
+            Vitesse
+          </label>
+          <input
+            id="speed-slider"
+            type="range"
+            min={1}
+            max={10}
+            value={state.speed}
+            onChange={handleSpeedChange}
+            className="min-w-0 flex-1 accent-grenadine sm:w-28 sm:flex-none"
+            data-testid="speed-slider"
+          />
+          <span className="w-4 text-center text-sm tabular-nums text-paper-soft">{state.speed}</span>
+          <div
+            className="ml-auto min-w-[4.5rem] text-right font-mono text-lg tabular-nums text-paper sm:ml-2"
+            role="timer"
+            aria-live="off"
+            data-testid="chronometre"
+          >
+            {formatElapsed(state.elapsedMs)}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-3 border-b border-paper/10 px-5 py-2.5 text-xs text-paper-soft">
+        <span className="flex shrink-0 items-center gap-2" role="status" data-testid="prompter-status">
+          <span className={`h-2 w-2 rounded-full ${state.isScrolling && !state.isPaused ? 'bg-ocre' : 'bg-paper/40'}`} />
+          {readingStatus}
+        </span>
+        <div className="h-1 flex-1 overflow-hidden rounded-full bg-paper/10" aria-hidden="true">
+          <div
+            className="h-full rounded-full bg-ocre transition-[width] duration-150 motion-reduce:transition-none"
+            style={{ width: `${progress}%` }}
+            data-testid="prompter-progress"
+          />
+        </div>
+        <span className="w-9 text-right tabular-nums">{progress}%</span>
+      </div>
+
       {/* Teleprompter display */}
       <div
         ref={scrollRef}
-        className="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-ink rounded-lg p-8 relative focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ocre"
+        className="relative min-h-0 flex-1 overflow-y-auto overscroll-contain bg-ink px-5 py-8 scroll-py-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ocre sm:px-10 sm:py-10 sm:scroll-py-10"
         tabIndex={0}
         role="region"
         aria-label="Texte du prompteur"
@@ -145,7 +257,7 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
         onKeyDown={handlePrompterKeyDown}
         data-testid="prompter-scroll-area"
       >
-        <div className="max-w-2xl mx-auto leading-[2.5] text-2xl lg:text-3xl font-medium">
+        <div className="mx-auto max-w-3xl text-left text-2xl font-medium leading-[2.15] sm:text-3xl sm:leading-[2.2]">
           {words.map((word, i) => (
             <span
               key={i}
@@ -160,80 +272,6 @@ export function Teleprompter({ text, onComplete }: TeleprompterProps) {
               {word}
             </span>
           ))}
-        </div>
-      </div>
-
-      {/* Controls bar */}
-      <div className="flex flex-wrap items-center gap-4 p-4 bg-ink rounded-b-lg" data-testid="prompter-controls">
-        {/* Play/Pause/Resume */}
-        {!isActive ? (
-          <button
-            onClick={handleStartResume}
-            className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg transition"
-            data-testid="prompter-start"
-          >
-            ▶ Démarrer
-          </button>
-        ) : state.isPaused ? (
-          <button
-            onClick={handleStartResume}
-            className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg transition"
-            data-testid="prompter-resume"
-          >
-            ▶ Reprendre
-          </button>
-        ) : (
-          <button
-            onClick={handlePause}
-            className="bg-ocre hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg transition"
-            data-testid="prompter-pause"
-          >
-            ⏸ Pause
-          </button>
-        )}
-
-        {isActive && (
-          <button
-            onClick={handleStop}
-            className="bg-ink-80 hover:bg-ink-60 text-white font-medium py-2 px-4 rounded-lg transition"
-            data-testid="prompter-stop"
-          >
-            ⏹ Stop
-          </button>
-        )}
-
-        {state.isScrolling && !state.isPaused && !autoFollow && (
-          <button
-            type="button"
-            onClick={resumeAutoFollow}
-            className="border border-ocre text-ocre hover:bg-ocre hover:text-ink font-medium py-2 px-4 rounded-lg transition-colors"
-            data-testid="prompter-follow"
-          >
-            Suivre le texte
-          </button>
-        )}
-
-        {/* Speed control */}
-        <div className="flex items-center gap-2 ml-auto">
-          <label htmlFor="speed-slider" className="text-xs text-ink-40">
-            Vitesse
-          </label>
-          <input
-            id="speed-slider"
-            type="range"
-            min={1}
-            max={10}
-            value={state.speed}
-            onChange={handleSpeedChange}
-            className="w-24 accent-grenadine"
-            data-testid="speed-slider"
-          />
-          <span className="text-xs text-ink-20 w-4 text-center">{state.speed}</span>
-        </div>
-
-        {/* Chronomètre */}
-        <div className="text-lg font-mono text-paper-soft tabular-nums" role="timer" aria-live="off" data-testid="chronometre">
-          {formatElapsed(state.elapsedMs)}
         </div>
       </div>
     </div>
