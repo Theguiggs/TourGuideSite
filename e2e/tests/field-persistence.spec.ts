@@ -458,10 +458,18 @@ test.describe.serial('Field Persistence', () => {
     await page.goto(`${sessionUrl}/scenes`);
     await page.waitForTimeout(3_000);
 
-    // Verify text persisted
-    await expect(page.getByTestId('scene-editor')).toBeVisible({ timeout: 10_000 });
-    const currentText = await page.getByTestId('scene-editor').inputValue();
-    expect(currentText).toBe(newText);
+    // The session index is eventually consistent after a full browser reload.
+    // Retry the real page read instead of accepting a stale value or masking a
+    // genuinely lost mutation.
+    await expect.poll(async () => {
+      await page.reload();
+      await expect(page.getByTestId('scene-editor')).toBeVisible({ timeout: 10_000 });
+      return page.getByTestId('scene-editor').inputValue();
+    }, {
+      message: 'The confirmed scene text should propagate to a fresh page read',
+      timeout: 30_000,
+      intervals: [2_000, 3_000, 5_000],
+    }).toBe(newText);
 
     await page.screenshot({ path: 'test-results/persist-8-text-cross-page.png' });
     await context.close();
