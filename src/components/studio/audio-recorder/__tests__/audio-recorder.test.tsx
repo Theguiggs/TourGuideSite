@@ -1,10 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { AudioRecorder } from '../audio-recorder';
 import { useRecordingStore } from '@/lib/stores/recording-store';
+import { mediaRecorderService } from '@/lib/studio/media-recorder-service';
 
 describe('AudioRecorder', () => {
   beforeEach(() => {
+    jest.restoreAllMocks();
     useRecordingStore.getState().resetStore();
   });
 
@@ -49,5 +51,33 @@ describe('AudioRecorder', () => {
     useRecordingStore.getState().setDevices([{ deviceId: 'mic-1', label: 'Built-in' }]);
     render(<AudioRecorder sceneId="scene-1" onRecordingComplete={jest.fn()} />);
     expect(screen.queryByTestId('device-select')).not.toBeInTheDocument();
+  });
+
+  it('shows a precise error without entering a false recording state when the microphone API is unavailable', () => {
+    Object.defineProperty(globalThis, 'isSecureContext', { configurable: true, value: false });
+    render(<AudioRecorder sceneId="scene-1" onRecordingComplete={jest.fn()} />);
+    fireEvent.click(screen.getByTestId('permission-btn'));
+    expect(screen.getByTestId('recorder-error')).toHaveTextContent(/HTTPS|localhost/);
+    expect(useRecordingStore.getState().recorderState).toBe('idle');
+    expect(screen.queryByText('Enregistrement...')).not.toBeInTheDocument();
+  });
+
+  it('stores, selects and returns the exact completed take', async () => {
+    const blob = new Blob(['voice'], { type: 'audio/webm' });
+    jest.spyOn(mediaRecorderService, 'stopRecording').mockResolvedValue({
+      ok: true,
+      recording: { blob, mimeType: 'audio/webm', durationMs: 900 },
+    });
+    jest.spyOn(mediaRecorderService, 'getState').mockReturnValue('ready');
+    useRecordingStore.getState().setRecorderState('recording');
+    const onComplete = jest.fn();
+    render(<AudioRecorder sceneId="scene-1" onRecordingComplete={onComplete} />);
+
+    fireEvent.click(screen.getByTestId('stop-record-btn'));
+
+    await screen.findByTestId('record-btn');
+    const selected = useRecordingStore.getState().getSelectedTake('scene-1');
+    expect(selected?.blob).toBe(blob);
+    expect(onComplete).toHaveBeenCalledWith('scene-1', selected);
   });
 });

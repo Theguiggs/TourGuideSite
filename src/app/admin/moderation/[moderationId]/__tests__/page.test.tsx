@@ -62,8 +62,8 @@ const detail: ModerationDetail = {
   descriptionLongue: '', pois: [], guideSubmissionCount: 0, guideApprovalRate: 0,
   isFirstSubmission: true, themes: ['patrimoine'], languePrincipale: 'fr', difficulty: 'facile',
   scenes: [
-    { id: 'scene-1', title: 'Porte basse', order: 1, audioRef: 'fr-1.mp3', photosRefs: [], durationSeconds: 60, latitude: 0, longitude: 0, poiDescription: null, transcriptText: 'Source un.' },
-    { id: 'scene-2', title: 'Porte haute', order: 2, audioRef: 'fr-2.mp3', photosRefs: [], durationSeconds: 60, latitude: 47, longitude: 1, poiDescription: null, transcriptText: 'Source deux.' },
+    { id: 'scene-1', title: 'Porte basse', order: 1, audioRef: 'fr-1.mp3', baseAudioSource: 'recording', photosRefs: [], durationSeconds: 60, latitude: 0, longitude: 0, poiDescription: null, transcriptText: 'Source un.' },
+    { id: 'scene-2', title: 'Porte haute', order: 2, audioRef: 'fr-2.mp3', baseAudioSource: 'recording', photosRefs: [], durationSeconds: 60, latitude: 47, longitude: 1, poiDescription: null, transcriptText: 'Source deux.' },
   ],
   adminComments: [], heroImageUrl: null, coverPhotoKey: 'cover.jpg', contentProvenance: 'ai',
   purchaseType: 'free', priceCents: 0, guideBio: null, guideLanguages: ['fr'], guideTourCount: 1,

@@ -198,7 +198,7 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
   // ---------------------------------------------------------------------------
   // 1.5 — Scenes: TTS generation
   // ---------------------------------------------------------------------------
-  test('1.5 - TTS controls are present and generate button works', async ({ browser }) => {
+  test('1.5 - TTS generation controls are absent from Guide Studio', async ({ browser }) => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
 
@@ -206,52 +206,10 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
     await injectRGPDConsent(page);
     await page.goto(`${sessionUrl}/scenes`);
 
-    // Wait for page load
-    await page.waitForSelector('[data-testid^="tab-"], [data-testid="tts-controls"], [role="tablist"]', {
-      timeout: 15_000,
-    }).catch(() => {});
-
-    // Navigate to TTS tool if present
-    const ttsTool = page.getByTestId('tool-tts');
-    if (await ttsTool.isVisible().catch(() => false)) {
-      await ttsTool.click();
-    }
-
-    // Check for TTS controls
-    const ttsControls = page.getByTestId('tts-controls');
-    const ttsNoText = page.getByTestId('tts-no-text');
-    const ttsGpuUnavailable = page.getByTestId('tts-gpu-unavailable');
-
-    const ttsVisible = await ttsControls.isVisible().catch(() => false);
-    const noTextVisible = await ttsNoText.isVisible().catch(() => false);
-    const gpuUnavailableVisible = await ttsGpuUnavailable.isVisible().catch(() => false);
-
-    if (ttsVisible) {
-      const generateBtn = page.getByTestId('tts-generate-btn');
-      if (await generateBtn.isVisible().catch(() => false)) {
-        await page.screenshot({ path: 'test-results/1.5-tts-generate-ready.png' });
-        await generateBtn.click();
-
-        await page.waitForSelector(
-          '[data-testid="tts-processing"], [data-testid="tts-completed"], [data-testid="tts-failed"]',
-          { timeout: 15_000 },
-        ).catch(() => {});
-
-        await page.screenshot({ path: 'test-results/1.5-tts-after-generate.png' });
-      } else {
-        const ttsCompleted = page.getByTestId('tts-completed');
-        if (await ttsCompleted.isVisible().catch(() => false)) {
-          await expect(page.getByTestId('tts-regenerate-btn')).toBeVisible();
-          await page.screenshot({ path: 'test-results/1.5-tts-already-completed.png' });
-        }
-      }
-    } else if (noTextVisible) {
-      await page.screenshot({ path: 'test-results/1.5-tts-no-text.png' });
-    } else if (gpuUnavailableVisible) {
-      await page.screenshot({ path: 'test-results/1.5-tts-gpu-unavailable.png' });
-    } else {
-      await page.screenshot({ path: 'test-results/1.5-tts-page-state.png' });
-    }
+    await expect(page.getByTestId('scene-title-editor').first()).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByTestId('tool-tts')).not.toBeVisible();
+    await expect(page.getByTestId('tts-controls')).not.toBeVisible();
+    await expect(page.getByTestId('tts-generate-btn')).not.toBeVisible();
 
     await context.close();
   });
@@ -395,13 +353,9 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
   });
 
   // ---------------------------------------------------------------------------
-  // 1.10 — Status "Soumis" + multilang button appears
-  //
-  // Multilang button is only visible when session status is 'submitted',
-  // 'published', or 'revision_requested'. NOT on 'ready', 'draft', or 'editing'.
+  // 1.10 — Submitted sessions keep translation management out of Guide Studio
   // ---------------------------------------------------------------------------
-  test('1.10 - Session status is "Soumis" and multilang button visible', async ({ browser }) => {
-    // Switch to 'submitted' so the multilang section is visible
+  test('1.10 - Submitted session has no guide-side multilingual controls', async ({ browser }) => {
     await updateSessionStatus(seeded.sessionId, 'submitted', token);
 
     const context = await browser.newContext({ storageState: guidePath });
@@ -421,18 +375,11 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
 
     await page.screenshot({ path: 'test-results/1.10-status-badge.png' });
 
-    // Multilang section should be visible for seeded 'submitted' status
-    const multilangSection = page.getByTestId('multilang-section');
-    await expect(multilangSection).toBeVisible({ timeout: 5_000 });
+    await expect(page.getByTestId('narration-mode-picker')).toBeVisible();
+    await expect(page.getByTestId('multilang-section')).not.toBeVisible();
+    await expect(page.getByTestId('open-multilang-btn')).not.toBeVisible();
 
-    // "Ouvrir le multilangue" button — inside Collapsible, may be closed before purchases load
-    const multilangBtn = page.getByTestId('open-multilang-btn');
-    await multilangBtn.waitFor({ state: 'visible', timeout: 3_000 }).catch(async () => {
-      await multilangSection.click();
-    });
-    await expect(multilangBtn).toBeVisible();
-
-    await page.screenshot({ path: 'test-results/1.10-multilang-button.png' });
+    await page.screenshot({ path: 'test-results/1.10-submitted-narration-contract.png' });
     await context.close();
   });
 });

@@ -226,19 +226,15 @@ test.describe('Language Submission Lifecycle', () => {
   // MUTATION TESTS (run last)
   // ══════════════════════════════════════
 
-  test('4.1 EN retracts to draft and becomes editable', async ({ browser }) => {
+  test('4.1 Guide cannot retract or edit generated languages', async ({ browser }) => {
     const submission = await gPage(browser, `${STUDIO(sessionId)}/submission`);
-    await expect(submission.page.getByTestId('retract-lang-en')).toBeVisible({ timeout: 15_000 });
-    await submission.page.getByTestId('retract-lang-en').click();
-    await expect(
-      submission.page.getByTestId('lang-submission-en').locator('text=Brouillon'),
-    ).toBeVisible({ timeout: 10_000 });
+    await expect(submission.page.getByTestId('retract-lang-en')).not.toBeVisible();
+    await expect(submission.page.getByTestId('language-submissions-section')).not.toBeVisible();
     await submission.context.close();
 
     const { context, page } = await gPage(browser, `${STUDIO(sessionId)}/scenes`);
-    const tab = page.locator('[data-testid*="lang-tab"]').filter({ hasText: 'EN' });
-    if (await tab.isVisible({ timeout: 5_000 })) { await tab.click(); await page.waitForTimeout(1_000); }
-    await expect(page.getByTestId('lang-locked-banner')).not.toBeVisible();
+    await expect(page.locator('[data-testid*="lang-tab"]')).toHaveCount(0);
+    await expect(page.getByTestId('tts-controls')).not.toBeVisible();
     await context.close();
   });
 });

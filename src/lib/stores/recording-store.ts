@@ -26,7 +26,7 @@ interface RecordingStoreState {
   setDevices: (devices: AudioDevice[]) => void;
   selectDevice: (deviceId: string) => void;
   setActiveScene: (sceneId: string) => void;
-  addTake: (sceneId: string, result: RecordingResult) => void;
+  addTake: (sceneId: string, result: RecordingResult) => Take;
   selectTake: (sceneId: string, takeId: string) => void;
   deleteTake: (sceneId: string, takeId: string) => void;
   getSceneTakes: (sceneId: string) => Take[];
@@ -75,6 +75,7 @@ export const useRecordingStore = create<RecordingStoreState>((set, get) => ({
     });
 
     logger.info(SERVICE_NAME, 'Take added', { sceneId, takeId, durationMs: result.durationMs });
+    return take;
   },
 
   selectTake: (sceneId, takeId) => {

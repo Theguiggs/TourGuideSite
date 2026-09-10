@@ -1140,7 +1140,7 @@ POSTES_CONSTATES = (
     },
     {
         "nom": "Approbation humaine dans la chaîne actuelle",
-        "anchor": "TourGuideWeb/src/lib/api/moderation.ts:670",
+        "anchor": "TourGuideWeb/src/lib/api/moderation.ts:762",
         "jeton": "approveTour",
         # PAS de chiffre : une durée humaine n'a pas de majorant, et écrire « 0 s »
         # ou « 24 h » ici inventerait une borne que rien ne soutient. Le poste

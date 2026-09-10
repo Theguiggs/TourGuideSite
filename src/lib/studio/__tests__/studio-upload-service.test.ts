@@ -37,6 +37,20 @@ describe('uploadAudio', () => {
     expect(mockUploadData).toHaveBeenCalledTimes(1);
   });
 
+  it.each([
+    ['audio/mpeg', '.mp3'],
+    ['audio/x-m4a', '.m4a'],
+  ])('accepts an imported %s file and keeps the expected extension', async (mime, extension) => {
+    const blob = new Blob(['audio'], { type: mime });
+    mockUploadData.mockReturnValue({ result: Promise.resolve({ path: `guide-studio/sub/s1/audio/scene-abc${extension}` }) });
+
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
+
+    expect(result.ok).toBe(true);
+    const resolvePath = mockUploadData.mock.calls[0][0].path as (input: { identityId: string }) => string;
+    expect(resolvePath({ identityId: 'sub' })).toMatch(new RegExp(`\\${extension}$`));
+  });
+
   it('rejects unsupported MIME type without calling uploadData', async () => {
     const blob = new Blob(['text'], { type: 'text/plain' });
     const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');

@@ -9,7 +9,7 @@ const SERVICE_NAME = 'StudioUploadService';
 
 // --- Validation ---
 
-const AUDIO_MIME_PREFIXES = ['audio/webm', 'audio/mp4', 'audio/ogg', 'audio/x-aac', 'audio/aac', 'audio/wav', 'audio/wave', 'audio/x-wav'];
+const AUDIO_MIME_PREFIXES = ['audio/webm', 'audio/mp4', 'audio/mpeg', 'audio/x-m4a', 'audio/ogg', 'audio/x-aac', 'audio/aac', 'audio/wav', 'audio/wave', 'audio/x-wav'];
 const PHOTO_MIMES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
 /** Check audio MIME with prefix match (handles codecs suffix like "audio/webm;codecs=opus") */
@@ -76,6 +76,8 @@ function getExtFromMime(mime: string): string {
   const map: Record<string, string> = {
     'audio/webm': 'webm',
     'audio/mp4': 'm4a',
+    'audio/mpeg': 'mp3',
+    'audio/x-m4a': 'm4a',
     'audio/ogg': 'ogg',
     'audio/x-aac': 'aac',
     'audio/aac': 'aac',

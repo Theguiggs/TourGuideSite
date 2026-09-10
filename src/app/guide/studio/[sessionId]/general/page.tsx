@@ -86,6 +86,7 @@ export default function GeneralPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [modeError, setModeError] = useState<string | null>(null);
+  const [isSavingMode, setIsSavingMode] = useState(false);
 
   // Form state
   const [title, setTitle] = useState('');
@@ -254,7 +255,8 @@ export default function GeneralPage() {
   const canEditPracticalTips = !isLocked || session?.status === 'published';
   const canSave = !isLocked || canEditMonetization || canEditPracticalTips;
 
-  const chooseNarrationMode = useCallback((nextMode: NarrationMode) => {
+  const chooseNarrationMode = useCallback(async (nextMode: NarrationMode) => {
+    if (!session || nextMode === narrationMode || isSavingMode) return;
     if (narrationMode === 'recording' && nextMode === 'tts_on_demand' && hasExistingAudio) {
       setModeError(t(
         'Des audios sont déjà attachés. Créez une nouvelle version ou demandez leur retrait avant de choisir la voix de synthèse.',
@@ -263,8 +265,28 @@ export default function GeneralPage() {
       return;
     }
     setModeError(null);
-    setNarrationMode(nextMode);
-  }, [hasExistingAudio, narrationMode, t]);
+    setIsSavingMode(true);
+    try {
+      const appsync = await import('@/lib/api/appsync-client');
+      const result = await appsync.updateStudioSessionMutation(sessionId, { narrationMode: nextMode });
+      if (!result.ok) throw new Error(result.error);
+      if (!result.data) throw new Error('AppSync n’a renvoyé aucune session mise à jour.');
+      const updatedSession = { ...session, narrationMode: nextMode };
+      setSession(updatedSession);
+      setNarrationMode(nextMode);
+      setActiveSession(updatedSession);
+      setIsSaved(true);
+      setTimeout(() => setIsSaved(false), 3000);
+    } catch (e) {
+      const detail = e instanceof Error ? e.message : String(e);
+      setModeError(t(
+        `Le choix de narration n'a pas été sauvegardé : ${detail}`,
+        `The narration choice was not saved: ${detail}`,
+      ));
+    } finally {
+      setIsSavingMode(false);
+    }
+  }, [hasExistingAudio, isSavingMode, narrationMode, session, sessionId, setActiveSession, t]);
 
   const handleSave = useCallback(async () => {
     if (!session) return;
@@ -303,6 +325,9 @@ export default function GeneralPage() {
           availableLanguages: [language],
         });
         if (!sessionResult.ok) throw new Error(sessionResult.error);
+        const updatedSession = { ...session, title, language, narrationMode, coverPhotoKey };
+        setSession(updatedSession);
+        setActiveSession(updatedSession);
       }
       if (!session.tourId) throw new Error('No tour associated with this session.');
       const monetizationUpdates = supportsMonetization ? { purchaseType, priceCents } : {};
@@ -333,9 +358,10 @@ export default function GeneralPage() {
       setTimeout(() => setIsSaved(false), 3000);
     } catch (e) {
       logger.error(SERVICE_NAME, 'Save failed', { error: String(e) });
+      const detail = e instanceof Error ? e.message : String(e);
       setSaveError(t(
-        "L'enregistrement a échoué. Vos modifications n'ont pas été sauvegardées.",
-        'Save failed. Your changes were not saved.',
+        `L'enregistrement a échoué : ${detail}`,
+        `Save failed: ${detail}`,
       ));
     } finally {
       setIsSaving(false);
@@ -360,6 +386,7 @@ export default function GeneralPage() {
     isLocked,
     practicalTips,
     canEditPracticalTips,
+    setActiveSession,
     t,
   ]);
 
@@ -612,7 +639,7 @@ export default function GeneralPage() {
             <button
               key={value}
               type="button"
-              disabled={isLocked}
+              disabled={isLocked || isSavingMode}
               aria-pressed={narrationMode === value}
               data-testid={`narration-mode-${value}`}
               onClick={() => chooseNarrationMode(value)}
@@ -634,6 +661,11 @@ export default function GeneralPage() {
               {t('Créer une nouvelle version', 'Create a new version')}
             </Link>
           </div>
+        )}
+        {isSavingMode && (
+          <p className="mt-2 text-sm text-ink-60" role="status" data-testid="narration-mode-saving">
+            {t('Sauvegarde du choix…', 'Saving choice…')}
+          </p>
         )}
       </WizField>
 
@@ -711,11 +743,11 @@ export default function GeneralPage() {
           <button
             type="button"
             onClick={handleSave}
-            disabled={isSaving}
+            disabled={isSaving || isSavingMode}
             data-testid="save-general-btn"
             className="bg-ink text-paper border-none px-5 py-2.5 rounded-pill text-caption font-bold cursor-pointer hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSaving
+            {isSaving || isSavingMode
               ? t('Enregistrement...', 'Saving...')
               : session.status === 'published'
                 ? t('Enregistrer le tarif', 'Save pricing')
@@ -740,6 +772,8 @@ export default function GeneralPage() {
         prevLabel={t('Accueil', 'Home')}
         nextHref={`/guide/studio/${sessionId}/itinerary`}
         nextLabel={t('Itinéraire', 'Itinerary')}
+        prevDisabled={isSavingMode}
+        nextDisabled={isSavingMode}
       />
     </div>
   );

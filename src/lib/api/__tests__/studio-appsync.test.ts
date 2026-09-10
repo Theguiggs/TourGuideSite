@@ -121,4 +121,18 @@ describe('updateSceneAudio (real mode)', () => {
     expect(result.ok).toBe(true);
     expect(mockUpdateSceneMutation).toHaveBeenCalledWith('sc1', { studioAudioKey: 'guide-studio/sub/s1/audio/scene_0.webm', status: 'recorded' });
   });
+
+  it('does not expose an unpersisted audio override after AppSync rejects it', async () => {
+    mockListScenesBySession.mockResolvedValue({ ok: true, data: [
+      { id: 'sc-fail', sessionId: 's1', sceneIndex: 0, status: 'edited', studioAudioKey: null, photosRefs: [], archived: false, createdAt: '', updatedAt: '' },
+    ] });
+    mockUpdateSceneMutation.mockResolvedValue({ ok: false, error: 'rejected' });
+
+    const result = await updateSceneAudio('sc-fail', 'guide-studio/sub/s1/audio/new.webm', 's1', 0, 'recording');
+    const scenes = await listStudioScenes('s1');
+
+    expect(result.ok).toBe(false);
+    expect(scenes[0].studioAudioKey).toBeNull();
+    expect(scenes[0].status).toBe('edited');
+  });
 });

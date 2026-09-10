@@ -906,23 +906,20 @@ export async function updateSceneAudio(
 
   // data-URL fallbacks are always TTS; otherwise trust the caller's hint.
   const localSource = audioUrl.startsWith('data:') ? 'tts' : baseAudioSource;
-  // Always update local cache with the original data URL (for immediate playback)
-  __setLocalSceneOverride(sceneId, {
-    studioAudioKey: audioUrl, // Keep data URL locally for playback
-    status: 'recorded',
-    ...(localSource ? { baseAudioSource: localSource } : {}),
-    updatedAt: new Date().toISOString(),
-  });
-  // Also update stub store
-  const scene = findStubScene(sceneId);
-  if (scene) {
-    scene.studioAudioKey = audioUrl;
-    scene.status = 'recorded';
-    if (localSource) scene.baseAudioSource = localSource;
-    scene.updatedAt = new Date().toISOString();
-  }
-
   if (shouldUseStubs()) {
+    __setLocalSceneOverride(sceneId, {
+      studioAudioKey: audioUrl,
+      status: 'recorded',
+      ...(localSource ? { baseAudioSource: localSource } : {}),
+      updatedAt: new Date().toISOString(),
+    });
+    const scene = findStubScene(sceneId);
+    if (scene) {
+      scene.studioAudioKey = audioUrl;
+      scene.status = 'recorded';
+      if (localSource) scene.baseAudioSource = localSource;
+      scene.updatedAt = new Date().toISOString();
+    }
     logger.info(SERVICE_NAME, 'Scene audio updated (stub)', { sceneId });
     return { ok: true };
   }
@@ -942,6 +939,13 @@ export async function updateSceneAudio(
       logger.error(SERVICE_NAME, 'AppSync persist failed for scene audio', { sceneId });
       return { ok: false, error: 'Erreur de sauvegarde. Veuillez réessayer.' };
     }
+    // A take is final only after both S3 upload and AppSync association succeed.
+    __setLocalSceneOverride(sceneId, {
+      studioAudioKey: keyToSave,
+      status: 'recorded',
+      ...(resolvedSource ? { baseAudioSource: resolvedSource } : {}),
+      updatedAt: new Date().toISOString(),
+    });
     logger.info(SERVICE_NAME, 'Scene audio updated (AppSync)', { sceneId, keyLength: keyToSave.length });
     return { ok: true };
   } catch (e) {

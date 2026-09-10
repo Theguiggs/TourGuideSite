@@ -16,6 +16,10 @@ export interface RecordingResult {
   durationMs: number;
 }
 
+export type StopRecordingResult =
+  | { ok: true; recording: RecordingResult }
+  | { ok: false; error: StudioError };
+
 type RecorderStateListener = (state: RecorderState) => void;
 
 function getPreferredMimeType(): string {
@@ -36,10 +40,16 @@ class MediaRecorderServiceImpl {
   private pausedDuration = 0;
   private pauseStartTime = 0;
   private mimeType = '';
+  private lastError: StudioError | null = null;
+  private stopPromise: Promise<StopRecordingResult> | null = null;
   private listeners = new Set<RecorderStateListener>();
 
   getState(): RecorderState {
     return this.state;
+  }
+
+  getLastError(): StudioError | null {
+    return this.lastError;
   }
 
   subscribe(listener: RecorderStateListener): () => void {
@@ -74,11 +84,15 @@ class MediaRecorderServiceImpl {
   async requestPermission(deviceId?: string): Promise<{ ok: true } | { ok: false; error: StudioError }> {
     this.setState('requesting_permission');
     try {
+      if (!globalThis.isSecureContext || !navigator.mediaDevices?.getUserMedia) {
+        throw new Error('Microphone access requires HTTPS or localhost and MediaDevices support.');
+      }
       const constraints: MediaStreamConstraints = {
         audio: deviceId ? { deviceId: { exact: deviceId } } : true,
       };
       this.stream = await navigator.mediaDevices.getUserMedia(constraints);
       this.mimeType = getPreferredMimeType();
+      this.lastError = null;
       this.setState('ready');
       logger.info(SERVICE_NAME, 'Permission granted', { mimeType: this.mimeType });
       return { ok: true };
@@ -95,6 +109,7 @@ class MediaRecorderServiceImpl {
     }
 
     try {
+      this.lastError = null;
       this.chunks = [];
       this.recorder = new MediaRecorder(this.stream, {
         mimeType: this.mimeType,
@@ -106,14 +121,18 @@ class MediaRecorderServiceImpl {
       };
 
       this.recorder.onerror = () => {
+        this.lastError = createStudioError(
+          StudioErrorCode.RECORDER_STOPPED_UNEXPECTEDLY,
+          "L'enregistrement s'est interrompu. La prise n'a pas été sauvegardée.",
+        );
         logger.error(SERVICE_NAME, 'Recorder error — releasing stream');
-        this.setState('stopped');
         // Stop all tracks so the mic indicator clears and stopRecording() resolves
         if (this.stream) {
           this.stream.getTracks().forEach((t) => t.stop());
           this.stream = null;
         }
         this.recorder = null;
+        this.setState('idle');
       };
 
       this.recorder.start(1000); // collect data every second
@@ -124,6 +143,9 @@ class MediaRecorderServiceImpl {
       logger.info(SERVICE_NAME, 'Recording started', { mimeType: this.mimeType });
       return { ok: true };
     } catch (e) {
+      this.recorder = null;
+      this.chunks = [];
+      this.setState('ready');
       logger.error(SERVICE_NAME, 'Start recording failed', { error: String(e) });
       return { ok: false, error: createStudioError(StudioErrorCode.RECORDER_START_FAILED, 'Impossible de démarrer l\'enregistrement.') };
     }
@@ -148,25 +170,74 @@ class MediaRecorderServiceImpl {
     }
   }
 
-  stopRecording(): Promise<RecordingResult | null> {
-    return new Promise((resolve) => {
+  stopRecording(): Promise<StopRecordingResult> {
+    if (this.stopPromise) return this.stopPromise;
+
+    this.stopPromise = new Promise((resolve) => {
       if (!this.recorder || (this.state !== 'recording' && this.state !== 'paused')) {
-        resolve(null);
+        this.setState(this.stream ? 'ready' : 'idle');
+        resolve({ ok: false, error: createStudioError(StudioErrorCode.RECORDER_STOPPED_UNEXPECTEDLY, 'Aucun enregistrement actif à arrêter.') });
         return;
       }
 
+      let settled = false;
+      const finish = (result: StopRecordingResult) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timeoutId);
+        resolve(result);
+      };
+      const timeoutId = setTimeout(() => {
+        this.lastError = createStudioError(
+          StudioErrorCode.RECORDER_STOPPED_UNEXPECTEDLY,
+          "L'arrêt du microphone a expiré. La prise n'a pas été sauvegardée.",
+        );
+        this.recorder = null;
+        this.setState(this.stream ? 'ready' : 'idle');
+        finish({ ok: false, error: this.lastError });
+      }, 10000);
+
       this.recorder.onstop = () => {
+        if (settled) return;
         const blob = new Blob(this.chunks, { type: this.mimeType });
         // Subtract paused time from total duration
         const totalPaused = this.pausedDuration + (this.pauseStartTime > 0 ? Date.now() - this.pauseStartTime : 0);
         const durationMs = Date.now() - this.startTime - totalPaused;
-        this.setState('stopped');
+        this.recorder = null;
+        this.setState(this.stream ? 'ready' : 'idle');
         logger.info(SERVICE_NAME, 'Recording stopped', { size: blob.size, durationMs });
-        resolve({ blob, mimeType: this.mimeType, durationMs });
+        if (blob.size === 0) {
+          finish({ ok: false, error: createStudioError(StudioErrorCode.RECORDER_STOPPED_UNEXPECTEDLY, 'La prise est vide. Vérifiez le microphone puis réessayez.') });
+          return;
+        }
+        finish({ ok: true, recording: { blob, mimeType: this.mimeType, durationMs } });
       };
 
-      this.recorder.stop();
+      this.recorder.onerror = () => {
+        if (settled) return;
+        this.lastError = createStudioError(
+          StudioErrorCode.RECORDER_STOPPED_UNEXPECTEDLY,
+          "L'enregistrement s'est interrompu. La prise n'a pas été sauvegardée.",
+        );
+        logger.error(SERVICE_NAME, 'Recorder failed while stopping');
+        this.recorder = null;
+        this.setState(this.stream ? 'ready' : 'idle');
+        finish({ ok: false, error: createStudioError(StudioErrorCode.RECORDER_STOPPED_UNEXPECTEDLY, "L'enregistrement s'est interrompu. La prise n'a pas été sauvegardée.") });
+      };
+
+      try {
+        this.recorder.stop();
+      } catch (e) {
+        logger.error(SERVICE_NAME, 'Stop recording failed', { error: String(e) });
+        this.recorder = null;
+        this.setState(this.stream ? 'ready' : 'idle');
+        finish({ ok: false, error: createStudioError(StudioErrorCode.RECORDER_STOPPED_UNEXPECTEDLY, "Impossible d'arrêter proprement l'enregistrement. Réessayez.") });
+      }
     });
+    void this.stopPromise.finally(() => {
+      this.stopPromise = null;
+    });
+    return this.stopPromise;
   }
 
   releaseStream(): void {
@@ -176,6 +247,8 @@ class MediaRecorderServiceImpl {
     }
     this.recorder = null;
     this.chunks = [];
+    this.lastError = null;
+    this.stopPromise = null;
     this.setState('idle');
     logger.info(SERVICE_NAME, 'Stream released');
   }

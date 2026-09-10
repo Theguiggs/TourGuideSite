@@ -172,7 +172,13 @@ export async function seedSession(
   prefix: string,
   tourId: string,
   token: string,
-  overrides?: Partial<{ sourceSessionId: string; status: string; title: string; guideId: string }>,
+  overrides?: Partial<{
+    sourceSessionId: string;
+    status: string;
+    title: string;
+    guideId: string;
+    narrationMode: 'recording' | 'tts_on_demand';
+  }>,
 ): Promise<CreatedItem> {
   validateE2ePrefix(prefix);
   const guideId = overrides?.guideId ?? await resolveGuideId(token);
@@ -184,11 +190,12 @@ export async function seedSession(
     sourceSessionId: overrides?.sourceSessionId ?? null,
     consentRGPD: true,
     language: 'fr',
+    narrationMode: overrides?.narrationMode ?? 'tts_on_demand',
   };
 
   const data = await graphql<{ createStudioSession: CreatedItem }>(
     `mutation CreateStudioSession($input: CreateStudioSessionInput!) {
-      createStudioSession(input: $input) { id title status tourId guideId sourceSessionId }
+      createStudioSession(input: $input) { id title status tourId guideId sourceSessionId narrationMode }
     }`,
     { input },
     token,
