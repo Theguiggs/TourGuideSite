@@ -62,7 +62,10 @@ test.describe.serial('Field Persistence', () => {
 
     token = getAccessTokenFromStorageState(guidePath);
     // Use 'editing' so title/description fields are editable (not locked)
-    seeded = await seedMultilangReadyTour(PREFIX, token, { sessionStatus: 'editing' });
+    seeded = await seedMultilangReadyTour(PREFIX, token, {
+      sessionStatus: 'editing',
+      narrationMode: 'recording',
+    });
     sessionUrl = `${STUDIO_BASE}/${seeded.sessionId}`;
 
     // Seed a language purchase for English

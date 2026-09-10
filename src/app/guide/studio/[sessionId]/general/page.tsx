@@ -411,7 +411,7 @@ export default function GeneralPage() {
           description,
           themes: selectedThemes,
           difficulty,
-          contentProvenance,
+          ...(contentProvenance ? { contentProvenance } : {}),
           coverPhotoKey,
           duration,
           distance,
