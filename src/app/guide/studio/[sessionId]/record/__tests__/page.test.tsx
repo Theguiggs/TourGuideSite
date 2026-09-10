@@ -6,7 +6,9 @@ import { useRecordingStore } from '@/lib/stores/recording-store';
 const mockGetStudioSession = jest.fn();
 const mockListStudioScenes = jest.fn();
 const mockUpdateSceneAudio = jest.fn();
+const mockUpdateSceneData = jest.fn();
 const mockUploadAudio = jest.fn();
+const mockRemoveStoredAudio = jest.fn();
 const mockRecorderStart = jest.fn(async () => true);
 const mockRecorderPause = jest.fn();
 const mockRecorderResume = jest.fn(() => true);
@@ -40,16 +42,18 @@ jest.mock('@/lib/api/studio', () => ({
   getStudioSession: (...args: unknown[]) => mockGetStudioSession(...args),
   listStudioScenes: (...args: unknown[]) => mockListStudioScenes(...args),
   updateSceneAudio: (...args: unknown[]) => mockUpdateSceneAudio(...args),
+  updateSceneData: (...args: unknown[]) => mockUpdateSceneData(...args),
 }));
 
 jest.mock('@/lib/studio/studio-upload-service', () => ({
   uploadAudio: (...args: unknown[]) => mockUploadAudio(...args),
   getPlayableUrl: jest.fn(async () => 'https://audio.test/take.webm'),
   onProgress: jest.fn(() => jest.fn()),
+  removeStoredAudio: (...args: unknown[]) => mockRemoveStoredAudio(...args),
 }));
 
 jest.mock('@/lib/studio/audio-player-service', () => ({
-  audioPlayerService: { play: jest.fn() },
+  audioPlayerService: { play: jest.fn(), stop: jest.fn() },
 }));
 
 jest.mock('@/components/studio/scene-sidebar', () => ({
@@ -112,6 +116,7 @@ function session(narrationMode: 'recording' | 'tts_on_demand') {
 
 describe('RecordPage guide recording pipeline', () => {
   beforeEach(() => {
+    jest.restoreAllMocks();
     jest.clearAllMocks();
     mockLanguage = null;
     mockLegacyLanguage = null;
@@ -119,6 +124,8 @@ describe('RecordPage guide recording pipeline', () => {
     mockListStudioScenes.mockResolvedValue([{ ...scene }]);
     mockUploadAudio.mockResolvedValue({ ok: true, s3Key: 'guide-studio/id/session-1/audio/scene-1.webm' });
     mockUpdateSceneAudio.mockResolvedValue({ ok: true });
+    mockUpdateSceneData.mockResolvedValue({ ok: true });
+    mockRemoveStoredAudio.mockResolvedValue({ ok: true });
   });
 
   it('denies direct recorder access in TTS-on-demand mode', async () => {
@@ -231,6 +238,25 @@ describe('RecordPage guide recording pipeline', () => {
     expect(await screen.findByText(/Audio existant conservé/i)).toBeInTheDocument();
     expect(mockUploadAudio).not.toHaveBeenCalled();
     expect(mockUpdateSceneAudio).not.toHaveBeenCalled();
+  });
+
+  it('shows and deletes an audio already saved on the scene after returning', async () => {
+    mockGetStudioSession.mockResolvedValue(session('recording'));
+    mockListStudioScenes.mockResolvedValue([{ ...scene, studioAudioKey: 'guide-studio/audio/existing.webm' }]);
+    jest.spyOn(window, 'confirm').mockReturnValueOnce(true);
+    render(<RecordPage />);
+
+    expect(await screen.findByTestId('saved-scene-audio')).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('delete-saved-audio'));
+
+    await waitFor(() => expect(mockUpdateSceneData).toHaveBeenCalledWith('scene-1', expect.objectContaining({
+      studioAudioKey: null,
+      originalAudioKey: null,
+      baseAudioSource: null,
+    })));
+    await waitFor(() => expect(mockRemoveStoredAudio).toHaveBeenCalledWith('guide-studio/audio/existing.webm'));
+    expect(await screen.findByText(/Audio supprimé de la scène/i)).toBeInTheDocument();
+    expect(screen.queryByTestId('saved-scene-audio')).not.toBeInTheDocument();
   });
 
   it('blocks in-app navigation while the recorded blob is being uploaded', async () => {

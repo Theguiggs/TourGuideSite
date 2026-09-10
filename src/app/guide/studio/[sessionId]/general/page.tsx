@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
-import { getStudioSession, listStudioScenes } from '@/lib/api/studio';
+import { getStudioSession, listStudioScenes, updateSceneData } from '@/lib/api/studio';
 import { shouldUseStubs } from '@/config/api-mode';
 import {
   useStudioSessionStore,
@@ -25,7 +25,7 @@ import {
   CityFamilyBadge,
   SessionTerrainCard,
 } from '@/components/studio/wizard-general';
-import type { NarrationMode, StudioSession } from '@/types/studio';
+import type { NarrationMode, StudioScene, StudioSession } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'GeneralPage';
@@ -79,7 +79,7 @@ export default function GeneralPage() {
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenesCount, setScenesCount] = useState(0);
-  const [hasExistingAudio, setHasExistingAudio] = useState(false);
+  const [scenesWithAudio, setScenesWithAudio] = useState<StudioScene[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSaved, setIsSaved] = useState(false);
@@ -130,7 +130,7 @@ export default function GeneralPage() {
         if (cancelled) return;
         setSession(sess);
         setScenesCount(scenesList.length);
-        setHasExistingAudio(scenesList.some((scene) => Boolean(scene.originalAudioKey || scene.studioAudioKey)));
+        setScenesWithAudio(scenesList.filter((scene) => Boolean(scene.originalAudioKey || scene.studioAudioKey)));
         if (sess) {
           setActiveSession(sess);
           setTitle(sess.title || '');
@@ -256,18 +256,36 @@ export default function GeneralPage() {
   const canSave = !isLocked || canEditMonetization || canEditPracticalTips;
 
   const chooseNarrationMode = useCallback(async (nextMode: NarrationMode) => {
-    if (!session || nextMode === narrationMode || isSavingMode) return;
-    if (narrationMode === 'recording' && nextMode === 'tts_on_demand' && hasExistingAudio) {
-      setModeError(t(
-        'Des audios sont déjà attachés. Créez une nouvelle version ou demandez leur retrait avant de choisir la voix de synthèse.',
-        'Audio is already attached. Create a new version or have the audio removed before choosing text-to-speech.',
+    if (!session || isSavingMode) return;
+    const removesRecordedAudio = nextMode === 'tts_on_demand' && scenesWithAudio.length > 0;
+    if (nextMode === narrationMode && !removesRecordedAudio) return;
+    if (removesRecordedAudio) {
+      const confirmed = window.confirm(t(
+        `Passer à la voix de synthèse supprimera définitivement les audios enregistrés sur ${scenesWithAudio.length} scène${scenesWithAudio.length > 1 ? 's' : ''}. Les textes seront conservés. Confirmer ce changement ?`,
+        `Switching to text-to-speech will permanently delete recorded audio from ${scenesWithAudio.length} scene${scenesWithAudio.length > 1 ? 's' : ''}. Text will be kept. Confirm this change?`,
       ));
-      return;
+      if (!confirmed) return;
     }
     setModeError(null);
     setIsSavingMode(true);
+    const clearedScenes: StudioScene[] = [];
     try {
       const appsync = await import('@/lib/api/appsync-client');
+      if (removesRecordedAudio) {
+        for (const scene of scenesWithAudio) {
+          const clearResult = await updateSceneData(scene.id, {
+            studioAudioKey: null,
+            originalAudioKey: null,
+            baseAudioSource: null,
+            status: scene.transcriptText?.trim() ? 'edited' : 'empty',
+            takesCount: 0,
+            selectedTakeIndex: null,
+          });
+          if (!clearResult.ok) throw new Error(`L’audio de la scène ${scene.sceneIndex + 1} n’a pas pu être supprimé.`);
+          clearedScenes.push(scene);
+        }
+      }
+
       const result = await appsync.updateStudioSessionMutation(sessionId, { narrationMode: nextMode });
       if (!result.ok) throw new Error(result.error);
       if (!result.data) throw new Error('AppSync n’a renvoyé aucune session mise à jour.');
@@ -275,9 +293,29 @@ export default function GeneralPage() {
       setSession(updatedSession);
       setNarrationMode(nextMode);
       setActiveSession(updatedSession);
+      if (removesRecordedAudio) {
+        const keys = [...new Set(scenesWithAudio.flatMap((scene) => [scene.studioAudioKey, scene.originalAudioKey])
+          .filter((key): key is string => Boolean(key)))];
+        setScenesWithAudio([]);
+        const { removeStoredAudio } = await import('@/lib/studio/studio-upload-service');
+        const removals = await Promise.all(keys.map((key) => removeStoredAudio(key)));
+        if (removals.some((removal) => !removal.ok)) {
+          logger.warn(SERVICE_NAME, 'Narration mode changed but some orphan audio objects remain', { sessionId });
+        }
+      }
       setIsSaved(true);
       setTimeout(() => setIsSaved(false), 3000);
     } catch (e) {
+      if (clearedScenes.length > 0) {
+        await Promise.all(clearedScenes.map((scene) => updateSceneData(scene.id, {
+          studioAudioKey: scene.studioAudioKey,
+          originalAudioKey: scene.originalAudioKey,
+          baseAudioSource: scene.baseAudioSource,
+          status: scene.status,
+          takesCount: scene.takesCount,
+          selectedTakeIndex: scene.selectedTakeIndex,
+        })));
+      }
       const detail = e instanceof Error ? e.message : String(e);
       setModeError(t(
         `Le choix de narration n'a pas été sauvegardé : ${detail}`,
@@ -286,7 +324,7 @@ export default function GeneralPage() {
     } finally {
       setIsSavingMode(false);
     }
-  }, [hasExistingAudio, isSavingMode, narrationMode, session, sessionId, setActiveSession, t]);
+  }, [isSavingMode, narrationMode, scenesWithAudio, session, sessionId, setActiveSession, t]);
 
   const handleSave = useCallback(async () => {
     if (!session) return;
@@ -627,8 +665,12 @@ export default function GeneralPage() {
       <WizField
         label={t('Comment sera racontée cette visite ?', 'How will this tour be narrated?')}
         helper={t(
-          'Ce choix vaut pour toute cette version et ne peut pas être mélangé scène par scène.',
-          'This choice applies to the whole version and cannot be mixed scene by scene.',
+          scenesWithAudio.length > 0
+            ? `${scenesWithAudio.length} scène${scenesWithAudio.length > 1 ? 's ont' : ' a'} actuellement un audio enregistré. Passer au TTS supprimera ces audios après confirmation.`
+            : 'Ce choix vaut pour toute cette version et ne peut pas être mélangé scène par scène.',
+          scenesWithAudio.length > 0
+            ? `${scenesWithAudio.length} scene${scenesWithAudio.length > 1 ? 's currently have' : ' currently has'} recorded audio. Switching to TTS will delete it after confirmation.`
+            : 'This choice applies to the whole version and cannot be mixed scene by scene.',
         )}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3" data-testid="narration-mode-picker">
@@ -657,9 +699,6 @@ export default function GeneralPage() {
         {modeError && (
           <div className="mt-3 rounded-md border border-grenadine bg-grenadine-soft p-3 text-sm text-danger" role="alert">
             <p>{modeError}</p>
-            <Link href={`/guide/studio/${sessionId}/submission`} className="mt-2 inline-block font-semibold underline">
-              {t('Créer une nouvelle version', 'Create a new version')}
-            </Link>
           </div>
         )}
         {isSavingMode && (

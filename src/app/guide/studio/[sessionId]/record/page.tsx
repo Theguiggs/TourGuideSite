@@ -5,7 +5,7 @@ import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { logger } from '@/lib/logger';
-import { getStudioSession, listStudioScenes, updateSceneAudio } from '@/lib/api/studio';
+import { getStudioSession, listStudioScenes, updateSceneAudio, updateSceneData } from '@/lib/api/studio';
 import { SceneSidebar } from '@/components/studio/scene-sidebar';
 import { AudioRecorder, type AudioRecorderHandle } from '@/components/studio/audio-recorder';
 import { TakesList } from '@/components/studio/takes-list';
@@ -14,7 +14,7 @@ import { useStudioSessionStore, selectSetActiveSession, selectClearSession } fro
 import { useRecordingStore } from '@/lib/stores/recording-store';
 import type { StudioSession, StudioScene } from '@/types/studio';
 import type { Take } from '@/lib/stores/recording-store';
-import { uploadAudio, getPlayableUrl, onProgress } from '@/lib/studio/studio-upload-service';
+import { uploadAudio, getPlayableUrl, onProgress, removeStoredAudio } from '@/lib/studio/studio-upload-service';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 
 const SERVICE_NAME = 'RecordPage';
@@ -45,6 +45,7 @@ export default function RecordPage() {
   const [uploadPercent, setUploadPercent] = useState(0);
   const [persistedTakeIds, setPersistedTakeIds] = useState<Set<string>>(() => new Set());
   const [savedTakeIdByScene, setSavedTakeIdByScene] = useState<Record<string, string>>({});
+  const [isDeletingAudio, setIsDeletingAudio] = useState(false);
   const uploadedKeysRef = useRef(new Map<string, string>());
   const replacementConfirmedRef = useRef(new Set<string>());
   const persistenceInFlightRef = useRef(false);
@@ -69,7 +70,7 @@ export default function RecordPage() {
     [persistedTakeIds, takes],
   );
   const isRecording = recorderState === 'recording' || recorderState === 'paused' || recorderState === 'requesting_permission';
-  const isSavingAudio = saveState === 'uploading' || saveState === 'persisting';
+  const isSavingAudio = saveState === 'uploading' || saveState === 'persisting' || isDeletingAudio;
   const hasPendingWork = hasUnpersistedTake || isRecording || isSavingAudio;
 
   useEffect(() => {
@@ -235,6 +236,75 @@ export default function RecordPage() {
       setSaveMessage("Impossible de lire l'audio enregistré.");
     }
   }, [activeScene]);
+
+  const deleteSavedAudio = useCallback(async () => {
+    if (!activeScene || isDeletingAudio) return;
+    const keys = [...new Set([activeScene.studioAudioKey, activeScene.originalAudioKey]
+      .filter((key): key is string => Boolean(key)))];
+    if (keys.length === 0) return;
+    const confirmed = window.confirm(
+      'Supprimer l’audio enregistré de cette scène ? Le texte sera conservé et vous pourrez enregistrer une nouvelle prise ou choisir le TTS depuis l’onglet Général.',
+    );
+    if (!confirmed) return;
+
+    setIsDeletingAudio(true);
+    setSaveState('idle');
+    setSaveMessage(null);
+    try {
+      const result = await updateSceneData(activeScene.id, {
+        studioAudioKey: null,
+        originalAudioKey: null,
+        baseAudioSource: null,
+        status: activeScene.transcriptText?.trim() ? 'edited' : 'empty',
+        takesCount: 0,
+        selectedTakeIndex: null,
+      });
+      if (!result.ok) {
+        setSaveState('error');
+        setSaveMessage(result.error);
+        return;
+      }
+
+      audioPlayerService.stop();
+      setScenes((current) => current.map((scene) => scene.id === activeScene.id ? {
+        ...scene,
+        studioAudioKey: null,
+        originalAudioKey: null,
+        baseAudioSource: null,
+        status: activeScene.transcriptText?.trim() ? 'edited' : 'empty',
+        takesCount: 0,
+        selectedTakeIndex: null,
+      } : scene));
+
+      const savedTakeId = savedTakeIdByScene[activeScene.id];
+      if (savedTakeId) {
+        setPersistedTakeIds((current) => {
+          const next = new Set(current);
+          next.delete(savedTakeId);
+          return next;
+        });
+        uploadedKeysRef.current.delete(savedTakeId);
+        replacementConfirmedRef.current.delete(savedTakeId);
+        setSavedTakeIdByScene((current) => {
+          const next = { ...current };
+          delete next[activeScene.id];
+          return next;
+        });
+      }
+
+      const removals = await Promise.all(keys.map((key) => removeStoredAudio(key)));
+      const storageWarning = removals.some((item) => !item.ok);
+      setSaveMessage(storageWarning
+        ? 'Audio retiré de la scène. Le nettoyage du fichier de stockage devra être relancé.'
+        : 'Audio supprimé de la scène. Le texte est conservé.');
+    } catch (e) {
+      logger.error(SERVICE_NAME, 'Saved audio deletion failed', { sceneId: activeScene.id, error: String(e) });
+      setSaveState('error');
+      setSaveMessage('La suppression de l’audio a échoué. Réessayez.');
+    } finally {
+      setIsDeletingAudio(false);
+    }
+  }, [activeScene, isDeletingAudio, savedTakeIdByScene]);
 
   const startSynchronizedRecording = useCallback(async () => {
     return audioRecorderRef.current?.start() ?? false;
@@ -418,14 +488,29 @@ export default function RecordPage() {
               </div>
             )}
             {(activeScene?.studioAudioKey || activeScene?.originalAudioKey) && (
-              <button
-                type="button"
-                onClick={playSavedAudio}
-                className="text-sm font-semibold text-grenadine underline"
-                data-testid="play-saved-audio"
-              >
-                Écouter l’audio enregistré
-              </button>
+              <div className="rounded-xl border border-mer bg-mer-soft p-4" data-testid="saved-scene-audio">
+                <p className="font-semibold text-ink">Audio actuellement enregistré pour cette scène</p>
+                <p className="mt-1 text-sm text-ink-60">Il restera disponible lorsque vous reviendrez sur cette scène.</p>
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <button
+                    type="button"
+                    onClick={playSavedAudio}
+                    className="rounded-full border border-grenadine px-4 py-2 text-sm font-semibold text-grenadine"
+                    data-testid="play-saved-audio"
+                  >
+                    ▶ Écouter l’audio
+                  </button>
+                  <button
+                    type="button"
+                    onClick={deleteSavedAudio}
+                    disabled={isDeletingAudio || isRecording}
+                    className="rounded-full border border-danger px-4 py-2 text-sm font-semibold text-danger disabled:opacity-50"
+                    data-testid="delete-saved-audio"
+                  >
+                    {isDeletingAudio ? 'Suppression…' : 'Supprimer l’audio'}
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         )}

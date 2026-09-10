@@ -2,7 +2,7 @@
  * StudioUploadService — S3 upload for audio and photos with retry and signed URL cache.
  */
 
-import { uploadData, getUrl } from 'aws-amplify/storage';
+import { uploadData, getUrl, remove } from 'aws-amplify/storage';
 import { logger } from '@/lib/logger';
 
 const SERVICE_NAME = 'StudioUploadService';
@@ -278,6 +278,28 @@ export async function getPlayableUrl(s3Key: string): Promise<string> {
   } catch (error) {
     logger.error(SERVICE_NAME, 'getPlayableUrl failed', { s3Key, error: String(error) });
     throw error;
+  }
+}
+
+/** Delete an audio object after its scene reference has been cleared. */
+export async function removeStoredAudio(
+  s3Key: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  // Historical placeholders and externally hosted URLs are references, not
+  // objects owned by this Amplify Storage bucket.
+  if (!s3Key || s3Key.startsWith('data:') || s3Key.startsWith('http') || s3Key.startsWith('tts-placeholder-')) {
+    clearCacheEntry(s3Key);
+    return { ok: true };
+  }
+
+  try {
+    await remove({ path: s3Key });
+    clearCacheEntry(s3Key);
+    logger.info(SERVICE_NAME, 'Stored audio removed', { s3Key });
+    return { ok: true };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'Stored audio removal failed', { s3Key, error: String(error) });
+    return { ok: false, error: 'Le fichier audio n’a pas pu être supprimé du stockage.' };
   }
 }
 

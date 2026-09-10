@@ -5,13 +5,15 @@
 jest.mock('aws-amplify/storage', () => ({
   uploadData: jest.fn(),
   getUrl: jest.fn(),
+  remove: jest.fn(),
 }));
 
-import { uploadData, getUrl } from 'aws-amplify/storage';
-import { uploadAudio, uploadPhoto, uploadGuideProfilePhoto, getPlayableUrl, clearCache, _testExports } from '../studio-upload-service';
+import { uploadData, getUrl, remove } from 'aws-amplify/storage';
+import { uploadAudio, uploadPhoto, uploadGuideProfilePhoto, getPlayableUrl, removeStoredAudio, clearCache, _testExports } from '../studio-upload-service';
 
 const mockUploadData = uploadData as jest.Mock;
 const mockGetUrl = getUrl as jest.Mock;
+const mockRemove = remove as jest.Mock;
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -166,5 +168,25 @@ describe('getPlayableUrl', () => {
 
     expect(url2).toContain('token=new');
     expect(mockGetUrl).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe('removeStoredAudio', () => {
+  it('deletes an owned storage object', async () => {
+    mockRemove.mockResolvedValue({ path: 'guide-studio/sub/s1/audio/scene.webm' });
+
+    await expect(removeStoredAudio('guide-studio/sub/s1/audio/scene.webm')).resolves.toEqual({ ok: true });
+    expect(mockRemove).toHaveBeenCalledWith({ path: 'guide-studio/sub/s1/audio/scene.webm' });
+  });
+
+  it('does not call storage for a non-storage placeholder', async () => {
+    await expect(removeStoredAudio('tts-placeholder-scene-1')).resolves.toEqual({ ok: true });
+    expect(mockRemove).not.toHaveBeenCalled();
+  });
+
+  it('reports a storage deletion failure without throwing', async () => {
+    mockRemove.mockRejectedValue(new Error('forbidden'));
+    const result = await removeStoredAudio('guide-studio/sub/s1/audio/scene.webm');
+    expect(result).toEqual({ ok: false, error: expect.stringContaining('stockage') });
   });
 });
