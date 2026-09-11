@@ -64,7 +64,7 @@ export default function TourPreviewModal({ pois, tourTitle, onClose }: TourPrevi
 
         {/* POI list */}
         <div className="border-t border-gray-200 p-4 max-h-[200px] overflow-y-auto">
-          <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">Points d&apos;interet</h3>
+          <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">Points d&apos;intérêt</h3>
           <ol className="space-y-1">
             {sortedPois.map((poi) => (
               <li key={poi.id} className="flex items-center gap-2 text-sm">

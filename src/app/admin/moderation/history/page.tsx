@@ -19,7 +19,7 @@ export default function ModerationHistoryPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-ink mb-6">Historique de moderation</h1>
+      <h1 className="text-2xl font-bold text-ink mb-6">Historique de modération</h1>
 
       <div className="flex gap-3 mb-6">
         <select
@@ -35,7 +35,7 @@ export default function ModerationHistoryPage() {
 
       {filtered.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
-          <p className="text-ink-60">Aucun historique de moderation.</p>
+          <p className="text-ink-60">Aucun historique de modération.</p>
         </div>
       ) : (
         <div className="bg-card rounded-md border border-line overflow-hidden">

@@ -101,14 +101,14 @@ describe('LanguagePreviewPlayer', () => {
     );
 
     const teaserBtn = screen.getByTestId('teaser-btn');
-    expect(teaserBtn).toHaveTextContent('Ecouter un extrait');
+    expect(teaserBtn).toHaveTextContent('Écouter un extrait');
 
     await act(async () => {
       fireEvent.click(teaserBtn);
     });
 
     expect(audioPlayerService.play).toHaveBeenCalledWith('audio-en-s1');
-    expect(teaserBtn).toHaveTextContent('Arreter');
+    expect(teaserBtn).toHaveTextContent('Arrêter');
 
     // After 10 seconds, should stop
     act(() => {
@@ -130,14 +130,14 @@ describe('LanguagePreviewPlayer', () => {
     );
 
     const fullBtn = screen.getByTestId('full-preview-btn');
-    expect(fullBtn).toHaveTextContent('Preview complete');
+    expect(fullBtn).toHaveTextContent('Aperçu complet');
 
     await act(async () => {
       fireEvent.click(fullBtn);
     });
 
     expect(audioPlayerService.play).toHaveBeenCalledWith('audio-en-s1');
-    expect(fullBtn).toHaveTextContent('Arreter');
+    expect(fullBtn).toHaveTextContent('Arrêter');
 
     // Verify current scene info is displayed
     expect(screen.getByTestId('current-scene-info')).toHaveTextContent('Scene 1/2');

@@ -73,7 +73,7 @@ export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
             : 'Connectez-vous pour retrouver vos visites achetées.'}
         </p>
         <Link
-          href={`/guide/login?returnTo=${encodeURIComponent(locale === 'en' ? '/en/my-purchases' : '/mes-visites')}`}
+          href={`/guide/login?returnTo=${encodeURIComponent(locale === 'en' ? '/en/my-purchases' : '/mes-achats')}`}
           className="inline-block bg-grenadine text-paper text-sm font-bold px-5 py-2.5 rounded-pill hover:opacity-90 transition no-underline"
         >
           {locale === 'en' ? 'Sign in' : 'Se connecter'}

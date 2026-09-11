@@ -66,7 +66,7 @@ export function SessionTerrainCard({
               {capturedAt && ` · ${dateLabel}`}
             </div>
             <div className="text-meta text-ink-60">
-              Capture audio in-situ — à l&apos;origine du tour
+              Capture audio in-situ — à l&apos;origine de la visite
             </div>
           </div>
         </div>

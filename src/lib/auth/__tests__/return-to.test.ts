@@ -2,7 +2,7 @@ import { loginDestination, loginUrlFor, safeReturnTo } from '../return-to';
 
 describe('safeReturnTo', () => {
   it('accepte un chemin du site', () => {
-    expect(safeReturnTo('/mes-visites')).toBe('/mes-visites');
+    expect(safeReturnTo('/mes-achats')).toBe('/mes-achats');
     expect(safeReturnTo('/guide/studio/nouveau?x=1')).toBe('/guide/studio/nouveau?x=1');
   });
 
@@ -11,7 +11,7 @@ describe('safeReturnTo', () => {
     expect(safeReturnTo('/\\evil.example')).toBeNull();
     expect(safeReturnTo('https://evil.example/x')).toBeNull();
     expect(safeReturnTo('javascript:alert(1)')).toBeNull();
-    expect(safeReturnTo('mes-visites')).toBeNull();
+    expect(safeReturnTo('mes-achats')).toBeNull();
     expect(safeReturnTo('/a b')).toBeNull();
     expect(safeReturnTo('/a\nb')).toBeNull();
   });
@@ -29,13 +29,13 @@ describe('safeReturnTo', () => {
 
 describe('loginDestination', () => {
   it('honore returnTo avant le rôle', () => {
-    expect(loginDestination('guide', '/mes-visites')).toBe('/mes-visites');
+    expect(loginDestination('guide', '/mes-achats')).toBe('/mes-achats');
   });
   it('envoie chaque rôle chez lui', () => {
     expect(loginDestination('admin', null)).toBe('/admin/moderation');
     expect(loginDestination('guide', null)).toBe('/guide/studio');
-    expect(loginDestination('tourist', null)).toBe('/mes-visites');
-    expect(loginDestination(undefined, null)).toBe('/mes-visites');
+    expect(loginDestination('tourist', null)).toBe('/mes-achats');
+    expect(loginDestination(undefined, null)).toBe('/mes-achats');
   });
 });
 

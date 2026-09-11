@@ -1,35 +1,43 @@
+/**
+ * Correspondance des routes publiques FR ↔ EN.
+ *
+ * Une seule table, lue dans les deux sens : la version précédente portait une
+ * liste EN→FR et une chaîne de `if` FR→EN écrite à la main, à maintenir
+ * deux fois — et `/guides/[slug]` n'y était pas, la bascule de langue y
+ * restait muette. Les préfixes couvrent leurs sous-chemins
+ * (`/catalogue/nice` → `/en/catalogue/nice`).
+ */
+
 export type PublicLocale = 'fr' | 'en';
 
-const EN_TO_FR: ReadonlyArray<readonly [string, string]> = [
-  ['/en/my-purchases', '/mes-visites'],
-  ['/en/delete-account', '/supprimer-mon-compte'],
-  ['/en/privacy', '/confidentialite'],
-  ['/en/terms', '/cgu'],
-  ['/en/help', '/aide'],
-  ['/en/catalogue', '/catalogue'],
-  ['/en', '/'],
+/** [français, anglais], du plus spécifique au plus général. */
+export const PUBLIC_ROUTE_PAIRS: ReadonlyArray<readonly [string, string]> = [
+  ['/mes-achats', '/en/my-purchases'],
+  ['/supprimer-mon-compte', '/en/delete-account'],
+  ['/confidentialite', '/en/privacy'],
+  ['/cgu', '/en/terms'],
+  ['/aide', '/en/help'],
+  ['/catalogue', '/en/catalogue'],
+  ['/guides', '/en/guides'],
+  ['/', '/en'],
 ];
+
+function matches(path: string, prefix: string): boolean {
+  if (prefix === '/') return path === '/';
+  return path === prefix || path.startsWith(`${prefix}/`);
+}
+
+function swap(path: string, from: string, to: string): string {
+  if (from === '/') return to;
+  return `${to}${path.slice(from.length)}` || '/';
+}
 
 export function localizePublicPath(pathname: string, locale: PublicLocale): string {
   const path = pathname || '/';
-
-  if (locale === 'fr') {
-    const mapping = EN_TO_FR.find(([english]) => path === english || path.startsWith(`${english}/`));
-    if (!mapping) return path;
-    const [english, french] = mapping;
-    return `${french}${path.slice(english.length)}` || '/';
-  }
-
-  if (path === '/') return '/en';
-  if (path === '/supprimer-mon-compte') return '/en/delete-account';
-  if (path === '/mes-visites') return '/en/my-purchases';
-  if (path === '/confidentialite') return '/en/privacy';
-  if (path === '/cgu') return '/en/terms';
-  if (path === '/aide' || path.startsWith('/aide/')) return path.replace('/aide', '/en/help');
-  if (path === '/catalogue' || path.startsWith('/catalogue/')) {
-    return `/en${path}`;
-  }
-  if (path === '/en' || path.startsWith('/en/')) return path;
-
-  return path;
+  const [fromIndex, toIndex] = locale === 'en' ? [0, 1] : [1, 0];
+  // Le chemin est-il déjà dans la langue demandée ? On le garde tel quel.
+  if (PUBLIC_ROUTE_PAIRS.some((pair) => matches(path, pair[toIndex]))) return path;
+  const pair = PUBLIC_ROUTE_PAIRS.find((candidate) => matches(path, candidate[fromIndex]));
+  if (!pair) return path;
+  return swap(path, pair[fromIndex], pair[toIndex]);
 }

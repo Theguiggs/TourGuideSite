@@ -238,7 +238,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
                             ? 'bg-mer text-white animate-pulse'
                             : 'bg-mer-soft text-mer hover:opacity-90'
                         }`}
-                        title={isPlaying ? 'Stopper la preview' : 'Ecouter la preview'}
+                        title={isPlaying ? 'Arrêter l’aperçu' : 'Écouter l’aperçu'}
                       >
                         {isPlaying ? '⏸' : '▶'}
                       </button>
@@ -247,7 +247,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
                       <button
                         onClick={() => handleSelectCustom(sound)}
                         className="flex-1 min-w-0 text-left"
-                        title="Selectionner ce son pour la scene"
+                        title="Sélectionner ce son pour la scène"
                       >
                         {/* Title row */}
                         <div className="flex items-center gap-2">

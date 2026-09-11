@@ -28,7 +28,7 @@ export function loginDestination(role: LoginRole | undefined, returnTo: string |
   if (returnTo) return returnTo;
   if (role === 'admin') return '/admin/moderation';
   if (role === 'guide') return '/guide/studio';
-  return '/mes-visites';
+  return '/mes-achats';
 }
 
 /** URL de connexion qui ramènera sur `pathname`. */

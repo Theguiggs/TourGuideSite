@@ -83,7 +83,7 @@ export function PoiValidationPanel({
             }`}
             data-testid="poi-validation-status"
           >
-            {hasValidCoordinates ? 'Lieu localise' : 'A verifier'}
+            {hasValidCoordinates ? 'Lieu localisé' : 'À vérifier'}
           </span>
         </div>
 
@@ -114,7 +114,7 @@ export function PoiValidationPanel({
         </div>
 
         <div>
-          <label htmlFor="poi-desc" className="text-sm font-medium text-ink-80 block mb-1">Description du point d&apos;interet</label>
+          <label htmlFor="poi-desc" className="text-sm font-medium text-ink-80 block mb-1">Description du point d&apos;intérêt</label>
           <textarea
             id="poi-desc"
             value={description}
@@ -237,7 +237,7 @@ export function PoiValidationPanel({
           </div>
           {streetViewEmbedUrl ? (
             <iframe
-              title="Apercu Google Street View du POI"
+              title="Aperçu Google Street View du POI"
               src={streetViewEmbedUrl}
               className="w-full h-64 border-0"
               loading="lazy"
@@ -247,10 +247,10 @@ export function PoiValidationPanel({
             />
           ) : (
             <div className="h-64 flex flex-col items-center justify-center gap-3 px-6 text-center text-sm text-ink-60">
-              <p>Apercu Street View integre indisponible pour ce lieu.</p>
+              <p>Aperçu Street View intégré indisponible pour ce lieu.</p>
               {streetViewUrl && (
                 <a href={streetViewUrl} target="_blank" rel="noreferrer" className="bg-paper border border-line rounded-lg px-4 py-2 font-medium text-ink hover:bg-paper-soft">
-                  Verifier dans Google Street View
+                  Vérifier dans Google Street View
                 </a>
               )}
             </div>

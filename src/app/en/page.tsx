@@ -5,6 +5,7 @@ import CitiesSection from '@/components/CitiesSection';
 import HeroCta from '../_components/HeroCta';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { helpAnchorHref } from '@/lib/help-anchors';
+import { APP_STORE_URLS } from '@/lib/app-store';
 import { tg } from '@murmure/design-system/tokens';
 import { Button, Card, Eyebrow, NumberMark, PullQuote } from '@murmure/design-system/web';
 
@@ -108,9 +109,21 @@ export default function EnglishLandingPage() {
           <p className="font-editorial italic mt-4 mb-8" style={{color: tg.colors.ink80, fontSize: tg.fontSize.h6}}>
             Discover tours in the app and listen wherever you go, even offline.
           </p>
-          <Button href="/en/catalogue" variant="ghost" size="md" accessibilityLabel="Browse the tour catalogue">
-            Browse the catalogue
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button href="/en/catalogue" variant="ghost" size="md" accessibilityLabel="Browse the tour catalogue">
+              Browse the catalogue
+            </Button>
+            {APP_STORE_URLS.ios && (
+              <Button href={APP_STORE_URLS.ios} variant="primary" size="md" accessibilityLabel="Download on the App Store">
+                App Store
+              </Button>
+            )}
+            {APP_STORE_URLS.android && (
+              <Button href={APP_STORE_URLS.android} variant="primary" size="md" accessibilityLabel="Get it on Google Play">
+                Google Play
+              </Button>
+            )}
+          </div>
         </div>
       </section>
 

@@ -79,7 +79,7 @@ export function SceneRetryCard({
               En cours...
             </>
           ) : (
-            'Reessayer'
+            'Réessayer'
           )}
         </button>
       </div>

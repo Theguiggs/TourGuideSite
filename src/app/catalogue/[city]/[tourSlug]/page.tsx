@@ -53,7 +53,7 @@ const DETAIL_COPY = {
     free: 'GRATUIT', yourGuide: 'Votre guide', verifiedGuide: 'Guide vérifié', viewProfile: 'Voir le profil →',
     audioByLanguage: 'Audio par langue', itinerary: 'Itinéraire', reviews: 'Avis', liveTour: 'Vivez cette visite',
     download: "Téléchargez Murmure pour profiter de l'expérience audio immersive complète.",
-    duration: 'Durée', distance: 'Distance', stops: 'Étapes', completions: 'Completions', listen: "Écouter ce tour dans l'app",
+    duration: 'Durée', distance: 'Distance', stops: 'Étapes', completions: 'Écoutes terminées', listen: "Écouter cette visite dans l'app",
   },
   en: {
     openInApp: 'Open in Murmure', bestExperience: 'For the best immersive audio experience', open: 'Open',

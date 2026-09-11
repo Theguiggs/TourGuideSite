@@ -421,7 +421,7 @@ export default function ModerationReviewPage() {
       });
       sendGuideNotification(detail.guideId, detail.tourId, detail.tourTitle, 'validate')
         .catch((error: unknown) => logger.warn(SERVICE_NAME, 'Notification de validation impossible', { error: String(error) }));
-      setSuccessMessage('Parcours approuve et publie !');
+      setSuccessMessage('Visite approuvée et publiée !');
       setTimeout(() => router.push('/admin/moderation'), 2000);
     } else {
       setErrorMessage(result.error || 'Erreur lors de l\'approbation');
@@ -588,7 +588,7 @@ export default function ModerationReviewPage() {
   if (!detail) {
     return (
       <div className="text-center py-12">
-        <p className="text-ink-60 text-lg">Item de moderation introuvable.</p>
+        <p className="text-ink-60 text-lg">Élément de modération introuvable.</p>
         <Link href="/admin/moderation" className="text-danger hover:underline mt-4 inline-block">
           Retour a la file d&apos;attente
         </Link>
@@ -654,7 +654,7 @@ export default function ModerationReviewPage() {
           <span className="text-xs text-ink-40">En revue depuis {elapsedMinutes} min</span>
           {prevId && (
             <Link href={`/admin/moderation/${prevId}`} className="text-sm text-ink-60 hover:text-danger">
-              ← Precedent
+              ← Précédent
             </Link>
           )}
           {nextId && (
@@ -872,8 +872,8 @@ export default function ModerationReviewPage() {
                       : translatedTitles[activePreviewLang] || 'Titre non traduit'}
                   </h2>
                   <p className="text-grenadine-soft text-sm">
-                    {detail.city} &middot; {detail.duration} min &middot; {detail.distance} km &middot; {detail.poiCount} points d&apos;interet
-                    &middot; Difficulte : {detail.difficulty}
+                    {detail.city} &middot; {detail.duration} min &middot; {detail.distance} km &middot; {detail.poiCount} points d&apos;intérêt
+                    &middot; Difficulté : {detail.difficulty}
                   </p>
                   <p className="text-white text-sm mt-1 font-semibold" data-testid="moderation-monetization">
                     Accès : {detail.purchaseType === 'free'
@@ -1592,7 +1592,7 @@ export default function ModerationReviewPage() {
                   disabled={rejectFeedback.length < 20 || submitting}
                   className="w-full bg-grenadine text-white font-bold py-2 rounded-md hover:bg-grenadine disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                 >
-                  {submitting ? 'Envoi...' : 'Refuser definitivement'}
+                  {submitting ? 'Envoi...' : 'Refuser définitivement'}
                 </button>
               </div>
             )}

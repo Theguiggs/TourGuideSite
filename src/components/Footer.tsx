@@ -29,7 +29,7 @@ const FOOTER_COPY = {
   fr: {
     tagline: 'Visites guidées audio. Hors-ligne, où que vous soyez.',
     navigation: 'Navigation',
-    catalogue: 'Catalogue des tours',
+    catalogue: 'Catalogue des visites',
     help: 'Aide',
     guide: 'Devenir guide',
     terms: 'Conditions d’utilisation',

@@ -17,13 +17,13 @@ export type FaqItem = {
   a: string;
 };
 
-/** Les 7 étapes de création d'un parcours (AC9). */
+/** Les 7 étapes de création d'une visite (AC9). */
 export const STEPS: HelpStep[] = [
   {
     id: 'creer',
     n: 1,
-    title: 'Créez votre parcours',
-    body: "Depuis l'atelier, cliquez « + Créer un nouveau tour », puis donnez un titre et une ville. Votre parcours est créé en brouillon, prêt à être enrichi.",
+    title: 'Créez votre visite',
+    body: "Depuis l'atelier, cliquez « + Créer une nouvelle visite », puis donnez un titre et une ville. Votre visite est créée en brouillon, prête à être enrichie.",
     tip: 'Un titre évocateur (« Vieux-Nice — ruelles secrètes ») attire plus de voyageurs.',
   },
   {
@@ -55,17 +55,17 @@ export const STEPS: HelpStep[] = [
     id: 'previsualiser',
     n: 6,
     title: 'Prévisualisez',
-    body: "Vérifiez le rendu final de votre parcours, exactement tel que les voyageurs le verront dans le catalogue et dans l'app.",
+    body: "Vérifiez le rendu final de votre visite, exactement telle que les voyageurs la verront dans le catalogue et dans l'app.",
   },
   {
     id: 'publier',
     n: 7,
     title: 'Publiez',
-    body: "Soumettez pour modération. Les statuts s'enchaînent : brouillon → soumis → publié (ou révision demandée). Une fois publié, votre tour apparaît dans le catalogue et l'app. Vous pouvez le mettre en pause ou l'archiver à tout moment.",
+    body: "Soumettez pour modération. Les statuts s'enchaînent : brouillon → soumis → publié (ou révision demandée). Une fois publiée, votre visite apparaît dans le catalogue et l'app. Vous pouvez la mettre en pause ou l'archiver à tout moment.",
   },
 ];
 
-/** Conseils pour un parcours réussi (AC10). */
+/** Conseils pour une visite réussie (AC10). */
 export const TIPS: string[] = [
   'Des scènes courtes (1 à 3 minutes) gardent l’écoute vivante.',
   'Adoptez un ton conversationnel, comme si vous guidiez un ami.',
@@ -78,19 +78,19 @@ export const TIPS: string[] = [
 /** FAQ — groupe Guides (AC11, ≥ 6 questions). */
 export const FAQ_GUIDES: FaqItem[] = [
   {
-    q: 'Créer un parcours, est-ce payant ?',
+    q: 'Créer une visite, est-ce payant ?',
     a: 'Créer et publier est gratuit. Seules certaines langues de traduction peuvent être proposées en option payante (pack Standard ou Pro).',
   },
   {
     q: 'Comment suis-je rémunéré ?',
-    a: "Vous touchez une part majoritaire de chaque vente de votre tour, suivie dans l'onglet Revenus de l'atelier.",
+    a: "Vous touchez une part majoritaire de chaque vente de votre visite, suivie dans l'onglet Revenus de l'atelier.",
   },
   {
     q: 'Combien de temps avant la publication ?',
     a: "Après soumission, l'équipe de modération vérifie le contenu avant la mise en ligne. Le délai dépend du volume en cours.",
   },
   {
-    q: 'Puis-je modifier un parcours déjà publié ?',
+    q: 'Puis-je modifier une visite déjà publiée ?',
     a: 'Oui : mettez-le en pause, créez une nouvelle version, ou corrigez-le après un retour de modération — sans tout recommencer.',
   },
   {
@@ -98,7 +98,7 @@ export const FAQ_GUIDES: FaqItem[] = [
     a: 'Non. La voix de synthèse lit votre texte si vous ne souhaitez pas enregistrer votre propre voix.',
   },
   {
-    q: 'Mon tour peut-il être multilingue ?',
+    q: 'Ma visite peut-elle être multilingue ?',
     a: 'Oui. Ajoutez des langues ; chacune est traduite, doublée, puis modérée séparément.',
   },
 ];
@@ -106,12 +106,12 @@ export const FAQ_GUIDES: FaqItem[] = [
 /** FAQ — groupe Voyageurs (AC11, ≥ 4 questions). */
 export const FAQ_VOYAGEURS: FaqItem[] = [
   {
-    q: 'Comment écouter un tour ?',
-    a: "Téléchargez l'app Murmure, choisissez un tour et lancez la lecture : le récit vous suit au fil de votre marche.",
+    q: 'Comment écouter une visite ?',
+    a: "Téléchargez l'app Murmure, choisissez une visite et lancez la lecture : le récit vous suit au fil de votre marche.",
   },
   {
     q: 'Ça marche hors-ligne ?',
-    a: 'Oui. Téléchargez le tour avant de partir et écoutez-le sans réseau.',
+    a: 'Oui. Téléchargez la visite avant de partir et écoutez-la sans réseau.',
   },
   {
     q: 'Sur quels appareils ?',
@@ -119,10 +119,10 @@ export const FAQ_VOYAGEURS: FaqItem[] = [
   },
   {
     q: 'Est-ce gratuit ?',
-    a: 'Plusieurs tours sont gratuits ; d’autres sont payants.',
+    a: 'Plusieurs visites sont gratuites ; d’autres sont payantes.',
   },
   {
-    q: 'Où trouver les tours ?',
+    q: 'Où trouver les visites ?',
     a: 'Parcourez le catalogue sur le web, puis écoutez dans l’app.',
   },
 ];

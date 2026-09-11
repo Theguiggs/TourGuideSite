@@ -1,6 +1,6 @@
 /**
  * "Mes achats" presentational pieces: PurchasedTourCard (date + amount + link)
- * and MyPurchasesStrip (hidden when empty, links to /mes-visites).
+ * and MyPurchasesStrip (hidden when empty, links to /mes-achats).
  */
 
 import { render, screen } from '@testing-library/react';
@@ -96,7 +96,7 @@ describe('<MyPurchasesStrip>', () => {
       />,
     );
     expect(screen.getByText('Mes achats (2)')).toBeInTheDocument();
-    expect(screen.getByText('Voir tout →')).toHaveAttribute('href', '/mes-visites');
+    expect(screen.getByText('Voir tout →')).toHaveAttribute('href', '/mes-achats');
     expect(screen.getByTestId('purchase-strip-a')).toBeInTheDocument();
     expect(screen.getByTestId('purchase-strip-b')).toBeInTheDocument();
   });

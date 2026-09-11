@@ -51,7 +51,7 @@ const STEPS = [
   {
     n: 4,
     title: 'Publiez',
-    body: 'Traduisez en un clic, soumettez, et votre tour part dans le monde.',
+    body: 'Traduisez en un clic, soumettez, et votre visite part dans le monde.',
     href: helpAnchorHref('fr', 'publier'),
   },
 ] as const;
@@ -68,7 +68,7 @@ const BENEFITS = [
   },
   {
     title: 'Une audience mondiale',
-    body: "Votre tour vit dans le catalogue web et l'app, traduit en plusieurs langues.",
+    body: "Votre visite vit dans le catalogue web et l'app, traduite en plusieurs langues.",
   },
   {
     title: 'Des outils intégrés',
@@ -227,7 +227,7 @@ export default function LandingPage() {
               maxWidth: '36rem',
             }}
           >
-            Murmure se vit surtout dans l’app. Téléchargez vos tours et écoutez,
+            Murmure se vit surtout dans l’app. Téléchargez vos visites et écoutez,
             même hors-ligne.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -235,7 +235,7 @@ export default function LandingPage() {
               href="/catalogue"
               variant="ghost"
               size="md"
-              accessibilityLabel="Voir le catalogue des tours"
+              accessibilityLabel="Voir le catalogue des visites"
             >
               Voir le catalogue
             </Button>

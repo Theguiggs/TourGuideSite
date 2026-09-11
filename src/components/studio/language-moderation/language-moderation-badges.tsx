@@ -5,7 +5,7 @@ import type { TourLanguagePurchase, PurchaseModerationStatus } from '@/types/stu
 const STATUS_CONFIG: Record<PurchaseModerationStatus, { label: string; icon: string; className: string }> = {
   draft: { label: 'brouillon', icon: '', className: 'bg-paper-soft text-ink-80' },
   submitted: { label: 'en moderation', icon: '', className: 'bg-ocre-soft text-ocre' },
-  approved: { label: 'publie', icon: '', className: 'bg-olive-soft text-success' },
+  approved: { label: 'publié', icon: '', className: 'bg-olive-soft text-success' },
   rejected: { label: 'refuse', icon: '', className: 'bg-grenadine-soft text-danger' },
   revision_requested: { label: 'revision', icon: '', className: 'bg-ocre-soft text-ocre' },
 };

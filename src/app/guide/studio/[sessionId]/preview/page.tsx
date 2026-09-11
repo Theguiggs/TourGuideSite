@@ -345,7 +345,7 @@ export default function PreviewPage() {
   const canArchive = isPublished;
   const canSuspend = ['draft', 'editing', 'recording', 'ready', 'revision_requested', 'rejected'].includes(session.status);
 
-  const displayTitle = session.title || 'Mon tour';
+  const displayTitle = session.title || 'Ma visite';
 
   // Le Studio travaille uniquement la source. Les langues visiteurs sont
   // fabriquées hors Studio et ne sont jamais éditables ici.
@@ -467,7 +467,7 @@ export default function PreviewPage() {
                         <S3Image
                           key={pi}
                           s3Key={url}
-                          alt={`${scene.title || `Etape ${index + 1}`} — photo ${pi + 1}`}
+                          alt={`${scene.title || `Étape ${index + 1}`} — photo ${pi + 1}`}
                           className={`h-full object-cover flex-shrink-0 ${scene.photosRefs.length === 1 ? 'w-full' : 'w-28'}`}
                           fallback={`Photo ${pi + 1}`}
                         />
@@ -485,7 +485,7 @@ export default function PreviewPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className={`text-sm font-medium truncate ${isActive ? 'text-white' : 'text-paper'}`}>
-                        {getSceneTitle(scene) || `Etape ${index + 1}`}
+                        {getSceneTitle(scene) || `Étape ${index + 1}`}
                       </p>
                       {scene.poiDescription && (
                         <p className="text-xs text-ink-40 truncate">{scene.poiDescription}</p>

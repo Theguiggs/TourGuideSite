@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   robots: {index: false, follow: false},
   alternates: {
     canonical: '/en/my-purchases',
-    languages: {fr: '/mes-visites', en: '/en/my-purchases'},
+    languages: {fr: '/mes-achats', en: '/en/my-purchases'},
   },
 };
 

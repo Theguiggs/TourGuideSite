@@ -104,7 +104,7 @@ describe('SplitEditor', () => {
       expect(screen.queryByTestId('translated-textarea')).not.toBeInTheDocument();
       // Should show Edit button
       expect(screen.getByTestId('edit-button')).toBeInTheDocument();
-      expect(screen.getByTestId('edit-button')).toHaveTextContent('Editer');
+      expect(screen.getByTestId('edit-button')).toHaveTextContent('Éditer');
     });
 
     it('shows title as plain text in readOnly mode', () => {

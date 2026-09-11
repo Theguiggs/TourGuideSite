@@ -30,7 +30,7 @@ describe('PoiValidationPanel', () => {
 
   it('shows a localized status when coordinates are valid', () => {
     render(<PoiValidationPanel {...baseProps} mapPreview={<div>Carte itineraire</div>} />);
-    expect(screen.getByTestId('poi-validation-status')).toHaveTextContent('Lieu localise');
+    expect(screen.getByTestId('poi-validation-status')).toHaveTextContent('Lieu localisé');
     expect(screen.getByTestId('poi-map-preview')).toBeInTheDocument();
     expect(screen.getByText('Carte itineraire')).toBeInTheDocument();
     expect(screen.queryByText('Ouvrir dans Google Maps')).not.toBeInTheDocument();
@@ -38,7 +38,7 @@ describe('PoiValidationPanel', () => {
 
   it('shows a verification status without coordinates', () => {
     render(<PoiValidationPanel {...baseProps} latitude="" longitude="" />);
-    expect(screen.getByTestId('poi-validation-status')).toHaveTextContent('A verifier');
+    expect(screen.getByTestId('poi-validation-status')).toHaveTextContent('À vérifier');
     expect(screen.queryByTestId('poi-map-preview')).not.toBeInTheDocument();
   });
 

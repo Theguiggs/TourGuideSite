@@ -27,7 +27,7 @@ export default function AccountDeletionPage() {
     <>
       <section className="bg-paper">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <Eyebrow color={tg.colors.grenadine}>Donnees personnelles</Eyebrow>
+          <Eyebrow color={tg.colors.grenadine}>Données personnelles</Eyebrow>
           <h1 className="font-display text-h3 md:text-h2 mt-4" style={{ color: tg.colors.ink }}>
             Supprimer mon compte
           </h1>
@@ -35,7 +35,7 @@ export default function AccountDeletionPage() {
             className="font-sans mt-6"
             style={{ color: tg.colors.ink80, fontSize: tg.fontSize.bodyLg, lineHeight: 1.65 }}
           >
-            Vous pouvez supprimer definitivement votre compte Murmure et les donnees associees.
+            Vous pouvez supprimer définitivement votre compte Murmure et les données associées.
           </p>
           <LegalLanguageSwitcher
             locale="fr"
@@ -51,13 +51,13 @@ export default function AccountDeletionPage() {
             Depuis l&apos;application
           </h2>
           <p className="font-sans mt-4" style={{ color: tg.colors.ink80, lineHeight: 1.65 }}>
-            Connectez-vous, ouvrez <strong>Reglages</strong>, puis <strong>Donnees personnelles</strong>
+            Connectez-vous, ouvrez <strong>Réglages</strong>, puis <strong>Données personnelles</strong>
             et choisissez <strong>Supprimer mon compte</strong>. La suppression est irreversible et
             une confirmation est envoyee par e-mail.
           </p>
 
           <h2 className="font-display text-h5 mt-12" style={{ color: tg.colors.ink }}>
-            Si vous ne pouvez plus acceder a l&apos;application
+            Si vous ne pouvez plus accéder à l&apos;application
           </h2>
           <p className="font-sans mt-4" style={{ color: tg.colors.ink80, lineHeight: 1.65 }}>
             Envoyez une demande depuis l&apos;adresse e-mail associee au compte. Nous verifierons votre

@@ -75,8 +75,8 @@ export default function CguPage() {
           <Section title="2. Description du Service">
             <p>
               Murmure permet aux voyageurs d’écouter des visites guidées audio, y compris hors-ligne,
-              et aux guides de créer et publier des parcours via l’atelier web. Certaines
-              fonctionnalités ou parcours sont gratuits, d’autres payants (achat à l’unité ou
+              et aux guides de créer et publier des visites via l’atelier web. Certaines
+              fonctionnalités ou visites sont gratuites, d’autres payants (achat à l’unité ou
               abonnement).
             </p>
           </Section>
@@ -93,12 +93,12 @@ export default function CguPage() {
           <Section title="4. Contenu des guides">
             <p>
               Les guides restent responsables des contenus qu’ils créent (audio, textes,
-              localisations) et garantissent disposer des droits nécessaires. Les parcours sont
-              soumis à une modération avant publication ; nous pouvons refuser ou retirer un contenu
+              localisations) et garantissent disposer des droits nécessaires. Les visites sont
+              soumises à une modération avant publication ; nous pouvons refuser ou retirer un contenu
               qui enfreint les CGU ou la loi. Les guides conservent l’intégralité de leurs droits
               sur leurs contenus. En publiant, le guide concède à Murmure une licence non exclusive,
               mondiale et gratuite, pour la durée de la publication, afin d’héberger, diffuser,
-              traduire et adapter techniquement le parcours dans le Service. Lorsqu’un parcours est
+              traduire et adapter techniquement la visite dans le Service. Lorsqu’une visite est
               payant, la part revenant au guide est celle affichée dans l’atelier au moment de la
               publication ; elle lui est reversée selon les modalités indiquées dans son espace
               « Revenus ».
@@ -122,8 +122,8 @@ export default function CguPage() {
               Apple ou Google selon le magasin d’achat. Pour les achats sur le web, le contenu
               numérique est mis à disposition immédiatement après le paiement : conformément à
               l’article L221-28 13° du Code de la consommation, vous acceptez que l’exécution commence
-              aussitôt et renoncez à votre droit de rétractation de quatorze jours. Si un parcours
-              acheté est défectueux ou inaccessible, écrivez-nous à{' '}
+              aussitôt et renoncez à votre droit de rétractation de quatorze jours. Si une visite
+              achetée est défectueuse ou inaccessible, écrivez-nous à{' '}
               <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: tg.colors.grenadine }}>
                 {CONTACT_EMAIL}
               </a>
@@ -142,7 +142,7 @@ export default function CguPage() {
           <Section title="8. Responsabilité">
             <p>
               Le Service est fourni « en l’état ». Dans les limites permises par la loi, Murmure ne
-              saurait être tenu responsable des dommages indirects. Les parcours reposent sur des
+              saurait être tenu responsable des dommages indirects. Les visites reposent sur des
               données de localisation : restez attentif à votre environnement lors de vos
               déplacements.
             </p>

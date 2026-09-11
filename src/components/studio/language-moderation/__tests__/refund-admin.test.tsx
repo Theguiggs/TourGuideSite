@@ -118,7 +118,7 @@ describe('ML-5.5 Refund Admin', () => {
     const enBadge = screen.getByTestId('lang-badge-en');
     expect(enBadge).toHaveTextContent('rembourse');
     // Should not show the moderation status when refunded
-    expect(enBadge).not.toHaveTextContent('publie');
+    expect(enBadge).not.toHaveTextContent('publié');
 
     const frBadge = screen.getByTestId('lang-badge-fr');
     expect(frBadge).toHaveTextContent('en moderation');
