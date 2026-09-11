@@ -217,7 +217,7 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
 
         {/* Call to action */}
         <p className="text-sm text-ocre pt-2 border-t border-ocre-soft">
-          Corrigez les points signalés ci-dessus, puis resoumettez votre tour.
+          Corrigez les points signalés ci-dessus, puis resoumettez votre visite.
         </p>
       </div>
     </div>

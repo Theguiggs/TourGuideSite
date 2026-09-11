@@ -94,7 +94,7 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
       setRecordingTime(0);
       timerRef.current = setInterval(() => setRecordingTime((t) => t + 1), 1000);
     } catch (e) {
-      setError('Impossible d\'acceder au microphone. Autorisez l\'acces.');
+      setError('Impossible d\'accéder au microphone. Autorisez l\'accès.');
       logger.error(SERVICE_NAME, 'getUserMedia failed', { error: String(e) });
     }
   }, [resetMedia, recordingTime]);
@@ -267,7 +267,7 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
                   onClick={stopRecording}
                   className="w-full py-3 bg-ink-80 hover:bg-ink text-white rounded-lg font-medium"
                 >
-                  ⏹ Arreter
+                  ⏹ Arrêter
                 </button>
               </div>
             )}

@@ -93,7 +93,7 @@ export default function AdminAnalyticsPage() {
 
       {isEmpty && (
         <div className="bg-ocre-soft border border-ocre rounded-lg p-4 mb-6 text-sm text-ocre" role="status">
-          Aucune donnée disponible. Cette vue se remplira au fur et à mesure que des guides publieront des tours.
+          Aucune donnée disponible. Cette vue se remplira au fur et à mesure que des guides publieront des visites.
         </div>
       )}
 

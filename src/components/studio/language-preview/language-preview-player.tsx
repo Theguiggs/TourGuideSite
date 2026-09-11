@@ -234,7 +234,7 @@ export function LanguagePreviewPlayer({
           }`}
           data-testid="teaser-btn"
         >
-          {mode === 'teaser' ? 'Arreter' : 'Ecouter un extrait'}
+          {mode === 'teaser' ? 'Arrêter' : 'Écouter un extrait'}
         </button>
 
         <button
@@ -246,7 +246,7 @@ export function LanguagePreviewPlayer({
           }`}
           data-testid="full-preview-btn"
         >
-          {mode === 'full' ? 'Arreter' : 'Preview complete'}
+          {mode === 'full' ? 'Arrêter' : 'Aperçu complet'}
         </button>
 
         {currentSceneIndex !== null && (

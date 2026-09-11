@@ -50,7 +50,7 @@ describe('LanguageModerationBadges', () => {
 
     const frBadge = screen.getByTestId('lang-badge-fr');
     expect(frBadge).toHaveTextContent('FR');
-    expect(frBadge).toHaveTextContent('publie');
+    expect(frBadge).toHaveTextContent('publié');
 
     const enBadge = screen.getByTestId('lang-badge-en');
     expect(enBadge).toHaveTextContent('EN');

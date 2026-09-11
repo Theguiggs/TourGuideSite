@@ -26,7 +26,7 @@ describe('exposition publique', () => {
     const disallow = (Array.isArray(rules) ? rules : [rules]).flatMap((r) =>
       Array.isArray(r.disallow) ? r.disallow : [r.disallow],
     );
-    for (const p of ['/api/', '/guide/', '/admin/', '/test-ds', '/mes-visites', '/en/my-purchases']) {
+    for (const p of ['/api/', '/guide/', '/admin/', '/test-ds', '/mes-achats', '/en/my-purchases']) {
       expect(disallow).toContain(p);
     }
   });

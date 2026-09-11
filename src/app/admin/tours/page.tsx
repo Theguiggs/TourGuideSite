@@ -100,7 +100,7 @@ export default function AdminToursPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-ink mb-6">Tous les parcours</h1>
+      <h1 className="text-2xl font-bold text-ink mb-6">Toutes les visites</h1>
 
       {actionError && (
         <div
@@ -146,14 +146,14 @@ export default function AdminToursPage() {
             Effacer
           </button>
         )}
-        <span className="ml-auto text-sm text-ink-40 self-center">{filtered.length} parcours</span>
+        <span className="ml-auto text-sm text-ink-40 self-center">{filtered.length} visites</span>
       </div>
 
       {loading ? (
         <p className="text-ink-60 text-sm">Chargement...</p>
       ) : filtered.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
-          <p className="text-ink-60">Aucun parcours trouvé.</p>
+          <p className="text-ink-60">Aucune visite trouvée.</p>
         </div>
       ) : (
         <div className="bg-card rounded-md border border-line overflow-hidden">
@@ -288,13 +288,13 @@ export default function AdminToursPage() {
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-card rounded-md p-6 max-w-sm w-full">
             <h2 className="text-lg font-bold text-ink mb-3">
-              {pendingStatus === 'archived' ? 'Suspendre ce parcours ?' : 'Réactiver ce parcours ?'}
+              {pendingStatus === 'archived' ? 'Suspendre cette visite ?' : 'Réactiver cette visite ?'}
             </h2>
             <p className="text-sm text-ink-60 mb-2 font-medium">{confirmTour.title}</p>
             <p className="text-sm text-ink-60 mb-6">
               {pendingStatus === 'archived'
-                ? 'Le parcours sera retiré de la plateforme et invisible aux utilisateurs.'
-                : 'Le parcours sera à nouveau visible et accessible aux utilisateurs.'}
+                ? 'La visite sera retirée de la plateforme et invisible aux utilisateurs.'
+                : 'La visite sera à nouveau visible et accessible aux utilisateurs.'}
             </p>
             <div className="flex gap-3">
               <button

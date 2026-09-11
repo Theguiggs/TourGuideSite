@@ -29,7 +29,7 @@ const FOOTER_COPY = {
   fr: {
     tagline: 'Visites guidées audio. Hors-ligne, où que vous soyez.',
     navigation: 'Navigation',
-    catalogue: 'Catalogue des tours',
+    catalogue: 'Catalogue des visites',
     help: 'Aide',
     guide: 'Devenir guide',
     terms: 'Conditions d’utilisation',
@@ -201,7 +201,6 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
               marginLeft: '1rem',
               opacity: 0.45,
               fontSize: tg.fontSize.caption ?? '0.75rem',
-              fontFamily: 'var(--font-mono)',
               letterSpacing: '0.04em',
             }}
           >

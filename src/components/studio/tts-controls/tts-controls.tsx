@@ -189,7 +189,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
               className="text-xs text-mer hover:opacity-80 font-medium"
               data-testid="toggle-ssml-editor"
             >
-              {showEditor ? 'Masquer editeur' : 'Editer le texte / ajouter effets'}
+              {showEditor ? 'Masquer l’éditeur' : 'Éditer le texte / ajouter des effets'}
             </button>
             {hasSSML && (
               <span className="text-[10px] bg-mer-soft text-mer px-1.5 py-0.5 rounded font-medium">SSML</span>
@@ -225,7 +225,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
           className="w-full bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white font-medium py-2.5 rounded-lg text-sm transition"
           data-testid="tts-generate-btn"
         >
-          {isTriggering ? 'Lancement...' : hasSSML ? 'Generer l\'audio (avec effets)' : 'Generer l\'audio'}
+          {isTriggering ? 'Lancement...' : hasSSML ? 'Générer l\'audio (avec effets)' : 'Générer l\'audio'}
         </button>
       )}
 

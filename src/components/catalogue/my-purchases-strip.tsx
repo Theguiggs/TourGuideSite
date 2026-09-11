@@ -9,7 +9,7 @@ interface MyPurchasesStripProps {
 
 /**
  * Compact "Mes achats" summary shown atop /catalogue for a logged-in buyer.
- * Renders nothing when there are no purchases. Links through to /mes-visites.
+ * Renders nothing when there are no purchases. Links through to /mes-achats (or /en/my-purchases).
  */
 export function MyPurchasesStrip({ purchases, locale = 'fr' }: MyPurchasesStripProps) {
   if (purchases.length === 0) return null;
@@ -20,7 +20,7 @@ export function MyPurchasesStrip({ purchases, locale = 'fr' }: MyPurchasesStripP
         <h2 className="text-xl font-semibold text-ink">
           {locale === 'en' ? 'My purchases' : 'Mes achats'} ({purchases.length})
         </h2>
-        <Link href="/mes-visites" className="text-sm text-grenadine font-medium hover:underline">
+        <Link href={locale === 'en' ? '/en/my-purchases' : '/mes-achats'} className="text-sm text-grenadine font-medium hover:underline">
           {locale === 'en' ? 'View all →' : 'Voir tout →'}
         </Link>
       </div>

@@ -163,7 +163,7 @@ export default function PublicationPage() {
 
   // --- Status explanation ---
   const statusMessages: Record<string, string> = {
-    draft: t('Votre parcours est en brouillon. Complétez les informations puis soumettez-le pour validation.', 'Your tour is a draft. Complete the information, then submit it for review.'),
+    draft: t('Votre visite est en brouillon. Complétez les informations puis soumettez-la pour validation.', 'Your tour is a draft. Complete the information, then submit it for review.'),
     editing: t('Parcours en cours de travail. Finalisez les scènes puis soumettez-le.', 'Tour in progress. Complete the scenes, then submit it.'),
     recording: t("Parcours en cours d'enregistrement.", 'Tour recording in progress.'),
     ready: t('Parcours prêt. Soumettez-le pour modération.', 'Tour ready. Submit it for review.'),
@@ -285,7 +285,7 @@ export default function PublicationPage() {
               <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
               <div>
                 <p className="text-sm font-medium text-ocre">Mettre en pause</p>
-                <p className="text-xs text-ocre">Masquer temporairement du catalogue. Reprise sans remoderation.</p>
+                <p className="text-xs text-ocre">Masquer temporairement du catalogue. Reprise sans nouvelle modération.</p>
               </div>
             </button>
           )}
@@ -300,7 +300,7 @@ export default function PublicationPage() {
               <span className="text-base shrink-0">&#x25B6;&#xFE0F;</span>
               <div>
                 <p className="text-sm font-medium text-success">Republier le parcours</p>
-                <p className="text-xs text-success">Remettre le parcours visible dans le catalogue, sans remoderation</p>
+                <p className="text-xs text-success">Remettre la visite visible dans le catalogue, sans nouvelle modération</p>
               </div>
             </button>
           )}
@@ -409,7 +409,7 @@ export default function PublicationPage() {
               <span className="text-base shrink-0">&#x1F5D1;&#xFE0F;</span>
               <div>
                 <p className="text-sm font-medium text-danger">{t('Supprimer ce brouillon', 'Delete this draft')}</p>
-                <p className="text-xs text-danger">Supprime definitivement cette session et tout son contenu</p>
+                <p className="text-xs text-danger">Supprime définitivement cette session et tout son contenu</p>
               </div>
             </button>
           )}
@@ -450,7 +450,7 @@ export default function PublicationPage() {
               >
                 <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
                 <div>
-                  <p className="text-sm font-medium text-ocre">Desarchiver (en pause)</p>
+                  <p className="text-sm font-medium text-ocre">Désarchiver (en pause)</p>
                   <p className="text-xs text-ocre">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>
                 </div>
               </button>

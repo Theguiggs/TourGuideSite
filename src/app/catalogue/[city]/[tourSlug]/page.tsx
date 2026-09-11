@@ -29,7 +29,11 @@ import {
   isSyntheticAudioSource,
 } from '@/lib/api/audio-source-policy';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
+import { tourMetadata } from '@/lib/seo/tour-metadata';
+import { tourJsonLd } from '@/lib/seo/json-ld';
 import ItineraryList from './itinerary-list';
+import { StarRating } from '@/components/catalogue/StarRating';
+import { maskLockedPois } from '@/lib/catalogue/scene-pois';
 
 // Aucune liste blanche : ces tables n'habillent que ce qui est vendu. Une
 // langue absente d'ici s'affiche quand même, sans drapeau et sous son code.
@@ -49,7 +53,7 @@ const DETAIL_COPY = {
     free: 'GRATUIT', yourGuide: 'Votre guide', verifiedGuide: 'Guide vérifié', viewProfile: 'Voir le profil →',
     audioByLanguage: 'Audio par langue', itinerary: 'Itinéraire', reviews: 'Avis', liveTour: 'Vivez cette visite',
     download: "Téléchargez Murmure pour profiter de l'expérience audio immersive complète.",
-    duration: 'Durée', distance: 'Distance', stops: 'Étapes', completions: 'Completions', listen: "Écouter ce tour dans l'app",
+    duration: 'Durée', distance: 'Distance', stops: 'Étapes', completions: 'Écoutes terminées', listen: "Écouter cette visite dans l'app",
   },
   en: {
     openInApp: 'Open in Murmure', bestExperience: 'For the best immersive audio experience', open: 'Open',
@@ -109,49 +113,7 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
   const { city: citySlug, tourSlug } = await params;
   const tour = await getTourBySlug(citySlug, tourSlug);
   if (!tour) return {};
-
-  const description =
-    tour.shortDescription ||
-    (tour.description ? tour.description.slice(0, 160) : 'Une visite à découvrir.');
-
-  return {
-    title: tour.title,
-    description,
-    alternates: {
-      canonical: `/catalogue/${citySlug}/${tourSlug}`,
-      languages: {
-        fr: `/catalogue/${citySlug}/${tourSlug}`,
-        en: `/en/catalogue/${citySlug}/${tourSlug}`,
-      },
-    },
-    openGraph: {
-      title: `${tour.title} | Murmure`,
-      description,
-      type: 'article',
-      images: [
-        {
-          url: `/og/tour/${citySlug}/${tourSlug}`,
-          width: 1200,
-          height: 630,
-          alt: `${tour.title} — visite audio à ${tour.city}`,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${tour.title} | Murmure`,
-      description,
-    },
-  };
-}
-
-function StarRating({ rating, locale = 'fr' }: { rating: number; locale?: 'fr' | 'en' }) {
-  return (
-    <span style={{ color: tg.colors.ocre }} aria-label={locale === 'en' ? `${rating.toFixed(1)} stars out of 5` : `${rating.toFixed(1)} étoiles sur 5`}>
-      {'★'.repeat(Math.round(rating))}
-      {'☆'.repeat(5 - Math.round(rating))}
-    </span>
-  );
+  return tourMetadata(tour, citySlug, tourSlug, 'fr');
 }
 
 export async function LocalizedTourDetailPage({ params, searchParams, locale = 'fr' }: TourPageProps & {locale?: 'fr' | 'en'}) {
@@ -539,10 +501,14 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
               >
                 {copy.itinerary}
               </h2>
+              {/* Visite payante : le HTML ne porte pas les titres verrouillés
+                  (ils n'étaient que floutés en CSS). L'acheteur les retrouve
+                  par la redemande après hydratation. */}
               <ItineraryList
-                pois={tour.pois}
+                pois={isTourFree(tour) ? tour.pois : maskLockedPois(tour.pois, locale)}
                 tourId={tour.id}
                 isFree={isTourFree(tour)}
+                contentUnavailable={tour.contentUnavailable}
                 heroAccentFg={heroAccentFg}
                 locale={locale}
               />
@@ -720,25 +686,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: safeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'TouristAttraction',
-            name: tour.title,
-            description: tour.shortDescription,
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: tour.city,
-              addressCountry: 'FR',
-            },
-            aggregateRating:
-              tour.reviewCount > 0
-                ? {
-                    '@type': 'AggregateRating',
-                    ratingValue: tour.averageRating,
-                    reviewCount: tour.reviewCount,
-                  }
-                : undefined,
-          }),
+          __html: safeJsonLd(tourJsonLd(tour, locale)),
         }}
       />
     </div>

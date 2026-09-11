@@ -35,11 +35,11 @@ describe('GuideLoginPage', () => {
   });
 
   it('ramène un voyageur sur ses achats (returnTo), et non sur le Studio', async () => {
-    search = 'returnTo=%2Fmes-visites';
+    search = 'returnTo=%2Fmes-achats';
     mockSignIn.mockResolvedValue({ ok: true, role: 'tourist' });
     render(<GuideLoginPage />);
     await submit();
-    expect(mockPush).toHaveBeenCalledWith('/mes-visites');
+    expect(mockPush).toHaveBeenCalledWith('/mes-achats');
   });
 
   it('ignore un returnTo qui sort du site', async () => {
@@ -54,7 +54,7 @@ describe('GuideLoginPage', () => {
     mockSignIn.mockResolvedValue({ ok: true, role: 'tourist' });
     render(<GuideLoginPage />);
     await submit();
-    expect(mockPush).toHaveBeenCalledWith('/mes-visites');
+    expect(mockPush).toHaveBeenCalledWith('/mes-achats');
   });
 
   it('relie « Mot de passe oublié ? » à la réinitialisation', () => {

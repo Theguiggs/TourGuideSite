@@ -19,6 +19,8 @@ interface ItineraryListProps {
   isFree: boolean;
   heroAccentFg: string;
   locale?: 'fr' | 'en';
+  /** Le contenu public n'a pas pu être lu au rendu : dire « indisponible », pas « en cours ». */
+  contentUnavailable?: boolean;
 }
 
 /** Ce que le serveur a servi : des étapes, et s'il les a accordées en entier. */
@@ -119,6 +121,7 @@ export default function ItineraryList({
   isFree,
   heroAccentFg,
   locale = 'fr',
+  contentUnavailable = false,
 }: ItineraryListProps) {
   // Hooks appelés sans condition : `isFree` court-circuiterait l'appel et
   // désordonnerait la liste des hooks au premier rendu où il change.
@@ -130,9 +133,16 @@ export default function ItineraryList({
   const hasAccess = isFree || granted || (shouldUseStubs() && ownsTour);
 
   if (displayedPois.length === 0) {
+    const text = contentUnavailable
+      ? locale === 'en'
+        ? 'Itinerary temporarily unavailable — please try again in a moment.'
+        : 'Itinéraire momentanément indisponible — réessayez dans un instant.'
+      : locale === 'en'
+        ? 'Itinerary being finalised'
+        : 'Itinéraire en cours de finalisation';
     return (
-      <Eyebrow style={{ color: tg.colors.ink60 }}>
-        {locale === 'en' ? 'Itinerary being finalised' : 'Itinéraire en cours de finalisation'}
+      <Eyebrow style={{ color: tg.colors.ink60 }} data-testid={contentUnavailable ? 'itinerary-unavailable' : 'itinerary-empty'}>
+        {text}
       </Eyebrow>
     );
   }

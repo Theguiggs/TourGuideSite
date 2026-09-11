@@ -229,7 +229,7 @@ export default function SessionDetailPage() {
       </div>
       <p className="font-editorial italic text-caption text-ink-60 mb-5">
         {t(
-          "Vue d'ensemble du tour. Cliquez sur une scène pour la lire ou allez à l'onglet Scènes pour le mode édition.",
+          "Vue d'ensemble de la visite. Cliquez sur une scène pour la lire ou allez à l'onglet Scènes pour le mode édition.",
           'Tour overview. Select a scene to play it, or open the Scenes tab to edit it.',
         )}
       </p>

@@ -75,7 +75,7 @@ export function TourInfoTranslation({
     try {
       await onRequestTranslation();
     } catch {
-      setTranslateError('Echec de la traduction');
+      setTranslateError('Échec de la traduction');
     } finally {
       setTranslating(false);
     }
@@ -88,7 +88,7 @@ export function TourInfoTranslation({
     try {
       await onTranslateTitle();
     } catch {
-      setTranslateError('Echec de la traduction du titre');
+      setTranslateError('Échec de la traduction du titre');
     } finally {
       setTranslatingTitle(false);
     }
@@ -101,7 +101,7 @@ export function TourInfoTranslation({
     try {
       await onTranslateDescription();
     } catch {
-      setTranslateError('Echec de la traduction de la description');
+      setTranslateError('Échec de la traduction de la description');
     } finally {
       setTranslatingDesc(false);
     }
@@ -195,7 +195,7 @@ export function TourInfoTranslation({
                   className="text-xs font-medium text-grenadine hover:opacity-80"
                   data-testid="edit-title-button"
                 >
-                  Editer
+                  Éditer
                 </button>
               )}
             </div>
@@ -263,7 +263,7 @@ export function TourInfoTranslation({
                   className="text-xs font-medium text-grenadine hover:opacity-80"
                   data-testid="edit-description-button"
                 >
-                  Editer
+                  Éditer
                 </button>
               )}
             </div>

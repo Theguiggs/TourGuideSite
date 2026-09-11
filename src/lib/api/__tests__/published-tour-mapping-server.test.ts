@@ -12,8 +12,13 @@ jest.mock('../appsync-server-public', () => ({
   getPublishedTourContentServer: jest.fn(),
 }));
 
+jest.mock('@/lib/logger', () => ({
+  logger: { info: jest.fn(), debug: jest.fn(), warn: jest.fn(), error: jest.fn() },
+}));
+
 import * as publicApi from '../appsync-server-public';
 import { getAllToursWithCoords, getTourBySlug, getToursByCity } from '../tours-server';
+import { clearCache } from '@/lib/server/ttl-cache';
 
 const tour = {
   id: 'tour-1',
@@ -45,6 +50,7 @@ const content = {
 describe('published tour SSR mappings', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    clearCache();
     jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([tour] as never);
     jest.mocked(publicApi.listGuideProfilesServer).mockResolvedValue([
       { id: 'guide-1', displayName: 'Guide' },
@@ -106,15 +112,68 @@ describe('published tour SSR mappings', () => {
     ]);
   });
 
-  it('propagates facade failures during SSR', async () => {
+  // Lot 3.2 — une fiche dont le contenu public est indisponible se rend quand
+  // même (titre, prix, guide, avis) et annonce l'itinéraire indisponible ; la
+  // carte du catalogue garde la visite, sans position. Plus aucun 500.
+  it('degrades instead of failing when the published content is unavailable', async () => {
     jest.mocked(publicApi.getPublishedTourContentServer).mockResolvedValue({
       ok: false,
       error: 'Contenu public indisponible',
     });
 
-    await expect(getTourBySlug('nice', 'visite-test')).rejects.toThrow(
-      'Contenu public indisponible',
-    );
-    await expect(getAllToursWithCoords()).rejects.toThrow('Contenu public indisponible');
+    await expect(getTourBySlug('nice', 'visite-test')).resolves.toMatchObject({
+      id: 'tour-1',
+      title: 'Visite test',
+      pois: [],
+      contentUnavailable: true,
+    });
+    const withCoords = await getAllToursWithCoords();
+    expect(withCoords).toHaveLength(1);
+    expect(withCoords[0].id).toBe('tour-1');
+    expect(withCoords[0].latitude).toBeUndefined();
+    expect(withCoords[0].longitude).toBeUndefined();
+  });
+
+  it('reads the published list once per request burst (cache + in-flight dedup)', async () => {
+    await Promise.all([getToursByCity('nice'), getTourBySlug('nice', 'visite-test'), getAllToursWithCoords()]);
+    expect(publicApi.listGuideToursServer).toHaveBeenCalledTimes(1);
+    expect(publicApi.listGuideProfilesServer).toHaveBeenCalledTimes(1);
+  });
+
+  it('uses the persisted cover photo for cards without calling the published content', async () => {
+    jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([
+      { ...tour, sessionId: 'session-1', coverPhotoKey: 'guide-studio/id/session-1/cover.jpg' },
+    ] as never);
+    const [card] = await getToursByCity('nice');
+    expect(card.imageUrl).toBe('guide-studio/id/session-1/cover.jpg');
+    expect(publicApi.getPublishedTourContentServer).not.toHaveBeenCalled();
+  });
+
+  it('keeps a tour whose image lookup fails instead of dropping the whole city', async () => {
+    jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([
+      tour,
+      { ...tour, id: 'tour-2', title: 'Visite cassée', sessionId: 's2' },
+    ] as never);
+    jest.mocked(publicApi.getPublishedTourContentServer).mockImplementation(async (id: string) => {
+      if (id === 'tour-2') throw new Error('boom');
+      return { ok: true as const, data: content };
+    });
+    const tours = await getToursByCity('nice');
+    // Triées par titre : « Visite cassée » avant « Visite test ». Les deux sont là.
+    expect(tours.map((t) => t.id)).toEqual(['tour-2', 'tour-1']);
+    expect(tours.find((t) => t.id === 'tour-2')?.imageUrl).toBeUndefined();
+  });
+
+  it('gives two tours with the same title in the same city distinct, reachable slugs', async () => {
+    jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([
+      { ...tour, id: 'tour-b', createdAt: '2026-02-01' },
+      { ...tour, id: 'tour-a', createdAt: '2026-01-01' },
+    ] as never);
+    const tours = await getToursByCity('nice');
+    expect(tours.map((t) => [t.id, t.slug]).sort()).toEqual([
+      ['tour-a', 'visite-test'],
+      ['tour-b', 'visite-test-2'],
+    ]);
+    await expect(getTourBySlug('nice', 'visite-test-2')).resolves.toMatchObject({ id: 'tour-b' });
   });
 });

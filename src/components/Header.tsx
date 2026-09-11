@@ -47,7 +47,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
   const catalogueHref = locale === 'en' ? '/en/catalogue' : '/catalogue';
   const helpHref = locale === 'en' ? '/en/help' : '/aide';
   // Tourists have no dashboard — their account destination is their purchases.
-  const purchasesHref = locale === 'en' ? '/en/my-purchases' : '/mes-visites';
+  const purchasesHref = locale === 'en' ? '/en/my-purchases' : '/mes-achats';
   const accountHref = isAdmin ? '/admin/moderation' : isGuide ? '/guide/studio' : purchasesHref;
 
   return (

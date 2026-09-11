@@ -45,9 +45,11 @@ describe('LandingPage (guide-first)', () => {
 
   it('expose un CTA « Devenir guide » vers /guide/signup (AC1)', () => {
     render(<LandingPage />);
-    expect(
-      screen.getByRole('link', { name: /Devenir guide/i }),
-    ).toHaveAttribute('href', '/guide/signup');
+    // Le hero rend une taille par écran (lot 3.4, plus de matchMedia) : deux
+    // liens dans le DOM, un seul visible.
+    const links = screen.getAllByRole('link', { name: /Devenir guide/i });
+    expect(links.length).toBeGreaterThanOrEqual(1);
+    for (const link of links) expect(link).toHaveAttribute('href', '/guide/signup');
   });
 
   it('lie les 4 étapes aux ancres de la page d’aide (AC2)', () => {

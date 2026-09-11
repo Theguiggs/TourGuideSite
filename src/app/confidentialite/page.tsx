@@ -163,10 +163,10 @@ export default function ConfidentialitePage() {
 
           <Section title="Supprimer votre compte">
             <p>
-              Dans l&apos;application Murmure, ouvrez <strong>Reglages</strong>, puis{' '}
-              <strong>Donnees personnelles</strong> et choisissez <strong>Supprimer mon compte</strong>.
-              Cette action efface definitivement le compte et les donnees associees. Si vous ne
-              pouvez plus acceder a l&apos;application, utilisez notre{' '}
+              Dans l&apos;application Murmure, ouvrez <strong>Réglages</strong>, puis{' '}
+              <strong>Données personnelles</strong> et choisissez <strong>Supprimer mon compte</strong>.
+              Cette action efface définitivement le compte et les données associées. Si vous ne
+              pouvez plus accéder à l&apos;application, utilisez notre{' '}
               <Link href="/supprimer-mon-compte" style={{ color: tg.colors.grenadine }}>
                 page de demande de suppression
               </Link>

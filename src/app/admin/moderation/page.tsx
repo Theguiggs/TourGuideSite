@@ -63,7 +63,7 @@ export default function ModerationQueuePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-ink mb-6">File d&apos;attente de moderation</h1>
+      <h1 className="text-2xl font-bold text-ink mb-6">File d&apos;attente de modération</h1>
 
       {/* Metrics Cards */}
       {metrics && (
@@ -139,8 +139,8 @@ export default function ModerationQueuePage() {
         </div>
       ) : filteredQueue.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
-          <p className="text-ink-60 text-lg">Aucun parcours en attente de moderation.</p>
-          <p className="text-ink-40 text-sm mt-1">Les nouvelles soumissions apparaitront ici.</p>
+          <p className="text-ink-60 text-lg">Aucune visite en attente de modération.</p>
+          <p className="text-ink-40 text-sm mt-1">Les nouvelles soumissions apparaîtront ici.</p>
         </div>
       ) : (
         <div className="bg-card rounded-md border border-line overflow-hidden">

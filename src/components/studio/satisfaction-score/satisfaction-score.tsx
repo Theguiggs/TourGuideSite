@@ -34,7 +34,7 @@ export function SatisfactionScore({ sessionId, onComplete }: SatisfactionScorePr
 
   return (
     <div className="bg-white border border-line rounded-lg p-4" data-testid="satisfaction-score">
-      <h3 className="font-medium text-ink mb-2">Comment s&apos;est passée la création de ce tour ?</h3>
+      <h3 className="font-medium text-ink mb-2">Comment s&apos;est passée la création de cette visite ?</h3>
       <p className="text-xs text-ink-60 mb-3">Votre avis nous aide à améliorer le studio.</p>
 
       {/* Score 1-5 */}

@@ -11,12 +11,16 @@
 // + Manrope Bold en ArrayBuffer (`new URL('../../../../../../assets/fonts/...', import.meta.url)`)
 // puis passer dans `ImageResponse({ fonts: [...] })`. Pour l'instant fallback `serif` system.
 //
-// TODO Story 3.5 follow-up : remplacer le stub `tour` par fetch via `getTourBySlug()` —
-// Le runtime Node.js permet l'intégration future du client AppSync server.
-// Actuellement stub minimal.
+// Lot 3.1 : l'image lit la VRAIE visite (`getTourBySlug`, runtime Node) — le
+// stub rendait un slug humanisé, « 38 MIN » pour toutes et une couleur devinée
+// sur le nom de la ville. Le cache n'est plus « un an, immuable » : une visite
+// renommée se voit dans la journée.
 
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
+import { getTourBySlug } from '@/lib/api/tours-server';
+import { getCityAccent } from '@/lib/cities/accent-map';
+import { absoluteUrl } from '@/lib/site';
 
 export const runtime = 'nodejs';
 export const contentType = 'image/png';
@@ -41,13 +45,9 @@ const ACCENT_MAP: Record<string, AccentColors> = {
   olive:     { bg: '#E2E5D2', fg: '#6B7A45' },
 };
 
-// Heuristique stub : map citySlug → accent. À remplacer par `tour.theme` ou `city.nature`.
+// Même table d'accents que le catalogue (`lib/cities/accent-map`).
 function pickAccent(citySlug: string): AccentColors {
-  const lower = citySlug.toLowerCase();
-  if (lower.includes('marseille') || lower.includes('mer')) return ACCENT_MAP.mer;
-  if (lower.includes('avignon') || lower.includes('arles')) return ACCENT_MAP.ocre;
-  if (lower.includes('provence') || lower.includes('luberon')) return ACCENT_MAP.olive;
-  return ACCENT_MAP.grenadine;
+  return ACCENT_MAP[getCityAccent(citySlug)] ?? ACCENT_MAP.grenadine;
 }
 
 function humanize(slug: string): string {
@@ -68,13 +68,14 @@ export async function GET(
   try {
     const { city, tourSlug } = await params;
 
-    // TODO : fetch tour data from AppSync via `getTourBySlug(city, tourSlug)`.
-    // Pour V1.0 stub minimal — le rendu Edge marche, le contenu est à raccorder.
+    // Visite réelle ; à défaut (adresse inconnue, panne), on retombe sur le
+    // slug humanisé plutôt que sur un 500 visible des robots.
+    const real = await getTourBySlug(city, tourSlug).catch(() => null);
     const tour = {
-      title: humanize(tourSlug),
-      city: humanize(city),
-      duration: 38,
-      quote: 'Le monde a une voix.',
+      title: real?.title ?? humanize(tourSlug),
+      city: real?.city ?? humanize(city),
+      duration: real?.duration && real.duration > 0 ? real.duration : null,
+      quote: real?.shortDescription || real?.description?.slice(0, 200) || 'Le monde a une voix.',
     };
 
     const accent = pickAccent(city);
@@ -105,7 +106,7 @@ export async function GET(
               fontFamily: 'sans-serif',
             }}
           >
-            {tour.city.toUpperCase()} · {tour.duration} MIN
+            {tour.city.toUpperCase()}{tour.duration ? ` · ${tour.duration} MIN` : ''}
           </div>
           <div
             style={{
@@ -163,7 +164,7 @@ export async function GET(
         width: 1200,
         height: 630,
         headers: {
-          'Cache-Control': 'public, max-age=31536000, immutable',
+          'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
         },
       }
     );
@@ -171,6 +172,6 @@ export async function GET(
     // Fallback robuste : redirect 302 vers l'image OG racine plutôt que 500 visible côté crawler.
     // Edge runtime : `console.error` accepté (logger app non importable en Edge).
     console.error('[og-tour] render failed', err);
-    return Response.redirect(new URL('/opengraph-image', 'https://murmure-visit.com'), 302);
+    return Response.redirect(absoluteUrl('/opengraph-image'), 302);
   }
 }

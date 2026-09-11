@@ -132,7 +132,7 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
   if (!speechUrl) {
     return (
       <div className="p-3 bg-paper-soft rounded-lg text-sm text-ink-60 text-center">
-        Selectionnez un audio de speech pour utiliser le mixer
+        Sélectionnez un audio de voix pour utiliser le mixeur
       </div>
     );
   }
@@ -244,7 +244,7 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
 
         {/* Controls */}
         <div className="flex items-center justify-center gap-3">
-          <button onClick={handleStop} title="Arreter"
+          <button onClick={handleStop} title="Arrêter"
             className="w-8 h-8 rounded-full bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-sm transition">
             {'\u25A0'}
           </button>

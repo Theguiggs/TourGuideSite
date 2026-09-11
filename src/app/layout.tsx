@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
-import { DM_Serif_Display, DM_Serif_Text, Manrope, JetBrains_Mono } from 'next/font/google';
+import { headers } from 'next/headers';
+import { DM_Serif_Display, DM_Serif_Text, Manrope } from 'next/font/google';
 import './globals.css';
 import { SiteChrome } from '@/components/SiteChrome';
 import AmplifyProvider from '@/components/AmplifyProvider';
@@ -7,6 +8,7 @@ import AmplitudeProvider from '@/components/AmplitudeProvider';
 import { AuthProvider } from '@/lib/auth/auth-context';
 import { DsVersionAttribute } from '@/components/DsVersionAttribute';
 import { PendingTourConfirmRecovery } from '@/components/checkout/pending-tour-confirm-recovery';
+import { LOCALE_HEADER, SITE_URL } from '@/lib/site';
 
 // Story 1.3 — 4 familles DS auto-loadées via next/font/google.
 // Chaque font écrit sa variable CSS, alignée avec les noms de tokens.css
@@ -36,17 +38,10 @@ const manrope = Manrope({
   display: 'swap',
 });
 
-const jetBrainsMono = JetBrains_Mono({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  variable: '--tg-font-mono',
-  display: 'swap',
-});
-
 // OG image: opengraph-image.tsx in this directory generates the default at /opengraph-image.
 // Tour pages extend metadata via generateMetadata pointing to /og/tour/[city]/[tourSlug].
 export const metadata: Metadata = {
-  metadataBase: new URL('https://murmure-visit.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Murmure — Visites guidées audio immersives',
     template: '%s | Murmure',
@@ -58,7 +53,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     siteName: 'Murmure',
-    url: 'https://murmure-visit.com',
+    url: SITE_URL,
     images: [
       {
         url: '/opengraph-image',
@@ -119,12 +114,16 @@ export const viewport: Viewport = {
 // requête pour des pages de texte ; le catalogue et le Studio l'étaient déjà.
 export const dynamic = 'force-dynamic';
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const fontVariables = `${dmSerifDisplay.variable} ${dmSerifText.variable} ${manrope.variable} ${jetBrainsMono.variable}`;
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  // Posé par `src/proxy.ts` ; `force-dynamic` ci-dessus rend `headers()` sans coût.
+  const lang = (await headers()).get(LOCALE_HEADER) === 'en' ? 'en' : 'fr';
+  // JetBrains Mono n'est chargée que dans les segments guide et admin (seuls
+  // à afficher du `font-mono`) : voir `guide/layout.tsx` et `admin/layout.tsx`.
+  const fontVariables = `${dmSerifDisplay.variable} ${dmSerifText.variable} ${manrope.variable}`;
   return (
     // SSR default `data-ds="v2"` — Story 1.7 default safe. DsVersionAttribute
     // updates this attribute côté client après hydration si flag = 'v1'.
-    <html lang="fr" data-ds="v2" className={fontVariables}>
+    <html lang={lang} data-ds="v2" className={fontVariables}>
       <body className="antialiased">
         <DsVersionAttribute>
           <AmplitudeProvider>

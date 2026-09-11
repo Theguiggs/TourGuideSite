@@ -76,7 +76,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
 
   return (
     <div data-testid="studio-moderation-panel">
-      <h3 className="text-lg font-semibold text-ink mb-4">Scènes du tour</h3>
+      <h3 className="text-lg font-semibold text-ink mb-4">Scènes de la visite</h3>
 
       <div className="space-y-3 mb-6">
         {scenes.map((scene, index) => {

@@ -94,7 +94,7 @@ export function AudioPlayerBar({ label, compact = false }: AudioPlayerBarProps) 
 
       {/* Controls */}
       <div className="flex items-center justify-center gap-3">
-        <button onClick={handleStop} title="Arreter"
+        <button onClick={handleStop} title="Arrêter"
           className="w-8 h-8 rounded-full bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-sm transition">
           {'\u25A0'}
         </button>

@@ -632,7 +632,7 @@ export default function GeneralPage() {
 
       {/* ───── Titre + Ville ───── */}
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4">
-        <WizField label={t('Titre du tour', 'Tour title')} required htmlFor="tour-title">
+        <WizField label={t('Titre de la visite', 'Tour title')} required htmlFor="tour-title">
           <WizInput
             id="tour-title"
             type="text"
@@ -680,7 +680,7 @@ export default function GeneralPage() {
           maxLength={2000}
           disabled={isLocked}
           data-testid="description-input"
-          placeholder={t("Décrivez votre tour tel qu'il apparaîtra dans le catalogue…", 'Describe your tour as it will appear in the catalogue...')}
+          placeholder={t("Décrivez votre visite telle qu'elle apparaîtra dans le catalogue…", 'Describe your tour as it will appear in the catalogue...')}
         />
       </WizField>
 

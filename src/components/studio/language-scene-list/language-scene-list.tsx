@@ -316,7 +316,7 @@ export function LanguageSceneList({
       {hasMissingScenes && (
         <div className="rounded-lg border border-ocre-soft bg-ocre-soft p-4">
           <p className="text-sm text-ocre">
-            Certaines scenes n&apos;ont pas encore ete traduites.
+            Certaines scènes n&apos;ont pas encore été traduites.
           </p>
           {onResumeBatch && (
           <button
@@ -447,7 +447,7 @@ export function LanguageSceneList({
                   onClick={onGenerateMissingAudio}
                   className="inline-flex items-center rounded-md border border-mer px-4 py-2 text-sm font-medium text-mer hover:bg-mer-soft"
                 >
-                  Generer les audio manquants ({missingAudioCount})
+                  Générer les audio manquants ({missingAudioCount})
                 </button>
               )}
             </div>
@@ -477,7 +477,7 @@ export function LanguageSceneList({
               onClick={onListenPreview}
               className="inline-flex items-center rounded-md border border-line px-4 py-2 text-sm font-medium text-ink-80 hover:bg-paper-soft"
             >
-              Ecouter un extrait
+              Écouter un extrait
             </button>
           )}
           {onFullPreview && (

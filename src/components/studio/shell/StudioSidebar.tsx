@@ -165,7 +165,7 @@ export function StudioSidebar({ active, counts, onNavigate, className = '' }: St
           {copy.explore}
         </Link>
         <Link
-          href={locale === 'en' ? '/en/my-purchases' : '/mes-visites'}
+          href={locale === 'en' ? '/en/my-purchases' : '/mes-achats'}
           onClick={onNavigate}
           className="flex min-h-9 items-center gap-2 px-3 text-ink-60 no-underline hover:text-ink"
         >

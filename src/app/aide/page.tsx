@@ -64,14 +64,14 @@ export default function AidePage() {
               margin: 0,
             }}
           >
-            Murmure, ce sont des visites guidées audio. Les voyageurs écoutent
-            des parcours immersifs dans l’app, même hors-ligne. Les guides créent
-            ces parcours dans l’atelier web, sans compétence technique.
+            Murmure, ce sont des visites guidées audio. Les voyageurs les écoutent
+            dans l’app, même hors-ligne. Les guides créent ces visites dans
+            l’atelier web, sans compétence technique.
           </p>
         </div>
       </section>
 
-      {/* ─── Créer un parcours, étape par étape (AC9) ─────────────────────── */}
+      {/* ─── Créer une visite, étape par étape (AC9) ─────────────────────── */}
       <section className="bg-paper py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2

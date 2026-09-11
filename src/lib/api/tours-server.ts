@@ -6,11 +6,24 @@
  *
  * Browser code MUST keep using `tours.ts` — this module is server-only and will
  * throw at build time if imported into a Client Component.
+ *
+ * Robustesse (lot 3.2, revue web 2026-09-11) :
+ * - la liste des visites publiées et les profils de guide sont lus une fois
+ *   par période (`ttl-cache`, 5 min, `CATALOGUE_CACHE_TTL_MS`) et partagés
+ *   entre appels concurrents — une fiche coûtait trois balayages complets ;
+ * - une visite qui échoue au mapping est écartée et journalisée, jamais
+ *   la liste entière ; une fiche dont le contenu public est indisponible se
+ *   rend quand même, avec `contentUnavailable` ;
+ * - l'image de carte vient de `coverPhotoKey` quand il existe, sans appel
+ *   au contenu publié (le champ `heroImageUrl` testé auparavant n'a jamais
+ *   existé sur GuideTour : le repli N+1 partait pour chaque visite) ;
+ * - les slugs sont uniques par ville (`tour-slugs`).
  */
 
 import 'server-only';
 import type { City, Tour, TourDetail } from '@/types/tour';
 import { shouldUseStubs } from '@/config/api-mode';
+import { logger } from '@/lib/logger';
 import {
   CITY_DESCRIPTIONS,
   generateSlug,
@@ -29,11 +42,21 @@ import {
 } from './appsync-server-public';
 import { mapWithConcurrency } from './published-tour-content';
 import { mapScenesToPois } from '@/lib/catalogue/scene-pois';
+import { assignUniqueSlugs, findTourBySlugs, type TourSlugs } from '@/lib/catalogue/tour-slugs';
+import { cached } from '@/lib/server/ttl-cache';
 
-// --- Lookup caches ---
+const SERVICE_NAME = 'ToursServer';
 
-const _availableLangsCache: Map<string, string[]> = new Map();
-let _guideNameCache: Map<string, string> | null = null;
+type PublishedTour = Awaited<ReturnType<typeof listGuideToursServer>>[number];
+
+// --- Lectures partagées (cache par processus, dédoublonnées en vol) ---
+
+/** Visites publiées et publiques. Une liste vide n'est pas conservée : elle peut naître d'une panne. */
+async function publishedTours(): Promise<PublishedTour[]> {
+  return cached('tours:published', () => listGuideToursServer({ status: 'published' }), {
+    keep: (tours) => tours.length > 0,
+  });
+}
 
 interface GuideInfo {
   displayName: string;
@@ -41,33 +64,42 @@ interface GuideInfo {
   bio?: string;
   verified?: boolean;
 }
-let _guideInfoCache: Map<string, GuideInfo> | null = null;
+
+async function guideInfoMap(): Promise<Map<string, GuideInfo>> {
+  return cached(
+    'guides:info',
+    async () => {
+      const profiles = await listGuideProfilesServer();
+      return new Map(
+        profiles.map((p) => [
+          p.id,
+          {
+            displayName: p.displayName,
+            photoUrl: (p.photoUrl as string | null) ?? undefined,
+            bio: (p.bio as string | null) ?? undefined,
+            verified: (p.verified as boolean | null) ?? undefined,
+          },
+        ]),
+      );
+    },
+    { keep: (map) => map.size > 0 },
+  );
+}
 
 async function resolveGuideName(guideId: string): Promise<string> {
-  if (!_guideNameCache) {
-    const profiles = await listGuideProfilesServer();
-    _guideNameCache = new Map(profiles.map((p) => [p.id, p.displayName]));
-  }
-  return _guideNameCache.get(guideId) ?? '';
+  return (await guideInfoMap()).get(guideId)?.displayName ?? '';
 }
 
 /** Full guide identity for the tour-detail "Votre guide" showcase card. */
 async function resolveGuideInfo(guideId: string): Promise<GuideInfo> {
-  if (!_guideInfoCache) {
-    const profiles = await listGuideProfilesServer();
-    _guideInfoCache = new Map(
-      profiles.map((p) => [
-        p.id,
-        {
-          displayName: p.displayName,
-          photoUrl: (p.photoUrl as string | null) ?? undefined,
-          bio: (p.bio as string | null) ?? undefined,
-          verified: (p.verified as boolean | null) ?? undefined,
-        },
-      ]),
-    );
-  }
-  return _guideInfoCache.get(guideId) ?? { displayName: '' };
+  return (await guideInfoMap()).get(guideId) ?? { displayName: '' };
+}
+
+/** Contenu publié d'une visite, partagé entre la carte, la fiche et les coordonnées. */
+async function publishedContent(tourId: string) {
+  return cached(`tours:content:${tourId}`, () => getPublishedTourContentServer(tourId), {
+    keep: (result) => result.ok,
+  });
 }
 
 /** Ultime recours : ni langue source, ni liste persistée, ni langue approuvée. */
@@ -76,8 +108,7 @@ const DEFAULT_SOURCE_LANGUAGE = 'fr';
 const asLanguage = (value: unknown): string | null =>
   typeof value === 'string' && value.trim().length > 0 ? value : null;
 
-async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise<string[]> {
-  const tourId = tour.id as string;
+function resolveAvailableLanguages(tour: Record<string, unknown>): string[] {
   // `GuideTour` ne porte AUCUN champ `language` : le `language` à défaut 'fr' du
   // schéma appartient à `StudioSession`. Poser 'fr' ici préfixait donc un
   // français fantôme à toute Visite — une Visite vendue en anglais seul se
@@ -87,10 +118,9 @@ async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise
   const sourceLang = asLanguage(tour.language);
 
   // Language approval persists the consumer-facing list directly on GuideTour.
-  // Prefer that authoritative value before the process-local cache or the
-  // legacy DynamoDB fallback. The production web container intentionally has
-  // no direct DynamoDB credentials, so ignoring this field made every approved
-  // multilingual tour silently fall back to French only.
+  // The production web container intentionally has no direct DynamoDB
+  // credentials: this field is the only source, and what is not in it is not
+  // sold (inventory 2026-09-11: every published tour carries it).
   const persistedLanguages = Array.isArray(tour.availableLanguages)
     ? tour.availableLanguages.filter(
         (language): language is string => typeof language === 'string' && language.length > 0,
@@ -99,19 +129,8 @@ async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise
   const persisted = [...new Set([...(sourceLang ? [sourceLang] : []), ...persistedLanguages])];
   if (persisted.length > 1) return persisted;
 
-  if (_availableLangsCache.has(tourId)) return _availableLangsCache.get(tourId)!;
-
-  // Langue de repli du chemin hérité : celle qui est persistée, jamais un défaut
-  // inventé — et jamais `undefined`, qui rendrait `[undefined]`.
-  //
-  // Le repli DynamoDB qui suivait a été RETIRÉ. Il visait une table d'un
-  // backend mort (table `TourLanguagePurchase` d'une pile abandonnée, codée en dur) par
-  // un `Scan` complet, exécuté à chaque rendu d'une visite héritée, et
-  // échouait en silence (`catch` vide) — le conteneur web n'a d'ailleurs aucun
-  // droit DynamoDB, par conception. Toutes les visites publiées portent
-  // désormais `availableLanguages` (inventaire du 2026-09-11 : 0 sans), et
-  // c'est le chemin d'approbation qui l'écrit ; ce qui n'y est pas n'est pas
-  // vendu.
+  // Langue de repli : celle qui est persistée, jamais un défaut inventé — et
+  // jamais `undefined`, qui rendrait `[undefined]`.
   const baseLang = persisted[0] ?? DEFAULT_SOURCE_LANGUAGE;
   return [baseLang];
 }
@@ -136,104 +155,138 @@ function publishedLanguageAudioTypes(
   );
 }
 
+// --- Mapping commun ---
+
+async function toTour(t: PublishedTour, slugs: TourSlugs, imageUrl?: string): Promise<Tour> {
+  const raw = t as unknown as Record<string, unknown>;
+  return {
+    id: t.id,
+    title: t.title,
+    slug: slugs.slug,
+    city: t.city,
+    citySlug: slugs.citySlug,
+    guideId: t.guideId,
+    guideName: await resolveGuideName(t.guideId),
+    description: t.description || '',
+    shortDescription: (t.description || '').substring(0, 100),
+    duration: t.duration || 0,
+    distance: t.distance || 0,
+    poiCount: t.poiCount || 0,
+    isFree: false,
+    priceCents: (raw.priceCents as number | undefined) ?? undefined,
+    purchaseType: (raw.purchaseType as Tour['purchaseType']) ?? undefined,
+    status: (t.status || 'draft') as Tour['status'],
+    availableLanguages: resolveAvailableLanguages(raw),
+    createdAt: (raw.createdAt as string) ?? '',
+    updatedAt: (raw.updatedAt as string) ?? undefined,
+    languageAudioTypes: publishedLanguageAudioTypes(raw),
+    imageUrl,
+  };
+}
+
+/** Photo de couverture persistée sur la visite (clé S3), sans appel supplémentaire. */
+function coverKey(t: PublishedTour): string | undefined {
+  const key = (t as unknown as Record<string, unknown>).coverPhotoKey;
+  return typeof key === 'string' && key.length > 0 ? key : undefined;
+}
+
+/** Image de carte : couverture persistée, sinon première photo du contenu publié. */
+async function cardImage(t: PublishedTour): Promise<string | undefined> {
+  const cover = coverKey(t);
+  if (cover) return cover;
+  if (!(t as unknown as Record<string, unknown>).sessionId) return undefined;
+  try {
+    const content = await publishedContent(t.id);
+    if (!content.ok) return undefined;
+    return content.data.coverUrl ?? content.data.scenes[0]?.photoUrls?.[0];
+  } catch {
+    return undefined;
+  }
+}
+
+/** Mappe chaque visite au mieux : une visite en échec est écartée, jamais la liste. */
+async function mapTours<R>(
+  tours: readonly PublishedTour[],
+  mapper: (t: PublishedTour, slugs: TourSlugs) => Promise<R>,
+): Promise<R[]> {
+  const slugs = assignUniqueSlugs(tours);
+  const mapped = await mapWithConcurrency(tours, 5, async (t) => {
+    try {
+      return await mapper(t, slugs.get(t.id)!);
+    } catch (error) {
+      logger.warn(SERVICE_NAME, 'tour skipped: mapping failed', { tourId: t.id, error: String(error) });
+      return null;
+    }
+  });
+  return mapped.filter((tour): tour is Awaited<R> => tour !== null);
+}
+
 // --- Real API ---
 
 async function getRealCities(): Promise<City[]> {
-  const tours = await listGuideToursServer({ status: 'published' });
+  const tours = await publishedTours();
   const cityMap = new Map<string, { name: string; count: number }>();
   for (const t of tours) {
-    const existing = cityMap.get(t.city);
+    const slug = generateSlug(t.city);
+    const existing = cityMap.get(slug);
     if (existing) existing.count++;
-    else cityMap.set(t.city, { name: t.city, count: 1 });
+    else cityMap.set(slug, { name: t.city, count: 1 });
   }
-  return Array.from(cityMap.entries()).map(([, { name, count }]) => {
-    const slug = generateSlug(name);
-    return { id: slug, name, slug, description: CITY_DESCRIPTIONS[slug] ?? '', tourCount: count };
-  });
+  return Array.from(cityMap.entries()).map(([slug, { name, count }]) => ({
+    id: slug,
+    name,
+    slug,
+    description: CITY_DESCRIPTIONS[slug] ?? '',
+    tourCount: count,
+  }));
 }
 
 async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
-  const tours = await listGuideToursServer({ status: 'published' });
-  const filtered = tours.filter((t) => generateSlug(t.city) === citySlug);
-  const mapped = await mapWithConcurrency(filtered, 5, async (t) => {
-    let imageUrl: string | undefined;
-    const raw = t as Record<string, unknown>;
-    // Prefer media signed by the publication facade.
-    if (raw.heroImageUrl) {
-      imageUrl = raw.heroImageUrl as string;
-    } else if (raw.sessionId) {
-      try {
-        const contentResult = await getPublishedTourContentServer(t.id);
-        if (contentResult.ok) {
-          const firstScene = contentResult.data.scenes[0];
-          imageUrl =
-            contentResult.data.coverUrl ??
-            firstScene?.photoUrls?.[0];
-        }
-      } catch { /* non-blocking */ }
-    }
-    return {
-      id: t.id, title: t.title, slug: generateSlug(t.title),
-      city: t.city, citySlug: generateSlug(t.city),
-      guideId: t.guideId, guideName: await resolveGuideName(t.guideId),
-      description: t.description || '',
-      shortDescription: (t.description || '').substring(0, 100),
-      duration: t.duration || 0, distance: t.distance || 0, poiCount: t.poiCount || 0,
-      isFree: false,
-      priceCents: ((t as Record<string, unknown>).priceCents as number | undefined) ?? undefined,
-      purchaseType: ((t as Record<string, unknown>).purchaseType as Tour['purchaseType']) ?? undefined,
-      status: (t.status || 'draft') as Tour['status'],
-      availableLanguages: await resolveAvailableLanguages(t as Record<string, unknown>),
-      createdAt: ((t as Record<string, unknown>).createdAt as string) ?? '',
-      languageAudioTypes: publishedLanguageAudioTypes(t as unknown as Record<string, unknown>),
-      imageUrl,
-    };
-  });
+  const tours = (await publishedTours()).filter((t) => generateSlug(t.city) === citySlug);
+  const mapped = await mapTours(tours, async (t, slugs) => toTour(t, slugs, await cardImage(t)));
   return mapped.sort((a, b) => a.title.localeCompare(b.title));
 }
 
 async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<TourDetail | null> {
-  const tours = await listGuideToursServer({ status: 'published' });
-  const tour = tours.find((t) => generateSlug(t.city) === citySlug && generateSlug(t.title) === tourSlug);
+  const tours = await publishedTours();
+  const tour = findTourBySlugs(tours, citySlug, tourSlug);
   if (!tour) return null;
+  const slugs = assignUniqueSlugs(tours).get(tour.id)!;
 
-  const [reviews, stats, contentResult] = await Promise.all([
+  const [reviews, stats, contentResult, guideInfo] = await Promise.all([
     listTourReviewsServer(tour.id),
     getTourStatsServer(tour.id),
-    getPublishedTourContentServer(tour.id),
+    publishedContent(tour.id),
+    resolveGuideInfo(tour.guideId),
   ]);
 
-  const guideInfo = await resolveGuideInfo(tour.guideId);
-  const guideName = guideInfo.displayName;
+  // Contenu public indisponible : la fiche se rend quand même (titre, prix,
+  // guide, avis), l'itinéraire est annoncé indisponible — plus de 500.
   if (!contentResult.ok) {
-    throw new Error(contentResult.error);
+    logger.error(SERVICE_NAME, 'published content unavailable, rendering degraded tour page', {
+      tourId: tour.id,
+      error: contentResult.error,
+    });
   }
-  const pois = mapScenesToPois(contentResult.data.scenes);
+  const scenes = contentResult.ok ? contentResult.data.scenes : [];
+  const pois = mapScenesToPois(scenes);
+  const base = await toTour(tour, slugs);
 
   return {
-    id: tour.id, title: tour.title, slug: generateSlug(tour.title),
-    city: tour.city, citySlug: generateSlug(tour.city),
-    guideId: tour.guideId, guideName,
+    ...base,
     guidePhotoUrl: guideInfo.photoUrl,
     guideBio: guideInfo.bio,
     guideVerified: guideInfo.verified,
-    description: tour.description || '',
-    shortDescription: (tour.description || '').substring(0, 100),
-    duration: tour.duration || 0, distance: tour.distance || 0, poiCount: tour.poiCount || 0,
-    isFree: false,
-    priceCents: ((tour as unknown as Record<string, unknown>).priceCents as number | undefined) ?? undefined,
-    purchaseType: ((tour as unknown as Record<string, unknown>).purchaseType as Tour['purchaseType']) ?? undefined,
-    status: (tour.status || 'draft') as Tour['status'],
-    availableLanguages: await resolveAvailableLanguages(tour as unknown as Record<string, unknown>),
-    createdAt: ((tour as unknown as Record<string, unknown>).createdAt as string) ?? '',
-    languageAudioTypes: publishedLanguageAudioTypes(tour as unknown as Record<string, unknown>),
     imageUrl:
-      contentResult.data.coverUrl ??
-      contentResult.data.scenes.find((scene) => scene.photoUrls?.[0])?.photoUrls?.[0] ??
-      undefined,
+      (contentResult.ok ? contentResult.data.coverUrl : undefined) ??
+      scenes.find((scene) => scene.photoUrls?.[0])?.photoUrls?.[0] ??
+      coverKey(tour),
     pois,
+    contentUnavailable: !contentResult.ok,
     reviews: reviews.map((r) => ({
-      id: r.id, userId: r.userId, rating: r.rating,
+      id: r.id,
+      userId: r.userId,
+      rating: r.rating,
       comment: r.comment ?? null,
       visitedAt: r.visitedAt ?? 0,
       language: r.language ?? 'fr',
@@ -270,49 +323,32 @@ export async function getTourBySlug(citySlug: string, tourSlug: string): Promise
 
 export async function getAllTours(): Promise<Tour[]> {
   if (shouldUseStubs()) return getStubAllTours();
-  const tours = await listGuideToursServer({ status: 'published' });
-  return Promise.all(tours.map(async (t) => ({
-    id: t.id, title: t.title, slug: generateSlug(t.title),
-    city: t.city, citySlug: generateSlug(t.city),
-    guideId: t.guideId, guideName: await resolveGuideName(t.guideId),
-    description: t.description || '',
-    shortDescription: (t.description || '').substring(0, 100),
-    duration: t.duration || 0, distance: t.distance || 0, poiCount: t.poiCount || 0,
-    isFree: false,
-    priceCents: ((t as unknown as Record<string, unknown>).priceCents as number | undefined) ?? undefined,
-    purchaseType: ((t as unknown as Record<string, unknown>).purchaseType as Tour['purchaseType']) ?? undefined,
-    status: (t.status || 'draft') as Tour['status'],
-    availableLanguages: await resolveAvailableLanguages(t as unknown as Record<string, unknown>),
-    createdAt: ((t as unknown as Record<string, unknown>).createdAt as string) ?? '',
-    languageAudioTypes: publishedLanguageAudioTypes(t as unknown as Record<string, unknown>),
-  })));
+  return mapTours(await publishedTours(), (t, slugs) => toTour(t, slugs));
 }
 
+/** Visites avec la position de leur première étape (carte du catalogue). Sans contenu : sans position, pas d'erreur. */
 export async function getAllToursWithCoords(): Promise<Tour[]> {
   const baseTours = shouldUseStubs() ? getStubAllTours() : await getAllTours();
 
-  return mapWithConcurrency(
-    baseTours,
-    5,
-    async (tour) => {
-      const content = await getPublishedTourContentServer(tour.id);
+  return mapWithConcurrency(baseTours, 5, async (tour) => {
+    try {
+      const content = await publishedContent(tour.id);
       if (!content.ok) {
-        throw new Error(content.error);
+        logger.warn(SERVICE_NAME, 'tour without coordinates: content unavailable', { tourId: tour.id });
+        return tour;
       }
       const first = content.data.scenes.find(
-        (scene) =>
-          typeof scene.latitude === 'number' && typeof scene.longitude === 'number',
+        (scene) => typeof scene.latitude === 'number' && typeof scene.longitude === 'number',
       );
       return {
         ...tour,
         latitude: first?.latitude,
         longitude: first?.longitude,
-        imageUrl:
-          content.data.coverUrl ??
-          first?.photoUrls?.[0] ??
-          tour.imageUrl,
+        imageUrl: content.data.coverUrl ?? first?.photoUrls?.[0] ?? tour.imageUrl,
       };
-    },
-  );
-
+    } catch (error) {
+      logger.warn(SERVICE_NAME, 'tour without coordinates: content failed', { tourId: tour.id, error: String(error) });
+      return tour;
+    }
+  });
 }

@@ -34,6 +34,7 @@ export interface Tour {
   status: 'draft' | 'pending_moderation' | 'published' | 'rejected' | 'archived';
   availableLanguages?: string[];
   createdAt?: string;
+  updatedAt?: string;
   languageAudioTypes?: Record<string, 'tts' | 'recording' | 'mixed'>;
   latitude?: number;
   longitude?: number;
@@ -52,6 +53,8 @@ export interface POI {
 
 export interface TourDetail extends Tour {
   pois: POI[];
+  /** Contenu public indisponible au rendu : la fiche est servie sans itinéraire (lot 3.2). */
+  contentUnavailable?: boolean;
   reviews: TourReview[];
   averageRating: number;
   reviewCount: number;

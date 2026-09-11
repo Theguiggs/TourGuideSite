@@ -9,13 +9,34 @@ interface S3ImageProps {
   alt: string;
   className?: string;
   fallback?: string;
+  /** Dimensions intrinsèques : réservent la place avant le chargement (pas de saut). */
+  width?: number;
+  height?: number;
+  /** Indice de largeur affichée pour le navigateur (ex. `(min-width: 1024px) 33vw, 100vw`). */
+  sizes?: string;
+  /** Image au-dessus de la ligne de flottaison : chargée tout de suite, pas en différé. */
+  priority?: boolean;
 }
 
 /**
  * Displays an image from S3 by resolving its signed URL.
  * In stub mode or for blob:/local URLs, renders directly.
+ *
+ * Les URL signées sont résolues au montage : `next/image` ne peut pas les
+ * optimiser (hôte et signature changeants), on reste sur `<img>`, mais avec
+ * `loading="lazy"` et `decoding="async"` par défaut, et des dimensions quand
+ * l'appelant les connaît.
  */
-export function S3Image({ s3Key, alt, className = '', fallback = '📷' }: S3ImageProps) {
+export function S3Image({
+  s3Key,
+  alt,
+  className = '',
+  fallback = '📷',
+  width,
+  height,
+  sizes,
+  priority = false,
+}: S3ImageProps) {
   const [url, setUrl] = useState<string | null>(null);
   const [error, setError] = useState(false);
 
@@ -39,9 +60,16 @@ export function S3Image({ s3Key, alt, className = '', fallback = '📷' }: S3Ima
     return () => { cancelled = true; };
   }, [s3Key]);
 
+  // La place est réservée dès le squelette, avec le même ratio que l'image.
+  const reserved =
+    width && height ? { aspectRatio: `${width} / ${height}` } : undefined;
+
   if (error || (!url && shouldUseStubs())) {
     return (
-      <div className={`bg-paper-deep flex items-center justify-center text-ink-40 text-xs ${className}`}>
+      <div
+        className={`bg-paper-deep flex items-center justify-center text-ink-40 text-xs ${className}`}
+        style={reserved}
+      >
         {fallback}
       </div>
     );
@@ -49,7 +77,7 @@ export function S3Image({ s3Key, alt, className = '', fallback = '📷' }: S3Ima
 
   if (!url) {
     return (
-      <div className={`bg-paper-soft animate-pulse ${className}`} />
+      <div className={`bg-paper-soft animate-pulse ${className}`} style={reserved} />
     );
   }
 
@@ -59,6 +87,12 @@ export function S3Image({ s3Key, alt, className = '', fallback = '📷' }: S3Ima
     <img
       src={url}
       alt={alt}
+      width={width}
+      height={height}
+      sizes={sizes}
+      loading={priority ? 'eager' : 'lazy'}
+      decoding="async"
+      fetchPriority={priority ? 'high' : undefined}
       className={`object-cover ${className}`}
       onError={() => setError(true)}
     />

@@ -68,7 +68,7 @@ export default async function CityPage({ params }: CityPageProps) {
                 <div className="min-w-0">
                   <p className="font-medium text-ink truncate">{guide.displayName}</p>
                   <p className="text-sm text-ink-60">
-                    {guide.tourCount ?? 0} parcours
+                    {guide.tourCount ?? 0} visites
                   </p>
                 </div>
               </Link>

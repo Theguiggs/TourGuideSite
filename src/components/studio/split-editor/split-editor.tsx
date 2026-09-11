@@ -296,7 +296,7 @@ export function SplitEditor({
                   className="text-sm font-medium text-grenadine hover:opacity-80"
                   data-testid="edit-button"
                 >
-                  Editer
+                  Éditer
                 </button>
               )}
               {isEditing && (

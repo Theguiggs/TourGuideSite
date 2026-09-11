@@ -317,7 +317,7 @@ describe('LanguageSceneList', () => {
     render(<LanguageSceneList {...defaultProps} scenes={scenes} segments={segments} />);
 
     const btn = screen.getByTestId('batch-generate-audio-button');
-    expect(btn).toHaveTextContent('Generer les audio manquants (1)');
+    expect(btn).toHaveTextContent('Générer les audio manquants (1)');
   });
 
   it('hides batch retranslate button when no stale scenes', () => {

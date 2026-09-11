@@ -248,7 +248,7 @@ export function LanguageAudioSection({
                 className="mb-2 text-sm font-medium text-grenadine hover:opacity-80"
                 data-testid="play-audio-btn"
               >
-                ▶ Ecouter
+                ▶ Écouter
               </button>
               {isLoadedInPlayer && <AudioPlayerBar compact label={`Audio ${targetLanguage.toUpperCase()}`} />}
             </>

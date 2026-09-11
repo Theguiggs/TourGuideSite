@@ -12,10 +12,14 @@ import type { PurchasedTour } from '@/types/purchase';
  * purchases client-side (localStorage Cognito session) — the SSR catalogue is
  * owner-agnostic and can't see this app's localStorage tokens. Renders nothing
  * for guests or empty purchase lists.
+ *
+ * Pour un visiteur connecté, la place de la bande est réservée par un
+ * squelette pendant la lecture : la bande apparaissait d'un coup au-dessus de
+ * la grille des villes, qui sautait vers le bas.
  */
 export function MyPurchasesStripClient({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
   const { isAuthenticated, isLoading, user } = useAuth();
-  const [purchases, setPurchases] = useState<PurchasedTour[]>([]);
+  const [purchases, setPurchases] = useState<PurchasedTour[] | null>(null);
   const [refreshTick, setRefreshTick] = useState(0);
 
   useEffect(() => {
@@ -35,7 +39,35 @@ export function MyPurchasesStripClient({locale = 'fr'}: {locale?: 'fr' | 'en'}) 
     };
   }, [isLoading, isAuthenticated, user?.id, refreshTick]);
 
-  if (!isAuthenticated || purchases.length === 0) return null;
+  if (isLoading || !isAuthenticated) return null;
+
+  if (purchases === null) {
+    return (
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12"
+        role="status"
+        aria-busy="true"
+        aria-label={locale === 'en' ? 'Loading my purchases' : 'Chargement de mes achats'}
+        data-testid="my-purchases-strip-skeleton"
+      >
+        <div className="mb-10 animate-pulse">
+          <div className="h-6 w-40 rounded bg-paper-deep mb-4" />
+          <div className="flex gap-3 overflow-hidden pb-2">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="flex-shrink-0 w-40 rounded-lg border border-line overflow-hidden">
+                <div className="h-24 bg-paper-deep" />
+                <div className="p-2">
+                  <div className="h-3 w-3/4 rounded bg-paper-deep" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (purchases.length === 0) return null;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
