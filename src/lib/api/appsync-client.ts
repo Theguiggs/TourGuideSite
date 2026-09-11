@@ -13,6 +13,7 @@ import type { Schema } from '@amplify-schema';
 import { configureAmplify } from '@/lib/amplify/config';
 import { logger } from '@/lib/logger';
 import { isPublicCatalogueTour } from './public-tour-policy';
+import { paginateAll } from './paginate';
 import { isPublicCatalogueGuide } from './public-guide-policy';
 import { disclosureWriteViolation } from './audio-source-policy';
 import {
@@ -47,13 +48,14 @@ export function getClient() {
 export async function listGuideTours(filters?: { city?: string; status?: string }) {
   try {
     const client = getClient();
-    const result = await client.models.GuideTour.list({
-      filter: {
-        ...(filters?.city ? { city: { eq: filters.city } } : {}),
-        ...(filters?.status ? { status: { eq: filters.status as 'published' } } : {}),
-      },
-    });
-    return (result.data ?? []).filter(isPublicCatalogueTour);
+    const filter = {
+      ...(filters?.city ? { city: { eq: filters.city } } : {}),
+      ...(filters?.status ? { status: { eq: filters.status as 'published' } } : {}),
+    };
+    const tours = await paginateAll((nextToken) =>
+      client.models.GuideTour.list({ filter, nextToken: nextToken ?? undefined }),
+    );
+    return tours.filter(isPublicCatalogueTour);
   } catch (error) {
     logger.error(SERVICE_NAME, 'listGuideTours failed', { error: String(error) });
     return [];
@@ -64,8 +66,9 @@ export async function listGuideTours(filters?: { city?: string; status?: string 
 export async function listAllGuideTours() {
   try {
     const client = getClient();
-    const result = await client.models.GuideTour.list({ authMode: 'userPool' });
-    return result.data ?? [];
+    return await paginateAll((nextToken) =>
+      client.models.GuideTour.list({ authMode: 'userPool', nextToken: nextToken ?? undefined }),
+    );
   } catch (error) {
     logger.error(SERVICE_NAME, 'listAllGuideTours failed', { error: String(error) });
     return [];

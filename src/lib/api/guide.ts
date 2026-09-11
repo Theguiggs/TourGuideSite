@@ -13,6 +13,7 @@ import type {
 import type { GuideProfile } from '@/types/tour';
 import { shouldUseStubs } from '@/config/api-mode';
 import * as appsync from './appsync-client';
+import { paginateAll } from './paginate';
 
 export { createGuideTourMutation as createGuideTour } from './appsync-client';
 
@@ -138,11 +139,15 @@ async function getRealGuideTours(guideId: string): Promise<GuideTourSummary[]> {
   const client = (await import('./appsync-client')).getClient();
   let tours: Awaited<ReturnType<typeof appsync.listGuideTours>> = [];
   try {
-    const result = await client.models.GuideTour.list({
-      filter: { guideId: { eq: guideId } },
-      authMode: 'userPool',
-    });
-    tours = result.data ?? [];
+    // Boucle sur nextToken : sans elle, le compte guide plafonne à la première
+    // page (100 lignes lues, filtre appliqué après) et perd ses visites au-delà.
+    tours = await paginateAll((nextToken) =>
+      client.models.GuideTour.list({
+        filter: { guideId: { eq: guideId } },
+        authMode: 'userPool',
+        nextToken: nextToken ?? undefined,
+      }),
+    );
   } catch {
     tours = [];
   }
