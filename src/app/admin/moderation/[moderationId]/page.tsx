@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { useRouter, useParams, useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { CheckCircle2 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { S3Image } from '@/components/studio/s3-image';
 
@@ -170,7 +171,6 @@ function parseTranslationMap(value: unknown): Record<string, string> {
 }
 
 export default function ModerationReviewPage() {
-  const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
   const moderationId = params.moderationId as string;
@@ -179,6 +179,7 @@ export default function ModerationReviewPage() {
 
   const [detail, setDetail] = useState<ModerationDetail | null>(null);
   const [loading, setLoading] = useState(true);
+  const [reloadAttempt, setReloadAttempt] = useState(0);
   const [checklist, setChecklist] = useState<QualityChecklistItem[]>([]);
   const [overallNotes, setOverallNotes] = useState('');
   const [showRejectForm, setShowRejectForm] = useState(false);
@@ -334,7 +335,7 @@ export default function ModerationReviewPage() {
     return () => {
       cancelled = true;
     };
-  }, [initialLang, moderationId]);
+  }, [initialLang, moderationId, reloadAttempt]);
 
   useEffect(() => {
     const interval = setInterval(() => setElapsedMinutes(Math.round((Date.now() - reviewStartTime) / 60000)), 60000);
@@ -393,7 +394,6 @@ export default function ModerationReviewPage() {
         addTourComment(detail.tourId, { message: overallNotes || `Langue ${activePreviewLang.toUpperCase()} approuvée`, author: 'admin', authorName: 'Admin', action: 'approved', language: activePreviewLang }).catch(() => {});
         setSubmitting(false);
         setSuccessMessage(`Langue ${activePreviewLang.toUpperCase()} approuvée !`);
-        setTimeout(() => router.push('/admin/moderation'), 2000);
         return;
       }
       setSubmitting(false);
@@ -421,7 +421,6 @@ export default function ModerationReviewPage() {
       sendGuideNotification(detail.guideId, detail.tourId, detail.tourTitle, 'validate')
         .catch((error: unknown) => logger.warn(SERVICE_NAME, 'Notification de validation impossible', { error: String(error) }));
       setSuccessMessage('Visite approuvée et publiée !');
-      setTimeout(() => router.push('/admin/moderation'), 2000);
     } else {
       setErrorMessage(result.error || 'Erreur lors de l\'approbation');
     }
@@ -444,7 +443,6 @@ export default function ModerationReviewPage() {
         addTourComment(detail.tourId, { message: rejectFeedback, author: 'admin', authorName: 'Admin', action: 'rejected', language: activePreviewLang }).catch(() => {});
         setSubmitting(false);
         setSuccessMessage(`Langue ${activePreviewLang.toUpperCase()} refusée.`);
-        setTimeout(() => router.push('/admin/moderation'), 2000);
         return;
       }
       setSubmitting(false);
@@ -464,8 +462,7 @@ export default function ModerationReviewPage() {
       });
       sendGuideNotification(detail.guideId, detail.tourId, detail.tourTitle, 'reject', rejectFeedback)
         .catch((error: unknown) => logger.warn(SERVICE_NAME, 'Notification de refus impossible', { error: String(error) }));
-      setSuccessMessage('Retour envoye au guide.');
-      setTimeout(() => router.push('/admin/moderation'), 2000);
+      setSuccessMessage('Retour envoyé au guide.');
     } else {
       setErrorMessage(result.error || 'Erreur lors du rejet');
     }
@@ -487,7 +484,6 @@ export default function ModerationReviewPage() {
         addTourComment(detail.tourId, { message: revisionFeedback, author: 'admin', authorName: 'Admin', action: 'revision', language: activePreviewLang }).catch(() => {});
         setSubmitting(false);
         setSuccessMessage(`Révision demandée pour ${activePreviewLang.toUpperCase()}.`);
-        setTimeout(() => router.push('/admin/moderation'), 2000);
         return;
       }
       setSubmitting(false);
@@ -505,7 +501,6 @@ export default function ModerationReviewPage() {
       sendGuideNotification(detail.guideId, detail.tourId, detail.tourTitle, 'revision', revisionFeedback)
         .catch((error: unknown) => logger.warn(SERVICE_NAME, 'Notification de révision impossible', { error: String(error) }));
       setSuccessMessage('Renvoyé au guide pour corrections.');
-      setTimeout(() => router.push('/admin/moderation'), 2000);
     } else {
       setErrorMessage(result.error || 'Erreur lors du renvoi');
     }
@@ -585,12 +580,20 @@ export default function ModerationReviewPage() {
   }
 
   if (!detail) {
+    const failed = Boolean(errorMessage);
     return (
-      <div className="text-center py-12">
-        <p className="text-ink-60 text-h6">Élément de modération introuvable.</p>
-        <Link href="/admin/moderation" className="text-danger hover:underline mt-4 inline-block">
-          Retour a la file d&apos;attente
-        </Link>
+      <div className="text-center py-12" role={failed ? 'alert' : undefined}>
+        <p className="text-ink-60 text-h6">{failed ? errorMessage : 'Élément de modération introuvable.'}</p>
+        <div className="mt-4 flex justify-center gap-4">
+          {failed && (
+            <button type="button" onClick={() => setReloadAttempt((n) => n + 1)} className="rounded-lg border border-danger px-4 py-2 text-body font-medium text-danger hover:bg-card">
+              Réessayer
+            </button>
+          )}
+          <Link href="/admin/moderation" className="text-danger hover:underline inline-block py-2">
+            Retour à la file d&apos;attente
+          </Link>
+        </div>
       </div>
     );
   }
@@ -598,10 +601,16 @@ export default function ModerationReviewPage() {
   if (successMessage) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-center">
-          <div className="text-h3 mb-4">✅</div>
+        <div className="text-center" role="status">
+          <CheckCircle2 className="mx-auto mb-4 h-10 w-10 text-olive" aria-hidden="true" />
           <p className="text-h5 font-semibold text-ink">{successMessage}</p>
-          <p className="text-body text-ink-60 mt-2">Redirection vers la file d&apos;attente...</p>
+          <Link
+            href="/admin/moderation"
+            data-testid="back-to-queue"
+            className="mt-6 inline-block rounded-lg bg-grenadine px-5 py-2.5 text-body font-medium text-white hover:opacity-90"
+          >
+            Retour à la file d&apos;attente
+          </Link>
         </div>
       </div>
     );
@@ -617,7 +626,7 @@ export default function ModerationReviewPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <Link href="/admin/moderation" className="text-body text-ink-60 hover:text-danger">
-            ← Retour a la file d&apos;attente
+            ← Retour à la file d&apos;attente
           </Link>
           <div className="flex items-center gap-3 mt-1">
             <PageTitle size="h5">
@@ -683,7 +692,7 @@ export default function ModerationReviewPage() {
                   )}
                 </p>
                 <p className="text-body text-ink-60">
-                  {detail.city} &middot; {detail.guideSubmissionCount} soumissions &middot; {detail.guideApprovalRate}% approuve
+                  {detail.city} &middot; {detail.guideSubmissionCount} soumissions &middot; {detail.guideApprovalRate}% approuvé
                   {detail.guideTourCount > 0 && <> &middot; {detail.guideTourCount} parcours</>}
                 </p>
                 {detail.guideBio && (
@@ -973,7 +982,7 @@ export default function ModerationReviewPage() {
               {/* Unified scene review — one card per scene with text + audio + photos */}
               <div className="bg-card rounded-md border border-line p-5">
                 <h3 className="text-h6 font-semibold text-ink mb-4">
-                  Scenes ({detail.scenes.length}) — {activePreviewLang.toUpperCase()}
+                  Scènes ({detail.scenes.length}) — {activePreviewLang.toUpperCase()}
                 </h3>
                 {/* Diagnostic — shows segment state per scene */}
                 <details className="text-eyebrow text-ink-40 mb-2 border border-dashed border-line rounded p-2">
@@ -1199,7 +1208,7 @@ export default function ModerationReviewPage() {
             <div className="space-y-4">
               {sortedScenes.length === 0 ? (
                 <div className="text-center py-8 text-ink-40 bg-card rounded-md border border-line">
-                  <p>Aucune scene disponible</p>
+                  <p>Aucune scène disponible</p>
                 </div>
               ) : (
                 sortedScenes.map((scene) => {
@@ -1373,7 +1382,7 @@ export default function ModerationReviewPage() {
 
             {/* Quality Checklist */}
             <div className="bg-card rounded-md border border-line p-4">
-              <h2 className="text-h6 font-semibold text-ink mb-4">Checklist qualite</h2>
+              <h2 className="text-h6 font-semibold text-ink mb-4">Checklist qualité</h2>
               <div className="space-y-3">
                 {checklist.map((item) => (
                   <div key={item.id}>
@@ -1401,13 +1410,13 @@ export default function ModerationReviewPage() {
               </div>
 
               <div className="mt-4">
-                <label className="block text-body font-medium text-ink-80 mb-1">Notes generales</label>
+                <label className="block text-body font-medium text-ink-80 mb-1">Notes générales</label>
                 <textarea
                   value={overallNotes}
                   onChange={(e) => setOverallNotes(e.target.value)}
                   rows={3}
                   className="w-full text-body border border-line rounded-lg px-3 py-2 text-ink-80"
-                  placeholder="Observations supplementaires..."
+                  placeholder="Observations supplémentaires…"
                 />
               </div>
             </div>
@@ -1475,7 +1484,7 @@ export default function ModerationReviewPage() {
               <div className="bg-card rounded-md border border-grenadine p-4">
                 <h3 className="text-body font-semibold text-grenadine mb-3">Ajouter un commentaire</h3>
                 <div className="mb-3">
-                  <label className="block text-meta font-medium text-ink-80 mb-1">Scene (optionnel)</label>
+                  <label className="block text-meta font-medium text-ink-80 mb-1">Scène (optionnel)</label>
                   <select
                     value={commentSceneId}
                     onChange={(e) => setCommentSceneId(e.target.value)}
@@ -1517,10 +1526,10 @@ export default function ModerationReviewPage() {
                     rows={4}
                     data-testid="feedback-input"
                     className="w-full text-body border border-line rounded-lg px-3 py-2 text-ink-80"
-                    placeholder="Preciser les corrections attendues (min. 10 caracteres)..."
+                    placeholder="Préciser les corrections attendues (min. 10 caractères)…"
                   />
                   <p className="text-meta text-ink-40 mt-1">
-                    {revisionFeedback.length}/10 caracteres minimum
+                    {revisionFeedback.length}/10 caractères minimum
                   </p>
                 </div>
                 <button
@@ -1539,7 +1548,7 @@ export default function ModerationReviewPage() {
                 <h3 className="text-body font-semibold text-danger mb-3">Refuser le parcours</h3>
 
                 <div className="mb-3">
-                  <label className="block text-meta font-medium text-ink-80 mb-1">Categorie</label>
+                  <label className="block text-meta font-medium text-ink-80 mb-1">Catégorie</label>
                   <select
                     value={rejectCategory}
                     onChange={(e) => setRejectCategory(e.target.value as RejectionCategory)}
@@ -1553,23 +1562,23 @@ export default function ModerationReviewPage() {
 
                 <div className="mb-3">
                   <label className="block text-meta font-medium text-ink-80 mb-1">
-                    Feedback (min. 20 caracteres)
+                    Feedback (min. 20 caractères)
                   </label>
                   <textarea
                     value={rejectFeedback}
                     onChange={(e) => setRejectFeedback(e.target.value)}
                     rows={4}
                     className="w-full text-body border border-line rounded-lg px-3 py-2 text-ink-80"
-                    placeholder="Soyez precis pour aider le guide a ameliorer..."
+                    placeholder="Soyez précis pour aider le guide à améliorer…"
                   />
                   <p className="text-meta text-ink-40 mt-1">
-                    {rejectFeedback.length}/20 caracteres minimum
+                    {rejectFeedback.length}/20 caractères minimum
                   </p>
                 </div>
 
                 <div className="mb-3">
                   <label className="block text-meta font-medium text-ink-80 mb-1">
-                    POIs concernes (optionnel)
+                    POIs concernés (optionnel)
                   </label>
                   <div className="space-y-1">
                     {detail.pois.map((poi) => (

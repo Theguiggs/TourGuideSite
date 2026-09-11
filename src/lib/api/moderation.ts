@@ -1079,17 +1079,18 @@ export async function getAllAdminTours(): Promise<Array<{ id: string; title: str
   });
 }
 
-export async function getAllAdminGuides(): Promise<Array<{ id: string; displayName: string; city: string; profileStatus: string; tourCount: number; rating: number | null }>> {
+export async function getAllAdminGuides(): Promise<Array<{ id: string; userId: string; displayName: string; city: string; profileStatus: string; tourCount: number; rating: number | null }>> {
   if (shouldUseStubs()) {
     return [
-      { id: 'guide-1', displayName: 'Marie Dupont', city: 'Grasse', profileStatus: 'active', tourCount: 2, rating: 4.7 },
-      { id: 'guide-5', displayName: 'Claire Moreau', city: 'Nice', profileStatus: 'active', tourCount: 1, rating: 4.2 },
-      { id: 'guide-6', displayName: 'Thomas Leroy', city: 'Cannes', profileStatus: 'pending_moderation', tourCount: 0, rating: null },
+      { id: 'guide-1', userId: 'user-1', displayName: 'Marie Dupont', city: 'Grasse', profileStatus: 'active', tourCount: 2, rating: 4.7 },
+      { id: 'guide-5', userId: 'user-5', displayName: 'Claire Moreau', city: 'Nice', profileStatus: 'active', tourCount: 1, rating: 4.2 },
+      { id: 'guide-6', userId: 'user-6', displayName: 'Thomas Leroy', city: 'Cannes', profileStatus: 'pending_moderation', tourCount: 0, rating: null },
     ];
   }
   const guides = await appsync.listAllGuideProfilesAdmin();
   return guides.map((g) => ({
     id: g.id,
+    userId: g.userId,
     displayName: g.displayName,
     city: g.city,
     profileStatus: g.profileStatus ?? 'pending_moderation',

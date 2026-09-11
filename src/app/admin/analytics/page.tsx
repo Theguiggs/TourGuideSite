@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { LoadError } from '@/components/admin/LoadError';
 import { getStudioAnalytics, type StudioAnalyticsSummary } from '@/lib/api/studio-analytics';
 import {
   formaterDollars,
@@ -38,6 +39,8 @@ export default function AdminAnalyticsPage() {
   const [data, setData] = useState<StudioAnalyticsSummary | null>(null);
   const [depense, setDepense] = useState<RapportDeDepense | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     async function load() {
@@ -47,12 +50,13 @@ export default function AdminAnalyticsPage() {
         logger.info(SERVICE_NAME, 'Analytics loaded');
       } catch (e) {
         logger.error(SERVICE_NAME, 'Failed to load analytics', { error: String(e) });
+        setLoadError('Impossible de charger les analytics.');
       } finally {
         setIsLoading(false);
       }
     }
     load();
-  }, []);
+  }, [attempt]);
 
   // LE COUT SE LIT, IL NE SE DEDUIT PAS (AD-16 6). Charge a part : le grand
   // livre peut etre indisponible sans emporter le reste de la page, et son
@@ -66,12 +70,21 @@ export default function AdminAnalyticsPage() {
         setDepense({
           ok: false,
           motif: 'panne',
-          message: "Le grand livre n'a pas pu etre lu.",
+          message: 'Le grand livre n’a pas pu être lu.',
         });
       }
     }
     lireDepense();
   }, []);
+
+  if (!isLoading && !data) {
+    return (
+      <div className="p-6">
+        <PageTitle size="h4" className="mb-6">Analytics Studio</PageTitle>
+        <LoadError message={loadError ?? 'Impossible de charger les analytics.'} onRetry={() => setAttempt((n) => n + 1)} />
+      </div>
+    );
+  }
 
   if (isLoading || !data) {
     return (

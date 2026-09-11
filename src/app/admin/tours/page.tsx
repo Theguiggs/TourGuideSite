@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { LoadError } from '@/components/admin/LoadError';
 import Link from 'next/link';
 import { getAllAdminTours, adminSetTourStatus, adminSyncTourToQueue, adminDeleteTour } from '@/lib/api/moderation';
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
@@ -28,6 +29,8 @@ export default function AdminToursPage() {
   // « [2900] Publication refusée : aucune mention de source audio… ». Sans surface
   // d erreur, le bouton paraissait simplement inerte.
   const [actionError, setActionError] = useState<string | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     getAllAdminTours()
@@ -43,9 +46,10 @@ export default function AdminToursPage() {
         }));
         setPurchasesByTour(pMap);
       })
-      .catch(console.error)
+      .catch(() => setLoadError('Impossible de charger les visites.'))
       .finally(() => setLoading(false));
-  }, []);
+  }, [attempt]);
+  const load = () => { setLoading(true); setLoadError(null); setAttempt((n) => n + 1); };
 
   const cities   = [...new Set(tours.map((t) => t.city))].sort();
   const filtered = tours.filter((t) => {
@@ -127,6 +131,8 @@ export default function AdminToursPage() {
 
       {loading ? (
         <p className="text-ink-60 text-body" role="status" aria-busy="true">Chargement…</p>
+      ) : loadError ? (
+        <LoadError message={loadError} onRetry={load} />
       ) : filtered.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
           <p className="text-ink-60">Aucune visite trouvée.</p>
