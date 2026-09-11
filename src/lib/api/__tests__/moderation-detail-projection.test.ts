@@ -4,14 +4,19 @@ jest.mock('../appsync-client', () => ({
   getGuideProfileById: jest.fn(),
   listStudioScenesBySession: jest.fn(),
 }));
+jest.mock('../studio', () => ({
+  getStudioSession: jest.fn(),
+}));
 
 import { getModerationDetail } from '../moderation';
 import * as appsyncModule from '../appsync-client';
+import * as studioModule from '../studio';
 
 const getModerationItemById = appsyncModule.getModerationItemById as jest.Mock;
 const getGuideTourById = appsyncModule.getGuideTourById as jest.Mock;
 const getGuideProfileById = appsyncModule.getGuideProfileById as jest.Mock;
 const listStudioScenesBySession = appsyncModule.listStudioScenesBySession as jest.Mock;
+const getStudioSession = studioModule.getStudioSession as jest.Mock;
 const originalUseStubs = process.env.NEXT_PUBLIC_USE_STUBS;
 
 describe('getModerationDetail — projection admin réelle', () => {
@@ -57,6 +62,7 @@ describe('getModerationDetail — projection admin réelle', () => {
       priceCents: 0,
     });
     getGuideProfileById.mockResolvedValue(null);
+    getStudioSession.mockResolvedValue(null);
     listStudioScenesBySession.mockResolvedValue({
       ok: true,
       data: [
@@ -118,5 +124,24 @@ describe('getModerationDetail — projection admin réelle', () => {
     const result = await getModerationDetail('moderation-1');
 
     expect(result?.contentProvenance).toBeNull();
+  });
+
+  it('reprend le thème Studio des visites créées avant la persistance GuideTour', async () => {
+    getGuideTourById.mockResolvedValue({
+      id: 'tour-1',
+      sessionId: 'session-from-tour',
+      title: 'Les remparts',
+      city: 'Mennetou-sur-Cher',
+      themes: null,
+    });
+    getStudioSession.mockResolvedValue({
+      id: 'session-from-tour',
+      themes: ['architecture'],
+      language: 'fr',
+    });
+
+    const result = await getModerationDetail('moderation-1');
+
+    expect(result?.themes).toEqual(['architecture']);
   });
 });

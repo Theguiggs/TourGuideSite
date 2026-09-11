@@ -14,7 +14,7 @@ jest.mock('../appsync-client', () => ({
   updateGuideTourMutation: jest.fn(),
 }));
 
-import { listStudioSessions, getStudioSession, createStudioSession, createTourWithSession, listStudioScenes, createScene, updateSceneText, updateSceneAudio } from '../studio';
+import { listStudioSessions, getStudioSession, createStudioSession, createTourWithSession, listStudioScenes, createScene, updateSceneText, updateSceneData, updateSceneAudio } from '../studio';
 import * as appsyncModule from '../appsync-client';
 
 const mockListSessionsByGuide = appsyncModule.listStudioSessionsByGuide as jest.Mock;
@@ -114,11 +114,53 @@ describe('updateSceneText (real mode)', () => {
   });
 });
 
+describe('updateSceneData (real mode)', () => {
+  it('keeps successful updates visible across an immediate indexed reload', async () => {
+    mockUpdateSceneMutation.mockResolvedValue({ ok: true, data: { id: 'sc-data' } });
+    mockListScenesBySession.mockResolvedValue({ ok: true, data: [
+      { id: 'sc-data', sessionId: 's-data', sceneIndex: 0, status: 'edited', transcriptText: 'stale', photosRefs: [], archived: false, createdAt: '', updatedAt: '' },
+    ] });
+
+    const result = await updateSceneData('sc-data', { transcriptText: 'fresh' });
+    const scenes = await listStudioScenes('s-data');
+
+    expect(result.ok).toBe(true);
+    expect(scenes[0].transcriptText).toBe('fresh');
+  });
+
+  it('does not expose an update rejected by AppSync', async () => {
+    mockUpdateSceneMutation.mockResolvedValue({ ok: false, error: 'rejected' });
+    mockListScenesBySession.mockResolvedValue({ ok: true, data: [
+      { id: 'sc-data-fail', sessionId: 's-data', sceneIndex: 0, status: 'edited', transcriptText: 'original', photosRefs: [], archived: false, createdAt: '', updatedAt: '' },
+    ] });
+
+    const result = await updateSceneData('sc-data-fail', { transcriptText: 'not-persisted' });
+    const scenes = await listStudioScenes('s-data');
+
+    expect(result.ok).toBe(false);
+    expect(scenes[0].transcriptText).toBe('original');
+  });
+});
+
 describe('updateSceneAudio (real mode)', () => {
   it('calls updateStudioSceneMutation with studioAudioKey + status recorded', async () => {
     mockUpdateSceneMutation.mockResolvedValue({ ok: true, data: {} });
     const result = await updateSceneAudio('sc1', 'guide-studio/sub/s1/audio/scene_0.webm');
     expect(result.ok).toBe(true);
     expect(mockUpdateSceneMutation).toHaveBeenCalledWith('sc1', { studioAudioKey: 'guide-studio/sub/s1/audio/scene_0.webm', status: 'recorded' });
+  });
+
+  it('does not expose an unpersisted audio override after AppSync rejects it', async () => {
+    mockListScenesBySession.mockResolvedValue({ ok: true, data: [
+      { id: 'sc-fail', sessionId: 's1', sceneIndex: 0, status: 'edited', studioAudioKey: null, photosRefs: [], archived: false, createdAt: '', updatedAt: '' },
+    ] });
+    mockUpdateSceneMutation.mockResolvedValue({ ok: false, error: 'rejected' });
+
+    const result = await updateSceneAudio('sc-fail', 'guide-studio/sub/s1/audio/new.webm', 's1', 0, 'recording');
+    const scenes = await listStudioScenes('s1');
+
+    expect(result.ok).toBe(false);
+    expect(scenes[0].studioAudioKey).toBeNull();
+    expect(scenes[0].status).toBe('edited');
   });
 });

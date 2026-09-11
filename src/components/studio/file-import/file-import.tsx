@@ -16,6 +16,7 @@ export function FileImport({ sceneId }: FileImportProps) {
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const addTake = useRecordingStore((s) => s.addTake);
+  const selectTake = useRecordingStore((s) => s.selectTake);
 
   const handleFileChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -27,11 +28,12 @@ export function FileImport({ sceneId }: FileImportProps) {
     const result = await validateAndImportFile(file);
 
     if (result.ok) {
-      addTake(sceneId, {
+      const take = addTake(sceneId, {
         blob: result.result.blob,
         mimeType: result.result.mimeType,
         durationMs: result.result.durationMs ?? 0,
       });
+      selectTake(sceneId, take.id);
       logger.info(SERVICE_NAME, 'File imported as take', { sceneId, name: result.result.fileName });
     } else {
       setError(result.error.message);
@@ -41,7 +43,7 @@ export function FileImport({ sceneId }: FileImportProps) {
     setIsProcessing(false);
     // Reset input so the same file can be re-selected
     if (fileInputRef.current) fileInputRef.current.value = '';
-  }, [sceneId, addTake]);
+  }, [sceneId, addTake, selectTake]);
 
   return (
     <div className="mt-3" data-testid="file-import">

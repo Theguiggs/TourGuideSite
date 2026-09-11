@@ -160,38 +160,14 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
   // ──────────────────────────────────────────────────────────
   // 2.1 — Open multilang modal (3 steps)
   // ──────────────────────────────────────────────────────────
-  test('2.1 - Open multilang modal from General page', async ({ browser }) => {
+  test('2.1 - General page exposes narration mode but no multilang modal', async ({ browser }) => {
     const { context, page } = await createGuideContext(browser, guidePath);
 
     await page.goto(`${sessionUrl}/general`);
-    await expect(page.getByTestId('multilang-section')).toBeVisible({ timeout: 15_000 });
-
-    // The Collapsible defaultOpen depends on purchasedLanguages being loaded at mount.
-    // If they weren't ready yet, the section is closed — click header to open it.
-    const openBtn = page.getByTestId('open-multilang-btn');
-    await openBtn.waitFor({ state: 'visible', timeout: 3_000 }).catch(async () => {
-      await page.getByTestId('multilang-section').click();
-    });
-
-    // Click button to open modal
-    await openBtn.click();
-
-    // Modal should appear (flat table UI — no stepped wizard)
-    const modal = page.getByTestId('multilang-modal');
-    await expect(modal).toBeVisible({ timeout: 5_000 });
-    await expect(modal).toHaveAttribute('role', 'dialog');
-    await expect(modal).toHaveAttribute('aria-modal', 'true');
-
-    // Language table rows (EN + ES seeded by beforeAll)
-    await expect(page.getByTestId('lang-row-en')).toBeVisible();
-    await expect(page.getByTestId('lang-row-es')).toBeVisible();
-
-    // Confirm/pay button always rendered
-    await expect(page.getByTestId('confirm-btn')).toBeVisible();
-
-    // Close modal
-    await page.getByTestId('modal-close-btn').click();
-    await expect(modal).not.toBeVisible();
+    await expect(page.getByTestId('narration-mode-picker')).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByTestId('multilang-section')).not.toBeVisible();
+    await expect(page.getByTestId('open-multilang-btn')).not.toBeVisible();
+    await expect(page.getByTestId('multilang-modal')).not.toBeVisible();
 
     await context.close();
   });
@@ -432,62 +408,19 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
   });
 
   // ──────────────────────────────────────────────────────────
-  // 2.15c — Accessibility: ARIA attributes on modal and tabs
+  // 2.15c — Accessibility: narration mode choices expose their state
   // ──────────────────────────────────────────────────────────
-  test('2.15c - Accessibility: ARIA attributes on modal and tabs', async ({ browser }) => {
+  test('2.15c - Accessibility: narration choices expose pressed state', async ({ browser }) => {
     const { context, page } = await createGuideContext(browser, guidePath);
 
     await page.goto(`${sessionUrl}/general`);
-    await expect(page.getByTestId('multilang-section')).toBeVisible({ timeout: 15_000 });
-    // Collapsible may be closed if purchasedLanguages hadn't loaded at mount
-    const openBtn2 = page.getByTestId('open-multilang-btn');
-    await openBtn2.waitFor({ state: 'visible', timeout: 3_000 }).catch(async () => {
-      await page.getByTestId('multilang-section').click();
-    });
-    await openBtn2.click();
-
-    // Modal ARIA (aria-label matches the rendered component)
-    const modal = page.getByTestId('multilang-modal');
-    await expect(modal).toBeVisible({ timeout: 5_000 });
-    await expect(modal).toHaveAttribute('role', 'dialog');
-    await expect(modal).toHaveAttribute('aria-modal', 'true');
-    await expect(modal).toHaveAttribute('aria-label', 'Ajouter des langues');
-
-    // Close button has aria-label
-    const closeBtn = page.getByTestId('modal-close-btn');
-    await expect(closeBtn).toHaveAttribute('aria-label', 'Fermer');
-
-    // Close modal
-    await closeBtn.click();
-    await expect(modal).not.toBeVisible();
-
-    // Navigate to scenes for tabs accessibility
-    await page.goto(`${sessionUrl}/scenes`);
-    await page.waitForLoadState('domcontentloaded', { timeout: 15_000 }).catch(() => {});
-
-    // Language tablist should exist from seeded purchases
-    const langTablist = page.locator('[role="tablist"][aria-label="Langues de la visite"]');
-    const hasLangTablist = await langTablist.isVisible({ timeout: 10_000 }).catch(() => false);
-
-    if (hasLangTablist) {
-      await expect(langTablist).toHaveAttribute('aria-label', 'Langues de la visite');
-
-      // Active tab should have tabindex 0
-      const activeTab = langTablist.locator('[role="tab"][aria-selected="true"]');
-      await expect(activeTab).toHaveAttribute('tabindex', '0');
-
-      // Tab panel exists (may be empty/hidden if no content rendered yet)
-      const tabPanel = page.locator('[role="tabpanel"]');
-      expect(await tabPanel.count()).toBeGreaterThan(0);
-    }
-
-    // Tool tablist should also have proper ARIA
-    const toolTablist = page.locator('[role="tablist"]').first();
-    await expect(toolTablist).toBeVisible();
-
-    const firstTab = toolTablist.locator('[role="tab"]').first();
-    await expect(firstTab).toHaveAttribute('role', 'tab');
-    await expect(firstTab).toHaveAttribute('aria-selected', /(true|false)/);
+    const recordingChoice = page.getByTestId('narration-mode-recording');
+    const ttsChoice = page.getByTestId('narration-mode-tts_on_demand');
+    await expect(recordingChoice).toBeVisible({ timeout: 15_000 });
+    await expect(ttsChoice).toBeVisible();
+    await expect(recordingChoice).toHaveAttribute('aria-pressed', 'false');
+    await expect(ttsChoice).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId('multilang-modal')).not.toBeVisible();
 
     await page.screenshot({ path: 'test-results/2.15c-accessibility.png' });
     await context.close();

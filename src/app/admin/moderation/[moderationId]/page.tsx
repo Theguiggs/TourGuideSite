@@ -885,7 +885,13 @@ export default function ModerationReviewPage() {
                           : 'non renseigné'}
                   </p>
                   <p className="text-white text-sm mt-1" data-testid="moderation-provenance">
-                    Provenance : {detail.contentProvenance ?? 'non renseignée'}
+                    Origine éditoriale : {detail.contentProvenance === 'human'
+                      ? 'écrit par le guide'
+                      : detail.contentProvenance === 'mixed'
+                        ? 'créé avec l’aide de l’IA'
+                        : detail.contentProvenance === 'ai'
+                          ? 'créé principalement avec l’IA'
+                          : 'non renseignée'}
                     {(detail.contentProvenance === 'ai' || detail.contentProvenance === 'mixed') && (
                       <span className="ml-2 font-semibold">Developed with AI</span>
                     )}

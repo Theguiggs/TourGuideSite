@@ -154,12 +154,13 @@ jobs:
       - run: cd TourGuideWeb && npm ci
       - name: Install TourGuide amplify types
         run: cd TourGuideApp && npm install --no-save @aws-amplify/backend
-      - name: Write amplify_outputs.json
-        env:
-          AMPLIFY_B64: ${{ secrets.AMPLIFY_OUTPUTS_B64 }}
+      # The generated production outputs are versioned with the Web app. Do not
+      # replace them with a secret copy: that copy can lag behind the deployed
+      # AppSync schema and silently hide newly-added model fields.
+      - name: Validate committed Amplify outputs
         run: |
-          printf '%s' "$AMPLIFY_B64" | base64 -d | gunzip > TourGuideWeb/amplify_outputs.json
-          echo "amplify_outputs.json size: $(wc -c < TourGuideWeb/amplify_outputs.json) bytes"
+          test -s TourGuideWeb/amplify_outputs.json
+          python3 -c "import json; d=json.load(open('TourGuideWeb/amplify_outputs.json')); assert d['data']['url']; assert 'narrationMode' in d['data']['model_introspection']['models']['StudioSession']['fields']"
       - run: cd TourGuideWeb && npx playwright install chromium --with-deps
       - name: Clean Next.js build cache
         run: rm -rf TourGuideWeb/.next

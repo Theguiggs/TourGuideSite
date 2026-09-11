@@ -49,12 +49,12 @@ describe('clearStudioLocalState', () => {
       mimeType: 'audio/webm',
       durationMs: 1000,
     });
-    expect(useRecordingStore.getState().hasUnsyncedTakes()).toBe(true);
+    expect(useRecordingStore.getState().getSceneTakes('scene-a')).toHaveLength(1);
 
     await clearStudioLocalState();
 
     expect(useRecordingStore.getState().takes).toEqual({});
-    expect(useRecordingStore.getState().hasUnsyncedTakes()).toBe(false);
+    expect(useRecordingStore.getState().getSceneTakes('scene-a')).toHaveLength(0);
   });
 
   it('survives a localStorage that refuses to answer', async () => {

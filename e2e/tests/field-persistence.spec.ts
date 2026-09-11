@@ -62,7 +62,10 @@ test.describe.serial('Field Persistence', () => {
 
     token = getAccessTokenFromStorageState(guidePath);
     // Use 'editing' so title/description fields are editable (not locked)
-    seeded = await seedMultilangReadyTour(PREFIX, token, { sessionStatus: 'editing' });
+    seeded = await seedMultilangReadyTour(PREFIX, token, {
+      sessionStatus: 'editing',
+      narrationMode: 'recording',
+    });
     sessionUrl = `${STUDIO_BASE}/${seeded.sessionId}`;
 
     // Seed a language purchase for English
@@ -267,54 +270,45 @@ test.describe.serial('Field Persistence', () => {
   });
 
   // ---------------------------------------------------------------------------
-  // POI FIELDS (Scenes page, POI tab)
+  // POI FIELDS (Itinerary page)
   // ---------------------------------------------------------------------------
 
-  test('4 - POI title persists after switching scenes', async ({ browser }) => {
+  test('4 - POI details persist after an itinerary reload', async ({ browser }) => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
     await injectRGPDConsent(page);
 
-    await page.goto(`${sessionUrl}/scenes`);
-    await page.waitForTimeout(3_000);
+    await page.goto(`${sessionUrl}/itinerary`);
+    const firstPoi = page.getByTestId('poi-overview-card').first();
+    await expect(firstPoi).toBeVisible({ timeout: 15_000 });
+    await firstPoi.getByTestId('poi-edit').click();
 
-    // Click on the POI tab
-    const poiTab = page.getByTestId('tab-poi');
-    if (await poiTab.isVisible().catch(() => false)) {
-      await poiTab.click();
-    }
-
-    // Edit POI title on the first scene
-    const poiTitleInput = page.getByTestId('poi-title-input');
-    await expect(poiTitleInput).toBeVisible({ timeout: 10_000 });
+    const editForm = page.getByTestId('poi-edit-form');
+    await expect(editForm).toBeVisible();
     const newPoiTitle = `POI Title ${Date.now()}`;
-    await poiTitleInput.clear();
-    await poiTitleInput.fill(newPoiTitle);
+    const newDescription = `POI Desc ${Date.now()}`;
+    await editForm.getByLabel(/Titre du POI|POI title/i).fill(newPoiTitle);
+    await editForm.getByLabel(/^Description$/i).fill(newDescription);
+    await editForm.getByLabel('Latitude').fill('43.6591');
+    await editForm.getByLabel('Longitude').fill('6.9243');
+    await editForm.getByRole('button', { name: /Sauver|Save/i }).click();
+    await expect(page.getByTestId('save-status-saved')).toBeVisible({ timeout: 10_000 });
 
-    // Save POI
-    await page.getByTestId('save-poi-btn').click();
-    await page.waitForTimeout(3_000);
-
-    // Switch to scene 2
-    const scene2Btn = page.getByTestId(`sidebar-scene-${seeded.sceneIds[1]}`);
-    await expect(scene2Btn).toBeVisible({ timeout: 5_000 });
-    await scene2Btn.click();
-    await page.waitForTimeout(3_000);
-
-    // Switch back to scene 1
-    const scene1Btn = page.getByTestId(`sidebar-scene-${seeded.sceneIds[0]}`);
-    await scene1Btn.click();
-    await page.waitForTimeout(3_000);
-
-    // Verify POI title persisted
-    const currentPoiTitle = await page.getByTestId('poi-title-input').inputValue();
-    expect(currentPoiTitle).toBe(newPoiTitle);
+    await page.reload();
+    const persistedPoi = page.getByTestId('poi-overview-card').first();
+    await expect(persistedPoi).toContainText(newPoiTitle, { timeout: 15_000 });
+    await persistedPoi.getByTestId('poi-edit').click();
+    const persistedForm = page.getByTestId('poi-edit-form');
+    await expect(persistedForm.getByLabel(/Titre du POI|POI title/i)).toHaveValue(newPoiTitle);
+    await expect(persistedForm.getByLabel(/^Description$/i)).toHaveValue(newDescription);
+    await expect(persistedForm.getByLabel('Latitude')).toHaveValue('43.6591');
+    await expect(persistedForm.getByLabel('Longitude')).toHaveValue('6.9243');
 
     await page.screenshot({ path: 'test-results/persist-4-poi-title.png' });
     await context.close();
   });
 
-  test('5 - POI description persists after switching scenes', async ({ browser }) => {
+  test.skip('5 - covered by the combined itinerary persistence scenario', async ({ browser }) => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
     await injectRGPDConsent(page);
@@ -355,7 +349,7 @@ test.describe.serial('Field Persistence', () => {
     await context.close();
   });
 
-  test('6 - POI GPS coordinates persist after switching scenes', async ({ browser }) => {
+  test.skip('6 - covered by the combined itinerary persistence scenario', async ({ browser }) => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
     await injectRGPDConsent(page);
@@ -415,12 +409,6 @@ test.describe.serial('Field Persistence', () => {
     await page.goto(`${sessionUrl}/scenes`);
     await page.waitForTimeout(3_000);
 
-    // Click on Text tab (wait for it to be ready)
-    const textTab = page.getByTestId('tab-text');
-    await expect(textTab).toBeVisible({ timeout: 10_000 });
-    await textTab.click();
-    await page.waitForTimeout(500);
-
     // Edit text
     const sceneEditor = page.getByTestId('scene-editor');
     await expect(sceneEditor).toBeVisible({ timeout: 10_000 });
@@ -428,9 +416,8 @@ test.describe.serial('Field Persistence', () => {
     await sceneEditor.clear();
     await sceneEditor.fill(newText);
 
-    // Trigger blur to auto-save
-    await page.getByTestId('tab-poi').click();
-    await page.waitForTimeout(3_000);
+    await page.getByTestId('save-scene').click();
+    await expect(page.locator('[role="status"]', { hasText: /Scène sauvegardée|Scene saved/i })).toBeVisible({ timeout: 10_000 });
 
     // Switch to scene 2
     await page.getByTestId(`sidebar-scene-${seeded.sceneIds[1]}`).click();
@@ -439,10 +426,6 @@ test.describe.serial('Field Persistence', () => {
     // Switch back to scene 1
     await page.getByTestId(`sidebar-scene-${seeded.sceneIds[0]}`).click();
     await page.waitForTimeout(3_000);
-
-    // Go back to text tab
-    await page.getByTestId('tab-text').click();
-    await page.waitForTimeout(500);
 
     // Verify text persisted
     const currentText = await page.getByTestId('scene-editor').inputValue();
@@ -453,18 +436,13 @@ test.describe.serial('Field Persistence', () => {
   });
 
   test('8 - Scene text persists after page navigation (General and back)', async ({ browser }) => {
+    test.setTimeout(60_000);
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
     await injectRGPDConsent(page);
 
     await page.goto(`${sessionUrl}/scenes`);
     await page.waitForTimeout(3_000);
-
-    // Click Text tab (wait until ready)
-    const textTab = page.getByTestId('tab-text');
-    await expect(textTab).toBeVisible({ timeout: 10_000 });
-    await textTab.click();
-    await page.waitForTimeout(500);
 
     // Edit text
     const sceneEditor = page.getByTestId('scene-editor');
@@ -473,9 +451,8 @@ test.describe.serial('Field Persistence', () => {
     await sceneEditor.clear();
     await sceneEditor.fill(newText);
 
-    // Trigger blur for auto-save
-    await page.getByTestId('tab-poi').click();
-    await page.waitForTimeout(3_000);
+    await page.getByTestId('save-scene').click();
+    await expect(page.locator('[role="status"]', { hasText: /Scène sauvegardée|Scene saved/i })).toBeVisible({ timeout: 10_000 });
 
     // Navigate to General page
     await page.goto(`${sessionUrl}/general`);
@@ -485,16 +462,18 @@ test.describe.serial('Field Persistence', () => {
     await page.goto(`${sessionUrl}/scenes`);
     await page.waitForTimeout(3_000);
 
-    // Go to Text tab
-    const textTab2 = page.getByTestId('tab-text');
-    await expect(textTab2).toBeVisible({ timeout: 10_000 });
-    await textTab2.click();
-    await page.waitForTimeout(500);
-
-    // Verify text persisted
-    await expect(page.getByTestId('scene-editor')).toBeVisible({ timeout: 10_000 });
-    const currentText = await page.getByTestId('scene-editor').inputValue();
-    expect(currentText).toBe(newText);
+    // The session index is eventually consistent after a full browser reload.
+    // Retry the real page read instead of accepting a stale value or masking a
+    // genuinely lost mutation.
+    await expect.poll(async () => {
+      await page.reload();
+      await expect(page.getByTestId('scene-editor')).toBeVisible({ timeout: 10_000 });
+      return page.getByTestId('scene-editor').inputValue();
+    }, {
+      message: 'The confirmed scene text should propagate to a fresh page read',
+      timeout: 30_000,
+      intervals: [2_000, 3_000, 5_000],
+    }).toBe(newText);
 
     await page.screenshot({ path: 'test-results/persist-8-text-cross-page.png' });
     await context.close();
@@ -504,7 +483,7 @@ test.describe.serial('Field Persistence', () => {
   // TRANSLATED TEXT (Language tabs, SplitEditor)
   // ---------------------------------------------------------------------------
 
-  test('9 - Translated scene text (EN) persists after switching language tabs', async ({ browser }) => {
+  test.skip('9 - guide-side translated text editing was replaced by automatic translation', async ({ browser }) => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
     await injectRGPDConsent(page);
@@ -630,7 +609,7 @@ test.describe.serial('Field Persistence', () => {
   // TOUR INFO TRANSLATION (Language tabs, TourInfoTranslation component)
   // ---------------------------------------------------------------------------
 
-  test('11 - Translated tour title persists after switching language tabs', async ({ browser }) => {
+  test.skip('11 - guide-side translated title editing was replaced by automatic translation', async ({ browser }) => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
     await injectRGPDConsent(page);
@@ -703,7 +682,7 @@ test.describe.serial('Field Persistence', () => {
     await context.close();
   });
 
-  test('12 - Translated tour description persists after switching language tabs', async ({ browser }) => {
+  test.skip('12 - guide-side translated description editing was replaced by automatic translation', async ({ browser }) => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
     await injectRGPDConsent(page);

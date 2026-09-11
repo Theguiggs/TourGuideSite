@@ -143,27 +143,26 @@ export default function ItineraryPage() {
    * rechargement suivant.
    */
   const persistSceneUpdate = useCallback(
-    (sceneId: string, updates: Record<string, unknown>) => {
-      if (shouldUseStubs()) return;
-      import('@/lib/api/appsync-client')
-        .then(async ({ updateStudioSceneMutation }) => {
-          const result = await updateStudioSceneMutation(sceneId, updates);
-          if (!result.ok) {
-            logger.error(SERVICE_NAME, 'Scene update refused by backend', {
-              sceneId,
-              fields: Object.keys(updates),
-              error: result.error,
-            });
-            setPersistError(result.error);
-          }
-        })
-        .catch((err) => {
-          logger.error(SERVICE_NAME, 'Failed to persist scene update', {
-            sceneId,
-            error: String(err),
-          });
-          setPersistError(String(err));
-        });
+    async (sceneId: string, updates: Record<string, unknown>): Promise<{ ok: true } | { ok: false; error: string }> => {
+      if (shouldUseStubs()) return { ok: true };
+      try {
+        const { updateStudioSceneMutation } = await import('@/lib/api/appsync-client');
+        const result = await updateStudioSceneMutation(sceneId, updates);
+        if (!result.ok) {
+          // Un refus du backend est RENDU à l'appelant ET affiché : l'interface
+          // montrait le nouvel état pendant que le backend gardait l'ancien.
+          logger.error(SERVICE_NAME, 'Scene update refused by backend', { sceneId, fields: Object.keys(updates), error: result.error });
+          setPersistError(result.error);
+          return { ok: false, error: result.error };
+        }
+        setPersistError(null);
+        return { ok: true };
+      } catch (err) {
+        const error = err instanceof Error ? err.message : String(err);
+        logger.error(SERVICE_NAME, 'Failed to persist scene update', { sceneId, error });
+        setPersistError(error);
+        return { ok: false, error };
+      }
     },
     [],
   );
@@ -392,13 +391,19 @@ export default function ItineraryPage() {
     [clickToPlaceId, editForm, persistSceneUpdate],
   );
 
-  const saveEdit = useCallback(() => {
+  const saveEdit = useCallback(async () => {
     if (!editForm) return;
     const updates: Record<string, unknown> = {};
     if (editForm.title) updates.title = editForm.title;
     if (editForm.description) updates.poiDescription = editForm.description;
     if (editForm.latitude) updates.latitude = parseFloat(editForm.latitude);
     if (editForm.longitude) updates.longitude = parseFloat(editForm.longitude);
+    setSaveStatus('saving');
+    const result = await persistSceneUpdate(editForm.id, updates);
+    if (!result.ok) {
+      setSaveStatus({ error: result.error });
+      return;
+    }
     setScenes((prev) =>
       prev.map((s) => {
         if (s.id !== editForm.id) return s;
@@ -411,9 +416,10 @@ export default function ItineraryPage() {
         };
       }),
     );
-    persistSceneUpdate(editForm.id, updates);
     setEditingId(null);
     setEditForm(null);
+    setSaveStatus('saved');
+    setTimeout(() => setSaveStatus((status) => (status === 'saved' ? 'idle' : status)), 2000);
   }, [editForm, persistSceneUpdate]);
 
   const cancelEdit = useCallback(() => {
@@ -581,7 +587,7 @@ export default function ItineraryPage() {
     for (let i = 0; i < reindexed.length; i++) {
       const before = prev.find((s) => s.id === reindexed[i].id);
       if (before && before.sceneIndex !== i) {
-        persistSceneUpdate(reindexed[i].id, { sceneIndex: i });
+        void persistSceneUpdate(reindexed[i].id, { sceneIndex: i });
       }
     }
   }, [persistSceneUpdate]);
@@ -794,8 +800,9 @@ export default function ItineraryPage() {
                 )}
               </div>
               <div className="grid grid-cols-2 gap-2">
-                <WizField label="Latitude">
+                <WizField label="Latitude" htmlFor={`edit-latitude-${scene.id}`}>
                   <WizInput
+                    id={`edit-latitude-${scene.id}`}
                     type="text"
                     value={editForm.latitude}
                     onChange={(e) =>
@@ -804,8 +811,9 @@ export default function ItineraryPage() {
                     placeholder="ex : 43.7220"
                   />
                 </WizField>
-                <WizField label="Longitude">
+                <WizField label="Longitude" htmlFor={`edit-longitude-${scene.id}`}>
                   <WizInput
+                    id={`edit-longitude-${scene.id}`}
                     type="text"
                     value={editForm.longitude}
                     onChange={(e) =>

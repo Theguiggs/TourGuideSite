@@ -7,7 +7,7 @@ import { logger } from '@/lib/logger';
 import { getStudioSession, listStudioScenes, updateSceneData } from '@/lib/api/studio';
 import { SceneSidebar } from '@/components/studio/scene-sidebar';
 import { ScenePhotos } from '@/components/studio/scene-photos';
-import { deleteUploadedObject } from '@/lib/studio/studio-upload-service';
+import { removeStoredAudio } from '@/lib/studio/studio-upload-service';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import type { StudioSession, StudioScene } from '@/types/studio';
 
@@ -94,7 +94,7 @@ export default function PhotosPage() {
       // jamais avant — un échec d'écriture aurait sinon laissé une référence
       // vers un objet supprimé.
       for (const key of removed) {
-        void deleteUploadedObject(key);
+        void removeStoredAudio(key);
       }
     },
     [scenes],

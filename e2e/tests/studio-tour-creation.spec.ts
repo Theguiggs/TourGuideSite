@@ -57,7 +57,10 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
     token = getAccessTokenFromStorageState(guidePath);
     // Seed in 'editing' so tests 1.2 and 1.4 can edit fields.
     // Test 1.10 will switch to 'submitted' when it needs to see the multilang section.
-    seeded = await seedMultilangReadyTour(PREFIX, token, { sessionStatus: 'editing' });
+    seeded = await seedMultilangReadyTour(PREFIX, token, {
+      sessionStatus: 'editing',
+      narrationMode: 'recording',
+    });
     sessionUrl = `${STUDIO_BASE}/${seeded.sessionId}`;
 
     console.log(`[studio-tour-creation] Seeded tour=${seeded.tourId}, session=${seeded.sessionId}, scenes=${seeded.sceneIds.length}`);
@@ -198,7 +201,7 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
   // ---------------------------------------------------------------------------
   // 1.5 — Scenes: TTS generation
   // ---------------------------------------------------------------------------
-  test('1.5 - TTS controls are present and generate button works', async ({ browser }) => {
+  test('1.5 - TTS generation controls are absent from Guide Studio', async ({ browser }) => {
     const context = await browser.newContext({ storageState: guidePath });
     const page = await context.newPage();
 
@@ -206,52 +209,10 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
     await injectRGPDConsent(page);
     await page.goto(`${sessionUrl}/scenes`);
 
-    // Wait for page load
-    await page.waitForSelector('[data-testid^="tab-"], [data-testid="tts-controls"], [role="tablist"]', {
-      timeout: 15_000,
-    }).catch(() => {});
-
-    // Navigate to TTS tool if present
-    const ttsTool = page.getByTestId('tool-tts');
-    if (await ttsTool.isVisible().catch(() => false)) {
-      await ttsTool.click();
-    }
-
-    // Check for TTS controls
-    const ttsControls = page.getByTestId('tts-controls');
-    const ttsNoText = page.getByTestId('tts-no-text');
-    const ttsGpuUnavailable = page.getByTestId('tts-gpu-unavailable');
-
-    const ttsVisible = await ttsControls.isVisible().catch(() => false);
-    const noTextVisible = await ttsNoText.isVisible().catch(() => false);
-    const gpuUnavailableVisible = await ttsGpuUnavailable.isVisible().catch(() => false);
-
-    if (ttsVisible) {
-      const generateBtn = page.getByTestId('tts-generate-btn');
-      if (await generateBtn.isVisible().catch(() => false)) {
-        await page.screenshot({ path: 'test-results/1.5-tts-generate-ready.png' });
-        await generateBtn.click();
-
-        await page.waitForSelector(
-          '[data-testid="tts-processing"], [data-testid="tts-completed"], [data-testid="tts-failed"]',
-          { timeout: 15_000 },
-        ).catch(() => {});
-
-        await page.screenshot({ path: 'test-results/1.5-tts-after-generate.png' });
-      } else {
-        const ttsCompleted = page.getByTestId('tts-completed');
-        if (await ttsCompleted.isVisible().catch(() => false)) {
-          await expect(page.getByTestId('tts-regenerate-btn')).toBeVisible();
-          await page.screenshot({ path: 'test-results/1.5-tts-already-completed.png' });
-        }
-      }
-    } else if (noTextVisible) {
-      await page.screenshot({ path: 'test-results/1.5-tts-no-text.png' });
-    } else if (gpuUnavailableVisible) {
-      await page.screenshot({ path: 'test-results/1.5-tts-gpu-unavailable.png' });
-    } else {
-      await page.screenshot({ path: 'test-results/1.5-tts-page-state.png' });
-    }
+    await expect(page.getByTestId('scene-title-editor').first()).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByTestId('tool-tts')).not.toBeVisible();
+    await expect(page.getByTestId('tts-controls')).not.toBeVisible();
+    await expect(page.getByTestId('tts-generate-btn')).not.toBeVisible();
 
     await context.close();
   });
@@ -266,49 +227,16 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
     await page.goto('/');
     await injectRGPDConsent(page);
     await page.goto(`${sessionUrl}/scenes`);
+    const recordVoiceLink = page.getByRole('link', { name: /Enregistrer la voix|Record voice/i });
+    await expect(recordVoiceLink).toBeVisible({ timeout: 15_000 });
+    await recordVoiceLink.click();
 
-    await page.waitForSelector('[data-testid^="tab-"], [data-testid="audio-recorder"], [role="tablist"]', {
-      timeout: 15_000,
-    }).catch(() => {});
-
-    const recordTool = page.getByTestId('tool-record');
-    const audioTab = page.locator('[role="tab"]', { hasText: /Audio/i });
-    if (await recordTool.isVisible().catch(() => false)) {
-      await recordTool.click();
-    } else if (await audioTab.isVisible().catch(() => false)) {
-      await audioTab.click();
-    }
-
-    const audioRecorder = page.getByTestId('audio-recorder');
-    if (await audioRecorder.isVisible().catch(() => false)) {
-      const permissionBtn = page.getByTestId('permission-btn');
-      const recordBtn = page.getByTestId('record-btn');
-
-      const hasPermBtn = await permissionBtn.isVisible().catch(() => false);
-      const hasRecordBtn = await recordBtn.isVisible().catch(() => false);
-
-      expect(hasPermBtn || hasRecordBtn).toBeTruthy();
-
-      const deviceSelect = page.getByTestId('device-select');
-      if (await deviceSelect.isVisible().catch(() => false)) {
-        await expect(deviceSelect).toBeVisible();
-      }
-
-      await page.screenshot({ path: 'test-results/1.6-audio-recorder.png' });
-    } else {
-      const toggleRecorderBtn = page.getByTestId('toggle-recorder-btn');
-      if (await toggleRecorderBtn.isVisible().catch(() => false)) {
-        await toggleRecorderBtn.click();
-        await expect(page.getByTestId('audio-recorder')).toBeVisible({ timeout: 5_000 });
-        await page.screenshot({ path: 'test-results/1.6-audio-recorder-toggled.png' });
-      } else {
-        await page.goto(`${sessionUrl}/record`);
-        await page.waitForSelector('[data-testid="audio-recorder"], [data-testid="teleprompter"], [data-testid="no-text"]', {
-          timeout: 15_000,
-        }).catch(() => {});
-        await page.screenshot({ path: 'test-results/1.6-record-page.png' });
-      }
-    }
+    await expect(page.getByTestId('teleprompter')).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByTestId('audio-recorder')).toBeVisible();
+    await expect(page.getByTestId('prompter-start')).toHaveText(/Enregistrer avec le prompteur/i);
+    await expect(page.getByTestId('recorder-status')).toContainText(/micro/i);
+    await expect(page.getByTestId('permission-btn')).toHaveCount(0);
+    await page.screenshot({ path: 'test-results/1.6-audio-recorder.png' });
 
     await context.close();
   });
@@ -395,13 +323,9 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
   });
 
   // ---------------------------------------------------------------------------
-  // 1.10 — Status "Soumis" + multilang button appears
-  //
-  // Multilang button is only visible when session status is 'submitted',
-  // 'published', or 'revision_requested'. NOT on 'ready', 'draft', or 'editing'.
+  // 1.10 — Submitted sessions keep translation management out of Guide Studio
   // ---------------------------------------------------------------------------
-  test('1.10 - Session status is "Soumis" and multilang button visible', async ({ browser }) => {
-    // Switch to 'submitted' so the multilang section is visible
+  test('1.10 - Submitted session has no guide-side multilingual controls', async ({ browser }) => {
     await updateSessionStatus(seeded.sessionId, 'submitted', token);
 
     const context = await browser.newContext({ storageState: guidePath });
@@ -421,18 +345,11 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
 
     await page.screenshot({ path: 'test-results/1.10-status-badge.png' });
 
-    // Multilang section should be visible for seeded 'submitted' status
-    const multilangSection = page.getByTestId('multilang-section');
-    await expect(multilangSection).toBeVisible({ timeout: 5_000 });
+    await expect(page.getByTestId('narration-mode-picker')).toBeVisible();
+    await expect(page.getByTestId('multilang-section')).not.toBeVisible();
+    await expect(page.getByTestId('open-multilang-btn')).not.toBeVisible();
 
-    // "Ouvrir le multilangue" button — inside Collapsible, may be closed before purchases load
-    const multilangBtn = page.getByTestId('open-multilang-btn');
-    await multilangBtn.waitFor({ state: 'visible', timeout: 3_000 }).catch(async () => {
-      await multilangSection.click();
-    });
-    await expect(multilangBtn).toBeVisible();
-
-    await page.screenshot({ path: 'test-results/1.10-multilang-button.png' });
+    await page.screenshot({ path: 'test-results/1.10-submitted-narration-contract.png' });
     await context.close();
   });
 });

@@ -1,12 +1,13 @@
 'use client';
 
-import { useCallback, useRef, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRecordingStore } from '@/lib/stores/recording-store';
-import type { Take, TakeSyncState } from '@/lib/stores/recording-store';
-import { audioPlayerService } from '@/lib/studio/audio-player-service';
+import type { Take } from '@/lib/stores/recording-store';
+import { audioPlayerService, type AudioPlayerState } from '@/lib/studio/audio-player-service';
 
 interface TakesListProps {
   sceneId: string;
+  savedTakeId?: string | null;
 }
 
 function formatDuration(ms: number): string {
@@ -16,132 +17,119 @@ function formatDuration(ms: number): string {
   return `${min}:${s.toString().padStart(2, '0')}`;
 }
 
-/**
- * Mention d'état par prise. `synced` est le seul état où le son existe ailleurs
- * que dans cet onglet ; les trois autres doivent se voir.
- */
-const SYNC_LABEL: Record<TakeSyncState, { text: string; className: string }> = {
-  pending: { text: 'Non sauvegardée', className: 'text-ocre' },
-  uploading: { text: 'Sauvegarde…', className: 'text-mer' },
-  synced: { text: 'Sauvegardée', className: 'text-success' },
-  error: { text: 'Échec de sauvegarde', className: 'text-danger' },
-};
+function TakePreview({ take, index }: { take: Take; index: number }) {
+  const [url, setUrl] = useState<string | null>(null);
+  const [playerState, setPlayerState] = useState<AudioPlayerState>(() => audioPlayerService.getState());
+  const isPlaying = playerState.currentUrl === url && playerState.isPlaying;
+
+  useEffect(() => {
+    const unsubscribe = audioPlayerService.subscribe(setPlayerState);
+    return () => {
+      unsubscribe();
+      if (url) {
+        if (audioPlayerService.getState().currentUrl === url) audioPlayerService.stop();
+        URL.revokeObjectURL(url);
+      }
+    };
+  }, [url]);
+
+  const togglePlayback = useCallback(() => {
+    if (isPlaying) {
+      audioPlayerService.pause();
+      return;
+    }
+    const playableUrl = url ?? URL.createObjectURL(take.blob);
+    if (!url) setUrl(playableUrl);
+    void audioPlayerService.play(playableUrl);
+  }, [isPlaying, take.blob, url]);
+
+  return (
+    <button
+      type="button"
+      onClick={togglePlayback}
+      className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-grenadine px-4 py-2 text-sm font-semibold text-grenadine transition hover:bg-grenadine-soft"
+      aria-label={`${isPlaying ? 'Mettre en pause' : 'Écouter'} la prise ${index + 1}`}
+      data-testid={`play-take-${take.id}`}
+    >
+      <span aria-hidden="true">{isPlaying ? '⏸' : '▶'}</span>
+      {isPlaying ? 'Pause' : 'Écouter'}
+    </button>
+  );
+}
 
 const EMPTY_TAKES: Take[] = [];
 
-export function TakesList({ sceneId }: TakesListProps) {
+export function TakesList({ sceneId, savedTakeId = null }: TakesListProps) {
   const takes = useRecordingStore((s) => s.takes[sceneId] ?? EMPTY_TAKES);
   const selectedTakeId = useRecordingStore((s) => s.selectedTakeId[sceneId]);
   const selectTake = useRecordingStore((s) => s.selectTake);
   const deleteTake = useRecordingStore((s) => s.deleteTake);
 
-  // Suppression en deux temps : une prise de plusieurs minutes disparaissait
-  // d'un seul clic sur une croix, sans confirmation ni retour possible.
-  const [confirmingId, setConfirmingId] = useState<string | null>(null);
-
-  const currentUrlRef = useRef<string | null>(null);
-
-  // Cleanup object URL on unmount
-  useEffect(() => {
-    return () => {
-      if (currentUrlRef.current) URL.revokeObjectURL(currentUrlRef.current);
-    };
-  }, []);
-
-  const handlePlay = useCallback((take: Take) => {
-    if (currentUrlRef.current) URL.revokeObjectURL(currentUrlRef.current);
-    const url = URL.createObjectURL(take.blob);
-    currentUrlRef.current = url;
-    audioPlayerService.play(url);
-  }, []);
-
   if (takes.length === 0) return null;
 
   return (
-    <div className="mt-3" data-testid="takes-list">
-      <h4 className="text-xs font-semibold text-ink-40 uppercase tracking-wider mb-2">
-        Prises ({takes.length})
-      </h4>
-      <div className="space-y-1">
+    <section className="rounded-xl border border-line bg-paper p-4" data-testid="takes-list" aria-labelledby="takes-title">
+      <div className="mb-4">
+        <h3 id="takes-title" className="text-base font-semibold text-ink">
+          Vos prises audio ({takes.length})
+        </h3>
+        <p className="mt-1 text-sm text-ink-60">
+          Écoutez vos essais, puis choisissez la prise à enregistrer pour cette scène.
+        </p>
+      </div>
+
+      <div className="space-y-3">
         {takes.map((take, index) => {
           const isSelected = take.id === selectedTakeId;
+          const isSaved = take.id === savedTakeId;
           return (
             <div
               key={take.id}
-              className={`flex items-center gap-2 p-2 rounded text-sm ${
-                isSelected ? 'bg-grenadine-soft border border-grenadine-soft' : 'bg-paper-soft border border-line'
+              className={`rounded-lg border p-3 transition ${
+                isSelected ? 'border-grenadine bg-grenadine-soft' : 'border-line bg-paper-soft'
               }`}
               data-testid={`take-${take.id}`}
             >
-              <span className="text-ink-60 w-6 text-center">{index + 1}</span>
-              <span className="text-ink-80">{formatDuration(take.durationMs)}</span>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <label className="flex min-w-0 flex-1 cursor-pointer items-center gap-3">
+                  <input
+                    type="radio"
+                    name={`selected-take-${sceneId}`}
+                    checked={isSelected}
+                    onChange={() => selectTake(sceneId, take.id)}
+                    className="h-5 w-5 shrink-0 accent-grenadine"
+                    data-testid={`select-take-${take.id}`}
+                  />
+                  <span className="min-w-0">
+                    <span className="block font-semibold text-ink">Prise {index + 1}</span>
+                    <span className="block text-sm text-ink-60">Durée : {formatDuration(take.durationMs)}</span>
+                  </span>
+                </label>
 
-              <span
-                className={`flex-1 text-xs ${SYNC_LABEL[take.syncState].className}`}
-                data-testid={`take-sync-${take.id}`}
-              >
-                {SYNC_LABEL[take.syncState].text}
-              </span>
-
-              <button
-                onClick={() => handlePlay(take)}
-                className="text-grenadine hover:opacity-80 text-xs font-medium"
-                data-testid={`play-take-${take.id}`}
-              >
-                ▶ Écouter
-              </button>
-
-              {!isSelected && (
-                <button
-                  onClick={() => selectTake(sceneId, take.id)}
-                  className="text-mer hover:opacity-80 text-xs font-medium"
-                  data-testid={`select-take-${take.id}`}
-                >
-                  Sélectionner
-                </button>
-              )}
-
-              {isSelected && (
-                <span className="text-xs text-grenadine font-medium">✓ Sélectionnée</span>
-              )}
-
-              {takes.length > 1 && confirmingId !== take.id && (
-                <button
-                  onClick={() => setConfirmingId(take.id)}
-                  className="text-ink-40 hover:text-danger text-xs"
-                  aria-label={`Supprimer prise ${index + 1}`}
-                  data-testid={`delete-take-${take.id}`}
-                >
-                  ✕
-                </button>
-              )}
-
-              {confirmingId === take.id && (
-                <span className="flex items-center gap-2 text-xs">
-                  <span className="text-ink-80">Supprimer&nbsp;?</span>
-                  <button
-                    onClick={() => {
-                      deleteTake(sceneId, take.id);
-                      setConfirmingId(null);
-                    }}
-                    className="text-danger font-medium hover:opacity-80"
-                    data-testid={`confirm-delete-take-${take.id}`}
-                  >
-                    Oui
-                  </button>
-                  <button
-                    onClick={() => setConfirmingId(null)}
-                    className="text-ink-60 hover:opacity-80"
-                    data-testid={`cancel-delete-take-${take.id}`}
-                  >
-                    Annuler
-                  </button>
-                </span>
-              )}
+                <div className="flex flex-wrap items-center gap-2">
+                  <TakePreview take={take} index={index} />
+                  {isSaved && (
+                    <span className="rounded-full bg-mer-soft px-3 py-1.5 text-xs font-semibold text-mer" data-testid={`saved-take-${take.id}`}>
+                      ✓ Audio de la scène
+                    </span>
+                  )}
+                  {takes.length > 1 && !isSaved && (
+                    <button
+                      type="button"
+                      onClick={() => deleteTake(sceneId, take.id)}
+                      className="min-h-10 rounded-full px-3 py-2 text-sm font-medium text-ink-60 underline hover:text-danger"
+                      aria-label={`Supprimer la prise ${index + 1}`}
+                      data-testid={`delete-take-${take.id}`}
+                    >
+                      Supprimer
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }

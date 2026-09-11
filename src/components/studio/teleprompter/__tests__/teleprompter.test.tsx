@@ -1,12 +1,14 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { Teleprompter } from '../teleprompter';
 
-// Mock scrollIntoView (not available in jsdom)
-Element.prototype.scrollIntoView = jest.fn();
+// Mock scrolling methods (not available in jsdom)
+Element.prototype.scrollBy = jest.fn();
+Element.prototype.scrollTo = jest.fn();
 
 // Mock requestAnimationFrame
 beforeEach(() => {
+  jest.useFakeTimers();
   jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
     return setTimeout(() => cb(performance.now()), 16) as unknown as number;
   });
@@ -15,6 +17,7 @@ beforeEach(() => {
 
 afterEach(() => {
   jest.restoreAllMocks();
+  jest.useRealTimers();
 });
 
 const SAMPLE_TEXT = 'Bienvenue sur la Place aux Aires ancien marché aux herbes de Grasse';
@@ -26,9 +29,135 @@ describe('Teleprompter', () => {
     expect(screen.getByText('Grasse')).toBeInTheDocument();
   });
 
+  it('keeps already-read words visible while moving the highlight', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    const firstWord = screen.getByText('Bienvenue');
+
+    expect(firstWord).toHaveClass('text-paper', 'bg-ocre');
+    fireEvent.click(screen.getByTestId('prompter-start'));
+
+    act(() => {
+      jest.advanceTimersByTime(1_000);
+    });
+
+    expect(firstWord).toHaveClass('text-paper');
+    expect(firstWord).not.toHaveClass('text-ink-40');
+  });
+
+  it('lets the user scroll manually and offers to resume automatic follow', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    fireEvent.click(screen.getByTestId('prompter-start'));
+
+    fireEvent.wheel(screen.getByTestId('prompter-scroll-area'), { deltaY: 100 });
+    expect(screen.getByTestId('prompter-follow')).toHaveTextContent('Suivre le texte');
+
+    fireEvent.click(screen.getByTestId('prompter-follow'));
+    expect(screen.queryByTestId('prompter-follow')).not.toBeInTheDocument();
+  });
+
+  it('keeps manual control after scrolling while paused', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    fireEvent.click(screen.getByTestId('prompter-start'));
+    fireEvent.click(screen.getByTestId('prompter-pause'));
+
+    fireEvent.wheel(screen.getByTestId('prompter-scroll-area'), { deltaY: 100 });
+    fireEvent.click(screen.getByTestId('prompter-resume'));
+
+    expect(screen.getByTestId('prompter-follow')).toBeInTheDocument();
+  });
+
   it('renders start button', () => {
     render(<Teleprompter text={SAMPLE_TEXT} />);
     expect(screen.getByTestId('prompter-start')).toBeInTheDocument();
+  });
+
+  it('places the controls before the reading area', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    const controls = screen.getByTestId('prompter-controls');
+    const readingArea = screen.getByTestId('prompter-scroll-area');
+
+    expect(controls.compareDocumentPosition(readingArea) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it('returns to the beginning on every fresh start', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    const readingArea = screen.getByTestId('prompter-scroll-area');
+
+    fireEvent.click(screen.getByTestId('prompter-start'));
+
+    expect(readingArea.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'auto' });
+    expect(screen.getByText('Bienvenue')).toHaveAttribute('aria-current', 'true');
+  });
+
+  it('shows reading status and progress', () => {
+    render(<Teleprompter text={SAMPLE_TEXT} />);
+    expect(screen.getByTestId('prompter-status')).toHaveTextContent('Prêt à lire');
+    expect(screen.getByTestId('prompter-progress')).toHaveStyle({ width: '0%' });
+
+    fireEvent.click(screen.getByTestId('prompter-start'));
+    expect(screen.getByTestId('prompter-status')).toHaveTextContent('Lecture guidée');
+  });
+
+  it('starts recording and prompter from the same action', async () => {
+    const onStartRequested = jest.fn().mockResolvedValue(true);
+    render(
+      <Teleprompter
+        text={SAMPLE_TEXT}
+        startLabel="Enregistrer avec le prompteur"
+        onStartRequested={onStartRequested}
+      />,
+    );
+
+    expect(screen.getByTestId('prompter-start')).toHaveTextContent('Enregistrer avec le prompteur');
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('prompter-start'));
+    });
+
+    expect(onStartRequested).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId('prompter-pause')).toBeInTheDocument();
+  });
+
+  it('does not start the prompter when microphone access fails', async () => {
+    render(
+      <Teleprompter
+        text={SAMPLE_TEXT}
+        onStartRequested={jest.fn().mockResolvedValue(false)}
+      />,
+    );
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('prompter-start'));
+    });
+
+    expect(screen.getByTestId('prompter-start')).toBeInTheDocument();
+    expect(screen.queryByTestId('prompter-pause')).not.toBeInTheDocument();
+  });
+
+  it('synchronizes pause, resume and stop with the recorder', async () => {
+    const onPauseRequested = jest.fn();
+    const onResumeRequested = jest.fn().mockResolvedValue(true);
+    const onStopRequested = jest.fn().mockResolvedValue(undefined);
+    render(
+      <Teleprompter
+        text={SAMPLE_TEXT}
+        onPauseRequested={onPauseRequested}
+        onResumeRequested={onResumeRequested}
+        onStopRequested={onStopRequested}
+      />,
+    );
+    fireEvent.click(screen.getByTestId('prompter-start'));
+    fireEvent.click(screen.getByTestId('prompter-pause'));
+    expect(onPauseRequested).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('prompter-resume'));
+    });
+    expect(onResumeRequested).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('prompter-stop'));
+    });
+    expect(onStopRequested).toHaveBeenCalledTimes(1);
   });
 
   it('shows pause button after start', () => {

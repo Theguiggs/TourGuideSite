@@ -193,7 +193,10 @@ export async function seedMobileSession(
 export async function seedMultilangReadyTour(
   prefix: string,
   token: string,
-  options?: { sessionStatus?: 'draft' | 'editing' | 'recording' | 'ready' | 'submitted' | 'published' },
+  options?: {
+    sessionStatus?: 'draft' | 'editing' | 'recording' | 'ready' | 'submitted' | 'published';
+    narrationMode?: 'recording' | 'tts_on_demand';
+  },
 ): Promise<SeededTour & { guideId: string }> {
   validatePrefix(prefix);
 
@@ -211,6 +214,7 @@ export async function seedMultilangReadyTour(
     title: `${prefix} Visite Grasse`,
     status: options?.sessionStatus ?? 'submitted',
     guideId,
+    narrationMode: options?.narrationMode,
   });
 
   // Link session back to tour (so getModerationDetail fallback can find scenes)

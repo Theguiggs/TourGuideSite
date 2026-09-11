@@ -9,7 +9,7 @@ const SERVICE_NAME = 'StudioUploadService';
 
 // --- Validation ---
 
-const AUDIO_MIME_PREFIXES = ['audio/webm', 'audio/mp4', 'audio/ogg', 'audio/x-aac', 'audio/aac', 'audio/wav', 'audio/wave', 'audio/x-wav'];
+const AUDIO_MIME_PREFIXES = ['audio/webm', 'audio/mp4', 'audio/mpeg', 'audio/x-m4a', 'audio/ogg', 'audio/x-aac', 'audio/aac', 'audio/wav', 'audio/wave', 'audio/x-wav'];
 const PHOTO_MIMES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
 /** Check audio MIME with prefix match (handles codecs suffix like "audio/webm;codecs=opus") */
@@ -76,6 +76,8 @@ function getExtFromMime(mime: string): string {
   const map: Record<string, string> = {
     'audio/webm': 'webm',
     'audio/mp4': 'm4a',
+    'audio/mpeg': 'mp3',
+    'audio/x-m4a': 'm4a',
     'audio/ogg': 'ogg',
     'audio/x-aac': 'aac',
     'audio/aac': 'aac',
@@ -291,34 +293,6 @@ export async function uploadGuideProfilePhoto(
   }
 }
 
-/**
- * Supprime un objet téléversé (photo de scène, couverture remplacée).
- *
- * À n'appeler QU'APRÈS que la base a cessé de référencer la clé : supprimer
- * d'abord laisserait, en cas d'échec de l'écriture, une référence vers un objet
- * absent — une photo cassée chez le touriste. L'ordre inverse ne coûte qu'un
- * orphelin si la suppression échoue.
- *
- * L'échec n'est jamais fatal pour l'appelant : la donnée de référence est déjà
- * correcte. Il est journalisé, pas remonté.
- */
-export async function deleteUploadedObject(s3Key: string): Promise<{ ok: boolean }> {
-  // Les clés héritées du mode stub sont des URL d'objet locales (`blob:`), et
-  // les marqueurs TTS ne désignent aucun objet : rien à supprimer.
-  if (!s3Key || s3Key.startsWith('blob:') || s3Key.startsWith('data:') || s3Key.startsWith('tts-')) {
-    return { ok: true };
-  }
-  try {
-    await remove({ path: s3Key });
-    urlCache.delete(s3Key);
-    logger.info(SERVICE_NAME, 'Object deleted', { s3Key });
-    return { ok: true };
-  } catch (error) {
-    logger.warn(SERVICE_NAME, 'Object delete failed (orphan left behind)', { s3Key, error: String(error) });
-    return { ok: false };
-  }
-}
-
 export async function getPlayableUrl(s3Key: string): Promise<string> {
   const cached = urlCache.get(s3Key);
   if (cached && Date.now() < cached.expiresAt) {
@@ -337,6 +311,29 @@ export async function getPlayableUrl(s3Key: string): Promise<string> {
   } catch (error) {
     logger.error(SERVICE_NAME, 'getPlayableUrl failed', { s3Key, error: String(error) });
     throw error;
+  }
+}
+
+/** Delete an audio object after its scene reference has been cleared. */
+export async function removeStoredAudio(
+  s3Key: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  // Historical placeholders and externally hosted URLs are references, not
+  // objects owned by this Amplify Storage bucket.
+  // `blob:` : URL d'objet locale du mode stub, pas un objet du bucket.
+  if (!s3Key || s3Key.startsWith('data:') || s3Key.startsWith('blob:') || s3Key.startsWith('http') || s3Key.startsWith('tts-')) {
+    clearCacheEntry(s3Key);
+    return { ok: true };
+  }
+
+  try {
+    await remove({ path: s3Key });
+    clearCacheEntry(s3Key);
+    logger.info(SERVICE_NAME, 'Stored audio removed', { s3Key });
+    return { ok: true };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'Stored audio removal failed', { s3Key, error: String(error) });
+    return { ok: false, error: 'Le fichier audio n’a pas pu être supprimé du stockage.' };
   }
 }
 
