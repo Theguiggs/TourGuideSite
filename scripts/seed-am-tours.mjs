@@ -6,10 +6,10 @@
  *   node scripts/seed-am-tours.mjs
  *
  *   # Écriture réelle :
- *   node scripts/seed-am-tours.mjs --app-id=t5nxxao3orh6za2bjj6uegulru --env=NONE --confirm
+ *   node scripts/seed-am-tours.mjs --app-id=<APPSYNC_API_ID> --env=NONE --confirm
  *
  *   # Purge + réécriture :
- *   node scripts/seed-am-tours.mjs --app-id=t5nxxao3orh6za2bjj6uegulru --env=NONE --confirm --clean
+ *   node scripts/seed-am-tours.mjs --app-id=<APPSYNC_API_ID> --env=NONE --confirm --clean
  */
 
 import fs from 'node:fs';
@@ -334,7 +334,7 @@ async function run() {
     fs.writeFileSync(out, JSON.stringify(records, null, 2));
     console.log(`\n  DRY-RUN : rien écrit dans AWS.`);
     console.log(`  Aperçu complet → ${out}`);
-    if (!APP_ID) console.log(`\n  Pour écrire : node scripts/seed-am-tours.mjs --app-id=t5nxxao3orh6za2bjj6uegulru --env=NONE --confirm`);
+    if (!APP_ID) console.log(`\n  Pour écrire : node scripts/seed-am-tours.mjs --app-id=<APPSYNC_API_ID> --env=NONE --confirm`);
     return;
   }
 

@@ -246,3 +246,27 @@ jobs:
       - name: Install TourGuide amplify types
         run: cd TourGuideApp && npm install --no-save @aws-amplify/backend
       - run: cd TourGuideWeb && npm run build
+
+  # L'image de production est construite ICI, à chaque changement, parce que
+  # c'est le Dockerfile lui-même qui a cassé du 2026-08-24 au 2026-08-30 (un
+  # `printf` étalé sur quatre lignes, cf. son commentaire) sans qu'aucune
+  # épreuve ne le voie : 23 commits bloqués, portail figé six jours. Le build
+  # tourne sans le schéma réel, exactement comme sur le VPS.
+  docker-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: [lint]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: docker/setup-buildx-action@v3
+      - name: Build production image (no push)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.web
+          push: false
+          load: false
+          build-args: |
+            BUILD_SHA=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

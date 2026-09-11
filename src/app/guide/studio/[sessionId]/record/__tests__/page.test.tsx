@@ -181,7 +181,8 @@ describe('RecordPage guide recording pipeline', () => {
     fireEvent.click(screen.getByTestId('save-selected-take'));
     await waitFor(() => expect(mockUploadAudio).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(mockUpdateSceneAudio).toHaveBeenCalledWith(
-      'scene-1', 'guide-studio/id/session-1/audio/scene-1.webm', 'session-1', 0, 'recording',
+      // La langue source voyage jusqu'à la persistance : elle nomme l'objet S3.
+      'scene-1', 'guide-studio/id/session-1/audio/scene-1.webm', 'session-1', 0, 'recording', 'fr',
     ));
     expect(await screen.findByText(/associée à la scène/i)).toBeInTheDocument();
     expect(screen.getByTestId('play-saved-audio')).toBeInTheDocument();

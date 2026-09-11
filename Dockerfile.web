@@ -16,7 +16,6 @@ RUN npm ci --no-audit --no-fund
 FROM node:20-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV SKIP_NEXT_TYPECHECK=true
 # NEXT_PUBLIC_* vars are inlined at build time — must be passed as ARG
 ARG NEXT_PUBLIC_AMPLITUDE_API_KEY
 ARG NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
@@ -25,9 +24,23 @@ ENV NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=$NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/packages ./packages
 COPY . .
+# Schéma de repli, ET SEULEMENT ALORS le typecheck est ignoré.
+#
+# Le schéma réel (`../TourGuideApp/amplify/data/resource.ts`, 2 000 lignes qui
+# importent 24 ressources Lambda) n'est pas dans ce dépôt. Sans lui, le repli
+# `Schema = any` effondre les types de l'API et `tsc` rend une trentaine
+# d'erreurs qui ne disent rien du code — les types sont effacés à l'exécution,
+# l'image produite est identique. `SKIP_NEXT_TYPECHECK` était posé
+# INCONDITIONNELLEMENT : un VPS qui aurait eu le vrai schéma sous la main
+# n'en profitait pas, et rien ne disait que le contournement était actif.
+# La preuve de typage reste au CI (job `typecheck`, schéma réel), et le job
+# `docker-build` du CI construit cette image pour que le Dockerfile lui-même
+# ne puisse plus casser en silence.
 RUN if [ ! -f ../TourGuideApp/amplify/data/resource.ts ]; then \
       mkdir -p ../TourGuideApp/amplify/data && \
-      cp src/types/amplify-schema-fallback.ts ../TourGuideApp/amplify/data/resource.ts; \
+      cp src/types/amplify-schema-fallback.ts ../TourGuideApp/amplify/data/resource.ts && \
+      echo "SKIP_NEXT_TYPECHECK=true" >> .env.production && \
+      echo "AVERTISSEMENT : schéma de repli substitué, typecheck ignoré dans cette image"; \
     fi
 # Empreinte de build. Next.js inline les NEXT_PUBLIC_* depuis .env.production au
 # moment du build : on les y écrit juste avant. L'horodatage suffit à voir qu'un

@@ -345,6 +345,47 @@ Ce projet est le portail web compagnon de [TourGuideApp](../TourGuideApp/). Les 
 
 ---
 
+## 10 bis. Exploitation : sécurité et sondes (lot 2, 2026-09-11)
+
+### Cibler un backend depuis un script
+
+Tous les scripts de `scripts/` prennent leur cible dans `scripts/_backend.mjs` :
+`--app-id=<apiId AppSync>` ou la variable `APPSYNC_API_ID`. **Aucun défaut** — un
+script sans cible refuse de tourner, et les identifiants des piles mortes sont
+refusés nommément. L'épreuve `src/__tests__/dead-backend-ids.test.ts` interdit
+tout identifiant mort dans le dépôt.
+
+```powershell
+$env:APPSYNC_API_ID = (aws appsync list-graphql-apis --query "graphqlApis[0].apiId" --output text)
+node scripts/inspect-db.mjs
+```
+
+### Clés et variables côté serveur
+
+| Variable | Où | Rôle |
+| -------- | -- | ---- |
+| `ORS_API_KEY` | conteneur `web` | Clé OpenRouteService, servie par le relais `/api/routing` (guide authentifié, borne par compte). Ne JAMAIS la préfixer `NEXT_PUBLIC_`. |
+| `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | build `web` | Clé de l'iframe Street View : elle est publique par nature. La restreindre **par référent HTTP** au domaine du portail dans la console Google Cloud, sinon elle est réutilisable par un tiers. |
+| `ALLOWED_AUDIO_HOSTS` | conteneur `microservice` | Hôte(s) exact(s) du bucket S3 d'où la détection de silence accepte un audio. Sans valeur, aucun téléchargement. |
+| `MICROSERVICE_API_KEY` | les deux | Comparée en temps constant. `/health` reste public, tout le reste l'exige. |
+
+### Sondes
+
+- `GET /api/health` (portail) : exerce la lecture IAM du profil de guide. Un 503 ici
+  signifie que tout le Studio a perdu synthèse et traduction, même si la page
+  d'accueil répond. Branchée sur le `healthcheck` Docker du service `web`.
+- `GET /health` (microservice) : fournisseur de synthèse réel, jobs en vol.
+
+### Content-Security-Policy
+
+Elle est construite par requête dans `src/proxy.ts` (nonce + `'strict-dynamic'`,
+hôtes AWS exacts lus dans `amplify_outputs.json`) et définie une seule fois dans
+`src/lib/security/csp.ts`. L'épreuve `csp.test.ts` compare la politique aux hôtes
+externes réellement référencés par le code : ajouter un hôte au code sans
+l'ajouter à la politique fait échouer la suite. Vérification navigateur après un
+build : `node <scratch>/csp-check.mjs http://localhost:3000` charge une douzaine de
+pages et rapporte toute violation.
+
 ## 11. Dépannage rapide
 
 | Symptôme | Solution |

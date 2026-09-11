@@ -25,7 +25,7 @@ describe('uploadAudio', () => {
     const blob = new Blob(['audio'], { type: 'audio/webm' });
     mockUploadData.mockReturnValue({ result: Promise.resolve({ path: 'guide-studio/sub/s1/audio/scene_0.webm' }) });
 
-    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc', 'fr');
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.s3Key).toBe('guide-studio/sub/s1/audio/scene_0.webm');
     expect(mockUploadData).toHaveBeenCalledTimes(1);
@@ -34,7 +34,7 @@ describe('uploadAudio', () => {
   it('accepts MIME with codec suffix (audio/webm;codecs=opus)', async () => {
     const blob = new Blob(['audio'], { type: 'audio/webm;codecs=opus' });
     mockUploadData.mockReturnValue({ result: Promise.resolve({ path: 'guide-studio/sub/s1/audio/scene_0.webm' }) });
-    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc', 'fr');
     expect(result.ok).toBe(true);
     expect(mockUploadData).toHaveBeenCalledTimes(1);
   });
@@ -46,7 +46,7 @@ describe('uploadAudio', () => {
     const blob = new Blob(['audio'], { type: mime });
     mockUploadData.mockReturnValue({ result: Promise.resolve({ path: `guide-studio/sub/s1/audio/scene-abc${extension}` }) });
 
-    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc', 'fr');
 
     expect(result.ok).toBe(true);
     const resolvePath = mockUploadData.mock.calls[0][0].path as (input: { identityId: string }) => string;
@@ -55,7 +55,7 @@ describe('uploadAudio', () => {
 
   it('rejects unsupported MIME type without calling uploadData', async () => {
     const blob = new Blob(['text'], { type: 'text/plain' });
-    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc', 'fr');
     expect(result.ok).toBe(false);
     expect(mockUploadData).not.toHaveBeenCalled();
   });
@@ -71,7 +71,7 @@ describe('uploadAudio', () => {
       return { result: Promise.resolve({ path: 'guide-studio/sub/s1/audio/scene_0.webm' }) };
     });
 
-    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc', 'fr');
     expect(result.ok).toBe(true);
     expect(callCount).toBe(3);
   });
@@ -82,7 +82,7 @@ describe('uploadAudio', () => {
       result: Promise.reject(new Error('Network error')),
     }));
 
-    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc');
+    const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc', 'fr');
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error).toContain('3 tentatives');
   });
@@ -92,8 +92,8 @@ describe('uploadAudio', () => {
     mockUploadData.mockReturnValue({ result: Promise.resolve({ path: 'guide-studio/sub/s1/audio/scene-abc_123.wav' }) });
 
     // Two scenes that happen to share sceneIndex 0 must NOT produce the same path.
-    await uploadAudio(blob, 'session-1', 0, 'scene-abc');
-    await uploadAudio(blob, 'session-1', 0, 'scene-xyz');
+    await uploadAudio(blob, 'session-1', 0, 'scene-abc', 'fr');
+    await uploadAudio(blob, 'session-1', 0, 'scene-xyz', 'fr');
 
     const resolvePath = (call: number) =>
       (mockUploadData.mock.calls[call][0].path as (a: { identityId: string }) => string)({ identityId: 'sub' });
@@ -105,6 +105,41 @@ describe('uploadAudio', () => {
     expect(path1).not.toBe(path2);
     // Old collision-prone scheme must be gone.
     expect(path1).not.toContain('scene_0.');
+  });
+
+  it('carries the language in the object name so a German take is not mistaken for a French one', async () => {
+    const blob = new Blob(['audio'], { type: 'audio/wav' });
+    mockUploadData.mockReturnValue({ result: Promise.resolve({ path: 'ignored' }) });
+
+    await uploadAudio(blob, 'session-1', 0, 'scene-abc', 'fr');
+    await uploadAudio(blob, 'session-1', 0, 'scene-abc', 'de');
+
+    const resolvePath = (call: number) =>
+      (mockUploadData.mock.calls[call][0].path as (a: { identityId: string }) => string)({ identityId: 'sub' });
+
+    expect(resolvePath(0)).toMatch(/\/audio\/scene-abc_fr_\d+\.wav$/);
+    expect(resolvePath(1)).toMatch(/\/audio\/scene-abc_de_\d+\.wav$/);
+  });
+
+  it('normalises the language tag (fr-FR → fr)', async () => {
+    const blob = new Blob(['audio'], { type: 'audio/wav' });
+    mockUploadData.mockReturnValue({ result: Promise.resolve({ path: 'ignored' }) });
+
+    await uploadAudio(blob, 'session-1', 0, 'scene-abc', 'fr-FR');
+
+    const resolvePath = (mockUploadData.mock.calls[0][0].path as (a: { identityId: string }) => string);
+    expect(resolvePath({ identityId: 'sub' })).toMatch(/scene-abc_fr_\d+\.wav$/);
+  });
+
+  it('refuses to upload without a usable language rather than write an ambiguous key', async () => {
+    const blob = new Blob(['audio'], { type: 'audio/wav' });
+
+    for (const bad of ['', '   ', '123', 'français']) {
+      const result = await uploadAudio(blob, 'session-1', 0, 'scene-abc', bad);
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.error).toContain('Langue absente');
+    }
+    expect(mockUploadData).not.toHaveBeenCalled();
   });
 });
 

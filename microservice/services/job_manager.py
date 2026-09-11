@@ -49,6 +49,10 @@ class Job:
     id: str
     kind: str
     status: JobStatus = "queued"
+    # Identite VERIFIEE de l'appelant (le `sub` Cognito relaye par le proxy
+    # dans `X-Caller-Sub`). Un job sans proprietaire n'est relisible que par
+    # un appel egalement sans identite — jamais par un autre compte.
+    owner: str | None = None
     result: dict | None = None
     error: str | None = None
     created_at: float = field(default_factory=time.monotonic)
@@ -103,20 +107,35 @@ class JobManager:
 
     # -- core --
 
-    def submit(self, kind: str, work: JobWork) -> str:
+    def submit(self, kind: str, work: JobWork, owner: str | None = None) -> str:
         """Register a job and schedule it. Raises QueueFull if the in-flight cap
         is reached (caller should answer 429 + Retry-After)."""
         if self.inflight_count() >= self._max_inflight:
             raise QueueFull()
-        job = Job(id=f"{kind}-{uuid.uuid4().hex}", kind=kind)
+        job = Job(id=f"{kind}-{uuid.uuid4().hex}", kind=kind, owner=owner)
         self._jobs[job.id] = job
         task = asyncio.create_task(self._run(job, work))
         self._tasks.add(task)
         task.add_done_callback(self._tasks.discard)
         return job.id
 
-    def get(self, job_id: str) -> Job | None:
-        return self._jobs.get(job_id)
+    def get(self, job_id: str, owner: str | None = None) -> Job | None:
+        """Lit un job — SEULEMENT s'il appartient a `owner`.
+
+        Un job etait lisible par tout porteur de la cle du service qui en
+        connaissait l'identifiant : le proxy effacait l'identite de l'appelant
+        avant de relayer, et le microservice ne POUVAIT donc pas scoper. Un
+        `job_id` devine ou intercepte livrait l'audio de synthese paye ou la
+        traduction d'un autre guide. Le proxy relaie desormais `X-Caller-Sub`,
+        et un job d'autrui est indistinguable d'un job inexistant (404).
+        """
+        job = self._jobs.get(job_id)
+        if job is None:
+            return None
+        if job.owner != owner:
+            logger.warning("Job %s requested by %r but owned by %r", job_id, owner, job.owner)
+            return None
+        return job
 
     def _sem_for(self, kind: str) -> asyncio.Semaphore:
         sem = self._sems.get(kind)

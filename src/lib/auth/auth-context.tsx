@@ -174,6 +174,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } catch {
       // best-effort
     }
+    // Le travail local du guide part avec lui. Sans cette purge, sur un poste
+    // partagé, les brouillons de scènes, les prises audio en mémoire et la
+    // session « à reprendre » du guide précédent restaient offerts au compte
+    // suivant — qui pouvait même les réécrire sur ses propres scènes.
+    try {
+      const { clearStudioLocalState } = await import('@/lib/studio/studio-session-cleanup');
+      await clearStudioLocalState();
+    } catch {
+      // best-effort : la déconnexion prime sur le ménage.
+    }
     setUser(null);
   }, []);
 

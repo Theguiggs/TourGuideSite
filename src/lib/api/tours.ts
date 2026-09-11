@@ -222,38 +222,26 @@ function publishedLanguageAudioTypes(
  * Fallback: derive from TourLanguagePurchases (active).
  */
 // Cache for available languages (avoid repeated lookups per request)
-let _availableLangsCache: Map<string, string[]> | null = null;
+const _availableLangsCache: Map<string, string[]> = new Map();
 
 async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise<string[]> {
   const tourId = tour.id as string;
-  const sessionId = tour.sessionId as string | undefined;
   const sourceLang = (tour.language as string) ?? 'fr';
 
-  if (_availableLangsCache?.has(tourId)) {
+  if (_availableLangsCache.has(tourId)) {
     return _availableLangsCache.get(tourId)!;
   }
 
-  // Only show source language + languages with moderationStatus 'approved'
-  if (!sessionId) return [sourceLang];
-  try {
-    const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
-    const { DynamoDBDocumentClient, ScanCommand } = await import('@aws-sdk/lib-dynamodb');
-    const appId = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
-    const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
-    const result = await dynamo.send(new ScanCommand({
-      TableName: `TourLanguagePurchase-${appId}-NONE`,
-      FilterExpression: 'sessionId = :sid AND #s = :active AND moderationStatus = :approved',
-      ExpressionAttributeNames: { '#s': 'status' },
-      ExpressionAttributeValues: { ':sid': sessionId, ':active': 'active', ':approved': 'approved' },
-    }));
-    const approvedLangs = (result.Items ?? []).map((p) => p.language as string);
-    const langs = [...new Set([sourceLang, ...approvedLangs])];
-    if (!_availableLangsCache) _availableLangsCache = new Map();
-    _availableLangsCache.set(tourId, langs);
-    return langs;
-  } catch { /* fallback */ }
-
-  return [sourceLang];
+  // Le repli DynamoDB qui vivait ici a été RETIRÉ : constante d'un backend
+  // mort, `Scan` complet par visite, échec silencieux — et le SDK DynamoDB
+  // n'a rien à faire dans un module chargé côté navigateur. La liste des
+  // langues vendues est `availableLanguages`, écrite par l'approbation.
+  const persisted = Array.isArray(tour.availableLanguages)
+    ? (tour.availableLanguages as unknown[]).filter((l): l is string => typeof l === 'string' && l.length > 0)
+    : [];
+  const langs = [...new Set([sourceLang, ...persisted])];
+  _availableLangsCache.set(tourId, langs);
+  return langs;
 }
 
 // Cache guide names to avoid repeated lookups within a single request

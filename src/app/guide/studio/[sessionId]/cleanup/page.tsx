@@ -73,6 +73,8 @@ export default function CleanupPage() {
   const [error, setError] = useState<string | null>(null);
   const [audioUrls, setAudioUrls] = useState<Record<string, string | null>>({});
   const [saveState, setSaveState] = useState<'idle' | 'pending' | 'saving' | 'saved' | 'error'>('idle');
+  /** Message d'échec de la dernière tentative d'écriture, affiché au guide. */
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [metadata, setMetadata] = useState<TourMetadataDraft>(deriveMetadataFromSession(null));
   const [validating, setValidating] = useState(false);
   const cleanupStartedAtRef = useRef<number>(Date.now());
@@ -176,6 +178,23 @@ export default function CleanupPage() {
   const timeline = useMemo(() => buildTimeline(scenes, walks), [scenes, walks]);
   const selected = timeline.find((i) => i.id === selectedId) ?? null;
 
+  /**
+   * Écrit les modifications en attente (trim, titres, marches supprimées,
+   * métadonnées) et ne vide un tampon QUE lorsque son écriture a réussi.
+   *
+   * Deux défauts corrigés ici :
+   *  1. Les tampons étaient vidés AVANT les écritures. Un échec — session
+   *     expirée, réseau coupé — perdait donc les modifications côté logique
+   *     alors qu'elles restaient affichées à l'écran, indiscernables de
+   *     modifications sauvegardées.
+   *  2. `updateSceneData` et consorts ne LÈVENT pas : ils renvoient
+   *     `{ ok: false, error }`. Leur résultat n'était pas lu, si bien que le
+   *     `catch` ne voyait jamais un refus du backend et que l'état passait à
+   *     « Sauvegardé » même quand rien n'avait été écrit.
+   *
+   * Les patchs en échec sont REMIS dans les tampons, sous les éventuelles
+   * modifications survenues pendant l'envoi (les plus récentes l'emportent).
+   */
   const flushPendingSaves = useCallback(async () => {
     const scenePatches = Array.from(pendingScenePatches.current.entries());
     const walkPatches = Array.from(pendingWalkPatches.current.entries());
@@ -190,12 +209,30 @@ export default function CleanupPage() {
     }
 
     if (mountedRef.current) setSaveState('saving');
+    let firstError: string | null = null;
+
+    /** Remet un patch en échec dans son tampon sans écraser plus récent que lui. */
+    const requeueScene = (id: string, patch: Partial<StudioScene>) => {
+      pendingScenePatches.current.set(id, { ...patch, ...(pendingScenePatches.current.get(id) ?? {}) });
+    };
+    const requeueWalk = (id: string, patch: Partial<WalkSegment>) => {
+      pendingWalkPatches.current.set(id, { ...patch, ...(pendingWalkPatches.current.get(id) ?? {}) });
+    };
+
     try {
       for (const [id, patch] of scenePatches) {
-        await updateSceneData(id, patch as Record<string, unknown>);
+        const result = await updateSceneData(id, patch as Record<string, unknown>);
+        if (!result.ok) {
+          firstError ??= result.error;
+          requeueScene(id, patch);
+        }
       }
       for (const [id, patch] of walkPatches) {
-        await updateWalkSegment(id, patch as { deleted?: boolean });
+        const result = await updateWalkSegment(id, patch as { deleted?: boolean });
+        if (!result.ok) {
+          firstError ??= result.error;
+          requeueWalk(id, patch);
+        }
       }
       if (metaHasChanges) {
         // Only persist fields the backend schema knows about
@@ -205,17 +242,51 @@ export default function CleanupPage() {
         if (metaPatch.themes !== undefined) persistable.themes = metaPatch.themes;
         if (metaPatch.language !== undefined) persistable.language = metaPatch.language;
         if (metaPatch.durationMinutes !== undefined) persistable.durationMinutes = metaPatch.durationMinutes;
-        await updateStudioSession(sessionId, persistable);
+        const result = await updateStudioSession(sessionId, persistable);
+        if (!result.ok) {
+          firstError ??= result.error;
+          pendingMetadataPatch.current = { ...metaPatch, ...pendingMetadataPatch.current };
+        }
       }
-      if (mountedRef.current) setSaveState('saved');
+
+      if (firstError) {
+        if (mountedRef.current) {
+          setSaveState('error');
+          setSaveError(firstError);
+        }
+        logger.error(SERVICE_NAME, 'Auto-save refused by backend', { error: firstError });
+        return;
+      }
+
+      if (mountedRef.current) {
+        setSaveState('saved');
+        setSaveError(null);
+      }
       logger.info(SERVICE_NAME, 'Auto-save complete', {
         scenes: scenePatches.length, walks: walkPatches.length, metadata: metaHasChanges,
       });
     } catch (e) {
-      if (mountedRef.current) setSaveState('error');
+      // Exception (réseau, exception non capturée) : tout ce qui n'a pas été
+      // confirmé retourne au tampon pour pouvoir être réessayé.
+      for (const [id, patch] of scenePatches) requeueScene(id, patch);
+      for (const [id, patch] of walkPatches) requeueWalk(id, patch);
+      if (metaHasChanges) pendingMetadataPatch.current = { ...metaPatch, ...pendingMetadataPatch.current };
+      if (mountedRef.current) {
+        setSaveState('error');
+        setSaveError(String(e));
+      }
       logger.error(SERVICE_NAME, 'Auto-save failed', { error: String(e) });
     }
   }, [sessionId]);
+
+  /** Reste-t-il des modifications qui n'ont pas atteint le backend ? */
+  const hasPendingPatches = useCallback(
+    () =>
+      pendingScenePatches.current.size > 0 ||
+      pendingWalkPatches.current.size > 0 ||
+      Object.keys(pendingMetadataPatch.current).length > 0,
+    [],
+  );
 
   const scheduleSave = useCallback(() => {
     setSaveState('pending');
@@ -430,6 +501,29 @@ export default function CleanupPage() {
               {saveState === 'error' && 'Erreur sauvegarde'}
             </span>
           </div>
+
+          {/* Les modifications refusées par le backend restent en attente : on le
+              dit et on offre une reprise, au lieu d'un « Erreur sauvegarde » en
+              11 px derrière lequel le travail disparaissait. */}
+          {saveState === 'error' && (
+            <div
+              className="mb-3 rounded-lg border border-danger bg-grenadine-soft p-2"
+              role="alert"
+              data-testid="cleanup-save-error"
+            >
+              <p className="text-caption text-ink">
+                Modifications non enregistrées{saveError ? ` : ${saveError}` : ''}. Elles sont conservées ici.
+              </p>
+              <button
+                onClick={() => { void flushPendingSaves(); }}
+                className="mt-2 rounded-lg border border-ocre bg-ocre-soft px-3 py-1.5 text-caption font-medium text-ink transition hover:opacity-90"
+                data-testid="cleanup-save-retry"
+              >
+                Réessayer
+              </button>
+            </div>
+          )}
+
           <SortableTimeline
             items={timeline}
             selectedId={detailTab === 'item' ? selectedId : null}
@@ -527,7 +621,7 @@ export default function CleanupPage() {
 
       <ValidateCTA
         validation={validation}
-        busy={validating || saveState === 'saving' || saveState === 'pending'}
+        busy={validating || saveState === 'saving' || saveState === 'pending' || saveState === 'error' || hasPendingPatches()}
         onValidate={handleValidate}
       />
     </div>

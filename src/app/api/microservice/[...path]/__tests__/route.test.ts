@@ -166,6 +166,9 @@ describe('/api/microservice proxy', () => {
         headers: {
           'Content-Type': 'application/json',
           'X-API-Key': 'server-secret',
+          // L'identité VÉRIFIÉE de l'appelant est relayée : sans elle, le
+          // microservice ne peut pas scoper ses jobs par compte.
+          'X-Caller-Sub': 'guide-1',
         },
       }),
     );

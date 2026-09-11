@@ -1,41 +1,13 @@
 import type { NextConfig } from 'next';
 
-const isDevelopment = process.env.NODE_ENV === 'development';
-const contentSecurityPolicy = [
-  "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ''} https://js.stripe.com`,
-  "style-src 'self' 'unsafe-inline'",
-  "font-src 'self' data:",
-  [
-    "img-src 'self' data: blob:",
-    'https://*.amazonaws.com',
-    'https://*.tile.openstreetmap.org',
-    'https://flagcdn.com',
-    'https://api.qrserver.com',
-  ].join(' '),
-  "media-src 'self' data: blob: https://*.amazonaws.com",
-  [
-    "connect-src 'self'",
-    'https://*.amazonaws.com',
-    'wss://*.amazonaws.com',
-    'https://api2.amplitude.com',
-    'https://api.eu.amplitude.com',
-    'https://api.stripe.com',
-    'https://*.stripe.com',
-    'https://api.openrouteservice.org',
-    'https://nominatim.openstreetmap.org',
-    ...(isDevelopment ? ['http://localhost:*', 'ws://localhost:*'] : []),
-  ].join(' '),
-  "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://www.google.com",
-  "worker-src 'self' blob:",
-  "object-src 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "frame-ancestors 'none'",
-  ...(isDevelopment ? [] : ['upgrade-insecure-requests']),
-].join('; ');
+// La Content-Security-Policy ne vit PLUS ici : elle exige un nonce par requête,
+// donc un en-tête calculé à la demande — voir `src/proxy.ts` et
+// `src/lib/security/csp.ts`. Une politique statique posée depuis ce fichier ne
+// peut pas porter de nonce, et c'est pourquoi elle portait `'unsafe-inline'`.
 
 const nextConfig: NextConfig = {
+  // Empreinte de framework offerte gratuitement aux scanners : retirée.
+  poweredByHeader: false,
   transpilePackages: ['@murmure/design-system'],
   turbopack: {
     // Keep workspace detection inside this app even when a parent directory
@@ -49,7 +21,6 @@ const nextConfig: NextConfig = {
       {
         source: '/(.*)',
         headers: [
-          { key: 'Content-Security-Policy', value: contentSecurityPolicy },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },

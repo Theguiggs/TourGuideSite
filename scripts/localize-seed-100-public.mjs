@@ -9,6 +9,7 @@
  *   node scripts/localize-seed-100-public.mjs --confirm
  */
 
+import { requireBackend } from './_backend.mjs';
 import { createHash } from 'node:crypto';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import {
@@ -25,7 +26,7 @@ import {
 } from '@aws-sdk/client-s3';
 
 const REGION = 'us-east-1';
-const BACKEND_SUFFIX = 't5nxxao3orh6za2bjj6uegulru-NONE';
+const BACKEND_SUFFIX = (() => { const b = requireBackend(); return `${b.appId}-${b.env}`; })();
 const PREFIX = 'seed-100-';
 const EXPECTED_TOURS = 100;
 const EXPECTED_SCENES = 755;

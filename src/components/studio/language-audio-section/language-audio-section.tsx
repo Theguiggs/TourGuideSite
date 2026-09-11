@@ -35,6 +35,11 @@ export function LanguageAudioSection({
   const [activeTool, setActiveTool] = useState<ActiveTool>(null);
   const [audioSource, setAudioSource] = useState<AudioSource | undefined>(segment.audioSource);
   const [audioKey, setAudioKey] = useState<string | null>(segment.audioKey);
+  /**
+   * Échec du dernier enregistrement d'audio pour cette langue. Il DOIT se voir :
+   * sans lui, un envoi raté laissait l'impression d'une langue prête.
+   */
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [playableUrl, setPlayableUrl] = useState<string | null>(null);
 
   // The player bar reflects a GLOBAL singleton shared by every scene's section.
@@ -88,20 +93,28 @@ export function LanguageAudioSection({
         const blob = new Blob([await response.blob()], { type: 'audio/wav' });
         const sceneIndex = segment.segmentIndex ?? 0;
         // Use uploadAudio which handles auth + S3 path correctly. The S3 object is
-        // keyed by the immutable sceneId so per-language takes never collide.
-        const uploadResult = await uploadAudio(blob, sessionId, sceneIndex, segment.sceneId);
+        // keyed by the immutable sceneId AND the language, so per-language takes
+        // never collide and the key itself says which language it carries.
+        const uploadResult = await uploadAudio(blob, sessionId, sceneIndex, segment.sceneId, language);
         if (uploadResult.ok) {
           audioKeyToStore = uploadResult.s3Key;
           logger.info(SERVICE_NAME, 'TTS audio uploaded to S3', { s3Key: audioKeyToStore });
         } else {
-          logger.error(SERVICE_NAME, 'S3 upload failed', { error: uploadResult.error });
-          audioKeyToStore = `tts-${language}-${segment.sceneId}-${Date.now()}`;
+          // ÉCHEC = ÉCHEC. Un marqueur `tts-…` était écrit à la place de la clé,
+          // et le segment passait quand même en `tts_generated` : la langue
+          // paraissait prête (puce, checklist, soumission acceptée) alors
+          // qu'AUCUN son n'existait. Le touriste se retrouvait devant le silence.
+          logger.error(SERVICE_NAME, 'S3 upload failed — segment left untouched', { error: uploadResult.error });
+          setSaveError(uploadResult.error);
+          return;
         }
       } catch (uploadErr) {
-        logger.error(SERVICE_NAME, 'S3 upload exception', { error: String(uploadErr) });
-        audioKeyToStore = `tts-${language}-${segment.sceneId}-${Date.now()}`;
+        logger.error(SERVICE_NAME, 'S3 upload exception — segment left untouched', { error: String(uploadErr) });
+        setSaveError('Envoi de l’audio impossible. La langue reste sans son.');
+        return;
       }
     }
+    setSaveError(null);
 
     setAudioKey(audioDataUrl); // Keep data URL in local state for playback
     setAudioSource('tts');
@@ -122,6 +135,7 @@ export function LanguageAudioSection({
         return;
       }
       logger.error(SERVICE_NAME, 'Failed to create segment for TTS', { error: createResult.error });
+      setSaveError(createResult.error);
       return;
     }
 
@@ -132,6 +146,7 @@ export function LanguageAudioSection({
 
     if (!result.ok) {
       logger.error(SERVICE_NAME, 'Failed to persist TTS audio', { segmentId, error: result.error });
+      setSaveError(result.error);
     } else {
       onAudioSaved?.();
     }
@@ -211,6 +226,17 @@ export function LanguageAudioSection({
         <h3 className="text-sm font-semibold text-ink">Audio</h3>
         {renderSourceBadge()}
       </div>
+
+      {/* Un échec d'enregistrement se voit : la langue n'a PAS de son. */}
+      {saveError && (
+        <p
+          className="rounded-lg border border-danger bg-grenadine-soft p-2 text-xs text-ink"
+          role="alert"
+          data-testid="language-audio-save-error"
+        >
+          Audio non enregistré : {saveError}
+        </p>
+      )}
 
       {/* Player when audio exists and is playable */}
       {(playableUrl || audioKey) && (

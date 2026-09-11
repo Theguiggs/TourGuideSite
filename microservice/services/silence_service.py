@@ -16,26 +16,77 @@ logger = logging.getLogger("tourguide-microservice.silence")
 SILENCE_THRESH_DB = int(os.getenv("SILENCE_THRESH_DB", "-40"))
 SILENCE_MIN_MS = int(os.getenv("SILENCE_MIN_MS", "800"))
 
-# Allowed URL domains for SSRF protection
-ALLOWED_HOSTS = {
-    "s3.amazonaws.com",
-    "s3.us-east-1.amazonaws.com",
+# ─── Protection SSRF : l'hote est EPINGLE, pas devine ───────────────────────
+#
+# La liste acceptait n'importe quel `*.s3.*.amazonaws.com` : un bucket tiers,
+# donc, et `response.content` chargeait l'objet entier en memoire avant de
+# l'ecrire sur disque. Un seul appel vers un objet de plusieurs Go faisait
+# tomber le service (OOM) ou remplissait /tmp.
+#
+# `ALLOWED_AUDIO_HOSTS` porte le ou les hotes exacts du bucket du projet
+# (`<bucket>.s3.<region>.amazonaws.com`), separes par des virgules. Sans cette
+# variable, AUCUN hote n'est accepte : un service qui ne sait pas d'ou vient
+# son audio ne telecharge rien.
+ALLOWED_AUDIO_HOSTS = {
+    h.strip().lower()
+    for h in os.getenv("ALLOWED_AUDIO_HOSTS", "").split(",")
+    if h.strip()
 }
-# Accept any *.s3.*.amazonaws.com pattern
-def _is_allowed_url(url: str) -> bool:
+MAX_AUDIO_DOWNLOAD_BYTES = int(os.getenv("MAX_AUDIO_DOWNLOAD_BYTES", str(50 * 1024 * 1024)))
+_AUDIO_CONTENT_TYPES = ("audio/", "video/webm", "application/octet-stream", "binary/octet-stream")
+
+
+class AudioTooLarge(RuntimeError):
+    """L'objet depasse `MAX_AUDIO_DOWNLOAD_BYTES` : le telechargement est abandonne."""
+
+
+def is_allowed_audio_url(url: str) -> bool:
     try:
         parsed = urlparse(url)
-        if parsed.scheme not in ("https", "http"):
+        if parsed.scheme != "https":
             return False
-        host = parsed.hostname or ""
-        if host in ALLOWED_HOSTS:
-            return True
-        # Allow pre-signed S3 URLs: *.s3.*.amazonaws.com
-        if host.endswith(".amazonaws.com") and ".s3." in host:
-            return True
-        return False
+        host = (parsed.hostname or "").lower()
+        return bool(host) and host in ALLOWED_AUDIO_HOSTS
     except Exception:
         return False
+
+
+def download_audio_bounded(audio_url: str) -> str:
+    """Telecharge l'audio EN FLUX vers un fichier temporaire, en abandonnant
+    des que la taille depasse le plafond. Rend le chemin du fichier ; l'appelant
+    le supprime. Leve si l'URL n'est pas autorisee, si le type n'est pas audio,
+    ou si l'objet est trop gros."""
+    if not is_allowed_audio_url(audio_url):
+        raise ValueError("URL non autorisee")
+    with requests.get(audio_url, timeout=30, allow_redirects=False, stream=True) as response:
+        response.raise_for_status()
+        content_type = (response.headers.get("Content-Type") or "").lower()
+        if content_type and not content_type.startswith(_AUDIO_CONTENT_TYPES):
+            raise ValueError(f"Type de contenu inattendu : {content_type[:40]}")
+        declared = response.headers.get("Content-Length")
+        if declared and declared.isdigit() and int(declared) > MAX_AUDIO_DOWNLOAD_BYTES:
+            raise AudioTooLarge(f"{declared} octets > {MAX_AUDIO_DOWNLOAD_BYTES}")
+        total = 0
+        tmp = tempfile.NamedTemporaryFile(suffix=".wav", delete=False)
+        try:
+            for chunk in response.iter_content(chunk_size=1 << 20):
+                if not chunk:
+                    continue
+                total += len(chunk)
+                if total > MAX_AUDIO_DOWNLOAD_BYTES:
+                    raise AudioTooLarge(f"> {MAX_AUDIO_DOWNLOAD_BYTES} octets")
+                tmp.write(chunk)
+        except BaseException:
+            tmp.close()
+            os.unlink(tmp.name)
+            raise
+        tmp.close()
+        return tmp.name
+
+
+# Compatibilite : l'ancien nom reste utilise par les epreuves existantes.
+def _is_allowed_url(url: str) -> bool:
+    return is_allowed_audio_url(url)
 
 
 class SilenceService:
@@ -52,13 +103,8 @@ class SilenceService:
             from pydub import AudioSegment
             from pydub.silence import detect_nonsilent
 
-            # Download audio from validated S3 URL
-            response = requests.get(audio_url, timeout=30, allow_redirects=False)
-            response.raise_for_status()
-
-            with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-                tmp.write(response.content)
-                tmp_path = tmp.name
+            # Telechargement en flux, plafonne — jamais `response.content` entier.
+            tmp_path = download_audio_bounded(audio_url)
 
             try:
                 audio = AudioSegment.from_file(tmp_path)

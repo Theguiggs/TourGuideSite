@@ -39,12 +39,13 @@
  *   node scripts/regenere-grasse-fr.mjs --confirm    # execute
  */
 
+import { requireBackend } from './_backend.mjs';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, ScanCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 const REGION = 'us-east-1';
-const SUFFIXE = 'yvupc5stqzaxrgz6wv2wz7he5y-NONE';
+const SUFFIXE = (() => { const b = requireBackend(); return `${b.appId}-${b.env}`; })();
 const BUCKET = 'amplify-dieqe5vfmuc69-mai-tourguideassetsbucket8b8-qyql7idkrnkr';
 const IDENTITY_ID = 'us-east-1:0ebd3fdc-511f-c6b4-c885-c1694d6baac3';
 const SESSION_ID = 'dfb6a1f3-d583-4d6f-b651-5c21fb1b5103';

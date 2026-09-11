@@ -73,3 +73,14 @@ content/translations/_backup/
 *.out.log
 scripts/*.backup-*.json
 amplify_outputs.json.bak-*
+
+# Hygiène (revue adversariale 2026-09-11, lot 2.6) : brouillons de scripts,
+# sorties d'exécution, réglages d'éditeur, sauvegardes et photos de terrain
+# (110 Mo suivies par erreur — elles restent sur disque, hors du dépôt).
+scripts/_tmp-*
+output/
+.vscode/
+*.bak
+req.json
+tour_photos/
+scripts/clone50ec*

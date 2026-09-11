@@ -3,6 +3,7 @@
  *
  * Dry-run by default. Public S3 writes require --confirm.
  */
+import { requireBackend } from './_backend.mjs';
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -18,7 +19,7 @@ import {
 } from '@aws-sdk/client-s3';
 
 const REGION = 'us-east-1';
-const APP_ID = 't5nxxao3orh6za2bjj6uegulru';
+const { appId: APP_ID } = requireBackend(); // cible : --app-id= ou APPSYNC_API_ID
 const ENV = 'NONE';
 const BUCKET = 'amplify-tourguideapp-stef-tourguideassetsbucket8b8-nwmcsixu8au1';
 const TABLE = `GuideTour-${APP_ID}-${ENV}`;

@@ -9,11 +9,17 @@
  */
 
 import { logger } from './logger';
+import { getMicroserviceHeaders } from '@/lib/api/microservice-config';
 
 const SERVICE_NAME = 'RoutingService';
-const ORS_BASE = 'https://api.openrouteservice.org';
-const ORS_PROFILE = 'foot-hiking';
-const ORS_API_KEY = process.env.NEXT_PUBLIC_ORS_API_KEY ?? '';
+/**
+ * Le tracé passe par le relais serveur `/api/routing` : la clé OpenRouteService
+ * vivait dans `NEXT_PUBLIC_ORS_API_KEY`, donc dans le JavaScript servi à tout
+ * visiteur, et son quota pouvait être vidé par un tiers — les itinéraires du
+ * Studio retombaient alors en ligne droite. Elle est désormais côté serveur
+ * (`ORS_API_KEY`), derrière l'authentification guide et la borne par compte.
+ */
+const ROUTING_ENDPOINT = '/api/routing';
 
 export interface RouteSegment {
   /** Polyline coordinates for this segment */
@@ -49,27 +55,20 @@ export async function getWalkingRoute(
     durationSeconds: 0,
   };
 
-  if (!ORS_API_KEY) {
-    logger.warn(SERVICE_NAME, 'NEXT_PUBLIC_ORS_API_KEY missing — using straight-line fallback');
+  let headers: Record<string, string>;
+  try {
+    headers = await getMicroserviceHeaders();
+  } catch {
+    logger.warn(SERVICE_NAME, 'No authenticated session — using straight-line fallback');
     routeCache.set(key, fallback);
     return fallback;
   }
 
   try {
-    const res = await fetch(`${ORS_BASE}/v2/directions/${ORS_PROFILE}/geojson`, {
+    const res = await fetch(ROUTING_ENDPOINT, {
       method: 'POST',
-      headers: {
-        Authorization: ORS_API_KEY,
-        'Content-Type': 'application/json',
-        Accept: 'application/geo+json, application/json',
-      },
-      body: JSON.stringify({
-        coordinates: [
-          [from.lng, from.lat],
-          [to.lng, to.lat],
-        ],
-        instructions: false,
-      }),
+      headers,
+      body: JSON.stringify({ from, to }),
     });
 
     if (!res.ok) {

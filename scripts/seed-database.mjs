@@ -7,10 +7,11 @@
  * Prerequisites: AWS CLI configured with correct credentials (us-east-1)
  */
 
+import { requireBackend } from './_backend.mjs';
 import { execSync } from 'child_process';
 import { randomUUID } from 'crypto';
 
-const APP_ID = '4z7fvz7n2bh5rpixdgihjmhdpa';
+const { appId: APP_ID } = requireBackend(); // cible : --app-id= ou APPSYNC_API_ID
 const ENV    = 'NONE';
 const REGION = 'us-east-1';
 

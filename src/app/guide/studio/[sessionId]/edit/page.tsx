@@ -33,6 +33,15 @@ export default function EditPage() {
   editorTextRef.current = editorText;
   const activeSceneIdRef = useRef(activeSceneId);
   activeSceneIdRef.current = activeSceneId;
+  /**
+   * Texte tel qu'il a été CHARGÉ pour la scène courante (backend ou brouillon
+   * retenu). Sert de point de comparaison : sans lui, la page ne savait pas
+   * distinguer « le guide a modifié » de « le guide a seulement regardé », et
+   * réécrivait dans les deux cas.
+   */
+  const loadedTextRef = useRef('');
+  /** Un brouillon local plus récent que le backend a été restauré. */
+  const [restoredDraft, setRestoredDraft] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Load session + scenes
@@ -56,10 +65,24 @@ export default function EditPage() {
           const firstScene = scns[0];
           setActiveSceneId(firstScene.id);
 
-          // Restore from localStorage draft if available
+          // Le brouillon local ne l'emporte que s'il est PLUS RÉCENT que la
+          // dernière écriture du backend. Appliqué sans condition, il masquait
+          // toute correction faite ailleurs — puis l'écrasait au démontage.
           const draft = studioPersistenceService.loadDraft(sessionId);
+          const backendText = firstScene.transcriptText ?? '';
+          const useDraft = studioPersistenceService.isSceneDraftFresher(draft, firstScene.id, firstScene.updatedAt);
           const draftText = draft?.scenes[firstScene.id]?.transcriptText;
-          setEditorText(draftText ?? firstScene.transcriptText ?? '');
+          if (!useDraft && draftText !== undefined && draftText !== backendText) {
+            // Brouillon périmé : on le retire pour qu'il ne resurgisse pas.
+            studioPersistenceService.clearSceneDraft(sessionId, firstScene.id);
+            logger.info(SERVICE_NAME, 'Stale local draft discarded in favour of backend', { sceneId: firstScene.id });
+          }
+          const initialText = useDraft && draftText !== undefined ? draftText : backendText;
+          setEditorText(initialText);
+          loadedTextRef.current = initialText;
+          if (useDraft && draftText !== undefined && draftText !== backendText) {
+            setRestoredDraft(true);
+          }
         }
 
         logger.info(SERVICE_NAME, 'Edit page loaded', { sessionId, scenesCount: scns.length });
@@ -76,12 +99,19 @@ export default function EditPage() {
     load();
     return () => {
       cancelled = true;
-      // Flush save on unmount (navigation away)
+      // Flush save on unmount (navigation away) — SEULEMENT si le texte a
+      // réellement changé. L'écriture était inconditionnelle : ouvrir puis
+      // quitter l'éditeur sans rien taper réécrivait la scène avec le texte
+      // affiché, ce qui suffisait à réinstaller une version périmée.
       const sceneId = activeSceneIdRef.current;
-      if (sceneId && sessionId) {
-        const text = editorTextRef.current;
+      const text = editorTextRef.current;
+      if (sceneId && sessionId && text !== loadedTextRef.current) {
         studioPersistenceService.saveDraft(sessionId, sceneId, text);
-        updateSceneText(sceneId, text); // fire-and-forget
+        void updateSceneText(sceneId, text).then((result) => {
+          // Le backend a le texte : le brouillon local n'a plus de raison d'être
+          // et ne peut donc plus primer à la prochaine ouverture.
+          if (result.ok) studioPersistenceService.clearSceneDraft(sessionId, sceneId);
+        });
         logger.info(SERVICE_NAME, 'Flushed save on unmount', { sceneId });
       }
       clearSession();
@@ -90,20 +120,34 @@ export default function EditPage() {
 
   // Handle scene selection — uses ref to avoid stale closure on editorText
   const handleSceneSelect = useCallback((sceneId: string) => {
-    // Flush current scene to localStorage + AppSync before switching
+    // Flush current scene to localStorage + AppSync before switching, et là
+    // encore seulement si son texte a bougé depuis le chargement.
     if (activeSceneId && sessionId) {
       const currentText = editorTextRef.current;
-      studioPersistenceService.saveDraft(sessionId, activeSceneId, currentText);
-      updateSceneText(activeSceneId, currentText); // fire-and-forget sync
+      if (currentText !== loadedTextRef.current) {
+        studioPersistenceService.saveDraft(sessionId, activeSceneId, currentText);
+        void updateSceneText(activeSceneId, currentText).then((result) => {
+          if (result.ok) studioPersistenceService.clearSceneDraft(sessionId, activeSceneId);
+        });
+      }
     }
 
     setActiveSceneId(sceneId);
     const scene = scenes.find((s) => s.id === sceneId);
 
-    // Load from draft or scene data
+    // Même arbitrage qu'au chargement : le brouillon ne gagne que s'il est le
+    // plus récent des deux.
     const draft = studioPersistenceService.loadDraft(sessionId);
+    const backendText = scene?.transcriptText ?? '';
+    const useDraft = studioPersistenceService.isSceneDraftFresher(draft, sceneId, scene?.updatedAt);
     const draftText = draft?.scenes[sceneId]?.transcriptText;
-    setEditorText(draftText ?? scene?.transcriptText ?? '');
+    if (!useDraft && draftText !== undefined && draftText !== backendText) {
+      studioPersistenceService.clearSceneDraft(sessionId, sceneId);
+    }
+    const nextText = useDraft && draftText !== undefined ? draftText : backendText;
+    setEditorText(nextText);
+    loadedTextRef.current = nextText;
+    setRestoredDraft(useDraft && draftText !== undefined && draftText !== backendText);
     setSyncError(null);
   }, [activeSceneId, sessionId, scenes]);
 
@@ -120,6 +164,11 @@ export default function EditPage() {
       setSyncError('Sauvegarde locale uniquement — reconnectez-vous');
       logger.warn(SERVICE_NAME, 'AppSync sync failed, draft in localStorage', { sceneId: activeSceneId });
     } else {
+      // Le backend fait foi de nouveau : le brouillon est retiré pour qu'il ne
+      // puisse plus, plus tard, primer sur une version plus récente.
+      studioPersistenceService.clearSceneDraft(sessionId, activeSceneId);
+      loadedTextRef.current = text;
+      setRestoredDraft(false);
       setSyncError(null);
     }
   }, [activeSceneId, sessionId]);
@@ -204,8 +253,20 @@ export default function EditPage() {
         </div>
 
         {syncError && (
-          <div className="mb-3 p-2 bg-ocre-soft border border-ocre-soft rounded text-sm text-ocre" role="alert">
+          <div className="mb-3 p-2 bg-ocre-soft border border-ocre rounded text-sm text-ink" role="alert">
             {syncError}
+          </div>
+        )}
+
+        {/* Un brouillon local plus récent a été restauré : le guide doit le
+            savoir, sinon il croit lire ce que contient le backend. */}
+        {restoredDraft && (
+          <div
+            className="mb-3 p-2 bg-mer-soft border border-mer rounded text-sm text-ink"
+            role="status"
+            data-testid="restored-draft-notice"
+          >
+            Brouillon local restauré — il est plus récent que la version enregistrée.
           </div>
         )}
 

@@ -1,10 +1,33 @@
 node_modules
 .next
 .git
-.env*.local
+.github
+# Tous les fichiers d'environnement, sauf celui de production que le build lit.
+# `.env*.local` ne couvrait pas `.env.e2e`, qui porte les identifiants d'un
+# compte ADMIN du pool de production : il finissait dans la couche `builder`
+# de l'image, lisible par `docker history` / `docker save`.
+.env*
+!.env.production
 *.log
+*.bak
+*.bak-*
+*.tsbuildinfo
 coverage
 playwright-report
 test-results
 .DS_Store
 microservice
+# Rien de ce qui suit n'entre dans le build Next : 110 Mo de photos, scripts
+# d'exploitation, contenu éditorial, épreuves, documentation, brouillons.
+tour_photos
+scripts
+content
+output
+_bmad-output
+newdesign
+docs
+e2e
+tests
+bmad
+.codex
+.claude

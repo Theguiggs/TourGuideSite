@@ -16,7 +16,12 @@ const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 interface ScenePhotosProps {
   scene: StudioScene;
   sessionId?: string;
-  onPhotosChange: (sceneId: string, photos: string[]) => void;
+  /**
+   * `removed` porte les clés que la nouvelle liste abandonne. L'appelant les
+   * supprime de S3 APRÈS avoir persisté la liste — jamais avant, sous peine de
+   * laisser une référence vers un objet absent si l'écriture échoue.
+   */
+  onPhotosChange: (sceneId: string, photos: string[], removed?: string[]) => void;
   editable?: boolean;
 }
 
@@ -82,8 +87,9 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
   }, [photos, scene.id, sessionId, onPhotosChange, t]);
 
   const handleRemove = useCallback((index: number) => {
+    const removedKey = photos[index];
     const updated = photos.filter((_, i) => i !== index);
-    onPhotosChange(scene.id, updated);
+    onPhotosChange(scene.id, updated, removedKey ? [removedKey] : []);
     logger.info(SERVICE_NAME, 'Photo removed', { sceneId: scene.id, index });
   }, [photos, scene.id, onPhotosChange]);
 

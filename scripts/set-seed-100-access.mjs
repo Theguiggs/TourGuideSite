@@ -4,6 +4,7 @@
  *
  * Dry-run par défaut. L'écriture exige --confirm et l'App ID public exact.
  */
+import { requireBackend } from './_backend.mjs';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import {
   DynamoDBDocumentClient,
@@ -17,7 +18,7 @@ const getOpt = (name, fallback = '') => {
   return argv.find((arg) => arg.startsWith(prefix))?.slice(prefix.length) ?? fallback;
 };
 
-const EXPECTED_APP_ID = 't5nxxao3orh6za2bjj6uegulru';
+const EXPECTED_APP_ID = requireBackend().appId;
 const appId = getOpt('app-id');
 const env = getOpt('env', 'NONE');
 const region = getOpt('region', 'us-east-1');

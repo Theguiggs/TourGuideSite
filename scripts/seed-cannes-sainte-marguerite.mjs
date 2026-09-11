@@ -58,7 +58,7 @@ const getOpt = (name, def) => {
   return p ? p.split('=').slice(1).join('=') : def;
 };
 
-const APP_ID  = getOpt('app-id', process.env.APP_ID || 'yvupc5stqzaxrgz6wv2wz7he5y');
+const APP_ID  = getOpt('app-id', process.env.APP_ID || process.env.APPSYNC_API_ID || '');
 const ENV     = getOpt('env', process.env.AMPLIFY_ENV || 'NONE');
 const REGION  = getOpt('region', process.env.AWS_REGION || 'us-east-1');
 const CONFIRM = hasFlag('--confirm');

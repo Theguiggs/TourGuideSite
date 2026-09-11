@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
-import { getStudioSession, listStudioScenes, updateSceneData } from '@/lib/api/studio';
+import { getStudioSession, listStudioScenes, updateSceneData, updateStudioSession } from '@/lib/api/studio';
 import { shouldUseStubs } from '@/config/api-mode';
 import {
   useStudioSessionStore,
@@ -233,8 +233,10 @@ export default function GeneralPage() {
       setIsUploadingCover(true);
 
       if (shouldUseStubs()) {
-        const url = URL.createObjectURL(file);
-        setCoverPreviewUrl(url);
+        setCoverPreviewUrl((old) => {
+          if (old) URL.revokeObjectURL(old);
+          return URL.createObjectURL(file);
+        });
         setCoverPhotoKey(`cover-stub-${Date.now()}`);
         setIsUploadingCover(false);
         return;
@@ -243,10 +245,33 @@ export default function GeneralPage() {
       try {
         const result = await studioUploadService.uploadCoverPhoto(file, sessionId);
         if (result.ok) {
-          if (coverPhotoKey) studioUploadService.clearCacheEntry(coverPhotoKey);
+          const previousKey = coverPhotoKey;
+          if (previousKey) studioUploadService.clearCacheEntry(previousKey);
           studioUploadService.clearCacheEntry(result.s3Key);
+
+          // L'objet est déjà sur S3 : la session doit le savoir TOUT DE SUITE.
+          // Attendre « Enregistrer » laissait, à la moindre navigation, un objet
+          // orphelin et une session sans couverture — alors que l'aperçu avait
+          // laissé croire le contraire.
+          const persisted = await updateStudioSession(sessionId, { coverPhotoKey: result.s3Key });
+          if (!persisted.ok) {
+            setCoverError(`Photo envoyée mais non enregistrée : ${persisted.error}`);
+            logger.error(SERVICE_NAME, 'Cover persist failed', { sessionId, error: persisted.error });
+            return;
+          }
+
           setCoverPhotoKey(result.s3Key);
-          setCoverPreviewUrl(URL.createObjectURL(file));
+          setCoverPreviewUrl((old) => {
+            if (old) URL.revokeObjectURL(old);
+            return URL.createObjectURL(file);
+          });
+
+          // La session ne référence plus l'ancienne couverture : on la retire.
+          // Après la persistance, jamais avant. Le changement d'extension
+          // (JPEG remplacé par PNG) produisait sinon un `cover.jpg` éternel.
+          if (previousKey && previousKey !== result.s3Key) {
+            void studioUploadService.removeStoredAudio(previousKey);
+          }
         } else {
           setCoverError(result.error);
         }
@@ -262,10 +287,35 @@ export default function GeneralPage() {
     [sessionId, coverPhotoKey],
   );
 
-  const handleRemoveCover = useCallback(() => {
+  const handleRemoveCover = useCallback(async () => {
+    const previousKey = coverPhotoKey;
     setCoverPhotoKey(null);
-    setCoverPreviewUrl(null);
+    setCoverPreviewUrl((old) => {
+      if (old) URL.revokeObjectURL(old);
+      return null;
+    });
     if (coverInputRef.current) coverInputRef.current.value = '';
+
+    if (shouldUseStubs()) return;
+
+    const persisted = await updateStudioSession(sessionId, { coverPhotoKey: null });
+    if (!persisted.ok) {
+      setCoverError(`Retrait non enregistré : ${persisted.error}`);
+      setCoverPhotoKey(previousKey);
+      return;
+    }
+    if (previousKey) void studioUploadService.removeStoredAudio(previousKey);
+  }, [coverPhotoKey, sessionId]);
+
+  // Les URL d'objet de l'aperçu sont révoquées au démontage : sans cela, chaque
+  // couverture choisie fuyait jusqu'au rechargement de l'onglet.
+  useEffect(() => {
+    return () => {
+      setCoverPreviewUrl((old) => {
+        if (old) URL.revokeObjectURL(old);
+        return null;
+      });
+    };
   }, []);
 
   const isLocked = session

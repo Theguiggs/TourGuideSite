@@ -434,17 +434,35 @@ export async function executeBatch(
             const { uploadAudio } = await import('@/lib/studio/studio-upload-service');
             const audioResponse = await fetch(audioKeyToStore);
             const audioBlob = new Blob([await audioResponse.blob()], { type: 'audio/wav' });
-            const uploadResult = await uploadAudio(audioBlob, sessionId, scene.sceneIndex ?? 0, scene.id);
+            const uploadResult = await uploadAudio(audioBlob, sessionId, scene.sceneIndex ?? 0, scene.id, lang.code);
             if (uploadResult.ok) {
               audioKeyToStore = uploadResult.s3Key;
               logger.info(SERVICE_NAME, 'Batch TTS audio uploaded to S3', { sceneId: scene.id, s3Key: audioKeyToStore });
             } else {
-              audioKeyToStore = `tts-${lang.code}-${scene.id}-${Date.now()}`;
-              logger.warn(SERVICE_NAME, 'Batch S3 upload failed, using marker', { error: uploadResult.error });
+              // Un marqueur `tts-…` était écrit à la place de la clé, et le
+              // segment passait quand même en `tts_generated` : la langue
+              // paraissait prête alors qu'aucun son n'existait. On déclare
+              // l'échec de la scène au lieu de le maquiller.
+              logger.error(SERVICE_NAME, 'Batch S3 upload failed — scene marked failed', { sceneId: scene.id, lang: lang.code, error: uploadResult.error });
+              failedScenes.push({
+                sceneId: scene.id,
+                lang: lang.code,
+                errorCode: BATCH_TTS_FAILED,
+                message: `Envoi de l'audio impossible : ${uploadResult.error}`,
+              });
+              onProgress?.(lang.code, scene.id, 'failed');
+              continue;
             }
           } catch (uploadErr) {
-            audioKeyToStore = `tts-${lang.code}-${scene.id}-${Date.now()}`;
-            logger.warn(SERVICE_NAME, 'Batch S3 upload exception', { error: String(uploadErr) });
+            logger.error(SERVICE_NAME, 'Batch S3 upload exception — scene marked failed', { sceneId: scene.id, lang: lang.code, error: String(uploadErr) });
+            failedScenes.push({
+              sceneId: scene.id,
+              lang: lang.code,
+              errorCode: BATCH_TTS_FAILED,
+              message: `Envoi de l'audio impossible : ${String(uploadErr)}`,
+            });
+            onProgress?.(lang.code, scene.id, 'failed');
+            continue;
           }
         }
 
@@ -604,17 +622,18 @@ export async function retryScene(
       const { uploadAudio } = await import('@/lib/studio/studio-upload-service');
       const audioResponse = await fetch(audioKeyToStore);
       const audioBlob = new Blob([await audioResponse.blob()], { type: 'audio/wav' });
-      const uploadResult = await uploadAudio(audioBlob, scene.sessionId, scene.sceneIndex ?? 0, scene.id);
+      const uploadResult = await uploadAudio(audioBlob, scene.sessionId, scene.sceneIndex ?? 0, scene.id, lang);
       if (uploadResult.ok) {
         audioKeyToStore = uploadResult.s3Key;
         logger.info(SERVICE_NAME, 'Retry TTS audio uploaded to S3', { sceneId: scene.id, s3Key: audioKeyToStore });
       } else {
-        audioKeyToStore = `tts-${lang}-${scene.id}-${Date.now()}`;
-        logger.warn(SERVICE_NAME, 'Retry S3 upload failed, using marker', { error: uploadResult.error });
+        // Même règle que dans le parcours par lot : pas de faux marqueur.
+        logger.error(SERVICE_NAME, 'Retry S3 upload failed', { sceneId: scene.id, lang, error: uploadResult.error });
+        return { ok: false, errorCode: BATCH_TTS_FAILED, message: `Envoi de l'audio impossible : ${uploadResult.error}` };
       }
     } catch (uploadErr) {
-      audioKeyToStore = `tts-${lang}-${scene.id}-${Date.now()}`;
-      logger.warn(SERVICE_NAME, 'Retry S3 upload exception', { error: String(uploadErr) });
+      logger.error(SERVICE_NAME, 'Retry S3 upload exception', { sceneId: scene.id, lang, error: String(uploadErr) });
+      return { ok: false, errorCode: BATCH_TTS_FAILED, message: `Envoi de l'audio impossible : ${String(uploadErr)}` };
     }
   }
 

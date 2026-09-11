@@ -16,6 +16,8 @@ import type { StudioSession, StudioScene } from '@/types/studio';
 import type { Take } from '@/lib/stores/recording-store';
 import { uploadAudio, getPlayableUrl, onProgress, removeStoredAudio } from '@/lib/studio/studio-upload-service';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
+import { OnboardingBubble } from '@/components/studio/onboarding-bubble';
+import { useOnboardingStore } from '@/lib/stores/onboarding-store';
 
 const SERVICE_NAME = 'RecordPage';
 
@@ -53,6 +55,12 @@ export default function RecordPage() {
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
+  // La page /record vit hors du wizard : elle relit elle-même le choix du guide
+  // sur les bulles d'aide, faute de quoi « Ne plus afficher » serait sans effet ici.
+  const loadOnboarding = useOnboardingStore((s) => s.loadOnboarding);
+  useEffect(() => {
+    loadOnboarding();
+  }, [loadOnboarding]);
   const takes = useRecordingStore((state) => state.takes);
   const selectedTakeId = useRecordingStore((state) => activeSceneId ? state.selectedTakeId[activeSceneId] : null);
   const recorderState = useRecordingStore((state) => state.recorderState);
@@ -165,7 +173,9 @@ export default function RecordPage() {
         unsubscribeProgress = onProgress(uploadId, ({ loaded, total }) => {
           setUploadPercent(total > 0 ? Math.min(100, Math.round((loaded / total) * 100)) : 0);
         });
-        const uploadResult = await uploadAudio(take.blob, sessionId, scene.sceneIndex, scene.id);
+        // La langue nomme l'objet S3 : sans elle, une prise allemande était
+        // indiscernable d'une prise française par sa clé.
+        const uploadResult = await uploadAudio(take.blob, sessionId, scene.sceneIndex, scene.id, sourceLanguage ?? 'fr');
         unsubscribeProgress();
         unsubscribeProgress = null;
         if (!uploadResult.ok) {
@@ -178,7 +188,7 @@ export default function RecordPage() {
       }
 
       setSaveState('persisting');
-      const persistResult = await updateSceneAudio(scene.id, s3Key, sessionId, scene.sceneIndex, 'recording');
+      const persistResult = await updateSceneAudio(scene.id, s3Key, sessionId, scene.sceneIndex, 'recording', sourceLanguage ?? 'fr');
       if (!persistResult.ok) {
         setSaveState('error');
         setSaveMessage(persistResult.error);
@@ -204,7 +214,7 @@ export default function RecordPage() {
       unsubscribeProgress?.();
       persistenceInFlightRef.current = false;
     }
-  }, [persistedTakeIds, sessionId]);
+  }, [persistedTakeIds, sessionId, sourceLanguage]);
 
   const handleRecordingComplete = useCallback((sceneId: string, take: Take) => {
     const sceneTakes = useRecordingStore.getState().getSceneTakes(sceneId);
@@ -445,6 +455,7 @@ export default function RecordPage() {
         {/* Recording section */}
         {activeSceneId && (
           <div className="space-y-3">
+            <OnboardingBubble feature="recording" position="bottom" />
             <fieldset disabled={isSavingAudio} className="contents">
               <AudioRecorder
                 ref={audioRecorderRef}

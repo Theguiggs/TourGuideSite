@@ -32,7 +32,7 @@ import { mapScenesToPois } from '@/lib/catalogue/scene-pois';
 
 // --- Lookup caches ---
 
-let _availableLangsCache: Map<string, string[]> | null = null;
+const _availableLangsCache: Map<string, string[]> = new Map();
 let _guideNameCache: Map<string, string> | null = null;
 
 interface GuideInfo {
@@ -78,7 +78,6 @@ const asLanguage = (value: unknown): string | null =>
 
 async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise<string[]> {
   const tourId = tour.id as string;
-  const sessionId = tour.sessionId as string | undefined;
   // `GuideTour` ne porte AUCUN champ `language` : le `language` à défaut 'fr' du
   // schéma appartient à `StudioSession`. Poser 'fr' ici préfixait donc un
   // français fantôme à toute Visite — une Visite vendue en anglais seul se
@@ -100,33 +99,20 @@ async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise
   const persisted = [...new Set([...(sourceLang ? [sourceLang] : []), ...persistedLanguages])];
   if (persisted.length > 1) return persisted;
 
-  if (_availableLangsCache?.has(tourId)) return _availableLangsCache.get(tourId)!;
+  if (_availableLangsCache.has(tourId)) return _availableLangsCache.get(tourId)!;
 
   // Langue de repli du chemin hérité : celle qui est persistée, jamais un défaut
   // inventé — et jamais `undefined`, qui rendrait `[undefined]`.
+  //
+  // Le repli DynamoDB qui suivait a été RETIRÉ. Il visait une table d'un
+  // backend mort (table `TourLanguagePurchase` d'une pile abandonnée, codée en dur) par
+  // un `Scan` complet, exécuté à chaque rendu d'une visite héritée, et
+  // échouait en silence (`catch` vide) — le conteneur web n'a d'ailleurs aucun
+  // droit DynamoDB, par conception. Toutes les visites publiées portent
+  // désormais `availableLanguages` (inventaire du 2026-09-11 : 0 sans), et
+  // c'est le chemin d'approbation qui l'écrit ; ce qui n'y est pas n'est pas
+  // vendu.
   const baseLang = persisted[0] ?? DEFAULT_SOURCE_LANGUAGE;
-  if (!sessionId) return [baseLang];
-
-  try {
-    const { DynamoDBClient } = await import('@aws-sdk/client-dynamodb');
-    const { DynamoDBDocumentClient, ScanCommand } = await import('@aws-sdk/lib-dynamodb');
-    const appId = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
-    const dynamo = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
-    const result = await dynamo.send(new ScanCommand({
-      TableName: `TourLanguagePurchase-${appId}-NONE`,
-      FilterExpression: 'sessionId = :sid AND #s = :active AND moderationStatus = :approved',
-      ExpressionAttributeNames: { '#s': 'status' },
-      ExpressionAttributeValues: { ':sid': sessionId, ':active': 'active', ':approved': 'approved' },
-    }));
-    const approvedLangs = (result.Items ?? [])
-      .map((p) => asLanguage(p.language))
-      .filter((language): language is string => language !== null);
-    const langs = [...new Set([baseLang, ...approvedLangs])];
-    if (!_availableLangsCache) _availableLangsCache = new Map();
-    _availableLangsCache.set(tourId, langs);
-    return langs;
-  } catch { /* fallback */ }
-
   return [baseLang];
 }
 

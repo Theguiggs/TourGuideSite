@@ -3,6 +3,7 @@
  *
  * Dry-run by default. Production writes require --confirm.
  */
+import { requireBackend } from './_backend.mjs';
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -14,7 +15,7 @@ import {
 } from '@aws-sdk/lib-dynamodb';
 
 const REGION = 'us-east-1';
-const APP_ID = 't5nxxao3orh6za2bjj6uegulru';
+const { appId: APP_ID } = requireBackend(); // cible : --app-id= ou APPSYNC_API_ID
 const ENV = 'NONE';
 const TABLE = `GuideTour-${APP_ID}-${ENV}`;
 const PREFIX = 'seed-100-';
