@@ -85,6 +85,16 @@ export default function ItineraryPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<EditingPOI | null>(null);
   const [waypoints, setWaypoints] = useState<Waypoint[]>([]);
+  /**
+   * Copies courantes lues par les gestionnaires : elles remplacent la lecture
+   * de l'état DANS un updater `setX(prev => ...)`. Un updater est invoqué deux
+   * fois en StrictMode, si bien que tout effet de bord qui y vivait (pile
+   * d'annulation, écritures réseau) partait en double.
+   */
+  const scenesRef = useRef<StudioScene[]>([]);
+  const waypointsRef = useRef<Waypoint[]>([]);
+  /** Dernière erreur d'écriture remontée par le backend. */
+  const [persistError, setPersistError] = useState<string | null>(null);
   const [routeInfo, setRouteInfo] = useState<{
     distanceMeters: number;
     durationSeconds: number;
@@ -115,20 +125,45 @@ export default function ItineraryPage() {
     setUndoCount(undoStackRef.current.length);
   }, []);
 
+  // Les refs suivent l'état à chaque rendu : les gestionnaires y lisent la
+  // valeur courante sans passer par un updater.
+  scenesRef.current = scenes;
+  waypointsRef.current = waypoints;
+
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
 
+  /**
+   * Écrit une modification de scène (position GPS, rang, archivage).
+   *
+   * `updateStudioSceneMutation` NE LÈVE PAS sur un refus du backend : elle rend
+   * `{ ok: false, error }`. Seul un `.catch` était posé, si bien qu'un refus
+   * d'autorisation ou un champ rejeté laissait l'interface verte et le backend
+   * inchangé — un POI redéplacé « avec succès » revenait à sa place au
+   * rechargement suivant.
+   */
   const persistSceneUpdate = useCallback(
     (sceneId: string, updates: Record<string, unknown>) => {
       if (shouldUseStubs()) return;
-      import('@/lib/api/appsync-client').then(({ updateStudioSceneMutation }) => {
-        updateStudioSceneMutation(sceneId, updates).catch((err) => {
+      import('@/lib/api/appsync-client')
+        .then(async ({ updateStudioSceneMutation }) => {
+          const result = await updateStudioSceneMutation(sceneId, updates);
+          if (!result.ok) {
+            logger.error(SERVICE_NAME, 'Scene update refused by backend', {
+              sceneId,
+              fields: Object.keys(updates),
+              error: result.error,
+            });
+            setPersistError(result.error);
+          }
+        })
+        .catch((err) => {
           logger.error(SERVICE_NAME, 'Failed to persist scene update', {
             sceneId,
             error: String(err),
           });
+          setPersistError(String(err));
         });
-      });
     },
     [],
   );
@@ -429,22 +464,21 @@ export default function ItineraryPage() {
 
   const handleWaypointAdd = useCallback(
     (afterPoiIndex: number, lat: number, lng: number) => {
-      setWaypoints((prev) => {
-        pushUndo(prev);
-        // Append to the end of the bucket → order = max(existing) + 1
-        const siblings = prev.filter((w) => w.afterPoiIndex === afterPoiIndex);
-        const maxOrder = siblings.length ? Math.max(...siblings.map((w) => w.order)) : -1;
-        const wp: Waypoint = {
-          id: `wp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-          lat,
-          lng,
-          afterPoiIndex,
-          order: maxOrder + 1,
-        };
-        const next = [...prev, wp];
-        persistWaypoints(next);
-        return next;
-      });
+      const prev = waypointsRef.current;
+      pushUndo(prev);
+      // Append to the end of the bucket → order = max(existing) + 1
+      const siblings = prev.filter((w) => w.afterPoiIndex === afterPoiIndex);
+      const maxOrder = siblings.length ? Math.max(...siblings.map((w) => w.order)) : -1;
+      const wp: Waypoint = {
+        id: `wp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        lat,
+        lng,
+        afterPoiIndex,
+        order: maxOrder + 1,
+      };
+      const next = [...prev, wp];
+      setWaypoints(next);
+      persistWaypoints(next);
     },
     [persistWaypoints, pushUndo],
   );
@@ -453,48 +487,45 @@ export default function ItineraryPage() {
    *  new point lands exactly where the user dropped it in the visual order. */
   const handleWaypointInsert = useCallback(
     (afterPoiIndex: number, beforeOrder: number | null, afterOrder: number | null, lat: number, lng: number) => {
-      setWaypoints((prev) => {
-        pushUndo(prev);
-        let order: number;
-        if (beforeOrder !== null && afterOrder !== null) order = (beforeOrder + afterOrder) / 2;
-        else if (beforeOrder !== null) order = beforeOrder + 1;
-        else if (afterOrder !== null) order = afterOrder - 1;
-        else order = 0;
-        const wp: Waypoint = {
-          id: `wp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-          lat,
-          lng,
-          afterPoiIndex,
-          order,
-        };
-        const next = [...prev, wp];
-        persistWaypoints(next);
-        return next;
-      });
+      const prev = waypointsRef.current;
+      pushUndo(prev);
+      let order: number;
+      if (beforeOrder !== null && afterOrder !== null) order = (beforeOrder + afterOrder) / 2;
+      else if (beforeOrder !== null) order = beforeOrder + 1;
+      else if (afterOrder !== null) order = afterOrder - 1;
+      else order = 0;
+      const wp: Waypoint = {
+        id: `wp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        lat,
+        lng,
+        afterPoiIndex,
+        order,
+      };
+      const next = [...prev, wp];
+      setWaypoints(next);
+      persistWaypoints(next);
     },
     [persistWaypoints, pushUndo],
   );
 
   const handleWaypointDrag = useCallback(
     (id: string, lat: number, lng: number) => {
-      setWaypoints((prev) => {
-        pushUndo(prev);
-        const next = prev.map((w) => (w.id === id ? { ...w, lat, lng } : w));
-        persistWaypoints(next);
-        return next;
-      });
+      const prev = waypointsRef.current;
+      pushUndo(prev);
+      const next = prev.map((w) => (w.id === id ? { ...w, lat, lng } : w));
+      setWaypoints(next);
+      persistWaypoints(next);
     },
     [persistWaypoints, pushUndo],
   );
 
   const handleWaypointDelete = useCallback(
     (id: string) => {
-      setWaypoints((prev) => {
-        pushUndo(prev);
-        const next = prev.filter((w) => w.id !== id);
-        persistWaypoints(next);
-        return next;
-      });
+      const prev = waypointsRef.current;
+      pushUndo(prev);
+      const next = prev.filter((w) => w.id !== id);
+      setWaypoints(next);
+      persistWaypoints(next);
     },
     [persistWaypoints, pushUndo],
   );
@@ -523,25 +554,36 @@ export default function ItineraryPage() {
     return () => window.removeEventListener('keydown', handler);
   }, [undo]);
 
+  /**
+   * Réordonne une scène.
+   *
+   * Le calcul ET les écritures vivaient DANS l'updater de `setScenes`. React
+   * invoque un updater deux fois en StrictMode : chaque déplacement émettait
+   * donc deux séries de mutations AppSync. Le nouvel ordre est ici calculé hors
+   * updater, à partir de la liste courante lue par ref, et les écritures ne
+   * partent qu'une fois.
+   */
   const moveScene = useCallback((sceneId: string, direction: 'up' | 'down') => {
-    setScenes((prev) => {
-      const active = prev.filter((s) => !s.archived);
-      const archived = prev.filter((s) => s.archived);
-      const idx = active.findIndex((s) => s.id === sceneId);
-      if (idx < 0) return prev;
-      const target = direction === 'up' ? idx - 1 : idx + 1;
-      if (target < 0 || target >= active.length) return prev;
-      [active[idx], active[target]] = [active[target], active[idx]];
-      const reindexed = active.map((s, i) => ({ ...s, sceneIndex: i }));
-      // Persist new index for every scene whose position actually changed
-      for (let i = 0; i < reindexed.length; i++) {
-        const before = prev.find((s) => s.id === reindexed[i].id);
-        if (before && before.sceneIndex !== i) {
-          persistSceneUpdate(reindexed[i].id, { sceneIndex: i });
-        }
+    const prev = scenesRef.current;
+    const active = prev.filter((s) => !s.archived);
+    const archived = prev.filter((s) => s.archived);
+    const idx = active.findIndex((s) => s.id === sceneId);
+    if (idx < 0) return;
+    const target = direction === 'up' ? idx - 1 : idx + 1;
+    if (target < 0 || target >= active.length) return;
+    const swapped = [...active];
+    [swapped[idx], swapped[target]] = [swapped[target], swapped[idx]];
+    const reindexed = swapped.map((s, i) => ({ ...s, sceneIndex: i }));
+
+    setScenes([...reindexed, ...archived]);
+
+    // Persist new index for every scene whose position actually changed
+    for (let i = 0; i < reindexed.length; i++) {
+      const before = prev.find((s) => s.id === reindexed[i].id);
+      if (before && before.sceneIndex !== i) {
+        persistSceneUpdate(reindexed[i].id, { sceneIndex: i });
       }
-      return [...reindexed, ...archived];
-    });
+    }
   }, [persistSceneUpdate]);
 
   const handleAddPoi = useCallback(async () => {
@@ -856,6 +898,18 @@ export default function ItineraryPage() {
 
   // ─── Save status badge (shared between normal + map mode) ───
   const saveBadge = (() => {
+    // Un refus d'écriture de SCÈNE (POI déplacé, réordonné, archivé) passait
+    // jusqu'ici totalement inaperçu : l'interface montrait le nouvel état et le
+    // backend gardait l'ancien. Il prime sur le statut de la route.
+    if (persistError) return (
+      <span
+        className="text-meta text-danger inline-flex items-center gap-1 max-w-xs truncate"
+        data-testid="poi-persist-error"
+        title={persistError}
+      >
+        ⚠ Point non enregistré : {persistError.slice(0, 60)}{persistError.length > 60 ? '…' : ''}
+      </span>
+    );
     if (saveStatus === 'idle') return null;
     if (saveStatus === 'saving') return (
       <span className="text-meta text-ink-60 inline-flex items-center gap-1" data-testid="save-status-saving">

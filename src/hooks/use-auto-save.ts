@@ -39,6 +39,8 @@ export function useAutoSave({
   const onSaveRef = useRef(onSave);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inFlightRef = useRef(false);
+  /** Une sauvegarde a été demandée pendant qu'une autre était en vol. */
+  const pendingRef = useRef(false);
 
   // Keep refs current
   dataRef.current = data;
@@ -52,7 +54,15 @@ export function useAutoSave({
   const performSave = useCallback(async () => {
     const current = dataRef.current;
     if (current === savedDataRef.current) return; // No changes
-    if (inFlightRef.current) return; // Prevent concurrent saves
+    if (inFlightRef.current) {
+      // Une sauvegarde est déjà en vol. On NOTE la demande au lieu de l'ignorer :
+      // la frappe faite pendant une requête lente était simplement perdue de vue,
+      // et `isDirty` repassait ensuite à faux — l'interface affichait « Sauvegardé »
+      // alors que le texte courant n'était pas parti. La relance a lieu en fin de
+      // requête, ci-dessous.
+      pendingRef.current = true;
+      return;
+    }
 
     inFlightRef.current = true;
     setIsSaving(true);
@@ -60,15 +70,30 @@ export function useAutoSave({
       await onSaveRef.current(current);
       savedDataRef.current = current;
       setLastSavedAt(Date.now());
-      setIsDirty(false);
       logger.info(SERVICE_NAME, 'Auto-saved', { length: current.length });
     } catch (e) {
       logger.error(SERVICE_NAME, 'Auto-save failed', { error: String(e) });
     } finally {
       inFlightRef.current = false;
       setIsSaving(false);
+      // `isDirty` se juge sur la donnée COURANTE, pas sur celle qui vient de
+      // partir : entre les deux, le guide a pu continuer à taper.
+      const stillDirty = dataRef.current !== savedDataRef.current;
+      setIsDirty(stillDirty);
+      const hadPending = pendingRef.current;
+      pendingRef.current = false;
+      // Une demande arrivée pendant la requête, ou une frappe non couverte par
+      // ce qui vient d'être écrit, repart immédiatement.
+      if (hadPending || stillDirty) {
+        void performSaveRef.current();
+      }
     }
   }, []);
+
+  // `performSave` se rappelle elle-même : la ref casse la dépendance circulaire
+  // sans reconstruire la callback (ce qui relancerait tous les effets).
+  const performSaveRef = useRef(performSave);
+  performSaveRef.current = performSave;
 
   // Debounced auto-save on data change
   useEffect(() => {

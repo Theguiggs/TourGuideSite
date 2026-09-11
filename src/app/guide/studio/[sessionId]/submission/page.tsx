@@ -5,7 +5,8 @@ import { useParams, useRouter } from 'next/navigation';
 import { StepNav } from '@/components/studio/wizard';
 import { getStudioSession, getSessionStatusConfig, listStudioScenes, cloneSessionAsV2, listStudioSessions } from '@/lib/api/studio';
 import { withPublishedStatus } from '@/lib/studio/published-status';
-import { submitForReview, retractSubmission, updateSessionStatus } from '@/lib/api/studio-submission';
+import { submitForReview, retractSubmission, updateSessionStatus, deleteSession } from '@/lib/api/studio-submission';
+import { logger } from '@/lib/logger';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
 import { TourCommentThread } from '@/components/studio/tour-comment-thread';
@@ -14,6 +15,8 @@ import { shouldUseStubs } from '@/config/api-mode';
 import { useAuth } from '@/lib/auth/auth-context';
 import type { StudioSession, StudioSessionStatus, StudioScene } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
+
+const SERVICE_NAME = 'SubmissionPage';
 
 export default function PublicationPage() {
   const params = useParams<{ sessionId: string }>();
@@ -25,7 +28,10 @@ export default function PublicationPage() {
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [siblingVersions, setSiblingVersions] = useState<StudioSession[]>([]);
-  const [scenes, setScenes] = useState<StudioScene[]>([]);
+  // `scenes` n'est plus lu depuis que la suppression passe par `deleteSession`,
+  // mais il reste CHARGÉ : le setter alimente le compteur de scènes actives que
+  // la page affiche, et le retirer casserait ce chargement.
+  const [, setScenes] = useState<StudioScene[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isActioning, setIsActioning] = useState(false);
   const [message, setMessage] = useState<{ text: string; success: boolean } | null>(null);
@@ -115,11 +121,42 @@ export default function PublicationPage() {
   const hasAnyPublished = isPublished || !!publishedSibling;
 
   // Transition helpers
+  /**
+   * Aligne la StudioSession ET la GuideTour sur le même statut.
+   *
+   * Le résultat de l'écriture sur la Visite n'était PAS vérifié. Quand le
+   * backend la refusait, la session passait malgré tout — « Suspendu » côté
+   * Studio, visite toujours au catalogue : le guide croyait l'avoir retirée.
+   * Un échec ramène désormais la session à son statut d'origine, pour que les
+   * deux faces disent la même chose.
+   */
   const updateStatus = async (newStatus: StudioSessionStatus) => {
+    const previousStatus = session.status;
     const result = await updateSessionStatus(sessionId, newStatus);
-    if (result.ok && session.tourId) {
-      const { updateGuideTourMutation } = await import('@/lib/api/appsync-client');
-      await updateGuideTourMutation(session.tourId, { status: newStatus });
+    if (!result.ok || !session.tourId) return result;
+
+    const { updateGuideTourMutation } = await import('@/lib/api/appsync-client');
+    const tourResult = await updateGuideTourMutation(session.tourId, { status: newStatus });
+    if (!tourResult.ok) {
+      logger.error(SERVICE_NAME, 'Tour status write refused — rolling back session', {
+        tourId: session.tourId,
+        newStatus,
+        error: tourResult.error,
+      });
+      // Retour en arrière, au mieux : si même ce retour échoue, l'écart
+      // subsiste mais il est au moins journalisé et annoncé au guide.
+      const rollback = await updateSessionStatus(sessionId, previousStatus);
+      if (!rollback.ok) {
+        logger.error(SERVICE_NAME, 'Session rollback failed — statuses now diverge', {
+          sessionId,
+          previousStatus,
+          newStatus,
+        });
+      }
+      return {
+        ok: false as const,
+        error: `La visite n’a pas changé d’état : ${tourResult.error}`,
+      };
     }
     return result;
   };
@@ -313,7 +350,7 @@ export default function PublicationPage() {
               <span className="text-base shrink-0">&#x1F4E6;</span>
               <div>
                 <p className="text-sm font-medium text-ink-80">Archiver</p>
-                <p className="text-xs text-ink-60">Retirer definitivement du catalogue</p>
+                <p className="text-xs text-ink-60">Retirer du catalogue — réversible</p>
               </div>
             </button>
           )}
@@ -323,19 +360,45 @@ export default function PublicationPage() {
             <button
               onClick={() => doWithConfirm(
                 'Supprimer',
-                'Supprimer definitivement ce brouillon et toutes ses scenes ? Cette action est irreversible.',
+                'Supprimer définitivement ce brouillon et toutes ses scènes ? Cette action est irréversible.',
                 async () => {
-                  const appsync = await import('@/lib/api/appsync-client');
-                  // Delete scenes first, then session, then tour if no other sessions reference it
-                  for (const sc of scenes) {
-                    await appsync.deleteItem('StudioScene', sc.id);
+                  // Chemin unique de suppression : `deleteSession` porte la
+                  // garde de statut, le bon ordre (enregistrements puis S3) et
+                  // la préservation des achats de langue. Cette page refaisait
+                  // le travail à la main, sans vérifier le moindre résultat :
+                  // des scènes orphelines et une session à moitié supprimée
+                  // passaient pour un succès.
+                  const result = await deleteSession(sessionId);
+                  if (!result.ok) return result;
+
+                  // La Visite n'est supprimée que si AUCUNE autre version ne s'y
+                  // rattache — et la liste est RELUE à l'instant, car une V2
+                  // créée dans un autre onglet rendrait périmée celle du rendu.
+                  if (session.tourId) {
+                    const appsync = await import('@/lib/api/appsync-client');
+                    const all = await listStudioSessions(session.guideId);
+                    const remaining = all.filter((s) => s.tourId === session.tourId && s.id !== sessionId);
+                    if (remaining.length === 0) {
+                      // `deleteItem` lève au lieu de rendre un résultat. L'échec
+                      // n'est pas fatal : la session est déjà supprimée, seule
+                      // une Visite vide subsiste.
+                      try {
+                        await appsync.deleteItem('GuideTour', session.tourId);
+                      } catch (e) {
+                        logger.warn(SERVICE_NAME, 'Tour delete failed after session delete', {
+                          tourId: session.tourId,
+                          error: String(e),
+                        });
+                      }
+                    } else {
+                      logger.info(SERVICE_NAME, 'Tour kept — other versions still reference it', {
+                        tourId: session.tourId,
+                        remaining: remaining.length,
+                      });
+                    }
                   }
-                  await appsync.deleteStudioSessionMutation(sessionId);
-                  // Delete tour only if no sibling sessions remain
-                  if (session.tourId && siblingVersions.length === 0) {
-                    await appsync.deleteItem('GuideTour', session.tourId);
-                  }
-                  // Redirect to studio
+
+                  // Redirection SEULEMENT après un succès complet.
                   router.push('/guide/studio');
                   return { ok: true };
                 },

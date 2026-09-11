@@ -1,11 +1,14 @@
 'use client';
 
 import { useOnboardingStore, type OnboardingFeature } from '@/lib/stores/onboarding-store';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
+import { onboardingTip } from './tips';
 
 interface OnboardingBubbleProps {
   feature: OnboardingFeature;
-  title: string;
-  description: string;
+  /** Surcharge ponctuelle ; par défaut la copie vient de `tips.ts`. */
+  title?: string;
+  description?: string;
   position?: 'top' | 'bottom';
 }
 
@@ -18,6 +21,7 @@ const FEATURE_TIPS: Record<OnboardingFeature, { icon: string }> = {
 };
 
 export function OnboardingBubble({ feature, title, description, position = 'bottom' }: OnboardingBubbleProps) {
+  const { locale } = useStudioLocale();
   const shouldShow = useOnboardingStore((s) => s.shouldShowBubble(feature));
   const dismissFeature = useOnboardingStore((s) => s.dismissFeature);
   const dismissAll = useOnboardingStore((s) => s.dismissAll);
@@ -25,6 +29,9 @@ export function OnboardingBubble({ feature, title, description, position = 'bott
   if (!shouldShow) return null;
 
   const tip = FEATURE_TIPS[feature];
+  const copy = onboardingTip(feature, locale);
+  const heading = title ?? copy.title;
+  const body = description ?? copy.description;
 
   return (
     <div
@@ -40,8 +47,8 @@ export function OnboardingBubble({ feature, title, description, position = 'bott
       <div className="flex gap-2">
         <span className="text-xl flex-shrink-0" aria-hidden="true">{tip.icon}</span>
         <div className="flex-1">
-          <p className="font-medium text-sm">{title}</p>
-          <p className="text-xs text-grenadine-soft mt-0.5">{description}</p>
+          <p className="font-medium text-sm">{heading}</p>
+          <p className="text-xs text-grenadine-soft mt-0.5">{body}</p>
         </div>
       </div>
 

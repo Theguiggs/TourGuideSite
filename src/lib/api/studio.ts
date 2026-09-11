@@ -398,6 +398,10 @@ export async function updateStudioSession(
     | 'narrationMode'
     | 'status'
     | 'cleanedAt'
+    // La couverture est persistée dès son téléversement, sans attendre
+    // « Enregistrer » : l'objet S3 existe déjà à cet instant, et une navigation
+    // avant sauvegarde laissait un orphelin sans couverture sur la session.
+    | 'coverPhotoKey'
   >>,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   if (shouldUseStubs()) {
@@ -880,6 +884,7 @@ export async function updateSceneAudio(
   sessionId?: string,
   sceneIndex?: number,
   baseAudioSource?: 'tts' | 'recording',
+  language = 'fr',
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   // If data URL, upload to S3 first (base64 too large for DynamoDB)
   let audioKeyToStore = audioUrl;
@@ -888,9 +893,10 @@ export async function updateSceneAudio(
       const { uploadAudio } = await import('@/lib/studio/studio-upload-service');
       const response = await fetch(audioUrl);
       const blob = new Blob([await response.blob()], { type: 'audio/wav' });
-      // The S3 object is keyed by the immutable sceneId (+ version timestamp), so
-      // uploads no longer collide even when sceneIndex is missing or duplicated.
-      const uploadResult = await uploadAudio(blob, sessionId ?? 'unknown', sceneIndex ?? 0, sceneId);
+      // The S3 object is keyed by the immutable sceneId + language (+ version
+      // timestamp), so uploads no longer collide even when sceneIndex is missing
+      // or duplicated, and the key says which language it carries.
+      const uploadResult = await uploadAudio(blob, sessionId ?? 'unknown', sceneIndex ?? 0, sceneId, language);
       if (uploadResult.ok) {
         audioKeyToStore = uploadResult.s3Key;
         logger.info(SERVICE_NAME, 'Audio uploaded to S3', { sceneId, s3Key: audioKeyToStore });

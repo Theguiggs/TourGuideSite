@@ -2,7 +2,7 @@
  * StudioUploadService — S3 upload for audio and photos with retry and signed URL cache.
  */
 
-import { uploadData, getUrl } from 'aws-amplify/storage';
+import { uploadData, getUrl, remove } from 'aws-amplify/storage';
 import { logger } from '@/lib/logger';
 
 const SERVICE_NAME = 'StudioUploadService';
@@ -89,6 +89,23 @@ function getExtFromMime(mime: string): string {
   return map[base] ?? 'bin';
 }
 
+// --- Language helper ---
+
+/**
+ * Ramène une étiquette de langue à sa sous-étiquette primaire, sûre pour un nom
+ * d'objet S3 : `' FR '` → `'fr'`, `'fr-FR'` → `'fr'`. Renvoie `null` pour tout
+ * ce qui ne porte pas de langue exploitable, y compris la chaîne vide.
+ *
+ * Même règle que `normalizeLanguageTag` de `lib/api/audio-source-policy`, mais
+ * ce module ne doit dépendre de rien : il est importé dynamiquement depuis des
+ * chemins où la politique de mention n'a pas à être chargée.
+ */
+export function normalizeUploadLanguage(raw: unknown): string | null {
+  if (typeof raw !== 'string') return null;
+  const primary = raw.trim().toLowerCase().split(/[-_]/)[0];
+  return /^[a-z]{2,3}$/.test(primary) ? primary : null;
+}
+
 // --- Public API ---
 
 export async function uploadAudio(
@@ -96,6 +113,7 @@ export async function uploadAudio(
   sessionId: string,
   sceneIndex: number,
   sceneId: string,
+  language: string,
 ): Promise<{ ok: true; s3Key: string } | { ok: false; error: string }> {
   if (!isValidAudioMime(blob.type)) {
     return { ok: false, error: `Type audio non supporté : ${blob.type}` };
@@ -103,19 +121,34 @@ export async function uploadAudio(
   if (blob.size > MAX_AUDIO_SIZE) {
     return { ok: false, error: `Fichier audio trop volumineux (${Math.round(blob.size / 1024 / 1024)}MB > 50MB)` };
   }
+  // La langue est OBLIGATOIRE : sans elle la clé ne distingue pas un fichier
+  // allemand d'un fichier français, et tout consommateur qui réconcilie par
+  // préfixe `sceneId` peut servir la mauvaise langue. Un appelant qui ne sait
+  // pas dans quelle langue il téléverse ne doit pas téléverser.
+  const lang = normalizeUploadLanguage(language);
+  if (!lang) {
+    logger.error(SERVICE_NAME, 'Audio upload refused: missing language', { sessionId, sceneId, language });
+    return { ok: false, error: 'Langue absente : impossible de nommer le fichier audio.' };
+  }
 
   const ext = getExtFromMime(blob.type);
   const uploadId = `${sessionId}-scene-${sceneIndex}-audio`;
   // Object name keyed by the IMMUTABLE sceneId (not the mutable, collision-prone
-  // sceneIndex) plus a version token. Two reasons:
+  // sceneIndex), then the LANGUAGE, then a version token. Three reasons:
   //  1. Scenes that share a sceneIndex (e.g. via the `?? 0` fallbacks) used to
   //     overwrite each other on `scene_0.wav`, so every scene resolved to the
   //     same S3 object — and thus the same signed URL and the same audio.
-  //  2. The timestamp makes every (re)generation a distinct object, so a fresh
+  //  2. Without the language segment, `{sceneId}_{ts}.wav` made a German take
+  //     indistinguishable from a French one: the key alone could not say which
+  //     language an object carried, so any listing/cleanup/cache path that
+  //     reconciled by `sceneId` prefix could serve the wrong language.
+  //  3. The timestamp makes every (re)generation a distinct object, so a fresh
   //     signed URL is issued and neither the URL cache nor the browser serves
   //     the previous take after "Régénérer".
+  // Les clés déjà écrites restent valides : seuls les NOUVEAUX objets prennent
+  // cette forme, et la lecture se fait toujours par la clé stockée en base.
   const safeSceneId = sceneId.replace(/[^a-zA-Z0-9_-]/g, '') || `scene-${sceneIndex}`;
-  const objectName = `${safeSceneId}_${Date.now()}.${ext}`;
+  const objectName = `${safeSceneId}_${lang}_${Date.now()}.${ext}`;
 
   try {
     const result = await withRetry(() =>
@@ -255,6 +288,34 @@ export async function uploadGuideProfilePhoto(
   } catch (error) {
     logger.error(SERVICE_NAME, 'Guide profile photo upload failed after retries', { error: String(error) });
     return { ok: false, error: 'Upload de la photo de profil échoué après 3 tentatives.' };
+  }
+}
+
+/**
+ * Supprime un objet téléversé (photo de scène, couverture remplacée).
+ *
+ * À n'appeler QU'APRÈS que la base a cessé de référencer la clé : supprimer
+ * d'abord laisserait, en cas d'échec de l'écriture, une référence vers un objet
+ * absent — une photo cassée chez le touriste. L'ordre inverse ne coûte qu'un
+ * orphelin si la suppression échoue.
+ *
+ * L'échec n'est jamais fatal pour l'appelant : la donnée de référence est déjà
+ * correcte. Il est journalisé, pas remonté.
+ */
+export async function deleteUploadedObject(s3Key: string): Promise<{ ok: boolean }> {
+  // Les clés héritées du mode stub sont des URL d'objet locales (`blob:`), et
+  // les marqueurs TTS ne désignent aucun objet : rien à supprimer.
+  if (!s3Key || s3Key.startsWith('blob:') || s3Key.startsWith('data:') || s3Key.startsWith('tts-')) {
+    return { ok: true };
+  }
+  try {
+    await remove({ path: s3Key });
+    urlCache.delete(s3Key);
+    logger.info(SERVICE_NAME, 'Object deleted', { s3Key });
+    return { ok: true };
+  } catch (error) {
+    logger.warn(SERVICE_NAME, 'Object delete failed (orphan left behind)', { s3Key, error: String(error) });
+    return { ok: false };
   }
 }
 

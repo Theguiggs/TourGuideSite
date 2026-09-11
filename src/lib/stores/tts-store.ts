@@ -5,6 +5,15 @@ import type { TTSJobStatus } from '@/types/studio';
 
 const SERVICE_NAME = 'TTSStore';
 const POLL_INTERVAL_MS = 15_000; // 15 seconds
+/**
+ * Au-delà de ce délai, on cesse d'interroger et on déclare l'échec.
+ *
+ * Le sondage n'avait AUCUNE borne : un job resté `processing` (microservice
+ * redémarré, job perdu après un rechargement de page) faisait battre un
+ * `setInterval` indéfiniment, et l'interface restait bloquée sur
+ * « Génération en cours » sans jamais rien dire.
+ */
+const POLL_DEADLINE_MS = 10 * 60_000; // 10 minutes
 
 export interface SegmentTTSState {
   status: TTSJobStatus;
@@ -60,7 +69,19 @@ export const useTTSStore = create<TTSStoreState>((set, get) => ({
 
     logger.info(SERVICE_NAME, 'Starting TTS poll', { segmentId, jobId });
 
+    const startedAt = Date.now();
+
     const timer = setInterval(async () => {
+      if (Date.now() - startedAt > POLL_DEADLINE_MS) {
+        get().stopPolling(segmentId);
+        get().setSegmentStatus(segmentId, {
+          status: 'failed',
+          error: 'La generation audio n’a pas abouti dans le temps imparti. Vous pouvez relancer.',
+        });
+        logger.warn(SERVICE_NAME, 'TTS poll deadline reached', { segmentId, jobId });
+        return;
+      }
+
       const result = await getTTSStatus(jobId);
       if (!result) return;
 
@@ -73,7 +94,7 @@ export const useTTSStore = create<TTSStoreState>((set, get) => ({
           durationMs: result.durationMs,
           error: null,
         });
-        get().showToast(`Audio TTS généré : ${segmentId}`);
+        get().showToast('Audio de synthèse généré.');
         logger.info(SERVICE_NAME, 'TTS completed', { segmentId, jobId, audioKey: result.audioKey });
       } else if (result.status === 'failed') {
         get().stopPolling(segmentId);

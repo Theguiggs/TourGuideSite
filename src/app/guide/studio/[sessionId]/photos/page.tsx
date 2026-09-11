@@ -4,13 +4,16 @@ import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
-import { getStudioSession, listStudioScenes } from '@/lib/api/studio';
+import { getStudioSession, listStudioScenes, updateSceneData } from '@/lib/api/studio';
 import { SceneSidebar } from '@/components/studio/scene-sidebar';
 import { ScenePhotos } from '@/components/studio/scene-photos';
+import { deleteUploadedObject } from '@/lib/studio/studio-upload-service';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import type { StudioSession, StudioScene } from '@/types/studio';
 
 const SERVICE_NAME = 'PhotosPage';
+
+type SaveState = 'idle' | 'saving' | 'saved' | 'error';
 
 export default function PhotosPage() {
   const params = useParams<{ sessionId: string }>();
@@ -21,6 +24,8 @@ export default function PhotosPage() {
   const [activeSceneId, setActiveSceneId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [saveState, setSaveState] = useState<SaveState>('idle');
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
@@ -57,10 +62,43 @@ export default function PhotosPage() {
     return () => { cancelled = true; clearSession(); };
   }, [sessionId, setActiveSession, clearSession]);
 
-  const handlePhotosChange = useCallback((sceneId: string, photos: string[]) => {
-    setScenes((prev) => prev.map((s) => s.id === sceneId ? { ...s, photosRefs: photos } : s));
-    logger.info(SERVICE_NAME, 'Photos updated', { sceneId, count: photos.length });
-  }, []);
+  /**
+   * Persiste la liste de photos de la scène.
+   *
+   * Rien ne l'écrivait : la page se contentait de mettre à jour son état local,
+   * si bien qu'un rechargement effaçait tout le travail. La mise à jour locale
+   * reste optimiste (l'aperçu est immédiat) mais elle est REVERTÉE si l'écriture
+   * échoue — mieux vaut voir la photo disparaître que croire qu'elle est sauvée.
+   */
+  const handlePhotosChange = useCallback(
+    async (sceneId: string, photos: string[], removed: string[] = []) => {
+      const previous = scenes.find((s) => s.id === sceneId)?.photosRefs ?? [];
+      setScenes((prev) => prev.map((s) => (s.id === sceneId ? { ...s, photosRefs: photos } : s)));
+      setSaveState('saving');
+      setSaveError(null);
+
+      const result = await updateSceneData(sceneId, { photosRefs: photos });
+
+      if (!result.ok) {
+        setScenes((prev) => prev.map((s) => (s.id === sceneId ? { ...s, photosRefs: previous } : s)));
+        setSaveState('error');
+        setSaveError(result.error);
+        logger.error(SERVICE_NAME, 'Photos persist failed', { sceneId, error: result.error });
+        return;
+      }
+
+      setSaveState('saved');
+      logger.info(SERVICE_NAME, 'Photos persisted', { sceneId, count: photos.length });
+
+      // La base ne référence plus ces objets : on peut les retirer de S3. Après,
+      // jamais avant — un échec d'écriture aurait sinon laissé une référence
+      // vers un objet supprimé.
+      for (const key of removed) {
+        void deleteUploadedObject(key);
+      }
+    },
+    [scenes],
+  );
 
   if (isLoading) {
     return <div className="p-6" aria-busy="true"><div className="bg-paper-soft rounded-lg h-64 animate-pulse" /></div>;
@@ -97,7 +135,24 @@ export default function PhotosPage() {
                 📍 {activeScene.latitude.toFixed(4)}, {activeScene.longitude.toFixed(4)}
               </p>
             )}
-            <ScenePhotos scene={activeScene} onPhotosChange={handlePhotosChange} />
+            <ScenePhotos scene={activeScene} sessionId={sessionId} onPhotosChange={handlePhotosChange} />
+
+            {/* Le guide doit savoir si ses photos sont arrivées. */}
+            {saveState === 'saving' && (
+              <p className="mt-2 text-sm text-mer" role="status" data-testid="photos-saving">
+                Sauvegarde…
+              </p>
+            )}
+            {saveState === 'saved' && (
+              <p className="mt-2 text-sm text-success" role="status" data-testid="photos-saved">
+                Photos enregistrées.
+              </p>
+            )}
+            {saveState === 'error' && (
+              <p className="mt-2 text-sm text-danger" role="alert" data-testid="photos-save-error">
+                Sauvegarde impossible : {saveError ?? 'erreur inconnue'}. Vos photos n&apos;ont pas été conservées.
+              </p>
+            )}
           </div>
         )}
       </div>

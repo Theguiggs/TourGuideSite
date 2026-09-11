@@ -19,7 +19,12 @@ interface TTSControlsProps {
   language: string;
   gpuAvailable: boolean;
   /** Called when the guide wants to save the TTS audio as the scene's audio */
-  onSaveAsSceneAudio?: (audioDataUrl: string, language: string) => void;
+  /**
+   * Rendue `Promise` pour être ATTENDUE : typée `void`, l'appelant ne pouvait
+   * pas savoir quand l'envoi S3 se terminait, et le bouton annonçait
+   * « Sauvegardé ! » avant la fin — y compris en cas d'échec.
+   */
+  onSaveAsSceneAudio?: (audioDataUrl: string, language: string) => void | Promise<void>;
 }
 
 export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSceneAudio }: TTSControlsProps) {
@@ -78,10 +83,9 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
           language: result.language,
           durationMs: result.durationMs,
         });
-        // Auto-save audio to segment (no need for manual "Utiliser" button click)
-        if (result.audioKey && onSaveAsSceneAudio) {
-          onSaveAsSceneAudio(result.audioKey, result.language ?? language);
-        }
+        // La sauvegarde est laissée à l'effet unique ci-dessus, gardé par
+        // `autoSavedRef`. Elle était AUSSI déclenchée ici : une génération
+        // immédiatement terminée téléversait donc le même audio deux fois.
         logger.info(SERVICE_NAME, 'TTS completed immediately', { segmentId: segment.id });
       } else if (result.status === 'processing' && result.jobId) {
         setSegmentStatus(segment.id, { jobId: result.jobId });
@@ -98,7 +102,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
     } finally {
       setIsTriggering(false);
     }
-  }, [hasText, isTriggering, segment.id, editableText, language, setSegmentStatus, startPolling, onSaveAsSceneAudio, t]);
+  }, [hasText, isTriggering, segment.id, editableText, language, setSegmentStatus, startPolling, t]);
 
   const handlePlay = useCallback(async () => {
     if (!ttsState?.audioKey) return;
@@ -234,7 +238,9 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
               setIsSaving(true);
               setSaved(false);
               try {
-                onSaveAsSceneAudio(ttsState.audioKey, ttsState.language ?? language);
+                // ATTENDUE : sans `await`, « Sauvegardé ! » s'affichait pendant
+                // que l'envoi S3 courait encore, et restait affiché s'il échouait.
+                await onSaveAsSceneAudio(ttsState.audioKey, ttsState.language ?? language);
                 setSaved(true);
                 setTimeout(() => setSaved(false), 3000);
                 logger.info(SERVICE_NAME, 'Audio saved as scene audio', { segmentId: segment.id, language: ttsState.language });
@@ -246,12 +252,12 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
             className="flex-1 bg-mer hover:opacity-90 disabled:bg-paper-deep text-white font-medium py-2 rounded-lg text-sm transition"
             data-testid="tts-save-scene-btn"
           >
-            {isSaving ? 'Sauvegarde...' : saved ? 'Sauvegarde !' : 'Utiliser comme audio de la scene'}
+            {isSaving ? 'Sauvegarde…' : saved ? 'Sauvegardé !' : 'Utiliser comme audio de la scène'}
           </button>
         </div>
       )}
       {saved && (
-        <p className="text-xs text-success text-center">Audio TTS enregistre comme audio de cette scene</p>
+        <p className="text-xs text-success text-center">Audio TTS enregistré comme audio de cette scène</p>
       )}
 
       {/* Re-generate if already completed */}

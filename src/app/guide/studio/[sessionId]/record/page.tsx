@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -12,6 +12,9 @@ import { TakesList } from '@/components/studio/takes-list';
 import { FileImport } from '@/components/studio/file-import';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { useRecordingStore } from '@/lib/stores/recording-store';
+import { useTakePersistence } from '@/hooks/use-take-persistence';
+import { OnboardingBubble } from '@/components/studio/onboarding-bubble';
+import { useOnboardingStore } from '@/lib/stores/onboarding-store';
 import type { StudioSession, StudioScene } from '@/types/studio';
 
 const SERVICE_NAME = 'RecordPage';
@@ -75,9 +78,57 @@ export default function RecordPage() {
     return () => {
       cancelled = true;
       clearSession();
-      useRecordingStore.getState().resetStore();
+      // Le store n'est vidé QUE si tout est arrivé à bon port. Il était vidé
+      // inconditionnellement, ce qui effaçait le seul exemplaire de toute prise
+      // non encore téléversée à la moindre navigation. Les prises en attente
+      // survivent donc à un aller-retour dans le Studio (le store est un module,
+      // pas un état de composant) et repartent à l'affichage de la page.
+      if (!useRecordingStore.getState().hasUnsyncedTakes()) {
+        useRecordingStore.getState().resetStore();
+      } else {
+        logger.warn(SERVICE_NAME, 'Unsynced takes kept in memory on unmount', { sessionId });
+      }
     };
   }, [sessionId, setActiveSession, clearSession, querySceneId]);
+
+  // La page /record vit hors du wizard : elle relit elle-même le choix du guide
+  // sur les bulles d'aide, faute de quoi « Ne plus afficher » serait sans effet ici.
+  const loadOnboarding = useOnboardingStore((s) => s.loadOnboarding);
+  useEffect(() => {
+    loadOnboarding();
+  }, [loadOnboarding]);
+
+  // Garde de fermeture d'onglet : une prise non synchronisée n'existe nulle part
+  // ailleurs que dans cette page. Le navigateur affiche sa propre confirmation.
+  useEffect(() => {
+    const handler = (event: BeforeUnloadEvent) => {
+      if (!useRecordingStore.getState().hasUnsyncedTakes()) return;
+      event.preventDefault();
+      event.returnValue = '';
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, []);
+
+  // Une prise persistée met à jour la Scène affichée : le bandeau de statut et
+  // la liste des scènes cessent d'annoncer « sans audio » sans recharger.
+  const handleTakePersisted = useCallback((sceneId: string, s3Key: string) => {
+    setScenes((prev) =>
+      prev.map((s) =>
+        s.id === sceneId
+          ? { ...s, studioAudioKey: s3Key, status: 'recorded', baseAudioSource: 'recording' }
+          : s,
+      ),
+    );
+  }, []);
+
+  const { syncState, error: syncError, retry } = useTakePersistence({
+    sessionId,
+    sceneId: activeSceneId,
+    sceneIndex: activeScene?.sceneIndex ?? 0,
+    language: session?.language ?? 'fr',
+    onPersisted: handleTakePersisted,
+  });
 
   if (isLoading) {
     return (
@@ -160,10 +211,43 @@ export default function RecordPage() {
         {/* Recording section */}
         {activeSceneId && (
           <div className="space-y-3">
+            <OnboardingBubble feature="recording" position="bottom" />
             <AudioRecorder
               sceneId={activeSceneId}
               onRecordingComplete={(id) => logger.info(SERVICE_NAME, 'Recording complete for scene', { sceneId: id })}
             />
+
+            {/* État de la prise retenue. Sans ce bandeau, le guide n'a aucun
+                moyen de savoir si son enregistrement est arrivé au backend. */}
+            {syncState === 'uploading' && (
+              <p className="text-sm text-mer flex items-center gap-2" role="status" data-testid="take-sync-uploading">
+                <span className="w-2 h-2 bg-mer rounded-full animate-pulse" aria-hidden="true" />
+                Sauvegarde de la prise en cours…
+              </p>
+            )}
+            {syncState === 'synced' && (
+              <p className="text-sm text-success" role="status" data-testid="take-sync-ok">
+                Prise enregistrée sur votre visite.
+              </p>
+            )}
+            {syncState === 'error' && (
+              <div
+                className="rounded-lg border border-danger bg-grenadine-soft p-3 text-sm text-ink"
+                role="alert"
+                data-testid="take-sync-error"
+              >
+                <p className="font-medium">Sauvegarde impossible — la prise n&apos;est que dans cet onglet.</p>
+                {syncError && <p className="mt-1 text-ink-80">{syncError}</p>}
+                <button
+                  onClick={retry}
+                  className="mt-2 bg-ocre-soft text-ink border border-ocre font-medium py-1.5 px-3 rounded-lg text-sm hover:opacity-90 transition"
+                  data-testid="take-sync-retry"
+                >
+                  Réessayer
+                </button>
+              </div>
+            )}
+
             <TakesList sceneId={activeSceneId} />
             <FileImport sceneId={activeSceneId} />
           </div>

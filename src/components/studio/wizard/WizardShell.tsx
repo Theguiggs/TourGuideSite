@@ -1,11 +1,27 @@
 'use client';
 
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { getSessionStatusConfig } from '@/lib/api/studio';
 import { WIZARD_TABS, type WizardTabKey } from '@/lib/studio/wizard-helpers';
+import { OnboardingBubble } from '@/components/studio/onboarding-bubble';
+import { useOnboardingStore, type OnboardingFeature } from '@/lib/stores/onboarding-store';
 import type { StudioSession } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
+
+/**
+ * Onglets du wizard porteurs d'une bulle d'aide. `accueil` et `submission` n'en
+ * ont pas : le premier est une page de reprise, le second porte déjà sa propre
+ * checklist. `recording` existe côté store mais vit hors du wizard (page
+ * /record), qui monte sa bulle elle-même.
+ */
+const TAB_ONBOARDING: Partial<Record<WizardTabKey, OnboardingFeature>> = {
+  general: 'general',
+  itinerary: 'itinerary',
+  scenes: 'scenes',
+  preview: 'preview',
+};
 
 interface WizardShellProps {
   session: StudioSession | null;
@@ -49,7 +65,16 @@ export function WizardShell({
   children,
 }: WizardShellProps) {
   const { locale } = useStudioLocale();
+  const loadOnboarding = useOnboardingStore((s) => s.loadOnboarding);
+  // Relit le choix du guide (« Compris », « Ne plus afficher ») au montage du
+  // wizard. Sans cet appel, l'état persisté n'était jamais rechargé et le store
+  // repartait de ses valeurs par défaut à chaque ouverture d'onglet.
+  useEffect(() => {
+    loadOnboarding();
+  }, [loadOnboarding]);
+
   const sessionId = session?.id ?? routeSessionId ?? '';
+  const onboardingFeature = TAB_ONBOARDING[activeTab];
   const statusConfig = session ? getSessionStatusConfig(session.status) : null;
   const city = cityFromTitle(session?.title);
   const parcours = parcoursFromTitle(session?.title);
@@ -140,7 +165,14 @@ export function WizardShell({
       </div>
 
       {/* Body */}
-      <div className="flex-1 overflow-y-auto">{children}</div>
+      <div className="flex-1 overflow-y-auto">
+        {onboardingFeature && (
+          <div className="px-4 pt-3 sm:px-6">
+            <OnboardingBubble feature={onboardingFeature} position="bottom" />
+          </div>
+        )}
+        {children}
+      </div>
     </div>
   );
 }

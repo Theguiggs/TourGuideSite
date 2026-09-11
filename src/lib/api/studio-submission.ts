@@ -50,6 +50,24 @@ export async function resubmitSession(
   }
 }
 
+/**
+ * Statuts pour lesquels la suppression est refusée : la version est visible des
+ * touristes, ou attendue par un modérateur. Le guide doit passer par
+ * « Archiver » d'abord, ce qui la retire du catalogue sans rien détruire.
+ */
+const PROTECTED_FROM_DELETE = new Set(['published', 'submitted', 'paused']);
+
+/**
+ * Supprime une version de travail et ses scènes.
+ *
+ * ─── Ordre des suppressions ──────────────────────────────────────────────────
+ * Les fichiers S3 étaient effacés EN PREMIER, avant les enregistrements. Un
+ * échec à mi-parcours laissait donc une visite dont l'audio avait disparu :
+ * publiée, elle restait au catalogue avec des scènes muettes. L'ordre est
+ * désormais l'inverse — enregistrements d'abord, objets S3 en dernier, et
+ * seulement si la session a bien été supprimée. Un objet orphelin ne coûte que
+ * du stockage.
+ */
 export async function deleteSession(
   sessionId: string,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
@@ -58,14 +76,31 @@ export async function deleteSession(
     logger.info(SERVICE_NAME, 'Session deleted (stub)', { sessionId });
     return { ok: true };
   }
-  // Real mode: cascade-delete S3 files, scenes, then session
+  // Real mode: enregistrements D'ABORD, S3 en DERNIER — voir l'en-tête ci-dessus.
   try {
     const appsync = await import('./appsync-client');
-    const {listLanguagePurchases} = await import('./language-purchase');
+
+    // ── Garde : on ne supprime pas une version en ligne ou sous modération ──
+    // Le bouton était offert quel que soit le statut. Supprimer une visite
+    // publiée retirait son audio de S3 sous les pieds des touristes en cours
+    // d'écoute, et une visite soumise disparaissait de la file du modérateur.
+    const existing = await appsync.getStudioSessionById(sessionId);
+    const status = (existing as { status?: string } | null)?.status;
+    if (status && PROTECTED_FROM_DELETE.has(status)) {
+      logger.warn(SERVICE_NAME, 'Delete refused for protected status', { sessionId, status });
+      return {
+        ok: false,
+        error:
+          'Cette version est en ligne ou en cours de modération. Archivez-la d’abord, puis supprimez-la.',
+      };
+    }
+
     const scenesResult = await appsync.listStudioScenesBySession(sessionId);
+
+    // Les clés sont RELEVÉES maintenant mais supprimées à la toute fin : une
+    // fois les enregistrements partis, plus rien ne les référence.
+    const s3Keys: string[] = [];
     if (scenesResult.ok) {
-      // Collect S3 keys from all scenes for best-effort deletion
-      const s3Keys: string[] = [];
       for (const scene of scenesResult.data) {
         const s = scene as Record<string, unknown>;
         if (s.originalAudioKey) s3Keys.push(s.originalAudioKey as string);
@@ -77,15 +112,6 @@ export async function deleteSession(
         }
       }
 
-      // Best-effort S3 cleanup
-      for (const key of s3Keys) {
-        try {
-          await remove({ path: key });
-        } catch (s3Err) {
-          logger.warn(SERVICE_NAME, 'S3 file delete failed (best-effort)', { key, error: String(s3Err) });
-        }
-      }
-
       // Delete scene records
       for (const scene of scenesResult.data) {
         const delResult = await appsync.deleteStudioSceneMutation((scene as Record<string, unknown>).id as string);
@@ -94,14 +120,38 @@ export async function deleteSession(
         }
       }
     }
-    const purchases = await listLanguagePurchases(sessionId);
-    if (!purchases.ok) return {ok: false, error: purchases.error.message};
-    for (const purchase of purchases.value) {
-      await appsync.deleteItem('TourLanguagePurchase', purchase.id);
-    }
+
     const result = await appsync.deleteStudioSessionMutation(sessionId);
-    if (!result.ok) return { ok: false, error: result.error };
-    logger.info(SERVICE_NAME, 'Session deleted (AppSync)', { sessionId });
+    if (!result.ok) {
+      // La session existe toujours : ses fichiers doivent rester en place.
+      logger.error(SERVICE_NAME, 'Session delete failed — S3 files left untouched', { sessionId, error: result.error });
+      return { ok: false, error: result.error };
+    }
+
+    // ── S3 en dernier, au mieux ──
+    for (const key of s3Keys) {
+      try {
+        await remove({ path: key });
+      } catch (s3Err) {
+        logger.warn(SERVICE_NAME, 'S3 file delete failed (best-effort)', { key, error: String(s3Err) });
+      }
+    }
+
+    // ── Les achats de langue NE SONT PAS supprimés ──
+    // Ce sont des paiements Stripe réellement encaissés, et leur seule trace
+    // côté client. `TourLanguagePurchase.status` est en écriture admin-only :
+    // le guide ne peut pas les marquer remboursés, il peut seulement les
+    // détruire — ce que faisait ce code. On les laisse, et on le journalise.
+    const { listLanguagePurchases } = await import('./language-purchase');
+    const purchases = await listLanguagePurchases(sessionId);
+    if (purchases.ok && purchases.value.length > 0) {
+      logger.info(SERVICE_NAME, 'Language purchases preserved as payment record', {
+        sessionId,
+        count: purchases.value.length,
+      });
+    }
+
+    logger.info(SERVICE_NAME, 'Session deleted (AppSync)', { sessionId, s3Keys: s3Keys.length });
     return { ok: true };
   } catch (e) {
     logger.error(SERVICE_NAME, 'deleteSession failed', { error: String(e) });

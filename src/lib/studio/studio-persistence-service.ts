@@ -111,6 +111,52 @@ class StudioPersistenceServiceImpl {
     }
   }
 
+  /**
+   * Retire le brouillon d'UNE scène, le backend faisant désormais foi.
+   *
+   * Sans cet appel, le brouillon local restait `dirty: true` à vie et primait
+   * sur le backend à chaque ouverture de l'éditeur : une correction faite
+   * ailleurs (page Scènes, autre appareil, autre onglet) était masquée par une
+   * version plus ancienne, puis réécrite par-dessus au démontage de la page.
+   *
+   * Le brouillon entier disparaît quand il ne reste plus aucune scène : une clé
+   * vide dans `localStorage` n'est qu'un piège pour la prochaine lecture.
+   */
+  clearSceneDraft(sessionId: string, sceneId: string): void {
+    try {
+      const existing = this.loadDraft(sessionId);
+      if (!existing?.scenes[sceneId]) return;
+      delete existing.scenes[sceneId];
+      if (Object.keys(existing.scenes).length === 0) {
+        this.deleteDraft(sessionId);
+        return;
+      }
+      localStorage.setItem(`${DRAFT_KEY_PREFIX}${sessionId}`, JSON.stringify(existing));
+      logger.info(SERVICE_NAME, 'Scene draft cleared after backend sync', { sessionId, sceneId });
+    } catch (e) {
+      logger.warn(SERVICE_NAME, 'Failed to clear scene draft', { sessionId, sceneId, error: String(e) });
+    }
+  }
+
+  /**
+   * Le brouillon local d'une scène doit-il l'emporter sur le texte du backend ?
+   *
+   * Oui seulement s'il est PLUS RÉCENT que la dernière écriture connue du
+   * backend. La page appliquait le brouillon sans condition, ce qui faisait
+   * gagner l'ancien à tous les coups.
+   *
+   * `sceneUpdatedAt` illisible ou absent : le brouillon l'emporte, faute de
+   * point de comparaison — c'est le cas d'une scène jamais écrite côté serveur,
+   * où le brouillon est bien la seule copie.
+   */
+  isSceneDraftFresher(draft: StudioDraft | null, sceneId: string, sceneUpdatedAt: string | null | undefined): boolean {
+    const entry = draft?.scenes[sceneId];
+    if (!entry) return false;
+    const backendAt = sceneUpdatedAt ? Date.parse(sceneUpdatedAt) : NaN;
+    if (Number.isNaN(backendAt)) return true;
+    return draft!.lastSavedAt > backendAt;
+  }
+
   saveLastSessionId(sessionId: string): void {
     try {
       localStorage.setItem(LAST_SESSION_KEY, sessionId);

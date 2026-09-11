@@ -2,6 +2,8 @@ import { logger } from '@/lib/logger';
 import { StudioErrorCode, createStudioError, type StudioError } from '@/types/studio';
 
 const SERVICE_NAME = 'MediaRecorderService';
+/** Délai de garde : au-delà, `stopRecording` rend ce qui a été capté. */
+const STOP_TIMEOUT_MS = 5000;
 
 export type RecorderState = 'idle' | 'requesting_permission' | 'ready' | 'recording' | 'paused' | 'stopped';
 
@@ -148,24 +150,76 @@ class MediaRecorderServiceImpl {
     }
   }
 
+  /**
+   * Arrête l'enregistrement et rend la prise.
+   *
+   * La promesse se résout TOUJOURS. Elle ne dépendait que de `onstop` : si le
+   * périphérique était débranché pendant l'enregistrement, `onerror` partait,
+   * `onstop` ne venait jamais, et la promesse restait pendante — le bouton
+   * restait figé sur « Arrêter » et l'état de l'enregistreur devenait
+   * incohérent. Deux issues de secours sont posées : l'erreur du recorder, et
+   * un délai de garde.
+   */
   stopRecording(): Promise<RecordingResult | null> {
     return new Promise((resolve) => {
-      if (!this.recorder || (this.state !== 'recording' && this.state !== 'paused')) {
+      const recorder = this.recorder;
+      if (!recorder || (this.state !== 'recording' && this.state !== 'paused')) {
         resolve(null);
         return;
       }
 
-      this.recorder.onstop = () => {
-        const blob = new Blob(this.chunks, { type: this.mimeType });
-        // Subtract paused time from total duration
-        const totalPaused = this.pausedDuration + (this.pauseStartTime > 0 ? Date.now() - this.pauseStartTime : 0);
-        const durationMs = Date.now() - this.startTime - totalPaused;
+      let settled = false;
+      let guard: ReturnType<typeof setTimeout> | null = null;
+
+      const finish = (result: RecordingResult | null) => {
+        if (settled) return;
+        settled = true;
+        if (guard) clearTimeout(guard);
         this.setState('stopped');
-        logger.info(SERVICE_NAME, 'Recording stopped', { size: blob.size, durationMs });
-        resolve({ blob, mimeType: this.mimeType, durationMs });
+        resolve(result);
       };
 
-      this.recorder.stop();
+      /** Assemble ce qui a été capté jusqu'ici — mieux qu'une prise perdue. */
+      const collected = (): RecordingResult | null => {
+        if (this.chunks.length === 0) return null;
+        const blob = new Blob(this.chunks, { type: this.mimeType });
+        const totalPaused = this.pausedDuration + (this.pauseStartTime > 0 ? Date.now() - this.pauseStartTime : 0);
+        const durationMs = Date.now() - this.startTime - totalPaused;
+        return { blob, mimeType: this.mimeType, durationMs };
+      };
+
+      recorder.onstop = () => {
+        const result = collected();
+        logger.info(SERVICE_NAME, 'Recording stopped', {
+          size: result?.blob.size ?? 0,
+          durationMs: result?.durationMs ?? 0,
+        });
+        finish(result);
+      };
+
+      recorder.onerror = () => {
+        logger.error(SERVICE_NAME, 'Recorder error while stopping — returning what was captured');
+        if (this.stream) {
+          this.stream.getTracks().forEach((t) => t.stop());
+          this.stream = null;
+        }
+        this.recorder = null;
+        finish(collected());
+      };
+
+      // Filet de sécurité : un `onstop` qui ne vient jamais ne doit pas figer
+      // l'interface. Cinq secondes après l'arrêt demandé, on rend ce qu'on a.
+      guard = setTimeout(() => {
+        logger.warn(SERVICE_NAME, 'onstop never fired — resolving from collected chunks');
+        finish(collected());
+      }, STOP_TIMEOUT_MS);
+
+      try {
+        recorder.stop();
+      } catch (e) {
+        logger.error(SERVICE_NAME, 'recorder.stop() threw', { error: String(e) });
+        finish(collected());
+      }
     });
   }
 
