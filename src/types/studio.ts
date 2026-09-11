@@ -68,6 +68,15 @@ export interface StudioSession {
   cleanedAt?: string | null;
   // Itinerary tracer state — see RoutePath below
   routePath?: RoutePath | null;
+  /**
+   * Modèle d'accès de la Visite publiée (GuideTour), rapporté par
+   * `withPublishedStatus` pour l'affichage côté guide. Absent quand la session
+   * n'a pas encore de visite ou que la lecture a échoué.
+   */
+  tourAccess?: {
+    purchaseType: 'free' | 'paid' | 'subscription_only' | null;
+    priceCents: number | null;
+  } | null;
   createdAt: string;
   updatedAt: string;
 }

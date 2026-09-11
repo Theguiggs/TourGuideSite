@@ -103,4 +103,36 @@ describe('TourCard', () => {
     render(<TourCard session={mkSession({ id: 's1' })} />);
     expect(screen.queryByTestId('tour-card-delete')).toBeNull();
   });
+
+  it("affiche l'accès de la visite : gratuite, payante avec prix, abonnés", () => {
+    const { rerender } = render(
+      <TourCard session={mkSession({ id: 's1', status: 'published' })} access={{ purchaseType: 'free', priceCents: null }} />,
+    );
+    expect(screen.getByTestId('tour-card-access')).toHaveTextContent('Gratuite');
+
+    rerender(<TourCard session={mkSession({ id: 's1', status: 'published' })} access={{ purchaseType: 'paid', priceCents: 499 }} />);
+    expect(screen.getByTestId('tour-card-access')).toHaveTextContent('Payante');
+    expect(screen.getByTestId('tour-card-access')).toHaveTextContent('4,99');
+
+    rerender(<TourCard session={mkSession({ id: 's1', status: 'published' })} access={{ purchaseType: 'subscription_only', priceCents: null }} />);
+    expect(screen.getByTestId('tour-card-access')).toHaveTextContent('Abonnés');
+  });
+
+  it("masque la pastille d'accès quand la visite n'existe pas encore", () => {
+    render(<TourCard session={mkSession({ id: 's1' })} />);
+    expect(screen.queryByTestId('tour-card-access')).not.toBeInTheDocument();
+  });
+
+  it("compte les langues créées transmises par la page, pas seulement celles vendues", () => {
+    render(<TourCard session={mkSession({ id: 's1', availableLanguages: [] })} langs={['FR', 'EN', 'DE']} />);
+    expect(screen.getByTestId('tour-card-langs')).toHaveTextContent('FR');
+    expect(screen.getByTestId('tour-card-langs')).toHaveTextContent('DE');
+    expect(screen.getByText(/3 langues/)).toBeInTheDocument();
+  });
+
+  it("nomme la mesure honnêtement : écoutes terminées", () => {
+    render(<TourCard session={mkSession({ id: 's1', status: 'published' })} plays={12} />);
+    expect(screen.getByText('Écoutes terminées')).toBeInTheDocument();
+    expect(screen.getByText('12')).toBeInTheDocument();
+  });
 });
