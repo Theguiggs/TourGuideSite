@@ -9,6 +9,9 @@ import {
 } from '@/lib/stores/studio-consent-store';
 import { RgpdConsentBanner } from '@/components/studio/rgpd-consent-banner';
 import { logger } from '@/lib/logger';
+import { useAuth } from '@/lib/auth/auth-context';
+import { getOwnGuideProfile } from '@/lib/api/appsync-client';
+import { shouldUseStubs } from '@/config/api-mode';
 import { broadcastSync } from '@/lib/studio/broadcast-sync';
 import {
   StudioHeader,
@@ -40,6 +43,8 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   const mainRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const [navigationOpen, setNavigationOpen] = useState(false);
+  const { user } = useAuth();
+  const hydrateFromProfile = useStudioConsentStore((st) => st.hydrateFromProfile);
 
   const activeKey = useMemo(() => resolveSidebarKey(pathname ?? ''), [pathname]);
 
@@ -51,6 +56,22 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
       broadcastSync.destroy();
     };
   }, [loadConsent]);
+
+  // Consentement porté par le profil : un guide qui a accepté sur un autre
+  // navigateur ne relit pas le bandeau (lot 6.2).
+  const userId = user?.id ?? null;
+  useEffect(() => {
+    if (hasConsented || !userId || shouldUseStubs()) return;
+    let cancelled = false;
+    getOwnGuideProfile(userId, 'userPool')
+      .then((profile) => {
+        if (cancelled || !profile) return;
+        const row = profile as { rgpdConsentVersion?: string | null; rgpdConsentAt?: string | null };
+        hydrateFromProfile(row.rgpdConsentVersion, row.rgpdConsentAt);
+      })
+      .catch(() => { /* le bandeau reste : c'est le comportement sûr */ });
+    return () => { cancelled = true; };
+  }, [hasConsented, userId, hydrateFromProfile]);
 
   useEffect(() => {
     if (hasConsented && mainRef.current) {

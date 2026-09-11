@@ -29,8 +29,7 @@ describe('WizardShell', () => {
         <div>body</div>
       </WizardShell>,
     );
-    expect(screen.getByText('Vence')).toBeInTheDocument();
-    expect(screen.getByText('Chapelle Matisse')).toBeInTheDocument();
+    expect(screen.getByTestId('wizard-title')).toHaveTextContent('Vence — Chapelle Matisse');
   });
 
   it('affiche le code langue en uppercase', () => {

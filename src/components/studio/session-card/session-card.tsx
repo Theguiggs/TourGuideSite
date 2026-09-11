@@ -3,6 +3,7 @@
 import type { StudioSession, TourLanguagePurchase } from '@/types/studio';
 import { getSessionStatusConfig } from '@/lib/api/studio';
 import { LangChip } from '@/components/i18n/LangChip';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const NON_DELETABLE_STATUSES = new Set(['published', 'archived']);
 
@@ -25,12 +26,13 @@ interface SessionCardProps {
   compact?: boolean;
 }
 
-function formatDateShort(isoDate: string): string {
+function formatDateShort(isoDate: string, locale: 'fr' | 'en'): string {
   const d = new Date(isoDate);
-  return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+  return d.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'short' });
 }
 
 export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdminFeedback = false, onClick, onDelete, compact = false }: SessionCardProps) {
+  const { locale } = useStudioLocale();
   const statusConfig = getSessionStatusConfig(session.status);
   const needsAttention = ['revision_requested', 'rejected'].includes(session.status);
   const version = session.version ?? 1;
@@ -79,7 +81,7 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
           {hasAdminFeedback && !needsAttention && <span className="text-ocre-ink text-meta shrink-0">Retour admin</span>}
 
           {/* Date */}
-          <span className="text-meta text-ink-40 shrink-0">{formatDateShort(session.createdAt)}</span>
+          <span className="text-meta text-ink-40 shrink-0">{formatDateShort(session.createdAt, locale)}</span>
 
           {/* Arrow */}
           <span className="text-ink-20 group-hover:text-grenadine transition shrink-0">&rsaquo;</span>
@@ -153,7 +155,7 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
           </span>
 
           {/* Date */}
-          <span className="text-meta text-ink-40 shrink-0">{formatDateShort(session.createdAt)}</span>
+          <span className="text-meta text-ink-40 shrink-0">{formatDateShort(session.createdAt, locale)}</span>
 
           {/* Arrow */}
           <span className="text-ink-20 group-hover:text-grenadine transition shrink-0">&rsaquo;</span>

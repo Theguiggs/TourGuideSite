@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { listTourComments, addTourComment } from '@/lib/api/tour-comments';
 import type { TourComment } from '@/lib/api/tour-comments';
 import { logger } from '@/lib/logger';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'TourCommentThread';
 
@@ -24,6 +25,7 @@ interface TourCommentThreadProps {
 }
 
 export function TourCommentThread({ tourId, role, authorName, sessionId }: TourCommentThreadProps) {
+  const { locale } = useStudioLocale();
   const [comments, setComments] = useState<TourComment[]>([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
@@ -88,7 +90,7 @@ export function TourCommentThread({ tourId, role, authorName, sessionId }: TourC
                     {isAdmin ? '🔴' : '🟢'} {c.authorName}
                   </span>
                   <span className="text-eyebrow text-ink-40">
-                    {new Date(c.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                    {new Date(c.createdAt).toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                   </span>
                   {actionInfo && c.action !== 'comment' && (
                     <span className={`text-eyebrow px-1.5 py-0.5 rounded-pill font-medium ${actionInfo.color}`}>

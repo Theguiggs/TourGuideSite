@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { MoreVertical } from 'lucide-react';
 import { Pin } from '@murmure/design-system/web';
@@ -62,6 +63,8 @@ function cityFromTitle(title: string | null | undefined): string {
   return title.split(/[—\-,]/)[0]?.trim() || 'Tour';
 }
 
+const NON_DELETABLE_STATUSES = new Set(['published', 'archived']);
+
 /**
  * <TourCard> — card horizontale du catalogue Studio.
  * Bande couleur ville + photo placeholder Pin + titre + stats + status/langs + action.
@@ -80,6 +83,17 @@ export function TourCard({
 }: TourCardProps) {
   const { locale } = useStudioLocale();
   const city = cityFromTitle(session.title);
+  // Lot 6.2 — le « ⋮ » supprimait directement ; il ouvre un menu, et la
+  // suppression n'y figure pas pour une visite publiée ou archivée.
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const close = (e: MouseEvent) => { if (!menuRef.current?.contains(e.target as Node)) setMenuOpen(false); };
+    document.addEventListener('mousedown', close);
+    return () => document.removeEventListener('mousedown', close);
+  }, [menuOpen]);
+  const deletable = Boolean(onDelete) && !NON_DELETABLE_STATUSES.has(session.status);
   const fam = cityFamily(city);
   const famMeta = FAMILY_META[fam];
   const status = tourStatusLabel(session.status);
@@ -108,6 +122,9 @@ export function TourCard({
     plays: 'Écoutes terminées', rating: 'Note', delete: 'Supprimer', sceneShort: 'SC.',
     free: 'Gratuite', paid: 'Payante', subscribers: 'Abonnés', accessUnknown: 'Accès non défini',
   };
+  const menuCopy = locale === 'en'
+    ? { more: 'More actions', publication: 'Publication', deleteBlocked: 'Unpublish before deleting' }
+    : { more: 'Plus d’actions', publication: 'Publication', deleteBlocked: 'Dépubliez avant de supprimer' };
   // Pastille d'accès : ce que la visite coûte au visiteur. Absente tant que la
   // Visite n'existe pas ; « non défini » quand elle existe sans modèle d'accès.
   const accessPill = access
@@ -279,18 +296,45 @@ export function TourCard({
         >
           {actionConfig.label}
         </Link>
-        {onDelete && (
+        <div className="relative" ref={menuRef} onKeyDown={(e) => { if (e.key === 'Escape') setMenuOpen(false); }}>
           <button
             type="button"
-            onClick={() => onDelete(session)}
-            data-testid="tour-card-delete"
-            aria-label={`${copy.delete} ${session.title ?? copy.untitled}`}
-            title={`${copy.delete} ${session.title ?? copy.untitled}`}
-            className="inline-flex h-9 w-9 items-center justify-center text-ink-40 hover:text-danger transition rounded-md"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-haspopup="menu"
+            aria-expanded={menuOpen}
+            aria-label={`${menuCopy.more} ${session.title ?? copy.untitled}`}
+            title={menuCopy.more}
+            data-testid="tour-card-menu"
+            className="inline-flex h-9 w-9 items-center justify-center text-ink-40 hover:text-ink transition rounded-md"
           >
             <MoreVertical size={18} aria-hidden="true" />
           </button>
-        )}
+          {menuOpen && (
+            <div role="menu" aria-label={menuCopy.more} className="absolute right-0 top-full z-20 mt-1 min-w-48 rounded-md border border-line bg-card p-1 shadow-lg">
+              <Link role="menuitem" href={`/guide/studio/${session.id}`} onClick={() => setMenuOpen(false)} className="block rounded px-3 py-2 text-body text-ink hover:bg-paper-soft no-underline">
+                {copy.open}
+              </Link>
+              <Link role="menuitem" href={`/guide/studio/${session.id}/submission`} onClick={() => setMenuOpen(false)} className="block rounded px-3 py-2 text-body text-ink hover:bg-paper-soft no-underline">
+                {menuCopy.publication}
+              </Link>
+              {deletable && onDelete ? (
+                <button
+                  role="menuitem"
+                  type="button"
+                  onClick={() => { setMenuOpen(false); onDelete(session); }}
+                  data-testid="tour-card-delete"
+                  className="block w-full rounded px-3 py-2 text-left text-body text-danger hover:bg-grenadine-soft"
+                >
+                  {copy.delete}
+                </button>
+              ) : onDelete ? (
+                <span role="menuitem" aria-disabled="true" data-testid="tour-card-delete-blocked" className="block px-3 py-2 text-meta text-ink-40">
+                  {menuCopy.deleteBlocked}
+                </span>
+              ) : null}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

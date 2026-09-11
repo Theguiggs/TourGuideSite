@@ -574,6 +574,8 @@ export async function updateGuideProfileMutation(
     languages: string[];
     yearsExperience: number | null;
     photoUrl: string | null;
+    rgpdConsentVersion: string | null;
+    rgpdConsentAt: string | null;
   }>,
 ) {
   const interdits = CHAMPS_INTERDITS_EN_MODIFICATION.filter(

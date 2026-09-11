@@ -86,4 +86,7 @@ export interface GuideProfile {
   tourCount: number | null;
   verified: boolean;
   freeLanguageUsed: boolean;
+  /** Version du texte de consentement RGPD du Studio accepté (lot 6.2). */
+  rgpdConsentVersion?: string | null;
+  rgpdConsentAt?: string | null;
 }

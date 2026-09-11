@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { CircleDollarSign, Map, MessageSquareText, Plus, Star } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
@@ -66,6 +66,11 @@ export default function StudioDashboardPage() {
     top: 'Visites qui marchent', noPublished: 'Aucune visite publiée pour le moment.', untitled: 'Visite sans titre', noReviews: 'Aucun avis pour le moment.',
   }, [locale]);
 
+  // Le message d'erreur suit la langue SANS rendre `loadDashboard` dépendant
+  // de `copy` : sinon chaque bascule FR/EN relançait 1 + 2N requêtes.
+  const loadErrorRef = useRef(copy.loadError);
+  loadErrorRef.current = copy.loadError;
+
   const loadDashboard = useCallback(async (guideId: string) => {
     setIsLoading(true);
     setError(null);
@@ -109,21 +114,21 @@ export default function StudioDashboardPage() {
       logger.info(SERVICE_NAME, 'Dashboard loaded', { sessions: sessions.length });
       trackEvent(StudioAnalyticsEvents.STUDIO_SESSIONS_VIEW, { count: sessions.length });
     } catch (e) {
-      setError(copy.loadError);
+      setError(loadErrorRef.current);
       logger.error(SERVICE_NAME, 'Failed to load dashboard', { error: String(e) });
     } finally {
       setIsLoading(false);
     }
-  }, [copy.loadError]);
+  }, []);
 
+  const guideIdForLoad = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
   useEffect(() => {
-    const guideId = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
-    if (!guideId) {
+    if (!guideIdForLoad) {
       setIsLoading(false);
       return;
     }
-    loadDashboard(guideId);
-  }, [user, loadDashboard]);
+    loadDashboard(guideIdForLoad);
+  }, [guideIdForLoad, loadDashboard]);
 
   const greetingName = useMemo(() => {
     if (!user?.displayName) return undefined;

@@ -91,17 +91,29 @@ describe('TourCard', () => {
     expect(screen.getByText('En ligne')).toBeInTheDocument();
   });
 
-  it("expose un bouton supprimer si onDelete fourni", () => {
+  it("le ⋮ ouvre un menu ; « Supprimer » y appelle onDelete", () => {
     const onDelete = jest.fn();
     render(<TourCard session={mkSession({ id: 's1' })} onDelete={onDelete} />);
+    expect(screen.queryByTestId('tour-card-delete')).toBeNull();
+    fireEvent.click(screen.getByTestId('tour-card-menu'));
+    expect(screen.getByRole('menu')).toBeInTheDocument();
     fireEvent.click(screen.getByTestId('tour-card-delete'));
     expect(onDelete).toHaveBeenCalledTimes(1);
     expect(onDelete.mock.calls[0][0].id).toBe('s1');
   });
 
-  it("masque le bouton supprimer si onDelete absent", () => {
+  it("masque « Supprimer » si onDelete absent", () => {
     render(<TourCard session={mkSession({ id: 's1' })} />);
+    fireEvent.click(screen.getByTestId('tour-card-menu'));
     expect(screen.queryByTestId('tour-card-delete')).toBeNull();
+  });
+
+  it("ne propose pas la suppression d'une visite publiée", () => {
+    const onDelete = jest.fn();
+    render(<TourCard session={mkSession({ id: 's1', status: 'published' })} onDelete={onDelete} />);
+    fireEvent.click(screen.getByTestId('tour-card-menu'));
+    expect(screen.queryByTestId('tour-card-delete')).toBeNull();
+    expect(screen.getByTestId('tour-card-delete-blocked')).toBeInTheDocument();
   });
 
   it("affiche l'accès de la visite : gratuite, payante avec prix, abonnés", () => {

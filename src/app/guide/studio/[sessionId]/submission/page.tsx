@@ -268,7 +268,7 @@ export default function PublicationPage() {
               <span className="text-body-lg shrink-0">&#x1F4E4;</span>
               <div>
                 <p className="text-body font-medium text-mer">{submitLabel}</p>
-                <p className="text-meta text-mer">{readiness.ready ? t('La modération relit puis publie la visite', 'The review team checks, then publishes the tour') : t('Corrigez d’abord les points listés ci-dessus', 'Fix the items listed above first')}</p>
+                <p className="text-meta text-mer">{readiness.ready ? t('La modération vérifie la visite, puis la met en ligne', 'The review team checks the tour, then puts it online') : t('Corrigez d’abord les points listés ci-dessus', 'Fix the items listed above first')}</p>
               </div>
             </button>
           )}

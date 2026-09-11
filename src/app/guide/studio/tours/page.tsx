@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
@@ -93,6 +93,9 @@ export default function StudioToursPage() {
     setStatsPerSession(Object.fromEntries(stats));
   }, []);
 
+  const loadErrorRef = useRef(copy.loadError);
+  loadErrorRef.current = copy.loadError;
+
   const loadTours = useCallback(async (guideId: string) => {
     setIsLoading(true);
     setError(null);
@@ -116,21 +119,21 @@ export default function StudioToursPage() {
       // chacune au mieux — une lecture ratée laisse « — », jamais la page vide.
       void loadInsights(all);
     } catch (e) {
-      setError(copy.loadError);
+      setError(loadErrorRef.current);
       logger.error(SERVICE_NAME, 'Failed to load tours', { error: String(e) });
     } finally {
       setIsLoading(false);
     }
-  }, [copy.loadError, loadInsights]);
+  }, [loadInsights]);
 
+  const guideIdForLoad = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
   useEffect(() => {
-    const guideId = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
-    if (!guideId) {
+    if (!guideIdForLoad) {
       setIsLoading(false);
       return;
     }
-    loadTours(guideId);
-  }, [user, loadTours]);
+    loadTours(guideIdForLoad);
+  }, [guideIdForLoad, loadTours]);
 
   const counts = useMemo(() => bucketCounts(sessions), [sessions]);
   const filtered = useMemo(
