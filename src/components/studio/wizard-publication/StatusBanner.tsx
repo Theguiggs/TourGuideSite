@@ -22,8 +22,8 @@ const VARIANT_CFG: Record<
     bg: 'bg-ocre-soft',
     border: 'border-ocre',
     borderLeft: 'border-l-4 border-l-ocre',
-    text: 'text-ocre',
-    pill: 'bg-paper text-ocre',
+    text: 'text-ocre-ink',
+    pill: 'bg-paper text-ocre-ink',
   },
   submitted: {
     bg: 'bg-mer-soft',

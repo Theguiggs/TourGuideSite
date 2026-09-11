@@ -799,7 +799,7 @@ export default function ItineraryPage() {
                   </p>
                 )}
               </div>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <WizField label="Latitude" htmlFor={`edit-latitude-${scene.id}`}>
                   <WizInput
                     id={`edit-latitude-${scene.id}`}
@@ -1082,7 +1082,7 @@ export default function ItineraryPage() {
 
       {isLocked && (
         <div
-          className="mb-4 rounded-md border border-ocre bg-ocre-soft px-4 py-2.5 text-caption text-ocre"
+          className="mb-4 rounded-md border border-ocre bg-ocre-soft px-4 py-2.5 text-caption text-ocre-ink"
           role="status"
         >
           Contenu soumis — lecture seule.

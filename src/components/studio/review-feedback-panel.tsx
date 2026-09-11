@@ -100,10 +100,10 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
   if (!reviewData) {
     return (
       <div className="mb-6 p-4 bg-ocre-soft border border-ocre-soft rounded-lg" role="alert">
-        <p className="font-medium text-ocre">
+        <p className="font-medium text-ocre-ink">
           {sessionStatus === 'rejected' ? 'Tour rejeté' : 'Révision demandée'}
         </p>
-        <p className="text-sm text-ocre">
+        <p className="text-sm text-ocre-ink">
           Consultez le feedback par scène ci-dessous, corrigez les problèmes, puis resoumettez.
         </p>
       </div>
@@ -127,11 +127,11 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
       {/* Header */}
       <div className={`px-4 py-3 ${isRejected ? 'bg-grenadine-soft' : 'bg-ocre-soft'}`}>
         <div className="flex items-center justify-between">
-          <p className={`font-semibold ${isRejected ? 'text-danger' : 'text-ocre'}`}>
+          <p className={`font-semibold ${isRejected ? 'text-danger' : 'text-ocre-ink'}`}>
             {isRejected ? 'Tour rejeté par la modération' : 'Révision demandée par la modération'}
           </p>
           {reviewData.reviewDate && (
-            <p className="text-xs text-ocre">
+            <p className="text-xs text-ocre-ink">
               {new Date(reviewData.reviewDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
           )}
@@ -216,7 +216,7 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
         )}
 
         {/* Call to action */}
-        <p className="text-sm text-ocre pt-2 border-t border-ocre-soft">
+        <p className="text-sm text-ocre-ink pt-2 border-t border-ocre-soft">
           Corrigez les points signalés ci-dessus, puis resoumettez votre visite.
         </p>
       </div>

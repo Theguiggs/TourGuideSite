@@ -20,7 +20,7 @@ const VARIANT_CFG: Record<
   { bg: string; border: string; text: string }
 > = {
   danger: { bg: 'bg-grenadine-soft', border: 'border-grenadine', text: 'text-danger' },
-  warning: { bg: 'bg-ocre-soft', border: 'border-ocre', text: 'text-ocre' },
+  warning: { bg: 'bg-ocre-soft', border: 'border-ocre', text: 'text-ocre-ink' },
 };
 
 /**

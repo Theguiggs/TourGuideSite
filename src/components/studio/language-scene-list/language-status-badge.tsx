@@ -34,7 +34,7 @@ const STATUS_CONFIG: Record<SceneLanguageStatus, {
   },
   stale: {
     bg: 'bg-ocre-soft',
-    text: 'text-ocre',
+    text: 'text-ocre-ink',
     dot: 'bg-ocre',
     label: 'Modifie',
     animate: false,

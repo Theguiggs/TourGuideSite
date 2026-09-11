@@ -77,8 +77,9 @@ describe('tg — agrégat (AC 2)', () => {
 describe('tg.colors — palette inchangée (AC 3)', () => {
   it('contient 23 couleurs exactes (4 surfaces + ink+4 opacités + line + ardoise + 4 accents×soft + 4 états)', () => {
     // Comptage Story 1.2 : 4 (paper/soft/deep/card) + 5 (ink/ink80/60/40/20)
-    // + 2 (line/ardoise) + 8 (grenadine/ocre/mer/olive × soft) + 4 (états) = 23.
-    expect(Object.keys(tg.colors).length).toBe(23);
+    // + 2 (line/ardoise) + 8 (grenadine/ocre/mer/olive × soft) + 4 (états) = 23,
+    // + ocreInk (lot 4 accessibilité : texte ocre lisible sur papier) = 24.
+    expect(Object.keys(tg.colors).length).toBe(24);
   });
 
   it('grenadine signature = #C1262A', () => {

@@ -18,6 +18,7 @@ import dynamic from 'next/dynamic';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
 import type { StudioSession, StudioScene } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 // Dynamic import for Leaflet map (no SSR — browser-only)
 const PreviewMap = dynamic(() => import('@/components/studio/preview-map').then((m) => ({ default: m.PreviewMap })), {
@@ -432,7 +433,7 @@ export default function PreviewPage() {
                 <button
                   onClick={handlePlayAll}
                   className={`w-full py-3 rounded-xl text-sm font-semibold transition ${
-                    isPlayingAll ? 'bg-ocre text-white' : 'bg-grenadine text-white'
+                    isPlayingAll ? 'bg-ocre text-ink' : 'bg-grenadine text-white'
                   }`}
                   data-testid="play-all-btn"
                 >
@@ -525,7 +526,7 @@ export default function PreviewPage() {
                 onClick={handlePlayAll}
                 className={`font-medium py-2 px-5 rounded-lg text-sm transition ${
                   isPlayingAll
-                    ? 'bg-ocre hover:opacity-90 text-white'
+                    ? 'bg-ocre hover:brightness-110 text-ink'
                     : 'bg-grenadine hover:opacity-90 text-white'
                 }`}
                 data-testid="play-all-btn"
@@ -572,7 +573,7 @@ export default function PreviewPage() {
                     </p>
                     {scene.qualityScore && (
                       <span className={`inline-flex px-1.5 py-0 rounded text-[10px] font-medium ${
-                        scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre'
+                        scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                       }`}>
                         {scene.qualityScore === 'good' ? '✓ Bonne' : '⚠ À améliorer'}
                       </span>
@@ -652,7 +653,7 @@ export default function PreviewPage() {
           <button
             onClick={handleRetract}
             disabled={isRetracting}
-            className="border border-ocre text-ocre hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-6 rounded-lg transition"
+            className="border border-ocre text-ocre-ink hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-6 rounded-lg transition"
             data-testid="retract-btn"
           >
             {isRetracting ? 'Retrait...' : '↩ Retirer la publication'}
@@ -714,7 +715,7 @@ export default function PreviewPage() {
               }
             }}
             disabled={isSubmitting}
-            className="border border-ocre text-ocre hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-sm"
+            className="border border-ocre text-ocre-ink hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-sm"
             data-testid="archive-btn"
           >
             📦 Archiver
@@ -765,30 +766,18 @@ export default function PreviewPage() {
 
       {/* Delete confirmation dialog */}
       {showDeleteConfirm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" role="dialog" aria-modal="true">
-          <div className="bg-white rounded-xl shadow-2xl max-w-sm w-full mx-4 p-6">
-            <h3 className="text-lg font-bold text-ink mb-3">{t('Supprimer cette session ?', 'Delete this session?')}</h3>
-            <p className="text-sm text-ink-80 mb-5">
-              {t('Tous les fichiers audio, textes et métadonnées seront supprimés définitivement. Cette action est irréversible.', 'All audio files, text and metadata will be permanently deleted. This action cannot be undone.')}
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={handleDelete}
-                disabled={isDeleting}
-                className="flex-1 bg-danger hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-4 rounded-lg transition"
-                data-testid="confirm-delete-btn"
-              >
-                {isDeleting ? t('Suppression...', 'Deleting...') : t('Supprimer', 'Delete')}
-              </button>
-              <button
-                onClick={() => setShowDeleteConfirm(false)}
-                className="flex-1 border border-line text-ink-80 hover:bg-paper-soft font-medium py-2 px-4 rounded-lg transition"
-              >
-                Annuler
-              </button>
-            </div>
-          </div>
-        </div>
+        <ConfirmDialog
+          open
+          danger
+          title={t('Supprimer cette session ?', 'Delete this session?')}
+          description={t('Tous les fichiers audio, textes et métadonnées seront supprimés définitivement. Cette action est irréversible.', 'All audio files, text and metadata will be permanently deleted. This action cannot be undone.')}
+          confirmLabel={isDeleting ? t('Suppression...', 'Deleting...') : t('Supprimer', 'Delete')}
+          cancelLabel={t('Annuler', 'Cancel')}
+          busy={isDeleting}
+          confirmTestId="confirm-delete-btn"
+          onConfirm={handleDelete}
+          onCancel={() => setShowDeleteConfirm(false)}
+        />
       )}
     </div>
   );

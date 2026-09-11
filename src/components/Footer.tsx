@@ -99,6 +99,7 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
             >
               {copy.navigation}
             </h4>
+            <nav aria-label={copy.navigation}>
             <ul className="space-y-2" style={{ fontSize: tg.fontSize.body }}>
               <li>
                 <Link
@@ -155,6 +156,7 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
                 </Link>
               </li>
             </ul>
+            </nav>
           </div>
           <div>
             <h4

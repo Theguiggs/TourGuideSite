@@ -42,15 +42,12 @@ body {
   }
 }
 
-/* ML-6.4: Focus visible on interactive elements */
-button:focus-visible,
-a:focus-visible,
-select:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-[role="tab"]:focus-visible,
-[role="menuitem"]:focus-visible {
-  outline: 2px solid #0d9488;
+/* Lot 4 — focus visible sur TOUT élément focalisable, au jeton encre.
+ * Règle hors couche : elle l'emporte sur les utilitaires (`focus:outline-none`
+ * vit dans la couche `utilities`), sans toucher aux 28 sites qui les posaient.
+ * Une surface sombre pose `--tg-focus-ring` (ex. prompteur → papier). */
+:focus-visible {
+  outline: 2px solid var(--tg-focus-ring, var(--tg-color-ink));
   outline-offset: 2px;
 }
 

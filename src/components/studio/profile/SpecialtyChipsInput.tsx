@@ -78,7 +78,7 @@ export function SpecialtyChipsInput({
         <span
           key={s}
           data-testid={`specialty-chip-${s}`}
-          className="bg-ocre-soft text-ocre px-2.5 py-1 rounded-pill text-meta font-semibold inline-flex items-center gap-1.5"
+          className="bg-ocre-soft text-ocre-ink px-2.5 py-1 rounded-pill text-meta font-semibold inline-flex items-center gap-1.5"
         >
           {s}
           <button

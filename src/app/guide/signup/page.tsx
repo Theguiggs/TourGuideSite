@@ -292,9 +292,11 @@ export default function GuideSignupPage() {
                     onChange={(e) => { trackSignupStarted(); setDisplayName(e.target.value); }}
                     placeholder="Marie Dupont"
                     required
+                    aria-invalid={Boolean(errors.displayName)}
+                    aria-describedby={errors.displayName ? 'displayName-error' : undefined}
                     className={`${inputBase} ${errors.displayName ? 'border-grenadine' : 'border-line'}`}
                   />
-                  {errors.displayName && <p className="text-danger text-meta mt-1">{errors.displayName}</p>}
+                  {errors.displayName && <p id="displayName-error" className="text-danger text-meta mt-1">{errors.displayName}</p>}
                 </div>
 
                 <div>
@@ -309,9 +311,11 @@ export default function GuideSignupPage() {
                     placeholder="guide@exemple.com"
                     required
                     autoComplete="email"
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? 'email-error' : undefined}
                     className={`${inputBase} ${errors.email ? 'border-grenadine' : 'border-line'}`}
                   />
-                  {errors.email && <p className="text-danger text-meta mt-1">{errors.email}</p>}
+                  {errors.email && <p id="email-error" className="text-danger text-meta mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
@@ -326,6 +330,8 @@ export default function GuideSignupPage() {
                     placeholder="Votre mot de passe"
                     required
                     autoComplete="new-password"
+                    aria-invalid={Boolean(errors.password)}
+                    aria-describedby={errors.password ? 'password-error' : undefined}
                     className={`${inputBase} ${errors.password ? 'border-grenadine' : 'border-line'}`}
                   />
                   {password.length > 0 && (
@@ -338,13 +344,13 @@ export default function GuideSignupPage() {
                         { label: 'Un caractère spécial (!@#$%…)', ok: /[^A-Za-z0-9]/.test(password) },
                       ].map(({ label, ok }) => (
                         <li key={label} className={`flex items-center gap-1.5 text-meta transition-colors ${ok ? 'text-mer' : 'text-ink-40'}`}>
-                          <span className="text-[11px] font-bold">{ok ? '✓' : '○'}</span>
+                          <span className="text-[11px] font-bold" aria-hidden="true">{ok ? '✓' : '○'}</span>
                           {label}
                         </li>
                       ))}
                     </ul>
                   )}
-                  {errors.password && <p className="text-danger text-meta mt-1">{errors.password}</p>}
+                  {errors.password && <p id="password-error" className="text-danger text-meta mt-1">{errors.password}</p>}
                 </div>
 
                 <div>
@@ -356,6 +362,8 @@ export default function GuideSignupPage() {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     required
+                    aria-invalid={Boolean(errors.city)}
+                    aria-describedby={errors.city ? 'city-error' : undefined}
                     className={`${inputBase} ${errors.city ? 'border-grenadine' : 'border-line'}`}
                   >
                     <option value="">Sélectionnez une ville…</option>
@@ -363,7 +371,7 @@ export default function GuideSignupPage() {
                       <option key={c} value={c}>{c}</option>
                     ))}
                   </select>
-                  {errors.city && <p className="text-danger text-meta mt-1">{errors.city}</p>}
+                  {errors.city && <p id="city-error" className="text-danger text-meta mt-1">{errors.city}</p>}
                 </div>
 
               </div>
@@ -404,9 +412,11 @@ export default function GuideSignupPage() {
                   onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
                   placeholder="123456"
                   autoComplete="one-time-code"
+                  aria-invalid={Boolean(errors.code)}
+                  aria-describedby={errors.code ? 'code-error' : undefined}
                   className={`${inputBase} text-center text-h5 tracking-widest font-mono ${errors.code ? 'border-grenadine' : 'border-line'}`}
                 />
-                {errors.code && <p className="text-danger text-meta mt-1">{errors.code}</p>}
+                {errors.code && <p id="code-error" className="text-danger text-meta mt-1">{errors.code}</p>}
               </div>
 
               <button

@@ -53,7 +53,9 @@ export default function ResetPasswordPage() {
         {step === 'request' && (
           <form onSubmit={handleRequest} className="space-y-4">
             <p className="text-sm text-ink-60">Entrez votre email pour recevoir un code de réinitialisation.</p>
+            <label htmlFor="reset-email" className="block text-sm font-semibold text-ink-80 mb-1">Email</label>
             <input
+              id="reset-email"
               type="email"
               required
               placeholder="Email"
@@ -75,7 +77,9 @@ export default function ResetPasswordPage() {
         {step === 'confirm' && (
           <form onSubmit={handleConfirm} className="space-y-4">
             <p className="text-sm text-ink-60">Un code a été envoyé à <strong>{email}</strong>. Entrez-le ci-dessous avec votre nouveau mot de passe.</p>
+            <label htmlFor="reset-code" className="block text-sm font-semibold text-ink-80 mb-1">Code de vérification</label>
             <input
+              id="reset-code"
               type="text"
               required
               placeholder="Code de vérification"
@@ -84,7 +88,9 @@ export default function ResetPasswordPage() {
               autoComplete="one-time-code"
               className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine"
             />
+            <label htmlFor="reset-new-password" className="block text-sm font-semibold text-ink-80 mb-1">Nouveau mot de passe</label>
             <input
+              id="reset-new-password"
               type="password"
               required
               placeholder="Nouveau mot de passe"

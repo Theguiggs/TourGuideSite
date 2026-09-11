@@ -132,7 +132,7 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
   const totalCount = filteredCities.length;
 
   return (
-    <main
+    <div
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
       style={{ background: tg.colors.paper }}
     >
@@ -179,6 +179,9 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
             border: 0,
             padding: 0,
             cursor: 'pointer',
+            minHeight: 44,
+            display: 'inline-flex',
+            alignItems: 'center',
           }}
           className="focus-visible:outline-2 focus-visible:outline-offset-2"
         >
@@ -199,6 +202,9 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
                 border: 0,
                 padding: 0,
                 cursor: 'pointer',
+                minHeight: 44,
+                display: 'inline-flex',
+                alignItems: 'center',
               }}
               className="focus-visible:outline-2 focus-visible:outline-offset-2"
             >
@@ -248,6 +254,6 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
           ))}
         </div>
       )}
-    </main>
+    </div>
   );
 }

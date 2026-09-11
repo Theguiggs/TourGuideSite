@@ -1,6 +1,6 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import { Children, cloneElement, isValidElement, type ReactNode } from 'react';
 
 interface WizFieldProps {
   /** Label text displayed above the control. */
@@ -32,6 +32,16 @@ export function WizField({
   helper,
   children,
 }: WizFieldProps) {
+  // L'erreur est reliée au champ (`aria-describedby` + `aria-invalid`) quand
+  // l'enfant est un élément unique : un lecteur d'écran l'entend avec le champ,
+  // pas seulement comme une alerte flottante.
+  const errorId = htmlFor ? `${htmlFor}-error` : undefined;
+  const single = Children.count(children) === 1 ? Children.only(children) : null;
+  const wired =
+    error && errorId && isValidElement<{ 'aria-describedby'?: string; 'aria-invalid'?: boolean }>(single)
+      ? cloneElement(single, { 'aria-describedby': errorId, 'aria-invalid': true })
+      : children;
+
   return (
     <div className="mb-5" data-testid="wiz-field">
       <div className="flex items-baseline justify-between mb-1.5">
@@ -50,9 +60,9 @@ export function WizField({
           <span className="text-meta text-ink-40 font-mono">{hint}</span>
         )}
       </div>
-      {children}
+      {wired}
       {error ? (
-        <div className="text-meta text-danger mt-1" role="alert">
+        <div id={errorId} className="text-meta text-danger mt-1" role="alert">
           {error}
         </div>
       ) : helper ? (

@@ -92,7 +92,7 @@ export default function AdminAnalyticsPage() {
       <h1 className="text-2xl font-bold text-ink mb-6">Analytics Studio</h1>
 
       {isEmpty && (
-        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 mb-6 text-sm text-ocre" role="status">
+        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 mb-6 text-sm text-ocre-ink" role="status">
           Aucune donnée disponible. Cette vue se remplira au fur et à mesure que des guides publieront des visites.
         </div>
       )}
@@ -167,7 +167,7 @@ export default function AdminAnalyticsPage() {
       {/* Production par Visite — des faits comptés, aucun coût déduit */}
       <section className="mb-8">
         <h2 className="text-lg font-semibold text-ink mb-3">Production par Visite</h2>
-        <div className="bg-card border border-line rounded-lg overflow-hidden">
+        <div className="bg-card border border-line rounded-lg overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-paper-soft">
               <tr>
@@ -270,6 +270,7 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
         </div>
       ) : (
         <>
+          <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-paper-soft">
               <tr>
@@ -296,13 +297,14 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
                   <td className="px-2 py-2 text-right text-ink-60">
                     {formaterDollars(axe.provisionOuverteMicros)}
                   </td>
-                  <td className="px-2 py-2 text-right text-ocre">
+                  <td className="px-2 py-2 text-right text-ocre-ink">
                     {formaterDollars(axe.relacheMicros)}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          </div>
           <p className="text-xs text-ink-40 mt-2">
             Trois grandeurs distinctes, jamais additionnées&nbsp;: <strong>mesuré</strong> (débit
             conclu), <strong>provisionné</strong> (appel encore en vol), <strong>relâché</strong>{' '}

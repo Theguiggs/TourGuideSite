@@ -23,7 +23,7 @@ export interface ChipProps extends React.HTMLAttributes<HTMLSpanElement> {
 const palette: Record<ChipColor, { color: string; soft: string }> = {
   default:   { color: tgColors.ink,        soft: tgColors.paperDeep },
   grenadine: { color: tgColors.grenadine,  soft: tgColors.grenadineSoft },
-  ocre:      { color: tgColors.ocre,       soft: tgColors.ocreSoft },
+  ocre:      { color: tgColors.ocreInk,    soft: tgColors.ocreSoft },
   mer:       { color: tgColors.mer,        soft: tgColors.merSoft },
   olive:     { color: tgColors.olive,      soft: tgColors.oliveSoft },
 };

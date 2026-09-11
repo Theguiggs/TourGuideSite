@@ -700,11 +700,11 @@ export default function ModerationReviewPage() {
           {/* Legacy admin comments */}
           {globalComments.length > 0 && (
             <div className="bg-ocre-soft border border-ocre rounded-md px-4 py-3">
-              <p className="text-sm font-semibold text-ocre mb-2">Commentaires admin existants</p>
+              <p className="text-sm font-semibold text-ocre-ink mb-2">Commentaires admin existants</p>
               {globalComments.map((c) => (
-                <div key={c.id} className="text-sm text-ocre mb-1">
+                <div key={c.id} className="text-sm text-ocre-ink mb-1">
                   <span className="font-medium">{c.reviewerName}</span> — {c.comment}
-                  <span className="text-xs text-ocre ml-2">{new Date(c.date).toLocaleDateString('fr-FR')}</span>
+                  <span className="text-xs text-ocre-ink ml-2">{new Date(c.date).toLocaleDateString('fr-FR')}</span>
                 </div>
               ))}
             </div>
@@ -732,7 +732,7 @@ export default function ModerationReviewPage() {
                 <div className="bg-card rounded-md border border-grenadine p-4">
                   <h3 className="text-sm font-semibold text-grenadine mb-2">Description ({activePreviewLang.toUpperCase()})</h3>
                   <p className="text-sm text-ink">
-                    {translatedDescriptions[activePreviewLang] || <span className="italic text-ocre">Non traduite</span>}
+                    {translatedDescriptions[activePreviewLang] || <span className="italic text-ocre-ink">Non traduite</span>}
                   </p>
                 </div>
               </div>
@@ -778,7 +778,7 @@ export default function ModerationReviewPage() {
                         <div className="flex items-center gap-2 mb-2">
                           <span className="w-6 h-6 bg-grenadine text-white rounded-full flex items-center justify-center text-xs font-bold">{scene.order}</span>
                           <p className="font-medium text-ink text-sm">{displayTitle}</p>
-                          <span className={`text-[10px] ml-auto px-1.5 py-0.5 rounded ${seg ? 'bg-olive-soft text-olive' : 'bg-ocre-soft text-ocre'}`}>
+                          <span className={`text-[10px] ml-auto px-1.5 py-0.5 rounded ${seg ? 'bg-olive-soft text-olive' : 'bg-ocre-soft text-ocre-ink'}`}>
                             {seg ? `${activePreviewLang.toUpperCase()} OK` : `${activePreviewLang.toUpperCase()} manquant`}
                           </span>
                         </div>
@@ -797,7 +797,7 @@ export default function ModerationReviewPage() {
                         {displayText ? (
                           <p className="text-xs text-ink leading-relaxed">{displayText}</p>
                         ) : (
-                          <p className="text-xs text-ocre italic">Traduction non disponible</p>
+                          <p className="text-xs text-ocre-ink italic">Traduction non disponible</p>
                         )}
                       </div>
                     </div>
@@ -850,7 +850,7 @@ export default function ModerationReviewPage() {
                 )}
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className={`text-xs font-bold px-2 py-0.5 rounded ${detail.purchaseType === 'free' ? 'bg-olive text-olive' : 'bg-ocre-soft text-ocre'}`}>
+                    <span className={`text-xs font-bold px-2 py-0.5 rounded ${detail.purchaseType === 'free' ? 'bg-olive text-olive' : 'bg-ocre-soft text-ocre-ink'}`}>
                       {detail.purchaseType === 'free'
                         ? 'GRATUIT'
                         : detail.purchaseType === 'paid'
@@ -933,7 +933,7 @@ export default function ModerationReviewPage() {
                       <p className="text-ink-80 leading-relaxed">{detail.descriptionLongue || detail.description}</p>
                     </>
                   ) : (
-                    <div className="rounded-lg border border-ocre bg-ocre-soft p-3 text-sm text-ocre">
+                    <div className="rounded-lg border border-ocre bg-ocre-soft p-3 text-sm text-ocre-ink">
                       Description non traduite en {activePreviewLang.toUpperCase()}. Aucun texte source n’est utilisé comme traduction.
                     </div>
                   )}
@@ -948,7 +948,7 @@ export default function ModerationReviewPage() {
                     {guideRoutePath ? (
                       <span className="ml-2 text-xs font-normal text-success">· Tracé du guide</span>
                     ) : (
-                      <span className="ml-2 text-xs font-normal text-ocre">· Tracé auto (le guide n&apos;a pas persisté son tracé)</span>
+                      <span className="ml-2 text-xs font-normal text-ocre-ink">· Tracé auto (le guide n&apos;a pas persisté son tracé)</span>
                     )}
                   </h3>
                   <div className="h-80">
@@ -1033,7 +1033,7 @@ export default function ModerationReviewPage() {
                             )}
                           </div>
                           {!isSourceLang && (
-                            <span className={`text-xs px-2 py-0.5 rounded-full ${hasTranslation ? 'bg-olive-soft text-olive' : 'bg-ocre-soft text-ocre'}`}>
+                            <span className={`text-xs px-2 py-0.5 rounded-full ${hasTranslation ? 'bg-olive-soft text-olive' : 'bg-ocre-soft text-ocre-ink'}`}>
                               {hasTranslation ? `${activePreviewLang.toUpperCase()} OK` : `${activePreviewLang.toUpperCase()} manquant`}
                             </span>
                           )}
@@ -1073,7 +1073,7 @@ export default function ModerationReviewPage() {
                             {displayText ? (
                               <p className="text-sm text-ink-80 whitespace-pre-wrap">{displayText}</p>
                             ) : !isSourceLang ? (
-                              <p className="text-sm text-ocre italic">Traduction non disponible</p>
+                              <p className="text-sm text-ocre-ink italic">Traduction non disponible</p>
                             ) : (
                               <p className="text-sm text-ink-40 italic">Aucun texte</p>
                             )}
@@ -1145,7 +1145,7 @@ export default function ModerationReviewPage() {
                       : detail.descriptionLongue}
                   </p>
                   {activePreviewLang !== detail.languePrincipale && !translatedDescriptions[activePreviewLang] && (
-                    <p className="text-xs text-ocre mt-1">Non traduite en {activePreviewLang.toUpperCase()}</p>
+                    <p className="text-xs text-ocre-ink mt-1">Non traduite en {activePreviewLang.toUpperCase()}</p>
                   )}
                 </>
               ) : (
@@ -1265,9 +1265,9 @@ export default function ModerationReviewPage() {
                       {/* Scene admin comments */}
                       {sceneComments.length > 0 && (
                         <div className="bg-ocre-soft border border-ocre rounded-lg p-3 mt-2">
-                          <p className="text-xs font-semibold text-ocre mb-1">Commentaires</p>
+                          <p className="text-xs font-semibold text-ocre-ink mb-1">Commentaires</p>
                           {sceneComments.map((c) => (
-                            <p key={c.id} className="text-sm text-ocre">
+                            <p key={c.id} className="text-sm text-ocre-ink">
                               <span className="font-medium">{c.reviewerName}:</span> {c.comment}
                             </p>
                           ))}
@@ -1317,7 +1317,7 @@ export default function ModerationReviewPage() {
                         </span>
                       )}
                       {!hasValidCoordinates(scene.latitude, scene.longitude) && (
-                        <span className="text-xs text-ocre ml-auto">⚠ Pas de GPS</span>
+                        <span className="text-xs text-ocre-ink ml-auto">⚠ Pas de GPS</span>
                       )}
                     </div>
                     {scene.poiDescription && (
@@ -1456,7 +1456,7 @@ export default function ModerationReviewPage() {
                 onClick={() => { setShowRevisionForm(!showRevisionForm); setShowCommentForm(false); setShowRejectForm(false); }}
                 disabled={submitting}
                 data-testid="revision-btn"
-                className="w-full border border-ocre text-ocre font-bold py-3 rounded-md hover:bg-ocre-soft disabled:opacity-50"
+                className="w-full border border-ocre text-ocre-ink font-bold py-3 rounded-md hover:bg-ocre-soft disabled:opacity-50"
               >
                 Renvoyer au guide
               </button>
@@ -1510,7 +1510,7 @@ export default function ModerationReviewPage() {
             {/* Revision Form */}
             {showRevisionForm && (
               <div className="bg-card rounded-md border border-ocre p-4">
-                <h3 className="text-sm font-semibold text-ocre mb-3">Renvoyer au guide pour corrections</h3>
+                <h3 className="text-sm font-semibold text-ocre-ink mb-3">Renvoyer au guide pour corrections</h3>
                 <div className="mb-3">
                   <textarea
                     value={revisionFeedback}
@@ -1527,7 +1527,7 @@ export default function ModerationReviewPage() {
                 <button
                   onClick={handleSendRevision}
                   disabled={revisionFeedback.length < 10 || submitting}
-                  className="w-full bg-ocre text-white font-bold py-2 rounded-md hover:bg-ocre disabled:opacity-50 text-sm"
+                  className="w-full bg-ocre text-ink font-bold py-2 rounded-md hover:bg-ocre disabled:opacity-50 text-sm"
                 >
                   {submitting ? 'Envoi...' : 'Renvoyer au guide'}
                 </button>

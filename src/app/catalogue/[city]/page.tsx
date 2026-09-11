@@ -38,7 +38,7 @@ export default async function CityPage({ params }: CityPageProps) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <nav className="text-sm text-ink-60 mb-6">
+      <nav aria-label={"Fil d'Ariane"} className="text-sm text-ink-60 mb-6">
         <Link href="/catalogue" className="hover:text-grenadine">
           Catalogue
         </Link>

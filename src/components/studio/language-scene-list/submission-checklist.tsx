@@ -79,7 +79,7 @@ export function SubmissionChecklist({
         className={`rounded-lg border p-3 text-sm font-medium ${
           readiness.ready
             ? 'border-olive-soft bg-olive-soft text-success'
-            : 'border-ocre-soft bg-ocre-soft text-ocre'
+            : 'border-ocre-soft bg-ocre-soft text-ocre-ink'
         }`}
       >
         {readiness.ready
@@ -121,7 +121,7 @@ export function SubmissionChecklist({
         type="button"
         disabled={!readiness.ready || submitting}
         onClick={handleSubmit}
-        className="w-full rounded-md bg-mer px-4 py-2 text-sm font-medium text-white hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full rounded-md bg-mer px-4 py-2 text-sm font-medium text-ink hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {submitting ? 'Soumission en cours...' : `Soumettre la version ${language}`}
       </button>

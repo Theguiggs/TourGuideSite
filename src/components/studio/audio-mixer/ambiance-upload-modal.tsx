@@ -321,7 +321,7 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
               <p className="text-[10px] text-ink-40 mt-0.5">{description.length}/200</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
                 <label className="block text-xs font-medium text-ink-80 mb-1">Categorie</label>
                 <select

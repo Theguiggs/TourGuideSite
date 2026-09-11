@@ -96,7 +96,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                 </span>
                 {scene.qualityScore && (
                   <span className={`px-1.5 py-0 rounded text-[10px] font-medium ${
-                    scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre'
+                    scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                   }`}>
                     {scene.qualityScore === 'good' ? '✓ Bonne' : '⚠ À améliorer'}
                   </span>
@@ -174,7 +174,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
             ✗ Révision demandée
           </button>
           {message && (
-            <span className={`text-sm ${message.includes('approuvé') ? 'text-success' : 'text-ocre'}`} role="status">
+            <span className={`text-sm ${message.includes('approuvé') ? 'text-success' : 'text-ocre-ink'}`} role="status">
               {message}
             </span>
           )}

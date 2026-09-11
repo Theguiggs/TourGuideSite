@@ -21,7 +21,7 @@ export function LegalLanguageSwitcher({
         href={frenchHref}
         hrefLang="fr"
         aria-current={locale === 'fr' ? 'page' : undefined}
-        className="px-3 py-2 font-sans no-underline"
+        className="inline-flex min-h-11 items-center px-4 font-sans no-underline"
         style={{
           color: locale === 'fr' ? tg.colors.paper : tg.colors.ink,
           backgroundColor: locale === 'fr' ? tg.colors.grenadine : tg.colors.paper,
@@ -34,7 +34,7 @@ export function LegalLanguageSwitcher({
         href={englishHref}
         hrefLang="en"
         aria-current={locale === 'en' ? 'page' : undefined}
-        className="px-3 py-2 font-sans no-underline border-l border-line"
+        className="inline-flex min-h-11 items-center px-4 font-sans no-underline border-l border-line"
         style={{
           color: locale === 'en' ? tg.colors.paper : tg.colors.ink,
           backgroundColor: locale === 'en' ? tg.colors.grenadine : tg.colors.paper,

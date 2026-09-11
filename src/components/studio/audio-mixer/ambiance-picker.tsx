@@ -170,7 +170,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
 
         {/* Sounds grid */}
         {tab === 'standard' && (
-          <div className="grid grid-cols-2 gap-2 max-h-56 overflow-y-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-56 overflow-y-auto">
             {standardSounds.map((sound) => (
               <div
                 key={sound.id}

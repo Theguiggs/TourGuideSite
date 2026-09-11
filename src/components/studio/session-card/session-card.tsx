@@ -79,7 +79,7 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
 
           {/* Alerts */}
           {needsAttention && <span className="text-danger text-xs animate-pulse shrink-0">Action requise</span>}
-          {hasAdminFeedback && !needsAttention && <span className="text-ocre text-xs shrink-0">Retour admin</span>}
+          {hasAdminFeedback && !needsAttention && <span className="text-ocre-ink text-xs shrink-0">Retour admin</span>}
 
           {/* Date */}
           <span className="text-xs text-ink-40 shrink-0">{formatDateShort(session.createdAt)}</span>
@@ -121,7 +121,7 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
         <div className="flex items-center gap-3">
           {/* Version badge */}
           {version > 1 && (
-            <span className="inline-flex px-1.5 py-0.5 rounded text-[11px] font-semibold bg-ocre-soft text-ocre shrink-0">
+            <span className="inline-flex px-1.5 py-0.5 rounded text-[11px] font-semibold bg-ocre-soft text-ocre-ink shrink-0">
               V{version}
             </span>
           )}
@@ -133,7 +133,7 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
 
           {/* Alerts */}
           {needsAttention && <span className="text-danger animate-pulse shrink-0" title="Action requise">!!</span>}
-          {hasAdminFeedback && !needsAttention && <span className="text-ocre shrink-0" title="Retour admin">!</span>}
+          {hasAdminFeedback && !needsAttention && <span className="text-ocre-ink shrink-0" title="Retour admin">!</span>}
 
           {/* Spacer */}
           <span className="flex-1" />

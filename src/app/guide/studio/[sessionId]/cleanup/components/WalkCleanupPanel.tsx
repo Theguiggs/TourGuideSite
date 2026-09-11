@@ -78,7 +78,7 @@ export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelPro
         <WalkMap points={points} />
       </div>
 
-      <dl className="grid grid-cols-2 gap-2 text-sm" data-testid="walk-stats">
+      <dl className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm" data-testid="walk-stats">
         <div className="bg-paper-soft rounded-lg p-2">
           <dt className="text-xs text-ink-60">Durée</dt>
           <dd className="font-medium text-ink" data-testid="walk-stat-duration">{formatDuration(walk.durationMs)}</dd>

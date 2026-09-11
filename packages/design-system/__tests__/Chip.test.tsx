@@ -52,7 +52,7 @@ const SOFT_BY_COLOR: Record<ChipColor, string> = {
 const COLOR_BY_COLOR: Record<ChipColor, string> = {
   default:   tgColors.ink,
   grenadine: tgColors.grenadine,
-  ocre:      tgColors.ocre,
+  ocre:      tgColors.ocreInk,
   mer:       tgColors.mer,
   olive:     tgColors.olive,
 };

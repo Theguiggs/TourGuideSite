@@ -350,7 +350,7 @@ export function OpenMultilangModal({
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6">
             {/* ─── LEFT: language table ─── */}
-            <div>
+            <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-line text-ink-60">
@@ -379,7 +379,7 @@ export function OpenMultilangModal({
                               width="20" height="15" alt="" aria-hidden="true" className="shrink-0"
                             />
                             <span className="font-medium text-ink">{lang.label}</span>
-                            {premium && <span className="text-[10px] text-ocre">premium</span>}
+                            {premium && <span className="text-[10px] text-ocre-ink">premium</span>}
                           </span>
                         </td>
                         <td className="py-2 px-2">
@@ -440,7 +440,7 @@ export function OpenMultilangModal({
                   <p className="text-ink-60">Traduction automatique (MarianMT). Langues européennes uniquement.</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-ink">Auto Pro — 2,99€ <span className="text-ocre">(4,99€ premium)</span></p>
+                  <p className="font-semibold text-ink">Auto Pro — 2,99€ <span className="text-ocre-ink">(4,99€ premium)</span></p>
                   <p className="text-ink-60">Traduction automatique (Deepl), meilleure qualité + langues asiatiques.</p>
                 </div>
                 <div className="pt-1 border-t border-line">

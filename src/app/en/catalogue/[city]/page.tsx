@@ -34,7 +34,7 @@ export default async function EnglishCityPage({params}: CityPageProps) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <nav className="text-sm text-ink-60 mb-6">
+      <nav aria-label={"Breadcrumb"} className="text-sm text-ink-60 mb-6">
         <Link href="/en/catalogue" className="hover:text-grenadine">Catalogue</Link>
         <span className="mx-2">/</span>
         <span className="text-ink">{city.name}</span>

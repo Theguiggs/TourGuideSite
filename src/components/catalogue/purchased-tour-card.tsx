@@ -47,9 +47,9 @@ export function PurchasedTourCard({ purchase, locale = 'fr' }: PurchasedTourCard
         <p className="text-sm text-ink-60 mb-2">
           {tour.city} &middot; {tour.duration} min &middot; {tour.distance} km
         </p>
-        {meta && <p className="text-xs text-ink-40">{meta}</p>}
+        {meta && <p className="text-xs text-ink-60">{meta}</p>}
         {!published && (
-          <p className="text-xs text-ink-40 mt-1 italic">
+          <p className="text-xs text-ink-60 mt-1 italic">
             {locale === 'en'
               ? 'Currently unavailable in the catalogue - find it in the Murmure app.'
               : "Indisponible au catalogue actuellement — retrouvez-la dans l'app Murmure."}

@@ -83,6 +83,7 @@ export function PreviewMap({
   const routeColor = hasCustomPath || hasOverride || manualMode ? tg.colors.grenadine : tg.colors.mer;
 
   return (
+    <div role="application" aria-label="Aperçu de l’itinéraire sur la carte">
     <MapContainer
       center={center}
       zoom={16}
@@ -110,5 +111,6 @@ export function PreviewMap({
         />
       ))}
     </MapContainer>
+    </div>
   );
 }

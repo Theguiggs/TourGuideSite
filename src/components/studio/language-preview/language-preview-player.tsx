@@ -215,7 +215,7 @@ export function LanguagePreviewPlayer({
       {/* Alert for missing audio */}
       {alertMessage && (
         <div
-          className="bg-ocre-soft border border-ocre-soft rounded-lg px-4 py-2 text-sm text-ocre"
+          className="bg-ocre-soft border border-ocre-soft rounded-lg px-4 py-2 text-sm text-ocre-ink"
           role="alert"
           data-testid="preview-alert"
         >
@@ -229,7 +229,7 @@ export function LanguagePreviewPlayer({
           onClick={handleTeaser}
           className={`py-2 px-4 rounded-lg text-sm font-medium transition ${
             mode === 'teaser'
-              ? 'bg-ocre hover:opacity-90 text-white'
+              ? 'bg-ocre hover:brightness-110 text-ink'
               : 'bg-grenadine hover:opacity-90 text-white'
           }`}
           data-testid="teaser-btn"
@@ -241,7 +241,7 @@ export function LanguagePreviewPlayer({
           onClick={handleFullPreview}
           className={`py-2 px-4 rounded-lg text-sm font-medium transition ${
             mode === 'full'
-              ? 'bg-ocre hover:opacity-90 text-white'
+              ? 'bg-ocre hover:brightness-110 text-ink'
               : 'bg-mer hover:opacity-90 text-white'
           }`}
           data-testid="full-preview-btn"

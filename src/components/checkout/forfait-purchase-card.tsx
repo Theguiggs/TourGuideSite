@@ -317,7 +317,11 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
               ? 'Sign in to link the pass to your account.'
               : 'Connectez-vous pour rattacher le forfait à votre compte.'}
           </p>
+          <label htmlFor="forfait-email" style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}>
+            Email
+          </label>
           <input
+            id="forfait-email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -326,7 +330,11 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
             required
             style={{ padding: tg.space[3], borderRadius: tg.radius.sm }}
           />
+          <label htmlFor="forfait-password" style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}>
+            {locale === 'en' ? 'Password' : 'Mot de passe'}
+          </label>
           <input
+            id="forfait-password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

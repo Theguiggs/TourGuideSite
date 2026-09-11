@@ -50,7 +50,7 @@ export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
 
   if (authLoading || (isAuthenticated && loading)) {
     return (
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" aria-busy="true">
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" role="status" aria-busy="true" aria-label={locale === 'en' ? 'Loading your purchases' : 'Chargement de vos achats'}>
         {[0, 1, 2].map((i) => (
           <div key={i} className="rounded-xl border border-line overflow-hidden">
             <div className="h-40 bg-paper-deep animate-pulse" />

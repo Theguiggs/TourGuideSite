@@ -88,7 +88,7 @@ describe('ManuallyEditedModal', () => {
     expect(screen.getByTestId('manually-edited-modal')).toBeInTheDocument();
     expect(screen.getByTestId('modal-scene-name')).toHaveTextContent('Scene 3 - Place Vendome');
     expect(screen.getByTestId('modal-warning-message')).toHaveTextContent(
-      'Vous avez corrige cette traduction a la main. Mettre a jour ecrasera vos corrections. Continuer ?',
+      'Vous avez corrigé cette traduction à la main. Mettre à jour écrasera vos corrections. Continuer ?',
     );
     expect(screen.getByTestId('modal-text-preview')).toHaveTextContent('Hello world translated text');
   });

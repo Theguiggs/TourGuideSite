@@ -63,7 +63,7 @@ export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined 
           onClick={onMenuToggle}
           aria-label={menuOpen ? copy.closeNavigation : copy.openNavigation}
           aria-expanded={menuOpen}
-          className="inline-flex h-10 w-10 items-center justify-center text-ink-60 hover:text-ink lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center text-ink-60 hover:text-ink lg:hidden"
         >
           {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
         </button>
@@ -84,13 +84,14 @@ export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined 
           href={publicHelpHref}
           aria-label={copy.help}
           title={copy.help}
-          className="hidden h-9 w-9 items-center justify-center text-ink-60 no-underline transition hover:text-ink sm:inline-flex"
+          className="hidden h-11 w-11 items-center justify-center text-ink-60 no-underline transition hover:text-ink sm:inline-flex"
         >
           <HelpCircle size={18} aria-hidden="true" />
         </Link>
 
         <div
           className="inline-flex overflow-hidden rounded-md border border-line"
+          role="group"
           aria-label={copy.chooseLanguage}
         >
           {(['fr', 'en'] as const).map((targetLocale) => (
@@ -99,7 +100,7 @@ export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined 
               type="button"
               onClick={() => setLocale(targetLocale)}
               aria-pressed={locale === targetLocale}
-              className={`min-h-8 px-2 text-meta font-bold transition ${
+              className={`min-h-11 px-3 text-meta font-bold transition ${
                 locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper text-ink-60 hover:text-ink'
               }`}
             >
@@ -115,7 +116,7 @@ export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined 
             aria-haspopup="menu"
             aria-expanded={accountOpen}
             data-testid="studio-header-user"
-            className="flex h-10 items-center gap-2 rounded-md px-1.5 transition hover:bg-paper-soft"
+            className="flex min-h-11 items-center gap-2 rounded-md px-1.5 transition hover:bg-paper-soft"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-grenadine text-meta font-bold text-paper">
               {initial}

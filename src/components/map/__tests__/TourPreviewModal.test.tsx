@@ -33,7 +33,7 @@ describe('TourPreviewModal', () => {
     render(
       <TourPreviewModal pois={mockPois} tourTitle="Test Tour" onClose={jest.fn()} />,
     );
-    expect(screen.getByText('Previsualisation du parcours')).toBeTruthy();
+    expect(screen.getByText('Prévisualisation de l’itinéraire')).toBeTruthy();
     expect(screen.getByText('Test Tour')).toBeTruthy();
     // Distance and time badges
     expect(screen.getByText(/km/)).toBeTruthy();

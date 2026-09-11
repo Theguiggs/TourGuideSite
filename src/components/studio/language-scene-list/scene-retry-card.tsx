@@ -52,7 +52,7 @@ export function SceneRetryCard({
           type="button"
           disabled={isRetrying}
           onClick={() => onRetry(sceneId)}
-          className="ml-4 inline-flex items-center rounded-md bg-danger px-3 py-1.5 text-sm font-medium text-white hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          className="ml-4 inline-flex items-center rounded-md bg-danger px-3 py-1.5 text-sm font-medium text-ink hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isRetrying ? (
             <>

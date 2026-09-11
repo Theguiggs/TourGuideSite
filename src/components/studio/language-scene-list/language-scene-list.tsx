@@ -299,7 +299,7 @@ export function LanguageSceneList({
             data-testid="auto-translate-button"
             type="button"
             onClick={() => onRequestAutoTranslation(lang)}
-            className="inline-flex items-center gap-2 rounded-md bg-mer px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-md bg-mer px-4 py-2 text-sm font-medium text-ink hover:brightness-110"
           >
             <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616L18 9.381a1 1 0 01-1.447 1.382L15 9.654V14a1 1 0 01-1 1h-1v2a1 1 0 11-2 0v-2H9v2a1 1 0 11-2 0v-2H6a1 1 0 01-1-1V9.654L3.447 10.763A1 1 0 012 9.381l1.786-1.87-1.233-.616a1 1 0 01.894-1.79l1.599.8L9 4.323V3a1 1 0 011-1z" />
@@ -315,7 +315,7 @@ export function LanguageSceneList({
       {/* Resume button */}
       {hasMissingScenes && (
         <div className="rounded-lg border border-ocre-soft bg-ocre-soft p-4">
-          <p className="text-sm text-ocre">
+          <p className="text-sm text-ocre-ink">
             Certaines scènes n&apos;ont pas encore été traduites.
           </p>
           {onResumeBatch && (
@@ -323,7 +323,7 @@ export function LanguageSceneList({
             data-testid="resume-batch-button"
             type="button"
             onClick={onResumeBatch}
-            className="mt-2 inline-flex items-center rounded-md bg-ocre px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+            className="mt-2 inline-flex items-center rounded-md bg-ocre px-4 py-2 text-sm font-medium text-ink hover:brightness-110"
           >
             Reprendre la traduction
           </button>
@@ -435,7 +435,7 @@ export function LanguageSceneList({
                   data-testid="batch-retranslate-stale-button"
                   type="button"
                   onClick={handleRetranslateStaleClick}
-                  className="inline-flex items-center rounded-md border border-ocre px-4 py-2 text-sm font-medium text-ocre hover:bg-ocre-soft"
+                  className="inline-flex items-center rounded-md border border-ocre px-4 py-2 text-sm font-medium text-ocre-ink hover:bg-ocre-soft"
                 >
                   Re-traduire les scenes modifiees ({staleCount})
                 </button>
@@ -509,11 +509,11 @@ export function LanguageSceneList({
                     type="button"
                     onClick={handleSubmitClick}
                     disabled={isDisabled}
-                    className="inline-flex items-center rounded-md bg-mer px-4 py-2 text-sm font-medium text-white hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex items-center rounded-md bg-mer px-4 py-2 text-sm font-medium text-ink hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     Soumettre la version {langLabel}
                   </button>
-                  <span data-testid="submit-readiness-info" className={`text-xs ${readiness.ready ? 'text-success' : 'text-ocre'}`}>
+                  <span data-testid="submit-readiness-info" className={`text-xs ${readiness.ready ? 'text-success' : 'text-ocre-ink'}`}>
                     {readiness.ready
                       ? `${readiness.complete}/${readiness.total} scenes — Texte \u2705 Audio \u2705`
                       : (() => {

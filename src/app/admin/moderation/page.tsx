@@ -8,8 +8,8 @@ import { logger } from '@/lib/logger';
 import type { LanguageModerationItem, ModerationMetrics } from '@/types/moderation';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  pending: { label: 'En attente', className: 'bg-ocre-soft text-ocre' },
-  resubmitted: { label: 'Resoumis', className: 'bg-ocre-soft text-ocre' },
+  pending: { label: 'En attente', className: 'bg-ocre-soft text-ocre-ink' },
+  resubmitted: { label: 'Resoumis', className: 'bg-ocre-soft text-ocre-ink' },
   in_review: { label: 'En revue', className: 'bg-mer-soft text-mer' },
   approved: { label: 'Approuve', className: 'bg-olive-soft text-olive' },
   rejected: { label: 'Refuse', className: 'bg-grenadine-soft text-danger' },
@@ -135,7 +135,7 @@ export default function ModerationQueuePage() {
       {/* Queue Table */}
       {loading ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
-          <p className="text-ink-60">Chargement...</p>
+          <p className="text-ink-60" role="status" aria-busy="true">Chargement…</p>
         </div>
       ) : filteredQueue.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
@@ -143,7 +143,7 @@ export default function ModerationQueuePage() {
           <p className="text-ink-40 text-sm mt-1">Les nouvelles soumissions apparaîtront ici.</p>
         </div>
       ) : (
-        <div className="bg-card rounded-md border border-line overflow-hidden">
+        <div className="bg-card rounded-md border border-line overflow-x-auto">
           <table className="w-full">
             <thead className="bg-paper-soft border-b border-line">
               <tr>

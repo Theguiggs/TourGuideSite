@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { shouldUseStubs } from '@/config/api-mode';
 import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
 import { logger } from '@/lib/logger';
+import { Dialog } from '@/components/ui/Dialog';
 
 const SERVICE_NAME = 'PhotoLightbox';
 
@@ -45,14 +46,6 @@ export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
     return () => { cancelled = true; };
   }, [photoRef]);
 
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [onClose]);
-
   const handleDownload = async () => {
     if (!url) return;
     setDownloading(true);
@@ -78,17 +71,14 @@ export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
   };
 
   return (
-    <div
-      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-      onClick={onClose}
+    <Dialog
+      open
+      onClose={onClose}
+      label="Photo du point d’intérêt"
       data-testid="photo-lightbox"
-      role="dialog"
-      aria-modal="true"
+      className="max-w-[95vw] bg-transparent shadow-none backdrop:bg-black/80"
     >
-      <div
-        className="relative max-w-[95vw] max-h-[95vh] flex flex-col items-center"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="relative max-w-[95vw] max-h-[95vh] flex flex-col items-center">
         <div className="absolute top-2 right-2 flex gap-2 z-10">
           <button
             type="button"
@@ -104,7 +94,7 @@ export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
             onClick={onClose}
             aria-label="Fermer"
             data-testid="photo-lightbox-close"
-            className="bg-white/90 hover:bg-white rounded-full w-8 h-8 text-lg text-ink shadow"
+            className="bg-white/90 hover:bg-white rounded-full w-11 h-11 text-lg text-ink shadow"
           >
             ×
           </button>
@@ -114,17 +104,17 @@ export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
             Impossible de charger la photo.
           </div>
         ) : !url ? (
-          <div className="bg-white/10 rounded-lg w-64 h-64 animate-pulse" />
+          <div className="bg-white/10 rounded-lg w-64 h-64 animate-pulse" role="status" aria-label="Chargement de la photo" />
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={url}
-            alt=""
+            alt="Photo du point d’intérêt"
             className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg shadow-2xl"
             data-testid="photo-lightbox-image"
           />
         )}
       </div>
-    </div>
+    </Dialog>
   );
 }

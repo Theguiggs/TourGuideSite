@@ -11,6 +11,7 @@ import { useStudioSessionStore, selectSetActiveSession, selectClearSession } fro
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
 import { TourCommentThread } from '@/components/studio/tour-comment-thread';
 import { Collapsible } from '@/components/ui/collapsible';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 import { shouldUseStubs } from '@/config/api-mode';
 import { useAuth } from '@/lib/auth/auth-context';
 import type { StudioSession, StudioSessionStatus, StudioScene } from '@/types/studio';
@@ -102,7 +103,7 @@ export default function PublicationPage() {
     await doAction(confirmAction.label, confirmAction.fn);
   }, [confirmAction, doAction]);
 
-  if (isLoading) return <div className="p-6"><div className="bg-paper-soft rounded-lg h-64 animate-pulse" /></div>;
+  if (isLoading) return <div className="p-6" role="status" aria-busy="true" aria-label={t('Chargement', 'Loading')}><div className="bg-paper-soft rounded-lg h-64 animate-pulse" /></div>;
   if (!session) return <div className="p-6"><div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger">Session introuvable.</div></div>;
 
   const statusConfig = getSessionStatusConfig(session.status);
@@ -192,15 +193,16 @@ export default function PublicationPage() {
 
       {/* Confirm dialog */}
       {confirmAction && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl">
-            <p className="text-sm text-ink-80 mb-4">{confirmAction.warning}</p>
-            <div className="flex gap-3">
-              <button onClick={() => setConfirmAction(null)} className="flex-1 bg-paper-soft text-ink-80 font-medium py-2 rounded-lg hover:bg-paper-deep">{t('Annuler', 'Cancel')}</button>
-              <button onClick={executeConfirm} className="flex-1 bg-danger text-white font-medium py-2 rounded-lg hover:opacity-90">{confirmAction.label}</button>
-            </div>
-          </div>
-        </div>
+        <ConfirmDialog
+          open
+          danger
+          title={confirmAction.label}
+          description={confirmAction.warning}
+          confirmLabel={confirmAction.label}
+          cancelLabel={t('Annuler', 'Cancel')}
+          onConfirm={executeConfirm}
+          onCancel={() => setConfirmAction(null)}
+        />
       )}
 
       {/* === STATUS BAR (compact) === */}
@@ -231,7 +233,7 @@ export default function PublicationPage() {
         </div>
       )}
       {!hasAnyPublished && !['draft', 'editing', 'recording', 'ready', 'submitted'].includes(session.status) && (
-        <div className="mb-3 p-2 bg-ocre-soft border border-ocre-soft rounded-lg text-xs text-ocre">
+        <div className="mb-3 p-2 bg-ocre-soft border border-ocre-soft rounded-lg text-xs text-ocre-ink">
           Aucune version de ce parcours n&apos;est visible par les touristes.
         </div>
       )}
@@ -269,8 +271,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x21A9;</span>
               <div>
-                <p className="text-sm font-medium text-ocre">Retirer la publication</p>
-                <p className="text-xs text-ocre">Revenir en brouillon pour modifier</p>
+                <p className="text-sm font-medium text-ocre-ink">Retirer la publication</p>
+                <p className="text-xs text-ocre-ink">Revenir en brouillon pour modifier</p>
               </div>
             </button>
           )}
@@ -284,8 +286,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-ocre">Mettre en pause</p>
-                <p className="text-xs text-ocre">Masquer temporairement du catalogue. Reprise sans nouvelle modération.</p>
+                <p className="text-sm font-medium text-ocre-ink">Mettre en pause</p>
+                <p className="text-xs text-ocre-ink">Masquer temporairement du catalogue. Reprise sans nouvelle modération.</p>
               </div>
             </button>
           )}
@@ -450,8 +452,8 @@ export default function PublicationPage() {
               >
                 <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
                 <div>
-                  <p className="text-sm font-medium text-ocre">Désarchiver (en pause)</p>
-                  <p className="text-xs text-ocre">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>
+                  <p className="text-sm font-medium text-ocre-ink">Désarchiver (en pause)</p>
+                  <p className="text-xs text-ocre-ink">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>
                 </div>
               </button>
             </>

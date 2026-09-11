@@ -179,7 +179,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
           })}
         </div>
         {!langSelected && (
-          <p className="text-xs text-ocre mt-1" data-testid="lang-required">
+          <p className="text-xs text-ocre-ink mt-1" data-testid="lang-required">
             {t('Veuillez sélectionner une langue cible', 'Select a target language')}
           </p>
         )}
@@ -245,7 +245,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
                     <div className="flex-1">
                       <span className="text-sm font-medium text-ink">{p.label}</span>
                       <span className={`ml-2 text-xs px-1.5 py-0.5 rounded ${
-                        p.tier === 'free' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre'
+                        p.tier === 'free' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                       }`}>{p.badge}</span>
                       {disabled && (
                         <span className="ml-2 text-xs text-danger">Temporairement indisponible</span>

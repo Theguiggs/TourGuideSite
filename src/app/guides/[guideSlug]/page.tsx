@@ -234,14 +234,14 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
                 className="block border-2 border-ocre bg-ocre-soft rounded-xl p-4 hover:shadow-md transition-shadow"
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="bg-ocre text-ocre text-xs font-bold px-2 py-0.5 rounded-full">
+                  <span className="bg-ocre text-ink text-xs font-bold px-2 py-0.5 rounded-full">
                     {copy.signatureBadge}
                   </span>
                   <h3 className="font-semibold text-ink">{tour.title}</h3>
                   <TourPriceBadge tour={tour} />
                 </div>
                 <p className="text-sm text-ink-60">{tour.shortDescription}</p>
-                <p className="text-xs text-ink-40 mt-2">
+                <p className="text-xs text-ink-60 mt-2">
                   {tour.duration} min &middot; {tour.distance} km &middot; {tour.poiCount} {copy.pois}
                 </p>
               </Link>
@@ -275,7 +275,7 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
                     <TourPriceBadge tour={tour} />
                   </div>
                   <p className="text-sm text-ink-60 line-clamp-2 mb-3">{tour.shortDescription}</p>
-                  <div className="flex items-center gap-3 text-xs text-ink-40">
+                  <div className="flex items-center gap-3 text-xs text-ink-60">
                     <span>{tour.city}</span>
                     <span>&middot;</span>
                     <span>{tour.duration} min</span>

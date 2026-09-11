@@ -186,6 +186,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
 
         {/* Breadcrumb */}
         <nav
+          aria-label={locale === 'en' ? 'Breadcrumb' : "Fil d'Ariane"}
           style={{
             ...tg.eyebrow,
             color: tg.colors.ink60,

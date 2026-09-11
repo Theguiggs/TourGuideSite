@@ -19,6 +19,7 @@ import { simplifyPath, pathDistanceMeters, type LatLng } from '@/lib/path-utils'
 import { TILE_URL, TILE_ATTRIBUTION } from '@/lib/maps/tile-config';
 import { createNumberedIcon, createDotIcon } from '@/lib/maps/marker-icons';
 import { FitToPoints } from '@/components/map/FitToPoints';
+import { attachKeyboardNudge } from '@/lib/maps/keyboard-nudge';
 
 export interface Waypoint {
   id: string;
@@ -388,7 +389,11 @@ export function EditableMap({
   const isFullscreen = height === '100%';
 
   return (
-    <div style={{ height, width: '100%' }}>
+    <div
+      style={{ height, width: '100%' }}
+      role="application"
+      aria-label="Carte de l’itinéraire. Déplacez un marqueur à la souris, ou au clavier avec les flèches une fois le marqueur sélectionné (Maj pour aller plus vite). Les coordonnées sont aussi saisissables dans le formulaire."
+    >
       <MapContainer
         center={DEFAULT_FALLBACK.center}
         zoom={DEFAULT_FALLBACK.zoom}
@@ -465,8 +470,11 @@ export function EditableMap({
               position={[scene.latitude!, scene.longitude!]}
               icon={icon}
               draggable
-              title={`${markerNumber}. ${scene.title ?? 'Scene'}`}
+              title={`${markerNumber}. ${scene.title ?? 'Scène'}`}
+              alt={`Étape ${markerNumber} : ${scene.title ?? 'sans titre'}`}
               eventHandlers={{
+                add: (e) =>
+                  attachKeyboardNudge(e.target as L.Marker, (lat, lng) => handlePoiDrag(scene.id, lat, lng)),
                 dragend: (e) => {
                   const { lat, lng } = (e.target as L.Marker).getLatLng();
                   handlePoiDrag(scene.id, lat, lng);
@@ -565,7 +573,10 @@ export function EditableMap({
               icon={icon}
               draggable
               title="Point de passage"
+              alt="Point de passage"
               eventHandlers={{
+                add: (e) =>
+                  attachKeyboardNudge(e.target as L.Marker, (lat, lng) => handleWaypointDragEnd(wp.id, lat, lng)),
                 dragend: (e) => {
                   const { lat, lng } = (e.target as L.Marker).getLatLng();
                   handleWaypointDragEnd(wp.id, lat, lng);

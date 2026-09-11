@@ -70,7 +70,7 @@ export function S3Image({
         className={`bg-paper-deep flex items-center justify-center text-ink-40 text-xs ${className}`}
         style={reserved}
       >
-        {fallback}
+        <span aria-hidden="true">{fallback}</span>
       </div>
     );
   }

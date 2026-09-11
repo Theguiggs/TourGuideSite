@@ -122,8 +122,8 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
   if (!gpuAvailable) {
     return (
       <div className="p-4 bg-ocre-soft border border-ocre-soft rounded-lg" data-testid="tts-gpu-unavailable">
-        <p className="text-sm text-ocre">{t('Génération audio temporairement indisponible', 'Audio generation is temporarily unavailable')}</p>
-        <p className="text-xs text-ocre mt-1">{t('Le service TTS nécessite un GPU — réessayez plus tard.', 'The TTS service requires a GPU — please try again later.')}</p>
+        <p className="text-sm text-ocre-ink">{t('Génération audio temporairement indisponible', 'Audio generation is temporarily unavailable')}</p>
+        <p className="text-xs text-ocre-ink mt-1">{t('Le service TTS nécessite un GPU — réessayez plus tard.', 'The TTS service requires a GPU — please try again later.')}</p>
       </div>
     );
   }

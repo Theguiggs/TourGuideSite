@@ -26,7 +26,7 @@ export const tgColors = {
 
   ink:        '#102A43',
   ink80:      'rgba(16, 42, 67, 0.8)',
-  ink60:      'rgba(16, 42, 67, 0.6)',
+  ink60:      'rgba(16, 42, 67, 0.72)',
   ink40:      'rgba(16, 42, 67, 0.4)',
   ink20:      'rgba(16, 42, 67, 0.2)',
 
@@ -37,6 +37,8 @@ export const tgColors = {
   grenadineSoft:  '#FBE5E2',
   ocre:           '#C68B3E',
   ocreSoft:       '#F5E4C7',
+  /** Ocre pour du TEXTE sur papier (5,3:1) ; `ocre` ne tient que comme fond ou bordure. */
+  ocreInk:        '#8A5C22',
   mer:            '#2B6E8A',
   merSoft:        '#D7E5EC',
   olive:          '#6B7A45',

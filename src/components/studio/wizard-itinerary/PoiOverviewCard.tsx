@@ -84,7 +84,7 @@ export function PoiOverviewCard({
             className={`w-1.5 h-1.5 rounded-pill ${hasGps ? 'bg-success' : 'bg-ocre'}`}
             aria-hidden="true"
           />
-          <span className={`text-meta ${hasGps ? 'text-success' : 'text-ocre'}`}>
+          <span className={`text-meta ${hasGps ? 'text-success' : 'text-ocre-ink'}`}>
             {hasGps ? 'GPS OK' : t('Pas de GPS', 'No GPS')}
           </span>
 

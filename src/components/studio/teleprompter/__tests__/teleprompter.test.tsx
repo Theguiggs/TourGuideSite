@@ -33,7 +33,7 @@ describe('Teleprompter', () => {
     render(<Teleprompter text={SAMPLE_TEXT} />);
     const firstWord = screen.getByText('Bienvenue');
 
-    expect(firstWord).toHaveClass('text-paper', 'bg-ocre');
+    expect(firstWord).toHaveClass('text-ink', 'bg-ocre');
     fireEvent.click(screen.getByTestId('prompter-start'));
 
     act(() => {

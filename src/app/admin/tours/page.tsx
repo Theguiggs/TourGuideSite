@@ -5,16 +5,17 @@ import Link from 'next/link';
 import { getAllAdminTours, adminSetTourStatus, adminSyncTourToQueue, adminDeleteTour } from '@/lib/api/moderation';
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import type { TourLanguagePurchase } from '@/types/studio';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 const LANG_FLAGS: Record<string, string> = {
   fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
 };
 const MOD_COLORS: Record<string, string> = {
   draft: 'bg-paper-deep text-ink-60',
-  submitted: 'bg-ocre-soft text-ocre',
+  submitted: 'bg-ocre-soft text-ocre-ink',
   approved: 'bg-olive-soft text-olive',
   rejected: 'bg-grenadine-soft text-danger',
-  revision_requested: 'bg-ocre-soft text-ocre',
+  revision_requested: 'bg-ocre-soft text-ocre-ink',
 };
 const MOD_LABELS: Record<string, string> = {
   draft: 'Brouillon', submitted: 'Soumis', approved: 'OK', rejected: 'Refusé', revision_requested: 'Révision',
@@ -26,11 +27,11 @@ const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-mer-soft text-mer' },
   recording:          { label: 'Enregistrement',     className: 'bg-mer-soft text-mer' },
   ready:              { label: 'Pr\u00eat',                className: 'bg-olive-soft text-olive' },
-  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre' },
-  review:             { label: 'En revue',           className: 'bg-ocre-soft text-ocre' },
-  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre' },
+  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre-ink' },
+  review:             { label: 'En revue',           className: 'bg-ocre-soft text-ocre-ink' },
+  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre-ink' },
   published:          { label: 'Publi\u00e9',             className: 'bg-olive-soft text-olive' },
-  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre' },
+  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre-ink' },
   rejected:           { label: 'Rejet\u00e9',             className: 'bg-grenadine-soft text-danger' },
   archived:           { label: 'Archiv\u00e9',            className: 'bg-paper-deep text-ink-60' },
 };
@@ -150,13 +151,13 @@ export default function AdminToursPage() {
       </div>
 
       {loading ? (
-        <p className="text-ink-60 text-sm">Chargement...</p>
+        <p className="text-ink-60 text-sm" role="status" aria-busy="true">Chargement…</p>
       ) : filtered.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
           <p className="text-ink-60">Aucune visite trouvée.</p>
         </div>
       ) : (
-        <div className="bg-card rounded-md border border-line overflow-hidden">
+        <div className="bg-card rounded-md border border-line overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-paper-soft border-b border-line">
               <tr>
@@ -218,7 +219,7 @@ export default function AdminToursPage() {
                         {tour.status === 'review' && (
                           <Link
                             href="/admin/moderation"
-                            className="text-xs text-ocre font-medium hover:underline"
+                            className="text-xs text-ocre-ink font-medium hover:underline"
                           >
                             File modération
                           </Link>
@@ -227,7 +228,7 @@ export default function AdminToursPage() {
                           <>
                             <Link
                               href="/admin/moderation"
-                              className="text-xs text-ocre font-medium hover:underline"
+                              className="text-xs text-ocre-ink font-medium hover:underline"
                             >
                               File modération
                             </Link>
@@ -249,7 +250,7 @@ export default function AdminToursPage() {
                           <button
                             onClick={() => askAction(tour, 'archived')}
                             disabled={isActioning}
-                            className="text-xs text-ocre font-medium hover:underline disabled:opacity-50"
+                            className="text-xs text-ocre-ink font-medium hover:underline disabled:opacity-50"
                           >
                             Suspendre
                           </button>
@@ -285,75 +286,47 @@ export default function AdminToursPage() {
 
       {/* Confirmation dialog */}
       {confirmTour && pendingStatus && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-card rounded-md p-6 max-w-sm w-full">
-            <h2 className="text-lg font-bold text-ink mb-3">
-              {pendingStatus === 'archived' ? 'Suspendre cette visite ?' : 'Réactiver cette visite ?'}
-            </h2>
-            <p className="text-sm text-ink-60 mb-2 font-medium">{confirmTour.title}</p>
-            <p className="text-sm text-ink-60 mb-6">
-              {pendingStatus === 'archived'
-                ? 'La visite sera retirée de la plateforme et invisible aux utilisateurs.'
-                : 'La visite sera à nouveau visible et accessible aux utilisateurs.'}
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => { setConfirmTour(null); setPendingStatus(null); }}
-                className="flex-1 bg-paper-deep text-ink-80 font-medium py-2 rounded-lg hover:bg-paper-deep"
-              >
-                Annuler
-              </button>
-              <button
-                onClick={confirmAction}
-                className={`flex-1 text-white font-bold py-2 rounded-lg ${
-                  pendingStatus === 'archived'
-                    ? 'bg-ocre hover:bg-ocre'
-                    : 'bg-olive hover:bg-olive'
-                }`}
-              >
-                Confirmer
-              </button>
-            </div>
-          </div>
-        </div>
+        <ConfirmDialog
+          open
+          title={pendingStatus === 'archived' ? 'Suspendre cette visite ?' : 'Réactiver cette visite ?'}
+          subject={confirmTour.title}
+          description={
+            pendingStatus === 'archived'
+              ? 'La visite sera retirée de la plateforme et invisible aux utilisateurs.'
+              : 'La visite sera à nouveau visible et accessible aux utilisateurs.'
+          }
+          confirmLabel="Confirmer"
+          cancelLabel="Annuler"
+          danger={pendingStatus === 'archived'}
+          onConfirm={confirmAction}
+          onCancel={() => { setConfirmTour(null); setPendingStatus(null); }}
+        />
       )}
       {/* Delete confirmation dialog */}
       {deleteConfirm && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-card rounded-md p-6 max-w-sm w-full">
-            <h2 className="text-lg font-bold text-danger mb-3">Supprimer définitivement ?</h2>
-            <p className="text-sm text-ink-60 mb-2 font-medium">{deleteConfirm.title}</p>
-            <p className="text-sm text-danger mb-4">
-              Cette action est irréversible. Le tour, ses scènes, segments traduits, achats de langue et éléments de modération seront supprimés.
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => setDeleteConfirm(null)}
-                className="flex-1 bg-paper-deep text-ink-80 font-medium py-2 rounded-lg hover:bg-paper-deep"
-              >
-                Annuler
-              </button>
-              <button
-                onClick={async () => {
-                  setIsDeleting(true);
-                  const result = await adminDeleteTour(deleteConfirm.id);
-                  if (result.ok) {
-                    setTours((prev) => prev.filter((t) => t.id !== deleteConfirm.id));
-                  } else {
-                    setActionError(result.error ?? 'Suppression refusée par le serveur.');
-                  }
-                  setDeleteConfirm(null);
-                  setIsDeleting(false);
-                }}
-                disabled={isDeleting}
-                className="flex-1 bg-grenadine hover:bg-grenadine disabled:bg-paper-deep text-white font-bold py-2 rounded-lg"
-                data-testid="confirm-delete-tour"
-              >
-                {isDeleting ? 'Suppression...' : 'Supprimer'}
-              </button>
-            </div>
-          </div>
-        </div>
+        <ConfirmDialog
+          open
+          danger
+          title="Supprimer définitivement ?"
+          subject={deleteConfirm.title}
+          description="Cette action est irréversible. La visite, ses scènes, segments traduits, achats de langue et éléments de modération seront supprimés."
+          confirmLabel={isDeleting ? 'Suppression...' : 'Supprimer'}
+          cancelLabel="Annuler"
+          busy={isDeleting}
+          confirmTestId="confirm-delete-tour"
+          onCancel={() => setDeleteConfirm(null)}
+          onConfirm={async () => {
+            setIsDeleting(true);
+            const result = await adminDeleteTour(deleteConfirm.id);
+            if (result.ok) {
+              setTours((prev) => prev.filter((t) => t.id !== deleteConfirm.id));
+            } else {
+              setActionError(result.error ?? 'Suppression refusée par le serveur.');
+            }
+            setDeleteConfirm(null);
+            setIsDeleting(false);
+          }}
+        />
       )}
     </div>
   );
