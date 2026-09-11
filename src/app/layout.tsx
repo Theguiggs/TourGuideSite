@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { DM_Serif_Display, DM_Serif_Text, Manrope, JetBrains_Mono } from 'next/font/google';
+import { DM_Serif_Display, DM_Serif_Text, Manrope } from 'next/font/google';
 import './globals.css';
 import { SiteChrome } from '@/components/SiteChrome';
 import AmplifyProvider from '@/components/AmplifyProvider';
@@ -33,13 +33,6 @@ const manrope = Manrope({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--tg-font-sans',
-  display: 'swap',
-});
-
-const jetBrainsMono = JetBrains_Mono({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  variable: '--tg-font-mono',
   display: 'swap',
 });
 
@@ -120,7 +113,9 @@ export const viewport: Viewport = {
 export const dynamic = 'force-dynamic';
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const fontVariables = `${dmSerifDisplay.variable} ${dmSerifText.variable} ${manrope.variable} ${jetBrainsMono.variable}`;
+  // JetBrains Mono n'est chargée que dans les segments guide et admin (seuls
+  // à afficher du `font-mono`) : voir `guide/layout.tsx` et `admin/layout.tsx`.
+  const fontVariables = `${dmSerifDisplay.variable} ${dmSerifText.variable} ${manrope.variable}`;
   return (
     // SSR default `data-ds="v2"` — Story 1.7 default safe. DsVersionAttribute
     // updates this attribute côté client après hydration si flag = 'v1'.

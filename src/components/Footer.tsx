@@ -201,7 +201,6 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
               marginLeft: '1rem',
               opacity: 0.45,
               fontSize: tg.fontSize.caption ?? '0.75rem',
-              fontFamily: 'var(--font-mono)',
               letterSpacing: '0.04em',
             }}
           >

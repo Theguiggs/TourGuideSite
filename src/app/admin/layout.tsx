@@ -4,6 +4,15 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/auth/auth-context';
 import AuthGuard from '@/components/AuthGuard';
+import { JetBrains_Mono } from 'next/font/google';
+
+// `font-mono` (identifiants, montants) : police chargée ici, pas sur le site public.
+const jetBrainsMono = JetBrains_Mono({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--tg-font-mono',
+  display: 'swap',
+});
 
 const NAV_ITEMS = [
   { href: '/admin/moderation', label: "File d'attente", icon: '📋' },
@@ -66,7 +75,7 @@ function AdminNav() {
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <AuthGuard requireAdmin>
-      <div className="flex flex-col lg:flex-row min-h-[80vh]">
+      <div className={`flex flex-col lg:flex-row min-h-[80vh] ${jetBrainsMono.variable}`}>
         <AdminNav />
         <main className="flex-1 p-4 lg:p-8 bg-paper-soft">{children}</main>
       </div>

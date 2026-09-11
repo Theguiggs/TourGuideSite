@@ -1,16 +1,18 @@
-'use client';
-
-import * as React from 'react';
 import { Button } from '@murmure/design-system/web';
 
 /**
- * HeroCta — wrapper client component pour le CTA primary du hero landing.
+ * HeroCta — CTA principal du hero.
  *
- * Story 4.2 — AC 10 : downgrade `size="lg"` → `size="md"` sur viewport ≤ 414px
- * (mobile). Implémenté via `matchMedia` côté client (Next 14 App Router).
+ * Story 4.2 — AC 10 : `size="lg"` sur ordinateur, `size="md"` sur mobile
+ * (≤ 414 px). Auparavant décidé par `matchMedia` après hydratation : le HTML
+ * servi portait toujours `lg`, et le bouton rétrécissait d'un cran sous les
+ * yeux du visiteur mobile — un saut de mise en page au-dessus de la ligne de
+ * flottaison. Les deux tailles sont rendues, la feuille de style en montre
+ * une seule ; plus de composant client, plus de saut.
  *
- * Story 4.2 — Finding 7 (a11y) : utilise la nouvelle prop `Button.href` (Story
- * 4.2 fix DS Button) qui rend `<a>` au lieu d'imbriquer `<button>` dans `<a>`.
+ * Story 4.2 — Finding 7 (a11y) : `Button.href` rend un `<a>` (pas de
+ * `<button>` imbriqué). L'exemplaire masqué est en `display:none`, donc
+ * absent de l'arbre d'accessibilité.
  */
 type Props = {
   label: string;
@@ -18,19 +20,18 @@ type Props = {
 };
 
 export default function HeroCta({ label, href }: Props) {
-  const [size, setSize] = React.useState<'md' | 'lg'>('lg');
-
-  React.useEffect(() => {
-    const mq = window.matchMedia('(max-width: 414px)');
-    const update = () => setSize(mq.matches ? 'md' : 'lg');
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
-
   return (
-    <Button href={href} variant="accent" size={size} accessibilityLabel={label}>
-      {label}
-    </Button>
+    <>
+      <span className="hidden min-[415px]:inline-flex" data-testid="hero-cta-lg">
+        <Button href={href} variant="accent" size="lg" accessibilityLabel={label}>
+          {label}
+        </Button>
+      </span>
+      <span className="inline-flex min-[415px]:hidden" data-testid="hero-cta-md">
+        <Button href={href} variant="accent" size="md" accessibilityLabel={label}>
+          {label}
+        </Button>
+      </span>
+    </>
   );
 }
