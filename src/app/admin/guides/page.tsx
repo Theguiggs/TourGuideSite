@@ -95,7 +95,7 @@ export default function AdminGuidesPage() {
           <p className="text-ink-60">Aucun guide trouvé.</p>
         </div>
       ) : (
-        <div className="bg-card rounded-md border border-line overflow-hidden">
+        <div className="bg-card rounded-md border border-line overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-paper-soft border-b border-line">
               <tr>

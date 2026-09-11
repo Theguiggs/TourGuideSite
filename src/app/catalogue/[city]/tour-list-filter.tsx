@@ -101,13 +101,19 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
     <>
       {/* Language filter */}
       {allLanguages.length > 1 && (
-        <div className="flex flex-wrap items-center gap-2 mb-6">
-          <span className="text-sm text-ink-60">
+        <div
+          className="flex flex-wrap items-center gap-2 mb-6"
+          role="group"
+          aria-label={locale === 'en' ? 'Filter by audio language' : 'Filtrer par langue'}
+        >
+          <span className="text-sm text-ink-60" aria-hidden="true">
             {locale === 'en' ? 'Filter by audio language:' : 'Filtrer par langue :'}
           </span>
           <button
+            type="button"
             onClick={() => setFilterLang('')}
-            className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+            aria-pressed={!filterLang}
+            className={`min-h-11 px-4 rounded-full text-sm font-medium transition-colors ${
               !filterLang ? 'bg-grenadine text-white' : 'bg-paper-deep text-ink-60 hover:bg-paper-deep'
             }`}
           >
@@ -118,12 +124,14 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
             return (
               <button
                 key={lang}
+                type="button"
                 onClick={() => setFilterLang(filterLang === lang ? '' : lang)}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                aria-pressed={filterLang === lang}
+                className={`min-h-11 px-4 rounded-full text-sm font-medium transition-colors ${
                   filterLang === lang ? 'bg-grenadine text-white' : 'bg-paper-deep text-ink-60 hover:bg-paper-deep'
                 }`}
               >
-                {LANG_FLAGS[lang] ?? ''} {LANG_NAMES[lang] ?? lang.toUpperCase()} ({count})
+                <span aria-hidden="true">{LANG_FLAGS[lang] ?? ''}</span> {LANG_NAMES[lang] ?? lang.toUpperCase()} ({count})
               </button>
             );
           })}

@@ -82,7 +82,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
                   href={localizePublicPath(pathname, targetLocale)}
                   hrefLang={targetLocale}
                   aria-current={locale === targetLocale ? 'page' : undefined}
-                  className={`px-2.5 py-1.5 text-meta font-bold no-underline ${
+                  className={`inline-flex min-h-11 items-center px-3 text-meta font-bold no-underline ${
                     locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper text-ink-60'
                   }`}
                 >
@@ -133,7 +133,8 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
           </div>
 
           <button
-            className="md:hidden p-2 text-ink-60 hover:text-ink"
+            type="button"
+            className="md:hidden inline-flex h-11 w-11 items-center justify-center text-ink-60 hover:text-ink"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? copy.closeMenu : copy.openMenu}
           >
@@ -165,7 +166,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
                   href={localizePublicPath(pathname, targetLocale)}
                   hrefLang={targetLocale}
                   aria-current={locale === targetLocale ? 'page' : undefined}
-                  className={`px-3 py-2 rounded-md text-meta font-bold no-underline ${
+                  className={`inline-flex min-h-11 items-center px-4 rounded-md text-meta font-bold no-underline ${
                     locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper-deep text-ink-60'
                   }`}
                   onClick={() => setMenuOpen(false)}

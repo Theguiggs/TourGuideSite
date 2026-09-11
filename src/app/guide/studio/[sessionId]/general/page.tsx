@@ -707,7 +707,7 @@ export default function GeneralPage() {
       </WizField>
 
       {/* ───── Langue / Difficulté / Durée / Distance ───── */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
         <WizField label={t('Langue', 'Language')} htmlFor="tour-language">
           <WizSelect
             id="tour-language"

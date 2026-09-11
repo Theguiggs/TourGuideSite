@@ -159,7 +159,7 @@ export function PoiValidationPanel({
 
         <div>
           <label className="text-sm font-medium text-ink-80 block mb-1">Coordonnees GPS</label>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div>
               <label htmlFor="poi-lat" className="text-xs text-ink-60 block mb-0.5">Latitude</label>
               <input

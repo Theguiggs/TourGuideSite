@@ -29,7 +29,7 @@ export function WalkMap({ points }: WalkMapProps) {
   const positions = points.map((p) => [p.lat, p.lng] as [number, number]);
 
   return (
-    <div data-testid="walk-map" className="h-48">
+    <div data-testid="walk-map" className="h-48" role="application" aria-label="Tracé de la marche sur la carte">
       <MapContainer
         center={center}
         zoom={16}

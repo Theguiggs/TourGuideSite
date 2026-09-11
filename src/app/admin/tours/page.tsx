@@ -156,7 +156,7 @@ export default function AdminToursPage() {
           <p className="text-ink-60">Aucune visite trouvée.</p>
         </div>
       ) : (
-        <div className="bg-card rounded-md border border-line overflow-hidden">
+        <div className="bg-card rounded-md border border-line overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-paper-soft border-b border-line">
               <tr>

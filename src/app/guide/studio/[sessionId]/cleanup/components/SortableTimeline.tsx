@@ -52,6 +52,30 @@ export function SortableTimeline({
   const sceneItems = items.filter((i) => i.kind === 'scene');
   const sceneIds = sceneItems.map((i) => i.id);
 
+  // Annonces pour les lecteurs d'écran, en français : dnd-kit annonçait
+  // « Draggable item … picked up » dans une interface française.
+  const nameOf = (id: string | number) => {
+    const item = sceneItems.find((i) => i.id === String(id));
+    const title = item?.kind === 'scene' ? item.scene.title : undefined;
+    return title && title.trim().length > 0 ? `« ${title} »` : 'la scène';
+  };
+  const positionOf = (id: string | number) => `${sceneIds.indexOf(String(id)) + 1} sur ${sceneIds.length}`;
+  const accessibility = {
+    announcements: {
+      onDragStart: ({ active }: { active: { id: string | number } }) =>
+        `${nameOf(active.id)} saisie, position ${positionOf(active.id)}. Flèches pour déplacer, Espace pour déposer, Échap pour annuler.`,
+      onDragOver: ({ active, over }: { active: { id: string | number }; over: { id: string | number } | null }) =>
+        over ? `${nameOf(active.id)} en position ${positionOf(over.id)}.` : `${nameOf(active.id)} hors de la liste.`,
+      onDragEnd: ({ active, over }: { active: { id: string | number }; over: { id: string | number } | null }) =>
+        over ? `${nameOf(active.id)} déposée en position ${positionOf(over.id)}.` : `${nameOf(active.id)} remise à sa place.`,
+      onDragCancel: ({ active }: { active: { id: string | number } }) => `Déplacement de ${nameOf(active.id)} annulé.`,
+    },
+    screenReaderInstructions: {
+      draggable:
+        'Pour réordonner, appuyez sur Espace, déplacez avec les flèches haut et bas, puis appuyez de nouveau sur Espace. Échap annule.',
+    },
+  };
+
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
@@ -67,6 +91,7 @@ export function SortableTimeline({
       sensors={sensors}
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
+      accessibility={accessibility}
     >
       <SortableContext items={sceneIds} strategy={verticalListSortingStrategy}>
         <ol className="space-y-1" data-testid="cleanup-timeline">

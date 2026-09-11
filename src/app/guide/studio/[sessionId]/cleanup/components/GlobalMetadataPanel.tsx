@@ -147,7 +147,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
           <label
             className="block text-xs font-medium text-ink-60 mb-1"

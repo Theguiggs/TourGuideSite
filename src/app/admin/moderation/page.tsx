@@ -143,7 +143,7 @@ export default function ModerationQueuePage() {
           <p className="text-ink-40 text-sm mt-1">Les nouvelles soumissions apparaîtront ici.</p>
         </div>
       ) : (
-        <div className="bg-card rounded-md border border-line overflow-hidden">
+        <div className="bg-card rounded-md border border-line overflow-x-auto">
           <table className="w-full">
             <thead className="bg-paper-soft border-b border-line">
               <tr>

@@ -350,7 +350,7 @@ export function OpenMultilangModal({
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6">
             {/* ─── LEFT: language table ─── */}
-            <div>
+            <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-line text-ink-60">

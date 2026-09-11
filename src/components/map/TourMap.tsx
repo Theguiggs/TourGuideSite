@@ -94,7 +94,11 @@ export default function TourMap({
   const cursorClass = editGpsMode ? 'tg-map-cursor-crosshair' : '';
 
   return (
-    <div className={`rounded-xl overflow-hidden border border-gray-200 ${className || 'h-[400px]'} ${cursorClass}`}>
+    <div
+      className={`rounded-xl overflow-hidden border border-gray-200 ${className || 'h-[400px]'} ${cursorClass}`}
+      role="application"
+      aria-label="Carte de la visite"
+    >
       <MapContainer
         center={center}
         zoom={15}

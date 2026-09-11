@@ -179,6 +179,9 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
             border: 0,
             padding: 0,
             cursor: 'pointer',
+            minHeight: 44,
+            display: 'inline-flex',
+            alignItems: 'center',
           }}
           className="focus-visible:outline-2 focus-visible:outline-offset-2"
         >
@@ -199,6 +202,9 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
                 border: 0,
                 padding: 0,
                 cursor: 'pointer',
+                minHeight: 44,
+                display: 'inline-flex',
+                alignItems: 'center',
               }}
               className="focus-visible:outline-2 focus-visible:outline-offset-2"
             >
