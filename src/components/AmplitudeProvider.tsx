@@ -15,15 +15,18 @@ const getServerSnapshot = () => null;
  */
 export default function AmplitudeProvider({ children }: { children: React.ReactNode }) {
   const consent = useSyncExternalStore(subscribeCookieConsent, readCookieConsent, getServerSnapshot);
+  // Sans clé au build (développement, CI), rien ne peut être mesuré : on ne
+  // demande pas un consentement qui ne servirait à rien.
+  const measurable = Boolean(process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY);
 
   useEffect(() => {
-    if (consent === 'accepted') initAmplitude();
-  }, [consent]);
+    if (measurable && consent === 'accepted') initAmplitude();
+  }, [consent, measurable]);
 
   return (
     <>
       {children}
-      <CookieConsentBanner />
+      {measurable && <CookieConsentBanner />}
     </>
   );
 }

@@ -14,6 +14,18 @@ describe('AmplitudeProvider', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     localStorage.clear();
+    process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY = 'test-key';
+  });
+
+  afterAll(() => {
+    delete process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY;
+  });
+
+  it('sans clé Amplitude, ne demande rien : il n’y a rien à mesurer', () => {
+    delete process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY;
+    render(<AmplitudeProvider><p>page</p></AmplitudeProvider>);
+    expect(screen.queryByTestId('cookie-consent-banner')).not.toBeInTheDocument();
+    expect(mockInit).not.toHaveBeenCalled();
   });
 
   it("n'initialise pas Amplitude sans choix, et montre le bandeau", () => {
