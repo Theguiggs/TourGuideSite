@@ -15,23 +15,10 @@ import {
   type PublishedTourContentQueryClient,
 } from './published-tour-content';
 import { isPublicCatalogueTour } from './public-tour-policy';
+import { paginateAll } from './paginate';
 import { isPublicCatalogueGuide } from './public-guide-policy';
 
 const SERVICE_NAME = 'AppSyncServerPublic';
-
-/** Paginate through all pages of a list query using nextToken. */
-async function paginateAll<T>(
-  fetcher: (nextToken: string | null | undefined) => Promise<{ data: T[]; nextToken?: string | null }>,
-): Promise<T[]> {
-  const all: T[] = [];
-  let nextToken: string | null | undefined = null;
-  do {
-    const page = await fetcher(nextToken);
-    all.push(...(page.data ?? []));
-    nextToken = page.nextToken;
-  } while (nextToken);
-  return all;
-}
 
 export async function listGuideToursServer(filters?: { city?: string; status?: string }) {
   try {
