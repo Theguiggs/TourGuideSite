@@ -9,6 +9,7 @@
 
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
+import { absoluteUrl } from '@/lib/site';
 
 export const runtime = 'nodejs';
 export const contentType = 'image/png';
@@ -130,12 +131,12 @@ export async function GET(
         width: 1200,
         height: 630,
         headers: {
-          'Cache-Control': 'public, max-age=31536000, immutable',
+          'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
         },
       }
     );
   } catch (err) {
     console.error('[og-journal] render failed', err);
-    return Response.redirect(new URL('/opengraph-image', 'https://murmure-visit.com'), 302);
+    return Response.redirect(absoluteUrl('/opengraph-image'), 302);
   }
 }

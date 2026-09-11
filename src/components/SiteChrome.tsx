@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from './Header';
 import Footer from './Footer';
@@ -20,10 +19,8 @@ interface SiteChromeProps {
 export function SiteChrome({ children }: SiteChromeProps) {
   const pathname = usePathname() ?? '';
   const locale = pathname.startsWith('/en/') || pathname === '/en' ? 'en' : 'fr';
-
-  useEffect(() => {
-    document.documentElement.lang = locale;
-  }, [locale]);
+  // `<html lang>` vient du serveur (proxy + layout racine) ; le Studio, qui
+  // a sa propre bascule de langue, l'écrit lui-même sans concurrent ici.
 
   const isStudio = pathname.startsWith('/guide/studio');
   // Pages legacy /guide/{dashboard,tours,profile,revenue} embarquent désormais

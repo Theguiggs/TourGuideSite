@@ -10,6 +10,7 @@ import { S3Image } from '@/components/studio/s3-image';
 import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
+import { breadcrumbJsonLd, guideJsonLd } from '@/lib/seo/json-ld';
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
 export const dynamic = 'force-dynamic';
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${guide.displayName} — Guide a ${guide.city}`,
+      title: `${guide.displayName} — Guide à ${guide.city}`,
       description,
     },
   };
@@ -221,27 +222,7 @@ export default async function GuideProfilePage({ params }: GuidePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: safeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'Person',
-            name: guide.displayName,
-            jobTitle: 'Guide touristique',
-            description: guide.bio,
-            ...(guide.photoUrl ? { image: guide.photoUrl } : {}),
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: guide.city,
-              addressCountry: 'FR',
-            },
-            knows: guide.specialties,
-            knowsLanguage: guide.languages,
-            makesOffer: tours.map((t) => ({
-              '@type': 'Offer',
-              name: t.title,
-              description: t.shortDescription,
-              url: `/catalogue/${t.citySlug}/${t.slug}`,
-            })),
-          }),
+          __html: safeJsonLd(guideJsonLd(guide, tours)),
         }}
       />
 
@@ -249,15 +230,13 @@ export default async function GuideProfilePage({ params }: GuidePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: safeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Accueil', item: '/' },
-              { '@type': 'ListItem', position: 2, name: 'Catalogue', item: '/catalogue' },
-              { '@type': 'ListItem', position: 3, name: `Guide: ${guide.displayName}` },
-            ],
-          }),
+          __html: safeJsonLd(
+            breadcrumbJsonLd([
+              { name: 'Accueil', path: '/' },
+              { name: 'Catalogue', path: '/catalogue' },
+              { name: `Guide : ${guide.displayName}` },
+            ]),
+          ),
         }}
       />
     </div>

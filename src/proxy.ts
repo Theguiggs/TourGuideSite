@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import outputs from '../amplify_outputs.json';
 import { buildCsp, generateNonce } from '@/lib/security/csp';
+import { LOCALE_HEADER, localeFromPath } from '@/lib/site';
 
 /**
  * Proxy Next 16 (l'ancien `middleware.ts`) : pose la Content-Security-Policy
@@ -28,6 +29,10 @@ export function proxy(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('content-security-policy', csp);
+  // `<html lang>` est rendu côté serveur à partir du chemin (lot 3.1) : le
+  // HTML servi aux robots portait `lang="fr"` sur toutes les pages anglaises,
+  // corrigé seulement après hydratation.
+  requestHeaders.set(LOCALE_HEADER, localeFromPath(request.nextUrl.pathname));
 
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set('content-security-policy', csp);

@@ -29,6 +29,8 @@ import {
   isSyntheticAudioSource,
 } from '@/lib/api/audio-source-policy';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
+import { tourMetadata } from '@/lib/seo/tour-metadata';
+import { tourJsonLd } from '@/lib/seo/json-ld';
 import ItineraryList from './itinerary-list';
 import { StarRating } from '@/components/catalogue/StarRating';
 import { maskLockedPois } from '@/lib/catalogue/scene-pois';
@@ -111,40 +113,7 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
   const { city: citySlug, tourSlug } = await params;
   const tour = await getTourBySlug(citySlug, tourSlug);
   if (!tour) return {};
-
-  const description =
-    tour.shortDescription ||
-    (tour.description ? tour.description.slice(0, 160) : 'Une visite à découvrir.');
-
-  return {
-    title: tour.title,
-    description,
-    alternates: {
-      canonical: `/catalogue/${citySlug}/${tourSlug}`,
-      languages: {
-        fr: `/catalogue/${citySlug}/${tourSlug}`,
-        en: `/en/catalogue/${citySlug}/${tourSlug}`,
-      },
-    },
-    openGraph: {
-      title: `${tour.title} | Murmure`,
-      description,
-      type: 'article',
-      images: [
-        {
-          url: `/og/tour/${citySlug}/${tourSlug}`,
-          width: 1200,
-          height: 630,
-          alt: `${tour.title} — visite audio à ${tour.city}`,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${tour.title} | Murmure`,
-      description,
-    },
-  };
+  return tourMetadata(tour, citySlug, tourSlug, 'fr');
 }
 
 export async function LocalizedTourDetailPage({ params, searchParams, locale = 'fr' }: TourPageProps & {locale?: 'fr' | 'en'}) {
@@ -717,25 +686,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: safeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'TouristAttraction',
-            name: tour.title,
-            description: tour.shortDescription,
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: tour.city,
-              addressCountry: 'FR',
-            },
-            aggregateRating:
-              tour.reviewCount > 0
-                ? {
-                    '@type': 'AggregateRating',
-                    ratingValue: tour.averageRating,
-                    reviewCount: tour.reviewCount,
-                  }
-                : undefined,
-          }),
+          __html: safeJsonLd(tourJsonLd(tour, locale)),
         }}
       />
     </div>
