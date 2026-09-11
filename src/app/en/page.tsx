@@ -4,11 +4,12 @@ import TrackPageView from '@/components/TrackPageView';
 import CitiesSection from '@/components/CitiesSection';
 import HeroCta from '../_components/HeroCta';
 import { AnalyticsEvents } from '@/lib/analytics';
+import { helpAnchorHref } from '@/lib/help-anchors';
 import { tg } from '@murmure/design-system/tokens';
 import { Button, Card, Eyebrow, NumberMark, PullQuote } from '@murmure/design-system/web';
 
 export const metadata: Metadata = {
-  title: 'Murmure - Create audio tours of your city',
+  title: { absolute: 'Murmure — Create audio tours of your city' },
   description:
     'Give your city a voice. Create, translate and publish audio tours for travellers to enjoy, even offline.',
   alternates: {
@@ -19,10 +20,10 @@ export const metadata: Metadata = {
 };
 
 const STEPS = [
-  {n: 1, title: 'Create', body: 'Choose a title and a city. Your tour is born.', href: '/en/help#create'},
-  {n: 2, title: 'Map', body: 'Place your points of interest and shape the route.', href: '/en/help#map'},
-  {n: 3, title: 'Tell', body: 'Write, record, or let a synthetic voice narrate your text.', href: '/en/help#tell'},
-  {n: 4, title: 'Publish', body: 'Translate, submit and share your tour with the world.', href: '/en/help#publish'},
+  {n: 1, title: 'Create', body: 'Choose a title and a city. Your tour is born.', href: helpAnchorHref('en', 'creer')},
+  {n: 2, title: 'Map', body: 'Place your points of interest and shape the route.', href: helpAnchorHref('en', 'tracer')},
+  {n: 3, title: 'Tell', body: 'Write, record, or let a synthetic voice narrate your text.', href: helpAnchorHref('en', 'raconter')},
+  {n: 4, title: 'Publish', body: 'Translate, submit and share your tour with the world.', href: helpAnchorHref('en', 'publier')},
 ] as const;
 
 const BENEFITS = [

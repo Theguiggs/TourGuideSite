@@ -4,6 +4,7 @@ import { tg } from '@murmure/design-system/tokens';
 import { Button, Eyebrow, PullQuote } from '@murmure/design-system/web';
 import StepCard from './_components/StepCard';
 import Faq from './_components/Faq';
+import CreateTourCta from '@/components/CreateTourCta';
 import {
   STEPS,
   TIPS,
@@ -14,7 +15,7 @@ import {
 
 // Story 4.6 — Page d'aide : explique le site et la création de parcours.
 export const metadata: Metadata = {
-  title: 'Aide — Murmure',
+  title: 'Aide',
   description:
     'Le guide complet de Murmure : créez un parcours audio étape par étape, et trouvez les réponses aux questions des guides comme des voyageurs.',
   alternates: {
@@ -95,14 +96,7 @@ export default function AidePage() {
             ))}
           </div>
           <div className="mt-12 text-center">
-            <Button
-              href="/guide/studio/nouveau"
-              variant="accent"
-              size="lg"
-              accessibilityLabel="Créer mon parcours dans l’atelier"
-            >
-              Créer mon parcours
-            </Button>
+            <CreateTourCta locale="fr" />
             <p
               className="font-sans mt-3"
               style={{ color: tg.colors.ink60, fontSize: tg.fontSize.caption }}

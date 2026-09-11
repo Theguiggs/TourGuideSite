@@ -3,18 +3,18 @@ import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Eyebrow } from '@murmure/design-system/web';
 import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
+import { CookieChoiceButton } from '@/components/legal/CookieChoiceButton';
+import { LEGAL_IDENTITY, RETENTION, publisherLine } from '@/lib/legal/identity';
 
 /**
  * Politique de confidentialité — page légale RGPD.
  *
  * Prérequis de validation store (Apple / Google exigent une URL de politique
- * de confidentialité accessible publiquement). Le contenu ci-dessous est une
- * base structurée : les mentions marquées [À COMPLÉTER] doivent être renseignées
- * (raison sociale, SIREN, adresse du responsable de traitement) et l’ensemble
- * relu par un juriste avant soumission.
+ * de confidentialité accessible publiquement). L'identité de l'éditeur, les
+ * durées et l'adresse de contact viennent de `lib/legal/identity.ts`.
  */
 export const metadata: Metadata = {
-  title: 'Politique de confidentialité — Murmure',
+  title: 'Politique de confidentialité',
   description:
     'Comment Murmure collecte, utilise et protège vos données personnelles, et comment exercer vos droits RGPD.',
   alternates: {
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
 };
 
-const EFFECTIVE_DATE = '2 juillet 2026';
-const CONTACT_EMAIL = 'tourguideyeup@gmail.com';
+const EFFECTIVE_DATE = LEGAL_IDENTITY.effectiveDate.fr;
+const CONTACT_EMAIL = LEGAL_IDENTITY.contactEmail;
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -77,9 +77,7 @@ export default function ConfidentialitePage() {
 
           <Section title="1. Responsable du traitement">
             <p>
-              Le responsable du traitement est [À COMPLÉTER : raison sociale], [À COMPLÉTER : forme
-              juridique] immatriculée sous le numéro [À COMPLÉTER : SIREN/SIRET], dont le siège est
-              situé [À COMPLÉTER : adresse]. Contact :{' '}
+              Le responsable du traitement est {publisherLine('fr')}. Contact :{' '}
               <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: tg.colors.grenadine }}>
                 {CONTACT_EMAIL}
               </a>
@@ -131,10 +129,15 @@ export default function ConfidentialitePage() {
           <Section title="5. Durée de conservation">
             <p>
               Vos données sont conservées le temps nécessaire aux finalités décrites, puis
-              supprimées ou anonymisées. Les données de compte sont conservées tant que votre compte
-              est actif ; les données de facturation sont conservées selon les durées légales
-              applicables. [À COMPLÉTER : durées précises par catégorie.]
+              supprimées ou anonymisées :
             </p>
+            <ul style={{ paddingLeft: tg.space[5], margin: 0 }}>
+              {RETENTION.map(({ fr: [category, duration] }) => (
+                <li key={category}>
+                  <strong>{category}</strong> : {duration}.
+                </li>
+              ))}
+            </ul>
           </Section>
 
           <Section title="6. Transferts hors de l’Union européenne">
@@ -153,7 +156,8 @@ export default function ConfidentialitePage() {
               <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: tg.colors.grenadine }}>
                 {CONTACT_EMAIL}
               </a>
-              . Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr).
+              . Vous pouvez également introduire une réclamation auprès de la{' '}
+              {LEGAL_IDENTITY.supervisoryAuthority.fr}.
             </p>
           </Section>
 
@@ -174,7 +178,12 @@ export default function ConfidentialitePage() {
             <p>
               Le portail web utilise le stockage local de votre navigateur pour maintenir votre
               session d’authentification et vos préférences. Nous n’utilisons pas de cookies
-              publicitaires. [À COMPLÉTER : détailler tout cookie de mesure d’audience si applicable.]
+              publicitaires ni de suivi entre sites.
+            </p>
+            <p>
+              La mesure d’audience (Amplitude, serveurs dans l’Union européenne, adresse IP non
+              collectée) n’est activée qu’avec votre consentement, demandé lors de votre première
+              visite. Vous pouvez le retirer à tout moment : <CookieChoiceButton locale="fr" />.
             </p>
           </Section>
 

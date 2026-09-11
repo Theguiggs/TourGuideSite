@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { MesVisitesContent } from '@/components/catalogue/mes-visites-content';
 
 export const metadata: Metadata = {
-  title: 'Mes achats — Murmure',
+  title: 'Mes achats',
   description: 'Retrouvez les visites audio que vous avez achetées.',
   robots: { index: false, follow: false },
   alternates: {

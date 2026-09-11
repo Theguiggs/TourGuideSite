@@ -48,12 +48,12 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://murmure-visit.com'),
   title: {
-    default: 'Murmure — Visites guidees audio immersives',
+    default: 'Murmure — Visites guidées audio immersives',
     template: '%s | Murmure',
   },
   description:
-    "Decouvrez les villes autrement avec Murmure. Visites guidees audio immersives, " +
-    "creees par des guides locaux passionnes. Telecharger l'app gratuite.",
+    "Découvrez les villes autrement avec Murmure. Visites guidées audio immersives, " +
+    "créées par des guides locaux passionnés. Téléchargez l'app gratuite.",
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
@@ -72,8 +72,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Murmure — Le monde a une voix.',
     description:
-      "Audio guides editoriaux pour explorer les villes autrement. " +
-      "Telecharger l'app gratuite.",
+      "Audio guides éditoriaux pour explorer les villes autrement. " +
+      "Téléchargez l'app gratuite.",
     images: [
       {
         url: '/opengraph-image',

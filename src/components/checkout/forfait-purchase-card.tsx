@@ -29,6 +29,10 @@ import {
   FORFAIT_PRICE_CENTS,
 } from '@/lib/api/forfait-purchase';
 import { emitPurchasesChanged } from '@/lib/checkout/purchase-events';
+import { buildStripeReturnUrl, clearStripeReturn, readStripeReturn } from '@/lib/checkout/stripe-return';
+import { logger } from '@/lib/logger';
+
+const SERVICE_NAME = 'ForfaitPurchaseCard';
 
 interface Props {
   locale?: 'fr' | 'en';
@@ -60,10 +64,11 @@ function PaymentForm({
 
   async function pay() {
     if (!stripe || !elements) {
+      logger.error(SERVICE_NAME, 'Stripe.js non initialisé (clé publishable ou script bloqué)');
       onError(
         locale === 'en'
-          ? 'Payment is not ready. Please try again later.'
-          : 'Paiement non prêt — Stripe.js non initialisé. Vérifie NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY.',
+          ? 'Payment is temporarily unavailable. Please try again later.'
+          : 'Le paiement est momentanément indisponible. Réessayez dans quelques instants.',
       );
       return;
     }
@@ -72,6 +77,7 @@ function PaymentForm({
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         redirect: 'if_required',
+        confirmParams: { return_url: buildStripeReturnUrl('forfait') },
       });
       if (error) {
         setBusy(false);
@@ -169,6 +175,42 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
     void beginPayment();
   }
 
+  // Retour d'un moyen de paiement à redirection : on confirme côté serveur
+  // comme si l'onglet n'avait jamais quitté la page (le webhook crédite de
+  // toute façon ; ceci ne sert qu'à le montrer tout de suite).
+  useEffect(() => {
+    const ret = readStripeReturn('forfait');
+    if (!ret) return;
+    clearStripeReturn();
+    if (ret.status === 'succeeded') {
+      if (!isAuthenticated) return;
+      setBusy(true);
+      confirmForfaitPurchase(ret.paymentIntentId).then((confirmed) => {
+        setBusy(false);
+        if (confirmed.ok) {
+          setStep('done');
+          emitPurchasesChanged();
+        } else {
+          setError(confirmed.error.message);
+          setStep('error');
+        }
+      });
+      return;
+    }
+    setError(
+      ret.status === 'processing'
+        ? locale === 'en'
+          ? 'Your payment is being processed. The pass will activate automatically once it is confirmed.'
+          : 'Votre paiement est en cours de traitement. Le forfait s’activera automatiquement une fois confirmé.'
+        : locale === 'en'
+          ? 'Payment declined.'
+          : 'Paiement refusé.',
+    );
+    setStep('error');
+    // Lecture unique de l'URL au montage.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
+
   // Reprend automatiquement dès que la session est reconnue (clic avant que
   // AuthProvider ait fini de restaurer, ou connexion qui vient d'aboutir).
   useEffect(() => {
@@ -179,7 +221,18 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
   }, [step, isAuthenticated]);
 
   // Tous les hooks au-dessus de cette ligne — on ne peut sortir qu'après.
-  if (!isStripeConfigured()) return null;
+  if (!isStripeConfigured()) {
+    return (
+      <p
+        data-testid="forfait-purchase-in-app"
+        style={{ marginTop: tg.space[4], fontFamily: tg.fonts.sans, fontSize: tg.fontSize.body, color: tg.colors.ink80 }}
+      >
+        {locale === 'en'
+          ? 'The pass can be purchased in the Murmure app.'
+          : "Le forfait s'achète dans l'application Murmure."}
+      </p>
+    );
+  }
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();

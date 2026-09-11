@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Eyebrow } from '@murmure/design-system/web';
 import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
+import { LEGAL_IDENTITY, publisherLine } from '@/lib/legal/identity';
 
 export const metadata: Metadata = {
-  title: 'Terms of use - Murmure',
+  title: 'Terms of use',
   description: 'Terms governing use of the Murmure app and web studio.',
   alternates: {
     canonical: '/en/terms',
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   },
 };
 
-const CONTACT_EMAIL = 'tourguideyeup@gmail.com';
+const CONTACT_EMAIL = LEGAL_IDENTITY.contactEmail;
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -52,8 +53,8 @@ export default function TermsPage() {
           <Section title="1. Purpose">
             <p>
               These terms govern access to and use of the Murmure mobile app and web studio (the
-              Service), provided by [TO BE COMPLETED: legal name]. By using the Service, you accept
-              these terms.
+              Service), provided by {publisherLine('en')}. By using the Service, you accept these
+              terms.
             </p>
           </Section>
           <Section title="2. Service">
@@ -72,7 +73,11 @@ export default function TermsPage() {
             <p>
               Guides remain responsible for their recordings, text, images and locations and must
               hold the necessary rights. Content may be moderated, refused or removed when it breaks
-              these terms or the law.
+              these terms or the law. Guides keep full ownership of their content; by publishing,
+              they grant Murmure a non-exclusive, worldwide, royalty-free licence, for as long as the
+              tour is published, to host, distribute, translate and technically adapt it within the
+              Service. For paid tours, the guide’s share is the one shown in the studio at
+              publication time.
             </p>
           </Section>
           <Section title="5. Intellectual property">
@@ -84,8 +89,11 @@ export default function TermsPage() {
           <Section title="6. Purchases and subscriptions">
             <p>
               Mobile purchases are processed by Apple or Google and web purchases by Stripe.
-              Subscriptions renew until cancelled through the relevant platform. Refunds follow the
-              payment platform rules and applicable consumer law.
+              Subscriptions renew until cancelled through the relevant platform. Mobile refund
+              requests go to Apple or Google. For web purchases, digital content is made available
+              immediately after payment: in line with French consumer law (article L221-28 13°), you
+              agree that performance starts at once and waive the fourteen-day withdrawal right. If
+              a purchased tour is faulty or unavailable, contact us and we will fix it or refund you.
             </p>
           </Section>
           <Section title="7. Acceptable use">
@@ -117,8 +125,10 @@ export default function TermsPage() {
           </Section>
           <Section title="11. Governing law">
             <p>
-              These terms are governed by [TO BE COMPLETED: applicable law]. Parties will first seek
-              an amicable resolution before using the competent courts.
+              These terms are governed by {LEGAL_IDENTITY.governingLaw.en}. Parties will first seek an
+              amicable resolution; consumers may also use free consumer mediation (French Consumer
+              Code, articles L611-1 et seq.). Failing that, French courts have jurisdiction, subject
+              to mandatory consumer protection rules.
             </p>
           </Section>
           <Section title="12. Contact">

@@ -32,4 +32,6 @@ export const FAQ_TRAVELLERS: FaqItem[] = [
   {q: 'Which devices are supported?', a: 'Android and iOS.'},
 ];
 
-export const SUPPORT_EMAIL = 'tourguideyeup@gmail.com';
+import { LEGAL_IDENTITY } from '@/lib/legal/identity';
+
+export const SUPPORT_EMAIL: string = LEGAL_IDENTITY.contactEmail;

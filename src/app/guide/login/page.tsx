@@ -6,11 +6,13 @@ import Link from 'next/link';
 import { useAuth } from '@/lib/auth/auth-context';
 import { trackEvent } from '@/lib/analytics';
 import { GuideAnalyticsEvents } from '@/lib/analytics';
+import { loginDestination, safeReturnTo } from '@/lib/auth/return-to';
 
 function GuideLoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const justRegistered = searchParams.get('registered') === '1';
+  const returnTo = safeReturnTo(searchParams.get('returnTo'));
   const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +29,7 @@ function GuideLoginContent() {
 
     if (result.ok) {
       trackEvent(GuideAnalyticsEvents.GUIDE_PORTAL_LOGIN, { email_domain: email.split('@')[1] });
-      router.push(result.role === 'admin' ? '/admin/moderation' : '/guide/studio');
+      router.push(loginDestination(result.role, returnTo));
     } else {
       setError(result.error || 'Erreur de connexion');
     }
@@ -100,9 +102,9 @@ function GuideLoginContent() {
           </button>
 
           <p className="text-center text-meta text-ink-60 mt-4">
-            <a href="#" className="text-grenadine hover:underline underline-offset-2">
+            <Link href="/guide/reset-password" className="text-grenadine hover:underline underline-offset-2">
               Mot de passe oublié ?
-            </a>
+            </Link>
           </p>
         </form>
 

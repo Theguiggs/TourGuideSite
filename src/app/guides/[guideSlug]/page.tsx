@@ -24,10 +24,10 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   if (!guide) return {};
 
   const bioSnippet = guide.bio ? guide.bio.slice(0, 150) : '';
-  const description = `${guide.displayName}, guide touristique a ${guide.city}. ${bioSnippet}. Decouvrez ses ${guide.tourCount ?? 0} parcours audio.`;
+  const description = `${guide.displayName}, guide touristique à ${guide.city}. ${bioSnippet}. Découvrez ses ${guide.tourCount ?? 0} parcours audio.`;
 
   return {
-    title: `${guide.displayName} — Guide touristique a ${guide.city} | Murmure`,
+    title: `${guide.displayName} — Guide touristique à ${guide.city}`,
     description,
     openGraph: {
       title: `${guide.displayName} | Murmure`,

@@ -168,9 +168,9 @@ export async function GET(
       }
     );
   } catch (err) {
-    // Fallback robuste : redirect 302 vers static og-default.png plutôt que 500 visible côté crawler.
+    // Fallback robuste : redirect 302 vers l'image OG racine plutôt que 500 visible côté crawler.
     // Edge runtime : `console.error` accepté (logger app non importable en Edge).
     console.error('[og-tour] render failed', err);
-    return Response.redirect(new URL('/og-default.png', 'https://murmure.app'), 302);
+    return Response.redirect(new URL('/opengraph-image', 'https://murmure-visit.com'), 302);
   }
 }

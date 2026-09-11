@@ -127,5 +127,7 @@ export const FAQ_VOYAGEURS: FaqItem[] = [
   },
 ];
 
-/** Adresse de contact support (Story 4.6). */
-export const SUPPORT_EMAIL = 'tourguideyeup@gmail.com';
+import { LEGAL_IDENTITY } from '@/lib/legal/identity';
+
+/** Adresse de contact support (Story 4.6) — lue dans l'identité légale. */
+export const SUPPORT_EMAIL: string = LEGAL_IDENTITY.contactEmail;

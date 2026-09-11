@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth/auth-context';
+import { loginUrlFor } from '@/lib/auth/return-to';
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -17,17 +18,19 @@ export default function AuthGuard({
 }: AuthGuardProps) {
   const { isAuthenticated, isAdmin, isGuide, isLoading } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (isLoading) return;
     if (!isAuthenticated) {
-      router.replace('/guide/login');
+      // La page demandée est conservée : après connexion, on y revient.
+      router.replace(loginUrlFor(pathname));
     } else if (requireAdmin && !isAdmin) {
       router.replace(isGuide ? '/guide/studio' : '/catalogue');
     } else if (requireGuide && !isGuide) {
       router.replace('/catalogue');
     }
-  }, [isAuthenticated, isAdmin, isGuide, isLoading, requireAdmin, requireGuide, router]);
+  }, [isAuthenticated, isAdmin, isGuide, isLoading, requireAdmin, requireGuide, router, pathname]);
 
   if (isLoading) {
     return (

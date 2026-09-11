@@ -11,8 +11,9 @@ jest.mock('@/lib/logger', () => ({
   logger: { info: jest.fn(), debug: jest.fn(), warn: jest.fn(), error: jest.fn() },
 }));
 
+const mockStripeConfigured = jest.fn(() => true);
 jest.mock('@/lib/stripe/client', () => ({
-  isStripeConfigured: () => true,
+  isStripeConfigured: () => mockStripeConfigured(),
   getStripePromise: () => Promise.resolve({}),
 }));
 
@@ -103,5 +104,52 @@ describe('ForfaitPurchaseCard', () => {
 
     expect(changed).not.toHaveBeenCalled();
     expect(screen.getByRole('alert')).toHaveTextContent('Authentication required');
+  });
+});
+
+describe('ForfaitPurchaseCard — retour de redirection Stripe', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockHasActiveForfait.mockResolvedValue(false);
+    mockCreateIntent.mockResolvedValue({ ok: true, value: { clientSecret: 'pi_42_secret_abc', amountCents: 1990 } });
+    mockConfirmPayment.mockResolvedValue({ paymentIntent: { id: 'pi_42', status: 'succeeded' } });
+    mockConfirmPurchase.mockResolvedValue({ ok: true, value: { expiresAtMs: Date.now() + 1000, alreadyActive: false } });
+  });
+
+  afterEach(() => window.history.replaceState({}, '', '/'));
+
+  it('donne à Stripe une URL de retour marquée « forfait »', async () => {
+    window.history.replaceState({}, '', '/catalogue/nice/promenade');
+    render(<ForfaitPurchaseCard />);
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: /Prendre le forfait/ }));
+    });
+    await waitFor(() => expect(screen.getByTestId('payment-element')).toBeInTheDocument());
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Payer' }));
+    });
+    const call = mockConfirmPayment.mock.calls[0][0] as { confirmParams?: { return_url?: string } };
+    expect(new URL(call.confirmParams!.return_url!).searchParams.get('murmure_pay')).toBe('forfait');
+  });
+
+  it('au retour d’une redirection réussie, confirme et affiche le forfait actif', async () => {
+    window.history.replaceState(
+      {},
+      '',
+      '/catalogue/nice/promenade?murmure_pay=forfait&payment_intent=pi_77&redirect_status=succeeded',
+    );
+    await act(async () => {
+      render(<ForfaitPurchaseCard />);
+    });
+    await waitFor(() => expect(screen.getByTestId('forfait-active-badge')).toBeInTheDocument());
+    expect(mockConfirmPurchase).toHaveBeenCalledWith('pi_77');
+    expect(window.location.search).toBe('');
+  });
+
+  it("sans clé Stripe au build, dit que le forfait s'achète dans l'app", () => {
+    mockStripeConfigured.mockReturnValue(false);
+    render(<ForfaitPurchaseCard />);
+    expect(screen.getByTestId('forfait-purchase-in-app')).toBeInTheDocument();
+    mockStripeConfigured.mockReturnValue(true);
   });
 });

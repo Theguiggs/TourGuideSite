@@ -35,7 +35,7 @@ function MultilangPaymentForm({
 
   const handlePay = useCallback(async () => {
     if (!stripe || !elements) {
-      onError('Stripe non initialisé. Vérifiez NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY.');
+      onError('Le paiement est momentanément indisponible. Réessayez dans quelques instants.');
       return;
     }
     setBusy(true);
@@ -196,6 +196,9 @@ export function OpenMultilangModal({
 
   // Overwrite/keep prompt state for upgrades that have existing manual content.
   const [pendingOverwrite, setPendingOverwrite] = useState<{ langs: string[]; paymentIntentId: string } | null>(null);
+  // Intent DÉJÀ débité par Stripe dont la confirmation serveur a échoué : le
+  // retry doit réutiliser CET intent, jamais en créer un second (double débit).
+  const [confirmedIntentId, setConfirmedIntentId] = useState<string | null>(null);
 
   /** Runs the actual purchase/upgrade once any overwrite decision is resolved. */
   const runConfirm = useCallback(async (paymentIntentId: string, overwriteContent: boolean) => {
@@ -221,6 +224,7 @@ export function OpenMultilangModal({
       setSelections({});
       setPendingOverwrite(null);
       setPendingPayment(null);
+      setConfirmedIntentId(null);
     } catch (err) {
       setErrorMessage('Erreur inattendue. Réessayez.');
       logger.error(SERVICE_NAME, 'runConfirm failed', { error: String(err) });
@@ -280,6 +284,7 @@ export function OpenMultilangModal({
     if (!pendingPayment) return;
     setIsLoading(true);
     setErrorMessage(null);
+    setConfirmedIntentId(confirmedIntentId);
     // Check for overwrite if there are upgrades
     const upgradeLangs = Object.keys(upgradeSelections);
     if (upgradeLangs.length > 0) {
@@ -297,9 +302,12 @@ export function OpenMultilangModal({
     setErrorMessage(msg);
   }, []);
 
+  // Fermer pendant un paiement en cours ou une confirmation serveur laisserait
+  // un débit sans langue : la modale ne se ferme plus tant que ça travaille.
+  const closeLocked = isLoading || pendingPayment !== null;
   const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) onClose();
-  }, [onClose]);
+    if (e.target === e.currentTarget && !closeLocked) onClose();
+  }, [onClose, closeLocked]);
 
   if (!isOpen) return null;
 
@@ -326,7 +334,8 @@ export function OpenMultilangModal({
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-3 right-3 text-ink-40 hover:text-ink-80 text-xl leading-none z-10"
+          disabled={closeLocked}
+          className="absolute top-3 right-3 text-ink-40 hover:text-ink-80 text-xl leading-none z-10 disabled:opacity-40"
           aria-label="Fermer"
           data-testid="modal-close-btn"
         >
@@ -535,21 +544,38 @@ export function OpenMultilangModal({
               {errorMessage && (
                 <p className="text-xs text-danger mb-3" role="alert">{errorMessage}</p>
               )}
-              <Elements stripe={getStripePromise()} options={{ clientSecret: pendingPayment.clientSecret }}>
-                <MultilangPaymentForm
-                  paymentIntentId={pendingPayment.paymentIntentId}
-                  onSuccess={handlePaymentSuccess}
-                  onError={handlePaymentError}
-                />
-              </Elements>
-              <button
-                type="button"
-                onClick={() => { setPendingPayment(null); setErrorMessage(null); }}
-                className="w-full mt-3 rounded-lg px-4 py-2 text-xs text-ink-40 hover:text-ink-60"
-                data-testid="payment-cancel"
-              >
-                Annuler
-              </button>
+              {confirmedIntentId ? (
+                // Paiement pris, confirmation serveur ratée : on rejoue la
+                // confirmation avec le même intent, sans repasser par la carte.
+                <button
+                  type="button"
+                  disabled={isLoading}
+                  onClick={() => { setIsLoading(true); setErrorMessage(null); void runConfirm(confirmedIntentId, true); }}
+                  className="w-full rounded-lg px-4 py-2 text-sm font-semibold bg-grenadine text-white hover:opacity-90 disabled:opacity-60"
+                  data-testid="payment-retry-confirm"
+                >
+                  {isLoading ? 'Validation…' : 'Réessayer la validation (déjà payé)'}
+                </button>
+              ) : (
+                <>
+                  <Elements stripe={getStripePromise()} options={{ clientSecret: pendingPayment.clientSecret }}>
+                    <MultilangPaymentForm
+                      paymentIntentId={pendingPayment.paymentIntentId}
+                      onSuccess={handlePaymentSuccess}
+                      onError={handlePaymentError}
+                    />
+                  </Elements>
+                  <button
+                    type="button"
+                    disabled={isLoading}
+                    onClick={() => { setPendingPayment(null); setErrorMessage(null); }}
+                    className="w-full mt-3 rounded-lg px-4 py-2 text-xs text-ink-40 hover:text-ink-60 disabled:opacity-40"
+                    data-testid="payment-cancel"
+                  >
+                    Annuler
+                  </button>
+                </>
+              )}
             </div>
           </div>
         )}

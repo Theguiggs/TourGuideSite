@@ -5,7 +5,7 @@ import { Eyebrow } from '@murmure/design-system/web';
 import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
 
 export const metadata: Metadata = {
-  title: 'Supprimer mon compte - Murmure',
+  title: 'Supprimer mon compte',
   description: 'Demandez la suppression de votre compte Murmure et de vos donnees associees.',
   alternates: {
     canonical: '/supprimer-mon-compte',
@@ -13,7 +13,9 @@ export const metadata: Metadata = {
   },
 };
 
-const SUPPORT_EMAIL = 'tourguideyeup@gmail.com';
+import { LEGAL_IDENTITY } from '@/lib/legal/identity';
+
+const SUPPORT_EMAIL = LEGAL_IDENTITY.contactEmail;
 
 export default function AccountDeletionPage() {
   const emailSubject = encodeURIComponent('Demande de suppression de compte Murmure');
