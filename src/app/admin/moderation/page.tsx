@@ -135,7 +135,7 @@ export default function ModerationQueuePage() {
       {/* Queue Table */}
       {loading ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
-          <p className="text-ink-60">Chargement...</p>
+          <p className="text-ink-60" role="status" aria-busy="true">Chargement…</p>
         </div>
       ) : filteredQueue.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">

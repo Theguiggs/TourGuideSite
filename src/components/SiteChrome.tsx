@@ -28,14 +28,32 @@ export function SiteChrome({ children }: SiteChromeProps) {
   // donc la chrome publique sur ces routes pour éviter la double barre haute.
   const isGuideShell = /^\/guide\/(dashboard|tours|profile|revenue)(\/|$)/.test(pathname);
 
+  // Un seul repère <main> par page (lot 4) : le Studio et l'admin posent le
+  // leur, la chrome publique le sien. Le lien d'évitement vise `#contenu`.
+  const skipLabel = locale === 'en' ? 'Skip to content' : 'Aller au contenu';
+  const skipLink = (
+    <a
+      href="#contenu"
+      className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[100] focus:rounded-md focus:bg-ink focus:px-4 focus:py-3 focus:text-paper focus:no-underline"
+    >
+      {skipLabel}
+    </a>
+  );
+
   if (isStudio || isGuideShell) {
-    return <main className="min-h-screen">{children}</main>;
+    return (
+      <div className="min-h-screen">
+        {skipLink}
+        {children}
+      </div>
+    );
   }
 
   return (
     <>
+      {skipLink}
       <Header locale={locale} />
-      <main className="min-h-screen">{children}</main>
+      <main id="contenu" className="min-h-screen">{children}</main>
       <Footer locale={locale} />
     </>
   );

@@ -222,10 +222,11 @@ describe('<TourListWithFilter> mention de source audio', () => {
     // Un `title` sur un <span> n'est pas lu de façon fiable, jamais au toucher.
     const spoken = screen.getByTestId('lang-chip-a11y-1-fr').querySelector('.sr-only');
     expect(spoken?.textContent).toBe('Français — Voix de synthèse');
-    // Le pictogramme, lui, n'est pas annoncé deux fois.
-    expect(
-      screen.getByTestId('lang-chip-a11y-1-fr').querySelector('[aria-hidden="true"]')?.textContent,
-    ).toBe('🤖');
+    // Le pictogramme (et le drapeau, décoratif lui aussi) n'est pas annoncé deux fois.
+    const hidden = Array.from(
+      screen.getByTestId('lang-chip-a11y-1-fr').querySelectorAll('[aria-hidden="true"]'),
+    ).map((el) => el.textContent);
+    expect(hidden).toContain('🤖');
   });
 });
 

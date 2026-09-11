@@ -52,7 +52,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-line">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav aria-label={locale === 'en' ? 'Main navigation' : 'Navigation principale'} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href={homeHref} className="flex items-center gap-2.5 no-underline">
             <MurmureLogo size={26} />
@@ -137,6 +137,8 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
             className="md:hidden inline-flex h-11 w-11 items-center justify-center text-ink-60 hover:text-ink"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? copy.closeMenu : copy.openMenu}
+            aria-expanded={menuOpen}
+            aria-controls="menu-mobile"
           >
             {menuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
@@ -144,7 +146,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden pb-4 border-t border-line">
+          <nav id="menu-mobile" aria-label={locale === 'en' ? 'Mobile menu' : 'Menu mobile'} className="md:hidden pb-4 border-t border-line">
             <Link
               href={catalogueHref}
               className="block py-3 text-caption text-ink-60 hover:text-ink font-medium no-underline"
@@ -159,7 +161,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
             >
               {copy.help}
             </Link>
-            <div className="flex gap-2 py-3" aria-label={locale === 'fr' ? 'Choisir la langue' : 'Choose language'}>
+            <div className="flex gap-2 py-3" role="group" aria-label={locale === 'fr' ? 'Choisir la langue' : 'Choose language'}>
               {(['fr', 'en'] as const).map((targetLocale) => (
                 <Link
                   key={targetLocale}
@@ -218,7 +220,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
                 </StoreLink>
               </>
             )}
-          </div>
+          </nav>
         )}
       </nav>
     </header>

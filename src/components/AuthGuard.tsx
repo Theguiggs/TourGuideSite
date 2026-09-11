@@ -34,8 +34,8 @@ export default function AuthGuard({
 
   if (isLoading) {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center">
-        <div className="text-ink-60">Chargement...</div>
+      <div className="min-h-[80vh] flex items-center justify-center" role="status" aria-busy="true">
+        <div className="text-ink-60">Chargement…</div>
       </div>
     );
   }

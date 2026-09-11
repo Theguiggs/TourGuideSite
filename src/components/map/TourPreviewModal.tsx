@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useEffect, useCallback } from 'react';
+import { useMemo } from 'react';
 import type { MapPOI } from './TourMap';
+import { Dialog } from '@/components/ui/Dialog';
 import { totalRouteDistance, estimatedWalkingTime } from '@/lib/geo';
 import dynamic from 'next/dynamic';
 
@@ -18,22 +19,18 @@ export default function TourPreviewModal({ pois, tourTitle, onClose }: TourPrevi
   const distance = useMemo(() => totalRouteDistance(sortedPois), [sortedPois]);
   const walkTime = useMemo(() => estimatedWalkingTime(distance), [distance]);
 
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') onClose();
-  }, [onClose]);
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown]);
-
   return (
-    <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden" onClick={(e) => e.stopPropagation()}>
+    <Dialog
+      open
+      onClose={onClose}
+      labelledBy="tour-preview-title"
+      className="max-w-4xl max-h-[90vh] rounded-2xl bg-white backdrop:bg-black/60"
+    >
+      <div className="flex flex-col overflow-hidden max-h-[90vh]">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <div>
-            <h2 className="text-lg font-bold text-gray-900">Previsualisation du parcours</h2>
+            <h2 id="tour-preview-title" className="text-lg font-bold text-gray-900">Prévisualisation de l’itinéraire</h2>
             <p className="text-sm text-gray-500">{tourTitle}</p>
           </div>
           <div className="flex items-center gap-4">
@@ -43,8 +40,9 @@ export default function TourPreviewModal({ pois, tourTitle, onClose }: TourPrevi
               <span className="bg-gray-100 px-3 py-1 rounded-full">{sortedPois.length} POIs</span>
             </div>
             <button
+              type="button"
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 text-2xl leading-none"
+              className="inline-flex h-11 w-11 items-center justify-center text-gray-500 hover:text-gray-700 text-2xl leading-none"
               aria-label="Fermer"
             >
               &times;
@@ -80,6 +78,6 @@ export default function TourPreviewModal({ pois, tourTitle, onClose }: TourPrevi
           </ol>
         </div>
       </div>
-    </div>
+    </Dialog>
   );
 }

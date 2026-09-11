@@ -89,7 +89,7 @@ export default function AdminGuidesPage() {
       </div>
 
       {loading ? (
-        <p className="text-ink-60 text-sm">Chargement...</p>
+        <p className="text-ink-60 text-sm" role="status" aria-busy="true">Chargement…</p>
       ) : filtered.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
           <p className="text-ink-60">Aucun guide trouvé.</p>

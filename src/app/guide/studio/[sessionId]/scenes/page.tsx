@@ -126,7 +126,7 @@ export default function ScenesPage() {
     audioPlayerService.play(url);
   }, [activeScene]);
 
-  if (isLoading) return <div className="p-6 text-sm text-ink-60">{t('Chargement des scènes…', 'Loading scenes…')}</div>;
+  if (isLoading) return <div className="p-6 text-sm text-ink-60" role="status" aria-busy="true">{t('Chargement des scènes…', 'Loading scenes…')}</div>;
   if (!session) return <div className="p-6 text-danger" role="alert">{t('Session introuvable.', 'Session not found.')}</div>;
 
   return (
@@ -149,7 +149,7 @@ export default function ScenesPage() {
         </div>
       </aside>
 
-      <main className="p-4 lg:p-6">
+      <section className="p-4 lg:p-6" aria-label={t('Édition de la scène', 'Scene editor')}>
         <Link href={`/guide/studio/${sessionId}`} className="mb-2 inline-block text-sm text-grenadine">&larr; {t('Retour', 'Back')}</Link>
         {activeScene ? (
           <div className="space-y-5">
@@ -239,7 +239,7 @@ export default function ScenesPage() {
           prevDisabled={dirty || isSaving}
           nextDisabled={dirty || isSaving}
         />
-      </main>
+      </section>
     </div>
   );
 }

@@ -40,7 +40,7 @@ function AdminNav() {
           </div>
         </div>
 
-        <nav className="flex lg:flex-col gap-1 overflow-x-auto lg:overflow-x-visible">
+        <nav aria-label="Administration" className="flex lg:flex-col gap-1 overflow-x-auto lg:overflow-x-visible">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href || (item.href !== '/admin/moderation' && pathname.startsWith(item.href));
             const isQueueActive = item.href === '/admin/moderation' && pathname.startsWith('/admin/moderation') && !pathname.startsWith('/admin/moderation/history');
@@ -77,7 +77,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <AuthGuard requireAdmin>
       <div className={`flex flex-col lg:flex-row min-h-[80vh] ${jetBrainsMono.variable}`}>
         <AdminNav />
-        <main className="flex-1 p-4 lg:p-8 bg-paper-soft">{children}</main>
+        <div className="flex-1 p-4 lg:p-8 bg-paper-soft">{children}</div>
       </div>
     </AuthGuard>
   );

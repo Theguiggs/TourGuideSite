@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { getAllAdminTours, adminSetTourStatus, adminSyncTourToQueue, adminDeleteTour } from '@/lib/api/moderation';
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import type { TourLanguagePurchase } from '@/types/studio';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 const LANG_FLAGS: Record<string, string> = {
   fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
@@ -150,7 +151,7 @@ export default function AdminToursPage() {
       </div>
 
       {loading ? (
-        <p className="text-ink-60 text-sm">Chargement...</p>
+        <p className="text-ink-60 text-sm" role="status" aria-busy="true">Chargement…</p>
       ) : filtered.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
           <p className="text-ink-60">Aucune visite trouvée.</p>
@@ -285,75 +286,47 @@ export default function AdminToursPage() {
 
       {/* Confirmation dialog */}
       {confirmTour && pendingStatus && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-card rounded-md p-6 max-w-sm w-full">
-            <h2 className="text-lg font-bold text-ink mb-3">
-              {pendingStatus === 'archived' ? 'Suspendre cette visite ?' : 'Réactiver cette visite ?'}
-            </h2>
-            <p className="text-sm text-ink-60 mb-2 font-medium">{confirmTour.title}</p>
-            <p className="text-sm text-ink-60 mb-6">
-              {pendingStatus === 'archived'
-                ? 'La visite sera retirée de la plateforme et invisible aux utilisateurs.'
-                : 'La visite sera à nouveau visible et accessible aux utilisateurs.'}
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => { setConfirmTour(null); setPendingStatus(null); }}
-                className="flex-1 bg-paper-deep text-ink-80 font-medium py-2 rounded-lg hover:bg-paper-deep"
-              >
-                Annuler
-              </button>
-              <button
-                onClick={confirmAction}
-                className={`flex-1 text-white font-bold py-2 rounded-lg ${
-                  pendingStatus === 'archived'
-                    ? 'bg-ocre hover:bg-ocre'
-                    : 'bg-olive hover:bg-olive'
-                }`}
-              >
-                Confirmer
-              </button>
-            </div>
-          </div>
-        </div>
+        <ConfirmDialog
+          open
+          title={pendingStatus === 'archived' ? 'Suspendre cette visite ?' : 'Réactiver cette visite ?'}
+          subject={confirmTour.title}
+          description={
+            pendingStatus === 'archived'
+              ? 'La visite sera retirée de la plateforme et invisible aux utilisateurs.'
+              : 'La visite sera à nouveau visible et accessible aux utilisateurs.'
+          }
+          confirmLabel="Confirmer"
+          cancelLabel="Annuler"
+          danger={pendingStatus === 'archived'}
+          onConfirm={confirmAction}
+          onCancel={() => { setConfirmTour(null); setPendingStatus(null); }}
+        />
       )}
       {/* Delete confirmation dialog */}
       {deleteConfirm && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-card rounded-md p-6 max-w-sm w-full">
-            <h2 className="text-lg font-bold text-danger mb-3">Supprimer définitivement ?</h2>
-            <p className="text-sm text-ink-60 mb-2 font-medium">{deleteConfirm.title}</p>
-            <p className="text-sm text-danger mb-4">
-              Cette action est irréversible. Le tour, ses scènes, segments traduits, achats de langue et éléments de modération seront supprimés.
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => setDeleteConfirm(null)}
-                className="flex-1 bg-paper-deep text-ink-80 font-medium py-2 rounded-lg hover:bg-paper-deep"
-              >
-                Annuler
-              </button>
-              <button
-                onClick={async () => {
-                  setIsDeleting(true);
-                  const result = await adminDeleteTour(deleteConfirm.id);
-                  if (result.ok) {
-                    setTours((prev) => prev.filter((t) => t.id !== deleteConfirm.id));
-                  } else {
-                    setActionError(result.error ?? 'Suppression refusée par le serveur.');
-                  }
-                  setDeleteConfirm(null);
-                  setIsDeleting(false);
-                }}
-                disabled={isDeleting}
-                className="flex-1 bg-grenadine hover:bg-grenadine disabled:bg-paper-deep text-white font-bold py-2 rounded-lg"
-                data-testid="confirm-delete-tour"
-              >
-                {isDeleting ? 'Suppression...' : 'Supprimer'}
-              </button>
-            </div>
-          </div>
-        </div>
+        <ConfirmDialog
+          open
+          danger
+          title="Supprimer définitivement ?"
+          subject={deleteConfirm.title}
+          description="Cette action est irréversible. La visite, ses scènes, segments traduits, achats de langue et éléments de modération seront supprimés."
+          confirmLabel={isDeleting ? 'Suppression...' : 'Supprimer'}
+          cancelLabel="Annuler"
+          busy={isDeleting}
+          confirmTestId="confirm-delete-tour"
+          onCancel={() => setDeleteConfirm(null)}
+          onConfirm={async () => {
+            setIsDeleting(true);
+            const result = await adminDeleteTour(deleteConfirm.id);
+            if (result.ok) {
+              setTours((prev) => prev.filter((t) => t.id !== deleteConfirm.id));
+            } else {
+              setActionError(result.error ?? 'Suppression refusée par le serveur.');
+            }
+            setDeleteConfirm(null);
+            setIsDeleting(false);
+          }}
+        />
       )}
     </div>
   );

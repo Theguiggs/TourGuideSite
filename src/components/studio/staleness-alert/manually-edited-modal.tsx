@@ -1,5 +1,6 @@
 'use client';
 
+import { Dialog } from '@/components/ui/Dialog';
 import { logger } from '@/lib/logger';
 
 const SERVICE_NAME = 'ManuallyEditedModal';
@@ -39,14 +40,14 @@ export function ManuallyEditedModal({
   const preview = truncatePreview(editedTextPreview);
 
   return (
-    <div
+    <Dialog
+      open
+      onClose={onKeep}
+      labelledBy="manually-edited-modal-title"
       data-testid="manually-edited-modal"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="manually-edited-modal-title"
+      className="max-w-lg bg-white"
     >
-      <div className="mx-4 w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
+      <div className="w-full p-6">
         <h2
           id="manually-edited-modal-title"
           className="text-lg font-semibold text-ink"
@@ -56,7 +57,7 @@ export function ManuallyEditedModal({
         </h2>
 
         <p className="mt-3 text-sm text-ink-80" data-testid="modal-warning-message">
-          Vous avez corrige cette traduction a la main. Mettre a jour ecrasera vos corrections. Continuer ?
+          Vous avez corrigé cette traduction à la main. Mettre à jour écrasera vos corrections. Continuer ?
         </p>
 
         <div className="mt-3 rounded-lg border border-line bg-paper-soft p-3">
@@ -90,12 +91,12 @@ export function ManuallyEditedModal({
               logger.info(SERVICE_NAME, 'User chose to update translation', { sceneName, language });
               onUpdate();
             }}
-            className="rounded-md bg-ocre px-4 py-2 text-sm font-medium text-white hover:bg-ocre"
+            className="rounded-md bg-ocre px-4 py-2 text-sm font-medium text-ink hover:brightness-110"
           >
-            Mettre a jour
+            Mettre à jour
           </button>
         </div>
       </div>
-    </div>
+    </Dialog>
   );
 }

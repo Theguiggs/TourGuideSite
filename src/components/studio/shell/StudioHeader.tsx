@@ -91,6 +91,7 @@ export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined 
 
         <div
           className="inline-flex overflow-hidden rounded-md border border-line"
+          role="group"
           aria-label={copy.chooseLanguage}
         >
           {(['fr', 'en'] as const).map((targetLocale) => (

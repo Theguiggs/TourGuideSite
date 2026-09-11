@@ -26,7 +26,7 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
         data-testid={`badge-owned-${tour.id}`}
         className="inline-flex items-center gap-1 bg-mer-soft text-mer text-xs font-bold px-2 py-0.5 rounded-full"
       >
-        ✓ {locale === 'en' ? 'Purchased' : 'Acheté'}
+        <span aria-hidden="true">✓</span> {locale === 'en' ? 'Purchased' : 'Acheté'}
       </span>
     );
   }

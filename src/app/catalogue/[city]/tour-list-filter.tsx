@@ -193,7 +193,7 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
                                   className="inline-flex items-center gap-0.5 bg-paper-deep text-ink-80 text-xs px-1.5 py-0.5 rounded-full"
                                   title={`${langName} — ${mention}`}
                                 >
-                                  {LANG_FLAGS[lang] ?? NEUTRAL_LANG_GLYPH}
+                                  <span aria-hidden="true">{LANG_FLAGS[lang] ?? NEUTRAL_LANG_GLYPH}</span>
                                   <span className="text-[10px] font-medium">{lang.toUpperCase()}</span>
                                   <span aria-hidden="true" className="text-[10px]">
                                     {isSyntheticAudioSource(audioType) ? '🤖' : '🎤'}

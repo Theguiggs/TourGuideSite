@@ -132,7 +132,7 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
   const totalCount = filteredCities.length;
 
   return (
-    <main
+    <div
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
       style={{ background: tg.colors.paper }}
     >
@@ -254,6 +254,6 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
           ))}
         </div>
       )}
-    </main>
+    </div>
   );
 }

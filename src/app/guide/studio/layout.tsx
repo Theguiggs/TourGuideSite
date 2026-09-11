@@ -96,7 +96,7 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
             </div>
           </>
         )}
-        <main className="min-w-0 overflow-y-auto bg-paper-soft">{children}</main>
+        <main id="contenu" className="min-w-0 overflow-y-auto bg-paper-soft">{children}</main>
       </div>
       <Toaster />
     </div>
