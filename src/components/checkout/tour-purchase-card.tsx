@@ -6,9 +6,15 @@
  * Flow (the client never self-grants — the server verifies the payment):
  *  1. If not signed in → inline email/password login (same Cognito pool as the app).
  *  2. createTourPaymentIntent(tourId) → clientSecret (authoritative price server-side).
- *  3. Stripe PaymentElement → confirmPayment(redirect:'if_required').
+ *  3. Stripe PaymentElement → confirmPayment(redirect:'if_required', return_url).
  *  4. confirmTourPurchase(paymentIntentId) → server creates the TourPurchase.
  *  5. Success → the tour is owned; the buyer opens it in the app (same account).
+ *
+ * Deux filets, parce qu'il n'y a pas de webhook Stripe pour les visites :
+ *  - l'intent est inscrit dans `pending-tour-confirm` dès sa création, et
+ *    rejoué au prochain chargement si l'onglet meurt entre 3 et 4 ;
+ *  - un moyen de paiement à redirection revient sur cette page avec
+ *    `payment_intent` + `redirect_status`, relus au montage.
  *
  * Only rendered for tours with purchaseType === 'paid'. Requires
  * NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY.
@@ -21,6 +27,11 @@ import { getStripePromise, isStripeConfigured } from '@/lib/stripe/client';
 import { useAuth } from '@/lib/auth/auth-context';
 import { createTourPaymentIntent, confirmTourPurchase, ownsTour } from '@/lib/api/tour-purchase';
 import { emitPurchasesChanged } from '@/lib/checkout/purchase-events';
+import { addPendingTourConfirm, removePendingTourConfirm } from '@/lib/checkout/pending-tour-confirm';
+import { buildStripeReturnUrl, clearStripeReturn, readStripeReturn } from '@/lib/checkout/stripe-return';
+import { logger } from '@/lib/logger';
+
+const SERVICE_NAME = 'TourPurchaseCard';
 
 interface Props {
   tourId: string;
@@ -56,12 +67,14 @@ function PaymentForm({
   const [busy, setBusy] = useState(false);
 
   async function pay() {
-    // Ne plus sortir en silence : surfacer la raison (Stripe non prêt = clé publishable ?).
+    // La cause technique (clé publishable absente au build, Stripe.js bloqué)
+    // va au journal ; le visiteur ne lit qu'un message qu'il peut comprendre.
     if (!stripe || !elements) {
+      logger.error(SERVICE_NAME, 'Stripe.js non initialisé (clé publishable ou script bloqué)');
       onError(
         locale === 'en'
-          ? 'Payment is not ready. Please try again later.'
-          : 'Paiement non prêt — Stripe.js non initialisé. Vérifie NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY (pk_test_…) dans .env.local puis REDÉMARRE le serveur.',
+          ? 'Payment is temporarily unavailable. Please try again later.'
+          : 'Le paiement est momentanément indisponible. Réessayez dans quelques instants.',
       );
       return;
     }
@@ -70,6 +83,7 @@ function PaymentForm({
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         redirect: 'if_required',
+        confirmParams: { return_url: buildStripeReturnUrl('tour') },
       });
       if (error) {
         setBusy(false);
@@ -145,9 +159,58 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
     }
     setClientSecret(res.value.clientSecret);
     // clientSecret is "pi_XXX_secret_YYY" → PaymentIntent id is the part before "_secret_".
-    setPaymentIntentId(res.value.clientSecret.split('_secret_')[0]);
+    const intentId = res.value.clientSecret.split('_secret_')[0];
+    setPaymentIntentId(intentId);
+    // Filet : si l'onglet meurt entre le débit et confirmTourPurchase, le
+    // prochain chargement rejoue la confirmation (idempotente, vérifiée Stripe).
+    addPendingTourConfirm(intentId, tourId);
     setStep('pay');
   }
+
+  function grant(intentId: string) {
+    removePendingTourConfirm(intentId);
+    setOwned(true);
+    setStep('done');
+    // M5 — notifier le reste du SPA (badges "Acheté", "Mes achats",
+    // catalogue) pour rafraîchir la propriété sans hard reload.
+    emitPurchasesChanged();
+  }
+
+  // Retour d'un moyen de paiement à redirection : Stripe nous ramène ici avec
+  // l'intent et son statut ; on confirme côté serveur comme si l'onglet
+  // n'avait jamais quitté la page.
+  useEffect(() => {
+    const ret = readStripeReturn('tour');
+    if (!ret) return;
+    clearStripeReturn();
+    if (ret.status === 'succeeded') {
+      if (!isAuthenticated) return; // la session se restaure ; le rejeu global prendra le relais
+      setBusy(true);
+      confirmTourPurchase(ret.paymentIntentId).then((confirmed) => {
+        setBusy(false);
+        if (confirmed.ok) grant(ret.paymentIntentId);
+        else {
+          setError(confirmed.error.message);
+          setStep('error');
+        }
+      });
+      return;
+    }
+    if (ret.status === 'processing') {
+      setError(
+        locale === 'en'
+          ? 'Your payment is being processed. The tour will unlock automatically once it is confirmed.'
+          : 'Votre paiement est en cours de traitement. La visite se débloquera automatiquement une fois confirmé.',
+      );
+      setStep('error');
+      return;
+    }
+    removePendingTourConfirm(ret.paymentIntentId);
+    setError(locale === 'en' ? 'Payment declined.' : 'Paiement refusé.');
+    setStep('error');
+    // Lecture unique de l'URL au montage ; `grant` et `locale` sont stables.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
 
   function startCheckout() {
     setError(null);
@@ -169,7 +232,17 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
   }, [step, isAuthenticated]);
 
   // All hooks above this line — only now may we bail out early.
-  if (!isStripeConfigured()) return null;
+  // Sans clé Stripe au build, ne pas rendre `null` : le visiteur verrait une
+  // visite payante sans aucun moyen de l'obtenir.
+  if (!isStripeConfigured()) {
+    return (
+      <p data-testid="tour-purchase-in-app" style={{ marginTop: tg.space[4], ...noteStyle }}>
+        {locale === 'en'
+          ? 'This tour can be purchased in the Murmure app.'
+          : "Cette visite s'achète dans l'application Murmure."}
+      </p>
+    );
+  }
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -237,17 +310,25 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
               ? `Sign in with your Murmure account to buy “${title}”.`
               : `Connectez-vous avec votre compte Murmure pour acheter « ${title} ».`}
           </p>
+          <label htmlFor="tour-purchase-email" style={labelStyle}>Email</label>
           <input
+            id="tour-purchase-email"
             type="email"
             required
+            autoComplete="email"
             placeholder="Email"
             value={email}
             onChange={(ev) => setEmail(ev.target.value)}
             style={inputStyle}
           />
+          <label htmlFor="tour-purchase-password" style={labelStyle}>
+            {locale === 'en' ? 'Password' : 'Mot de passe'}
+          </label>
           <input
+            id="tour-purchase-password"
             type="password"
             required
+            autoComplete="current-password"
             placeholder={locale === 'en' ? 'Password' : 'Mot de passe'}
             value={password}
             onChange={(ev) => setPassword(ev.target.value)}
@@ -268,13 +349,7 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
           <Elements stripe={getStripePromise()} options={{ clientSecret }}>
             <PaymentForm
               paymentIntentId={paymentIntentId}
-              onSuccess={() => {
-                setOwned(true);
-                setStep('done');
-                // M5 — notifier le reste du SPA (badges "Acheté", "Mes achats",
-                // catalogue) pour rafraîchir la propriété sans hard reload.
-                emitPurchasesChanged();
-              }}
+              onSuccess={() => grant(paymentIntentId)}
               onError={(msg) => {
                 setError(msg);
                 setStep('error');
@@ -305,6 +380,18 @@ const inputStyle: React.CSSProperties = {
   border: `1px solid ${tg.colors.line}`,
   background: tg.colors.paper,
   color: tg.colors.ink,
+};
+
+const labelStyle: React.CSSProperties = {
+  fontFamily: tg.fonts.sans,
+  fontSize: tg.fontSize.meta,
+  color: tg.colors.ink80,
+};
+
+const noteStyle: React.CSSProperties = {
+  fontFamily: tg.fonts.sans,
+  fontSize: tg.fontSize.body,
+  color: tg.colors.ink80,
 };
 
 const errorStyle: React.CSSProperties = {
