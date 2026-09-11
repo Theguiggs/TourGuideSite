@@ -124,7 +124,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
 
   if (!hasText) {
     return (
-      <div className="p-4 bg-paper-soft rounded-lg text-sm text-ink-60 text-center" data-testid="translation-no-text">
+      <div className="p-4 bg-paper-soft rounded-lg text-body text-ink-60 text-center" data-testid="translation-no-text">
         Pas de texte disponible — transcrivez ou saisissez le texte d&apos;abord.
       </div>
     );
@@ -135,12 +135,12 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
       {/* Translated languages summary */}
       {translatedLanguages.length > 0 && (
         <div className="p-3 bg-olive-soft border border-olive-soft rounded-lg" data-testid="translated-langs-summary">
-          <p className="text-sm font-medium text-success mb-1">{t('Traductions disponibles', 'Available translations')}</p>
+          <p className="text-body font-medium text-success mb-1">{t('Traductions disponibles', 'Available translations')}</p>
           <div className="flex gap-2 flex-wrap">
             {translatedLanguages.map((code) => {
               const lang = TARGET_LANGUAGES.find((l) => l.code === code);
               return lang ? (
-                <span key={code} className="inline-flex items-center gap-1 px-2 py-0.5 bg-olive-soft text-success rounded text-xs font-medium">
+                <span key={code} className="inline-flex items-center gap-1 px-2 py-0.5 bg-olive-soft text-success rounded text-meta font-medium">
                   {lang.flag} {lang.label}
                 </span>
               ) : null;
@@ -151,7 +151,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
 
       {/* Target language — mandatory */}
       <div>
-        <label className="text-sm font-medium text-ink-80 block mb-1">
+        <label className="text-body font-medium text-ink-80 block mb-1">
           {t('Langue cible', 'Target language')} <span className="text-danger">*</span>
         </label>
         <div className="flex gap-2 flex-wrap">
@@ -161,7 +161,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
               <button
                 key={lang.code}
                 onClick={() => setTargetLang(lang.code)}
-                className={`relative px-3 py-1.5 rounded-lg text-sm transition ${
+                className={`relative px-3 py-1.5 rounded-lg text-body transition ${
                   targetLang === lang.code
                     ? 'bg-grenadine text-white'
                     : alreadyTranslated
@@ -172,14 +172,14 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
               >
                 {lang.flag} {lang.label}
                 {alreadyTranslated && targetLang !== lang.code && (
-                  <span className="ml-1 text-[10px]" title="Traduction existante">&#10003;</span>
+                  <span className="ml-1 text-eyebrow" title="Traduction existante">&#10003;</span>
                 )}
               </button>
             );
           })}
         </div>
         {!langSelected && (
-          <p className="text-xs text-ocre-ink mt-1" data-testid="lang-required">
+          <p className="text-meta text-ocre-ink mt-1" data-testid="lang-required">
             {t('Veuillez sélectionner une langue cible', 'Select a target language')}
           </p>
         )}
@@ -188,11 +188,11 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
       {/* Translation mode — auto or manual */}
       {langSelected && (
         <div>
-          <label className="text-sm font-medium text-ink-80 block mb-1">Mode de traduction</label>
+          <label className="text-body font-medium text-ink-80 block mb-1">Mode de traduction</label>
           <div className="flex gap-2">
             <button
               onClick={() => setMode('auto')}
-              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition ${
+              className={`flex-1 px-3 py-2 rounded-lg text-body font-medium transition ${
                 mode === 'auto'
                   ? 'bg-grenadine text-white'
                   : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
@@ -203,7 +203,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
             </button>
             <button
               onClick={() => setMode('manual')}
-              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition ${
+              className={`flex-1 px-3 py-2 rounded-lg text-body font-medium transition ${
                 mode === 'manual'
                   ? 'bg-grenadine text-white'
                   : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
@@ -221,7 +221,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
         <>
           {/* Quality/Provider */}
           <div>
-            <label className="text-sm font-medium text-ink-80 block mb-1">{t('Qualité de traduction', 'Translation quality')}</label>
+            <label className="text-body font-medium text-ink-80 block mb-1">{t('Qualité de traduction', 'Translation quality')}</label>
             <div className="space-y-2">
               {PROVIDERS.map((p) => {
                 const disabled = p.value === 'marianmt' && isGpuDown;
@@ -243,12 +243,12 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
                       className="text-grenadine"
                     />
                     <div className="flex-1">
-                      <span className="text-sm font-medium text-ink">{p.label}</span>
-                      <span className={`ml-2 text-xs px-1.5 py-0.5 rounded ${
+                      <span className="text-body font-medium text-ink">{p.label}</span>
+                      <span className={`ml-2 text-meta px-1.5 py-0.5 rounded ${
                         p.tier === 'free' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                       }`}>{p.badge}</span>
                       {disabled && (
-                        <span className="ml-2 text-xs text-danger">Temporairement indisponible</span>
+                        <span className="ml-2 text-meta text-danger">Temporairement indisponible</span>
                       )}
                     </div>
                   </label>
@@ -260,14 +260,14 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
           {/* Cost estimate */}
           {cost && (
             <div className="p-3 bg-paper-soft rounded-lg" data-testid="cost-estimate">
-              <p className="text-sm text-ink-80">
+              <p className="text-body text-ink-80">
                 {cost.isFree ? (
                   <span className="text-success font-medium">Gratuit</span>
                 ) : (
                   <>Estimation : <span className="font-medium">{(cost.costCharged / 100).toFixed(2)} {cost.provider === 'claude' ? 'USD' : 'EUR'}</span> ({cost.provider.toUpperCase()})</>
                 )}
               </p>
-              <p className="text-xs text-ink-40 mt-0.5">{cost.charCount} caractères</p>
+              <p className="text-meta text-ink-40 mt-0.5">{cost.charCount} caractères</p>
             </div>
           )}
 
@@ -275,7 +275,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
           <button
             onClick={handleTranslate}
             disabled={isSubmitting || isMarianmtDisabled || !langSelected}
-            className="w-full bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white font-medium py-2.5 rounded-lg text-sm transition"
+            className="w-full bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white font-medium py-2.5 rounded-lg text-body transition"
             data-testid="translate-btn"
           >
             {isSubmitting ? t('Traduction en cours...', 'Translating...') : cost?.isFree ? t('Traduire (gratuit)', 'Translate (free)') : `${t('Confirmer et traduire', 'Confirm and translate')} (${cost ? (cost.costCharged / 100).toFixed(2) : '...'} EUR)`}
@@ -287,16 +287,16 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
       {langSelected && mode === 'manual' && (
         <div className="space-y-3">
           <div className="p-3 bg-mer-soft rounded-lg">
-            <p className="text-sm text-mer">
+            <p className="text-body text-mer">
               Vous allez saisir votre propre traduction en <strong>{TARGET_LANGUAGES.find((l) => l.code === targetLang)?.label}</strong>.
             </p>
-            <p className="text-xs text-mer mt-1">
+            <p className="text-meta text-mer mt-1">
               Le texte source sera affiché à côté pour vous aider.
             </p>
           </div>
           <button
             onClick={handleManualStart}
-            className="w-full bg-grenadine hover:opacity-90 text-white font-medium py-2.5 rounded-lg text-sm transition"
+            className="w-full bg-grenadine hover:opacity-90 text-white font-medium py-2.5 rounded-lg text-body transition"
             data-testid="manual-translate-btn"
           >
             Commencer la traduction manuelle

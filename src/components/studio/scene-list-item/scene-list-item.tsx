@@ -37,7 +37,7 @@ export function SceneListItem({
       data-testid={`scene-item-${scene.id}`}
     >
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-paper-soft flex items-center justify-center text-sm font-bold text-ink-80 flex-shrink-0">
+        <div className="w-8 h-8 rounded-pill bg-paper-soft flex items-center justify-center text-body font-bold text-ink-80 flex-shrink-0">
           {scene.sceneIndex + 1}
         </div>
 
@@ -45,7 +45,7 @@ export function SceneListItem({
           <p className="font-medium text-ink truncate">
             {scene.title || `Scène ${scene.sceneIndex + 1}`}
           </p>
-          <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium mt-0.5 ${statusConfig.color}`}>
+          <span className={`inline-flex px-2 py-0.5 rounded-pill text-meta font-medium mt-0.5 ${statusConfig.color}`}>
             {statusConfig.label}
           </span>
         </div>
@@ -53,7 +53,7 @@ export function SceneListItem({
         {hasAudio && (
           <button
             onClick={() => onPlayToggle(scene)}
-            className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition ${
+            className={`w-9 h-9 rounded-pill flex items-center justify-center flex-shrink-0 transition ${
               isPlaying
                 ? 'bg-grenadine text-white hover:opacity-90'
                 : 'bg-paper-soft text-ink-80 hover:bg-grenadine-soft hover:text-grenadine'

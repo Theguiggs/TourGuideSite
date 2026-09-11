@@ -118,7 +118,7 @@ export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined 
             data-testid="studio-header-user"
             className="flex min-h-11 items-center gap-2 rounded-md px-1.5 transition hover:bg-paper-soft"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-grenadine text-meta font-bold text-paper">
+            <span className="flex h-8 w-8 items-center justify-center rounded-pill bg-grenadine text-meta font-bold text-paper">
               {initial}
             </span>
             <span className="hidden max-w-32 truncate text-caption font-semibold text-ink lg:inline">

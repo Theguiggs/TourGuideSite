@@ -26,10 +26,17 @@ describe('notification-templates', () => {
   it('should return correct content for reject action', () => {
     const content = getNotificationContent('reject', TOUR_TITLE, 'Contenu inapproprie');
     expect(content.subject).toBe(GENERIC_SUBJECT);
-    expect(content.body).toContain('refusee');
+    expect(content.body).toContain('refusée');
     expect(content.body).toContain(TOUR_TITLE);
     expect(content.body).toContain('Contenu inapproprie');
-    expect(content.pushTitle).toContain('refusee');
+    expect(content.pushTitle).toContain('refusée');
+  });
+
+  it('encadre le titre de guillemets français espacés et ne perd aucun accent', () => {
+    const content = getNotificationContent('reject', TOUR_TITLE, 'Contenu inapproprié');
+    expect(content.body).toContain('«\u00a0Les Parfums de Grasse\u00a0»');
+    expect(content.body).toMatch(/a été refusée/);
+    expect(content.body).not.toMatch(/\b(a ete|equipe|refusee|demandees)\b/);
   });
 
   it('should use generic subject for all actions (RGPD)', () => {

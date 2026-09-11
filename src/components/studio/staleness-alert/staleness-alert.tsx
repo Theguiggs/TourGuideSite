@@ -147,12 +147,12 @@ export function StalenessAlert({
         className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-ocre-soft bg-ocre-soft p-4"
       >
         <div className="flex items-start gap-2 flex-1 min-w-0">
-          <span className="text-lg shrink-0" aria-hidden="true">&#9888;&#65039;</span>
+          <span className="text-h6 shrink-0" aria-hidden="true">&#9888;&#65039;</span>
           <div>
-            <p className="text-sm font-medium text-ocre-ink">
+            <p className="text-body font-medium text-ocre-ink">
               {staleCount} {staleCount === 1 ? 'scene modifiee' : 'scenes modifiees'} depuis la derniere traduction
             </p>
-            <p className="text-xs text-ocre-ink mt-0.5">
+            <p className="text-meta text-ocre-ink mt-0.5">
               Retraduire si le texte source a change, ou ignorer si c&apos;est une modification non-traduisible (GPS, photos, audio).
             </p>
           </div>
@@ -163,7 +163,7 @@ export function StalenessAlert({
               data-testid="staleness-dismiss-button"
               type="button"
               onClick={() => onDismiss(staleSegmentIds)}
-              className="inline-flex items-center whitespace-nowrap rounded-md border border-ocre px-3 py-2 text-sm font-medium text-ocre-ink hover:bg-ocre-soft"
+              className="inline-flex items-center whitespace-nowrap rounded-md border border-ocre px-3 py-2 text-body font-medium text-ocre-ink hover:bg-ocre-soft"
             >
               Ignorer
             </button>
@@ -172,7 +172,7 @@ export function StalenessAlert({
             data-testid="staleness-retranslate-button"
             type="button"
             onClick={handleRetranslateClick}
-            className="inline-flex items-center whitespace-nowrap rounded-md bg-ocre px-4 py-2 text-sm font-medium text-ink hover:brightness-110"
+            className="inline-flex items-center whitespace-nowrap rounded-md bg-ocre px-4 py-2 text-body font-medium text-ink hover:brightness-110"
           >
             Retraduire {staleCount}
           </button>

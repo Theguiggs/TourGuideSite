@@ -1,4 +1,4 @@
-# @tourguide/design-system
+# @murmure/design-system
 
 Le design system officiel de **TourGuide**. Tokens, composants React, Tailwind preset.
 
@@ -8,13 +8,13 @@ Toutes les valeurs (couleurs, typo, espacements, rayons, ombres) viennent d'une 
 
 ## Installation
 
-Le package vit à la racine du repo TourGuide (`C:\Projects\Bmad\design-system\`) et est consommé par les apps via `file:../design-system` (subtree, pas de monorepo Turborepo, pas de registre npm privé).
+Le package vit dans `TourGuideWeb/packages/design-system/` (la copie `C:\Projects\Bmad\design-system\` n'est PAS celle qui est consommée) et est importé par les apps via `file:./packages/design-system` (subtree, pas de monorepo Turborepo, pas de registre npm privé).
 
 ```jsonc
 // TourGuideWeb/package.json — ou TourGuideApp/package.json
 {
   "dependencies": {
-    "@tourguide/design-system": "file:../design-system"
+    "@murmure/design-system": "file:./packages/design-system"
   }
 }
 ```
@@ -34,14 +34,14 @@ Le package expose **6 entry points** distincts. Choisir selon le contexte d'exé
 
 | Entry | Contenu | Web | RN | Usage |
 |---|---|:-:|:-:|---|
-| `@tourguide/design-system` | tokens TS uniquement | ✅ | ✅ | Import par défaut, sûr partout |
-| `@tourguide/design-system/tokens` | tokens TS uniquement | ✅ | ✅ | Alias explicite tokens-only |
-| `@tourguide/design-system/web` | composants React DOM (`<button>`, `<svg>`…) + tokens | ✅ | ❌ | Apps Web Next.js, Vite, etc. |
-| `@tourguide/design-system/rn` | (Story 2.x) composants RN miroir (Pressable, View) + tokens | ❌ | ✅ | Apps React Native |
-| `@tourguide/design-system/css` | variables CSS | ✅ | — | `import` global Web |
-| `@tourguide/design-system/tailwind` | preset Tailwind | ✅ | — | `tailwind.config.js` |
+| `@murmure/design-system` | tokens TS uniquement | ✅ | ✅ | Import par défaut, sûr partout |
+| `@murmure/design-system/tokens` | tokens TS uniquement | ✅ | ✅ | Alias explicite tokens-only |
+| `@murmure/design-system/web` | composants React DOM (`<button>`, `<svg>`…) + tokens | ✅ | ❌ | Apps Web Next.js, Vite, etc. |
+| `@murmure/design-system/rn` | (Story 2.x) composants RN miroir (Pressable, View) + tokens | ❌ | ✅ | Apps React Native |
+| `@murmure/design-system/css` | variables CSS | ✅ | — | `import` global Web |
+| `@murmure/design-system/tailwind` | preset Tailwind | ✅ | — | `tailwind.config.js` |
 
-> ⚠️ **Web vs RN** : les composants `/web` utilisent du HTML brut (`<button>`, `<div>`, `<svg>`) qui n'existe **pas** en React Native. Ne **jamais** faire `import { Button } from '@tourguide/design-system'` ou `'@tourguide/design-system/web'` dans une app RN — ça compile chez Jest puis crashe Hermes au runtime. Importer **uniquement** depuis `/tokens` côté RN, en attendant les composants miroir Story 2.x sous `/rn`.
+> ⚠️ **Web vs RN** : les composants `/web` utilisent du HTML brut (`<button>`, `<div>`, `<svg>`) qui n'existe **pas** en React Native. Ne **jamais** faire `import { Button } from '@murmure/design-system'` ou `'@murmure/design-system/web'` dans une app RN — ça compile chez Jest puis crashe Hermes au runtime. Importer **uniquement** depuis `/tokens` côté RN, en attendant les composants miroir Story 2.x sous `/rn`.
 
 ---
 
@@ -51,9 +51,9 @@ Le package expose **6 entry points** distincts. Choisir selon le contexte d'exé
 
 Ce package **livre du TS source** (pas de build step, `exports` map pointe vers `.ts`). Les consumers **doivent** utiliser un bundler capable de transpiler TypeScript+JSX :
 
-- **Next.js** : ajouter `@tourguide/design-system` dans `transpilePackages` (voir snippet TourGuideWeb plus bas).
-- **Metro / React Native** : whitelister `@tourguide` dans `transformIgnorePatterns` du Babel/Jest config (voir snippet TourGuideApp plus bas).
-- **Node.js sans transpilation** : **non supporté** — un `require('@tourguide/design-system')` direct depuis Node échouera car les fichiers `.ts` ne sont pas transpilés.
+- **Next.js** : ajouter `@murmure/design-system` dans `transpilePackages` (voir snippet TourGuideWeb plus bas).
+- **Metro / React Native** : whitelister `@murmure` dans `transformIgnorePatterns` du Babel/Jest config (voir snippet TourGuideApp plus bas).
+- **Node.js sans transpilation** : **non supporté** — un `require('@murmure/design-system')` direct depuis Node échouera car les fichiers `.ts` ne sont pas transpilés.
 
 Une éventuelle étape de build (tsc → `dist/`) pourra être ajoutée plus tard si on publie sur un registre npm. Tant que la consommation reste `file:..` interne au monorepo, le source-only suffit.
 
@@ -64,7 +64,7 @@ Une éventuelle étape de build (tsc → `dist/`) pourra être ajoutée plus tar
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  transpilePackages: ['@tourguide/design-system'],
+  transpilePackages: ['@murmure/design-system'],
 };
 
 export default nextConfig;
@@ -72,8 +72,8 @@ export default nextConfig;
 
 ```tsx
 // app/page.tsx — imports
-import { tg } from '@tourguide/design-system';                  // tokens (sûr)
-import { Button, Card, Pin } from '@tourguide/design-system/web'; // composants Web
+import { tg } from '@murmure/design-system';                  // tokens (sûr)
+import { Button, Card, Pin } from '@murmure/design-system/web'; // composants Web
 ```
 
 ### TourGuideApp (React Native 0.83 + Hermes)
@@ -83,15 +83,15 @@ import { Button, Card, Pin } from '@tourguide/design-system/web'; // composants 
 module.exports = {
   // ...
   transformIgnorePatterns: [
-    'node_modules/(?!(react-native|@react-native|@react-navigation|react-native-.*|@react-native-.*|react-native-reanimated|@gorhom|aws-amplify|@aws-amplify|@tourguide)/)',
+    'node_modules/(?!(react-native|@react-native|@react-navigation|react-native-.*|@react-native-.*|react-native-reanimated|@gorhom|aws-amplify|@aws-amplify|@murmure)/)',
   ],
 };
 ```
 
 ```ts
 // src/screens/SomeScreen.tsx — imports
-import { tg } from '@tourguide/design-system/tokens';
-// ⚠️ NE PAS importer depuis '@tourguide/design-system/web' — Story 2.x livrera '/rn'
+import { tg } from '@murmure/design-system/tokens';
+// ⚠️ NE PAS importer depuis '@murmure/design-system/web' — Story 2.x livrera '/rn'
 ```
 
 ### Métro / Hermes bundler
@@ -106,7 +106,7 @@ Le package suit le format CommonJS-compatible (TS source, transpilé à la volé
 
 ```ts
 // _app.tsx ou layout.tsx
-import '@tourguide/design-system/css';
+import '@murmure/design-system/css';
 ```
 
 ```css
@@ -124,7 +124,7 @@ import '@tourguide/design-system/css';
 
 ```js
 // tailwind.config.js
-import tgPreset from '@tourguide/design-system/tailwind';
+import tgPreset from '@murmure/design-system/tailwind';
 
 export default {
   presets: [tgPreset],
@@ -140,10 +140,10 @@ export default {
 
 ### 3. Composants React Web (TourGuideWeb uniquement)
 
-> ⚠️ Composants Web non utilisables en RN. Voir Story 2.x pour composants RN miroir sous `@tourguide/design-system/rn`.
+> ⚠️ Composants Web non utilisables en RN. Voir Story 2.x pour composants RN miroir sous `@murmure/design-system/rn`.
 
 ```tsx
-import { Button, Card, Chip, Pin, Player, Eyebrow, NumberMark } from '@tourguide/design-system/web';
+import { Button, Card, Chip, Pin, Player, Eyebrow, NumberMark } from '@murmure/design-system/web';
 
 export function TourCard({ tour }) {
   return (
@@ -166,7 +166,7 @@ export function TourCard({ tour }) {
 ### 4. Tokens TS (cas avancés, calculs dynamiques)
 
 ```ts
-import { tg } from '@tourguide/design-system';
+import { tg } from '@murmure/design-system';
 
 const accent = tg.colors.grenadine;          // '#C1262A'
 const radius = tg.radius.lg;                 // 18
@@ -195,13 +195,13 @@ Set de **23 icônes** SVG (viewBox 24×24, stroke 1.5, `currentColor`) — tree-
 
 ```tsx
 // Web (Next.js / Vite / etc.)
-import { IconHome, IconPlay, IconChevron } from '@tourguide/design-system/icons';
+import { IconHome, IconPlay, IconChevron } from '@murmure/design-system/icons';
 
 <IconHome size={24} aria-label="Accueil" />
 <IconPlay color="var(--tg-color-grenadine)" size={32} />
 
 // React Native
-import { IconHome, IconPlay } from '@tourguide/design-system/icons-rn';
+import { IconHome, IconPlay } from '@murmure/design-system/icons-rn';
 
 <IconHome size={24} color={tg.colors.ink} accessibilityLabel="Accueil" />
 ```
@@ -258,7 +258,7 @@ import { IconHome, IconPlay } from '@tourguide/design-system/icons-rn';
 | `border-radius: 4px / 8px`    | `tg.radius.sm` / `tg.radius.md`      |
 | Bouton custom inline-styled   | `<Button variant="accent">`          |
 
-Audit : tournez `pnpm dlx @tourguide/audit src/` (à venir) pour repérer les divergences.
+Audit : tournez `pnpm dlx @murmure/audit src/` (à venir) pour repérer les divergences.
 
 ---
 
@@ -299,11 +299,11 @@ const config = {
 ```
 
 **Pourquoi nécessaire :**
-- `npm install @tourguide/design-system file:../design-system` crée un **symlink** dans `node_modules/`. Metro RN ignore les symlinks par défaut.
+- `npm install @murmure/design-system file:./packages/design-system` crée un **symlink** dans `node_modules/`. Metro RN ignore les symlinks par défaut.
 - Le `package.json` exports map (`./tokens`, `./web`, `./rn`) requiert le flag `unstable_enablePackageExports`.
 - `watchFolders` fait connaître à Metro le dossier source pour la résolution + fast refresh.
 
-Sans ces 3 lignes, l'erreur observée au bundle Metro : `Unable to resolve module @tourguide/design-system from .../*.tsx`.
+Sans ces 3 lignes, l'erreur observée au bundle Metro : `Unable to resolve module @murmure/design-system from .../*.tsx`.
 
 ## Storybook playground (Story 2.7)
 

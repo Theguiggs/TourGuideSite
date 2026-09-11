@@ -24,25 +24,25 @@ export default function TourPreviewModal({ pois, tourTitle, onClose }: TourPrevi
       open
       onClose={onClose}
       labelledBy="tour-preview-title"
-      className="max-w-4xl max-h-[90vh] rounded-2xl bg-white backdrop:bg-black/60"
+      className="max-w-4xl max-h-[90vh] rounded-2xl bg-card backdrop:bg-black/60"
     >
       <div className="flex flex-col overflow-hidden max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between p-4 border-b border-line">
           <div>
-            <h2 id="tour-preview-title" className="text-lg font-bold text-gray-900">Prévisualisation de l’itinéraire</h2>
-            <p className="text-sm text-gray-500">{tourTitle}</p>
+            <h2 id="tour-preview-title" className="text-h6 font-bold text-ink">Prévisualisation de l’itinéraire</h2>
+            <p className="text-body text-ink-60">{tourTitle}</p>
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex gap-3 text-sm text-gray-600">
-              <span className="bg-gray-100 px-3 py-1 rounded-full">{distance} km</span>
-              <span className="bg-gray-100 px-3 py-1 rounded-full">~{walkTime} min</span>
-              <span className="bg-gray-100 px-3 py-1 rounded-full">{sortedPois.length} POIs</span>
+            <div className="flex gap-3 text-body text-ink-60">
+              <span className="bg-paper-soft px-3 py-1 rounded-pill">{distance} km</span>
+              <span className="bg-paper-soft px-3 py-1 rounded-pill">~{walkTime} min</span>
+              <span className="bg-paper-soft px-3 py-1 rounded-pill">{sortedPois.length} POIs</span>
             </div>
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex h-11 w-11 items-center justify-center text-gray-500 hover:text-gray-700 text-2xl leading-none"
+              className="inline-flex h-11 w-11 items-center justify-center text-ink-60 hover:text-ink text-h5 leading-none"
               aria-label="Fermer"
             >
               &times;
@@ -61,16 +61,16 @@ export default function TourPreviewModal({ pois, tourTitle, onClose }: TourPrevi
         </div>
 
         {/* POI list */}
-        <div className="border-t border-gray-200 p-4 max-h-[200px] overflow-y-auto">
-          <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">Points d&apos;intérêt</h3>
+        <div className="border-t border-line p-4 max-h-[200px] overflow-y-auto">
+          <h3 className="text-body font-semibold text-ink-60 uppercase mb-2">Points d&apos;intérêt</h3>
           <ol className="space-y-1">
             {sortedPois.map((poi) => (
-              <li key={poi.id} className="flex items-center gap-2 text-sm">
-                <span className="w-5 h-5 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">
+              <li key={poi.id} className="flex items-center gap-2 text-body">
+                <span className="w-5 h-5 bg-mer-soft text-mer rounded-pill flex items-center justify-center text-meta font-bold flex-shrink-0">
                   {poi.order}
                 </span>
-                <span className="text-gray-900">{poi.title}</span>
-                <span className="text-gray-400 text-xs ml-auto">
+                <span className="text-ink">{poi.title}</span>
+                <span className="text-ink-60 text-meta ml-auto">
                   {poi.latitude.toFixed(4)}, {poi.longitude.toFixed(4)}
                 </span>
               </li>

@@ -261,8 +261,8 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
             gap: tg.space[1],
             padding: `${tg.space[3]} ${tg.space[4]}`,
             borderRadius: tg.radius.md,
-            background: tg.colors.olive ? `${tg.colors.olive}1A` : '#E8EFE0',
-            border: `1px solid ${tg.colors.olive ?? '#7E8C5A'}`,
+            background: tg.colors.oliveSoft,
+            border: `1px solid ${tg.colors.olive}`,
           }}
         >
           <span
@@ -270,7 +270,7 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
               fontFamily: tg.fonts.sans,
               fontWeight: 700,
               fontSize: tg.fontSize.body,
-              color: tg.colors.olive ?? '#5E6B3E',
+              color: tg.colors.olive,
             }}
           >
             ✓ {locale === 'en' ? 'Pass active' : 'Forfait actif'}

@@ -16,14 +16,14 @@ export default function OgImage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#D94F3D',
+          background: '#C1262A', // grenadine (jeton DS, recopié : route Edge)
           fontFamily: 'Georgia, serif',
         }}
       >
         <div
           style={{
             fontSize: 96,
-            color: '#F5F0EB',
+            color: '#F4ECDD', // paper
             letterSpacing: '-2px',
             marginBottom: 24,
           }}
@@ -33,7 +33,7 @@ export default function OgImage() {
         <div
           style={{
             fontSize: 36,
-            color: '#F5F0EB',
+            color: '#F4ECDD', // paper
             opacity: 0.85,
             letterSpacing: '1px',
           }}

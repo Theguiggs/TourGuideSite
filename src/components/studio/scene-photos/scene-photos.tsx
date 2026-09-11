@@ -102,7 +102,7 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
             {editable && (
               <button
                 onClick={() => handleRemove(index)}
-                className="absolute top-0.5 right-0.5 w-5 h-5 bg-danger text-white rounded-full text-xs flex items-center justify-center hover:opacity-90"
+                className="absolute top-0.5 right-0.5 w-5 h-5 bg-danger text-white rounded-pill text-meta flex items-center justify-center hover:opacity-90"
                 aria-label={`${t('Supprimer la photo', 'Delete photo')} ${index + 1}`}
                 data-testid={`remove-photo-${scene.id}-${index}`}
               >
@@ -129,21 +129,21 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
               data-testid={`add-photo-btn-${scene.id}`}
               aria-label={`${t('Ajouter une photo', 'Add photo')} (${photos.length}/${MAX_PHOTOS_PER_SCENE})`}
             >
-              <span className="text-2xl">+</span>
+              <span className="text-h5">+</span>
             </button>
           </>
         )}
       </div>
 
       {!editable && photos.length === 0 && (
-        <p className="text-xs text-ink-40">Aucune photo</p>
+        <p className="text-meta text-ink-40">Aucune photo</p>
       )}
 
       {error && (
-        <p className="mt-1 text-xs text-danger" role="alert">{error}</p>
+        <p className="mt-1 text-meta text-danger" role="alert">{error}</p>
       )}
 
-      <p className="mt-1 text-xs text-ink-40">
+      <p className="mt-1 text-meta text-ink-40">
         {photos.length}/{MAX_PHOTOS_PER_SCENE} photos
       </p>
     </div>

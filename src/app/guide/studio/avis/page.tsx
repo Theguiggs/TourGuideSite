@@ -12,22 +12,13 @@ import { selectRecentReviews, type DashboardReview } from '@/lib/studio/dashboar
 import { ReviewItem } from '@/components/studio/dashboard';
 import type { StudioSession } from '@/types/studio';
 import { useStudioLocale, type StudioLocale } from '@/lib/i18n/studio-locale';
+import { languageLabel } from '@/lib/i18n/languages';
 
 const SERVICE_NAME = 'StudioAvisPage';
 
 /** Sessions a guide must act on: the moderation team asked for changes or rejected. */
 const ATTENTION_STATUSES = ['revision_requested', 'rejected'] as const;
 
-const LANG_LABELS: Record<string, string> = {
-  fr: 'Français',
-  en: 'Anglais',
-  it: 'Italien',
-  de: 'Allemand',
-  es: 'Espagnol',
-};
-const langLabel = (code: string, locale: StudioLocale) => locale === 'en'
-  ? ({ fr: 'French', en: 'English', it: 'Italian', de: 'German', es: 'Spanish' }[code] ?? code.toUpperCase())
-  : LANG_LABELS[code] ?? code.toUpperCase();
 
 /** Shape returned by listTourReviews (AppSync TourReview model, loosely typed). */
 interface ReviewLike {
@@ -503,7 +494,7 @@ export default function StudioAvisPage() {
                 <option value="all">{copy.allFem}</option>
                 {langOptions.map((l) => (
                   <option key={l} value={l}>
-                    {langLabel(l, locale)}
+                    {languageLabel(l, locale)}
                   </option>
                 ))}
               </select>

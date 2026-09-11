@@ -8,33 +8,15 @@ import {
   type DemandeNarration,
 } from '@/lib/api/narration-requests';
 import { logger } from '@/lib/logger';
+import { PageTitle } from '@murmure/design-system/web';
+import { PAIR_STATUS_BADGES, badgeFor } from '@/lib/admin/status-badges';
+import { LANGUAGES, languageFlag, languageLabel } from '@/lib/i18n/languages';
+import { StatusBadge } from '@/components/admin/StatusBadge';
 
 const SERVICE_NAME = 'AdminNarrationPage';
 
-const LANG_LABELS: Record<string, { drapeau: string; nom: string }> = {
-  fr: { drapeau: '🇫🇷', nom: 'Français' },
-  en: { drapeau: '🇬🇧', nom: 'Anglais' },
-  es: { drapeau: '🇪🇸', nom: 'Espagnol' },
-  it: { drapeau: '🇮🇹', nom: 'Italien' },
-  de: { drapeau: '🇩🇪', nom: 'Allemand' },
-  nl: { drapeau: '🇳🇱', nom: 'Néerlandais' },
-  pt: { drapeau: '🇵🇹', nom: 'Portugais' },
-  ja: { drapeau: '🇯🇵', nom: 'Japonais' },
-  zh: { drapeau: '🇨🇳', nom: 'Chinois' },
-};
-
-/** Les six valeurs du glossaire (`PAIR_STATES`), plus rien. */
-const PAIR_BADGES: Record<string, { label: string; className: string }> = {
-  absent: { label: 'Absente', className: 'bg-paper-deep text-ink-60' },
-  queued: { label: 'En file', className: 'bg-mer-soft text-mer' },
-  fabricating: { label: 'En fabrication', className: 'bg-mer-soft text-mer' },
-  partially_ready: { label: 'Partiellement prête', className: 'bg-ocre-soft text-ocre-ink' },
-  ready: { label: 'Prête', className: 'bg-olive-soft text-olive' },
-  failed: { label: 'Échec', className: 'bg-grenadine-soft text-danger' },
-};
-
 function langue(code: string) {
-  return LANG_LABELS[code] ?? { drapeau: '🏳️', nom: code.toUpperCase() };
+  return { drapeau: languageFlag(code) ?? '🏳️', nom: languageLabel(code) };
 }
 
 function formaterDate(iso: string): string {
@@ -63,9 +45,9 @@ function moisDe(iso: string): string {
 
 function Tuile({ valeur, libelle }: { valeur: number | string; libelle: string }) {
   return (
-    <div className="bg-white rounded-xl p-4 border border-paper-deep">
-      <p className="text-2xl font-semibold text-ink">{valeur}</p>
-      <p className="text-xs text-ink-60 mt-1">{libelle}</p>
+    <div className="bg-card rounded-xl p-4 border border-paper-deep">
+      <p className="text-h5 font-semibold text-ink">{valeur}</p>
+      <p className="text-meta text-ink-60 mt-1">{libelle}</p>
     </div>
   );
 }
@@ -80,24 +62,24 @@ function Repartition({
 }) {
   const max = Math.max(1, ...lignes.map((l) => l.total));
   return (
-    <div className="bg-white rounded-xl p-4 border border-paper-deep">
-      <h2 className="text-sm font-semibold text-ink mb-3">{titre}</h2>
+    <div className="bg-card rounded-xl p-4 border border-paper-deep">
+      <h2 className="text-body font-semibold text-ink mb-3">{titre}</h2>
       {lignes.length === 0 ? (
-        <p className="text-xs text-ink-60">Aucune demande.</p>
+        <p className="text-meta text-ink-60">Aucune demande.</p>
       ) : (
         <ul className="space-y-2">
           {lignes.map((ligne) => (
             <li key={ligne.cle} className="flex items-center gap-3">
-              <span className="text-xs text-ink-80 w-40 truncate" title={ligne.etiquette}>
+              <span className="text-meta text-ink-80 w-40 truncate" title={ligne.etiquette}>
                 {ligne.etiquette}
               </span>
-              <span className="flex-1 h-2 bg-paper-deep rounded-full overflow-hidden">
+              <span className="flex-1 h-2 bg-paper-deep rounded-pill overflow-hidden">
                 <span
-                  className="block h-full bg-ocre rounded-full"
+                  className="block h-full bg-ocre rounded-pill"
                   style={{ width: `${(ligne.total / max) * 100}%` }}
                 />
               </span>
-              <span className="text-xs text-ink-60 w-8 text-right tabular-nums">{ligne.total}</span>
+              <span className="text-meta text-ink-60 w-8 text-right tabular-nums">{ligne.total}</span>
             </li>
           ))}
         </ul>
@@ -191,7 +173,7 @@ export default function AdminNarrationPage() {
 
   const enAttente = demandes.filter((d) => d.enAttente).length;
   const enEchec = demandes.filter((d) => d.pairState === 'failed').length;
-  const languesConnues = Object.keys(LANG_LABELS);
+  const languesConnues = Object.keys(LANGUAGES);
   const languesPresentes = [...new Set(demandes.map((d) => d.language))].sort(
     (a, b) => languesConnues.indexOf(a) - languesConnues.indexOf(b),
   );
@@ -199,8 +181,8 @@ export default function AdminNarrationPage() {
   return (
     <div className="max-w-6xl">
       <header className="mb-6">
-        <h1 className="text-2xl font-semibold text-ink">Narrations à la demande</h1>
-        <p className="text-sm text-ink-60 mt-1">
+        <PageTitle size="h4">Narrations à la demande</PageTitle>
+        <p className="text-body text-ink-60 mt-1">
           Le registre des demandes de fabrication, joint à l’état de chaque Paire (Visite × langue).
         </p>
       </header>
@@ -209,7 +191,7 @@ export default function AdminNarrationPage() {
           Sans cet avertissement, « 17 demandes » se lit spontanément comme
           « 17 visiteurs », et la déduplication sur le triplet rend cette lecture
           fausse d’un facteur inconnu. */}
-      <div className="mb-6 rounded-xl border border-ocre bg-ocre-soft p-4 text-sm text-ink-80">
+      <div className="mb-6 rounded-xl border border-ocre bg-ocre-soft p-4 text-body text-ink-80">
         <p className="font-medium text-ocre-ink mb-1">Une demande n’est pas un visiteur.</p>
         <p>
           Une ligne existe par triplet <strong>(Visite, langue, version)</strong> : le deuxième
@@ -221,7 +203,7 @@ export default function AdminNarrationPage() {
       </div>
 
       {erreur && (
-        <div className="mb-6 rounded-xl border border-danger bg-grenadine-soft p-4 text-sm text-danger">
+        <div className="mb-6 rounded-xl border border-danger bg-grenadine-soft p-4 text-body text-danger">
           {erreur}
         </div>
       )}
@@ -243,7 +225,7 @@ export default function AdminNarrationPage() {
         <select
           value={filtreLangue}
           onChange={(e) => setFiltreLangue(e.target.value)}
-          className="px-3 py-2 rounded-lg border border-paper-deep text-sm bg-white"
+          className="px-3 py-2 rounded-lg border border-paper-deep text-body bg-card"
         >
           <option value="">Toutes les langues</option>
           {languesPresentes.map((code) => (
@@ -255,24 +237,24 @@ export default function AdminNarrationPage() {
         <select
           value={filtreEtat}
           onChange={(e) => setFiltreEtat(e.target.value)}
-          className="px-3 py-2 rounded-lg border border-paper-deep text-sm bg-white"
+          className="px-3 py-2 rounded-lg border border-paper-deep text-body bg-card"
         >
           <option value="">Tous les états</option>
           <option value="pending">En attente d’admission</option>
-          {Object.entries(PAIR_BADGES).map(([cle, badge]) => (
+          {Object.entries(PAIR_STATUS_BADGES).map(([cle, badge]) => (
             <option key={cle} value={cle}>
               {badge.label}
             </option>
           ))}
         </select>
-        <span className="text-sm text-ink-60 self-center">
+        <span className="text-body text-ink-60 self-center">
           {visibles.length} / {demandes.length}
         </span>
       </div>
 
-      <div className="bg-white rounded-xl border border-paper-deep overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead className="bg-paper-soft text-ink-60 text-xs uppercase">
+      <div className="bg-card rounded-xl border border-paper-deep overflow-x-auto">
+        <table className="w-full text-body">
+          <thead className="bg-paper-soft text-ink-60 text-meta uppercase">
             <tr>
               <th className="text-left px-4 py-3 font-medium">Demandée le</th>
               <th className="text-left px-4 py-3 font-medium">Visite</th>
@@ -299,7 +281,7 @@ export default function AdminNarrationPage() {
               </tr>
             )}
             {visibles.map((demande) => {
-              const badge = PAIR_BADGES[demande.pairState] ?? PAIR_BADGES.absent;
+              const badge = badgeFor(PAIR_STATUS_BADGES, demande.pairState, 'absent');
               const sub = demande.premierDemandeurSub;
               return (
                 <tr key={demande.requestId} className="border-t border-paper-deep align-top">
@@ -317,10 +299,10 @@ export default function AdminNarrationPage() {
                     ) : (
                       // Une Visite supprimée laisse ses demandes orphelines : le
                       // schéma n'accorde `delete` à personne et rien ne cascade.
-                      <span className="text-ink-60 font-mono text-xs">{demande.tourId}</span>
+                      <span className="text-ink-60 font-mono text-meta">{demande.tourId}</span>
                     )}
                     {demande.tourCity && (
-                      <span className="block text-xs text-ink-60">{demande.tourCity}</span>
+                      <span className="block text-meta text-ink-60">{demande.tourCity}</span>
                     )}
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap">
@@ -328,41 +310,37 @@ export default function AdminNarrationPage() {
                   </td>
                   <td className="px-4 py-3 text-ink-60">v{demande.sourceVersion}</td>
                   <td className="px-4 py-3">
-                    <span
-                      className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${badge.className}`}
-                    >
-                      {badge.label}
-                    </span>
+                    <StatusBadge badge={badge} />
                     {demande.sceneCount != null && (
-                      <span className="block text-xs text-ink-60 mt-1 tabular-nums">
+                      <span className="block text-meta text-ink-60 mt-1 tabular-nums">
                         {demande.readySceneCount ?? 0}/{demande.sceneCount} scènes
                       </span>
                     )}
                     {demande.failureMessage && (
-                      <span className="block text-xs text-danger mt-1">
+                      <span className="block text-meta text-danger mt-1">
                         {demande.failureMessage}
                       </span>
                     )}
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     {demande.enAttente ? (
-                      <span className="inline-block px-2 py-1 rounded-full text-xs font-medium bg-ocre-soft text-ocre-ink">
+                      <span className="inline-block px-2 py-1 rounded-pill text-meta font-medium bg-ocre-soft text-ocre-ink">
                         En attente
                       </span>
                     ) : (
-                      <span className="text-ink-60 text-xs">
+                      <span className="text-ink-60 text-meta">
                         {formaterDelai(demande.requestedAt, demande.admittedAt)}
                       </span>
                     )}
                   </td>
                   <td className="px-4 py-3">
                     {sub ? (
-                      <span className="text-ink-80 text-xs" title={sub}>
+                      <span className="text-ink-80 text-meta" title={sub}>
                         {emails[sub] ?? `${sub.slice(0, 8)}…`}
                       </span>
                     ) : (
                       // Ligne semée à la main : le champ est facultatif au schéma.
-                      <span className="text-ink-60 text-xs">—</span>
+                      <span className="text-ink-60 text-meta">—</span>
                     )}
                   </td>
                 </tr>

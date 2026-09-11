@@ -44,12 +44,12 @@ export function PurchasedTourCard({ purchase, locale = 'fr' }: PurchasedTourCard
           <h3 className="font-semibold text-ink">{tour.title}</h3>
           <TourPriceBadge tour={tour} locale={locale} />
         </div>
-        <p className="text-sm text-ink-60 mb-2">
+        <p className="text-body text-ink-60 mb-2">
           {tour.city} &middot; {tour.duration} min &middot; {tour.distance} km
         </p>
-        {meta && <p className="text-xs text-ink-60">{meta}</p>}
+        {meta && <p className="text-meta text-ink-60">{meta}</p>}
         {!published && (
-          <p className="text-xs text-ink-60 mt-1 italic">
+          <p className="text-meta text-ink-60 mt-1 italic">
             {locale === 'en'
               ? 'Currently unavailable in the catalogue - find it in the Murmure app.'
               : "Indisponible au catalogue actuellement — retrouvez-la dans l'app Murmure."}

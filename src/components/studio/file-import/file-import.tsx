@@ -58,13 +58,13 @@ export function FileImport({ sceneId }: FileImportProps) {
       <button
         onClick={() => fileInputRef.current?.click()}
         disabled={isProcessing}
-        className="text-sm text-ink-60 hover:text-grenadine underline transition disabled:text-ink-20"
+        className="text-body text-ink-60 hover:text-grenadine underline transition disabled:text-ink-20"
         data-testid="import-btn"
       >
         {isProcessing ? 'Import en cours...' : `📁 Importer un fichier audio (max ${MAX_FILE_SIZE_MB} Mo)`}
       </button>
       {error && (
-        <p className="mt-1 text-xs text-danger" role="alert" data-testid="import-error">
+        <p className="mt-1 text-meta text-danger" role="alert" data-testid="import-error">
           {error}
         </p>
       )}

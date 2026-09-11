@@ -70,8 +70,8 @@ export default function TestDsPage() {
       {/* Bloc 3 : Story 1.3 · classes Tailwind depuis le preset DS */}
       <div className="bg-paper text-ink p-6 mt-8">
         <div className="bg-grenadine text-paper p-5 rounded-lg shadow-accent">
-          <p className="font-display text-3xl">POC DS Mobile OK</p>
-          <p className="font-editorial italic text-base mt-2">Le monde a une voix.</p>
+          <p className="font-display text-h4">POC DS Mobile OK</p>
+          <p className="font-editorial italic text-body-lg mt-2">Le monde a une voix.</p>
         </div>
         <div className="bg-card text-ink p-6 rounded-lg shadow-md mt-6 border border-line">
           <h3 className="font-display text-h2">Tailwind classes OK</h3>

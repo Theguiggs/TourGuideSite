@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { logger } from '@/lib/logger';
+import { useToastStore } from '@/lib/stores/toast-store';
 import {
   getTranslationStatus,
   type CostEstimate,
@@ -23,7 +24,6 @@ export interface SegmentTranslationState {
 interface TranslationStoreState {
   segments: Record<string, SegmentTranslationState>;
   costEstimates: Record<string, CostEstimate | null>;
-  toastMessage: string | null;
 
   // Actions
   setSegmentStatus: (segmentId: string, update: Partial<SegmentTranslationState>) => void;
@@ -32,7 +32,6 @@ interface TranslationStoreState {
   stopPolling: (segmentId: string) => void;
   stopAllPolling: () => void;
   showToast: (message: string) => void;
-  clearToast: () => void;
   resetStore: () => void;
 }
 
@@ -54,7 +53,6 @@ function defaultSegmentState(): SegmentTranslationState {
 export const useTranslationStore = create<TranslationStoreState>((set, get) => ({
   segments: {},
   costEstimates: {},
-  toastMessage: null,
 
   setSegmentStatus: (segmentId, update) => {
     set((state) => ({
@@ -124,17 +122,12 @@ export const useTranslationStore = create<TranslationStoreState>((set, get) => (
   },
 
   showToast: (message) => {
-    set({ toastMessage: message });
-    setTimeout(() => {
-      set((state) => state.toastMessage === message ? { toastMessage: null } : state);
-    }, 5000);
+    useToastStore.getState().show({ variant: 'success', message });
   },
-
-  clearToast: () => set({ toastMessage: null }),
 
   resetStore: () => {
     get().stopAllPolling();
-    set({ segments: {}, costEstimates: {}, toastMessage: null });
+    set({ segments: {}, costEstimates: {} });
   },
 }));
 
@@ -159,4 +152,3 @@ export function selectCostEstimate(segmentId: string) {
   return selector;
 }
 
-export const selectTranslationToast = (s: TranslationStoreState) => s.toastMessage;

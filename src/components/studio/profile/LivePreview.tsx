@@ -67,7 +67,7 @@ export function LivePreview({
             <div className="tg-eyebrow text-ink-60">{copy.author}</div>
             <div className="flex gap-4 mt-3 items-start">
               <div
-                className={`w-[72px] h-[72px] rounded-full text-paper flex items-center justify-center font-display text-h4 shrink-0 ${famMeta.bg}`}
+                className={`w-[72px] h-[72px] rounded-pill text-paper flex items-center justify-center font-display text-h4 shrink-0 ${famMeta.bg}`}
                 aria-hidden="true"
               >
                 {initial}
@@ -85,14 +85,14 @@ export function LivePreview({
                     {visibleSpecialties.map((s) => (
                       <span
                         key={s}
-                        className={`text-[10px] px-2 py-0.5 rounded-pill font-bold ${famMeta.bgSoft} ${famMeta.text}`}
+                        className={`text-eyebrow px-2 py-0.5 rounded-pill font-bold ${famMeta.bgSoft} ${famMeta.text}`}
                       >
                         {s}
                       </span>
                     ))}
                     {extraSpecialtiesCount > 0 && (
                       <span
-                        className={`text-[10px] px-2 py-0.5 rounded-pill font-bold ${famMeta.bgSoft} ${famMeta.text}`}
+                        className={`text-eyebrow px-2 py-0.5 rounded-pill font-bold ${famMeta.bgSoft} ${famMeta.text}`}
                       >
                         +{extraSpecialtiesCount}
                       </span>

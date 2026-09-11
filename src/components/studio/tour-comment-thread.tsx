@@ -61,18 +61,18 @@ export function TourCommentThread({ tourId, role, authorName, sessionId }: TourC
   };
 
   return (
-    <div className="bg-white rounded-xl border border-line overflow-hidden" data-testid="tour-comment-thread">
+    <div className="bg-card rounded-xl border border-line overflow-hidden" data-testid="tour-comment-thread">
       <div className="px-4 py-3 bg-paper-soft border-b border-line">
-        <h3 className="text-sm font-semibold text-ink">Journal d&apos;échanges</h3>
-        <p className="text-xs text-ink-60">{comments.length} message{comments.length !== 1 ? 's' : ''}</p>
+        <h3 className="text-body font-semibold text-ink">Journal d&apos;échanges</h3>
+        <p className="text-meta text-ink-60">{comments.length} message{comments.length !== 1 ? 's' : ''}</p>
       </div>
 
       {/* Comments list */}
       <div className="max-h-96 overflow-y-auto p-4 space-y-3">
         {loading ? (
-          <p className="text-sm text-ink-40 animate-pulse">Chargement...</p>
+          <p className="text-body text-ink-40 animate-pulse">Chargement...</p>
         ) : comments.length === 0 ? (
-          <p className="text-sm text-ink-40 text-center py-4">Aucun échange pour le moment.</p>
+          <p className="text-body text-ink-40 text-center py-4">Aucun échange pour le moment.</p>
         ) : (
           comments.map((c) => {
             const isAdmin = c.author === 'admin';
@@ -84,22 +84,22 @@ export function TourCommentThread({ tourId, role, authorName, sessionId }: TourC
                 data-testid={`comment-${c.id}`}
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <span className={`text-xs font-bold ${isAdmin ? 'text-danger' : 'text-grenadine'}`}>
+                  <span className={`text-meta font-bold ${isAdmin ? 'text-danger' : 'text-grenadine'}`}>
                     {isAdmin ? '🔴' : '🟢'} {c.authorName}
                   </span>
-                  <span className="text-[10px] text-ink-40">
+                  <span className="text-eyebrow text-ink-40">
                     {new Date(c.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                   </span>
                   {actionInfo && c.action !== 'comment' && (
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${actionInfo.color}`}>
+                    <span className={`text-eyebrow px-1.5 py-0.5 rounded-pill font-medium ${actionInfo.color}`}>
                       {actionInfo.label}
                     </span>
                   )}
                   {c.language && (
-                    <span className="text-[10px] text-ink-40">({c.language.toUpperCase()})</span>
+                    <span className="text-eyebrow text-ink-40">({c.language.toUpperCase()})</span>
                   )}
                 </div>
-                <p className="text-sm text-ink">{c.message}</p>
+                <p className="text-body text-ink">{c.message}</p>
               </div>
             );
           })
@@ -115,13 +115,13 @@ export function TourCommentThread({ tourId, role, authorName, sessionId }: TourC
           onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
           placeholder="Écrire un message..."
           rows={2}
-          className="flex-1 border border-line rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-grenadine"
+          className="flex-1 border border-line rounded-lg px-3 py-2 text-body resize-none focus:outline-none focus:ring-2 focus:ring-grenadine"
           data-testid="comment-input"
         />
         <button
           onClick={handleSend}
           disabled={sending || !message.trim()}
-          className="self-end bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white text-sm font-medium px-4 py-2 rounded-lg transition"
+          className="self-end bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white text-body font-medium px-4 py-2 rounded-lg transition"
           data-testid="comment-send"
         >
           {sending ? '...' : 'Envoyer'}

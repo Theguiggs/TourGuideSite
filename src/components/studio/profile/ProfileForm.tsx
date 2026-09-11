@@ -83,11 +83,11 @@ export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileForm
           <S3Image
             s3Key={value.photoUrl}
             alt={copy.photoAlt}
-            className="w-[72px] h-[72px] rounded-full shrink-0"
+            className="w-[72px] h-[72px] rounded-pill shrink-0"
           />
         ) : (
           <div
-            className={`w-[72px] h-[72px] rounded-full text-paper flex items-center justify-center font-display text-h4 relative shrink-0 ${famMeta.bg}`}
+            className={`w-[72px] h-[72px] rounded-pill text-paper flex items-center justify-center font-display text-h4 relative shrink-0 ${famMeta.bg}`}
             aria-hidden="true"
           >
             {initial}

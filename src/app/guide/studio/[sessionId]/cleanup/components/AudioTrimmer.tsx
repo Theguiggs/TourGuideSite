@@ -116,7 +116,7 @@ export function AudioTrimmer({
 
   if (!audioUrl) {
     return (
-      <div className="bg-paper-soft rounded-lg p-3 text-sm text-ink-60" data-testid="audio-trimmer-empty">
+      <div className="bg-paper-soft rounded-lg p-3 text-body text-ink-60" data-testid="audio-trimmer-empty">
         Aucun audio
       </div>
     );
@@ -126,7 +126,7 @@ export function AudioTrimmer({
 
   return (
     <div
-      className="border border-line rounded-lg p-3 bg-white"
+      className="border border-line rounded-lg p-3 bg-card"
       data-testid="audio-trimmer"
     >
       <audio
@@ -145,11 +145,11 @@ export function AudioTrimmer({
           disabled={disabled}
           data-testid="audio-trim-play"
           aria-label={isPlaying ? 'Pause' : 'Lecture'}
-          className="w-9 h-9 rounded-full bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white text-sm flex items-center justify-center"
+          className="w-9 h-9 rounded-pill bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white text-body flex items-center justify-center"
         >
           {isPlaying ? 'II' : '>'}
         </button>
-        <div className="flex-1 text-xs text-ink-80 tabular-nums">
+        <div className="flex-1 text-meta text-ink-80 tabular-nums">
           <span data-testid="audio-trim-current">{fmt(currentTime)}</span>
           {' / '}
           <span data-testid="audio-trim-duration">{fmt(duration)}</span>
@@ -160,7 +160,7 @@ export function AudioTrimmer({
             onClick={onDelete}
             disabled={disabled}
             data-testid="audio-trim-delete"
-            className="text-xs text-danger hover:opacity-80 disabled:text-ink-20"
+            className="text-meta text-danger hover:opacity-80 disabled:text-ink-20"
           >
             Supprimer
           </button>
@@ -168,9 +168,9 @@ export function AudioTrimmer({
       </div>
 
       <div className="relative h-8">
-        <div className="absolute inset-x-0 top-3 h-1 bg-paper-deep rounded-full" />
+        <div className="absolute inset-x-0 top-3 h-1 bg-paper-deep rounded-pill" />
         <div
-          className="absolute top-3 h-1 bg-grenadine rounded-full"
+          className="absolute top-3 h-1 bg-grenadine rounded-pill"
           style={{
             left: `${(effectiveStart / effectiveMax) * 100}%`,
             width: `${Math.max(0, ((effectiveEnd - effectiveStart) / effectiveMax) * 100)}%`,
@@ -203,7 +203,7 @@ export function AudioTrimmer({
         />
       </div>
 
-      <div className="mt-2 flex justify-between text-xs text-ink-60 tabular-nums">
+      <div className="mt-2 flex justify-between text-meta text-ink-60 tabular-nums">
         <span>Début: <span data-testid="audio-trim-start-label">{fmt(effectiveStart)}</span></span>
         <span>Fin: <span data-testid="audio-trim-end-label">{fmt(effectiveEnd)}</span></span>
       </div>

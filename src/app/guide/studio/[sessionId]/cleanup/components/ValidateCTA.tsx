@@ -22,10 +22,10 @@ export function ValidateCTA({ validation, busy, onValidate }: ValidateCTAProps) 
 
   return (
     <div
-      className="sticky bottom-0 left-0 right-0 bg-white border-t border-line px-4 py-3 flex items-center justify-between gap-3"
+      className="sticky bottom-0 left-0 right-0 bg-card border-t border-line px-4 py-3 flex items-center justify-between gap-3"
       data-testid="validate-cta-bar"
     >
-      <div className="flex-1 min-w-0 text-xs text-ink-60" data-testid="validate-cta-reasons">
+      <div className="flex-1 min-w-0 text-meta text-ink-60" data-testid="validate-cta-reasons">
         {validation.ready ? (
           <span className="text-success font-medium" data-testid="validate-cta-ready">
             Prêt à valider
@@ -52,7 +52,7 @@ export function ValidateCTA({ validation, busy, onValidate }: ValidateCTAProps) 
         title={title}
         aria-disabled={disabled}
         data-testid="validate-cta-button"
-        className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+        className={`px-4 py-2 rounded-lg text-body font-medium transition ${
           disabled
             ? 'bg-paper-deep text-ink-40 cursor-not-allowed'
             : 'bg-grenadine text-white hover:opacity-90'

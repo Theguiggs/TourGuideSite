@@ -269,7 +269,7 @@ export function Teleprompter({
         )}
 
         <div className="order-last flex w-full items-center gap-3 sm:order-none sm:ml-auto sm:w-auto">
-          <label htmlFor="speed-slider" className="text-sm text-paper-soft">
+          <label htmlFor="speed-slider" className="text-body text-paper-soft">
             Vitesse
           </label>
           <input
@@ -282,9 +282,9 @@ export function Teleprompter({
             className="min-w-0 flex-1 accent-grenadine sm:w-28 sm:flex-none"
             data-testid="speed-slider"
           />
-          <span className="w-4 text-center text-sm tabular-nums text-paper-soft">{state.speed}</span>
+          <span className="w-4 text-center text-body tabular-nums text-paper-soft">{state.speed}</span>
           <div
-            className="ml-auto min-w-[4.5rem] text-right font-mono text-lg tabular-nums text-paper sm:ml-2"
+            className="ml-auto min-w-[4.5rem] text-right font-mono text-h6 tabular-nums text-paper sm:ml-2"
             role="timer"
             aria-live="off"
             data-testid="chronometre"
@@ -294,14 +294,14 @@ export function Teleprompter({
         </div>
       </div>
 
-      <div className="flex items-center gap-3 border-b border-paper/10 px-5 py-2.5 text-xs text-paper-soft">
+      <div className="flex items-center gap-3 border-b border-paper/10 px-5 py-2.5 text-meta text-paper-soft">
         <span className="flex shrink-0 items-center gap-2" role="status" data-testid="prompter-status">
-          <span className={`h-2 w-2 rounded-full ${state.isScrolling && !state.isPaused ? 'bg-ocre' : 'bg-paper/40'}`} />
+          <span className={`h-2 w-2 rounded-pill ${state.isScrolling && !state.isPaused ? 'bg-ocre' : 'bg-paper/40'}`} />
           {readingStatus}
         </span>
-        <div className="h-1 flex-1 overflow-hidden rounded-full bg-paper/10" aria-hidden="true">
+        <div className="h-1 flex-1 overflow-hidden rounded-pill bg-paper/10" aria-hidden="true">
           <div
-            className="h-full rounded-full bg-ocre transition-[width] duration-150 motion-reduce:transition-none"
+            className="h-full rounded-pill bg-ocre transition-[width] duration-150 motion-reduce:transition-none"
             style={{ width: `${progress}%` }}
             data-testid="prompter-progress"
           />
@@ -322,7 +322,7 @@ export function Teleprompter({
         onKeyDown={handlePrompterKeyDown}
         data-testid="prompter-scroll-area"
       >
-        <div className="mx-auto max-w-3xl text-left text-2xl font-medium leading-[2.15] sm:text-3xl sm:leading-[2.2]">
+        <div className="mx-auto max-w-3xl text-left text-h5 font-medium leading-[2.15] sm:text-h4 sm:leading-[2.2]">
           {words.map((word, i) => (
             <span
               key={i}

@@ -65,6 +65,6 @@ body {
   height: 4px;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
+  background-color: var(--tg-color-ink-20);
   border-radius: 2px;
 }

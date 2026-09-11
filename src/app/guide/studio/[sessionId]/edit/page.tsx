@@ -214,7 +214,7 @@ export default function EditPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
           &larr; Retour a la session
         </Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">
@@ -235,15 +235,15 @@ export default function EditPage() {
       <div className="flex-1 p-4 lg:p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-1 inline-block">
+            <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-1 inline-block">
               &larr; Retour a la session
             </Link>
-            <h2 className="text-lg font-semibold text-ink">
+            <h2 className="text-h6 font-semibold text-ink">
               {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
             </h2>
           </div>
 
-          <div className="text-xs text-ink-40 text-right">
+          <div className="text-meta text-ink-40 text-right">
             {isSaving && <span className="text-mer">Sauvegarde...</span>}
             {!isSaving && isDirty && <span>Modifications non sauvegardées</span>}
             {!isSaving && !isDirty && lastSavedAt && (
@@ -253,7 +253,7 @@ export default function EditPage() {
         </div>
 
         {syncError && (
-          <div className="mb-3 p-2 bg-ocre-soft border border-ocre rounded text-sm text-ink" role="alert">
+          <div className="mb-3 p-2 bg-ocre-soft border border-ocre rounded text-body text-ink" role="alert">
             {syncError}
           </div>
         )}
@@ -262,7 +262,7 @@ export default function EditPage() {
             savoir, sinon il croit lire ce que contient le backend. */}
         {restoredDraft && (
           <div
-            className="mb-3 p-2 bg-mer-soft border border-mer rounded text-sm text-ink"
+            className="mb-3 p-2 bg-mer-soft border border-mer rounded text-body text-ink"
             role="status"
             data-testid="restored-draft-notice"
           >
@@ -276,12 +276,12 @@ export default function EditPage() {
           onChange={(e) => setEditorText(e.target.value)}
           placeholder="Saisissez ou modifiez le texte de cette scène..."
           maxLength={10000}
-          className="w-full min-h-[300px] p-4 border border-line rounded-lg text-ink text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine focus:border-transparent"
+          className="w-full min-h-[300px] p-4 border border-line rounded-lg text-ink text-body-lg leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine focus:border-transparent"
           data-testid="scene-editor"
           aria-label={`Texte de la scène ${activeScene?.title || ''}`}
         />
 
-        <p className="mt-2 text-xs text-ink-40">
+        <p className="mt-2 text-meta text-ink-40">
           Sauvegarde automatique toutes les 30 secondes et a la perte de focus.
         </p>
       </div>

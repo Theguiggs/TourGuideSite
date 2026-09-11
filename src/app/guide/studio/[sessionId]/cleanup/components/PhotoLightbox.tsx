@@ -85,7 +85,7 @@ export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
             onClick={handleDownload}
             disabled={!url || downloading}
             data-testid="photo-lightbox-download"
-            className="bg-white/90 hover:bg-white rounded-full px-3 py-1.5 text-sm font-medium text-ink shadow disabled:opacity-50"
+            className="bg-card/90 hover:bg-card rounded-pill px-3 py-1.5 text-body font-medium text-ink shadow disabled:opacity-50"
           >
             {downloading ? 'Téléchargement…' : 'Télécharger'}
           </button>
@@ -94,17 +94,17 @@ export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
             onClick={onClose}
             aria-label="Fermer"
             data-testid="photo-lightbox-close"
-            className="bg-white/90 hover:bg-white rounded-full w-11 h-11 text-lg text-ink shadow"
+            className="bg-card/90 hover:bg-card rounded-pill w-11 h-11 text-h6 text-ink shadow"
           >
             ×
           </button>
         </div>
         {error ? (
-          <div className="bg-white rounded-lg p-8 text-center text-sm text-ink-80">
+          <div className="bg-card rounded-lg p-8 text-center text-body text-ink-80">
             Impossible de charger la photo.
           </div>
         ) : !url ? (
-          <div className="bg-white/10 rounded-lg w-64 h-64 animate-pulse" role="status" aria-label="Chargement de la photo" />
+          <div className="bg-card/10 rounded-lg w-64 h-64 animate-pulse" role="status" aria-label="Chargement de la photo" />
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img

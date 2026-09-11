@@ -108,7 +108,7 @@ export function StudioSidebar({ active, counts, onNavigate, className = '' }: St
       data-testid="studio-sidebar"
     >
       <div className="flex items-center gap-3 border-b border-line px-3 pb-4 lg:hidden">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-ocre font-display text-h6 text-ink">
+        <div className="flex h-10 w-10 items-center justify-center rounded-pill bg-ocre font-display text-h6 text-ink">
           {initial}
         </div>
         <div className="min-w-0">

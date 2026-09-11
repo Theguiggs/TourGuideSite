@@ -8,6 +8,7 @@ import {
   type RapportDeDepense,
 } from '@/lib/api/spend-ledger-report';
 import { logger } from '@/lib/logger';
+import { PageTitle } from '@murmure/design-system/web';
 
 const SERVICE_NAME = 'AdminAnalyticsPage';
 
@@ -75,7 +76,7 @@ export default function AdminAnalyticsPage() {
   if (isLoading || !data) {
     return (
       <div className="p-6" aria-busy="true">
-        <h1 className="text-2xl font-bold text-ink mb-6">Analytics Studio</h1>
+        <PageTitle size="h4" className="mb-6">Analytics Studio</PageTitle>
         <div className="space-y-4">
           {[1, 2, 3].map((i) => <div key={i} className="bg-paper-deep rounded-lg h-32 animate-pulse" />)}
         </div>
@@ -89,17 +90,17 @@ export default function AdminAnalyticsPage() {
 
   return (
     <div className="p-6 max-w-4xl">
-      <h1 className="text-2xl font-bold text-ink mb-6">Analytics Studio</h1>
+      <PageTitle size="h4" className="mb-6">Analytics Studio</PageTitle>
 
       {isEmpty && (
-        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 mb-6 text-sm text-ocre-ink" role="status">
+        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 mb-6 text-body text-ocre-ink" role="status">
           Aucune donnée disponible. Cette vue se remplira au fur et à mesure que des guides publieront des visites.
         </div>
       )}
 
       {/* Funnel */}
       <section className="mb-8">
-        <h2 className="text-lg font-semibold text-ink mb-3">Funnel de production</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">Funnel de production</h2>
         <div className="bg-card border border-line rounded-lg p-4">
           {Object.entries(funnel).map(([key, value]) => {
             const labels: Record<string, string> = {
@@ -115,16 +116,16 @@ export default function AdminAnalyticsPage() {
 
             return (
               <div key={key} className="flex items-center gap-3 mb-2" data-testid={`funnel-${key}`}>
-                <span className="w-32 text-sm text-ink-60 text-right">{labels[key] || key}</span>
-                <div className="flex-1 bg-paper-deep rounded-full h-6 relative">
+                <span className="w-32 text-body text-ink-60 text-right">{labels[key] || key}</span>
+                <div className="flex-1 bg-paper-deep rounded-pill h-6 relative">
                   <div
-                    className="bg-grenadine h-6 rounded-full transition-all flex items-center justify-end pr-2"
+                    className="bg-grenadine h-6 rounded-pill transition-all flex items-center justify-end pr-2"
                     style={{ width: `${pct}%` }}
                   >
-                    <span className="text-xs text-white font-medium">{value}</span>
+                    <span className="text-meta text-white font-medium">{value}</span>
                   </div>
                 </div>
-                <span className="w-10 text-xs text-ink-40 text-right">{pct}%</span>
+                <span className="w-10 text-meta text-ink-40 text-right">{pct}%</span>
               </div>
             );
           })}
@@ -133,9 +134,9 @@ export default function AdminAnalyticsPage() {
 
       {/* Status distribution */}
       <section className="mb-8">
-        <h2 className="text-lg font-semibold text-ink mb-3">Distribution des statuts</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">Distribution des statuts</h2>
         <div className="bg-card border border-line rounded-lg p-4">
-          <div className="flex h-8 rounded-full overflow-hidden mb-3">
+          <div className="flex h-8 rounded-pill overflow-hidden mb-3">
             {statusDistribution.map((item) => (
               <div
                 key={item.status}
@@ -145,7 +146,7 @@ export default function AdminAnalyticsPage() {
               />
             ))}
           </div>
-          <div className="flex flex-wrap gap-3 text-xs">
+          <div className="flex flex-wrap gap-3 text-meta">
             {statusDistribution.map((item) => (
               <div key={item.status} className="flex items-center gap-1">
                 <div className={`w-3 h-3 rounded ${STATUS_COLORS[item.status] ?? 'bg-paper-deep'}`} />
@@ -158,7 +159,7 @@ export default function AdminAnalyticsPage() {
 
       {/* Dépense mesurée — le grand livre, ou rien */}
       <section className="mb-8" data-testid="depense-mesuree">
-        <h2 className="text-lg font-semibold text-ink mb-3">Dépense mesurée (grand livre)</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">Dépense mesurée (grand livre)</h2>
         <div className="bg-card border border-line rounded-lg p-4">
           <SectionDepense rapport={depense} />
         </div>
@@ -166,9 +167,9 @@ export default function AdminAnalyticsPage() {
 
       {/* Production par Visite — des faits comptés, aucun coût déduit */}
       <section className="mb-8">
-        <h2 className="text-lg font-semibold text-ink mb-3">Production par Visite</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">Production par Visite</h2>
         <div className="bg-card border border-line rounded-lg overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-body">
             <thead className="bg-paper-soft">
               <tr>
                 <th className="text-left px-4 py-2 text-ink-60 font-medium">Tour</th>
@@ -189,7 +190,7 @@ export default function AdminAnalyticsPage() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-ink-40 mt-2">
+        <p className="text-meta text-ink-40 mt-2">
           Ce tableau ne porte plus de coût : il était calculé sur quatre constantes en dur, jamais
           mesurées sur ce système. Le coût réel est au grand livre, ci-dessus.
         </p>
@@ -214,7 +215,7 @@ export default function AdminAnalyticsPage() {
 function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
   if (rapport === null) {
     return (
-      <p className="text-sm text-ink-60" aria-busy="true">
+      <p className="text-body text-ink-60" aria-busy="true">
         Lecture du grand livre…
       </p>
     );
@@ -223,9 +224,9 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
   if (!rapport.ok) {
     return (
       <div role="status" data-testid="depense-indisponible">
-        <p className="text-2xl font-bold text-ink-40">&mdash;</p>
-        <p className="text-sm text-ink-60 mt-1">{rapport.message}</p>
-        <p className="text-xs text-ink-40 mt-2">
+        <p className="text-h5 font-bold text-ink-40">&mdash;</p>
+        <p className="text-body text-ink-60 mt-1">{rapport.message}</p>
+        <p className="text-meta text-ink-40 mt-2">
           Aucun coût n&rsquo;est estimé à la place : un «&nbsp;&mdash;&nbsp;» honnête vaut mieux
           qu&rsquo;un chiffre faux.
         </p>
@@ -237,7 +238,7 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
     <div>
       <div className="flex flex-wrap gap-4 mb-4">
         {rapport.enveloppes.map((env) => (
-          <div key={env.enveloppe} className="text-sm" data-testid={`enveloppe-${env.enveloppe}`}>
+          <div key={env.enveloppe} className="text-body" data-testid={`enveloppe-${env.enveloppe}`}>
             <span className="text-ink-60">Enveloppe {env.enveloppe} : </span>
             <span className="font-medium text-ink">{formaterDollars(env.engageMicros)} engagés</span>
             {env.armee && env.capMicros !== null ? (
@@ -257,13 +258,13 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
 
       {rapport.vide ? (
         <div role="status" data-testid="grand-livre-vide">
-          <p className="text-2xl font-bold text-ink-40">&mdash;</p>
-          <p className="text-sm text-ink-60 mt-1">
+          <p className="text-h5 font-bold text-ink-40">&mdash;</p>
+          <p className="text-body text-ink-60 mt-1">
             Le grand livre ne porte encore aucun débit. Il part de zéro : toute la dépense
             antérieure a été journalisée avant qu&rsquo;il existe, et n&rsquo;est pas récupérable
             ici.
           </p>
-          <p className="text-xs text-ink-40 mt-2">
+          <p className="text-meta text-ink-40 mt-2">
             Ce n&rsquo;est pas «&nbsp;0&nbsp;$ dépensé&nbsp;» &mdash; c&rsquo;est «&nbsp;rien de
             mesuré à ce jour&nbsp;».
           </p>
@@ -271,7 +272,7 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
       ) : (
         <>
           <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-body">
             <thead className="bg-paper-soft">
               <tr>
                 <th className="text-left px-2 py-2 text-ink-60 font-medium">Visite / producteur</th>
@@ -289,7 +290,7 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
                 >
                   <td className="px-2 py-2 text-ink">
                     {axe.cle}
-                    <span className="text-ink-40 text-xs"> ({axe.enveloppe})</span>
+                    <span className="text-ink-40 text-meta"> ({axe.enveloppe})</span>
                   </td>
                   <td className="px-2 py-2 text-right font-medium text-ink">
                     {formaterDollars(axe.mesureMicros)}
@@ -305,7 +306,7 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
             </tbody>
           </table>
           </div>
-          <p className="text-xs text-ink-40 mt-2">
+          <p className="text-meta text-ink-40 mt-2">
             Trois grandeurs distinctes, jamais additionnées&nbsp;: <strong>mesuré</strong> (débit
             conclu), <strong>provisionné</strong> (appel encore en vol), <strong>relâché</strong>{' '}
             (appel mort avant d&rsquo;émettre &mdash; le gaspillage). Périodes lues&nbsp;:{' '}

@@ -33,9 +33,9 @@ export function SatisfactionScore({ sessionId, onComplete }: SatisfactionScorePr
   }
 
   return (
-    <div className="bg-white border border-line rounded-lg p-4" data-testid="satisfaction-score">
+    <div className="bg-card border border-line rounded-lg p-4" data-testid="satisfaction-score">
       <h3 className="font-medium text-ink mb-2">Comment s&apos;est passée la création de cette visite ?</h3>
-      <p className="text-xs text-ink-60 mb-3">Votre avis nous aide à améliorer le studio.</p>
+      <p className="text-meta text-ink-60 mb-3">Votre avis nous aide à améliorer le studio.</p>
 
       {/* Score 1-5 */}
       <div className="flex gap-2 mb-3" role="radiogroup" aria-label="Score de satisfaction">
@@ -43,7 +43,7 @@ export function SatisfactionScore({ sessionId, onComplete }: SatisfactionScorePr
           <button
             key={value}
             onClick={() => setScore(value)}
-            className={`w-10 h-10 rounded-full text-lg transition-all ${
+            className={`w-10 h-10 rounded-pill text-h6 transition-all ${
               score === value
                 ? 'bg-grenadine text-white scale-110 shadow-md'
                 : score !== null && value <= score
@@ -61,7 +61,7 @@ export function SatisfactionScore({ sessionId, onComplete }: SatisfactionScorePr
       </div>
 
       {score !== null && (
-        <div className="text-xs text-ink-60 mb-3">
+        <div className="text-meta text-ink-60 mb-3">
           {score <= 2 && '😟 Que pourrions-nous améliorer ?'}
           {score === 3 && '🤔 Des suggestions ?'}
           {score >= 4 && '😊 Super ! Un commentaire ?'}
@@ -75,7 +75,7 @@ export function SatisfactionScore({ sessionId, onComplete }: SatisfactionScorePr
         placeholder="Commentaire optionnel..."
         rows={2}
         maxLength={500}
-        className="w-full border border-line rounded px-2 py-1 text-sm resize-none mb-3"
+        className="w-full border border-line rounded px-2 py-1 text-body resize-none mb-3"
         data-testid="satisfaction-comment"
       />
 
@@ -83,14 +83,14 @@ export function SatisfactionScore({ sessionId, onComplete }: SatisfactionScorePr
         <button
           onClick={handleSubmit}
           disabled={score === null}
-          className="bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white text-sm font-medium px-4 py-1.5 rounded-lg transition"
+          className="bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white text-body font-medium px-4 py-1.5 rounded-lg transition"
           data-testid="satisfaction-submit"
         >
           Envoyer
         </button>
         <button
           onClick={onComplete}
-          className="text-sm text-ink-60 hover:text-ink-80"
+          className="text-body text-ink-60 hover:text-ink-80"
         >
           Passer
         </button>

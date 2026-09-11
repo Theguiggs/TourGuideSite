@@ -107,7 +107,7 @@ export default function PhotosPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">&larr; Retour</Link>
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">&larr; Retour</Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">{error || 'Session introuvable.'}</div>
       </div>
     );
@@ -118,20 +118,20 @@ export default function PhotosPage() {
       <SceneSidebar scenes={scenes} activeSceneId={activeSceneId} onSceneSelect={setActiveSceneId} />
 
       <div className="flex-1 p-4 lg:p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-1 inline-block">
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-1 inline-block">
           &larr; Retour à la session
         </Link>
-        <h2 className="text-lg font-semibold text-ink mb-4">
+        <h2 className="text-h6 font-semibold text-ink mb-4">
           Photos — {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
         </h2>
 
         {activeScene && (
           <div>
             {activeScene.poiDescription && (
-              <p className="text-sm text-ink-80 mb-3">{activeScene.poiDescription}</p>
+              <p className="text-body text-ink-80 mb-3">{activeScene.poiDescription}</p>
             )}
             {activeScene.latitude && activeScene.longitude && (
-              <p className="text-xs text-ink-40 mb-3">
+              <p className="text-meta text-ink-40 mb-3">
                 📍 {activeScene.latitude.toFixed(4)}, {activeScene.longitude.toFixed(4)}
               </p>
             )}
@@ -139,17 +139,17 @@ export default function PhotosPage() {
 
             {/* Le guide doit savoir si ses photos sont arrivées. */}
             {saveState === 'saving' && (
-              <p className="mt-2 text-sm text-mer" role="status" data-testid="photos-saving">
+              <p className="mt-2 text-body text-mer" role="status" data-testid="photos-saving">
                 Sauvegarde…
               </p>
             )}
             {saveState === 'saved' && (
-              <p className="mt-2 text-sm text-success" role="status" data-testid="photos-saved">
+              <p className="mt-2 text-body text-success" role="status" data-testid="photos-saved">
                 Photos enregistrées.
               </p>
             )}
             {saveState === 'error' && (
-              <p className="mt-2 text-sm text-danger" role="alert" data-testid="photos-save-error">
+              <p className="mt-2 text-body text-danger" role="alert" data-testid="photos-save-error">
                 Sauvegarde impossible : {saveError ?? 'erreur inconnue'}. Vos photos n&apos;ont pas été conservées.
               </p>
             )}

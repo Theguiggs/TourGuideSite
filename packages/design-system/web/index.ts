@@ -15,6 +15,7 @@
  *   - Eyebrow
  *   - PullQuote
  *   - NumberMark
+ *   - PageTitle
  *
  * Usage :
  *   import { Button, Card, Chip, Pin, PinNegatif, Player, Eyebrow, PullQuote, NumberMark }

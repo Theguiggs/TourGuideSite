@@ -88,10 +88,10 @@ export function Collapsible({
       >
         {icon && <span className="shrink-0">{icon}</span>}
         <span className="flex-1 min-w-0">
-          <span className="text-sm font-semibold text-ink">{title}</span>
-          {subtitle && <span className="ml-2 text-xs text-ink-60">{subtitle}</span>}
+          <span className="text-body font-semibold text-ink">{title}</span>
+          {subtitle && <span className="ml-2 text-meta text-ink-60">{subtitle}</span>}
         </span>
-        <span className={`text-ink-40 text-xs transition-transform ${open ? 'rotate-90' : ''}`}>
+        <span className={`text-ink-40 text-meta transition-transform ${open ? 'rotate-90' : ''}`}>
           &#x25B6;
         </span>
       </button>

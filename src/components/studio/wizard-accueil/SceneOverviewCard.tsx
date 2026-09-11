@@ -41,7 +41,7 @@ export function SceneOverviewCard({
       data-scene-id={scene.id}
     >
       <div
-        className="w-7 h-7 rounded-full bg-paper-deep text-ink-60 font-editorial italic font-bold text-caption flex items-center justify-center mt-0.5"
+        className="w-7 h-7 rounded-pill bg-paper-deep text-ink-60 font-editorial italic font-bold text-caption flex items-center justify-center mt-0.5"
         aria-hidden="true"
       >
         {index}
@@ -81,7 +81,7 @@ export function SceneOverviewCard({
           aria-label={isPlaying ? 'Pause' : t("Lire l'audio", 'Play audio')}
           aria-pressed={isPlaying}
           data-testid="scene-play-toggle"
-          className="w-7 h-7 rounded-full bg-ink text-paper border-none cursor-pointer text-meta flex items-center justify-center hover:opacity-90 transition disabled:opacity-30 disabled:cursor-not-allowed"
+          className="w-7 h-7 rounded-pill bg-ink text-paper border-none cursor-pointer text-meta flex items-center justify-center hover:opacity-90 transition disabled:opacity-30 disabled:cursor-not-allowed"
         >
           {isPlaying ? '❚❚' : '▶'}
         </button>

@@ -70,15 +70,15 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
   return (
     <div className="space-y-4" data-testid="global-metadata-panel">
       <div>
-        <h3 className="text-sm font-semibold text-ink">Métadonnées globales</h3>
-        <p className="text-xs text-ink-60">
+        <h3 className="text-body font-semibold text-ink">Métadonnées globales</h3>
+        <p className="text-meta text-ink-60">
           Ces informations décrivent le parcours complet avant passage en édition.
         </p>
       </div>
 
       <div>
         <label
-          className="block text-xs font-medium text-ink-60 mb-1"
+          className="block text-meta font-medium text-ink-60 mb-1"
           htmlFor="metadata-title"
         >
           Titre <span className="text-danger">*</span>
@@ -91,16 +91,16 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
           data-testid="metadata-title-input"
           maxLength={TITLE_MAX + 20}
           placeholder="Titre du parcours"
-          className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:border-grenadine focus:ring-1 focus:ring-grenadine"
+          className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
         />
-        <p className="text-[11px] text-ink-40 mt-1">
+        <p className="text-eyebrow text-ink-40 mt-1">
           {titleLen}/{TITLE_MAX} — min {TITLE_MIN}
         </p>
       </div>
 
       <div>
         <label
-          className="block text-xs font-medium text-ink-60 mb-1"
+          className="block text-meta font-medium text-ink-60 mb-1"
           htmlFor="metadata-description"
         >
           Description <span className="text-danger">*</span>
@@ -113,15 +113,15 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
           rows={5}
           maxLength={DESCRIPTION_MAX + 50}
           placeholder="Décrivez le parcours, son ambiance, ses points forts..."
-          className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:border-grenadine focus:ring-1 focus:ring-grenadine"
+          className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
         />
-        <p className="text-[11px] text-ink-40 mt-1">
+        <p className="text-eyebrow text-ink-40 mt-1">
           {descLen}/{DESCRIPTION_MAX} — min {DESCRIPTION_MIN}
         </p>
       </div>
 
       <div>
-        <span className="block text-xs font-medium text-ink-60 mb-2">
+        <span className="block text-meta font-medium text-ink-60 mb-2">
           Thèmes <span className="text-danger">*</span>
         </span>
         <div className="flex flex-wrap gap-2" data-testid="metadata-themes">
@@ -134,10 +134,10 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
                 onClick={() => toggleTheme(theme)}
                 data-testid={`metadata-theme-${theme}`}
                 aria-pressed={active}
-                className={`px-3 py-1.5 rounded-full border text-xs transition ${
+                className={`px-3 py-1.5 rounded-pill border text-meta transition ${
                   active
                     ? 'bg-grenadine border-grenadine text-white'
-                    : 'bg-white border-line text-ink-80 hover:border-grenadine'
+                    : 'bg-card border-line text-ink-80 hover:border-grenadine'
                 }`}
               >
                 {theme}
@@ -150,7 +150,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
           <label
-            className="block text-xs font-medium text-ink-60 mb-1"
+            className="block text-meta font-medium text-ink-60 mb-1"
             htmlFor="metadata-language"
           >
             Langue
@@ -160,7 +160,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
             value={value.language}
             onChange={handleLanguage}
             data-testid="metadata-language-select"
-            className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:border-grenadine focus:ring-1 focus:ring-grenadine"
+            className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
           >
             {TOUR_LANGUAGES.map((lang) => (
               <option key={lang} value={lang}>
@@ -171,7 +171,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
         </div>
         <div>
           <label
-            className="block text-xs font-medium text-ink-60 mb-1"
+            className="block text-meta font-medium text-ink-60 mb-1"
             htmlFor="metadata-duration"
           >
             Durée (min)
@@ -185,7 +185,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
             onChange={handleDuration}
             data-testid="metadata-duration-input"
             placeholder={`${DURATION_MIN}-${DURATION_MAX}`}
-            className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:border-grenadine focus:ring-1 focus:ring-grenadine"
+            className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
           />
         </div>
       </div>

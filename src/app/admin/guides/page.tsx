@@ -4,13 +4,9 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getAllAdminGuides } from '@/lib/api/moderation';
 import { adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
-
-const PROFILE_STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  active:             { label: 'Actif',          className: 'bg-olive-soft text-olive' },
-  pending_moderation: { label: 'En attente',      className: 'bg-ocre-soft text-ocre-ink' },
-  suspended:          { label: 'Suspendu',        className: 'bg-grenadine-soft text-danger' },
-  inactive:           { label: 'Inactif',         className: 'bg-paper-deep text-ink-60' },
-};
+import { PageTitle } from '@murmure/design-system/web';
+import { GUIDE_PROFILE_STATUS_BADGES, badgeFor } from '@/lib/admin/status-badges';
+import { StatusBadge } from '@/components/admin/StatusBadge';
 
 type AdminGuide = { id: string; displayName: string; city: string; profileStatus: string; tourCount: number; rating: number | null };
 
@@ -48,7 +44,7 @@ export default function AdminGuidesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-ink mb-6">Tous les guides</h1>
+      <PageTitle size="h4" className="mb-6">Tous les guides</PageTitle>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-6">
@@ -57,12 +53,12 @@ export default function AdminGuidesPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Rechercher un guide..."
-          className="border border-line rounded-lg px-3 py-2 text-sm text-ink-80 w-48"
+          className="border border-line rounded-lg px-3 py-2 text-body text-ink-80 w-48"
         />
         <select
           value={filterCity}
           onChange={(e) => setFilterCity(e.target.value)}
-          className="border border-line rounded-lg px-3 py-2 text-sm text-ink-80"
+          className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
         >
           <option value="">Toutes les villes</option>
           {cities.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -70,7 +66,7 @@ export default function AdminGuidesPage() {
         <select
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
-          className="border border-line rounded-lg px-3 py-2 text-sm text-ink-80"
+          className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
         >
           <option value="">Tous les statuts</option>
           <option value="active">Actif</option>
@@ -80,23 +76,23 @@ export default function AdminGuidesPage() {
         {(filterCity || filterStatus || search) && (
           <button
             onClick={() => { setFilterCity(''); setFilterStatus(''); setSearch(''); }}
-            className="text-sm text-danger hover:underline px-2"
+            className="text-body text-danger hover:underline px-2"
           >
             Effacer
           </button>
         )}
-        <span className="ml-auto text-sm text-ink-40 self-center">{filtered.length} guides</span>
+        <span className="ml-auto text-body text-ink-40 self-center">{filtered.length} guides</span>
       </div>
 
       {loading ? (
-        <p className="text-ink-60 text-sm" role="status" aria-busy="true">Chargement…</p>
+        <p className="text-ink-60 text-body" role="status" aria-busy="true">Chargement…</p>
       ) : filtered.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
           <p className="text-ink-60">Aucun guide trouvé.</p>
         </div>
       ) : (
         <div className="bg-card rounded-md border border-line overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-body">
             <thead className="bg-paper-soft border-b border-line">
               <tr>
                 <th className="text-left px-4 py-3 font-medium text-ink-60">Guide</th>
@@ -109,13 +105,13 @@ export default function AdminGuidesPage() {
             </thead>
             <tbody className="divide-y divide-line">
               {filtered.map((guide) => {
-                const badge = PROFILE_STATUS_BADGES[guide.profileStatus] ?? PROFILE_STATUS_BADGES.pending_moderation;
+                const badge = badgeFor(GUIDE_PROFILE_STATUS_BADGES, guide.profileStatus, 'pending_moderation');
                 const isActioning = actioning === guide.id;
                 return (
                   <tr key={guide.id} className="hover:bg-paper-soft">
                     <td className="px-4 py-3">
                       <Link href={`/admin/guides/${guide.id}`} className="flex items-center gap-3 hover:opacity-80">
-                        <div className="w-8 h-8 bg-grenadine-soft rounded-full flex items-center justify-center text-grenadine font-bold text-sm flex-shrink-0">
+                        <div className="w-8 h-8 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-body flex-shrink-0">
                           {guide.displayName.charAt(0)}
                         </div>
                         <span className="font-medium text-ink hover:text-grenadine hover:underline">{guide.displayName}</span>
@@ -127,9 +123,7 @@ export default function AdminGuidesPage() {
                       {guide.rating != null ? `${guide.rating.toFixed(1)} ★` : '—'}
                     </td>
                     <td className="px-4 py-3">
-                      <span className={`text-xs font-medium px-2 py-1 rounded-full ${badge.className}`}>
-                        {badge.label}
-                      </span>
+                      <StatusBadge badge={badge} />
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">
@@ -137,7 +131,7 @@ export default function AdminGuidesPage() {
                           <button
                             onClick={() => setGuideStatus(guide.id, 'active')}
                             disabled={isActioning}
-                            className="text-xs text-olive font-medium hover:underline disabled:opacity-50"
+                            className="text-meta text-olive font-medium hover:underline disabled:opacity-50"
                           >
                             Activer
                           </button>
@@ -146,7 +140,7 @@ export default function AdminGuidesPage() {
                           <button
                             onClick={() => setGuideStatus(guide.id, 'suspended')}
                             disabled={isActioning}
-                            className="text-xs text-ocre-ink font-medium hover:underline disabled:opacity-50"
+                            className="text-meta text-ocre-ink font-medium hover:underline disabled:opacity-50"
                           >
                             Suspendre
                           </button>
@@ -155,7 +149,7 @@ export default function AdminGuidesPage() {
                           <button
                             onClick={() => setGuideStatus(guide.id, 'rejected')}
                             disabled={isActioning}
-                            className="text-xs text-danger font-medium hover:underline disabled:opacity-50"
+                            className="text-meta text-danger font-medium hover:underline disabled:opacity-50"
                           >
                             Rejeter
                           </button>

@@ -5,26 +5,9 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { fetchAuthSession } from 'aws-amplify/auth';
 import { getGuideProfileById, listAllGuideTours, adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
-
-const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  pending_moderation: { label: 'En attente',  className: 'bg-ocre-soft text-ocre-ink' },
-  active:             { label: 'Actif',        className: 'bg-olive-soft text-olive' },
-  suspended:          { label: 'Suspendu',     className: 'bg-ocre-soft text-ocre-ink' },
-  rejected:           { label: 'Rejeté',       className: 'bg-grenadine-soft text-danger' },
-};
-
-const TOUR_STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  draft:              { label: 'Brouillon',           className: 'bg-paper-deep text-ink-80' },
-  editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-mer-soft text-mer' },
-  recording:          { label: 'Enregistrement',     className: 'bg-mer-soft text-mer' },
-  ready:              { label: 'Pr\u00eat',                className: 'bg-olive-soft text-olive' },
-  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre-ink' },
-  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre-ink' },
-  published:          { label: 'Publi\u00e9',             className: 'bg-olive-soft text-olive' },
-  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre-ink' },
-  rejected:           { label: 'Rejet\u00e9',             className: 'bg-grenadine-soft text-danger' },
-  archived:           { label: 'Archiv\u00e9',            className: 'bg-paper-deep text-ink-60' },
-};
+import { PageTitle } from '@murmure/design-system/web';
+import { GUIDE_PROFILE_STATUS_BADGES, TOUR_STATUS_BADGES, badgeFor } from '@/lib/admin/status-badges';
+import { StatusBadge } from '@/components/admin/StatusBadge';
 
 type GuideProfile = {
   id: string;
@@ -165,27 +148,27 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
     setTimeout(() => setFeedback(null), 3000);
   };
 
-  if (loading) return <p className="text-ink-60 text-sm p-6">Chargement...</p>;
+  if (loading) return <p className="text-ink-60 text-body p-6">Chargement...</p>;
   if (error || !profile) return (
     <div className="p-6">
-      <p className="text-danger text-sm mb-4">{error ?? 'Profil introuvable'}</p>
-      <Link href="/admin/guides" className="text-grenadine text-sm hover:underline">← Retour</Link>
+      <p className="text-danger text-body mb-4">{error ?? 'Profil introuvable'}</p>
+      <Link href="/admin/guides" className="text-grenadine text-body hover:underline">← Retour</Link>
     </div>
   );
 
-  const statusBadge = STATUS_BADGES[profile.profileStatus] ?? STATUS_BADGES.pending_moderation;
+  const statusBadge = badgeFor(GUIDE_PROFILE_STATUS_BADGES, profile.profileStatus, 'pending_moderation');
 
   return (
     <div className="max-w-3xl">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <Link href="/admin/guides" className="text-ink-40 hover:text-ink-60 text-sm">
+        <Link href="/admin/guides" className="text-ink-40 hover:text-ink-60 text-body">
           ← Tous les guides
         </Link>
       </div>
 
       {feedback && (
-        <div className={`rounded-lg p-3 mb-4 text-sm ${feedback.ok ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
+        <div className={`rounded-lg p-3 mb-4 text-body ${feedback.ok ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
           {feedback.msg}
         </div>
       )}
@@ -194,15 +177,13 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
       <div className="bg-card rounded-md border border-line p-6 mb-6">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-grenadine-soft rounded-full flex items-center justify-center text-grenadine font-bold text-2xl">
+            <div className="w-14 h-14 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-h5">
               {profile.displayName.charAt(0)}
             </div>
             <div>
-              <h1 className="text-xl font-bold text-ink">{profile.displayName}</h1>
-              <p className="text-sm text-ink-60">{profile.city}</p>
-              <span className={`text-xs font-medium px-2 py-0.5 rounded-full mt-1 inline-block ${statusBadge.className}`}>
-                {statusBadge.label}
-              </span>
+              <PageTitle size="h5">{profile.displayName}</PageTitle>
+              <p className="text-body text-ink-60">{profile.city}</p>
+              <StatusBadge badge={statusBadge} className="mt-1" />
             </div>
           </div>
 
@@ -212,7 +193,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
             <Link
               href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
               target="_blank"
-              className="border border-grenadine text-grenadine text-sm font-medium px-4 py-2 rounded-lg hover:bg-grenadine-soft flex items-center gap-1"
+              className="border border-grenadine text-grenadine text-body font-medium px-4 py-2 rounded-lg hover:bg-grenadine-soft flex items-center gap-1"
             >
               Voir catalogue {profile.city}
             </Link>
@@ -220,7 +201,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               <button
                 onClick={() => setStatus('active')}
                 disabled={saving}
-                className="bg-olive text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-olive disabled:opacity-50"
+                className="bg-olive text-white text-body font-medium px-4 py-2 rounded-lg hover:bg-olive disabled:opacity-50"
               >
                 Activer le compte
               </button>
@@ -229,7 +210,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               <button
                 onClick={() => setStatus('suspended')}
                 disabled={saving}
-                className="bg-ocre text-ink text-sm font-medium px-4 py-2 rounded-lg hover:bg-ocre disabled:opacity-50"
+                className="bg-ocre text-ink text-body font-medium px-4 py-2 rounded-lg hover:bg-ocre disabled:opacity-50"
               >
                 Suspendre
               </button>
@@ -238,7 +219,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               <button
                 onClick={() => setStatus('rejected')}
                 disabled={saving}
-                className="bg-grenadine text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-grenadine disabled:opacity-50"
+                className="bg-grenadine text-white text-body font-medium px-4 py-2 rounded-lg hover:bg-grenadine disabled:opacity-50"
               >
                 Rejeter
               </button>
@@ -249,12 +230,12 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
         {/* Email */}
         {guideEmail && guideEmailUserId === profile.userId && (
           <div className="flex items-center gap-2 mb-4 p-3 bg-mer-soft rounded-lg">
-            <span className="text-sm text-mer font-medium">Email :</span>
-            <a href={`mailto:${guideEmail}`} className="text-sm text-mer font-mono hover:underline">{guideEmail}</a>
+            <span className="text-body text-mer font-medium">Email :</span>
+            <a href={`mailto:${guideEmail}`} className="text-body text-mer font-mono hover:underline">{guideEmail}</a>
           </div>
         )}
         {emailLookupError && emailLookupUserId === profile.userId && (
-          <p className="mb-4 text-sm text-danger" role="alert">
+          <p className="mb-4 text-body text-danger" role="alert">
             {emailLookupError}
           </p>
         )}
@@ -281,17 +262,17 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
         {profile.bio && (
           <div className="mt-4 pt-4 border-t border-line">
-            <p className="text-xs font-medium text-ink-60 mb-1">Bio</p>
-            <p className="text-sm text-ink-80 whitespace-pre-wrap">{profile.bio}</p>
+            <p className="text-meta font-medium text-ink-60 mb-1">Bio</p>
+            <p className="text-body text-ink-80 whitespace-pre-wrap">{profile.bio}</p>
           </div>
         )}
 
         {profile.specialties && profile.specialties.length > 0 && (
           <div className="mt-4 pt-4 border-t border-line">
-            <p className="text-xs font-medium text-ink-60 mb-2">Spécialités</p>
+            <p className="text-meta font-medium text-ink-60 mb-2">Spécialités</p>
             <div className="flex flex-wrap gap-2">
               {profile.specialties.map((s) => (
-                <span key={s} className="text-xs bg-grenadine-soft text-grenadine px-2 py-1 rounded-full">{s}</span>
+                <span key={s} className="text-meta bg-grenadine-soft text-grenadine px-2 py-1 rounded-pill">{s}</span>
               ))}
             </div>
           </div>
@@ -299,10 +280,10 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
         {profile.languages && profile.languages.length > 0 && (
           <div className="mt-4 pt-4 border-t border-line">
-            <p className="text-xs font-medium text-ink-60 mb-2">Langues</p>
+            <p className="text-meta font-medium text-ink-60 mb-2">Langues</p>
             <div className="flex flex-wrap gap-2">
               {profile.languages.map((l) => (
-                <span key={l} className="text-xs bg-mer-soft text-mer px-2 py-1 rounded-full">{l}</span>
+                <span key={l} className="text-meta bg-mer-soft text-mer px-2 py-1 rounded-pill">{l}</span>
               ))}
             </div>
           </div>
@@ -311,37 +292,35 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
       {/* Tours */}
       <div className="bg-card rounded-md border border-line p-6">
-        <h2 className="text-base font-semibold text-ink mb-4">
+        <h2 className="text-body-lg font-semibold text-ink mb-4">
           Parcours ({tours.length})
         </h2>
         {tours.length === 0 ? (
-          <p className="text-sm text-ink-40">Aucun parcours créé.</p>
+          <p className="text-body text-ink-40">Aucun parcours créé.</p>
         ) : (
           <div className="divide-y divide-line">
             {tours.map((tour) => {
-              const badge = TOUR_STATUS_BADGES[tour.status] ?? TOUR_STATUS_BADGES.draft;
+              const badge = badgeFor(TOUR_STATUS_BADGES, tour.status, 'draft');
               return (
                 <div key={tour.id} className="py-3 flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-ink">{tour.title || <em className="text-ink-40">Sans titre</em>}</p>
-                    <p className="text-xs text-ink-40 font-mono mt-0.5">{tour.id}</p>
+                    <p className="text-body font-medium text-ink">{tour.title || <em className="text-ink-40">Sans titre</em>}</p>
+                    <p className="text-meta text-ink-40 font-mono mt-0.5">{tour.id}</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${badge.className}`}>
-                      {badge.label}
-                    </span>
+                    <StatusBadge badge={badge} />
                     {tour.status === 'published' && (
                       <Link
                         href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/${tour.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
                         target="_blank"
-                        className="text-xs text-grenadine hover:underline"
+                        className="text-meta text-grenadine hover:underline"
                       >
                         Voir
                       </Link>
                     )}
                     <Link
                       href={`/admin/tours/${tour.id}`}
-                      className="text-xs text-ink-60 hover:underline"
+                      className="text-meta text-ink-60 hover:underline"
                     >
                       Admin
                     </Link>
@@ -359,8 +338,8 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 function InfoRow({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
     <div>
-      <p className="text-xs font-medium text-ink-60 mb-0.5">{label}</p>
-      <p className={`text-sm text-ink ${mono ? 'font-mono text-xs break-all' : ''}`}>{value}</p>
+      <p className="text-meta font-medium text-ink-60 mb-0.5">{label}</p>
+      <p className={`text-body text-ink ${mono ? 'font-mono text-meta break-all' : ''}`}>{value}</p>
     </div>
   );
 }

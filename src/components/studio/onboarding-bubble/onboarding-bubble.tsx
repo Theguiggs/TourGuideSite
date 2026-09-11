@@ -45,24 +45,24 @@ export function OnboardingBubble({ feature, title, description, position = 'bott
       <div className={`absolute ${position === 'top' ? 'bottom-0 translate-y-full' : 'top-0 -translate-y-full'} left-6 w-0 h-0 border-x-8 border-x-transparent ${position === 'top' ? 'border-t-8 border-t-grenadine' : 'border-b-8 border-b-grenadine'}`} />
 
       <div className="flex gap-2">
-        <span className="text-xl flex-shrink-0" aria-hidden="true">{tip.icon}</span>
+        <span className="text-h5 flex-shrink-0" aria-hidden="true">{tip.icon}</span>
         <div className="flex-1">
-          <p className="font-medium text-sm">{heading}</p>
-          <p className="text-xs text-grenadine-soft mt-0.5">{body}</p>
+          <p className="font-medium text-body">{heading}</p>
+          <p className="text-meta text-grenadine-soft mt-0.5">{body}</p>
         </div>
       </div>
 
       <div className="flex gap-2 mt-2 justify-end">
         <button
           onClick={() => dismissFeature(feature)}
-          className="text-xs text-grenadine-soft hover:text-white px-2 py-0.5 rounded"
+          className="text-meta text-grenadine-soft hover:text-white px-2 py-0.5 rounded"
           data-testid={`dismiss-${feature}`}
         >
           Compris
         </button>
         <button
           onClick={dismissAll}
-          className="text-xs text-grenadine-soft hover:text-white underline"
+          className="text-meta text-grenadine-soft hover:text-white underline"
           data-testid="dismiss-all"
         >
           Ne plus afficher

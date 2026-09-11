@@ -11,6 +11,7 @@ import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { breadcrumbJsonLd, guideJsonLd } from '@/lib/seo/json-ld';
+import { PageTitle } from '@murmure/design-system/web';
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
 export const dynamic = 'force-dynamic';
@@ -129,7 +130,7 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
       />
 
       {/* Breadcrumb */}
-      <nav className="text-sm text-ink-60 mb-6" aria-label={copy.breadcrumb}>
+      <nav className="text-body text-ink-60 mb-6" aria-label={copy.breadcrumb}>
         <Link href={base || '/'} className="hover:text-grenadine">{copy.home}</Link>
         <span className="mx-2">/</span>
         <Link href={`${base}/catalogue`} className="hover:text-grenadine">{copy.catalogue}</Link>
@@ -144,27 +145,27 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
           <S3Image
             s3Key={guide.photoUrl}
             alt={copy.photoOf(guide.displayName)}
-            className="w-48 h-48 flex-shrink-0 rounded-full shadow-md ring-4 ring-paper"
+            className="w-48 h-48 flex-shrink-0 rounded-pill shadow-md ring-4 ring-paper"
             fallback={guide.displayName.charAt(0)}
             width={192}
             height={192}
             priority
           />
         ) : (
-          <div className="w-48 h-48 flex-shrink-0 bg-grenadine-soft rounded-full flex items-center justify-center text-grenadine font-bold text-6xl">
+          <div className="w-48 h-48 flex-shrink-0 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-h2">
             {guide.displayName.charAt(0)}
           </div>
         )}
 
         <div className="text-center md:text-left flex-1">
-          <h1 className="text-3xl sm:text-4xl font-bold text-ink mb-2">
+          <PageTitle className="mb-2">
             {guide.displayName}
-          </h1>
+          </PageTitle>
 
           <p className="text-ink-60 mb-4 flex items-center justify-center md:justify-start gap-1">
             <span aria-hidden="true">📍</span> {guide.city}
             {guide.verified && (
-              <span className="ml-2 inline-flex items-center gap-1 text-grenadine text-sm font-medium">
+              <span className="ml-2 inline-flex items-center gap-1 text-grenadine text-body font-medium">
                 <span aria-hidden="true">✓</span> {copy.verified}
               </span>
             )}
@@ -176,7 +177,7 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
               {guide.specialties.map((s) => (
                 <span
                   key={s}
-                  className="bg-grenadine-soft text-grenadine text-sm px-3 py-1 rounded-full"
+                  className="bg-grenadine-soft text-grenadine text-body px-3 py-1 rounded-pill"
                 >
                   {s}
                 </span>
@@ -191,12 +192,12 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
 
           {/* Years of experience */}
           {guide.yearsExperience && (
-            <p className="text-sm text-ink-60 mt-3">{copy.since(guide.yearsExperience)}</p>
+            <p className="text-body text-ink-60 mt-3">{copy.since(guide.yearsExperience)}</p>
           )}
 
           {/* Languages */}
           {guide.languages.length > 0 && (
-            <p className="text-sm text-ink-60 mt-1">
+            <p className="text-body text-ink-60 mt-1">
               {copy.languages} {guide.languages.join(', ')}
             </p>
           )}
@@ -206,25 +207,25 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-12 max-w-lg mx-auto md:mx-0">
         <div className="text-center p-4 bg-paper-soft rounded-xl">
-          <p className="text-2xl font-bold text-ink">{tours.length}</p>
-          <p className="text-sm text-ink-60">{copy.tours}</p>
+          <p className="text-h5 font-bold text-ink">{tours.length}</p>
+          <p className="text-body text-ink-60">{copy.tours}</p>
         </div>
         <div className="text-center p-4 bg-paper-soft rounded-xl">
-          <p className="text-2xl font-bold text-ink">{guide.totalListens.toLocaleString(copy.numberLocale)}</p>
-          <p className="text-sm text-ink-60">{copy.listens}</p>
+          <p className="text-h5 font-bold text-ink">{guide.totalListens.toLocaleString(copy.numberLocale)}</p>
+          <p className="text-body text-ink-60">{copy.listens}</p>
         </div>
         <div className="text-center p-4 bg-paper-soft rounded-xl">
-          <p className="text-2xl font-bold text-ink">
+          <p className="text-h5 font-bold text-ink">
             {guide.rating ? `${guide.rating}/5` : '-'}
           </p>
-          <p className="text-sm text-ink-60">{copy.averageRating}</p>
+          <p className="text-body text-ink-60">{copy.averageRating}</p>
         </div>
       </div>
 
       {/* Visite signature */}
       {guide.parcoursSignature && (
         <div className="mb-8">
-          <h2 className="text-lg font-semibold text-ink mb-2">{copy.signature}</h2>
+          <PageTitle as="h2" size="h5" className="mb-2">{copy.signature}</PageTitle>
           {tours
             .filter((t) => t.title === guide.parcoursSignature)
             .map((tour) => (
@@ -234,14 +235,14 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
                 className="block border-2 border-ocre bg-ocre-soft rounded-xl p-4 hover:shadow-md transition-shadow"
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="bg-ocre text-ink text-xs font-bold px-2 py-0.5 rounded-full">
+                  <span className="bg-ocre text-ink text-meta font-bold px-2 py-0.5 rounded-pill">
                     {copy.signatureBadge}
                   </span>
                   <h3 className="font-semibold text-ink">{tour.title}</h3>
                   <TourPriceBadge tour={tour} />
                 </div>
-                <p className="text-sm text-ink-60">{tour.shortDescription}</p>
-                <p className="text-xs text-ink-60 mt-2">
+                <p className="text-body text-ink-60">{tour.shortDescription}</p>
+                <p className="text-meta text-ink-60 mt-2">
                   {tour.duration} min &middot; {tour.distance} km &middot; {tour.poiCount} {copy.pois}
                 </p>
               </Link>
@@ -251,9 +252,9 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
 
       {/* Published Tours */}
       <div>
-        <h2 className="text-xl font-semibold text-ink mb-6">
+        <PageTitle as="h2" size="h5" className="mb-6">
           {tours.length > 0 ? copy.toursOf(guide.displayName) : copy.toursTitle}
-        </h2>
+        </PageTitle>
 
         {tours.length === 0 ? (
           <div className="text-center py-12 bg-paper-soft rounded-xl">
@@ -274,8 +275,8 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
                     <h3 className="font-semibold text-ink">{tour.title}</h3>
                     <TourPriceBadge tour={tour} />
                   </div>
-                  <p className="text-sm text-ink-60 line-clamp-2 mb-3">{tour.shortDescription}</p>
-                  <div className="flex items-center gap-3 text-xs text-ink-60">
+                  <p className="text-body text-ink-60 line-clamp-2 mb-3">{tour.shortDescription}</p>
+                  <div className="flex items-center gap-3 text-meta text-ink-60">
                     <span>{tour.city}</span>
                     <span>&middot;</span>
                     <span>{tour.duration} min</span>

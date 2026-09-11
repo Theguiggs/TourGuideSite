@@ -26,8 +26,8 @@ export function TranscriptionControls({
   // Already transcribed — show text
   if (transcriptionStatus === 'completed' && transcriptText) {
     return (
-      <div className="mt-2 p-2 bg-grenadine-soft rounded text-sm text-ink-80" data-testid={`transcript-${sceneId}`}>
-        <p className="text-xs font-medium text-grenadine mb-1">{t('Texte transcrit :', 'Transcript:')}</p>
+      <div className="mt-2 p-2 bg-grenadine-soft rounded text-body text-ink-80" data-testid={`transcript-${sceneId}`}>
+        <p className="text-meta font-medium text-grenadine mb-1">{t('Texte transcrit :', 'Transcript:')}</p>
         <p className="line-clamp-2">{transcriptText}</p>
       </div>
     );
@@ -36,8 +36,8 @@ export function TranscriptionControls({
   // Processing — spinner
   if (transcriptionStatus === 'processing') {
     return (
-      <div className="mt-2 flex items-center gap-2 text-sm text-mer" data-testid={`transcribing-${sceneId}`}>
-        <span className="animate-spin inline-block w-4 h-4 border-2 border-mer border-t-transparent rounded-full" aria-hidden="true" />
+      <div className="mt-2 flex items-center gap-2 text-body text-mer" data-testid={`transcribing-${sceneId}`}>
+        <span className="animate-spin inline-block w-4 h-4 border-2 border-mer border-t-transparent rounded-pill" aria-hidden="true" />
         Transcription en cours...
       </div>
     );
@@ -47,11 +47,11 @@ export function TranscriptionControls({
   if (transcriptionStatus === 'failed') {
     return (
       <div className="mt-2" data-testid={`failed-${sceneId}`}>
-        <p className="text-sm text-danger mb-1">{error || t('Échec de la transcription.', 'Transcription failed.')}</p>
+        <p className="text-body text-danger mb-1">{error || t('Échec de la transcription.', 'Transcription failed.')}</p>
         <button
           onClick={() => onRetry(sceneId)}
           disabled={isQuotaExceeded}
-          className="text-sm font-medium text-danger underline hover:opacity-80 disabled:text-ink-40 disabled:no-underline"
+          className="text-body font-medium text-danger underline hover:opacity-80 disabled:text-ink-40 disabled:no-underline"
           data-testid={`retry-btn-${sceneId}`}
         >
           Relancer
@@ -65,7 +65,7 @@ export function TranscriptionControls({
     <button
       onClick={() => onTrigger(sceneId)}
       disabled={isQuotaExceeded}
-      className="mt-2 text-sm font-medium text-grenadine hover:opacity-80 disabled:text-ink-40"
+      className="mt-2 text-body font-medium text-grenadine hover:opacity-80 disabled:text-ink-40"
       data-testid={`trigger-btn-${sceneId}`}
       title={isQuotaExceeded ? 'Quota de transcription atteint' : `Transcrire ${sceneTitle}`}
     >

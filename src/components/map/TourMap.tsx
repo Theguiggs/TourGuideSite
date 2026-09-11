@@ -84,8 +84,8 @@ export default function TourMap({
 
   if (pois.length === 0) {
     return (
-      <div className={`flex items-center justify-center bg-gray-100 rounded-xl ${className || 'h-[400px]'}`}>
-        <p className="text-gray-500 text-sm">Aucun POI avec coordonnees GPS</p>
+      <div className={`flex items-center justify-center bg-paper-soft rounded-xl ${className || 'h-[400px]'}`}>
+        <p className="text-ink-60 text-body">Aucun point d’intérêt avec coordonnées GPS</p>
       </div>
     );
   }
@@ -95,7 +95,7 @@ export default function TourMap({
 
   return (
     <div
-      className={`rounded-xl overflow-hidden border border-gray-200 ${className || 'h-[400px]'} ${cursorClass}`}
+      className={`rounded-xl overflow-hidden border border-line ${className || 'h-[400px]'} ${cursorClass}`}
       role="application"
       aria-label="Carte de la visite"
     >

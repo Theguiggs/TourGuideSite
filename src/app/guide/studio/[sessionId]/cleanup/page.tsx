@@ -472,7 +472,7 @@ export default function CleanupPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
           &larr; Retour
         </Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert" data-testid="cleanup-error">
@@ -493,8 +493,8 @@ export default function CleanupPage() {
         {/* Left: timeline */}
         <aside className="border-r border-line bg-paper-soft p-3 overflow-y-auto" aria-label="Timeline">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-sm font-semibold text-ink">Nettoyage</h2>
-            <span className="text-[11px] text-ink-60" data-testid="save-state">
+            <h2 className="text-body font-semibold text-ink">Nettoyage</h2>
+            <span className="text-eyebrow text-ink-60" data-testid="save-state">
               {saveState === 'pending' && 'Modification...'}
               {saveState === 'saving' && 'Sauvegarde...'}
               {saveState === 'saved' && 'Sauvegardé'}
@@ -531,7 +531,7 @@ export default function CleanupPage() {
             onScenesReorder={handleScenesReorder}
           />
           {timeline.length === 0 && (
-            <div className="text-sm text-ink-40 text-center p-4" data-testid="timeline-empty">
+            <div className="text-body text-ink-40 text-center p-4" data-testid="timeline-empty">
               Aucun item à nettoyer
             </div>
           )}
@@ -541,11 +541,11 @@ export default function CleanupPage() {
         <section className="p-4 md:p-6 overflow-y-auto" aria-label="Détail">
           <Link
             href={`/guide/studio/${sessionId}`}
-            className="text-grenadine hover:opacity-80 text-sm mb-3 inline-block"
+            className="text-grenadine hover:opacity-80 text-body mb-3 inline-block"
           >
             &larr; Retour à la session
           </Link>
-          <h2 className="text-base font-semibold text-ink mb-3">
+          <h2 className="text-body-lg font-semibold text-ink mb-3">
             {metadata.title || session.title || 'Session sans titre'} — Nettoyage
           </h2>
 
@@ -556,10 +556,10 @@ export default function CleanupPage() {
               aria-selected={detailTab === 'item'}
               onClick={() => setDetailTab('item')}
               data-testid="detail-tab-item"
-              className={`px-3 py-1.5 text-sm rounded-lg border transition ${
+              className={`px-3 py-1.5 text-body rounded-lg border transition ${
                 detailTab === 'item'
                   ? 'bg-grenadine-soft border-grenadine-soft text-grenadine'
-                  : 'bg-white border-line text-ink-80 hover:border-grenadine-soft'
+                  : 'bg-card border-line text-ink-80 hover:border-grenadine-soft'
               }`}
             >
               Item sélectionné
@@ -570,10 +570,10 @@ export default function CleanupPage() {
               aria-selected={detailTab === 'global'}
               onClick={() => setDetailTab('global')}
               data-testid="detail-tab-global"
-              className={`px-3 py-1.5 text-sm rounded-lg border transition ${
+              className={`px-3 py-1.5 text-body rounded-lg border transition ${
                 detailTab === 'global'
                   ? 'bg-grenadine-soft border-grenadine-soft text-grenadine'
-                  : 'bg-white border-line text-ink-80 hover:border-grenadine-soft'
+                  : 'bg-card border-line text-ink-80 hover:border-grenadine-soft'
               }`}
             >
               Métadonnées globales

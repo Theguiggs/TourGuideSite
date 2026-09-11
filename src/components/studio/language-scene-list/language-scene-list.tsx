@@ -299,14 +299,14 @@ export function LanguageSceneList({
             data-testid="auto-translate-button"
             type="button"
             onClick={() => onRequestAutoTranslation(lang)}
-            className="inline-flex items-center gap-2 rounded-md bg-mer px-4 py-2 text-sm font-medium text-ink hover:brightness-110"
+            className="inline-flex items-center gap-2 rounded-md bg-mer px-4 py-2 text-body font-medium text-ink hover:brightness-110"
           >
             <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616L18 9.381a1 1 0 01-1.447 1.382L15 9.654V14a1 1 0 01-1 1h-1v2a1 1 0 11-2 0v-2H9v2a1 1 0 11-2 0v-2H6a1 1 0 01-1-1V9.654L3.447 10.763A1 1 0 012 9.381l1.786-1.87-1.233-.616a1 1 0 01.894-1.79l1.599.8L9 4.323V3a1 1 0 011-1z" />
             </svg>
             Traduire automatiquement cette langue
           </button>
-          <p className="text-xs text-mer">
+          <p className="text-meta text-mer">
             Traduction Standard (1,99&euro;) ou Pro (2,99&euro;) &mdash; tous les textes et audios sont g&eacute;n&eacute;r&eacute;s automatiquement
           </p>
         </div>
@@ -315,7 +315,7 @@ export function LanguageSceneList({
       {/* Resume button */}
       {hasMissingScenes && (
         <div className="rounded-lg border border-ocre-soft bg-ocre-soft p-4">
-          <p className="text-sm text-ocre-ink">
+          <p className="text-body text-ocre-ink">
             Certaines scènes n&apos;ont pas encore été traduites.
           </p>
           {onResumeBatch && (
@@ -323,7 +323,7 @@ export function LanguageSceneList({
             data-testid="resume-batch-button"
             type="button"
             onClick={onResumeBatch}
-            className="mt-2 inline-flex items-center rounded-md bg-ocre px-4 py-2 text-sm font-medium text-ink hover:brightness-110"
+            className="mt-2 inline-flex items-center rounded-md bg-ocre px-4 py-2 text-body font-medium text-ink hover:brightness-110"
           >
             Reprendre la traduction
           </button>
@@ -369,7 +369,7 @@ export function LanguageSceneList({
                 ? 'border-olive-soft bg-olive-soft hover:opacity-90'
                 : status === 'stale'
                   ? 'border-ocre-soft bg-ocre-soft hover:bg-ocre-soft'
-                  : 'border-line bg-white'
+                  : 'border-line bg-card'
             }`}
           >
             <div className="flex items-center gap-3">
@@ -383,9 +383,9 @@ export function LanguageSceneList({
                 </svg>
               )}
               {status !== 'completed' && (
-                <div className="h-5 w-5 rounded-full border-2 border-line flex-shrink-0" />
+                <div className="h-5 w-5 rounded-pill border-2 border-line flex-shrink-0" />
               )}
-              <span className={`text-sm font-medium ${
+              <span className={`text-body font-medium ${
                 status === 'completed' ? 'text-ink' : 'text-ink-80'
               }`}>
                 {(() => {
@@ -397,7 +397,7 @@ export function LanguageSceneList({
                   return (
                     <span>
                       <span className="italic">{fallbackTitle}</span>
-                      <span className="text-xs text-ink-40 ml-1">(non traduit)</span>
+                      <span className="text-meta text-ink-40 ml-1">(non traduit)</span>
                     </span>
                   );
                 })()}
@@ -410,7 +410,7 @@ export function LanguageSceneList({
                   data-testid={`translate-scene-${scene.id}`}
                   onClick={(e) => { e.stopPropagation(); onTranslateScene(scene.id); }}
                   disabled={translatingSceneIds.includes(scene.id)}
-                  className="text-xs font-medium text-mer hover:opacity-80 disabled:text-ink-40 px-2 py-1 border border-mer-soft rounded-md hover:bg-mer-soft disabled:border-line"
+                  className="text-meta font-medium text-mer hover:opacity-80 disabled:text-ink-40 px-2 py-1 border border-mer-soft rounded-md hover:bg-mer-soft disabled:border-line"
                 >
                   {translatingSceneIds.includes(scene.id)
                     ? 'Traduction...'
@@ -428,14 +428,14 @@ export function LanguageSceneList({
         <>
           <hr className="border-line" />
           <div className="space-y-2" data-testid="batch-actions-section">
-            <p className="text-sm font-medium text-ink-80">Actions rapides</p>
+            <p className="text-body font-medium text-ink-80">Actions rapides</p>
             <div className="flex flex-wrap gap-2">
               {staleCount > 0 && onRetranslateStale && (
                 <button
                   data-testid="batch-retranslate-stale-button"
                   type="button"
                   onClick={handleRetranslateStaleClick}
-                  className="inline-flex items-center rounded-md border border-ocre px-4 py-2 text-sm font-medium text-ocre-ink hover:bg-ocre-soft"
+                  className="inline-flex items-center rounded-md border border-ocre px-4 py-2 text-body font-medium text-ocre-ink hover:bg-ocre-soft"
                 >
                   Re-traduire les scenes modifiees ({staleCount})
                 </button>
@@ -445,7 +445,7 @@ export function LanguageSceneList({
                   data-testid="batch-generate-audio-button"
                   type="button"
                   onClick={onGenerateMissingAudio}
-                  className="inline-flex items-center rounded-md border border-mer px-4 py-2 text-sm font-medium text-mer hover:bg-mer-soft"
+                  className="inline-flex items-center rounded-md border border-mer px-4 py-2 text-body font-medium text-mer hover:bg-mer-soft"
                 >
                   Générer les audio manquants ({missingAudioCount})
                 </button>
@@ -458,14 +458,14 @@ export function LanguageSceneList({
       {/* Main actions */}
       <hr className="border-line" />
       <div className="space-y-2" data-testid="main-actions-section">
-        <p className="text-sm font-medium text-ink-80">Actions</p>
+        <p className="text-body font-medium text-ink-80">Actions</p>
         <div className="flex flex-wrap gap-2">
           {onRegenerateAllTts && translatedSceneCount > 0 && (
             <button
               data-testid="regenerate-all-tts-button"
               type="button"
               onClick={onRegenerateAllTts}
-              className="inline-flex items-center rounded-md border border-grenadine px-4 py-2 text-sm font-medium text-grenadine hover:bg-grenadine-soft"
+              className="inline-flex items-center rounded-md border border-grenadine px-4 py-2 text-body font-medium text-grenadine hover:bg-grenadine-soft"
             >
               🔊 Régénérer tous les TTS ({translatedSceneCount})
             </button>
@@ -475,7 +475,7 @@ export function LanguageSceneList({
               data-testid="listen-preview-button"
               type="button"
               onClick={onListenPreview}
-              className="inline-flex items-center rounded-md border border-line px-4 py-2 text-sm font-medium text-ink-80 hover:bg-paper-soft"
+              className="inline-flex items-center rounded-md border border-line px-4 py-2 text-body font-medium text-ink-80 hover:bg-paper-soft"
             >
               Écouter un extrait
             </button>
@@ -485,7 +485,7 @@ export function LanguageSceneList({
               data-testid="full-preview-button"
               type="button"
               onClick={onFullPreview}
-              className="inline-flex items-center rounded-md border border-line px-4 py-2 text-sm font-medium text-ink-80 hover:bg-paper-soft"
+              className="inline-flex items-center rounded-md border border-line px-4 py-2 text-body font-medium text-ink-80 hover:bg-paper-soft"
             >
               Preview complete
             </button>
@@ -509,11 +509,11 @@ export function LanguageSceneList({
                     type="button"
                     onClick={handleSubmitClick}
                     disabled={isDisabled}
-                    className="inline-flex items-center rounded-md bg-mer px-4 py-2 text-sm font-medium text-ink hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex items-center rounded-md bg-mer px-4 py-2 text-body font-medium text-ink hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     Soumettre la version {langLabel}
                   </button>
-                  <span data-testid="submit-readiness-info" className={`text-xs ${readiness.ready ? 'text-success' : 'text-ocre-ink'}`}>
+                  <span data-testid="submit-readiness-info" className={`text-meta ${readiness.ready ? 'text-success' : 'text-ocre-ink'}`}>
                     {readiness.ready
                       ? `${readiness.complete}/${readiness.total} scenes — Texte \u2705 Audio \u2705`
                       : (() => {
@@ -531,7 +531,7 @@ export function LanguageSceneList({
                 {isDisabled && disabledReason && (
                   <span
                     data-testid="submit-disabled-tooltip"
-                    className="absolute bottom-full left-0 mb-1 hidden group-hover:block whitespace-nowrap rounded bg-ink px-2 py-1 text-xs text-white"
+                    className="absolute bottom-full left-0 mb-1 hidden group-hover:block whitespace-nowrap rounded bg-ink px-2 py-1 text-meta text-white"
                   >
                     {disabledReason}
                   </span>

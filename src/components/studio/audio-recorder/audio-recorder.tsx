@@ -1,5 +1,6 @@
 'use client';
 
+import { Circle, Pause, Play, Square } from 'lucide-react';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useRecordingStore, selectRecorderState, selectDevices, selectSelectedDeviceId } from '@/lib/stores/recording-store';
 import { mediaRecorderService } from '@/lib/studio/media-recorder-service';
@@ -173,14 +174,14 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
       {/* Device selector */}
       {devices.length > 1 && (
         <div className="mb-3">
-          <label htmlFor="device-select" className="text-xs text-ink-60 block mb-1">
+          <label htmlFor="device-select" className="text-meta text-ink-60 block mb-1">
             {t('Microphone', 'Microphone')}
           </label>
           <select
             id="device-select"
             value={selectedDeviceId ?? ''}
             onChange={(e) => handleDeviceChange(e.target.value)}
-            className="w-full text-sm border border-line rounded px-2 py-1"
+            className="w-full text-body border border-line rounded px-2 py-1"
             data-testid="device-select"
           >
             {devices.map((d) => (
@@ -195,74 +196,74 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
         {(recorderState === 'idle' || recorderState === 'ready' || recorderState === 'stopped') && (
           <button
             onClick={handleStartWithPermission}
-            className="bg-danger hover:opacity-90 text-white font-medium py-2 px-4 rounded-lg text-sm transition"
+            className="bg-danger hover:opacity-90 text-white inline-flex items-center gap-1.5 font-medium py-2 px-4 rounded-lg text-body transition"
             data-testid="record-btn"
           >
-            🔴 {recorderState === 'stopped' ? t('Nouvelle prise', 'New take') : t('Enregistrer', 'Record')}
+            <Circle className="h-4 w-4 fill-current" aria-hidden="true" /> {recorderState === 'stopped' ? t('Nouvelle prise', 'New take') : t('Enregistrer', 'Record')}
           </button>
         )}
 
         {recorderState === 'requesting_permission' && (
-          <span className="text-sm text-ink-60" role="status">{t('Autorisation du micro…', 'Requesting microphone access…')}</span>
+          <span className="text-body text-ink-60" role="status">{t('Autorisation du micro…', 'Requesting microphone access…')}</span>
         )}
 
         {recorderState === 'recording' && (
           <>
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 bg-danger rounded-full animate-pulse" aria-hidden="true" />
-              <span className="text-sm text-danger font-medium">{t('Enregistrement...', 'Recording...')}</span>
+              <span className="w-3 h-3 bg-danger rounded-pill animate-pulse" aria-hidden="true" />
+              <span className="text-body text-danger font-medium">{t('Enregistrement...', 'Recording...')}</span>
             </div>
             <button
               onClick={handlePauseRecording}
-              className="bg-ocre hover:brightness-110 text-ink font-medium py-1.5 px-3 rounded-lg text-sm transition"
+              className="bg-ocre hover:brightness-110 text-ink inline-flex items-center gap-1.5 font-medium py-1.5 px-3 rounded-lg text-body transition"
               data-testid="pause-record-btn"
             >
-              ⏸ {t('Pause', 'Pause')}
+              <Pause className="h-4 w-4" aria-hidden="true" /> {t('Pause', 'Pause')}
             </button>
             <button
               onClick={handleStopRecording}
               disabled={isStopping}
-              className="bg-ink-80 hover:bg-ink-60 text-white font-medium py-1.5 px-3 rounded-lg text-sm transition"
+              className="bg-ink-80 hover:bg-ink-60 text-white inline-flex items-center gap-1.5 font-medium py-1.5 px-3 rounded-lg text-body transition"
               data-testid="stop-record-btn"
             >
-              ⏹ {isStopping ? t('Arrêt…', 'Stopping…') : t('Arrêter', 'Stop')}
+              <Square className="h-4 w-4 fill-current" aria-hidden="true" /> {isStopping ? t('Arrêt…', 'Stopping…') : t('Arrêter', 'Stop')}
             </button>
           </>
         )}
 
         {recorderState === 'paused' && (
           <>
-            <span className="text-sm text-ocre-ink font-medium">En pause</span>
+            <span className="text-body text-ocre-ink font-medium">En pause</span>
             <button
               onClick={handleResumeRecording}
-              className="bg-danger hover:opacity-90 text-white font-medium py-1.5 px-3 rounded-lg text-sm transition"
+              className="bg-danger hover:opacity-90 text-white inline-flex items-center gap-1.5 font-medium py-1.5 px-3 rounded-lg text-body transition"
               data-testid="resume-record-btn"
             >
-              ▶ Reprendre
+              <Play className="h-4 w-4 fill-current" aria-hidden="true" /> {t('Reprendre', 'Resume')}
             </button>
             <button
               onClick={handleStopRecording}
               disabled={isStopping}
-              className="bg-ink-80 hover:bg-ink-60 text-white font-medium py-1.5 px-3 rounded-lg text-sm transition"
+              className="bg-ink-80 hover:bg-ink-60 text-white inline-flex items-center gap-1.5 font-medium py-1.5 px-3 rounded-lg text-body transition"
               data-testid="stop-record-btn-paused"
             >
-              ⏹ {isStopping ? t('Arrêt…', 'Stopping…') : t('Arrêter', 'Stop')}
+              <Square className="h-4 w-4 fill-current" aria-hidden="true" /> {isStopping ? t('Arrêt…', 'Stopping…') : t('Arrêter', 'Stop')}
             </button>
           </>
         )}
 
       </div>
       ) : (
-        <div className="flex items-center gap-2 text-sm text-ink-60" role="status" data-testid="recorder-status">
+        <div className="flex items-center gap-2 text-body text-ink-60" role="status" data-testid="recorder-status">
           <span
-            className={`h-2.5 w-2.5 rounded-full ${recorderState === 'recording' ? 'animate-pulse bg-danger' : recorderState === 'paused' ? 'bg-ocre' : 'bg-ink-40'}`}
+            className={`h-2.5 w-2.5 rounded-pill ${recorderState === 'recording' ? 'animate-pulse bg-danger' : recorderState === 'paused' ? 'bg-ocre' : 'bg-ink-40'}`}
             aria-hidden="true"
           />
           {recorderStatus}
         </div>
       )}
       {error && (
-        <p className="mt-3 text-sm text-danger" role="alert" data-testid="recorder-error">{error}</p>
+        <p className="mt-3 text-body text-danger" role="alert" data-testid="recorder-error">{error}</p>
       )}
     </div>
   );

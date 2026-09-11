@@ -1,4 +1,5 @@
 import { useTranscriptionStore } from '../transcription-store';
+import { useToastStore } from '../toast-store';
 
 describe('useTranscriptionStore', () => {
   beforeEach(() => {
@@ -9,7 +10,6 @@ describe('useTranscriptionStore', () => {
     const state = useTranscriptionStore.getState();
     expect(state.scenes).toEqual({});
     expect(state.quota).toBeNull();
-    expect(state.toastMessage).toBeNull();
   });
 
   it('sets scene status', () => {
@@ -38,20 +38,15 @@ describe('useTranscriptionStore', () => {
     expect(useTranscriptionStore.getState().quota?.usedMinutes).toBe(50);
   });
 
-  it('shows and auto-clears toast', () => {
+  it('délègue le toast au magasin partagé, qui l’efface seul', () => {
     jest.useFakeTimers();
+    useToastStore.getState().clear();
     useTranscriptionStore.getState().showToast('Test message');
-    expect(useTranscriptionStore.getState().toastMessage).toBe('Test message');
-
-    jest.advanceTimersByTime(5000);
-    expect(useTranscriptionStore.getState().toastMessage).toBeNull();
+    expect(useToastStore.getState().toasts.map((t) => t.message)).toEqual(['Test message']);
+    expect(useToastStore.getState().toasts[0].variant).toBe('success');
+    jest.advanceTimersByTime(4000);
+    expect(useToastStore.getState().toasts).toEqual([]);
     jest.useRealTimers();
-  });
-
-  it('clears toast manually', () => {
-    useTranscriptionStore.getState().showToast('Test');
-    useTranscriptionStore.getState().clearToast();
-    expect(useTranscriptionStore.getState().toastMessage).toBeNull();
   });
 
   it('resets entire store', () => {
@@ -63,6 +58,5 @@ describe('useTranscriptionStore', () => {
     const state = useTranscriptionStore.getState();
     expect(state.scenes).toEqual({});
     expect(state.quota).toBeNull();
-    expect(state.toastMessage).toBeNull();
   });
 });

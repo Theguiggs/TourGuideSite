@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { BarChart3, ClipboardList, Headphones, History, Map, Users } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/auth/auth-context';
 import AuthGuard from '@/components/AuthGuard';
@@ -15,12 +16,12 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 const NAV_ITEMS = [
-  { href: '/admin/moderation', label: "File d'attente", icon: '📋' },
-  { href: '/admin/moderation/history', label: 'Historique', icon: '📜' },
-  { href: '/admin/tours', label: 'Toutes les visites', icon: '🗺️' },
-  { href: '/admin/guides', label: 'Tous les guides', icon: '👥' },
-  { href: '/admin/narration', label: 'Narrations demandées', icon: '🎧' },
-  { href: '/admin/analytics', label: 'Analytics', icon: '📊' },
+  { href: '/admin/moderation', label: "File d'attente", icon: ClipboardList },
+  { href: '/admin/moderation/history', label: 'Historique', icon: History },
+  { href: '/admin/tours', label: 'Toutes les visites', icon: Map },
+  { href: '/admin/guides', label: 'Tous les guides', icon: Users },
+  { href: '/admin/narration', label: 'Narrations demandées', icon: Headphones },
+  { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
 ];
 
 function AdminNav() {
@@ -31,12 +32,12 @@ function AdminNav() {
     <aside className="w-full lg:w-64 flex-shrink-0 bg-paper-deep text-white">
       <div className="p-4 lg:p-6">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 bg-grenadine rounded-full flex items-center justify-center text-white font-bold">
+          <div className="w-10 h-10 bg-grenadine rounded-pill flex items-center justify-center text-white font-bold">
             {user?.displayName?.charAt(0) || 'A'}
           </div>
           <div className="flex-1 min-w-0">
             <p className="font-medium text-white truncate">{user?.displayName}</p>
-            <p className="text-xs text-ink-40 truncate">Admin - Moderation</p>
+            <p className="text-meta text-ink-40 truncate">Admin - Moderation</p>
           </div>
         </div>
 
@@ -48,13 +49,13 @@ function AdminNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap ${
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-body font-medium whitespace-nowrap ${
                   isActive || isQueueActive
                     ? 'bg-grenadine text-white'
                     : 'text-ink-20 hover:bg-paper-deep'
                 }`}
               >
-                <span>{item.icon}</span>
+                <item.icon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 {item.label}
               </Link>
             );
@@ -63,7 +64,7 @@ function AdminNav() {
 
         <button
           onClick={signOut}
-          className="hidden lg:block w-full mt-8 text-left text-sm text-ink-40 hover:text-danger px-3 py-2"
+          className="hidden lg:block w-full mt-8 text-left text-body text-ink-40 hover:text-danger px-3 py-2"
         >
           Se deconnecter
         </button>

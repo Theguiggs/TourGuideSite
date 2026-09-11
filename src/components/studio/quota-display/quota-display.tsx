@@ -12,15 +12,15 @@ export function QuotaDisplay({ quota }: QuotaDisplayProps) {
   return (
     <div className="flex items-center gap-3 p-3 bg-paper-soft rounded-lg" data-testid="quota-display">
       <div className="flex-1">
-        <div className="flex justify-between text-xs mb-1">
+        <div className="flex justify-between text-meta mb-1">
           <span className="text-ink-80">Quota transcription</span>
           <span className={quota.isExceeded ? 'text-danger font-medium' : quota.isWarning ? 'text-ocre-ink font-medium' : 'text-ink-80'}>
             {quota.usedMinutes} / {quota.limitMinutes} min
           </span>
         </div>
-        <div className="w-full bg-paper-deep rounded-full h-2">
+        <div className="w-full bg-paper-deep rounded-pill h-2">
           <div
-            className={`h-2 rounded-full transition-all ${
+            className={`h-2 rounded-pill transition-all ${
               quota.isExceeded ? 'bg-danger' : quota.isWarning ? 'bg-ocre' : 'bg-grenadine'
             }`}
             style={{ width: `${Math.min(percentage, 100)}%` }}
@@ -33,12 +33,12 @@ export function QuotaDisplay({ quota }: QuotaDisplayProps) {
         </div>
       </div>
       {quota.isExceeded && (
-        <span className="text-xs text-danger font-medium whitespace-nowrap" role="alert">
+        <span className="text-meta text-danger font-medium whitespace-nowrap" role="alert">
           Quota atteint
         </span>
       )}
       {quota.isWarning && !quota.isExceeded && (
-        <span className="text-xs text-ocre-ink font-medium whitespace-nowrap">
+        <span className="text-meta text-ocre-ink font-medium whitespace-nowrap">
           Attention
         </span>
       )}

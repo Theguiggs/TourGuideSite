@@ -104,3 +104,47 @@ export function NumberMark({
     </span>
   );
 }
+
+/**
+ * <PageTitle> — titre de page (h1 par défaut) en police d'affichage.
+ *
+ * Lot 5 : dix-huit h1 du site (ville, achats, guide, admin) étaient en
+ * Manrope gras (`text-3xl font-bold`), à côté de vingt-deux en DM Serif.
+ * Un seul composant, une seule échelle : `size` = 'h1' | 'h2' | 'h3' | 'h4'
+ * (défaut h3, la taille des titres de page hors accueil).
+ * `as` permet un h2 quand la hiérarchie l'exige, sans changer le rendu.
+ */
+export type PageTitleSize = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+
+export interface PageTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  as?: 'h1' | 'h2' | 'h3';
+  size?: PageTitleSize;
+  color?: string;
+}
+
+export function PageTitle({
+  as: Tag = 'h1',
+  size = 'h3',
+  color = tgColors.ink,
+  style,
+  children,
+  ...rest
+}: PageTitleProps) {
+  return (
+    <Tag
+      style={{
+        fontFamily: tgFonts.display,
+        fontWeight: 400,
+        fontSize: tgFontSize[size],
+        lineHeight: 1.05,
+        letterSpacing: tgTracking.display,
+        color,
+        margin: 0,
+        ...style,
+      }}
+      {...rest}
+    >
+      {children}
+    </Tag>
+  );
+}

@@ -200,19 +200,19 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
       <div
-        className="bg-white rounded-xl shadow-2xl w-full max-w-md p-5 space-y-4"
+        className="bg-card rounded-xl shadow-2xl w-full max-w-md p-5 space-y-4"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-ink">Ajouter un son d&apos;ambiance</h2>
-          <button onClick={onClose} className="text-ink-40 hover:text-ink-80 text-xl">×</button>
+          <h2 className="text-h6 font-bold text-ink">Ajouter un son d&apos;ambiance</h2>
+          <button onClick={onClose} className="text-ink-40 hover:text-ink-80 text-h5">×</button>
         </div>
 
         {/* Mode tabs */}
         <div className="flex gap-2">
           <button
             onClick={() => { setMode('upload'); resetMedia(); setError(null); }}
-            className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition ${
+            className={`flex-1 py-2 px-3 rounded-lg text-body font-medium transition ${
               mode === 'upload' ? 'bg-mer text-white' : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
             }`}
           >
@@ -220,7 +220,7 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
           </button>
           <button
             onClick={() => { setMode('record'); resetMedia(); setError(null); }}
-            className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition ${
+            className={`flex-1 py-2 px-3 rounded-lg text-body font-medium transition ${
               mode === 'record' ? 'bg-mer text-white' : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
             }`}
           >
@@ -231,16 +231,16 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
         {/* Upload mode */}
         {mode === 'upload' && (
           <div>
-            <label className="block text-xs font-medium text-ink-80 mb-1">
+            <label className="block text-meta font-medium text-ink-80 mb-1">
               Choisir un fichier audio (mp3, m4a, wav, ogg, webm · max 50 MB)
             </label>
             <input
               type="file"
               accept="audio/*,video/webm"
               onChange={handleFileSelect}
-              className="block w-full text-sm text-ink-80 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-mer-soft file:text-mer file:font-medium hover:file:bg-mer-soft"
+              className="block w-full text-body text-ink-80 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-mer-soft file:text-mer file:font-medium hover:file:bg-mer-soft"
             />
-            <p className="text-[10px] text-ink-40 mt-1">
+            <p className="text-eyebrow text-ink-40 mt-1">
               Astuce mobile : enregistrez avec Dictaphone / Voice Memos puis uploadez depuis votre telephone.
             </p>
           </div>
@@ -260,8 +260,8 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
             {isRecording && (
               <div className="space-y-2">
                 <div className="p-4 bg-grenadine-soft border-2 border-grenadine-soft rounded-lg text-center">
-                  <div className="text-2xl animate-pulse">🔴</div>
-                  <p className="text-sm font-medium text-danger mt-1">Enregistrement... {recordingTime}s</p>
+                  <div className="text-h5 animate-pulse">🔴</div>
+                  <p className="text-body font-medium text-danger mt-1">Enregistrement... {recordingTime}s</p>
                 </div>
                 <button
                   onClick={stopRecording}
@@ -280,18 +280,18 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
             <div className="flex items-center gap-2 p-2 bg-paper-soft rounded-lg">
               <button
                 onClick={togglePreview}
-                className="w-10 h-10 rounded-full bg-mer text-white flex items-center justify-center hover:opacity-90"
+                className="w-10 h-10 rounded-pill bg-mer text-white flex items-center justify-center hover:opacity-90"
               >
                 {isPlaying ? '||' : '▶'}
               </button>
               <div className="flex-1">
-                <p className="text-xs text-ink-80">Preview · {durationSec || '?'}s</p>
+                <p className="text-meta text-ink-80">Preview · {durationSec || '?'}s</p>
               </div>
-              <button onClick={resetMedia} className="text-ink-40 hover:text-danger text-sm">Effacer</button>
+              <button onClick={resetMedia} className="text-ink-40 hover:text-danger text-body">Effacer</button>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-ink mb-1">
+              <label className="block text-meta font-bold text-ink mb-1">
                 Titre <span className="text-danger">*</span>
               </label>
               <input
@@ -301,13 +301,13 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
                 placeholder="Ex: Fontaine place aux Aires"
                 maxLength={80}
                 required
-                className="w-full px-3 py-2 border-2 border-line rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-mer focus:border-mer"
+                className="w-full px-3 py-2 border-2 border-line rounded-lg text-body focus:outline-none focus:ring-2 focus:ring-mer focus:border-mer"
               />
-              <p className="text-[10px] text-ink-40 mt-0.5">{title.length}/80 — donnez un nom court et reconnaissable</p>
+              <p className="text-eyebrow text-ink-40 mt-0.5">{title.length}/80 — donnez un nom court et reconnaissable</p>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-ink-80 mb-1">
+              <label className="block text-meta font-medium text-ink-80 mb-1">
                 Description <span className="text-ink-40">(optionnel)</span>
               </label>
               <textarea
@@ -316,18 +316,18 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
                 placeholder="Ex: Enregistre le 12 avril, marche du samedi matin"
                 maxLength={200}
                 rows={2}
-                className="w-full px-3 py-1.5 border border-line rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-mer"
+                className="w-full px-3 py-1.5 border border-line rounded-lg text-body resize-none focus:outline-none focus:ring-2 focus:ring-mer"
               />
-              <p className="text-[10px] text-ink-40 mt-0.5">{description.length}/200</p>
+              <p className="text-eyebrow text-ink-40 mt-0.5">{description.length}/200</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
-                <label className="block text-xs font-medium text-ink-80 mb-1">Categorie</label>
+                <label className="block text-meta font-medium text-ink-80 mb-1">Categorie</label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value as AmbianceCategory)}
-                  className="w-full px-2 py-1.5 border border-line rounded-lg text-sm"
+                  className="w-full px-2 py-1.5 border border-line rounded-lg text-body"
                 >
                   {AMBIANCE_CATEGORIES.map((c) => (
                     <option key={c.key} value={c.key}>{c.icon} {c.label}</option>
@@ -335,13 +335,13 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-ink-80 mb-1">Icone</label>
+                <label className="block text-meta font-medium text-ink-80 mb-1">Icone</label>
                 <input
                   type="text"
                   value={icon}
                   onChange={(e) => setIcon(e.target.value.slice(0, 2))}
                   maxLength={2}
-                  className="w-full px-3 py-1.5 border border-line rounded-lg text-sm text-center"
+                  className="w-full px-3 py-1.5 border border-line rounded-lg text-body text-center"
                   placeholder="🎵"
                 />
               </div>
@@ -350,7 +350,7 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
         )}
 
         {error && (
-          <p className="text-sm text-danger bg-grenadine-soft p-2 rounded">{error}</p>
+          <p className="text-body text-danger bg-grenadine-soft p-2 rounded">{error}</p>
         )}
 
         {/* Actions */}

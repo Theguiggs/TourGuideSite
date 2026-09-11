@@ -34,18 +34,8 @@ import { tourJsonLd } from '@/lib/seo/json-ld';
 import ItineraryList from './itinerary-list';
 import { StarRating } from '@/components/catalogue/StarRating';
 import { maskLockedPois } from '@/lib/catalogue/scene-pois';
-
-// Aucune liste blanche : ces tables n'habillent que ce qui est vendu. Une
-// langue absente d'ici s'affiche quand même, sans drapeau et sous son code.
-const LANG_FLAGS: Record<string, string> = {
-  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪',
-  nl: '🇳🇱', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
-};
-
-const LANG_NAMES: Record<string, string> = {
-  fr: 'Français', en: 'English', es: 'Español', it: 'Italiano', de: 'Deutsch',
-  nl: 'Nederlands', pt: 'Português', ja: '日本語', zh: '中文',
-};
+import { LANG_FLAGS, LANG_NAMES } from '@/lib/i18n/languages';
+import { LangChip } from '@/components/i18n/LangChip';
 
 const DETAIL_COPY = {
   fr: {
@@ -172,7 +162,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
             </div>
             <SmartAppLink
               tourId={tour.id}
-              className="font-bold px-6 py-2 rounded-full"
+              className="font-bold px-6 py-2 rounded-pill"
               style={{
                 background: tg.colors.grenadine,
                 color: tg.colors.paper,
@@ -302,7 +292,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                     }}
                   >
                     {tour.availableLanguages.slice(0, 5).map((lang) => (
-                      <span key={lang} title={lang.toUpperCase()}>{LANG_FLAGS[lang] ?? lang}</span>
+                      <LangChip key={lang} code={lang} />
                     ))}
                     {tour.availableLanguages.length > 5 && (
                       <span style={{ color: tg.colors.ink60 }}>+{tour.availableLanguages.length - 5}</span>
@@ -338,7 +328,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 <S3Image
                   s3Key={tour.guidePhotoUrl}
                   alt={locale === 'en' ? `Photo of ${tour.guideName}` : `Photo de ${tour.guideName}`}
-                  className="w-16 h-16 rounded-full shrink-0"
+                  className="w-16 h-16 rounded-pill shrink-0"
                   fallback={tour.guideName.charAt(0)}
                 />
               ) : (

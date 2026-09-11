@@ -18,8 +18,6 @@
     "index.ts",
     "tokens.ts",
     "editorial.ts",
-    "feature-flag.ts",
-    "use-ds-version.ts",
     "motion.ts",
     "sound.ts",
     "use-motion.ts",
