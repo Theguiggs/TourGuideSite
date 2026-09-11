@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Eyebrow } from '@murmure/design-system/web';
 import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
+import { CookieChoiceButton } from '@/components/legal/CookieChoiceButton';
+import { LEGAL_IDENTITY, RETENTION, publisherLine } from '@/lib/legal/identity';
 
 export const metadata: Metadata = {
   title: 'Privacy policy',
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-const CONTACT_EMAIL = 'tourguideyeup@gmail.com';
+const CONTACT_EMAIL = LEGAL_IDENTITY.contactEmail;
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -67,8 +69,7 @@ export default function PrivacyPage() {
 
           <Section title="1. Data controller">
             <p>
-              The data controller is [TO BE COMPLETED: legal name, legal form, registration number
-              and registered address]. Contact:{' '}
+              The data controller is {publisherLine('en')}. Contact:{' '}
               <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: tg.colors.grenadine }}>
                 {CONTACT_EMAIL}
               </a>
@@ -104,10 +105,15 @@ export default function PrivacyPage() {
 
           <Section title="5. Retention">
             <p>
-              Account data is retained while the account is active, then deleted or anonymised.
-              Billing records may be retained for statutory accounting periods. [TO BE COMPLETED:
-              precise retention periods by category.]
+              Data is kept only as long as the purposes above require, then deleted or anonymised:
             </p>
+            <ul style={{ paddingLeft: tg.space[5], margin: 0 }}>
+              {RETENTION.map(({ en: [category, duration] }) => (
+                <li key={category}>
+                  <strong>{category}</strong>: {duration}.
+                </li>
+              ))}
+            </ul>
           </Section>
 
           <Section title="6. International transfers">
@@ -124,7 +130,8 @@ export default function PrivacyPage() {
               <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: tg.colors.grenadine }}>
                 {CONTACT_EMAIL}
               </a>
-              . You may also lodge a complaint with your local data protection authority.
+              . You may also lodge a complaint with your local data protection authority (for
+              France: {LEGAL_IDENTITY.supervisoryAuthority.en}).
             </p>
           </Section>
 
@@ -142,7 +149,12 @@ export default function PrivacyPage() {
           <Section title="9. Local storage and cookies">
             <p>
               The web portal uses browser storage to maintain your session and preferences. Murmure
-              does not use advertising cookies. [TO BE COMPLETED: audience measurement details.]
+              does not use advertising cookies or cross-site tracking.
+            </p>
+            <p>
+              Audience measurement (Amplitude, servers in the European Union, IP address not
+              collected) only runs with your consent, requested on your first visit. You can
+              withdraw it at any time: <CookieChoiceButton locale="en" />.
             </p>
           </Section>
 

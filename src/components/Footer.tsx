@@ -32,6 +32,7 @@ const FOOTER_COPY = {
     catalogue: 'Catalogue des tours',
     help: 'Aide',
     guide: 'Devenir guide',
+    terms: 'Conditions d’utilisation',
     privacy: 'Politique de confidentialité',
     deletion: 'Supprimer mon compte',
     download: 'Télécharger',
@@ -44,6 +45,7 @@ const FOOTER_COPY = {
     catalogue: 'Tour catalogue',
     help: 'Help',
     guide: 'Become a guide',
+    terms: 'Terms of use',
     privacy: 'Privacy policy',
     deletion: 'Delete my account',
     download: 'Download',
@@ -123,6 +125,15 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
                   className="hover:opacity-80"
                 >
                   {copy.guide}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={locale === 'en' ? '/en/terms' : '/cgu'}
+                  style={{ color: tg.colors.paperSoft }}
+                  className="hover:opacity-80"
+                >
+                  {copy.terms}
                 </Link>
               </li>
               <li>

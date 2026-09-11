@@ -3,13 +3,14 @@ import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Eyebrow } from '@murmure/design-system/web';
 import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
+import { LEGAL_IDENTITY, publisherLine } from '@/lib/legal/identity';
 
 /**
  * Conditions Générales d’Utilisation — page légale.
  *
- * Base structurée à relire par un juriste avant soumission store. Les mentions
- * [À COMPLÉTER] (raison sociale, droit applicable, juridiction) doivent être
- * renseignées.
+ * L'identité de l'éditeur, le droit applicable et l'adresse de contact viennent
+ * de `lib/legal/identity.ts`. À relire par un juriste avant toute évolution
+ * commerciale (rémunération des guides, abonnements).
  */
 export const metadata: Metadata = {
   title: "Conditions Générales d’Utilisation",
@@ -21,8 +22,8 @@ export const metadata: Metadata = {
   },
 };
 
-const EFFECTIVE_DATE = '2 juillet 2026';
-const CONTACT_EMAIL = 'tourguideyeup@gmail.com';
+const EFFECTIVE_DATE = LEGAL_IDENTITY.effectiveDate.fr;
+const CONTACT_EMAIL = LEGAL_IDENTITY.contactEmail;
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -66,8 +67,8 @@ export default function CguPage() {
           <Section title="1. Objet">
             <p>
               Les présentes conditions (les « CGU ») régissent l’accès et l’utilisation de
-              l’application mobile et de l’atelier web Murmure (le « Service »), édités par [À
-              COMPLÉTER : raison sociale]. En utilisant le Service, vous acceptez les CGU.
+              l’application mobile et de l’atelier web Murmure (le « Service »), édités par{' '}
+              {publisherLine('fr')}. En utilisant le Service, vous acceptez les CGU.
             </p>
           </Section>
 
@@ -94,9 +95,13 @@ export default function CguPage() {
               Les guides restent responsables des contenus qu’ils créent (audio, textes,
               localisations) et garantissent disposer des droits nécessaires. Les parcours sont
               soumis à une modération avant publication ; nous pouvons refuser ou retirer un contenu
-              qui enfreint les CGU ou la loi. En publiant, le guide concède à Murmure une licence
-              nécessaire à l’hébergement et à la diffusion du parcours dans le Service. [À COMPLÉTER :
-              étendue de la licence et rémunération des guides.]
+              qui enfreint les CGU ou la loi. Les guides conservent l’intégralité de leurs droits
+              sur leurs contenus. En publiant, le guide concède à Murmure une licence non exclusive,
+              mondiale et gratuite, pour la durée de la publication, afin d’héberger, diffuser,
+              traduire et adapter techniquement le parcours dans le Service. Lorsqu’un parcours est
+              payant, la part revenant au guide est celle affichée dans l’atelier au moment de la
+              publication ; elle lui est reversée selon les modalités indiquées dans son espace
+              « Revenus ».
             </p>
           </Section>
 
@@ -113,9 +118,16 @@ export default function CguPage() {
               Les achats effectués sur mobile sont traités par l’App Store (Apple) ou Google Play et
               soumis à leurs conditions ; les achats sur le web sont traités par Stripe. Les
               abonnements se renouvellent automatiquement jusqu’à résiliation via la plateforme
-              concernée. Les demandes de remboursement relèvent des politiques des plateformes de
-              paiement. [À COMPLÉTER : politique de remboursement propre le cas échéant, droit de
-              rétractation applicable.]
+              concernée. Pour les achats sur mobile, les demandes de remboursement s’adressent à
+              Apple ou Google selon le magasin d’achat. Pour les achats sur le web, le contenu
+              numérique est mis à disposition immédiatement après le paiement : conformément à
+              l’article L221-28 13° du Code de la consommation, vous acceptez que l’exécution commence
+              aussitôt et renoncez à votre droit de rétractation de quatorze jours. Si un parcours
+              acheté est défectueux ou inaccessible, écrivez-nous à{' '}
+              <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: tg.colors.grenadine }}>
+                {CONTACT_EMAIL}
+              </a>
+              {' '}: nous le corrigeons ou vous remboursons.
             </p>
           </Section>
 
@@ -155,9 +167,12 @@ export default function CguPage() {
 
           <Section title="11. Droit applicable et litiges">
             <p>
-              Les CGU sont régies par le droit [À COMPLÉTER : droit applicable, ex. français]. En cas
-              de litige, une solution amiable sera recherchée avant toute action ; à défaut, les
-              tribunaux compétents seront ceux de [À COMPLÉTER : juridiction].
+              Les CGU sont régies par {LEGAL_IDENTITY.governingLaw.fr}. En cas de litige, une
+              solution amiable sera recherchée avant toute action : écrivez-nous d’abord à l’adresse
+              indiquée à l’article 12. Vous pouvez ensuite recourir gratuitement à la médiation de la
+              consommation (articles L611-1 et suivants du Code de la consommation). À défaut, les
+              tribunaux français sont compétents, sous réserve des dispositions impératives
+              applicables aux consommateurs.
             </p>
           </Section>
 

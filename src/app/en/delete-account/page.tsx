@@ -13,7 +13,9 @@ export const metadata: Metadata = {
   },
 };
 
-const SUPPORT_EMAIL = 'tourguideyeup@gmail.com';
+import { LEGAL_IDENTITY } from '@/lib/legal/identity';
+
+const SUPPORT_EMAIL = LEGAL_IDENTITY.contactEmail;
 
 export default function DeleteAccountPage() {
   const emailSubject = encodeURIComponent('Murmure account deletion request');
