@@ -21,7 +21,7 @@ Un seul VPS Hetzner, tout mutualisé en Docker Compose, sans GPU.
 
 ## Fichiers de déploiement
 
-Situés dans `../deploy/` (à la racine de `c:\Projects\Bmad\`) :
+Situés dans `deploy/` (versionnés avec le portail depuis le 2026-09-11 ; ils vivaient hors de tout dépôt) :
 
 | Fichier | Rôle |
 |---|---|
@@ -72,8 +72,8 @@ mkdir -p /opt/murmure
 
 ```bash
 # Depuis le PC (PowerShell) — copier les fichiers de config
-scp -i "$HOME\.ssh\id_ed25519_murmure" deploy/docker-compose.yml root@<IP>:/opt/murmure/
-scp -i "$HOME\.ssh\id_ed25519_murmure" deploy/Caddyfile root@<IP>:/opt/murmure/
+scp -i "$HOME\.ssh\id_ed25519_murmure" TourGuideWeb\deploy\docker-compose.yml root@<IP>:/opt/murmure/
+scp -i "$HOME\.ssh\id_ed25519_murmure" TourGuideWeb\deploy\Caddyfile root@<IP>:/opt/murmure/
 
 # Sur le serveur — cloner TourGuideWeb
 cd /opt/murmure

@@ -1,0 +1,126 @@
+# All-in-one stack for murmure-visit.com on a single VPS.
+#
+# Layout on the VPS (e.g. /opt/murmure):
+#   docker-compose.yml          (this file)
+#   Caddyfile
+#   .env                         (DOMAIN, API_DOMAIN, MICROSERVICE_API_KEY, ...)
+#   TourGuideWeb/                (source — for the web build)
+#   microservice/                (source — for the Python build)
+#
+# Bring up :  docker compose up -d --build
+# Logs    :  docker compose logs -f
+# Update  :  cd TourGuideWeb && git pull && cd .. && docker compose up -d --build web microservice caddy
+
+services:
+  microservice:
+    build:
+      context: ./microservice
+      dockerfile: Dockerfile.cpu
+    environment:
+      MICROSERVICE_API_KEY: ${MICROSERVICE_API_KEY}
+      # Fournisseur de synthèse sous contrat. SANS ces deux valeurs, le service
+      # bascule en MODE DÉGRADÉ — l'endpoint gratuit d'Edge, sans compte, sans
+      # conditions acceptées et sans licence d'usage commercial sur l'audio des
+      # visites en vente. Le repli est journalisé en avertissement à chaque
+      # démarrage et déclaré dans chaque réponse de synthèse : il ne peut pas
+      # passer inaperçu, mais il ne doit pas durer.
+      AZURE_SPEECH_KEY: ${AZURE_SPEECH_KEY:-}
+      AZURE_SPEECH_REGION: ${AZURE_SPEECH_REGION:-}
+      # Palier de voix : « standard » (défaut) ou « hd ». Le standard sert les
+      # voix DÉJÀ entendues sur les 101 visites en vente ; la haute définition
+      # change le timbre et coûte 22 $/M au lieu de 16. À trancher à l'écoute
+      # comparative sur une visite réelle, pas sur catalogue.
+      TTS_VOICE_TIER: ${TTS_VOICE_TIER:-standard}
+      # « edge » force le mode dégradé même avec une clé valide. À n'employer
+      # que délibérément — un incident fournisseur, par exemple.
+      TTS_PROVIDER: ${TTS_PROVIDER:-}
+      # Hôte(s) EXACT(S) d'où la détection de silence accepte de télécharger
+      # un audio — le bucket du projet, et lui seul. La liste précédente
+      # acceptait n'importe quel `*.s3.*.amazonaws.com`, donc un bucket tiers
+      # de plusieurs Go chargé entier en mémoire. Sans cette variable, aucun
+      # téléchargement n'est accepté.
+      ALLOWED_AUDIO_HOSTS: ${ALLOWED_AUDIO_HOSTS:-amplify-dieqe5vfmuc69-mai-tourguideassetsbucket8b8-qyql7idkrnkr.s3.us-east-1.amazonaws.com}
+    restart: unless-stopped
+    expose: ["8000"]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+
+  web:
+    build:
+      context: ./TourGuideWeb
+      dockerfile: Dockerfile.web
+      args:
+        NEXT_PUBLIC_AMPLITUDE_API_KEY: ${NEXT_PUBLIC_AMPLITUDE_API_KEY}
+        # Inlinée par Next.js AU BUILD (cf. Dockerfile.web:22-24) : la définir
+        # seulement dans `environment:` n'aurait aucun effet. Sans elle,
+        # isStripeConfigured() masque toute l'UI d'achat (lib/stripe/client.ts).
+        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+        # Empreinte de build affichée au pied de page. Sans elle, `v0.2.0` ne
+        # bouge jamais et rien ne dit quel code tourne réellement sur le VPS.
+        # L'horodatage est gravé par le Dockerfile et suffit à voir qu'un
+        # redéploiement a atterri. Le SHA suppose que l'appelant l'exporte —
+        # ajouter au script de redéploiement, AVANT `docker compose up` :
+        #     export BUILD_SHA=$(git -C /opt/murmure/TourGuideWeb rev-parse --short HEAD)
+        # Sans ça il vaut « dev », et seul l'horodatage s'affiche.
+        BUILD_SHA: ${BUILD_SHA:-dev}
+    environment:
+      NODE_ENV: production
+      MICROSERVICE_URL: http://microservice:8000
+      MICROSERVICE_API_KEY: ${MICROSERVICE_API_KEY}
+      FORCE_REAL_API: "true"
+      # Clé OpenRouteService, CÔTÉ SERVEUR : elle était `NEXT_PUBLIC_…`, donc
+      # inlinée dans le JavaScript public. Le relais `/api/routing` la tient.
+      ORS_API_KEY: ${ORS_API_KEY:-}
+    restart: unless-stopped
+    expose: ["3000"]
+    # La sonde exerce la lecture IAM du profil (server-token.ts) : quand elle
+    # tombe, tout le Studio perd synthèse et traduction alors que la page
+    # d'accueil reste servie. Un `curl /` ne voyait rien ; `/api/health` rend 503.
+    # `wget` : l'image node:alpine n'embarque pas curl. `127.0.0.1`, pas
+    # `localhost` : dans l'image, `localhost` se résout d'abord en IPv6 (::1)
+    # et Next n'écoute qu'en IPv4 — la sonde répondait « connection refused »
+    # sur un serveur pourtant en bonne santé.
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    depends_on:
+      - microservice
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN}
+      API_DOMAIN: ${API_DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    depends_on:
+      - web
+      - microservice
+
+  webhook:
+    build:
+      context: .
+      dockerfile: Dockerfile.webhook
+    volumes:
+      - /etc/webhook:/etc/webhook:ro
+      - /opt/murmure:/opt/murmure
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    expose: ["9000"]
+
+volumes:
+  caddy_data:
+  caddy_config:

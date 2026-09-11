@@ -1,0 +1,12 @@
+# Caddy will auto-provision Let's Encrypt certificates for these hostnames.
+# Requirements: ports 80/443 open on the host, DNS A records pointing to the VPS.
+
+{$DOMAIN}, www.{$DOMAIN} {
+    encode zstd gzip
+    reverse_proxy web:3000
+}
+
+{$API_DOMAIN} {
+    encode zstd gzip
+    reverse_proxy microservice:8000
+}
