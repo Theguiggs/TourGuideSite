@@ -246,7 +246,7 @@ test.describe.serial('Multilingual Management (Part 2)', () => {
         // Edit button should be visible
         const editBtn = page.getByTestId('edit-button');
         await expect(editBtn).toBeVisible();
-        await expect(editBtn).toContainText('Editer');
+        await expect(editBtn).toContainText('Éditer');
 
         // Click edit button to enable editing
         await editBtn.click();

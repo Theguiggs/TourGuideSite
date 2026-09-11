@@ -33,7 +33,7 @@ test.describe('Admin Features', () => {
     const page = await context.newPage();
 
     await page.goto('/admin/tours');
-    await expect(page.locator('h1')).toContainText('parcours', { timeout: 10_000 });
+    await expect(page.locator('h1')).toContainText('visites', { timeout: 10_000 });
 
     // Table headers should include Guide, POIs
     await expect(page.locator('th', { hasText: 'Guide' })).toBeVisible();
