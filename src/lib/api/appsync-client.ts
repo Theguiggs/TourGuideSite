@@ -739,6 +739,24 @@ export async function listModerationItems(filters?: { status?: string }) {
   }
 }
 
+/**
+ * Lot 6.1 — les éléments de modération d'UNE visite. Le panneau de retour
+ * côté guide lisait la file entière puis filtrait dans le navigateur.
+ */
+export async function listModerationItemsByTour(tourId: string) {
+  try {
+    const client = getClient();
+    const result = await client.models.ModerationItem.list({
+      filter: { tourId: { eq: tourId } },
+      authMode: 'userPool',
+    });
+    return result.data ?? [];
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'listModerationItemsByTour failed', { error: String(error) });
+    return [];
+  }
+}
+
 export async function getModerationItemById(id: string) {
   try {
     const client = getClient();

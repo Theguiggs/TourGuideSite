@@ -11,6 +11,7 @@ import {
   type TourStatusLabel,
 } from '@/lib/studio/tours-list-helpers';
 import type { StudioSession } from '@/types/studio';
+import { sessionStatusLabel } from '@/lib/studio/status-labels';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
 import { formatPrice } from '@/lib/catalogue/tour-pricing';
 
@@ -118,11 +119,11 @@ export function TourCard({
           ? { label: copy.subscribers, classes: 'bg-mer-soft text-mer' }
           : { label: copy.accessUnknown, classes: 'bg-paper-deep text-ink-60' }
     : null;
-  const englishStatus: Record<string, string> = {
-    published: 'Live', draft: 'Draft', recording: 'Recording', editing: 'Editing',
-    pending_moderation: 'In review', revision_requested: 'Changes requested', rejected: 'Rejected', archived: 'Archived',
-  };
-  const statusLabel = locale === 'en' ? englishStatus[session.status] ?? status.label : status.label;
+  // Le libellé compacté (« En ligne », « En relecture »…) reste la voix de la
+  // carte en FR ; en EN, la table partagée remplace l'ancienne liste partielle.
+  const statusLabel = locale === 'en'
+    ? (session.status === 'published' ? 'Live' : session.status === 'submitted' ? 'In review' : sessionStatusLabel(session.status, 'en'))
+    : status.label;
 
   // Action label + style depending on bucket.
   const actionConfig: { label: string; classes: string } = current

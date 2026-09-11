@@ -1,8 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
+import { sessionStatusLabel } from '@/lib/studio/status-labels';
 
 const SERVICE_NAME = 'ReviewFeedbackPanel';
 
@@ -29,12 +32,36 @@ interface ReviewData {
   adminComments: AdminComment[];
 }
 
-interface ReviewFeedbackPanelProps {
+export interface ReviewFeedbackPanelProps {
   tourId: string;
+  sessionId: string;
   sessionStatus: string;
+  /** Scènes actives, pour nommer « Corriger la scène N ». */
+  scenes?: ReadonlyArray<{ id: string; title: string | null; order?: number }>;
+  /** Branché : affiche « Resoumettre » ; absent : le texte renvoie aux actions. */
+  onResubmit?: () => void;
+  resubmitDisabled?: boolean;
 }
 
-export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPanelProps) {
+const CATEGORY_LABELS: Record<string, { fr: string; en: string }> = {
+  audio_quality: { fr: 'Qualité audio', en: 'Audio quality' },
+  content_accuracy: { fr: 'Contenu inexact', en: 'Inaccurate content' },
+  inappropriate: { fr: 'Contenu inapproprié', en: 'Inappropriate content' },
+  gps_issues: { fr: 'Problèmes GPS', en: 'GPS issues' },
+  translation: { fr: 'Traduction', en: 'Translation' },
+};
+
+/**
+ * Le retour de modération, côté guide (lot 6.1).
+ *
+ * Avant : lu par `listModerationItems()` intégral filtré côté client, rendu
+ * SOUS les actions, avec deux libellés différents pour le même état et un
+ * appel à corriger qui n'était qu'une phrase. Ici : requête par visite, un
+ * seul libellé (celui de la session), un bouton par scène signalée, et
+ * « Resoumettre » sous la main.
+ */
+export function ReviewFeedbackPanel({ tourId, sessionId, sessionStatus, scenes = [], onResubmit, resubmitDisabled = false }: ReviewFeedbackPanelProps) {
+  const { t, locale } = useStudioLocale();
   const [reviewData, setReviewData] = useState<ReviewData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -50,37 +77,25 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
     async function load() {
       try {
         const appsync = await import('@/lib/api/appsync-client');
-        // Find ModerationItem for this tour
-        const items = await appsync.listModerationItems();
-        // Find the most recent ModerationItem for this tour (by reviewDate or createdAt)
-        const matching = items
-          .filter((i) => (i as Record<string, unknown>).tourId === tourId)
-          .sort((a, b) => {
-            const aDate = (a as Record<string, unknown>).reviewDate as number ?? (a as Record<string, unknown>).submissionDate as number ?? 0;
-            const bDate = (b as Record<string, unknown>).reviewDate as number ?? (b as Record<string, unknown>).submissionDate as number ?? 0;
-            return bDate - aDate;
-          });
-        const item = matching[0];
+        const items = await appsync.listModerationItemsByTour(tourId);
+        const item = [...items].sort((a, b) => (b.reviewDate ?? b.submissionDate ?? 0) - (a.reviewDate ?? a.submissionDate ?? 0))[0];
         if (!item || cancelled) {
           setIsLoading(false);
           return;
         }
-        const raw = item as Record<string, unknown>;
 
-        // Load admin comments from GuideTour
         const tour = await appsync.getGuideTourById(tourId);
         let adminComments: AdminComment[] = [];
         if (tour) {
-          const t = tour as Record<string, unknown>;
-          try { adminComments = JSON.parse((t.adminComments as string) ?? '[]'); } catch { /* empty */ }
+          try { adminComments = JSON.parse((tour as { adminComments?: string | null }).adminComments ?? '[]'); } catch { /* empty */ }
         }
 
         if (!cancelled) {
           setReviewData({
-            status: (raw.status as string) ?? '',
-            feedbackJson: (raw.feedbackJson as string) ?? null,
-            checklistJson: (raw.checklistJson as string) ?? null,
-            reviewDate: (raw.reviewDate as number) ?? null,
+            status: item.status ?? '',
+            feedbackJson: item.feedbackJson ?? null,
+            checklistJson: item.checklistJson ?? null,
+            reviewDate: item.reviewDate ?? null,
             adminComments,
           });
         }
@@ -96,89 +111,96 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
   }, [tourId, showPanel]);
 
   if (!showPanel) return null;
-  if (isLoading) return <div className="bg-ocre-soft border border-ocre-soft rounded-lg p-4 animate-pulse h-24" />;
-  if (!reviewData) {
-    return (
-      <div className="mb-6 p-4 bg-ocre-soft border border-ocre-soft rounded-lg" role="alert">
-        <p className="font-medium text-ocre-ink">
-          {sessionStatus === 'rejected' ? 'Tour rejeté' : 'Révision demandée'}
-        </p>
-        <p className="text-body text-ocre-ink">
-          Consultez le feedback par scène ci-dessous, corrigez les problèmes, puis resoumettez.
-        </p>
-      </div>
-    );
-  }
-
-  // Parse feedback
-  let feedback: { feedback?: string; action?: string; category?: string; poiIds?: string[]; notes?: string } = {};
-  try { feedback = JSON.parse(reviewData.feedbackJson ?? '{}'); } catch { /* empty */ }
-
-  // Parse checklist
-  let checklist: Record<string, ChecklistItem> = {};
-  try { checklist = JSON.parse(reviewData.checklistJson ?? '{}'); } catch { /* empty */ }
-  const checklistItems = Object.values(checklist);
-  const hasChecklist = checklistItems.length > 0;
+  if (isLoading) return <div className="bg-ocre-soft border border-ocre-soft rounded-lg p-4 animate-pulse h-24" role="status" aria-busy="true" />;
 
   const isRejected = sessionStatus === 'rejected';
+  const headline = sessionStatusLabel(sessionStatus, locale);
+  const dateLocale = locale === 'en' ? 'en-GB' : 'fr-FR';
+
+  let feedback: { feedback?: string; action?: string; category?: string; poiIds?: string[]; notes?: string } = {};
+  try { feedback = JSON.parse(reviewData?.feedbackJson ?? '{}'); } catch { /* empty */ }
+  let checklist: Record<string, ChecklistItem> = {};
+  try { checklist = JSON.parse(reviewData?.checklistJson ?? '{}'); } catch { /* empty */ }
+  const checklistItems = Object.values(checklist);
+
+  // Scènes signalées : par identifiant (poiIds, commentaires) — nommées par leur numéro.
+  const byId = new Map(scenes.map((s, i) => [s.id, { title: s.title, number: (s.order ?? i) + 1 }]));
+  const flaggedIds = Array.from(new Set([
+    ...(feedback.poiIds ?? []),
+    ...(reviewData?.adminComments ?? []).map((c) => c.sceneId).filter((id): id is string => Boolean(id)),
+  ])).filter((id) => byId.has(id));
 
   return (
-    <div className="mb-6 bg-ocre-soft border border-ocre-soft rounded-xl overflow-hidden" role="alert" data-testid="review-feedback-panel">
-      {/* Header */}
-      <div className={`px-4 py-3 ${isRejected ? 'bg-grenadine-soft' : 'bg-ocre-soft'}`}>
-        <div className="flex items-center justify-between">
-          <p className={`font-semibold ${isRejected ? 'text-danger' : 'text-ocre-ink'}`}>
-            {isRejected ? 'Tour rejeté par la modération' : 'Révision demandée par la modération'}
+    <section
+      className="mb-3 bg-card border border-ocre rounded-lg overflow-hidden"
+      role="region"
+      aria-labelledby="review-feedback-title"
+      data-testid="review-feedback-panel"
+    >
+      <div className={`px-4 py-3 flex items-center justify-between gap-3 ${isRejected ? 'bg-grenadine-soft' : 'bg-ocre-soft'}`}>
+        <h2 id="review-feedback-title" className={`text-body font-semibold ${isRejected ? 'text-danger' : 'text-ocre-ink'}`}>
+          {headline} · {t('retour de la modération', 'review feedback')}
+        </h2>
+        {reviewData?.reviewDate && (
+          <p className="text-meta text-ink-60">
+            {new Date(reviewData.reviewDate).toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' })}
           </p>
-          {reviewData.reviewDate && (
-            <p className="text-meta text-ocre-ink">
-              {new Date(reviewData.reviewDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
-            </p>
-          )}
-        </div>
+        )}
       </div>
 
       <div className="p-4 space-y-4">
-        {/* Main feedback */}
+        {!reviewData && (
+          <p className="text-body text-ink-80">
+            {t('Le détail du retour n’est pas disponible. Consultez le journal d’échanges ci-dessous, corrigez, puis resoumettez.',
+               'The review details are not available. Check the review history below, fix, then resubmit.')}
+          </p>
+        )}
+
         {feedback.feedback && (
           <div>
-            <p className="text-body font-medium text-ink-80 mb-1">Commentaire du modérateur</p>
-            <p className="text-body text-ink bg-card rounded-lg p-3 border border-ocre-soft">
-              {feedback.feedback}
-            </p>
+            <p className="text-body font-medium text-ink-80 mb-1">{t('Commentaire du modérateur', 'Reviewer’s comment')}</p>
+            <p className="text-body text-ink bg-paper-soft rounded-lg p-3 border border-line">{feedback.feedback}</p>
           </div>
         )}
 
-        {/* Rejection category */}
         {feedback.category && (
-          <div className="flex items-center gap-2">
-            <span className="text-meta font-medium text-danger bg-grenadine-soft px-2.5 py-1 rounded-pill">
-              {feedback.category === 'audio_quality' ? 'Qualité audio' :
-               feedback.category === 'content_accuracy' ? 'Contenu inexact' :
-               feedback.category === 'inappropriate' ? 'Contenu inapproprié' :
-               feedback.category === 'gps_issues' ? 'Problèmes GPS' :
-               feedback.category === 'translation' ? 'Traduction' : 'Autre'}
-            </span>
+          <span className="inline-block text-meta font-medium text-danger bg-grenadine-soft px-2.5 py-1 rounded-pill">
+            {CATEGORY_LABELS[feedback.category] ? (locale === 'en' ? CATEGORY_LABELS[feedback.category].en : CATEGORY_LABELS[feedback.category].fr) : t('Autre', 'Other')}
+          </span>
+        )}
+
+        {flaggedIds.length > 0 && (
+          <div>
+            <p className="text-body font-medium text-ink-80 mb-2">{t('Scènes signalées', 'Flagged scenes')}</p>
+            <ul className="flex flex-wrap gap-2">
+              {flaggedIds.map((id) => {
+                const scene = byId.get(id)!;
+                return (
+                  <li key={id}>
+                    <Link
+                      href={`/guide/studio/${sessionId}/scenes`}
+                      data-testid={`fix-scene-${id}`}
+                      className="inline-block rounded-pill border border-ocre bg-card px-3 py-1 text-meta font-medium text-ocre-ink hover:bg-paper"
+                    >
+                      {t(`Corriger la scène ${scene.number}`, `Fix scene ${scene.number}`)}{scene.title ? ` · ${scene.title}` : ''}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         )}
 
-        {/* Checklist results */}
-        {hasChecklist && (
+        {checklistItems.length > 0 && (
           <div>
-            <p className="text-body font-medium text-ink-80 mb-2">Grille de validation</p>
+            <p className="text-body font-medium text-ink-80 mb-2">{t('Grille de validation', 'Validation grid')}</p>
             <div className="space-y-1">
               {checklistItems.map((item) => (
                 <div key={item.id} className="flex items-start gap-2 text-body">
-                  <span className={`mt-0.5 ${item.checked ? 'text-success' : 'text-danger'}`}>
-                    {item.checked ? '✓' : '✗'}
-                  </span>
+                  <span className={`mt-0.5 ${item.checked ? 'text-success' : 'text-danger'}`} aria-hidden="true">{item.checked ? '✓' : '✗'}</span>
                   <div className="flex-1">
-                    <span className={item.checked ? 'text-ink-80' : 'text-danger font-medium'}>
-                      {item.label}
-                    </span>
-                    {item.note && (
-                      <p className="text-meta text-ink-60 mt-0.5">{item.note}</p>
-                    )}
+                    <span className={item.checked ? 'text-ink-80' : 'text-danger font-medium'}>{item.label}</span>
+                    {item.note && <p className="text-meta text-ink-60 mt-0.5">{item.note}</p>}
                   </div>
                 </div>
               ))}
@@ -186,27 +208,25 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
           </div>
         )}
 
-        {/* Overall notes */}
         {feedback.notes && (
           <div>
-            <p className="text-body font-medium text-ink-80 mb-1">Notes complémentaires</p>
+            <p className="text-body font-medium text-ink-80 mb-1">{t('Notes complémentaires', 'Additional notes')}</p>
             <p className="text-body text-ink-80 italic">{feedback.notes}</p>
           </div>
         )}
 
-        {/* Admin comments */}
-        {reviewData.adminComments.length > 0 && (
+        {(reviewData?.adminComments.length ?? 0) > 0 && (
           <div>
-            <p className="text-body font-medium text-ink-80 mb-2">
-              Commentaires ({reviewData.adminComments.length})
-            </p>
+            <p className="text-body font-medium text-ink-80 mb-2">{t('Commentaires', 'Comments')} ({reviewData!.adminComments.length})</p>
             <div className="space-y-2">
-              {[...reviewData.adminComments].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((c) => (
-                <div key={c.id} className="text-body bg-card rounded-lg p-2.5 border border-line">
+              {[...reviewData!.adminComments].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((c) => (
+                <div key={c.id} className="text-body bg-paper-soft rounded-lg p-2.5 border border-line">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-medium text-ink">{c.reviewerName}</span>
-                    <span className="text-meta text-ink-40">{new Date(c.date).toLocaleDateString('fr-FR')}</span>
-                    {c.sceneId && <span className="text-meta text-mer bg-mer-soft px-1.5 py-0.5 rounded">Scène</span>}
+                    <span className="text-meta text-ink-40">{new Date(c.date).toLocaleDateString(dateLocale)}</span>
+                    {c.sceneId && byId.get(c.sceneId) && (
+                      <span className="text-meta text-mer bg-mer-soft px-1.5 py-0.5 rounded">{t(`Scène ${byId.get(c.sceneId)!.number}`, `Scene ${byId.get(c.sceneId)!.number}`)}</span>
+                    )}
                   </div>
                   <p className="text-ink-80">{c.comment}</p>
                 </div>
@@ -215,11 +235,23 @@ export function ReviewFeedbackPanel({ tourId, sessionStatus }: ReviewFeedbackPan
           </div>
         )}
 
-        {/* Call to action */}
-        <p className="text-body text-ocre-ink pt-2 border-t border-ocre-soft">
-          Corrigez les points signalés ci-dessus, puis resoumettez votre visite.
-        </p>
+        <div className="pt-3 border-t border-line flex items-center justify-between gap-3 flex-wrap">
+          <p className="text-body text-ink-80">
+            {t('Corrigez les points signalés, puis resoumettez la visite à la modération.', 'Fix the flagged items, then resubmit the tour for review.')}
+          </p>
+          {onResubmit && (
+            <button
+              type="button"
+              onClick={onResubmit}
+              disabled={resubmitDisabled}
+              data-testid="resubmit-btn"
+              className="rounded-pill bg-grenadine px-4 py-2 text-body font-semibold text-paper hover:opacity-90 disabled:opacity-50"
+            >
+              {t('Resoumettre à la modération', 'Resubmit for review')}
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

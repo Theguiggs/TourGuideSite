@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { getSessionStatusConfig } from '@/lib/api/studio';
+import { sessionStatusLabel } from '@/lib/studio/status-labels';
 import { WIZARD_TABS, type WizardTabKey } from '@/lib/studio/wizard-helpers';
 import { OnboardingBubble } from '@/components/studio/onboarding-bubble';
 import { useOnboardingStore, type OnboardingFeature } from '@/lib/stores/onboarding-store';
@@ -81,10 +82,6 @@ export function WizardShell({
   const tabLabels: Record<WizardTabKey, string> = locale === 'en'
     ? { accueil: 'Overview', general: 'Details', itinerary: 'Itinerary', scenes: 'Scenes', preview: 'Preview', submission: 'Publish' }
     : { accueil: 'Accueil', general: 'Général', itinerary: 'Itinéraire', scenes: 'Scènes', preview: 'Aperçu', submission: 'Publication' };
-  const statusLabels: Record<string, string> = locale === 'en' ? {
-    draft: 'Draft', recording: 'Recording', transcribing: 'Transcribing', editing: 'Editing', ready_for_review: 'Ready for review',
-    pending_moderation: 'In review', revision_requested: 'Changes requested', published: 'Published', rejected: 'Rejected', archived: 'Archived',
-  } : {};
 
   return (
     <div className="flex flex-col h-full" data-testid="wizard-shell">
@@ -119,7 +116,7 @@ export function WizardShell({
                   className={`tg-eyebrow px-2 py-0.5 rounded-pill ${statusConfig.color}`}
                   data-testid="wizard-status-pill"
                 >
-                  {statusLabels[session?.status ?? ''] ?? statusConfig.label}
+                  {session ? sessionStatusLabel(session.status, locale) : statusConfig.label}
                 </span>
               )}
               {session?.language && (

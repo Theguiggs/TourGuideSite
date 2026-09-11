@@ -88,7 +88,8 @@ test.describe('Cross-platform', () => {
 
     // The submit button should be available
     const submitBtn = page.getByTestId('submit-review-btn');
-    if (await submitBtn.isVisible()) {
+    // Lot 6.1 : le bouton est désactivé tant que la liste de contrôle n'est pas verte.
+    if (await submitBtn.isVisible() && await submitBtn.isEnabled()) {
       await submitBtn.click();
       await expect(
         page.getByText(/soumis|envoyé|modération/i).first(),

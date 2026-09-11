@@ -9,6 +9,9 @@ import { submitForReview, retractSubmission, updateSessionStatus, deleteSession 
 import { logger } from '@/lib/logger';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
+import { VisitReadiness } from '@/components/studio/wizard-publication/VisitReadiness';
+import { evaluateStudioVisit } from '@/lib/studio/visit-completeness';
+import { sessionStatusLabel } from '@/lib/studio/status-labels';
 import { TourCommentThread } from '@/components/studio/tour-comment-thread';
 import { Collapsible } from '@/components/ui/collapsible';
 import { ConfirmDialog } from '@/components/ui/Dialog';
@@ -23,16 +26,13 @@ export default function PublicationPage() {
   const params = useParams<{ sessionId: string }>();
   const router = useRouter();
   const { user } = useAuth();
-  const { t } = useStudioLocale();
+  const { t, locale } = useStudioLocale();
   const sessionId = params.sessionId;
   const guideId = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [siblingVersions, setSiblingVersions] = useState<StudioSession[]>([]);
-  // `scenes` n'est plus lu depuis que la suppression passe par `deleteSession`,
-  // mais il reste CHARGÉ : le setter alimente le compteur de scènes actives que
-  // la page affiche, et le retirer casserait ce chargement.
-  const [, setScenes] = useState<StudioScene[]>([]);
+  const [scenes, setScenes] = useState<StudioScene[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isActioning, setIsActioning] = useState(false);
   const [message, setMessage] = useState<{ text: string; success: boolean } | null>(null);
@@ -47,6 +47,7 @@ export default function PublicationPage() {
     // lag at 'submitted' after an admin approval. See withPublishedStatus.
     const sess = raw ? (await withPublishedStatus([raw]))[0] : raw;
     if (sess) { setSession(sess); setActiveSession(sess); }
+    setScenes((await listStudioScenes(sessionId)).filter((sc) => !sc.archived));
     // Reload siblings
     if (guideId) {
       const all = await withPublishedStatus(await listStudioSessions(guideId));
@@ -112,6 +113,13 @@ export default function PublicationPage() {
 
   // Derived state
   const canSubmit = ['draft', 'editing', 'recording', 'ready', 'revision_requested', 'rejected'].includes(session.status);
+  // La liste de contrôle AVANT le clic : la même que `submitForReview` applique.
+  const readiness = evaluateStudioVisit(session, scenes);
+  const submitLabel = hasRevisionFeedback ? t('Resoumettre à la modération', 'Resubmit for review') : t('Soumettre à la modération', 'Submit for review');
+  const submitNow = () => doAction(
+    hasRevisionFeedback ? t('Visite resoumise à la modération.', 'Tour resubmitted for review.') : t('Visite soumise à la modération.', 'Tour submitted for review.'),
+    () => submitForReview(sessionId, session.tourId!),
+  );
   const canRetract = session.status === 'submitted';
   const isPublished = session.status === 'published';
   const isPaused = session.status === 'paused';
@@ -168,25 +176,14 @@ export default function PublicationPage() {
     editing: t('Parcours en cours de travail. Finalisez les scènes puis soumettez-le.', 'Tour in progress. Complete the scenes, then submit it.'),
     recording: t("Parcours en cours d'enregistrement.", 'Tour recording in progress.'),
     ready: t('Parcours prêt. Soumettez-le pour modération.', 'Tour ready. Submit it for review.'),
-    submitted: t('Parcours en attente de modération. Vous pouvez retirer la publication pour modifier.', 'Tour waiting for review. You can withdraw it to make changes.'),
+    submitted: t('Visite en attente de modération. Vous pouvez annuler la soumission pour la modifier.', 'Tour waiting for review. You can cancel the submission to make changes.'),
     published: t(`Parcours publié et visible par les touristes (V${version}).`, `Tour published and visible to visitors (V${version}).`),
     paused: t('Parcours masqué temporairement. Vous pouvez le reprendre sans nouvelle modération.', 'Tour temporarily hidden. You can resume it without another review.'),
     revision_requested: t('La modération demande des modifications. Consultez le retour, corrigez puis soumettez à nouveau.', 'Changes were requested. Review the feedback, make corrections and resubmit.'),
     rejected: t('Parcours refusé. Consultez le retour ci-dessous.', 'Tour rejected. Review the feedback below.'),
     archived: t("Parcours archivé. Il n'est plus visible et ne peut pas être republié directement.", 'Tour archived. It is no longer visible and cannot be republished directly.'),
   };
-  const translatedStatusLabel = ({
-    Brouillon: t('Brouillon', 'Draft'),
-    'En édition': t('En édition', 'Editing'),
-    Enregistrement: t('Enregistrement', 'Recording'),
-    Prêt: t('Prêt', 'Ready'),
-    Soumis: t('Soumis', 'Submitted'),
-    Publié: t('Publié', 'Published'),
-    Suspendu: t('Suspendu', 'Paused'),
-    'Révision demandée': t('Révision demandée', 'Changes requested'),
-    Refusé: t('Refusé', 'Rejected'),
-    Archivé: t('Archivé', 'Archived'),
-  } as Record<string, string>)[statusConfig.label] ?? statusConfig.label;
+  const translatedStatusLabel = sessionStatusLabel(session.status, locale);
 
   return (
     <div className="p-4 max-w-4xl">
@@ -238,6 +235,21 @@ export default function PublicationPage() {
         </div>
       )}
 
+      {/* === RETOUR DE MODÉRATION — en premier quand il y en a un === */}
+      {session.tourId && hasRevisionFeedback && (
+        <ReviewFeedbackPanel
+          tourId={session.tourId}
+          sessionId={sessionId}
+          sessionStatus={session.status}
+          scenes={scenes}
+          onResubmit={submitNow}
+          resubmitDisabled={isActioning || !readiness.ready}
+        />
+      )}
+
+      {/* === LISTE DE CONTRÔLE — avant le clic === */}
+      {canSubmit && <VisitReadiness report={readiness} sessionId={sessionId} scenes={scenes} />}
+
       {/* === ACTIONS CARD === */}
       <div className="bg-card rounded-lg border border-line p-3 mb-3">
         <h2 className="text-body font-semibold text-ink mb-2">{t('Actions', 'Actions')}</h2>
@@ -247,17 +259,16 @@ export default function PublicationPage() {
           {/* --- SUBMIT / RESUBMIT --- */}
           {canSubmit && session.tourId && (
             <button
-              onClick={() => doAction(
-                hasRevisionFeedback ? 'Parcours resoumis !' : 'Parcours soumis en revue !',
-                () => submitForReview(sessionId, session.tourId!),
-              )}
-              disabled={isActioning}
+              onClick={submitNow}
+              disabled={isActioning || !readiness.ready}
+              aria-describedby={readiness.ready ? undefined : 'visit-readiness-title'}
+              data-testid="submit-review-btn"
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-mer-soft bg-mer-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
               <span className="text-body-lg shrink-0">&#x1F4E4;</span>
               <div>
-                <p className="text-body font-medium text-mer">{hasRevisionFeedback ? t('Republier', 'Republish') : t('Publier', 'Publish')}</p>
-                <p className="text-meta text-mer">{t('Envoyer à la modération pour publication', 'Send for review and publication')}</p>
+                <p className="text-body font-medium text-mer">{submitLabel}</p>
+                <p className="text-meta text-mer">{readiness.ready ? t('La modération relit puis publie la visite', 'The review team checks, then publishes the tour') : t('Corrigez d’abord les points listés ci-dessus', 'Fix the items listed above first')}</p>
               </div>
             </button>
           )}
@@ -265,14 +276,15 @@ export default function PublicationPage() {
           {/* --- RETRACT --- */}
           {canRetract && session.tourId && (
             <button
-              onClick={() => doAction('Publication retiree.', () => retractSubmission(sessionId, session.tourId!))}
+              onClick={() => doAction(t('Soumission annulée.', 'Submission cancelled.'), () => retractSubmission(sessionId, session.tourId!))}
               disabled={isActioning}
+              data-testid="retract-btn"
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-ocre-soft bg-ocre-soft hover:bg-ocre-soft transition text-left disabled:opacity-50"
             >
               <span className="text-body-lg shrink-0">&#x21A9;</span>
               <div>
-                <p className="text-body font-medium text-ocre-ink">Retirer la publication</p>
-                <p className="text-meta text-ocre-ink">Revenir en brouillon pour modifier</p>
+                <p className="text-body font-medium text-ocre-ink">{t('Annuler la soumission', 'Cancel the submission')}</p>
+                <p className="text-meta text-ocre-ink">{t('Revenir en brouillon pour modifier', 'Back to draft to make changes')}</p>
               </div>
             </button>
           )}
@@ -295,7 +307,7 @@ export default function PublicationPage() {
           {/* --- RESUME (from paused only) --- */}
           {isPaused && (
             <button
-              onClick={() => doAction('Parcours republier !', () => updateStatus('published'))}
+              onClick={() => doAction(t('Visite republiée.', 'Tour republished.'), () => updateStatus('published'))}
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-olive-soft bg-olive-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
@@ -495,11 +507,6 @@ export default function PublicationPage() {
             })}
           </div>
         </Collapsible>
-      )}
-
-      {/* === FEEDBACK (kept inline, shows only when relevant) === */}
-      {session.tourId && (
-        <ReviewFeedbackPanel tourId={session.tourId} sessionStatus={session.status} />
       )}
 
       {/* === COMMENT THREAD (collapsible) === */}
