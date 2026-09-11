@@ -35,7 +35,7 @@ export default async function EnglishCityPage({params}: CityPageProps) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <nav aria-label={"Breadcrumb"} className="text-sm text-ink-60 mb-6">
+      <nav aria-label={"Breadcrumb"} className="text-body text-ink-60 mb-6">
         <Link href="/en/catalogue" className="hover:text-grenadine">Catalogue</Link>
         <span className="mx-2">/</span>
         <span className="text-ink">{city.name}</span>
@@ -50,12 +50,12 @@ export default async function EnglishCityPage({params}: CityPageProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {guides.map((guide) => (
               <Link key={guide.id} href={`/guides/${guide.slug}`} className="flex items-center gap-3 p-4 rounded-xl border border-line hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-grenadine-soft rounded-full flex items-center justify-center text-grenadine font-bold text-lg flex-shrink-0">
+                <div className="w-12 h-12 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-lg flex-shrink-0">
                   {guide.displayName.charAt(0)}
                 </div>
                 <div className="min-w-0">
                   <p className="font-medium text-ink truncate">{guide.displayName}</p>
-                  <p className="text-sm text-ink-60">{guide.tourCount ?? 0} tours</p>
+                  <p className="text-body text-ink-60">{guide.tourCount ?? 0} tours</p>
                 </div>
               </Link>
             ))}

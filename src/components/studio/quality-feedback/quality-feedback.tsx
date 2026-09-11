@@ -11,7 +11,7 @@ export function QualityFeedback({ result }: QualityFeedbackProps) {
 
   return (
     <div
-      className={`flex items-center gap-2 p-2 rounded text-sm ${
+      className={`flex items-center gap-2 p-2 rounded text-body ${
         isGood ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
       }`}
       role="status"
@@ -20,7 +20,7 @@ export function QualityFeedback({ result }: QualityFeedbackProps) {
       <span aria-hidden="true" className="text-lg">{isGood ? '✓' : '⚠'}</span>
       <div>
         <p className="font-medium">{isGood ? 'Bonne qualité' : 'À améliorer'}</p>
-        <p className="text-xs opacity-75">{result.message}</p>
+        <p className="text-meta opacity-75">{result.message}</p>
       </div>
     </div>
   );

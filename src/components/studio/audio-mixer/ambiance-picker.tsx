@@ -117,9 +117,9 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
 
   return (
     <>
-      <div className="bg-white border-2 border-mer-soft rounded-lg shadow-lg p-4 space-y-3 max-w-lg" data-testid="ambiance-picker">
+      <div className="bg-card border-2 border-mer-soft rounded-lg shadow-lg p-4 space-y-3 max-w-lg" data-testid="ambiance-picker">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-ink">Choisir une ambiance</h3>
+          <h3 className="text-body font-semibold text-ink">Choisir une ambiance</h3>
           <button onClick={handleClose} className="text-ink-40 hover:text-ink-80 text-lg">X</button>
         </div>
 
@@ -127,7 +127,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
         <div className="flex gap-1 border-b border-line">
           <button
             onClick={() => setTab('standard')}
-            className={`px-3 py-1.5 text-xs font-medium border-b-2 transition ${
+            className={`px-3 py-1.5 text-meta font-medium border-b-2 transition ${
               tab === 'standard' ? 'border-mer text-mer' : 'border-transparent text-ink-60 hover:text-ink-80'
             }`}
           >
@@ -135,7 +135,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
           </button>
           <button
             onClick={() => setTab('mine')}
-            className={`px-3 py-1.5 text-xs font-medium border-b-2 transition ${
+            className={`px-3 py-1.5 text-meta font-medium border-b-2 transition ${
               tab === 'mine' ? 'border-mer text-mer' : 'border-transparent text-ink-60 hover:text-ink-80'
             }`}
           >
@@ -144,7 +144,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
           <span className="flex-1" />
           <button
             onClick={() => setShowUpload(true)}
-            className="px-3 py-1 text-xs font-medium text-mer hover:opacity-80"
+            className="px-3 py-1 text-meta font-medium text-mer hover:opacity-80"
           >
             + Ajouter un son
           </button>
@@ -156,7 +156,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
             <button
               key={cat.key}
               onClick={() => setCategory(cat.key)}
-              className={`px-3 py-1 rounded-full text-xs font-medium transition ${
+              className={`px-3 py-1 rounded-pill text-meta font-medium transition ${
                 category === cat.key
                   ? 'bg-mer text-white'
                   : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
@@ -183,7 +183,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
               >
                 <button
                   onClick={() => handlePreview(sound)}
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs flex-shrink-0 transition ${
+                  className={`w-7 h-7 rounded-pill flex items-center justify-center text-meta flex-shrink-0 transition ${
                     previewingId === sound.id
                       ? 'bg-mer text-white animate-pulse'
                       : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
@@ -195,8 +195,8 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
                   onClick={() => handleSelectStandard(sound)}
                   className="flex-1 min-w-0 text-left"
                 >
-                  <p className="text-xs font-medium text-ink truncate">{sound.icon} {sound.label}</p>
-                  <p className="text-[10px] text-ink-40">{sound.durationSec}s loop</p>
+                  <p className="text-meta font-medium text-ink truncate">{sound.icon} {sound.label}</p>
+                  <p className="text-eyebrow text-ink-40">{sound.durationSec}s loop</p>
                 </button>
               </div>
             ))}
@@ -206,11 +206,11 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
         {tab === 'mine' && (
           <>
             {mySounds.length === 0 ? (
-              <div className="text-center py-6 text-ink-60 text-xs">
+              <div className="text-center py-6 text-ink-60 text-meta">
                 <p className="mb-3">Aucun son dans votre banque.</p>
                 <button
                   onClick={() => setShowUpload(true)}
-                  className="px-4 py-2 bg-mer text-white rounded-lg hover:opacity-90 text-sm font-medium"
+                  className="px-4 py-2 bg-mer text-white rounded-lg hover:opacity-90 text-body font-medium"
                 >
                   + Ajouter mon premier son
                 </button>
@@ -233,7 +233,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
                       {/* Play button */}
                       <button
                         onClick={() => handlePreview(sound)}
-                        className={`w-10 h-10 rounded-full flex items-center justify-center text-sm flex-shrink-0 transition ${
+                        className={`w-10 h-10 rounded-pill flex items-center justify-center text-body flex-shrink-0 transition ${
                           isPlaying
                             ? 'bg-mer text-white animate-pulse'
                             : 'bg-mer-soft text-mer hover:opacity-90'
@@ -252,21 +252,21 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
                         {/* Title row */}
                         <div className="flex items-center gap-2">
                           <span className="text-base">{sound.icon || '🎵'}</span>
-                          <span className="text-sm font-semibold text-ink truncate">
+                          <span className="text-body font-semibold text-ink truncate">
                             {sound.title || '(sans titre)'}
                           </span>
                         </div>
                         {/* Description */}
                         {sound.description && (
-                          <p className="text-xs text-ink-60 mt-0.5 line-clamp-2">{sound.description}</p>
+                          <p className="text-meta text-ink-60 mt-0.5 line-clamp-2">{sound.description}</p>
                         )}
                         {/* Meta badges */}
                         <div className="flex items-center gap-1.5 mt-1">
-                          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-paper-soft text-ink-80">
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-eyebrow font-medium bg-paper-soft text-ink-80">
                             ⏱ {sound.durationSec}s
                           </span>
                           {cat && (
-                            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-mer-soft text-mer">
+                            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-eyebrow font-medium bg-mer-soft text-mer">
                               {cat.icon} {cat.label}
                             </span>
                           )}
@@ -277,14 +277,14 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
                       <div className="flex flex-col gap-1 shrink-0">
                         <button
                           onClick={() => handleRename(sound.id, sound.title)}
-                          className="text-ink-40 hover:text-mer p-1 text-xs"
+                          className="text-ink-40 hover:text-mer p-1 text-meta"
                           title="Renommer"
                         >
                           ✏
                         </button>
                         <button
                           onClick={() => handleDelete(sound.id)}
-                          className="text-ink-40 hover:text-danger p-1 text-xs"
+                          className="text-ink-40 hover:text-danger p-1 text-meta"
                           title="Supprimer"
                         >
                           🗑

@@ -329,7 +329,7 @@ export default function PreviewPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
           &larr; {t('Retour à la session', 'Back to session')}
         </Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">
@@ -353,12 +353,12 @@ export default function PreviewPage() {
   // fabriquées hors Studio et ne sont jamais éditables ici.
   return (
     <div className="p-6 max-w-3xl">
-      <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
+      <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
         &larr; {t('Retour à la session', 'Back to session')}
       </Link>
 
       <PageTitle size="h4" className="mb-1">Preview — {session.title || 'Session'}</PageTitle>
-      <p className="text-sm text-ink-60 mb-2" data-testid="preview-narration-mode">
+      <p className="text-body text-ink-60 mb-2" data-testid="preview-narration-mode">
         {session.narrationMode === 'recording'
           ? 'Voix humaine — les audios source sont prévisualisés.'
           : session.narrationMode === 'tts_on_demand'
@@ -370,7 +370,7 @@ export default function PreviewPage() {
       <div className="flex gap-2 mb-4">
         <button
           onClick={() => setViewMode('studio')}
-          className={`py-1.5 px-4 rounded-lg text-sm font-medium transition ${
+          className={`py-1.5 px-4 rounded-lg text-body font-medium transition ${
             viewMode === 'studio' ? 'bg-ink text-white' : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
           }`}
         >
@@ -378,7 +378,7 @@ export default function PreviewPage() {
         </button>
         <button
           onClick={() => setViewMode('catalogue')}
-          className={`py-1.5 px-4 rounded-lg text-sm font-medium transition ${
+          className={`py-1.5 px-4 rounded-lg text-body font-medium transition ${
             viewMode === 'catalogue' ? 'bg-ink text-white' : 'bg-paper-soft text-ink-80 hover:bg-paper-deep'
           }`}
         >
@@ -418,9 +418,9 @@ export default function PreviewPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-grenadine to-ink" />
             )}
             <div className="relative">
-              <p className="text-paper text-xs font-medium uppercase tracking-wider">{session.language.toUpperCase()}</p>
+              <p className="text-paper text-meta font-medium uppercase tracking-wider">{session.language.toUpperCase()}</p>
               <h2 className="text-xl font-bold">{displayTitle}</h2>
-              <div className="flex items-center gap-3 mt-1 text-sm text-paper-soft">
+              <div className="flex items-center gap-3 mt-1 text-body text-paper-soft">
                 <span>{scenes.length} etapes</span>
                 <span>~{scenes.length * 3} min</span>
               </div>
@@ -433,7 +433,7 @@ export default function PreviewPage() {
               <>
                 <button
                   onClick={handlePlayAll}
-                  className={`w-full py-3 rounded-xl text-sm font-semibold transition ${
+                  className={`w-full py-3 rounded-xl text-body font-semibold transition ${
                     isPlayingAll ? 'bg-ocre text-ink' : 'bg-grenadine text-white'
                   }`}
                   data-testid="play-all-btn"
@@ -443,7 +443,7 @@ export default function PreviewPage() {
                 <AudioPlayerBar compact />
               </>
             ) : (
-              <p className="rounded-xl bg-white/10 p-3 text-sm text-paper-soft">
+              <p className="rounded-xl bg-card/10 p-3 text-body text-paper-soft">
                 L’audio sera créé à la première écoute connectée, après publication.
               </p>
             )}
@@ -480,21 +480,21 @@ export default function PreviewPage() {
                     onClick={() => hasAudio && handlePlayScene(index)}
                     className="flex items-center gap-3 p-3 cursor-pointer"
                   >
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                    <div className={`w-8 h-8 rounded-pill flex items-center justify-center text-meta font-bold flex-shrink-0 ${
                       isActive ? 'bg-grenadine text-white' : 'bg-ink-80 text-ink-40'
                     }`}>
                       {isActive ? '||' : index + 1}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className={`text-sm font-medium truncate ${isActive ? 'text-white' : 'text-paper'}`}>
+                      <p className={`text-body font-medium truncate ${isActive ? 'text-white' : 'text-paper'}`}>
                         {getSceneTitle(scene) || `Étape ${index + 1}`}
                       </p>
                       {scene.poiDescription && (
-                        <p className="text-xs text-ink-40 truncate">{scene.poiDescription}</p>
+                        <p className="text-meta text-ink-40 truncate">{scene.poiDescription}</p>
                       )}
                     </div>
                     {hasAudio && !isActive && (
-                      <span className="text-ink-60 text-xs">{'>'}</span>
+                      <span className="text-ink-60 text-meta">{'>'}</span>
                     )}
                   </div>
                 </div>
@@ -525,7 +525,7 @@ export default function PreviewPage() {
             <div className="flex items-center justify-between mb-2">
               <button
                 onClick={handlePlayAll}
-                className={`font-medium py-2 px-5 rounded-lg text-sm transition ${
+                className={`font-medium py-2 px-5 rounded-lg text-body transition ${
                   isPlayingAll
                     ? 'bg-ocre hover:brightness-110 text-ink'
                     : 'bg-grenadine hover:opacity-90 text-white'
@@ -535,7 +535,7 @@ export default function PreviewPage() {
                 {isPlayingAll ? t('Arrêter', 'Stop') : t('Écouter tout', 'Play all')}
               </button>
               {isPlayingAll && playingIndex !== null && (
-                <p className="text-xs text-ink-40">
+                <p className="text-meta text-ink-40">
                   Scene {playingIndex + 1}/{scenes.length} — {scenes[playingIndex]?.title || `Scene ${playingIndex + 1}`}
                 </p>
               )}
@@ -543,7 +543,7 @@ export default function PreviewPage() {
             <AudioPlayerBar compact />
           </div>
           ) : (
-            <div className="mb-4 p-3 bg-olive-soft text-olive rounded-xl text-sm">
+            <div className="mb-4 p-3 bg-olive-soft text-olive rounded-xl text-body">
               Aucun audio n’est fabriqué dans le Studio. Les textes ci-dessous sont ceux qui seront synthétisés à la demande.
             </div>
           )}
@@ -564,7 +564,7 @@ export default function PreviewPage() {
               data-testid={`preview-scene-${scene.id}`}
             >
               <div className="flex items-start gap-3">
-                <span className="w-7 h-7 rounded-full bg-paper-deep flex items-center justify-center text-xs font-bold text-ink-80 flex-shrink-0 mt-0.5">
+                <span className="w-7 h-7 rounded-pill bg-paper-deep flex items-center justify-center text-meta font-bold text-ink-80 flex-shrink-0 mt-0.5">
                   {index + 1}
                 </span>
                 <div className="flex-1 min-w-0">
@@ -573,7 +573,7 @@ export default function PreviewPage() {
                       {getSceneTitle(scene) || `Scène ${index + 1}`}
                     </p>
                     {scene.qualityScore && (
-                      <span className={`inline-flex px-1.5 py-0 rounded text-[10px] font-medium ${
+                      <span className={`inline-flex px-1.5 py-0 rounded text-eyebrow font-medium ${
                         scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                       }`}>
                         {scene.qualityScore === 'good' ? '✓ Bonne' : '⚠ À améliorer'}
@@ -582,7 +582,7 @@ export default function PreviewPage() {
                   </div>
 
                   {scene.poiDescription && (
-                    <p className="text-sm text-ink-60 mb-2">{scene.poiDescription}</p>
+                    <p className="text-body text-ink-60 mb-2">{scene.poiDescription}</p>
                   )}
 
                   {/* Photos carousel */}
@@ -596,19 +596,19 @@ export default function PreviewPage() {
 
                   {/* Source transcript preview */}
                   {sceneTranscript && (
-                    <p className="text-sm text-ink-80 line-clamp-2 mb-2 italic">
+                    <p className="text-body text-ink-80 line-clamp-2 mb-2 italic">
                       &ldquo;{sceneTranscript}&rdquo;
                     </p>
                   )}
 
                   {scene.moderationFeedback && (
-                    <p className="text-xs text-danger mt-1">💬 {scene.moderationFeedback}</p>
+                    <p className="text-meta text-danger mt-1">💬 {scene.moderationFeedback}</p>
                   )}
                 </div>
                 {hasAudio && (
                 <button
                   onClick={() => handlePlayScene(index)}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition ${
+                  className={`w-8 h-8 rounded-pill flex items-center justify-center flex-shrink-0 transition ${
                     isActive ? 'bg-grenadine text-white' : 'bg-paper-soft text-ink-80 hover:bg-grenadine-soft'
                   }`}
                   aria-label={isActive ? `Pause scène ${index + 1}` : `Écouter scène ${index + 1}`}
@@ -644,7 +644,7 @@ export default function PreviewPage() {
           </button>
         )}
         {canSubmit && !session.tourId && (
-          <p className="text-sm text-danger" role="alert">
+          <p className="text-body text-danger" role="alert">
             {t('Cette version doit être rattachée à une visite avant soumission.', 'This version must be linked to a tour before submission.')}
           </p>
         )}
@@ -685,7 +685,7 @@ export default function PreviewPage() {
               }
             }}
             disabled={isSubmitting}
-            className="border border-ink-40 text-ink-80 hover:bg-paper-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-sm"
+            className="border border-ink-40 text-ink-80 hover:bg-paper-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-body"
             data-testid="suspend-btn"
           >
             ⏸ Suspendre
@@ -716,7 +716,7 @@ export default function PreviewPage() {
               }
             }}
             disabled={isSubmitting}
-            className="border border-ocre text-ocre-ink hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-sm"
+            className="border border-ocre text-ocre-ink hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-body"
             data-testid="archive-btn"
           >
             📦 Archiver
@@ -725,17 +725,17 @@ export default function PreviewPage() {
 
         {/* Status messages for non-actionable states */}
         {isInReview && !canSubmit && (
-          <span className="text-sm text-ink-60">
+          <span className="text-body text-ink-60">
             ⏳ {t('En attente de la modération', 'Waiting for review')}
           </span>
         )}
         {isArchived && (
-          <span className="text-sm text-ink-60">
+          <span className="text-body text-ink-60">
             📦 {t('Parcours archivé', 'Tour archived')}
           </span>
         )}
         {isPublished && (
-          <span className="text-sm text-success font-medium">
+          <span className="text-body text-success font-medium">
             ✅ {t('Parcours publié', 'Tour published')}
           </span>
         )}
@@ -744,7 +744,7 @@ export default function PreviewPage() {
         {!isPublished && !isArchived && (
           <button
             onClick={() => setShowDeleteConfirm(true)}
-            className="text-sm text-ink-60 hover:text-danger transition"
+            className="text-body text-ink-60 hover:text-danger transition"
             data-testid="delete-btn"
           >
             🗑️ Supprimer
@@ -752,7 +752,7 @@ export default function PreviewPage() {
         )}
 
         {submitMessage && (
-          <span className={`text-sm ${isSubmitSuccess ? 'text-success' : 'text-danger'}`} role="status">
+          <span className={`text-body ${isSubmitSuccess ? 'text-success' : 'text-danger'}`} role="status">
             {submitMessage}
           </span>
         )}

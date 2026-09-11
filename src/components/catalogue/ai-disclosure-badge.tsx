@@ -26,8 +26,8 @@ export function AiDisclosureBadge({
         className="mb-5 rounded-xl border border-mer/30 bg-mer-soft px-4 py-3"
         aria-label={copy.badge}
       >
-        <p className="text-sm font-semibold text-ink">{copy.badge}</p>
-        <p className="mt-1 text-sm leading-relaxed text-ink-60">{copy.detail}</p>
+        <p className="text-body font-semibold text-ink">{copy.badge}</p>
+        <p className="mt-1 text-body leading-relaxed text-ink-60">{copy.detail}</p>
       </aside>
     );
   }
@@ -35,7 +35,7 @@ export function AiDisclosureBadge({
   return (
     <span
       data-testid="ai-disclosure-badge"
-      className="inline-flex items-center rounded-full bg-mer-soft px-2 py-0.5 text-xs font-medium text-mer"
+      className="inline-flex items-center rounded-pill bg-mer-soft px-2 py-0.5 text-meta font-medium text-mer"
       title={copy.detail}
     >
       {copy.badge}

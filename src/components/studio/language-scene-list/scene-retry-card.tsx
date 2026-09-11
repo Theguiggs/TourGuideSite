@@ -34,17 +34,17 @@ export function SceneRetryCard({
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h4 className="text-sm font-medium text-ink">{displayTitle}</h4>
+            <h4 className="text-body font-medium text-ink">{displayTitle}</h4>
             <span
               data-testid={`badge-failed-${sceneId}`}
-              className="inline-flex items-center rounded-full bg-grenadine-soft px-2 py-0.5 text-xs font-medium text-danger"
+              className="inline-flex items-center rounded-pill bg-grenadine-soft px-2 py-0.5 text-meta font-medium text-danger"
             >
               Echoue
             </span>
           </div>
-          <p className="mt-1 text-sm text-danger">{readableError}</p>
+          <p className="mt-1 text-body text-danger">{readableError}</p>
           {errorMessage && (
-            <p className="mt-0.5 text-xs text-ink-60">{errorMessage}</p>
+            <p className="mt-0.5 text-meta text-ink-60">{errorMessage}</p>
           )}
         </div>
         <button
@@ -52,7 +52,7 @@ export function SceneRetryCard({
           type="button"
           disabled={isRetrying}
           onClick={() => onRetry(sceneId)}
-          className="ml-4 inline-flex items-center rounded-md bg-danger px-3 py-1.5 text-sm font-medium text-ink hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+          className="ml-4 inline-flex items-center rounded-md bg-danger px-3 py-1.5 text-body font-medium text-ink hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isRetrying ? (
             <>

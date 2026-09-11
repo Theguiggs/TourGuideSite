@@ -44,7 +44,7 @@ export function SceneSidebarItem({
       <span
         aria-hidden="true"
         className={[
-          'w-5.5 h-5.5 rounded-full flex items-center justify-center font-editorial italic font-bold text-meta',
+          'w-5.5 h-5.5 rounded-pill flex items-center justify-center font-editorial italic font-bold text-meta',
           isActive ? 'bg-olive text-paper' : 'bg-paper-deep text-ink-60',
         ].join(' ')}
         style={{ width: 22, height: 22 }}

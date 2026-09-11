@@ -66,7 +66,7 @@ export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSide
   return (
     <nav aria-label="Scenes" className="w-full lg:w-56 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-line bg-paper-soft">
       <div className="p-3">
-        <h3 className="text-xs font-semibold text-ink-40 uppercase tracking-wider mb-2 px-2">
+        <h3 className="text-meta font-semibold text-ink-40 uppercase tracking-wider mb-2 px-2">
           {t('Scènes', 'Scenes')}
         </h3>
         <ol className="space-y-1">
@@ -78,7 +78,7 @@ export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSide
               <li key={scene.id}>
                 <button
                   onClick={() => onSceneSelect(scene.id)}
-                  className={`w-full text-left px-2 py-1.5 rounded text-sm transition ${
+                  className={`w-full text-left px-2 py-1.5 rounded text-body transition ${
                     isActive
                       ? 'bg-grenadine-soft text-grenadine font-medium'
                       : 'text-ink-80 hover:bg-paper-soft'
@@ -87,15 +87,15 @@ export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSide
                   data-testid={`sidebar-scene-${scene.id}`}
                 >
                   <span className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-full bg-paper-deep flex items-center justify-center text-xs font-bold text-ink-60 flex-shrink-0">
+                    <span className="w-5 h-5 rounded-pill bg-paper-deep flex items-center justify-center text-meta font-bold text-ink-60 flex-shrink-0">
                       {scene.sceneIndex + 1}
                     </span>
                     <span className="truncate">{scene.title || `${t('Scène', 'Scene')} ${scene.sceneIndex + 1}`}</span>
                   </span>
-                  <span className={`inline-flex ml-7 mt-0.5 px-1.5 py-0 rounded text-[10px] font-medium ${statusConfig.color}`}>
+                  <span className={`inline-flex ml-7 mt-0.5 px-1.5 py-0 rounded text-eyebrow font-medium ${statusConfig.color}`}>
                     {statusLabel(statusConfig.label)}
                   </span>
-                  <span className={`inline-flex ml-1 mt-0.5 px-1.5 py-0 rounded text-[10px] font-medium ${
+                  <span className={`inline-flex ml-1 mt-0.5 px-1.5 py-0 rounded text-eyebrow font-medium ${
                     hasPoiLocation ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                   }`}>
                     {hasPoiLocation ? 'Lieu OK' : 'Lieu ?'}

@@ -14,7 +14,7 @@ export function StudioToast() {
       aria-live="polite"
       data-testid="studio-toast"
     >
-      <span className="text-sm">{message}</span>
+      <span className="text-body">{message}</span>
       <button
         onClick={() => useTranscriptionStore.getState().clearToast()}
         className="text-grenadine hover:text-white text-lg leading-none"

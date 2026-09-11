@@ -53,23 +53,23 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
           className="flex items-center gap-3 flex-1 min-w-0 text-left"
         >
           {/* Version badge */}
-          <span className="text-xs font-semibold text-ink-60 w-6 shrink-0">V{version}</span>
+          <span className="text-meta font-semibold text-ink-60 w-6 shrink-0">V{version}</span>
 
           {/* Status */}
-          <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium whitespace-nowrap shrink-0 ${statusConfig.color}`}>
+          <span className={`inline-flex px-2 py-0.5 rounded-pill text-eyebrow font-medium whitespace-nowrap shrink-0 ${statusConfig.color}`}>
             {statusConfig.label}
           </span>
 
           {/* Scenes */}
-          <span className="text-xs text-ink-60 shrink-0">{scenesCount} sc.</span>
+          <span className="text-meta text-ink-60 shrink-0">{scenesCount} sc.</span>
 
           {/* Language badges */}
           <span className="flex items-center gap-1 shrink-0">
-            <span className="text-xs">{LANG_FLAGS[session.language] ?? session.language.toUpperCase()}</span>
+            <span className="text-meta">{LANG_FLAGS[session.language] ?? session.language.toUpperCase()}</span>
             {purchases.map((p) => (
               <span key={p.id} className="flex items-center gap-0.5" title={`${p.language.toUpperCase()} — ${p.moderationStatus}`}>
-                <span className="text-xs">{LANG_FLAGS[p.language] ?? p.language.toUpperCase()}</span>
-                <span className={`w-1.5 h-1.5 rounded-full ${MOD_STATUS_DOT[p.moderationStatus] ?? 'bg-paper-deep'}`} />
+                <span className="text-meta">{LANG_FLAGS[p.language] ?? p.language.toUpperCase()}</span>
+                <span className={`w-1.5 h-1.5 rounded-pill ${MOD_STATUS_DOT[p.moderationStatus] ?? 'bg-paper-deep'}`} />
               </span>
             ))}
           </span>
@@ -78,11 +78,11 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
           <span className="flex-1" />
 
           {/* Alerts */}
-          {needsAttention && <span className="text-danger text-xs animate-pulse shrink-0">Action requise</span>}
-          {hasAdminFeedback && !needsAttention && <span className="text-ocre-ink text-xs shrink-0">Retour admin</span>}
+          {needsAttention && <span className="text-danger text-meta animate-pulse shrink-0">Action requise</span>}
+          {hasAdminFeedback && !needsAttention && <span className="text-ocre-ink text-meta shrink-0">Retour admin</span>}
 
           {/* Date */}
-          <span className="text-xs text-ink-40 shrink-0">{formatDateShort(session.createdAt)}</span>
+          <span className="text-meta text-ink-40 shrink-0">{formatDateShort(session.createdAt)}</span>
 
           {/* Arrow */}
           <span className="text-ink-20 group-hover:text-grenadine transition shrink-0">&rsaquo;</span>
@@ -108,7 +108,7 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
   // Standalone card (used when session is not grouped by tour)
   return (
     <div
-      className={`relative bg-white rounded-lg border hover:shadow-sm transition-all group ${
+      className={`relative bg-card rounded-lg border hover:shadow-sm transition-all group ${
         needsAttention ? 'border-grenadine-soft bg-grenadine-soft' : hasAdminFeedback ? 'border-ocre-soft' : 'border-line hover:border-grenadine-soft'
       }`}
       data-testid={`session-card-${session.id}`}
@@ -121,7 +121,7 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
         <div className="flex items-center gap-3">
           {/* Version badge */}
           {version > 1 && (
-            <span className="inline-flex px-1.5 py-0.5 rounded text-[11px] font-semibold bg-ocre-soft text-ocre-ink shrink-0">
+            <span className="inline-flex px-1.5 py-0.5 rounded text-eyebrow font-semibold bg-ocre-soft text-ocre-ink shrink-0">
               V{version}
             </span>
           )}
@@ -139,24 +139,24 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
           <span className="flex-1" />
 
           {/* Inline stats */}
-          <span className="hidden sm:flex items-center gap-3 text-xs text-ink-60 shrink-0">
+          <span className="hidden sm:flex items-center gap-3 text-meta text-ink-60 shrink-0">
             <span>{scenesCount} sc.</span>
             <span>{LANG_FLAGS[session.language] ?? session.language.toUpperCase()}</span>
             {purchases.map((p) => (
               <span key={p.id} className="flex items-center gap-0.5" title={`${p.language.toUpperCase()} — ${p.moderationStatus}`}>
                 <span>{LANG_FLAGS[p.language] ?? p.language.toUpperCase()}</span>
-                <span className={`w-1.5 h-1.5 rounded-full ${MOD_STATUS_DOT[p.moderationStatus] ?? 'bg-paper-deep'}`} />
+                <span className={`w-1.5 h-1.5 rounded-pill ${MOD_STATUS_DOT[p.moderationStatus] ?? 'bg-paper-deep'}`} />
               </span>
             ))}
           </span>
 
           {/* Status badge */}
-          <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium whitespace-nowrap shrink-0 ${statusConfig.color}`}>
+          <span className={`inline-flex px-2 py-0.5 rounded-pill text-eyebrow font-medium whitespace-nowrap shrink-0 ${statusConfig.color}`}>
             {statusConfig.label}
           </span>
 
           {/* Date */}
-          <span className="text-xs text-ink-40 shrink-0">{formatDateShort(session.createdAt)}</span>
+          <span className="text-meta text-ink-40 shrink-0">{formatDateShort(session.createdAt)}</span>
 
           {/* Arrow */}
           <span className="text-ink-20 group-hover:text-grenadine transition shrink-0">&rsaquo;</span>

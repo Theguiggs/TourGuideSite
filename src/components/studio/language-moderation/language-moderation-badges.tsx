@@ -32,7 +32,7 @@ interface LanguageModerationBadgesProps {
 export function LanguageModerationBadges({ purchases, onLanguageClick }: LanguageModerationBadgesProps) {
   if (purchases.length === 0) {
     return (
-      <span className="text-xs text-ink-40" data-testid="no-languages">
+      <span className="text-meta text-ink-40" data-testid="no-languages">
         Aucune langue
       </span>
     );
@@ -50,7 +50,7 @@ export function LanguageModerationBadges({ purchases, onLanguageClick }: Languag
           <button
             key={purchase.id}
             onClick={() => onLanguageClick?.(purchase.language)}
-            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium transition-opacity hover:opacity-80 ${config.className}`}
+            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-pill text-meta font-medium transition-opacity hover:opacity-80 ${config.className}`}
             data-testid={`lang-badge-${purchase.language}`}
             title={`${langLabel} — ${config.label}`}
           >

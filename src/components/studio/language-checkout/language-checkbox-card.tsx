@@ -109,11 +109,11 @@ export function LanguageCheckboxCard({
   } else if (isPurchased) {
     cardClasses += ' bg-paper-soft border-line opacity-60 cursor-default';
   } else if (isPremiumDisabled) {
-    cardClasses += ' bg-white border-line opacity-50 cursor-not-allowed';
+    cardClasses += ' bg-card border-line opacity-50 cursor-not-allowed';
   } else if (checked) {
-    cardClasses += ' bg-white border-grenadine ring-1 ring-grenadine';
+    cardClasses += ' bg-card border-grenadine ring-1 ring-grenadine';
   } else {
-    cardClasses += ' bg-white border-line hover:border-grenadine';
+    cardClasses += ' bg-card border-line hover:border-grenadine';
   }
 
   if (!isDisabled) {
@@ -137,7 +137,7 @@ export function LanguageCheckboxCard({
         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded border ${
           (checked || isBaseLanguage || isPurchased) && !isPremiumDisabled
             ? 'bg-grenadine border-grenadine text-white'
-            : 'border-line bg-white'
+            : 'border-line bg-card'
         }`}
         aria-hidden="true"
       >
@@ -162,14 +162,14 @@ export function LanguageCheckboxCard({
 
       {/* Label + price */}
       <div className="flex flex-1 flex-col min-w-0">
-        <span className="text-sm font-semibold text-ink truncate">{langLabel}</span>
+        <span className="text-body font-semibold text-ink truncate">{langLabel}</span>
         {isBaseLanguage && (
-          <span className="text-xs text-grenadine" data-testid={`base-badge-${langCode}`}>
+          <span className="text-meta text-grenadine" data-testid={`base-badge-${langCode}`}>
             Langue de base
           </span>
         )}
         {isPurchased && (
-          <span className="text-xs text-success flex items-center gap-1" data-testid={`purchased-badge-${langCode}`}>
+          <span className="text-meta text-success flex items-center gap-1" data-testid={`purchased-badge-${langCode}`}>
             <svg className="h-3 w-3" viewBox="0 0 12 12" fill="none" aria-hidden="true">
               <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -181,7 +181,7 @@ export function LanguageCheckboxCard({
           </span>
         )}
         {isPremiumDisabled && (
-          <span className="text-xs text-ink-40" data-testid={`premium-disabled-${langCode}`}>
+          <span className="text-meta text-ink-40" data-testid={`premium-disabled-${langCode}`}>
             Disponible en Pro uniquement
           </span>
         )}
@@ -190,7 +190,7 @@ export function LanguageCheckboxCard({
       {/* Price */}
       {priceCents !== null && !isBaseLanguage && !isPurchased && (
         <span
-          className={`text-sm font-medium shrink-0 ${
+          className={`text-body font-medium shrink-0 ${
             isPremiumDisabled ? 'text-ink-40' : 'text-ink-80'
           }`}
         >

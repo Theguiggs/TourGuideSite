@@ -71,8 +71,8 @@ export function AdvancedEditor({ audioKey, audioUrl, onSegmentsChange }: Advance
   return (
     <div className="space-y-4" data-testid="advanced-editor">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-ink">Mode avancé</h3>
-        <span className="text-xs text-ink-40">{detectedSegments.length} segments détectés</span>
+        <h3 className="text-body font-semibold text-ink">Mode avancé</h3>
+        <span className="text-meta text-ink-40">{detectedSegments.length} segments détectés</span>
       </div>
 
       {/* Waveform */}
@@ -80,44 +80,44 @@ export function AdvancedEditor({ audioKey, audioUrl, onSegmentsChange }: Advance
         <div className="bg-ink rounded-lg p-2">
           <div ref={waveformRef} data-testid="waveform-container" />
           {!waveformReady && (
-            <div className="h-32 flex items-center justify-center text-ink-40 text-sm">
+            <div className="h-32 flex items-center justify-center text-ink-40 text-body">
               Chargement du waveform...
             </div>
           )}
         </div>
       ) : (
-        <div className="bg-paper-soft rounded-lg h-32 flex items-center justify-center text-ink-40 text-sm">
+        <div className="bg-paper-soft rounded-lg h-32 flex items-center justify-center text-ink-40 text-body">
           Aucun audio disponible
         </div>
       )}
 
       {/* Segment markers */}
       {isDetecting && (
-        <div className="p-3 bg-mer-soft rounded-lg animate-pulse text-sm text-mer">
+        <div className="p-3 bg-mer-soft rounded-lg animate-pulse text-body text-mer">
           Détection des silences en cours...
         </div>
       )}
 
       {detectedSegments.length > 0 && (
         <div className="space-y-1">
-          <h4 className="text-xs font-medium text-ink-60 uppercase">Segments</h4>
+          <h4 className="text-meta font-medium text-ink-60 uppercase">Segments</h4>
           {detectedSegments.map((seg, i) => (
             <div
               key={i}
-              className="flex items-center gap-3 p-2 bg-paper-soft rounded text-sm"
+              className="flex items-center gap-3 p-2 bg-paper-soft rounded text-body"
               data-testid={`segment-marker-${i}`}
             >
-              <span className="w-6 h-6 rounded-full bg-grenadine-soft text-grenadine flex items-center justify-center text-xs font-bold">
+              <span className="w-6 h-6 rounded-pill bg-grenadine-soft text-grenadine flex items-center justify-center text-meta font-bold">
                 {i + 1}
               </span>
               <span className="text-ink-80">
                 {formatTime(seg.startMs)} — {formatTime(seg.endMs)}
               </span>
-              <span className="text-ink-40 text-xs">
+              <span className="text-ink-40 text-meta">
                 ({Math.round((seg.endMs - seg.startMs) / 1000)}s)
               </span>
               {seg.suggestedTitle && (
-                <span className="text-xs text-ink-60 ml-auto">{seg.suggestedTitle}</span>
+                <span className="text-meta text-ink-60 ml-auto">{seg.suggestedTitle}</span>
               )}
             </div>
           ))}

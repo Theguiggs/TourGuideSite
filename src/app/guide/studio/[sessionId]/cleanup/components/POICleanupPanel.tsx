@@ -65,7 +65,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
   return (
     <div className="space-y-4" data-testid="poi-cleanup-panel">
       <div>
-        <label className="block text-xs font-medium text-ink-60 mb-1" htmlFor={`poi-name-${scene.id}`}>
+        <label className="block text-meta font-medium text-ink-60 mb-1" htmlFor={`poi-name-${scene.id}`}>
           Nom du POI
         </label>
         <input
@@ -75,12 +75,12 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
           onChange={handleName}
           data-testid="poi-name-input"
           placeholder="Nom du point d'intérêt"
-          className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:border-grenadine focus:ring-1 focus:ring-grenadine"
+          className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
         />
       </div>
 
       <div>
-        <label className="block text-xs font-medium text-ink-60 mb-1" htmlFor={`poi-desc-${scene.id}`}>
+        <label className="block text-meta font-medium text-ink-60 mb-1" htmlFor={`poi-desc-${scene.id}`}>
           Description
         </label>
         <textarea
@@ -90,17 +90,17 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
           data-testid="poi-description-input"
           rows={3}
           placeholder="Description courte du POI (optionnel)"
-          className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:border-grenadine focus:ring-1 focus:ring-grenadine"
+          className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
         />
       </div>
 
       <div>
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-medium text-ink-60">Photos ({photos.length})</span>
-          <span className="text-[11px] text-ink-40">Hero = photo de couverture</span>
+          <span className="text-meta font-medium text-ink-60">Photos ({photos.length})</span>
+          <span className="text-eyebrow text-ink-40">Hero = photo de couverture</span>
         </div>
         {photos.length === 0 ? (
-          <div className="bg-paper-soft rounded-lg p-4 text-center text-sm text-ink-40" data-testid="poi-photos-empty">
+          <div className="bg-paper-soft rounded-lg p-4 text-center text-body text-ink-40" data-testid="poi-photos-empty">
             Aucune photo
           </div>
         ) : (
@@ -128,7 +128,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
                     )}
                   </button>
                   <label
-                    className="absolute top-1 left-1 bg-white/90 rounded-full px-1.5 py-0.5 text-[11px] font-medium cursor-pointer flex items-center gap-1"
+                    className="absolute top-1 left-1 bg-card/90 rounded-pill px-1.5 py-0.5 text-eyebrow font-medium cursor-pointer flex items-center gap-1"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <input
@@ -146,7 +146,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
                     onClick={(e) => { e.stopPropagation(); handleDeletePhoto(ref); }}
                     aria-label="Supprimer la photo"
                     data-testid="poi-photo-delete"
-                    className="absolute top-1 right-1 bg-white/90 hover:bg-grenadine-soft rounded-full w-6 h-6 text-xs text-danger"
+                    className="absolute top-1 right-1 bg-card/90 hover:bg-grenadine-soft rounded-pill w-6 h-6 text-meta text-danger"
                   >
                     x
                   </button>
@@ -158,7 +158,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
       </div>
 
       <div>
-        <label className="block text-xs font-medium text-ink-60 mb-1">
+        <label className="block text-meta font-medium text-ink-60 mb-1">
           Audio terrain
         </label>
         <AudioTrimmer
@@ -170,7 +170,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
       </div>
 
       <div>
-        <label className="block text-xs font-medium text-ink-60 mb-1" htmlFor={`poi-notes-${scene.id}`}>
+        <label className="block text-meta font-medium text-ink-60 mb-1" htmlFor={`poi-notes-${scene.id}`}>
           Notes
         </label>
         <textarea
@@ -180,7 +180,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
           data-testid="poi-notes-input"
           rows={2}
           placeholder="Notes personnelles"
-          className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:border-grenadine focus:ring-1 focus:ring-grenadine"
+          className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
         />
       </div>
 

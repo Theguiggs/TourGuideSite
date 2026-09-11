@@ -122,7 +122,7 @@ function baseClass(isSelected: boolean): string {
   return `w-full text-left rounded-lg px-2 py-2 border transition cursor-pointer ${
     isSelected
       ? 'bg-grenadine-soft border-grenadine-soft text-grenadine'
-      : 'bg-white border-line hover:border-grenadine-soft'
+      : 'bg-card border-line hover:border-grenadine-soft'
   }`;
 }
 
@@ -171,12 +171,12 @@ function SortableSceneItem({ item, selected, onSelect }: SortableSceneItemProps)
             data-testid={`poi-select-${item.id}`}
           >
             <div className="flex items-start gap-2">
-              <span aria-hidden className="text-sm mt-0.5">📍</span>
+              <span aria-hidden className="text-body mt-0.5">📍</span>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate">
+                <p className="text-body font-medium truncate">
                   {scene.title || `Scène ${scene.sceneIndex + 1}`}
                 </p>
-                <p className="text-[11px] text-ink-60">
+                <p className="text-eyebrow text-ink-60">
                   {scene.photosRefs.length} photos ·{' '}
                   {scene.studioAudioKey || scene.originalAudioKey ? '1 audio' : '0 audio'}
                 </p>
@@ -205,10 +205,10 @@ function WalkItem({ item, selected, onSelect }: WalkItemProps) {
         data-testid={`timeline-walk-${item.id}`}
       >
         <div className="flex items-start gap-2">
-          <span aria-hidden className="text-sm mt-0.5">🚶</span>
+          <span aria-hidden className="text-body mt-0.5">🚶</span>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium truncate">Marche #{item.walk.order}</p>
-            <p className="text-[11px] text-ink-60">
+            <p className="text-body font-medium truncate">Marche #{item.walk.order}</p>
+            <p className="text-eyebrow text-ink-60">
               {Math.round((item.walk.durationMs ?? 0) / 1000)}s ·{' '}
               {Math.round(item.walk.distanceM ?? 0)}m
             </p>

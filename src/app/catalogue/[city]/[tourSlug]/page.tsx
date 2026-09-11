@@ -172,7 +172,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
             </div>
             <SmartAppLink
               tourId={tour.id}
-              className="font-bold px-6 py-2 rounded-full"
+              className="font-bold px-6 py-2 rounded-pill"
               style={{
                 background: tg.colors.grenadine,
                 color: tg.colors.paper,
@@ -338,7 +338,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 <S3Image
                   s3Key={tour.guidePhotoUrl}
                   alt={locale === 'en' ? `Photo of ${tour.guideName}` : `Photo de ${tour.guideName}`}
-                  className="w-16 h-16 rounded-full shrink-0"
+                  className="w-16 h-16 rounded-pill shrink-0"
                   fallback={tour.guideName.charAt(0)}
                 />
               ) : (

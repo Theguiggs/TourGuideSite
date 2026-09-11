@@ -225,10 +225,10 @@ export function PaymentSummary({
         : `Payer ${formatPrice(order.totalCents)} et lancer la traduction`;
 
   return (
-    <div data-testid="payment-summary" className="rounded-lg border border-line bg-white p-4 space-y-4">
+    <div data-testid="payment-summary" className="rounded-lg border border-line bg-card p-4 space-y-4">
       {/* Subtitle */}
       {hasLanguages && (
-        <p className="text-sm text-ink-80" data-testid="payment-subtitle">
+        <p className="text-body text-ink-80" data-testid="payment-subtitle">
           Vos {sceneCount} sc&egrave;nes seront traduites et l&apos;audio g&eacute;n&eacute;r&eacute;
           automatiquement (~2 min par langue)
         </p>
@@ -240,7 +240,7 @@ export function PaymentSummary({
           {order.lines.map((line) => (
             <li
               key={line.language}
-              className="flex items-center justify-between text-sm"
+              className="flex items-center justify-between text-body"
               data-testid={`payment-line-${line.language}`}
             >
               <span className="text-ink-80">{line.label}</span>
@@ -270,7 +270,7 @@ export function PaymentSummary({
         aria-live="polite"
         data-testid="payment-total"
       >
-        <span className="text-sm font-semibold text-ink">Total</span>
+        <span className="text-body font-semibold text-ink">Total</span>
         <span className="text-lg font-bold text-ink">
           {hasLanguages ? formatPrice(order.totalCents) : '\u2014'}
         </span>
@@ -283,7 +283,7 @@ export function PaymentSummary({
         disabled={!hasLanguages || isLoading}
         aria-disabled={!hasLanguages || isLoading || undefined}
         aria-label={buttonAriaLabel}
-        className={`w-full rounded-lg px-4 py-3 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-grenadine focus-visible:ring-offset-2 ${
+        className={`w-full rounded-lg px-4 py-3 text-body font-semibold transition focus-visible:ring-2 focus-visible:ring-grenadine focus-visible:ring-offset-2 ${
           !hasLanguages || isLoading
             ? 'bg-paper-deep text-ink-40 cursor-not-allowed'
             : 'bg-grenadine text-white hover:opacity-90 active:bg-grenadine'

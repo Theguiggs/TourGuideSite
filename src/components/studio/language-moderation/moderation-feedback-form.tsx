@@ -49,15 +49,15 @@ export function ModerationFeedbackForm({
   }, [feedbackByScene, action, onSubmit, hasAnyFeedback, language]);
 
   return (
-    <div className="bg-white border border-line rounded-xl p-4 space-y-4" data-testid="moderation-feedback-form">
+    <div className="bg-card border border-line rounded-xl p-4 space-y-4" data-testid="moderation-feedback-form">
       <div className="flex items-center justify-between">
-        <h4 className="text-sm font-semibold text-ink">
+        <h4 className="text-body font-semibold text-ink">
           Feedback pour la version {langLabel}
         </h4>
         <select
           value={action}
           onChange={(e) => setAction(e.target.value as 'rejected' | 'revision_requested')}
-          className="text-xs border border-line rounded px-2 py-1"
+          className="text-meta border border-line rounded px-2 py-1"
           data-testid="moderation-action-select"
         >
           <option value="revision_requested">Revision demandee</option>
@@ -68,7 +68,7 @@ export function ModerationFeedbackForm({
       <div className="space-y-3">
         {scenes.map((scene) => (
           <div key={scene.id} className="space-y-1">
-            <label className="text-xs font-medium text-ink-80" htmlFor={`feedback-${scene.id}`}>
+            <label className="text-meta font-medium text-ink-80" htmlFor={`feedback-${scene.id}`}>
               Scene {scene.index + 1}: {scene.title ?? `Scene ${scene.index + 1}`}
             </label>
             <textarea
@@ -78,7 +78,7 @@ export function ModerationFeedbackForm({
                 setFeedbackByScene((prev) => ({ ...prev, [scene.id]: e.target.value }))
               }
               placeholder={`Feedback pour cette scene en ${langLabel}...`}
-              className="w-full text-xs border border-line rounded p-2 resize-none h-16"
+              className="w-full text-meta border border-line rounded p-2 resize-none h-16"
               data-testid={`scene-feedback-${scene.id}`}
             />
           </div>
@@ -88,7 +88,7 @@ export function ModerationFeedbackForm({
       <div className="flex gap-2 justify-end">
         <button
           onClick={onCancel}
-          className="text-xs text-ink-80 hover:text-ink px-3 py-1.5 rounded border border-line"
+          className="text-meta text-ink-80 hover:text-ink px-3 py-1.5 rounded border border-line"
           data-testid="cancel-feedback-btn"
         >
           Annuler
@@ -96,7 +96,7 @@ export function ModerationFeedbackForm({
         <button
           onClick={handleSubmit}
           disabled={isProcessing || !hasAnyFeedback}
-          className="text-xs bg-danger hover:opacity-90 disabled:bg-ink-40 text-white font-medium px-3 py-1.5 rounded transition"
+          className="text-meta bg-danger hover:opacity-90 disabled:bg-ink-40 text-white font-medium px-3 py-1.5 rounded transition"
           data-testid="submit-feedback-btn"
         >
           {action === 'rejected' ? 'Rejeter' : 'Demander revision'}

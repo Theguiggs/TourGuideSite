@@ -56,27 +56,27 @@ export function AudioPlayerBar({ label, compact = false }: AudioPlayerBarProps) 
   if (compact) {
     return (
       <div className="flex items-center gap-2 p-2 bg-ink rounded-lg" data-testid="audio-player-bar">
-        <button onClick={handlePlayPause} className="w-7 h-7 rounded-full bg-white text-ink flex items-center justify-center text-xs font-bold hover:bg-paper-soft transition">
+        <button onClick={handlePlayPause} className="w-7 h-7 rounded-pill bg-card text-ink flex items-center justify-center text-meta font-bold hover:bg-paper-soft transition">
           {state.isPlaying ? '||' : '\u25B6'}
         </button>
         <div className="flex-1 flex items-center gap-2">
-          <span className="text-[10px] text-ink-40 w-8 text-right">{formatTime(state.currentTime)}</span>
+          <span className="text-eyebrow text-ink-40 w-8 text-right">{formatTime(state.currentTime)}</span>
           <input type="range" min={0} max={state.duration || 1} step={0.1} value={state.currentTime}
             onChange={handleSeek} className="flex-1 h-1 accent-grenadine" />
-          <span className="text-[10px] text-ink-40 w-8">{formatTime(state.duration)}</span>
+          <span className="text-eyebrow text-ink-40 w-8">{formatTime(state.duration)}</span>
         </div>
-        <button onClick={handleStop} className="text-ink-40 hover:text-white text-xs px-1">X</button>
+        <button onClick={handleStop} className="text-ink-40 hover:text-white text-meta px-1">X</button>
       </div>
     );
   }
 
   return (
     <div className="bg-ink rounded-lg p-3 space-y-2" data-testid="audio-player-bar">
-      {label && <p className="text-xs text-ink-40 font-medium truncate">{label}</p>}
+      {label && <p className="text-meta text-ink-40 font-medium truncate">{label}</p>}
 
       {/* Progress bar */}
       <div className="flex items-center gap-2">
-        <span className="text-xs text-ink-40 w-10 text-right font-mono">{formatTime(state.currentTime)}</span>
+        <span className="text-meta text-ink-40 w-10 text-right font-mono">{formatTime(state.currentTime)}</span>
         <div className="flex-1 relative">
           <input
             type="range"
@@ -89,25 +89,25 @@ export function AudioPlayerBar({ label, compact = false }: AudioPlayerBarProps) 
             aria-label="Position audio"
           />
         </div>
-        <span className="text-xs text-ink-40 w-10 font-mono">{formatTime(state.duration)}</span>
+        <span className="text-meta text-ink-40 w-10 font-mono">{formatTime(state.duration)}</span>
       </div>
 
       {/* Controls */}
       <div className="flex items-center justify-center gap-3">
         <button onClick={handleStop} title="Arrêter"
-          className="w-8 h-8 rounded-full bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-sm transition">
+          className="w-8 h-8 rounded-pill bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-body transition">
           {'\u25A0'}
         </button>
         <button onClick={handleSkipBack} title="Reculer 10s"
-          className="w-8 h-8 rounded-full bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-[10px] font-bold transition">
+          className="w-8 h-8 rounded-pill bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-eyebrow font-bold transition">
           -10
         </button>
         <button onClick={handlePlayPause} title={state.isPlaying ? 'Pause' : 'Lecture'}
-          className="w-10 h-10 rounded-full bg-grenadine hover:opacity-90 text-white flex items-center justify-center text-lg transition">
+          className="w-10 h-10 rounded-pill bg-grenadine hover:opacity-90 text-white flex items-center justify-center text-lg transition">
           {state.isPlaying ? '||' : '\u25B6'}
         </button>
         <button onClick={handleSkipForward} title="Avancer 10s"
-          className="w-8 h-8 rounded-full bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-[10px] font-bold transition">
+          className="w-8 h-8 rounded-pill bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-eyebrow font-bold transition">
           +10
         </button>
       </div>

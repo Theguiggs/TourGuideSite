@@ -215,7 +215,7 @@ export function LanguagePreviewPlayer({
       {/* Alert for missing audio */}
       {alertMessage && (
         <div
-          className="bg-ocre-soft border border-ocre-soft rounded-lg px-4 py-2 text-sm text-ocre-ink"
+          className="bg-ocre-soft border border-ocre-soft rounded-lg px-4 py-2 text-body text-ocre-ink"
           role="alert"
           data-testid="preview-alert"
         >
@@ -227,7 +227,7 @@ export function LanguagePreviewPlayer({
       <div className="flex items-center gap-3">
         <button
           onClick={handleTeaser}
-          className={`py-2 px-4 rounded-lg text-sm font-medium transition ${
+          className={`py-2 px-4 rounded-lg text-body font-medium transition ${
             mode === 'teaser'
               ? 'bg-ocre hover:brightness-110 text-ink'
               : 'bg-grenadine hover:opacity-90 text-white'
@@ -239,7 +239,7 @@ export function LanguagePreviewPlayer({
 
         <button
           onClick={handleFullPreview}
-          className={`py-2 px-4 rounded-lg text-sm font-medium transition ${
+          className={`py-2 px-4 rounded-lg text-body font-medium transition ${
             mode === 'full'
               ? 'bg-ocre hover:brightness-110 text-ink'
               : 'bg-mer hover:opacity-90 text-white'
@@ -250,7 +250,7 @@ export function LanguagePreviewPlayer({
         </button>
 
         {currentSceneIndex !== null && (
-          <span className="text-xs text-ink-60" data-testid="current-scene-info">
+          <span className="text-meta text-ink-60" data-testid="current-scene-info">
             Scene {currentSceneIndex + 1}/{scenes.length}
             {scenes[currentSceneIndex]?.title
               ? ` — ${scenes[currentSceneIndex].title}`

@@ -790,12 +790,12 @@ export default function GeneralPage() {
           ))}
         </div>
         {modeError && (
-          <div className="mt-3 rounded-md border border-grenadine bg-grenadine-soft p-3 text-sm text-danger" role="alert">
+          <div className="mt-3 rounded-md border border-grenadine bg-grenadine-soft p-3 text-body text-danger" role="alert">
             <p>{modeError}</p>
           </div>
         )}
         {isSavingMode && (
-          <p className="mt-2 text-sm text-ink-60" role="status" data-testid="narration-mode-saving">
+          <p className="mt-2 text-body text-ink-60" role="status" data-testid="narration-mode-saving">
             {t('Sauvegarde du choix…', 'Saving choice…')}
           </p>
         )}

@@ -107,14 +107,14 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
           role="group"
           aria-label={locale === 'en' ? 'Filter by audio language' : 'Filtrer par langue'}
         >
-          <span className="text-sm text-ink-60" aria-hidden="true">
+          <span className="text-body text-ink-60" aria-hidden="true">
             {locale === 'en' ? 'Filter by audio language:' : 'Filtrer par langue :'}
           </span>
           <button
             type="button"
             onClick={() => setFilterLang('')}
             aria-pressed={!filterLang}
-            className={`min-h-11 px-4 rounded-full text-sm font-medium transition-colors ${
+            className={`min-h-11 px-4 rounded-pill text-body font-medium transition-colors ${
               !filterLang ? 'bg-grenadine text-white' : 'bg-paper-deep text-ink-60 hover:bg-paper-deep'
             }`}
           >
@@ -128,7 +128,7 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
                 type="button"
                 onClick={() => setFilterLang(filterLang === lang ? '' : lang)}
                 aria-pressed={filterLang === lang}
-                className={`min-h-11 px-4 rounded-full text-sm font-medium transition-colors ${
+                className={`min-h-11 px-4 rounded-pill text-body font-medium transition-colors ${
                   filterLang === lang ? 'bg-grenadine text-white' : 'bg-paper-deep text-ink-60 hover:bg-paper-deep'
                 }`}
               >
@@ -191,12 +191,12 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
                                 <span
                                   key={lang}
                                   data-testid={`lang-chip-${tour.id}-${lang}`}
-                                  className="inline-flex items-center gap-0.5 bg-paper-deep text-ink-80 text-xs px-1.5 py-0.5 rounded-full"
+                                  className="inline-flex items-center gap-0.5 bg-paper-deep text-ink-80 text-meta px-1.5 py-0.5 rounded-pill"
                                   title={`${langName} — ${mention}`}
                                 >
                                   <span aria-hidden="true">{LANG_FLAGS[lang] ?? NEUTRAL_LANG_GLYPH}</span>
-                                  <span className="text-[10px] font-medium">{lang.toUpperCase()}</span>
-                                  <span aria-hidden="true" className="text-[10px]">
+                                  <span className="text-eyebrow font-medium">{lang.toUpperCase()}</span>
+                                  <span aria-hidden="true" className="text-eyebrow">
                                     {isSyntheticAudioSource(audioType) ? '🤖' : '🎤'}
                                   </span>
                                   {/* Un `title` sur un <span> n'est pas lu de façon
@@ -207,7 +207,7 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
                               );
                             })}
                             {langsOf(tour).length > 5 && (
-                              <span className="text-xs text-ink-60">+{langsOf(tour).length - 5}</span>
+                              <span className="text-meta text-ink-60">+{langsOf(tour).length - 5}</span>
                             )}
                           </div>
                         )}
@@ -216,14 +216,14 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
                         ) && (
                           <span
                             data-testid={`tts-badge-${tour.id}`}
-                            className="inline-flex items-center gap-1 bg-mer-soft text-mer text-xs font-medium px-2 py-0.5 rounded-full"
+                            className="inline-flex items-center gap-1 bg-mer-soft text-mer text-meta font-medium px-2 py-0.5 rounded-pill"
                             title={BADGE_TOOLTIP[locale]}
                           >
                             <span aria-hidden="true">🤖</span> {audioSourceLabel('tts', locale)}
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-ink-60 mb-2">
+                      <p className="text-body text-ink-60 mb-2">
                         {locale === 'en' ? 'By' : 'Par'} {tour.guideName} &middot; {tour.duration} min &middot; {tour.distance} km
                         &middot; {tour.poiCount} {locale === 'en' ? 'stops' : 'points'}
                       </p>

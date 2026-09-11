@@ -206,10 +206,10 @@ export default function PublicationPage() {
       )}
 
       {/* === STATUS BAR (compact) === */}
-      <div className="bg-white rounded-lg border border-line p-3 mb-3 flex items-center gap-3 flex-wrap">
-        <span className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium ${statusConfig.color}`}>{translatedStatusLabel}</span>
-        <span className="text-xs text-ink-40">V{version}</span>
-        <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${
+      <div className="bg-card rounded-lg border border-line p-3 mb-3 flex items-center gap-3 flex-wrap">
+        <span className={`inline-flex px-2.5 py-0.5 rounded-pill text-meta font-medium ${statusConfig.color}`}>{translatedStatusLabel}</span>
+        <span className="text-meta text-ink-40">V{version}</span>
+        <span className={`inline-flex px-2 py-0.5 rounded-pill text-meta font-medium ${
           session.narrationMode === 'recording'
             ? 'bg-mer-soft text-mer'
             : session.narrationMode === 'tts_on_demand'
@@ -222,25 +222,25 @@ export default function PublicationPage() {
               ? 'TTS à la demande'
               : 'Mode à choisir'}
         </span>
-        <span className="text-xs text-ink-80 flex-1 min-w-0">{statusMessages[session.status] ?? ''}</span>
+        <span className="text-meta text-ink-80 flex-1 min-w-0">{statusMessages[session.status] ?? ''}</span>
       </div>
 
       {/* Inline alerts (only when relevant) */}
       {publishedSibling && !isPublished && (
-        <div className="mb-3 p-2 bg-olive-soft border border-olive-soft rounded-lg text-xs text-success">
+        <div className="mb-3 p-2 bg-olive-soft border border-olive-soft rounded-lg text-meta text-success">
           V{publishedSibling.version ?? 1} est actuellement publiee.
           {(session.status === 'draft' || session.status === 'editing') && ' Quand cette version sera approuvee, elle remplacera V' + (publishedSibling.version ?? 1) + '.'}
         </div>
       )}
       {!hasAnyPublished && !['draft', 'editing', 'recording', 'ready', 'submitted'].includes(session.status) && (
-        <div className="mb-3 p-2 bg-ocre-soft border border-ocre-soft rounded-lg text-xs text-ocre-ink">
+        <div className="mb-3 p-2 bg-ocre-soft border border-ocre-soft rounded-lg text-meta text-ocre-ink">
           Aucune version de ce parcours n&apos;est visible par les touristes.
         </div>
       )}
 
       {/* === ACTIONS CARD === */}
-      <div className="bg-white rounded-lg border border-line p-3 mb-3">
-        <h2 className="text-sm font-semibold text-ink mb-2">{t('Actions', 'Actions')}</h2>
+      <div className="bg-card rounded-lg border border-line p-3 mb-3">
+        <h2 className="text-body font-semibold text-ink mb-2">{t('Actions', 'Actions')}</h2>
 
         <div className="grid gap-1.5">
 
@@ -256,8 +256,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x1F4E4;</span>
               <div>
-                <p className="text-sm font-medium text-mer">{hasRevisionFeedback ? t('Republier', 'Republish') : t('Publier', 'Publish')}</p>
-                <p className="text-xs text-mer">{t('Envoyer à la modération pour publication', 'Send for review and publication')}</p>
+                <p className="text-body font-medium text-mer">{hasRevisionFeedback ? t('Republier', 'Republish') : t('Publier', 'Publish')}</p>
+                <p className="text-meta text-mer">{t('Envoyer à la modération pour publication', 'Send for review and publication')}</p>
               </div>
             </button>
           )}
@@ -271,8 +271,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x21A9;</span>
               <div>
-                <p className="text-sm font-medium text-ocre-ink">Retirer la publication</p>
-                <p className="text-xs text-ocre-ink">Revenir en brouillon pour modifier</p>
+                <p className="text-body font-medium text-ocre-ink">Retirer la publication</p>
+                <p className="text-meta text-ocre-ink">Revenir en brouillon pour modifier</p>
               </div>
             </button>
           )}
@@ -286,8 +286,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-ocre-ink">Mettre en pause</p>
-                <p className="text-xs text-ocre-ink">Masquer temporairement du catalogue. Reprise sans nouvelle modération.</p>
+                <p className="text-body font-medium text-ocre-ink">Mettre en pause</p>
+                <p className="text-meta text-ocre-ink">Masquer temporairement du catalogue. Reprise sans nouvelle modération.</p>
               </div>
             </button>
           )}
@@ -301,8 +301,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x25B6;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-success">Republier le parcours</p>
-                <p className="text-xs text-success">Remettre la visite visible dans le catalogue, sans nouvelle modération</p>
+                <p className="text-body font-medium text-success">Republier le parcours</p>
+                <p className="text-meta text-success">Remettre la visite visible dans le catalogue, sans nouvelle modération</p>
               </div>
             </button>
           )}
@@ -327,10 +327,10 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x270F;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-grenadine">
+                <p className="text-body font-medium text-grenadine">
                   {t('Mettre à jour la visite', 'Update the tour')} ({t('nouvelle version', 'new version')} V{version + 1})
                 </p>
-                <p className="text-xs text-grenadine">
+                <p className="text-meta text-grenadine">
                   Crée un brouillon V{version + 1} à partir du contenu source actuel. Éditez puis re-soumettez. {isPublished ? 'V' + version + ' reste publiée pendant le travail.' : 'Rien n\'est visible tant que V' + (version + 1) + ' n\'est pas publiée.'}
                 </p>
               </div>
@@ -351,8 +351,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x1F4E6;</span>
               <div>
-                <p className="text-sm font-medium text-ink-80">Archiver</p>
-                <p className="text-xs text-ink-60">Retirer du catalogue — réversible</p>
+                <p className="text-body font-medium text-ink-80">Archiver</p>
+                <p className="text-meta text-ink-60">Retirer du catalogue — réversible</p>
               </div>
             </button>
           )}
@@ -410,8 +410,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x1F5D1;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-danger">{t('Supprimer ce brouillon', 'Delete this draft')}</p>
-                <p className="text-xs text-danger">Supprime définitivement cette session et tout son contenu</p>
+                <p className="text-body font-medium text-danger">{t('Supprimer ce brouillon', 'Delete this draft')}</p>
+                <p className="text-meta text-danger">Supprime définitivement cette session et tout son contenu</p>
               </div>
             </button>
           )}
@@ -425,8 +425,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x1F4DD;</span>
               <div>
-                <p className="text-sm font-medium text-ink-80">Revenir en brouillon</p>
-                <p className="text-xs text-ink-60">Reprendre l&apos;edition depuis le debut</p>
+                <p className="text-body font-medium text-ink-80">Revenir en brouillon</p>
+                <p className="text-meta text-ink-60">Reprendre l&apos;edition depuis le debut</p>
               </div>
             </button>
           )}
@@ -441,8 +441,8 @@ export default function PublicationPage() {
               >
                 <span className="text-base shrink-0">&#x1F4DD;</span>
                 <div>
-                  <p className="text-sm font-medium text-grenadine">Remettre en brouillon</p>
-                  <p className="text-xs text-grenadine">Reprendre le travail sur ce parcours. Il faudra le republier.</p>
+                  <p className="text-body font-medium text-grenadine">Remettre en brouillon</p>
+                  <p className="text-meta text-grenadine">Reprendre le travail sur ce parcours. Il faudra le republier.</p>
                 </div>
               </button>
               <button
@@ -452,8 +452,8 @@ export default function PublicationPage() {
               >
                 <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
                 <div>
-                  <p className="text-sm font-medium text-ocre-ink">Désarchiver (en pause)</p>
-                  <p className="text-xs text-ocre-ink">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>
+                  <p className="text-body font-medium text-ocre-ink">Désarchiver (en pause)</p>
+                  <p className="text-meta text-ocre-ink">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>
                 </div>
               </button>
             </>
@@ -462,7 +462,7 @@ export default function PublicationPage() {
         </div>
 
         {message && (
-          <p className={`mt-3 text-sm ${message.success ? 'text-success' : 'text-danger'}`} role="status">{message.text}</p>
+          <p className={`mt-3 text-body ${message.success ? 'text-success' : 'text-danger'}`} role="status">{message.text}</p>
         )}
       </div>
 
@@ -486,10 +486,10 @@ export default function PublicationPage() {
                   onClick={() => router.push(`/guide/studio/${s.id}/submission`)}
                   className="w-full flex items-center gap-2 p-1.5 rounded-lg hover:bg-paper-soft transition text-left"
                 >
-                  <span className="text-xs font-semibold text-ink-60 w-6">V{s.version ?? 1}</span>
-                  <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-medium ${sc.color}`}>{sc.label}</span>
-                  <span className="flex-1 text-sm text-ink-80 truncate">{s.title}</span>
-                  <span className="text-xs text-ink-40">&rsaquo;</span>
+                  <span className="text-meta font-semibold text-ink-60 w-6">V{s.version ?? 1}</span>
+                  <span className={`inline-flex px-2 py-0.5 rounded-pill text-eyebrow font-medium ${sc.color}`}>{sc.label}</span>
+                  <span className="flex-1 text-body text-ink-80 truncate">{s.title}</span>
+                  <span className="text-meta text-ink-40">&rsaquo;</span>
                 </button>
               );
             })}

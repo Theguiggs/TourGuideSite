@@ -35,7 +35,7 @@ export function ReviewItem({ author, when, tourTitle, quote, rating, verified }:
     >
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2 min-w-0">
-          <span className="w-7 h-7 rounded-full bg-paper-deep text-ink-60 flex items-center justify-center text-meta font-bold shrink-0">
+          <span className="w-7 h-7 rounded-pill bg-paper-deep text-ink-60 flex items-center justify-center text-meta font-bold shrink-0">
             {initial}
           </span>
           <div className="min-w-0">

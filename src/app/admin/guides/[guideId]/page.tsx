@@ -166,11 +166,11 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
     setTimeout(() => setFeedback(null), 3000);
   };
 
-  if (loading) return <p className="text-ink-60 text-sm p-6">Chargement...</p>;
+  if (loading) return <p className="text-ink-60 text-body p-6">Chargement...</p>;
   if (error || !profile) return (
     <div className="p-6">
-      <p className="text-danger text-sm mb-4">{error ?? 'Profil introuvable'}</p>
-      <Link href="/admin/guides" className="text-grenadine text-sm hover:underline">← Retour</Link>
+      <p className="text-danger text-body mb-4">{error ?? 'Profil introuvable'}</p>
+      <Link href="/admin/guides" className="text-grenadine text-body hover:underline">← Retour</Link>
     </div>
   );
 
@@ -180,13 +180,13 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
     <div className="max-w-3xl">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <Link href="/admin/guides" className="text-ink-40 hover:text-ink-60 text-sm">
+        <Link href="/admin/guides" className="text-ink-40 hover:text-ink-60 text-body">
           ← Tous les guides
         </Link>
       </div>
 
       {feedback && (
-        <div className={`rounded-lg p-3 mb-4 text-sm ${feedback.ok ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
+        <div className={`rounded-lg p-3 mb-4 text-body ${feedback.ok ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
           {feedback.msg}
         </div>
       )}
@@ -195,13 +195,13 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
       <div className="bg-card rounded-md border border-line p-6 mb-6">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-grenadine-soft rounded-full flex items-center justify-center text-grenadine font-bold text-2xl">
+            <div className="w-14 h-14 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-2xl">
               {profile.displayName.charAt(0)}
             </div>
             <div>
               <PageTitle size="h5">{profile.displayName}</PageTitle>
-              <p className="text-sm text-ink-60">{profile.city}</p>
-              <span className={`text-xs font-medium px-2 py-0.5 rounded-full mt-1 inline-block ${statusBadge.className}`}>
+              <p className="text-body text-ink-60">{profile.city}</p>
+              <span className={`text-meta font-medium px-2 py-0.5 rounded-pill mt-1 inline-block ${statusBadge.className}`}>
                 {statusBadge.label}
               </span>
             </div>
@@ -213,7 +213,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
             <Link
               href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
               target="_blank"
-              className="border border-grenadine text-grenadine text-sm font-medium px-4 py-2 rounded-lg hover:bg-grenadine-soft flex items-center gap-1"
+              className="border border-grenadine text-grenadine text-body font-medium px-4 py-2 rounded-lg hover:bg-grenadine-soft flex items-center gap-1"
             >
               Voir catalogue {profile.city}
             </Link>
@@ -221,7 +221,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               <button
                 onClick={() => setStatus('active')}
                 disabled={saving}
-                className="bg-olive text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-olive disabled:opacity-50"
+                className="bg-olive text-white text-body font-medium px-4 py-2 rounded-lg hover:bg-olive disabled:opacity-50"
               >
                 Activer le compte
               </button>
@@ -230,7 +230,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               <button
                 onClick={() => setStatus('suspended')}
                 disabled={saving}
-                className="bg-ocre text-ink text-sm font-medium px-4 py-2 rounded-lg hover:bg-ocre disabled:opacity-50"
+                className="bg-ocre text-ink text-body font-medium px-4 py-2 rounded-lg hover:bg-ocre disabled:opacity-50"
               >
                 Suspendre
               </button>
@@ -239,7 +239,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               <button
                 onClick={() => setStatus('rejected')}
                 disabled={saving}
-                className="bg-grenadine text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-grenadine disabled:opacity-50"
+                className="bg-grenadine text-white text-body font-medium px-4 py-2 rounded-lg hover:bg-grenadine disabled:opacity-50"
               >
                 Rejeter
               </button>
@@ -250,12 +250,12 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
         {/* Email */}
         {guideEmail && guideEmailUserId === profile.userId && (
           <div className="flex items-center gap-2 mb-4 p-3 bg-mer-soft rounded-lg">
-            <span className="text-sm text-mer font-medium">Email :</span>
-            <a href={`mailto:${guideEmail}`} className="text-sm text-mer font-mono hover:underline">{guideEmail}</a>
+            <span className="text-body text-mer font-medium">Email :</span>
+            <a href={`mailto:${guideEmail}`} className="text-body text-mer font-mono hover:underline">{guideEmail}</a>
           </div>
         )}
         {emailLookupError && emailLookupUserId === profile.userId && (
-          <p className="mb-4 text-sm text-danger" role="alert">
+          <p className="mb-4 text-body text-danger" role="alert">
             {emailLookupError}
           </p>
         )}
@@ -282,17 +282,17 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
         {profile.bio && (
           <div className="mt-4 pt-4 border-t border-line">
-            <p className="text-xs font-medium text-ink-60 mb-1">Bio</p>
-            <p className="text-sm text-ink-80 whitespace-pre-wrap">{profile.bio}</p>
+            <p className="text-meta font-medium text-ink-60 mb-1">Bio</p>
+            <p className="text-body text-ink-80 whitespace-pre-wrap">{profile.bio}</p>
           </div>
         )}
 
         {profile.specialties && profile.specialties.length > 0 && (
           <div className="mt-4 pt-4 border-t border-line">
-            <p className="text-xs font-medium text-ink-60 mb-2">Spécialités</p>
+            <p className="text-meta font-medium text-ink-60 mb-2">Spécialités</p>
             <div className="flex flex-wrap gap-2">
               {profile.specialties.map((s) => (
-                <span key={s} className="text-xs bg-grenadine-soft text-grenadine px-2 py-1 rounded-full">{s}</span>
+                <span key={s} className="text-meta bg-grenadine-soft text-grenadine px-2 py-1 rounded-pill">{s}</span>
               ))}
             </div>
           </div>
@@ -300,10 +300,10 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
         {profile.languages && profile.languages.length > 0 && (
           <div className="mt-4 pt-4 border-t border-line">
-            <p className="text-xs font-medium text-ink-60 mb-2">Langues</p>
+            <p className="text-meta font-medium text-ink-60 mb-2">Langues</p>
             <div className="flex flex-wrap gap-2">
               {profile.languages.map((l) => (
-                <span key={l} className="text-xs bg-mer-soft text-mer px-2 py-1 rounded-full">{l}</span>
+                <span key={l} className="text-meta bg-mer-soft text-mer px-2 py-1 rounded-pill">{l}</span>
               ))}
             </div>
           </div>
@@ -316,7 +316,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
           Parcours ({tours.length})
         </h2>
         {tours.length === 0 ? (
-          <p className="text-sm text-ink-40">Aucun parcours créé.</p>
+          <p className="text-body text-ink-40">Aucun parcours créé.</p>
         ) : (
           <div className="divide-y divide-line">
             {tours.map((tour) => {
@@ -324,25 +324,25 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               return (
                 <div key={tour.id} className="py-3 flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-ink">{tour.title || <em className="text-ink-40">Sans titre</em>}</p>
-                    <p className="text-xs text-ink-40 font-mono mt-0.5">{tour.id}</p>
+                    <p className="text-body font-medium text-ink">{tour.title || <em className="text-ink-40">Sans titre</em>}</p>
+                    <p className="text-meta text-ink-40 font-mono mt-0.5">{tour.id}</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${badge.className}`}>
+                    <span className={`text-meta font-medium px-2 py-1 rounded-pill ${badge.className}`}>
                       {badge.label}
                     </span>
                     {tour.status === 'published' && (
                       <Link
                         href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/${tour.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
                         target="_blank"
-                        className="text-xs text-grenadine hover:underline"
+                        className="text-meta text-grenadine hover:underline"
                       >
                         Voir
                       </Link>
                     )}
                     <Link
                       href={`/admin/tours/${tour.id}`}
-                      className="text-xs text-ink-60 hover:underline"
+                      className="text-meta text-ink-60 hover:underline"
                     >
                       Admin
                     </Link>
@@ -360,8 +360,8 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 function InfoRow({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
     <div>
-      <p className="text-xs font-medium text-ink-60 mb-0.5">{label}</p>
-      <p className={`text-sm text-ink ${mono ? 'font-mono text-xs break-all' : ''}`}>{value}</p>
+      <p className="text-meta font-medium text-ink-60 mb-0.5">{label}</p>
+      <p className={`text-body text-ink ${mono ? 'font-mono text-meta break-all' : ''}`}>{value}</p>
     </div>
   );
 }

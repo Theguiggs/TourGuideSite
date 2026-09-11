@@ -134,10 +134,10 @@ export function TourInfoTranslation({
   return (
     <div
       data-testid="tour-info-translation"
-      className="rounded-lg border border-line bg-white p-4 mb-4"
+      className="rounded-lg border border-line bg-card p-4 mb-4"
     >
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-ink">
+        <h3 className="text-body font-semibold text-ink">
           Titre et description de la visite
         </h3>
         {onRequestTranslation && (!translatedTitle || !translatedDescription) && (
@@ -145,7 +145,7 @@ export function TourInfoTranslation({
             type="button"
             onClick={handleManualTranslate}
             disabled={translating}
-            className="text-xs font-medium text-grenadine hover:opacity-80 disabled:text-ink-40 px-2 py-1 border border-grenadine-soft rounded-md hover:bg-grenadine-soft disabled:border-line"
+            className="text-meta font-medium text-grenadine hover:opacity-80 disabled:text-ink-40 px-2 py-1 border border-grenadine-soft rounded-md hover:bg-grenadine-soft disabled:border-line"
             data-testid="translate-info-button"
           >
             {translating ? 'Traduction...' : 'Traduire'}
@@ -154,26 +154,26 @@ export function TourInfoTranslation({
       </div>
 
       {translateError && (
-        <p className="text-xs text-danger mb-2">{translateError}</p>
+        <p className="text-meta text-danger mb-2">{translateError}</p>
       )}
 
       {translating && (
-        <p className="text-xs text-grenadine mb-2 animate-pulse">Traduction en cours...</p>
+        <p className="text-meta text-grenadine mb-2 animate-pulse">Traduction en cours...</p>
       )}
 
       {/* Title: source (left) / translation (right) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         {/* Source title */}
         <div>
-          <label className="block text-xs text-ink-40 mb-1">Titre (FR)</label>
-          <div className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-sm text-ink-60" data-testid="source-title">
+          <label className="block text-meta text-ink-40 mb-1">Titre (FR)</label>
+          <div className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-60" data-testid="source-title">
             {sourceTitle || <span className="italic">Aucun titre</span>}
           </div>
         </div>
         {/* Translated title */}
         <div>
           <div className="flex items-center justify-between mb-1">
-            <label htmlFor={`tour-title-${language}`} className="block text-xs text-ink-60">
+            <label htmlFor={`tour-title-${language}`} className="block text-meta text-ink-60">
               Titre ({langLabel})
             </label>
             <div className="flex items-center gap-2">
@@ -182,7 +182,7 @@ export function TourInfoTranslation({
                   type="button"
                   onClick={handleTranslateTitle}
                   disabled={translatingTitle}
-                  className="text-xs font-medium text-mer hover:opacity-80 disabled:text-ink-40"
+                  className="text-meta font-medium text-mer hover:opacity-80 disabled:text-ink-40"
                   data-testid="translate-title-button"
                 >
                   {translatingTitle ? 'Traduction...' : '⇄ Traduire'}
@@ -192,7 +192,7 @@ export function TourInfoTranslation({
                 <button
                   type="button"
                   onClick={() => setTitleEditing(true)}
-                  className="text-xs font-medium text-grenadine hover:opacity-80"
+                  className="text-meta font-medium text-grenadine hover:opacity-80"
                   data-testid="edit-title-button"
                 >
                   Éditer
@@ -210,17 +210,17 @@ export function TourInfoTranslation({
                 onChange={(e) => setTitle(e.target.value)}
                 onBlur={handleTitleBlur}
                 placeholder={`Titre traduit en ${langLabel}...`}
-                className="w-full border border-line rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-grenadine"
+                className="w-full border border-line rounded-lg px-3 py-2 text-body text-ink focus:outline-none focus:ring-2 focus:ring-grenadine"
               />
               {titleSaved && (
-                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-success" data-testid="title-saved-indicator">
+                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-meta text-success" data-testid="title-saved-indicator">
                   Sauvegarde
                 </span>
               )}
             </div>
           ) : (
             <div
-              className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-sm text-ink-80"
+              className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-80"
               data-testid="translated-title-readonly"
             >
               {title || <span className="italic text-ink-40">Titre traduit en {langLabel}...</span>}
@@ -233,15 +233,15 @@ export function TourInfoTranslation({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Source description */}
         <div>
-          <label className="block text-xs text-ink-40 mb-1">Description (FR)</label>
-          <div className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-sm text-ink-60 min-h-[80px] whitespace-pre-wrap" data-testid="source-description">
+          <label className="block text-meta text-ink-40 mb-1">Description (FR)</label>
+          <div className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-60 min-h-[80px] whitespace-pre-wrap" data-testid="source-description">
             {sourceDescription || <span className="italic">Aucune description</span>}
           </div>
         </div>
         {/* Translated description */}
         <div>
           <div className="flex items-center justify-between mb-1">
-            <label htmlFor={`tour-desc-${language}`} className="block text-xs text-ink-60">
+            <label htmlFor={`tour-desc-${language}`} className="block text-meta text-ink-60">
               Description ({langLabel})
             </label>
             <div className="flex items-center gap-2">
@@ -250,7 +250,7 @@ export function TourInfoTranslation({
                   type="button"
                   onClick={handleTranslateDescription}
                   disabled={translatingDesc}
-                  className="text-xs font-medium text-mer hover:opacity-80 disabled:text-ink-40"
+                  className="text-meta font-medium text-mer hover:opacity-80 disabled:text-ink-40"
                   data-testid="translate-description-button"
                 >
                   {translatingDesc ? 'Traduction...' : '⇄ Traduire'}
@@ -260,7 +260,7 @@ export function TourInfoTranslation({
                 <button
                   type="button"
                   onClick={() => setDescEditing(true)}
-                  className="text-xs font-medium text-grenadine hover:opacity-80"
+                  className="text-meta font-medium text-grenadine hover:opacity-80"
                   data-testid="edit-description-button"
                 >
                   Éditer
@@ -278,17 +278,17 @@ export function TourInfoTranslation({
                 onBlur={handleDescBlur}
                 placeholder={`Description traduite en ${langLabel}...`}
                 rows={3}
-                className="w-full border border-line rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-grenadine resize-y min-h-[80px]"
+                className="w-full border border-line rounded-lg px-3 py-2 text-body text-ink focus:outline-none focus:ring-2 focus:ring-grenadine resize-y min-h-[80px]"
               />
               {descSaved && (
-                <span className="absolute right-2 bottom-2 text-xs text-success" data-testid="desc-saved-indicator">
+                <span className="absolute right-2 bottom-2 text-meta text-success" data-testid="desc-saved-indicator">
                   Sauvegarde
                 </span>
               )}
             </div>
           ) : (
             <div
-              className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-sm text-ink-80 min-h-[80px] whitespace-pre-wrap"
+              className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-80 min-h-[80px] whitespace-pre-wrap"
               data-testid="translated-description-readonly"
             >
               {description || <span className="italic text-ink-40">Description traduite en {langLabel}...</span>}

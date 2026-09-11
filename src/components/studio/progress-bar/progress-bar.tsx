@@ -46,7 +46,7 @@ export function StudioProgressBar({ currentStep, completedSteps = [] }: Progress
           const isCurrent = step.key === activeStep;
           const href = sessionId ? `/guide/studio/${sessionId}/${STEP_ROUTES[step.key]}` : '#';
 
-          const className = `flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition cursor-pointer ${
+          const className = `flex items-center gap-1.5 px-2.5 py-1.5 rounded-pill text-meta font-medium whitespace-nowrap transition cursor-pointer ${
             isCurrent
               ? 'bg-grenadine-soft text-grenadine ring-2 ring-grenadine'
               : isCompleted

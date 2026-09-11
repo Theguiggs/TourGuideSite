@@ -76,7 +76,7 @@ export function SubmissionChecklist({
       {/* Summary */}
       <div
         data-testid="submission-summary"
-        className={`rounded-lg border p-3 text-sm font-medium ${
+        className={`rounded-lg border p-3 text-body font-medium ${
           readiness.ready
             ? 'border-olive-soft bg-olive-soft text-success'
             : 'border-ocre-soft bg-ocre-soft text-ocre-ink'
@@ -93,10 +93,10 @@ export function SubmissionChecklist({
           <li
             key={scene.sceneId}
             data-testid={`checklist-scene-${scene.sceneId}`}
-            className="flex items-center justify-between rounded border border-line px-3 py-2 text-sm"
+            className="flex items-center justify-between rounded border border-line px-3 py-2 text-body"
           >
             <span className="text-ink-80">{scene.sceneTitle}</span>
-            <span className="flex gap-2 text-xs">
+            <span className="flex gap-2 text-meta">
               <span data-testid={`text-status-${scene.sceneId}`}>
                 Texte {scene.hasText ? '\u2705' : '\u274C'}
               </span>
@@ -110,7 +110,7 @@ export function SubmissionChecklist({
 
       {/* Error message */}
       {error && (
-        <div data-testid="submission-error" className="rounded border border-grenadine-soft bg-grenadine-soft p-2 text-sm text-danger">
+        <div data-testid="submission-error" className="rounded border border-grenadine-soft bg-grenadine-soft p-2 text-body text-danger">
           {error}
         </div>
       )}
@@ -121,7 +121,7 @@ export function SubmissionChecklist({
         type="button"
         disabled={!readiness.ready || submitting}
         onClick={handleSubmit}
-        className="w-full rounded-md bg-mer px-4 py-2 text-sm font-medium text-ink hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full rounded-md bg-mer px-4 py-2 text-body font-medium text-ink hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {submitting ? 'Soumission en cours...' : `Soumettre la version ${language}`}
       </button>

@@ -8,7 +8,7 @@ const WalkMap = dynamic(() => import('./WalkMap').then((m) => m.WalkMap), {
   ssr: false,
   loading: () => (
     <div
-      className="bg-paper-soft rounded-lg h-48 flex items-center justify-center text-sm text-ink-40"
+      className="bg-paper-soft rounded-lg h-48 flex items-center justify-center text-body text-ink-40"
       data-testid="walk-map-loading"
     >
       Chargement de la carte...
@@ -63,10 +63,10 @@ export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelPro
   return (
     <div className="space-y-4" data-testid="walk-cleanup-panel">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-ink">Segment de marche #{walk.order}</h3>
+        <h3 className="text-body font-semibold text-ink">Segment de marche #{walk.order}</h3>
         {walk.deleted && (
           <span
-            className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-grenadine-soft text-danger"
+            className="inline-flex px-2 py-0.5 rounded-pill text-meta font-medium bg-grenadine-soft text-danger"
             data-testid="walk-deleted-badge"
           >
             Supprimé
@@ -78,29 +78,29 @@ export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelPro
         <WalkMap points={points} />
       </div>
 
-      <dl className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm" data-testid="walk-stats">
+      <dl className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-body" data-testid="walk-stats">
         <div className="bg-paper-soft rounded-lg p-2">
-          <dt className="text-xs text-ink-60">Durée</dt>
+          <dt className="text-meta text-ink-60">Durée</dt>
           <dd className="font-medium text-ink" data-testid="walk-stat-duration">{formatDuration(walk.durationMs)}</dd>
         </div>
         <div className="bg-paper-soft rounded-lg p-2">
-          <dt className="text-xs text-ink-60">Distance</dt>
+          <dt className="text-meta text-ink-60">Distance</dt>
           <dd className="font-medium text-ink" data-testid="walk-stat-distance">{formatDistance(walk.distanceM)}</dd>
         </div>
         <div className="bg-paper-soft rounded-lg p-2">
-          <dt className="text-xs text-ink-60">Photos</dt>
+          <dt className="text-meta text-ink-60">Photos</dt>
           <dd className="font-medium text-ink" data-testid="walk-stat-photos">{walk.photoRefs.length}</dd>
         </div>
         <div className="bg-paper-soft rounded-lg p-2">
-          <dt className="text-xs text-ink-60">Audios</dt>
+          <dt className="text-meta text-ink-60">Audios</dt>
           <dd className="font-medium text-ink" data-testid="walk-stat-audios">{walk.audioRefs.length}</dd>
         </div>
       </dl>
 
       {(walk.photoRefs.length > 0 || walk.audioRefs.length > 0) && (
         <div>
-          <p className="text-xs font-medium text-ink-60 mb-1">Médias</p>
-          <ul className="text-xs text-ink-80 space-y-0.5" data-testid="walk-media-list">
+          <p className="text-meta font-medium text-ink-60 mb-1">Médias</p>
+          <ul className="text-meta text-ink-80 space-y-0.5" data-testid="walk-media-list">
             {walk.photoRefs.map((ref) => (
               <li key={`p-${ref}`}>Photo: {ref.split('/').pop()}</li>
             ))}
@@ -116,7 +116,7 @@ export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelPro
           type="button"
           onClick={() => onKeep(walk.id)}
           data-testid="walk-keep-btn"
-          className="flex-1 bg-grenadine hover:opacity-90 text-white text-sm font-medium py-2 rounded-lg"
+          className="flex-1 bg-grenadine hover:opacity-90 text-white text-body font-medium py-2 rounded-lg"
         >
           Garder
         </button>
@@ -124,7 +124,7 @@ export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelPro
           type="button"
           onClick={() => onDelete(walk.id)}
           data-testid="walk-delete-btn"
-          className="flex-1 bg-grenadine-soft hover:opacity-90 text-danger text-sm font-medium py-2 rounded-lg"
+          className="flex-1 bg-grenadine-soft hover:opacity-90 text-danger text-body font-medium py-2 rounded-lg"
         >
           Supprimer
         </button>

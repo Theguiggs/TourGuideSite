@@ -87,15 +87,15 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
           return (
             <div key={scene.id} className="p-4 border border-line rounded-lg" data-testid={`mod-scene-${scene.id}`}>
               <div className="flex items-center gap-3 mb-2">
-                <span className="w-6 h-6 rounded-full bg-paper-deep flex items-center justify-center text-xs font-bold">
+                <span className="w-6 h-6 rounded-pill bg-paper-deep flex items-center justify-center text-meta font-bold">
                   {index + 1}
                 </span>
                 <span className="font-medium text-ink">{scene.title || `Scène ${index + 1}`}</span>
-                <span className={`px-1.5 py-0 rounded text-[10px] font-medium ${statusConfig.color}`}>
+                <span className={`px-1.5 py-0 rounded text-eyebrow font-medium ${statusConfig.color}`}>
                   {statusConfig.label}
                 </span>
                 {scene.qualityScore && (
-                  <span className={`px-1.5 py-0 rounded text-[10px] font-medium ${
+                  <span className={`px-1.5 py-0 rounded text-eyebrow font-medium ${
                     scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                   }`}>
                     {scene.qualityScore === 'good' ? '✓ Bonne' : '⚠ À améliorer'}
@@ -108,7 +108,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                 {scene.originalAudioKey && (
                   <button
                     onClick={() => handlePlay(scene.id, 'original', scene.originalAudioKey!)}
-                    className={`text-xs px-2 py-1 rounded transition ${
+                    className={`text-meta px-2 py-1 rounded transition ${
                       isPlayingOriginal ? 'bg-mer text-white' : 'bg-mer-soft text-mer hover:opacity-90'
                     }`}
                     data-testid={`play-original-${scene.id}`}
@@ -119,7 +119,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                 {scene.studioAudioKey && (
                   <button
                     onClick={() => handlePlay(scene.id, 'studio', scene.studioAudioKey!)}
-                    className={`text-xs px-2 py-1 rounded transition ${
+                    className={`text-meta px-2 py-1 rounded transition ${
                       isPlayingStudio ? 'bg-grenadine text-white' : 'bg-grenadine-soft text-grenadine hover:opacity-90'
                     }`}
                     data-testid={`play-studio-${scene.id}`}
@@ -131,12 +131,12 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
 
               {/* Transcribed text */}
               {scene.transcriptText && (
-                <p className="text-sm text-ink-80 mb-2 line-clamp-3">{scene.transcriptText}</p>
+                <p className="text-body text-ink-80 mb-2 line-clamp-3">{scene.transcriptText}</p>
               )}
 
               {/* Existing feedback */}
               {scene.moderationFeedback && (
-                <p className="text-xs text-danger mb-2">💬 Feedback : {scene.moderationFeedback}</p>
+                <p className="text-meta text-danger mb-2">💬 Feedback : {scene.moderationFeedback}</p>
               )}
 
               {/* Admin feedback input */}
@@ -145,7 +145,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                   value={feedbackText[scene.id] ?? ''}
                   onChange={(e) => setFeedbackText((prev) => ({ ...prev, [scene.id]: e.target.value }))}
                   placeholder="Feedback pour cette scène (optionnel)..."
-                  className="w-full text-xs border border-line rounded p-2 resize-none h-16"
+                  className="w-full text-meta border border-line rounded p-2 resize-none h-16"
                   data-testid={`feedback-input-${scene.id}`}
                 />
               )}
@@ -160,7 +160,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
           <button
             onClick={handleApprove}
             disabled={isProcessing}
-            className="bg-success hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-5 rounded-lg text-sm transition"
+            className="bg-success hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-5 rounded-lg text-body transition"
             data-testid="approve-btn"
           >
             ✓ Approuver
@@ -168,13 +168,13 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
           <button
             onClick={handleReject}
             disabled={isProcessing}
-            className="bg-danger hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-5 rounded-lg text-sm transition"
+            className="bg-danger hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-5 rounded-lg text-body transition"
             data-testid="reject-btn"
           >
             ✗ Révision demandée
           </button>
           {message && (
-            <span className={`text-sm ${message.includes('approuvé') ? 'text-success' : 'text-ocre-ink'}`} role="status">
+            <span className={`text-body ${message.includes('approuvé') ? 'text-success' : 'text-ocre-ink'}`} role="status">
               {message}
             </span>
           )}

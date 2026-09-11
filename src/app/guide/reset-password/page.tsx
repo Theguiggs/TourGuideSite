@@ -53,8 +53,8 @@ export default function ResetPasswordPage() {
 
         {step === 'request' && (
           <form onSubmit={handleRequest} className="space-y-4">
-            <p className="text-sm text-ink-60">Entrez votre email pour recevoir un code de réinitialisation.</p>
-            <label htmlFor="reset-email" className="block text-sm font-semibold text-ink-80 mb-1">Email</label>
+            <p className="text-body text-ink-60">Entrez votre email pour recevoir un code de réinitialisation.</p>
+            <label htmlFor="reset-email" className="block text-body font-semibold text-ink-80 mb-1">Email</label>
             <input
               id="reset-email"
               type="email"
@@ -62,13 +62,13 @@ export default function ResetPasswordPage() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine"
+              className="w-full border border-line rounded-lg px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-grenadine"
             />
-            {error && <p className="text-sm text-danger" role="alert">{error}</p>}
+            {error && <p className="text-body text-danger" role="alert">{error}</p>}
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-grenadine text-white font-bold py-3 rounded-full hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-sm"
+              className="w-full bg-grenadine text-white font-bold py-3 rounded-pill hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-body"
             >
               {loading ? 'Envoi…' : 'Envoyer le code'}
             </button>
@@ -77,8 +77,8 @@ export default function ResetPasswordPage() {
 
         {step === 'confirm' && (
           <form onSubmit={handleConfirm} className="space-y-4">
-            <p className="text-sm text-ink-60">Un code a été envoyé à <strong>{email}</strong>. Entrez-le ci-dessous avec votre nouveau mot de passe.</p>
-            <label htmlFor="reset-code" className="block text-sm font-semibold text-ink-80 mb-1">Code de vérification</label>
+            <p className="text-body text-ink-60">Un code a été envoyé à <strong>{email}</strong>. Entrez-le ci-dessous avec votre nouveau mot de passe.</p>
+            <label htmlFor="reset-code" className="block text-body font-semibold text-ink-80 mb-1">Code de vérification</label>
             <input
               id="reset-code"
               type="text"
@@ -87,9 +87,9 @@ export default function ResetPasswordPage() {
               value={code}
               onChange={(e) => setCode(e.target.value)}
               autoComplete="one-time-code"
-              className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine"
+              className="w-full border border-line rounded-lg px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-grenadine"
             />
-            <label htmlFor="reset-new-password" className="block text-sm font-semibold text-ink-80 mb-1">Nouveau mot de passe</label>
+            <label htmlFor="reset-new-password" className="block text-body font-semibold text-ink-80 mb-1">Nouveau mot de passe</label>
             <input
               id="reset-new-password"
               type="password"
@@ -98,17 +98,17 @@ export default function ResetPasswordPage() {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               minLength={8}
-              className="w-full border border-line rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-grenadine"
+              className="w-full border border-line rounded-lg px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-grenadine"
             />
-            {error && <p className="text-sm text-danger" role="alert">{error}</p>}
+            {error && <p className="text-body text-danger" role="alert">{error}</p>}
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-grenadine text-white font-bold py-3 rounded-full hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-sm"
+              className="w-full bg-grenadine text-white font-bold py-3 rounded-pill hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-body"
             >
               {loading ? 'Réinitialisation…' : 'Réinitialiser'}
             </button>
-            <button type="button" onClick={() => setStep('request')} className="w-full text-sm text-ink-60 hover:text-ink">
+            <button type="button" onClick={() => setStep('request')} className="w-full text-body text-ink-60 hover:text-ink">
               ← Recommencer
             </button>
           </form>
@@ -116,10 +116,10 @@ export default function ResetPasswordPage() {
 
         {step === 'done' && (
           <div className="space-y-4">
-            <p className="text-sm text-success font-medium">Mot de passe réinitialisé avec succès.</p>
+            <p className="text-body text-success font-medium">Mot de passe réinitialisé avec succès.</p>
             <Link
               href="/guide/login"
-              className="block w-full text-center bg-grenadine text-white font-bold py-3 rounded-full hover:opacity-90 transition text-sm"
+              className="block w-full text-center bg-grenadine text-white font-bold py-3 rounded-pill hover:opacity-90 transition text-body"
             >
               Se connecter
             </Link>
@@ -127,7 +127,7 @@ export default function ResetPasswordPage() {
         )}
 
         {step !== 'done' && (
-          <p className="text-center text-sm text-ink-60 mt-6">
+          <p className="text-center text-body text-ink-60 mt-6">
             <Link href="/guide/login" className="text-grenadine hover:underline">
               Retour à la connexion
             </Link>

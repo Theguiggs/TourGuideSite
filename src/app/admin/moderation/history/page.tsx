@@ -26,7 +26,7 @@ export default function ModerationHistoryPage() {
         <select
           value={filterDecision}
           onChange={(e) => setFilterDecision(e.target.value)}
-          className="border border-line rounded-lg px-3 py-2 text-sm text-ink-80"
+          className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
         >
           <option value="">Toutes les decisions</option>
           <option value="approved">Approuve</option>
@@ -43,25 +43,25 @@ export default function ModerationHistoryPage() {
           <table className="w-full">
             <thead className="bg-paper-soft border-b border-line">
               <tr>
-                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Parcours</th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Guide</th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60 hidden sm:table-cell">Ville</th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60 hidden md:table-cell">Date</th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-ink-60">Decision</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">Parcours</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">Guide</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60 hidden sm:table-cell">Ville</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60 hidden md:table-cell">Date</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">Decision</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {filtered.map((item) => (
                 <tr key={item.id}>
-                  <td className="px-4 py-3 text-sm font-medium text-ink">{item.tourTitle}</td>
-                  <td className="px-4 py-3 text-sm text-ink-60">{item.guideName}</td>
-                  <td className="px-4 py-3 text-sm text-ink-60 hidden sm:table-cell">{item.city}</td>
-                  <td className="px-4 py-3 text-sm text-ink-60 hidden md:table-cell">
+                  <td className="px-4 py-3 text-body font-medium text-ink">{item.tourTitle}</td>
+                  <td className="px-4 py-3 text-body text-ink-60">{item.guideName}</td>
+                  <td className="px-4 py-3 text-body text-ink-60 hidden sm:table-cell">{item.city}</td>
+                  <td className="px-4 py-3 text-body text-ink-60 hidden md:table-cell">
                     {new Date(item.reviewDate).toLocaleDateString('fr-FR')}
                   </td>
                   <td className="px-4 py-3">
                     <span
-                      className={`text-xs font-medium px-2 py-1 rounded-full ${
+                      className={`text-meta font-medium px-2 py-1 rounded-pill ${
                         item.decision === 'approved'
                           ? 'bg-olive-soft text-olive'
                           : 'bg-grenadine-soft text-danger'
@@ -70,7 +70,7 @@ export default function ModerationHistoryPage() {
                       {item.decision === 'approved' ? 'Approuve' : 'Refuse'}
                     </span>
                     {item.feedback && (
-                      <p className="text-xs text-ink-40 mt-1 max-w-xs truncate">{item.feedback}</p>
+                      <p className="text-meta text-ink-40 mt-1 max-w-xs truncate">{item.feedback}</p>
                     )}
                   </td>
                 </tr>

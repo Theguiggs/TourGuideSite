@@ -21,7 +21,7 @@ export function MyPurchasesStrip({ purchases, locale = 'fr' }: MyPurchasesStripP
         <PageTitle as="h2" size="h5">
           {locale === 'en' ? 'My purchases' : 'Mes achats'} ({purchases.length})
         </PageTitle>
-        <Link href={locale === 'en' ? '/en/my-purchases' : '/mes-achats'} className="text-sm text-grenadine font-medium hover:underline">
+        <Link href={locale === 'en' ? '/en/my-purchases' : '/mes-achats'} className="text-body text-grenadine font-medium hover:underline">
           {locale === 'en' ? 'View all →' : 'Voir tout →'}
         </Link>
       </div>
@@ -49,7 +49,7 @@ export function MyPurchasesStrip({ purchases, locale = 'fr' }: MyPurchasesStripP
                 />
               ) : null}
             </div>
-            <p className="p-2 text-xs font-medium text-ink line-clamp-2">{tour.title}</p>
+            <p className="p-2 text-meta font-medium text-ink line-clamp-2">{tour.title}</p>
           </Link>
         ))}
       </div>

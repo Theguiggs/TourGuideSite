@@ -70,10 +70,10 @@ export function LanguageStatusBadge({ status, className }: LanguageStatusBadgePr
   return (
     <span
       data-testid={`language-status-badge-${status}`}
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${config.bg} ${config.text} ${className ?? ''}`}
+      className={`inline-flex items-center gap-1.5 rounded-pill px-2.5 py-0.5 text-meta font-medium ${config.bg} ${config.text} ${className ?? ''}`}
     >
       <span
-        className={`h-2 w-2 rounded-full ${config.dot} ${config.animate ? 'animate-pulse' : ''}`}
+        className={`h-2 w-2 rounded-pill ${config.dot} ${config.animate ? 'animate-pulse' : ''}`}
         aria-hidden="true"
       />
       {config.label}

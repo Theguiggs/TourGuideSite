@@ -58,7 +58,7 @@ export function PoiOverviewCard({
           </button>
         )}
         <span
-          className="w-7 h-7 rounded-full bg-grenadine text-paper flex items-center justify-center font-editorial italic font-bold text-caption shrink-0"
+          className="w-7 h-7 rounded-pill bg-grenadine text-paper flex items-center justify-center font-editorial italic font-bold text-caption shrink-0"
           aria-hidden="true"
         >
           {index}

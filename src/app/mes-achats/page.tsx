@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function MesVisitesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <nav className="text-sm text-ink-60 mb-6" aria-label="Fil d'Ariane">
+      <nav className="text-body text-ink-60 mb-6" aria-label="Fil d'Ariane">
         <Link href="/catalogue" className="hover:text-grenadine">
           Catalogue
         </Link>

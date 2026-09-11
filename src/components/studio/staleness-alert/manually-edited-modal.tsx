@@ -45,7 +45,7 @@ export function ManuallyEditedModal({
       onClose={onKeep}
       labelledBy="manually-edited-modal-title"
       data-testid="manually-edited-modal"
-      className="max-w-lg bg-white"
+      className="max-w-lg bg-card"
     >
       <div className="w-full p-6">
         <h2
@@ -56,16 +56,16 @@ export function ManuallyEditedModal({
           {sceneName}
         </h2>
 
-        <p className="mt-3 text-sm text-ink-80" data-testid="modal-warning-message">
+        <p className="mt-3 text-body text-ink-80" data-testid="modal-warning-message">
           Vous avez corrigé cette traduction à la main. Mettre à jour écrasera vos corrections. Continuer ?
         </p>
 
         <div className="mt-3 rounded-lg border border-line bg-paper-soft p-3">
-          <p className="text-xs font-medium text-ink-60 mb-1">
+          <p className="text-meta font-medium text-ink-60 mb-1">
             Traduction actuelle ({language.toUpperCase()})
           </p>
           <p
-            className="text-sm text-ink-80 italic"
+            className="text-body text-ink-80 italic"
             data-testid="modal-text-preview"
           >
             {preview || <span className="text-ink-40">Aucun texte</span>}
@@ -80,7 +80,7 @@ export function ManuallyEditedModal({
               logger.info(SERVICE_NAME, 'User chose to keep manual edit', { sceneName, language });
               onKeep();
             }}
-            className="rounded-md border border-line px-4 py-2 text-sm font-medium text-ink-80 hover:bg-paper-soft"
+            className="rounded-md border border-line px-4 py-2 text-body font-medium text-ink-80 hover:bg-paper-soft"
           >
             Conserver ma version
           </button>
@@ -91,7 +91,7 @@ export function ManuallyEditedModal({
               logger.info(SERVICE_NAME, 'User chose to update translation', { sceneName, language });
               onUpdate();
             }}
-            className="rounded-md bg-ocre px-4 py-2 text-sm font-medium text-ink hover:brightness-110"
+            className="rounded-md bg-ocre px-4 py-2 text-body font-medium text-ink hover:brightness-110"
           >
             Mettre à jour
           </button>

@@ -12,7 +12,7 @@ export function WalkMap({ points }: WalkMapProps) {
   if (points.length === 0) {
     return (
       <div
-        className="bg-paper-soft h-48 flex items-center justify-center text-sm text-ink-40"
+        className="bg-paper-soft h-48 flex items-center justify-center text-body text-ink-40"
         data-testid="walk-map-empty"
       >
         Pas de tracé GPS

@@ -202,7 +202,7 @@ export function LanguageAudioSection({
       return (
         <span
           data-testid="audio-source-badge"
-          className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-grenadine-soft text-grenadine"
+          className="inline-flex items-center px-2 py-0.5 rounded-pill text-meta font-medium bg-grenadine-soft text-grenadine"
         >
           TTS automatique
         </span>
@@ -212,7 +212,7 @@ export function LanguageAudioSection({
     return (
       <span
         data-testid="audio-source-badge"
-        className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-mer-soft text-mer"
+        className="inline-flex items-center px-2 py-0.5 rounded-pill text-meta font-medium bg-mer-soft text-mer"
       >
         Enregistrement personnel
       </span>
@@ -223,14 +223,14 @@ export function LanguageAudioSection({
     <div className="space-y-3 mt-4" data-testid="language-audio-section">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-ink">Audio</h3>
+        <h3 className="text-body font-semibold text-ink">Audio</h3>
         {renderSourceBadge()}
       </div>
 
       {/* Un échec d'enregistrement se voit : la langue n'a PAS de son. */}
       {saveError && (
         <p
-          className="rounded-lg border border-danger bg-grenadine-soft p-2 text-xs text-ink"
+          className="rounded-lg border border-danger bg-grenadine-soft p-2 text-meta text-ink"
           role="alert"
           data-testid="language-audio-save-error"
         >
@@ -245,7 +245,7 @@ export function LanguageAudioSection({
             <>
               <button
                 onClick={handlePlay}
-                className="mb-2 text-sm font-medium text-grenadine hover:opacity-80"
+                className="mb-2 text-body font-medium text-grenadine hover:opacity-80"
                 data-testid="play-audio-btn"
               >
                 ▶ Écouter
@@ -253,14 +253,14 @@ export function LanguageAudioSection({
               {isLoadedInPlayer && <AudioPlayerBar compact label={`Audio ${targetLanguage.toUpperCase()}`} />}
             </>
           ) : (
-            <p className="text-sm text-grenadine">Audio genere ✅ (chargement...)</p>
+            <p className="text-body text-grenadine">Audio genere ✅ (chargement...)</p>
           )}
         </div>
       )}
 
       {/* No audio message */}
       {!audioKey && !playableUrl && (
-        <p className="text-sm text-ink-60" data-testid="no-audio-message">
+        <p className="text-body text-ink-60" data-testid="no-audio-message">
           Aucun audio pour cette scene
         </p>
       )}
@@ -268,7 +268,7 @@ export function LanguageAudioSection({
       {/* Primary action: record with prompter */}
       <Link
         href={`/guide/studio/${sessionId}/record?sceneId=${segment.sceneId}&lang=${targetLanguage}`}
-        className="flex items-center justify-center gap-2 w-full text-sm font-medium py-2.5 px-4 rounded-lg bg-mer text-white hover:opacity-90 transition"
+        className="flex items-center justify-center gap-2 w-full text-body font-medium py-2.5 px-4 rounded-lg bg-mer text-white hover:opacity-90 transition"
         data-testid="record-with-prompter-btn"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -281,7 +281,7 @@ export function LanguageAudioSection({
       <div className="flex gap-2">
         <button
           onClick={() => setActiveTool(activeTool === 'tts' ? null : 'tts')}
-          className={`flex-1 text-sm font-medium py-2 px-4 rounded-lg transition ${
+          className={`flex-1 text-body font-medium py-2 px-4 rounded-lg transition ${
             activeTool === 'tts'
               ? 'bg-grenadine text-white'
               : 'border border-grenadine text-grenadine hover:bg-grenadine-soft'
@@ -292,7 +292,7 @@ export function LanguageAudioSection({
         </button>
         <button
           onClick={() => setActiveTool(activeTool === 'recorder' ? null : 'recorder')}
-          className={`flex-1 text-sm font-medium py-2 px-4 rounded-lg transition ${
+          className={`flex-1 text-body font-medium py-2 px-4 rounded-lg transition ${
             activeTool === 'recorder'
               ? 'bg-ink-80 text-white'
               : 'border border-ink-40 text-ink-80 hover:bg-paper-soft'

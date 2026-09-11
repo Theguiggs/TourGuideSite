@@ -261,7 +261,7 @@ export function TourCard({
           {sessionLangs.map((l) => (
             <span
               key={l}
-              className="text-[10px] px-1.5 py-0.5 bg-paper-deep text-ink-60 rounded-sm font-bold tracking-wider"
+              className="text-eyebrow px-1.5 py-0.5 bg-paper-deep text-ink-60 rounded-sm font-bold tracking-wider"
             >
               {l}
             </span>

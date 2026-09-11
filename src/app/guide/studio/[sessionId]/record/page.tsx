@@ -344,7 +344,7 @@ export default function RecordPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
           &larr; Retour à la session
         </Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">
@@ -357,7 +357,7 @@ export default function RecordPage() {
   if (session.narrationMode !== 'recording') {
     return (
       <div className="p-6 max-w-2xl mx-auto">
-        <Link href={`/guide/studio/${sessionId}/scenes`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
+        <Link href={`/guide/studio/${sessionId}/scenes`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
           &larr; Retour aux scènes
         </Link>
         <div className="rounded-lg border border-mer-soft bg-mer-soft p-5 text-mer" role="status">
@@ -370,7 +370,7 @@ export default function RecordPage() {
   if (!isSourceLanguage) {
     return (
       <div className="p-6 max-w-2xl mx-auto">
-        <Link href={`/guide/studio/${sessionId}/scenes`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
+        <Link href={`/guide/studio/${sessionId}/scenes`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
           &larr; Retour aux scènes
         </Link>
         <div className="rounded-lg border border-mer-soft bg-mer-soft p-5 text-mer" role="status" data-testid="translated-language-blocked">
@@ -383,7 +383,7 @@ export default function RecordPage() {
   if (['submitted', 'published', 'paused', 'revision_requested', 'archived', 'ready_for_cleanup'].includes(session.status)) {
     return (
       <div className="p-6 max-w-2xl mx-auto">
-        <Link href={`/guide/studio/${sessionId}/scenes`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
+        <Link href={`/guide/studio/${sessionId}/scenes`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
           &larr; Retour aux scènes
         </Link>
         <div className="rounded-lg border border-ocre-soft bg-ocre-soft p-5 text-ocre-ink" role="status">
@@ -415,14 +415,14 @@ export default function RecordPage() {
       <div className="flex-1 p-4 lg:p-6 flex flex-col">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-sm mb-1 inline-block">
+            <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-1 inline-block">
               &larr; Retour à la session
             </Link>
             <h2 className="text-lg font-semibold text-ink">
               Prompteur — {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
             </h2>
           </div>
-          <p className="text-xs text-ink-40">Espace = pause/reprendre · Échap = stop</p>
+          <p className="text-meta text-ink-40">Espace = pause/reprendre · Échap = stop</p>
         </div>
 
         {sceneText ? (
@@ -441,10 +441,10 @@ export default function RecordPage() {
           <div className="flex-1 flex items-center justify-center bg-paper-soft rounded-lg mb-4" data-testid="no-text">
             <div className="text-center text-ink-60 p-6">
               <p className="text-lg font-medium mb-2">Pas de texte pour cette scène</p>
-              <p className="text-sm">Transcrivez ou saisissez le texte dans l&apos;éditeur avant d&apos;utiliser le prompteur.</p>
+              <p className="text-body">Transcrivez ou saisissez le texte dans l&apos;éditeur avant d&apos;utiliser le prompteur.</p>
               <Link
                 href={`/guide/studio/${sessionId}/edit`}
-                className="inline-block mt-3 text-grenadine hover:opacity-80 font-medium text-sm"
+                className="inline-block mt-3 text-grenadine hover:opacity-80 font-medium text-body"
               >
                 Ouvrir l&apos;éditeur
               </Link>
@@ -471,7 +471,7 @@ export default function RecordPage() {
                 type="button"
                 onClick={saveSelectedTake}
                 disabled={isSavingAudio || isRecording || selectedTakeId === savedTakeIdByScene[activeSceneId]}
-                className="rounded-full bg-grenadine px-4 py-2 text-sm font-semibold text-paper disabled:opacity-50"
+                className="rounded-pill bg-grenadine px-4 py-2 text-body font-semibold text-paper disabled:opacity-50"
                 data-testid="save-selected-take"
               >
                 {selectedTakeId === savedTakeIdByScene[activeSceneId]
@@ -482,17 +482,17 @@ export default function RecordPage() {
               </button>
             )}
             {saveState === 'uploading' && (
-              <div role="status" className="text-sm text-ink-60" data-testid="upload-progress">
+              <div role="status" className="text-body text-ink-60" data-testid="upload-progress">
                 Envoi de la prise… {uploadPercent}%
               </div>
             )}
             {saveState === 'persisting' && (
-              <div role="status" className="text-sm text-ink-60">Association de la prise à la scène…</div>
+              <div role="status" className="text-body text-ink-60">Association de la prise à la scène…</div>
             )}
             {saveMessage && (
               <div
                 role={saveState === 'error' ? 'alert' : 'status'}
-                className={`rounded-lg p-3 text-sm ${saveState === 'error' ? 'bg-grenadine-soft text-danger' : 'bg-mer-soft text-mer'}`}
+                className={`rounded-lg p-3 text-body ${saveState === 'error' ? 'bg-grenadine-soft text-danger' : 'bg-mer-soft text-mer'}`}
                 data-testid="recording-save-message"
               >
                 {saveMessage}
@@ -501,12 +501,12 @@ export default function RecordPage() {
             {(activeScene?.studioAudioKey || activeScene?.originalAudioKey) && (
               <div className="rounded-xl border border-mer bg-mer-soft p-4" data-testid="saved-scene-audio">
                 <p className="font-semibold text-ink">Audio actuellement enregistré pour cette scène</p>
-                <p className="mt-1 text-sm text-ink-60">Il restera disponible lorsque vous reviendrez sur cette scène.</p>
+                <p className="mt-1 text-body text-ink-60">Il restera disponible lorsque vous reviendrez sur cette scène.</p>
                 <div className="mt-3 flex flex-wrap gap-3">
                   <button
                     type="button"
                     onClick={playSavedAudio}
-                    className="rounded-full border border-grenadine px-4 py-2 text-sm font-semibold text-grenadine"
+                    className="rounded-pill border border-grenadine px-4 py-2 text-body font-semibold text-grenadine"
                     data-testid="play-saved-audio"
                   >
                     ▶ Écouter l’audio
@@ -515,7 +515,7 @@ export default function RecordPage() {
                     type="button"
                     onClick={deleteSavedAudio}
                     disabled={isDeletingAudio || isRecording}
-                    className="rounded-full border border-danger px-4 py-2 text-sm font-semibold text-danger disabled:opacity-50"
+                    className="rounded-pill border border-danger px-4 py-2 text-body font-semibold text-danger disabled:opacity-50"
                     data-testid="delete-saved-audio"
                   >
                     {isDeletingAudio ? 'Suppression…' : 'Supprimer l’audio'}

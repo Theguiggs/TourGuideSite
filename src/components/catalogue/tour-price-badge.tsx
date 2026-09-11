@@ -24,7 +24,7 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
     return (
       <span
         data-testid={`badge-owned-${tour.id}`}
-        className="inline-flex items-center gap-1 bg-mer-soft text-mer text-xs font-bold px-2 py-0.5 rounded-full"
+        className="inline-flex items-center gap-1 bg-mer-soft text-mer text-meta font-bold px-2 py-0.5 rounded-pill"
       >
         <span aria-hidden="true">✓</span> {locale === 'en' ? 'Purchased' : 'Acheté'}
       </span>
@@ -34,7 +34,7 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
     return (
       <span
         data-testid={`badge-free-${tour.id}`}
-        className="bg-olive-soft text-olive text-xs font-bold px-2 py-0.5 rounded-full"
+        className="bg-olive-soft text-olive text-meta font-bold px-2 py-0.5 rounded-pill"
       >
         {locale === 'en' ? 'FREE' : 'GRATUIT'}
       </span>
@@ -44,7 +44,7 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
     return (
       <span
         data-testid={`badge-subscription-${tour.id}`}
-        className="bg-ocre-soft text-ocre-ink text-xs font-bold px-2 py-0.5 rounded-full"
+        className="bg-ocre-soft text-ocre-ink text-meta font-bold px-2 py-0.5 rounded-pill"
       >
         {locale === 'en' ? 'INCLUDED WITH SUBSCRIPTION' : 'INCLUS DANS L’ABONNEMENT'}
       </span>
@@ -54,7 +54,7 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
     return (
       <span
         data-testid={`badge-price-${tour.id}`}
-        className="bg-grenadine-soft text-grenadine text-xs font-bold px-2 py-0.5 rounded-full"
+        className="bg-grenadine-soft text-grenadine text-meta font-bold px-2 py-0.5 rounded-pill"
       >
         {formatPrice(tour.priceCents)}
       </span>

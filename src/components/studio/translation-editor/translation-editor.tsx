@@ -90,7 +90,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
   if (isProcessing) {
     return (
       <div className="p-4 bg-mer-soft rounded-lg animate-pulse" data-testid="translation-processing">
-        <p className="text-sm text-mer">{t('Traduction en cours...', 'Translation in progress...')}</p>
+        <p className="text-body text-mer">{t('Traduction en cours...', 'Translation in progress...')}</p>
       </div>
     );
   }
@@ -98,14 +98,14 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
   if (isFailed) {
     return (
       <div className="p-4 bg-grenadine-soft border border-grenadine-soft rounded-lg" data-testid="translation-failed">
-        <p className="text-sm text-danger">{translationState?.error ?? t('Échec de la traduction.', 'Translation failed.')}</p>
+        <p className="text-body text-danger">{translationState?.error ?? t('Échec de la traduction.', 'Translation failed.')}</p>
       </div>
     );
   }
 
   if (!hasTranslation && !isCompleted) {
     return (
-      <div className="p-4 bg-paper-soft rounded-lg text-sm text-ink-60 text-center" data-testid="translation-empty">
+      <div className="p-4 bg-paper-soft rounded-lg text-body text-ink-60 text-center" data-testid="translation-empty">
         {t('Aucune traduction disponible — utilisez le sélecteur ci-dessus pour traduire.', 'No translation is available — use the selector above to translate.')}
       </div>
     );
@@ -116,10 +116,10 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Source text (read-only) */}
         <div>
-          <label className="text-sm font-medium text-ink-80 block mb-1">
+          <label className="text-body font-medium text-ink-80 block mb-1">
             {LANG_FLAGS[segment.language] ?? ''} Texte source ({segment.language.toUpperCase()})
           </label>
-          <div className="p-3 bg-paper-soft border border-line rounded-lg text-sm text-ink-80 min-h-[200px] max-h-[400px] overflow-y-auto">
+          <div className="p-3 bg-paper-soft border border-line rounded-lg text-body text-ink-80 min-h-[200px] max-h-[400px] overflow-y-auto">
             {segment.transcriptText || 'Aucun texte source'}
           </div>
         </div>
@@ -127,10 +127,10 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
         {/* Translated text (editable) */}
         <div>
           <div className="flex items-center justify-between mb-1">
-            <label htmlFor="translated-text" className="text-sm font-medium text-ink-80">
+            <label htmlFor="translated-text" className="text-body font-medium text-ink-80">
               {translationState?.targetLang ? `${LANG_FLAGS[translationState.targetLang] ?? ''} ` : ''}Traduction
               {translationState?.provider && (
-                <span className={`ml-2 text-xs px-1.5 py-0.5 rounded ${
+                <span className={`ml-2 text-meta px-1.5 py-0.5 rounded ${
                   translationState.provider === 'marianmt'
                     ? 'bg-olive-soft text-success'
                     : 'bg-ocre-soft text-ocre-ink'
@@ -139,7 +139,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
                 </span>
               )}
             </label>
-            <div className="text-xs text-ink-40">
+            <div className="text-meta text-ink-40">
               {isSaving && <span className="text-mer">Sauvegarde...</span>}
               {!isSaving && isDirty && <span>{t('Non sauvegardé', 'Unsaved')}</span>}
               {!isSaving && !isDirty && editedText && <span className="text-success">{t('Sauvegardé', 'Saved')}</span>}
@@ -152,7 +152,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
             onChange={(e) => setEditedText(e.target.value)}
             placeholder="Le texte traduit apparaîtra ici..."
             rows={10}
-            className="w-full p-3 border border-line rounded-lg text-ink text-sm leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine min-h-[200px]"
+            className="w-full p-3 border border-line rounded-lg text-ink text-body leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine min-h-[200px]"
             data-testid="translated-text-editor"
           />
         </div>
@@ -160,7 +160,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
 
       {/* Cost display */}
       {translationState?.costCharged !== null && translationState?.costCharged !== undefined && translationState.costCharged > 0 && (
-        <div className="text-xs text-ink-60" data-testid="translation-cost">
+        <div className="text-meta text-ink-60" data-testid="translation-cost">
           Coût : {(translationState.costCharged / 100).toFixed(2)} {deviseDuMoteur(moteurDuMontant(translationState?.provider, segment.translationProvider))}
           {translationState.costProvider !== null && (
             <span className="text-ink-40"> (coût fournisseur : {(translationState.costProvider / 100).toFixed(2)} {deviseDuMoteur(moteurDuMontant(translationState?.provider, segment.translationProvider))})</span>
@@ -172,7 +172,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
       {hasTranslation && onGenerateTTS && (
         <button
           onClick={onGenerateTTS}
-          className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg text-sm transition"
+          className="bg-grenadine hover:opacity-90 text-white font-medium py-2 px-5 rounded-lg text-body transition"
           data-testid="generate-tts-btn"
         >
           {t("Générer l'audio", 'Generate audio')}

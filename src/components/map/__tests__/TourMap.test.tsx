@@ -44,7 +44,7 @@ describe('TourMap', () => {
     render(
       <TourMap pois={[]} selectedPoiId={null} onPoiSelect={jest.fn()} />,
     );
-    expect(screen.getByText('Aucun POI avec coordonnees GPS')).toBeTruthy();
+    expect(screen.getByText('Aucun point d’intérêt avec coordonnées GPS')).toBeTruthy();
   });
 
   it('should call onPoiSelect when marker is clicked', () => {

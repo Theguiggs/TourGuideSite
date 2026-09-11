@@ -261,10 +261,10 @@ export default function GuideSignupPage() {
 
         {/* Progress indicator */}
         <div className="flex items-center justify-center mb-8 gap-2">
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-meta font-bold transition
+          <div className={`w-8 h-8 rounded-pill flex items-center justify-center text-meta font-bold transition
             ${step === 'register' ? 'bg-grenadine text-paper' : 'bg-grenadine-soft text-grenadine'}`}>1</div>
           <div className="w-12 h-0.5 bg-line" />
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-meta font-bold transition
+          <div className={`w-8 h-8 rounded-pill flex items-center justify-center text-meta font-bold transition
             ${step === 'confirm' ? 'bg-grenadine text-paper' : 'bg-paper-deep text-ink-40'}`}>2</div>
         </div>
 
@@ -344,7 +344,7 @@ export default function GuideSignupPage() {
                         { label: 'Un caractère spécial (!@#$%…)', ok: /[^A-Za-z0-9]/.test(password) },
                       ].map(({ label, ok }) => (
                         <li key={label} className={`flex items-center gap-1.5 text-meta transition-colors ${ok ? 'text-mer' : 'text-ink-40'}`}>
-                          <span className="text-[11px] font-bold" aria-hidden="true">{ok ? '✓' : '○'}</span>
+                          <span className="text-eyebrow font-bold" aria-hidden="true">{ok ? '✓' : '○'}</span>
                           {label}
                         </li>
                       ))}

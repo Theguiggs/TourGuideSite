@@ -51,13 +51,13 @@ export function MicHelp({ onClose }: MicHelpProps) {
   const [selectedBrowser, setSelectedBrowser] = useState(0);
 
   return (
-    <div className="bg-white border border-ocre-soft rounded-lg p-4 shadow-lg max-w-lg" data-testid="mic-help">
+    <div className="bg-card border border-ocre-soft rounded-lg p-4 shadow-lg max-w-lg" data-testid="mic-help">
       <div className="flex items-start justify-between mb-3">
         <h3 className="text-base font-semibold text-ink">🎙️ Aide — Permission micro</h3>
         <button onClick={onClose} className="text-ink-40 hover:text-ink-80 text-lg">&times;</button>
       </div>
 
-      <p className="text-sm text-ink-80 mb-3">
+      <p className="text-body text-ink-80 mb-3">
         Le navigateur a bloqué l&apos;accès au microphone. Suivez les instructions pour votre navigateur :
       </p>
 
@@ -67,7 +67,7 @@ export function MicHelp({ onClose }: MicHelpProps) {
           <button
             key={browser.name}
             onClick={() => setSelectedBrowser(index)}
-            className={`px-3 py-1.5 text-sm rounded-t transition ${
+            className={`px-3 py-1.5 text-body rounded-t transition ${
               selectedBrowser === index
                 ? 'bg-grenadine-soft text-grenadine border-b-2 border-grenadine'
                 : 'text-ink-60 hover:text-ink-80'
@@ -82,8 +82,8 @@ export function MicHelp({ onClose }: MicHelpProps) {
       {/* Instructions */}
       <ol className="space-y-2">
         {BROWSER_INSTRUCTIONS[selectedBrowser].steps.map((step, i) => (
-          <li key={i} className="flex gap-2 text-sm text-ink-80">
-            <span className="w-5 h-5 rounded-full bg-grenadine-soft text-grenadine flex items-center justify-center text-xs font-bold flex-shrink-0">
+          <li key={i} className="flex gap-2 text-body text-ink-80">
+            <span className="w-5 h-5 rounded-pill bg-grenadine-soft text-grenadine flex items-center justify-center text-meta font-bold flex-shrink-0">
               {i + 1}
             </span>
             {step}
@@ -91,7 +91,7 @@ export function MicHelp({ onClose }: MicHelpProps) {
         ))}
       </ol>
 
-      <div className="mt-4 p-2 bg-mer-soft rounded text-xs text-mer">
+      <div className="mt-4 p-2 bg-mer-soft rounded text-meta text-mer">
         💡 <strong>Alternative :</strong> Vous pouvez aussi importer un fichier audio enregistré avec un autre outil.
       </div>
     </div>

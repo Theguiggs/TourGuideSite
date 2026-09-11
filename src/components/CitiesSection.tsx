@@ -2,8 +2,18 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { getCityAccent, type CityAccent } from '@/lib/cities/accent-map';
 import type { City } from '@/types/tour';
 import { getCities } from '@/lib/api/tours';
+
+// Fond doux de la carte ville, par accent (classes écrites en entier : Tailwind
+// ne génère pas les noms construits). Le dégradé teal n'était pas à nous.
+const ACCENT_BG: Record<CityAccent, string> = {
+  grenadine: 'bg-grenadine-soft',
+  ocre: 'bg-ocre-soft',
+  mer: 'bg-mer-soft',
+  olive: 'bg-olive-soft',
+};
 
 export default function CitiesSection({ locale = 'fr' }: { locale?: 'fr' | 'en' }) {
   const [cities, setCities] = useState<City[]>([]);
@@ -53,10 +63,10 @@ export default function CitiesSection({ locale = 'fr' }: { locale?: 'fr' | 'en' 
               href={`${locale === 'en' ? '/en' : ''}/catalogue/${city.slug}`}
               className="group block rounded-2xl overflow-hidden border border-line hover:shadow-lg transition-shadow"
             >
-              <div className="h-48 bg-gradient-to-br from-teal-600 to-teal-800 flex items-end p-6">
+              <div className={`h-48 flex items-end p-6 ${ACCENT_BG[getCityAccent(city.slug)]}`}>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">{city.name}</h3>
-                  <p className="text-teal-100 text-sm mt-1">
+                  <h3 className="font-display text-h4 text-ink">{city.name}</h3>
+                  <p className="text-ink-60 text-body mt-1">
                     {city.tourCount}{' '}
                     {locale === 'en'
                       ? `tour${city.tourCount > 1 ? 's' : ''}`
@@ -65,7 +75,7 @@ export default function CitiesSection({ locale = 'fr' }: { locale?: 'fr' | 'en' 
                 </div>
               </div>
               <div className="p-4">
-                <p className="text-ink-60 text-sm">{city.description}</p>
+                <p className="text-ink-60 text-body">{city.description}</p>
               </div>
             </Link>
           ))}

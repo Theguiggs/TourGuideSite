@@ -131,7 +131,7 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
 
   if (!speechUrl) {
     return (
-      <div className="p-3 bg-paper-soft rounded-lg text-sm text-ink-60 text-center">
+      <div className="p-3 bg-paper-soft rounded-lg text-body text-ink-60 text-center">
         Sélectionnez un audio de voix pour utiliser le mixeur
       </div>
     );
@@ -139,13 +139,13 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
 
   return (
     <div className="space-y-3" data-testid="audio-mixer">
-      <h3 className="text-xs font-semibold text-ink-40 uppercase tracking-wider">Mixer audio</h3>
+      <h3 className="text-meta font-semibold text-ink-40 uppercase tracking-wider">Mixer audio</h3>
 
       {/* Speech gain */}
       <div className="p-3 bg-paper-soft rounded-lg">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-medium text-ink-80">🎙️ Speech (guide)</span>
-          <span className="text-xs text-ink-60 font-mono">{mix.speechGain}%</span>
+          <span className="text-meta font-medium text-ink-80">🎙️ Speech (guide)</span>
+          <span className="text-meta text-ink-60 font-mono">{mix.speechGain}%</span>
         </div>
         <input
           type="range"
@@ -162,17 +162,17 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
       {/* Ambiance gain */}
       <div className="p-3 bg-paper-soft rounded-lg">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-medium text-ink-80">
+          <span className="text-meta font-medium text-ink-80">
             {ambianceSound ? `${ambianceSound.icon} ${t('Ambiance', 'Ambience')} : ${ambianceSound.label}` : `🔇 ${t('Ambiance : aucune', 'Ambience: none')}`}
           </span>
           <div className="flex items-center gap-2">
             {ambianceSound && (
-              <span className="text-xs text-ink-60 font-mono">{mix.ambiance?.gain ?? 0}%</span>
+              <span className="text-meta text-ink-60 font-mono">{mix.ambiance?.gain ?? 0}%</span>
             )}
             {ambianceSound && (
               <button
                 onClick={handleRemoveAmbiance}
-                className="text-xs text-danger hover:opacity-80"
+                className="text-meta text-danger hover:opacity-80"
                 title="Retirer l'ambiance"
               >
                 X
@@ -197,7 +197,7 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
         ) : (
           <button
             onClick={() => setShowPicker(!showPicker)}
-            className="w-full py-2 border border-dashed border-mer-soft rounded-lg text-xs text-mer hover:bg-mer-soft transition"
+            className="w-full py-2 border border-dashed border-mer-soft rounded-lg text-meta text-mer hover:bg-mer-soft transition"
             data-testid="add-ambiance-btn"
           >
             + {t('Ajouter une ambiance sonore', 'Add background sound')}
@@ -206,7 +206,7 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
         {ambianceSound && (
           <button
             onClick={() => setShowPicker(!showPicker)}
-            className="mt-1 text-xs text-mer hover:opacity-80"
+            className="mt-1 text-meta text-mer hover:opacity-80"
           >
             Changer d&apos;ambiance
           </button>
@@ -224,11 +224,11 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
 
       {/* Mix player */}
       <div className="bg-ink rounded-lg p-3 space-y-2">
-        <p className="text-xs text-ink-40 font-medium">Preview du mix</p>
+        <p className="text-meta text-ink-40 font-medium">Preview du mix</p>
 
         {/* Progress */}
         <div className="flex items-center gap-2">
-          <span className="text-xs text-ink-40 w-10 text-right font-mono">{formatTime(mixerState.currentTime)}</span>
+          <span className="text-meta text-ink-40 w-10 text-right font-mono">{formatTime(mixerState.currentTime)}</span>
           <input
             type="range"
             min={0}
@@ -239,26 +239,26 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
             className="flex-1 h-1.5 accent-grenadine cursor-pointer"
             aria-label="Position mix"
           />
-          <span className="text-xs text-ink-40 w-10 font-mono">{formatTime(mixerState.duration)}</span>
+          <span className="text-meta text-ink-40 w-10 font-mono">{formatTime(mixerState.duration)}</span>
         </div>
 
         {/* Controls */}
         <div className="flex items-center justify-center gap-3">
           <button onClick={handleStop} title="Arrêter"
-            className="w-8 h-8 rounded-full bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-sm transition">
+            className="w-8 h-8 rounded-pill bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-body transition">
             {'\u25A0'}
           </button>
           <button onClick={() => audioMixerService.seek(mixerState.currentTime - 10)} title="Reculer 10s"
-            className="w-8 h-8 rounded-full bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-[10px] font-bold transition">
+            className="w-8 h-8 rounded-pill bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-eyebrow font-bold transition">
             -10
           </button>
           <button onClick={handlePlayPause} title={mixerState.isPlaying ? 'Pause' : t('Lecture', 'Play')}
             disabled={isLoading}
-            className="w-10 h-10 rounded-full bg-grenadine hover:opacity-90 disabled:bg-ink-80 text-white flex items-center justify-center text-lg transition">
+            className="w-10 h-10 rounded-pill bg-grenadine hover:opacity-90 disabled:bg-ink-80 text-white flex items-center justify-center text-lg transition">
             {isLoading ? '...' : mixerState.isPlaying ? '||' : '\u25B6'}
           </button>
           <button onClick={() => audioMixerService.seek(mixerState.currentTime + 10)} title="Avancer 10s"
-            className="w-8 h-8 rounded-full bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-[10px] font-bold transition">
+            className="w-8 h-8 rounded-pill bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-eyebrow font-bold transition">
             +10
           </button>
         </div>

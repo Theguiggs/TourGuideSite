@@ -67,7 +67,7 @@ export function S3Image({
   if (error || (!url && shouldUseStubs())) {
     return (
       <div
-        className={`bg-paper-deep flex items-center justify-center text-ink-40 text-xs ${className}`}
+        className={`bg-paper-deep flex items-center justify-center text-ink-40 text-meta ${className}`}
         style={reserved}
       >
         <span aria-hidden="true">{fallback}</span>

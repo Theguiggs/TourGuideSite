@@ -69,12 +69,12 @@ export function RgpdConsentBanner() {
       onKeyDown={handleKeyDown}
       ref={dialogRef}
     >
-      <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full mx-4 p-6">
+      <div className="bg-card rounded-xl shadow-2xl max-w-lg w-full mx-4 p-6">
         <h2 id="rgpd-title" className="text-xl font-bold text-ink mb-4">
           {copy.title}
         </h2>
 
-        <div className="text-sm text-ink-80 space-y-3 mb-6">
+        <div className="text-body text-ink-80 space-y-3 mb-6">
           <p>
             {copy.intro}
           </p>
@@ -86,7 +86,7 @@ export function RgpdConsentBanner() {
           <p>
             {copy.privacy}
           </p>
-          <p className="text-xs text-ink-60">
+          <p className="text-meta text-ink-60">
             {copy.legal}
           </p>
         </div>

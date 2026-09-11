@@ -68,7 +68,7 @@ function MultilangPaymentForm({
         type="button"
         onClick={handlePay}
         disabled={busy}
-        className={`w-full rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
+        className={`w-full rounded-lg px-4 py-2.5 text-body font-semibold transition ${
           busy ? 'bg-paper-deep text-ink-40 cursor-not-allowed' : 'bg-grenadine text-white hover:opacity-90'
         }`}
       >
@@ -325,7 +325,7 @@ export function OpenMultilangModal({
       data-testid="multilang-modal-backdrop"
     >
       <div
-        className="relative w-full max-w-4xl bg-white rounded-xl shadow-xl max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-4xl bg-card rounded-xl shadow-xl max-h-[90vh] overflow-y-auto"
         data-testid="multilang-modal"
         role="dialog"
         aria-modal="true"
@@ -344,14 +344,14 @@ export function OpenMultilangModal({
 
         <div className="p-6">
           <h2 className="text-lg font-bold text-ink mb-1">Ajouter des langues</h2>
-          <p className="text-sm text-ink-60 mb-5">
+          <p className="text-body text-ink-60 mb-5">
             Choisissez, pour chaque langue, de traduire vous-même (gratuit) ou de laisser l&apos;IA traduire.
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6">
             {/* ─── LEFT: language table ─── */}
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full text-body">
                 <thead>
                   <tr className="border-b border-line text-ink-60">
                     <th className="text-left font-medium py-2">Langue</th>
@@ -379,19 +379,19 @@ export function OpenMultilangModal({
                               width="20" height="15" alt="" aria-hidden="true" className="shrink-0"
                             />
                             <span className="font-medium text-ink">{lang.label}</span>
-                            {premium && <span className="text-[10px] text-ocre-ink">premium</span>}
+                            {premium && <span className="text-eyebrow text-ocre-ink">premium</span>}
                           </span>
                         </td>
                         <td className="py-2 px-2">
                           {isAuto ? (
-                            <span className="text-xs text-success" data-testid={`locked-auto-${lang.code}`}>Déjà ajoutée (Auto)</span>
+                            <span className="text-meta text-success" data-testid={`locked-auto-${lang.code}`}>Déjà ajoutée (Auto)</span>
                           ) : (
                             <select
                               value={mode}
                               onChange={(e) => setMode(lang.code, e.target.value as LangMode | 'none')}
                               disabled={isLoading}
                               data-testid={`mode-select-${lang.code}`}
-                              className="border border-line rounded-md px-2 py-1 text-sm text-ink-80 bg-white w-full"
+                              className="border border-line rounded-md px-2 py-1 text-body text-ink-80 bg-card w-full"
                             >
                               {/* Manual-owned languages can't be set back to 'none' (already owned). */}
                               {!isManualOwned && <option value="none">{MODE_LABELS.none}</option>}
@@ -403,9 +403,9 @@ export function OpenMultilangModal({
                         </td>
                         <td className="py-2 text-right whitespace-nowrap">
                           {isAuto ? (
-                            <span className="text-xs text-ink-40">—</span>
+                            <span className="text-meta text-ink-40">—</span>
                           ) : isManualOwned && mode === 'manual' ? (
-                            <span className="text-xs text-ink-40">déjà en manuel</span>
+                            <span className="text-meta text-ink-40">déjà en manuel</span>
                           ) : !line ? (
                             <span className="text-ink-40">—</span>
                           ) : line.billing === 'manual' ? (
@@ -416,7 +416,7 @@ export function OpenMultilangModal({
                             <span className="text-grenadine">{line.billing === 'pack_all' ? 'Pack' : 'Pack 3'}</span>
                           ) : (
                             <span className="text-ink-80 font-medium">
-                              {formatPrice(line.priceCents)}{isUpgrade && <span className="text-[10px] text-mer ml-1">upgrade</span>}
+                              {formatPrice(line.priceCents)}{isUpgrade && <span className="text-eyebrow text-mer ml-1">upgrade</span>}
                             </span>
                           )}
                         </td>
@@ -429,8 +429,8 @@ export function OpenMultilangModal({
 
             {/* ─── RIGHT: help + recap ─── */}
             <aside className="space-y-4">
-              <div className="rounded-lg border border-line bg-paper-soft p-3 text-xs space-y-2.5">
-                <p className="font-bold text-ink text-sm">💡 Les offres</p>
+              <div className="rounded-lg border border-line bg-paper-soft p-3 text-meta space-y-2.5">
+                <p className="font-bold text-ink text-body">💡 Les offres</p>
                 <div>
                   <p className="font-semibold text-ink">Manuel — gratuit</p>
                   <p className="text-ink-60">Vous rédigez la traduction et enregistrez l&apos;audio vous-même.</p>
@@ -450,26 +450,26 @@ export function OpenMultilangModal({
               </div>
 
               {/* Recap */}
-              <div className="rounded-lg border border-line bg-white p-3" data-testid="recap-panel">
+              <div className="rounded-lg border border-line bg-card p-3" data-testid="recap-panel">
                 {order.packAllApplied && (
-                  <p className="text-xs text-grenadine font-semibold mb-2" data-testid="pack-all-applied">
+                  <p className="text-meta text-grenadine font-semibold mb-2" data-testid="pack-all-applied">
                     🎁 Pack Toutes appliqué
                   </p>
                 )}
                 {!order.packAllApplied && order.packAllMissing !== null && (
-                  <p className="text-xs text-mer mb-2" data-testid="pack-all-hint">
+                  <p className="text-meta text-mer mb-2" data-testid="pack-all-hint">
                     Encore {order.packAllMissing} langue{order.packAllMissing > 1 ? 's' : ''} en auto pour le Pack Toutes (12,99€).
                   </p>
                 )}
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-semibold text-ink">Total</span>
+                  <span className="text-body font-semibold text-ink">Total</span>
                   <span className="text-lg font-bold text-ink" data-testid="recap-total">
                     {chargeableCount === 0 ? '—' : order.totalCents === 0 ? 'Gratuit' : formatPrice(order.totalCents)}
                   </span>
                 </div>
 
                 {errorMessage && (
-                  <div className="rounded-lg bg-grenadine-soft border border-grenadine-soft px-3 py-2 text-xs text-danger mb-3" role="alert" data-testid="modal-error-banner">
+                  <div className="rounded-lg bg-grenadine-soft border border-grenadine-soft px-3 py-2 text-meta text-danger mb-3" role="alert" data-testid="modal-error-banner">
                     {errorMessage}
                   </div>
                 )}
@@ -478,7 +478,7 @@ export function OpenMultilangModal({
                   type="button"
                   onClick={handleConfirm}
                   disabled={chargeableCount === 0 || isLoading}
-                  className={`w-full rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
+                  className={`w-full rounded-lg px-4 py-2.5 text-body font-semibold transition ${
                     chargeableCount === 0 || isLoading
                       ? 'bg-paper-deep text-ink-40 cursor-not-allowed'
                       : 'bg-grenadine text-white hover:opacity-90'
@@ -495,13 +495,13 @@ export function OpenMultilangModal({
         {/* Overwrite / keep dialog for manual → auto upgrades with existing content */}
         {pendingOverwrite && (
           <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 rounded-xl p-4" data-testid="overwrite-dialog">
-            <div className="bg-white rounded-lg shadow-xl max-w-sm w-full p-5">
-              <h3 className="text-sm font-bold text-ink mb-2">Contenu manuel existant</h3>
-              <p className="text-sm text-ink-80 mb-1">
+            <div className="bg-card rounded-lg shadow-xl max-w-sm w-full p-5">
+              <h3 className="text-body font-bold text-ink mb-2">Contenu manuel existant</h3>
+              <p className="text-body text-ink-80 mb-1">
                 {pendingOverwrite.langs.map((l) => l.toUpperCase()).join(', ')} contien
                 {pendingOverwrite.langs.length > 1 ? 'nent' : 't'} déjà du texte traduit manuellement.
               </p>
-              <p className="text-sm text-ink-60 mb-4">
+              <p className="text-body text-ink-60 mb-4">
                 Voulez-vous écraser ce contenu par la traduction automatique, ou le conserver
                 (l&apos;auto ne remplira que les scènes vides) ?
               </p>
@@ -509,7 +509,7 @@ export function OpenMultilangModal({
                 <button
                   type="button"
                   onClick={() => { setIsLoading(true); runConfirm(pendingOverwrite.paymentIntentId, true); }}
-                  className="w-full rounded-lg px-4 py-2 text-sm font-semibold bg-grenadine text-white hover:opacity-90"
+                  className="w-full rounded-lg px-4 py-2 text-body font-semibold bg-grenadine text-white hover:opacity-90"
                   data-testid="overwrite-confirm"
                 >
                   Écraser par la traduction auto
@@ -517,7 +517,7 @@ export function OpenMultilangModal({
                 <button
                   type="button"
                   onClick={() => { setIsLoading(true); runConfirm(pendingOverwrite.paymentIntentId, false); }}
-                  className="w-full rounded-lg px-4 py-2 text-sm font-semibold border border-line text-ink-80 hover:bg-paper-soft"
+                  className="w-full rounded-lg px-4 py-2 text-body font-semibold border border-line text-ink-80 hover:bg-paper-soft"
                   data-testid="overwrite-keep"
                 >
                   Conserver mon contenu manuel
@@ -525,7 +525,7 @@ export function OpenMultilangModal({
                 <button
                   type="button"
                   onClick={() => setPendingOverwrite(null)}
-                  className="w-full rounded-lg px-4 py-2 text-xs text-ink-40 hover:text-ink-60"
+                  className="w-full rounded-lg px-4 py-2 text-meta text-ink-40 hover:text-ink-60"
                   data-testid="overwrite-cancel"
                 >
                   Annuler
@@ -538,11 +538,11 @@ export function OpenMultilangModal({
         {/* Stripe payment step — shown after PaymentIntent is created for paid orders */}
         {pendingPayment && pendingPayment.clientSecret && (
           <div className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-black/40 p-4 sm:p-6" data-testid="payment-step">
-            <div className="mt-4 mb-6 max-h-[calc(100vh-2rem)] w-full max-w-sm overflow-y-auto rounded-lg bg-white p-5 shadow-xl sm:mt-8">
-              <h3 className="text-sm font-bold text-ink mb-2">Paiement — {formatPrice(order.totalCents)}</h3>
-              <p className="text-sm text-ink-60 mb-4">Entrez vos informations de paiement pour finaliser l&apos;achat.</p>
+            <div className="mt-4 mb-6 max-h-[calc(100vh-2rem)] w-full max-w-sm overflow-y-auto rounded-lg bg-card p-5 shadow-xl sm:mt-8">
+              <h3 className="text-body font-bold text-ink mb-2">Paiement — {formatPrice(order.totalCents)}</h3>
+              <p className="text-body text-ink-60 mb-4">Entrez vos informations de paiement pour finaliser l&apos;achat.</p>
               {errorMessage && (
-                <p className="text-xs text-danger mb-3" role="alert">{errorMessage}</p>
+                <p className="text-meta text-danger mb-3" role="alert">{errorMessage}</p>
               )}
               {confirmedIntentId ? (
                 // Paiement pris, confirmation serveur ratée : on rejoue la
@@ -551,7 +551,7 @@ export function OpenMultilangModal({
                   type="button"
                   disabled={isLoading}
                   onClick={() => { setIsLoading(true); setErrorMessage(null); void runConfirm(confirmedIntentId, true); }}
-                  className="w-full rounded-lg px-4 py-2 text-sm font-semibold bg-grenadine text-white hover:opacity-90 disabled:opacity-60"
+                  className="w-full rounded-lg px-4 py-2 text-body font-semibold bg-grenadine text-white hover:opacity-90 disabled:opacity-60"
                   data-testid="payment-retry-confirm"
                 >
                   {isLoading ? 'Validation…' : 'Réessayer la validation (déjà payé)'}
@@ -569,7 +569,7 @@ export function OpenMultilangModal({
                     type="button"
                     disabled={isLoading}
                     onClick={() => { setPendingPayment(null); setErrorMessage(null); }}
-                    className="w-full mt-3 rounded-lg px-4 py-2 text-xs text-ink-40 hover:text-ink-60 disabled:opacity-40"
+                    className="w-full mt-3 rounded-lg px-4 py-2 text-meta text-ink-40 hover:text-ink-60 disabled:opacity-40"
                     data-testid="payment-cancel"
                   >
                     Annuler

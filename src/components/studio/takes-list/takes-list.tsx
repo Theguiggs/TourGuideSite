@@ -47,7 +47,7 @@ function TakePreview({ take, index }: { take: Take; index: number }) {
     <button
       type="button"
       onClick={togglePlayback}
-      className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-grenadine px-4 py-2 text-sm font-semibold text-grenadine transition hover:bg-grenadine-soft"
+      className="inline-flex min-h-10 items-center justify-center gap-2 rounded-pill border border-grenadine px-4 py-2 text-body font-semibold text-grenadine transition hover:bg-grenadine-soft"
       aria-label={`${isPlaying ? 'Mettre en pause' : 'Écouter'} la prise ${index + 1}`}
       data-testid={`play-take-${take.id}`}
     >
@@ -73,7 +73,7 @@ export function TakesList({ sceneId, savedTakeId = null }: TakesListProps) {
         <h3 id="takes-title" className="text-base font-semibold text-ink">
           Vos prises audio ({takes.length})
         </h3>
-        <p className="mt-1 text-sm text-ink-60">
+        <p className="mt-1 text-body text-ink-60">
           Écoutez vos essais, puis choisissez la prise à enregistrer pour cette scène.
         </p>
       </div>
@@ -102,14 +102,14 @@ export function TakesList({ sceneId, savedTakeId = null }: TakesListProps) {
                   />
                   <span className="min-w-0">
                     <span className="block font-semibold text-ink">Prise {index + 1}</span>
-                    <span className="block text-sm text-ink-60">Durée : {formatDuration(take.durationMs)}</span>
+                    <span className="block text-body text-ink-60">Durée : {formatDuration(take.durationMs)}</span>
                   </span>
                 </label>
 
                 <div className="flex flex-wrap items-center gap-2">
                   <TakePreview take={take} index={index} />
                   {isSaved && (
-                    <span className="rounded-full bg-mer-soft px-3 py-1.5 text-xs font-semibold text-mer" data-testid={`saved-take-${take.id}`}>
+                    <span className="rounded-pill bg-mer-soft px-3 py-1.5 text-meta font-semibold text-mer" data-testid={`saved-take-${take.id}`}>
                       ✓ Audio de la scène
                     </span>
                   )}
@@ -117,7 +117,7 @@ export function TakesList({ sceneId, savedTakeId = null }: TakesListProps) {
                     <button
                       type="button"
                       onClick={() => deleteTake(sceneId, take.id)}
-                      className="min-h-10 rounded-full px-3 py-2 text-sm font-medium text-ink-60 underline hover:text-danger"
+                      className="min-h-10 rounded-pill px-3 py-2 text-body font-medium text-ink-60 underline hover:text-danger"
                       aria-label={`Supprimer la prise ${index + 1}`}
                       data-testid={`delete-take-${take.id}`}
                     >
