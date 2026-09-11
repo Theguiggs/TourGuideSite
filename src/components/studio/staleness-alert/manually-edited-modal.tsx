@@ -50,7 +50,7 @@ export function ManuallyEditedModal({
       <div className="w-full p-6">
         <h2
           id="manually-edited-modal-title"
-          className="text-lg font-semibold text-ink"
+          className="text-h6 font-semibold text-ink"
           data-testid="modal-scene-name"
         >
           {sceneName}

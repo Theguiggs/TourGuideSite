@@ -335,7 +335,7 @@ export function OpenMultilangModal({
           type="button"
           onClick={onClose}
           disabled={closeLocked}
-          className="absolute top-3 right-3 text-ink-40 hover:text-ink-80 text-xl leading-none z-10 disabled:opacity-40"
+          className="absolute top-3 right-3 text-ink-40 hover:text-ink-80 text-h5 leading-none z-10 disabled:opacity-40"
           aria-label="Fermer"
           data-testid="modal-close-btn"
         >
@@ -343,7 +343,7 @@ export function OpenMultilangModal({
         </button>
 
         <div className="p-6">
-          <h2 className="text-lg font-bold text-ink mb-1">Ajouter des langues</h2>
+          <h2 className="text-h6 font-bold text-ink mb-1">Ajouter des langues</h2>
           <p className="text-body text-ink-60 mb-5">
             Choisissez, pour chaque langue, de traduire vous-même (gratuit) ou de laisser l&apos;IA traduire.
           </p>
@@ -463,7 +463,7 @@ export function OpenMultilangModal({
                 )}
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-body font-semibold text-ink">Total</span>
-                  <span className="text-lg font-bold text-ink" data-testid="recap-total">
+                  <span className="text-h6 font-bold text-ink" data-testid="recap-total">
                     {chargeableCount === 0 ? '—' : order.totalCents === 0 ? 'Gratuit' : formatPrice(order.totalCents)}
                   </span>
                 </div>

@@ -271,7 +271,7 @@ export function PaymentSummary({
         data-testid="payment-total"
       >
         <span className="text-body font-semibold text-ink">Total</span>
-        <span className="text-lg font-bold text-ink">
+        <span className="text-h6 font-bold text-ink">
           {hasLanguages ? formatPrice(order.totalCents) : '\u2014'}
         </span>
       </div>

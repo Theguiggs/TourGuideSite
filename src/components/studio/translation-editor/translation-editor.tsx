@@ -7,12 +7,9 @@ import { studioPersistenceService } from '@/lib/studio/studio-persistence-servic
 import { useTranslationStore, selectSegmentTranslation } from '@/lib/stores/translation-store';
 import type { SceneSegment } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
+import { LANG_FLAGS } from '@/lib/i18n/languages';
 
 const SERVICE_NAME = 'TranslationEditor';
-
-const LANG_FLAGS: Record<string, string> = {
-  fr: '🇫🇷', en: '🇬🇧', it: '🇮🇹', de: '🇩🇪', es: '🇪🇸',
-};
 
 /**
  * Le champ `costProvider` est un entier de CENTIMES sans monnaie déclarée, et

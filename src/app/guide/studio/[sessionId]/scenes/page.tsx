@@ -184,7 +184,7 @@ export default function ScenesPage() {
                 readOnly={locked}
                 required
                 maxLength={120}
-                className="mb-4 w-full rounded-lg border border-line p-3 text-base text-ink focus:outline-none focus:ring-2 focus:ring-grenadine"
+                className="mb-4 w-full rounded-lg border border-line p-3 text-body-lg text-ink focus:outline-none focus:ring-2 focus:ring-grenadine"
                 data-testid="scene-title-editor"
               />
               <label htmlFor="scene-text" className="mb-1 block text-body font-medium text-ink-80">{t('Texte de la scène', 'Scene text')}</label>
@@ -195,7 +195,7 @@ export default function ScenesPage() {
                 readOnly={locked}
                 rows={12}
                 maxLength={10000}
-                className="w-full rounded-lg border border-line p-3 text-base leading-relaxed text-ink focus:outline-none focus:ring-2 focus:ring-grenadine disabled:opacity-60"
+                className="w-full rounded-lg border border-line p-3 text-body-lg leading-relaxed text-ink focus:outline-none focus:ring-2 focus:ring-grenadine disabled:opacity-60"
                 data-testid="scene-editor"
               />
               <div className="mt-1 flex items-center justify-between gap-3 text-meta text-ink-40">

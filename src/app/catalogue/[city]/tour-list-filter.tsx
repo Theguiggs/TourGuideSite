@@ -14,15 +14,7 @@ import {
 } from '@/lib/api/audio-source-policy';
 import type { Tour } from '@/types/tour';
 import { PageTitle } from '@murmure/design-system/web';
-
-const LANG_FLAGS: Record<string, string> = {
-  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪', nl: '🇳🇱', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
-};
-
-const LANG_NAMES: Record<string, string> = {
-  fr: 'Français', en: 'English', es: 'Español', it: 'Italiano', de: 'Deutsch',
-  nl: 'Nederlands', pt: 'Português', ja: '日本語', zh: '中文',
-};
+import { LANG_FLAGS, LANG_NAMES } from '@/lib/i18n/languages';
 
 /** Emplacement du drapeau pour une langue qu'on ne sait pas illustrer — le code
  * est déjà écrit juste après, l'y répéter donnerait « ca CA ». */

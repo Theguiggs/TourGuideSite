@@ -1,5 +1,6 @@
 'use client';
 
+import { Circle, Pause, Play, Square } from 'lucide-react';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useRecordingStore, selectRecorderState, selectDevices, selectSelectedDeviceId } from '@/lib/stores/recording-store';
 import { mediaRecorderService } from '@/lib/studio/media-recorder-service';
@@ -195,10 +196,10 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
         {(recorderState === 'idle' || recorderState === 'ready' || recorderState === 'stopped') && (
           <button
             onClick={handleStartWithPermission}
-            className="bg-danger hover:opacity-90 text-white font-medium py-2 px-4 rounded-lg text-body transition"
+            className="bg-danger hover:opacity-90 text-white inline-flex items-center gap-1.5 font-medium py-2 px-4 rounded-lg text-body transition"
             data-testid="record-btn"
           >
-            🔴 {recorderState === 'stopped' ? t('Nouvelle prise', 'New take') : t('Enregistrer', 'Record')}
+            <Circle className="h-4 w-4 fill-current" aria-hidden="true" /> {recorderState === 'stopped' ? t('Nouvelle prise', 'New take') : t('Enregistrer', 'Record')}
           </button>
         )}
 
@@ -214,18 +215,18 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
             </div>
             <button
               onClick={handlePauseRecording}
-              className="bg-ocre hover:brightness-110 text-ink font-medium py-1.5 px-3 rounded-lg text-body transition"
+              className="bg-ocre hover:brightness-110 text-ink inline-flex items-center gap-1.5 font-medium py-1.5 px-3 rounded-lg text-body transition"
               data-testid="pause-record-btn"
             >
-              ⏸ {t('Pause', 'Pause')}
+              <Pause className="h-4 w-4" aria-hidden="true" /> {t('Pause', 'Pause')}
             </button>
             <button
               onClick={handleStopRecording}
               disabled={isStopping}
-              className="bg-ink-80 hover:bg-ink-60 text-white font-medium py-1.5 px-3 rounded-lg text-body transition"
+              className="bg-ink-80 hover:bg-ink-60 text-white inline-flex items-center gap-1.5 font-medium py-1.5 px-3 rounded-lg text-body transition"
               data-testid="stop-record-btn"
             >
-              ⏹ {isStopping ? t('Arrêt…', 'Stopping…') : t('Arrêter', 'Stop')}
+              <Square className="h-4 w-4 fill-current" aria-hidden="true" /> {isStopping ? t('Arrêt…', 'Stopping…') : t('Arrêter', 'Stop')}
             </button>
           </>
         )}
@@ -235,18 +236,18 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
             <span className="text-body text-ocre-ink font-medium">En pause</span>
             <button
               onClick={handleResumeRecording}
-              className="bg-danger hover:opacity-90 text-white font-medium py-1.5 px-3 rounded-lg text-body transition"
+              className="bg-danger hover:opacity-90 text-white inline-flex items-center gap-1.5 font-medium py-1.5 px-3 rounded-lg text-body transition"
               data-testid="resume-record-btn"
             >
-              ▶ Reprendre
+              <Play className="h-4 w-4 fill-current" aria-hidden="true" /> {t('Reprendre', 'Resume')}
             </button>
             <button
               onClick={handleStopRecording}
               disabled={isStopping}
-              className="bg-ink-80 hover:bg-ink-60 text-white font-medium py-1.5 px-3 rounded-lg text-body transition"
+              className="bg-ink-80 hover:bg-ink-60 text-white inline-flex items-center gap-1.5 font-medium py-1.5 px-3 rounded-lg text-body transition"
               data-testid="stop-record-btn-paused"
             >
-              ⏹ {isStopping ? t('Arrêt…', 'Stopping…') : t('Arrêter', 'Stop')}
+              <Square className="h-4 w-4 fill-current" aria-hidden="true" /> {isStopping ? t('Arrêt…', 'Stopping…') : t('Arrêter', 'Stop')}
             </button>
           </>
         )}

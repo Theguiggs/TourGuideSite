@@ -75,7 +75,7 @@ export function PoiValidationPanel({
         <div className="flex items-start justify-between gap-3 border-b border-line pb-3">
           <div>
             <p className="text-eyebrow font-semibold text-ink-40 uppercase tracking-widest">{sceneLabel}</p>
-            <h2 className="text-lg font-semibold text-ink mt-0.5">Validation du lieu</h2>
+            <h2 className="text-h6 font-semibold text-ink mt-0.5">Validation du lieu</h2>
           </div>
           <span
             className={`inline-flex items-center px-2.5 py-1 rounded-pill text-meta font-medium ${

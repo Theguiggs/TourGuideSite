@@ -6,26 +6,8 @@ import Link from 'next/link';
 import { fetchAuthSession } from 'aws-amplify/auth';
 import { getGuideProfileById, listAllGuideTours, adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
 import { PageTitle } from '@murmure/design-system/web';
-
-const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  pending_moderation: { label: 'En attente',  className: 'bg-ocre-soft text-ocre-ink' },
-  active:             { label: 'Actif',        className: 'bg-olive-soft text-olive' },
-  suspended:          { label: 'Suspendu',     className: 'bg-ocre-soft text-ocre-ink' },
-  rejected:           { label: 'Rejeté',       className: 'bg-grenadine-soft text-danger' },
-};
-
-const TOUR_STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  draft:              { label: 'Brouillon',           className: 'bg-paper-deep text-ink-80' },
-  editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-mer-soft text-mer' },
-  recording:          { label: 'Enregistrement',     className: 'bg-mer-soft text-mer' },
-  ready:              { label: 'Pr\u00eat',                className: 'bg-olive-soft text-olive' },
-  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre-ink' },
-  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre-ink' },
-  published:          { label: 'Publi\u00e9',             className: 'bg-olive-soft text-olive' },
-  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre-ink' },
-  rejected:           { label: 'Rejet\u00e9',             className: 'bg-grenadine-soft text-danger' },
-  archived:           { label: 'Archiv\u00e9',            className: 'bg-paper-deep text-ink-60' },
-};
+import { GUIDE_PROFILE_STATUS_BADGES, TOUR_STATUS_BADGES, badgeFor } from '@/lib/admin/status-badges';
+import { StatusBadge } from '@/components/admin/StatusBadge';
 
 type GuideProfile = {
   id: string;
@@ -174,7 +156,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
     </div>
   );
 
-  const statusBadge = STATUS_BADGES[profile.profileStatus] ?? STATUS_BADGES.pending_moderation;
+  const statusBadge = badgeFor(GUIDE_PROFILE_STATUS_BADGES, profile.profileStatus, 'pending_moderation');
 
   return (
     <div className="max-w-3xl">
@@ -195,15 +177,13 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
       <div className="bg-card rounded-md border border-line p-6 mb-6">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-2xl">
+            <div className="w-14 h-14 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-h5">
               {profile.displayName.charAt(0)}
             </div>
             <div>
               <PageTitle size="h5">{profile.displayName}</PageTitle>
               <p className="text-body text-ink-60">{profile.city}</p>
-              <span className={`text-meta font-medium px-2 py-0.5 rounded-pill mt-1 inline-block ${statusBadge.className}`}>
-                {statusBadge.label}
-              </span>
+              <StatusBadge badge={statusBadge} className="mt-1" />
             </div>
           </div>
 
@@ -312,7 +292,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
       {/* Tours */}
       <div className="bg-card rounded-md border border-line p-6">
-        <h2 className="text-base font-semibold text-ink mb-4">
+        <h2 className="text-body-lg font-semibold text-ink mb-4">
           Parcours ({tours.length})
         </h2>
         {tours.length === 0 ? (
@@ -320,7 +300,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
         ) : (
           <div className="divide-y divide-line">
             {tours.map((tour) => {
-              const badge = TOUR_STATUS_BADGES[tour.status] ?? TOUR_STATUS_BADGES.draft;
+              const badge = badgeFor(TOUR_STATUS_BADGES, tour.status, 'draft');
               return (
                 <div key={tour.id} className="py-3 flex items-center justify-between">
                   <div>
@@ -328,9 +308,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
                     <p className="text-meta text-ink-40 font-mono mt-0.5">{tour.id}</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className={`text-meta font-medium px-2 py-1 rounded-pill ${badge.className}`}>
-                      {badge.label}
-                    </span>
+                    <StatusBadge badge={badge} />
                     {tour.status === 'published' && (
                       <Link
                         href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/${tour.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}

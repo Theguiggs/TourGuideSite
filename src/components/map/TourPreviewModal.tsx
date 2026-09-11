@@ -30,7 +30,7 @@ export default function TourPreviewModal({ pois, tourTitle, onClose }: TourPrevi
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-line">
           <div>
-            <h2 id="tour-preview-title" className="text-lg font-bold text-ink">Prévisualisation de l’itinéraire</h2>
+            <h2 id="tour-preview-title" className="text-h6 font-bold text-ink">Prévisualisation de l’itinéraire</h2>
             <p className="text-body text-ink-60">{tourTitle}</p>
           </div>
           <div className="flex items-center gap-4">
@@ -42,7 +42,7 @@ export default function TourPreviewModal({ pois, tourTitle, onClose }: TourPrevi
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex h-11 w-11 items-center justify-center text-ink-60 hover:text-ink text-2xl leading-none"
+              className="inline-flex h-11 w-11 items-center justify-center text-ink-60 hover:text-ink text-h5 leading-none"
               aria-label="Fermer"
             >
               &times;

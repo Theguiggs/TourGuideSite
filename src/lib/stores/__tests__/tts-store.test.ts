@@ -1,4 +1,5 @@
 import { useTTSStore } from '../tts-store';
+import { useToastStore } from '../toast-store';
 
 jest.mock('@/lib/logger', () => ({
   logger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
@@ -46,16 +47,14 @@ describe('TTSStore', () => {
   });
 
   describe('toast', () => {
-    it('shows toast message', () => {
-      useTTSStore.getState().showToast('Audio TTS ready');
-      expect(useTTSStore.getState().toastMessage).toBe('Audio TTS ready');
-    });
-
-    it('auto-clears after 5s', () => {
+    it('délègue le toast au magasin partagé, qui l’efface seul', () => {
       jest.useFakeTimers();
-      useTTSStore.getState().showToast('Done');
-      jest.advanceTimersByTime(5000);
-      expect(useTTSStore.getState().toastMessage).toBeNull();
+      useToastStore.getState().clear();
+      useTTSStore.getState().showToast('Test message');
+      expect(useToastStore.getState().toasts.map((t) => t.message)).toEqual(['Test message']);
+      expect(useToastStore.getState().toasts[0].variant).toBe('success');
+      jest.advanceTimersByTime(4000);
+      expect(useToastStore.getState().toasts).toEqual([]);
       jest.useRealTimers();
     });
   });
@@ -70,13 +69,11 @@ describe('TTSStore', () => {
   });
 
   describe('resetStore', () => {
-    it('clears all segments and toast', () => {
+    it('clears all segments', () => {
       useTTSStore.getState().setSegmentStatus('seg-1', { status: 'completed', audioKey: 'test.wav' });
-      useTTSStore.getState().showToast('test');
       useTTSStore.getState().resetStore();
 
       expect(useTTSStore.getState().segments).toEqual({});
-      expect(useTTSStore.getState().toastMessage).toBeNull();
     });
   });
 });

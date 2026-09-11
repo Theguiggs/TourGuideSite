@@ -17,7 +17,7 @@ export function QualityFeedback({ result }: QualityFeedbackProps) {
       role="status"
       data-testid="quality-feedback"
     >
-      <span aria-hidden="true" className="text-lg">{isGood ? '✓' : '⚠'}</span>
+      <span aria-hidden="true" className="text-h6">{isGood ? '✓' : '⚠'}</span>
       <div>
         <p className="font-medium">{isGood ? 'Bonne qualité' : 'À améliorer'}</p>
         <p className="text-meta opacity-75">{result.message}</p>

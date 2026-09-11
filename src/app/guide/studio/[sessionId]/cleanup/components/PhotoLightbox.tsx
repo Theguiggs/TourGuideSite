@@ -94,7 +94,7 @@ export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
             onClick={onClose}
             aria-label="Fermer"
             data-testid="photo-lightbox-close"
-            className="bg-card/90 hover:bg-card rounded-pill w-11 h-11 text-lg text-ink shadow"
+            className="bg-card/90 hover:bg-card rounded-pill w-11 h-11 text-h6 text-ink shadow"
           >
             ×
           </button>

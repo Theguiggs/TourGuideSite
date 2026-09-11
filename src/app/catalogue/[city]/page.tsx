@@ -63,7 +63,7 @@ export default async function CityPage({ params }: CityPageProps) {
                 href={`/guides/${guide.slug}`}
                 className="flex items-center gap-3 p-4 rounded-xl border border-line hover:shadow-md transition-shadow"
               >
-                <div className="w-12 h-12 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-lg flex-shrink-0">
+                <div className="w-12 h-12 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-h6 flex-shrink-0">
                   {guide.displayName.charAt(0)}
                 </div>
                 <div className="min-w-0">

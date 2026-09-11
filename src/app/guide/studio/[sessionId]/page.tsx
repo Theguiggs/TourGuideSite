@@ -13,7 +13,6 @@ import {
 import { getTranscriptionQuota } from '@/lib/api/transcription';
 import { useAuth } from '@/lib/auth/auth-context';
 import { shouldUseStubs } from '@/config/api-mode';
-import { StudioToast } from '@/components/studio/toast';
 import { StepNav } from '@/components/studio/wizard';
 import {
   QuotaTranscriptionCard,
@@ -304,7 +303,6 @@ export default function SessionDetailPage() {
         nextLabel={t('Général', 'General')}
       />
 
-      <StudioToast />
     </div>
   );
 }

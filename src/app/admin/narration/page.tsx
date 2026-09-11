@@ -9,33 +9,14 @@ import {
 } from '@/lib/api/narration-requests';
 import { logger } from '@/lib/logger';
 import { PageTitle } from '@murmure/design-system/web';
+import { PAIR_STATUS_BADGES, badgeFor } from '@/lib/admin/status-badges';
+import { LANGUAGES, languageFlag, languageLabel } from '@/lib/i18n/languages';
+import { StatusBadge } from '@/components/admin/StatusBadge';
 
 const SERVICE_NAME = 'AdminNarrationPage';
 
-const LANG_LABELS: Record<string, { drapeau: string; nom: string }> = {
-  fr: { drapeau: '🇫🇷', nom: 'Français' },
-  en: { drapeau: '🇬🇧', nom: 'Anglais' },
-  es: { drapeau: '🇪🇸', nom: 'Espagnol' },
-  it: { drapeau: '🇮🇹', nom: 'Italien' },
-  de: { drapeau: '🇩🇪', nom: 'Allemand' },
-  nl: { drapeau: '🇳🇱', nom: 'Néerlandais' },
-  pt: { drapeau: '🇵🇹', nom: 'Portugais' },
-  ja: { drapeau: '🇯🇵', nom: 'Japonais' },
-  zh: { drapeau: '🇨🇳', nom: 'Chinois' },
-};
-
-/** Les six valeurs du glossaire (`PAIR_STATES`), plus rien. */
-const PAIR_BADGES: Record<string, { label: string; className: string }> = {
-  absent: { label: 'Absente', className: 'bg-paper-deep text-ink-60' },
-  queued: { label: 'En file', className: 'bg-mer-soft text-mer' },
-  fabricating: { label: 'En fabrication', className: 'bg-mer-soft text-mer' },
-  partially_ready: { label: 'Partiellement prête', className: 'bg-ocre-soft text-ocre-ink' },
-  ready: { label: 'Prête', className: 'bg-olive-soft text-olive' },
-  failed: { label: 'Échec', className: 'bg-grenadine-soft text-danger' },
-};
-
 function langue(code: string) {
-  return LANG_LABELS[code] ?? { drapeau: '🏳️', nom: code.toUpperCase() };
+  return { drapeau: languageFlag(code) ?? '🏳️', nom: languageLabel(code) };
 }
 
 function formaterDate(iso: string): string {
@@ -65,7 +46,7 @@ function moisDe(iso: string): string {
 function Tuile({ valeur, libelle }: { valeur: number | string; libelle: string }) {
   return (
     <div className="bg-card rounded-xl p-4 border border-paper-deep">
-      <p className="text-2xl font-semibold text-ink">{valeur}</p>
+      <p className="text-h5 font-semibold text-ink">{valeur}</p>
       <p className="text-meta text-ink-60 mt-1">{libelle}</p>
     </div>
   );
@@ -192,7 +173,7 @@ export default function AdminNarrationPage() {
 
   const enAttente = demandes.filter((d) => d.enAttente).length;
   const enEchec = demandes.filter((d) => d.pairState === 'failed').length;
-  const languesConnues = Object.keys(LANG_LABELS);
+  const languesConnues = Object.keys(LANGUAGES);
   const languesPresentes = [...new Set(demandes.map((d) => d.language))].sort(
     (a, b) => languesConnues.indexOf(a) - languesConnues.indexOf(b),
   );
@@ -260,7 +241,7 @@ export default function AdminNarrationPage() {
         >
           <option value="">Tous les états</option>
           <option value="pending">En attente d’admission</option>
-          {Object.entries(PAIR_BADGES).map(([cle, badge]) => (
+          {Object.entries(PAIR_STATUS_BADGES).map(([cle, badge]) => (
             <option key={cle} value={cle}>
               {badge.label}
             </option>
@@ -300,7 +281,7 @@ export default function AdminNarrationPage() {
               </tr>
             )}
             {visibles.map((demande) => {
-              const badge = PAIR_BADGES[demande.pairState] ?? PAIR_BADGES.absent;
+              const badge = badgeFor(PAIR_STATUS_BADGES, demande.pairState, 'absent');
               const sub = demande.premierDemandeurSub;
               return (
                 <tr key={demande.requestId} className="border-t border-paper-deep align-top">
@@ -329,11 +310,7 @@ export default function AdminNarrationPage() {
                   </td>
                   <td className="px-4 py-3 text-ink-60">v{demande.sourceVersion}</td>
                   <td className="px-4 py-3">
-                    <span
-                      className={`inline-block px-2 py-1 rounded-pill text-meta font-medium ${badge.className}`}
-                    >
-                      {badge.label}
-                    </span>
+                    <StatusBadge badge={badge} />
                     {demande.sceneCount != null && (
                       <span className="block text-meta text-ink-60 mt-1 tabular-nums">
                         {demande.readySceneCount ?? 0}/{demande.sceneCount} scènes

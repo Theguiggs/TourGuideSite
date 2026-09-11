@@ -70,7 +70,7 @@ export function TakesList({ sceneId, savedTakeId = null }: TakesListProps) {
   return (
     <section className="rounded-xl border border-line bg-paper p-4" data-testid="takes-list" aria-labelledby="takes-title">
       <div className="mb-4">
-        <h3 id="takes-title" className="text-base font-semibold text-ink">
+        <h3 id="takes-title" className="text-body-lg font-semibold text-ink">
           Vos prises audio ({takes.length})
         </h3>
         <p className="mt-1 text-body text-ink-60">

@@ -100,7 +100,7 @@ export default function AdminAnalyticsPage() {
 
       {/* Funnel */}
       <section className="mb-8">
-        <h2 className="text-lg font-semibold text-ink mb-3">Funnel de production</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">Funnel de production</h2>
         <div className="bg-card border border-line rounded-lg p-4">
           {Object.entries(funnel).map(([key, value]) => {
             const labels: Record<string, string> = {
@@ -134,7 +134,7 @@ export default function AdminAnalyticsPage() {
 
       {/* Status distribution */}
       <section className="mb-8">
-        <h2 className="text-lg font-semibold text-ink mb-3">Distribution des statuts</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">Distribution des statuts</h2>
         <div className="bg-card border border-line rounded-lg p-4">
           <div className="flex h-8 rounded-pill overflow-hidden mb-3">
             {statusDistribution.map((item) => (
@@ -159,7 +159,7 @@ export default function AdminAnalyticsPage() {
 
       {/* Dépense mesurée — le grand livre, ou rien */}
       <section className="mb-8" data-testid="depense-mesuree">
-        <h2 className="text-lg font-semibold text-ink mb-3">Dépense mesurée (grand livre)</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">Dépense mesurée (grand livre)</h2>
         <div className="bg-card border border-line rounded-lg p-4">
           <SectionDepense rapport={depense} />
         </div>
@@ -167,7 +167,7 @@ export default function AdminAnalyticsPage() {
 
       {/* Production par Visite — des faits comptés, aucun coût déduit */}
       <section className="mb-8">
-        <h2 className="text-lg font-semibold text-ink mb-3">Production par Visite</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">Production par Visite</h2>
         <div className="bg-card border border-line rounded-lg overflow-x-auto">
           <table className="w-full text-body">
             <thead className="bg-paper-soft">
@@ -224,7 +224,7 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
   if (!rapport.ok) {
     return (
       <div role="status" data-testid="depense-indisponible">
-        <p className="text-2xl font-bold text-ink-40">&mdash;</p>
+        <p className="text-h5 font-bold text-ink-40">&mdash;</p>
         <p className="text-body text-ink-60 mt-1">{rapport.message}</p>
         <p className="text-meta text-ink-40 mt-2">
           Aucun coût n&rsquo;est estimé à la place : un «&nbsp;&mdash;&nbsp;» honnête vaut mieux
@@ -258,7 +258,7 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
 
       {rapport.vide ? (
         <div role="status" data-testid="grand-livre-vide">
-          <p className="text-2xl font-bold text-ink-40">&mdash;</p>
+          <p className="text-h5 font-bold text-ink-40">&mdash;</p>
           <p className="text-body text-ink-60 mt-1">
             Le grand livre ne porte encore aucun débit. Il part de zéro : toute la dépense
             antérieure a été journalisée avant qu&rsquo;il existe, et n&rsquo;est pas récupérable

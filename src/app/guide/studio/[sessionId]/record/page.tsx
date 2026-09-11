@@ -418,7 +418,7 @@ export default function RecordPage() {
             <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-1 inline-block">
               &larr; Retour à la session
             </Link>
-            <h2 className="text-lg font-semibold text-ink">
+            <h2 className="text-h6 font-semibold text-ink">
               Prompteur — {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
             </h2>
           </div>
@@ -440,7 +440,7 @@ export default function RecordPage() {
         ) : (
           <div className="flex-1 flex items-center justify-center bg-paper-soft rounded-lg mb-4" data-testid="no-text">
             <div className="text-center text-ink-60 p-6">
-              <p className="text-lg font-medium mb-2">Pas de texte pour cette scène</p>
+              <p className="text-h6 font-medium mb-2">Pas de texte pour cette scène</p>
               <p className="text-body">Transcrivez ou saisissez le texte dans l&apos;éditeur avant d&apos;utiliser le prompteur.</p>
               <Link
                 href={`/guide/studio/${sessionId}/edit`}

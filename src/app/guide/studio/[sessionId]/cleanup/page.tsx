@@ -545,7 +545,7 @@ export default function CleanupPage() {
           >
             &larr; Retour à la session
           </Link>
-          <h2 className="text-base font-semibold text-ink mb-3">
+          <h2 className="text-body-lg font-semibold text-ink mb-3">
             {metadata.title || session.title || 'Session sans titre'} — Nettoyage
           </h2>
 

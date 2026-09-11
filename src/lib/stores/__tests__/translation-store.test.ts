@@ -1,4 +1,5 @@
 import { useTranslationStore } from '../translation-store';
+import { useToastStore } from '../toast-store';
 
 jest.mock('@/lib/logger', () => ({
   logger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
@@ -60,13 +61,14 @@ describe('TranslationStore', () => {
   });
 
   describe('toast', () => {
-    it('shows and auto-clears toast', () => {
+    it('délègue le toast au magasin partagé, qui l’efface seul', () => {
       jest.useFakeTimers();
+      useToastStore.getState().clear();
       useTranslationStore.getState().showToast('Test message');
-      expect(useTranslationStore.getState().toastMessage).toBe('Test message');
-
-      jest.advanceTimersByTime(5000);
-      expect(useTranslationStore.getState().toastMessage).toBeNull();
+      expect(useToastStore.getState().toasts.map((t) => t.message)).toEqual(['Test message']);
+      expect(useToastStore.getState().toasts[0].variant).toBe('success');
+      jest.advanceTimersByTime(4000);
+      expect(useToastStore.getState().toasts).toEqual([]);
       jest.useRealTimers();
     });
   });
@@ -92,11 +94,9 @@ describe('TranslationStore', () => {
   describe('resetStore', () => {
     it('clears all state', () => {
       useTranslationStore.getState().setSegmentStatus('seg-1', { status: 'completed' });
-      useTranslationStore.getState().showToast('test');
       useTranslationStore.getState().resetStore();
 
       expect(useTranslationStore.getState().segments).toEqual({});
-      expect(useTranslationStore.getState().toastMessage).toBeNull();
     });
   });
 });

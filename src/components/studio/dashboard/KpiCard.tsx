@@ -48,7 +48,7 @@ export function KpiCard({
     >
       <div className="flex items-center justify-between">
         <div
-          className={`w-8 h-8 rounded-md flex items-center justify-center text-paper text-base ${COLOR_CLS[color]}`}
+          className={`w-8 h-8 rounded-md flex items-center justify-center text-paper text-body-lg ${COLOR_CLS[color]}`}
           aria-hidden="true"
         >
           {icon}

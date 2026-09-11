@@ -254,7 +254,7 @@ export function AudioMixer({ speechUrl, mix, onMixChange, guideId }: AudioMixerP
           </button>
           <button onClick={handlePlayPause} title={mixerState.isPlaying ? 'Pause' : t('Lecture', 'Play')}
             disabled={isLoading}
-            className="w-10 h-10 rounded-pill bg-grenadine hover:opacity-90 disabled:bg-ink-80 text-white flex items-center justify-center text-lg transition">
+            className="w-10 h-10 rounded-pill bg-grenadine hover:opacity-90 disabled:bg-ink-80 text-white flex items-center justify-center text-h6 transition">
             {isLoading ? '...' : mixerState.isPlaying ? '||' : '\u25B6'}
           </button>
           <button onClick={() => audioMixerService.seek(mixerState.currentTime + 10)} title="Avancer 10s"

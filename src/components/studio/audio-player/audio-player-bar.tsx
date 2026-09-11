@@ -103,7 +103,7 @@ export function AudioPlayerBar({ label, compact = false }: AudioPlayerBarProps) 
           -10
         </button>
         <button onClick={handlePlayPause} title={state.isPlaying ? 'Pause' : 'Lecture'}
-          className="w-10 h-10 rounded-pill bg-grenadine hover:opacity-90 text-white flex items-center justify-center text-lg transition">
+          className="w-10 h-10 rounded-pill bg-grenadine hover:opacity-90 text-white flex items-center justify-center text-h6 transition">
           {state.isPlaying ? '||' : '\u25B6'}
         </button>
         <button onClick={handleSkipForward} title="Avancer 10s"

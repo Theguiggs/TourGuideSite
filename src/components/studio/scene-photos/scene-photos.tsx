@@ -129,7 +129,7 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
               data-testid={`add-photo-btn-${scene.id}`}
               aria-label={`${t('Ajouter une photo', 'Add photo')} (${photos.length}/${MAX_PHOTOS_PER_SCENE})`}
             >
-              <span className="text-2xl">+</span>
+              <span className="text-h5">+</span>
             </button>
           </>
         )}

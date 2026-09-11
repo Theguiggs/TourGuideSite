@@ -6,7 +6,6 @@ import { SiteChrome } from '@/components/SiteChrome';
 import AmplifyProvider from '@/components/AmplifyProvider';
 import AmplitudeProvider from '@/components/AmplitudeProvider';
 import { AuthProvider } from '@/lib/auth/auth-context';
-import { DsVersionAttribute } from '@/components/DsVersionAttribute';
 import { PendingTourConfirmRecovery } from '@/components/checkout/pending-tour-confirm-recovery';
 import { LOCALE_HEADER, SITE_URL } from '@/lib/site';
 
@@ -121,20 +120,16 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   // à afficher du `font-mono`) : voir `guide/layout.tsx` et `admin/layout.tsx`.
   const fontVariables = `${dmSerifDisplay.variable} ${dmSerifText.variable} ${manrope.variable}`;
   return (
-    // SSR default `data-ds="v2"` — Story 1.7 default safe. DsVersionAttribute
-    // updates this attribute côté client après hydration si flag = 'v1'.
-    <html lang={lang} data-ds="v2" className={fontVariables}>
+    <html lang={lang} className={fontVariables}>
       <body className="antialiased">
-        <DsVersionAttribute>
-          <AmplitudeProvider>
-            <AmplifyProvider>
-              <AuthProvider>
-                <PendingTourConfirmRecovery />
-                <SiteChrome>{children}</SiteChrome>
-              </AuthProvider>
-            </AmplifyProvider>
-          </AmplitudeProvider>
-        </DsVersionAttribute>
+        <AmplitudeProvider>
+          <AmplifyProvider>
+            <AuthProvider>
+              <PendingTourConfirmRecovery />
+              <SiteChrome>{children}</SiteChrome>
+            </AuthProvider>
+          </AmplifyProvider>
+        </AmplitudeProvider>
       </body>
     </html>
   );

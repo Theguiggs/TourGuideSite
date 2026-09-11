@@ -121,7 +121,7 @@ export default function PhotosPage() {
         <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-1 inline-block">
           &larr; Retour à la session
         </Link>
-        <h2 className="text-lg font-semibold text-ink mb-4">
+        <h2 className="text-h6 font-semibold text-ink mb-4">
           Photos — {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
         </h2>
 

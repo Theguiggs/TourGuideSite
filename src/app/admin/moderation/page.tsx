@@ -7,18 +7,9 @@ import { trackEvent, AdminAnalyticsEvents } from '@/lib/analytics';
 import { logger } from '@/lib/logger';
 import type { LanguageModerationItem, ModerationMetrics } from '@/types/moderation';
 import { PageTitle } from '@murmure/design-system/web';
-
-const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  pending: { label: 'En attente', className: 'bg-ocre-soft text-ocre-ink' },
-  resubmitted: { label: 'Resoumis', className: 'bg-ocre-soft text-ocre-ink' },
-  in_review: { label: 'En revue', className: 'bg-mer-soft text-mer' },
-  approved: { label: 'Approuve', className: 'bg-olive-soft text-olive' },
-  rejected: { label: 'Refuse', className: 'bg-grenadine-soft text-danger' },
-};
-
-const LANG_FLAGS: Record<string, string> = {
-  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪',
-};
+import { MODERATION_STATUS_BADGES, badgeFor } from '@/lib/admin/status-badges';
+import { LANG_FLAGS } from '@/lib/i18n/languages';
+import { StatusBadge } from '@/components/admin/StatusBadge';
 
 const SERVICE_NAME = 'ModerationQueuePage';
 
@@ -70,19 +61,19 @@ export default function ModerationQueuePage() {
       {metrics && (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <div className="bg-card rounded-md p-4 border border-line">
-            <p className="text-3xl font-bold text-danger">{metrics.pendingCount}</p>
+            <p className="text-h4 font-bold text-danger">{metrics.pendingCount}</p>
             <p className="text-body text-ink-60">En attente</p>
           </div>
           <div className="bg-card rounded-md p-4 border border-line">
-            <p className="text-3xl font-bold text-ink">{metrics.avgReviewTimeMinutes} min</p>
+            <p className="text-h4 font-bold text-ink">{metrics.avgReviewTimeMinutes} min</p>
             <p className="text-body text-ink-60">Temps moyen de revue</p>
           </div>
           <div className="bg-card rounded-md p-4 border border-line">
-            <p className="text-3xl font-bold text-olive">{metrics.approvalRate}%</p>
+            <p className="text-h4 font-bold text-olive">{metrics.approvalRate}%</p>
             <p className="text-body text-ink-60">Taux d&apos;approbation</p>
           </div>
           <div className="bg-card rounded-md p-4 border border-line">
-            <p className="text-3xl font-bold text-ink">{metrics.reviewedThisMonth}</p>
+            <p className="text-h4 font-bold text-ink">{metrics.reviewedThisMonth}</p>
             <p className="text-body text-ink-60">Revues ce mois</p>
           </div>
         </div>
@@ -140,7 +131,7 @@ export default function ModerationQueuePage() {
         </div>
       ) : filteredQueue.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
-          <p className="text-ink-60 text-lg">Aucune visite en attente de modération.</p>
+          <p className="text-ink-60 text-h6">Aucune visite en attente de modération.</p>
           <p className="text-ink-40 text-body mt-1">Les nouvelles soumissions apparaîtront ici.</p>
         </div>
       ) : (
@@ -160,7 +151,7 @@ export default function ModerationQueuePage() {
             </thead>
             <tbody className="divide-y divide-line">
               {filteredQueue.map((item) => {
-                const badge = STATUS_BADGES[item.moderationStatus] || STATUS_BADGES.pending;
+                const badge = badgeFor(MODERATION_STATUS_BADGES, item.moderationStatus, 'pending');
                 return (
                   <tr key={item.id} data-testid={`moderation-item-${item.id}`} className={item.moderationStatus === 'resubmitted' ? 'bg-ocre-soft' : ''}>
                     <td className="px-4 py-3">
@@ -204,9 +195,7 @@ export default function ModerationQueuePage() {
                       {new Date(item.submissionDate).toLocaleDateString('fr-FR')}
                     </td>
                     <td className="px-4 py-3">
-                      <span className={`text-meta font-medium px-2 py-1 rounded-pill ${badge.className}`}>
-                        {badge.label}
-                      </span>
+                      <StatusBadge badge={badge} />
                     </td>
                     <td className="px-4 py-3 text-right whitespace-nowrap">
                       <Link

@@ -254,7 +254,7 @@ export default function PublicationPage() {
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-mer-soft bg-mer-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
-              <span className="text-base shrink-0">&#x1F4E4;</span>
+              <span className="text-body-lg shrink-0">&#x1F4E4;</span>
               <div>
                 <p className="text-body font-medium text-mer">{hasRevisionFeedback ? t('Republier', 'Republish') : t('Publier', 'Publish')}</p>
                 <p className="text-meta text-mer">{t('Envoyer à la modération pour publication', 'Send for review and publication')}</p>
@@ -269,7 +269,7 @@ export default function PublicationPage() {
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-ocre-soft bg-ocre-soft hover:bg-ocre-soft transition text-left disabled:opacity-50"
             >
-              <span className="text-base shrink-0">&#x21A9;</span>
+              <span className="text-body-lg shrink-0">&#x21A9;</span>
               <div>
                 <p className="text-body font-medium text-ocre-ink">Retirer la publication</p>
                 <p className="text-meta text-ocre-ink">Revenir en brouillon pour modifier</p>
@@ -284,7 +284,7 @@ export default function PublicationPage() {
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-ocre-soft bg-ocre-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
-              <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
+              <span className="text-body-lg shrink-0">&#x23F8;&#xFE0F;</span>
               <div>
                 <p className="text-body font-medium text-ocre-ink">Mettre en pause</p>
                 <p className="text-meta text-ocre-ink">Masquer temporairement du catalogue. Reprise sans nouvelle modération.</p>
@@ -299,7 +299,7 @@ export default function PublicationPage() {
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-olive-soft bg-olive-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
-              <span className="text-base shrink-0">&#x25B6;&#xFE0F;</span>
+              <span className="text-body-lg shrink-0">&#x25B6;&#xFE0F;</span>
               <div>
                 <p className="text-body font-medium text-success">Republier le parcours</p>
                 <p className="text-meta text-success">Remettre la visite visible dans le catalogue, sans nouvelle modération</p>
@@ -325,7 +325,7 @@ export default function PublicationPage() {
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-grenadine-soft bg-grenadine-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
-              <span className="text-base shrink-0">&#x270F;&#xFE0F;</span>
+              <span className="text-body-lg shrink-0">&#x270F;&#xFE0F;</span>
               <div>
                 <p className="text-body font-medium text-grenadine">
                   {t('Mettre à jour la visite', 'Update the tour')} ({t('nouvelle version', 'new version')} V{version + 1})
@@ -349,7 +349,7 @@ export default function PublicationPage() {
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-line hover:bg-paper-soft transition text-left disabled:opacity-50"
             >
-              <span className="text-base shrink-0">&#x1F4E6;</span>
+              <span className="text-body-lg shrink-0">&#x1F4E6;</span>
               <div>
                 <p className="text-body font-medium text-ink-80">Archiver</p>
                 <p className="text-meta text-ink-60">Retirer du catalogue — réversible</p>
@@ -408,7 +408,7 @@ export default function PublicationPage() {
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-grenadine-soft hover:bg-grenadine-soft transition text-left disabled:opacity-50"
             >
-              <span className="text-base shrink-0">&#x1F5D1;&#xFE0F;</span>
+              <span className="text-body-lg shrink-0">&#x1F5D1;&#xFE0F;</span>
               <div>
                 <p className="text-body font-medium text-danger">{t('Supprimer ce brouillon', 'Delete this draft')}</p>
                 <p className="text-meta text-danger">Supprime définitivement cette session et tout son contenu</p>
@@ -423,7 +423,7 @@ export default function PublicationPage() {
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-line hover:bg-paper-soft transition text-left disabled:opacity-50"
             >
-              <span className="text-base shrink-0">&#x1F4DD;</span>
+              <span className="text-body-lg shrink-0">&#x1F4DD;</span>
               <div>
                 <p className="text-body font-medium text-ink-80">Revenir en brouillon</p>
                 <p className="text-meta text-ink-60">Reprendre l&apos;edition depuis le debut</p>
@@ -439,7 +439,7 @@ export default function PublicationPage() {
                 disabled={isActioning}
                 className="w-full flex items-center gap-2 p-2 rounded-lg border border-grenadine-soft bg-grenadine-soft hover:opacity-90 transition text-left disabled:opacity-50"
               >
-                <span className="text-base shrink-0">&#x1F4DD;</span>
+                <span className="text-body-lg shrink-0">&#x1F4DD;</span>
                 <div>
                   <p className="text-body font-medium text-grenadine">Remettre en brouillon</p>
                   <p className="text-meta text-grenadine">Reprendre le travail sur ce parcours. Il faudra le republier.</p>
@@ -450,7 +450,7 @@ export default function PublicationPage() {
                 disabled={isActioning}
                 className="w-full flex items-center gap-2 p-2 rounded-lg border border-ocre-soft bg-ocre-soft hover:opacity-90 transition text-left disabled:opacity-50"
               >
-                <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
+                <span className="text-body-lg shrink-0">&#x23F8;&#xFE0F;</span>
                 <div>
                   <p className="text-body font-medium text-ocre-ink">Désarchiver (en pause)</p>
                   <p className="text-meta text-ocre-ink">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>

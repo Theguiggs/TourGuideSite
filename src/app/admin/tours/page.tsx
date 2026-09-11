@@ -7,35 +7,9 @@ import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import type { TourLanguagePurchase } from '@/types/studio';
 import { ConfirmDialog } from '@/components/ui/Dialog';
 import { PageTitle } from '@murmure/design-system/web';
-
-const LANG_FLAGS: Record<string, string> = {
-  fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
-};
-const MOD_COLORS: Record<string, string> = {
-  draft: 'bg-paper-deep text-ink-60',
-  submitted: 'bg-ocre-soft text-ocre-ink',
-  approved: 'bg-olive-soft text-olive',
-  rejected: 'bg-grenadine-soft text-danger',
-  revision_requested: 'bg-ocre-soft text-ocre-ink',
-};
-const MOD_LABELS: Record<string, string> = {
-  draft: 'Brouillon', submitted: 'Soumis', approved: 'OK', rejected: 'Refusé', revision_requested: 'Révision',
-};
-
-const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  draft:              { label: 'Brouillon',          className: 'bg-paper-deep text-ink-80' },
-  synced:             { label: 'Transf\u00e9r\u00e9',          className: 'bg-mer-soft text-mer' },
-  editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-mer-soft text-mer' },
-  recording:          { label: 'Enregistrement',     className: 'bg-mer-soft text-mer' },
-  ready:              { label: 'Pr\u00eat',                className: 'bg-olive-soft text-olive' },
-  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre-ink' },
-  review:             { label: 'En revue',           className: 'bg-ocre-soft text-ocre-ink' },
-  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre-ink' },
-  published:          { label: 'Publi\u00e9',             className: 'bg-olive-soft text-olive' },
-  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre-ink' },
-  rejected:           { label: 'Rejet\u00e9',             className: 'bg-grenadine-soft text-danger' },
-  archived:           { label: 'Archiv\u00e9',            className: 'bg-paper-deep text-ink-60' },
-};
+import { LANGUAGE_MODERATION_BADGES, TOUR_STATUS_BADGES, badgeFor } from '@/lib/admin/status-badges';
+import { LANG_FLAGS } from '@/lib/i18n/languages';
+import { StatusBadge } from '@/components/admin/StatusBadge';
 
 type AdminTour = { id: string; title: string; city: string; status: string; guideId: string; poiCount: number; duration: number; distance: number; sessionId: string | null; guideName: string };
 
@@ -128,7 +102,7 @@ export default function AdminToursPage() {
           className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
         >
           <option value="">Tous les statuts</option>
-          {Object.entries(STATUS_BADGES).map(([v, { label }]) => (
+          {Object.entries(TOUR_STATUS_BADGES).map(([v, { label }]) => (
             <option key={v} value={v}>{label}</option>
           ))}
         </select>
@@ -174,7 +148,7 @@ export default function AdminToursPage() {
             </thead>
             <tbody className="divide-y divide-line">
               {filtered.map((tour) => {
-                const badge = STATUS_BADGES[tour.status] ?? STATUS_BADGES.draft;
+                const badge = badgeFor(TOUR_STATUS_BADGES, tour.status, 'draft');
                 const isActioning = actioning === tour.id;
                 return (
                   <tr key={tour.id} className="hover:bg-paper-soft">
@@ -196,8 +170,8 @@ export default function AdminToursPage() {
                         {(purchasesByTour[tour.id] ?? []).map((p) => (
                           <span
                             key={p.id}
-                            className={`text-eyebrow px-1.5 py-0.5 rounded-pill font-medium ${MOD_COLORS[p.moderationStatus] ?? MOD_COLORS.draft}`}
-                            title={`${p.language.toUpperCase()} — ${MOD_LABELS[p.moderationStatus] ?? p.moderationStatus}`}
+                            className={`text-eyebrow px-1.5 py-0.5 rounded-pill font-medium ${badgeFor(LANGUAGE_MODERATION_BADGES, p.moderationStatus, 'draft').className}`}
+                            title={`${p.language.toUpperCase()} — ${badgeFor(LANGUAGE_MODERATION_BADGES, p.moderationStatus, 'draft').label}`}
                           >
                             {LANG_FLAGS[p.language] ?? ''} {p.language.toUpperCase()}
                           </span>
@@ -205,9 +179,7 @@ export default function AdminToursPage() {
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <span className={`text-meta font-medium px-2 py-1 rounded-pill ${badge.className}`}>
-                        {badge.label}
-                      </span>
+                      <StatusBadge badge={badge} />
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">

@@ -30,7 +30,7 @@ export default function CitiesSection({ locale = 'fr' }: { locale?: 'fr' | 'en' 
     return (
       <section className="py-20 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-ink mb-10">
+          <h2 className="text-h4 font-bold text-ink mb-10">
             {locale === 'en' ? 'Explore our cities' : 'Explorez nos villes'}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -53,7 +53,7 @@ export default function CitiesSection({ locale = 'fr' }: { locale?: 'fr' | 'en' 
   return (
     <section className="py-20 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-ink mb-10">
+        <h2 className="text-h4 font-bold text-ink mb-10">
           {locale === 'en' ? 'Explore our cities' : 'Explorez nos villes'}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

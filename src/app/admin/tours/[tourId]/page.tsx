@@ -8,6 +8,8 @@ import { S3Image } from '@/components/studio/s3-image';
 import * as appsync from '@/lib/api/appsync-client';
 import { logger } from '@/lib/logger';
 import { PageTitle } from '@murmure/design-system/web';
+import { TOUR_STATUS_BADGES, badgeFor } from '@/lib/admin/status-badges';
+import { StatusBadge } from '@/components/admin/StatusBadge';
 
 const SERVICE_NAME = 'AdminTourDetail';
 
@@ -15,21 +17,6 @@ const TourMap = dynamic(() => import('@/components/map/TourMap'), {
   ssr: false,
   loading: () => <div className="bg-paper-deep rounded-lg h-64 animate-pulse" />,
 });
-
-const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  draft: { label: 'Brouillon', className: 'bg-paper-deep text-ink-80' },
-  synced: { label: 'Transf\u00e9r\u00e9', className: 'bg-mer-soft text-mer' },
-  editing: { label: 'En cours d\u2019\u00e9dition', className: 'bg-mer-soft text-mer' },
-  recording: { label: 'Enregistrement', className: 'bg-mer-soft text-mer' },
-  ready: { label: 'Pr\u00eat', className: 'bg-olive-soft text-olive' },
-  submitted: { label: 'Soumis', className: 'bg-ocre-soft text-ocre-ink' },
-  review: { label: 'En revue', className: 'bg-ocre-soft text-ocre-ink' },
-  pending_moderation: { label: 'En mod\u00e9ration', className: 'bg-ocre-soft text-ocre-ink' },
-  published: { label: 'Publi\u00e9', className: 'bg-olive-soft text-olive' },
-  revision_requested: { label: 'R\u00e9vision demand\u00e9e', className: 'bg-ocre-soft text-ocre-ink' },
-  rejected: { label: 'Rejet\u00e9', className: 'bg-grenadine-soft text-danger' },
-  archived: { label: 'Archiv\u00e9', className: 'bg-paper-deep text-ink-60' },
-};
 
 interface TourData {
   id: string;
@@ -163,7 +150,7 @@ export default function AdminTourDetailPage() {
     );
   }
 
-  const badge = STATUS_BADGES[tour.status] ?? STATUS_BADGES.draft;
+  const badge = badgeFor(TOUR_STATUS_BADGES, tour.status, 'draft');
   const geoScenes = scenes.filter((s) => s.latitude && s.longitude);
 
   return (
@@ -172,7 +159,7 @@ export default function AdminTourDetailPage() {
 
       {/* Status + admin info bar */}
       <div className="flex items-center gap-3 mb-4">
-        <span className={`text-meta font-medium px-3 py-1 rounded-pill ${badge.className}`}>{badge.label}</span>
+        <StatusBadge badge={badge} />
         <span className="text-meta text-ink-40">ID: {tour.id.slice(0, 8)}...</span>
       </div>
 
@@ -192,7 +179,7 @@ export default function AdminTourDetailPage() {
       {/* Guide card */}
       {guide && (
         <div className="bg-card rounded-md border border-line p-4 flex items-center gap-4 mb-6">
-          <div className="w-14 h-14 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-xl flex-shrink-0">
+          <div className="w-14 h-14 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-h5 flex-shrink-0">
             {guide.displayName.charAt(0)}
           </div>
           <div>
@@ -209,7 +196,7 @@ export default function AdminTourDetailPage() {
       {/* Description */}
       {tour.description && (
         <div className="bg-card rounded-md border border-line p-5 mb-6">
-          <h2 className="text-lg font-semibold text-ink mb-2">À propos de cette visite</h2>
+          <h2 className="text-h6 font-semibold text-ink mb-2">À propos de cette visite</h2>
           <p className="text-ink-80 leading-relaxed">{tour.description}</p>
         </div>
       )}
@@ -217,7 +204,7 @@ export default function AdminTourDetailPage() {
       {/* Map */}
       {geoScenes.length > 0 && (
         <div className="bg-card rounded-md border border-line overflow-hidden mb-6">
-          <h2 className="text-lg font-semibold text-ink p-4 pb-0">Itinéraire</h2>
+          <h2 className="text-h6 font-semibold text-ink p-4 pb-0">Itinéraire</h2>
           <div className="h-80">
             <TourMap
               pois={geoScenes.map((s) => ({
@@ -238,7 +225,7 @@ export default function AdminTourDetailPage() {
       {/* POIs / Scenes */}
       {scenes.length > 0 && (
         <div className="bg-card rounded-md border border-line p-5 mb-6">
-          <h2 className="text-lg font-semibold text-ink mb-4">Points d&apos;intérêt ({scenes.length})</h2>
+          <h2 className="text-h6 font-semibold text-ink mb-4">Points d&apos;intérêt ({scenes.length})</h2>
           <div className="space-y-4">
             {scenes.map((scene) => (
               <div key={scene.id} className="flex gap-4 pb-4 border-b border-line last:border-0 last:pb-0">
@@ -277,22 +264,22 @@ export default function AdminTourDetailPage() {
 
       {/* Stats card */}
       <div className="bg-grenadine-soft border border-grenadine rounded-md p-5">
-        <h2 className="text-lg font-bold text-grenadine mb-3">Vivez cette visite</h2>
+        <h2 className="text-h6 font-bold text-grenadine mb-3">Vivez cette visite</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
           <div>
-            <p className="text-2xl font-bold text-grenadine">{tour.duration}</p>
+            <p className="text-h5 font-bold text-grenadine">{tour.duration}</p>
             <p className="text-meta text-grenadine">minutes</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-grenadine">{tour.distance}</p>
+            <p className="text-h5 font-bold text-grenadine">{tour.distance}</p>
             <p className="text-meta text-grenadine">km</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-grenadine">{scenes.length}</p>
+            <p className="text-h5 font-bold text-grenadine">{scenes.length}</p>
             <p className="text-meta text-grenadine">points d&apos;intérêt</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-grenadine">Gratuit</p>
+            <p className="text-h5 font-bold text-grenadine">Gratuit</p>
             <p className="text-meta text-grenadine">prix</p>
           </div>
         </div>

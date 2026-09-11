@@ -12,18 +12,6 @@ const STATUS_CONFIG: Record<PurchaseModerationStatus, { label: string; icon: str
 
 const REFUNDED_CONFIG = { label: 'rembourse', icon: '', className: 'bg-grenadine-soft text-grenadine' };
 
-const LANG_LABELS: Record<string, string> = {
-  fr: 'FR',
-  en: 'EN',
-  es: 'ES',
-  it: 'IT',
-  de: 'DE',
-  pt: 'PT',
-  nl: 'NL',
-  ja: 'JA',
-  zh: 'ZH',
-};
-
 interface LanguageModerationBadgesProps {
   purchases: TourLanguagePurchase[];
   onLanguageClick?: (language: string) => void;
@@ -44,7 +32,7 @@ export function LanguageModerationBadges({ purchases, onLanguageClick }: Languag
         const config = purchase.status === 'refunded'
           ? REFUNDED_CONFIG
           : STATUS_CONFIG[purchase.moderationStatus] ?? STATUS_CONFIG.draft;
-        const langLabel = LANG_LABELS[purchase.language] ?? purchase.language.toUpperCase();
+        const langLabel = purchase.language.toUpperCase();
 
         return (
           <button

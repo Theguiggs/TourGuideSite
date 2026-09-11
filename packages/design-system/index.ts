@@ -27,10 +27,6 @@ export * from './tokens';
 // ─── Re-exports editorial lexicon (Story 1.4 — microcopy + forbiddenTerms + voiceRules)
 export * from './editorial';
 
-// ─── Re-exports feature flag (Story 1.7 — DS rollback v2 → v1)
-export * from './feature-flag';
-export { useDsVersion, FeatureFlagContext, FeatureFlagReactProvider } from './use-ds-version';
-
 // ─── Re-exports motion + sound + useMotion (Story 1.6)
 export * from './motion';
 export * from './sound';

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { BarChart3, ClipboardList, Headphones, History, Map, Users } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/auth/auth-context';
 import AuthGuard from '@/components/AuthGuard';
@@ -15,12 +16,12 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 const NAV_ITEMS = [
-  { href: '/admin/moderation', label: "File d'attente", icon: '📋' },
-  { href: '/admin/moderation/history', label: 'Historique', icon: '📜' },
-  { href: '/admin/tours', label: 'Toutes les visites', icon: '🗺️' },
-  { href: '/admin/guides', label: 'Tous les guides', icon: '👥' },
-  { href: '/admin/narration', label: 'Narrations demandées', icon: '🎧' },
-  { href: '/admin/analytics', label: 'Analytics', icon: '📊' },
+  { href: '/admin/moderation', label: "File d'attente", icon: ClipboardList },
+  { href: '/admin/moderation/history', label: 'Historique', icon: History },
+  { href: '/admin/tours', label: 'Toutes les visites', icon: Map },
+  { href: '/admin/guides', label: 'Tous les guides', icon: Users },
+  { href: '/admin/narration', label: 'Narrations demandées', icon: Headphones },
+  { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
 ];
 
 function AdminNav() {
@@ -54,7 +55,7 @@ function AdminNav() {
                     : 'text-ink-20 hover:bg-paper-deep'
                 }`}
               >
-                <span>{item.icon}</span>
+                <item.icon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 {item.label}
               </Link>
             );

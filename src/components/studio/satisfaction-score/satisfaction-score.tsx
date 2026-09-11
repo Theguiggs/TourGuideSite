@@ -43,7 +43,7 @@ export function SatisfactionScore({ sessionId, onComplete }: SatisfactionScorePr
           <button
             key={value}
             onClick={() => setScore(value)}
-            className={`w-10 h-10 rounded-pill text-lg transition-all ${
+            className={`w-10 h-10 rounded-pill text-h6 transition-all ${
               score === value
                 ? 'bg-grenadine text-white scale-110 shadow-md'
                 : score !== null && value <= score

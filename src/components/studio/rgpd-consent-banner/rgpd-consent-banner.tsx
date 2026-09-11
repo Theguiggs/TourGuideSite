@@ -70,7 +70,7 @@ export function RgpdConsentBanner() {
       ref={dialogRef}
     >
       <div className="bg-card rounded-xl shadow-2xl max-w-lg w-full mx-4 p-6">
-        <h2 id="rgpd-title" className="text-xl font-bold text-ink mb-4">
+        <h2 id="rgpd-title" className="text-h5 font-bold text-ink mb-4">
           {copy.title}
         </h2>
 

@@ -147,7 +147,7 @@ export function StalenessAlert({
         className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-ocre-soft bg-ocre-soft p-4"
       >
         <div className="flex items-start gap-2 flex-1 min-w-0">
-          <span className="text-lg shrink-0" aria-hidden="true">&#9888;&#65039;</span>
+          <span className="text-h6 shrink-0" aria-hidden="true">&#9888;&#65039;</span>
           <div>
             <p className="text-body font-medium text-ocre-ink">
               {staleCount} {staleCount === 1 ? 'scene modifiee' : 'scenes modifiees'} depuis la derniere traduction

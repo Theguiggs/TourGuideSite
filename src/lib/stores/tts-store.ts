@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { logger } from '@/lib/logger';
+import { useToastStore } from '@/lib/stores/toast-store';
 import { getTTSStatus } from '@/lib/api/tts';
 import type { TTSJobStatus } from '@/types/studio';
 
@@ -26,7 +27,6 @@ export interface SegmentTTSState {
 
 interface TTSStoreState {
   segments: Record<string, SegmentTTSState>;
-  toastMessage: string | null;
 
   // Actions
   setSegmentStatus: (segmentId: string, update: Partial<SegmentTTSState>) => void;
@@ -34,7 +34,6 @@ interface TTSStoreState {
   stopPolling: (segmentId: string) => void;
   stopAllPolling: () => void;
   showToast: (message: string) => void;
-  clearToast: () => void;
   resetStore: () => void;
 }
 
@@ -53,7 +52,6 @@ function defaultSegmentState(): SegmentTTSState {
 
 export const useTTSStore = create<TTSStoreState>((set, get) => ({
   segments: {},
-  toastMessage: null,
 
   setSegmentStatus: (segmentId, update) => {
     set((state) => ({
@@ -124,17 +122,12 @@ export const useTTSStore = create<TTSStoreState>((set, get) => ({
   },
 
   showToast: (message) => {
-    set({ toastMessage: message });
-    setTimeout(() => {
-      set((state) => state.toastMessage === message ? { toastMessage: null } : state);
-    }, 5000);
+    useToastStore.getState().show({ variant: 'success', message });
   },
-
-  clearToast: () => set({ toastMessage: null }),
 
   resetStore: () => {
     get().stopAllPolling();
-    set({ segments: {}, toastMessage: null });
+    set({ segments: {} });
   },
 }));
 
@@ -149,4 +142,3 @@ export function selectSegmentTTS(segmentId: string) {
   return selector;
 }
 
-export const selectTTSToast = (s: TTSStoreState) => s.toastMessage;

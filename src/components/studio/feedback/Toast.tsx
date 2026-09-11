@@ -1,5 +1,6 @@
 'use client';
 
+import { AlertTriangle, Check, Info, X, type LucideIcon } from 'lucide-react';
 import { useToastStore, type ToastEntry, type ToastVariant } from '@/lib/stores/toast-store';
 
 interface ToastProps {
@@ -8,31 +9,31 @@ interface ToastProps {
 
 const VARIANT_CFG: Record<
   ToastVariant,
-  { bg: string; border: string; text: string; icon: string }
+  { bg: string; border: string; text: string; icon: LucideIcon }
 > = {
   success: {
     bg: 'bg-grenadine-soft',
     border: 'border-grenadine',
     text: 'text-grenadine',
-    icon: '✓',
+    icon: Check,
   },
   info: {
     bg: 'bg-mer-soft',
     border: 'border-mer',
     text: 'text-mer',
-    icon: 'ⓘ',
+    icon: Info,
   },
   warning: {
     bg: 'bg-ocre-soft',
     border: 'border-ocre',
     text: 'text-ocre-ink',
-    icon: '⚠',
+    icon: AlertTriangle,
   },
   error: {
     bg: 'bg-grenadine-soft',
     border: 'border-danger',
     text: 'text-danger',
-    icon: '✕',
+    icon: X,
   },
 };
 
@@ -51,9 +52,7 @@ export function Toast({ toast }: ToastProps) {
       data-variant={toast.variant}
       className={`rounded-md border ${cfg.bg} ${cfg.border} px-4 py-3 shadow-md flex items-start gap-3 max-w-sm pointer-events-auto`}
     >
-      <span aria-hidden="true" className={`text-h6 leading-none shrink-0 ${cfg.text}`}>
-        {cfg.icon}
-      </span>
+      <cfg.icon aria-hidden="true" className={`h-4 w-4 mt-0.5 shrink-0 ${cfg.text}`} />
       <div className="flex-1 min-w-0">
         {toast.title && (
           <div className={`text-caption font-bold ${cfg.text}`}>{toast.title}</div>

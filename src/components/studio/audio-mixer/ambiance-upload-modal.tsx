@@ -204,8 +204,8 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-ink">Ajouter un son d&apos;ambiance</h2>
-          <button onClick={onClose} className="text-ink-40 hover:text-ink-80 text-xl">×</button>
+          <h2 className="text-h6 font-bold text-ink">Ajouter un son d&apos;ambiance</h2>
+          <button onClick={onClose} className="text-ink-40 hover:text-ink-80 text-h5">×</button>
         </div>
 
         {/* Mode tabs */}
@@ -260,7 +260,7 @@ export function AmbianceUploadModal({ guideId, onClose, onAdded }: AmbianceUploa
             {isRecording && (
               <div className="space-y-2">
                 <div className="p-4 bg-grenadine-soft border-2 border-grenadine-soft rounded-lg text-center">
-                  <div className="text-2xl animate-pulse">🔴</div>
+                  <div className="text-h5 animate-pulse">🔴</div>
                   <p className="text-body font-medium text-danger mt-1">Enregistrement... {recordingTime}s</p>
                 </div>
                 <button

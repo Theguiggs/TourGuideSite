@@ -5,13 +5,8 @@ import Link from 'next/link';
 import { getAllAdminGuides } from '@/lib/api/moderation';
 import { adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
 import { PageTitle } from '@murmure/design-system/web';
-
-const PROFILE_STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  active:             { label: 'Actif',          className: 'bg-olive-soft text-olive' },
-  pending_moderation: { label: 'En attente',      className: 'bg-ocre-soft text-ocre-ink' },
-  suspended:          { label: 'Suspendu',        className: 'bg-grenadine-soft text-danger' },
-  inactive:           { label: 'Inactif',         className: 'bg-paper-deep text-ink-60' },
-};
+import { GUIDE_PROFILE_STATUS_BADGES, badgeFor } from '@/lib/admin/status-badges';
+import { StatusBadge } from '@/components/admin/StatusBadge';
 
 type AdminGuide = { id: string; displayName: string; city: string; profileStatus: string; tourCount: number; rating: number | null };
 
@@ -110,7 +105,7 @@ export default function AdminGuidesPage() {
             </thead>
             <tbody className="divide-y divide-line">
               {filtered.map((guide) => {
-                const badge = PROFILE_STATUS_BADGES[guide.profileStatus] ?? PROFILE_STATUS_BADGES.pending_moderation;
+                const badge = badgeFor(GUIDE_PROFILE_STATUS_BADGES, guide.profileStatus, 'pending_moderation');
                 const isActioning = actioning === guide.id;
                 return (
                   <tr key={guide.id} className="hover:bg-paper-soft">
@@ -128,9 +123,7 @@ export default function AdminGuidesPage() {
                       {guide.rating != null ? `${guide.rating.toFixed(1)} ★` : '—'}
                     </td>
                     <td className="px-4 py-3">
-                      <span className={`text-meta font-medium px-2 py-1 rounded-pill ${badge.className}`}>
-                        {badge.label}
-                      </span>
+                      <StatusBadge badge={badge} />
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">

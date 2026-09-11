@@ -120,7 +120,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
       <div className="bg-card border-2 border-mer-soft rounded-lg shadow-lg p-4 space-y-3 max-w-lg" data-testid="ambiance-picker">
         <div className="flex items-center justify-between">
           <h3 className="text-body font-semibold text-ink">Choisir une ambiance</h3>
-          <button onClick={handleClose} className="text-ink-40 hover:text-ink-80 text-lg">X</button>
+          <button onClick={handleClose} className="text-ink-40 hover:text-ink-80 text-h6">X</button>
         </div>
 
         {/* Tabs : Standard / Mine */}
@@ -251,7 +251,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
                       >
                         {/* Title row */}
                         <div className="flex items-center gap-2">
-                          <span className="text-base">{sound.icon || '🎵'}</span>
+                          <span className="text-body-lg">{sound.icon || '🎵'}</span>
                           <span className="text-body font-semibold text-ink truncate">
                             {sound.title || '(sans titre)'}
                           </span>

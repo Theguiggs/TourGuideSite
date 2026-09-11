@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { logger } from '@/lib/logger';
+import { useToastStore } from '@/lib/stores/toast-store';
 import { getTranscriptionStatus, type TranscriptionQuota } from '@/lib/api/transcription';
 import type { TranscriptionStatus } from '@/types/studio';
 
@@ -16,7 +17,6 @@ export interface SceneTranscriptionState {
 interface TranscriptionStoreState {
   scenes: Record<string, SceneTranscriptionState>;
   quota: TranscriptionQuota | null;
-  toastMessage: string | null;
 
   // Actions
   setSceneStatus: (sceneId: string, state: Partial<SceneTranscriptionState>) => void;
@@ -25,7 +25,6 @@ interface TranscriptionStoreState {
   stopAllPolling: () => void;
   setQuota: (quota: TranscriptionQuota) => void;
   showToast: (message: string) => void;
-  clearToast: () => void;
   resetStore: () => void;
 }
 
@@ -35,7 +34,6 @@ const pollingTimers = new Map<string, ReturnType<typeof setInterval>>();
 export const useTranscriptionStore = create<TranscriptionStoreState>((set, get) => ({
   scenes: {},
   quota: null,
-  toastMessage: null,
 
   setSceneStatus: (sceneId, update) => {
     set((state) => ({
@@ -96,18 +94,12 @@ export const useTranscriptionStore = create<TranscriptionStoreState>((set, get) 
   setQuota: (quota) => set({ quota }),
 
   showToast: (message) => {
-    set({ toastMessage: message });
-    // Auto-clear after 5s
-    setTimeout(() => {
-      set((state) => state.toastMessage === message ? { toastMessage: null } : state);
-    }, 5000);
+    useToastStore.getState().show({ variant: 'success', message });
   },
-
-  clearToast: () => set({ toastMessage: null }),
 
   resetStore: () => {
     get().stopAllPolling();
-    set({ scenes: {}, quota: null, toastMessage: null });
+    set({ scenes: {}, quota: null });
   },
 }));
 
@@ -119,5 +111,3 @@ function defaultSceneState(): SceneTranscriptionState {
 export const selectSceneTranscription = (sceneId: string) =>
   (s: TranscriptionStoreState) => s.scenes[sceneId] ?? null;
 export const selectQuota = (s: TranscriptionStoreState) => s.quota;
-export const selectToastMessage = (s: TranscriptionStoreState) => s.toastMessage;
-export const selectClearToast = (s: TranscriptionStoreState) => s.clearToast;

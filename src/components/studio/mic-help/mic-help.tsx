@@ -53,8 +53,8 @@ export function MicHelp({ onClose }: MicHelpProps) {
   return (
     <div className="bg-card border border-ocre-soft rounded-lg p-4 shadow-lg max-w-lg" data-testid="mic-help">
       <div className="flex items-start justify-between mb-3">
-        <h3 className="text-base font-semibold text-ink">🎙️ Aide — Permission micro</h3>
-        <button onClick={onClose} className="text-ink-40 hover:text-ink-80 text-lg">&times;</button>
+        <h3 className="text-body-lg font-semibold text-ink">🎙️ Aide — Permission micro</h3>
+        <button onClick={onClose} className="text-ink-40 hover:text-ink-80 text-h6">&times;</button>
       </div>
 
       <p className="text-body text-ink-80 mb-3">

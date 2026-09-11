@@ -23,23 +23,23 @@ export function getNotificationContent(
     case 'validate':
       return {
         subject: GENERIC_SUBJECT,
-        body: `Bonne nouvelle ! Votre visite «${tourTitle}» est maintenant en ligne et visible par tous les consommateurs.`,
+        body: `Bonne nouvelle ! Votre visite « ${tourTitle} » est maintenant en ligne et visible par tous les consommateurs.`,
         pushTitle: 'Visite en ligne !',
-        pushBody: `Votre visite «${tourTitle}» est en ligne !`,
+        pushBody: `Votre visite « ${tourTitle} » est en ligne !`,
       };
     case 'revision':
       return {
         subject: GENERIC_SUBJECT,
-        body: `L'equipe Murmure demande des corrections sur votre visite «${tourTitle}».${comments ? `\n\nCommentaires :\n${comments}` : ''}\n\nConnectez-vous a votre espace guide pour apporter les modifications.`,
-        pushTitle: 'Corrections demandees',
-        pushBody: `L'admin demande des corrections sur «${tourTitle}»`,
+        body: `L’équipe Murmure demande des corrections sur votre visite « ${tourTitle} ».${comments ? `\n\nCommentaires :\n${comments}` : ''}\n\nConnectez-vous à votre espace guide pour apporter les modifications.`,
+        pushTitle: 'Corrections demandées',
+        pushBody: `L’admin demande des corrections sur « ${tourTitle} »`,
       };
     case 'reject':
       return {
         subject: GENERIC_SUBJECT,
-        body: `Votre visite «${tourTitle}» a ete refusee.${comments ? `\n\nMotif :\n${comments}` : ''}\n\nConnectez-vous a votre espace guide pour consulter les commentaires.`,
-        pushTitle: 'Visite refusee',
-        pushBody: `Visite «${tourTitle}» refusee — voir commentaires`,
+        body: `Votre visite « ${tourTitle} » a été refusée.${comments ? `\n\nMotif :\n${comments}` : ''}\n\nConnectez-vous à votre espace guide pour consulter les commentaires.`,
+        pushTitle: 'Visite refusée',
+        pushBody: `Visite « ${tourTitle} » refusée — voir commentaires`,
       };
   }
 }

@@ -238,7 +238,7 @@ export default function EditPage() {
             <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-1 inline-block">
               &larr; Retour a la session
             </Link>
-            <h2 className="text-lg font-semibold text-ink">
+            <h2 className="text-h6 font-semibold text-ink">
               {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
             </h2>
           </div>
@@ -276,7 +276,7 @@ export default function EditPage() {
           onChange={(e) => setEditorText(e.target.value)}
           placeholder="Saisissez ou modifiez le texte de cette scène..."
           maxLength={10000}
-          className="w-full min-h-[300px] p-4 border border-line rounded-lg text-ink text-base leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine focus:border-transparent"
+          className="w-full min-h-[300px] p-4 border border-line rounded-lg text-ink text-body-lg leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine focus:border-transparent"
           data-testid="scene-editor"
           aria-label={`Texte de la scène ${activeScene?.title || ''}`}
         />

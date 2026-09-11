@@ -52,10 +52,8 @@ import type {
   RejectionCategory,
 } from '@/types/moderation';
 import { PageTitle } from '@murmure/design-system/web';
-
-const LANG_FLAGS: Record<string, string> = {
-  fr: 'FR', en: 'EN', es: 'ES', it: 'IT', de: 'DE',
-};
+import { languageLabel } from '@/lib/i18n/languages';
+import { LangChip } from '@/components/i18n/LangChip';
 
 const SERVICE_NAME = 'ModerationReviewPage';
 
@@ -80,7 +78,7 @@ function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; p
             >
               <S3Image s3Key={photo.s3Key} alt={photo.title} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                <span className="opacity-0 group-hover:opacity-100 text-white text-lg transition-opacity">🔍</span>
+                <span className="opacity-0 group-hover:opacity-100 text-white text-h6 transition-opacity">🔍</span>
               </div>
               <span className="absolute bottom-0.5 left-0.5 bg-black/60 text-white text-[9px] px-1 rounded">
                 {photo.sceneOrder}
@@ -99,7 +97,7 @@ function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; p
         >
           <button
             onClick={() => setLightbox(null)}
-            className="absolute top-4 right-4 text-white text-3xl hover:text-ink-20 z-10"
+            className="absolute top-4 right-4 text-white text-h4 hover:text-ink-20 z-10"
             aria-label="Fermer"
           >
             ✕
@@ -122,7 +120,7 @@ function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; p
                 {idx > 0 && (
                   <button
                     onClick={(e) => { e.stopPropagation(); setLightbox(allPhotos[idx - 1]); }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-ink-20 bg-black/40 rounded-pill w-12 h-12 flex items-center justify-center"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-h3 hover:text-ink-20 bg-black/40 rounded-pill w-12 h-12 flex items-center justify-center"
                     aria-label="Précédente"
                   >
                     ‹
@@ -131,7 +129,7 @@ function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; p
                 {idx < allPhotos.length - 1 && (
                   <button
                     onClick={(e) => { e.stopPropagation(); setLightbox(allPhotos[idx + 1]); }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-ink-20 bg-black/40 rounded-pill w-12 h-12 flex items-center justify-center"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-h3 hover:text-ink-20 bg-black/40 rounded-pill w-12 h-12 flex items-center justify-center"
                     aria-label="Suivante"
                   >
                     ›
@@ -589,7 +587,7 @@ export default function ModerationReviewPage() {
   if (!detail) {
     return (
       <div className="text-center py-12">
-        <p className="text-ink-60 text-lg">Élément de modération introuvable.</p>
+        <p className="text-ink-60 text-h6">Élément de modération introuvable.</p>
         <Link href="/admin/moderation" className="text-danger hover:underline mt-4 inline-block">
           Retour a la file d&apos;attente
         </Link>
@@ -601,8 +599,8 @@ export default function ModerationReviewPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="text-4xl mb-4">✅</div>
-          <p className="text-xl font-semibold text-ink">{successMessage}</p>
+          <div className="text-h3 mb-4">✅</div>
+          <p className="text-h5 font-semibold text-ink">{successMessage}</p>
           <p className="text-body text-ink-60 mt-2">Redirection vers la file d&apos;attente...</p>
         </div>
       </div>
@@ -627,7 +625,7 @@ export default function ModerationReviewPage() {
             </PageTitle>
             {detail.languePrincipale && (
               <span className="bg-paper-deep text-ink-60 text-meta font-medium px-2 py-0.5 rounded">
-                {LANG_FLAGS[detail.languePrincipale] ?? detail.languePrincipale}
+                {languageLabel(detail.languePrincipale)}
               </span>
             )}
             <span
@@ -672,7 +670,7 @@ export default function ModerationReviewPage() {
           {/* Guide profile summary */}
           <div className="bg-card rounded-md border border-line p-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-lg">
+              <div className="w-12 h-12 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-h6">
                 {detail.guideName.charAt(0)}
               </div>
               <div className="flex-1">
@@ -718,7 +716,7 @@ export default function ModerationReviewPage() {
           {activePreviewLang !== detail.languePrincipale ? (
             <div className="space-y-4">
               <div className="flex items-center gap-2 bg-grenadine-soft border border-grenadine rounded-lg px-4 py-2">
-                <span className="text-lg">{LANG_FLAGS[activePreviewLang] ?? ''}</span>
+                <LangChip code={activePreviewLang} />
                 <span className="text-body font-medium text-grenadine">
                   Comparaison {detail.languePrincipale.toUpperCase()} / {activePreviewLang.toUpperCase()}
                 </span>
@@ -739,7 +737,7 @@ export default function ModerationReviewPage() {
               </div>
 
               {/* Scenes: FR left / translated right — stacked per scene */}
-              <h3 className="text-lg font-semibold text-ink">Scènes ({detail.scenes.length})</h3>
+              <h3 className="text-h6 font-semibold text-ink">Scènes ({detail.scenes.length})</h3>
               {loadingSegments ? (
                 <p className="text-body text-ink-40 animate-pulse">Chargement...</p>
               ) : (
@@ -861,13 +859,13 @@ export default function ModerationReviewPage() {
                             : 'ACCÈS NON RENSEIGNÉ'}
                     </span>
                     <span className="bg-card/30 text-white text-meta font-bold px-2 py-0.5 rounded">
-                      {LANG_FLAGS[activePreviewLang] ?? ''} {activePreviewLang.toUpperCase()}
+                      {languageLabel(activePreviewLang)}
                     </span>
                     {detail.themes.map((t) => (
                       <span key={t} className="bg-card/20 text-white text-meta px-2 py-0.5 rounded">{t}</span>
                     ))}
                   </div>
-                  <h2 className="text-2xl font-bold mb-1">
+                  <h2 className="text-h5 font-bold mb-1">
                     {activePreviewLang === detail.languePrincipale
                       ? detail.tourTitle
                       : translatedTitles[activePreviewLang] || 'Titre non traduit'}
@@ -902,7 +900,7 @@ export default function ModerationReviewPage() {
 
               {/* Guide card — like catalogue */}
               <div className="bg-card rounded-md border border-line p-4 flex items-center gap-4">
-                <div className="w-14 h-14 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-xl flex-shrink-0">
+                <div className="w-14 h-14 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-h5 flex-shrink-0">
                   {detail.guideName.charAt(0)}
                 </div>
                 <div>
@@ -918,7 +916,7 @@ export default function ModerationReviewPage() {
               {/* Description — shows translated version when available */}
               {(detail.descriptionLongue || detail.description || activePreviewLang !== detail.languePrincipale) && (
                 <div className="bg-card rounded-md border border-line p-5">
-                  <h3 className="text-lg font-semibold text-ink mb-2">
+                  <h3 className="text-h6 font-semibold text-ink mb-2">
                     À propos de cette visite ({activePreviewLang.toUpperCase()})
                   </h3>
                   {activePreviewLang !== detail.languePrincipale && translatedDescriptions[activePreviewLang] ? (
@@ -944,7 +942,7 @@ export default function ModerationReviewPage() {
               {/* Interactive map — like catalogue TourMap */}
               {detail.scenes.some((s) => hasValidCoordinates(s.latitude, s.longitude)) && (
                 <div className="bg-card rounded-md border border-line overflow-hidden">
-                  <h3 className="text-lg font-semibold text-ink p-4 pb-0">
+                  <h3 className="text-h6 font-semibold text-ink p-4 pb-0">
                     Itinéraire
                     {guideRoutePath ? (
                       <span className="ml-2 text-meta font-normal text-success">· Tracé du guide</span>
@@ -974,7 +972,7 @@ export default function ModerationReviewPage() {
 
               {/* Unified scene review — one card per scene with text + audio + photos */}
               <div className="bg-card rounded-md border border-line p-5">
-                <h3 className="text-lg font-semibold text-ink mb-4">
+                <h3 className="text-h6 font-semibold text-ink mb-4">
                   Scenes ({detail.scenes.length}) — {activePreviewLang.toUpperCase()}
                 </h3>
                 {/* Diagnostic — shows segment state per scene */}
@@ -1103,22 +1101,22 @@ export default function ModerationReviewPage() {
 
               {/* Sidebar preview — like catalogue CTA card */}
               <div className="bg-grenadine-soft border border-grenadine rounded-md p-5">
-                <h3 className="text-lg font-bold text-grenadine mb-3">Vivez cette visite</h3>
+                <h3 className="text-h6 font-bold text-grenadine mb-3">Vivez cette visite</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
                   <div>
-                    <p className="text-2xl font-bold text-grenadine">{detail.duration}</p>
+                    <p className="text-h5 font-bold text-grenadine">{detail.duration}</p>
                     <p className="text-meta text-grenadine">minutes</p>
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-grenadine">{detail.distance}</p>
+                    <p className="text-h5 font-bold text-grenadine">{detail.distance}</p>
                     <p className="text-meta text-grenadine">km</p>
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-grenadine">{detail.poiCount}</p>
+                    <p className="text-h5 font-bold text-grenadine">{detail.poiCount}</p>
                     <p className="text-meta text-grenadine">points d&apos;intérêt</p>
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-grenadine">{detail.difficulty}</p>
+                    <p className="text-h5 font-bold text-grenadine">{detail.difficulty}</p>
                     <p className="text-meta text-grenadine">difficulté</p>
                   </div>
                 </div>
@@ -1139,7 +1137,7 @@ export default function ModerationReviewPage() {
             <div className="bg-card rounded-md border border-line p-4 space-y-4">
               {detail.descriptionLongue ? (
                 <>
-                  <h2 className="text-lg font-semibold text-ink">Description ({activePreviewLang.toUpperCase()})</h2>
+                  <h2 className="text-h6 font-semibold text-ink">Description ({activePreviewLang.toUpperCase()})</h2>
                   <p className="text-ink-80">
                     {(activePreviewLang !== detail.languePrincipale && translatedDescriptions[activePreviewLang])
                       ? translatedDescriptions[activePreviewLang]
@@ -1151,7 +1149,7 @@ export default function ModerationReviewPage() {
                 </>
               ) : (
                 <>
-                  <h2 className="text-lg font-semibold text-ink">Description</h2>
+                  <h2 className="text-h6 font-semibold text-ink">Description</h2>
                   <p className="text-ink-80">{detail.description}</p>
                 </>
               )}
@@ -1164,7 +1162,7 @@ export default function ModerationReviewPage() {
                 <span>&middot;</span>
                 <span>Difficulté: {detail.difficulty}</span>
                 <span>&middot;</span>
-                <span>Langue: {LANG_FLAGS[detail.languePrincipale] ?? detail.languePrincipale}</span>
+                <span>Langue: {languageLabel(detail.languePrincipale)}</span>
               </div>
 
               {/* Themes/Tags */}
@@ -1284,7 +1282,7 @@ export default function ModerationReviewPage() {
           {/* POIs tab */}
           {activeContentTab === 'pois' && (
             <div className="bg-card rounded-md border border-line p-4">
-              <h2 className="text-lg font-semibold text-ink mb-4">Points d&apos;intérêt</h2>
+              <h2 className="text-h6 font-semibold text-ink mb-4">Points d&apos;intérêt</h2>
 
               {/* Map */}
               {detail.scenes.some((s) => hasValidCoordinates(s.latitude, s.longitude)) && (
@@ -1354,7 +1352,7 @@ export default function ModerationReviewPage() {
             <div className="bg-card rounded-md border border-line p-4" data-testid="admin-validation-report">
               <div className="flex items-center justify-between gap-3 mb-3">
                 <div>
-                  <h2 className="text-lg font-semibold text-ink">Contrôles automatiques</h2>
+                  <h2 className="text-h6 font-semibold text-ink">Contrôles automatiques</h2>
                   <p className="text-meta text-ink-60">Contrôle d’interface — l’autorité serveur sera ajoutée séparément.</p>
                 </div>
                 <span className={`text-meta font-semibold px-2 py-1 rounded-pill ${validationReport?.ready ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
@@ -1375,7 +1373,7 @@ export default function ModerationReviewPage() {
 
             {/* Quality Checklist */}
             <div className="bg-card rounded-md border border-line p-4">
-              <h2 className="text-lg font-semibold text-ink mb-4">Checklist qualite</h2>
+              <h2 className="text-h6 font-semibold text-ink mb-4">Checklist qualite</h2>
               <div className="space-y-3">
                 {checklist.map((item) => (
                   <div key={item.id}>

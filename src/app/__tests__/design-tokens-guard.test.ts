@@ -38,7 +38,7 @@ function offenders(test: (line: string, file: string) => boolean): string[] {
 
 const FOREIGN_PALETTE =
   /\b(bg|text|border|ring|from|to|via|outline|divide|placeholder)-(teal|gray|slate|zinc|red|green|blue|yellow|amber|orange|purple|indigo|emerald|neutral|stone|sky|cyan|lime|pink|rose|violet|fuchsia)-[0-9]{2,3}\b/;
-const DEAD_SCALE = /\b(text-sm|text-xs|text-\[1[01]px\]|bg-white)\b/;
+const DEAD_SCALE = /\b(text-sm|text-xs|text-base|text-lg|text-xl|text-2xl|text-3xl|text-4xl|text-5xl|text-6xl|text-\[1[01]px\]|bg-white)\b/;
 
 // Fichiers qui ne peuvent pas importer les jetons (Edge, page d'erreur
 // globale) : les valeurs y sont recopiées, commentées, et doivent rester

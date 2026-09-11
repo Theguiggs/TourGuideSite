@@ -24,8 +24,6 @@
     "web/",
     "rn/",
     "index.ts",
-    "feature-flag.ts",
-    "use-ds-version.ts",
     "motion.ts",
     "sound.ts",
     "use-motion.ts",
@@ -90,14 +88,6 @@
     "./editorial": {
       "types": "./editorial.ts",
       "default": "./editorial.ts"
-    },
-    "./feature-flag": {
-      "types": "./feature-flag.ts",
-      "default": "./feature-flag.ts"
-    },
-    "./use-ds-version": {
-      "types": "./use-ds-version.ts",
-      "default": "./use-ds-version.ts"
     },
     "./motion": {
       "types": "./motion.ts",

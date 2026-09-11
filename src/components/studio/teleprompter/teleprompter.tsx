@@ -284,7 +284,7 @@ export function Teleprompter({
           />
           <span className="w-4 text-center text-body tabular-nums text-paper-soft">{state.speed}</span>
           <div
-            className="ml-auto min-w-[4.5rem] text-right font-mono text-lg tabular-nums text-paper sm:ml-2"
+            className="ml-auto min-w-[4.5rem] text-right font-mono text-h6 tabular-nums text-paper sm:ml-2"
             role="timer"
             aria-live="off"
             data-testid="chronometre"
@@ -322,7 +322,7 @@ export function Teleprompter({
         onKeyDown={handlePrompterKeyDown}
         data-testid="prompter-scroll-area"
       >
-        <div className="mx-auto max-w-3xl text-left text-2xl font-medium leading-[2.15] sm:text-3xl sm:leading-[2.2]">
+        <div className="mx-auto max-w-3xl text-left text-h5 font-medium leading-[2.15] sm:text-h4 sm:leading-[2.2]">
           {words.map((word, i) => (
             <span
               key={i}

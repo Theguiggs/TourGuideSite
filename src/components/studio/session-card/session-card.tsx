@@ -2,10 +2,7 @@
 
 import type { StudioSession, TourLanguagePurchase } from '@/types/studio';
 import { getSessionStatusConfig } from '@/lib/api/studio';
-
-const LANG_FLAGS: Record<string, string> = {
-  fr: '\u{1F1EB}\u{1F1F7}', en: '\u{1F1EC}\u{1F1E7}', es: '\u{1F1EA}\u{1F1F8}', it: '\u{1F1EE}\u{1F1F9}', de: '\u{1F1E9}\u{1F1EA}', pt: '\u{1F1F5}\u{1F1F9}', ja: '\u{1F1EF}\u{1F1F5}', zh: '\u{1F1E8}\u{1F1F3}',
-};
+import { LangChip } from '@/components/i18n/LangChip';
 
 const NON_DELETABLE_STATUSES = new Set(['published', 'archived']);
 
@@ -65,10 +62,10 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
 
           {/* Language badges */}
           <span className="flex items-center gap-1 shrink-0">
-            <span className="text-meta">{LANG_FLAGS[session.language] ?? session.language.toUpperCase()}</span>
+            <LangChip code={session.language} />
             {purchases.map((p) => (
               <span key={p.id} className="flex items-center gap-0.5" title={`${p.language.toUpperCase()} — ${p.moderationStatus}`}>
-                <span className="text-meta">{LANG_FLAGS[p.language] ?? p.language.toUpperCase()}</span>
+                <LangChip code={p.language} />
                 <span className={`w-1.5 h-1.5 rounded-pill ${MOD_STATUS_DOT[p.moderationStatus] ?? 'bg-paper-deep'}`} />
               </span>
             ))}
@@ -141,10 +138,10 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
           {/* Inline stats */}
           <span className="hidden sm:flex items-center gap-3 text-meta text-ink-60 shrink-0">
             <span>{scenesCount} sc.</span>
-            <span>{LANG_FLAGS[session.language] ?? session.language.toUpperCase()}</span>
+            <LangChip code={session.language} />
             {purchases.map((p) => (
               <span key={p.id} className="flex items-center gap-0.5" title={`${p.language.toUpperCase()} — ${p.moderationStatus}`}>
-                <span>{LANG_FLAGS[p.language] ?? p.language.toUpperCase()}</span>
+                <LangChip code={p.language} />
                 <span className={`w-1.5 h-1.5 rounded-pill ${MOD_STATUS_DOT[p.moderationStatus] ?? 'bg-paper-deep'}`} />
               </span>
             ))}

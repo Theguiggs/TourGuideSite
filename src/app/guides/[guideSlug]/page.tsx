@@ -152,7 +152,7 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
             priority
           />
         ) : (
-          <div className="w-48 h-48 flex-shrink-0 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-6xl">
+          <div className="w-48 h-48 flex-shrink-0 bg-grenadine-soft rounded-pill flex items-center justify-center text-grenadine font-bold text-h2">
             {guide.displayName.charAt(0)}
           </div>
         )}
@@ -207,15 +207,15 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-12 max-w-lg mx-auto md:mx-0">
         <div className="text-center p-4 bg-paper-soft rounded-xl">
-          <p className="text-2xl font-bold text-ink">{tours.length}</p>
+          <p className="text-h5 font-bold text-ink">{tours.length}</p>
           <p className="text-body text-ink-60">{copy.tours}</p>
         </div>
         <div className="text-center p-4 bg-paper-soft rounded-xl">
-          <p className="text-2xl font-bold text-ink">{guide.totalListens.toLocaleString(copy.numberLocale)}</p>
+          <p className="text-h5 font-bold text-ink">{guide.totalListens.toLocaleString(copy.numberLocale)}</p>
           <p className="text-body text-ink-60">{copy.listens}</p>
         </div>
         <div className="text-center p-4 bg-paper-soft rounded-xl">
-          <p className="text-2xl font-bold text-ink">
+          <p className="text-h5 font-bold text-ink">
             {guide.rating ? `${guide.rating}/5` : '-'}
           </p>
           <p className="text-body text-ink-60">{copy.averageRating}</p>

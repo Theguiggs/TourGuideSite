@@ -419,7 +419,7 @@ export default function PreviewPage() {
             )}
             <div className="relative">
               <p className="text-paper text-meta font-medium uppercase tracking-wider">{session.language.toUpperCase()}</p>
-              <h2 className="text-xl font-bold">{displayTitle}</h2>
+              <h2 className="text-h5 font-bold">{displayTitle}</h2>
               <div className="flex items-center gap-3 mt-1 text-body text-paper-soft">
                 <span>{scenes.length} etapes</span>
                 <span>~{scenes.length * 3} min</span>
