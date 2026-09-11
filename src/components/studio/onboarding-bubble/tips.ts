@@ -30,13 +30,15 @@ const TIPS_FR: Record<OnboardingFeature, OnboardingTip> = {
   },
   scenes: {
     title: 'Une scène par point d’intérêt',
+    // Pas de consigne de longueur : le format est libre, et des sessions
+    // longues façon podcast sont envisagées.
     description:
-      'Visez 150 à 225 mots par scène, soit une minute à une minute trente d’écoute. Titre et texte sont exigés avant la soumission.',
+      'Chaque scène est ce que le visiteur entend à un point d’intérêt. Titre et texte sont exigés avant la soumission.',
   },
   recording: {
     title: 'Le prompteur suit votre voix',
     description:
-      'Espace met en pause, Échap arrête. Chaque prise est sauvegardée sur votre visite dès que vous la sélectionnez.',
+      'Espace met en pause, Échap arrête. Écoutez vos prises, choisissez la meilleure, puis enregistrez-la pour la scène.',
   },
   preview: {
     title: 'Écoutez avant de soumettre',
@@ -59,12 +61,12 @@ const TIPS_EN: Record<OnboardingFeature, OnboardingTip> = {
   scenes: {
     title: 'One scene per point of interest',
     description:
-      'Aim for 150 to 225 words per scene, about 60 to 90 seconds of audio. Title and text are required before submission.',
+      'Each scene is what the visitor hears at a point of interest. Title and text are required before submission.',
   },
   recording: {
     title: 'The teleprompter follows your voice',
     description:
-      'Space pauses, Escape stops. Every take is saved to your tour as soon as you select it.',
+      'Space pauses, Escape stops. Listen to your takes, pick the best one, then save it for the scene.',
   },
   preview: {
     title: 'Listen before you submit',
