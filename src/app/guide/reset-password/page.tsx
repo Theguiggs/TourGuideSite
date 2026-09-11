@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { resetPassword, confirmResetPassword } from 'aws-amplify/auth';
 import { logger } from '@/lib/logger';
+import { describeAuthError, isUnknownUserError } from '@/lib/auth/cognito-errors';
 import { PageTitle } from '@murmure/design-system/web';
 
 const SERVICE_NAME = 'ResetPasswordPage';
@@ -25,7 +26,10 @@ export default function ResetPasswordPage() {
       setStep('confirm');
     } catch (err) {
       logger.warn(SERVICE_NAME, 'resetPassword failed', { error: String(err) });
-      setError('Impossible d\'envoyer le code. Vérifiez votre email et réessayez.');
+      // Un email inconnu avance comme un email connu : la page ne dit pas
+      // quels comptes existent (même politique que la connexion).
+      if (isUnknownUserError(err)) { setStep('confirm'); return; }
+      setError(describeAuthError(err, 'reset'));
     } finally {
       setLoading(false);
     }
@@ -40,7 +44,7 @@ export default function ResetPasswordPage() {
       setStep('done');
     } catch (err) {
       logger.warn(SERVICE_NAME, 'confirmResetPassword failed', { error: String(err) });
-      setError('Code invalide ou mot de passe incorrect. Réessayez.');
+      setError(describeAuthError(err, 'reset'));
     } finally {
       setLoading(false);
     }

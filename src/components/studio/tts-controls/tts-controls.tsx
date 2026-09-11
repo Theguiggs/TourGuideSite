@@ -93,7 +93,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
       } else {
         setSegmentStatus(segment.id, {
           status: 'failed',
-          error: t('Échec de la génération audio.', 'Audio generation failed.'),
+          error: result.error ?? t('Échec de la génération audio.', 'Audio generation failed.'),
         });
       }
     } catch (err) {

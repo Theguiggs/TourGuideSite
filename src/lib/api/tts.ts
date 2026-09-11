@@ -1,6 +1,7 @@
 import type { TTSJobStatus } from '@/types/studio';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
+import { reportSessionRefusal } from '@/lib/auth/session-signals';
 
 const SERVICE_NAME = 'TTSAPI';
 
@@ -12,6 +13,8 @@ export interface TTSResult {
   audioKey: string | null;
   language: string;
   durationMs: number | null;
+  /** Cause d'un échec quand elle est connue (session expirée, accès retiré…). */
+  error?: string;
 }
 
 // --- Stub state ---
@@ -102,6 +105,12 @@ export async function requestTTS(
     if (response.status === 429) {
       logger.error(SERVICE_NAME, 'TTS submit unavailable (429)', { language });
       return { jobId: '', status: 'failed', audioKey: null, language, durationMs: null };
+    }
+    // 401/403 = ce n'est pas le TTS qui échoue, c'est la session ou le rôle.
+    const refusal = reportSessionRefusal(response.status);
+    if (refusal) {
+      logger.warn(SERVICE_NAME, 'TTS refused by proxy', { status: response.status });
+      return { jobId: '', status: 'failed', audioKey: null, language, durationMs: null, error: refusal };
     }
 
     const data = await response.json();

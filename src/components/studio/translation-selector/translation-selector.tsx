@@ -97,7 +97,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
       } else {
         setSegmentStatus(segment.id, {
           status: 'failed',
-          error: t('Échec du déclenchement de la traduction.', 'Could not start translation.'),
+          error: result.error ?? t('Échec du déclenchement de la traduction.', 'Could not start translation.'),
         });
       }
       onTranslationStarted?.();

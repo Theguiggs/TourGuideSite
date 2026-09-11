@@ -12,6 +12,7 @@ import { useState, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { signUp, confirmSignUp, signIn as amplifySignIn, fetchAuthSession, signOut as amplifySignOut } from 'aws-amplify/auth';
+import { describeAuthError } from '@/lib/auth/cognito-errors';
 import { createGuideProfileMutation, getOwnGuideProfile } from '@/lib/api/appsync-client';
 import { useAuth } from '@/lib/auth/auth-context';
 import { trackEvent, GuideAnalyticsEvents } from '@/lib/analytics';
@@ -31,20 +32,6 @@ interface FormErrors {
   city?: string;
   code?: string;
   global?: string;
-}
-
-function parseSignUpError(error: unknown): string {
-  if (error instanceof Error) {
-    const msg = error.message;
-    if (msg.includes('UsernameExistsException')) return 'Un compte existe déjà avec cet email';
-    if (msg.includes('InvalidPasswordException')) return 'Mot de passe trop faible (min. 8 caractères, majuscule, chiffre)';
-    if (msg.includes('InvalidParameterException')) return 'Paramètre invalide — vérifiez vos informations';
-    if (msg.includes('CodeMismatchException')) return 'Code incorrect — vérifiez votre email';
-    if (msg.includes('ExpiredCodeException')) return 'Code expiré — cliquez sur "Renvoyer le code"';
-    if (msg.includes('LimitExceededException')) return 'Trop de tentatives — réessayez dans quelques minutes';
-    return msg;
-  }
-  return 'Une erreur est survenue';
 }
 
 export default function GuideSignupPage() {
@@ -113,7 +100,7 @@ export default function GuideSignupPage() {
         setStep('confirm');
         startResendCooldown();
       } catch (error) {
-        setErrors({ global: parseSignUpError(error) });
+        setErrors({ global: describeAuthError(error, 'signUp') });
       } finally {
         setLoading(false);
       }
@@ -204,7 +191,7 @@ export default function GuideSignupPage() {
           router.push('/guide/login?registered=1');
         }
       } catch (error) {
-        setErrors({ global: parseSignUpError(error) });
+        setErrors({ global: describeAuthError(error, 'confirmSignUp') });
       } finally {
         setLoading(false);
       }
@@ -234,7 +221,7 @@ export default function GuideSignupPage() {
       startResendCooldown();
       setErrors({});
     } catch (error) {
-      setErrors({ global: parseSignUpError(error) });
+      setErrors({ global: describeAuthError(error, 'confirmSignUp') });
     } finally {
       setLoading(false);
     }

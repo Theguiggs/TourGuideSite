@@ -1,5 +1,6 @@
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
+import { reportSessionRefusal } from '@/lib/auth/session-signals';
 
 const SERVICE_NAME = 'SilenceDetectionAPI';
 
@@ -60,6 +61,8 @@ export async function detectSilences(audioKey: string): Promise<SilenceDetection
       headers: await getMicroserviceHeaders(),
       body: JSON.stringify({ audio_url: presignedUrl }),
     });
+    const refusal = reportSessionRefusal(response.status);
+    if (refusal) return { ok: false, segments: [], error: refusal };
     const data = await response.json();
 
     if (data.ok) {

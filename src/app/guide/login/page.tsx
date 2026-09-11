@@ -13,6 +13,7 @@ function GuideLoginContent() {
   const searchParams = useSearchParams();
   const justRegistered = searchParams.get('registered') === '1';
   const returnTo = safeReturnTo(searchParams.get('returnTo'));
+  const reason = searchParams.get('reason');
   const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +32,7 @@ function GuideLoginContent() {
       trackEvent(GuideAnalyticsEvents.GUIDE_PORTAL_LOGIN, { email_domain: email.split('@')[1] });
       router.push(loginDestination(result.role, returnTo));
     } else {
-      setError(result.error || 'Erreur de connexion');
+      setError(result.error || 'Connexion impossible pour le moment. Réessayez dans un instant.');
     }
   };
 
@@ -47,6 +48,16 @@ function GuideLoginContent() {
         </p>
 
         <form onSubmit={handleSubmit} className="bg-card border border-line rounded-md p-8 shadow-sm">
+          {reason === 'expired' && (
+            <div className="bg-ocre-soft border border-ocre/30 text-ocre-ink rounded-md p-3 mb-6 text-caption" role="status" data-testid="login-reason">
+              Votre session a expiré. Reconnectez-vous pour reprendre là où vous étiez.
+            </div>
+          )}
+          {reason === 'revoked' && (
+            <div className="bg-grenadine-soft border border-grenadine/30 text-danger rounded-md p-3 mb-6 text-caption" role="alert" data-testid="login-reason">
+              Votre accès guide a été retiré. Si vous pensez qu’il s’agit d’une erreur, écrivez-nous.
+            </div>
+          )}
           {justRegistered && (
             <div className="bg-olive-soft border border-olive/30 text-olive rounded-md p-3 mb-6 text-caption">
               Compte créé ! Connectez-vous pour accéder à votre tableau de bord.
