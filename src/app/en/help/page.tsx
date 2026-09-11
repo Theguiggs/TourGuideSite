@@ -4,6 +4,7 @@ import { tg } from '@murmure/design-system/tokens';
 import { Button, Eyebrow, PullQuote } from '@murmure/design-system/web';
 import StepCard from '../../aide/_components/StepCard';
 import Faq from '../../aide/_components/Faq';
+import CreateTourCta from '@/components/CreateTourCta';
 import { FAQ_GUIDES, FAQ_TRAVELLERS, STEPS, SUPPORT_EMAIL, TIPS } from './_content';
 
 export const metadata: Metadata = {
@@ -50,7 +51,13 @@ export default function EnglishHelpPage() {
             {STEPS.map((step) => <StepCard key={step.id} step={step} locale="en" />)}
           </div>
           <div className="mt-12 text-center">
-            <Button href="/guide/studio/nouveau" variant="accent" size="lg" accessibilityLabel="Create a tour in the studio">Create my tour</Button>
+            <CreateTourCta locale="en" />
+            <p className="font-sans mt-3" style={{ color: tg.colors.ink60, fontSize: tg.fontSize.caption }}>
+              No account yet?{' '}
+              <Link href="/guide/signup" style={{ color: tg.colors.grenadine, fontWeight: 600 }}>
+                Become a guide
+              </Link>
+            </p>
           </div>
         </div>
       </section>

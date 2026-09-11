@@ -4,6 +4,8 @@ import TrackPageView from '@/components/TrackPageView';
 import CitiesSection from '@/components/CitiesSection';
 import HeroCta from './_components/HeroCta';
 import { AnalyticsEvents } from '@/lib/analytics';
+import { helpAnchorHref } from '@/lib/help-anchors';
+import { APP_STORE_URLS } from '@/lib/app-store';
 import { tg } from '@murmure/design-system/tokens';
 import {
   Button,
@@ -32,25 +34,25 @@ const STEPS = [
     n: 1,
     title: 'Créez',
     body: 'Un titre, une ville. Votre parcours est né.',
-    href: '/aide#creer',
+    href: helpAnchorHref('fr', 'creer'),
   },
   {
     n: 2,
     title: 'Tracez',
     body: "Posez vos points d'intérêt sur la carte, l'itinéraire se dessine.",
-    href: '/aide#tracer',
+    href: helpAnchorHref('fr', 'tracer'),
   },
   {
     n: 3,
     title: 'Racontez',
     body: 'Écrivez, enregistrez, ou laissez la voix de synthèse lire votre texte.',
-    href: '/aide#raconter',
+    href: helpAnchorHref('fr', 'raconter'),
   },
   {
     n: 4,
     title: 'Publiez',
     body: 'Traduisez en un clic, soumettez, et votre tour part dans le monde.',
-    href: '/aide#publier',
+    href: helpAnchorHref('fr', 'publier'),
   },
 ] as const;
 
@@ -237,22 +239,26 @@ export default function LandingPage() {
             >
               Voir le catalogue
             </Button>
-            <Button
-              href={process.env.NEXT_PUBLIC_APP_STORE_IOS || '#'}
-              variant="primary"
-              size="md"
-              accessibilityLabel="Télécharger sur l’App Store"
-            >
-              App Store
-            </Button>
-            <Button
-              href={process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#'}
-              variant="primary"
-              size="md"
-              accessibilityLabel="Télécharger sur Google Play"
-            >
-              Google Play
-            </Button>
+            {APP_STORE_URLS.ios && (
+              <Button
+                href={APP_STORE_URLS.ios}
+                variant="primary"
+                size="md"
+                accessibilityLabel="Télécharger sur l’App Store"
+              >
+                App Store
+              </Button>
+            )}
+            {APP_STORE_URLS.android && (
+              <Button
+                href={APP_STORE_URLS.android}
+                variant="primary"
+                size="md"
+                accessibilityLabel="Télécharger sur Google Play"
+              >
+                Google Play
+              </Button>
+            )}
           </div>
         </div>
       </section>

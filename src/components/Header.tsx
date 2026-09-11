@@ -7,6 +7,7 @@ import { Menu, PanelsTopLeft, X } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { localizePublicPath } from '@/lib/i18n/public-routes';
 import { MurmureLogo } from '@/components/shell/MurmureLogo';
+import StoreLink from '@/components/StoreLink';
 
 interface HeaderProps {
   locale?: 'fr' | 'en';
@@ -124,12 +125,9 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
                 >
                   {copy.guideSpace}
                 </Link>
-                <Link
-                  href={process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#'}
-                  className="bg-grenadine text-paper text-caption font-bold px-4 py-2 rounded-pill hover:opacity-90 transition no-underline"
-                >
+                <StoreLink className="bg-grenadine text-paper text-caption font-bold px-4 py-2 rounded-pill hover:opacity-90 transition no-underline">
                   {copy.download}
-                </Link>
+                </StoreLink>
               </>
             )}
           </div>
@@ -211,13 +209,12 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
                 >
                   {copy.guideSpace}
                 </Link>
-                <Link
-                  href={process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#'}
+                <StoreLink
                   className="block py-3 text-caption text-grenadine font-medium no-underline"
                   onClick={() => setMenuOpen(false)}
                 >
                   {copy.download}
-                </Link>
+                </StoreLink>
               </>
             )}
           </div>

@@ -1,5 +1,8 @@
 'use client';
 
+import { getStoreUrl, isMobileUserAgent } from '@/lib/app-store';
+import { useUserAgent } from '@/lib/use-user-agent';
+
 interface SmartAppLinkProps {
   tourId: string;
   className?: string;
@@ -9,9 +12,10 @@ interface SmartAppLinkProps {
 }
 
 /**
- * Tries to open the app via deep link, then falls back to the app store.
- * On iOS Safari, the deep link either opens the app or silently fails.
- * After a short timeout, we redirect to the store.
+ * « Ouvrir dans l'app » : sur mobile, tente le lien profond `murmure://`
+ * puis retombe sur le magasin si l'app n'est pas installée. Sur ordinateur,
+ * `murmure://` ne mène nulle part : le lien pointe vers le magasin, ou
+ * disparaît s'il n'y en a pas — il naviguait vers `#` jusqu'ici.
  */
 export default function SmartAppLink({
   tourId,
@@ -20,24 +24,31 @@ export default function SmartAppLink({
   'aria-label': ariaLabel,
   children,
 }: SmartAppLinkProps) {
+  const ua = useUserAgent();
+  // `null` = rendu serveur / hydratation : on rend le lien, la décision
+  // « ordinateur sans magasin » n'est prise qu'une fois le navigateur connu.
+  const env = ua === null ? null : { mobile: isMobileUserAgent(ua), storeUrl: getStoreUrl(ua) };
+
+  if (env && !env.mobile && !env.storeUrl) return null;
+
   const handleClick = (e: React.MouseEvent) => {
+    if (!env?.mobile) {
+      // Ordinateur : navigation ordinaire vers le magasin (ou rien).
+      if (!env?.storeUrl) e.preventDefault();
+      return;
+    }
     e.preventDefault();
-    const deepLink = `murmure://tour/${tourId}`;
-    const storeUrl = process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#';
-
-    // Try deep link
-    window.location.href = deepLink;
-
-    // If app not installed, deep link fails silently — redirect to store after delay
+    window.location.href = `murmure://tour/${tourId}`;
+    const storeUrl = env.storeUrl;
+    if (!storeUrl) return;
+    // App absente : le lien profond échoue en silence, on part au magasin.
     setTimeout(() => {
-      if (!document.hidden) {
-        window.location.href = storeUrl;
-      }
+      if (!document.hidden) window.location.href = storeUrl;
     }, 1500);
   };
 
   return (
-    <a href="#" onClick={handleClick} className={className} style={style} aria-label={ariaLabel}>
+    <a href={env?.storeUrl ?? '#'} onClick={handleClick} className={className} style={style} aria-label={ariaLabel}>
       {children}
     </a>
   );

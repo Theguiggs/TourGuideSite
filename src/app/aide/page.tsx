@@ -4,6 +4,7 @@ import { tg } from '@murmure/design-system/tokens';
 import { Button, Eyebrow, PullQuote } from '@murmure/design-system/web';
 import StepCard from './_components/StepCard';
 import Faq from './_components/Faq';
+import CreateTourCta from '@/components/CreateTourCta';
 import {
   STEPS,
   TIPS,
@@ -95,14 +96,7 @@ export default function AidePage() {
             ))}
           </div>
           <div className="mt-12 text-center">
-            <Button
-              href="/guide/studio/nouveau"
-              variant="accent"
-              size="lg"
-              accessibilityLabel="Créer mon parcours dans l’atelier"
-            >
-              Créer mon parcours
-            </Button>
+            <CreateTourCta locale="fr" />
             <p
               className="font-sans mt-3"
               style={{ color: tg.colors.ink60, fontSize: tg.fontSize.caption }}

@@ -59,6 +59,10 @@ services:
         # seulement dans `environment:` n'aurait aucun effet. Sans elle,
         # isStripeConfigured() masque toute l'UI d'achat (lib/stripe/client.ts).
         NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+        # Liens magasins, inlinés au build eux aussi. Vides tant que l'app
+        # n'est pas publiée : le site n'affiche alors aucun bouton magasin.
+        NEXT_PUBLIC_APP_STORE_IOS: ${NEXT_PUBLIC_APP_STORE_IOS:-}
+        NEXT_PUBLIC_APP_STORE_ANDROID: ${NEXT_PUBLIC_APP_STORE_ANDROID:-}
         # Empreinte de build affichée au pied de page. Sans elle, `v0.2.0` ne
         # bouge jamais et rien ne dit quel code tourne réellement sur le VPS.
         # L'horodatage est gravé par le Dockerfile et suffit à voir qu'un

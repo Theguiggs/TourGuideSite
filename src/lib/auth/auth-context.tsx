@@ -211,3 +211,8 @@ export function useAuth(): AuthContextType {
   if (!ctx) throw new Error('useAuth must be used within AuthProvider');
   return ctx;
 }
+
+/** Comme `useAuth`, mais rend null hors `AuthProvider` (pages statiques, tests). */
+export function useOptionalAuth(): AuthContextType | null {
+  return useContext(AuthContext);
+}

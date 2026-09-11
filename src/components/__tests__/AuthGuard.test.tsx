@@ -6,6 +6,7 @@ const mockReplace = jest.fn();
 
 jest.mock('next/navigation', () => ({
   useRouter: () => ({ replace: mockReplace }),
+  usePathname: () => '/guide/studio/nouveau',
 }));
 
 jest.mock('@/lib/auth/auth-context', () => ({
@@ -38,7 +39,9 @@ describe('AuthGuard', () => {
     mockUseAuth.mockReturnValue(authState({}));
     render(<AuthGuard requireGuide>Studio</AuthGuard>);
 
-    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/guide/login'));
+    await waitFor(() =>
+      expect(mockReplace).toHaveBeenCalledWith('/guide/login?returnTo=%2Fguide%2Fstudio%2Fnouveau'),
+    );
     expect(screen.queryByText('Studio')).not.toBeInTheDocument();
   });
 

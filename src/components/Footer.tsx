@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import pkg from '../../package.json';
+import { APP_STORE_URLS } from '@/lib/app-store';
 
 /**
  * Empreinte du build, gravée au moment où l'image est construite.
@@ -34,6 +35,7 @@ const FOOTER_COPY = {
     privacy: 'Politique de confidentialité',
     deletion: 'Supprimer mon compte',
     download: 'Télécharger',
+    storesSoon: 'Bientôt sur l’App Store et Google Play.',
     rights: 'Tous droits réservés.',
   },
   en: {
@@ -45,6 +47,7 @@ const FOOTER_COPY = {
     privacy: 'Privacy policy',
     deletion: 'Delete my account',
     download: 'Download',
+    storesSoon: 'Coming soon to the App Store and Google Play.',
     rights: 'All rights reserved.',
   },
 } as const;
@@ -157,20 +160,19 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
               className="flex flex-col gap-2"
               style={{ fontSize: tg.fontSize.body }}
             >
-              <a
-                href={process.env.NEXT_PUBLIC_APP_STORE_IOS || '#'}
-                style={{ color: tg.colors.paperSoft }}
-                className="hover:opacity-80"
-              >
-                App Store (iOS)
-              </a>
-              <a
-                href={process.env.NEXT_PUBLIC_APP_STORE_ANDROID || '#'}
-                style={{ color: tg.colors.paperSoft }}
-                className="hover:opacity-80"
-              >
-                Google Play (Android)
-              </a>
+              {APP_STORE_URLS.ios && (
+                <a href={APP_STORE_URLS.ios} style={{ color: tg.colors.paperSoft }} className="hover:opacity-80">
+                  App Store (iOS)
+                </a>
+              )}
+              {APP_STORE_URLS.android && (
+                <a href={APP_STORE_URLS.android} style={{ color: tg.colors.paperSoft }} className="hover:opacity-80">
+                  Google Play (Android)
+                </a>
+              )}
+              {!APP_STORE_URLS.ios && !APP_STORE_URLS.android && (
+                <span style={{ color: tg.colors.paperSoft }}>{copy.storesSoon}</span>
+              )}
             </div>
           </div>
         </div>
