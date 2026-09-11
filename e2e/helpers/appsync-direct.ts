@@ -6,7 +6,7 @@
  * - Cleanup: DynamoDB SDK with IAM credentials (AppSync owner-auth prevents cross-user deletion)
  */
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient, ScanCommand, BatchWriteCommand } from '@aws-sdk/lib-dynamodb';
+import { DynamoDBDocumentClient, PutCommand, ScanCommand, BatchWriteCommand } from '@aws-sdk/lib-dynamodb';
 import outputs from '../../amplify_outputs.json';
 
 const APPSYNC_URL = (outputs as { data: { url: string } }).data.url;
@@ -255,42 +255,56 @@ export async function seedModerationItem(
   return data.createModerationItem;
 }
 
+/** `sub` et `username` du jeton d'accès Cognito — pour poser `owner` au format Amplify. */
+function ownerFromToken(token: string): string {
+  const payload = JSON.parse(
+    Buffer.from(token.split('.')[1], 'base64').toString('utf-8'),
+  ) as { sub?: string; username?: string; 'cognito:username'?: string };
+  if (!payload.sub) throw new Error('seedLanguagePurchase: jeton sans `sub`');
+  return `${payload.sub}::${payload.username ?? payload['cognito:username'] ?? payload.sub}`;
+}
+
 export async function seedLanguagePurchase(
   sessionId: string,
   language: string,
   token: string,
   overrides?: Partial<{ guideId: string; qualityTier: string; purchaseType: string; amountCents: number; moderationStatus: string }>,
 ): Promise<CreatedItem> {
-  // Reproduit EXACTEMENT ce que fait le navigateur d'un vrai guide, et rien
-  // d'autre — c'est tout l'intérêt d'une fixture de bout en bout.
-  //
-  // `moderationStatus` n'est PAS envoyé : le propriétaire n'a pas le droit de
-  // création dessus, et l'envoyer ferait refuser toute la mutation. Le champ
-  // reste nul, ce qui est sûr : le balayage de publication exige `approved`.
-  //
-  // `status` EST envoyé, et doit l'être. Il n'a pas de valeur par défaut de
-  // schéma — une valeur par défaut serait comptée comme fournie par le client
-  // et refusée, ce qui a été éprouvé sur bac à sable. Sans lui, la ligne naît
-  // à `null` et disparaît des quatre filtres du produit qui comparent à
-  // 'active', dont la liste de la page de soumission : l'achat existe en base
-  // mais n'apparaît nulle part.
-  const input = {
+  // SÉCURITÉ (lot 0.3) — le propriétaire n'a plus `create` sur
+  // TourLanguagePurchase : `createTourLanguagePurchase` avec un jeton guide
+  // répond « Unauthorized », et c'est voulu. Le produit passe par la mutation
+  // Lambda `createLanguagePurchase`, qui exige une preuve Stripe pour un
+  // palier payant — ce qu'une fixture ne peut pas fournir. La fixture écrit
+  // donc la ligne EXACTEMENT comme le Lambda (mêmes champs, même `owner`
+  // `sub::username`, même id déterministe), avec les identifiants IAM.
+  const id = `tlp-${sessionId}-${language}`;
+  const now = new Date().toISOString();
+  const item = {
+    id,
+    __typename: 'TourLanguagePurchase',
+    owner: ownerFromToken(token),
     guideId: overrides?.guideId ?? 'e2e-guide',
     sessionId,
     language,
     qualityTier: overrides?.qualityTier ?? 'manual',
     purchaseType: overrides?.purchaseType ?? 'manual',
     amountCents: overrides?.amountCents ?? 0,
+    moderationStatus: 'draft',
     status: 'active',
+    createdAt: now,
+    updatedAt: now,
   };
-  const data = await graphql<{ createTourLanguagePurchase: CreatedItem }>(
-    `mutation($input: CreateTourLanguagePurchaseInput!) {
-      createTourLanguagePurchase(input: $input) { id sessionId language qualityTier moderationStatus status }
-    }`,
-    { input },
-    token,
+  await getDynamoClient().send(
+    new PutCommand({ TableName: `TourLanguagePurchase-${APP_ID}-${ENV}`, Item: item }),
   );
-  const created = data.createTourLanguagePurchase;
+  const created: CreatedItem = {
+    id,
+    sessionId,
+    language,
+    qualityTier: item.qualityTier,
+    moderationStatus: item.moderationStatus,
+    status: item.status,
+  };
 
   // Anything beyond the server default is reached the way the product reaches it:
   // through the guide Lambda. No local whitelist — the server is the authority, and

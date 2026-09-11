@@ -602,15 +602,14 @@ export async function cloneSessionAsV2(
       for (const p of purchasesRes.data) {
         const pr = p as Record<string, unknown>;
         if (pr.status !== 'active') continue;
+        // SÉCURITÉ (lot 0.3) — le serveur recopie le droit ACTIF de la session
+        // parente (qu'il vérifie appartenir à l'appelant), à 0 €.
+        const tier = pr.qualityTier as 'standard' | 'pro' | 'manual' | undefined;
         await createLanguagePurchaseMutation({
-          guideId: parentSession.guideId,
           sessionId: newSessionId,
           language: pr.language as string,
-          qualityTier: (pr.qualityTier as 'standard' | 'pro') ?? 'standard',
-          provider: pr.provider as 'marianmt' | 'deepl' | undefined,
-          purchaseType:
-            (pr.purchaseType as 'single' | 'pack_3' | 'pack_all' | 'free_first') ?? 'single',
-          amountCents: 0,
+          mode: tier === 'manual' ? 'manual' : tier ?? 'standard',
+          sourceSessionId: parentSessionId,
         });
       }
     }

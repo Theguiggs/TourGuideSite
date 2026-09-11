@@ -1047,40 +1047,62 @@ export async function getPublishedTourContent(tourId: string) {
 
 // --- TourLanguagePurchase Queries & Mutations ---
 
-export async function createLanguagePurchaseMutation(data: {
-  guideId: string;
+export interface CreateLanguagePurchaseInput {
   sessionId: string;
   language: string;
-  qualityTier: 'standard' | 'pro';
-  provider?: 'marianmt' | 'deepl';
-  purchaseType: 'single' | 'pack_3' | 'pack_all' | 'free_first';
-  amountCents: number;
-  stripePaymentIntentId?: string;
-}) {
+  /** manual = le guide traduit lui-même (0 €) ; standard / pro = paliers payants. */
+  mode: 'manual' | 'standard' | 'pro';
+  /** Preuve Stripe pour un palier payant (sinon : première langue gratuite, si disponible). */
+  paymentIntentId?: string;
+  /** Nouvelle version : recopie du droit ACTIF de cette session (0 €). */
+  sourceSessionId?: string;
+}
+
+/**
+ * SÉCURITÉ (lot 0.3, revue web 2026-09-11) — SEULE voie de création d'un
+ * TourLanguagePurchase. Le propriétaire n'a plus `create` sur le modèle :
+ * `client.models.TourLanguagePurchase.create` répond désormais « Unauthorized ».
+ * La mutation Lambda vérifie la propriété de la session, l'intent Stripe
+ * (statut, appelant, session, langue) ou le droit à la première langue
+ * gratuite, et écrit la ligne avec son rôle IAM. Idempotente : un droit actif
+ * déjà présent est rendu tel quel.
+ */
+export async function createLanguagePurchaseMutation(input: CreateLanguagePurchaseInput) {
   try {
     const client = getClient();
-    // SÉCURITÉ — `moderationStatus` n'est PAS envoyé : le propriétaire n'a pas
-    // le droit `create` dessus, sinon il naîtrait des lignes déjà « approved ».
-    // Le champ reste nul, ce qui est sûr : le balayage de publication exige
-    // `moderationStatus = 'approved'` et ne matche jamais un nul.
-    // `status` est envoyé — le propriétaire garde `create`, et une valeur par
-    // défaut de schéma serait comptée comme fournie par le client, donc refusée
-    // (éprouvé sur bac à sable : « Unauthorized on [moderationStatus, status] »
-    // alors que le client n'envoyait rien).
-    const result = await client.models.TourLanguagePurchase.create(
-      { ...data, status: 'active' } as Parameters<
-        typeof client.models.TourLanguagePurchase.create
-      >[0],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client as any).mutations.createLanguagePurchase(
+      {
+        sessionId: input.sessionId,
+        language: input.language,
+        mode: input.mode,
+        ...(input.paymentIntentId ? { paymentIntentId: input.paymentIntentId } : {}),
+        ...(input.sourceSessionId ? { sourceSessionId: input.sourceSessionId } : {}),
+      },
       { authMode: 'userPool' },
     );
-    if (!result.data) {
-      const errMsg = result.errors?.map((e) => e.message).join(', ') ?? 'données nulles';
+    if (result?.errors?.length) {
+      const errMsg = result.errors.map((e: { message: string }) => e.message).join(', ');
+      logger.error(SERVICE_NAME, 'createLanguagePurchase GraphQL error', { input, errMsg });
       return { ok: false as const, error: errMsg };
     }
-    return { ok: true as const, data: result.data };
+    const payload = (typeof result?.data === 'string' ? JSON.parse(result.data) : result?.data) as
+      | {
+          ok: boolean;
+          value?: { purchase: Record<string, unknown>; alreadyExisted: boolean };
+          error?: { code: number; message: string };
+        }
+      | null
+      | undefined;
+    if (!payload?.ok || !payload.value) {
+      const errMsg = payload?.error?.message ?? 'réponse vide';
+      logger.error(SERVICE_NAME, 'createLanguagePurchase refused', { input, errMsg });
+      return { ok: false as const, error: errMsg };
+    }
+    return { ok: true as const, data: payload.value.purchase, alreadyExisted: payload.value.alreadyExisted };
   } catch (error) {
     logger.error(SERVICE_NAME, 'createLanguagePurchase failed', { error: String(error) });
-    return { ok: false as const, error: 'Erreur lors de la création de l\'achat de langue' };
+    return { ok: false as const, error: "Erreur lors de la création de l'achat de langue" };
   }
 }
 
