@@ -6,11 +6,12 @@
  *   --clean : supprime les données seed existantes avant de re-seeder
  */
 
+import { requireBackend } from './_backend.mjs';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, PutCommand, ScanCommand, BatchWriteCommand } from '@aws-sdk/lib-dynamodb';
 import { randomUUID } from 'crypto';
 
-const APP_ID = '4z7fvz7n2bh5rpixdgihjmhdpa';
+const { appId: APP_ID } = requireBackend(); // cible : --app-id= ou APPSYNC_API_ID
 const ENV = 'NONE';
 const REGION = 'us-east-1';
 const SEED_PREFIX = 'seed-am-';

@@ -15,6 +15,7 @@
  *   node scripts/seed-multilang-photos.mjs --user-id <cognito-sub> --clean
  */
 
+import { requireBackend } from './_backend.mjs';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import {
   DynamoDBDocumentClient,
@@ -35,7 +36,7 @@ const __dirname = dirname(__filename);
 // Configuration
 // ═══════════════════════════════════════════════════════════
 
-const APP_ID = '4z7fvz7n2bh5rpixdgihjmhdpa';
+const { appId: APP_ID } = requireBackend(); // cible : --app-id= ou APPSYNC_API_ID
 const ENV = 'NONE';
 const REGION = 'us-east-1';
 const SEED_PREFIX = 'tour06-';

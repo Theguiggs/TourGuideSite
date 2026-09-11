@@ -12,6 +12,12 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: us-east-1
+      # Identifiant de l'API AppSync (celui qui nomme les tables DynamoDB), le
+      # même secret que `web-ci.yml`. Il MANQUAIT ici : le script retombait sur
+      # une pile morte codée en dur, balayait des tables inexistantes et
+      # rapportait « 0 supprimé » chaque nuit sans jamais échouer. Le script
+      # refuse désormais de tourner sans cible.
+      APPSYNC_API_ID: ${{ secrets.APPSYNC_API_ID }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -19,5 +25,8 @@ jobs:
           node-version: 24
       - run: npm ci --ignore-scripts
       - name: Write amplify_outputs.json
-        run: echo "${{ secrets.AMPLIFY_OUTPUTS_B64 }}" | base64 -d > amplify_outputs.json
+        env:
+          AMPLIFY_B64: ${{ secrets.AMPLIFY_OUTPUTS_B64 }}
+        # Même décodage que web-ci.yml : le secret est gzippé puis base64.
+        run: printf '%s' "$AMPLIFY_B64" | base64 -d | gunzip > amplify_outputs.json
       - run: node scripts/cleanup-e2e-data.mjs

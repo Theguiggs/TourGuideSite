@@ -112,6 +112,13 @@ export const viewport: Viewport = {
   themeColor: '#C1262A',
 };
 
+// Rendu dynamique sur TOUT l'arbre : la CSP à nonce (src/proxy.ts) ne peut
+// s'appliquer qu'à un HTML rendu à la demande. Les pages prérendues (accueil,
+// légal, connexion) auraient été servies sans nonce sous une politique qui en
+// exige un, et leur hydratation aurait été bloquée. Le coût est un rendu par
+// requête pour des pages de texte ; le catalogue et le Studio l'étaient déjà.
+export const dynamic = 'force-dynamic';
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const fontVariables = `${dmSerifDisplay.variable} ${dmSerifText.variable} ${manrope.variable} ${jetBrainsMono.variable}`;
   return (

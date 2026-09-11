@@ -3,6 +3,23 @@ import type { CognitoAccessTokenPayload } from 'aws-jwt-verify/jwt-model';
 import outputs from '../../../amplify_outputs.json';
 import { listGuideProfilePageByUserId } from '@/lib/api/appsync-client';
 import { qualifieGuide, roleGuide, type Qualification } from './guide-qualification';
+import { logger } from '@/lib/logger';
+
+/**
+ * Dernier échec de lecture IAM, pour la sonde `/api/health`. Le compteur ne se
+ * remet pas à zéro : c'est l'horodatage qui dit si l'incident est en cours.
+ */
+const iamReadHealth = { failures: 0, lastFailureAt: null as number | null, lastCause: null as string | null };
+
+function noteIamReadFailure(cause: string): void {
+  iamReadHealth.failures += 1;
+  iamReadHealth.lastFailureAt = Date.now();
+  iamReadHealth.lastCause = cause;
+}
+
+export function iamReadHealthSnapshot(): Readonly<typeof iamReadHealth> {
+  return { ...iamReadHealth };
+}
 
 const authConfig = (outputs as {
   auth: { user_pool_id: string; user_pool_client_id: string };
@@ -135,6 +152,17 @@ async function resolveRoles(payload: CognitoAccessTokenPayload): Promise<ServerR
   // prouver, mais elle n'est JAMAIS mémorisée. La figer 60 s transformerait un
   // incident de lecture en perte de rôle d'une minute pour un guide légitime.
   if (!lecture.ok) {
+    // ÉCHEC FERMÉ, MAIS PLUS SILENCIEUX. Quand les identifiants IAM du
+    // conteneur expirent ou perdent `appsync:GraphQL`, cette lecture échoue à
+    // CHAQUE appel : tous les guides reçoivent 403 sur le proxy — synthèse,
+    // traduction et détection de silence mortes pour tout le Studio — pendant
+    // que `/health` du microservice et le portail restent verts. Rien ne le
+    // disait. La sonde `/api/health` exerce cette même lecture.
+    noteIamReadFailure(lecture.erreur);
+    logger.error('ServerToken', 'IAM read of guide profile failed — role withheld', {
+      sub: payload.sub,
+      cause: lecture.erreur,
+    });
     return composeRoles(groups, NON_VERDICT);
   }
 

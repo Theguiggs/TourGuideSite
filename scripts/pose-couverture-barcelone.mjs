@@ -8,7 +8,7 @@
 // ── POURQUOI UN SCRIPT DE PLUS ─────────────────────────────
 //
 // `upload-selected-tour-covers.mjs` et `sync-selected-tour-cover-keys.mjs` font
-// déjà ce travail — mais tous deux visent la pile `t5nxxao3orh6za2bjj6uegulru`
+// déjà ce travail — mais tous deux visent la pile `<APPSYNC_API_ID>`
 // et le compartiment `amplify-tourguideapp-stef-…-nwmcsixu8au1`, qui sont ceux
 // d'AVANT la migration. Les relancer tels quels écrirait dans un backend mort,
 // sans la moindre erreur : les écritures réussiraient, et les couvertures
@@ -47,7 +47,7 @@ const getOpt = (name, def) => {
 };
 
 const REGION  = getOpt('region', 'us-east-1');
-const APP_ID  = getOpt('app-id', 'yvupc5stqzaxrgz6wv2wz7he5y');
+const APP_ID  = getOpt('app-id', process.env.APPSYNC_API_ID || '');
 const ENV     = getOpt('env', 'NONE');
 /** Le compartiment de l'app VIVANTE (dieqe5vfmuc69), pas celui d'avant migration. */
 const BUCKET  = getOpt('bucket', 'amplify-dieqe5vfmuc69-mai-tourguideassetsbucket8b8-qyql7idkrnkr');

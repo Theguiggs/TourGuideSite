@@ -6,10 +6,11 @@
  *   node scripts/cleanup-e2e-data.mjs
  */
 
+import { requireBackend } from './_backend.mjs';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { BatchWriteCommand, DynamoDBDocumentClient, ScanCommand } from '@aws-sdk/lib-dynamodb';
 
-const APP_ID = process.env.AMPLIFY_APP_ID ?? 't5nxxao3orh6za2bjj6uegulru';
+const APP_ID = requireBackend().appId;
 const ENV = process.env.AMPLIFY_ENV ?? 'NONE';
 const REGION = process.env.AWS_REGION ?? 'us-east-1';
 const CLEANUP_PREFIX = process.argv

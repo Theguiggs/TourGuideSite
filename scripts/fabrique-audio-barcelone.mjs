@@ -32,13 +32,14 @@
  *   npx tsx scripts/fabrique-audio-barcelone.mjs --confirm   # execute
  */
 
+import { requireBackend } from './_backend.mjs';
 import path from 'node:path';
 import {DynamoDBClient} from '@aws-sdk/client-dynamodb';
 import {DynamoDBDocumentClient, ScanCommand, UpdateCommand} from '@aws-sdk/lib-dynamodb';
 import {S3Client, PutObjectCommand} from '@aws-sdk/client-s3';
 
 const REGION = 'us-east-1';
-const SUF = 'yvupc5stqzaxrgz6wv2wz7he5y-NONE';
+const SUF = (() => { const b = requireBackend(); return `${b.appId}-${b.env}`; })();
 const BUCKET = 'amplify-dieqe5vfmuc69-mai-tourguideassetsbucket8b8-qyql7idkrnkr';
 const IDENTITY_ID = 'us-east-1:0ebd3fdc-511f-c6b4-c885-c1694d6baac3';
 const CHEMIN_SSM = '/amplify/dieqe5vfmuc69/main-branch-347ea276f6';

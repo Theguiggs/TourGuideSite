@@ -11,8 +11,8 @@
  * ⚠️ SÉCURITÉ / BACKEND
  *   Le suffixe des tables DynamoDB (Amplify Gen2) n'est PAS l'ID GraphQL de l'URL
  *   AppSync. Deux jeux de tables coexistent sur ce compte :
- *     - 4z7fvz7n2bh5rpixdgihjmhdpa   (utilisé par les anciens seeds)
- *     - t5nxxao3orh6za2bjj6uegulru
+ *     - <APPSYNC_API_ID>   (utilisé par les anciens seeds)
+ *     - <APPSYNC_API_ID>
  *   Il FAUT confirmer lequel est le backend vivant avant d'écrire (voir README).
  *
  * USAGE

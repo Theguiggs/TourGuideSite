@@ -6,6 +6,7 @@ Heavy work follows the submit -> job_id -> poll contract used by the web client.
 
 import asyncio
 import logging
+import hmac
 import os
 from collections.abc import Awaitable, Callable
 from contextlib import asynccontextmanager
@@ -16,7 +17,7 @@ if not API_KEY or not API_KEY.strip():
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from services.job_manager import JobManager, QueueFull
 from services.silence_service import SilenceService
@@ -73,11 +74,26 @@ app = FastAPI(
 )
 
 
+def caller_sub(request: Request) -> str | None:
+    """Identite verifiee de l'appelant, relayee par le proxy Next (`X-Caller-Sub`).
+    Vide ou absente vaut « sans identite » : le job n'appartient a personne et
+    n'est relisible que par un appel egalement sans identite."""
+    value = (request.headers.get("X-Caller-Sub") or "").strip()
+    return value[:128] or None
+
+
+def api_key_matches(presented: str | None) -> bool:
+    """Comparaison en temps constant : `!=` sur la cle la rendait mesurable."""
+    if not presented:
+        return False
+    return hmac.compare_digest(presented.encode("utf-8"), API_KEY.encode("utf-8"))
+
+
 @app.middleware("http")
 async def verify_api_key(request: Request, call_next):
     if request.url.path == "/health":
         return await call_next(request)
-    if request.headers.get("X-API-Key") != API_KEY:
+    if not api_key_matches(request.headers.get("X-API-Key")):
         return JSONResponse(
             status_code=401,
             content={"detail": "Invalid or missing API key"},
@@ -91,6 +107,10 @@ class HealthResponse(BaseModel):
     translation: bool = False
     silence_detection: bool = True
     inflight_jobs: int = 0
+
+
+MAX_BATCH_TEXT_CHARS = 10_000
+MAX_BATCH_TOTAL_CHARS = 20_000
 
 
 class TTSRequest(BaseModel):
@@ -110,19 +130,33 @@ class BatchTranslateRequest(BaseModel):
     source_lang: str = Field(default="fr", pattern="^(fr|en|it|de|es)$")
     target_lang: str = Field(..., pattern="^(fr|en|it|de|es)$")
 
+    # Le client envoie TOUTES les phrases d'une scene en un lot (jusqu'a 200,
+    # c'est le decoupage de `translation.ts`). Ce qui doit etre borne n'est
+    # donc pas le nombre de textes mais leur taille : une scene est plafonnee a
+    # 10 000 caracteres par le Studio, et 200 x 50 000 caracteres laissait un
+    # seul appel occuper le fil d'inference unique pendant des heures.
+    @field_validator("texts")
+    @classmethod
+    def _borne_les_textes(cls, texts: list[str]) -> list[str]:
+        if any(len(t) > MAX_BATCH_TEXT_CHARS for t in texts):
+            raise ValueError(f"Each text must contain at most {MAX_BATCH_TEXT_CHARS} characters")
+        if sum(len(t) for t in texts) > MAX_BATCH_TOTAL_CHARS:
+            raise ValueError(f"A batch must contain at most {MAX_BATCH_TOTAL_CHARS} characters in total")
+        return texts
+
 
 class SilenceDetectRequest(BaseModel):
     audio_url: str = Field(..., min_length=1)
 
 
-def submit_job(kind: str, work: Callable[[], Awaitable[dict]]) -> JSONResponse:
+def submit_job(kind: str, work: Callable[[], Awaitable[dict]], owner: str | None = None) -> JSONResponse:
     if job_manager is None:
         return JSONResponse(
             status_code=503,
             content={"ok": False, "error": "service starting"},
         )
     try:
-        job_id = job_manager.submit(kind, work)
+        job_id = job_manager.submit(kind, work, owner=owner)
     except QueueFull:
         return JSONResponse(
             status_code=429,
@@ -171,7 +205,7 @@ async def health():
 
 
 @app.post("/v1/tts/generate")
-async def generate_tts(req: TTSRequest):
+async def generate_tts(req: TTSRequest, request: Request):
     if not tts_service or not tts_service.is_ready:
         return JSONResponse(
             status_code=503,
@@ -180,11 +214,12 @@ async def generate_tts(req: TTSRequest):
     return submit_job(
         "tts",
         lambda: generate_tts_work(req.text, req.language, req.voice_id),
+        owner=caller_sub(request),
     )
 
 
 @app.post("/v1/translate/marianmt")
-async def translate_marianmt(req: TranslateRequest):
+async def translate_marianmt(req: TranslateRequest, request: Request):
     if not translation_service:
         return JSONResponse(
             status_code=503,
@@ -200,21 +235,15 @@ async def translate_marianmt(req: TranslateRequest):
             ),
         }
 
-    return submit_job("translate", work)
+    return submit_job("translate", work, owner=caller_sub(request))
 
 
 @app.post("/v1/translate/batch")
-async def translate_batch(req: BatchTranslateRequest):
+async def translate_batch(req: BatchTranslateRequest, request: Request):
     if not translation_service:
         return JSONResponse(
             status_code=503,
             content={"ok": False, "error": "Translation service not available"},
-        )
-
-    if any(len(text) > 50_000 for text in req.texts):
-        return JSONResponse(
-            status_code=422,
-            content={"ok": False, "error": "Each text must contain at most 50000 characters"},
         )
 
     async def work():
@@ -225,17 +254,17 @@ async def translate_batch(req: BatchTranslateRequest):
             )
         return {"translations": translations}
 
-    return submit_job("translate", work)
+    return submit_job("translate", work, owner=caller_sub(request))
 
 
 @app.get("/v1/jobs/{job_id}")
-async def get_job(job_id: str):
+async def get_job(job_id: str, request: Request):
     if job_manager is None:
         return JSONResponse(
             status_code=503,
             content={"ok": False, "error": "service starting"},
         )
-    job = job_manager.get(job_id)
+    job = job_manager.get(job_id, owner=caller_sub(request))
     if job is None:
         return JSONResponse(
             status_code=404,

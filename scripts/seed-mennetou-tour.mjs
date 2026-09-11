@@ -1,4 +1,5 @@
 // Creates one Studio draft atomically. Default: preview; --confirm: insert; --verify: read back.
+import { requireBackend } from './_backend.mjs';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand, TransactWriteCommand } from '@aws-sdk/lib-dynamodb';
@@ -6,7 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 
 const folder = new URL('../content/tours/mennetou-sur-cher-vie-derriere-les-remparts/', import.meta.url);
 const content = JSON.parse(readFileSync(new URL('tour.json', folder), 'utf8'));
-const suffix = 'yvupc5stqzaxrgz6wv2wz7he5y-NONE';
+const suffix = (() => { const b = requireBackend(); return `${b.appId}-${b.env}`; })();
 const table = name => `${name}-${suffix}`;
 const db = DynamoDBDocumentClient.from(new DynamoDBClient({ region: 'us-east-1' }));
 const guideId = '159473d2-8509-4d01-aa14-180d87772225';

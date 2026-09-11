@@ -10,6 +10,7 @@ Usage:
     python scripts/seed-grasse-ombres-tour.py            # dry-run preview
     python scripts/seed-grasse-ombres-tour.py --apply    # actually write to DynamoDB
 """
+import os
 import boto3
 import re
 import sys
@@ -24,7 +25,9 @@ except (AttributeError, ValueError):
     pass
 
 REGION = "us-east-1"
-API_SUFFIX = "t5nxxao3orh6za2bjj6uegulru-NONE"
+API_SUFFIX = os.environ.get("APPSYNC_API_ID", "") + "-NONE"  # cible : APPSYNC_API_ID, jamais un defaut
+if API_SUFFIX == "-NONE":
+    raise SystemExit("APPSYNC_API_ID manquant : un script qui ne sait pas ou il ecrit ne doit pas ecrire.")
 GUIDE_SUB = "84a88428-e0e1-70d8-6a57-ec9f1421822e"  # steffen.guillaume@gmail.com Cognito sub
 # IMPORTANT: GuideTour.guideId / StudioSession.guideId reference GuideProfile.id, NOT the Cognito sub.
 GUIDE_PROFILE_ID = "159473d2-8509-4d01-aa14-180d87772225"

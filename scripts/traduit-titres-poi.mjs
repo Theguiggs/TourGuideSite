@@ -30,6 +30,7 @@
  *   npx tsx scripts/traduit-titres-poi.mjs --confirm --langue es
  */
 
+import { requireBackend } from './_backend.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
@@ -37,7 +38,7 @@ import {DynamoDBClient} from '@aws-sdk/client-dynamodb';
 import {DynamoDBDocumentClient, ScanCommand, UpdateCommand} from '@aws-sdk/lib-dynamodb';
 
 const REGION = 'us-east-1';
-const SUF = 'yvupc5stqzaxrgz6wv2wz7he5y-NONE';
+const SUF = (() => { const b = requireBackend(); return `${b.appId}-${b.env}`; })();
 const CHEMIN_SSM = '/amplify/dieqe5vfmuc69/main-branch-347ea276f6';
 const PARALLELISME = 8;
 

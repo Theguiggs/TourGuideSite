@@ -7,7 +7,10 @@ frontend:
         - "pwd"
         - "ls -la"
         - "echo === Cloning TourGuideApp for schema types ==="
-        - "git clone --depth 1 https://${GITHUB_PAT}@github.com/Theguiggs/TourGuideApp.git /tmp/TourGuideApp"
+        # Le PAT passe par un en-tête HTTP, jamais dans l'URL : mis dans l'URL,
+        # il était journalisé avec la ligne de commande et persistait dans
+        # `/tmp/TourGuideApp/.git/config`, lié en symbolique dans l'arbre de build.
+        - "git -c http.extraheader=\"AUTHORIZATION: basic $(printf 'x-access-token:%s' \"$GITHUB_PAT\" | base64 -w0)\" clone --depth 1 https://github.com/Theguiggs/TourGuideApp.git /tmp/TourGuideApp"
         - "(cd /tmp/TourGuideApp && npm install --no-save @aws-amplify/backend 2>/dev/null || true)"
         - "ln -sf /tmp/TourGuideApp ../TourGuideApp"
         - "echo === Writing amplify_outputs.json ==="

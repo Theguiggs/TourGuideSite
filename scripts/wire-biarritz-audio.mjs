@@ -26,6 +26,7 @@
 //   --bucket  override du bucket S3 (défaut = bucket vivant)
 // ══════════════════════════════════════════════════════════
 
+import { requireBackend } from './_backend.mjs';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
@@ -41,7 +42,7 @@ const CONFIRM = args.includes('--confirm');
 const DIR     = getOpt('dir', './biarritz-audio');
 const REGION  = process.env.AWS_REGION || 'us-east-1';
 const BUCKET  = getOpt('bucket', 'amplify-tourguideapp-stef-tourguideassetsbucket8b8-nwmcsixu8au1');
-const APP_ID  = 't5nxxao3orh6za2bjj6uegulru';
+const { appId: APP_ID } = requireBackend(); // cible : --app-id= ou APPSYNC_API_ID
 const ENV     = 'NONE';
 const TOUR_ID = 'biarritz-caprice-imperatrice';
 const SESSION_ID = `${TOUR_ID}-session`;

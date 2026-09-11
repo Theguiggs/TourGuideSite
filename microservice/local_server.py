@@ -7,6 +7,7 @@ No GPU required. Runs on any machine with Python 3.11+.
 import asyncio
 import base64
 import hashlib
+import hmac
 import io
 import logging
 import os
@@ -25,8 +26,7 @@ if not API_KEY or not API_KEY.strip():
 import requests as req_lib
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from services.job_manager import JobManager, QueueFull
 from services.text_sanitize import normalize_source, postclean_translation
@@ -219,27 +219,46 @@ async def lifespan(app: FastAPI):
 # voix y est un reglage plutot qu une constante recopiee.
 
 # -- FastAPI --
+# Ce fichier « local » est celui que `Dockerfile.cpu` deploie (`local_server:app`).
 app = FastAPI(title="TourGuide Microservice (local)", lifespan=lifespan)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Pas de CORS. Le seul client legitime est le proxy Next, cote serveur : un
+# navigateur ne parle jamais a ce service directement. `allow_origins=["*"]`
+# annoncait la surface du service a n'importe quelle origine et faisait de
+# `/health` (sans cle) une sonde publique. Un appel cross-origin echoue donc,
+# et c'est voulu.
+
+
+def caller_sub(request: Request) -> str | None:
+    """Identite verifiee de l'appelant, relayee par le proxy Next (`X-Caller-Sub`).
+    Vide ou absente vaut « sans identite » : le job n'appartient a personne et
+    n'est relisible que par un appel egalement sans identite."""
+    value = (request.headers.get("X-Caller-Sub") or "").strip()
+    return value[:128] or None
+
+
+def api_key_matches(presented: str | None) -> bool:
+    """Comparaison en temps constant : `!=` sur la cle la rendait mesurable."""
+    if not presented:
+        return False
+    return hmac.compare_digest(presented.encode("utf-8"), API_KEY.encode("utf-8"))
 
 
 @app.middleware("http")
 async def verify_api_key(request: Request, call_next):
-    # Skip auth for health check and CORS preflight
-    if request.url.path == "/health" or request.method == "OPTIONS":
+    # `/health` reste public : c'est la sonde Docker. Plus de detour OPTIONS.
+    if request.url.path == "/health":
         return await call_next(request)
-    if request.headers.get("X-API-Key") != API_KEY:
+    if not api_key_matches(request.headers.get("X-API-Key")):
         return JSONResponse(status_code=401, content={"detail": "Invalid API key"})
     return await call_next(request)
 
 
 # -- Models --
+MAX_BATCH_TEXT_CHARS = 10_000
+MAX_BATCH_TOTAL_CHARS = 20_000
+
+
 class TTSRequest(BaseModel):
     text: str = Field(..., min_length=1, max_length=10000)
     # `nl` manquait : les deux tables de voix le portent depuis la bascule, et le
@@ -250,7 +269,7 @@ class TTSRequest(BaseModel):
 
 
 class TranslateRequest(BaseModel):
-    text: str = Field(..., min_length=1, max_length=50000)
+    text: str = Field(..., min_length=1, max_length=10000)
     source_lang: str = Field(default="fr", pattern="^(fr|en|it|de|es)$")
     target_lang: str = Field(..., pattern="^(fr|en|it|de|es)$")
 
@@ -259,6 +278,20 @@ class BatchTranslateRequest(BaseModel):
     texts: list[str] = Field(..., min_length=1, max_length=200)
     source_lang: str = Field(default="fr", pattern="^(fr|en|it|de|es)$")
     target_lang: str = Field(..., pattern="^(fr|en|it|de|es)$")
+
+    # Le client envoie TOUTES les phrases d'une scene en un lot (jusqu'a 200,
+    # c'est le decoupage de `translation.ts`). Ce qui doit etre borne n'est
+    # donc pas le nombre de textes mais leur taille : une scene est plafonnee a
+    # 10 000 caracteres par le Studio, et 200 x 50 000 caracteres laissait un
+    # seul appel occuper le fil d'inference unique pendant des heures.
+    @field_validator("texts")
+    @classmethod
+    def _borne_les_textes(cls, texts: list[str]) -> list[str]:
+        if any(len(t) > MAX_BATCH_TEXT_CHARS for t in texts):
+            raise ValueError(f"Each text must contain at most {MAX_BATCH_TEXT_CHARS} characters")
+        if sum(len(t) for t in texts) > MAX_BATCH_TOTAL_CHARS:
+            raise ValueError(f"A batch must contain at most {MAX_BATCH_TOTAL_CHARS} characters in total")
+        return texts
 
 
 class SilenceRequest(BaseModel):
@@ -360,13 +393,13 @@ async def _tts_work(text: str, language: str, voice_id: str | None) -> dict:
 
 
 @app.post("/v1/tts/generate")
-async def generate_tts(req: TTSRequest):
+async def generate_tts(req: TTSRequest, request: Request):
     """Enqueue TTS generation. Returns 202 {job_id, status} or 429 if the
     in-flight cap is reached. Poll GET /v1/jobs/{job_id} for the result."""
     if job_manager is None:
         return JSONResponse(status_code=503, content={"ok": False, "error": "service starting"})
     try:
-        job_id = job_manager.submit("tts", lambda: _tts_work(req.text, req.language, req.voice_id))
+        job_id = job_manager.submit("tts", lambda: _tts_work(req.text, req.language, req.voice_id), owner=caller_sub(request))
     except QueueFull:
         return JSONResponse(
             status_code=429,
@@ -421,7 +454,7 @@ async def _translate_batch_work(src: str, tgt: str, texts: list[str]) -> dict:
 
 
 @app.post("/v1/translate/batch")
-async def translate_batch(req: BatchTranslateRequest):
+async def translate_batch(req: BatchTranslateRequest, request: Request):
     """Enqueue batch translation. Returns 202 {job_id, status} or 429 if the
     in-flight cap is reached. Poll GET /v1/jobs/{job_id} for {translations}."""
     if job_manager is None:
@@ -430,6 +463,7 @@ async def translate_batch(req: BatchTranslateRequest):
         job_id = job_manager.submit(
             "translate",
             lambda: _translate_batch_work(req.source_lang, req.target_lang, list(req.texts)),
+            owner=caller_sub(request),
         )
     except QueueFull:
         return JSONResponse(
@@ -441,13 +475,14 @@ async def translate_batch(req: BatchTranslateRequest):
 
 
 @app.get("/v1/jobs/{job_id}")
-async def get_job(job_id: str):
+async def get_job(job_id: str, request: Request):
     """Poll a submitted job. status is queued|processing|completed|failed.
     On 'completed' the result fields (translations / audio_base64+duration_ms) are
-    inlined at top level; on 'failed' the error message is returned."""
+    inlined at top level; on 'failed' the error message is returned.
+    Un job d'un AUTRE appelant est rendu comme inexistant (404)."""
     if job_manager is None:
         return JSONResponse(status_code=503, content={"ok": False, "error": "service starting"})
-    job = job_manager.get(job_id)
+    job = job_manager.get(job_id, owner=caller_sub(request))
     if job is None:
         return JSONResponse(status_code=404, content={"ok": False, "error": "job not found"})
     body: dict = {"ok": True, "status": job.status}
@@ -459,30 +494,22 @@ async def get_job(job_id: str):
     return body
 
 
-ALLOWED_HOSTS = {"s3.amazonaws.com", "s3.us-east-1.amazonaws.com"}
+from services.silence_service import download_audio_bounded, is_allowed_audio_url
 
 
 def is_allowed_url(url):
-    try:
-        parsed = urlparse(url)
-        host = parsed.hostname or ""
-        return host in ALLOWED_HOSTS or (host.endswith(".amazonaws.com") and ".s3." in host)
-    except Exception:
-        return False
+    return is_allowed_audio_url(url)
 
 
 def _silence_detect_sync(audio_url: str) -> list[dict]:
     """Blocking: download audio + detect non-silent segments. Run via _run_blocking
     so the HTTP download + ffmpeg decode never freeze the asyncio event loop (they
-    previously ran inline in the async handler, stalling every other request)."""
+    previously ran inline in the async handler, stalling every other request).
+    Le telechargement est borne et en flux : voir `download_audio_bounded`."""
     from pydub import AudioSegment
     from pydub.silence import detect_nonsilent
 
-    resp = req_lib.get(audio_url, timeout=30, allow_redirects=False)
-    resp.raise_for_status()
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-        tmp.write(resp.content)
-        tmp_path = tmp.name
+    tmp_path = download_audio_bounded(audio_url)
     try:
         audio = AudioSegment.from_file(tmp_path)
         segments = detect_nonsilent(audio, min_silence_len=800, silence_thresh=-40)

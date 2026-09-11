@@ -5,6 +5,7 @@ import {
   debiterSyntheseInterne,
   mesurerCorpsDeSynthese,
 } from '@/lib/api/internal-spend';
+import { microserviceRateLimiter } from '@/lib/api/proxy-rate-limit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -170,8 +171,39 @@ async function proxy(req: NextRequest, segments: string[]) {
     }
   }
 
+  // ─── BORNE PAR COMPTE SUR LES CHEMINS NON FACTURÉS ───
+  //
+  // Les soumissions gratuites (traduction, détection de silence) n'avaient
+  // aucune limite par appelant : la seule contre-pression était la file
+  // globale du microservice, qui refuse TOUT LE MONDE une fois pleine. Le refus
+  // porte l'en-tête de refus terminal : le client cesse de réessayer au lieu de
+  // marteler cinq fois une borne qui ne se lèvera pas dans la seconde.
+  if (req.method === 'POST' && requestedPath !== CHEMIN_FACTURANT) {
+    const verdict = microserviceRateLimiter.consume(verified.payload.sub ?? 'anonyme');
+    if (!verdict.allowed) {
+      return NextResponse.json(
+        { ok: false, error: 'Trop de demandes pour ce compte — réessayez dans quelques minutes.', motif: 'debit-par-compte' },
+        {
+          status: 429,
+          headers: {
+            [ENTETE_REFUS_DEPENSE]: 'debit-par-compte',
+            'retry-after': String(verdict.retryAfterSeconds),
+            'cache-control': 'no-store',
+          },
+        },
+      );
+    }
+  }
+
   const target = `${getBaseUrl()}/${requestedPath}`;
-  const headers: Record<string, string> = { 'X-API-Key': apiKey };
+  // `X-Caller-Sub` : l'identité VÉRIFIÉE de l'appelant, relayée au
+  // microservice pour qu'il scope ses jobs. Sans elle, le proxy effaçait
+  // l'appelant avant de relayer, et n'importe quel porteur de jeton guide
+  // connaissant un `job_id` pouvait lire le résultat d'un autre guide.
+  const headers: Record<string, string> = {
+    'X-API-Key': apiKey,
+    'X-Caller-Sub': verified.payload.sub ?? '',
+  };
   const contentType = req.headers.get('content-type');
   if (contentType) headers['Content-Type'] = contentType;
 

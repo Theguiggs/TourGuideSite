@@ -72,7 +72,7 @@ def production_server(monkeypatch):
 
 def test_health_is_public_but_business_endpoints_require_the_key(local_server):
     local_server.job_manager = SimpleNamespace(
-        submit=lambda _kind, _work: "tts-test-job",
+        submit=lambda _kind, _work, owner=None: "tts-test-job",
         inflight_count=lambda: 0,
     )
     client = TestClient(local_server.app)
@@ -99,7 +99,7 @@ def test_health_is_public_but_business_endpoints_require_the_key(local_server):
 
 def test_async_polling_contract_returns_completed_results(local_server):
     local_server.job_manager = SimpleNamespace(
-        get=lambda job_id: SimpleNamespace(
+        get=lambda job_id, owner=None: SimpleNamespace(
             status="completed",
             result={"audio_base64": "QUJD", "duration_ms": 1000},
             error=None,
@@ -125,10 +125,10 @@ def test_async_polling_contract_returns_completed_results(local_server):
 
 def test_production_qwen_server_exposes_submit_poll_and_backpressure(production_server):
     class AcceptingManager:
-        def submit(self, _kind, _work):
+        def submit(self, _kind, _work, owner=None):
             return "tts-production-job"
 
-        def get(self, job_id):
+        def get(self, job_id, owner=None):
             if job_id != "tts-production-job":
                 return None
             return SimpleNamespace(
@@ -157,7 +157,7 @@ def test_production_qwen_server_exposes_submit_poll_and_backpressure(production_
     assert completed.json()["status"] == "completed"
 
     production_server.job_manager = SimpleNamespace(
-        submit=lambda _kind, _work: (_ for _ in ()).throw(production_server.QueueFull()),
+        submit=lambda _kind, _work, owner=None: (_ for _ in ()).throw(production_server.QueueFull()),
     )
     busy = client.post(
         "/v1/tts/generate",
@@ -184,7 +184,7 @@ def test_production_server_bounds_batch_items_and_hides_worker_errors(production
     assert oversized.status_code == 422
 
     production_server.job_manager = SimpleNamespace(
-        get=lambda _job_id: SimpleNamespace(
+        get=lambda _job_id, owner=None: SimpleNamespace(
             status="failed",
             result=None,
             error="secret path /srv/models/private",

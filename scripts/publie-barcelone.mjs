@@ -32,11 +32,12 @@
  *   npx tsx scripts/publie-barcelone.mjs --depublier --confirm   # retour arriere
  */
 
+import { requireBackend } from './_backend.mjs';
 import {DynamoDBClient} from '@aws-sdk/client-dynamodb';
 import {DynamoDBDocumentClient, GetCommand, ScanCommand, UpdateCommand} from '@aws-sdk/lib-dynamodb';
 
 const REGION = 'us-east-1';
-const SUF = 'yvupc5stqzaxrgz6wv2wz7he5y-NONE';
+const SUF = (() => { const b = requireBackend(); return `${b.appId}-${b.env}`; })();
 const TOURS = ['barcelone-rambla-a-la-mer', 'barcelone-ilot-de-la-discorde'];
 
 const CONFIRME = process.argv.includes('--confirm');

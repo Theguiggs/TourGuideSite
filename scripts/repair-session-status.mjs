@@ -4,10 +4,10 @@
  *
  * USAGE :
  *   # Dry-run (affiche ce qui serait fait) :
- *   node scripts/repair-session-status.mjs --app-id=t5nxxao3orh6za2bjj6uegulru
+ *   node scripts/repair-session-status.mjs --app-id=<APPSYNC_API_ID>
  *
  *   # Écriture :
- *   node scripts/repair-session-status.mjs --app-id=t5nxxao3orh6za2bjj6uegulru --confirm
+ *   node scripts/repair-session-status.mjs --app-id=<APPSYNC_API_ID> --confirm
  */
 
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';

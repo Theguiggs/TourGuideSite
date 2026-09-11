@@ -48,15 +48,15 @@
  *
  * USAGE :
  *   # À blanc — annonce les lignes qu'il qualifierait, sans rien écrire :
- *   node scripts/backfill-entitlement-qualification.mjs --app-id=yvupc5stqzaxrgz6wv2wz7he5y
+ *   node scripts/backfill-entitlement-qualification.mjs --app-id=<APPSYNC_API_ID>
  *
  *   # Écriture :
- *   node scripts/backfill-entitlement-qualification.mjs --app-id=yvupc5stqzaxrgz6wv2wz7he5y --confirm
+ *   node scripts/backfill-entitlement-qualification.mjs --app-id=<APPSYNC_API_ID> --confirm
  *
  *   # Reprise après échec — la clé exacte est affichée par le run qui a échoué :
  *   node scripts/backfill-entitlement-qualification.mjs --app-id=... --confirm --start-key=...
  *
- * Le backend vivant est `yvupc5stqzaxrgz6wv2wz7he5y` (ENV=NONE) — mais aucun
+ * Le backend vivant est `<APPSYNC_API_ID>` (ENV=NONE) — mais aucun
  * défaut n'est inscrit ici : les défauts des scripts voisins sont périmés, et un
  * rattrapage lancé sur la mauvaise pile est pire que pas de rattrapage.
  */
@@ -95,7 +95,7 @@ function resolveSharedSpecifier(raw) {
 const SHARED = resolveSharedSpecifier(SHARED_RAW);
 
 if (!APP_ID) {
-  console.error('--app-id requis (ex. --app-id=yvupc5stqzaxrgz6wv2wz7he5y)');
+  console.error('--app-id requis (ex. --app-id=<APPSYNC_API_ID>)');
   process.exit(1);
 }
 

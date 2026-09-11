@@ -10,8 +10,8 @@
 //
 // ── CE QUI DIFFÈRE DE seed-biarritz-tour.mjs, ET POURQUOI ──
 //
-// 1. LA PILE. Le script Biarritz vise `t5nxxao3orh6za2bjj6uegulru`, qui est
-//    MORT. La pile vivante est `yvupc5stqzaxrgz6wv2wz7he5y` (app dieqe5vfmuc69,
+// 1. LA PILE. Le script Biarritz vise `<APPSYNC_API_ID>`, qui est
+//    MORT. La pile vivante est `<APPSYNC_API_ID>` (app dieqe5vfmuc69,
 //    branche main).
 //
 // 2. L'OWNER N'EST PLUS CODÉ EN DUR — c'est la correction importante. La
@@ -65,7 +65,7 @@ const getOpt = (name, def) => {
   return p ? p.split('=').slice(1).join('=') : def;
 };
 
-const APP_ID  = getOpt('app-id', process.env.APP_ID || 'yvupc5stqzaxrgz6wv2wz7he5y');
+const APP_ID  = getOpt('app-id', process.env.APP_ID || process.env.APPSYNC_API_ID || '');
 const ENV     = getOpt('env', process.env.AMPLIFY_ENV || 'NONE');
 const REGION  = getOpt('region', process.env.AWS_REGION || 'us-east-1');
 const CONFIRM = hasFlag('--confirm');

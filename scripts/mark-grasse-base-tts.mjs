@@ -8,6 +8,7 @@
  *
  *   node scripts/mark-grasse-base-tts.mjs
  */
+import { requireBackend } from './_backend.mjs';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import {
   DynamoDBDocumentClient,
@@ -16,7 +17,7 @@ import {
   UpdateCommand,
 } from '@aws-sdk/lib-dynamodb';
 
-const API = 't5nxxao3orh6za2bjj6uegulru';
+const { appId: API } = requireBackend(); // cible : --app-id= ou APPSYNC_API_ID
 const REGION = 'us-east-1';
 const T = m => `${m}-${API}-NONE`;
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({ region: REGION }));
