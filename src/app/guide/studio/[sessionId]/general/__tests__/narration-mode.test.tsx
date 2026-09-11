@@ -214,4 +214,31 @@ describe('GeneralPage narration mode persistence', () => {
       }),
     ));
   });
+
+  it('never sends a null cover key to GuideTour — AppSync refuses owner nulls on it', async () => {
+    // Régression : une visite SANS couverture (`coverPhotoKey: null`) ne pouvait
+    // plus enregistrer sa page Général — « Unauthorized on [coverPhotoKey] »,
+    // vu par l'épreuve E2E « 1.2 General page form and save ».
+    mockGetStudioSession.mockResolvedValue({ ...baseSession, narrationMode: 'recording', coverPhotoKey: null });
+    render(<GeneralPage />);
+
+    fireEvent.click(await screen.findByTestId('save-general-btn'));
+
+    await waitFor(() => expect(mockUpdateGuideTour).toHaveBeenCalled());
+    const [, updates] = mockUpdateGuideTour.mock.calls[0] as [string, Record<string, unknown>];
+    expect(updates).not.toHaveProperty('coverPhotoKey');
+    expect(await screen.findByText(/Enregistré/)).toBeInTheDocument();
+  });
+
+  it('still mirrors the cover onto GuideTour when one is set', async () => {
+    mockGetStudioSession.mockResolvedValue({ ...baseSession, narrationMode: 'recording', coverPhotoKey: 'guide-studio/id/session-1/cover.jpg' });
+    render(<GeneralPage />);
+
+    fireEvent.click(await screen.findByTestId('save-general-btn'));
+
+    await waitFor(() => expect(mockUpdateGuideTour).toHaveBeenCalledWith(
+      'tour-1',
+      expect.objectContaining({ coverPhotoKey: 'guide-studio/id/session-1/cover.jpg' }),
+    ));
+  });
 });

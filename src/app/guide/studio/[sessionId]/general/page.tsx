@@ -462,7 +462,12 @@ export default function GeneralPage() {
           themes: selectedThemes,
           difficulty,
           ...(contentProvenance ? { contentProvenance } : {}),
-          coverPhotoKey,
+          // JAMAIS `coverPhotoKey: null` : comme pour `priceCents` ci-dessus,
+          // AppSync refuse un `null` envoyé par le propriétaire sur ce champ
+          // optionnel (« Unauthorized on [coverPhotoKey] »). Une visite sans
+          // couverture ne pouvait donc plus enregistrer sa page Général —
+          // l'épreuve E2E « 1.2 General page form and save » le disait.
+          ...(coverPhotoKey ? { coverPhotoKey } : {}),
           duration,
           distance,
           poiCount: scenesCount,

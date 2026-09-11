@@ -29,5 +29,6 @@ docs
 e2e
 tests
 bmad
+deploy
 .codex
 .claude
