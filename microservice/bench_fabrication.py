@@ -1093,7 +1093,7 @@ PLANCHER_SONDAGE_S = 15.0
 POSTES_CONSTATES = (
     {
         "nom": "Sondage du portail — plancher dur de 15 s",
-        "anchor": "TourGuideWeb/src/lib/stores/tts-store.ts:7",
+        "anchor": "TourGuideWeb/src/lib/stores/tts-store.ts:8",
         "jeton": "POLL_INTERVAL_MS",
         "cout": chiffre(
             PLANCHER_SONDAGE_S, CONSTAT, unite="s",
