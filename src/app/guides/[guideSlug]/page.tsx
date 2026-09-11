@@ -11,6 +11,7 @@ import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { breadcrumbJsonLd, guideJsonLd } from '@/lib/seo/json-ld';
+import { PageTitle } from '@murmure/design-system/web';
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
 export const dynamic = 'force-dynamic';
@@ -157,9 +158,9 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
         )}
 
         <div className="text-center md:text-left flex-1">
-          <h1 className="text-3xl sm:text-4xl font-bold text-ink mb-2">
+          <PageTitle className="mb-2">
             {guide.displayName}
-          </h1>
+          </PageTitle>
 
           <p className="text-ink-60 mb-4 flex items-center justify-center md:justify-start gap-1">
             <span aria-hidden="true">📍</span> {guide.city}
@@ -224,7 +225,7 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
       {/* Visite signature */}
       {guide.parcoursSignature && (
         <div className="mb-8">
-          <h2 className="text-lg font-semibold text-ink mb-2">{copy.signature}</h2>
+          <PageTitle as="h2" size="h5" className="mb-2">{copy.signature}</PageTitle>
           {tours
             .filter((t) => t.title === guide.parcoursSignature)
             .map((tour) => (
@@ -251,9 +252,9 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
 
       {/* Published Tours */}
       <div>
-        <h2 className="text-xl font-semibold text-ink mb-6">
+        <PageTitle as="h2" size="h5" className="mb-6">
           {tours.length > 0 ? copy.toursOf(guide.displayName) : copy.toursTitle}
-        </h2>
+        </PageTitle>
 
         {tours.length === 0 ? (
           <div className="text-center py-12 bg-paper-soft rounded-xl">

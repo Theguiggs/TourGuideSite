@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { resetPassword, confirmResetPassword } from 'aws-amplify/auth';
 import { logger } from '@/lib/logger';
+import { PageTitle } from '@murmure/design-system/web';
 
 const SERVICE_NAME = 'ResetPasswordPage';
 
@@ -48,7 +49,7 @@ export default function ResetPasswordPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-paper p-4">
       <div className="w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-ink mb-2">Réinitialiser le mot de passe</h1>
+        <PageTitle size="h4" className="mb-2">Réinitialiser le mot de passe</PageTitle>
 
         {step === 'request' && (
           <form onSubmit={handleRequest} className="space-y-4">

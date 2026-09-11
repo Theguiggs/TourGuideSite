@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getAllAdminGuides } from '@/lib/api/moderation';
 import { adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
+import { PageTitle } from '@murmure/design-system/web';
 
 const PROFILE_STATUS_BADGES: Record<string, { label: string; className: string }> = {
   active:             { label: 'Actif',          className: 'bg-olive-soft text-olive' },
@@ -48,7 +49,7 @@ export default function AdminGuidesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-ink mb-6">Tous les guides</h1>
+      <PageTitle size="h4" className="mb-6">Tous les guides</PageTitle>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-6">

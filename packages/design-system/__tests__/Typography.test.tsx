@@ -158,3 +158,26 @@ describe('NumberMark (Web)', () => {
     expect(tree.children).toEqual(['02']);
   });
 });
+
+describe('PageTitle (Web)', () => {
+  it('rend un h1 en police d’affichage, taille h3 par défaut, encre', () => {
+    const { PageTitle } = require('../web');
+    const node = renderToJSON(<PageTitle>Nice</PageTitle>);
+    const style = node.props.style as Record<string, unknown>;
+    expect(node.type).toBe('h1');
+    expect(style.fontFamily).toBe(tgFonts.display);
+    expect(style.fontSize).toBe(tgFontSize.h3);
+    expect(style.color).toBe(tgColors.ink);
+    expect(style.letterSpacing).toBe(tgTracking.display);
+  });
+
+  it('accepte une autre balise et une autre taille sans changer la police', () => {
+    const { PageTitle } = require('../web');
+    const node = renderToJSON(<PageTitle as="h2" size="h5" className="mb-6">Guides locaux</PageTitle>);
+    const style = node.props.style as Record<string, unknown>;
+    expect(node.type).toBe('h2');
+    expect(style.fontSize).toBe(tgFontSize.h5);
+    expect(style.fontFamily).toBe(tgFonts.display);
+    expect(node.props.className).toBe('mb-6');
+  });
+});

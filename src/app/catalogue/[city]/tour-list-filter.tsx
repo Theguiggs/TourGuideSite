@@ -13,6 +13,7 @@ import {
   isSyntheticAudioSource,
 } from '@/lib/api/audio-source-policy';
 import type { Tour } from '@/types/tour';
+import { PageTitle } from '@murmure/design-system/web';
 
 const LANG_FLAGS: Record<string, string> = {
   fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪', nl: '🇳🇱', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
@@ -169,7 +170,7 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <h2 className="text-xl font-semibold text-ink">{tour.title}</h2>
+                        <PageTitle as="h2" size="h5">{tour.title}</PageTitle>
                         <TourPriceBadge tour={tour} locale={locale} />
                         <AiDisclosureBadge tourId={tour.id} locale={locale} />
                         {langsOf(tour).length > 0 && (

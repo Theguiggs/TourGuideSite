@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { fetchAuthSession } from 'aws-amplify/auth';
 import { getGuideProfileById, listAllGuideTours, adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
+import { PageTitle } from '@murmure/design-system/web';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   pending_moderation: { label: 'En attente',  className: 'bg-ocre-soft text-ocre-ink' },
@@ -198,7 +199,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               {profile.displayName.charAt(0)}
             </div>
             <div>
-              <h1 className="text-xl font-bold text-ink">{profile.displayName}</h1>
+              <PageTitle size="h5">{profile.displayName}</PageTitle>
               <p className="text-sm text-ink-60">{profile.city}</p>
               <span className={`text-xs font-medium px-2 py-0.5 rounded-full mt-1 inline-block ${statusBadge.className}`}>
                 {statusBadge.label}

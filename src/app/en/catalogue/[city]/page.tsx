@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getCityBySlug, getToursByCity } from '@/lib/api/tours-server';
 import { getGuidesByCity } from '@/lib/api/guides-public-server';
 import { TourListWithFilter } from '../../../catalogue/[city]/tour-list-filter';
+import { PageTitle } from '@murmure/design-system/web';
 
 export const dynamic = 'force-dynamic';
 
@@ -39,7 +40,7 @@ export default async function EnglishCityPage({params}: CityPageProps) {
         <span className="mx-2">/</span>
         <span className="text-ink">{city.name}</span>
       </nav>
-      <h1 className="text-3xl sm:text-4xl font-bold text-ink mb-2">{city.name}</h1>
+      <PageTitle className="mb-2">{city.name}</PageTitle>
       <p className="text-ink-60 mb-10">{city.description}</p>
       <TourListWithFilter tours={tours} citySlug={citySlug} locale="en" />
 

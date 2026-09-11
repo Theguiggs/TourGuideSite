@@ -6,6 +6,7 @@ import { getModerationMetrics, getLanguageModerationQueue } from '@/lib/api/mode
 import { trackEvent, AdminAnalyticsEvents } from '@/lib/analytics';
 import { logger } from '@/lib/logger';
 import type { LanguageModerationItem, ModerationMetrics } from '@/types/moderation';
+import { PageTitle } from '@murmure/design-system/web';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   pending: { label: 'En attente', className: 'bg-ocre-soft text-ocre-ink' },
@@ -63,7 +64,7 @@ export default function ModerationQueuePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-ink mb-6">File d&apos;attente de modération</h1>
+      <PageTitle size="h4" className="mb-6">File d&apos;attente de modération</PageTitle>
 
       {/* Metrics Cards */}
       {metrics && (

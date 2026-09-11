@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import { S3Image } from '@/components/studio/s3-image';
 import * as appsync from '@/lib/api/appsync-client';
 import { logger } from '@/lib/logger';
+import { PageTitle } from '@murmure/design-system/web';
 
 const SERVICE_NAME = 'AdminTourDetail';
 
@@ -182,7 +183,7 @@ export default function AdminTourDetailPage() {
         <div className="flex items-center gap-2 mb-2">
           <span className="bg-olive text-olive text-xs font-bold px-2 py-0.5 rounded">GRATUIT</span>
         </div>
-        <h1 className="text-2xl font-bold mb-1">{tour.title}</h1>
+        <PageTitle size="h4" color="inherit" className="mb-1">{tour.title}</PageTitle>
         <p className="text-grenadine-soft text-sm">
           {tour.city} &middot; {tour.duration} min &middot; {tour.distance} km &middot; {scenes.length} points d&apos;intérêt
         </p>

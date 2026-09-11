@@ -8,6 +8,7 @@ import {
   type RapportDeDepense,
 } from '@/lib/api/spend-ledger-report';
 import { logger } from '@/lib/logger';
+import { PageTitle } from '@murmure/design-system/web';
 
 const SERVICE_NAME = 'AdminAnalyticsPage';
 
@@ -75,7 +76,7 @@ export default function AdminAnalyticsPage() {
   if (isLoading || !data) {
     return (
       <div className="p-6" aria-busy="true">
-        <h1 className="text-2xl font-bold text-ink mb-6">Analytics Studio</h1>
+        <PageTitle size="h4" className="mb-6">Analytics Studio</PageTitle>
         <div className="space-y-4">
           {[1, 2, 3].map((i) => <div key={i} className="bg-paper-deep rounded-lg h-32 animate-pulse" />)}
         </div>
@@ -89,7 +90,7 @@ export default function AdminAnalyticsPage() {
 
   return (
     <div className="p-6 max-w-4xl">
-      <h1 className="text-2xl font-bold text-ink mb-6">Analytics Studio</h1>
+      <PageTitle size="h4" className="mb-6">Analytics Studio</PageTitle>
 
       {isEmpty && (
         <div className="bg-ocre-soft border border-ocre rounded-lg p-4 mb-6 text-sm text-ocre-ink" role="status">

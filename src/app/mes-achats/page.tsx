@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MesVisitesContent } from '@/components/catalogue/mes-visites-content';
+import { PageTitle } from '@murmure/design-system/web';
 
 export const metadata: Metadata = {
   title: 'Mes achats',
@@ -23,7 +24,7 @@ export default function MesVisitesPage() {
         <span className="text-ink">Mes achats</span>
       </nav>
 
-      <h1 className="text-3xl sm:text-4xl font-bold text-ink mb-2">Mes achats</h1>
+      <PageTitle className="mb-2">Mes achats</PageTitle>
 
       {/* Owner-scoped purchases resolved client-side (localStorage Cognito session). */}
       <MesVisitesContent />

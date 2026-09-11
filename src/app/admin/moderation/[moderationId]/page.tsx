@@ -51,6 +51,7 @@ import type {
   QualityChecklistItem,
   RejectionCategory,
 } from '@/types/moderation';
+import { PageTitle } from '@murmure/design-system/web';
 
 const LANG_FLAGS: Record<string, string> = {
   fr: 'FR', en: 'EN', es: 'ES', it: 'IT', de: 'DE',
@@ -621,9 +622,9 @@ export default function ModerationReviewPage() {
             ← Retour a la file d&apos;attente
           </Link>
           <div className="flex items-center gap-3 mt-1">
-            <h1 className="text-xl font-bold text-ink">
+            <PageTitle size="h5">
               {(activePreviewLang !== detail.languePrincipale && translatedTitles[activePreviewLang]) ? translatedTitles[activePreviewLang] : detail.tourTitle}
-            </h1>
+            </PageTitle>
             {detail.languePrincipale && (
               <span className="bg-paper-deep text-ink-60 text-xs font-medium px-2 py-0.5 rounded">
                 {LANG_FLAGS[detail.languePrincipale] ?? detail.languePrincipale}

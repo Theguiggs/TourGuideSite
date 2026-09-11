@@ -11,6 +11,7 @@ import { shouldUseStubs } from '@/config/api-mode';
 import { useStudioSessionStore, selectClearSession, selectSetActiveSession } from '@/lib/stores/studio-session-store';
 import type { StudioScene, StudioSession } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
+import { PageTitle } from '@murmure/design-system/web';
 
 export default function ScenesPage() {
   const params = useParams<{ sessionId: string }>();
@@ -155,7 +156,7 @@ export default function ScenesPage() {
           <div className="space-y-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h1 className="text-xl font-semibold text-ink">{activeScene.title || `${t('Scène', 'Scene')} ${activeScene.sceneIndex + 1}`}</h1>
+                <PageTitle size="h5">{activeScene.title || `${t('Scène', 'Scene')} ${activeScene.sceneIndex + 1}`}</PageTitle>
                 <span className={`mt-1 inline-flex rounded-full px-2 py-0.5 text-xs ${getSceneStatusConfig(activeScene.status).color}`}>
                   {getSceneStatusConfig(activeScene.status).label}
                 </span>

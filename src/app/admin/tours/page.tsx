@@ -6,6 +6,7 @@ import { getAllAdminTours, adminSetTourStatus, adminSyncTourToQueue, adminDelete
 import { listLanguagePurchases } from '@/lib/api/language-purchase';
 import type { TourLanguagePurchase } from '@/types/studio';
 import { ConfirmDialog } from '@/components/ui/Dialog';
+import { PageTitle } from '@murmure/design-system/web';
 
 const LANG_FLAGS: Record<string, string> = {
   fr: '🇫🇷', en: '🇬🇧', es: '🇪🇸', it: '🇮🇹', de: '🇩🇪', pt: '🇵🇹', ja: '🇯🇵', zh: '🇨🇳',
@@ -101,7 +102,7 @@ export default function AdminToursPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-ink mb-6">Toutes les visites</h1>
+      <PageTitle size="h4" className="mb-6">Toutes les visites</PageTitle>
 
       {actionError && (
         <div

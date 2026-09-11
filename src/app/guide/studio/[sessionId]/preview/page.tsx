@@ -19,6 +19,7 @@ import { AudioPlayerBar } from '@/components/studio/audio-player';
 import type { StudioSession, StudioScene } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
 import { ConfirmDialog } from '@/components/ui/Dialog';
+import { PageTitle } from '@murmure/design-system/web';
 
 // Dynamic import for Leaflet map (no SSR — browser-only)
 const PreviewMap = dynamic(() => import('@/components/studio/preview-map').then((m) => ({ default: m.PreviewMap })), {
@@ -356,7 +357,7 @@ export default function PreviewPage() {
         &larr; {t('Retour à la session', 'Back to session')}
       </Link>
 
-      <h1 className="text-2xl font-bold text-ink mb-1">Preview — {session.title || 'Session'}</h1>
+      <PageTitle size="h4" className="mb-1">Preview — {session.title || 'Session'}</PageTitle>
       <p className="text-sm text-ink-60 mb-2" data-testid="preview-narration-mode">
         {session.narrationMode === 'recording'
           ? 'Voix humaine — les audios source sont prévisualisés.'

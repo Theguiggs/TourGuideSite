@@ -8,6 +8,7 @@ import {
   type DemandeNarration,
 } from '@/lib/api/narration-requests';
 import { logger } from '@/lib/logger';
+import { PageTitle } from '@murmure/design-system/web';
 
 const SERVICE_NAME = 'AdminNarrationPage';
 
@@ -199,7 +200,7 @@ export default function AdminNarrationPage() {
   return (
     <div className="max-w-6xl">
       <header className="mb-6">
-        <h1 className="text-2xl font-semibold text-ink">Narrations à la demande</h1>
+        <PageTitle size="h4">Narrations à la demande</PageTitle>
         <p className="text-sm text-ink-60 mt-1">
           Le registre des demandes de fabrication, joint à l’état de chaque Paire (Visite × langue).
         </p>

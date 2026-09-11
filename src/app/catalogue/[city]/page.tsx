@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getCityBySlug, getToursByCity } from '@/lib/api/tours-server';
 import { getGuidesByCity } from '@/lib/api/guides-public-server';
 import { TourListWithFilter } from './tour-list-filter';
+import { PageTitle } from '@murmure/design-system/web';
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
 export const dynamic = 'force-dynamic';
@@ -46,7 +47,7 @@ export default async function CityPage({ params }: CityPageProps) {
         <span className="text-ink">{city.name}</span>
       </nav>
 
-      <h1 className="text-3xl sm:text-4xl font-bold text-ink mb-2">{city.name}</h1>
+      <PageTitle className="mb-2">{city.name}</PageTitle>
       <p className="text-ink-60 mb-10">{city.description}</p>
 
       <TourListWithFilter tours={tours} citySlug={citySlug} />
@@ -54,7 +55,7 @@ export default async function CityPage({ params }: CityPageProps) {
       {/* Guides locaux */}
       {guides.length > 0 && (
         <div className="mt-12">
-          <h2 className="text-xl font-semibold text-ink mb-6">Guides locaux</h2>
+          <PageTitle as="h2" size="h5" className="mb-6">Guides locaux</PageTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {guides.map((guide) => (
               <Link

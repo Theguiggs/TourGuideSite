@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { S3Image } from '@/components/studio/s3-image';
 import type { PurchasedTour } from '@/types/purchase';
+import { PageTitle } from '@murmure/design-system/web';
 
 interface MyPurchasesStripProps {
   purchases: PurchasedTour[];
@@ -17,9 +18,9 @@ export function MyPurchasesStrip({ purchases, locale = 'fr' }: MyPurchasesStripP
   return (
     <section className="mb-10" aria-label={locale === 'en' ? 'My purchases' : 'Mes achats'}>
       <div className="flex items-baseline justify-between mb-4">
-        <h2 className="text-xl font-semibold text-ink">
+        <PageTitle as="h2" size="h5">
           {locale === 'en' ? 'My purchases' : 'Mes achats'} ({purchases.length})
-        </h2>
+        </PageTitle>
         <Link href={locale === 'en' ? '/en/my-purchases' : '/mes-achats'} className="text-sm text-grenadine font-medium hover:underline">
           {locale === 'en' ? 'View all →' : 'Voir tout →'}
         </Link>

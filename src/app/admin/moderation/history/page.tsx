@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { getModerationHistory } from '@/lib/api/moderation';
 import type { ModerationHistoryItem } from '@/types/moderation';
+import { PageTitle } from '@murmure/design-system/web';
 
 export default function ModerationHistoryPage() {
   const [history, setHistory] = useState<ModerationHistoryItem[]>([]);
@@ -19,7 +20,7 @@ export default function ModerationHistoryPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-ink mb-6">Historique de modération</h1>
+      <PageTitle size="h4" className="mb-6">Historique de modération</PageTitle>
 
       <div className="flex gap-3 mb-6">
         <select
