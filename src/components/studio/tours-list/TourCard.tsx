@@ -12,6 +12,7 @@ import {
 } from '@/lib/studio/tours-list-helpers';
 import type { StudioSession } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
+import { formatPrice } from '@/lib/catalogue/tour-pricing';
 
 interface TourCardProps {
   /** Session to display. */
@@ -28,6 +29,8 @@ interface TourCardProps {
   current?: boolean;
   /** Available languages — codes ISO uppercase ("FR", "EN", "DE", "ES", "IT", "JA"). */
   langs?: string[];
+  /** Modèle d'accès de la Visite publiée (gratuite, payante, abonnés). */
+  access?: StudioSession['tourAccess'];
   /** Delete callback for the danger menu. */
   onDelete?: (session: StudioSession) => void;
 }
@@ -71,6 +74,7 @@ export function TourCard({
   rating = null,
   current = false,
   langs,
+  access = null,
   onDelete,
 }: TourCardProps) {
   const { locale } = useStudioLocale();
@@ -93,12 +97,27 @@ export function TourCard({
   const copy = locale === 'en' ? {
     resume: 'Resume', edit: 'Edit', continue: 'Continue', current: 'In progress', untitled: 'Untitled tour',
     open: 'Open', photo: 'Tour photo', updated: 'Updated', language: 'language', languages: 'languages',
-    plays: 'Plays', rating: 'Rating', delete: 'Delete', sceneShort: 'SC.',
+    plays: 'Completed plays', rating: 'Rating', delete: 'Delete', sceneShort: 'SC.',
+    free: 'Free', paid: 'Paid', subscribers: 'Subscribers', accessUnknown: 'Access not set',
   } : {
     resume: 'Reprendre', edit: 'Modifier', continue: 'Continuer', current: 'En cours', untitled: 'Visite sans titre',
     open: 'Ouvrir', photo: 'Photo de la visite', updated: 'Mis à jour le', language: 'langue', languages: 'langues',
-    plays: 'Écoutes', rating: 'Note', delete: 'Supprimer', sceneShort: 'SC.',
+    // « Écoutes terminées » : la seule mesure que le backend porte est
+    // `TourStats.completionCount` (parcours menés au bout), pas les lancements.
+    plays: 'Écoutes terminées', rating: 'Note', delete: 'Supprimer', sceneShort: 'SC.',
+    free: 'Gratuite', paid: 'Payante', subscribers: 'Abonnés', accessUnknown: 'Accès non défini',
   };
+  // Pastille d'accès : ce que la visite coûte au visiteur. Absente tant que la
+  // Visite n'existe pas ; « non défini » quand elle existe sans modèle d'accès.
+  const accessPill = access
+    ? access.purchaseType === 'free'
+      ? { label: copy.free, classes: 'bg-olive-soft text-success' }
+      : access.purchaseType === 'paid'
+        ? { label: `${copy.paid}${typeof access.priceCents === 'number' && access.priceCents > 0 ? ` · ${formatPrice(access.priceCents, locale)}` : ''}`, classes: 'bg-ocre-soft text-ink border border-ocre' }
+        : access.purchaseType === 'subscription_only'
+          ? { label: copy.subscribers, classes: 'bg-mer-soft text-mer' }
+          : { label: copy.accessUnknown, classes: 'bg-paper-deep text-ink-60' }
+    : null;
   const englishStatus: Record<string, string> = {
     published: 'Live', draft: 'Draft', recording: 'Recording', editing: 'Editing',
     pending_moderation: 'In review', revision_requested: 'Changes requested', rejected: 'Rejected', archived: 'Archived',
@@ -230,7 +249,15 @@ export function TourCard({
           <span className={`w-1.5 h-1.5 rounded-pill ${statusCfg.dot}`} aria-hidden="true" />
           {statusLabel}
         </span>
-        <div className="flex gap-1 flex-wrap">
+        {accessPill && (
+          <span
+            className={`inline-flex items-center px-2.5 py-1 rounded-pill text-meta font-bold self-start ${accessPill.classes}`}
+            data-testid="tour-card-access"
+          >
+            {accessPill.label}
+          </span>
+        )}
+        <div className="flex gap-1 flex-wrap" data-testid="tour-card-langs">
           {sessionLangs.map((l) => (
             <span
               key={l}

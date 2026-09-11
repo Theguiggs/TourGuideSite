@@ -7,6 +7,7 @@ import { useAuth } from '@/lib/auth/auth-context';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
 import { listStudioSessions, listStudioScenes } from '@/lib/api/studio';
+import { listCreatedLanguagesByTour } from '@/lib/api/tour-languages';
 import { deleteSession } from '@/lib/api/studio-submission';
 import { studioPersistenceService } from '@/lib/studio/studio-persistence-service';
 import { withPublishedStatus } from '@/lib/studio/published-status';
@@ -30,6 +31,8 @@ export default function StudioToursPage() {
   const [scenesPerSession, setScenesPerSession] = useState<
     Record<string, { total: number; done: number }>
   >({});
+  const [langsPerSession, setLangsPerSession] = useState<Record<string, string[]>>({});
+  const [statsPerSession, setStatsPerSession] = useState<Record<string, { completions: number; rating: number | null } | null>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -62,6 +65,34 @@ export default function StudioToursPage() {
     [],
   );
 
+  const loadInsights = useCallback(async (all: StudioSession[]) => {
+    const [createdByTour, stats] = await Promise.all([
+      listCreatedLanguagesByTour(),
+      Promise.all(all.map(async (s) => {
+        if (!s.tourId || shouldUseStubs()) return [s.id, null] as const;
+        const { getTourStats } = await import('@/lib/api/appsync-client');
+        const raw = (await getTourStats(s.tourId).catch(() => null)) as
+          | { completionCount?: number | null; averageRating?: number | null; reviewCount?: number | null }
+          | null;
+        return [
+          s.id,
+          raw
+            ? {
+                completions: typeof raw.completionCount === 'number' ? raw.completionCount : 0,
+                rating: typeof raw.averageRating === 'number' && (raw.reviewCount ?? 0) > 0 ? raw.averageRating : null,
+              }
+            : null,
+        ] as const;
+      })),
+    ]);
+    // Langue source + langues fabriquées (Paires prêtes), en majuscules, dédupliquées.
+    setLangsPerSession(Object.fromEntries(all.map((s) => {
+      const created = s.tourId ? createdByTour.get(s.tourId) ?? [] : [];
+      return [s.id, [...new Set([s.language, ...created].map((c) => c.toUpperCase()))]];
+    })));
+    setStatsPerSession(Object.fromEntries(stats));
+  }, []);
+
   const loadTours = useCallback(async (guideId: string) => {
     setIsLoading(true);
     setError(null);
@@ -80,13 +111,17 @@ export default function StudioToursPage() {
       });
       setScenesPerSession(map);
       logger.info(SERVICE_NAME, 'Tours loaded', { count: all.length });
+
+      // Langues créées et écoutes : chargées APRÈS l'affichage des cartes, et
+      // chacune au mieux — une lecture ratée laisse « — », jamais la page vide.
+      void loadInsights(all);
     } catch (e) {
       setError(copy.loadError);
       logger.error(SERVICE_NAME, 'Failed to load tours', { error: String(e) });
     } finally {
       setIsLoading(false);
     }
-  }, [copy.loadError]);
+  }, [copy.loadError, loadInsights]);
 
   useEffect(() => {
     const guideId = shouldUseStubs() ? 'guide-1' : user?.guideId ?? null;
@@ -262,6 +297,10 @@ export default function StudioToursPage() {
               session={s}
               scenesTotal={scenesPerSession[s.id]?.total ?? 0}
               scenesDone={scenesPerSession[s.id]?.done ?? 0}
+              langs={langsPerSession[s.id]}
+              plays={statsPerSession[s.id]?.completions ?? null}
+              rating={statsPerSession[s.id]?.rating ?? null}
+              access={s.tourAccess ?? null}
               current={s.id === lastSessionId}
               onDelete={handleDeleteRequest}
             />

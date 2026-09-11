@@ -33,7 +33,7 @@ export async function withPublishedStatus(sessions: StudioSession[]): Promise<St
     sessions.map((s) =>
       s.tourId
         ? getGuideTourById(s.tourId)
-            .then((t) => (t as { status?: string; draftSessionId?: string } | null) ?? null)
+            .then((t) => (t as { status?: string; draftSessionId?: string; purchaseType?: string; priceCents?: number | null } | null) ?? null)
             .catch(() => null)
         : Promise.resolve(null),
     ),
@@ -63,9 +63,23 @@ export async function withPublishedStatus(sessions: StudioSession[]): Promise<St
     }
   });
 
-  return sessions.map((s, i) =>
-    isLiveVersion(i) && s.status !== 'published'
-      ? { ...s, status: 'published' as StudioSession['status'] }
-      : s,
-  );
+  // L'accès (gratuit, payant, abonnés) vit sur la Visite ; la liste « Mes
+  // visites » l'affiche, et la lecture est déjà faite ici : on le rapporte.
+  const accessOf = (i: number): StudioSession['tourAccess'] => {
+    const tour = tours[i];
+    if (!tour) return null;
+    const purchaseType =
+      tour.purchaseType === 'free' || tour.purchaseType === 'paid' || tour.purchaseType === 'subscription_only'
+        ? tour.purchaseType
+        : null;
+    return { purchaseType, priceCents: typeof tour.priceCents === 'number' ? tour.priceCents : null };
+  };
+
+  return sessions.map((s, i) => ({
+    ...s,
+    tourAccess: accessOf(i),
+    ...(isLiveVersion(i) && s.status !== 'published'
+      ? { status: 'published' as StudioSession['status'] }
+      : {}),
+  }));
 }
