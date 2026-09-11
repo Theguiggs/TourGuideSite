@@ -30,6 +30,8 @@ import {
 } from '@/lib/api/audio-source-policy';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import ItineraryList from './itinerary-list';
+import { StarRating } from '@/components/catalogue/StarRating';
+import { maskLockedPois } from '@/lib/catalogue/scene-pois';
 
 // Aucune liste blanche : ces tables n'habillent que ce qui est vendu. Une
 // langue absente d'ici s'affiche quand même, sans drapeau et sous son code.
@@ -143,15 +145,6 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
       description,
     },
   };
-}
-
-function StarRating({ rating, locale = 'fr' }: { rating: number; locale?: 'fr' | 'en' }) {
-  return (
-    <span style={{ color: tg.colors.ocre }} aria-label={locale === 'en' ? `${rating.toFixed(1)} stars out of 5` : `${rating.toFixed(1)} étoiles sur 5`}>
-      {'★'.repeat(Math.round(rating))}
-      {'☆'.repeat(5 - Math.round(rating))}
-    </span>
-  );
 }
 
 export async function LocalizedTourDetailPage({ params, searchParams, locale = 'fr' }: TourPageProps & {locale?: 'fr' | 'en'}) {
@@ -539,10 +532,14 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
               >
                 {copy.itinerary}
               </h2>
+              {/* Visite payante : le HTML ne porte pas les titres verrouillés
+                  (ils n'étaient que floutés en CSS). L'acheteur les retrouve
+                  par la redemande après hydratation. */}
               <ItineraryList
-                pois={tour.pois}
+                pois={isTourFree(tour) ? tour.pois : maskLockedPois(tour.pois, locale)}
                 tourId={tour.id}
                 isFree={isTourFree(tour)}
+                contentUnavailable={tour.contentUnavailable}
                 heroAccentFg={heroAccentFg}
                 locale={locale}
               />

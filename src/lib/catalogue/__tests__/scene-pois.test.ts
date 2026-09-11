@@ -6,7 +6,7 @@
  * se verrait qu'après l'hydratation, sous les yeux du lecteur.
  */
 
-import { FREE_PREVIEW_SCENES, isFullContent, mapScenesToPois } from '../scene-pois';
+import { FREE_PREVIEW_SCENES, isFullContent, mapScenesToPois, maskLockedPois } from '../scene-pois';
 import type { PublicTourScene } from '@/lib/api/published-tour-content';
 
 function scene(overrides: Partial<PublicTourScene> = {}): PublicTourScene {
@@ -118,5 +118,24 @@ describe('isFullContent — ce que le serveur a accordé', () => {
     // Les deux premières sont intégrales pour TOUT LE MONDE : les lire comme un
     // droit accordé déverrouillerait la visite pour un anonyme.
     expect(isFullContent(preview.slice(0, FREE_PREVIEW_SCENES))).toBe(false);
+  });
+});
+
+describe('maskLockedPois', () => {
+  const pois = [1, 2, 3, 4].map((n) => ({
+    id: `p${n}`, title: `Secret ${n}`, description: `Texte ${n}`, latitude: n, longitude: n, order: n, photoKey: `k${n}`,
+  }));
+
+  it('laisse l’aperçu gratuit intact et masque tout le reste, coordonnées comprises non', () => {
+    const masked = maskLockedPois(pois);
+    expect(masked[0]).toEqual(pois[0]);
+    expect(masked[1]).toEqual(pois[1]);
+    expect(masked[2]).toMatchObject({ title: 'Étape 3', description: '', photoKey: undefined, latitude: 3, order: 3 });
+    expect(JSON.stringify(masked)).not.toContain('Secret 3');
+    expect(JSON.stringify(masked)).not.toContain('Texte 4');
+  });
+
+  it('parle anglais sur la fiche EN', () => {
+    expect(maskLockedPois(pois, 'en')[3].title).toBe('Stop 4');
   });
 });

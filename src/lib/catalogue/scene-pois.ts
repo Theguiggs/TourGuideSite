@@ -62,3 +62,25 @@ export function isFullContent(scenes: readonly PublicTourScene[]): boolean {
         (scene.photos?.length ?? 0) > 0,
     );
 }
+
+/**
+ * Aperçu servi dans le HTML d'une visite payante : au-delà de l'aperçu
+ * gratuit, le titre, l'accroche et la photo sont remplacés par « Étape N ».
+ *
+ * Le rendu serveur est anonyme : il floutait les vrais titres en CSS, qui
+ * restaient lisibles dans la source de la page. Un acheteur retrouve le
+ * contenu complet par la redemande après hydratation (voir `useServedContent`).
+ * Coordonnées et ordre restent : la carte montre l'itinéraire entier.
+ */
+export function maskLockedPois(pois: readonly POI[], locale: 'fr' | 'en' = 'fr'): POI[] {
+  return pois.map((poi, index) =>
+    index < FREE_PREVIEW_SCENES
+      ? poi
+      : {
+          ...poi,
+          title: locale === 'en' ? `Stop ${index + 1}` : `Étape ${index + 1}`,
+          description: '',
+          photoKey: undefined,
+        },
+  );
+}

@@ -41,6 +41,10 @@ export default defineConfig({
     env: {
       NEXT_PUBLIC_USE_STUBS: process.env.NEXT_PUBLIC_USE_STUBS ?? 'false',
       FORCE_REAL_API: process.env.NEXT_PUBLIC_USE_STUBS === 'true' ? 'false' : 'true',
+      // Les E2E sèment une visite puis l'attendent sur le catalogue dans la
+      // seconde : pas de conservation du catalogue entre requêtes (le
+      // dédoublonnage des lectures en vol reste actif).
+      CATALOGUE_CACHE_TTL_MS: '0',
     },
   },
 });
