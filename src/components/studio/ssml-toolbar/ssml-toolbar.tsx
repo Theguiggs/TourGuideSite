@@ -71,7 +71,7 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
             <button
               key={p.value}
               onClick={() => handlePauseInsert(p.value)}
-              className="px-1.5 py-0.5 text-[10px] font-medium bg-ocre-soft text-ocre hover:opacity-90 rounded transition"
+              className="px-1.5 py-0.5 text-[10px] font-medium bg-ocre-soft text-ocre-ink hover:opacity-90 rounded transition"
               title={`Insérer une pause de ${p.label}`}
               data-testid={`ssml-pause-${p.value}`}
             >
@@ -81,7 +81,7 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
           <button
             onClick={() => setShowPauseInput(!showPauseInput)}
             className={`px-1.5 py-0.5 text-[10px] font-medium rounded transition ${
-              showPauseInput ? 'bg-ocre text-white' : 'bg-ocre-soft text-ocre hover:opacity-90'
+              showPauseInput ? 'bg-ocre text-ink' : 'bg-ocre-soft text-ocre-ink hover:opacity-90'
             }`}
             title="Pause personnalisée"
             data-testid="ssml-pause-custom-toggle"
@@ -94,7 +94,7 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
       {/* Custom pause input */}
       {showPauseInput && (
         <div className="flex items-center gap-2 p-2 bg-ocre-soft border border-ocre-soft rounded-lg">
-          <span className="text-xs text-ocre">Pause de</span>
+          <span className="text-xs text-ocre-ink">Pause de</span>
           <input
             type="number"
             min={0.1}
@@ -102,13 +102,13 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
             step={0.1}
             value={customPause}
             onChange={(e) => setCustomPause(e.target.value)}
-            className="w-16 px-2 py-0.5 text-xs border border-ocre-soft rounded text-center focus:outline-none focus:ring-1 focus:ring-ocre"
+            className="w-16 px-2 py-0.5 text-xs border border-ocre-soft rounded text-center focus:ring-2 focus:ring-ink"
             data-testid="custom-pause-input"
           />
-          <span className="text-xs text-ocre">secondes (0,1 à 10)</span>
+          <span className="text-xs text-ocre-ink">secondes (0,1 à 10)</span>
           <button
             onClick={handleCustomPause}
-            className="px-2 py-0.5 text-xs font-medium bg-ocre text-white rounded hover:opacity-90 transition"
+            className="px-2 py-0.5 text-xs font-medium bg-ocre text-ink rounded hover:opacity-90 transition"
             data-testid="custom-pause-insert"
           >
             Insérer

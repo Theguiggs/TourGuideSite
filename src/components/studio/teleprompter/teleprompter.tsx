@@ -1,5 +1,6 @@
 'use client';
 
+import type React from 'react';
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { PrompterEngine, type PrompterState } from '@/lib/studio/prompter-engine';
 
@@ -201,6 +202,7 @@ export function Teleprompter({
   return (
     <div
       className="flex h-full flex-col overflow-hidden rounded-xl border border-ink-80 bg-ink shadow-lg"
+      style={{ '--tg-focus-ring': 'var(--tg-color-paper)' } as React.CSSProperties}
       data-testid="teleprompter"
     >
       {/* Controls stay above the script so the first line remains visible. */}
@@ -324,10 +326,10 @@ export function Teleprompter({
           {words.map((word, i) => (
             <span
               key={i}
-              className={`inline-block mr-2 rounded px-0.5 text-paper transition-colors duration-150 ${
+              className={`inline-block mr-2 rounded px-0.5 transition-colors duration-150 ${
                 i === state.currentWordIndex
                   ? 'bg-ocre text-ink'
-                  : ''
+                  : 'text-paper'
               }`}
               data-word-index={i}
               aria-current={i === state.currentWordIndex ? 'true' : undefined}

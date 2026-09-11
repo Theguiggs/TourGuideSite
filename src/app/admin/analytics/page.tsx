@@ -92,7 +92,7 @@ export default function AdminAnalyticsPage() {
       <h1 className="text-2xl font-bold text-ink mb-6">Analytics Studio</h1>
 
       {isEmpty && (
-        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 mb-6 text-sm text-ocre" role="status">
+        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 mb-6 text-sm text-ocre-ink" role="status">
           Aucune donnée disponible. Cette vue se remplira au fur et à mesure que des guides publieront des visites.
         </div>
       )}
@@ -297,7 +297,7 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
                   <td className="px-2 py-2 text-right text-ink-60">
                     {formaterDollars(axe.provisionOuverteMicros)}
                   </td>
-                  <td className="px-2 py-2 text-right text-ocre">
+                  <td className="px-2 py-2 text-right text-ocre-ink">
                     {formaterDollars(axe.relacheMicros)}
                   </td>
                 </tr>

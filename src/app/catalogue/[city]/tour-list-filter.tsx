@@ -206,7 +206,7 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
                               );
                             })}
                             {langsOf(tour).length > 5 && (
-                              <span className="text-xs text-ink-40">+{langsOf(tour).length - 5}</span>
+                              <span className="text-xs text-ink-60">+{langsOf(tour).length - 5}</span>
                             )}
                           </div>
                         )}

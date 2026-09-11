@@ -13,7 +13,7 @@
 
   --tg-color-ink:          #102A43;  /* texte principal — bleu encre */
   --tg-color-ink-80:       rgba(16, 42, 67, 0.8);
-  --tg-color-ink-60:       rgba(16, 42, 67, 0.6);
+  --tg-color-ink-60:       rgba(16, 42, 67, 0.72); /* 4,5:1 sur papier ; 0,6 rendait 3,9:1 */
   --tg-color-ink-40:       rgba(16, 42, 67, 0.4);
   --tg-color-ink-20:       rgba(16, 42, 67, 0.2);
 
@@ -26,6 +26,7 @@
 
   --tg-color-ocre:         #C68B3E;  /* arrière-pays, Provence */
   --tg-color-ocre-soft:    #F5E4C7;
+  --tg-color-ocre-ink:     #8A5C22;  /* texte ocre sur papier (5,3:1) */
 
   --tg-color-mer:          #2B6E8A;  /* côte, Méditerranée */
   --tg-color-mer-soft:     #D7E5EC;

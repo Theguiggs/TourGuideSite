@@ -44,7 +44,7 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
     return (
       <span
         data-testid={`badge-subscription-${tour.id}`}
-        className="bg-ocre-soft text-ocre text-xs font-bold px-2 py-0.5 rounded-full"
+        className="bg-ocre-soft text-ocre-ink text-xs font-bold px-2 py-0.5 rounded-full"
       >
         {locale === 'en' ? 'INCLUDED WITH SUBSCRIPTION' : 'INCLUS DANS L’ABONNEMENT'}
       </span>

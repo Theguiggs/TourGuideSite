@@ -25,7 +25,7 @@ const VARIANT_CFG: Record<
   warning: {
     bg: 'bg-ocre-soft',
     border: 'border-ocre',
-    text: 'text-ocre',
+    text: 'text-ocre-ink',
     icon: '⚠',
   },
   error: {

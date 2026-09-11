@@ -1082,7 +1082,7 @@ export default function ItineraryPage() {
 
       {isLocked && (
         <div
-          className="mb-4 rounded-md border border-ocre bg-ocre-soft px-4 py-2.5 text-caption text-ocre"
+          className="mb-4 rounded-md border border-ocre bg-ocre-soft px-4 py-2.5 text-caption text-ocre-ink"
           role="status"
         >
           Contenu soumis — lecture seule.

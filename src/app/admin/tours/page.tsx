@@ -12,10 +12,10 @@ const LANG_FLAGS: Record<string, string> = {
 };
 const MOD_COLORS: Record<string, string> = {
   draft: 'bg-paper-deep text-ink-60',
-  submitted: 'bg-ocre-soft text-ocre',
+  submitted: 'bg-ocre-soft text-ocre-ink',
   approved: 'bg-olive-soft text-olive',
   rejected: 'bg-grenadine-soft text-danger',
-  revision_requested: 'bg-ocre-soft text-ocre',
+  revision_requested: 'bg-ocre-soft text-ocre-ink',
 };
 const MOD_LABELS: Record<string, string> = {
   draft: 'Brouillon', submitted: 'Soumis', approved: 'OK', rejected: 'Refusé', revision_requested: 'Révision',
@@ -27,11 +27,11 @@ const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-mer-soft text-mer' },
   recording:          { label: 'Enregistrement',     className: 'bg-mer-soft text-mer' },
   ready:              { label: 'Pr\u00eat',                className: 'bg-olive-soft text-olive' },
-  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre' },
-  review:             { label: 'En revue',           className: 'bg-ocre-soft text-ocre' },
-  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre' },
+  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre-ink' },
+  review:             { label: 'En revue',           className: 'bg-ocre-soft text-ocre-ink' },
+  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre-ink' },
   published:          { label: 'Publi\u00e9',             className: 'bg-olive-soft text-olive' },
-  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre' },
+  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre-ink' },
   rejected:           { label: 'Rejet\u00e9',             className: 'bg-grenadine-soft text-danger' },
   archived:           { label: 'Archiv\u00e9',            className: 'bg-paper-deep text-ink-60' },
 };
@@ -219,7 +219,7 @@ export default function AdminToursPage() {
                         {tour.status === 'review' && (
                           <Link
                             href="/admin/moderation"
-                            className="text-xs text-ocre font-medium hover:underline"
+                            className="text-xs text-ocre-ink font-medium hover:underline"
                           >
                             File modération
                           </Link>
@@ -228,7 +228,7 @@ export default function AdminToursPage() {
                           <>
                             <Link
                               href="/admin/moderation"
-                              className="text-xs text-ocre font-medium hover:underline"
+                              className="text-xs text-ocre-ink font-medium hover:underline"
                             >
                               File modération
                             </Link>
@@ -250,7 +250,7 @@ export default function AdminToursPage() {
                           <button
                             onClick={() => askAction(tour, 'archived')}
                             disabled={isActioning}
-                            className="text-xs text-ocre font-medium hover:underline disabled:opacity-50"
+                            className="text-xs text-ocre-ink font-medium hover:underline disabled:opacity-50"
                           >
                             Suspendre
                           </button>

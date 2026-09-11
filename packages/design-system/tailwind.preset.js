@@ -25,7 +25,7 @@ module.exports = {
       ink: {
         DEFAULT: '#102A43',
         80: 'rgba(16, 42, 67, 0.8)',
-        60: 'rgba(16, 42, 67, 0.6)',
+        60: 'rgba(16, 42, 67, 0.72)',
         40: 'rgba(16, 42, 67, 0.4)',
         20: 'rgba(16, 42, 67, 0.2)',
       },
@@ -39,6 +39,7 @@ module.exports = {
       ocre: {
         DEFAULT: '#C68B3E',
         soft:    '#F5E4C7',
+        ink:     '#8A5C22',
       },
       mer: {
         DEFAULT: '#2B6E8A',

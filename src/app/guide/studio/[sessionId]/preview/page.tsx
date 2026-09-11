@@ -433,7 +433,7 @@ export default function PreviewPage() {
                 <button
                   onClick={handlePlayAll}
                   className={`w-full py-3 rounded-xl text-sm font-semibold transition ${
-                    isPlayingAll ? 'bg-ocre text-white' : 'bg-grenadine text-white'
+                    isPlayingAll ? 'bg-ocre text-ink' : 'bg-grenadine text-white'
                   }`}
                   data-testid="play-all-btn"
                 >
@@ -526,7 +526,7 @@ export default function PreviewPage() {
                 onClick={handlePlayAll}
                 className={`font-medium py-2 px-5 rounded-lg text-sm transition ${
                   isPlayingAll
-                    ? 'bg-ocre hover:opacity-90 text-white'
+                    ? 'bg-ocre hover:brightness-110 text-ink'
                     : 'bg-grenadine hover:opacity-90 text-white'
                 }`}
                 data-testid="play-all-btn"
@@ -573,7 +573,7 @@ export default function PreviewPage() {
                     </p>
                     {scene.qualityScore && (
                       <span className={`inline-flex px-1.5 py-0 rounded text-[10px] font-medium ${
-                        scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre'
+                        scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                       }`}>
                         {scene.qualityScore === 'good' ? '✓ Bonne' : '⚠ À améliorer'}
                       </span>
@@ -653,7 +653,7 @@ export default function PreviewPage() {
           <button
             onClick={handleRetract}
             disabled={isRetracting}
-            className="border border-ocre text-ocre hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-6 rounded-lg transition"
+            className="border border-ocre text-ocre-ink hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-6 rounded-lg transition"
             data-testid="retract-btn"
           >
             {isRetracting ? 'Retrait...' : '↩ Retirer la publication'}
@@ -715,7 +715,7 @@ export default function PreviewPage() {
               }
             }}
             disabled={isSubmitting}
-            className="border border-ocre text-ocre hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-sm"
+            className="border border-ocre text-ocre-ink hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-sm"
             data-testid="archive-btn"
           >
             📦 Archiver

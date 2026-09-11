@@ -8,8 +8,8 @@ import { logger } from '@/lib/logger';
 import type { LanguageModerationItem, ModerationMetrics } from '@/types/moderation';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  pending: { label: 'En attente', className: 'bg-ocre-soft text-ocre' },
-  resubmitted: { label: 'Resoumis', className: 'bg-ocre-soft text-ocre' },
+  pending: { label: 'En attente', className: 'bg-ocre-soft text-ocre-ink' },
+  resubmitted: { label: 'Resoumis', className: 'bg-ocre-soft text-ocre-ink' },
   in_review: { label: 'En revue', className: 'bg-mer-soft text-mer' },
   approved: { label: 'Approuve', className: 'bg-olive-soft text-olive' },
   rejected: { label: 'Refuse', className: 'bg-grenadine-soft text-danger' },

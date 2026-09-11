@@ -184,7 +184,7 @@ export default function StudioToursPage() {
   if (!user?.guideId && !shouldUseStubs()) {
     return (
       <div className="p-8 max-w-7xl mx-auto">
-        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 text-ocre" role="alert">
+        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 text-ocre-ink" role="alert">
           {copy.guideOnly}
         </div>
       </div>

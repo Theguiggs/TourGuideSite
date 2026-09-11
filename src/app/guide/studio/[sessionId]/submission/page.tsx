@@ -233,7 +233,7 @@ export default function PublicationPage() {
         </div>
       )}
       {!hasAnyPublished && !['draft', 'editing', 'recording', 'ready', 'submitted'].includes(session.status) && (
-        <div className="mb-3 p-2 bg-ocre-soft border border-ocre-soft rounded-lg text-xs text-ocre">
+        <div className="mb-3 p-2 bg-ocre-soft border border-ocre-soft rounded-lg text-xs text-ocre-ink">
           Aucune version de ce parcours n&apos;est visible par les touristes.
         </div>
       )}
@@ -271,8 +271,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x21A9;</span>
               <div>
-                <p className="text-sm font-medium text-ocre">Retirer la publication</p>
-                <p className="text-xs text-ocre">Revenir en brouillon pour modifier</p>
+                <p className="text-sm font-medium text-ocre-ink">Retirer la publication</p>
+                <p className="text-xs text-ocre-ink">Revenir en brouillon pour modifier</p>
               </div>
             </button>
           )}
@@ -286,8 +286,8 @@ export default function PublicationPage() {
             >
               <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
               <div>
-                <p className="text-sm font-medium text-ocre">Mettre en pause</p>
-                <p className="text-xs text-ocre">Masquer temporairement du catalogue. Reprise sans nouvelle modération.</p>
+                <p className="text-sm font-medium text-ocre-ink">Mettre en pause</p>
+                <p className="text-xs text-ocre-ink">Masquer temporairement du catalogue. Reprise sans nouvelle modération.</p>
               </div>
             </button>
           )}
@@ -452,8 +452,8 @@ export default function PublicationPage() {
               >
                 <span className="text-base shrink-0">&#x23F8;&#xFE0F;</span>
                 <div>
-                  <p className="text-sm font-medium text-ocre">Désarchiver (en pause)</p>
-                  <p className="text-xs text-ocre">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>
+                  <p className="text-sm font-medium text-ocre-ink">Désarchiver (en pause)</p>
+                  <p className="text-xs text-ocre-ink">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>
                 </div>
               </button>
             </>

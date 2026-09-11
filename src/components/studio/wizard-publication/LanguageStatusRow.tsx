@@ -23,7 +23,7 @@ const STATUS_CFG: Record<
   { bg: string; text: string }
 > = {
   success: { bg: 'bg-olive-soft', text: 'text-success' },
-  ocre: { bg: 'bg-ocre-soft', text: 'text-ocre' },
+  ocre: { bg: 'bg-ocre-soft', text: 'text-ocre-ink' },
   mer: { bg: 'bg-mer-soft', text: 'text-mer' },
   danger: { bg: 'bg-grenadine-soft', text: 'text-danger' },
 };
@@ -71,7 +71,7 @@ export function LanguageStatusRow({
             type="button"
             onClick={onActionClick}
             data-testid="language-row-action"
-            className="bg-ocre text-paper border-none px-3.5 py-1.5 rounded-pill text-meta font-bold cursor-pointer hover:opacity-90 transition"
+            className="bg-ocre text-ink border-none px-3.5 py-1.5 rounded-pill text-meta font-bold cursor-pointer hover:opacity-90 transition"
           >
             {actionLabel}
           </button>

@@ -272,7 +272,7 @@ export default function StudioAvisPage() {
   if (!user?.guideId && !shouldUseStubs()) {
     return (
       <div className="p-8 max-w-5xl mx-auto">
-        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 text-ocre" role="alert">
+        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 text-ocre-ink" role="alert">
           {copy.guideOnly}
         </div>
       </div>
@@ -372,7 +372,7 @@ export default function StudioAvisPage() {
                 {avgRating!.toFixed(1)}
               </div>
               <div
-                className="text-ocre text-caption font-bold mt-1"
+                className="text-ocre-ink text-caption font-bold mt-1"
                 aria-label={`${avgStars} ${copy.starsOutOf}`}
               >
                 <span aria-hidden="true">{'★'.repeat(avgStars)}</span>
@@ -425,7 +425,7 @@ export default function StudioAvisPage() {
       {/* ───── À traiter (tours en révision / refusés) — toujours visible ───── */}
       {attention.length > 0 && (
         <section className="mb-9" data-testid="avis-attention">
-          <div className="tg-eyebrow text-ocre mb-3">
+          <div className="tg-eyebrow text-ocre-ink mb-3">
             {copy.attention} · {attention.length} {attention.length > 1 ? copy.tours : copy.tour}
           </div>
           <div className="flex flex-col gap-2.5">
@@ -445,7 +445,7 @@ export default function StudioAvisPage() {
                     <span
                       className={[
                         'text-meta font-bold rounded-pill px-2.5 py-0.5 shrink-0',
-                        isRejected ? 'bg-grenadine text-paper' : 'bg-ocre text-paper',
+                        isRejected ? 'bg-grenadine text-paper' : 'bg-ocre text-ink',
                       ].join(' ')}
                     >
                       {isRejected ? copy.rejected : copy.revision}
@@ -599,7 +599,7 @@ export default function StudioAvisPage() {
                         </div>
                       ) : reply ? (
                         <div>
-                          <div className="text-meta font-bold text-ocre">{copy.yourReply}</div>
+                          <div className="text-meta font-bold text-ocre-ink">{copy.yourReply}</div>
                           <p className="text-meta text-ink-80 mt-0.5 leading-relaxed">{reply.message}</p>
                           {canReply && (
                             <button

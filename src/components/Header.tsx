@@ -112,7 +112,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
                 </span>
                 <button
                   onClick={signOut}
-                  className="text-meta text-ink-40 hover:text-grenadine font-medium transition"
+                  className="text-meta text-ink-60 hover:text-grenadine font-medium transition"
                 >
                   {copy.signOut}
                 </button>
@@ -198,7 +198,7 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
                 )}
                 <button
                   onClick={() => { signOut(); setMenuOpen(false); }}
-                  className="block py-3 text-caption text-ink-40 hover:text-grenadine font-medium"
+                  className="block py-3 text-caption text-ink-60 hover:text-grenadine font-medium"
                 >
                   {copy.signOut}
                 </button>

@@ -7,7 +7,7 @@ import { adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
 
 const PROFILE_STATUS_BADGES: Record<string, { label: string; className: string }> = {
   active:             { label: 'Actif',          className: 'bg-olive-soft text-olive' },
-  pending_moderation: { label: 'En attente',      className: 'bg-ocre-soft text-ocre' },
+  pending_moderation: { label: 'En attente',      className: 'bg-ocre-soft text-ocre-ink' },
   suspended:          { label: 'Suspendu',        className: 'bg-grenadine-soft text-danger' },
   inactive:           { label: 'Inactif',         className: 'bg-paper-deep text-ink-60' },
 };
@@ -123,7 +123,7 @@ export default function AdminGuidesPage() {
                     </td>
                     <td className="px-4 py-3 text-ink-60 hidden sm:table-cell">{guide.city}</td>
                     <td className="px-4 py-3 text-right text-ink-80 hidden md:table-cell">{guide.tourCount}</td>
-                    <td className="px-4 py-3 text-right text-ocre hidden md:table-cell">
+                    <td className="px-4 py-3 text-right text-ocre-ink hidden md:table-cell">
                       {guide.rating != null ? `${guide.rating.toFixed(1)} ★` : '—'}
                     </td>
                     <td className="px-4 py-3">
@@ -146,7 +146,7 @@ export default function AdminGuidesPage() {
                           <button
                             onClick={() => setGuideStatus(guide.id, 'suspended')}
                             disabled={isActioning}
-                            className="text-xs text-ocre font-medium hover:underline disabled:opacity-50"
+                            className="text-xs text-ocre-ink font-medium hover:underline disabled:opacity-50"
                           >
                             Suspendre
                           </button>

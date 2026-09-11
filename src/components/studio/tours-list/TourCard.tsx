@@ -40,7 +40,7 @@ const STATUS_CFG: Record<
   { soft: string; text: string; dot: string }
 > = {
   success: { soft: 'bg-olive-soft', text: 'text-success', dot: 'bg-success' },
-  ocre: { soft: 'bg-ocre-soft', text: 'text-ocre', dot: 'bg-ocre' },
+  ocre: { soft: 'bg-ocre-soft', text: 'text-ocre-ink', dot: 'bg-ocre' },
   mer: { soft: 'bg-mer-soft', text: 'text-mer', dot: 'bg-mer' },
   danger: { soft: 'bg-grenadine-soft', text: 'text-danger', dot: 'bg-danger' },
 };
@@ -234,7 +234,7 @@ export function TourCard({
         {rating !== null && (
           <div>
             <div className="tg-eyebrow text-ink-40">{copy.rating}</div>
-            <div className="font-display text-h6 mt-0.5 text-ocre leading-none">
+            <div className="font-display text-h6 mt-0.5 text-ocre-ink leading-none">
               ★{rating.toFixed(1).replace('.', ',')}
             </div>
           </div>

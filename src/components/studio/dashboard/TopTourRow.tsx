@@ -75,7 +75,7 @@ export function TopTourRow({
         </div>
         <div className="text-meta text-ink-40 font-mono tracking-wide">{locale === 'en' ? 'plays' : 'écoutes'}</div>
       </div>
-      <div className="hidden text-right text-caption font-bold text-ocre md:block">
+      <div className="hidden text-right text-caption font-bold text-ocre-ink md:block">
         {rating !== null ? `★${rating.toFixed(1).replace('.', ',')}` : '—'}
       </div>
     </Link>

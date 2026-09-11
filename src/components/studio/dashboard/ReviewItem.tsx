@@ -57,7 +57,7 @@ export function ReviewItem({ author, when, tourTitle, quote, rating, verified }:
           </div>
         </div>
         {stars !== null && (
-          <div className="text-meta text-ocre font-bold shrink-0" aria-label={locale === 'en' ? `${stars} stars out of 5` : `${stars} étoiles sur 5`}>
+          <div className="text-meta text-ocre-ink font-bold shrink-0" aria-label={locale === 'en' ? `${stars} stars out of 5` : `${stars} étoiles sur 5`}>
             <span aria-hidden="true">{'★'.repeat(stars)}</span>
             <span aria-hidden="true" className="text-ink-20">
               {'★'.repeat(5 - stars)}

@@ -167,7 +167,7 @@ export default function ScenesPage() {
               )}
             </div>
 
-            {locked && <div className="rounded-lg border border-ocre-soft bg-ocre-soft p-3 text-sm text-ocre">{t('Contenu soumis — modification non disponible.', 'Submitted content — editing unavailable.')}</div>}
+            {locked && <div className="rounded-lg border border-ocre-soft bg-ocre-soft p-3 text-sm text-ocre-ink">{t('Contenu soumis — modification non disponible.', 'Submitted content — editing unavailable.')}</div>}
             {session.narrationMode === 'tts_on_demand' && (
               <div className="rounded-lg border border-mer-soft bg-mer-soft p-3 text-sm text-mer" data-testid="tts-on-demand-guidance">
                 {t('Finalisez le texte de chaque scène. La narration sera créée à la première écoute, hors du Studio.', 'Finalize each scene text. Narration will be created on first listen, outside the Studio.')}

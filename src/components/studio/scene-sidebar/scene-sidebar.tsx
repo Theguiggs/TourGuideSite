@@ -96,7 +96,7 @@ export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSide
                     {statusLabel(statusConfig.label)}
                   </span>
                   <span className={`inline-flex ml-1 mt-0.5 px-1.5 py-0 rounded text-[10px] font-medium ${
-                    hasPoiLocation ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre'
+                    hasPoiLocation ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                   }`}>
                     {hasPoiLocation ? 'Lieu OK' : 'Lieu ?'}
                   </span>

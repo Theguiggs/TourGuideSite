@@ -133,7 +133,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
                 <span className={`ml-2 text-xs px-1.5 py-0.5 rounded ${
                   translationState.provider === 'marianmt'
                     ? 'bg-olive-soft text-success'
-                    : 'bg-ocre-soft text-ocre'
+                    : 'bg-ocre-soft text-ocre-ink'
                 }`}>
                   {translationState.provider.toUpperCase()}
                 </span>

@@ -28,7 +28,7 @@ const PAIR_BADGES: Record<string, { label: string; className: string }> = {
   absent: { label: 'Absente', className: 'bg-paper-deep text-ink-60' },
   queued: { label: 'En file', className: 'bg-mer-soft text-mer' },
   fabricating: { label: 'En fabrication', className: 'bg-mer-soft text-mer' },
-  partially_ready: { label: 'Partiellement prête', className: 'bg-ocre-soft text-ocre' },
+  partially_ready: { label: 'Partiellement prête', className: 'bg-ocre-soft text-ocre-ink' },
   ready: { label: 'Prête', className: 'bg-olive-soft text-olive' },
   failed: { label: 'Échec', className: 'bg-grenadine-soft text-danger' },
 };
@@ -210,7 +210,7 @@ export default function AdminNarrationPage() {
           « 17 visiteurs », et la déduplication sur le triplet rend cette lecture
           fausse d’un facteur inconnu. */}
       <div className="mb-6 rounded-xl border border-ocre bg-ocre-soft p-4 text-sm text-ink-80">
-        <p className="font-medium text-ocre mb-1">Une demande n’est pas un visiteur.</p>
+        <p className="font-medium text-ocre-ink mb-1">Une demande n’est pas un visiteur.</p>
         <p>
           Une ligne existe par triplet <strong>(Visite, langue, version)</strong> : le deuxième
           visiteur qui ouvre la même langue est <em>absorbé</em> et n’écrit rien. La colonne
@@ -346,7 +346,7 @@ export default function AdminNarrationPage() {
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     {demande.enAttente ? (
-                      <span className="inline-block px-2 py-1 rounded-full text-xs font-medium bg-ocre-soft text-ocre">
+                      <span className="inline-block px-2 py-1 rounded-full text-xs font-medium bg-ocre-soft text-ocre-ink">
                         En attente
                       </span>
                     ) : (

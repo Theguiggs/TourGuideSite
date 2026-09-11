@@ -79,7 +79,7 @@ export function PoiValidationPanel({
           </div>
           <span
             className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
-              hasValidCoordinates ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre'
+              hasValidCoordinates ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
             }`}
             data-testid="poi-validation-status"
           >
@@ -188,7 +188,7 @@ export function PoiValidationPanel({
           {hasValidCoordinates ? (
             <p className="text-xs text-success mt-1">{formatCoord(lat)}, {formatCoord(lng)}</p>
           ) : (
-            <p className="text-xs text-ocre mt-1">Ajoutez des coordonnees pour verifier le lieu sur carte et Street View.</p>
+            <p className="text-xs text-ocre-ink mt-1">Ajoutez des coordonnees pour verifier le lieu sur carte et Street View.</p>
           )}
         </div>
 

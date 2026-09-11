@@ -10,7 +10,7 @@ const SERVICE_NAME = 'TourCommentThread';
 const ACTION_LABELS: Record<string, { label: string; color: string }> = {
   approved: { label: 'Approuvé', color: 'bg-olive-soft text-success' },
   rejected: { label: 'Rejeté', color: 'bg-grenadine-soft text-danger' },
-  revision: { label: 'Révision demandée', color: 'bg-ocre-soft text-ocre' },
+  revision: { label: 'Révision demandée', color: 'bg-ocre-soft text-ocre-ink' },
   submitted: { label: 'Soumis', color: 'bg-mer-soft text-mer' },
   resubmitted: { label: 'Resoumis', color: 'bg-mer-soft text-mer' },
   comment: { label: 'Commentaire', color: 'bg-paper-soft text-ink-80' },

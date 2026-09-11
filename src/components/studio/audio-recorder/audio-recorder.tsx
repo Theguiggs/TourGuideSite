@@ -214,7 +214,7 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
             </div>
             <button
               onClick={handlePauseRecording}
-              className="bg-ocre hover:opacity-90 text-white font-medium py-1.5 px-3 rounded-lg text-sm transition"
+              className="bg-ocre hover:brightness-110 text-ink font-medium py-1.5 px-3 rounded-lg text-sm transition"
               data-testid="pause-record-btn"
             >
               ⏸ {t('Pause', 'Pause')}
@@ -232,7 +232,7 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
 
         {recorderState === 'paused' && (
           <>
-            <span className="text-sm text-ocre font-medium">En pause</span>
+            <span className="text-sm text-ocre-ink font-medium">En pause</span>
             <button
               onClick={handleResumeRecording}
               className="bg-danger hover:opacity-90 text-white font-medium py-1.5 px-3 rounded-lg text-sm transition"

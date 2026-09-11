@@ -386,7 +386,7 @@ export default function RecordPage() {
         <Link href={`/guide/studio/${sessionId}/scenes`} className="text-grenadine hover:opacity-80 text-sm mb-4 inline-block">
           &larr; Retour aux scènes
         </Link>
-        <div className="rounded-lg border border-ocre-soft bg-ocre-soft p-5 text-ocre" role="status">
+        <div className="rounded-lg border border-ocre-soft bg-ocre-soft p-5 text-ocre-ink" role="status">
           Cette version n’est pas modifiable. Créez ou ouvrez une version éditable pour enregistrer une voix.
         </div>
       </div>

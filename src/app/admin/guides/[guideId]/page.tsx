@@ -7,9 +7,9 @@ import { fetchAuthSession } from 'aws-amplify/auth';
 import { getGuideProfileById, listAllGuideTours, adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
-  pending_moderation: { label: 'En attente',  className: 'bg-ocre-soft text-ocre' },
+  pending_moderation: { label: 'En attente',  className: 'bg-ocre-soft text-ocre-ink' },
   active:             { label: 'Actif',        className: 'bg-olive-soft text-olive' },
-  suspended:          { label: 'Suspendu',     className: 'bg-ocre-soft text-ocre' },
+  suspended:          { label: 'Suspendu',     className: 'bg-ocre-soft text-ocre-ink' },
   rejected:           { label: 'Rejeté',       className: 'bg-grenadine-soft text-danger' },
 };
 
@@ -18,10 +18,10 @@ const TOUR_STATUS_BADGES: Record<string, { label: string; className: string }> =
   editing:            { label: 'En cours d\u2019\u00e9dition', className: 'bg-mer-soft text-mer' },
   recording:          { label: 'Enregistrement',     className: 'bg-mer-soft text-mer' },
   ready:              { label: 'Pr\u00eat',                className: 'bg-olive-soft text-olive' },
-  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre' },
-  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre' },
+  submitted:          { label: 'Soumis',             className: 'bg-ocre-soft text-ocre-ink' },
+  pending_moderation: { label: 'En mod\u00e9ration',      className: 'bg-ocre-soft text-ocre-ink' },
   published:          { label: 'Publi\u00e9',             className: 'bg-olive-soft text-olive' },
-  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre' },
+  revision_requested: { label: 'R\u00e9vision demand\u00e9e',  className: 'bg-ocre-soft text-ocre-ink' },
   rejected:           { label: 'Rejet\u00e9',             className: 'bg-grenadine-soft text-danger' },
   archived:           { label: 'Archiv\u00e9',            className: 'bg-paper-deep text-ink-60' },
 };
@@ -229,7 +229,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               <button
                 onClick={() => setStatus('suspended')}
                 disabled={saving}
-                className="bg-ocre text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-ocre disabled:opacity-50"
+                className="bg-ocre text-ink text-sm font-medium px-4 py-2 rounded-lg hover:bg-ocre disabled:opacity-50"
               >
                 Suspendre
               </button>

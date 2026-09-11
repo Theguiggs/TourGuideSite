@@ -31,7 +31,7 @@ export function BreakdownCard({
   const { locale } = useStudioLocale();
   return (
     <div className="bg-card border border-line rounded-lg p-5" data-testid="breakdown-card">
-      <div className="tg-eyebrow text-ocre">{locale === 'en' ? 'How it is calculated' : "Comment c'est calculé"}</div>
+      <div className="tg-eyebrow text-ocre-ink">{locale === 'en' ? 'How it is calculated' : "Comment c'est calculé"}</div>
       <div className="mt-3.5 flex flex-col gap-2.5 text-meta">
         <Row label={locale === 'en' ? 'Paid plays' : 'Écoutes payantes'} value={listens.toLocaleString(locale === 'en' ? 'en-GB' : 'fr-FR')} mono />
         <Row label={locale === 'en' ? '× average gross revenue' : '× revenu brut moyen'} value={formatEuros(grossPerListen)} mono />

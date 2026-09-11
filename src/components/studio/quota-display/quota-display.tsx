@@ -14,7 +14,7 @@ export function QuotaDisplay({ quota }: QuotaDisplayProps) {
       <div className="flex-1">
         <div className="flex justify-between text-xs mb-1">
           <span className="text-ink-80">Quota transcription</span>
-          <span className={quota.isExceeded ? 'text-danger font-medium' : quota.isWarning ? 'text-ocre font-medium' : 'text-ink-80'}>
+          <span className={quota.isExceeded ? 'text-danger font-medium' : quota.isWarning ? 'text-ocre-ink font-medium' : 'text-ink-80'}>
             {quota.usedMinutes} / {quota.limitMinutes} min
           </span>
         </div>
@@ -38,7 +38,7 @@ export function QuotaDisplay({ quota }: QuotaDisplayProps) {
         </span>
       )}
       {quota.isWarning && !quota.isExceeded && (
-        <span className="text-xs text-ocre font-medium whitespace-nowrap">
+        <span className="text-xs text-ocre-ink font-medium whitespace-nowrap">
           Attention
         </span>
       )}

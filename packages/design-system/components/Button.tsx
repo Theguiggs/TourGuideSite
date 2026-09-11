@@ -132,7 +132,15 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
         (onMouseLeave as ((e: React.MouseEvent<HTMLElement>) => void) | undefined)?.(e);
       },
       onFocus: (e: React.FocusEvent<HTMLElement>) => {
-        setFocused(true);
+        // L'anneau n'apparaît qu'au clavier (`:focus-visible`) ; au clic, le
+        // navigateur ne le demande pas. Hors navigateur (tests), on l'affiche.
+        let visible = true;
+        try {
+          visible = e.currentTarget.matches(':focus-visible');
+        } catch {
+          visible = true;
+        }
+        setFocused(visible);
         (onFocus as ((e: React.FocusEvent<HTMLElement>) => void) | undefined)?.(e);
       },
       onBlur: (e: React.FocusEvent<HTMLElement>) => {
