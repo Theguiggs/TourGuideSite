@@ -8,7 +8,7 @@ import { tg } from '@murmure/design-system/tokens';
 import { Button, Card, Eyebrow, NumberMark, PullQuote } from '@murmure/design-system/web';
 
 export const metadata: Metadata = {
-  title: 'Murmure - Create audio tours of your city',
+  title: { absolute: 'Murmure — Create audio tours of your city' },
   description:
     'Give your city a voice. Create, translate and publish audio tours for travellers to enjoy, even offline.',
   alternates: {

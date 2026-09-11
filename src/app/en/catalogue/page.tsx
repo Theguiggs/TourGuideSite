@@ -8,7 +8,7 @@ import { MyPurchasesStripClient } from '@/components/catalogue/my-purchases-stri
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Audio tour city catalogue - Murmure',
+  title: 'Audio tour city catalogue',
   description: 'Explore cities through immersive audio walking tours available in five languages.',
   alternates: {
     canonical: '/en/catalogue',

@@ -5,7 +5,7 @@ import { Eyebrow } from '@murmure/design-system/web';
 import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
 
 export const metadata: Metadata = {
-  title: 'Privacy policy - Murmure',
+  title: 'Privacy policy',
   description: 'How Murmure collects, uses and protects your personal data.',
   alternates: {
     canonical: '/en/privacy',

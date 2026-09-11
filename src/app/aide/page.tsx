@@ -14,7 +14,7 @@ import {
 
 // Story 4.6 — Page d'aide : explique le site et la création de parcours.
 export const metadata: Metadata = {
-  title: 'Aide — Murmure',
+  title: 'Aide',
   description:
     'Le guide complet de Murmure : créez un parcours audio étape par étape, et trouvez les réponses aux questions des guides comme des voyageurs.',
   alternates: {

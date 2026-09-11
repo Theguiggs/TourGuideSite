@@ -115,7 +115,7 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
     (tour.description ? tour.description.slice(0, 160) : 'Une visite à découvrir.');
 
   return {
-    title: `${tour.title} · Murmure`,
+    title: tour.title,
     description,
     alternates: {
       canonical: `/catalogue/${citySlug}/${tourSlug}`,
@@ -125,7 +125,7 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
       },
     },
     openGraph: {
-      title: `${tour.title} · Murmure`,
+      title: `${tour.title} | Murmure`,
       description,
       type: 'article',
       images: [
@@ -139,7 +139,7 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${tour.title} · Murmure`,
+      title: `${tour.title} | Murmure`,
       description,
     },
   };

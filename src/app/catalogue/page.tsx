@@ -11,7 +11,7 @@ import { MyPurchasesStripClient } from '@/components/catalogue/my-purchases-stri
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Catalogue des villes — Murmure',
+  title: 'Catalogue des villes',
   description:
     'Explorez les villes proposées en visite audio. ' +
     'Chaque ville révèle ses propres histoires.',

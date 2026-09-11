@@ -14,7 +14,7 @@ import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher'
  * relu par un juriste avant soumission.
  */
 export const metadata: Metadata = {
-  title: 'Politique de confidentialité — Murmure',
+  title: 'Politique de confidentialité',
   description:
     'Comment Murmure collecte, utilise et protège vos données personnelles, et comment exercer vos droits RGPD.',
   alternates: {

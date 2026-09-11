@@ -12,7 +12,7 @@ import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher'
  * renseignées.
  */
 export const metadata: Metadata = {
-  title: "Conditions Générales d’Utilisation — Murmure",
+  title: "Conditions Générales d’Utilisation",
   description:
     "Les conditions qui régissent l’utilisation de l’application et de l’atelier web Murmure.",
   alternates: {

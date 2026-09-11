@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/guide/', '/admin/'],
+      disallow: ['/api/', '/guide/', '/admin/', '/test-ds', '/mes-visites', '/en/my-purchases'],
     },
     sitemap: 'https://murmure-visit.com/sitemap.xml',
   };

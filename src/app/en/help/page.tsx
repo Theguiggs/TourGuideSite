@@ -7,7 +7,7 @@ import Faq from '../../aide/_components/Faq';
 import { FAQ_GUIDES, FAQ_TRAVELLERS, STEPS, SUPPORT_EMAIL, TIPS } from './_content';
 
 export const metadata: Metadata = {
-  title: 'Help - Murmure',
+  title: 'Help',
   description: 'Learn how to create, translate, publish and listen to multilingual Murmure audio tours.',
   alternates: {
     canonical: '/en/help',

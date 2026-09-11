@@ -136,6 +136,6 @@ export async function GET(
     );
   } catch (err) {
     console.error('[og-journal] render failed', err);
-    return Response.redirect(new URL('/og-default.png', 'https://murmure.app'), 302);
+    return Response.redirect(new URL('/opengraph-image', 'https://murmure-visit.com'), 302);
   }
 }

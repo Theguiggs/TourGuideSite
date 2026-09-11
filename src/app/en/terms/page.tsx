@@ -5,7 +5,7 @@ import { Eyebrow } from '@murmure/design-system/web';
 import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
 
 export const metadata: Metadata = {
-  title: 'Terms of use - Murmure',
+  title: 'Terms of use',
   description: 'Terms governing use of the Murmure app and web studio.',
   alternates: {
     canonical: '/en/terms',

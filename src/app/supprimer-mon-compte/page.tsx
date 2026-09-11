@@ -5,7 +5,7 @@ import { Eyebrow } from '@murmure/design-system/web';
 import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
 
 export const metadata: Metadata = {
-  title: 'Supprimer mon compte - Murmure',
+  title: 'Supprimer mon compte',
   description: 'Demandez la suppression de votre compte Murmure et de vos donnees associees.',
   alternates: {
     canonical: '/supprimer-mon-compte',

@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   const city = await getCityBySlug(citySlug);
   if (!city) return {};
   return {
-    title: `Visites guidees audio a ${city.name}`,
-    description: `Decouvrez ${city.tourCount} visites guidees audio a ${city.name}. ${city.description}`,
+    title: `Visites guidées audio à ${city.name}`,
+    description: `Découvrez ${city.tourCount} visites guidées audio à ${city.name}. ${city.description}`,
     alternates: {
       canonical: `/catalogue/${citySlug}`,
       languages: {fr: `/catalogue/${citySlug}`, en: `/en/catalogue/${citySlug}`},

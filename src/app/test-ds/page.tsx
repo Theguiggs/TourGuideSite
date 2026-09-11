@@ -8,10 +8,14 @@
 //   1) `@murmure/design-system`         → tokens-only (sûr Web + RN)
 //   2) `@murmure/design-system/web`     → composants React DOM
 //   3) Tailwind preset                    → classes utilitaires (`bg-paper`, …)
+import { notFound } from 'next/navigation';
 import { tg } from '@murmure/design-system';
 import { Button, Card, Eyebrow } from '@murmure/design-system/web';
 
 export default function TestDsPage() {
+  // Banc d'essai du design system : utile en développement, sans raison
+  // d'être servi (ni indexé) sur le site public.
+  if (process.env.NODE_ENV === 'production') notFound();
   return (
     <main style={{ background: tg.colors.paper, padding: tg.space[6], minHeight: '100vh' }}>
       {/* Bloc 1 : tokens depuis l'entry par défaut */}

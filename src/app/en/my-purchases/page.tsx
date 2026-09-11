@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { MesVisitesContent } from '@/components/catalogue/mes-visites-content';
 
 export const metadata: Metadata = {
-  title: 'My purchases - Murmure',
+  title: 'My purchases',
   description: 'Find the audio tours you purchased with your Murmure account.',
   robots: {index: false, follow: false},
   alternates: {

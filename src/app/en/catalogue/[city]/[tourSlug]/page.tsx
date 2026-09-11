@@ -15,7 +15,7 @@ export async function generateMetadata({params}: TourPageProps): Promise<Metadat
   if (!tour) return {};
   const description = tour.shortDescription || tour.description || 'An immersive audio walking tour.';
   return {
-    title: `${tour.title} - Murmure`,
+    title: tour.title,
     description,
     alternates: {
       canonical: `/en/catalogue/${city}/${tourSlug}`,

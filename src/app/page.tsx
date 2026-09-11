@@ -17,7 +17,7 @@ import {
 // puis sert de référence secondaire aux voyageurs (qui vivent l'expérience dans l'app).
 // metadata (AC6) — les autres champs (OG image, etc.) héritent de `layout.tsx`.
 export const metadata: Metadata = {
-  title: 'Murmure — Créez des visites audio de votre ville',
+  title: { absolute: 'Murmure — Créez des visites audio de votre ville' },
   description:
     'Donnez de la voix à votre ville. Créez, traduisez et publiez vos parcours audio ; les voyageurs les écoutent partout, même hors-ligne.',
   alternates: {
