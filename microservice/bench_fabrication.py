@@ -1110,7 +1110,7 @@ POSTES_CONSTATES = (
     },
     {
         "nom": "Miroir N Scènes × M langues, en série",
-        "anchor": "TourGuideWeb/src/lib/api/language-purchase.ts:818",
+        "anchor": "TourGuideWeb/src/lib/api/language-purchase.ts:744",
         "jeton": "for (const sc of scenes)",
         "cout": chiffre(
             8 * 4, ESTIME, unite="allers-retours AppSync",

@@ -22,6 +22,7 @@ const mockPurchaseCreate = jest.fn();
 const mockPurchaseUpdate = jest.fn();
 const mockPurchaseListBySession = jest.fn();
 const mockSetLanguageModerationStatus = jest.fn();
+const mockCreateLanguagePurchase = jest.fn();
 const mockGuideTourUpdate = jest.fn();
 const mockSessionGet = jest.fn();
 const mockSceneListBySession = jest.fn();
@@ -42,6 +43,7 @@ jest.mock('aws-amplify/api', () => ({
     },
     mutations: {
       setLanguageModerationStatus: mockSetLanguageModerationStatus,
+      createLanguagePurchase: mockCreateLanguagePurchase,
     },
   }),
 }));
@@ -127,70 +129,81 @@ beforeEach(() => {
 });
 
 // ---------------------------------------------------------------------------
-// Création — le guide crée toujours sa ligne d'achat après Stripe.
+// Création (lot 0.3) — plus JAMAIS par `models.TourLanguagePurchase.create` :
+// le propriétaire n'a plus `create`. La mutation Lambda est la seule voie ;
+// le client ne lui envoie ni prix, ni palier de confiance, ni état.
 // ---------------------------------------------------------------------------
 
 describe('createLanguagePurchaseMutation', () => {
-  it("n'envoie pas moderationStatus, mais envoie status — éprouvé sur bac à sable", async () => {
+  it('appelle la mutation Lambda et rend la ligne créée par le serveur', async () => {
+    mockCreateLanguagePurchase.mockResolvedValue({
+      data: { ok: true, value: { purchase: SAMPLE_ROW, alreadyExisted: false } },
+    });
+
     const result = await createLanguagePurchaseMutation({
-      guideId: 'guide-1',
       sessionId: 'session-1',
       language: 'en',
-      qualityTier: 'standard',
-      purchaseType: 'free_first',
-      amountCents: 0,
+      mode: 'standard',
     });
 
     expect(result.ok).toBe(true);
-    const sent = mockPurchaseCreate.mock.calls[0][0];
-    expect(sent).toMatchObject({ sessionId: 'session-1', language: 'en' });
-    // Le cœur de la porte 3. Éprouvé contre un backend déployé le 2026-08-23 :
-    // envoyer `moderationStatus` fait refuser la création entière
-    // (« Unauthorized on [moderationStatus] »), donc un guide ne peut pas naître
-    // « approved ». Le champ reste nul, et c'est sûr : le balayage de publication
-    // exige `moderationStatus = 'approved'` et ne matche jamais un nul.
-    expect(sent).not.toHaveProperty('moderationStatus');
-    // `status` DOIT partir. Le propriétaire garde `create` dessus, et une valeur
-    // par défaut de schéma ne sauverait rien : la même épreuve a montré qu'AppSync
-    // la compte comme fournie par le client et refuse la création. Quatre filtres
-    // du produit comparent ce champ à 'active'.
-    expect(sent).toMatchObject({ status: 'active' });
+    if (result.ok) expect(result.data).toEqual(SAMPLE_ROW);
+    expect(mockPurchaseCreate).not.toHaveBeenCalled();
+    expect(mockCreateLanguagePurchase).toHaveBeenCalledWith(
+      { sessionId: 'session-1', language: 'en', mode: 'standard' },
+      { authMode: 'userPool' },
+    );
   });
 
-  it("remonte le refus si une création portait quand même un champ d'état (simulé)", async () => {
-    // Refus simulé : c'est la réponse qu'AppSync renverrait si un site de création
-    // renvoyait `moderationStatus`. Le schéma est la vraie garde ; ce test fige le
-    // fait que le refus ressort en {ok:false} au lieu d'être avalé.
-    mockPurchaseCreate.mockResolvedValue({
-      data: null,
-      errors: [{ message: 'Unauthorized on create for field moderationStatus' }],
+  it('transmet la preuve Stripe ou la session source, jamais un montant', async () => {
+    mockCreateLanguagePurchase.mockResolvedValue({
+      data: JSON.stringify({ ok: true, value: { purchase: SAMPLE_ROW, alreadyExisted: true } }),
     });
 
     const result = await createLanguagePurchaseMutation({
-      guideId: 'guide-1',
+      sessionId: 'session-2',
+      language: 'es',
+      mode: 'pro',
+      paymentIntentId: 'pi_9',
+      sourceSessionId: 'session-1',
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.alreadyExisted).toBe(true);
+    const sent = mockCreateLanguagePurchase.mock.calls[0][0];
+    expect(sent).toEqual({
+      sessionId: 'session-2',
+      language: 'es',
+      mode: 'pro',
+      paymentIntentId: 'pi_9',
+      sourceSessionId: 'session-1',
+    });
+    expect(sent).not.toHaveProperty('amountCents');
+    expect(sent).not.toHaveProperty('status');
+  });
+
+  it('remonte le refus du serveur ({ok:false}) au lieu de faire semblant', async () => {
+    mockCreateLanguagePurchase.mockResolvedValue({
+      data: { ok: false, error: { code: 2642, message: 'Not the session owner' } },
+    });
+
+    const result = await createLanguagePurchaseMutation({
       sessionId: 'session-1',
-      language: 'en',
-      qualityTier: 'standard',
-      purchaseType: 'free_first',
-      amountCents: 0,
+      language: 'es',
+      mode: 'manual',
     });
 
     expect(result.ok).toBe(false);
-    if (!result.ok) {
-      expect(result.error).toContain('moderationStatus');
-    }
+    if (!result.ok) expect(result.error).toContain('Not the session owner');
   });
 
-  it('remonte un refus serveur au lieu de faire semblant', async () => {
-    mockPurchaseCreate.mockResolvedValue({ data: null, errors: [{ message: 'Unauthorized' }] });
+  it('remonte une erreur GraphQL (Unauthorized) au lieu de faire semblant', async () => {
+    mockCreateLanguagePurchase.mockResolvedValue({ data: null, errors: [{ message: 'Unauthorized' }] });
 
     const result = await createLanguagePurchaseMutation({
-      guideId: 'guide-1',
       sessionId: 'session-1',
       language: 'es',
-      qualityTier: 'pro',
-      purchaseType: 'single',
-      amountCents: 199,
+      mode: 'pro',
     });
 
     expect(result.ok).toBe(false);
@@ -452,21 +465,41 @@ describe('lectures par session', () => {
 });
 
 // ---------------------------------------------------------------------------
-// PORTE 3 — les autres sites de création. S'ils renvoyaient les champs d'état,
-// tout achat de langue échouerait.
+// PORTE 3 — les sites de création (lot 0.3). Le propriétaire n'a plus `create`
+// sur le modèle : toute création passe par la mutation Lambda, jamais par
+// `models.TourLanguagePurchase.create`, et le client n'envoie ni prix ni état.
 // ---------------------------------------------------------------------------
 
 describe('sites de création de language-purchase.ts', () => {
-  it('confirmLanguagePurchase crée avec status, sans moderationStatus', async () => {
-    mockPurchaseCreate.mockResolvedValue({ data: SAMPLE_ROW, errors: undefined });
+  it('confirmLanguagePurchase passe par la mutation Lambda avec la preuve Stripe, jamais par create', async () => {
+    mockCreateLanguagePurchase.mockResolvedValue({
+      data: { ok: true, value: { purchase: SAMPLE_ROW, alreadyExisted: false } },
+    });
     mockSceneListBySession.mockResolvedValue({ data: [] });
 
-    await confirmLanguagePurchase('session-1', ['en'], 'standard', 'pi_test');
+    const result = await confirmLanguagePurchase('session-1', ['en'], 'standard', 'pi_test');
 
-    expect(mockPurchaseCreate).toHaveBeenCalled();
-    const sent = mockPurchaseCreate.mock.calls[0][0];
-    expect(sent).toMatchObject({ sessionId: 'session-1', language: 'en', status: 'active' });
+    expect(result.ok).toBe(true);
+    expect(mockPurchaseCreate).not.toHaveBeenCalled();
+    expect(mockCreateLanguagePurchase).toHaveBeenCalledWith(
+      { sessionId: 'session-1', language: 'en', mode: 'standard', paymentIntentId: 'pi_test' },
+      { authMode: 'userPool' },
+    );
+    const sent = mockCreateLanguagePurchase.mock.calls[0][0];
+    expect(sent).not.toHaveProperty('amountCents');
+    expect(sent).not.toHaveProperty('status');
     expect(sent).not.toHaveProperty('moderationStatus');
+  });
+
+  it('remonte le refus du serveur au lieu de prétendre un achat', async () => {
+    mockCreateLanguagePurchase.mockResolvedValue({
+      data: { ok: false, error: { code: 2643, message: 'A payment is required for this language' } },
+    });
+
+    const result = await confirmLanguagePurchase('session-1', ['en'], 'pro', '');
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.message).toContain('payment is required');
   });
 });
 

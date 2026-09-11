@@ -978,7 +978,7 @@ class TestRapport:
         )
         anchors = {p["anchor"] for p in rapport["postes_constates"]}
         assert "TourGuideWeb/src/lib/stores/tts-store.ts:7" in anchors
-        assert "TourGuideWeb/src/lib/api/language-purchase.ts:818" in anchors
+        assert "TourGuideWeb/src/lib/api/language-purchase.ts:744" in anchors
         assert (
             "TourGuideApp/amplify/shared/preview-scenes.ts:25" in anchors
         )

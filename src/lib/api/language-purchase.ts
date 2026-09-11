@@ -220,81 +220,25 @@ export async function confirmLanguagePurchase(
   }
 
   try {
-    const { getClient } = await import('@/lib/api/appsync-client');
-    const { isLanguagePremium, EU_LANGUAGES, PRICING_TABLE } = await import('@/lib/multilang/provider-router');
-    const client = getClient();
+    const { createLanguagePurchaseMutation } = await import('@/lib/api/appsync-client');
     const purchases: TourLanguagePurchase[] = [];
 
-    // Pack detection (mirrors computeOrderTotal). When the selection covers all
-    // purchasable EU langs (and optionally all premium), bill as a pack instead
-    // of N×single. Pack All is multi-tier: EU=standard, premium=pro.
-    const PURCHASABLE_EU_COUNT = 4; // en + es + de + it (fr is the base lang)
-    const PURCHASABLE_PREMIUM_COUNT = 3; // ja + zh + pt
-    const euSelected = languages
-      .filter((l) => (EU_LANGUAGES as readonly string[]).includes(l))
-      .filter((l) => l !== 'fr');
-    const premiumSelected = languages.filter((l) => isLanguagePremium(l));
-    // Pack All: all EU + all premium (single multi-tier purchase, 12,99€).
-    const isPack =
-      euSelected.length === PURCHASABLE_EU_COUNT &&
-      premiumSelected.length === PURCHASABLE_PREMIUM_COUNT;
-    const packTotal = isPack
-      ? (PRICING_TABLE.find((p) => p.purchaseType === 'pack_all' && p.qualityTier === 'pro')?.amountCents ?? 0)
-      : 0;
-
-    for (let i = 0; i < languages.length; i++) {
-      const lang = languages[i];
-      const isManual = qualityTier === 'manual';
-      const premium = isLanguagePremium(lang);
-
-      // Per-language tier resolution (pack_all forces pro on premium langs).
-      const effectiveTier = isPack && premium ? 'pro' : qualityTier;
-      const provider = isManual ? undefined : (effectiveTier === 'standard' ? 'marianmt' : 'deepl');
-
-      // Per-language amount: pack price on the first purchase, 0 on the rest.
-      // For single mode: standard EU = 199, pro EU = 299, premium pro = 499.
-      let amountCents = 0;
-      if (isManual) {
-        amountCents = 0;
-      } else if (isPack) {
-        amountCents = i === 0 ? packTotal : 0;
-      } else if (effectiveTier === 'pro' && premium) {
-        amountCents = 499;
-      } else if (effectiveTier === 'standard') {
-        amountCents = 199;
-      } else {
-        amountCents = 299;
+    // SÉCURITÉ (lot 0.3) — la ligne est créée par la mutation Lambda, qui
+    // vérifie la propriété de la session et l'intent Stripe, et calcule
+    // elle-même le montant : le client n'envoie plus ni prix ni palier
+    // « de confiance ». Le pack (12,99 €) reste un seul intent Stripe ; le
+    // serveur en vérifie la couverture langue par langue.
+    for (const lang of languages) {
+      const created = await createLanguagePurchaseMutation({
+        sessionId,
+        language: lang,
+        mode: qualityTier === 'manual' ? 'manual' : qualityTier,
+        paymentIntentId: paymentIntentId || undefined,
+      });
+      if (!created.ok) {
+        return { ok: false, error: { code: 2601, message: created.error } };
       }
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const result = await (client as any).models.TourLanguagePurchase.create(
-        {
-          guideId: 'auto', // AppSync owner-auth overrides with Cognito sub
-          sessionId,
-          language: lang,
-          qualityTier: effectiveTier,
-          purchaseType: isManual ? 'manual' : (isPack ? 'pack_all' : 'single'),
-          amountCents,
-          provider,
-          stripePaymentIntentId: paymentIntentId || undefined,
-          // SÉCURITÉ — `moderationStatus` n'est PAS envoyé : le propriétaire n'a
-          // pas le droit `create` dessus, sinon il naîtrait des lignes déjà
-          // « approved ». Le champ reste nul à la création, ce qui est sûr : le
-          // balayage de publication exige `moderationStatus = 'approved'` et ne
-          // matche jamais un nul. C'est la Lambda qui le porte ensuite à
-          // `submitted`. Éprouvé sur bac à sable : envoyer la clé fait refuser
-          // la création entière (« Unauthorized on [moderationStatus] »).
-          // `status`, lui, DOIT être envoyé — le propriétaire garde `create`, et
-          // une valeur par défaut de schéma serait elle aussi comptée comme
-          // fournie par le client, donc refusée. Quatre filtres du produit
-          // comparent ce champ à 'active'.
-          status: 'active',
-        },
-        { authMode: 'userPool' },
-      );
-      if (result?.data) {
-        purchases.push(result.data as TourLanguagePurchase);
-      }
+      purchases.push(created.data as unknown as TourLanguagePurchase);
     }
     // Create empty SceneSegments for each scene in each purchased language
     try {
@@ -420,42 +364,24 @@ export async function confirmLanguagePurchaseMixed(
   }
 
   try {
-    const { getClient } = await import('@/lib/api/appsync-client');
-    const client = getClient();
+    const { createLanguagePurchaseMutation } = await import('@/lib/api/appsync-client');
     const purchases: TourLanguagePurchase[] = [];
     for (const lang of langs) {
       const mode = selections[lang];
-      const isManual = mode === 'manual';
       const tier = effectiveTierFor(lang, mode);
-      const provider = isManual ? undefined : (tier === 'standard' ? 'marianmt' : 'deepl');
-      const billing = billingByLang.get(lang) ?? 'single';
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const result = await (client as any).models.TourLanguagePurchase.create(
-        {
-          guideId: 'auto',
-          sessionId,
-          language: lang,
-          qualityTier: isManual ? 'manual' : tier,
-          purchaseType: isManual ? 'manual' : billing,
-          amountCents: amountByLang.get(lang) ?? 0,
-          provider,
-          stripePaymentIntentId: paymentIntentId || undefined,
-          // SÉCURITÉ — `moderationStatus` n'est PAS envoyé : le propriétaire n'a
-          // pas le droit `create` dessus, sinon il naîtrait des lignes déjà
-          // « approved ». Le champ reste nul à la création, ce qui est sûr : le
-          // balayage de publication exige `moderationStatus = 'approved'` et ne
-          // matche jamais un nul. C'est la Lambda qui le porte ensuite à
-          // `submitted`. Éprouvé sur bac à sable : envoyer la clé fait refuser
-          // la création entière (« Unauthorized on [moderationStatus] »).
-          // `status`, lui, DOIT être envoyé — le propriétaire garde `create`, et
-          // une valeur par défaut de schéma serait elle aussi comptée comme
-          // fournie par le client, donc refusée. Quatre filtres du produit
-          // comparent ce champ à 'active'.
-          status: 'active',
-        },
-        { authMode: 'userPool' },
-      );
-      if (result?.data) purchases.push(result.data as TourLanguagePurchase);
+      // SÉCURITÉ (lot 0.3) — création par la mutation Lambda seulement (voir
+      // confirmLanguagePurchase). `amountByLang` / `billingByLang` ne servent
+      // plus qu'aux stubs : le serveur recalcule le montant.
+      const created = await createLanguagePurchaseMutation({
+        sessionId,
+        language: lang,
+        mode: mode === 'manual' ? 'manual' : tier,
+        paymentIntentId: paymentIntentId || undefined,
+      });
+      if (!created.ok) {
+        return { ok: false, error: { code: 2601, message: created.error } };
+      }
+      purchases.push(created.data as unknown as TourLanguagePurchase);
     }
     // Create empty SceneSegments for auto languages only (manual langs are filled by the guide).
     try {

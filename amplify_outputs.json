@@ -1683,7 +1683,6 @@
                     "ownerField": "owner",
                     "allow": "owner",
                     "operations": [
-                      "create",
                       "read",
                       "update",
                       "delete"
@@ -5715,6 +5714,44 @@
               "isArray": false,
               "type": "String",
               "isRequired": true
+            }
+          }
+        },
+        "createLanguagePurchase": {
+          "name": "createLanguagePurchase",
+          "isArray": false,
+          "type": "AWSJSON",
+          "isRequired": false,
+          "arguments": {
+            "sessionId": {
+              "name": "sessionId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "language": {
+              "name": "language",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "mode": {
+              "name": "mode",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "paymentIntentId": {
+              "name": "paymentIntentId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "sourceSessionId": {
+              "name": "sourceSessionId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
             }
           }
         },
