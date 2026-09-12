@@ -5,6 +5,7 @@ import { tg } from '@murmure/design-system';
 import { logger } from '@/lib/logger';
 import { detectSilences, type DetectedSegment } from '@/lib/api/silence-detection';
 import type { SceneSegment } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'AdvancedEditor';
 
@@ -16,6 +17,7 @@ interface AdvancedEditorProps {
 }
 
 export function AdvancedEditor({ audioKey, audioUrl, onSegmentsChange }: AdvancedEditorProps) {
+  const { t } = useStudioLocale();
   const [detectedSegments, setDetectedSegments] = useState<DetectedSegment[]>([]);
   const [isDetecting, setIsDetecting] = useState(false);
   const [waveformReady, setWaveformReady] = useState(false);
@@ -71,8 +73,8 @@ export function AdvancedEditor({ audioKey, audioUrl, onSegmentsChange }: Advance
   return (
     <div className="space-y-4" data-testid="advanced-editor">
       <div className="flex items-center justify-between">
-        <h3 className="text-body font-semibold text-ink">Mode avancé</h3>
-        <span className="text-meta text-ink-40">{detectedSegments.length} segments détectés</span>
+        <h3 className="text-body font-semibold text-ink">{t('Mode avancé', 'Advanced mode')}</h3>
+        <span className="text-meta text-ink-40">{detectedSegments.length} {t('segments détectés', 'segments detected')}</span>
       </div>
 
       {/* Waveform */}
@@ -81,20 +83,20 @@ export function AdvancedEditor({ audioKey, audioUrl, onSegmentsChange }: Advance
           <div ref={waveformRef} data-testid="waveform-container" />
           {!waveformReady && (
             <div className="h-32 flex items-center justify-center text-ink-40 text-body">
-              Chargement du waveform...
+              {t('Chargement du waveform...', 'Loading waveform...')}
             </div>
           )}
         </div>
       ) : (
         <div className="bg-paper-soft rounded-lg h-32 flex items-center justify-center text-ink-40 text-body">
-          Aucun audio disponible
+          {t('Aucun audio disponible', 'No audio available')}
         </div>
       )}
 
       {/* Segment markers */}
       {isDetecting && (
         <div className="p-3 bg-mer-soft rounded-lg animate-pulse text-body text-mer">
-          Détection des silences en cours...
+          {t('Détection des silences en cours...', 'Detecting silences...')}
         </div>
       )}
 

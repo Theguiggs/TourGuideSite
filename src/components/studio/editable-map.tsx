@@ -20,6 +20,7 @@ import { TILE_URL, TILE_ATTRIBUTION } from '@/lib/maps/tile-config';
 import { createNumberedIcon, createDotIcon } from '@/lib/maps/marker-icons';
 import { FitToPoints } from '@/components/map/FitToPoints';
 import { attachKeyboardNudge } from '@/lib/maps/keyboard-nudge';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 export interface Waypoint {
   id: string;
@@ -181,6 +182,8 @@ export function EditableMap({
   pathOverride = null,
   flyToCoords = null,
 }: EditableMapProps) {
+  const { t } = useStudioLocale();
+  const waypointLabel = t('Point de passage', 'Waypoint');
   const geoScenes = useMemo(
     () => scenes.filter((s) => s.latitude !== null && s.longitude !== null),
     [scenes],
@@ -392,7 +395,7 @@ export function EditableMap({
     <div
       style={{ height, width: '100%' }}
       role="application"
-      aria-label="Carte de l’itinéraire. Déplacez un marqueur à la souris, ou au clavier avec les flèches une fois le marqueur sélectionné (Maj pour aller plus vite). Les coordonnées sont aussi saisissables dans le formulaire."
+      aria-label={t('Carte de l’itinéraire. Déplacez un marqueur à la souris, ou au clavier avec les flèches une fois le marqueur sélectionné (Maj pour aller plus vite). Les coordonnées sont aussi saisissables dans le formulaire.', 'Route map. Move a marker with the mouse, or with the arrow keys once the marker is selected (Shift to move faster). Coordinates can also be typed into the form.')}
     >
       <MapContainer
         center={DEFAULT_FALLBACK.center}
@@ -470,8 +473,8 @@ export function EditableMap({
               position={[scene.latitude!, scene.longitude!]}
               icon={icon}
               draggable
-              title={`${markerNumber}. ${scene.title ?? 'Scène'}`}
-              alt={`Étape ${markerNumber} : ${scene.title ?? 'sans titre'}`}
+              title={`${markerNumber}. ${scene.title ?? t('Scène', 'Scene')}`}
+              alt={`${t('Étape', 'Stop')} ${markerNumber} : ${scene.title ?? t('sans titre', 'untitled')}`}
               eventHandlers={{
                 add: (e) =>
                   attachKeyboardNudge(e.target as L.Marker, (lat, lng) => handlePoiDrag(scene.id, lat, lng)),
@@ -513,7 +516,7 @@ export function EditableMap({
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                   <a href={osmUrl} target="_blank" rel="noopener noreferrer"
                     style={{ fontSize: '12px', color: tg.colors.mer, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <span style={{ fontSize: '14px' }}>&#x1F5FA;&#xFE0F;</span> Voir sur OpenStreetMap
+                    <span style={{ fontSize: '14px' }}>&#x1F5FA;&#xFE0F;</span> {t('Voir sur OpenStreetMap', 'View on OpenStreetMap')}
                   </a>
                   <a href={streetViewUrl} target="_blank" rel="noopener noreferrer"
                     style={{ fontSize: '12px', color: tg.colors.mer, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
@@ -543,7 +546,7 @@ export function EditableMap({
               cursor: 'grab',
             })}
             draggable
-            title="Glissez pour ajouter un point ici"
+            title={t('Glissez pour ajouter un point ici', 'Drag to add a point here')}
             zIndexOffset={-200}
             eventHandlers={{
               dragend: (e) => {
@@ -572,8 +575,8 @@ export function EditableMap({
               position={[wp.lat, wp.lng]}
               icon={icon}
               draggable
-              title="Point de passage"
-              alt="Point de passage"
+              title={waypointLabel}
+              alt={waypointLabel}
               eventHandlers={{
                 add: (e) =>
                   attachKeyboardNudge(e.target as L.Marker, (lat, lng) => handleWaypointDragEnd(wp.id, lat, lng)),
@@ -599,10 +602,10 @@ export function EditableMap({
             >
               <div style={{ minWidth: '140px', padding: '2px 0' }}>
                 <p style={{ fontWeight: 600, fontSize: '12px', marginBottom: '2px', color: tg.colors.ink }}>
-                  Point de passage
+                  {waypointLabel}
                 </p>
                 <p style={{ fontSize: '11px', color: tg.colors.ink60, marginBottom: '8px' }}>
-                  Glissez le point sur la carte pour le déplacer.
+                  {t('Glissez le point sur la carte pour le déplacer.', 'Drag the point on the map to move it.')}
                 </p>
                 <button
                   onClick={(e) => {
@@ -612,7 +615,7 @@ export function EditableMap({
                   }}
                   style={{ padding: '6px 12px', fontSize: '12px', color: 'white', fontWeight: 600, border: 'none', background: tg.colors.danger, borderRadius: '4px', cursor: 'pointer', width: '100%' }}
                 >
-                  Supprimer
+                  {t('Supprimer', 'Delete')}
                 </button>
               </div>
             </Popup>

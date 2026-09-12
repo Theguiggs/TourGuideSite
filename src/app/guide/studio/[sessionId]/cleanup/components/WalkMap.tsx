@@ -3,19 +3,21 @@
 import { MapContainer, TileLayer, Polyline, CircleMarker } from 'react-leaflet';
 import { tg } from '@murmure/design-system';
 import 'leaflet/dist/leaflet.css';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface WalkMapProps {
   points: Array<{ lat: number; lng: number }>;
 }
 
 export function WalkMap({ points }: WalkMapProps) {
+  const { t } = useStudioLocale();
   if (points.length === 0) {
     return (
       <div
         className="bg-paper-soft h-48 flex items-center justify-center text-body text-ink-40"
         data-testid="walk-map-empty"
       >
-        Pas de tracé GPS
+        {t('Pas de tracé GPS', 'No GPS track')}
       </div>
     );
   }
@@ -29,7 +31,7 @@ export function WalkMap({ points }: WalkMapProps) {
   const positions = points.map((p) => [p.lat, p.lng] as [number, number]);
 
   return (
-    <div data-testid="walk-map" className="h-48" role="application" aria-label="Tracé de la marche sur la carte">
+    <div data-testid="walk-map" className="h-48" role="application" aria-label={t('Tracé de la marche sur la carte', 'Walk track on the map')}>
       <MapContainer
         center={center}
         zoom={16}

@@ -79,7 +79,7 @@ export default function CleanupPage() {
   const [metadata, setMetadata] = useState<TourMetadataDraft>(deriveMetadataFromSession(null));
   const [validating, setValidating] = useState(false);
   const cleanupStartedAtRef = useRef<number>(Date.now());
-  const { t } = useStudioLocale();
+  const { t, locale } = useStudioLocale();
   // `t` est lu via une ref dans l'effet de chargement : l'ajouter à ses
   // dépendances rechargerait la session (et écraserait les métadonnées en
   // cours d'édition) à chaque bascule de langue.
@@ -397,8 +397,8 @@ export default function CleanupPage() {
   );
 
   const validation = useMemo(
-    () => isReadyToValidate(scenes, metadata),
-    [scenes, metadata],
+    () => isReadyToValidate(scenes, metadata, locale),
+    [scenes, metadata, locale],
   );
 
   const handleValidate = useCallback(async () => {
