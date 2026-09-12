@@ -24,9 +24,9 @@ export function SceneRetryCard({
   isRetrying,
   onRetry,
 }: SceneRetryCardProps) {
-  const { t } = useStudioLocale();
+  const { t, locale } = useStudioLocale();
   const displayTitle = sceneTitle ?? `Scene ${sceneId}`;
-  const readableError = getErrorMessage(errorCode);
+  const readableError = getErrorMessage(errorCode, locale);
 
   return (
     <div

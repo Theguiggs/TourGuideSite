@@ -326,7 +326,7 @@ export function OpenMultilangModal({
       ? t('Sélectionnez une langue', 'Select a language')
       : order.totalCents === 0
         ? t('Ajouter les langues (gratuit)', 'Add languages (free)')
-        : t(`Payer et traduire — ${formatPrice(order.totalCents)}`, `Pay and translate — ${formatPrice(order.totalCents)}`);
+        : t(`Payer et traduire — ${formatPrice(order.totalCents, locale)}`, `Pay and translate — ${formatPrice(order.totalCents, locale)}`);
 
   return (
     <div
@@ -426,7 +426,7 @@ export function OpenMultilangModal({
                             <span className="text-grenadine">{line.billing === 'pack_all' ? 'Pack' : 'Pack 3'}</span>
                           ) : (
                             <span className="text-ink-80 font-medium">
-                              {formatPrice(line.priceCents)}{isUpgrade && <span className="text-eyebrow text-mer ml-1">upgrade</span>}
+                              {formatPrice(line.priceCents, locale)}{isUpgrade && <span className="text-eyebrow text-mer ml-1">upgrade</span>}
                             </span>
                           )}
                         </td>
@@ -477,7 +477,7 @@ export function OpenMultilangModal({
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-body font-semibold text-ink">Total</span>
                   <span className="text-h6 font-bold text-ink" data-testid="recap-total">
-                    {chargeableCount === 0 ? '—' : order.totalCents === 0 ? t('Gratuit', 'Free') : formatPrice(order.totalCents)}
+                    {chargeableCount === 0 ? '—' : order.totalCents === 0 ? t('Gratuit', 'Free') : formatPrice(order.totalCents, locale)}
                   </span>
                 </div>
 
@@ -553,7 +553,7 @@ export function OpenMultilangModal({
         {pendingPayment && pendingPayment.clientSecret && (
           <div className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-black/40 p-4 sm:p-6" data-testid="payment-step">
             <div className="mt-4 mb-6 max-h-[calc(100vh-2rem)] w-full max-w-sm overflow-y-auto rounded-lg bg-card p-5 shadow-xl sm:mt-8">
-              <h3 className="text-body font-bold text-ink mb-2">{t('Paiement', 'Payment')} — {formatPrice(order.totalCents)}</h3>
+              <h3 className="text-body font-bold text-ink mb-2">{t('Paiement', 'Payment')} — {formatPrice(order.totalCents, locale)}</h3>
               <p className="text-body text-ink-60 mb-4">{t("Entrez vos informations de paiement pour finaliser l'achat.", 'Enter your payment details to complete the purchase.')}</p>
               {errorMessage && (
                 <p className="text-meta text-danger mb-3" role="alert">{errorMessage}</p>

@@ -21,11 +21,7 @@ const JSX_TEXT = />\s*([^<>{}\n]*[A-Za-zÀ-ÿ][^<>{}\n]*)\s*</g;
 const LITERAL = /(['"`])((?:(?!\1)[^\\\n]|\\.){3,}?)\1/g;
 
 /** Dette restante (chemins depuis src/). Faire fondre, ne jamais grossir. */
-const ALLOWED = new Set<string>([
-  'app/guide/login/page.tsx',
-  'app/guide/reset-password/page.tsx',
-  'app/guide/signup/page.tsx',
-]);
+const ALLOWED = new Set<string>([]);
 
 function walk(dir: string): string[] {
   const out: string[] = [];

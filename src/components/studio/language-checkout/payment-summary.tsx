@@ -8,6 +8,7 @@ import {
   PRICING_TABLE,
 } from '@/lib/multilang/provider-router';
 import { LANGUAGE_CONFIG, formatPrice } from './language-checkbox-card';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 // --- Types ---
 
@@ -200,6 +201,7 @@ export function PaymentSummary({
   onPay,
   isLoading,
 }: PaymentSummaryProps) {
+  const { locale } = useStudioLocale();
   const order = computeOrderTotal(selectedLanguages, qualityTier, freeLanguageUsed);
   const hasLanguages = selectedLanguages.length > 0;
 
@@ -212,7 +214,7 @@ export function PaymentSummary({
   } else if (order.totalCents === 0) {
     buttonText = 'Traduire gratuitement';
   } else {
-    buttonText = `Payer et traduire \u2014 ${formatPrice(order.totalCents)}`;
+    buttonText = `Payer et traduire \u2014 ${formatPrice(order.totalCents, locale)}`;
   }
 
   // Button aria-label
@@ -222,7 +224,7 @@ export function PaymentSummary({
       ? 'Ajouter les langues pour traduire manuellement'
       : order.totalCents === 0
         ? 'Traduire gratuitement'
-        : `Payer ${formatPrice(order.totalCents)} et lancer la traduction`;
+        : `Payer ${formatPrice(order.totalCents, locale)} et lancer la traduction`;
 
   return (
     <div data-testid="payment-summary" className="rounded-lg border border-line bg-card p-4 space-y-4">
@@ -253,10 +255,10 @@ export function PaymentSummary({
                   <span className="text-grenadine">Pack 3</span>
                 ) : line.purchaseType === 'pack_all' ? (
                   <span className="text-grenadine">
-                    {line.priceCents > 0 ? `Pack Toutes — ${formatPrice(line.priceCents)}` : 'Pack Toutes (inclus)'}
+                    {line.priceCents > 0 ? `Pack Toutes — ${formatPrice(line.priceCents, locale)}` : 'Pack Toutes (inclus)'}
                   </span>
                 ) : (
-                  formatPrice(line.priceCents)
+                  formatPrice(line.priceCents, locale)
                 )}
               </span>
             </li>
@@ -272,7 +274,7 @@ export function PaymentSummary({
       >
         <span className="text-body font-semibold text-ink">Total</span>
         <span className="text-h6 font-bold text-ink">
-          {hasLanguages ? formatPrice(order.totalCents) : '\u2014'}
+          {hasLanguages ? formatPrice(order.totalCents, locale) : '\u2014'}
         </span>
       </div>
 

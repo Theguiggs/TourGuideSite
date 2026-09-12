@@ -16,6 +16,7 @@ import { describeAuthError } from '@/lib/auth/cognito-errors';
 import { createGuideProfileMutation, getOwnGuideProfile } from '@/lib/api/appsync-client';
 import { useAuth } from '@/lib/auth/auth-context';
 import { trackEvent, GuideAnalyticsEvents } from '@/lib/analytics';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 // Suggestions, pas une liste fermée : Barcelone, Menton ou Èze ne pouvaient
 // pas être choisies. La ville est saisie librement (lot 6.2).
@@ -42,6 +43,66 @@ interface FormErrors {
 export default function GuideSignupPage() {
   const router = useRouter();
   const { refreshUser } = useAuth();
+  const { t, locale } = useStudioLocale();
+  const copy = locale === 'en' ? {
+    title: 'Become a Guide',
+    introRegister: 'Create your guide area to publish your tours.',
+    codeSentTo: 'Confirmation code sent to',
+    fullName: 'Full name',
+    emailPlaceholder: 'guide@example.com',
+    password: 'Password',
+    passwordPlaceholder: 'Your password',
+    rule8: '8 characters minimum',
+    ruleUpper: 'One uppercase letter (A–Z)',
+    ruleLower: 'One lowercase letter (a–z)',
+    ruleDigit: 'One digit (0–9)',
+    ruleSpecial: 'One special character (!@#$%…)',
+    city: 'Main city',
+    cityPlaceholder: 'Nice, Barcelona, Èze…',
+    creating: 'Creating your account…',
+    create: 'Create my account',
+    alreadyAccount: 'Already have an account?',
+    signIn: 'Sign in',
+    checkInbox: 'Check your inbox and enter the 6-digit code.',
+    confirmationCode: 'Confirmation code',
+    verifying: 'Verifying…',
+    confirm: 'Confirm and go to the dashboard',
+    resend: 'Resend the code',
+    editInfo: '← Edit my details',
+    afterTitle: 'After you sign up',
+    after1: '✓ Your profile will be submitted for review',
+    after2: '✓ You can start creating your tours',
+    after3: '✓ Every tour goes through moderation before publication',
+  } : {
+    title: 'Devenir Guide',
+    introRegister: 'Créez votre espace guide pour publier vos parcours.',
+    codeSentTo: 'Code de confirmation envoyé à',
+    fullName: 'Nom complet',
+    emailPlaceholder: 'guide@exemple.com',
+    password: 'Mot de passe',
+    passwordPlaceholder: 'Votre mot de passe',
+    rule8: '8 caractères minimum',
+    ruleUpper: 'Une majuscule (A–Z)',
+    ruleLower: 'Une minuscule (a–z)',
+    ruleDigit: 'Un chiffre (0–9)',
+    ruleSpecial: 'Un caractère spécial (!@#$%…)',
+    city: 'Ville principale',
+    cityPlaceholder: 'Nice, Barcelone, Èze…',
+    creating: 'Création du compte…',
+    create: 'Créer mon compte',
+    alreadyAccount: 'Déjà un compte ?',
+    signIn: 'Se connecter',
+    checkInbox: 'Vérifiez votre boite mail et saisissez le code à 6 chiffres.',
+    confirmationCode: 'Code de confirmation',
+    verifying: 'Vérification…',
+    confirm: 'Confirmer et accéder au tableau de bord',
+    resend: 'Renvoyer le code',
+    editInfo: '← Modifier mes informations',
+    afterTitle: 'Après votre inscription',
+    after1: '✓ Votre profil sera soumis à validation',
+    after2: '✓ Vous pouvez commencer à créer vos parcours',
+    after3: '✓ Chaque parcours passe par une modération avant publication',
+  };
 
   const [step, setStep] = useState<Step>('register');
   const [loading, setLoading] = useState(false);
@@ -69,15 +130,15 @@ export default function GuideSignupPage() {
 
   function validateStep1(): FormErrors {
     const e: FormErrors = {};
-    if (displayName.trim().length < 2) e.displayName = 'Minimum 2 caractères';
-    if (displayName.trim().length > 50) e.displayName = 'Maximum 50 caractères';
-    if (!email.includes('@')) e.email = 'Email invalide';
-    if (password.length < 8) e.password = 'Minimum 8 caractères';
-    else if (!/[A-Z]/.test(password)) e.password = 'Au moins une majuscule requise';
-    else if (!/[a-z]/.test(password)) e.password = 'Au moins une minuscule requise';
-    else if (!/[0-9]/.test(password)) e.password = 'Au moins un chiffre requis';
-    else if (!/[^A-Za-z0-9]/.test(password)) e.password = 'Au moins un caractère spécial requis (!@#$%...)';
-    if (!city.trim()) e.city = 'Indiquez votre ville';
+    if (displayName.trim().length < 2) e.displayName = t('Minimum 2 caractères', 'At least 2 characters');
+    if (displayName.trim().length > 50) e.displayName = t('Maximum 50 caractères', 'At most 50 characters');
+    if (!email.includes('@')) e.email = t('Email invalide', 'Invalid email');
+    if (password.length < 8) e.password = t('Minimum 8 caractères', 'At least 8 characters');
+    else if (!/[A-Z]/.test(password)) e.password = t('Au moins une majuscule requise', 'At least one uppercase letter required');
+    else if (!/[a-z]/.test(password)) e.password = t('Au moins une minuscule requise', 'At least one lowercase letter required');
+    else if (!/[0-9]/.test(password)) e.password = t('Au moins un chiffre requis', 'At least one digit required');
+    else if (!/[^A-Za-z0-9]/.test(password)) e.password = t('Au moins un caractère spécial requis (!@#$%...)', 'At least one special character required (!@#$%...)');
+    if (!city.trim()) e.city = t('Indiquez votre ville', 'Enter your city');
     return e;
   }
 
@@ -111,7 +172,7 @@ export default function GuideSignupPage() {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [email, password, displayName, city],
+    [email, password, displayName, city, t],
   );
 
   // ---- Step 2: Confirm email + create profile ----
@@ -119,7 +180,7 @@ export default function GuideSignupPage() {
   const handleConfirm = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
-      if (code.trim().length !== 6) { setErrors({ code: 'Le code comporte 6 chiffres' }); return; }
+      if (code.trim().length !== 6) { setErrors({ code: t('Le code comporte 6 chiffres', 'The code has 6 digits') }); return; }
       setErrors({});
       setLoading(true);
 
@@ -139,7 +200,7 @@ export default function GuideSignupPage() {
         const session = await fetchAuthSession();
         const userId = session.tokens?.accessToken?.payload?.sub as string | undefined;
         if (!userId) {
-          setErrors({ global: 'Impossible de récupérer le profil — réessayez' });
+          setErrors({ global: t('Impossible de récupérer le profil — réessayez', 'Unable to retrieve the profile — please try again') });
           setLoading(false);
           return;
         }
@@ -181,7 +242,7 @@ export default function GuideSignupPage() {
             city,
           });
           if (!profileResult.ok) {
-            setErrors({ global: 'Compte créé mais erreur de profil — contactez le support' });
+            setErrors({ global: t('Compte créé mais erreur de profil — contactez le support', 'Account created but the profile failed — contact support') });
             setLoading(false);
             return;
           }
@@ -202,7 +263,7 @@ export default function GuideSignupPage() {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [code, email, password, displayName, city, refreshUser],
+    [code, email, password, displayName, city, refreshUser, t],
   );
 
   // ---- Resend code ----
@@ -243,11 +304,11 @@ export default function GuideSignupPage() {
 
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="font-display text-h3 text-ink mb-2 leading-none">Devenir Guide</h1>
+          <h1 className="font-display text-h3 text-ink mb-2 leading-none">{copy.title}</h1>
           <p className="font-editorial italic text-body-lg text-ink-60">
             {step === 'register'
-              ? 'Créez votre espace guide pour publier vos parcours.'
-              : `Code de confirmation envoyé à ${email}`}
+              ? copy.introRegister
+              : `${copy.codeSentTo} ${email}`}
           </p>
         </div>
 
@@ -275,7 +336,7 @@ export default function GuideSignupPage() {
 
                 <div>
                   <label htmlFor="displayName" className={labelClass}>
-                    Nom complet <span className="text-danger">*</span>
+                    {copy.fullName} <span className="text-danger">*</span>
                   </label>
                   <input
                     id="displayName"
@@ -300,7 +361,7 @@ export default function GuideSignupPage() {
                     type="email"
                     value={email}
                     onChange={(e) => { trackSignupStarted(); setEmail(e.target.value); }}
-                    placeholder="guide@exemple.com"
+                    placeholder={copy.emailPlaceholder}
                     required
                     autoComplete="email"
                     aria-invalid={Boolean(errors.email)}
@@ -312,14 +373,14 @@ export default function GuideSignupPage() {
 
                 <div>
                   <label htmlFor="password" className={labelClass}>
-                    Mot de passe <span className="text-danger">*</span>
+                    {copy.password} <span className="text-danger">*</span>
                   </label>
                   <input
                     id="password"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Votre mot de passe"
+                    placeholder={copy.passwordPlaceholder}
                     required
                     autoComplete="new-password"
                     aria-invalid={Boolean(errors.password)}
@@ -329,11 +390,11 @@ export default function GuideSignupPage() {
                   {password.length > 0 && (
                     <ul className="mt-2 space-y-1">
                       {[
-                        { label: '8 caractères minimum', ok: password.length >= 8 },
-                        { label: 'Une majuscule (A–Z)', ok: /[A-Z]/.test(password) },
-                        { label: 'Une minuscule (a–z)', ok: /[a-z]/.test(password) },
-                        { label: 'Un chiffre (0–9)', ok: /[0-9]/.test(password) },
-                        { label: 'Un caractère spécial (!@#$%…)', ok: /[^A-Za-z0-9]/.test(password) },
+                        { label: copy.rule8, ok: password.length >= 8 },
+                        { label: copy.ruleUpper, ok: /[A-Z]/.test(password) },
+                        { label: copy.ruleLower, ok: /[a-z]/.test(password) },
+                        { label: copy.ruleDigit, ok: /[0-9]/.test(password) },
+                        { label: copy.ruleSpecial, ok: /[^A-Za-z0-9]/.test(password) },
                       ].map(({ label, ok }) => (
                         <li key={label} className={`flex items-center gap-1.5 text-meta transition-colors ${ok ? 'text-mer' : 'text-ink-40'}`}>
                           <span className="text-eyebrow font-bold" aria-hidden="true">{ok ? '✓' : '○'}</span>
@@ -347,7 +408,7 @@ export default function GuideSignupPage() {
 
                 <div>
                   <label htmlFor="city" className={labelClass}>
-                    Ville principale <span className="text-danger">*</span>
+                    {copy.city} <span className="text-danger">*</span>
                   </label>
                   <input
                     id="city"
@@ -357,7 +418,7 @@ export default function GuideSignupPage() {
                     onChange={(e) => setCity(e.target.value)}
                     required
                     autoComplete="address-level2"
-                    placeholder="Nice, Barcelone, Èze…"
+                    placeholder={copy.cityPlaceholder}
                     aria-invalid={Boolean(errors.city)}
                     aria-describedby={errors.city ? 'city-error' : undefined}
                     className={`${inputBase} ${errors.city ? 'border-grenadine' : 'border-line'}`}
@@ -377,13 +438,13 @@ export default function GuideSignupPage() {
                 disabled={loading}
                 className="mt-6 w-full bg-grenadine text-paper font-bold py-3 rounded-pill hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-caption"
               >
-                {loading ? 'Création du compte…' : 'Créer mon compte'}
+                {loading ? copy.creating : copy.create}
               </button>
 
               <p className="text-center text-caption text-ink-60 mt-4">
-                Déjà un compte ?{' '}
+                {copy.alreadyAccount}{' '}
                 <Link href="/guide/login" className="text-grenadine hover:underline underline-offset-2 font-medium no-underline">
-                  Se connecter
+                  {copy.signIn}
                 </Link>
               </p>
             </form>
@@ -394,10 +455,10 @@ export default function GuideSignupPage() {
             <form onSubmit={handleConfirm} noValidate>
               <div className="mb-2">
                 <p className="text-caption text-ink-60 mb-4">
-                  Vérifiez votre boite mail et saisissez le code à 6 chiffres.
+                  {copy.checkInbox}
                 </p>
                 <label htmlFor="code" className={labelClass}>
-                  Code de confirmation
+                  {copy.confirmationCode}
                 </label>
                 <input
                   id="code"
@@ -420,7 +481,7 @@ export default function GuideSignupPage() {
                 disabled={loading || code.length !== 6}
                 className="mt-6 w-full bg-grenadine text-paper font-bold py-3 rounded-pill hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-caption"
               >
-                {loading ? 'Vérification…' : 'Confirmer et accéder au tableau de bord'}
+                {loading ? copy.verifying : copy.confirm}
               </button>
 
               <div className="text-center mt-4">
@@ -431,8 +492,8 @@ export default function GuideSignupPage() {
                   className="text-caption text-grenadine hover:underline underline-offset-2 disabled:text-ink-40 disabled:no-underline"
                 >
                   {resendCooldown > 0
-                    ? `Renvoyer le code (${resendCooldown}s)`
-                    : 'Renvoyer le code'}
+                    ? `${copy.resend} (${resendCooldown}s)`
+                    : copy.resend}
                 </button>
               </div>
 
@@ -441,7 +502,7 @@ export default function GuideSignupPage() {
                 onClick={() => { setStep('register'); setCode(''); setErrors({}); }}
                 className="mt-3 w-full text-caption text-ink-40 hover:text-ink transition"
               >
-                ← Modifier mes informations
+                {copy.editInfo}
               </button>
             </form>
           )}
@@ -450,11 +511,11 @@ export default function GuideSignupPage() {
 
         {/* Info block */}
         <div className="mt-6 bg-mer-soft border border-mer/30 rounded-md p-4 text-caption text-mer">
-          <p className="font-semibold mb-1.5">Après votre inscription</p>
+          <p className="font-semibold mb-1.5">{copy.afterTitle}</p>
           <ul className="space-y-1">
-            <li>✓ Votre profil sera soumis à validation</li>
-            <li>✓ Vous pouvez commencer à créer vos parcours</li>
-            <li>✓ Chaque parcours passe par une modération avant publication</li>
+            <li>{copy.after1}</li>
+            <li>{copy.after2}</li>
+            <li>{copy.after3}</li>
           </ul>
         </div>
 

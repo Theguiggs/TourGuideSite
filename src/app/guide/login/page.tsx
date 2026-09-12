@@ -7,6 +7,7 @@ import { useAuth } from '@/lib/auth/auth-context';
 import { trackEvent } from '@/lib/analytics';
 import { GuideAnalyticsEvents } from '@/lib/analytics';
 import { loginDestination, safeReturnTo } from '@/lib/auth/return-to';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 function GuideLoginContent() {
   const router = useRouter();
@@ -15,6 +16,7 @@ function GuideLoginContent() {
   const returnTo = safeReturnTo(searchParams.get('returnTo'));
   const reason = searchParams.get('reason');
   const { signIn } = useAuth();
+  const { t } = useStudioLocale();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -32,7 +34,7 @@ function GuideLoginContent() {
       trackEvent(GuideAnalyticsEvents.GUIDE_PORTAL_LOGIN, { email_domain: email.split('@')[1] });
       router.push(loginDestination(result.role, returnTo));
     } else {
-      setError(result.error || 'Connexion impossible pour le moment. Réessayez dans un instant.');
+      setError(result.error || t('Connexion impossible pour le moment. Réessayez dans un instant.', 'Unable to sign in right now. Please try again in a moment.'));
     }
   };
 
@@ -42,25 +44,25 @@ function GuideLoginContent() {
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 bg-paper">
       <div className="w-full max-w-md">
-        <h1 className="font-display text-h3 text-ink text-center mb-2 leading-none">Espace Guide</h1>
+        <h1 className="font-display text-h3 text-ink text-center mb-2 leading-none">{t('Espace Guide', 'Guide Area')}</h1>
         <p className="font-editorial italic text-body-lg text-ink-60 text-center mb-8">
-          Connectez-vous pour gérer vos parcours et votre profil.
+          {t('Connectez-vous pour gérer vos parcours et votre profil.', 'Sign in to manage your tours and your profile.')}
         </p>
 
         <form onSubmit={handleSubmit} className="bg-card border border-line rounded-md p-8 shadow-sm">
           {reason === 'expired' && (
             <div className="bg-ocre-soft border border-ocre/30 text-ocre-ink rounded-md p-3 mb-6 text-caption" role="status" data-testid="login-reason">
-              Votre session a expiré. Reconnectez-vous pour reprendre là où vous étiez.
+              {t('Votre session a expiré. Reconnectez-vous pour reprendre là où vous étiez.', 'Your session has expired. Sign in again to pick up where you left off.')}
             </div>
           )}
           {reason === 'revoked' && (
             <div className="bg-grenadine-soft border border-grenadine/30 text-danger rounded-md p-3 mb-6 text-caption" role="alert" data-testid="login-reason">
-              Votre accès guide a été retiré. Si vous pensez qu’il s’agit d’une erreur, écrivez-nous.
+              {t('Votre accès guide a été retiré. Si vous pensez qu’il s’agit d’une erreur, écrivez-nous.', 'Your guide access has been removed. If you think this is a mistake, write to us.')}
             </div>
           )}
           {justRegistered && (
             <div className="bg-olive-soft border border-olive/30 text-olive rounded-md p-3 mb-6 text-caption">
-              Compte créé ! Connectez-vous pour accéder à votre tableau de bord.
+              {t('Compte créé ! Connectez-vous pour accéder à votre tableau de bord.', 'Account created! Sign in to access your dashboard.')}
             </div>
           )}
           {error && (
@@ -88,7 +90,7 @@ function GuideLoginContent() {
 
           <div className="mb-6">
             <label htmlFor="password" className={labelClass}>
-              Mot de passe
+              {t('Mot de passe', 'Password')}
             </label>
             <input
               id="password"
@@ -109,20 +111,20 @@ function GuideLoginContent() {
             disabled={loading}
             className="w-full bg-grenadine text-paper font-bold py-3 rounded-pill hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-caption"
           >
-            {loading ? 'Connexion…' : 'Se connecter'}
+            {loading ? t('Connexion…', 'Signing in…') : t('Se connecter', 'Sign in')}
           </button>
 
           <p className="text-center text-meta text-ink-60 mt-4">
             <Link href="/guide/reset-password" className="text-grenadine hover:underline underline-offset-2">
-              Mot de passe oublié ?
+              {t('Mot de passe oublié ?', 'Forgot your password?')}
             </Link>
           </p>
         </form>
 
         <p className="text-center text-caption text-ink-60 mt-6">
-          Pas encore de compte ?{' '}
+          {t('Pas encore de compte ?', 'No account yet?')}{' '}
           <Link href="/guide/signup" className="text-grenadine hover:underline underline-offset-2 font-medium no-underline">
-            Devenir guide
+            {t('Devenir guide', 'Become a guide')}
           </Link>
         </p>
       </div>
