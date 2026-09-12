@@ -89,10 +89,10 @@ export default function PublicationPage() {
     try {
       const result = await fn();
       if (result.ok) { setMessage({ text: label, success: true }); await reload(); }
-      else { setMessage({ text: result.error ?? 'Erreur', success: false }); }
-    } catch { setMessage({ text: 'Erreur inattendue.', success: false }); }
+      else { setMessage({ text: result.error ?? t('Erreur', 'Error'), success: false }); }
+    } catch { setMessage({ text: t('Erreur inattendue.', 'Unexpected error.'), success: false }); }
     finally { setIsActioning(false); }
-  }, [reload]);
+  }, [reload, t]);
 
   const doWithConfirm = useCallback((label: string, warning: string, fn: () => Promise<{ ok: boolean; error?: string }>) => {
     setConfirmAction({ label, warning, fn });
@@ -105,7 +105,7 @@ export default function PublicationPage() {
   }, [confirmAction, doAction]);
 
   if (isLoading) return <div className="p-6" role="status" aria-busy="true" aria-label={t('Chargement', 'Loading')}><div className="bg-paper-soft rounded-lg h-64 animate-pulse" /></div>;
-  if (!session) return <div className="p-6"><div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger">Session introuvable.</div></div>;
+  if (!session) return <div className="p-6"><div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger">{t('Session introuvable.', 'Session not found.')}</div></div>;
 
   const statusConfig = getSessionStatusConfig(session.status);
   const version = session.version ?? 1;
@@ -164,7 +164,7 @@ export default function PublicationPage() {
       }
       return {
         ok: false as const,
-        error: `La visite n’a pas changé d’état : ${tourResult.error}`,
+        error: `${t('La visite n’a pas changé d’état :', 'The tour status did not change:')} ${tourResult.error}`,
       };
     }
     return result;
@@ -214,10 +214,10 @@ export default function PublicationPage() {
               : 'bg-grenadine-soft text-danger'
         }`} data-testid="submission-narration-mode">
           {session.narrationMode === 'recording'
-            ? 'Voix humaine'
+            ? t('Voix humaine', 'Human voice')
             : session.narrationMode === 'tts_on_demand'
-              ? 'TTS à la demande'
-              : 'Mode à choisir'}
+              ? t('TTS à la demande', 'On-demand TTS')
+              : t('Mode à choisir', 'Mode to choose')}
         </span>
         <span className="text-meta text-ink-80 flex-1 min-w-0">{statusMessages[session.status] ?? ''}</span>
       </div>
@@ -225,13 +225,13 @@ export default function PublicationPage() {
       {/* Inline alerts (only when relevant) */}
       {publishedSibling && !isPublished && (
         <div className="mb-3 p-2 bg-olive-soft border border-olive-soft rounded-lg text-meta text-success">
-          V{publishedSibling.version ?? 1} est actuellement publiee.
-          {(session.status === 'draft' || session.status === 'editing') && ' Quand cette version sera approuvee, elle remplacera V' + (publishedSibling.version ?? 1) + '.'}
+          V{publishedSibling.version ?? 1} {t('est actuellement publiee.', 'is currently published.')}
+          {(session.status === 'draft' || session.status === 'editing') && ` ${t('Quand cette version sera approuvee, elle remplacera V', 'When this version is approved, it will replace V')}${publishedSibling.version ?? 1}.`}
         </div>
       )}
       {!hasAnyPublished && !['draft', 'editing', 'recording', 'ready', 'submitted'].includes(session.status) && (
         <div className="mb-3 p-2 bg-ocre-soft border border-ocre-soft rounded-lg text-meta text-ocre-ink">
-          Aucune version de ce parcours n&apos;est visible par les touristes.
+          {t("Aucune version de ce parcours n'est visible par les touristes.", 'No version of this tour is visible to visitors.')}
         </div>
       )}
 
@@ -292,14 +292,14 @@ export default function PublicationPage() {
           {/* --- PAUSE (from published only) --- */}
           {isPublished && (
             <button
-              onClick={() => doAction('Parcours mis en pause.', () => updateStatus('paused'))}
+              onClick={() => doAction(t('Parcours mis en pause.', 'Tour paused.'), () => updateStatus('paused'))}
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-ocre-soft bg-ocre-soft hover:opacity-90 transition text-left disabled:opacity-50"
             >
               <span className="text-body-lg shrink-0">&#x23F8;&#xFE0F;</span>
               <div>
-                <p className="text-body font-medium text-ocre-ink">Mettre en pause</p>
-                <p className="text-meta text-ocre-ink">Masquer temporairement du catalogue. Reprise sans nouvelle modération.</p>
+                <p className="text-body font-medium text-ocre-ink">{t('Mettre en pause', 'Pause')}</p>
+                <p className="text-meta text-ocre-ink">{t('Masquer temporairement du catalogue. Reprise sans nouvelle modération.', 'Temporarily hide from the catalogue. Resume without another review.')}</p>
               </div>
             </button>
           )}
@@ -313,8 +313,8 @@ export default function PublicationPage() {
             >
               <span className="text-body-lg shrink-0">&#x25B6;&#xFE0F;</span>
               <div>
-                <p className="text-body font-medium text-success">Republier le parcours</p>
-                <p className="text-meta text-success">Remettre la visite visible dans le catalogue, sans nouvelle modération</p>
+                <p className="text-body font-medium text-success">{t('Republier le parcours', 'Republish the tour')}</p>
+                <p className="text-meta text-success">{t('Remettre la visite visible dans le catalogue, sans nouvelle modération', 'Make the tour visible in the catalogue again, without another review')}</p>
               </div>
             </button>
           )}
@@ -327,7 +327,7 @@ export default function PublicationPage() {
                 setMessage(null);
                 const result = await cloneSessionAsV2(sessionId);
                 if (result.ok) {
-                  setMessage({ text: `V${result.version} creee ! Redirection...`, success: true });
+                  setMessage({ text: `V${result.version} ${t('creee ! Redirection...', 'created! Redirecting...')}`, success: true });
                   setTimeout(() => router.push(`/guide/studio/${result.sessionId}/scenes`), 1500);
                 } else {
                   setMessage({ text: result.error, success: false });
@@ -343,7 +343,7 @@ export default function PublicationPage() {
                   {t('Mettre à jour la visite', 'Update the tour')} ({t('nouvelle version', 'new version')} V{version + 1})
                 </p>
                 <p className="text-meta text-grenadine">
-                  Crée un brouillon V{version + 1} à partir du contenu source actuel. Éditez puis re-soumettez. {isPublished ? 'V' + version + ' reste publiée pendant le travail.' : 'Rien n\'est visible tant que V' + (version + 1) + ' n\'est pas publiée.'}
+                  {t('Crée un brouillon V', 'Creates a draft V')}{version + 1} {t('à partir du contenu source actuel. Éditez puis re-soumettez.', 'from the current source content. Edit, then resubmit.')} {isPublished ? 'V' + version + t(' reste publiée pendant le travail.', ' stays published while you work.') : t('Rien n\'est visible tant que V', 'Nothing is visible until V') + (version + 1) + t(' n\'est pas publiée.', ' is published.')}
                 </p>
               </div>
             </button>
@@ -354,17 +354,17 @@ export default function PublicationPage() {
             <button
               onClick={() => {
                 const warning = hasAnyPublished && !publishedSibling
-                  ? 'Ce parcours est actuellement visible. L\'archiver le rendra invisible pour les touristes. Confirmer ?'
-                  : 'Archiver ce parcours ? Il ne sera plus visible.';
-                doWithConfirm('Archiver', warning, () => updateStatus('archived'));
+                  ? t('Ce parcours est actuellement visible. L\'archiver le rendra invisible pour les touristes. Confirmer ?', 'This tour is currently visible. Archiving it will hide it from visitors. Confirm?')
+                  : t('Archiver ce parcours ? Il ne sera plus visible.', 'Archive this tour? It will no longer be visible.');
+                doWithConfirm(t('Archiver', 'Archive'), warning, () => updateStatus('archived'));
               }}
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-line hover:bg-paper-soft transition text-left disabled:opacity-50"
             >
               <span className="text-body-lg shrink-0">&#x1F4E6;</span>
               <div>
-                <p className="text-body font-medium text-ink-80">Archiver</p>
-                <p className="text-meta text-ink-60">Retirer du catalogue — réversible</p>
+                <p className="text-body font-medium text-ink-80">{t('Archiver', 'Archive')}</p>
+                <p className="text-meta text-ink-60">{t('Retirer du catalogue — réversible', 'Remove from the catalogue — reversible')}</p>
               </div>
             </button>
           )}
@@ -373,8 +373,8 @@ export default function PublicationPage() {
           {session.status === 'draft' && (
             <button
               onClick={() => doWithConfirm(
-                'Supprimer',
-                'Supprimer définitivement ce brouillon et toutes ses scènes ? Cette action est irréversible.',
+                t('Supprimer', 'Delete'),
+                t('Supprimer définitivement ce brouillon et toutes ses scènes ? Cette action est irréversible.', 'Permanently delete this draft and all its scenes? This action cannot be undone.'),
                 async () => {
                   // Chemin unique de suppression : `deleteSession` porte la
                   // garde de statut, le bon ordre (enregistrements puis S3) et
@@ -423,7 +423,7 @@ export default function PublicationPage() {
               <span className="text-body-lg shrink-0">&#x1F5D1;&#xFE0F;</span>
               <div>
                 <p className="text-body font-medium text-danger">{t('Supprimer ce brouillon', 'Delete this draft')}</p>
-                <p className="text-meta text-danger">Supprime définitivement cette session et tout son contenu</p>
+                <p className="text-meta text-danger">{t('Supprime définitivement cette session et tout son contenu', 'Permanently deletes this session and all its content')}</p>
               </div>
             </button>
           )}
@@ -431,14 +431,14 @@ export default function PublicationPage() {
           {/* --- BACK TO DRAFT (from working states, not submitted) --- */}
           {['editing', 'recording', 'ready'].includes(session.status) && (
             <button
-              onClick={() => doAction('Revenu en brouillon.', () => updateStatus('draft'))}
+              onClick={() => doAction(t('Revenu en brouillon.', 'Returned to draft.'), () => updateStatus('draft'))}
               disabled={isActioning}
               className="w-full flex items-center gap-2 p-2 rounded-lg border border-line hover:bg-paper-soft transition text-left disabled:opacity-50"
             >
               <span className="text-body-lg shrink-0">&#x1F4DD;</span>
               <div>
-                <p className="text-body font-medium text-ink-80">Revenir en brouillon</p>
-                <p className="text-meta text-ink-60">Reprendre l&apos;edition depuis le debut</p>
+                <p className="text-body font-medium text-ink-80">{t('Revenir en brouillon', 'Back to draft')}</p>
+                <p className="text-meta text-ink-60">{t("Reprendre l'edition depuis le debut", 'Resume editing from the start')}</p>
               </div>
             </button>
           )}
@@ -447,25 +447,25 @@ export default function PublicationPage() {
           {isArchived && (
             <>
               <button
-                onClick={() => doAction('Parcours remis en brouillon.', () => updateStatus('draft'))}
+                onClick={() => doAction(t('Parcours remis en brouillon.', 'Tour returned to draft.'), () => updateStatus('draft'))}
                 disabled={isActioning}
                 className="w-full flex items-center gap-2 p-2 rounded-lg border border-grenadine-soft bg-grenadine-soft hover:opacity-90 transition text-left disabled:opacity-50"
               >
                 <span className="text-body-lg shrink-0">&#x1F4DD;</span>
                 <div>
-                  <p className="text-body font-medium text-grenadine">Remettre en brouillon</p>
-                  <p className="text-meta text-grenadine">Reprendre le travail sur ce parcours. Il faudra le republier.</p>
+                  <p className="text-body font-medium text-grenadine">{t('Remettre en brouillon', 'Return to draft')}</p>
+                  <p className="text-meta text-grenadine">{t('Reprendre le travail sur ce parcours. Il faudra le republier.', 'Resume work on this tour. It will need to be republished.')}</p>
                 </div>
               </button>
               <button
-                onClick={() => doAction('Parcours remis en pause.', () => updateStatus('paused'))}
+                onClick={() => doAction(t('Parcours remis en pause.', 'Tour set to paused.'), () => updateStatus('paused'))}
                 disabled={isActioning}
                 className="w-full flex items-center gap-2 p-2 rounded-lg border border-ocre-soft bg-ocre-soft hover:opacity-90 transition text-left disabled:opacity-50"
               >
                 <span className="text-body-lg shrink-0">&#x23F8;&#xFE0F;</span>
                 <div>
-                  <p className="text-body font-medium text-ocre-ink">Désarchiver (en pause)</p>
-                  <p className="text-meta text-ocre-ink">Sortir des archives sans publier. Vous pourrez ensuite republier.</p>
+                  <p className="text-body font-medium text-ocre-ink">{t('Désarchiver (en pause)', 'Unarchive (paused)')}</p>
+                  <p className="text-meta text-ocre-ink">{t('Sortir des archives sans publier. Vous pourrez ensuite republier.', 'Take out of the archives without publishing. You can republish afterwards.')}</p>
                 </div>
               </button>
             </>
@@ -517,7 +517,7 @@ export default function PublicationPage() {
             defaultOpen={false}
             icon={<span>💬</span>}
             title={t("Journal d'échanges", 'Review history')}
-            subtitle="Messages avec la moderation"
+            subtitle={t('Messages avec la moderation', 'Messages with the review team')}
             compact
           >
             <TourCommentThread tourId={session.tourId} role="guide" authorName="Guide" sessionId={sessionId} />

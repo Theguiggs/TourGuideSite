@@ -7,6 +7,7 @@ import { logger } from '@/lib/logger';
 import { S3Image } from '@/components/studio/s3-image';
 import { AudioTrimmer } from './AudioTrimmer';
 import { PhotoLightbox } from './PhotoLightbox';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'POICleanupPanel';
 
@@ -25,6 +26,7 @@ interface POICleanupPanelProps {
  * Emits local updates via onChange; parent is responsible for debounced AppSync save.
  */
 export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelProps) {
+  const { t } = useStudioLocale();
   const photos = scene.photosRefs;
   const heroPhoto = scene.heroPhotoRef ?? (photos.length > 0 ? photos[0] : null);
   const [lightboxPhoto, setLightboxPhoto] = useState<string | null>(null);
@@ -66,7 +68,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
     <div className="space-y-4" data-testid="poi-cleanup-panel">
       <div>
         <label className="block text-meta font-medium text-ink-60 mb-1" htmlFor={`poi-name-${scene.id}`}>
-          Nom du POI
+          {t('Nom du POI', 'POI name')}
         </label>
         <input
           id={`poi-name-${scene.id}`}
@@ -74,7 +76,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
           value={scene.title ?? ''}
           onChange={handleName}
           data-testid="poi-name-input"
-          placeholder="Nom du point d'intérêt"
+          placeholder={t("Nom du point d'intérêt", 'Name of the point of interest')}
           className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
         />
       </div>
@@ -89,7 +91,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
           onChange={handleDescription}
           data-testid="poi-description-input"
           rows={3}
-          placeholder="Description courte du POI (optionnel)"
+          placeholder={t('Description courte du POI (optionnel)', 'Short POI description (optional)')}
           className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
         />
       </div>
@@ -97,11 +99,11 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
       <div>
         <div className="flex items-center justify-between mb-2">
           <span className="text-meta font-medium text-ink-60">Photos ({photos.length})</span>
-          <span className="text-eyebrow text-ink-40">Hero = photo de couverture</span>
+          <span className="text-eyebrow text-ink-40">{t('Hero = photo de couverture', 'Hero = cover photo')}</span>
         </div>
         {photos.length === 0 ? (
           <div className="bg-paper-soft rounded-lg p-4 text-center text-body text-ink-40" data-testid="poi-photos-empty">
-            Aucune photo
+            {t('Aucune photo', 'No photos')}
           </div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" data-testid="poi-photos-grid">
@@ -116,7 +118,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
                   <button
                     type="button"
                     onClick={() => setLightboxPhoto(ref)}
-                    aria-label="Agrandir la photo"
+                    aria-label={t('Agrandir la photo', 'Enlarge photo')}
                     data-testid="poi-photo-open"
                     className="block w-full aspect-square focus:outline-none focus:ring-2 focus:ring-grenadine"
                   >
@@ -144,7 +146,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
                   <button
                     type="button"
                     onClick={(e) => { e.stopPropagation(); handleDeletePhoto(ref); }}
-                    aria-label="Supprimer la photo"
+                    aria-label={t('Supprimer la photo', 'Delete photo')}
                     data-testid="poi-photo-delete"
                     className="absolute top-1 right-1 bg-card/90 hover:bg-grenadine-soft rounded-pill w-6 h-6 text-meta text-danger"
                   >
@@ -159,7 +161,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
 
       <div>
         <label className="block text-meta font-medium text-ink-60 mb-1">
-          Audio terrain
+          {t('Audio terrain', 'Field audio')}
         </label>
         <AudioTrimmer
           audioUrl={audioUrl}
@@ -179,7 +181,7 @@ export function POICleanupPanel({ scene, audioUrl, onChange }: POICleanupPanelPr
           onChange={handleNotes}
           data-testid="poi-notes-input"
           rows={2}
-          placeholder="Notes personnelles"
+          placeholder={t('Notes personnelles', 'Personal notes')}
           className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
         />
       </div>

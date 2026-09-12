@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { logger } from '@/lib/logger';
@@ -10,6 +10,7 @@ import { ScenePhotos } from '@/components/studio/scene-photos';
 import { removeStoredAudio } from '@/lib/studio/studio-upload-service';
 import { useStudioSessionStore, selectSetActiveSession, selectClearSession } from '@/lib/stores/studio-session-store';
 import type { StudioSession, StudioScene } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'PhotosPage';
 
@@ -18,6 +19,11 @@ type SaveState = 'idle' | 'saving' | 'saved' | 'error';
 export default function PhotosPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
+  const { t } = useStudioLocale();
+  // `t` est lu via une ref dans l'effet de chargement : l'ajouter à ses
+  // dépendances rechargerait la session à chaque bascule de langue.
+  const tRef = useRef(t);
+  tRef.current = t;
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenes, setScenes] = useState<StudioScene[]>([]);
@@ -50,7 +56,7 @@ export default function PhotosPage() {
         logger.info(SERVICE_NAME, 'Photos page loaded', { sessionId });
       } catch (e) {
         if (!cancelled) {
-          setError('Impossible de charger la session.');
+          setError(tRef.current('Impossible de charger la session.', 'Unable to load the session.'));
           logger.error(SERVICE_NAME, 'Load failed', { error: String(e) });
         }
       } finally {
@@ -107,8 +113,8 @@ export default function PhotosPage() {
   if (error || !session) {
     return (
       <div className="p-6">
-        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">&larr; Retour</Link>
-        <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">{error || 'Session introuvable.'}</div>
+        <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">&larr; {t('Retour', 'Back')}</Link>
+        <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">{error || t('Session introuvable.', 'Session not found.')}</div>
       </div>
     );
   }
@@ -119,10 +125,10 @@ export default function PhotosPage() {
 
       <div className="flex-1 p-4 lg:p-6">
         <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-1 inline-block">
-          &larr; Retour à la session
+          &larr; {t('Retour à la session', 'Back to session')}
         </Link>
         <h2 className="text-h6 font-semibold text-ink mb-4">
-          Photos — {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
+          Photos — {activeScene?.title || `${t('Scène', 'Scene')} ${(activeScene?.sceneIndex ?? 0) + 1}`}
         </h2>
 
         {activeScene && (
@@ -140,17 +146,17 @@ export default function PhotosPage() {
             {/* Le guide doit savoir si ses photos sont arrivées. */}
             {saveState === 'saving' && (
               <p className="mt-2 text-body text-mer" role="status" data-testid="photos-saving">
-                Sauvegarde…
+                {t('Sauvegarde…', 'Saving…')}
               </p>
             )}
             {saveState === 'saved' && (
               <p className="mt-2 text-body text-success" role="status" data-testid="photos-saved">
-                Photos enregistrées.
+                {t('Photos enregistrées.', 'Photos saved.')}
               </p>
             )}
             {saveState === 'error' && (
               <p className="mt-2 text-body text-danger" role="alert" data-testid="photos-save-error">
-                Sauvegarde impossible : {saveError ?? 'erreur inconnue'}. Vos photos n&apos;ont pas été conservées.
+                {t('Sauvegarde impossible :', 'Could not save:')} {saveError ?? t('erreur inconnue', 'unknown error')}. {t("Vos photos n'ont pas été conservées.", 'Your photos were not kept.')}
               </p>
             )}
           </div>

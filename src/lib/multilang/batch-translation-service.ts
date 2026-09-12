@@ -723,7 +723,29 @@ export async function detectMissingScenes(
 
 // --- Error message helpers ---
 
-export function getErrorMessage(errorCode: number): string {
+export function getErrorMessage(errorCode: number, locale: 'fr' | 'en' = 'fr'): string {
+  if (locale === 'en') {
+    switch (errorCode) {
+      case BATCH_TRANSLATION_FAILED:
+        return 'Translation failed for this scene.';
+      case BATCH_TTS_FAILED:
+        return 'Audio generation failed for this scene.';
+      case PROVIDER_UNAVAILABLE:
+        return 'The translation service is temporarily unavailable.';
+      case TRANSLATION_REJECTED:
+        return 'The returned translation failed the checks (markup, length or fidelity). Nothing was saved.';
+      case TRANSLATION_TEXT_EMPTY:
+        return 'This scene contains no text to translate.';
+      case TRANSLATION_PROVIDER_REFUSED:
+        return 'The requested translation engine is not available for this language.';
+      case TRANSLATION_OUT_OF_SCOPE:
+        return "This language is outside the translation engine's scope, or the text exceeds the accepted size.";
+      case TRANSLATION_NOT_OWNED:
+        return 'This scene does not belong to you: no translation was requested.';
+      default:
+        return 'An unknown error occurred.';
+    }
+  }
   switch (errorCode) {
     case BATCH_TRANSLATION_FAILED:
       return 'La traduction a echoue pour cette scene.';

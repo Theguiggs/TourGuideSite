@@ -11,6 +11,8 @@ import StoreLink from '@/components/StoreLink';
 
 interface HeaderProps {
   locale?: 'fr' | 'en';
+  /** Fourni sur les pages sans variante `/en/…` : la bascule devient un bouton. */
+  onLocaleChange?: (locale: 'fr' | 'en') => void;
 }
 
 const HEADER_COPY = {
@@ -38,7 +40,7 @@ const HEADER_COPY = {
   },
 } as const;
 
-export default function Header({ locale = 'fr' }: HeaderProps) {
+export default function Header({ locale = 'fr', onLocaleChange }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname() ?? '/';
   const { isAuthenticated, isAdmin, isGuide, user, signOut } = useAuth();
@@ -76,7 +78,20 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
               aria-label={locale === 'fr' ? 'Choisir la langue' : 'Choose language'}
               className="inline-flex overflow-hidden rounded-md border border-line"
             >
-              {(['fr', 'en'] as const).map((targetLocale) => (
+              {(['fr', 'en'] as const).map((targetLocale) => onLocaleChange ? (
+                <button
+                  key={targetLocale}
+                  type="button"
+                  lang={targetLocale}
+                  aria-pressed={locale === targetLocale}
+                  onClick={() => onLocaleChange(targetLocale)}
+                  className={`inline-flex min-h-11 items-center px-3 text-meta font-bold ${
+                    locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper text-ink-60'
+                  }`}
+                >
+                  {targetLocale.toUpperCase()}
+                </button>
+              ) : (
                 <Link
                   key={targetLocale}
                   href={localizePublicPath(pathname, targetLocale)}
@@ -162,7 +177,20 @@ export default function Header({ locale = 'fr' }: HeaderProps) {
               {copy.help}
             </Link>
             <div className="flex gap-2 py-3" role="group" aria-label={locale === 'fr' ? 'Choisir la langue' : 'Choose language'}>
-              {(['fr', 'en'] as const).map((targetLocale) => (
+              {(['fr', 'en'] as const).map((targetLocale) => onLocaleChange ? (
+                <button
+                  key={targetLocale}
+                  type="button"
+                  lang={targetLocale}
+                  aria-pressed={locale === targetLocale}
+                  onClick={() => { onLocaleChange(targetLocale); setMenuOpen(false); }}
+                  className={`inline-flex min-h-11 items-center px-4 rounded-md text-meta font-bold ${
+                    locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper-deep text-ink-60'
+                  }`}
+                >
+                  {targetLocale.toUpperCase()}
+                </button>
+              ) : (
                 <Link
                   key={targetLocale}
                   href={localizePublicPath(pathname, targetLocale)}

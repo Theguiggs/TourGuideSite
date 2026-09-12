@@ -35,6 +35,11 @@ export default function PreviewPage() {
   const sessionId = params.sessionId;
   const router = useRouter();
   const { t } = useStudioLocale();
+  // `t` est lu via une ref dans l'effet de chargement : l'ajouter à ses
+  // dépendances rechargerait la session (et couperait l'écoute en cours) à
+  // chaque bascule de langue.
+  const tRef = useRef(t);
+  tRef.current = t;
 
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenes, setScenes] = useState<StudioScene[]>([]);
@@ -92,7 +97,7 @@ export default function PreviewPage() {
         }
       } catch (e) {
         if (!cancelled) {
-          setError('Impossible de charger la session.');
+          setError(tRef.current('Impossible de charger la session.', 'Unable to load the session.'));
           logger.error(SERVICE_NAME, 'Load failed', { error: String(e) });
         }
       } finally {
@@ -267,7 +272,7 @@ export default function PreviewPage() {
         setSubmitMessage(result.error);
       }
     } catch (e) {
-      setSubmitMessage('Erreur inattendue.');
+      setSubmitMessage(t('Erreur inattendue.', 'Unexpected error.'));
       logger.error(SERVICE_NAME, 'Submit for review failed', { error: String(e) });
     } finally {
       setIsSubmitting(false);
@@ -283,7 +288,7 @@ export default function PreviewPage() {
       const result = await retractSubmission(sessionId, session.tourId);
       if (result.ok) {
         setIsSubmitSuccess(true);
-        setSubmitMessage('Publication retirée.');
+        setSubmitMessage(t('Publication retirée.', 'Submission withdrawn.'));
         logger.info(SERVICE_NAME, 'Submission retracted', { sessionId, tourId: session.tourId });
         const sess = await getStudioSession(sessionId);
         if (sess) { setSession(sess); setActiveSession(sess); }
@@ -291,12 +296,12 @@ export default function PreviewPage() {
         setSubmitMessage(result.error);
       }
     } catch (e) {
-      setSubmitMessage('Erreur inattendue.');
+      setSubmitMessage(t('Erreur inattendue.', 'Unexpected error.'));
       logger.error(SERVICE_NAME, 'Retract failed', { error: String(e) });
     } finally {
       setIsRetracting(false);
     }
-  }, [sessionId, session?.tourId, setActiveSession]);
+  }, [sessionId, session?.tourId, setActiveSession, t]);
 
   const handleDelete = useCallback(async () => {
     setIsDeleting(true);
@@ -334,7 +339,7 @@ export default function PreviewPage() {
           &larr; {t('Retour à la session', 'Back to session')}
         </Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">
-          {error || 'Session introuvable.'}
+          {error || t('Session introuvable.', 'Session not found.')}
         </div>
       </div>
     );
@@ -348,7 +353,7 @@ export default function PreviewPage() {
   const canArchive = isPublished;
   const canSuspend = ['draft', 'editing', 'recording', 'ready', 'revision_requested', 'rejected'].includes(session.status);
 
-  const displayTitle = session.title || 'Ma visite';
+  const displayTitle = session.title || t('Ma visite', 'My tour');
 
   // Le Studio travaille uniquement la source. Les langues visiteurs sont
   // fabriquées hors Studio et ne sont jamais éditables ici.
@@ -361,10 +366,10 @@ export default function PreviewPage() {
       <PageTitle size="h4" className="mb-1">Preview — {session.title || 'Session'}</PageTitle>
       <p className="text-body text-ink-60 mb-2" data-testid="preview-narration-mode">
         {session.narrationMode === 'recording'
-          ? 'Voix humaine — les audios source sont prévisualisés.'
+          ? t('Voix humaine — les audios source sont prévisualisés.', 'Human voice — the source audio is previewed.')
           : session.narrationMode === 'tts_on_demand'
-            ? 'TTS à la demande — le Studio prévisualise les textes source, sans fabriquer d’audio.'
-            : 'Mode de narration à choisir avant soumission.'}
+            ? t('TTS à la demande — le Studio prévisualise les textes source, sans fabriquer d’audio.', 'On-demand TTS — the Studio previews the source texts without producing any audio.')
+            : t('Mode de narration à choisir avant soumission.', 'Narration mode must be chosen before submission.')}
       </p>
 
       {/* View mode toggle */}
@@ -393,7 +398,7 @@ export default function PreviewPage() {
         <div className="mb-4 rounded-xl overflow-hidden max-w-sm" data-testid="preview-cover">
           <S3Image
             s3Key={session.coverPhotoKey}
-            alt="Photo de couverture du parcours"
+            alt={t('Photo de couverture du parcours', 'Tour cover photo')}
             className="w-full h-48 object-cover"
             fallback=""
           />
@@ -422,7 +427,7 @@ export default function PreviewPage() {
               <p className="text-paper text-meta font-medium uppercase tracking-wider">{session.language.toUpperCase()}</p>
               <h2 className="text-h5 font-bold">{displayTitle}</h2>
               <div className="flex items-center gap-3 mt-1 text-body text-paper-soft">
-                <span>{scenes.length} etapes</span>
+                <span>{scenes.length} {t('etapes', 'stops')}</span>
                 <span>~{scenes.length * 3} min</span>
               </div>
             </div>
@@ -445,7 +450,7 @@ export default function PreviewPage() {
               </>
             ) : (
               <p className="rounded-xl bg-card/10 p-3 text-body text-paper-soft">
-                L’audio sera créé à la première écoute connectée, après publication.
+                {t('L’audio sera créé à la première écoute connectée, après publication.', 'The audio will be created on the first online listen, after publication.')}
               </p>
             )}
           </div>
@@ -470,7 +475,7 @@ export default function PreviewPage() {
                         <S3Image
                           key={pi}
                           s3Key={url}
-                          alt={`${scene.title || `Étape ${index + 1}`} — photo ${pi + 1}`}
+                          alt={`${scene.title || `${t('Étape', 'Stop')} ${index + 1}`} — photo ${pi + 1}`}
                           className={`h-full object-cover flex-shrink-0 ${scene.photosRefs.length === 1 ? 'w-full' : 'w-28'}`}
                           fallback={`Photo ${pi + 1}`}
                         />
@@ -488,7 +493,7 @@ export default function PreviewPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className={`text-body font-medium truncate ${isActive ? 'text-white' : 'text-paper'}`}>
-                        {getSceneTitle(scene) || `Étape ${index + 1}`}
+                        {getSceneTitle(scene) || `${t('Étape', 'Stop')} ${index + 1}`}
                       </p>
                       {scene.poiDescription && (
                         <p className="text-meta text-ink-40 truncate">{scene.poiDescription}</p>
@@ -545,7 +550,7 @@ export default function PreviewPage() {
           </div>
           ) : (
             <div className="mb-4 p-3 bg-olive-soft text-olive rounded-xl text-body">
-              Aucun audio n’est fabriqué dans le Studio. Les textes ci-dessous sont ceux qui seront synthétisés à la demande.
+              {t('Aucun audio n’est fabriqué dans le Studio. Les textes ci-dessous sont ceux qui seront synthétisés à la demande.', 'No audio is produced in the Studio. The texts below are the ones that will be synthesised on demand.')}
             </div>
           )}
 
@@ -571,13 +576,13 @@ export default function PreviewPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <p className="font-medium text-ink">
-                      {getSceneTitle(scene) || `Scène ${index + 1}`}
+                      {getSceneTitle(scene) || `${t('Scène', 'Scene')} ${index + 1}`}
                     </p>
                     {scene.qualityScore && (
                       <span className={`inline-flex px-1.5 py-0 rounded text-eyebrow font-medium ${
                         scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                       }`}>
-                        {scene.qualityScore === 'good' ? '✓ Bonne' : '⚠ À améliorer'}
+                        {scene.qualityScore === 'good' ? t('✓ Bonne', '✓ Good') : t('⚠ À améliorer', '⚠ Needs improvement')}
                       </span>
                     )}
                   </div>
@@ -612,7 +617,7 @@ export default function PreviewPage() {
                   className={`w-8 h-8 rounded-pill flex items-center justify-center flex-shrink-0 transition ${
                     isActive ? 'bg-grenadine text-white' : 'bg-paper-soft text-ink-80 hover:bg-grenadine-soft'
                   }`}
-                  aria-label={isActive ? `Pause scène ${index + 1}` : `Écouter scène ${index + 1}`}
+                  aria-label={isActive ? `${t('Pause scène', 'Pause scene')} ${index + 1}` : `${t('Écouter scène', 'Play scene')} ${index + 1}`}
                 >
                   {isActive ? '⏸' : '▶'}
                 </button>
@@ -677,11 +682,11 @@ export default function PreviewPage() {
                   await updateGuideTourMutation(session.tourId, { status: 'draft' });
                 }
                 setIsSubmitSuccess(true);
-                setSubmitMessage('Parcours suspendu.');
+                setSubmitMessage(t('Parcours suspendu.', 'Tour suspended.'));
                 const sess = await getStudioSession(sessionId);
                 if (sess) { setSession(sess); setActiveSession(sess); }
               } catch {
-                setSubmitMessage('Erreur.');
+                setSubmitMessage(t('Erreur.', 'Error.'));
               } finally {
                 setIsSubmitting(false);
               }
@@ -690,7 +695,7 @@ export default function PreviewPage() {
             className="border border-ink-40 text-ink-80 hover:bg-paper-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-body"
             data-testid="suspend-btn"
           >
-            ⏸ Suspendre
+            ⏸ {t('Suspendre', 'Suspend')}
           </button>
         )}
 
@@ -708,11 +713,11 @@ export default function PreviewPage() {
                   await updateGuideTourMutation(session.tourId, { status: 'archived' });
                 }
                 setIsSubmitSuccess(true);
-                setSubmitMessage('Parcours archivé.');
+                setSubmitMessage(t('Parcours archivé.', 'Tour archived.'));
                 const sess = await getStudioSession(sessionId);
                 if (sess) { setSession(sess); setActiveSession(sess); }
               } catch {
-                setSubmitMessage('Erreur.');
+                setSubmitMessage(t('Erreur.', 'Error.'));
               } finally {
                 setIsSubmitting(false);
               }
@@ -721,7 +726,7 @@ export default function PreviewPage() {
             className="border border-ocre text-ocre-ink hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-5 rounded-lg transition text-body"
             data-testid="archive-btn"
           >
-            📦 Archiver
+            📦 {t('Archiver', 'Archive')}
           </button>
         )}
 
@@ -749,7 +754,7 @@ export default function PreviewPage() {
             className="text-body text-ink-60 hover:text-danger transition"
             data-testid="delete-btn"
           >
-            🗑️ Supprimer
+            🗑️ {t('Supprimer', 'Delete')}
           </button>
         )}
 

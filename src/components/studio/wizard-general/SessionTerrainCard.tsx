@@ -39,7 +39,7 @@ export function SessionTerrainCard({
   status,
   defaultCollapsed = false,
 }: SessionTerrainCardProps) {
-  const { locale } = useStudioLocale();
+  const { locale, t } = useStudioLocale();
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
   const dateLabel = formatDate(capturedAt, locale);
 
@@ -64,11 +64,11 @@ export function SessionTerrainCard({
           </span>
           <div className="min-w-0">
             <div className="text-caption font-bold text-ink truncate">
-              Session terrain · {scenesCount} scène{scenesCount > 1 ? 's' : ''}
+              {t('Session terrain', 'Field session')} · {scenesCount} {t('scène', 'scene')}{scenesCount > 1 ? 's' : ''}
               {capturedAt && ` · ${dateLabel}`}
             </div>
             <div className="text-meta text-ink-60">
-              Capture audio in-situ — à l&apos;origine de la visite
+              {t("Capture audio in-situ — à l'origine de la visite", 'On-site audio capture — where this tour began')}
             </div>
           </div>
         </div>
@@ -81,15 +81,15 @@ export function SessionTerrainCard({
           className="px-5 py-3.5 grid gap-x-4 gap-y-2.5 text-caption"
           style={{ gridTemplateColumns: '120px 1fr' }}
         >
-          <span className="text-ink-60">Scènes</span>
+          <span className="text-ink-60">{t('Scènes', 'Scenes')}</span>
           <span className="text-ink font-semibold">{scenesCount}</span>
           {status && (
             <>
-              <span className="text-ink-60">Statut</span>
+              <span className="text-ink-60">{t('Statut', 'Status')}</span>
               <span className="text-ink font-semibold">{status}</span>
             </>
           )}
-          <span className="text-ink-60">Créée le</span>
+          <span className="text-ink-60">{t('Créée le', 'Created on')}</span>
           <span className="text-ink font-semibold">{dateLabel}</span>
         </div>
       )}

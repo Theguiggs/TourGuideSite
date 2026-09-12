@@ -6,10 +6,12 @@ import { resetPassword, confirmResetPassword } from 'aws-amplify/auth';
 import { logger } from '@/lib/logger';
 import { describeAuthError, isUnknownUserError } from '@/lib/auth/cognito-errors';
 import { PageTitle } from '@murmure/design-system/web';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'ResetPasswordPage';
 
 export default function ResetPasswordPage() {
+  const { t } = useStudioLocale();
   const [step, setStep] = useState<'request' | 'confirm' | 'done'>('request');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -53,11 +55,11 @@ export default function ResetPasswordPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-paper p-4">
       <div className="w-full max-w-sm">
-        <PageTitle size="h4" className="mb-2">Réinitialiser le mot de passe</PageTitle>
+        <PageTitle size="h4" className="mb-2">{t('Réinitialiser le mot de passe', 'Reset your password')}</PageTitle>
 
         {step === 'request' && (
           <form onSubmit={handleRequest} className="space-y-4">
-            <p className="text-body text-ink-60">Entrez votre email pour recevoir un code de réinitialisation.</p>
+            <p className="text-body text-ink-60">{t('Entrez votre email pour recevoir un code de réinitialisation.', 'Enter your email to receive a reset code.')}</p>
             <label htmlFor="reset-email" className="block text-body font-semibold text-ink-80 mb-1">Email</label>
             <input
               id="reset-email"
@@ -74,31 +76,31 @@ export default function ResetPasswordPage() {
               disabled={loading}
               className="w-full bg-grenadine text-white font-bold py-3 rounded-pill hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-body"
             >
-              {loading ? 'Envoi…' : 'Envoyer le code'}
+              {loading ? t('Envoi…', 'Sending…') : t('Envoyer le code', 'Send the code')}
             </button>
           </form>
         )}
 
         {step === 'confirm' && (
           <form onSubmit={handleConfirm} className="space-y-4">
-            <p className="text-body text-ink-60">Un code a été envoyé à <strong>{email}</strong>. Entrez-le ci-dessous avec votre nouveau mot de passe.</p>
-            <label htmlFor="reset-code" className="block text-body font-semibold text-ink-80 mb-1">Code de vérification</label>
+            <p className="text-body text-ink-60">{t('Un code a été envoyé à ', 'A code has been sent to ')}<strong>{email}</strong>{t('. Entrez-le ci-dessous avec votre nouveau mot de passe.', '. Enter it below with your new password.')}</p>
+            <label htmlFor="reset-code" className="block text-body font-semibold text-ink-80 mb-1">{t('Code de vérification', 'Verification code')}</label>
             <input
               id="reset-code"
               type="text"
               required
-              placeholder="Code de vérification"
+              placeholder={t('Code de vérification', 'Verification code')}
               value={code}
               onChange={(e) => setCode(e.target.value)}
               autoComplete="one-time-code"
               className="w-full border border-line rounded-lg px-3 py-2 text-body focus:outline-none focus:ring-2 focus:ring-grenadine"
             />
-            <label htmlFor="reset-new-password" className="block text-body font-semibold text-ink-80 mb-1">Nouveau mot de passe</label>
+            <label htmlFor="reset-new-password" className="block text-body font-semibold text-ink-80 mb-1">{t('Nouveau mot de passe', 'New password')}</label>
             <input
               id="reset-new-password"
               type="password"
               required
-              placeholder="Nouveau mot de passe"
+              placeholder={t('Nouveau mot de passe', 'New password')}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               minLength={8}
@@ -110,22 +112,22 @@ export default function ResetPasswordPage() {
               disabled={loading}
               className="w-full bg-grenadine text-white font-bold py-3 rounded-pill hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition text-body"
             >
-              {loading ? 'Réinitialisation…' : 'Réinitialiser'}
+              {loading ? t('Réinitialisation…', 'Resetting…') : t('Réinitialiser', 'Reset')}
             </button>
             <button type="button" onClick={() => setStep('request')} className="w-full text-body text-ink-60 hover:text-ink">
-              ← Recommencer
+              {t('← Recommencer', '← Start over')}
             </button>
           </form>
         )}
 
         {step === 'done' && (
           <div className="space-y-4">
-            <p className="text-body text-success font-medium">Mot de passe réinitialisé avec succès.</p>
+            <p className="text-body text-success font-medium">{t('Mot de passe réinitialisé avec succès.', 'Password reset successfully.')}</p>
             <Link
               href="/guide/login"
               className="block w-full text-center bg-grenadine text-white font-bold py-3 rounded-pill hover:opacity-90 transition text-body"
             >
-              Se connecter
+              {t('Se connecter', 'Sign in')}
             </Link>
           </div>
         )}
@@ -133,7 +135,7 @@ export default function ResetPasswordPage() {
         {step !== 'done' && (
           <p className="text-center text-body text-ink-60 mt-6">
             <Link href="/guide/login" className="text-grenadine hover:underline">
-              Retour à la connexion
+              {t('Retour à la connexion', 'Back to sign in')}
             </Link>
           </p>
         )}

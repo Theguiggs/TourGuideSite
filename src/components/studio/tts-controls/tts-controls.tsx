@@ -148,7 +148,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
 
       {isFailed && (
         <div className="p-3 bg-grenadine-soft border border-grenadine-soft rounded-lg" data-testid="tts-failed">
-          <p className="text-body text-danger">{ttsState?.error ?? 'Échec de la génération.'}</p>
+          <p className="text-body text-danger">{ttsState?.error ?? t('Échec de la génération.', 'Generation failed.')}</p>
           <button
             onClick={handleGenerate}
             className="mt-2 text-body font-medium text-danger underline hover:opacity-80"
@@ -165,8 +165,8 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
             <div>
               <p className="text-body font-medium text-success">{t('Audio TTS généré', 'TTS audio generated')}</p>
               <p className="text-meta text-success mt-0.5">
-                Langue : {(ttsState.language ?? language).toUpperCase()}
-                {ttsState.durationMs && ` | Durée : ${Math.round(ttsState.durationMs / 1000)}s`}
+                {t('Langue :', 'Language:')} {(ttsState.language ?? language).toUpperCase()}
+                {ttsState.durationMs && t(` | Durée : ${Math.round(ttsState.durationMs / 1000)}s`, ` | Duration: ${Math.round(ttsState.durationMs / 1000)}s`)}
               </p>
             </div>
             <button
@@ -189,7 +189,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
               className="text-meta text-mer hover:opacity-80 font-medium"
               data-testid="toggle-ssml-editor"
             >
-              {showEditor ? 'Masquer l’éditeur' : 'Éditer le texte / ajouter des effets'}
+              {showEditor ? t('Masquer l’éditeur', 'Hide the editor') : t('Éditer le texte / ajouter des effets', 'Edit the text / add effects')}
             </button>
             {hasSSML && (
               <span className="text-eyebrow bg-mer-soft text-mer px-1.5 py-0.5 rounded font-medium">SSML</span>
@@ -209,7 +209,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
                 onChange={(e) => setEditableText(e.target.value)}
                 rows={6}
                 className="w-full p-2 border border-line rounded-lg text-body text-ink leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-mer font-mono"
-                placeholder="Texte pour la synthese vocale..."
+                placeholder={t('Texte pour la synthese vocale...', 'Text for speech synthesis...')}
                 data-testid="tts-text-editor"
               />
             </div>
@@ -225,7 +225,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
           className="w-full bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white font-medium py-2.5 rounded-lg text-body transition"
           data-testid="tts-generate-btn"
         >
-          {isTriggering ? 'Lancement...' : hasSSML ? 'Générer l\'audio (avec effets)' : 'Générer l\'audio'}
+          {isTriggering ? t('Lancement...', 'Starting...') : hasSSML ? t('Générer l\'audio (avec effets)', 'Generate audio (with effects)') : t('Générer l\'audio', 'Generate audio')}
         </button>
       )}
 
@@ -252,12 +252,12 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
             className="flex-1 bg-mer hover:opacity-90 disabled:bg-paper-deep text-white font-medium py-2 rounded-lg text-body transition"
             data-testid="tts-save-scene-btn"
           >
-            {isSaving ? 'Sauvegarde…' : saved ? 'Sauvegardé !' : 'Utiliser comme audio de la scène'}
+            {isSaving ? t('Sauvegarde…', 'Saving…') : saved ? t('Sauvegardé !', 'Saved!') : t('Utiliser comme audio de la scène', 'Use as the scene audio')}
           </button>
         </div>
       )}
       {saved && (
-        <p className="text-meta text-success text-center">Audio TTS enregistré comme audio de cette scène</p>
+        <p className="text-meta text-success text-center">{t('Audio TTS enregistré comme audio de cette scène', 'TTS audio saved as this scene’s audio')}</p>
       )}
 
       {/* Re-generate if already completed */}
@@ -268,7 +268,7 @@ export function TTSControls({ segment, text, language, gpuAvailable, onSaveAsSce
           className="w-full border border-grenadine-soft text-grenadine hover:bg-grenadine-soft font-medium py-2 rounded-lg text-body transition"
           data-testid="tts-regenerate-btn"
         >
-          Regenerer l&apos;audio
+          {t("Regenerer l'audio", 'Regenerate audio')}
         </button>
       )}
     </div>

@@ -3,6 +3,7 @@
 import type React from 'react';
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { PrompterEngine, type PrompterState } from '@/lib/studio/prompter-engine';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface TeleprompterProps {
   text: string;
@@ -28,8 +29,10 @@ export function Teleprompter({
   onPauseRequested,
   onResumeRequested,
   onStopRequested,
-  startLabel = 'Démarrer',
+  startLabel,
 }: TeleprompterProps) {
+  const { t } = useStudioLocale();
+  const resolvedStartLabel = startLabel ?? t('Démarrer', 'Start');
   const engineRef = useRef<PrompterEngine | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [autoFollow, setAutoFollow] = useState(true);
@@ -190,14 +193,14 @@ export function Teleprompter({
     ? Math.round((state.currentWordIndex / (words.length - 1)) * 100)
     : 0;
   const readingStatus = state.isPaused
-    ? 'En pause'
+    ? t('En pause', 'Paused')
     : pendingAction === 'starting'
-      ? 'Activation du micro…'
+      ? t('Activation du micro…', 'Enabling the microphone…')
       : pendingAction === 'stopping'
-        ? 'Finalisation de la prise…'
+        ? t('Finalisation de la prise…', 'Finalising the take…')
     : state.isScrolling
-      ? autoFollow ? 'Lecture guidée' : 'Défilement libre'
-      : 'Prêt à lire';
+      ? autoFollow ? t('Lecture guidée', 'Guided reading') : t('Défilement libre', 'Free scrolling')
+      : t('Prêt à lire', 'Ready to read');
 
   return (
     <div
@@ -219,10 +222,10 @@ export function Teleprompter({
             data-testid="prompter-start"
           >
             {pendingAction === 'starting'
-              ? 'Activation du micro…'
+              ? t('Activation du micro…', 'Enabling the microphone…')
               : pendingAction === 'stopping'
-                ? 'Finalisation…'
-                : `● ${startLabel}`}
+                ? t('Finalisation…', 'Finalising…')
+                : `● ${resolvedStartLabel}`}
           </button>
         ) : state.isPaused ? (
           <button
@@ -232,7 +235,7 @@ export function Teleprompter({
             className="rounded-lg bg-grenadine px-5 py-2.5 font-semibold text-white transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
             data-testid="prompter-resume"
           >
-            ▶ Reprendre
+            ▶ {t('Reprendre', 'Resume')}
           </button>
         ) : (
           <button
@@ -264,13 +267,13 @@ export function Teleprompter({
             className="rounded-lg border border-ocre px-4 py-2.5 font-semibold text-ocre transition-colors hover:bg-ocre hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
             data-testid="prompter-follow"
           >
-            Suivre le texte
+            {t('Suivre le texte', 'Follow the text')}
           </button>
         )}
 
         <div className="order-last flex w-full items-center gap-3 sm:order-none sm:ml-auto sm:w-auto">
           <label htmlFor="speed-slider" className="text-body text-paper-soft">
-            Vitesse
+            {t('Vitesse', 'Speed')}
           </label>
           <input
             id="speed-slider"
@@ -315,7 +318,7 @@ export function Teleprompter({
         className="relative min-h-0 flex-1 overflow-y-auto overscroll-contain bg-ink px-5 py-8 scroll-py-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ocre sm:px-10 sm:py-10 sm:scroll-py-10"
         tabIndex={0}
         role="region"
-        aria-label="Texte du prompteur"
+        aria-label={t('Texte du prompteur', 'Prompter text')}
         onWheel={releaseAutoFollow}
         onTouchStart={releaseAutoFollow}
         onPointerDown={releaseAutoFollow}

@@ -18,6 +18,7 @@ import { computeMixedOrder, type LangMode, type LangSelections } from '@/lib/mul
 import { isLanguagePremium } from '@/lib/multilang/provider-router';
 import { getStripePromise } from '@/lib/stripe/client';
 import type { QualityTier } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 // --- Stripe payment form (must live inside <Elements>) ---
 function MultilangPaymentForm({
@@ -32,10 +33,11 @@ function MultilangPaymentForm({
   const stripe = useStripe();
   const elements = useElements();
   const [busy, setBusy] = useState(false);
+  const { t } = useStudioLocale();
 
   const handlePay = useCallback(async () => {
     if (!stripe || !elements) {
-      onError('Le paiement est momentanément indisponible. Réessayez dans quelques instants.');
+      onError(t('Le paiement est momentanément indisponible. Réessayez dans quelques instants.', 'Payment is temporarily unavailable. Please try again in a moment.'));
       return;
     }
     setBusy(true);
@@ -46,7 +48,7 @@ function MultilangPaymentForm({
       });
       if (error) {
         setBusy(false);
-        onError(error.message ?? 'Paiement refusé.');
+        onError(error.message ?? t('Paiement refusé.', 'Payment declined.'));
         return;
       }
       if (paymentIntent?.status === 'succeeded') {
@@ -54,12 +56,12 @@ function MultilangPaymentForm({
         return;
       }
       setBusy(false);
-      onError(`Paiement non finalisé (${paymentIntent?.status ?? 'inconnu'}).`);
+      onError(t(`Paiement non finalisé (${paymentIntent?.status ?? 'inconnu'}).`, `Payment not completed (${paymentIntent?.status ?? 'unknown'}).`));
     } catch (e) {
       setBusy(false);
-      onError(`Erreur paiement : ${e instanceof Error ? e.message : String(e)}`);
+      onError(t(`Erreur paiement : ${e instanceof Error ? e.message : String(e)}`, `Payment error: ${e instanceof Error ? e.message : String(e)}`));
     }
-  }, [stripe, elements, paymentIntentId, onSuccess, onError]);
+  }, [stripe, elements, paymentIntentId, onSuccess, onError, t]);
 
   return (
     <div className="space-y-4">
@@ -72,7 +74,7 @@ function MultilangPaymentForm({
           busy ? 'bg-paper-deep text-ink-40 cursor-not-allowed' : 'bg-grenadine text-white hover:opacity-90'
         }`}
       >
-        {busy ? 'Traitement...' : 'Confirmer le paiement'}
+        {busy ? t('Traitement...', 'Processing...') : t('Confirmer le paiement', 'Confirm payment')}
       </button>
     </div>
   );
@@ -96,6 +98,12 @@ const MODE_LABELS: Record<LangMode | 'none', string> = {
   standard: 'Auto Standard',
   pro: 'Auto Pro',
 };
+const MODE_LABELS_EN: Record<LangMode | 'none', string> = {
+  none: '— none',
+  manual: 'Manual (free)',
+  standard: 'Auto Standard',
+  pro: 'Auto Pro',
+};
 
 export function OpenMultilangModal({
   sessionId,
@@ -109,6 +117,8 @@ export function OpenMultilangModal({
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [pendingPayment, setPendingPayment] = useState<{ clientSecret: string; paymentIntentId: string } | null>(null);
+  const { t, locale } = useStudioLocale();
+  const modeLabels = locale === 'en' ? MODE_LABELS_EN : MODE_LABELS;
 
   const allPurchases = useLanguagePurchaseStore((s) => s.purchases);
   const setPurchases = useLanguagePurchaseStore((s) => s.setPurchases);
@@ -206,12 +216,12 @@ export function OpenMultilangModal({
       const collected: typeof purchases = [];
       if (Object.keys(newSelections).length > 0) {
         const result = await confirmLanguagePurchaseMixed(sessionId, newSelections, paymentIntentId, freeLanguageUsed);
-        if (!result.ok) { setErrorMessage('Erreur serveur. Réessayez.'); setIsLoading(false); return; }
+        if (!result.ok) { setErrorMessage(t('Erreur serveur. Réessayez.', 'Server error. Please try again.')); setIsLoading(false); return; }
         collected.push(...result.value);
       }
       if (Object.keys(upgradeSelections).length > 0) {
         const up = await upgradeLanguagesToAuto(sessionId, upgradeSelections, paymentIntentId, overwriteContent);
-        if (!up.ok) { setErrorMessage('Erreur lors de l\'upgrade. Réessayez.'); setIsLoading(false); return; }
+        if (!up.ok) { setErrorMessage(t('Erreur lors de l\'upgrade. Réessayez.', 'Upgrade failed. Please try again.')); setIsLoading(false); return; }
         collected.push(...up.value);
       }
       if (collected.length > 0) setPurchases(collected);
@@ -226,11 +236,11 @@ export function OpenMultilangModal({
       setPendingPayment(null);
       setConfirmedIntentId(null);
     } catch (err) {
-      setErrorMessage('Erreur inattendue. Réessayez.');
+      setErrorMessage(t('Erreur inattendue. Réessayez.', 'Unexpected error. Please try again.'));
       logger.error(SERVICE_NAME, 'runConfirm failed', { error: String(err) });
     }
     setIsLoading(false);
-  }, [sessionId, newSelections, upgradeSelections, autoLangs, chargeableSelections, freeLanguageUsed, setPurchases, onLanguagesChanged, onClose, onBatchTranslationNeeded]);
+  }, [sessionId, newSelections, upgradeSelections, autoLangs, chargeableSelections, freeLanguageUsed, setPurchases, onLanguagesChanged, onClose, onBatchTranslationNeeded, t]);
 
   const handleConfirm = useCallback(async () => {
     if (chargeableCount === 0) return;
@@ -243,7 +253,7 @@ export function OpenMultilangModal({
       if (order.totalCents > 0) {
         const piResult = await createPaymentIntentMixed(sessionId, chargeableSelections);
         if (!piResult.ok) {
-          setErrorMessage(piResult.error.message || 'Erreur de paiement. Réessayez.');
+          setErrorMessage(piResult.error.message || t('Erreur de paiement. Réessayez.', 'Payment error. Please try again.'));
           logger.error(SERVICE_NAME, 'Payment intent failed', { code: piResult.error.code, message: piResult.error.message });
           setIsLoading(false);
           return;
@@ -251,7 +261,7 @@ export function OpenMultilangModal({
         // Defensive: never mount Stripe <Elements> with an empty clientSecret
         // (it throws "clientSecret should be of the form ${id}_secret_${secret}").
         if (!piResult.value.clientSecret) {
-          setErrorMessage('Paiement indisponible (clientSecret manquant). Réessayez.');
+          setErrorMessage(t('Paiement indisponible (clientSecret manquant). Réessayez.', 'Payment unavailable (missing clientSecret). Please try again.'));
           logger.error(SERVICE_NAME, 'Payment intent returned empty clientSecret', {});
           setIsLoading(false);
           return;
@@ -274,11 +284,11 @@ export function OpenMultilangModal({
       }
       await runConfirm(paymentIntentId, true);
     } catch (err) {
-      setErrorMessage('Erreur inattendue. Réessayez.');
+      setErrorMessage(t('Erreur inattendue. Réessayez.', 'Unexpected error. Please try again.'));
       logger.error(SERVICE_NAME, 'Unexpected error', { error: String(err) });
       setIsLoading(false);
     }
-  }, [sessionId, chargeableSelections, order.totalCents, chargeableCount, upgradeSelections, runConfirm]);
+  }, [sessionId, chargeableSelections, order.totalCents, chargeableCount, upgradeSelections, runConfirm, t]);
 
   const handlePaymentSuccess = useCallback(async (confirmedIntentId: string) => {
     if (!pendingPayment) return;
@@ -313,10 +323,10 @@ export function OpenMultilangModal({
 
   const payLabel =
     chargeableCount === 0
-      ? 'Sélectionnez une langue'
+      ? t('Sélectionnez une langue', 'Select a language')
       : order.totalCents === 0
-        ? 'Ajouter les langues (gratuit)'
-        : `Payer et traduire — ${formatPrice(order.totalCents)}`;
+        ? t('Ajouter les langues (gratuit)', 'Add languages (free)')
+        : t(`Payer et traduire — ${formatPrice(order.totalCents, locale)}`, `Pay and translate — ${formatPrice(order.totalCents, locale)}`);
 
   return (
     <div
@@ -329,23 +339,23 @@ export function OpenMultilangModal({
         data-testid="multilang-modal"
         role="dialog"
         aria-modal="true"
-        aria-label="Ajouter des langues"
+        aria-label={t('Ajouter des langues', 'Add languages')}
       >
         <button
           type="button"
           onClick={onClose}
           disabled={closeLocked}
           className="absolute top-3 right-3 text-ink-40 hover:text-ink-80 text-h5 leading-none z-10 disabled:opacity-40"
-          aria-label="Fermer"
+          aria-label={t('Fermer', 'Close')}
           data-testid="modal-close-btn"
         >
           &times;
         </button>
 
         <div className="p-6">
-          <h2 className="text-h6 font-bold text-ink mb-1">Ajouter des langues</h2>
+          <h2 className="text-h6 font-bold text-ink mb-1">{t('Ajouter des langues', 'Add languages')}</h2>
           <p className="text-body text-ink-60 mb-5">
-            Choisissez, pour chaque langue, de traduire vous-même (gratuit) ou de laisser l&apos;IA traduire.
+            {t("Choisissez, pour chaque langue, de traduire vous-même (gratuit) ou de laisser l'IA traduire.", 'For each language, choose to translate it yourself (free) or let the AI translate.')}
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6">
@@ -354,9 +364,9 @@ export function OpenMultilangModal({
               <table className="w-full text-body">
                 <thead>
                   <tr className="border-b border-line text-ink-60">
-                    <th className="text-left font-medium py-2">Langue</th>
-                    <th className="text-left font-medium py-2 px-2">Traduction</th>
-                    <th className="text-right font-medium py-2">Prix</th>
+                    <th className="text-left font-medium py-2">{t('Langue', 'Language')}</th>
+                    <th className="text-left font-medium py-2 px-2">{t('Traduction', 'Translation')}</th>
+                    <th className="text-right font-medium py-2">{t('Prix', 'Price')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -384,7 +394,7 @@ export function OpenMultilangModal({
                         </td>
                         <td className="py-2 px-2">
                           {isAuto ? (
-                            <span className="text-meta text-success" data-testid={`locked-auto-${lang.code}`}>Déjà ajoutée (Auto)</span>
+                            <span className="text-meta text-success" data-testid={`locked-auto-${lang.code}`}>{t('Déjà ajoutée (Auto)', 'Already added (Auto)')}</span>
                           ) : (
                             <select
                               value={mode}
@@ -394,10 +404,10 @@ export function OpenMultilangModal({
                               className="border border-line rounded-md px-2 py-1 text-body text-ink-80 bg-card w-full"
                             >
                               {/* Manual-owned languages can't be set back to 'none' (already owned). */}
-                              {!isManualOwned && <option value="none">{MODE_LABELS.none}</option>}
-                              <option value="manual">{isManualOwned ? 'Manuel (actuel)' : MODE_LABELS.manual}</option>
-                              {!premium && <option value="standard">{MODE_LABELS.standard}</option>}
-                              <option value="pro">{MODE_LABELS.pro}</option>
+                              {!isManualOwned && <option value="none">{modeLabels.none}</option>}
+                              <option value="manual">{isManualOwned ? t('Manuel (actuel)', 'Manual (current)') : modeLabels.manual}</option>
+                              {!premium && <option value="standard">{modeLabels.standard}</option>}
+                              <option value="pro">{modeLabels.pro}</option>
                             </select>
                           )}
                         </td>
@@ -405,18 +415,18 @@ export function OpenMultilangModal({
                           {isAuto ? (
                             <span className="text-meta text-ink-40">—</span>
                           ) : isManualOwned && mode === 'manual' ? (
-                            <span className="text-meta text-ink-40">déjà en manuel</span>
+                            <span className="text-meta text-ink-40">{t('déjà en manuel', 'already manual')}</span>
                           ) : !line ? (
                             <span className="text-ink-40">—</span>
                           ) : line.billing === 'manual' ? (
-                            <span className="text-ink-60">gratuit</span>
+                            <span className="text-ink-60">{t('gratuit', 'free')}</span>
                           ) : line.billing === 'free_first' ? (
-                            <span className="text-grenadine">offerte</span>
+                            <span className="text-grenadine">{t('offerte', 'included')}</span>
                           ) : line.billing === 'pack_3' || line.billing === 'pack_all' ? (
                             <span className="text-grenadine">{line.billing === 'pack_all' ? 'Pack' : 'Pack 3'}</span>
                           ) : (
                             <span className="text-ink-80 font-medium">
-                              {formatPrice(line.priceCents)}{isUpgrade && <span className="text-eyebrow text-mer ml-1">upgrade</span>}
+                              {formatPrice(line.priceCents, locale)}{isUpgrade && <span className="text-eyebrow text-mer ml-1">upgrade</span>}
                             </span>
                           )}
                         </td>
@@ -430,22 +440,22 @@ export function OpenMultilangModal({
             {/* ─── RIGHT: help + recap ─── */}
             <aside className="space-y-4">
               <div className="rounded-lg border border-line bg-paper-soft p-3 text-meta space-y-2.5">
-                <p className="font-bold text-ink text-body">💡 Les offres</p>
+                <p className="font-bold text-ink text-body">💡 {t('Les offres', 'Plans')}</p>
                 <div>
-                  <p className="font-semibold text-ink">Manuel — gratuit</p>
-                  <p className="text-ink-60">Vous rédigez la traduction et enregistrez l&apos;audio vous-même.</p>
+                  <p className="font-semibold text-ink">{t('Manuel — gratuit', 'Manual — free')}</p>
+                  <p className="text-ink-60">{t("Vous rédigez la traduction et enregistrez l'audio vous-même.", 'You write the translation and record the audio yourself.')}</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-ink">Auto Standard — 1,99€</p>
-                  <p className="text-ink-60">Traduction automatique (MarianMT). Langues européennes uniquement.</p>
+                  <p className="font-semibold text-ink">{t('Auto Standard — 1,99€', 'Auto Standard — €1.99')}</p>
+                  <p className="text-ink-60">{t('Traduction automatique (MarianMT). Langues européennes uniquement.', 'Automatic translation (MarianMT). European languages only.')}</p>
                 </div>
                 <div>
-                  <p className="font-semibold text-ink">Auto Pro — 2,99€ <span className="text-ocre-ink">(4,99€ premium)</span></p>
-                  <p className="text-ink-60">Traduction automatique (Deepl), meilleure qualité + langues asiatiques.</p>
+                  <p className="font-semibold text-ink">{t('Auto Pro — 2,99€', 'Auto Pro — €2.99')} <span className="text-ocre-ink">{t('(4,99€ premium)', '(€4.99 premium)')}</span></p>
+                  <p className="text-ink-60">{t('Traduction automatique (Deepl), meilleure qualité + langues asiatiques.', 'Automatic translation (Deepl), better quality + Asian languages.')}</p>
                 </div>
                 <div className="pt-1 border-t border-line">
-                  <p className="font-semibold text-grenadine">🎁 Pack Toutes — 12,99€</p>
-                  <p className="text-ink-60">Les 7 langues en auto (~50% d&apos;économie).</p>
+                  <p className="font-semibold text-grenadine">🎁 {t('Pack Toutes — 12,99€', 'All-languages pack — €12.99')}</p>
+                  <p className="text-ink-60">{t("Les 7 langues en auto (~50% d'économie).", 'All 7 languages in auto (~50% savings).')}</p>
                 </div>
               </div>
 
@@ -453,18 +463,21 @@ export function OpenMultilangModal({
               <div className="rounded-lg border border-line bg-card p-3" data-testid="recap-panel">
                 {order.packAllApplied && (
                   <p className="text-meta text-grenadine font-semibold mb-2" data-testid="pack-all-applied">
-                    🎁 Pack Toutes appliqué
+                    🎁 {t('Pack Toutes appliqué', 'All-languages pack applied')}
                   </p>
                 )}
                 {!order.packAllApplied && order.packAllMissing !== null && (
                   <p className="text-meta text-mer mb-2" data-testid="pack-all-hint">
-                    Encore {order.packAllMissing} langue{order.packAllMissing > 1 ? 's' : ''} en auto pour le Pack Toutes (12,99€).
+                    {t(
+                      `Encore ${order.packAllMissing} langue${order.packAllMissing > 1 ? 's' : ''} en auto pour le Pack Toutes (12,99€).`,
+                      `${order.packAllMissing} more auto language${order.packAllMissing > 1 ? 's' : ''} for the all-languages pack (€12.99).`,
+                    )}
                   </p>
                 )}
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-body font-semibold text-ink">Total</span>
                   <span className="text-h6 font-bold text-ink" data-testid="recap-total">
-                    {chargeableCount === 0 ? '—' : order.totalCents === 0 ? 'Gratuit' : formatPrice(order.totalCents)}
+                    {chargeableCount === 0 ? '—' : order.totalCents === 0 ? t('Gratuit', 'Free') : formatPrice(order.totalCents, locale)}
                   </span>
                 </div>
 
@@ -485,7 +498,7 @@ export function OpenMultilangModal({
                   }`}
                   data-testid="confirm-btn"
                 >
-                  {isLoading ? 'Traitement...' : payLabel}
+                  {isLoading ? t('Traitement...', 'Processing...') : payLabel}
                 </button>
               </div>
             </aside>
@@ -496,14 +509,15 @@ export function OpenMultilangModal({
         {pendingOverwrite && (
           <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 rounded-xl p-4" data-testid="overwrite-dialog">
             <div className="bg-card rounded-lg shadow-xl max-w-sm w-full p-5">
-              <h3 className="text-body font-bold text-ink mb-2">Contenu manuel existant</h3>
+              <h3 className="text-body font-bold text-ink mb-2">{t('Contenu manuel existant', 'Existing manual content')}</h3>
               <p className="text-body text-ink-80 mb-1">
-                {pendingOverwrite.langs.map((l) => l.toUpperCase()).join(', ')} contien
-                {pendingOverwrite.langs.length > 1 ? 'nent' : 't'} déjà du texte traduit manuellement.
+                {t(
+                  `${pendingOverwrite.langs.map((l) => l.toUpperCase()).join(', ')} contien${pendingOverwrite.langs.length > 1 ? 'nent' : 't'} déjà du texte traduit manuellement.`,
+                  `${pendingOverwrite.langs.map((l) => l.toUpperCase()).join(', ')} already contain${pendingOverwrite.langs.length > 1 ? '' : 's'} manually translated text.`,
+                )}
               </p>
               <p className="text-body text-ink-60 mb-4">
-                Voulez-vous écraser ce contenu par la traduction automatique, ou le conserver
-                (l&apos;auto ne remplira que les scènes vides) ?
+                {t("Voulez-vous écraser ce contenu par la traduction automatique, ou le conserver (l'auto ne remplira que les scènes vides) ?", 'Do you want to overwrite this content with the automatic translation, or keep it (auto will only fill empty scenes)?')}
               </p>
               <div className="flex flex-col gap-2">
                 <button
@@ -512,7 +526,7 @@ export function OpenMultilangModal({
                   className="w-full rounded-lg px-4 py-2 text-body font-semibold bg-grenadine text-white hover:opacity-90"
                   data-testid="overwrite-confirm"
                 >
-                  Écraser par la traduction auto
+                  {t('Écraser par la traduction auto', 'Overwrite with auto translation')}
                 </button>
                 <button
                   type="button"
@@ -520,7 +534,7 @@ export function OpenMultilangModal({
                   className="w-full rounded-lg px-4 py-2 text-body font-semibold border border-line text-ink-80 hover:bg-paper-soft"
                   data-testid="overwrite-keep"
                 >
-                  Conserver mon contenu manuel
+                  {t('Conserver mon contenu manuel', 'Keep my manual content')}
                 </button>
                 <button
                   type="button"
@@ -528,7 +542,7 @@ export function OpenMultilangModal({
                   className="w-full rounded-lg px-4 py-2 text-meta text-ink-40 hover:text-ink-60"
                   data-testid="overwrite-cancel"
                 >
-                  Annuler
+                  {t('Annuler', 'Cancel')}
                 </button>
               </div>
             </div>
@@ -539,8 +553,8 @@ export function OpenMultilangModal({
         {pendingPayment && pendingPayment.clientSecret && (
           <div className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-black/40 p-4 sm:p-6" data-testid="payment-step">
             <div className="mt-4 mb-6 max-h-[calc(100vh-2rem)] w-full max-w-sm overflow-y-auto rounded-lg bg-card p-5 shadow-xl sm:mt-8">
-              <h3 className="text-body font-bold text-ink mb-2">Paiement — {formatPrice(order.totalCents)}</h3>
-              <p className="text-body text-ink-60 mb-4">Entrez vos informations de paiement pour finaliser l&apos;achat.</p>
+              <h3 className="text-body font-bold text-ink mb-2">{t('Paiement', 'Payment')} — {formatPrice(order.totalCents, locale)}</h3>
+              <p className="text-body text-ink-60 mb-4">{t("Entrez vos informations de paiement pour finaliser l'achat.", 'Enter your payment details to complete the purchase.')}</p>
               {errorMessage && (
                 <p className="text-meta text-danger mb-3" role="alert">{errorMessage}</p>
               )}
@@ -554,7 +568,7 @@ export function OpenMultilangModal({
                   className="w-full rounded-lg px-4 py-2 text-body font-semibold bg-grenadine text-white hover:opacity-90 disabled:opacity-60"
                   data-testid="payment-retry-confirm"
                 >
-                  {isLoading ? 'Validation…' : 'Réessayer la validation (déjà payé)'}
+                  {isLoading ? t('Validation…', 'Validating…') : t('Réessayer la validation (déjà payé)', 'Retry validation (already paid)')}
                 </button>
               ) : (
                 <>
@@ -572,7 +586,7 @@ export function OpenMultilangModal({
                     className="w-full mt-3 rounded-lg px-4 py-2 text-meta text-ink-40 hover:text-ink-60 disabled:opacity-40"
                     data-testid="payment-cancel"
                   >
-                    Annuler
+                    {t('Annuler', 'Cancel')}
                   </button>
                 </>
               )}

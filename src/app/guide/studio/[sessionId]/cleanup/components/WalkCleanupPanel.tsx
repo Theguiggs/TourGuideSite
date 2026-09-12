@@ -3,17 +3,23 @@
 import { useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import type { WalkSegment } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
-const WalkMap = dynamic(() => import('./WalkMap').then((m) => m.WalkMap), {
-  ssr: false,
-  loading: () => (
+function WalkMapLoading() {
+  const { t } = useStudioLocale();
+  return (
     <div
       className="bg-paper-soft rounded-lg h-48 flex items-center justify-center text-body text-ink-40"
       data-testid="walk-map-loading"
     >
-      Chargement de la carte...
+      {t('Chargement de la carte...', 'Loading map...')}
     </div>
-  ),
+  );
+}
+
+const WalkMap = dynamic(() => import('./WalkMap').then((m) => m.WalkMap), {
+  ssr: false,
+  loading: () => <WalkMapLoading />,
 });
 
 interface WalkCleanupPanelProps {
@@ -58,18 +64,19 @@ function formatDistance(m: number | null): string {
 }
 
 export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelProps) {
+  const { t } = useStudioLocale();
   const points = useMemo(() => parseTrack(walk.gpsTrackJson), [walk.gpsTrackJson]);
 
   return (
     <div className="space-y-4" data-testid="walk-cleanup-panel">
       <div className="flex items-center justify-between">
-        <h3 className="text-body font-semibold text-ink">Segment de marche #{walk.order}</h3>
+        <h3 className="text-body font-semibold text-ink">{t('Segment de marche', 'Walk segment')} #{walk.order}</h3>
         {walk.deleted && (
           <span
             className="inline-flex px-2 py-0.5 rounded-pill text-meta font-medium bg-grenadine-soft text-danger"
             data-testid="walk-deleted-badge"
           >
-            Supprimé
+            {t('Supprimé', 'Deleted')}
           </span>
         )}
       </div>
@@ -80,7 +87,7 @@ export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelPro
 
       <dl className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-body" data-testid="walk-stats">
         <div className="bg-paper-soft rounded-lg p-2">
-          <dt className="text-meta text-ink-60">Durée</dt>
+          <dt className="text-meta text-ink-60">{t('Durée', 'Duration')}</dt>
           <dd className="font-medium text-ink" data-testid="walk-stat-duration">{formatDuration(walk.durationMs)}</dd>
         </div>
         <div className="bg-paper-soft rounded-lg p-2">
@@ -92,14 +99,14 @@ export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelPro
           <dd className="font-medium text-ink" data-testid="walk-stat-photos">{walk.photoRefs.length}</dd>
         </div>
         <div className="bg-paper-soft rounded-lg p-2">
-          <dt className="text-meta text-ink-60">Audios</dt>
+          <dt className="text-meta text-ink-60">{t('Audios', 'Audio')}</dt>
           <dd className="font-medium text-ink" data-testid="walk-stat-audios">{walk.audioRefs.length}</dd>
         </div>
       </dl>
 
       {(walk.photoRefs.length > 0 || walk.audioRefs.length > 0) && (
         <div>
-          <p className="text-meta font-medium text-ink-60 mb-1">Médias</p>
+          <p className="text-meta font-medium text-ink-60 mb-1">{t('Médias', 'Media')}</p>
           <ul className="text-meta text-ink-80 space-y-0.5" data-testid="walk-media-list">
             {walk.photoRefs.map((ref) => (
               <li key={`p-${ref}`}>Photo: {ref.split('/').pop()}</li>
@@ -118,7 +125,7 @@ export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelPro
           data-testid="walk-keep-btn"
           className="flex-1 bg-grenadine hover:opacity-90 text-white text-body font-medium py-2 rounded-lg"
         >
-          Garder
+          {t('Garder', 'Keep')}
         </button>
         <button
           type="button"
@@ -126,7 +133,7 @@ export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelPro
           data-testid="walk-delete-btn"
           className="flex-1 bg-grenadine-soft hover:opacity-90 text-danger text-body font-medium py-2 rounded-lg"
         >
-          Supprimer
+          {t('Supprimer', 'Delete')}
         </button>
       </div>
     </div>

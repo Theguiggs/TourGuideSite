@@ -19,6 +19,7 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import type { StudioScene, WalkSegment } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 /**
  * Timeline item kinds — scenes are sortable (drag to reorder), walks are
@@ -42,6 +43,7 @@ export function SortableTimeline({
   onSelect,
   onScenesReorder,
 }: SortableTimelineProps) {
+  const { t, locale } = useStudioLocale();
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
@@ -57,22 +59,34 @@ export function SortableTimeline({
   const nameOf = (id: string | number) => {
     const item = sceneItems.find((i) => i.id === String(id));
     const title = item?.kind === 'scene' ? item.scene.title : undefined;
-    return title && title.trim().length > 0 ? `« ${title} »` : 'la scène';
+    return title && title.trim().length > 0
+      ? (locale === 'en' ? `“${title}”` : `« ${title} »`)
+      : t('la scène', 'the scene');
   };
-  const positionOf = (id: string | number) => `${sceneIds.indexOf(String(id)) + 1} sur ${sceneIds.length}`;
+  const positionOf = (id: string | number) => `${sceneIds.indexOf(String(id)) + 1} ${t('sur', 'of')} ${sceneIds.length}`;
   const accessibility = {
     announcements: {
       onDragStart: ({ active }: { active: { id: string | number } }) =>
-        `${nameOf(active.id)} saisie, position ${positionOf(active.id)}. Flèches pour déplacer, Espace pour déposer, Échap pour annuler.`,
+        t(
+          `${nameOf(active.id)} saisie, position ${positionOf(active.id)}. Flèches pour déplacer, Espace pour déposer, Échap pour annuler.`,
+          `${nameOf(active.id)} picked up, position ${positionOf(active.id)}. Arrow keys to move, Space to drop, Escape to cancel.`,
+        ),
       onDragOver: ({ active, over }: { active: { id: string | number }; over: { id: string | number } | null }) =>
-        over ? `${nameOf(active.id)} en position ${positionOf(over.id)}.` : `${nameOf(active.id)} hors de la liste.`,
+        over
+          ? t(`${nameOf(active.id)} en position ${positionOf(over.id)}.`, `${nameOf(active.id)} at position ${positionOf(over.id)}.`)
+          : t(`${nameOf(active.id)} hors de la liste.`, `${nameOf(active.id)} outside the list.`),
       onDragEnd: ({ active, over }: { active: { id: string | number }; over: { id: string | number } | null }) =>
-        over ? `${nameOf(active.id)} déposée en position ${positionOf(over.id)}.` : `${nameOf(active.id)} remise à sa place.`,
-      onDragCancel: ({ active }: { active: { id: string | number } }) => `Déplacement de ${nameOf(active.id)} annulé.`,
+        over
+          ? t(`${nameOf(active.id)} déposée en position ${positionOf(over.id)}.`, `${nameOf(active.id)} dropped at position ${positionOf(over.id)}.`)
+          : t(`${nameOf(active.id)} remise à sa place.`, `${nameOf(active.id)} returned to its place.`),
+      onDragCancel: ({ active }: { active: { id: string | number } }) =>
+        t(`Déplacement de ${nameOf(active.id)} annulé.`, `Moving ${nameOf(active.id)} cancelled.`),
     },
     screenReaderInstructions: {
-      draggable:
+      draggable: t(
         'Pour réordonner, appuyez sur Espace, déplacez avec les flèches haut et bas, puis appuyez de nouveau sur Espace. Échap annule.',
+        'To reorder, press Space, move with the up and down arrow keys, then press Space again. Escape cancels.',
+      ),
     },
   };
 
@@ -133,6 +147,7 @@ interface SortableSceneItemProps {
 }
 
 function SortableSceneItem({ item, selected, onSelect }: SortableSceneItemProps) {
+  const { t } = useStudioLocale();
   const {
     attributes,
     listeners,
@@ -156,7 +171,7 @@ function SortableSceneItem({ item, selected, onSelect }: SortableSceneItemProps)
         <div className="flex items-start gap-2">
           <button
             type="button"
-            aria-label="Réordonner"
+            aria-label={t('Réordonner', 'Reorder')}
             data-testid={`drag-handle-${item.id}`}
             {...attributes}
             {...listeners}
@@ -174,7 +189,7 @@ function SortableSceneItem({ item, selected, onSelect }: SortableSceneItemProps)
               <span aria-hidden className="text-body mt-0.5">📍</span>
               <div className="flex-1 min-w-0">
                 <p className="text-body font-medium truncate">
-                  {scene.title || `Scène ${scene.sceneIndex + 1}`}
+                  {scene.title || `${t('Scène', 'Scene')} ${scene.sceneIndex + 1}`}
                 </p>
                 <p className="text-eyebrow text-ink-60">
                   {scene.photosRefs.length} photos ·{' '}
@@ -196,6 +211,7 @@ interface WalkItemProps {
 }
 
 function WalkItem({ item, selected, onSelect }: WalkItemProps) {
+  const { t } = useStudioLocale();
   return (
     <li>
       <button
@@ -207,7 +223,7 @@ function WalkItem({ item, selected, onSelect }: WalkItemProps) {
         <div className="flex items-start gap-2">
           <span aria-hidden className="text-body mt-0.5">🚶</span>
           <div className="flex-1 min-w-0">
-            <p className="text-body font-medium truncate">Marche #{item.walk.order}</p>
+            <p className="text-body font-medium truncate">{t('Marche', 'Walk')} #{item.walk.order}</p>
             <p className="text-eyebrow text-ink-60">
               {Math.round((item.walk.durationMs ?? 0) / 1000)}s ·{' '}
               {Math.round(item.walk.distanceM ?? 0)}m

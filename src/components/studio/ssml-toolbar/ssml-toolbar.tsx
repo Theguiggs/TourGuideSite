@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface SSMLToolbarProps {
   textareaRef: React.RefObject<HTMLTextAreaElement | null>;
@@ -30,6 +31,7 @@ const PAUSE_PRESETS: PauseOption[] = [
 export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) {
   const [showPauseInput, setShowPauseInput] = useState(false);
   const [customPause, setCustomPause] = useState('1.5');
+  const { t } = useStudioLocale();
 
   const insertAtCursor = useCallback((insertion: string) => {
     const el = textareaRef.current;
@@ -66,13 +68,13 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
       {/* Main toolbar — pauses only */}
       <div className="flex items-center gap-1 flex-wrap p-1.5 bg-paper-soft rounded-lg border border-line">
         <div className="flex items-center gap-0.5">
-          <span className="text-meta text-ink-40 mr-0.5">Pause :</span>
+          <span className="text-meta text-ink-40 mr-0.5">{t('Pause :', 'Pause:')}</span>
           {PAUSE_PRESETS.map((p) => (
             <button
               key={p.value}
               onClick={() => handlePauseInsert(p.value)}
               className="px-1.5 py-0.5 text-eyebrow font-medium bg-ocre-soft text-ocre-ink hover:opacity-90 rounded transition"
-              title={`Insérer une pause de ${p.label}`}
+              title={`${t('Insérer une pause de', 'Insert a pause of')} ${p.label}`}
               data-testid={`ssml-pause-${p.value}`}
             >
               {p.label}
@@ -83,7 +85,7 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
             className={`px-1.5 py-0.5 text-eyebrow font-medium rounded transition ${
               showPauseInput ? 'bg-ocre text-ink' : 'bg-ocre-soft text-ocre-ink hover:opacity-90'
             }`}
-            title="Pause personnalisée"
+            title={t('Pause personnalisée', 'Custom pause')}
             data-testid="ssml-pause-custom-toggle"
           >
             …
@@ -94,7 +96,7 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
       {/* Custom pause input */}
       {showPauseInput && (
         <div className="flex items-center gap-2 p-2 bg-ocre-soft border border-ocre-soft rounded-lg">
-          <span className="text-meta text-ocre-ink">Pause de</span>
+          <span className="text-meta text-ocre-ink">{t('Pause de', 'Pause of')}</span>
           <input
             type="number"
             min={0.1}
@@ -105,20 +107,20 @@ export function SSMLToolbar({ textareaRef, value, onChange }: SSMLToolbarProps) 
             className="w-16 px-2 py-0.5 text-meta border border-ocre-soft rounded text-center focus:ring-2 focus:ring-ink"
             data-testid="custom-pause-input"
           />
-          <span className="text-meta text-ocre-ink">secondes (0,1 à 10)</span>
+          <span className="text-meta text-ocre-ink">{t('secondes (0,1 à 10)', 'seconds (0.1 to 10)')}</span>
           <button
             onClick={handleCustomPause}
             className="px-2 py-0.5 text-meta font-medium bg-ocre text-ink rounded hover:opacity-90 transition"
             data-testid="custom-pause-insert"
           >
-            Insérer
+            {t('Insérer', 'Insert')}
           </button>
         </div>
       )}
 
       {/* Help text */}
       <p className="text-eyebrow text-ink-40 px-1">
-        Clic sur une durée = insertion d&apos;une pause au curseur. Les autres effets (prosody / emphasis) sont désactivés — ils sonnent trop saccadés sur edge-tts.
+        {t("Clic sur une durée = insertion d'une pause au curseur. Les autres effets (prosody / emphasis) sont désactivés — ils sonnent trop saccadés sur edge-tts.", 'Click a duration to insert a pause at the cursor. Other effects (prosody / emphasis) are disabled — they sound too choppy on edge-tts.')}
       </p>
     </div>
   );

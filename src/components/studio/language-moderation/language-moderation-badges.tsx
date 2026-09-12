@@ -1,16 +1,17 @@
 'use client';
 
 import type { TourLanguagePurchase, PurchaseModerationStatus } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
-const STATUS_CONFIG: Record<PurchaseModerationStatus, { label: string; icon: string; className: string }> = {
-  draft: { label: 'brouillon', icon: '', className: 'bg-paper-soft text-ink-80' },
-  submitted: { label: 'en moderation', icon: '', className: 'bg-ocre-soft text-ocre-ink' },
-  approved: { label: 'publié', icon: '', className: 'bg-olive-soft text-success' },
-  rejected: { label: 'refuse', icon: '', className: 'bg-grenadine-soft text-danger' },
-  revision_requested: { label: 'revision', icon: '', className: 'bg-ocre-soft text-ocre-ink' },
+const STATUS_CONFIG: Record<PurchaseModerationStatus, { label: string; labelEn: string; icon: string; className: string }> = {
+  draft: { label: 'brouillon', labelEn: 'draft', icon: '', className: 'bg-paper-soft text-ink-80' },
+  submitted: { label: 'en moderation', labelEn: 'in moderation', icon: '', className: 'bg-ocre-soft text-ocre-ink' },
+  approved: { label: 'publié', labelEn: 'published', icon: '', className: 'bg-olive-soft text-success' },
+  rejected: { label: 'refuse', labelEn: 'rejected', icon: '', className: 'bg-grenadine-soft text-danger' },
+  revision_requested: { label: 'revision', labelEn: 'revision', icon: '', className: 'bg-ocre-soft text-ocre-ink' },
 };
 
-const REFUNDED_CONFIG = { label: 'rembourse', icon: '', className: 'bg-grenadine-soft text-grenadine' };
+const REFUNDED_CONFIG = { label: 'rembourse', labelEn: 'refunded', icon: '', className: 'bg-grenadine-soft text-grenadine' };
 
 interface LanguageModerationBadgesProps {
   purchases: TourLanguagePurchase[];
@@ -18,10 +19,11 @@ interface LanguageModerationBadgesProps {
 }
 
 export function LanguageModerationBadges({ purchases, onLanguageClick }: LanguageModerationBadgesProps) {
+  const { t } = useStudioLocale();
   if (purchases.length === 0) {
     return (
       <span className="text-meta text-ink-40" data-testid="no-languages">
-        Aucune langue
+        {t('Aucune langue', 'No languages')}
       </span>
     );
   }
@@ -33,6 +35,7 @@ export function LanguageModerationBadges({ purchases, onLanguageClick }: Languag
           ? REFUNDED_CONFIG
           : STATUS_CONFIG[purchase.moderationStatus] ?? STATUS_CONFIG.draft;
         const langLabel = purchase.language.toUpperCase();
+        const statusLabel = t(config.label, config.labelEn);
 
         return (
           <button
@@ -40,10 +43,10 @@ export function LanguageModerationBadges({ purchases, onLanguageClick }: Languag
             onClick={() => onLanguageClick?.(purchase.language)}
             className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-pill text-meta font-medium transition-opacity hover:opacity-80 ${config.className}`}
             data-testid={`lang-badge-${purchase.language}`}
-            title={`${langLabel} — ${config.label}`}
+            title={`${langLabel} — ${statusLabel}`}
           >
             <span>{langLabel}</span>
-            <span>{config.label}</span>
+            <span>{statusLabel}</span>
           </button>
         );
       })}

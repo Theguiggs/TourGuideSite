@@ -5,6 +5,7 @@ import { shouldUseStubs } from '@/config/api-mode';
 import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
 import { logger } from '@/lib/logger';
 import { Dialog } from '@/components/ui/Dialog';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'PhotoLightbox';
 
@@ -25,6 +26,8 @@ function filenameFromRef(ref: string): string {
 }
 
 export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
+  const { t } = useStudioLocale();
+  const photoAlt = t('Photo du point d’intérêt', 'Point of interest photo');
   const [url, setUrl] = useState<string | null>(null);
   const [error, setError] = useState(false);
   const [downloading, setDownloading] = useState(false);
@@ -74,7 +77,7 @@ export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
     <Dialog
       open
       onClose={onClose}
-      label="Photo du point d’intérêt"
+      label={photoAlt}
       data-testid="photo-lightbox"
       className="max-w-[95vw] bg-transparent shadow-none backdrop:bg-black/80"
     >
@@ -87,12 +90,12 @@ export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
             data-testid="photo-lightbox-download"
             className="bg-card/90 hover:bg-card rounded-pill px-3 py-1.5 text-body font-medium text-ink shadow disabled:opacity-50"
           >
-            {downloading ? 'Téléchargement…' : 'Télécharger'}
+            {downloading ? t('Téléchargement…', 'Downloading…') : t('Télécharger', 'Download')}
           </button>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Fermer"
+            aria-label={t('Fermer', 'Close')}
             data-testid="photo-lightbox-close"
             className="bg-card/90 hover:bg-card rounded-pill w-11 h-11 text-h6 text-ink shadow"
           >
@@ -101,15 +104,15 @@ export function PhotoLightbox({ photoRef, onClose }: PhotoLightboxProps) {
         </div>
         {error ? (
           <div className="bg-card rounded-lg p-8 text-center text-body text-ink-80">
-            Impossible de charger la photo.
+            {t('Impossible de charger la photo.', 'Unable to load the photo.')}
           </div>
         ) : !url ? (
-          <div className="bg-card/10 rounded-lg w-64 h-64 animate-pulse" role="status" aria-label="Chargement de la photo" />
+          <div className="bg-card/10 rounded-lg w-64 h-64 animate-pulse" role="status" aria-label={t('Chargement de la photo', 'Loading photo')} />
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={url}
-            alt="Photo du point d’intérêt"
+            alt={photoAlt}
             className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg shadow-2xl"
             data-testid="photo-lightbox-image"
           />

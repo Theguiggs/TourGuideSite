@@ -8,13 +8,13 @@ import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'TourCommentThread';
 
-const ACTION_LABELS: Record<string, { label: string; color: string }> = {
-  approved: { label: 'Approuvé', color: 'bg-olive-soft text-success' },
-  rejected: { label: 'Rejeté', color: 'bg-grenadine-soft text-danger' },
-  revision: { label: 'Révision demandée', color: 'bg-ocre-soft text-ocre-ink' },
-  submitted: { label: 'Soumis', color: 'bg-mer-soft text-mer' },
-  resubmitted: { label: 'Resoumis', color: 'bg-mer-soft text-mer' },
-  comment: { label: 'Commentaire', color: 'bg-paper-soft text-ink-80' },
+const ACTION_LABELS: Record<string, { label: string; labelEn: string; color: string }> = {
+  approved: { label: 'Approuvé', labelEn: 'Approved', color: 'bg-olive-soft text-success' },
+  rejected: { label: 'Rejeté', labelEn: 'Rejected', color: 'bg-grenadine-soft text-danger' },
+  revision: { label: 'Révision demandée', labelEn: 'Revision requested', color: 'bg-ocre-soft text-ocre-ink' },
+  submitted: { label: 'Soumis', labelEn: 'Submitted', color: 'bg-mer-soft text-mer' },
+  resubmitted: { label: 'Resoumis', labelEn: 'Resubmitted', color: 'bg-mer-soft text-mer' },
+  comment: { label: 'Commentaire', labelEn: 'Comment', color: 'bg-paper-soft text-ink-80' },
 };
 
 interface TourCommentThreadProps {
@@ -25,7 +25,7 @@ interface TourCommentThreadProps {
 }
 
 export function TourCommentThread({ tourId, role, authorName, sessionId }: TourCommentThreadProps) {
-  const { locale } = useStudioLocale();
+  const { locale, t } = useStudioLocale();
   const [comments, setComments] = useState<TourComment[]>([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
@@ -65,16 +65,16 @@ export function TourCommentThread({ tourId, role, authorName, sessionId }: TourC
   return (
     <div className="bg-card rounded-xl border border-line overflow-hidden" data-testid="tour-comment-thread">
       <div className="px-4 py-3 bg-paper-soft border-b border-line">
-        <h3 className="text-body font-semibold text-ink">Journal d&apos;échanges</h3>
+        <h3 className="text-body font-semibold text-ink">{t("Journal d'échanges", 'Conversation log')}</h3>
         <p className="text-meta text-ink-60">{comments.length} message{comments.length !== 1 ? 's' : ''}</p>
       </div>
 
       {/* Comments list */}
       <div className="max-h-96 overflow-y-auto p-4 space-y-3">
         {loading ? (
-          <p className="text-body text-ink-40 animate-pulse">Chargement...</p>
+          <p className="text-body text-ink-40 animate-pulse">{t('Chargement...', 'Loading...')}</p>
         ) : comments.length === 0 ? (
-          <p className="text-body text-ink-40 text-center py-4">Aucun échange pour le moment.</p>
+          <p className="text-body text-ink-40 text-center py-4">{t('Aucun échange pour le moment.', 'No messages yet.')}</p>
         ) : (
           comments.map((c) => {
             const isAdmin = c.author === 'admin';
@@ -94,7 +94,7 @@ export function TourCommentThread({ tourId, role, authorName, sessionId }: TourC
                   </span>
                   {actionInfo && c.action !== 'comment' && (
                     <span className={`text-eyebrow px-1.5 py-0.5 rounded-pill font-medium ${actionInfo.color}`}>
-                      {actionInfo.label}
+                      {t(actionInfo.label, actionInfo.labelEn)}
                     </span>
                   )}
                   {c.language && (
@@ -115,7 +115,7 @@ export function TourCommentThread({ tourId, role, authorName, sessionId }: TourC
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
-          placeholder="Écrire un message..."
+          placeholder={t('Écrire un message...', 'Write a message...')}
           rows={2}
           className="flex-1 border border-line rounded-lg px-3 py-2 text-body resize-none focus:outline-none focus:ring-2 focus:ring-grenadine"
           data-testid="comment-input"
@@ -126,7 +126,7 @@ export function TourCommentThread({ tourId, role, authorName, sessionId }: TourC
           className="self-end bg-grenadine hover:opacity-90 disabled:bg-paper-deep text-white text-body font-medium px-4 py-2 rounded-lg transition"
           data-testid="comment-send"
         >
-          {sending ? '...' : 'Envoyer'}
+          {sending ? '...' : t('Envoyer', 'Send')}
         </button>
       </div>
     </div>
