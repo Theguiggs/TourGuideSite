@@ -65,7 +65,7 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   const userId = user?.id ?? null;
   const needsProfileCheck = !hasConsented && Boolean(userId) && !shouldUseStubs();
   useEffect(() => {
-    if (!needsProfileCheck) return;
+    if (!needsProfileCheck || !userId) return;
     let cancelled = false;
     getOwnGuideProfile(userId, 'userPool')
       .then((profile) => {
