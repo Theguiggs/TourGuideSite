@@ -63,8 +63,9 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   // Consentement porté par le profil : un guide qui a accepté sur un autre
   // navigateur ne relit pas le bandeau (lot 6.2).
   const userId = user?.id ?? null;
+  const needsProfileCheck = !hasConsented && Boolean(userId) && !shouldUseStubs();
   useEffect(() => {
-    if (hasConsented || !userId || shouldUseStubs()) { setProfileChecked(true); return; }
+    if (!needsProfileCheck) return;
     let cancelled = false;
     getOwnGuideProfile(userId, 'userPool')
       .then((profile) => {
@@ -75,7 +76,7 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
       .catch(() => { /* le bandeau reste : c'est le comportement sûr */ })
       .finally(() => { if (!cancelled) setProfileChecked(true); });
     return () => { cancelled = true; };
-  }, [hasConsented, userId, hydrateFromProfile]);
+  }, [needsProfileCheck, userId, hydrateFromProfile]);
 
   useEffect(() => {
     if (hasConsented && mainRef.current) {
@@ -84,7 +85,7 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   }, [hasConsented]);
 
   // RGPD : tant que le consentement n'est pas donné, on n'affiche que le bandeau.
-  if (!hasConsented && !profileChecked && userId) {
+  if (needsProfileCheck && !profileChecked) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-busy="true">
         <p className="text-ink-60">Chargement…</p>
