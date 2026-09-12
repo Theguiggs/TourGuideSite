@@ -389,6 +389,7 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
       contentResult.data.coverUrl ??
       contentResult.data.scenes.find((scene) => scene.photoUrls?.[0])?.photoUrls?.[0],
     pois,
+    walkPath: contentResult.data.walkPath,
     reviews: reviews.map((r: { id: string; userId: string; rating: number; comment?: string | null; visitedAt?: number | null; language?: string | null; createdAt: string }) => ({
       id: r.id,
       userId: r.userId,

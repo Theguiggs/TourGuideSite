@@ -33,6 +33,7 @@ export function mapScenesToPois(scenes: readonly PublicTourScene[]): POI[] {
     description: (scene.description ?? '').substring(0, POI_DESCRIPTION_MAX),
     latitude: scene.latitude ?? 0,
     longitude: scene.longitude ?? 0,
+    hasCoordinates: typeof scene.latitude === 'number' && typeof scene.longitude === 'number',
     // Rang d'affichage, PAS `scene.order` : celui-ci porte le `sceneIndex` du
     // Studio, compté à partir de zéro et troué par les scènes archivées. Le
     // visiteur lit « Étape 1, 2, 3 », dans l'ordre déjà trié par le serveur.

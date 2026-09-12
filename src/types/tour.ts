@@ -57,10 +57,12 @@ export interface POI {
    * est redemandée par le navigateur au premier clic (`useSceneAudio`).
    */
   hasAudio?: boolean;
+  hasCoordinates?: boolean;
 }
 
 export interface TourDetail extends Tour {
   pois: POI[];
+  walkPath?: Array<{ latitude: number; longitude: number }>;
   /** Contenu public indisponible au rendu : la fiche est servie sans itinéraire (lot 3.2). */
   contentUnavailable?: boolean;
   reviews: TourReview[];

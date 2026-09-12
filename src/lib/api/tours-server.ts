@@ -284,6 +284,7 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
       coverKey(tour),
     pois,
     contentUnavailable: !contentResult.ok,
+    walkPath: contentResult.ok ? contentResult.data.walkPath : [],
     reviews: reviews.map((r) => ({
       id: r.id,
       userId: r.userId,

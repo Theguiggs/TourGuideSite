@@ -1,6 +1,6 @@
 # Story LW-4 : carte de l'itinéraire et « me situer »
 
-Status: draft
+Status: done
 
 <!-- Épopée LW. Dépend de LW-1. -->
 
@@ -24,3 +24,7 @@ afin de **m'orienter sans que le site prétende me guider comme l'appli**.
 4. **Refus ou absence de GPS** — la carte reste utile sans position ; pas de message d'erreur bloquant.
 5. **Étapes floutées** — visibles sur la carte comme points verrouillés, sans titre, cohérent avec l'itinéraire.
 6. **Épreuves** — test du calcul « étape la plus proche », test du chargement différé, `tsc` à 0.
+
+## Livraison — 13 septembre 2026
+
+Carte Leaflet différée, tracé servi et étapes numérotées ; étape active et point proche distingués. GPS sur geste, arrêté page cachée/démontage, réponses tardives invalidées. Position en mémoire seulement. Étapes verrouillées sans titre et sans lecture. Erreurs locales non bloquantes, contrôles fr/en et région d’annonce permanente. Voir [revue-lw-4.md](revue-lw-4.md). Aucun essai GPS sur appareil physique exécuté.

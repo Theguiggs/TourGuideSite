@@ -499,6 +499,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                   par la redemande après hydratation. */}
               <ItineraryList
                 pois={isTourFree(tour) ? tour.pois : maskLockedPois(tour.pois, locale)}
+                walkPath={tour.walkPath}
                 tourId={tour.id}
                 cityId={tour.citySlug}
                 sourceLanguage={tour.sourceLanguage}

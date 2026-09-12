@@ -20,11 +20,14 @@ import {
 } from '@/components/catalogue/scene-player';
 import { revealElement } from '@/components/catalogue/scene-player/reveal';
 import { LISTEN_ANCHOR } from '@/components/catalogue/scene-player/listen-link';
+import VisitorMap from '@/components/catalogue/visitor-map/visitor-map';
+import type { Coordinate } from '@/components/catalogue/visitor-map/geo';
 
 const SERVICE_NAME = 'ItineraryList';
 
 interface ItineraryListProps {
   pois: POI[];
+  walkPath?: Coordinate[];
   tourId: string;
   cityId?: string;
   sourceLanguage?: string;
@@ -42,6 +45,7 @@ interface ItineraryListProps {
 /** Ce que le serveur a servi : des étapes, et s'il les a accordées en entier. */
 interface ServedContent {
   pois: POI[];
+  walkPath?: Coordinate[];
   /** Vrai seulement si la réponse reçue porte le contenu complet. */
   granted: boolean;
   /**
@@ -116,6 +120,7 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): Serv
         setServed({
           tourId,
           pois: mapScenesToPois(result.data.scenes),
+          walkPath: result.data.walkPath,
           granted: isFullContent(result.data.scenes),
         });
       } catch (error) {
@@ -138,7 +143,7 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): Serv
   const settled = !pending && (granted || !awaitsGrant);
 
   return served?.tourId === tourId
-    ? { pois: served.pois, granted, settled }
+    ? { pois: served.pois, walkPath: served.walkPath, granted, settled }
     : { pois: ssrPois, granted: false, settled };
 }
 
@@ -159,6 +164,7 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): Serv
  */
 export default function ItineraryList({
   pois,
+  walkPath,
   tourId,
   cityId,
   sourceLanguage,
@@ -172,7 +178,7 @@ export default function ItineraryList({
   // Hooks appelés sans condition : `isFree` court-circuiterait l'appel et
   // désordonnerait la liste des hooks au premier rendu où il change.
   const ownsTour = useOwnsTour(tourId);
-  const { pois: displayedPois, granted, settled } = useServedContent(tourId, pois, isFree);
+  const { pois: displayedPois, walkPath: servedPath, granted, settled } = useServedContent(tourId, pois, isFree);
   // En mode bouchons il n'y a pas de serveur pour juger : on retombe sur ce que
   // le client sait, faute de réponse à lire. Hors bouchons, la possession
   // calculée côté navigateur ne décide de rien ici — elle sert au badge.
@@ -236,6 +242,7 @@ export default function ItineraryList({
         heroAccentFg={heroAccentFg}
         locale={locale}
       />
+      <VisitorMap key={tourId} pois={displayedPois} path={servedPath ?? walkPath} hasAccess={hasAccess} locale={locale} />
     </ScenePlayer>
   );
 }

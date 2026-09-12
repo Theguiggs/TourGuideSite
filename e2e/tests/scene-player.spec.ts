@@ -44,6 +44,34 @@ async function serveAudio(route: Route) {
   });
 }
 
+test('carte : GPS au clic, étape proche sans lecture automatique', async ({ page, context }) => {
+  await context.grantPermissions(['geolocation']);
+  await context.setGeolocation({ latitude: 43.6973, longitude: 7.2704 });
+  await page.addInitScript(() => {
+    const original = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+    Object.assign(window, { locationRequests: 0 });
+    navigator.geolocation.watchPosition = (...args) => {
+      const state = window as unknown as { locationRequests: number };
+      state.locationRequests++;
+      return original(...args);
+    };
+  });
+  await page.route('**/*', serveAudio);
+  await openTour(page, 'fr');
+  const map = page.getByTestId('visitor-map');
+  await map.scrollIntoViewIfNeeded();
+  await expect(page.getByTestId('visitor-map-canvas')).toBeVisible();
+  expect(await page.evaluate(() => (window as unknown as { locationRequests: number }).locationRequests)).toBe(0);
+  await page.getByRole('button', { name: 'Me situer', exact: true }).click();
+  await expect(page.getByTestId('nearest-stop')).toBeVisible();
+  await expect(page.getByTestId('scene-audio')).toHaveJSProperty('paused', true);
+  await page.getByRole('button', { name: 'Écouter cette étape', exact: true }).click();
+  await page.getByRole('button', { name: 'Arrêter la localisation' }).click();
+  await expect(page.getByTestId('scene-audio')).toHaveJSProperty('paused', false);
+  await expect(page.locator('audio')).toHaveCount(1);
+  await expect(page.getByTestId('nearest-stop')).toHaveCount(0);
+});
+
 for (const locale of ['fr', 'en'] as const) {
   test(`lecteur ouvert, clavier et axe (${locale})`, async ({ page }, testInfo) => {
     let mediaRequests = 0;
