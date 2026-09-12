@@ -201,38 +201,37 @@ export function PaymentSummary({
   onPay,
   isLoading,
 }: PaymentSummaryProps) {
-  const { locale } = useStudioLocale();
+  const { t, locale } = useStudioLocale();
   const order = computeOrderTotal(selectedLanguages, qualityTier, freeLanguageUsed);
   const hasLanguages = selectedLanguages.length > 0;
 
   // Button text
   let buttonText: string;
   if (!hasLanguages) {
-    buttonText = 'S\u00E9lectionnez une langue';
+    buttonText = t('S\u00E9lectionnez une langue', 'Select a language');
   } else if (qualityTier === 'manual') {
-    buttonText = 'Ajouter les langues (gratuit)';
+    buttonText = t('Ajouter les langues (gratuit)', 'Add the languages (free)');
   } else if (order.totalCents === 0) {
-    buttonText = 'Traduire gratuitement';
+    buttonText = t('Traduire gratuitement', 'Translate for free');
   } else {
-    buttonText = `Payer et traduire \u2014 ${formatPrice(order.totalCents, locale)}`;
+    buttonText = `${t('Payer et traduire', 'Pay and translate')} \u2014 ${formatPrice(order.totalCents, locale)}`;
   }
 
   // Button aria-label
   const buttonAriaLabel = !hasLanguages
-    ? 'S\u00E9lectionnez au moins une langue pour continuer'
+    ? t('S\u00E9lectionnez au moins une langue pour continuer', 'Select at least one language to continue')
     : qualityTier === 'manual'
-      ? 'Ajouter les langues pour traduire manuellement'
+      ? t('Ajouter les langues pour traduire manuellement', 'Add the languages to translate manually')
       : order.totalCents === 0
-        ? 'Traduire gratuitement'
-        : `Payer ${formatPrice(order.totalCents, locale)} et lancer la traduction`;
+        ? t('Traduire gratuitement', 'Translate for free')
+        : t(`Payer ${formatPrice(order.totalCents, locale)} et lancer la traduction`, `Pay ${formatPrice(order.totalCents, locale)} and start the translation`);
 
   return (
     <div data-testid="payment-summary" className="rounded-lg border border-line bg-card p-4 space-y-4">
       {/* Subtitle */}
       {hasLanguages && (
         <p className="text-body text-ink-80" data-testid="payment-subtitle">
-          Vos {sceneCount} sc&egrave;nes seront traduites et l&apos;audio g&eacute;n&eacute;r&eacute;
-          automatiquement (~2 min par langue)
+          {t(`Vos ${sceneCount} scènes seront traduites et l'audio généré automatiquement (~2 min par langue)`, `Your ${sceneCount} scenes will be translated and the audio generated automatically (~2 min per language)`)}
         </p>
       )}
 
@@ -249,13 +248,13 @@ export function PaymentSummary({
               <span className="font-medium text-ink">
                 {line.purchaseType === 'free_first' ? (
                   <span className="text-grenadine" data-testid="free-first-badge">
-                    Gratuit &mdash; premi&egrave;re langue offerte !
+                    {t('Gratuit — première langue offerte !', 'Free — first language on us!')}
                   </span>
                 ) : line.purchaseType === 'pack_3' ? (
                   <span className="text-grenadine">Pack 3</span>
                 ) : line.purchaseType === 'pack_all' ? (
                   <span className="text-grenadine">
-                    {line.priceCents > 0 ? `Pack Toutes — ${formatPrice(line.priceCents, locale)}` : 'Pack Toutes (inclus)'}
+                    {line.priceCents > 0 ? `${t('Pack Toutes', 'All-languages pack')} — ${formatPrice(line.priceCents, locale)}` : t('Pack Toutes (inclus)', 'All-languages pack (included)')}
                   </span>
                 ) : (
                   formatPrice(line.priceCents, locale)
@@ -314,7 +313,7 @@ export function PaymentSummary({
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
               />
             </svg>
-            Traitement en cours...
+            {t('Traitement en cours...', 'Processing...')}
           </span>
         ) : (
           buttonText
