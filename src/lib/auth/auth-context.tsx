@@ -18,7 +18,7 @@ import {
 import { Hub } from 'aws-amplify/utils';
 import { usePathname, useRouter } from 'next/navigation';
 import { getOwnGuideProfile } from '@/lib/api/appsync-client';
-import { describeAuthError } from '@/lib/auth/cognito-errors';
+import { describeAuthError, isDefinitiveAuthError } from '@/lib/auth/cognito-errors';
 import { loginUrlFor, LOGIN_PATH, type LoginReason } from '@/lib/auth/return-to';
 import { SESSION_REFUSAL_EVENT, type SessionRefusal } from '@/lib/auth/session-signals';
 
@@ -61,9 +61,15 @@ async function resolveAuthUser(): Promise<AuthUser | null> {
   let session: Awaited<ReturnType<typeof fetchAuthSession>>;
   try {
     [attrs, session] = await Promise.all([fetchUserAttributes(), fetchAuthSession()]);
-  } catch {
-    // Stale tokens (user deleted from pool, token expired, etc.) — clear session
-    try { await amplifySignOut(); } catch { /* ignore */ }
+  } catch (error) {
+    // `signOut()` RÉVOQUE le jeton de rafraîchissement côté Cognito, pour tous
+    // les onglets et toutes les sessions qui le partagent. On ne le fait que
+    // sur une erreur d'authentification avérée (jeton révoqué, compte
+    // supprimé…) ; une panne réseau ou un 5xx Cognito laisse les jetons en
+    // place, et la prochaine page réessaiera.
+    if (isDefinitiveAuthError(error)) {
+      try { await amplifySignOut(); } catch { /* ignore */ }
+    }
     return null;
   }
 
@@ -125,10 +131,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(null);
       if (isGuardedPath(pathname)) router.replace(loginUrlFor(pathname, reason));
     };
+    // Amplify émet `tokenRefresh_failure` AUSSI pour une erreur transitoire
+    // (il garde alors les jetons). On ne quitte que sur une erreur avérée —
+    // et sans `signOut()` : Amplify a déjà effacé les jetons, et une
+    // révocation côté serveur toucherait les autres onglets.
     const stopHub = Hub.listen('auth', ({ payload }) => {
       if (payload.event === 'tokenRefresh_failure') {
-        amplifySignOut().catch(() => {});
-        leave('expired');
+        const error = (payload as { data?: { error?: unknown } }).data?.error;
+        if (isDefinitiveAuthError(error)) leave('expired');
       } else if (payload.event === 'signedOut') {
         setUser((current) => (current ? null : current));
       }
@@ -136,8 +146,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const onRefusal = (event: Event) => {
       const refusal = (event as CustomEvent<SessionRefusal>).detail;
       if (refusal === 'expired') {
-        amplifySignOut().catch(() => {});
-        leave('expired');
+        // Un 401 du proxy peut venir d'un jeton périmé… ou d'un incident côté
+        // proxy. On demande à Amplify un rafraîchissement : s'il rend des
+        // jetons, la session est bonne et on ne bouge pas.
+        fetchAuthSession({ forceRefresh: true })
+          .then((session) => { if (!session.tokens?.accessToken) leave('expired'); })
+          .catch(() => leave('expired'));
       } else if (refusal === 'revoked') {
         leave('revoked');
       }

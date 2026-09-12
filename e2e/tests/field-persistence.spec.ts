@@ -6,6 +6,7 @@
  *
  * Uses REAL AppSync data seeded via appsync-direct.ts.
  */
+import { studioConsentSeed } from '../fixtures/consent';
 import { test, expect, type Page } from '@playwright/test';
 import {
   E2E_GUIDE_EMAIL,
@@ -37,12 +38,9 @@ async function injectRGPDConsent(page: Page): Promise<void> {
   // Must be on a real page to access localStorage
   await page.goto('/');
   await page.waitForTimeout(3000);
-  await page.evaluate(() => {
-    localStorage.setItem(
-      'studio_rgpd_consent',
-      JSON.stringify({ consentDate: new Date().toISOString() }),
-    );
-  });
+  await page.evaluate((seed) => {
+    localStorage.setItem('studio_rgpd_consent', seed);
+  }, studioConsentSeed());
 }
 
 test.describe.serial('Field Persistence', () => {

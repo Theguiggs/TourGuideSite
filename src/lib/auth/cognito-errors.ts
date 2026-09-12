@@ -30,10 +30,21 @@ export function cognitoErrorName(error: unknown): string {
     'PasswordResetRequiredException', 'TooManyRequestsException', 'LimitExceededException',
     'UsernameExistsException', 'InvalidPasswordException', 'InvalidParameterException',
     'CodeMismatchException', 'ExpiredCodeException', 'UserAlreadyAuthenticatedException',
-    'NetworkError', 'AliasExistsException', 'CodeDeliveryFailureException',
+    'NetworkError', 'AliasExistsException', 'CodeDeliveryFailureException', 'TokenRevokedException', 'RefreshTokenReuseException',
   ];
   if (known.includes(error.name)) return error.name;
   return known.find((n) => error.message.includes(n)) ?? error.name;
+}
+
+/**
+ * Vrai quand l'erreur dit que la session est MORTE (jeton révoqué ou invalide,
+ * compte supprimé…), par opposition à une panne passagère (réseau, 5xx,
+ * limite de débit). Même liste qu'Amplify pour effacer les jetons.
+ */
+export function isDefinitiveAuthError(error: unknown): boolean {
+  const name = cognitoErrorName(error);
+  return ['NotAuthorizedException', 'TokenRevokedException', 'UserNotFoundException',
+    'PasswordResetRequiredException', 'UserNotConfirmedException', 'RefreshTokenReuseException'].includes(name);
 }
 
 /** Vrai quand l'erreur signifie « compte inconnu » : à absorber selon le contexte. */

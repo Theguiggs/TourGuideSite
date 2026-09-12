@@ -44,6 +44,9 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [navigationOpen, setNavigationOpen] = useState(false);
   const { user } = useAuth();
+  // Le bandeau n'est montré qu'une fois le profil consulté : sinon il
+  // apparaît puis disparaît quand le profil confirme le consentement.
+  const [profileChecked, setProfileChecked] = useState(false);
   const hydrateFromProfile = useStudioConsentStore((st) => st.hydrateFromProfile);
 
   const activeKey = useMemo(() => resolveSidebarKey(pathname ?? ''), [pathname]);
@@ -61,7 +64,7 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   // navigateur ne relit pas le bandeau (lot 6.2).
   const userId = user?.id ?? null;
   useEffect(() => {
-    if (hasConsented || !userId || shouldUseStubs()) return;
+    if (hasConsented || !userId || shouldUseStubs()) { setProfileChecked(true); return; }
     let cancelled = false;
     getOwnGuideProfile(userId, 'userPool')
       .then((profile) => {
@@ -69,7 +72,8 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
         const row = profile as { rgpdConsentVersion?: string | null; rgpdConsentAt?: string | null };
         hydrateFromProfile(row.rgpdConsentVersion, row.rgpdConsentAt);
       })
-      .catch(() => { /* le bandeau reste : c'est le comportement sûr */ });
+      .catch(() => { /* le bandeau reste : c'est le comportement sûr */ })
+      .finally(() => { if (!cancelled) setProfileChecked(true); });
     return () => { cancelled = true; };
   }, [hasConsented, userId, hydrateFromProfile]);
 
@@ -80,6 +84,13 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   }, [hasConsented]);
 
   // RGPD : tant que le consentement n'est pas donné, on n'affiche que le bandeau.
+  if (!hasConsented && !profileChecked && userId) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-busy="true">
+        <p className="text-ink-60">Chargement…</p>
+      </div>
+    );
+  }
   if (!hasConsented) {
     return (
       <div className="flex flex-col min-h-[60vh]">
