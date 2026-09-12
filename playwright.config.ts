@@ -25,6 +25,9 @@ export default defineConfig({
   expect: { timeout: 15_000 },
   use: {
     baseURL: 'http://localhost:3000',
+    // Les tests affirment le français ; le Studio suit la langue du navigateur
+    // quand rien n'est mémorisé, et le Chromium de la CI est en en-US.
+    locale: 'fr-FR',
     // Trace dès le PREMIER échec : la cause d'une régression E2E est souvent
     // dans le premier essai, pas dans le second.
     trace: 'retain-on-failure',
