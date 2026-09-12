@@ -66,6 +66,14 @@ describe('mapScenesToPois', () => {
 });
 
 describe('scene media projection', () => {
+  it('LW-3 : une traduction seule annonce une narration sans exposer son URL', () => {
+    const translated = scene({ id: 'traduite', translatedAudioUrls: { en: 'https://media.example/en?signature=server' } });
+    const [poi] = mapScenesToPois([translated]);
+    expect(poi.hasAudio).toBe(true);
+    expect(JSON.stringify(poi)).not.toContain('signature');
+    expect(poi).not.toHaveProperty('translatedAudioUrls');
+    expect(isFullContent([scene(), scene(), translated])).toBe(true);
+  });
   it('LW-1 : signale la narration par un booléen, sans jamais exposer l’URL signée', () => {
     // La même projection sert le HTML du rendu serveur : une URL signée qui
     // passerait ici finirait dans la source de la page. Seul `hasAudio` traverse.

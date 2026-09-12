@@ -149,8 +149,9 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
     // Un seul élément <audio> pour toute la liste, et aucune URL dans le HTML.
     expect(container.querySelectorAll('audio')).toHaveLength(1);
     expect(container.innerHTML).not.toContain('sig=server');
-    // Rien n'est demandé avant le premier clic.
-    expect(mockGetPublishedTourContent).not.toHaveBeenCalled();
+    // LW-3 charge le manifeste des langues, jamais le fichier audio avant le clic.
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+    expect(playSpy).not.toHaveBeenCalled();
   });
 
   it('premier clic : exactement une requête, puis lecture ; étape marquée (aria-current + fond)', async () => {
@@ -196,7 +197,7 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
     await act(async () => {});
 
     expect(listenButtonIds()).toEqual(['scene-listen-button-s1', 'scene-listen-button-s2']);
-    expect(mockGetPublishedTourContent).not.toHaveBeenCalled();
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
   });
 
   it("visite payante, acheteur : toutes les étapes narrées une fois le contenu accordé", async () => {
@@ -254,12 +255,11 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
       window.dispatchEvent(new Event(PURCHASES_CHANGED_EVENT));
     });
 
-    // L'itinéraire redemande (2e appel) et l'étape 4 s'ouvre.
+    // L’itinéraire et le manifeste de langues se renouvellent pour l’acheteur.
     await waitFor(() => expect(screen.getByTestId('scene-listen-button-s4')).toBeInTheDocument());
-    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(3);
 
-    // Le lecteur ne réutilise pas les URLs de l'anonyme : il redemande (3e appel)
-    // et joue ce que le serveur accorde à l'acheteur.
+    // Le clic réutilise ce nouveau manifeste, jamais les URLs de l’anonyme.
     fireEvent.click(screen.getByTestId('scene-listen-button-s4'));
     await act(async () => {});
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(3);

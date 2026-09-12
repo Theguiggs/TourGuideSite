@@ -4,7 +4,8 @@
  * LW-1 — source des URLs audio d'une visite, demandées par le navigateur.
  *
  * Le HTML rendu serveur ne porte aucune URL signée : l'itinéraire ne sait que
- * `hasAudio`. C'est ce hook qui, au premier clic, demande
+ * `hasAudio`. Ce hook prépare le manifeste des langues une fois la liste prête
+ * (ou au premier clic), demande
  * `getPublishedTourContent` (qui choisit seul `userPool`/`identityPool`) et
  * garde les URLs reçues — en mémoire de composant seulement, jamais dans
  * `localStorage` ni dans un état partagé entre visites.
@@ -26,12 +27,13 @@
  * répond « rien ».
  */
 
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { usePurchasesRefreshTick } from '@/hooks/use-owned-tour-ids';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
 import { RESUME_CLEAR_EVENT, RESUME_CLEAR_KEY } from './resume-store';
+import { audioVariants, languageInventory, resolveSceneAudio, type AudioVariants, type LanguageInventory } from './language-policy';
 
 const SERVICE_NAME = 'SceneAudio';
 
@@ -45,6 +47,8 @@ export const STALE_FALLBACK_TTL_MS = Math.min(DEFAULT_TTL_MS, 60_000);
 export type SceneUrls = Readonly<Record<string, string>>;
 
 interface SceneAudioCache {
+  variants: AudioVariants;
+  inventory: LanguageInventory;
   urlsBySceneId: SceneUrls;
   /** Horodatage (ms) au-delà duquel les URLs sont tenues pour périmées. */
   expiresAt: number;
@@ -82,6 +86,10 @@ export interface EnsureFreshOptions {
 }
 
 export interface SceneAudioSource {
+  inventory: LanguageInventory | null;
+  languageStatus: 'idle' | 'loading' | 'ready' | 'error';
+  readInventory(): LanguageInventory | null;
+  resolveAudio(sceneId: string, selected: string, base: string): { url: string; language: string } | null;
   /** Demande le contenu si rien n'est en mémoire ou si c'est périmé. */
   ensureFresh(options?: EnsureFreshOptions): Promise<EnsureFreshResult>;
   /** Redemande sans condition (erreur média en cours de piste). */
@@ -139,8 +147,10 @@ export function computeExpiresAt(mediaExpiresAt: string | undefined, now: number
   return computeExpiry(mediaExpiresAt, now).expiresAt;
 }
 
-export function useSceneAudio(tourId: string): SceneAudioSource {
-  const { isAuthenticated } = useAuth();
+export function useSceneAudio(tourId: string, preload = false): SceneAudioSource {
+  const { isAuthenticated, user } = useAuth();
+  const [inventory, setInventory] = useState<LanguageInventory | null>(null);
+  const [languageStatus, setLanguageStatus] = useState<SceneAudioSource['languageStatus']>('idle');
   const refreshTick = usePurchasesRefreshTick();
   const cacheRef = useRef<SceneAudioCache | null>(null);
   const inflightRef = useRef<Promise<SceneUrls | null> | null>(null);
@@ -155,6 +165,8 @@ export function useSceneAudio(tourId: string): SceneAudioSource {
       generationRef.current += 1;
       cacheRef.current = null;
       inflightRef.current = null;
+      setInventory(null);
+      setLanguageStatus('idle');
     };
     const onStorage = (event: StorageEvent) => {
       if (event.key === null || event.key === RESUME_CLEAR_KEY) clear();
@@ -171,16 +183,20 @@ export function useSceneAudio(tourId: string): SceneAudioSource {
     generationRef.current += 1;
     cacheRef.current = null;
     inflightRef.current = null;
-  }, [tourId, isAuthenticated, refreshTick]);
+    setInventory(null);
+    setLanguageStatus('idle');
+  }, [tourId, isAuthenticated, user?.id, refreshTick]);
 
   const request = useCallback((): Promise<SceneUrls | null> => {
     if (inflightRef.current) return inflightRef.current;
     if (shouldUseStubs()) {
+      setLanguageStatus('error');
       logger.warn(SERVICE_NAME, 'scene audio unavailable in stub mode', { tourId });
       return Promise.resolve(null);
     }
 
     const launch = (relaunched: boolean): Promise<SceneUrls | null> => {
+      setLanguageStatus('loading');
       const generation = generationRef.current;
       const logoutGeneration = logoutGenerationRef.current;
       let promise: Promise<SceneUrls | null> | null = null;
@@ -194,9 +210,13 @@ export function useSceneAudio(tourId: string): SceneAudioSource {
             // réponse ne vaut plus. Une relance sur la génération courante,
             // une seule — pas de course infinie si les signaux s'enchaînent.
             if (inflightRef.current === promise) inflightRef.current = null;
+            if (inflightRef.current) return inflightRef.current;
+            const currentCache = cacheRef.current;
+            if (currentCache && !isStale(currentCache.expiresAt, Date.now())) return currentCache.urlsBySceneId;
             return relaunched ? null : launch(true);
           }
           if (!result.ok) {
+            setLanguageStatus('error');
             logger.warn(SERVICE_NAME, 'scene audio request refused', { tourId, error: result.error });
             return null;
           }
@@ -205,19 +225,26 @@ export function useSceneAudio(tourId: string): SceneAudioSource {
             if (scene.audioUrl) urlsBySceneId[scene.id] = scene.audioUrl;
           }
           const expiry = computeExpiry(result.data.mediaExpiresAt, Date.now());
+          const variants = audioVariants(result.data.scenes);
+          const nextInventory = languageInventory(variants);
           // La couverture ne change pas d'une réponse à l'autre : une réponse
           // qui ne la porte pas ne l'a pas retirée, et la Media Session ne doit
           // pas perdre son image au premier renouvellement d'URLs.
           const coverUrl = result.data.coverUrl ?? cacheRef.current?.coverUrl;
           cacheRef.current = {
+            variants,
+            inventory: nextInventory,
             urlsBySceneId,
             expiresAt: expiry.expiresAt,
             fromResponse: expiry.fromResponse,
             ...(coverUrl ? { coverUrl } : {}),
           };
+          setInventory(nextInventory);
+          setLanguageStatus('ready');
           return urlsBySceneId;
         } catch (error) {
           if (generation === generationRef.current) {
+            setLanguageStatus('error');
             logger.warn(SERVICE_NAME, 'scene audio request failed', { tourId, error: String(error) });
           }
           return null;
@@ -260,9 +287,19 @@ export function useSceneAudio(tourId: string): SceneAudioSource {
   const refetch = useCallback((): Promise<SceneUrls | null> => request(), [request]);
 
   const readCoverUrl = useCallback((): string | undefined => cacheRef.current?.coverUrl, []);
+  const readInventory = useCallback(() => cacheRef.current?.inventory ?? null, []);
+  const resolveAudio = useCallback((sceneId: string, selected: string, base: string) => {
+    const cache = cacheRef.current;
+    return cache ? resolveSceneAudio(cache.variants, sceneId, selected, base) : null;
+  }, []);
+
+  // Le manifeste prépare les choix, jamais les fichiers audio. Le premier clic partage la demande en vol.
+  useEffect(() => {
+    if (preload) void ensureFresh();
+  }, [preload, ensureFresh, isAuthenticated, user?.id, refreshTick]);
 
   return useMemo(
-    () => ({ ensureFresh, refetch, readCoverUrl }),
-    [ensureFresh, refetch, readCoverUrl],
+    () => ({ ensureFresh, refetch, readCoverUrl, inventory, languageStatus, readInventory, resolveAudio }),
+    [ensureFresh, refetch, readCoverUrl, inventory, languageStatus, readInventory, resolveAudio],
   );
 }

@@ -15,7 +15,7 @@ async function openTour(page: Page, locale: 'fr' | 'en') {
     await page.goto(`${prefix}/catalogue/nice`);
     await page.locator('[data-testid^="tour-card-"]').first().click();
   }
-  await expect(page.getByTestId('tour-play-button')).toBeVisible();
+  await expect(page.getByTestId('tour-play-button')).toBeVisible({ timeout: 45_000 });
 }
 
 // Une minute de silence PCM : lecture réelle, sans dépendre d’un objet S3 de production.
@@ -46,11 +46,15 @@ async function serveAudio(route: Route) {
 
 for (const locale of ['fr', 'en'] as const) {
   test(`lecteur ouvert, clavier et axe (${locale})`, async ({ page }, testInfo) => {
+    let mediaRequests = 0;
+    page.on('request', (request) => { if (request.resourceType() === 'media') mediaRequests++; });
     await page.route('**/*', serveAudio);
     await openTour(page, locale);
     const control = page.getByTestId('tour-play-button');
     await expect(control).toBeVisible();
+    await expect(page.getByRole('combobox', { name: locale === 'en' ? 'Listening language' : 'Langue d’écoute' })).toBeEnabled();
     const before = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    expect(mediaRequests).toBe(0);
     await control.focus();
     await page.keyboard.press('Space');
     await expect(control).toHaveText('Pause');
@@ -81,5 +85,47 @@ test('l’ancre propose une reprise, sans lecture automatique', async ({ page })
   await page.goto(`${page.url().split('#')[0]}#ecouter`);
   await page.reload();
   await expect(page.getByTestId('tour-resume-button')).toBeFocused();
+  await expect(page.getByTestId('scene-audio')).toHaveJSProperty('paused', true);
+});
+
+test('langue : change la source, repart à zéro et conserve le choix au rechargement', async ({ page }) => {
+  // Fixture de traduction sur les seules scènes audio publiques déjà servies.
+  // Le fragment distingue la source dans le lecteur ; le son reste le WAV de test.
+  await page.route('**/*', async (route) => {
+    if (route.request().postData()?.includes('getPublishedTourContent')) {
+      const result = await route.fetch();
+      const body = await result.json();
+      const content = body.data?.getPublishedTourContent;
+      if (content?.scenes) {
+        for (const scene of content.scenes) {
+          if (scene.audioUrl) scene.translatedAudioUrls = JSON.stringify({ en: `${scene.audioUrl}#lw3-en` });
+        }
+      }
+      return route.fulfill({ response: result, json: body });
+    }
+    return serveAudio(route);
+  });
+  await openTour(page, 'fr');
+  const selector = page.getByRole('combobox', { name: 'Langue d’écoute' });
+  await expect(selector).toBeEnabled();
+  const options = await selector.locator('option').evaluateAll((nodes) => nodes.map((node) => (node as HTMLOptionElement).value));
+  expect(options).toContain('en');
+  const baseLanguage = options[0];
+  await page.getByTestId('tour-play-button').click();
+  const audio = page.getByTestId('scene-audio');
+  await expect(audio).toHaveJSProperty('paused', false);
+  const original = await audio.getAttribute('src');
+  await audio.evaluate((node: HTMLAudioElement) => { node.currentTime = 25; });
+  await selector.selectOption('en');
+  await expect(audio).not.toHaveAttribute('src', original!);
+  await expect(audio).toHaveJSProperty('paused', false);
+  await expect.poll(() => audio.evaluate((node: HTMLAudioElement) => node.currentTime)).toBeLessThan(5);
+  await expect(page.locator('audio')).toHaveCount(1);
+  await page.getByTestId('tour-play-button').click();
+  await selector.selectOption(baseLanguage);
+  await expect(audio).toHaveJSProperty('paused', true);
+  await selector.selectOption('en');
+  await page.reload();
+  await expect(page.getByRole('combobox', { name: 'Langue d’écoute' })).toHaveValue('en');
   await expect(page.getByTestId('scene-audio')).toHaveJSProperty('paused', true);
 });

@@ -12,6 +12,9 @@ import {
   RESUME_MAX_AGE_MS,
   resumeKey,
   writeResume,
+  readLanguageChoice,
+  writeLanguageChoice,
+  LANGUAGE_KEY_PREFIX,
 } from '../resume-store';
 
 jest.mock('@/lib/logger', () => ({
@@ -161,6 +164,56 @@ describe('resume-store', () => {
     } finally {
       restore();
     }
+  });
+});
+
+describe('LW-3 — préférences et langue de reprise', () => {
+  beforeEach(() => window.localStorage.clear());
+
+  it('conserve un code canonique par visite sans URL', () => {
+    writeLanguageChoice('a', 'EN_us');
+    writeLanguageChoice('b', 'de');
+    expect(readLanguageChoice('a')).toBe('en-us');
+    expect(readLanguageChoice('b')).toBe('de');
+    expect(Object.keys(JSON.parse(localStorage.getItem(`${LANGUAGE_KEY_PREFIX}a`)!)).sort()).toEqual(['language', 'updatedAt']);
+    writeResume('a', { sceneId: 's1', position: 12, language: 'EN_us' });
+    expect(readResume('a')?.language).toBe('en-us');
+  });
+
+  it.each(['null', 'cassé', '{}', JSON.stringify({ language: 'https://signed.test/audio', updatedAt: Date.now() }), JSON.stringify({ language: 'en', updatedAt: 'hier' })])('purge une préférence illisible : %s', (raw) => {
+    localStorage.setItem(`${LANGUAGE_KEY_PREFIX}a`, raw);
+    expect(readLanguageChoice('a')).toBeNull();
+    expect(localStorage.getItem(`${LANGUAGE_KEY_PREFIX}a`)).toBeNull();
+  });
+
+  it('purge les préférences périmées, puis toutes celles de la session à la déconnexion', () => {
+    writeLanguageChoice('recent', 'en');
+    localStorage.setItem(`${LANGUAGE_KEY_PREFIX}ancien`, JSON.stringify({ language: 'de', updatedAt: Date.now() - RESUME_MAX_AGE_MS - 1 }));
+    localStorage.setItem('autre', 'conserver');
+    pruneResumes();
+    expect(readLanguageChoice('recent')).toBe('en');
+    expect(localStorage.getItem(`${LANGUAGE_KEY_PREFIX}ancien`)).toBeNull();
+    clearAllResumes();
+    expect(readLanguageChoice('recent')).toBeNull();
+    expect(localStorage.getItem('autre')).toBe('conserver');
+  });
+
+  it('tolère un stockage inaccessible et un quota dépassé', () => {
+    for (const getter of [() => { throw new Error('bloqué'); }, () => ({ getItem() { throw new Error('quota'); }, setItem() { throw new Error('quota'); }, removeItem() { throw new Error('quota'); } }) as unknown as Storage]) {
+      const restore = replaceLocalStorage(getter);
+      try {
+        expect(readLanguageChoice('a')).toBeNull();
+        expect(() => writeLanguageChoice('a', 'en')).not.toThrow();
+      } finally { restore(); }
+    }
+  });
+
+  it('relit les anciennes reprises sans langue et ignore un code invalide', () => {
+    writeResume('a', { sceneId: 's1', position: 12 });
+    expect(readResume('a')?.language).toBeUndefined();
+    localStorage.setItem(resumeKey('a'), JSON.stringify({ sceneId: 's1', position: 12, updatedAt: Date.now(), language: 'https://signed.test' }));
+    expect(readResume('a')).toMatchObject({ sceneId: 's1', position: 12 });
+    expect(readResume('a')?.language).toBeUndefined();
   });
 });
 

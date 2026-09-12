@@ -1,6 +1,6 @@
 # Épopée LW : lecteur web léger (Murmure joue sans l'appli)
 
-Status: in-progress — LW-1, LW-2 et LW-6 livrées localement ; LW-3, LW-4 et LW-5 restent à faire. Validation sur appareils de LW-2 encore non exécutée.
+Status: in-progress — LW-1, LW-2, LW-6 et LW-3 livrées localement ; LW-4 et LW-5 restent à faire. Validation sur appareils de LW-2 encore non exécutée.
 
 <!-- Née le 2026-09-12 d'une question de Steff : « peut-on adapter le site pour qu'il joue le rôle d'appli ? ». Réponse : pas pour l'expérience de marche (GPS en fond impossible en PWA), oui pour un lecteur léger. -->
 <!-- Périmètre : TourGuideWeb uniquement. Aucun changement de schéma ni de Lambda. -->

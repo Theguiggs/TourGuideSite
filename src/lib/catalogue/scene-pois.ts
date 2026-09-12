@@ -40,8 +40,8 @@ export function mapScenesToPois(scenes: readonly PublicTourScene[]): POI[] {
     photoKey: scene.photoUrls?.[0],
     // LW-1 : présence d'une narration, rien de plus. `audioUrl` (signée 15 min)
     // ne passe PAS ici — cette projection tourne aussi au rendu serveur, et le
-    // HTML ne doit porter aucune URL signée. Le lecteur la redemande au clic.
-    hasAudio: Boolean(scene.audioKey),
+    // HTML ne doit porter aucune URL audio signée. Le lecteur obtient son manifeste côté navigateur.
+    hasAudio: Boolean(scene.audioKey || scene.audioUrl || Object.values(scene.translatedAudioUrls ?? {}).some(Boolean)),
   }));
 }
 
@@ -62,6 +62,8 @@ export function isFullContent(scenes: readonly PublicTourScene[]): boolean {
     .some(
       (scene) =>
         Boolean(scene.audioKey) ||
+        Boolean(scene.audioUrl) ||
+        Object.values(scene.translatedAudioUrls ?? {}).some(Boolean) ||
         (scene.description ?? '').length > 0 ||
         (scene.photos?.length ?? 0) > 0,
     );

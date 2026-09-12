@@ -14,8 +14,9 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { ScenePlayer, SceneListenControl, TourPlayControl } from '..';
 // La reprise n'est pas une API du lecteur : les épreuves lisent son module.
-import { resumeKey, clearAllResumes, RESUME_CLEAR_KEY } from '../resume-store';
+import { resumeKey, clearAllResumes, RESUME_CLEAR_KEY, LANGUAGE_KEY_PREFIX, writeLanguageChoice } from '../resume-store';
 import { trackEvent } from '@/lib/analytics';
+import { PURCHASES_CHANGED_EVENT } from '@/lib/checkout/purchase-events';
 
 jest.mock('@/lib/analytics', () => ({
   ...jest.requireActual('@/lib/analytics'),
@@ -51,6 +52,7 @@ function response(
   urls: Record<string, string | undefined>,
   mediaExpiresAt?: string,
   coverUrl?: string,
+  translations: Record<string, Record<string, string>> = {},
 ) {
   return {
     ok: true as const,
@@ -65,6 +67,7 @@ function response(
         description: '',
         photos: [],
         ...(audioUrl ? { audioKey: `k-${id}`, audioUrl } : {}),
+        ...(translations[id] ? { translatedAudioUrls: translations[id] } : {}),
       })),
       ...(mediaExpiresAt ? { mediaExpiresAt } : {}),
     },
@@ -116,6 +119,7 @@ function Harness({
   tourTitle = 'Visite test',
   settled = true,
   locale = 'fr',
+  baseLanguage = 'fr',
 }: {
   tourId?: string;
   ids?: string[];
@@ -123,6 +127,7 @@ function Harness({
   tourTitle?: string;
   settled?: boolean;
   locale?: 'fr' | 'en';
+  baseLanguage?: string;
 }) {
   // La liste jouable suit les contrôles rendus : même ordre, un numéro par étape.
   const playlist = ids.map((id, index) => ({ id, title: `Scène ${id}`, order: index + 1 }));
@@ -131,7 +136,8 @@ function Harness({
       tourId={tourId}
       locale={locale}
       cityId="grasse"
-      audioLanguage="fr"
+      audioLanguage={baseLanguage}
+      languageAudioTypes={{ fr: 'recording', en: 'tts', de: 'mixed' }}
       playlistSettled={settled}
       playlist={playlist}
       lockedAfter={lockedAfter}
@@ -1103,7 +1109,9 @@ describe('ScenePlayer — LW-2', () => {
 
     const resume = screen.getByTestId('tour-resume-button');
     expect(resume).toHaveTextContent("Reprendre à l’étape 2");
-    expect(mockGetPublishedTourContent).not.toHaveBeenCalled();
+    // LW-3 prépare le manifeste des langues, sans démarrer l’audio.
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+    expect(playSpy).not.toHaveBeenCalled();
 
     fireEvent.click(resume);
     await act(async () => {});
@@ -1870,5 +1878,293 @@ describe('LW-6 — régressions des relectures', () => {
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
     expect(playSpy).toHaveBeenCalledTimes(1);
     expect(screen.getByText(UNAVAILABLE)).toBeVisible();
+  });
+});
+
+describe('LW-3 — langue d’écoute', () => {
+  const EN_S1 = 'https://media.example/en-s1.mp3?sig=one';
+  const DE_S1 = 'https://media.example/de-s1.mp3?sig=one';
+  const multilingual = () => response({ s1: URL_S1, s2: URL_S2 }, FRESH, undefined, { s1: { en: EN_S1, de: DE_S1 } });
+  beforeEach(() => {
+    jest.clearAllMocks();
+    playSpy.mockResolvedValue(undefined);
+    fakeDuration = 120;
+    fakeError = null;
+    window.history.replaceState(null, '', '/');
+    mockGetPublishedTourContent.mockResolvedValue(multilingual());
+  });
+  afterEach(() => window.history.replaceState(null, '', '/'));
+  const selector = () => screen.getByRole('combobox');
+  async function ready() { await waitFor(() => expect(selector()).not.toBeDisabled()); }
+  async function choose(value: string) { fireEvent.change(selector(), { target: { value } }); await act(async () => {}); }
+
+  it('page anglaise : découvre les URLs, choisit anglais et annonce le repli', async () => {
+    render(<Harness locale="en" />);
+    await ready();
+    expect(selector()).toHaveAccessibleName('Listening language');
+    expect(selector()).toHaveValue('en');
+    expect(screen.getByRole('option', { name: 'English — Synthetic voice' })).toBeVisible();
+    expect(screen.getByText('1 stop will play in French.')).toBeVisible();
+    expect(playSpy).not.toHaveBeenCalled();
+    await click('s1');
+    expect(audio().src).toBe(EN_S1);
+    expect(trackEvent).toHaveBeenCalledWith('web_listen_start', expect.objectContaining({ language: 'en' }));
+  });
+
+  it('séquence anglaise : la seconde piste sans traduction joue la source sur le même audio', async () => {
+    render(<Harness locale="en" />);
+    await ready();
+    const element = audio();
+    fireEvent.click(screen.getByTestId('tour-play-button'));
+    await act(async () => {});
+    expect(element.src).toBe(EN_S1);
+    await emit('ended');
+    expect(audio()).toBe(element);
+    expect(element.src).toBe(URL_S2);
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+  });
+
+  it('un choix mémorisé est prioritaire et aucune URL ne va au stockage', async () => {
+    writeLanguageChoice('tour-1', 'de');
+    const view = render(<Harness locale="en" />);
+    await ready();
+    expect(selector()).toHaveValue('de');
+    await choose('en');
+    view.unmount();
+    render(<Harness />);
+    await ready();
+    expect(selector()).toHaveValue('en');
+    expect(JSON.parse(localStorage.getItem(`${LANGUAGE_KEY_PREFIX}tour-1`)!)).toMatchObject({ language: 'en' });
+    expect(JSON.stringify(localStorage)).not.toContain('https://');
+  });
+
+  it('une ancienne préférence absente de l’aperçu reste mémorisée', async () => {
+    writeLanguageChoice('tour-1', 'ja');
+    render(<Harness locale="en" />);
+    await ready();
+    expect(selector()).toHaveValue('en');
+    expect(JSON.parse(localStorage.getItem(`${LANGUAGE_KEY_PREFIX}tour-1`)!)).toMatchObject({ language: 'ja' });
+  });
+
+  it('changer en lecture repart à zéro, sans second audio ni nouvelle demande', async () => {
+    render(<Harness />);
+    await ready();
+    await click('s1');
+    const element = audio();
+    element.currentTime = 42;
+    await choose('en');
+    expect(audio()).toBe(element);
+    expect(element.currentTime).toBe(0);
+    expect(element.src).toBe(EN_S1);
+    expect(button('s1')).toHaveTextContent('Pause');
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+    const starts = jest.mocked(trackEvent).mock.calls.filter(([event]) => event === 'web_listen_start');
+    expect(starts.map(([, props]) => props?.language)).toEqual(['fr', 'en']);
+  });
+
+  it('changer en pause prépare la nouvelle langue sans lancer de son', async () => {
+    render(<Harness />);
+    await ready();
+    await click('s1');
+    await click('s1');
+    audio().currentTime = 42;
+    const calls = playSpy.mock.calls.length;
+    await choose('en');
+    expect(playSpy).toHaveBeenCalledTimes(calls);
+    expect(audio().src).toBe(EN_S1);
+    expect(audio().currentTime).toBe(0);
+    await click('s1');
+    expect(playSpy).toHaveBeenCalledTimes(calls + 1);
+  });
+
+  it('le choix identique ne redémarre pas et les flèches du sélecteur ne cherchent pas dans la piste', async () => {
+    render(<Harness />);
+    await ready();
+    await click('s1');
+    audio().currentTime = 42;
+    await choose('fr');
+    fireEvent.keyDown(selector(), { key: 'ArrowRight' });
+    expect(audio().currentTime).toBe(42);
+    expect(playSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it.each([['en', 37], ['fr', 0], [undefined, 0]] as const)('reprise enregistrée en %s sur page anglaise : position %s', async (language, position) => {
+    localStorage.setItem(resumeKey('tour-1'), JSON.stringify({ sceneId: 's1', position: 37, updatedAt: Date.now(), language }));
+    render(<Harness locale="en" />);
+    await ready();
+    fireEvent.click(screen.getByTestId('tour-resume-button'));
+    await act(async () => {});
+    await emit('loadedmetadata');
+    expect(audio().src).toBe(EN_S1);
+    expect(audio().currentTime).toBe(position);
+    audio().currentTime = 10;
+    await emit('timeupdate');
+    expect(JSON.parse(localStorage.getItem(resumeKey('tour-1'))!)).toMatchObject({ language: 'en' });
+  });
+
+  it('un manifeste refusé se réessaie explicitement sans boucle', async () => {
+    mockGetPublishedTourContent.mockResolvedValueOnce({ ok: false, error: 'réseau' });
+    render(<Harness />);
+    await screen.findByText('Langues momentanément indisponibles.');
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole('button', { name: 'Réessayer les langues' }));
+    await ready();
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
+    expect(screen.getByRole('option', { name: 'English — Voix de synthèse' })).toBeVisible();
+  });
+
+  it('une source inconnue est nommée origine, jamais français', async () => {
+    mockGetPublishedTourContent.mockResolvedValue(response({ s1: URL_S1, s2: URL_S2 }));
+    render(<Harness baseLanguage="und" />);
+    await ready();
+    expect(selector()).toHaveValue('und');
+    expect(screen.getByRole('option', { name: /Langue d’origine/ })).toBeVisible();
+    expect(screen.queryByRole('option', { name: /Français/ })).not.toBeInTheDocument();
+  });
+
+  it('la relance réseau conserve la traduction et reste unique', async () => {
+    render(<Harness locale="en" />);
+    await ready();
+    await click('s1');
+    mockGetPublishedTourContent.mockResolvedValue(response({ s1: URL_S1_RENEWED, s2: URL_S2 }, FRESH, undefined, { s1: { en: 'https://media.example/en-s1?sig=two' } }));
+    audio().currentTime = 28;
+    fakeError = { code: MEDIA_ERR_NETWORK };
+    await emit('error');
+    expect(audio().src).toBe('https://media.example/en-s1?sig=two');
+    expect(audio().currentTime).toBe(28);
+    await emit('error');
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
+    expect(screen.getByTestId('scene-error-s1')).toHaveTextContent('Audio temporarily unavailable');
+  });
+
+  it('une réponse de lecture antérieure ne remplace pas la langue nouvellement choisie', async () => {
+    render(<Harness />);
+    await ready();
+    let finish!: () => void;
+    playSpy.mockReturnValueOnce(new Promise((resolve) => { finish = resolve; }));
+    fireEvent.click(button('s1'));
+    await act(async () => {});
+    await choose('en');
+    await act(async () => finish());
+    expect(audio().src).toBe(EN_S1);
+    expect(jest.mocked(trackEvent).mock.calls.filter(([event]) => event === 'web_listen_start')).toHaveLength(1);
+  });
+
+  it('la déconnexion purge le choix, la reprise et les variantes signées', async () => {
+    render(<Harness />);
+    await ready();
+    await choose('en');
+    await click('s1');
+    act(() => clearAllResumes());
+    expect(localStorage.getItem(`${LANGUAGE_KEY_PREFIX}tour-1`)).toBeNull();
+    expect(audio()).not.toHaveAttribute('src');
+    expect(screen.queryByRole('option', { name: /English/ })).not.toBeInTheDocument();
+  });
+
+  it('une traduction retirée se replie explicitement sur la source, à zéro', async () => {
+    writeLanguageChoice('tour-1', 'de');
+    render(<Harness locale="en" />);
+    await ready();
+    await click('s1');
+    audio().currentTime = 28;
+    mockGetPublishedTourContent.mockResolvedValue(response({ s1: URL_S1_RENEWED, s2: URL_S2 }, FRESH, undefined, { s1: { en: EN_S1 } }));
+    fakeError = { code: MEDIA_ERR_NETWORK };
+    await emit('error');
+    expect(audio().src).toBe(URL_S1_RENEWED);
+    expect(audio().currentTime).toBe(0);
+    expect(selector()).toHaveValue('de');
+    expect(screen.getByText('2 stops will play in French.')).toBeVisible();
+    audio().currentTime = 5;
+    await emit('timeupdate');
+    expect(JSON.parse(localStorage.getItem(resumeKey('tour-1'))!)).toMatchObject({ language: 'fr' });
+    expect(jest.mocked(trackEvent).mock.calls.filter(([event]) => event === 'web_listen_start')).toHaveLength(1);
+  });
+
+  it('le bouton langues force une requête après échec média malgré un cache frais', async () => {
+    render(<Harness />);
+    await ready();
+    await click('s1');
+    mockGetPublishedTourContent.mockResolvedValueOnce({ ok: false, error: 'réseau' });
+    fakeError = { code: MEDIA_ERR_NETWORK };
+    await emit('error');
+    fireEvent.click(screen.getByRole('button', { name: 'Réessayer les langues' }));
+    await act(async () => {});
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(3);
+    expect(screen.queryByText('Langues momentanément indisponibles.')).not.toBeInTheDocument();
+  });
+
+  it('pause pendant relance puis reprise : changer de langue continue la lecture', async () => {
+    render(<Harness />);
+    await ready();
+    await click('s1');
+    let finish!: (value: ReturnType<typeof response>) => void;
+    mockGetPublishedTourContent.mockReturnValueOnce(new Promise((resolve) => { finish = resolve; }));
+    fakeError = { code: MEDIA_ERR_NETWORK };
+    await emit('error');
+    await click('s1');
+    await act(async () => finish(multilingual()));
+    await click('s1');
+    const calls = playSpy.mock.calls.length;
+    await choose('en');
+    expect(playSpy).toHaveBeenCalledTimes(calls + 1);
+    expect(button('s1')).toHaveTextContent('Pause');
+  });
+
+  it.each([false, true])('achat : préférence réapparue ou choix explicite conservé (%s)', async (explicit) => {
+    writeLanguageChoice('tour-1', 'ja');
+    const view = render(<Harness locale="en" ids={['s1']} />);
+    await ready();
+    if (explicit) await choose('de');
+    mockGetPublishedTourContent.mockResolvedValue(response({ s1: URL_S1, s2: URL_S2 }, FRESH, undefined, { s1: { en: EN_S1, de: DE_S1 }, s2: { ja: 'https://media.example/ja.mp3' } }));
+    act(() => window.dispatchEvent(new Event(PURCHASES_CHANGED_EVENT)));
+    view.rerender(<Harness locale="en" ids={['s1', 's2']} />);
+    await ready();
+    expect(selector()).toHaveValue(explicit ? 'de' : 'ja');
+    await click('s2');
+    expect(audio().src).toBe(explicit ? URL_S2 : 'https://media.example/ja.mp3');
+  });
+
+  it.each([false, true])('une ancienne génération partage la requête ou le cache du nouvel achat (réponse récente en premier : %s)', async (newFirst) => {
+    let old!: (value: ReturnType<typeof response>) => void;
+    let current!: (value: ReturnType<typeof response>) => void;
+    mockGetPublishedTourContent.mockReturnValueOnce(new Promise((resolve) => { old = resolve; }))
+      .mockReturnValueOnce(new Promise((resolve) => { current = resolve; }));
+    render(<Harness locale="en" />);
+    await act(async () => {});
+    act(() => window.dispatchEvent(new Event(PURCHASES_CHANGED_EVENT)));
+    await act(async () => {});
+    if (newFirst) await act(async () => current(multilingual()));
+    await act(async () => old(response({ s1: URL_S1 })));
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
+    if (!newFirst) await act(async () => current(multilingual()));
+    await click('s1');
+    expect(audio().src).toBe(EN_S1);
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
+  });
+
+  it('traduction seule : jouable, puis indisponible si la langue choisie n’a aucun repli', async () => {
+    mockGetPublishedTourContent.mockResolvedValue(response({ s1: undefined }, FRESH, undefined, { s1: { en: EN_S1 } }));
+    render(<Harness locale="en" ids={['s1']} />);
+    await ready();
+    await click('s1');
+    expect(audio().src).toBe(EN_S1);
+    await choose('fr');
+    expect(screen.getByTestId('scene-error-s1')).toHaveTextContent('Audio temporarily unavailable');
+    expect(playSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('changement de langue avec manifeste périmé en vol, puis purge : aucune lecture tardive', async () => {
+    render(<Harness />);
+    await ready();
+    await click('s1');
+    let finish!: (value: ReturnType<typeof response>) => void;
+    nowSpy = jest.spyOn(Date, 'now').mockReturnValue(BASE_NOW + 20 * 60_000);
+    mockGetPublishedTourContent.mockReturnValueOnce(new Promise((resolve) => { finish = resolve; }));
+    await choose('en');
+    expect(selector()).toBeDisabled();
+    act(() => clearAllResumes());
+    await act(async () => finish(multilingual()));
+    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(audio()).not.toHaveAttribute('src');
   });
 });

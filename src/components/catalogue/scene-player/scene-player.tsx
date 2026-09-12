@@ -41,7 +41,7 @@
  * toutes les 5 s, à la pause, au masquage de l'onglet et au démontage, lue au
  * montage, purgée quand la dernière étape jouable se termine.
  *
- * Périmètre : langue de base (`audioUrl`) seulement (LW-3 : sélecteur).
+ * LW-3 : choix de langue, URLs traduites servies et repli sur la narration source.
  */
 
 import {
@@ -60,6 +60,9 @@ import { logger } from '@/lib/logger';
 import { AnalyticsEvents, trackEvent } from '@/lib/analytics';
 import { LISTEN_ANCHOR } from './listen-link';
 import { useSceneAudio } from './use-scene-audio';
+import { useListeningLanguage } from './use-listening-language';
+import { audioLanguageCode } from './language-policy';
+import type { LanguageAudioTypes } from '@/lib/api/audio-source-policy';
 import {
   applyMediaSession,
   bindMediaSessionActions,
@@ -170,12 +173,21 @@ export type SequenceEnding =
 
 export interface ResumeOffer {
   sceneId: string;
+  language?: string;
   position: number;
   /** Numéro d'étape à afficher. */
   step: number;
 }
 
 interface ScenePlayerContextValue {
+  languageOptions: readonly string[];
+  selectedLanguage: string;
+  baseLanguage: string;
+  languageAudioTypes?: LanguageAudioTypes;
+  fallbackCount: number;
+  languageStatus: 'idle' | 'loading' | 'ready' | 'error';
+  changeLanguage(language: string): void;
+  retryLanguages(): void;
   keyboardSeek(offset: number): void;
   locale: ScenePlayerLocale;
   currentSceneId: string | null;
@@ -207,6 +219,7 @@ const ScenePlayerContext = createContext<ScenePlayerContextValue | null>(null);
  * de redemande : une seule par tentative.
  */
 interface Attempt {
+  language?: string;
   completed?: boolean;
   sceneId: string;
   retryUsed: boolean;
@@ -223,6 +236,8 @@ interface Attempt {
 }
 
 interface OpenAttemptOptions {
+  autoplay?: boolean;
+  resumeLanguage?: string;
   /** Validité restante exigée des URLs (frontière de piste). */
   minValidityMs?: number;
   /** Position de départ (reprise). */
@@ -265,6 +280,7 @@ export interface ScenePlayerProps {
   tourId: string;
   cityId?: string;
   audioLanguage?: string;
+  languageAudioTypes?: LanguageAudioTypes;
   locale?: ScenePlayerLocale;
   /** LW-2 — étapes servies et narrées, dans l'ordre d'affichage. */
   playlist?: readonly PlaylistEntry[];
@@ -295,6 +311,7 @@ function ScenePlayerInstance({
   tourId,
   cityId = 'unknown',
   audioLanguage = 'und',
+  languageAudioTypes,
   locale = 'fr',
   playlist: playlistProp,
   lockedAfter = false,
@@ -303,7 +320,10 @@ function ScenePlayerInstance({
   children,
 }: ScenePlayerProps) {
   const playlist = playlistProp ?? EMPTY_PLAYLIST;
-  const { ensureFresh, refetch, readCoverUrl } = useSceneAudio(tourId);
+  const baseLanguage = audioLanguageCode(audioLanguage) ?? 'und';
+  const { ensureFresh, refetch, readCoverUrl, inventory, languageStatus, readInventory, resolveAudio } = useSceneAudio(tourId, playlistSettled && playlist.length > 0);
+  const listeningLanguage = useListeningLanguage(tourId, baseLanguage, locale, playlist.map((entry) => entry.id), inventory, readInventory);
+  const { readSelection, select: selectLanguage } = listeningLanguage;
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const attemptRef = useRef<Attempt | null>(null);
   const progressRef = useRef<Progress>(ZERO_PROGRESS);
@@ -333,7 +353,7 @@ function ScenePlayerInstance({
   const [error, setError] = useState<ScenePlayerError | null>(null);
   const [sequence, setSequenceState] = useState(false);
   const [ending, setEnding] = useState<SequenceEnding | null>(null);
-  const [resumeCandidate, setResumeCandidate] = useState<{ sceneId: string; position: number } | null>(
+  const [resumeCandidate, setResumeCandidate] = useState<{ sceneId: string; position: number; language?: string } | null>(
     null,
   );
   const copy = SCENE_PLAYER_COPY[locale];
@@ -409,6 +429,7 @@ function ScenePlayerInstance({
   const startPlayback = useCallback(
     async (audio: HTMLAudioElement, attempt: Attempt) => {
       if (attempt.playPending) return;
+      attempt.pausedByUser = false;
       attempt.playPending = true;
       attempt.completed = false;
       try {
@@ -416,7 +437,7 @@ function ScenePlayerInstance({
         if (attemptRef.current !== attempt) return;
         if (!listenSessionRef.current.started) {
           listenSessionRef.current.started = true;
-          measure(AnalyticsEvents.WEB_LISTEN_START, { language: audioLanguage, from: listenSessionRef.current.from });
+          measure(AnalyticsEvents.WEB_LISTEN_START, { language: attempt.language ?? baseLanguage, from: listenSessionRef.current.from });
         }
         setPlaying(true);
         setLoading(false);
@@ -444,7 +465,7 @@ function ScenePlayerInstance({
         attempt.playPending = false;
       }
     },
-    [fail, copy.tapAgain, measure, audioLanguage],
+    [fail, copy.tapAgain, measure, baseLanguage],
   );
 
   const titleOf = useCallback(
@@ -472,7 +493,7 @@ function ScenePlayerInstance({
         ready: false,
         retrying: false,
         playPending: false,
-        pausedByUser: false,
+        pausedByUser: options.autoplay === false,
         failed: false,
       };
       attemptRef.current = attempt;
@@ -494,15 +515,16 @@ function ScenePlayerInstance({
       if (!mountedRef.current || attemptRef.current !== attempt) return;
       // L'expiration au clic (ou à la frontière) a consommé la redemande de cette tentative.
       if (outcome === 'refreshed') attempt.retryUsed = true;
-      const url = urls?.[sceneId];
-      if (!url) {
+      const resolved = urls ? resolveAudio(sceneId, readSelection(), baseLanguage) : null;
+      if (!resolved) {
         // Réponse absente ou sans URL pour cette scène : message, pas de
         // redemande — le serveur a dit ce qu'il avait à dire.
         fail(sceneId);
         return;
       }
-      audio.src = url;
-      const startAt = options.position ?? 0;
+      audio.src = resolved.url;
+      attempt.language = resolved.language;
+      const startAt = options.resumeLanguage && options.resumeLanguage !== resolved.language ? 0 : options.position ?? 0;
       if (startAt > 0) {
         // La position n'est POSÉE qu'une fois la durée connue : avec
         // `preload="none"`, rien ne dit encore où la piste finit, et une
@@ -514,7 +536,8 @@ function ScenePlayerInstance({
       attempt.ready = true;
       applyMediaSession({ title: titleOf(sceneId), artist: tourTitle, artwork: readCoverUrl() });
       publishPositionState();
-      await startPlayback(audio, attempt);
+      if (options.autoplay !== false) await startPlayback(audio, attempt);
+      else setLoading(false);
     },
     [
       ensureFresh,
@@ -525,6 +548,9 @@ function ScenePlayerInstance({
       readCoverUrl,
       titleOf,
       tourTitle,
+      resolveAudio,
+      readSelection,
+      baseLanguage,
     ],
   );
 
@@ -543,7 +569,7 @@ function ScenePlayerInstance({
   useEffect(() => {
     pruneResumes();
     const entry = readResume(tourId);
-    if (entry) setResumeCandidate({ sceneId: entry.sceneId, position: entry.position });
+    if (entry) setResumeCandidate({ sceneId: entry.sceneId, position: entry.position, language: entry.language });
   }, [tourId]);
 
   const resumeIndex = resumeCandidate
@@ -562,6 +588,7 @@ function ScenePlayerInstance({
     if (!resumeCandidate || resumeIndex < 0 || currentSceneId !== null) return null;
     return {
       sceneId: resumeCandidate.sceneId,
+      language: resumeCandidate.language,
       position: resumeCandidate.position,
       step: playlist[resumeIndex]?.order ?? resumeIndex + 1,
     };
@@ -575,7 +602,7 @@ function ScenePlayerInstance({
       if (!audio) return;
       const attempt = attemptRef.current;
       if (attempt?.ready && !attempt.failed && !audio.ended && audio.currentTime > 0) {
-        writeResume(tourId, { sceneId: attempt.sceneId, position: audio.currentTime });
+        writeResume(tourId, { sceneId: attempt.sceneId, position: audio.currentTime, language: attempt.language });
       }
       audio.pause();
       audio.removeAttribute('src');
@@ -596,7 +623,7 @@ function ScenePlayerInstance({
       const now = Date.now();
       if (!force && now - lastResumeWriteRef.current < RESUME_WRITE_INTERVAL_MS) return;
       lastResumeWriteRef.current = now;
-      writeResume(tourId, { sceneId: attempt.sceneId, position: audio.currentTime });
+      writeResume(tourId, { sceneId: attempt.sceneId, position: audio.currentTime, language: attempt.language });
     };
 
     const onTimeUpdate = () => {
@@ -678,14 +705,16 @@ function ScenePlayerInstance({
         const urls = await refetch();
         if (attemptRef.current !== attempt) return;
         attempt.retrying = false;
-        const url = urls?.[attempt.sceneId];
-        if (!url) {
+        const resolved = urls ? resolveAudio(attempt.sceneId, readSelection(), baseLanguage) : null;
+        if (!resolved) {
           fail(attempt.sceneId);
           return;
         }
-        audio.src = url;
-        if (resumeAt > 0) audio.currentTime = resumeAt;
-        publishProgress({ position: resumeAt, duration: progressRef.current.duration });
+        audio.src = resolved.url;
+        const position = resolved.language === attempt.language ? resumeAt : 0;
+        attempt.language = resolved.language;
+        audio.currentTime = position;
+        publishProgress({ position, duration: progressRef.current.duration });
         if (attempt.pausedByUser) {
           // L'utilisateur a mis en pause pendant la relance : source prête,
           // position gardée, lecture au prochain clic.
@@ -718,6 +747,9 @@ function ScenePlayerInstance({
   }, [
     tourId,
     measure,
+    resolveAudio,
+    readSelection,
+    baseLanguage,
     refetch,
     fail,
     startPlayback,
@@ -808,7 +840,7 @@ function ScenePlayerInstance({
         // Ce qui se ferme ici, c'est l'accès (déconnexion, liste servie qui
         // rétrécit), pas la visite : la position se garde, comme au démontage.
         if (current.ready && !current.failed && !audio.ended && audio.currentTime > 0) {
-          writeResume(tourId, { sceneId: current.sceneId, position: audio.currentTime });
+          writeResume(tourId, { sceneId: current.sceneId, position: audio.currentTime, language: current.language });
         }
         audio.pause();
         audio.removeAttribute('src');
@@ -954,7 +986,7 @@ function ScenePlayerInstance({
         listenSessionRef.current = { from: 'resume', started: false };
         entryFromRef.current = 'tour_page';
         setSequence(true);
-        void openAttempt(fromSceneId, { position });
+        void openAttempt(fromSceneId, { position, resumeLanguage: resumeCandidate?.language ?? baseLanguage });
         return;
       }
       const current = attemptRef.current;
@@ -981,8 +1013,19 @@ function ScenePlayerInstance({
       setSequence(true);
       void openAttempt(first.id);
     },
-    [openAttempt, resumeCurrent, playing, ending, setSequence],
+    [openAttempt, resumeCurrent, playing, ending, setSequence, resumeCandidate, baseLanguage],
   );
+
+  const changeLanguage = useCallback((language: string) => {
+    if (!selectLanguage(language)) return;
+    const current = attemptRef.current;
+    if (!current) return;
+    const autoplay = !current.pausedByUser && (playing || loading);
+    listenSessionRef.current.started = false;
+    void openAttempt(current.sceneId, { autoplay });
+  }, [selectLanguage, openAttempt, playing, loading]);
+
+  const retryLanguages = useCallback(() => { void refetch(); }, [refetch]);
 
   // L’ancre ne vaut pas permission d’autoplay : une seule tentative, avec repli LW-1.
   useEffect(() => {
@@ -992,8 +1035,8 @@ function ScenePlayerInstance({
       if (!playlistSettled || playlist.length === 0) return;
       const entry = readResume(tourId);
       const canResume = entry && playlist.some((scene) => scene.id === entry.sceneId);
-      if (canResume && (!resumeOffer || resumeOffer.sceneId !== entry.sceneId || resumeOffer.position !== entry.position)) {
-        setResumeCandidate({ sceneId: entry.sceneId, position: entry.position });
+      if (canResume && (!resumeOffer || resumeOffer.sceneId !== entry.sceneId || resumeOffer.position !== entry.position || resumeOffer.language !== entry.language)) {
+        setResumeCandidate({ sceneId: entry.sceneId, position: entry.position, language: entry.language });
         return;
       }
       if (canResume) anchorHandledRef.current = true;
@@ -1047,6 +1090,14 @@ function ScenePlayerInstance({
   const value = useMemo<ScenePlayerContextValue>(
     () => ({
       locale,
+      languageOptions: listeningLanguage.available,
+      selectedLanguage: listeningLanguage.selected,
+      baseLanguage,
+      languageAudioTypes,
+      fallbackCount: listeningLanguage.fallbackCount,
+      languageStatus,
+      changeLanguage,
+      retryLanguages,
       keyboardSeek: seekBy,
       currentSceneId,
       playing,
@@ -1067,6 +1118,14 @@ function ScenePlayerInstance({
     }),
     [
       locale,
+      listeningLanguage.available,
+      listeningLanguage.selected,
+      listeningLanguage.fallbackCount,
+      baseLanguage,
+      languageAudioTypes,
+      languageStatus,
+      changeLanguage,
+      retryLanguages,
       seekBy,
       currentSceneId,
       playing,
@@ -1126,6 +1185,14 @@ export type TourPlayerView = Pick<
   | 'startSequence'
   | 'toggle'
   | 'keyboardSeek'
+  | 'languageOptions'
+  | 'selectedLanguage'
+  | 'baseLanguage'
+  | 'languageAudioTypes'
+  | 'fallbackCount'
+  | 'languageStatus'
+  | 'changeLanguage'
+  | 'retryLanguages'
 >;
 
 export function useTourPlayer(): TourPlayerView | null {

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { NumberMark, Eyebrow, tg } from '@murmure/design-system/web';
 import type { POI } from '@/types/tour';
+import type { LanguageAudioTypes } from '@/lib/api/audio-source-policy';
 import { useOwnsTour, usePurchasesRefreshTick } from '@/hooks/use-owned-tour-ids';
 import { useAuth } from '@/lib/auth/auth-context';
 import { FREE_PREVIEW_SCENES, isFullContent, mapScenesToPois } from '@/lib/catalogue/scene-pois';
@@ -27,6 +28,7 @@ interface ItineraryListProps {
   tourId: string;
   cityId?: string;
   sourceLanguage?: string;
+  languageAudioTypes?: LanguageAudioTypes;
   /** LW-2 — titre de la visite (Media Session). */
   tourTitle?: string;
   /** Free tours are never gated. */
@@ -160,6 +162,7 @@ export default function ItineraryList({
   tourId,
   cityId,
   sourceLanguage,
+  languageAudioTypes,
   tourTitle = '',
   isFree,
   heroAccentFg,
@@ -212,6 +215,7 @@ export default function ItineraryList({
     <ScenePlayer
       cityId={cityId}
       audioLanguage={sourceLanguage}
+      languageAudioTypes={languageAudioTypes}
       tourId={tourId}
       locale={locale}
       playlist={playlist}

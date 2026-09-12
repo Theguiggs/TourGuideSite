@@ -25,6 +25,7 @@ import { SCENE_PLAYER_COPY, useTourPlayer } from './scene-player';
 import { PURCHASE_ANCHOR } from './purchase-anchor';
 import { revealElement } from './reveal';
 import { LISTEN_ANCHOR } from './listen-link';
+import { LanguageControl } from './language-control';
 
 /** Hors flux visuel, lu par les lecteurs d'écran. */
 const VISUALLY_HIDDEN: CSSProperties = {
@@ -101,6 +102,7 @@ export function TourPlayControl() {
       }}
       style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3], marginBottom: tg.space[6] }}
     >
+      <LanguageControl />
       <div style={{ display: 'flex', alignItems: 'center', gap: tg.space[3], flexWrap: 'wrap' }}>
         <Button
           variant="primary"

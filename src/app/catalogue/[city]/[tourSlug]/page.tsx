@@ -502,6 +502,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 tourId={tour.id}
                 cityId={tour.citySlug}
                 sourceLanguage={tour.sourceLanguage}
+                languageAudioTypes={tour.languageAudioTypes}
                 tourTitle={tour.title}
                 isFree={isTourFree(tour)}
                 contentUnavailable={tour.contentUnavailable}
