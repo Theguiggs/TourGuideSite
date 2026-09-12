@@ -16,8 +16,12 @@ const nextConfig: NextConfig = {
   },
   output: 'standalone',
   typescript: { ignoreBuildErrors: process.env.SKIP_NEXT_TYPECHECK === 'true' },
+  async rewrites() {
+    return [{ source: '/hors-ligne', destination: '/offline/fr.html' }, { source: '/en/hors-ligne', destination: '/offline/en.html' }];
+  },
   async headers() {
     return [
+      { source: '/sw.js', headers: [{ key: 'Cache-Control', value: 'no-cache' }, { key: 'Service-Worker-Allowed', value: '/' }] },
       {
         source: '/(.*)',
         headers: [

@@ -1,6 +1,6 @@
 # Story LW-5 : PWA installable pour de vrai
 
-Status: draft
+Status: implemented — validée en production locale ; contrôle après déploiement public restant
 
 <!-- Épopée LW. Indépendante des autres stories. -->
 
@@ -30,3 +30,13 @@ afin de **ne pas tomber sur la page d'erreur du navigateur en sortant du métro*
 ## Hors périmètre
 
 - Cache de l'audio (voir l'épopée). Push. Synchronisation en arrière-plan.
+
+## Livraison — 13 septembre 2026
+
+Service worker manuel /sw.js, shell autonome sans script en fr/en, icônes et police locale précachées, ressources Next publiques mises en cache à la demande (120 maximum). Aucune page consultée conservée ; API, RSC, images optimisées et médias signés exclus. Mise à jour proposée par bandeau, activation et rechargement sur geste uniquement, autres onglets préservés. Manifest complété, vraie capture mobile du shell et balises iOS. Enregistrement client via les scripts Next déjà autorisés par nonce ; aucun script inline supplémentaire.
+
+Les pages /hors-ligne et /en/hors-ligne sont des réécritures vers du HTML public autonome, pour éviter de conserver un HTML Next personnalisé ou porteur d’un nonce. Les navigations sont réseau d’abord puis repli localisé ; pas de catalogue ni d’audio hors ligne. Le lien Réessayer conserve les paramètres d’URL.
+
+AC 6 adapté : le contrôle PWA a disparu de Lighthouse 12 ([source officielle](https://github.com/GoogleChrome/lighthouse/releases/tag/v12.0.0)). Chrome CDP retourne zéro erreur d’installabilité sur le build de production local. /sw.js répond 200 avec no-cache localement. Vérification HTTPS depuis le VPS : 404 sur la version publique actuelle, qui n’a pas été déployée. **L’acceptation après déploiement public reste ouverte.** Aucun push ni changement du VPS effectué.
+
+Revues et preuves : [revue-lw-5.md](revue-lw-5.md). Exploitation : [docs/pwa.md](../docs/pwa.md).

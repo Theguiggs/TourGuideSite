@@ -8,6 +8,7 @@ import AmplitudeProvider from '@/components/AmplitudeProvider';
 import { AuthProvider } from '@/lib/auth/auth-context';
 import { PendingTourConfirmRecovery } from '@/components/checkout/pending-tour-confirm-recovery';
 import { LOCALE_HEADER, SITE_URL } from '@/lib/site';
+import { PwaRegistration } from '@/components/pwa/pwa-registration';
 
 // Story 1.3 — 4 familles DS auto-loadées via next/font/google.
 // Chaque font écrit sa variable CSS, alignée avec les noms de tokens.css
@@ -96,6 +97,7 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/manifest.json',
+  appleWebApp: { capable: true, title: 'Murmure', statusBarStyle: 'default' },
 };
 
 // Story 3.4 — Next.js 14+ a déplacé `themeColor` de `metadata` vers `viewport`.
@@ -127,6 +129,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <AuthProvider>
               <PendingTourConfirmRecovery />
               <SiteChrome>{children}</SiteChrome>
+              <PwaRegistration locale={lang} />
             </AuthProvider>
           </AmplifyProvider>
         </AmplitudeProvider>
