@@ -1,5 +1,7 @@
 'use client';
 
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
+
 interface ThemeChipsProps {
   /** Available themes (FR labels — values matched 1:1 with backend enum). */
   options: ReadonlyArray<{ value: string; label: string }>;
@@ -24,6 +26,7 @@ export function ThemeChips({
   max = 3,
   onMaxReached,
 }: ThemeChipsProps) {
+  const { t } = useStudioLocale();
   const set = new Set(value);
   const isFull = value.length >= max;
 
@@ -33,7 +36,7 @@ export function ThemeChips({
       return;
     }
     if (isFull) {
-      onMaxReached?.(`Maximum ${max} thèmes — désélectionnez-en un d'abord.`);
+      onMaxReached?.(t(`Maximum ${max} thèmes — désélectionnez-en un d'abord.`, `Maximum ${max} themes — deselect one first.`));
       return;
     }
     onChange([...value, v]);

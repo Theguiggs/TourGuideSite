@@ -1,10 +1,12 @@
 import type { QualityResult } from '@/lib/studio/quality-analyzer';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface QualityFeedbackProps {
   result: QualityResult | null;
 }
 
 export function QualityFeedback({ result }: QualityFeedbackProps) {
+  const { t } = useStudioLocale();
   if (!result || !result.overall) return null;
 
   const isGood = result.overall === 'good';
@@ -19,7 +21,7 @@ export function QualityFeedback({ result }: QualityFeedbackProps) {
     >
       <span aria-hidden="true" className="text-h6">{isGood ? '✓' : '⚠'}</span>
       <div>
-        <p className="font-medium">{isGood ? 'Bonne qualité' : 'À améliorer'}</p>
+        <p className="font-medium">{isGood ? t('Bonne qualité', 'Good quality') : t('À améliorer', 'Needs improvement')}</p>
         <p className="text-meta opacity-75">{result.message}</p>
       </div>
     </div>

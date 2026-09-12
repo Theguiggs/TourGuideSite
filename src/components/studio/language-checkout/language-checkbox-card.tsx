@@ -1,6 +1,7 @@
 'use client';
 
 import type { QualityTier, PurchaseType } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 // --- Language config ---
 
@@ -31,8 +32,8 @@ export const LANGUAGE_CONFIG = [
 
 // --- Price formatter ---
 
-export function formatPrice(amountCents: number): string {
-  return new Intl.NumberFormat('fr-FR', {
+export function formatPrice(amountCents: number, locale: 'fr' | 'en' = 'fr'): string {
+  return new Intl.NumberFormat(locale === 'en' ? 'en-GB' : 'fr-FR', {
     style: 'currency',
     currency: 'EUR',
   }).format(amountCents / 100);
@@ -68,6 +69,7 @@ export function LanguageCheckboxCard({
   purchasedType = null,
   isPremiumDisabled = false,
 }: LanguageCheckboxCardProps) {
+  const { t, locale } = useStudioLocale();
   // Manual purchases can be toggled (removed), paid purchases cannot
   const isPaidPurchase = isPurchased && purchasedType !== 'manual';
   const isDisabled = isBaseLanguage || isPaidPurchase || isPremiumDisabled;
@@ -88,16 +90,16 @@ export function LanguageCheckboxCard({
   // Build aria-label
   let ariaLabel = langLabel;
   if (isBaseLanguage) {
-    ariaLabel = `${langLabel}, langue de base`;
+    ariaLabel = t(`${langLabel}, langue de base`, `${langLabel}, base language`);
   } else if (isPurchased) {
     const tierLabel = purchasedTier === 'pro' ? 'Pro' : purchasedTier === 'standard' ? 'Standard' : '';
     ariaLabel = tierLabel
-      ? `${langLabel}, d\u00e9j\u00e0 achet\u00e9e (${tierLabel})`
-      : `${langLabel}, d\u00e9j\u00e0 achet\u00e9e`;
+      ? t(`${langLabel}, d\u00e9j\u00e0 achet\u00e9e (${tierLabel})`, `${langLabel}, already purchased (${tierLabel})`)
+      : t(`${langLabel}, d\u00e9j\u00e0 achet\u00e9e`, `${langLabel}, already purchased`);
   } else if (isPremiumDisabled) {
-    ariaLabel = `${langLabel}, disponible en Pro uniquement`;
+    ariaLabel = t(`${langLabel}, disponible en Pro uniquement`, `${langLabel}, available in Pro only`);
   } else if (priceCents !== null) {
-    ariaLabel = `${langLabel}, ${formatPrice(priceCents)}`;
+    ariaLabel = `${langLabel}, ${formatPrice(priceCents, locale)}`;
   }
 
   // Card styles
@@ -165,7 +167,7 @@ export function LanguageCheckboxCard({
         <span className="text-body font-semibold text-ink truncate">{langLabel}</span>
         {isBaseLanguage && (
           <span className="text-meta text-grenadine" data-testid={`base-badge-${langCode}`}>
-            Langue de base
+            {t('Langue de base', 'Base language')}
           </span>
         )}
         {isPurchased && (
@@ -174,15 +176,15 @@ export function LanguageCheckboxCard({
               <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             {purchasedType === 'manual'
-              ? 'Ajout\u00e9e (manuel)'
+              ? t('Ajout\u00e9e (manuel)', 'Added (manual)')
               : purchasedTier
-                ? `Achet\u00e9e (${purchasedTier === 'pro' ? 'Pro' : 'Standard'})`
-                : 'Achet\u00e9e'}
+                ? t(`Achet\u00e9e (${purchasedTier === 'pro' ? 'Pro' : 'Standard'})`, `Purchased (${purchasedTier === 'pro' ? 'Pro' : 'Standard'})`)
+                : t('Achet\u00e9e', 'Purchased')}
           </span>
         )}
         {isPremiumDisabled && (
           <span className="text-meta text-ink-40" data-testid={`premium-disabled-${langCode}`}>
-            Disponible en Pro uniquement
+            {t('Disponible en Pro uniquement', 'Available in Pro only')}
           </span>
         )}
       </div>
@@ -194,7 +196,7 @@ export function LanguageCheckboxCard({
             isPremiumDisabled ? 'text-ink-40' : 'text-ink-80'
           }`}
         >
-          {formatPrice(priceCents)}
+          {formatPrice(priceCents, locale)}
         </span>
       )}
     </div>

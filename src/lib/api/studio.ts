@@ -292,8 +292,19 @@ const SCENE_STATUS_CONFIG: Record<SceneStatus, { label: string; color: string }>
   finalized: { label: 'Finalisé', color: 'bg-olive-soft text-success' },
 };
 
-export function getSceneStatusConfig(status: SceneStatus) {
-  return SCENE_STATUS_CONFIG[status];
+const SCENE_STATUS_LABEL_EN: Record<SceneStatus, string> = {
+  empty: 'Empty',
+  has_original: 'Field audio',
+  transcribed: 'Transcribed',
+  edited: 'Edited',
+  recorded: 'Recorded',
+  finalized: 'Finalised',
+};
+
+export function getSceneStatusConfig(status: SceneStatus, locale: 'fr' | 'en' = 'fr') {
+  const config = SCENE_STATUS_CONFIG[status];
+  if (locale !== 'en' || !config) return config;
+  return { ...config, label: SCENE_STATUS_LABEL_EN[status] };
 }
 
 /**

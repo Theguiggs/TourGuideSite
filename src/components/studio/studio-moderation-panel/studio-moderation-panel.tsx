@@ -20,7 +20,7 @@ interface StudioModerationPanelProps {
 
 export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChange }: StudioModerationPanelProps) {
   const { isAdmin: authIsAdmin } = useAuth();
-  const { t } = useStudioLocale();
+  const { t, locale } = useStudioLocale();
   // Double-guard: prop AND auth context must both confirm admin
   const canModerate = isAdmin && authIsAdmin;
   const [playingId, setPlayingId] = useState<string | null>(null);
@@ -82,7 +82,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
 
       <div className="space-y-3 mb-6">
         {scenes.map((scene, index) => {
-          const statusConfig = getSceneStatusConfig(scene.status);
+          const statusConfig = getSceneStatusConfig(scene.status, locale);
           const isPlayingOriginal = playingId === scene.id && playingType === 'original';
           const isPlayingStudio = playingId === scene.id && playingType === 'studio';
 

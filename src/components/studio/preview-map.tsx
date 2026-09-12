@@ -12,6 +12,7 @@ import type { Waypoint } from '@/components/studio/editable-map';
 import { TILE_URL, TILE_ATTRIBUTION } from '@/lib/maps/tile-config';
 import { createNumberedIcon } from '@/lib/maps/marker-icons';
 import { FitToPoints } from '@/components/map/FitToPoints';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface PreviewMapProps {
   scenes: StudioScene[];
@@ -32,6 +33,7 @@ export function PreviewMap({
   pathOverride = null,
   customPath = null,
 }: PreviewMapProps) {
+  const { t } = useStudioLocale();
   const geoScenes = useMemo(
     () => scenes.filter((s) => s.latitude !== null && s.longitude !== null),
     [scenes],
@@ -83,7 +85,7 @@ export function PreviewMap({
   const routeColor = hasCustomPath || hasOverride || manualMode ? tg.colors.grenadine : tg.colors.mer;
 
   return (
-    <div role="application" aria-label="Aperçu de l’itinéraire sur la carte">
+    <div role="application" aria-label={t('Aperçu de l’itinéraire sur la carte', 'Route preview on the map')}>
     <MapContainer
       center={center}
       zoom={16}

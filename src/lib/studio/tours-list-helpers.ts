@@ -5,7 +5,7 @@ export type TourStatusFilter = 'all' | 'live' | 'draft' | 'review';
 export type TourSortBy = 'recently_modified' | 'alphabetical' | 'most_played';
 
 export interface TourStatusLabel {
-  /** UI label (français). */
+  /** UI label (français par défaut, anglais avec `locale: 'en'`). */
   label: string;
   /** Family color matching tokens (`success | ocre | mer | danger`). */
   color: 'success' | 'ocre' | 'mer' | 'danger';
@@ -17,20 +17,21 @@ export interface TourStatusLabel {
  * Map a raw studio session status to its UI labelling.
  * The DB has 12+ statuses; we collapse them into 4 buckets the user understands.
  */
-export function tourStatusLabel(status: StudioSessionStatus): TourStatusLabel {
+export function tourStatusLabel(status: StudioSessionStatus, locale: 'fr' | 'en' = 'fr'): TourStatusLabel {
+  const en = locale === 'en';
   switch (status) {
     case 'published':
-      return { label: 'En ligne', color: 'success', bucket: 'live' };
+      return { label: en ? 'Live' : 'En ligne', color: 'success', bucket: 'live' };
 
     case 'submitted':
     case 'revision_requested':
-      return { label: 'En relecture', color: 'mer', bucket: 'review' };
+      return { label: en ? 'In review' : 'En relecture', color: 'mer', bucket: 'review' };
 
     case 'rejected':
-      return { label: 'Refusé', color: 'danger', bucket: 'review' };
+      return { label: en ? 'Rejected' : 'Refusé', color: 'danger', bucket: 'review' };
 
     case 'archived':
-      return { label: 'Archivé', color: 'ocre', bucket: 'draft' };
+      return { label: en ? 'Archived' : 'Archivé', color: 'ocre', bucket: 'draft' };
 
     case 'draft':
     case 'transcribing':
@@ -40,7 +41,7 @@ export function tourStatusLabel(status: StudioSessionStatus): TourStatusLabel {
     case 'paused':
     case 'ready_for_cleanup':
     default:
-      return { label: 'Brouillon', color: 'ocre', bucket: 'draft' };
+      return { label: en ? 'Draft' : 'Brouillon', color: 'ocre', bucket: 'draft' };
   }
 }
 
