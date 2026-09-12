@@ -18,6 +18,9 @@ import SmartAppLink from '@/components/SmartAppLink';
 import TourPurchaseCard from '@/components/checkout/tour-purchase-card';
 import ForfaitPurchaseCard from '@/components/checkout/forfait-purchase-card';
 import { AiDisclosureBadge } from '@/components/catalogue/ai-disclosure-badge';
+// Depuis le module nu, pas depuis le baril : un composant serveur qui importe
+// une constante d'un module `'use client'` reçoit une référence de client.
+import { PURCHASE_ANCHOR_ID } from '@/components/catalogue/scene-player/purchase-anchor';
 import { S3Image } from '@/components/studio/s3-image';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { isTourFree } from '@/lib/catalogue/tour-pricing';
@@ -498,6 +501,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
               <ItineraryList
                 pois={isTourFree(tour) ? tour.pois : maskLockedPois(tour.pois, locale)}
                 tourId={tour.id}
+                tourTitle={tour.title}
                 isFree={isTourFree(tour)}
                 contentUnavailable={tour.contentUnavailable}
                 heroAccentFg={heroAccentFg}
@@ -595,22 +599,28 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                     </Button>
                   </SmartAppLink>
 
-                  {/* mon-1.3b — web sale CTA for individually-priced tours */}
-                  {tour.purchaseType === 'paid' && (
-                    <TourPurchaseCard
-                      tourId={tour.id}
-                      title={tour.title}
-                      priceCents={tour.priceCents}
-                      locale={locale}
-                    />
-                  )}
+                  {/* LW-2 : la cible de la fin d'aperçu du lecteur. L'`id` vient
+                      du module partagé (jamais réécrit à la main), et
+                      `tabIndex={-1}` rend la cible focalisable : sans lui, le
+                      saut d'ancre déplace la vue sans déplacer le focus. */}
+                  <div id={PURCHASE_ANCHOR_ID} tabIndex={-1}>
+                    {/* mon-1.3b — web sale CTA for individually-priced tours */}
+                    {tour.purchaseType === 'paid' && (
+                      <TourPurchaseCard
+                        tourId={tour.id}
+                        title={tour.title}
+                        priceCents={tour.priceCents}
+                        locale={locale}
+                      />
+                    )}
 
-                  {/* Forfait « visites IA » — les visites incluses affichaient leur
-                      statut sans aucun moyen d'acheter : c'est ici que l'intention
-                      d'achat est la plus forte. */}
-                  {tour.purchaseType === 'subscription_only' && (
-                    <ForfaitPurchaseCard locale={locale} />
-                  )}
+                    {/* Forfait « visites IA » — les visites incluses affichaient leur
+                        statut sans aucun moyen d'acheter : c'est ici que l'intention
+                        d'achat est la plus forte. */}
+                    {tour.purchaseType === 'subscription_only' && (
+                      <ForfaitPurchaseCard locale={locale} />
+                    )}
+                  </div>
 
                   <div
                     style={{

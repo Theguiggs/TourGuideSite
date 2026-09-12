@@ -1,15 +1,21 @@
 /**
  * LW-1 — le lecteur de scène : un seul `<audio>`, une seule scène à la fois,
  * une seule redemande par tentative.
+ * LW-2 — le mode visite : enchaînement sur `ended`, fin d'aperçu / de visite,
+ * Media Session, reprise.
  *
  * jsdom n'implémente ni `play()`, ni `pause()`, ni `load()` (et `duration` /
  * `error` ne sont pas modifiables) : on les stubbe sur le prototype, et on les
  * restaure à la fin. Les événements média (`error`, `ended`, `timeupdate`)
- * sont émis à la main sur l'élément.
+ * sont émis à la main sur l'élément. `navigator.mediaSession` n'existe pas :
+ * un faux objet enregistre les gestionnaires posés.
  */
 
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { ScenePlayer, SceneListenControl } from '..';
+import { ScenePlayer, SceneListenControl, TourPlayControl } from '..';
+// La reprise n'est pas une API du lecteur : les épreuves lisent son module.
+import { resumeKey } from '../resume-store';
+import { logger } from '@/lib/logger';
 
 jest.mock('@/lib/auth/auth-context', () => ({
   useAuth: () => ({ isAuthenticated: false, user: null }),
@@ -35,12 +41,17 @@ const MEDIA_ERR_ABORTED = 1;
 const MEDIA_ERR_NETWORK = 2;
 const MEDIA_ERR_DECODE = 3;
 
-function response(urls: Record<string, string | undefined>, mediaExpiresAt?: string) {
+function response(
+  urls: Record<string, string | undefined>,
+  mediaExpiresAt?: string,
+  coverUrl?: string,
+) {
   return {
     ok: true as const,
     data: {
       tourId: 'tour-1',
       walkPath: [],
+      ...(coverUrl ? { coverUrl } : {}),
       scenes: Object.entries(urls).map(([id, audioUrl], index) => ({
         id,
         order: index,
@@ -92,9 +103,28 @@ afterAll(() => {
   }
 });
 
-function Harness({ tourId = 'tour-1', ids = ['s1', 's2'] }: { tourId?: string; ids?: string[] }) {
+function Harness({
+  tourId = 'tour-1',
+  ids = ['s1', 's2'],
+  lockedAfter = false,
+  tourTitle = 'Visite test',
+}: {
+  tourId?: string;
+  ids?: string[];
+  lockedAfter?: boolean;
+  tourTitle?: string;
+}) {
+  // La liste jouable suit les contrôles rendus : même ordre, un numéro par étape.
+  const playlist = ids.map((id, index) => ({ id, title: `Scène ${id}`, order: index + 1 }));
   return (
-    <ScenePlayer tourId={tourId} locale="fr">
+    <ScenePlayer
+      tourId={tourId}
+      locale="fr"
+      playlist={playlist}
+      lockedAfter={lockedAfter}
+      tourTitle={tourTitle}
+    >
+      <TourPlayControl />
       <ol>
         {ids.map((id) => (
           <li key={id}>
@@ -130,6 +160,12 @@ function rejection(name: string) {
 }
 
 const UNAVAILABLE = 'Audio momentanément indisponible';
+
+// La reprise (LW-2) s'écrit pendant la lecture : chaque épreuve part d'un
+// stockage vide, sinon une pastille de l'épreuve précédente s'inviterait.
+beforeEach(() => {
+  window.localStorage.clear();
+});
 
 describe('ScenePlayer — LW-1', () => {
   beforeEach(() => {
@@ -435,7 +471,7 @@ describe('ScenePlayer — LW-1', () => {
     await click('s1');
 
     expect(screen.getByTestId('scene-error-s1')).toHaveTextContent(
-      "Touchez à nouveau pour lancer l'écoute",
+      'Touchez à nouveau pour lancer l’écoute',
     );
     expect(button('s1')).toHaveTextContent('Écouter');
     expect(button('s1')).not.toHaveAttribute('aria-busy');
@@ -620,5 +656,1003 @@ describe('ScenePlayer — LW-1', () => {
   it("hors <ScenePlayer>, le contrôle ne rend rien", () => {
     const { container } = render(<SceneListenControl sceneId="s1" title="Seule" />);
     expect(container).toBeEmptyDOMElement();
+  });
+});
+
+// ─── LW-2 ────────────────────────────────────────────────────────────────────
+
+type ActionHandler = ((details: MediaSessionActionDetails) => void) | null;
+
+interface FakeMediaSession {
+  metadata: { title?: string; artist?: string; artwork?: { src: string }[] } | null;
+  playbackState: string;
+  handlers: Record<string, ActionHandler>;
+  setActionHandler: jest.Mock;
+  setPositionState: jest.Mock;
+}
+
+/** Les cinq actions du spec, plus les deux sauts relatifs (LW-2, revue). */
+const MEDIA_ACTIONS = [
+  'nexttrack',
+  'pause',
+  'play',
+  'previoustrack',
+  'seekbackward',
+  'seekforward',
+  'seekto',
+];
+
+function installMediaSession(): FakeMediaSession {
+  const handlers: Record<string, ActionHandler> = {};
+  const fake: FakeMediaSession = {
+    metadata: null,
+    playbackState: 'none',
+    handlers,
+    setActionHandler: jest.fn((action: string, handler: ActionHandler) => {
+      handlers[action] = handler;
+    }),
+    setPositionState: jest.fn(),
+  };
+  Object.defineProperty(navigator, 'mediaSession', { configurable: true, value: fake });
+  return fake;
+}
+
+function uninstallMediaSession() {
+  delete (navigator as unknown as Record<string, unknown>).mediaSession;
+}
+
+function action(fake: FakeMediaSession, name: string, details: Partial<MediaSessionActionDetails> = {}) {
+  return act(async () => {
+    fake.handlers[name]?.({ action: name as MediaSessionAction, ...details });
+  });
+}
+
+function tourButton(): HTMLButtonElement {
+  return screen.getByTestId('tour-play-button') as HTMLButtonElement;
+}
+
+async function clickTour() {
+  fireEvent.click(tourButton());
+  await act(async () => {});
+}
+
+function storedResume(tourId = 'tour-1'): { sceneId: string; position: number } | null {
+  const raw = window.localStorage.getItem(resumeKey(tourId));
+  if (raw === null) return null;
+  const parsed = JSON.parse(raw) as { sceneId: string; position: number };
+  return { sceneId: parsed.sceneId, position: parsed.position };
+}
+
+function storeResume(sceneId: string, position: number, tourId = 'tour-1') {
+  window.localStorage.setItem(
+    resumeKey(tourId),
+    JSON.stringify({ sceneId, position, updatedAt: Date.now() }),
+  );
+}
+
+const URL_S3 = 'https://media.example/s3.mp3?sig=one';
+const URL_S4 = 'https://media.example/s4.mp3?sig=one';
+const THREE = { s1: URL_S1, s2: URL_S2, s3: URL_S3 };
+
+describe('ScenePlayer — LW-2', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    playSpy.mockResolvedValue(undefined);
+    fakeDuration = NaN;
+    fakeError = null;
+    mockGetPublishedTourContent.mockResolvedValue(response(THREE, FRESH));
+  });
+
+  afterEach(() => {
+    nowSpy?.mockRestore();
+    nowSpy = null;
+    uninstallMediaSession();
+  });
+
+  it('« Écouter la visite » : s1 joue, puis s2 et s3 sur `ended` sans geste, même nœud ; « Visite terminée », clé purgée', async () => {
+    render(<Harness ids={['s1', 's2', 's3']} />);
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+    expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
+
+    await clickTour();
+    const node = audio();
+    expect(node.getAttribute('src')).toBe(URL_S1);
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+    expect(button('s1')).toHaveTextContent('Pause');
+    expect(playSpy).toHaveBeenCalledTimes(1);
+
+    // La position s'écrit pendant la lecture : la clé existe avant la fin.
+    node.currentTime = 12;
+    await emit('timeupdate');
+    expect(storedResume()).toEqual({ sceneId: 's1', position: 12 });
+
+    await emit('ended');
+    expect(audio()).toBe(node);
+    expect(node.getAttribute('src')).toBe(URL_S2);
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+    expect(button('s1')).toHaveTextContent('Écouter');
+    expect(playSpy).toHaveBeenCalledTimes(2);
+    // URLs fraîches : aucune nouvelle requête à la frontière.
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+
+    await emit('ended');
+    expect(node.getAttribute('src')).toBe(URL_S3);
+    await waitFor(() => expect(button('s3')).toHaveTextContent('Pause'));
+    expect(playSpy).toHaveBeenCalledTimes(3);
+
+    await emit('ended');
+    expect(playSpy).toHaveBeenCalledTimes(3);
+    expect(screen.getByTestId('tour-ending-complete')).toHaveTextContent('Visite terminée');
+    expect(screen.queryByTestId('tour-ending-preview')).not.toBeInTheDocument();
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+    expect(button('s3')).toHaveTextContent('Écouter');
+    expect(storedResume()).toBeNull();
+
+    // Relancer la visite après la fin : depuis la première étape.
+    await clickTour();
+    expect(node.getAttribute('src')).toBe(URL_S1);
+    expect(screen.queryByTestId('tour-ending-complete')).not.toBeInTheDocument();
+  });
+
+  it("fin d'aperçu : la dernière servie finie, des étapes verrouillées suivent → message + lien #acheter, rien ne joue", async () => {
+    render(<Harness ids={['s1', 's2']} lockedAfter />);
+
+    await clickTour();
+    await emit('ended');
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+    expect(playSpy).toHaveBeenCalledTimes(2);
+
+    await emit('ended');
+
+    const message = screen.getByTestId('tour-ending-preview');
+    expect(message).toHaveTextContent('Débloquez la visite pour écouter la suite');
+    expect(message).toHaveAttribute('role', 'status');
+    expect(screen.getByTestId('tour-ending-purchase-link')).toHaveAttribute('href', '#acheter');
+    expect(screen.queryByTestId('tour-ending-complete')).not.toBeInTheDocument();
+    expect(playSpy).toHaveBeenCalledTimes(2);
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+    expect(storedResume()).toBeNull();
+  });
+
+  it('frontière avec URLs bientôt périmées (< 5 min) : redemande avant de poser s2 ; la relance de s2 est consommée', async () => {
+    mockGetPublishedTourContent
+      .mockResolvedValueOnce(response(THREE, iso(4 * 60_000)))
+      .mockResolvedValueOnce(response({ s1: URL_S1_RENEWED, s2: URL_S2_RENEWED }, iso(40 * 60_000)));
+    render(<Harness ids={['s1', 's2']} />);
+
+    await clickTour();
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+    expect(audio().getAttribute('src')).toBe(URL_S1);
+
+    // 3 min 30 de validité restante : assez pour un clic (LW-1), pas pour une narration enchaînée.
+    await emit('ended');
+    await waitFor(() => expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2_RENEWED));
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+
+    fakeError = { code: MEDIA_ERR_NETWORK };
+    await emit('error');
+    await waitFor(() =>
+      expect(screen.getByTestId('scene-error-s2')).toHaveTextContent(UNAVAILABLE),
+    );
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
+  });
+
+  it('frontière avec URLs encore valides (≥ 5 min) : pas de redemande', async () => {
+    mockGetPublishedTourContent.mockResolvedValue(response(THREE, iso(6 * 60_000)));
+    render(<Harness ids={['s1', 's2']} />);
+    await clickTour();
+    await emit('ended');
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+  });
+
+  it('URL de s2 absente à la frontière : message sur s2, séquence arrêtée', async () => {
+    mockGetPublishedTourContent.mockResolvedValue(response({ s1: URL_S1, s2: undefined }, FRESH));
+    render(<Harness ids={['s1', 's2']} />);
+    await clickTour();
+    await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+
+    await emit('ended');
+
+    expect(screen.getByTestId('scene-error-s2')).toHaveTextContent(UNAVAILABLE);
+    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+    expect(screen.queryByTestId('tour-ending-preview')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('tour-ending-complete')).not.toBeInTheDocument();
+  });
+
+  it('échec de la première URL : message LW-1, séquence annulée', async () => {
+    mockGetPublishedTourContent.mockResolvedValue({ ok: false, error: 'Contenu public indisponible' });
+    render(<Harness ids={['s1', 's2']} />);
+    await clickTour();
+    expect(screen.getByTestId('scene-error-s1')).toHaveTextContent(UNAVAILABLE);
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+    expect(playSpy).not.toHaveBeenCalled();
+  });
+
+  it("clic « Écouter » isolé : `ended` n'enchaîne pas, aucun message de fin", async () => {
+    render(<Harness ids={['s1', 's2']} />);
+    await click('s1');
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+
+    await emit('ended');
+
+    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(audio().getAttribute('src')).toBe(URL_S1);
+    expect(screen.queryByTestId('tour-ending-complete')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('tour-ending-preview')).not.toBeInTheDocument();
+  });
+
+  it('clic sur une étape pendant la séquence : elle joue, la séquence continue depuis elle', async () => {
+    mockGetPublishedTourContent.mockResolvedValue(response({ ...THREE, s4: URL_S4 }, FRESH));
+    render(<Harness ids={['s1', 's2', 's3', 's4']} />);
+    await clickTour();
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+
+    await click('s3');
+    expect(audio().getAttribute('src')).toBe(URL_S3);
+    await waitFor(() => expect(button('s3')).toHaveTextContent('Pause'));
+    expect(tourButton()).toHaveTextContent('Pause');
+
+    await emit('ended');
+    expect(audio().getAttribute('src')).toBe(URL_S4);
+    await waitFor(() => expect(button('s4')).toHaveTextContent('Pause'));
+    expect(playSpy).toHaveBeenCalledTimes(3);
+  });
+
+  it('« Écouter la visite » pendant une écoute isolée : la visite continue depuis cette étape', async () => {
+    render(<Harness ids={['s1', 's2', 's3']} />);
+    await click('s2');
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+
+    await clickTour();
+    expect(audio().getAttribute('src')).toBe(URL_S2);
+    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(tourButton()).toHaveTextContent('Pause');
+
+    await emit('ended');
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S3));
+  });
+
+  it('bouton de visite : pause, puis « Reprendre la visite » à la même position', async () => {
+    render(<Harness ids={['s1', 's2']} />);
+    await clickTour();
+    await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+    audio().currentTime = 21;
+
+    await clickTour();
+    expect(pauseSpy).toHaveBeenCalled();
+    expect(tourButton()).toHaveTextContent('Reprendre la visite');
+    expect(button('s1')).toHaveTextContent('Écouter');
+
+    await clickTour();
+    await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+    expect(audio().currentTime).toBe(21);
+    expect(audio().getAttribute('src')).toBe(URL_S1);
+    expect(playSpy).toHaveBeenCalledTimes(2);
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+  });
+
+  it('Media Session : métadonnées à chaque piste, toutes les actions posées, retirées au démontage', async () => {
+    const fake = installMediaSession();
+    mockGetPublishedTourContent.mockResolvedValue(
+      response(THREE, FRESH, 'https://media.example/cover.jpg'),
+    );
+    const view = render(<Harness ids={['s1', 's2', 's3']} tourTitle="Le Caprice" />);
+
+    const registered = fake.setActionHandler.mock.calls.map(([name]) => name).sort();
+    expect(registered).toEqual(MEDIA_ACTIONS);
+    expect(fake.metadata).toBeNull();
+
+    await clickTour();
+    await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+    expect(fake.metadata).toMatchObject({
+      // Le titre de la visite traverse la prop jusqu'à l'écran verrouillé.
+      title: 'Scène s1',
+      artist: 'Le Caprice',
+      artwork: [{ src: 'https://media.example/cover.jpg' }],
+    });
+    expect(fake.playbackState).toBe('playing');
+
+    // Durée connue : l'écran verrouillé reçoit un état de position, sans quoi
+    // il n'affiche ni curseur ni durée — et `seekto` reste inatteignable.
+    fakeDuration = 180;
+    audio().currentTime = 12;
+    await emit('loadedmetadata');
+    expect(fake.setPositionState).toHaveBeenLastCalledWith({
+      duration: 180,
+      position: 12,
+      playbackRate: 1,
+    });
+
+    await emit('ended');
+    await waitFor(() => expect(fake.metadata).toMatchObject({ title: 'Scène s2' }));
+
+    view.unmount();
+    const released = fake.setActionHandler.mock.calls
+      .filter(([, handler]) => handler === null)
+      .map(([name]) => name)
+      .sort();
+    expect(released).toEqual(MEDIA_ACTIONS);
+    expect(fake.metadata).toBeNull();
+    expect(fake.playbackState).toBe('none');
+  });
+
+  it('Media Session : seekbackward / seekforward sautent de dix secondes, bornés par la piste', async () => {
+    const fake = installMediaSession();
+    render(<Harness ids={['s1', 's2']} />);
+    await clickTour();
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+    fakeDuration = 100;
+    audio().currentTime = 40;
+    await emit('loadedmetadata');
+
+    await action(fake, 'seekforward');
+    expect(audio().currentTime).toBe(50);
+
+    await action(fake, 'seekbackward');
+    expect(audio().currentTime).toBe(40);
+
+    // Le navigateur peut imposer son propre saut.
+    await action(fake, 'seekforward', { seekOffset: 25 });
+    expect(audio().currentTime).toBe(65);
+
+    // Jamais avant le début, jamais après la fin.
+    await action(fake, 'seekbackward', { seekOffset: 500 });
+    expect(audio().currentTime).toBe(0);
+    await action(fake, 'seekforward', { seekOffset: 500 });
+    expect(audio().currentTime).toBe(100);
+    // Aucune requête : ces sauts ne touchent pas à la source.
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+  });
+
+  it('Media Session : nexttrack / previoustrack / seekto / pause / play pilotent le lecteur', async () => {
+    const fake = installMediaSession();
+    render(<Harness ids={['s1', 's2', 's3']} />);
+    await clickTour();
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+
+    await action(fake, 'nexttrack');
+    expect(audio().getAttribute('src')).toBe(URL_S2);
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+    // La séquence est conservée : la piste suivante s'enchaînera.
+    expect(tourButton()).toHaveTextContent('Pause');
+
+    await action(fake, 'nexttrack');
+    expect(audio().getAttribute('src')).toBe(URL_S3);
+    await waitFor(() => expect(button('s3')).toHaveTextContent('Pause'));
+    expect(playSpy).toHaveBeenCalledTimes(3);
+
+    // En bout de liste : rien de nouveau ne joue, mais la frontière est DITE —
+    // la même que celle qu'`ended` annonce.
+    await action(fake, 'nexttrack');
+    expect(audio().getAttribute('src')).toBe(URL_S3);
+    expect(playSpy).toHaveBeenCalledTimes(3);
+    expect(screen.getByTestId('tour-ending-complete')).toBeInTheDocument();
+
+    await action(fake, 'previoustrack');
+    expect(audio().getAttribute('src')).toBe(URL_S2);
+    await action(fake, 'previoustrack');
+    expect(audio().getAttribute('src')).toBe(URL_S1);
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+    expect(playSpy).toHaveBeenCalledTimes(5);
+
+    // En tête de liste : s1 repart de zéro, sans nouvelle tentative.
+    audio().currentTime = 33;
+    await action(fake, 'previoustrack');
+    expect(audio().currentTime).toBe(0);
+    expect(audio().getAttribute('src')).toBe(URL_S1);
+    expect(playSpy).toHaveBeenCalledTimes(5);
+
+    await action(fake, 'seekto', { seekTime: 42 });
+    expect(audio().currentTime).toBe(42);
+    expect(screen.getByTestId('scene-time-s1')).toHaveTextContent('0:42 /');
+
+    await action(fake, 'pause');
+    expect(pauseSpy).toHaveBeenCalled();
+    expect(button('s1')).toHaveTextContent('Écouter');
+    expect(fake.playbackState).toBe('paused');
+
+    await action(fake, 'play');
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+    expect(playSpy).toHaveBeenCalledTimes(6);
+    expect(fake.playbackState).toBe('playing');
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+  });
+
+  it("changement de visite : la Media Session de l'ancienne est retirée, la nouvelle en pose une", async () => {
+    const fake = installMediaSession();
+    const view = render(<Harness tourId="tour-1" ids={['s1']} />);
+    await clickTour();
+    await waitFor(() => expect(fake.metadata).toMatchObject({ title: 'Scène s1' }));
+    fake.setActionHandler.mockClear();
+
+    view.rerender(<Harness tourId="tour-2" ids={['s1']} />);
+    await act(async () => {});
+
+    const calls = fake.setActionHandler.mock.calls;
+    expect(calls.filter(([, handler]) => handler === null)).toHaveLength(MEDIA_ACTIONS.length);
+    expect(calls.filter(([, handler]) => typeof handler === 'function')).toHaveLength(
+      MEDIA_ACTIONS.length,
+    );
+    expect(fake.metadata).toBeNull();
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+  });
+
+  it("reprise : pastille « Reprendre à l’étape 2 », clic → s2 à 37 s, séquence active", async () => {
+    storeResume('s2', 37);
+    render(<Harness ids={['s1', 's2', 's3']} />);
+    await act(async () => {});
+
+    const resume = screen.getByTestId('tour-resume-button');
+    expect(resume).toHaveTextContent("Reprendre à l’étape 2");
+    expect(mockGetPublishedTourContent).not.toHaveBeenCalled();
+
+    fireEvent.click(resume);
+    await act(async () => {});
+
+    expect(audio().getAttribute('src')).toBe(URL_S2);
+    // La position s'affiche tout de suite, mais n'est POSÉE qu'à la durée connue :
+    // avec `preload="none"`, rien ne dit encore où la piste finit.
+    expect(screen.getByTestId('scene-time-s2')).toHaveTextContent('0:37 /');
+    fakeDuration = 180;
+    await emit('loadedmetadata');
+    expect(audio().currentTime).toBe(37);
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+    expect(tourButton()).toHaveTextContent('Pause');
+    expect(screen.getByTestId('scene-time-s2')).toHaveTextContent('0:37 / 3:00');
+    expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
+
+    // La séquence continue depuis s2.
+    await emit('ended');
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S3));
+  });
+
+  it("reprise : le numéro affiché est celui de l'étape, pas son rang dans la liste jouable", async () => {
+    storeResume('s2', 5);
+    render(
+      <ScenePlayer
+        tourId="tour-1"
+        locale="fr"
+        playlist={[
+          { id: 's1', title: 'Un', order: 1 },
+          { id: 's2', title: 'Deux', order: 4 },
+        ]}
+      >
+        <TourPlayControl />
+      </ScenePlayer>,
+    );
+    await act(async () => {});
+    expect(screen.getByTestId('tour-resume-button')).toHaveTextContent("Reprendre à l’étape 4");
+  });
+
+  it('reprise : scène mémorisée verrouillée ou absente → pas de pastille, clé purgée', async () => {
+    storeResume('s4', 10);
+    render(<Harness ids={['s1', 's2']} />);
+    await act(async () => {});
+
+    expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
+    expect(window.localStorage.getItem(resumeKey('tour-1'))).toBeNull();
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+  });
+
+  it("reprise : liste pas encore stabilisée → ni pastille ni purge, puis pastille quand l'étape s'ouvre", async () => {
+    storeResume('s3', 10);
+    const playlistOf = (ids: string[]) => ids.map((id, index) => ({ id, title: id, order: index + 1 }));
+    const view = render(
+      <ScenePlayer tourId="tour-1" locale="fr" playlist={playlistOf(['s1', 's2'])} playlistSettled={false}>
+        <TourPlayControl />
+      </ScenePlayer>,
+    );
+    await act(async () => {});
+    expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
+    expect(window.localStorage.getItem(resumeKey('tour-1'))).not.toBeNull();
+
+    view.rerender(
+      <ScenePlayer tourId="tour-1" locale="fr" playlist={playlistOf(['s1', 's2', 's3'])} playlistSettled>
+        <TourPlayControl />
+      </ScenePlayer>,
+    );
+    await act(async () => {});
+    expect(screen.getByTestId('tour-resume-button')).toHaveTextContent("Reprendre à l’étape 3");
+  });
+
+  it('reprise : clé illisible → ignorée et purgée, le lecteur fonctionne', async () => {
+    window.localStorage.setItem(resumeKey('tour-1'), '{not json');
+    render(<Harness ids={['s1', 's2']} />);
+    await act(async () => {});
+
+    expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
+    expect(window.localStorage.getItem(resumeKey('tour-1'))).toBeNull();
+
+    await clickTour();
+    await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+  });
+
+  it('reprise : écriture au plus toutes les 5 s pendant la lecture, tout de suite à la pause', async () => {
+    nowSpy = jest.spyOn(Date, 'now').mockReturnValue(BASE_NOW);
+    render(<Harness ids={['s1', 's2']} />);
+    await clickTour();
+    await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+
+    audio().currentTime = 3;
+    await emit('timeupdate');
+    expect(storedResume()).toEqual({ sceneId: 's1', position: 3 });
+
+    // Deux secondes plus tard : pas d'écriture.
+    nowSpy.mockReturnValue(BASE_NOW + 2_000);
+    audio().currentTime = 5;
+    await emit('timeupdate');
+    expect(storedResume()).toEqual({ sceneId: 's1', position: 3 });
+
+    // Six secondes : écriture.
+    nowSpy.mockReturnValue(BASE_NOW + 6_000);
+    audio().currentTime = 9;
+    await emit('timeupdate');
+    expect(storedResume()).toEqual({ sceneId: 's1', position: 9 });
+
+    // La pause écrit sans attendre.
+    nowSpy.mockReturnValue(BASE_NOW + 7_000);
+    audio().currentTime = 10;
+    await emit('pause');
+    expect(storedResume()).toEqual({ sceneId: 's1', position: 10 });
+
+    // La piste suivante écrit sa position sans attendre le délai.
+    nowSpy.mockReturnValue(BASE_NOW + 8_000);
+    await emit('ended');
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
+    audio().currentTime = 1;
+    await emit('timeupdate');
+    expect(storedResume()).toEqual({ sceneId: 's2', position: 1 });
+  });
+
+  it("localStorage indisponible : le lecteur fonctionne, pas de reprise, pas d'erreur visible", async () => {
+    const own = Object.getOwnPropertyDescriptor(window, 'localStorage');
+    Object.defineProperty(window, 'localStorage', {
+      configurable: true,
+      get: () => {
+        throw new Error('SecurityError');
+      },
+    });
+    try {
+      render(<Harness ids={['s1', 's2']} />);
+      await act(async () => {});
+      expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
+
+      await clickTour();
+      await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+      audio().currentTime = 4;
+      await emit('timeupdate');
+      await emit('pause');
+      await emit('ended');
+      await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
+      await emit('ended');
+      expect(screen.getByTestId('tour-ending-complete')).toBeInTheDocument();
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    } finally {
+      if (own) Object.defineProperty(window, 'localStorage', own);
+      else delete (window as unknown as Record<string, unknown>).localStorage;
+    }
+  });
+
+  it('libellés en anglais', async () => {
+    storeResume('s2', 3);
+    render(
+      <ScenePlayer
+        tourId="tour-1"
+        locale="en"
+        playlist={[
+          { id: 's1', title: 'One', order: 1 },
+          { id: 's2', title: 'Two', order: 2 },
+        ]}
+        lockedAfter
+      >
+        <TourPlayControl />
+        <SceneListenControl sceneId="s1" title="One" />
+        <SceneListenControl sceneId="s2" title="Two" />
+      </ScenePlayer>,
+    );
+    await act(async () => {});
+    expect(tourButton()).toHaveTextContent('Listen to the tour');
+    expect(screen.getByTestId('tour-resume-button')).toHaveTextContent('Resume at stop 2');
+
+    await clickTour();
+    await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+    await emit('ended');
+    await emit('ended');
+    expect(screen.getByTestId('tour-ending-preview')).toHaveTextContent('Unlock the tour to keep listening');
+    expect(screen.getByTestId('tour-ending-purchase-link')).toHaveTextContent('Unlock the tour');
+  });
+
+  it("sans étape jouable, l'en-tête ne rend rien ; hors <ScenePlayer> non plus", () => {
+    const { container } = render(
+      <ScenePlayer tourId="tour-1" locale="fr" playlist={[]}>
+        <TourPlayControl />
+      </ScenePlayer>,
+    );
+    expect(container.querySelector('[data-testid="tour-play-control"]')).toBeNull();
+    const alone = render(<TourPlayControl />);
+    expect(alone.container).toBeEmptyDOMElement();
+  });
+});
+
+// ─── LW-2 — correctifs de revue ──────────────────────────────────────────────
+
+const URL_S3_RENEWED = 'https://media.example/s3.mp3?sig=two';
+
+describe('ScenePlayer — LW-2 (revue)', () => {
+  const scrollSpy = jest.fn();
+  const hadScroll = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'scrollIntoView');
+
+  beforeAll(() => {
+    Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+      configurable: true,
+      value: scrollSpy,
+    });
+  });
+
+  afterAll(() => {
+    if (hadScroll) Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', hadScroll);
+    else delete (HTMLElement.prototype as unknown as Record<string, unknown>).scrollIntoView;
+  });
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    playSpy.mockResolvedValue(undefined);
+    fakeDuration = NaN;
+    fakeError = null;
+    mockGetPublishedTourContent.mockResolvedValue(response(THREE, FRESH));
+  });
+
+  afterEach(() => {
+    nowSpy?.mockRestore();
+    nowSpy = null;
+    uninstallMediaSession();
+  });
+
+  // ── Enchaînement piloté de l'extérieur ────────────────────────────────────
+
+  it('nexttrack pendant une écoute isolée : la visite s’enchaîne ensuite (la chaîne ne meurt plus en silence)', async () => {
+    const fake = installMediaSession();
+    render(<Harness ids={['s1', 's2', 's3']} />);
+    await click('s1');
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+    // Écoute isolée : la séquence n'est pas active.
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+
+    await action(fake, 'nexttrack');
+
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+    expect(tourButton()).toHaveTextContent('Pause');
+    // Et la suite part toute seule, ce que l'ancienne version ne faisait pas.
+    await emit('ended');
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S3));
+  });
+
+  it('previoustrack pendant une écoute isolée : la séquence s’active aussi', async () => {
+    const fake = installMediaSession();
+    render(<Harness ids={['s1', 's2', 's3']} />);
+    await click('s2');
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+
+    await action(fake, 'previoustrack');
+
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+    expect(tourButton()).toHaveTextContent('Pause');
+    await emit('ended');
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
+  });
+
+  it('nexttrack en bout d’aperçu : le message d’achat, comme à la fin d’une piste', async () => {
+    const fake = installMediaSession();
+    render(<Harness ids={['s1', 's2']} lockedAfter />);
+    await clickTour();
+    await emit('ended');
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+
+    await action(fake, 'nexttrack');
+
+    expect(screen.getByTestId('tour-ending-preview')).toBeInTheDocument();
+    expect(screen.getByTestId('tour-ending-purchase-link')).toHaveAttribute('href', '#acheter');
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+    // Le son s'arrête avec le message : annoncer la fin pendant que la piste
+    // continue ferait dire au lecteur le contraire de ce qu'on entend.
+    expect(pauseSpy).toHaveBeenCalled();
+    expect(button('s2')).toHaveTextContent('Écouter');
+  });
+
+  it('nexttrack exige la même validité d’URL qu’un enchaînement automatique', async () => {
+    mockGetPublishedTourContent
+      .mockResolvedValueOnce(response(THREE, iso(4 * 60_000)))
+      .mockResolvedValueOnce(response({ s1: URL_S1_RENEWED, s2: URL_S2_RENEWED }, iso(40 * 60_000)));
+    const fake = installMediaSession();
+    render(<Harness ids={['s1', 's2']} />);
+    await click('s1');
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+
+    // 3 min 30 de validité restante : un saut manuel tomberait sur une URL
+    // presque morte et brûlerait la relance de la piste.
+    await action(fake, 'nexttrack');
+
+    await waitFor(() => expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2_RENEWED));
+  });
+
+  it('previoustrack exige aussi la validité minimale', async () => {
+    mockGetPublishedTourContent
+      .mockResolvedValueOnce(response(THREE, iso(4 * 60_000)))
+      .mockResolvedValueOnce(response({ s1: URL_S1_RENEWED, s2: URL_S2_RENEWED }, iso(40 * 60_000)));
+    const fake = installMediaSession();
+    render(<Harness ids={['s1', 's2']} />);
+    await click('s2');
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+
+    await action(fake, 'previoustrack');
+
+    await waitFor(() => expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S1_RENEWED));
+  });
+
+  it('pause pendant une relance, puis « Écouter la visite » : la lecture repart à l’arrivée de la source', async () => {
+    let resolveSecond: (value: unknown) => void = () => {};
+    mockGetPublishedTourContent
+      .mockResolvedValueOnce(response(THREE, FRESH))
+      .mockReturnValueOnce(
+        new Promise((resolve) => {
+          resolveSecond = resolve;
+        }),
+      );
+    render(<Harness ids={['s1', 's2']} />);
+    await click('s1');
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+    audio().currentTime = 20;
+
+    fakeError = { code: MEDIA_ERR_NETWORK };
+    await emit('error');
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
+    // L'utilisateur met en pause pendant que la relance est en vol…
+    await click('s1');
+    // …puis demande la visite : le mode visite ne doit pas hériter de la pause.
+    await clickTour();
+
+    await act(async () => {
+      resolveSecond(response({ s1: URL_S1_RENEWED, s2: URL_S2_RENEWED }, FRESH));
+    });
+
+    await waitFor(() => expect(playSpy).toHaveBeenCalledTimes(2));
+    expect(audio().getAttribute('src')).toBe(URL_S1_RENEWED);
+    expect(audio().currentTime).toBe(20);
+    await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+    // Et la séquence est bien celle qu'on a demandée.
+    await emit('ended');
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2_RENEWED));
+  });
+
+  // ── Perte d'accès, démontage ──────────────────────────────────────────────
+
+  it('la liste servie rétrécit pendant la lecture : position gardée, écran verrouillé nettoyé, séquence arrêtée', async () => {
+    const fake = installMediaSession();
+    const view = render(<Harness ids={['s1', 's2']} />);
+    await clickTour();
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+    audio().currentTime = 48;
+    pauseSpy.mockClear();
+
+    // Déconnexion, accès perdu : l'étape en cours disparaît de la liste servie.
+    view.rerender(<Harness ids={['s2']} />);
+    await act(async () => {});
+
+    expect(storedResume()).toEqual({ sceneId: 's1', position: 48 });
+    expect(fake.metadata).toBeNull();
+    expect(fake.playbackState).toBe('none');
+    expect(pauseSpy).toHaveBeenCalled();
+    expect(audio().getAttribute('src')).toBeNull();
+    expect(tourButton()).toHaveTextContent('Écouter la visite');
+  });
+
+  it('reprise écrite au masquage de l’onglet et au démontage', async () => {
+    const view = render(<Harness ids={['s1', 's2']} />);
+    await clickTour();
+    await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
+
+    // Un onglet mobile peut être tué sans autre préavis que `pagehide`.
+    audio().currentTime = 17;
+    await act(async () => {
+      window.dispatchEvent(new Event('pagehide'));
+    });
+    expect(storedResume()).toEqual({ sceneId: 's1', position: 17 });
+
+    audio().currentTime = 64;
+    view.unmount();
+    expect(storedResume()).toEqual({ sceneId: 's1', position: 64 });
+  });
+
+  it('démontage pendant que la réponse voyage : rien ne joue, rien n’est mémorisé', async () => {
+    let resolveFirst: (value: unknown) => void = () => {};
+    mockGetPublishedTourContent.mockReturnValueOnce(
+      new Promise((resolve) => {
+        resolveFirst = resolve;
+      }),
+    );
+    const view = render(<Harness ids={['s1', 's2']} />);
+    fireEvent.click(tourButton());
+    await act(async () => {});
+
+    view.unmount();
+    await act(async () => {
+      resolveFirst(response(THREE, FRESH));
+    });
+
+    expect(playSpy).not.toHaveBeenCalled();
+    expect(storedResume()).toBeNull();
+  });
+
+  // ── Bornes de position ────────────────────────────────────────────────────
+
+  it('reprise au-delà de la durée (narration republiée plus courte) : la piste repart de zéro', async () => {
+    storeResume('s1', 300);
+    render(<Harness ids={['s1', 's2']} />);
+    await act(async () => {});
+    fireEvent.click(screen.getByTestId('tour-resume-button'));
+    await act(async () => {});
+
+    fakeDuration = 90;
+    await emit('loadedmetadata');
+
+    expect(audio().currentTime).toBe(0);
+    expect(audio().getAttribute('src')).toBe(URL_S1);
+    expect(screen.getByTestId('scene-time-s1')).toHaveTextContent('0:00 / 1:30');
+    // Rien n'a enchaîné : la piste n'a pas « fini » avant d'avoir commencé.
+    expect(screen.queryByTestId('tour-ending-complete')).not.toBeInTheDocument();
+    expect(audio().getAttribute('src')).not.toBe(URL_S2);
+  });
+
+  it('reprise dans la dernière seconde : même garde, la piste repart de zéro', async () => {
+    storeResume('s1', 89.5);
+    render(<Harness ids={['s1', 's2']} />);
+    await act(async () => {});
+    fireEvent.click(screen.getByTestId('tour-resume-button'));
+    await act(async () => {});
+
+    fakeDuration = 90;
+    await emit('loadedmetadata');
+
+    expect(audio().currentTime).toBe(0);
+  });
+
+  it('seekto au-delà de la durée : borné, la piste ne se termine pas d’un saut', async () => {
+    const fake = installMediaSession();
+    render(<Harness ids={['s1', 's2']} />);
+    await clickTour();
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+    fakeDuration = 120;
+    await emit('loadedmetadata');
+
+    await action(fake, 'seekto', { seekTime: 5_000 });
+    expect(audio().currentTime).toBe(120);
+
+    await action(fake, 'seekto', { seekTime: -10 });
+    expect(audio().currentTime).toBe(0);
+  });
+
+  // ── Fraîcheur des URLs ────────────────────────────────────────────────────
+
+  it('sans mediaExpiresAt : le repli local ne fait pas redemander à chaque frontière, et chaque piste garde sa relance', async () => {
+    mockGetPublishedTourContent.mockResolvedValue(response(THREE));
+    render(<Harness ids={['s1', 's2', 's3']} />);
+
+    await clickTour();
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+    await emit('ended');
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
+    await emit('ended');
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S3));
+    // Une seule requête pour toute la visite : un repli n'est pas une échéance.
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+
+    // Et la relance de s3 n'a pas été brûlée par une redemande de frontière.
+    mockGetPublishedTourContent.mockResolvedValueOnce(response({ ...THREE, s3: URL_S3_RENEWED }));
+    fakeError = { code: MEDIA_ERR_NETWORK };
+    await emit('error');
+    await waitFor(() => expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S3_RENEWED));
+  });
+
+  it('mediaExpiresAt déjà sous la marge : le repli court ne fait pas redemander non plus', async () => {
+    mockGetPublishedTourContent.mockResolvedValue(response(THREE, iso(10_000)));
+    render(<Harness ids={['s1', 's2']} />);
+
+    await clickTour();
+    await emit('ended');
+
+    await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
+  });
+
+  it('redemande de frontière en échec : la séquence continue avec les URLs encore valides', async () => {
+    mockGetPublishedTourContent
+      .mockResolvedValueOnce(response(THREE, iso(4 * 60_000)))
+      .mockResolvedValueOnce({ ok: false, error: 'réseau' });
+    render(<Harness ids={['s1', 's2', 's3']} />);
+
+    await clickTour();
+    await emit('ended');
+
+    await waitFor(() => expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2));
+    // Le cache n'est pas périmé au sens strict : mourir sur « indisponible »
+    // avec des URLs utilisables en mémoire serait un faux négatif.
+    expect(audio().getAttribute('src')).toBe(URL_S2);
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+    expect(screen.queryByTestId('scene-error-s2')).not.toBeInTheDocument();
+
+    // La relance de cette piste a bien été consommée : l'erreur média affiche.
+    fakeError = { code: MEDIA_ERR_NETWORK };
+    await emit('error');
+    await waitFor(() =>
+      expect(screen.getByTestId('scene-error-s2')).toHaveTextContent(UNAVAILABLE),
+    );
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
+  });
+
+  // ── Interface et accessibilité ────────────────────────────────────────────
+
+  it('le message de fin vient à la vue et prend le focus', async () => {
+    render(<Harness ids={['s1', 's2']} lockedAfter />);
+    await clickTour();
+    await emit('ended');
+    await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
+    scrollSpy.mockClear();
+
+    await emit('ended');
+
+    const message = screen.getByTestId('tour-ending-preview');
+    // Le défilement automatique vient d'emmener la vue sur la dernière étape :
+    // sans cela, l'appel à l'action serait hors champ.
+    expect(scrollSpy).toHaveBeenCalled();
+    expect(message).toHaveAttribute('tabindex', '-1');
+    expect(document.activeElement).toBe(message);
+  });
+
+  it('l’étape en cours est annoncée pendant la séquence, et seulement pendant', async () => {
+    render(<Harness ids={['s1', 's2']} />);
+    const live = screen.getByTestId('tour-now-playing');
+    expect(live).toHaveAttribute('aria-live', 'polite');
+    expect(live).toHaveTextContent('');
+
+    // Écoute isolée : rien à annoncer, le visiteur vient d'actionner ce bouton.
+    await click('s1');
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+    expect(screen.getByTestId('tour-now-playing')).toHaveTextContent('');
+
+    await clickTour();
+    expect(screen.getByTestId('tour-now-playing')).toHaveTextContent('Étape 1 sur 2 : Scène s1');
+
+    await emit('ended');
+    await waitFor(() =>
+      expect(screen.getByTestId('tour-now-playing')).toHaveTextContent('Étape 2 sur 2 : Scène s2'),
+    );
+  });
+
+  it('playlist oubliée : le mode visite est inactif, et le développement le dit', async () => {
+    render(
+      <ScenePlayer tourId="tour-1" locale="fr">
+        <TourPlayControl />
+        <SceneListenControl sceneId="s1" title="Scène s1" />
+      </ScenePlayer>,
+    );
+    await act(async () => {});
+
+    expect(screen.queryByTestId('tour-play-control')).not.toBeInTheDocument();
+    expect(logger.warn).toHaveBeenCalledWith(
+      'ScenePlayer',
+      expect.stringContaining('playlist'),
+      expect.objectContaining({ tourId: 'tour-1' }),
+    );
+    // Le lecteur LW-1, lui, marche toujours.
+    await click('s1');
+    await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
   });
 });

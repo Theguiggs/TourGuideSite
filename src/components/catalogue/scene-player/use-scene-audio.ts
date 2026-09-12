@@ -47,6 +47,14 @@ interface SceneAudioCache {
   urlsBySceneId: SceneUrls;
   /** Horodatage (ms) au-delà duquel les URLs sont tenues pour périmées. */
   expiresAt: number;
+  /**
+   * L'échéance vient de `mediaExpiresAt` (et non d'un repli local). Un repli
+   * n'est qu'une hypothèse de durée : lui opposer une validité minimale ferait
+   * redemander le contenu à chaque frontière de piste (LW-2).
+   */
+  fromResponse: boolean;
+  /** Couverture de la visite (LW-2, Media Session) — une URL de la réponse. */
+  coverUrl?: string;
 }
 
 /** Ce qu'`ensureFresh` a fait pour servir la demande. */
@@ -63,23 +71,71 @@ export interface EnsureFreshResult {
   outcome: EnsureFreshOutcome;
 }
 
-export interface SceneAudioSource {
-  /** Demande le contenu si rien n'est en mémoire ou si c'est périmé. */
-  ensureFresh(): Promise<EnsureFreshResult>;
-  /** Redemande sans condition (erreur média en cours de piste). */
-  refetch(): Promise<SceneUrls | null>;
+export interface EnsureFreshOptions {
+  /**
+   * LW-2 — validité restante exigée (ms). À une frontière de piste, une URL
+   * qui expire dans 2 min ne couvre pas une narration : on redemande d'abord.
+   * Défaut 0 : périmé seulement si l'échéance est passée.
+   */
+  minValidityMs?: number;
 }
 
-/** Exporté pour les épreuves ; le lecteur n'en a pas besoin. */
-export function computeExpiresAt(mediaExpiresAt: string | undefined, now: number): number {
+export interface SceneAudioSource {
+  /** Demande le contenu si rien n'est en mémoire ou si c'est périmé. */
+  ensureFresh(options?: EnsureFreshOptions): Promise<EnsureFreshResult>;
+  /** Redemande sans condition (erreur média en cours de piste). */
+  refetch(): Promise<SceneUrls | null>;
+  /** `coverUrl` de la dernière réponse, s'il existe (Media Session). */
+  readCoverUrl(): string | undefined;
+}
+
+/**
+ * Périmé si l'échéance est passée, ou si la validité restante d'une échéance
+ * RÉELLE est sous le minimum demandé.
+ *
+ * `fromResponse` est la nuance qui compte : quand le serveur n'a pas donné de
+ * `mediaExpiresAt` (ou en a donné un déjà passé), l'échéance en mémoire n'est
+ * qu'un repli local — 10 min, ou 60 s. Comparer ce repli aux 5 min exigées à
+ * une frontière de piste ferait redemander le contenu à CHAQUE piste, et
+ * chacune démarrerait avec sa relance déjà consommée, alors que rien ne dit que
+ * les URLs vont expirer. Un repli ne périme donc que par son échéance.
+ */
+export function isStale(
+  expiresAt: number,
+  now: number,
+  minValidityMs: number = 0,
+  fromResponse: boolean = true,
+): boolean {
+  const remaining = expiresAt - now;
+  if (remaining <= 0) return true;
+  if (!fromResponse) return false;
+  return remaining < minValidityMs;
+}
+
+export interface ExpiryDecision {
+  expiresAt: number;
+  /** Vrai seulement si l'échéance sort de `mediaExpiresAt` ; faux pour un repli local. */
+  fromResponse: boolean;
+}
+
+/** L'échéance des URLs, et d'où elle vient. */
+export function computeExpiry(mediaExpiresAt: string | undefined, now: number): ExpiryDecision {
   if (mediaExpiresAt) {
     const parsed = Date.parse(mediaExpiresAt);
     if (Number.isFinite(parsed)) {
       const expiresAt = parsed - EXPIRY_MARGIN_MS;
-      return expiresAt > now ? expiresAt : now + STALE_FALLBACK_TTL_MS;
+      if (expiresAt > now) return { expiresAt, fromResponse: true };
+      // Déjà passé ou sous la marge (horloge du poste en avance, réponse
+      // tardive) : repli court, jamais « déjà périmé ».
+      return { expiresAt: now + STALE_FALLBACK_TTL_MS, fromResponse: false };
     }
   }
-  return now + DEFAULT_TTL_MS;
+  return { expiresAt: now + DEFAULT_TTL_MS, fromResponse: false };
+}
+
+/** Exporté pour les épreuves ; le lecteur n'en a pas besoin. */
+export function computeExpiresAt(mediaExpiresAt: string | undefined, now: number): number {
+  return computeExpiry(mediaExpiresAt, now).expiresAt;
 }
 
 export function useSceneAudio(tourId: string): SceneAudioSource {
@@ -126,9 +182,16 @@ export function useSceneAudio(tourId: string): SceneAudioSource {
           for (const scene of result.data.scenes) {
             if (scene.audioUrl) urlsBySceneId[scene.id] = scene.audioUrl;
           }
+          const expiry = computeExpiry(result.data.mediaExpiresAt, Date.now());
+          // La couverture ne change pas d'une réponse à l'autre : une réponse
+          // qui ne la porte pas ne l'a pas retirée, et la Media Session ne doit
+          // pas perdre son image au premier renouvellement d'URLs.
+          const coverUrl = result.data.coverUrl ?? cacheRef.current?.coverUrl;
           cacheRef.current = {
             urlsBySceneId,
-            expiresAt: computeExpiresAt(result.data.mediaExpiresAt, Date.now()),
+            expiresAt: expiry.expiresAt,
+            fromResponse: expiry.fromResponse,
+            ...(coverUrl ? { coverUrl } : {}),
           };
           return urlsBySceneId;
         } catch (error) {
@@ -147,17 +210,37 @@ export function useSceneAudio(tourId: string): SceneAudioSource {
     return launch(false);
   }, [tourId]);
 
-  const ensureFresh = useCallback(async (): Promise<EnsureFreshResult> => {
-    const cache = cacheRef.current;
-    if (cache && Date.now() < cache.expiresAt) {
-      return { urls: cache.urlsBySceneId, outcome: 'cached' };
-    }
-    const outcome: EnsureFreshOutcome = cache ? 'refreshed' : 'requested';
-    const urls = await request();
-    return { urls, outcome };
-  }, [request]);
+  const ensureFresh = useCallback(
+    async (options: EnsureFreshOptions = {}): Promise<EnsureFreshResult> => {
+      const cache = cacheRef.current;
+      if (cache && !isStale(cache.expiresAt, Date.now(), options.minValidityMs, cache.fromResponse)) {
+        return { urls: cache.urlsBySceneId, outcome: 'cached' };
+      }
+      const outcome: EnsureFreshOutcome = cache ? 'refreshed' : 'requested';
+      const urls = await request();
+      if (urls === null) {
+        // La redemande a échoué. Si ce qui est en mémoire n'est pas périmé au
+        // sens strict — c'est le cas d'une frontière de piste qui exigeait une
+        // validité plus longue —, on joue avec : mourir sur « indisponible »
+        // avec des URLs utilisables serait un faux négatif. Le cache est relu
+        // ici : un changement d'identité pendant le vol l'a peut-être oublié.
+        const cached = cacheRef.current;
+        if (cached && !isStale(cached.expiresAt, Date.now())) {
+          logger.warn(SERVICE_NAME, 'refresh failed, serving cached urls', { tourId });
+          return { urls: cached.urlsBySceneId, outcome };
+        }
+      }
+      return { urls, outcome };
+    },
+    [request, tourId],
+  );
 
   const refetch = useCallback((): Promise<SceneUrls | null> => request(), [request]);
 
-  return useMemo(() => ({ ensureFresh, refetch }), [ensureFresh, refetch]);
+  const readCoverUrl = useCallback((): string | undefined => cacheRef.current?.coverUrl, []);
+
+  return useMemo(
+    () => ({ ensureFresh, refetch, readCoverUrl }),
+    [ensureFresh, refetch, readCoverUrl],
+  );
 }

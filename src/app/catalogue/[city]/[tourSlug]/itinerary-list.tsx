@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { NumberMark, Eyebrow, tg } from '@murmure/design-system/web';
 import type { POI } from '@/types/tour';
 import { useOwnsTour, usePurchasesRefreshTick } from '@/hooks/use-owned-tour-ids';
@@ -9,13 +9,22 @@ import { FREE_PREVIEW_SCENES, isFullContent, mapScenesToPois } from '@/lib/catal
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
 import { S3Image } from '@/components/studio/s3-image';
-import { ScenePlayer, SceneListenControl, useScenePlayer } from '@/components/catalogue/scene-player';
+import {
+  ScenePlayer,
+  SceneListenControl,
+  TourPlayControl,
+  useScenePlayer,
+  type PlaylistEntry,
+} from '@/components/catalogue/scene-player';
+import { revealElement } from '@/components/catalogue/scene-player/reveal';
 
 const SERVICE_NAME = 'ItineraryList';
 
 interface ItineraryListProps {
   pois: POI[];
   tourId: string;
+  /** LW-2 — titre de la visite (Media Session). */
+  tourTitle?: string;
   /** Free tours are never gated. */
   isFree: boolean;
   heroAccentFg: string;
@@ -29,6 +38,14 @@ interface ServedContent {
   pois: POI[];
   /** Vrai seulement si la réponse reçue porte le contenu complet. */
   granted: boolean;
+  /**
+   * LW-2 — la liste affichée est celle que le serveur a arrêtée : plus rien ne
+   * l'ouvrira. C'est la seule condition sous laquelle une reprise portant sur
+   * une étape absente peut être purgée. Un échec de redemande ne la satisfait
+   * PAS : la liste reste tronquée faute de réponse, pas faute de droits, et
+   * purger là effacerait la reprise d'un acheteur pour une panne de réseau.
+   */
+  settled: boolean;
 }
 
 /**
@@ -50,20 +67,31 @@ interface ServedContent {
  * rendu serveur, flou compris. La page ne casse pas, l'échec est journalisé.
  */
 function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): ServedContent {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
   const refreshTick = usePurchasesRefreshTick();
   // Le contenu obtenu est étiqueté de sa visite : une navigation client d'une
   // fiche à l'autre ne doit jamais afficher, même un instant, les étapes de la
   // précédente sous le titre de la suivante.
-  const [served, setServed] = useState<({ tourId: string } & ServedContent) | null>(null);
+  const [served, setServed] = useState<
+    ({ tourId: string } & Omit<ServedContent, 'settled'>) | null
+  >(null);
+  // Vrai dès le PREMIER rendu quand une redemande peut encore partir : sinon la
+  // liste paraîtrait arrêtée le temps d'un rendu, et seule la chance de l'ordre
+  // des effets empêcherait la purge d'une reprise encore verrouillée. La session
+  // en cours de résolution compte : `isAuthenticated` est faux avant de devenir
+  // vrai, et c'est précisément l'instant où l'acheteur revient sur la page.
+  const awaitsGrant = !isFree && (authLoading || isAuthenticated) && !shouldUseStubs();
+  const [pending, setPending] = useState(awaitsGrant);
 
   useEffect(() => {
     // Visite gratuite : le serveur ne tronque rien, aucune demande à faire.
     if (isFree || !isAuthenticated || shouldUseStubs()) {
       setServed(null);
+      setPending(false);
       return;
     }
     let cancelled = false;
+    setPending(true);
     void (async () => {
       try {
         const { getPublishedTourContent } = await import('@/lib/api/appsync-client');
@@ -89,6 +117,8 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): Serv
           tourId,
           error: String(error),
         });
+      } finally {
+        if (!cancelled) setPending(false);
       }
     })();
     return () => {
@@ -96,9 +126,14 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): Serv
     };
   }, [tourId, isFree, isAuthenticated, refreshTick]);
 
+  const granted = served?.tourId === tourId ? served.granted : false;
+  // « Arrêtée » = le serveur a accordé le contenu complet, ou personne ne va
+  // redemander. Une redemande en vol, refusée ou tombée laisse la liste ouverte.
+  const settled = !pending && (granted || !awaitsGrant);
+
   return served?.tourId === tourId
-    ? { pois: served.pois, granted: served.granted }
-    : { pois: ssrPois, granted: false };
+    ? { pois: served.pois, granted, settled }
+    : { pois: ssrPois, granted: false, settled };
 }
 
 /**
@@ -119,6 +154,7 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): Serv
 export default function ItineraryList({
   pois,
   tourId,
+  tourTitle = '',
   isFree,
   heroAccentFg,
   locale = 'fr',
@@ -127,11 +163,27 @@ export default function ItineraryList({
   // Hooks appelés sans condition : `isFree` court-circuiterait l'appel et
   // désordonnerait la liste des hooks au premier rendu où il change.
   const ownsTour = useOwnsTour(tourId);
-  const { pois: displayedPois, granted } = useServedContent(tourId, pois, isFree);
+  const { pois: displayedPois, granted, settled } = useServedContent(tourId, pois, isFree);
   // En mode bouchons il n'y a pas de serveur pour juger : on retombe sur ce que
   // le client sait, faute de réponse à lire. Hors bouchons, la possession
   // calculée côté navigateur ne décide de rien ici — elle sert au badge.
   const hasAccess = isFree || granted || (shouldUseStubs() && ownsTour);
+
+  // LW-2 : la liste jouable — étapes servies ET narrées, dans l'ordre
+  // d'affichage — et « des étapes verrouillées suivent » (fin d'aperçu). Même
+  // règle de verrou que `StopList` : le lecteur ne décide de rien, il enchaîne
+  // ce que le serveur a servi.
+  const playlist = useMemo<PlaylistEntry[]>(
+    () =>
+      displayedPois.flatMap((poi, index) =>
+        !isLocked(hasAccess, index) && poi.hasAudio === true
+          ? [{ id: poi.id, title: poi.title, order: poi.order }]
+          : [],
+      ),
+    [displayedPois, hasAccess],
+  );
+  // Des étapes verrouillées suivent l'aperçu : c'est la fin d'aperçu du lecteur.
+  const lockedAfter = !hasAccess && displayedPois.length > FREE_PREVIEW_SCENES;
 
   if (displayedPois.length === 0) {
     const text = contentUnavailable
@@ -151,7 +203,16 @@ export default function ItineraryList({
   return (
     // LW-1 : un seul <audio> pour toute la liste, possédé par le lecteur ; la
     // liste, elle, reste ici. Le contexte relie les deux.
-    <ScenePlayer tourId={tourId} locale={locale}>
+    <ScenePlayer
+      tourId={tourId}
+      locale={locale}
+      playlist={playlist}
+      lockedAfter={lockedAfter}
+      tourTitle={tourTitle}
+      playlistSettled={settled}
+    >
+      {/* LW-2 : « Écouter la visite », reprise, fin de séquence — au-dessus de la liste. */}
+      <TourPlayControl />
       <StopList
         pois={displayedPois}
         hasAccess={hasAccess}
@@ -160,6 +221,11 @@ export default function ItineraryList({
       />
     </ScenePlayer>
   );
+}
+
+/** Une étape est verrouillée quand l'accès n'est pas accordé et qu'elle dépasse l'aperçu gratuit. */
+function isLocked(hasAccess: boolean, index: number): boolean {
+  return !hasAccess && index >= FREE_PREVIEW_SCENES;
 }
 
 interface StopListProps {
@@ -174,12 +240,21 @@ interface StopListProps {
  * (`aria-current` sur l'étape) — l'îlot parent, lui, est au-dessus du contexte.
  */
 function StopList({ pois, hasAccess, heroAccentFg, locale }: StopListProps) {
-  const { currentSceneId } = useScenePlayer();
+  const { currentSceneId, sequence } = useScenePlayer();
+  const itemRefs = useRef(new Map<string, HTMLLIElement>());
+
+  // LW-2 : en séquence, la liste suit l'étape en cours. `revealElement` garde
+  // l'appel (jsdom n'implémente pas `scrollIntoView`) et honore
+  // `prefers-reduced-motion` : la vue va au même endroit, sans glissement.
+  useEffect(() => {
+    if (!sequence || !currentSceneId) return;
+    revealElement(itemRefs.current.get(currentSceneId));
+  }, [sequence, currentSceneId]);
 
   return (
     <ol style={{ listStyle: 'none', padding: 0, margin: 0 }}>
       {pois.map((poi, index) => {
-        const locked = !hasAccess && index >= FREE_PREVIEW_SCENES;
+        const locked = isLocked(hasAccess, index);
         // Le bouton n'existe que pour une étape servie ET narrée : pas de
         // bouton sur une étape floutée, ni sur une scène sans audio.
         const listenable = !locked && poi.hasAudio === true;
@@ -187,6 +262,10 @@ function StopList({ pois, hasAccess, heroAccentFg, locale }: StopListProps) {
         return (
           <li
             key={poi.id}
+            ref={(node) => {
+              if (node) itemRefs.current.set(poi.id, node);
+              else itemRefs.current.delete(poi.id);
+            }}
             aria-current={isCurrent ? 'true' : undefined}
             aria-label={
               locked

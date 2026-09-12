@@ -1,6 +1,9 @@
 /**
  * LW-1 — « Écouter » sur la fiche Visite : le bouton n'existe que pour une
  * étape servie ET narrée, et le HTML ne porte aucune URL signée.
+ * LW-2 — « Écouter la visite » : l'enchaînement ne parcourt que les étapes
+ * servies et narrées, et s'arrête sur la fin d'aperçu quand des étapes
+ * verrouillées suivent.
  *
  * Le rendu serveur ne donne à l'itinéraire qu'un booléen `hasAudio` ; l'URL
  * est demandée par le navigateur au premier clic. Les étapes floutées n'ont
@@ -14,7 +17,12 @@ import { __resetOwnedTourIdsCache } from '@/hooks/use-owned-tour-ids';
 import { PURCHASES_CHANGED_EVENT } from '@/lib/checkout/purchase-events';
 import type { POI } from '@/types/tour';
 
-let authState: { isAuthenticated: boolean; user: { id: string } | null } = {
+let authState: {
+  isAuthenticated: boolean;
+  user: { id: string } | null;
+  /** La session se résout dans le navigateur : `isAuthenticated` est faux avant d'être vrai. */
+  isLoading?: boolean;
+} = {
   isAuthenticated: false,
   user: null,
 };
@@ -315,5 +323,253 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
 
     expect(listenButtons()).toHaveLength(2);
     expect(screen.getByText('Étape 3')).toBeInTheDocument();
+  });
+});
+
+describe('fiche Visite — écouter la visite (LW-2)', () => {
+  const scrollSpy = jest.fn();
+  const hadScroll = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'scrollIntoView');
+
+  beforeAll(() => {
+    Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+      configurable: true,
+      value: scrollSpy,
+    });
+  });
+
+  afterAll(() => {
+    if (hadScroll) Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', hadScroll);
+    else delete (HTMLElement.prototype as unknown as Record<string, unknown>).scrollIntoView;
+  });
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    window.localStorage.clear();
+    __resetOwnedTourIdsCache();
+    authState = { isAuthenticated: false, user: null };
+    mockListOwnedTourIds.mockResolvedValue(new Set<string>());
+    mockHasActiveForfait.mockResolvedValue(false);
+    playSpy.mockResolvedValue(undefined);
+    mockGetPublishedTourContent.mockResolvedValue(
+      fullContent(['s1', 's2', 's3', 's4'], (id) => id !== 's3'),
+    );
+  });
+
+  function emitEnded(container: HTMLElement) {
+    return act(async () => {
+      (container.querySelector('audio') as HTMLAudioElement).dispatchEvent(new Event('ended'));
+    });
+  }
+
+  it("visite payante, anonyme : les deux servies s'enchaînent, puis fin d'aperçu avec lien #acheter", async () => {
+    const { container } = render(
+      <ItineraryList
+        pois={SSR_POIS.map((p) => ({ ...p, hasAudio: true }))}
+        tourId="tour-1"
+        tourTitle="Le Caprice"
+        isFree={false}
+        heroAccentFg="#B4703A"
+      />,
+    );
+    await act(async () => {});
+
+    fireEvent.click(screen.getByTestId('tour-play-button'));
+    await act(async () => {});
+    const audio = container.querySelector('audio') as HTMLAudioElement;
+    expect(audio.getAttribute('src')).toBe(URL('s1'));
+    await waitFor(() =>
+      expect(screen.getByTestId('scene-listen-button-s1')).toHaveTextContent('Pause'),
+    );
+    // La liste suit l'étape en cours.
+    expect(scrollSpy).toHaveBeenCalledWith({ block: 'nearest', behavior: 'smooth' });
+
+    await emitEnded(container);
+    expect(audio.getAttribute('src')).toBe(URL('s2'));
+    await waitFor(() =>
+      expect(screen.getByTestId('scene-listen-button-s2')).toHaveTextContent('Pause'),
+    );
+    expect(container.querySelector('li[aria-current="true"]')).toContainElement(
+      screen.getByTestId('scene-listen-button-s2'),
+    );
+
+    await emitEnded(container);
+    expect(screen.getByTestId('tour-ending-preview')).toBeInTheDocument();
+    expect(screen.getByTestId('tour-ending-purchase-link')).toHaveAttribute('href', '#acheter');
+    // s4 est verrouillée : même si la réponse porte son URL, elle n'est pas jouée.
+    expect(playSpy).toHaveBeenCalledTimes(2);
+    expect(audio.getAttribute('src')).toBe(URL('s2'));
+    expect(screen.queryByTestId('tour-ending-complete')).not.toBeInTheDocument();
+  });
+
+  it('visite gratuite : la scène sans narration est sautée, puis « Visite terminée »', async () => {
+    const { container } = render(
+      <ItineraryList pois={SSR_POIS} tourId="tour-1" isFree heroAccentFg="#B4703A" />,
+    );
+    await act(async () => {});
+
+    fireEvent.click(screen.getByTestId('tour-play-button'));
+    await act(async () => {});
+    const audio = container.querySelector('audio') as HTMLAudioElement;
+    expect(audio.getAttribute('src')).toBe(URL('s1'));
+
+    await emitEnded(container);
+    expect(audio.getAttribute('src')).toBe(URL('s2'));
+    await emitEnded(container);
+    // s3 n'a pas de narration : s4 suit directement.
+    expect(audio.getAttribute('src')).toBe(URL('s4'));
+    await waitFor(() =>
+      expect(screen.getByTestId('scene-listen-button-s4')).toHaveTextContent('Pause'),
+    );
+
+    await emitEnded(container);
+    expect(screen.getByTestId('tour-ending-complete')).toBeInTheDocument();
+    expect(screen.queryByTestId('tour-ending-preview')).not.toBeInTheDocument();
+    expect(playSpy).toHaveBeenCalledTimes(3);
+  });
+
+  it("acheteur : la reprise sur une étape encore verrouillée attend l'accord du serveur", async () => {
+    authState = { isAuthenticated: true, user: { id: 'user-1' } };
+    mockHasActiveForfait.mockResolvedValue(true);
+    window.localStorage.setItem(
+      'murmure.player.resume.tour-1',
+      JSON.stringify({ sceneId: 's4', position: 12, updatedAt: Date.now() }),
+    );
+
+    render(
+      <ItineraryList
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        tourId="tour-1"
+        isFree={false}
+        heroAccentFg="#B4703A"
+      />,
+    );
+
+    // Avant l'accord : pas de pastille, mais la clé n'est pas purgée.
+    expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId('scene-listen-button-s4')).toBeInTheDocument());
+    expect(screen.getByTestId('tour-resume-button')).toHaveTextContent("Reprendre à l’étape 4");
+  });
+
+  it('acheteur, redemande refusée : la reprise survit — une panne de réseau n’est pas une perte de droits', async () => {
+    authState = { isAuthenticated: true, user: { id: 'user-1' } };
+    mockHasActiveForfait.mockResolvedValue(true);
+    mockGetPublishedTourContent.mockResolvedValue({ ok: false, error: 'Contenu public indisponible' });
+    window.localStorage.setItem(
+      'murmure.player.resume.tour-1',
+      JSON.stringify({ sceneId: 's4', position: 12, updatedAt: Date.now() }),
+    );
+
+    render(
+      <ItineraryList
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        tourId="tour-1"
+        isFree={false}
+        heroAccentFg="#B4703A"
+      />,
+    );
+    await waitFor(() => expect(mockGetPublishedTourContent).toHaveBeenCalled());
+    await act(async () => {});
+
+    // La liste est restée tronquée faute de réponse, pas faute de droits :
+    // purger ici effacerait la reprise d'un acheteur pour une panne.
+    expect(screen.queryByTestId('scene-listen-button-s4')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
+    expect(window.localStorage.getItem('murmure.player.resume.tour-1')).not.toBeNull();
+  });
+
+  it('session encore en cours de résolution : la reprise n’est pas purgée avant de savoir qui regarde', async () => {
+    // C'est l'instant du retour de l'acheteur : la page est rendue en public,
+    // `isAuthenticated` est encore faux, et la liste n'est pas arrêtée.
+    authState = { isAuthenticated: false, user: null, isLoading: true };
+    window.localStorage.setItem(
+      'murmure.player.resume.tour-1',
+      JSON.stringify({ sceneId: 's4', position: 12, updatedAt: Date.now() }),
+    );
+
+    render(
+      <ItineraryList
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        tourId="tour-1"
+        isFree={false}
+        heroAccentFg="#B4703A"
+      />,
+    );
+    await act(async () => {});
+
+    expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
+    expect(window.localStorage.getItem('murmure.player.resume.tour-1')).not.toBeNull();
+  });
+
+  it('anonyme avéré : la reprise sur une étape verrouillée est bien purgée', async () => {
+    authState = { isAuthenticated: false, user: null, isLoading: false };
+    window.localStorage.setItem(
+      'murmure.player.resume.tour-1',
+      JSON.stringify({ sceneId: 's4', position: 12, updatedAt: Date.now() }),
+    );
+
+    render(
+      <ItineraryList
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        tourId="tour-1"
+        isFree={false}
+        heroAccentFg="#B4703A"
+      />,
+    );
+    await act(async () => {});
+
+    expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
+    expect(window.localStorage.getItem('murmure.player.resume.tour-1')).toBeNull();
+  });
+
+  it('le titre de la visite traverse la liste jusqu’à la Media Session', async () => {
+    const fake = {
+      metadata: null as unknown,
+      playbackState: 'none',
+      setActionHandler: jest.fn(),
+      setPositionState: jest.fn(),
+    };
+    Object.defineProperty(navigator, 'mediaSession', { configurable: true, value: fake });
+    try {
+      render(
+        <ItineraryList
+          pois={SSR_POIS}
+          tourId="tour-1"
+          tourTitle="Le Caprice de l’Impératrice"
+          isFree
+          heroAccentFg="#B4703A"
+        />,
+      );
+      await act(async () => {});
+
+      fireEvent.click(screen.getByTestId('tour-play-button'));
+      await act(async () => {});
+
+      expect(fake.metadata).toMatchObject({
+        title: 'Étape 1',
+        artist: 'Le Caprice de l’Impératrice',
+      });
+    } finally {
+      delete (navigator as unknown as Record<string, unknown>).mediaSession;
+    }
+  });
+
+  it('mouvement réduit : la vue suit l’étape en cours, sans glissement', async () => {
+    const had = Object.getOwnPropertyDescriptor(window, 'matchMedia');
+    Object.defineProperty(window, 'matchMedia', {
+      configurable: true,
+      value: (query: string) => ({ matches: query.includes('prefers-reduced-motion') }),
+    });
+    try {
+      render(<ItineraryList pois={SSR_POIS} tourId="tour-1" isFree heroAccentFg="#B4703A" />);
+      await act(async () => {});
+
+      fireEvent.click(screen.getByTestId('tour-play-button'));
+      await act(async () => {});
+
+      expect(scrollSpy).toHaveBeenCalledWith({ block: 'nearest', behavior: 'auto' });
+    } finally {
+      if (had) Object.defineProperty(window, 'matchMedia', had);
+      else delete (window as unknown as Record<string, unknown>).matchMedia;
+    }
   });
 });
