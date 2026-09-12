@@ -9,6 +9,7 @@ import { FREE_PREVIEW_SCENES, isFullContent, mapScenesToPois } from '@/lib/catal
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
 import { S3Image } from '@/components/studio/s3-image';
+import { ScenePlayer, SceneListenControl, useScenePlayer } from '@/components/catalogue/scene-player';
 
 const SERVICE_NAME = 'ItineraryList';
 
@@ -148,12 +149,45 @@ export default function ItineraryList({
   }
 
   return (
+    // LW-1 : un seul <audio> pour toute la liste, possédé par le lecteur ; la
+    // liste, elle, reste ici. Le contexte relie les deux.
+    <ScenePlayer tourId={tourId} locale={locale}>
+      <StopList
+        pois={displayedPois}
+        hasAccess={hasAccess}
+        heroAccentFg={heroAccentFg}
+        locale={locale}
+      />
+    </ScenePlayer>
+  );
+}
+
+interface StopListProps {
+  pois: POI[];
+  hasAccess: boolean;
+  heroAccentFg: string;
+  locale: 'fr' | 'en';
+}
+
+/**
+ * La liste numérotée. Rendue SOUS `<ScenePlayer>` pour lire la scène en cours
+ * (`aria-current` sur l'étape) — l'îlot parent, lui, est au-dessus du contexte.
+ */
+function StopList({ pois, hasAccess, heroAccentFg, locale }: StopListProps) {
+  const { currentSceneId } = useScenePlayer();
+
+  return (
     <ol style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-      {displayedPois.map((poi, index) => {
+      {pois.map((poi, index) => {
         const locked = !hasAccess && index >= FREE_PREVIEW_SCENES;
+        // Le bouton n'existe que pour une étape servie ET narrée : pas de
+        // bouton sur une étape floutée, ni sur une scène sans audio.
+        const listenable = !locked && poi.hasAudio === true;
+        const isCurrent = currentSceneId === poi.id;
         return (
           <li
             key={poi.id}
+            aria-current={isCurrent ? 'true' : undefined}
             aria-label={
               locked
                 ? locale === 'en'
@@ -166,6 +200,12 @@ export default function ItineraryList({
               alignItems: 'flex-start',
               gap: tg.space[5],
               marginBottom: tg.space[6],
+              // Étape en cours : marque visible, en plus d'`aria-current`. La
+              // bordure transparente des autres évite tout décalage au passage.
+              paddingLeft: tg.space[3],
+              borderLeft: `3px solid ${isCurrent ? heroAccentFg : 'transparent'}`,
+              borderRadius: tg.radius.md,
+              backgroundColor: isCurrent ? tg.colors.paperSoft : undefined,
             }}
           >
             <div style={{ flexShrink: 0, minWidth: 56 }}>
@@ -188,6 +228,7 @@ export default function ItineraryList({
               >
                 {poi.title}
               </h5>
+              {listenable && <SceneListenControl sceneId={poi.id} title={poi.title} />}
               {poi.description && (
                 <p
                   aria-hidden={locked || undefined}
@@ -197,6 +238,7 @@ export default function ItineraryList({
                     color: tg.colors.ink80,
                     lineHeight: 1.5,
                     margin: 0,
+                    ...(listenable ? { marginTop: tg.space[2] } : null),
                     ...(locked
                       ? { filter: 'blur(4px)', userSelect: 'none' }
                       : null),

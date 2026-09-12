@@ -38,6 +38,10 @@ export function mapScenesToPois(scenes: readonly PublicTourScene[]): POI[] {
     // visiteur lit « Étape 1, 2, 3 », dans l'ordre déjà trié par le serveur.
     order: index + 1,
     photoKey: scene.photoUrls?.[0],
+    // LW-1 : présence d'une narration, rien de plus. `audioUrl` (signée 15 min)
+    // ne passe PAS ici — cette projection tourne aussi au rendu serveur, et le
+    // HTML ne doit porter aucune URL signée. Le lecteur la redemande au clic.
+    hasAudio: Boolean(scene.audioKey),
   }));
 }
 
@@ -81,6 +85,8 @@ export function maskLockedPois(pois: readonly POI[], locale: 'fr' | 'en' = 'fr')
           title: locale === 'en' ? `Stop ${index + 1}` : `Étape ${index + 1}`,
           description: '',
           photoKey: undefined,
+          // Une étape masquée n'a pas de bouton « Écouter » à annoncer.
+          hasAudio: false,
         },
   );
 }

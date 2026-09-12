@@ -24,6 +24,10 @@ jest.mock('@/lib/api/appsync-client', () => ({
   setLanguageModerationStatusMutation: jest.fn(() => Promise.resolve({ ok: true })),
   listLanguagePurchasesBySession: jest.fn(() => Promise.resolve({ ok: true, data: [] })),
   getLanguagePurchase: jest.fn(() => Promise.resolve({ ok: true, data: null })),
+  // LW-1 : un test qui monte `ItineraryList` / `ScenePlayer` sans son propre
+  // mock échoue proprement (« indisponible »), pas par un `undefined is not a
+  // function` avalé dans un effet.
+  getPublishedTourContent: jest.fn(() => Promise.resolve({ ok: false, error: 'stub' })),
 }));
 
 // Force stub mode for all tests

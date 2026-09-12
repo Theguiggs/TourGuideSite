@@ -42,14 +42,14 @@ const DETAIL_COPY = {
     openInApp: 'Ouvrir dans Murmure', bestExperience: 'Pour la meilleure expérience audio immersive', open: 'Ouvrir',
     free: 'GRATUIT', yourGuide: 'Votre guide', verifiedGuide: 'Guide vérifié', viewProfile: 'Voir le profil →',
     audioByLanguage: 'Audio par langue', itinerary: 'Itinéraire', reviews: 'Avis', liveTour: 'Vivez cette visite',
-    download: "Téléchargez Murmure pour profiter de l'expérience audio immersive complète.",
+    download: "Écoutez ici. L'appli Murmure ajoute le guidage GPS et l'écoute hors connexion.",
     duration: 'Durée', distance: 'Distance', stops: 'Étapes', completions: 'Écoutes terminées', listen: "Écouter cette visite dans l'app",
   },
   en: {
     openInApp: 'Open in Murmure', bestExperience: 'For the best immersive audio experience', open: 'Open',
     free: 'FREE', yourGuide: 'Your guide', verifiedGuide: 'Verified guide', viewProfile: 'View profile →',
     audioByLanguage: 'Audio by language', itinerary: 'Itinerary', reviews: 'Reviews', liveTour: 'Experience this tour',
-    download: 'Download Murmure for the complete immersive audio experience.',
+    download: 'Listen here. The Murmure app adds GPS guidance and offline listening.',
     duration: 'Duration', distance: 'Distance', stops: 'Stops', completions: 'Completions', listen: 'Listen to this tour in the app',
   },
 } as const;

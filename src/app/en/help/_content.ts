@@ -26,7 +26,7 @@ export const FAQ_GUIDES: FaqItem[] = [
 ];
 
 export const FAQ_TRAVELLERS: FaqItem[] = [
-  {q: 'How do I listen to a tour?', a: 'Download Murmure, choose a tour and start listening as you walk.'},
+  {q: 'How do I listen to a tour?', a: 'On the tour page, tap “Listen” under each stop. The Murmure app adds GPS guidance and offline listening as you walk.'},
   {q: 'Does it work offline?', a: 'Yes. Download your tour before leaving and listen without a connection.'},
   {q: 'Which languages are available?', a: 'Tours can be available in French, English, Spanish, German and Italian.'},
   {q: 'Which devices are supported?', a: 'Android and iOS.'},

@@ -61,9 +61,10 @@ test.describe('Catalogue POIs', () => {
     await expect(page.getByText('min').first()).toBeVisible();
     await expect(page.getByText('km').first()).toBeVisible();
 
-    // App CTA — sidebar always shows download prompt ("Téléchargez Murmure")
+    // App CTA — sidebar always shows the app prompt (LW-1 : « Écoutez ici.
+    // L'appli Murmure ajoute le guidage GPS et l'écoute hors connexion. »)
     // "Ouvrir dans Murmure" only appears in QR-scan context (?source=qr)
-    await expect(page.getByText(/Téléchargez Murmure/i).first()).toBeVisible();
+    await expect(page.getByText(/Écoutez ici/i).first()).toBeVisible();
   });
 
   test('tour detail shows reviews with ratings', async ({ page }) => {

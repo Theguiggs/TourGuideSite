@@ -66,6 +66,34 @@ describe('mapScenesToPois', () => {
 });
 
 describe('scene media projection', () => {
+  it('LW-1 : signale la narration par un booléen, sans jamais exposer l’URL signée', () => {
+    // La même projection sert le HTML du rendu serveur : une URL signée qui
+    // passerait ici finirait dans la source de la page. Seul `hasAudio` traverse.
+    const [withAudio, withoutAudio] = mapScenesToPois([
+      scene({
+        id: 'a',
+        audioKey: 'guide-studio/a.mp3',
+        audioUrl: 'https://media.example/a.mp3?signature=server',
+      }),
+      scene({ id: 'b' }),
+    ]);
+
+    expect(withAudio.hasAudio).toBe(true);
+    expect(withoutAudio.hasAudio).toBe(false);
+    expect(JSON.stringify([withAudio, withoutAudio])).not.toContain('signature=server');
+    expect(withAudio).not.toHaveProperty('audioUrl');
+  });
+
+  it('LW-1 : une étape masquée perd aussi sa narration annoncée', () => {
+    const pois = mapScenesToPois([
+      scene({ id: 'a', audioKey: 'k-a' }),
+      scene({ id: 'b', audioKey: 'k-b' }),
+      scene({ id: 'c', audioKey: 'k-c' }),
+    ]);
+    const masked = maskLockedPois(pois);
+    expect(masked.map((poi) => poi.hasAudio)).toEqual([true, true, false]);
+  });
+
   it('projects the facade photo URL before the legacy storage key', () => {
     const [poi] = mapScenesToPois([
       scene({

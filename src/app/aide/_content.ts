@@ -107,7 +107,7 @@ export const FAQ_GUIDES: FaqItem[] = [
 export const FAQ_VOYAGEURS: FaqItem[] = [
   {
     q: 'Comment écouter une visite ?',
-    a: "Téléchargez l'app Murmure, choisissez une visite et lancez la lecture : le récit vous suit au fil de votre marche.",
+    a: "Sur la page de la visite, appuyez sur « Écouter » sous chaque étape. L'app Murmure ajoute le guidage GPS et l'écoute hors connexion : le récit vous suit au fil de votre marche.",
   },
   {
     q: 'Ça marche hors-ligne ?',
