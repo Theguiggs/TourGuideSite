@@ -6,6 +6,7 @@ import {
   useState,
   useCallback,
   useEffect,
+  useRef,
   type ReactNode,
 } from 'react';
 import {
@@ -21,6 +22,7 @@ import { getOwnGuideProfile } from '@/lib/api/appsync-client';
 import { describeAuthError, isDefinitiveAuthError } from '@/lib/auth/cognito-errors';
 import { loginUrlFor, LOGIN_PATH, type LoginReason } from '@/lib/auth/return-to';
 import { SESSION_REFUSAL_EVENT, type SessionRefusal } from '@/lib/auth/session-signals';
+import { clearAllResumes, RESUME_CLEAR_KEY } from '@/components/catalogue/scene-player/resume-store';
 
 // 'tourist' = an authenticated Cognito user WITHOUT a GuideProfile (e.g. an app
 // user logging in on the web to buy a tour, mon-1.3b). Tourists are NOT guides:
@@ -116,6 +118,7 @@ function isGuardedPath(pathname: string | null): boolean {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const authGenerationRef = useRef(0);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
@@ -128,6 +131,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // connexion avec le motif, en gardant la page pour y revenir.
   useEffect(() => {
     const leave = (reason: LoginReason) => {
+      authGenerationRef.current += 1;
+      clearAllResumes();
       setUser(null);
       if (isGuardedPath(pathname)) router.replace(loginUrlFor(pathname, reason));
     };
@@ -140,6 +145,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const error = (payload as { data?: { error?: unknown } }).data?.error;
         if (isDefinitiveAuthError(error)) leave('expired');
       } else if (payload.event === 'signedOut') {
+        authGenerationRef.current += 1;
+        clearAllResumes();
         setUser((current) => (current ? null : current));
       }
     });
@@ -157,17 +164,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     };
     window.addEventListener(SESSION_REFUSAL_EVENT, onRefusal);
+    // Le signal distant ne se réémet pas : éviter une boucle entre onglets.
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === null || event.key === RESUME_CLEAR_KEY) {
+        authGenerationRef.current += 1;
+        setUser(null);
+      }
+    };
+    window.addEventListener('storage', onStorage);
     return () => {
       stopHub();
       window.removeEventListener(SESSION_REFUSAL_EVENT, onRefusal);
+      window.removeEventListener('storage', onStorage);
     };
   }, [pathname, router]);
 
   // Restore session on mount
   useEffect(() => {
+    const generation = authGenerationRef.current;
     resolveAuthUser()
       .then((resolved) => {
-        if (resolved) setUser(resolved);
+        if (resolved && generation === authGenerationRef.current) setUser(resolved);
       })
       .catch(() => {
         // No active session — normal for unauthenticated users
@@ -176,8 +193,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const refreshUser = useCallback(async (): Promise<{ ok: boolean; role?: AuthRole; error?: string }> => {
+    const generation = authGenerationRef.current;
     try {
       const resolved = await resolveAuthUser();
+      if (generation !== authGenerationRef.current) return { ok: false, error: 'Session modifiée — reconnectez-vous' };
       if (!resolved) return { ok: false, error: 'Profil introuvable' };
       setUser(resolved);
       return { ok: true, role: resolved.role };
@@ -188,6 +207,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = useCallback(
     async (email: string, password: string): Promise<{ ok: boolean; role?: AuthRole; error?: string }> => {
+      const generation = authGenerationRef.current;
       try {
         await amplifySignIn({ username: email, password });
       } catch (error) {
@@ -199,6 +219,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       const resolved = await resolveAuthUser();
+      if (generation !== authGenerationRef.current) return { ok: false, error: 'Session modifiée — reconnectez-vous' };
       if (!resolved) {
         // Now only happens on a stale/invalid session (not "no guide profile").
         await amplifySignOut();
@@ -211,6 +232,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 
   const signOut = useCallback(async () => {
+    authGenerationRef.current += 1;
+    clearAllResumes();
     try {
       await amplifySignOut();
     } catch {
@@ -226,6 +249,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } catch {
       // best-effort : la déconnexion prime sur le ménage.
     }
+    clearAllResumes();
     setUser(null);
   }, []);
 

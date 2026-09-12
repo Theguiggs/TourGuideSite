@@ -80,6 +80,11 @@ describe('published tour SSR mappings', () => {
     ]);
   });
 
+  it('transmet la langue source déclarée, sans la déduire de la liste traduite', async () => {
+    jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([{ ...tour, sourceLanguage: ' EN ', availableLanguages: ['fr', 'en'] }] as never);
+    await expect(getTourBySlug('nice', 'visite-test')).resolves.toMatchObject({ sourceLanguage: 'en' });
+  });
+
   it('uses the approved languages persisted on GuideTour during SSR', async () => {
     jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([
       { ...tour, availableLanguages: ['fr', 'en', 'es', 'de', 'it'] },

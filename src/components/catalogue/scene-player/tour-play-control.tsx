@@ -24,6 +24,7 @@ import { Button, tg } from '@murmure/design-system/web';
 import { SCENE_PLAYER_COPY, useTourPlayer } from './scene-player';
 import { PURCHASE_ANCHOR } from './purchase-anchor';
 import { revealElement } from './reveal';
+import { LISTEN_ANCHOR } from './listen-link';
 
 /** Hors flux visuel, lu par les lecteurs d'écran. */
 const VISUALLY_HIDDEN: CSSProperties = {
@@ -89,7 +90,15 @@ export function TourPlayControl() {
 
   return (
     <div
+      id={LISTEN_ANCHOR.slice(1)}
       data-testid="tour-play-control"
+      onKeyDown={(event) => {
+        if (event.altKey || event.ctrlKey || event.metaKey || !(event.target instanceof HTMLButtonElement)) return;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          player.keyboardSeek(event.key === 'ArrowLeft' ? -10 : 10);
+        }
+      }}
       style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3], marginBottom: tg.space[6] }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: tg.space[3], flexWrap: 'wrap' }}>
@@ -121,10 +130,9 @@ export function TourPlayControl() {
           </Button>
         )}
       </div>
-      {/* L'étape en cours, dite à voix haute — seulement pendant une séquence :
-          un clic isolé, lui, vient d'un bouton que l'on sait avoir actionné. */}
+      {/* L’étape courante est annoncée pour la visite comme pour une scène isolée. */}
       <p aria-live="polite" data-testid="tour-now-playing" style={VISUALLY_HIDDEN}>
-        {sequence && current
+        {current
           ? copy.nowPlaying(
               current.order ?? currentIndex + 1,
               playlist.length,

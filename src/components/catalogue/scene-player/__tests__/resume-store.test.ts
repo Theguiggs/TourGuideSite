@@ -5,6 +5,9 @@
 
 import {
   clearResume,
+  clearAllResumes,
+  pruneResumes,
+  RESUME_CLEAR_EVENT,
   readResume,
   RESUME_MAX_AGE_MS,
   resumeKey,
@@ -158,5 +161,40 @@ describe('resume-store', () => {
     } finally {
       restore();
     }
+  });
+});
+
+describe('LW-6 — ménage des reprises', () => {
+  beforeEach(() => window.localStorage.clear());
+
+  it('purge les anciennes et les illisibles, conserve les récentes et les autres données', () => {
+    writeResume('recent', { sceneId: 's1', position: 12 });
+    window.localStorage.setItem(resumeKey('ancien'), JSON.stringify({ sceneId: 's2', position: 42, updatedAt: Date.now() - RESUME_MAX_AGE_MS - 1 }));
+    window.localStorage.setItem(resumeKey('illisible'), 'cassé');
+    window.localStorage.setItem('autre', 'conserver');
+    pruneResumes();
+    expect(readResume('recent')?.position).toBe(12);
+    expect(window.localStorage.getItem(resumeKey('ancien'))).toBeNull();
+    expect(window.localStorage.getItem(resumeKey('illisible'))).toBeNull();
+    expect(window.localStorage.getItem('autre')).toBe('conserver');
+  });
+
+  it('avertit les lecteurs avant purge et conserve les clés étrangères', () => {
+    writeResume('a', { sceneId: 's1', position: 5 });
+    window.localStorage.setItem('autre', 'conserver');
+    const callback = jest.fn(() => expect(readResume('a')).not.toBeNull());
+    window.addEventListener(RESUME_CLEAR_EVENT, callback);
+    try { clearAllResumes(); } finally { window.removeEventListener(RESUME_CLEAR_EVENT, callback); }
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(readResume('a')).toBeNull();
+    expect(window.localStorage.getItem('autre')).toBe('conserver');
+  });
+
+  it('fonctionne lorsque l’accès au stockage lève', () => {
+    const restore = replaceLocalStorage(() => { throw new Error('bloqué'); });
+    try {
+      expect(() => pruneResumes()).not.toThrow();
+      expect(() => clearAllResumes()).not.toThrow();
+    } finally { restore(); }
   });
 });

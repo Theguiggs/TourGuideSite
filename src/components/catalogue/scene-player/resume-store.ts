@@ -20,6 +20,35 @@ import { logger } from '@/lib/logger';
 const SERVICE_NAME = 'ResumeStore';
 
 export const RESUME_KEY_PREFIX = 'murmure.player.resume.';
+/** Les lecteurs actifs se ferment avant que les clés soient supprimées. */
+export const RESUME_CLEAR_EVENT = 'murmure:player-resume-clear';
+export const RESUME_CLEAR_KEY = 'murmure.player.session-cleared';
+
+function resumeTourIds(): string[] {
+  const store = storage();
+  if (!store) return [];
+  try {
+    const ids: string[] = [];
+    for (let index = 0; index < store.length; index++) {
+      const key = store.key(index);
+      if (key?.startsWith(RESUME_KEY_PREFIX)) ids.push(key.slice(RESUME_KEY_PREFIX.length));
+    }
+    return ids;
+  } catch {
+    return [];
+  }
+}
+
+export function pruneResumes(): void {
+  for (const tourId of resumeTourIds()) readResume(tourId);
+}
+
+export function clearAllResumes(): void {
+  if (typeof window !== 'undefined') window.dispatchEvent(new Event(RESUME_CLEAR_EVENT));
+  try { storage()?.setItem(RESUME_CLEAR_KEY, `${Date.now()}-${Math.random()}`); }
+  catch { /* Le signal local fonctionne même sans stockage. */ }
+  for (const tourId of resumeTourIds()) clearResume(tourId);
+}
 
 /** Au-delà, la reprise n'est plus proposée : 90 jours. */
 export const RESUME_MAX_AGE_MS = 90 * 24 * 60 * 60_000;

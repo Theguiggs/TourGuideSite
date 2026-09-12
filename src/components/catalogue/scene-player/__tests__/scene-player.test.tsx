@@ -14,7 +14,13 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { ScenePlayer, SceneListenControl, TourPlayControl } from '..';
 // La reprise n'est pas une API du lecteur : les épreuves lisent son module.
-import { resumeKey } from '../resume-store';
+import { resumeKey, clearAllResumes, RESUME_CLEAR_KEY } from '../resume-store';
+import { trackEvent } from '@/lib/analytics';
+
+jest.mock('@/lib/analytics', () => ({
+  ...jest.requireActual('@/lib/analytics'),
+  trackEvent: jest.fn(),
+}));
 import { logger } from '@/lib/logger';
 
 jest.mock('@/lib/auth/auth-context', () => ({
@@ -108,18 +114,25 @@ function Harness({
   ids = ['s1', 's2'],
   lockedAfter = false,
   tourTitle = 'Visite test',
+  settled = true,
+  locale = 'fr',
 }: {
   tourId?: string;
   ids?: string[];
   lockedAfter?: boolean;
   tourTitle?: string;
+  settled?: boolean;
+  locale?: 'fr' | 'en';
 }) {
   // La liste jouable suit les contrôles rendus : même ordre, un numéro par étape.
   const playlist = ids.map((id, index) => ({ id, title: `Scène ${id}`, order: index + 1 }));
   return (
     <ScenePlayer
       tourId={tourId}
-      locale="fr"
+      locale={locale}
+      cityId="grasse"
+      audioLanguage="fr"
+      playlistSettled={settled}
       playlist={playlist}
       lockedAfter={lockedAfter}
       tourTitle={tourTitle}
@@ -346,6 +359,7 @@ describe('ScenePlayer — LW-1', () => {
   });
 
   it('mediaExpiresAt dans 10 s (sous la marge) : repli court, pas de redemande à chaque clic', async () => {
+    nowSpy = jest.spyOn(Date, 'now').mockReturnValue(BASE_NOW);
     mockGetPublishedTourContent.mockResolvedValue(response({ s1: URL_S1, s2: URL_S2 }, iso(10_000)));
     render(<Harness />);
 
@@ -355,7 +369,7 @@ describe('ScenePlayer — LW-1', () => {
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
 
     // Passé le repli (60 s), la source est bien tenue pour périmée.
-    nowSpy = jest.spyOn(Date, 'now').mockReturnValue(BASE_NOW + 61_000);
+    nowSpy.mockReturnValue(BASE_NOW + 61_000);
     await click('s1');
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
   });
@@ -1616,16 +1630,16 @@ describe('ScenePlayer — LW-2 (revue)', () => {
     expect(document.activeElement).toBe(message);
   });
 
-  it('l’étape en cours est annoncée pendant la séquence, et seulement pendant', async () => {
+  it('l’étape en cours est annoncée en écoute isolée et en séquence', async () => {
     render(<Harness ids={['s1', 's2']} />);
     const live = screen.getByTestId('tour-now-playing');
     expect(live).toHaveAttribute('aria-live', 'polite');
-    expect(live).toHaveTextContent('');
+    expect(live).toBeEmptyDOMElement();
 
-    // Écoute isolée : rien à annoncer, le visiteur vient d'actionner ce bouton.
+    // LW-6 : l’écoute isolée bénéficie aussi de l’annonce.
     await click('s1');
     await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
-    expect(screen.getByTestId('tour-now-playing')).toHaveTextContent('');
+    expect(screen.getByTestId('tour-now-playing')).toHaveTextContent('Étape 1 sur 2 : Scène s1');
 
     await clickTour();
     expect(screen.getByTestId('tour-now-playing')).toHaveTextContent('Étape 1 sur 2 : Scène s1');
@@ -1654,5 +1668,207 @@ describe('ScenePlayer — LW-2 (revue)', () => {
     // Le lecteur LW-1, lui, marche toujours.
     await click('s1');
     await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
+  });
+});
+
+describe('LW-6 — arrivée, mesure et confidentialité', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    playSpy.mockResolvedValue(undefined);
+    fakeDuration = 120;
+    fakeError = null;
+    window.history.replaceState(null, '', '/catalogue/grasse/test');
+    mockGetPublishedTourContent.mockResolvedValue(response({ s1: URL_S1, s2: URL_S2 }, FRESH));
+  });
+  afterEach(() => window.history.replaceState(null, '', '/'));
+
+  const events = (name: string) => (trackEvent as jest.Mock).mock.calls.filter(([event]) => event === name);
+
+  it('attend la liste stabilisée puis lance une seule fois depuis les achats', async () => {
+    window.history.replaceState(null, '', '#ecouter');
+    const { rerender } = render(<Harness settled={false} />);
+    expect(playSpy).not.toHaveBeenCalled();
+    rerender(<Harness settled />);
+    await waitFor(() => expect(playSpy).toHaveBeenCalledTimes(1));
+    rerender(<Harness settled />);
+    act(() => window.dispatchEvent(new HashChangeEvent('hashchange')));
+    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(trackEvent).toHaveBeenCalledWith('web_listen_start', { tour_id: 'tour-1', city_id: 'grasse', language: 'fr', from: 'purchases' });
+    expect(screen.getByTestId('tour-play-button')).toHaveFocus();
+  });
+
+  it('propose et focalise la reprise sans la jouer automatiquement', async () => {
+    window.localStorage.setItem(resumeKey('tour-1'), JSON.stringify({ sceneId: 's2', position: 37, updatedAt: Date.now() }));
+    window.history.replaceState(null, '', '#ecouter');
+    render(<Harness locale="en" />);
+    await waitFor(() => expect(screen.getByTestId('tour-resume-button')).toHaveFocus());
+    expect(playSpy).not.toHaveBeenCalled();
+    expect(screen.getByTestId('tour-resume-button')).toHaveTextContent('Resume at stop 2');
+    fireEvent.click(screen.getByTestId('tour-resume-button'));
+    await act(async () => {});
+    await emit('loadedmetadata');
+    expect(audio().currentTime).toBe(37);
+    expect(trackEvent).toHaveBeenCalledWith('web_listen_start', expect.objectContaining({ from: 'resume', language: 'fr' }));
+  });
+
+  it('garde un geste possible après refus d’autoplay sans mesurer un faux départ', async () => {
+    playSpy.mockRejectedValueOnce(rejection('NotAllowedError'));
+    window.history.replaceState(null, '', '#ecouter');
+    render(<Harness />);
+    expect(await screen.findByText('Touchez à nouveau pour lancer l’écoute')).toBeVisible();
+    expect(events('web_listen_start')).toHaveLength(0);
+    fireEvent.click(screen.getByTestId('tour-play-button'));
+    await act(async () => {});
+    expect(events('web_listen_start')).toHaveLength(1);
+    expect(events('web_listen_start')[0][1].from).toBe('purchases');
+  });
+
+  it('mesure une séquence une fois, les deux fins et la fin naturelle uniquement', async () => {
+    render(<Harness />);
+    fireEvent.click(screen.getByTestId('tour-play-button'));
+    await act(async () => {});
+    fireEvent.click(screen.getByTestId('tour-play-button'));
+    fireEvent.click(screen.getByTestId('tour-play-button'));
+    await act(async () => {});
+    await emit('ended');
+    await emit('ended');
+    await emit('ended');
+    expect(events('web_listen_start')).toHaveLength(1);
+    expect(events('web_scene_complete').map(([, props]) => props.scene_order)).toEqual([1, 2]);
+    expect(events('web_listen_complete')).toHaveLength(1);
+  });
+
+  it.each([true, false])('une scène isolée ne termine pas la visite (aperçu=%s)', async (lockedAfter) => {
+    render(<Harness lockedAfter={lockedAfter} />);
+    await click('s2');
+    await emit('ended');
+    expect(events('web_scene_complete')).toHaveLength(1);
+    expect(events('web_listen_complete')).toHaveLength(0);
+  });
+
+  it('la fin d’aperçu ne compte pas comme une visite terminée', async () => {
+    render(<Harness lockedAfter />);
+    fireEvent.click(screen.getByTestId('tour-play-button'));
+    await act(async () => {});
+    await emit('ended');
+    await emit('ended');
+    expect(events('web_listen_complete')).toHaveLength(0);
+  });
+
+  it('sans URL servie, aucun départ mesuré', async () => {
+    mockGetPublishedTourContent.mockResolvedValue(response({}));
+    render(<Harness />);
+    await click('s1');
+    expect(events('web_listen_start')).toHaveLength(0);
+  });
+
+  it('une relance réseau conserve une seule mesure de départ', async () => {
+    render(<Harness />);
+    await click('s1');
+    fakeError = { code: MEDIA_ERR_NETWORK };
+    await emit('error');
+    expect(events('web_listen_start')).toHaveLength(1);
+    expect(playSpy).toHaveBeenCalledTimes(2);
+  });
+
+  it('les flèches du curseur font ±10 s sans sortir de la durée', async () => {
+    render(<Harness />);
+    await click('s1');
+    await emit('loadedmetadata');
+    const slider = screen.getByRole('slider');
+    audio().currentTime = 117;
+    fireEvent.keyDown(slider, { key: 'ArrowRight' });
+    expect(audio().currentTime).toBe(120);
+    fireEvent.keyDown(slider, { key: 'ArrowLeft' });
+    expect(audio().currentTime).toBe(110);
+    audio().currentTime = 2;
+    fireEvent.keyDown(screen.getByTestId('tour-play-button'), { key: 'ArrowLeft' });
+    expect(audio().currentTime).toBe(0);
+    const pauses = pauseSpy.mock.calls.length;
+    fireEvent.keyDown(slider, { key: ' ' });
+    expect(pauseSpy).toHaveBeenCalledTimes(pauses + 1);
+  });
+
+  it('la purge arrête le son et le démontage ne recrée aucune reprise', async () => {
+    const view = render(<Harness />);
+    await click('s1');
+    audio().currentTime = 42;
+    await emit('timeupdate');
+    expect(window.localStorage.getItem(resumeKey('tour-1'))).not.toBeNull();
+    act(() => clearAllResumes());
+    expect(audio()).not.toHaveAttribute('src');
+    await emit('timeupdate');
+    view.unmount();
+    expect(window.localStorage.getItem(resumeKey('tour-1'))).toBeNull();
+  });
+
+  it('une réponse arrivée après la purge ne peut pas démarrer', async () => {
+    let resolve!: (value: ReturnType<typeof response>) => void;
+    mockGetPublishedTourContent.mockReturnValue(new Promise((done) => { resolve = done; }));
+    render(<Harness />);
+    fireEvent.click(button('s1'));
+    act(() => clearAllResumes());
+    await act(async () => resolve(response({ s1: URL_S1 })));
+    expect(playSpy).not.toHaveBeenCalled();
+  });
+
+  it('la déconnexion dans un autre onglet arrête aussi le lecteur', async () => {
+    render(<Harness />);
+    await click('s1');
+    act(() => window.dispatchEvent(new StorageEvent('storage', { key: RESUME_CLEAR_KEY, newValue: 'nouvelle-session' })));
+    expect(audio()).not.toHaveAttribute('src');
+  });
+});
+
+describe('LW-6 — régressions des relectures', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    playSpy.mockResolvedValue(undefined);
+    fakeDuration = 120;
+    fakeError = null;
+    window.history.replaceState(null, '', '/');
+    mockGetPublishedTourContent.mockResolvedValue(response({ s1: URL_S1, s2: URL_S2 }, FRESH));
+  });
+  afterEach(() => window.history.replaceState(null, '', '/'));
+
+  it('traite une arrivée par hashchange après montage, une seule fois', async () => {
+    render(<Harness />);
+    expect(playSpy).not.toHaveBeenCalled();
+    window.history.replaceState(null, '', '#ecouter');
+    act(() => window.dispatchEvent(new HashChangeEvent('hashchange')));
+    await waitFor(() => expect(playSpy).toHaveBeenCalledTimes(1));
+    act(() => window.dispatchEvent(new HashChangeEvent('hashchange')));
+    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId('tour-play-button')).toHaveFocus();
+  });
+
+  it('actualise une reprise écrite dans un autre onglet avant l’arrivée', async () => {
+    render(<Harness />);
+    window.localStorage.setItem(resumeKey('tour-1'), JSON.stringify({ sceneId: 's2', position: 37, updatedAt: Date.now() }));
+    window.history.replaceState(null, '', '#ecouter');
+    act(() => window.dispatchEvent(new HashChangeEvent('hashchange')));
+    await waitFor(() => expect(screen.getByTestId('tour-resume-button')).toHaveFocus());
+    expect(playSpy).not.toHaveBeenCalled();
+  });
+
+  it('conserve la provenance achats si l’on préfère recommencer plutôt que reprendre', async () => {
+    window.localStorage.setItem(resumeKey('tour-1'), JSON.stringify({ sceneId: 's2', position: 37, updatedAt: Date.now() }));
+    window.history.replaceState(null, '', '#ecouter');
+    render(<Harness />);
+    await screen.findByTestId('tour-resume-button');
+    fireEvent.click(screen.getByTestId('tour-play-button'));
+    await act(async () => {});
+    expect(trackEvent).toHaveBeenCalledWith('web_listen_start', expect.objectContaining({ from: 'purchases' }));
+  });
+
+  it('oublie aussi le cache signé après déconnexion distante : le serveur doit réaccorder l’URL', async () => {
+    render(<Harness />);
+    await click('s1');
+    act(() => window.dispatchEvent(new StorageEvent('storage', { key: RESUME_CLEAR_KEY, newValue: 'nouvelle-session' })));
+    mockGetPublishedTourContent.mockResolvedValue(response({}));
+    await click('s1');
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2);
+    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(screen.getByText(UNAVAILABLE)).toBeVisible();
   });
 });

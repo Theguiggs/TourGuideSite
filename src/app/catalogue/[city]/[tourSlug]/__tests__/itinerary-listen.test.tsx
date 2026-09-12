@@ -573,3 +573,20 @@ describe('fiche Visite — écouter la visite (LW-2)', () => {
     }
   });
 });
+
+it.each(['fr', 'en'] as const)('une visite sans narration conserve une cible d’écoute explicite (%s)', async (locale) => {
+  authState = { isAuthenticated: false, user: null, isLoading: false };
+  render(<ItineraryList tourId="sans-audio" pois={[poi('muette', 1, false)]} isFree heroAccentFg={tg.colors.ink} locale={locale} />);
+  await act(async () => {});
+  expect(document.getElementById('ecouter')).toHaveTextContent(locale === 'en' ? 'No audio is available for this tour yet.' : 'Aucun audio disponible pour cette visite pour le moment.');
+  expect(screen.queryByTestId('tour-play-button')).not.toBeInTheDocument();
+});
+
+it('une redemande échouée sans audio disponible n’affiche pas un chargement permanent', async () => {
+  authState = { isAuthenticated: true, user: { id: 'u1' }, isLoading: false };
+  mockGetPublishedTourContent.mockResolvedValue({ ok: false, error: 'réseau' });
+  render(<ItineraryList tourId="sans-audio" pois={[poi('muette', 1, false)]} isFree={false} heroAccentFg={tg.colors.ink} />);
+  await act(async () => {});
+  expect(document.getElementById('ecouter')).toHaveTextContent('Audio momentanément indisponible');
+  expect(document.getElementById('ecouter')).not.toHaveTextContent('Chargement');
+});

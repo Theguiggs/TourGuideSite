@@ -13,16 +13,20 @@ import {
   ScenePlayer,
   SceneListenControl,
   TourPlayControl,
+  SCENE_PLAYER_COPY,
   useScenePlayer,
   type PlaylistEntry,
 } from '@/components/catalogue/scene-player';
 import { revealElement } from '@/components/catalogue/scene-player/reveal';
+import { LISTEN_ANCHOR } from '@/components/catalogue/scene-player/listen-link';
 
 const SERVICE_NAME = 'ItineraryList';
 
 interface ItineraryListProps {
   pois: POI[];
   tourId: string;
+  cityId?: string;
+  sourceLanguage?: string;
   /** LW-2 — titre de la visite (Media Session). */
   tourTitle?: string;
   /** Free tours are never gated. */
@@ -154,6 +158,8 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): Serv
 export default function ItineraryList({
   pois,
   tourId,
+  cityId,
+  sourceLanguage,
   tourTitle = '',
   isFree,
   heroAccentFg,
@@ -194,7 +200,7 @@ export default function ItineraryList({
         ? 'Itinerary being finalised'
         : 'Itinéraire en cours de finalisation';
     return (
-      <Eyebrow style={{ color: tg.colors.ink60 }} data-testid={contentUnavailable ? 'itinerary-unavailable' : 'itinerary-empty'}>
+      <Eyebrow id={LISTEN_ANCHOR.slice(1)} style={{ color: tg.colors.ink60 }} data-testid={contentUnavailable ? 'itinerary-unavailable' : 'itinerary-empty'}>
         {text}
       </Eyebrow>
     );
@@ -204,6 +210,8 @@ export default function ItineraryList({
     // LW-1 : un seul <audio> pour toute la liste, possédé par le lecteur ; la
     // liste, elle, reste ici. Le contexte relie les deux.
     <ScenePlayer
+      cityId={cityId}
+      audioLanguage={sourceLanguage}
       tourId={tourId}
       locale={locale}
       playlist={playlist}
@@ -213,6 +221,11 @@ export default function ItineraryList({
     >
       {/* LW-2 : « Écouter la visite », reprise, fin de séquence — au-dessus de la liste. */}
       <TourPlayControl />
+      {playlist.length === 0 && (
+        <p id={LISTEN_ANCHOR.slice(1)} role="status" style={{ color: tg.colors.ink, fontSize: tg.fontSize.body }}>
+          {settled ? SCENE_PLAYER_COPY[locale].noAudio : SCENE_PLAYER_COPY[locale].unavailable}
+        </p>
+      )}
       <StopList
         pois={displayedPois}
         hasAccess={hasAccess}

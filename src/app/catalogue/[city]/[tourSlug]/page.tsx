@@ -9,7 +9,6 @@ import {
   PullQuote,
   tg,
 } from '@murmure/design-system/web';
-import { editorial } from '@murmure/design-system';
 import { getCityAccent, type CityAccent } from '@/lib/cities/accent-map';
 import { getTourBySlug, getCityBySlug } from '@/lib/api/tours-server';
 import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
@@ -45,15 +44,15 @@ const DETAIL_COPY = {
     openInApp: 'Ouvrir dans Murmure', bestExperience: 'Pour la meilleure expérience audio immersive', open: 'Ouvrir',
     free: 'GRATUIT', yourGuide: 'Votre guide', verifiedGuide: 'Guide vérifié', viewProfile: 'Voir le profil →',
     audioByLanguage: 'Audio par langue', itinerary: 'Itinéraire', reviews: 'Avis', liveTour: 'Vivez cette visite',
-    download: "Écoutez ici. L'appli Murmure ajoute le guidage GPS et l'écoute hors connexion.",
-    duration: 'Durée', distance: 'Distance', stops: 'Étapes', completions: 'Écoutes terminées', listen: "Écouter cette visite dans l'app",
+    download: 'Écoutez ici. L’appli Murmure ajoute le guidage GPS et l’écoute hors connexion.',
+    duration: 'Durée', distance: 'Distance', stops: 'Étapes', completions: 'Écoutes terminées', listen: 'Marcher avec l’appli',
   },
   en: {
     openInApp: 'Open in Murmure', bestExperience: 'For the best immersive audio experience', open: 'Open',
     free: 'FREE', yourGuide: 'Your guide', verifiedGuide: 'Verified guide', viewProfile: 'View profile →',
     audioByLanguage: 'Audio by language', itinerary: 'Itinerary', reviews: 'Reviews', liveTour: 'Experience this tour',
     download: 'Listen here. The Murmure app adds GPS guidance and offline listening.',
-    duration: 'Duration', distance: 'Distance', stops: 'Stops', completions: 'Completions', listen: 'Listen to this tour in the app',
+    duration: 'Duration', distance: 'Distance', stops: 'Stops', completions: 'Completions', listen: 'Walk with the app',
   },
 } as const;
 
@@ -501,6 +500,8 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
               <ItineraryList
                 pois={isTourFree(tour) ? tour.pois : maskLockedPois(tour.pois, locale)}
                 tourId={tour.id}
+                cityId={tour.citySlug}
+                sourceLanguage={tour.sourceLanguage}
                 tourTitle={tour.title}
                 isFree={isTourFree(tour)}
                 contentUnavailable={tour.contentUnavailable}
@@ -595,7 +596,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                     style={{ display: 'block', textDecoration: 'none' }}
                   >
                     <Button variant="accent" size="lg" fullWidth>
-                      {locale === 'en' ? 'Listen in the app' : editorial.cta.listen}
+                      {copy.listen}
                     </Button>
                   </SmartAppLink>
 
@@ -678,7 +679,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
           aria-label={copy.listen}
         >
           <Button variant="accent" size="lg" fullWidth>
-            {locale === 'en' ? 'Listen in the app' : editorial.cta.listen}
+            {copy.listen}
           </Button>
         </SmartAppLink>
       </div>

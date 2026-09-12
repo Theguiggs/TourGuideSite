@@ -31,6 +31,7 @@ import { useAuth } from '@/lib/auth/auth-context';
 import { usePurchasesRefreshTick } from '@/hooks/use-owned-tour-ids';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
+import { RESUME_CLEAR_EVENT, RESUME_CLEAR_KEY } from './resume-store';
 
 const SERVICE_NAME = 'SceneAudio';
 
@@ -146,6 +147,25 @@ export function useSceneAudio(tourId: string): SceneAudioSource {
   // Une réponse en vol au moment d'un changement d'identité, de visite ou
   // d'achat ne doit pas repeupler le cache qu'on vient d'oublier.
   const generationRef = useRef(0);
+  const logoutGenerationRef = useRef(0);
+
+  useEffect(() => {
+    const clear = () => {
+      logoutGenerationRef.current += 1;
+      generationRef.current += 1;
+      cacheRef.current = null;
+      inflightRef.current = null;
+    };
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === null || event.key === RESUME_CLEAR_KEY) clear();
+    };
+    window.addEventListener(RESUME_CLEAR_EVENT, clear);
+    window.addEventListener('storage', onStorage);
+    return () => {
+      window.removeEventListener(RESUME_CLEAR_EVENT, clear);
+      window.removeEventListener('storage', onStorage);
+    };
+  }, []);
 
   useEffect(() => {
     generationRef.current += 1;
@@ -162,11 +182,13 @@ export function useSceneAudio(tourId: string): SceneAudioSource {
 
     const launch = (relaunched: boolean): Promise<SceneUrls | null> => {
       const generation = generationRef.current;
+      const logoutGeneration = logoutGenerationRef.current;
       let promise: Promise<SceneUrls | null> | null = null;
       promise = (async (): Promise<SceneUrls | null> => {
         try {
           const { getPublishedTourContent } = await import('@/lib/api/appsync-client');
           const result = await getPublishedTourContent(tourId);
+          if (logoutGeneration !== logoutGenerationRef.current) return null;
           if (generation !== generationRef.current) {
             // L'identité ou les achats ont changé pendant le vol : cette
             // réponse ne vaut plus. Une relance sur la génération courante,

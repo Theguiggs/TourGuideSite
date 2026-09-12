@@ -10,6 +10,8 @@ export interface City {
 }
 
 export interface Tour {
+  /** Langue de la narration source, distincte de la langue de l’interface. */
+  sourceLanguage?: string;
   id: string;
   title: string;
   slug: string;

@@ -362,9 +362,11 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     throw new Error(contentResult.error);
   }
   const pois = mapScenesToPois(contentResult.data.scenes);
+  const sourceLanguage = (tour as Record<string, unknown>).sourceLanguage;
 
   return {
     id: tour.id,
+    sourceLanguage: typeof sourceLanguage === 'string' && sourceLanguage.trim() ? sourceLanguage.trim().toLowerCase() : undefined,
     title: tour.title,
     slug: generateSlug(tour.title),
     city: tour.city,

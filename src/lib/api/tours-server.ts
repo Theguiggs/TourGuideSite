@@ -161,6 +161,7 @@ async function toTour(t: PublishedTour, slugs: TourSlugs, imageUrl?: string): Pr
   const raw = t as unknown as Record<string, unknown>;
   return {
     id: t.id,
+    sourceLanguage: asLanguage(raw.sourceLanguage)?.trim().toLowerCase(),
     title: t.title,
     slug: slugs.slug,
     city: t.city,

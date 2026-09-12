@@ -46,7 +46,9 @@ describe('<PurchasedTourCard>', () => {
   it('shows the purchase date and amount paid, linking to the tour', () => {
     render(<PurchasedTourCard purchase={purchase()} />);
     const card = screen.getByTestId('purchase-card-t1');
-    expect(card).toHaveAttribute('href', '/catalogue/grasse/les-routes-du-parfum');
+    expect(card).toHaveAttribute('href', '/catalogue/grasse/les-routes-du-parfum#ecouter');
+    expect(card).toHaveAccessibleName('Écouter « Grasse — Les Routes du Parfum »');
+    expect(card).toHaveTextContent('Écouter');
     expect(card).toHaveTextContent('Acheté le 12/05/2026');
     expect(card).toHaveTextContent('8,99 €');
   });
@@ -65,7 +67,8 @@ describe('<PurchasedTourCard>', () => {
   it('localises the English card and catalogue link', () => {
     render(<PurchasedTourCard purchase={purchase()} locale="en" />);
     const card = screen.getByTestId('purchase-card-t1');
-    expect(card).toHaveAttribute('href', '/en/catalogue/grasse/les-routes-du-parfum');
+    expect(card).toHaveAttribute('href', '/en/catalogue/grasse/les-routes-du-parfum#ecouter');
+    expect(card).toHaveAccessibleName('Listen to “Grasse — Les Routes du Parfum”');
     expect(card).toHaveTextContent('Purchased on 12/05/2026');
     expect(card).toHaveTextContent('€8.99');
   });
@@ -81,6 +84,19 @@ describe('<PurchasedTourCard>', () => {
 });
 
 describe('<MyPurchasesStrip>', () => {
+  it.each(['fr', 'en'] as const)('propose l’écoute localisée dans la bande (%s)', (locale) => {
+    render(<MyPurchasesStrip purchases={[purchase()]} locale={locale} />);
+    const card = screen.getByTestId('purchase-strip-t1');
+    expect(card).toHaveAttribute('href', `${locale === 'en' ? '/en' : ''}/catalogue/grasse/les-routes-du-parfum#ecouter`);
+    expect(card).toHaveTextContent(locale === 'en' ? 'Listen' : 'Écouter');
+    expect(card).toHaveAccessibleName(locale === 'en' ? 'Listen to “Grasse — Les Routes du Parfum”' : 'Écouter « Grasse — Les Routes du Parfum »');
+  });
+
+  it('garde un achat archivé visible sans lien d’écoute', () => {
+    render(<MyPurchasesStrip purchases={[purchase({ tour: tour({ id: 't1', status: 'archived' }) })]} />);
+    expect(screen.getByTestId('purchase-strip-t1')).not.toHaveAttribute('href');
+    expect(screen.getByTestId('purchase-strip-t1')).toHaveTextContent('Indisponible au catalogue');
+  });
   it('renders nothing when there are no purchases', () => {
     const { container } = render(<MyPurchasesStrip purchases={[]} />);
     expect(container).toBeEmptyDOMElement();

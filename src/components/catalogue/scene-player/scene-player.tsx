@@ -57,6 +57,8 @@ import {
 import { Pause, Play } from 'lucide-react';
 import { Button, tg } from '@murmure/design-system/web';
 import { logger } from '@/lib/logger';
+import { AnalyticsEvents, trackEvent } from '@/lib/analytics';
+import { LISTEN_ANCHOR } from './listen-link';
 import { useSceneAudio } from './use-scene-audio';
 import {
   applyMediaSession,
@@ -66,7 +68,7 @@ import {
   setMediaSessionPosition,
   SEEK_OFFSET_SECONDS,
 } from './media-session';
-import { clearResume, readResume, writeResume } from './resume-store';
+import { clearResume, readResume, writeResume, pruneResumes, RESUME_CLEAR_EVENT, RESUME_CLEAR_KEY } from './resume-store';
 
 const SERVICE_NAME = 'ScenePlayer';
 
@@ -93,6 +95,7 @@ export const SCENE_PLAYER_COPY = {
     pause: 'Pause',
     loading: 'Chargement…',
     unavailable: 'Audio momentanément indisponible',
+    noAudio: 'Aucun audio disponible pour cette visite pour le moment.',
     tapAgain: 'Touchez à nouveau pour lancer l’écoute',
     listenTo: (title: string) => `Écouter « ${title} »`,
     pauseTitle: (title: string) => `Mettre en pause « ${title} »`,
@@ -111,6 +114,7 @@ export const SCENE_PLAYER_COPY = {
     pause: 'Pause',
     loading: 'Loading…',
     unavailable: 'Audio temporarily unavailable',
+    noAudio: 'No audio is available for this tour yet.',
     tapAgain: 'Tap again to start playback',
     listenTo: (title: string) => `Listen to “${title}”`,
     pauseTitle: (title: string) => `Pause “${title}”`,
@@ -172,6 +176,7 @@ export interface ResumeOffer {
 }
 
 interface ScenePlayerContextValue {
+  keyboardSeek(offset: number): void;
   locale: ScenePlayerLocale;
   currentSceneId: string | null;
   playing: boolean;
@@ -202,6 +207,7 @@ const ScenePlayerContext = createContext<ScenePlayerContextValue | null>(null);
  * de redemande : une seule par tentative.
  */
 interface Attempt {
+  completed?: boolean;
   sceneId: string;
   retryUsed: boolean;
   /** `src` posée : les clics suivants sur la même scène sont pause / reprise. */
@@ -257,6 +263,8 @@ function errorName(error: unknown): string {
 
 export interface ScenePlayerProps {
   tourId: string;
+  cityId?: string;
+  audioLanguage?: string;
   locale?: ScenePlayerLocale;
   /** LW-2 — étapes servies et narrées, dans l'ordre d'affichage. */
   playlist?: readonly PlaylistEntry[];
@@ -285,6 +293,8 @@ export function ScenePlayer(props: ScenePlayerProps) {
 
 function ScenePlayerInstance({
   tourId,
+  cityId = 'unknown',
+  audioLanguage = 'und',
   locale = 'fr',
   playlist: playlistProp,
   lockedAfter = false,
@@ -305,6 +315,15 @@ function ScenePlayerInstance({
   const lastResumeWriteRef = useRef(0);
   const actionsRef = useRef<PlayerActions>(NO_ACTIONS);
   const pendingSeekRef = useRef<PendingSeek | null>(null);
+  const listenSessionRef = useRef<{ from: 'purchases' | 'tour_page' | 'resume'; started: boolean }>({ from: 'tour_page', started: false });
+  const anchorHandledRef = useRef(false);
+  const entryFromRef = useRef<'purchases' | 'tour_page'>('tour_page');
+
+  // La mesure ne doit jamais interrompre la lecture si le transport lève.
+  const measure = useCallback((event: Parameters<typeof trackEvent>[0], properties?: Record<string, unknown>) => {
+    try { trackEvent(event, { tour_id: tourId, city_id: cityId, ...properties }); }
+    catch { /* L’écoute prime sur la télémétrie. */ }
+  }, [tourId, cityId]);
   // Une réponse peut arriver après le démontage : l'élément est alors détaché,
   // le faire jouer n'annonce rien et la reprise écrite viserait la mauvaise scène.
   const mountedRef = useRef(true);
@@ -391,9 +410,14 @@ function ScenePlayerInstance({
     async (audio: HTMLAudioElement, attempt: Attempt) => {
       if (attempt.playPending) return;
       attempt.playPending = true;
+      attempt.completed = false;
       try {
         await audio.play();
         if (attemptRef.current !== attempt) return;
+        if (!listenSessionRef.current.started) {
+          listenSessionRef.current.started = true;
+          measure(AnalyticsEvents.WEB_LISTEN_START, { language: audioLanguage, from: listenSessionRef.current.from });
+        }
         setPlaying(true);
         setLoading(false);
       } catch (playError) {
@@ -420,7 +444,7 @@ function ScenePlayerInstance({
         attempt.playPending = false;
       }
     },
-    [fail, copy.tapAgain],
+    [fail, copy.tapAgain, measure, audioLanguage],
   );
 
   const titleOf = useCallback(
@@ -517,6 +541,7 @@ function ScenePlayerInstance({
   // Reprise : lue au montage (jamais au rendu serveur — `localStorage` n'y
   // existe pas, et une pastille rendue d'un seul côté ferait diverger l'hydratation).
   useEffect(() => {
+    pruneResumes();
     const entry = readResume(tourId);
     if (entry) setResumeCandidate({ sceneId: entry.sceneId, position: entry.position });
   }, [tourId]);
@@ -606,11 +631,15 @@ function ScenePlayerInstance({
     // rien d'autre. Sans cette écriture, jusqu'à 5 s d'écoute sont perdues.
     const onPageHide = () => persistResume(true);
     const onEnded = () => {
+      const attempt = attemptRef.current;
+      if (!attempt || !attempt.ready || attempt.failed || attempt.completed) return;
+      attempt.completed = true;
+      const completedIndex = playlistRef.current.findIndex((entry) => entry.id === attempt.sceneId);
+      if (completedIndex >= 0) measure(AnalyticsEvents.WEB_SCENE_COMPLETE, { scene_order: playlistRef.current[completedIndex].order ?? completedIndex + 1 });
       setPlaying(false);
       publishProgress({ position: 0, duration: progressRef.current.duration });
       // LW-2 : en séquence, la piste suivante part d'ici — depuis l'événement
       // média, sans geste. Hors séquence, rien ne part tout seul.
-      const attempt = attemptRef.current;
       if (!sequenceRef.current || !attempt) return;
       const list = playlistRef.current;
       const index = list.findIndex((entry) => entry.id === attempt.sceneId);
@@ -623,6 +652,7 @@ function ScenePlayerInstance({
         void openAttempt(next.id, { minValidityMs: SEQUENCE_MIN_VALIDITY_MS });
         return;
       }
+      if (!lockedAfterRef.current) measure(AnalyticsEvents.WEB_LISTEN_COMPLETE);
       finishSequence(lockedAfterRef.current ? 'preview-end' : 'complete');
     };
     const onError = () => {
@@ -687,6 +717,7 @@ function ScenePlayerInstance({
     };
   }, [
     tourId,
+    measure,
     refetch,
     fail,
     startPlayback,
@@ -728,6 +759,11 @@ function ScenePlayerInstance({
       // Autre scène : la précédente s'arrête, position remise à zéro. En
       // séquence, la visite continue depuis celle-ci ; hors séquence, elle
       // se joue seule.
+      if (!sequenceRef.current) {
+        listenSessionRef.current = { from: entryFromRef.current, started: false };
+        entryFromRef.current = 'tour_page';
+      }
+      anchorHandledRef.current = true;
       void openAttempt(sceneId);
     },
     [playing, startPlayback, openAttempt],
@@ -793,6 +829,26 @@ function ScenePlayerInstance({
     },
     [publishProgress, setSequence, tourId],
   );
+
+  useEffect(() => {
+    const clear = () => {
+      // Invalider AVANT pause : ni son événement ni le démontage ne doivent réécrire.
+      const current = attemptRef.current;
+      if (current) current.failed = true;
+      if (current) release(current.sceneId);
+      setResumeCandidate(null);
+      anchorHandledRef.current = true;
+    };
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === null || event.key === RESUME_CLEAR_KEY) clear();
+    };
+    window.addEventListener(RESUME_CLEAR_EVENT, clear);
+    window.addEventListener('storage', onStorage);
+    return () => {
+      window.removeEventListener(RESUME_CLEAR_EVENT, clear);
+      window.removeEventListener('storage', onStorage);
+    };
+  }, [release]);
 
   /** Reprend la scène en cours (Media Session `play`, bouton de visite). */
   const resumeCurrent = useCallback(() => {
@@ -894,6 +950,9 @@ function ScenePlayerInstance({
       if (fromSceneId !== undefined) {
         // Reprise : seulement une scène encore jouable.
         if (!list.some((entry) => entry.id === fromSceneId)) return;
+        anchorHandledRef.current = true;
+        listenSessionRef.current = { from: 'resume', started: false };
+        entryFromRef.current = 'tour_page';
         setSequence(true);
         void openAttempt(fromSceneId, { position });
         return;
@@ -916,11 +975,36 @@ function ScenePlayerInstance({
       // Rien en cours, ou une séquence finie : la visite (re)part de la première étape.
       const first = list[0];
       if (!first) return;
+      listenSessionRef.current = { from: entryFromRef.current, started: false };
+      entryFromRef.current = 'tour_page';
+      anchorHandledRef.current = true;
       setSequence(true);
       void openAttempt(first.id);
     },
     [openAttempt, resumeCurrent, playing, ending, setSequence],
   );
+
+  // L’ancre ne vaut pas permission d’autoplay : une seule tentative, avec repli LW-1.
+  useEffect(() => {
+    const enter = () => {
+      if (window.location.hash !== LISTEN_ANCHOR || anchorHandledRef.current) return;
+      entryFromRef.current = 'purchases';
+      if (!playlistSettled || playlist.length === 0) return;
+      const entry = readResume(tourId);
+      const canResume = entry && playlist.some((scene) => scene.id === entry.sceneId);
+      if (canResume && (!resumeOffer || resumeOffer.sceneId !== entry.sceneId || resumeOffer.position !== entry.position)) {
+        setResumeCandidate({ sceneId: entry.sceneId, position: entry.position });
+        return;
+      }
+      if (canResume) anchorHandledRef.current = true;
+      else if (!attemptRef.current) startSequence();
+      const target = document.querySelector<HTMLButtonElement>(canResume ? '[data-testid="tour-resume-button"]' : '[data-testid="tour-play-button"]');
+      target?.focus();
+    };
+    enter();
+    window.addEventListener('hashchange', enter);
+    return () => window.removeEventListener('hashchange', enter);
+  }, [playlistSettled, playlist, tourId, startSequence, resumeOffer]);
 
   // Media Session : les gestionnaires sont posés une fois et lisent toujours
   // les actions du dernier rendu ; ils sont retirés au démontage, avec les
@@ -963,6 +1047,7 @@ function ScenePlayerInstance({
   const value = useMemo<ScenePlayerContextValue>(
     () => ({
       locale,
+      keyboardSeek: seekBy,
       currentSceneId,
       playing,
       loading,
@@ -982,6 +1067,7 @@ function ScenePlayerInstance({
     }),
     [
       locale,
+      seekBy,
       currentSceneId,
       playing,
       loading,
@@ -1039,6 +1125,7 @@ export type TourPlayerView = Pick<
   | 'resumeOffer'
   | 'startSequence'
   | 'toggle'
+  | 'keyboardSeek'
 >;
 
 export function useTourPlayer(): TourPlayerView | null {
@@ -1085,6 +1172,16 @@ function SceneListenControlInner({
   return (
     <div
       data-testid={`scene-listen-${sceneId}`}
+      onKeyDown={(event) => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          if (isCurrent) ctx.keyboardSeek(event.key === 'ArrowLeft' ? -10 : 10);
+        } else if (event.key === ' ' && event.target instanceof HTMLInputElement) {
+          event.preventDefault();
+          if (!event.repeat) toggle(sceneId);
+        }
+      }}
       style={{ marginTop: tg.space[2], display: 'flex', flexDirection: 'column', gap: tg.space[2] }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: tg.space[3], flexWrap: 'wrap' }}>
@@ -1179,6 +1276,14 @@ function SceneProgress({
         disabled={max <= 0}
         aria-label={copy.seek(title)}
         aria-valuetext={formatTime(shown)}
+        onKeyDown={(event) => {
+          if (event.altKey || event.ctrlKey || event.metaKey) return;
+          if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+          event.preventDefault();
+          event.stopPropagation();
+          setDragValue(null);
+          ctx.keyboardSeek(event.key === 'ArrowLeft' ? -10 : 10);
+        }}
         onChange={(event) => setDragValue(Number(event.currentTarget.value))}
         onPointerUp={commit}
         onKeyUp={commit}
