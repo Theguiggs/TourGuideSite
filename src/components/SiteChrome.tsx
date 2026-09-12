@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Header from './Header';
+import { setStoredStudioLocale, useStoredStudioLocale } from '@/lib/i18n/studio-locale';
 import Footer from './Footer';
 
 interface SiteChromeProps {
@@ -18,7 +19,13 @@ interface SiteChromeProps {
  */
 export function SiteChrome({ children }: SiteChromeProps) {
   const pathname = usePathname() ?? '';
-  const locale = pathname.startsWith('/en/') || pathname === '/en' ? 'en' : 'fr';
+  // Les pages publiques du Studio n'ont pas de variante `/en/…` : leur langue
+  // est celle du Studio (stockage local), basculée par bouton dans l'en-tête.
+  const isPublicGuidePage = /^\/guide\/(login|signup|reset-password)$/.test(pathname);
+  const studioLocale = useStoredStudioLocale();
+  const locale = isPublicGuidePage
+    ? studioLocale
+    : pathname.startsWith('/en/') || pathname === '/en' ? 'en' : 'fr';
   // `<html lang>` vient du serveur (proxy + layout racine) ; le Studio, qui
   // a sa propre bascule de langue, l'écrit lui-même sans concurrent ici.
 
@@ -52,7 +59,7 @@ export function SiteChrome({ children }: SiteChromeProps) {
   return (
     <>
       {skipLink}
-      <Header locale={locale} />
+      <Header locale={locale} onLocaleChange={isPublicGuidePage ? setStoredStudioLocale : undefined} />
       <main id="contenu" className="min-h-screen">{children}</main>
       <Footer locale={locale} />
     </>
