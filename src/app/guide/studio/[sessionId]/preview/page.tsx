@@ -14,6 +14,7 @@ import { shouldUseStubs } from '@/config/api-mode';
 import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
 import { S3Image } from '@/components/studio/s3-image';
 import { ReviewFeedbackPanel } from '@/components/studio/review-feedback-panel';
+import { evaluateStudioVisit } from '@/lib/studio/visit-completeness';
 import dynamic from 'next/dynamic';
 import { AudioPlayerBar } from '@/components/studio/audio-player';
 import type { StudioSession, StudioScene } from '@/types/studio';
@@ -257,7 +258,7 @@ export default function PreviewPage() {
       const result = await submitForReview(sessionId, session.tourId);
       if (result.ok) {
         setIsSubmitSuccess(true);
-        setSubmitMessage('Tour soumis en revue !');
+        setSubmitMessage(t('Visite soumise à la modération.', 'Tour submitted for review.'));
         logger.info(SERVICE_NAME, 'Submitted for review', { sessionId, tourId: session.tourId });
         // Reload session to reflect new status
         const sess = await getStudioSession(sessionId);
@@ -271,7 +272,7 @@ export default function PreviewPage() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [sessionId, session?.tourId, setActiveSession]);
+  }, [sessionId, session?.tourId, setActiveSession, t]);
 
   const handleRetract = useCallback(async () => {
     if (!session?.tourId) return;
@@ -627,7 +628,7 @@ export default function PreviewPage() {
 
       {/* Review feedback panel — full admin review sheet */}
       {session.tourId && (
-        <ReviewFeedbackPanel tourId={session.tourId} sessionStatus={session.status} />
+        <ReviewFeedbackPanel tourId={session.tourId} sessionId={sessionId} sessionStatus={session.status} scenes={scenes} />
       )}
 
       {/* Actions */}
@@ -636,11 +637,12 @@ export default function PreviewPage() {
         {canSubmit && session.tourId && (
           <button
             onClick={handleSubmitForReview}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !evaluateStudioVisit(session, scenes).ready}
+            title={evaluateStudioVisit(session, scenes).ready ? undefined : t('Des points restent à corriger : voir l’étape Publication.', 'Some items still need fixing: see the Publish step.')}
             className="bg-mer hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2.5 px-6 rounded-lg transition"
             data-testid="submit-review-btn"
           >
-            {isSubmitting ? t('Publication...', 'Publishing...') : hasRevisionFeedback ? t('📤 Republier', '📤 Republish') : t('📋 Publier', '📋 Publish')}
+            {isSubmitting ? t('Envoi…', 'Sending…') : hasRevisionFeedback ? t('Resoumettre à la modération', 'Resubmit for review') : t('Soumettre à la modération', 'Submit for review')}
           </button>
         )}
         {canSubmit && !session.tourId && (
@@ -657,7 +659,7 @@ export default function PreviewPage() {
             className="border border-ocre text-ocre-ink hover:bg-ocre-soft disabled:opacity-50 font-medium py-2.5 px-6 rounded-lg transition"
             data-testid="retract-btn"
           >
-            {isRetracting ? 'Retrait...' : '↩ Retirer la publication'}
+            {isRetracting ? t('Annulation…', 'Cancelling…') : t('Annuler la soumission', 'Cancel the submission')}
           </button>
         )}
 

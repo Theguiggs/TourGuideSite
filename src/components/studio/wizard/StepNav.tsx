@@ -38,12 +38,21 @@ export function StepNav({
       className="mt-8 pt-5 border-t border-line flex justify-between items-center gap-3 flex-wrap"
       data-testid="step-nav"
     >
-      {prevHref ? (
+      {prevHref && prevDisabled ? (
+        // Un lien « pointer-events-none » reste activable au clavier : un
+        // pas inéligible n'est pas un lien.
+        <span
+          data-testid="step-nav-prev"
+          aria-disabled="true"
+          className="text-ink-60 text-caption font-semibold py-2 opacity-40 inline-flex items-center gap-2"
+        >
+          <ArrowLeft size={16} aria-hidden="true" />{resolvedPrevLabel}
+        </span>
+      ) : prevHref ? (
         <Link
           href={prevHref}
           data-testid="step-nav-prev"
-          aria-disabled={prevDisabled || undefined}
-          className={`text-ink-60 hover:text-ink text-caption font-semibold py-2 no-underline transition ${prevDisabled ? 'opacity-40 pointer-events-none' : ''}`}
+          className="text-ink-60 hover:text-ink text-caption font-semibold py-2 no-underline transition"
         >
           <span className="inline-flex items-center gap-2"><ArrowLeft size={16} aria-hidden="true" />{resolvedPrevLabel}</span>
         </Link>
@@ -61,14 +70,19 @@ export function StepNav({
           >
             {resolvedNextLabel} <ArrowRight size={16} aria-hidden="true" />
           </button>
+        ) : nextDisabled ? (
+          <span
+            data-testid="step-nav-next"
+            aria-disabled="true"
+            className="bg-grenadine text-paper px-5 py-3 rounded-pill text-caption font-bold opacity-40 inline-flex items-center gap-2"
+          >
+            {resolvedNextLabel} <ArrowRight size={16} aria-hidden="true" />
+          </span>
         ) : (
           <Link
             href={nextHref!}
             data-testid="step-nav-next"
-            aria-disabled={nextDisabled || undefined}
-            className={`bg-grenadine text-paper border-none px-5 py-3 rounded-pill text-caption font-bold cursor-pointer hover:opacity-90 transition no-underline inline-flex items-center gap-2 ${
-              nextDisabled ? 'opacity-40 pointer-events-none' : ''
-            }`}
+            className="bg-grenadine text-paper border-none px-5 py-3 rounded-pill text-caption font-bold cursor-pointer hover:opacity-90 transition no-underline inline-flex items-center gap-2"
           >
             {resolvedNextLabel} <ArrowRight size={16} aria-hidden="true" />
           </Link>

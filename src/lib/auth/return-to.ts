@@ -31,8 +31,15 @@ export function loginDestination(role: LoginRole | undefined, returnTo: string |
   return '/mes-achats';
 }
 
-/** URL de connexion qui ramènera sur `pathname`. */
-export function loginUrlFor(pathname: string | null | undefined): string {
+/** Pourquoi on renvoie à la connexion : affiché en bandeau sur la page. */
+export type LoginReason = 'expired' | 'revoked';
+
+/** URL de connexion qui ramènera sur `pathname`, avec le motif s'il y en a un. */
+export function loginUrlFor(pathname: string | null | undefined, reason?: LoginReason | null): string {
   const target = safeReturnTo(pathname);
-  return target ? `${LOGIN_PATH}?returnTo=${encodeURIComponent(target)}` : LOGIN_PATH;
+  const params = new URLSearchParams();
+  if (target) params.set('returnTo', target);
+  if (reason) params.set('reason', reason);
+  const query = params.toString();
+  return query ? `${LOGIN_PATH}?${query}` : LOGIN_PATH;
 }

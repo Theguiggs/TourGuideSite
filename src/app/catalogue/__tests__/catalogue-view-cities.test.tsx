@@ -5,7 +5,7 @@
  * filter row + grid + empty state machinery, and snapshots the markup.
  */
 
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { CatalogueViewCities } from '@/app/catalogue/catalogue-view-cities';
 import type { City, Tour } from '@/types/tour';
 
@@ -86,7 +86,7 @@ const MOCK_TOURS: Tour[] = [
 
 describe('<CatalogueViewCities>', () => {
   it('renders the 3 mock cities with their accent blocks', () => {
-    const { container, getByText, getAllByRole } = render(
+    const { container, getByText, getByRole } = render(
       <CatalogueViewCities cities={MOCK_CITIES} tours={MOCK_TOURS} />,
     );
 
@@ -96,9 +96,8 @@ describe('<CatalogueViewCities>', () => {
     expect(getByText('Paris')).toBeInTheDocument();
     expect(getByText('Lyon')).toBeInTheDocument();
 
-    // 5 chips (Toutes + 4 accents) — buttons with aria-pressed.
-    const filterButtons = getAllByRole('button');
-    expect(filterButtons.length).toBe(5);
+    // Une recherche par nom, plus de puces de couleur (lot 6.4).
+    expect(getByRole('searchbox', { name: /Chercher une ville/ })).toBeInTheDocument();
 
     // 3 city links (a tags) inside the grid.
     const links = container.querySelectorAll('a[href^="/catalogue/"]');
@@ -120,7 +119,18 @@ describe('<CatalogueViewCities>', () => {
     const { getByText, queryByText } = render(
       <CatalogueViewCities cities={[]} tours={[]} />,
     );
-    expect(getByText(/Aucune ville pour ce filtre/)).toBeInTheDocument();
+    expect(getByText(/Aucune ville pour le moment/)).toBeInTheDocument();
     expect(queryByText('Grasse')).toBeNull();
+  });
+
+  it('filtre les villes par nom, sans tenir compte des accents ni de la casse', () => {
+    const { getByRole, queryByText, getByText } = render(
+      <CatalogueViewCities cities={MOCK_CITIES} tours={MOCK_TOURS} />,
+    );
+    fireEvent.change(getByRole('searchbox', { name: /Chercher une ville/ }), { target: { value: 'GRÂSSE' } });
+    expect(getByText('Grasse')).toBeInTheDocument();
+    expect(queryByText('Paris')).toBeNull();
+    fireEvent.change(getByRole('searchbox', { name: /Chercher une ville/ }), { target: { value: 'zzz' } });
+    expect(getByText(/Aucune ville ne correspond à « zzz »/)).toBeInTheDocument();
   });
 });

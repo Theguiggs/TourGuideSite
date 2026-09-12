@@ -151,7 +151,8 @@ test.describe.serial('Guide Flow', () => {
 
     // Submit for review
     const submitBtn = page.getByTestId('submit-review-btn');
-    if (await submitBtn.isVisible()) {
+    // Lot 6.1 : le bouton est désactivé tant que la liste de contrôle n'est pas verte.
+    if (await submitBtn.isVisible() && await submitBtn.isEnabled()) {
       await submitBtn.click();
       // Wait for success message or status change
       await expect(

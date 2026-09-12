@@ -15,6 +15,7 @@ import {
   isTokenValid,
   authenticateCognito,
   createStorageState,
+  assertTokenAlive,
 } from '../fixtures/auth.fixture';
 
 test.describe('Admin Features', () => {
@@ -26,6 +27,7 @@ test.describe('Admin Features', () => {
       const tokens = await authenticateCognito(E2E_ADMIN_EMAIL, E2E_ADMIN_PASSWORD);
       createStorageState(tokens, E2E_ADMIN_EMAIL, adminPath);
     }
+    await assertTokenAlive(adminPath, 'admin-features beforeAll');
   });
 
   test('admin tours list shows columns: guide, POIs, duration', async ({ browser }) => {

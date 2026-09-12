@@ -3,6 +3,7 @@
  * Order: read-only tests first, mutations last
  */
 
+import { studioConsentSeed } from '../fixtures/consent';
 import { test, expect, type Browser, type Page, type BrowserContext } from '@playwright/test';
 import {
   authenticateCognito, createStorageState, getGuideStorageStatePath, getAdminStorageStatePath,
@@ -35,10 +36,10 @@ const ES = [
 ];
 
 async function injectConsent(page: Page) {
-  await page.evaluate(() => {
+  await page.evaluate((seed) => {
     localStorage.setItem('rgpd-consent', JSON.stringify({ analytics: true, timestamp: Date.now() }));
-    localStorage.setItem('studio_rgpd_consent', JSON.stringify({ consentDate: new Date().toISOString() }));
-  });
+    localStorage.setItem('studio_rgpd_consent', seed);
+  }, studioConsentSeed());
 }
 async function gPage(browser: Browser, path: string) {
   const context = await browser.newContext({ storageState: guidePath });

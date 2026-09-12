@@ -1,6 +1,6 @@
 import {
   CognitoIdentityProviderClient,
-  InitiateAuthCommand,
+  InitiateAuthCommand, GetUserCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -176,8 +176,25 @@ export async function setupAuthStates(): Promise<void> {
 
   createStorageState(guideTokens, E2E_GUIDE_EMAIL, guidePath);
   createStorageState(adminTokens, E2E_ADMIN_EMAIL, adminPath);
+  await assertTokenAlive(adminPath, 'global-setup admin');
 
   console.log('[auth.fixture] Auth states created');
+}
+
+/**
+ * Diagnostic : le jeton d'accès de cet état est-il encore accepté par Cognito ?
+ * Un `signOut()` d'Amplify (RevokeToken) dans n'importe quel contexte qui
+ * partage ce jeton de rafraîchissement le rend révoqué pour tous les autres.
+ */
+export async function assertTokenAlive(storageStatePath: string, label: string): Promise<void> {
+  const token = getAccessTokenFromStorageState(storageStatePath);
+  const client = new CognitoIdentityProviderClient({ region: COGNITO_REGION });
+  try {
+    const user = await client.send(new GetUserCommand({ AccessToken: token }));
+    console.log(`[auth.fixture] ${label}: token alive (user ${user.Username})`);
+  } catch (err) {
+    console.log(`[auth.fixture] ${label}: token REJECTED — ${(err as Error).name}: ${(err as Error).message}`);
+  }
 }
 
 export function getGuideStorageStatePath(): string {

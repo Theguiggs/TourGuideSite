@@ -476,6 +476,66 @@ export async function adminUpdateGuideProfileStatus(id: string, profileStatus: '
   }
 }
 
+export type GuideStatusDecisionRow = {
+  id: string;
+  guideProfileId: string;
+  userId: string;
+  status: string;
+  reason: string;
+  decidedBy: string | null;
+  decidedAt: string;
+};
+
+/**
+ * Lot 6.3 — trace la décision d'un admin (statut + motif). Le motif est ce que
+ * le guide lira : sans lui, un compte suspendu ne sait pas pourquoi.
+ */
+export async function recordGuideStatusDecision(input: {
+  guideProfileId: string;
+  userId: string;
+  status: 'active' | 'suspended' | 'rejected';
+  reason: string;
+  decidedBy?: string | null;
+}) {
+  try {
+    const client = getClient();
+    const result = await client.models.GuideStatusDecision.create(
+      { ...input, decidedBy: input.decidedBy ?? null, decidedAt: new Date().toISOString() },
+      { authMode: 'userPool' },
+    );
+    if (result.errors?.length) throw new Error(result.errors.map((e) => e.message).join('; '));
+    return { ok: true as const };
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'recordGuideStatusDecision failed', { error: String(error) });
+    return { ok: false as const, error: 'Statut changé, mais le motif n’a pas pu être enregistré.' };
+  }
+}
+
+/** Décisions prises sur un profil, la plus récente d'abord. */
+export async function listGuideStatusDecisions(guideProfileId: string): Promise<GuideStatusDecisionRow[]> {
+  try {
+    const client = getClient();
+    const result = await client.models.GuideStatusDecision.list({
+      filter: { guideProfileId: { eq: guideProfileId } },
+      authMode: 'userPool',
+    });
+    return (result.data ?? [])
+      .map((row) => ({
+        id: row.id,
+        guideProfileId: row.guideProfileId,
+        userId: row.userId,
+        status: row.status,
+        reason: row.reason,
+        decidedBy: row.decidedBy ?? null,
+        decidedAt: row.decidedAt,
+      }))
+      .sort((a, b) => b.decidedAt.localeCompare(a.decidedAt));
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'listGuideStatusDecisions failed', { error: String(error) });
+    return [];
+  }
+}
+
 /**
  * Les champs qu'un PROPRIÉTAIRE ne peut plus modifier — le backend les a sortis
  * de `$ownerAllowedFields0` de l'update, chacun pour sa raison :
@@ -514,6 +574,8 @@ export async function updateGuideProfileMutation(
     languages: string[];
     yearsExperience: number | null;
     photoUrl: string | null;
+    rgpdConsentVersion: string | null;
+    rgpdConsentAt: string | null;
   }>,
 ) {
   const interdits = CHAMPS_INTERDITS_EN_MODIFICATION.filter(
@@ -675,6 +737,24 @@ export async function listModerationItems(filters?: { status?: string }) {
     return result.data ?? [];
   } catch (error) {
     logger.error(SERVICE_NAME, 'listModerationItems failed', { error: String(error) });
+    return [];
+  }
+}
+
+/**
+ * Lot 6.1 — les éléments de modération d'UNE visite. Le panneau de retour
+ * côté guide lisait la file entière puis filtrait dans le navigateur.
+ */
+export async function listModerationItemsByTour(tourId: string) {
+  try {
+    const client = getClient();
+    const result = await client.models.ModerationItem.list({
+      filter: { tourId: { eq: tourId } },
+      authMode: 'userPool',
+    });
+    return result.data ?? [];
+  } catch (error) {
+    logger.error(SERVICE_NAME, 'listModerationItemsByTour failed', { error: String(error) });
     return [];
   }
 }

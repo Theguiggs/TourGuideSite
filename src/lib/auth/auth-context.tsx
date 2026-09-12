@@ -15,7 +15,12 @@ import {
   fetchUserAttributes,
   fetchAuthSession,
 } from 'aws-amplify/auth';
+import { Hub } from 'aws-amplify/utils';
+import { usePathname, useRouter } from 'next/navigation';
 import { getOwnGuideProfile } from '@/lib/api/appsync-client';
+import { describeAuthError, isDefinitiveAuthError } from '@/lib/auth/cognito-errors';
+import { loginUrlFor, LOGIN_PATH, type LoginReason } from '@/lib/auth/return-to';
+import { SESSION_REFUSAL_EVENT, type SessionRefusal } from '@/lib/auth/session-signals';
 
 // 'tourist' = an authenticated Cognito user WITHOUT a GuideProfile (e.g. an app
 // user logging in on the web to buy a tour, mon-1.3b). Tourists are NOT guides:
@@ -56,9 +61,15 @@ async function resolveAuthUser(): Promise<AuthUser | null> {
   let session: Awaited<ReturnType<typeof fetchAuthSession>>;
   try {
     [attrs, session] = await Promise.all([fetchUserAttributes(), fetchAuthSession()]);
-  } catch {
-    // Stale tokens (user deleted from pool, token expired, etc.) — clear session
-    try { await amplifySignOut(); } catch { /* ignore */ }
+  } catch (error) {
+    // `signOut()` RÉVOQUE le jeton de rafraîchissement côté Cognito, pour tous
+    // les onglets et toutes les sessions qui le partagent. On ne le fait que
+    // sur une erreur d'authentification avérée (jeton révoqué, compte
+    // supprimé…) ; une panne réseau ou un 5xx Cognito laisse les jetons en
+    // place, et la prochaine page réessaiera.
+    if (isDefinitiveAuthError(error)) {
+      try { await amplifySignOut(); } catch { /* ignore */ }
+    }
     return null;
   }
 
@@ -97,29 +108,60 @@ async function resolveAuthUser(): Promise<AuthUser | null> {
   };
 }
 
-function parseAmplifyError(error: unknown): string {
-  if (error instanceof Error) {
-    const msg = error.message;
-    if (msg.includes('UserNotFoundException') || msg.includes('NotAuthorizedException')) {
-      return 'Email ou mot de passe incorrect';
-    }
-    if (msg.includes('UserNotConfirmedException')) {
-      return 'Compte non confirmé — vérifiez votre email';
-    }
-    if (msg.includes('PasswordResetRequiredException')) {
-      return 'Réinitialisation du mot de passe requise';
-    }
-    if (msg.includes('TooManyRequestsException') || msg.includes('LimitExceededException')) {
-      return 'Trop de tentatives — réessayez dans quelques minutes';
-    }
-    return msg;
-  }
-  return 'Erreur de connexion';
+/** Les chemins où une session perdue doit ramener à la connexion. */
+function isGuardedPath(pathname: string | null): boolean {
+  if (!pathname) return false;
+  if (pathname === LOGIN_PATH || pathname.startsWith('/guide/signup') || pathname.startsWith('/guide/reset-password')) return false;
+  return pathname.startsWith('/guide') || pathname.startsWith('/admin');
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Lot 6.4 — la session peut mourir PENDANT que l'onglet est ouvert : jeton
+  // impossible à rafraîchir, déconnexion depuis un autre onglet, ou 401/403 du
+  // proxy microservice. Avant, rien n'écoutait : l'utilisateur restait sur une
+  // page qui échouait en silence. Ici on vide l'état et on renvoie à la
+  // connexion avec le motif, en gardant la page pour y revenir.
+  useEffect(() => {
+    const leave = (reason: LoginReason) => {
+      setUser(null);
+      if (isGuardedPath(pathname)) router.replace(loginUrlFor(pathname, reason));
+    };
+    // Amplify émet `tokenRefresh_failure` AUSSI pour une erreur transitoire
+    // (il garde alors les jetons). On ne quitte que sur une erreur avérée —
+    // et sans `signOut()` : Amplify a déjà effacé les jetons, et une
+    // révocation côté serveur toucherait les autres onglets.
+    const stopHub = Hub.listen('auth', ({ payload }) => {
+      if (payload.event === 'tokenRefresh_failure') {
+        const error = (payload as { data?: { error?: unknown } }).data?.error;
+        if (isDefinitiveAuthError(error)) leave('expired');
+      } else if (payload.event === 'signedOut') {
+        setUser((current) => (current ? null : current));
+      }
+    });
+    const onRefusal = (event: Event) => {
+      const refusal = (event as CustomEvent<SessionRefusal>).detail;
+      if (refusal === 'expired') {
+        // Un 401 du proxy peut venir d'un jeton périmé… ou d'un incident côté
+        // proxy. On demande à Amplify un rafraîchissement : s'il rend des
+        // jetons, la session est bonne et on ne bouge pas.
+        fetchAuthSession({ forceRefresh: true })
+          .then((session) => { if (!session.tokens?.accessToken) leave('expired'); })
+          .catch(() => leave('expired'));
+      } else if (refusal === 'revoked') {
+        leave('revoked');
+      }
+    };
+    window.addEventListener(SESSION_REFUSAL_EVENT, onRefusal);
+    return () => {
+      stopHub();
+      window.removeEventListener(SESSION_REFUSAL_EVENT, onRefusal);
+    };
+  }, [pathname, router]);
 
   // Restore session on mount
   useEffect(() => {
@@ -140,7 +182,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(resolved);
       return { ok: true, role: resolved.role };
     } catch (error) {
-      return { ok: false, error: parseAmplifyError(error) };
+      return { ok: false, error: describeAuthError(error, 'signIn') };
     }
   }, []);
 
@@ -153,7 +195,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (error instanceof Error && error.name === 'UserAlreadyAuthenticatedException') {
           return refreshUser();
         }
-        return { ok: false, error: parseAmplifyError(error) };
+        return { ok: false, error: describeAuthError(error, 'signIn') };
       }
 
       const resolved = await resolveAuthUser();

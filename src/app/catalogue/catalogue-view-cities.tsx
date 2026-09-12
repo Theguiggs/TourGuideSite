@@ -7,7 +7,7 @@
  * villes (1 bloc = 1 ville), sans photos, conforme brief §6 « imagerie
  * color-block typographique » et §8 « catalogue villes ».
  *
- * - Filtre Chip 5 couleurs (Toutes + 4 accents) — Story 2.2 active state.
+ * - Recherche par nom de ville (lot 6.4 ; l'ancien filtre par couleur d'accent est retiré).
  * - CityBlock : Link Next.js stylé `*Soft`, hover lift + shadow desktop only.
  * - Empty state éditorial avec PullQuote.
  */
@@ -15,10 +15,9 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system';
-import { Chip, Eyebrow, PullQuote } from '@murmure/design-system/web';
+import { Eyebrow, PullQuote } from '@murmure/design-system/web';
 import type { City, Tour } from '@/types/tour';
 import {
-  ACCENT_LABELS,
   type CityAccent,
   getCityAccent,
   getCityAverageDuration,
@@ -30,12 +29,10 @@ interface CatalogueViewCitiesProps {
   locale?: 'fr' | 'en';
 }
 
-const ACCENT_FILTERS: ReadonlyArray<CityAccent> = [
-  'grenadine',
-  'ocre',
-  'mer',
-  'olive',
-] as const;
+/** Compare sans accents ni casse : « eze » trouve « Èze ». */
+function fold(text: string): string {
+  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
 
 /**
  * Tronque une description à `max` caractères + ellipsis si dépassement.
@@ -112,7 +109,11 @@ function CityBlock({ city, accent, avgDuration, locale }: CityBlockProps) {
 }
 
 export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueViewCitiesProps) {
-  const [activeAccent, setActiveAccent] = useState<CityAccent | null>(null);
+  // Lot 6.4 — l'ancien filtre triait les villes par COULEUR d'accent
+  // (« Provence », « Ocre », « Côte », « Nature ») : une propriété graphique
+  // attribuée par somme de codes de caractères, que personne ne cherche.
+  // Une recherche par nom remplace ces puces.
+  const [query, setQuery] = useState('');
 
   const citiesWithAccent = useMemo(
     () =>
@@ -125,9 +126,10 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
   );
 
   const filteredCities = useMemo(() => {
-    if (!activeAccent) return citiesWithAccent;
-    return citiesWithAccent.filter((entry) => entry.accent === activeAccent);
-  }, [citiesWithAccent, activeAccent]);
+    const needle = fold(query.trim());
+    if (!needle) return citiesWithAccent;
+    return citiesWithAccent.filter((entry) => fold(entry.city.name).includes(needle) || fold(entry.city.slug).includes(needle));
+  }, [citiesWithAccent, query]);
 
   const totalCount = filteredCities.length;
 
@@ -160,60 +162,21 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
         </div>
       </header>
 
-      {/* Filtres Chip + compteur */}
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          gap: tg.space[2],
-          marginBottom: tg.space[6],
-        }}
-      >
-        <button
-          type="button"
-          onClick={() => setActiveAccent(null)}
-          aria-pressed={activeAccent === null}
-          style={{
-            background: 'transparent',
-            border: 0,
-            padding: 0,
-            cursor: 'pointer',
-            minHeight: 44,
-            display: 'inline-flex',
-            alignItems: 'center',
-          }}
-          className="focus-visible:outline-2 focus-visible:outline-offset-2"
-        >
-          <Chip color="default" active={activeAccent === null}>
-            {locale === 'en' ? 'All' : 'Toutes'} ({citiesWithAccent.length})
-          </Chip>
-        </button>
-        {ACCENT_FILTERS.map((accent) => {
-          const isActive = activeAccent === accent;
-          return (
-            <button
-              key={accent}
-              type="button"
-              onClick={() => setActiveAccent(isActive ? null : accent)}
-              aria-pressed={isActive}
-              style={{
-                background: 'transparent',
-                border: 0,
-                padding: 0,
-                cursor: 'pointer',
-                minHeight: 44,
-                display: 'inline-flex',
-                alignItems: 'center',
-              }}
-              className="focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              <Chip color={accent} active={isActive}>
-                {locale === 'en' && accent === 'mer' ? 'Coast' : ACCENT_LABELS[accent]}
-              </Chip>
-            </button>
-          );
-        })}
+      {/* Recherche par nom */}
+      <div style={{ marginBottom: tg.space[6], maxWidth: 420 }}>
+        <label htmlFor="city-search" className="block text-meta font-semibold text-ink-80 mb-1.5">
+          {locale === 'en' ? 'Find a city' : 'Chercher une ville'}
+        </label>
+        <input
+          id="city-search"
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={locale === 'en' ? 'Nice, Barcelona, Grasse…' : 'Nice, Barcelone, Grasse…'}
+          autoComplete="off"
+          data-testid="city-search"
+          className="w-full rounded-md border border-line bg-card px-4 py-3 text-caption text-ink outline-none focus:border-grenadine focus:ring-2 focus:ring-grenadine-soft"
+        />
       </div>
 
       <div style={{ marginBottom: tg.space[5] }}>
@@ -236,9 +199,9 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
           }}
         >
           <PullQuote size="md">
-            {locale === 'en'
-              ? 'No cities match this filter. Choose another category or All.'
-              : 'Aucune ville pour ce filtre. Choisissez un autre accent ou Toutes.'}
+            {query.trim()
+              ? (locale === 'en' ? `No city matches “${query.trim()}”.` : `Aucune ville ne correspond à « ${query.trim()} ».`)
+              : (locale === 'en' ? 'No city yet. Come back soon.' : 'Aucune ville pour le moment. Revenez bientôt.')}
           </PullQuote>
         </div>
       ) : (

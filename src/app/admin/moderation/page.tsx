@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { LoadError } from '@/components/admin/LoadError';
 import Link from 'next/link';
 import { getModerationMetrics, getLanguageModerationQueue } from '@/lib/api/moderation';
 import { trackEvent, AdminAnalyticsEvents } from '@/lib/analytics';
@@ -20,9 +21,11 @@ export default function ModerationQueuePage() {
   const [filterCity, setFilterCity] = useState<string>('');
   const [filterStatus, setFilterStatus] = useState<string>('');
   const [filterLanguage, setFilterLanguage] = useState<string>('');
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   const loadQueue = () => {
     setLoading(true);
+    setLoadError(null);
     Promise.all([getLanguageModerationQueue(), getModerationMetrics()]).then(
       ([q, m]) => {
         setLangQueue(q);
@@ -30,6 +33,7 @@ export default function ModerationQueuePage() {
       },
     ).catch((err) => {
       logger.error(SERVICE_NAME, 'Failed to load moderation queue', { error: String(err) });
+      setLoadError('Impossible de charger la file de modération.');
     }).finally(() => {
       setLoading(false);
     });
@@ -129,6 +133,8 @@ export default function ModerationQueuePage() {
         <div className="text-center py-12 bg-card rounded-md border border-line">
           <p className="text-ink-60" role="status" aria-busy="true">Chargement…</p>
         </div>
+      ) : loadError ? (
+        <LoadError message={loadError} onRetry={loadQueue} />
       ) : filteredQueue.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
           <p className="text-ink-60 text-h6">Aucune visite en attente de modération.</p>

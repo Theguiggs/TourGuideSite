@@ -37,7 +37,7 @@ function AdminNav() {
           </div>
           <div className="flex-1 min-w-0">
             <p className="font-medium text-white truncate">{user?.displayName}</p>
-            <p className="text-meta text-ink-40 truncate">Admin - Moderation</p>
+            <p className="text-meta text-ink-40 truncate">Admin · Modération</p>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ function AdminNav() {
           onClick={signOut}
           className="hidden lg:block w-full mt-8 text-left text-body text-ink-40 hover:text-danger px-3 py-2"
         >
-          Se deconnecter
+          Se déconnecter
         </button>
       </div>
     </aside>

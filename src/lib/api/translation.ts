@@ -10,6 +10,7 @@ import {
   type TranslationEngine,
 } from '@/lib/multilang/provider-router';
 import { logger } from '@/lib/logger';
+import { reportSessionRefusal } from '@/lib/auth/session-signals';
 
 const SERVICE_NAME = 'TranslationAPI';
 
@@ -55,6 +56,8 @@ export interface TranslationResult {
   provider: TranslationProvider;
   costProvider: number | null;   // centimes
   costCharged: number | null;    // centimes
+  /** Cause d'un échec quand elle est connue (session expirée, accès retiré…). */
+  error?: string;
   /**
    * Multiplicateur RÉELLEMENT appliqué par le serveur (lu dans SSM).
    *
@@ -509,6 +512,12 @@ export async function requestTranslation(
       if (response.status === 429 || response.status === 503) {
         logger.error(SERVICE_NAME, 'Translation submit unavailable', { provider, status: response.status });
         return { jobId: '', status: 'failed', translatedText: null, provider, costProvider: null, costCharged: null, errorCode: 2609 };
+      }
+      // 401/403 = session ou rôle, pas le fournisseur.
+      const refusal = reportSessionRefusal(response.status);
+      if (refusal) {
+        logger.warn(SERVICE_NAME, 'Translation refused by proxy', { status: response.status });
+        return { jobId: '', status: 'failed', translatedText: null, provider, costProvider: null, costCharged: null, error: refusal };
       }
 
       const data = await response.json();

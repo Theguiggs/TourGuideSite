@@ -4,7 +4,9 @@ import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { fetchAuthSession } from 'aws-amplify/auth';
-import { getGuideProfileById, listAllGuideTours, adminUpdateGuideProfileStatus } from '@/lib/api/appsync-client';
+import { getGuideProfileById, listAllGuideTours, adminUpdateGuideProfileStatus, recordGuideStatusDecision, listGuideStatusDecisions, type GuideStatusDecisionRow } from '@/lib/api/appsync-client';
+import { useAuth } from '@/lib/auth/auth-context';
+import { GuideStatusDialog, type GuideStatusTarget } from '@/components/admin/GuideStatusDialog';
 import { PageTitle } from '@murmure/design-system/web';
 import { GUIDE_PROFILE_STATUS_BADGES, TOUR_STATUS_BADGES, badgeFor } from '@/lib/admin/status-badges';
 import { StatusBadge } from '@/components/admin/StatusBadge';
@@ -42,6 +44,16 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
   const [error, setError]       = useState<string | null>(null);
   const [saving, setSaving]     = useState(false);
   const [feedback, setFeedback] = useState<{ ok: boolean; msg: string } | null>(null);
+  const [pending, setPending]   = useState<GuideStatusTarget | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
+  const [decisions, setDecisions] = useState<GuideStatusDecisionRow[]>([]);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    let cancelled = false;
+    listGuideStatusDecisions(guideId).then((rows) => { if (!cancelled) setDecisions(rows); });
+    return () => { cancelled = true; };
+  }, [guideId]);
 
   useEffect(() => {
     Promise.all([
@@ -134,18 +146,27 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
     };
   }, [profile?.userId, router]);
 
-  const setStatus = async (status: 'active' | 'suspended' | 'rejected') => {
-    if (!profile) return;
+  const confirmStatus = async (reason: string) => {
+    if (!profile || !pending) return;
+    const status = pending;
     setSaving(true);
+    setActionError(null);
     const result = await adminUpdateGuideProfileStatus(profile.id, status);
-    setSaving(false);
-    if (result.ok) {
-      setProfile((p) => p ? { ...p, profileStatus: status } : p);
-      setFeedback({ ok: true, msg: 'Statut mis à jour.' });
-    } else {
-      setFeedback({ ok: false, msg: result.error ?? 'Erreur' });
+    if (!result.ok) {
+      setSaving(false);
+      setActionError(result.error ?? 'Action refusée par le serveur.');
+      return;
     }
-    setTimeout(() => setFeedback(null), 3000);
+    setProfile((p) => p ? { ...p, profileStatus: status } : p);
+    setPending(null);
+    let msg = 'Statut mis à jour.';
+    if (reason) {
+      const trace = await recordGuideStatusDecision({ guideProfileId: profile.id, userId: profile.userId, status, reason, decidedBy: user?.id ?? null });
+      if (trace.ok) setDecisions(await listGuideStatusDecisions(profile.id));
+      else msg = trace.error;
+    }
+    setSaving(false);
+    setFeedback({ ok: true, msg });
   };
 
   if (loading) return <p className="text-ink-60 text-body p-6">Chargement...</p>;
@@ -168,8 +189,9 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
       </div>
 
       {feedback && (
-        <div className={`rounded-lg p-3 mb-4 text-body ${feedback.ok ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
-          {feedback.msg}
+        <div role="status" className={`rounded-lg p-3 mb-4 text-body flex items-center justify-between gap-3 ${feedback.ok ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
+          <span>{feedback.msg}</span>
+          <button type="button" onClick={() => setFeedback(null)} className="text-meta underline">Fermer</button>
         </div>
       )}
 
@@ -199,7 +221,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
             </Link>
             {profile.profileStatus !== 'active' && (
               <button
-                onClick={() => setStatus('active')}
+                onClick={() => setPending('active')}
                 disabled={saving}
                 className="bg-olive text-white text-body font-medium px-4 py-2 rounded-lg hover:bg-olive disabled:opacity-50"
               >
@@ -208,7 +230,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
             )}
             {profile.profileStatus === 'active' && (
               <button
-                onClick={() => setStatus('suspended')}
+                onClick={() => setPending('suspended')}
                 disabled={saving}
                 className="bg-ocre text-ink text-body font-medium px-4 py-2 rounded-lg hover:bg-ocre disabled:opacity-50"
               >
@@ -217,7 +239,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
             )}
             {profile.profileStatus !== 'rejected' && profile.profileStatus !== 'active' && (
               <button
-                onClick={() => setStatus('rejected')}
+                onClick={() => setPending('rejected')}
                 disabled={saving}
                 className="bg-grenadine text-white text-body font-medium px-4 py-2 rounded-lg hover:bg-grenadine disabled:opacity-50"
               >
@@ -238,6 +260,21 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
           <p className="mb-4 text-body text-danger" role="alert">
             {emailLookupError}
           </p>
+        )}
+
+        {decisions.length > 0 && (
+          <section aria-labelledby="decisions-title" className="mb-4 rounded-lg border border-line bg-paper-soft p-3" data-testid="guide-decisions">
+            <h3 id="decisions-title" className="text-meta font-semibold uppercase tracking-wide text-ink-60">Décisions</h3>
+            <ul className="mt-2 space-y-2">
+              {decisions.map((d) => (
+                <li key={d.id} className="text-body text-ink-80">
+                  <span className="font-medium text-ink">{badgeFor(GUIDE_PROFILE_STATUS_BADGES, d.status, 'pending_moderation').label}</span>
+                  <span className="text-ink-40"> · {new Date(d.decidedAt).toLocaleDateString('fr-FR')}</span>
+                  <p className="text-ink-60">{d.reason}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
 
         {/* Info grid */}
@@ -331,6 +368,16 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
           </div>
         )}
       </div>
+      {pending && (
+        <GuideStatusDialog
+          target={pending}
+          guideName={profile.displayName}
+          busy={saving}
+          error={actionError}
+          onConfirm={confirmStatus}
+          onCancel={() => { setPending(null); setActionError(null); }}
+        />
+      )}
     </div>
   );
 }

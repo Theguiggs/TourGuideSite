@@ -12,14 +12,20 @@ import { useState, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { signUp, confirmSignUp, signIn as amplifySignIn, fetchAuthSession, signOut as amplifySignOut } from 'aws-amplify/auth';
+import { describeAuthError } from '@/lib/auth/cognito-errors';
 import { createGuideProfileMutation, getOwnGuideProfile } from '@/lib/api/appsync-client';
 import { useAuth } from '@/lib/auth/auth-context';
 import { trackEvent, GuideAnalyticsEvents } from '@/lib/analytics';
 
-const CITIES = [
-  'Grasse', 'Nice', 'Cannes', 'Antibes', 'Monaco',
-  'Paris', 'Lyon', 'Marseille', 'Bordeaux', 'Toulouse',
-  'Strasbourg', 'Nantes', 'Rennes', 'Montpellier', 'Lille',
+// Suggestions, pas une liste fermée : Barcelone, Menton ou Èze ne pouvaient
+// pas être choisies. La ville est saisie librement (lot 6.2).
+const CITY_SUGGESTIONS = [
+  'Grasse', 'Nice', 'Cannes', 'Antibes', 'Monaco', 'Menton', 'Èze', 'Cagnes-sur-Mer',
+  'Beaulieu-sur-Mer', 'Saint-Jean-Cap-Ferrat', 'Roquebrune-Cap-Martin',
+  'Aix-en-Provence', 'Avignon', 'Arles', 'Marseille', 'Saint-Rémy-de-Provence',
+  'Paris', 'Lyon', 'Bordeaux', 'Toulouse', 'Strasbourg', 'Nantes', 'Rennes',
+  'Montpellier', 'Lille', 'Annecy', 'Bayonne', 'Biarritz', 'Saint-Malo', 'Rouen',
+  'Barcelone',
 ];
 
 type Step = 'register' | 'confirm';
@@ -31,20 +37,6 @@ interface FormErrors {
   city?: string;
   code?: string;
   global?: string;
-}
-
-function parseSignUpError(error: unknown): string {
-  if (error instanceof Error) {
-    const msg = error.message;
-    if (msg.includes('UsernameExistsException')) return 'Un compte existe déjà avec cet email';
-    if (msg.includes('InvalidPasswordException')) return 'Mot de passe trop faible (min. 8 caractères, majuscule, chiffre)';
-    if (msg.includes('InvalidParameterException')) return 'Paramètre invalide — vérifiez vos informations';
-    if (msg.includes('CodeMismatchException')) return 'Code incorrect — vérifiez votre email';
-    if (msg.includes('ExpiredCodeException')) return 'Code expiré — cliquez sur "Renvoyer le code"';
-    if (msg.includes('LimitExceededException')) return 'Trop de tentatives — réessayez dans quelques minutes';
-    return msg;
-  }
-  return 'Une erreur est survenue';
 }
 
 export default function GuideSignupPage() {
@@ -85,7 +77,7 @@ export default function GuideSignupPage() {
     else if (!/[a-z]/.test(password)) e.password = 'Au moins une minuscule requise';
     else if (!/[0-9]/.test(password)) e.password = 'Au moins un chiffre requis';
     else if (!/[^A-Za-z0-9]/.test(password)) e.password = 'Au moins un caractère spécial requis (!@#$%...)';
-    if (!city) e.city = 'Sélectionnez une ville';
+    if (!city.trim()) e.city = 'Indiquez votre ville';
     return e;
   }
 
@@ -113,7 +105,7 @@ export default function GuideSignupPage() {
         setStep('confirm');
         startResendCooldown();
       } catch (error) {
-        setErrors({ global: parseSignUpError(error) });
+        setErrors({ global: describeAuthError(error, 'signUp') });
       } finally {
         setLoading(false);
       }
@@ -204,7 +196,7 @@ export default function GuideSignupPage() {
           router.push('/guide/login?registered=1');
         }
       } catch (error) {
-        setErrors({ global: parseSignUpError(error) });
+        setErrors({ global: describeAuthError(error, 'confirmSignUp') });
       } finally {
         setLoading(false);
       }
@@ -234,7 +226,7 @@ export default function GuideSignupPage() {
       startResendCooldown();
       setErrors({});
     } catch (error) {
-      setErrors({ global: parseSignUpError(error) });
+      setErrors({ global: describeAuthError(error, 'confirmSignUp') });
     } finally {
       setLoading(false);
     }
@@ -357,20 +349,24 @@ export default function GuideSignupPage() {
                   <label htmlFor="city" className={labelClass}>
                     Ville principale <span className="text-danger">*</span>
                   </label>
-                  <select
+                  <input
                     id="city"
+                    type="text"
+                    list="city-suggestions"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     required
+                    autoComplete="address-level2"
+                    placeholder="Nice, Barcelone, Èze…"
                     aria-invalid={Boolean(errors.city)}
                     aria-describedby={errors.city ? 'city-error' : undefined}
                     className={`${inputBase} ${errors.city ? 'border-grenadine' : 'border-line'}`}
-                  >
-                    <option value="">Sélectionnez une ville…</option>
-                    {CITIES.map((c) => (
-                      <option key={c} value={c}>{c}</option>
+                  />
+                  <datalist id="city-suggestions">
+                    {CITY_SUGGESTIONS.map((c) => (
+                      <option key={c} value={c} />
                     ))}
-                  </select>
+                  </datalist>
                   {errors.city && <p id="city-error" className="text-danger text-meta mt-1">{errors.city}</p>}
                 </div>
 

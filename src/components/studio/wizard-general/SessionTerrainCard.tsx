@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface SessionTerrainCardProps {
   /** Number of scenes captured during the field session. */
@@ -13,10 +14,10 @@ interface SessionTerrainCardProps {
   defaultCollapsed?: boolean;
 }
 
-function formatDateFR(iso?: string | null): string {
+function formatDate(iso: string | null | undefined, locale: 'fr' | 'en'): string {
   if (!iso) return '—';
   try {
-    return new Date(iso).toLocaleDateString('fr-FR', {
+    return new Date(iso).toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
@@ -38,8 +39,9 @@ export function SessionTerrainCard({
   status,
   defaultCollapsed = false,
 }: SessionTerrainCardProps) {
+  const { locale } = useStudioLocale();
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
-  const dateLabel = formatDateFR(capturedAt);
+  const dateLabel = formatDate(capturedAt, locale);
 
   return (
     <div

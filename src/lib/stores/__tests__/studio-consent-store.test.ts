@@ -1,4 +1,4 @@
-import { useStudioConsentStore } from '../studio-consent-store';
+import { useStudioConsentStore, CONSENT_VERSION } from '../studio-consent-store';
 
 describe('useStudioConsentStore', () => {
   const mockLocalStorage: Record<string, string> = {};
@@ -35,14 +35,28 @@ describe('useStudioConsentStore', () => {
     expect(mockLocalStorage['studio_rgpd_consent']).toBeTruthy();
   });
 
-  it('loads consent from localStorage', () => {
+  it('loads consent from localStorage when it matches the current text version', () => {
     const consentDate = '2026-03-14T10:00:00.000Z';
-    mockLocalStorage['studio_rgpd_consent'] = JSON.stringify({ consentDate });
+    mockLocalStorage['studio_rgpd_consent'] = JSON.stringify({ consentDate, version: CONSENT_VERSION });
 
     useStudioConsentStore.getState().loadConsent();
     const state = useStudioConsentStore.getState();
     expect(state.hasConsented).toBe(true);
     expect(state.consentDate).toBe(consentDate);
+  });
+
+  it('asks again when the stored consent is for an older text (lot 6.2)', () => {
+    mockLocalStorage['studio_rgpd_consent'] = JSON.stringify({ consentDate: '2026-03-14T10:00:00.000Z' });
+    useStudioConsentStore.getState().loadConsent();
+    expect(useStudioConsentStore.getState().hasConsented).toBe(false);
+  });
+
+  it('hydrates from the profile only for the current text version', () => {
+    useStudioConsentStore.getState().hydrateFromProfile('2000-01-01', '2026-01-01T00:00:00.000Z');
+    expect(useStudioConsentStore.getState().hasConsented).toBe(false);
+    useStudioConsentStore.getState().hydrateFromProfile(CONSENT_VERSION, '2026-01-01T00:00:00.000Z');
+    expect(useStudioConsentStore.getState().hasConsented).toBe(true);
+    expect(useStudioConsentStore.getState().consentDate).toBe('2026-01-01T00:00:00.000Z');
   });
 
   it('does not consent when localStorage is empty', () => {

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { getSessionStatusConfig } from '@/lib/api/studio';
+import { sessionStatusLabel } from '@/lib/studio/status-labels';
 import { WIZARD_TABS, type WizardTabKey } from '@/lib/studio/wizard-helpers';
 import { OnboardingBubble } from '@/components/studio/onboarding-bubble';
 import { useOnboardingStore, type OnboardingFeature } from '@/lib/stores/onboarding-store';
@@ -35,25 +36,8 @@ interface WizardShellProps {
 }
 
 /**
- * Extract the city name from a session title (everything before the first
- * em-dash, hyphen or comma). Falls back to the full title or "Tour".
- */
-function cityFromTitle(title: string | null | undefined): string {
-  if (!title) return 'Tour';
-  return title.split(/[—\-,]/)[0]?.trim() || title.trim() || 'Tour';
-}
-
-/** Strip the city portion from the session title to keep just the parcours name. */
-function parcoursFromTitle(title: string | null | undefined): string {
-  if (!title) return 'Session sans titre';
-  const i = title.search(/[—\-,]/);
-  if (i < 0) return title.trim();
-  return title.slice(i + 1).trim() || title.trim();
-}
-
-/**
  * <WizardShell> — sub-header sticky du wizard d'édition d'un tour.
- * Breadcrumb riche (← Sessions › City — Title + status pill + version + lang)
+ * Fil d'Ariane (← Visites › Titre complet + pastille statut + version + langue)
  * et tabs numérotées 01 à 06 avec underline grenadine sur l'actif.
  * Port de docs/design/ds/wizard-shared.jsx:13-65.
  */
@@ -76,15 +60,11 @@ export function WizardShell({
   const sessionId = session?.id ?? routeSessionId ?? '';
   const onboardingFeature = TAB_ONBOARDING[activeTab];
   const statusConfig = session ? getSessionStatusConfig(session.status) : null;
-  const city = cityFromTitle(session?.title);
-  const parcours = parcoursFromTitle(session?.title);
+  // Le titre est affiché ENTIER : le découpage sur tiret rendait « Saint » pour « Saint-Paul-de-Vence ».
+  const title = session?.title?.trim() || (locale === 'en' ? 'Untitled tour' : 'Visite sans titre');
   const tabLabels: Record<WizardTabKey, string> = locale === 'en'
     ? { accueil: 'Overview', general: 'Details', itinerary: 'Itinerary', scenes: 'Scenes', preview: 'Preview', submission: 'Publish' }
     : { accueil: 'Accueil', general: 'Général', itinerary: 'Itinéraire', scenes: 'Scènes', preview: 'Aperçu', submission: 'Publication' };
-  const statusLabels: Record<string, string> = locale === 'en' ? {
-    draft: 'Draft', recording: 'Recording', transcribing: 'Transcribing', editing: 'Editing', ready_for_review: 'Ready for review',
-    pending_moderation: 'In review', revision_requested: 'Changes requested', published: 'Published', rejected: 'Rejected', archived: 'Archived',
-  } : {};
 
   return (
     <div className="flex flex-col h-full" data-testid="wizard-shell">
@@ -104,10 +84,8 @@ export function WizardShell({
             <div className="h-5 w-48 bg-paper-soft rounded animate-pulse" />
           ) : (
             <>
-              <span className="font-display text-body text-ink leading-none">{city}</span>
-              <span className="text-ink-40">—</span>
-              <span className="font-display text-body text-ink font-semibold leading-none">
-                {parcours}
+              <span className="font-display text-body text-ink font-semibold leading-none" data-testid="wizard-title">
+                {title}
               </span>
               {(session?.version ?? 1) > 1 && (
                 <span className="tg-eyebrow bg-paper-deep text-ink-60 px-2 py-0.5 rounded-pill ml-1">
@@ -119,7 +97,7 @@ export function WizardShell({
                   className={`tg-eyebrow px-2 py-0.5 rounded-pill ${statusConfig.color}`}
                   data-testid="wizard-status-pill"
                 >
-                  {statusLabels[session?.status ?? ''] ?? statusConfig.label}
+                  {session ? sessionStatusLabel(session.status, locale) : statusConfig.label}
                 </span>
               )}
               {session?.language && (
