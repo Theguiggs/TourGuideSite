@@ -7,6 +7,7 @@ import { addModerationFeedback, updateSessionStatus } from '@/lib/api/studio-sub
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { useAuth } from '@/lib/auth/auth-context';
 import { logger } from '@/lib/logger';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'StudioModerationPanel';
 
@@ -19,6 +20,7 @@ interface StudioModerationPanelProps {
 
 export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChange }: StudioModerationPanelProps) {
   const { isAdmin: authIsAdmin } = useAuth();
+  const { t } = useStudioLocale();
   // Double-guard: prop AND auth context must both confirm admin
   const canModerate = isAdmin && authIsAdmin;
   const [playingId, setPlayingId] = useState<string | null>(null);
@@ -43,11 +45,11 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
     if (!canModerate) return;
     setIsProcessing(true);
     const result = await updateSessionStatus(sessionId, 'published');
-    setMessage(result.ok ? 'Tour approuvé !' : 'Erreur lors de l\'approbation.');
+    setMessage(result.ok ? t('Tour approuvé !', 'Tour approved!') : t('Erreur lors de l\'approbation.', 'Error while approving.'));
     setIsProcessing(false);
     if (result.ok) onStatusChange?.();
     logger.info(SERVICE_NAME, 'Approved', { sessionId });
-  }, [sessionId, onStatusChange, canModerate]);
+  }, [sessionId, onStatusChange, canModerate, t]);
 
   const handleReject = useCallback(async () => {
     if (!canModerate) return;
@@ -65,18 +67,18 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
     }
     const result = await updateSessionStatus(sessionId, 'revision_requested');
     if (result.ok) {
-      setMessage(failedScenes.length > 0 ? 'Révision demandée (certains feedbacks non sauvés).' : 'Révision demandée.');
+      setMessage(failedScenes.length > 0 ? t('Révision demandée (certains feedbacks non sauvés).', 'Revision requested (some feedback not saved).') : t('Révision demandée.', 'Revision requested.'));
       onStatusChange?.();
     } else {
-      setMessage('Erreur lors du rejet.');
+      setMessage(t('Erreur lors du rejet.', 'Error while rejecting.'));
     }
     setIsProcessing(false);
     logger.info(SERVICE_NAME, 'Rejected with feedback', { sessionId, failedScenes });
-  }, [sessionId, feedbackText, onStatusChange, canModerate]);
+  }, [sessionId, feedbackText, onStatusChange, canModerate, t]);
 
   return (
     <div data-testid="studio-moderation-panel">
-      <h3 className="text-h6 font-semibold text-ink mb-4">Scènes de la visite</h3>
+      <h3 className="text-h6 font-semibold text-ink mb-4">{t('Scènes de la visite', 'Tour scenes')}</h3>
 
       <div className="space-y-3 mb-6">
         {scenes.map((scene, index) => {
@@ -90,7 +92,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                 <span className="w-6 h-6 rounded-pill bg-paper-deep flex items-center justify-center text-meta font-bold">
                   {index + 1}
                 </span>
-                <span className="font-medium text-ink">{scene.title || `Scène ${index + 1}`}</span>
+                <span className="font-medium text-ink">{scene.title || `${t('Scène', 'Scene')} ${index + 1}`}</span>
                 <span className={`px-1.5 py-0 rounded text-eyebrow font-medium ${statusConfig.color}`}>
                   {statusConfig.label}
                 </span>
@@ -98,7 +100,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                   <span className={`px-1.5 py-0 rounded text-eyebrow font-medium ${
                     scene.qualityScore === 'good' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
                   }`}>
-                    {scene.qualityScore === 'good' ? '✓ Bonne' : '⚠ À améliorer'}
+                    {scene.qualityScore === 'good' ? t('✓ Bonne', '✓ Good') : t('⚠ À améliorer', '⚠ Needs improvement')}
                   </span>
                 )}
               </div>
@@ -113,7 +115,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                     }`}
                     data-testid={`play-original-${scene.id}`}
                   >
-                    {isPlayingOriginal ? '⏸ Terrain' : '▶ Terrain'}
+                    {isPlayingOriginal ? t('⏸ Terrain', '⏸ Field') : t('▶ Terrain', '▶ Field')}
                   </button>
                 )}
                 {scene.studioAudioKey && (
@@ -136,7 +138,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
 
               {/* Existing feedback */}
               {scene.moderationFeedback && (
-                <p className="text-meta text-danger mb-2">💬 Feedback : {scene.moderationFeedback}</p>
+                <p className="text-meta text-danger mb-2">💬 {t('Feedback :', 'Feedback:')} {scene.moderationFeedback}</p>
               )}
 
               {/* Admin feedback input */}
@@ -144,7 +146,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
                 <textarea
                   value={feedbackText[scene.id] ?? ''}
                   onChange={(e) => setFeedbackText((prev) => ({ ...prev, [scene.id]: e.target.value }))}
-                  placeholder="Feedback pour cette scène (optionnel)..."
+                  placeholder={t('Feedback pour cette scène (optionnel)...', 'Feedback for this scene (optional)...')}
                   className="w-full text-meta border border-line rounded p-2 resize-none h-16"
                   data-testid={`feedback-input-${scene.id}`}
                 />
@@ -163,7 +165,7 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
             className="bg-success hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-5 rounded-lg text-body transition"
             data-testid="approve-btn"
           >
-            ✓ Approuver
+            ✓ {t('Approuver', 'Approve')}
           </button>
           <button
             onClick={handleReject}
@@ -171,10 +173,10 @@ export function StudioModerationPanel({ sessionId, scenes, isAdmin, onStatusChan
             className="bg-danger hover:opacity-90 disabled:bg-ink-40 text-white font-medium py-2 px-5 rounded-lg text-body transition"
             data-testid="reject-btn"
           >
-            ✗ Révision demandée
+            ✗ {t('Révision demandée', 'Request revision')}
           </button>
           {message && (
-            <span className={`text-body ${message.includes('approuvé') ? 'text-success' : 'text-ocre-ink'}`} role="status">
+            <span className={`text-body ${message === t('Tour approuvé !', 'Tour approved!') ? 'text-success' : 'text-ocre-ink'}`} role="status">
               {message}
             </span>
           )}

@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from 'react';
 import { logger } from '@/lib/logger';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'TourInfoTranslation';
 
@@ -38,6 +39,7 @@ export function TourInfoTranslation({
   onTranslateDescription,
   readOnly = true,
 }: TourInfoTranslationProps) {
+  const { t } = useStudioLocale();
   const [title, setTitle] = useState(translatedTitle);
   const [description, setDescription] = useState(translatedDescription);
   const [titleSaved, setTitleSaved] = useState(false);
@@ -75,11 +77,11 @@ export function TourInfoTranslation({
     try {
       await onRequestTranslation();
     } catch {
-      setTranslateError('Échec de la traduction');
+      setTranslateError(t('Échec de la traduction', 'Translation failed'));
     } finally {
       setTranslating(false);
     }
-  }, [onRequestTranslation]);
+  }, [onRequestTranslation, t]);
 
   const handleTranslateTitle = useCallback(async () => {
     if (!onTranslateTitle) return;
@@ -88,11 +90,11 @@ export function TourInfoTranslation({
     try {
       await onTranslateTitle();
     } catch {
-      setTranslateError('Échec de la traduction du titre');
+      setTranslateError(t('Échec de la traduction du titre', 'Title translation failed'));
     } finally {
       setTranslatingTitle(false);
     }
-  }, [onTranslateTitle]);
+  }, [onTranslateTitle, t]);
 
   const handleTranslateDescription = useCallback(async () => {
     if (!onTranslateDescription) return;
@@ -101,11 +103,11 @@ export function TourInfoTranslation({
     try {
       await onTranslateDescription();
     } catch {
-      setTranslateError('Échec de la traduction de la description');
+      setTranslateError(t('Échec de la traduction de la description', 'Description translation failed'));
     } finally {
       setTranslatingDesc(false);
     }
-  }, [onTranslateDescription]);
+  }, [onTranslateDescription, t]);
 
   const handleTitleBlur = useCallback(() => {
     const trimmed = title.trim();
@@ -138,7 +140,7 @@ export function TourInfoTranslation({
     >
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-body font-semibold text-ink">
-          Titre et description de la visite
+          {t('Titre et description de la visite', 'Tour title and description')}
         </h3>
         {onRequestTranslation && (!translatedTitle || !translatedDescription) && (
           <button
@@ -148,7 +150,7 @@ export function TourInfoTranslation({
             className="text-meta font-medium text-grenadine hover:opacity-80 disabled:text-ink-40 px-2 py-1 border border-grenadine-soft rounded-md hover:bg-grenadine-soft disabled:border-line"
             data-testid="translate-info-button"
           >
-            {translating ? 'Traduction...' : 'Traduire'}
+            {translating ? t('Traduction...', 'Translating...') : t('Traduire', 'Translate')}
           </button>
         )}
       </div>
@@ -158,23 +160,23 @@ export function TourInfoTranslation({
       )}
 
       {translating && (
-        <p className="text-meta text-grenadine mb-2 animate-pulse">Traduction en cours...</p>
+        <p className="text-meta text-grenadine mb-2 animate-pulse">{t('Traduction en cours...', 'Translation in progress...')}</p>
       )}
 
       {/* Title: source (left) / translation (right) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         {/* Source title */}
         <div>
-          <label className="block text-meta text-ink-40 mb-1">Titre (FR)</label>
+          <label className="block text-meta text-ink-40 mb-1">{t('Titre', 'Title')} (FR)</label>
           <div className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-60" data-testid="source-title">
-            {sourceTitle || <span className="italic">Aucun titre</span>}
+            {sourceTitle || <span className="italic">{t('Aucun titre', 'No title')}</span>}
           </div>
         </div>
         {/* Translated title */}
         <div>
           <div className="flex items-center justify-between mb-1">
             <label htmlFor={`tour-title-${language}`} className="block text-meta text-ink-60">
-              Titre ({langLabel})
+              {t('Titre', 'Title')} ({langLabel})
             </label>
             <div className="flex items-center gap-2">
               {onTranslateTitle && (
@@ -185,7 +187,7 @@ export function TourInfoTranslation({
                   className="text-meta font-medium text-mer hover:opacity-80 disabled:text-ink-40"
                   data-testid="translate-title-button"
                 >
-                  {translatingTitle ? 'Traduction...' : '⇄ Traduire'}
+                  {translatingTitle ? t('Traduction...', 'Translating...') : t('⇄ Traduire', '⇄ Translate')}
                 </button>
               )}
               {!titleEditing && onTitleChange && (
@@ -195,7 +197,7 @@ export function TourInfoTranslation({
                   className="text-meta font-medium text-grenadine hover:opacity-80"
                   data-testid="edit-title-button"
                 >
-                  Éditer
+                  {t('Éditer', 'Edit')}
                 </button>
               )}
             </div>
@@ -209,12 +211,12 @@ export function TourInfoTranslation({
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 onBlur={handleTitleBlur}
-                placeholder={`Titre traduit en ${langLabel}...`}
+                placeholder={`${t('Titre traduit en', 'Title translated into')} ${langLabel}...`}
                 className="w-full border border-line rounded-lg px-3 py-2 text-body text-ink focus:outline-none focus:ring-2 focus:ring-grenadine"
               />
               {titleSaved && (
                 <span className="absolute right-2 top-1/2 -translate-y-1/2 text-meta text-success" data-testid="title-saved-indicator">
-                  Sauvegarde
+                  {t('Sauvegarde', 'Saved')}
                 </span>
               )}
             </div>
@@ -223,7 +225,7 @@ export function TourInfoTranslation({
               className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-80"
               data-testid="translated-title-readonly"
             >
-              {title || <span className="italic text-ink-40">Titre traduit en {langLabel}...</span>}
+              {title || <span className="italic text-ink-40">{t('Titre traduit en', 'Title translated into')} {langLabel}...</span>}
             </div>
           )}
         </div>
@@ -235,7 +237,7 @@ export function TourInfoTranslation({
         <div>
           <label className="block text-meta text-ink-40 mb-1">Description (FR)</label>
           <div className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-60 min-h-[80px] whitespace-pre-wrap" data-testid="source-description">
-            {sourceDescription || <span className="italic">Aucune description</span>}
+            {sourceDescription || <span className="italic">{t('Aucune description', 'No description')}</span>}
           </div>
         </div>
         {/* Translated description */}
@@ -253,7 +255,7 @@ export function TourInfoTranslation({
                   className="text-meta font-medium text-mer hover:opacity-80 disabled:text-ink-40"
                   data-testid="translate-description-button"
                 >
-                  {translatingDesc ? 'Traduction...' : '⇄ Traduire'}
+                  {translatingDesc ? t('Traduction...', 'Translating...') : t('⇄ Traduire', '⇄ Translate')}
                 </button>
               )}
               {!descEditing && onDescriptionChange && (
@@ -263,7 +265,7 @@ export function TourInfoTranslation({
                   className="text-meta font-medium text-grenadine hover:opacity-80"
                   data-testid="edit-description-button"
                 >
-                  Éditer
+                  {t('Éditer', 'Edit')}
                 </button>
               )}
             </div>
@@ -276,13 +278,13 @@ export function TourInfoTranslation({
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 onBlur={handleDescBlur}
-                placeholder={`Description traduite en ${langLabel}...`}
+                placeholder={`${t('Description traduite en', 'Description translated into')} ${langLabel}...`}
                 rows={3}
                 className="w-full border border-line rounded-lg px-3 py-2 text-body text-ink focus:outline-none focus:ring-2 focus:ring-grenadine resize-y min-h-[80px]"
               />
               {descSaved && (
                 <span className="absolute right-2 bottom-2 text-meta text-success" data-testid="desc-saved-indicator">
-                  Sauvegarde
+                  {t('Sauvegarde', 'Saved')}
                 </span>
               )}
             </div>
@@ -291,7 +293,7 @@ export function TourInfoTranslation({
               className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-80 min-h-[80px] whitespace-pre-wrap"
               data-testid="translated-description-readonly"
             >
-              {description || <span className="italic text-ink-40">Description traduite en {langLabel}...</span>}
+              {description || <span className="italic text-ink-40">{t('Description traduite en', 'Description translated into')} {langLabel}...</span>}
             </div>
           )}
         </div>

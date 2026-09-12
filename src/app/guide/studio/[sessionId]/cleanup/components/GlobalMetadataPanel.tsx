@@ -11,6 +11,7 @@ import {
   TITLE_MIN,
   type TourMetadataDraft,
 } from '../lib/validation';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface GlobalMetadataPanelProps {
   value: TourMetadataDraft;
@@ -22,6 +23,7 @@ interface GlobalMetadataPanelProps {
  * Parent owns state and debounced persistence; this panel only emits patches.
  */
 export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProps) {
+  const { t } = useStudioLocale();
   const handleTitle = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => onChange({ title: e.target.value }),
     [onChange],
@@ -70,9 +72,9 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
   return (
     <div className="space-y-4" data-testid="global-metadata-panel">
       <div>
-        <h3 className="text-body font-semibold text-ink">Métadonnées globales</h3>
+        <h3 className="text-body font-semibold text-ink">{t('Métadonnées globales', 'Global metadata')}</h3>
         <p className="text-meta text-ink-60">
-          Ces informations décrivent le parcours complet avant passage en édition.
+          {t('Ces informations décrivent le parcours complet avant passage en édition.', 'This information describes the full route before moving to editing.')}
         </p>
       </div>
 
@@ -81,7 +83,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
           className="block text-meta font-medium text-ink-60 mb-1"
           htmlFor="metadata-title"
         >
-          Titre <span className="text-danger">*</span>
+          {t('Titre', 'Title')} <span className="text-danger">*</span>
         </label>
         <input
           id="metadata-title"
@@ -90,7 +92,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
           onChange={handleTitle}
           data-testid="metadata-title-input"
           maxLength={TITLE_MAX + 20}
-          placeholder="Titre du parcours"
+          placeholder={t('Titre du parcours', 'Route title')}
           className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
         />
         <p className="text-eyebrow text-ink-40 mt-1">
@@ -112,7 +114,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
           data-testid="metadata-description-input"
           rows={5}
           maxLength={DESCRIPTION_MAX + 50}
-          placeholder="Décrivez le parcours, son ambiance, ses points forts..."
+          placeholder={t('Décrivez le parcours, son ambiance, ses points forts...', 'Describe the route, its atmosphere, its highlights...')}
           className="w-full border border-line rounded-lg px-3 py-2 text-body focus:border-grenadine focus:ring-1 focus:ring-grenadine"
         />
         <p className="text-eyebrow text-ink-40 mt-1">
@@ -122,7 +124,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
 
       <div>
         <span className="block text-meta font-medium text-ink-60 mb-2">
-          Thèmes <span className="text-danger">*</span>
+          {t('Thèmes', 'Themes')} <span className="text-danger">*</span>
         </span>
         <div className="flex flex-wrap gap-2" data-testid="metadata-themes">
           {TOUR_THEMES.map((theme) => {
@@ -153,7 +155,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
             className="block text-meta font-medium text-ink-60 mb-1"
             htmlFor="metadata-language"
           >
-            Langue
+            {t('Langue', 'Language')}
           </label>
           <select
             id="metadata-language"
@@ -174,7 +176,7 @@ export function GlobalMetadataPanel({ value, onChange }: GlobalMetadataPanelProp
             className="block text-meta font-medium text-ink-60 mb-1"
             htmlFor="metadata-duration"
           >
-            Durée (min)
+            {t('Durée (min)', 'Duration (min)')}
           </label>
           <input
             id="metadata-duration"
