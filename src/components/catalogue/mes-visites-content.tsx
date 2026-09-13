@@ -8,6 +8,7 @@ import { PURCHASES_CHANGED_EVENT } from '@/lib/checkout/purchase-events';
 import { PurchasedTourCard } from '@/components/catalogue/purchased-tour-card';
 import type { PurchasedTour } from '@/types/purchase';
 import { visitorAuthUrl } from '@/lib/auth/visitor-routes';
+import { useLibraryResumes } from './use-library-resumes';
 
 /**
  * Client-rendered "Mes achats". Auth is resolved from the localStorage Cognito
@@ -15,12 +16,18 @@ import { visitorAuthUrl } from '@/lib/auth/visitor-routes';
  * (cookies) can't see this app's localStorage tokens. Mirrors useOwnedTourIds.
  */
 export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
+  const { user, isAuthenticated } = useAuth();
+  return <LibrarySession key={`${user?.id ?? isAuthenticated}`} locale={locale} />;
+}
+
+function LibrarySession({locale}: {locale: 'fr' | 'en'}) {
   const catalogueHref = locale === 'en' ? '/en/catalogue' : '/catalogue';
   const { isAuthenticated, isLoading: authLoading, user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [purchases, setPurchases] = useState<PurchasedTour[]>([]);
   const [error, setError] = useState(false);
   const [refreshTick, setRefreshTick] = useState(0);
+  const resumes = useLibraryResumes(purchases);
 
   // Refetch when a purchase is recorded (new buy / recovered pending).
   useEffect(() => {
@@ -41,6 +48,7 @@ export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
         setPurchases(res.purchases);
         setError(!!res.error);
       })
+      .catch(() => { if (!cancelled) setError(true); })
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
@@ -97,7 +105,7 @@ export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
             setError(false);
             setRefreshTick((t) => t + 1);
           }}
-          className="text-grenadine font-medium hover:underline"
+          className="min-h-11 px-4 text-grenadine font-medium hover:underline"
         >
           {locale === 'en' ? 'Try again' : 'Réessayer'}
         </button>
@@ -122,11 +130,19 @@ export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
     <>
       <p className="text-ink-60 mb-8">
         {locale === 'en'
-          ? `${purchases.length} tour${purchases.length > 1 ? 's' : ''}, yours to keep.`
-          : `${purchases.length} ${purchases.length > 1 ? 'visites' : 'visite'} à vous, pour toujours.`}
+          ? `${purchases.length} purchased tour${purchases.length > 1 ? 's' : ''}.`
+          : `${purchases.length} ${purchases.length > 1 ? 'visites achetées' : 'visite achetée'}.`}
       </p>
+      {resumes.length > 0 && <section className="mb-10" aria-labelledby="library-resume-title">
+        <h2 id="library-resume-title" className="font-display text-h4 text-ink mb-2">{locale === 'en' ? 'Continue listening' : 'Reprendre une écoute'}</h2>
+        <p className="text-body text-ink-80 mb-4">{locale === 'en' ? 'Progress saved on this device. The player checks the available scene and language.' : 'Progression mémorisée sur cet appareil. Le lecteur vérifie la scène et la langue disponibles.'}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {resumes.map(id => <PurchasedTourCard key={id} purchase={purchases.find(p => p.tour.id === id)!} locale={locale} resume />)}
+        </div>
+      </section>}
+      {resumes.length > 0 && purchases.some(p => !resumes.includes(p.tour.id)) && <h2 className="font-display text-h4 mb-4">{locale === 'en' ? 'Your other tours' : 'Vos autres visites'}</h2>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {purchases.map((purchase) => (
+        {purchases.filter(p => !resumes.includes(p.tour.id)).map((purchase) => (
           <PurchasedTourCard key={purchase.tour.id} purchase={purchase} locale={locale} />
         ))}
       </div>

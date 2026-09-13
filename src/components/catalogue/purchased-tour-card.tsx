@@ -10,10 +10,11 @@ import { LISTEN_ANCHOR, PURCHASE_LISTEN_COPY } from './scene-player/listen-link'
 interface PurchasedTourCardProps {
   purchase: PurchasedTour;
   locale?: 'fr' | 'en';
+  resume?: boolean;
 }
 
 /** One owned tour with its purchase metadata (date + amount paid). */
-export function PurchasedTourCard({ purchase, locale = 'fr' }: PurchasedTourCardProps) {
+export function PurchasedTourCard({ purchase, locale = 'fr', resume = false }: PurchasedTourCardProps) {
   const { tour, purchasedAt, amountCents } = purchase;
   const copy = PURCHASE_LISTEN_COPY[locale];
   const date = formatPurchaseDate(purchasedAt, locale);
@@ -49,10 +50,10 @@ export function PurchasedTourCard({ purchase, locale = 'fr' }: PurchasedTourCard
           <TourPriceBadge tour={tour} locale={locale} />
         </div>
         <p className="text-body text-ink-60 mb-2">
-          {tour.city} &middot; {tour.duration} min &middot; {tour.distance} km
+          {tour.city}{Number.isFinite(tour.duration) && tour.duration > 0 ? ` · ${tour.duration} min` : ''}{Number.isFinite(tour.distance) && tour.distance > 0 ? ` · ${tour.distance} km` : ''}
         </p>
         {meta && <p className="text-meta text-ink-60">{meta}</p>}
-        {published && <span style={{ display: 'flex', alignItems: 'center', gap: tg.space[2], marginTop: tg.space[3], color: tg.colors.ink, fontWeight: 600 }}><Play size={16} aria-hidden="true" />{copy.listen}</span>}
+        {published && <span style={{ display: 'flex', minHeight: 44, alignItems: 'center', gap: tg.space[2], marginTop: tg.space[3], color: tg.colors.ink, fontWeight: 600 }}><Play size={16} aria-hidden="true" />{resume ? (locale === 'en' ? 'Resume' : 'Reprendre') : copy.listen}</span>}
         {!published && (
           <p className="text-meta text-ink-60 mt-1 italic">
             {copy.unavailableDetail}
@@ -76,7 +77,8 @@ export function PurchasedTourCard({ purchase, locale = 'fr' }: PurchasedTourCard
   return (
     <Link
       href={`${locale === 'en' ? '/en' : ''}/catalogue/${tour.citySlug}/${tour.slug}${LISTEN_ANCHOR}`}
-      aria-label={copy.label(tour.title)}
+      prefetch={false}
+      aria-label={resume ? `${locale === 'en' ? 'Resume' : 'Reprendre'} — ${tour.title}` : copy.label(tour.title)}
       data-testid={`purchase-card-${tour.id}`}
       className="block rounded-xl border border-line hover:shadow-md transition-shadow overflow-hidden"
     >
