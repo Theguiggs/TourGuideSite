@@ -217,6 +217,25 @@ const langueDuChemin = (url, base) => {
   return LOCALES.includes(prefixe) && prefixe !== 'fr' ? prefixe : 'fr';
 };
 
+/**
+ * Type de page, déduit du chemin une fois le préfixe de langue retiré.
+ *
+ * Le sitemap reste unique : quelques centaines d'URL, très loin des 50 000 que
+ * la spécification autorise, et un fichier de moins à surveiller. Le diagnostic
+ * que la scission aurait apporté vient d'ici — chaque type se lit séparément
+ * dans le rapport.
+ */
+const typeDePage = (url, base) => {
+  let chemin = url.startsWith(base) ? url.slice(base.length) || '/' : new URL(url).pathname;
+  const prefixe = chemin.split('/')[1];
+  if (LOCALES.includes(prefixe) && prefixe !== 'fr') chemin = chemin.slice(prefixe.length + 1) || '/';
+  const segments = chemin.split('/').filter(Boolean);
+  if (segments.length === 0) return 'accueil';
+  if (segments[0] === 'catalogue') return ['catalogue', 'ville', 'visite'][segments.length - 1] ?? 'autre';
+  if (segments[0] === 'guides') return segments.length === 1 ? 'guides' : 'guide';
+  return 'éditorial';
+};
+
 const interdite = (url, base, interdits) => {
   const chemin = url.startsWith(base) ? url.slice(base.length) || '/' : new URL(url).pathname;
   return interdits.some((motif) => chemin === motif || chemin.startsWith(motif));
@@ -350,6 +369,14 @@ function resumeMarkdown(rapport) {
       return `| ${l} | ${s.ok} | ${s.indexables} | ${s.sitemap} |`;
     }),
     '',
+    '## Pages par type',
+    '',
+    '| Type | Pages 200 | Indexables | Au sitemap | Temps médian |',
+    '|---|---|---|---|---|',
+    ...Object.entries(statistiques.parType ?? {})
+      .sort((a, b) => b[1].ok - a[1].ok)
+      .map(([type, s]) => `| ${type} | ${s.ok} | ${s.indexables} | ${s.sitemap} | ${s.msecMedian} ms |`),
+    '',
   ];
 
   if (anomalies.length > 0) {
@@ -376,12 +403,24 @@ function statistiques(base, sitemap, pages) {
   const quantile = (q) => (msec.length === 0 ? 0 : msec[Math.min(msec.length - 1, Math.floor(msec.length * q))]);
   const dansSitemap = new Set(sitemap.map((e) => e.loc));
   const parLangue = Object.fromEntries(LOCALES.map((l) => [l, { ok: 0, indexables: 0, sitemap: 0 }]));
+  const parType = {};
   for (const [url, page] of pages) {
     const langue = langueDuChemin(url, base);
     if (page.statut !== 200) continue;
     parLangue[langue].ok += 1;
     if (estIndexable(page.robots)) parLangue[langue].indexables += 1;
     if (dansSitemap.has(url)) parLangue[langue].sitemap += 1;
+    const type = typeDePage(url, base);
+    parType[type] ??= { ok: 0, indexables: 0, sitemap: 0, msec: [] };
+    parType[type].ok += 1;
+    if (estIndexable(page.robots)) parType[type].indexables += 1;
+    if (dansSitemap.has(url)) parType[type].sitemap += 1;
+    parType[type].msec.push(page.msec);
+  }
+  for (const stats of Object.values(parType)) {
+    const tries = stats.msec.sort((a, b) => a - b);
+    stats.msecMedian = tries.length === 0 ? 0 : tries[Math.floor(tries.length / 2)];
+    delete stats.msec;
   }
   return {
     sitemap: sitemap.length,
@@ -390,6 +429,7 @@ function statistiques(base, sitemap, pages) {
     msecMedian: quantile(0.5),
     msecP90: quantile(0.9),
     parLangue,
+    parType,
   };
 }
 

@@ -24,6 +24,14 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: '/sw.js', headers: [{ key: 'Cache-Control', value: 'no-cache' }, { key: 'Service-Worker-Allowed', value: '/' }] },
+      // Sitemap et robots sont rendus a la demande (le client AppSync serveur
+      // interdit la generation statique). Sans en-tete de cache, chaque passage
+      // de robot rouvrait le catalogue entier : une heure de cache partage, et
+      // une journee de service pendant la revalidation.
+      {
+        source: '/:file(sitemap.xml|robots.txt)',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' }],
+      },
       {
         source: '/(.*)',
         headers: [
