@@ -7,6 +7,7 @@ import {
   getGuideBySlug,
   getGuidePublicTours,
 } from '@/lib/api/guides-public-server';
+import { getAllTours } from '@/lib/api/tours-server';
 import TrackPageView from '@/components/TrackPageView';
 import { S3Image } from '@/components/studio/s3-image';
 import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
@@ -85,9 +86,13 @@ const GUIDE_COPY = extendCopy({
 export async function guideMetadata(guideSlug: string, locale: GuideLocale): Promise<Metadata> {
   const guide = await getGuideBySlug(guideSlug);
   if (!guide) return {};
-  const tours = await getGuidePublicTours(guide.id);
+  // Les langues indexables viennent de la MÊME lecture que le sitemap
+  // (`getAllTours`). `getGuidePublicTours` est une seconde projection, avec son
+  // propre repli de langues : deux sources décidaient de l'indexabilité, et le
+  // sitemap listait des pages que la page elle-même refusait d'indexer.
+  const [tours, catalogue] = await Promise.all([getGuidePublicTours(guide.id), getAllTours()]);
   // Un guide sans visite publiée n'a rien à faire dans un index.
-  const published = guideSeoLocales(tours);
+  const published = guideSeoLocales(catalogue.filter(tour => tour.guideId === guide.id));
   const copy = GUIDE_COPY[locale];
   const bioSnippet = guide.bio ? guide.bio.slice(0, 150) : '';
   const description = copy.describe(guide.displayName, guide.city, bioSnippet, tours.length);

@@ -18,7 +18,7 @@ import type { TourDetail } from '@/types/tour';
 jest.mock('@/lib/api/tours-server', () => ({
   getTourBySlug: jest.fn(),
   getCityBySlug: jest.fn(),
-  getToursByCity: jest.fn(async () => []),
+  getAllTours: jest.fn(async () => []),
 }));
 
 jest.mock('@/lib/api/guides-public-server', () => ({

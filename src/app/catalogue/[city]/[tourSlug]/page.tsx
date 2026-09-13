@@ -12,7 +12,7 @@ import {
   tg,
 } from '@murmure/design-system/web';
 import { getCityAccent, type CityAccent } from '@/lib/cities/accent-map';
-import { getTourBySlug, getCityBySlug, getToursByCity } from '@/lib/api/tours-server';
+import { getTourBySlug, getCityBySlug, getAllTours } from '@/lib/api/tours-server';
 import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
 import SmartAppLink from '@/components/SmartAppLink';
@@ -180,11 +180,15 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
   const launchOffer = launchFreeAccess();
   const launchOfferActive = launchOffer.active;
 
-  const [city, guideSlug, cityTours] = await Promise.all([
+  const [city, guideSlug, allTours] = await Promise.all([
     getCityBySlug(citySlug),
     getGuideSlugByGuideId(tour.guideId),
-    getToursByCity(citySlug),
+    // `getAllTours` et non `getToursByCity` : ce dernier résout la couverture de
+    // chaque visite, soit une lecture de contenu publié par voisine. Le bloc de
+    // maillage n'affiche pas d'image ; il n'a pas à la payer sur le chemin du LCP.
+    getAllTours(),
   ]);
+  const cityTours = allTours.filter(other => other.citySlug === citySlug);
   // Maillage : une fiche ne menait qu'au catalogue et à sa ville. Les visites
   // voisines restaient hors de portée d'un robot venu par la recherche.
   const relatedTours = cityTours

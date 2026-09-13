@@ -1,33 +1,19 @@
-import { extendCopy } from '@/lib/i18n/translate';
 import type { Metadata } from 'next';
-import { getCities, getAllTours } from '@/lib/api/tours-server';
-import TrackPageView from '@/components/TrackPageView';
-import { AnalyticsEvents } from '@/lib/analytics';
-import { CatalogueViewCities } from '../../catalogue/catalogue-view-cities';
-import { MyPurchasesStripClient } from '@/components/catalogue/my-purchases-strip-client';
+import { LocalizedCataloguePage } from '../../catalogue/page';
+import { catalogueMetadata } from '@/lib/seo/catalogue-metadata';
 
+/**
+ * Catalogue anglais.
+ *
+ * Cette page était une SECONDE implémentation : sa propre copie, sa propre
+ * canonical, son propre groupe hreflang — construit à la main sur deux langues
+ * et sans `x-default`, pendant que les quatre autres langues passaient par la
+ * route localisée. Elle délègue désormais, comme elles.
+ */
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Audio tour city catalogue',
-  description: 'Explore cities through immersive audio walking tours available in five languages.',
-  alternates: {
-    canonical: '/en/catalogue',
-    languages: extendCopy({fr: '/catalogue', en: '/en/catalogue'}),
-  },
-  openGraph: {locale: 'en_US'},
-};
+export const metadata: Metadata = catalogueMetadata('en');
 
-export default async function EnglishCataloguePage({ searchParams }: { searchParams: Promise<{ q?: string | string[] }> }) {
-  const { q } = await searchParams;
-  const query = typeof q === 'string' ? q.slice(0, 120) : '';
-  const [cities, tours] = await Promise.all([getCities(), getAllTours()]);
-
-  return (
-    <>
-      <TrackPageView event={AnalyticsEvents.WEB_CATALOGUE_BROWSE} />
-      <MyPurchasesStripClient locale="en" />
-      <CatalogueViewCities key={query} cities={cities} tours={tours} locale="en" initialQuery={query} />
-    </>
-  );
+export default function EnglishCataloguePage(props: { searchParams: Promise<{ q?: string | string[] }> }) {
+  return LocalizedCataloguePage({ ...props, locale: 'en' });
 }

@@ -1,6 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
 
+jest.mock('server-only', () => ({}), { virtual: true });
+// `guideMetadata` lit le catalogue par la MÊME porte que le sitemap.
+jest.mock('@/lib/api/tours-server', () => ({ getAllTours: async () => [] }));
 jest.mock('@/lib/api/guides-public-server', () => ({
   getGuideBySlug: async () => ({ id: 'guide', displayName: 'Marie', city: 'Nice', specialties: [], languages: [], totalListens: 0, parcoursSignature: 'Source title', slug: 'marie' }),
   getGuidePublicTours: async () => [{ id: 'tour', title: 'Source title', description: 'Source description', shortDescription: 'Source teaser', sourceLanguage: 'fr', city: 'Nice', citySlug: 'nice', slug: 'tour', translatedTitles: { de: 'Übersetzter Titel' }, translatedDescriptions: { de: 'Übersetzte Beschreibung' }, duration: 20, distance: 1, poiCount: 2 }],

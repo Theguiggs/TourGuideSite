@@ -14,7 +14,9 @@ describe('publicPath / publicUrl', () => {
 
   it('rend des URL absolues sur le domaine du site', () => {
     expect(publicUrl(SOURCE, 'de')).toBe(`${SITE_URL}/de${SOURCE}`);
-    expect(publicUrl('/', 'fr')).toBe(`${SITE_URL}/`);
+    // Racine sans barre oblique : la forme que Next inscrit dans la canonical.
+    expect(publicUrl('/', 'fr')).toBe(SITE_URL);
+    expect(publicUrl('/', 'en')).toBe(`${SITE_URL}/en`);
   });
 
   it('conserve la ville et la visite d’une langue à l’autre', () => {
