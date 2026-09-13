@@ -12,7 +12,7 @@ import {
   tg,
 } from '@murmure/design-system/web';
 import { getCityAccent, type CityAccent } from '@/lib/cities/accent-map';
-import { getTourBySlug, getCityBySlug, getAllTours } from '@/lib/api/tours-server';
+import { getTourBySlug, getCityBySlug, getCityTourSummaries } from '@/lib/api/tours-server';
 import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
 import SmartAppLink from '@/components/SmartAppLink';
@@ -185,15 +185,15 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
   const launchOffer = launchFreeAccess();
   const launchOfferActive = launchOffer.active;
 
-  const [city, guideSlug, allTours] = await Promise.all([
+  const [city, guideSlug, cityTours] = await Promise.all([
     getCityBySlug(citySlug),
     getGuideSlugByGuideId(tour.guideId),
-    // `getAllTours` et non `getToursByCity` : ce dernier résout la couverture de
-    // chaque visite, soit une lecture de contenu publié par voisine. Le bloc de
-    // maillage n'affiche pas d'image ; il n'a pas à la payer sur le chemin du LCP.
-    getAllTours(),
+    // Ni `getToursByCity` (une lecture de contenu publié par voisine, pour des
+    // couvertures que le maillage n'affiche pas), ni `getAllTours` (le
+    // catalogue entier mappé pour en garder trois) : mesuré contre le backend
+    // réel, ces deux-là mettaient la fiche à plus de vingt secondes.
+    getCityTourSummaries(citySlug),
   ]);
-  const cityTours = allTours.filter(other => other.citySlug === citySlug);
   // Maillage : une fiche ne menait qu'au catalogue et à sa ville. Les visites
   // voisines restaient hors de portée d'un robot venu par la recherche.
   const relatedTours = cityTours
