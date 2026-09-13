@@ -28,8 +28,13 @@ import { useAuth } from '@/lib/auth/auth-context';
 import { createTourPaymentIntent, confirmTourPurchase, ownsTour } from '@/lib/api/tour-purchase';
 import { emitPurchasesChanged } from '@/lib/checkout/purchase-events';
 import { addPendingTourConfirm, removePendingTourConfirm } from '@/lib/checkout/pending-tour-confirm';
-import { buildStripeReturnUrl, clearStripeReturn, readStripeReturn } from '@/lib/checkout/stripe-return';
+import { buildStripeReturnUrl, clearStripeReturn, readStripeReturn, rememberStripeReturn } from '@/lib/checkout/stripe-return';
 import { logger } from '@/lib/logger';
+import { AnalyticsEvents, trackEvent } from '@/lib/analytics';
+
+import { useCheckoutLifetime } from './use-checkout-lifetime';
+import { VerifyPayment } from './verify-payment';
+import { VisitorCheckoutLinks } from './visitor-checkout-links';
 
 const SERVICE_NAME = 'TourPurchaseCard';
 
@@ -40,7 +45,7 @@ interface Props {
   locale?: 'fr' | 'en';
 }
 
-type Step = 'idle' | 'login' | 'pay' | 'done' | 'error';
+type Step = 'idle' | 'login' | 'pay' | 'done' | 'error' | 'pending';
 
 function formatPrice(cents?: number, locale: 'fr' | 'en' = 'fr'): string {
   if (typeof cents !== 'number' || !Number.isFinite(cents) || cents < 0) return '';
@@ -55,11 +60,13 @@ function PaymentForm({
   paymentIntentId,
   onSuccess,
   onError,
+  onPending,
   locale,
 }: {
   paymentIntentId: string;
   onSuccess: () => void;
   onError: (msg: string) => void;
+  onPending: () => void;
   locale: 'fr' | 'en';
 }) {
   const stripe = useStripe();
@@ -94,10 +101,11 @@ function PaymentForm({
         const confirmed = await confirmTourPurchase(paymentIntent.id ?? paymentIntentId);
         setBusy(false);
         if (confirmed.ok) onSuccess();
-        else onError(confirmed.error.message);
+        else onPending();
         return;
       }
       setBusy(false);
+      if (paymentIntent?.status === 'processing') { onPending(); return; }
       onError(locale === 'en' ? `Payment not completed (${paymentIntent?.status ?? 'unknown'}).` : `Paiement non finalisé (${paymentIntent?.status ?? 'inconnu'}).`);
     } catch (e) {
       setBusy(false);
@@ -115,14 +123,18 @@ function PaymentForm({
   );
 }
 
-export default function TourPurchaseCard({ tourId, title, priceCents, locale = 'fr' }: Props) {
-  const { isAuthenticated, signIn } = useAuth();
+export default function TourPurchaseCard(props: Props) {
+  const { user, isAuthenticated } = useAuth();
+  return <TourPurchaseCardSession key={`${user?.id ?? isAuthenticated}${props.tourId}`} {...props} />;
+}
+
+function TourPurchaseCardSession({ tourId, priceCents, locale = 'fr' }: Props) {
+  const isCurrent = useCheckoutLifetime();
+  const { isAuthenticated } = useAuth();
   const [step, setStep] = useState<Step>('idle');
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [paymentIntentId, setPaymentIntentId] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [owned, setOwned] = useState(false);
 
@@ -142,12 +154,21 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
   async function beginPayment() {
     // Idempotent: once we already have a clientSecret (form mounted), don't re-fetch
     // (guards against the auto-skip effect / StrictMode double-invoke).
-    if (clientSecret || busy) return;
+    if (busy) return;
+    if (clientSecret) { setError(null); setStep('pay'); return; }
     setBusy(true);
     setError(null);
+    trackEvent(AnalyticsEvents.WEB_CHECKOUT_STARTED, { product: 'tour', tourId, locale });
     const res = await createTourPaymentIntent(tourId);
+    if (!isCurrent()) return;
     setBusy(false);
     if (!res.ok) {
+      if (res.error.code === 2615) {
+        setOwned(true);
+        setStep('done');
+        emitPurchasesChanged();
+        return;
+      }
       setError(res.error.message);
       setStep('error');
       return;
@@ -168,6 +189,9 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
   }
 
   function grant(intentId: string) {
+    if (!isCurrent()) return;
+    clearStripeReturn(intentId);
+    trackEvent(AnalyticsEvents.WEB_CHECKOUT_CONFIRMED, { product: 'tour', tourId, locale });
     removePendingTourConfirm(intentId);
     setOwned(true);
     setStep('done');
@@ -181,19 +205,25 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
   // n'avait jamais quitté la page.
   useEffect(() => {
     const ret = readStripeReturn('tour');
-    if (!ret) return;
-    clearStripeReturn();
+    if (!ret || !isAuthenticated) return;
+    setPaymentIntentId(ret.paymentIntentId);
     if (ret.status === 'succeeded') {
       if (!isAuthenticated) return; // la session se restaure ; le rejeu global prendra le relais
       setBusy(true);
       confirmTourPurchase(ret.paymentIntentId).then((confirmed) => {
+        if (!isCurrent()) return;
         setBusy(false);
-        if (confirmed.ok) grant(ret.paymentIntentId);
+        if (confirmed.ok && confirmed.value.tourId === tourId) grant(ret.paymentIntentId);
+        else if (confirmed.ok) {
+          emitPurchasesChanged();
+          setError(locale === 'en' ? 'This payment is for another tour. Find it in My tours.' : 'Ce paiement concerne une autre visite. Retrouvez-la dans Mes visites.');
+          setStep('pending');
+        }
         else {
           setError(confirmed.error.message);
-          setStep('error');
+          setStep('pending');
         }
-      });
+      }).catch(() => { setBusy(false); setStep('pending'); });
       return;
     }
     if (ret.status === 'processing') {
@@ -202,9 +232,10 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
           ? 'Your payment is being processed. The tour will unlock automatically once it is confirmed.'
           : 'Votre paiement est en cours de traitement. La visite se débloquera automatiquement une fois confirmé.',
       );
-      setStep('error');
+      setStep('pending');
       return;
     }
+    clearStripeReturn(ret.paymentIntentId);
     removePendingTourConfirm(ret.paymentIntentId);
     setError(locale === 'en' ? 'Payment declined.' : 'Paiement refusé.');
     setStep('error');
@@ -221,20 +252,12 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
     void beginPayment();
   }
 
-  // Auto-skip the login step once the session is recognised (e.g. user clicked
-  // "Acheter" before AuthProvider finished restoring the session, or just signed in).
-  useEffect(() => {
-    if (step === 'login' && isAuthenticated) {
-      void beginPayment();
-    }
-    // beginPayment is stable enough for this guarded one-shot; deps intentionally minimal.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step, isAuthenticated]);
+
 
   // All hooks above this line — only now may we bail out early.
   // Sans clé Stripe au build, ne pas rendre `null` : le visiteur verrait une
   // visite payante sans aucun moyen de l'obtenir.
-  if (!isStripeConfigured()) {
+  if (!isStripeConfigured() && !owned && step !== 'done') {
     return (
       <p data-testid="tour-purchase-in-app" style={{ marginTop: tg.space[4], ...noteStyle }}>
         {locale === 'en'
@@ -244,20 +267,6 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
     );
   }
 
-  async function handleLogin(e: React.FormEvent) {
-    e.preventDefault();
-    setBusy(true);
-    setError(null);
-    const r = await signIn(email, password);
-    if (!r.ok) {
-      setBusy(false);
-      setError(r.error ?? (locale === 'en' ? 'Sign-in failed.' : 'Connexion échouée.'));
-      return;
-    }
-    setBusy(false);
-    // Authenticated now — go straight to payment (don't re-check the stale flag).
-    void beginPayment();
-  }
 
   const label = priceCents
     ? `${locale === 'en' ? 'Buy' : 'Acheter'} — ${formatPrice(priceCents, locale)}`
@@ -291,9 +300,10 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
           </span>
           <span style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}>
             {locale === 'en'
-              ? 'Open Murmure with the same account to listen.'
-              : "Ouvrez Murmure avec le même compte pour l'écouter."}
+              ? 'Your tour is ready to listen to on this site.'
+              : 'Votre visite est prête à être écoutée sur ce site.'}
           </span>
+          <a className="inline-flex min-h-11 items-center font-semibold text-ink underline" href="#itineraire">{locale === 'en' ? 'Listen now' : 'Écouter maintenant'}</a>
         </div>
       )}
 
@@ -303,43 +313,9 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
         </Button>
       )}
 
-      {step === 'login' && (
-        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3] }}>
-          <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.body, color: tg.colors.ink80 }}>
-            {locale === 'en'
-              ? `Sign in with your Murmure account to buy “${title}”.`
-              : `Connectez-vous avec votre compte Murmure pour acheter « ${title} ».`}
-          </p>
-          <label htmlFor="tour-purchase-email" style={labelStyle}>Email</label>
-          <input
-            id="tour-purchase-email"
-            type="email"
-            required
-            autoComplete="email"
-            placeholder="Email"
-            value={email}
-            onChange={(ev) => setEmail(ev.target.value)}
-            style={inputStyle}
-          />
-          <label htmlFor="tour-purchase-password" style={labelStyle}>
-            {locale === 'en' ? 'Password' : 'Mot de passe'}
-          </label>
-          <input
-            id="tour-purchase-password"
-            type="password"
-            required
-            autoComplete="current-password"
-            placeholder={locale === 'en' ? 'Password' : 'Mot de passe'}
-            value={password}
-            onChange={(ev) => setPassword(ev.target.value)}
-            style={inputStyle}
-          />
-          {error && <p style={errorStyle}>{error}</p>}
-          <Button variant="accent" size="lg" fullWidth disabled={busy}>
-            {busy ? (locale === 'en' ? 'Signing in…' : 'Connexion…') : (locale === 'en' ? 'Sign in and pay' : 'Se connecter et payer')}
-          </Button>
-        </form>
-      )}
+      {step === 'login' && <VisitorCheckoutLinks locale={locale} />}
+
+      {step === 'pending' && <VerifyPayment kind="tour" intentId={paymentIntentId} tourId={tourId} locale={locale} onConfirmed={() => grant(paymentIntentId)} />}
 
       {step === 'pay' && clientSecret && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3] }}>
@@ -348,6 +324,7 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
           </p>
           <Elements stripe={getStripePromise()} options={{ clientSecret }}>
             <PaymentForm
+              onPending={() => { if (!isCurrent()) return; rememberStripeReturn('tour', paymentIntentId); setStep('pending'); }}
               paymentIntentId={paymentIntentId}
               onSuccess={() => grant(paymentIntentId)}
               onError={(msg) => {
@@ -362,7 +339,7 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
 
       {step === 'error' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3] }}>
-          <p style={errorStyle}>{error ?? (locale === 'en' ? 'An error occurred.' : 'Une erreur est survenue.')}</p>
+          <p role="alert" style={errorStyle}>{error ?? (locale === 'en' ? 'An error occurred.' : 'Une erreur est survenue.')}</p>
           <Button variant="ghost" size="md" fullWidth onClick={() => setStep('idle')}>
             {locale === 'en' ? 'Try again' : 'Réessayer'}
           </Button>
@@ -371,22 +348,6 @@ export default function TourPurchaseCard({ tourId, title, priceCents, locale = '
     </div>
   );
 }
-
-const inputStyle: React.CSSProperties = {
-  fontFamily: tg.fonts.sans,
-  fontSize: tg.fontSize.body,
-  padding: `${tg.space[3]} ${tg.space[4]}`,
-  borderRadius: tg.radius.md,
-  border: `1px solid ${tg.colors.line}`,
-  background: tg.colors.paper,
-  color: tg.colors.ink,
-};
-
-const labelStyle: React.CSSProperties = {
-  fontFamily: tg.fonts.sans,
-  fontSize: tg.fontSize.meta,
-  color: tg.colors.ink80,
-};
 
 const noteStyle: React.CSSProperties = {
   fontFamily: tg.fonts.sans,

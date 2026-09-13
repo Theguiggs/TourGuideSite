@@ -23,7 +23,7 @@ export async function HomeCatalogue({ locale }: { locale: 'fr' | 'en' }) {
         </Link>)}
       </nav>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6" data-testid="home-tour-selection">
-        {selection.featured.map(tour => <Link key={tour.id} href={`${prefix}/catalogue/${tour.citySlug}/${tour.slug}`} data-testid="home-tour" className="flex min-w-0 flex-col rounded-lg p-5 text-ink no-underline sm:p-6" style={{ background: tg.colors[`${getCityAccent(tour.citySlug)}Soft`] }}>
+        {selection.featured.map(tour => <Link prefetch={false} key={tour.id} href={`${prefix}/catalogue/${tour.citySlug}/${tour.slug}`} data-testid="home-tour" className="flex min-w-0 flex-col rounded-lg p-5 text-ink no-underline sm:p-6" style={{ background: tg.colors[`${getCityAccent(tour.citySlug)}Soft`] }}>
           <span className="text-body font-semibold">{tour.city}</span>
           <h3 className="my-4 break-words font-display text-h5 leading-tight">{tour.title}</h3>
           <div className="mt-auto flex flex-wrap items-center gap-3 text-caption">

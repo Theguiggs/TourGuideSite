@@ -45,9 +45,19 @@ import ForfaitPurchaseCard from '../forfait-purchase-card';
 import { PURCHASES_CHANGED_EVENT } from '@/lib/checkout/purchase-events';
 
 describe('ForfaitPurchaseCard', () => {
+  it('conserve la vérification après rechargement pendant le traitement', async () => {
+    window.history.replaceState({}, '', '/forfait?murmure_pay=forfait&payment_intent=pi_wait&redirect_status=processing');
+    const view = render(<ForfaitPurchaseCard />);
+    expect(screen.getByRole('button', { name: 'Vérifier le paiement' })).toBeInTheDocument();
+    view.unmount();
+    render(<ForfaitPurchaseCard />);
+    expect(screen.getByRole('button', { name: 'Vérifier le paiement' })).toBeInTheDocument();
+    expect(mockCreateIntent).not.toHaveBeenCalled();
+  });
   let changed: jest.Mock;
 
   beforeEach(() => {
+    window.history.replaceState({}, '', '/forfait');
     jest.clearAllMocks();
     mockHasActiveForfait.mockResolvedValue(false);
     mockCreateIntent.mockResolvedValue({
@@ -103,7 +113,8 @@ describe('ForfaitPurchaseCard', () => {
     });
 
     expect(changed).not.toHaveBeenCalled();
-    expect(screen.getByRole('alert')).toHaveTextContent('Authentication required');
+    expect(screen.getByRole('button', { name: 'Vérifier le paiement' })).toBeInTheDocument();
+    expect(screen.queryByTestId('forfait-active-badge')).not.toBeInTheDocument();
   });
 });
 

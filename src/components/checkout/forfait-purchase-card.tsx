@@ -29,8 +29,13 @@ import {
   FORFAIT_PRICE_CENTS,
 } from '@/lib/api/forfait-purchase';
 import { emitPurchasesChanged } from '@/lib/checkout/purchase-events';
-import { buildStripeReturnUrl, clearStripeReturn, readStripeReturn } from '@/lib/checkout/stripe-return';
+import { buildStripeReturnUrl, clearStripeReturn, readStripeReturn, rememberStripeReturn } from '@/lib/checkout/stripe-return';
 import { logger } from '@/lib/logger';
+
+import { useCheckoutLifetime } from './use-checkout-lifetime';
+import { VerifyPayment } from './verify-payment';
+import { AnalyticsEvents, trackEvent } from '@/lib/analytics';
+import { VisitorCheckoutLinks } from './visitor-checkout-links';
 
 const SERVICE_NAME = 'ForfaitPurchaseCard';
 
@@ -38,7 +43,7 @@ interface Props {
   locale?: 'fr' | 'en';
 }
 
-type Step = 'idle' | 'login' | 'pay' | 'done' | 'error';
+type Step = 'idle' | 'login' | 'pay' | 'done' | 'error' | 'pending';
 
 function formatPrice(cents: number, locale: 'fr' | 'en' = 'fr'): string {
   return new Intl.NumberFormat(locale === 'en' ? 'en-GB' : 'fr-FR', {
@@ -51,11 +56,13 @@ function PaymentForm({
   paymentIntentId,
   onSuccess,
   onError,
+  onPending,
   locale,
 }: {
   paymentIntentId: string;
   onSuccess: () => void;
   onError: (msg: string) => void;
+  onPending: () => void;
   locale: 'fr' | 'en';
 }) {
   const stripe = useStripe();
@@ -88,10 +95,11 @@ function PaymentForm({
         const confirmed = await confirmForfaitPurchase(paymentIntent.id ?? paymentIntentId);
         setBusy(false);
         if (confirmed.ok) onSuccess();
-        else onError(confirmed.error.message);
+        else onPending();
         return;
       }
       setBusy(false);
+      if (paymentIntent?.status === 'processing') { onPending(); return; }
       onError(
         locale === 'en'
           ? `Payment not completed (${paymentIntent?.status ?? 'unknown'}).`
@@ -123,14 +131,19 @@ function PaymentForm({
   );
 }
 
-export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
-  const { isAuthenticated, signIn } = useAuth();
+export default function ForfaitPurchaseCard(props: Props) {
+  const { user, isAuthenticated } = useAuth();
+  return <ForfaitPurchaseCardSession key={`${user?.id ?? isAuthenticated}`} {...props} />;
+}
+
+function ForfaitPurchaseCardSession({ locale = 'fr' }: Props) {
+  const isCurrent = useCheckoutLifetime();
+  const priceLabel = formatPrice(FORFAIT_PRICE_CENTS, locale);
+  const { isAuthenticated } = useAuth();
   const [step, setStep] = useState<Step>('idle');
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [paymentIntentId, setPaymentIntentId] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [alreadyActive, setAlreadyActive] = useState(false);
 
@@ -146,10 +159,13 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
   }, [isAuthenticated]);
 
   async function beginPayment() {
-    if (clientSecret || busy) return;
+    if (busy) return;
+    if (clientSecret) { setError(null); setStep('pay'); return; }
     setBusy(true);
     setError(null);
+    trackEvent(AnalyticsEvents.WEB_CHECKOUT_STARTED, { product: 'forfait', locale });
     const res = await createForfaitPaymentIntent();
+    if (!isCurrent()) return;
     setBusy(false);
     if (!res.ok) {
       setError(res.error.message);
@@ -180,48 +196,45 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
   // toute façon ; ceci ne sert qu'à le montrer tout de suite).
   useEffect(() => {
     const ret = readStripeReturn('forfait');
-    if (!ret) return;
-    clearStripeReturn();
+    if (!ret || !isAuthenticated) return;
+    setPaymentIntentId(ret.paymentIntentId);
     if (ret.status === 'succeeded') {
       if (!isAuthenticated) return;
       setBusy(true);
       confirmForfaitPurchase(ret.paymentIntentId).then((confirmed) => {
+        if (!isCurrent()) return;
         setBusy(false);
         if (confirmed.ok) {
+          clearStripeReturn(ret.paymentIntentId);
           setStep('done');
+          trackEvent(AnalyticsEvents.WEB_CHECKOUT_CONFIRMED, { product: 'forfait', locale });
           emitPurchasesChanged();
         } else {
           setError(confirmed.error.message);
-          setStep('error');
+          setStep('pending');
         }
-      });
+      }).catch(() => { setBusy(false); setStep('pending'); });
       return;
     }
     setError(
       ret.status === 'processing'
         ? locale === 'en'
-          ? 'Your payment is being processed. The pass will activate automatically once it is confirmed.'
-          : 'Votre paiement est en cours de traitement. Le forfait s’activera automatiquement une fois confirmé.'
+          ? 'Your payment is being processed. Use Check payment to confirm access.'
+          : 'Votre paiement est en cours de traitement. Utilisez Vérifier le paiement pour confirmer l’accès.'
         : locale === 'en'
           ? 'Payment declined.'
           : 'Paiement refusé.',
     );
-    setStep('error');
+    if (ret.status !== 'processing') clearStripeReturn(ret.paymentIntentId);
+    setStep(ret.status === 'processing' ? 'pending' : 'error');
     // Lecture unique de l'URL au montage.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
-  // Reprend automatiquement dès que la session est reconnue (clic avant que
-  // AuthProvider ait fini de restaurer, ou connexion qui vient d'aboutir).
-  useEffect(() => {
-    if (step === 'login' && isAuthenticated) {
-      void beginPayment();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step, isAuthenticated]);
+
 
   // Tous les hooks au-dessus de cette ligne — on ne peut sortir qu'après.
-  if (!isStripeConfigured()) {
+  if (!isStripeConfigured() && !alreadyActive && step !== 'done') {
     return (
       <p
         data-testid="forfait-purchase-in-app"
@@ -234,21 +247,6 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
     );
   }
 
-  async function handleLogin(e: React.FormEvent) {
-    e.preventDefault();
-    setBusy(true);
-    setError(null);
-    const r = await signIn(email, password);
-    if (!r.ok) {
-      setBusy(false);
-      setError(r.error ?? (locale === 'en' ? 'Sign-in failed.' : 'Connexion échouée.'));
-      return;
-    }
-    setBusy(false);
-    void beginPayment();
-  }
-
-  const priceLabel = formatPrice(FORFAIT_PRICE_CENTS, locale);
 
   return (
     <div style={{ marginTop: tg.space[4] }}>
@@ -305,63 +303,20 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
         </div>
       )}
 
-      {step === 'login' && (
-        <form
-          onSubmit={handleLogin}
-          style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3] }}
-        >
-          <p
-            style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.body, color: tg.colors.ink80 }}
-          >
-            {locale === 'en'
-              ? 'Sign in to link the pass to your account.'
-              : 'Connectez-vous pour rattacher le forfait à votre compte.'}
-          </p>
-          <label htmlFor="forfait-email" style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}>
-            Email
-          </label>
-          <input
-            id="forfait-email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email"
-            autoComplete="email"
-            required
-            style={{ padding: tg.space[3], borderRadius: tg.radius.sm }}
-          />
-          <label htmlFor="forfait-password" style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}>
-            {locale === 'en' ? 'Password' : 'Mot de passe'}
-          </label>
-          <input
-            id="forfait-password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder={locale === 'en' ? 'password' : 'mot de passe'}
-            autoComplete="current-password"
-            required
-            style={{ padding: tg.space[3], borderRadius: tg.radius.sm }}
-          />
-          <Button variant="accent" size="lg" fullWidth disabled={busy}>
-            {busy
-              ? locale === 'en'
-                ? 'Signing in…'
-                : 'Connexion…'
-              : locale === 'en'
-                ? 'Sign in'
-                : 'Se connecter'}
-          </Button>
-        </form>
-      )}
+      {step === 'login' && <VisitorCheckoutLinks locale={locale} />}
+
+      {step === 'pending' && <VerifyPayment kind="forfait" intentId={paymentIntentId} locale={locale} onConfirmed={() => { setStep('done'); trackEvent(AnalyticsEvents.WEB_CHECKOUT_CONFIRMED, { product: 'forfait', locale }); }} />}
 
       {step === 'pay' && clientSecret && (
         <Elements stripe={getStripePromise()} options={{ clientSecret }}>
           <PaymentForm
+            onPending={() => { if (!isCurrent()) return; rememberStripeReturn('forfait', paymentIntentId); setStep('pending'); }}
             paymentIntentId={paymentIntentId}
             locale={locale}
             onSuccess={() => {
+              if (!isCurrent()) return;
               setStep('done');
+              trackEvent(AnalyticsEvents.WEB_CHECKOUT_CONFIRMED, { product: 'forfait', locale });
               // Le serveur vient d'écrire l'entitlement (confirmForfaitPurchase a
               // rendu ok). Ce signal rafraîchit la possession — droit permanent
               // COMPRIS — et la redemande du contenu : la visite ouverte derrière
@@ -375,6 +330,10 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
           />
         </Elements>
       )}
+
+      {step === 'error' && <Button variant="ghost" fullWidth onClick={() => { setError(null); setStep(clientSecret ? 'pay' : 'idle'); }}>{locale === 'en' ? 'Try again' : 'Réessayer'}</Button>}
+
+      {(alreadyActive || step === 'done') && <a className="inline-flex min-h-11 items-center text-ink underline" href={locale === 'en' ? '/en/catalogue' : '/catalogue'}>{locale === 'en' ? 'Find a tour to listen to' : 'Trouver une visite à écouter'}</a>}
 
       {error && (
         <p

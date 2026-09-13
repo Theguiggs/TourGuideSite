@@ -141,6 +141,7 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
           {filteredTours.map((tour) => (
             <Link
               key={tour.id}
+              prefetch={false}
               href={`${locale === 'en' ? '/en' : ''}/catalogue/${citySlug}/${tour.slug}`}
               data-testid={`tour-card-${tour.id}`}
               className="block rounded-xl border border-line hover:shadow-md transition-shadow overflow-hidden"

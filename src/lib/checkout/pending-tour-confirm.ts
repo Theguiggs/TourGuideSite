@@ -23,7 +23,7 @@ export interface PendingTourConfirm {
 }
 
 function isBrowser(): boolean {
-  return typeof window !== 'undefined' && !!window.localStorage;
+  try { return typeof window !== 'undefined' && !!window.localStorage; } catch { return false; }
 }
 
 function read(): PendingTourConfirm[] {

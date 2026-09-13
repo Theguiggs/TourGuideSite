@@ -15,6 +15,8 @@ export function useVisitorReturn() {
   const path = usePathname() ?? '/';
   const params = useSearchParams();
   const hash = useSyncExternalStore(subscribeHash, getHash, noHash);
-  const query = params?.toString();
+  const safeParams = new URLSearchParams(params?.toString());
+  safeParams.delete('payment_intent_client_secret');
+  const query = safeParams.toString();
   return `${path}${query ? `?${query}` : ''}${hash}`;
 }

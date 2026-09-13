@@ -208,7 +208,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 min-w-0">
               <Eyebrow style={{ color: heroAccentFg, marginBottom: tg.space[4] }}>
                 {cityName} · {tour.duration} min
               </Eyebrow>
@@ -218,9 +218,9 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 style={{ marginBottom: tg.space[4] }}
               >
                 <h1
+                  className="text-h4 sm:text-h3 lg:text-h2"
                   style={{
                     fontFamily: tg.fonts.display,
-                    fontSize: tg.fontSize.h2,
                     lineHeight: 1.05,
                     letterSpacing: tg.tracking.display,
                     color: tg.colors.ink,
@@ -303,6 +303,8 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 )}
               </div>
 
+              <a href="#itineraire" className="inline-flex min-h-11 items-center rounded-pill bg-grenadine px-5 text-body font-bold text-paper mb-4">{locale === 'en' ? 'Discover the audio' : 'Découvrir l’audio'}</a>
+
               {tour.createdAt && (
                 <div
                   data-testid="tour-detail-date"
@@ -323,7 +325,37 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
       {/* CONTENU PRINCIPAL */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 min-w-0">
+            <div id="itineraire" className="mb-10 scroll-mt-20">
+              <h2
+                style={{
+                  fontFamily: tg.fonts.display,
+                  fontSize: tg.fontSize.h4,
+                  letterSpacing: tg.tracking.display,
+                  color: tg.colors.ink,
+                  marginBottom: tg.space[6],
+                }}
+              >
+                {copy.itinerary}
+              </h2>
+              {/* Visite payante : le HTML ne porte pas les titres verrouillés
+                  (ils n'étaient que floutés en CSS). L'acheteur les retrouve
+                  par la redemande après hydratation. */}
+              <ItineraryList
+                pois={isTourFree(tour) ? tour.pois : maskLockedPois(tour.pois, locale)}
+                walkPath={tour.walkPath}
+                tourId={tour.id}
+                cityId={tour.citySlug}
+                sourceLanguage={tour.sourceLanguage}
+                languageAudioTypes={tour.languageAudioTypes}
+                tourTitle={tour.title}
+                isFree={isTourFree(tour)}
+                contentUnavailable={tour.contentUnavailable}
+                heroAccentFg={heroAccentFg}
+                locale={locale}
+              />
+            </div>
+
             {/* Guide info — "Votre guide" showcase card */}
             {(() => {
               const avatar = tour.guidePhotoUrl ? (
@@ -482,36 +514,6 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
             )}
 
             {/* Itinéraire — étapes numérotées */}
-            <div id="itineraire" className="mb-10 scroll-mt-20">
-              <h2
-                style={{
-                  fontFamily: tg.fonts.display,
-                  fontSize: tg.fontSize.h4,
-                  letterSpacing: tg.tracking.display,
-                  color: tg.colors.ink,
-                  marginBottom: tg.space[6],
-                }}
-              >
-                {copy.itinerary}
-              </h2>
-              {/* Visite payante : le HTML ne porte pas les titres verrouillés
-                  (ils n'étaient que floutés en CSS). L'acheteur les retrouve
-                  par la redemande après hydratation. */}
-              <ItineraryList
-                pois={isTourFree(tour) ? tour.pois : maskLockedPois(tour.pois, locale)}
-                walkPath={tour.walkPath}
-                tourId={tour.id}
-                cityId={tour.citySlug}
-                sourceLanguage={tour.sourceLanguage}
-                languageAudioTypes={tour.languageAudioTypes}
-                tourTitle={tour.title}
-                isFree={isTourFree(tour)}
-                contentUnavailable={tour.contentUnavailable}
-                heroAccentFg={heroAccentFg}
-                locale={locale}
-              />
-            </div>
-
             {/* Reviews */}
             <div>
               <h2
@@ -571,7 +573,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
           </div>
 
           {/* Sidebar — CTA principal desktop */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 min-w-0">
             <div className="sticky top-24">
               <Card variant="md">
                 <Card.Body>
@@ -676,15 +678,10 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
           borderTop: `1px solid ${tg.colors.line}`,
         }}
       >
-        <SmartAppLink
-          tourId={tour.id}
-          style={{ display: 'block', textDecoration: 'none' }}
-          aria-label={copy.listen}
-        >
-          <Button variant="accent" size="lg" fullWidth>
-            {copy.listen}
-          </Button>
-        </SmartAppLink>
+        <div className="flex gap-3">
+          <a href="#itineraire" className="flex min-h-11 flex-1 items-center justify-center rounded-pill bg-grenadine px-4 text-body font-bold text-paper">{locale === 'en' ? 'Listen on this site' : 'Écouter sur le site'}</a>
+          {!isTourFree(tour) && <a href="#acheter" className="flex min-h-11 items-center justify-center rounded-pill border border-line px-4 text-body font-semibold text-ink">{locale === 'en' ? 'Purchase options' : 'Achat'}</a>}
+        </div>
       </div>
 
       {/* JSON-LD Structured Data */}
