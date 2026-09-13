@@ -12,6 +12,7 @@ import { getGuidesByCity } from '@/lib/api/guides-public-server';
 import { TourListWithFilter } from './tour-list-filter';
 import { PageTitle } from '@murmure/design-system/web';
 import { CityOverview } from '@/components/catalogue/city-overview';
+import { LanguageSuggestion } from '@/components/i18n/language-suggestion';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { breadcrumbJsonLd } from '@/lib/seo/json-ld';
 import { cityFactsCopy } from '@/lib/cities/city-facts';
@@ -71,6 +72,8 @@ export async function LocalizedCityPage({ params, searchParams, locale = 'fr' }:
   const otherCities = cities.filter((other) => other.slug !== citySlug && other.tourCount > 0).slice(0, 12);
 
   return (
+    <>
+      <LanguageSuggestion sourcePath={`/catalogue/${citySlug}`} locale={locale} published={citySeoLocales(tours)} />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <nav aria-label={translate(locale, "Fil d'Ariane", 'Breadcrumb')} className="text-body text-ink-60 mb-6">
         <Link href={publicPath('/catalogue', locale)} className="hover:text-grenadine">
@@ -142,6 +145,7 @@ export async function LocalizedCityPage({ params, searchParams, locale = 'fr' }:
         </div>
       )}
     </div>
+    </>
   );
 }
 

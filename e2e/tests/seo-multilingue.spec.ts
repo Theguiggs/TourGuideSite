@@ -285,6 +285,53 @@ test.describe('navigation entre langues', () => {
   });
 });
 
+/**
+ * Le bandeau de suggestion : il propose, il ne redirige pas.
+ *
+ * Le contenu servi doit rester IDENTIQUE quelle que soit la langue reclamee —
+ * seul le bandeau s'ajoute. C'est ce qui distingue une suggestion d'une
+ * negociation de contenu, et ce qui permet a Google d'explorer chaque variante.
+ */
+test.describe('suggestion de langue', () => {
+  const get = (request: APIRequestContext, path: string, acceptLanguage?: string) =>
+    request.get(path, { maxRedirects: 0, headers: acceptLanguage ? { 'accept-language': acceptLanguage } : {} });
+
+  test('propose sa langue au visiteur etranger, sans jamais rediriger', async ({ request }) => {
+    const response = await get(request, TRILINGUE, 'de-DE,de;q=0.9,en;q=0.8');
+    expect(response.status()).toBe(200);
+    const html = await response.text();
+    // La visite trilingue n'existe pas en allemand : rien ne doit etre propose.
+    expect(html).not.toContain('data-testid="language-suggestion"');
+
+    const espagnol = await get(request, TRILINGUE, 'es-ES,es;q=0.9');
+    expect(espagnol.status()).toBe(200);
+    const htmlEs = await espagnol.text();
+    expect(htmlEs).toContain('data-testid="language-suggestion"');
+    expect(htmlEs).toContain('Esta página también está disponible en español.');
+    expect(htmlEs).toContain(`href="${localized(TRILINGUE, 'es')}"`);
+  });
+
+  test('se tait quand le visiteur est deja dans sa langue', async ({ request }) => {
+    const html = await (await get(request, localized(TRILINGUE, 'es'), 'es-ES,es;q=0.9')).text();
+    expect(html).not.toContain('data-testid="language-suggestion"');
+  });
+
+  test('se tait pour un robot qui ne reclame aucune langue', async ({ request }) => {
+    const html = await (await request.get(TRILINGUE, { headers: { 'user-agent': ROBOT_UA } })).text();
+    expect(html).not.toContain('data-testid="language-suggestion"');
+  });
+
+  test('ne change rien au contenu, ni a la canonical, ni aux hreflang', async ({ request }) => {
+    const neutre = await (await get(request, TRILINGUE)).text();
+    const espagnol = await (await get(request, TRILINGUE, 'es-ES,es;q=0.9')).text();
+    for (const html of [neutre, espagnol]) {
+      expect(html).toContain(`<link rel="canonical" href="${SITE}${TRILINGUE}"/>`);
+      expect(html).toMatch(/hreflang="x-default"/i);
+      expect(html).toMatch(/<h1[^>]*>/);
+    }
+  });
+});
+
 test.describe('mise en page responsive', () => {
   for (const width of [320, 390, 768, 1440]) {
     test(`aucun débordement horizontal à ${width} px`, async ({ page }) => {

@@ -19,6 +19,10 @@ import { LocalizedTourDetailPage } from '@/app/catalogue/[city]/[tourSlug]/page'
 import { getTourBySlug, getCityBySlug } from '@/lib/api/tours-server';
 import type { TourDetail } from '@/types/tour';
 
+// Composant serveur asynchrone imbriqué : jsdom ne sait pas le rendre, et il
+// n'est pas le sujet ici. Son comportement vit dans `preferred-locale.test.ts`
+// et dans la passe SEO.
+jest.mock('@/components/i18n/language-suggestion', () => ({ LanguageSuggestion: () => null }));
 jest.mock('@/lib/api/tours-server', () => ({
   getTourBySlug: jest.fn(),
   getCityBySlug: jest.fn(),

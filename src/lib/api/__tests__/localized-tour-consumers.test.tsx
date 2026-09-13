@@ -1,5 +1,9 @@
 import { render, screen } from '@testing-library/react';
 
+// Composant serveur asynchrone imbriqué : jsdom ne sait pas le rendre, et il
+// n'est pas le sujet ici. Son comportement vit dans `preferred-locale.test.ts`
+// et dans la passe SEO.
+jest.mock('@/components/i18n/language-suggestion', () => ({ LanguageSuggestion: () => null }));
 jest.mock('server-only', () => ({}), { virtual: true });
 jest.mock('@/config/api-mode', () => ({ shouldUseStubs: () => false }));
 const mockPublishedRows: Record<string, unknown>[] = [];
