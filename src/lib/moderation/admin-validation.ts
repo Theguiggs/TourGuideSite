@@ -145,6 +145,16 @@ export function buildAdminValidationReport({
     routePath.length >= 2 &&
     routePath.every((point) => hasValidCoordinates(point.lat, point.lng)) &&
     new Set(routePath.map((point) => `${point.lat},${point.lng}`)).size >= 2;
+  const paidPriceValid =
+    detail.purchaseType === 'paid' &&
+    typeof detail.priceCents === 'number' &&
+    Number.isInteger(detail.priceCents) &&
+    detail.priceCents >= 99 &&
+    detail.priceCents <= 4_999;
+  const accessValid =
+    detail.purchaseType === 'free' ||
+    detail.purchaseType === 'subscription_only' ||
+    paidPriceValid;
 
   const flattenedSegments = Object.values(segmentsByScene).flat();
   const readiness = checkLanguageReadiness(detail.scenes, flattenedSegments, language);
@@ -237,11 +247,17 @@ export function buildAdminValidationReport({
     ),
     check(
       'access',
-      a("Accès gratuit au lancement"),
-      detail.purchaseType === 'free',
+      a("Mode d’accès"),
+      accessValid,
       detail.purchaseType === 'free'
         ? a("La visite est gratuite et ouverte à tous.")
-        : a("Accès actuel : {0}.", detail.purchaseType ?? a('non renseigné')),
+        : detail.purchaseType === 'subscription_only'
+          ? a("La visite est réservée aux abonnés.")
+          : paidPriceValid
+            ? a("La visite est vendue à l’unité : {0}.", `${(detail.priceCents! / 100).toFixed(2).replace('.', ',')} €`)
+            : detail.purchaseType === 'paid'
+              ? a("Le prix doit être compris entre 0,99 € et 49,99 €.")
+              : a("Le mode d’accès n’est pas renseigné ou est invalide."),
     ),
     check(
       'scene_count',
