@@ -482,7 +482,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
             )}
 
             {/* Itinéraire — étapes numérotées */}
-            <div className="mb-10">
+            <div id="itineraire" className="mb-10 scroll-mt-20">
               <h2
                 style={{
                   fontFamily: tg.fonts.display,

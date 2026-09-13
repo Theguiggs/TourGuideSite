@@ -12,6 +12,7 @@ export type PublicLocale = 'fr' | 'en';
 
 /** [français, anglais], du plus spécifique au plus général. */
 export const PUBLIC_ROUTE_PAIRS: ReadonlyArray<readonly [string, string]> = [
+  ['/creer-des-visites', '/en/create-tours'],
   ['/connexion', '/en/sign-in'],
   ['/inscription', '/en/sign-up'],
   ['/mot-de-passe-oublie', '/en/reset-password'],

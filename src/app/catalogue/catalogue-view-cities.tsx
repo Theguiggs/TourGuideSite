@@ -27,6 +27,7 @@ interface CatalogueViewCitiesProps {
   cities: City[];
   tours: Tour[];
   locale?: 'fr' | 'en';
+  initialQuery?: string;
 }
 
 /** Compare sans accents ni casse : « eze » trouve « Èze ». */
@@ -108,12 +109,12 @@ function CityBlock({ city, accent, avgDuration, locale }: CityBlockProps) {
   );
 }
 
-export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueViewCitiesProps) {
+export function CatalogueViewCities({ cities, tours, locale = 'fr', initialQuery = '' }: CatalogueViewCitiesProps) {
   // Lot 6.4 — l'ancien filtre triait les villes par COULEUR d'accent
   // (« Provence », « Ocre », « Côte », « Nature ») : une propriété graphique
   // attribuée par somme de codes de caractères, que personne ne cherche.
   // Une recherche par nom remplace ces puces.
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(initialQuery);
 
   const citiesWithAccent = useMemo(
     () =>
@@ -163,21 +164,23 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
       </header>
 
       {/* Recherche par nom */}
-      <div style={{ marginBottom: tg.space[6], maxWidth: 420 }}>
+      <form action={locale === 'en' ? '/en/catalogue' : '/catalogue'} method="get" style={{ marginBottom: tg.space[6], maxWidth: 420 }}>
         <label htmlFor="city-search" className="block text-meta font-semibold text-ink-80 mb-1.5">
           {locale === 'en' ? 'Find a city' : 'Chercher une ville'}
         </label>
         <input
           id="city-search"
+          name="q"
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={locale === 'en' ? 'Nice, Barcelona, Grasse…' : 'Nice, Barcelone, Grasse…'}
           autoComplete="off"
           data-testid="city-search"
-          className="w-full rounded-md border border-line bg-card px-4 py-3 text-caption text-ink outline-none focus:border-grenadine focus:ring-2 focus:ring-grenadine-soft"
+          className="w-full rounded-md border border-line bg-card px-4 py-3 text-body text-ink outline-none focus:border-grenadine focus:ring-2 focus:ring-grenadine-soft"
         />
-      </div>
+        <button type="submit" className="mt-2 inline-flex min-h-11 items-center rounded-pill bg-grenadine px-4 py-2 text-body font-semibold text-paper">{locale === 'en' ? 'Search' : 'Rechercher'}</button>
+      </form>
 
       <div style={{ marginBottom: tg.space[5] }}>
         <Eyebrow color={tg.colors.ink60}>

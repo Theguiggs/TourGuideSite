@@ -1,77 +1,39 @@
-/**
- * Story 4.6 — Page d'accueil orientée guide (guide-first).
- */
 import { render, screen } from '@testing-library/react';
-import LandingPage from '../page';
+import LandingPage, { metadata } from '../page';
+import EnglishLanding from '../en/page';
+import { CreatorHome } from '@/components/home/creator-home';
 
-// CitiesSection fetche via getCities() ; TrackPageView émet de l'analytics.
-// On les neutralise pour isoler le rendu de la home.
-jest.mock('@/components/CitiesSection', () => ({
-  __esModule: true,
-  default: () => <div data-testid="cities-section" />,
-}));
-jest.mock('@/components/TrackPageView', () => ({
-  __esModule: true,
-  default: () => null,
-}));
+jest.mock('@/components/TrackPageView', () => ({ __esModule: true, default: () => null }));
+jest.mock('@/components/home/home-catalogue', () => ({ HomeCatalogue: () => <div data-testid="published-selection" /> }));
 
-beforeAll(() => {
-  // HeroCta utilise window.matchMedia (absent de jsdom).
-  Object.defineProperty(window, 'matchMedia', {
-    writable: true,
-    value: (query: string) => ({
-      matches: false,
-      media: query,
-      onchange: null,
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      addListener: jest.fn(),
-      removeListener: jest.fn(),
-      dispatchEvent: jest.fn(),
-    }),
-  });
-});
-
-describe('LandingPage (guide-first)', () => {
-  it('affiche le hero orienté guide (AC1)', () => {
+describe('EV-2 — accueil visiteur', () => {
+  it('place recherche et bibliothèque avant les suggestions et le parcours créateur', () => {
     render(<LandingPage />);
-    expect(
-      screen.getByRole('heading', {
-        level: 1,
-        name: /Donnez de la voix à votre ville/i,
-      }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Découvrez la ville autrement.');
+    expect(screen.getByRole('search')).toHaveAttribute('action', '/catalogue');
+    expect(screen.getByLabelText('Dans quelle ville ?')).toHaveAttribute('name', 'q');
+    expect(screen.getByRole('link', { name: 'Mes visites' })).toHaveAttribute('href', '/mes-achats');
+    expect(screen.getByRole('link', { name: 'Créer des visites' })).toHaveAttribute('href', '/creer-des-visites');
+    expect(screen.queryByText('Devenir guide')).not.toBeInTheDocument();
   });
-
-  it('expose un CTA « Devenir guide » vers /guide/signup (AC1)', () => {
-    render(<LandingPage />);
-    // Le hero rend une taille par écran (lot 3.4, plus de matchMedia) : deux
-    // liens dans le DOM, un seul visible.
-    const links = screen.getAllByRole('link', { name: /Devenir guide/i });
-    expect(links.length).toBeGreaterThanOrEqual(1);
-    for (const link of links) expect(link).toHaveAttribute('href', '/guide/signup');
+  it('propose le même parcours en anglais', () => {
+    render(<EnglishLanding />);
+    expect(screen.getByRole('search')).toHaveAttribute('action', '/en/catalogue');
+    expect(screen.getByRole('button', { name: 'Find a tour' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'My tours' })).toHaveAttribute('href', '/en/my-purchases');
+    expect(screen.getByRole('link', { name: 'Create tours' })).toHaveAttribute('href', '/en/create-tours');
   });
-
-  it('lie les 4 étapes aux ancres de la page d’aide (AC2)', () => {
-    render(<LandingPage />);
-    expect(screen.getByRole('link', { name: /Créez/i })).toHaveAttribute('href', '/aide#creer');
-    expect(screen.getByRole('link', { name: /Tracez/i })).toHaveAttribute('href', '/aide#tracer');
-    expect(screen.getByRole('link', { name: /Racontez/i })).toHaveAttribute('href', '/aide#raconter');
-    expect(screen.getByRole('link', { name: /Publiez/i })).toHaveAttribute('href', '/aide#publier');
+  it('aligne les métadonnées sur la découverte et l’écoute', () => {
+    expect(metadata.description).toContain('écoutez un extrait');
+    expect(metadata.openGraph).toEqual(expect.objectContaining({ url: '/', locale: 'fr_FR' }));
+    expect(metadata.twitter).toEqual(expect.objectContaining({ description: metadata.description }));
   });
-
-  it('conserve un bloc voyageur secondaire vers le catalogue (AC4)', () => {
-    render(<LandingPage />);
-    expect(
-      screen.getByRole('link', { name: /Voir le catalogue/i }),
-    ).toHaveAttribute('href', '/catalogue');
-    expect(screen.getByTestId('cities-section')).toBeInTheDocument();
-  });
-
-  it('clôture avec un CTA création de parcours (AC5)', () => {
-    render(<LandingPage />);
-    expect(
-      screen.getByRole('link', { name: /Créer mon premier parcours/i }),
-    ).toHaveAttribute('href', '/guide/signup');
+  it('conserve les étapes, ancres et accès du créateur sur sa page dédiée', () => {
+    render(<CreatorHome locale="fr" />);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Donnez de la voix à votre ville.');
+    expect(screen.getByRole('link', { name: 'Devenir guide' })).toHaveAttribute('href', '/guide/signup');
+    for (const [label, anchor] of [['Créez', 'creer'], ['Tracez', 'tracer'], ['Racontez', 'raconter'], ['Publiez', 'publier']]) {
+      expect(screen.getByRole('link', { name: new RegExp(label) })).toHaveAttribute('href', '/aide#' + anchor);
+    }
   });
 });

@@ -27,7 +27,7 @@ interface FooterProps {
 
 const FOOTER_COPY = {
   fr: {
-    tagline: 'Visites guidées audio. Hors-ligne, où que vous soyez.',
+    tagline: 'Des visites audio pour découvrir les villes à votre rythme.',
     navigation: 'Navigation',
     catalogue: 'Catalogue des visites',
     help: 'Aide',
@@ -40,7 +40,7 @@ const FOOTER_COPY = {
     rights: 'Tous droits réservés.',
   },
   en: {
-    tagline: 'Audio walking tours. Offline, wherever you are.',
+    tagline: 'Audio tours to discover cities at your own pace.',
     navigation: 'Navigation',
     catalogue: 'Tour catalogue',
     help: 'Help',
@@ -121,7 +121,7 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href="/guide/signup"
+                  href={locale === 'en' ? '/en/create-tours' : '/creer-des-visites'}
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
@@ -201,7 +201,7 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
           <span
             style={{
               marginLeft: '1rem',
-              opacity: 0.45,
+              opacity: 0.75,
               fontSize: tg.fontSize.caption ?? '0.75rem',
               letterSpacing: '0.04em',
             }}

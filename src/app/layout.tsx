@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   },
   description:
     "Découvrez les villes autrement avec Murmure. Visites guidées audio immersives, " +
-    "créées par des guides locaux passionnés. Téléchargez l'app gratuite.",
+    'créées par des guides locaux passionnés. Trouvez votre visite et écoutez sur le site.',
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: 'Murmure — Le monde a une voix.',
     description:
       "Audio guides éditoriaux pour explorer les villes autrement. " +
-      "Téléchargez l'app gratuite.",
+      'Trouvez votre visite et écoutez sur le site.',
     images: [
       {
         url: '/opengraph-image',

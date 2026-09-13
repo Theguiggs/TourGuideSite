@@ -60,6 +60,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...pair('/', '/en', { lastModified: built, changeFrequency: 'weekly', priority: 1.0 }, 0.9),
     ...pair('/catalogue', '/en/catalogue', { lastModified: catalogueDate, changeFrequency: 'daily', priority: 0.9 }, 0.8),
     ...pair('/aide', '/en/help', { lastModified: built, changeFrequency: 'monthly', priority: 0.6 }),
+    ...pair('/creer-des-visites', '/en/create-tours', { lastModified: built, changeFrequency: 'monthly', priority: 0.6 }),
     ...pair('/cgu', '/en/terms', { lastModified: built, changeFrequency: 'yearly', priority: 0.3 }),
     ...pair('/confidentialite', '/en/privacy', { lastModified: built, changeFrequency: 'yearly', priority: 0.3 }),
     ...pair('/supprimer-mon-compte', '/en/delete-account', { lastModified: built, changeFrequency: 'yearly', priority: 0.3 }),

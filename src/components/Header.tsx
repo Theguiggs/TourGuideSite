@@ -45,7 +45,7 @@ function HeaderContent({ locale = 'fr', onLocaleChange }: HeaderProps) {
       ? <button type="button" key={target} lang={target} aria-pressed={locale === target} className={`${navLink} min-w-11 justify-center rounded-md ${target === locale ? 'bg-paper-deep' : ''}`} onClick={() => { onLocaleChange(target); setMenuOpen(false); }}>{target.toUpperCase()}</button>
       : <Link key={target} href={languageHref(target)} hrefLang={target} aria-current={locale === target ? 'page' : undefined} className={`${navLink} min-w-11 justify-center rounded-md ${target === locale ? 'bg-paper-deep' : ''}`} onClick={() => setMenuOpen(false)}>{target.toUpperCase()}</Link>)}
   </div>;
-  const creatorLink = <Link href={isAdmin ? '/admin/moderation' : isGuide ? '/guide/studio' : '/guide/signup'} className={navLink} onClick={() => setMenuOpen(false)}>
+  const creatorLink = <Link href={isAdmin ? '/admin/moderation' : isGuide ? '/guide/studio' : locale === 'en' ? '/en/create-tours' : '/creer-des-visites'} className={navLink} onClick={() => setMenuOpen(false)}>
     <PanelsTopLeft size={16} className="mr-2" aria-hidden="true" />{isAdmin ? t('Administrer', 'Admin') : isGuide ? t('Mon Studio', 'My Studio') : t('Créer des visites', 'Create tours')}
   </Link>;
 

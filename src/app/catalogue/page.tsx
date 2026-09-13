@@ -21,7 +21,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function CataloguePage() {
+export default async function CataloguePage({ searchParams }: { searchParams: Promise<{ q?: string | string[] }> }) {
+  const { q } = await searchParams;
+  const query = typeof q === 'string' ? q.slice(0, 120) : '';
   const [cities, tours] = await Promise.all([getCities(), getAllTours()]);
 
   return (
@@ -29,7 +31,7 @@ export default async function CataloguePage() {
       <TrackPageView event={AnalyticsEvents.WEB_CATALOGUE_BROWSE} />
       {/* Owner-scoped purchases resolved client-side (localStorage Cognito session). */}
       <MyPurchasesStripClient />
-      <CatalogueViewCities cities={cities} tours={tours} />
+      <CatalogueViewCities key={query} cities={cities} tours={tours} initialQuery={query} />
     </>
   );
 }

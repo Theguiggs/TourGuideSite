@@ -7,7 +7,7 @@ process.env.E2E_RUN_PREFIX ??= `local-${process.pid}-${Date.now()}`;
 
 export default defineConfig({
   testDir: './e2e/tests',
-  testIgnore: ['**/pwa.spec.ts', '**/visitor-auth.spec.ts'], // Passes de production locale séparées.
+  testIgnore: ['**/pwa.spec.ts', '**/visitor-auth.spec.ts', '**/visitor-home.spec.ts'], // Passes de production locale séparées.
   fullyParallel: false,
   retries: process.env.CI ? 1 : 0,
   workers: 1,

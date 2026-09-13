@@ -46,6 +46,7 @@ describe('sitemap', () => {
       fr: `${SITE_URL}/cgu`,
       en: `${SITE_URL}/en/terms`,
     });
+    expect(entries.find((e) => e.url === `${SITE_URL}/creer-des-visites`)?.alternates?.languages).toEqual({ fr: `${SITE_URL}/creer-des-visites`, en: `${SITE_URL}/en/create-tours` });
   });
 
   it('n’invente aucune date : sans build ni visite, la page n’en annonce pas', async () => {

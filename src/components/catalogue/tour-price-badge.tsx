@@ -34,7 +34,7 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
     return (
       <span
         data-testid={`badge-free-${tour.id}`}
-        className="bg-olive-soft text-olive text-meta font-bold px-2 py-0.5 rounded-pill"
+        className="bg-olive-soft text-ink text-meta font-bold px-2 py-0.5 rounded-pill"
       >
         {locale === 'en' ? 'FREE' : 'GRATUIT'}
       </span>
@@ -56,7 +56,7 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
         data-testid={`badge-price-${tour.id}`}
         className="bg-grenadine-soft text-grenadine text-meta font-bold px-2 py-0.5 rounded-pill"
       >
-        {formatPrice(tour.priceCents)}
+        {formatPrice(tour.priceCents, locale)}
       </span>
     );
   }
