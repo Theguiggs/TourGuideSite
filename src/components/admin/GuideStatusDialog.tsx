@@ -1,4 +1,6 @@
 'use client';
+import { useAdminCopy } from '@/lib/admin/use-admin-copy';
+
 
 import { useId, useState } from 'react';
 import { Dialog } from '@/components/ui/Dialog';
@@ -47,6 +49,7 @@ export interface GuideStatusDialogProps {
  * par le guide lui-même.
  */
 export function GuideStatusDialog({ target, guideName, busy = false, error = null, onConfirm, onCancel }: GuideStatusDialogProps) {
+  const a = useAdminCopy();
   const copy = COPY[target];
   const titleId = useId();
   const reasonId = useId();
@@ -63,14 +66,13 @@ export function GuideStatusDialog({ target, guideName, busy = false, error = nul
           if (reasonOk && !busy) onConfirm(trimmed);
         }}
       >
-        <h2 id={titleId} className="font-display text-h5 text-ink">{copy.title}</h2>
+        <h2 id={titleId} className="font-display text-h5 text-ink">{a(copy.title)}</h2>
         <p className="mt-1 text-body font-medium text-ink-80">{guideName}</p>
-        <p className="mt-3 text-body text-ink-60">{copy.description}</p>
+        <p className="mt-3 text-body text-ink-60">{a(copy.description)}</p>
 
         {copy.reason && (
           <div className="mt-4">
-            <label htmlFor={reasonId} className="block text-meta font-semibold text-ink-80">
-              Motif <span className="text-danger">*</span>
+            <label htmlFor={reasonId} className="block text-meta font-semibold text-ink-80"> {a("Motif")} <span className="text-danger">*</span>
             </label>
             <textarea
               id={reasonId}
@@ -82,16 +84,16 @@ export function GuideStatusDialog({ target, guideName, busy = false, error = nul
               disabled={busy}
               data-testid="guide-status-reason"
               className="mt-1 w-full rounded-lg border border-line bg-paper px-3 py-2 text-body text-ink outline-none focus:border-grenadine"
-              placeholder="Ce que le guide lira : la règle enfreinte, ce qu'il peut corriger."
+              placeholder={a("Ce que le guide lira : la règle enfreinte, ce qu'il peut corriger.")}
             />
             <p className="mt-1 text-meta text-ink-40" aria-live="polite">
-              {trimmed.length < REASON_MIN_LENGTH ? `${trimmed.length}/${REASON_MIN_LENGTH} caractères minimum` : 'Le motif sera visible par le guide.'}
+              {trimmed.length < REASON_MIN_LENGTH ? a("{0}/{1} caractères minimum", trimmed.length, REASON_MIN_LENGTH) : a("Le motif sera visible par le guide.")}
             </p>
           </div>
         )}
 
         {error && (
-          <p role="alert" className="mt-4 rounded-lg bg-grenadine-soft px-3 py-2 text-body text-danger">{error}</p>
+          <p role="alert" className="mt-4 rounded-lg bg-grenadine-soft px-3 py-2 text-body text-danger">{a.error(error)}</p>
         )}
 
         <div className="mt-6 flex justify-end gap-2">
@@ -101,16 +103,14 @@ export function GuideStatusDialog({ target, guideName, busy = false, error = nul
             disabled={busy}
             autoFocus
             className="rounded-lg px-4 py-2 text-body font-medium text-ink-80 hover:bg-paper-deep disabled:opacity-50"
-          >
-            Annuler
-          </button>
+          > {a("Annuler")} </button>
           <button
             type="submit"
             disabled={busy || !reasonOk}
             data-testid="guide-status-confirm"
             className={`rounded-lg px-4 py-2 text-body font-medium text-white disabled:opacity-50 ${copy.danger ? 'bg-danger' : 'bg-olive'}`}
           >
-            {busy ? 'En cours…' : copy.confirm}
+            {busy ? a("En cours…") : a(copy.confirm)}
           </button>
         </div>
       </form>

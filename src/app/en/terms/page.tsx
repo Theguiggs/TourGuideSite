@@ -1,3 +1,4 @@
+import { legalPageMetadata } from '@/lib/legal/page-metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
@@ -5,14 +6,7 @@ import { Eyebrow } from '@murmure/design-system/web';
 import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
 import { LEGAL_IDENTITY, publisherLine } from '@/lib/legal/identity';
 
-export const metadata: Metadata = {
-  title: 'Terms of use',
-  description: 'Terms governing use of the Murmure app and web studio.',
-  alternates: {
-    canonical: '/en/terms',
-    languages: { fr: '/cgu', en: '/en/terms' },
-  },
-};
+export const metadata: Metadata = legalPageMetadata('terms', 'en');
 
 const CONTACT_EMAIL = LEGAL_IDENTITY.contactEmail;
 

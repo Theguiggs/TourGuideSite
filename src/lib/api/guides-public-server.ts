@@ -8,6 +8,8 @@
 import 'server-only';
 import type { GuideProfile, Tour } from '@/types/tour';
 import { shouldUseStubs } from '@/config/api-mode';
+import { parseTranslatedMetadata } from './translated-metadata';
+import { normalizeLanguageTag } from './audio-source-policy';
 import {
   listGuideProfilesServer,
   listGuideToursServer,
@@ -120,6 +122,9 @@ export async function getGuidePublicTours(guideId: string): Promise<Tour[]> {
     .map((t) => ({
       id: t.id,
       title: t.title,
+      sourceLanguage: normalizeLanguageTag((t as Record<string, unknown>).sourceLanguage) || undefined,
+      translatedTitles: parseTranslatedMetadata((t as Record<string, unknown>).translatedTitles),
+      translatedDescriptions: parseTranslatedMetadata((t as Record<string, unknown>).translatedDescriptions),
       slug: generateSlug(t.title),
       city: t.city,
       citySlug: generateSlug(t.city),

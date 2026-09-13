@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate, extendCopy } from '@/lib/i18n/translate';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import pkg from '../../package.json';
@@ -22,12 +24,12 @@ const BUILD_STAMP = [BUILD_SHA, BUILD_TIME].filter(Boolean).join(' · ');
 // Story 4.2 (T6) — Footer migré : tokens DS + lexique strict (Hors-ligne, Tour),
 // accents FR préservés (Télécharger, confidentialité, réservés).
 interface FooterProps {
-  locale?: 'fr' | 'en';
+  locale?: InterfaceLocale;
 }
 
-const FOOTER_COPY = {
+const FOOTER_COPY = extendCopy({
   fr: {
-    tagline: 'Visites guidées audio. Hors-ligne, où que vous soyez.',
+    tagline: 'Des visites audio pour découvrir les villes à votre rythme.',
     navigation: 'Navigation',
     catalogue: 'Catalogue des visites',
     help: 'Aide',
@@ -40,7 +42,7 @@ const FOOTER_COPY = {
     rights: 'Tous droits réservés.',
   },
   en: {
-    tagline: 'Audio walking tours. Offline, wherever you are.',
+    tagline: 'Audio tours to discover cities at your own pace.',
     navigation: 'Navigation',
     catalogue: 'Tour catalogue',
     help: 'Help',
@@ -52,13 +54,13 @@ const FOOTER_COPY = {
     storesSoon: 'Coming soon to the App Store and Google Play.',
     rights: 'All rights reserved.',
   },
-} as const;
+} as const);
 
 export default function Footer({ locale = 'fr' }: FooterProps) {
   const year = new Date().getFullYear();
   const copy = FOOTER_COPY[locale];
-  const catalogueHref = locale === 'en' ? '/en/catalogue' : '/catalogue';
-  const helpHref = locale === 'en' ? '/en/help' : '/aide';
+  const catalogueHref = translate(locale, '/catalogue', '/en/catalogue');
+  const helpHref = translate(locale, '/aide', '/en/help');
   return (
     <footer
       className="bg-ink"
@@ -121,7 +123,7 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href="/guide/signup"
+                  href={translate(locale, '/creer-des-visites', '/en/create-tours')}
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
@@ -130,7 +132,7 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href={locale === 'en' ? '/en/terms' : '/cgu'}
+                  href={translate(locale, '/cgu', '/en/terms')}
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
@@ -139,7 +141,7 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href={locale === 'en' ? '/en/privacy' : '/confidentialite'}
+                  href={translate(locale, '/confidentialite', '/en/privacy')}
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
@@ -148,7 +150,7 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href={locale === 'en' ? '/en/delete-account' : '/supprimer-mon-compte'}
+                  href={translate(locale, '/supprimer-mon-compte', '/en/delete-account')}
                   style={{ color: tg.colors.paperSoft }}
                   className="hover:opacity-80"
                 >
@@ -201,7 +203,7 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
           <span
             style={{
               marginLeft: '1rem',
-              opacity: 0.45,
+              opacity: 0.75,
               fontSize: tg.fontSize.caption ?? '0.75rem',
               letterSpacing: '0.04em',
             }}

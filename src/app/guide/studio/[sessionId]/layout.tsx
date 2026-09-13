@@ -11,6 +11,7 @@ import { getStudioSession } from '@/lib/api/studio';
 import { logger } from '@/lib/logger';
 import { WizardShell } from '@/components/studio/wizard';
 import { WIZARD_TABS, type WizardTabKey } from '@/lib/studio/wizard-helpers';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 function resolveActiveTab(pathname: string, sessionId: string): WizardTabKey {
   const suffix = pathname.replace(`/guide/studio/${sessionId}`, '').replace(/^\//, '');
@@ -28,6 +29,13 @@ export default function SessionLayout({ children }: { children: React.ReactNode 
   const params = useParams<{ sessionId: string }>();
   const pathname = usePathname();
   const sessionId = params.sessionId;
+  const { t } = useStudioLocale();
+  // `t` est lu via une ref dans l'effet de chargement : l'ajouter à ses
+  // dépendances annulerait une lecture en cours à chaque bascule de langue.
+  const tRef = useRef(t);
+  useEffect(() => {
+    tRef.current = t;
+  }, [t]);
 
   const session = useStudioSessionStore(selectActiveSession);
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
@@ -64,14 +72,14 @@ export default function SessionLayout({ children }: { children: React.ReactNode 
       .then((sess) => {
         if (cancelled) return;
         if (sess) setActiveSession(sess);
-        setLoadOutcome({ sessionId, error: sess ? null : 'Session introuvable.' });
+        setLoadOutcome({ sessionId, error: sess ? null : tRef.current('Session introuvable.', 'Session not found.') });
       })
       .catch((e: unknown) => {
         // Le rejet n'était pas traité : la lecture restait « en cours » pour
         // toujours et l'en-tête gardait son squelette, sans jamais dire pourquoi.
         if (cancelled) return;
         logger.error('SessionLayout', 'Session load failed', { sessionId, error: String(e) });
-        setLoadOutcome({ sessionId, error: 'Impossible de charger cette session.' });
+        setLoadOutcome({ sessionId, error: tRef.current('Impossible de charger cette session.', 'Unable to load this session.') });
       });
     return () => {
       cancelled = true;
@@ -100,7 +108,7 @@ export default function SessionLayout({ children }: { children: React.ReactNode 
             }}
             className="mt-2 rounded-lg border border-ocre bg-ocre-soft px-3 py-1.5 text-caption font-medium text-ink transition hover:opacity-90"
           >
-            Réessayer
+            {t('Réessayer', 'Retry')}
           </button>
         </div>
       )}

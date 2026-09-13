@@ -32,8 +32,8 @@ export function WizField({
   helper,
   children,
 }: WizFieldProps) {
-  // L'erreur est reliée au champ (`aria-describedby` + `aria-invalid`) quand
-  // l'enfant est un élément unique : un lecteur d'écran l'entend avec le champ,
+  // L’erreur est reliée au champ (`aria-describedby` + `aria-invalid`) quand
+  // l’enfant est un élément unique : un lecteur d’écran l’entend avec le champ,
   // pas seulement comme une alerte flottante.
   const errorId = htmlFor ? `${htmlFor}-error` : undefined;
   const single = Children.count(children) === 1 ? Children.only(children) : null;

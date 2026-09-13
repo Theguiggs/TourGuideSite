@@ -1,3 +1,4 @@
+import { legalPageMetadata } from '@/lib/legal/page-metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
@@ -12,15 +13,7 @@ import { LEGAL_IDENTITY, publisherLine } from '@/lib/legal/identity';
  * de `lib/legal/identity.ts`. À relire par un juriste avant toute évolution
  * commerciale (rémunération des guides, abonnements).
  */
-export const metadata: Metadata = {
-  title: "Conditions Générales d’Utilisation",
-  description:
-    "Les conditions qui régissent l’utilisation de l’application et de l’atelier web Murmure.",
-  alternates: {
-    canonical: '/cgu',
-    languages: {fr: '/cgu', en: '/en/terms'},
-  },
-};
+export const metadata: Metadata = legalPageMetadata('terms', 'fr');
 
 const EFFECTIVE_DATE = LEGAL_IDENTITY.effectiveDate.fr;
 const CONTACT_EMAIL = LEGAL_IDENTITY.contactEmail;

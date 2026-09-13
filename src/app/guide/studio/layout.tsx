@@ -19,7 +19,7 @@ import {
   type SidebarKey,
 } from '@/components/studio/shell';
 import { Toaster } from '@/components/studio/feedback';
-import { StudioLocaleProvider } from '@/lib/i18n/studio-locale';
+import { StudioLocaleProvider, useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'StudioLayout';
 
@@ -44,6 +44,7 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [navigationOpen, setNavigationOpen] = useState(false);
   const { user } = useAuth();
+  const { t } = useStudioLocale();
   // Le bandeau n'est montré qu'une fois le profil consulté : sinon il
   // apparaît puis disparaît quand le profil confirme le consentement.
   const [profileChecked, setProfileChecked] = useState(false);
@@ -88,7 +89,7 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
   if (needsProfileCheck && !profileChecked) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-busy="true">
-        <p className="text-ink-60">Chargement…</p>
+        <p className="text-ink-60">{t('Chargement…', 'Loading…')}</p>
       </div>
     );
   }
@@ -116,7 +117,7 @@ function StudioLayoutContent({ children }: { children: React.ReactNode }) {
           <>
             <button
               type="button"
-              aria-label="Fermer la navigation"
+              aria-label={t('Fermer la navigation', 'Close navigation')}
               onClick={() => setNavigationOpen(false)}
               className="fixed inset-0 top-16 z-40 bg-ink/30 lg:hidden"
             />

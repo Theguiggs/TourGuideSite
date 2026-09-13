@@ -1,4 +1,6 @@
 import type { NarrationMode, RoutePath, StudioScene, StudioSession } from '@/types/studio';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { completenessCopy } from './completeness-copy';
 
 export type VisitCompletenessCheckId =
   | 'narration_mode'
@@ -60,7 +62,8 @@ function makeCheck(
  * Le mode n'est jamais inféré d'une clé audio. Une donnée historique sans mode
  * reste donc explicitement bloquée jusqu'à migration.
  */
-export function evaluateVisitCompleteness(input: VisitCompletenessInput): VisitCompletenessReport {
+export function evaluateVisitCompleteness(input: VisitCompletenessInput, locale: InterfaceLocale = 'fr'): VisitCompletenessReport {
+  const c = (key: Parameters<typeof completenessCopy>[1], value?: string | number) => completenessCopy(locale, key, value);
   const scenes = input.scenes.filter((scene) => !scene.archived);
   const mode =
     input.narrationMode === 'recording' || input.narrationMode === 'tts_on_demand'
@@ -79,28 +82,28 @@ export function evaluateVisitCompleteness(input: VisitCompletenessInput): VisitC
     makeCheck(
       'narration_mode',
       mode !== null,
-      mode === null ? 'Mode de narration manquant.' : `Mode déclaré : ${mode}.`,
+      mode === null ? c('missingMode') : c('mode', mode),
     ),
     makeCheck(
       'source_text',
       scenes.length > 0 && withoutText.length === 0 && withoutTitle.length === 0 && textTooLong.length === 0,
       withoutTitle.length > 0
-        ? `${withoutTitle.length} scène(s) sans titre.`
+        ? c('missingTitle', withoutTitle.length)
         : textTooLong.length > 0
-        ? `${textTooLong.length} scène(s) dépassent la limite de 10 000 caractères.`
+        ? c('longText', textTooLong.length)
         : withoutText.length === 0
-        ? `${scenes.length} texte(s) source finalisé(s).`
-        : `${withoutText.length} scène(s) sans texte final.`,
+        ? c('sourceText', scenes.length)
+        : c('missingText', withoutText.length),
       [...withoutText, ...withoutTitle, ...textTooLong].map((scene) => scene.id),
     ),
     makeCheck(
       'source_audio',
       mode === 'tts_on_demand' || (mode === 'recording' && withoutHumanAudio.length === 0),
       mode === 'tts_on_demand'
-        ? 'Audio source non applicable au mode TTS à la demande.'
+        ? c('ttsAudio')
         : withoutHumanAudio.length === 0
-          ? 'Toutes les scènes possèdent un audio humain.'
-          : `${withoutHumanAudio.length} scène(s) sans audio humain attesté.`,
+          ? c('humanAudio')
+          : c('missingAudio', withoutHumanAudio.length),
       mode === 'recording' ? withoutHumanAudio.map((scene) => scene.id) : [],
     ),
     makeCheck(
@@ -112,13 +115,13 @@ export function evaluateVisitCompleteness(input: VisitCompletenessInput): VisitC
           : false,
       mode === 'tts_on_demand'
         ? withAudio.length === 0
-          ? 'Aucun audio n’est soumis avant fabrication.'
-          : `${withAudio.length} audio(s) présent(s) malgré le mode TTS.`
+          ? c('noAudio')
+          : c('unexpectedAudio', withAudio.length)
         : mode === 'recording'
           ? withoutHumanAudio.length === 0
-            ? 'La déclaration audio correspond au mode Ma voix.'
-            : 'La déclaration Ma voix est incomplète.'
-          : 'La cohérence audio ne peut pas être vérifiée sans mode.',
+            ? c('consistent')
+            : c('incomplete')
+          : c('unknown'),
       mode === 'tts_on_demand'
         ? withAudio.map((scene) => scene.id)
         : withoutHumanAudio.map((scene) => scene.id),
@@ -127,10 +130,10 @@ export function evaluateVisitCompleteness(input: VisitCompletenessInput): VisitC
       'tts_readiness',
       mode !== 'tts_on_demand' || (sourceLanguageReady && withoutText.length === 0 && textTooLong.length === 0),
       mode !== 'tts_on_demand'
-        ? 'Non applicable au mode Ma voix.'
+        ? c('notApplicable')
         : sourceLanguageReady && withoutText.length === 0 && textTooLong.length === 0
-          ? `Textes prêts pour une fabrication en ${input.sourceLanguage!.toUpperCase()}.`
-          : 'La langue source ou un texte final manque pour la fabrication.',
+          ? c('ready', input.sourceLanguage!.toUpperCase())
+          : c('missingSource'),
       mode === 'tts_on_demand' ? [...withoutText, ...textTooLong].map((scene) => scene.id) : [],
     ),
   ];
@@ -148,12 +151,13 @@ export function evaluateVisitCompleteness(input: VisitCompletenessInput): VisitC
 export function evaluateStudioVisit(
   session: Pick<StudioSession, 'narrationMode' | 'language'>,
   scenes: VisitCompletenessInput['scenes'],
+  locale: InterfaceLocale = 'fr',
 ): VisitCompletenessReport {
   return evaluateVisitCompleteness({
     narrationMode: session.narrationMode,
     sourceLanguage: session.language,
     scenes,
-  });
+  }, locale);
 }
 
 export function routePathIsUsable(routePath: RoutePath | null | undefined): boolean {

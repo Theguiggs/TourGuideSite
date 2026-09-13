@@ -1,4 +1,7 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
+import { translate } from '@/lib/i18n/translate';
 
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
@@ -48,21 +51,21 @@ export default function StudioRevenusPage() {
   const [data, setData] = useState<RevenueData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const copy = useMemo(() => locale === 'en' ? {
-    loadError: 'Unable to load revenue.', guideOnly: 'The Studio is for guides. Create a guide profile to get started.', unexpected: 'Unexpected error.', retry: 'Try again',
-    emptyTitle: 'No paid plays yet', emptyText: 'Your first earnings arrive as soon as a traveller listens to one of your paid tours.', viewTours: 'View my tours',
-    eyebrow: 'Revenue · last 12 months', titleStart: 'Your', titleEmphasis: 'earnings', intro: `You receive ${GUIDE_SHARE_PCT}% of every paid play. Payments are made monthly on the 5th of the following month.`,
-    soon: 'Coming soon', csv: 'CSV statement', bank: 'Bank details', expected: 'To be received on', ytd: 'Year to date', months: 'months', average: 'average',
-    total: 'Total earned', since: 'Since registration', activity: 'months active', plays: 'plays', detail: 'By tour · this month', noRevenue: 'No tour generated revenue this month.',
-    totalMonth: 'Total', footer: `Murmure retains ${100 - GUIDE_SHARE_PCT}% per paid play (hosting, payments, app and marketing). 0% on free plays. Average revenue / play:`,
-  } : {
+  const copy = useMemo(() => localizeValue(locale, {
     loadError: 'Impossible de charger les revenus.', guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.', unexpected: 'Erreur inattendue.', retry: 'Réessayer',
     emptyTitle: 'Aucune écoute payante encore', emptyText: 'Vos premiers euros arrivent dès qu’un voyageur écoute une de vos visites payantes.', viewTours: 'Voir mes visites',
     eyebrow: 'Revenus · les 12 derniers mois', titleStart: 'Vos', titleEmphasis: 'recettes', intro: `Vous touchez ${GUIDE_SHARE_PCT} % de chaque écoute payante. Les versements sont mensuels, le 5 du mois suivant.`,
     soon: 'Bientôt disponible', csv: 'Relevé CSV', bank: 'Coordonnées bancaires', expected: 'À recevoir le', ytd: 'Cumul', months: 'mois', average: 'moyenne',
     total: 'Total cumulé', since: "Depuis l'inscription", activity: "mois d'activité", plays: 'écoutes', detail: 'Détail par visite · ce mois', noRevenue: 'Aucune visite ne génère de revenus ce mois.',
     totalMonth: 'Total', footer: `Murmure prélève ${100 - GUIDE_SHARE_PCT} % par écoute payante (hébergement, paiements, app et marketing). 0 % sur les écoutes gratuites. Revenu moyen / écoute :`,
-  }, [locale]);
+  }, {
+    loadError: 'Unable to load revenue.', guideOnly: 'The Studio is for guides. Create a guide profile to get started.', unexpected: 'Unexpected error.', retry: 'Try again',
+    emptyTitle: 'No paid plays yet', emptyText: 'Your first earnings arrive as soon as a traveller listens to one of your paid tours.', viewTours: 'View my tours',
+    eyebrow: 'Revenue · last 12 months', titleStart: 'Your', titleEmphasis: 'earnings', intro: `You receive ${GUIDE_SHARE_PCT}% of every paid play. Payments are made monthly on the 5th of the following month.`,
+    soon: 'Coming soon', csv: 'CSV statement', bank: 'Bank details', expected: 'To be received on', ytd: 'Year to date', months: 'months', average: 'average',
+    total: 'Total earned', since: 'Since registration', activity: 'months active', plays: 'plays', detail: 'By tour · this month', noRevenue: 'No tour generated revenue this month.',
+    totalMonth: 'Total', footer: `Murmure retains ${100 - GUIDE_SHARE_PCT}% per paid play (hosting, payments, app and marketing). 0% on free plays. Average revenue / play:`,
+  }), [locale]);
 
   const load = useCallback(async (guideId: string) => {
     setIsLoading(true);
@@ -104,7 +107,7 @@ export default function StudioRevenusPage() {
     return last12.map((m) => {
       if (locale === 'fr') return { label: monthLabel(m.month), value: m.guideShare };
       const [year, month] = m.month.split('-').map(Number);
-      const label = year && month ? new Date(year, month - 1, 1).toLocaleDateString('en-GB', { month: 'short', year: '2-digit' }) : m.month;
+      const label = year && month ? new Date(year, month - 1, 1).toLocaleDateString(locale, { month: 'short', year: '2-digit' }) : m.month;
       return { label, value: m.guideShare };
     });
   }, [data, locale]);
@@ -217,7 +220,7 @@ export default function StudioRevenusPage() {
   // Total since inception
   const totalListens = months.reduce((acc, m) => acc + m.listens, 0);
   const avgPerListen = totalListens > 0 ? summary.total / totalListens : 0;
-  const paymentLabel = payment.date.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  const paymentLabel = payment.date.toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'), { day: 'numeric', month: 'long', year: 'numeric' });
 
   return (
     <div className="p-6 lg:p-8 max-w-7xl mx-auto">
@@ -271,7 +274,7 @@ export default function StudioRevenusPage() {
           eyebrow={copy.total}
           value={formatEuros(summary.total, { withCents: false })}
           footer={copy.since}
-          italicNote={`${months.length} ${copy.activity} · ${totalListens.toLocaleString(locale === 'en' ? 'en-GB' : 'fr-FR')} ${copy.plays}`}
+          italicNote={`${months.length} ${copy.activity} · ${totalListens.toLocaleString(translate(locale, 'fr-FR', 'en-GB'))} ${copy.plays}`}
         />
       </div>
 

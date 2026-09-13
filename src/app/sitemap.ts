@@ -1,3 +1,5 @@
+import { SITE_LOCALES } from '@/lib/i18n/locales';
+import { localizePublicPath } from '@/lib/i18n/public-routes';
 import type { MetadataRoute } from 'next';
 import { getCities, getAllTours } from '@/lib/api/tours-server';
 import { getAllPublicGuides } from '@/lib/api/guides-public-server';
@@ -37,11 +39,9 @@ function pair(
   base: Omit<MetadataRoute.Sitemap[number], 'url' | 'alternates'>,
   enPriority?: number,
 ): MetadataRoute.Sitemap {
-  const alternates = { languages: { fr: `${SITE_URL}${frPath}`, en: `${SITE_URL}${enPath}` } };
-  return [
-    { url: `${SITE_URL}${frPath}`, ...base, alternates },
-    { url: `${SITE_URL}${enPath}`, ...base, priority: enPriority ?? base.priority, alternates },
-  ];
+  const paths = Object.fromEntries(SITE_LOCALES.map(locale => [locale, `${SITE_URL}${locale === 'en' ? enPath : localizePublicPath(frPath, locale)}`]));
+  const alternates = { languages: paths };
+  return SITE_LOCALES.map(locale => ({ url: paths[locale], ...base, priority: locale === 'fr' ? base.priority : enPriority ?? base.priority, alternates }));
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -60,6 +60,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...pair('/', '/en', { lastModified: built, changeFrequency: 'weekly', priority: 1.0 }, 0.9),
     ...pair('/catalogue', '/en/catalogue', { lastModified: catalogueDate, changeFrequency: 'daily', priority: 0.9 }, 0.8),
     ...pair('/aide', '/en/help', { lastModified: built, changeFrequency: 'monthly', priority: 0.6 }),
+    ...pair('/creer-des-visites', '/en/create-tours', { lastModified: built, changeFrequency: 'monthly', priority: 0.6 }),
     ...pair('/cgu', '/en/terms', { lastModified: built, changeFrequency: 'yearly', priority: 0.3 }),
     ...pair('/confidentialite', '/en/privacy', { lastModified: built, changeFrequency: 'yearly', priority: 0.3 }),
     ...pair('/supprimer-mon-compte', '/en/delete-account', { lastModified: built, changeFrequency: 'yearly', priority: 0.3 }),
@@ -87,8 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ),
   );
 
-  const guidePages: MetadataRoute.Sitemap = guides.map((guide) => ({
-    url: `${SITE_URL}/guides/${guide.slug}`,
+  const guidePages: MetadataRoute.Sitemap = guides.flatMap((guide) => pair(`/guides/${guide.slug}`, `/en/guides/${guide.slug}`, {
     lastModified: latest(tours.filter((t) => t.guideId === guide.id).map(tourDate)) ?? built,
     changeFrequency: 'weekly' as const,
     priority: 0.6,

@@ -1,20 +1,29 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 import Link from 'next/link';
 import { S3Image } from '@/components/studio/s3-image';
 import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
 import { formatPrice, formatPurchaseDate } from '@/lib/catalogue/tour-pricing';
 import type { PurchasedTour } from '@/types/purchase';
+import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
+import { tg } from '@murmure/design-system/web';
+import { Play } from 'lucide-react';
+import { LISTEN_ANCHOR, PURCHASE_LISTEN_COPY } from './scene-player/listen-link';
 
 interface PurchasedTourCardProps {
   purchase: PurchasedTour;
-  locale?: 'fr' | 'en';
+  locale?: InterfaceLocale;
+  resume?: boolean;
 }
 
 /** One owned tour with its purchase metadata (date + amount paid). */
-export function PurchasedTourCard({ purchase, locale = 'fr' }: PurchasedTourCardProps) {
-  const { tour, purchasedAt, amountCents } = purchase;
+export function PurchasedTourCard({ purchase, locale = 'fr', resume = false }: PurchasedTourCardProps) {
+  const { purchasedAt, amountCents } = purchase;
+  const tour = localizeTour(purchase.tour, locale);
+  const copy = PURCHASE_LISTEN_COPY[locale];
   const date = formatPurchaseDate(purchasedAt, locale);
   const amount = formatPrice(amountCents, locale);
-  const meta = [date && `${locale === 'en' ? 'Purchased on' : 'Acheté le'} ${date}`, amount]
+  const meta = [date && `${copy.purchasedOn} ${date}`, amount]
     .filter(Boolean)
     .join(' · ');
   // The catalogue page only resolves published tours — linking an owned-but-
@@ -45,14 +54,14 @@ export function PurchasedTourCard({ purchase, locale = 'fr' }: PurchasedTourCard
           <TourPriceBadge tour={tour} locale={locale} />
         </div>
         <p className="text-body text-ink-60 mb-2">
-          {tour.city} &middot; {tour.duration} min &middot; {tour.distance} km
+          {tour.city}{Number.isFinite(tour.duration) && tour.duration > 0 ? ` · ${tour.duration} min` : ''}{Number.isFinite(tour.distance) && tour.distance > 0 ? ` · ${tour.distance} km` : ''}
         </p>
         {meta && <p className="text-meta text-ink-60">{meta}</p>}
+        {tour.metadataFallback && <p className="text-meta text-ink-60">{METADATA_FALLBACK_COPY[locale]}</p>}
+        {published && <span style={{ display: 'flex', minHeight: 44, alignItems: 'center', gap: tg.space[2], marginTop: tg.space[3], color: tg.colors.ink, fontWeight: 600 }}><Play size={16} aria-hidden="true" />{resume ? (translate(locale, 'Reprendre', 'Resume')) : copy.listen}</span>}
         {!published && (
           <p className="text-meta text-ink-60 mt-1 italic">
-            {locale === 'en'
-              ? 'Currently unavailable in the catalogue - find it in the Murmure app.'
-              : "Indisponible au catalogue actuellement — retrouvez-la dans l'app Murmure."}
+            {copy.unavailableDetail}
           </p>
         )}
       </div>
@@ -72,7 +81,9 @@ export function PurchasedTourCard({ purchase, locale = 'fr' }: PurchasedTourCard
 
   return (
     <Link
-      href={`${locale === 'en' ? '/en' : ''}/catalogue/${tour.citySlug}/${tour.slug}`}
+      href={`${translate(locale, '', '/en')}/catalogue/${tour.citySlug}/${tour.slug}${LISTEN_ANCHOR}`}
+      prefetch={false}
+      aria-label={resume ? `${translate(locale, 'Reprendre', 'Resume')} — ${tour.title}` : copy.label(tour.title)}
       data-testid={`purchase-card-${tour.id}`}
       className="block rounded-xl border border-line hover:shadow-md transition-shadow overflow-hidden"
     >

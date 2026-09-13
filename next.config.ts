@@ -6,6 +6,7 @@ import type { NextConfig } from 'next';
 // peut pas porter de nonce, et c'est pourquoi elle portait `'unsafe-inline'`.
 
 const nextConfig: NextConfig = {
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   // Empreinte de framework offerte gratuitement aux scanners : retirée.
   poweredByHeader: false,
   transpilePackages: ['@murmure/design-system'],
@@ -16,8 +17,13 @@ const nextConfig: NextConfig = {
   },
   output: 'standalone',
   typescript: { ignoreBuildErrors: process.env.SKIP_NEXT_TYPECHECK === 'true' },
+  async rewrites() {
+    return [{ source: '/hors-ligne', destination: '/offline/fr.html' }, { source: '/en/hors-ligne', destination: '/offline/en.html' },
+      ...['es', 'de', 'it', 'nl'].map(locale => ({ source: `/${locale}/hors-ligne`, destination: `/offline/${locale}.html` }))];
+  },
   async headers() {
     return [
+      { source: '/sw.js', headers: [{ key: 'Cache-Control', value: 'no-cache' }, { key: 'Service-Worker-Allowed', value: '/' }] },
       {
         source: '/(.*)',
         headers: [

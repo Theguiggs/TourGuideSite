@@ -1,12 +1,10 @@
 /**
  * Pending tour-purchase confirmations (mon-1.3b robustness, "web→app loop").
  *
- * Without a Stripe webhook backstop, the only grant path is the client calling
- * confirmTourPurchase after Stripe takes the payment. If the tab dies in that
- * window, the user paid but isn't granted. We persist the paymentIntentId at
- * payment start and replay confirmTourPurchase on the next load — it's idempotent
- * and verifies the payment with Stripe (status=succeeded + caller match), so a
- * replay of an unpaid/abandoned PI simply fails and is dropped.
+ * Le webhook Stripe traite les achats de visite. Cette file fournit un second
+ * chemin de confirmation au retour dans le navigateur : le serveur vérifie
+ * toujours le paiement et son propriétaire, sans faire confiance au stockage.
+ * Un intent non payé ne donne aucun droit.
  *
  * localStorage-backed, SSR-safe (no-op without `window`).
  */
@@ -23,7 +21,7 @@ export interface PendingTourConfirm {
 }
 
 function isBrowser(): boolean {
-  return typeof window !== 'undefined' && !!window.localStorage;
+  try { return typeof window !== 'undefined' && !!window.localStorage; } catch { return false; }
 }
 
 function read(): PendingTourConfirm[] {

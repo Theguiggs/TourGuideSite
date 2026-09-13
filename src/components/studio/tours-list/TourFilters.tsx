@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import type {
   TourSortBy,
@@ -33,13 +35,13 @@ export function TourFilters({
   counts,
 }: TourFiltersProps) {
   const { locale } = useStudioLocale();
-  const copy = locale === 'en' ? {
-    search: 'Search tours...', all: 'All', live: 'Live', draft: 'Drafts', review: 'In review', sort: 'Sort:',
-    most_played: 'Most played', recently_modified: 'Recently updated', alphabetical: 'Alphabetical',
-  } : {
+  const copy = localizeValue(locale, {
     search: 'Chercher une visite...', all: 'Toutes', live: 'En ligne', draft: 'Brouillons', review: 'En relecture', sort: 'Tri :',
     most_played: 'Plus écoutées', recently_modified: 'Récemment modifiées', alphabetical: 'Alphabétique',
-  };
+  }, {
+    search: 'Search tours...', all: 'All', live: 'Live', draft: 'Drafts', review: 'In review', sort: 'Sort:',
+    most_played: 'Most played', recently_modified: 'Recently updated', alphabetical: 'Alphabetical',
+  });
   const tabs: ReadonlyArray<{ key: TourStatusFilter; label: string }> = [
     { key: 'all', label: copy.all }, { key: 'live', label: copy.live },
     { key: 'draft', label: copy.draft }, { key: 'review', label: copy.review },

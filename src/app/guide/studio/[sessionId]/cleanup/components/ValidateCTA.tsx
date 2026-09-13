@@ -1,6 +1,7 @@
 'use client';
 
 import type { ValidationResult } from '../lib/validation';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface ValidateCTAProps {
   validation: ValidationResult;
@@ -15,9 +16,10 @@ interface ValidateCTAProps {
  * when enabled.
  */
 export function ValidateCTA({ validation, busy, onValidate }: ValidateCTAProps) {
+  const { t } = useStudioLocale();
   const disabled = !validation.ready || busy;
   const title = validation.ready
-    ? 'Prêt à valider'
+    ? t('Prêt à valider', 'Ready to validate')
     : validation.reasons.join(' · ');
 
   return (
@@ -28,7 +30,7 @@ export function ValidateCTA({ validation, busy, onValidate }: ValidateCTAProps) 
       <div className="flex-1 min-w-0 text-meta text-ink-60" data-testid="validate-cta-reasons">
         {validation.ready ? (
           <span className="text-success font-medium" data-testid="validate-cta-ready">
-            Prêt à valider
+            {t('Prêt à valider', 'Ready to validate')}
           </span>
         ) : (
           <ul className="list-disc list-inside">
@@ -39,7 +41,7 @@ export function ValidateCTA({ validation, busy, onValidate }: ValidateCTAProps) 
             ))}
             {validation.reasons.length > 3 && (
               <li className="text-ink-40">
-                +{validation.reasons.length - 3} autre(s)
+                +{validation.reasons.length - 3} {t('autre(s)', 'other(s)')}
               </li>
             )}
           </ul>
@@ -58,7 +60,7 @@ export function ValidateCTA({ validation, busy, onValidate }: ValidateCTAProps) 
             : 'bg-grenadine text-white hover:opacity-90'
         }`}
       >
-        {busy ? 'Validation...' : 'Valider et passer en édition'}
+        {busy ? t('Validation...', 'Validating...') : t('Valider et passer en édition', 'Validate and move to editing')}
       </button>
     </div>
   );

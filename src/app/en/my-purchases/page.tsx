@@ -1,15 +1,16 @@
+import { extendCopy } from '@/lib/i18n/translate';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MesVisitesContent } from '@/components/catalogue/mes-visites-content';
 import { PageTitle } from '@murmure/design-system/web';
 
 export const metadata: Metadata = {
-  title: 'My purchases',
+  title: 'My tours',
   description: 'Find the audio tours you purchased with your Murmure account.',
   robots: {index: false, follow: false},
   alternates: {
     canonical: '/en/my-purchases',
-    languages: {fr: '/mes-achats', en: '/en/my-purchases'},
+    languages: extendCopy({fr: '/mes-achats', en: '/en/my-purchases'}),
   },
 };
 
@@ -19,9 +20,9 @@ export default function MyPurchasesPage() {
       <nav className="text-body text-ink-60 mb-6" aria-label="Breadcrumb">
         <Link href="/en/catalogue" className="hover:text-grenadine">Catalogue</Link>
         <span className="mx-2">/</span>
-        <span className="text-ink">My purchases</span>
+        <span className="text-ink">My tours</span>
       </nav>
-      <PageTitle className="mb-2">My purchases</PageTitle>
+      <PageTitle className="mb-2">My tours</PageTitle>
       <MesVisitesContent locale="en" />
     </div>
   );

@@ -1,6 +1,7 @@
 import { tg } from '@murmure/design-system/tokens';
 import { Card, NumberMark } from '@murmure/design-system/web';
 import type { HelpStep } from '../_content';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
 
 /**
  * Story 4.6 — Carte d'étape de la page d'aide.
@@ -9,7 +10,7 @@ import type { HelpStep } from '../_content';
  * (« Comment ça marche »). `scrollMarginTop` évite que le titre passe sous
  * le Header sticky (h-16 = 64px).
  */
-export default function StepCard({ step, locale = 'fr' }: { step: HelpStep; locale?: 'fr' | 'en' }) {
+export default function StepCard({ step, locale = 'fr' }: { step: HelpStep; locale?: InterfaceLocale }) {
   return (
     <article id={step.id} style={{ scrollMarginTop: '88px' }}>
       <Card variant="flat">
@@ -29,6 +30,8 @@ export default function StepCard({ step, locale = 'fr' }: { step: HelpStep; loca
               color: tg.colors.ink,
               fontSize: tg.fontSize.h5,
               lineHeight: 1.2,
+              minWidth: 0,
+              overflowWrap: 'anywhere',
               margin: 0,
             }}
           >
@@ -60,7 +63,7 @@ export default function StepCard({ step, locale = 'fr' }: { step: HelpStep; loca
                 borderLeft: `3px solid ${tg.colors.grenadine}`,
               }}
             >
-              <span style={{ fontWeight: 600 }}>{locale === 'en' ? 'Tip - ' : 'Astuce — '}</span>
+              <span style={{ fontWeight: 600 }}>{{fr: 'Astuce — ', en: 'Tip - ', es: 'Consejo — ', de: 'Tipp — ', it: 'Consiglio — ', nl: 'Tip — '}[locale]}</span>
               {step.tip}
             </p>
           )}

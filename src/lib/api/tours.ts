@@ -3,6 +3,8 @@ import { shouldUseStubs } from '@/config/api-mode';
 import * as appsync from './appsync-client';
 import { mapWithConcurrency } from './published-tour-content';
 import { mapScenesToPois } from '@/lib/catalogue/scene-pois';
+import { parseTranslatedMetadata } from './translated-metadata';
+import { normalizeLanguageTag } from './audio-source-policy';
 
 /**
  * Tour data access layer.
@@ -217,31 +219,22 @@ function publishedLanguageAudioTypes(
 }
 
 /**
- * Resolve availableLanguages for a tour.
- * First tries the field on the tour object (if schema is deployed).
- * Fallback: derive from TourLanguagePurchases (active).
+ * Project the current tour's source and published audio languages.
+ * Legacy language/FR defaults apply only when the source field is absent.
  */
-// Cache for available languages (avoid repeated lookups per request)
-const _availableLangsCache: Map<string, string[]> = new Map();
-
 async function resolveAvailableLanguages(tour: Record<string, unknown>): Promise<string[]> {
-  const tourId = tour.id as string;
-  const sourceLang = (tour.language as string) ?? 'fr';
-
-  if (_availableLangsCache.has(tourId)) {
-    return _availableLangsCache.get(tourId)!;
-  }
+  const sourceLang = normalizeLanguageTag(tour.sourceLanguage) ?? normalizeLanguageTag(tour.language) ?? 'fr';
 
   // Le repli DynamoDB qui vivait ici a été RETIRÉ : constante d'un backend
   // mort, `Scan` complet par visite, échec silencieux — et le SDK DynamoDB
   // n'a rien à faire dans un module chargé côté navigateur. La liste des
   // langues vendues est `availableLanguages`, écrite par l'approbation.
   const persisted = Array.isArray(tour.availableLanguages)
-    ? (tour.availableLanguages as unknown[]).filter((l): l is string => typeof l === 'string' && l.length > 0)
+    ? (tour.availableLanguages as unknown[]).map(normalizeLanguageTag).filter((language): language is string => language !== null)
     : [];
-  const langs = [...new Set([sourceLang, ...persisted])];
-  _availableLangsCache.set(tourId, langs);
-  return langs;
+  // This is a projection of the current row, not a remote lookup. A cache keyed
+  // only by tour ID would retain obsolete source or published languages.
+  return [...new Set([sourceLang, ...persisted])];
 }
 
 // Cache guide names to avoid repeated lookups within a single request
@@ -319,6 +312,9 @@ async function getRealToursByCity(citySlug: string): Promise<Tour[]> {
       return {
         id: t.id,
         title: t.title,
+        sourceLanguage: normalizeLanguageTag((t as Record<string, unknown>).sourceLanguage) || undefined,
+        translatedTitles: parseTranslatedMetadata(t.translatedTitles),
+        translatedDescriptions: parseTranslatedMetadata(t.translatedDescriptions),
         slug: generateSlug(t.title),
         city: t.city,
         citySlug: generateSlug(t.city),
@@ -362,10 +358,14 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     throw new Error(contentResult.error);
   }
   const pois = mapScenesToPois(contentResult.data.scenes);
+  const sourceLanguage = (tour as Record<string, unknown>).sourceLanguage;
 
   return {
     id: tour.id,
+    sourceLanguage: typeof sourceLanguage === 'string' && sourceLanguage.trim() ? sourceLanguage.trim().toLowerCase() : undefined,
     title: tour.title,
+    translatedTitles: parseTranslatedMetadata(tour.translatedTitles),
+    translatedDescriptions: parseTranslatedMetadata(tour.translatedDescriptions),
     slug: generateSlug(tour.title),
     city: tour.city,
     citySlug: generateSlug(tour.city),
@@ -387,6 +387,7 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
       contentResult.data.coverUrl ??
       contentResult.data.scenes.find((scene) => scene.photoUrls?.[0])?.photoUrls?.[0],
     pois,
+    walkPath: contentResult.data.walkPath,
     reviews: reviews.map((r: { id: string; userId: string; rating: number; comment?: string | null; visitedAt?: number | null; language?: string | null; createdAt: string }) => ({
       id: r.id,
       userId: r.userId,
@@ -432,6 +433,9 @@ export async function getAllTours(): Promise<Tour[]> {
     tours.map(async (t) => ({
       id: t.id,
       title: t.title,
+        sourceLanguage: normalizeLanguageTag((t as Record<string, unknown>).sourceLanguage) || undefined,
+        translatedTitles: parseTranslatedMetadata(t.translatedTitles),
+        translatedDescriptions: parseTranslatedMetadata(t.translatedDescriptions),
       slug: generateSlug(t.title),
       city: t.city,
       citySlug: generateSlug(t.city),
@@ -462,6 +466,9 @@ export async function getAllToursWithCoords(): Promise<Tour[]> {
       tours.map(async (t) => ({
         id: t.id,
         title: t.title,
+        sourceLanguage: normalizeLanguageTag((t as Record<string, unknown>).sourceLanguage) || undefined,
+        translatedTitles: parseTranslatedMetadata(t.translatedTitles),
+        translatedDescriptions: parseTranslatedMetadata(t.translatedDescriptions),
         slug: generateSlug(t.title),
         city: t.city,
         citySlug: generateSlug(t.city),

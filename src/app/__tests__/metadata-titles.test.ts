@@ -6,6 +6,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { homeMetadata } from '@/lib/home-metadata';
 
 const APP_DIR = path.join(process.cwd(), 'src', 'app');
 
@@ -44,9 +45,10 @@ describe('titres des pages', () => {
   });
 
   it('les pages d’accueil posent un titre absolu (la marque en tête, sans doublon)', () => {
-    for (const f of ['page.tsx', path.join('en', 'page.tsx')]) {
-      const src = fs.readFileSync(path.join(APP_DIR, f), 'utf8');
-      expect(src).toMatch(/title:\s*\{\s*absolute:\s*['"]Murmure — /);
+    for (const locale of ['fr', 'en'] as const) {
+      const title = homeMetadata(locale).title;
+      expect(title).toEqual({ absolute: expect.stringMatching(/^Murmure — /) });
+      expect(JSON.stringify(title).match(/Murmure/g)).toHaveLength(1);
     }
   });
 

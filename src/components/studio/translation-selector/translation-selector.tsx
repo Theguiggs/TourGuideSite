@@ -21,16 +21,16 @@ interface TranslationSelectorProps {
 }
 
 const TARGET_LANGUAGES = [
-  { code: 'en', label: 'Anglais', flag: '🇬🇧' },
-  { code: 'it', label: 'Italien', flag: '🇮🇹' },
-  { code: 'de', label: 'Allemand', flag: '🇩🇪' },
-  { code: 'es', label: 'Espagnol', flag: '🇪🇸' },
+  { code: 'en', label: 'Anglais', labelEn: 'English', flag: '🇬🇧' },
+  { code: 'it', label: 'Italien', labelEn: 'Italian', flag: '🇮🇹' },
+  { code: 'de', label: 'Allemand', labelEn: 'German', flag: '🇩🇪' },
+  { code: 'es', label: 'Espagnol', labelEn: 'Spanish', flag: '🇪🇸' },
 ] as const;
 
-const PROVIDERS: { value: TranslationProvider; label: string; badge: string; tier: string; qualityTier: QualityTier }[] = [
-  { value: 'marianmt', label: 'Standard', badge: 'Gratuit', tier: 'free', qualityTier: 'standard' },
-  { value: 'deepl', label: 'DeepL', badge: 'Premium', tier: 'premium', qualityTier: 'pro' },
-  { value: 'openai', label: 'GPT', badge: 'Premium+', tier: 'premium', qualityTier: 'pro' },
+const PROVIDERS: { value: TranslationProvider; label: string; badge: string; badgeEn: string; tier: string; qualityTier: QualityTier }[] = [
+  { value: 'marianmt', label: 'Standard', badge: 'Gratuit', badgeEn: 'Free', tier: 'free', qualityTier: 'standard' },
+  { value: 'deepl', label: 'DeepL', badge: 'Premium', badgeEn: 'Premium', tier: 'premium', qualityTier: 'pro' },
+  { value: 'openai', label: 'GPT', badge: 'Premium+', badgeEn: 'Premium+', tier: 'premium', qualityTier: 'pro' },
 ];
 
 /** Map a TranslationProvider to its QualityTier */
@@ -125,7 +125,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
   if (!hasText) {
     return (
       <div className="p-4 bg-paper-soft rounded-lg text-body text-ink-60 text-center" data-testid="translation-no-text">
-        Pas de texte disponible — transcrivez ou saisissez le texte d&apos;abord.
+        {t("Pas de texte disponible — transcrivez ou saisissez le texte d'abord.", 'No text available — transcribe or type the text first.')}
       </div>
     );
   }
@@ -141,7 +141,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
               const lang = TARGET_LANGUAGES.find((l) => l.code === code);
               return lang ? (
                 <span key={code} className="inline-flex items-center gap-1 px-2 py-0.5 bg-olive-soft text-success rounded text-meta font-medium">
-                  {lang.flag} {lang.label}
+                  {lang.flag} {t(lang.label, lang.labelEn)}
                 </span>
               ) : null;
             })}
@@ -170,9 +170,9 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
                 }`}
                 data-testid={`lang-${lang.code}`}
               >
-                {lang.flag} {lang.label}
+                {lang.flag} {t(lang.label, lang.labelEn)}
                 {alreadyTranslated && targetLang !== lang.code && (
-                  <span className="ml-1 text-eyebrow" title="Traduction existante">&#10003;</span>
+                  <span className="ml-1 text-eyebrow" title={t('Traduction existante', 'Existing translation')}>&#10003;</span>
                 )}
               </button>
             );
@@ -188,7 +188,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
       {/* Translation mode — auto or manual */}
       {langSelected && (
         <div>
-          <label className="text-body font-medium text-ink-80 block mb-1">Mode de traduction</label>
+          <label className="text-body font-medium text-ink-80 block mb-1">{t('Mode de traduction', 'Translation mode')}</label>
           <div className="flex gap-2">
             <button
               onClick={() => setMode('auto')}
@@ -246,9 +246,9 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
                       <span className="text-body font-medium text-ink">{p.label}</span>
                       <span className={`ml-2 text-meta px-1.5 py-0.5 rounded ${
                         p.tier === 'free' ? 'bg-olive-soft text-success' : 'bg-ocre-soft text-ocre-ink'
-                      }`}>{p.badge}</span>
+                      }`}>{t(p.badge, p.badgeEn)}</span>
                       {disabled && (
-                        <span className="ml-2 text-meta text-danger">Temporairement indisponible</span>
+                        <span className="ml-2 text-meta text-danger">{t('Temporairement indisponible', 'Temporarily unavailable')}</span>
                       )}
                     </div>
                   </label>
@@ -262,12 +262,12 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
             <div className="p-3 bg-paper-soft rounded-lg" data-testid="cost-estimate">
               <p className="text-body text-ink-80">
                 {cost.isFree ? (
-                  <span className="text-success font-medium">Gratuit</span>
+                  <span className="text-success font-medium">{t('Gratuit', 'Free')}</span>
                 ) : (
-                  <>Estimation : <span className="font-medium">{(cost.costCharged / 100).toFixed(2)} {cost.provider === 'claude' ? 'USD' : 'EUR'}</span> ({cost.provider.toUpperCase()})</>
+                  <>{t('Estimation :', 'Estimate:')} <span className="font-medium">{(cost.costCharged / 100).toFixed(2)} {cost.provider === 'claude' ? 'USD' : 'EUR'}</span> ({cost.provider.toUpperCase()})</>
                 )}
               </p>
-              <p className="text-meta text-ink-40 mt-0.5">{cost.charCount} caractères</p>
+              <p className="text-meta text-ink-40 mt-0.5">{cost.charCount} {t('caractères', 'characters')}</p>
             </div>
           )}
 
@@ -288,10 +288,10 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
         <div className="space-y-3">
           <div className="p-3 bg-mer-soft rounded-lg">
             <p className="text-body text-mer">
-              Vous allez saisir votre propre traduction en <strong>{TARGET_LANGUAGES.find((l) => l.code === targetLang)?.label}</strong>.
+              {t('Vous allez saisir votre propre traduction en', 'You are about to type your own translation in')} <strong>{(() => { const l = TARGET_LANGUAGES.find((l) => l.code === targetLang); return l ? t(l.label, l.labelEn) : undefined; })()}</strong>.
             </p>
             <p className="text-meta text-mer mt-1">
-              Le texte source sera affiché à côté pour vous aider.
+              {t('Le texte source sera affiché à côté pour vous aider.', 'The source text will be shown alongside to help you.')}
             </p>
           </div>
           <button
@@ -299,7 +299,7 @@ export function TranslationSelector({ segment, translatedLanguages = [], onTrans
             className="w-full bg-grenadine hover:opacity-90 text-white font-medium py-2.5 rounded-lg text-body transition"
             data-testid="manual-translate-btn"
           >
-            Commencer la traduction manuelle
+            {t('Commencer la traduction manuelle', 'Start manual translation')}
           </button>
         </div>
       )}

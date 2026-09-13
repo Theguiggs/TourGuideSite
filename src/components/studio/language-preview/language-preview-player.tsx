@@ -7,6 +7,7 @@ import { shouldUseStubs } from '@/config/api-mode';
 import { getTransitionMessage } from '@/lib/multilang/i18n-transitions';
 import { logger } from '@/lib/logger';
 import type { StudioScene, SceneSegment } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'LanguagePreviewPlayer';
 
@@ -75,6 +76,7 @@ export function LanguagePreviewPlayer({
   segments,
   language,
 }: LanguagePreviewPlayerProps) {
+  const { t } = useStudioLocale();
   const [mode, setMode] = useState<PlaybackMode>('idle');
   const [currentSceneIndex, setCurrentSceneIndex] = useState<number | null>(null);
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
@@ -148,14 +150,14 @@ export function LanguagePreviewPlayer({
     );
 
     if (firstIndex < 0) {
-      setAlertMessage(`Aucun audio disponible en ${language.toUpperCase()}`);
+      setAlertMessage(t(`Aucun audio disponible en ${language.toUpperCase()}`, `No audio available in ${language.toUpperCase()}`));
       logger.warn(SERVICE_NAME, 'No audio for teaser', { language });
       return;
     }
 
     if (missingCount > 0) {
       setAlertMessage(
-        `${missingCount} scene(s) sans audio en ${language.toUpperCase()}`,
+        t(`${missingCount} scene(s) sans audio en ${language.toUpperCase()}`, `${missingCount} scene(s) without audio in ${language.toUpperCase()}`),
       );
     }
 
@@ -173,7 +175,7 @@ export function LanguagePreviewPlayer({
       setCurrentSceneIndex(null);
       logger.info(SERVICE_NAME, 'Teaser timeout reached');
     }, TEASER_DURATION_MS);
-  }, [mode, scenes, segments, language, missingCount]);
+  }, [mode, scenes, segments, language, missingCount, t]);
 
   const handleFullPreview = useCallback(async () => {
     if (mode === 'full') {
@@ -191,14 +193,14 @@ export function LanguagePreviewPlayer({
     );
 
     if (firstIndex < 0) {
-      setAlertMessage(`Aucun audio disponible en ${language.toUpperCase()}`);
+      setAlertMessage(t(`Aucun audio disponible en ${language.toUpperCase()}`, `No audio available in ${language.toUpperCase()}`));
       logger.warn(SERVICE_NAME, 'No audio for full preview', { language });
       return;
     }
 
     if (missingCount > 0) {
       setAlertMessage(
-        `${missingCount} scene(s) sans audio en ${language.toUpperCase()}`,
+        t(`${missingCount} scene(s) sans audio en ${language.toUpperCase()}`, `${missingCount} scene(s) without audio in ${language.toUpperCase()}`),
       );
     }
 
@@ -208,7 +210,7 @@ export function LanguagePreviewPlayer({
 
     logger.info(SERVICE_NAME, 'Starting full preview', { language, sceneIndex: firstIndex });
     await audioPlayerService.play(await resolvePlayableUrl(key));
-  }, [mode, scenes, segments, language, missingCount]);
+  }, [mode, scenes, segments, language, missingCount, t]);
 
   return (
     <div className="space-y-3" data-testid="language-preview-player">
@@ -234,7 +236,7 @@ export function LanguagePreviewPlayer({
           }`}
           data-testid="teaser-btn"
         >
-          {mode === 'teaser' ? 'Arrêter' : 'Écouter un extrait'}
+          {mode === 'teaser' ? t('Arrêter', 'Stop') : t('Écouter un extrait', 'Listen to a sample')}
         </button>
 
         <button
@@ -246,7 +248,7 @@ export function LanguagePreviewPlayer({
           }`}
           data-testid="full-preview-btn"
         >
-          {mode === 'full' ? 'Arrêter' : 'Aperçu complet'}
+          {mode === 'full' ? t('Arrêter', 'Stop') : t('Aperçu complet', 'Full preview')}
         </button>
 
         {currentSceneIndex !== null && (

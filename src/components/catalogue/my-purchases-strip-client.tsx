@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/auth/auth-context';
@@ -17,7 +19,7 @@ import type { PurchasedTour } from '@/types/purchase';
  * squelette pendant la lecture : la bande apparaissait d'un coup au-dessus de
  * la grille des villes, qui sautait vers le bas.
  */
-export function MyPurchasesStripClient({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
+export function MyPurchasesStripClient({locale = 'fr'}: {locale?: InterfaceLocale}) {
   const { isAuthenticated, isLoading, user } = useAuth();
   const [purchases, setPurchases] = useState<PurchasedTour[] | null>(null);
   const [refreshTick, setRefreshTick] = useState(0);
@@ -47,7 +49,7 @@ export function MyPurchasesStripClient({locale = 'fr'}: {locale?: 'fr' | 'en'}) 
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12"
         role="status"
         aria-busy="true"
-        aria-label={locale === 'en' ? 'Loading my purchases' : 'Chargement de mes achats'}
+        aria-label={translate(locale, 'Chargement de mes achats', 'Loading my purchases')}
         data-testid="my-purchases-strip-skeleton"
       >
         <div className="mb-10 animate-pulse">

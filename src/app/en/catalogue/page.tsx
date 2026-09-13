@@ -1,3 +1,4 @@
+import { extendCopy } from '@/lib/i18n/translate';
 import type { Metadata } from 'next';
 import { getCities, getAllTours } from '@/lib/api/tours-server';
 import TrackPageView from '@/components/TrackPageView';
@@ -12,19 +13,21 @@ export const metadata: Metadata = {
   description: 'Explore cities through immersive audio walking tours available in five languages.',
   alternates: {
     canonical: '/en/catalogue',
-    languages: {fr: '/catalogue', en: '/en/catalogue'},
+    languages: extendCopy({fr: '/catalogue', en: '/en/catalogue'}),
   },
   openGraph: {locale: 'en_US'},
 };
 
-export default async function EnglishCataloguePage() {
+export default async function EnglishCataloguePage({ searchParams }: { searchParams: Promise<{ q?: string | string[] }> }) {
+  const { q } = await searchParams;
+  const query = typeof q === 'string' ? q.slice(0, 120) : '';
   const [cities, tours] = await Promise.all([getCities(), getAllTours()]);
 
   return (
     <>
       <TrackPageView event={AnalyticsEvents.WEB_CATALOGUE_BROWSE} />
       <MyPurchasesStripClient locale="en" />
-      <CatalogueViewCities cities={cities} tours={tours} locale="en" />
+      <CatalogueViewCities key={query} cities={cities} tours={tours} locale="en" initialQuery={query} />
     </>
   );
 }

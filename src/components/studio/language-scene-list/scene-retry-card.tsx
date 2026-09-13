@@ -1,6 +1,7 @@
 'use client';
 
 import { getErrorMessage } from '@/lib/multilang/batch-translation-service';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 // --- Types ---
 
@@ -23,8 +24,9 @@ export function SceneRetryCard({
   isRetrying,
   onRetry,
 }: SceneRetryCardProps) {
+  const { t, locale } = useStudioLocale();
   const displayTitle = sceneTitle ?? `Scene ${sceneId}`;
-  const readableError = getErrorMessage(errorCode);
+  const readableError = getErrorMessage(errorCode, locale);
 
   return (
     <div
@@ -39,7 +41,7 @@ export function SceneRetryCard({
               data-testid={`badge-failed-${sceneId}`}
               className="inline-flex items-center rounded-pill bg-grenadine-soft px-2 py-0.5 text-meta font-medium text-danger"
             >
-              Echoue
+              {t('Echoue', 'Failed')}
             </span>
           </div>
           <p className="mt-1 text-body text-danger">{readableError}</p>
@@ -76,10 +78,10 @@ export function SceneRetryCard({
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                 />
               </svg>
-              En cours...
+              {t('En cours...', 'Retrying...')}
             </>
           ) : (
-            'Réessayer'
+            t('Réessayer', 'Retry')
           )}
         </button>
       </div>

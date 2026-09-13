@@ -10,6 +10,7 @@ import {
 import { useGuideAmbianceStore, type CustomAmbianceSound } from '@/lib/stores/guide-ambiance-store';
 import { getPlayableUrl } from '@/lib/studio/studio-upload-service';
 import { AmbianceUploadModal } from './ambiance-upload-modal';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface AmbiancePickerProps {
   guideId: string;
@@ -30,6 +31,7 @@ function customToAmbianceSound(c: CustomAmbianceSound): AmbianceSound {
 }
 
 export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerProps) {
+  const { t } = useStudioLocale();
   const [tab, setTab] = useState<'standard' | 'mine'>('standard');
   const [category, setCategory] = useState<AmbianceCategory>('water');
   const [showUpload, setShowUpload] = useState(false);
@@ -104,12 +106,12 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
   }, [onClose]);
 
   const handleRename = (id: string, currentTitle: string) => {
-    const newTitle = prompt('Nouveau titre :', currentTitle);
+    const newTitle = prompt(t('Nouveau titre :', 'New title:'), currentTitle);
     if (newTitle && newTitle.trim()) renameSound(id, newTitle.trim().slice(0, 80));
   };
 
   const handleDelete = (id: string) => {
-    if (confirm('Supprimer ce son de votre banque ?')) {
+    if (confirm(t('Supprimer ce son de votre banque ?', 'Remove this sound from your bank?'))) {
       if (previewingId === id) previewAudioRef.current?.pause();
       removeSound(id);
     }
@@ -119,7 +121,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
     <>
       <div className="bg-card border-2 border-mer-soft rounded-lg shadow-lg p-4 space-y-3 max-w-lg" data-testid="ambiance-picker">
         <div className="flex items-center justify-between">
-          <h3 className="text-body font-semibold text-ink">Choisir une ambiance</h3>
+          <h3 className="text-body font-semibold text-ink">{t('Choisir une ambiance', 'Choose an ambience')}</h3>
           <button onClick={handleClose} className="text-ink-40 hover:text-ink-80 text-h6">X</button>
         </div>
 
@@ -131,7 +133,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
               tab === 'standard' ? 'border-mer text-mer' : 'border-transparent text-ink-60 hover:text-ink-80'
             }`}
           >
-            Bibliotheque standard
+            {t('Bibliotheque standard', 'Standard library')}
           </button>
           <button
             onClick={() => setTab('mine')}
@@ -139,14 +141,14 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
               tab === 'mine' ? 'border-mer text-mer' : 'border-transparent text-ink-60 hover:text-ink-80'
             }`}
           >
-            🎤 Ma banque {mySounds.length > 0 && `(${mySounds.length})`}
+            🎤 {t('Ma banque', 'My bank')} {mySounds.length > 0 && `(${mySounds.length})`}
           </button>
           <span className="flex-1" />
           <button
             onClick={() => setShowUpload(true)}
             className="px-3 py-1 text-meta font-medium text-mer hover:opacity-80"
           >
-            + Ajouter un son
+            + {t('Ajouter un son', 'Add a sound')}
           </button>
         </div>
 
@@ -207,12 +209,12 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
           <>
             {mySounds.length === 0 ? (
               <div className="text-center py-6 text-ink-60 text-meta">
-                <p className="mb-3">Aucun son dans votre banque.</p>
+                <p className="mb-3">{t('Aucun son dans votre banque.', 'No sounds in your bank.')}</p>
                 <button
                   onClick={() => setShowUpload(true)}
                   className="px-4 py-2 bg-mer text-white rounded-lg hover:opacity-90 text-body font-medium"
                 >
-                  + Ajouter mon premier son
+                  + {t('Ajouter mon premier son', 'Add my first sound')}
                 </button>
               </div>
             ) : (
@@ -238,7 +240,7 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
                             ? 'bg-mer text-white animate-pulse'
                             : 'bg-mer-soft text-mer hover:opacity-90'
                         }`}
-                        title={isPlaying ? 'Arrêter l’aperçu' : 'Écouter l’aperçu'}
+                        title={isPlaying ? t('Arrêter l’aperçu', 'Stop preview') : t('Écouter l’aperçu', 'Play preview')}
                       >
                         {isPlaying ? '⏸' : '▶'}
                       </button>
@@ -247,13 +249,13 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
                       <button
                         onClick={() => handleSelectCustom(sound)}
                         className="flex-1 min-w-0 text-left"
-                        title="Sélectionner ce son pour la scène"
+                        title={t('Sélectionner ce son pour la scène', 'Select this sound for the scene')}
                       >
                         {/* Title row */}
                         <div className="flex items-center gap-2">
                           <span className="text-body-lg">{sound.icon || '🎵'}</span>
                           <span className="text-body font-semibold text-ink truncate">
-                            {sound.title || '(sans titre)'}
+                            {sound.title || t('(sans titre)', '(untitled)')}
                           </span>
                         </div>
                         {/* Description */}
@@ -278,14 +280,14 @@ export function AmbiancePicker({ guideId, onSelect, onClose }: AmbiancePickerPro
                         <button
                           onClick={() => handleRename(sound.id, sound.title)}
                           className="text-ink-40 hover:text-mer p-1 text-meta"
-                          title="Renommer"
+                          title={t('Renommer', 'Rename')}
                         >
                           ✏
                         </button>
                         <button
                           onClick={() => handleDelete(sound.id)}
                           className="text-ink-40 hover:text-danger p-1 text-meta"
-                          title="Supprimer"
+                          title={t('Supprimer', 'Delete')}
                         >
                           🗑
                         </button>

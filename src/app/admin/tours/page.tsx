@@ -1,4 +1,6 @@
 'use client';
+import { useAdminCopy } from '@/lib/admin/use-admin-copy';
+
 
 import { useState, useEffect } from 'react';
 import { LoadError } from '@/components/admin/LoadError';
@@ -15,6 +17,7 @@ import { StatusBadge } from '@/components/admin/StatusBadge';
 type AdminTour = { id: string; title: string; city: string; status: string; guideId: string; poiCount: number; duration: number; distance: number; sessionId: string | null; guideName: string };
 
 export default function AdminToursPage() {
+  const a = useAdminCopy();
   const [tours, setTours] = useState<AdminTour[]>([]);
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState('');
@@ -46,7 +49,7 @@ export default function AdminToursPage() {
         }));
         setPurchasesByTour(pMap);
       })
-      .catch(() => setLoadError('Impossible de charger les visites.'))
+      .catch(() => setLoadError(a("Impossible de charger les visites.")))
       .finally(() => setLoading(false));
   }, [attempt]);
   const load = () => { setLoading(true); setLoadError(null); setAttempt((n) => n + 1); };
@@ -72,7 +75,7 @@ export default function AdminToursPage() {
     if (result.ok) {
       setTours((prev) => prev.map((t) => t.id === confirmTour.id ? { ...t, status: pendingStatus } : t));
     } else {
-      setActionError(result.error ?? 'Action refusée par le serveur.');
+      setActionError(result.error ?? a("Action refusée par le serveur."));
     }
     setActioning(null);
     setPendingStatus(null);
@@ -80,7 +83,7 @@ export default function AdminToursPage() {
 
   return (
     <div>
-      <PageTitle size="h4" className="mb-6">Toutes les visites</PageTitle>
+      <PageTitle size="h4" className="mb-6">{a("Toutes les visites")}</PageTitle>
 
       {actionError && (
         <div
@@ -88,13 +91,11 @@ export default function AdminToursPage() {
           data-testid="admin-tour-action-error"
           className="mb-6 rounded-lg border border-grenadine bg-grenadine-soft px-4 py-3"
         >
-          <p className="text-body font-medium text-danger">{actionError}</p>
+          <p className="text-body font-medium text-danger">{a.error(actionError)}</p>
           <button
             onClick={() => setActionError(null)}
             className="mt-2 text-meta text-danger underline"
-          >
-            Fermer
-          </button>
+          > {a("Fermer")} </button>
         </div>
       )}
 
@@ -105,9 +106,9 @@ export default function AdminToursPage() {
           onChange={(e) => setFilterStatus(e.target.value)}
           className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
         >
-          <option value="">Tous les statuts</option>
+          <option value="">{a("Tous les statuts")}</option>
           {Object.entries(TOUR_STATUS_BADGES).map(([v, { label }]) => (
-            <option key={v} value={v}>{label}</option>
+            <option key={v} value={v}>{a(label)}</option>
           ))}
         </select>
         <select
@@ -115,41 +116,39 @@ export default function AdminToursPage() {
           onChange={(e) => setFilterCity(e.target.value)}
           className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
         >
-          <option value="">Toutes les villes</option>
+          <option value="">{a("Toutes les villes")}</option>
           {cities.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
         {(filterStatus || filterCity) && (
           <button
             onClick={() => { setFilterStatus(''); setFilterCity(''); }}
             className="text-body text-danger hover:underline px-2"
-          >
-            Effacer
-          </button>
+          > {a("Effacer")} </button>
         )}
-        <span className="ml-auto text-body text-ink-40 self-center">{filtered.length} visites</span>
+        <span className="ml-auto text-body text-ink-40 self-center">{filtered.length} {a("visites")}</span>
       </div>
 
       {loading ? (
-        <p className="text-ink-60 text-body" role="status" aria-busy="true">Chargement…</p>
+        <p className="text-ink-60 text-body" role="status" aria-busy="true">{a("Chargement…")}</p>
       ) : loadError ? (
-        <LoadError message={loadError} onRetry={load} />
+        <LoadError message={a.error(loadError)} onRetry={load} />
       ) : filtered.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
-          <p className="text-ink-60">Aucune visite trouvée.</p>
+          <p className="text-ink-60">{a("Aucune visite trouvée.")}</p>
         </div>
       ) : (
         <div className="bg-card rounded-md border border-line overflow-x-auto">
           <table className="w-full text-body">
             <thead className="bg-paper-soft border-b border-line">
               <tr>
-                <th className="text-left px-4 py-3 font-medium text-ink-60">Parcours</th>
-                <th className="text-left px-4 py-3 font-medium text-ink-60 hidden sm:table-cell">Ville</th>
-                <th className="text-left px-4 py-3 font-medium text-ink-60 hidden md:table-cell">Guide</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60">{a("Parcours")}</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60 hidden sm:table-cell">{a("Ville")}</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60 hidden md:table-cell">{a("Guide")}</th>
                 <th className="text-right px-4 py-3 font-medium text-ink-60 hidden lg:table-cell">POIs</th>
-                <th className="text-right px-4 py-3 font-medium text-ink-60 hidden lg:table-cell">Durée</th>
-                <th className="text-left px-4 py-3 font-medium text-ink-60">Langues</th>
-                <th className="text-left px-4 py-3 font-medium text-ink-60">Statut</th>
-                <th className="text-right px-4 py-3 font-medium text-ink-60">Actions</th>
+                <th className="text-right px-4 py-3 font-medium text-ink-60 hidden lg:table-cell">{a("Durée")}</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60">{a("Langues")}</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60">{a("Statut")}</th>
+                <th className="text-right px-4 py-3 font-medium text-ink-60">{a("Actions")}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
@@ -161,9 +160,7 @@ export default function AdminToursPage() {
                     <td className="px-4 py-3">
                       <p className="font-medium text-ink">{tour.title}</p>
                       {tour.status === 'published' && (
-                        <Link href={`/catalogue/${tour.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-')}`} className="text-eyebrow text-grenadine hover:underline">
-                          Voir dans le catalogue →
-                        </Link>
+                        <Link href={`/catalogue/${tour.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-')}`} className="text-eyebrow text-grenadine hover:underline"> {a("Voir dans le catalogue →")} </Link>
                       )}
                     </td>
                     <td className="px-4 py-3 text-ink-60 hidden sm:table-cell">{tour.city}</td>
@@ -172,12 +169,12 @@ export default function AdminToursPage() {
                     <td className="px-4 py-3 text-right text-ink-80 hidden lg:table-cell">{tour.duration} min</td>
                     <td className="px-4 py-3">
                       <div className="flex flex-wrap gap-1">
-                        <span className="text-eyebrow px-1.5 py-0.5 rounded-pill bg-mer-soft text-mer font-medium" title="Langue source">🇫🇷 FR</span>
+                        <span className="text-eyebrow px-1.5 py-0.5 rounded-pill bg-mer-soft text-mer font-medium" title={a("Langue source")}>🇫🇷 FR</span>
                         {(purchasesByTour[tour.id] ?? []).map((p) => (
                           <span
                             key={p.id}
                             className={`text-eyebrow px-1.5 py-0.5 rounded-pill font-medium ${badgeFor(LANGUAGE_MODERATION_BADGES, p.moderationStatus, 'draft').className}`}
-                            title={`${p.language.toUpperCase()} — ${badgeFor(LANGUAGE_MODERATION_BADGES, p.moderationStatus, 'draft').label}`}
+                            title={`${p.language.toUpperCase()} — ${a(badgeFor(LANGUAGE_MODERATION_BADGES, p.moderationStatus, 'draft').label)}`}
                           >
                             {LANG_FLAGS[p.language] ?? ''} {p.language.toUpperCase()}
                           </span>
@@ -192,25 +189,19 @@ export default function AdminToursPage() {
                         <Link
                           href={`/admin/tours/${tour.id}`}
                           className="text-meta text-grenadine font-medium hover:underline"
-                        >
-                          Voir
-                        </Link>
+                        > {a("Voir")} </Link>
                         {tour.status === 'review' && (
                           <Link
                             href="/admin/moderation"
                             className="text-meta text-ocre-ink font-medium hover:underline"
-                          >
-                            File modération
-                          </Link>
+                          > {a("File modération")} </Link>
                         )}
                         {tour.status === 'pending_moderation' && (
                           <>
                             <Link
                               href="/admin/moderation"
                               className="text-meta text-ocre-ink font-medium hover:underline"
-                            >
-                              File modération
-                            </Link>
+                            > {a("File modération")} </Link>
                             <button
                               onClick={async () => {
                                 setActioning(tour.id);
@@ -219,10 +210,8 @@ export default function AdminToursPage() {
                               }}
                               disabled={isActioning}
                               className="text-meta text-mer font-medium hover:underline disabled:opacity-50"
-                              title="Crée un ModerationItem si manquant"
-                            >
-                              Sync file
-                            </button>
+                              title={a("Crée un ModerationItem si manquant")}
+                            > {a("Sync file")} </button>
                           </>
                         )}
                         {tour.status === 'published' && (
@@ -230,9 +219,7 @@ export default function AdminToursPage() {
                             onClick={() => askAction(tour, 'archived')}
                             disabled={isActioning}
                             className="text-meta text-ocre-ink font-medium hover:underline disabled:opacity-50"
-                          >
-                            Suspendre
-                          </button>
+                          > {a("Suspendre")} </button>
                         )}
                         {tour.status === 'archived' && (
                           <>
@@ -240,17 +227,13 @@ export default function AdminToursPage() {
                               onClick={() => askAction(tour, 'published')}
                               disabled={isActioning}
                               className="text-meta text-olive font-medium hover:underline disabled:opacity-50"
-                            >
-                              Réactiver
-                            </button>
+                            > {a("Réactiver")} </button>
                             <button
                               onClick={() => setDeleteConfirm(tour)}
                               disabled={isActioning || isDeleting}
                               className="text-meta text-danger font-medium hover:underline disabled:opacity-50"
                               data-testid={`delete-tour-${tour.id}`}
-                            >
-                              Supprimer
-                            </button>
+                            > {a("Supprimer")} </button>
                           </>
                         )}
                       </div>
@@ -267,15 +250,15 @@ export default function AdminToursPage() {
       {confirmTour && pendingStatus && (
         <ConfirmDialog
           open
-          title={pendingStatus === 'archived' ? 'Suspendre cette visite ?' : 'Réactiver cette visite ?'}
+          title={pendingStatus === 'archived' ? a("Suspendre cette visite ?") : a("Réactiver cette visite ?")}
           subject={confirmTour.title}
           description={
             pendingStatus === 'archived'
-              ? 'La visite sera retirée de la plateforme et invisible aux utilisateurs.'
-              : 'La visite sera à nouveau visible et accessible aux utilisateurs.'
+              ? a("La visite sera retirée de la plateforme et invisible aux utilisateurs.")
+              : a("La visite sera à nouveau visible et accessible aux utilisateurs.")
           }
           confirmLabel="Confirmer"
-          cancelLabel="Annuler"
+          cancelLabel={a("Annuler")}
           danger={pendingStatus === 'archived'}
           onConfirm={confirmAction}
           onCancel={() => { setConfirmTour(null); setPendingStatus(null); }}
@@ -286,11 +269,11 @@ export default function AdminToursPage() {
         <ConfirmDialog
           open
           danger
-          title="Supprimer définitivement ?"
+          title={a("Supprimer définitivement ?")}
           subject={deleteConfirm.title}
-          description="Cette action est irréversible. La visite, ses scènes, segments traduits, achats de langue et éléments de modération seront supprimés."
-          confirmLabel={isDeleting ? 'Suppression...' : 'Supprimer'}
-          cancelLabel="Annuler"
+          description={a("Cette action est irréversible. La visite, ses scènes, segments traduits, achats de langue et éléments de modération seront supprimés.")}
+          confirmLabel={isDeleting ? a("Suppression...") : a("Supprimer")}
+          cancelLabel={a("Annuler")}
           busy={isDeleting}
           confirmTestId="confirm-delete-tour"
           onCancel={() => setDeleteConfirm(null)}
@@ -300,7 +283,7 @@ export default function AdminToursPage() {
             if (result.ok) {
               setTours((prev) => prev.filter((t) => t.id !== deleteConfirm.id));
             } else {
-              setActionError(result.error ?? 'Suppression refusée par le serveur.');
+              setActionError(result.error ?? a("Suppression refusée par le serveur."));
             }
             setDeleteConfirm(null);
             setIsDeleting(false);

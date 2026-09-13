@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 import type { StudioSession, StudioSessionStatus } from '@/types/studio';
 
 export type TourStatusFilter = 'all' | 'live' | 'draft' | 'review';
@@ -5,7 +7,7 @@ export type TourStatusFilter = 'all' | 'live' | 'draft' | 'review';
 export type TourSortBy = 'recently_modified' | 'alphabetical' | 'most_played';
 
 export interface TourStatusLabel {
-  /** UI label (français). */
+  /** UI label (français par défaut, anglais avec `locale: 'en'`). */
   label: string;
   /** Family color matching tokens (`success | ocre | mer | danger`). */
   color: 'success' | 'ocre' | 'mer' | 'danger';
@@ -17,20 +19,20 @@ export interface TourStatusLabel {
  * Map a raw studio session status to its UI labelling.
  * The DB has 12+ statuses; we collapse them into 4 buckets the user understands.
  */
-export function tourStatusLabel(status: StudioSessionStatus): TourStatusLabel {
+export function tourStatusLabel(status: StudioSessionStatus, locale: InterfaceLocale = 'fr'): TourStatusLabel {
   switch (status) {
     case 'published':
-      return { label: 'En ligne', color: 'success', bucket: 'live' };
+      return { label: translate(locale, 'En ligne', 'Live'), color: 'success', bucket: 'live' };
 
     case 'submitted':
     case 'revision_requested':
-      return { label: 'En relecture', color: 'mer', bucket: 'review' };
+      return { label: translate(locale, 'En relecture', 'In review'), color: 'mer', bucket: 'review' };
 
     case 'rejected':
-      return { label: 'Refusé', color: 'danger', bucket: 'review' };
+      return { label: translate(locale, 'Refusé', 'Rejected'), color: 'danger', bucket: 'review' };
 
     case 'archived':
-      return { label: 'Archivé', color: 'ocre', bucket: 'draft' };
+      return { label: translate(locale, 'Archivé', 'Archived'), color: 'ocre', bucket: 'draft' };
 
     case 'draft':
     case 'transcribing':
@@ -40,7 +42,7 @@ export function tourStatusLabel(status: StudioSessionStatus): TourStatusLabel {
     case 'paused':
     case 'ready_for_cleanup':
     default:
-      return { label: 'Brouillon', color: 'ocre', bucket: 'draft' };
+      return { label: translate(locale, 'Brouillon', 'Draft'), color: 'ocre', bucket: 'draft' };
   }
 }
 

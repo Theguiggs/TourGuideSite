@@ -1,4 +1,7 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
+import { translate, extendCopy } from '@/lib/i18n/translate';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -44,11 +47,11 @@ export interface ReviewFeedbackPanelProps {
 }
 
 const CATEGORY_LABELS: Record<string, { fr: string; en: string }> = {
-  audio_quality: { fr: 'Qualité audio', en: 'Audio quality' },
-  content_accuracy: { fr: 'Contenu inexact', en: 'Inaccurate content' },
-  inappropriate: { fr: 'Contenu inapproprié', en: 'Inappropriate content' },
-  gps_issues: { fr: 'Problèmes GPS', en: 'GPS issues' },
-  translation: { fr: 'Traduction', en: 'Translation' },
+  audio_quality: extendCopy({ fr: 'Qualité audio', en: 'Audio quality' }),
+  content_accuracy: extendCopy({ fr: 'Contenu inexact', en: 'Inaccurate content' }),
+  inappropriate: extendCopy({ fr: 'Contenu inapproprié', en: 'Inappropriate content' }),
+  gps_issues: extendCopy({ fr: 'Problèmes GPS', en: 'GPS issues' }),
+  translation: extendCopy({ fr: 'Traduction', en: 'Translation' }),
 };
 
 /**
@@ -115,7 +118,7 @@ export function ReviewFeedbackPanel({ tourId, sessionId, sessionStatus, scenes =
 
   const isRejected = sessionStatus === 'rejected';
   const headline = sessionStatusLabel(sessionStatus, locale);
-  const dateLocale = locale === 'en' ? 'en-GB' : 'fr-FR';
+  const dateLocale = translate(locale, 'fr-FR', 'en-GB');
 
   let feedback: { feedback?: string; action?: string; category?: string; poiIds?: string[]; notes?: string } = {};
   try { feedback = JSON.parse(reviewData?.feedbackJson ?? '{}'); } catch { /* empty */ }
@@ -165,7 +168,7 @@ export function ReviewFeedbackPanel({ tourId, sessionId, sessionStatus, scenes =
 
         {feedback.category && (
           <span className="inline-block text-meta font-medium text-danger bg-grenadine-soft px-2.5 py-1 rounded-pill">
-            {CATEGORY_LABELS[feedback.category] ? (locale === 'en' ? CATEGORY_LABELS[feedback.category].en : CATEGORY_LABELS[feedback.category].fr) : t('Autre', 'Other')}
+            {CATEGORY_LABELS[feedback.category] ? (localizeValue(locale, CATEGORY_LABELS[feedback.category].fr, CATEGORY_LABELS[feedback.category].en)) : t('Autre', 'Other')}
           </span>
         )}
 

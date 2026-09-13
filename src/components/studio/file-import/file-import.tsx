@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from 'react';
 import { validateAndImportFile, ALLOWED_AUDIO_TYPES, MAX_FILE_SIZE_MB } from '@/lib/studio/file-import-service';
 import { useRecordingStore } from '@/lib/stores/recording-store';
 import { logger } from '@/lib/logger';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'FileImport';
 
@@ -12,6 +13,7 @@ interface FileImportProps {
 }
 
 export function FileImport({ sceneId }: FileImportProps) {
+  const { locale, t } = useStudioLocale();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -25,7 +27,7 @@ export function FileImport({ sceneId }: FileImportProps) {
     setError(null);
     setIsProcessing(true);
 
-    const result = await validateAndImportFile(file);
+    const result = await validateAndImportFile(file, locale);
 
     if (result.ok) {
       const take = addTake(sceneId, {
@@ -43,7 +45,7 @@ export function FileImport({ sceneId }: FileImportProps) {
     setIsProcessing(false);
     // Reset input so the same file can be re-selected
     if (fileInputRef.current) fileInputRef.current.value = '';
-  }, [sceneId, addTake, selectTake]);
+  }, [sceneId, addTake, selectTake, locale]);
 
   return (
     <div className="mt-3" data-testid="file-import">
@@ -61,7 +63,7 @@ export function FileImport({ sceneId }: FileImportProps) {
         className="text-body text-ink-60 hover:text-grenadine underline transition disabled:text-ink-20"
         data-testid="import-btn"
       >
-        {isProcessing ? 'Import en cours...' : `📁 Importer un fichier audio (max ${MAX_FILE_SIZE_MB} Mo)`}
+        {isProcessing ? t('Import en cours...', 'Importing...') : `📁 ${t(`Importer un fichier audio (max ${MAX_FILE_SIZE_MB} Mo)`, `Import an audio file (max ${MAX_FILE_SIZE_MB} MB)`)}`}
       </button>
       {error && (
         <p className="mt-1 text-meta text-danger" role="alert" data-testid="import-error">

@@ -6,6 +6,10 @@
   "background_color": "#F4ECDD",
   "display": "standalone",
   "start_url": "/",
+  "id": "/",
+  "scope": "/",
+  "orientation": "portrait-primary",
+  "screenshots": [{ "src": "/pwa/offline-mobile.png", "sizes": "390x844", "type": "image/png", "form_factor": "narrow", "label": "Murmure vous accueille même sans réseau" }],
   "lang": "fr-FR",
   "icons": [
     {

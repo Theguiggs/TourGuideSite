@@ -1,4 +1,7 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
+import { translate } from '@/lib/i18n/translate';
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
@@ -109,22 +112,20 @@ export function TourCard({
 
   const showProgress = status.bucket === 'draft' && scenesTotal > 0;
   const pct = showProgress ? Math.round((scenesDone / scenesTotal) * 100) : 0;
-  const copy = locale === 'en' ? {
-    resume: 'Resume', edit: 'Edit', continue: 'Continue', current: 'In progress', untitled: 'Untitled tour',
-    open: 'Open', photo: 'Tour photo', updated: 'Updated', language: 'language', languages: 'languages',
-    plays: 'Completed plays', rating: 'Rating', delete: 'Delete', sceneShort: 'SC.',
-    free: 'Free', paid: 'Paid', subscribers: 'Subscribers', accessUnknown: 'Access not set',
-  } : {
+  const copy = localizeValue(locale, {
     resume: 'Reprendre', edit: 'Modifier', continue: 'Continuer', current: 'En cours', untitled: 'Visite sans titre',
     open: 'Ouvrir', photo: 'Photo de la visite', updated: 'Mis à jour le', language: 'langue', languages: 'langues',
     // « Écoutes terminées » : la seule mesure que le backend porte est
     // `TourStats.completionCount` (parcours menés au bout), pas les lancements.
     plays: 'Écoutes terminées', rating: 'Note', delete: 'Supprimer', sceneShort: 'SC.',
     free: 'Gratuite', paid: 'Payante', subscribers: 'Abonnés', accessUnknown: 'Accès non défini',
-  };
-  const menuCopy = locale === 'en'
-    ? { more: 'More actions', publication: 'Publication', deleteBlocked: 'Unpublish before deleting' }
-    : { more: 'Plus d’actions', publication: 'Publication', deleteBlocked: 'Dépubliez avant de supprimer' };
+  }, {
+    resume: 'Resume', edit: 'Edit', continue: 'Continue', current: 'In progress', untitled: 'Untitled tour',
+    open: 'Open', photo: 'Tour photo', updated: 'Updated', language: 'language', languages: 'languages',
+    plays: 'Completed plays', rating: 'Rating', delete: 'Delete', sceneShort: 'SC.',
+    free: 'Free', paid: 'Paid', subscribers: 'Subscribers', accessUnknown: 'Access not set',
+  });
+  const menuCopy = localizeValue(locale, { more: 'Plus d’actions', publication: 'Publication', deleteBlocked: 'Dépubliez avant de supprimer' }, { more: 'More actions', publication: 'Publication', deleteBlocked: 'Unpublish before deleting' });
   // Pastille d'accès : ce que la visite coûte au visiteur. Absente tant que la
   // Visite n'existe pas ; « non défini » quand elle existe sans modèle d'accès.
   const accessPill = access
@@ -138,9 +139,7 @@ export function TourCard({
     : null;
   // Le libellé compacté (« En ligne », « En relecture »…) reste la voix de la
   // carte en FR ; en EN, la table partagée remplace l'ancienne liste partielle.
-  const statusLabel = locale === 'en'
-    ? (session.status === 'published' ? 'Live' : session.status === 'submitted' ? 'In review' : sessionStatusLabel(session.status, 'en'))
-    : status.label;
+  const statusLabel = localizeValue(locale, status.label, (session.status === 'published' ? 'Live' : session.status === 'submitted' ? 'In review' : sessionStatusLabel(session.status, 'en')));
 
   // Action label + style depending on bucket.
   const actionConfig: { label: string; classes: string } = current
@@ -232,7 +231,7 @@ export function TourCard({
         ) : (
           <div className="text-meta text-ink-60 mt-1.5 font-editorial italic">
             {copy.updated}{' '}
-            {new Date(session.updatedAt).toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', {
+            {new Date(session.updatedAt).toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'), {
               day: 'numeric',
               month: 'short',
             })}

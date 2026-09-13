@@ -1,4 +1,5 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -31,8 +32,8 @@ export function StepNav({
   onNextClick,
 }: StepNavProps) {
   const { locale } = useStudioLocale();
-  const resolvedPrevLabel = prevLabel ?? (locale === 'en' ? 'Previous' : 'Précédent');
-  const resolvedNextLabel = nextLabel ?? (locale === 'en' ? 'Next' : 'Suivant');
+  const resolvedPrevLabel = prevLabel ?? (translate(locale, 'Précédent', 'Previous'));
+  const resolvedNextLabel = nextLabel ?? (translate(locale, 'Suivant', 'Next'));
   return (
     <div
       className="mt-8 pt-5 border-t border-line flex justify-between items-center gap-3 flex-wrap"

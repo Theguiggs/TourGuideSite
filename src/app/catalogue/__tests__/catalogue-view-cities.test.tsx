@@ -9,6 +9,16 @@ import { fireEvent, render } from '@testing-library/react';
 import { CatalogueViewCities } from '@/app/catalogue/catalogue-view-cities';
 import type { City, Tour } from '@/types/tour';
 
+beforeEach(() => window.history.replaceState({}, '', '/catalogue'));
+
+it('initialise la recherche reçue de l’accueil sans sensibilité à la casse', () => {
+  window.history.replaceState({}, '', '/catalogue?q=GRASSE');
+  const { getByTestId, queryByRole } = render(<CatalogueViewCities cities={MOCK_CITIES} tours={MOCK_TOURS} initialQuery="GRASSE" />);
+  expect(getByTestId('city-search')).toHaveValue('GRASSE');
+  expect(queryByRole('heading', { name: 'Grasse' })).toBeInTheDocument();
+  expect(queryByRole('heading', { name: 'Paris' })).not.toBeInTheDocument();
+});
+
 const MOCK_CITIES: City[] = [
   {
     id: 'grasse',

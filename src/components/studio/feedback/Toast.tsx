@@ -2,6 +2,7 @@
 
 import { AlertTriangle, Check, Info, X, type LucideIcon } from 'lucide-react';
 import { useToastStore, type ToastEntry, type ToastVariant } from '@/lib/stores/toast-store';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface ToastProps {
   toast: ToastEntry;
@@ -38,11 +39,12 @@ const VARIANT_CFG: Record<
 };
 
 /**
- * <Toast> — toast unifié Murmure (rendered by `<Toaster>`).
+ * <Toast> — toast unifié Murmure (rendered by `Toaster`).
  * Brief §7 Phase 5 (« toast de succès en grenadine soft, position bottom-right »).
  */
 export function Toast({ toast }: ToastProps) {
   const dismiss = useToastStore((s) => s.dismiss);
+  const { t } = useStudioLocale();
   const cfg = VARIANT_CFG[toast.variant];
 
   return (
@@ -62,7 +64,7 @@ export function Toast({ toast }: ToastProps) {
       <button
         type="button"
         onClick={() => dismiss(toast.id)}
-        aria-label="Fermer"
+        aria-label={t('Fermer', 'Close')}
         data-testid="toast-dismiss"
         className="text-ink-40 hover:text-ink leading-none text-h6 cursor-pointer transition"
       >

@@ -79,6 +79,7 @@ amplify_outputs.json.bak-*
 # (110 Mo suivies par erreur — elles restent sur disque, hors du dépôt).
 scripts/_tmp-*
 output/
+.next-*/
 .vscode/
 *.bak
 req.json

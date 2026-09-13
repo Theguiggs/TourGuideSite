@@ -1,4 +1,5 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 import { useState, type KeyboardEvent } from 'react';
 import { dedupeChips } from '@/lib/studio/profile-helpers';
@@ -30,23 +31,23 @@ export function SpecialtyChipsInput({
   onError,
 }: SpecialtyChipsInputProps) {
   const { locale } = useStudioLocale();
-  const inputPlaceholder = placeholder ?? (locale === 'en' ? 'Add...' : 'Ajouter...');
+  const inputPlaceholder = placeholder ?? (translate(locale, 'Ajouter...', 'Add...'));
   const [draft, setDraft] = useState('');
 
   const commit = (raw: string) => {
     const trimmed = raw.trim();
     if (!trimmed) return;
     if (trimmed.length > maxLength) {
-      onError?.(locale === 'en' ? `${maxLength} characters max per specialty.` : `${maxLength} caractères max par spécialité.`);
+      onError?.(translate(locale, `${maxLength} caractères max par spécialité.`, `${maxLength} characters max per specialty.`));
       return;
     }
     const next = dedupeChips([...value, trimmed]);
     if (next.length === value.length) {
-      onError?.(locale === 'en' ? 'This specialty already exists.' : 'Cette spécialité existe déjà.');
+      onError?.(translate(locale, 'Cette spécialité existe déjà.', 'This specialty already exists.'));
       return;
     }
     if (next.length > max) {
-      onError?.(locale === 'en' ? `${max} specialties maximum.` : `${max} spécialités maximum.`);
+      onError?.(translate(locale, `${max} spécialités maximum.`, `${max} specialties maximum.`));
       return;
     }
     onChange(next);
@@ -84,7 +85,7 @@ export function SpecialtyChipsInput({
           <button
             type="button"
             onClick={() => remove(s)}
-            aria-label={`${locale === 'en' ? 'Remove' : 'Retirer'} ${s}`}
+            aria-label={`${translate(locale, 'Retirer', 'Remove')} ${s}`}
             className="opacity-60 hover:opacity-100 text-meta cursor-pointer"
           >
             <X size={12} aria-hidden="true" />

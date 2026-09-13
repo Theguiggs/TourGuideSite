@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate, extendCopy } from '@/lib/i18n/translate';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -9,7 +11,6 @@ import {
   PullQuote,
   tg,
 } from '@murmure/design-system/web';
-import { editorial } from '@murmure/design-system';
 import { getCityAccent, type CityAccent } from '@/lib/cities/accent-map';
 import { getTourBySlug, getCityBySlug } from '@/lib/api/tours-server';
 import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
@@ -18,6 +19,9 @@ import SmartAppLink from '@/components/SmartAppLink';
 import TourPurchaseCard from '@/components/checkout/tour-purchase-card';
 import ForfaitPurchaseCard from '@/components/checkout/forfait-purchase-card';
 import { AiDisclosureBadge } from '@/components/catalogue/ai-disclosure-badge';
+// Depuis le module nu, pas depuis le baril : un composant serveur qui importe
+// une constante d'un module `'use client'` reçoit une référence de client.
+import { PURCHASE_ANCHOR_ID } from '@/components/catalogue/scene-player/purchase-anchor';
 import { S3Image } from '@/components/studio/s3-image';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { isTourFree } from '@/lib/catalogue/tour-pricing';
@@ -36,23 +40,35 @@ import { StarRating } from '@/components/catalogue/StarRating';
 import { maskLockedPois } from '@/lib/catalogue/scene-pois';
 import { LANG_FLAGS, LANG_NAMES } from '@/lib/i18n/languages';
 import { LangChip } from '@/components/i18n/LangChip';
+import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
+import {launchFreeAccess} from '@/lib/launch-free-access';
+import {LaunchOfferCard} from '@/components/checkout/launch-offer-card';
 
-const DETAIL_COPY = {
+const DETAIL_COPY = extendCopy({
   fr: {
     openInApp: 'Ouvrir dans Murmure', bestExperience: 'Pour la meilleure expérience audio immersive', open: 'Ouvrir',
     free: 'GRATUIT', yourGuide: 'Votre guide', verifiedGuide: 'Guide vérifié', viewProfile: 'Voir le profil →',
     audioByLanguage: 'Audio par langue', itinerary: 'Itinéraire', reviews: 'Avis', liveTour: 'Vivez cette visite',
-    download: "Téléchargez Murmure pour profiter de l'expérience audio immersive complète.",
-    duration: 'Durée', distance: 'Distance', stops: 'Étapes', completions: 'Écoutes terminées', listen: "Écouter cette visite dans l'app",
+    download: 'Écoutez ici. L’appli Murmure ajoute le guidage GPS et l’écoute hors connexion.',
+    duration: 'Durée', distance: 'Distance', stops: 'Étapes', completions: 'Écoutes terminées', listen: 'Marcher avec l’appli',
   },
   en: {
     openInApp: 'Open in Murmure', bestExperience: 'For the best immersive audio experience', open: 'Open',
     free: 'FREE', yourGuide: 'Your guide', verifiedGuide: 'Verified guide', viewProfile: 'View profile →',
     audioByLanguage: 'Audio by language', itinerary: 'Itinerary', reviews: 'Reviews', liveTour: 'Experience this tour',
-    download: 'Download Murmure for the complete immersive audio experience.',
-    duration: 'Duration', distance: 'Distance', stops: 'Stops', completions: 'Completions', listen: 'Listen to this tour in the app',
+    download: 'Listen here. The Murmure app adds GPS guidance and offline listening.',
+    duration: 'Duration', distance: 'Distance', stops: 'Stops', completions: 'Completions', listen: 'Walk with the app',
   },
-} as const;
+} as const);
+
+const LAUNCH_BADGE: Record<InterfaceLocale, string> = {
+  fr: 'OFFRE DE LANCEMENT',
+  en: 'LAUNCH OFFER',
+  es: 'OFERTA DE LANZAMIENTO',
+  de: 'STARTANGEBOT',
+  it: 'OFFERTA DI LANCIO',
+  nl: 'LANCERINGSAANBOD',
+};
 
 // Story 4.4 — Cleanup: utilise `getCityAccent` de Story 4.3 (`lib/cities/accent-map`)
 // au lieu du fallback local précédent. Hash-based fallback inclus pour villes inconnues.
@@ -75,20 +91,18 @@ function accentColor(accent: CityAccent): string {
   }
 }
 
-function formatRelativeDate(dateStr: string, locale: 'fr' | 'en'): string {
+function formatRelativeDate(dateStr: string, locale: InterfaceLocale): string {
   if (!dateStr) return '';
   const date = new Date(dateStr);
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  if (diffDays < 1) return locale === 'en' ? 'Published today' : 'Publié aujourd\'hui';
+  if (diffDays < 1) return translate(locale, 'Publié aujourd\'hui', 'Published today');
   if (diffDays < 30) {
-    return locale === 'en'
-      ? `Published ${diffDays} day${diffDays > 1 ? 's' : ''} ago`
-      : `Publié il y a ${diffDays} jour${diffDays > 1 ? 's' : ''}`;
+    return translate(locale, `Publié il y a ${diffDays} jour${diffDays > 1 ? 's' : ''}`, `Published ${diffDays} day${diffDays > 1 ? 's' : ''} ago`);
   }
-  const month = date.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { month: 'long', year: 'numeric' });
-  return locale === 'en' ? `Published in ${month}` : `Publié en ${month}`;
+  const month = date.toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'), { month: 'long', year: 'numeric' });
+  return translate(locale, `Publié en ${month}`, `Published in ${month}`);
 }
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
@@ -106,11 +120,13 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
   return tourMetadata(tour, citySlug, tourSlug, 'fr');
 }
 
-export async function LocalizedTourDetailPage({ params, searchParams, locale = 'fr' }: TourPageProps & {locale?: 'fr' | 'en'}) {
+export async function LocalizedTourDetailPage({ params, searchParams, locale = 'fr' }: TourPageProps & {locale?: InterfaceLocale}) {
   const { city: citySlug, tourSlug } = await params;
   const resolvedSearchParams = await searchParams;
-  const tour = await getTourBySlug(citySlug, tourSlug);
-  if (!tour) notFound();
+  const originalTour = await getTourBySlug(citySlug, tourSlug);
+  if (!originalTour) notFound();
+  const tour = localizeTour(originalTour, locale);
+  const launchOfferActive = launchFreeAccess().active;
 
   const [city, guideSlug] = await Promise.all([
     getCityBySlug(citySlug),
@@ -118,7 +134,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
   ]);
   const isQrVisit = resolvedSearchParams.source === 'qr';
   const copy = DETAIL_COPY[locale];
-  const catalogueBase = locale === 'en' ? '/en/catalogue' : '/catalogue';
+  const catalogueBase = translate(locale, '/catalogue', '/en/catalogue');
 
   const accent = getCityAccent(citySlug);
   const heroBg = accentSoftColor(accent);
@@ -139,6 +155,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
       style={{ background: tg.colors.paper, minHeight: '100vh' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        {tour.metadataFallback && <p className="mb-4 text-body text-ink-80">{METADATA_FALLBACK_COPY[locale]}</p>}
         <TrackPageView
           event={isQrVisit ? AnalyticsEvents.WEB_QR_CODE_SCAN : AnalyticsEvents.WEB_TOUR_DETAIL_VIEW}
           properties={{
@@ -176,7 +193,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
 
         {/* Breadcrumb */}
         <nav
-          aria-label={locale === 'en' ? 'Breadcrumb' : "Fil d'Ariane"}
+          aria-label={translate(locale, "Fil d'Ariane", 'Breadcrumb')}
           style={{
             ...tg.eyebrow,
             color: tg.colors.ink60,
@@ -206,19 +223,19 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 min-w-0">
               <Eyebrow style={{ color: heroAccentFg, marginBottom: tg.space[4] }}>
                 {cityName} · {tour.duration} min
               </Eyebrow>
 
               <div
-                className="flex items-start justify-between gap-4"
+                className="flex flex-col items-start gap-4 sm:flex-row sm:justify-between"
                 style={{ marginBottom: tg.space[4] }}
               >
                 <h1
+                  className="text-h4 sm:text-h3 lg:text-h2"
                   style={{
                     fontFamily: tg.fonts.display,
-                    fontSize: tg.fontSize.h2,
                     lineHeight: 1.05,
                     letterSpacing: tg.tracking.display,
                     color: tg.colors.ink,
@@ -227,7 +244,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 >
                   {tour.title}
                 </h1>
-                {isTourFree(tour) && (
+                {(isTourFree(tour) || launchOfferActive) && (
                   <span
                     style={{
                       display: 'inline-flex',
@@ -242,10 +259,10 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    {copy.free}
+                    {launchOfferActive ? LAUNCH_BADGE[locale] : copy.free}
                   </span>
                 )}
-                {tour.purchaseType === 'subscription_only' && (
+                {tour.purchaseType === 'subscription_only' && !launchOfferActive && (
                   <span
                     style={{
                       display: 'inline-flex',
@@ -260,7 +277,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    {locale === 'en' ? 'INCLUDED WITH SUBSCRIPTION' : 'INCLUS DANS L’ABONNEMENT'}
+                    {translate(locale, 'INCLUS DANS L’ABONNEMENT', 'INCLUDED WITH SUBSCRIPTION')}
                   </span>
                 )}
               </div>
@@ -301,6 +318,8 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 )}
               </div>
 
+              <a href="#itineraire" className="inline-flex min-h-11 items-center rounded-pill bg-grenadine px-5 text-body font-bold text-paper mb-4">{translate(locale, 'Découvrir l’audio', 'Discover the audio')}</a>
+
               {tour.createdAt && (
                 <div
                   data-testid="tour-detail-date"
@@ -321,13 +340,43 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
       {/* CONTENU PRINCIPAL */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 min-w-0">
+            <div id="itineraire" className="mb-10 scroll-mt-20">
+              <h2
+                style={{
+                  fontFamily: tg.fonts.display,
+                  fontSize: tg.fontSize.h4,
+                  letterSpacing: tg.tracking.display,
+                  color: tg.colors.ink,
+                  marginBottom: tg.space[6],
+                }}
+              >
+                {copy.itinerary}
+              </h2>
+              {/* Visite payante : le HTML ne porte pas les titres verrouillés
+                  (ils n'étaient que floutés en CSS). L'acheteur les retrouve
+                  par la redemande après hydratation. */}
+              <ItineraryList
+                pois={isTourFree(tour) ? tour.pois : maskLockedPois(tour.pois, locale)}
+                walkPath={tour.walkPath}
+                tourId={tour.id}
+                cityId={tour.citySlug}
+                sourceLanguage={tour.sourceLanguage}
+                languageAudioTypes={tour.languageAudioTypes}
+                tourTitle={tour.title}
+                isFree={isTourFree(tour)}
+                contentUnavailable={tour.contentUnavailable}
+                heroAccentFg={heroAccentFg}
+                locale={locale}
+              />
+            </div>
+
             {/* Guide info — "Votre guide" showcase card */}
             {(() => {
               const avatar = tour.guidePhotoUrl ? (
                 <S3Image
                   s3Key={tour.guidePhotoUrl}
-                  alt={locale === 'en' ? `Photo of ${tour.guideName}` : `Photo de ${tour.guideName}`}
+                  alt={translate(locale, `Photo de ${tour.guideName}`, `Photo of ${tour.guideName}`)}
                   className="w-16 h-16 rounded-pill shrink-0"
                   fallback={tour.guideName.charAt(0)}
                 />
@@ -480,31 +529,6 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
             )}
 
             {/* Itinéraire — étapes numérotées */}
-            <div className="mb-10">
-              <h2
-                style={{
-                  fontFamily: tg.fonts.display,
-                  fontSize: tg.fontSize.h4,
-                  letterSpacing: tg.tracking.display,
-                  color: tg.colors.ink,
-                  marginBottom: tg.space[6],
-                }}
-              >
-                {copy.itinerary}
-              </h2>
-              {/* Visite payante : le HTML ne porte pas les titres verrouillés
-                  (ils n'étaient que floutés en CSS). L'acheteur les retrouve
-                  par la redemande après hydratation. */}
-              <ItineraryList
-                pois={isTourFree(tour) ? tour.pois : maskLockedPois(tour.pois, locale)}
-                tourId={tour.id}
-                isFree={isTourFree(tour)}
-                contentUnavailable={tour.contentUnavailable}
-                heroAccentFg={heroAccentFg}
-                locale={locale}
-              />
-            </div>
-
             {/* Reviews */}
             <div>
               <h2
@@ -549,7 +573,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                           color: tg.colors.ink60,
                         }}
                       >
-                        {new Date(review.createdAt).toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR')}
+                        {new Date(review.createdAt).toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'))}
                       </span>
                     </div>
                     {review.comment && (
@@ -564,7 +588,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
           </div>
 
           {/* Sidebar — CTA principal desktop */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 min-w-0">
             <div className="sticky top-24">
               <Card variant="md">
                 <Card.Body>
@@ -591,26 +615,33 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                     style={{ display: 'block', textDecoration: 'none' }}
                   >
                     <Button variant="accent" size="lg" fullWidth>
-                      {locale === 'en' ? 'Listen in the app' : editorial.cta.listen}
+                      {copy.listen}
                     </Button>
                   </SmartAppLink>
 
-                  {/* mon-1.3b — web sale CTA for individually-priced tours */}
-                  {tour.purchaseType === 'paid' && (
-                    <TourPurchaseCard
-                      tourId={tour.id}
-                      title={tour.title}
-                      priceCents={tour.priceCents}
-                      locale={locale}
-                    />
-                  )}
+                  {/* LW-2 : la cible de la fin d'aperçu du lecteur. L'`id` vient
+                      du module partagé (jamais réécrit à la main), et
+                      `tabIndex={-1}` rend la cible focalisable : sans lui, le
+                      saut d'ancre déplace la vue sans déplacer le focus. */}
+                  <div id={PURCHASE_ANCHOR_ID} tabIndex={-1}>
+                    {/* mon-1.3b — web sale CTA for individually-priced tours */}
+                    {launchOfferActive && tour.purchaseType !== 'free' && <LaunchOfferCard locale={locale} />}
+                    {tour.purchaseType === 'paid' && !launchOfferActive && (
+                      <TourPurchaseCard
+                        tourId={tour.id}
+                        title={tour.title}
+                        priceCents={tour.priceCents}
+                        locale={locale}
+                      />
+                    )}
 
-                  {/* Forfait « visites IA » — les visites incluses affichaient leur
-                      statut sans aucun moyen d'acheter : c'est ici que l'intention
-                      d'achat est la plus forte. */}
-                  {tour.purchaseType === 'subscription_only' && (
-                    <ForfaitPurchaseCard locale={locale} />
-                  )}
+                    {/* Forfait « visites IA » — les visites incluses affichaient leur
+                        statut sans aucun moyen d'acheter : c'est ici que l'intention
+                        d'achat est la plus forte. */}
+                    {tour.purchaseType === 'subscription_only' && !launchOfferActive && (
+                      <ForfaitPurchaseCard locale={locale} />
+                    )}
+                  </div>
 
                   <div
                     style={{
@@ -655,22 +686,18 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
 
       {/* Sticky bottom CTA mobile */}
       <div
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50"
+        className="tour-mobile-app-cta md:hidden fixed left-0 right-0 z-30"
         style={{
+          bottom: 'var(--visitor-nav-height, 0px)',
           padding: tg.space[4],
           background: tg.colors.paper,
           borderTop: `1px solid ${tg.colors.line}`,
         }}
       >
-        <SmartAppLink
-          tourId={tour.id}
-          style={{ display: 'block', textDecoration: 'none' }}
-          aria-label={copy.listen}
-        >
-          <Button variant="accent" size="lg" fullWidth>
-            {locale === 'en' ? 'Listen in the app' : editorial.cta.listen}
-          </Button>
-        </SmartAppLink>
+        <div className="flex gap-3">
+          <a href="#itineraire" className="flex min-h-11 flex-1 items-center justify-center rounded-pill bg-grenadine px-4 text-body font-bold text-paper">{translate(locale, 'Écouter sur le site', 'Listen on this site')}</a>
+          {!isTourFree(tour) && <a href="#acheter" className="flex min-h-11 items-center justify-center rounded-pill border border-line px-4 text-body font-semibold text-ink">{translate(locale, 'Achat', 'Purchase options')}</a>}
+        </div>
       </div>
 
       {/* JSON-LD Structured Data */}

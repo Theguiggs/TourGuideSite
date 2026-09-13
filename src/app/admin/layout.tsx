@@ -1,4 +1,8 @@
 'use client';
+import { useAdminCopy } from '@/lib/admin/use-admin-copy';
+import { StudioLocaleProvider, useStudioLocale } from '@/lib/i18n/studio-locale';
+import { SITE_LOCALES, LOCALE_NAMES, isInterfaceLocale } from '@/lib/i18n/locales';
+
 
 import Link from 'next/link';
 import { BarChart3, ClipboardList, Headphones, History, Map, Users } from 'lucide-react';
@@ -25,6 +29,8 @@ const NAV_ITEMS = [
 ];
 
 function AdminNav() {
+  const a = useAdminCopy();
+  const { locale, setLocale } = useStudioLocale();
   const pathname = usePathname();
   const { user, signOut } = useAuth();
 
@@ -37,11 +43,17 @@ function AdminNav() {
           </div>
           <div className="flex-1 min-w-0">
             <p className="font-medium text-white truncate">{user?.displayName}</p>
-            <p className="text-meta text-ink-40 truncate">Admin · Modération</p>
+            <p className="text-meta text-ink-40 truncate">{a("Admin · Modération")}</p>
           </div>
         </div>
 
-        <nav aria-label="Administration" className="flex lg:flex-col gap-1 overflow-x-auto lg:overflow-x-visible">
+        <label className="mb-4 flex flex-wrap items-center gap-2 text-body">
+          {a('Langue')}
+          <select value={locale} onChange={event => { if (isInterfaceLocale(event.target.value)) setLocale(event.target.value); }} className="min-h-11 max-w-full rounded-lg bg-paper px-3 text-ink">
+            {SITE_LOCALES.map(language => <option key={language} value={language}>{LOCALE_NAMES[language]}</option>)}
+          </select>
+        </label>
+        <nav aria-label={a("Administration")} className="flex lg:flex-col gap-1 overflow-x-auto lg:overflow-x-visible">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href || (item.href !== '/admin/moderation' && pathname.startsWith(item.href));
             const isQueueActive = item.href === '/admin/moderation' && pathname.startsWith('/admin/moderation') && !pathname.startsWith('/admin/moderation/history');
@@ -56,7 +68,7 @@ function AdminNav() {
                 }`}
               >
                 <item.icon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                {item.label}
+                {a(item.label)}
               </Link>
             );
           })}
@@ -65,9 +77,7 @@ function AdminNav() {
         <button
           onClick={signOut}
           className="hidden lg:block w-full mt-8 text-left text-body text-ink-40 hover:text-danger px-3 py-2"
-        >
-          Se déconnecter
-        </button>
+        > {a("Se déconnecter")} </button>
       </div>
     </aside>
   );
@@ -75,11 +85,11 @@ function AdminNav() {
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <AuthGuard requireAdmin>
+    <StudioLocaleProvider><AuthGuard requireAdmin>
       <div className={`flex flex-col lg:flex-row min-h-[80vh] ${jetBrainsMono.variable}`}>
         <AdminNav />
-        <div className="flex-1 p-4 lg:p-8 bg-paper-soft">{children}</div>
+        <div className="min-w-0 flex-1 p-4 lg:p-8 bg-paper-soft">{children}</div>
       </div>
-    </AuthGuard>
+    </AuthGuard></StudioLocaleProvider>
   );
 }

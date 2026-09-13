@@ -152,13 +152,13 @@ describe('AdminAnalyticsPage', () => {
     render(<AdminAnalyticsPage />);
     const ligne = await screen.findByTestId('depense-visiteur-tour-42');
 
-    expect(ligne.textContent).toContain('$0.1600');
-    expect(ligne.textContent).toContain('$0.0200');
-    expect(ligne.textContent).toContain('$0.0300');
+    expect(ligne.textContent).toContain('0,1600\u00a0$US');
+    expect(ligne.textContent).toContain('0,0200\u00a0$US');
+    expect(ligne.textContent).toContain('0,0300\u00a0$US');
     // La somme des trois (0,21 $) ne doit apparaître NULLE PART : les additionner
     // rendrait un total supérieur au compteur opposable de l'enveloppe.
-    expect(ligne.textContent).not.toContain('$0.2100');
-    expect(screen.getByTestId('enveloppe-interne').textContent).toContain('$1.47');
-    expect(screen.getByTestId('enveloppe-interne').textContent).toContain('$30.00');
+    expect(ligne.textContent).not.toContain('0,2100\u00a0$US');
+    expect(screen.getByTestId('enveloppe-interne').textContent).toContain('1,47\u00a0$US');
+    expect(screen.getByTestId('enveloppe-interne').textContent).toContain('30,00\u00a0$US');
   });
 });

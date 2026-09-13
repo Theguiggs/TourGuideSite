@@ -2,6 +2,7 @@
 
 import { tourStatusLabel } from '@/lib/studio/tours-list-helpers';
 import type { StudioSessionStatus } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface LanguageStatusRowProps {
   /** ISO code 2 letters (FR, EN, DE, …). */
@@ -44,7 +45,8 @@ export function LanguageStatusRow({
   onActionClick,
   isLast = false,
 }: LanguageStatusRowProps) {
-  const statusInfo = tourStatusLabel(status);
+  const { locale } = useStudioLocale();
+  const statusInfo = tourStatusLabel(status, locale);
   const cfg = STATUS_CFG[statusInfo.color];
 
   return (

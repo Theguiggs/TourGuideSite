@@ -59,6 +59,10 @@ services:
         # seulement dans `environment:` n'aurait aucun effet. Sans elle,
         # isStripeConfigured() masque toute l'UI d'achat (lib/stripe/client.ts).
         NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+        # Fenêtre de gratuité, inlinée par Next.js au build comme les autres
+        # variables publiques. La fin est exclusive.
+        NEXT_PUBLIC_LAUNCH_FREE_ACCESS_START_AT: ${NEXT_PUBLIC_LAUNCH_FREE_ACCESS_START_AT:-}
+        NEXT_PUBLIC_LAUNCH_FREE_ACCESS_END_AT: ${NEXT_PUBLIC_LAUNCH_FREE_ACCESS_END_AT:-}
         # Liens magasins, inlinés au build eux aussi. Vides tant que l'app
         # n'est pas publiée : le site n'affiche alors aucun bouton magasin.
         NEXT_PUBLIC_APP_STORE_IOS: ${NEXT_PUBLIC_APP_STORE_IOS:-}

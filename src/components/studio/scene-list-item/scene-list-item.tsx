@@ -2,6 +2,7 @@ import type { StudioScene } from '@/types/studio';
 import type { SceneTranscriptionState } from '@/lib/stores/transcription-store';
 import { getSceneStatusConfig } from '@/lib/api/studio';
 import { TranscriptionControls } from '@/components/studio/transcription-controls';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface SceneListItemProps {
   scene: StudioScene;
@@ -22,7 +23,8 @@ export function SceneListItem({
   onTriggerTranscription,
   onRetryTranscription,
 }: SceneListItemProps) {
-  const statusConfig = getSceneStatusConfig(scene.status);
+  const { t, locale } = useStudioLocale();
+  const statusConfig = getSceneStatusConfig(scene.status, locale);
   const hasAudio = !!scene.originalAudioKey;
   const showTranscriptionControls = hasAudio && onTriggerTranscription && onRetryTranscription;
 
@@ -43,7 +45,7 @@ export function SceneListItem({
 
         <div className="flex-1 min-w-0">
           <p className="font-medium text-ink truncate">
-            {scene.title || `Scène ${scene.sceneIndex + 1}`}
+            {scene.title || `${t('Scène', 'Scene')} ${scene.sceneIndex + 1}`}
           </p>
           <span className={`inline-flex px-2 py-0.5 rounded-pill text-meta font-medium mt-0.5 ${statusConfig.color}`}>
             {statusConfig.label}
@@ -58,7 +60,7 @@ export function SceneListItem({
                 ? 'bg-grenadine text-white hover:opacity-90'
                 : 'bg-paper-soft text-ink-80 hover:bg-grenadine-soft hover:text-grenadine'
             }`}
-            aria-label={isPlaying ? `Pause scène ${scene.sceneIndex + 1}` : `Écouter scène ${scene.sceneIndex + 1}`}
+            aria-label={isPlaying ? t(`Pause scène ${scene.sceneIndex + 1}`, `Pause scene ${scene.sceneIndex + 1}`) : t(`Écouter scène ${scene.sceneIndex + 1}`, `Listen to scene ${scene.sceneIndex + 1}`)}
             data-testid={`play-btn-${scene.id}`}
           >
             {isPlaying ? '⏸' : '▶'}
@@ -69,7 +71,7 @@ export function SceneListItem({
       {showTranscriptionControls && (
         <TranscriptionControls
           sceneId={scene.id}
-          sceneTitle={scene.title || `Scène ${scene.sceneIndex + 1}`}
+          sceneTitle={scene.title || `${t('Scène', 'Scene')} ${scene.sceneIndex + 1}`}
           transcriptionStatus={txStatus}
           transcriptText={txText}
           error={txError}

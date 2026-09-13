@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
@@ -46,19 +48,19 @@ export default function StudioToursPage() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
   const { locale } = useStudioLocale();
-  const copy = useMemo(() => locale === 'en' ? {
-    loadError: 'Unable to load your tours.', deleteError: 'Unable to delete this session.', guideOnly: 'The Studio is for guides. Create a guide profile to get started.',
-    retry: 'Try again', emptyTitle: 'You have not created a tour yet', emptyText: 'Record a route in the field with the mobile app, then come back here to turn it into an audio tour.',
-    create: 'Create a new tour', eyebrow: 'My tours', total: 'total', live: 'live', titleStart: 'Your', titleEmphasis: 'catalogue',
-    intro: 'Everything you have written, in progress or published. Open a tour to resume, edit or read feedback.', newTour: 'New tour',
-    noResults: 'No tours match these filters.', reset: 'Reset filters', quote: 'A good tour starts with a place you love too much to keep to yourself.',
-  } : {
+  const copy = useMemo(() => localizeValue(locale, {
     loadError: 'Impossible de charger vos visites.', deleteError: 'Erreur lors de la suppression.', guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.',
     retry: 'Réessayer', emptyTitle: "Vous n'avez pas encore créé de visite", emptyText: "Enregistrez un parcours sur le terrain avec l'app mobile, puis revenez ici pour le transformer en visite audio.",
     create: 'Créer une nouvelle visite', eyebrow: 'Mes visites', total: 'au total', live: 'en ligne', titleStart: 'Votre', titleEmphasis: 'catalogue',
     intro: 'Tout ce que vous avez écrit, en cours ou publié. Ouvrez une visite pour la reprendre, la modifier ou lire les retours.', newTour: 'Nouvelle visite',
     noResults: 'Aucune visite ne correspond à ces filtres.', reset: 'Réinitialiser les filtres', quote: "Une bonne visite commence par un endroit qu'on aime trop pour le garder pour soi.",
-  }, [locale]);
+  }, {
+    loadError: 'Unable to load your tours.', deleteError: 'Unable to delete this session.', guideOnly: 'The Studio is for guides. Create a guide profile to get started.',
+    retry: 'Try again', emptyTitle: 'You have not created a tour yet', emptyText: 'Record a route in the field with the mobile app, then come back here to turn it into an audio tour.',
+    create: 'Create a new tour', eyebrow: 'My tours', total: 'total', live: 'live', titleStart: 'Your', titleEmphasis: 'catalogue',
+    intro: 'Everything you have written, in progress or published. Open a tour to resume, edit or read feedback.', newTour: 'New tour',
+    noResults: 'No tours match these filters.', reset: 'Reset filters', quote: 'A good tour starts with a place you love too much to keep to yourself.',
+  }), [locale]);
 
   const lastSessionId = useMemo(
     () => studioPersistenceService.getLastSessionId(),

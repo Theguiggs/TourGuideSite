@@ -1,4 +1,5 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 import { BadgeCheck } from 'lucide-react';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
@@ -43,11 +44,11 @@ export function ReviewItem({ author, when, tourTitle, quote, rating, verified }:
               <span className="truncate">{author}</span>
               {verified && (
                 <span
-                  title={locale === 'en' ? 'Verified listen' : 'Écoute vérifiée'}
+                  title={translate(locale, 'Écoute vérifiée', 'Verified listen')}
                   className="text-olive font-bold shrink-0"
-                  aria-label={locale === 'en' ? 'Verified listen' : 'Écoute vérifiée'}
+                  aria-label={translate(locale, 'Écoute vérifiée', 'Verified listen')}
                 >
-                  <BadgeCheck size={13} className="inline" aria-hidden="true" /> {locale === 'en' ? 'verified' : 'vérifié'}
+                  <BadgeCheck size={13} className="inline" aria-hidden="true" /> {translate(locale, 'vérifié', 'verified')}
                 </span>
               )}
             </div>
@@ -57,7 +58,7 @@ export function ReviewItem({ author, when, tourTitle, quote, rating, verified }:
           </div>
         </div>
         {stars !== null && (
-          <div className="text-meta text-ocre-ink font-bold shrink-0" aria-label={locale === 'en' ? `${stars} stars out of 5` : `${stars} étoiles sur 5`}>
+          <div className="text-meta text-ocre-ink font-bold shrink-0" aria-label={translate(locale, `${stars} étoiles sur 5`, `${stars} stars out of 5`)}>
             <span aria-hidden="true">{'★'.repeat(stars)}</span>
             <span aria-hidden="true" className="text-ink-20">
               {'★'.repeat(5 - stars)}

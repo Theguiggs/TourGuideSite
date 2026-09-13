@@ -1,4 +1,5 @@
-import type { Metadata } from 'next';
+import { VisitorHelp } from '@/components/catalogue/visitor-help';
+import { helpMetadata } from '@/lib/help-metadata';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Button, Eyebrow, PullQuote } from '@murmure/design-system/web';
@@ -7,15 +8,7 @@ import Faq from '../../aide/_components/Faq';
 import CreateTourCta from '@/components/CreateTourCta';
 import { FAQ_GUIDES, FAQ_TRAVELLERS, STEPS, SUPPORT_EMAIL, TIPS } from './_content';
 
-export const metadata: Metadata = {
-  title: 'Help',
-  description: 'Learn how to create, translate, publish and listen to multilingual Murmure audio tours.',
-  alternates: {
-    canonical: '/en/help',
-    languages: {fr: '/aide', en: '/en/help'},
-  },
-  openGraph: {locale: 'en_US'},
-};
+export const metadata = helpMetadata('en');
 
 export default function EnglishHelpPage() {
   return (
@@ -34,11 +27,13 @@ export default function EnglishHelpPage() {
         </div>
       </section>
 
+      <VisitorHelp locale="en" />
+
       <section className="bg-paper-soft py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-h4 md:text-h3 mb-6" style={{color: tg.colors.ink}}>What is Murmure?</h2>
           <p className="font-sans" style={{color: tg.colors.ink80, fontSize: tg.fontSize.bodyLg, lineHeight: 1.65}}>
-            Murmure offers immersive audio walking tours. Travellers listen in the mobile app, even offline, while guides create and translate tours in the web studio.
+            Murmure offers audio walking tours. Travellers listen on the website or in the app, while guides create and translate tours in the web studio.
           </p>
         </div>
       </section>

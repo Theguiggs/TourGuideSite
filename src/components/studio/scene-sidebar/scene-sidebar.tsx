@@ -55,7 +55,7 @@ function SegmentBadges({ sceneId }: { sceneId: string }) {
 }
 
 export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSidebarProps) {
-  const { t } = useStudioLocale();
+  const { t, locale } = useStudioLocale();
   const statusLabel = (label: string) => ({
     'Audio terrain': t('Audio terrain', 'Field audio'),
     'À transcrire': t('À transcrire', 'Needs transcription'),
@@ -72,7 +72,7 @@ export function SceneSidebar({ scenes, activeSceneId, onSceneSelect }: SceneSide
         <ol className="space-y-1">
           {scenes.map((scene) => {
             const isActive = scene.id === activeSceneId;
-            const statusConfig = getSceneStatusConfig(scene.status);
+            const statusConfig = getSceneStatusConfig(scene.status, locale);
             const hasPoiLocation = typeof scene.latitude === 'number' && typeof scene.longitude === 'number';
             return (
               <li key={scene.id}>

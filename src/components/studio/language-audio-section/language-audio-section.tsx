@@ -9,6 +9,7 @@ import { AudioPlayerBar } from '@/components/studio/audio-player';
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { updateSceneSegment, createSceneSegment } from '@/lib/api/studio';
 import type { SceneSegment, AudioSource } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'LanguageAudioSection';
 
@@ -32,6 +33,7 @@ export function LanguageAudioSection({
   gpuAvailable,
   onAudioSaved,
 }: LanguageAudioSectionProps) {
+  const { t } = useStudioLocale();
   const [activeTool, setActiveTool] = useState<ActiveTool>(null);
   const [audioSource, setAudioSource] = useState<AudioSource | undefined>(segment.audioSource);
   const [audioKey, setAudioKey] = useState<string | null>(segment.audioKey);
@@ -110,7 +112,7 @@ export function LanguageAudioSection({
         }
       } catch (uploadErr) {
         logger.error(SERVICE_NAME, 'S3 upload exception — segment left untouched', { error: String(uploadErr) });
-        setSaveError('Envoi de l’audio impossible. La langue reste sans son.');
+        setSaveError(t('Envoi de l’audio impossible. La langue reste sans son.', 'Could not upload the audio. This language still has no sound.'));
         return;
       }
     }
@@ -150,7 +152,7 @@ export function LanguageAudioSection({
     } else {
       onAudioSaved?.();
     }
-  }, [segment.sceneId, segment.segmentIndex, segment.language, sessionId, onAudioSaved]);
+  }, [segment.sceneId, segment.segmentIndex, segment.language, sessionId, onAudioSaved, t]);
 
   // --- Recording complete callback ---
 
@@ -204,7 +206,7 @@ export function LanguageAudioSection({
           data-testid="audio-source-badge"
           className="inline-flex items-center px-2 py-0.5 rounded-pill text-meta font-medium bg-grenadine-soft text-grenadine"
         >
-          TTS automatique
+          {t('TTS automatique', 'Automatic TTS')}
         </span>
       );
     }
@@ -214,7 +216,7 @@ export function LanguageAudioSection({
         data-testid="audio-source-badge"
         className="inline-flex items-center px-2 py-0.5 rounded-pill text-meta font-medium bg-mer-soft text-mer"
       >
-        Enregistrement personnel
+        {t('Enregistrement personnel', 'Own recording')}
       </span>
     );
   };
@@ -234,7 +236,7 @@ export function LanguageAudioSection({
           role="alert"
           data-testid="language-audio-save-error"
         >
-          Audio non enregistré : {saveError}
+          {t('Audio non enregistré :', 'Audio not saved:')} {saveError}
         </p>
       )}
 
@@ -248,12 +250,12 @@ export function LanguageAudioSection({
                 className="mb-2 text-body font-medium text-grenadine hover:opacity-80"
                 data-testid="play-audio-btn"
               >
-                ▶ Écouter
+                ▶ {t('Écouter', 'Listen')}
               </button>
               {isLoadedInPlayer && <AudioPlayerBar compact label={`Audio ${targetLanguage.toUpperCase()}`} />}
             </>
           ) : (
-            <p className="text-body text-grenadine">Audio genere ✅ (chargement...)</p>
+            <p className="text-body text-grenadine">{t('Audio genere ✅ (chargement...)', 'Audio generated ✅ (loading...)')}</p>
           )}
         </div>
       )}
@@ -261,7 +263,7 @@ export function LanguageAudioSection({
       {/* No audio message */}
       {!audioKey && !playableUrl && (
         <p className="text-body text-ink-60" data-testid="no-audio-message">
-          Aucun audio pour cette scene
+          {t('Aucun audio pour cette scene', 'No audio for this scene')}
         </p>
       )}
 
@@ -274,7 +276,7 @@ export function LanguageAudioSection({
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fillRule="evenodd" d="M4 3a1 1 0 011-1h10a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3zm2 1v12h8V4H6zm2 2h4v1H8V6zm0 3h4v1H8V9zm0 3h3v1H8v-1z" clipRule="evenodd" />
         </svg>
-        Enregistrer avec le prompteur
+        {t('Enregistrer avec le prompteur', 'Record with the prompter')}
       </Link>
 
       {/* Secondary actions */}
@@ -288,7 +290,7 @@ export function LanguageAudioSection({
           }`}
           data-testid="toggle-tts-btn"
         >
-          Regenerer TTS
+          {t('Regenerer TTS', 'Regenerate TTS')}
         </button>
         <button
           onClick={() => setActiveTool(activeTool === 'recorder' ? null : 'recorder')}
@@ -299,7 +301,7 @@ export function LanguageAudioSection({
           }`}
           data-testid="toggle-recorder-btn"
         >
-          Enregistrement rapide
+          {t('Enregistrement rapide', 'Quick recording')}
         </button>
       </div>
 

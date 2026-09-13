@@ -12,6 +12,7 @@ import { SubmissionChecklist } from './submission-checklist';
 import { LANGUAGE_CONFIG } from '@/components/studio/language-checkout/language-checkbox-card';
 import { checkLanguageReadiness } from '@/lib/api/language-purchase';
 import { logger } from '@/lib/logger';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 // --- Types ---
 
@@ -181,6 +182,7 @@ export function LanguageSceneList({
   translatingSceneIds = [],
   isAutoTranslated = false,
 }: LanguageSceneListProps) {
+  const { t } = useStudioLocale();
   // Use primitive state + useMemo to avoid infinite loop (array selectors)
   const batchState = useLanguageBatchStore((s) => s.progress);
   const failedDetailsState = useLanguageBatchStore((s) => s.failedSceneDetails);
@@ -304,10 +306,10 @@ export function LanguageSceneList({
             <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616L18 9.381a1 1 0 01-1.447 1.382L15 9.654V14a1 1 0 01-1 1h-1v2a1 1 0 11-2 0v-2H9v2a1 1 0 11-2 0v-2H6a1 1 0 01-1-1V9.654L3.447 10.763A1 1 0 012 9.381l1.786-1.87-1.233-.616a1 1 0 01.894-1.79l1.599.8L9 4.323V3a1 1 0 011-1z" />
             </svg>
-            Traduire automatiquement cette langue
+            {t('Traduire automatiquement cette langue', 'Translate this language automatically')}
           </button>
           <p className="text-meta text-mer">
-            Traduction Standard (1,99&euro;) ou Pro (2,99&euro;) &mdash; tous les textes et audios sont g&eacute;n&eacute;r&eacute;s automatiquement
+            {t('Traduction Standard (1,99€) ou Pro (2,99€) — tous les textes et audios sont générés automatiquement', 'Standard (€1.99) or Pro (€2.99) translation — every text and audio is generated automatically')}
           </p>
         </div>
       )}
@@ -316,7 +318,7 @@ export function LanguageSceneList({
       {hasMissingScenes && (
         <div className="rounded-lg border border-ocre-soft bg-ocre-soft p-4">
           <p className="text-body text-ocre-ink">
-            Certaines scènes n&apos;ont pas encore été traduites.
+            {t("Certaines scènes n'ont pas encore été traduites.", 'Some scenes have not been translated yet.')}
           </p>
           {onResumeBatch && (
           <button
@@ -325,7 +327,7 @@ export function LanguageSceneList({
             onClick={onResumeBatch}
             className="mt-2 inline-flex items-center rounded-md bg-ocre px-4 py-2 text-body font-medium text-ink hover:brightness-110"
           >
-            Reprendre la traduction
+            {t('Reprendre la traduction', 'Resume translation')}
           </button>
           )}
         </div>
@@ -397,7 +399,7 @@ export function LanguageSceneList({
                   return (
                     <span>
                       <span className="italic">{fallbackTitle}</span>
-                      <span className="text-meta text-ink-40 ml-1">(non traduit)</span>
+                      <span className="text-meta text-ink-40 ml-1">{t('(non traduit)', '(not translated)')}</span>
                     </span>
                   );
                 })()}
@@ -413,8 +415,8 @@ export function LanguageSceneList({
                   className="text-meta font-medium text-mer hover:opacity-80 disabled:text-ink-40 px-2 py-1 border border-mer-soft rounded-md hover:bg-mer-soft disabled:border-line"
                 >
                   {translatingSceneIds.includes(scene.id)
-                    ? 'Traduction...'
-                    : languageStatus === 'ok' ? '⇄ Re-traduire' : '⇄ Traduire'}
+                    ? t('Traduction...', 'Translating...')
+                    : languageStatus === 'ok' ? t('⇄ Re-traduire', '⇄ Retranslate') : t('⇄ Traduire', '⇄ Translate')}
                 </button>
               )}
               <LanguageStatusBadge status={languageStatus} />
@@ -428,7 +430,7 @@ export function LanguageSceneList({
         <>
           <hr className="border-line" />
           <div className="space-y-2" data-testid="batch-actions-section">
-            <p className="text-body font-medium text-ink-80">Actions rapides</p>
+            <p className="text-body font-medium text-ink-80">{t('Actions rapides', 'Quick actions')}</p>
             <div className="flex flex-wrap gap-2">
               {staleCount > 0 && onRetranslateStale && (
                 <button
@@ -437,7 +439,7 @@ export function LanguageSceneList({
                   onClick={handleRetranslateStaleClick}
                   className="inline-flex items-center rounded-md border border-ocre px-4 py-2 text-body font-medium text-ocre-ink hover:bg-ocre-soft"
                 >
-                  Re-traduire les scenes modifiees ({staleCount})
+                  {t('Re-traduire les scenes modifiees', 'Retranslate edited scenes')} ({staleCount})
                 </button>
               )}
               {missingAudioCount > 0 && onGenerateMissingAudio && (
@@ -447,7 +449,7 @@ export function LanguageSceneList({
                   onClick={onGenerateMissingAudio}
                   className="inline-flex items-center rounded-md border border-mer px-4 py-2 text-body font-medium text-mer hover:bg-mer-soft"
                 >
-                  Générer les audio manquants ({missingAudioCount})
+                  {t('Générer les audio manquants', 'Generate missing audio')} ({missingAudioCount})
                 </button>
               )}
             </div>
@@ -458,7 +460,7 @@ export function LanguageSceneList({
       {/* Main actions */}
       <hr className="border-line" />
       <div className="space-y-2" data-testid="main-actions-section">
-        <p className="text-body font-medium text-ink-80">Actions</p>
+        <p className="text-body font-medium text-ink-80">{t('Actions', 'Actions')}</p>
         <div className="flex flex-wrap gap-2">
           {onRegenerateAllTts && translatedSceneCount > 0 && (
             <button
@@ -467,7 +469,7 @@ export function LanguageSceneList({
               onClick={onRegenerateAllTts}
               className="inline-flex items-center rounded-md border border-grenadine px-4 py-2 text-body font-medium text-grenadine hover:bg-grenadine-soft"
             >
-              🔊 Régénérer tous les TTS ({translatedSceneCount})
+              🔊 {t('Régénérer tous les TTS', 'Regenerate all TTS')} ({translatedSceneCount})
             </button>
           )}
           {onListenPreview && (
@@ -477,7 +479,7 @@ export function LanguageSceneList({
               onClick={onListenPreview}
               className="inline-flex items-center rounded-md border border-line px-4 py-2 text-body font-medium text-ink-80 hover:bg-paper-soft"
             >
-              Écouter un extrait
+              {t('Écouter un extrait', 'Listen to a sample')}
             </button>
           )}
           {onFullPreview && (
@@ -487,7 +489,7 @@ export function LanguageSceneList({
               onClick={onFullPreview}
               className="inline-flex items-center rounded-md border border-line px-4 py-2 text-body font-medium text-ink-80 hover:bg-paper-soft"
             >
-              Preview complete
+              {t('Preview complete', 'Full preview')}
             </button>
           )}
           {(onSubmitLanguage || sessionId) && (() => {
@@ -496,9 +498,9 @@ export function LanguageSceneList({
             const readiness = checkLanguageReadiness(scenes, segments, lang);
             const isDisabled = hasFailedOrProcessing || !readiness.ready;
             const disabledReason = hasFailedOrProcessing
-              ? 'Corrigez les scenes en echec avant de soumettre'
+              ? t('Corrigez les scenes en echec avant de soumettre', 'Fix the failed scenes before submitting')
               : !readiness.ready
-                ? `${readiness.total - readiness.complete} scene(s) incomplete(s)`
+                ? t(`${readiness.total - readiness.complete} scene(s) incomplete(s)`, `${readiness.total - readiness.complete} incomplete scene(s)`)
                 : '';
 
             return (
@@ -511,20 +513,20 @@ export function LanguageSceneList({
                     disabled={isDisabled}
                     className="inline-flex items-center rounded-md bg-mer px-4 py-2 text-body font-medium text-ink hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    Soumettre la version {langLabel}
+                    {t('Soumettre la version', 'Submit the')} {langLabel}{t('', ' version')}
                   </button>
                   <span data-testid="submit-readiness-info" className={`text-meta ${readiness.ready ? 'text-success' : 'text-ocre-ink'}`}>
                     {readiness.ready
-                      ? `${readiness.complete}/${readiness.total} scenes — Texte \u2705 Audio \u2705`
+                      ? t(`${readiness.complete}/${readiness.total} scenes — Texte \u2705 Audio \u2705`, `${readiness.complete}/${readiness.total} scenes — Text \u2705 Audio \u2705`)
                       : (() => {
                           const withText = readiness.scenes.filter(s => s.hasText).length;
                           const withAudio = readiness.scenes.filter(s => s.hasAudio).length;
                           const parts: string[] = [];
-                          if (withText < readiness.total) parts.push(`Texte: ${withText}/${readiness.total}`);
-                          else parts.push('Texte \u2705');
+                          if (withText < readiness.total) parts.push(t(`Texte: ${withText}/${readiness.total}`, `Text: ${withText}/${readiness.total}`));
+                          else parts.push(t('Texte \u2705', 'Text \u2705'));
                           if (withAudio < readiness.total) parts.push(`Audio: ${withAudio}/${readiness.total}`);
                           else parts.push('Audio \u2705');
-                          return `${readiness.complete}/${readiness.total} completes — ${parts.join(' | ')}`;
+                          return t(`${readiness.complete}/${readiness.total} completes — ${parts.join(' | ')}`, `${readiness.complete}/${readiness.total} complete — ${parts.join(' | ')}`);
                         })()}
                   </span>
                 </div>

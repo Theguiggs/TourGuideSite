@@ -1,3 +1,5 @@
+import { extendCopy } from '@/lib/i18n/translate';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
 import type { Metadata } from 'next';
 import { getCities, getAllTours } from '@/lib/api/tours-server';
 import TrackPageView from '@/components/TrackPageView';
@@ -17,19 +19,25 @@ export const metadata: Metadata = {
     'Chaque ville révèle ses propres histoires.',
   alternates: {
     canonical: '/catalogue',
-    languages: {fr: '/catalogue', en: '/en/catalogue'},
+    languages: extendCopy({fr: '/catalogue', en: '/en/catalogue'}),
   },
 };
 
-export default async function CataloguePage() {
+export async function LocalizedCataloguePage({ searchParams, locale = 'fr' }: { searchParams: Promise<{ q?: string | string[] }>; locale?: InterfaceLocale }) {
+  const { q } = await searchParams;
+  const query = typeof q === 'string' ? q.slice(0, 120) : '';
   const [cities, tours] = await Promise.all([getCities(), getAllTours()]);
 
   return (
     <>
       <TrackPageView event={AnalyticsEvents.WEB_CATALOGUE_BROWSE} />
       {/* Owner-scoped purchases resolved client-side (localStorage Cognito session). */}
-      <MyPurchasesStripClient />
-      <CatalogueViewCities cities={cities} tours={tours} />
+      <MyPurchasesStripClient locale={locale} />
+      <CatalogueViewCities key={query} cities={cities} tours={tours} initialQuery={query} locale={locale} />
     </>
   );
+}
+
+export default function CataloguePage(props: { searchParams: Promise<{ q?: string | string[] }> }) {
+  return LocalizedCataloguePage({ ...props, locale: 'fr' });
 }

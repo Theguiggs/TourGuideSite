@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import { useRef, useState } from 'react';
 import { cityFamily, FAMILY_META } from '@/components/studio/shell';
@@ -27,19 +29,19 @@ interface ProfileFormProps {
  */
 export function ProfileForm({ value, onChange, nativeLanguageCode }: ProfileFormProps) {
   const { locale } = useStudioLocale();
-  const copy = locale === 'en' ? {
-    information: 'Information', profilePhoto: 'Profile photo', photoAlt: 'Profile photo', photoHint: 'Square JPG or PNG, at least 400 px (5 MB max).',
-    uploading: 'Uploading...', change: 'Change', import: 'Upload', remove: 'Remove', uploadFailed: 'Photo upload failed.',
-    authorName: 'Author name', nameHint: 'This is what travellers see at the top of every tour.', bio: 'Biography',
-    bioPlaceholder: 'A few lines to help travellers get to know you. Why do you tell the stories of these places?',
-    homeCity: 'Home city', family: 'Family', startYear: 'Starting year', specialties: 'Specialties', languages: 'Languages spoken',
-  } : {
+  const copy = localizeValue(locale, {
     information: 'Informations', profilePhoto: 'Photo de profil', photoAlt: 'Photo de profil', photoHint: 'Carrée, format JPG ou PNG, 400 px minimum (max 5 Mo).',
     uploading: 'Import...', change: 'Changer', import: 'Importer', remove: 'Retirer', uploadFailed: 'Échec de l’envoi de la photo.',
     authorName: "Nom d'auteur", nameHint: 'C’est ce que les voyageurs voient en haut de chaque visite.', bio: 'Biographie',
     bioPlaceholder: 'Quelques lignes pour que les voyageurs vous connaissent. Pourquoi racontez-vous ces lieux ?',
     homeCity: "Ville d'attache", family: 'Famille', startYear: 'Année de début', specialties: 'Spécialités', languages: 'Langues parlées',
-  };
+  }, {
+    information: 'Information', profilePhoto: 'Profile photo', photoAlt: 'Profile photo', photoHint: 'Square JPG or PNG, at least 400 px (5 MB max).',
+    uploading: 'Uploading...', change: 'Change', import: 'Upload', remove: 'Remove', uploadFailed: 'Photo upload failed.',
+    authorName: 'Author name', nameHint: 'This is what travellers see at the top of every tour.', bio: 'Biography',
+    bioPlaceholder: 'A few lines to help travellers get to know you. Why do you tell the stories of these places?',
+    homeCity: 'Home city', family: 'Family', startYear: 'Starting year', specialties: 'Specialties', languages: 'Languages spoken',
+  });
   const initial = (value.displayName ?? 'S').trim().charAt(0).toUpperCase() || 'S';
   const fam = cityFamily(value.city);
   const famMeta = FAMILY_META[fam];

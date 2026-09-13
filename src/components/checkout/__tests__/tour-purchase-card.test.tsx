@@ -34,14 +34,19 @@ jest.mock('@/lib/api/tour-purchase', () => ({
   ownsTour: () => mockOwnsTour(),
 }));
 
+let mockAccount: string | null = 'a';
 jest.mock('@/lib/auth/auth-context', () => ({
-  useAuth: () => ({ isAuthenticated: true, signIn: jest.fn() }),
+  useAuth: () => ({ isAuthenticated: !!mockAccount, user: mockAccount ? { id: mockAccount } : null, signIn: jest.fn() }),
 }));
+jest.mock('next/navigation', () => ({ usePathname: () => '/catalogue/nice/promenade', useSearchParams: () => new URLSearchParams() }));
 
 import { render, screen, act, fireEvent, waitFor } from '@testing-library/react';
 import TourPurchaseCard from '../tour-purchase-card';
 import { listPendingTourConfirms } from '@/lib/checkout/pending-tour-confirm';
 import { PURCHASES_CHANGED_EVENT } from '@/lib/checkout/purchase-events';
+import { SITE_LOCALES } from '@/lib/i18n/locales';
+import { checkoutText } from '@/lib/i18n/checkout-copy';
+import { localizePublicPath } from '@/lib/i18n/public-routes';
 
 const props = { tourId: 'tour-1', title: 'Promenade', priceCents: 499 };
 
@@ -54,7 +59,19 @@ async function openPaymentForm() {
 }
 
 describe('TourPurchaseCard', () => {
+  it.each(SITE_LOCALES)('affiche attente, refus et destination d’achat en %s', async locale => {
+    window.history.replaceState({}, '', `${localizePublicPath('/catalogue/nice/promenade', locale)}?murmure_pay=tour&payment_intent=pi_locale&redirect_status=processing`);
+    mockConfirmPurchase.mockResolvedValue({ok: false, error: {code: 2622, message: 'Internal diagnostic'}});
+    render(<TourPurchaseCard {...props} locale={locale} />);
+    expect(screen.getByRole('link', {name: checkoutText(locale, 'My tours')})).toHaveAttribute('href', localizePublicPath('/mes-achats', locale));
+    await act(async () => fireEvent.click(screen.getByRole('button', {name: checkoutText(locale, 'Check payment')})));
+    expect(screen.getByRole('status')).toHaveTextContent(checkoutText(locale, 'Confirmation is not available yet. Check again later or contact support before paying again.'));
+    expect(mockConfirmPurchase).toHaveBeenCalledWith('pi_locale');
+    expect(mockCreateIntent).not.toHaveBeenCalled();
+    expect(screen.queryByTestId('tour-owned-badge')).not.toBeInTheDocument();
+  });
   beforeEach(() => {
+    mockAccount = 'a';
     jest.clearAllMocks();
     localStorage.clear();
     window.history.replaceState({}, '', '/catalogue/nice/promenade');
@@ -63,6 +80,72 @@ describe('TourPurchaseCard', () => {
     mockCreateIntent.mockResolvedValue({ ok: true, value: { clientSecret: 'pi_42_secret_abc' } });
     mockConfirmPayment.mockResolvedValue({ paymentIntent: { id: 'pi_42', status: 'succeeded' } });
     mockConfirmPurchase.mockResolvedValue({ ok: true, value: { tourId: 'tour-1' } });
+  });
+
+  it('reprend le même formulaire après refus sans recréer un paiement', async () => {
+    mockConfirmPayment.mockResolvedValue({ error: { message: 'Carte refusée' } });
+    await openPaymentForm();
+    await act(async () => fireEvent.click(screen.getByRole('button', { name: 'Payer' })));
+    fireEvent.click(screen.getByRole('button', { name: 'Réessayer' }));
+    fireEvent.click(screen.getByRole('button', { name: /Acheter/ }));
+    expect(screen.getByTestId('payment-element')).toBeInTheDocument();
+    expect(mockCreateIntent).toHaveBeenCalledTimes(1);
+  });
+
+  it('vérifie un retour en traitement sans créer de nouvel intent', async () => {
+    window.history.replaceState({}, '', '/catalogue/nice/promenade?murmure_pay=tour&payment_intent=pi_processing&redirect_status=processing');
+    const view = render(<TourPurchaseCard {...props} />);
+    expect(screen.queryByRole('button', { name: /Acheter/ })).not.toBeInTheDocument();
+    view.unmount();
+    render(<TourPurchaseCard {...props} />);
+    expect(screen.queryByRole('button', { name: /Acheter/ })).not.toBeInTheDocument();
+    await act(async () => fireEvent.click(screen.getByRole('button', { name: 'Vérifier le paiement' })));
+    expect(mockConfirmPurchase).toHaveBeenCalledWith('pi_processing');
+    expect(mockCreateIntent).not.toHaveBeenCalled();
+    expect(screen.getByRole('link', { name: 'Écouter maintenant' })).toHaveAttribute('href', '#itineraire');
+  });
+
+  it('ne déclare pas la visite débloquée pour un autre produit confirmé', async () => {
+    mockConfirmPurchase.mockResolvedValue({ ok: true, value: { tourId: 'autre' } });
+    window.history.replaceState({}, '', '/catalogue/nice/promenade?murmure_pay=tour&payment_intent=pi_other&redirect_status=succeeded');
+    await act(async () => render(<TourPurchaseCard {...props} />));
+    expect(screen.queryByTestId('tour-owned-badge')).not.toBeInTheDocument();
+    expect(mockCreateIntent).not.toHaveBeenCalled();
+  });
+
+  it('propose l’écoute si le serveur confirme un accès existant sans nouvel achat', async () => {
+    mockCreateIntent.mockResolvedValue({ ok: false, error: { code: 2615, message: 'Tour already accessible with this account' } });
+    render(<TourPurchaseCard {...props} />);
+    await act(async () => fireEvent.click(screen.getByRole('button', { name: /Acheter/ })));
+    expect(screen.getByRole('link', { name: 'Écouter maintenant' })).toBeInTheDocument();
+    expect(screen.queryByTestId('payment-element')).not.toBeInTheDocument();
+  });
+
+  it('ne modifie pas une autre page quand Stripe répond après le départ', async () => {
+    let finish!: (value: unknown) => void;
+    mockConfirmPayment.mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+    const view = render(<TourPurchaseCard {...props} />);
+    await act(async () => fireEvent.click(screen.getByRole('button', { name: /Acheter/ })));
+    fireEvent.click(screen.getByRole('button', { name: 'Payer' }));
+    view.unmount();
+    window.history.replaceState({}, '', '/catalogue/autre?murmure_pay=tour&payment_intent=pi_other&redirect_status=processing');
+    await act(async () => finish({ paymentIntent: { id: 'pi_42', status: 'processing' } }));
+    expect(new URLSearchParams(window.location.search).get('payment_intent')).toBe('pi_other');
+  });
+
+  it('démonte le paiement au changement de compte et ne crée rien à la connexion', async () => {
+    const view = render(<TourPurchaseCard {...props} />);
+    await act(async () => fireEvent.click(screen.getByRole('button', { name: /Acheter/ })));
+    expect(screen.getByTestId('payment-element')).toBeInTheDocument();
+    mockAccount = null;
+    view.rerender(<TourPurchaseCard {...props} />);
+    expect(screen.queryByTestId('payment-element')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Acheter/ }));
+    expect(screen.getByRole('link', { name: 'Se connecter pour continuer' })).toHaveAttribute('href', expect.stringContaining('/connexion?returnTo='));
+    mockAccount = 'b';
+    view.rerender(<TourPurchaseCard {...props} />);
+    expect(mockCreateIntent).toHaveBeenCalledTimes(1);
+    expect(screen.queryByTestId('payment-element')).not.toBeInTheDocument();
   });
 
   it("inscrit l'intent au rattrapage dès sa création, et l'en retire une fois la visite accordée", async () => {

@@ -23,6 +23,17 @@ export interface StripeReturn {
   status: string;
 }
 
+/** Conserve seulement l’identifiant de vérification : recharger ne crée pas un nouvel achat. */
+export function rememberStripeReturn(kind: StripeReturnKind, paymentIntentId: string): void {
+  if (typeof window === 'undefined') return;
+  const url = new URL(window.location.href);
+  url.searchParams.delete('payment_intent_client_secret');
+  url.searchParams.set(KIND_PARAM, kind);
+  url.searchParams.set('payment_intent', paymentIntentId);
+  url.searchParams.set('redirect_status', 'processing');
+  window.history.replaceState(null, '', url.toString());
+}
+
 /** URL de retour pour la page courante, marquée du type de carte. */
 export function buildStripeReturnUrl(kind: StripeReturnKind): string | undefined {
   if (typeof window === 'undefined') return undefined;
@@ -37,6 +48,11 @@ export function buildStripeReturnUrl(kind: StripeReturnKind): string | undefined
 export function readStripeReturn(kind: StripeReturnKind): StripeReturn | null {
   if (typeof window === 'undefined') return null;
   const params = new URLSearchParams(window.location.search);
+  if (params.has('payment_intent_client_secret')) {
+    const clean = new URL(window.location.href);
+    clean.searchParams.delete('payment_intent_client_secret');
+    window.history.replaceState(null, '', clean.toString());
+  }
   if (params.get(KIND_PARAM) !== kind) return null;
   const paymentIntentId = params.get('payment_intent');
   const status = params.get('redirect_status');
@@ -45,9 +61,10 @@ export function readStripeReturn(kind: StripeReturnKind): StripeReturn | null {
 }
 
 /** Nettoie l'URL pour qu'un rechargement ne rejoue pas le retour. */
-export function clearStripeReturn(): void {
+export function clearStripeReturn(expectedIntentId?: string): void {
   if (typeof window === 'undefined' || !window.history?.replaceState) return;
   const url = new URL(window.location.href);
+  if (expectedIntentId && url.searchParams.has('payment_intent') && url.searchParams.get('payment_intent') !== expectedIntentId) return;
   for (const p of [...STRIPE_PARAMS, KIND_PARAM]) url.searchParams.delete(p);
-  window.history.replaceState(window.history.state, '', url.toString());
+  window.history.replaceState(null, '', url.toString());
 }

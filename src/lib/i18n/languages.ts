@@ -1,3 +1,4 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
 /**
  * Table UNIQUE des langues affichées (lot 5).
  *
@@ -42,10 +43,12 @@ export function languageName(code: string): string {
 }
 
 /** Nom dans la langue de l'interface (Studio, admin). */
-export function languageLabel(code: string, locale: 'fr' | 'en' = 'fr'): string {
+export function languageLabel(code: string, locale: InterfaceLocale = 'fr'): string {
   const info = LANGUAGES[norm(code)];
   if (!info) return code.toUpperCase();
-  return locale === 'en' ? info.nameEn : info.nameFr;
+  if (locale === 'fr') return info.nameFr;
+  if (locale === 'en') return info.nameEn;
+  return new Intl.DisplayNames([locale], { type: 'language' }).of(info.code) ?? info.name;
 }
 
 /** Drapeau décoratif, ou null : ne jamais l'afficher seul comme information. */

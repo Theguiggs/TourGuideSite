@@ -16,6 +16,8 @@ jest.mock('@/lib/api/guides-public-server', () => ({
 
 import sitemap from '../sitemap';
 import { SITE_URL } from '@/lib/site';
+import { SITE_LOCALES } from '@/lib/i18n/locales';
+import { localizePublicPath } from '@/lib/i18n/public-routes';
 
 describe('sitemap', () => {
   beforeEach(() => {
@@ -39,13 +41,14 @@ describe('sitemap', () => {
     const entries = await sitemap();
     const fr = entries.find((e) => e.url === `${SITE_URL}/catalogue/nice/vieux-nice`);
     const en = entries.find((e) => e.url === `${SITE_URL}/en/catalogue/nice/vieux-nice`);
-    const expected = { fr: `${SITE_URL}/catalogue/nice/vieux-nice`, en: `${SITE_URL}/en/catalogue/nice/vieux-nice` };
+    const expected = Object.fromEntries(SITE_LOCALES.map(locale => [locale, `${SITE_URL}${localizePublicPath('/catalogue/nice/vieux-nice', locale)}`]));
     expect(fr?.alternates?.languages).toEqual(expected);
     expect(en?.alternates?.languages).toEqual(expected);
-    expect(entries.find((e) => e.url === `${SITE_URL}/cgu`)?.alternates?.languages).toEqual({
-      fr: `${SITE_URL}/cgu`,
-      en: `${SITE_URL}/en/terms`,
-    });
+    for (const path of ['/cgu', '/creer-des-visites', '/guides/marie']) {
+      const languages = Object.fromEntries(SITE_LOCALES.map(locale => [locale, `${SITE_URL}${localizePublicPath(path, locale)}`]));
+      expect(entries.find(e => e.url === `${SITE_URL}${path}`)?.alternates?.languages).toEqual(languages);
+      for (const url of Object.values(languages)) expect(entries.find(e => e.url === url)).toBeDefined();
+    }
   });
 
   it('n’invente aucune date : sans build ni visite, la page n’en annonce pas', async () => {

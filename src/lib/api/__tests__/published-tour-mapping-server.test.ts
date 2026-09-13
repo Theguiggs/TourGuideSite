@@ -80,6 +80,11 @@ describe('published tour SSR mappings', () => {
     ]);
   });
 
+  it('transmet la langue source déclarée, sans la déduire de la liste traduite', async () => {
+    jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([{ ...tour, sourceLanguage: ' EN ', availableLanguages: ['fr', 'en'] }] as never);
+    await expect(getTourBySlug('nice', 'visite-test')).resolves.toMatchObject({ sourceLanguage: 'en' });
+  });
+
   it('uses the approved languages persisted on GuideTour during SSR', async () => {
     jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([
       { ...tour, availableLanguages: ['fr', 'en', 'es', 'de', 'it'] },
@@ -140,13 +145,39 @@ describe('published tour SSR mappings', () => {
     expect(publicApi.listGuideProfilesServer).toHaveBeenCalledTimes(1);
   });
 
-  it('uses the persisted cover photo for cards without calling the published content', async () => {
+  it('utilise la couverture signée par le serveur, jamais la clé privée avec les droits anonymes', async () => {
     jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([
       { ...tour, sessionId: 'session-1', coverPhotoKey: 'guide-studio/id/session-1/cover.jpg' },
     ] as never);
+    jest.mocked(publicApi.getPublishedTourContentServer).mockResolvedValue({
+      ok: true, data: { ...content, coverUrl: 'https://media.example/cover.jpg?signature=server' },
+    });
     const [card] = await getToursByCity('nice');
-    expect(card.imageUrl).toBe('guide-studio/id/session-1/cover.jpg');
-    expect(publicApi.getPublishedTourContentServer).not.toHaveBeenCalled();
+    expect(card.imageUrl).toBe('https://media.example/cover.jpg?signature=server');
+    expect(publicApi.getPublishedTourContentServer).toHaveBeenCalledTimes(1);
+    await getToursByCity('nice');
+    expect(publicApi.getPublishedTourContentServer).toHaveBeenCalledTimes(1);
+  });
+
+  it('ne renvoie pas la clé privée si la signature de couverture est indisponible', async () => {
+    jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([
+      { ...tour, sessionId: 'session-1', coverPhotoKey: 'guide-photos/private/cover.jpg' },
+    ] as never);
+    jest.mocked(publicApi.getPublishedTourContentServer).mockResolvedValue({ ok: false, error: 'indisponible' });
+    const [card] = await getToursByCity('nice');
+    expect(card.id).toBe('tour-1');
+    expect(card.imageUrl).toBeUndefined();
+    expect((await getTourBySlug('nice', 'visite-test'))?.imageUrl).toBeUndefined();
+  });
+
+  it('retombe sur une photo publique et récupère après une panne non mémorisée', async () => {
+    jest.mocked(publicApi.listGuideToursServer).mockResolvedValue([{ ...tour, sessionId: 'session-1' }] as never);
+    jest.mocked(publicApi.getPublishedTourContentServer)
+      .mockResolvedValueOnce({ ok: false, error: 'temporaire' })
+      .mockResolvedValueOnce({ ok: true, data: { ...content, scenes: [{ ...content.scenes[0], photoUrls: ['https://media.example/scene.jpg'] }] } });
+    expect((await getToursByCity('nice'))[0].imageUrl).toBeUndefined();
+    expect((await getToursByCity('nice'))[0].imageUrl).toBe('https://media.example/scene.jpg');
+    expect(publicApi.getPublishedTourContentServer).toHaveBeenCalledTimes(2);
   });
 
   it('keeps a tour whose image lookup fails instead of dropping the whole city', async () => {

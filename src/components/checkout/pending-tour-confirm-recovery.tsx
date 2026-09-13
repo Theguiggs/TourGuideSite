@@ -8,8 +8,8 @@
  *
  * confirmTourPurchase is idempotent and Stripe-verified, so replays are safe:
  * - ok            → granted, drop the pending, refresh ownership UI.
- * - NOT_PAID/INVALID/MISMATCH after a grace period → abandoned, drop it.
- * - transient (network) → keep for the next load.
+ * - NOT_PAID/INVALID after a grace period → abandoned, drop it.
+ * - MISMATCH ou erreur transitoire : conserver pour le compte concerné.
  */
 
 import { useEffect } from 'react';
@@ -24,12 +24,12 @@ import { emitPurchasesChanged } from '@/lib/checkout/purchase-events';
 // confirm-tour-purchase Lambda error codes that mean "will never succeed".
 const NOT_PAID = 2622;
 const INVALID = 2621;
-const MISMATCH = 2623;
+
 // Keep retrying a non-succeeding PI only briefly (payment may still be processing).
 const STALE_DROP_MS = 15 * 60 * 1000;
 
 export function PendingTourConfirmRecovery() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   useEffect(() => {
     if (!isAuthenticated) return;
@@ -48,8 +48,7 @@ export function PendingTourConfirmRecovery() {
           recovered = true;
         } else if (
           (res.error.code === NOT_PAID ||
-            res.error.code === INVALID ||
-            res.error.code === MISMATCH) &&
+            res.error.code === INVALID) &&
           Date.now() - p.ts > STALE_DROP_MS
         ) {
           // Definitively not granting — stop retrying.
@@ -67,7 +66,7 @@ export function PendingTourConfirmRecovery() {
     return () => {
       cancelled = true;
     };
-  }, [isAuthenticated]);
+  }, [isAuthenticated, user?.id]);
 
   return null;
 }

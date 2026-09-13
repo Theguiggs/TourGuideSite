@@ -2,6 +2,7 @@
 
 import { Dialog } from '@/components/ui/Dialog';
 import { logger } from '@/lib/logger';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'ManuallyEditedModal';
 
@@ -35,6 +36,7 @@ export function ManuallyEditedModal({
   onKeep,
   onUpdate,
 }: ManuallyEditedModalProps) {
+  const { t } = useStudioLocale();
   if (!isOpen) return null;
 
   const preview = truncatePreview(editedTextPreview);
@@ -57,18 +59,18 @@ export function ManuallyEditedModal({
         </h2>
 
         <p className="mt-3 text-body text-ink-80" data-testid="modal-warning-message">
-          Vous avez corrigé cette traduction à la main. Mettre à jour écrasera vos corrections. Continuer ?
+          {t('Vous avez corrigé cette traduction à la main. Mettre à jour écrasera vos corrections. Continuer ?', 'You corrected this translation by hand. Updating will overwrite your corrections. Continue?')}
         </p>
 
         <div className="mt-3 rounded-lg border border-line bg-paper-soft p-3">
           <p className="text-meta font-medium text-ink-60 mb-1">
-            Traduction actuelle ({language.toUpperCase()})
+            {t('Traduction actuelle', 'Current translation')} ({language.toUpperCase()})
           </p>
           <p
             className="text-body text-ink-80 italic"
             data-testid="modal-text-preview"
           >
-            {preview || <span className="text-ink-40">Aucun texte</span>}
+            {preview || <span className="text-ink-40">{t('Aucun texte', 'No text')}</span>}
           </p>
         </div>
 
@@ -82,7 +84,7 @@ export function ManuallyEditedModal({
             }}
             className="rounded-md border border-line px-4 py-2 text-body font-medium text-ink-80 hover:bg-paper-soft"
           >
-            Conserver ma version
+            {t('Conserver ma version', 'Keep my version')}
           </button>
           <button
             type="button"
@@ -93,7 +95,7 @@ export function ManuallyEditedModal({
             }}
             className="rounded-md bg-ocre px-4 py-2 text-body font-medium text-ink hover:brightness-110"
           >
-            Mettre à jour
+            {t('Mettre à jour', 'Update')}
           </button>
         </div>
       </div>

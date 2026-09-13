@@ -7,6 +7,7 @@ process.env.E2E_RUN_PREFIX ??= `local-${process.pid}-${Date.now()}`;
 
 export default defineConfig({
   testDir: './e2e/tests',
+  testIgnore: ['**/pwa.spec.ts', '**/visitor-auth.spec.ts', '**/visitor-home.spec.ts', '**/visitor-experience.spec.ts'], // Passes de production locale séparées.
   fullyParallel: false,
   retries: process.env.CI ? 1 : 0,
   workers: 1,
@@ -25,6 +26,9 @@ export default defineConfig({
   expect: { timeout: 15_000 },
   use: {
     baseURL: 'http://localhost:3000',
+    // Les tests affirment le français ; le Studio suit la langue du navigateur
+    // quand rien n'est mémorisé, et le Chromium de la CI est en en-US.
+    locale: 'fr-FR',
     // Trace dès le PREMIER échec : la cause d'une régression E2E est souvent
     // dans le premier essai, pas dans le second.
     trace: 'retain-on-failure',

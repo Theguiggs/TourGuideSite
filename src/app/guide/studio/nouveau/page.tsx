@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
@@ -20,15 +22,7 @@ export default function StudioNouveauPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { locale } = useStudioLocale();
-  const copy = locale === 'en' ? {
-    failure: 'Unable to create the tour. Try again.', guideOnly: 'The Studio is for guides. Create a guide profile to get started.',
-    eyebrow: 'New tour', titleStart: 'Create a', titleEmphasis: 'tour',
-    intro: 'Give it a title and a city to get started. You can refine everything later in the editor.',
-    titleLabel: 'Tour title', titlePlaceholder: 'E.g. Old Nice - Baroque streets and hidden lanes', city: 'City', cityPlaceholder: 'E.g. Nice',
-    creating: 'Creating...', create: 'Create tour', cancel: 'Cancel',
-    hintStart: 'You can also record a route in the field with the mobile app. It will automatically appear in',
-    hintLink: 'My tours', hintEnd: ', ready to be turned into an audio tour.',
-  } : {
+  const copy = localizeValue(locale, {
     failure: 'Impossible de créer la visite. Réessayez.', guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.',
     eyebrow: 'Nouvelle visite', titleStart: 'Créer une', titleEmphasis: 'visite',
     intro: "Donnez-lui un titre et une ville pour commencer. Vous pourrez tout affiner ensuite dans l'éditeur.",
@@ -36,7 +30,15 @@ export default function StudioNouveauPage() {
     creating: 'Création...', create: 'Créer la visite', cancel: 'Annuler',
     hintStart: "Vous pouvez aussi enregistrer un parcours sur le terrain avec l'app mobile. Il apparaîtra automatiquement dans",
     hintLink: 'Mes visites', hintEnd: ', prêt à être transformé en visite audio.',
-  };
+  }, {
+    failure: 'Unable to create the tour. Try again.', guideOnly: 'The Studio is for guides. Create a guide profile to get started.',
+    eyebrow: 'New tour', titleStart: 'Create a', titleEmphasis: 'tour',
+    intro: 'Give it a title and a city to get started. You can refine everything later in the editor.',
+    titleLabel: 'Tour title', titlePlaceholder: 'E.g. Old Nice - Baroque streets and hidden lanes', city: 'City', cityPlaceholder: 'E.g. Nice',
+    creating: 'Creating...', create: 'Create tour', cancel: 'Cancel',
+    hintStart: 'You can also record a route in the field with the mobile app. It will automatically appear in',
+    hintLink: 'My tours', hintEnd: ', ready to be turned into an audio tour.',
+  });
 
   const canSubmit = title.trim().length > 0 && city.trim().length > 0 && !isSubmitting;
 

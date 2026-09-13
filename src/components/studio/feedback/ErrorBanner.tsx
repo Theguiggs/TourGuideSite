@@ -1,6 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 type ErrorBannerVariant = 'danger' | 'warning';
 
@@ -32,9 +33,11 @@ export function ErrorBanner({
   title,
   children,
   onRetry,
-  retryLabel = 'Réessayer',
+  retryLabel,
 }: ErrorBannerProps) {
+  const { t } = useStudioLocale();
   const cfg = VARIANT_CFG[variant];
+  const retryText = retryLabel ?? t('Réessayer', 'Retry');
   return (
     <div
       role="alert"
@@ -51,7 +54,7 @@ export function ErrorBanner({
           data-testid="error-banner-retry"
           className={`mt-2 text-meta font-semibold underline underline-offset-2 hover:opacity-80 transition ${cfg.text}`}
         >
-          {retryLabel}
+          {retryText}
         </button>
       )}
     </div>

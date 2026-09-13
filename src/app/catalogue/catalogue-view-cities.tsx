@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 
 /**
  * Catalogue villes — color-block grid (Story 4.3).
@@ -12,8 +14,9 @@
  * - Empty state éditorial avec PullQuote.
  */
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import Link from 'next/link';
+import { useFilterUrl } from '@/lib/catalogue/filter-url';
 import { tg } from '@murmure/design-system';
 import { Eyebrow, PullQuote } from '@murmure/design-system/web';
 import type { City, Tour } from '@/types/tour';
@@ -26,7 +29,8 @@ import {
 interface CatalogueViewCitiesProps {
   cities: City[];
   tours: Tour[];
-  locale?: 'fr' | 'en';
+  locale?: InterfaceLocale;
+  initialQuery?: string;
 }
 
 /** Compare sans accents ni casse : « eze » trouve « Èze ». */
@@ -47,7 +51,7 @@ interface CityBlockProps {
   city: City;
   accent: CityAccent;
   avgDuration: number;
-  locale: 'fr' | 'en';
+  locale: InterfaceLocale;
 }
 
 function CityBlock({ city, accent, avgDuration, locale }: CityBlockProps) {
@@ -57,14 +61,14 @@ function CityBlock({ city, accent, avgDuration, locale }: CityBlockProps) {
 
   const tourCountLabel =
     city.tourCount === 0
-      ? locale === 'en' ? 'Coming soon' : 'Bientôt disponible'
-      : `${city.tourCount} tour${city.tourCount > 1 ? 's' : ''} · ${avgDuration} min`;
+      ? translate(locale, 'Bientôt disponible', 'Coming soon')
+      : `${city.tourCount} ${translate(locale, 'visites', 'tours')} · ${avgDuration} min`;
 
-  const ariaLabel = `${city.name} — ${city.tourCount} tour${city.tourCount > 1 ? 's' : ''}`;
+  const ariaLabel = `${city.name} — ${city.tourCount} ${translate(locale, 'visites', 'tours')}`;
 
   return (
     <Link
-      href={`${locale === 'en' ? '/en' : ''}/catalogue/${city.slug}`}
+      href={`${translate(locale, '', '/en')}/catalogue/${city.slug}`}
       aria-label={ariaLabel}
       className="block transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2"
       style={{
@@ -77,7 +81,7 @@ function CityBlock({ city, accent, avgDuration, locale }: CityBlockProps) {
     >
       <Eyebrow color={accentColor}>{tourCountLabel}</Eyebrow>
       <h2
-        className="tg-display"
+        className="tg-display break-words"
         style={{
           fontFamily: tg.fonts.display,
           fontSize: tg.fontSize.h4,
@@ -90,7 +94,7 @@ function CityBlock({ city, accent, avgDuration, locale }: CityBlockProps) {
       >
         {city.name}
       </h2>
-      {city.description ? (
+      {city.description && locale === 'fr' ? (
         <p
           style={{
             marginTop: tg.space[3],
@@ -108,12 +112,14 @@ function CityBlock({ city, accent, avgDuration, locale }: CityBlockProps) {
   );
 }
 
-export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueViewCitiesProps) {
+export function CatalogueViewCities({ cities, tours, locale = 'fr', initialQuery = '' }: CatalogueViewCitiesProps) {
   // Lot 6.4 — l'ancien filtre triait les villes par COULEUR d'accent
   // (« Provence », « Ocre », « Côte », « Nature ») : une propriété graphique
   // attribuée par somme de codes de caractères, que personne ne cherche.
   // Une recherche par nom remplace ces puces.
-  const [query, setQuery] = useState('');
+  const { params, update } = useFilterUrl(new URLSearchParams({ q: initialQuery }).toString());
+  const query = params.get('q') ?? '';
+  const setQuery = (q: string) => update({ q });
 
   const citiesWithAccent = useMemo(
     () =>
@@ -141,50 +147,48 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
       {/* En-tête éditorial */}
       <header style={{ marginBottom: tg.space[10] }}>
         <h1
-          className="tg-display"
+          className="tg-display break-words"
           style={{
             fontFamily: tg.fonts.display,
-            fontSize: tg.fontSize.h2,
+            fontSize: 'clamp(1.875rem, 6vw, 3rem)',
             lineHeight: 1.1,
             color: tg.colors.ink,
             letterSpacing: tg.tracking.display,
             margin: 0,
           }}
         >
-          {locale === 'en' ? 'The city catalogue' : 'Le catalogue des villes'}
+          {translate(locale, 'Le catalogue des villes', 'The city catalogue')}
         </h1>
         <div style={{ marginTop: tg.space[4], maxWidth: 640 }}>
           <PullQuote size="md">
-            {locale === 'en'
-              ? 'Every city hides its voices. Choose yours.'
-              : 'Chaque ville cache ses voix. Choisissez la vôtre.'}
+            {translate(locale, 'Chaque ville cache ses voix. Choisissez la vôtre.', 'Every city hides its voices. Choose yours.')}
           </PullQuote>
         </div>
       </header>
 
       {/* Recherche par nom */}
-      <div style={{ marginBottom: tg.space[6], maxWidth: 420 }}>
+      <form action={translate(locale, '/catalogue', '/en/catalogue')} method="get" style={{ marginBottom: tg.space[6], maxWidth: 420 }}>
         <label htmlFor="city-search" className="block text-meta font-semibold text-ink-80 mb-1.5">
-          {locale === 'en' ? 'Find a city' : 'Chercher une ville'}
+          {translate(locale, 'Chercher une ville', 'Find a city')}
         </label>
         <input
           id="city-search"
+          name="q"
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder={locale === 'en' ? 'Nice, Barcelona, Grasse…' : 'Nice, Barcelone, Grasse…'}
+          placeholder={translate(locale, 'Nice, Barcelone, Grasse…', 'Nice, Barcelona, Grasse…')}
           autoComplete="off"
           data-testid="city-search"
-          className="w-full rounded-md border border-line bg-card px-4 py-3 text-caption text-ink outline-none focus:border-grenadine focus:ring-2 focus:ring-grenadine-soft"
+          className="w-full rounded-md border border-line bg-card px-4 py-3 text-body text-ink outline-none focus:border-grenadine focus:ring-2 focus:ring-grenadine-soft"
         />
-      </div>
+        <button type="submit" className="mt-2 inline-flex min-h-11 items-center rounded-pill bg-grenadine px-4 py-2 text-body font-semibold text-paper">{translate(locale, 'Rechercher', 'Search')}</button>
+      </form>
 
       <div style={{ marginBottom: tg.space[5] }}>
         <Eyebrow color={tg.colors.ink60}>
           {totalCount}{' '}
-          {locale === 'en'
-            ? `cit${totalCount > 1 ? 'ies' : 'y'}`
-            : `ville${totalCount > 1 ? 's' : ''}`}
+          {translate(locale, `ville${totalCount > 1 ? 's' : ''}`, `cit${totalCount > 1 ? 'ies' : 'y'}`)}
         </Eyebrow>
       </div>
 
@@ -200,8 +204,8 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr' }: CatalogueV
         >
           <PullQuote size="md">
             {query.trim()
-              ? (locale === 'en' ? `No city matches “${query.trim()}”.` : `Aucune ville ne correspond à « ${query.trim()} ».`)
-              : (locale === 'en' ? 'No city yet. Come back soon.' : 'Aucune ville pour le moment. Revenez bientôt.')}
+              ? (translate(locale, `Aucune ville ne correspond à « ${query.trim()} ».`, `No city matches “${query.trim()}”.`))
+              : (translate(locale, 'Aucune ville pour le moment. Revenez bientôt.', 'No city yet. Come back soon.'))}
           </PullQuote>
         </div>
       ) : (

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { audioPlayerService, type AudioPlayerState } from '@/lib/studio/audio-player-service';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 function formatTime(seconds: number): string {
   if (!isFinite(seconds) || seconds < 0) return '0:00';
@@ -18,6 +19,7 @@ interface AudioPlayerBarProps {
 }
 
 export function AudioPlayerBar({ label, compact = false }: AudioPlayerBarProps) {
+  const { t } = useStudioLocale();
   const [state, setState] = useState<AudioPlayerState>(audioPlayerService.getState());
 
   useEffect(() => {
@@ -86,7 +88,7 @@ export function AudioPlayerBar({ label, compact = false }: AudioPlayerBarProps) 
             value={state.currentTime}
             onChange={handleSeek}
             className="w-full h-1.5 accent-grenadine cursor-pointer"
-            aria-label="Position audio"
+            aria-label={t('Position audio', 'Audio position')}
           />
         </div>
         <span className="text-meta text-ink-40 w-10 font-mono">{formatTime(state.duration)}</span>
@@ -94,19 +96,19 @@ export function AudioPlayerBar({ label, compact = false }: AudioPlayerBarProps) 
 
       {/* Controls */}
       <div className="flex items-center justify-center gap-3">
-        <button onClick={handleStop} title="Arrêter"
+        <button onClick={handleStop} title={t('Arrêter', 'Stop')}
           className="w-8 h-8 rounded-pill bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-body transition">
           {'\u25A0'}
         </button>
-        <button onClick={handleSkipBack} title="Reculer 10s"
+        <button onClick={handleSkipBack} title={t('Reculer 10s', 'Back 10s')}
           className="w-8 h-8 rounded-pill bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-eyebrow font-bold transition">
           -10
         </button>
-        <button onClick={handlePlayPause} title={state.isPlaying ? 'Pause' : 'Lecture'}
+        <button onClick={handlePlayPause} title={state.isPlaying ? 'Pause' : t('Lecture', 'Play')}
           className="w-10 h-10 rounded-pill bg-grenadine hover:opacity-90 text-white flex items-center justify-center text-h6 transition">
           {state.isPlaying ? '||' : '\u25B6'}
         </button>
-        <button onClick={handleSkipForward} title="Avancer 10s"
+        <button onClick={handleSkipForward} title={t('Avancer 10s', 'Forward 10s')}
           className="w-8 h-8 rounded-pill bg-ink-80 hover:bg-ink-80 text-ink-20 flex items-center justify-center text-eyebrow font-bold transition">
           +10
         </button>

@@ -1,4 +1,5 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 import { formatEuros } from '@/lib/studio/revenues-helpers';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
@@ -28,7 +29,7 @@ export function RevenueChart({ data, highlightIndex }: RevenueChartProps) {
   return (
     <div className="bg-card border border-line rounded-lg p-7" data-testid="revenue-chart">
       <div className="flex justify-between items-baseline">
-        <div className="tg-eyebrow text-olive">{locale === 'en' ? 'Trend · rolling 12 months' : 'Évolution · 12 mois glissants'}</div>
+        <div className="tg-eyebrow text-olive">{translate(locale, 'Évolution · 12 mois glissants', 'Trend · rolling 12 months')}</div>
       </div>
       <div
         className="mt-5 flex items-end gap-2 px-1 pt-5 border-t border-dashed border-line border-b border-line relative"

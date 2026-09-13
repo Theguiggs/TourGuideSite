@@ -8,6 +8,8 @@
  * `https:`), jamais la page de connexion elle-même.
  */
 
+import { SITE_URL } from '@/lib/site';
+
 export type LoginRole = 'admin' | 'guide' | 'tourist';
 
 export const LOGIN_PATH = '/guide/login';
@@ -19,7 +21,17 @@ export function safeReturnTo(raw: string | null | undefined): string | null {
   if (!/^\/(?![/\\])/.test(raw)) return null;
   if (/\s/.test(raw)) return null;
   for (const ch of raw) if (ch.charCodeAt(0) < 32) return null;
-  if (raw === LOGIN_PATH || raw.startsWith(`${LOGIN_PATH}?`)) return null;
+  // Normaliser avant de refuser les boucles et séparateurs encodés.
+  try {
+    const original = new URL(raw, SITE_URL);
+    const decodedPath = decodeURIComponent(original.pathname);
+    if (decodedPath.includes('\\') || /[\u0000-\u0020]/.test(decodedPath) || decodedPath.startsWith('//')) return null;
+    const decoded = new URL(decodedPath, SITE_URL);
+    for (const url of [original, decoded]) {
+      if (url.origin !== SITE_URL) return null;
+      if (/^\/(?:guide\/(?:login|signup|reset-password)|connexion|inscription|mot-de-passe-oublie|(?:en|es|de|it|nl)\/(?:sign-in|sign-up|reset-password))\/?$/.test(url.pathname)) return null;
+    }
+  } catch { return null; }
   return raw;
 }
 

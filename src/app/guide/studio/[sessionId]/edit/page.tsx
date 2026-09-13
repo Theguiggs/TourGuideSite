@@ -10,6 +10,7 @@ import { studioPersistenceService } from '@/lib/studio/studio-persistence-servic
 import { useAutoSave } from '@/hooks/use-auto-save';
 import { SceneSidebar } from '@/components/studio/scene-sidebar';
 import type { StudioSession, StudioScene } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'EditPage';
 
@@ -43,6 +44,11 @@ export default function EditPage() {
   /** Un brouillon local plus récent que le backend a été restauré. */
   const [restoredDraft, setRestoredDraft] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { t } = useStudioLocale();
+  // `t` est lu via une ref dans l'effet de chargement : l'ajouter à ses
+  // dépendances rechargerait la session à chaque bascule de langue.
+  const tRef = useRef(t);
+  tRef.current = t;
 
   // Load session + scenes
   useEffect(() => {
@@ -88,7 +94,7 @@ export default function EditPage() {
         logger.info(SERVICE_NAME, 'Edit page loaded', { sessionId, scenesCount: scns.length });
       } catch (e) {
         if (!cancelled) {
-          setError('Impossible de charger la session.');
+          setError(tRef.current('Impossible de charger la session.', 'Unable to load the session.'));
           logger.error(SERVICE_NAME, 'Load failed', { error: String(e) });
         }
       } finally {
@@ -161,7 +167,7 @@ export default function EditPage() {
     // 2. Sync to AppSync
     const result = await updateSceneText(activeSceneId, text);
     if (!result.ok) {
-      setSyncError('Sauvegarde locale uniquement — reconnectez-vous');
+      setSyncError(t('Sauvegarde locale uniquement — reconnectez-vous', 'Local save only — please sign in again'));
       logger.warn(SERVICE_NAME, 'AppSync sync failed, draft in localStorage', { sceneId: activeSceneId });
     } else {
       // Le backend fait foi de nouveau : le brouillon est retiré pour qu'il ne
@@ -171,7 +177,7 @@ export default function EditPage() {
       setRestoredDraft(false);
       setSyncError(null);
     }
-  }, [activeSceneId, sessionId]);
+  }, [activeSceneId, sessionId, t]);
 
   // Warn before closing tab with unsaved changes
   useEffect(() => {
@@ -205,7 +211,7 @@ export default function EditPage() {
   if (isLoading) {
     return (
       <div className="p-6" aria-busy="true">
-        <span className="sr-only">Chargement de l&apos;éditeur...</span>
+        <span className="sr-only">{t("Chargement de l'éditeur...", 'Loading the editor...')}</span>
         <div className="bg-paper-soft rounded-lg h-64 animate-pulse" />
       </div>
     );
@@ -215,10 +221,10 @@ export default function EditPage() {
     return (
       <div className="p-6">
         <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
-          &larr; Retour a la session
+          &larr; {t('Retour a la session', 'Back to session')}
         </Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">
-          {error || 'Session introuvable.'}
+          {error || t('Session introuvable.', 'Session not found.')}
         </div>
       </div>
     );
@@ -236,18 +242,18 @@ export default function EditPage() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-1 inline-block">
-              &larr; Retour a la session
+              &larr; {t('Retour a la session', 'Back to session')}
             </Link>
             <h2 className="text-h6 font-semibold text-ink">
-              {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
+              {activeScene?.title || `${t('Scène', 'Scene')} ${(activeScene?.sceneIndex ?? 0) + 1}`}
             </h2>
           </div>
 
           <div className="text-meta text-ink-40 text-right">
-            {isSaving && <span className="text-mer">Sauvegarde...</span>}
-            {!isSaving && isDirty && <span>Modifications non sauvegardées</span>}
+            {isSaving && <span className="text-mer">{t('Sauvegarde...', 'Saving...')}</span>}
+            {!isSaving && isDirty && <span>{t('Modifications non sauvegardées', 'Unsaved changes')}</span>}
             {!isSaving && !isDirty && lastSavedAt && (
-              <span className="text-success">Sauvegardé</span>
+              <span className="text-success">{t('Sauvegardé', 'Saved')}</span>
             )}
           </div>
         </div>
@@ -266,7 +272,7 @@ export default function EditPage() {
             role="status"
             data-testid="restored-draft-notice"
           >
-            Brouillon local restauré — il est plus récent que la version enregistrée.
+            {t('Brouillon local restauré — il est plus récent que la version enregistrée.', 'Local draft restored — it is newer than the saved version.')}
           </div>
         )}
 
@@ -274,15 +280,15 @@ export default function EditPage() {
           ref={textareaRef}
           value={editorText}
           onChange={(e) => setEditorText(e.target.value)}
-          placeholder="Saisissez ou modifiez le texte de cette scène..."
+          placeholder={t('Saisissez ou modifiez le texte de cette scène...', 'Type or edit the text of this scene...')}
           maxLength={10000}
           className="w-full min-h-[300px] p-4 border border-line rounded-lg text-ink text-body-lg leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine focus:border-transparent"
           data-testid="scene-editor"
-          aria-label={`Texte de la scène ${activeScene?.title || ''}`}
+          aria-label={`${t('Texte de la scène', 'Scene text')} ${activeScene?.title || ''}`}
         />
 
         <p className="mt-2 text-meta text-ink-40">
-          Sauvegarde automatique toutes les 30 secondes et a la perte de focus.
+          {t('Sauvegarde automatique toutes les 30 secondes et a la perte de focus.', 'Auto-saves every 30 seconds and on focus loss.')}
         </p>
       </div>
     </div>

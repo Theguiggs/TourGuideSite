@@ -1,6 +1,15 @@
 import { track } from '@/lib/amplitude';
 
 export const AnalyticsEvents = {
+  WEB_CHECKOUT_STARTED: 'web_checkout_started',
+  WEB_CHECKOUT_CONFIRMED: 'web_checkout_confirmed',
+  WEB_AUTH_STARTED: 'web_auth_started',
+  WEB_AUTH_COMPLETED: 'web_auth_completed',
+  WEB_SIGNUP_STARTED: 'web_signup_started',
+  WEB_SIGNUP_COMPLETED: 'web_signup_completed',
+  WEB_LISTEN_START: 'web_listen_start',
+  WEB_SCENE_COMPLETE: 'web_scene_complete',
+  WEB_LISTEN_COMPLETE: 'web_listen_complete',
   WEB_LANDING_VISIT: 'web_landing_visit',
   WEB_CATALOGUE_BROWSE: 'web_catalogue_browse',
   WEB_TOUR_DETAIL_VIEW: 'web_tour_detail_view',

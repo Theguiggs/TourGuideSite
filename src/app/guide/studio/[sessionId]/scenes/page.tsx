@@ -16,7 +16,7 @@ import { PageTitle } from '@murmure/design-system/web';
 export default function ScenesPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
-  const { t } = useStudioLocale();
+  const { t, locale } = useStudioLocale();
   const [session, setSession] = useState<StudioSession | null>(null);
   const [scenes, setScenes] = useState<StudioScene[]>([]);
   const [activeSceneId, setActiveSceneId] = useState<string | null>(null);
@@ -157,8 +157,8 @@ export default function ScenesPage() {
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <PageTitle size="h5">{activeScene.title || `${t('Scène', 'Scene')} ${activeScene.sceneIndex + 1}`}</PageTitle>
-                <span className={`mt-1 inline-flex rounded-pill px-2 py-0.5 text-meta ${getSceneStatusConfig(activeScene.status).color}`}>
-                  {getSceneStatusConfig(activeScene.status).label}
+                <span className={`mt-1 inline-flex rounded-pill px-2 py-0.5 text-meta ${getSceneStatusConfig(activeScene.status, locale).color}`}>
+                  {getSceneStatusConfig(activeScene.status, locale).label}
                 </span>
               </div>
               {session.narrationMode === 'recording' && !locked && (

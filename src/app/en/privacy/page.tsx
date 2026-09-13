@@ -1,3 +1,4 @@
+import { legalPageMetadata } from '@/lib/legal/page-metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
@@ -6,14 +7,7 @@ import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher'
 import { CookieChoiceButton } from '@/components/legal/CookieChoiceButton';
 import { LEGAL_IDENTITY, RETENTION, publisherLine } from '@/lib/legal/identity';
 
-export const metadata: Metadata = {
-  title: 'Privacy policy',
-  description: 'How Murmure collects, uses and protects your personal data.',
-  alternates: {
-    canonical: '/en/privacy',
-    languages: { fr: '/confidentialite', en: '/en/privacy' },
-  },
-};
+export const metadata: Metadata = legalPageMetadata('privacy', 'en');
 
 const CONTACT_EMAIL = LEGAL_IDENTITY.contactEmail;
 
@@ -46,7 +40,7 @@ export default function PrivacyPage() {
             Privacy policy
           </h1>
           <p className="font-sans mt-4" style={{ color: tg.colors.ink60 }}>
-            Last updated: July 2, 2026
+            Last updated: {LEGAL_IDENTITY.effectiveDate.en}
           </p>
           <LegalLanguageSwitcher
             locale="en"

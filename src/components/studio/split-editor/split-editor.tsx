@@ -6,6 +6,7 @@ import { useAutoSave } from '@/hooks/use-auto-save';
 import { updateSceneSegment, createSceneSegment } from '@/lib/api/studio';
 import { useTranslationStore } from '@/lib/stores/translation-store';
 import type { SceneSegment } from '@/types/studio';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'SplitEditor';
 
@@ -50,6 +51,7 @@ export function SplitEditor({
   onSegmentCreated,
   readOnly = true,
 }: SplitEditorProps) {
+  const { t } = useStudioLocale();
   const [editedText, setEditedText] = useState(segment.transcriptText ?? '');
   const [editedTitle, setEditedTitle] = useState(segment.translatedTitle ?? '');
   const [isEditing, setIsEditing] = useState(!readOnly);
@@ -208,7 +210,7 @@ export function SplitEditor({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2" data-testid="title-translation-row">
           <div>
             <label className="text-body font-medium text-ink-80 mb-1 block">
-              Titre source
+              {t('Titre source', 'Source title')}
             </label>
             <div
               className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-80"
@@ -222,7 +224,7 @@ export function SplitEditor({
               htmlFor={`split-editor-title-${segment.id}`}
               className="text-body font-medium text-ink-80 mb-1 block"
             >
-              Titre traduit
+              {t('Titre traduit', 'Translated title')}
             </label>
             {isEditing ? (
               <input
@@ -230,7 +232,7 @@ export function SplitEditor({
                 type="text"
                 value={editedTitle}
                 onChange={handleTitleChange}
-                placeholder="Titre traduit..."
+                placeholder={t('Titre traduit...', 'Translated title...')}
                 maxLength={200}
                 className="w-full px-3 py-2 border border-line rounded-lg text-body text-ink focus:outline-none focus:ring-2 focus:ring-grenadine"
                 data-testid="translated-title-input"
@@ -246,7 +248,7 @@ export function SplitEditor({
                 className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-80"
                 data-testid="translated-title-readonly"
               >
-                {editedTitle || <span className="italic text-ink-40">Titre traduit...</span>}
+                {editedTitle || <span className="italic text-ink-40">{t('Titre traduit...', 'Translated title...')}</span>}
               </div>
             )}
           </div>
@@ -263,13 +265,13 @@ export function SplitEditor({
               alt={sourceLang.toUpperCase()}
               className="w-6 h-4 inline-block"
             />
-            Texte source ({sourceLang.toUpperCase()})
+            {t('Texte source', 'Source text')} ({sourceLang.toUpperCase()})
           </label>
           <div
             className="p-3 bg-paper-soft border border-line rounded-lg text-body text-ink-80 min-h-[200px] max-h-[400px] overflow-y-auto whitespace-pre-wrap"
             data-testid="source-text"
           >
-            {sourceText || 'Aucun texte source'}
+            {sourceText || t('Aucun texte source', 'No source text')}
           </div>
         </div>
 
@@ -286,7 +288,7 @@ export function SplitEditor({
                 alt={targetLang.toUpperCase()}
                 className="w-6 h-4 inline-block"
               />
-              Traduction ({targetLang.toUpperCase()})
+              {t('Traduction', 'Translation')} ({targetLang.toUpperCase()})
             </label>
             <div className="flex items-center gap-2">
               {!isEditing && (
@@ -296,14 +298,14 @@ export function SplitEditor({
                   className="text-body font-medium text-grenadine hover:opacity-80"
                   data-testid="edit-button"
                 >
-                  Éditer
+                  {t('Éditer', 'Edit')}
                 </button>
               )}
               {isEditing && (
                 <div className="text-meta text-ink-40" data-testid="save-indicator">
-                  {isSaving && <span className="text-mer">Sauvegarde...</span>}
-                  {!isSaving && isDirty && <span>Non sauvegarde</span>}
-                  {!isSaving && !isDirty && editedText && <span className="text-success">Sauvegarde</span>}
+                  {isSaving && <span className="text-mer">{t('Sauvegarde...', 'Saving...')}</span>}
+                  {!isSaving && isDirty && <span>{t('Non sauvegarde', 'Unsaved')}</span>}
+                  {!isSaving && !isDirty && editedText && <span className="text-success">{t('Sauvegarde', 'Saved')}</span>}
                 </div>
               )}
             </div>
@@ -314,7 +316,7 @@ export function SplitEditor({
               id={`split-editor-textarea-${segment.id}`}
               value={editedText}
               onChange={handleChange}
-              placeholder="Le texte traduit apparaitra ici..."
+              placeholder={t('Le texte traduit apparaitra ici...', 'The translated text will appear here...')}
               rows={10}
               className="w-full p-3 border border-line rounded-lg text-ink text-body leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-grenadine min-h-[200px]"
               data-testid="translated-textarea"
@@ -324,7 +326,7 @@ export function SplitEditor({
               className="p-3 bg-paper-soft border border-line rounded-lg text-body text-ink-80 min-h-[200px] max-h-[400px] overflow-y-auto whitespace-pre-wrap"
               data-testid="translated-text-readonly"
             >
-              {editedText || <span className="italic text-ink-40">Le texte traduit apparaitra ici...</span>}
+              {editedText || <span className="italic text-ink-40">{t('Le texte traduit apparaitra ici...', 'The translated text will appear here...')}</span>}
             </div>
           )}
         </div>

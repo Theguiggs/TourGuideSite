@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 
 import type { StudioSession, TourLanguagePurchase } from '@/types/studio';
 import { getSessionStatusConfig } from '@/lib/api/studio';
@@ -26,14 +28,14 @@ interface SessionCardProps {
   compact?: boolean;
 }
 
-function formatDateShort(isoDate: string, locale: 'fr' | 'en'): string {
+function formatDateShort(isoDate: string, locale: InterfaceLocale): string {
   const d = new Date(isoDate);
-  return d.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'short' });
+  return d.toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'), { day: 'numeric', month: 'short' });
 }
 
 export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdminFeedback = false, onClick, onDelete, compact = false }: SessionCardProps) {
-  const { locale } = useStudioLocale();
-  const statusConfig = getSessionStatusConfig(session.status);
+  const { locale, t } = useStudioLocale();
+  const statusConfig = getSessionStatusConfig(session.status, locale);
   const needsAttention = ['revision_requested', 'rejected'].includes(session.status);
   const version = session.version ?? 1;
   const isDeletable = !NON_DELETABLE_STATUSES.has(session.status);
@@ -77,8 +79,8 @@ export function SessionCard({ session, scenesCount = 0, purchases = [], hasAdmin
           <span className="flex-1" />
 
           {/* Alerts */}
-          {needsAttention && <span className="text-danger text-meta animate-pulse shrink-0">Action requise</span>}
-          {hasAdminFeedback && !needsAttention && <span className="text-ocre-ink text-meta shrink-0">Retour admin</span>}
+          {needsAttention && <span className="text-danger text-meta animate-pulse shrink-0">{t('Action requise', 'Action required')}</span>}
+          {hasAdminFeedback && !needsAttention && <span className="text-ocre-ink text-meta shrink-0">{t('Retour admin', 'Moderation feedback')}</span>}
 
           {/* Date */}
           <span className="text-meta text-ink-40 shrink-0">{formatDateShort(session.createdAt, locale)}</span>

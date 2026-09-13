@@ -14,9 +14,8 @@
  * - une visite qui échoue au mapping est écartée et journalisée, jamais
  *   la liste entière ; une fiche dont le contenu public est indisponible se
  *   rend quand même, avec `contentUnavailable` ;
- * - l'image de carte vient de `coverPhotoKey` quand il existe, sans appel
- *   au contenu publié (le champ `heroImageUrl` testé auparavant n'a jamais
- *   existé sur GuideTour : le repli N+1 partait pour chaque visite) ;
+ * - l’image de carte vient du résolveur public : une clé S3 privée ne peut
+ *   pas être signée avec les droits du visiteur anonyme ;
  * - les slugs sont uniques par ville (`tour-slugs`).
  */
 
@@ -44,6 +43,7 @@ import { mapWithConcurrency } from './published-tour-content';
 import { mapScenesToPois } from '@/lib/catalogue/scene-pois';
 import { assignUniqueSlugs, findTourBySlugs, type TourSlugs } from '@/lib/catalogue/tour-slugs';
 import { cached } from '@/lib/server/ttl-cache';
+import { parseTranslatedMetadata } from './translated-metadata';
 
 const SERVICE_NAME = 'ToursServer';
 
@@ -161,7 +161,10 @@ async function toTour(t: PublishedTour, slugs: TourSlugs, imageUrl?: string): Pr
   const raw = t as unknown as Record<string, unknown>;
   return {
     id: t.id,
+    sourceLanguage: asLanguage(raw.sourceLanguage)?.trim().toLowerCase(),
     title: t.title,
+    translatedTitles: parseTranslatedMetadata(raw.translatedTitles),
+    translatedDescriptions: parseTranslatedMetadata(raw.translatedDescriptions),
     slug: slugs.slug,
     city: t.city,
     citySlug: slugs.citySlug,
@@ -184,16 +187,8 @@ async function toTour(t: PublishedTour, slugs: TourSlugs, imageUrl?: string): Pr
   };
 }
 
-/** Photo de couverture persistée sur la visite (clé S3), sans appel supplémentaire. */
-function coverKey(t: PublishedTour): string | undefined {
-  const key = (t as unknown as Record<string, unknown>).coverPhotoKey;
-  return typeof key === 'string' && key.length > 0 ? key : undefined;
-}
-
-/** Image de carte : couverture persistée, sinon première photo du contenu publié. */
+/** Couverture autorisée par le serveur, sinon première photo publique. */
 async function cardImage(t: PublishedTour): Promise<string | undefined> {
-  const cover = coverKey(t);
-  if (cover) return cover;
   if (!(t as unknown as Record<string, unknown>).sessionId) return undefined;
   try {
     const content = await publishedContent(t.id);
@@ -279,10 +274,10 @@ async function getRealTourBySlug(citySlug: string, tourSlug: string): Promise<To
     guideVerified: guideInfo.verified,
     imageUrl:
       (contentResult.ok ? contentResult.data.coverUrl : undefined) ??
-      scenes.find((scene) => scene.photoUrls?.[0])?.photoUrls?.[0] ??
-      coverKey(tour),
+      scenes.find((scene) => scene.photoUrls?.[0])?.photoUrls?.[0],
     pois,
     contentUnavailable: !contentResult.ok,
+    walkPath: contentResult.ok ? contentResult.data.walkPath : [],
     reviews: reviews.map((r) => ({
       id: r.id,
       userId: r.userId,

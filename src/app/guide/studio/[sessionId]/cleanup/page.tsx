@@ -24,6 +24,7 @@ import { GlobalMetadataPanel } from './components/GlobalMetadataPanel';
 import { ValidateCTA } from './components/ValidateCTA';
 import { SortableTimeline, type TimelineItem } from './components/SortableTimeline';
 import { isReadyToValidate, type TourMetadataDraft } from './lib/validation';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'CleanupPage';
 const AUTO_SAVE_DEBOUNCE_MS = 2000;
@@ -78,6 +79,12 @@ export default function CleanupPage() {
   const [metadata, setMetadata] = useState<TourMetadataDraft>(deriveMetadataFromSession(null));
   const [validating, setValidating] = useState(false);
   const cleanupStartedAtRef = useRef<number>(Date.now());
+  const { t, locale } = useStudioLocale();
+  // `t` est lu via une ref dans l'effet de chargement : l'ajouter à ses
+  // dépendances rechargerait la session (et écraserait les métadonnées en
+  // cours d'édition) à chaque bascule de langue.
+  const tRef = useRef(t);
+  tRef.current = t;
   // Synchronous guards — set BEFORE React commits state to prevent double-fire
   // on rapid double-clicks or rapid drag-ends.
   const validatingRef = useRef(false);
@@ -114,7 +121,7 @@ export default function CleanupPage() {
         });
       } catch (e) {
         if (!cancelled) {
-          setError('Impossible de charger la session.');
+          setError(tRef.current('Impossible de charger la session.', 'Unable to load the session.'));
           logger.error(SERVICE_NAME, 'Load failed', { error: String(e) });
         }
       } finally {
@@ -390,8 +397,8 @@ export default function CleanupPage() {
   );
 
   const validation = useMemo(
-    () => isReadyToValidate(scenes, metadata),
-    [scenes, metadata],
+    () => isReadyToValidate(scenes, metadata, locale),
+    [scenes, metadata, locale],
   );
 
   const handleValidate = useCallback(async () => {
@@ -446,7 +453,7 @@ export default function CleanupPage() {
     } catch (e) {
       validatingRef.current = false;
       if (mountedRef.current) {
-        setError('Validation échouée.');
+        setError(t('Validation échouée.', 'Validation failed.'));
         setValidating(false);
         logger.error(SERVICE_NAME, 'Validate failed', { error: String(e) });
       }
@@ -459,6 +466,7 @@ export default function CleanupPage() {
     scenes,
     walks,
     router,
+    t,
   ]);
 
   if (isLoading) {
@@ -473,10 +481,10 @@ export default function CleanupPage() {
     return (
       <div className="p-6">
         <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
-          &larr; Retour
+          &larr; {t('Retour', 'Back')}
         </Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert" data-testid="cleanup-error">
-          {error || 'Session introuvable.'}
+          {error || t('Session introuvable.', 'Session not found.')}
         </div>
       </div>
     );
@@ -493,12 +501,12 @@ export default function CleanupPage() {
         {/* Left: timeline */}
         <aside className="border-r border-line bg-paper-soft p-3 overflow-y-auto" aria-label="Timeline">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-body font-semibold text-ink">Nettoyage</h2>
+            <h2 className="text-body font-semibold text-ink">{t('Nettoyage', 'Cleanup')}</h2>
             <span className="text-eyebrow text-ink-60" data-testid="save-state">
-              {saveState === 'pending' && 'Modification...'}
-              {saveState === 'saving' && 'Sauvegarde...'}
-              {saveState === 'saved' && 'Sauvegardé'}
-              {saveState === 'error' && 'Erreur sauvegarde'}
+              {saveState === 'pending' && t('Modification...', 'Editing...')}
+              {saveState === 'saving' && t('Sauvegarde...', 'Saving...')}
+              {saveState === 'saved' && t('Sauvegardé', 'Saved')}
+              {saveState === 'error' && t('Erreur sauvegarde', 'Save error')}
             </span>
           </div>
 
@@ -512,14 +520,14 @@ export default function CleanupPage() {
               data-testid="cleanup-save-error"
             >
               <p className="text-caption text-ink">
-                Modifications non enregistrées{saveError ? ` : ${saveError}` : ''}. Elles sont conservées ici.
+                {t('Modifications non enregistrées', 'Unsaved changes')}{saveError ? ` : ${saveError}` : ''}. {t('Elles sont conservées ici.', 'They are kept here.')}
               </p>
               <button
                 onClick={() => { void flushPendingSaves(); }}
                 className="mt-2 rounded-lg border border-ocre bg-ocre-soft px-3 py-1.5 text-caption font-medium text-ink transition hover:opacity-90"
                 data-testid="cleanup-save-retry"
               >
-                Réessayer
+                {t('Réessayer', 'Retry')}
               </button>
             </div>
           )}
@@ -532,21 +540,21 @@ export default function CleanupPage() {
           />
           {timeline.length === 0 && (
             <div className="text-body text-ink-40 text-center p-4" data-testid="timeline-empty">
-              Aucun item à nettoyer
+              {t('Aucun item à nettoyer', 'Nothing to clean up')}
             </div>
           )}
         </aside>
 
         {/* Right: detail panel */}
-        <section className="p-4 md:p-6 overflow-y-auto" aria-label="Détail">
+        <section className="p-4 md:p-6 overflow-y-auto" aria-label={t('Détail', 'Detail')}>
           <Link
             href={`/guide/studio/${sessionId}`}
             className="text-grenadine hover:opacity-80 text-body mb-3 inline-block"
           >
-            &larr; Retour à la session
+            &larr; {t('Retour à la session', 'Back to session')}
           </Link>
           <h2 className="text-body-lg font-semibold text-ink mb-3">
-            {metadata.title || session.title || 'Session sans titre'} — Nettoyage
+            {metadata.title || session.title || t('Session sans titre', 'Untitled session')} — {t('Nettoyage', 'Cleanup')}
           </h2>
 
           <div className="flex gap-2 mb-4" role="tablist" aria-label="Sections">
@@ -562,7 +570,7 @@ export default function CleanupPage() {
                   : 'bg-card border-line text-ink-80 hover:border-grenadine-soft'
               }`}
             >
-              Item sélectionné
+              {t('Item sélectionné', 'Selected item')}
             </button>
             <button
               type="button"
@@ -576,7 +584,7 @@ export default function CleanupPage() {
                   : 'bg-card border-line text-ink-80 hover:border-grenadine-soft'
               }`}
             >
-              Métadonnées globales
+              {t('Métadonnées globales', 'Global metadata')}
             </button>
           </div>
 
@@ -586,7 +594,7 @@ export default function CleanupPage() {
             <>
               {!selected && (
                 <div className="bg-paper-soft rounded-lg p-6 text-center text-ink-60" data-testid="no-selection">
-                  Sélectionnez un item dans la timeline
+                  {t('Sélectionnez un item dans la timeline', 'Select an item in the timeline')}
                 </div>
               )}
 

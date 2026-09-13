@@ -1,4 +1,8 @@
 'use client';
+import { checkoutText } from '@/lib/i18n/checkout-copy';
+import { LOCALE_FORMATS, type InterfaceLocale } from '@/lib/i18n/locales';
+import { localizePublicPath } from '@/lib/i18n/public-routes';
+
 
 /**
  * ForfaitPurchaseCard — achat du forfait « visites IA » sur le web.
@@ -29,19 +33,24 @@ import {
   FORFAIT_PRICE_CENTS,
 } from '@/lib/api/forfait-purchase';
 import { emitPurchasesChanged } from '@/lib/checkout/purchase-events';
-import { buildStripeReturnUrl, clearStripeReturn, readStripeReturn } from '@/lib/checkout/stripe-return';
+import { buildStripeReturnUrl, clearStripeReturn, readStripeReturn, rememberStripeReturn } from '@/lib/checkout/stripe-return';
 import { logger } from '@/lib/logger';
+
+import { useCheckoutLifetime } from './use-checkout-lifetime';
+import { VerifyPayment } from './verify-payment';
+import { AnalyticsEvents, trackEvent } from '@/lib/analytics';
+import { VisitorCheckoutLinks } from './visitor-checkout-links';
 
 const SERVICE_NAME = 'ForfaitPurchaseCard';
 
 interface Props {
-  locale?: 'fr' | 'en';
+  locale?: InterfaceLocale;
 }
 
-type Step = 'idle' | 'login' | 'pay' | 'done' | 'error';
+type Step = 'idle' | 'login' | 'pay' | 'done' | 'error' | 'pending';
 
-function formatPrice(cents: number, locale: 'fr' | 'en' = 'fr'): string {
-  return new Intl.NumberFormat(locale === 'en' ? 'en-GB' : 'fr-FR', {
+function formatPrice(cents: number, locale: InterfaceLocale = 'fr'): string {
+  return new Intl.NumberFormat(LOCALE_FORMATS[locale], {
     style: 'currency',
     currency: 'EUR',
   }).format(cents / 100);
@@ -51,12 +60,14 @@ function PaymentForm({
   paymentIntentId,
   onSuccess,
   onError,
+  onPending,
   locale,
 }: {
   paymentIntentId: string;
   onSuccess: () => void;
   onError: (msg: string) => void;
-  locale: 'fr' | 'en';
+  onPending: () => void;
+  locale: InterfaceLocale;
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -66,9 +77,7 @@ function PaymentForm({
     if (!stripe || !elements) {
       logger.error(SERVICE_NAME, 'Stripe.js non initialisé (clé publishable ou script bloqué)');
       onError(
-        locale === 'en'
-          ? 'Payment is temporarily unavailable. Please try again later.'
-          : 'Le paiement est momentanément indisponible. Réessayez dans quelques instants.',
+        checkoutText(locale, "Payment is temporarily unavailable. Please try again later."),
       );
       return;
     }
@@ -81,29 +90,23 @@ function PaymentForm({
       });
       if (error) {
         setBusy(false);
-        onError(error.message ?? (locale === 'en' ? 'Payment declined.' : 'Paiement refusé.'));
+        onError(checkoutText(locale, "Payment declined."));
         return;
       }
       if (paymentIntent?.status === 'succeeded') {
         const confirmed = await confirmForfaitPurchase(paymentIntent.id ?? paymentIntentId);
         setBusy(false);
         if (confirmed.ok) onSuccess();
-        else onError(confirmed.error.message);
+        else onPending();
         return;
       }
       setBusy(false);
-      onError(
-        locale === 'en'
-          ? `Payment not completed (${paymentIntent?.status ?? 'unknown'}).`
-          : `Paiement non finalisé (${paymentIntent?.status ?? 'inconnu'}).`,
-      );
+      if (paymentIntent?.status === 'processing') { onPending(); return; }
+      onError(checkoutText(locale, 'Payment not completed.'));
     } catch (e) {
       setBusy(false);
-      onError(
-        `${locale === 'en' ? 'Payment error' : 'Erreur paiement'}: ${
-          e instanceof Error ? e.message : String(e)
-        }`,
-      );
+      logger.error(SERVICE_NAME, 'Payment request failed', { error: e instanceof Error ? e.name : 'unknown' });
+      onError(checkoutText(locale, 'Payment error'));
     }
   }
 
@@ -112,25 +115,26 @@ function PaymentForm({
       <PaymentElement />
       <Button variant="accent" size="lg" fullWidth onClick={pay} disabled={busy}>
         {busy
-          ? locale === 'en'
-            ? 'Processing…'
-            : 'Paiement…'
-          : locale === 'en'
-            ? 'Pay'
-            : 'Payer'}
+          ? checkoutText(locale, "Processing…")
+          : checkoutText(locale, "Pay")}
       </Button>
     </div>
   );
 }
 
-export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
-  const { isAuthenticated, signIn } = useAuth();
+export default function ForfaitPurchaseCard(props: Props) {
+  const { user, isAuthenticated } = useAuth();
+  return <ForfaitPurchaseCardSession key={`${user?.id ?? isAuthenticated}`} {...props} />;
+}
+
+function ForfaitPurchaseCardSession({ locale = 'fr' }: Props) {
+  const isCurrent = useCheckoutLifetime();
+  const priceLabel = formatPrice(FORFAIT_PRICE_CENTS, locale);
+  const { isAuthenticated } = useAuth();
   const [step, setStep] = useState<Step>('idle');
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [paymentIntentId, setPaymentIntentId] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [alreadyActive, setAlreadyActive] = useState(false);
 
@@ -146,18 +150,27 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
   }, [isAuthenticated]);
 
   async function beginPayment() {
-    if (clientSecret || busy) return;
+    if (busy) return;
+    if (clientSecret) { setError(null); setStep('pay'); return; }
     setBusy(true);
     setError(null);
+    trackEvent(AnalyticsEvents.WEB_CHECKOUT_STARTED, { product: 'forfait', locale });
     const res = await createForfaitPaymentIntent();
+    if (!isCurrent()) return;
     setBusy(false);
     if (!res.ok) {
-      setError(res.error.message);
+      if (res.error.code === 2638) {
+        setAlreadyActive(true);
+        setStep('done');
+        emitPurchasesChanged();
+        return;
+      }
+      setError(checkoutText(locale, "Payment is temporarily unavailable. Please try again later."));
       setStep('error');
       return;
     }
     if (!res.value.clientSecret) {
-      setError(locale === 'en' ? 'Payment is unavailable.' : 'Paiement indisponible.');
+      setError(checkoutText(locale, "Payment is unavailable."));
       setStep('error');
       return;
     }
@@ -180,75 +193,51 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
   // toute façon ; ceci ne sert qu'à le montrer tout de suite).
   useEffect(() => {
     const ret = readStripeReturn('forfait');
-    if (!ret) return;
-    clearStripeReturn();
+    if (!ret || !isAuthenticated) return;
+    setPaymentIntentId(ret.paymentIntentId);
     if (ret.status === 'succeeded') {
       if (!isAuthenticated) return;
       setBusy(true);
       confirmForfaitPurchase(ret.paymentIntentId).then((confirmed) => {
+        if (!isCurrent()) return;
         setBusy(false);
         if (confirmed.ok) {
+          clearStripeReturn(ret.paymentIntentId);
           setStep('done');
+          trackEvent(AnalyticsEvents.WEB_CHECKOUT_CONFIRMED, { product: 'forfait', locale });
           emitPurchasesChanged();
         } else {
-          setError(confirmed.error.message);
-          setStep('error');
+          setError(checkoutText(locale, "Your payment needs confirmation. Check its status before starting another purchase."));
+          setStep('pending');
         }
-      });
+      }).catch(() => { setBusy(false); setStep('pending'); });
       return;
     }
     setError(
       ret.status === 'processing'
-        ? locale === 'en'
-          ? 'Your payment is being processed. The pass will activate automatically once it is confirmed.'
-          : 'Votre paiement est en cours de traitement. Le forfait s’activera automatiquement une fois confirmé.'
-        : locale === 'en'
-          ? 'Payment declined.'
-          : 'Paiement refusé.',
+        ? checkoutText(locale, "Your payment is being processed. Use Check payment to confirm access.")
+        : checkoutText(locale, "Payment declined."),
     );
-    setStep('error');
+    if (ret.status !== 'processing') clearStripeReturn(ret.paymentIntentId);
+    setStep(ret.status === 'processing' ? 'pending' : 'error');
     // Lecture unique de l'URL au montage.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
-  // Reprend automatiquement dès que la session est reconnue (clic avant que
-  // AuthProvider ait fini de restaurer, ou connexion qui vient d'aboutir).
-  useEffect(() => {
-    if (step === 'login' && isAuthenticated) {
-      void beginPayment();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step, isAuthenticated]);
+
 
   // Tous les hooks au-dessus de cette ligne — on ne peut sortir qu'après.
-  if (!isStripeConfigured()) {
+  if (!isStripeConfigured() && !alreadyActive && step !== 'done') {
     return (
       <p
         data-testid="forfait-purchase-in-app"
         style={{ marginTop: tg.space[4], fontFamily: tg.fonts.sans, fontSize: tg.fontSize.body, color: tg.colors.ink80 }}
       >
-        {locale === 'en'
-          ? 'The pass can be purchased in the Murmure app.'
-          : "Le forfait s'achète dans l'application Murmure."}
+        {checkoutText(locale, "The pass can be purchased in the Murmure app.")}
       </p>
     );
   }
 
-  async function handleLogin(e: React.FormEvent) {
-    e.preventDefault();
-    setBusy(true);
-    setError(null);
-    const r = await signIn(email, password);
-    if (!r.ok) {
-      setBusy(false);
-      setError(r.error ?? (locale === 'en' ? 'Sign-in failed.' : 'Connexion échouée.'));
-      return;
-    }
-    setBusy(false);
-    void beginPayment();
-  }
-
-  const priceLabel = formatPrice(FORFAIT_PRICE_CENTS, locale);
 
   return (
     <div style={{ marginTop: tg.space[4] }}>
@@ -273,14 +262,12 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
               color: tg.colors.olive,
             }}
           >
-            ✓ {locale === 'en' ? 'Pass active' : 'Forfait actif'}
+            ✓ {checkoutText(locale, "Pass active")}
           </span>
           <span
             style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}
           >
-            {locale === 'en'
-              ? 'Open Murmure with the same account to listen to every tour.'
-              : 'Ouvrez Murmure avec le même compte pour écouter toutes les visites.'}
+            {checkoutText(locale, "Open Murmure with the same account to listen to every tour.")}
           </span>
         </div>
       )}
@@ -288,7 +275,7 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
       {step === 'idle' && !alreadyActive && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: tg.space[2] }}>
           <Button variant="accent" size="lg" fullWidth onClick={startCheckout} disabled={busy}>
-            {locale === 'en' ? `Get the pass — ${priceLabel}` : `Prendre le forfait — ${priceLabel}`}
+            {checkoutText(locale, 'Get the pass')} — {priceLabel}
           </Button>
           <span
             style={{
@@ -298,70 +285,25 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
               textAlign: 'center',
             }}
           >
-            {locale === 'en'
-              ? '12 months, no auto-renewal — you will not be charged again.'
-              : '12 mois, sans reconduction — vous ne serez pas prélevé à nouveau.'}
+            {checkoutText(locale, "12 months, no auto-renewal — you will not be charged again.")}
           </span>
         </div>
       )}
 
-      {step === 'login' && (
-        <form
-          onSubmit={handleLogin}
-          style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3] }}
-        >
-          <p
-            style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.body, color: tg.colors.ink80 }}
-          >
-            {locale === 'en'
-              ? 'Sign in to link the pass to your account.'
-              : 'Connectez-vous pour rattacher le forfait à votre compte.'}
-          </p>
-          <label htmlFor="forfait-email" style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}>
-            Email
-          </label>
-          <input
-            id="forfait-email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email"
-            autoComplete="email"
-            required
-            style={{ padding: tg.space[3], borderRadius: tg.radius.sm }}
-          />
-          <label htmlFor="forfait-password" style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}>
-            {locale === 'en' ? 'Password' : 'Mot de passe'}
-          </label>
-          <input
-            id="forfait-password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder={locale === 'en' ? 'password' : 'mot de passe'}
-            autoComplete="current-password"
-            required
-            style={{ padding: tg.space[3], borderRadius: tg.radius.sm }}
-          />
-          <Button variant="accent" size="lg" fullWidth disabled={busy}>
-            {busy
-              ? locale === 'en'
-                ? 'Signing in…'
-                : 'Connexion…'
-              : locale === 'en'
-                ? 'Sign in'
-                : 'Se connecter'}
-          </Button>
-        </form>
-      )}
+      {step === 'login' && <VisitorCheckoutLinks locale={locale} />}
+
+      {step === 'pending' && <VerifyPayment kind="forfait" intentId={paymentIntentId} locale={locale} onConfirmed={() => { setStep('done'); trackEvent(AnalyticsEvents.WEB_CHECKOUT_CONFIRMED, { product: 'forfait', locale }); }} />}
 
       {step === 'pay' && clientSecret && (
-        <Elements stripe={getStripePromise()} options={{ clientSecret }}>
+        <Elements stripe={getStripePromise()} options={{ clientSecret, locale }}>
           <PaymentForm
+            onPending={() => { if (!isCurrent()) return; rememberStripeReturn('forfait', paymentIntentId); setStep('pending'); }}
             paymentIntentId={paymentIntentId}
             locale={locale}
             onSuccess={() => {
+              if (!isCurrent()) return;
               setStep('done');
+              trackEvent(AnalyticsEvents.WEB_CHECKOUT_CONFIRMED, { product: 'forfait', locale });
               // Le serveur vient d'écrire l'entitlement (confirmForfaitPurchase a
               // rendu ok). Ce signal rafraîchit la possession — droit permanent
               // COMPRIS — et la redemande du contenu : la visite ouverte derrière
@@ -375,6 +317,10 @@ export default function ForfaitPurchaseCard({ locale = 'fr' }: Props) {
           />
         </Elements>
       )}
+
+      {step === 'error' && <Button variant="ghost" fullWidth onClick={() => { setError(null); setStep(clientSecret ? 'pay' : 'idle'); }}>{checkoutText(locale, "Try again")}</Button>}
+
+      {(alreadyActive || step === 'done') && <a className="inline-flex min-h-11 items-center text-ink underline" href={localizePublicPath("/catalogue", locale)}>{checkoutText(locale, "Find a tour to listen to")}</a>}
 
       {error && (
         <p

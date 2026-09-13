@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
 type SuggestionColor = 'mer' | 'olive';
 
 interface SuggestionCardProps {
-  /** Eyebrow label, e.g. "Suggestion · une action recommandée". */
+  /** Eyebrow label, e.g. « Suggestion · une action recommandée ». */
   eyebrow: string;
   /** Main title. */
   title: ReactNode;
@@ -45,7 +45,7 @@ const COLOR_CFG: Record<
 };
 
 /**
- * <SuggestionCard> — encart "Suggestion · une action recommandée" du Dashboard.
+ * <SuggestionCard> — encart « Suggestion · une action recommandée » du Dashboard.
  * Fond pastel + bordure dashed + icône colorée + CTA.
  * Port de docs/design/ds/studio-dashboard.jsx:147-159.
  */

@@ -18,6 +18,7 @@ import { uploadAudio, getPlayableUrl, onProgress, removeStoredAudio } from '@/li
 import { audioPlayerService } from '@/lib/studio/audio-player-service';
 import { OnboardingBubble } from '@/components/studio/onboarding-bubble';
 import { useOnboardingStore } from '@/lib/stores/onboarding-store';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'RecordPage';
 
@@ -52,6 +53,12 @@ export default function RecordPage() {
   const replacementConfirmedRef = useRef(new Set<string>());
   const persistenceInFlightRef = useRef(false);
   const audioRecorderRef = useRef<AudioRecorderHandle>(null);
+  const { t } = useStudioLocale();
+  // `t` est lu via une ref dans l'effet de chargement : l'ajouter à ses
+  // dépendances relancerait le chargement (et viderait les prises) à chaque
+  // bascule de langue.
+  const tRef = useRef(t);
+  tRef.current = t;
 
   const setActiveSession = useStudioSessionStore(selectSetActiveSession);
   const clearSession = useStudioSessionStore(selectClearSession);
@@ -104,7 +111,7 @@ export default function RecordPage() {
         logger.info(SERVICE_NAME, 'Record page loaded', { sessionId, scenesCount: scns.length, sceneId: initialSceneId });
       } catch (e) {
         if (!cancelled) {
-          setError('Impossible de charger la session.');
+          setError(tRef.current('Impossible de charger la session.', 'Unable to load the session.'));
           logger.error(SERVICE_NAME, 'Load failed', { error: String(e) });
         }
       } finally {
@@ -133,20 +140,20 @@ export default function RecordPage() {
   const confirmNavigation = useCallback(() => {
     if (!hasPendingWork) return true;
     if (isSavingAudio || isRecording) {
-      setSaveMessage('Terminez ou arrêtez l’opération audio en cours avant de quitter cette page.');
+      setSaveMessage(t('Terminez ou arrêtez l’opération audio en cours avant de quitter cette page.', 'Finish or stop the current audio operation before leaving this page.'));
       return false;
     }
-    return window.confirm("Une prise ou une sauvegarde audio est en cours. Quitter cette page fera perdre les prises non sauvegardées. Continuer ?");
-  }, [hasPendingWork, isRecording, isSavingAudio]);
+    return window.confirm(t("Une prise ou une sauvegarde audio est en cours. Quitter cette page fera perdre les prises non sauvegardées. Continuer ?", 'A take or an audio save is in progress. Leaving this page will lose unsaved takes. Continue?'));
+  }, [hasPendingWork, isRecording, isSavingAudio, t]);
 
   const persistTake = useCallback(async (scene: StudioScene, take: Take) => {
     if (persistenceInFlightRef.current) {
-      setSaveMessage('Une sauvegarde audio est déjà en cours. Attendez sa fin avant de relancer.');
+      setSaveMessage(t('Une sauvegarde audio est déjà en cours. Attendez sa fin avant de relancer.', 'An audio save is already in progress. Wait for it to finish before trying again.'));
       return;
     }
     if (persistedTakeIds.has(take.id)) {
       setSaveState('saved');
-      setSaveMessage('Cette prise est déjà associée à la scène.');
+      setSaveMessage(t('Cette prise est déjà associée à la scène.', 'This take is already attached to the scene.'));
       return;
     }
 
@@ -155,10 +162,10 @@ export default function RecordPage() {
     try {
       const hasExistingAudio = Boolean(scene.studioAudioKey || scene.originalAudioKey);
       if (hasExistingAudio && !replacementConfirmedRef.current.has(take.id)) {
-        const confirmed = window.confirm("Cette scène possède déjà un audio. Voulez-vous le remplacer par cette prise ?");
+        const confirmed = window.confirm(t("Cette scène possède déjà un audio. Voulez-vous le remplacer par cette prise ?", 'This scene already has an audio. Do you want to replace it with this take?'));
         if (!confirmed) {
           setSaveState('idle');
-          setSaveMessage("Audio existant conservé. La nouvelle prise reste disponible sur cette page.");
+          setSaveMessage(t("Audio existant conservé. La nouvelle prise reste disponible sur cette page.", 'Existing audio kept. The new take remains available on this page.'));
           return;
         }
         replacementConfirmedRef.current.add(take.id);
@@ -205,56 +212,60 @@ export default function RecordPage() {
       setPersistedTakeIds((current) => new Set(current).add(take.id));
       setSavedTakeIdByScene((current) => ({ ...current, [scene.id]: take.id }));
       setSaveState('saved');
-      setSaveMessage('Prise enregistrée et associée à la scène.');
+      setSaveMessage(t('Prise enregistrée et associée à la scène.', 'Take saved and attached to the scene.'));
     } catch (e) {
       logger.error(SERVICE_NAME, 'Unexpected recording persistence failure', { error: String(e), sceneId: scene.id });
       setSaveState('error');
-      setSaveMessage("La sauvegarde audio a échoué de manière inattendue. La prise est conservée pour réessayer.");
+      setSaveMessage(t("La sauvegarde audio a échoué de manière inattendue. La prise est conservée pour réessayer.", 'The audio save failed unexpectedly. The take is kept so you can retry.'));
     } finally {
       unsubscribeProgress?.();
       persistenceInFlightRef.current = false;
     }
-  }, [persistedTakeIds, sessionId, sourceLanguage]);
+  }, [persistedTakeIds, sessionId, sourceLanguage, t]);
 
   const handleRecordingComplete = useCallback((sceneId: string, take: Take) => {
     const sceneTakes = useRecordingStore.getState().getSceneTakes(sceneId);
     const takeNumber = sceneTakes.findIndex((item) => item.id === take.id) + 1;
     setSaveState('idle');
     setUploadPercent(0);
-    setSaveMessage(`Prise ${takeNumber || sceneTakes.length} prête. Écoutez vos essais puis choisissez celle à enregistrer pour la scène.`);
-  }, []);
+    setSaveMessage(t(
+      `Prise ${takeNumber || sceneTakes.length} prête. Écoutez vos essais puis choisissez celle à enregistrer pour la scène.`,
+      `Take ${takeNumber || sceneTakes.length} ready. Listen to your attempts, then choose the one to save for the scene.`,
+    ));
+  }, [t]);
 
   const saveSelectedTake = useCallback(() => {
     if (!activeScene) return;
     const take = useRecordingStore.getState().getSelectedTake(activeScene.id);
     if (!take) {
       setSaveState('error');
-      setSaveMessage('Sélectionnez ou enregistrez une prise avant de la sauvegarder.');
+      setSaveMessage(t('Sélectionnez ou enregistrez une prise avant de la sauvegarder.', 'Select or record a take before saving it.'));
       return;
     }
     void persistTake(activeScene, take);
-  }, [activeScene, persistTake]);
+  }, [activeScene, persistTake, t]);
 
   const playSavedAudio = useCallback(async () => {
     const key = activeScene?.studioAudioKey ?? activeScene?.originalAudioKey;
     if (!key) return;
     try {
       const played = await audioPlayerService.play(await getPlayableUrl(key));
-      if (!played) setSaveMessage("Impossible de lire l'audio enregistré.");
+      if (!played) setSaveMessage(t("Impossible de lire l'audio enregistré.", 'Unable to play the saved audio.'));
     } catch (e) {
       logger.error(SERVICE_NAME, 'Saved audio playback failed', { error: String(e) });
-      setSaveMessage("Impossible de lire l'audio enregistré.");
+      setSaveMessage(t("Impossible de lire l'audio enregistré.", 'Unable to play the saved audio.'));
     }
-  }, [activeScene]);
+  }, [activeScene, t]);
 
   const deleteSavedAudio = useCallback(async () => {
     if (!activeScene || isDeletingAudio) return;
     const keys = [...new Set([activeScene.studioAudioKey, activeScene.originalAudioKey]
       .filter((key): key is string => Boolean(key)))];
     if (keys.length === 0) return;
-    const confirmed = window.confirm(
+    const confirmed = window.confirm(t(
       'Supprimer l’audio enregistré de cette scène ? Le texte sera conservé et vous pourrez enregistrer une nouvelle prise ou choisir le TTS depuis l’onglet Général.',
-    );
+      'Delete the saved audio for this scene? The text will be kept and you can record a new take or choose TTS from the General tab.',
+    ));
     if (!confirmed) return;
 
     setIsDeletingAudio(true);
@@ -305,16 +316,16 @@ export default function RecordPage() {
       const removals = await Promise.all(keys.map((key) => removeStoredAudio(key)));
       const storageWarning = removals.some((item) => !item.ok);
       setSaveMessage(storageWarning
-        ? 'Audio retiré de la scène. Le nettoyage du fichier de stockage devra être relancé.'
-        : 'Audio supprimé de la scène. Le texte est conservé.');
+        ? t('Audio retiré de la scène. Le nettoyage du fichier de stockage devra être relancé.', 'Audio removed from the scene. The storage file cleanup will need to be run again.')
+        : t('Audio supprimé de la scène. Le texte est conservé.', 'Audio deleted from the scene. The text is kept.'));
     } catch (e) {
       logger.error(SERVICE_NAME, 'Saved audio deletion failed', { sceneId: activeScene.id, error: String(e) });
       setSaveState('error');
-      setSaveMessage('La suppression de l’audio a échoué. Réessayez.');
+      setSaveMessage(t('La suppression de l’audio a échoué. Réessayez.', 'Deleting the audio failed. Please try again.'));
     } finally {
       setIsDeletingAudio(false);
     }
-  }, [activeScene, isDeletingAudio, savedTakeIdByScene]);
+  }, [activeScene, isDeletingAudio, savedTakeIdByScene, t]);
 
   const startSynchronizedRecording = useCallback(async () => {
     return audioRecorderRef.current?.start() ?? false;
@@ -335,7 +346,7 @@ export default function RecordPage() {
   if (isLoading) {
     return (
       <div className="p-6" aria-busy="true">
-        <span className="sr-only">Chargement du prompteur...</span>
+        <span className="sr-only">{t('Chargement du prompteur...', 'Loading the teleprompter...')}</span>
         <div className="bg-ink rounded-lg h-96 animate-pulse" />
       </div>
     );
@@ -345,10 +356,10 @@ export default function RecordPage() {
     return (
       <div className="p-6">
         <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
-          &larr; Retour à la session
+          &larr; {t('Retour à la session', 'Back to session')}
         </Link>
         <div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger" role="alert">
-          {error || 'Session introuvable.'}
+          {error || t('Session introuvable.', 'Session not found.')}
         </div>
       </div>
     );
@@ -358,10 +369,10 @@ export default function RecordPage() {
     return (
       <div className="p-6 max-w-2xl mx-auto">
         <Link href={`/guide/studio/${sessionId}/scenes`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
-          &larr; Retour aux scènes
+          &larr; {t('Retour aux scènes', 'Back to scenes')}
         </Link>
         <div className="rounded-lg border border-mer-soft bg-mer-soft p-5 text-mer" role="status">
-          Cette version utilise la voix de synthèse à la demande. Finalisez ses textes dans le Studio ; aucun enregistrement ni TTS n’est produit ici.
+          {t('Cette version utilise la voix de synthèse à la demande. Finalisez ses textes dans le Studio ; aucun enregistrement ni TTS n’est produit ici.', 'This version uses on-demand synthetic voice. Finalize its texts in the Studio; no recording or TTS is produced here.')}
         </div>
       </div>
     );
@@ -371,10 +382,13 @@ export default function RecordPage() {
     return (
       <div className="p-6 max-w-2xl mx-auto">
         <Link href={`/guide/studio/${sessionId}/scenes`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
-          &larr; Retour aux scènes
+          &larr; {t('Retour aux scènes', 'Back to scenes')}
         </Link>
         <div className="rounded-lg border border-mer-soft bg-mer-soft p-5 text-mer" role="status" data-testid="translated-language-blocked">
-          Le prompteur et l’enregistrement humain sont réservés à la langue source ({sourceLanguage}). Les traductions seront narrées à la demande hors du Studio.
+          {t(
+            `Le prompteur et l’enregistrement humain sont réservés à la langue source (${sourceLanguage}). Les traductions seront narrées à la demande hors du Studio.`,
+            `The teleprompter and human recording are reserved for the source language (${sourceLanguage}). Translations will be narrated on demand outside the Studio.`,
+          )}
         </div>
       </div>
     );
@@ -384,10 +398,10 @@ export default function RecordPage() {
     return (
       <div className="p-6 max-w-2xl mx-auto">
         <Link href={`/guide/studio/${sessionId}/scenes`} className="text-grenadine hover:opacity-80 text-body mb-4 inline-block">
-          &larr; Retour aux scènes
+          &larr; {t('Retour aux scènes', 'Back to scenes')}
         </Link>
         <div className="rounded-lg border border-ocre-soft bg-ocre-soft p-5 text-ocre-ink" role="status">
-          Cette version n’est pas modifiable. Créez ou ouvrez une version éditable pour enregistrer une voix.
+          {t('Cette version n’est pas modifiable. Créez ou ouvrez une version éditable pour enregistrer une voix.', 'This version cannot be edited. Create or open an editable version to record a voice.')}
         </div>
       </div>
     );
@@ -416,13 +430,13 @@ export default function RecordPage() {
         <div className="flex items-center justify-between mb-3">
           <div>
             <Link href={`/guide/studio/${sessionId}`} className="text-grenadine hover:opacity-80 text-body mb-1 inline-block">
-              &larr; Retour à la session
+              &larr; {t('Retour à la session', 'Back to session')}
             </Link>
             <h2 className="text-h6 font-semibold text-ink">
-              Prompteur — {activeScene?.title || `Scène ${(activeScene?.sceneIndex ?? 0) + 1}`}
+              {t('Prompteur', 'Teleprompter')} — {activeScene?.title || `${t('Scène', 'Scene')} ${(activeScene?.sceneIndex ?? 0) + 1}`}
             </h2>
           </div>
-          <p className="text-meta text-ink-40">Espace = pause/reprendre · Échap = stop</p>
+          <p className="text-meta text-ink-40">{t('Espace = pause/reprendre · Échap = stop', 'Space = pause/resume · Esc = stop')}</p>
         </div>
 
         {sceneText ? (
@@ -434,19 +448,19 @@ export default function RecordPage() {
               onPauseRequested={pauseSynchronizedRecording}
               onResumeRequested={resumeSynchronizedRecording}
               onStopRequested={stopSynchronizedRecording}
-              startLabel="Enregistrer avec le prompteur"
+              startLabel={t('Enregistrer avec le prompteur', 'Record with the teleprompter')}
             />
           </div>
         ) : (
           <div className="flex-1 flex items-center justify-center bg-paper-soft rounded-lg mb-4" data-testid="no-text">
             <div className="text-center text-ink-60 p-6">
-              <p className="text-h6 font-medium mb-2">Pas de texte pour cette scène</p>
-              <p className="text-body">Transcrivez ou saisissez le texte dans l&apos;éditeur avant d&apos;utiliser le prompteur.</p>
+              <p className="text-h6 font-medium mb-2">{t('Pas de texte pour cette scène', 'No text for this scene')}</p>
+              <p className="text-body">{t("Transcrivez ou saisissez le texte dans l'éditeur avant d'utiliser le prompteur.", 'Transcribe or type the text in the editor before using the teleprompter.')}</p>
               <Link
                 href={`/guide/studio/${sessionId}/edit`}
                 className="inline-block mt-3 text-grenadine hover:opacity-80 font-medium text-body"
               >
-                Ouvrir l&apos;éditeur
+                {t("Ouvrir l'éditeur", 'Open the editor')}
               </Link>
             </div>
           </div>
@@ -475,19 +489,19 @@ export default function RecordPage() {
                 data-testid="save-selected-take"
               >
                 {selectedTakeId === savedTakeIdByScene[activeSceneId]
-                  ? 'Cette prise est enregistrée pour la scène'
+                  ? t('Cette prise est enregistrée pour la scène', 'This take is saved for the scene')
                   : saveState === 'error'
-                    ? 'Réessayer avec la prise sélectionnée'
-                    : 'Enregistrer la prise sélectionnée pour la scène'}
+                    ? t('Réessayer avec la prise sélectionnée', 'Retry with the selected take')
+                    : t('Enregistrer la prise sélectionnée pour la scène', 'Save the selected take for the scene')}
               </button>
             )}
             {saveState === 'uploading' && (
               <div role="status" className="text-body text-ink-60" data-testid="upload-progress">
-                Envoi de la prise… {uploadPercent}%
+                {t('Envoi de la prise…', 'Uploading take…')} {uploadPercent}%
               </div>
             )}
             {saveState === 'persisting' && (
-              <div role="status" className="text-body text-ink-60">Association de la prise à la scène…</div>
+              <div role="status" className="text-body text-ink-60">{t('Association de la prise à la scène…', 'Attaching the take to the scene…')}</div>
             )}
             {saveMessage && (
               <div
@@ -500,8 +514,8 @@ export default function RecordPage() {
             )}
             {(activeScene?.studioAudioKey || activeScene?.originalAudioKey) && (
               <div className="rounded-xl border border-mer bg-mer-soft p-4" data-testid="saved-scene-audio">
-                <p className="font-semibold text-ink">Audio actuellement enregistré pour cette scène</p>
-                <p className="mt-1 text-body text-ink-60">Il restera disponible lorsque vous reviendrez sur cette scène.</p>
+                <p className="font-semibold text-ink">{t('Audio actuellement enregistré pour cette scène', 'Audio currently saved for this scene')}</p>
+                <p className="mt-1 text-body text-ink-60">{t('Il restera disponible lorsque vous reviendrez sur cette scène.', 'It will remain available when you come back to this scene.')}</p>
                 <div className="mt-3 flex flex-wrap gap-3">
                   <button
                     type="button"
@@ -509,7 +523,7 @@ export default function RecordPage() {
                     className="rounded-pill border border-grenadine px-4 py-2 text-body font-semibold text-grenadine"
                     data-testid="play-saved-audio"
                   >
-                    ▶ Écouter l’audio
+                    ▶ {t('Écouter l’audio', 'Listen to audio')}
                   </button>
                   <button
                     type="button"
@@ -518,7 +532,7 @@ export default function RecordPage() {
                     className="rounded-pill border border-danger px-4 py-2 text-body font-semibold text-danger disabled:opacity-50"
                     data-testid="delete-saved-audio"
                   >
-                    {isDeletingAudio ? 'Suppression…' : 'Supprimer l’audio'}
+                    {isDeletingAudio ? t('Suppression…', 'Deleting…') : t('Supprimer l’audio', 'Delete audio')}
                   </button>
                 </div>
               </div>

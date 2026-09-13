@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 /**
  * Données structurées (Schema.org) des pages publiques.
  *
@@ -30,9 +32,9 @@ export function tourJsonLd(
     | 'reviewCount'
     | 'imageUrl'
   >,
-  locale: 'fr' | 'en',
+  locale: InterfaceLocale,
 ): Record<string, unknown> {
-  const path = `${locale === 'en' ? '/en' : ''}/catalogue/${tour.citySlug}/${tour.slug}`;
+  const path = `${translate(locale, '', '/en')}/catalogue/${tour.citySlug}/${tour.slug}`;
   const url = absoluteUrl(path);
   const isFree = tour.purchaseType === undefined || tour.purchaseType === 'free';
   const price = isFree ? 0 : (tour.priceCents ?? 0) / 100;
@@ -47,7 +49,7 @@ export function tourJsonLd(
     inLanguage: tour.availableLanguages?.length ? tour.availableLanguages : undefined,
     image: tour.imageUrl && /^https?:\/\//.test(tour.imageUrl) ? tour.imageUrl : undefined,
     provider: ORGANIZATION,
-    touristType: locale === 'en' ? 'Self-guided audio walking tour' : 'Visite audio autoguidée à pied',
+    touristType: translate(locale, 'Visite audio autoguidée à pied', 'Self-guided audio walking tour'),
     ...(tour.duration > 0 ? { estimatedDuration: `PT${Math.round(tour.duration)}M` } : {}),
     itinerary: {
       '@type': 'Place',

@@ -3,6 +3,7 @@
 
 {$DOMAIN}, www.{$DOMAIN} {
     encode zstd gzip
+    header /sw.js Cache-Control "no-cache"
     reverse_proxy web:3000
 }
 

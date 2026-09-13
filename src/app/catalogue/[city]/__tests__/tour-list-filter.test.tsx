@@ -57,6 +57,7 @@ const TOURS: Tour[] = [
 ];
 
 beforeEach(() => {
+  window.history.replaceState({}, '', '/catalogue/grasse');
   mockAuthed = false;
   mockListOwned.mockResolvedValue(new Set());
   __resetOwnedTourIdsCache();

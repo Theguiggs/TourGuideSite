@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import type { StudioSession } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
@@ -25,13 +27,13 @@ export function DeleteSessionDialog({
   onConfirm,
 }: DeleteSessionDialogProps) {
   const { locale } = useStudioLocale();
-  const copy = locale === 'en' ? {
-    title: 'Delete this session?', untitled: 'Untitled session', warning: 'All scenes, audio files and metadata will be permanently deleted. This action cannot be undone.',
-    cancel: 'Cancel', deleting: 'Deleting...', delete: 'Delete',
-  } : {
+  const copy = localizeValue(locale, {
     title: 'Supprimer cette session ?', untitled: 'Session sans titre', warning: 'Toutes les scènes, les fichiers audio et les métadonnées seront définitivement supprimés. Cette action est irréversible.',
     cancel: 'Annuler', deleting: 'Suppression...', delete: 'Supprimer',
-  };
+  }, {
+    title: 'Delete this session?', untitled: 'Untitled session', warning: 'All scenes, audio files and metadata will be permanently deleted. This action cannot be undone.',
+    cancel: 'Cancel', deleting: 'Deleting...', delete: 'Delete',
+  });
   return (
     <ConfirmDialog
       open

@@ -1,4 +1,6 @@
 'use client';
+import { useAdminCopy } from '@/lib/admin/use-admin-copy';
+
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
@@ -51,6 +53,7 @@ interface GuideData {
 }
 
 export default function AdminTourDetailPage() {
+  const a = useAdminCopy();
   const params = useParams<{ tourId: string }>();
   const tourId = params.tourId;
 
@@ -108,7 +111,7 @@ export default function AdminTourDetailPage() {
             const raw = s as Record<string, unknown>;
             return {
               id: raw.id as string,
-              title: (raw.title as string) || `Scène ${((raw.sceneIndex as number) ?? 0) + 1}`,
+              title: (raw.title as string) || a("Scène {0}", ((raw.sceneIndex as number) ?? 0) + 1),
               order: ((raw.sceneIndex as number) ?? 0) + 1,
               audioRef: (raw.studioAudioKey as string) || (raw.originalAudioKey as string) || '',
               photosRefs: (raw.photosRefs as string[]) ?? [],
@@ -144,8 +147,8 @@ export default function AdminTourDetailPage() {
   if (!tour) {
     return (
       <div className="p-6">
-        <Link href="/admin/tours" className="text-body text-danger hover:underline mb-4 inline-block">&larr; Retour aux parcours</Link>
-        <div className="bg-grenadine-soft border border-grenadine rounded-lg p-4 text-danger">Parcours introuvable.</div>
+        <Link href="/admin/tours" className="text-body text-danger hover:underline mb-4 inline-block"> {a("← Retour aux parcours")} </Link>
+        <div className="bg-grenadine-soft border border-grenadine rounded-lg p-4 text-danger">{a("Parcours introuvable.")}</div>
       </div>
     );
   }
@@ -155,7 +158,7 @@ export default function AdminTourDetailPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <Link href="/admin/tours" className="text-body text-danger hover:underline mb-4 inline-block">&larr; Retour aux parcours</Link>
+      <Link href="/admin/tours" className="text-body text-danger hover:underline mb-4 inline-block"> {a("← Retour aux parcours")} </Link>
 
       {/* Status + admin info bar */}
       <div className="flex items-center gap-3 mb-4">
@@ -168,12 +171,11 @@ export default function AdminTourDetailPage() {
       {/* Hero */}
       <div className="bg-grenadine rounded-md p-6 text-white mb-6">
         <div className="flex items-center gap-2 mb-2">
-          <span className="bg-olive text-olive text-meta font-bold px-2 py-0.5 rounded">GRATUIT</span>
+          <span className="bg-olive text-olive text-meta font-bold px-2 py-0.5 rounded">{a("GRATUIT")}</span>
         </div>
         <PageTitle size="h4" color="inherit" className="mb-1">{tour.title}</PageTitle>
         <p className="text-grenadine-soft text-body">
-          {tour.city} &middot; {tour.duration} min &middot; {tour.distance} km &middot; {scenes.length} points d&apos;intérêt
-        </p>
+          {tour.city} &middot; {tour.duration} min &middot; {tour.distance} km &middot; {scenes.length} {a("points d'intérêt")} </p>
       </div>
 
       {/* Guide card */}
@@ -184,10 +186,10 @@ export default function AdminTourDetailPage() {
           </div>
           <div>
             <p className="font-semibold text-ink">{guide.displayName}</p>
-            <p className="text-body text-ink-60">Guide local &middot; {guide.city}</p>
+            <p className="text-body text-ink-60"> {a("Guide local ·")} {guide.city}</p>
             {guide.bio && <p className="text-meta text-ink-40 mt-1 line-clamp-2">{guide.bio}</p>}
             {guide.languages.length > 0 && (
-              <p className="text-meta text-ink-40 mt-0.5">Langues : {guide.languages.join(', ')}</p>
+              <p className="text-meta text-ink-40 mt-0.5">{a("Langues :")} {guide.languages.join(', ')}</p>
             )}
           </div>
         </div>
@@ -196,7 +198,7 @@ export default function AdminTourDetailPage() {
       {/* Description */}
       {tour.description && (
         <div className="bg-card rounded-md border border-line p-5 mb-6">
-          <h2 className="text-h6 font-semibold text-ink mb-2">À propos de cette visite</h2>
+          <h2 className="text-h6 font-semibold text-ink mb-2">{a("À propos de cette visite")}</h2>
           <p className="text-ink-80 leading-relaxed">{tour.description}</p>
         </div>
       )}
@@ -204,7 +206,7 @@ export default function AdminTourDetailPage() {
       {/* Map */}
       {geoScenes.length > 0 && (
         <div className="bg-card rounded-md border border-line overflow-hidden mb-6">
-          <h2 className="text-h6 font-semibold text-ink p-4 pb-0">Itinéraire</h2>
+          <h2 className="text-h6 font-semibold text-ink p-4 pb-0">{a("Itinéraire")}</h2>
           <div className="h-80">
             <TourMap
               pois={geoScenes.map((s) => ({
@@ -225,7 +227,7 @@ export default function AdminTourDetailPage() {
       {/* POIs / Scenes */}
       {scenes.length > 0 && (
         <div className="bg-card rounded-md border border-line p-5 mb-6">
-          <h2 className="text-h6 font-semibold text-ink mb-4">Points d&apos;intérêt ({scenes.length})</h2>
+          <h2 className="text-h6 font-semibold text-ink mb-4">{a("Points d'intérêt (")}{scenes.length})</h2>
           <div className="space-y-4">
             {scenes.map((scene) => (
               <div key={scene.id} className="flex gap-4 pb-4 border-b border-line last:border-0 last:pb-0">
@@ -248,7 +250,7 @@ export default function AdminTourDetailPage() {
                       ))}
                     </div>
                   )}
-                  {scene.audioRef && <p className="text-meta text-grenadine mt-1">🎵 Audio disponible</p>}
+                  {scene.audioRef && <p className="text-meta text-grenadine mt-1">{a("🎵 Audio disponible")}</p>}
                 </div>
               </div>
             ))}
@@ -257,18 +259,16 @@ export default function AdminTourDetailPage() {
       )}
 
       {scenes.length === 0 && (
-        <div className="bg-paper-soft rounded-md border border-line p-8 text-center text-ink-60 mb-6">
-          Aucune scène associée à ce parcours.
-        </div>
+        <div className="bg-paper-soft rounded-md border border-line p-8 text-center text-ink-60 mb-6"> {a("Aucune scène associée à ce parcours.")} </div>
       )}
 
       {/* Stats card */}
       <div className="bg-grenadine-soft border border-grenadine rounded-md p-5">
-        <h2 className="text-h6 font-bold text-grenadine mb-3">Vivez cette visite</h2>
+        <h2 className="text-h6 font-bold text-grenadine mb-3">{a("Vivez cette visite")}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
           <div>
             <p className="text-h5 font-bold text-grenadine">{tour.duration}</p>
-            <p className="text-meta text-grenadine">minutes</p>
+            <p className="text-meta text-grenadine">{a("minutes")}</p>
           </div>
           <div>
             <p className="text-h5 font-bold text-grenadine">{tour.distance}</p>
@@ -276,11 +276,11 @@ export default function AdminTourDetailPage() {
           </div>
           <div>
             <p className="text-h5 font-bold text-grenadine">{scenes.length}</p>
-            <p className="text-meta text-grenadine">points d&apos;intérêt</p>
+            <p className="text-meta text-grenadine">{a("points d'intérêt")}</p>
           </div>
           <div>
-            <p className="text-h5 font-bold text-grenadine">Gratuit</p>
-            <p className="text-meta text-grenadine">prix</p>
+            <p className="text-h5 font-bold text-grenadine">{a("Gratuit")}</p>
+            <p className="text-meta text-grenadine">{a("prix")}</p>
           </div>
         </div>
       </div>

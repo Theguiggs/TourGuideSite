@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { sessionStatusLabel } from '@/lib/studio/status-labels';
 import type { StudioSession, StudioSessionStatus, StudioScene, SceneStatus, WalkSegment } from '@/types/studio';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
@@ -279,8 +281,9 @@ const STATUS_CONFIG: Record<StudioSessionStatus, { label: string; color: string 
   ready_for_cleanup: { label: 'Nettoyage requis', color: 'bg-ocre-soft text-ocre' },
 };
 
-export function getSessionStatusConfig(status: StudioSessionStatus) {
-  return STATUS_CONFIG[status];
+export function getSessionStatusConfig(status: StudioSessionStatus, locale: InterfaceLocale = 'fr') {
+  const config = STATUS_CONFIG[status];
+  return locale === 'fr' || !config ? config : { ...config, label: sessionStatusLabel(status, locale) };
 }
 
 const SCENE_STATUS_CONFIG: Record<SceneStatus, { label: string; color: string }> = {
@@ -292,8 +295,25 @@ const SCENE_STATUS_CONFIG: Record<SceneStatus, { label: string; color: string }>
   finalized: { label: 'Finalisé', color: 'bg-olive-soft text-success' },
 };
 
-export function getSceneStatusConfig(status: SceneStatus) {
-  return SCENE_STATUS_CONFIG[status];
+const SCENE_STATUS_LABEL_EN: Record<SceneStatus, string> = {
+  empty: 'Empty',
+  has_original: 'Field audio',
+  transcribed: 'Transcribed',
+  edited: 'Edited',
+  recorded: 'Recorded',
+  finalized: 'Finalised',
+};
+
+export function getSceneStatusConfig(status: SceneStatus, locale: InterfaceLocale = 'fr') {
+  const config = SCENE_STATUS_CONFIG[status];
+  if (!config) return config;
+  const labels = { empty: { es: 'Vacía', de: 'Leer', it: 'Vuota', nl: 'Leeg' },
+    has_original: { es: 'Audio de campo', de: 'Vor-Ort-Audio', it: 'Audio sul posto', nl: 'Veldopname' },
+    transcribed: { es: 'Transcrita', de: 'Transkribiert', it: 'Trascritta', nl: 'Getranscribeerd' },
+    edited: { es: 'Editada', de: 'Bearbeitet', it: 'Modificata', nl: 'Bewerkt' },
+    recorded: { es: 'Grabada', de: 'Aufgenommen', it: 'Registrata', nl: 'Opgenomen' },
+    finalized: { es: 'Finalizada', de: 'Abgeschlossen', it: 'Finalizzata', nl: 'Afgerond' } };
+  return { ...config, label: locale === 'fr' ? config.label : locale === 'en' ? SCENE_STATUS_LABEL_EN[status] : labels[status][locale] };
 }
 
 /**

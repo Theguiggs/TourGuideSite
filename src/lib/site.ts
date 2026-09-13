@@ -1,3 +1,4 @@
+import { isInterfaceLocale, type InterfaceLocale } from '@/lib/i18n/locales';
 /**
  * Origine publique du site, et lecture de la locale dans un chemin.
  *
@@ -17,12 +18,13 @@ export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-export type SiteLocale = 'fr' | 'en';
+export type SiteLocale = InterfaceLocale;
 
-/** `/en` et `/en/...` sont anglais ; tout le reste est français. */
+/** French keeps its original URLs; the other five interfaces use prefixes. */
 export function localeFromPath(pathname: string | null | undefined): SiteLocale {
   const path = pathname ?? '';
-  return path === '/en' || path.startsWith('/en/') ? 'en' : 'fr';
+  const prefix = path.split('/')[1];
+  return isInterfaceLocale(prefix) ? prefix : 'fr';
 }
 
 /** En-tête posé par le proxy et lu par le layout racine pour `<html lang>`. */

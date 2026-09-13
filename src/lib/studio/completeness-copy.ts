@@ -1,0 +1,25 @@
+import { SITE_LOCALES, type InterfaceLocale } from '@/lib/i18n/locales';
+
+const copy = {
+  missingMode: ['Mode de narration manquant.', 'Narration mode is missing.', 'Falta el modo de narración.', 'Der Erzählmodus fehlt.', 'Manca la modalità di narrazione.', 'Vertelmodus ontbreekt.'],
+  mode: ['Mode déclaré : {0}.', 'Declared mode: {0}.', 'Modo declarado: {0}.', 'Angegebener Modus: {0}.', 'Modalità dichiarata: {0}.', 'Opgegeven modus: {0}.'],
+  missingTitle: ['{0} scène(s) sans titre.', 'Scenes without a title: {0}.', 'Escenas sin título: {0}.', 'Szenen ohne Titel: {0}.', 'Scene senza titolo: {0}.', 'Scènes zonder titel: {0}.'],
+  longText: ['{0} scène(s) dépassent la limite de 10 000 caractères.', 'Scenes exceeding 10,000 characters: {0}.', 'Escenas con más de 10.000 caracteres: {0}.', 'Szenen mit über 10.000 Zeichen: {0}.', 'Scene oltre 10.000 caratteri: {0}.', 'Scènes met meer dan 10.000 tekens: {0}.'],
+  sourceText: ['{0} texte(s) source finalisé(s).', 'Finalised source texts: {0}.', 'Textos originales finalizados: {0}.', 'Fertige Quelltexte: {0}.', 'Testi originali finalizzati: {0}.', 'Afgeronde bronteksten: {0}.'],
+  missingText: ['{0} scène(s) sans texte final.', 'Scenes without final text: {0}.', 'Escenas sin texto final: {0}.', 'Szenen ohne endgültigen Text: {0}.', 'Scene senza testo finale: {0}.', 'Scènes zonder definitieve tekst: {0}.'],
+  ttsAudio: ['Audio source non applicable au mode TTS à la demande.', 'Source audio does not apply to on-demand TTS.', 'El audio original no se aplica a TTS bajo demanda.', 'Quellaudio ist bei TTS auf Anfrage nicht anwendbar.', "L'audio originale non si applica a TTS su richiesta.", 'Bronaudio is niet van toepassing op TTS op aanvraag.'],
+  humanAudio: ['Toutes les scènes possèdent un audio humain.', 'Every scene has human audio.', 'Todas las escenas tienen audio humano.', 'Alle Szenen haben menschliche Sprachaufnahmen.', 'Tutte le scene hanno audio umano.', 'Alle scènes hebben menselijke audio.'],
+  missingAudio: ['{0} scène(s) sans audio humain attesté.', 'Scenes without verified human audio: {0}.', 'Escenas sin audio humano verificado: {0}.', 'Szenen ohne bestätigte menschliche Sprachaufnahme: {0}.', 'Scene senza audio umano verificato: {0}.', 'Scènes zonder bevestigde menselijke audio: {0}.'],
+  noAudio: ['Aucun audio n’est soumis avant fabrication.', 'No audio is submitted before generation.', 'No se envía audio antes de generarlo.', 'Vor der Erstellung wird kein Audio eingereicht.', 'Nessun audio viene inviato prima della generazione.', 'Er wordt geen audio ingediend vóór het genereren.'],
+  unexpectedAudio: ['{0} audio(s) présent(s) malgré le mode TTS.', 'Audio files present despite TTS mode: {0}.', 'Audios presentes pese al modo TTS: {0}.', 'Audiodateien trotz TTS-Modus vorhanden: {0}.', 'File audio presenti nonostante la modalità TTS: {0}.', 'Audiobestanden aanwezig ondanks TTS-modus: {0}.'],
+  consistent: ['La déclaration audio correspond au mode Ma voix.', 'The audio declaration matches My voice mode.', 'La declaración de audio coincide con el modo Mi voz.', 'Die Audioangabe entspricht dem Modus Meine Stimme.', 'La dichiarazione audio corrisponde alla modalità La mia voce.', 'De audioverklaring komt overeen met Mijn stem.'],
+  incomplete: ['La déclaration Ma voix est incomplète.', 'The My voice declaration is incomplete.', 'La declaración Mi voz está incompleta.', 'Die Angabe Meine Stimme ist unvollständig.', 'La dichiarazione La mia voce è incompleta.', 'De verklaring Mijn stem is onvolledig.'],
+  unknown: ['La cohérence audio ne peut pas être vérifiée sans mode.', 'Audio consistency cannot be checked without a mode.', 'No se puede comprobar la coherencia del audio sin un modo.', 'Ohne Modus kann die Audiokonsistenz nicht geprüft werden.', "La coerenza dell'audio non può essere verificata senza modalità.", 'Audioconsistentie kan zonder modus niet worden gecontroleerd.'],
+  notApplicable: ['Non applicable au mode Ma voix.', 'Not applicable to My voice mode.', 'No se aplica al modo Mi voz.', 'Nicht anwendbar im Modus Meine Stimme.', 'Non applicabile alla modalità La mia voce.', 'Niet van toepassing op Mijn stem.'],
+  ready: ['Textes prêts pour une fabrication en {0}.', 'Texts ready for generation in {0}.', 'Textos listos para generar en {0}.', 'Texte bereit zur Erstellung in {0}.', 'Testi pronti per la generazione in {0}.', 'Teksten klaar voor generatie in {0}.'],
+  missingSource: ['La langue source ou un texte final manque pour la fabrication.', 'The source language or final text is missing for generation.', 'Falta el idioma original o un texto final para generar.', 'Die Quellsprache oder ein endgültiger Text fehlt für die Erstellung.', 'Manca la lingua originale o un testo finale per la generazione.', 'De brontaal of een definitieve tekst ontbreekt voor generatie.'],
+} as const;
+
+export function completenessCopy(locale: InterfaceLocale, key: keyof typeof copy, value?: string | number): string {
+  return copy[key][SITE_LOCALES.indexOf(locale)].replace('{0}', String(value ?? ''));
+}

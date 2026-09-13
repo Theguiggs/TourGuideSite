@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { extendCopy } from '@/lib/i18n/translate';
 /**
  * Politique de mention de source audio — règle unique et réutilisable.
  *
@@ -227,7 +229,7 @@ export function disclosureWriteViolation(
  * ------------------------------------------------------------------------- */
 
 /** Les deux locales que le portail sert : `/catalogue` et `/en/catalogue`. */
-export type DisclosureLocale = 'fr' | 'en';
+export type DisclosureLocale = InterfaceLocale;
 
 /**
  * Libellés visiteur. Deux mentions par locale, et pas une de plus — dont aucune
@@ -235,20 +237,20 @@ export type DisclosureLocale = 'fr' | 'en';
  * visiteur ne lit pas ne divulgue rien, et une traduction recopiée dans un
  * composant est une mention que ce module ne gouverne plus.
  */
-const MENTION_LABELS: Record<DisclosureLocale, Record<'tts' | 'mixed', string>> = {
+const MENTION_LABELS: Record<DisclosureLocale, Record<'tts' | 'mixed', string>> = extendCopy({
   fr: { tts: 'Voix de synthèse', mixed: 'Voix de synthèse (en partie)' },
   en: { tts: 'Synthetic voice', mixed: 'Synthetic voice (partly)' },
-};
+});
 
 /**
  * Libellé d'une voix humaine déclarée. Ce n'est pas une mention — il n'y a rien
  * à divulguer — mais il se localise avec elle, et les deux surfaces l'affichent
  * dans le même emplacement.
  */
-const HUMAN_LABELS: Record<DisclosureLocale, string> = {
+const HUMAN_LABELS: Record<DisclosureLocale, string> = extendCopy({
   fr: 'Voix du guide',
   en: 'Guide recording',
-};
+});
 
 /**
  * Source à afficher pour une langue donnée. C'est **la** règle de lecture :

@@ -107,15 +107,15 @@ export const FAQ_GUIDES: FaqItem[] = [
 export const FAQ_VOYAGEURS: FaqItem[] = [
   {
     q: 'Comment écouter une visite ?',
-    a: "Téléchargez l'app Murmure, choisissez une visite et lancez la lecture : le récit vous suit au fil de votre marche.",
+    a: "Sur la page de la visite, appuyez sur « Écouter » sous chaque étape. L'app Murmure ajoute le guidage GPS et l'écoute hors connexion : le récit vous suit au fil de votre marche.",
   },
   {
     q: 'Ça marche hors-ligne ?',
-    a: 'Oui. Téléchargez la visite avant de partir et écoutez-la sans réseau.',
+    a: 'Le lecteur web nécessite une connexion pour charger l’audio. Le téléchargement de visites hors connexion relève de l’application, pas du site installé.',
   },
   {
     q: 'Sur quels appareils ?',
-    a: 'iOS et Android.',
+    a: 'Le site s’adapte au téléphone, à la tablette et à l’ordinateur. Les fonctions de l’application dépendent de sa disponibilité sur votre appareil.',
   },
   {
     q: 'Est-ce gratuit ?',
@@ -123,7 +123,7 @@ export const FAQ_VOYAGEURS: FaqItem[] = [
   },
   {
     q: 'Où trouver les visites ?',
-    a: 'Parcourez le catalogue sur le web, puis écoutez dans l’app.',
+    a: 'Parcourez le catalogue, ouvrez une visite et découvrez son audio sur le site. Retrouvez vos achats dans Mes visites avec votre compte Murmure.',
   },
 ];
 

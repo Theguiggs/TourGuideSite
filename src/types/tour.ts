@@ -10,6 +10,12 @@ export interface City {
 }
 
 export interface Tour {
+  /** Published metadata translations, independent of narration availability. */
+  translatedTitles?: Record<string, string>;
+  translatedDescriptions?: Record<string, string>;
+  metadataFallback?: boolean;
+  /** Langue de la narration source, distincte de la langue de l’interface. */
+  sourceLanguage?: string;
   id: string;
   title: string;
   slug: string;
@@ -49,10 +55,18 @@ export interface POI {
   order: number;
   /** First scene photo (guide-studio/* S3 key), resolved via <S3Image>. Optional. */
   photoKey?: string;
+  /**
+   * LW-1 — la scène a une narration (`audioKey` présent dans la réponse servie).
+   * Booléen seulement : l'URL signée ne traverse JAMAIS cette projection, elle
+   * est redemandée par le navigateur au premier clic (`useSceneAudio`).
+   */
+  hasAudio?: boolean;
+  hasCoordinates?: boolean;
 }
 
 export interface TourDetail extends Tour {
   pois: POI[];
+  walkPath?: Array<{ latitude: number; longitude: number }>;
   /** Contenu public indisponible au rendu : la fiche est servie sans itinéraire (lot 3.2). */
   contentUnavailable?: boolean;
   reviews: TourReview[];

@@ -1,11 +1,24 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import { S3Image } from '@/components/studio/s3-image';
 import type { PurchasedTour } from '@/types/purchase';
-import { PageTitle } from '@murmure/design-system/web';
+import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
+import { PageTitle, tg } from '@murmure/design-system/web';
+import { Play } from 'lucide-react';
+import { LISTEN_ANCHOR, PURCHASE_LISTEN_COPY } from './scene-player/listen-link';
 
 interface MyPurchasesStripProps {
   purchases: PurchasedTour[];
-  locale?: 'fr' | 'en';
+  locale?: InterfaceLocale;
+}
+
+function PurchaseStripLink({ href, label, testId, children }: { href?: string; label: string; testId: string; children: ReactNode }) {
+  const className = 'flex-shrink-0 w-40 rounded-lg border border-line hover:shadow-md transition-shadow overflow-hidden';
+  return href
+    ? <Link href={href} aria-label={label} data-testid={testId} className={className}>{children}</Link>
+    : <div data-testid={testId} className={className}>{children}</div>;
 }
 
 /**
@@ -14,24 +27,28 @@ interface MyPurchasesStripProps {
  */
 export function MyPurchasesStrip({ purchases, locale = 'fr' }: MyPurchasesStripProps) {
   if (purchases.length === 0) return null;
+  const copy = PURCHASE_LISTEN_COPY[locale];
 
   return (
-    <section className="mb-10" aria-label={locale === 'en' ? 'My purchases' : 'Mes achats'}>
+    <section className="mb-10" aria-label={copy.myPurchases}>
       <div className="flex items-baseline justify-between mb-4">
         <PageTitle as="h2" size="h5">
-          {locale === 'en' ? 'My purchases' : 'Mes achats'} ({purchases.length})
+          {copy.myPurchases} ({purchases.length})
         </PageTitle>
-        <Link href={locale === 'en' ? '/en/my-purchases' : '/mes-achats'} className="text-body text-grenadine font-medium hover:underline">
-          {locale === 'en' ? 'View all →' : 'Voir tout →'}
+        <Link href={translate(locale, '/mes-achats', '/en/my-purchases')} className="text-body text-grenadine font-medium hover:underline">
+          {copy.viewAll}
         </Link>
       </div>
       <div className="flex gap-3 overflow-x-auto pb-2">
-        {purchases.slice(0, 6).map(({ tour }) => (
-          <Link
+        {purchases.slice(0, 6).map(({ tour: originalTour }) => {
+          const tour = localizeTour(originalTour, locale);
+          const published = tour.status === 'published';
+          return (
+          <PurchaseStripLink
             key={tour.id}
-            href={`${locale === 'en' ? '/en' : ''}/catalogue/${tour.citySlug}/${tour.slug}`}
-            data-testid={`purchase-strip-${tour.id}`}
-            className="flex-shrink-0 w-40 rounded-lg border border-line hover:shadow-md transition-shadow overflow-hidden"
+            href={published ? `${translate(locale, '', '/en')}/catalogue/${tour.citySlug}/${tour.slug}${LISTEN_ANCHOR}` : undefined}
+            label={copy.label(tour.title)}
+            testId={`purchase-strip-${tour.id}`}
           >
             <div className="relative h-24 bg-grenadine-soft overflow-hidden">
               {tour.imageUrl && tour.imageUrl.startsWith('guide-') ? (
@@ -50,8 +67,12 @@ export function MyPurchasesStrip({ purchases, locale = 'fr' }: MyPurchasesStripP
               ) : null}
             </div>
             <p className="p-2 text-meta font-medium text-ink line-clamp-2">{tour.title}</p>
-          </Link>
-        ))}
+            {tour.metadataFallback && <p className="px-2 text-meta text-ink-60">{METADATA_FALLBACK_COPY[locale]}</p>}
+            <span style={{ display: 'flex', alignItems: 'center', gap: tg.space[2], padding: tg.space[2], color: tg.colors.ink, fontSize: tg.fontSize.meta, fontWeight: 600 }}>
+              {published && <Play size={14} aria-hidden="true" />}{published ? copy.listen : copy.unavailable}
+            </span>
+          </PurchaseStripLink>
+        );})}
       </div>
     </section>
   );

@@ -18,6 +18,19 @@ import { __resetOwnedTourIdsCache } from '@/hooks/use-owned-tour-ids';
 import { PURCHASES_CHANGED_EVENT } from '@/lib/checkout/purchase-events';
 import { logger } from '@/lib/logger';
 import type { POI } from '@/types/tour';
+import { ITINERARY_SOURCE_COPY } from '@/lib/catalogue/scene-pois';
+
+const mockRefresh = jest.fn();
+const mockRouter = {refresh: mockRefresh};
+jest.mock('next/navigation', () => ({
+  useRouter: () => mockRouter,
+}));
+
+it('shows original itinerary text warning independently of translated tour metadata', () => {
+  render(<ItineraryList pois={[{ id: 'source', title: 'Place du marché', description: 'Texte original', latitude: 0, longitude: 0, order: 1 }]} sourceLanguage="fr" locale="de" tourTitle="Übersetzter Titel" tourId="source-tour" isFree heroAccentFg="#B4703A" />);
+  expect(screen.getByText(ITINERARY_SOURCE_COPY.de)).toBeInTheDocument();
+  expect(screen.getByText('Place du marché')).toBeInTheDocument();
+});
 
 let authState: { isAuthenticated: boolean; user: { id: string } | null } = {
   isAuthenticated: false,
@@ -70,7 +83,7 @@ const SSR_PREVIEW: POI[] = [
   {
     id: 's2',
     title: 'Étape deux',
-    description: 'La halle aux grains',
+    description: '',
     latitude: 43.7,
     longitude: 7.2,
     order: 2,
@@ -100,7 +113,7 @@ const TRUNCATED_CONTENT = {
   data: {
     ...FULL_CONTENT.data,
     scenes: FULL_CONTENT.data.scenes.map((scene, index) =>
-      index < 2 ? scene : { ...scene, description: '', photos: [] },
+      index < 1 ? scene : { ...scene, description: '', photos: [] },
     ),
   },
 };
@@ -141,16 +154,38 @@ describe('fiche Visite — accès au contenu complet', () => {
     mockGetPublishedTourContent.mockResolvedValue(TRUNCATED_CONTENT);
   });
 
-  it('anonyme : aperçu de deux étapes, le reste flouté, et aucune redemande', async () => {
+  it('anonyme : aperçu d’une étape, le reste flouté, et aucune redemande', async () => {
     const { container } = renderItinerary();
     await act(async () => {});
 
     expect(screen.getByText('Départ place du marché')).toBeInTheDocument();
     expect(screen.queryByText(SECRET_3)).not.toBeInTheDocument();
-    expect(lockedStops(container)).toHaveLength(2);
+    expect(lockedStops(container)).toHaveLength(3);
     expect(blurred(container)).toBeGreaterThan(0);
     // Le navigateur ne demande rien sans session : aucune identité à porter.
     expect(mockGetPublishedTourContent).not.toHaveBeenCalled();
+  });
+
+  it.each([false, true])('connecté : l’ancien aperçu serveur à deux étapes reste verrouillé (achat vu côté client=%s)', async (clientOwns) => {
+    authState = { isAuthenticated: true, user: { id: 'user-1' } };
+    mockListOwnedTourIds.mockResolvedValue(new Set(clientOwns ? ['tour-1'] : []));
+    mockGetPublishedTourContent.mockResolvedValue({
+      ok: true,
+      data: {
+        ...FULL_CONTENT.data,
+        scenes: FULL_CONTENT.data.scenes.map((scene, index) => index < 2
+          ? { ...scene, audioUrl: `https://media.example/preview-${index + 1}.mp3` }
+          : { ...scene, description: '', photos: [] }),
+      },
+    });
+    const { container } = renderItinerary();
+    await act(async () => {});
+    expect(lockedStops(container)).toHaveLength(3);
+    expect(lockedStops(container)[0]).toContain('Étape 2');
+    expect(container.querySelector('[data-testid="scene-listen-button-s1"]')).not.toBeNull();
+    expect(container.querySelector('[data-testid="scene-listen-button-s2"]')).toBeNull();
+    const second = container.querySelectorAll('li')[1];
+    expect(second.querySelector('h5')).toHaveStyle({ filter: 'blur(6px)' });
   });
 
   it('porteur de forfait : contenu complet, rien de flouté', async () => {
@@ -165,6 +200,29 @@ describe('fiche Visite — accès au contenu complet', () => {
     expect(lockedStops(container)).toHaveLength(0);
     expect(blurred(container)).toBe(0);
     expect(mockGetPublishedTourContent).toHaveBeenCalledWith('tour-1');
+  });
+
+  it.each([true, false, undefined])('paid two-stop tour respects server grant %s with conservative legacy fallback', async (hasFullAccess) => {
+    authState = { isAuthenticated: true, user: { id: 'user-1' } };
+    mockListOwnedTourIds.mockResolvedValue(new Set(['tour-1']));
+    mockGetPublishedTourContent.mockResolvedValue({
+      ok: true,
+      data: { ...FULL_CONTENT.data, hasFullAccess, scenes: FULL_CONTENT.data.scenes.slice(0, 2) },
+    });
+    const { container } = renderItinerary({ pois: SSR_PREVIEW.slice(0, 2) });
+    await act(async () => {});
+    expect(lockedStops(container)).toHaveLength(hasFullAccess === true ? 0 : 1);
+    if (hasFullAccess === true) expect(screen.getByText('La halle aux grains')).toBeInTheDocument();
+    else expect(screen.queryByText('La halle aux grains')).not.toBeInTheDocument();
+  });
+
+  it('explicit server refusal overrides apparently complete content', async () => {
+    authState = { isAuthenticated: true, user: { id: 'user-1' } };
+    mockGetPublishedTourContent.mockResolvedValue({ ...FULL_CONTENT, data: { ...FULL_CONTENT.data, hasFullAccess: false } });
+    const { container } = renderItinerary();
+    await act(async () => {});
+    expect(lockedStops(container)).toHaveLength(3);
+    expect(screen.queryByText(SECRET_3)).not.toBeInTheDocument();
   });
 
   it("acheteur à l'unité : contenu complet, comme avant", async () => {
@@ -206,7 +264,7 @@ describe('fiche Visite — accès au contenu complet', () => {
     await act(async () => {});
 
     expect(screen.queryByText(SECRET_3)).not.toBeInTheDocument();
-    expect(lockedStops(container)).toHaveLength(2);
+    expect(lockedStops(container)).toHaveLength(3);
   });
 
   it("authentifié sans droit : le serveur tronque, l'aperçu reste flouté", async () => {
@@ -217,7 +275,7 @@ describe('fiche Visite — accès au contenu complet', () => {
     await act(async () => {});
 
     expect(screen.queryByText(SECRET_3)).not.toBeInTheDocument();
-    expect(lockedStops(container)).toHaveLength(2);
+    expect(lockedStops(container)).toHaveLength(3);
   });
 
   it('forfait expiré : aperçu, comme sans droit', async () => {
@@ -233,7 +291,7 @@ describe('fiche Visite — accès au contenu complet', () => {
     await act(async () => {});
 
     expect(screen.queryByText(SECRET_3)).not.toBeInTheDocument();
-    expect(lockedStops(container)).toHaveLength(2);
+    expect(lockedStops(container)).toHaveLength(3);
   });
 
   it('visite gratuite : tout est ouvert, sans aucune demande', async () => {
@@ -267,7 +325,7 @@ describe('fiche Visite — accès au contenu complet', () => {
     expect(screen.getByText('Départ place du marché')).toBeInTheDocument();
     // Rien n'est arrivé, donc rien ne s'ouvre : un itinéraire défloutté sur du
     // vide se lirait « le guide n'a rien écrit », ce qui est faux.
-    expect(lockedStops(container)).toHaveLength(2);
+    expect(lockedStops(container)).toHaveLength(3);
     expect(screen.queryByText(SECRET_3)).not.toBeInTheDocument();
     expect(jest.mocked(logger.warn)).toHaveBeenCalled();
   });
@@ -281,7 +339,7 @@ describe('fiche Visite — accès au contenu complet', () => {
     await act(async () => {});
 
     expect(screen.getByText('Étape trois')).toBeInTheDocument();
-    expect(lockedStops(container)).toHaveLength(2);
+    expect(lockedStops(container)).toHaveLength(3);
     expect(jest.mocked(logger.warn)).toHaveBeenCalled();
   });
 
@@ -299,7 +357,7 @@ describe('fiche Visite — accès au contenu complet', () => {
     // Sans cette garde, une réponse vide effacerait un itinéraire déjà affiché
     // et la fiche basculerait sur « Itinéraire en cours de finalisation ».
     expect(screen.getByText('Étape une')).toBeInTheDocument();
-    expect(lockedStops(container)).toHaveLength(2);
+    expect(lockedStops(container)).toHaveLength(3);
   });
 
   it("ne montre jamais le contenu d'une visite sous le titre d'une autre", async () => {
@@ -362,7 +420,7 @@ describe('fiche Visite — accès au contenu complet', () => {
     await act(async () => {});
 
     expect(screen.queryByText(SECRET_3)).not.toBeInTheDocument();
-    expect(lockedStops(view.container)).toHaveLength(2);
+    expect(lockedStops(view.container)).toHaveLength(3);
   });
 
   it("achat de forfait qui vient d'aboutir : l'accès s'ouvre sans rechargement", async () => {
@@ -371,7 +429,7 @@ describe('fiche Visite — accès au contenu complet', () => {
     const { container } = renderItinerary();
     await waitFor(() => expect(mockGetPublishedTourContent).toHaveBeenCalled());
     await act(async () => {});
-    expect(lockedStops(container)).toHaveLength(2);
+    expect(lockedStops(container)).toHaveLength(3);
 
     // Le paiement aboutit : le serveur a écrit l'entitlement, la carte émet.
     mockHasActiveForfait.mockResolvedValue(true);

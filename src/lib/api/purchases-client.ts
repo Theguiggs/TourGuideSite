@@ -14,6 +14,8 @@ import { shouldUseStubs } from '@/config/api-mode';
 import { getAllTours, generateSlug } from './tours';
 import { getGuideTourById } from './appsync-client';
 import { logger } from '@/lib/logger';
+import { parseTranslatedMetadata } from './translated-metadata';
+import { normalizeLanguageTag } from './audio-source-policy';
 
 const SERVICE_NAME = 'PurchasesClient';
 
@@ -29,6 +31,9 @@ function mapRawTourLight(raw: Record<string, unknown>): Tour {
   return {
     id: String(raw.id ?? ''),
     title: String(raw.title ?? ''),
+    sourceLanguage: normalizeLanguageTag(raw.sourceLanguage) || undefined,
+    translatedTitles: parseTranslatedMetadata(raw.translatedTitles),
+    translatedDescriptions: parseTranslatedMetadata(raw.translatedDescriptions),
     slug: generateSlug(String(raw.title ?? '')),
     city: String(raw.city ?? ''),
     citySlug: generateSlug(String(raw.city ?? '')),

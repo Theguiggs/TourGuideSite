@@ -1,4 +1,5 @@
-import type { Metadata } from 'next';
+import { VisitorHelp } from '@/components/catalogue/visitor-help';
+import { helpMetadata } from '@/lib/help-metadata';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Button, Eyebrow, PullQuote } from '@murmure/design-system/web';
@@ -14,15 +15,7 @@ import {
 } from './_content';
 
 // Story 4.6 — Page d'aide : explique le site et la création de parcours.
-export const metadata: Metadata = {
-  title: 'Aide',
-  description:
-    'Le guide complet de Murmure : créez un parcours audio étape par étape, et trouvez les réponses aux questions des guides comme des voyageurs.',
-  alternates: {
-    canonical: '/aide',
-    languages: {fr: '/aide', en: '/en/help'},
-  },
-};
+export const metadata = helpMetadata('fr');
 
 export default function AidePage() {
   return (
@@ -46,6 +39,8 @@ export default function AidePage() {
         </div>
       </section>
 
+      <VisitorHelp locale="fr" />
+
       {/* ─── Qu'est-ce que Murmure ? (AC8) ────────────────────────────────── */}
       <section className="bg-paper-soft py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,7 +60,7 @@ export default function AidePage() {
             }}
           >
             Murmure, ce sont des visites guidées audio. Les voyageurs les écoutent
-            dans l’app, même hors-ligne. Les guides créent ces visites dans
+            sur le site ou dans l’application. Les guides créent ces visites dans
             l’atelier web, sans compétence technique.
           </p>
         </div>

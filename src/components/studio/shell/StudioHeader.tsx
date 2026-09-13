@@ -1,4 +1,6 @@
 'use client';
+import { translate, extendCopy } from '@/lib/i18n/translate';
+import { SITE_LOCALES, LOCALE_NAMES, requireInterfaceLocale } from '@/lib/i18n/locales';
 
 import Link from 'next/link';
 import { useState } from 'react';
@@ -20,7 +22,7 @@ interface StudioHeaderProps {
   onMenuToggle?: () => void;
 }
 
-const COPY = {
+const COPY = extendCopy({
   fr: {
     studio: 'Studio',
     explore: 'Explorer',
@@ -41,7 +43,7 @@ const COPY = {
     closeNavigation: 'Close navigation',
     chooseLanguage: 'Choose language',
   },
-} as const;
+} as const);
 
 export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined }: StudioHeaderProps) {
   const { user, signOut } = useAuth();
@@ -49,8 +51,8 @@ export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined 
   const [accountOpen, setAccountOpen] = useState(false);
   const copy = COPY[locale];
   const initial = (user?.displayName ?? 'S').trim().charAt(0).toUpperCase() || 'S';
-  const publicHelpHref = locale === 'en' ? '/en/help' : '/aide';
-  const publicCatalogueHref = locale === 'en' ? '/en/catalogue' : '/catalogue';
+  const publicHelpHref = translate(locale, '/aide', '/en/help');
+  const publicCatalogueHref = translate(locale, '/catalogue', '/en/catalogue');
 
   return (
     <header
@@ -89,25 +91,16 @@ export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined 
           <HelpCircle size={18} aria-hidden="true" />
         </Link>
 
-        <div
-          className="inline-flex overflow-hidden rounded-md border border-line"
-          role="group"
+        <select
+          className="min-h-11 max-w-24 rounded-md border border-line bg-paper px-1 text-meta font-semibold sm:max-w-32"
           aria-label={copy.chooseLanguage}
+          value={locale}
+          onChange={event => setLocale(requireInterfaceLocale(event.target.value))}
         >
-          {(['fr', 'en'] as const).map((targetLocale) => (
-            <button
-              key={targetLocale}
-              type="button"
-              onClick={() => setLocale(targetLocale)}
-              aria-pressed={locale === targetLocale}
-              className={`min-h-11 px-3 text-meta font-bold transition ${
-                locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper text-ink-60 hover:text-ink'
-              }`}
-            >
-              {targetLocale.toUpperCase()}
-            </button>
+          {SITE_LOCALES.map((targetLocale) => (
+            <option key={targetLocale} value={targetLocale} lang={targetLocale}>{LOCALE_NAMES[targetLocale]}</option>
           ))}
-        </div>
+        </select>
 
         <div className="relative">
           <button
@@ -122,7 +115,7 @@ export function StudioHeader({ menuOpen = false, onMenuToggle = () => undefined 
               {initial}
             </span>
             <span className="hidden max-w-32 truncate text-caption font-semibold text-ink lg:inline">
-              {user?.displayName ?? (locale === 'en' ? 'Guest' : 'Invité')}
+              {user?.displayName ?? (translate(locale, 'Invité', 'Guest'))}
             </span>
             <ChevronDown size={15} className="hidden text-ink-40 sm:block" aria-hidden="true" />
           </button>

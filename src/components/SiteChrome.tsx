@@ -1,8 +1,14 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 import Header from './Header';
+import { setStoredStudioLocale, useStoredStudioLocale, notifyServiceWorkerLocale } from '@/lib/i18n/studio-locale';
 import Footer from './Footer';
+import { VisitorBottomNav } from './auth/visitor-bottom-nav';
+import { localeFromPath } from '@/lib/site';
+import { LaunchOfferBanner } from './LaunchOfferBanner';
 
 interface SiteChromeProps {
   children: React.ReactNode;
@@ -18,19 +24,37 @@ interface SiteChromeProps {
  */
 export function SiteChrome({ children }: SiteChromeProps) {
   const pathname = usePathname() ?? '';
-  const locale = pathname.startsWith('/en/') || pathname === '/en' ? 'en' : 'fr';
-  // `<html lang>` vient du serveur (proxy + layout racine) ; le Studio, qui
-  // a sa propre bascule de langue, l'écrit lui-même sans concurrent ici.
+  // Les pages publiques du Studio n'ont pas de variante `/en/…` : leur langue
+  // est celle du Studio (stockage local), basculée par bouton dans l'en-tête.
+  const isPublicGuidePage = /^\/guide\/(login|signup|reset-password)$/.test(pathname);
+  const studioLocale = useStoredStudioLocale();
+  const isAdminPage = /^\/admin(\/|$)/.test(pathname);
+  const isProtectedPath = /^\/(guide|admin)(\/|$)/.test(pathname);
+  const locale = isProtectedPath
+    ? studioLocale
+    : localeFromPath(pathname);
+  useEffect(() => {
+    if (!/^\/(guide|admin)(\/|$)/.test(pathname)) setStoredStudioLocale(localeFromPath(pathname));
+  }, [pathname]);
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    const notify = () => notifyServiceWorkerLocale(locale);
+    notify();
+    navigator.serviceWorker?.addEventListener('controllerchange', notify);
+    return () => navigator.serviceWorker?.removeEventListener('controllerchange', notify);
+  }, [locale]);
 
   const isStudio = pathname.startsWith('/guide/studio');
   // Pages legacy /guide/{dashboard,tours,profile,revenue} embarquent désormais
   // le même shell que le Studio (StudioHeader + sidebar Murmure). On supprime
   // donc la chrome publique sur ces routes pour éviter la double barre haute.
   const isGuideShell = /^\/guide\/(dashboard|tours|profile|revenue)(\/|$)/.test(pathname);
+  const showVisitorNav = !isProtectedPath
+    && !/^\/(connexion|inscription|mot-de-passe-oublie|(?:en|es|de|it|nl)\/(sign-in|sign-up|reset-password))$/.test(pathname);
 
   // Un seul repère <main> par page (lot 4) : le Studio et l'admin posent le
   // leur, la chrome publique le sien. Le lien d'évitement vise `#contenu`.
-  const skipLabel = locale === 'en' ? 'Skip to content' : 'Aller au contenu';
+  const skipLabel = translate(locale, 'Aller au contenu', 'Skip to content');
   const skipLink = (
     <a
       href="#contenu"
@@ -50,11 +74,13 @@ export function SiteChrome({ children }: SiteChromeProps) {
   }
 
   return (
-    <>
+    <div className={showVisitorNav ? 'visitor-shell' : undefined}>
       {skipLink}
-      <Header locale={locale} />
+      <Header locale={locale} onLocaleChange={isPublicGuidePage || isAdminPage ? setStoredStudioLocale : undefined} />
+      <LaunchOfferBanner locale={locale} />
       <main id="contenu" className="min-h-screen">{children}</main>
       <Footer locale={locale} />
-    </>
+      {showVisitorNav && <VisitorBottomNav locale={locale} pathname={pathname} />}
+    </div>
   );
 }

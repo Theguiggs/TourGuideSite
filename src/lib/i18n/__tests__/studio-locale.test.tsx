@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { StudioLocaleProvider, useStudioLocale } from '../studio-locale';
+import { StudioLocaleProvider, useStudioLocale, setStoredStudioLocale } from '../studio-locale';
 
 function LocaleProbe() {
   const { locale, setLocale } = useStudioLocale();
@@ -11,8 +11,21 @@ function LocaleProbe() {
   );
 }
 
+function setBrowserLanguage(language: string) {
+  Object.defineProperty(window.navigator, 'language', { value: language, configurable: true });
+}
+
 describe('StudioLocaleProvider', () => {
-  beforeEach(() => window.localStorage.clear());
+  beforeEach(() => { window.localStorage.clear(); setBrowserLanguage('fr-FR'); });
+  it('conserve le choix en mémoire lorsque le stockage est interdit', () => {
+    const get = jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new DOMException('Blocked', 'SecurityError'); });
+    const set = jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new DOMException('Blocked', 'SecurityError'); });
+    const view = render(<StudioLocaleProvider><LocaleProbe /></StudioLocaleProvider>);
+    fireEvent.click(screen.getByRole('button', {name: 'English'}));
+    expect(screen.getByTestId('locale-value')).toHaveTextContent('en');
+    view.unmount();
+    get.mockRestore(); set.mockRestore(); setStoredStudioLocale('fr');
+  });
 
   it('starts in French and persists an English selection', () => {
     render(
@@ -25,5 +38,16 @@ describe('StudioLocaleProvider', () => {
     fireEvent.click(screen.getByRole('button', { name: 'English' }));
     expect(screen.getByTestId('locale-value')).toHaveTextContent('en');
     expect(window.localStorage.getItem('murmure-studio-locale')).toBe('en');
+  });
+
+  it('suit la langue du navigateur quand rien n’est mémorisé, et le réglage mémorisé sinon', () => {
+    setBrowserLanguage('en-GB');
+    const first = render(<StudioLocaleProvider><LocaleProbe /></StudioLocaleProvider>);
+    expect(screen.getByTestId('locale-value')).toHaveTextContent('en');
+    first.unmount();
+
+    window.localStorage.setItem('murmure-studio-locale', 'fr');
+    render(<StudioLocaleProvider><LocaleProbe /></StudioLocaleProvider>);
+    expect(screen.getByTestId('locale-value')).toHaveTextContent('fr');
   });
 });

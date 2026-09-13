@@ -1,12 +1,15 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 
 import { useOwnedTourIds } from '@/hooks/use-owned-tour-ids';
 import { formatPrice, isTourFree } from '@/lib/catalogue/tour-pricing';
 import type { Tour } from '@/types/tour';
+import {useLaunchFreeAccess} from '@/lib/use-launch-free-access';
 
 interface TourPriceBadgeProps {
   tour: Pick<Tour, 'id' | 'purchaseType' | 'priceCents'>;
-  locale?: 'fr' | 'en';
+  locale?: InterfaceLocale;
 }
 
 /**
@@ -19,6 +22,7 @@ interface TourPriceBadgeProps {
  */
 export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
   const ownedTourIds = useOwnedTourIds();
+  const includedInLaunchOffer = useLaunchFreeAccess().active;
 
   if (ownedTourIds.has(tour.id)) {
     return (
@@ -26,17 +30,20 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
         data-testid={`badge-owned-${tour.id}`}
         className="inline-flex items-center gap-1 bg-mer-soft text-mer text-meta font-bold px-2 py-0.5 rounded-pill"
       >
-        <span aria-hidden="true">✓</span> {locale === 'en' ? 'Purchased' : 'Acheté'}
+        <span aria-hidden="true">✓</span> {translate(locale, 'Acheté', 'Purchased')}
       </span>
     );
   }
-  if (isTourFree(tour)) {
+  if (isTourFree(tour) || includedInLaunchOffer) {
     return (
       <span
         data-testid={`badge-free-${tour.id}`}
-        className="bg-olive-soft text-olive text-meta font-bold px-2 py-0.5 rounded-pill"
+        className="bg-olive-soft text-ink text-meta font-bold px-2 py-0.5 rounded-pill"
       >
-        {locale === 'en' ? 'FREE' : 'GRATUIT'}
+        {translate(locale, 'GRATUIT', 'FREE')}
+        {includedInLaunchOffer && tour.priceCents
+          ? ` · ${formatPrice(tour.priceCents, locale)}`
+          : ''}
       </span>
     );
   }
@@ -46,7 +53,7 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
         data-testid={`badge-subscription-${tour.id}`}
         className="bg-ocre-soft text-ocre-ink text-meta font-bold px-2 py-0.5 rounded-pill"
       >
-        {locale === 'en' ? 'INCLUDED WITH SUBSCRIPTION' : 'INCLUS DANS L’ABONNEMENT'}
+        {translate(locale, 'INCLUS DANS L’ABONNEMENT', 'INCLUDED WITH SUBSCRIPTION')}
       </span>
     );
   }
@@ -56,7 +63,7 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
         data-testid={`badge-price-${tour.id}`}
         className="bg-grenadine-soft text-grenadine text-meta font-bold px-2 py-0.5 rounded-pill"
       >
-        {formatPrice(tour.priceCents)}
+        {formatPrice(tour.priceCents, locale)}
       </span>
     );
   }

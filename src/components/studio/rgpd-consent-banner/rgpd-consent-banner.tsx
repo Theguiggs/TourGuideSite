@@ -1,4 +1,7 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
+import { translate } from '@/lib/i18n/translate';
 
 import { useEffect, useRef, useCallback } from 'react';
 import { useStudioConsentStore, selectHasConsented, selectAcceptConsent, CONSENT_VERSION } from '@/lib/stores/studio-consent-store';
@@ -65,21 +68,21 @@ export function RgpdConsentBanner() {
   if (hasConsented) return null;
 
   // Sous-traitants RÉELS du Studio (lot 6.2) : le texte ne citait qu'AWS.
-  const copy = locale === 'en' ? {
-    title: 'Privacy consent - Audio Studio', intro: 'By using the Audio Studio, you allow Murmure to:',
-    audio: 'Store your audio recordings and photos on our servers (Amazon Web Services, EU region)', transcription: 'Transcribe your audio automatically (Amazon Transcribe)',
-    tts: 'Produce synthetic voices from your texts (Microsoft Azure Speech)', translation: 'Translate your texts (DeepL, Anthropic)',
-    payment: 'Process language purchases through Stripe (no voice data is sent to Stripe)',
-    metadata: 'Store your text and metadata to publish your tours', privacy: 'Your voice data is shared only with the providers listed above, for these purposes. You can delete your tours and all associated data at any time.',
-    legal: `By selecting “Accept”, you consent to this processing under our privacy policy (text version ${CONSENT_VERSION}).`, accept: 'Accept', decline: 'Decline',
-  } : {
+  const copy = localizeValue(locale, {
     title: 'Consentement RGPD - Studio audio', intro: 'En utilisant le Studio audio, vous autorisez Murmure à :',
     audio: 'Stocker vos enregistrements audio et vos photos sur nos serveurs (Amazon Web Services, région UE)', transcription: 'Transcrire automatiquement vos fichiers audio (Amazon Transcribe)',
     tts: 'Produire des voix de synthèse à partir de vos textes (Microsoft Azure Speech)', translation: 'Traduire vos textes (DeepL, Anthropic)',
     payment: 'Encaisser les achats de langues via Stripe (aucune donnée vocale ne lui est transmise)',
     metadata: 'Conserver vos textes et métadonnées pour publier vos visites', privacy: 'Vos données vocales ne sont transmises qu’aux prestataires cités ci-dessus, pour ces seules finalités. Vous pouvez supprimer vos visites et toutes les données associées à tout moment.',
     legal: `En sélectionnant « Accepter », vous consentez à ces traitements conformément à notre politique de confidentialité (texte version ${CONSENT_VERSION}).`, accept: 'Accepter', decline: 'Refuser',
-  };
+  }, {
+    title: 'Privacy consent - Audio Studio', intro: 'By using the Audio Studio, you allow Murmure to:',
+    audio: 'Store your audio recordings and photos on our servers (Amazon Web Services, EU region)', transcription: 'Transcribe your audio automatically (Amazon Transcribe)',
+    tts: 'Produce synthetic voices from your texts (Microsoft Azure Speech)', translation: 'Translate your texts (DeepL, Anthropic)',
+    payment: 'Process language purchases through Stripe (no voice data is sent to Stripe)',
+    metadata: 'Store your text and metadata to publish your tours', privacy: 'Your voice data is shared only with the providers listed above, for these purposes. You can delete your tours and all associated data at any time.',
+    legal: `By selecting “Accept”, you consent to this processing under our privacy policy (text version ${CONSENT_VERSION}).`, accept: 'Accept', decline: 'Decline',
+  });
 
   return (
     <div
@@ -125,7 +128,7 @@ export function RgpdConsentBanner() {
             {copy.accept}
           </button>
           <a
-            href={locale === 'en' ? '/en/catalogue' : '/catalogue'}
+            href={translate(locale, '/catalogue', '/en/catalogue')}
             className="flex-1 text-center border border-line text-ink-80 hover:bg-paper-soft font-medium py-2.5 px-4 rounded-lg transition"
             data-testid="rgpd-decline"
           >

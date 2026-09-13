@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { extendCopy } from '@/lib/i18n/translate';
 
 /**
  * « Créer mon parcours » sur la page d'aide.
@@ -12,12 +14,12 @@
 import { Button } from '@murmure/design-system/web';
 import { useOptionalAuth } from '@/lib/auth/auth-context';
 
-const COPY = {
+const COPY = extendCopy({
   fr: { label: 'Créer mon parcours', a11y: 'Créer mon parcours dans l’atelier' },
   en: { label: 'Create my tour', a11y: 'Create a tour in the studio' },
-};
+});
 
-export default function CreateTourCta({ locale = 'fr' }: { locale?: 'fr' | 'en' }) {
+export default function CreateTourCta({ locale = 'fr' }: { locale?: InterfaceLocale }) {
   const auth = useOptionalAuth();
   const canCreate = Boolean(auth?.isAuthenticated && (auth.isGuide || auth.isAdmin));
   const href = canCreate ? '/guide/studio/nouveau' : '/guide/signup';

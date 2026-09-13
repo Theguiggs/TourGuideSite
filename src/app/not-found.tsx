@@ -1,13 +1,15 @@
+import { extendCopy } from '@/lib/i18n/translate';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { LOCALE_HEADER } from '@/lib/site';
+import { isInterfaceLocale } from '@/lib/i18n/locales';
 
 export const metadata: Metadata = {
   title: 'Page introuvable',
 };
 
-const COPY = {
+const COPY = extendCopy({
   fr: {
     eyebrow: 'Erreur 404',
     title: 'Page introuvable',
@@ -26,7 +28,7 @@ const COPY = {
     cataloguePath: '/en/catalogue',
     homePath: '/en',
   },
-};
+});
 
 /**
  * 404 dans la langue de la page demandée (lot 3.3) : un `/en/catalogue/xxx`
@@ -34,15 +36,16 @@ const COPY = {
  * de l'en-tête posé par le proxy, comme `<html lang>`.
  */
 export default async function NotFound() {
-  const locale = (await headers()).get(LOCALE_HEADER) === 'en' ? 'en' : 'fr';
+  const requestedLocale = (await headers()).get(LOCALE_HEADER);
+  const locale = isInterfaceLocale(requestedLocale) ? requestedLocale : 'fr';
   const copy = COPY[locale];
   return (
     <div className="min-h-[60vh] flex items-center justify-center px-4">
       <div className="text-center max-w-md">
         <p className="font-editorial italic text-body-lg text-ink-60 mb-2">{copy.eyebrow}</p>
-        <h1 className="font-display text-h2 text-ink mb-4 leading-none">{copy.title}</h1>
+        <h1 className="font-display text-h3 sm:text-h2 break-words text-ink mb-4 leading-none">{copy.title}</h1>
         <p className="text-body text-ink-60 mb-8">{copy.text}</p>
-        <div className="flex gap-3 justify-center">
+        <div className="flex flex-wrap gap-3 justify-center">
           <Link
             href={copy.cataloguePath}
             className="bg-grenadine text-paper font-bold py-3 px-8 rounded-pill hover:opacity-90 transition text-caption"

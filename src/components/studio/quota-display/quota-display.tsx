@@ -1,10 +1,12 @@
 import type { TranscriptionQuota } from '@/lib/api/transcription';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 interface QuotaDisplayProps {
   quota: TranscriptionQuota | null;
 }
 
 export function QuotaDisplay({ quota }: QuotaDisplayProps) {
+  const { t } = useStudioLocale();
   if (!quota) return null;
 
   const percentage = Math.round((quota.usedMinutes / quota.limitMinutes) * 100);
@@ -13,7 +15,7 @@ export function QuotaDisplay({ quota }: QuotaDisplayProps) {
     <div className="flex items-center gap-3 p-3 bg-paper-soft rounded-lg" data-testid="quota-display">
       <div className="flex-1">
         <div className="flex justify-between text-meta mb-1">
-          <span className="text-ink-80">Quota transcription</span>
+          <span className="text-ink-80">{t('Quota transcription', 'Transcription quota')}</span>
           <span className={quota.isExceeded ? 'text-danger font-medium' : quota.isWarning ? 'text-ocre-ink font-medium' : 'text-ink-80'}>
             {quota.usedMinutes} / {quota.limitMinutes} min
           </span>
@@ -28,18 +30,18 @@ export function QuotaDisplay({ quota }: QuotaDisplayProps) {
             aria-valuemin={0}
             aria-valuenow={quota.usedMinutes}
             aria-valuemax={quota.limitMinutes}
-            aria-label={`${quota.usedMinutes} minutes utilisées sur ${quota.limitMinutes}`}
+            aria-label={t(`${quota.usedMinutes} minutes utilisées sur ${quota.limitMinutes}`, `${quota.usedMinutes} of ${quota.limitMinutes} minutes used`)}
           />
         </div>
       </div>
       {quota.isExceeded && (
         <span className="text-meta text-danger font-medium whitespace-nowrap" role="alert">
-          Quota atteint
+          {t('Quota atteint', 'Quota reached')}
         </span>
       )}
       {quota.isWarning && !quota.isExceeded && (
         <span className="text-meta text-ocre-ink font-medium whitespace-nowrap">
-          Attention
+          {t('Attention', 'Warning')}
         </span>
       )}
     </div>

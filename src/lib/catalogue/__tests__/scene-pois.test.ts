@@ -66,6 +66,42 @@ describe('mapScenesToPois', () => {
 });
 
 describe('scene media projection', () => {
+  it('LW-3 : une traduction seule annonce une narration sans exposer son URL', () => {
+    const translated = scene({ id: 'traduite', translatedAudioUrls: { en: 'https://media.example/en?signature=server' } });
+    const [poi] = mapScenesToPois([translated]);
+    expect(poi.hasAudio).toBe(true);
+    expect(JSON.stringify(poi)).not.toContain('signature');
+    expect(poi).not.toHaveProperty('translatedAudioUrls');
+    expect(isFullContent([scene(), scene(), translated])).toBe(true);
+  });
+  it('LW-1 : signale la narration par un booléen, sans jamais exposer l’URL signée', () => {
+    // La même projection sert le HTML du rendu serveur : une URL signée qui
+    // passerait ici finirait dans la source de la page. Seul `hasAudio` traverse.
+    const [withAudio, withoutAudio] = mapScenesToPois([
+      scene({
+        id: 'a',
+        audioKey: 'guide-studio/a.mp3',
+        audioUrl: 'https://media.example/a.mp3?signature=server',
+      }),
+      scene({ id: 'b' }),
+    ]);
+
+    expect(withAudio.hasAudio).toBe(true);
+    expect(withoutAudio.hasAudio).toBe(false);
+    expect(JSON.stringify([withAudio, withoutAudio])).not.toContain('signature=server');
+    expect(withAudio).not.toHaveProperty('audioUrl');
+  });
+
+  it('LW-1 : une étape masquée perd aussi sa narration annoncée', () => {
+    const pois = mapScenesToPois([
+      scene({ id: 'a', audioKey: 'k-a' }),
+      scene({ id: 'b', audioKey: 'k-b' }),
+      scene({ id: 'c', audioKey: 'k-c' }),
+    ]);
+    const masked = maskLockedPois(pois);
+    expect(masked.map((poi) => poi.hasAudio)).toEqual([true, false, false]);
+  });
+
   it('projects the facade photo URL before the legacy storage key', () => {
     const [poi] = mapScenesToPois([
       scene({
@@ -81,13 +117,19 @@ describe('scene media projection', () => {
 describe('isFullContent — ce que le serveur a accordé', () => {
   const preview = [
     scene({ id: 's1' }),
-    scene({ id: 's2' }),
+    scene({ id: 's2', description: '', photos: [] }),
     scene({ id: 's3', description: '', photos: [] }),
     scene({ id: 's4', description: '', photos: [] }),
   ];
 
   it("reconnaît l'aperçu tronqué : au-delà, plus rien", () => {
     expect(isFullContent(preview)).toBe(false);
+  });
+
+  it('ne confond pas l’ancien aperçu de deux étapes avec un droit complet', () => {
+    const oldPreview = [scene({ id: 's1' }), scene({ id: 's2', audioUrl: 'https://media.example/preview-2.mp3' }), ...preview.slice(2)];
+    expect(isFullContent(oldPreview)).toBe(false);
+    expect(isFullContent(oldPreview.slice(0, 2))).toBe(false);
   });
 
   it('reconnaît une description rendue au-delà de l’aperçu', () => {
@@ -115,7 +157,7 @@ describe('isFullContent — ce que le serveur a accordé', () => {
   });
 
   it("ne se prononce pas sur les scènes de l'aperçu lui-même", () => {
-    // Les deux premières sont intégrales pour TOUT LE MONDE : les lire comme un
+    // La première est intégrale pour TOUT LE MONDE : les lire comme un
     // droit accordé déverrouillerait la visite pour un anonyme.
     expect(isFullContent(preview.slice(0, FREE_PREVIEW_SCENES))).toBe(false);
   });
@@ -129,7 +171,9 @@ describe('maskLockedPois', () => {
   it('laisse l’aperçu gratuit intact et masque tout le reste, coordonnées comprises non', () => {
     const masked = maskLockedPois(pois);
     expect(masked[0]).toEqual(pois[0]);
-    expect(masked[1]).toEqual(pois[1]);
+    expect(masked[1]).toMatchObject({ description: '', photoKey: undefined });
+    expect(JSON.stringify(masked)).not.toContain('Secret 2');
+    expect(JSON.stringify(masked)).not.toContain('Texte 2');
     expect(masked[2]).toMatchObject({ title: 'Étape 3', description: '', photoKey: undefined, latitude: 3, order: 3 });
     expect(JSON.stringify(masked)).not.toContain('Secret 3');
     expect(JSON.stringify(masked)).not.toContain('Texte 4');

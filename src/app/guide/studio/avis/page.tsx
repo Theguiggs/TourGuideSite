@@ -1,4 +1,7 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
+import { translate } from '@/lib/i18n/translate';
 
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import Link from 'next/link';
@@ -65,13 +68,13 @@ function formatRelative(iso: string, locale: StudioLocale, now: Date = new Date(
   const date = new Date(iso);
   const diffMs = now.getTime() - date.getTime();
   const minutes = Math.floor(diffMs / (60 * 1000));
-  if (minutes < 60) return minutes <= 1 ? (locale === 'en' ? 'just now' : "à l'instant") : locale === 'en' ? `${minutes} min ago` : `il y a ${minutes} min`;
+  if (minutes < 60) return minutes <= 1 ? (translate(locale, "à l'instant", 'just now')) : translate(locale, `il y a ${minutes} min`, `${minutes} min ago`);
   const hours = Math.floor(minutes / 60);
-  if (hours < 24) return locale === 'en' ? `${hours}h ago` : `il y a ${hours} h`;
+  if (hours < 24) return translate(locale, `il y a ${hours} h`, `${hours}h ago`);
   const days = Math.floor(hours / 24);
-  if (days === 1) return locale === 'en' ? 'yesterday' : 'hier';
-  if (days < 7) return locale === 'en' ? `${days}d ago` : `il y a ${days} j.`;
-  return date.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'short' });
+  if (days === 1) return translate(locale, 'hier', 'yesterday');
+  if (days < 7) return translate(locale, `il y a ${days} j.`, `${days}d ago`);
+  return date.toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'), { day: 'numeric', month: 'short' });
 }
 
 /** listTourComments returns oldest→newest, so the last admin entry is the latest feedback. */
@@ -98,16 +101,7 @@ export default function StudioAvisPage() {
   const [draftReply, setDraftReply] = useState('');
   const [savingReply, setSavingReply] = useState(false);
   const [replyError, setReplyError] = useState<string | null>(null);
-  const copy = useMemo(() => locale === 'en' ? {
-    loadError: 'Unable to load reviews.', loading: 'Loading reviews...', guideOnly: 'The Studio is for guides. Create a guide profile to get started.', retry: 'Try again',
-    eyebrow: 'Reviews & feedback', titleStart: 'Your', titleEmphasis: 'feedback', intro: 'What listeners think and moderation feedback, all in one place.',
-    listenerReview: 'listener review', listenerReviews: 'listener reviews', starsOutOf: 'stars out of 5', filterStars: 'Filter by',
-    attention: 'Needs attention', tour: 'tour', tours: 'tours', untitled: 'Untitled tour', rejected: 'Rejected', revision: 'Changes requested',
-    openFeedback: 'Open the tour to read the moderation feedback.', viewFix: 'View and fix', language: 'Language', allMasc: 'All', allFem: 'All', rating: 'Rating', reset: 'Reset',
-    listenerSection: 'Listener reviews', noListener: 'No listener reviews yet. They will appear here after travellers listen to your tours.', noFilter: 'No reviews match these filters.', resetFilters: 'Reset filters',
-    listener: 'Listener', replyPlaceholder: 'Your public reply to this review...', saving: 'Saving...', save: 'Save', cancel: 'Cancel', yourReply: 'Your reply', edit: 'Edit', reply: 'Reply',
-    moderation: 'Moderation feedback', noModeration: 'No moderation feedback', forTour: ' for this tour', viewTours: 'View my tours',
-  } : {
+  const copy = useMemo(() => localizeValue(locale, {
     loadError: 'Impossible de charger les avis.', loading: 'Chargement des avis...', guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.', retry: 'Réessayer',
     eyebrow: 'Avis & retours', titleStart: 'Vos', titleEmphasis: 'retours', intro: 'Ce que vos auditeurs en pensent et les retours de la modération, au même endroit.',
     listenerReview: 'avis auditeur', listenerReviews: 'avis auditeurs', starsOutOf: 'étoiles sur 5', filterStars: 'Filtrer sur',
@@ -116,7 +110,16 @@ export default function StudioAvisPage() {
     listenerSection: 'Avis des auditeurs', noListener: 'Aucun avis d’auditeur pour le moment. Ils apparaîtront ici après l’écoute de vos visites.', noFilter: 'Aucun avis ne correspond à ces filtres.', resetFilters: 'Réinitialiser les filtres',
     listener: 'Auditeur', replyPlaceholder: 'Votre réponse publique à cet avis...', saving: 'Enregistrement...', save: 'Enregistrer', cancel: 'Annuler', yourReply: 'Votre réponse', edit: 'Modifier', reply: 'Répondre',
     moderation: 'Retours de la modération', noModeration: 'Aucun retour de la modération', forTour: ' pour cette visite', viewTours: 'Voir mes visites',
-  }, [locale]);
+  }, {
+    loadError: 'Unable to load reviews.', loading: 'Loading reviews...', guideOnly: 'The Studio is for guides. Create a guide profile to get started.', retry: 'Try again',
+    eyebrow: 'Reviews & feedback', titleStart: 'Your', titleEmphasis: 'feedback', intro: 'What listeners think and moderation feedback, all in one place.',
+    listenerReview: 'listener review', listenerReviews: 'listener reviews', starsOutOf: 'stars out of 5', filterStars: 'Filter by',
+    attention: 'Needs attention', tour: 'tour', tours: 'tours', untitled: 'Untitled tour', rejected: 'Rejected', revision: 'Changes requested',
+    openFeedback: 'Open the tour to read the moderation feedback.', viewFix: 'View and fix', language: 'Language', allMasc: 'All', allFem: 'All', rating: 'Rating', reset: 'Reset',
+    listenerSection: 'Listener reviews', noListener: 'No listener reviews yet. They will appear here after travellers listen to your tours.', noFilter: 'No reviews match these filters.', resetFilters: 'Reset filters',
+    listener: 'Listener', replyPlaceholder: 'Your public reply to this review...', saving: 'Saving...', save: 'Save', cancel: 'Cancel', yourReply: 'Your reply', edit: 'Edit', reply: 'Reply',
+    moderation: 'Moderation feedback', noModeration: 'No moderation feedback', forTour: ' for this tour', viewTours: 'View my tours',
+  }), [locale]);
 
   const loadAvis = useCallback(async (guideId: string) => {
     setIsLoading(true);

@@ -1,17 +1,11 @@
+import { legalPageMetadata } from '@/lib/legal/page-metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Eyebrow } from '@murmure/design-system/web';
 import { LegalLanguageSwitcher } from '@/components/legal/LegalLanguageSwitcher';
 
-export const metadata: Metadata = {
-  title: 'Delete my account',
-  description: 'Request deletion of your Murmure account and associated data.',
-  alternates: {
-    canonical: '/en/delete-account',
-    languages: { fr: '/supprimer-mon-compte', en: '/en/delete-account' },
-  },
-};
+export const metadata: Metadata = legalPageMetadata('deletion', 'en');
 
 import { LEGAL_IDENTITY } from '@/lib/legal/identity';
 
