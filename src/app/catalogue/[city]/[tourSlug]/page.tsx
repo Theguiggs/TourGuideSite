@@ -668,8 +668,9 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
 
       {/* Sticky bottom CTA mobile */}
       <div
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50"
+        className="tour-mobile-app-cta md:hidden fixed left-0 right-0 z-30"
         style={{
+          bottom: 'var(--visitor-nav-height, 0px)',
           padding: tg.space[4],
           background: tg.colors.paper,
           borderTop: `1px solid ${tg.colors.line}`,

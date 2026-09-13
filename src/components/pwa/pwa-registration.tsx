@@ -43,7 +43,7 @@ export function PwaRegistration({ locale }: { locale: 'fr' | 'en' }) {
     return () => { waiting.removeEventListener('statechange', changed); waiting.removeEventListener('statechange', failed); };
   }, [updating, waiting]);
   if (!waiting) return null;
-  return <aside aria-label={locale === 'en' ? 'Site update' : 'Mise à jour du site'} style={{ position: 'fixed', bottom: tg.space[4], left: tg.space[4], right: tg.space[4], zIndex: 1100, background: tg.colors.paper, color: tg.colors.ink, border: `1px solid ${tg.colors.ink40}`, borderRadius: tg.radius.md, padding: tg.space[3], display: 'flex', gap: tg.space[3], alignItems: 'center', flexWrap: 'wrap' }}>
+  return <aside aria-label={locale === 'en' ? 'Site update' : 'Mise à jour du site'} style={{ position: 'fixed', bottom: `calc(var(--visitor-overlay-height, var(--visitor-nav-height, 0px)) + var(--visitor-consent-height, 0px) + ${tg.space[4]}px)`, left: tg.space[4], right: tg.space[4], zIndex: 1100, background: tg.colors.paper, color: tg.colors.ink, border: `1px solid ${tg.colors.ink40}`, borderRadius: tg.radius.md, padding: tg.space[3], display: 'flex', gap: tg.space[3], alignItems: 'center', flexWrap: 'wrap' }}>
     <span>{locale === 'en' ? 'A new version is ready.' : 'Une nouvelle version est prête.'}</span>
     <Button size="sm" disabled={updating} onClick={() => setUpdating(true)}><RefreshCw size={16} aria-hidden />{locale === 'en' ? 'Reload' : 'Recharger'}</Button>
   </aside>;

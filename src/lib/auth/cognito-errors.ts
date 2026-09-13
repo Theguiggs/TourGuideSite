@@ -52,7 +52,31 @@ export function isUnknownUserError(error: unknown): boolean {
   return cognitoErrorName(error) === 'UserNotFoundException';
 }
 
-export function describeAuthError(error: unknown, context: AuthErrorContext): string {
+const EN_MESSAGES: Record<string, string> = {
+  'Connexion impossible pour le moment. Réessayez dans un instant.': 'Unable to sign in right now. Please try again shortly.',
+  'Inscription impossible pour le moment. Réessayez dans un instant.': 'Unable to create your account right now. Please try again shortly.',
+  'Vérification impossible pour le moment. Réessayez dans un instant.': 'Unable to verify the code right now. Please try again shortly.',
+  'Réinitialisation impossible pour le moment. Réessayez dans un instant.': 'Unable to reset your password right now. Please try again shortly.',
+  'Email ou mot de passe incorrect.': 'Incorrect email or password.',
+  'Code invalide ou expiré. Demandez un nouveau code.': 'Invalid or expired code. Request a new code.',
+  'Compte non confirmé : vérifiez votre email pour le code de confirmation.': 'Your account is not confirmed. Check your email for the confirmation code.',
+  'Réinitialisation du mot de passe requise : utilisez « Mot de passe oublié ».': 'You need to reset your password. Use “Forgot your password?”.',
+  'Trop de tentatives. Réessayez dans quelques minutes.': 'Too many attempts. Please try again in a few minutes.',
+  'Cet email ne peut pas être utilisé pour une nouvelle inscription. Si c’est le vôtre, connectez-vous ou réinitialisez votre mot de passe.': 'This email cannot be used for a new account. If it is yours, sign in or reset your password.',
+  'Mot de passe trop faible : 8 caractères minimum, avec une majuscule et un chiffre.': 'Your password is too weak. Use at least 8 characters, including an uppercase letter and a number.',
+  'Une information est invalide. Vérifiez l’email et le mot de passe.': 'Some information is invalid. Check your email and password.',
+  'Code incorrect. Vérifiez le code reçu par email.': 'Incorrect code. Check the code in your email.',
+  'Code expiré. Demandez un nouveau code.': 'The code has expired. Request a new code.',
+  'Le code n’a pas pu être envoyé. Vérifiez l’adresse email.': 'The code could not be sent. Check your email address.',
+  'Pas de connexion réseau. Vérifiez votre accès à internet.': 'No network connection. Check your internet access.',
+};
+
+export function describeAuthError(error: unknown, context: AuthErrorContext, locale: 'fr' | 'en' = 'fr'): string {
+  const message = describeFrenchAuthError(error, context);
+  return locale === 'en' ? EN_MESSAGES[message] ?? EN_MESSAGES[GENERIC[context]] : message;
+}
+
+function describeFrenchAuthError(error: unknown, context: AuthErrorContext): string {
   const name = cognitoErrorName(error);
   switch (name) {
     case 'UserNotFoundException':

@@ -19,7 +19,7 @@ import {
 import { Hub } from 'aws-amplify/utils';
 import { usePathname, useRouter } from 'next/navigation';
 import { getOwnGuideProfile } from '@/lib/api/appsync-client';
-import { describeAuthError, isDefinitiveAuthError } from '@/lib/auth/cognito-errors';
+import { cognitoErrorName, describeAuthError, isDefinitiveAuthError } from '@/lib/auth/cognito-errors';
 import { loginUrlFor, LOGIN_PATH, type LoginReason } from '@/lib/auth/return-to';
 import { SESSION_REFUSAL_EVENT, type SessionRefusal } from '@/lib/auth/session-signals';
 import { clearAllResumes, RESUME_CLEAR_KEY } from '@/components/catalogue/scene-player/resume-store';
@@ -37,6 +37,14 @@ interface AuthUser {
   guideId: string | null;
 }
 
+export interface SignInResult {
+  ok: boolean;
+  role?: AuthRole;
+  error?: string;
+  errorCode?: string;
+  nextStep?: 'confirmSignUp' | 'resetPassword';
+}
+
 interface AuthContextType {
   user: AuthUser | null;
   isAuthenticated: boolean;
@@ -44,7 +52,7 @@ interface AuthContextType {
   isAdmin: boolean;
   isTourist: boolean;
   isLoading: boolean;
-  signIn: (email: string, password: string) => Promise<{ ok: boolean; role?: AuthRole; error?: string }>;
+  signIn: (email: string, password: string) => Promise<SignInResult>;
   signOut: () => Promise<void>;
   /** Re-resolve the current Cognito session into AuthUser (use after signup). */
   refreshUser: () => Promise<{ ok: boolean; role?: AuthRole; error?: string }>;
@@ -206,19 +214,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signIn = useCallback(
-    async (email: string, password: string): Promise<{ ok: boolean; role?: AuthRole; error?: string }> => {
+    async (email: string, password: string): Promise<SignInResult> => {
       const generation = authGenerationRef.current;
       try {
-        await amplifySignIn({ username: email, password });
+        const result = await amplifySignIn({ username: email, password });
+        const step = result?.nextStep?.signInStep;
+        if (step === 'CONFIRM_SIGN_UP' || step === 'RESET_PASSWORD') {
+          const errorCode = step === 'CONFIRM_SIGN_UP' ? 'UserNotConfirmedException' : 'PasswordResetRequiredException';
+          return { ok: false, nextStep: step === 'CONFIRM_SIGN_UP' ? 'confirmSignUp' : 'resetPassword', errorCode,
+            error: describeAuthError(Object.assign(new Error(), { name: errorCode }), 'signIn') };
+        }
+        if (result?.isSignedIn === false) return { ok: false, error: describeAuthError(null, 'signIn'), errorCode: 'AdditionalStepRequired' };
       } catch (error) {
         // If already authenticated (e.g. just after signup flow), resolve the existing session
         if (error instanceof Error && error.name === 'UserAlreadyAuthenticatedException') {
           return refreshUser();
         }
-        return { ok: false, error: describeAuthError(error, 'signIn') };
+        const errorCode = cognitoErrorName(error);
+        return { ok: false, error: describeAuthError(error, 'signIn'), errorCode,
+          nextStep: errorCode === 'UserNotConfirmedException' ? 'confirmSignUp' : errorCode === 'PasswordResetRequiredException' ? 'resetPassword' : undefined };
       }
 
-      const resolved = await resolveAuthUser();
+      let resolved: AuthUser | null;
+      try { resolved = await resolveAuthUser(); }
+      catch (error) { return { ok: false, error: describeAuthError(error, 'signIn'), errorCode: cognitoErrorName(error) }; }
       if (generation !== authGenerationRef.current) return { ok: false, error: 'Session modifiée — reconnectez-vous' };
       if (!resolved) {
         // Now only happens on a stale/invalid session (not "no guide profile").

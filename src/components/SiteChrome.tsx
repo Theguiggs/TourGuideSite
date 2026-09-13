@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import Header from './Header';
 import { setStoredStudioLocale, useStoredStudioLocale } from '@/lib/i18n/studio-locale';
 import Footer from './Footer';
+import { VisitorBottomNav } from './auth/visitor-bottom-nav';
 
 interface SiteChromeProps {
   children: React.ReactNode;
@@ -34,6 +35,8 @@ export function SiteChrome({ children }: SiteChromeProps) {
   // le même shell que le Studio (StudioHeader + sidebar Murmure). On supprime
   // donc la chrome publique sur ces routes pour éviter la double barre haute.
   const isGuideShell = /^\/guide\/(dashboard|tours|profile|revenue)(\/|$)/.test(pathname);
+  const showVisitorNav = !pathname.startsWith('/guide') && !pathname.startsWith('/admin')
+    && !/^\/(connexion|inscription|mot-de-passe-oublie|en\/(sign-in|sign-up|reset-password))$/.test(pathname);
 
   // Un seul repère <main> par page (lot 4) : le Studio et l'admin posent le
   // leur, la chrome publique le sien. Le lien d'évitement vise `#contenu`.
@@ -57,11 +60,12 @@ export function SiteChrome({ children }: SiteChromeProps) {
   }
 
   return (
-    <>
+    <div className={showVisitorNav ? 'visitor-shell' : undefined}>
       {skipLink}
       <Header locale={locale} onLocaleChange={isPublicGuidePage ? setStoredStudioLocale : undefined} />
       <main id="contenu" className="min-h-screen">{children}</main>
       <Footer locale={locale} />
-    </>
+      {showVisitorNav && <VisitorBottomNav locale={locale} pathname={pathname} />}
+    </div>
   );
 }

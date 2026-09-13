@@ -4,7 +4,7 @@ import { MesVisitesContent } from '@/components/catalogue/mes-visites-content';
 import { PageTitle } from '@murmure/design-system/web';
 
 export const metadata: Metadata = {
-  title: 'Mes achats',
+  title: 'Mes visites',
   description: 'Retrouvez les visites audio que vous avez achetées.',
   robots: { index: false, follow: false },
   alternates: {
@@ -21,10 +21,10 @@ export default function MesVisitesPage() {
           Catalogue
         </Link>
         <span className="mx-2">/</span>
-        <span className="text-ink">Mes achats</span>
+        <span className="text-ink">Mes visites</span>
       </nav>
 
-      <PageTitle className="mb-2">Mes achats</PageTitle>
+      <PageTitle className="mb-2">Mes visites</PageTitle>
 
       {/* Owner-scoped purchases resolved client-side (localStorage Cognito session). */}
       <MesVisitesContent />

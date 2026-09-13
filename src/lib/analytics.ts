@@ -1,6 +1,10 @@
 import { track } from '@/lib/amplitude';
 
 export const AnalyticsEvents = {
+  WEB_AUTH_STARTED: 'web_auth_started',
+  WEB_AUTH_COMPLETED: 'web_auth_completed',
+  WEB_SIGNUP_STARTED: 'web_signup_started',
+  WEB_SIGNUP_COMPLETED: 'web_signup_completed',
   WEB_LISTEN_START: 'web_listen_start',
   WEB_SCENE_COMPLETE: 'web_scene_complete',
   WEB_LISTEN_COMPLETE: 'web_listen_complete',

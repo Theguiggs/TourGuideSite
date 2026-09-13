@@ -1,256 +1,84 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { Suspense, useState } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { Menu, PanelsTopLeft, X } from 'lucide-react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { localizePublicPath } from '@/lib/i18n/public-routes';
+import { visitorAuthUrl, localizeVisitorReturn } from '@/lib/auth/visitor-routes';
 import { MurmureLogo } from '@/components/shell/MurmureLogo';
 import StoreLink from '@/components/StoreLink';
+import { useVisitorReturn } from '@/lib/auth/use-visitor-return';
 
 interface HeaderProps {
   locale?: 'fr' | 'en';
-  /** Fourni sur les pages sans variante `/en/…` : la bascule devient un bouton. */
   onLocaleChange?: (locale: 'fr' | 'en') => void;
 }
+const navLink = 'inline-flex min-h-11 items-center text-caption font-semibold text-ink-80 hover:text-grenadine no-underline';
 
-const HEADER_COPY = {
-  fr: {
-    help: 'Aide',
-    purchases: 'Mes achats',
-    signOut: 'Déconnexion',
-    guideSpace: 'Espace Guide',
-    studio: 'Créer',
-    admin: 'Administrer',
-    download: "Télécharger l'app",
-    closeMenu: 'Fermer le menu',
-    openMenu: 'Ouvrir le menu',
-  },
-  en: {
-    help: 'Help',
-    purchases: 'My purchases',
-    signOut: 'Sign out',
-    guideSpace: 'Guide area',
-    studio: 'Create',
-    admin: 'Admin',
-    download: 'Download the app',
-    closeMenu: 'Close menu',
-    openMenu: 'Open menu',
-  },
-} as const;
-
-export default function Header({ locale = 'fr', onLocaleChange }: HeaderProps) {
+function HeaderContent({ locale = 'fr', onLocaleChange }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname() ?? '/';
-  const { isAuthenticated, isAdmin, isGuide, user, signOut } = useAuth();
-  const copy = HEADER_COPY[locale];
-  const homeHref = locale === 'en' ? '/en' : '/';
-  const catalogueHref = locale === 'en' ? '/en/catalogue' : '/catalogue';
-  const helpHref = locale === 'en' ? '/en/help' : '/aide';
-  // Tourists have no dashboard — their account destination is their purchases.
-  const purchasesHref = locale === 'en' ? '/en/my-purchases' : '/mes-achats';
-  const accountHref = isAdmin ? '/admin/moderation' : isGuide ? '/guide/studio' : purchasesHref;
+  const params = useSearchParams();
+  const currentReturn = useVisitorReturn();
+  const { isAuthenticated, isAdmin, isGuide, signOut } = useAuth();
+  const t = (fr: string, en: string) => locale === 'fr' ? fr : en;
+  const home = locale === 'en' ? '/en' : '/';
+  const catalogue = `${locale === 'en' ? '/en' : ''}/catalogue`;
+  const purchases = locale === 'en' ? '/en/my-purchases' : '/mes-achats';
+  const login = visitorAuthUrl(locale, 'login', currentReturn);
+  const account = isAuthenticated ? visitorAuthUrl(locale) : login;
+  const isAuthPage = /^\/(connexion|inscription|mot-de-passe-oublie|en\/(sign-in|sign-up|reset-password))$/.test(pathname);
+  const languageHref = (target: 'fr' | 'en') => {
+    const path = localizePublicPath(pathname, target);
+    if (!isAuthPage) return path;
+    const returnTo = localizeVisitorReturn(params?.get('returnTo') ?? null, target);
+    const translated = new URLSearchParams();
+    if (returnTo) translated.set('returnTo', returnTo);
+    const step = params?.get('step');
+    if (step && ['login', 'signup', 'confirm', 'reset', 'reset-confirm'].includes(step)) translated.set('step', step);
+    return translated.size ? `${path}?${translated}` : path;
+  };
+  const languageSwitch = <div className="inline-flex gap-1" role="group" aria-label={t('Choisir la langue', 'Choose language')}>
+    {(['fr', 'en'] as const).map(target => onLocaleChange
+      ? <button type="button" key={target} lang={target} aria-pressed={locale === target} className={`${navLink} min-w-11 justify-center rounded-md ${target === locale ? 'bg-paper-deep' : ''}`} onClick={() => { onLocaleChange(target); setMenuOpen(false); }}>{target.toUpperCase()}</button>
+      : <Link key={target} href={languageHref(target)} hrefLang={target} aria-current={locale === target ? 'page' : undefined} className={`${navLink} min-w-11 justify-center rounded-md ${target === locale ? 'bg-paper-deep' : ''}`} onClick={() => setMenuOpen(false)}>{target.toUpperCase()}</Link>)}
+  </div>;
+  const creatorLink = <Link href={isAdmin ? '/admin/moderation' : isGuide ? '/guide/studio' : '/guide/signup'} className={navLink} onClick={() => setMenuOpen(false)}>
+    <PanelsTopLeft size={16} className="mr-2" aria-hidden="true" />{isAdmin ? t('Administrer', 'Admin') : isGuide ? t('Mon Studio', 'My Studio') : t('Créer des visites', 'Create tours')}
+  </Link>;
 
-  return (
-    <header className="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-line">
-      <nav aria-label={locale === 'en' ? 'Main navigation' : 'Navigation principale'} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href={homeHref} className="flex items-center gap-2.5 no-underline">
-            <MurmureLogo size={26} />
-          </Link>
-
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-6">
-            <Link
-              href={catalogueHref}
-              className="text-caption text-ink-60 hover:text-ink font-medium no-underline transition"
-            >
-              Catalogue
-            </Link>
-            <Link
-              href={helpHref}
-              className="text-caption text-ink-60 hover:text-ink font-medium no-underline transition"
-            >
-              {copy.help}
-            </Link>
-            <nav
-              aria-label={locale === 'fr' ? 'Choisir la langue' : 'Choose language'}
-              className="inline-flex overflow-hidden rounded-md border border-line"
-            >
-              {(['fr', 'en'] as const).map((targetLocale) => onLocaleChange ? (
-                <button
-                  key={targetLocale}
-                  type="button"
-                  lang={targetLocale}
-                  aria-pressed={locale === targetLocale}
-                  onClick={() => onLocaleChange(targetLocale)}
-                  className={`inline-flex min-h-11 items-center px-3 text-meta font-bold ${
-                    locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper text-ink-60'
-                  }`}
-                >
-                  {targetLocale.toUpperCase()}
-                </button>
-              ) : (
-                <Link
-                  key={targetLocale}
-                  href={localizePublicPath(pathname, targetLocale)}
-                  hrefLang={targetLocale}
-                  aria-current={locale === targetLocale ? 'page' : undefined}
-                  className={`inline-flex min-h-11 items-center px-3 text-meta font-bold no-underline ${
-                    locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper text-ink-60'
-                  }`}
-                >
-                  {targetLocale.toUpperCase()}
-                </Link>
-              ))}
-            </nav>
-            {isAuthenticated ? (
-              <>
-                <Link
-                  href={purchasesHref}
-                  className="text-caption text-ink-60 hover:text-ink font-medium no-underline transition"
-                >
-                  {copy.purchases}
-                </Link>
-                {(isGuide || isAdmin) && (
-                  <Link
-                    href={accountHref}
-                    className="inline-flex items-center gap-1.5 text-caption text-grenadine hover:text-ink font-semibold no-underline transition"
-                  >
-                    <PanelsTopLeft size={16} aria-hidden="true" />
-                    {isAdmin ? copy.admin : copy.studio}
-                  </Link>
-                )}
-                <span className="max-w-32 truncate text-caption font-semibold text-ink">
-                  {user?.displayName}
-                </span>
-                <button
-                  onClick={signOut}
-                  className="text-meta text-ink-60 hover:text-grenadine font-medium transition"
-                >
-                  {copy.signOut}
-                </button>
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/guide/login"
-                  className="text-caption text-ink-60 hover:text-ink font-medium no-underline transition"
-                >
-                  {copy.guideSpace}
-                </Link>
-                <StoreLink className="bg-grenadine text-paper text-caption font-bold px-4 py-2 rounded-pill hover:opacity-90 transition no-underline">
-                  {copy.download}
-                </StoreLink>
-              </>
-            )}
-          </div>
-
-          <button
-            type="button"
-            className="md:hidden inline-flex h-11 w-11 items-center justify-center text-ink-60 hover:text-ink"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? copy.closeMenu : copy.openMenu}
-            aria-expanded={menuOpen}
-            aria-controls="menu-mobile"
-          >
+  return <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur-sm">
+    <nav aria-label={t('Navigation principale', 'Main navigation')} className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="flex min-h-16 items-center justify-between gap-2">
+        <Link href={home} className="shrink-0 no-underline"><MurmureLogo size={26} /></Link>
+        <div className="hidden xl:flex items-center gap-5">
+          <Link href={catalogue} className={navLink}>{t('Découvrir les visites', 'Discover tours')}</Link>
+          <Link href={purchases} className={navLink}>{t('Mes visites', 'My tours')}</Link>
+          <Link href={locale === 'en' ? '/en/help' : '/aide'} className={navLink}>{t('Aide', 'Help')}</Link>
+          {creatorLink}{languageSwitch}
+          <Link href={account} className="inline-flex min-h-11 items-center rounded-pill bg-grenadine px-4 text-caption font-bold text-paper no-underline">{isAuthenticated ? t('Mon compte', 'My account') : t('Se connecter', 'Sign in')}</Link>
+        </div>
+        <div className="flex items-center gap-2 xl:hidden">
+          <Link href={account} className={`${navLink} text-grenadine`}>{isAuthenticated ? t('Mon compte', 'My account') : t('Se connecter', 'Sign in')}</Link>
+          <button type="button" className="inline-flex h-11 w-11 shrink-0 items-center justify-center text-ink" aria-expanded={menuOpen} aria-controls="menu-mobile" aria-label={menuOpen ? t('Fermer le menu', 'Close menu') : t('Ouvrir le menu', 'Open menu')} onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
+      </div>
+      {menuOpen && <div id="menu-mobile" className="grid max-h-[70dvh] overflow-y-auto border-t border-line pb-4 xl:hidden" onKeyDown={event => { if (event.key === 'Escape') setMenuOpen(false); }}>
+        <Link href={catalogue} className={navLink} onClick={() => setMenuOpen(false)}>{t('Découvrir les visites', 'Discover tours')}</Link>
+        <Link href={purchases} className={navLink} onClick={() => setMenuOpen(false)}>{t('Mes visites', 'My tours')}</Link>
+        <Link href={locale === 'en' ? '/en/help' : '/aide'} className={navLink} onClick={() => setMenuOpen(false)}>{t('Aide', 'Help')}</Link>
+        {creatorLink}{languageSwitch}
+        <StoreLink className={navLink} onClick={() => setMenuOpen(false)}>{t('Télécharger l’application', 'Download the app')}</StoreLink>
+        {isAuthenticated && <button type="button" className={navLink} onClick={() => { void signOut(); setMenuOpen(false); }}>{t('Déconnexion', 'Sign out')}</button>}
+      </div>}
+    </nav>
+  </header>;
+}
 
-        {/* Mobile menu */}
-        {menuOpen && (
-          <nav id="menu-mobile" aria-label={locale === 'en' ? 'Mobile menu' : 'Menu mobile'} className="md:hidden pb-4 border-t border-line">
-            <Link
-              href={catalogueHref}
-              className="block py-3 text-caption text-ink-60 hover:text-ink font-medium no-underline"
-              onClick={() => setMenuOpen(false)}
-            >
-              Catalogue
-            </Link>
-            <Link
-              href={helpHref}
-              className="block py-3 text-caption text-ink-60 hover:text-ink font-medium no-underline"
-              onClick={() => setMenuOpen(false)}
-            >
-              {copy.help}
-            </Link>
-            <div className="flex gap-2 py-3" role="group" aria-label={locale === 'fr' ? 'Choisir la langue' : 'Choose language'}>
-              {(['fr', 'en'] as const).map((targetLocale) => onLocaleChange ? (
-                <button
-                  key={targetLocale}
-                  type="button"
-                  lang={targetLocale}
-                  aria-pressed={locale === targetLocale}
-                  onClick={() => { onLocaleChange(targetLocale); setMenuOpen(false); }}
-                  className={`inline-flex min-h-11 items-center px-4 rounded-md text-meta font-bold ${
-                    locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper-deep text-ink-60'
-                  }`}
-                >
-                  {targetLocale.toUpperCase()}
-                </button>
-              ) : (
-                <Link
-                  key={targetLocale}
-                  href={localizePublicPath(pathname, targetLocale)}
-                  hrefLang={targetLocale}
-                  aria-current={locale === targetLocale ? 'page' : undefined}
-                  className={`inline-flex min-h-11 items-center px-4 rounded-md text-meta font-bold no-underline ${
-                    locale === targetLocale ? 'bg-ink text-paper' : 'bg-paper-deep text-ink-60'
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {targetLocale.toUpperCase()}
-                </Link>
-              ))}
-            </div>
-            {isAuthenticated ? (
-              <>
-                <Link
-                  href={purchasesHref}
-                  className="block py-3 text-caption text-ink-60 hover:text-ink font-medium no-underline"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {copy.purchases}
-                </Link>
-                {(isGuide || isAdmin) && (
-                  <Link
-                    href={accountHref}
-                    className="flex items-center gap-2 py-3 text-caption text-grenadine font-semibold no-underline"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    <PanelsTopLeft size={17} aria-hidden="true" />
-                    {isAdmin ? copy.admin : copy.studio}
-                  </Link>
-                )}
-                <button
-                  onClick={() => { signOut(); setMenuOpen(false); }}
-                  className="block py-3 text-caption text-ink-60 hover:text-grenadine font-medium"
-                >
-                  {copy.signOut}
-                </button>
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/guide/login"
-                  className="block py-3 text-caption text-ink-60 hover:text-ink font-medium no-underline"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {copy.guideSpace}
-                </Link>
-                <StoreLink
-                  className="block py-3 text-caption text-grenadine font-medium no-underline"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {copy.download}
-                </StoreLink>
-              </>
-            )}
-          </nav>
-        )}
-      </nav>
-    </header>
-  );
+export default function Header(props: HeaderProps) {
+  return <Suspense><HeaderContent {...props} /></Suspense>;
 }

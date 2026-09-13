@@ -17,6 +17,8 @@ const eslintConfig = defineConfig([
     "scripts/**",
     "playwright.config.ts",
     "coverage/**",
+    "test-results/**",
+    "playwright-report/**",
     // Python microservice (venv contains JS files that aren't ours)
     "microservice/**",
     // Design source files copied from canvas — use globals (TGEyebrow,

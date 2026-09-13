@@ -7,6 +7,7 @@ import { getMyPurchasesClient } from '@/lib/api/purchases-client';
 import { PURCHASES_CHANGED_EVENT } from '@/lib/checkout/purchase-events';
 import { PurchasedTourCard } from '@/components/catalogue/purchased-tour-card';
 import type { PurchasedTour } from '@/types/purchase';
+import { visitorAuthUrl } from '@/lib/auth/visitor-routes';
 
 /**
  * Client-rendered "Mes achats". Auth is resolved from the localStorage Cognito
@@ -73,7 +74,7 @@ export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
             : 'Connectez-vous pour retrouver vos visites achetées.'}
         </p>
         <Link
-          href={`/guide/login?returnTo=${encodeURIComponent(locale === 'en' ? '/en/my-purchases' : '/mes-achats')}`}
+          href={visitorAuthUrl(locale, 'login', locale === 'en' ? '/en/my-purchases' : '/mes-achats')}
           className="inline-block bg-grenadine text-paper text-body font-bold px-5 py-2.5 rounded-pill hover:opacity-90 transition no-underline"
         >
           {locale === 'en' ? 'Sign in' : 'Se connecter'}

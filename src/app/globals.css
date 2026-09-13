@@ -17,6 +17,7 @@
  * par les 4 familles DS chargées via `next/font/google` dans `layout.tsx`).
  */
 body {
+  padding-bottom: var(--visitor-consent-height, 0px);
   background: var(--tg-color-paper);
   color: var(--tg-color-ink);
   font-family: var(--tg-font-sans);
@@ -67,4 +68,22 @@ body {
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background-color: var(--tg-color-ink-20);
   border-radius: 2px;
+}
+/* EV-1 : réserver la navigation visiteur et dégager les bannières mobiles. */
+@media (width < 80rem) {
+  body:has(.visitor-shell) {
+    --visitor-nav-height: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
+  .visitor-shell {
+    padding-bottom: var(--visitor-nav-height);
+  }
+  html:has(.visitor-shell) {
+    scroll-padding-bottom: calc(var(--visitor-overlay-height, var(--visitor-nav-height, 0px)) + var(--visitor-consent-height, 0px));
+  }
+}
+
+@media (width < 48rem) {
+  body:has(.tour-mobile-app-cta) {
+    --visitor-overlay-height: calc(var(--visitor-nav-height, 0px) + 6rem);
+  }
 }

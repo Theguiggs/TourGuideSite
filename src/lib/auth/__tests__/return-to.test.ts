@@ -1,6 +1,13 @@
 import { loginDestination, loginUrlFor, safeReturnTo } from '../return-to';
 
 describe('safeReturnTo', () => {
+  it.each(['/connexion#x', '/en/sign-in/', '/inscription', '/mot-de-passe-oublie?x=1', '/en/reset-password', '/a/../connexion', '/%63onnexion', '/%3f/../connexion', '/%23/../connexion', '/%2fexample.test', '/%5cexample.test'])('refuse les boucles et séparateurs normalisés : %s', (path) => {
+    expect(safeReturnTo(path)).toBeNull();
+  });
+  it('conserve les espaces encodés légitimes dans paramètres et ancre', () => {
+    const path = '/catalogue/nice/test?source=foo%20bar#une%20scene';
+    expect(safeReturnTo(path)).toBe(path);
+  });
   it('accepte un chemin du site', () => {
     expect(safeReturnTo('/mes-achats')).toBe('/mes-achats');
     expect(safeReturnTo('/guide/studio/nouveau?x=1')).toBe('/guide/studio/nouveau?x=1');

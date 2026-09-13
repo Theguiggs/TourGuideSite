@@ -9,7 +9,7 @@
  */
 
 import Link from 'next/link';
-import { useSyncExternalStore } from 'react';
+import { useEffect, useRef, useSyncExternalStore } from 'react';
 import { usePathname } from 'next/navigation';
 import { readCookieConsent, subscribeCookieConsent, writeCookieConsent } from '@/lib/cookie-consent';
 
@@ -37,6 +37,15 @@ export default function CookieConsentBanner() {
   const locale = pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'fr';
   const copy = COPY[locale];
   const consent = useSyncExternalStore(subscribeCookieConsent, readCookieConsent, getServerSnapshot);
+  const banner = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (consent !== null || !banner.current) return;
+    const measure = () => document.body.style.setProperty('--visitor-consent-height', `${banner.current?.getBoundingClientRect().height ?? 0}px`);
+    measure();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
+    observer?.observe(banner.current);
+    return () => { observer?.disconnect(); document.body.style.removeProperty('--visitor-consent-height'); };
+  }, [consent]);
 
   // 'pending' = rendu serveur / hydratation : on ne montre rien tant que le
   // navigateur n'a pas dit s'il connaît déjà un choix.
@@ -44,11 +53,13 @@ export default function CookieConsentBanner() {
 
   return (
     <div
+      ref={banner}
       role="dialog"
       aria-live="polite"
       aria-label={locale === 'en' ? 'Audience measurement' : 'Mesure d’audience'}
       data-testid="cookie-consent-banner"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-paper px-4 py-4 shadow-lg sm:px-6"
+      className="fixed inset-x-0 z-50 border-t border-line bg-paper px-4 py-4 shadow-lg sm:px-6"
+      style={{ bottom: 'var(--visitor-overlay-height, var(--visitor-nav-height, 0px))' }}
     >
       <div className="mx-auto flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-sans text-caption text-ink-80 m-0">
@@ -61,14 +72,14 @@ export default function CookieConsentBanner() {
           <button
             type="button"
             onClick={() => writeCookieConsent('refused')}
-            className="rounded-pill border border-line bg-paper px-4 py-2 font-sans text-caption font-semibold text-ink hover:bg-paper-soft"
+            className="min-h-11 rounded-pill border border-line bg-paper px-4 py-2 font-sans text-caption font-semibold text-ink hover:bg-paper-soft"
           >
             {copy.refuse}
           </button>
           <button
             type="button"
             onClick={() => writeCookieConsent('accepted')}
-            className="rounded-pill border border-ink bg-ink px-4 py-2 font-sans text-caption font-semibold text-paper hover:opacity-90"
+            className="min-h-11 rounded-pill border border-ink bg-ink px-4 py-2 font-sans text-caption font-semibold text-paper hover:opacity-90"
           >
             {copy.accept}
           </button>
