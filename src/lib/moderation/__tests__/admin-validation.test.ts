@@ -210,7 +210,8 @@ describe('buildAdminValidationReport', () => {
     ['thème vide', { themes: ['   '] }, 'themes'],
     ['provenance absente', { contentProvenance: null }, 'provenance'],
     ['couverture absente', { coverPhotoKey: null }, 'cover'],
-    ['accès payant', { purchaseType: 'paid' }, 'access'],
+    ['prix payant invalide', { purchaseType: 'paid', priceCents: 0 }, 'access'],
+    ['accès absent', { purchaseType: null }, 'access'],
   ])('bloque la métadonnée globale invalide : %s', (_label, override, checkId) => {
     const report = buildAdminValidationReport({
       detail: { ...detail, ...override },
@@ -222,6 +223,23 @@ describe('buildAdminValidationReport', () => {
 
     expect(report.ready).toBe(false);
     expect(report.checks.find((item) => item.id === checkId)?.passed).toBe(false);
+  });
+
+  it.each([
+    ['gratuit', { purchaseType: 'free', priceCents: 0 }],
+    ['payant', { purchaseType: 'paid', priceCents: 499 }],
+    ['abonnés uniquement', { purchaseType: 'subscription_only', priceCents: 0 }],
+  ])('accepte le mode d’accès valide : %s', (_label, override) => {
+    const report = buildAdminValidationReport({
+      detail: { ...detail, ...override },
+      language: 'fr',
+      segmentsByScene: {},
+      routePath,
+      dependentDataLoaded: true,
+    });
+
+    expect(report.checks.find((item) => item.id === 'access')?.passed).toBe(true);
+    expect(report.ready).toBe(true);
   });
 
   it('bloque pendant le chargement des données dépendantes', () => {
