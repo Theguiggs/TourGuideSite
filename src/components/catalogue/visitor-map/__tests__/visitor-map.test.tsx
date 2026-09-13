@@ -45,7 +45,10 @@ it('diffère la carte, masque le titre verrouillé, transmet tracé et scène ac
   expect(screen.getByTestId('canvas')).toHaveAttribute('data-current', 's1');
   expect(screen.getByTestId('canvas')).toHaveAttribute('data-path', '2');
   expect(screen.queryByText('Secret s3')).toBeNull();
-  expect(screen.getByText('Étape verrouillée')).toBeDisabled();
+  expect(screen.queryByText('Secret s2')).toBeNull();
+  const locked = screen.getAllByText('Étape verrouillée');
+  expect(locked).toHaveLength(2);
+  locked.forEach(stop => expect(stop).toBeDisabled());
   fireEvent.click(screen.getByText('Secret s1'));
   expect(toggle).toHaveBeenCalledWith('s1');
 });

@@ -40,9 +40,16 @@ for (const locale of ['fr', 'en'] as const) {
     await expect(audio).toHaveJSProperty('paused', true);
     await expect(audio).toHaveAttribute('src', firstSource!);
     expect(mediaRequests).toBe(requestCount);
-    await page.getByTestId('tour-next-button').click();
-    await expect(audio).not.toHaveAttribute('src', firstSource!);
-    await expect(audio).toHaveJSProperty('ended', true);
+    const next = page.getByTestId('tour-next-button');
+    if (await next.count()) {
+      await next.click();
+      await expect(audio).not.toHaveAttribute('src', firstSource!);
+      await expect(audio).toHaveJSProperty('ended', true);
+    } else {
+      // Une visite payante ne propose désormais qu’une étape d’aperçu.
+      await expect(page.getByTestId('tour-ending-purchase-link')).toHaveAttribute('href', '#acheter');
+      await expect(page.locator('[data-testid^="scene-listen-button-"]')).toHaveCount(1);
+    }
     await expect(audio).toHaveCount(1);
   });
 

@@ -185,7 +185,7 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
     }
   });
 
-  it("visite payante, anonyme : boutons sur les deux premières étapes seulement", async () => {
+  it("visite payante, anonyme : bouton sur la première étape seulement", async () => {
     render(
       <ItineraryList
         pois={SSR_POIS.map((p) => ({ ...p, hasAudio: true }))}
@@ -196,7 +196,7 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
     );
     await act(async () => {});
 
-    expect(listenButtonIds()).toEqual(['scene-listen-button-s1', 'scene-listen-button-s2']);
+    expect(listenButtonIds()).toEqual(['scene-listen-button-s1']);
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
   });
 
@@ -206,7 +206,7 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
 
     render(
       <ItineraryList
-        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 1 }))}
         tourId="tour-1"
         isFree={false}
         heroAccentFg="#B4703A"
@@ -214,7 +214,7 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
     );
 
     // Avant l'accord (redemande de `useServedContent`) : l'aperçu.
-    expect(listenButtons()).toHaveLength(2);
+    expect(listenButtons()).toHaveLength(1);
 
     await waitFor(() => expect(listenButtons()).toHaveLength(3));
     expect(listenButtonIds()).toEqual([
@@ -233,7 +233,7 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
   it("achat qui aboutit après une écoute anonyme : la source est oubliée, l'étape ouverte redemande", async () => {
     const { container } = render(
       <ItineraryList
-        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 1 }))}
         tourId="tour-1"
         isFree={false}
         heroAccentFg="#B4703A"
@@ -274,7 +274,7 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
     mockHasActiveForfait.mockResolvedValue(true);
     const view = render(
       <ItineraryList
-        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 1 }))}
         tourId="tour-1"
         isFree={false}
         heroAccentFg="#B4703A"
@@ -291,7 +291,7 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
     authState = { isAuthenticated: false, user: null };
     view.rerender(
       <ItineraryList
-        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 1 }))}
         tourId="tour-1"
         isFree={false}
         heroAccentFg="#B4703A"
@@ -321,7 +321,7 @@ describe('fiche Visite — écouter une étape (LW-1)', () => {
     await waitFor(() => expect(mockGetPublishedTourContent).toHaveBeenCalled());
     await act(async () => {});
 
-    expect(listenButtons()).toHaveLength(2);
+    expect(listenButtons()).toHaveLength(1);
     expect(screen.getByText('Étape 3')).toBeInTheDocument();
   });
 });
@@ -361,7 +361,7 @@ describe('fiche Visite — écouter la visite (LW-2)', () => {
     });
   }
 
-  it("visite payante, anonyme : les deux servies attendent un clic, puis fin d'aperçu avec lien #acheter", async () => {
+  it("visite payante, anonyme : une seule servie attend un clic, puis fin d'aperçu avec lien #acheter", async () => {
     const { container } = render(
       <ItineraryList
         pois={SSR_POIS.map((p) => ({ ...p, hasAudio: true }))}
@@ -384,24 +384,11 @@ describe('fiche Visite — écouter la visite (LW-2)', () => {
     expect(scrollSpy).toHaveBeenCalledWith({ block: 'nearest', behavior: 'smooth' });
 
     await emitEnded(container);
-    expect(audio.getAttribute('src')).toBe(URL('s1'));
-    expect(playSpy).toHaveBeenCalledTimes(1);
-    fireEvent.click(screen.getByTestId('tour-next-button'));
-    await act(async () => {});
-    expect(audio.getAttribute('src')).toBe(URL('s2'));
-    await waitFor(() =>
-      expect(screen.getByTestId('scene-listen-button-s2')).toHaveTextContent('Pause'),
-    );
-    expect(container.querySelector('li[aria-current="true"]')).toContainElement(
-      screen.getByTestId('scene-listen-button-s2'),
-    );
-
-    await emitEnded(container);
     expect(screen.getByTestId('tour-ending-preview')).toBeInTheDocument();
     expect(screen.getByTestId('tour-ending-purchase-link')).toHaveAttribute('href', '#acheter');
     // s4 est verrouillée : même si la réponse porte son URL, elle n'est pas jouée.
-    expect(playSpy).toHaveBeenCalledTimes(2);
-    expect(audio.getAttribute('src')).toBe(URL('s2'));
+    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(audio.getAttribute('src')).toBe(URL('s1'));
     expect(screen.queryByTestId('tour-ending-complete')).not.toBeInTheDocument();
   });
 
@@ -449,7 +436,7 @@ describe('fiche Visite — écouter la visite (LW-2)', () => {
 
     render(
       <ItineraryList
-        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 1 }))}
         tourId="tour-1"
         isFree={false}
         heroAccentFg="#B4703A"
@@ -473,7 +460,7 @@ describe('fiche Visite — écouter la visite (LW-2)', () => {
 
     render(
       <ItineraryList
-        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 1 }))}
         tourId="tour-1"
         isFree={false}
         heroAccentFg="#B4703A"
@@ -500,7 +487,7 @@ describe('fiche Visite — écouter la visite (LW-2)', () => {
 
     render(
       <ItineraryList
-        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 1 }))}
         tourId="tour-1"
         isFree={false}
         heroAccentFg="#B4703A"
@@ -521,7 +508,7 @@ describe('fiche Visite — écouter la visite (LW-2)', () => {
 
     render(
       <ItineraryList
-        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 2 }))}
+        pois={SSR_POIS.map((p, index) => ({ ...p, hasAudio: index < 1 }))}
         tourId="tour-1"
         isFree={false}
         heroAccentFg="#B4703A"

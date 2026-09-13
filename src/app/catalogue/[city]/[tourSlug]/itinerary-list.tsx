@@ -63,7 +63,7 @@ interface ServedContent {
  * serveur a accordé.
  *
  * Le rendu serveur reste le rendu public : il ne porte aucune identité, donc le
- * Lambda le sert tronqué — les deux premières scènes intégrales, les suivantes
+ * Lambda le sert tronqué — la première scène intégrale, les suivantes
  * privées d'audio, de description et de photos. L'identité n'existant que dans
  * le navigateur, c'est lui qui
  * redemande — et seulement s'il y a une session : un anonyme ne redemande rien,

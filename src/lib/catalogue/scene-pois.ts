@@ -24,7 +24,7 @@ const POI_DESCRIPTION_MAX = 200;
  * elle dit seulement OÙ commence le flou. Ce qui est réellement lisible, c'est
  * ce que le serveur a mis dans la réponse.
  */
-export const FREE_PREVIEW_SCENES = 2;
+export const FREE_PREVIEW_SCENES = 1;
 
 export function mapScenesToPois(scenes: readonly PublicTourScene[]): POI[] {
   return scenes.map((scene, index) => ({
