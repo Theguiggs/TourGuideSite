@@ -69,7 +69,9 @@ test.describe('robots et sitemap', () => {
   test('le sitemap ne liste que des URL absolues, publiées, sans doublon', async ({ request }) => {
     const urls = await locs(request);
     expect(urls.length).toBeGreaterThan(0);
-    for (const url of urls) expect(url.startsWith(`${SITE}/`)).toBe(true);
+    // La racine est annoncée sans barre oblique finale, comme sa canonical.
+    for (const url of urls) expect(url === SITE || url.startsWith(`${SITE}/`)).toBe(true);
+    expect(urls).toContain(SITE);
     expect(new Set(urls).size).toBe(urls.length);
     // Aucun espace privé, aucune page filtrée.
     for (const url of urls) {
