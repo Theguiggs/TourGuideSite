@@ -168,6 +168,7 @@ Admin|Admin|Admin|Admin|Admin|Beheer
 File d'attente|Queue|Cola|Warteschlange|Coda|Wachtrij
 Toutes les visites|All tours|Todas las visitas|Alle Touren|Tutte le visite|Alle tours
 Narrations demandées|Requested narrations|Narraciones solicitadas|Angeforderte Erzählungen|Narrazioni richieste|Aangevraagde vertellingen
+Analytics|Analytics|Analíticas|Analysen|Analisi|Analyse
 Admin · Modération|Admin · Moderation|Admin · Moderación|Admin · Moderation|Admin · Moderazione|Beheer · Moderatie
 Administration|Administration|Administración|Verwaltung|Amministrazione|Beheer
 Se déconnecter|Sign out|Cerrar sesión|Abmelden|Esci|Afmelden
