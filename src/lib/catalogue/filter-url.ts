@@ -18,9 +18,9 @@ export function useFilterUrl(initial = '') {
     for (const [key, value] of Object.entries(values)) {
       if (value) url.searchParams.set(key, value); else url.searchParams.delete(key);
     }
-    window.history.replaceState(window.history.state, '', `${url.pathname}${url.search}${url.hash}`);
+    // Ne pas recopier __NA : Next ignorerait alors la mise à jour de ses paramètres.
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
     window.dispatchEvent(new Event(EVENT));
   };
   return { params, update };
 }
-

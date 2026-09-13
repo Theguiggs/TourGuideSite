@@ -8,8 +8,8 @@
  *
  * confirmTourPurchase is idempotent and Stripe-verified, so replays are safe:
  * - ok            → granted, drop the pending, refresh ownership UI.
- * - NOT_PAID/INVALID/MISMATCH after a grace period → abandoned, drop it.
- * - transient (network) → keep for the next load.
+ * - NOT_PAID/INVALID after a grace period → abandoned, drop it.
+ * - MISMATCH ou erreur transitoire : conserver pour le compte concerné.
  */
 
 import { useEffect } from 'react';

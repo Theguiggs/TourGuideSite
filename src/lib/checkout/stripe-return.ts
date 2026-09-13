@@ -31,7 +31,7 @@ export function rememberStripeReturn(kind: StripeReturnKind, paymentIntentId: st
   url.searchParams.set(KIND_PARAM, kind);
   url.searchParams.set('payment_intent', paymentIntentId);
   url.searchParams.set('redirect_status', 'processing');
-  window.history.replaceState(window.history.state, '', url.toString());
+  window.history.replaceState(null, '', url.toString());
 }
 
 /** URL de retour pour la page courante, marquée du type de carte. */
@@ -51,7 +51,7 @@ export function readStripeReturn(kind: StripeReturnKind): StripeReturn | null {
   if (params.has('payment_intent_client_secret')) {
     const clean = new URL(window.location.href);
     clean.searchParams.delete('payment_intent_client_secret');
-    window.history.replaceState(window.history.state, '', clean.toString());
+    window.history.replaceState(null, '', clean.toString());
   }
   if (params.get(KIND_PARAM) !== kind) return null;
   const paymentIntentId = params.get('payment_intent');
@@ -66,5 +66,5 @@ export function clearStripeReturn(expectedIntentId?: string): void {
   const url = new URL(window.location.href);
   if (expectedIntentId && url.searchParams.has('payment_intent') && url.searchParams.get('payment_intent') !== expectedIntentId) return;
   for (const p of [...STRIPE_PARAMS, KIND_PARAM]) url.searchParams.delete(p);
-  window.history.replaceState(window.history.state, '', url.toString());
+  window.history.replaceState(null, '', url.toString());
 }

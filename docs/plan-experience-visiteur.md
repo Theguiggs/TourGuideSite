@@ -1,10 +1,12 @@
 # Plan de mise en œuvre — expérience visiteur Murmure
 
-Date : 13 septembre 2026. Statut : cadrage initial, EV-1 et EV-2 réalisés localement ; EV-3 à EV-6 planifiés. Recette sur appareils physiques et validation publique restantes.
+Date : 13 septembre 2026. Statut : développement EV-1 à EV-6 réalisé localement. Recette automatisée publique réussie ; validation intégrée authentifiée, appareils physiques et domaine public restants. Livraison non validée, aucun déploiement.
 
 Suivi : [cadrage](cadrage-experience-visiteur.md), [spécification EV-1](spec-ev-1-acces-visiteur.md), [revue et preuves EV-1](../bmad/revue-ev-1.md).
 
 Accueil : [spécification EV-2](spec-ev-2-accueil-visiteur.md), [revue et preuves EV-2](../bmad/revue-ev-2.md).
+
+Clôture de développement : [rapport EV-6, commits, preuves et limites](../bmad/revue-ev-6.md). Fiche/achat : [EV-3](spec-ev-3-parcours-visite.md) ; bibliothèque : [EV-4](spec-ev-4-mes-visites.md) ; catalogue/aide : [EV-5](spec-ev-5-catalogue-aide.md) ; recette : [EV-6](spec-ev-6-recette.md).
 
 Source : [analyse de l’expérience visiteur](analyse-experience-visiteur-2026-09-13.md). Socle : les six LW réalisées localement ; leur recette publique et sur téléphones physiques reste à terminer.
 
