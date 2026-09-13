@@ -8,6 +8,7 @@ import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-
 import { PageTitle, tg } from '@murmure/design-system/web';
 import { Play } from 'lucide-react';
 import { LISTEN_ANCHOR, PURCHASE_LISTEN_COPY } from './scene-player/listen-link';
+import { publicPath } from '@/lib/seo/urls';
 
 interface MyPurchasesStripProps {
   purchases: PurchasedTour[];
@@ -46,7 +47,7 @@ export function MyPurchasesStrip({ purchases, locale = 'fr' }: MyPurchasesStripP
           return (
           <PurchaseStripLink
             key={tour.id}
-            href={published ? `${translate(locale, '', '/en')}/catalogue/${tour.citySlug}/${tour.slug}${LISTEN_ANCHOR}` : undefined}
+            href={published ? `${publicPath(`/catalogue/${tour.citySlug}/${tour.slug}`, locale)}${LISTEN_ANCHOR}` : undefined}
             label={copy.label(tour.title)}
             testId={`purchase-strip-${tour.id}`}
           >

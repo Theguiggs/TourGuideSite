@@ -6,7 +6,7 @@ import { legalPageMetadata } from '../page-metadata';
 import { helpMetadata } from '@/lib/help-metadata';
 import { creatorMetadata } from '@/lib/creator-metadata';
 import { SITE_LOCALES } from '@/lib/i18n/locales';
-import { localizePublicPath } from '@/lib/i18n/public-routes';
+import { publicPath, publicUrl } from '@/lib/seo/urls';
 import { HELP_COPY } from '@/app/aide/_translated-content';
 import { helpAnchorHref, HELP_ANCHORS } from '@/lib/help-anchors';
 
@@ -20,8 +20,10 @@ describe('public information in six languages', () => {
       [helpMetadata(locale), '/aide'],
       [creatorMetadata(locale), '/creer-des-visites'],
     ] as const) {
-      expect(metadata.alternates?.canonical).toBe(localizePublicPath(base, locale));
-      for (const language of SITE_LOCALES) expect(metadata.alternates?.languages?.[language]).toBe(localizePublicPath(base, language));
+      expect(metadata.alternates?.canonical).toBe(publicUrl(base, locale));
+      for (const language of SITE_LOCALES) expect(metadata.alternates?.languages?.[language]).toBe(publicUrl(base, language));
+      // Repli déclaré pour les langues non couvertes : le français.
+      expect(metadata.alternates?.languages?.['x-default']).toBe(publicUrl(base, 'fr'));
     }
     expect(RETENTION.every(row => row[locale].every(Boolean))).toBe(true);
   });
@@ -45,7 +47,7 @@ describe('public information in six languages', () => {
     expect(new Set(ids).size).toBe(7);
     for (const step of Object.keys(HELP_ANCHORS[locale]) as Array<keyof typeof HELP_ANCHORS.fr>) {
       expect(ids).toContain(HELP_ANCHORS[locale][step]);
-      expect(helpAnchorHref(locale, step)).toBe(`${localizePublicPath('/aide', locale)}#${HELP_ANCHORS[locale][step]}`);
+      expect(helpAnchorHref(locale, step)).toBe(`${publicPath('/aide', locale)}#${HELP_ANCHORS[locale][step]}`);
     }
   });
 });

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { SITE_LOCALES, LOCALE_FORMATS, type InterfaceLocale } from '@/lib/i18n/locales';
-import { localizePublicPath } from '@/lib/i18n/public-routes';
+import { LOCALE_FORMATS, type InterfaceLocale } from '@/lib/i18n/locales';
+import { seoAlternates } from '@/lib/seo/urls';
+import { EVERGREEN_LOCALES } from '@/lib/seo/availability';
 import { LEGAL_PAGES } from './translated-pages';
 
 export type LegalPageKind = 'privacy' | 'terms' | 'deletion';
@@ -11,8 +12,7 @@ const original = {
 };
 export function legalPageMetadata(kind: LegalPageKind, locale: InterfaceLocale): Metadata {
   const title = locale === 'fr' || locale === 'en' ? original[locale][kind] : LEGAL_PAGES[locale][kind].title;
-  const canonical = localizePublicPath(LEGAL_PATHS[kind], locale);
-  return {title, description: `${title} — Murmure`, alternates: {
-    canonical, languages: Object.fromEntries(SITE_LOCALES.map(lang => [lang, localizePublicPath(LEGAL_PATHS[kind], lang)])),
-  }, openGraph: {title, url: canonical, locale: LOCALE_FORMATS[locale].replace('-', '_')}};
+  const {alternates} = seoAlternates({sourcePath: LEGAL_PATHS[kind], locale, published: EVERGREEN_LOCALES});
+  return {title, description: `${title} — Murmure`, alternates,
+    openGraph: {title, siteName: 'Murmure', url: alternates.canonical as string, locale: LOCALE_FORMATS[locale].replace('-', '_')}};
 }

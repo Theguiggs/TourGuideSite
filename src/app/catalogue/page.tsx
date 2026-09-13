@@ -1,6 +1,6 @@
-import { extendCopy } from '@/lib/i18n/translate';
 import type { InterfaceLocale } from '@/lib/i18n/locales';
 import type { Metadata } from 'next';
+import { catalogueMetadata } from '@/lib/seo/catalogue-metadata';
 import { getCities, getAllTours } from '@/lib/api/tours-server';
 import TrackPageView from '@/components/TrackPageView';
 import { AnalyticsEvents } from '@/lib/analytics';
@@ -12,16 +12,7 @@ import { MyPurchasesStripClient } from '@/components/catalogue/my-purchases-stri
 // statically pre-render the page at build time.
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Catalogue des villes',
-  description:
-    'Explorez les villes proposées en visite audio. ' +
-    'Chaque ville révèle ses propres histoires.',
-  alternates: {
-    canonical: '/catalogue',
-    languages: extendCopy({fr: '/catalogue', en: '/en/catalogue'}),
-  },
-};
+export const metadata: Metadata = catalogueMetadata('fr');
 
 export async function LocalizedCataloguePage({ searchParams, locale = 'fr' }: { searchParams: Promise<{ q?: string | string[] }>; locale?: InterfaceLocale }) {
   const { q } = await searchParams;

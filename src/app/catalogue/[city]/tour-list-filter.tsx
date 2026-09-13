@@ -20,6 +20,7 @@ import type { Tour } from '@/types/tour';
 import { PageTitle } from '@murmure/design-system/web';
 import { LANG_FLAGS, LANG_NAMES } from '@/lib/i18n/languages';
 import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
+import { publicPath } from '@/lib/seo/urls';
 
 /** Emplacement du drapeau pour une langue qu'on ne sait pas illustrer — le code
  * est déjà écrit juste après, l'y répéter donnerait « ca CA ». */
@@ -175,7 +176,7 @@ export function TourListWithFilter({ tours: originalTours, citySlug, locale = 'f
             <Link
               key={tour.id}
               prefetch={false}
-              href={`${translate(locale, '', '/en')}/catalogue/${citySlug}/${tour.slug}`}
+              href={publicPath(`/catalogue/${citySlug}/${tour.slug}`, locale)}
               data-testid={`tour-card-${tour.id}`}
               className="block rounded-xl border border-line hover:shadow-md transition-shadow overflow-hidden"
             >

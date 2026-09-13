@@ -34,6 +34,7 @@ import {
 } from '@/lib/api/audio-source-policy';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { tourMetadata } from '@/lib/seo/tour-metadata';
+import { publicPath } from '@/lib/seo/urls';
 import { tourJsonLd } from '@/lib/seo/json-ld';
 import ItineraryList from './itinerary-list';
 import { StarRating } from '@/components/catalogue/StarRating';
@@ -113,11 +114,16 @@ interface TourPageProps {
   searchParams: Promise<{ source?: string; office?: string }>;
 }
 
-export async function generateMetadata({ params }: TourPageProps): Promise<Metadata> {
-  const { city: citySlug, tourSlug } = await params;
+/** Partagée avec la route localisée. */
+export async function tourPageMetadata(citySlug: string, tourSlug: string, locale: InterfaceLocale): Promise<Metadata> {
   const tour = await getTourBySlug(citySlug, tourSlug);
   if (!tour) return {};
-  return tourMetadata(tour, citySlug, tourSlug, 'fr');
+  return tourMetadata(tour, citySlug, tourSlug, locale);
+}
+
+export async function generateMetadata({ params }: TourPageProps): Promise<Metadata> {
+  const { city: citySlug, tourSlug } = await params;
+  return tourPageMetadata(citySlug, tourSlug, 'fr');
 }
 
 export async function LocalizedTourDetailPage({ params, searchParams, locale = 'fr' }: TourPageProps & {locale?: InterfaceLocale}) {
@@ -134,7 +140,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
   ]);
   const isQrVisit = resolvedSearchParams.source === 'qr';
   const copy = DETAIL_COPY[locale];
-  const catalogueBase = translate(locale, '/catalogue', '/en/catalogue');
+  const catalogueBase = publicPath('/catalogue', locale);
 
   const accent = getCityAccent(citySlug);
   const heroBg = accentSoftColor(accent);

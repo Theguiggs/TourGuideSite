@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { SITE_LOCALES, LOCALE_FORMATS, type InterfaceLocale } from './i18n/locales';
-import { localizePublicPath } from './i18n/public-routes';
+import { LOCALE_FORMATS, type InterfaceLocale } from './i18n/locales';
+import { publicPath, seoAlternates } from './seo/urls';
+import { EVERGREEN_LOCALES } from './seo/availability';
 
 const COPY: Record<InterfaceLocale, [string, string]> = {
   fr: ['Créer des visites audio', 'Transformez votre connaissance des lieux en visite audio. Tracez, racontez et traduisez vos histoires avec le Studio Murmure.'],
@@ -13,7 +14,7 @@ const COPY: Record<InterfaceLocale, [string, string]> = {
 
 export function creatorMetadata(locale: InterfaceLocale): Metadata {
   const [title, description] = COPY[locale];
-  const path = localizePublicPath('/creer-des-visites', locale);
-  const images = [{ url: `${locale === 'fr' ? '/creer-des-visites' : `/${locale}/create-tours`}/opengraph-image`, width: 1200, height: 630, alt: title }];
-  return { title, description, alternates: { canonical: path, languages: Object.fromEntries(SITE_LOCALES.map(language => [language, localizePublicPath('/creer-des-visites', language)])) }, openGraph: { title, description, locale: LOCALE_FORMATS[locale].replace('-', '_'), url: path, type: 'website', siteName: 'Murmure', images }, twitter: { card: 'summary_large_image', title, description, images } };
+  const { alternates } = seoAlternates({ sourcePath: '/creer-des-visites', locale, published: EVERGREEN_LOCALES });
+  const images = [{ url: `${publicPath('/creer-des-visites', locale)}/opengraph-image`, width: 1200, height: 630, alt: title }];
+  return { title, description, alternates, openGraph: { title, description, locale: LOCALE_FORMATS[locale].replace('-', '_'), url: alternates.canonical as string, type: 'website', siteName: 'Murmure', images }, twitter: { card: 'summary_large_image', title, description, images } };
 }

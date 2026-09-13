@@ -25,6 +25,7 @@ import {
   getCityAccent,
   getCityAverageDuration,
 } from '@/lib/cities/accent-map';
+import { publicPath } from '@/lib/seo/urls';
 
 interface CatalogueViewCitiesProps {
   cities: City[];
@@ -68,7 +69,7 @@ function CityBlock({ city, accent, avgDuration, locale }: CityBlockProps) {
 
   return (
     <Link
-      href={`${translate(locale, '', '/en')}/catalogue/${city.slug}`}
+      href={publicPath(`/catalogue/${city.slug}`, locale)}
       aria-label={ariaLabel}
       className="block transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2"
       style={{

@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { getCityAccent, type CityAccent } from '@/lib/cities/accent-map';
 import type { City } from '@/types/tour';
 import { getCities } from '@/lib/api/tours';
+import { publicPath } from '@/lib/seo/urls';
 
 // Fond doux de la carte ville, par accent (classes écrites en entier : Tailwind
 // ne génère pas les noms construits). Le dégradé teal n'était pas à nous.
@@ -62,7 +63,7 @@ export default function CitiesSection({ locale = 'fr' }: { locale?: InterfaceLoc
           {cities.map((city) => (
             <Link
               key={city.id}
-              href={`${translate(locale, '', '/en')}/catalogue/${city.slug}`}
+              href={publicPath(`/catalogue/${city.slug}`, locale)}
               className="group block rounded-2xl overflow-hidden border border-line hover:shadow-lg transition-shadow"
             >
               <div className={`h-48 flex items-end p-6 ${ACCENT_BG[getCityAccent(city.slug)]}`}>

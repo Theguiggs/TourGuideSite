@@ -9,6 +9,7 @@ import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-
 import { tg } from '@murmure/design-system/web';
 import { Play } from 'lucide-react';
 import { LISTEN_ANCHOR, PURCHASE_LISTEN_COPY } from './scene-player/listen-link';
+import { publicPath } from '@/lib/seo/urls';
 
 interface PurchasedTourCardProps {
   purchase: PurchasedTour;
@@ -81,7 +82,7 @@ export function PurchasedTourCard({ purchase, locale = 'fr', resume = false }: P
 
   return (
     <Link
-      href={`${translate(locale, '', '/en')}/catalogue/${tour.citySlug}/${tour.slug}${LISTEN_ANCHOR}`}
+      href={`${publicPath(`/catalogue/${tour.citySlug}/${tour.slug}`, locale)}${LISTEN_ANCHOR}`}
       prefetch={false}
       aria-label={resume ? `${translate(locale, 'Reprendre', 'Resume')} — ${tour.title}` : copy.label(tour.title)}
       data-testid={`purchase-card-${tour.id}`}

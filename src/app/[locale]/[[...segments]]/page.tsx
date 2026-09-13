@@ -1,19 +1,19 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { isInterfaceLocale, SITE_LOCALES, type InterfaceLocale } from '@/lib/i18n/locales';
+import { isInterfaceLocale, type InterfaceLocale } from '@/lib/i18n/locales';
 import { localizePublicPath } from '@/lib/i18n/public-routes';
+import { seoAlternates } from '@/lib/seo/urls';
+import { EVERGREEN_LOCALES } from '@/lib/seo/availability';
 import { translate } from '@/lib/i18n/translate';
 import { VisitorHome } from '@/components/home/visitor-home';
 import { VisitorAuth } from '@/components/auth/visitor-auth';
 import { MesVisitesContent } from '@/components/catalogue/mes-visites-content';
 import { LocalizedCataloguePage } from '@/app/catalogue/page';
-import { LocalizedCityPage } from '@/app/catalogue/[city]/page';
-import { LocalizedTourDetailPage } from '@/app/catalogue/[city]/[tourSlug]/page';
+import { LocalizedCityPage, cityPageMetadata } from '@/app/catalogue/[city]/page';
+import { LocalizedTourDetailPage, tourPageMetadata } from '@/app/catalogue/[city]/[tourSlug]/page';
 import { LocalizedGuidePage, guideMetadata } from '@/app/guides/[guideSlug]/page';
-import { getTourBySlug, getCityBySlug } from '@/lib/api/tours-server';
-import { cityMetadata } from '@/lib/seo/city-metadata';
-import { tourMetadata } from '@/lib/seo/tour-metadata';
 import { homeMetadata } from '@/lib/home-metadata';
+import { catalogueMetadata } from '@/lib/seo/catalogue-metadata';
 import { LocalizedPrivacyPage, LocalizedTermsPage, LocalizedAccountDeletionPage } from '@/components/legal/localized-legal-pages';
 import { legalPageMetadata } from '@/lib/legal/page-metadata';
 import { LocalizedHelpPage } from '@/app/aide/localized-help';
@@ -33,14 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolved = await params;
   const locale = newLocale(resolved.locale), segments = resolved.segments ?? [];
   if (!segments.length) return homeMetadata(locale);
-  if (segments[0] === 'catalogue' && segments.length === 2) {
-    const city = await getCityBySlug(segments[1]);
-    return city ? cityMetadata(city, locale) : {};
-  }
-  if (segments[0] === 'catalogue' && segments.length === 3) {
-    const tour = await getTourBySlug(segments[1], segments[2]);
-    return tour ? tourMetadata(tour, segments[1], segments[2], locale) : {};
-  }
+  if (segments[0] === 'catalogue' && segments.length === 1) return catalogueMetadata(locale);
+  if (segments[0] === 'catalogue' && segments.length === 2) return cityPageMetadata(segments[1], locale);
+  if (segments[0] === 'catalogue' && segments.length === 3) return tourPageMetadata(segments[1], segments[2], locale);
   if (segments[0] === 'guides' && segments.length === 2) return guideMetadata(segments[1], locale);
   if (segments.length === 1) {
     if (segments[0] === 'help') return helpMetadata(locale);
@@ -49,15 +44,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (segments[0] === 'terms') return legalPageMetadata('terms', locale);
     if (segments[0] === 'delete-account') return legalPageMetadata('deletion', locale);
   }
-  const path = `/en/${segments.join('/')}`;
+  // Espaces personnels et parcours de compte : servis, jamais indexés — et
+  // donc sans groupe hreflang, qu'aucune page indexable ne pourrait rendre.
+  const isPrivate = segments.length === 1 && ['sign-in', 'sign-up', 'reset-password', 'my-purchases'].includes(segments[0]);
   const label = segments[0] === 'my-purchases' ? translate(locale, 'Mes visites', 'My tours')
     : segments[0] === 'sign-in' ? translate(locale, 'Se connecter', 'Sign in')
     : segments[0] === 'sign-up' ? translate(locale, 'Créer mon compte', 'Create my account')
     : segments[0] === 'reset-password' ? translate(locale, 'Réinitialiser mon mot de passe', 'Reset my password')
     : translate(locale, 'Catalogue des visites', 'Tour catalogue');
+  const { alternates } = seoAlternates({
+    sourcePath: localizePublicPath(`/en/${segments.join('/')}`, 'fr'),
+    locale,
+    published: isPrivate ? [] : EVERGREEN_LOCALES,
+  });
   return { title: label, description: translate(locale, 'Visites audio pour découvrir les villes à votre rythme.', 'Audio tours to discover cities at your own pace.'),
-    ...(segments.length === 1 && ['sign-in', 'sign-up', 'reset-password', 'my-purchases'].includes(segments[0]) ? { robots: { index: false, follow: false } } : {}),
-    alternates: { canonical: localizePublicPath(path, locale), languages: Object.fromEntries(SITE_LOCALES.map(lang => [lang, localizePublicPath(path, lang)])) } };
+    ...(isPrivate ? { robots: { index: false, follow: false } } : {}),
+    alternates: isPrivate ? { canonical: alternates.canonical } : alternates };
 }
 
 export default async function LocalizedPublicPage({ params, searchParams }: Props) {

@@ -26,8 +26,12 @@ describe('exposition publique', () => {
     const disallow = (Array.isArray(rules) ? rules : [rules]).flatMap((r) =>
       Array.isArray(r.disallow) ? r.disallow : [r.disallow],
     );
-    for (const p of ['/api/', '/guide/', '/admin/', '/test-ds', '/mes-achats', '/en/my-purchases']) {
+    for (const p of ['/api/', '/guide/', '/admin/', '/test-ds', '/mes-achats', '/mes-visites', '/en/my-purchases']) {
       expect(disallow).toContain(p);
+    }
+    // Les cinq langues de l'espace personnel, pas seulement l'anglaise.
+    for (const locale of ['es', 'de', 'it', 'nl']) {
+      expect(disallow).toContain(`/${locale}/my-purchases`);
     }
   });
 
