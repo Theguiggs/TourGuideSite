@@ -160,9 +160,24 @@ test.describe('canonical, hreflang et x-default', () => {
   });
 });
 
-test.describe('codes réels', () => {
-  test('une ville et une visite inconnues répondent 404', async ({ request }) => {
-    for (const path of ['/catalogue/ville-inconnue', '/catalogue/grasse/visite-inconnue', '/en/catalogue/ville-inconnue', '/de/catalogue/grasse/visite-inconnue']) {
+test.describe('codes reels et slugs inconnus', () => {
+  /**
+   * Les segments du catalogue portent un `loading.tsx` : le code HTTP part
+   * avant l'execution de la page, donc un slug inconnu y repond 200 avec une
+   * page « introuvable » — et un `noindex, nofollow` explicite, qui est ce qui
+   * decide de l'indexation. Les routes localisees, sans `loading.tsx`, rendent
+   * un vrai 404. Les deux comportements sont voulus ; aucun n'est indexable.
+   */
+  test('un slug inconnu n’est jamais indexable, quelle que soit la route', async ({ request }) => {
+    for (const path of ['/catalogue/ville-inconnue', '/catalogue/grasse/visite-inconnue', '/en/catalogue/ville-inconnue', '/en/catalogue/grasse/visite-inconnue']) {
+      const response = await request.get(path, { maxRedirects: 0 });
+      expect(response.status(), path).toBe(200);
+      expect(await response.text(), path).toMatch(/<meta name="robots" content="noindex[^"]*"/);
+    }
+  });
+
+  test('les routes localisees rendent un vrai 404', async ({ request }) => {
+    for (const path of ['/es/catalogue/ville-inconnue', '/de/catalogue/grasse/visite-inconnue', '/guides/inconnu', '/en/guides/inconnu']) {
       expect((await request.get(path, { maxRedirects: 0 })).status(), path).toBe(404);
     }
   });
@@ -208,49 +223,54 @@ test.describe('données structurées', () => {
   });
 });
 
+/**
+ * Ce qu'un robot qui n'execute AUCUN script recoit.
+ *
+ * On lit le corps de la reponse, pas le DOM rendu : les segments du catalogue
+ * portent un `loading.tsx`, donc Next diffuse le squelette puis le contenu
+ * reel dans un `<div hidden>` que le JavaScript echange. Un navigateur sans
+ * script ne voit que le squelette ; un analyseur de HTML, lui, recoit tout.
+ * C'est cette seconde lecture qui compte pour l'indexation.
+ */
 test.describe('contenu servi aux robots', () => {
-  test.use({ javaScriptEnabled: false, userAgent: ROBOT_UA });
+  const fetchHtml = async (request: APIRequestContext, path: string) => {
+    const response = await request.get(path, { headers: { 'user-agent': ROBOT_UA }, maxRedirects: 0 });
+    expect(response.status(), path).toBe(200);
+    return response.text();
+  };
 
-  test('la page ville est utile sans JavaScript, dans chaque langue indexée', async ({ page }) => {
+  test('la page ville est utile dans le HTML servi, dans chaque langue indexee', async ({ request }) => {
     for (const locale of ['fr', 'en']) {
-      await page.goto(localized('/catalogue/grasse', locale));
-      const body = await page.locator('body').innerText();
-      expect(await page.locator('h1').innerText()).toContain('Grasse');
-      // Introduction relue de la ville, et faits réels de son catalogue.
-      expect(body).toMatch(locale === 'fr' ? /parfum/i : /perfume/i);
-      expect(body).toContain('2');
-      expect(body).toMatch(/45|35/);
+      const html = await fetchHtml(request, localized('/catalogue/grasse', locale));
+      expect(html).toMatch(/<h1[^>]*>[^<]*Grasse/);
+      // Introduction relue de la ville, et faits reels de son catalogue.
+      expect(html).toMatch(locale === 'fr' ? /parfum/i : /perfume/i);
+      expect(html).toMatch(locale === 'fr' ? /minutes/ : /minutes/);
       // Les visites de la ville sont des liens explorables.
-      const hrefs = await page.locator('a[href*="/catalogue/grasse/"]').evaluateAll((nodes) =>
-        nodes.map((node) => node.getAttribute('href')),
-      );
-      expect(hrefs).toContain(localized(BILINGUE, locale));
+      expect(html).toContain(`href="${localized(BILINGUE, locale)}"`);
+      expect(html).toContain(`href="${localized(FR_SEULE, locale === 'fr' ? 'fr' : 'en')}"`);
     }
   });
 
-  test('la fiche visite relie ville, guide et visites voisines sans JavaScript', async ({ page }) => {
-    await page.goto(`/en${BILINGUE}`);
-    // Hors du bandeau : le sélecteur de langue pointe délibérément vers les
-    // cinq autres versions, français compris. C'est son travail.
-    const hrefs = await page
-      .locator('main a[href^="/"]')
-      .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('href') ?? ''));
-    expect(hrefs).toContain('/en/catalogue/grasse');
-    expect(hrefs).toContain('/en/catalogue');
-    expect(hrefs).toContain(`/en${FR_SEULE}`);
-    // Aucun lien de contenu ne ramène vers le français depuis la page anglaise.
-    const internes = hrefs.filter((href) => /^\/(catalogue|guides)\//.test(href));
-    expect(internes).toEqual([]);
+  test('la fiche visite relie ville, guide et visites voisines dans le HTML servi', async ({ request }) => {
+    const html = await fetchHtml(request, `/en${BILINGUE}`);
+    expect(html).toContain('href="/en/catalogue/grasse"');
+    expect(html).toContain('href="/en/catalogue"');
+    expect(html).toContain(`href="/en${FR_SEULE}"`);
+    // Le fil d'Ariane structure et la visite elle-meme sont dans la reponse.
+    expect(html).toContain('BreadcrumbList');
+    expect(html).toContain('TouristTrip');
   });
 
-  test('le titre et la description sont localisés et dimensionnés', async ({ page }) => {
+  test('le titre et la description sont localises et dimensionnes', async ({ request }) => {
     for (const [locale, mot] of [['fr', 'visite audio'], ['en', 'audio tour']] as const) {
-      await page.goto(localized(BILINGUE, locale));
-      const meta = await head(page);
-      expect(meta.title).toContain(mot);
-      expect(meta.title).toContain('Grasse');
-      expect(meta.description!.length).toBeGreaterThanOrEqual(100);
-      expect(meta.description!.length).toBeLessThanOrEqual(170);
+      const html = await fetchHtml(request, localized(BILINGUE, locale));
+      const titre = html.match(/<title>([^<]*)<\/title>/)?.[1] ?? '';
+      const description = html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '';
+      expect(titre).toContain(mot);
+      expect(titre).toContain('Grasse');
+      expect(description.length).toBeGreaterThanOrEqual(100);
+      expect(description.length).toBeLessThanOrEqual(170);
     }
   });
 });

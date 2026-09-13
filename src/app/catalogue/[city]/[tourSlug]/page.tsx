@@ -159,10 +159,15 @@ interface TourPageProps {
   searchParams: Promise<{ source?: string; office?: string }>;
 }
 
-/** Partagée avec la route localisée. */
+/**
+ * Partagée avec la route localisée.
+ *
+ * Une visite inconnue repart en `noindex, nofollow` : voir la note de
+ * `cityPageMetadata`. Sous `<Suspense>`, le code HTTP part avant la page.
+ */
 export async function tourPageMetadata(citySlug: string, tourSlug: string, locale: InterfaceLocale): Promise<Metadata> {
   const tour = await getTourBySlug(citySlug, tourSlug);
-  if (!tour) return {};
+  if (!tour) return { robots: { index: false, follow: false } };
   return tourMetadata(tour, citySlug, tourSlug, locale);
 }
 
