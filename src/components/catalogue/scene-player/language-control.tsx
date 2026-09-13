@@ -1,4 +1,5 @@
 'use client';
+import { extendCopy } from '@/lib/i18n/translate';
 
 import { useId } from 'react';
 import { Button, tg } from '@murmure/design-system/web';
@@ -6,7 +7,7 @@ import { audioSourceLabel, displayedAudioSource } from '@/lib/api/audio-source-p
 import { languageName, languageLabel } from '@/lib/i18n/languages';
 import { useTourPlayer } from './scene-player';
 
-const COPY = {
+const COPY = extendCopy({
   fr: {
     label: 'Langue d’écoute', original: 'Langue d’origine',
     help: 'Changer de langue redémarre l’étape depuis le début.',
@@ -19,7 +20,7 @@ const COPY = {
     loading: 'Loading languages…', error: 'Languages are temporarily unavailable.', retry: 'Retry languages',
     fallback: (count: number, base: string) => `${count} stop${count > 1 ? 's' : ''} will play ${base === 'und' ? 'in the original language' : `in ${languageLabel(base, 'en')}`}.`,
   },
-} as const;
+} as const);
 
 export function LanguageControl() {
   const player = useTourPlayer();

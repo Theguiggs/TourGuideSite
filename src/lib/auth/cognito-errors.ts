@@ -13,6 +13,9 @@
  * connexion ou vers l'envoi d'un code sans confirmer l'existence du compte.
  */
 
+import { requireInterfaceLocale, type InterfaceLocale } from '@/lib/i18n/locales';
+import { AUTH_ERRORS_COPY } from '@/lib/i18n/auth-errors-copy';
+
 export type AuthErrorContext = 'signIn' | 'signUp' | 'confirmSignUp' | 'reset';
 
 const GENERIC: Record<AuthErrorContext, string> = {
@@ -71,9 +74,12 @@ const EN_MESSAGES: Record<string, string> = {
   'Pas de connexion réseau. Vérifiez votre accès à internet.': 'No network connection. Check your internet access.',
 };
 
-export function describeAuthError(error: unknown, context: AuthErrorContext, locale: 'fr' | 'en' = 'fr'): string {
+export function describeAuthError(error: unknown, context: AuthErrorContext, locale: InterfaceLocale = 'fr'): string {
+  requireInterfaceLocale(locale);
   const message = describeFrenchAuthError(error, context);
-  return locale === 'en' ? EN_MESSAGES[message] ?? EN_MESSAGES[GENERIC[context]] : message;
+  if (locale === 'fr') return message;
+  const english = EN_MESSAGES[message] ?? EN_MESSAGES[GENERIC[context]];
+  return locale === 'en' ? english : (AUTH_ERRORS_COPY[english] ?? AUTH_ERRORS_COPY[EN_MESSAGES[GENERIC[context]]])[locale];
 }
 
 function describeFrenchAuthError(error: unknown, context: AuthErrorContext): string {

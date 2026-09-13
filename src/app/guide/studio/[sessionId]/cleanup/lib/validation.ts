@@ -1,3 +1,4 @@
+import { translate } from '@/lib/i18n/translate';
 /**
  * GCI-4.2 Validation rules for the /cleanup "Valider et passer en édition" CTA.
  *
@@ -41,7 +42,7 @@ export function isReadyToValidate(
   locale: StudioLocale = 'fr',
 ): ValidationResult {
   const reasons: string[] = [];
-  const t = (fr: string, en: string) => (locale === 'en' ? en : fr);
+  const t = (fr: string, en: string) => (translate(locale, fr, en));
 
   // "deleted" in this codebase maps to `archived` on StudioScene
   const activeScenes = scenes.filter((s) => !s.archived);

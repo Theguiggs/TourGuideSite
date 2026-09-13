@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { extendCopy } from '@/lib/i18n/translate';
 /**
  * Squelettes des pages du catalogue, servis par les `loading.tsx` de chaque
  * segment (FR et EN).
@@ -10,10 +12,10 @@
  * globals.css.
  */
 
-const LABELS = {
+const LABELS = extendCopy({
   fr: 'Chargement du catalogue',
   en: 'Loading the catalogue',
-};
+});
 
 function Bar({ className = '' }: { className?: string }) {
   return <div className={`rounded bg-paper-deep ${className}`} />;
@@ -42,7 +44,7 @@ export function CatalogueSkeleton({
   locale = 'fr',
 }: {
   variant: CatalogueSkeletonVariant;
-  locale?: 'fr' | 'en';
+  locale?: InterfaceLocale;
 }) {
   return (
     <div

@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 import Link from 'next/link';
 import { Clock3, MapPin } from 'lucide-react';
 import { getAllTours } from '@/lib/api/tours-server';
@@ -6,13 +8,14 @@ import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
 import { getCityAccent } from '@/lib/cities/accent-map';
 import { tg } from '@murmure/design-system/tokens';
 import { HomeResume } from './home-resume';
+import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
 
-export async function HomeCatalogue({ locale }: { locale: 'fr' | 'en' }) {
+export async function HomeCatalogue({ locale }: { locale: InterfaceLocale }) {
   let selection: ReturnType<typeof homeSelection>;
-  try { selection = homeSelection(await getAllTours()); }
+  try { selection = homeSelection((await getAllTours()).map(tour => localizeTour(tour, locale))); }
   catch { selection = homeSelection([]); }
-  const prefix = locale === 'en' ? '/en' : '';
-  const t = (fr: string, en: string) => locale === 'fr' ? fr : en;
+  const prefix = translate(locale, '', '/en');
+  const t = (fr: string, en: string) => translate(locale, fr, en);
   return <section aria-labelledby="home-tours-title" className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
     <HomeResume tours={selection.resumeTours} locale={locale} />
     <h2 id="home-tours-title" className="font-display text-h4 sm:text-h3 text-ink">{t('Où souhaitez-vous aller ?', 'Where would you like to go?')}</h2>
@@ -26,6 +29,7 @@ export async function HomeCatalogue({ locale }: { locale: 'fr' | 'en' }) {
         {selection.featured.map(tour => <Link prefetch={false} key={tour.id} href={`${prefix}/catalogue/${tour.citySlug}/${tour.slug}`} data-testid="home-tour" className="flex min-w-0 flex-col rounded-lg p-5 text-ink no-underline sm:p-6" style={{ background: tg.colors[`${getCityAccent(tour.citySlug)}Soft`] }}>
           <span className="text-body font-semibold">{tour.city}</span>
           <h3 className="my-4 break-words font-display text-h5 leading-tight">{tour.title}</h3>
+          {tour.metadataFallback && <p className="mb-3 text-caption text-ink-60">{METADATA_FALLBACK_COPY[locale]}</p>}
           <div className="mt-auto flex flex-wrap items-center gap-3 text-caption">
             {Number.isFinite(tour.duration) && tour.duration > 0 && <span className="inline-flex items-center gap-1"><Clock3 size={16} aria-hidden="true" />{tour.duration} min</span>}
             <TourPriceBadge tour={tour} locale={locale} />

@@ -9,6 +9,8 @@ import { AuthProvider } from '@/lib/auth/auth-context';
 import { PendingTourConfirmRecovery } from '@/components/checkout/pending-tour-confirm-recovery';
 import { LOCALE_HEADER, SITE_URL } from '@/lib/site';
 import { PwaRegistration } from '@/components/pwa/pwa-registration';
+import { isInterfaceLocale } from '@/lib/i18n/locales';
+import { RequestLocaleProvider } from '@/lib/i18n/request-locale';
 
 // Story 1.3 — 4 familles DS auto-loadées via next/font/google.
 // Chaque font écrit sa variable CSS, alignée avec les noms de tokens.css
@@ -40,7 +42,7 @@ const manrope = Manrope({
 
 // OG image: opengraph-image.tsx in this directory generates the default at /opengraph-image.
 // Tour pages extend metadata via generateMetadata pointing to /og/tour/[city]/[tourSlug].
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: 'Murmure — Visites guidées audio immersives',
@@ -100,6 +102,12 @@ export const metadata: Metadata = {
   appleWebApp: { capable: true, title: 'Murmure', statusBarStyle: 'default' },
 };
 
+export async function generateMetadata(): Promise<Metadata> {
+  const requested = (await headers()).get(LOCALE_HEADER);
+  const locale = isInterfaceLocale(requested) ? requested : 'fr';
+  return { ...baseMetadata, manifest: locale === 'fr' ? '/manifest.json' : `/${locale}/manifest.webmanifest` };
+}
+
 // Story 3.4 — Next.js 14+ a déplacé `themeColor` de `metadata` vers `viewport`.
 // Cette valeur doit rester strictement alignée avec `tg.colors.grenadine` du
 // package `@murmure/design-system/tokens` (`#C1262A`). Si Story 5.1 modifie
@@ -117,7 +125,8 @@ export const dynamic = 'force-dynamic';
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   // Posé par `src/proxy.ts` ; `force-dynamic` ci-dessus rend `headers()` sans coût.
-  const lang = (await headers()).get(LOCALE_HEADER) === 'en' ? 'en' : 'fr';
+  const requestedLocale = (await headers()).get(LOCALE_HEADER);
+  const lang = isInterfaceLocale(requestedLocale) ? requestedLocale : 'fr';
   // JetBrains Mono n'est chargée que dans les segments guide et admin (seuls
   // à afficher du `font-mono`) : voir `guide/layout.tsx` et `admin/layout.tsx`.
   const fontVariables = `${dmSerifDisplay.variable} ${dmSerifText.variable} ${manrope.variable}`;
@@ -127,9 +136,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <AmplitudeProvider>
           <AmplifyProvider>
             <AuthProvider>
+              <RequestLocaleProvider locale={lang}>
               <PendingTourConfirmRecovery />
               <SiteChrome>{children}</SiteChrome>
               <PwaRegistration locale={lang} />
+              </RequestLocaleProvider>
             </AuthProvider>
           </AmplifyProvider>
         </AmplitudeProvider>

@@ -91,11 +91,11 @@ export function WalkCleanupPanel({ walk, onKeep, onDelete }: WalkCleanupPanelPro
           <dd className="font-medium text-ink" data-testid="walk-stat-duration">{formatDuration(walk.durationMs)}</dd>
         </div>
         <div className="bg-paper-soft rounded-lg p-2">
-          <dt className="text-meta text-ink-60">Distance</dt>
+          <dt className="text-meta text-ink-60">{t('Distance', 'Distance')}</dt>
           <dd className="font-medium text-ink" data-testid="walk-stat-distance">{formatDistance(walk.distanceM)}</dd>
         </div>
         <div className="bg-paper-soft rounded-lg p-2">
-          <dt className="text-meta text-ink-60">Photos</dt>
+          <dt className="text-meta text-ink-60">{t('Photos', 'Photos')}</dt>
           <dd className="font-medium text-ink" data-testid="walk-stat-photos">{walk.photoRefs.length}</dd>
         </div>
         <div className="bg-paper-soft rounded-lg p-2">

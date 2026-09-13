@@ -1,4 +1,6 @@
 'use client';
+import { SITE_LOCALES, LOCALE_NAMES, type InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 
 import { Suspense, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
@@ -10,12 +12,12 @@ import { visitorAuthUrl, visitorDestination, localizeVisitorReturn, type Visitor
 import { AnalyticsEvents, trackEvent } from '@/lib/analytics';
 
 type Step = VisitorAuthMode | 'confirm' | 'reset-confirm';
-type Props = { locale: 'fr' | 'en'; mode: VisitorAuthMode };
+type Props = { locale: InterfaceLocale; mode: VisitorAuthMode };
 const inputClass = 'w-full min-w-0 rounded-md border border-line bg-paper px-3 py-3 text-body text-ink focus:border-grenadine focus:outline-none focus:ring-2 focus:ring-grenadine-soft';
 const linkClass = 'inline-flex min-h-11 items-center text-grenadine underline underline-offset-4';
 
 function VisitorAuthContent({ locale, mode }: Props) {
-  const t = (fr: string, en: string) => locale === 'fr' ? fr : en;
+  const t = (fr: string, en: string) => translate(locale, fr, en);
   const params = useSearchParams();
   const router = useRouter();
   const auth = useAuth();
@@ -131,7 +133,6 @@ function VisitorAuthContent({ locale, mode }: Props) {
   const hasCode = step === 'confirm' || step === 'reset-confirm';
   const hasPassword = step === 'login' || step === 'signup' || step === 'reset-confirm';
   const linkMode = step === 'signup' || step === 'confirm' ? 'signup' : step.startsWith('reset') ? 'reset' : 'login';
-  const otherLocale = locale === 'fr' ? 'en' : 'fr';
 
   return <section className="mx-auto w-full max-w-lg px-4 py-8 sm:py-12" aria-labelledby="visitor-auth-title">
     <h1 id="visitor-auth-title" ref={heading} tabIndex={-1} className="font-display text-h4 sm:text-h3 leading-tight text-ink break-words">{title}</h1>
@@ -176,8 +177,8 @@ function VisitorAuthContent({ locale, mode }: Props) {
       </div>
     </form>}
     <div className="mt-4 flex flex-wrap justify-between gap-x-4">
-      <Link className={linkClass} href={locale === 'en' ? '/en/help' : '/aide'}>{t('Besoin d’aide ?', 'Need help?')}</Link>
-      <Link className={linkClass} href={`${visitorAuthUrl(otherLocale, linkMode, localizeVisitorReturn(returnTo, otherLocale))}&step=${step}`} hrefLang={otherLocale} aria-disabled={busy} onClick={event => { if (busy) event.preventDefault(); }}>{otherLocale === 'en' ? 'English' : 'Français'}</Link>
+      <Link className={linkClass} href={translate(locale, '/aide', '/en/help')}>{t('Besoin d’aide ?', 'Need help?')}</Link>
+      <div className="flex flex-wrap gap-x-4 gap-y-2">{SITE_LOCALES.filter(target => target !== locale).map(target => <Link key={target} className={linkClass} href={`${visitorAuthUrl(target, linkMode, localizeVisitorReturn(returnTo, target))}&step=${step}`} hrefLang={target} lang={target} aria-disabled={busy} onClick={event => { if (busy) event.preventDefault(); }}>{LOCALE_NAMES[target]}</Link>)}</div>
     </div>
   </section>;
 }

@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useParams } from 'next/navigation';
@@ -55,7 +57,7 @@ export default function GeneralPage() {
   const themeOptions = useMemo(
     () => TOUR_THEMES_OPTIONS.map((option) => ({
       ...option,
-      label: locale === 'en' ? ({ histoire: 'History', art: 'Art', nature: 'Nature', architecture: 'Architecture', culture: 'Culture', insolite: 'Unusual', romantique: 'Romantic', famille: 'Family', sportif: 'Sports' } as Record<string, string>)[option.value] : option.label,
+      label: localizeValue(locale, option.label, ({ histoire: 'History', art: 'Art', nature: 'Nature', architecture: 'Architecture', culture: 'Culture', insolite: 'Unusual', romantique: 'Romantic', famille: 'Family', sportif: 'Sports' } as Record<string, string>)[option.value]),
     })),
     [locale],
   );

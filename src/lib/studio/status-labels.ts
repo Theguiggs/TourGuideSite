@@ -1,3 +1,6 @@
+import { localizeValue } from '@/lib/i18n/translate';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { extendCopy } from '@/lib/i18n/translate';
 import type { StudioSessionStatus } from '@/types/studio';
 
 /**
@@ -8,25 +11,25 @@ import type { StudioSessionStatus } from '@/types/studio';
  * autre dans TourCard, et sur la page Publication une traduction indexée sur
  * le libellé FR qui ne connaissait pas « Rejeté » ni « En pause ».
  */
-export type StudioLocaleCode = 'fr' | 'en';
+export type StudioLocaleCode = InterfaceLocale;
 
 const LABELS: Record<StudioSessionStatus, { fr: string; en: string }> = {
-  draft: { fr: 'Brouillon', en: 'Draft' },
-  transcribing: { fr: 'Transcription…', en: 'Transcribing…' },
-  editing: { fr: 'En cours d’édition', en: 'Editing' },
-  recording: { fr: 'Enregistrement', en: 'Recording' },
-  ready: { fr: 'Prêt', en: 'Ready' },
-  submitted: { fr: 'Soumis à la modération', en: 'Submitted for review' },
-  published: { fr: 'Publié', en: 'Published' },
-  paused: { fr: 'En pause', en: 'Paused' },
-  revision_requested: { fr: 'Révision demandée', en: 'Changes requested' },
-  rejected: { fr: 'Refusé', en: 'Rejected' },
-  archived: { fr: 'Archivé', en: 'Archived' },
-  ready_for_cleanup: { fr: 'Nettoyage requis', en: 'Cleanup needed' },
+  draft: extendCopy({ fr: 'Brouillon', en: 'Draft' }),
+  transcribing: extendCopy({ fr: 'Transcription…', en: 'Transcribing…' }),
+  editing: extendCopy({ fr: 'En cours d’édition', en: 'Editing' }),
+  recording: extendCopy({ fr: 'Enregistrement', en: 'Recording' }),
+  ready: extendCopy({ fr: 'Prêt', en: 'Ready' }),
+  submitted: extendCopy({ fr: 'Soumis à la modération', en: 'Submitted for review' }),
+  published: extendCopy({ fr: 'Publié', en: 'Published' }),
+  paused: extendCopy({ fr: 'En pause', en: 'Paused' }),
+  revision_requested: extendCopy({ fr: 'Révision demandée', en: 'Changes requested' }),
+  rejected: extendCopy({ fr: 'Refusé', en: 'Rejected' }),
+  archived: extendCopy({ fr: 'Archivé', en: 'Archived' }),
+  ready_for_cleanup: extendCopy({ fr: 'Nettoyage requis', en: 'Cleanup needed' }),
 };
 
 export function sessionStatusLabel(status: StudioSessionStatus | string, locale: StudioLocaleCode = 'fr'): string {
   const entry = LABELS[status as StudioSessionStatus];
   if (!entry) return String(status);
-  return locale === 'en' ? entry.en : entry.fr;
+  return localizeValue(locale, entry.fr, entry.en);
 }

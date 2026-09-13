@@ -1,8 +1,8 @@
 /* Murmure LW-5. Ne jamais stocker les pages visitées ni les réponses privées. */
-const VERSION = 'lw5-v1';
+const VERSION = 'six-locales-v2';
 const SHELL = `murmure-shell-${VERSION}`;
 const STATIC = 'murmure-static-v1';
-const OFFLINE = { fr: '/offline/fr.html', en: '/offline/en.html' };
+const OFFLINE = Object.fromEntries(['fr', 'en', 'es', 'de', 'it', 'nl'].map(locale => [locale, `/offline/${locale}.html`]));
 const PRECACHE = [...Object.values(OFFLINE), '/favicon-192.png', '/favicon-512.png', '/apple-touch-icon-180.png', '/pwa/display.woff2'];
 const MAX_STATIC = 120;
 
@@ -13,7 +13,11 @@ function cacheableAsset(request) {
     && url.pathname.startsWith('/_next/static/')
     && /\.(?:js|css|woff2?|png|svg)$/.test(url.pathname);
 }
-function offlinePath(url) { return new URL(url).pathname.split('/')[1] === 'en' ? OFFLINE.en : OFFLINE.fr; }
+const LOCALE_PREFERENCE = '/__murmure/interface-locale';
+function offlinePath(url, preferredLocale = 'fr') {
+  const segment = new URL(url).pathname.split('/')[1];
+  return OFFLINE[segment] || ((segment === 'guide' || segment === 'admin') && OFFLINE[preferredLocale]) || OFFLINE.fr;
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
@@ -32,6 +36,11 @@ self.addEventListener('activate', (event) => {
 });
 self.addEventListener('message', (event) => {
   if (event.data?.type === 'ACTIVATE_UPDATE') event.waitUntil(self.skipWaiting());
+  if (event.data?.type === 'SET_INTERFACE_LOCALE' && Object.hasOwn(OFFLINE, event.data.locale)) {
+    event.waitUntil((async () => {
+      try { await (await caches.open(SHELL)).put(LOCALE_PREFERENCE, new Response(event.data.locale)); } catch { /* Préférence facultative si le stockage est indisponible. */ }
+    })());
+  }
 });
 self.addEventListener('fetch', (event) => {
   const request = event.request;
@@ -48,7 +57,9 @@ self.addEventListener('fetch', (event) => {
         const response = await fetch(request);
         if (response.status < 500) return response;
       } catch { /* Repli autonome, sans HTML privé ni nonce réutilisé. */ }
-      const fallback = await (await caches.open(SHELL)).match(offlinePath(request.url));
+      const cache = await caches.open(SHELL);
+      const preference = await cache.match(LOCALE_PREFERENCE);
+      const fallback = await cache.match(offlinePath(request.url, preference ? await preference.text() : 'fr'));
       return fallback || new Response('Offline / Hors ligne', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
     })());
     return;

@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate, extendCopy } from '@/lib/i18n/translate';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -38,8 +40,9 @@ import { StarRating } from '@/components/catalogue/StarRating';
 import { maskLockedPois } from '@/lib/catalogue/scene-pois';
 import { LANG_FLAGS, LANG_NAMES } from '@/lib/i18n/languages';
 import { LangChip } from '@/components/i18n/LangChip';
+import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
 
-const DETAIL_COPY = {
+const DETAIL_COPY = extendCopy({
   fr: {
     openInApp: 'Ouvrir dans Murmure', bestExperience: 'Pour la meilleure expérience audio immersive', open: 'Ouvrir',
     free: 'GRATUIT', yourGuide: 'Votre guide', verifiedGuide: 'Guide vérifié', viewProfile: 'Voir le profil →',
@@ -54,7 +57,7 @@ const DETAIL_COPY = {
     download: 'Listen here. The Murmure app adds GPS guidance and offline listening.',
     duration: 'Duration', distance: 'Distance', stops: 'Stops', completions: 'Completions', listen: 'Walk with the app',
   },
-} as const;
+} as const);
 
 // Story 4.4 — Cleanup: utilise `getCityAccent` de Story 4.3 (`lib/cities/accent-map`)
 // au lieu du fallback local précédent. Hash-based fallback inclus pour villes inconnues.
@@ -77,20 +80,18 @@ function accentColor(accent: CityAccent): string {
   }
 }
 
-function formatRelativeDate(dateStr: string, locale: 'fr' | 'en'): string {
+function formatRelativeDate(dateStr: string, locale: InterfaceLocale): string {
   if (!dateStr) return '';
   const date = new Date(dateStr);
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  if (diffDays < 1) return locale === 'en' ? 'Published today' : 'Publié aujourd\'hui';
+  if (diffDays < 1) return translate(locale, 'Publié aujourd\'hui', 'Published today');
   if (diffDays < 30) {
-    return locale === 'en'
-      ? `Published ${diffDays} day${diffDays > 1 ? 's' : ''} ago`
-      : `Publié il y a ${diffDays} jour${diffDays > 1 ? 's' : ''}`;
+    return translate(locale, `Publié il y a ${diffDays} jour${diffDays > 1 ? 's' : ''}`, `Published ${diffDays} day${diffDays > 1 ? 's' : ''} ago`);
   }
-  const month = date.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { month: 'long', year: 'numeric' });
-  return locale === 'en' ? `Published in ${month}` : `Publié en ${month}`;
+  const month = date.toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'), { month: 'long', year: 'numeric' });
+  return translate(locale, `Publié en ${month}`, `Published in ${month}`);
 }
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
@@ -108,11 +109,12 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
   return tourMetadata(tour, citySlug, tourSlug, 'fr');
 }
 
-export async function LocalizedTourDetailPage({ params, searchParams, locale = 'fr' }: TourPageProps & {locale?: 'fr' | 'en'}) {
+export async function LocalizedTourDetailPage({ params, searchParams, locale = 'fr' }: TourPageProps & {locale?: InterfaceLocale}) {
   const { city: citySlug, tourSlug } = await params;
   const resolvedSearchParams = await searchParams;
-  const tour = await getTourBySlug(citySlug, tourSlug);
-  if (!tour) notFound();
+  const originalTour = await getTourBySlug(citySlug, tourSlug);
+  if (!originalTour) notFound();
+  const tour = localizeTour(originalTour, locale);
 
   const [city, guideSlug] = await Promise.all([
     getCityBySlug(citySlug),
@@ -120,7 +122,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
   ]);
   const isQrVisit = resolvedSearchParams.source === 'qr';
   const copy = DETAIL_COPY[locale];
-  const catalogueBase = locale === 'en' ? '/en/catalogue' : '/catalogue';
+  const catalogueBase = translate(locale, '/catalogue', '/en/catalogue');
 
   const accent = getCityAccent(citySlug);
   const heroBg = accentSoftColor(accent);
@@ -141,6 +143,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
       style={{ background: tg.colors.paper, minHeight: '100vh' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        {tour.metadataFallback && <p className="mb-4 text-body text-ink-80">{METADATA_FALLBACK_COPY[locale]}</p>}
         <TrackPageView
           event={isQrVisit ? AnalyticsEvents.WEB_QR_CODE_SCAN : AnalyticsEvents.WEB_TOUR_DETAIL_VIEW}
           properties={{
@@ -178,7 +181,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
 
         {/* Breadcrumb */}
         <nav
-          aria-label={locale === 'en' ? 'Breadcrumb' : "Fil d'Ariane"}
+          aria-label={translate(locale, "Fil d'Ariane", 'Breadcrumb')}
           style={{
             ...tg.eyebrow,
             color: tg.colors.ink60,
@@ -214,7 +217,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
               </Eyebrow>
 
               <div
-                className="flex items-start justify-between gap-4"
+                className="flex flex-col items-start gap-4 sm:flex-row sm:justify-between"
                 style={{ marginBottom: tg.space[4] }}
               >
                 <h1
@@ -262,7 +265,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    {locale === 'en' ? 'INCLUDED WITH SUBSCRIPTION' : 'INCLUS DANS L’ABONNEMENT'}
+                    {translate(locale, 'INCLUS DANS L’ABONNEMENT', 'INCLUDED WITH SUBSCRIPTION')}
                   </span>
                 )}
               </div>
@@ -303,7 +306,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 )}
               </div>
 
-              <a href="#itineraire" className="inline-flex min-h-11 items-center rounded-pill bg-grenadine px-5 text-body font-bold text-paper mb-4">{locale === 'en' ? 'Discover the audio' : 'Découvrir l’audio'}</a>
+              <a href="#itineraire" className="inline-flex min-h-11 items-center rounded-pill bg-grenadine px-5 text-body font-bold text-paper mb-4">{translate(locale, 'Découvrir l’audio', 'Discover the audio')}</a>
 
               {tour.createdAt && (
                 <div
@@ -361,7 +364,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
               const avatar = tour.guidePhotoUrl ? (
                 <S3Image
                   s3Key={tour.guidePhotoUrl}
-                  alt={locale === 'en' ? `Photo of ${tour.guideName}` : `Photo de ${tour.guideName}`}
+                  alt={translate(locale, `Photo de ${tour.guideName}`, `Photo of ${tour.guideName}`)}
                   className="w-16 h-16 rounded-pill shrink-0"
                   fallback={tour.guideName.charAt(0)}
                 />
@@ -558,7 +561,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                           color: tg.colors.ink60,
                         }}
                       >
-                        {new Date(review.createdAt).toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR')}
+                        {new Date(review.createdAt).toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'))}
                       </span>
                     </div>
                     {review.comment && (
@@ -679,8 +682,8 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
         }}
       >
         <div className="flex gap-3">
-          <a href="#itineraire" className="flex min-h-11 flex-1 items-center justify-center rounded-pill bg-grenadine px-4 text-body font-bold text-paper">{locale === 'en' ? 'Listen on this site' : 'Écouter sur le site'}</a>
-          {!isTourFree(tour) && <a href="#acheter" className="flex min-h-11 items-center justify-center rounded-pill border border-line px-4 text-body font-semibold text-ink">{locale === 'en' ? 'Purchase options' : 'Achat'}</a>}
+          <a href="#itineraire" className="flex min-h-11 flex-1 items-center justify-center rounded-pill bg-grenadine px-4 text-body font-bold text-paper">{translate(locale, 'Écouter sur le site', 'Listen on this site')}</a>
+          {!isTourFree(tour) && <a href="#acheter" className="flex min-h-11 items-center justify-center rounded-pill border border-line px-4 text-body font-semibold text-ink">{translate(locale, 'Achat', 'Purchase options')}</a>}
         </div>
       </div>
 

@@ -1,4 +1,5 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 /**
  * LW-2 — en-tête de l'itinéraire : « Écouter la visite » / « Pause », la
@@ -104,9 +105,7 @@ export function TourPlayControl() {
     >
       <LanguageControl />
       <p style={{ margin: 0, fontFamily: tg.fonts.sans, color: tg.colors.ink60 }}>
-        {locale === 'en'
-          ? 'At each stop, tap Listen when you arrive. Audio stops at the end of each stop.'
-          : 'À chaque étape, appuyez sur Écouter lorsque vous arrivez. L’audio s’arrête à la fin de chaque étape.'}
+        {translate(locale, 'À chaque étape, appuyez sur Écouter lorsque vous arrivez. L’audio s’arrête à la fin de chaque étape.', 'At each stop, tap Listen when you arrive. Audio stops at the end of each stop.')}
       </p>
       <div style={{ display: 'flex', alignItems: 'center', gap: tg.space[3], flexWrap: 'wrap' }}>
         <Button
@@ -138,7 +137,7 @@ export function TourPlayControl() {
         )}
         {currentIndex >= 0 && currentIndex < playlist.length - 1 && (
           <Button variant="ghost" size="sm" testID="tour-next-button" onClick={player.next}>
-            {locale === 'en' ? 'Listen to the next stop' : 'Écouter l’étape suivante'}
+            {translate(locale, 'Écouter l’étape suivante', 'Listen to the next stop')}
           </Button>
         )}
       </div>

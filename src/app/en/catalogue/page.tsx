@@ -1,3 +1,4 @@
+import { extendCopy } from '@/lib/i18n/translate';
 import type { Metadata } from 'next';
 import { getCities, getAllTours } from '@/lib/api/tours-server';
 import TrackPageView from '@/components/TrackPageView';
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   description: 'Explore cities through immersive audio walking tours available in five languages.',
   alternates: {
     canonical: '/en/catalogue',
-    languages: {fr: '/catalogue', en: '/en/catalogue'},
+    languages: extendCopy({fr: '/catalogue', en: '/en/catalogue'}),
   },
   openGraph: {locale: 'en_US'},
 };

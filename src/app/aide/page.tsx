@@ -1,5 +1,5 @@
 import { VisitorHelp } from '@/components/catalogue/visitor-help';
-import type { Metadata } from 'next';
+import { helpMetadata } from '@/lib/help-metadata';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Button, Eyebrow, PullQuote } from '@murmure/design-system/web';
@@ -15,15 +15,7 @@ import {
 } from './_content';
 
 // Story 4.6 — Page d'aide : explique le site et la création de parcours.
-export const metadata: Metadata = {
-  title: 'Aide',
-  description:
-    'Le guide complet de Murmure : créez un parcours audio étape par étape, et trouvez les réponses aux questions des guides comme des voyageurs.',
-  alternates: {
-    canonical: '/aide',
-    languages: {fr: '/aide', en: '/en/help'},
-  },
-};
+export const metadata = helpMetadata('fr');
 
 export default function AidePage() {
   return (

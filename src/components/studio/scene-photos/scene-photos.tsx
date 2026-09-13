@@ -136,7 +136,7 @@ export function ScenePhotos({ scene, sessionId, onPhotosChange, editable = true 
       </div>
 
       {!editable && photos.length === 0 && (
-        <p className="text-meta text-ink-40">Aucune photo</p>
+        <p className="text-meta text-ink-40">{t('Aucune photo', 'No photos')}</p>
       )}
 
       {error && (

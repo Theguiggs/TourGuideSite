@@ -1,4 +1,6 @@
 'use client';
+import { useAdminCopy } from '@/lib/admin/use-admin-copy';
+
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
@@ -19,15 +21,6 @@ function langue(code: string) {
   return { drapeau: languageFlag(code) ?? '🏳️', nom: languageLabel(code) };
 }
 
-function formaterDate(iso: string): string {
-  return new Date(iso).toLocaleString('fr-FR', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
 
 /** Le délai d'admission — la seule mesure de latence que la table permette. */
 function formaterDelai(demandeeA: string, admiseA: string | null): string {
@@ -60,12 +53,13 @@ function Repartition({
   titre: string;
   lignes: Array<{ cle: string; etiquette: string; total: number }>;
 }) {
+  const a = useAdminCopy();
   const max = Math.max(1, ...lignes.map((l) => l.total));
   return (
     <div className="bg-card rounded-xl p-4 border border-paper-deep">
       <h2 className="text-body font-semibold text-ink mb-3">{titre}</h2>
       {lignes.length === 0 ? (
-        <p className="text-meta text-ink-60">Aucune demande.</p>
+        <p className="text-meta text-ink-60">{a("Aucune demande.")}</p>
       ) : (
         <ul className="space-y-2">
           {lignes.map((ligne) => (
@@ -89,6 +83,7 @@ function Repartition({
 }
 
 export default function AdminNarrationPage() {
+  const a = useAdminCopy();
   const [demandes, setDemandes] = useState<DemandeNarration[]>([]);
   const [emails, setEmails] = useState<Record<string, string>>({});
   const [chargement, setChargement] = useState(true);
@@ -114,7 +109,7 @@ export default function AdminNarrationPage() {
       .catch((error: unknown) => {
         logger.error(SERVICE_NAME, 'chargement des demandes impossible', { error: String(error) });
         if (!vivant) return;
-        setErreur('Registre des demandes illisible.');
+        setErreur(a("Registre des demandes illisible."));
         setChargement(false);
       });
     return () => {
@@ -139,11 +134,11 @@ export default function AdminNarrationPage() {
     return [...compte.entries()]
       .map(([cle, total]) => ({
         cle,
-        etiquette: `${langue(cle).drapeau} ${langue(cle).nom}`,
+        etiquette: `${langue(cle).drapeau} ${a.language(cle)}`,
         total,
       }))
       .sort((a, b) => b.total - a.total);
-  }, [demandes]);
+  }, [demandes, a]);
 
   const parVisite = useMemo(() => {
     const compte = new Map<string, { etiquette: string; total: number }>();
@@ -158,7 +153,7 @@ export default function AdminNarrationPage() {
       .map(([cle, v]) => ({ cle, ...v }))
       .sort((a, b) => b.total - a.total)
       .slice(0, 10);
-  }, [demandes]);
+  }, [demandes, a]);
 
   const parMois = useMemo(() => {
     const compte = new Map<string, number>();
@@ -169,7 +164,7 @@ export default function AdminNarrationPage() {
     return [...compte.entries()]
       .sort((a, b) => a[0].localeCompare(b[0]))
       .map(([cle, total]) => ({ cle, etiquette: cle, total }));
-  }, [demandes]);
+  }, [demandes, a]);
 
   const enAttente = demandes.filter((d) => d.enAttente).length;
   const enEchec = demandes.filter((d) => d.pairState === 'failed').length;
@@ -181,10 +176,8 @@ export default function AdminNarrationPage() {
   return (
     <div className="max-w-6xl">
       <header className="mb-6">
-        <PageTitle size="h4">Narrations à la demande</PageTitle>
-        <p className="text-body text-ink-60 mt-1">
-          Le registre des demandes de fabrication, joint à l’état de chaque Paire (Visite × langue).
-        </p>
+        <PageTitle size="h4">{a("Narrations à la demande")}</PageTitle>
+        <p className="text-body text-ink-60 mt-1"> {a("Le registre des demandes de fabrication, joint à l’état de chaque Paire (Visite × langue).")} </p>
       </header>
 
       {/* LE PIÈGE DE LECTURE, ÉCRIT SUR LA PAGE — pas seulement dans le code.
@@ -192,14 +185,8 @@ export default function AdminNarrationPage() {
           « 17 visiteurs », et la déduplication sur le triplet rend cette lecture
           fausse d’un facteur inconnu. */}
       <div className="mb-6 rounded-xl border border-ocre bg-ocre-soft p-4 text-body text-ink-80">
-        <p className="font-medium text-ocre-ink mb-1">Une demande n’est pas un visiteur.</p>
-        <p>
-          Une ligne existe par triplet <strong>(Visite, langue, version)</strong> : le deuxième
-          visiteur qui ouvre la même langue est <em>absorbé</em> et n’écrit rien. La colonne
-          « Premier demandeur » nomme donc celui qui a fait naître la ligne, pas l’ensemble de ceux
-          qui l’ont réclamée. Le décompte par utilisateur se lit dans le journal CloudWatch
-          d’<code>openNarrationPair</code>, qui trace aussi les ouvertures absorbées.
-        </p>
+        <p className="font-medium text-ocre-ink mb-1">{a("Une demande n’est pas un visiteur.")}</p>
+        <p> {a("Une ligne existe par triplet")} <strong>{a("(Visite, langue, version)")}</strong> {a(": le deuxième visiteur qui ouvre la même langue est")} <em>{a("absorbé")}</em> {a("et n’écrit rien. La colonne « Premier demandeur » nomme donc celui qui a fait naître la ligne, pas l’ensemble de ceux qui l’ont réclamée. Le décompte par utilisateur se lit dans le journal CloudWatch d’")}<code>openNarrationPair</code>{a(", qui trace aussi les ouvertures absorbées.")} </p>
       </div>
 
       {erreur && (
@@ -209,16 +196,16 @@ export default function AdminNarrationPage() {
       )}
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-        <Tuile valeur={demandes.length} libelle="Demandes enregistrées" />
-        <Tuile valeur={enAttente} libelle="En attente d’admission" />
-        <Tuile valeur={new Set(demandes.map((d) => d.tourId)).size} libelle="Visites concernées" />
-        <Tuile valeur={enEchec} libelle="Paires en échec" />
+        <Tuile valeur={demandes.length} libelle={a("Demandes enregistrées")} />
+        <Tuile valeur={enAttente} libelle={a("En attente d’admission")} />
+        <Tuile valeur={new Set(demandes.map((d) => d.tourId)).size} libelle={a("Visites concernées")} />
+        <Tuile valeur={enEchec} libelle={a("Paires en échec")} />
       </div>
 
       <div className="grid lg:grid-cols-3 gap-3 mb-6">
-        <Repartition titre="Par langue" lignes={parLangue} />
-        <Repartition titre="Par visite (top 10)" lignes={parVisite} />
-        <Repartition titre="Par mois" lignes={parMois} />
+        <Repartition titre={a("Par langue")} lignes={parLangue} />
+        <Repartition titre={a("Par visite (top 10)")} lignes={parVisite} />
+        <Repartition titre={a("Par mois")} lignes={parMois} />
       </div>
 
       <div className="flex flex-wrap gap-3 mb-3">
@@ -227,10 +214,10 @@ export default function AdminNarrationPage() {
           onChange={(e) => setFiltreLangue(e.target.value)}
           className="px-3 py-2 rounded-lg border border-paper-deep text-body bg-card"
         >
-          <option value="">Toutes les langues</option>
+          <option value="">{a("Toutes les langues")}</option>
           {languesPresentes.map((code) => (
             <option key={code} value={code}>
-              {langue(code).drapeau} {langue(code).nom}
+              {langue(code).drapeau} {a.language(code)}
             </option>
           ))}
         </select>
@@ -239,11 +226,11 @@ export default function AdminNarrationPage() {
           onChange={(e) => setFiltreEtat(e.target.value)}
           className="px-3 py-2 rounded-lg border border-paper-deep text-body bg-card"
         >
-          <option value="">Tous les états</option>
-          <option value="pending">En attente d’admission</option>
+          <option value="">{a("Tous les états")}</option>
+          <option value="pending">{a("En attente d’admission")}</option>
           {Object.entries(PAIR_STATUS_BADGES).map(([cle, badge]) => (
             <option key={cle} value={cle}>
-              {badge.label}
+              {a(badge.label)}
             </option>
           ))}
         </select>
@@ -256,28 +243,24 @@ export default function AdminNarrationPage() {
         <table className="w-full text-body">
           <thead className="bg-paper-soft text-ink-60 text-meta uppercase">
             <tr>
-              <th className="text-left px-4 py-3 font-medium">Demandée le</th>
-              <th className="text-left px-4 py-3 font-medium">Visite</th>
-              <th className="text-left px-4 py-3 font-medium">Langue</th>
+              <th className="text-left px-4 py-3 font-medium">{a("Demandée le")}</th>
+              <th className="text-left px-4 py-3 font-medium">{a("Visite")}</th>
+              <th className="text-left px-4 py-3 font-medium">{a("Langue")}</th>
               <th className="text-left px-4 py-3 font-medium">Ver.</th>
-              <th className="text-left px-4 py-3 font-medium">État de la Paire</th>
-              <th className="text-left px-4 py-3 font-medium">Admission</th>
-              <th className="text-left px-4 py-3 font-medium">Premier demandeur</th>
+              <th className="text-left px-4 py-3 font-medium">{a("État de la Paire")}</th>
+              <th className="text-left px-4 py-3 font-medium">{a("Admission")}</th>
+              <th className="text-left px-4 py-3 font-medium">{a("Premier demandeur")}</th>
             </tr>
           </thead>
           <tbody>
             {chargement && (
               <tr>
-                <td colSpan={7} className="px-4 py-8 text-center text-ink-60">
-                  Chargement…
-                </td>
+                <td colSpan={7} className="px-4 py-8 text-center text-ink-60"> {a("Chargement…")} </td>
               </tr>
             )}
             {!chargement && visibles.length === 0 && (
               <tr>
-                <td colSpan={7} className="px-4 py-8 text-center text-ink-60">
-                  Aucune demande.
-                </td>
+                <td colSpan={7} className="px-4 py-8 text-center text-ink-60"> {a("Aucune demande.")} </td>
               </tr>
             )}
             {visibles.map((demande) => {
@@ -286,7 +269,7 @@ export default function AdminNarrationPage() {
               return (
                 <tr key={demande.requestId} className="border-t border-paper-deep align-top">
                   <td className="px-4 py-3 whitespace-nowrap text-ink-80">
-                    {formaterDate(demande.requestedAt)}
+                    {a.date(demande.requestedAt, {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'})}
                   </td>
                   <td className="px-4 py-3">
                     {demande.tourTitle ? (
@@ -306,15 +289,14 @@ export default function AdminNarrationPage() {
                     )}
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap">
-                    {langue(demande.language).drapeau} {langue(demande.language).nom}
+                    {langue(demande.language).drapeau} {a.language(demande.language)}
                   </td>
                   <td className="px-4 py-3 text-ink-60">v{demande.sourceVersion}</td>
                   <td className="px-4 py-3">
                     <StatusBadge badge={badge} />
                     {demande.sceneCount != null && (
                       <span className="block text-meta text-ink-60 mt-1 tabular-nums">
-                        {demande.readySceneCount ?? 0}/{demande.sceneCount} scènes
-                      </span>
+                        {demande.readySceneCount ?? 0}/{demande.sceneCount} {a("scènes")} </span>
                     )}
                     {demande.failureMessage && (
                       <span className="block text-meta text-danger mt-1">
@@ -324,9 +306,7 @@ export default function AdminNarrationPage() {
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     {demande.enAttente ? (
-                      <span className="inline-block px-2 py-1 rounded-pill text-meta font-medium bg-ocre-soft text-ocre-ink">
-                        En attente
-                      </span>
+                      <span className="inline-block px-2 py-1 rounded-pill text-meta font-medium bg-ocre-soft text-ocre-ink"> {a("En attente")} </span>
                     ) : (
                       <span className="text-ink-60 text-meta">
                         {formaterDelai(demande.requestedAt, demande.admittedAt)}

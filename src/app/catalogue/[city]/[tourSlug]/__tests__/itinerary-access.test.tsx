@@ -18,6 +18,13 @@ import { __resetOwnedTourIdsCache } from '@/hooks/use-owned-tour-ids';
 import { PURCHASES_CHANGED_EVENT } from '@/lib/checkout/purchase-events';
 import { logger } from '@/lib/logger';
 import type { POI } from '@/types/tour';
+import { ITINERARY_SOURCE_COPY } from '@/lib/catalogue/scene-pois';
+
+it('shows original itinerary text warning independently of translated tour metadata', () => {
+  render(<ItineraryList pois={[{ id: 'source', title: 'Place du marché', description: 'Texte original', latitude: 0, longitude: 0, order: 1 }]} sourceLanguage="fr" locale="de" tourTitle="Übersetzter Titel" tourId="source-tour" isFree heroAccentFg="#B4703A" />);
+  expect(screen.getByText(ITINERARY_SOURCE_COPY.de)).toBeInTheDocument();
+  expect(screen.getByText('Place du marché')).toBeInTheDocument();
+});
 
 let authState: { isAuthenticated: boolean; user: { id: string } | null } = {
   isAuthenticated: false,
@@ -187,6 +194,29 @@ describe('fiche Visite — accès au contenu complet', () => {
     expect(lockedStops(container)).toHaveLength(0);
     expect(blurred(container)).toBe(0);
     expect(mockGetPublishedTourContent).toHaveBeenCalledWith('tour-1');
+  });
+
+  it.each([true, false, undefined])('paid two-stop tour respects server grant %s with conservative legacy fallback', async (hasFullAccess) => {
+    authState = { isAuthenticated: true, user: { id: 'user-1' } };
+    mockListOwnedTourIds.mockResolvedValue(new Set(['tour-1']));
+    mockGetPublishedTourContent.mockResolvedValue({
+      ok: true,
+      data: { ...FULL_CONTENT.data, hasFullAccess, scenes: FULL_CONTENT.data.scenes.slice(0, 2) },
+    });
+    const { container } = renderItinerary({ pois: SSR_PREVIEW.slice(0, 2) });
+    await act(async () => {});
+    expect(lockedStops(container)).toHaveLength(hasFullAccess === true ? 0 : 1);
+    if (hasFullAccess === true) expect(screen.getByText('La halle aux grains')).toBeInTheDocument();
+    else expect(screen.queryByText('La halle aux grains')).not.toBeInTheDocument();
+  });
+
+  it('explicit server refusal overrides apparently complete content', async () => {
+    authState = { isAuthenticated: true, user: { id: 'user-1' } };
+    mockGetPublishedTourContent.mockResolvedValue({ ...FULL_CONTENT, data: { ...FULL_CONTENT.data, hasFullAccess: false } });
+    const { container } = renderItinerary();
+    await act(async () => {});
+    expect(lockedStops(container)).toHaveLength(3);
+    expect(screen.queryByText(SECRET_3)).not.toBeInTheDocument();
   });
 
   it("acheteur à l'unité : contenu complet, comme avant", async () => {

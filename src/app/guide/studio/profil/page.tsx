@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useAuth } from '@/lib/auth/auth-context';
@@ -29,17 +31,17 @@ export default function StudioProfilPage() {
   const [saveState, setSaveState] = useState<SaveState>('idle');
   const [saveError, setSaveError] = useState<string | null>(null);
   const { locale } = useStudioLocale();
-  const copy = useMemo(() => locale === 'en' ? {
-    notFound: 'Profile not found. Contact the team.', loadError: 'Unable to load your profile.', saveError: 'Unable to save your profile.',
-    guideOnly: 'The Studio is for guides. Create a guide profile to get started.', unexpected: 'Unexpected error.', retry: 'Try again',
-    eyebrow: 'My profile · public', titleStart: 'How you', titleEmphasis: 'appear', intro: 'Travellers see this profile when they listen to your tours. Treat it with care: it is your signature.',
-    saving: 'Saving...', save: 'Save changes', saved: 'Changes saved.', untitled: 'Untitled tour',
-  } : {
+  const copy = useMemo(() => localizeValue(locale, {
     notFound: 'Profil introuvable. Contactez l’équipe.', loadError: 'Impossible de charger votre profil.', saveError: 'Erreur lors de la sauvegarde.',
     guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.', unexpected: 'Erreur inattendue.', retry: 'Réessayer',
     eyebrow: 'Mon profil · public', titleStart: 'Comment vous', titleEmphasis: 'apparaissez', intro: 'Ce profil est visible des voyageurs qui écoutent vos visites. Soignez-le : c’est votre signature.',
     saving: 'Enregistrement...', save: 'Enregistrer les modifications', saved: 'Modifications enregistrées.', untitled: 'Visite sans titre',
-  }, [locale]);
+  }, {
+    notFound: 'Profile not found. Contact the team.', loadError: 'Unable to load your profile.', saveError: 'Unable to save your profile.',
+    guideOnly: 'The Studio is for guides. Create a guide profile to get started.', unexpected: 'Unexpected error.', retry: 'Try again',
+    eyebrow: 'My profile · public', titleStart: 'How you', titleEmphasis: 'appear', intro: 'Travellers see this profile when they listen to your tours. Treat it with care: it is your signature.',
+    saving: 'Saving...', save: 'Save changes', saved: 'Changes saved.', untitled: 'Untitled tour',
+  }), [locale]);
 
   const load = useCallback(async (guideId: string) => {
     setIsLoading(true);

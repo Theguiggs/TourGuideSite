@@ -1,3 +1,4 @@
+import { extendCopy } from '@/lib/i18n/translate';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MesVisitesContent } from '@/components/catalogue/mes-visites-content';
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
   alternates: {
     canonical: '/mes-achats',
-    languages: {fr: '/mes-achats', en: '/en/my-purchases'},
+    languages: extendCopy({fr: '/mes-achats', en: '/en/my-purchases'}),
   },
 };
 

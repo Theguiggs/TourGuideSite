@@ -14,6 +14,8 @@ export interface PublicTourScene {
 
 export interface PublishedTourContent {
   tourId: string;
+  /** Authoritative server entitlement; absent only for legacy responses. */
+  hasFullAccess?: boolean;
   coverUrl?: string;
   scenes: PublicTourScene[];
   walkPath: { latitude: number; longitude: number }[];
@@ -67,6 +69,10 @@ function urlMap(value: unknown): Record<string, string> | undefined {
 export type PublishedTourContentAuthMode = 'identityPool' | 'userPool';
 
 export interface PublishedTourContentQueryClient {
+  graphql?: (options: { query: string; variables: { tourId: string }; authMode: PublishedTourContentAuthMode }) => Promise<{
+    data?: { getPublishedTourContent?: unknown };
+    errors?: Array<{ message: string }>;
+  }>;
   queries: {
     getPublishedTourContent(
       input: { tourId: string },
@@ -75,12 +81,44 @@ export interface PublishedTourContentQueryClient {
   };
 }
 
+// Custom Amplify operations do not support selectionSet. Query this field
+// explicitly without changing generated outputs before backend deployment.
+const CONTENT_WITH_ACCESS_QUERY = `query PublishedTourContentWithAccess($tourId: ID!) {
+  getPublishedTourContent(tourId: $tourId) {
+    tourId hasFullAccess coverUrl mediaExpiresAt
+    scenes { id order title description audioKey audioUrl photos photoUrls translatedAudioUrls latitude longitude }
+    walkPath { latitude longitude }
+  }
+}`;
+
+/** Only an old schema missing this exact field permits the legacy query. */
+function missingAccessField(value: unknown): boolean {
+  if (!value || typeof value !== 'object') return false;
+  const errors = (value as { errors?: unknown }).errors;
+  return Array.isArray(errors) && errors.length > 0 && errors.every(error => {
+    const message = error && typeof error === 'object' ? (error as { message?: unknown }).message : null;
+    return typeof message === 'string' && (
+      /Cannot query field ["']hasFullAccess["'] on type ["']PublishedTourContent["']/.test(message)
+      || /FieldUndefined.*Field ['"]hasFullAccess['"] in type ['"]PublishedTourContent['"] is undefined/.test(message)
+    );
+  });
+}
+
 export async function queryPublishedTourContent(
   client: PublishedTourContentQueryClient,
   tourId: string,
   authMode: PublishedTourContentAuthMode = 'identityPool',
 ): Promise<PublishedTourContent> {
-  const result = await client.queries.getPublishedTourContent({ tourId }, { authMode });
+  let result: { data?: unknown; errors?: Array<{ message: string }> } | undefined;
+  if (client.graphql && authMode === 'userPool') {
+    try {
+      const response = await client.graphql({ query: CONTENT_WITH_ACCESS_QUERY, variables: { tourId }, authMode });
+      if (!missingAccessField(response)) result = { data: response.data?.getPublishedTourContent, errors: response.errors };
+    } catch (error) {
+      if (!missingAccessField(error)) throw error;
+    }
+  }
+  result ??= await client.queries.getPublishedTourContent({ tourId }, { authMode });
   if (result.errors?.length) {
     throw new Error(result.errors.map((error) => error.message).join(', '));
   }
@@ -112,6 +150,7 @@ export async function mapWithConcurrency<T, R>(
 export function parsePublishedTourContent(value: unknown): PublishedTourContent | null {
   if (!value || typeof value !== 'object') return null;
   const candidate = value as Record<string, unknown>;
+  if (candidate.hasFullAccess != null && typeof candidate.hasFullAccess !== 'boolean') return null;
   if (
     typeof candidate.tourId !== 'string' ||
     !Array.isArray(candidate.scenes) ||
@@ -206,6 +245,7 @@ export function parsePublishedTourContent(value: unknown): PublishedTourContent 
       : undefined;
   return {
     tourId: candidate.tourId,
+    ...(typeof candidate.hasFullAccess === 'boolean' ? { hasFullAccess: candidate.hasFullAccess } : {}),
     ...(coverUrl ? { coverUrl } : {}),
     scenes,
     walkPath,

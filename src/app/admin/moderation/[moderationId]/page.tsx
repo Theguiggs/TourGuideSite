@@ -1,4 +1,6 @@
 'use client';
+import { useAdminCopy } from '@/lib/admin/use-admin-copy';
+
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
@@ -53,12 +55,12 @@ import type {
   RejectionCategory,
 } from '@/types/moderation';
 import { PageTitle } from '@murmure/design-system/web';
-import { languageLabel } from '@/lib/i18n/languages';
 import { LangChip } from '@/components/i18n/LangChip';
 
 const SERVICE_NAME = 'ModerationReviewPage';
 
 function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; photosRefs: string[]; order: number }> }) {
+  const a = useAdminCopy();
   const [lightbox, setLightbox] = useState<{ s3Key: string; title: string } | null>(null);
   const allPhotos = scenes.flatMap((s) =>
     s.photosRefs.map((ref, i) => ({ s3Key: ref, title: `${s.title} — Photo ${i + 1}`, sceneOrder: s.order })),
@@ -68,7 +70,7 @@ function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; p
   return (
     <>
       <div className="bg-card rounded-md border border-line p-4">
-        <h3 className="text-body font-semibold text-ink mb-3">Photos ({allPhotos.length})</h3>
+        <h3 className="text-body font-semibold text-ink mb-3">{a("Photos (")}{allPhotos.length})</h3>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
           {allPhotos.map((photo, i) => (
             <button
@@ -99,7 +101,7 @@ function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; p
           <button
             onClick={() => setLightbox(null)}
             className="absolute top-4 right-4 text-white text-h4 hover:text-ink-20 z-10"
-            aria-label="Fermer"
+            aria-label={a("Fermer")}
           >
             ✕
           </button>
@@ -122,7 +124,7 @@ function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; p
                   <button
                     onClick={(e) => { e.stopPropagation(); setLightbox(allPhotos[idx - 1]); }}
                     className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-h3 hover:text-ink-20 bg-black/40 rounded-pill w-12 h-12 flex items-center justify-center"
-                    aria-label="Précédente"
+                    aria-label={a("Précédente")}
                   >
                     ‹
                   </button>
@@ -131,7 +133,7 @@ function PhotoGallery({ scenes }: { scenes: Array<{ id: string; title: string; p
                   <button
                     onClick={(e) => { e.stopPropagation(); setLightbox(allPhotos[idx + 1]); }}
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-h3 hover:text-ink-20 bg-black/40 rounded-pill w-12 h-12 flex items-center justify-center"
-                    aria-label="Suivante"
+                    aria-label={a("Suivante")}
                   >
                     ›
                   </button>
@@ -171,6 +173,7 @@ function parseTranslationMap(value: unknown): Record<string, string> {
 }
 
 export default function ModerationReviewPage() {
+  const a = useAdminCopy();
   const params = useParams();
   const searchParams = useSearchParams();
   const moderationId = params.moderationId as string;
@@ -323,7 +326,7 @@ export default function ModerationReviewPage() {
         if (!cancelled) {
           logger.error(SERVICE_NAME, 'Chargement de la revue impossible', { error: String(error) });
           setDetail(null);
-          setErrorMessage('Impossible de charger les données de modération. Réessayez.');
+          setErrorMessage(a("Impossible de charger les données de modération. Réessayez."));
         }
       } finally {
         if (!cancelled) setLoading(false);
@@ -354,9 +357,9 @@ export default function ModerationReviewPage() {
           dependentDataLoaded: routeLoaded && metadataLoaded && (!isTranslation || segmentsLoaded),
           translatedTourTitle: translatedTitles[activePreviewLang] ?? null,
           translatedTourDescription: translatedDescriptions[activePreviewLang] ?? null,
-        })
+        }, a.locale)
       : null,
-    [activePreviewLang, detail, guideRoutePath, isTranslation, metadataLoaded, routeLoaded, segmentsByScene, segmentsLoaded, translatedDescriptions, translatedTitles],
+    [a.locale, activePreviewLang, detail, guideRoutePath, isTranslation, metadataLoaded, routeLoaded, segmentsByScene, segmentsLoaded, translatedDescriptions, translatedTitles],
   );
   const canApprove = canApproveAdminReview(validationReport, checklist);
   const currentIndex = queueIds.indexOf(moderationId);
@@ -391,13 +394,13 @@ export default function ModerationReviewPage() {
         detail.sessionId, activePreviewLang, 'approved',
       );
       if (langResult.ok) {
-        addTourComment(detail.tourId, { message: overallNotes || `Langue ${activePreviewLang.toUpperCase()} approuvée`, author: 'admin', authorName: 'Admin', action: 'approved', language: activePreviewLang }).catch(() => {});
+        addTourComment(detail.tourId, { message: overallNotes || a("Langue {0} approuvée", activePreviewLang.toUpperCase()), author: 'admin', authorName: a("Admin"), action: 'approved', language: activePreviewLang }).catch(() => {});
         setSubmitting(false);
-        setSuccessMessage(`Langue ${activePreviewLang.toUpperCase()} approuvée !`);
+        setSuccessMessage(a("Langue {0} approuvée !", activePreviewLang.toUpperCase()));
         return;
       }
       setSubmitting(false);
-      setErrorMessage(langResult.error?.message || 'Erreur');
+      setErrorMessage(langResult.error?.message || a("Erreur"));
       return;
     }
 
@@ -420,9 +423,9 @@ export default function ModerationReviewPage() {
       });
       sendGuideNotification(detail.guideId, detail.tourId, detail.tourTitle, 'validate')
         .catch((error: unknown) => logger.warn(SERVICE_NAME, 'Notification de validation impossible', { error: String(error) }));
-      setSuccessMessage('Visite approuvée et publiée !');
+      setSuccessMessage(a("Visite approuvée et publiée !"));
     } else {
-      setErrorMessage(result.error || 'Erreur lors de l\'approbation');
+      setErrorMessage(result.error || a("Erreur lors de l'approbation"));
     }
   };
 
@@ -440,13 +443,13 @@ export default function ModerationReviewPage() {
         { global: rejectFeedback },
       );
       if (langResult.ok) {
-        addTourComment(detail.tourId, { message: rejectFeedback, author: 'admin', authorName: 'Admin', action: 'rejected', language: activePreviewLang }).catch(() => {});
+        addTourComment(detail.tourId, { message: rejectFeedback, author: 'admin', authorName: a("Admin"), action: 'rejected', language: activePreviewLang }).catch(() => {});
         setSubmitting(false);
-        setSuccessMessage(`Langue ${activePreviewLang.toUpperCase()} refusée.`);
+        setSuccessMessage(a("Langue {0} refusée.", activePreviewLang.toUpperCase()));
         return;
       }
       setSubmitting(false);
-      setErrorMessage(langResult.error?.message || 'Erreur');
+      setErrorMessage(langResult.error?.message || a("Erreur"));
       return;
     }
 
@@ -462,9 +465,9 @@ export default function ModerationReviewPage() {
       });
       sendGuideNotification(detail.guideId, detail.tourId, detail.tourTitle, 'reject', rejectFeedback)
         .catch((error: unknown) => logger.warn(SERVICE_NAME, 'Notification de refus impossible', { error: String(error) }));
-      setSuccessMessage('Retour envoyé au guide.');
+      setSuccessMessage(a("Retour envoyé au guide."));
     } else {
-      setErrorMessage(result.error || 'Erreur lors du rejet');
+      setErrorMessage(result.error || a("Erreur lors du rejet"));
     }
   };
 
@@ -481,13 +484,13 @@ export default function ModerationReviewPage() {
         { global: revisionFeedback },
       );
       if (langResult.ok) {
-        addTourComment(detail.tourId, { message: revisionFeedback, author: 'admin', authorName: 'Admin', action: 'revision', language: activePreviewLang }).catch(() => {});
+        addTourComment(detail.tourId, { message: revisionFeedback, author: 'admin', authorName: a("Admin"), action: 'revision', language: activePreviewLang }).catch(() => {});
         setSubmitting(false);
-        setSuccessMessage(`Révision demandée pour ${activePreviewLang.toUpperCase()}.`);
+        setSuccessMessage(a("Révision demandée pour {0}.", activePreviewLang.toUpperCase()));
         return;
       }
       setSubmitting(false);
-      setErrorMessage(langResult.error?.message || 'Erreur');
+      setErrorMessage(langResult.error?.message || a("Erreur"));
       return;
     }
 
@@ -500,9 +503,9 @@ export default function ModerationReviewPage() {
       });
       sendGuideNotification(detail.guideId, detail.tourId, detail.tourTitle, 'revision', revisionFeedback)
         .catch((error: unknown) => logger.warn(SERVICE_NAME, 'Notification de révision impossible', { error: String(error) }));
-      setSuccessMessage('Renvoyé au guide pour corrections.');
+      setSuccessMessage(a("Renvoyé au guide pour corrections."));
     } else {
-      setErrorMessage(result.error || 'Erreur lors du renvoi');
+      setErrorMessage(result.error || a("Erreur lors du renvoi"));
     }
   };
 
@@ -515,7 +518,7 @@ export default function ModerationReviewPage() {
       sceneId: commentSceneId || undefined,
       comment: commentText.trim(),
       reviewerId: 'admin-current',
-      reviewerName: 'Admin',
+      reviewerName: a("Admin"),
     });
     setSubmitting(false);
 
@@ -529,14 +532,14 @@ export default function ModerationReviewPage() {
         comment: commentText.trim(),
         date: new Date().toISOString(),
         reviewerId: 'admin-current',
-        reviewerName: 'Admin',
+        reviewerName: a("Admin"),
       };
       setLocalComments((prev) => [...prev, newComment]);
       setCommentText('');
       setCommentSceneId('');
       setShowCommentForm(false);
     } else {
-      setErrorMessage(result.error || 'Erreur lors de l\'ajout du commentaire');
+      setErrorMessage(result.error || a("Erreur lors de l'ajout du commentaire"));
     }
   };
 
@@ -574,7 +577,7 @@ export default function ModerationReviewPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <p className="text-ink-60">Chargement...</p>
+        <p className="text-ink-60">{a("Chargement...")}</p>
       </div>
     );
   }
@@ -583,16 +586,12 @@ export default function ModerationReviewPage() {
     const failed = Boolean(errorMessage);
     return (
       <div className="text-center py-12" role={failed ? 'alert' : undefined}>
-        <p className="text-ink-60 text-h6">{failed ? errorMessage : 'Élément de modération introuvable.'}</p>
+        <p className="text-ink-60 text-h6">{failed ? errorMessage : a("Élément de modération introuvable.")}</p>
         <div className="mt-4 flex justify-center gap-4">
           {failed && (
-            <button type="button" onClick={() => setReloadAttempt((n) => n + 1)} className="rounded-lg border border-danger px-4 py-2 text-body font-medium text-danger hover:bg-card">
-              Réessayer
-            </button>
+            <button type="button" onClick={() => setReloadAttempt((n) => n + 1)} className="rounded-lg border border-danger px-4 py-2 text-body font-medium text-danger hover:bg-card"> {a("Réessayer")} </button>
           )}
-          <Link href="/admin/moderation" className="text-danger hover:underline inline-block py-2">
-            Retour à la file d&apos;attente
-          </Link>
+          <Link href="/admin/moderation" className="text-danger hover:underline inline-block py-2"> {a("Retour à la file d'attente")} </Link>
         </div>
       </div>
     );
@@ -608,9 +607,7 @@ export default function ModerationReviewPage() {
             href="/admin/moderation"
             data-testid="back-to-queue"
             className="mt-6 inline-block rounded-lg bg-grenadine px-5 py-2.5 text-body font-medium text-white hover:opacity-90"
-          >
-            Retour à la file d&apos;attente
-          </Link>
+          > {a("Retour à la file d'attente")} </Link>
         </div>
       </div>
     );
@@ -625,16 +622,14 @@ export default function ModerationReviewPage() {
       {/* Top bar */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <Link href="/admin/moderation" className="text-body text-ink-60 hover:text-danger">
-            ← Retour à la file d&apos;attente
-          </Link>
+          <Link href="/admin/moderation" className="text-body text-ink-60 hover:text-danger"> {a("← Retour à la file d'attente")} </Link>
           <div className="flex items-center gap-3 mt-1">
             <PageTitle size="h5">
               {(activePreviewLang !== detail.languePrincipale && translatedTitles[activePreviewLang]) ? translatedTitles[activePreviewLang] : detail.tourTitle}
             </PageTitle>
             {detail.languePrincipale && (
               <span className="bg-paper-deep text-ink-60 text-meta font-medium px-2 py-0.5 rounded">
-                {languageLabel(detail.languePrincipale)}
+                {a.language(detail.languePrincipale)}
               </span>
             )}
             <span
@@ -648,10 +643,10 @@ export default function ModerationReviewPage() {
               data-testid="moderation-narration-mode"
             >
               {detail.narrationMode === 'recording'
-                ? 'Voix humaine'
+                ? a("Voix humaine")
                 : detail.narrationMode === 'tts_on_demand'
-                  ? 'TTS à la demande'
-                  : 'Mode à migrer'}
+                  ? a("TTS à la demande")
+                  : a("Mode à migrer")}
             </span>
             {detail.themes.length > 0 && detail.themes.map((t) => (
               <span key={t} className="bg-grenadine-soft text-grenadine text-meta px-2 py-0.5 rounded-pill">{t}</span>
@@ -659,16 +654,12 @@ export default function ModerationReviewPage() {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-meta text-ink-40">En revue depuis {elapsedMinutes} min</span>
+          <span className="text-meta text-ink-40">{a("En revue depuis")} {elapsedMinutes} min</span>
           {prevId && (
-            <Link href={`/admin/moderation/${prevId}`} className="text-body text-ink-60 hover:text-danger">
-              ← Précédent
-            </Link>
+            <Link href={`/admin/moderation/${prevId}`} className="text-body text-ink-60 hover:text-danger"> {a("← Précédent")} </Link>
           )}
           {nextId && (
-            <Link href={`/admin/moderation/${nextId}`} className="text-body text-ink-60 hover:text-danger">
-              Suivant →
-            </Link>
+            <Link href={`/admin/moderation/${nextId}`} className="text-body text-ink-60 hover:text-danger"> {a("Suivant →")} </Link>
           )}
         </div>
       </div>
@@ -686,20 +677,17 @@ export default function ModerationReviewPage() {
                 <p className="font-medium text-ink">
                   {detail.guideName}
                   {detail.isFirstSubmission && (
-                    <span className="ml-2 bg-mer-soft text-mer text-meta font-medium px-2 py-0.5 rounded-pill">
-                      Nouveau guide
-                    </span>
+                    <span className="ml-2 bg-mer-soft text-mer text-meta font-medium px-2 py-0.5 rounded-pill"> {a("Nouveau guide")} </span>
                   )}
                 </p>
                 <p className="text-body text-ink-60">
-                  {detail.city} &middot; {detail.guideSubmissionCount} soumissions &middot; {detail.guideApprovalRate}% approuvé
-                  {detail.guideTourCount > 0 && <> &middot; {detail.guideTourCount} parcours</>}
+                  {detail.city} &middot; {detail.guideSubmissionCount} {a("soumissions ·")} {detail.guideApprovalRate}{a("% approuvé")} {detail.guideTourCount > 0 && <> &middot; {detail.guideTourCount} {a("parcours")}</>}
                 </p>
                 {detail.guideBio && (
                   <p className="text-meta text-ink-40 mt-1">{detail.guideBio}</p>
                 )}
                 {detail.guideLanguages.length > 0 && (
-                  <p className="text-meta text-ink-40 mt-0.5">Langues: {detail.guideLanguages.join(', ')}</p>
+                  <p className="text-meta text-ink-40 mt-0.5">{a("Langues:")} {detail.guideLanguages.join(', ')}</p>
                 )}
               </div>
             </div>
@@ -708,11 +696,11 @@ export default function ModerationReviewPage() {
           {/* Legacy admin comments */}
           {globalComments.length > 0 && (
             <div className="bg-ocre-soft border border-ocre rounded-md px-4 py-3">
-              <p className="text-body font-semibold text-ocre-ink mb-2">Commentaires admin existants</p>
+              <p className="text-body font-semibold text-ocre-ink mb-2">{a("Commentaires admin existants")}</p>
               {globalComments.map((c) => (
                 <div key={c.id} className="text-body text-ocre-ink mb-1">
                   <span className="font-medium">{c.reviewerName}</span> — {c.comment}
-                  <span className="text-meta text-ocre-ink ml-2">{new Date(c.date).toLocaleDateString('fr-FR')}</span>
+                  <span className="text-meta text-ocre-ink ml-2">{a.date(c.date)}</span>
                 </div>
               ))}
             </div>
@@ -725,36 +713,35 @@ export default function ModerationReviewPage() {
           {activePreviewLang !== detail.languePrincipale ? (
             <div className="space-y-4">
               <div className="flex items-center gap-2 bg-grenadine-soft border border-grenadine rounded-lg px-4 py-2">
-                <LangChip code={activePreviewLang} />
-                <span className="text-body font-medium text-grenadine">
-                  Comparaison {detail.languePrincipale.toUpperCase()} / {activePreviewLang.toUpperCase()}
+                <LangChip code={activePreviewLang} locale={a.locale} />
+                <span className="text-body font-medium text-grenadine"> {a("Comparaison")} {detail.languePrincipale.toUpperCase()} / {activePreviewLang.toUpperCase()}
                 </span>
               </div>
 
               {/* Description: FR vs translated */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="bg-card rounded-md border border-line p-4">
-                  <h3 className="text-body font-semibold text-ink-40 mb-2">Description ({detail.languePrincipale.toUpperCase()})</h3>
+                  <h3 className="text-body font-semibold text-ink-40 mb-2">{a("Description (")}{detail.languePrincipale.toUpperCase()})</h3>
                   <p className="text-body text-ink-60">{detail.descriptionLongue || detail.description}</p>
                 </div>
                 <div className="bg-card rounded-md border border-grenadine p-4">
-                  <h3 className="text-body font-semibold text-grenadine mb-2">Description ({activePreviewLang.toUpperCase()})</h3>
+                  <h3 className="text-body font-semibold text-grenadine mb-2">{a("Description (")}{activePreviewLang.toUpperCase()})</h3>
                   <p className="text-body text-ink">
-                    {translatedDescriptions[activePreviewLang] || <span className="italic text-ocre-ink">Non traduite</span>}
+                    {translatedDescriptions[activePreviewLang] || <span className="italic text-ocre-ink">{a("Non traduite")}</span>}
                   </p>
                 </div>
               </div>
 
               {/* Scenes: FR left / translated right — stacked per scene */}
-              <h3 className="text-h6 font-semibold text-ink">Scènes ({detail.scenes.length})</h3>
+              <h3 className="text-h6 font-semibold text-ink">{a("Scènes (")}{detail.scenes.length})</h3>
               {loadingSegments ? (
-                <p className="text-body text-ink-40 animate-pulse">Chargement...</p>
+                <p className="text-body text-ink-40 animate-pulse">{a("Chargement...")}</p>
               ) : (
               <div className="space-y-4">
                 {detail.scenes.map((scene) => {
                   const langSegs = (segmentsByScene[scene.id] ?? []).filter((s) => s.language === activePreviewLang);
                   const seg = langSegs[0];
-                  const presentation = getModerationScenePresentation(scene, seg, true);
+                  const presentation = getModerationScenePresentation(scene, seg, true, a.locale);
                   const displayTitle = presentation.title;
                   const displayText = presentation.text;
                   const displayAudio = presentation.audioKey;
@@ -779,7 +766,7 @@ export default function ModerationReviewPage() {
                             <span className="text-eyebrow text-ink-40">{detail.languePrincipale.toUpperCase()}</span>
                           </div>
                         )}
-                        <p className="text-meta text-ink-60 leading-relaxed whitespace-pre-wrap">{scene.transcriptText ?? 'Aucun texte'}</p>
+                        <p className="text-meta text-ink-60 leading-relaxed whitespace-pre-wrap">{scene.transcriptText ?? a("Aucun texte")}</p>
                       </div>
                       {/* Translated (right) */}
                       <div className="p-4 bg-card">
@@ -787,7 +774,7 @@ export default function ModerationReviewPage() {
                           <span className="w-6 h-6 bg-grenadine text-white rounded-pill flex items-center justify-center text-meta font-bold">{scene.order}</span>
                           <p className="font-medium text-ink text-body">{displayTitle}</p>
                           <span className={`text-eyebrow ml-auto px-1.5 py-0.5 rounded ${seg ? 'bg-olive-soft text-olive' : 'bg-ocre-soft text-ocre-ink'}`}>
-                            {seg ? `${activePreviewLang.toUpperCase()} OK` : `${activePreviewLang.toUpperCase()} manquant`}
+                            {seg ? `${activePreviewLang.toUpperCase()} OK` : a("{0} manquant", activePreviewLang.toUpperCase())}
                           </span>
                         </div>
                         {displayAudio && (
@@ -805,7 +792,7 @@ export default function ModerationReviewPage() {
                         {displayText ? (
                           <p className="text-meta text-ink leading-relaxed">{displayText}</p>
                         ) : (
-                          <p className="text-meta text-ocre-ink italic">Traduction non disponible</p>
+                          <p className="text-meta text-ocre-ink italic">{a("Traduction non disponible")}</p>
                         )}
                       </div>
                     </div>
@@ -821,7 +808,7 @@ export default function ModerationReviewPage() {
 
               {/* Audio player bar */}
               <div className="sticky bottom-0" data-testid="tourist-audio-player">
-                <AudioPlayerBar label="Lecture audio" />
+                <AudioPlayerBar label={a("Lecture audio")} />
               </div>
             </div>
           ) : (
@@ -838,7 +825,7 @@ export default function ModerationReviewPage() {
                     : 'text-ink-60 hover:text-ink-80'
                 }`}
               >
-                {tab === 'tourist' ? '👁 Aperçu touriste' : tab === 'overview' ? 'Général' : tab === 'scenes' ? `Scènes (${detail.scenes.length})` : `POIs (${detail.scenes.filter((s) => hasValidCoordinates(s.latitude, s.longitude)).length}/${detail.scenes.length})`}
+                {tab === 'tourist' ? a("👁 Aperçu touriste") : tab === 'overview' ? a("Général") : tab === 'scenes' ? a("Scènes ({0})", detail.scenes.length) : `POIs (${detail.scenes.filter((s) => hasValidCoordinates(s.latitude, s.longitude)).length}/${detail.scenes.length})`}
               </button>
             ))}
           </div>
@@ -860,15 +847,15 @@ export default function ModerationReviewPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <span className={`text-meta font-bold px-2 py-0.5 rounded ${detail.purchaseType === 'free' ? 'bg-olive text-olive' : 'bg-ocre-soft text-ocre-ink'}`}>
                       {detail.purchaseType === 'free'
-                        ? 'GRATUIT'
+                        ? a("GRATUIT")
                         : detail.purchaseType === 'paid'
                           ? 'PAYANT'
                           : detail.purchaseType === 'subscription_only'
                             ? 'ABONNEMENT'
-                            : 'ACCÈS NON RENSEIGNÉ'}
+                            : a("ACCÈS NON RENSEIGNÉ")}
                     </span>
                     <span className="bg-card/30 text-white text-meta font-bold px-2 py-0.5 rounded">
-                      {languageLabel(activePreviewLang)}
+                      {a.language(activePreviewLang)}
                     </span>
                     {detail.themes.map((t) => (
                       <span key={t} className="bg-card/20 text-white text-meta px-2 py-0.5 rounded">{t}</span>
@@ -877,31 +864,28 @@ export default function ModerationReviewPage() {
                   <h2 className="text-h5 font-bold mb-1">
                     {activePreviewLang === detail.languePrincipale
                       ? detail.tourTitle
-                      : translatedTitles[activePreviewLang] || 'Titre non traduit'}
+                      : translatedTitles[activePreviewLang] || a("Titre non traduit")}
                   </h2>
                   <p className="text-grenadine-soft text-body">
-                    {detail.city} &middot; {detail.duration} min &middot; {detail.distance} km &middot; {detail.poiCount} points d&apos;intérêt
-                    &middot; Difficulté : {detail.difficulty}
+                    {detail.city} &middot; {detail.duration} min &middot; {detail.distance} km &middot; {detail.poiCount} {a("points d'intérêt · Difficulté :")} {detail.difficulty}
                   </p>
-                  <p className="text-white text-body mt-1 font-semibold" data-testid="moderation-monetization">
-                    Accès : {detail.purchaseType === 'free'
+                  <p className="text-white text-body mt-1 font-semibold" data-testid="moderation-monetization"> {a("Accès :")} {detail.purchaseType === 'free'
                       ? 'Gratuite'
                       : detail.purchaseType === 'paid'
-                        ? `Payante — ${typeof detail.priceCents === 'number' ? `${(detail.priceCents / 100).toFixed(2).replace('.', ',')} €` : 'prix non défini'}`
+                        ? a("Payante — {0}", typeof detail.priceCents === 'number' ? `${(detail.priceCents / 100).toFixed(2).replace('.', ',')} €` : a("prix non défini"))
                         : detail.purchaseType === 'subscription_only'
-                          ? 'Abonnés uniquement'
-                          : 'non renseigné'}
+                          ? a("Abonnés uniquement")
+                          : a("non renseigné")}
                   </p>
-                  <p className="text-white text-body mt-1" data-testid="moderation-provenance">
-                    Origine éditoriale : {detail.contentProvenance === 'human'
-                      ? 'écrit par le guide'
+                  <p className="text-white text-body mt-1" data-testid="moderation-provenance"> {a("Origine éditoriale :")} {detail.contentProvenance === 'human'
+                      ? a("écrit par le guide")
                       : detail.contentProvenance === 'mixed'
-                        ? 'créé avec l’aide de l’IA'
+                        ? a("créé avec l’aide de l’IA")
                         : detail.contentProvenance === 'ai'
-                          ? 'créé principalement avec l’IA'
-                          : 'non renseignée'}
+                          ? a("créé principalement avec l’IA")
+                          : a("non renseignée")}
                     {(detail.contentProvenance === 'ai' || detail.contentProvenance === 'mixed') && (
-                      <span className="ml-2 font-semibold">Developed with AI</span>
+                      <span className="ml-2 font-semibold">{a("Developed with AI")}</span>
                     )}
                   </p>
                 </div>
@@ -914,10 +898,10 @@ export default function ModerationReviewPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-ink">{detail.guideName}</p>
-                  <p className="text-body text-ink-60">Guide local &middot; {detail.city}</p>
+                  <p className="text-body text-ink-60"> {a("Guide local ·")} {detail.city}</p>
                   {detail.guideBio && <p className="text-meta text-ink-40 mt-1 line-clamp-2">{detail.guideBio}</p>}
                   {detail.guideLanguages.length > 0 && (
-                    <p className="text-meta text-ink-40 mt-0.5">Langues : {detail.guideLanguages.join(', ')}</p>
+                    <p className="text-meta text-ink-40 mt-0.5">{a("Langues :")} {detail.guideLanguages.join(', ')}</p>
                   )}
                 </div>
               </div>
@@ -925,14 +909,13 @@ export default function ModerationReviewPage() {
               {/* Description — shows translated version when available */}
               {(detail.descriptionLongue || detail.description || activePreviewLang !== detail.languePrincipale) && (
                 <div className="bg-card rounded-md border border-line p-5">
-                  <h3 className="text-h6 font-semibold text-ink mb-2">
-                    À propos de cette visite ({activePreviewLang.toUpperCase()})
+                  <h3 className="text-h6 font-semibold text-ink mb-2"> {a("À propos de cette visite (")}{activePreviewLang.toUpperCase()})
                   </h3>
                   {activePreviewLang !== detail.languePrincipale && translatedDescriptions[activePreviewLang] ? (
                     <>
                       <p className="text-ink-80 leading-relaxed">{translatedDescriptions[activePreviewLang]}</p>
                       <details className="mt-2">
-                        <summary className="text-meta text-ink-40 cursor-pointer">Voir original (FR)</summary>
+                        <summary className="text-meta text-ink-40 cursor-pointer">{a("Voir original (FR)")}</summary>
                         <p className="text-body text-ink-40 mt-1 italic">{detail.descriptionLongue || detail.description}</p>
                       </details>
                     </>
@@ -941,9 +924,7 @@ export default function ModerationReviewPage() {
                       <p className="text-ink-80 leading-relaxed">{detail.descriptionLongue || detail.description}</p>
                     </>
                   ) : (
-                    <div className="rounded-lg border border-ocre bg-ocre-soft p-3 text-body text-ocre-ink">
-                      Description non traduite en {activePreviewLang.toUpperCase()}. Aucun texte source n’est utilisé comme traduction.
-                    </div>
+                    <div className="rounded-lg border border-ocre bg-ocre-soft p-3 text-body text-ocre-ink"> {a("Description non traduite en")} {activePreviewLang.toUpperCase()}{a(". Aucun texte source n’est utilisé comme traduction.")} </div>
                   )}
                 </div>
               )}
@@ -951,12 +932,10 @@ export default function ModerationReviewPage() {
               {/* Interactive map — like catalogue TourMap */}
               {detail.scenes.some((s) => hasValidCoordinates(s.latitude, s.longitude)) && (
                 <div className="bg-card rounded-md border border-line overflow-hidden">
-                  <h3 className="text-h6 font-semibold text-ink p-4 pb-0">
-                    Itinéraire
-                    {guideRoutePath ? (
-                      <span className="ml-2 text-meta font-normal text-success">· Tracé du guide</span>
+                  <h3 className="text-h6 font-semibold text-ink p-4 pb-0"> {a("Itinéraire")} {guideRoutePath ? (
+                      <span className="ml-2 text-meta font-normal text-success">{a("· Tracé du guide")}</span>
                     ) : (
-                      <span className="ml-2 text-meta font-normal text-ocre-ink">· Tracé auto (le guide n&apos;a pas persisté son tracé)</span>
+                      <span className="ml-2 text-meta font-normal text-ocre-ink">{a("· Tracé auto (le guide n'a pas persisté son tracé)")}</span>
                     )}
                   </h3>
                   <div className="h-80">
@@ -981,12 +960,11 @@ export default function ModerationReviewPage() {
 
               {/* Unified scene review — one card per scene with text + audio + photos */}
               <div className="bg-card rounded-md border border-line p-5">
-                <h3 className="text-h6 font-semibold text-ink mb-4">
-                  Scènes ({detail.scenes.length}) — {activePreviewLang.toUpperCase()}
+                <h3 className="text-h6 font-semibold text-ink mb-4"> {a("Scènes (")}{detail.scenes.length}) — {activePreviewLang.toUpperCase()}
                 </h3>
                 {/* Diagnostic — shows segment state per scene */}
                 <details className="text-eyebrow text-ink-40 mb-2 border border-dashed border-line rounded p-2">
-                  <summary>Diagnostic segments ({activePreviewLang.toUpperCase()})</summary>
+                  <summary>{a("Diagnostic segments (")}{activePreviewLang.toUpperCase()})</summary>
                   <pre className="mt-1 whitespace-pre-wrap">{JSON.stringify(
                     detail.scenes.map((sc) => {
                       const segs = (segmentsByScene[sc.id] ?? []);
@@ -1007,7 +985,7 @@ export default function ModerationReviewPage() {
                   )}</pre>
                 </details>
                 {loadingSegments ? (
-                  <p className="text-body text-ink-40 animate-pulse">Chargement des segments...</p>
+                  <p className="text-body text-ink-40 animate-pulse">{a("Chargement des segments...")}</p>
                 ) : (
                 <div className="space-y-4">
                   {detail.scenes.map((scene) => {
@@ -1017,7 +995,7 @@ export default function ModerationReviewPage() {
                     const seg = langSegs[0];
 
                     // Resolve content for active language
-                    const presentation = getModerationScenePresentation(scene, seg, !isSourceLang);
+                    const presentation = getModerationScenePresentation(scene, seg, !isSourceLang, a.locale);
                     const displayTitle = presentation.title;
                     const displayText = presentation.text;
                     const displayAudio = presentation.audioKey;
@@ -1042,7 +1020,7 @@ export default function ModerationReviewPage() {
                           </div>
                           {!isSourceLang && (
                             <span className={`text-meta px-2 py-0.5 rounded-pill ${hasTranslation ? 'bg-olive-soft text-olive' : 'bg-ocre-soft text-ocre-ink'}`}>
-                              {hasTranslation ? `${activePreviewLang.toUpperCase()} OK` : `${activePreviewLang.toUpperCase()} manquant`}
+                              {hasTranslation ? `${activePreviewLang.toUpperCase()} OK` : a("{0} manquant", activePreviewLang.toUpperCase())}
                             </span>
                           )}
                         </div>
@@ -1081,9 +1059,9 @@ export default function ModerationReviewPage() {
                             {displayText ? (
                               <p className="text-body text-ink-80 whitespace-pre-wrap">{displayText}</p>
                             ) : !isSourceLang ? (
-                              <p className="text-body text-ocre-ink italic">Traduction non disponible</p>
+                              <p className="text-body text-ocre-ink italic">{a("Traduction non disponible")}</p>
                             ) : (
-                              <p className="text-body text-ink-40 italic">Aucun texte</p>
+                              <p className="text-body text-ink-40 italic">{a("Aucun texte")}</p>
                             )}
                           </div>
                         </div>
@@ -1105,16 +1083,16 @@ export default function ModerationReviewPage() {
 
               {/* Global audio player bar */}
               <div className="sticky bottom-0" data-testid="tourist-audio-player">
-                <AudioPlayerBar label="Lecture audio" />
+                <AudioPlayerBar label={a("Lecture audio")} />
               </div>
 
               {/* Sidebar preview — like catalogue CTA card */}
               <div className="bg-grenadine-soft border border-grenadine rounded-md p-5">
-                <h3 className="text-h6 font-bold text-grenadine mb-3">Vivez cette visite</h3>
+                <h3 className="text-h6 font-bold text-grenadine mb-3">{a("Vivez cette visite")}</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
                   <div>
                     <p className="text-h5 font-bold text-grenadine">{detail.duration}</p>
-                    <p className="text-meta text-grenadine">minutes</p>
+                    <p className="text-meta text-grenadine">{a("minutes")}</p>
                   </div>
                   <div>
                     <p className="text-h5 font-bold text-grenadine">{detail.distance}</p>
@@ -1122,20 +1100,16 @@ export default function ModerationReviewPage() {
                   </div>
                   <div>
                     <p className="text-h5 font-bold text-grenadine">{detail.poiCount}</p>
-                    <p className="text-meta text-grenadine">points d&apos;intérêt</p>
+                    <p className="text-meta text-grenadine">{a("points d'intérêt")}</p>
                   </div>
                   <div>
                     <p className="text-h5 font-bold text-grenadine">{detail.difficulty}</p>
-                    <p className="text-meta text-grenadine">difficulté</p>
+                    <p className="text-meta text-grenadine">{a("difficulté")}</p>
                   </div>
                 </div>
                 <div className="mt-4 flex gap-2">
-                  <div className="flex-1 bg-paper-deep text-white text-center py-2.5 rounded-lg text-body font-medium opacity-50">
-                    Android (preview)
-                  </div>
-                  <div className="flex-1 bg-paper-deep text-white text-center py-2.5 rounded-lg text-body font-medium opacity-50">
-                    iOS (preview)
-                  </div>
+                  <div className="flex-1 bg-paper-deep text-white text-center py-2.5 rounded-lg text-body font-medium opacity-50"> {a("Android (preview)")} </div>
+                  <div className="flex-1 bg-paper-deep text-white text-center py-2.5 rounded-lg text-body font-medium opacity-50"> {a("iOS (preview)")} </div>
                 </div>
               </div>
             </div>
@@ -1146,19 +1120,19 @@ export default function ModerationReviewPage() {
             <div className="bg-card rounded-md border border-line p-4 space-y-4">
               {detail.descriptionLongue ? (
                 <>
-                  <h2 className="text-h6 font-semibold text-ink">Description ({activePreviewLang.toUpperCase()})</h2>
+                  <h2 className="text-h6 font-semibold text-ink">{a("Description (")}{activePreviewLang.toUpperCase()})</h2>
                   <p className="text-ink-80">
                     {(activePreviewLang !== detail.languePrincipale && translatedDescriptions[activePreviewLang])
                       ? translatedDescriptions[activePreviewLang]
                       : detail.descriptionLongue}
                   </p>
                   {activePreviewLang !== detail.languePrincipale && !translatedDescriptions[activePreviewLang] && (
-                    <p className="text-meta text-ocre-ink mt-1">Non traduite en {activePreviewLang.toUpperCase()}</p>
+                    <p className="text-meta text-ocre-ink mt-1">{a("Non traduite en")} {activePreviewLang.toUpperCase()}</p>
                   )}
                 </>
               ) : (
                 <>
-                  <h2 className="text-h6 font-semibold text-ink">Description</h2>
+                  <h2 className="text-h6 font-semibold text-ink">{a("Description")}</h2>
                   <p className="text-ink-80">{detail.description}</p>
                 </>
               )}
@@ -1169,9 +1143,9 @@ export default function ModerationReviewPage() {
                 <span>&middot;</span>
                 <span>{detail.distance} km</span>
                 <span>&middot;</span>
-                <span>Difficulté: {detail.difficulty}</span>
+                <span>{a("Difficulté:")} {detail.difficulty}</span>
                 <span>&middot;</span>
-                <span>Langue: {languageLabel(detail.languePrincipale)}</span>
+                <span>{a("Langue:")} {a.language(detail.languePrincipale)}</span>
               </div>
 
               {/* Themes/Tags */}
@@ -1208,7 +1182,7 @@ export default function ModerationReviewPage() {
             <div className="space-y-4">
               {sortedScenes.length === 0 ? (
                 <div className="text-center py-8 text-ink-40 bg-card rounded-md border border-line">
-                  <p>Aucune scène disponible</p>
+                  <p>{a("Aucune scène disponible")}</p>
                 </div>
               ) : (
                 sortedScenes.map((scene) => {
@@ -1217,7 +1191,7 @@ export default function ModerationReviewPage() {
                   const isSourceLang = activePreviewLang === detail.languePrincipale;
                   const sceneLangSegs = (segmentsByScene[scene.id] ?? []).filter((s) => s.language === activePreviewLang);
                   const sceneSeg = sceneLangSegs[0];
-                  const presentation = getModerationScenePresentation(scene, sceneSeg, !isSourceLang);
+                  const presentation = getModerationScenePresentation(scene, sceneSeg, !isSourceLang, a.locale);
                   const sceneDisplayTitle = presentation.title;
                   const sceneDisplayAudio = presentation.audioKey;
                   return (
@@ -1229,9 +1203,9 @@ export default function ModerationReviewPage() {
                         <div>
                           <h3 className="font-semibold text-ink">{sceneDisplayTitle}</h3>
                           <p className="text-meta text-ink-60">
-                            {sceneDisplayAudio ? (formatDuration(scene.durationSeconds) || 'Audio') : 'Pas d\'audio'}
+                            {sceneDisplayAudio ? (formatDuration(scene.durationSeconds) || 'Audio') : a("Pas d'audio")}
                             {' \u00b7 '}
-                            {scene.photosRefs.length} photo{scene.photosRefs.length !== 1 ? 's' : ''}
+                            {scene.photosRefs.length} {a("photo")}{scene.photosRefs.length !== 1 ? 's' : ''}
                             {!isSourceLang && <span className="ml-1 text-grenadine">({activePreviewLang.toUpperCase()})</span>}
                           </p>
                         </div>
@@ -1273,7 +1247,7 @@ export default function ModerationReviewPage() {
                       {/* Scene admin comments */}
                       {sceneComments.length > 0 && (
                         <div className="bg-ocre-soft border border-ocre rounded-lg p-3 mt-2">
-                          <p className="text-meta font-semibold text-ocre-ink mb-1">Commentaires</p>
+                          <p className="text-meta font-semibold text-ocre-ink mb-1">{a("Commentaires")}</p>
                           {sceneComments.map((c) => (
                             <p key={c.id} className="text-body text-ocre-ink">
                               <span className="font-medium">{c.reviewerName}:</span> {c.comment}
@@ -1291,7 +1265,7 @@ export default function ModerationReviewPage() {
           {/* POIs tab */}
           {activeContentTab === 'pois' && (
             <div className="bg-card rounded-md border border-line p-4">
-              <h2 className="text-h6 font-semibold text-ink mb-4">Points d&apos;intérêt</h2>
+              <h2 className="text-h6 font-semibold text-ink mb-4">{a("Points d'intérêt")}</h2>
 
               {/* Map */}
               {detail.scenes.some((s) => hasValidCoordinates(s.latitude, s.longitude)) && (
@@ -1325,7 +1299,7 @@ export default function ModerationReviewPage() {
                         </span>
                       )}
                       {!hasValidCoordinates(scene.latitude, scene.longitude) && (
-                        <span className="text-meta text-ocre-ink ml-auto">⚠ Pas de GPS</span>
+                        <span className="text-meta text-ocre-ink ml-auto">{a("⚠ Pas de GPS")}</span>
                       )}
                     </div>
                     {scene.poiDescription && (
@@ -1333,7 +1307,7 @@ export default function ModerationReviewPage() {
                     )}
                     {scene.transcriptText && (
                       <div className="bg-paper-soft rounded p-2 mb-2">
-                        <p className="text-meta font-medium text-ink-40 mb-1">Texte transcrit</p>
+                        <p className="text-meta font-medium text-ink-40 mb-1">{a("Texte transcrit")}</p>
                         <p className="text-body text-ink-80 line-clamp-3">{scene.transcriptText}</p>
                       </div>
                     )}
@@ -1361,11 +1335,11 @@ export default function ModerationReviewPage() {
             <div className="bg-card rounded-md border border-line p-4" data-testid="admin-validation-report">
               <div className="flex items-center justify-between gap-3 mb-3">
                 <div>
-                  <h2 className="text-h6 font-semibold text-ink">Contrôles automatiques</h2>
-                  <p className="text-meta text-ink-60">Contrôle d’interface — l’autorité serveur sera ajoutée séparément.</p>
+                  <h2 className="text-h6 font-semibold text-ink">{a("Contrôles automatiques")}</h2>
+                  <p className="text-meta text-ink-60">{a("Contrôle d’interface — l’autorité serveur sera ajoutée séparément.")}</p>
                 </div>
                 <span className={`text-meta font-semibold px-2 py-1 rounded-pill ${validationReport?.ready ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
-                  {validationReport?.ready ? 'Conforme' : `${validationReport?.blockingCount ?? 1} blocage(s)`}
+                  {validationReport?.ready ? a("Conforme") : a("{0} blocage(s)", validationReport?.blockingCount ?? 1)}
                 </span>
               </div>
               <div className="space-y-2">
@@ -1382,7 +1356,7 @@ export default function ModerationReviewPage() {
 
             {/* Quality Checklist */}
             <div className="bg-card rounded-md border border-line p-4">
-              <h2 className="text-h6 font-semibold text-ink mb-4">Checklist qualité</h2>
+              <h2 className="text-h6 font-semibold text-ink mb-4">{a("Checklist qualité")}</h2>
               <div className="space-y-3">
                 {checklist.map((item) => (
                   <div key={item.id}>
@@ -1394,15 +1368,15 @@ export default function ModerationReviewPage() {
                         className="mt-1 h-4 w-4 rounded border-line text-danger focus:ring-grenadine-soft"
                       />
                       <div>
-                        <p className="text-body font-medium text-ink">{item.label}</p>
-                        <p className="text-meta text-ink-60">{item.description}</p>
+                        <p className="text-body font-medium text-ink">{a(item.label)}</p>
+                        <p className="text-meta text-ink-60">{a(item.description)}</p>
                       </div>
                     </label>
                     <input
                       type="text"
                       value={item.note}
                       onChange={(e) => updateChecklistNote(item.id, e.target.value)}
-                      placeholder="Note (optionnel)"
+                      placeholder={a("Note (optionnel)")}
                       className="mt-1 w-full text-meta border border-line rounded px-2 py-1 text-ink-60"
                     />
                   </div>
@@ -1410,13 +1384,13 @@ export default function ModerationReviewPage() {
               </div>
 
               <div className="mt-4">
-                <label className="block text-body font-medium text-ink-80 mb-1">Notes générales</label>
+                <label className="block text-body font-medium text-ink-80 mb-1">{a("Notes générales")}</label>
                 <textarea
                   value={overallNotes}
                   onChange={(e) => setOverallNotes(e.target.value)}
                   rows={3}
                   className="w-full text-body border border-line rounded-lg px-3 py-2 text-ink-80"
-                  placeholder="Observations supplémentaires…"
+                  placeholder={a("Observations supplémentaires…")}
                 />
               </div>
             </div>
@@ -1424,7 +1398,7 @@ export default function ModerationReviewPage() {
             {/* Error display */}
             {errorMessage && (
               <div className="bg-grenadine-soft text-danger rounded-lg p-3 text-body" role="alert">
-                {errorMessage}
+                {a.error(errorMessage)}
               </div>
             )}
 
@@ -1437,17 +1411,13 @@ export default function ModerationReviewPage() {
                 data-testid="approve-btn"
                 className="w-full bg-olive text-white font-bold py-3 rounded-md hover:bg-olive disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {submitting ? 'En cours...' : 'Valider et publier'}
+                {submitting ? a("En cours...") : a("Valider et publier")}
               </button>
               {!validationReport?.ready && (
-                <p className="text-meta text-danger text-center">
-                  Corrigez tous les blocages automatiques avant de valider
-                </p>
+                <p className="text-meta text-danger text-center"> {a("Corrigez tous les blocages automatiques avant de valider")} </p>
               )}
               {validationReport?.ready && !allChecked && (
-                <p className="text-meta text-ink-40 text-center">
-                  Cochez tous les items de la checklist pour valider
-                </p>
+                <p className="text-meta text-ink-40 text-center"> {a("Cochez tous les items de la checklist pour valider")} </p>
               )}
 
               {/* Comment */}
@@ -1455,9 +1425,7 @@ export default function ModerationReviewPage() {
                 onClick={() => { setShowCommentForm(!showCommentForm); setShowRevisionForm(false); setShowRejectForm(false); }}
                 disabled={submitting}
                 className="w-full border border-grenadine text-grenadine font-bold py-3 rounded-md hover:bg-grenadine-soft disabled:opacity-50"
-              >
-                Commenter
-              </button>
+              > {a("Commenter")} </button>
 
               {/* Send back for revision */}
               <button
@@ -1465,32 +1433,28 @@ export default function ModerationReviewPage() {
                 disabled={submitting}
                 data-testid="revision-btn"
                 className="w-full border border-ocre text-ocre-ink font-bold py-3 rounded-md hover:bg-ocre-soft disabled:opacity-50"
-              >
-                Renvoyer au guide
-              </button>
+              > {a("Renvoyer au guide")} </button>
 
               {/* Reject */}
               <button
                 onClick={() => { setShowRejectForm(!showRejectForm); setShowCommentForm(false); setShowRevisionForm(false); }}
                 disabled={submitting}
                 className="w-full border border-grenadine text-danger font-bold py-3 rounded-md hover:bg-grenadine-soft disabled:opacity-50"
-              >
-                Refuser
-              </button>
+              > {a("Refuser")} </button>
             </div>
 
             {/* Comment Form */}
             {showCommentForm && (
               <div className="bg-card rounded-md border border-grenadine p-4">
-                <h3 className="text-body font-semibold text-grenadine mb-3">Ajouter un commentaire</h3>
+                <h3 className="text-body font-semibold text-grenadine mb-3">{a("Ajouter un commentaire")}</h3>
                 <div className="mb-3">
-                  <label className="block text-meta font-medium text-ink-80 mb-1">Scène (optionnel)</label>
+                  <label className="block text-meta font-medium text-ink-80 mb-1">{a("Scène (optionnel)")}</label>
                   <select
                     value={commentSceneId}
                     onChange={(e) => setCommentSceneId(e.target.value)}
                     className="w-full text-body border border-line rounded-lg px-3 py-2 text-ink-80"
                   >
-                    <option value="">Commentaire global</option>
+                    <option value="">{a("Commentaire global")}</option>
                     {sortedScenes.map((s) => (
                       <option key={s.id} value={s.id}>{s.order}. {s.title}</option>
                     ))}
@@ -1502,7 +1466,7 @@ export default function ModerationReviewPage() {
                     onChange={(e) => setCommentText(e.target.value)}
                     rows={3}
                     className="w-full text-body border border-line rounded-lg px-3 py-2 text-ink-80"
-                    placeholder="Votre commentaire..."
+                    placeholder={a("Votre commentaire...")}
                   />
                 </div>
                 <button
@@ -1510,7 +1474,7 @@ export default function ModerationReviewPage() {
                   disabled={!commentText.trim() || submitting}
                   className="w-full bg-grenadine text-white font-bold py-2 rounded-md hover:bg-grenadine disabled:opacity-50 text-body"
                 >
-                  {submitting ? 'Envoi...' : 'Envoyer le commentaire'}
+                  {submitting ? 'Envoi...' : a("Envoyer le commentaire")}
                 </button>
               </div>
             )}
@@ -1518,7 +1482,7 @@ export default function ModerationReviewPage() {
             {/* Revision Form */}
             {showRevisionForm && (
               <div className="bg-card rounded-md border border-ocre p-4">
-                <h3 className="text-body font-semibold text-ocre-ink mb-3">Renvoyer au guide pour corrections</h3>
+                <h3 className="text-body font-semibold text-ocre-ink mb-3">{a("Renvoyer au guide pour corrections")}</h3>
                 <div className="mb-3">
                   <textarea
                     value={revisionFeedback}
@@ -1526,18 +1490,17 @@ export default function ModerationReviewPage() {
                     rows={4}
                     data-testid="feedback-input"
                     className="w-full text-body border border-line rounded-lg px-3 py-2 text-ink-80"
-                    placeholder="Préciser les corrections attendues (min. 10 caractères)…"
+                    placeholder={a("Préciser les corrections attendues (min. 10 caractères)…")}
                   />
                   <p className="text-meta text-ink-40 mt-1">
-                    {revisionFeedback.length}/10 caractères minimum
-                  </p>
+                    {revisionFeedback.length}{a("/10 caractères minimum")} </p>
                 </div>
                 <button
                   onClick={handleSendRevision}
                   disabled={revisionFeedback.length < 10 || submitting}
                   className="w-full bg-ocre text-ink font-bold py-2 rounded-md hover:bg-ocre disabled:opacity-50 text-body"
                 >
-                  {submitting ? 'Envoi...' : 'Renvoyer au guide'}
+                  {submitting ? 'Envoi...' : a("Renvoyer au guide")}
                 </button>
               </div>
             )}
@@ -1545,41 +1508,36 @@ export default function ModerationReviewPage() {
             {/* Reject Form */}
             {showRejectForm && (
               <div className="bg-card rounded-md border border-grenadine p-4">
-                <h3 className="text-body font-semibold text-danger mb-3">Refuser le parcours</h3>
+                <h3 className="text-body font-semibold text-danger mb-3">{a("Refuser le parcours")}</h3>
 
                 <div className="mb-3">
-                  <label className="block text-meta font-medium text-ink-80 mb-1">Catégorie</label>
+                  <label className="block text-meta font-medium text-ink-80 mb-1">{a("Catégorie")}</label>
                   <select
                     value={rejectCategory}
                     onChange={(e) => setRejectCategory(e.target.value as RejectionCategory)}
                     className="w-full text-body border border-line rounded-lg px-3 py-2 text-ink-80"
                   >
                     {REJECTION_CATEGORIES.map((cat) => (
-                      <option key={cat.value} value={cat.value}>{cat.label}</option>
+                      <option key={cat.value} value={cat.value}>{a(cat.label)}</option>
                     ))}
                   </select>
                 </div>
 
                 <div className="mb-3">
-                  <label className="block text-meta font-medium text-ink-80 mb-1">
-                    Feedback (min. 20 caractères)
-                  </label>
+                  <label className="block text-meta font-medium text-ink-80 mb-1"> {a("Feedback (min. 20 caractères)")} </label>
                   <textarea
                     value={rejectFeedback}
                     onChange={(e) => setRejectFeedback(e.target.value)}
                     rows={4}
                     className="w-full text-body border border-line rounded-lg px-3 py-2 text-ink-80"
-                    placeholder="Soyez précis pour aider le guide à améliorer…"
+                    placeholder={a("Soyez précis pour aider le guide à améliorer…")}
                   />
                   <p className="text-meta text-ink-40 mt-1">
-                    {rejectFeedback.length}/20 caractères minimum
-                  </p>
+                    {rejectFeedback.length}{a("/20 caractères minimum")} </p>
                 </div>
 
                 <div className="mb-3">
-                  <label className="block text-meta font-medium text-ink-80 mb-1">
-                    POIs concernés (optionnel)
-                  </label>
+                  <label className="block text-meta font-medium text-ink-80 mb-1"> {a("POIs concernés (optionnel)")} </label>
                   <div className="space-y-1">
                     {detail.pois.map((poi) => (
                       <label key={poi.id} className="flex items-center gap-2 text-meta cursor-pointer">
@@ -1600,7 +1558,7 @@ export default function ModerationReviewPage() {
                   disabled={rejectFeedback.length < 20 || submitting}
                   className="w-full bg-grenadine text-white font-bold py-2 rounded-md hover:bg-grenadine disabled:opacity-50 disabled:cursor-not-allowed text-body"
                 >
-                  {submitting ? 'Envoi...' : 'Refuser définitivement'}
+                  {submitting ? 'Envoi...' : a("Refuser définitivement")}
                 </button>
               </div>
             )}

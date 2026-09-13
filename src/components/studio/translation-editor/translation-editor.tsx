@@ -137,7 +137,7 @@ export function TranslationEditor({ segment, sessionId, onGenerateTTS }: Transla
               )}
             </label>
             <div className="text-meta text-ink-40">
-              {isSaving && <span className="text-mer">Sauvegarde...</span>}
+              {isSaving && <span className="text-mer">{t('Sauvegarde...', 'Saving...')}</span>}
               {!isSaving && isDirty && <span>{t('Non sauvegardé', 'Unsaved')}</span>}
               {!isSaving && !isDirty && editedText && <span className="text-success">{t('Sauvegardé', 'Saved')}</span>}
             </div>

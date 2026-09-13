@@ -1,12 +1,14 @@
 'use client';
+import { extendCopy } from '@/lib/i18n/translate';
 
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { logger } from '@/lib/logger';
 import { localeFromPath } from '@/lib/site';
+import { useStoredStudioLocale } from '@/lib/i18n/studio-locale';
 
-const COPY = {
+const COPY = extendCopy({
   fr: {
     eyebrow: 'Oups…',
     title: 'Une erreur est survenue',
@@ -23,7 +25,7 @@ const COPY = {
     home: 'Home',
     homePath: '/en',
   },
-};
+});
 
 export default function Error({
   error,
@@ -32,7 +34,10 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const copy = COPY[localeFromPath(usePathname())];
+  const pathname = usePathname() ?? '/';
+  const studioLocale = useStoredStudioLocale();
+  const locale = /^\/(guide|admin)(\/|$)/.test(pathname) ? studioLocale : localeFromPath(pathname);
+  const copy = COPY[locale];
 
   useEffect(() => {
     logger.error('ErrorBoundary', 'Page error caught', {
@@ -47,7 +52,7 @@ export default function Error({
         <p className="font-editorial italic text-body-lg text-ink-60 mb-2">{copy.eyebrow}</p>
         <h2 className="font-display text-h3 text-ink mb-4 leading-none">{copy.title}</h2>
         <p className="text-body text-ink-60 mb-8">{copy.text}</p>
-        <div className="flex gap-3 justify-center">
+        <div className="flex flex-wrap gap-3 justify-center">
           <button
             onClick={reset}
             className="bg-grenadine text-paper font-bold py-3 px-6 rounded-pill hover:opacity-90 transition text-caption"

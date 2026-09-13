@@ -1,4 +1,5 @@
 'use client';
+import { translate, extendCopy } from '@/lib/i18n/translate';
 
 /**
  * Bandeau de consentement à la mesure d'audience.
@@ -12,8 +13,10 @@ import Link from 'next/link';
 import { useEffect, useRef, useSyncExternalStore } from 'react';
 import { usePathname } from 'next/navigation';
 import { readCookieConsent, subscribeCookieConsent, writeCookieConsent } from '@/lib/cookie-consent';
+import { localeFromPath } from '@/lib/site';
+import { useStoredStudioLocale } from '@/lib/i18n/studio-locale';
 
-const COPY = {
+const COPY = extendCopy({
   fr: {
     text: 'Murmure mesure l’audience de son site (Amplitude, hébergé dans l’UE, sans adresse IP) pour comprendre ce qui est consulté. Aucune publicité, aucun suivi entre sites.',
     more: 'En savoir plus',
@@ -28,13 +31,14 @@ const COPY = {
     refuse: 'Refuse',
     privacy: '/en/privacy',
   },
-};
+});
 
 const getServerSnapshot = () => 'pending' as const;
 
 export default function CookieConsentBanner() {
   const pathname = usePathname() ?? '';
-  const locale = pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'fr';
+  const studioLocale = useStoredStudioLocale();
+  const locale = /^\/(guide|admin)(\/|$)/.test(pathname) ? studioLocale : localeFromPath(pathname);
   const copy = COPY[locale];
   const consent = useSyncExternalStore(subscribeCookieConsent, readCookieConsent, getServerSnapshot);
   const banner = useRef<HTMLDivElement>(null);
@@ -56,7 +60,7 @@ export default function CookieConsentBanner() {
       ref={banner}
       role="dialog"
       aria-live="polite"
-      aria-label={locale === 'en' ? 'Audience measurement' : 'Mesure d’audience'}
+      aria-label={translate(locale, 'Mesure d’audience', 'Audience measurement')}
       data-testid="cookie-consent-banner"
       className="fixed inset-x-0 z-50 border-t border-line bg-paper px-4 py-4 shadow-lg sm:px-6"
       style={{ bottom: 'var(--visitor-overlay-height, var(--visitor-nav-height, 0px))' }}

@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import { useState, useCallback, useMemo } from 'react';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
@@ -118,7 +120,7 @@ export function OpenMultilangModal({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [pendingPayment, setPendingPayment] = useState<{ clientSecret: string; paymentIntentId: string } | null>(null);
   const { t, locale } = useStudioLocale();
-  const modeLabels = locale === 'en' ? MODE_LABELS_EN : MODE_LABELS;
+  const modeLabels = localizeValue(locale, MODE_LABELS, MODE_LABELS_EN);
 
   const allPurchases = useLanguagePurchaseStore((s) => s.purchases);
   const setPurchases = useLanguagePurchaseStore((s) => s.setPurchases);
@@ -475,7 +477,7 @@ export function OpenMultilangModal({
                   </p>
                 )}
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-body font-semibold text-ink">Total</span>
+                  <span className="text-body font-semibold text-ink">{t('Total', 'Total')}</span>
                   <span className="text-h6 font-bold text-ink" data-testid="recap-total">
                     {chargeableCount === 0 ? '—' : order.totalCents === 0 ? t('Gratuit', 'Free') : formatPrice(order.totalCents, locale)}
                   </span>
@@ -572,7 +574,7 @@ export function OpenMultilangModal({
                 </button>
               ) : (
                 <>
-                  <Elements stripe={getStripePromise()} options={{ clientSecret: pendingPayment.clientSecret }}>
+                  <Elements stripe={getStripePromise()} options={{ clientSecret: pendingPayment.clientSecret, locale }}>
                     <MultilangPaymentForm
                       paymentIntentId={pendingPayment.paymentIntentId}
                       onSuccess={handlePaymentSuccess}

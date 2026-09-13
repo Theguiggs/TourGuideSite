@@ -1,4 +1,7 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
+import { extendCopy } from '@/lib/i18n/translate';
 
 import Link from 'next/link';
 import { Check, X } from 'lucide-react';
@@ -6,11 +9,11 @@ import { useStudioLocale } from '@/lib/i18n/studio-locale';
 import type { VisitCompletenessCheckId, VisitCompletenessReport } from '@/lib/studio/visit-completeness';
 
 const CHECK_LABELS: Record<VisitCompletenessCheckId, { fr: string; en: string }> = {
-  narration_mode: { fr: 'Mode de narration choisi', en: 'Narration mode chosen' },
-  source_text: { fr: 'Chaque scène a un titre et un texte final', en: 'Every scene has a title and a final text' },
-  source_audio: { fr: 'Audio de votre voix sur chaque scène', en: 'Your voice recorded on every scene' },
-  audio_mode_consistency: { fr: 'Audio cohérent avec le mode choisi', en: 'Audio consistent with the chosen mode' },
-  tts_readiness: { fr: 'Textes prêts pour la voix de synthèse', en: 'Texts ready for the synthetic voice' },
+  narration_mode: extendCopy({ fr: 'Mode de narration choisi', en: 'Narration mode chosen' }),
+  source_text: extendCopy({ fr: 'Chaque scène a un titre et un texte final', en: 'Every scene has a title and a final text' }),
+  source_audio: extendCopy({ fr: 'Audio de votre voix sur chaque scène', en: 'Your voice recorded on every scene' }),
+  audio_mode_consistency: extendCopy({ fr: 'Audio cohérent avec le mode choisi', en: 'Audio consistent with the chosen mode' }),
+  tts_readiness: extendCopy({ fr: 'Textes prêts pour la voix de synthèse', en: 'Texts ready for the synthetic voice' }),
 };
 
 export interface VisitReadinessProps {
@@ -50,7 +53,7 @@ export function VisitReadiness({ report, sessionId, scenes }: VisitReadinessProp
               : <X className="mt-0.5 h-4 w-4 shrink-0 text-danger" aria-hidden="true" />}
             <div className="min-w-0 flex-1">
               <span className={check.passed ? 'text-ink-80' : 'font-medium text-ink'}>
-                {locale === 'en' ? CHECK_LABELS[check.id].en : CHECK_LABELS[check.id].fr}
+                {localizeValue(locale, CHECK_LABELS[check.id].fr, CHECK_LABELS[check.id].en)}
               </span>
               {!check.passed && <p className="text-meta text-ink-60">{check.evidence}</p>}
               {!check.passed && check.sceneIds.length > 0 && (

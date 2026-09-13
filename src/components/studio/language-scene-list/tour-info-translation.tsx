@@ -235,7 +235,7 @@ export function TourInfoTranslation({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Source description */}
         <div>
-          <label className="block text-meta text-ink-40 mb-1">Description (FR)</label>
+          <label className="block text-meta text-ink-40 mb-1">{t('Description', 'Description')} (FR)</label>
           <div className="px-3 py-2 bg-paper-soft border border-line rounded-lg text-body text-ink-60 min-h-[80px] whitespace-pre-wrap" data-testid="source-description">
             {sourceDescription || <span className="italic">{t('Aucune description', 'No description')}</span>}
           </div>

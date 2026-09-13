@@ -2,8 +2,11 @@
 import { useEffect, useState } from 'react';
 import { Button, tg } from '@murmure/design-system/web';
 import { RefreshCw } from 'lucide-react';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { PWA_COPY } from '@/lib/i18n/pwa-copy';
 
-export function PwaRegistration({ locale }: { locale: 'fr' | 'en' }) {
+export function PwaRegistration({ locale }: { locale: InterfaceLocale }) {
+  const copy = PWA_COPY[locale];
   const [waiting, setWaiting] = useState<ServiceWorker | null>(null);
   const [updating, setUpdating] = useState(false);
   useEffect(() => {
@@ -43,8 +46,8 @@ export function PwaRegistration({ locale }: { locale: 'fr' | 'en' }) {
     return () => { waiting.removeEventListener('statechange', changed); waiting.removeEventListener('statechange', failed); };
   }, [updating, waiting]);
   if (!waiting) return null;
-  return <aside aria-label={locale === 'en' ? 'Site update' : 'Mise à jour du site'} style={{ position: 'fixed', bottom: `calc(var(--visitor-overlay-height, var(--visitor-nav-height, 0px)) + var(--visitor-consent-height, 0px) + ${tg.space[4]}px)`, left: tg.space[4], right: tg.space[4], zIndex: 1100, background: tg.colors.paper, color: tg.colors.ink, border: `1px solid ${tg.colors.ink40}`, borderRadius: tg.radius.md, padding: tg.space[3], display: 'flex', gap: tg.space[3], alignItems: 'center', flexWrap: 'wrap' }}>
-    <span>{locale === 'en' ? 'A new version is ready.' : 'Une nouvelle version est prête.'}</span>
-    <Button size="sm" disabled={updating} onClick={() => setUpdating(true)}><RefreshCw size={16} aria-hidden />{locale === 'en' ? 'Reload' : 'Recharger'}</Button>
+  return <aside aria-label={copy.update} style={{ position: 'fixed', bottom: `calc(var(--visitor-overlay-height, var(--visitor-nav-height, 0px)) + var(--visitor-consent-height, 0px) + ${tg.space[4]}px)`, left: tg.space[4], right: tg.space[4], zIndex: 1100, background: tg.colors.paper, color: tg.colors.ink, border: `1px solid ${tg.colors.ink40}`, borderRadius: tg.radius.md, padding: tg.space[3], display: 'flex', gap: tg.space[3], alignItems: 'center', flexWrap: 'wrap' }}>
+    <span>{copy.ready}</span>
+    <Button size="sm" disabled={updating} onClick={() => setUpdating(true)}><RefreshCw size={16} aria-hidden />{copy.reload}</Button>
   </aside>;
 }

@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react';
 import type { ModerationStatusUpdate } from '@/lib/api/language-purchase';
 import { logger } from '@/lib/logger';
+import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
 const SERVICE_NAME = 'ModerationFeedbackForm';
 
@@ -24,6 +25,7 @@ export function ModerationFeedbackForm({
   onCancel,
   isProcessing = false,
 }: ModerationFeedbackFormProps) {
+  const { t } = useStudioLocale();
   const [feedbackByScene, setFeedbackByScene] = useState<Record<string, string>>({});
   const [action, setAction] = useState<'rejected' | 'revision_requested'>('revision_requested');
 
@@ -52,7 +54,7 @@ export function ModerationFeedbackForm({
     <div className="bg-card border border-line rounded-xl p-4 space-y-4" data-testid="moderation-feedback-form">
       <div className="flex items-center justify-between">
         <h4 className="text-body font-semibold text-ink">
-          Feedback pour la version {langLabel}
+          {t(`Feedback pour la version ${langLabel}`, `Feedback for the ${langLabel} version`)}
         </h4>
         <select
           value={action}
@@ -60,8 +62,8 @@ export function ModerationFeedbackForm({
           className="text-meta border border-line rounded px-2 py-1"
           data-testid="moderation-action-select"
         >
-          <option value="revision_requested">Revision demandee</option>
-          <option value="rejected">Rejeter</option>
+          <option value="revision_requested">{t('Revision demandee', 'Changes requested')}</option>
+          <option value="rejected">{t('Rejeter', 'Reject')}</option>
         </select>
       </div>
 
@@ -69,7 +71,7 @@ export function ModerationFeedbackForm({
         {scenes.map((scene) => (
           <div key={scene.id} className="space-y-1">
             <label className="text-meta font-medium text-ink-80" htmlFor={`feedback-${scene.id}`}>
-              Scene {scene.index + 1}: {scene.title ?? `Scene ${scene.index + 1}`}
+              {t('Scène', 'Scene')} {scene.index + 1}: {scene.title ?? `${t('Scène', 'Scene')} ${scene.index + 1}`}
             </label>
             <textarea
               id={`feedback-${scene.id}`}
@@ -77,7 +79,7 @@ export function ModerationFeedbackForm({
               onChange={(e) =>
                 setFeedbackByScene((prev) => ({ ...prev, [scene.id]: e.target.value }))
               }
-              placeholder={`Feedback pour cette scene en ${langLabel}...`}
+              placeholder={t(`Feedback pour cette scene en ${langLabel}...`, `Feedback for this scene in ${langLabel}...`)}
               className="w-full text-meta border border-line rounded p-2 resize-none h-16"
               data-testid={`scene-feedback-${scene.id}`}
             />
@@ -91,7 +93,7 @@ export function ModerationFeedbackForm({
           className="text-meta text-ink-80 hover:text-ink px-3 py-1.5 rounded border border-line"
           data-testid="cancel-feedback-btn"
         >
-          Annuler
+          {t('Annuler', 'Cancel')}
         </button>
         <button
           onClick={handleSubmit}
@@ -99,7 +101,7 @@ export function ModerationFeedbackForm({
           className="text-meta bg-danger hover:opacity-90 disabled:bg-ink-40 text-white font-medium px-3 py-1.5 rounded transition"
           data-testid="submit-feedback-btn"
         >
-          {action === 'rejected' ? 'Rejeter' : 'Demander revision'}
+          {action === 'rejected' ? t('Rejeter', 'Reject') : t('Demander revision', 'Request changes')}
         </button>
       </div>
     </div>

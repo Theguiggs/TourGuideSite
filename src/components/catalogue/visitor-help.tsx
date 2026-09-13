@@ -1,6 +1,8 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate, extendCopy } from '@/lib/i18n/translate';
 import { visitorAuthUrl } from '@/lib/auth/visitor-routes';
 
-const answers = {
+const answers = extendCopy({
   fr: [
     ['Faut-il un compte pour découvrir une visite ?', 'Le catalogue et les extraits disponibles sont accessibles sans compte. Pour acheter et retrouver vos achats, utilisez votre compte Murmure : le même sur le site et dans l’application.'],
     ['Comment écouter sur le site ?', 'Ouvrez une fiche et choisissez Découvrir l’audio. Lancez une étape ou la visite, mettez en pause et reprenez avec les commandes du lecteur. L’audio démarre après votre action.'],
@@ -17,16 +19,16 @@ const answers = {
     ['Where is my progress saved?', 'Resume information is stored in this browser on this device. Clearing browser data or signing out can remove it. Progress is not synchronised across devices.'],
     ['Can I listen offline or walk with the screen locked?', 'The web player needs a connection to load audio. Installing the website does not download tours for offline use. The map can locate you with your permission, but the website does not trigger GPS scenes with the screen locked. Use the features provided in the app for walking.'],
   ],
-};
+});
 
-export function VisitorHelp({ locale }: { locale: 'fr' | 'en' }) {
+export function VisitorHelp({ locale }: { locale: InterfaceLocale }) {
   return <section id="visiteur" className="bg-paper-soft py-12 scroll-mt-20">
     <div className="max-w-3xl mx-auto px-4 sm:px-6">
-      <h2 className="font-display text-h4 sm:text-h3 mb-6">{locale === 'en' ? 'Find, purchase and listen to a tour' : 'Trouver, acheter et écouter une visite'}</h2>
+      <h2 className="font-display text-h4 sm:text-h3 mb-6">{translate(locale, 'Trouver, acheter et écouter une visite', 'Find, purchase and listen to a tour')}</h2>
       <dl className="space-y-6">{answers[locale].map(([question, answer]) => <div key={question}><dt className="font-semibold text-body-lg mb-2">{question}</dt><dd className="text-body text-ink-80 leading-relaxed">{answer}</dd></div>)}</dl>
-      <nav className="flex flex-wrap gap-4 mt-6" aria-label={locale === 'en' ? 'Visitor help links' : 'Liens d’aide visiteur'}>
-        <a className="min-h-11 inline-flex items-center text-grenadine underline" href={locale === 'en' ? '/en/catalogue' : '/catalogue'}>{locale === 'en' ? 'Find a tour' : 'Trouver une visite'}</a>
-        <a className="min-h-11 inline-flex items-center text-grenadine underline" href={visitorAuthUrl(locale, 'login', locale === 'en' ? '/en/my-purchases' : '/mes-achats')}>{locale === 'en' ? 'Access my account' : 'Accéder à mon compte'}</a>
+      <nav className="flex flex-wrap gap-4 mt-6" aria-label={translate(locale, 'Liens d’aide visiteur', 'Visitor help links')}>
+        <a className="min-h-11 inline-flex items-center text-grenadine underline" href={translate(locale, '/catalogue', '/en/catalogue')}>{translate(locale, 'Trouver une visite', 'Find a tour')}</a>
+        <a className="min-h-11 inline-flex items-center text-grenadine underline" href={visitorAuthUrl(locale, 'login', translate(locale, '/mes-achats', '/en/my-purchases'))}>{translate(locale, 'Accéder à mon compte', 'Access my account')}</a>
       </nav>
     </div>
   </section>;

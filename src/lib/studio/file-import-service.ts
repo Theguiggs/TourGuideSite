@@ -1,4 +1,6 @@
 import { logger } from '@/lib/logger';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 import { StudioErrorCode, createStudioError, type StudioError } from '@/types/studio';
 
 const SERVICE_NAME = 'FileImportService';
@@ -26,6 +28,7 @@ export interface ImportResult {
 
 export async function validateAndImportFile(
   file: File,
+  locale: InterfaceLocale = 'fr',
 ): Promise<{ ok: true; result: ImportResult } | { ok: false; error: StudioError }> {
   // Validate type
   const typeValid = ALLOWED_AUDIO_TYPES.includes(file.type);
@@ -36,7 +39,8 @@ export async function validateAndImportFile(
       ok: false,
       error: createStudioError(
         StudioErrorCode.FILE_IMPORT_INVALID,
-        `Format non supporté : ${file.type || 'inconnu'}. Formats acceptés : MP3, M4A, AAC, WAV, WebM.`,
+        locale === 'fr' ? `Format non supporté : ${file.type || 'inconnu'}. Formats acceptés : MP3, M4A, AAC, WAV, WebM.`
+          : translate(locale, 'Format non supporté. Formats acceptés : MP3, M4A, AAC, WAV, WebM.', 'Unsupported format. Accepted formats: MP3, M4A, AAC, WAV, WebM.'),
       ),
     };
   }
@@ -49,7 +53,7 @@ export async function validateAndImportFile(
       ok: false,
       error: createStudioError(
         StudioErrorCode.FILE_IMPORT_INVALID,
-        `Fichier trop volumineux : ${sizeMB} Mo (max ${MAX_FILE_SIZE_MB} Mo).`,
+        translate(locale, `Fichier trop volumineux : ${sizeMB} Mo (max ${MAX_FILE_SIZE_MB} Mo).`, `File too large: ${sizeMB} MB (max ${MAX_FILE_SIZE_MB} MB).`),
       ),
     };
   }
@@ -65,7 +69,7 @@ export async function validateAndImportFile(
         ok: false,
         error: createStudioError(
           StudioErrorCode.FILE_IMPORT_INVALID,
-          `Durée trop longue : ${durationMin} min (max ${MAX_DURATION_MIN} min).`,
+          translate(locale, `Durée trop longue : ${durationMin} min (max ${MAX_DURATION_MIN} min).`, `Audio too long: ${durationMin} min (max ${MAX_DURATION_MIN} min).`),
         ),
       };
     }

@@ -43,6 +43,7 @@ import { mapWithConcurrency } from './published-tour-content';
 import { mapScenesToPois } from '@/lib/catalogue/scene-pois';
 import { assignUniqueSlugs, findTourBySlugs, type TourSlugs } from '@/lib/catalogue/tour-slugs';
 import { cached } from '@/lib/server/ttl-cache';
+import { parseTranslatedMetadata } from './translated-metadata';
 
 const SERVICE_NAME = 'ToursServer';
 
@@ -162,6 +163,8 @@ async function toTour(t: PublishedTour, slugs: TourSlugs, imageUrl?: string): Pr
     id: t.id,
     sourceLanguage: asLanguage(raw.sourceLanguage)?.trim().toLowerCase(),
     title: t.title,
+    translatedTitles: parseTranslatedMetadata(raw.translatedTitles),
+    translatedDescriptions: parseTranslatedMetadata(raw.translatedDescriptions),
     slug: slugs.slug,
     city: t.city,
     citySlug: slugs.citySlug,

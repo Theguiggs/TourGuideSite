@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { extendCopy } from '@/lib/i18n/translate';
 
 /**
  * LW-1 — lecteur de scène de la fiche Visite. LW-2 — mode « visite ».
@@ -87,9 +89,9 @@ export const RESUME_WRITE_INTERVAL_MS = 5_000;
  */
 export const RESUME_TAIL_GUARD_SECONDS = 1;
 
-export type ScenePlayerLocale = 'fr' | 'en';
+export type ScenePlayerLocale = InterfaceLocale;
 
-export const SCENE_PLAYER_COPY = {
+export const SCENE_PLAYER_COPY = extendCopy({
   fr: {
     listen: 'Écouter',
     pause: 'Pause',
@@ -128,7 +130,7 @@ export const SCENE_PLAYER_COPY = {
     previewEndLink: 'Unlock the tour',
     tourComplete: 'Tour complete',
   },
-} as const;
+} as const);
 
 type SceneCopy = (typeof SCENE_PLAYER_COPY)[ScenePlayerLocale];
 

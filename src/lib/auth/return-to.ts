@@ -29,7 +29,7 @@ export function safeReturnTo(raw: string | null | undefined): string | null {
     const decoded = new URL(decodedPath, SITE_URL);
     for (const url of [original, decoded]) {
       if (url.origin !== SITE_URL) return null;
-      if (/^\/(?:guide\/(?:login|signup|reset-password)|connexion|inscription|mot-de-passe-oublie|en\/(?:sign-in|sign-up|reset-password))\/?$/.test(url.pathname)) return null;
+      if (/^\/(?:guide\/(?:login|signup|reset-password)|connexion|inscription|mot-de-passe-oublie|(?:en|es|de|it|nl)\/(?:sign-in|sign-up|reset-password))\/?$/.test(url.pathname)) return null;
     }
   } catch { return null; }
   return raw;

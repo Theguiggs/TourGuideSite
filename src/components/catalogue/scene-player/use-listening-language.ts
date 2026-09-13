@@ -1,11 +1,12 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { availableAudioLanguages, chooseAudioLanguage, fallbackSceneCount, type LanguageInventory } from './language-policy';
 import { readLanguageChoice, writeLanguageChoice, RESUME_CLEAR_EVENT, RESUME_CLEAR_KEY } from './resume-store';
 
 /** Le choix se résout aussi à la frontière async, à partir du manifeste tout juste reçu. */
-export function useListeningLanguage(tourId: string, base: string, locale: 'fr' | 'en', sceneIds: readonly string[], inventory: LanguageInventory | null, readInventory: () => LanguageInventory | null) {
+export function useListeningLanguage(tourId: string, base: string, locale: InterfaceLocale, sceneIds: readonly string[], inventory: LanguageInventory | null, readInventory: () => LanguageInventory | null) {
   const [preference, setPreference] = useState<string | null>(null);
   const preferenceRef = useRef<string | null>(null);
   const selectionRef = useRef<string | null>(null);

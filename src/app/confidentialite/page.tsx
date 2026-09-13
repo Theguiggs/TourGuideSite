@@ -1,3 +1,4 @@
+import { legalPageMetadata } from '@/lib/legal/page-metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
@@ -13,15 +14,7 @@ import { LEGAL_IDENTITY, RETENTION, publisherLine } from '@/lib/legal/identity';
  * de confidentialité accessible publiquement). L'identité de l'éditeur, les
  * durées et l'adresse de contact viennent de `lib/legal/identity.ts`.
  */
-export const metadata: Metadata = {
-  title: 'Politique de confidentialité',
-  description:
-    'Comment Murmure collecte, utilise et protège vos données personnelles, et comment exercer vos droits RGPD.',
-  alternates: {
-    canonical: '/confidentialite',
-    languages: {fr: '/confidentialite', en: '/en/privacy'},
-  },
-};
+export const metadata: Metadata = legalPageMetadata('privacy', 'fr');
 
 const EFFECTIVE_DATE = LEGAL_IDENTITY.effectiveDate.fr;
 const CONTACT_EMAIL = LEGAL_IDENTITY.contactEmail;

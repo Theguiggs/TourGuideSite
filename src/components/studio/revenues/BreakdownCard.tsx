@@ -1,4 +1,5 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 import { formatEuros } from '@/lib/studio/revenues-helpers';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
@@ -31,24 +32,24 @@ export function BreakdownCard({
   const { locale } = useStudioLocale();
   return (
     <div className="bg-card border border-line rounded-lg p-5" data-testid="breakdown-card">
-      <div className="tg-eyebrow text-ocre-ink">{locale === 'en' ? 'How it is calculated' : "Comment c'est calculé"}</div>
+      <div className="tg-eyebrow text-ocre-ink">{translate(locale, "Comment c'est calculé", 'How it is calculated')}</div>
       <div className="mt-3.5 flex flex-col gap-2.5 text-meta">
-        <Row label={locale === 'en' ? 'Paid plays' : 'Écoutes payantes'} value={listens.toLocaleString(locale === 'en' ? 'en-GB' : 'fr-FR')} mono />
-        <Row label={locale === 'en' ? '× average gross revenue' : '× revenu brut moyen'} value={formatEuros(grossPerListen)} mono />
+        <Row label={translate(locale, 'Écoutes payantes', 'Paid plays')} value={listens.toLocaleString(translate(locale, 'fr-FR', 'en-GB'))} mono />
+        <Row label={translate(locale, '× revenu brut moyen', '× average gross revenue')} value={formatEuros(grossPerListen)} mono />
         <Row
-          label={locale === 'en' ? '= total gross revenue' : '= revenu brut total'}
+          label={translate(locale, '= revenu brut total', '= total gross revenue')}
           value={formatEuros(grossTotal)}
           mono
           divider="top"
         />
         <Row
-          label={locale === 'en' ? '× your share' : '× votre part'}
+          label={translate(locale, '× votre part', '× your share')}
           value={`${sharePct} %`}
           mono
           accent
         />
         <Row
-          label={locale === 'en' ? 'You will receive' : 'Vous recevrez'}
+          label={translate(locale, 'Vous recevrez', 'You will receive')}
           value={formatEuros(netAmount)}
           divider="bold"
           large

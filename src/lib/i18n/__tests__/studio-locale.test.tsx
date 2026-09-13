@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { StudioLocaleProvider, useStudioLocale } from '../studio-locale';
+import { StudioLocaleProvider, useStudioLocale, setStoredStudioLocale } from '../studio-locale';
 
 function LocaleProbe() {
   const { locale, setLocale } = useStudioLocale();
@@ -17,6 +17,15 @@ function setBrowserLanguage(language: string) {
 
 describe('StudioLocaleProvider', () => {
   beforeEach(() => { window.localStorage.clear(); setBrowserLanguage('fr-FR'); });
+  it('conserve le choix en mémoire lorsque le stockage est interdit', () => {
+    const get = jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new DOMException('Blocked', 'SecurityError'); });
+    const set = jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new DOMException('Blocked', 'SecurityError'); });
+    const view = render(<StudioLocaleProvider><LocaleProbe /></StudioLocaleProvider>);
+    fireEvent.click(screen.getByRole('button', {name: 'English'}));
+    expect(screen.getByTestId('locale-value')).toHaveTextContent('en');
+    view.unmount();
+    get.mockRestore(); set.mockRestore(); setStoredStudioLocale('fr');
+  });
 
   it('starts in French and persists an English selection', () => {
     render(

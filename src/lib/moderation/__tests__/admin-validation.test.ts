@@ -7,6 +7,8 @@ import {
 import type { ModerationDetail } from '@/types/moderation';
 import type { SceneSegment } from '@/types/studio';
 import { getQualityChecklistTemplate } from '@/types/moderation';
+import { SITE_LOCALES } from '@/lib/i18n/locales';
+import { adminText } from '@/lib/admin/copy';
 
 const detail: ModerationDetail = {
   id: 'moderation-1',
@@ -85,6 +87,19 @@ function translatedSegment(sceneId: string): SceneSegment {
 }
 
 describe('buildAdminValidationReport', () => {
+  it.each(SITE_LOCALES)('localise les critères et les champs manquants en %s sans modifier les décisions ou les titres saisis', locale => {
+    const source = buildAdminValidationReport({detail, language: 'fr', segmentsByScene: {}, routePath, dependentDataLoaded: true}, locale);
+    expect(source.ready).toBe(true);
+    expect(source.checks.find(check => check.id === 'identity')?.label).toBe(adminText(locale, 'Titre et description'));
+    const incomplete = buildAdminValidationReport({detail, language: 'en', segmentsByScene: {}, routePath, dependentDataLoaded: true}, locale);
+    expect(incomplete.ready).toBe(false);
+    const evidence = incomplete.checks.find(check => check.id === 'translated_content')?.evidence;
+    expect(evidence).toContain('Porte haute');
+    expect(evidence).toContain(adminText(locale, 'titre traduit'));
+    expect(evidence).toContain(adminText(locale, 'audio traduit'));
+    expect(JSON.stringify(source)).not.toMatch(/\{\d+\}/);
+    expect(JSON.stringify(incomplete)).not.toMatch(/\{\d+\}/);
+  });
   it('autorise une visite source complète et accepte les coordonnées zéro', () => {
     const report = buildAdminValidationReport({
       detail,

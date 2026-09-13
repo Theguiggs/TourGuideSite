@@ -64,7 +64,7 @@ it('précache le shell, attend le geste en mise à jour, ne supprime aucun cache
   await w.event('message', { data: { type: 'ACTIVATE_UPDATE' } });
   expect(w.skipWaiting).toHaveBeenCalledTimes(1);
 });
-it.each([['/mes-achats', '/offline/fr.html'], ['/en/account', '/offline/en.html']])('navigation %s sans réseau : shell localisé sans cache privé', async (path, offline) => {
+it.each([['/mes-achats', '/offline/fr.html'], ['/en/account', '/offline/en.html'], ['/es/catalogue', '/offline/es.html'], ['/de/my-purchases', '/offline/de.html'], ['/it/help', '/offline/it.html'], ['/nl/catalogue/nice', '/offline/nl.html']])('navigation %s sans réseau : shell localisé sans cache privé', async (path, offline) => {
   const w = worker();
   await w.event('install');
   w.fetcher.mockRejectedValue(new Error('offline'));
@@ -80,6 +80,17 @@ it('une ressource statique publique est réutilisée, une page en ligne ne se co
   expect(w.fetcher).toHaveBeenCalledTimes(1);
   await w.event('fetch', { request: { url: 'https://murmure.test/guide', method: 'GET', mode: 'navigate', headers: new Headers() } });
   expect([...w.stores.values()].some((data) => data.has('https://murmure.test/guide'))).toBe(false);
+});
+it.each(['en', 'es', 'de', 'it', 'nl'])('replie le Studio et l’administration sur la préférence %s, sans modifier les routes publiques', async locale => {
+  const w = worker();
+  await w.event('install');
+  await w.event('message', {data: {type: 'SET_INTERFACE_LOCALE', locale}});
+  w.fetcher.mockRejectedValue(new Error('offline'));
+  for (const [path, expected] of [['/guide/studio', locale], ['/admin/moderation', locale], ['/guides/marie', 'fr'], ['/es/catalogue', 'es']]) {
+    const response = await w.event('fetch', {request: {url: `https://murmure.test${path}`, method: 'GET', mode: 'navigate', headers: new Headers()}}) as Response;
+    expect(await response.text()).toBe(`/offline/${expected}.html`);
+    expect([...w.stores.values()].some(data => data.has(`https://murmure.test${path}`))).toBe(false);
+  }
 });
 
 it.each(['private', 'no-store', 'redirect', 'error'])('ne conserve pas la réponse statique %s', async (kind) => {

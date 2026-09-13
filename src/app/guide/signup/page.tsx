@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 /**
  * Guide Sign-Up Page
@@ -44,36 +46,7 @@ export default function GuideSignupPage() {
   const router = useRouter();
   const { refreshUser } = useAuth();
   const { t, locale } = useStudioLocale();
-  const copy = locale === 'en' ? {
-    title: 'Become a Guide',
-    introRegister: 'Create your guide area to publish your tours.',
-    codeSentTo: 'Confirmation code sent to',
-    fullName: 'Full name',
-    emailPlaceholder: 'guide@example.com',
-    password: 'Password',
-    passwordPlaceholder: 'Your password',
-    rule8: '8 characters minimum',
-    ruleUpper: 'One uppercase letter (A–Z)',
-    ruleLower: 'One lowercase letter (a–z)',
-    ruleDigit: 'One digit (0–9)',
-    ruleSpecial: 'One special character (!@#$%…)',
-    city: 'Main city',
-    cityPlaceholder: 'Nice, Barcelona, Èze…',
-    creating: 'Creating your account…',
-    create: 'Create my account',
-    alreadyAccount: 'Already have an account?',
-    signIn: 'Sign in',
-    checkInbox: 'Check your inbox and enter the 6-digit code.',
-    confirmationCode: 'Confirmation code',
-    verifying: 'Verifying…',
-    confirm: 'Confirm and go to the dashboard',
-    resend: 'Resend the code',
-    editInfo: '← Edit my details',
-    afterTitle: 'After you sign up',
-    after1: '✓ Your profile will be submitted for review',
-    after2: '✓ You can start creating your tours',
-    after3: '✓ Every tour goes through moderation before publication',
-  } : {
+  const copy = localizeValue(locale, {
     title: 'Devenir Guide',
     introRegister: 'Créez votre espace guide pour publier vos parcours.',
     codeSentTo: 'Code de confirmation envoyé à',
@@ -102,7 +75,36 @@ export default function GuideSignupPage() {
     after1: '✓ Votre profil sera soumis à validation',
     after2: '✓ Vous pouvez commencer à créer vos parcours',
     after3: '✓ Chaque parcours passe par une modération avant publication',
-  };
+  }, {
+    title: 'Become a Guide',
+    introRegister: 'Create your guide area to publish your tours.',
+    codeSentTo: 'Confirmation code sent to',
+    fullName: 'Full name',
+    emailPlaceholder: 'guide@example.com',
+    password: 'Password',
+    passwordPlaceholder: 'Your password',
+    rule8: '8 characters minimum',
+    ruleUpper: 'One uppercase letter (A–Z)',
+    ruleLower: 'One lowercase letter (a–z)',
+    ruleDigit: 'One digit (0–9)',
+    ruleSpecial: 'One special character (!@#$%…)',
+    city: 'Main city',
+    cityPlaceholder: 'Nice, Barcelona, Èze…',
+    creating: 'Creating your account…',
+    create: 'Create my account',
+    alreadyAccount: 'Already have an account?',
+    signIn: 'Sign in',
+    checkInbox: 'Check your inbox and enter the 6-digit code.',
+    confirmationCode: 'Confirmation code',
+    verifying: 'Verifying…',
+    confirm: 'Confirm and go to the dashboard',
+    resend: 'Resend the code',
+    editInfo: '← Edit my details',
+    afterTitle: 'After you sign up',
+    after1: '✓ Your profile will be submitted for review',
+    after2: '✓ You can start creating your tours',
+    after3: '✓ Every tour goes through moderation before publication',
+  });
 
   const [step, setStep] = useState<Step>('register');
   const [loading, setLoading] = useState(false);

@@ -1,4 +1,5 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
@@ -24,30 +25,30 @@ export function NextPaymentCard({
   bankLabel,
 }: NextPaymentCardProps) {
   const { locale } = useStudioLocale();
-  const ibanStr = ibanLast4 ? `IBAN •••• ${ibanLast4}` : locale === 'en' ? 'IBAN required' : 'IBAN à renseigner';
+  const ibanStr = ibanLast4 ? `IBAN •••• ${ibanLast4}` : translate(locale, 'IBAN à renseigner', 'IBAN required');
 
   return (
     <div className="bg-mer-soft rounded-lg p-5" data-testid="next-payment">
-      <div className="tg-eyebrow text-mer">{locale === 'en' ? 'Next payment' : 'Prochain versement'}</div>
+      <div className="tg-eyebrow text-mer">{translate(locale, 'Prochain versement', 'Next payment')}</div>
       <div className="font-display text-h6 mt-2 leading-snug text-ink">
         {dateLabel}
         <br />
         <em className="font-editorial italic text-body text-mer">
           {daysUntil === 0
-            ? (locale === 'en' ? 'today' : "aujourd'hui")
+            ? (translate(locale, "aujourd'hui", 'today'))
             : daysUntil === 1
-              ? (locale === 'en' ? 'tomorrow' : 'demain')
-              : locale === 'en' ? `in ${daysUntil} days` : `dans ${daysUntil} jours`}
+              ? (translate(locale, 'demain', 'tomorrow'))
+              : translate(locale, `dans ${daysUntil} jours`, `in ${daysUntil} days`)}
         </em>
       </div>
       <div className="text-meta text-ink-60 mt-2 italic">
-        {locale === 'en' ? 'Automatic transfer' : 'Virement automatique'}{ibanLast4 || bankLabel ? (locale === 'en' ? ' to ' : ' sur ') : ''}
+        {translate(locale, 'Virement automatique', 'Automatic transfer')}{ibanLast4 || bankLabel ? (translate(locale, ' sur ', ' to ')) : ''}
         {ibanStr}
         {bankLabel && ` · ${bankLabel}`}
       </div>
       <div className="h-px bg-line my-3.5" aria-hidden="true" />
       <div className="text-meta text-ink-60">
-        {locale === 'en' ? 'Tax receipt available the next day · VAT not applicable, article 293 B of the French tax code.' : 'Reçu fiscal disponible le lendemain · TVA non applicable, art. 293 B du CGI.'}
+        {translate(locale, 'Reçu fiscal disponible le lendemain · TVA non applicable, art. 293 B du CGI.', 'Tax receipt available the next day · VAT not applicable, article 293 B of the French tax code.')}
       </div>
     </div>
   );

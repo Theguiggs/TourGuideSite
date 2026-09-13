@@ -1,4 +1,7 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
+import { translate } from '@/lib/i18n/translate';
 
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
@@ -39,13 +42,13 @@ function formatRelative(iso: string, locale: StudioLocale, now: Date = new Date(
   const date = new Date(iso);
   const diffMs = now.getTime() - date.getTime();
   const minutes = Math.floor(diffMs / (60 * 1000));
-  if (minutes < 60) return minutes <= 1 ? (locale === 'en' ? 'just now' : "à l'instant") : locale === 'en' ? `${minutes} min ago` : `il y a ${minutes} min`;
+  if (minutes < 60) return minutes <= 1 ? (translate(locale, "à l'instant", 'just now')) : translate(locale, `il y a ${minutes} min`, `${minutes} min ago`);
   const hours = Math.floor(minutes / 60);
-  if (hours < 24) return locale === 'en' ? `${hours}h ago` : `il y a ${hours} h`;
+  if (hours < 24) return translate(locale, `il y a ${hours} h`, `${hours}h ago`);
   const days = Math.floor(hours / 24);
-  if (days === 1) return locale === 'en' ? 'yesterday' : 'hier';
-  if (days < 7) return locale === 'en' ? `${days}d ago` : `il y a ${days} j.`;
-  return date.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'short' });
+  if (days === 1) return translate(locale, 'hier', 'yesterday');
+  if (days < 7) return translate(locale, `il y a ${days} j.`, `${days}d ago`);
+  return date.toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'), { day: 'numeric', month: 'short' });
 }
 
 export default function StudioDashboardPage() {
@@ -54,17 +57,17 @@ export default function StudioDashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const copy = useMemo(() => locale === 'en' ? {
-    loadError: 'Unable to load the dashboard.', loading: 'Loading dashboard...', guideOnly: 'The Studio is for guides. Create a guide profile to get started.', retry: 'Try again',
-    welcome: 'Welcome to your Studio', empty: 'You have not created a tour yet. Record a route with the mobile app, then return here to turn it into an audio tour.', create: 'Create a new tour',
-    month: 'This month', numbers: 'Your figures.', allRevenue: 'View all revenue', published: 'Published tours', netRevenue: 'Net revenue', thisMonth: 'this month', average: 'Average rating', reviews: 'Recent reviews',
-    top: 'Tours performing well', noPublished: 'No published tours yet.', untitled: 'Untitled tour', noReviews: 'No reviews yet.',
-  } : {
+  const copy = useMemo(() => localizeValue(locale, {
     loadError: 'Impossible de charger le tableau de bord.', loading: 'Chargement du tableau de bord...', guideOnly: 'Le Studio est réservé aux guides. Créez un profil guide pour commencer.', retry: 'Réessayer',
     welcome: 'Bienvenue dans votre Studio', empty: "Vous n'avez pas encore créé de visite. Enregistrez un parcours avec l'app mobile, puis revenez ici pour le transformer en visite audio.", create: 'Créer une nouvelle visite',
     month: 'Le mois en bref', numbers: 'Vos chiffres.', allRevenue: 'Voir tous les revenus', published: 'Visites publiées', netRevenue: 'Revenus nets', thisMonth: 'ce mois', average: 'Note moyenne', reviews: 'Avis récents',
     top: 'Visites qui marchent', noPublished: 'Aucune visite publiée pour le moment.', untitled: 'Visite sans titre', noReviews: 'Aucun avis pour le moment.',
-  }, [locale]);
+  }, {
+    loadError: 'Unable to load the dashboard.', loading: 'Loading dashboard...', guideOnly: 'The Studio is for guides. Create a guide profile to get started.', retry: 'Try again',
+    welcome: 'Welcome to your Studio', empty: 'You have not created a tour yet. Record a route with the mobile app, then return here to turn it into an audio tour.', create: 'Create a new tour',
+    month: 'This month', numbers: 'Your figures.', allRevenue: 'View all revenue', published: 'Published tours', netRevenue: 'Net revenue', thisMonth: 'this month', average: 'Average rating', reviews: 'Recent reviews',
+    top: 'Tours performing well', noPublished: 'No published tours yet.', untitled: 'Untitled tour', noReviews: 'No reviews yet.',
+  }), [locale]);
 
   // Le message d'erreur suit la langue SANS rendre `loadDashboard` dépendant
   // de `copy` : sinon chaque bascule FR/EN relançait 1 + 2N requêtes.
@@ -294,7 +297,7 @@ export default function StudioDashboardPage() {
 
         <div>
           <div className="tg-eyebrow text-grenadine mb-3">
-            {recentReviews.length} {locale === 'en' ? `recent review${recentReviews.length === 1 ? '' : 's'}` : `avis récent${recentReviews.length > 1 ? 's' : ''}`}
+            {recentReviews.length} {translate(locale, `avis récent${recentReviews.length > 1 ? 's' : ''}`, `recent review${recentReviews.length === 1 ? '' : 's'}`)}
           </div>
           {recentReviews.length === 0 ? (
             <div className="bg-card border border-line rounded-lg p-6 text-caption text-ink-60">

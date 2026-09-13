@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { NumberMark, Eyebrow, tg } from '@murmure/design-system/web';
@@ -6,7 +8,7 @@ import type { POI } from '@/types/tour';
 import type { LanguageAudioTypes } from '@/lib/api/audio-source-policy';
 import { useOwnsTour, usePurchasesRefreshTick } from '@/hooks/use-owned-tour-ids';
 import { useAuth } from '@/lib/auth/auth-context';
-import { FREE_PREVIEW_SCENES, isFullContent, mapScenesToPois } from '@/lib/catalogue/scene-pois';
+import { FREE_PREVIEW_SCENES, isFullContent, mapScenesToPois, maskLockedPois, itineraryUsesSourceText, ITINERARY_SOURCE_COPY } from '@/lib/catalogue/scene-pois';
 import { shouldUseStubs } from '@/config/api-mode';
 import { logger } from '@/lib/logger';
 import { S3Image } from '@/components/studio/s3-image';
@@ -37,7 +39,7 @@ interface ItineraryListProps {
   /** Free tours are never gated. */
   isFree: boolean;
   heroAccentFg: string;
-  locale?: 'fr' | 'en';
+  locale?: InterfaceLocale;
   /** Le contenu public n'a pas pu être lu au rendu : dire « indisponible », pas « en cours ». */
   contentUnavailable?: boolean;
 }
@@ -76,7 +78,7 @@ interface ServedContent {
  * En cas d'échec — réseau, jeton expiré, requête refusée — on garde l'aperçu du
  * rendu serveur, flou compris. La page ne casse pas, l'échec est journalisé.
  */
-function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): ServedContent {
+function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean, locale: InterfaceLocale): ServedContent {
   const { isAuthenticated, isLoading: authLoading } = useAuth();
   const refreshTick = usePurchasesRefreshTick();
   // Le contenu obtenu est étiqueté de sa visite : une navigation client d'une
@@ -117,11 +119,13 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): Serv
         // Une réponse vide ne remplace pas un rendu serveur qui, lui, a des
         // étapes : on ne détruit pas un itinéraire affiché pour du néant.
         if (result.data.scenes.length === 0) return;
+        const granted = result.data.hasFullAccess ?? isFullContent(result.data.scenes);
+        const mapped = mapScenesToPois(result.data.scenes);
         setServed({
           tourId,
-          pois: mapScenesToPois(result.data.scenes),
+          pois: granted ? mapped : maskLockedPois(mapped, locale),
           walkPath: result.data.walkPath,
-          granted: isFullContent(result.data.scenes),
+          granted,
         });
       } catch (error) {
         logger.warn(SERVICE_NAME, 'authenticated tour content refetch failed', {
@@ -135,7 +139,7 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean): Serv
     return () => {
       cancelled = true;
     };
-  }, [tourId, isFree, isAuthenticated, refreshTick]);
+  }, [tourId, isFree, isAuthenticated, refreshTick, locale]);
 
   const granted = served?.tourId === tourId ? served.granted : false;
   // « Arrêtée » = le serveur a accordé le contenu complet, ou personne ne va
@@ -178,7 +182,7 @@ export default function ItineraryList({
   // Hooks appelés sans condition : `isFree` court-circuiterait l'appel et
   // désordonnerait la liste des hooks au premier rendu où il change.
   const ownsTour = useOwnsTour(tourId);
-  const { pois: displayedPois, walkPath: servedPath, granted, settled } = useServedContent(tourId, pois, isFree);
+  const { pois: displayedPois, walkPath: servedPath, granted, settled } = useServedContent(tourId, pois, isFree, locale);
   // En mode bouchons il n'y a pas de serveur pour juger : on retombe sur ce que
   // le client sait, faute de réponse à lire. Hors bouchons, la possession
   // calculée côté navigateur ne décide de rien ici — elle sert au badge.
@@ -202,12 +206,8 @@ export default function ItineraryList({
 
   if (displayedPois.length === 0) {
     const text = contentUnavailable
-      ? locale === 'en'
-        ? 'Itinerary temporarily unavailable — please try again in a moment.'
-        : 'Itinéraire momentanément indisponible — réessayez dans un instant.'
-      : locale === 'en'
-        ? 'Itinerary being finalised'
-        : 'Itinéraire en cours de finalisation';
+      ? translate(locale, 'Itinéraire momentanément indisponible — réessayez dans un instant.', 'Itinerary temporarily unavailable — please try again in a moment.')
+      : translate(locale, 'Itinéraire en cours de finalisation', 'Itinerary being finalised');
     return (
       <Eyebrow id={LISTEN_ANCHOR.slice(1)} style={{ color: tg.colors.ink60 }} data-testid={contentUnavailable ? 'itinerary-unavailable' : 'itinerary-empty'}>
         {text}
@@ -231,6 +231,7 @@ export default function ItineraryList({
     >
       {/* LW-2 : « Écouter la visite », reprise, fin de séquence — au-dessus de la liste. */}
       <TourPlayControl />
+      {itineraryUsesSourceText(displayedPois, locale, sourceLanguage) && <p className="mb-4 text-body text-ink-80" data-testid="itinerary-source-language">{ITINERARY_SOURCE_COPY[locale]}</p>}
       {playlist.length === 0 && (
         <p id={LISTEN_ANCHOR.slice(1)} role="status" style={{ color: tg.colors.ink, fontSize: tg.fontSize.body }}>
           {settled ? SCENE_PLAYER_COPY[locale].noAudio : SCENE_PLAYER_COPY[locale].unavailable}
@@ -256,7 +257,7 @@ interface StopListProps {
   pois: POI[];
   hasAccess: boolean;
   heroAccentFg: string;
-  locale: 'fr' | 'en';
+  locale: InterfaceLocale;
 }
 
 /**
@@ -293,9 +294,7 @@ function StopList({ pois, hasAccess, heroAccentFg, locale }: StopListProps) {
             aria-current={isCurrent ? 'true' : undefined}
             aria-label={
               locked
-                ? locale === 'en'
-                  ? `Stop ${poi.order} locked - unlock the tour to discover it`
-                  : `Étape ${poi.order} verrouillée — débloquez la visite pour la découvrir`
+                ? translate(locale, `Étape ${poi.order} verrouillée — débloquez la visite pour la découvrir`, `Stop ${poi.order} locked - unlock the tour to discover it`)
                 : undefined
             }
             style={{

@@ -1,4 +1,5 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 import { cityFamily, FAMILY_META } from '@/components/studio/shell';
 import { formatEuros } from '@/lib/studio/revenues-helpers';
@@ -44,9 +45,9 @@ export function RevenueTourRow({
       </div>
       <div className="text-right">
         <div className="font-mono text-caption text-ink-60">
-          {listens.toLocaleString(locale === 'en' ? 'en-GB' : 'fr-FR')}
+          {listens.toLocaleString(translate(locale, 'fr-FR', 'en-GB'))}
         </div>
-        <div className="text-meta text-ink-40">{locale === 'en' ? 'plays' : 'écoutes'}</div>
+        <div className="text-meta text-ink-40">{translate(locale, 'écoutes', 'plays')}</div>
       </div>
       <div className="hidden text-right sm:block">
         <div className="font-display text-h6 text-olive font-semibold">

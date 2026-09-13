@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { extendCopy } from '@/lib/i18n/translate';
 import dynamic from 'next/dynamic';
 import { Component, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Button, tg } from '@murmure/design-system/web';
@@ -15,11 +17,11 @@ class MapBoundary extends Component<{ children: ReactNode; fallback: string }, {
   static getDerivedStateFromError() { return { failed: true }; }
   render() { return this.state.failed ? <p role="status">{this.props.fallback}</p> : this.props.children; }
 }
-const COPY = {
+const COPY = extendCopy({
   fr: { title: 'Votre itinéraire sur la carte', show: 'Afficher la carte', locate: 'Me situer', stop: 'Arrêter la localisation', locating: 'Recherche de votre position…', denied: 'Localisation refusée. Vous pouvez toujours consulter la carte.', unavailable: 'Position indisponible. La carte reste consultable.', mapError: 'Carte momentanément indisponible. Retrouvez les étapes dans la liste.', nearest: 'Étape la plus proche', locked: 'Étape verrouillée', listen: 'Écouter cette étape', contract: 'Le guidage automatique et l’écoute écran éteint sont réservés à l’appli.', foreground: 'La localisation fonctionne tant que cette page reste visible.' },
   en: { title: 'Your route on the map', show: 'Show map', locate: 'Locate me', stop: 'Stop locating', locating: 'Finding your position…', denied: 'Location permission denied. You can still use the map.', unavailable: 'Position unavailable. You can still use the map.', mapError: 'Map temporarily unavailable. Find the stops in the list.', nearest: 'Nearest stop', locked: 'Locked stop', listen: 'Listen to this stop', contract: 'Automatic guidance and listening with the screen off are reserved for the app.', foreground: 'Location works while this page remains visible.' },
-};
-export default function VisitorMap({ pois, path = [], hasAccess, locale }: { pois: POI[]; path?: Coordinate[]; hasAccess: boolean; locale: 'fr' | 'en' }) {
+});
+export default function VisitorMap({ pois, path = [], hasAccess, locale }: { pois: POI[]; path?: Coordinate[]; hasAccess: boolean; locale: InterfaceLocale }) {
   const player = useTourPlayer();
   const copy = COPY[locale];
   const location = usePosition();

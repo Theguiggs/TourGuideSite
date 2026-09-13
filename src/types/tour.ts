@@ -10,6 +10,10 @@ export interface City {
 }
 
 export interface Tour {
+  /** Published metadata translations, independent of narration availability. */
+  translatedTitles?: Record<string, string>;
+  translatedDescriptions?: Record<string, string>;
+  metadataFallback?: boolean;
   /** Langue de la narration source, distincte de la langue de l’interface. */
   sourceLanguage?: string;
   id: string;

@@ -107,14 +107,14 @@ export default function PublicationPage() {
   if (isLoading) return <div className="p-6" role="status" aria-busy="true" aria-label={t('Chargement', 'Loading')}><div className="bg-paper-soft rounded-lg h-64 animate-pulse" /></div>;
   if (!session) return <div className="p-6"><div className="bg-grenadine-soft border border-grenadine-soft rounded-lg p-4 text-danger">{t('Session introuvable.', 'Session not found.')}</div></div>;
 
-  const statusConfig = getSessionStatusConfig(session.status);
+  const statusConfig = getSessionStatusConfig(session.status, locale);
   const version = session.version ?? 1;
   const hasRevisionFeedback = session.status === 'revision_requested' || session.status === 'rejected';
 
   // Derived state
   const canSubmit = ['draft', 'editing', 'recording', 'ready', 'revision_requested', 'rejected'].includes(session.status);
   // La liste de contrôle AVANT le clic : la même que `submitForReview` applique.
-  const readiness = evaluateStudioVisit(session, scenes);
+  const readiness = evaluateStudioVisit(session, scenes, locale);
   const submitLabel = hasRevisionFeedback ? t('Resoumettre à la modération', 'Resubmit for review') : t('Soumettre à la modération', 'Submit for review');
   const submitNow = () => doAction(
     hasRevisionFeedback ? t('Visite resoumise à la modération.', 'Tour resubmitted for review.') : t('Visite soumise à la modération.', 'Tour submitted for review.'),
@@ -491,7 +491,7 @@ export default function PublicationPage() {
         >
           <div className="space-y-1">
             {siblingVersions.map((s) => {
-              const sc = getSessionStatusConfig(s.status);
+              const sc = getSessionStatusConfig(s.status, locale);
               return (
                 <button
                   key={s.id}

@@ -6,10 +6,14 @@ export type VisitorAuthMode = 'login' | 'signup' | 'reset';
 export const VISITOR_AUTH_ROUTES = {
   fr: { login: '/connexion', signup: '/inscription', reset: '/mot-de-passe-oublie' },
   en: { login: '/en/sign-in', signup: '/en/sign-up', reset: '/en/reset-password' },
+  es: { login: '/es/sign-in', signup: '/es/sign-up', reset: '/es/reset-password' },
+  de: { login: '/de/sign-in', signup: '/de/sign-up', reset: '/de/reset-password' },
+  it: { login: '/it/sign-in', signup: '/it/sign-up', reset: '/it/reset-password' },
+  nl: { login: '/nl/sign-in', signup: '/nl/sign-up', reset: '/nl/reset-password' },
 } as const;
 
 export function visitorDestination(locale: PublicLocale, raw?: string | null): string {
-  return safeReturnTo(raw) ?? (locale === 'en' ? '/en/my-purchases' : '/mes-achats');
+  return safeReturnTo(raw) ?? localizePublicPath('/mes-achats', locale);
 }
 
 export function visitorAuthUrl(locale: PublicLocale, mode: VisitorAuthMode = 'login', raw?: string | null): string {

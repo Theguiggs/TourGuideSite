@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import { CreatorActions } from './creator-actions';
 import { helpAnchorHref } from '@/lib/help-anchors';
+import { translate } from '@/lib/i18n/translate';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { localizePublicPath } from '@/lib/i18n/public-routes';
 
-export function CreatorHome({ locale }: { locale: 'fr' | 'en' }) {
-  const t = (fr: string, en: string) => locale === 'fr' ? fr : en;
+export function CreatorHome({ locale }: { locale: InterfaceLocale }) {
+  const t = (fr: string, en: string) => translate(locale, fr, en);
   const steps = [
     { anchor: 'creer' as const, title: t('Créez', 'Create'), body: t('Choisissez un titre et une ville pour votre parcours.', 'Choose a title and a city for your tour.') },
     { anchor: 'tracer' as const, title: t('Tracez', 'Map'), body: t('Placez vos points d’intérêt sur la carte et dessinez votre itinéraire.', 'Place points of interest on the map and shape your route.') },
@@ -32,7 +35,7 @@ export function CreatorHome({ locale }: { locale: 'fr' | 'en' }) {
     <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
       <h2 className="font-display text-h4 text-ink sm:text-h3">{t('Pourquoi créer sur Murmure ?', 'Why create with Murmure?')}</h2>
       <div className="mt-8 grid gap-8 md:grid-cols-3">{benefits.map(([title, body]) => <div key={title}><h3 className="font-display text-h5 text-ink">{title}</h3><p className="mt-2 text-body text-ink-80">{body}</p></div>)}</div>
-      <Link href={locale === 'en' ? '/en/catalogue' : '/catalogue'} className="mt-8 inline-flex min-h-11 items-center text-body font-semibold text-grenadine underline underline-offset-4">{t('Découvrir les visites publiées', 'Discover published tours')}</Link>
+      <Link href={localizePublicPath('/catalogue', locale)} className="mt-8 inline-flex min-h-11 items-center text-body font-semibold text-grenadine underline underline-offset-4">{t('Découvrir les visites publiées', 'Discover published tours')}</Link>
     </section>
   </>;
 }

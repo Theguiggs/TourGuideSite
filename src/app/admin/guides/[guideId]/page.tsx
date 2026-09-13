@@ -1,4 +1,6 @@
 'use client';
+import { useAdminCopy } from '@/lib/admin/use-admin-copy';
+
 
 import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
@@ -31,6 +33,7 @@ type GuideProfile = {
 type GuideTour = { id: string; title: string; city: string; status: string };
 
 export default function AdminGuideDetailPage({ params }: { params: Promise<{ guideId: string }> }) {
+  const a = useAdminCopy();
   const { guideId } = use(params);
   const router = useRouter();
 
@@ -61,7 +64,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
       listAllGuideTours(),
     ])
       .then(([p, allTours]) => {
-        if (!p) { setError('Profil introuvable'); return; }
+        if (!p) { setError(a("Profil introuvable")); return; }
         setProfile({
           id: p.id,
           userId: p.userId,
@@ -85,7 +88,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
           status: String(t.status ?? 'draft'),
         })));
       })
-      .catch(() => setError('Erreur lors du chargement'))
+      .catch(() => setError(a("Erreur lors du chargement")))
       .finally(() => setLoading(false));
 
   }, [guideId]);
@@ -104,7 +107,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
         if (!accessToken) {
           if (!cancelled) {
             setEmailLookupUserId(targetUserId);
-            setEmailLookupError('Session expirée — reconnectez-vous.');
+            setEmailLookupError(a("Session expirée — reconnectez-vous."));
           }
           router.replace('/guide/login');
           return;
@@ -118,24 +121,24 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
         if (response.status === 401) {
           setEmailLookupUserId(targetUserId);
-          setEmailLookupError('Session expirée — reconnectez-vous.');
+          setEmailLookupError(a("Session expirée — reconnectez-vous."));
           router.replace('/guide/login');
         } else if (response.status === 403) {
           setEmailLookupUserId(targetUserId);
-          setEmailLookupError('Accès administrateur requis.');
+          setEmailLookupError(a("Accès administrateur requis."));
         } else if (!response.ok) {
           setEmailLookupUserId(targetUserId);
-          setEmailLookupError(data.error ?? 'Lecture Cognito indisponible.');
+          setEmailLookupError(data.error ?? a("Lecture Cognito indisponible."));
         } else {
           setGuideEmail(data.email ?? null);
           setGuideEmailUserId(targetUserId);
           setEmailLookupUserId(targetUserId);
-          setEmailLookupError(data.email ? null : 'Aucune adresse email Cognito trouvée.');
+          setEmailLookupError(data.email ? null : a("Aucune adresse email Cognito trouvée."));
         }
       } catch {
         if (!cancelled) {
           setEmailLookupUserId(targetUserId);
-          setEmailLookupError('Lecture Cognito indisponible.');
+          setEmailLookupError(a("Lecture Cognito indisponible."));
         }
       }
     }
@@ -154,12 +157,12 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
     const result = await adminUpdateGuideProfileStatus(profile.id, status);
     if (!result.ok) {
       setSaving(false);
-      setActionError(result.error ?? 'Action refusée par le serveur.');
+      setActionError(result.error ?? a("Action refusée par le serveur."));
       return;
     }
     setProfile((p) => p ? { ...p, profileStatus: status } : p);
     setPending(null);
-    let msg = 'Statut mis à jour.';
+    let msg = a("Statut mis à jour.");
     if (reason) {
       const trace = await recordGuideStatusDecision({ guideProfileId: profile.id, userId: profile.userId, status, reason, decidedBy: user?.id ?? null });
       if (trace.ok) setDecisions(await listGuideStatusDecisions(profile.id));
@@ -169,11 +172,11 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
     setFeedback({ ok: true, msg });
   };
 
-  if (loading) return <p className="text-ink-60 text-body p-6">Chargement...</p>;
+  if (loading) return <p className="text-ink-60 text-body p-6">{a("Chargement...")}</p>;
   if (error || !profile) return (
     <div className="p-6">
-      <p className="text-danger text-body mb-4">{error ?? 'Profil introuvable'}</p>
-      <Link href="/admin/guides" className="text-grenadine text-body hover:underline">← Retour</Link>
+      <p className="text-danger text-body mb-4">{error ?? a("Profil introuvable")}</p>
+      <Link href="/admin/guides" className="text-grenadine text-body hover:underline">{a("← Retour")}</Link>
     </div>
   );
 
@@ -183,15 +186,13 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
     <div className="max-w-3xl">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <Link href="/admin/guides" className="text-ink-40 hover:text-ink-60 text-body">
-          ← Tous les guides
-        </Link>
+        <Link href="/admin/guides" className="text-ink-40 hover:text-ink-60 text-body"> {a("← Tous les guides")} </Link>
       </div>
 
       {feedback && (
         <div role="status" className={`rounded-lg p-3 mb-4 text-body flex items-center justify-between gap-3 ${feedback.ok ? 'bg-olive-soft text-olive' : 'bg-grenadine-soft text-danger'}`}>
           <span>{feedback.msg}</span>
-          <button type="button" onClick={() => setFeedback(null)} className="text-meta underline">Fermer</button>
+          <button type="button" onClick={() => setFeedback(null)} className="text-meta underline">{a("Fermer")}</button>
         </div>
       )}
 
@@ -216,35 +217,28 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
               target="_blank"
               className="border border-grenadine text-grenadine text-body font-medium px-4 py-2 rounded-lg hover:bg-grenadine-soft flex items-center gap-1"
-            >
-              Voir catalogue {profile.city}
+            > {a("Voir catalogue")} {profile.city}
             </Link>
             {profile.profileStatus !== 'active' && (
               <button
                 onClick={() => setPending('active')}
                 disabled={saving}
                 className="bg-olive text-white text-body font-medium px-4 py-2 rounded-lg hover:bg-olive disabled:opacity-50"
-              >
-                Activer le compte
-              </button>
+              > {a("Activer le compte")} </button>
             )}
             {profile.profileStatus === 'active' && (
               <button
                 onClick={() => setPending('suspended')}
                 disabled={saving}
                 className="bg-ocre text-ink text-body font-medium px-4 py-2 rounded-lg hover:bg-ocre disabled:opacity-50"
-              >
-                Suspendre
-              </button>
+              > {a("Suspendre")} </button>
             )}
             {profile.profileStatus !== 'rejected' && profile.profileStatus !== 'active' && (
               <button
                 onClick={() => setPending('rejected')}
                 disabled={saving}
                 className="bg-grenadine text-white text-body font-medium px-4 py-2 rounded-lg hover:bg-grenadine disabled:opacity-50"
-              >
-                Rejeter
-              </button>
+              > {a("Rejeter")} </button>
             )}
           </div>
         </div>
@@ -252,7 +246,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
         {/* Email */}
         {guideEmail && guideEmailUserId === profile.userId && (
           <div className="flex items-center gap-2 mb-4 p-3 bg-mer-soft rounded-lg">
-            <span className="text-body text-mer font-medium">Email :</span>
+            <span className="text-body text-mer font-medium">{a("Email :")}</span>
             <a href={`mailto:${guideEmail}`} className="text-body text-mer font-mono hover:underline">{guideEmail}</a>
           </div>
         )}
@@ -264,12 +258,12 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
         {decisions.length > 0 && (
           <section aria-labelledby="decisions-title" className="mb-4 rounded-lg border border-line bg-paper-soft p-3" data-testid="guide-decisions">
-            <h3 id="decisions-title" className="text-meta font-semibold uppercase tracking-wide text-ink-60">Décisions</h3>
+            <h3 id="decisions-title" className="text-meta font-semibold uppercase tracking-wide text-ink-60">{a("Décisions")}</h3>
             <ul className="mt-2 space-y-2">
               {decisions.map((d) => (
                 <li key={d.id} className="text-body text-ink-80">
-                  <span className="font-medium text-ink">{badgeFor(GUIDE_PROFILE_STATUS_BADGES, d.status, 'pending_moderation').label}</span>
-                  <span className="text-ink-40"> · {new Date(d.decidedAt).toLocaleDateString('fr-FR')}</span>
+                  <span className="font-medium text-ink">{a(badgeFor(GUIDE_PROFILE_STATUS_BADGES, d.status, 'pending_moderation').label)}</span>
+                  <span className="text-ink-40"> · {a.date(d.decidedAt)}</span>
                   <p className="text-ink-60">{d.reason}</p>
                 </li>
               ))}
@@ -279,34 +273,34 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
         {/* Info grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <InfoRow label="ID profil"      value={profile.id} mono />
-          <InfoRow label="ID utilisateur" value={profile.userId} mono />
-          <InfoRow label="Ville"          value={profile.city} />
-          <InfoRow label="Vérifié"        value={profile.verified ? 'Oui' : 'Non'} />
+          <InfoRow label={a("ID profil")}      value={profile.id} mono />
+          <InfoRow label={a("ID utilisateur")} value={profile.userId} mono />
+          <InfoRow label={a("Ville")}          value={profile.city} />
+          <InfoRow label={a("Vérifié")}        value={profile.verified ? 'Oui' : 'Non'} />
           {profile.yearsExperience != null && (
-            <InfoRow label="Expérience" value={`${profile.yearsExperience} ans`} />
+            <InfoRow label={a("Expérience")} value={a("{0} ans", profile.yearsExperience)} />
           )}
           {profile.rating != null && (
-            <InfoRow label="Note" value={`${profile.rating.toFixed(1)} / 5`} />
+            <InfoRow label={a("Note")} value={`${profile.rating.toFixed(1)} / 5`} />
           )}
           {profile.tourCount != null && (
-            <InfoRow label="Parcours" value={String(profile.tourCount)} />
+            <InfoRow label={a("Parcours")} value={String(profile.tourCount)} />
           )}
           {profile.parcoursSignature && (
-            <InfoRow label="Parcours signature" value={profile.parcoursSignature} />
+            <InfoRow label={a("Parcours signature")} value={profile.parcoursSignature} />
           )}
         </div>
 
         {profile.bio && (
           <div className="mt-4 pt-4 border-t border-line">
-            <p className="text-meta font-medium text-ink-60 mb-1">Bio</p>
+            <p className="text-meta font-medium text-ink-60 mb-1">{a("Bio")}</p>
             <p className="text-body text-ink-80 whitespace-pre-wrap">{profile.bio}</p>
           </div>
         )}
 
         {profile.specialties && profile.specialties.length > 0 && (
           <div className="mt-4 pt-4 border-t border-line">
-            <p className="text-meta font-medium text-ink-60 mb-2">Spécialités</p>
+            <p className="text-meta font-medium text-ink-60 mb-2">{a("Spécialités")}</p>
             <div className="flex flex-wrap gap-2">
               {profile.specialties.map((s) => (
                 <span key={s} className="text-meta bg-grenadine-soft text-grenadine px-2 py-1 rounded-pill">{s}</span>
@@ -317,7 +311,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
         {profile.languages && profile.languages.length > 0 && (
           <div className="mt-4 pt-4 border-t border-line">
-            <p className="text-meta font-medium text-ink-60 mb-2">Langues</p>
+            <p className="text-meta font-medium text-ink-60 mb-2">{a("Langues")}</p>
             <div className="flex flex-wrap gap-2">
               {profile.languages.map((l) => (
                 <span key={l} className="text-meta bg-mer-soft text-mer px-2 py-1 rounded-pill">{l}</span>
@@ -329,11 +323,10 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
 
       {/* Tours */}
       <div className="bg-card rounded-md border border-line p-6">
-        <h2 className="text-body-lg font-semibold text-ink mb-4">
-          Parcours ({tours.length})
+        <h2 className="text-body-lg font-semibold text-ink mb-4"> {a("Parcours (")}{tours.length})
         </h2>
         {tours.length === 0 ? (
-          <p className="text-body text-ink-40">Aucun parcours créé.</p>
+          <p className="text-body text-ink-40">{a("Aucun parcours créé.")}</p>
         ) : (
           <div className="divide-y divide-line">
             {tours.map((tour) => {
@@ -341,7 +334,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
               return (
                 <div key={tour.id} className="py-3 flex items-center justify-between">
                   <div>
-                    <p className="text-body font-medium text-ink">{tour.title || <em className="text-ink-40">Sans titre</em>}</p>
+                    <p className="text-body font-medium text-ink">{tour.title || <em className="text-ink-40">{a("Sans titre")}</em>}</p>
                     <p className="text-meta text-ink-40 font-mono mt-0.5">{tour.id}</p>
                   </div>
                   <div className="flex items-center gap-3">
@@ -351,16 +344,12 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
                         href={`/catalogue/${profile.city.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/${tour.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
                         target="_blank"
                         className="text-meta text-grenadine hover:underline"
-                      >
-                        Voir
-                      </Link>
+                      > {a("Voir")} </Link>
                     )}
                     <Link
                       href={`/admin/tours/${tour.id}`}
                       className="text-meta text-ink-60 hover:underline"
-                    >
-                      Admin
-                    </Link>
+                    > {a("Admin")} </Link>
                   </div>
                 </div>
               );
@@ -373,7 +362,7 @@ export default function AdminGuideDetailPage({ params }: { params: Promise<{ gui
           target={pending}
           guideName={profile.displayName}
           busy={saving}
-          error={actionError}
+          error={a.error(actionError)}
           onConfirm={confirmStatus}
           onCancel={() => { setPending(null); setActionError(null); }}
         />

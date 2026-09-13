@@ -1,11 +1,15 @@
 'use client';
+import { isInterfaceLocale, requireInterfaceLocale, type InterfaceLocale } from '@/lib/i18n/locales';
+import { useRequestLocale } from './request-locale';
+import { translate } from '@/lib/i18n/translate';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useSyncExternalStore } from 'react';
 
-export type StudioLocale = 'fr' | 'en';
+export type StudioLocale = InterfaceLocale;
 
 const STORAGE_KEY = 'murmure-studio-locale';
 const LOCALE_CHANGE_EVENT = 'murmure-studio-locale-change';
+let memoryLocale: StudioLocale | undefined;
 
 interface StudioLocaleContextValue {
   locale: StudioLocale;
@@ -32,18 +36,29 @@ function subscribe(onChange: () => void) {
  * Langue mémorisée, sinon celle du navigateur. Un guide anglophone qui ouvre
  * la connexion pour la première fois la voit en anglais ; il pourra basculer.
  */
-function readStoredLocale(): StudioLocale {
+function readStoredLocale(initialLocale: InterfaceLocale = 'fr'): StudioLocale {
+  if (memoryLocale) return memoryLocale;
   try {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    if (saved === 'en' || saved === 'fr') return saved;
+    if (isInterfaceLocale(saved)) return saved;
   } catch { /* stockage indisponible : on retombe sur le navigateur */ }
-  return typeof navigator !== 'undefined' && /^en\b/i.test(navigator.language ?? '') ? 'en' : 'fr';
+  if (initialLocale !== 'fr') return initialLocale;
+  const browserLocale = typeof navigator !== 'undefined' ? navigator.language?.split('-')[0].toLowerCase() : null;
+  return isInterfaceLocale(browserLocale) ? browserLocale : 'fr';
 }
 
 /** Écrit la langue et prévient tous les abonnés (onglet courant compris). */
 export function setStoredStudioLocale(nextLocale: StudioLocale): void {
-  try { window.localStorage.setItem(STORAGE_KEY, nextLocale); } catch { /* ignore */ }
+  requireInterfaceLocale(nextLocale);
+  try { window.localStorage.setItem(STORAGE_KEY, nextLocale); memoryLocale = undefined; } catch { memoryLocale = nextLocale; }
+  try { document.cookie = `murmure-locale=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax`; } catch { /* Le choix en mémoire reste utilisable. */ }
+  notifyServiceWorkerLocale(nextLocale);
   window.dispatchEvent(new Event(LOCALE_CHANGE_EVENT));
+}
+
+/** Seule une préférence linguistique, jamais une page privée, est transmise au worker. */
+export function notifyServiceWorkerLocale(locale: StudioLocale): void {
+  try { navigator.serviceWorker?.controller?.postMessage({type: 'SET_INTERFACE_LOCALE', locale}); } catch { /* Worker indisponible : site en ligne inchangé. */ }
 }
 
 /**
@@ -52,7 +67,8 @@ export function setStoredStudioLocale(nextLocale: StudioLocale): void {
  * doivent basculer avec le même réglage.
  */
 export function useStoredStudioLocale(): StudioLocale {
-  return useSyncExternalStore<StudioLocale>(subscribe, readStoredLocale, () => 'fr');
+  const initialLocale = useRequestLocale();
+  return useSyncExternalStore<StudioLocale>(subscribe, () => readStoredLocale(initialLocale), () => initialLocale);
 }
 
 export function StudioLocaleProvider({ children }: { children: React.ReactNode }) {
@@ -66,7 +82,7 @@ export function StudioLocaleProvider({ children }: { children: React.ReactNode }
     setStoredStudioLocale(nextLocale);
   }, []);
 
-  const t = useCallback((fr: string, en: string) => (locale === 'en' ? en : fr), [locale]);
+  const t = useCallback((fr: string, en: string) => (translate(locale, fr, en)), [locale]);
 
   const value = useMemo<StudioLocaleContextValue>(
     () => ({ locale, setLocale, t }),

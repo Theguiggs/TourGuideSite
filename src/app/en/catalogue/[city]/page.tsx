@@ -1,3 +1,5 @@
+import { cityMetadata } from '@/lib/seo/city-metadata';
+
 import { serializeFilters } from '@/lib/catalogue/serialize-filters';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -18,14 +20,7 @@ export async function generateMetadata({params}: CityPageProps): Promise<Metadat
   const {city: citySlug} = await params;
   const city = await getCityBySlug(citySlug);
   if (!city) return {};
-  return {
-    title: `Audio walking tours in ${city.name}`,
-    description: `Discover audio walking tours in ${city.name}, available in French, English, Spanish, German and Italian.`,
-    alternates: {
-      canonical: `/en/catalogue/${citySlug}`,
-      languages: {fr: `/catalogue/${citySlug}`, en: `/en/catalogue/${citySlug}`},
-    },
-  };
+  return cityMetadata(city, 'en');
 }
 
 export default async function EnglishCityPage({params, searchParams}: CityPageProps) {
@@ -43,7 +38,6 @@ export default async function EnglishCityPage({params, searchParams}: CityPagePr
         <span className="text-ink">{city.name}</span>
       </nav>
       <PageTitle className="mb-2">{city.name}</PageTitle>
-      <p className="text-ink-60 mb-10">{city.description}</p>
       <TourListWithFilter initialFilters={serializeFilters(await searchParams)} tours={tours} citySlug={citySlug} locale="en" />
 
       {guides.length > 0 && (

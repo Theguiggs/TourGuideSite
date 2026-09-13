@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate, extendCopy } from '@/lib/i18n/translate';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -8,6 +10,7 @@ import {
 import TrackPageView from '@/components/TrackPageView';
 import { S3Image } from '@/components/studio/s3-image';
 import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
+import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { breadcrumbJsonLd, guideJsonLd } from '@/lib/seo/json-ld';
@@ -20,10 +23,10 @@ interface GuidePageProps {
   params: Promise<{ guideSlug: string }>;
 }
 
-type GuideLocale = 'fr' | 'en';
+type GuideLocale = InterfaceLocale;
 
 /** Copie FR/EN de la page guide — une seule page, deux langues (lot 3.3). */
-const GUIDE_COPY = {
+const GUIDE_COPY = extendCopy({
   fr: {
     breadcrumb: "Fil d'Ariane",
     home: 'Accueil',
@@ -74,7 +77,7 @@ const GUIDE_COPY = {
     twitterTitle: (name: string, city: string) => `${name} — Guide in ${city}`,
     numberLocale: 'en-GB',
   },
-} as const;
+} as const);
 
 export async function guideMetadata(guideSlug: string, locale: GuideLocale): Promise<Metadata> {
   const guide = await getGuideBySlug(guideSlug);
@@ -89,14 +92,14 @@ export async function guideMetadata(guideSlug: string, locale: GuideLocale): Pro
     title: copy.title(guide.displayName, guide.city),
     description,
     alternates: {
-      canonical: locale === 'en' ? enPath : frPath,
-      languages: { fr: frPath, en: enPath },
+      canonical: extendCopy({ fr: frPath, en: enPath })[locale],
+      languages: extendCopy({ fr: frPath, en: enPath }),
     },
     openGraph: {
       title: `${guide.displayName} | Murmure`,
       description,
       type: 'profile',
-      locale: locale === 'en' ? 'en_US' : 'fr_FR',
+      locale: translate(locale, 'fr_FR', 'en_US'),
       ...(guide.photoUrl ? { images: [guide.photoUrl] } : {}),
     },
     twitter: {
@@ -117,9 +120,11 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
   const guide = await getGuideBySlug(guideSlug);
   if (!guide) notFound();
 
-  const tours = await getGuidePublicTours(guide.id);
+  const originalTours = await getGuidePublicTours(guide.id);
+  const signatureIds = new Set(originalTours.filter(tour => tour.title === guide.parcoursSignature).map(tour => tour.id));
+  const tours = originalTours.map(tour => localizeTour(tour, locale));
   const copy = GUIDE_COPY[locale];
-  const base = locale === 'en' ? '/en' : '';
+  const base = translate(locale, '', '/en');
   const tourHref = (tour: { citySlug: string; slug: string }) => `${base}/catalogue/${tour.citySlug}/${tour.slug}`;
 
   return (
@@ -227,7 +232,7 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
         <div className="mb-8">
           <PageTitle as="h2" size="h5" className="mb-2">{copy.signature}</PageTitle>
           {tours
-            .filter((t) => t.title === guide.parcoursSignature)
+            .filter((t) => signatureIds.has(t.id))
             .map((tour) => (
               <Link
                 key={tour.id}
@@ -239,9 +244,10 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
                     {copy.signatureBadge}
                   </span>
                   <h3 className="font-semibold text-ink">{tour.title}</h3>
-                  <TourPriceBadge tour={tour} />
+                  <TourPriceBadge tour={tour} locale={locale} />
                 </div>
                 <p className="text-body text-ink-60">{tour.shortDescription}</p>
+                {tour.metadataFallback && <p className="text-meta text-ink-60">{METADATA_FALLBACK_COPY[locale]}</p>}
                 <p className="text-meta text-ink-60 mt-2">
                   {tour.duration} min &middot; {tour.distance} km &middot; {tour.poiCount} {copy.pois}
                 </p>
@@ -273,9 +279,10 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-semibold text-ink">{tour.title}</h3>
-                    <TourPriceBadge tour={tour} />
+                    <TourPriceBadge tour={tour} locale={locale} />
                   </div>
                   <p className="text-body text-ink-60 line-clamp-2 mb-3">{tour.shortDescription}</p>
+                  {tour.metadataFallback && <p className="text-meta text-ink-60">{METADATA_FALLBACK_COPY[locale]}</p>}
                   <div className="flex items-center gap-3 text-meta text-ink-60">
                     <span>{tour.city}</span>
                     <span>&middot;</span>

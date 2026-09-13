@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -15,13 +17,13 @@ import { useLibraryResumes } from './use-library-resumes';
  * session (useAuth), and purchases via the browser AppSync client — the SSR path
  * (cookies) can't see this app's localStorage tokens. Mirrors useOwnedTourIds.
  */
-export function MesVisitesContent({locale = 'fr'}: {locale?: 'fr' | 'en'}) {
+export function MesVisitesContent({locale = 'fr'}: {locale?: InterfaceLocale}) {
   const { user, isAuthenticated } = useAuth();
   return <LibrarySession key={`${user?.id ?? isAuthenticated}`} locale={locale} />;
 }
 
-function LibrarySession({locale}: {locale: 'fr' | 'en'}) {
-  const catalogueHref = locale === 'en' ? '/en/catalogue' : '/catalogue';
+function LibrarySession({locale}: {locale: InterfaceLocale}) {
+  const catalogueHref = translate(locale, '/catalogue', '/en/catalogue');
   const { isAuthenticated, isLoading: authLoading, user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [purchases, setPurchases] = useState<PurchasedTour[]>([]);
@@ -59,7 +61,7 @@ function LibrarySession({locale}: {locale: 'fr' | 'en'}) {
 
   if (authLoading || (isAuthenticated && loading)) {
     return (
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" role="status" aria-busy="true" aria-label={locale === 'en' ? 'Loading your purchases' : 'Chargement de vos achats'}>
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" role="status" aria-busy="true" aria-label={translate(locale, 'Chargement de vos achats', 'Loading your purchases')}>
         {[0, 1, 2].map((i) => (
           <div key={i} className="rounded-xl border border-line overflow-hidden">
             <div className="h-40 bg-paper-deep animate-pulse" />
@@ -77,15 +79,13 @@ function LibrarySession({locale}: {locale: 'fr' | 'en'}) {
     return (
       <div className="mt-8 text-center py-16 bg-paper-soft rounded-xl">
         <p className="text-ink-60 mb-4">
-          {locale === 'en'
-            ? 'Sign in to find your purchased tours.'
-            : 'Connectez-vous pour retrouver vos visites achetées.'}
+          {translate(locale, 'Connectez-vous pour retrouver vos visites achetées.', 'Sign in to find your purchased tours.')}
         </p>
         <Link
-          href={visitorAuthUrl(locale, 'login', locale === 'en' ? '/en/my-purchases' : '/mes-achats')}
+          href={visitorAuthUrl(locale, 'login', translate(locale, '/mes-achats', '/en/my-purchases'))}
           className="inline-block bg-grenadine text-paper text-body font-bold px-5 py-2.5 rounded-pill hover:opacity-90 transition no-underline"
         >
-          {locale === 'en' ? 'Sign in' : 'Se connecter'}
+          {translate(locale, 'Se connecter', 'Sign in')}
         </Link>
       </div>
     );
@@ -95,9 +95,7 @@ function LibrarySession({locale}: {locale: 'fr' | 'en'}) {
     return (
       <div className="mt-8 text-center py-16 bg-paper-soft rounded-xl">
         <p className="text-ink-60 mb-4">
-          {locale === 'en'
-            ? 'Your purchases cannot be loaded right now. Your tours are safe - please try again shortly.'
-            : 'Impossible de charger vos achats pour le moment. Vos visites ne sont pas perdues — réessayez dans quelques instants.'}
+          {translate(locale, 'Impossible de charger vos achats pour le moment. Vos visites ne sont pas perdues — réessayez dans quelques instants.', 'Your purchases cannot be loaded right now. Your tours are safe - please try again shortly.')}
         </p>
         <button
           onClick={() => {
@@ -107,7 +105,7 @@ function LibrarySession({locale}: {locale: 'fr' | 'en'}) {
           }}
           className="min-h-11 px-4 text-grenadine font-medium hover:underline"
         >
-          {locale === 'en' ? 'Try again' : 'Réessayer'}
+          {translate(locale, 'Réessayer', 'Try again')}
         </button>
       </div>
     );
@@ -117,10 +115,10 @@ function LibrarySession({locale}: {locale: 'fr' | 'en'}) {
     return (
       <div className="mt-8 text-center py-16 bg-paper-soft rounded-xl">
         <p className="text-ink-60 mb-4">
-          {locale === 'en' ? 'You have not purchased any tours yet.' : "Vous n'avez pas encore d'achat."}
+          {translate(locale, "Vous n'avez pas encore d'achat.", 'You have not purchased any tours yet.')}
         </p>
         <Link href={catalogueHref} className="text-grenadine font-medium hover:underline">
-          {locale === 'en' ? 'Browse the catalogue →' : 'Parcourir le catalogue →'}
+          {translate(locale, 'Parcourir le catalogue →', 'Browse the catalogue →')}
         </Link>
       </div>
     );
@@ -129,18 +127,16 @@ function LibrarySession({locale}: {locale: 'fr' | 'en'}) {
   return (
     <>
       <p className="text-ink-60 mb-8">
-        {locale === 'en'
-          ? `${purchases.length} purchased tour${purchases.length > 1 ? 's' : ''}.`
-          : `${purchases.length} ${purchases.length > 1 ? 'visites achetées' : 'visite achetée'}.`}
+        {translate(locale, `${purchases.length} ${purchases.length > 1 ? 'visites achetées' : 'visite achetée'}.`, `${purchases.length} purchased tour${purchases.length > 1 ? 's' : ''}.`)}
       </p>
       {resumes.length > 0 && <section className="mb-10" aria-labelledby="library-resume-title">
-        <h2 id="library-resume-title" className="font-display text-h4 text-ink mb-2">{locale === 'en' ? 'Continue listening' : 'Reprendre une écoute'}</h2>
-        <p className="text-body text-ink-80 mb-4">{locale === 'en' ? 'Progress saved on this device. The player checks the available scene and language.' : 'Progression mémorisée sur cet appareil. Le lecteur vérifie la scène et la langue disponibles.'}</p>
+        <h2 id="library-resume-title" className="font-display text-h4 text-ink mb-2">{translate(locale, 'Reprendre une écoute', 'Continue listening')}</h2>
+        <p className="text-body text-ink-80 mb-4">{translate(locale, 'Progression mémorisée sur cet appareil. Le lecteur vérifie la scène et la langue disponibles.', 'Progress saved on this device. The player checks the available scene and language.')}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {resumes.map(id => <PurchasedTourCard key={id} purchase={purchases.find(p => p.tour.id === id)!} locale={locale} resume />)}
         </div>
       </section>}
-      {resumes.length > 0 && purchases.some(p => !resumes.includes(p.tour.id)) && <h2 className="font-display text-h4 mb-4">{locale === 'en' ? 'Your other tours' : 'Vos autres visites'}</h2>}
+      {resumes.length > 0 && purchases.some(p => !resumes.includes(p.tour.id)) && <h2 className="font-display text-h4 mb-4">{translate(locale, 'Vos autres visites', 'Your other tours')}</h2>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {purchases.filter(p => !resumes.includes(p.tour.id)).map((purchase) => (
           <PurchasedTourCard key={purchase.tour.id} purchase={purchase} locale={locale} />

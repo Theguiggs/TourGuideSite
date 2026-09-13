@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 
 import type { QualityTier, PurchaseType } from '@/types/studio';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
@@ -32,8 +34,8 @@ export const LANGUAGE_CONFIG = [
 
 // --- Price formatter ---
 
-export function formatPrice(amountCents: number, locale: 'fr' | 'en' = 'fr'): string {
-  return new Intl.NumberFormat(locale === 'en' ? 'en-GB' : 'fr-FR', {
+export function formatPrice(amountCents: number, locale: InterfaceLocale = 'fr'): string {
+  return new Intl.NumberFormat(translate(locale, 'fr-FR', 'en-GB'), {
     style: 'currency',
     currency: 'EUR',
   }).format(amountCents / 100);

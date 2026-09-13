@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 import { useEffect, useMemo } from 'react';
 import { MapContainer, TileLayer, Polyline, Marker, CircleMarker, useMap } from 'react-leaflet';
 import type { LatLngTuple } from 'leaflet';
@@ -16,7 +18,7 @@ function Position({ point }: { point: Coordinate | null }) {
 }
 export default function MapCanvas({ stops, path, currentId, nearestId, position, onListen, locale }: {
   stops: MapStop[]; path: Coordinate[]; currentId: string | null; nearestId?: string;
-  position: Coordinate | null; onListen(id: string): void; locale: 'fr' | 'en';
+  position: Coordinate | null; onListen(id: string): void; locale: InterfaceLocale;
 }) {
   const points = useMemo<LatLngTuple[]>(() => stops.map((stop) => [stop.latitude, stop.longitude]), [stops]);
   const line = useMemo<LatLngTuple[]>(() => path.filter(validCoordinate).map((p) => [p.latitude, p.longitude]), [path]);
@@ -29,7 +31,7 @@ export default function MapCanvas({ stops, path, currentId, nearestId, position,
       {stops.map((stop) => {
         const active = stop.id === currentId;
         const nearest = stop.id === nearestId;
-        const title = `${stop.order}. ${stop.title}${active ? locale === 'en' ? ' — Playing' : ' — En écoute' : ''}${nearest ? locale === 'en' ? ' — Nearest' : ' — La plus proche' : ''}`;
+        const title = `${stop.order}. ${stop.title}${active ? translate(locale, ' — En écoute', ' — Playing') : ''}${nearest ? translate(locale, ' — La plus proche', ' — Nearest') : ''}`;
         return <Marker key={stop.id} position={[stop.latitude, stop.longitude]} title={title} alt={title}
           icon={createNumberedIcon({ number: stop.order, fillColor: active ? tg.colors.grenadine : nearest ? tg.colors.mer : tg.colors.paper, textColor: active || nearest ? tg.colors.paper : tg.colors.ink, borderColor: stop.locked ? tg.colors.ink40 : tg.colors.ink, size: 36 })}
           eventHandlers={{ click: () => { if (stop.listenable) onListen(stop.id); } }} />;

@@ -1,10 +1,11 @@
 'use client';
+import { useAdminCopy } from '@/lib/admin/use-admin-copy';
+
 
 import { useEffect, useState } from 'react';
 import { LoadError } from '@/components/admin/LoadError';
 import { getStudioAnalytics, type StudioAnalyticsSummary } from '@/lib/api/studio-analytics';
 import {
-  formaterDollars,
   lireGrandLivre,
   type RapportDeDepense,
 } from '@/lib/api/spend-ledger-report';
@@ -36,6 +37,7 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 export default function AdminAnalyticsPage() {
+  const a = useAdminCopy();
   const [data, setData] = useState<StudioAnalyticsSummary | null>(null);
   const [depense, setDepense] = useState<RapportDeDepense | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -50,7 +52,7 @@ export default function AdminAnalyticsPage() {
         logger.info(SERVICE_NAME, 'Analytics loaded');
       } catch (e) {
         logger.error(SERVICE_NAME, 'Failed to load analytics', { error: String(e) });
-        setLoadError('Impossible de charger les analytics.');
+        setLoadError(a("Impossible de charger les analytics."));
       } finally {
         setIsLoading(false);
       }
@@ -70,7 +72,7 @@ export default function AdminAnalyticsPage() {
         setDepense({
           ok: false,
           motif: 'panne',
-          message: 'Le grand livre n’a pas pu être lu.',
+          message: a("Le grand livre n’a pas pu être lu."),
         });
       }
     }
@@ -80,8 +82,8 @@ export default function AdminAnalyticsPage() {
   if (!isLoading && !data) {
     return (
       <div className="p-6">
-        <PageTitle size="h4" className="mb-6">Analytics Studio</PageTitle>
-        <LoadError message={loadError ?? 'Impossible de charger les analytics.'} onRetry={() => setAttempt((n) => n + 1)} />
+        <PageTitle size="h4" className="mb-6">{a("Analytics Studio")}</PageTitle>
+        <LoadError message={loadError ?? a("Impossible de charger les analytics.")} onRetry={() => setAttempt((n) => n + 1)} />
       </div>
     );
   }
@@ -89,7 +91,7 @@ export default function AdminAnalyticsPage() {
   if (isLoading || !data) {
     return (
       <div className="p-6" aria-busy="true">
-        <PageTitle size="h4" className="mb-6">Analytics Studio</PageTitle>
+        <PageTitle size="h4" className="mb-6">{a("Analytics Studio")}</PageTitle>
         <div className="space-y-4">
           {[1, 2, 3].map((i) => <div key={i} className="bg-paper-deep rounded-lg h-32 animate-pulse" />)}
         </div>
@@ -103,26 +105,24 @@ export default function AdminAnalyticsPage() {
 
   return (
     <div className="p-6 max-w-4xl">
-      <PageTitle size="h4" className="mb-6">Analytics Studio</PageTitle>
+      <PageTitle size="h4" className="mb-6">{a("Analytics Studio")}</PageTitle>
 
       {isEmpty && (
-        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 mb-6 text-body text-ocre-ink" role="status">
-          Aucune donnée disponible. Cette vue se remplira au fur et à mesure que des guides publieront des visites.
-        </div>
+        <div className="bg-ocre-soft border border-ocre rounded-lg p-4 mb-6 text-body text-ocre-ink" role="status"> {a("Aucune donnée disponible. Cette vue se remplira au fur et à mesure que des guides publieront des visites.")} </div>
       )}
 
       {/* Funnel */}
       <section className="mb-8">
-        <h2 className="text-h6 font-semibold text-ink mb-3">Funnel de production</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">{a("Funnel de production")}</h2>
         <div className="bg-card border border-line rounded-lg p-4">
           {Object.entries(funnel).map(([key, value]) => {
             const labels: Record<string, string> = {
-              fieldSessions: 'Sessions terrain',
-              studioCreated: 'Studios créés',
+              fieldSessions: a("Sessions terrain"),
+              studioCreated: a("Studios créés"),
               transcribed: 'Transcrits',
-              recorded: 'Enregistrés',
-              submitted: 'Soumis',
-              published: 'Publiés',
+              recorded: a("Enregistrés"),
+              submitted: a('Soumis'),
+              published: a("Publiés"),
             };
             const maxVal = funnel.fieldSessions;
             const pct = maxVal > 0 ? Math.round((value / maxVal) * 100) : 0;
@@ -147,7 +147,7 @@ export default function AdminAnalyticsPage() {
 
       {/* Status distribution */}
       <section className="mb-8">
-        <h2 className="text-h6 font-semibold text-ink mb-3">Distribution des statuts</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">{a("Distribution des statuts")}</h2>
         <div className="bg-card border border-line rounded-lg p-4">
           <div className="flex h-8 rounded-pill overflow-hidden mb-3">
             {statusDistribution.map((item) => (
@@ -155,7 +155,7 @@ export default function AdminAnalyticsPage() {
                 key={item.status}
                 className={`${STATUS_COLORS[item.status] ?? 'bg-paper-deep'} transition-all`}
                 style={{ width: `${item.percentage}%` }}
-                title={`${STATUS_LABELS[item.status] ?? item.status}: ${item.count} (${item.percentage}%)`}
+                title={`${STATUS_LABELS[item.status] ? a(STATUS_LABELS[item.status]) : item.status}: ${item.count} (${item.percentage}%)`}
               />
             ))}
           </div>
@@ -163,7 +163,7 @@ export default function AdminAnalyticsPage() {
             {statusDistribution.map((item) => (
               <div key={item.status} className="flex items-center gap-1">
                 <div className={`w-3 h-3 rounded ${STATUS_COLORS[item.status] ?? 'bg-paper-deep'}`} />
-                <span className="text-ink-60">{STATUS_LABELS[item.status] ?? item.status}: {item.count}</span>
+                <span className="text-ink-60">{STATUS_LABELS[item.status] ? a(STATUS_LABELS[item.status]) : item.status}: {item.count}</span>
               </div>
             ))}
           </div>
@@ -172,7 +172,7 @@ export default function AdminAnalyticsPage() {
 
       {/* Dépense mesurée — le grand livre, ou rien */}
       <section className="mb-8" data-testid="depense-mesuree">
-        <h2 className="text-h6 font-semibold text-ink mb-3">Dépense mesurée (grand livre)</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">{a("Dépense mesurée (grand livre)")}</h2>
         <div className="bg-card border border-line rounded-lg p-4">
           <SectionDepense rapport={depense} />
         </div>
@@ -180,13 +180,13 @@ export default function AdminAnalyticsPage() {
 
       {/* Production par Visite — des faits comptés, aucun coût déduit */}
       <section className="mb-8">
-        <h2 className="text-h6 font-semibold text-ink mb-3">Production par Visite</h2>
+        <h2 className="text-h6 font-semibold text-ink mb-3">{a("Production par Visite")}</h2>
         <div className="bg-card border border-line rounded-lg overflow-x-auto">
           <table className="w-full text-body">
             <thead className="bg-paper-soft">
               <tr>
-                <th className="text-left px-4 py-2 text-ink-60 font-medium">Tour</th>
-                <th className="text-right px-4 py-2 text-ink-60 font-medium">Scènes avec audio</th>
+                <th className="text-left px-4 py-2 text-ink-60 font-medium">{a("Tour")}</th>
+                <th className="text-right px-4 py-2 text-ink-60 font-medium">{a("Scènes avec audio")}</th>
               </tr>
             </thead>
             <tbody>
@@ -203,10 +203,7 @@ export default function AdminAnalyticsPage() {
             </tbody>
           </table>
         </div>
-        <p className="text-meta text-ink-40 mt-2">
-          Ce tableau ne porte plus de coût : il était calculé sur quatre constantes en dur, jamais
-          mesurées sur ce système. Le coût réel est au grand livre, ci-dessus.
-        </p>
+        <p className="text-meta text-ink-40 mt-2"> {a("Ce tableau ne porte plus de coût : il était calculé sur quatre constantes en dur, jamais mesurées sur ce système. Le coût réel est au grand livre, ci-dessus.")} </p>
       </section>
 
     </div>
@@ -226,11 +223,11 @@ export default function AdminAnalyticsPage() {
  * dit rien, la page dit qu'elle ne sait pas.
  */
 function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
+  const a = useAdminCopy();
+  const formaterDollars = (micros: number) => { const dollars = micros / 1_000_000; const digits = dollars !== 0 && Math.abs(dollars) < 1 ? 4 : 2; return a.number(dollars, {style: 'currency', currency: 'USD', minimumFractionDigits: digits, maximumFractionDigits: digits}); };
   if (rapport === null) {
     return (
-      <p className="text-body text-ink-60" aria-busy="true">
-        Lecture du grand livre…
-      </p>
+      <p className="text-body text-ink-60" aria-busy="true"> {a("Lecture du grand livre…")} </p>
     );
   }
 
@@ -239,10 +236,7 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
       <div role="status" data-testid="depense-indisponible">
         <p className="text-h5 font-bold text-ink-40">&mdash;</p>
         <p className="text-body text-ink-60 mt-1">{rapport.message}</p>
-        <p className="text-meta text-ink-40 mt-2">
-          Aucun coût n&rsquo;est estimé à la place : un «&nbsp;&mdash;&nbsp;» honnête vaut mieux
-          qu&rsquo;un chiffre faux.
-        </p>
+        <p className="text-meta text-ink-40 mt-2"> {a("Aucun coût n’est estimé à la place : un « — » honnête vaut mieux qu’un chiffre faux.")} </p>
       </div>
     );
   }
@@ -252,18 +246,17 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
       <div className="flex flex-wrap gap-4 mb-4">
         {rapport.enveloppes.map((env) => (
           <div key={env.enveloppe} className="text-body" data-testid={`enveloppe-${env.enveloppe}`}>
-            <span className="text-ink-60">Enveloppe {env.enveloppe} : </span>
-            <span className="font-medium text-ink">{formaterDollars(env.engageMicros)} engagés</span>
+            <span className="text-ink-60">{a("Enveloppe")} {env.enveloppe} : </span>
+            <span className="font-medium text-ink">{formaterDollars(env.engageMicros)} {a("engagés")}</span>
             {env.armee && env.capMicros !== null ? (
               <span className="text-ink-60">
-                {' '}
-                sur {formaterDollars(env.capMicros)}
+                {' '} {a("sur")} {formaterDollars(env.capMicros)}
                 {env.remplissagePourCent !== null
                   ? ` (${env.remplissagePourCent.toFixed(1)} %)`
                   : ''}
               </span>
             ) : (
-              <span className="text-ink-40"> &mdash; non armée ({env.motif ?? 'sans plafond'})</span>
+              <span className="text-ink-40"> {a("— non armée (")} {env.motif ?? a("sans plafond")})</span>
             )}
           </div>
         ))}
@@ -272,15 +265,8 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
       {rapport.vide ? (
         <div role="status" data-testid="grand-livre-vide">
           <p className="text-h5 font-bold text-ink-40">&mdash;</p>
-          <p className="text-body text-ink-60 mt-1">
-            Le grand livre ne porte encore aucun débit. Il part de zéro : toute la dépense
-            antérieure a été journalisée avant qu&rsquo;il existe, et n&rsquo;est pas récupérable
-            ici.
-          </p>
-          <p className="text-meta text-ink-40 mt-2">
-            Ce n&rsquo;est pas «&nbsp;0&nbsp;$ dépensé&nbsp;» &mdash; c&rsquo;est «&nbsp;rien de
-            mesuré à ce jour&nbsp;».
-          </p>
+          <p className="text-body text-ink-60 mt-1"> {a("Le grand livre ne porte encore aucun débit. Il part de zéro : toute la dépense antérieure a été journalisée avant qu’il existe, et n’est pas récupérable ici.")} </p>
+          <p className="text-meta text-ink-40 mt-2"> {a("Ce n’est pas « 0 $ dépensé » — c’est « rien de mesuré à ce jour ».")} </p>
         </div>
       ) : (
         <>
@@ -288,10 +274,10 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
           <table className="w-full text-body">
             <thead className="bg-paper-soft">
               <tr>
-                <th className="text-left px-2 py-2 text-ink-60 font-medium">Visite / producteur</th>
-                <th className="text-right px-2 py-2 text-ink-60 font-medium">Mesuré</th>
-                <th className="text-right px-2 py-2 text-ink-60 font-medium">Provisionné</th>
-                <th className="text-right px-2 py-2 text-ink-60 font-medium">Relâché</th>
+                <th className="text-left px-2 py-2 text-ink-60 font-medium">{a("Visite / producteur")}</th>
+                <th className="text-right px-2 py-2 text-ink-60 font-medium">{a("Mesuré")}</th>
+                <th className="text-right px-2 py-2 text-ink-60 font-medium">{a("Provisionné")}</th>
+                <th className="text-right px-2 py-2 text-ink-60 font-medium">{a("Relâché")}</th>
               </tr>
             </thead>
             <tbody>
@@ -319,10 +305,7 @@ function SectionDepense({ rapport }: { rapport: RapportDeDepense | null }) {
             </tbody>
           </table>
           </div>
-          <p className="text-meta text-ink-40 mt-2">
-            Trois grandeurs distinctes, jamais additionnées&nbsp;: <strong>mesuré</strong> (débit
-            conclu), <strong>provisionné</strong> (appel encore en vol), <strong>relâché</strong>{' '}
-            (appel mort avant d&rsquo;émettre &mdash; le gaspillage). Périodes lues&nbsp;:{' '}
+          <p className="text-meta text-ink-40 mt-2"> {a("Trois grandeurs distinctes, jamais additionnées :")} <strong>{a("mesuré")}</strong> {a("(débit conclu),")} <strong>{a("provisionné")}</strong> {a("(appel encore en vol),")} <strong>{a("relâché")}</strong>{' '} {a("(appel mort avant d’émettre — le gaspillage). Périodes lues :")} {' '}
             {rapport.periodes.join(', ') || 'aucune'}.
           </p>
         </>

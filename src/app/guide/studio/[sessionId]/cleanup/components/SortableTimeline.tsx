@@ -1,4 +1,5 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 import type { CSSProperties } from 'react';
 import {
@@ -60,7 +61,7 @@ export function SortableTimeline({
     const item = sceneItems.find((i) => i.id === String(id));
     const title = item?.kind === 'scene' ? item.scene.title : undefined;
     return title && title.trim().length > 0
-      ? (locale === 'en' ? `“${title}”` : `« ${title} »`)
+      ? (translate(locale, `« ${title} »`, `“${title}”`))
       : t('la scène', 'the scene');
   };
   const positionOf = (id: string | number) => `${sceneIds.indexOf(String(id)) + 1} ${t('sur', 'of')} ${sceneIds.length}`;

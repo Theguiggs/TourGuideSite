@@ -6,10 +6,14 @@ interface QualityFeedbackProps {
 }
 
 export function QualityFeedback({ result }: QualityFeedbackProps) {
-  const { t } = useStudioLocale();
+  const { t, locale } = useStudioLocale();
   if (!result || !result.overall) return null;
 
   const isGood = result.overall === 'good';
+  const message = locale === 'fr' ? result.message : result.details.peakClipping ? t('Saturation détectée — baissez le gain du micro', 'Clipping detected — reduce microphone gain')
+    : result.details.averageVolume < -30 ? t('Volume trop bas — rapprochez-vous du micro', 'Volume too low — move closer to the microphone')
+    : result.details.silenceRatio > 40 ? t('Trop de silence — vérifiez que le micro est actif', 'Too much silence — check that the microphone is active')
+    : t('Qualité : Bonne', 'Quality: Good');
 
   return (
     <div
@@ -22,7 +26,7 @@ export function QualityFeedback({ result }: QualityFeedbackProps) {
       <span aria-hidden="true" className="text-h6">{isGood ? '✓' : '⚠'}</span>
       <div>
         <p className="font-medium">{isGood ? t('Bonne qualité', 'Good quality') : t('À améliorer', 'Needs improvement')}</p>
-        <p className="text-meta opacity-75">{result.message}</p>
+        <p className="text-meta opacity-75">{message}</p>
       </div>
     </div>
   );

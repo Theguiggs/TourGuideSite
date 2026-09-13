@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import Link from 'next/link';
 import { Play } from 'lucide-react';
@@ -27,15 +29,15 @@ export function ResumeHero({
   guideName,
 }: ResumeHeroProps) {
   const { locale } = useStudioLocale();
-  const copy = locale === 'en' ? {
-    noScene: 'No scenes yet', ready: (count: number) => `${count} scenes ready - consider publishing`,
-    draft: 'Draft', scene: 'scene', scenes: 'scenes', finalised: 'finalised', hello: 'Hello', resume: 'Resume where you left off',
-    untitled: 'Untitled session', continue: 'Continue', preview: 'Tour preview', progress: 'Progress',
-  } : {
+  const copy = localizeValue(locale, {
     noScene: 'Aucune scène pour le moment', ready: (count: number) => `${count} scènes prêtes - pensez à publier`,
     draft: 'Brouillon', scene: 'scène', scenes: 'scènes', finalised: 'finalisées', hello: 'Bonjour', resume: 'Reprendre où vous étiez',
     untitled: 'Session sans titre', continue: 'Continuer', preview: 'Aperçu de la visite', progress: 'Progression',
-  };
+  }, {
+    noScene: 'No scenes yet', ready: (count: number) => `${count} scenes ready - consider publishing`,
+    draft: 'Draft', scene: 'scene', scenes: 'scenes', finalised: 'finalised', hello: 'Hello', resume: 'Resume where you left off',
+    untitled: 'Untitled session', continue: 'Continue', preview: 'Tour preview', progress: 'Progress',
+  });
   const pct = scenesTotal > 0 ? Math.min(100, Math.round((scenesDone / scenesTotal) * 100)) : 0;
   const continueHref = `/guide/studio/${session.id}/scenes`;
   const previewHref = `/guide/studio/${session.id}/preview`;

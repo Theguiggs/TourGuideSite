@@ -1,14 +1,17 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { S3Image } from '@/components/studio/s3-image';
 import type { PurchasedTour } from '@/types/purchase';
+import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
 import { PageTitle, tg } from '@murmure/design-system/web';
 import { Play } from 'lucide-react';
 import { LISTEN_ANCHOR, PURCHASE_LISTEN_COPY } from './scene-player/listen-link';
 
 interface MyPurchasesStripProps {
   purchases: PurchasedTour[];
-  locale?: 'fr' | 'en';
+  locale?: InterfaceLocale;
 }
 
 function PurchaseStripLink({ href, label, testId, children }: { href?: string; label: string; testId: string; children: ReactNode }) {
@@ -32,17 +35,18 @@ export function MyPurchasesStrip({ purchases, locale = 'fr' }: MyPurchasesStripP
         <PageTitle as="h2" size="h5">
           {copy.myPurchases} ({purchases.length})
         </PageTitle>
-        <Link href={locale === 'en' ? '/en/my-purchases' : '/mes-achats'} className="text-body text-grenadine font-medium hover:underline">
+        <Link href={translate(locale, '/mes-achats', '/en/my-purchases')} className="text-body text-grenadine font-medium hover:underline">
           {copy.viewAll}
         </Link>
       </div>
       <div className="flex gap-3 overflow-x-auto pb-2">
-        {purchases.slice(0, 6).map(({ tour }) => {
+        {purchases.slice(0, 6).map(({ tour: originalTour }) => {
+          const tour = localizeTour(originalTour, locale);
           const published = tour.status === 'published';
           return (
           <PurchaseStripLink
             key={tour.id}
-            href={published ? `${locale === 'en' ? '/en' : ''}/catalogue/${tour.citySlug}/${tour.slug}${LISTEN_ANCHOR}` : undefined}
+            href={published ? `${translate(locale, '', '/en')}/catalogue/${tour.citySlug}/${tour.slug}${LISTEN_ANCHOR}` : undefined}
             label={copy.label(tour.title)}
             testId={`purchase-strip-${tour.id}`}
           >
@@ -63,6 +67,7 @@ export function MyPurchasesStrip({ purchases, locale = 'fr' }: MyPurchasesStripP
               ) : null}
             </div>
             <p className="p-2 text-meta font-medium text-ink line-clamp-2">{tour.title}</p>
+            {tour.metadataFallback && <p className="px-2 text-meta text-ink-60">{METADATA_FALLBACK_COPY[locale]}</p>}
             <span style={{ display: 'flex', alignItems: 'center', gap: tg.space[2], padding: tg.space[2], color: tg.colors.ink, fontSize: tg.fontSize.meta, fontWeight: 600 }}>
               {published && <Play size={14} aria-hidden="true" />}{published ? copy.listen : copy.unavailable}
             </span>

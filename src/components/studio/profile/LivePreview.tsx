@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import { Pin } from '@murmure/design-system/web';
 import { tgColors } from '@murmure/design-system';
@@ -31,15 +33,15 @@ export function LivePreview({
   sampleTours = [],
 }: LivePreviewProps) {
   const { locale } = useStudioLocale();
-  const copy = locale === 'en' ? {
-    eyebrow: 'Traveller preview', intro: 'What Murmure users see when they listen to one of your tours.', author: 'The author',
-    yourName: 'Your name', city: 'City', since: 'since', emptyBio: 'Your biography will appear here. A few lines are enough: travellers connect with guides who feel human.',
-    tours: 'tours', plays: 'plays', rating: 'average rating', byAuthor: 'Their tours', liveUpdate: 'The preview updates as you edit the form.',
-  } : {
+  const copy = localizeValue(locale, {
     eyebrow: 'Aperçu côté voyageur', intro: 'Ce que voient les utilisateurs Murmure quand ils écoutent une de vos visites.', author: "L'auteur",
     yourName: 'Votre nom', city: 'Ville', since: 'depuis', emptyBio: 'Votre biographie apparaîtra ici. Quelques lignes suffisent : les voyageurs aiment sentir la personnalité de leur guide.',
     tours: 'visites', plays: 'écoutes', rating: 'note moyenne', byAuthor: 'Ses visites', liveUpdate: 'L’aperçu se met à jour pendant vos modifications.',
-  };
+  }, {
+    eyebrow: 'Traveller preview', intro: 'What Murmure users see when they listen to one of your tours.', author: 'The author',
+    yourName: 'Your name', city: 'City', since: 'since', emptyBio: 'Your biography will appear here. A few lines are enough: travellers connect with guides who feel human.',
+    tours: 'tours', plays: 'plays', rating: 'average rating', byAuthor: 'Their tours', liveUpdate: 'The preview updates as you edit the form.',
+  });
   const initial = (value.displayName ?? 'S').trim().charAt(0).toUpperCase() || 'S';
   const fam = cityFamily(value.city);
   const famMeta = FAMILY_META[fam];

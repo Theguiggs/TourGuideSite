@@ -1,3 +1,5 @@
+import { localizeValue } from '@/lib/i18n/translate';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
 /**
  * Copie des bulles d'onboarding du Studio, en un seul endroit.
  *
@@ -75,6 +77,6 @@ const TIPS_EN: Record<OnboardingFeature, OnboardingTip> = {
   },
 };
 
-export function onboardingTip(feature: OnboardingFeature, locale: 'fr' | 'en'): OnboardingTip {
-  return (locale === 'en' ? TIPS_EN : TIPS_FR)[feature];
+export function onboardingTip(feature: OnboardingFeature, locale: InterfaceLocale): OnboardingTip {
+  return (localizeValue(locale, TIPS_FR, TIPS_EN))[feature];
 }

@@ -1,4 +1,7 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
+import { translate } from '@/lib/i18n/translate';
 
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
 
@@ -39,9 +42,7 @@ export function LanguageTogglePills({
   options = DEFAULT_LANGUAGES,
 }: LanguageTogglePillsProps) {
   const { locale } = useStudioLocale();
-  const translatedLabels: Record<string, string> = locale === 'en'
-    ? { fr: 'French', en: 'English', it: 'Italian', es: 'Spanish', de: 'German', pt: 'Portuguese' }
-    : { fr: 'Français', en: 'Anglais', it: 'Italien', es: 'Espagnol', de: 'Allemand', pt: 'Portugais' };
+  const translatedLabels: Record<string, string> = localizeValue(locale, { fr: 'Français', en: 'Anglais', it: 'Italien', es: 'Espagnol', de: 'Allemand', pt: 'Portugais' }, { fr: 'French', en: 'English', it: 'Italian', es: 'Spanish', de: 'German', pt: 'Portuguese' });
   const set = new Set(value);
 
   const toggle = (code: string) => {
@@ -57,7 +58,7 @@ export function LanguageTogglePills({
       className="flex gap-2 flex-wrap"
       data-testid="language-toggle-pills"
       role="group"
-      aria-label={locale === 'en' ? 'Languages spoken' : 'Langues parlées'}
+      aria-label={translate(locale, 'Langues parlées', 'Languages spoken')}
     >
       {options.map((opt) => {
         const isOn = set.has(opt.code);
@@ -78,7 +79,7 @@ export function LanguageTogglePills({
           >
             {translatedLabels[opt.code] ?? opt.label}
             {isOn && isNative && (
-              <span className="text-[9px] ml-1 opacity-70 tracking-wider font-bold">{locale === 'en' ? 'NATIVE' : 'NATIF'}</span>
+              <span className="text-[9px] ml-1 opacity-70 tracking-wider font-bold">{translate(locale, 'NATIF', 'NATIVE')}</span>
             )}
           </button>
         );

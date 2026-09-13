@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 
 import { useState } from 'react';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
@@ -14,10 +16,10 @@ interface SessionTerrainCardProps {
   defaultCollapsed?: boolean;
 }
 
-function formatDate(iso: string | null | undefined, locale: 'fr' | 'en'): string {
+function formatDate(iso: string | null | undefined, locale: InterfaceLocale): string {
   if (!iso) return '—';
   try {
-    return new Date(iso).toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', {
+    return new Date(iso).toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'), {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',

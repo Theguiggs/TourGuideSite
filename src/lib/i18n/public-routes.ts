@@ -8,7 +8,9 @@
  * (`/catalogue/nice` → `/en/catalogue/nice`).
  */
 
-export type PublicLocale = 'fr' | 'en';
+import { requireInterfaceLocale, type InterfaceLocale } from './locales';
+
+export type PublicLocale = InterfaceLocale;
 
 /** [français, anglais], du plus spécifique au plus général. */
 export const PUBLIC_ROUTE_PAIRS: ReadonlyArray<readonly [string, string]> = [
@@ -37,11 +39,21 @@ function swap(path: string, from: string, to: string): string {
 }
 
 export function localizePublicPath(pathname: string, locale: PublicLocale): string {
-  const path = pathname || '/';
-  const [fromIndex, toIndex] = locale === 'en' ? [0, 1] : [1, 0];
-  // Le chemin est-il déjà dans la langue demandée ? On le garde tel quel.
-  if (PUBLIC_ROUTE_PAIRS.some((pair) => matches(path, pair[toIndex]))) return path;
-  const pair = PUBLIC_ROUTE_PAIRS.find((candidate) => matches(path, candidate[fromIndex]));
-  if (!pair) return path;
-  return swap(path, pair[fromIndex], pair[toIndex]);
+  requireInterfaceLocale(locale);
+  const input = pathname || '/';
+  // Preserve filters, payment returns and fragments verbatim. Never interpret
+  // an external URL as an application path.
+  if (!input.startsWith('/') || input.startsWith('//') || input.includes('\\')) return input;
+  const boundary = input.search(/[?#]/);
+  const suffix = boundary < 0 ? '' : input.slice(boundary);
+  let path = boundary < 0 ? input : input.slice(0, boundary);
+  const newPrefix = path.match(/^\/(es|de|it|nl)(?=\/|$)/)?.[0];
+  if (newPrefix) path = `/en${path.slice(newPrefix.length)}`;
+  const pair = PUBLIC_ROUTE_PAIRS.find(([fr, en]) => matches(path, en) || matches(path, fr));
+  if (!pair) return input;
+  const from = matches(path, pair[1]) ? pair[1] : pair[0];
+  const english = swap(path, from, pair[1]);
+  const result = locale === 'fr' ? swap(path, from, pair[0])
+    : locale === 'en' ? english : `/${locale}${english.slice(3)}`;
+  return result + suffix;
 }

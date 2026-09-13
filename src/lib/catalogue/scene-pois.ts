@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 /**
  * Projection scènes publiées → étapes d'itinéraire, et lecture de ce que le
  * serveur a accordé.
@@ -14,6 +16,21 @@
 
 import type { PublicTourScene } from '@/lib/api/published-tour-content';
 import type { POI } from '@/types/tour';
+import { normalizeLanguageTag } from '@/lib/api/audio-source-policy';
+
+/** The published scene contract serves source text only; audio translations do not translate it. */
+export function itineraryUsesSourceText(pois: readonly POI[], locale: InterfaceLocale, sourceLanguage?: string): boolean {
+  return pois.some(poi => Boolean(poi.title || poi.description)) && locale !== (normalizeLanguageTag(sourceLanguage) || 'fr');
+}
+
+export const ITINERARY_SOURCE_COPY: Record<InterfaceLocale, string> = {
+  fr: 'Les titres et descriptions des étapes sont affichés dans leur langue d’origine : leur traduction n’est pas disponible. Les langues audio sont indépendantes.',
+  en: 'Stop titles and descriptions are shown in their original language because their translation is unavailable. Audio languages are separate.',
+  es: 'Los títulos y las descripciones de las paradas se muestran en su idioma original porque no hay traducción disponible. Los idiomas del audio son independientes.',
+  de: 'Titel und Beschreibungen der Stationen werden in der Originalsprache angezeigt, da ihre Übersetzung nicht verfügbar ist. Die Audiosprachen sind davon unabhängig.',
+  it: 'I titoli e le descrizioni delle tappe sono mostrati nella lingua originale perché la traduzione non è disponibile. Le lingue audio sono indipendenti.',
+  nl: 'Titels en beschrijvingen van de stops worden in de oorspronkelijke taal getoond omdat hun vertaling niet beschikbaar is. Audiotalen staan hier los van.',
+};
 
 /** Longueur d'accroche affichée dans l'itinéraire. */
 const POI_DESCRIPTION_MAX = 200;
@@ -83,13 +100,13 @@ export function isFullContent(scenes: readonly PublicTourScene[]): boolean {
  * contenu complet par la redemande après hydratation (voir `useServedContent`).
  * Coordonnées et ordre restent : la carte montre l'itinéraire entier.
  */
-export function maskLockedPois(pois: readonly POI[], locale: 'fr' | 'en' = 'fr'): POI[] {
+export function maskLockedPois(pois: readonly POI[], locale: InterfaceLocale = 'fr'): POI[] {
   return pois.map((poi, index) =>
     index < FREE_PREVIEW_SCENES
       ? poi
       : {
           ...poi,
-          title: locale === 'en' ? `Stop ${index + 1}` : `Étape ${index + 1}`,
+          title: translate(locale, `Étape ${index + 1}`, `Stop ${index + 1}`),
           description: '',
           photoKey: undefined,
           // Une étape masquée n'a pas de bouton « Écouter » à annoncer.

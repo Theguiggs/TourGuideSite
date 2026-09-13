@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 import { tg } from '@murmure/design-system/tokens';
 
 /**
@@ -13,14 +15,14 @@ export function clampRating(rating: unknown): number {
   return Math.min(5, Math.max(0, n));
 }
 
-export function StarRating({ rating, locale = 'fr' }: { rating: number; locale?: 'fr' | 'en' }) {
+export function StarRating({ rating, locale = 'fr' }: { rating: number; locale?: InterfaceLocale }) {
   const value = clampRating(rating);
   const full = Math.round(value);
   return (
     <span
       role="img"
       style={{ color: tg.colors.ocre }}
-      aria-label={locale === 'en' ? `${value.toFixed(1)} stars out of 5` : `${value.toFixed(1)} étoiles sur 5`}
+      aria-label={translate(locale, `${value.toFixed(1)} étoiles sur 5`, `${value.toFixed(1)} stars out of 5`)}
     >
       {'★'.repeat(full)}
       {'☆'.repeat(5 - full)}

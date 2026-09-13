@@ -102,7 +102,7 @@ export function AdvancedEditor({ audioKey, audioUrl, onSegmentsChange }: Advance
 
       {detectedSegments.length > 0 && (
         <div className="space-y-1">
-          <h4 className="text-meta font-medium text-ink-60 uppercase">Segments</h4>
+          <h4 className="text-meta font-medium text-ink-60 uppercase">{t('Segments', 'Segments')}</h4>
           {detectedSegments.map((seg, i) => (
             <div
               key={i}

@@ -1,4 +1,6 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
 
 import { useState } from 'react';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
@@ -92,7 +94,7 @@ const BROWSER_INSTRUCTIONS_EN: typeof BROWSER_INSTRUCTIONS = [
 export function MicHelp({ onClose }: MicHelpProps) {
   const [selectedBrowser, setSelectedBrowser] = useState(0);
   const { t, locale } = useStudioLocale();
-  const instructions = locale === 'en' ? BROWSER_INSTRUCTIONS_EN : BROWSER_INSTRUCTIONS;
+  const instructions = localizeValue(locale, BROWSER_INSTRUCTIONS, BROWSER_INSTRUCTIONS_EN);
 
   return (
     <div className="bg-card border border-ocre-soft rounded-lg p-4 shadow-lg max-w-lg" data-testid="mic-help">

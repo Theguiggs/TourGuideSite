@@ -1,4 +1,6 @@
 'use client';
+import { useAdminCopy } from '@/lib/admin/use-admin-copy';
+
 
 import { useState, useEffect } from 'react';
 import { LoadError } from '@/components/admin/LoadError';
@@ -15,6 +17,7 @@ import { StatusBadge } from '@/components/admin/StatusBadge';
 const SERVICE_NAME = 'ModerationQueuePage';
 
 export default function ModerationQueuePage() {
+  const a = useAdminCopy();
   const [langQueue, setLangQueue] = useState<LanguageModerationItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [metrics, setMetrics] = useState<ModerationMetrics | null>(null);
@@ -33,7 +36,7 @@ export default function ModerationQueuePage() {
       },
     ).catch((err) => {
       logger.error(SERVICE_NAME, 'Failed to load moderation queue', { error: String(err) });
-      setLoadError('Impossible de charger la file de modération.');
+      setLoadError(a("Impossible de charger la file de modération."));
     }).finally(() => {
       setLoading(false);
     });
@@ -59,26 +62,26 @@ export default function ModerationQueuePage() {
 
   return (
     <div>
-      <PageTitle size="h4" className="mb-6">File d&apos;attente de modération</PageTitle>
+      <PageTitle size="h4" className="mb-6">{a("File d'attente de modération")}</PageTitle>
 
       {/* Metrics Cards */}
       {metrics && (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <div className="bg-card rounded-md p-4 border border-line">
             <p className="text-h4 font-bold text-danger">{metrics.pendingCount}</p>
-            <p className="text-body text-ink-60">En attente</p>
+            <p className="text-body text-ink-60">{a("En attente")}</p>
           </div>
           <div className="bg-card rounded-md p-4 border border-line">
             <p className="text-h4 font-bold text-ink">{metrics.avgReviewTimeMinutes} min</p>
-            <p className="text-body text-ink-60">Temps moyen de revue</p>
+            <p className="text-body text-ink-60">{a("Temps moyen de revue")}</p>
           </div>
           <div className="bg-card rounded-md p-4 border border-line">
             <p className="text-h4 font-bold text-olive">{metrics.approvalRate}%</p>
-            <p className="text-body text-ink-60">Taux d&apos;approbation</p>
+            <p className="text-body text-ink-60">{a("Taux d'approbation")}</p>
           </div>
           <div className="bg-card rounded-md p-4 border border-line">
             <p className="text-h4 font-bold text-ink">{metrics.reviewedThisMonth}</p>
-            <p className="text-body text-ink-60">Revues ce mois</p>
+            <p className="text-body text-ink-60">{a("Revues ce mois")}</p>
           </div>
         </div>
       )}
@@ -90,7 +93,7 @@ export default function ModerationQueuePage() {
           onChange={(e) => setFilterCity(e.target.value)}
           className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
         >
-          <option value="">Toutes les villes</option>
+          <option value="">{a("Toutes les villes")}</option>
           {cities.map((city) => (
             <option key={city} value={city}>{city}</option>
           ))}
@@ -102,7 +105,7 @@ export default function ModerationQueuePage() {
           className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
           data-testid="filter-language"
         >
-          <option value="">Toutes les langues</option>
+          <option value="">{a("Toutes les langues")}</option>
           {languages.map((lang) => (
             <option key={lang} value={lang}>{LANG_FLAGS[lang] ?? ''} {lang.toUpperCase()}</option>
           ))}
@@ -113,46 +116,44 @@ export default function ModerationQueuePage() {
           onChange={(e) => setFilterStatus(e.target.value)}
           className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
         >
-          <option value="">Tous les statuts</option>
-          <option value="pending">En attente</option>
-          <option value="resubmitted">Resoumis</option>
+          <option value="">{a("Tous les statuts")}</option>
+          <option value="pending">{a("En attente")}</option>
+          <option value="resubmitted">{a("Resoumis")}</option>
         </select>
 
         {(filterCity || filterStatus || filterLanguage) && (
           <button
             onClick={() => { setFilterCity(''); setFilterStatus(''); setFilterLanguage(''); }}
             className="text-body text-danger hover:underline px-2"
-          >
-            Effacer les filtres
-          </button>
+          > {a("Effacer les filtres")} </button>
         )}
       </div>
 
       {/* Queue Table */}
       {loading ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
-          <p className="text-ink-60" role="status" aria-busy="true">Chargement…</p>
+          <p className="text-ink-60" role="status" aria-busy="true">{a("Chargement…")}</p>
         </div>
       ) : loadError ? (
-        <LoadError message={loadError} onRetry={loadQueue} />
+        <LoadError message={a.error(loadError)} onRetry={loadQueue} />
       ) : filteredQueue.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
-          <p className="text-ink-60 text-h6">Aucune visite en attente de modération.</p>
-          <p className="text-ink-40 text-body mt-1">Les nouvelles soumissions apparaîtront ici.</p>
+          <p className="text-ink-60 text-h6">{a("Aucune visite en attente de modération.")}</p>
+          <p className="text-ink-40 text-body mt-1">{a("Les nouvelles soumissions apparaîtront ici.")}</p>
         </div>
       ) : (
         <div className="bg-card rounded-md border border-line overflow-x-auto">
           <table className="w-full">
             <thead className="bg-paper-soft border-b border-line">
               <tr>
-                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">Guide</th>
-                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">Parcours</th>
-                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">Langue</th>
-                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">Narration</th>
-                <th className="text-left px-4 py-3 text-body font-medium text-ink-60 hidden sm:table-cell">Ville</th>
-                <th className="text-left px-4 py-3 text-body font-medium text-ink-60 hidden md:table-cell">Soumis le</th>
-                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">Statut</th>
-                <th className="text-right px-4 py-3 text-body font-medium text-ink-60">Action</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">{a("Guide")}</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">{a("Parcours")}</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">{a("Langue")}</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">{a("Narration")}</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60 hidden sm:table-cell">{a("Ville")}</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60 hidden md:table-cell">{a("Soumis le")}</th>
+                <th className="text-left px-4 py-3 text-body font-medium text-ink-60">{a("Statut")}</th>
+                <th className="text-right px-4 py-3 text-body font-medium text-ink-60">{a("Action")}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
@@ -176,9 +177,7 @@ export default function ModerationQueuePage() {
                         {LANG_FLAGS[item.language] ?? ''} {item.language.toUpperCase()}
                       </span>
                       {item.isSourceLanguage && (
-                        <span className="ml-1 inline-flex px-1.5 py-0.5 rounded text-eyebrow font-medium bg-mer-soft text-mer" data-testid="source-lang-badge">
-                          Source
-                        </span>
+                        <span className="ml-1 inline-flex px-1.5 py-0.5 rounded text-eyebrow font-medium bg-mer-soft text-mer" data-testid="source-lang-badge"> {a("Source")} </span>
                       )}
                     </td>
                     <td className="px-4 py-3">
@@ -190,15 +189,15 @@ export default function ModerationQueuePage() {
                             : 'bg-grenadine-soft text-danger'
                       }`} data-testid={`narration-mode-${item.id}`}>
                         {item.narrationMode === 'recording'
-                          ? 'Voix humaine'
+                          ? a("Voix humaine")
                           : item.narrationMode === 'tts_on_demand'
-                            ? 'TTS à la demande'
-                            : 'Mode à migrer'}
+                            ? a("TTS à la demande")
+                            : a("Mode à migrer")}
                       </span>
                     </td>
                     <td className="px-4 py-3 hidden sm:table-cell text-body text-ink-60">{item.city}</td>
                     <td className="px-4 py-3 hidden md:table-cell text-body text-ink-60">
-                      {new Date(item.submissionDate).toLocaleDateString('fr-FR')}
+                      {a.date(item.submissionDate)}
                     </td>
                     <td className="px-4 py-3">
                       <StatusBadge badge={badge} />
@@ -208,9 +207,7 @@ export default function ModerationQueuePage() {
                         href={`/admin/moderation/${item.moderationItemId}?lang=${item.language}`}
                         className="text-body font-medium text-grenadine hover:text-grenadine"
                         data-testid={`examine-btn-${item.id}`}
-                      >
-                        Examiner
-                      </Link>
+                      > {a("Examiner")} </Link>
                     </td>
                   </tr>
                 );

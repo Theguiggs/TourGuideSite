@@ -4,6 +4,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import Header from '../Header';
 import { VisitorBottomNav } from '../auth/visitor-bottom-nav';
+import { localizePublicPath } from '@/lib/i18n/public-routes';
 
 let mockPath = '/';
 let mockParams = new URLSearchParams();
@@ -20,6 +21,18 @@ jest.mock('@/lib/auth/auth-context', () => ({
 
 describe('Header', () => {
   beforeEach(() => { mockPath = '/'; mockParams = new URLSearchParams(); window.history.replaceState(null, '', '/'); });
+  it.each(['en', 'es', 'de', 'it', 'nl'] as const)('préserve le retour Stripe vers %s sans exposer le secret client', locale => {
+    mockPath = '/catalogue/nice/promenade';
+    mockParams = new URLSearchParams({payment_intent: 'pi_pending', murmure_pay: 'tour', redirect_status: 'processing', payment_intent_client_secret: 'pi_pending_secret_private'});
+    render(<Header />);
+    const link = screen.getByRole('link', {name: locale.toUpperCase()});
+    const url = new URL(link.getAttribute('href')!, 'https://example.test');
+    expect(url.pathname).toBe(localizePublicPath(mockPath, locale));
+    expect(url.searchParams.get('payment_intent')).toBe('pi_pending');
+    expect(url.searchParams.get('murmure_pay')).toBe('tour');
+    expect(url.searchParams.get('redirect_status')).toBe('processing');
+    expect(url.searchParams.has('payment_intent_client_secret')).toBe(false);
+  });
   it('affiche un lien « Aide » vers /aide', () => {
     render(<Header />);
     expect(screen.getByRole('link', { name: 'Aide' })).toHaveAttribute('href', '/aide');

@@ -8,6 +8,7 @@
  * et chaque composant affiche un libellé qui dit la vraie cause.
  */
 
+import type { InterfaceLocale } from '@/lib/i18n/locales';
 export type SessionRefusal = 'expired' | 'revoked';
 
 export const SESSION_REFUSAL_EVENT = 'murmure:session-refusal';
@@ -18,12 +19,12 @@ export function refusalFromStatus(status: number): SessionRefusal | null {
   return null;
 }
 
-export const REFUSAL_MESSAGES: Record<SessionRefusal, { fr: string; en: string }> = {
-  expired: { fr: 'Session expirée : reconnectez-vous.', en: 'Session expired: sign in again.' },
-  revoked: { fr: 'Accès guide retiré : cette action n’est plus autorisée.', en: 'Guide access revoked: this action is no longer allowed.' },
+export const REFUSAL_MESSAGES: Record<SessionRefusal, Record<InterfaceLocale, string>> = {
+  expired: { fr: 'Session expirée : reconnectez-vous.', en: 'Session expired: sign in again.', es: 'Sesión caducada: vuelve a iniciar sesión.', de: 'Sitzung abgelaufen: bitte erneut anmelden.', it: 'Sessione scaduta: accedi di nuovo.', nl: 'Sessie verlopen: log opnieuw in.' },
+  revoked: { fr: 'Accès guide retiré : cette action n’est plus autorisée.', en: 'Guide access revoked: this action is no longer allowed.', es: 'Acceso de guía revocado: esta acción ya no está permitida.', de: 'Guide-Zugang entzogen: diese Aktion ist nicht mehr erlaubt.', it: 'Accesso guida revocato: questa azione non è più consentita.', nl: 'Gidstoegang ingetrokken: deze actie is niet meer toegestaan.' },
 };
 
-export function refusalMessage(refusal: SessionRefusal, locale: 'fr' | 'en' = 'fr'): string {
+export function refusalMessage(refusal: SessionRefusal, locale: InterfaceLocale = 'fr'): string {
   return REFUSAL_MESSAGES[refusal][locale];
 }
 

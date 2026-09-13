@@ -1,4 +1,7 @@
 'use client';
+import { localizeValue } from '@/lib/i18n/translate';
+
+import { translate } from '@/lib/i18n/translate';
 
 import { useEffect } from 'react';
 import Link from 'next/link';
@@ -61,10 +64,8 @@ export function WizardShell({
   const onboardingFeature = TAB_ONBOARDING[activeTab];
   const statusConfig = session ? getSessionStatusConfig(session.status) : null;
   // Le titre est affiché ENTIER : le découpage sur tiret rendait « Saint » pour « Saint-Paul-de-Vence ».
-  const title = session?.title?.trim() || (locale === 'en' ? 'Untitled tour' : 'Visite sans titre');
-  const tabLabels: Record<WizardTabKey, string> = locale === 'en'
-    ? { accueil: 'Overview', general: 'Details', itinerary: 'Itinerary', scenes: 'Scenes', preview: 'Preview', submission: 'Publish' }
-    : { accueil: 'Accueil', general: 'Général', itinerary: 'Itinéraire', scenes: 'Scènes', preview: 'Aperçu', submission: 'Publication' };
+  const title = session?.title?.trim() || (translate(locale, 'Visite sans titre', 'Untitled tour'));
+  const tabLabels: Record<WizardTabKey, string> = localizeValue(locale, { accueil: 'Accueil', general: 'Général', itinerary: 'Itinéraire', scenes: 'Scènes', preview: 'Aperçu', submission: 'Publication' }, { accueil: 'Overview', general: 'Details', itinerary: 'Itinerary', scenes: 'Scenes', preview: 'Preview', submission: 'Publish' });
 
   return (
     <div className="flex flex-col h-full" data-testid="wizard-shell">
@@ -75,9 +76,9 @@ export function WizardShell({
           <Link
             href="/guide/studio/tours"
             className="text-ink-60 hover:text-grenadine transition no-underline"
-            aria-label={locale === 'en' ? 'Back to tours' : 'Retour à la liste des visites'}
+            aria-label={translate(locale, 'Retour à la liste des visites', 'Back to tours')}
           >
-            <span className="inline-flex items-center gap-1"><ArrowLeft size={14} aria-hidden="true" />{locale === 'en' ? 'Tours' : 'Visites'}</span>
+            <span className="inline-flex items-center gap-1"><ArrowLeft size={14} aria-hidden="true" />{translate(locale, 'Visites', 'Tours')}</span>
           </Link>
           <span className="text-ink-40">›</span>
           {headerLoading ? (
@@ -110,7 +111,7 @@ export function WizardShell({
         </div>
 
         {/* Tabs */}
-        <nav className="-mb-px flex gap-1 overflow-x-auto" aria-label={locale === 'en' ? 'Studio tabs' : 'Onglets Studio'}>
+        <nav className="-mb-px flex gap-1 overflow-x-auto" aria-label={translate(locale, 'Onglets Studio', 'Studio tabs')}>
           {WIZARD_TABS.map((tab) => {
             const isActive = tab.key === activeTab;
             const href = tab.pathSuffix

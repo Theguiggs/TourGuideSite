@@ -1,4 +1,6 @@
 'use client';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 
 import Link from 'next/link';
 import { useSyncExternalStore } from 'react';
@@ -23,14 +25,14 @@ export function latestHomeResume(tours: ResumeTour[]): string {
   return latest;
 }
 
-export function HomeResume({ tours, locale }: { tours: ResumeTour[]; locale: 'fr' | 'en' }) {
+export function HomeResume({ tours, locale }: { tours: ResumeTour[]; locale: InterfaceLocale }) {
   const id = useSyncExternalStore(subscribe, () => latestHomeResume(tours), empty);
   const tour = tours.find(item => item.id === id);
   if (!tour) return null;
   return <p className="mb-6 text-body text-ink-80">
-    {locale === 'en' ? 'On this device: ' : 'Sur cet appareil : '}
-    <Link href={`${locale === 'en' ? '/en' : ''}/catalogue/${tour.citySlug}/${tour.slug}#itineraire`} className="inline-flex min-h-11 items-center font-semibold text-grenadine underline underline-offset-4">
-      {locale === 'en' ? 'Return to my listening' : 'Retrouver mon écoute'} — {tour.title}
+    {translate(locale, 'Sur cet appareil : ', 'On this device: ')}
+    <Link href={`${translate(locale, '', '/en')}/catalogue/${tour.citySlug}/${tour.slug}#itineraire`} className="inline-flex min-h-11 items-center font-semibold text-grenadine underline underline-offset-4">
+      {translate(locale, 'Retrouver mon écoute', 'Return to my listening')} — {tour.title}
     </Link>
   </p>;
 }

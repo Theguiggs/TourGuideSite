@@ -1,4 +1,5 @@
 'use client';
+import { translate } from '@/lib/i18n/translate';
 
 import Link from 'next/link';
 import { tgColors } from '@murmure/design-system';
@@ -73,7 +74,7 @@ export function TopTourRow({
         <div className="font-display text-h6 text-ink leading-none">
           {plays ?? '—'}
         </div>
-        <div className="text-meta text-ink-40 font-mono tracking-wide">{locale === 'en' ? 'plays' : 'écoutes'}</div>
+        <div className="text-meta text-ink-40 font-mono tracking-wide">{translate(locale, 'écoutes', 'plays')}</div>
       </div>
       <div className="hidden text-right text-caption font-bold text-ocre-ink md:block">
         {rating !== null ? `★${rating.toFixed(1).replace('.', ',')}` : '—'}

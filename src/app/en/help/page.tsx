@@ -1,5 +1,5 @@
 import { VisitorHelp } from '@/components/catalogue/visitor-help';
-import type { Metadata } from 'next';
+import { helpMetadata } from '@/lib/help-metadata';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import { Button, Eyebrow, PullQuote } from '@murmure/design-system/web';
@@ -8,15 +8,7 @@ import Faq from '../../aide/_components/Faq';
 import CreateTourCta from '@/components/CreateTourCta';
 import { FAQ_GUIDES, FAQ_TRAVELLERS, STEPS, SUPPORT_EMAIL, TIPS } from './_content';
 
-export const metadata: Metadata = {
-  title: 'Help',
-  description: 'Learn how to create, translate, publish and listen to multilingual Murmure audio tours.',
-  alternates: {
-    canonical: '/en/help',
-    languages: {fr: '/aide', en: '/en/help'},
-  },
-  openGraph: {locale: 'en_US'},
-};
+export const metadata = helpMetadata('en');
 
 export default function EnglishHelpPage() {
   return (

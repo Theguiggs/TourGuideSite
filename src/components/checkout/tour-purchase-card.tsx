@@ -1,4 +1,7 @@
 'use client';
+import { checkoutText } from '@/lib/i18n/checkout-copy';
+import { LOCALE_FORMATS, type InterfaceLocale } from '@/lib/i18n/locales';
+
 
 /**
  * TourPurchaseCard — Story mon-1.3b. Web purchase of an individual tour.
@@ -42,14 +45,14 @@ interface Props {
   tourId: string;
   title: string;
   priceCents?: number;
-  locale?: 'fr' | 'en';
+  locale?: InterfaceLocale;
 }
 
 type Step = 'idle' | 'login' | 'pay' | 'done' | 'error' | 'pending';
 
-function formatPrice(cents?: number, locale: 'fr' | 'en' = 'fr'): string {
+function formatPrice(cents?: number, locale: InterfaceLocale = 'fr'): string {
   if (typeof cents !== 'number' || !Number.isFinite(cents) || cents < 0) return '';
-  return new Intl.NumberFormat(locale === 'en' ? 'en-GB' : 'fr-FR', {
+  return new Intl.NumberFormat(LOCALE_FORMATS[locale], {
     style: 'currency',
     currency: 'EUR',
   }).format(cents / 100);
@@ -67,7 +70,7 @@ function PaymentForm({
   onSuccess: () => void;
   onError: (msg: string) => void;
   onPending: () => void;
-  locale: 'fr' | 'en';
+  locale: InterfaceLocale;
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -79,9 +82,7 @@ function PaymentForm({
     if (!stripe || !elements) {
       logger.error(SERVICE_NAME, 'Stripe.js non initialisé (clé publishable ou script bloqué)');
       onError(
-        locale === 'en'
-          ? 'Payment is temporarily unavailable. Please try again later.'
-          : 'Le paiement est momentanément indisponible. Réessayez dans quelques instants.',
+        checkoutText(locale, "Payment is temporarily unavailable. Please try again later."),
       );
       return;
     }
@@ -94,7 +95,7 @@ function PaymentForm({
       });
       if (error) {
         setBusy(false);
-        onError(error.message ?? (locale === 'en' ? 'Payment declined.' : 'Paiement refusé.'));
+        onError(checkoutText(locale, "Payment declined."));
         return;
       }
       if (paymentIntent?.status === 'succeeded') {
@@ -106,10 +107,11 @@ function PaymentForm({
       }
       setBusy(false);
       if (paymentIntent?.status === 'processing') { onPending(); return; }
-      onError(locale === 'en' ? `Payment not completed (${paymentIntent?.status ?? 'unknown'}).` : `Paiement non finalisé (${paymentIntent?.status ?? 'inconnu'}).`);
+      onError(checkoutText(locale, 'Payment not completed.'));
     } catch (e) {
       setBusy(false);
-      onError(`${locale === 'en' ? 'Payment error' : 'Erreur paiement'}: ${e instanceof Error ? e.message : String(e)}`);
+      logger.error(SERVICE_NAME, 'Payment request failed', { error: e instanceof Error ? e.name : 'unknown' });
+      onError(checkoutText(locale, 'Payment error'));
     }
   }
 
@@ -117,7 +119,7 @@ function PaymentForm({
     <div style={{ display: 'flex', flexDirection: 'column', gap: tg.space[4] }}>
       <PaymentElement />
       <Button variant="accent" size="lg" fullWidth onClick={pay} disabled={busy}>
-        {busy ? (locale === 'en' ? 'Processing…' : 'Paiement…') : (locale === 'en' ? 'Pay' : 'Payer')}
+        {busy ? (checkoutText(locale, "Processing…")) : (checkoutText(locale, "Pay"))}
       </Button>
     </div>
   );
@@ -169,12 +171,12 @@ function TourPurchaseCardSession({ tourId, priceCents, locale = 'fr' }: Props) {
         emitPurchasesChanged();
         return;
       }
-      setError(res.error.message);
+      setError(checkoutText(locale, "Payment is temporarily unavailable. Please try again later."));
       setStep('error');
       return;
     }
     if (!res.value.clientSecret) {
-      setError(locale === 'en' ? 'Payment is unavailable for this tour.' : 'Paiement indisponible pour cette visite.');
+      setError(checkoutText(locale, "Payment is unavailable for this tour."));
       setStep('error');
       return;
     }
@@ -216,11 +218,11 @@ function TourPurchaseCardSession({ tourId, priceCents, locale = 'fr' }: Props) {
         if (confirmed.ok && confirmed.value.tourId === tourId) grant(ret.paymentIntentId);
         else if (confirmed.ok) {
           emitPurchasesChanged();
-          setError(locale === 'en' ? 'This payment is for another tour. Find it in My tours.' : 'Ce paiement concerne une autre visite. Retrouvez-la dans Mes visites.');
+          setError(checkoutText(locale, "This payment is for another tour. Find it in My tours."));
           setStep('pending');
         }
         else {
-          setError(confirmed.error.message);
+          setError(checkoutText(locale, "Your payment needs confirmation. Check its status before starting another purchase."));
           setStep('pending');
         }
       }).catch(() => { setBusy(false); setStep('pending'); });
@@ -228,16 +230,14 @@ function TourPurchaseCardSession({ tourId, priceCents, locale = 'fr' }: Props) {
     }
     if (ret.status === 'processing') {
       setError(
-        locale === 'en'
-          ? 'Your payment is being processed. The tour will unlock automatically once it is confirmed.'
-          : 'Votre paiement est en cours de traitement. La visite se débloquera automatiquement une fois confirmé.',
+        checkoutText(locale, "Your payment is being processed. The tour will unlock automatically once it is confirmed."),
       );
       setStep('pending');
       return;
     }
     clearStripeReturn(ret.paymentIntentId);
     removePendingTourConfirm(ret.paymentIntentId);
-    setError(locale === 'en' ? 'Payment declined.' : 'Paiement refusé.');
+    setError(checkoutText(locale, "Payment declined."));
     setStep('error');
     // Lecture unique de l'URL au montage ; `grant` et `locale` sont stables.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -260,17 +260,15 @@ function TourPurchaseCardSession({ tourId, priceCents, locale = 'fr' }: Props) {
   if (!isStripeConfigured() && !owned && step !== 'done') {
     return (
       <p data-testid="tour-purchase-in-app" style={{ marginTop: tg.space[4], ...noteStyle }}>
-        {locale === 'en'
-          ? 'This tour can be purchased in the Murmure app.'
-          : "Cette visite s'achète dans l'application Murmure."}
+        {checkoutText(locale, "This tour can be purchased in the Murmure app.")}
       </p>
     );
   }
 
 
   const label = priceCents
-    ? `${locale === 'en' ? 'Buy' : 'Acheter'} — ${formatPrice(priceCents, locale)}`
-    : locale === 'en' ? 'Buy this tour' : 'Acheter cette visite';
+    ? `${checkoutText(locale, "Buy")} — ${formatPrice(priceCents, locale)}`
+    : checkoutText(locale, "Buy this tour");
 
   return (
     <div style={{ marginTop: tg.space[4] }}>
@@ -296,14 +294,12 @@ function TourPurchaseCardSession({ tourId, priceCents, locale = 'fr' }: Props) {
               color: tg.colors.olive,
             }}
           >
-            ✓ {locale === 'en' ? 'Tour unlocked' : 'Visite débloquée'}
+            ✓ {checkoutText(locale, "Tour unlocked")}
           </span>
           <span style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.meta, color: tg.colors.ink80 }}>
-            {locale === 'en'
-              ? 'Your tour is ready to listen to on this site.'
-              : 'Votre visite est prête à être écoutée sur ce site.'}
+            {checkoutText(locale, "Your tour is ready to listen to on this site.")}
           </span>
-          <a className="inline-flex min-h-11 items-center font-semibold text-ink underline" href="#itineraire">{locale === 'en' ? 'Listen now' : 'Écouter maintenant'}</a>
+          <a className="inline-flex min-h-11 items-center font-semibold text-ink underline" href="#itineraire">{checkoutText(locale, "Listen now")}</a>
         </div>
       )}
 
@@ -320,9 +316,9 @@ function TourPurchaseCardSession({ tourId, priceCents, locale = 'fr' }: Props) {
       {step === 'pay' && clientSecret && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3] }}>
           <p style={{ fontFamily: tg.fonts.sans, fontSize: tg.fontSize.body, color: tg.colors.ink80 }}>
-            {locale === 'en' ? 'Secure payment' : 'Paiement sécurisé'} — {formatPrice(priceCents, locale)}
+            {checkoutText(locale, "Secure payment")} — {formatPrice(priceCents, locale)}
           </p>
-          <Elements stripe={getStripePromise()} options={{ clientSecret }}>
+          <Elements stripe={getStripePromise()} options={{ clientSecret, locale }}>
             <PaymentForm
               onPending={() => { if (!isCurrent()) return; rememberStripeReturn('tour', paymentIntentId); setStep('pending'); }}
               paymentIntentId={paymentIntentId}
@@ -339,9 +335,9 @@ function TourPurchaseCardSession({ tourId, priceCents, locale = 'fr' }: Props) {
 
       {step === 'error' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3] }}>
-          <p role="alert" style={errorStyle}>{error ?? (locale === 'en' ? 'An error occurred.' : 'Une erreur est survenue.')}</p>
+          <p role="alert" style={errorStyle}>{error ?? (checkoutText(locale, "An error occurred."))}</p>
           <Button variant="ghost" size="md" fullWidth onClick={() => setStep('idle')}>
-            {locale === 'en' ? 'Try again' : 'Réessayer'}
+            {checkoutText(locale, "Try again")}
           </Button>
         </div>
       )}

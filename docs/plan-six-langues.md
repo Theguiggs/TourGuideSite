@@ -2,16 +2,20 @@
 
 Périmètre confirmé le 13 septembre 2026 : menus et pages aussi, pas seulement
 les narrations. Langues : français, anglais, espagnol, allemand, italien,
-néerlandais. **État : spécifié, migration non implémentée.**
+néerlandais. **État : migration implémentée et recette locale terminée.**
 
 ## État réel
 
-Le site possède deux interfaces, FR et EN. La liste des langues d’audio est
-plus large : elle ne prouve pas que l’interface est traduite. Les composants
-publics, le Studio et leurs fournisseurs de langue sont aujourd’hui binaires.
-L’administration contient aussi du français directement dans les composants.
-La revue indépendante trouve 66 fichiers de pages et 100 fichiers hors tests
-avec des contraintes FR/EN ; ajouter quatre boutons ne suffirait pas.
+Le site public, le Studio et l’administration utilisent les six langues.
+Les URL françaises et anglaises sont conservées ; ES/DE/IT/NL utilisent un
+préfixe et les mêmes composants métier. Les traductions sont sélectionnées
+avant le rendu. Les titres et descriptions publiés suivent la langue choisie,
+avec un avertissement lorsqu’un contenu reste dans sa langue source.
+
+La langue de l’interface ne crée aucun audio ni aucun droit supplémentaire.
+L’aperçu reste limité à une étape et chaque audio démarre sur action explicite.
+Le paiement et le déploiement font l’objet d’un contrôle distinct ; voir
+[la recette et ses limites](recette-six-langues-2026-09-13.md).
 
 ## Lots de réalisation
 

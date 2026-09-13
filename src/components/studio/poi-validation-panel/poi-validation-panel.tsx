@@ -165,7 +165,7 @@ export function PoiValidationPanel({
           <label className="text-body font-medium text-ink-80 block mb-1">{t('Coordonnees GPS', 'GPS coordinates')}</label>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div>
-              <label htmlFor="poi-lat" className="text-meta text-ink-60 block mb-0.5">Latitude</label>
+              <label htmlFor="poi-lat" className="text-meta text-ink-60 block mb-0.5">{t('Latitude', 'Latitude')}</label>
               <input
                 id="poi-lat"
                 type="text"
@@ -177,7 +177,7 @@ export function PoiValidationPanel({
               />
             </div>
             <div>
-              <label htmlFor="poi-lng" className="text-meta text-ink-60 block mb-0.5">Longitude</label>
+              <label htmlFor="poi-lng" className="text-meta text-ink-60 block mb-0.5">{t('Longitude', 'Longitude')}</label>
               <input
                 id="poi-lng"
                 type="text"

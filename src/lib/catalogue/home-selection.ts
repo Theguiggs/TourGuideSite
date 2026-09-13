@@ -1,7 +1,7 @@
 import type { Tour } from '@/types/tour';
 
 /** Carte publique minimale : aucune URL média ni donnée de session. */
-export type HomeTour = Pick<Tour, 'id' | 'title' | 'city' | 'citySlug' | 'slug' | 'duration' | 'purchaseType' | 'priceCents' | 'availableLanguages'>;
+export type HomeTour = Pick<Tour, 'id' | 'title' | 'city' | 'citySlug' | 'slug' | 'duration' | 'purchaseType' | 'priceCents' | 'availableLanguages' | 'metadataFallback'>;
 
 export function homeSelection(tours: Tour[]) {
   const ids = new Set<string>();
@@ -24,6 +24,6 @@ export function homeSelection(tours: Tour[]) {
     if (featured.length === 3) break;
     if (!featured.includes(tour)) featured.push(tour);
   }
-  const project = (tour: Tour): HomeTour => ({ id: tour.id, title: tour.title, city: tour.city, citySlug: tour.citySlug, slug: tour.slug, duration: tour.duration, purchaseType: tour.purchaseType, priceCents: tour.priceCents, availableLanguages: tour.availableLanguages });
+  const project = (tour: Tour): HomeTour => ({ id: tour.id, title: tour.title, city: tour.city, citySlug: tour.citySlug, slug: tour.slug, duration: tour.duration, purchaseType: tour.purchaseType, priceCents: tour.priceCents, availableLanguages: tour.availableLanguages, ...(tour.metadataFallback ? { metadataFallback: true } : {}) });
   return { cities, featured: featured.map(project), resumeTours: published.map(({ id, title, citySlug, slug }) => ({ id, title, citySlug, slug })) };
 }

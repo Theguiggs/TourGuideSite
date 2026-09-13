@@ -4,6 +4,7 @@ import { Circle, Pause, Play, Square } from 'lucide-react';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useRecordingStore, selectRecorderState, selectDevices, selectSelectedDeviceId } from '@/lib/stores/recording-store';
 import { mediaRecorderService } from '@/lib/studio/media-recorder-service';
+import { recorderErrorCopy } from '@/lib/studio/recorder-error-copy';
 import { logger } from '@/lib/logger';
 import { useStudioLocale } from '@/lib/i18n/studio-locale';
 import type { Take } from '@/lib/stores/recording-store';
@@ -28,7 +29,7 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
   onRecordingComplete,
   showControls = true,
 }, ref) {
-  const { t } = useStudioLocale();
+  const { t, locale } = useStudioLocale();
   const recorderState = useRecordingStore(selectRecorderState);
   const devices = useRecordingStore(selectDevices);
   const selectedDeviceId = useRecordingStore(selectSelectedDeviceId);
@@ -47,13 +48,13 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
     const unsubscribe = mediaRecorderService.subscribe((state) => {
       setRecorderState(state);
       const recorderError = mediaRecorderService.getLastError();
-      if (recorderError) setError(recorderError.message);
+      if (recorderError) setError(recorderErrorCopy(recorderError, locale));
     });
     return () => {
       unsubscribe();
       mediaRecorderService.releaseStream();
     };
-  }, [setRecorderState]);
+  }, [setRecorderState, locale]);
 
   const handleRequestPermission = useCallback(async (): Promise<boolean> => {
     setError(null);
@@ -75,11 +76,11 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
       return true;
     } else {
       setRecorderState('idle');
-      setError(result.error.message);
+      setError(recorderErrorCopy(result.error, locale));
       logger.warn(SERVICE_NAME, 'Permission denied');
       return false;
     }
-  }, [selectedDeviceId, setRecorderState, setDevices, t]);
+  }, [selectedDeviceId, setRecorderState, setDevices, t, locale]);
 
   const handleStartRecording = useCallback((): boolean => {
     setError(null);
@@ -89,7 +90,7 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
       return true;
     } else {
       setRecorderState(mediaRecorderService.getState());
-      setError(result.error.message);
+      setError(recorderErrorCopy(result.error, locale));
       return false;
     }
   }, [setRecorderState]);
@@ -132,13 +133,13 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
         onRecordingComplete(sceneId, take);
         logger.info(SERVICE_NAME, 'Recording complete', { sceneId, durationMs: result.recording.durationMs });
       } else {
-        setError(result.error.message);
+        setError(recorderErrorCopy(result.error, locale));
       }
     } finally {
       stopInFlightRef.current = false;
       setIsStopping(false);
     }
-  }, [sceneId, setRecorderState, addTake, selectTake, onRecordingComplete]);
+  }, [sceneId, setRecorderState, addTake, selectTake, onRecordingComplete, locale]);
 
   const handleDeviceChange = useCallback(async (deviceId: string) => {
     setError(null);
@@ -148,9 +149,9 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
     const result = await mediaRecorderService.requestPermission(deviceId);
     if (!result.ok) {
       setRecorderState('idle');
-      setError(result.error.message);
+      setError(recorderErrorCopy(result.error, locale));
     }
-  }, [selectDevice, setRecorderState]);
+  }, [selectDevice, setRecorderState, locale]);
 
   useImperativeHandle(ref, () => ({
     start: handleStartWithPermission,
@@ -233,7 +234,7 @@ export const AudioRecorder = forwardRef<AudioRecorderHandle, AudioRecorderProps>
 
         {recorderState === 'paused' && (
           <>
-            <span className="text-body text-ocre-ink font-medium">En pause</span>
+            <span className="text-body text-ocre-ink font-medium">{t('En pause', 'Paused')}</span>
             <button
               onClick={handleResumeRecording}
               className="bg-danger hover:opacity-90 text-white inline-flex items-center gap-1.5 font-medium py-1.5 px-3 rounded-lg text-body transition"

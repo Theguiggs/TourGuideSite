@@ -1,4 +1,6 @@
 'use client';
+import { useAdminCopy } from '@/lib/admin/use-admin-copy';
+
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -14,6 +16,7 @@ import { StatusBadge } from '@/components/admin/StatusBadge';
 type AdminGuide = { id: string; userId: string; displayName: string; city: string; profileStatus: string; tourCount: number; rating: number | null };
 
 export default function AdminGuidesPage() {
+  const a = useAdminCopy();
   const [guides, setGuides] = useState<AdminGuide[]>([]);
   const [loading, setLoading] = useState(true);
   const [filterCity, setFilterCity]     = useState('');
@@ -30,7 +33,7 @@ export default function AdminGuidesPage() {
   useEffect(() => {
     getAllAdminGuides()
       .then(setGuides)
-      .catch(() => setLoadError('Impossible de charger les guides.'))
+      .catch(() => setLoadError(a("Impossible de charger les guides.")))
       .finally(() => setLoading(false));
   }, [attempt]);
   const load = () => { setLoading(true); setLoadError(null); setAttempt((n) => n + 1); };
@@ -55,7 +58,7 @@ export default function AdminGuidesPage() {
     setActioning(guide.id);
     const result = await adminUpdateGuideProfileStatus(guide.id, target);
     if (!result.ok) {
-      setActionError(result.error ?? 'Action refusée par le serveur.');
+      setActionError(result.error ?? a("Action refusée par le serveur."));
       setActioning(null);
       return;
     }
@@ -70,7 +73,7 @@ export default function AdminGuidesPage() {
 
   return (
     <div>
-      <PageTitle size="h4" className="mb-6">Tous les guides</PageTitle>
+      <PageTitle size="h4" className="mb-6">{a("Tous les guides")}</PageTitle>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-6">
@@ -78,7 +81,7 @@ export default function AdminGuidesPage() {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Rechercher un guide..."
+          placeholder={a("Rechercher un guide...")}
           className="border border-line rounded-lg px-3 py-2 text-body text-ink-80 w-48"
         />
         <select
@@ -86,7 +89,7 @@ export default function AdminGuidesPage() {
           onChange={(e) => setFilterCity(e.target.value)}
           className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
         >
-          <option value="">Toutes les villes</option>
+          <option value="">{a("Toutes les villes")}</option>
           {cities.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
         <select
@@ -94,45 +97,43 @@ export default function AdminGuidesPage() {
           onChange={(e) => setFilterStatus(e.target.value)}
           className="border border-line rounded-lg px-3 py-2 text-body text-ink-80"
         >
-          <option value="">Tous les statuts</option>
-          <option value="active">Actif</option>
-          <option value="pending_moderation">En attente</option>
-          <option value="suspended">Suspendu</option>
+          <option value="">{a("Tous les statuts")}</option>
+          <option value="active">{a("Actif")}</option>
+          <option value="pending_moderation">{a("En attente")}</option>
+          <option value="suspended">{a("Suspendu")}</option>
         </select>
         {(filterCity || filterStatus || search) && (
           <button
             onClick={() => { setFilterCity(''); setFilterStatus(''); setSearch(''); }}
             className="text-body text-danger hover:underline px-2"
-          >
-            Effacer
-          </button>
+          > {a("Effacer")} </button>
         )}
-        <span className="ml-auto text-body text-ink-40 self-center">{filtered.length} guides</span>
+        <span className="ml-auto text-body text-ink-40 self-center">{filtered.length} {a("guides")}</span>
       </div>
 
       {notice && (
-        <p role="status" className="mb-4 rounded-lg bg-ocre-soft px-4 py-3 text-body text-ocre-ink">{notice}</p>
+        <p role="status" className="mb-4 rounded-lg bg-ocre-soft px-4 py-3 text-body text-ocre-ink">{a.error(notice)}</p>
       )}
 
       {loading ? (
-        <p className="text-ink-60 text-body" role="status" aria-busy="true">Chargement…</p>
+        <p className="text-ink-60 text-body" role="status" aria-busy="true">{a("Chargement…")}</p>
       ) : loadError ? (
-        <LoadError message={loadError} onRetry={load} />
+        <LoadError message={a.error(loadError)} onRetry={load} />
       ) : filtered.length === 0 ? (
         <div className="text-center py-12 bg-card rounded-md border border-line">
-          <p className="text-ink-60">Aucun guide trouvé.</p>
+          <p className="text-ink-60">{a("Aucun guide trouvé.")}</p>
         </div>
       ) : (
         <div className="bg-card rounded-md border border-line overflow-x-auto">
           <table className="w-full text-body">
             <thead className="bg-paper-soft border-b border-line">
               <tr>
-                <th className="text-left px-4 py-3 font-medium text-ink-60">Guide</th>
-                <th className="text-left px-4 py-3 font-medium text-ink-60 hidden sm:table-cell">Ville</th>
-                <th className="text-right px-4 py-3 font-medium text-ink-60 hidden md:table-cell">Parcours</th>
-                <th className="text-right px-4 py-3 font-medium text-ink-60 hidden md:table-cell">Note</th>
-                <th className="text-left px-4 py-3 font-medium text-ink-60">Statut</th>
-                <th className="text-right px-4 py-3 font-medium text-ink-60">Actions</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60">{a("Guide")}</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60 hidden sm:table-cell">{a("Ville")}</th>
+                <th className="text-right px-4 py-3 font-medium text-ink-60 hidden md:table-cell">{a("Parcours")}</th>
+                <th className="text-right px-4 py-3 font-medium text-ink-60 hidden md:table-cell">{a("Note")}</th>
+                <th className="text-left px-4 py-3 font-medium text-ink-60">{a("Statut")}</th>
+                <th className="text-right px-4 py-3 font-medium text-ink-60">{a("Actions")}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
@@ -164,27 +165,21 @@ export default function AdminGuidesPage() {
                             onClick={() => askStatus(guide, 'active')}
                             disabled={isActioning}
                             className="text-meta text-olive font-medium hover:underline disabled:opacity-50"
-                          >
-                            Activer
-                          </button>
+                          > {a("Activer")} </button>
                         )}
                         {guide.profileStatus === 'active' && (
                           <button
                             onClick={() => askStatus(guide, 'suspended')}
                             disabled={isActioning}
                             className="text-meta text-ocre-ink font-medium hover:underline disabled:opacity-50"
-                          >
-                            Suspendre
-                          </button>
+                          > {a("Suspendre")} </button>
                         )}
                         {guide.profileStatus === 'suspended' && (
                           <button
                             onClick={() => askStatus(guide, 'rejected')}
                             disabled={isActioning}
                             className="text-meta text-danger font-medium hover:underline disabled:opacity-50"
-                          >
-                            Rejeter
-                          </button>
+                          > {a("Rejeter")} </button>
                         )}
                       </div>
                     </td>
@@ -200,7 +195,7 @@ export default function AdminGuidesPage() {
           target={pending.target}
           guideName={pending.guide.displayName}
           busy={actioning === pending.guide.id}
-          error={actionError}
+          error={a.error(actionError)}
           onConfirm={confirmStatus}
           onCancel={() => { setPending(null); setActionError(null); }}
         />

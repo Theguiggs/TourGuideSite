@@ -5,7 +5,7 @@ export const STEPS: HelpStep[] = [
   {id: 'details', n: 2, title: 'Add the details', body: 'Add a description, cover image, themes, difficulty, duration, distance and the languages you want to offer.'},
   {id: 'map', n: 3, title: 'Map the route', body: 'Place points of interest by address or on the map, reorder them and choose automatic, manual or GPX routing.'},
   {id: 'tell', n: 4, title: 'Tell each scene', body: 'Write your script, add photos, record your voice, import audio or generate narration from text.', tip: 'Synthetic voice is available when you prefer not to record.'},
-  {id: 'translate', n: 5, title: 'Translate', body: 'Generate French, English, Spanish, German and Italian versions, then review every translation before submission.'},
+  {id: 'translate', n: 5, title: 'Translate', body: 'Generate French, English, Spanish, German, Italian and Dutch versions, then review every translation before submission.'},
   {id: 'preview', n: 6, title: 'Preview', body: 'Review the experience exactly as travellers will see and hear it.'},
   {id: 'publish', n: 7, title: 'Publish', body: 'Submit the tour for moderation. Once approved, it appears in the web and app catalogues.'},
 ];

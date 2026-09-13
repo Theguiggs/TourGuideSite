@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { Headphones, MapPin, Footprints, Search } from 'lucide-react';
@@ -5,9 +7,9 @@ import TrackPageView from '@/components/TrackPageView';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { HomeCatalogue } from './home-catalogue';
 
-export function VisitorHome({ locale }: { locale: 'fr' | 'en' }) {
-  const t = (fr: string, en: string) => locale === 'fr' ? fr : en;
-  const prefix = locale === 'en' ? '/en' : '';
+export function VisitorHome({ locale }: { locale: InterfaceLocale }) {
+  const t = (fr: string, en: string) => translate(locale, fr, en);
+  const prefix = translate(locale, '', '/en');
   const steps = [
     { icon: MapPin, title: t('Choisissez votre visite', 'Choose your tour'), body: t('Trouvez une ville et une histoire qui vous donnent envie.', 'Find a city and a story you want to explore.') },
     { icon: Headphones, title: t('Écoutez un extrait', 'Listen to a preview'), body: t('Découvrez la voix et le récit avant de vous décider.', 'Get a feel for the voice and story before you choose.') },
@@ -29,7 +31,7 @@ export function VisitorHome({ locale }: { locale: 'fr' | 'en' }) {
               <button type="submit" className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-pill bg-grenadine px-5 py-3 text-body font-bold text-paper"><Search size={18} aria-hidden="true" />{t('Trouver une visite', 'Find a tour')}</button>
             </div>
           </form>
-          <Link href={locale === 'en' ? '/en/my-purchases' : '/mes-achats'} className="mt-2 inline-flex min-h-11 items-center gap-2 text-body font-semibold text-grenadine underline underline-offset-4"><Headphones size={18} aria-hidden="true" />{t('Mes visites', 'My tours')}</Link>
+          <Link href={translate(locale, '/mes-achats', '/en/my-purchases')} className="mt-2 inline-flex min-h-11 items-center gap-2 text-body font-semibold text-grenadine underline underline-offset-4"><Headphones size={18} aria-hidden="true" />{t('Mes visites', 'My tours')}</Link>
         </div>
       </div>
     </section>
@@ -49,7 +51,7 @@ export function VisitorHome({ locale }: { locale: 'fr' | 'en' }) {
     </section>
     <section className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
       <div><h2 className="font-display text-h5 text-ink">{t('Vous connaissez les histoires de votre ville ?', 'Know the stories of your city?')}</h2><p className="mt-2 text-body text-ink-80">{t('Partagez-les en créant vos propres visites audio.', 'Share them by creating your own audio tours.')}</p></div>
-      <Link href={locale === 'en' ? '/en/create-tours' : '/creer-des-visites'} className="inline-flex min-h-11 shrink-0 items-center text-body font-semibold text-grenadine underline underline-offset-4">{t('Créer des visites', 'Create tours')}</Link>
+      <Link href={translate(locale, '/creer-des-visites', '/en/create-tours')} className="inline-flex min-h-11 shrink-0 items-center text-body font-semibold text-grenadine underline underline-offset-4">{t('Créer des visites', 'Create tours')}</Link>
     </section>
   </>;
 }

@@ -1,3 +1,5 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
 /** Catalog price helpers shared across the catalogue badges + checkout. */
 
 import type { Tour } from '@/types/tour';
@@ -13,20 +15,20 @@ export function isTourFree(tour: Pick<Tour, 'purchaseType'>): boolean {
 }
 
 /** Price in cents → French-formatted euro string, e.g. 499 → "4,99 €". */
-export function formatPrice(cents?: number, locale: 'fr' | 'en' = 'fr'): string {
+export function formatPrice(cents?: number, locale: InterfaceLocale = 'fr'): string {
   if (!cents) return '';
-  return new Intl.NumberFormat(locale === 'en' ? 'en-GB' : 'fr-FR', {
+  return new Intl.NumberFormat(translate(locale, 'fr-FR', 'en-GB'), {
     style: 'currency',
     currency: 'EUR',
   }).format(cents / 100);
 }
 
 /** ISO timestamp → French short date, e.g. "12/05/2026". Empty string if unparseable. */
-export function formatPurchaseDate(iso?: string, locale: 'fr' | 'en' = 'fr'): string {
+export function formatPurchaseDate(iso?: string, locale: InterfaceLocale = 'fr'): string {
   if (!iso) return '';
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return '';
-  return d.toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', {
+  return d.toLocaleDateString(translate(locale, 'fr-FR', 'en-GB'), {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',

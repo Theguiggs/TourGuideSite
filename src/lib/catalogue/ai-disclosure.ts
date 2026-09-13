@@ -1,4 +1,6 @@
-export type AiDisclosureLocale = 'fr' | 'en';
+import type { InterfaceLocale } from '@/lib/i18n/locales';
+import { extendCopy } from '@/lib/i18n/translate';
+export type AiDisclosureLocale = InterfaceLocale;
 
 const AI_DEVELOPED_TOUR_PREFIXES = ['seed-100-'] as const;
 
@@ -6,7 +8,7 @@ export function isAiDevelopedTour(tourId: string): boolean {
   return AI_DEVELOPED_TOUR_PREFIXES.some((prefix) => tourId.startsWith(prefix));
 }
 
-export const AI_DISCLOSURE_COPY = {
+export const AI_DISCLOSURE_COPY = extendCopy({
   fr: {
     badge: "Développée avec l’IA",
     detail:
@@ -17,4 +19,4 @@ export const AI_DISCLOSURE_COPY = {
     detail:
       'Text, translations and synthetic narration developed with artificial intelligence, then reviewed and approved by Murmure.',
   },
-} as const satisfies Record<AiDisclosureLocale, { badge: string; detail: string }>;
+} as const) satisfies Record<AiDisclosureLocale, { badge: string; detail: string }>;

@@ -21,6 +21,9 @@ import type { NextRequest } from 'next/server';
 import { getTourBySlug } from '@/lib/api/tours-server';
 import { getCityAccent } from '@/lib/cities/accent-map';
 import { absoluteUrl } from '@/lib/site';
+import { isInterfaceLocale } from '@/lib/i18n/locales';
+import { translate } from '@/lib/i18n/translate';
+import { localizeTour } from '@/lib/catalogue/localized-tour';
 
 export const runtime = 'nodejs';
 export const contentType = 'image/png';
@@ -70,12 +73,15 @@ export async function GET(
 
     // Visite réelle ; à défaut (adresse inconnue, panne), on retombe sur le
     // slug humanisé plutôt que sur un 500 visible des robots.
-    const real = await getTourBySlug(city, tourSlug).catch(() => null);
+    const requestedLocale = _req.nextUrl.searchParams.get('locale');
+    const locale = isInterfaceLocale(requestedLocale) ? requestedLocale : 'fr';
+    const source = await getTourBySlug(city, tourSlug).catch(() => null);
+    const real = source ? localizeTour(source, locale) : null;
     const tour = {
       title: real?.title ?? humanize(tourSlug),
       city: real?.city ?? humanize(city),
       duration: real?.duration && real.duration > 0 ? real.duration : null,
-      quote: real?.shortDescription || real?.description?.slice(0, 200) || 'Le monde a une voix.',
+      quote: real?.shortDescription || real?.description?.slice(0, 200) || translate(locale, 'Le monde a une voix.', 'The world has a voice.'),
     };
 
     const accent = pickAccent(city);

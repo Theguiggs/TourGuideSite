@@ -43,8 +43,22 @@ jest.mock('@/lib/auth/auth-context', () => ({
 import { render, screen, act, fireEvent, waitFor } from '@testing-library/react';
 import ForfaitPurchaseCard from '../forfait-purchase-card';
 import { PURCHASES_CHANGED_EVENT } from '@/lib/checkout/purchase-events';
+import { SITE_LOCALES } from '@/lib/i18n/locales';
+import { checkoutText } from '@/lib/i18n/checkout-copy';
+import { localizePublicPath } from '@/lib/i18n/public-routes';
 
 describe('ForfaitPurchaseCard', () => {
+  it.each(SITE_LOCALES)('garde le retour forfait et sa vérification en %s', async locale => {
+    window.history.replaceState({}, '', `${localizePublicPath('/catalogue/nice/promenade', locale)}?murmure_pay=forfait&payment_intent=pi_locale&redirect_status=processing`);
+    mockConfirmPurchase.mockResolvedValue({ok: false, error: {code: 2632, message: 'Internal diagnostic'}});
+    render(<ForfaitPurchaseCard locale={locale} />);
+    expect(screen.getByRole('link', {name: checkoutText(locale, 'My tours')})).toHaveAttribute('href', localizePublicPath('/mes-achats', locale));
+    await act(async () => fireEvent.click(screen.getByRole('button', {name: checkoutText(locale, 'Check payment')})));
+    expect(screen.getByRole('status')).toHaveTextContent(checkoutText(locale, 'Confirmation is not available yet. Check again later or contact support before paying again.'));
+    expect(mockConfirmPurchase).toHaveBeenCalledWith('pi_locale');
+    expect(mockCreateIntent).not.toHaveBeenCalled();
+    expect(screen.queryByTestId('forfait-active-badge')).not.toBeInTheDocument();
+  });
   it('conserve la vérification après rechargement pendant le traitement', async () => {
     window.history.replaceState({}, '', '/forfait?murmure_pay=forfait&payment_intent=pi_wait&redirect_status=processing');
     const view = render(<ForfaitPurchaseCard />);

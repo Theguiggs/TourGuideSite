@@ -7,6 +7,38 @@ import {
 import outputs from '../../../../amplify_outputs.json';
 
 describe('parsePublishedTourContent', () => {
+  it('queries the server entitlement explicitly for authenticated visitors', async () => {
+    const graphql = jest.fn().mockResolvedValue({ data: { getPublishedTourContent: { tourId: 'tour-1', scenes: [], walkPath: [], hasFullAccess: true } } });
+    const legacy = jest.fn();
+    await expect(queryPublishedTourContent({ graphql, queries: { getPublishedTourContent: legacy } }, 'tour-1', 'userPool')).resolves.toMatchObject({ hasFullAccess: true });
+    expect(graphql).toHaveBeenCalledWith(expect.objectContaining({ authMode: 'userPool', variables: { tourId: 'tour-1' }, query: expect.stringContaining('hasFullAccess') }));
+    expect(legacy).not.toHaveBeenCalled();
+  });
+
+  it.each([false, true])('falls back only when the old schema rejects hasFullAccess (thrown=%s)', async thrown => {
+    const response = { errors: [{ message: 'Validation error of type FieldUndefined: Field \'hasFullAccess\' in type \'PublishedTourContent\' is undefined @ \'getPublishedTourContent/hasFullAccess\'' }] };
+    const graphql = thrown ? jest.fn().mockRejectedValue(response) : jest.fn().mockResolvedValue(response);
+    const legacy = jest.fn().mockResolvedValue({ data: { tourId: 'tour-1', scenes: [], walkPath: [] } });
+    await expect(queryPublishedTourContent({ graphql, queries: { getPublishedTourContent: legacy } }, 'tour-1', 'userPool')).resolves.not.toHaveProperty('hasFullAccess');
+    expect(legacy).toHaveBeenCalledWith({ tourId: 'tour-1' }, { authMode: 'userPool' });
+  });
+
+  it.each(['Unauthorized', 'Network unavailable', 'Cannot query field "anotherField" on type "PublishedTourContent"'])('does not retry unrelated GraphQL failures: %s', async message => {
+    const graphql = jest.fn().mockResolvedValue({ errors: [{ message }] });
+    const legacy = jest.fn();
+    await expect(queryPublishedTourContent({ graphql, queries: { getPublishedTourContent: legacy } }, 'tour-1', 'userPool')).rejects.toThrow(message);
+    expect(legacy).not.toHaveBeenCalled();
+  });
+
+  it.each([true, false])('preserves authoritative entitlement %s', (hasFullAccess) => {
+    expect(parsePublishedTourContent({ tourId: 'tour-1', scenes: [], walkPath: [], hasFullAccess }))
+      .toMatchObject({ hasFullAccess });
+  });
+
+  it.each(['true', 1, {}])('rejects malformed entitlement instead of granting legacy access: %s', (hasFullAccess) => {
+    expect(parsePublishedTourContent({ tourId: 'tour-1', scenes: [], walkPath: [], hasFullAccess })).toBeNull();
+  });
+
   it('normalizes the allowlisted public contract', () => {
     expect(
       parsePublishedTourContent({

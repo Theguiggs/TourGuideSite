@@ -1,3 +1,4 @@
+import type { InterfaceLocale } from '@/lib/i18n/locales';
 import type { StudioScene, QualityTier, TranslationProvider, SceneSegment } from '@/types/studio';
 import { hashSourceText } from '@/types/studio';
 import {
@@ -723,7 +724,21 @@ export async function detectMissingScenes(
 
 // --- Error message helpers ---
 
-export function getErrorMessage(errorCode: number, locale: 'fr' | 'en' = 'fr'): string {
+export function getErrorMessage(errorCode: number, locale: InterfaceLocale = 'fr'): string {
+  if (locale !== 'fr' && locale !== 'en') {
+    const messages: Record<number, [string, string, string, string]> = {
+      [BATCH_TRANSLATION_FAILED]: ['No se pudo traducir esta escena.', 'Diese Szene konnte nicht übersetzt werden.', 'Impossibile tradurre questa scena.', 'Deze scène kon niet worden vertaald.'],
+      [BATCH_TTS_FAILED]: ['No se pudo generar el audio de esta escena.', 'Audio für diese Szene konnte nicht erzeugt werden.', "Impossibile generare l'audio di questa scena.", 'Audio voor deze scène kon niet worden gemaakt.'],
+      [PROVIDER_UNAVAILABLE]: ['El servicio de traducción no está disponible temporalmente.', 'Der Übersetzungsdienst ist vorübergehend nicht verfügbar.', 'Il servizio di traduzione è temporaneamente non disponibile.', 'De vertaaldienst is tijdelijk niet beschikbaar.'],
+      [TRANSLATION_REJECTED]: ['La traducción no superó los controles de formato, longitud o fidelidad. No se guardó nada.', 'Die Übersetzung bestand die Prüfung von Format, Länge oder Inhaltstreue nicht. Nichts wurde gespeichert.', 'La traduzione non ha superato i controlli di formato, lunghezza o fedeltà. Nulla è stato salvato.', 'De vertaling voldeed niet aan de controles op opmaak, lengte of getrouwheid. Er is niets opgeslagen.'],
+      [TRANSLATION_TEXT_EMPTY]: ['Esta escena no contiene texto para traducir.', 'Diese Szene enthält keinen zu übersetzenden Text.', 'Questa scena non contiene testo da tradurre.', 'Deze scène bevat geen tekst om te vertalen.'],
+      [TRANSLATION_PROVIDER_REFUSED]: ['El motor solicitado no está disponible para este idioma.', 'Die angeforderte Übersetzungsmaschine ist für diese Sprache nicht verfügbar.', 'Il motore richiesto non è disponibile per questa lingua.', 'De gevraagde vertaalmachine is niet beschikbaar voor deze taal.'],
+      [TRANSLATION_OUT_OF_SCOPE]: ['Este idioma no está cubierto por el motor o el texto supera el tamaño admitido.', 'Diese Sprache wird nicht unterstützt oder der Text überschreitet die zulässige Länge.', 'Questa lingua non è supportata dal motore o il testo supera la dimensione consentita.', 'Deze taal valt buiten het bereik van de vertaalmachine of de tekst is te lang.'],
+      [TRANSLATION_NOT_OWNED]: ['Esta escena no te pertenece: no se solicitó ninguna traducción.', 'Diese Szene gehört dir nicht: Es wurde keine Übersetzung angefordert.', 'Questa scena non ti appartiene: non è stata richiesta alcuna traduzione.', 'Deze scène is niet van jou: er is geen vertaling aangevraagd.'],
+    };
+    const fallback = ['Se produjo un error desconocido.', 'Ein unbekannter Fehler ist aufgetreten.', 'Si è verificato un errore sconosciuto.', 'Er is een onbekende fout opgetreden.'];
+    return (messages[errorCode] ?? fallback)[['es', 'de', 'it', 'nl'].indexOf(locale)];
+  }
   if (locale === 'en') {
     switch (errorCode) {
       case BATCH_TRANSLATION_FAILED:

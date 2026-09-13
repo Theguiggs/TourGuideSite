@@ -1,4 +1,5 @@
 'use client';
+import { translate, extendCopy } from '@/lib/i18n/translate';
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -38,7 +39,7 @@ const ITEMS: SidebarItem[] = [
   { key: 'reviews', icon: MessageSquareText, href: '/guide/studio/avis' },
 ];
 
-const COPY = {
+const COPY = extendCopy({
   fr: {
     dashboard: 'Accueil', tours: 'Mes visites', create: 'Nouvelle visite', profile: 'Mon profil',
     revenus: 'Revenus', reviews: 'Avis', navigation: 'Navigation Studio', explore: 'Explorer le catalogue',
@@ -49,7 +50,7 @@ const COPY = {
     revenus: 'Revenue', reviews: 'Reviews', navigation: 'Studio navigation', explore: 'Explore the catalogue',
     signOut: 'Sign out', roleGuide: 'Guide', roleAdmin: 'Admin', guest: 'Guest',
   },
-} as const;
+} as const);
 
 interface StudioSidebarProps {
   active: SidebarKey;
@@ -100,7 +101,7 @@ export function StudioSidebar({ active, counts, onNavigate, className = '' }: St
   }, [user?.guideId, counts]);
 
   const initial = (user?.displayName ?? 'S').trim().charAt(0).toUpperCase() || 'S';
-  const catalogueHref = locale === 'en' ? '/en/catalogue' : '/catalogue';
+  const catalogueHref = translate(locale, '/catalogue', '/en/catalogue');
 
   return (
     <aside
@@ -165,12 +166,12 @@ export function StudioSidebar({ active, counts, onNavigate, className = '' }: St
           {copy.explore}
         </Link>
         <Link
-          href={locale === 'en' ? '/en/my-purchases' : '/mes-achats'}
+          href={translate(locale, '/mes-achats', '/en/my-purchases')}
           onClick={onNavigate}
           className="flex min-h-9 items-center gap-2 px-3 text-ink-60 no-underline hover:text-ink"
         >
           <Headphones size={16} aria-hidden="true" />
-          {locale === 'en' ? 'My purchases' : 'Mes achats'}
+          {translate(locale, 'Mes achats', 'My purchases')}
         </Link>
         <button
           type="button"

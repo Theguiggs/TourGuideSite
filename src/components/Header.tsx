@@ -1,4 +1,7 @@
 'use client';
+import { SITE_LOCALES, LOCALE_NAMES, type InterfaceLocale } from '@/lib/i18n/locales';
+import { setStoredStudioLocale } from '@/lib/i18n/studio-locale';
+import { translate } from '@/lib/i18n/translate';
 
 import Link from 'next/link';
 import { Suspense, useState } from 'react';
@@ -12,8 +15,8 @@ import StoreLink from '@/components/StoreLink';
 import { useVisitorReturn } from '@/lib/auth/use-visitor-return';
 
 interface HeaderProps {
-  locale?: 'fr' | 'en';
-  onLocaleChange?: (locale: 'fr' | 'en') => void;
+  locale?: InterfaceLocale;
+  onLocaleChange?: (locale: InterfaceLocale) => void;
 }
 const navLink = 'inline-flex min-h-11 items-center text-caption font-semibold text-ink-80 hover:text-grenadine no-underline';
 
@@ -23,22 +26,28 @@ function HeaderContent({ locale = 'fr', onLocaleChange }: HeaderProps) {
   const params = useSearchParams();
   const currentReturn = useVisitorReturn();
   const { isAuthenticated, isAdmin, isGuide, signOut } = useAuth();
-  const t = (fr: string, en: string) => locale === 'fr' ? fr : en;
-  const home = locale === 'en' ? '/en' : '/';
-  const catalogue = `${locale === 'en' ? '/en' : ''}/catalogue`;
-  const purchases = locale === 'en' ? '/en/my-purchases' : '/mes-achats';
+  const t = (fr: string, en: string) => translate(locale, fr, en);
+  const home = translate(locale, '/', '/en');
+  const catalogue = `${translate(locale, '', '/en')}/catalogue`;
+  const purchases = translate(locale, '/mes-achats', '/en/my-purchases');
   const login = visitorAuthUrl(locale, 'login', currentReturn);
   const account = isAuthenticated ? visitorAuthUrl(locale) : login;
-  const isAuthPage = /^\/(connexion|inscription|mot-de-passe-oublie|en\/(sign-in|sign-up|reset-password))$/.test(pathname);
-  const languageHref = (target: 'fr' | 'en') => {
+  const isAuthPage = /^\/(connexion|inscription|mot-de-passe-oublie|(?:en|es|de|it|nl)\/(sign-in|sign-up|reset-password))$/.test(pathname);
+  const languageHref = (target: InterfaceLocale) => {
     const path = localizePublicPath(pathname, target);
     if (!isAuthPage) {
       const filters = new URLSearchParams();
-      if (/^\/(en\/)?catalogue(?:\/|$)/.test(pathname)) {
+      if (/^\/(?:(?:en|es|de|it|nl)\/)?catalogue(?:\/|$)/.test(pathname)) {
         for (const key of ['q', 'audio', 'duration', 'price']) {
           const value = params?.get(key);
           if (value) filters.set(key, value.slice(0, 120));
         }
+        const intent = params?.get('payment_intent');
+        if (intent && /^pi_[A-Za-z0-9]+$/.test(intent)) filters.set('payment_intent', intent);
+        const payment = params?.get('murmure_pay');
+        if (payment && ['tour', 'forfait'].includes(payment)) filters.set('murmure_pay', payment);
+        const status = params?.get('redirect_status');
+        if (status && ['succeeded', 'failed', 'processing', 'canceled'].includes(status)) filters.set('redirect_status', status);
       }
       return filters.size ? `${path}?${filters}` : path;
     }
@@ -49,12 +58,12 @@ function HeaderContent({ locale = 'fr', onLocaleChange }: HeaderProps) {
     if (step && ['login', 'signup', 'confirm', 'reset', 'reset-confirm'].includes(step)) translated.set('step', step);
     return translated.size ? `${path}?${translated}` : path;
   };
-  const languageSwitch = <div className="inline-flex gap-1" role="group" aria-label={t('Choisir la langue', 'Choose language')}>
-    {(['fr', 'en'] as const).map(target => onLocaleChange
+  const languageSwitch = <div className="inline-flex flex-wrap gap-1" role="group" aria-label={t('Choisir la langue', 'Choose language')}>
+    {SITE_LOCALES.map(target => onLocaleChange
       ? <button type="button" key={target} lang={target} aria-pressed={locale === target} className={`${navLink} min-w-11 justify-center rounded-md ${target === locale ? 'bg-paper-deep' : ''}`} onClick={() => { onLocaleChange(target); setMenuOpen(false); }}>{target.toUpperCase()}</button>
-      : <Link key={target} href={languageHref(target)} hrefLang={target} aria-current={locale === target ? 'page' : undefined} className={`${navLink} min-w-11 justify-center rounded-md ${target === locale ? 'bg-paper-deep' : ''}`} onClick={() => setMenuOpen(false)}>{target.toUpperCase()}</Link>)}
+      : <Link key={target} href={languageHref(target)} hrefLang={target} lang={target} title={LOCALE_NAMES[target]} aria-current={locale === target ? 'page' : undefined} className={`${navLink} min-w-11 justify-center rounded-md ${target === locale ? 'bg-paper-deep' : ''}`} onClick={() => { setStoredStudioLocale(target); setMenuOpen(false); }}>{target.toUpperCase()}</Link>)}
   </div>;
-  const creatorLink = <Link href={isAdmin ? '/admin/moderation' : isGuide ? '/guide/studio' : locale === 'en' ? '/en/create-tours' : '/creer-des-visites'} className={navLink} onClick={() => setMenuOpen(false)}>
+  const creatorLink = <Link href={isAdmin ? '/admin/moderation' : isGuide ? '/guide/studio' : translate(locale, '/creer-des-visites', '/en/create-tours')} className={navLink} onClick={() => setMenuOpen(false)}>
     <PanelsTopLeft size={16} className="mr-2" aria-hidden="true" />{isAdmin ? t('Administrer', 'Admin') : isGuide ? t('Mon Studio', 'My Studio') : t('Créer des visites', 'Create tours')}
   </Link>;
 
@@ -65,7 +74,7 @@ function HeaderContent({ locale = 'fr', onLocaleChange }: HeaderProps) {
         <div className="hidden xl:flex items-center gap-5">
           <Link href={catalogue} className={navLink}>{t('Découvrir les visites', 'Discover tours')}</Link>
           <Link href={purchases} className={navLink}>{t('Mes visites', 'My tours')}</Link>
-          <Link href={locale === 'en' ? '/en/help' : '/aide'} className={navLink}>{t('Aide', 'Help')}</Link>
+          <Link href={translate(locale, '/aide', '/en/help')} className={navLink}>{t('Aide', 'Help')}</Link>
           {creatorLink}{languageSwitch}
           <Link href={account} className="inline-flex min-h-11 items-center rounded-pill bg-grenadine px-4 text-caption font-bold text-paper no-underline">{isAuthenticated ? t('Mon compte', 'My account') : t('Se connecter', 'Sign in')}</Link>
         </div>
@@ -79,7 +88,7 @@ function HeaderContent({ locale = 'fr', onLocaleChange }: HeaderProps) {
       {menuOpen && <div id="menu-mobile" className="grid max-h-[70dvh] overflow-y-auto border-t border-line pb-4 xl:hidden" onKeyDown={event => { if (event.key === 'Escape') setMenuOpen(false); }}>
         <Link href={catalogue} className={navLink} onClick={() => setMenuOpen(false)}>{t('Découvrir les visites', 'Discover tours')}</Link>
         <Link href={purchases} className={navLink} onClick={() => setMenuOpen(false)}>{t('Mes visites', 'My tours')}</Link>
-        <Link href={locale === 'en' ? '/en/help' : '/aide'} className={navLink} onClick={() => setMenuOpen(false)}>{t('Aide', 'Help')}</Link>
+        <Link href={translate(locale, '/aide', '/en/help')} className={navLink} onClick={() => setMenuOpen(false)}>{t('Aide', 'Help')}</Link>
         {creatorLink}{languageSwitch}
         <StoreLink className={navLink} onClick={() => setMenuOpen(false)}>{t('Télécharger l’application', 'Download the app')}</StoreLink>
         {isAuthenticated && <button type="button" className={navLink} onClick={() => { void signOut(); setMenuOpen(false); }}>{t('Déconnexion', 'Sign out')}</button>}
