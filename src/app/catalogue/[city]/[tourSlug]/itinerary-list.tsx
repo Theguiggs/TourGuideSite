@@ -3,6 +3,7 @@ import type { InterfaceLocale } from '@/lib/i18n/locales';
 import { translate } from '@/lib/i18n/translate';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { NumberMark, Eyebrow, tg } from '@murmure/design-system/web';
 import type { POI } from '@/types/tour';
 import type { LanguageAudioTypes } from '@/lib/api/audio-source-policy';
@@ -79,6 +80,7 @@ interface ServedContent {
  * rendu serveur, flou compris. La page ne casse pas, l'échec est journalisé.
  */
 function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean, locale: InterfaceLocale): ServedContent {
+  const router = useRouter();
   const { isAuthenticated, isLoading: authLoading } = useAuth();
   const refreshTick = usePurchasesRefreshTick();
   // Le contenu obtenu est étiqueté de sa visite : une navigation client d'une
@@ -94,6 +96,9 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean, local
   // vrai, et c'est précisément l'instant où l'acheteur revient sur la page.
   const awaitsGrant = !isFree && (authLoading || isAuthenticated) && !shouldUseStubs();
   const [pending, setPending] = useState(awaitsGrant);
+  const [campaignRefreshTick, setCampaignRefreshTick] = useState(0);
+  const ssrPoisRef = useRef(ssrPois);
+  ssrPoisRef.current = ssrPois;
 
   useEffect(() => {
     // Visite gratuite : le serveur ne tronque rien, aucune demande à faire.
@@ -103,6 +108,7 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean, local
       return;
     }
     let cancelled = false;
+    let campaignTimer: ReturnType<typeof setTimeout> | undefined;
     setPending(true);
     void (async () => {
       try {
@@ -127,6 +133,24 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean, local
           walkPath: result.data.walkPath,
           granted,
         });
+        if (
+          granted &&
+          result.data.launchFreeAccessEndsAt &&
+          typeof result.data.launchFreeAccessRemainingSeconds === 'number'
+        ) {
+          const remainingMs = Math.max(0, result.data.launchFreeAccessRemainingSeconds * 1000);
+          const reachesCampaignEnd = remainingMs <= 2_147_000_000;
+          campaignTimer = setTimeout(
+            () => {
+              if (reachesCampaignEnd) {
+                setServed({tourId, pois: ssrPoisRef.current, granted: false});
+              }
+              setCampaignRefreshTick(value => value + 1);
+              router.refresh();
+            },
+            Math.min(2_147_000_000, remainingMs),
+          );
+        }
       } catch (error) {
         logger.warn(SERVICE_NAME, 'authenticated tour content refetch failed', {
           tourId,
@@ -138,8 +162,9 @@ function useServedContent(tourId: string, ssrPois: POI[], isFree: boolean, local
     })();
     return () => {
       cancelled = true;
+      if (campaignTimer) clearTimeout(campaignTimer);
     };
-  }, [tourId, isFree, isAuthenticated, refreshTick, locale]);
+  }, [tourId, isFree, isAuthenticated, refreshTick, campaignRefreshTick, locale, router]);
 
   const granted = served?.tourId === tourId ? served.granted : false;
   // « Arrêtée » = le serveur a accordé le contenu complet, ou personne ne va

@@ -17,6 +17,12 @@ import { __resetOwnedTourIdsCache } from '@/hooks/use-owned-tour-ids';
 import { PURCHASES_CHANGED_EVENT } from '@/lib/checkout/purchase-events';
 import type { POI } from '@/types/tour';
 
+const mockRefresh = jest.fn();
+const mockRouter = {refresh: mockRefresh};
+jest.mock('next/navigation', () => ({
+  useRouter: () => mockRouter,
+}));
+
 let authState: {
   isAuthenticated: boolean;
   user: { id: string } | null;

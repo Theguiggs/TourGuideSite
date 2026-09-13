@@ -35,6 +35,15 @@ describe('parsePublishedTourContent', () => {
       .toMatchObject({ hasFullAccess });
   });
 
+  it('conserve la fin de campagne uniquement si elle est datée', () => {
+    expect(parsePublishedTourContent({tourId: 'tour-1', scenes: [], walkPath: [], launchFreeAccessEndsAt: '2026-11-01T00:00:00.000Z', launchFreeAccessRemainingSeconds: 120}))
+      .toMatchObject({launchFreeAccessEndsAt: '2026-11-01T00:00:00.000Z', launchFreeAccessRemainingSeconds: 120});
+    expect(parsePublishedTourContent({tourId: 'tour-1', scenes: [], walkPath: [], launchFreeAccessEndsAt: 'invalide'}))
+      .not.toHaveProperty('launchFreeAccessEndsAt');
+    expect(parsePublishedTourContent({tourId: 'tour-1', scenes: [], walkPath: [], launchFreeAccessRemainingSeconds: -1}))
+      .toBeNull();
+  });
+
   it.each(['true', 1, {}])('rejects malformed entitlement instead of granting legacy access: %s', (hasFullAccess) => {
     expect(parsePublishedTourContent({ tourId: 'tour-1', scenes: [], walkPath: [], hasFullAccess })).toBeNull();
   });

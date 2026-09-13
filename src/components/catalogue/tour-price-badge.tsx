@@ -5,6 +5,7 @@ import { translate } from '@/lib/i18n/translate';
 import { useOwnedTourIds } from '@/hooks/use-owned-tour-ids';
 import { formatPrice, isTourFree } from '@/lib/catalogue/tour-pricing';
 import type { Tour } from '@/types/tour';
+import {useLaunchFreeAccess} from '@/lib/use-launch-free-access';
 
 interface TourPriceBadgeProps {
   tour: Pick<Tour, 'id' | 'purchaseType' | 'priceCents'>;
@@ -21,6 +22,7 @@ interface TourPriceBadgeProps {
  */
 export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
   const ownedTourIds = useOwnedTourIds();
+  const includedInLaunchOffer = useLaunchFreeAccess().active;
 
   if (ownedTourIds.has(tour.id)) {
     return (
@@ -32,13 +34,16 @@ export function TourPriceBadge({ tour, locale = 'fr' }: TourPriceBadgeProps) {
       </span>
     );
   }
-  if (isTourFree(tour)) {
+  if (isTourFree(tour) || includedInLaunchOffer) {
     return (
       <span
         data-testid={`badge-free-${tour.id}`}
         className="bg-olive-soft text-ink text-meta font-bold px-2 py-0.5 rounded-pill"
       >
         {translate(locale, 'GRATUIT', 'FREE')}
+        {includedInLaunchOffer && tour.priceCents
+          ? ` · ${formatPrice(tour.priceCents, locale)}`
+          : ''}
       </span>
     );
   }

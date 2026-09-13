@@ -16,6 +16,8 @@ export interface PublishedTourContent {
   tourId: string;
   /** Authoritative server entitlement; absent only for legacy responses. */
   hasFullAccess?: boolean;
+  launchFreeAccessEndsAt?: string;
+  launchFreeAccessRemainingSeconds?: number;
   coverUrl?: string;
   scenes: PublicTourScene[];
   walkPath: { latitude: number; longitude: number }[];
@@ -85,7 +87,7 @@ export interface PublishedTourContentQueryClient {
 // explicitly without changing generated outputs before backend deployment.
 const CONTENT_WITH_ACCESS_QUERY = `query PublishedTourContentWithAccess($tourId: ID!) {
   getPublishedTourContent(tourId: $tourId) {
-    tourId hasFullAccess coverUrl mediaExpiresAt
+    tourId hasFullAccess launchFreeAccessEndsAt launchFreeAccessRemainingSeconds coverUrl mediaExpiresAt
     scenes { id order title description audioKey audioUrl photos photoUrls translatedAudioUrls latitude longitude }
     walkPath { latitude longitude }
   }
@@ -98,8 +100,8 @@ function missingAccessField(value: unknown): boolean {
   return Array.isArray(errors) && errors.length > 0 && errors.every(error => {
     const message = error && typeof error === 'object' ? (error as { message?: unknown }).message : null;
     return typeof message === 'string' && (
-      /Cannot query field ["']hasFullAccess["'] on type ["']PublishedTourContent["']/.test(message)
-      || /FieldUndefined.*Field ['"]hasFullAccess['"] in type ['"]PublishedTourContent['"] is undefined/.test(message)
+      /Cannot query field ["'](?:hasFullAccess|launchFreeAccessEndsAt|launchFreeAccessRemainingSeconds)["'] on type ["']PublishedTourContent["']/.test(message)
+      || /FieldUndefined.*Field ['"](?:hasFullAccess|launchFreeAccessEndsAt|launchFreeAccessRemainingSeconds)['"] in type ['"]PublishedTourContent['"] is undefined/.test(message)
     );
   });
 }
@@ -151,6 +153,12 @@ export function parsePublishedTourContent(value: unknown): PublishedTourContent 
   if (!value || typeof value !== 'object') return null;
   const candidate = value as Record<string, unknown>;
   if (candidate.hasFullAccess != null && typeof candidate.hasFullAccess !== 'boolean') return null;
+  if (
+    candidate.launchFreeAccessRemainingSeconds != null &&
+    (typeof candidate.launchFreeAccessRemainingSeconds !== 'number' ||
+      !Number.isInteger(candidate.launchFreeAccessRemainingSeconds) ||
+      candidate.launchFreeAccessRemainingSeconds < 0)
+  ) return null;
   if (
     typeof candidate.tourId !== 'string' ||
     !Array.isArray(candidate.scenes) ||
@@ -243,9 +251,18 @@ export function parsePublishedTourContent(value: unknown): PublishedTourContent 
     Number.isFinite(Date.parse(candidate.mediaExpiresAt))
       ? candidate.mediaExpiresAt
       : undefined;
+  const launchFreeAccessEndsAt =
+    typeof candidate.launchFreeAccessEndsAt === 'string' &&
+    Number.isFinite(Date.parse(candidate.launchFreeAccessEndsAt))
+      ? candidate.launchFreeAccessEndsAt
+      : undefined;
   return {
     tourId: candidate.tourId,
     ...(typeof candidate.hasFullAccess === 'boolean' ? { hasFullAccess: candidate.hasFullAccess } : {}),
+    ...(launchFreeAccessEndsAt ? { launchFreeAccessEndsAt } : {}),
+    ...(typeof candidate.launchFreeAccessRemainingSeconds === 'number'
+      ? { launchFreeAccessRemainingSeconds: candidate.launchFreeAccessRemainingSeconds }
+      : {}),
     ...(coverUrl ? { coverUrl } : {}),
     scenes,
     walkPath,

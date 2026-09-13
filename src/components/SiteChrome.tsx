@@ -8,6 +8,7 @@ import { setStoredStudioLocale, useStoredStudioLocale, notifyServiceWorkerLocale
 import Footer from './Footer';
 import { VisitorBottomNav } from './auth/visitor-bottom-nav';
 import { localeFromPath } from '@/lib/site';
+import { LaunchOfferBanner } from './LaunchOfferBanner';
 
 interface SiteChromeProps {
   children: React.ReactNode;
@@ -76,6 +77,7 @@ export function SiteChrome({ children }: SiteChromeProps) {
     <div className={showVisitorNav ? 'visitor-shell' : undefined}>
       {skipLink}
       <Header locale={locale} onLocaleChange={isPublicGuidePage || isAdminPage ? setStoredStudioLocale : undefined} />
+      <LaunchOfferBanner locale={locale} />
       <main id="contenu" className="min-h-screen">{children}</main>
       <Footer locale={locale} />
       {showVisitorNav && <VisitorBottomNav locale={locale} pathname={pathname} />}

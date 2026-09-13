@@ -20,6 +20,12 @@ import { logger } from '@/lib/logger';
 import type { POI } from '@/types/tour';
 import { ITINERARY_SOURCE_COPY } from '@/lib/catalogue/scene-pois';
 
+const mockRefresh = jest.fn();
+const mockRouter = {refresh: mockRefresh};
+jest.mock('next/navigation', () => ({
+  useRouter: () => mockRouter,
+}));
+
 it('shows original itinerary text warning independently of translated tour metadata', () => {
   render(<ItineraryList pois={[{ id: 'source', title: 'Place du marché', description: 'Texte original', latitude: 0, longitude: 0, order: 1 }]} sourceLanguage="fr" locale="de" tourTitle="Übersetzter Titel" tourId="source-tour" isFree heroAccentFg="#B4703A" />);
   expect(screen.getByText(ITINERARY_SOURCE_COPY.de)).toBeInTheDocument();

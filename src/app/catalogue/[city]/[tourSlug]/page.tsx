@@ -41,6 +41,8 @@ import { maskLockedPois } from '@/lib/catalogue/scene-pois';
 import { LANG_FLAGS, LANG_NAMES } from '@/lib/i18n/languages';
 import { LangChip } from '@/components/i18n/LangChip';
 import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
+import {launchFreeAccess} from '@/lib/launch-free-access';
+import {LaunchOfferCard} from '@/components/checkout/launch-offer-card';
 
 const DETAIL_COPY = extendCopy({
   fr: {
@@ -58,6 +60,15 @@ const DETAIL_COPY = extendCopy({
     duration: 'Duration', distance: 'Distance', stops: 'Stops', completions: 'Completions', listen: 'Walk with the app',
   },
 } as const);
+
+const LAUNCH_BADGE: Record<InterfaceLocale, string> = {
+  fr: 'OFFRE DE LANCEMENT',
+  en: 'LAUNCH OFFER',
+  es: 'OFERTA DE LANZAMIENTO',
+  de: 'STARTANGEBOT',
+  it: 'OFFERTA DI LANCIO',
+  nl: 'LANCERINGSAANBOD',
+};
 
 // Story 4.4 — Cleanup: utilise `getCityAccent` de Story 4.3 (`lib/cities/accent-map`)
 // au lieu du fallback local précédent. Hash-based fallback inclus pour villes inconnues.
@@ -115,6 +126,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
   const originalTour = await getTourBySlug(citySlug, tourSlug);
   if (!originalTour) notFound();
   const tour = localizeTour(originalTour, locale);
+  const launchOfferActive = launchFreeAccess().active;
 
   const [city, guideSlug] = await Promise.all([
     getCityBySlug(citySlug),
@@ -232,7 +244,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 >
                   {tour.title}
                 </h1>
-                {isTourFree(tour) && (
+                {(isTourFree(tour) || launchOfferActive) && (
                   <span
                     style={{
                       display: 'inline-flex',
@@ -247,10 +259,10 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    {copy.free}
+                    {launchOfferActive ? LAUNCH_BADGE[locale] : copy.free}
                   </span>
                 )}
-                {tour.purchaseType === 'subscription_only' && (
+                {tour.purchaseType === 'subscription_only' && !launchOfferActive && (
                   <span
                     style={{
                       display: 'inline-flex',
@@ -613,7 +625,8 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                       saut d'ancre déplace la vue sans déplacer le focus. */}
                   <div id={PURCHASE_ANCHOR_ID} tabIndex={-1}>
                     {/* mon-1.3b — web sale CTA for individually-priced tours */}
-                    {tour.purchaseType === 'paid' && (
+                    {launchOfferActive && tour.purchaseType !== 'free' && <LaunchOfferCard locale={locale} />}
+                    {tour.purchaseType === 'paid' && !launchOfferActive && (
                       <TourPurchaseCard
                         tourId={tour.id}
                         title={tour.title}
@@ -625,7 +638,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                     {/* Forfait « visites IA » — les visites incluses affichaient leur
                         statut sans aucun moyen d'acheter : c'est ici que l'intention
                         d'achat est la plus forte. */}
-                    {tour.purchaseType === 'subscription_only' && (
+                    {tour.purchaseType === 'subscription_only' && !launchOfferActive && (
                       <ForfaitPurchaseCard locale={locale} />
                     )}
                   </div>
