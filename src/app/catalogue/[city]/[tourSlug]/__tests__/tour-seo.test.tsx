@@ -9,7 +9,7 @@
 
 import { render, screen, cleanup, within } from '@testing-library/react';
 import { LocalizedTourDetailPage } from '@/app/catalogue/[city]/[tourSlug]/page';
-import { getTourBySlug, getCityBySlug, getAllTours } from '@/lib/api/tours-server';
+import { getTourBySlug, getCityBySlug, getCityTourSummaries } from '@/lib/api/tours-server';
 import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
 import { SITE_LOCALES, type InterfaceLocale } from '@/lib/i18n/locales';
 import { publicPath, publicUrl } from '@/lib/seo/urls';
@@ -23,7 +23,7 @@ jest.mock('@/components/i18n/language-suggestion', () => ({ LanguageSuggestion: 
 jest.mock('@/lib/api/tours-server', () => ({
   getTourBySlug: jest.fn(),
   getCityBySlug: jest.fn(),
-  getAllTours: jest.fn(async () => []),
+  getCityTourSummaries: jest.fn(async () => []),
 }));
 jest.mock('@/lib/api/guides-public-server', () => ({ getGuideSlugByGuideId: jest.fn(async () => null) }));
 jest.mock('@/lib/launch-free-access', () => ({ launchFreeAccess: jest.fn(() => ({ active: false })) }));
@@ -39,7 +39,7 @@ jest.mock('@/app/catalogue/[city]/[tourSlug]/itinerary-list', () => ({ __esModul
 
 const mockGetTour = getTourBySlug as jest.MockedFunction<typeof getTourBySlug>;
 const mockGetCity = getCityBySlug as jest.MockedFunction<typeof getCityBySlug>;
-const mockGetCityTours = getAllTours as jest.MockedFunction<typeof getAllTours>;
+const mockGetCityTours = getCityTourSummaries as jest.MockedFunction<typeof getCityTourSummaries>;
 const mockGuideSlug = getGuideSlugByGuideId as jest.MockedFunction<typeof getGuideSlugByGuideId>;
 const mockLaunchOffer = launchFreeAccess as jest.MockedFunction<typeof launchFreeAccess>;
 

@@ -316,6 +316,30 @@ export async function getTourBySlug(citySlug: string, tourSlug: string): Promise
   return getRealTourBySlug(citySlug, tourSlug);
 }
 
+/**
+ * Visites publiées d'une ville, SANS résoudre les couvertures.
+ *
+ * `getToursByCity` résout la couverture de chaque visite — une lecture de
+ * contenu publié par visite — parce que les cartes du catalogue en ont besoin.
+ * Le maillage d'une fiche, lui, n'affiche pas d'image : il paierait ces
+ * lectures pour rien, sur le chemin du premier octet.
+ *
+ * `getAllTours` ne convient pas non plus : il mappe le catalogue ENTIER (une
+ * centaine de visites) pour n'en garder que deux ou trois.
+ */
+export async function getCityTourSummaries(citySlug: string): Promise<Tour[]> {
+  if (shouldUseStubs()) return getStubToursByCity(citySlug);
+  const tours = (await publishedTours()).filter((t) => generateSlug(t.city) === citySlug);
+  return mapTours(tours, (t, slugs) => toTour(t, slugs));
+}
+
+/** Visites publiées d'un guide, sans couverture non plus. */
+export async function getGuideTourSummaries(guideId: string): Promise<Tour[]> {
+  if (shouldUseStubs()) return getStubAllTours().filter((t) => t.guideId === guideId);
+  const tours = (await publishedTours()).filter((t) => t.guideId === guideId);
+  return mapTours(tours, (t, slugs) => toTour(t, slugs));
+}
+
 export async function getAllTours(): Promise<Tour[]> {
   if (shouldUseStubs()) return getStubAllTours();
   return mapTours(await publishedTours(), (t, slugs) => toTour(t, slugs));
