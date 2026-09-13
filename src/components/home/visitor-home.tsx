@@ -9,6 +9,7 @@ import { HomeCatalogue } from './home-catalogue';
 import { publicPath } from '@/lib/seo/urls';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { siteJsonLd } from '@/lib/seo/json-ld';
+import { LanguageSuggestion } from '@/components/i18n/language-suggestion';
 
 export function VisitorHome({ locale }: { locale: InterfaceLocale }) {
   const t = (fr: string, en: string) => translate(locale, fr, en);
@@ -19,6 +20,7 @@ export function VisitorHome({ locale }: { locale: InterfaceLocale }) {
     { icon: Footprints, title: t('Explorez à votre rythme', 'Explore at your own pace'), body: t('Lancez votre visite sur le site et faites une pause quand vous le souhaitez.', 'Play your tour on the website and pause whenever you like.') },
   ];
   return <>
+    <LanguageSuggestion sourcePath="/" locale={locale} />
     <TrackPageView event={AnalyticsEvents.WEB_LANDING_VISIT} properties={{ locale }} />
     {/* Éditeur et site : posés une fois, sur l'accueil de chaque langue. */}
     {siteJsonLd(locale).map(node => (

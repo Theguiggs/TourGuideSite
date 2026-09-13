@@ -6,6 +6,7 @@ import TrackPageView from '@/components/TrackPageView';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { CatalogueViewCities } from './catalogue-view-cities';
 import { MyPurchasesStripClient } from '@/components/catalogue/my-purchases-strip-client';
+import { LanguageSuggestion } from '@/components/i18n/language-suggestion';
 
 // Force dynamic rendering: server AppSync client reads cookies (generateServerClientUsingCookies),
 // which is incompatible with static ISR. Switch to force-dynamic so Next.js doesn't attempt to
@@ -21,6 +22,7 @@ export async function LocalizedCataloguePage({ searchParams, locale = 'fr' }: { 
 
   return (
     <>
+      <LanguageSuggestion sourcePath="/catalogue" locale={locale} />
       <TrackPageView event={AnalyticsEvents.WEB_CATALOGUE_BROWSE} />
       {/* Owner-scoped purchases resolved client-side (localStorage Cognito session). */}
       <MyPurchasesStripClient locale={locale} />

@@ -17,6 +17,7 @@ import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { breadcrumbJsonLd, guideJsonLd } from '@/lib/seo/json-ld';
 import { seoAlternates } from '@/lib/seo/urls';
 import { guideSeoLocales } from '@/lib/seo/availability';
+import { LanguageSuggestion } from '@/components/i18n/language-suggestion';
 import { PageTitle } from '@murmure/design-system/web';
 import { publicPath } from '@/lib/seo/urls';
 
@@ -130,7 +131,10 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
   const guide = await getGuideBySlug(guideSlug);
   if (!guide) notFound();
 
-  const originalTours = await getGuidePublicTours(guide.id);
+  // Les langues proposables viennent de la même lecture que le sitemap et que
+  // `guideMetadata` : une seule source décide de ce qui est publié.
+  const [originalTours, catalogue] = await Promise.all([getGuidePublicTours(guide.id), getGuideTourSummaries(guide.id)]);
+  const published = guideSeoLocales(catalogue);
   const signatureIds = new Set(originalTours.filter(tour => tour.title === guide.parcoursSignature).map(tour => tour.id));
   const tours = originalTours.map(tour => localizeTour(tour, locale));
   const copy = GUIDE_COPY[locale];
@@ -139,6 +143,7 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <LanguageSuggestion sourcePath={`/guides/${guideSlug}`} locale={locale} published={published} />
       <TrackPageView
         event={AnalyticsEvents.WEB_GUIDE_PROFILE_VIEW}
         properties={{ guide_id: guide.id, guide_city: guide.city, tour_count: tours.length }}

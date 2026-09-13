@@ -35,6 +35,8 @@ import {
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { tourMetadata } from '@/lib/seo/tour-metadata';
 import { publicPath } from '@/lib/seo/urls';
+import { tourSeoLocales } from '@/lib/seo/availability';
+import { LanguageSuggestion } from '@/components/i18n/language-suggestion';
 import { breadcrumbJsonLd, tourJsonLd } from '@/lib/seo/json-ld';
 import ItineraryList from './itinerary-list';
 import { StarRating } from '@/components/catalogue/StarRating';
@@ -222,6 +224,11 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
       className="pb-24 md:pb-0"
       style={{ background: tg.colors.paper, minHeight: '100vh' }}
     >
+      <LanguageSuggestion
+        sourcePath={`/catalogue/${citySlug}/${tourSlug}`}
+        locale={locale}
+        published={tourSeoLocales(originalTour)}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {tour.metadataFallback && <p className="mb-4 text-body text-ink-80">{METADATA_FALLBACK_COPY[locale]}</p>}
         <TrackPageView

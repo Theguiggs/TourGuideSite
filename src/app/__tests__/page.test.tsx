@@ -4,6 +4,10 @@ import EnglishLanding from '../en/page';
 import { CreatorHome } from '@/components/home/creator-home';
 import { SITE_URL } from '@/lib/site';
 
+// Composant serveur asynchrone imbriqué : jsdom ne sait pas le rendre, et il
+// n'est pas le sujet ici. Son comportement vit dans `preferred-locale.test.ts`
+// et dans la passe SEO.
+jest.mock('@/components/i18n/language-suggestion', () => ({ LanguageSuggestion: () => null }));
 jest.mock('@/components/TrackPageView', () => ({ __esModule: true, default: () => null }));
 jest.mock('@/components/home/home-catalogue', () => ({ HomeCatalogue: () => <div data-testid="published-selection" /> }));
 
