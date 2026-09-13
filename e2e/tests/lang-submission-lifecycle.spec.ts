@@ -49,8 +49,11 @@ async function gPage(browser: Browser, path: string) {
   await page.waitForLoadState('domcontentloaded', { timeout: 15_000 });
   const btn = page.locator('button:has-text("Accepter")');
   if (await btn.isVisible({ timeout: 1_500 }).catch(() => false)) { await btn.click(); await page.waitForTimeout(500); }
-  // Allow AppSync hydration — CI prod is slower than local dev
-  await page.waitForTimeout(4_000);
+  if (path.endsWith('/submission')) {
+    await expect(page.getByTestId('submission-narration-mode')).toBeVisible({ timeout: 20_000 });
+  } else if (path.endsWith('/scenes')) {
+    await expect(page.getByTestId('scene-editor')).toBeVisible({ timeout: 20_000 });
+  }
   return { context, page };
 }
 async function aPage(browser: Browser, path: string) {
@@ -228,6 +231,7 @@ test.describe('Language Submission Lifecycle', () => {
   // ══════════════════════════════════════
 
   test('4.1 Guide cannot retract or edit generated languages', async ({ browser }) => {
+    test.setTimeout(60_000);
     const submission = await gPage(browser, `${STUDIO(sessionId)}/submission`);
     await expect(submission.page.getByTestId('retract-lang-en')).not.toBeVisible();
     await expect(submission.page.getByTestId('language-submissions-section')).not.toBeVisible();
