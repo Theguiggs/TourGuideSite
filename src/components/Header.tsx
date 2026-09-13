@@ -32,7 +32,16 @@ function HeaderContent({ locale = 'fr', onLocaleChange }: HeaderProps) {
   const isAuthPage = /^\/(connexion|inscription|mot-de-passe-oublie|en\/(sign-in|sign-up|reset-password))$/.test(pathname);
   const languageHref = (target: 'fr' | 'en') => {
     const path = localizePublicPath(pathname, target);
-    if (!isAuthPage) return path;
+    if (!isAuthPage) {
+      const filters = new URLSearchParams();
+      if (/^\/(en\/)?catalogue(?:\/|$)/.test(pathname)) {
+        for (const key of ['q', 'audio', 'duration', 'price']) {
+          const value = params?.get(key);
+          if (value) filters.set(key, value.slice(0, 120));
+        }
+      }
+      return filters.size ? `${path}?${filters}` : path;
+    }
     const returnTo = localizeVisitorReturn(params?.get('returnTo') ?? null, target);
     const translated = new URLSearchParams();
     if (returnTo) translated.set('returnTo', returnTo);

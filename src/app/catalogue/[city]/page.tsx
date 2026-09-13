@@ -1,3 +1,4 @@
+import { serializeFilters } from '@/lib/catalogue/serialize-filters';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -10,6 +11,7 @@ import { PageTitle } from '@murmure/design-system/web';
 export const dynamic = 'force-dynamic';
 
 interface CityPageProps {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
   params: Promise<{ city: string }>;
 }
 
@@ -27,7 +29,7 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   };
 }
 
-export default async function CityPage({ params }: CityPageProps) {
+export default async function CityPage({ params, searchParams }: CityPageProps) {
   const { city: citySlug } = await params;
   const city = await getCityBySlug(citySlug);
   if (!city) notFound();
@@ -50,7 +52,7 @@ export default async function CityPage({ params }: CityPageProps) {
       <PageTitle className="mb-2">{city.name}</PageTitle>
       <p className="text-ink-60 mb-10">{city.description}</p>
 
-      <TourListWithFilter tours={tours} citySlug={citySlug} />
+      <TourListWithFilter initialFilters={serializeFilters(await searchParams)} tours={tours} citySlug={citySlug} />
 
       {/* Guides locaux */}
       {guides.length > 0 && (

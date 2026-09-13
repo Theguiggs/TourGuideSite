@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import Link from 'next/link';
+import { useFilterUrl } from '@/lib/catalogue/filter-url';
+import { isTourFree } from '@/lib/catalogue/tour-pricing';
 import { S3Image } from '@/components/studio/s3-image';
 import { TourPriceBadge } from '@/components/catalogue/tour-price-badge';
 import { AiDisclosureBadge } from '@/components/catalogue/ai-disclosure-badge';
@@ -47,11 +49,16 @@ function compareLanguages(a: string, b: string): number {
 interface TourListWithFilterProps {
   tours: Tour[];
   citySlug: string;
+  initialFilters?: string;
   locale?: 'fr' | 'en';
 }
 
-export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListWithFilterProps) {
-  const [filterLang, setFilterLang] = useState<string>('');
+export function TourListWithFilter({ tours, citySlug, locale = 'fr', initialFilters = '' }: TourListWithFilterProps) {
+  const { params, update } = useFilterUrl(initialFilters);
+  const requestedLang = (params.get('audio') || '').trim().toLowerCase();
+  const setFilterLang = (audio: string) => update({ audio });
+  const duration = ['short', 'long'].includes(params.get('duration') || '') ? params.get('duration')! : '';
+  const price = ['free', 'paid'].includes(params.get('price') || '') ? params.get('price')! : '';
 
   // Langues de chaque Visite, normalisées une seule fois : puces, filtre et
   // comptes lisent la même liste, celle de ce qui est vendu.
@@ -74,13 +81,16 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
     return [...langs].sort(compareLanguages);
   }, [languagesByTour]);
 
+  const filterLang = allLanguages.includes(requestedLang) ? requestedLang : '';
+
   const langsOf = (tour: Tour) => languagesByTour.get(tour.id) ?? [];
 
   // Filter tours by language
   const filteredTours = useMemo(() => {
-    if (!filterLang) return tours;
-    return tours.filter((t) => languagesByTour.get(t.id)?.includes(filterLang));
-  }, [tours, filterLang, languagesByTour]);
+    return tours.filter((t) => (!filterLang || languagesByTour.get(t.id)?.includes(filterLang))
+      && (!duration || (Number.isFinite(t.duration) && t.duration > 0 && (duration === 'short' ? t.duration <= 60 : t.duration > 60)))
+      && (!price || (price === 'free' ? isTourFree(t) : !isTourFree(t))));
+  }, [tours, filterLang, languagesByTour, duration, price]);
 
   if (tours.length === 0) {
     return (
@@ -131,10 +141,29 @@ export function TourListWithFilter({ tours, citySlug, locale = 'fr' }: TourListW
         </div>
       )}
 
+      <div className="flex flex-wrap items-end gap-4 mb-4">
+        <label className="flex flex-col gap-1 text-body">{locale === 'en' ? 'Duration' : 'Durée'}
+          <select className="min-h-11 rounded-lg border border-line bg-paper px-3 text-body" value={duration} onChange={e => update({ duration: e.target.value })}>
+            <option value="">{locale === 'en' ? 'Any duration' : 'Toutes les durées'}</option>
+            <option value="short">{locale === 'en' ? 'Up to 1 hour' : 'Jusqu’à 1 heure'}</option>
+            <option value="long">{locale === 'en' ? 'Over 1 hour' : 'Plus de 1 heure'}</option>
+          </select>
+        </label>
+        <label className="flex flex-col gap-1 text-body">{locale === 'en' ? 'Price' : 'Prix'}
+          <select className="min-h-11 rounded-lg border border-line bg-paper px-3 text-body" value={price} onChange={e => update({ price: e.target.value })}>
+            <option value="">{locale === 'en' ? 'All tours' : 'Toutes les visites'}</option>
+            <option value="free">{locale === 'en' ? 'Free' : 'Gratuit'}</option>
+            <option value="paid">{locale === 'en' ? 'Purchase or pass' : 'Achat ou forfait'}</option>
+          </select>
+        </label>
+        {(filterLang || duration || price) && <button className="min-h-11 px-3 text-grenadine underline" onClick={() => update({ audio: '', duration: '', price: '' })}>{locale === 'en' ? 'Clear filters' : 'Effacer les filtres'}</button>}
+      </div>
+      <p role="status" className="text-body text-ink-80 mb-6">{filteredTours.length} {locale === 'en' ? 'tours found' : 'visites trouvées'}</p>
+
       {/* Tour cards */}
       {filteredTours.length === 0 ? (
         <p className="text-ink-60">
-          {locale === 'en' ? 'No tours are available in this language.' : 'Aucune visite disponible dans cette langue.'}
+          {locale === 'en' ? 'No tours match these filters. Clear the filters to see all tours.' : 'Aucune visite ne correspond à ces filtres. Effacez-les pour retrouver toutes les visites.'}
         </p>
       ) : (
         <div className="space-y-6">

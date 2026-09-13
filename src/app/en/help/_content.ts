@@ -27,9 +27,9 @@ export const FAQ_GUIDES: FaqItem[] = [
 
 export const FAQ_TRAVELLERS: FaqItem[] = [
   {q: 'How do I listen to a tour?', a: 'On the tour page, tap “Listen” under each stop. The Murmure app adds GPS guidance and offline listening as you walk.'},
-  {q: 'Does it work offline?', a: 'Yes. Download your tour before leaving and listen without a connection.'},
+  {q: 'Does it work offline?', a: 'The web player needs a connection to load audio. Offline tour downloads are an app feature, not a feature of the installed website.'},
   {q: 'Which languages are available?', a: 'Tours can be available in French, English, Spanish, German and Italian.'},
-  {q: 'Which devices are supported?', a: 'Android and iOS.'},
+  {q: 'Which devices are supported?', a: 'The website adapts to phones, tablets and computers. App features depend on availability on your device.'},
 ];
 
 import { LEGAL_IDENTITY } from '@/lib/legal/identity';

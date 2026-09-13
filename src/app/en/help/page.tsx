@@ -1,3 +1,4 @@
+import { VisitorHelp } from '@/components/catalogue/visitor-help';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
@@ -34,11 +35,13 @@ export default function EnglishHelpPage() {
         </div>
       </section>
 
+      <VisitorHelp locale="en" />
+
       <section className="bg-paper-soft py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-h4 md:text-h3 mb-6" style={{color: tg.colors.ink}}>What is Murmure?</h2>
           <p className="font-sans" style={{color: tg.colors.ink80, fontSize: tg.fontSize.bodyLg, lineHeight: 1.65}}>
-            Murmure offers immersive audio walking tours. Travellers listen in the mobile app, even offline, while guides create and translate tours in the web studio.
+            Murmure offers audio walking tours. Travellers listen on the website or in the app, while guides create and translate tours in the web studio.
           </p>
         </div>
       </section>

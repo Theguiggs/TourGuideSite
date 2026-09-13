@@ -1,3 +1,4 @@
+import { VisitorHelp } from '@/components/catalogue/visitor-help';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
@@ -46,6 +47,8 @@ export default function AidePage() {
         </div>
       </section>
 
+      <VisitorHelp locale="fr" />
+
       {/* ─── Qu'est-ce que Murmure ? (AC8) ────────────────────────────────── */}
       <section className="bg-paper-soft py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,7 +68,7 @@ export default function AidePage() {
             }}
           >
             Murmure, ce sont des visites guidées audio. Les voyageurs les écoutent
-            dans l’app, même hors-ligne. Les guides créent ces visites dans
+            sur le site ou dans l’application. Les guides créent ces visites dans
             l’atelier web, sans compétence technique.
           </p>
         </div>

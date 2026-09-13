@@ -12,8 +12,9 @@
  * - Empty state éditorial avec PullQuote.
  */
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import Link from 'next/link';
+import { useFilterUrl } from '@/lib/catalogue/filter-url';
 import { tg } from '@murmure/design-system';
 import { Eyebrow, PullQuote } from '@murmure/design-system/web';
 import type { City, Tour } from '@/types/tour';
@@ -114,7 +115,9 @@ export function CatalogueViewCities({ cities, tours, locale = 'fr', initialQuery
   // (« Provence », « Ocre », « Côte », « Nature ») : une propriété graphique
   // attribuée par somme de codes de caractères, que personne ne cherche.
   // Une recherche par nom remplace ces puces.
-  const [query, setQuery] = useState(initialQuery);
+  const { params, update } = useFilterUrl(new URLSearchParams({ q: initialQuery }).toString());
+  const query = params.get('q') ?? '';
+  const setQuery = (q: string) => update({ q });
 
   const citiesWithAccent = useMemo(
     () =>
