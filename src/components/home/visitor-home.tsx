@@ -6,10 +6,11 @@ import { Headphones, MapPin, Footprints, Search } from 'lucide-react';
 import TrackPageView from '@/components/TrackPageView';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { HomeCatalogue } from './home-catalogue';
+import { publicPath } from '@/lib/seo/urls';
 
 export function VisitorHome({ locale }: { locale: InterfaceLocale }) {
   const t = (fr: string, en: string) => translate(locale, fr, en);
-  const prefix = translate(locale, '', '/en');
+  
   const steps = [
     { icon: MapPin, title: t('Choisissez votre visite', 'Choose your tour'), body: t('Trouvez une ville et une histoire qui vous donnent envie.', 'Find a city and a story you want to explore.') },
     { icon: Headphones, title: t('Écoutez un extrait', 'Listen to a preview'), body: t('Découvrez la voix et le récit avant de vous décider.', 'Get a feel for the voice and story before you choose.') },
@@ -24,7 +25,7 @@ export function VisitorHome({ locale }: { locale: InterfaceLocale }) {
           <p className="mt-4 max-w-xl text-body text-ink-80 sm:text-body-lg">{t('Choisissez une visite audio, écoutez un extrait et laissez les lieux vous raconter leurs histoires.', 'Choose an audio tour, listen to a preview and discover the stories behind the places.')}</p>
         </div>
         <div>
-          <form action={`${prefix}/catalogue`} method="get" role="search" aria-label={t('Trouver une visite', 'Find a tour')} className="rounded-lg bg-card p-4 sm:p-6">
+          <form action={publicPath('/catalogue', locale)} method="get" role="search" aria-label={t('Trouver une visite', 'Find a tour')} className="rounded-lg bg-card p-4 sm:p-6">
             <label htmlFor="home-city" className="mb-2 block text-body font-semibold text-ink">{t('Dans quelle ville ?', 'Which city?')}</label>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <input id="home-city" name="q" type="search" autoComplete="off" placeholder={t('Nom d’une ville', 'City name')} maxLength={120} className="min-h-11 w-full min-w-0 rounded-md border border-line bg-paper px-3 py-3 text-body text-ink focus:border-grenadine focus:outline-none focus:ring-2 focus:ring-grenadine-soft" />

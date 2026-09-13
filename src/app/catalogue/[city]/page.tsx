@@ -1,4 +1,5 @@
 import { cityMetadata } from '@/lib/seo/city-metadata';
+import { citySeoLocales } from '@/lib/seo/availability';
 import { translate } from '@/lib/i18n/translate';
 import type { InterfaceLocale } from '@/lib/i18n/locales';
 import { localizePublicPath } from '@/lib/i18n/public-routes';
@@ -19,11 +20,20 @@ interface CityPageProps {
   params: Promise<{ city: string }>;
 }
 
-export async function generateMetadata({ params }: CityPageProps): Promise<Metadata> {
-  const { city: citySlug } = await params;
+/**
+ * Partagée avec la route localisée : une ville n'est indexable que dans les
+ * langues où au moins une de ses visites l'est (lot SEO-2).
+ */
+export async function cityPageMetadata(citySlug: string, locale: InterfaceLocale): Promise<Metadata> {
   const city = await getCityBySlug(citySlug);
   if (!city) return {};
-  return cityMetadata(city, 'fr');
+  const tours = await getToursByCity(citySlug);
+  return cityMetadata(city, locale, citySeoLocales(tours));
+}
+
+export async function generateMetadata({ params }: CityPageProps): Promise<Metadata> {
+  const { city: citySlug } = await params;
+  return cityPageMetadata(citySlug, 'fr');
 }
 
 export async function LocalizedCityPage({ params, searchParams, locale = 'fr' }: CityPageProps & { locale?: InterfaceLocale }) {

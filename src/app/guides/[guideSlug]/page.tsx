@@ -1,5 +1,5 @@
-import type { InterfaceLocale } from '@/lib/i18n/locales';
-import { translate, extendCopy } from '@/lib/i18n/translate';
+import { LOCALE_FORMATS, type InterfaceLocale } from '@/lib/i18n/locales';
+import { extendCopy } from '@/lib/i18n/translate';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -14,7 +14,10 @@ import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-
 import { AnalyticsEvents } from '@/lib/analytics';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { breadcrumbJsonLd, guideJsonLd } from '@/lib/seo/json-ld';
+import { seoAlternates } from '@/lib/seo/urls';
+import { guideSeoLocales } from '@/lib/seo/availability';
 import { PageTitle } from '@murmure/design-system/web';
+import { publicPath } from '@/lib/seo/urls';
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static ISR.
 export const dynamic = 'force-dynamic';
@@ -82,24 +85,26 @@ const GUIDE_COPY = extendCopy({
 export async function guideMetadata(guideSlug: string, locale: GuideLocale): Promise<Metadata> {
   const guide = await getGuideBySlug(guideSlug);
   if (!guide) return {};
+  const tours = await getGuidePublicTours(guide.id);
+  // Un guide sans visite publiée n'a rien à faire dans un index.
+  const published = guideSeoLocales(tours);
   const copy = GUIDE_COPY[locale];
   const bioSnippet = guide.bio ? guide.bio.slice(0, 150) : '';
-  const description = copy.describe(guide.displayName, guide.city, bioSnippet, guide.tourCount ?? 0);
-  const frPath = `/guides/${guideSlug}`;
-  const enPath = `/en/guides/${guideSlug}`;
+  const description = copy.describe(guide.displayName, guide.city, bioSnippet, tours.length);
+  const { alternates, robots } = seoAlternates({ sourcePath: `/guides/${guideSlug}`, locale, published });
 
   return {
     title: copy.title(guide.displayName, guide.city),
     description,
-    alternates: {
-      canonical: extendCopy({ fr: frPath, en: enPath })[locale],
-      languages: extendCopy({ fr: frPath, en: enPath }),
-    },
+    alternates,
+    ...(robots ? { robots } : {}),
     openGraph: {
       title: `${guide.displayName} | Murmure`,
       description,
       type: 'profile',
-      locale: translate(locale, 'fr_FR', 'en_US'),
+      siteName: 'Murmure',
+      url: alternates.canonical as string,
+      locale: LOCALE_FORMATS[locale].replace('-', '_'),
       ...(guide.photoUrl ? { images: [guide.photoUrl] } : {}),
     },
     twitter: {
@@ -124,8 +129,8 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
   const signatureIds = new Set(originalTours.filter(tour => tour.title === guide.parcoursSignature).map(tour => tour.id));
   const tours = originalTours.map(tour => localizeTour(tour, locale));
   const copy = GUIDE_COPY[locale];
-  const base = translate(locale, '', '/en');
-  const tourHref = (tour: { citySlug: string; slug: string }) => `${base}/catalogue/${tour.citySlug}/${tour.slug}`;
+  const home = publicPath('/', locale);
+  const tourHref = (tour: { citySlug: string; slug: string }) => publicPath(`/catalogue/${tour.citySlug}/${tour.slug}`, locale);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -136,9 +141,9 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
 
       {/* Breadcrumb */}
       <nav className="text-body text-ink-60 mb-6" aria-label={copy.breadcrumb}>
-        <Link href={base || '/'} className="hover:text-grenadine">{copy.home}</Link>
+        <Link href={home} className="hover:text-grenadine">{copy.home}</Link>
         <span className="mx-2">/</span>
-        <Link href={`${base}/catalogue`} className="hover:text-grenadine">{copy.catalogue}</Link>
+        <Link href={publicPath('/catalogue', locale)} className="hover:text-grenadine">{copy.catalogue}</Link>
         <span className="mx-2">/</span>
         <span className="text-ink">{copy.guidePrefix} {guide.displayName}</span>
       </nav>
@@ -311,8 +316,8 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
         dangerouslySetInnerHTML={{
           __html: safeJsonLd(
             breadcrumbJsonLd([
-              { name: copy.home, path: base || '/' },
-              { name: copy.catalogue, path: `${base}/catalogue` },
+              { name: copy.home, path: home },
+              { name: copy.catalogue, path: publicPath('/catalogue', locale) },
               { name: `${copy.guidePrefix} ${guide.displayName}` },
             ]),
           ),

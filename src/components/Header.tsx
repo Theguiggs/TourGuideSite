@@ -13,6 +13,7 @@ import { visitorAuthUrl, localizeVisitorReturn } from '@/lib/auth/visitor-routes
 import { MurmureLogo } from '@/components/shell/MurmureLogo';
 import StoreLink from '@/components/StoreLink';
 import { useVisitorReturn } from '@/lib/auth/use-visitor-return';
+import { publicPath } from '@/lib/seo/urls';
 
 interface HeaderProps {
   locale?: InterfaceLocale;
@@ -27,8 +28,8 @@ function HeaderContent({ locale = 'fr', onLocaleChange }: HeaderProps) {
   const currentReturn = useVisitorReturn();
   const { isAuthenticated, isAdmin, isGuide, signOut } = useAuth();
   const t = (fr: string, en: string) => translate(locale, fr, en);
-  const home = translate(locale, '/', '/en');
-  const catalogue = `${translate(locale, '', '/en')}/catalogue`;
+  const home = publicPath('/', locale);
+  const catalogue = publicPath('/catalogue', locale);
   const purchases = translate(locale, '/mes-achats', '/en/my-purchases');
   const login = visitorAuthUrl(locale, 'login', currentReturn);
   const account = isAuthenticated ? visitorAuthUrl(locale) : login;

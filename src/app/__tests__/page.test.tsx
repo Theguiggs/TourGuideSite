@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import LandingPage, { metadata } from '../page';
 import EnglishLanding from '../en/page';
 import { CreatorHome } from '@/components/home/creator-home';
+import { SITE_URL } from '@/lib/site';
 
 jest.mock('@/components/TrackPageView', () => ({ __esModule: true, default: () => null }));
 jest.mock('@/components/home/home-catalogue', () => ({ HomeCatalogue: () => <div data-testid="published-selection" /> }));
@@ -25,7 +26,7 @@ describe('EV-2 — accueil visiteur', () => {
   });
   it('aligne les métadonnées sur la découverte et l’écoute', () => {
     expect(metadata.description).toContain('écoutez un extrait');
-    expect(metadata.openGraph).toEqual(expect.objectContaining({ url: '/', locale: 'fr_FR' }));
+    expect(metadata.openGraph).toEqual(expect.objectContaining({ url: `${SITE_URL}/`, locale: 'fr_FR' }));
     expect(metadata.twitter).toEqual(expect.objectContaining({ description: metadata.description }));
   });
   it('conserve les étapes, ancres et accès du créateur sur sa page dédiée', () => {

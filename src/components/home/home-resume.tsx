@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useSyncExternalStore } from 'react';
 import { readResume, RESUME_CLEAR_EVENT } from '@/components/catalogue/scene-player/resume-store';
 import type { HomeTour } from '@/lib/catalogue/home-selection';
+import { publicPath } from '@/lib/seo/urls';
 
 type ResumeTour = Pick<HomeTour, 'id' | 'title' | 'citySlug' | 'slug'>;
 const subscribe = (notify: () => void) => {
@@ -31,7 +32,7 @@ export function HomeResume({ tours, locale }: { tours: ResumeTour[]; locale: Int
   if (!tour) return null;
   return <p className="mb-6 text-body text-ink-80">
     {translate(locale, 'Sur cet appareil : ', 'On this device: ')}
-    <Link href={`${translate(locale, '', '/en')}/catalogue/${tour.citySlug}/${tour.slug}#itineraire`} className="inline-flex min-h-11 items-center font-semibold text-grenadine underline underline-offset-4">
+    <Link href={`${publicPath(`/catalogue/${tour.citySlug}/${tour.slug}`, locale)}#itineraire`} className="inline-flex min-h-11 items-center font-semibold text-grenadine underline underline-offset-4">
       {translate(locale, 'Retrouver mon écoute', 'Return to my listening')} — {tour.title}
     </Link>
   </p>;
