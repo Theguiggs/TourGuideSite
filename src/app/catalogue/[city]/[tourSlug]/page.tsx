@@ -12,7 +12,7 @@ import {
   tg,
 } from '@murmure/design-system/web';
 import { getCityAccent, type CityAccent } from '@/lib/cities/accent-map';
-import { getTourBySlug, getCityBySlug } from '@/lib/api/tours-server';
+import { getTourBySlug, getCityBySlug, getCityTourSummaries } from '@/lib/api/tours-server';
 import { getGuideSlugByGuideId } from '@/lib/api/guides-public-server';
 import TrackPageView from '@/components/TrackPageView';
 import SmartAppLink from '@/components/SmartAppLink';
@@ -35,7 +35,7 @@ import {
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { tourMetadata } from '@/lib/seo/tour-metadata';
 import { publicPath } from '@/lib/seo/urls';
-import { tourJsonLd } from '@/lib/seo/json-ld';
+import { breadcrumbJsonLd, tourJsonLd } from '@/lib/seo/json-ld';
 import ItineraryList from './itinerary-list';
 import { StarRating } from '@/components/catalogue/StarRating';
 import { maskLockedPois } from '@/lib/catalogue/scene-pois';
@@ -61,6 +61,51 @@ const DETAIL_COPY = extendCopy({
     duration: 'Duration', distance: 'Distance', stops: 'Stops', completions: 'Completions', listen: 'Walk with the app',
   },
 } as const);
+
+/**
+ * Libellés de section de la fiche, dans les six langues.
+ *
+ * « Description » était écrit en dur. Les visites voisines, elles, n'existaient
+ * pas : une fiche ne menait qu'au catalogue et à sa ville, et le reste du
+ * catalogue de la ville restait hors de portée d'un visiteur — et d'un robot —
+ * arrivé par la recherche.
+ */
+const SECTION_COPY: Record<InterfaceLocale, {
+  description: string;
+  otherTours: (city: string) => string;
+  allTours: (city: string, count: number) => string;
+}> = {
+  fr: {
+    description: 'Description',
+    otherTours: city => `Autres visites à ${city}`,
+    allTours: (city, count) => `Voir les ${count} visites à ${city}`,
+  },
+  en: {
+    description: 'Description',
+    otherTours: city => `More tours in ${city}`,
+    allTours: (city, count) => `See all ${count} tours in ${city}`,
+  },
+  es: {
+    description: 'Descripción',
+    otherTours: city => `Más visitas en ${city}`,
+    allTours: (city, count) => `Ver las ${count} visitas en ${city}`,
+  },
+  de: {
+    description: 'Beschreibung',
+    otherTours: city => `Weitere Touren in ${city}`,
+    allTours: (city, count) => `Alle ${count} Touren in ${city} ansehen`,
+  },
+  it: {
+    description: 'Descrizione',
+    otherTours: city => `Altre visite a ${city}`,
+    allTours: (city, count) => `Vedi le ${count} visite a ${city}`,
+  },
+  nl: {
+    description: 'Beschrijving',
+    otherTours: city => `Meer tours in ${city}`,
+    allTours: (city, count) => `Bekijk alle ${count} tours in ${city}`,
+  },
+};
 
 const LAUNCH_BADGE: Record<InterfaceLocale, string> = {
   fr: 'OFFRE DE LANCEMENT',
@@ -114,10 +159,15 @@ interface TourPageProps {
   searchParams: Promise<{ source?: string; office?: string }>;
 }
 
-/** Partagée avec la route localisée. */
+/**
+ * Partagée avec la route localisée.
+ *
+ * Une visite inconnue repart en `noindex, nofollow` : voir la note de
+ * `cityPageMetadata`. Sous `<Suspense>`, le code HTTP part avant la page.
+ */
 export async function tourPageMetadata(citySlug: string, tourSlug: string, locale: InterfaceLocale): Promise<Metadata> {
   const tour = await getTourBySlug(citySlug, tourSlug);
-  if (!tour) return {};
+  if (!tour) return { robots: { index: false, follow: false } };
   return tourMetadata(tour, citySlug, tourSlug, locale);
 }
 
@@ -132,12 +182,24 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
   const originalTour = await getTourBySlug(citySlug, tourSlug);
   if (!originalTour) notFound();
   const tour = localizeTour(originalTour, locale);
-  const launchOfferActive = launchFreeAccess().active;
+  const launchOffer = launchFreeAccess();
+  const launchOfferActive = launchOffer.active;
 
-  const [city, guideSlug] = await Promise.all([
+  const [city, guideSlug, cityTours] = await Promise.all([
     getCityBySlug(citySlug),
     getGuideSlugByGuideId(tour.guideId),
+    // Ni `getToursByCity` (une lecture de contenu publié par voisine, pour des
+    // couvertures que le maillage n'affiche pas), ni `getAllTours` (le
+    // catalogue entier mappé pour en garder trois) : mesuré contre le backend
+    // réel, ces deux-là mettaient la fiche à plus de vingt secondes.
+    getCityTourSummaries(citySlug),
   ]);
+  // Maillage : une fiche ne menait qu'au catalogue et à sa ville. Les visites
+  // voisines restaient hors de portée d'un robot venu par la recherche.
+  const relatedTours = cityTours
+    .filter(other => other.slug !== tourSlug)
+    .map(other => localizeTour(other, locale))
+    .slice(0, 6);
   const isQrVisit = resolvedSearchParams.source === 'qr';
   const copy = DETAIL_COPY[locale];
   const catalogueBase = publicPath('/catalogue', locale);
@@ -208,7 +270,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
           }}
         >
           <Link href={catalogueBase} style={{ color: tg.colors.ink60 }}>
-            Catalogue
+            {translate(locale, 'Catalogue des visites', 'Tour catalogue')}
           </Link>
           <span style={{ margin: '0 8px' }}>/</span>
           <Link href={`${catalogueBase}/${citySlug}`} style={{ color: tg.colors.ink60 }}>
@@ -370,6 +432,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 sourceLanguage={tour.sourceLanguage}
                 languageAudioTypes={tour.languageAudioTypes}
                 tourTitle={tour.title}
+                cityName={cityName}
                 isFree={isTourFree(tour)}
                 contentUnavailable={tour.contentUnavailable}
                 heroAccentFg={heroAccentFg}
@@ -438,7 +501,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
               );
               return guideSlug ? (
                 <Link
-                  href={`/guides/${guideSlug}`}
+                  href={publicPath(`/guides/${guideSlug}`, locale)}
                   className="flex items-start gap-4 mb-8 p-4 rounded-2xl transition-shadow hover:shadow-md"
                   style={{ background: tg.colors.paperSoft }}
                 >
@@ -462,7 +525,7 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                   marginBottom: tg.space[4],
                 }}
               >
-                Description
+                {SECTION_COPY[locale].description}
               </h2>
               <p
                 style={{
@@ -690,6 +753,37 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
         </div>
       </div>
 
+      {/* Maillage : les autres visites de la ville, et la ville elle-même. */}
+      {relatedTours.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12" aria-labelledby="autres-visites">
+          <h2
+            id="autres-visites"
+            style={{ fontFamily: tg.fonts.display, fontSize: tg.fontSize.h4, letterSpacing: tg.tracking.display, color: tg.colors.ink, marginBottom: tg.space[4] }}
+          >
+            {SECTION_COPY[locale].otherTours(cityName)}
+          </h2>
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {relatedTours.map(other => (
+              <li key={other.id}>
+                <Link
+                  href={publicPath(`/catalogue/${citySlug}/${other.slug}`, locale)}
+                  className="flex min-h-11 flex-col rounded-xl border border-line p-4 text-ink no-underline hover:border-grenadine"
+                >
+                  <span className="font-semibold">{other.title}</span>
+                  <span className="text-caption text-ink-60">{other.duration} min · {other.poiCount} {copy.stops.toLowerCase()}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href={`${catalogueBase}/${citySlug}`}
+            className="mt-6 inline-flex min-h-11 items-center text-body font-semibold text-grenadine underline underline-offset-4"
+          >
+            {SECTION_COPY[locale].allTours(cityName, cityTours.length)}
+          </Link>
+        </section>
+      )}
+
       {/* Sticky bottom CTA mobile */}
       <div
         className="tour-mobile-app-cta md:hidden fixed left-0 right-0 z-30"
@@ -706,11 +800,27 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
         </div>
       </div>
 
-      {/* JSON-LD Structured Data */}
+      {/* JSON-LD Structured Data — le prix structuré suit le prix visible. */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: safeJsonLd(tourJsonLd(tour, locale)),
+          __html: safeJsonLd(
+            tourJsonLd(tour, locale, { launchOfferActive, launchOfferEndsAt: launchOffer.endAt }),
+          ),
+        }}
+      />
+
+      {/* Le fil d'Ariane structuré reprend, mot pour mot, le fil visible. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonLd(
+            breadcrumbJsonLd([
+              { name: translate(locale, 'Catalogue des visites', 'Tour catalogue'), path: catalogueBase },
+              { name: cityName, path: `${catalogueBase}/${citySlug}` },
+              { name: tour.title },
+            ]),
+          ),
         }}
       />
     </div>

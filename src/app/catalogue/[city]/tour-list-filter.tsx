@@ -21,6 +21,7 @@ import { PageTitle } from '@murmure/design-system/web';
 import { LANG_FLAGS, LANG_NAMES } from '@/lib/i18n/languages';
 import { localizeTour, METADATA_FALLBACK_COPY } from '@/lib/catalogue/localized-tour';
 import { publicPath } from '@/lib/seo/urls';
+import { tourCoverAlt } from '@/lib/catalogue/media-alt';
 
 /** Emplacement du drapeau pour une langue qu'on ne sait pas illustrer — le code
  * est déjà écrit juste après, l'y répéter donnerait « ca CA ». */
@@ -172,7 +173,7 @@ export function TourListWithFilter({ tours: originalTours, citySlug, locale = 'f
         </p>
       ) : (
         <div className="space-y-6">
-          {filteredTours.map((tour) => (
+          {filteredTours.map((tour, index) => (
             <Link
               key={tour.id}
               prefetch={false}
@@ -183,12 +184,28 @@ export function TourListWithFilter({ tours: originalTours, citySlug, locale = 'f
               <div className="flex flex-col sm:flex-row">
                 <div className="relative sm:w-64 h-48 sm:h-auto bg-grenadine-soft flex-shrink-0 overflow-hidden">
                   {tour.imageUrl && tour.imageUrl.startsWith('guide-') ? (
-                    <S3Image s3Key={tour.imageUrl} alt={tour.title} className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    <S3Image
+                      s3Key={tour.imageUrl}
+                      alt={tourCoverAlt(tour.title, tour.city, locale)}
+                      width={256}
+                      height={192}
+                      sizes="(min-width: 640px) 256px, 100vw"
+                      priority={index === 0}
+                      className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    />
                   ) : tour.imageUrl ? (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img
                       src={tour.imageUrl}
-                      alt={tour.title}
+                      alt={tourCoverAlt(tour.title, tour.city, locale)}
+                      width={256}
+                      height={192}
+                      sizes="(min-width: 640px) 256px, 100vw"
+                      /* La première carte est le LCP de la page ville : elle se charge
+                         tout de suite, les suivantes attendent le défilement. */
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      fetchPriority={index === 0 ? 'high' : 'auto'}
+                      decoding="async"
                       className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     />
                   ) : null}

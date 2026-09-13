@@ -28,7 +28,7 @@
 import type { Metadata } from 'next';
 import { SITE_LOCALES, type InterfaceLocale } from '@/lib/i18n/locales';
 import { localizePublicPath } from '@/lib/i18n/public-routes';
-import { absoluteUrl } from '@/lib/site';
+import { absoluteUrl, SITE_URL } from '@/lib/site';
 
 /** Clé hreflang de la variante de repli, telle que Google l'attend. */
 export const X_DEFAULT = 'x-default';
@@ -38,9 +38,17 @@ export function publicPath(sourcePath: string, locale: InterfaceLocale): string 
   return localizePublicPath(sourcePath, locale);
 }
 
-/** URL absolue — pour canonical, hreflang, sitemap et JSON-LD. */
+/**
+ * URL absolue — pour canonical, hreflang, sitemap et JSON-LD.
+ *
+ * La racine est rendue SANS barre oblique finale : c'est la forme que Next
+ * inscrit dans la canonical (`https://murmure-visit.com`), et le sitemap
+ * annonçait `https://murmure-visit.com/`. Deux URL pour la même page, dont une
+ * que sa propre canonical désavoue.
+ */
 export function publicUrl(sourcePath: string, locale: InterfaceLocale): string {
-  return absoluteUrl(publicPath(sourcePath, locale));
+  const path = publicPath(sourcePath, locale);
+  return path === '/' ? SITE_URL : absoluteUrl(path);
 }
 
 /** Les langues publiées, dans l'ordre stable de `SITE_LOCALES`. */

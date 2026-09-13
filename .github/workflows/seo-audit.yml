@@ -1,0 +1,53 @@
+# Surveillance SEO quotidienne du domaine public (lot SEO-7).
+#
+# Le sitemap, les canonical et les hreflang sont calculés à la demande à partir
+# d'AppSync : ils peuvent se dégrader sans qu'aucun déploiement n'ait lieu — une
+# dépublication, une panne de lecture, un sitemap qui se vide. Le contrôle doit
+# donc être périodique, pas seulement à la fusion.
+#
+# Lecture seule : le script n'envoie ni cookie ni identifiant et n'écrit que son
+# rapport, publié comme artefact.
+name: SEO audit
+
+on:
+  schedule:
+    # 06:10 UTC, chaque jour — après la fenêtre de déploiement nocturne.
+    - cron: '10 6 * * *'
+  workflow_dispatch:
+    inputs:
+      base:
+        description: "Origine à auditer"
+        required: false
+        default: https://murmure-visit.com
+
+concurrency:
+  group: seo-audit
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Audit SEO
+        id: audit
+        run: |
+          node scripts/seo-audit.mjs \
+            --base "${{ github.event.inputs.base || 'https://murmure-visit.com' }}" \
+            --etiquette quotidien \
+            --sortie output/seo-audit \
+            >> "$GITHUB_STEP_SUMMARY"
+      - name: Publier le rapport
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: seo-audit
+          path: output/seo-audit/
+          retention-days: 30

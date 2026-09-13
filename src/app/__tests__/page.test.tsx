@@ -26,7 +26,7 @@ describe('EV-2 — accueil visiteur', () => {
   });
   it('aligne les métadonnées sur la découverte et l’écoute', () => {
     expect(metadata.description).toContain('écoutez un extrait');
-    expect(metadata.openGraph).toEqual(expect.objectContaining({ url: `${SITE_URL}/`, locale: 'fr_FR' }));
+    expect(metadata.openGraph).toEqual(expect.objectContaining({ url: SITE_URL, locale: 'fr_FR' }));
     expect(metadata.twitter).toEqual(expect.objectContaining({ description: metadata.description }));
   });
   it('conserve les étapes, ancres et accès du créateur sur sa page dédiée', () => {

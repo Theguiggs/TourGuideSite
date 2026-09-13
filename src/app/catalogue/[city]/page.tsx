@@ -27,10 +27,26 @@ interface CityPageProps {
 /**
  * Partagée avec la route localisée : une ville n'est indexable que dans les
  * langues où au moins une de ses visites l'est (lot SEO-2).
+ *
+ * Une ville inconnue repart en `noindex, nofollow`, et non en 404.
+ *
+ * `loading.tsx` place la page sous `<Suspense>` : le serveur commet le code
+ * HTTP avant d'exécuter la page, si bien que ni le `notFound()` de la page ni
+ * un `notFound()` posé ici n'arrivent à temps — mesuré, la réponse reste 200.
+ * Retirer `loading.tsx` rendrait le vrai 404, mais ferait bloquer la
+ * navigation interne le temps d'une lecture AppSync complète (constaté en
+ * recette : plus de dix secondes sur le backend réel).
+ *
+ * Le `noindex` explicite règle ce qui compte pour l'indexation — l'URL ne
+ * pourra pas entrer dans l'index — et laisse à Search Console un « exclue par
+ * noindex » plutôt qu'un « soft 404 » muet. Les routes `/es`, `/de`, `/it`,
+ * `/nl` n'ont pas de `loading.tsx` et rendent, elles, un vrai 404.
  */
+const INTROUVABLE: Metadata = { robots: { index: false, follow: false } };
+
 export async function cityPageMetadata(citySlug: string, locale: InterfaceLocale): Promise<Metadata> {
   const city = await getCityBySlug(citySlug);
-  if (!city) return {};
+  if (!city) return INTROUVABLE;
   const tours = await getToursByCity(citySlug);
   return cityMetadata(city, locale, citySeoLocales(tours));
 }

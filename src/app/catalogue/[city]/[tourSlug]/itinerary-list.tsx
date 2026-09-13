@@ -21,6 +21,7 @@ import {
   useScenePlayer,
   type PlaylistEntry,
 } from '@/components/catalogue/scene-player';
+import { stepImageAlt } from '@/lib/catalogue/media-alt';
 import { revealElement } from '@/components/catalogue/scene-player/reveal';
 import { LISTEN_ANCHOR } from '@/components/catalogue/scene-player/listen-link';
 import VisitorMap from '@/components/catalogue/visitor-map/visitor-map';
@@ -37,6 +38,8 @@ interface ItineraryListProps {
   languageAudioTypes?: LanguageAudioTypes;
   /** LW-2 — titre de la visite (Media Session). */
   tourTitle?: string;
+  /** Nom de la ville, pour situer l'alternative textuelle d'une photo d'étape. */
+  cityName?: string;
   /** Free tours are never gated. */
   isFree: boolean;
   heroAccentFg: string;
@@ -199,6 +202,7 @@ export default function ItineraryList({
   sourceLanguage,
   languageAudioTypes,
   tourTitle = '',
+  cityName,
   isFree,
   heroAccentFg,
   locale = 'fr',
@@ -267,6 +271,8 @@ export default function ItineraryList({
         hasAccess={hasAccess}
         heroAccentFg={heroAccentFg}
         locale={locale}
+        tourTitle={tourTitle}
+        cityName={cityName}
       />
       <VisitorMap key={tourId} pois={displayedPois} path={servedPath ?? walkPath} hasAccess={hasAccess} locale={locale} />
     </ScenePlayer>
@@ -283,13 +289,15 @@ interface StopListProps {
   hasAccess: boolean;
   heroAccentFg: string;
   locale: InterfaceLocale;
+  tourTitle?: string;
+  cityName?: string;
 }
 
 /**
  * La liste numérotée. Rendue SOUS `<ScenePlayer>` pour lire la scène en cours
  * (`aria-current` sur l'étape) — l'îlot parent, lui, est au-dessus du contexte.
  */
-function StopList({ pois, hasAccess, heroAccentFg, locale }: StopListProps) {
+function StopList({ pois, hasAccess, heroAccentFg, locale, tourTitle, cityName }: StopListProps) {
   const { currentSceneId, sequence } = useScenePlayer();
   const itemRefs = useRef(new Map<string, HTMLLIElement>());
 
@@ -391,7 +399,7 @@ function StopList({ pois, hasAccess, heroAccentFg, locale }: StopListProps) {
                 >
                   <S3Image
                     s3Key={poi.photoKey}
-                    alt={locked ? '' : poi.title}
+                    alt={stepImageAlt({ stepTitle: poi.title, position: poi.order, tourTitle, city: cityName, locked }, locale)}
                     className="w-full h-full"
                   />
                 </div>

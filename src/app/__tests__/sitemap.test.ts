@@ -86,7 +86,9 @@ describe('sitemap', () => {
 
   it('ne liste que des URL absolues du domaine, sans doublon', async () => {
     const urls = (await sitemap()).map((e) => e.url);
-    for (const url of urls) expect(url.startsWith(`${SITE_URL}/`)).toBe(true);
+    for (const url of urls) expect(url === SITE_URL || url.startsWith(`${SITE_URL}/`)).toBe(true);
+    // La racine est listée sans barre oblique, comme sa canonical.
+    expect(urls).toContain(SITE_URL);
     expect(new Set(urls).size).toBe(urls.length);
   });
 

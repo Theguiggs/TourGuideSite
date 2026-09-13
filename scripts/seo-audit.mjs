@@ -31,7 +31,7 @@
  *   node scripts/seo-audit.mjs --etiquette avant-seo-1
  */
 
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const LOCALES = ['fr', 'en', 'es', 'de', 'it', 'nl'];
@@ -209,12 +209,60 @@ async function lisSitemaps(racine, profondeur = 0) {
   return { entrees: entrees.filter((e) => e.loc), fichiers };
 }
 
+// --- Reste-à-faire éditorial (support du lot SEO-8) -----------------------
+
+/**
+ * Les villes du catalogue qui n'ont pas encore d'introduction relue.
+ *
+ * Le registre est lu comme du texte, pas importé : ce script est en Node pur et
+ * ne transpile pas le TypeScript. Une lecture ratée ne fait pas échouer l'audit
+ * — c'est un suivi éditorial, pas un contrôle d'indexabilité.
+ */
+async function villesSansIntroduction(sitemap, base) {
+  let slugsCouverts;
+  try {
+    const source = await readFile(new URL('../src/lib/cities/city-intro.ts', import.meta.url), 'utf8');
+    const bloc = source.slice(source.indexOf('CITY_INTROS'));
+    slugsCouverts = new Set([...bloc.matchAll(/^ {2}'?([a-z0-9-]+)'?: \{$/gm)].map((m) => m[1]));
+  } catch {
+    return null;
+  }
+  const villes = new Set();
+  for (const { loc } of sitemap) {
+    let chemin = loc.startsWith(base) ? loc.slice(base.length) : new URL(loc).pathname;
+    const prefixe = chemin.split('/')[1];
+    if (LOCALES.includes(prefixe) && prefixe !== 'fr') chemin = chemin.slice(prefixe.length + 1);
+    const segments = chemin.split('/').filter(Boolean);
+    if (segments[0] === 'catalogue' && segments.length === 2) villes.add(segments[1]);
+  }
+  return [...villes].filter((slug) => !slugsCouverts.has(slug)).sort();
+}
+
 // --- Contrôles ------------------------------------------------------------
 
 const langueDuChemin = (url, base) => {
   const chemin = url.startsWith(base) ? url.slice(base.length) : new URL(url).pathname;
   const prefixe = chemin.split('/')[1];
   return LOCALES.includes(prefixe) && prefixe !== 'fr' ? prefixe : 'fr';
+};
+
+/**
+ * Type de page, déduit du chemin une fois le préfixe de langue retiré.
+ *
+ * Le sitemap reste unique : quelques centaines d'URL, très loin des 50 000 que
+ * la spécification autorise, et un fichier de moins à surveiller. Le diagnostic
+ * que la scission aurait apporté vient d'ici — chaque type se lit séparément
+ * dans le rapport.
+ */
+const typeDePage = (url, base) => {
+  let chemin = url.startsWith(base) ? url.slice(base.length) || '/' : new URL(url).pathname;
+  const prefixe = chemin.split('/')[1];
+  if (LOCALES.includes(prefixe) && prefixe !== 'fr') chemin = chemin.slice(prefixe.length + 1) || '/';
+  const segments = chemin.split('/').filter(Boolean);
+  if (segments.length === 0) return 'accueil';
+  if (segments[0] === 'catalogue') return ['catalogue', 'ville', 'visite'][segments.length - 1] ?? 'autre';
+  if (segments[0] === 'guides') return segments.length === 1 ? 'guides' : 'guide';
+  return 'éditorial';
 };
 
 const interdite = (url, base, interdits) => {
@@ -350,7 +398,27 @@ function resumeMarkdown(rapport) {
       return `| ${l} | ${s.ok} | ${s.indexables} | ${s.sitemap} |`;
     }),
     '',
+    '## Pages par type',
+    '',
+    '| Type | Pages 200 | Indexables | Au sitemap | Temps médian |',
+    '|---|---|---|---|---|',
+    ...Object.entries(statistiques.parType ?? {})
+      .sort((a, b) => b[1].ok - a[1].ok)
+      .map(([type, s]) => `| ${type} | ${s.ok} | ${s.indexables} | ${s.sitemap} | ${s.msecMedian} ms |`),
+    '',
   ];
+
+  if (Array.isArray(rapport.villesSansIntroduction)) {
+    lignes.push(
+      '## Reste-à-faire éditorial (SEO-8)',
+      '',
+      rapport.villesSansIntroduction.length === 0
+        ? 'Toutes les villes indexées ont une introduction relue.'
+        : `${rapport.villesSansIntroduction.length} villes indexées sans introduction relue : ` +
+          rapport.villesSansIntroduction.map((slug) => `\`${slug}\``).join(', '),
+      '',
+    );
+  }
 
   if (anomalies.length > 0) {
     const parCode = new Map();
@@ -376,12 +444,24 @@ function statistiques(base, sitemap, pages) {
   const quantile = (q) => (msec.length === 0 ? 0 : msec[Math.min(msec.length - 1, Math.floor(msec.length * q))]);
   const dansSitemap = new Set(sitemap.map((e) => e.loc));
   const parLangue = Object.fromEntries(LOCALES.map((l) => [l, { ok: 0, indexables: 0, sitemap: 0 }]));
+  const parType = {};
   for (const [url, page] of pages) {
     const langue = langueDuChemin(url, base);
     if (page.statut !== 200) continue;
     parLangue[langue].ok += 1;
     if (estIndexable(page.robots)) parLangue[langue].indexables += 1;
     if (dansSitemap.has(url)) parLangue[langue].sitemap += 1;
+    const type = typeDePage(url, base);
+    parType[type] ??= { ok: 0, indexables: 0, sitemap: 0, msec: [] };
+    parType[type].ok += 1;
+    if (estIndexable(page.robots)) parType[type].indexables += 1;
+    if (dansSitemap.has(url)) parType[type].sitemap += 1;
+    parType[type].msec.push(page.msec);
+  }
+  for (const stats of Object.values(parType)) {
+    const tries = stats.msec.sort((a, b) => a - b);
+    stats.msecMedian = tries.length === 0 ? 0 : tries[Math.floor(tries.length / 2)];
+    delete stats.msec;
   }
   return {
     sitemap: sitemap.length,
@@ -390,6 +470,7 @@ function statistiques(base, sitemap, pages) {
     msecMedian: quantile(0.5),
     msecP90: quantile(0.9),
     parLangue,
+    parType,
   };
 }
 
@@ -421,6 +502,30 @@ async function principal() {
   const sitemapFichiers = lectures.flatMap((l) => l.fichiers);
   process.stderr.write(`${sitemap.length} URL au sitemap (${sitemapFichiers.length} fichiers).\n`);
 
+  /**
+   * Origine canonique du site, telle que le sitemap la déclare.
+   *
+   * Auditer `http://localhost:3000` ne veut pas dire que le site s'appelle
+   * ainsi : le sitemap, les canonical et les hreflang portent le domaine
+   * public. Sans cette correspondance, l'audit local ne suivait AUCUNE URL du
+   * sitemap et signalait chaque canonical comme non auto-référente.
+   *
+   * On raisonne donc en URL canonique — c'est l'identité de la page — et on
+   * interroge l'origine auditée.
+   */
+  const origineCanonique = (() => {
+    try {
+      return new URL(sitemap[0]?.loc ?? base).origin;
+    } catch {
+      return base;
+    }
+  })();
+  const versCanonique = (url) => (url.startsWith(base) ? `${origineCanonique}${url.slice(base.length)}` : url);
+  const versAuditee = (url) => (url.startsWith(origineCanonique) ? `${base}${url.slice(origineCanonique.length)}` : url);
+  if (origineCanonique !== base) {
+    console.error(`Origine canonique : ${origineCanonique} (interrogée sur ${base}).`);
+  }
+
   // Les alternates annoncés font partie du périmètre : sans eux, la
   // réciprocité hreflang ne peut pas être établie.
   const aVisiter = new Set();
@@ -428,17 +533,17 @@ async function principal() {
     aVisiter.add(entree.loc);
     for (const href of Object.values(entree.alternates)) aVisiter.add(href);
   }
-  for (const chemin of ['/', '/catalogue', '/robots.txt']) aVisiter.add(`${base}${chemin === '/' ? '' : chemin}` || base);
+  for (const chemin of ['/', '/catalogue']) aVisiter.add(versCanonique(`${base}${chemin === '/' ? '' : chemin}`));
   // Pages privées : leur non-indexabilité se contrôle, elle ne se suppose pas.
-  for (const chemin of interdits.filter((p) => !p.endsWith('/'))) aVisiter.add(`${base}${chemin}`);
+  for (const chemin of interdits.filter((p) => !p.endsWith('/'))) aVisiter.add(`${origineCanonique}${chemin}`);
 
-  const liste = [...aVisiter].filter((url) => url.startsWith(base) && !url.endsWith('/robots.txt'));
+  const liste = [...aVisiter].filter((url) => url.startsWith(origineCanonique) && !url.endsWith('/robots.txt'));
   const retenues = options.limite > 0 ? liste.slice(0, options.limite) : liste;
-  process.stderr.write(`${retenues.length} pages à interroger…\n`);
+  console.error(`${retenues.length} pages à interroger`);
 
   const pages = new Map();
   await enParallele(retenues, options.concurrence, async (url) => {
-    const reponse = await recupere(url);
+    const reponse = await recupere(versAuditee(url));
     const analyse = reponse.statut === 200 && /text\/html/.test(reponse.typeContenu ?? '') ? analysePage(reponse.corps) : {};
     pages.set(url, {
       statut: reponse.statut,
@@ -451,7 +556,7 @@ async function principal() {
     });
   });
 
-  const anomalies = controle({ base, interdits, sitemap, pages });
+  const anomalies = controle({ base: origineCanonique, interdits, sitemap, pages });
   const horodatage = new Date().toISOString();
   const rapport = {
     base,
@@ -462,7 +567,9 @@ async function principal() {
     sitemap: sitemap.map(({ loc, lastmod, alternates, source }) => ({ loc, lastmod, alternates, source })),
     pages: [...pages].map(([url, page]) => ({ url, ...page })),
     anomalies,
-    statistiques: statistiques(base, sitemap, pages),
+    origineCanonique,
+    statistiques: statistiques(origineCanonique, sitemap, pages),
+    villesSansIntroduction: await villesSansIntroduction(sitemap, origineCanonique),
   };
 
   const dossier = path.resolve(process.cwd(), options.sortie);

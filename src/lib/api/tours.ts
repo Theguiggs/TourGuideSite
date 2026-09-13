@@ -43,6 +43,15 @@ const MOCK_CITIES: City[] = [
   },
 ];
 
+/**
+ * Jeu d'essai du mode bouchon.
+ *
+ * Les traductions de metadonnees y sont portees explicitement : sans elles,
+ * `tourSeoLocales()` ne retenait que le francais et le developpement local ne
+ * montrait JAMAIS le comportement multilingue reel (hreflang, x-default,
+ * `noindex` d'une variante absente). Le jeu couvre les trois cas du contrat :
+ * une visite bilingue, une visite francaise seule, une visite a trois langues.
+ */
 const MOCK_TOURS: Tour[] = [
   {
     id: 'grasse-ame-parfumeurs',
@@ -64,7 +73,15 @@ const MOCK_TOURS: Tour[] = [
     imageUrl: '/images/tours/grasse-parfumeurs.jpg',
     isFree: true,
     status: 'published',
+    sourceLanguage: 'fr',
     availableLanguages: ['fr', 'en'],
+    translatedTitles: { en: 'The Soul of the Perfumers' },
+    translatedDescriptions: {
+      en:
+        'Step into the story of Grasse, the world capital of perfume. Walk past the historic ' +
+        'perfume houses, the flower fields and the secrets of the master perfumers who made ' +
+        'this Provencal town famous.',
+    },
     createdAt: '2026-01-15T10:00:00.000Z',
   },
   {
@@ -84,6 +101,7 @@ const MOCK_TOURS: Tour[] = [
     poiCount: 5,
     isFree: false,
     status: 'published',
+    sourceLanguage: 'fr',
     availableLanguages: ['fr'],
     createdAt: '2026-02-10T09:00:00.000Z',
   },
@@ -106,7 +124,17 @@ const MOCK_TOURS: Tour[] = [
     imageUrl: '/images/tours/paris-montmartre.jpg',
     isFree: false,
     status: 'published',
+    sourceLanguage: 'fr',
     availableLanguages: ['fr', 'en', 'es'],
+    translatedTitles: { en: 'Secrets of Montmartre', es: 'Secretos de Montmartre' },
+    translatedDescriptions: {
+      en:
+        'From the Place du Tertre to the Sacre-Coeur, discover the hidden stories of the ' +
+        'Montmartre hill. Art, bohemia and Parisian panoramas.',
+      es:
+        'De la Place du Tertre al Sacre-Coeur, descubre las historias ocultas de la colina de ' +
+        'Montmartre. Arte, bohemia y panoramas parisinos.',
+    },
     createdAt: '2026-01-20T14:00:00.000Z',
   },
   {
@@ -126,7 +154,14 @@ const MOCK_TOURS: Tour[] = [
     poiCount: 7,
     isFree: false,
     status: 'published',
+    sourceLanguage: 'fr',
     availableLanguages: ['fr', 'it'],
+    translatedTitles: { it: 'Le traboules della Vecchia Lione' },
+    translatedDescriptions: {
+      it:
+        'Esplora le traboules segrete della Vecchia Lione, patrimonio mondiale UNESCO. ' +
+        'Architettura rinascimentale e gastronomia lionese.',
+    },
     createdAt: '2026-01-25T16:00:00.000Z',
   },
 ];
