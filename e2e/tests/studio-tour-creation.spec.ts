@@ -188,9 +188,10 @@ test.describe.serial('Studio Tour Creation + TTS', () => {
 
       await page.screenshot({ path: 'test-results/1.4-text-editing.png' });
 
-      // Auto-save triggers on blur
-      await page.getByText('Sc', { exact: false }).first().click();
-      await page.waitForTimeout(2_000);
+      await page.getByTestId('save-scene').click();
+      await expect(page.getByText('Scène sauvegardée.', { exact: true })).toBeVisible({
+        timeout: 10_000,
+      });
     } else {
       await page.screenshot({ path: 'test-results/1.4-scenes-page-state.png' });
     }

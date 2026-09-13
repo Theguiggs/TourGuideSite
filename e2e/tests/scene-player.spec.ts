@@ -46,15 +46,33 @@ async function serveAudio(route: Route) {
 
 test('carte : GPS au clic, étape proche sans lecture automatique', async ({ page, context }) => {
   await context.grantPermissions(['geolocation']);
-  await context.setGeolocation({ latitude: 43.6973, longitude: 7.2704 });
   await page.addInitScript(() => {
-    const original = navigator.geolocation.watchPosition.bind(navigator.geolocation);
     Object.assign(window, { locationRequests: 0 });
-    navigator.geolocation.watchPosition = (...args) => {
-      const state = window as unknown as { locationRequests: number };
-      state.locationRequests++;
-      return original(...args);
-    };
+    const position = (): GeolocationPosition => ({
+      coords: {
+        latitude: 43.6973,
+        longitude: 7.2704,
+        accuracy: 1,
+        altitude: null,
+        altitudeAccuracy: null,
+        heading: null,
+        speed: null,
+      },
+      timestamp: Date.now(),
+    });
+    Object.defineProperty(navigator, 'geolocation', {
+      configurable: true,
+      value: {
+        getCurrentPosition: (success: PositionCallback) => queueMicrotask(() => success(position())),
+        watchPosition: (success: PositionCallback) => {
+          const state = window as unknown as { locationRequests: number };
+          state.locationRequests++;
+          queueMicrotask(() => success(position()));
+          return state.locationRequests;
+        },
+        clearWatch: () => undefined,
+      },
+    });
   });
   await page.route('**/*', serveAudio);
   await openTour(page, 'fr');

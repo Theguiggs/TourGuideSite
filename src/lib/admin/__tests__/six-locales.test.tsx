@@ -20,6 +20,23 @@ describe('six-language administration', () => {
     }
   });
 
+  it.each(SITE_LOCALES)('covers every admin navigation label in %s', locale => {
+    for (const label of [
+      "File d'attente",
+      'Historique',
+      'Toutes les visites',
+      'Tous les guides',
+      'Narrations demandées',
+      'Analytics',
+      'Admin · Modération',
+      'Langue',
+      'Administration',
+      'Se déconnecter',
+    ]) {
+      expect(adminText(locale, label)).toBeTruthy();
+    }
+  });
+
   it.each(SITE_LOCALES)('covers status badges, review criteria and confirmation actions in %s', locale => {
     for (const table of [badges.TOUR_STATUS_BADGES, badges.GUIDE_PROFILE_STATUS_BADGES, badges.MODERATION_STATUS_BADGES, badges.LANGUAGE_MODERATION_BADGES, badges.PAIR_STATUS_BADGES]) {
       for (const badge of Object.values(table)) expect(adminText(locale, badge.label)).toBeTruthy();
