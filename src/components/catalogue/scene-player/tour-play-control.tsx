@@ -103,6 +103,11 @@ export function TourPlayControl() {
       style={{ display: 'flex', flexDirection: 'column', gap: tg.space[3], marginBottom: tg.space[6] }}
     >
       <LanguageControl />
+      <p style={{ margin: 0, fontFamily: tg.fonts.sans, color: tg.colors.ink60 }}>
+        {locale === 'en'
+          ? 'At each stop, tap Listen when you arrive. Audio stops at the end of each stop.'
+          : 'À chaque étape, appuyez sur Écouter lorsque vous arrivez. L’audio s’arrête à la fin de chaque étape.'}
+      </p>
       <div style={{ display: 'flex', alignItems: 'center', gap: tg.space[3], flexWrap: 'wrap' }}>
         <Button
           variant="primary"
@@ -129,6 +134,11 @@ export function TourPlayControl() {
             onClick={() => startSequence(resumeOffer.sceneId, resumeOffer.position)}
           >
             {copy.resumeAt(resumeOffer.step)}
+          </Button>
+        )}
+        {currentIndex >= 0 && currentIndex < playlist.length - 1 && (
+          <Button variant="ghost" size="sm" testID="tour-next-button" onClick={player.next}>
+            {locale === 'en' ? 'Listen to the next stop' : 'Écouter l’étape suivante'}
           </Button>
         )}
       </div>

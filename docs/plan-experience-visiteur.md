@@ -157,7 +157,7 @@ Tests ciblés des changements de logique : droits, destinations après connexion
 3. Échecs et récupération : mauvais mot de passe, compte non confirmé, confirmation expirée, paiement annulé, confirmation différée, session expirée et réseau interrompu.
 4. Guide existant : connexion dans le contexte Studio puis dans le contexte visiteur ; droits conservés dans les deux parcours.
 5. Parcours français et anglais sur téléphone ; navigation clavier et lecteur d’écran sur les écrans principaux.
-6. Non-régression LW : lecture et enchaînement, reprise, langues, droits payants, carte avec permission GPS refusée/accordée, accueil hors connexion et mise à jour PWA sans interruption forcée.
+6. Non-régression LW : lecture manuelle par étape (décision du 13 septembre 2026 : aucun enchaînement automatique), reprise, langues, droits payants, carte avec permission GPS refusée/accordée, accueil hors connexion et mise à jour PWA sans interruption forcée.
 
 ### Exécution technique prévue
 

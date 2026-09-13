@@ -1,8 +1,8 @@
 /**
  * LW-1 — « Écouter » sur la fiche Visite : le bouton n'existe que pour une
  * étape servie ET narrée, et le HTML ne porte aucune URL signée.
- * LW-2 — « Écouter la visite » : l'enchaînement ne parcourt que les étapes
- * servies et narrées, et s'arrête sur la fin d'aperçu quand des étapes
+ * LW-2 — « Écouter la visite » : l’avance manuelle ne parcourt que les étapes
+ * servies et narrées, et s’arrête sur la fin d’aperçu quand des étapes
  * verrouillées suivent.
  *
  * Le rendu serveur ne donne à l'itinéraire qu'un booléen `hasAudio` ; l'URL
@@ -361,7 +361,7 @@ describe('fiche Visite — écouter la visite (LW-2)', () => {
     });
   }
 
-  it("visite payante, anonyme : les deux servies s'enchaînent, puis fin d'aperçu avec lien #acheter", async () => {
+  it("visite payante, anonyme : les deux servies attendent un clic, puis fin d'aperçu avec lien #acheter", async () => {
     const { container } = render(
       <ItineraryList
         pois={SSR_POIS.map((p) => ({ ...p, hasAudio: true }))}
@@ -384,6 +384,10 @@ describe('fiche Visite — écouter la visite (LW-2)', () => {
     expect(scrollSpy).toHaveBeenCalledWith({ block: 'nearest', behavior: 'smooth' });
 
     await emitEnded(container);
+    expect(audio.getAttribute('src')).toBe(URL('s1'));
+    expect(playSpy).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByTestId('tour-next-button'));
+    await act(async () => {});
     expect(audio.getAttribute('src')).toBe(URL('s2'));
     await waitFor(() =>
       expect(screen.getByTestId('scene-listen-button-s2')).toHaveTextContent('Pause'),
@@ -413,8 +417,16 @@ describe('fiche Visite — écouter la visite (LW-2)', () => {
     expect(audio.getAttribute('src')).toBe(URL('s1'));
 
     await emitEnded(container);
+    expect(audio.getAttribute('src')).toBe(URL('s1'));
+    expect(playSpy).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByTestId('tour-next-button'));
+    await act(async () => {});
     expect(audio.getAttribute('src')).toBe(URL('s2'));
     await emitEnded(container);
+    expect(audio.getAttribute('src')).toBe(URL('s2'));
+    expect(playSpy).toHaveBeenCalledTimes(2);
+    fireEvent.click(screen.getByTestId('tour-next-button'));
+    await act(async () => {});
     // s3 n'a pas de narration : s4 suit directement.
     expect(audio.getAttribute('src')).toBe(URL('s4'));
     await waitFor(() =>

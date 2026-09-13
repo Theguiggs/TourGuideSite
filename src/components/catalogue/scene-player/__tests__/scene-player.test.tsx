@@ -1,7 +1,7 @@
 /**
  * LW-1 — le lecteur de scène : un seul `<audio>`, une seule scène à la fois,
  * une seule redemande par tentative.
- * LW-2 — le mode visite : enchaînement sur `ended`, fin d'aperçu / de visite,
+ * LW-2 — le mode visite : arrêt sur `ended`, avance au clic, fin d'aperçu / de visite,
  * Media Session, reprise.
  *
  * jsdom n'implémente ni `play()`, ni `pause()`, ni `load()` (et `duration` /
@@ -172,6 +172,22 @@ function emit(name: string) {
   return act(async () => {
     audio().dispatchEvent(new Event(name));
   });
+}
+
+/** Une fin reste silencieuse ; le geste explicite suivant fait avancer le parcours. */
+async function finishAndChooseNext() {
+  const source = audio().getAttribute('src');
+  const plays = playSpy.mock.calls.length;
+  const requests = mockGetPublishedTourContent.mock.calls.length;
+  await emit('ended');
+  expect(playSpy).toHaveBeenCalledTimes(plays);
+  expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(requests);
+  expect(audio().getAttribute('src')).toBe(source);
+  const next = screen.queryByTestId('tour-next-button');
+  if (next) {
+    fireEvent.click(next);
+    await act(async () => {});
+  }
 }
 
 function rejection(name: string) {
@@ -574,7 +590,7 @@ describe('ScenePlayer — LW-1', () => {
 
     expect(button('s1')).toHaveTextContent('Écouter');
     expect(screen.getByTestId('scene-time-s1')).toHaveTextContent('0:00 /');
-    // LW-2 apportera l'enchaînement : ici, rien ne part tout seul.
+    // Aucune étape ne part toute seule.
     expect(playSpy).toHaveBeenCalledTimes(1);
     expect(audio().getAttribute('src')).toBe(URL_S1);
   });
@@ -769,7 +785,35 @@ describe('ScenePlayer — LW-2', () => {
     uninstallMediaSession();
   });
 
-  it('« Écouter la visite » : s1 joue, puis s2 et s3 sur `ended` sans geste, même nœud ; « Visite terminée », clé purgée', async () => {
+  it.each([true, false])('fin sur place : silence et reprise sur la prochaine étape après fermeture (mode visite=%s)', async (tourMode) => {
+    const view = render(<Harness ids={['s1', 's2', 's3']} />);
+    if (tourMode) await clickTour();
+    else await click('s1');
+    audio().currentTime = 42;
+    await emit('timeupdate');
+    const source = audio().getAttribute('src');
+    const plays = playSpy.mock.calls.length;
+    const requests = mockGetPublishedTourContent.mock.calls.length;
+    await emit('ended');
+    await emit('pause');
+    await act(async () => window.dispatchEvent(new Event('pagehide')));
+    expect(audio().getAttribute('src')).toBe(source);
+    expect(playSpy).toHaveBeenCalledTimes(plays);
+    expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(requests);
+    expect(button('s1')).toHaveTextContent('Écouter');
+    expect(storedResume()).toEqual({ sceneId: 's2', position: 0 });
+    view.unmount();
+    expect(storedResume()).toEqual({ sceneId: 's2', position: 0 });
+    render(<Harness ids={['s1', 's2', 's3']} />);
+    expect(screen.getByTestId('tour-resume-button')).toHaveTextContent('Reprendre à l’étape 2');
+    expect(playSpy).toHaveBeenCalledTimes(plays);
+    fireEvent.click(screen.getByTestId('tour-resume-button'));
+    await act(async () => {});
+    expect(audio().getAttribute('src')).toBe(URL_S2);
+    expect(playSpy).toHaveBeenCalledTimes(plays + 1);
+  });
+
+  it('« Écouter la visite » : s1 joue, puis s2 et s3 uniquement au clic, même nœud ; « Visite terminée », clé purgée', async () => {
     render(<Harness ids={['s1', 's2', 's3']} />);
     expect(tourButton()).toHaveTextContent('Écouter la visite');
     expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
@@ -787,7 +831,7 @@ describe('ScenePlayer — LW-2', () => {
     await emit('timeupdate');
     expect(storedResume()).toEqual({ sceneId: 's1', position: 12 });
 
-    await emit('ended');
+    await finishAndChooseNext();
     expect(audio()).toBe(node);
     expect(node.getAttribute('src')).toBe(URL_S2);
     await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
@@ -796,12 +840,12 @@ describe('ScenePlayer — LW-2', () => {
     // URLs fraîches : aucune nouvelle requête à la frontière.
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
 
-    await emit('ended');
+    await finishAndChooseNext();
     expect(node.getAttribute('src')).toBe(URL_S3);
     await waitFor(() => expect(button('s3')).toHaveTextContent('Pause'));
     expect(playSpy).toHaveBeenCalledTimes(3);
 
-    await emit('ended');
+    await finishAndChooseNext();
     expect(playSpy).toHaveBeenCalledTimes(3);
     expect(screen.getByTestId('tour-ending-complete')).toHaveTextContent('Visite terminée');
     expect(screen.queryByTestId('tour-ending-preview')).not.toBeInTheDocument();
@@ -819,11 +863,11 @@ describe('ScenePlayer — LW-2', () => {
     render(<Harness ids={['s1', 's2']} lockedAfter />);
 
     await clickTour();
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
     expect(playSpy).toHaveBeenCalledTimes(2);
 
-    await emit('ended');
+    await finishAndChooseNext();
 
     const message = screen.getByTestId('tour-ending-preview');
     expect(message).toHaveTextContent('Débloquez la visite pour écouter la suite');
@@ -846,7 +890,7 @@ describe('ScenePlayer — LW-2', () => {
     expect(audio().getAttribute('src')).toBe(URL_S1);
 
     // 3 min 30 de validité restante : assez pour un clic (LW-1), pas pour une narration enchaînée.
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2));
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2_RENEWED));
     await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
@@ -863,7 +907,7 @@ describe('ScenePlayer — LW-2', () => {
     mockGetPublishedTourContent.mockResolvedValue(response(THREE, iso(6 * 60_000)));
     render(<Harness ids={['s1', 's2']} />);
     await clickTour();
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
   });
@@ -874,7 +918,7 @@ describe('ScenePlayer — LW-2', () => {
     await clickTour();
     await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
 
-    await emit('ended');
+    await finishAndChooseNext();
 
     expect(screen.getByTestId('scene-error-s2')).toHaveTextContent(UNAVAILABLE);
     expect(playSpy).toHaveBeenCalledTimes(1);
@@ -917,7 +961,7 @@ describe('ScenePlayer — LW-2', () => {
     await waitFor(() => expect(button('s3')).toHaveTextContent('Pause'));
     expect(tourButton()).toHaveTextContent('Pause');
 
-    await emit('ended');
+    await finishAndChooseNext();
     expect(audio().getAttribute('src')).toBe(URL_S4);
     await waitFor(() => expect(button('s4')).toHaveTextContent('Pause'));
     expect(playSpy).toHaveBeenCalledTimes(3);
@@ -933,7 +977,7 @@ describe('ScenePlayer — LW-2', () => {
     expect(playSpy).toHaveBeenCalledTimes(1);
     expect(tourButton()).toHaveTextContent('Pause');
 
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S3));
   });
 
@@ -988,7 +1032,7 @@ describe('ScenePlayer — LW-2', () => {
       playbackRate: 1,
     });
 
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(fake.metadata).toMatchObject({ title: 'Scène s2' }));
 
     view.unmount();
@@ -1038,7 +1082,7 @@ describe('ScenePlayer — LW-2', () => {
     await action(fake, 'nexttrack');
     expect(audio().getAttribute('src')).toBe(URL_S2);
     await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
-    // La séquence est conservée : la piste suivante s'enchaînera.
+    // Les commandes de visite sont conservées ; la suite attend un clic.
     expect(tourButton()).toHaveTextContent('Pause');
 
     await action(fake, 'nexttrack');
@@ -1129,7 +1173,7 @@ describe('ScenePlayer — LW-2', () => {
     expect(screen.queryByTestId('tour-resume-button')).not.toBeInTheDocument();
 
     // La séquence continue depuis s2.
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S3));
   });
 
@@ -1224,7 +1268,7 @@ describe('ScenePlayer — LW-2', () => {
 
     // La piste suivante écrit sa position sans attendre le délai.
     nowSpy.mockReturnValue(BASE_NOW + 8_000);
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
     audio().currentTime = 1;
     await emit('timeupdate');
@@ -1249,9 +1293,9 @@ describe('ScenePlayer — LW-2', () => {
       audio().currentTime = 4;
       await emit('timeupdate');
       await emit('pause');
-      await emit('ended');
+      await finishAndChooseNext();
       await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
-      await emit('ended');
+      await finishAndChooseNext();
       expect(screen.getByTestId('tour-ending-complete')).toBeInTheDocument();
       expect(screen.queryByRole('alert')).not.toBeInTheDocument();
     } finally {
@@ -1283,8 +1327,8 @@ describe('ScenePlayer — LW-2', () => {
 
     await clickTour();
     await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
-    await emit('ended');
-    await emit('ended');
+    await finishAndChooseNext();
+    await finishAndChooseNext();
     expect(screen.getByTestId('tour-ending-preview')).toHaveTextContent('Unlock the tour to keep listening');
     expect(screen.getByTestId('tour-ending-purchase-link')).toHaveTextContent('Unlock the tour');
   });
@@ -1337,7 +1381,7 @@ describe('ScenePlayer — LW-2 (revue)', () => {
 
   // ── Enchaînement piloté de l'extérieur ────────────────────────────────────
 
-  it('nexttrack pendant une écoute isolée : la visite s’enchaîne ensuite (la chaîne ne meurt plus en silence)', async () => {
+  it('nexttrack pendant une écoute isolée : la suivante attend un nouveau geste', async () => {
     const fake = installMediaSession();
     render(<Harness ids={['s1', 's2', 's3']} />);
     await click('s1');
@@ -1349,8 +1393,8 @@ describe('ScenePlayer — LW-2 (revue)', () => {
 
     await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
     expect(tourButton()).toHaveTextContent('Pause');
-    // Et la suite part toute seule, ce que l'ancienne version ne faisait pas.
-    await emit('ended');
+    // La fin reste silencieuse, puis le visiteur choisit la suite.
+    await finishAndChooseNext();
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S3));
   });
 
@@ -1364,7 +1408,7 @@ describe('ScenePlayer — LW-2 (revue)', () => {
 
     await waitFor(() => expect(button('s1')).toHaveTextContent('Pause'));
     expect(tourButton()).toHaveTextContent('Pause');
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
   });
 
@@ -1372,7 +1416,7 @@ describe('ScenePlayer — LW-2 (revue)', () => {
     const fake = installMediaSession();
     render(<Harness ids={['s1', 's2']} lockedAfter />);
     await clickTour();
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
 
     await action(fake, 'nexttrack');
@@ -1386,7 +1430,7 @@ describe('ScenePlayer — LW-2 (revue)', () => {
     expect(button('s2')).toHaveTextContent('Écouter');
   });
 
-  it('nexttrack exige la même validité d’URL qu’un enchaînement automatique', async () => {
+  it('nexttrack exige la validité d’URL suffisante pour la narration demandée', async () => {
     mockGetPublishedTourContent
       .mockResolvedValueOnce(response(THREE, iso(4 * 60_000)))
       .mockResolvedValueOnce(response({ s1: URL_S1_RENEWED, s2: URL_S2_RENEWED }, iso(40 * 60_000)));
@@ -1449,7 +1493,7 @@ describe('ScenePlayer — LW-2 (revue)', () => {
     expect(audio().currentTime).toBe(20);
     await waitFor(() => expect(tourButton()).toHaveTextContent('Pause'));
     // Et la séquence est bien celle qu'on a demandée.
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2_RENEWED));
   });
 
@@ -1568,9 +1612,9 @@ describe('ScenePlayer — LW-2 (revue)', () => {
 
     await clickTour();
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S3));
     // Une seule requête pour toute la visite : un repli n'est pas une échéance.
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
@@ -1588,7 +1632,7 @@ describe('ScenePlayer — LW-2 (revue)', () => {
     render(<Harness ids={['s1', 's2']} />);
 
     await clickTour();
-    await emit('ended');
+    await finishAndChooseNext();
 
     await waitFor(() => expect(audio().getAttribute('src')).toBe(URL_S2));
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);
@@ -1601,7 +1645,7 @@ describe('ScenePlayer — LW-2 (revue)', () => {
     render(<Harness ids={['s1', 's2', 's3']} />);
 
     await clickTour();
-    await emit('ended');
+    await finishAndChooseNext();
 
     await waitFor(() => expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(2));
     // Le cache n'est pas périmé au sens strict : mourir sur « indisponible »
@@ -1624,11 +1668,11 @@ describe('ScenePlayer — LW-2 (revue)', () => {
   it('le message de fin vient à la vue et prend le focus', async () => {
     render(<Harness ids={['s1', 's2']} lockedAfter />);
     await clickTour();
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() => expect(button('s2')).toHaveTextContent('Pause'));
     scrollSpy.mockClear();
 
-    await emit('ended');
+    await finishAndChooseNext();
 
     const message = screen.getByTestId('tour-ending-preview');
     // Le défilement automatique vient d'emmener la vue sur la dernière étape :
@@ -1652,7 +1696,7 @@ describe('ScenePlayer — LW-2 (revue)', () => {
     await clickTour();
     expect(screen.getByTestId('tour-now-playing')).toHaveTextContent('Étape 1 sur 2 : Scène s1');
 
-    await emit('ended');
+    await finishAndChooseNext();
     await waitFor(() =>
       expect(screen.getByTestId('tour-now-playing')).toHaveTextContent('Étape 2 sur 2 : Scène s2'),
     );
@@ -1692,14 +1736,17 @@ describe('LW-6 — arrivée, mesure et confidentialité', () => {
 
   const events = (name: string) => (trackEvent as jest.Mock).mock.calls.filter(([event]) => event === name);
 
-  it('attend la liste stabilisée puis lance une seule fois depuis les achats', async () => {
+  it('attend la liste stabilisée et le clic du visiteur depuis les achats', async () => {
     window.history.replaceState(null, '', '#ecouter');
     const { rerender } = render(<Harness settled={false} />);
     expect(playSpy).not.toHaveBeenCalled();
     rerender(<Harness settled />);
-    await waitFor(() => expect(playSpy).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(screen.getByTestId('tour-play-button')).toHaveFocus());
+    expect(playSpy).not.toHaveBeenCalled();
     rerender(<Harness settled />);
     act(() => window.dispatchEvent(new HashChangeEvent('hashchange')));
+    expect(playSpy).not.toHaveBeenCalled();
+    await clickTour();
     expect(playSpy).toHaveBeenCalledTimes(1);
     expect(trackEvent).toHaveBeenCalledWith('web_listen_start', { tour_id: 'tour-1', city_id: 'grasse', language: 'fr', from: 'purchases' });
     expect(screen.getByTestId('tour-play-button')).toHaveFocus();
@@ -1723,6 +1770,8 @@ describe('LW-6 — arrivée, mesure et confidentialité', () => {
     playSpy.mockRejectedValueOnce(rejection('NotAllowedError'));
     window.history.replaceState(null, '', '#ecouter');
     render(<Harness />);
+    expect(playSpy).not.toHaveBeenCalled();
+    await clickTour();
     expect(await screen.findByText('Touchez à nouveau pour lancer l’écoute')).toBeVisible();
     expect(events('web_listen_start')).toHaveLength(0);
     fireEvent.click(screen.getByTestId('tour-play-button'));
@@ -1738,9 +1787,9 @@ describe('LW-6 — arrivée, mesure et confidentialité', () => {
     fireEvent.click(screen.getByTestId('tour-play-button'));
     fireEvent.click(screen.getByTestId('tour-play-button'));
     await act(async () => {});
-    await emit('ended');
-    await emit('ended');
-    await emit('ended');
+    await finishAndChooseNext();
+    await finishAndChooseNext();
+    await finishAndChooseNext();
     expect(events('web_listen_start')).toHaveLength(1);
     expect(events('web_scene_complete').map(([, props]) => props.scene_order)).toEqual([1, 2]);
     expect(events('web_listen_complete')).toHaveLength(1);
@@ -1749,7 +1798,7 @@ describe('LW-6 — arrivée, mesure et confidentialité', () => {
   it.each([true, false])('une scène isolée ne termine pas la visite (aperçu=%s)', async (lockedAfter) => {
     render(<Harness lockedAfter={lockedAfter} />);
     await click('s2');
-    await emit('ended');
+    await finishAndChooseNext();
     expect(events('web_scene_complete')).toHaveLength(1);
     expect(events('web_listen_complete')).toHaveLength(0);
   });
@@ -1844,9 +1893,9 @@ describe('LW-6 — régressions des relectures', () => {
     expect(playSpy).not.toHaveBeenCalled();
     window.history.replaceState(null, '', '#ecouter');
     act(() => window.dispatchEvent(new HashChangeEvent('hashchange')));
-    await waitFor(() => expect(playSpy).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(screen.getByTestId('tour-play-button')).toHaveFocus());
     act(() => window.dispatchEvent(new HashChangeEvent('hashchange')));
-    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(playSpy).not.toHaveBeenCalled();
     expect(screen.getByTestId('tour-play-button')).toHaveFocus();
   });
 
@@ -1918,7 +1967,7 @@ describe('LW-3 — langue d’écoute', () => {
     fireEvent.click(screen.getByTestId('tour-play-button'));
     await act(async () => {});
     expect(element.src).toBe(EN_S1);
-    await emit('ended');
+    await finishAndChooseNext();
     expect(audio()).toBe(element);
     expect(element.src).toBe(URL_S2);
     expect(mockGetPublishedTourContent).toHaveBeenCalledTimes(1);

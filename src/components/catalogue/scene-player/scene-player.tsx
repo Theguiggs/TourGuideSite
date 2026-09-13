@@ -5,15 +5,14 @@
  *
  * Le lecteur possède l'élément, l'itinéraire possède la liste : un contexte
  * React relie les deux pour que chaque `<li>` n'ait qu'un contrôle sans état
- * propre. Il n'y a qu'UN `<audio>` pour toute la liste, débloqué par le premier
- * geste utilisateur, dont on change la `src` ensuite — c'est ce qui permet
- * l'enchaînement : un `<audio>` par étape exigerait un geste par étape.
+ * propre. Un seul `<audio>` sert toute la liste. Chaque changement d’étape
+ * exige un geste du visiteur ; la fin d’une piste ne lance jamais la suivante.
  *
  * Accès : le lecteur ne joue que les URLs que la réponse serveur porte. Il ne
  * calcule rien ; une scène sans URL dans la réponse est « indisponible ».
  *
  * Redemande : au plus UNE par tentative (un clic « Écouter » sur une nouvelle
- * scène, ou une nouvelle piste enchaînée, ouvre une tentative). Elle est
+ * scène, ou la commande manuelle suivante, ouvre une tentative). Elle est
  * consommée soit par l'expiration au clic, soit par la première erreur média
  * réseau / source en cours de piste. Une seconde erreur affiche le message.
  * Jamais de boucle.
@@ -23,15 +22,13 @@
  * contrôle de la scène en cours.
  *
  * Mode visite (LW-2) : `sequence` est un état EN PLUS du lecteur LW-1, pas un
- * remplacement. Quand il est vrai, `ended` ouvre la tentative suivante de la
- * liste jouable (`playlist`, servie et narrée, dans l'ordre d'affichage) —
- * depuis l'événement média lui-même, seul chemin que Safari iOS accepte en
- * arrière-plan. À chaque frontière, les URLs sont renouvelées si leur validité
- * restante ne couvre pas une narration. En bout de liste : message de fin
- * d'aperçu (des étapes verrouillées suivent) ou « visite terminée ».
+ * remplacement. Il relie les commandes de l’en-tête, la reprise et le message
+ * de fin. `ended` arrête l’écoute. Le visiteur choisit ensuite une étape ou
+ * la commande suivante. En bout de liste : message de fin d’aperçu (des étapes
+ * verrouillées suivent) ou « visite terminée ».
  *
  * `advance` ne crée pas de chemin parallèle : `openAttempt` est la mécanique
- * unique d'une nouvelle scène (clic isolé, enchaînement, suivant / précédent,
+ * unique d'une nouvelle scène (clic isolé, suivant / précédent,
  * reprise), avec `sequence` conservé. Relance unique, `pausedByUser`,
  * `release` et les messages LW-1 s'appliquent tels quels.
  *
@@ -85,8 +82,8 @@ export const SEQUENCE_MIN_VALIDITY_MS = 5 * 60_000;
 export const RESUME_WRITE_INTERVAL_MS = 5_000;
 /**
  * Une reprise qui tombe dans la dernière seconde d'une piste repart de zéro :
- * poser la position là déclencherait `ended` — donc l'enchaînement, ou « Visite
- * terminée » — sur une piste jamais jouée.
+ * poser la position là déclencherait `ended`, voire « Visite terminée »,
+ * sur une piste jamais jouée.
  */
 export const RESUME_TAIL_GUARD_SECONDS = 1;
 
@@ -477,7 +474,7 @@ function ScenePlayerInstance({
    * La mécanique unique d'une nouvelle scène : la précédente s'arrête, une
    * tentative s'ouvre, les URLs sont vérifiées (ou redemandées), la source est
    * posée, la lecture part. `sequence` n'est pas touché : un clic isolé le
-   * laisse faux, une piste enchaînée le laisse vrai.
+   * laisse faux, une commande suivante le laisse vrai.
    */
   const openAttempt = useCallback(
     async (sceneId: string, options: OpenAttemptOptions = {}) => {
@@ -601,7 +598,7 @@ function ScenePlayerInstance({
     return () => {
       if (!audio) return;
       const attempt = attemptRef.current;
-      if (attempt?.ready && !attempt.failed && !audio.ended && audio.currentTime > 0) {
+      if (attempt?.ready && !attempt.failed && !attempt.completed && !audio.ended && audio.currentTime > 0) {
         writeResume(tourId, { sceneId: attempt.sceneId, position: audio.currentTime, language: attempt.language });
       }
       audio.pause();
@@ -619,7 +616,7 @@ function ScenePlayerInstance({
     // purge, prend le relais).
     const persistResume = (force: boolean) => {
       const attempt = attemptRef.current;
-      if (!attempt || !attempt.ready || attempt.failed || audio.ended) return;
+      if (!attempt || !attempt.ready || attempt.failed || attempt.completed || audio.ended) return;
       const now = Date.now();
       if (!force && now - lastResumeWriteRef.current < RESUME_WRITE_INTERVAL_MS) return;
       lastResumeWriteRef.current = now;
@@ -665,9 +662,8 @@ function ScenePlayerInstance({
       if (completedIndex >= 0) measure(AnalyticsEvents.WEB_SCENE_COMPLETE, { scene_order: playlistRef.current[completedIndex].order ?? completedIndex + 1 });
       setPlaying(false);
       publishProgress({ position: 0, duration: progressRef.current.duration });
-      // LW-2 : en séquence, la piste suivante part d'ici — depuis l'événement
-      // média, sans geste. Hors séquence, rien ne part tout seul.
-      if (!sequenceRef.current || !attempt) return;
+      // Le visiteur choisit chaque étape à son arrivée. Même en mode visite,
+      // la fin ne charge ni ne joue la piste suivante.
       const list = playlistRef.current;
       const index = list.findIndex((entry) => entry.id === attempt.sceneId);
       if (index < 0) {
@@ -676,9 +672,13 @@ function ScenePlayerInstance({
       }
       const next = list[index + 1];
       if (next) {
-        void openAttempt(next.id, { minValidityMs: SEQUENCE_MIN_VALIDITY_MS });
+        // Pendant la marche, mémoriser l’étape à écouter sans charger son audio.
+        const language = resolveAudio(next.id, readSelection(), baseLanguage)?.language ?? baseLanguage;
+        writeResume(tourId, { sceneId: next.id, position: 0, language });
         return;
       }
+      clearResume(tourId);
+      if (!sequenceRef.current) return;
       if (!lockedAfterRef.current) measure(AnalyticsEvents.WEB_LISTEN_COMPLETE);
       finishSequence(lockedAfterRef.current ? 'preview-end' : 'complete');
     };
@@ -807,7 +807,7 @@ function ScenePlayerInstance({
       if (!audio || !attemptRef.current?.ready) return;
       // La glissière ne dépasse jamais la durée, mais `seekto` vient de
       // l'extérieur : un saut au-delà de la fin déclencherait `ended`, donc
-      // l'enchaînement, sur une piste qu'on n'a pas écoutée.
+      // le message de fin, sur une piste qu'on n'a pas écoutée.
       const known = Number.isFinite(audio.duration) && audio.duration > 0 ? audio.duration : 0;
       const duration = known > 0 ? known : progressRef.current.duration;
       let target = Math.max(0, Number.isFinite(seconds) ? seconds : 0);
@@ -839,7 +839,7 @@ function ScenePlayerInstance({
       if (audio) {
         // Ce qui se ferme ici, c'est l'accès (déconnexion, liste servie qui
         // rétrécit), pas la visite : la position se garde, comme au démontage.
-        if (current.ready && !current.failed && !audio.ended && audio.currentTime > 0) {
+        if (current.ready && !current.failed && !current.completed && !audio.ended && audio.currentTime > 0) {
           writeResume(tourId, { sceneId: current.sceneId, position: audio.currentTime, language: current.language });
         }
         audio.pause();
@@ -913,10 +913,9 @@ function ScenePlayerInstance({
   }, []);
 
   /**
-   * Piste suivante — écouteurs, écran verrouillé. Piloter la visite depuis
-   * l'extérieur, c'est l'écouter : la séquence s'active, sinon la chaîne
-   * mourrait en silence à la fin de la piste atteinte à la main. Et la
-   * frontière exige la même validité d'URL qu'un enchaînement automatique.
+   * Piste suivante — bouton, écouteurs, écran verrouillé. Cette commande
+   * manuelle lance une seule étape et conserve les contrôles de visite.
+   * La marge de validité permet d’écouter la narration demandée.
    */
   const next = useCallback(() => {
     const current = attemptRef.current;
@@ -1040,7 +1039,7 @@ function ScenePlayerInstance({
         return;
       }
       if (canResume) anchorHandledRef.current = true;
-      else if (!attemptRef.current) startSequence();
+      else anchorHandledRef.current = true;
       const target = document.querySelector<HTMLButtonElement>(canResume ? '[data-testid="tour-resume-button"]' : '[data-testid="tour-play-button"]');
       target?.focus();
     };
@@ -1183,6 +1182,7 @@ export type TourPlayerView = Pick<
   | 'ending'
   | 'resumeOffer'
   | 'startSequence'
+  | 'next'
   | 'toggle'
   | 'keyboardSeek'
   | 'languageOptions'

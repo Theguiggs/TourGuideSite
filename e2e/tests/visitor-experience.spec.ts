@@ -1,7 +1,51 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+/** Son silencieux d’une seconde : le navigateur produit lui-même la fin média. */
+function silentWav(): Buffer {
+  const dataSize = 8_000 * 2;
+  const wav = Buffer.alloc(44 + dataSize);
+  wav.write('RIFF', 0); wav.writeUInt32LE(36 + dataSize, 4); wav.write('WAVEfmt ', 8);
+  wav.writeUInt32LE(16, 16); wav.writeUInt16LE(1, 20); wav.writeUInt16LE(1, 22);
+  wav.writeUInt32LE(8_000, 24); wav.writeUInt32LE(16_000, 28);
+  wav.writeUInt16LE(2, 32); wav.writeUInt16LE(16, 34); wav.write('data', 36);
+  wav.writeUInt32LE(dataSize, 40);
+  return wav;
+}
+
 for (const locale of ['fr', 'en'] as const) {
+  test(`Écoute manuelle ${locale} : arrivée silencieuse et fin native sans enchaînement`, async ({ page }) => {
+    let mediaRequests = 0;
+    await page.route('**/*', async route => {
+      if (route.request().resourceType() !== 'media') return route.continue();
+      mediaRequests++;
+      await route.fulfill({ contentType: 'audio/wav', body: silentWav() });
+    });
+    await page.goto(`${locale === 'en' ? '/en' : ''}/catalogue/nice`);
+    await page.locator('[data-testid^="tour-card-"]').first().click();
+    await expect(page.getByTestId('tour-play-button')).toBeVisible();
+    await page.goto(`${page.url().split('#')[0]}#ecouter`);
+    const audio = page.getByTestId('scene-audio');
+    const play = page.getByTestId('tour-play-button');
+    await expect(play).toBeFocused();
+    await expect(audio).not.toHaveAttribute('src');
+    expect(mediaRequests).toBe(0);
+    await play.click();
+    await expect(audio).toHaveJSProperty('ended', true);
+    const firstSource = await audio.getAttribute('src');
+    const requestCount = mediaRequests;
+    expect(requestCount).toBeGreaterThan(0);
+    // Attente observée après une vraie fin WAV, sans dispatchEvent ni faux play().
+    await page.waitForTimeout(1_500);
+    await expect(audio).toHaveJSProperty('paused', true);
+    await expect(audio).toHaveAttribute('src', firstSource!);
+    expect(mediaRequests).toBe(requestCount);
+    await page.getByTestId('tour-next-button').click();
+    await expect(audio).not.toHaveAttribute('src', firstSource!);
+    await expect(audio).toHaveJSProperty('ended', true);
+    await expect(audio).toHaveCount(1);
+  });
+
   test(`EV-3/5 ${locale} : filtres, retour, fiche responsive et audio unique`, async ({ page }) => {
     const prefix = locale === 'en' ? '/en' : '';
     await page.setViewportSize({ width: 390, height: 844 });
