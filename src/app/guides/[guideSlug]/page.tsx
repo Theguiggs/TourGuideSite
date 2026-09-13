@@ -88,9 +88,9 @@ export async function guideMetadata(guideSlug: string, locale: GuideLocale): Pro
   const guide = await getGuideBySlug(guideSlug);
   if (!guide) return {};
   // Les langues indexables viennent de la MÊME lecture que le sitemap
-  // (`publishedTours`). `getGuidePublicTours` est une seconde projection, avec son
-  // propre repli de langues : deux sources décidaient de l'indexabilité, et le
-  // sitemap listait des pages que la page elle-même refusait d'indexer.
+  // (`publishedTours`). `getGuidePublicTours` est une seconde projection, avec
+  // son propre repli de langues : deux sources décidaient de l'indexabilité, et
+  // le sitemap listait des pages que la page elle-même refusait d'indexer.
   const [tours, catalogue] = await Promise.all([getGuidePublicTours(guide.id), getGuideTourSummaries(guide.id)]);
   // Un guide sans visite publiée n'a rien à faire dans un index.
   const published = guideSeoLocales(catalogue);
