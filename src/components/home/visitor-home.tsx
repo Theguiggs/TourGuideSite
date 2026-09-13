@@ -7,6 +7,8 @@ import TrackPageView from '@/components/TrackPageView';
 import { AnalyticsEvents } from '@/lib/analytics';
 import { HomeCatalogue } from './home-catalogue';
 import { publicPath } from '@/lib/seo/urls';
+import { safeJsonLd } from '@/lib/security/safe-json-ld';
+import { siteJsonLd } from '@/lib/seo/json-ld';
 
 export function VisitorHome({ locale }: { locale: InterfaceLocale }) {
   const t = (fr: string, en: string) => translate(locale, fr, en);
@@ -18,6 +20,10 @@ export function VisitorHome({ locale }: { locale: InterfaceLocale }) {
   ];
   return <>
     <TrackPageView event={AnalyticsEvents.WEB_LANDING_VISIT} properties={{ locale }} />
+    {/* Éditeur et site : posés une fois, sur l'accueil de chaque langue. */}
+    {siteJsonLd(locale).map(node => (
+      <script key={String(node['@type'])} type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(node) }} />
+    ))}
     <section className="bg-paper" aria-labelledby="home-title">
       <div className="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-2 lg:items-center lg:gap-12 lg:px-8 lg:py-16">
         <div>

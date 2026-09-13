@@ -306,7 +306,7 @@ export async function LocalizedGuidePage({ params, locale = 'fr' }: GuidePagePro
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: safeJsonLd(guideJsonLd(guide, tours)),
+          __html: safeJsonLd(guideJsonLd(guide, tours, locale)),
         }}
       />
 
