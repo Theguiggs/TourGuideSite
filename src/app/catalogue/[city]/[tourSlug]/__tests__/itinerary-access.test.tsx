@@ -153,6 +153,28 @@ describe('fiche Visite — accès au contenu complet', () => {
     expect(mockGetPublishedTourContent).not.toHaveBeenCalled();
   });
 
+  it.each([false, true])('connecté : l’ancien aperçu serveur à deux étapes reste verrouillé (achat vu côté client=%s)', async (clientOwns) => {
+    authState = { isAuthenticated: true, user: { id: 'user-1' } };
+    mockListOwnedTourIds.mockResolvedValue(new Set(clientOwns ? ['tour-1'] : []));
+    mockGetPublishedTourContent.mockResolvedValue({
+      ok: true,
+      data: {
+        ...FULL_CONTENT.data,
+        scenes: FULL_CONTENT.data.scenes.map((scene, index) => index < 2
+          ? { ...scene, audioUrl: `https://media.example/preview-${index + 1}.mp3` }
+          : { ...scene, description: '', photos: [] }),
+      },
+    });
+    const { container } = renderItinerary();
+    await act(async () => {});
+    expect(lockedStops(container)).toHaveLength(3);
+    expect(lockedStops(container)[0]).toContain('Étape 2');
+    expect(container.querySelector('[data-testid="scene-listen-button-s1"]')).not.toBeNull();
+    expect(container.querySelector('[data-testid="scene-listen-button-s2"]')).toBeNull();
+    const second = container.querySelectorAll('li')[1];
+    expect(second.querySelector('h5')).toHaveStyle({ filter: 'blur(6px)' });
+  });
+
   it('porteur de forfait : contenu complet, rien de flouté', async () => {
     authState = { isAuthenticated: true, user: { id: 'user-1' } };
     mockHasActiveForfait.mockResolvedValue(true);

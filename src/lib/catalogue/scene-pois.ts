@@ -58,8 +58,12 @@ export function mapScenesToPois(scenes: readonly PublicTourScene[]): POI[] {
  * d'afficher : on lit ce qui est arrivé.
  */
 export function isFullContent(scenes: readonly PublicTourScene[]): boolean {
+  // Le backend encore déployé sert deux étapes gratuites. La deuxième ne
+  // prouve donc pas un achat, même si l’affichage Web limite l’aperçu à une.
+  // Ne pas coupler ce seuil de compatibilité au nombre d’étapes affichées.
+  const legacyPreviewBoundary = 2;
   return scenes
-    .slice(FREE_PREVIEW_SCENES)
+    .slice(Math.max(FREE_PREVIEW_SCENES, legacyPreviewBoundary))
     .some(
       (scene) =>
         Boolean(scene.audioKey) ||

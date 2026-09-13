@@ -126,6 +126,12 @@ describe('isFullContent — ce que le serveur a accordé', () => {
     expect(isFullContent(preview)).toBe(false);
   });
 
+  it('ne confond pas l’ancien aperçu de deux étapes avec un droit complet', () => {
+    const oldPreview = [scene({ id: 's1' }), scene({ id: 's2', audioUrl: 'https://media.example/preview-2.mp3' }), ...preview.slice(2)];
+    expect(isFullContent(oldPreview)).toBe(false);
+    expect(isFullContent(oldPreview.slice(0, 2))).toBe(false);
+  });
+
   it('reconnaît une description rendue au-delà de l’aperçu', () => {
     expect(
       isFullContent([...preview.slice(0, 3), scene({ id: 's4', description: 'Le secret' })]),
