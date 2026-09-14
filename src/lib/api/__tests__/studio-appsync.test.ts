@@ -16,6 +16,8 @@ jest.mock('../appsync-client', () => ({
 
 import { listStudioSessions, getStudioSession, createStudioSession, createTourWithSession, listStudioScenes, createScene, updateSceneText, updateSceneData, updateSceneAudio } from '../studio';
 import * as appsyncModule from '../appsync-client';
+import mentonRoute from './menton-route.fixture.json';
+import { routePathIsUsable } from '@/lib/studio/visit-completeness';
 
 const mockListSessionsByGuide = appsyncModule.listStudioSessionsByGuide as jest.Mock;
 const mockGetSessionById = appsyncModule.getStudioSessionById as jest.Mock;
@@ -50,6 +52,30 @@ describe('listStudioSessions (real mode)', () => {
 });
 
 describe('getStudioSession (real mode)', () => {
+  const route = { computedPath: [{ lat: 43.7747355, lng: 7.5057931 }, { lat: 43.7755961, lng: 7.502845 }] };
+
+  it.each([route, JSON.stringify(route), JSON.stringify(JSON.stringify(route))])('lit les formats objet, JSON et JSON importé (%j)', async routePathJson => {
+    mockGetSessionById.mockResolvedValue({ ok: true, data: { id: 's1', routePathJson } });
+    const session = await getStudioSession('s1');
+    expect(session?.routePath).toEqual(route);
+    expect(routePathIsUsable(session?.routePath)).toBe(true);
+  });
+
+  it('récupère les huit points de la réponse AppSync réelle de Menton', async () => {
+    mockGetSessionById.mockResolvedValue({ ok: true, data: { id: 'menton', ...mentonRoute } });
+    const session = await getStudioSession('menton');
+    expect(session?.routePath?.computedPath).toHaveLength(8);
+    expect(session?.routePath?.computedPath?.[0]).toEqual({ lat: 43.7747355, lng: 7.5057931 });
+    expect(routePathIsUsable(session?.routePath)).toBe(true);
+  });
+
+  it.each([null, '', '{invalid', JSON.stringify('{invalid'), 'null', '42', '[]'])('ne transforme pas une valeur invalide en tracé (%j)', async routePathJson => {
+    mockGetSessionById.mockResolvedValue({ ok: true, data: { id: 's1', routePathJson } });
+    const session = await getStudioSession('s1');
+    expect(session?.routePath).toBeNull();
+    expect(routePathIsUsable(session?.routePath)).toBe(false);
+  });
+
   it('calls getStudioSessionById with correct id', async () => {
     mockGetSessionById.mockResolvedValue({ ok: true, data: { id: 's1', guideId: 'g1', status: 'editing', language: 'fr', consentRGPD: true, createdAt: '', updatedAt: '' } });
     const result = await getStudioSession('s1');

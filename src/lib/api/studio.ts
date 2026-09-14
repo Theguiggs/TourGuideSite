@@ -153,16 +153,17 @@ function parseJsonField(val: unknown): Record<string, string> | null {
 
 /** Parses StudioSession.routePathJson defensively. AppSync may return:
  *  - a JSON string (typical AWSJSON)
+ *  - nested JSON strings from direct DynamoDB imports, serialized again by AppSync
  *  - a plain JS object (Amplify auto-deserialized)
  *  - a DynamoDB-shaped Map ({M: {field: {S|N|L|M: …}}}) if the resolver didn't unwrap it
- *  This function handles all three so the moderation map can render the route. */
+ *  Decode at most three layers so malformed input cannot cause an unbounded loop. */
 function parseRoutePathField(val: unknown): import('@/types/studio').RoutePath | null {
   if (val == null) return null;
   let obj: unknown = val;
-  if (typeof obj === 'string') {
+  for (let depth = 0; depth < 3 && typeof obj === 'string'; depth += 1) {
     try { obj = JSON.parse(obj); } catch { return null; }
   }
-  if (typeof obj !== 'object' || obj === null) return null;
+  if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) return null;
 
   // Heuristic: if the object has a top-level "M" with nested DynamoDB type keys,
   // it's an unwrapped Map. Unwrap it.
