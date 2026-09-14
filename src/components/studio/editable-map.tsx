@@ -457,7 +457,9 @@ export function EditableMap({
         {/* POI markers — draggable, clickable */}
         {geoScenes.map((scene, index) => {
           const isSelected = selectedPoi === scene.id;
-          const markerNumber = typeof scene.sceneIndex === 'number' ? scene.sceneIndex + 1 : index + 1;
+          // Keep marker labels aligned with the displayed POI cards. Persisted
+          // indexes can briefly be stale after a reorder.
+          const markerNumber = index + 1;
           const icon = createNumberedIcon({
             number: markerNumber,
             fillColor: isSelected ? tg.colors.ardoise : tg.colors.mer,
