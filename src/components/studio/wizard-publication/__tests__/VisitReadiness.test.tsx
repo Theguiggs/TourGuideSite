@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { VisitReadiness } from '../VisitReadiness';
-import { evaluateVisitCompleteness } from '@/lib/studio/visit-completeness';
+import { evaluateVisitCompleteness, evaluateStudioVisit } from '@/lib/studio/visit-completeness';
 
 const scenes = [
   { id: 's1', title: 'Le port', transcriptText: 'Texte', studioAudioKey: 'a.wav', originalAudioKey: null, baseAudioSource: 'recording' as const, archived: false },
@@ -25,4 +25,12 @@ describe('VisitReadiness (lot 6.1)', () => {
     expect(screen.getByTestId('visit-readiness')).toHaveAttribute('data-ready', 'true');
     expect(screen.getByText('Prête pour la modération')).toBeInTheDocument();
   });
+});
+
+it('relie un tracé absent à l’itinéraire avant la soumission', () => {
+  const report = evaluateStudioVisit({narrationMode: 'recording', language: 'fr', routePath: null}, [scenes[0]]);
+  render(<VisitReadiness report={report} sessionId="sess-1" scenes={[scenes[0]]} />);
+  expect(screen.getByTestId('visit-readiness')).toHaveAttribute('data-ready', 'false');
+  expect(screen.getByTestId('readiness-route')).toHaveAttribute('data-passed', 'false');
+  expect(screen.getByRole('link', {name: 'Itinéraire'})).toHaveAttribute('href', '/guide/studio/sess-1/itinerary');
 });

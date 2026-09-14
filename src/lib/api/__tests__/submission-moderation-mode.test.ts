@@ -53,6 +53,7 @@ it.each([
 ] as const)('soumet %s et conserve le mode dans ModerationItem', async (narrationMode, audio) => {
   getSession.mockResolvedValue({
     id: 'session-1', tourId: 'tour-1', language: 'fr', narrationMode,
+    routePath: { computedPath: [{lat: 43.77, lng: 7.50}, {lat: 43.78, lng: 7.51}] },
   });
   listScenes.mockResolvedValue([{
     id: 'scene-1', title: 'Scène', transcriptText: 'Texte final', archived: false,
@@ -72,4 +73,20 @@ it.each(['recording', 'tts_on_demand'] as const)('rend le mode %s dans la file a
   }] : []);
   const queue = await getModerationQueue();
   expect(queue).toEqual([expect.objectContaining({narrationMode, sourceLanguage: 'fr'})]);
+});
+
+ it.each([null, {computedPath: []}, {computedPath: [{lat: 43, lng: 7}]}, {computedPath: [null, {lat: 43, lng: 7}]}])('bloque un tracé invalide avant toute mutation (%j)', async routePath => {
+  getSession.mockResolvedValue({id: 'session-1', language: 'fr', narrationMode: 'tts_on_demand', routePath});
+  listScenes.mockResolvedValue([{id: 'scene-1', title: 'Scène', transcriptText: 'Texte final', archived: false}]);
+  expect(await submitForReview('session-1', 'tour-1')).toEqual({ok: false, error: expect.stringContaining('Itinéraire')});
+  expect(appsync.updateStudioSessionMutation).not.toHaveBeenCalled();
+  expect(appsync.setTourWorkflowStatusMutation).not.toHaveBeenCalled();
+  expect(createModeration).not.toHaveBeenCalled();
+});
+
+it('soumet deux POI au même endroit', async () => {
+  getSession.mockResolvedValue({id: 'session-1', language: 'fr', narrationMode: 'tts_on_demand', routePath: {computedPath: [{lat: 43, lng: 7}, {lat: 43, lng: 7}]}});
+  listScenes.mockResolvedValue(['scene-1', 'scene-2'].map(id => ({id, title: 'Scène', transcriptText: 'Texte final', archived: false})));
+  expect(await submitForReview('session-1', 'tour-1')).toEqual({ok: true});
+  expect(createModeration).toHaveBeenCalled();
 });

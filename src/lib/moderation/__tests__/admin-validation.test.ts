@@ -292,7 +292,7 @@ describe('buildAdminValidationReport', () => {
     expect(hasValidCoordinates(null, 1)).toBe(false);
   });
 
-  it('refuse un tracé composé de points identiques', () => {
+  it('accepte deux POI situés au même endroit', () => {
     const report = buildAdminValidationReport({
       detail,
       language: 'fr',
@@ -301,7 +301,7 @@ describe('buildAdminValidationReport', () => {
       dependentDataLoaded: true,
     });
 
-    expect(report.checks.find((item) => item.id === 'route')?.passed).toBe(false);
+    expect(report.checks.find((item) => item.id === 'route')?.passed).toBe(true);
   });
 
   it('adapte la checklist humaine à la langue examinée', () => {

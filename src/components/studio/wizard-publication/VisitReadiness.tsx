@@ -9,6 +9,7 @@ import { useStudioLocale } from '@/lib/i18n/studio-locale';
 import type { VisitCompletenessCheckId, VisitCompletenessReport } from '@/lib/studio/visit-completeness';
 
 const CHECK_LABELS: Record<VisitCompletenessCheckId, { fr: string; en: string }> = {
+  route: extendCopy({ fr: 'Tracé du parcours enregistré', en: 'Saved route' }),
   narration_mode: extendCopy({ fr: 'Mode de narration choisi', en: 'Narration mode chosen' }),
   source_text: extendCopy({ fr: 'Chaque scène a un titre et un texte final', en: 'Every scene has a title and a final text' }),
   source_audio: extendCopy({ fr: 'Audio de votre voix sur chaque scène', en: 'Your voice recorded on every scene' }),
@@ -56,6 +57,11 @@ export function VisitReadiness({ report, sessionId, scenes }: VisitReadinessProp
                 {localizeValue(locale, CHECK_LABELS[check.id].fr, CHECK_LABELS[check.id].en)}
               </span>
               {!check.passed && <p className="text-meta text-ink-60">{check.evidence}</p>}
+              {!check.passed && check.id === 'route' && (
+                <Link href={`/guide/studio/${sessionId}/itinerary`} className="text-meta underline text-ocre-ink">
+                  {t('Itinéraire', 'Itinerary')}
+                </Link>
+              )}
               {!check.passed && check.sceneIds.length > 0 && (
                 <ul className="mt-1 flex flex-wrap gap-1.5">
                   {check.sceneIds.map((id) => {

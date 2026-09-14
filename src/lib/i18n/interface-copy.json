@@ -1,4 +1,12 @@
 {
+  "Saved route": {
+    "fr": "Tracé du parcours enregistré",
+    "en": "Saved route",
+    "es": "Ruta guardada",
+    "de": "Gespeicherte Route",
+    "it": "Percorso salvato",
+    "nl": "Opgeslagen route"
+  },
   " — Nearest": {
     "fr": " — La plus proche",
     "en": " — Nearest",

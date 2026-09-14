@@ -1,6 +1,8 @@
 import { SITE_LOCALES, type InterfaceLocale } from '@/lib/i18n/locales';
 
 const copy = {
+  routeReady: ['Le tracé du parcours est enregistré et valide.', 'The route is saved and valid.', 'La ruta está guardada y es válida.', 'Die Route ist gespeichert und gültig.', 'Il percorso è salvato e valido.', 'De route is opgeslagen en geldig.'],
+  routeMissing: ['Le tracé enregistré est absent ou invalide. Ouvrez l’étape Itinéraire, vérifiez le tracé et attendez la confirmation de son enregistrement avant de soumettre.', 'The saved route is missing or invalid. Open the Itinerary step, check the route and wait for save confirmation before submitting.', 'La ruta guardada falta o no es válida. Abra Itinerario, compruebe la ruta y espere la confirmación de guardado antes de enviar.', 'Die gespeicherte Route fehlt oder ist ungültig. Öffnen Sie die Routenplanung, prüfen Sie die Route und warten Sie vor dem Einreichen auf die Speicherbestätigung.', 'Il percorso salvato manca o non è valido. Apra Itinerario, controlli il percorso e attenda la conferma del salvataggio prima di inviare.', 'De opgeslagen route ontbreekt of is ongeldig. Open Route, controleer deze en wacht op de opslagbevestiging voordat u indient.'],
   missingMode: ['Mode de narration manquant.', 'Narration mode is missing.', 'Falta el modo de narración.', 'Der Erzählmodus fehlt.', 'Manca la modalità di narrazione.', 'Vertelmodus ontbreekt.'],
   mode: ['Mode déclaré : {0}.', 'Declared mode: {0}.', 'Modo declarado: {0}.', 'Angegebener Modus: {0}.', 'Modalità dichiarata: {0}.', 'Opgegeven modus: {0}.'],
   missingTitle: ['{0} scène(s) sans titre.', 'Scenes without a title: {0}.', 'Escenas sin título: {0}.', 'Szenen ohne Titel: {0}.', 'Scene senza titolo: {0}.', 'Scènes zonder titel: {0}.'],

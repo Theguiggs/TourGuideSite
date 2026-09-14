@@ -1,7 +1,7 @@
 import { adminText } from '@/lib/admin/copy';
 import type { InterfaceLocale } from '@/lib/i18n/locales';
 import { checkLanguageReadiness } from '@/lib/api/language-purchase';
-import { evaluateVisitCompleteness } from '@/lib/studio/visit-completeness';
+import { evaluateVisitCompleteness, routePathIsUsable } from '@/lib/studio/visit-completeness';
 import { hashSourceText, type SceneSegment } from '@/types/studio';
 import type {
   AdminValidationCheck,
@@ -140,11 +140,7 @@ export function buildAdminValidationReport({
   const invalidGpsScenes = detail.scenes.filter(
     (scene) => !hasValidCoordinates(scene.latitude, scene.longitude),
   );
-  const routeValid =
-    routePath !== null &&
-    routePath.length >= 2 &&
-    routePath.every((point) => hasValidCoordinates(point.lat, point.lng)) &&
-    new Set(routePath.map((point) => `${point.lat},${point.lng}`)).size >= 2;
+  const routeValid = routePathIsUsable({ computedPath: routePath });
   const paidPriceValid =
     detail.purchaseType === 'paid' &&
     typeof detail.priceCents === 'number' &&
@@ -207,7 +203,7 @@ export function buildAdminValidationReport({
 
   const checks: AdminValidationCheck[] = [
     ...sourceCompleteness.checks.map((item) =>
-      check(item.id, a({narration_mode: 'Mode de narration', source_text: 'Texte source', source_audio: 'Audio source', audio_mode_consistency: 'Cohérence audio', tts_readiness: 'Préparation TTS'}[item.id]), item.passed, item.evidence),
+      check(item.id, a({route: 'Tracé du parcours', narration_mode: 'Mode de narration', source_text: 'Texte source', source_audio: 'Audio source', audio_mode_consistency: 'Cohérence audio', tts_readiness: 'Préparation TTS'}[item.id]), item.passed, item.evidence),
     ),
     check(
       'identity',

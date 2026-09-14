@@ -3,6 +3,7 @@ import type { InterfaceLocale } from '@/lib/i18n/locales';
 import { completenessCopy } from './completeness-copy';
 
 export type VisitCompletenessCheckId =
+  | 'route'
   | 'narration_mode'
   | 'source_text'
   | 'source_audio'
@@ -149,31 +150,39 @@ export function evaluateVisitCompleteness(input: VisitCompletenessInput, locale:
 }
 
 export function evaluateStudioVisit(
-  session: Pick<StudioSession, 'narrationMode' | 'language'>,
+  session: Pick<StudioSession, 'narrationMode' | 'language' | 'routePath'>,
   scenes: VisitCompletenessInput['scenes'],
   locale: InterfaceLocale = 'fr',
 ): VisitCompletenessReport {
-  return evaluateVisitCompleteness({
+  const report = evaluateVisitCompleteness({
     narrationMode: session.narrationMode,
     sourceLanguage: session.language,
     scenes,
   }, locale);
+  const routeValid = routePathIsUsable(session.routePath);
+  return {
+    ...report,
+    ready: report.ready && routeValid,
+    checks: [...report.checks, makeCheck('route', routeValid,
+      completenessCopy(locale, routeValid ? 'routeReady' : 'routeMissing'))],
+  };
 }
 
-export function routePathIsUsable(routePath: RoutePath | null | undefined): boolean {
+export function routePathIsUsable(routePath: Pick<RoutePath, 'computedPath'> | null | undefined): boolean {
   const points = routePath?.computedPath;
   return (
     Array.isArray(points) &&
     points.length >= 2 &&
     points.every(
       (point) =>
+        point !== null &&
+        typeof point === 'object' &&
         Number.isFinite(point.lat) &&
         Number.isFinite(point.lng) &&
         point.lat >= -90 &&
         point.lat <= 90 &&
         point.lng >= -180 &&
         point.lng <= 180,
-    ) &&
-    new Set(points.map((point) => `${point.lat},${point.lng}`)).size >= 2
+    )
   );
 }
