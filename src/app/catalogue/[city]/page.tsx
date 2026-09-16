@@ -12,6 +12,7 @@ import { getGuidesByCity } from '@/lib/api/guides-public-server';
 import { TourListWithFilter } from './tour-list-filter';
 import { PageTitle } from '@murmure/design-system/web';
 import { CityOverview } from '@/components/catalogue/city-overview';
+import { CityArticles } from '@/components/editorial/city-articles';
 import { LanguageSuggestion } from '@/components/i18n/language-suggestion';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { breadcrumbJsonLd } from '@/lib/seo/json-ld';
@@ -87,6 +88,7 @@ export async function LocalizedCityPage({ params, searchParams, locale = 'fr' }:
       <CityOverview cityName={city.name} citySlug={citySlug} tours={tours} locale={locale} />
 
       <TourListWithFilter initialFilters={serializeFilters(await searchParams)} tours={tours} citySlug={citySlug} locale={locale} />
+      <CityArticles citySlug={citySlug} cityName={city.name} locale={locale} />
 
       {/* Guides locaux */}
       {guides.length > 0 && (

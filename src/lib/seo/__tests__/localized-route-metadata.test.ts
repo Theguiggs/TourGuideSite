@@ -30,6 +30,17 @@ it.each(['es', 'de', 'it', 'nl'] as const)('keeps private routes out of indexes 
   expect(city.robots).toBeUndefined();
 
   // Le catalogue a désormais ses propres métadonnées dans les six langues.
+  // Les conseils : l'index est publié partout, un article FR+EN ne l'est pas ici.
+  const tips = await generateMetadata({ params: Promise.resolve({ locale, segments: ['tips'] }), searchParams: Promise.resolve({}) });
+  expect(tips.alternates?.canonical).toBe(publicUrl('/conseils', locale));
+  expect(tips.robots).toBeUndefined();
+  const article = await generateMetadata({ params: Promise.resolve({ locale, segments: ['tips', 'visiter-eze-a-pied'] }), searchParams: Promise.resolve({}) });
+  expect(article.alternates?.canonical).toBe(publicUrl('/conseils/visiter-eze-a-pied', locale));
+  expect(article.robots).toEqual({ index: false, follow: true });
+  const grasse = await generateMetadata({ params: Promise.resolve({ locale, segments: ['tips', 'visiter-grasse-a-pied'] }), searchParams: Promise.resolve({}) });
+  expect(grasse.robots).toBeUndefined();
+  expect(grasse.alternates?.languages?.[locale]).toBe(publicUrl('/conseils/visiter-grasse-a-pied', locale));
+
   const catalogue = await generateMetadata({ params: Promise.resolve({ locale, segments: ['catalogue'] }), searchParams: Promise.resolve({}) });
   expect(catalogue.alternates?.canonical).toBe(publicUrl('/catalogue', locale));
   expect(catalogue.alternates?.languages?.['x-default']).toBe(publicUrl('/catalogue', 'fr'));

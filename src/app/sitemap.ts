@@ -4,6 +4,7 @@ import { getCities, getAllTours } from '@/lib/api/tours-server';
 import { getAllPublicGuides } from '@/lib/api/guides-public-server';
 import { orderLocales, sitemapEntries } from '@/lib/seo/urls';
 import { EVERGREEN_LOCALES, citySeoLocales, guideSeoLocales, tourSeoLocales } from '@/lib/seo/availability';
+import { ARTICLES, articleLocales, articleSourcePath, latestArticleDate, tipsIndexLocales, TIPS_SOURCE_PATH } from '@/lib/editorial/articles';
 
 // Force dynamic rendering: server AppSync client reads cookies, incompatible with static generation.
 export const dynamic = 'force-dynamic';
@@ -78,6 +79,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...pages('/supprimer-mon-compte', EVERGREEN_LOCALES, { lastModified: built, changeFrequency: 'yearly', priority: 0.3 }),
   ];
 
+  // Conseils de visite : l'index dans les langues où il a au moins un article,
+  // chaque article dans les siennes — le registre décide, pas le sitemap.
+  const tipsPages: MetadataRoute.Sitemap = [
+    ...pages(TIPS_SOURCE_PATH, tipsIndexLocales(), { lastModified: parseDate(latestArticleDate()) ?? built, changeFrequency: 'weekly', priority: 0.6 }),
+    ...ARTICLES.flatMap((article) =>
+      pages(articleSourcePath(article), articleLocales(article), {
+        lastModified: parseDate(article.updatedAt ?? article.publishedAt),
+        changeFrequency: 'monthly',
+        priority: 0.6,
+      }),
+    ),
+  ];
+
   const cityPages: MetadataRoute.Sitemap = cities.flatMap((city) => {
     const cityTours = tours.filter((t) => t.citySlug === city.slug);
     return pages(
@@ -115,5 +129,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     );
   });
 
-  return [...staticPages, ...cityPages, ...tourPages, ...guidePages];
+  return [...staticPages, ...tipsPages, ...cityPages, ...tourPages, ...guidePages];
 }

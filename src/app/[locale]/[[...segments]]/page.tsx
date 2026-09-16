@@ -20,6 +20,9 @@ import { LocalizedHelpPage } from '@/app/aide/localized-help';
 import { CreatorHome } from '@/components/home/creator-home';
 import { helpMetadata } from '@/lib/help-metadata';
 import { creatorMetadata } from '@/lib/creator-metadata';
+import { TipsIndex } from '@/components/editorial/editorial-index';
+import { tipsIndexMetadata } from '@/lib/seo/article-metadata';
+import { LocalizedArticlePage, articlePageMetadata } from '@/app/conseils/[slug]/page';
 
 export const dynamic = 'force-dynamic';
 type Props = { params: Promise<{ locale: string; segments?: string[] }>; searchParams: Promise<Record<string, string | string[] | undefined>> };
@@ -37,6 +40,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (segments[0] === 'catalogue' && segments.length === 2) return cityPageMetadata(segments[1], locale);
   if (segments[0] === 'catalogue' && segments.length === 3) return tourPageMetadata(segments[1], segments[2], locale);
   if (segments[0] === 'guides' && segments.length === 2) return guideMetadata(segments[1], locale);
+  if (segments[0] === 'tips' && segments.length === 1) return tipsIndexMetadata(locale);
+  if (segments[0] === 'tips' && segments.length === 2) return articlePageMetadata(segments[1], locale);
   if (segments.length === 1) {
     if (segments[0] === 'help') return helpMetadata(locale);
     if (segments[0] === 'create-tours') return creatorMetadata(locale);
@@ -76,6 +81,8 @@ export default async function LocalizedPublicPage({ params, searchParams }: Prop
     }
   }
   if (segments[0] === 'guides' && segments.length === 2) return <LocalizedGuidePage locale={locale} params={Promise.resolve({ guideSlug: segments[1] })} />;
+  if (segments[0] === 'tips' && segments.length === 1) return <TipsIndex locale={locale} />;
+  if (segments[0] === 'tips' && segments.length === 2) return <LocalizedArticlePage slug={segments[1]} locale={locale} />;
   if (segments.length === 1) {
     switch (segments[0]) {
       case 'help': return <LocalizedHelpPage locale={locale} />;

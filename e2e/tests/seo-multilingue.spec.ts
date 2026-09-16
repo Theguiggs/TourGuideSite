@@ -160,6 +160,51 @@ test.describe('canonical, hreflang et x-default', () => {
   });
 });
 
+test.describe('conseils de visite', () => {
+  const ARTICLE_FR_EN = '/visiter-eze-a-pied';
+  const ARTICLE_SIX = '/visiter-grasse-a-pied';
+  /** `/conseils` devient `/tips` derrière un préfixe de langue (voir `PUBLIC_ROUTE_PAIRS`). */
+  const tips = (slug: string, locale: string) => (locale === 'fr' ? `/conseils${slug}` : `/${locale}/tips${slug}`);
+
+  test('un article FR+EN est indexable dans ses deux langues, et dans aucune autre', async ({ page }) => {
+    for (const locale of ['fr', 'en']) {
+      await page.goto(tips(ARTICLE_FR_EN, locale));
+      const h = await head(page);
+      expect(h.canonical).toBe(`${SITE}${tips(ARTICLE_FR_EN, locale)}`);
+      expect(h.robots ?? '').not.toContain('noindex');
+      expect(Object.keys(h.alternates).sort()).toEqual(['en', 'fr', 'x-default']);
+      expect(h.jsonLd.map((s) => s['@type'])).toEqual(expect.arrayContaining(['Article', 'BreadcrumbList']));
+      expect(h.h1).toBeTruthy();
+    }
+    await page.goto(tips(ARTICLE_FR_EN, 'de'));
+    const de = await head(page);
+    expect(de.robots).toContain('noindex');
+    expect(Object.keys(de.alternates)).toHaveLength(0);
+  });
+
+  test('l’index et l’article six langues sont au sitemap dans les six langues', async ({ request }) => {
+    const urls = new Set(await locs(request));
+    for (const locale of ['fr', 'en', 'es', 'de', 'it', 'nl']) {
+      expect(urls).toContain(`${SITE}${tips('', locale)}`);
+      expect(urls).toContain(`${SITE}${tips(ARTICLE_SIX, locale)}`);
+    }
+    for (const locale of ['es', 'de', 'it', 'nl']) expect(urls).not.toContain(`${SITE}${tips(ARTICLE_FR_EN, locale)}`);
+  });
+
+  test('un article inconnu rend un vrai 404, et l’ancienne adresse anglaise de Grasse redirige', async ({ request }) => {
+    expect((await request.get('/conseils/inconnu', { maxRedirects: 0 })).status()).toBe(404);
+    expect((await request.get('/en/tips/inconnu', { maxRedirects: 0 })).status()).toBe(404);
+    const legacy = await request.get('/en/tips/visit-grasse-on-foot', { maxRedirects: 0 });
+    expect(legacy.status()).toBe(308);
+    expect(legacy.headers()['location']).toContain('/en/tips/visiter-grasse-a-pied');
+  });
+
+  test('la fiche visite et la page ville relient l’article dans le HTML servi', async ({ request }) => {
+    const html = await (await request.get('/catalogue/grasse', { headers: { 'user-agent': ROBOT_UA } })).text();
+    expect(html).toContain(`href="${tips(ARTICLE_SIX, 'fr')}"`);
+  });
+});
+
 test.describe('codes reels et slugs inconnus', () => {
   /**
    * Les segments du catalogue portent un `loading.tsx` : le code HTTP part

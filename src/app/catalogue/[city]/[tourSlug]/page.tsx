@@ -34,6 +34,7 @@ import {
 } from '@/lib/api/audio-source-policy';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { tourMetadata } from '@/lib/seo/tour-metadata';
+import { TourEditorialNotes } from '@/components/editorial/tour-editorial-notes';
 import { publicPath } from '@/lib/seo/urls';
 import { tourSeoLocales } from '@/lib/seo/availability';
 import { LanguageSuggestion } from '@/components/i18n/language-suggestion';
@@ -545,6 +546,9 @@ export async function LocalizedTourDetailPage({ params, searchParams, locale = '
                 {tour.description}
               </p>
             </div>
+
+            {/* Texte éditorial écrit pour la visite, et conseils de sa ville. */}
+            <TourEditorialNotes citySlug={citySlug} tourSlug={tourSlug} locale={locale} />
 
             {/* Audio par langue — une langue vendue mais absente de la carte de
                 mentions doit apparaître, avec sa mention de synthèse. */}

@@ -106,6 +106,46 @@ export const CITY_INTROS: Readonly<Record<string, CityIntro>> = {
     it: 'Città vescovile millenaria, la cappella di Matisse e i vicoli provenzali.',
     nl: 'Duizend jaar oude bisschopsstad, de Matisse-kapel en Provençaalse steegjes.',
   },
+  eze: {
+    fr: "Village médiéval perché à plus de quatre cents mètres au-dessus de la mer, entre jardin exotique et sentier Nietzsche.",
+    en: 'A medieval village perched more than four hundred metres above the sea, between an exotic garden and the Nietzsche path.',
+    es: 'Pueblo medieval encaramado a más de cuatrocientos metros sobre el mar, entre un jardín exótico y el sendero Nietzsche.',
+    de: 'Mittelalterliches Dorf, mehr als vierhundert Meter über dem Meer, zwischen exotischem Garten und Nietzsche-Pfad.',
+    it: 'Borgo medievale arroccato a oltre quattrocento metri sul mare, tra il giardino esotico e il sentiero Nietzsche.',
+    nl: 'Middeleeuws dorp op meer dan vierhonderd meter boven zee, tussen een exotische tuin en het Nietzsche-pad.',
+  },
+  monaco: {
+    fr: 'Une principauté de deux kilomètres carrés, du Rocher des Grimaldi au casino de Monte-Carlo.',
+    en: 'A two-square-kilometre principality, from the Grimaldi Rock to the Monte-Carlo casino.',
+    es: 'Un principado de dos kilómetros cuadrados, del Peñón de los Grimaldi al casino de Montecarlo.',
+    de: 'Ein Fürstentum von zwei Quadratkilometern, vom Felsen der Grimaldi bis zum Casino von Monte-Carlo.',
+    it: 'Un principato di due chilometri quadrati, dalla Rocca dei Grimaldi al casinò di Monte-Carlo.',
+    nl: 'Een vorstendom van twee vierkante kilometer, van de Rots van de Grimaldi tot het casino van Monte-Carlo.',
+  },
+  'beaulieu-sur-mer': {
+    fr: 'Station de la Belle Époque au microclimat réputé, où Théodore Reinach a rebâti une villa grecque face à la mer.',
+    en: 'A Belle Époque resort with a famous microclimate, where Théodore Reinach rebuilt a Greek villa facing the sea.',
+    es: 'Estación de la Belle Époque con un microclima famoso, donde Théodore Reinach reconstruyó una villa griega frente al mar.',
+    de: 'Ein Badeort der Belle Époque mit berühmtem Mikroklima, wo Théodore Reinach eine griechische Villa am Meer nachbaute.',
+    it: 'Località della Belle Époque dal microclima celebre, dove Théodore Reinach ricostruì una villa greca davanti al mare.',
+    nl: 'Badplaats uit de Belle Époque met een beroemd microklimaat, waar Théodore Reinach een Griekse villa aan zee herbouwde.',
+  },
+  'saint-jean-cap-ferrat': {
+    fr: 'Une presqu’île de villas et de jardins, dont le sentier du littoral fait le tour, ouvert à tous.',
+    en: 'A peninsula of villas and gardens, circled by a coastal path that is open to everyone.',
+    es: 'Una península de villas y jardines, rodeada por un sendero litoral abierto a todos.',
+    de: 'Eine Halbinsel voller Villen und Gärten, umrundet von einem Küstenpfad, der allen offensteht.',
+    it: 'Una penisola di ville e giardini, circondata da un sentiero costiero aperto a tutti.',
+    nl: 'Een schiereiland van villa’s en tuinen, omringd door een kustpad dat voor iedereen open is.',
+  },
+  'roquebrune-cap-martin': {
+    fr: 'Un village médiéval au château de l’an mil, et sur le rivage le cabanon de neuf mètres carrés de Le Corbusier.',
+    en: 'A medieval village with a castle from the year 1000, and on the shore Le Corbusier’s nine-square-metre cabin.',
+    es: 'Un pueblo medieval con un castillo del año mil y, en la orilla, la cabaña de nueve metros cuadrados de Le Corbusier.',
+    de: 'Ein mittelalterliches Dorf mit einer Burg aus dem Jahr 1000 und am Ufer Le Corbusiers neun Quadratmeter große Hütte.',
+    it: 'Un borgo medievale con un castello dell’anno mille e, sulla riva, il cabanon di nove metri quadrati di Le Corbusier.',
+    nl: 'Een middeleeuws dorp met een kasteel uit het jaar 1000, en aan de kust de negen vierkante meter grote hut van Le Corbusier.',
+  },
 };
 
 /** L'introduction relue de la ville, ou `undefined` si elle n'existe pas encore. */
