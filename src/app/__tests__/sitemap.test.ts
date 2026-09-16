@@ -78,6 +78,22 @@ describe('sitemap', () => {
     expect(entries.some((e) => e.url === publicUrl('/guides/marie', 'it'))).toBe(false);
   });
 
+  it('liste les conseils de visite dans leurs seules langues publiées, datés de leur publication', async () => {
+    const entries = await sitemap();
+    const byUrl = new Map(entries.map((e) => [e.url, e]));
+    // Article FR + EN : deux entrées, groupe à deux langues plus x-default.
+    const fr = byUrl.get(publicUrl('/conseils/visiter-eze-a-pied', 'fr'));
+    expect(fr?.lastModified).toEqual(new Date('2026-09-16'));
+    expect(fr?.alternates?.languages).toEqual(hreflangGroup('/conseils/visiter-eze-a-pied', ['fr', 'en']));
+    expect(byUrl.has(publicUrl('/conseils/visiter-eze-a-pied', 'en'))).toBe(true);
+    for (const locale of ['es', 'de', 'it', 'nl'] as const) expect(byUrl.has(publicUrl('/conseils/visiter-eze-a-pied', locale))).toBe(false);
+    // Article six langues, et l'index dans les six langues.
+    for (const locale of SITE_LOCALES) {
+      expect(byUrl.has(publicUrl('/conseils/visiter-grasse-a-pied', locale))).toBe(true);
+      expect(byUrl.get(publicUrl('/conseils', locale))?.alternates?.languages).toEqual(hreflangGroup('/conseils', SITE_LOCALES));
+    }
+  });
+
   it('n’expose ni ville vide ni guide sans visite publiée', async () => {
     const urls = (await sitemap()).map((e) => e.url);
     expect(urls.some((u) => u.includes('/catalogue/vide'))).toBe(false);

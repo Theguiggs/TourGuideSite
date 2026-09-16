@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
   },
   output: 'standalone',
   typescript: { ignoreBuildErrors: process.env.SKIP_NEXT_TYPECHECK === 'true' },
+  // L'article de Grasse a d'abord été publié sous un slug anglais distinct ;
+  // les articles portent désormais un seul slug dans les six langues.
+  async redirects() {
+    return [{ source: '/en/tips/visit-grasse-on-foot', destination: '/en/tips/visiter-grasse-a-pied', permanent: true }];
+  },
   async rewrites() {
     return [{ source: '/hors-ligne', destination: '/offline/fr.html' }, { source: '/en/hors-ligne', destination: '/offline/en.html' },
       ...['es', 'de', 'it', 'nl'].map(locale => ({ source: `/${locale}/hors-ligne`, destination: `/offline/${locale}.html` }))];

@@ -23,6 +23,7 @@ export const PUBLIC_ROUTE_PAIRS: ReadonlyArray<readonly [string, string]> = [
   ['/confidentialite', '/en/privacy'],
   ['/cgu', '/en/terms'],
   ['/aide', '/en/help'],
+  ['/conseils', '/en/tips'],
   ['/catalogue', '/en/catalogue'],
   ['/guides', '/en/guides'],
   ['/', '/en'],

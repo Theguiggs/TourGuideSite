@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { tg } from '@murmure/design-system/tokens';
 import pkg from '../../package.json';
 import { APP_STORE_URLS } from '@/lib/app-store';
+import { publicPath } from '@/lib/seo/urls';
+import { TIPS_NAV_LABEL } from '@/lib/editorial/editorial-copy';
+import { TIPS_SOURCE_PATH } from '@/lib/editorial/articles';
 
 /**
  * Empreinte du build, gravée au moment où l'image est construite.
@@ -119,6 +122,15 @@ export default function Footer({ locale = 'fr' }: FooterProps) {
                   className="hover:opacity-80"
                 >
                   {copy.help}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={publicPath(TIPS_SOURCE_PATH, locale)}
+                  style={{ color: tg.colors.paperSoft }}
+                  className="hover:opacity-80"
+                >
+                  {TIPS_NAV_LABEL[locale]}
                 </Link>
               </li>
               <li>

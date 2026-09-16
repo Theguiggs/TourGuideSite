@@ -25,6 +25,7 @@ import type { PublicGuideProfile } from '@/lib/api/guides-public';
 import type { Tour, TourDetail } from '@/types/tour';
 import { cityCountry } from '@/lib/cities/city-country';
 import { absoluteUrl, SITE_URL } from '@/lib/site';
+import { articleSourcePath, resolveArticleCopy, type EditorialArticle } from '@/lib/editorial/articles';
 import { publicUrl } from '@/lib/seo/urls';
 
 const ORGANIZATION = { '@type': 'Organization', name: 'Murmure', url: SITE_URL } as const;
@@ -163,6 +164,37 @@ export function breadcrumbJsonLd(
       name: item.name,
       ...(item.path ? { item: absoluteUrl(item.path) } : {}),
     })),
+  };
+}
+
+/**
+ * Un article de conseils : le schéma dit ce que la page montre — titre,
+ * chapeau, image quand il y en a une, langue servie, dates, éditeur — et le
+ * lieu dont il parle. Sur une langue de repli, la langue déclarée est celle du
+ * texte réellement servi, pas celle de l'URL.
+ */
+export function articleJsonLd(article: EditorialArticle, locale: InterfaceLocale): Record<string, unknown> {
+  const { copy, locale: served } = resolveArticleCopy(article, locale);
+  const url = publicUrl(articleSourcePath(article), locale);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': url,
+    mainEntityOfPage: url,
+    url,
+    headline: copy.title,
+    description: copy.description,
+    ...(article.image ? { image: absoluteUrl(article.image.src) } : {}),
+    inLanguage: LOCALE_FORMATS[served],
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
+    author: { '@type': 'Organization', name: 'Murmure', url: SITE_URL },
+    publisher: { '@type': 'Organization', name: 'Murmure', url: SITE_URL, logo: { '@type': 'ImageObject', url: absoluteUrl('/opengraph-image') } },
+    about: {
+      '@type': 'Place',
+      name: article.city.name,
+      address: { '@type': 'PostalAddress', addressLocality: article.city.name, addressCountry: article.city.country },
+    },
   };
 }
 
