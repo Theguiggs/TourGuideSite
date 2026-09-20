@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import LandingPage, { metadata } from '../page';
+import LandingPage, { generateMetadata } from '../page';
 import EnglishLanding from '../en/page';
 import { CreatorHome } from '@/components/home/creator-home';
 import { SITE_URL } from '@/lib/site';
@@ -29,6 +29,7 @@ describe('EV-2 — accueil visiteur', () => {
     expect(screen.getByRole('link', { name: 'Create tours' })).toHaveAttribute('href', '/en/create-tours');
   });
   it('aligne les métadonnées sur la découverte et l’écoute', () => {
+    const metadata = generateMetadata();
     expect(metadata.description).toContain('écoutez un extrait');
     expect(metadata.openGraph).toEqual(expect.objectContaining({ url: SITE_URL, locale: 'fr_FR' }));
     expect(metadata.twitter).toEqual(expect.objectContaining({ description: metadata.description }));

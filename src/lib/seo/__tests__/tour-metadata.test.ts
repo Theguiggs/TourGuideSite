@@ -2,7 +2,7 @@ import { tourMetadata, tourSeoDescription, tourSeoTitle } from '../tour-metadata
 import { SITE_LOCALES } from '@/lib/i18n/locales';
 import { publicUrl } from '@/lib/seo/urls';
 
-const tour = { title: 'Vieux Nice', city: 'Nice', shortDescription: 'Ruelles', description: 'Long' };
+const tour = { title: 'Vieux Nice', city: 'Nice', shortDescription: 'Ruelles', description: 'Long', purchaseType: 'paid' as const };
 /** Visite publiée FR (source) + EN traduit et narré. */
 const bilingue = {
   ...tour,
@@ -13,20 +13,51 @@ const bilingue = {
 };
 
 describe('tourMetadata', () => {
+  const activeOffer = Date.parse('2026-09-20T10:00:00.000Z');
+
+  beforeAll(() => {
+    process.env.NEXT_PUBLIC_LAUNCH_FREE_ACCESS_START_AT = '2026-09-13T14:33:14.123Z';
+    process.env.NEXT_PUBLIC_LAUNCH_FREE_ACCESS_END_AT = '2026-10-13T14:33:14.123Z';
+  });
+
+  afterAll(() => {
+    delete process.env.NEXT_PUBLIC_LAUNCH_FREE_ACCESS_START_AT;
+    delete process.env.NEXT_PUBLIC_LAUNCH_FREE_ACCESS_END_AT;
+  });
+
+  it('met en avant la gratuité temporaire dans le titre et la description', () => {
+    const meta = tourMetadata(tour, 'nice', 'vieux-nice', 'fr', activeOffer);
+    expect(meta.title).toBe('Vieux Nice — visite audio gratuite à Nice');
+    expect(meta.description).toContain('Visite audio gratuite à Nice jusqu’au 13 octobre 2026.');
+  });
+
+  it('retire automatiquement la promotion après sa date de fin', () => {
+    const meta = tourMetadata(tour, 'nice', 'vieux-nice', 'fr', Date.parse('2026-10-14T10:00:00.000Z'));
+    expect(meta.title).toBe('Vieux Nice — visite audio à Nice');
+    expect(meta.description).not.toContain('gratuite');
+  });
+
+  it('continue de signaler une visite gratuite en permanence après la promotion', () => {
+    const meta = tourMetadata({ ...tour, purchaseType: 'free' }, 'nice', 'vieux-nice', 'fr', Date.parse('2026-10-14T10:00:00.000Z'));
+    expect(meta.title).toBe('Vieux Nice — visite audio gratuite à Nice');
+    expect(meta.description).toContain('Visite audio gratuite à Nice.');
+    expect(meta.description).not.toContain('13 octobre');
+  });
+
   it('keeps source-language metadata aligned with rendered source text', () => {
     const source = { ...tour, sourceLanguage: 'de-DE', translatedTitles: { de: 'Stale translation' }, translatedDescriptions: { de: 'Stale description' } };
-    expect(tourMetadata(source, 'nice', 'vieux-nice', 'de').title).toBe('Vieux Nice — Audiotour in Nice');
+    expect(tourMetadata(source, 'nice', 'vieux-nice', 'de', Date.parse('2026-10-14T10:00:00.000Z')).title).toBe('Vieux Nice — Audiotour in Nice');
   });
 
   it('part du texte traduit que la fiche affiche, pas d’une autre source', () => {
     const description = 'Beschreibung der Altstadt von Nizza. '.repeat(10);
-    const meta = tourMetadata({ ...tour, sourceLanguage: 'fr', availableLanguages: ['fr', 'de'], translatedTitles: { de: 'Altstadt' }, translatedDescriptions: { de: description } }, 'nice', 'vieux-nice', 'de');
+    const meta = tourMetadata({ ...tour, sourceLanguage: 'fr', availableLanguages: ['fr', 'de'], translatedTitles: { de: 'Altstadt' }, translatedDescriptions: { de: description } }, 'nice', 'vieux-nice', 'de', Date.parse('2026-10-14T10:00:00.000Z'));
     expect(meta.title).toBe('Altstadt — Audiotour in Nice');
     expect(description.startsWith(String(meta.description).replace('…', ''))).toBe(true);
   });
 
   it('donne à la fiche EN la même parure OG/Twitter que la FR, en anglais', () => {
-    const en = tourMetadata(bilingue, 'nice', 'vieux-nice', 'en');
+    const en = tourMetadata(bilingue, 'nice', 'vieux-nice', 'en', Date.parse('2026-10-14T10:00:00.000Z'));
     expect(en.alternates?.canonical).toBe(publicUrl('/catalogue/nice/vieux-nice', 'en'));
     expect(en.title).toBe('Old Nice — audio tour in Nice');
     expect(en.openGraph).toMatchObject({
@@ -40,15 +71,15 @@ describe('tourMetadata', () => {
   });
 
   it('la FR garde sa locale et son alt', () => {
-    const fr = tourMetadata(tour, 'nice', 'vieux-nice', 'fr');
+    const fr = tourMetadata(tour, 'nice', 'vieux-nice', 'fr', Date.parse('2026-10-14T10:00:00.000Z'));
     expect(fr.alternates?.canonical).toBe(publicUrl('/catalogue/nice/vieux-nice', 'fr'));
     expect(fr.openGraph).toMatchObject({ locale: 'fr_FR', images: [{ alt: 'Vieux Nice — visite audio à Nice' }] });
   });
 
   it('retombe sur une accroche par langue quand la visite n’en a pas', () => {
     const bare = { title: 'X', city: 'Nice', shortDescription: '', description: '', duration: 45 };
-    expect(tourMetadata(bare, 'nice', 'x', 'en').description).toContain('An immersive audio walking tour.');
-    expect(tourMetadata(bare, 'nice', 'x', 'fr').description).toContain('Une visite à découvrir.');
+    expect(tourMetadata(bare, 'nice', 'x', 'en', Date.parse('2026-10-14T10:00:00.000Z')).description).toContain('An immersive audio walking tour.');
+    expect(tourMetadata(bare, 'nice', 'x', 'fr', Date.parse('2026-10-14T10:00:00.000Z')).description).toContain('Une visite à découvrir.');
   });
 });
 

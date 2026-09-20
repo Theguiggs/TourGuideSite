@@ -3,6 +3,7 @@ import type { City } from '@/types/tour';
 import { LOCALE_FORMATS, type InterfaceLocale } from '@/lib/i18n/locales';
 import { seoAlternates } from '@/lib/seo/urls';
 import { EVERGREEN_LOCALES } from '@/lib/seo/availability';
+import { activeFreeAccessCopy } from '@/lib/seo/free-access-copy';
 
 const copy: Record<InterfaceLocale, { title: (city: string) => string; description: (city: string, count: number) => string }> = {
   fr: { title: city => `Visites guidées audio à ${city}`, description: (city, count) => `Découvrez ${count} visites guidées audio à ${city}. Consultez chaque visite pour connaître les langues audio disponibles.` },
@@ -25,8 +26,12 @@ export function cityMetadata(
   city: Pick<City, 'name' | 'slug' | 'tourCount'>,
   locale: InterfaceLocale,
   published: Iterable<InterfaceLocale> = EVERGREEN_LOCALES,
+  now = Date.now(),
 ): Metadata {
-  const title = copy[locale].title(city.name), description = copy[locale].description(city.name, city.tourCount);
+  const freeAccess = activeFreeAccessCopy(locale, now);
+  const title = freeAccess?.cityTitle(city.name) ?? copy[locale].title(city.name);
+  const description = freeAccess?.cityDescription(city.name, city.tourCount, freeAccess.endDate)
+    ?? copy[locale].description(city.name, city.tourCount);
   const { alternates, robots } = seoAlternates({ sourcePath: `/catalogue/${city.slug}`, locale, published });
   const images = [{ url: locale === 'fr' ? '/opengraph-image' : `/${locale}/opengraph-image`, width: 1200, height: 630, alt: title }];
   return { title, description, alternates, ...(robots ? { robots } : {}),
