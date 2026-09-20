@@ -4,6 +4,7 @@ import type { Tour } from '@/types/tour';
 import { localizeTour } from '@/lib/catalogue/localized-tour';
 import { seoAlternates } from '@/lib/seo/urls';
 import { tourSeoLocales, type SeoTour } from '@/lib/seo/availability';
+import { activeFreeAccessCopy, freeAccessCopy } from '@/lib/seo/free-access-copy';
 
 /**
  * Métadonnées d'une fiche visite, à parité dans les six langues.
@@ -83,8 +84,8 @@ function trimToLength(text: string, max: number): string {
 }
 
 /** Le titre de recherche : la visite, puis sa ville. */
-export function tourSeoTitle(title: string, city: string, locale: InterfaceLocale): string {
-  return `${title} — ${COPY[locale].audioTourIn(city)}`;
+export function tourSeoTitle(title: string, city: string, locale: InterfaceLocale, free = false): string {
+  return `${title} — ${free ? freeAccessCopy(locale).tourLabel(city) : COPY[locale].audioTourIn(city)}`;
 }
 
 /**
@@ -94,25 +95,34 @@ export function tourSeoTitle(title: string, city: string, locale: InterfaceLocal
 export function tourSeoDescription(
   tour: Pick<Tour, 'description' | 'shortDescription' | 'city' | 'duration'>,
   locale: InterfaceLocale,
+  free?: { endDate?: string },
 ): string {
   const copy = COPY[locale];
   const own = (tour.description || tour.shortDescription || '').trim();
-  const base = own ? trimToLength(own, DESCRIPTION_MAX) : copy.fallback;
+  const lead = free ? freeAccessCopy(locale).tourLead(tour.city, free.endDate) : '';
+  const base = own ? trimToLength(`${lead} ${own}`.trim(), DESCRIPTION_MAX) : `${lead} ${copy.fallback}`.trim();
   if (base.length >= DESCRIPTION_MIN) return base;
   const complement = copy.complement(tour.city, Math.round(tour.duration ?? 0));
   return trimToLength(`${base} ${complement}`, DESCRIPTION_MAX);
 }
 
 export function tourMetadata(
-  tour: Pick<Tour, 'title' | 'city' | 'shortDescription' | 'description'> & Partial<Pick<Tour, 'duration'>> & SeoTour,
+  tour: Pick<Tour, 'title' | 'city' | 'shortDescription' | 'description'> & Partial<Pick<Tour, 'duration' | 'purchaseType'>> & SeoTour,
   citySlug: string,
   tourSlug: string,
   locale: InterfaceLocale,
+  now = Date.now(),
 ): Metadata {
   const published = tourSeoLocales(tour);
   tour = localizeTour(tour, locale);
-  const description = tourSeoDescription({ ...tour, duration: tour.duration ?? 0 }, locale);
-  const title = tourSeoTitle(tour.title, tour.city, locale);
+  const launchOffer = activeFreeAccessCopy(locale, now);
+  const isFree = launchOffer !== null || tour.purchaseType === undefined || tour.purchaseType === 'free';
+  const description = tourSeoDescription(
+    { ...tour, duration: tour.duration ?? 0 },
+    locale,
+    isFree ? { endDate: launchOffer?.endDate } : undefined,
+  );
+  const title = tourSeoTitle(tour.title, tour.city, locale, isFree);
   const { alternates, robots } = seoAlternates({ sourcePath: `/catalogue/${citySlug}/${tourSlug}`, locale, published });
   const images = [{ url: `/og/tour/${citySlug}/${tourSlug}?locale=${locale}`, width: 1200, height: 630, alt: title }];
 

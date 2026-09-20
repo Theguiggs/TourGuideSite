@@ -10,9 +10,11 @@ import { publicPath } from '@/lib/seo/urls';
 import { safeJsonLd } from '@/lib/security/safe-json-ld';
 import { siteJsonLd } from '@/lib/seo/json-ld';
 import { LanguageSuggestion } from '@/components/i18n/language-suggestion';
+import { activeFreeAccessCopy } from '@/lib/seo/free-access-copy';
 
 export function VisitorHome({ locale }: { locale: InterfaceLocale }) {
   const t = (fr: string, en: string) => translate(locale, fr, en);
+  const freeAccess = activeFreeAccessCopy(locale);
   
   const steps = [
     { icon: MapPin, title: t('Choisissez votre visite', 'Choose your tour'), body: t('Trouvez une ville et une histoire qui vous donnent envie.', 'Find a city and a story you want to explore.') },
@@ -29,8 +31,8 @@ export function VisitorHome({ locale }: { locale: InterfaceLocale }) {
     <section className="bg-paper" aria-labelledby="home-title">
       <div className="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-2 lg:items-center lg:gap-12 lg:px-8 lg:py-16">
         <div>
-          <h1 id="home-title" className="max-w-2xl font-display text-h4 leading-tight text-ink sm:text-h3 lg:text-h2">{t('Découvrez la ville autrement.', 'Hear a different side of the city.')}</h1>
-          <p className="mt-4 max-w-xl text-body text-ink-80 sm:text-body-lg">{t('Choisissez une visite audio, écoutez un extrait et laissez les lieux vous raconter leurs histoires.', 'Choose an audio tour, listen to a preview and discover the stories behind the places.')}</p>
+          <h1 id="home-title" className="max-w-2xl font-display text-h4 leading-tight text-ink sm:text-h3 lg:text-h2">{freeAccess?.heroTitle ?? t('Découvrez la ville autrement.', 'Hear a different side of the city.')}</h1>
+          <p className="mt-4 max-w-xl text-body text-ink-80 sm:text-body-lg">{freeAccess?.heroDescription(freeAccess.endDate) ?? t('Choisissez une visite audio, écoutez un extrait et laissez les lieux vous raconter leurs histoires.', 'Choose an audio tour, listen to a preview and discover the stories behind the places.')}</p>
         </div>
         <div>
           <form action={publicPath('/catalogue', locale)} method="get" role="search" aria-label={t('Trouver une visite', 'Find a tour')} className="rounded-lg bg-card p-4 sm:p-6">
