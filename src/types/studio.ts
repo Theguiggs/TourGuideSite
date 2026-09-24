@@ -77,6 +77,8 @@ export interface StudioSession {
     purchaseType: 'free' | 'paid' | 'subscription_only' | null;
     priceCents: number | null;
   } | null;
+  /** Nombre d'audios traduits déjà publiés sur la Visite (hors langue source). */
+  publishedTranslatedAudioCount?: number;
   createdAt: string;
   updatedAt: string;
 }

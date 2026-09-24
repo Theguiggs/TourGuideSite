@@ -135,6 +135,17 @@ describe('TourCard', () => {
     expect(screen.queryByTestId('tour-card-access')).not.toBeInTheDocument();
   });
 
+  it("signale les audios traduits déjà existants avec leur nombre", () => {
+    render(<TourCard session={mkSession({ id: 's1', publishedTranslatedAudioCount: 6 })} />);
+    expect(screen.getByTestId('tour-card-audio')).toHaveTextContent('Audio existant');
+    expect(screen.getByTestId('tour-card-audio')).toHaveTextContent('6');
+  });
+
+  it("masque l'indicateur quand aucun audio traduit n'existe", () => {
+    render(<TourCard session={mkSession({ id: 's1', publishedTranslatedAudioCount: 0 })} />);
+    expect(screen.queryByTestId('tour-card-audio')).not.toBeInTheDocument();
+  });
+
   it("compte les langues créées transmises par la page, pas seulement celles vendues", () => {
     render(<TourCard session={mkSession({ id: 's1', availableLanguages: [] })} langs={['FR', 'EN', 'DE']} />);
     expect(screen.getByTestId('tour-card-langs')).toHaveTextContent('FR');
