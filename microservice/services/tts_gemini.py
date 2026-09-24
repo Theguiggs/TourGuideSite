@@ -27,6 +27,9 @@ from services.tts_provider import (
 logger = logging.getLogger("tourguide-microservice.tts.gemini")
 
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/interactions"
+GENERATE_CONTENT_ENDPOINT = (
+    "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+)
 DEFAULT_MODEL = "gemini-3.8-flash-tts"
 DEFAULT_STYLE = (
     "Narration de visite culturelle haut de gamme, chaleureuse et immersive. "
@@ -90,9 +93,9 @@ def _tokens_par_modalite(usage: object, champ: str, modalite: str) -> int | None
     total = 0
     trouve = False
     for ligne in lignes:
-        if not isinstance(ligne, dict) or ligne.get("modality") != modalite:
+        if not isinstance(ligne, dict) or str(ligne.get("modality", "")).lower() != modalite.lower():
             continue
-        valeur = ligne.get("tokens")
+        valeur = ligne.get("tokens", ligne.get("tokenCount"))
         if isinstance(valeur, int) and not isinstance(valeur, bool) and valeur >= 0:
             total += valeur
             trouve = True
@@ -111,6 +114,21 @@ def _audio_sortie(corps: object) -> dict | None:
     raccourci = corps.get("output_audio")
     if isinstance(raccourci, dict) and isinstance(raccourci.get("data"), str):
         return raccourci
+    candidats = corps.get("candidates")
+    if isinstance(candidats, list):
+        for candidat in candidats:
+            if not isinstance(candidat, dict):
+                continue
+            contenu = candidat.get("content")
+            parties = contenu.get("parts") if isinstance(contenu, dict) else None
+            if not isinstance(parties, list):
+                continue
+            for partie in parties:
+                if not isinstance(partie, dict):
+                    continue
+                audio = partie.get("inlineData") or partie.get("inline_data")
+                if isinstance(audio, dict) and isinstance(audio.get("data"), str):
+                    return audio
     etapes = corps.get("steps")
     if not isinstance(etapes, list):
         return None
@@ -146,6 +164,9 @@ class GeminiTTSProvider:
         self._api_key = api_key
         self.model = choisi
         self._style = (style or os.getenv("GEMINI_TTS_STYLE") or DEFAULT_STYLE).strip()
+        self._api_mode = (os.getenv("GEMINI_TTS_API_MODE") or "interactions").strip().lower()
+        if self._api_mode not in {"interactions", "generate-content"}:
+            raise ProviderError("GEMINI_TTS_API_MODE invalide")
         self._timeout_s = timeout_s if timeout_s is not None else TIMEOUT_S
         self._session = None
         self._usage: dict[str, int | str | None] = {
@@ -160,8 +181,13 @@ class GeminiTTSProvider:
 
         if self._session is None:
             self._session = requests.Session()
+        endpoint = (
+            ENDPOINT
+            if self._api_mode == "interactions"
+            else GENERATE_CONTENT_ENDPOINT.format(model=self.model)
+        )
         return self._session.post(
-            ENDPOINT,
+            endpoint,
             json=payload,
             headers={
                 "x-goog-api-key": self._api_key,
@@ -177,30 +203,45 @@ class GeminiTTSProvider:
         if not transcript:
             raise ProviderError("Transcript Gemini vide après nettoyage du SSML")
 
-        payload = {
-            "model": self.model,
-            "store": False,
-            "input": [
-                {
-                    "type": "user_input",
-                    "content": [
-                        {
-                            "type": "text",
-                            "text": transcript,
-                            "annotations": [
-                                {"type": "speech_metadata", "style": self._style}
-                            ],
-                        }
-                    ],
-                }
-            ],
-            "response_format": {
-                "type": "audio",
-                "mime_type": "audio/wav",
-                "sample_rate": 24000,
-            },
-            "generation_config": {"speech_config": [{"voice": voice}]},
-        }
+        if self._api_mode == "generate-content":
+            payload = {
+                "contents": [{
+                    "role": "user",
+                    "parts": [{
+                        "text": transcript,
+                        "speech_metadata": {"style": self._style},
+                    }],
+                }],
+                "generationConfig": {
+                    "responseModalities": ["AUDIO"],
+                    "speechConfig": {"voiceConfig": {"voice": voice}},
+                },
+            }
+        else:
+            payload = {
+                "model": self.model,
+                "store": False,
+                "input": [
+                    {
+                        "type": "user_input",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": transcript,
+                                "annotations": [
+                                    {"type": "speech_metadata", "style": self._style}
+                                ],
+                            }
+                        ],
+                    }
+                ],
+                "response_format": {
+                    "type": "audio",
+                    "mime_type": "audio/wav",
+                    "sample_rate": 24000,
+                },
+                "generation_config": {"speech_config": [{"voice": voice}]},
+            }
 
         derniere: ProviderError | None = None
         for tentative in range(1, RETRY_ATTEMPTS + 1):
@@ -248,15 +289,25 @@ class GeminiTTSProvider:
                         raise ProviderError("WAV Gemini TTS illisible") from exc
                     if len(segment) == 0:
                         raise ProviderError("Gemini TTS a rendu un audio vide")
-                    usage = corps.get("usage")
+                    usage = corps.get("usage") or corps.get("usageMetadata")
+                    entree = (
+                        "promptTokensDetails"
+                        if self._api_mode == "generate-content"
+                        else "input_tokens_by_modality"
+                    )
+                    sortie = (
+                        "candidatesTokensDetails"
+                        if self._api_mode == "generate-content"
+                        else "output_tokens_by_modality"
+                    )
                     self._usage = {
                         "model": self.model,
                         "billed_characters": None,
                         "input_text_tokens": _tokens_par_modalite(
-                            usage, "input_tokens_by_modality", "text"
+                            usage, entree, "text"
                         ),
                         "output_audio_tokens": _tokens_par_modalite(
-                            usage, "output_tokens_by_modality", "audio"
+                            usage, sortie, "audio"
                         ),
                     }
                     return segment.set_frame_rate(24000).set_channels(1).set_sample_width(2)

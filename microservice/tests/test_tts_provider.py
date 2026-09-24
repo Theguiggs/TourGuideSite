@@ -454,6 +454,34 @@ class TestGeminiPremium:
         assert gemini.billing_usage()["input_text_tokens"] is None
         assert gemini.billing_usage()["output_audio_tokens"] is None
 
+    def test_generate_content_reutilise_voix_style_et_mesure_les_jetons(self, monkeypatch):
+        from services.tts_gemini import GeminiTTSProvider
+
+        monkeypatch.setenv("GEMINI_TTS_API_MODE", "generate-content")
+        gemini = GeminiTTSProvider("cle-gemini-test", style="Amical.", timeout_s=1)
+        appels = self._capture(monkeypatch, _ReponseGemini(corps={
+            "candidates": [{"content": {"parts": [{
+                "inlineData": {"mimeType": "audio/wav", "data": _audio_gemini_b64()}
+            }]}}],
+            "usageMetadata": {
+                "promptTokensDetails": [{"modality": "TEXT", "tokenCount": 7}],
+                "candidatesTokensDetails": [{"modality": "AUDIO", "tokenCount": 211}],
+            },
+        }))
+
+        assert len(asyncio.run(gemini.synthesize("Bonjour.", "Enzo", "premium"))) > 0
+        requete = appels[0]
+        assert requete["url"].endswith(
+            "/v1beta/models/gemini-3.8-flash-tts:generateContent"
+        )
+        partie = requete["json"]["contents"][0]["parts"][0]
+        assert partie == {"text": "Bonjour.", "speech_metadata": {"style": "Amical."}}
+        assert requete["json"]["generationConfig"]["speechConfig"] == {
+            "voiceConfig": {"voice": "Enzo"}
+        }
+        assert gemini.billing_usage()["input_text_tokens"] == 7
+        assert gemini.billing_usage()["output_audio_tokens"] == 211
+
     def test_un_raccourci_audio_vide_ne_masque_pas_le_bloc_rest_valide(
         self, gemini, monkeypatch
     ):
