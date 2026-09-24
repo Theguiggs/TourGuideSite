@@ -26,13 +26,20 @@ services:
       # passer inaperçu, mais il ne doit pas durer.
       AZURE_SPEECH_KEY: ${AZURE_SPEECH_KEY:-}
       AZURE_SPEECH_REGION: ${AZURE_SPEECH_REGION:-}
+      # Transition premium, sans activation implicite : la clé peut être posée
+      # avant la bascule, mais seul TTS_PROVIDER=gemini envoie des appels.
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_TTS_MODEL: ${GEMINI_TTS_MODEL:-gemini-3.8-flash-tts}
+      GEMINI_TTS_VOICE: ${GEMINI_TTS_VOICE:-Kore}
+      GEMINI_TTS_STYLE: ${GEMINI_TTS_STYLE:-}
       # Palier de voix : « standard » (défaut) ou « hd ». Le standard sert les
       # voix DÉJÀ entendues sur les 101 visites en vente ; la haute définition
       # change le timbre et coûte 22 $/M au lieu de 16. À trancher à l'écoute
       # comparative sur une visite réelle, pas sur catalogue.
       TTS_VOICE_TIER: ${TTS_VOICE_TIER:-standard}
-      # « edge » force le mode dégradé même avec une clé valide. À n'employer
-      # que délibérément — un incident fournisseur, par exemple.
+      # « gemini » active la voix premium ; « azure » conserve le fournisseur
+      # historique ; « edge » force le mode dégradé. Aucun repli n'a lieu après
+      # qu'un appel payant Gemini a été tenté.
       TTS_PROVIDER: ${TTS_PROVIDER:-}
       # Hôte(s) EXACT(S) d'où la détection de silence accepte de télécharger
       # un audio — le bucket du projet, et lui seul. La liste précédente

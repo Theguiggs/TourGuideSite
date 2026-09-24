@@ -97,6 +97,38 @@ class TTSProvider(Protocol):
         ...
 
 
+def billing_usage(provider: TTSProvider, source: str) -> dict[str, int | str | None]:
+    """Unités réellement facturées par le fournisseur qui vient de parler.
+
+    Azure facture les caractères, Edge mesure un coût nul, Gemini expose ses
+    jetons par modalité dans la réponse Interactions. Une donnée absente reste
+    ``None`` : la transformer en zéro effacerait une dépense du grand livre.
+    """
+    if provider.name == "azure":
+        return {
+            "model": "azure-neural",
+            "billed_characters": billed_characters(source),
+            "input_text_tokens": None,
+            "output_audio_tokens": None,
+        }
+    if provider.name == "edge":
+        return {
+            "model": "edge-tts",
+            "billed_characters": 0,
+            "input_text_tokens": 0,
+            "output_audio_tokens": 0,
+        }
+    releve = getattr(provider, "billing_usage", None)
+    if callable(releve):
+        return releve()
+    return {
+        "model": None,
+        "billed_characters": None,
+        "input_text_tokens": None,
+        "output_audio_tokens": None,
+    }
+
+
 def billed_characters(ssml: str) -> int:
     """
     Caractères facturés par Azure : tout le SSML SAUF l'enveloppe `<speak>` et
@@ -157,11 +189,21 @@ def resolve_tier(demande: str | None = None) -> str:
     return tier
 
 
-def resolve_voice(language: str, tier: str, voice_id: str | None = None) -> str:
+def resolve_voice(
+    language: str,
+    tier: str,
+    voice_id: str | None = None,
+    provider_name: str | None = None,
+) -> str:
     """Voix pour une langue et un palier. Une voix explicite l'emporte : c'est
     ce qui rend l'écoute comparative possible sans toucher au code."""
     if voice_id:
         return voice_id
+    if provider_name == "gemini":
+        # Gemini detecte la langue dans le transcript. Une meme voix conserve
+        # ainsi son identite entre les versions d'une visite. La valeur reste
+        # configurable pour permettre l'ecoute comparative avant activation.
+        return (os.getenv("GEMINI_TTS_VOICE") or "Kore").strip() or "Kore"
     table = VOICES_HD if tier == "hd" else VOICES_STANDARD
     voix = table.get(language)
     if voix:
@@ -187,10 +229,11 @@ def build_provider() -> TTSProvider:
     demande = (os.getenv("TTS_PROVIDER") or "").strip().lower()
     cle = (os.getenv("AZURE_SPEECH_KEY") or "").strip()
     region = (os.getenv("AZURE_SPEECH_REGION") or "").strip()
+    cle_gemini = (os.getenv("GEMINI_API_KEY") or "").strip()
 
-    if demande and demande not in ("edge", "azure"):
+    if demande and demande not in ("edge", "azure", "gemini"):
         logger.warning(
-            "TTS_PROVIDER inconnu (%r) - valeurs acceptees : « azure », « edge ». "
+            "TTS_PROVIDER inconnu (%r) - valeurs acceptees : « gemini », « azure », « edge ». "
             "Le choix se fera sur la presence de la cle.",
             demande,
         )
@@ -203,6 +246,17 @@ def build_provider() -> TTSProvider:
         from services.tts_edge import EdgeTTSProvider
 
         return EdgeTTSProvider()
+
+    if demande == "gemini":
+        if not cle_gemini:
+            # Une transition premium mal configuree ne doit jamais fabriquer
+            # silencieusement avec une autre voix sous la meme Paire.
+            raise ProviderAuthError(
+                "TTS_PROVIDER=gemini demande mais GEMINI_API_KEY est absent"
+            )
+        from services.tts_gemini import GeminiTTSProvider
+
+        return GeminiTTSProvider(api_key=cle_gemini)
 
     if cle and region:
         from services.tts_azure import AzureTTSProvider

@@ -97,6 +97,63 @@ def test_health_is_public_but_business_endpoints_require_the_key(local_server):
     assert accepted.json()["job_id"] == "tts-test-job"
 
 
+def test_tts_refuses_a_backend_provider_mismatch_before_enqueuing(local_server, monkeypatch):
+    submitted = []
+    local_server.job_manager = SimpleNamespace(
+        submit=lambda *args, **kwargs: submitted.append((args, kwargs)) or "should-not-exist",
+        inflight_count=lambda: 0,
+    )
+    monkeypatch.setattr(
+        local_server,
+        "build_provider",
+        lambda: SimpleNamespace(name="azure"),
+    )
+    client = TestClient(local_server.app)
+
+    response = client.post(
+        "/v1/tts/generate",
+        headers={"X-API-Key": "test-secret"},
+        json={
+            "text": "Bonjour",
+            "language": "fr",
+            "expected_provider": "gemini",
+        },
+    )
+
+    assert response.status_code == 409
+    assert response.json() == {
+        "ok": False,
+        "error": "provider_mismatch",
+        "expected_provider": "gemini",
+        "selected_provider": "azure",
+    }
+    assert submitted == []
+
+
+def test_tts_gemini_requires_the_backend_provider_lock(local_server, monkeypatch):
+    submitted = []
+    local_server.job_manager = SimpleNamespace(
+        submit=lambda *args, **kwargs: submitted.append((args, kwargs)) or "should-not-exist",
+        inflight_count=lambda: 0,
+    )
+    monkeypatch.setattr(
+        local_server,
+        "build_provider",
+        lambda: SimpleNamespace(name="gemini"),
+    )
+    client = TestClient(local_server.app)
+
+    response = client.post(
+        "/v1/tts/generate",
+        headers={"X-API-Key": "test-secret"},
+        json={"text": "Bonjour", "language": "fr"},
+    )
+
+    assert response.status_code == 409
+    assert response.json()["error"] == "expected_provider_required"
+    assert submitted == []
+
+
 def test_async_polling_contract_returns_completed_results(local_server):
     local_server.job_manager = SimpleNamespace(
         get=lambda job_id, owner=None: SimpleNamespace(

@@ -38,7 +38,10 @@ from services.tts_provider import (  # noqa: E402
 def environnement_propre(monkeypatch):
     """Aucune variable héritée du poste : un test qui dépend de la machine qui
     l'exécute ne prouve rien."""
-    for nom in ("TTS_PROVIDER", "AZURE_SPEECH_KEY", "AZURE_SPEECH_REGION", "TTS_VOICE_TIER"):
+    for nom in (
+        "TTS_PROVIDER", "AZURE_SPEECH_KEY", "AZURE_SPEECH_REGION", "TTS_VOICE_TIER",
+        "GEMINI_API_KEY", "GEMINI_TTS_MODEL", "GEMINI_TTS_VOICE", "GEMINI_TTS_STYLE",
+    ):
         monkeypatch.delenv(nom, raising=False)
 
 
@@ -162,6 +165,21 @@ class TestChoixDuFournisseur:
         with caplog.at_level("WARNING"):
             assert build_provider().name == "edge"
         assert "DÉGRADÉ" in caplog.text
+
+    def test_gemini_exige_sa_cle_sans_repli_silencieux(self, monkeypatch):
+        monkeypatch.setenv("TTS_PROVIDER", "gemini")
+        with pytest.raises(ProviderAuthError, match="GEMINI_API_KEY"):
+            build_provider()
+
+    def test_gemini_est_selectionne_explicitement(self, monkeypatch):
+        monkeypatch.setenv("TTS_PROVIDER", "gemini")
+        monkeypatch.setenv("GEMINI_API_KEY", "cle-gemini-test")
+        assert build_provider().name == "gemini"
+
+    def test_la_cle_gemini_seule_ne_change_pas_le_fournisseur(self, monkeypatch):
+        monkeypatch.setenv("GEMINI_API_KEY", "cle-gemini-test")
+        # Livraison progressive : poser le secret ne suffit jamais à activer.
+        assert build_provider().name == "edge"
 
 
 # ── Le fournisseur sous contrat ────────────────────────────────────────────
@@ -333,6 +351,156 @@ def _wav_minimal(duree_ms=400):
         .set_sample_width(2)
         .apply_gain(-20.0)
     )
+
+
+class _ReponseGemini:
+    def __init__(self, status_code=200, corps=None, headers=None):
+        self.status_code = status_code
+        self._corps = corps or {}
+        self.headers = headers or {}
+
+    def json(self):
+        return self._corps
+
+
+def _audio_gemini_b64(duree_ms=400):
+    import base64
+    import io
+
+    tampon = io.BytesIO()
+    _wav_minimal(duree_ms).export(tampon, format="wav")
+    return base64.b64encode(tampon.getvalue()).decode("ascii")
+
+
+class TestGeminiPremium:
+    @pytest.fixture
+    def gemini(self):
+        from services.tts_gemini import GeminiTTSProvider
+
+        return GeminiTTSProvider(
+            api_key="cle-gemini-test",
+            style="Guide chaleureux, diction precise.",
+            timeout_s=1,
+        )
+
+    def _capture(self, monkeypatch, *reponses):
+        appels = []
+        suite = list(reponses)
+
+        def _post(self, url, json=None, headers=None, timeout=None):
+            appels.append({"url": url, "json": json, "headers": headers, "timeout": timeout})
+            return suite[min(len(appels) - 1, len(suite) - 1)]
+
+        import requests
+
+        monkeypatch.setattr(requests.Session, "post", _post)
+        monkeypatch.setattr("services.tts_gemini.RETRY_BASE_DELAY_S", 0)
+        return appels
+
+    def test_separe_transcript_style_voix_et_mesure_les_jetons(self, gemini, monkeypatch):
+        corps = {
+            "status": "completed",
+            "steps": [{
+                "type": "model_output",
+                "content": [{
+                    "type": "audio",
+                    "mime_type": "audio/wav",
+                    "sample_rate": 24000,
+                    "data": _audio_gemini_b64(),
+                }],
+            }],
+            "usage": {
+                "input_tokens_by_modality": [{"modality": "text", "tokens": 19}],
+                "output_tokens_by_modality": [{"modality": "audio", "tokens": 313}],
+            },
+        }
+        appels = self._capture(monkeypatch, _ReponseGemini(corps=corps))
+
+        segment = asyncio.run(
+            gemini.synthesize(
+                'Bonjour.<break time="2s"/>Regarde.', "Kore", "premium"
+            )
+        )
+
+        assert len(segment) > 0
+        assert len(appels) == 1
+        requete = appels[0]
+        assert requete["headers"]["x-goog-api-key"] == "cle-gemini-test"
+        payload = requete["json"]
+        assert payload["model"] == "gemini-3.8-flash-tts"
+        assert payload["store"] is False
+        assert payload["response_format"] == {
+            "type": "audio", "mime_type": "audio/wav", "sample_rate": 24000
+        }
+        contenu = payload["input"][0]["content"][0]
+        assert contenu["text"] == "Bonjour. <long pause> Regarde."
+        assert contenu["annotations"][0]["style"] == "Guide chaleureux, diction precise."
+        assert payload["generation_config"]["speech_config"] == [{"voice": "Kore"}]
+        assert gemini.billing_usage() == {
+            "model": "gemini-3.8-flash-tts",
+            "billed_characters": None,
+            "input_text_tokens": 19,
+            "output_audio_tokens": 313,
+        }
+
+    def test_usage_absent_reste_inconnu(self, gemini, monkeypatch):
+        self._capture(
+            monkeypatch,
+            _ReponseGemini(corps={"output_audio": {"data": _audio_gemini_b64()}}),
+        )
+
+        asyncio.run(gemini.synthesize("Bonjour.", "Kore", "premium"))
+
+        assert gemini.billing_usage()["input_text_tokens"] is None
+        assert gemini.billing_usage()["output_audio_tokens"] is None
+
+    def test_un_raccourci_audio_vide_ne_masque_pas_le_bloc_rest_valide(
+        self, gemini, monkeypatch
+    ):
+        self._capture(
+            monkeypatch,
+            _ReponseGemini(corps={
+                "output_audio": {},
+                "steps": [{
+                    "type": "model_output",
+                    "content": [{"type": "audio", "data": _audio_gemini_b64()}],
+                }],
+            }),
+        )
+        assert len(asyncio.run(gemini.synthesize("Bonjour.", "Kore", "premium"))) > 0
+
+    def test_refuse_le_modele_lite_car_son_tarif_est_different(self):
+        from services.tts_gemini import GeminiTTSProvider
+
+        with pytest.raises(ProviderError, match="invalide"):
+            GeminiTTSProvider("cle", model="gemini-3.8-flash-lite-tts")
+
+    def test_ne_reessaie_jamais_une_cle_refusee(self, gemini, monkeypatch):
+        appels = self._capture(monkeypatch, _ReponseGemini(status_code=401))
+        with pytest.raises(ProviderAuthError):
+            asyncio.run(gemini.synthesize("Bonjour.", "Kore", "premium"))
+        assert len(appels) == 1
+
+    def test_429_sort_comme_quota_apres_les_reprises(self, gemini, monkeypatch):
+        monkeypatch.setattr("services.tts_gemini.RETRY_ATTEMPTS", 2)
+        appels = self._capture(
+            monkeypatch,
+            _ReponseGemini(status_code=429),
+            _ReponseGemini(status_code=429),
+        )
+        with pytest.raises(ProviderQuotaError):
+            asyncio.run(gemini.synthesize("Bonjour.", "Kore", "premium"))
+        assert len(appels) == 2
+
+    def test_un_fragment_ssml_malforme_ne_lit_jamais_les_balises(self, gemini, monkeypatch):
+        appels = self._capture(
+            monkeypatch,
+            _ReponseGemini(corps={"output_audio": {"data": _audio_gemini_b64()}}),
+        )
+
+        asyncio.run(gemini.synthesize("Bonjour <prosody>le monde", "Kore", "premium"))
+
+        assert appels[0]["json"]["input"][0]["content"][0]["text"] == "Bonjour le monde"
 
 
 class _CommunicateDouble:
@@ -652,6 +820,34 @@ class TestChargeUtileDuJob:
         # couts que CAP-9 doit rendre.
         assert r["provider"] == "edge"
         assert r["billed_characters"] == 0
+
+    def test_gemini_transporte_le_modele_et_les_jetons_dans_le_job(
+        self, serveur, monkeypatch
+    ):
+        class _GeminiDouble:
+            name = "gemini"
+
+            async def synthesize(self, ssml, voice, tier):
+                return _wav_minimal(800)
+
+            def billing_usage(self):
+                return {
+                    "model": "gemini-3.8-flash-tts",
+                    "billed_characters": None,
+                    "input_text_tokens": 19,
+                    "output_audio_tokens": 313,
+                }
+
+        monkeypatch.setattr(serveur, "build_provider", lambda: _GeminiDouble())
+
+        r = asyncio.run(serveur._tts_work("Bonjour Biarritz.", "fr", None))
+
+        assert r["provider"] == "gemini"
+        assert r["model"] == "gemini-3.8-flash-tts"
+        assert r["voice"] == "Kore"
+        assert r["billed_characters"] is None
+        assert r["billing"]["input_text_tokens"] == 19
+        assert r["billing"]["output_audio_tokens"] == 313
 
     def test_un_audio_vide_leve_plutot_que_publier_une_scene_de_zero_ms(
         self, serveur, monkeypatch
