@@ -5,7 +5,7 @@ import { translate } from '@/lib/i18n/translate';
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { MoreVertical } from 'lucide-react';
+import { AudioLines, MoreVertical } from 'lucide-react';
 import { Pin } from '@murmure/design-system/web';
 import { tgColors } from '@murmure/design-system';
 import { cityFamily, FAMILY_META } from '@/components/studio/shell';
@@ -126,6 +126,13 @@ export function TourCard({
     free: 'Free', paid: 'Paid', subscribers: 'Subscribers', accessUnknown: 'Access not set',
   });
   const menuCopy = localizeValue(locale, { more: 'Plus d’actions', publication: 'Publication', deleteBlocked: 'Dépubliez avant de supprimer' }, { more: 'More actions', publication: 'Publication', deleteBlocked: 'Unpublish before deleting' });
+  const audioCopy = localizeValue(locale, {
+    label: 'Audio existant',
+    description: 'audios traduits déjà disponibles',
+  }, {
+    label: 'Audio available',
+    description: 'translated audio files already available',
+  });
   // Pastille d'accès : ce que la visite coûte au visiteur. Absente tant que la
   // Visite n'existe pas ; « non défini » quand elle existe sans modèle d'accès.
   const accessPill = access
@@ -272,6 +279,17 @@ export function TourCard({
             data-testid="tour-card-access"
           >
             {accessPill.label}
+          </span>
+        )}
+        {(session.publishedTranslatedAudioCount ?? 0) > 0 && (
+          <span
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-pill text-meta font-bold self-start bg-mer-soft text-mer"
+            data-testid="tour-card-audio"
+            title={`${session.publishedTranslatedAudioCount} ${audioCopy.description}`}
+            aria-label={`${audioCopy.label} : ${session.publishedTranslatedAudioCount} ${audioCopy.description}`}
+          >
+            <AudioLines size={13} aria-hidden="true" />
+            {audioCopy.label} · {session.publishedTranslatedAudioCount}
           </span>
         )}
         <div className="flex gap-1 flex-wrap" data-testid="tour-card-langs">

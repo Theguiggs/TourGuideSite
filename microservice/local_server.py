@@ -32,7 +32,7 @@ from services.job_manager import JobManager, QueueFull
 from services.text_sanitize import normalize_source, postclean_translation
 from services.audio_post import normalize_loudness
 from services.tts_provider import (
-    billed_characters,
+    billing_usage,
     build_provider,
     resolve_tier,
     resolve_voice,
@@ -266,6 +266,9 @@ class TTSRequest(BaseModel):
     # doivent lister les memes langues.
     language: str = Field(default="fr", pattern="^(fr|en|it|de|es|nl|ja|ko|zh|ru)$")
     voice_id: str | None = None
+    # Le backend réserve la dépense selon ce fournisseur. Une divergence est
+    # refusée AVANT de créer le job, donc avant tout appel payant.
+    expected_provider: str | None = Field(default=None, pattern="^(gemini|azure|edge)$")
 
 
 class TranslateRequest(BaseModel):
@@ -343,17 +346,17 @@ async def health():
 # gratuit qui n'honore pas le SSML. Le chemin nominal passe desormais par
 # `services/tts_provider.py`, qui choisit le fournisseur et le NOMME.
 
-async def _tts_work(text: str, language: str, voice_id: str | None) -> dict:
+async def _tts_work(
+    text: str, language: str, voice_id: str | None, provider=None
+) -> dict:
     """Rend l'audio d'une Scene. Tourne comme job « tts » sous le plafond de
     concurrence. Leve en cas d'echec — le motif est conserve dans le job."""
-    provider = build_provider()
+    provider = provider or build_provider()
     tier = resolve_tier()
-    voice = resolve_voice(language, tier, voice_id)
-    facturables = billed_characters(text)
-
+    voice = resolve_voice(language, tier, voice_id, provider.name)
     logger.info(
-        "TTS : fournisseur=%s voix=%s palier=%s facturables=%d",
-        provider.name, voice, tier, facturables,
+        "TTS : fournisseur=%s voix=%s palier=%s caracteres_source=%d",
+        provider.name, voice, tier, len(text),
     )
 
     audio_seg = await provider.synthesize(text, voice, tier)
@@ -374,20 +377,31 @@ async def _tts_work(text: str, language: str, voice_id: str | None) -> dict:
     buf.seek(0)
     audio_b64 = base64.b64encode(buf.read()).decode("ascii")
     duration_ms = len(audio_seg)
-    logger.info("TTS OK : %d ms, %d Ko", duration_ms, len(audio_b64) // 1024)
+    usage = billing_usage(provider, text)
+    logger.info(
+        "TTS OK : fournisseur=%s modele=%s voix=%s duree_ms=%d taille_ko=%d facturation=%s",
+        provider.name,
+        usage["model"],
+        voice,
+        duration_ms,
+        len(audio_b64) // 1024,
+        usage,
+    )
 
-    # `provider` et `billed_characters` ne sont pas decoratifs : sans eux, une
-    # fabrication en mode degrade serait indiscernable d'une fabrication sous
-    # contrat, et CAP-9 n'aurait rien a agreger.
+    # Le fournisseur et ses unités ne sont pas décoratifs : sans eux, Gemini
+    # serait facturé comme Azure et CAP-9 n'aurait rien de fiable à agréger.
     return {
         "audio_base64": audio_b64,
         "duration_ms": duration_ms,
         "provider": provider.name,
         "voice": voice,
         "tier": tier,
-        # Zero en mode degrade : l'endpoint gratuit ne facture rien, et compter
-        # comme s'il facturait fausserait l'agregat de couts.
-        "billed_characters": facturables if provider.name == "azure" else 0,
+        "model": usage["model"],
+        "billing": usage,
+        # Compatibilite avec les consommateurs Azure existants pendant la
+        # livraison progressive. Gemini est volontairement `None` ici : ses
+        # jetons vivent dans `billing` et ne doivent pas devenir des caracteres.
+        "billed_characters": usage["billed_characters"],
     }
 
 
@@ -399,7 +413,39 @@ async def generate_tts(req: TTSRequest, request: Request):
     if job_manager is None:
         return JSONResponse(status_code=503, content={"ok": False, "error": "service starting"})
     try:
-        job_id = job_manager.submit("tts", lambda: _tts_work(req.text, req.language, req.voice_id), owner=caller_sub(request))
+        provider = build_provider()
+    except Exception as exc:
+        return JSONResponse(
+            status_code=503,
+            content={"ok": False, "error": f"provider_unavailable: {exc}"},
+        )
+    selectionne = provider.name
+    if selectionne == "gemini" and not req.expected_provider:
+        return JSONResponse(
+            status_code=409,
+            content={
+                "ok": False,
+                "error": "expected_provider_required",
+                "selected_provider": selectionne,
+            },
+        )
+    if req.expected_provider:
+        if selectionne != req.expected_provider:
+            return JSONResponse(
+                status_code=409,
+                content={
+                    "ok": False,
+                    "error": "provider_mismatch",
+                    "expected_provider": req.expected_provider,
+                    "selected_provider": selectionne,
+                },
+            )
+    try:
+        job_id = job_manager.submit(
+            "tts",
+            lambda: _tts_work(req.text, req.language, req.voice_id, provider),
+            owner=caller_sub(request),
+        )
     except QueueFull:
         return JSONResponse(
             status_code=429,

@@ -33,7 +33,13 @@ export async function withPublishedStatus(sessions: StudioSession[]): Promise<St
     sessions.map((s) =>
       s.tourId
         ? getGuideTourById(s.tourId)
-            .then((t) => (t as { status?: string; draftSessionId?: string; purchaseType?: string; priceCents?: number | null } | null) ?? null)
+            .then((t) => (t as {
+              status?: string;
+              draftSessionId?: string;
+              purchaseType?: string;
+              priceCents?: number | null;
+              translatedAudioKeys?: unknown;
+            } | null) ?? null)
             .catch(() => null)
         : Promise.resolve(null),
     ),
@@ -75,9 +81,31 @@ export async function withPublishedStatus(sessions: StudioSession[]): Promise<St
     return { purchaseType, priceCents: typeof tour.priceCents === 'number' ? tour.priceCents : null };
   };
 
+  // Ce champ contient les sorties traduites publiées. Les enregistrements
+  // humains et la voix source restent volontairement hors de l'indicateur.
+  const translatedAudioCountOf = (i: number): number => {
+    let languages: unknown = tours[i]?.translatedAudioKeys;
+    if (typeof languages === 'string') {
+      try { languages = JSON.parse(languages); } catch { return 0; }
+    }
+    if (!languages || typeof languages !== 'object' || Array.isArray(languages)) return 0;
+
+    return Object.values(languages).reduce((total, rawSceneMap) => {
+      let sceneMap: unknown = rawSceneMap;
+      if (typeof sceneMap === 'string') {
+        try { sceneMap = JSON.parse(sceneMap); } catch { return total; }
+      }
+      if (!sceneMap || typeof sceneMap !== 'object' || Array.isArray(sceneMap)) return total;
+      return total + Object.values(sceneMap).filter(
+        (key) => typeof key === 'string' && key.trim().length > 0,
+      ).length;
+    }, 0);
+  };
+
   return sessions.map((s, i) => ({
     ...s,
     tourAccess: accessOf(i),
+    publishedTranslatedAudioCount: translatedAudioCountOf(i),
     ...(isLiveVersion(i) && s.status !== 'published'
       ? { status: 'published' as StudioSession['status'] }
       : {}),

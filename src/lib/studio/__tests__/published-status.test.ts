@@ -69,6 +69,27 @@ describe('withPublishedStatus', () => {
     expect(mockUpdateStudioSessionMutation).not.toHaveBeenCalled();
   });
 
+  it('compte uniquement les audios traduits publiés', async () => {
+    mockGetGuideTourById.mockResolvedValue({
+      status: 'published',
+      translatedAudioKeys: {
+        en: { scene1: 'audio/en/1.mp3', scene2: 'audio/en/2.mp3', absent: '' },
+        de: JSON.stringify({ scene1: 'audio/de/1.mp3' }),
+      },
+    });
+    const [out] = await withPublishedStatus([session('s1', 'published', 't1')]);
+    expect(out.publishedTranslatedAudioCount).toBe(3);
+  });
+
+  it('accepte translatedAudioKeys sérialisé en AWSJSON', async () => {
+    mockGetGuideTourById.mockResolvedValue({
+      status: 'published',
+      translatedAudioKeys: JSON.stringify({ en: { scene1: 'audio/en/1.mp3' } }),
+    });
+    const [out] = await withPublishedStatus([session('s1', 'published', 't1')]);
+    expect(out.publishedTranslatedAudioCount).toBe(1);
+  });
+
   it('ne jette pas si l’écriture de heal échoue (fire-and-forget)', async () => {
     mockGetGuideTourById.mockResolvedValue({ status: 'published' });
     mockUpdateStudioSessionMutation.mockReturnValue(Promise.reject(new Error('denied')));
